@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>ChangeLogJapanese</title>
+  <title>変更履歴</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -20,172 +20,245 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="変更履歴">変更履歴</h1>
-<h2 id="winmerge-21616---2021-10-28">WinMerge 2.16.16 - 2021-10-28</h2>
-<h3 id="全般">全般</h3>
+<header id="title-block-header">
+<h1 class="title">変更履歴</h1>
+</header>
+<h3 id="20211229-21616-jp-4">2021/12/29 2.16.16-jp-4</h3>
+<h4 id="全般">全般</h4>
 <ul>
-<li>Windows コモンダイアログに表示されるテキストが、言語を切り替えたときに その言語に変更されない。</li>
+<li>INIファイル(WinMergeU.exeと同じ場所のwinmerge.ini)に[Defaults]セクションとキー=値を記載した場合、WinMerge終了前に設定変更していても次回起動時記載した設定値で上書きするようにした。<a href="https://github.com/WinMerge/winmerge/pull/1071">GitHub PR #1038</a>(PRいただきました。ありがとうございます。)</li>
 </ul>
-<h3 id="ファイル比較">ファイル比較</h3>
+<h4 id="ファイル比較">ファイル比較</h4>
 <ul>
-<li>不具合修正: 保存に失敗したときに適切なメッセージが表示されない。</li>
+<li>不具合修正: ファイルサイズによってはクラッシュすることがあった。<a href="https://github.com/winmerge/winmerge/issues/1101">GitHub #1101</a></li>
+<li>不具合修正: [ウインドウ]→[分割]メニューでウインドウを分割した後、ペインの高さをドラッグ操作で０にしたとき、エラーが発生する。</li>
+<li>[表示]→[シンタックスハイライト]メニューをマルチカラムにした。</li>
+<li>3ファイル比較: 隣接ペインだけでなく、直接左側ペインから右側ペインまたは逆方向にコピーできるようにした。(コンテキストメニューまたは[マージ]→[高度な操作]から)</li>
 </ul>
-<h3 id="テーブル比較">テーブル比較</h3>
+<h4 id="画像比較">画像比較</h4>
 <ul>
-<li>不具合修正: 最後の列の幅を変更できないことがある。 (#998)</li>
-<li>外部のアプリケーション等が編集中のファイルを更新後、WinMergeが再読み込みした とき、列の幅を再計算しないように変更。 (#951)</li>
+<li>不具合修正: [ツール]→[レポートの生成]メニューのアイコンが表示されないのを修正。</li>
+<li>複数ページある画像ファイルの前ページを1つの比較レポートに出力できるようにした。(現在のページのみ出力したい場合は、名前を付けて保存ダイアログで「すべてのページ」のチェックを外してください)<a href="https://osdn.net/projects/winmerge-jp/ticket/43374">osdn.net #43374</a></li>
 </ul>
-<h3 id="画像比較">画像比較</h3>
+<h4 id="バイナリ比較">バイナリ比較</h4>
+<ul>
+<li>不具合修正: [ツール]→[レポートの生成]メニューのアイコンが表示されないのを修正。</li>
+</ul>
+<h4 id="フォルダ比較">フォルダ比較</h4>
+<ul>
+<li>ツリーモードが無効の時に大量のファイルを比較すると結果が表示されるまでかなり時間がかかるのを改善した。<a href="https://github.com/WinMerge/winmerge/pull/1069">GitHub PR #1069</a></li>
+</ul>
+<h4 id="プロジェクトファイル">プロジェクトファイル</h4>
+<ul>
+<li>プロジェクトファイルに「数字を無視」の設定を保存できるようにした。<a href="https://github.com/WinMerge/winmerge/pull/1068">GitHub PR #1068</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="設定ダイアログ">設定ダイアログ</h4>
+<ul>
+<li>「&#39;Esc&#39;キーでウインドウを閉じる」コンボボックスに「MDI子ウインドウが１つしかない場合、メインウインドウを閉じる」を追加。<a href="https://github.com/WinMerge/winmerge/issues/1042">GitHub PR #1052</a></li>
+</ul>
+<h4 id="シェルエクステンション">シェルエクステンション</h4>
+<ul>
+<li>Windows11のシェルエクステンション: 現在のWindows11Build22000とBuild22499で問題なそうなので無効にしていた拡張メニューを復活させた。</li>
+</ul>
+<h4 id="プラグイン">プラグイン</h4>
+<ul>
+<li>不具合修正: [プラグイン]→[プラグインの再読み込み]メニューでプラグインの再読み込みがされていなかった</li>
+</ul>
+<h4 id="アーカイブサポート">アーカイブサポート</h4>
+<ul>
+<li>7-Zip 21.06 に更新。</li>
+</ul>
+<h3 id="20211129-21616-jp-3">2021/11/29 2.16.16-jp-3</h3>
+<h4 id="全般-1">全般</h4>
+<ul>
+<li>64bit版をVisualStudio2022でビルドするようにした。</li>
+<li>タブバーのタブにタイトルが長すぎて表示しきれない場合、ツールチップで表示するようにした。<a href="https://github.com/WinMerge/winmerge/pull/1038">GitHub PR #1038</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="ファイル比較-1">ファイル比較</h4>
+<ul>
+<li>不具合修正: 64MBを超えるファイルを開くと表示されるウインドウで[はい]を選択するとクラッシュする。<a href="https://github.com/winmerge/winmerge/issues/1036">GitHub #1036</a></li>
+<li>不具合修正: C#(Java, JavaScript)のキーワードハイライトを修正。<a href="https://github.com/WinMerge/winmerge/pull/1040">GitHub PR #1040</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: WinMergeで編集中のファイルを他のアプリケーションで変更後、WinMergeに戻るとフォーカスしているペインが変わってしまう。<a href="https://github.com/winmerge/winmerge/issues/1050">GitHub #1050</a></li>
+<li>不具合修正: PHPのシンタックスハイライトを修正。<a href="https://github.com/WinMerge/winmerge/pull/1055">GitHub PR #1055</a>(PRいただきました。ありがとうございます。)</li>
+<li>比較オプションとして[数字を無視]を追加。<a href="https://github.com/WinMerge/winmerge/pull/1042">GitHub PR #1024</a>(PRいただきました。ありがとうございます。)</li>
+<li>D言語のシンタックスハイライトを追加。<a href="https://github.com/WinMerge/winmerge/pull/1042">GitHub PR #1042</a>(PRいただきました。ありがとうございます。)</li>
+<li>[比較/一般]カテゴリの&quot;類似行をマッチさせる&quot;オプションの動作を若干改善
+<ul>
+<li>高速化</li>
+<li>差異ブロックが15行以下の制限を4096バイトの制限に変更</li>
+</ul></li>
+<li>3ファイル比較でも&quot;類似行をマッチさせる&quot;オプションを機能させるようにした。</li>
+<li>行フィルタ、置換フィルタ等で差異を無視した行が存在する場合、タイトルに&quot;(F)&quot;を付加するようにした。</li>
+<li>片方のファイルにコメントのみの行があり、他方のファイルには対応する行が存在しない場合、[コメントの違いを無視する]と[空行を無視する]オプション両方が有効になっていれば、この差異を無視するようにした。<a href="https://github.com/winmerge/winmerge/issues/1057">GitHub #1057</a></li>
+</ul>
+<h4 id="パッチ生成ウインドウ">パッチ生成ウインドウ</h4>
+<ul>
+<li>[クリップボードにコピー]チェックボックスを追加。</li>
+</ul>
+<h4 id="フォルダ比較-1">フォルダ比較</h4>
+<ul>
+<li>不具合修正: 追加プロパティがある場合に3フォルダ比較でクラッシュする</li>
+</ul>
+<h4 id="設定ダイアログ-1">設定ダイアログ</h4>
+<ul>
+<li>比較オプションとして[数字を無視]を追加。<a href="https://github.com/WinMerge/winmerge/pull/1042">GitHub PR #1024</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h3 id="20211029-21616-jp-2">2021/10/29 2.16.16-jp-2</h3>
+<h4 id="全般-2">全般</h4>
+<ul>
+<li>不具合修正: Windows コモンダイアログに表示されるテキストが、言語を切り替えたときに その言語に変更されない。</li>
+</ul>
+<h4 id="テーブル比較">テーブル比較</h4>
+<ul>
+<li>不具合修正: 最後の列の幅を変更できないことがある。<a href="https://github.com/winmerge/winmerge/issues/998">GitHub #998</a></li>
+</ul>
+<h4 id="画像比較-1">画像比較</h4>
 <ul>
 <li>不具合修正: 画像比較ウインドウへのファイルのドラッグ＆ドロップが2回目以降 受け付けられない。</li>
 </ul>
-<h3 id="フォルダ比較">フォルダ比較</h3>
+<h4 id="フォルダ比較-2">フォルダ比較</h4>
 <ul>
-<li>不具合修正: ファイルを大量にコピー後、操作できなくなる時間が長い。 (#771)</li>
-<li>不具合修正: 1つのプロジェクトファイルに複数の比較設定がされ、それぞれ異なる ファイルフィルタが指定された場合、ファイルフィルタが正しく適用されない。 (PR #995)</li>
-<li>画像サイズとファイルサイズの差異を列に表示できるようにした。 (#131) (以下のPRで実現)</li>
-<li>Windowsプロパティシステムから取得したファイルの各プロパティ値と ハッシュ値(MD5, SHA-1, SHA-256)を列に表示できるようにした。 (PR #996)</li>
+<li>不具合修正: 1つのプロジェクトファイルに複数の比較設定がされ、それぞれ異なる ファイルフィルタが指定された場合、ファイルフィルタが正しく適用されない。<a href="https://github.com/WinMerge/winmerge/pull/995">GitHub PR #995</a>(PRいただきました。ありがとうございます。)</li>
+<li>画像サイズとファイルサイズの差異を列に表示できるようにした。 <a href="https://github.com/WinMerge/winmerge/issues/131">GitHub #131</a>(以下のPRで実現)</li>
+<li>Windowsプロパティシステムから取得したファイルの各プロパティ値と ハッシュ値(MD5, SHA-1, SHA-256)を列に表示できるようにした。<a href="https://github.com/WinMerge/winmerge/pull/996">GitHub PR #996</a></li>
 </ul>
-<h3 id="オプションダイアログ">オプションダイアログ</h3>
+<h4 id="設定ダイアログ-2">設定ダイアログ</h4>
 <ul>
 <li>不具合修正: [Windows 11 以降用シェル拡張を登録]ボタンを別ユーザが押した後、 このボタンが有効にならない。</li>
 </ul>
-<h3 id="プラグイン">プラグイン</h3>
+<h4 id="プラグイン-1">プラグイン</h4>
 <ul>
-<li>不具合修正: get_PluginUnpackedFileExtension で指定した拡張子に対応する シンタックスハイライトがされない。 (#983)</li>
-<li>不具合修正: リンク先が存在しないショートカットのMS Officeドキュメントを 開くとエラーメッセージがWinMergeの後ろに隠れてしまう。 (#1007)</li>
-<li>Apache Tika プラグイン: Apache tika を 2.1.0 に更新し、ダウンロード元URLを 変更。</li>
-<li>CompareMSExcelFiles.sct: [ワークブックの情報を複数ファイルに展開する] が有効のとき、ファイル名に含まれるシート名の前の数値をゼロパッデングにした。</li>
+<li>不具合修正: <code>get_PluginUnpackedFileExtension</code> で指定した拡張子に対応する シンタックスハイライトがされない。<a href="https://github.com/WinMerge/winmerge/issues/983">GitHub #983</a></li>
+<li>不具合修正: リンク先が存在しないショートカットのMS Officeドキュメントを 開くとエラーメッセージがWinMergeの後ろに隠れてしまう。<a href="https://github.com/WinMerge/winmerge/issues/1007">GitHub #1007</a></li>
+<li>不具合修正: Apache Tika プラグイン: Apache tika を 2.1.0 に更新し、ダウンロード元URLを 変更。</li>
+<li>不具合修正: CompareMSExcelFiles.sct: [ワークブックの情報を複数ファイルに展開する] が有効のとき、ファイル名に含まれるシート名の前の数値をゼロパッデングにした。(パッチをいただきました。ありがとうございます。)</li>
 </ul>
-<h3 id="シェルエクステンション">シェルエクステンション</h3>
+<h4 id="シェルエクステンション-1">シェルエクステンション</h4>
 <ul>
-<li>不具合修正: MSVCP140.dll VCRUNTIME140*.dll がインストールされていないPCで Windows 11 用のシェルエクステンションが動作しない。</li>
-<li>不具合修正: 65536以上ファイルを選択すると無限ループする。 (PR #987)</li>
+<li>不具合修正: 65536以上ファイルを選択すると無限ループする。<a href="https://github.com/WinMerge/winmerge/pull/987">GitHub PR #987</a>(PRいただきました。ありがとうございます。)</li>
 <li>Windows 11用シェルエクステンションから起動したWinMergeでおこなった設定変更が、 通常起動したWinMergeに反映されない。</li>
 </ul>
-<h3 id="マニュアル">マニュアル</h3>
+<h3 id="20210929-21614-jp-6">2021/09/29 2.16.14-jp-6</h3>
+<h4 id="全般-3">全般</h4>
 <ul>
-<li>4.1 Using profile file 修正 (#1004)</li>
+<li>不具合修正: Windows 11 で選択されたメニューの文字の色が標準の色(白色)にならない</li>
+<li>不具合修正: WinMergeを閉じたのにプロセスが残ったままになるもう一つの問題を修正<a href="https://github.com/winmerge/winmerge/issues/903">GitHub #903</a></li>
+<li>Windows11用のShellExtensionに必要なためコード署名をするようした</li>
 </ul>
-<h3 id="翻訳">翻訳</h3>
+<h4 id="ファイル比較-2">ファイル比較</h4>
 <ul>
-<li>翻訳の更新:
-<ul>
-<li>Galician (PR #1005)</li>
-<li>German (PR #986)</li>
-<li>Hungarian (PR #991,#1023)</li>
-<li>Japanese</li>
-<li>Lithuanian (PR #979)</li>
-<li>Portuguese (PR #1017)</li>
-<li>Slovenian (#1026)</li>
-<li>Turkish (PR #980)</li>
-</ul></li>
+<li>不具合修正: 左側ペインをクリック後Shiftキーを押しながらロケーションペインの左側バーをクリックしたとき、右側ペインも選択されてしまう<a href="https://github.com/winmerge/winmerge/issues/970">GitHub #970</a></li>
+<li>不具合修正: Diffペインを再表示したときのスクロール位置が正しくない<a href="https://osdn.net/projects/winmerge-jp/ticket/42862">osdn.net #42862</a></li>
+<li>不具合修正: ファイル保存に失敗したときのエラーメッセージが適切ではなかった</li>
+<li>検索ダイアログの[このダイアログボックスを閉じない]の初期値をチェックありにしてほしい<a href="https://github.com/winmerge/winmerge/issues/970">GitHub #970</a></li>
 </ul>
-<h3 id="内部変更">内部変更</h3>
+<h4 id="フォルダ比較-3">フォルダ比較</h4>
 <ul>
-<li>不具合修正: ALL.sln のビルドでエラーが発生する。 (#985)</li>
-<li>OpenView.cpp ファイル内のタイポ修正 (PR #1000)</li>
+<li>不具合修正: ファイルを大量にコピー後、操作できなくなる時間が長い</li>
 </ul>
-<h2 id="winmerge-21615---2021-09-20">WinMerge 2.16.15 - 2021-09-20</h2>
-<h3 id="全般-1">全般</h3>
+<h4 id="テーブル比較-1">テーブル比較</h4>
 <ul>
-<li>不具合修正: INIファイルに不正な値が含まれているときにクラッシュする。</li>
-<li>不具合修正: 特定の環境でWinMergeが起動してすぐにクラッシュする。 (#808, #908, #913)</li>
-<li>不具合修正: Windows 11 で選択されたメニューの文字の色が標準の色(白色)に ならない</li>
-<li>不具合修正: WinMergeを閉じたのにプロセスが残ったままになるもう一つの問題を 修正 (#903)</li>
-<li>Windows11用のShellExtensionに必要なためコード署名をするようした (#152)</li>
+<li>外部のアプリケーション等が編集中のファイルを更新後、WinMergeが再読み込みしたとき、列の幅を再計算しないように変更<a href="https://github.com/winmerge/winmerge/issues/951">GitHub #951</a></li>
 </ul>
-<h3 id="ファイル比較-1">ファイル比較</h3>
+<h4 id="画像比較-2">画像比較</h4>
 <ul>
-<li>不具合修正: プラグインメニューの表示等で時間がかかっている場合にマウスカーソル が砂時計になっていなかった。</li>
-<li>不具合修正: 3ファイル比較時、[中央のファイルを保存]、 [名前をつけて中央のファイルを保存]メニューが有効にならなかった。</li>
-<li>不具合修正: [ファイル]→[新規(3ペイン)]→[テーブル]メニューを選択すると、 2ペインのウインドウが表示されてしまう。</li>
-<li>不具合修正: 3ペイン表示時、Diffペインの高さの計算が間違っていた。</li>
-<li>不具合修正: 一部のUnicode文字を含む文字列を正規表現で検索するとハイライトが 正しく行われない。 (#914)</li>
-<li>不具合修正: Shift+F4キー押下でクラッシュすることがあった。</li>
-<li>不具合修正: 大量の置換に時間がかかる。 (#940)</li>
-<li>不具合修正: 左側ペインをクリック後Shiftキーを押しながらロケーションペインの 左側バーをクリックしたとき、右側ペインも選択されてしまう。 (#970)</li>
-<li>不具合修正: Diffペインを再表示したときのスクロール位置が正しくない。 (osdn.net #42862)</li>
-<li>検索ウインドウの &quot;このダイアログ ボックスを閉じない&quot; チェックボックス のデフォルトをオンにする。 (#941)</li>
+<li>不具合修正: ロケーションペインのコントロールの配置、サイズ変更時の動作を改善<a href="https://github.com/WinMerge/winimerge/issues/24">GitHub winimerge#24</a></li>
 </ul>
-<h3 id="画像比較-1">画像比較</h3>
+<h4 id="設定ダイアログ-3">設定ダイアログ</h4>
 <ul>
-<li>不具合修正: コンテキストメニューのキーボードアクセラレーターが被っていた。 (#905)</li>
-<li>不具合修正: ロケーションペインのコントロールの配置、サイズ変更時の動作を 改善 (winimerge #24)</li>
+<li>プロジェクトファイルに保存する項目や復元する項目の除外/包含を指定できるようにした。<a href="https://github.com/WinMerge/winmerge/pull/953">GitHub PR #953</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: シェルカテゴリでARM64版のShellExtensionの登録/解除ができない</li>
+<li>Windows 11 用のShellExtension 登録/解除用ボタンを追加</li>
 </ul>
-<h3 id="プロジェクトファイル">プロジェクトファイル</h3>
+<h4 id="プラグイン-2">プラグイン</h4>
 <ul>
-<li>プロジェクトファイルに比較オプションを保存するようにした。(#498) (PR #915)</li>
-</ul>
-<h3 id="オプションダイアログ-1">オプションダイアログ</h3>
+<li>以下のプラグインがうまく動かないのを修正
 <ul>
-<li>プロジェクトファイルに保存する項目や復元する項目の除外/包含を指定できる ようにした。(PR #953)</li>
-</ul>
-<h3 id="プラグイン-1">プラグイン</h3>
-<ul>
-<li>以下の展開プラグインを追加:
-<ul>
-<li>DecompileJVM</li>
-<li>DecompileIL</li>
+<li>DisassembleIL</li>
 <li>DisassembleNative</li>
 </ul></li>
 </ul>
-<h3 id="コマンドライン">コマンドライン</h3>
+<h4 id="シェルエクステンション-2">シェルエクステンション</h4>
 <ul>
-<li>/c 列位置を追加</li>
-<li>/EnableExitCode を追加(プロセスの終了コードに比較結果が格納されます。 (0:ファイルが一致している場合、1:差異がある場合、2:何らかのエラー)</li>
-</ul>
-<h3 id="シェルエクステンション-1">シェルエクステンション</h3>
+<li>不具合修正: ナビケーションペインでWinMergeの拡張メニューが二重に表示される。<a href="https://osdn.net/projects/winmerge-jp/ticket/42702">osdn.net #42702</a></li>
+<li>Windows 11 のエクスプローラのコンテキストメニュー用ShellExtension(WinMergeContextMenu.dll)を追加。
 <ul>
-<li>不具合修正: ナビケーションペインでWinMergeの拡張メニューが二重に表示される。 (osdn.net #42702)</li>
-<li>不具合修正: 拡張メニューで中央として開くファイルを選択できるようにした。 (#249)</li>
-<li>Windows 11 のエクスプローラのコンテキストメニュー用 ShellExtension(WinMergeContextMenu.dll)を追加。 (PR #954)</li>
-</ul>
-<h3 id="translations">Translations</h3>
-<ul>
-<li>翻訳の更新:
-<ul>
-<li>Brazilian (PR #910)</li>
-<li>Dutch (PR #921,#969)</li>
-<li>German (PR #965,#977)</li>
-<li>Hungarian (PR #937,#955)</li>
-<li>Italian (PR #911)</li>
-<li>Japanese</li>
-<li>Korean (PR #932)</li>
-<li>Portuguese (PR #956,#964,#976)</li>
-<li>Russian (PR #901,#927,#963)</li>
-<li>Slovenian</li>
-<li>Swedish (PR #974)</li>
-<li>Turkish (PR #899)</li>
+<li>まだインストーラはこのシェルエクステンションを登録するようにはしていません。</li>
+<li>登録するには、設定ダイアログの[シェル統合]カテゴリ→[Windows 11以降用シェル拡張を登録]ボタンを押下します。</li>
+<li>また「拡張メニューを有効にする」にチェックを入れても安定性の問題により拡張メニューを表示しないようにしています。</li>
 </ul></li>
 </ul>
-<h3 id="内部変更-1">内部変更</h3>
+<h3 id="20210829-21614-jp-3">2021/08/29 2.16.14-jp-3</h3>
+<h4 id="全般-4">全般</h4>
 <ul>
-<li>README.md が アプリケーションの使用のためではなく、ビルド用の説明であることを 明確にする。 (PR #942)</li>
-<li><code>m_SourceDefs</code>配列の要素数をコンパイラに計算させる。 (PR #966)</li>
+<li>不具合修正: INIファイルに不正な値が含まれているときにクラッシュする。</li>
+<li>不具合修正: 特定の環境でWinMergeが起動してすぐにクラッシュする。<a href="https://github.com/winmerge/winmerge/issues/808">GitHub #808</a>, <a href="https://github.com/winmerge/winmerge/issues/905">GitHub #905</a>, <a href="https://github.com/winmerge/winmerge/issues/908">GitHub #908</a></li>
+<li>不具合修正: プラグインメニューの表示等で時間がかかっている場合にマウスカーソルが砂時計になっていなかった。</li>
 </ul>
-<h2 id="winmerge-21614---2021-07-25">WinMerge 2.16.14 - 2021-07-25</h2>
-<h3 id="全般-2">全般</h3>
+<h4 id="ファイル比較-3">ファイル比較</h4>
+<ul>
+<li>不具合修正: 3ペイン表示時、Diffペインの高さの計算が間違っていた。</li>
+<li>不具合修正: 一部のUnicode文字を含む文字列を正規表現で検索するとハイライトが正しく行われない。<a href="https://github.com/winmerge/winmerge/issues/914">GitHub #914</a></li>
+<li>不具合修正: Shift+F4キー押下でクラッシュすることがあった。</li>
+</ul>
+<h4 id="テーブル比較-2">テーブル比較</h4>
+<ul>
+<li>不具合修正: [ファイル]→[新規(3ペイン)]→[テーブル]メニューを選択すると、2ペインのウインドウが表示されてしまう。</li>
+</ul>
+<h4 id="バイナリ比較-1">バイナリ比較</h4>
+<ul>
+<li>不具合修正: 3ファイル比較時、[中央のファイルを保存]、[名前をつけて中央のファイルを保存]メニューが有効にならなかった。</li>
+</ul>
+<h4 id="画像比較-3">画像比較</h4>
+<ul>
+<li>不具合修正: コンテキストメニューのキーボードアクセラレーターが被っていた。<a href="https://github.com/winmerge/winmerge/issues/905">GitHub #905</a></li>
+</ul>
+<h4 id="プロジェクトファイル-1">プロジェクトファイル</h4>
+<ul>
+<li>プロジェクトファイルに比較オプションを保存するようにした。<a href="https://github.com/winmerge/winmerge/pull/915">GitHub PR #915</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="プラグイン-3">プラグイン</h4>
+<ul>
+<li>q, yq, Apache Tika等のファイルをダウンロードするとき、ハッシュ値を確認するようにした。</li>
+<li>以下のプラグインを追加
+<ul>
+<li>DisassembleJVM</li>
+<li>DisassembleIL</li>
+<li>DisassembleNative</li>
+</ul></li>
+</ul>
+<h4 id="シェルエクステンション-3">シェルエクステンション</h4>
+<ul>
+<li><del>不具合修正: ナビケーションペインでWinMergeの拡張メニューが二重に表示される。<a href="https://osdn.net/projects/winmerge-jp/ticket/42702">osdn.net #42702</a></del></li>
+<li>拡張メニューで中央として開くファイルを選択できるようにした。<a href="https://github.com/winmerge/winmerge/issues/249">GitHub #249</a></li>
+</ul>
+<h4 id="コマンドラインオプション">コマンドラインオプション</h4>
+<ul>
+<li><code>/c 列位置</code>を追加</li>
+<li><code>/EnableExitCode</code> を追加(プロセスの終了コードに比較結果が格納されます。(0:ファイルが一致している場合、1:差異がある場合、2:何らかのエラー)</li>
+</ul>
+<h3 id="20210729-21614-jp-1">2021/07/29 2.16.14-jp-1</h3>
+<h4 id="全般-5">全般</h4>
 <ul>
 <li>WinMergeのウインドウを閉じたにもかかわらず、WinMergeのプロセスが終了しないことがある問題の対策。</li>
 </ul>
-<h3 id="ファイル比較-2">ファイル比較</h3>
+<h4 id="ファイル比較-4">ファイル比較</h4>
 <ul>
-<li>不具合修正: 置換フィルター:「検索する文字列」を空にしたとき、ファイル比較時ハングする。</li>
+<li>不具合修正: 置換フィルタ:「検索する文字列」を空にしたとき、ファイル比較時ハングする。</li>
 </ul>
-<h3 id="フォルダ比較-1">フォルダ比較</h3>
+<h4 id="フォルダ比較-4">フォルダ比較</h4>
 <ul>
-<li>不具合修正: フォルダ比較ウィンドウでファイルをダブルクリックしてファイル比較ウィンドウを開いた後、フォルダ比較ウィンドウに戻るとファイルの選択が解除される。 (PR #857)</li>
-<li>コンテキストメニューに「新しいウインドウで比較」メニューを追加。 (#232,#277)</li>
+<li>不具合修正: フォルダ比較ウィンドウでファイルをダブルクリックしてファイル比較ウィンドウを開いた後、フォルダ比較ウィンドウに戻るとファイルの選択が解除される。 <a href="https://github.com/winmerge/winmerge/pull/857">GitHub PR #857</a>(PRいただきました。ありがとうございます。)</li>
+<li>コンテキストメニューに「新しいウインドウで比較」メニューを追加。 <a href="https://github.com/winmerge/winmerge/issues/232">GitHub #232</a>, <a href="https://github.com/winmerge/winmerge/issues/277">#277</a></li>
 </ul>
-<h3 id="バイナリ比較">バイナリ比較</h3>
+<h4 id="バイナリ比較-2">バイナリ比較</h4>
 <ul>
 <li>不具合修正: タイトルバーが更新されないことがある。</li>
 </ul>
-<h3 id="画像比較-2">画像比較</h3>
+<h4 id="画像比較-4">画像比較</h4>
 <ul>
-<li>EXIF情報で回転表示を指示している画像ファイルが回転して表示されない。 (winmerge/winimerge #20)</li>
-<li>コンテキストメニューに次のメニューを追加。
+<li><p>EXIF情報で回転表示を指示している画像ファイルが回転して表示されない。 <a href="https://github.com/winmerge/winimerge/issues/20">GitHub winmerge/winimerge #20</a></p></li>
+<li><p>コンテキストメニューに次のメニューを追加。</p>
 <ul>
 <li>右へ90度回転</li>
 <li>左へ90度回転</li>
@@ -193,121 +266,90 @@
 <li>左右反転</li>
 </ul></li>
 </ul>
-<h3 id="オプションダイアログ-2">オプションダイアログ</h3>
+<h4 id="オプションダイアログ">オプションダイアログ</h4>
 <ul>
-<li>「メッセージボックス」カテゴリを追加し、メッセージボックスの「再びこの質問をしない」チェックボックスにチェックして表示されなくなったメッセージボックスを再表示できるようにした。 (#772, PR #859)</li>
+<li>「メッセージボックス」カテゴリを追加し、メッセージボックスの「再びこの質問をしない」チェックボックスにチェックして表示されなくなったメッセージボックスを再表示できるようにした。 <a href="https://github.com/winmerge/winmerge/issues/772">GitHub #772</a>, <a href="https://github.com/winmerge/winmerge/issues/859">GitHub PR #859</a></li>
 </ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ">ファイルまたはフォルダーの選択ウインドウ</h3>
+<h4 id="ファイルまたはフォルダーの選択ウインドウ">ファイルまたはフォルダーの選択ウインドウ</h4>
 <ul>
-<li>不具合修正: 「プロジェクトを保存」ボタンのドロップダウンメニューに不要なプラグインメニューが表示される。 (PR #882,#892)</li>
+<li>不具合修正: 「プロジェクトを保存」ボタンのドロップダウンメニューに不要なプラグインメニューが表示される。 <a href="https://github.com/winmerge/winmerge/pull/882">GitHub PR #882</a>, <a href="https://github.com/winmerge/winmerge/pull/892">#892</a>(PRいただきました。ありがとうございます。)</li>
 </ul>
-<h3 id="プラグイン-2">プラグイン</h3>
+<h4 id="プラグイン-4">プラグイン</h4>
 <ul>
-<li>不具合修正: CompareMSExcelFiles.sct: 図形が含まれるExcelファイルを比較すると「この図にはビットマップしか含まれていません」メッセージが表示されることがある。</li>
-<li>不具合修正: IgnoreColumns、IgnoreFieldsComma, IgnoreFieldsTabプラグインが正常に動作しない。 (#853)</li>
-<li>エディタスクリプトプラグインでもプラグイン引数指定とパイプによる連結ができるようにした。(PR #871)</li>
-<li>以下の展開プラグインを追加:
+<li><p>不具合修正: CompareMSExcelFiles.sct: 図形が含まれるExcelファイルを比較すると「この図にはビットマップしか含まれていません」メッセージが表示されることがある。(パッチをいただきました。ありがとうございます。)</p></li>
+<li><p>不具合修正: IgnoreColumns、IgnoreFieldsComma, IgnoreFieldsTabプラグインが正常に動作しない。 <a href="https://github.com/winmerge/winmerge/issues/853">GitHub #853</a></p></li>
+<li><p>エディタスクリプトプラグインでもプラグイン引数指定とパイプによる連結ができるようにした。<a href="https://github.com/winmerge/winmerge/pull/871">GitHub PR #871</a></p></li>
+<li><p>以下の展開プラグインを追加:</p>
 <ul>
 <li>PrettifyHTML</li>
 <li>PrettifyYAML</li>
 <li>ValidateHTML</li>
 <li>QueryYAML</li>
-<li>SelectColumns</li>
-<li>SelectLines</li>
-<li>ReverseColumns</li>
-<li>ReverseLines</li>
-<li>Replace</li>
 </ul></li>
-<li>以下のエディタスクリプトプラグインを追加:
+<li><p>以下のエディタスクリプトプラグインを追加:</p>
 <ul>
 <li>PrettifyHTML</li>
 <li>PrettifyYAML</li>
-<li>SelectColumns</li>
-<li>SelectLines</li>
-<li>ReverseColumns</li>
-<li>ReverseLines</li>
-<li>Replace</li>
 </ul></li>
-<li>Apache Tika をバージョン 2.0.0 に更新。</li>
-<li>yq コマンドをバージョン 4.11.1 に更新。</li>
+<li><p>Apache Tika をバージョン 2.0.0 に更新。</p></li>
+<li><p>yq コマンドをバージョン 4.11.1 に更新。</p></li>
 </ul>
-<h3 id="コマンドライン-1">コマンドライン</h3>
+<h4 id="コマンドライン">コマンドライン</h4>
 <ul>
-<li>/l コマンドラインオプション(行番号指定)を追加。 (osdn.net #41528)</li>
+<li>/l コマンドラインオプション(行番号指定)を追加。 <a href="https://osdn.net/projects/winmerge-jp/ticket/41528">osdn.net #41528</a></li>
 <li>/t (ウインドウタイプ)、 /table-delimiter (テーブルファイルの区切り文字)、 /new(新規作成), /fileext(シンタックスハイライト用拡張子指定)、 /inifile(INIファイル指定) コマンドラインオプションを追加。</li>
 </ul>
-<h3 id="インストーラ">インストーラ</h3>
+<h4 id="インストーラ">インストーラ</h4>
 <ul>
-<li>「TortoiseGit との連携」や 「TortoiseSVN との連携」にチェックしていないにもかかわらず、WinMergeが3-wayマージツールとして登録されてしまう。 (#878)</li>
+<li>「TortoiseGit との連携」や 「TortoiseSVN との連携」にチェックしていないにもかかわらず、WinMergeが3-wayマージツールとして登録されてしまう。 <a href="https://github.com/winmerge/winmerge/issues/878">GitHub #878</a></li>
 </ul>
-<h3 id="翻訳-1">翻訳</h3>
+<h3 id="20210705-pluginpack">2021/07/05 PluginPack</h3>
 <ul>
-<li>翻訳の更新:
-<ul>
-<li>Bulgarian (PR #850)</li>
-<li>Dutch (PR #842,#893)</li>
-<li>Galician (PR #869)</li>
-<li>German (PR #860,#870,#883,#890)</li>
-<li>Hungarian (PR #845,#856,#897)</li>
-<li>Japanese</li>
-<li>Lithuanian (PR #840,#849,#866,#875,#879,#894)</li>
-<li>Portuguese (PR #846,#872,#898)</li>
-<li>Slovenian (#858)</li>
-<li>Russian (PR #847)</li>
-<li>Turkish (PR #848)</li>
-</ul></li>
+<li><code>IgnoreColumns.dll</code> を <code>IgnoreColumns_1-5.dll</code>にリネームすると指定したファイル名の一部の列範囲を無視する機能が動作しなくなっていたのを修正</li>
 </ul>
-<h3 id="内部変更-2">内部変更</h3>
+<h3 id="20210629-21612-jp-3">2021/06/29 2.16.12-jp-3</h3>
+<h4 id="全般-6">全般</h4>
 <ul>
-<li>不具合修正: WinMerge doesn&#39;t build under Visual Studio 16.10.2 (#841)</li>
-<li>不具合修正: x64: LINK : warning LNK4010: invalid subsystem version number 5.01; default subsystem version assumed (#855)</li>
-<li>不具合修正: Project: heksedit cl : command line warning D9002: ignoring unknown option &#39;/arch:SSE&#39; (#861)</li>
-<li>不具合修正:ALL.vs2019.sln cl : command line warning D9035: option &#39;Gm&#39; has been deprecated and will be removed in a future release (#862)</li>
-<li>Resolves: Add continuous code security and quality analysis (PR #844, #843)</li>
-<li>Improvement: Add check and error mesage in DownloadDeps.cmd that path to 7-zip exists (#864)</li>
+<li>WinMergeU.exe と同じフォルダに winmerge.ini を置いた場合、設定情報の読み込みと書き込みをそのファイルに対して行うようにした<a href="https://github.com/winmerge/winmerge/pull/750">GitHub PR #750</a>(PRいただきました。ありがとうございます。)</li>
+<li>ツールバーの設定アイコンのドロップダウンメニューに「空行を無視する」「コメントの違いを無視する」を追加<a href="https://github.com/winmerge/winmerge/issues/804">GitHub #804</a></li>
 </ul>
-<h2 id="winmerge-21613---2021-06-22">WinMerge 2.16.13 - 2021-06-22</h2>
-<h3 id="全般-3">全般</h3>
+<h4 id="ファイル比較-5">ファイル比較</h4>
 <ul>
-<li>不具合修正: 中国語版 WindowsXP で Register.bat が正常に動作しない。 (#780)</li>
-<li>WinMergeU.exe と同じフォルダに winmerge.ini を置いた場合、設定情報の読み込みと書き込みをそのファイルに対して行うようにした。 (#248) (PR #750)</li>
-<li>ツールバーの設定アイコンのドロップダウンメニューに「空行を無視する」「コメントの違いを無視する」を追加。 (#804)</li>
+<li>不具合修正: PHPファイルのシンタックスハイライトが正常に行われない<a href="https://github.com/winmerge/winmerge/pull/782">GitHub PR #782</a><a href="https://github.com/winmerge/winmerge/pull/802">GitHub PR #802</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: 設定ダイアログを閉じた後などに行頭でBSキーを押しても何も起こらなくなる</li>
+<li>不具合修正: ファイルを保存する前に「形式を指定して再比較」メニューを選択すると編集した内容が破棄されてしまう</li>
+<li>不具合修正: 「空行を無視する」と「無視された差異の行を同一行の色と同じにする」の設定を有効にしたとき、差異の色付けがずれてしまうことがある</li>
+<li>Smarty シンタックスハイライトを追加<a href="https://github.com/winmerge/winmerge/pull/821">GitHub PR #821</a>(PRいただきました。ありがとうございます。)</li>
+<li>上書きモードでカレットの幅を太くするようにした<a href="https://osdn.net/projects/winmerge-jp/ticket/42179">osdn.net #42179</a></li>
 </ul>
-<h3 id="ファイル比較-3">ファイル比較</h3>
+<h4 id="フォルダ比較-5">フォルダ比較</h4>
 <ul>
-<li>不具合修正: PHPファイルのシンタックスハイライトが正常に行われない。 (PR #782, PR #802)</li>
-<li>不具合修正: 設定ダイアログを閉じた後などに行頭でBSキーを押しても何も起こらなくなる。</li>
-<li>不具合修正: ファイルを保存する前に「形式を指定して再比較」メニューを選択すると編集した内容が破棄されてしまう。</li>
-<li>不具合修正: 「空行を無視する」と「無視された差異の行を同一行の色と同じにする」の設定を有効にしたとき、差異の色付けがずれてしまうことがある。(#834)</li>
-<li>Smarty シンタックスハイライトを追加。 (PR #821)</li>
-<li>上書きモードでカレットの幅を太くするようにした。 (osdn.net #42179)</li>
+<li>不具合修正: BOMのみで中身がないファイルを比較すると比較結果が不安定になる<a href="https://github.com/winmerge/winmerge/issues/768">GitHub #768</a></li>
+<li>不具合修正: フォルダの再比較でクラッシュすることがある<a href="https://osdn.net/projects/winmerge-jp/ticket/42219">osdn.net #42219</a></li>
 </ul>
-<h3 id="フォルダ比較-2">フォルダ比較</h3>
+<h4 id="バイナリ比較-3">バイナリ比較</h4>
 <ul>
-<li>不具合修正: BOMのみで中身がないファイルを比較すると比較結果が不安定になる。 (#768)</li>
-<li>不具合修正: フォルダの再比較でクラッシュすることがある。 (osdn.net #42219)</li>
+<li>不具合修正: 新規作成したあとファイルが保存できなかった</li>
+<li>展開プラグインを使用できるようにした</li>
 </ul>
-<h3 id="バイナリ比較-1">バイナリ比較</h3>
+<h4 id="画像比較-5">画像比較</h4>
 <ul>
-<li>不具合修正: 新規作成したあとファイルが保存できなかった。</li>
-<li>展開プラグインを使用できるようにした。</li>
+<li>不具合修正: Windows XP で画像を比較するとクラッシュすることがある<a href="https://github.com/winmerge/winmerge/issues/784">GitHub #784</a></li>
+<li>展開プラグインを使用できるようにした</li>
 </ul>
-<h3 id="画像比較-3">画像比較</h3>
+<h4 id="シェルエクステンション-4">シェルエクステンション</h4>
 <ul>
-<li>不具合修正: Windows XP で画像を比較するとクラッシュすることがある。 (#784)</li>
-<li>展開プラグインを使用できるようにした。</li>
+<li>不具合修正: 中国語版 WindowsXP で Register.bat が正常に動作しない<a href="https://github.com/winmerge/winmerge/issues/780">GitHub #780</a></li>
 </ul>
-<h3 id="プラグイン-3">プラグイン</h3>
+<h4 id="プラグイン-5">プラグイン</h4>
 <ul>
-<li>プラグイン機能の機能追加 (PR #797)
-<ul>
-<li>展開プラグインをメニューから選択できるようにした。</li>
-<li>展開プラグインや比較前処理プラグインに引数を指定できるようにし、シェルやコマンドプロンプトの様にプラグインを | で連結して複数指定できるようにした。</li>
-<li>フォルダ比較ウインドウで複数のファイルに対して一括で展開プラグインや比較前処理プラグインを指定できるようにした。指定したプラグインは、展開プラグイン、比較前処理プラグインの列で表示できます。</li>
-<li>展開プラグインを使用してファイルを開いた場合、タブのタイトルに「(U)」,比較前処理プラグインを使用している場合は、「(P)」を付加するようにした。</li>
-<li>プラグイン設定ダイアログでプラグイン引数が省略されたときのデフォルト引数を指定できるようにした。</li>
-<li>自動展開/自動比較前処理が適用されるプラグインをプラグイン設定ダイアログで適用外にできるようにした。</li>
-<li>以下の展開プラグインを追加:
+<li><p>展開プラグインをメニューから選択できるようにした</p></li>
+<li><p>展開プラグインや比較前処理プラグインに引数を指定できるようにし、シェルやコマンドプロンプトの様にプラグインを | で連結して複数指定できるようにした</p></li>
+<li><p>フォルダ比較ウインドウで複数のファイルに対して一括で展開プラグインや比較前処理プラグインを指定できるようにした</p></li>
+<li><p>展開プラグインを使用してファイルを開いた場合、タブのタイトルに「(U)」,比較前処理プラグインを使用している場合は、「(P)」を付加するようにした</p></li>
+<li><p>プラグイン設定ダイアログでプラグイン引数が省略されたときのデフォルト引数を指定できるようにした</p></li>
+<li><p>自動展開/自動比較前処理が適用されるプラグインをプラグイン設定ダイアログで適用外にできるようにした</p></li>
+<li><p>以下の展開プラグインを追加</p>
 <ul>
 <li>ApacheTika</li>
 <li>PrettifyJSON</li>
@@ -324,1985 +366,477 @@
 <li>ExecFilterCommand</li>
 <li>Tokenize</li>
 <li>Trim</li>
+<li>SelectColumns</li>
+<li>SelectLines</li>
+<li>ReverseColumns</li>
+<li>ReverseLines</li>
+<li>Replace</li>
 <li>VisualizeGraphviz</li>
 </ul></li>
-<li>以下のエディタスクリプトプラグインを追加:
+<li><p>以下のエディタスクリプトを追加</p>
 <ul>
 <li>RemoveDuplicates</li>
 <li>CountDuplicates</li>
 <li>Tokenize</li>
 <li>Trim</li>
+<li>SelectColumns</li>
+<li>SelectLines</li>
+<li>ReverseColumns</li>
+<li>ReverseLines</li>
+<li>Replace</li>
 <li>ApacheTika</li>
 <li>PrettifyJSON</li>
 <li>PrettifyXML</li>
 </ul></li>
+</ul>
+<h3 id="20210429-21612-jp-1">2021/04/29 2.16.12-jp-1</h3>
+<h4 id="全般-7">全般</h4>
+<ul>
+<li>ARM64版を追加</li>
+</ul>
+<h4 id="ファイル比較-6">ファイル比較</h4>
+<ul>
+<li>不具合修正: PHPファイルのシンタックスハイライトが正常に行われない<a href="https://github.com/winmerge/winmerge/pull/751">GitHub PR #751</a><a href="https://github.com/winmerge/winmerge/pull/724">GitHub PR #724</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: 1つのDiffブロックに複数行ある場合、&quot;^&quot;を含む正規表現の置換フィルタが機能しない</li>
+<li>不具合修正: Ctrl+0キーで拡大縮小していた文字のサイズが正確に元に戻らない</li>
+<li>不具合修正: シンタックスハイライトが有効の場合にクラッシュすることがある</li>
+<li>不具合修正: HTMLファイル内のスクリプトのシンタックスハイライトが正常に行われないことがある</li>
+<li>不具合修正: 文字列検索ダイアログの横幅をもう少し広く<a href="https://osdn.net/projects/winmerge-jp/ticket/42063">osdn.net #42063</a></li>
+<li>不具合修正: 一部の画面でキーボードアクセラレータが重複<a href="https://osdn.net/projects/winmerge-jp/ticket/42064">osdn.net #42064</a></li>
+<li>ステータスバーに選択した行数と文字数を表示するようにした<a href="https://github.com/winmerge/winmerge/issues/135">GitHub #135</a></li>
+<li>次のファイル、前のファイルボタンにショートカットキーCtrl+F8, Ctrl+F7を割りつけた<a href="https://github.com/winmerge/winmerge/issues/721">GitHub #721</a></li>
+<li>C#のシンタックスハイライト用キーワードを最新化<a href="https://github.com/winmerge/winmerge/pull/719">GitHub PR #719</a>(PRいただきました。ありがとうございます。)</li>
+<li>PHPのシンタックスハイライト用キーワードを最新化<a href="https://github.com/winmerge/winmerge/pull/724">GitHub PR #724</a>(PRいただきました。ありがとうございます。)</li>
+<li>AutoItのシンタックスハイライトを改善<a href="https://github.com/winmerge/winmerge/pull/749">GitHub PR #749</a><a href="https://github.com/winmerge/winmerge/pull/753">GitHub PR #753</a>(PRいただきました。ありがとうございます。)</li>
+<li>行内差異の処理に時間がかかりすぎた場合、処理を中断するようにした</li>
+<li>[表示]→[空白を表示]メニューを選択したときに、表示されるタブやスペースを表す文字の色薄くした</li>
+<li>コンテキストメニューに[開く]→[親フォルダーを開く]メニューを追加</li>
+</ul>
+<h4 id="フォルダ比較-6">フォルダ比較</h4>
+<ul>
+<li>不具合修正: コピーの確認ダイアログウインドウの「はい」「いいえ」ボタンが重なっていることがある<a href="https://github.com/winmerge/winmerge/issues/739">GitHub #739</a></li>
+<li>不具合修正: 3フォルダ比較時、[表示]→[ペインの交換]メニューを選択したとき比較結果が更新されない<a href="https://osdn.net/projects/winmerge-jp/ticket/41901">osdn.net #41901</a></li>
+</ul>
+<h4 id="バイナリ比較-4">バイナリ比較</h4>
+<ul>
+<li>不具合修正: ツールバーの[次のファイル]、[前のファイル]ボタンが押せない</li>
+<li>不具合修正: Ctrl+マウスホイールによるフォントサイズの拡大縮小が1つのペインのみしか行われない</li>
+</ul>
+<h4 id="画像比較-6">画像比較</h4>
+<ul>
+<li>不具合修正: ツールバーの[次のファイル]、[前のファイル]ボタンが押せない</li>
+<li>不具合修正: [表示]→[垂直分割]メニューのチェックを外した時のヘッダーバーの幅が適切ではなかった</li>
+<li>不具合修正: ペインの幅を変えるときマウスポインタのアイコンが変化しない</li>
+<li>左側ペインの垂直スクロールバーを表示しないようにした</li>
+</ul>
+<h4 id="ファイルまたはフォルダの選択ウインドウ">ファイルまたはフォルダの選択ウインドウ</h4>
+<ul>
+<li>ZIPファイル等の圧縮ファイルで[比較]ボタンのプルダウンメニューの[バイナリ]を選択したとき、バイナリファイルとして開けるようにした</li>
+</ul>
+<h4 id="アーカイブサポート-1">アーカイブサポート</h4>
+<ul>
+<li>不具合修正: ZIPファイル等を開くとたまにクラッシュする</li>
+</ul>
+<h4 id="プラグイン-6">プラグイン</h4>
+<ul>
+<li>不具合修正: インタフェースの解放漏れがあった<a href="https://github.com/winmerge/winmerge/issues/755">GitHub #755</a></li>
+</ul>
+<h3 id="20210329-21610-jp-6">2021/03/29 2.16.10-jp-6</h3>
+<h4 id="全般-8">全般</h4>
+<ul>
+<li>タブバー: アクティブなタブと非アクティブなタブが区別しづらいといわれたので少し目立つようにタブに影をつけてみた</li>
+<li>ツールバー: 保存アイコンにドロップダウンメニューを追加</li>
+<li>なぜか2.16.10+-jp-5からFirefoxやChromeで64bit版zipをダウンロードすると、「このファイルを開くのは危険です」といわれるようになってしまったため、 いろいろ試行錯誤すると、日本語以外の翻訳ファイル(.po)を削除するとなぜか不平をいわれなくなったので、問題が解消するまで 日本語以外の翻訳ファイルを含めないようにした</li>
+</ul>
+<h4 id="ファイル比較-7">ファイル比較</h4>
+<ul>
+<li>不具合修正: ファイルの文字コードがUTF-8以外で、コメントに日本語等のASCII以外の文字が含まれている場合、コメントフィルタが正しく動作しないことがあった</li>
+<li>コードページダイアログに「BOM」チェックボックスを追加</li>
+</ul>
+<h4 id="フォルダ比較-7">フォルダ比較</h4>
+<ul>
+<li>不具合修正: コードページダイアログでコードページを変更しても、開くファイルに反映されなかった</li>
+</ul>
+<h4 id="画像比較-7">画像比較</h4>
+<ul>
+<li>不具合修正: フォルダ比較ウインドウから右側しか存在しない画像ファイルを開くと画像が表示されない<a href="https://osdn.net/projects/winmerge-jp/ticket/41721">osdn.net #41721</a></li>
+</ul>
+<h4 id="ファイルまたはフォルダの選択ウインドウ-1">ファイルまたはフォルダの選択ウインドウ</h4>
+<ul>
+<li>比較ボタンにバイナリ/画像等のファイルの種類を指定できるドロップダウンメニューを追加</li>
+</ul>
+<h4 id="アーカイブサポート-2">アーカイブサポート</h4>
+<ul>
+<li>不具合修正: 上書きインストールでMerge7z.dllが更新されない <a href="https://osdn.net/projects/winmerge-jp/ticket/41682">osdn.net #41682</a></li>
+</ul>
+<h3 id="20210302-21610-jp-4">2021/03/02 2.16.10-jp-4</h3>
+<h4 id="ファイル比較-8">ファイル比較</h4>
+<ul>
+<li>不具合修正: 空白比較オプションで「変更を無視」または「すべて無視」が選択され、かつ、「空行を無視する」が有効の場合、空行ではない行が無視されることがある。(バージョン 2.16.10+-jp-3 で発生)<a href="https://osdn.net/projects/winmerge-jp/ticket/41668">osdn.net #41668</a></li>
+</ul>
+<h3 id="20210301-21610-jp-3">2021/03/01 2.16.10-jp-3</h3>
+<h4 id="全般-9">全般</h4>
+<ul>
+<li>不具合修正: フォルダ比較ウインドウからファイル比較ウインドウを開いた後、ファイル比較ウインドウを閉じずにフォルダ比較ウインドウを閉じるとクラッシュする。<a href="https://github.com/WinMerge/winmerge/issues/645">GitHub #645</a></li>
+<li>ツールバーの開くアイコンの右から最近開いたファイルやフォルダを選択できるようにした。</li>
+</ul>
+<h4 id="ファイル比較-9">ファイル比較</h4>
+<ul>
+<li>不具合修正: VBのシンタックスハイライトで、一部のキーワードが着色しない。<a href="https://osdn.net/projects/winmerge-jp/ticket/41440">osdn.net #41440</a></li>
+<li>不具合修正: Zipファイルの中身を比較しているときに、[表示]→[ペインの交換]でファイルを入れ替えてもタイトルが入れ替わらない。</li>
+<li>不具合修正: オプションダイアログの[コードページ]カテゴリ、[mlang.dll...]のコンボボックスで[自動選択]を選択した場合、ファイルの文字コードをUTF-7とみなしてしまうことがある。<a href="https://github.com/WinMerge/winmerge/issues/607">GitHub #607</a></li>
+<li>不具合修正: Shiftキーを押しながらロケーションペインでカーソルを移動するか、移動ダイアログで移動したとき、選択範囲が正しく広がらない。<a href="https://sourceforge.net/p/winmerge/bugs/2237/">sf.net #2237</a></li>
+<li>不具合修正: AutoItのファイルを開いたとき、&#39; でくくられた文字列が文字列の色にならない。<a href="https://github.com/WinMerge/winmerge/issues/610">GitHub #610</a></li>
+<li>不具合修正: ウインドウを分割しているときにシンタックスハイライトのファイルタイプを変更したとき、2つ目のペインに変更が反映されない。<a href="https://github.com/winmerge/winmerge/pull/624">GitHub PR #624</a>(PRいただきました。ありがとうございます。)</li>
+<li>シンタックスハイライト用に各ファイル種別の拡張子を追加設定できるページをオプションダイアログに追加。<a href="https://github.com/winmerge/winmerge/pull/627">GitHub PR #627</a>(PRいただきました。ありがとうございます。)</li>
+<li>オプションダイアログの[一般]カテゴリ→[単一インスタンスモード]に「1つのみインスタンスを起動し、既起動インスタンスの終了を待つ」を追加。これは、SourcetreeやVisual Studioのような、起動した外部比較ツールの終了を検出したら比較に使用していた一時ファイルを削除してしまうタイプのバージョン管理ツールで単一インスタンスモードが正常に機能していなかったもの対策になっています。<a href="https://github.com/WinMerge/winmerge/issues/622">GitHub #622</a></li>
+<li>空白無視、かつ空行無視が設定されているときは、半角スペースとタブしか含まない行を差分から除外。<a href="https://osdn.net/projects/winmerge-jp/ticket/41355">osdn.net #41355</a>(パッチをいただきました。ありがとうございます。)</li>
+<li>右クリックメニューに[選択した行を左/右側にコピー]メニューを追加<a href="https://github.com/winmerge/winmerge/pull/642">GitHub PR #642</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="ファイルまたはフォルダの選択ウインドウ-2">ファイルまたはフォルダの選択ウインドウ</h4>
+<ul>
+<li>不具合修正: このウインドウでは保存ボタンが押せるが、押しても空のファイルしか保存できなかったため、現在の指定内容をプロジェクトファイルとして保存するようにした。</li>
+<li>ファイルを1つだけ指定して比較ボタンを押した場合に、そのファイルのコピーと比較するようにした。</li>
+</ul>
+<h4 id="オプションダイアログ-1">オプションダイアログ</h4>
+<ul>
+<li>不具合修正: 色の設定ダイアログの「色の作成」で作成した色が保存されないことがある。<a href="https://github.com/winmerge/winmerge/pull/624">GitHub PR #624</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="アーカイブサポート-3">アーカイブサポート</h4>
+<ul>
+<li>RAR5形式の圧縮ファイルを展開できるようにした。<a href="https://github.com/WinMerge/winmerge/issues/644">GitHub #644</a></li>
+</ul>
+<h4 id="コマンドライン-1">コマンドライン</h4>
+<ul>
+<li>/sw オプションを追加。(オプションダイアログの[一般]カテゴリ→[単一インスタンスモード]の「1つのみインスタンスを起動し、既起動インスタンスの終了を待つ」と同じ動作をする)<a href="https://github.com/WinMerge/winmerge/issues/622">GitHub #622</a></li>
+<li>/self-compare オプションを追加。(指定した1つのファイルとそのファイルのコピーを比較する)</li>
+</ul>
+<h3 id="20210130-21610-jp-1">2021/01/30 2.16.10-jp-1</h3>
+<h4 id="全般-10">全般</h4>
+<ul>
+<li>不具合修正: [最近使用したファイルやフォルダー]メニューになにも表示されなくなった。</li>
+<li>3ファイル/フォルダ比較時でも任意のペインの入れ替えができるようにした。<a href="https://github.com/winmerge/winmerge/pull/533">GitHub PR #533</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="ファイル比較-10">ファイル比較</h4>
+<ul>
+<li>不具合修正: ステータスバーの右側をダブルクリックするとクラッシュする。<a href="https://github.com/WinMerge/winmerge/issues/531">GitHub #531</a></li>
+<li>Java と JavaScript のシンタックスハイライトのルールを分離<a href="https://osdn.net/projects/winmerge-jp/ticket/41083">osdn.net #41083</a>(JavaScriptのキーワード一覧をいただきました。ありがとうございます。)</li>
+<li>[表示]-&gt;[Diffコンテキスト]-&gt;[反転]メニューを追加。差異行を逆に表示したくないときや一致する行のみを選択してコピーするのに使用します。</li>
+<li>AutoItのシンタックスハイライトを追加</li>
+<li>[ファイル]→[新規]→[テーブル]メニューを追加</li>
+<li>置換フィルター機能を追加<a href="https://github.com/winmerge/winmerge/pull/544">GitHub PR #544</a>(PRいただきました。ありがとうございます。)</li>
+<li>ツールバーに次のファイル、前のファイル、最後のファイル、最初のファイルアイコンを追加<a href="https://github.com/winmerge/winmerge/pull/561">GitHub PR #561</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="フォルダ比較-8">フォルダ比較</h4>
+<ul>
+<li>不具合修正: フォルダを選択してコピーするとフォルダ内のファイルの状態が更新されない。<a href="https://github.com/WinMerge/winmerge/issues/537">GitHub #537</a></li>
+</ul>
+<h4 id="画像比較-8">画像比較</h4>
+<ul>
+<li>不具合修正: 32bit未満の画像をクリップボードから画像の貼り付けると崩れた画像が張り付けられてしまっていた。</li>
+<li>[画像]メニュー→[画像から抽出したテキストを比較]メニューを追加した。</li>
+</ul>
+<h4 id="コマンドライン-2">コマンドライン</h4>
+<ul>
+<li><p>不具合修正: コマンドラインオプション /x がバイナリ比較時や画像比較時にきかない。</p></li>
+<li><p>フォルダ比較方法を指定するコマンドラインオプション /m を追加。<a href="https://github.com/winmerge/winmerge/issues/530">GitHub #530</a></p>
+<p>次のキーワードが指定できます。</p>
+<p><code>Full</code>(フルコンテンツ), <code>Quick</code>(クイックコンテンツ), <code>Binary</code>(バイナリコンテンツ), <code>Date</code>(更新日時), <code>SizeDate</code>(更新日時とサイズ), <code>Size</code>(サイズ)</p>
+<p>例: フォルダ比較方法=更新日時とサイズ で比較</p>
+<pre><code>WinMergeU /m SizeDate folder1 folder2</code></pre></li>
+</ul>
+<h3 id="20201229-2168-jp-11">2020/12/29 2.16.8-jp-11</h3>
+<h4 id="全般-11">全般</h4>
+<ul>
+<li>不具合修正: 言語を変更してもタブバーのコンテキストメニューに反映されない。<a href="https://github.com/winmerge/winmerge/pull/528">GitHub PR #528</a>(PRいただきました。ありがとうございます。)</li>
+<li>メニューなどの翻訳の改善<a href="https://github.com/sdottaka/winmerge-v2-jp/pull/8">GitHub-jp PR #8</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="ファイル比較-11">ファイル比較</h4>
+<ul>
+<li>不具合修正: 直前にControlキーやShiftキーを押して戻しただけにもかかわらず、ドラッグなどの操作が、ControlキーやShiftキーを押しながらの操作とみなされてしまう。<a href="https://github.com/WinMerge/winmerge/pull/505">GitHub PR #505</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: HTMLレポートの作成に失敗したときも「レポートの生成に成功しました」と表示されてしまう。</li>
+<li>移動ブロック検出を有効にしたとき、ロケーションペインで描画される移動行の接続線がデフォルトで表示されないのを改善。<a href="https://github.com/WinMerge/winmerge/issues/498">GitHub #498</a></li>
+<li>新規作成で画像やバイナリを選べるようにした。</li>
+</ul>
+<h4 id="パッチの生成ダイアログ">パッチの生成ダイアログ</h4>
+<ul>
+<li>不具合修正: 「改行文字の違いを無視する」チェックボックスにチェックを入れてパッチを生成するとクラッシュすることがある。<a href="https://github.com/WinMerge/winmerge/issues/521">GitHub #521</a></li>
+</ul>
+<h4 id="画像比較-9">画像比較</h4>
+<ul>
+<li>クリップボードから画像の貼り付け、クリップボードへの画像のコピーができるようにした。</li>
+<li>[画像]メニュー→[ドラッグモード]→[矩形選択]メニューを追加した。</li>
+</ul>
+<h4 id="コマンドライン-3">コマンドライン</h4>
+<ul>
+<li>/s- コマンドラインオプションの追加: このオプションを指定すると、「複数のインスタンスを起動しない」の設定を無視して、別プロセスのWinMergeを起動します。</li>
+</ul>
+<h3 id="20201129-2168-jp-8">2020/11/29 2.16.8-jp-8</h3>
+<h4 id="ファイル比較-12">ファイル比較</h4>
+<ul>
+<li>不具合修正: コメントの違いを無視するオプションを有効したとき、コメント以外も無視してしまうことがある。(シンタックスハイライトベースのコメントフィルタ実装に変更)<a href="https://osdn.net/projects/winmerge-jp/ticket/40488">osdn.net #40488</a></li>
+<li>不具合修正: ペイン幅変更後、別タブに切り替えて再度ペイン幅を変更したタブに戻るとペイン幅が元に戻ってしまう。<a href="https://github.com/WinMerge/winmerge/issues/403">GitHub #403</a></li>
+<li>不具合修正: Diff ペインがアクティブな場合、「移動...」メニューやロケーションペインの左クリックによる移動が正しく動作しない。<a href="https://github.com/WinMerge/winmerge/pull/476">GitHub PR #476</a>(PRいただきました。ありがとうございます。)</li>
+<li>HTMLファイル内の<code>&lt;style&gt;</code>タグ内のCSSや<code>&lt;script&gt;</code>タグ内のJavascriptがシンタックスハイライトされるようにした。</li>
+<li>[移動行に移動]等のメニューを追加。他方のペインの移動行へ移動できるようになりました。(シュートカットキー Ctrl+Shift+G)<a href="https://github.com/WinMerge/winmerge/pull/484">GitHub PR #484</a>(PRいただきました。ありがとうございます。)</li>
+<li>非常に長い行の行内差異表示が非常に遅かったのを若干改善。</li>
+<li>[自動的に最初の行内差異へスクロールする]オプションを追加。</li>
+</ul>
+<h4 id="バイナリファイル比較">バイナリファイル比較</h4>
+<ul>
+<li>不具合修正: フォーカスがあたっていないとマウスホイールでスクロールしない。<a href="https://github.com/WinMerge/winmerge/issues/456">GitHub #456</a></li>
+</ul>
+<h4 id="フォルダ比較-9">フォルダ比較</h4>
+<ul>
+<li>不具合修正: 大きなサイズのファイルを比較している時に[一時停止]や[停止]ボタンを押してもすぐに停止しない。<a href="https://github.com/WinMerge/winmerge/issues/342">GitHub #342</a></li>
+<li>比較結果列でソートしたとき、左のみまたは右のみのファイルとフォルダが連続で表示されるようにした。<a href="https://github.com/WinMerge/winmerge/issues/483">GitHub #483</a></li>
+</ul>
+<h3 id="20201029-2168-jp-5">2020/10/29 2.16.8-jp-5</h3>
+<h4 id="全般-12">全般</h4>
+<ul>
+<li>不具合修正: メニューのアイコンが別のアイコンで表示されてしまう問題を修正</li>
+<li>起動速度の高速化</li>
+</ul>
+<h4 id="ファイル比較-13">ファイル比較</h4>
+<ul>
+<li>不具合修正: 3ファイル比較で行フィルタ、コメントフィルタ、[空行を無視する]オプションが機能しない問題を修正<a href="https://github.com/WinMerge/winmerge/issues/395">GitHub #395</a> <a href="https://github.com/WinMerge/winmerge/issues/450">GitHub #450</a></li>
+<li>ファイルの最終行が削除ブロックの場合、そのブロックに同期ポイントは設定できないため、エラーを表示するようにした<a href="https://github.com/WinMerge/winmerge/pull/457">GitHub PR #457</a>(PRいただきました。ありがとうございます。)</li>
+<li>WinMergeで開いているファイルを外部エディタでUTF-8からBOM付きUTF-8または逆に変更した後、WinMergeでリロードしてもステータスバーのエンコーディング名が変わらない問題を修正<a href="https://github.com/WinMerge/winmerge/issues/466">GitHub #466</a></li>
+<li>ステータスバーダブルクリックで関連するダイアログ・メニューを表示するようにした</li>
+<li>Alt+Down/Upキーやツールバーアイコン等で次/前の差異に移動時、行内差異が横にスクロールせずに見えるようするため、最初の行内差異にカーソルを移動するようにした<a href="https://github.com/WinMerge/winmerge/issues/452">GitHub #452</a></li>
+</ul>
+<h4 id="フォルダ比較-10">フォルダ比較</h4>
+<ul>
+<li>コピーの確認ダイアログで「再びこの質問をしない」チェックボックスを追加<a href="https://github.com/WinMerge/winmerge/pull/445">GitHub PR #445</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h3 id="2020929-2168-jp-2">2020/9/29 2.16.8-jp-2</h3>
+<h4 id="全般-13">全般</h4>
+<ul>
+<li>メモリリークの修正<a href="https://github.com/WinMerge/winmerge/pull/432">GitHub PR #432</a>(PRいただきました。ありがとうございます。)</li>
+<li>ツールバーのアイコンとファイル比較ウインドウのブックマークアイコン等をDPIに応じて拡大表示するようにした</li>
+</ul>
+<h4 id="ファイル比較-14">ファイル比較</h4>
+<ul>
+<li>1行目を選択した状態で同期ポイントを追加した場合、ファイル比較ウィンドウで比較結果が1行ずれて表示される問題を修正<a href="https://github.com/WinMerge/winmerge/pull/435">GitHub PR #435</a>(PRいただきました。ありがとうございます。)</li>
+<li>[表示]メニュー→[空白を表示]を選択すると行末の改行文字まで表示するようになっていたが、タブまたは空白文字のみの表示とし、改行の表示/非表示は新たに追加した[改行を表示]メニューで行うようにした</li>
+</ul>
+<h4 id="フォルダ比較-11">フォルダ比較</h4>
+<ul>
+<li><p>コマンドライン引数でフォルダ比較ウインドウに表示する列を指定できるようにした。 ただし、わかりやすくはなく、バージョン列を表示するには、以下のように指定します。</p>
+<pre><code>-cfg &quot;DirView/ColumnOrders=0 1 2 3 4 -1 -1 5 -1 -1 -1 -1 -1 6 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1&quot;</code></pre>
+<p>どのような値を設定したらよいかを知るには、フォルダ比較ウインドウの[ツール]→[列の設定]で表示したい列を指定した後、レジストリキー <code>HKEY_CURRENT_USER\SOFTWARE\Thingamahoochie\WinMerge\DirView\ColumnOrders</code> の値を参照して下さい。</p></li>
+</ul>
+<h4 id="パッチの生成ダイアログ-1">パッチの生成ダイアログ</h4>
+<ul>
+<li>複数のファイルを選択してパッチの生成ダイアログを開いたときに、ダイアログのFile1またはFile2のコンボボックスへの入力が適用されない問題を修正<a href="https://github.com/WinMerge/winmerge/pull/421">GitHub PR #421</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h3 id="2020829-2168-jp-1">2020/8/29 2.16.8-jp-1</h3>
+<h4 id="ファイル比較-15">ファイル比較</h4>
+<ul>
+<li>不具合修正: Diffアルゴリズムがdefault以外の場合、[大文字と小文字の違いを区別しない]が機能しない</li>
+<li>不具合修正: Diffアルゴリズムがdefault以外の場合、WindowsXP上で差異が表示されない<a href="https://github.com/WinMerge/winmerge/issues/420">GitHub #420</a></li>
+<li>不具合修正: 選択範囲領域に白い縦線が表示されることがある</li>
+<li>不具合修正: 水平マウスホイールが適切に動作していなかった</li>
+<li>F4キーで移動する範囲をファイル全体に拡張</li>
+<li>再スキャン時、マージ時、Undo時等で、水平スクロール位置があまり変わらないようにした</li>
+<li>[コードページの違いを無視する]が無効の場合、BOM付きUTF-8とBOMなしUTF-8を区別するようにした</li>
+</ul>
+<h4 id="テーブル比較-3">テーブル比較</h4>
+<ul>
+<li>不具合修正: [右端で行を折り返す]が有効の時、一行目のダブルクォーテーションで括られた範囲でEnterキーを押下すると異常終了する</li>
+<li>不具合修正: [右端で行を折り返す]が有効の時、行内差異が適切に表示されないことがあった</li>
+</ul>
+<h4 id="フォルダ比較-12">フォルダ比較</h4>
+<ul>
+<li>不具合修正: 削除しようとしたファイルが存在しなかった場合のエラーメッセージが適切でなかった</li>
+<li>不具合修正: 3-wayフォルダー比較で、[中央/右のみ存在する項目を表示]メニューが正しく動作しない<a href="https://osdn.net/projects/winmerge-jp/ticket/40672">osdn.net #40672</a></li>
+<li>Ctrlキーを押したままフォルダをWinMergeにドラッグしたときの動作を変更。いままでは、常に[サブフォルダを含める]にチェックが入った時と同じ動作となっていましたが、現在の[サブフォルダを含める]チェックボックスのチェック状態と反対の動作をするようにしました。</li>
+</ul>
+<h4 id="画像比較-10">画像比較</h4>
+<ul>
+<li>不具合修正: スクロールするとき、ウインドウ枠にゴミが残る<a href="https://github.com/WinMerge/winimerge/pull/8">GitHub winimerge PR #8</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: リサイズするときのちらつきを低減<a href="https://github.com/WinMerge/winimerge/pull/9">GitHub winimerge PR #9</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="オプションダイアログ-2">オプションダイアログ</h4>
+<ul>
+<li><p>[一般/画像]カテゴリの[画像ファイルとして扱うファイルパターン]等でドロップダウンメニューでパターンの有効・無効を選択できるようにした<a href="https://github.com/WinMerge/winmerge/pull/391">GitHub PR #391</a><a href="https://github.com/WinMerge/winmerge/pull/397">GitHub PR #397</a>(PRいただきました。ありがとうございます。)</p></li>
+<li><p>ウインドウサイズを変更できるようにした</p></li>
+<li><p>以下のデフォルト値を変更</p>
+<ul>
+<li>比較/一般: コードページの違いを無視する: 無効</li>
+<li>比較/フォルダー: 片方にしか存在しないサブフォルダー内も含める: 有効</li>
 </ul></li>
 </ul>
-<h3 id="翻訳-2">翻訳</h3>
+<h4 id="winmergeについてダイアログ">[WinMergeについて]ダイアログ</h4>
 <ul>
-<li>不具合修正: &quot;The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2&quot;が翻訳されない。(PR #763)</li>
-<li>翻訳の更新:
+<li>GitHub issue #316の再修正<a href="https://github.com/WinMerge/winmerge/pull/392">GitHub PR #392</a>(PRいただきました。ありがとうございます。)</li>
+<li>古くて現状を反映していない開発者リストをアスキーアートに変更<a href="https://github.com/WinMerge/winmerge/pull/394">GitHub PR #394</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="インストーラ-1">インストーラ</h4>
 <ul>
-<li>French (PR #762)</li>
-<li>Japanese</li>
-<li>Polish (PR #769)</li>
-<li>Turkish (PR #803)</li>
-<li>Russian (PR #761)</li>
+<li>一般のGUIユーザではないユーザでサイレントインストールしたとき、「Internal error: Failed to expand shell folder constant &quot;userdesktop&quot;」エラーが発生する問題の修正の試み<a href="https://github.com/WinMerge/winmerge/issues/354">GitHubPR #354</a></li>
+<li>ユーザ毎インストール用インストーラ(管理者権限不要)を追加(WinMerge-2.16.8-jp-1-PerUser-Setup.exe)</li>
+</ul>
+<h3 id="2020729-2166-jp-11">2020/7/29 2.16.6-jp-11</h3>
+<h4 id="ファイル比較-16">ファイル比較</h4>
+<ul>
+<li>不具合修正: 過去に検索した文字列(例:abcd)を含む文字列(例:ab)を選択して検索ダイアログを表示すると過去に検索した文字列のほうが検索文字列になってしまう<a href="https://github.com/WinMerge/winmerge/issues/368">GitHub #368</a></li>
+<li>不具合修正: 選択範囲の置換が機能していない</li>
+</ul>
+<h4 id="フォルダ比較-13">フォルダ比較</h4>
+<ul>
+<li>不具合修正: フォルダが選択されている状態で、フォルダに対して実行できないメニュー項目がある場合に、そのメニュー項目を無効にするように変更<a href="https://github.com/WinMerge/winmerge/pull/366">GitHub PR #366</a>(PRいただきました。ありがとうございます。)</li>
+<li>不具合修正: パスワード付きの7zファイルを比較するとフリーズする<a href="https://github.com/WinMerge/winmerge/issues/367">GitHub #367</a></li>
+<li>不具合修正: 3つフォルダの比較ウインドウで、1項目選択し、[形式を指定して比較]のXML等を選択すると、2つのファイルしかファイルが比較されない<a href="https://github.com/WinMerge/winmerge/pull/381">GitHub PR #381</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="テーブル比較-4">テーブル比較</h4>
+<ul>
+<li>CSVファイルやTSVファイルの内容を表計算ソフト風に表示する機能を追加。
+<ul>
+<li>※まだデフォルトで拡張子.csvファイルや.tsvファイルをこの機能で表示するようにしていません。様子を見てデフォルトにするつもりです。<br />
+この機能を使用したい場合、.csvファイル等のファイル比較ウインドウ表示後、[ファイル]→[形式を指定して再比較]→[テーブル]メニューを選択してください。<br />
+または、[編集]→[設定]メニュー→[比較/テーブル]カテゴリで[CSVファイルとして扱うファイルパターン]に <code>*.csv</code> を入力すると、今後すぐに.csvファイルがこの機能で比較・表示されます。</li>
 </ul></li>
 </ul>
-<h3 id="内部変更-3">内部変更</h3>
+<h4 id="プラグイン-7">プラグイン</h4>
 <ul>
-<li>Update CWindowsManagerDialog (PR #811)</li>
-<li>Update CWindowsManagerDialog - check some pointers for null and made safe casts (PR #824)</li>
+<li>IgnoreCommentsC.dllプラグイン: C# と TypeScriptの拡張子に対応<a href="https://github.com/WinMerge/winmerge/pull/382">GitHub PR #382</a>(PRいただきました。ありがとうございます。)</li>
 </ul>
-<h2 id="winmerge-21612---2021-04-29">WinMerge 2.16.12 - 2021-04-29</h2>
-<h3 id="全般-4">全般</h3>
+<h4 id="ドラッグドロップ">ドラッグ＆ドロップ</h4>
 <ul>
-<li>GUI textstrings: grammatical corrections (PR #722)</li>
-<li>Added ARM64 support</li>
+<li>不具合修正: 秀丸ファイラーClassic等からファイルをドラッグ＆ドロップすると元のファイルが比較されるのではなく、Tempフォルダにコピーされたファイルフォルダが比較されてしまう。(以前WinSCPからのドラッグ＆ドロップに対応した修正に問題があったため元に戻しています)</li>
 </ul>
-<h3 id="ファイル比較-4">ファイル比較</h3>
+<h3 id="2020629-2166-jp-10">2020/6/29 2.16.6-jp-10</h3>
+<h4 id="ファイル比較-17">ファイル比較</h4>
 <ul>
-<li>不具合修正: Fix PHP syntax highlighting. (PR #751)</li>
-<li>不具合修正: Strings in a multi-line diff block were not be replaced correctly when the substitution filters&#39; regular expression contained ^</li>
-<li>不具合修正: Font size restoration with Ctrl+0 key did not work properly in Hi-DPI environment</li>
-<li>不具合修正: Fixed a rare crash when enabling syntax highlight</li>
-<li>不具合修正: Fixed an issue where inline scripts in HTML files were not highlighted correctly</li>
-<li>Make the width of the &#39;Find what&#39; label in Find dialog a little wider (osdn.net #42063)</li>
-<li>Fix conflicting accelerators (osdn.net #42064)</li>
-<li>[Feature Request] Selection Count on Status Bar (#135)</li>
-<li>Add C# 6.0 reserved words to style list (PR #719)</li>
-<li>FR: Add a shortcut key go to next file (#721)</li>
-<li>Update PHP syntax highlighting keyword list. (PR #724)</li>
-<li>autoit.cpp - Macros &gt;&gt; User 1 ..... Variable &gt;&gt; User 2 (PR #749)</li>
-<li>autoit.cpp - #CS #CE support (PR #753)</li>
-<li>Interrupt a inline diff process when it takes too long</li>
-<li>Make the color of characters that represent spaces and tabs lighter than other characters when the &quot;View Whitespace&quot; menu item is enabled</li>
-<li>Added &quot;Open Parent Folder&quot; menu item to the context menu</li>
+<li>不具合修正: CompareMSExcelFilesプラグインの画像比較時にエラーが発生<a href="https://osdn.net/projects/winmerge-jp/ticket/40472">osdn.net #40472</a></li>
+<li>不具合修正: ファイル選択ダイアログを閉じた後、MDI親Windowの内側が再描画されない<a href="https://osdn.net/projects/winmerge-jp/ticket/40487">osdn.net #40487</a></li>
+<li>不具合修正: 複数行を選択しTABキーを押したとき、選択範囲に含まれる削除行はインデントしないようにした<a href="https://github.com/WinMerge/winmerge/issues/356">GitHub #356</a></li>
+<li>不具合修正: 移動ブロック(削除)が間違った色で描画される<a href="https://github.com/WinMerge/winmerge/issues/358">GitHub #358</a></li>
+<li>不具合修正: 同じファイルパスを指定して比較したとき警告されなくなっている<a href="https://github.com/WinMerge/winmerge/issues/362">GitHub #362</a></li>
+<li>不具合修正: 単語単位の移動・選択で&quot;.&quot;が単語の境界として扱われない</li>
+<li>HTMLファイルの文字コード判定でHTML5のcharsetを参照するようにした<a href="https://osdn.net/projects/winmerge-jp/ticket/40476">osdn.net #40476</a></li>
+<li>同じファイルパスを指定して比較したとき警告されなくなっている<a href="https://github.com/WinMerge/winmerge/issues/362">GitHub #362</a></li>
 </ul>
-<h3 id="フォルダ比較-3">フォルダ比較</h3>
+<h4 id="プラグイン-8">プラグイン</h4>
 <ul>
-<li>不具合修正: Copy confirmation dialog has overlapped Yes/No Button (#739)</li>
-<li>不具合修正: Comparison result was not updated by Swap operation in 3-way folder comparison (osdn.net #41901)</li>
+<li>Visioの比較プラグインを追加<a href="https://osdn.net/projects/winmerge-jp/ticket/40473">osdn.net #40473</a>(PRいただきました。ありがとうございます。)</li>
 </ul>
-<h3 id="バイナリ比較-2">バイナリ比較</h3>
+<h4 id="フィルタ">フィルタ</h4>
 <ul>
-<li>不具合修正: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
-<li>不具合修正: Only one pane was zoomed in/out in Ctrl+Mouse Wheel</li>
+<li>Visual C# loose フィルタの無視するフォルダに bin と obj フォルダを追加<a href="https://github.com/WinMerge/winmerge/issues/356">GitHub PR #356</a></li>
 </ul>
-<h3 id="画像比較-4">画像比較</h3>
+<h3 id="2020529-2166-jp-6">2020/5/29 2.16.6-jp-6</h3>
+<h4 id="ファイル比較-18">ファイル比較</h4>
 <ul>
-<li>不具合修正: Next File or Previous File button on the toolbar did not work if the active window was a binary compare window or an image compare window.</li>
-<li>不具合修正: The header bar widths were not calculated properly when the &#39;Split Vertically&#39; menu item is unchecked.</li>
+<li>不具合修正: Diffペインで通常編集できないにもかかわらず、D&amp;D、BSキー、Delキーで編集できてしまう<a href="https://osdn.net/projects/winmerge-jp/ticket/40390">osdn.net #40390</a></li>
+<li>不具合修正: 現在の差異ではない箇所に、検索マーカやユーザ定義マーカがあると、 Diffペインに検索マーカやユーザ定義マーカが表示される<a href="https://osdn.net/projects/winmerge-jp/ticket/40407">osdn.net #40407</a></li>
+<li>不具合修正: ファイル比較後、別アプリケーションで一方のファイルを削除またファイル名を変更し、他方はファイルの内容を変更した場合、WinMergeに戻るとクラッシュする<a href="https://github.com/WinMerge/winmerge/issues/351">GitHub #351</a></li>
+<li>不具合修正: 制御文字が含まれている行の折り返し位置がおかしかった</li>
+<li>不具合修正: NUL文字が含まれている行に検索対象文字列があっても検索されない</li>
+<li>不具合修正: 横スクロールすると結合文字が含まれている行にゴミが表示されることがある</li>
+<li>不具合修正: 矩形選択の範囲外にマウスポインタを移動したときにマウスポインタのアイコンが変わらないことがある</li>
+<li>非常に大きなファイルを比較するとメモリ使用量を著しく消費したり、比較時間が長くなるため、64MBを超えるファイルを比較する場合、ファイルの内容は表示せず比較結果だけ表示するか問うようにした</li>
 </ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-1">ファイルまたはフォルダーの選択ウインドウ</h3>
+<h4 id="フォルダ比較-14">フォルダ比較</h4>
 <ul>
-<li>Make archive files openable as binary files from the pull-down menu.</li>
+<li>不具合修正: フォルダウインドウからファイル名に大文字小文字のみの違いがあるファイルを開き、編集した結果、ファイル比較結果が変わったにもかかわらず、フォルダウインドウに反映されない<a href="https://github.com/WinMerge/winmerge/issues/332">GitHub #332</a></li>
+<li>不具合修正: 非常に長いファイル名のファイルの削除操作を行っても削除されないことがある<a href="https://github.com/WinMerge/winmerge/issues/339">GitHub #339</a></li>
+<li>不具合修正: 表示されるファイル数が非常に多い場合にファイル選択操作が著しく遅くなる<a href="https://github.com/WinMerge/winmerge/issues/348">GitHub #348</a></li>
+<li>フォルダを選択してパッチが生成できるようになった(PullRequestありがとうございます)<a href="https://github.com/WinMerge/winmerge/pull/331">GitHub PR #331</a></li>
 </ul>
-<h3 id="アーカイブサポート">アーカイブサポート</h3>
+<h4 id="ファイルまたはフォルダ選択ウインドウ">ファイルまたはフォルダ選択ウインドウ</h4>
 <ul>
-<li>不具合修正: Fixed a rare crash when decompressing an archive file</li>
+<li>ファイルまたはフォルダのパス入力テキストボックスに存在しないパスが指定されている状態で参照ボタンを押すと、まったく関係ないフォルダを初期表示してしまうのを、親フォルダが存在していれば、親フォルダを初期表示にするようにした<a href="https://github.com/WinMerge/winmerge/issues/346">GitHub #346</a></li>
 </ul>
-<h3 id="プラグイン-4">プラグイン</h3>
+<h4 id="その他">その他</h4>
 <ul>
-<li>不具合修正: ATL: QIThunk - 2 LEAK in plugins e.g. DisplayBinaryFiles and DisplayXMLFiles (#755)</li>
+<li>64bit版のみASLR(アドレス空間配置のランダム化)、CFG(制御フローガード)を有効にした<a href="https://github.com/WinMerge/winmerge/issues/315">GitHub #315</a></li>
+<li>コマンド引数で展開プラグインを指定できるようにした。(例. WinMergeU.exe file1.xlsx file2.xlsx /unpacker CompareMSExcelFiles.sct)</li>
 </ul>
-<h3 id="翻訳-3">翻訳</h3>
+<h3 id="2020429-2166-jp-4">2020/4/29 2.16.6-jp-4</h3>
+<h4 id="ファイル比較-19">ファイル比較</h4>
 <ul>
-<li>翻訳の更新:
-<ul>
-<li>Brazilian (PR #711,#728,#729)</li>
-<li>Dutch (PR #706)</li>
-<li>Galician (PR #737)</li>
-<li>German (PR #718,#752)</li>
-<li>Hungarian (PR #712)</li>
-<li>Japanese</li>
-<li>Korean (PR #709)</li>
-<li>Lithuanian (PR #708,#713,#738,#754)</li>
-<li>Portuguese (PR #725)</li>
-<li>Slovenian</li>
-<li>Swedish (PR #720,#723)</li>
-<li>Russian (PR #707)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21611---2021-03-28">WinMerge 2.16.11 - 2021-03-28</h2>
-<h3 id="全般-5">全般</h3>
-<ul>
-<li>Make all OK strings same case (PR #593)</li>
-<li>Tab bar: Added shadows to help distinguish between active and inactive tabs</li>
-<li>Added drop-down menu to Open and Save icon on toolbar</li>
-</ul>
-<h3 id="ファイル比較-5">ファイル比較</h3>
-<ul>
-<li>不具合修正: Basic syntax highlighter is broken (osdn.net #41440)</li>
-<li>不具合修正: File is corrupted while saving differences in changed file (Ctrl+S) (#607)</li>
-<li>不具合修正: Fix an issue where the syntax highlighting scheme is not applied to the split second File pane and the Diff pane when changing it. (PR #624)</li>
-<li>不具合修正: The position selected by clicking while holding down the shift key is incorrect. (sf.net #2237)</li>
-<li>不具合修正: Fix an issue where the comment filter might not work properly if the file is non-UTF-8 and the comment contains non-ascii characters.</li>
-<li>Add a feature to set up default highlighting by a file extension (PR #627)</li>
-<li>Add &quot;Copy Selected Line(s) to/from Left/Right&quot; feature (#463) (PR #642)</li>
-<li>If -b or -w is also specified, -B now considers lines to be empty if they contain only white space (osdn.net #41355)</li>
-<li>Added BOM checkbox to the Codepage dialog.</li>
-</ul>
-<h3 id="フォルダ比較-4">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Program crash if you close a tab with the folder from where you opened current file (#645)</li>
-<li>不具合修正: The title bar path was not updated when swapping files in a Zip file.</li>
-<li>不具合修正: The codepage specified in the Codepage dialog did not affect the files to be opened.</li>
-</ul>
-<h3 id="画像比較-5">画像比較</h3>
-<ul>
-<li>不具合修正: The image on the right does not open if the file exists only on the right (osdn.net #41721)</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-2">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>Added Text, Table, Binary and Image menu items to the Compare button in the &quot;Select Files or Folders&quot; window</li>
-</ul>
-<h3 id="アーカイブサポート-1">アーカイブサポート</h3>
-<ul>
-<li>Rar5 support (#644)</li>
-</ul>
-<h3 id="オプションダイアログ-3">オプションダイアログ</h3>
-<ul>
-<li>不具合修正: Fix an issue where custom colors are not saved. (PR #648)</li>
-</ul>
-<h3 id="プラグイン-5">プラグイン</h3>
-<ul>
-<li>RCLocalizationHelper: Fix memory leaks (PR #596)</li>
-</ul>
-<h3 id="インストーラ-1">インストーラ</h3>
-<ul>
-<li>Installer issue with Polish diacritics characters (#589)</li>
-</ul>
-<h3 id="翻訳-4">翻訳</h3>
-<ul>
-<li>翻訳の更新:
-<ul>
-<li>Bulgarian (PR #599,#625)</li>
-<li>Brazilian (PR #633)</li>
-<li>French (PR #637,#649,#658,#659)</li>
-<li>Galician (PR #587,#650,#677)</li>
-<li>German (PR #632,#651)</li>
-<li>Hungarian (PR #682,#683,#685)</li>
-<li>Japanese</li>
-<li>Lithuanian (PR #634,#653)</li>
-<li>Polish (PR #597,#673)</li>
-<li>Portuguese (PR #674)</li>
-<li>Slovenian</li>
-<li>Russian (PR #588)</li>
-</ul></li>
-</ul>
-<h3 id="コマンドライン-2">コマンドライン</h3>
-<ul>
-<li>Single instance mode does not work when launched from Visual Studio 2019 (#622) (Added /sw command line option)</li>
-</ul>
-<h3 id="内部変更-4">内部変更</h3>
-<ul>
-<li>不具合修正: Plugins\src_VCPP\VCPPPlugins.vs2017.sln can&#39;t open projects any more because in revision 69455da the projects were renamed. (#598)</li>
-<li>不具合修正: OutputFile of plugin project DisplayXMLFiles is different that the other projects (#600)</li>
-<li>不具合修正: WinMergeScript.rgs files in Plugins\src_VCPP projects are not found. (#605)</li>
-<li>不具合修正: typeinfoex.h(189): warning C4701: potentially uninitialized local variable &#39;pTypeLib&#39; used (#605)</li>
-<li>不具合修正: Plugins project DisplayXMLFiles.vcxproj contains &quot;Unicode Release MinSize&quot; configuration but was removed (#611)</li>
-<li>Expression is always true (#612,PR #613)</li>
-<li>Plugins.cpp function SearchScriptForMethodName can be improved (#690)</li>
-</ul>
-<h2 id="winmerge-21610---2021-01-30">WinMerge 2.16.10 - 2021-01-30</h2>
-<h3 id="全般-6">全般</h3>
-<ul>
-<li>不具合修正: Fixed processing that uses GetAsyncKeyState(). (GitHub PR #505)</li>
-<li>不具合修正: Fixed the problem that the language setting is not applied to the context menu of the MDI tab when the language setting is changed. (GitHub PR #523)</li>
-<li>不具合修正: command-line option /x did not work for binary and image comparison</li>
-<li>不具合修正: Substiturions vs. Substitutions (GitHub #551)</li>
-<li>Swap Panes functionality for 3 way compares (Issue #507) (GitHub PR #533)</li>
-<li>[feature request] Add options to command line to change &quot;compare methods&quot;<br />
-(GitHub #530)</li>
-<li>Added the command line option &quot;/s-&quot; to ensure that another instance is always executed, ignoring the value of the &#39;Allow only one instance to run&#39; option.</li>
-</ul>
-<h3 id="ファイル比較-6">ファイル比較</h3>
-<ul>
-<li>不具合修正: WinMerge crashes with mouse double click (GitHub #531)</li>
-<li>不具合修正: Fixed an issue where the message box &quot;The report has been created successfully.&quot; was displayed even if the report creation failed.</li>
-<li>不具合修正: BUG: Doesn&#39;t respect &quot;Don&#39;t ask this question again&quot; checkbox when comparing large files (GitHub #574)</li>
-<li>The Location pane doesn&#39;t draw a line connecting moved differences by default (GitHub #498)</li>
-<li>Update crystallineparser.cpp - AutoIt (*.au3) support as a &quot;Basic&quot; (GitHub PR #543)</li>
-<li>s_apszAutoItKeywordList[] - actualization for AutoIt (GitHub PR #584)</li>
-<li>Added JavaScript and JSON syntax highligher (osdn.net #41083)</li>
-<li>Added View -&gt; Diff Context -&gt; Invert menu item</li>
-<li>Feature Request: Move To Next File option while comparing files #475 (GitHub PR #561)</li>
-<li>A new feature &quot;Ignored Substutions&quot; (GitHub PR #544,#549,#560) (&quot;Ignored Substitutions&quot; was renamed to &quot;Substitution Filters&quot;)</li>
-</ul>
-<h3 id="フォルダ比較-5">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Winmerge crashes consistently when deleting files (GitHub #491)</li>
-<li>不具合修正: Copy Folder does not copy subfolders and I don&#39;t see any option for it (GitHub #537)</li>
-</ul>
-<h3 id="table-compare">Table compare</h3>
-<ul>
-<li>Added File -&gt; New -&gt; Table menu item</li>
-</ul>
-<h3 id="バイナリ比較-3">バイナリ比較</h3>
-<ul>
-<li>Added File -&gt; New -&gt; Binary menu item</li>
-</ul>
-<h3 id="画像比較-6">画像比較</h3>
-<ul>
-<li>Implement copy and paste images (GitHub PR #524)</li>
-<li>Added File -&gt; New -&gt; Image menu item</li>
-<li>Added Image -&gt; Compare Extracted Text From Image menu item</li>
-</ul>
-<h3 id="オプションダイアログ-4">オプションダイアログ</h3>
-<ul>
-<li>Fix an issue where custom colors are not saved. (GitHub PR #648)</li>
-</ul>
-<h3 id="filter-dialog">Filter dialog</h3>
-<ul>
-<li>Making CPropertySheet resizable needs some re-work. (Issue #509) (GitHub PR #535)</li>
-</ul>
-<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
-<ul>
-<li>不具合修正: Crash when generating patch (GitHub #521)</li>
-</ul>
-<h3 id="翻訳-5">翻訳</h3>
-<ul>
-<li>翻訳の更新:
-<ul>
-<li>Dutch (GitHub #578,#579,#580)</li>
-<li>Galician (GitHub PR #493,#538,#570)</li>
-<li>German (GitHub PR #532,#548,#563,#585)</li>
-<li>Japanese</li>
-<li>Lithuanian (GitHub PR #496,#528,#536,#562,#564)</li>
-<li>Portuguese (GitHub PR #495)</li>
-<li>Slovenian (GitHub #553,#565)</li>
-<li>Russian (GitHub PR #494)</li>
-</ul></li>
-</ul>
-<h3 id="マニュアル-1">マニュアル</h3>
-<ul>
-<li>Update manual (GitHub PR #497,#513,#546)</li>
-<li>Small tweaks for the Manual (GitHub PR #508)</li>
-<li>Windows XP Pro SP0 vs Requirements (GitHub #515)</li>
-</ul>
-<h3 id="内部変更-5">内部変更</h3>
-<ul>
-<li>Fix Various Warnings (GitHub PR #539)</li>
-<li>Various fixes to testing (GitHub PR #545)</li>
-<li>Some tweaks for translations status (GitHub PR #556)</li>
-<li>Link error when <code>building Plugins\src_VCPP\DisplayXMLFiles</code> with Visual Studio 2019 16.7.7 (GitHub #554)</li>
-<li>Link error when building VCPP plugin DisplayXMLFiles with Visual Studio 2019 16.7.7 (GitHub #555)</li>
-<li>Link warnings when building VCPP plugin DisplayXMLFiles with Visual Studio 2019 16.7.7 (GitHub #558)</li>
-<li>Some more files should be added to the .gitignore file (GitHub #559)</li>
-</ul>
-<h2 id="winmerge-2169---2020-11-29">WinMerge 2.16.9 - 2020-11-29</h2>
-<h3 id="全般-7">全般</h3>
-<ul>
-<li>不具合修正: MainFrm.cpp: Toolbar was leaking image lists (GitHub PR #432)</li>
-<li>不具合修正: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
-<li>Update English.pot (GitHub #440)</li>
-<li>Update Merge.rc (GitHub #487)</li>
-<li>Improved startup time</li>
-</ul>
-<h3 id="ファイル比較-7">ファイル比較</h3>
-<ul>
-<li>不具合修正: [UI] Pane enlargement was reset after changing tab (GitHub #403)</li>
-<li>不具合修正: Non-comment differences were sometimes ignored when the comment filter was enabled, (osdn.net #40488)</li>
-<li>不具合修正: Line Filters aren&#39;t applied when using a 3rd file (GitHub #395)</li>
-<li>不具合修正: &quot;Ignore blank lines&quot; does not work in 3-way compare (GitHub #450)</li>
-<li>不具合修正: Fix the problem that the comparison result is displayed one line off in the file compare window if a sync point is added with the first line selected. (GitHub PR #435)</li>
-<li>不具合修正: Fix the problem accessing the text buffer out of range if a sync point is added by selecting a ghost line that is after the last block. (GitHub PR #457)</li>
-<li>不具合修正: Fix the problem that &quot;Goto...&quot;, &quot;Goto Line &lt;line&gt;&quot; and moving by left click on the location pane do not work appropriately when the Diff pane is active in the file compare window. (GitHub PR #476)</li>
-<li>不具合修正: Reloading file does not refresh its encoding (GitHub #466)</li>
-<li>不具合修正: Editor text display is abnormal - character spacing problem (GitHub #468)</li>
-<li>always copy &quot;full line&quot; instead of &quot;selected text only&quot; - option CopyFullLine (GitHub PR #459)</li>
-<li>Add the feature &quot;Go to Moved Line&quot; requested by #278 (GitHub PR #484)</li>
-<li>how to show white space with linebreak hidden? (GitHub #265) (Added View-&gt;View EOL menu item)</li>
-</ul>
-<h3 id="フォルダ比較-6">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Pausing comparing doesn&#39;t pause immediately (GitHub #342)</li>
-<li>不具合修正: Sorting on Comparison Result being done incorectly (GitHub #483)</li>
-<li>Commandline to display versions in the output report (GitHub #418)</li>
-<li>&quot;Don&#39;t ask again&quot; checkbox for the Confirm Copy dialog (GitHub PR #445)</li>
-</ul>
-<h3 id="バイナリ比較-4">バイナリ比較</h3>
-<ul>
-<li>不具合修正: Scrolling binary files (GitHub #456)</li>
-</ul>
-<h3 id="オプションダイアログ-5">オプションダイアログ</h3>
-<ul>
-<li>Added &quot;Automatically scroll to first inline difference&quot; option to Options dialog</li>
-</ul>
-<h3 id="patch-generator-dialog-1">Patch Generator dialog</h3>
-<ul>
-<li>不具合修正: Fixed the problem that the input to File1 or File2 comboboxes of the Patch Generator dialog is not applied when the Patch Generator dialog is opened by selecting multiple files. (GitHub PR #421)</li>
-</ul>
-<h3 id="翻訳-6">翻訳</h3>
-<ul>
-<li>翻訳の更新:
-<ul>
-<li>Chinese Simplified (GitHub PR #465)</li>
-<li>Dutch (GitHub PR #482)</li>
-<li>Galician (GitHub PR #419,#458,#493)</li>
-<li>German (GitHub PR #438,#448,#480,#490)</li>
-<li>Lithuanian (GitHub PR #417,#439,#443,#449,#481)</li>
-<li>Polish (GitHub PR #447)</li>
-<li>Portuguese (GitHub PR #429,#467)</li>
-<li>Slovak (GitHub PR #470)</li>
-<li>Slovenian (GitHub PR #486,#488)</li>
-<li>Spanish (GitHub PR #454)</li>
-<li>Turkish (GitHub PR #425)</li>
-</ul></li>
-</ul>
-<h3 id="マニュアル-2">マニュアル</h3>
-<ul>
-<li>Update Shortcut_keys.xml (GitHub PR #430)</li>
-<li>Update manual (GitHub PR #485,#492)</li>
-</ul>
-<h3 id="内部変更-6">内部変更</h3>
-<ul>
-<li>Tweak output from BuildInstaller.cmd and BuildArc.cmd (GitHub PR #424)</li>
-<li>Fix typo in GhostTextBuffer.cpp (GitHub PR #472)</li>
-<li>Fix typo in memdc.h (GitHub PR #474)</li>
-</ul>
-<h2 id="winmerge-2168---2020-08-28">WinMerge 2.16.8 - 2020-08-28</h2>
-<h3 id="全般-8">全般</h3>
-<ul>
-<li>不具合修正: More space for some internationalized strings (GitHub #402)</li>
-<li>不具合修正: Some improvements (GitHub #405,#411)</li>
-</ul>
-<h3 id="ファイル比較-8">ファイル比較</h3>
-<ul>
-<li>不具合修正: Ignore case option did not work when Diff algorithm was other than default</li>
-<li>不具合修正: A white vertical rectangle was sometimes drawn in the selected area</li>
-<li>不具合修正: The title of the file comparison window after changing the language was accidentally changed to &quot;Untitled left/right&quot;</li>
-<li>不具合修正: Wrong merging (GitHub #420) (minimal/patience/histogram diff algorithm did not work on Windows XP)</li>
-<li>Extended F4 key movement range to the whole file</li>
-<li>Don&#39;t treat UTF-8 and UTF-8 with BOM the same when the &quot;Ignore codepage differences&quot; option is disabled</li>
-</ul>
-<h3 id="フォルダ比較-7">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Appropriate error messages were not displayed when the file to be deleted no longer existed</li>
-<li>不具合修正: &#39;Show Middle/Right Unique items&#39; menu item does not work properly in 3-way folder compare (osdn.net #40672)</li>
-<li>CTRL+Drag folders now has the opposite behavior of the current Include Subfolders option</li>
-</ul>
-<h3 id="画像比較-7">画像比較</h3>
-<ul>
-<li>不具合修正: Fix scrolling glitches (GitHub WinMerge/winimerge PR #8)</li>
-<li>Reduce flicker on resize (GitHub WinMerge/winimerge PR #9)</li>
-</ul>
-<h3 id="オプションダイアログ-6">オプションダイアログ</h3>
-<ul>
-<li>Allow choosing image filename patterns from a multi-selection dropdown list (GitHub PR #391)</li>
-<li>WildcardDropList: Avoid the String instance as it could throw std::bad_alloc (GitHub PR #397)</li>
-<li>Remove duplicate filename patterns without relying on WildcardDropList (GitHub PR #400)</li>
-<li>Made Options dialog resizable</li>
-<li>Changed the default values for the following options:
-<ul>
-<li>Ignore codepage differences -&gt; disabled</li>
-<li>Include unique subfolders contents -&gt; enabled</li>
-</ul></li>
-</ul>
-<h3 id="about-dialog">About dialog</h3>
-<ul>
-<li>Rework the fix for Github issue #316: GUI glitches/bugs #2 (GitHub PR #392)</li>
-<li>Replace outdated list of developers in AboutBox with ascii-art gnu from FSF (GitHub PR #394)</li>
-</ul>
-<h3 id="インストーラ-2">インストーラ</h3>
-<ul>
-<li>不具合修正: Installation - Internal error: Failed to expand shell folder constant &quot;userdesktop&quot; (GitHub #354)</li>
-<li>不具合修正: Lithuanian.po is missing (GitHub PR #415)</li>
-<li>New installer for per-user installation (WinMerge-2.16.8-x64-PerUser-Setup.exe)</li>
-</ul>
-<h3 id="翻訳-7">翻訳</h3>
-<ul>
-<li>翻訳の更新:
-<ul>
-<li>Brazilian (GitHub PR #383)</li>
-<li>Galician (GitHub PR #393)</li>
-<li>German (GitHub PR #388,#389,#398,#399,#401,#406,#412,#414, WinMerge/frhed PR #2)</li>
-<li>Lithuanian (GitHub PR #385,#390,#407,#408,#413,#415)</li>
-<li>Turkish (GitHub PR #386)</li>
-<li>Russian (GitHub PR #387)</li>
-</ul></li>
-</ul>
-<h3 id="マニュアル-3">マニュアル</h3>
-<ul>
-<li>Update manual for IgnoreCommentsC change (GitHub PR #384)</li>
-<li>Update Shortcut_keys.xml (GitHub PR #410)</li>
-</ul>
-<h2 id="winmerge-2167---2020-07-26">WinMerge 2.16.7 - 2020-07-26</h2>
-<h3 id="全般-9">全般</h3>
-<ul>
-<li>不具合修正: The icons on a 43&quot; 4K screen are too small (GitHub #276)</li>
-<li>不具合修正: GUI glitches/bugs (GitHub #316)</li>
-<li>不具合修正: Several issues regarding i18n (GitHub #314)</li>
-<li>Add Solarized Dark/Light color scheme (GitHub #287)</li>
-<li>Compile WinMerge with ASLR and CFG enabled (GitHub #315)</li>
-</ul>
-<h3 id="ファイル比較-9">ファイル比較</h3>
-<ul>
-<li>不具合修正: Diff Pane issues (GitHub #307)</li>
-<li>不具合修正: Codepage not updated on refresh (GitHub #320)</li>
-<li>不具合修正: Crashes when comparing large files (GitHub #325)</li>
-<li>不具合修正: WinMerge does not recognize the same files (GitHub #332)</li>
-<li>不具合修正: Moved ghost lines are shown in the wrong color (GitHub #358)</li>
-<li>不具合修正: opening same file (GitHub #362)</li>
-<li>不具合修正: Find dialog sometimes remembers old text to start a new find instead of the new text. (GitHub #368)</li>
-<li>不具合修正: Fix a problem where markers that are out of the range of the current difference appear in the difference pane. (osdn.net 40407)</li>
-<li>不具合修正: HTML5 encoding (&lt;meta charset=&quot;...&quot; &gt;) is ignored. (osdn.net #40476)</li>
-<li>&#39;=&#39; should be included in word separator (osdn.net #40224)</li>
-<li>Allow specifying default for EOL warning checkbox (GitHub #297)</li>
-<li>Only indent existing lines (GitHub #356)</li>
-</ul>
-<h3 id="table-compare-1">Table compare</h3>
-<ul>
-<li>Made it possible to display the contents of CSV and TSV files like spreadsheet software.</li>
-</ul>
-<h3 id="フォルダ比較-8">フォルダ比較</h3>
-<ul>
-<li>不具合修正: DST causes incorrect dates shown in Date column (GitHub #299)</li>
-<li>不具合修正: Long filename issue (GitHub #339)</li>
-<li>不具合修正: Winmerge Freeze if large number of files are listed in Window View (GitHub #348)</li>
-<li>不具合修正: Change to disable some menu items that should not be executed for directories, when directories are selected in the folder compare window. (GitHub PR #366)</li>
-<li>不具合修正: Update DirViewColItems.cpp (GitHub #376)</li>
-<li>不具合修正: Fix the problem that not 3 panes but 2 panes file compare window displays when executing &quot;Compare As&quot; &gt; &quot;Binary&quot; or &quot;Compare As&quot; &gt; &quot;Image&quot; in the context menu in the folder compare window with selecting 3 items. (GitHub PR #381)</li>
-<li>不具合修正: Fix a problem where a text file could be considered a binary file. (osdn.net #40296)</li>
-<li>不具合修正: crash when clicking [Merge]-&gt; [Delete] menu item while renaming a file</li>
-<li>Add a feature generating a patch from directories (#283) (GitHub PR #331)</li>
-<li>added bin and obj directories to C# filter (GitHub PR #365)</li>
-</ul>
-<h3 id="画像比較-8">画像比較</h3>
-<ul>
-<li>不具合修正: Scrolling behavior when dragging images is wrong (osdn.net #40205)</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-3">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>不具合修正: Open dialogs are sometimes left as garbage (osdn.net #40487)</li>
-<li>Browse button in the file/dir selection show wrong path (GitHub #346)</li>
-</ul>
-<h3 id="オプションダイアログ-7">オプションダイアログ</h3>
-<ul>
-<li>不具合修正: Pressing the [Compare/Binary] category button in the Options dialog twice will cause a crash. (osdn.net #40308)</li>
-</ul>
-<h3 id="プラグイン-6">プラグイン</h3>
-<ul>
-<li>不具合修正: Fix handling of line breaks in SortAscending, SortDescending (osdn.net PR #40266)</li>
-<li>不具合修正: Error when comparing images in the CompareMSExcelFiles.sct plugin (osdn.net #40472)</li>
-<li>CompareMSExcelFiles.sct: Include Excel Addin files (*.xlam) (GitHub PR #269)</li>
-<li>Add support for C# and TypeScript (GitHub PR #382)</li>
-<li>Add a plugin for Visio (osdn.net PR #40473)</li>
-<li>Plugin fixes for the new Table Compare (CompareMSExcelFiles.sct, IgnoreFieldsComma.dll, IgnoreFieldsTab.dll)</li>
-</ul>
-<h3 id="アーカイブサポート-2">アーカイブサポート</h3>
-<ul>
-<li>不具合修正: Crash when comparing encrypted 7z files (GitHub #367)</li>
-</ul>
-<h3 id="インストーラ-3">インストーラ</h3>
-<ul>
-<li>Create the installer with Inno Setup 5.x since installers created with Inno Setup 6.0.x are identified as malware by multiple virus scanning engines</li>
-</ul>
-<h3 id="翻訳-8">翻訳</h3>
-<ul>
-<li>翻訳の更新:
-<ul>
-<li>Brazilian (GitHub #360)</li>
-<li>Chinese Simplified (GitHub PR #303,#377)</li>
-<li>Galician (GitHub PR #292,#293,#308,#313,#326)</li>
-<li>German (GitHub PR #312,#357)</li>
-<li>Lithuanian (GitHub PR #291,#298,#333)</li>
-<li>Polish (GitHub PR #280)</li>
-<li>Portuguese (GitHub PR #305)</li>
-<li>Russian (GitHub PR #270,#271,#272,#302,#327,#328)</li>
-<li>Slovak (GitHub PR #300)</li>
-<li>Slovenian (GitHub #285)</li>
-<li>Spanish (GitHub PR #292,#293,#304,#308)</li>
-<li>Turkish (GitHub PR #335,#336,#337,#338)</li>
-</ul></li>
-</ul>
-<h3 id="マニュアル-4">マニュアル</h3>
-<ul>
-<li>Minor changes to translations README.md file (GitHub #289)</li>
-<li>Update winmerge.org URL to HTTPS, many small improvements (GitHub PR #306)</li>
-</ul>
-<h3 id="内部変更-7">内部変更</h3>
-<ul>
-<li>不具合修正: Src\Common\MyCom.h unused? (GitHub #284)</li>
-<li>不具合修正: Error on git repository cloning (GitHub #288)</li>
-</ul>
-<h2 id="winmerge-2166---2020-02-23">WinMerge 2.16.6 - 2020-02-23</h2>
-<h3 id="全般-10">全般</h3>
-<ul>
-<li>Added CWindowsManagerDialog class for handling open tabs with Ctrl+Tab, now the application is behave just like professional editors (Visual Studio, Notepad++, etc.) to switch and activate the open tabs. (GitHub #247)</li>
-</ul>
-<h3 id="ファイル比較-10">ファイル比較</h3>
-<ul>
-<li>不具合修正: GhostTextBuffer: Don&#39;t unexpectedly bring back empty lines user wants to delete (GitHub #244)</li>
-<li>不具合修正: Prevent silent abort with File Comparison of files whose size is an exact multiple of 2^32 bytes (GitHub #257)</li>
-<li>不具合修正: WinMerge 2.16.4.0 crashes after de-selecting Split Vertically (GitHub #259)</li>
-<li>不具合修正: &quot;Replace All&quot; may not replace all text</li>
-<li>不具合修正: An error message is shown when pressing Enter key in Diff pane (osdn.net #39924)</li>
-<li>不具合修正: Non-moved lines are treated as moved lines (osdn.net #39851)</li>
-<li>Add support for touchpad horizontal scroll (GitHub #254)</li>
-</ul>
-<h3 id="画像比較-9">画像比較</h3>
-<ul>
-<li>不具合修正: Support 16-bit images (GitHub WinMerge/winimerge issue #6)</li>
-<li>Add support for SVG, PDF, WMF and EMF file types (Only available in WinMerge 64bit version on Windows 10)<br />
-Demo1: <a href="https://gyazo.com/b605edb820bc52d0f4f6232eb8ad78aa">https://gyazo.com/b605edb820bc52d0f4f6232eb8ad78aa</a><br />
-Demo2: <a href="https://gyazo.com/f5f267546db27f2dc801c00df8cb4251">https://gyazo.com/f5f267546db27f2dc801c00df8cb4251</a></li>
-</ul>
-<h3 id="アーカイブサポート-3">アーカイブサポート</h3>
-<ul>
-<li>不具合修正: Third tgz doesn&#39;t get fully extracted (first two do) (GitHub #263)</li>
-</ul>
-<h3 id="patch-generator-dialog-2">Patch generator dialog</h3>
-<ul>
-<li>不具合修正: Crash when generating patch for multiple files and a file only on one side (GitHub #252)</li>
-</ul>
-<h3 id="インストーラ-4">インストーラ</h3>
-<ul>
-<li>不具合修正: Fix spelling of Git (GitHub #246)</li>
-</ul>
-<h3 id="翻訳-9">翻訳</h3>
-<ul>
-<li>New translation: Arabic (sf.net #3038)</li>
-<li>翻訳の更新:
-<ul>
-<li>Bulgarian (GitHub #236, #268)</li>
-<li>French (GitHub #251)</li>
-<li>German (GitHub #239, #245, #258)</li>
-<li>Lithuanian (GitHub #233, #267)</li>
-<li>Portuguese (GitHub #237)</li>
-<li>Spanish (GitHub #266)</li>
-</ul></li>
-</ul>
-<h3 id="マニュアル-5">マニュアル</h3>
-<ul>
-<li>不具合修正: Fix spelling of Git (GitHub #246)</li>
-<li>Update Configuration.xml (GitHub #262)</li>
-</ul>
-<h3 id="内部変更-8">内部変更</h3>
-<ul>
-<li>Consolidate FolderCmp (GitHub #240, #242)</li>
-<li>Avoid some back and forth file path transcoding between UTF16 and UTF8 (GitHub #243)</li>
-</ul>
-<h2 id="winmerge-2165---2019-12-09">WinMerge 2.16.5 - 2019-12-09</h2>
-<h3 id="ファイル比較-11">ファイル比較</h3>
-<ul>
-<li>不具合修正: Suspicious lack of Release() calls in lwdisp.c (GitHub #171)</li>
-<li>不具合修正: Performance using Unpacker (GitHub #180)</li>
-<li>不具合修正: WinMerge toolbar appears too small on UHD and should default to the conforming Windows 10 scaling/DPI accessibility setting (GitHub #182)</li>
-<li>不具合修正: &quot;Recompare as&quot; menu option doesn&#39;t follow current choice (GitHub #191)</li>
-<li>不具合修正: Switching between &quot;Find Next&quot; and &quot;Find Prev&quot; need to click twice (GitHub #202)</li>
-<li>不具合修正: Program is crashed! (GitHub #229)</li>
-<li>Switch &quot;Find&quot; buttons in Find dialog (GitHub #201)</li>
-<li>Improve UNICODE character support using icu.dll usable from Windows 10 Creators Update</li>
-<li>Add support for color emoji (Only available in 64bit version) (To enable color emoji support, select DirectWrite* in Rendering mode combobox on Editor page in the Options dialog)<br />
-Demo: <a href="https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4">https://gyazo.com/7cbbbd2c1de195fcd214d588b21b21d4</a></li>
-</ul>
-<h3 id="フォルダ比較-9">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Crash when clicking Next Difference button after unchecking Show Different Items menu item</li>
-<li>Changed symbols in Newer/Older column for better visual clarity (GitHub #169)</li>
-<li>Add &quot;Ignore codepage differences&quot; to quick options (GitHub #197)</li>
-<li>Limit the window flashing count. (GitHub #206)</li>
-</ul>
-<h3 id="画像比較-10">画像比較</h3>
-<ul>
-<li>不具合修正: Image compare breaks when zoomed too much with large pictures (GitHub #188)</li>
-<li>不具合修正: [Image compare] Zoom-in focuses on top-left corner instead of cursor position (GitHub #211)</li>
-</ul>
-<h3 id="シェルエクステンション-2">シェルエクステンション</h3>
-<ul>
-<li>不具合修正: &quot;Run as Administrator&quot; incompatible with &quot;Shell integration&quot; (ver 2.16.4) (sf.net #2234)</li>
-</ul>
-<h3 id="インストーラ-5">インストーラ</h3>
-<ul>
-<li>不具合修正: Installer russian translation (#168)</li>
-<li>不具合修正: Windows 10 shell integration not working (GitHub #176)</li>
-<li>Installer - Proposal - Separate Inno Setup strings from WinMerge installer strings (GitHub #167)</li>
-</ul>
-<h3 id="翻訳-10">翻訳</h3>
-<ul>
-<li>Update Italian translation (GitHub #164, #165)</li>
-<li>Update Russian translation (GitHub #166)</li>
-<li>Update Bulgarian translation (GitHub #170, #175, #179, #212)</li>
-<li>Update Portuguese translation (GitHub #185, #199)</li>
-<li>Update French translation (GitHub #187)</li>
-<li>Update Lithuanian translation (GitHub #189, #208, #217, #225)</li>
-<li>Update Swedish translation (GitHub #194, #196)</li>
-<li>Update German translation (GitHub #204, #205, #215)</li>
-<li>Update Polish translation (GitHub #218)</li>
-<li>Update Simplified Chinese translation (GitHub #228)</li>
-<li>Update Finnish translation (sf.net #3037)</li>
-<li>Update English.pot (#216)</li>
-<li>Add Japanese manual (GitHub #183)</li>
-</ul>
-<h3 id="マニュアル-6">マニュアル</h3>
-<ul>
-<li>Small Manual tweaks (GitHub #190)</li>
-</ul>
-<h2 id="winmerge-2164---2019-07-28">WinMerge 2.16.4 - 2019-07-28</h2>
-<h3 id="ファイル比較-12">ファイル比較</h3>
-<ul>
-<li>不具合修正: coretools.cpp: linelen() should not truncate lines with embedded NULs (GitHub #156)</li>
-<li>不具合修正: file compare : right-click doesn&#39;t select the diff under the mouse (GitHub #159)</li>
-<li>不具合修正: Avoid an exception in GuessCodepageEncoding() when filepath equals &quot;NUL&quot; (GitHub #162)</li>
-<li>不具合修正: Auto-indent did not work if the EOL-style was not CRLF</li>
-</ul>
-<h3 id="フォルダ比較-10">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Generating HTML Folder Compare report including File Compare report did not complete (Bitbucket #15)</li>
-<li>不具合修正: Compare Statistics dialog: The number of diff folders was counted in the number of diff files</li>
-</ul>
-<h3 id="プラグイン-7">プラグイン</h3>
-<ul>
-<li>不具合修正: PrediffLineFilter.sct: Wrong encoding for settings dialog (Bitbucket #16)</li>
-</ul>
-<h3 id="翻訳-11">翻訳</h3>
-<ul>
-<li>Update Russian translation (Bitbucket PR #51)</li>
-<li>Update Italian translation (Bitbucket PR #52)</li>
-</ul>
-<h3 id="内部変更-9">内部変更</h3>
-<ul>
-<li>Favor PathContext::GetSize() over PathContext::size() (GitHub #157)</li>
-<li>Consolidate FolderCmp (GitHub #158, #160, #161)</li>
-<li>Avoid some InnoSetup compiler warnings (Bitbucket PR #53)</li>
-</ul>
-<h2 id="winmerge-2163---2019-06-29">WinMerge 2.16.3 - 2019-06-29</h2>
-<h3 id="全般-11">全般</h3>
-<ul>
-<li>不具合修正: Slow startup with documents folder redirected to high-latency network drive (Bitbucket #155)</li>
-<li>Add VisualElementsManifest for Windows 10 start menu (Bitbucket PR #47)</li>
-<li>Reduce the size of the executable file</li>
-</ul>
-<h3 id="ファイル比較-13">ファイル比較</h3>
-<ul>
-<li>不具合修正: Location and Diff pane visibility broken in 2.16.1 (GitHub #138, Bitbucket #163, sf.net #2228)</li>
-<li>不具合修正: Temporary files could not be created (GitHub #143, sf.net #2220)</li>
-<li>不具合修正: Trivial bugfix (GitHub #155)</li>
-<li>不具合修正: Regression: Incorrectly shows &#39;no changes&#39; for large portions of certain binary files! (Bitbucket #162)</li>
-<li>Small tweaks for HTML file reports (Bitbucket PR #44, #45)</li>
-<li>Made diff algorithm selectable by using libXDiff algorithms: default(Myers), minimal, patience, histogram</li>
-<li>triple click to select whole line (Bitbucket #144)</li>
-<li>Add support for merging word level diffs in selection<br />
-Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
-</ul>
-<h3 id="フォルダ比較-11">フォルダ比較</h3>
-<ul>
-<li>不具合修正: WinMerge 3-Way Compare Bugs: Always Shows Unique Items. (GitHub #154)</li>
-<li>不具合修正: WinMerge could not compare files that are opened in other applications</li>
-<li>Show progress bar while generating Folder Compare Report</li>
-<li>Use own colors settings for folder compare (Bitbucket PR #49)</li>
-</ul>
-<h3 id="プロジェクトファイル-1">プロジェクトファイル</h3>
-<ul>
-<li>不具合修正: Possible Bugs in 2.16.2 (sf.net #2221)</li>
-<li>Supporting relative path in project file (Bitbucket #158)</li>
-<li>Allow multiple &lt;paths&gt; in project file</li>
-</ul>
-<h3 id="画像比較-11">画像比較</h3>
-<ul>
-<li>不具合修正: no message was displayed when file saving failed</li>
-<li>Implement Insertion/Deletion Detection<br />
-Demo: <a href="https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80">https://gyazo.com/17d8773354d23b5ae51262f28b0f1f80</a></li>
-</ul>
-<h3 id="オプションダイアログ-8">オプションダイアログ</h3>
-<ul>
-<li>Tweak size of combobox &quot;codepage&quot; in options (GitHub #144)</li>
-<li>Sort combobox codepage and add manual codepage (GitHub #145)</li>
-</ul>
-<h3 id="インストーラ-6">インストーラ</h3>
-<ul>
-<li>Allow per-user installation (only x64 installer)</li>
-<li>Don&#39;t install Files.txt and don&#39;t add &quot;Uninstall WinMerge&quot; to the start menu (Bitbuket #38)</li>
-</ul>
-<h3 id="翻訳-12">翻訳</h3>
-<ul>
-<li>Update French translation (GitHub #149, #150)</li>
-<li>Update Lithuanian translation (Bitbucket PR #36, #40, #43, #46, #48, #50)</li>
-<li>Update Russian translation (Bitbucket PR #41, #42)</li>
-</ul>
-<h2 id="winmerge-2162---2019-04-04">WinMerge 2.16.2 - 2019-04-04</h2>
-<h3 id="ファイル比較-14">ファイル比較</h3>
-<ul>
-<li>不具合修正: Edit &gt; Replace &gt; All, Undo: should undo all (sf.net #2113)</li>
-<li>不具合修正: Save As: default directory should be file&#39;s original directory (sf.net #2163)</li>
-<li>不具合修正: Strings with embedded 0 bytes are handled incorrectly (sf.net #2187)</li>
-<li>不具合修正: Removed word level merge support due to unstable behavior</li>
-<li>不具合修正: Menu item &quot;File-&gt;File Encoding&quot; moves main window (Bitbucket #150)</li>
-<li>不具合修正: Crash when maximizing MDI child window</li>
-<li>不具合修正: Crash when failed to load file</li>
-<li>Add syntax highlight for Lua (Bitbucket #114)</li>
-</ul>
-<h3 id="フォルダ比較-12">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Compare results refresh incorrectly after deletions (sf.net #2217)</li>
-</ul>
-<h3 id="アーカイブサポート-4">アーカイブサポート</h3>
-<ul>
-<li>Upgraded to 7-zip 19.00</li>
-</ul>
-<h3 id="タブバー">タブバー</h3>
-<ul>
-<li>Improve icon display at 120DPI</li>
-</ul>
-<h3 id="画像比較-12">画像比較</h3>
-<ul>
-<li>不具合修正: Zoom In/Out shortcuts don&#39;t update zoom level in location pane (Bitbucket #149)</li>
-<li>Zoom In/Out menu items for image compare (Bitbucket #148)</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-4">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>Allow quoted filenames in &quot;Select Files or Folders&quot; (sf.net #1240, GitHub #137)</li>
-</ul>
-<h3 id="マニュアル-7">マニュアル</h3>
-<ul>
-<li>Some tweaks for the manual (Bitbucket PR #35)</li>
-</ul>
-<h3 id="インストーラ-7">インストーラ</h3>
-<ul>
-<li>不具合修正: Gibberish language during installation (Bitbucket #147)</li>
-</ul>
-<h3 id="翻訳-13">翻訳</h3>
-<ul>
-<li>Update Catalan translation (Bitbucket PR #29)</li>
-<li>Update Italian translation (Bitbucket PR #32)</li>
-<li>Update Lithuanian translation (Bitbucket PR #33)</li>
-<li>Update Simplified Chinese translation (Bitbucket PR #34)</li>
-</ul>
-<h2 id="winmerge-2161---2019-02-24">WinMerge 2.16.1 - 2019-02-24</h2>
-<h3 id="全般-12">全般</h3>
-<ul>
-<li>Updated the copyright year to 2019, actually (GitHub #110)</li>
-<li>Prevent splitter view from claiming input focus (GitHub #127)</li>
-<li>Contributors.txt: Changed EOL from Unix (LF) to Windows (CR LF), because not shows correctly in Windows Notepad. (Bitbucket PR #17)</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-5">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>Alternatively to Swap buttons, allow drag &amp; drop between filetype icons (GitHub #118)</li>
-<li>Expose cleaner moving/resizing behavior esp. in non-maximized state (GitHub #119)</li>
-<li>Avoid retaining bogus filetype icons from previous selections (GitHub #122)</li>
-</ul>
-<h3 id="ファイル比較-15">ファイル比較</h3>
-<ul>
-<li>不具合修正: Extra blank displayed after left/right single/double quotes (Bitbucket #134)</li>
-<li>不具合修正: Click doesn&#39;t trigger document to scroll in Location pane under circumstance (Bitbucket #140)</li>
-<li>不具合修正: Frustrating text selection bug (GitHub #109)</li>
-<li>不具合修正: Left and Right files swap after losing focus v2.16.0.0 (sf.net #2213)</li>
-<li>不具合修正: WinMerge 2.16.0.0 Unicoe X64 version displaying Microsoft Visual C++ Runtime Library Asset in DiffWraper.CPP line 984 (sf.net #2214)</li>
-<li>不具合修正: Cancelation of selection range with reverse indent (sf.net #2215)</li>
-<li>不具合修正: upward and downward search not work correctly</li>
-<li>Bugifx: Fix menu accelerator conflict</li>
-<li>Add File/Recompare As/Image menu item</li>
-<li>Add support for merging word level diffs in selection<br />
-Demo: <a href="https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif">https://i.gyazo.com/af18960bd1f121213a2cd9287cae9cf4.gif</a></li>
-</ul>
-<h3 id="フォルダ比較-13">フォルダ比較</h3>
-<ul>
-<li>不具合修正: Unique files are not shown (Bitbucket #138)</li>
-<li>不具合修正: Improve Hard-IO error handling, other bug fixes, cleanup, tweaks (GitHub #120)</li>
-</ul>
-<h3 id="アーカイブサポート-5">アーカイブサポート</h3>
-<ul>
-<li>Upgraded to 7-zip 18.06 (Bitbucket #119)</li>
-</ul>
-<h3 id="オプションダイアログ-9">オプションダイアログ</h3>
-<ul>
-<li>不具合修正: Widen the width of labels in Options dialog (GitHub#108)</li>
-<li>不具合修正: view settings make winmerge crash (Bitbucket #109)</li>
-<li>不具合修正: 64bit version can&#39;t browse between option pages (Bitbucket #128)</li>
-<li>不具合修正: Shell Integration &quot;Enable Advanced Menu&quot; disabled on new install (Bitbucket #137)</li>
-<li>不具合修正: Binary File options don&#39;t change from default (Bitbucket #135)</li>
-</ul>
-<h3 id="シェルエクステンション-3">シェルエクステンション</h3>
-<ul>
-<li>不具合修正: CreateTranslatedRcFiles needs an update (GitHub #113)</li>
-</ul>
-<h3 id="翻訳-14">翻訳</h3>
-<ul>
-<li>Update Brazilian Portuguese translation (GitHub #108)</li>
-<li>Update Swedish translation (sf.net #3035, GitHub #112, #114)</li>
-<li>Update Lithuanian translation (Bitbucket PR #7, #8, #27)</li>
-<li>Update Russian translation (Bitbucket PR #9-#26, #139)</li>
-<li>Update Bulgarian translation (Bitbucket PR #28)</li>
-<li>Update Turkish translation (sf.net #3036)</li>
-<li>Update Japanese translation</li>
-<li>Remove now unneeded MergeLang.dll</li>
-</ul>
-<h3 id="マニュアル-8">マニュアル</h3>
-<ul>
-<li>不具合修正: Some fixes in the manual (GitHub #116)</li>
-<li>Bugifx: end of line documentation (sf.net #2211)</li>
-<li>Clarification as per <a href="https://github.com/WinMerge/winmerge-v2/issues/41">https://github.com/WinMerge/winmerge-v2/issues/41</a> (GitHub #126)</li>
-</ul>
-<h3 id="内部変更-10">内部変更</h3>
-<ul>
-<li>Remove <code>nFinalNullLines</code> checking, disabled by an earlier commit (GitHub #111)</li>
-<li>Various minor updates, plus preparation for VS2019 (GitHub #115)</li>
-<li>DiffTextBuffer: Create Unicode temp files (makes EscapeControlChars() obsolete) (GitHub #123)</li>
-<li>Don&#39;t pass <code>DIFFITEM *</code> by casting to <code>uintptr_t</code> (GitHub #124, #125)</li>
-</ul>
-<h2 id="winmerge-2160---2018-11-23">WinMerge 2.16.0 - 2018-11-23</h2>
-<h3 id="全般-13">全般</h3>
-<ul>
-<li>不具合修正: Disabled icon on toolbar not gray out when running on XP</li>
-</ul>
-<h3 id="ファイル比較-16">ファイル比較</h3>
-<ul>
-<li>不具合修正: Copy to X and Advance&quot; not work in 3way-compare (Bitbucket #123)</li>
-<li>不具合修正: File compare always showing different ending (GitHub #106)</li>
-<li>不具合修正: Scrolling issue (GitHub #105)</li>
-<li>不具合修正: A crash (GitHub #104)</li>
-<li>Add separators to &quot;Zoom&quot; and &quot;Diff Context&quot; menus (Bitbucket PR #5)</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-6">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>不具合修正: Drag&amp;Drop in Open Dialog won&#39;t work correct (Bitbucket #125)</li>
-</ul>
-<h3 id="インストーラ-8">インストーラ</h3>
-<ul>
-<li>Drop ClearCase integration (Bitbucket PR #6)</li>
-</ul>
-<h3 id="翻訳-15">翻訳</h3>
-<ul>
-<li>Add Lithuanian translation (Bitbucket #124)</li>
-<li>Update Portuguese translation (GitHub #102,#103)</li>
-</ul>
-<h2 id="winmerge-2155---2018-10-28">WinMerge 2.15.5 - 2018-10-28</h2>
-<h3 id="全般-14">全般</h3>
-<ul>
-<li>Add support for very long path and file names (GitHub #87,#95,#99)</li>
-<li>Enable Ctrl+C shortcut key on the file path bar</li>
-<li>Remove support for old version control system (GitHub #96)</li>
-<li>Improve Options &gt; Color &gt; Differences dialog layout (GitHub #89)</li>
-<li>Improve information and formatting in Help &gt; Configuration reporting (GitHub #92)</li>
-<li>Improve visual layout of Open dialog (GitHub #97)</li>
-<li>Add icon for &quot;New (3 panes)&quot; menu item (GitHub #97)</li>
-</ul>
-<h3 id="ファイル比較-17">ファイル比較</h3>
-<ul>
-<li>Add Window/Split menu item</li>
-<li>Improve handling of last lines in files (GitHub #89,#90,#93)</li>
-<li>Improve &quot;Visual C++ Loose&quot; filter (GitHub #95)</li>
-<li>不具合修正: Crash when saving a file if the active pane is diff detail pane</li>
-<li>不具合修正: Crash when pressing Alt+Down key while loading large files</li>
-<li>不具合修正: Crash when &quot;mousing over&quot; Plugin Setting context menu if Plugins are disabled</li>
-<li>不具合修正: Various problems reading of files &gt; 2GB (GitHub #81)</li>
-<li>不具合修正: Selecting files &quot;From MRU list&quot; again works correctly</li>
-</ul>
-<h3 id="翻訳-16">翻訳</h3>
-<ul>
-<li>Update Italian translation (GitHub #86)</li>
-<li>Update Japanese translation (Bitbucket #3)</li>
-<li>Update Dutch translation</li>
-<li>Update German translation</li>
-<li>不具合修正: Spanish translation error (Bitbucket Issue #108)</li>
-</ul>
-<h3 id="内部変更-11">内部変更</h3>
-<ul>
-<li>Various diffengine and compilation/build fixes (GitHub #89,#90,#91,#92,#94)</li>
-</ul>
-<h2 id="winmerge-2154---2018-04-28">WinMerge 2.15.4 - 2018-04-28</h2>
-<h3 id="外観">外観</h3>
-<ul>
-<li>不具合修正: Dot icon in a drop-down menu is not drawn correctly</li>
-</ul>
-<h3 id="ファイル比較-18">ファイル比較</h3>
-<ul>
-<li>不具合修正: Crash when reading a file in Google Drive File Stream (sf.net#2206)</li>
-<li>不具合修正: Crash when removing ghost lines (GitHub #80)</li>
-<li>不具合修正: Lines without EOL appears even though it is not the last line</li>
-<li>Add Ctrl++/Ctrl+-(not numpad key) shortcut key to zoom in/out (sf.net#1727)</li>
-<li>Remove 2GB file size limit for 64-bit build (GitHub #81, #82)</li>
-</ul>
-<h3 id="フォルダ比較-14">フォルダ比較</h3>
-<ul>
-<li>Add Pause button to Folder Compare Progress dialog (sf.net#828,#1222,#1237)</li>
-<li>Re-detect the file encoding when opening files (sf.net#2131)</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-7">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>Add Options button to Open dialog</li>
-<li>Add Save Project button to Open dialog</li>
-</ul>
-<h3 id="patch-generator-dialog-3">Patch generator dialog</h3>
-<ul>
-<li>不具合修正: File1/File2 fields don&#39;t remember manual input (sf.net#1949)</li>
-</ul>
-<h3 id="レポート">レポート</h3>
-<ul>
-<li>不具合修正: Garbled text was copied to the clipboard when generating a report on the clipboard (sf.net#2200)</li>
-</ul>
-<h3 id="プラグイン-8">プラグイン</h3>
-<ul>
-<li>Add PrediffLineFilter.sct plugin</li>
-<li>Make ignored lines by Prediffer plugin colored</li>
-</ul>
-<h3 id="翻訳-17">翻訳</h3>
-<ul>
-<li>Update Slovak translation (sf.net#2902)</li>
-<li>Update Portuguese translation (GitHub #84,#85)</li>
-</ul>
-<h3 id="内部変更-12">内部変更</h3>
-<ul>
-<li>Adapt to VS2017 version 15.6.1 (GitHub #79)</li>
-</ul>
-<h2 id="winmerge-2153---2018-03-04">WinMerge 2.15.3 - 2018-03-04</h2>
-<h3 id="ファイル比較-19">ファイル比較</h3>
-<ul>
-<li>Fix assertion error when started on Windows XP</li>
-<li>Fix a problem that moved blocks are sometimes shown as normal diff blocks</li>
-<li>Fix a problem that EOL is removed unexpectedly when removing lines included ghost lines</li>
-<li>Fix reverse search to search last line correctly</li>
-<li>Fix infinite loop when replacing ^ (sf.net#2094)</li>
-<li>Fix to show text that contains &amp; on message box, correctly (sf.net#2067)</li>
-</ul>
-<h3 id="フォルダ比較-15">フォルダ比較</h3>
-<ul>
-<li>Fix a problem that unique files are invisible when comparing files using &#39;Date&#39; compare method</li>
-<li>Remove trailing garbage from a dragged text (Github#75)</li>
-</ul>
-<h3 id="patch-generator-dialog-4">Patch generator dialog</h3>
-<ul>
-<li>Fix a problem that typed-in Context in Generate Patch is not applied (sf.net#2179)</li>
-</ul>
-<h3 id="レポート-1">レポート</h3>
-<ul>
-<li>Entitify file paths in HTML &amp; XML directory comparison reports (sf.net#2199)</li>
-</ul>
-<h3 id="location-pane">Location pane</h3>
-<ul>
-<li>Add support for HiDPI screens (Github #54)</li>
-</ul>
-<h3 id="プラグイン-9">プラグイン</h3>
-<ul>
-<li>CompareMSExcelFiles.sct: Add &quot;Compare headers and footers&quot; checkbox to settings dialog (sf.net#2102)</li>
-</ul>
-<h3 id="インストーラ-9">インストーラ</h3>
-<ul>
-<li>Remove extra space in installer: &quot; Launch WinMerge&quot; (sf.net#2144)</li>
-<li>Add &quot;How to Apply These Terms to Your New Programs&quot; section into GPL.rtf (sf.net#2098)</li>
-</ul>
-<h3 id="翻訳-18">翻訳</h3>
-<ul>
-<li>Add Finnish translation (sf.net#3031)</li>
-<li>Add Sinhala translation (sf.net#3032)</li>
-<li>Update Korean translation (Github #61)</li>
-<li>Update Portuguese translation (GitHub #56-78)</li>
-<li>Update Polish translation (sf.net#2177)</li>
-<li>Update Turkish translation (Bitbucket#85, #86)</li>
-<li>Change the file encodings of all .po files of WinMerge GUI to UTF-8</li>
-</ul>
-<h2 id="winmerge-2152---2018-01-28">WinMerge 2.15.2 - 2018-01-28</h2>
-<h3 id="外観-1">外観</h3>
-<ul>
-<li>Flatten GUI pane edges</li>
-<li>Partial support for HiDPI (not Per-Monitor DPI Aware)</li>
-<li>Remove splash screen. The splash screen image is now displayed in About dialog</li>
-</ul>
-<h3 id="ツールバー">ツールバー</h3>
-<ul>
-<li>Add &quot;View-&gt;Toolbar-&gt;Huge&quot; menu item</li>
-<li>Add drop down menu to Options icon</li>
-<li>Add icons for 3-way merge functions</li>
-</ul>
-<h3 id="ファイルまたはフォルダーの選択ウインドウ-8">ファイルまたはフォルダーの選択ウインドウ</h3>
-<ul>
-<li>Change window type of Open dialog from modal window to MDI child window</li>
-<li>Add Read-only checkbox to Open dialog</li>
-<li>Add buttons to swap items</li>
-<li>Add the third path combobox for 3-way comparison</li>
-<li>Allow file name patterns like not only <em>.ext but file</em>.ext</li>
-</ul>
-<h3 id="タブバー-1">タブバー</h3>
-<ul>
-<li>Make Tabbar reorderable by using drag-and-drop</li>
-<li>Add &quot;Close Other Tabs&quot;, &quot;Close Right Tabs&quot; and &quot;Close Left Tabs&quot; menu items to system menu</li>
-<li>Add &quot;Enable Auto Max Width&quot; menu item to Tab Bar context menu</li>
-<li>Show close button when hovering over tabs</li>
-<li>Add icons to each tab</li>
-</ul>
-<h3 id="オプションダイアログ-10">オプションダイアログ</h3>
-<ul>
-<li>Add &quot;Close Select Files or Folders Dialog on clicking OK button&quot; checkbox to &quot;General&quot; page</li>
-<li>Add &quot;Language&quot; combobox to &quot;General&quot; page and remove Language dialog</li>
-<li>Add &quot;Ignore codepage differences&quot; checkbox to &quot;Compare/General&quot; page</li>
-<li>Remove checkboxes in &quot;Enable multiple compare windows for&quot; group from &quot;General&quot; page (Now always enabled multi compare windows)</li>
-<li>Add &quot;Include Subfolders&quot; checkbox to &quot;Compare/Folder&quot; page</li>
-<li>Add &quot;Automatically expand all subfolders&quot; checkbox to &quot;Compare/Folder&quot; page</li>
-<li>Add &quot;Ignore Reparse Points&quot; checkbox to &quot;Compare/Folder&quot; page</li>
-<li>Add &quot;Number of compare threads&quot; textbox to &quot;Compare/Folder&quot; page</li>
-<li>Add &quot;Compare/Binary&quot; page</li>
-<li>Add &quot;Compare/Image&quot; page</li>
-<li>Add checkboxes whether to use custom colors for text to &quot;Colors/Differences&quot; page</li>
-<li>Add &quot;GitHub/Bitbucket&quot; button to &quot;Colors/Differences&quot; page</li>
-<li>Add &quot;Margin&quot; color button to &quot;Colors/Text&quot; page</li>
-<li>Add &quot;Colors/Markers&quot; page</li>
-<li>Remove &quot;Use stand-alone 7-Zip if available&quot; and &quot;Use local 7-Zip from WinMerge folder&quot; radio button from &quot;Archive Support&quot; page (Now always use local 7-Zip from WinMerge folder)</li>
-<li>Make $file and $linenum parameters available in External editor textbox on &quot;System&quot; page</li>
-<li>Make Custom codepage on &quot;Codepage&quot; page selectable from dropdown list</li>
-<li>Add &quot;Detect codepage for text files using mlang.dll&quot; checkbox to &quot;Codepage&quot; page</li>
-<li>Remove &quot;Include subfolders by default&quot; checkbox from &quot;Shell Integration&quot; page (ShellExtension now refers to &quot;Include subfolders&quot; checkbox on &quot;Compare/Folder&quot; page or on &quot;Select Files or Folders&quot; dialog)</li>
-<li>Remove &quot;Add Shell menu to context menu&quot; from &quot;Shell Integration&quot; page (WinMerge now always adds shell menu to context menu in Folder window)</li>
-<li>Add &quot;Register shell extension&quot; button to &quot;Shell Integration&quot; page</li>
-</ul>
-<h3 id="フォルダ比較-16">フォルダ比較</h3>
-<ul>
-<li>Add Multi-thread compare support for Full Contents or Quick Contents method</li>
-<li>Color the background of items in list view</li>
-<li>Restore collapse/expand state of folder tree after re-comparison</li>
-<li>Make comparing window closeable</li>
-<li>Make sub-folder re-comparable</li>
-<li>Display folder items in list view during comparison</li>
-<li>Display the file name currently being compared in progress window</li>
-<li>Add &quot;Parent Folder&quot; menu item in &#39;Open Left/Middle/Right&#39; menu</li>
-<li>Add &quot;Compare Non-horizontally&quot; menu item to context menu</li>
-<li>Add &quot;Copy items To Clipboard&quot; menu item to context menu</li>
-<li>Add &quot;Swap panes&quot; menu item to View menu</li>
-<li>Add &quot;Auto/Manual Prediffer&quot; menu item to Plugin menu</li>
-<li>Open selected folders in new tab when clicking &quot;Compare&quot; menu item with pressing Ctrl key</li>
-<li>Cleanup Date column alignment (GitHub #25)</li>
-<li>不具合修正: Version column not sorted correctly</li>
-<li>不具合修正: A unique item that is a binary file was not detected as a binary file</li>
-<li>不具合修正: Properly handle 3-way comparison of Binary files (Github #23)</li>
-<li>不具合修正: Use proper font for View&gt;Use Default Font menu item (GitHub #24)</li>
-</ul>
-<h3 id="ファイル比較-20">ファイル比較</h3>
-<ul>
-<li>Add support for 3-way compare/merge</li>
-<li>Add &quot;Diff Context&quot; menu to View menu to adjust the number of displayed diff context lines</li>
-<li>Add &quot;Split Vertically&quot; menu item to View menu</li>
-<li>Add &quot;Add Synchronization Point&quot; to Merge menu</li>
-<li>Add &quot;Auto/Manual Prediffer&quot; menu item to Plugin menu</li>
-<li>Show the name of the applied plugin in the status bar</li>
-<li>Add shortcut(Ctrl+Alt+E) to open with external editor</li>
-<li>Add Go and Rust highlighter</li>
-<li>Add VHDL syntax highlighter (Bitbucket #2)</li>
-<li>Add C++11 keywords</li>
-<li>Make merge editor window D&amp;Dable</li>
-<li>Highlight the search text and implement Marker</li>
-<li>Highlight the EOL pane in status bar if there is a difference in the EOL of files</li>
-<li>Reload files when another application changes files opened by WinMerge</li>
-<li>Improve in-line diff algorithm</li>
-<li>不具合修正: More on Issue #73 Fixed the -dl -dm and -dr description parameters for conflict files (for both 2 way and 3 way conflict files).(Bitbucket #1)</li>
-<li>不具合修正: Fix Memory Leak with Drop Targets (GitHub #26)</li>
-</ul>
-<h3 id="バイナリ比較-5">バイナリ比較</h3>
-<ul>
-<li>Install binary file editor (frhed) component again by default</li>
-<li>Make binary file editor undoable</li>
-</ul>
-<h3 id="画像比較-13">画像比較</h3>
-<ul>
-<li>Add image file compare/merge support</li>
-</ul>
-<h3 id="レポート-2">レポート</h3>
-<ul>
-<li>Add &quot;Include File Compare Report&quot; checkbox to &quot;Folder Compare Report&quot; dialog</li>
-<li>Change the encoding of HTML folder compare report from ANSI to UTF-8</li>
-<li>Add icons to the HTML folder compare report</li>
-<li>Change visual style of HTML report</li>
-</ul>
-<h3 id="アーカイブサポート-6">アーカイブサポート</h3>
-<ul>
-<li>Install 7-zip plugin by default</li>
-</ul>
-<h3 id="ドラッグアンドドロップ">ドラッグアンドドロップ</h3>
-<ul>
-<li>Accept drag&amp;droped files or folders from various places like: Zip folder, FTP folder, Recycle bin, images in Web browser</li>
-</ul>
-<h3 id="プラグイン-10">プラグイン</h3>
-<ul>
-<li>Introduce new plugin type FILE_FOLDER_PACK_UNPACKER which allows unpacking data in a file to multiple files in a folder</li>
-<li>Use FILE_FOLDER_PACK_UNPACKER plugin for decompressing archives</li>
-<li>Add support for unpacker plugin written in VBScript/Javascript.</li>
-<li>Add WinMerge32BitPluginProxy.exe to make 32-bit plugins usable in 64-bit WinMerge</li>
-<li>Rewrite some plugins in VBScript</li>
-<li>Add CompareMSPowerPointFiles.sct plugin</li>
-<li>Add ApplyPatch.sct plugin</li>
-<li>Add SortAscending, SortDescending and ExecFilterCommand menu item to Plugin-&gt;Script menu</li>
-<li>Make plugins configurable with settings dialog of each plugin</li>
-</ul>
-<h3 id="フィルタ">フィルタ</h3>
-<ul>
-<li>Update *.flt files for Visual Studio 2015 and 2017</li>
-</ul>
-<h3 id="シェルエクステンション-4">シェルエクステンション</h3>
-<ul>
-<li>Display another WinMerge icon in Explorer&#39;s context menu when a folder is selected</li>
-</ul>
-<h3 id="インストーラ-10">インストーラ</h3>
-<ul>
-<li>64-bit version of WinMerge is available</li>
-<li>Install plugins by default</li>
-</ul>
-<h3 id="翻訳-19">翻訳</h3>
-<ul>
-<li>Update Portuguese translation (GitHub #2-17)</li>
-<li>Update Korean translation (GitHub #45)</li>
-<li>Update Traditional Chinese translation (GitHub #53)</li>
-<li>Remove &quot;Language&quot; menu item from View menu (You can specify UI language at Options dialog)</li>
-</ul>
-<h3 id="コマンドライン-3">コマンドライン</h3>
-<ul>
-<li>Incompatible change: The third file path is now treated as a right path for 3-way comparison, not output path Use /o option for ouput path instead</li>
-<li>Add /wm, /dm, /fl, /fm, /fr, /al, /am and /ar option for 3-way comparison</li>
-</ul>
-<h3 id="other-changes">Other changes</h3>
-<ul>
-<li>Add support for jump list introduced in Windows 7</li>
-</ul>
-<h3 id="内部変更-13">内部変更</h3>
-<ul>
-<li>Use POCO C++ libraries instead of pcre, expat and scew. They use pcre, expat internally</li>
-<li>Link statically with MFC and VC runtime libraries</li>
-<li>Various compilation/build fixes (GitHub #1,#19,#21,#29,#31-33,#36-38,#42-44,#49-52)</li>
-</ul>
-<h2 id="winmerge-2140---2013-02-02-r7596">WinMerge 2.14.0 - 2013-02-02 (r7596)</h2>
-<ul>
-<li>不具合修正: Shell extension uses unquoted program path (patches#3023)</li>
-<li>Translation updates
-<ul>
-<li>Dutch (patches:#3020)</li>
-<li>Slovenian (patches:#3021)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21322---2013-01-13-r7585">WinMerge 2.13.22 - 2013-01-13 (r7585)</h2>
-<ul>
-<li>Translation updates
-<ul>
-<li>Turkish (patches:#2967)</li>
-<li>Russian (patches:#3017)</li>
-<li>Norwegian (patches:#3018)</li>
-<li>Danish (patches:#3019)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21321---2012-12-30-r7575">WinMerge 2.13.21 - 2012-12-30 (r7575)</h2>
-<ul>
-<li>Update PCRE to version 8.10</li>
-<li>Update SCEW to version 1.1.2</li>
-<li>Improve startup time (#2788142)</li>
-<li>Add menuitems for selecting automatic or manual prediffing (#2638608)</li>
-<li>Add accelerator keys for Shell context menu (#2823536)</li>
-<li>Improve editing of linefilter regular expressions (#3015416)</li>
-<li>Allow editing context line count in patch creator (#2092180)</li>
-<li>Improve color options organization (#2818451)</li>
-<li>Add /xq command line switch for closing WinMerge after identical files and not showing message (#2827836)</li>
-<li>Allow setting codepage from command line (#2725549)</li>
-<li>Allow giving encoding name as custom codepage (#2813825, #3010934)</li>
-<li>Add new options dialog panel for folder compare options (#2819626)</li>
-<li>Add options GUI for quick compare limit (#2825628)</li>
-<li>Write config log as UTF-8 file (r7057)</li>
-<li>不具合修正: Untranslated string (&quot;Merge.rc:nnnn&quot;) was displayed in status bar (#3025855)</li>
-<li>不具合修正: Pane headers not updated after language change (#2923684)</li>
-<li>不具合修正: Quick contents compare didn&#39;t ignore EOL byte differences (#2929005)</li>
-<li>不具合修正: Compare by size always checked file times too (#2919510)</li>
-<li>不具合修正: Crash when pasting from clipboard (#3109525)</li>
-<li>不具合修正: Keeps verifing path even turned off in options (#3111581)</li>
-<li>不具合修正: Crash after deleting text (#3109521)</li>
-<li>不具合修正: Added EOL chars between copied file/path names (#2817546)</li>
-<li>不具合修正: Created new matching folder to wrong folder (#2890961)</li>
-<li>不具合修正: Strange scrolling effect in location pane (#2942869)</li>
-<li>不具合修正: Plugin error after interrupting folder compare (#2919475)</li>
-<li>不具合修正: &quot;+&quot; and &quot;-&quot; from the number block don&#39;t work in the editor (#3306182)</li>
-<li>不具合修正: Date format did not respect Regional Settings (#3175189)</li>
-<li>不具合修正: When selecting multiple files in Patch Generator dialog, &quot;Swap&quot; button led to an error. (#3043635, #3066200)</li>
-<li>不具合修正: WinMerge contained a vulnerability in handling project files (#3185386) (<a href="http://www.zeroscience.mk/mk/vulnerabilities/ZSL-2011-4997.php">http://www.zeroscience.mk/mk/vulnerabilities/ZSL-2011-4997.php</a>)</li>
-<li>Installer: Remove OpenCandy from the InnoSetup installer (r7572, r7539)</li>
-<li>New translation: Basque (#3387142)</li>
-<li>Translation updates
-<ul>
-<li>French (#3412030)</li>
-<li>Hungarian (#3164982)</li>
-<li>Spanish (#3412937)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21320---2010-10-20-r7319">WinMerge 2.13.20 - 2010-10-20 (r7319)</h2>
-<ul>
-<li>Add missing keywords to Pascal highlighter (#2834192)</li>
-<li>Recognize .ascx files as ASP files (#3042393)</li>
-<li>Fix help locations (#2988974)</li>
-<li>Show only &quot;Copy to other side&quot; item in file compare context menu (#2600787)</li>
-<li>Expand/collapse folders from keyboard (#2203904)</li>
-<li>Improve detecting XML files in file compare (#2726531)</li>
-<li>Initialize folder selection dialog to currently selected folder in options dialog (r6570)</li>
-<li>New translation: Persian (#2877121, #3065119)</li>
-<li>New translation: Serbian (#3017674, #3065119)</li>
-<li>Installer: Drop Windows 9x/ME/NT4 support and use Microsoft runtime libraries installer (#3070254)</li>
-<li>Installer: Remove Uninstall shortcut from start menu folder (#3076909)</li>
-<li>Installer: Don&#39;t install quick launch icon for Windows 7 (#3079966)</li>
-<li>Installer: Add OpenCandy to the InnoSetup installer (#3088720)</li>
-<li>不具合修正: WinMerge was vulnerable to DLL hijacking as described in Microsoft Security Advisory (2269637) (#33056008)</li>
-<li>不具合修正: Location pane focus enabled &quot;Save&quot; (#3022292)</li>
-<li>不具合修正: &quot;Copy and advance&quot; toolbar icons not automatically enabled (#3033325)</li>
-<li>Translation updates
-<ul>
-<li>Bulgarian (#3082392)</li>
-<li>Chinese (#3033324)</li>
-<li>Dutch (#2804979)</li>
-<li>French (#2850842, #2968200)</li>
-<li>Slovenian (#2917796, #2932094, #2934354, #3070136)</li>
-<li>Spanish (#2930734)</li>
-<li>Turkish (#2825132, #2827817)</li>
-<li>Ukrainian (#2817835)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2124---2009-06-09-r6833">WinMerge 2.12.4 - 2009-06-09 (r6833)</h2>
-<ul>
-<li>Add more C/C++ types to syntax highlight (#2776705)</li>
-<li>Create config log file to My Documents-folder (#2789839)</li>
-<li>不具合修正: Reports had same left/right descriptions (#2772646)</li>
-<li>不具合修正: When conflict file saved trailing line-ending was lost (#2550412)</li>
-<li>不具合修正: File compare HTML reports use invald DOCTYPE (#2783477)</li>
-<li>不具合修正: &quot;##&quot; in file filter pattern caused an infinite loop (#2789345)</li>
-<li>不具合修正: Could select prediffer when plugins were disabled (#2787131)</li>
-<li>不具合修正: Opening mixed-EOL file one side forced both files to be handled as mixed-eol files (#2022312)</li>
-<li>不具合修正: Didn&#39;t show correct EOL chars if whitespace chars were turned off and again on (#2791402)</li>
-<li>不具合修正: Generated patch had wrong file time for UTF-16 files (#2791506)</li>
-<li>不具合修正: Did not export changed options values (#2799149)</li>
-<li>不具合修正: Reset the compare method to original if it was changed (#2802427)</li>
-</ul>
-<h2 id="winmerge-2122---2009-04-01-r6625">WinMerge 2.12.2 - 2009-04-01 (r6625)</h2>
-<ul>
-<li>Disable folder compare tree-view by default (#2714968)</li>
-<li>不具合修正: Filename extension column was empty for files (#2670046)</li>
-<li>不具合修正: Crash when selecting backup folder (#2686382)</li>
-<li>不具合修正: Swapping panes did not update statusbar (#2661838)</li>
-<li>不具合修正: Says files are identical after making files different in another application and re-loading them (#2672737)</li>
-<li>不具合修正: Files with missing last EOL weren&#39;t merged correctly (#2712120)</li>
-<li>Translation updates
-<ul>
-<li>Polish (#2717382, #2720875)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2120---2009-03-05-r6542">WinMerge 2.12.0 - 2009-03-05 (r6542)</h2>
-<ul>
-<li>Remember last target folder for Copy/Move to in folder compare (#2659228)</li>
-<li>Detect Windows 7 and Windows 2008 in config log (#2599256)</li>
-<li>不具合修正: Help window opened from WinMerge was modal (#2590079)</li>
-<li>不具合修正: Crash in editor when undoing (#2590212)</li>
-<li>不具合修正: Browse button in Option dialog reverted to previous settings (#2606153)</li>
-<li>不具合修正: Files without extension get backed up to name..bak (#2627752)</li>
-<li>不具合修正: Must Show Different to Show L/R Unique (#2129561)</li>
-<li>Translation updates
-<ul>
-<li>Chinese Traditional (#2608190)</li>
-<li>Croatian (#2596949)</li>
-<li>Czech (r6538)</li>
-<li>Danish (#2648183)</li>
-<li>Dutch (#2586422, #2590430)</li>
-<li>French (#2603591)</li>
-<li>Galician (#2632173)</li>
-<li>German (#2586497)</li>
-<li>Greek (#2615285)</li>
-<li>Japanese (r6456)</li>
-<li>Swedish (#2586274)</li>
-<li>Ukrainian (#2609242)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2112---2009-02-05-r6428">WinMerge 2.11.2 - 2009-02-05 (r6428)</h2>
-<ul>
-<li>Update Python syntax highlight keywords for Python 2.6 (#2473375)</li>
-<li>More accurate visible area rect in location pane (#2479804)</li>
-<li>New options page for Shell Integration options (#2433648)</li>
-<li>Remove Frhed hex editor from GUI (context menu) (r6376)</li>
-<li>Register.bat should use Find with full path (#2536582)</li>
-<li>Better Unicode file detection for full contents compare (2477657)</li>
-<li>不具合修正: Could not open project file that contains an ampersand character in folder names (#2372000)</li>
-<li>不具合修正: File compare method &quot;Modified Date and Size&quot; ignored file size (#2455595)</li>
-<li>不具合修正: Quick compare didn&#39;t ignore EOL differences (#2433677)</li>
-<li>不具合修正: Remove EOL characters from command line (#2458728)</li>
-<li>不具合修正: Merging one line diff to empty other side didn&#39;t work (#2456399)</li>
-<li>不具合修正: Location pane was empty for some files with diffs (#2459234)</li>
-<li>不具合修正: Line filter editing didn&#39;t update edit box when editing was canceled by ESC key (#2493935)</li>
-<li>不具合修正: Wrong number shown for difference when using line filters (#2493980)</li>
-<li>不具合修正: Crashed if compared file disappeared during file compare (#2493945)</li>
-<li>不具合修正: Creating new files caused message about missing files (#2515875)</li>
-<li>不具合修正: Could not hide folders in recursive compare (#2528749)</li>
-<li>不具合修正: Folder Compare:Copy Right/Left don&#39;t create folder</li>
-<li>不具合修正: Must Show Different to Show L/R Unique (#2129561)</li>
-<li>不具合修正: Could not copy files from right to left (#2556904)</li>
-<li>不具合修正: Don&#39;t show file name extension for folders (#2563314)</li>
-<li>Translation updates
-<ul>
-<li>Brazilian (#2461443, #2524796)</li>
-<li>Chinese Traditional (#2540115)</li>
-<li>Czech (r6201)</li>
-<li>Dutch (#2481022, #2494378, #2499994)</li>
-<li>French (#2551043, #2551066)</li>
-<li>Greek (#2550911)</li>
-<li>Swedish (#2452467, #2465385, #2511043)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-212x-r2_12-branch-created-r6202">WinMerge 2.12.x (R2_12) branch created (r6202)</h2>
-<h2 id="winmerge-21118---2008-12-19-r6200">WinMerge 2.11.1.8 - 2008-12-19 (r6200)</h2>
-<ul>
-<li>Allow reloading the file if it has been changed on the disk behind WinMerge (#2354125)</li>
-<li>Add option to show Open-dialog on WinMerge startup (#2327424)</li>
-<li>Add Git to Source Control filter and fix ignore file rules (#2329381)</li>
-<li>Add build identifier for 64-bit builds to About-dialog (r6142)</li>
-<li>Installer: Option to add WinMerge to system path (#2435175)</li>
-<li>Add Unicode version of heksedit (#2036603)</li>
-<li>Allow multiple file compare documents by default (#2445749)</li>
-<li>不具合修正: Move confirmation dialog sometimes had wrong paths (#2327565, #2309190)</li>
-<li>不具合修正: Use translated version of readme.txt for Chinese Simplified (#2391000)</li>
-<li>不具合修正: Installer didn&#39;t install readme.txt for all translations (#2396437)</li>
-<li>不具合修正: Could not give paths to commandline when started WinMerge from Cygwin prompt (#2427946)</li>
-<li>不具合修正: Infinite loop in heksedit&#39;s Replace-dialog (r6176)</li>
-<li>Translation updates
-<ul>
-<li>Croatian (#2390558)</li>
-<li>German (r6130)</li>
-<li>Greek (#2379356)</li>
-<li>Japanese (r6154)</li>
-<li>Swedish (#2318778, #2374278)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21117---2008-11-20-r6112">WinMerge 2.11.1.7 - 2008-11-20 (r6112)</h2>
-<ul>
-<li>Add shell context menu to folder compare context menu (#2189315)</li>
-<li>Update PCRE to version 7.8 (#2209911)</li>
-<li>Show missing lines in location pane for diffs having both different and missing lines (#2119235)</li>
-<li>Syntax highlighting for Verilog files (#2231145)</li>
-<li>Tweak new &quot;equal file&quot; icon a little bit (#2312381)</li>
-<li>Readme update (#2234689)</li>
-<li>Translation updates
-<ul>
-<li>Brazilian (#2219568)</li>
-<li>Czech (r6034)</li>
-<li>Swedish (#2215167, #2236651)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21116---2008-10-23-r6033">WinMerge 2.11.1.6 - 2008-10-23 (r6033)</h2>
-<ul>
-<li>General compare status for files (not known if text/binary) (#2175736)</li>
-<li>Change icons for the new general compare status (#2185302)</li>
-<li>Use 24bit icons for &quot;Bookmarks&quot; and &quot;Delete&quot; menu items (#2141184)</li>
-<li>Installer: create backup of ClearCase config file (#2129095)</li>
-<li>不具合修正: Translatable strings having space before colon (#1971868)</li>
-<li>不具合修正: Wrong cursor position when disabling selection margin (#2138555)</li>
-<li>不具合修正: Showed a black line when disabling selection margin (#2068790)</li>
-<li>不具合修正: Fix manual URL in Readme.txt (#2181628)</li>
-<li>不具合修正: Long unique paths were mixed up in folder compare view (#2129634)</li>
-<li>不具合修正: Some calls made to plugins when plugins were disabled (#2182788)</li>
-<li>不具合修正: If messagebox was shown during file loading location pane didn&#39;t show any differences (#2101780)</li>
-</ul>
-<h2 id="winmerge-21115---2008-10-02-r5995">WinMerge 2.11.1.5 - 2008-10-02 (r5995)</h2>
-<ul>
-<li>Use external editor to edit file filters (#2082774)</li>
-<li>Improved command line handling (#2081779)</li>
-<li>Change Manual url to <a href="http://winmerge.org/docs/manual/">http://winmerge.org/docs/manual/</a> (r5956)</li>
-<li>Manual updates</li>
-<li>Plugins: Show processing instructions in XML plugin (#1979321)</li>
-<li>Add icon for &quot;Compare&quot; menu item (#2119843)</li>
-<li>Change download URL to current URL (#2136765)</li>
-<li>Installer: create backup of ClearCase config file (#2129095)</li>
-<li>不具合修正: ClearCase checkout/commit dialog translation error (#2051069)</li>
-<li>不具合修正: Table of Contents in manual (#2071625)</li>
-<li>不具合修正: Highlight ShowUnInstDetails keyword for NSIS files (#2084879)</li>
-<li>不具合修正: Displayed a blank time when file last modified time is 00:00:00 (#2098626)</li>
-<li>不具合修正: Customized colors weren&#39;t used in some areas (#2110218)</li>
-<li>不具合修正: Zip files were extracted into wrong folder (#2110350)</li>
-<li>不具合修正: Case-sensitive regexp search didn&#39;t work (#1991259)</li>
-<li>不具合修正: There were some installer regressions (eg. Installer didn&#39;t create Quick Launch icon) (#1460517)</li>
-<li>不具合修正: Whitespace ignore options didn&#39;t work with quick compare (#2120174)</li>
-<li>不具合修正: Giving path to file and folder to command line did not work (#2138560)</li>
-<li>New translation: Galician (#2120685)</li>
-<li>Translation updates
-<ul>
-<li>German (r5934)</li>
-<li>Russian (#2067785)</li>
-<li>Swedish (#2075513)</li>
-<li>Ukrainian (#2131753)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21114---2008-08-21-r5846">WinMerge 2.11.1.4 - 2008-08-21 (r5846)</h2>
-<ul>
-<li>Binary file edit/compare (#2036603)</li>
-<li>Add wait cursor for undo and redo (#2039228)</li>
-<li>Add icon for &quot;Open Conflict File&quot; menu item (#2047054)</li>
-<li>Include unique subfolder contents in recursive folder compare (#2034259)</li>
-<li>Installer: Use -u switch in TortoiseSVN command line (#2060782)</li>
-<li>Add icon for &quot;Plugins-&gt;List&quot; menu item (#2060771)</li>
-<li>不具合修正: External editor command line switches did not work (#2037862)</li>
-<li>不具合修正: Deleting/Moving file crashed WinMerge in debugger (#2025833)</li>
-<li>不具合修正: Lost focus after folder compare operations (#2046002)</li>
-<li>不具合修正: Some files had folder icons when aborting folder compare (#2018836)</li>
-<li>不具合修正: Didn&#39;t select word-diff cyclically by pressing F4 key (#1989858)</li>
-<li>不具合修正: Could not reset EOL ignore after selecting it from query dialog (#2056741)</li>
-<li>Translation updates
-<ul>
-<li>Brazilian (#2059836)</li>
-<li>German (#2045666)</li>
-<li>Greek (#2062442)</li>
-<li>Chinese Traditional (#2039929)</li>
-<li>Japanese (r5805)</li>
-<li>Swedish (#2062107)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-21113---2008-08-04-r5733">WinMerge 2.11.1.3 - 2008-08-04 (r5733)</h2>
-<ul>
-<li>Rename color scheme menu item &quot;None&quot; and add separator (#2027300)</li>
-<li>Add -u commandline parameter as alternative to -ub (#2029275, #2030359)</li>
-<li>Remove RCLocalizationHelper plugin (#2029457)</li>
-<li>Clarify Supercopier caused hang in release notes (#2030040)</li>
-<li>Improve tree mode in folder compare (#2018836)</li>
-<li>Unlimited undo (#2033754)</li>
-<li>不具合修正: Could change syntax highlight mode when highlighting was disabled from options (#2027325)</li>
-<li>不具合修正: Editing line filters updated wrong filter (#2025130)</li>
-<li>不具合修正: Boldfacing did work only for Courier font (#2000996)</li>
-<li>不具合修正: Shift+Backspace didn&#39;t work in editor (#1153696)</li>
-</ul>
-<h2 id="winmerge-21112---2008-07-24-r5673">WinMerge 2.11.1.2 - 2008-07-24 (r5673)</h2>
-<ul>
-<li>Refresh compare after changing filter (#2017426)</li>
-<li>Add dialog listing available plugins (#2021722)</li>
-<li>Hierarchical directory comparison result view (#2018836)</li>
-<li>Add &quot;Open Conflict&quot; for file/folder compare menus (#2025472)</li>
-<li>Enable hierarchial folder compare view by default (#2025478)</li>
-<li>Confirmation dialog for move operations (#2026508)</li>
-<li>Manual: New build system (#2015434)</li>
-<li>Manual: Improve Opening Files and Folders (#2017901)</li>
-<li>Manual: Improve folder compare documentation (#2024587)</li>
-<li>不具合修正: Failed to compare UTF-8 files plugins disabled (#2018287)</li>
-<li>不具合修正: Don&#39;t warn about closing multiple windows when only one window is open (#2010463)</li>
-<li>不具合修正: Moving was allowed for protected items (#2023734)</li>
-<li>不具合修正: Could change EOL style for protected file (#2025781)</li>
-</ul>
-<h2 id="winmerge-21111---2008-07-11-r5609">WinMerge 2.11.1.1 - 2008-07-11 (r5609)</h2>
-<ul>
-<li>Manual: Introduction update (#2011365)</li>
-<li>Manual: Reorganize structure (#2011924)</li>
-<li>Add ShellExtension menu for drive letters (root folders) (#2011602)</li>
-<li>Remove buildall.bat (#2013576)</li>
-<li>New option to enable plugins (disabled by default) (#2013845)</li>
-<li>Plugins: Show processing instructions in XML plugin (#1979321)</li>
-<li>不具合修正: Use system codepage for paths (#1979429, #2008581)</li>
-<li>不具合修正: ANSI build crash in folder compare (#2010053)</li>
-<li>不具合修正: Add insert/overtype mode indicator to statusbar (#2015174)</li>
-<li>不具合修正: Detected UTF-8 encoding shown as 65001 (#2012377)</li>
-</ul>
-<h2 id="winmerge-210x-r2_10-branch-created-r5561">WinMerge 2.10.x (R2_10) branch created (r5561)</h2>
-<h2 id="winmerge-2915---2008-07-04-r5560">WinMerge 2.9.1.5 - 2008-07-04 (r5560)</h2>
-<ul>
-<li>Manual: Copy editing (#2000322, #2005418)</li>
-<li>Manual: Clarify 64-bit support (#2002431)</li>
-<li>Reduce executable sizes (#2003203)</li>
-<li>Release Notes update (#2007673, r5557)</li>
-<li>不具合修正: Possible crash when enabling line filter (#2004160)</li>
-<li>不具合修正: Location Pane flickers when scrolling (#1938177, #2005031)</li>
-<li>不具合修正: Use system codepage for paths (#1979429, #2008581)</li>
-<li>不具合修正: Random crashes in folder compare (#2005308)</li>
-<li>Translation updates
-<ul>
-<li>Chinese Traditional (#2007426)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2914---2008-06-24-r5518">WinMerge 2.9.1.4 - 2008-06-24 (r5518)</h2>
-<ul>
-<li>Use PCRE regular expressions in the editor (#1991259)</li>
-<li>Installer: install to all users (#1460517)</li>
-<li>Update release notes (#1990886, #1995265, #1999880)</li>
-<li>Manual: Use PNG files (#1988845, #1989744)</li>
-<li>不具合修正: Temp paths in Reports created from archive file (#1984346)</li>
-<li>不具合修正: ISL file syntax highlighting starts comment with { (#1981326)</li>
-<li>不具合修正: Crash when starting a second instance (#1993835)</li>
-<li>不具合修正: Crash when starting WinMerge with only one path (#1994402)</li>
-<li>不具合修正: Messages missing from installer translations (r5506)</li>
-<li>不具合修正: Always right side as origin side in copy confirmation dialog when Copy To... (#2001237)</li>
-<li>New translation: Slovenian (#1997236)</li>
-<li>Translation updates
-<ul>
-<li>Brazilian (#1994578)</li>
-<li>Swedish (#2000307)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2913---2008-06-05-r5438">WinMerge 2.9.1.3 - 2008-06-05 (r5438)</h2>
-<ul>
-<li>Update PCRE (regular expression library) to version 7.7 (#1941779)</li>
-<li>Add VB.net keywords to Basic highlighter (#1970912)</li>
-<li>Open conflict files by drag &amp; dropping to main window (#1984884)</li>
-<li>Possible improvement for WinMerge exit bug (#1602313)</li>
-<li>不具合修正: Location Pane flickers when resizing (#1740106)</li>
-<li>不具合修正: Command line description text starting with &quot;/&quot; confused WinMerge (#1973225)</li>
-<li>不具合修正: Item count in statusbar not get cleared (#1976480)</li>
-<li>New translation: Ukrainian (#1973149, #1974021)</li>
-<li>Translation updates
-<ul>
-<li>Brazilian (#1978374)</li>
-<li>Korean (#1978362)</li>
-<li>Swedish (#1980970)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2912---2008-05-23-r5362">WinMerge 2.9.1.2 - 2008-05-23 (r5362)</h2>
-<ul>
-<li>Optimize location pane (r5341, r5342, r5346, r5351, r5355, r5356)</li>
-<li>不具合修正: Version Control filter did not match all VSS files (#1881186)</li>
-<li>不具合修正: Fix showing differences in the end of the line (#1883409, #1962816)</li>
-<li>不具合修正: Fix command line paths in quotes ending with &quot;&quot; (#1963523)</li>
-<li>New translation: Greek (#1968429)</li>
-<li>Translation updates
-<ul>
-<li>Bulgarian (#1957434)</li>
-<li>Croatian (#1958283)</li>
-<li>Swedish (#1950188, #1970074)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2911---2008-04-23-r5324">WinMerge 2.9.1.1 - 2008-04-23 (r5324)</h2>
-<ul>
-<li>Release Notes update (#1933950)</li>
-<li>Installer: Use correct way to create start menu web link (#1913919)</li>
-<li>Installer: Simplify DeletePreviousStartMenu() function (#1913949)</li>
-<li>Installer: Updated the side art of the installer application (#1915012)</li>
-<li>Update URLs and switch to 2.8 manual (#1919965)</li>
-<li>New splash screen (#1914869)</li>
-<li>Tab icons at Filter dialog (#1926531)</li>
-<li>Add VS2003/VS2005 project files (#1926346)</li>
-<li>Create separate document for compiling WinMerge (#1927502)</li>
-<li>Update InnoSetup translations (#1931492)</li>
-<li>Make &#39;Yes&#39; the default button in copy confirmation dialog (#1943647)</li>
-<li>Allow drag &amp; drop of paths to Open dialog (#1945254)</li>
-<li>Enlarge &#39;Discard All&#39; button in Save confirmation dialog (#1947216)</li>
-<li>不具合修正: Installer could create a registry access error (#1909967)</li>
-<li>不具合修正: The filter text box in Open-dialog sometimes displayed some garbage data (#1915424)</li>
-<li>不具合修正: Print area was not clipped correctly. (#1915536)</li>
-<li>不具合修正: Undo after pane swapping (#1915536, #1923625)</li>
-<li>不具合修正: Quick compare for same folder didn&#39;t show differences (#1918599)</li>
-<li>不具合修正: Installer didn&#39;t have ChangeLog.txt included (r5255)</li>
-<li>不具合修正: Shortcuts given in command line were not expanded (#1942217)</li>
-<li>New translation: Romanian (#1939729)</li>
-<li>Translation updates
-<ul>
-<li>Brazilian (#1913723)</li>
-<li>Chinese Traditional (#1927605)</li>
-<li>French (#1920380)</li>
-<li>German (r5130, r5139, r5171, r5203, r5236, #1949068)</li>
-<li>Italian (#1939235)</li>
-<li>Japanese (r5152)</li>
-<li>Polish (#1934655)</li>
-<li>Russian (#1914466)</li>
-<li>Spanish (#1907152, r5250)</li>
-<li>Swedish (#1908289)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-28-rc---2008-03-04-r5125">WinMerge 2.8 RC - 2008-03-04 (r5125)</h2>
-<ul>
-<li>Update developers list in splash screen (#1891548)</li>
-<li>Better error handling for Excel plugin (#1510293)</li>
-<li>Add macros, bookmarks and document properties to Word plugin (#1510298)</li>
-<li>Add *.dot (document template) extension to Word plugin (r5120)</li>
-<li>不具合修正: Copy&amp;Paste from VB6 added binary chars (#1904355)</li>
-<li>Translation updates
-<ul>
-<li>Chinese Traditional (#1905323)</li>
-<li>Swedish (#1905520)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2776---2008-02-28-r5099">WinMerge 2.7.7.6 - 2008-02-28 (r5099)</h2>
-<ul>
-<li>Remove sintance.h/sintance.cpp as not compatible with GPL (#1886580)</li>
-<li>Automatically switch to mixed-EOL mode when loading files with two or more EOL styles (#1901547)</li>
-<li>Indent &quot;Explorer Context Menu&quot; sub options (#1901763)</li>
-<li>Replace &#39;DOS&#39; in EOL style strings with &#39;Windows&#39; (#1902583)</li>
-<li>Show &#39;Mixed&#39; as file compare EOL style instead of empty style (r5091)</li>
-<li>Typo fixes and grammar improvements to several strings (#1898401)</li>
-<li>不具合修正: Ignore codepage specified on File Encoding dialog if file was detected as UTF-8 (#1900728)</li>
-<li>不具合修正: Recognize invalid UTF-8 sequence as UTF-8 (#1900733)</li>
-<li>不具合修正: Didn&#39;t highlight any difference between untitled documents (#1900257)</li>
-<li>Translation updates
-<ul>
-<li>Czech (r5073)</li>
-<li>Japanese (r5076)</li>
-<li>Swedish (#1901784)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2775---2008-02-22-r5069">WinMerge 2.7.7.5 - 2008-02-22 (r5069)</h2>
-<ul>
-<li>Cleaning up Help-menu (#1875111)</li>
-<li>Right-align tab size number in editor options (r5037)</li>
-<li>Move Time difference ignore -option to compare options (#1892283)</li>
-<li>Add option to select temporary folder (#1893167)</li>
-<li>Show file encoding in file compare statusbar (#1895629)</li>
-<li>Unify EOL style strings in folder compare and file compare (#1896462)</li>
-<li>Remove &quot;DisplayBinaryFiles&quot; and &quot;EditBinaryFiles&quot; plugin (#1899161)</li>
-<li>不具合修正: Potential lockup in folder compare (#1865131, #1889907)</li>
-<li>不具合修正: Line filter didn&#39;t filter non-ascii lines correctly (#1880628)</li>
-<li>不具合修正: GNU General Public License name in menu (#1868989)</li>
-<li>不具合修正: Didn&#39;t switch back to content compare once switched to quick compare in folder compare (#1770373)</li>
-<li>不具合修正: Quick compare didn&#39;t ignore EOL differences (#1884717)</li>
-<li>Translation updates
-<ul>
-<li>Croatian (r5032)</li>
-<li>Czech (r5017)</li>
-<li>German (r5038)</li>
-<li>Slovak (#1895583)</li>
-<li>Swedish (#1891326)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2774---2008-02-07-r5011">WinMerge 2.7.7.4 - 2008-02-07 (r5011)</h2>
-<ul>
-<li>Detect (and read/write) UTF-8 files without BOM (#1879271)</li>
-<li>Tell user that file is not a conflict file (#1880423)</li>
-<li>Allow opening conflict file from command line (#1880857)</li>
-<li>Use radio symbol for current EOL menu item (#1869755)</li>
-<li>Ask and create pair for unique folder and open them (#1881454)</li>
-<li>Add publisher info to version resource (#1884920)</li>
-<li>Move &quot;Zoom In/Out&quot; to own sub menu (#1879340)</li>
-<li>Installer: Add more version resource info (#1885793)</li>
-<li>Reset text zoom to default size with Ctrl + * (#1886664)</li>
-<li>不具合修正: Always return 0 to command line (#1854419)</li>
-<li>不具合修正: Merge/Delete deleted items from read-only sides (#1882019)</li>
-<li>不具合修正: Shellextension had no publisher info and wrong description (#1878828)</li>
-<li>不具合修正: Lockup when showing binary files (#1880711)</li>
-<li>Translation updates
-<ul>
-<li>Croatian (r4952)</li>
-<li>Japanese (r4962)</li>
-<li>Swedish (#1884918)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2773---2008-01-23-r4951">WinMerge 2.7.7.3 - 2008-01-23 (r4951)</h2>
-<ul>
-<li>Resolve conflict files (cvs, svn...) (#1875129)</li>
-<li>Save line filter when edit box loses focus (#1875853)</li>
-<li>Add link to translations website at help menu (#1699883)</li>
-<li>Manual: Add instructions for conflict file resolving (#1876770)</li>
-<li>Manual: Document third path given to command line (#1877735)</li>
-<li>不具合修正: Fix Quick Compare regression in 2.7.7.2 (#1872165)</li>
-<li>不具合修正: Clipped text in file saving error message (#1874854)</li>
-</ul>
-<h2 id="winmerge-2772---2008-01-14-r4915">WinMerge 2.7.7.2 - 2008-01-14 (r4915)</h2>
-<ul>
-<li>Syntax highlighting for PowerShell files (#1859657)</li>
-<li>Syntax highlighting for PO(T) files (#1866221)</li>
-<li>Change font size with Ctrl + MouseWheel (#1865795, #1869686)</li>
-<li>Horizontal scrolling with Shift + MouseWheel (#1865795)</li>
-<li>Installer: Add support for integration with latest version of TortoiseCVS and TortoiseSVN x64 (#1865168)</li>
-<li>Close compare tab with middle mouse button (#1865220)</li>
-<li>Add index.html for documentation folders (#1866183)</li>
-<li>Manual: Clarify file filters folder name matching (#1867212)</li>
-<li>Improve file compare margin icons location (#1718699)</li>
-<li>Enable file compare to open binary files (#1869647)</li>
-<li>File encoding dialog for file compare (#1871079)</li>
-<li>不具合修正: Crash when using TrackPoint middle-button scrolling (#1864040)</li>
-<li>不具合修正: WinMerge didn&#39;t show the contents of the symbolic link target (#1864978)</li>
-<li>不具合修正: Unused registry key HKCU\Thingamahoochie\WinMerge was created (#1865202)</li>
-<li>不具合修正: Register.bat didn&#39;t work on Windows 98 and Vista (#1869821)</li>
-<li>不具合修正: Open-dialog was not displayed on Windows 98 (#1866442, #1869858)</li>
-<li>不具合修正: Right mouse button didn&#39;t move cursor to new place (#1814184)</li>
-<li>Translation updates
-<ul>
-<li>Spanish (#1867234)</li>
-<li>Swedish (#1867765, #1867844)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2771---2007-12-20-r4842">WinMerge 2.7.7.1 - 2007-12-20 (r4842)</h2>
-<ul>
-<li>New option to keep file&#39;s time when saving in file compare (#1851921)</li>
-<li>Installer: Link to translated ReadMe in Start menu, if file exists (#1805818)</li>
-<li>Add HTML-formatted release notes (#1851308, #1852534)</li>
-<li>Installer: Install release notes file (#1852599)</li>
-<li>Installer: Move manual to core files component and remove</li>
-<li>User Guide component (#1853409)</li>
-<li>不具合修正: VS2008 and VS2005 compile problems (#1847265)</li>
-<li>不具合修正: More difference highlight code reverts (#1748940)</li>
-<li>Translation updates
-<ul>
-<li>Spanish (#1655577)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-276---2007-11-29-r4807">WinMerge 2.7.6 - 2007-11-29 (r4807)</h2>
-<ul>
-<li>Touchpad scrolling improvements (#1837457)</li>
-<li>不具合修正: Values with &quot;,&quot; inside could break the CSV report (#1831512)</li>
-<li>不具合修正: Failed to create backup file in folder compare (#1835283)</li>
-<li>不具合修正: Revert difference highlight code to 2.6.12 version (#1811695)</li>
-<li>不具合修正: Backspace key didn&#39;t work when renaming items (#1738790)</li>
-<li>Translation updates
-<ul>
-<li>Croatian (r4786)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2757---2007-11-19-r4772">WinMerge 2.7.5.7 - 2007-11-19 (r4772)</h2>
-<ul>
-<li>Remove MFC dependency from ShellExtension (#1833521)</li>
-<li>Update ShellExtension icon to new WinMerge icon (#1833616)</li>
-<li>不具合修正: Build script didn&#39;t update PO files correctly before copying (r4756)</li>
-<li>不具合修正: ShellExtension&#39;s icon was clipped if system font size was small (#1833616)</li>
-<li>不具合修正: Merge controls were not enabled for missing lines (#1833714)</li>
-</ul>
-<h2 id="winmerge-2756---2007-11-15-r4752">WinMerge 2.7.5.6 - 2007-11-15 (r4752)</h2>
-<ul>
-<li>不具合修正: Many translation-system related fixes and improvements (#1804762)</li>
-<li>不具合修正: When copying files to VCS system, destination file was not checked out (#1828930)</li>
-<li>不具合修正: Visible area indicator on location pane shook when clicking above or below the vertical scroll bar to scroll one screen (#1829572)</li>
-<li>Translation updates
-<ul>
-<li>Croatian (#1829301)</li>
-<li>Japanese (r4730)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2755---2007-11-08-r4722">WinMerge 2.7.5.5 - 2007-11-08 (r4722)</h2>
-<ul>
-<li>不具合修正: Don&#39;t enable merge GUI for ignored differences (#1826375)</li>
-<li>不具合修正: PgUp key caused the error message &quot;An invalid argument was encountered&quot; when word-wrap mode was on (#1820631)</li>
-<li>不具合修正: Keep selected items visible in Folder Compare columns dialog (r4715)</li>
-<li>不具合修正: Disable Folder Compare column selection dialog&#39;s up/down buttons when first/last items are selected (r4716)</li>
-<li>不具合修正: Many translation-system related fixes and improvements (#1804762)</li>
-<li>Add Croatian translation (#1820308)</li>
-<li>Translation updates
-<ul>
-<li>Chinese Traditional (#1824691)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2754---2007-11-01-r4687">WinMerge 2.7.5.4 - 2007-11-01 (r4687)</h2>
-<ul>
-<li>New PO files based translation system (#1804762)</li>
-<li>New folder compare column selection dialog (#1804555)</li>
-<li>Install WinMerge.exe (ANSI version) only for Windows 95/98/ME (#1809140)</li>
-<li>Better multi-monitor support, with option to lock panes (#1788168)</li>
-<li>Installer: Install PO files and MergeLang.dll (#1820689)</li>
-<li>不具合修正: Ignored differences were merged when merging multiple differences (#1811745)</li>
-<li>不具合修正: Don&#39;t clear selection when right-clicking outside it (#1814184)</li>
-<li>不具合修正: Configuration log labeled Vista as Longhorn (#1815859)</li>
-<li>不具合修正: Customized text color for ignored differences didn&#39;t shown (#1807895)</li>
-<li>Translation updates
-<ul>
-<li>Chinese Traditional (#1810192, #1810541)</li>
-<li>Italian (#1805044)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2753---2007-09-27-r4572">WinMerge 2.7.5.3 - 2007-09-27 (r4572)</h2>
-<ul>
-<li>Use PO files for translations (generate RC-files from PO-files)</li>
-<li>Add Portuguese translation (#1756364)</li>
-<li>Change Up/Down button names in folder compare columns dialog(#1800064)</li>
-<li>不具合修正: Fix MakeResDll crash (#1795421)</li>
-<li>不具合修正: Full screen mode didn&#39;t work with multiple monitors (#1788168)</li>
-<li>不具合修正: Revert multiple monitor patches (#1788168)</li>
-<li>不具合修正: PgUp key didn&#39;t do anything in beginning of the file (#1795680)</li>
-<li>不具合修正: The option &#39;Automatically scroll to first difference&#39; didn&#39;t work properly when word-wrap mode was on (#1795814)</li>
-<li>Translation updates
-<ul>
-<li>French (#1800064, #1802363)</li>
-<li>Japanese (r4546)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-2752---2007-09-11-r4528">WinMerge 2.7.5.2 - 2007-09-11 (r4528)</h2>
-<ul>
-<li>Graphical improvements to location pane (#1770175)</li>
-<li>Remove MFC dependency from resource compiler (#1783581)</li>
-<li>Better multi-monitor support (split file view on monitor boundary) (#1788168)</li>
-<li>不具合修正: Renaming unique item (only other side) renamed parent folder (#1787816)</li>
-<li>不具合修正: Goto didn&#39;t change the active pane when selecting another pane (#1791351)</li>
-<li>Translation updates</li>
-<li>Traditional Chinese (r4473)</li>
-</ul>
-<h2 id="winmerge-2751---2007-08-16-r4440">WinMerge 2.7.5.1 - 2007-08-16 (r4440)</h2>
-<ul>
-<li>HTML reports for file compare (#1739209)</li>
-<li>Ask confirmation when exiting with multiple windows open (#1757800)</li>
-<li>Translation updates
-<ul>
-<li>Catalan (r4370)</li>
-<li>Simplified Chinese (r4369)</li>
-<li>Danish (r4360)</li>
-<li>French (r4383)</li>
-<li>Russian (r4421)</li>
-<li>Slovak (r4413)</li>
-<li>Swedish (r4412)</li>
-</ul></li>
-</ul>
-<h2 id="winmerge-274---2007-06-27-r4352">WinMerge 2.7.4 - 2007-06-27 (r4352)</h2>
-<ul>
-<li>Batch-file syntax highlighting keywords cleanup (#1743504)</li>
-<li>不具合修正: Archivesupport Zip--&gt;both didn&#39;t work correctly (#1734439)</li>
-<li>不具合修正: Linediff didn&#39;t highlight whitespace differences (#1698781)</li>
-<li>不具合修正: Copy confirmation dialog did show wrong To-path (#1740024)</li>
-<li>Translation updates
-<ul>
-<li>Italian (#1737491)</li>
-</ul></li>
+<li>不具合修正: バージョン2.16.4より文字幅が広くなっている</li>
+<li>不具合修正: editor addin.sct プラグイン: SortAscending, SortDescending での改行の扱いを修正<a href="https://osdn.net/projects/winmerge-jp/ticket/40266">osdn.net #40266</a></li>
+<li>不具合修正: [改行文字の違いを無視する]が有効になっているにもかかわらず、差分ブロックで改行文字の違いが強調表示される</li>
+<li>不具合修正: Diffペインで[ウインドウ]→[分割]メニューをクリックするとクラッシュする</li>
+<li>不具合修正: Diffペインで一部の編集操作ができてしまう<a href="https://github.com/WinMerge/winmerge/issues/307">GitHub #307</a></li>
+<li>不具合修正: 外部アプリケーションによるファイルの文字コードの変更が反映されない<a href="https://github.com/WinMerge/winmerge/issues/320">GitHub #320</a></li>
+<li>ロケーションペインで、移動ブロックどうしを結ぶ斜め線の表示を改善 <a href="https://osdn.net/projects/winmerge-jp/ticket/39913">osdn.net #39913</a></li>
+<li>単語区切りとみなす記号の初期値に「=」もほしい <a href="https://osdn.net/projects/winmerge-jp/ticket/40224">osdn.net #40224</a></li>
 </ul>
-<h2 id="winmerge-2737---2007-06-14-r4330">WinMerge 2.7.3.7 - 2007-06-14 (r4330)</h2>
+<h4 id="フォルダ比較-15">フォルダ比較</h4>
 <ul>
-<li>New big toolbar (actual image instead of placeholder) (#1736520)</li>
-<li>不具合修正: Fixes to folder compare copy/rename operations (#1730534)</li>
-<li>Translation updates
-<ul>
-<li>Swedish (#1735635)</li>
-</ul></li>
+<li>不具合修正: ファイル名変更中にファイルを削除するとWinMergeが異常終了し、親フォルダが消えてしまう(親フォルダが別名に変更される)。<a href="https://twitter.com/yamato_kakeru_/status/1253924284503691264">Twitter</a></li>
+<li>不具合修正: テキストファイルがバイナリファイルとみなされてしまう <a href="https://osdn.net/projects/winmerge-jp/ticket/40296">osdn.net #40296</a></li>
 </ul>
-<h2 id="winmerge-2736---2007-06-07-r4321">WinMerge 2.7.3.6 - 2007-06-07 (r4321)</h2>
+<h4 id="画像比較-11">画像比較</h4>
 <ul>
-<li>Recent project files in File-menu (#1731551)</li>
-<li>Automatically import existing linefilters to new dialog (#1718040)</li>
-<li>不具合修正: copy/delete of unique items failed in folder compare in 2.7.3.5 (#1730534)</li>
-<li>不具合修正: crashed when ESC was pressed while renaming item in folder compare (#1705874)</li>
+<li>設定ウインドウ→[比較/画像]カテゴリに[フォルダ比較で画像比較を有効にする]チェックボックスを追加。このチェックボックスがチェックされている場合、フォルダ比較時に画像ファイルの内容が(メタデータが違う等で)異なっていても画像として一致していれば、同一とみなすようになります。また、色距離閾値の設定も適用されます。</li>
+<li>[画像]→[ドラッグモード]メニューに[垂直ワイプ]、[水平ワイプ]メニューを追加</li>
 </ul>
-<h2 id="winmerge-2735---2007-05-31-r4304">WinMerge 2.7.3.5 - 2007-05-31 (r4304)</h2>
+<h4 id="バイナリ比較-5">バイナリ比較</h4>
 <ul>
-<li>Relax selecting parent folder restrictions (up arrow in folder compare) (#1727829)</li>
-<li>Show a warning if item can&#39;t be found anymore in folder compare and it is tried to access (copy/move/delete) (#1723778)</li>
-<li>New Borland Delphi file filter (#1699783)</li>
-<li>Gradient toolbar (#1717774)</li>
-<li>不具合修正: could not create new file filters in 2.7.3.4 (#1719892)</li>
+<li>不具合修正: オプションFrhed設定のボタン操作で異常終了<a href="https://osdn.net/projects/winmerge-jp/ticket/40308">osdn.net #40308</a></li>
 </ul>
-<h2 id="winmerge-2734---2007-05-15-r4287">WinMerge 2.7.3.4 - 2007-05-15 (r4287)</h2>
-<ul>
-<li>Big (32x32) toolbar (image still placeholder) (#1698641)</li>
-<li>Improve folder compare copy confirmation dialog (#1699585, #1700241)</li>
-<li>New file filter for Symbian developers (#1694048)</li>
-<li>不具合修正: several fixes to in-line difference highlight (#1694102, #1714088)</li>
-<li>不具合修正: word wrap lose horizontal scrollbar (#1706476)</li>
-<li>不具合修正: fixes to tabbed window control (#1718148)</li>
-<li>Translation updates
+<h4 id="htmlレポート">HTMLレポート</h4>
 <ul>
-<li>German (#1701151)</li>
-<li>Japanese</li>
-<li>Korean (#1704904)</li>
-<li>Swedish (#1703350)</li>
-</ul></li>
+<li>不具合修正: HTML レポートにマージンの色とテキストの色が適用されない</li>
+<li>不具合修正: 行頭の空白文字が表示されない</li>
 </ul>
-<h2 id="winmerge-2733---2007-04-04-r4234">WinMerge 2.7.3.3 - 2007-04-04 (r4234)</h2>
+<h4 id="gui全般">GUI全般</h4>
 <ul>
-<li>Tabbed interface (#1603292)</li>
-<li>Enable shell integration for folder backgrounds (#1693113)</li>
-<li>Allow selecting syntax highlighting (#1690346)</li>
-<li>New C# development file filter (#1689854)</li>
-<li>Icon updates (#1686279, #1692097)</li>
-<li>不具合修正: compare by date and by size broken in 2.7.3.2 (#1693441)</li>
-<li>不具合修正: Open-dialog file filter failed if modified (#1693275)</li>
-<li>Translation updates
-<ul>
-<li>Swedish (#1689515)</li>
-</ul></li>
+<li>メニューアイコンをDPIに合わせて拡大表示するようにした</li>
+<li>Solarized Light/Dark カラースキームを追加</li>
 </ul>
-<h2 id="winmerge-2732---2007-03-27-r4201">WinMerge 2.7.3.2 - 2007-03-27 (r4201)</h2>
+<h3 id="202031-2166-jp-1">2020/3/1 2.16.6-jp-1</h3>
+<h4 id="ファイル比較-20">ファイル比較</h4>
 <ul>
-<li>Several fixes to line difference highlighting (#1491334, #1683061, #1639453)</li>
-<li>Icon updates (#1684865)</li>
-<li>Printing improvement (#1687430)</li>
-<li>Language files size reduced (#1687661, #1687983, #1688012)</li>
-<li>不具合修正: 2.7.3.1 binary file compare crash (#1687966)</li>
-<li>不具合修正: long linefilters now restored correctly (#1680920)</li>
-<li>Translation updates
-<ul>
-<li>Japanese</li>
-</ul></li>
+<li>ロケーションペインの背景色を現在のエディタウインドウの背景色に近い色になるようにした</li>
 </ul>
-<h2 id="winmerge-2731---2007-03-20-r4179">WinMerge 2.7.3.1 - 2007-03-20 (r4179)</h2>
-<ul>
-<li>New copy confirmation dialog in folder compare (#1675087, #1683842)</li>
-<li>Improved line filter dialog (#1682475)</li>
-<li>Installer/uninstaller icons restored to default icons</li>
-<li>Some icon updates (#1680209)</li>
-<li>不具合修正: folder compare lost focus after confirmation dialog (#1670991)</li>
-<li>不具合修正: crash comparing empty folders (#1675211)</li>
-<li>Translation updates
+<h4 id="画像比較-12">画像比較</h4>
 <ul>
-<li>Czech</li>
-<li>French (#1664689)</li>
-<li>Polish (#1673082)</li>
-<li>Swedish (#1673908, #1678676, #1683289)</li>
-</ul></li>
+<li>不具合修正: 画像ファイルの比較で左ドラッグ時のスクロール動作がおかしい<a href="https://osdn.net/projects/winmerge-jp/ticket/40205">osdn.net #40205</a></li>
+<li>不具合修正: 16bitグレースケール画像が正しく表示できない<a href="https://github.com/WinMerge/winimerge/issues/6">GitHub #6</a></li>
+<li>不具合修正: ベクタ画像スケーリングメニューで拡大・縮小率を選択しても、選択された拡大・縮小率のメニュー項目が選択状態にならない問題を修正</li>
 </ul>
-<h2 id="winmerge-272---2007-02-27-r4137">WinMerge 2.7.2 - 2007-02-27 (r4137)</h2>
+<h4 id="インストーラ-2">インストーラ</h4>
 <ul>
-<li>Fix ShellExtension installation bug</li>
-<li>Translation updates
-<ul>
-<li>Czech</li>
-<li>German (#1667564)</li>
-<li>French (#1664689)</li>
-</ul></li>
+<li>ウィルス誤検出が解決しないため、64bit版のインストーラの作成用InnoSetupのバージョンを6から5に一時的に戻しています。このため、ユーザ毎のインストールができなくなっています。</li>
 </ul>
-<h2 id="winmerge-2717---2007-02-20-r4120">WinMerge 2.7.1.7 - 2007-02-20 (r4120)</h2>
-<ul>
-<li>Folder compare threading improvement - should be faster in many situations (#1662002)</li>
-<li>New options for backup file location and naming (#1652696)</li>
-<li>Syntax highlighting for CSS files (#1582537)</li>
-<li>Allow to hide folder compare margins (View/View Margins) (#1663798)</li>
-<li>Translation updates
+<h4 id="マニュアル">マニュアル</h4>
 <ul>
-<li>Czech</li>
-<li>Polish (#1650831)</li>
-<li>Swedish (#1657664)</li>
-</ul></li>
+<li>「オプションとコンフィグレーション」の修正<a href="https://github.com/WinMerge/winmerge/pull/262">GitHub PR #262</a></li>
 </ul>
-<h2 id="winmerge-2716---2007-02-01-r4094">WinMerge 2.7.1.6 - 2007-02-01 (r4094)</h2>
+<h3 id="2020129-2164-jp-13">2020/1/29 2.16.4-jp-13</h3>
+<h4 id="ファイル比較-21">ファイル比較</h4>
 <ul>
-<li>New post-compare line filters for folder compare (#1644820)</li>
-<li>Optimization for word wrap code (#1640741)</li>
-<li>不具合修正: 2.7.1.5 forgets selected filter (#1637433)</li>
-<li>不具合修正: limiting to single file compare window now works more logically (#1636314)</li>
-<li>不具合修正: ANSI regular expressions didn&#39;t work (#1644668)</li>
-<li>Translation updates
-<ul>
-<li>Bulgarian (#1639493)</li>
-<li>Catalan (#1646638)</li>
-<li>Swedish (#1634968)</li>
-</ul></li>
+<li>不具合修正: Diffペインで Enter キーを押すとエラーダイアログが表示される<a href="https://osdn.net/projects/winmerge-jp/ticket/39924">osdn.net #39924</a></li>
+<li>不具合修正: ファイルサイズが 4294967296 またはその倍数のファイルを比較するとWinMergeが終了してしまう<a href="https://github.com/WinMerge/winmerge/pull/257">GitHub PR #257</a></li>
+<li>不具合修正: Redo操作で予期されない文字が入力されてしまうことがある</li>
+<li>不具合修正: 置換ダイアログで[すべて置換]ボタンを押しても、カーソルの位置によっては、すべて置換されないことがある</li>
+<li>タッチパッド 横スクロールに対応<a href="https://github.com/WinMerge/winmerge/issue/254">GitHub #254</a></li>
 </ul>
-<h2 id="winmerge-2715---2007-01-10-r4030">WinMerge 2.7.1.5 - 2007-01-10 (r4030)</h2>
+<h4 id="パッチ作成">パッチ作成</h4>
 <ul>
-<li>New line filter implementation (please test and report bugs!) (#1593810)</li>
-<li>Minimum height for location pane&#39;s visible area (#1489875)</li>
-<li>Short label &quot;Error&quot; for error items in folder compare (#1567749)</li>
-<li>不具合修正: rename edits wrong field in folder compare (#1597939)</li>
-<li>不具合修正: too much scrolling in difference navigation</li>
-<li>不具合修正: wrong text selection after pane switch in file compare (#1630630)</li>
-<li>不具合修正: crash when editing space-char indented files (#1631613)</li>
-<li>Manual updates</li>
+<li>不具合修正: フォルダ比較ウインドウから片方が存在しないファイルを選択してパッチを作成するとWinMergeがクラッシュする<a href="https://github.com/WinMerge/winmerge/issues/252"></a></li>
 </ul>
-<h2 id="winmerge-2714---2006-12-21-r3991">WinMerge 2.7.1.4 - 2006-12-21 (r3991)</h2>
+<h4 id="プロジェクトファイル-2">プロジェクトファイル</h4>
 <ul>
-<li>Match lines inside differences (#1447744)</li>
-<li>Workaround-patch (locally included to the build) for shutdown problems (#1602313)</li>
-<li>New ASP.Net filefilter (#1619689)</li>
-<li>不具合修正: folder compare speed regression in 2.7.1.3 (#1610442)</li>
-<li>不具合修正: new fix for folder compare Copy Left/Right To.. (#1603061)</li>
-<li>不具合修正: copyright info missing from about dialog when translation selected (#1604115)</li>
-<li>不具合修正: location pane problems with word-wrap (#1584068, #1611542)</li>
-<li>不具合修正: invalid path added to project file -dialog (#1602219)</li>
-<li>Swedish translation update (#1614442)</li>
-<li>Manual updates</li>
+<li>不具合修正: ドライブ名なしの\から始まるパスがカレントディレクトリからの相対パスとして扱われてしまう</li>
 </ul>
-<h2 id="winmerge-2713---2006-12-05-r3919">WinMerge 2.7.1.3 - 2006-12-05 (r3919)</h2>
-<ul>
-<li>Now hides skipped items by default (#1604078)</li>
-<li>Improved INI file syntax highlighting (#1607193)</li>
-<li>Easier folder selection in Project File -dialog (#1603196)</li>
-<li>New &quot;Exclude Source Control files and directories filter&quot; filefilter (#1557295)</li>
-<li>不具合修正: project files weren&#39;t loaded correctly from command line (using shell file association) (#1602214)</li>
-<li>不具合修正: crash in syntax parser (#1556688)</li>
-<li>不具合修正: wrong difference navigation when word-wrap enabled (#1597814)</li>
-<li>不具合修正: ClearCase integration didn&#39;t install if &quot;Program Files&quot; -folder was named differently (non-English Windows)</li>
-<li>Manual updates
+<h4 id="画像比較-13">画像比較</h4>
 <ul>
-<li>Slovak translation update (#1606496)</li>
-</ul></li>
+<li>SVG, EMF, WMF, PDF ファイルを画像比較できるようにした。(※64bit版WinMergeかつWindows10のみ対応)。デフォルトではテキストファイルとして開くため、SVGファイルなどを画像比較したい場合は、[ファイル]→[形式を指定して再比較]→[画像]を選択してください。また、[オプション]ウインドウ→[比較/画像]カテゴリ→[画像ファイルとして扱うパターン]に ;<code>*.svg</code> を追加すると、SVGファイルがすぐに画像比較されるようになります。</li>
 </ul>
-<h2 id="winmerge-2712---2006-11-24-r3844">WinMerge 2.7.1.2 - 2006-11-24 (r3844)</h2>
+<h4 id="インストーラ-3">インストーラ</h4>
 <ul>
-<li>close WinMerge if Open-dialog is canceled when started from command line (#1600714)</li>
-<li>不具合修正: project files didn&#39;t work (loaded right-side path for both sides) (#1600000)</li>
-<li>不具合修正: location pane misdrawn when word-wrap enabled (#1584068)</li>
+<li>不具合修正: スペルミス修正(TortoiseGIT→TortoiseGit)<a href="https://github.com/WinMerge/winmerge/pull/246">GitHub PR #246</a></li>
 </ul>
-<h2 id="winmerge-2711---2006-11-16-r3810">WinMerge 2.7.1.1 - 2006-11-16 (r3810)</h2>
+<h4 id="その他-1">その他</h4>
 <ul>
-<li>Use expat + scew for XML handling (partially converted) (1587574)</li>
-<li>Uses PCRE for regular expressions (partially converted) (#1591605)</li>
-<li>New folder compare icons (#1586705)</li>
-<li>New bookmarks icons (#1586689)</li>
-<li>Manifest files in resource, no need for separate files (#1588212)</li>
-<li>不具合修正: WinMerge/Filters folder was always created (#1578419)</li>
-<li>不具合修正: modality problems in file selection dialogs (#1586869)</li>
-<li>不具合修正: crash if file modification time was missing (#1589563)</li>
-<li>不具合修正: /x parameter didn&#39;t work with some other parameters (#1564283)</li>
-<li>不具合修正: asked sometimes twice about saving modified files (#1596692)</li>
+<li>Ctrl+Tabキーでウインドウを切り替える際に切り替え先がリストから選べるようになった<a href="https://github.com/WinMerge/winmerge/pull/247">GitHub PR #247</a></li>
 </ul>
-<p>For older changes look at the VCS (Version Control System).</p>
 </body>
 </html>
