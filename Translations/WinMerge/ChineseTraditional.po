@@ -4753,7 +4753,6 @@ msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "外掛程式管線缺少引號：%1"
 
 msgid "Specify plugin arguments"
-<<<<<<< HEAD
 msgstr ""
 
 msgid "Make characters uppercase"
@@ -4869,7 +4868,4 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
-msgstr ""
-=======
 msgstr "指定外掛程式參數"
->>>>>>> 8d1ccd6dbcae8adac9c69bf57a6a673cdead1a32
