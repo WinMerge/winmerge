@@ -83,6 +83,8 @@ const TCHAR *MergeCmdLineInfo::EatParam(const TCHAR *p, String &param, bool *fla
  */
 const TCHAR *MergeCmdLineInfo::SetOption(const TCHAR *q, const String& key, const TCHAR *value)
 {
+	if (!q)
+		return nullptr;
 	String s;
 	if (*q == _T(':'))
 	{
