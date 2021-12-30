@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2021-12-20 21:23+0000\n"
+"PO-Revision-Date: 2021-12-30 22:31+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -31,13 +31,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Copiar para o meio"
 
 msgid "C&opy to Right"
 msgstr "C&opiar para a direita"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Cópia do meio"
 
 msgid "Copy fro&m Right"
 msgstr "C&opiar da direita"
@@ -49,13 +49,13 @@ msgid "Copy &from Left"
 msgstr "C&opiar da esquerda"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) para o meio"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Copiar linha(s) selecionada(s) para a direita"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) do meio"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Copiar linha(s) selecionada(s) da direita"
@@ -696,7 +696,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Diferença anterior apenas à direita\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Copiar da &esquerda para"
 
 msgid "&Middle"
 msgstr "&Meio"
@@ -705,22 +705,22 @@ msgid "&Right"
 msgstr "&Direita"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Copiar do &meio para"
 
 msgid "&Left"
 msgstr "&Esquerda"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Copiar da &direita para"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da es&querda para"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) do m&eio para"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Copiar linha(s) selecionada(s) da dir&eita para"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Copiar da esquerda\tAlt+Shift+Right"
@@ -1926,10 +1926,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Ignorar pontos de &análise"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Limite para trocar para comparação &rápida (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Limite para trocar para comparação &binária (MB):"
 
 msgid ""
 "\n"
@@ -2675,25 +2675,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Quebra de linha nos espaços em branco ou pontuação"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Copiar para o &meio\tAlt+Direita"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Copiar para a &esquerda\tAlt+Esquerda"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copiar do meio\tAlt+Shift+Direita"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copiar do meio\tAlt+Shift+Esquerda"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Copiar para o meio e avançar\tCtrl+Alt+Direita"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Copiar para o meio e avançar\tCtrl+Alt+Esquerda"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Copiar tudo para o meio"
 
 #, c-format
 msgid "Right to Left (%1)"
