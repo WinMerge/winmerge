@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-16 22:00+0200\n"
+"PO-Revision-Date: 2021-12-31 16:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -29,14 +29,14 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_GERMAN, SUBLANG_GERMAN"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Zur Mitte kopieren"
 
 #, c-format
 msgid "C&opy to Right"
 msgstr "&Nach rechts kopieren\tAlt+Rechts"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Von der Mitte kopieren"
 
 #, c-format
 msgid "Copy fro&m Right"
@@ -51,13 +51,13 @@ msgid "Copy &from Left"
 msgstr "&Von links kopieren\tAlt+Umschalt+Rechts"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) zur Mitte kopieren"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Ausgewählte Zeile(n) nach rechts kopieren"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von der Mitte kopieren"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Ausgewählte Zeile(n) von rechts kopieren"
@@ -870,7 +870,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Vorheriger Unterschied nur rechts\tAlt+Umschalt+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Von &links kopieren nach"
 
 #, c-format
 msgid "&Middle"
@@ -881,23 +881,23 @@ msgid "&Right"
 msgstr "&Rechts"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Von der &Mitte kopieren nach"
 
 #, c-format
 msgid "&Left"
 msgstr "&Links"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Von &rechts kopieren nach"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von l&inks kopieren nach"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von der Mi&tte kopieren nach"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von r&echts kopieren nach"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -2361,7 +2361,7 @@ msgstr "Ordner"
 
 #, c-format
 msgid "S&top after first difference"
-msgstr "Nach dem ersten Unterschied &stoppen"
+msgstr "&Nach dem ersten Unterschied stoppen"
 
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
@@ -2380,10 +2380,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Anal&ysepunkte ignorieren"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Schwellenwert für den Wechsel zum &Schnellvergleich (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nAnzahl der &Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
@@ -2982,25 +2982,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "An Leerzeichen oder Interpunktion abbrechen"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Zur &Mitte kopieren\tAlt+Rechts"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Zur &Mitte kopieren\tAlt+Links"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Von der Mitte kopieren\tAlt+Umschalt+Rechts"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Von der Mitte kopieren\tAlt+Umschalt+Links"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Zur Mitte kopieren und fortschreiten\tStrg+Alt+Rechts"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Zur Mitte kopieren und fortschreiten\tStrg+Alt+Links"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Alles in die Mitte kopieren"
 
 #, c-format
 msgid "Right to Left (%1)"
