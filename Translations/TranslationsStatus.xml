@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2021-12-23</update>
+  <update>2021-12-31</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -103,9 +103,9 @@
       <update></update>
       <strings>
         <count>1155</count>
-        <translated>975</translated>
+        <translated>1144</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>180</untranslated>
+        <untranslated>11</untranslated>
       </strings>
       <translators>
         <translator>
@@ -119,6 +119,10 @@
         <translator>
           <name>MaysWind</name>
           <mail>i at mayswind.net</mail>
+        </translator>
+        <translator>
+          <name>CharlesMengCA</name>
+          <mail>CharlesMeng at outlook.com</mail>
         </translator>
       </translators>
     </translation>
@@ -157,9 +161,9 @@
       <update></update>
       <strings>
         <count>1155</count>
-        <translated>1136</translated>
+        <translated>1155</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>19</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -376,9 +380,9 @@
       <update>2021-03-15</update>
       <strings>
         <count>1155</count>
-        <translated>1134</translated>
+        <translated>1155</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>21</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -430,9 +434,9 @@
       <update>2021-11-21</update>
       <strings>
         <count>1155</count>
-        <translated>1153</translated>
+        <translated>1155</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -571,12 +575,12 @@
     <translation>
       <language>Portuguese</language>
       <file>Portuguese.po</file>
-      <update>2021-12-20</update>
+      <update>2021-12-30</update>
       <strings>
         <count>1155</count>
-        <translated>1136</translated>
+        <translated>1155</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>19</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>

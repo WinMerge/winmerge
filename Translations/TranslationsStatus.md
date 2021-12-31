@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2021-12-23**:
+Status from **2021-12-31**:
 
 ## WinMerge
 
@@ -11,9 +11,9 @@ Status from **2021-12-23**:
 | Brazilian            |  1155 |       1086 |     0 |           69 |     94 % |  2021-08-09 |
 | Bulgarian            |  1155 |        967 |     0 |          188 |     84 % |  2021-06-28 |
 | Catalan              |  1155 |        567 |     0 |          588 |     49 % |             |
-| ChineseSimplified    |  1155 |        975 |     0 |          180 |     84 % |             |
+| ChineseSimplified    |  1155 |       1144 |     0 |           11 |     99 % |             |
 | ChineseTraditional   |  1155 |       1091 |     0 |           64 |     94 % |  2021-12-11 |
-| Corsican             |  1155 |       1136 |     0 |           19 |     98 % |             |
+| Corsican             |  1155 |       1155 |     0 |            0 |    100 % |             |
 | Croatian             |  1155 |        632 |     1 |          522 |     55 % |  2009-02-13 |
 | Czech                |  1155 |        606 |     0 |          549 |     52 % |             |
 | Danish               |  1155 |        640 |     0 |          515 |     55 % |  2013-01-13 |
@@ -24,15 +24,15 @@ Status from **2021-12-23**:
 | Galician             |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-18 |
 | German               |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-16 |
 | Greek                |  1155 |        605 |     0 |          550 |     52 % |             |
-| Hungarian            |  1155 |       1134 |     0 |           21 |     98 % |  2021-03-15 |
+| Hungarian            |  1155 |       1155 |     0 |            0 |    100 % |  2021-03-15 |
 | Italian              |  1155 |        992 |     0 |          163 |     86 % |  2021-08-09 |
-| Japanese             |  1155 |       1153 |     0 |            2 |    100 % |  2021-11-21 |
+| Japanese             |  1155 |       1155 |     0 |            0 |    100 % |  2021-11-21 |
 | Korean               |  1155 |       1035 |     0 |          120 |     90 % |  2021-12-10 |
 | Lithuanian           |  1155 |       1114 |     0 |           41 |     96 % |  2021-12-15 |
 | Norwegian            |  1155 |        633 |     0 |          522 |     55 % |             |
 | Persian              |  1155 |        643 |     0 |          512 |     56 % |  2013-08-15 |
 | Polish               |  1155 |       1110 |     0 |           45 |     96 % |             |
-| Portuguese           |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-20 |
+| Portuguese           |  1155 |       1155 |     0 |            0 |    100 % |  2021-12-30 |
 | Romanian             |  1155 |        562 |    44 |          549 |     52 % |             |
 | Russian              |  1155 |       1092 |     0 |           63 |     95 % |  2021-10-28 |
 | Serbian              |  1155 |        633 |     0 |          522 |     55 % |             |
@@ -183,6 +183,7 @@ Status from **2021-12-23**:
    - [Liaobin](mailto:liaobin%20at%20jite.%20net)
    - [xmpdhml](mailto:xmpdhml%20at%20users.sourceforge.net)
    - [MaysWind](mailto:i%20at%20mayswind.net)
+   - [CharlesMengCA](mailto:CharlesMeng%20at%20outlook.com)
 
  * ChineseTraditional
    - [Koko](mailto:kokokoko%20at%20giga.net.tw)
