@@ -5,6 +5,7 @@
 # * Liaobin <liaobin at jite. net>
 # * xmpdhml <xmpdhml at users.sourceforge.net>
 # * MaysWind <i at mayswind.net>
+# * CharlesMengCA <CharlesMeng at outlook.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id: ChineseSimplified.po 6851 2009-06-14 13:59:11Z gerundt $
@@ -30,13 +31,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "复制到中间"
 
 msgid "C&opy to Right"
 msgstr "复制到右侧(&O)"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "从中间复制"
 
 msgid "Copy fro&m Right"
 msgstr "从右侧复制(&M)"
@@ -48,28 +49,28 @@ msgid "Copy &from Left"
 msgstr "从左侧复制(&F)"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "复制选中行到中间"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "复制选中行到右侧"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "从中间复制选中行"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "从右侧复制选中行"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "复制选中行到左侧"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "从左侧复制选中行"
 
 msgid "Select Line &Difference\tF4"
 msgstr "选中行内差异(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "将此改动添加到置换过滤器(&F)"
 
 msgid "&Undo"
 msgstr "撤销(&U)"
@@ -150,16 +151,16 @@ msgid "&Active Pane"
 msgstr "活动窗格(&A)"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "右转90度(&R)"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "左转90度(&L)"
 
 msgid "Flip V&ertically"
-msgstr ""
+msgstr "上下翻转(&E)"
 
 msgid "Flip H&orizontally"
-msgstr ""
+msgstr "左右翻转(&O)"
 
 msgid "&Zoom"
 msgstr "缩放(&Z)"
@@ -203,7 +204,7 @@ msgid "&Horizontal Wipe"
 msgstr "水平擦拭(&H)"
 
 msgid "Rectangle &Select"
-msgstr ""
+msgstr "矩形选择(&S)"
 
 msgid "&Set Background Color"
 msgstr "设置背景颜色(&S)"
@@ -212,7 +213,7 @@ msgid "&Vector Image Scaling"
 msgstr "矢量图形缩放 (&V)"
 
 msgid "Compare Extracted &Text From Image"
-msgstr ""
+msgstr "比较从图像中解析的文字(&T)"
 
 msgid "&File"
 msgstr "文件(&F)"
@@ -575,7 +576,7 @@ msgid "&Bookmarks"
 msgstr "书签(&B)"
 
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "设置/取消(&T)\tCtrl+F2"
+msgstr "切换书签(&T)\tCtrl+F2"
 
 msgid "&Next Bookmark\tF2"
 msgstr "下一个书签(&N)\tF2"
@@ -617,7 +618,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "在所有行与 0-9 行之间切换\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr ""
+msgstr "反转（隐藏差异行）(&I)"
 
 msgid "&Lock Panes"
 msgstr "锁定窗格(&L)"
@@ -695,7 +696,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "上一处只有右边的差异\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "从左侧复制到(&L)"
 
 msgid "&Middle"
 msgstr "中间(&M)"
@@ -704,22 +705,22 @@ msgid "&Right"
 msgstr "右侧(&R)"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "从中间复制到(&M)"
 
 msgid "&Left"
 msgstr "左侧(&L)"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "从右侧复制到(&R)"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "从左侧复制选择行到(&F)"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "从中间复制选择行到(&D)"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "从右侧复制选择行到(&G)"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "从左侧复制\tAlt+Shift+Right"
@@ -749,16 +750,16 @@ msgid "Clear Sync&hronization Points"
 msgstr "清除同步点(&H)"
 
 msgid "Unpac&ker"
-msgstr ""
+msgstr "解包插件(&K)"
 
 msgid "&Prediffer"
-msgstr "预处理(&P)"
+msgstr "预处理插件(&P)"
 
 msgid "Apply Pre&differ..."
-msgstr ""
+msgstr "使用预处理插件(&D)"
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "用编辑器脚本转换(&T)"
 
 msgid "Sp&lit"
 msgstr "分隔(&L)"
@@ -767,7 +768,7 @@ msgid "Comp&are"
 msgstr "比较(&A)"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "在新窗口比较(&W)"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "非横向比较(&I)..."
@@ -916,7 +917,7 @@ msgid "Copy &Filename"
 msgstr "复制文件名(&F)"
 
 msgid "Unpacker Settings"
-msgstr ""
+msgstr "解包插件设置"
 
 msgid "<None>"
 msgstr "<无>"
@@ -964,10 +965,10 @@ msgid "Ignore codepage &differences"
 msgstr "忽略代码页差异(&D)"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "忽略数字(&B)"
 
 msgid "Ignore c&omment differences"
-msgstr ""
+msgstr "忽略注释行差异(&O)"
 
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
@@ -1075,7 +1076,7 @@ msgid "Automatically &scroll to first difference"
 msgstr "自动滚动到第一处差异(&S)"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr ""
+msgstr "自动滚动到第一处行内差异(&C)"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "按 'Esc' 关闭窗口(&O):"
@@ -1084,7 +1085,7 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "“打开”对话框中自动验证路径(&A)"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "单一实例模式:"
 
 msgid "As&k when closing multiple windows"
 msgstr "关闭多个窗口时询问我(&K)"
@@ -1177,10 +1178,10 @@ msgid "&Apply"
 msgstr "应用(&A)"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "行筛选"
 
 msgid "Enable Line Filters"
-msgstr "忽略符合下列样式的行"
+msgstr "启用行筛选"
 
 msgid "Regular Expressions (one per line):"
 msgstr "正则表达式 (每行一个):"
@@ -1192,19 +1193,19 @@ msgid "Remove"
 msgstr "删除"
 
 msgid "Substitution Filters"
-msgstr ""
+msgstr "置换滤镜"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
+msgstr "那些出现在面板（panels）上的更改，做为以下列出的配对（pairs），将被忽略或标记为不重要。补丁不受影响。"
 
 msgid "Enable"
-msgstr ""
+msgstr "启用"
 
 msgid "Add"
-msgstr ""
+msgstr "添加"
 
 msgid "Clear"
-msgstr ""
+msgstr "清除"
 
 msgid "Colors"
 msgstr "颜色"
@@ -1270,13 +1271,13 @@ msgid "System"
 msgstr "系统"
 
 msgid "&Send deleted files to Recycle Bin"
-msgstr "删除的文件移至回收站(&S)"
+msgstr "将删除的文件放入回收站(&S)"
 
 msgid "&External editor:"
 msgstr "外部编辑器(&E)"
 
 msgid "&Filter folder:"
-msgstr "过滤器路径(&F):"
+msgstr "滤镜路径(&F):"
 
 msgid "Temporary files folder"
 msgstr "临时文件夹"
@@ -1342,10 +1343,10 @@ msgid "Move &Down"
 msgstr "下移(&D)"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "附加属性(&A)"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "附加属性"
 
 msgid "&>"
 msgstr ""
@@ -1357,31 +1358,31 @@ msgid "<<"
 msgstr ""
 
 msgid "Select Plugin"
-msgstr ""
+msgstr "选择插件"
 
 msgid "Plugin &Name:"
-msgstr ""
+msgstr "插件名称(&N)"
 
 msgid "Extensions list:"
-msgstr "扩展名:"
+msgstr "扩展列表:"
 
 msgid "Description:"
 msgstr "描述:"
 
 msgid "Default arguments:"
-msgstr ""
+msgstr "默认参数:"
 
 msgid "Display all plugins, don't check the extension."
-msgstr ""
+msgstr "显示所有插件， 不检查文件扩展名"
 
 msgid "&Open files in the same window type after unpacking."
-msgstr ""
+msgstr "解包后在同一窗口类型中打开文件(&O)。"
 
 msgid "&Plugin Pipeline:"
-msgstr ""
+msgstr "插件流程（pipeline）(&P):"
 
 msgid "&Add pipe"
-msgstr ""
+msgstr "添加流程 pipe(&A)"
 
 msgid "Stop"
 msgstr "停止"
@@ -1393,13 +1394,13 @@ msgid "Continue"
 msgstr "继续"
 
 msgid "Comparing items..."
-msgstr "正在比较项目..."
+msgstr "正在比较条目..."
 
 msgid "Items compared:"
-msgstr "已比较项目:"
+msgstr "已比较条目:"
 
 msgid "Items total:"
-msgstr "项目总计:"
+msgstr "条目总计:"
 
 msgid "Go to"
 msgstr "转到"
@@ -1450,7 +1451,7 @@ msgid "Enable indent &heuristic"
 msgstr "启用启发式缩进(&H)"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr ""
+msgstr "完全取消高亮忽略的差异"
 
 msgid "Editor"
 msgstr "编辑器"
@@ -1504,7 +1505,7 @@ msgid "Reset"
 msgstr "重置"
 
 msgid "File Filters"
-msgstr ""
+msgstr "文件筛选器"
 
 msgid "Test..."
 msgstr "测试..."
@@ -1522,7 +1523,7 @@ msgid "Delete..."
 msgstr "删除..."
 
 msgid "Save modified files?"
-msgstr "保存修改后的文件吗？"
+msgstr "保存修改的文件吗？"
 
 msgid "Left side file"
 msgstr "左侧文件"
@@ -1674,7 +1675,7 @@ msgid "&Detect archive type from file signature"
 msgstr "根据文件头检测压缩文件类型(&D)"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "保存到项目文件或从项目文件还原的条目:"
 
 msgid "Compare Statistics"
 msgstr "比较结果统计"
@@ -1860,13 +1861,13 @@ msgid "File filters:"
 msgstr "文件过滤器:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "插件参数(&P)"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr ""
+msgstr "启用插件自动解包或预比较(&A)"
 
 msgid "Shell Integration"
-msgstr "外壳集成"
+msgstr "系统集成"
 
 msgid "Explorer"
 msgstr "资源管理器"
@@ -1878,29 +1879,29 @@ msgid "&Add to context menu"
 msgstr "添加到上下文菜单(&A)"
 
 msgid "&Register shell extension"
-msgstr "注册 shell 扩展(&R)"
+msgstr "注册系统扩展(&R)"
 
 msgid "&Unregister shell extension"
-msgstr "反注册 shell 扩展(&U)"
+msgstr "注销系统扩展(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr "为当前用户注册 shell 扩展(&O)"
+msgstr "为当前用户注册系统扩展(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "为当前用户反注册 shell 扩展(&L)"
+msgstr "为当前用户注销系统扩展(&L)"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "注册系统扩展（Windows 11 或更新的系统）(&W)"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "注销系统扩展（Windows 11 或更新的系统）(&I)"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "文件夹"
 
 msgid "S&top after first difference"
-msgstr "遇到首处差异后停止(&T)"
+msgstr "遇到第一个差异后停止(&T)"
 
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "忽略小于3秒的时间差异(&O)"
@@ -1915,10 +1916,10 @@ msgid "Ignore &Reparse Points"
 msgstr "忽略重新解析点(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "切换到快速比较的最小值(&Q) (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "切换到二进制比较的最小值(&B) (MB):"
 
 msgid ""
 "\n"
@@ -1969,7 +1970,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "在文件夹比较中启用图像比较(&E)"
 
 msgid "OCR result:"
-msgstr ""
+msgstr "字符识别结果:"
 
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
@@ -2014,16 +2015,16 @@ msgstr ""
 "保存 (Ctrl+S)"
 
 msgid "Unknown error attempting to open project file."
-msgstr "打开工程文件时发生未知错误。"
+msgstr "打开项目文件时发生未知错误。"
 
 msgid "Unknown error attempting to save project file."
-msgstr "保存工程文件时发生未知错误。"
+msgstr "保存项目文件时发生未知错误。"
 
 msgid "Project file successfully loaded."
-msgstr "工程文件加载完成。"
+msgstr "项目文件加载完成。"
 
 msgid "Project file successfully saved."
-msgstr "工程文件已保存。"
+msgstr "项目文件已保存。"
 
 msgid ""
 "\n"
@@ -2118,7 +2119,7 @@ msgid "Don't display this &message again."
 msgstr "不再显示此消息(&M)"
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
+msgstr "要使此消息框再次可见，请点击“选项”对话框，“消息框”页面上的“重置”按钮。"
 
 msgid "Syntax"
 msgstr "语法"
@@ -2130,13 +2131,13 @@ msgid "Folder Compare"
 msgstr "文件夹比较"
 
 msgid "Project"
-msgstr ""
+msgstr "项目"
 
 msgid "Differences"
 msgstr "差异"
 
 msgid "Message Boxes"
-msgstr ""
+msgstr "消息框"
 
 msgid "To:"
 msgstr "到:"
@@ -2164,7 +2165,7 @@ msgid "Version %1"
 msgstr "版本 %1"
 
 msgid "X64"
-msgstr "X64"
+msgstr "64位"
 
 #, c-format
 msgid "Options (%1)"
@@ -2212,7 +2213,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "文件类型"
 
 msgid "Extension"
 msgstr "扩展名"
@@ -2224,19 +2225,19 @@ msgid "Answer"
 msgstr ""
 
 msgid "Item"
-msgstr ""
+msgstr "条目"
 
 msgid "Load"
-msgstr ""
+msgstr "加载"
 
 msgid "Save"
-msgstr ""
+msgstr "保存"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "包含子目录"
 
 msgid "Compare Options"
-msgstr ""
+msgstr "比较选项"
 
 msgid "Name"
 msgstr "名称"
@@ -2347,7 +2348,7 @@ msgid "Untitled right"
 msgstr "未命名 右"
 
 msgid "Base File"
-msgstr ""
+msgstr "基准文件"
 
 msgid "Theirs File"
 msgstr "他们的文件"
@@ -2356,7 +2357,7 @@ msgid "Mine File"
 msgstr "我的文件"
 
 msgid "Original File"
-msgstr ""
+msgstr "原始文件"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2372,7 +2373,7 @@ msgstr "行: %s  列: %d/%d  字符: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  选中: %d | %d"
 
 msgid "Merge"
 msgstr "合并"
@@ -2539,15 +2540,15 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"插件“%2”无法将您对左侧文件的修改打包到“%1”。\n"
+"插件“%2”无法将您对左侧文件的修改封装到“%1”。\n"
 "\n"
-"原始文件不会被更改。\n"
+"原始文件将不会被更改。\n"
 "\n"
-"是否将未打包的版本另存为其他文件？"
+"是否将解包版本另存为另一个文件？"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr ""
+msgstr "插件“%2”无法将您对中间文件的修改封装到“%1”。\n\n原始文件将不会被更改。\n\n是否将解包版本保存为另一个文件？"
 
 #, c-format
 msgid ""
@@ -2557,11 +2558,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"插件“%2”无法将您对右侧文件的修改打包到“%1”。\n"
+"插件“%2”无法将您对右侧文件的修改封装到“%1”。\n"
 "\n"
-"原始文件不会被更改。\n"
+"原始文件将不会被更改。\n"
 "\n"
-"是否将未打包的版本另存为其他文件？"
+"是否将解包版本另存为另一个文件？"
 
 #, c-format
 msgid ""
@@ -2633,25 +2634,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "以空白或标点分隔"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "复制到中间(&M)\tAlt+Right"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "复制到中间(&M)\tAlt+Left"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "从中间复制\tAlt+Shift+Right"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "从中间复制\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "复制到中间并前进\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "复制到中间并前进\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "全部复制到中间"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -2898,88 +2899,88 @@ msgid "Prediffer"
 msgstr "预处理器"
 
 msgid "Left"
-msgstr ""
+msgstr "左侧"
 
 msgid "Middle"
-msgstr ""
+msgstr "中间"
 
 msgid "Right"
-msgstr ""
+msgstr "右侧"
 
 msgid "Diff"
-msgstr ""
+msgstr "差异"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "左侧重复计数"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "右侧重复计数"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "中间重复计数"
 
 msgid "Move"
-msgstr ""
+msgstr "移动"
 
 msgid "Audio"
-msgstr ""
+msgstr "音频"
 
 msgid "Calendar"
-msgstr ""
+msgstr "日历"
 
 msgid "Communication"
-msgstr ""
+msgstr "通讯"
 
 msgid "Contact"
-msgstr ""
+msgstr "联系人"
 
 msgid "Devices"
-msgstr ""
+msgstr "设备"
 
 msgid "Document"
-msgstr ""
+msgstr "文档"
 
 msgid "Home"
 msgstr ""
 
 msgid "Journal"
-msgstr ""
+msgstr "日志"
 
 msgid "Link"
-msgstr ""
+msgstr "链接"
 
 msgid "Media"
-msgstr ""
+msgstr "媒体"
 
 msgid "Music"
-msgstr ""
+msgstr "音乐"
 
 msgid "Note"
 msgstr ""
 
 msgid "Photo"
-msgstr ""
+msgstr "照片"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "电视节目"
 
 msgid "Search"
-msgstr ""
+msgstr "搜索"
 
 msgid "Security"
-msgstr ""
+msgstr "安全"
 
 msgid "Software"
-msgstr ""
+msgstr "软件"
 
 msgid "Task"
-msgstr ""
+msgstr "任务"
 
 msgid "Video"
-msgstr ""
+msgstr "视频"
 
 msgid "Hash"
-msgstr ""
+msgstr "哈希值"
 
 msgid "Unable to compare files"
 msgstr "无法比较文件"
@@ -3182,10 +3183,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "在二进制文件处显示星号(*)。"
 
 msgid "Unpacker plugin name or pipeline."
-msgstr ""
+msgstr "解包插件或流程（pipeline）。"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr ""
+msgstr "预比较插件或或流程（pipeline）。"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3284,10 +3285,10 @@ msgid "Do you want to move to the previous page?"
 msgstr "您是否要移动到上一页?"
 
 msgid "Do you want to move to the first file?"
-msgstr ""
+msgstr "是否要移动到第一个文件？"
 
 msgid "Do you want to move to the last file?"
-msgstr ""
+msgstr "是否要移动到最后一个文件？"
 
 #, c-format
 msgid ""
@@ -3584,16 +3585,16 @@ msgstr ""
 "自动合并 (Ctrl+Alt+M)"
 
 msgid "\nFirst File"
-msgstr ""
+msgstr "\n第一个文件"
 
 msgid "\nNext File (Ctrl+F8)"
-msgstr ""
+msgstr "\n上一个文件 (Ctrl+F8)"
 
 msgid "\nLast File"
-msgstr ""
+msgstr "\n最后一个文件"
 
 msgid "\nPrevious File (Ctrl+F7)"
-msgstr ""
+msgstr "\n上一个文件 (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3604,7 +3605,7 @@ msgid "No prediffer (normal)"
 msgstr "不使用预处理器 (标准)"
 
 msgid "Suggested plugins"
-msgstr "建议使用"
+msgstr "推荐的插件"
 
 msgid "Other plugins"
 msgstr "其他插件"
@@ -3638,7 +3639,7 @@ msgid "G&o to Line %1"
 msgstr "转到第 %1 行(&O)"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr ""
+msgstr "转到被移动的行\tCtrl+Shift+G"
 
 msgid "Disabled"
 msgstr "禁用"
@@ -3656,7 +3657,7 @@ msgid "Batch"
 msgstr "批处理文件"
 
 msgid "Portable Object"
-msgstr "Portable Object"
+msgstr "可移植对象"
 
 msgid "Resources"
 msgstr "资源文件"
@@ -3735,7 +3736,7 @@ msgid "MDI child window only"
 msgstr "仅 MDI 子窗口"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "如果只有一个MDI子窗口，关闭主窗口"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3827,181 +3828,181 @@ msgstr ""
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "翻转了: %s  "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr ""
+msgstr "旋转了: %d  "
 
 msgid "All pages"
-msgstr ""
+msgstr "所有页"
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "< 编辑这里 >"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "未找到要选择的差异"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "未找到要添加为替换滤镜的差异"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "这一对已存在于替换滤镜列表中"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "将此更改添加到替换滤镜？"
 
 msgid "Text only"
-msgstr ""
+msgstr "纯文本"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "逐行定位输入"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "逐字定位输入"
 
 msgid "Allow only one instance to run"
 msgstr "只允许运行一个实例"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "只允许运行一个实例并等待该实例结束"
 
 msgid "Al&l"
-msgstr ""
+msgstr "全部(&L)"
 
 msgid "Prettification"
-msgstr ""
+msgstr "格式美化"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "内容提取"
 
 msgid "Visualization"
-msgstr ""
+msgstr "可视化"
 
 msgid "Data Query"
-msgstr ""
+msgstr "数据查询"
 
 msgid "Validation"
-msgstr ""
+msgstr "验证"
 
 msgid "Decompilation"
-msgstr ""
+msgstr "反编译"
 
 msgid "&Others"
-msgstr ""
+msgstr "其它(&O)"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "变大写"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "变小写"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "删除重复行"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "清点重复行"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "行排序（升序）"
 
 msgid "Sort Lines Descending"
-msgstr ""
+msgstr "行排序（降序）"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "反转列"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "反转行"
 
 msgid "Replace..."
-msgstr ""
+msgstr "替换..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "应用滤镜命令..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "切分..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "删除首尾空格"
 
 msgid "Select Columns..."
-msgstr ""
+msgstr "选择列..."
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "选择行..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "插入日期"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "插入时间"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "应用补丁..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "忽略列（Columns）"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "忽略注释（C语言家族）"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "忽略CSV字段"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "忽略TSV字段"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr ""
+msgstr "使用预比较置换滤镜"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "格式化HTML"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "格式化JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "格式化XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "格式化YAML"
 
 msgid "Visualize Graphviz"
-msgstr ""
+msgstr "可视化Graphviz"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "查询CSV数据..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "查询TSV数据..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "查询JSON数据..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "查询YAML数据..."
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "验证HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "反汇编JVM字节码"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "反汇编IL代码"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "反汇编本地代码"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "插件流程（pipeline）中缺少插件名称: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "插件流程（pipeline）中缺少引号: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "指定插件参数"
