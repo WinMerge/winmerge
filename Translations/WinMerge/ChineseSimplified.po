@@ -714,13 +714,13 @@ msgid "Copy from &Right to"
 msgstr "从右侧复制到(&R)"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr "从左侧复制选择行到(&F)"
+msgstr "从左侧复制选中行到(&F)"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr "从中间复制选择行到(&D)"
+msgstr "从中间复制选中行到(&D)"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr "从右侧复制选择行到(&G)"
+msgstr "从右侧复制选中行到(&G)"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "从左侧复制\tAlt+Shift+Right"
@@ -2544,11 +2544,11 @@ msgstr ""
 "\n"
 "原始文件将不会被更改。\n"
 "\n"
-"是否将解包版本另存为另一个文件？"
+"是否将解包版本保存为另一文件？"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "插件“%2”无法将您对中间文件的修改封装到“%1”。\n\n原始文件将不会被更改。\n\n是否将解包版本保存为另一个文件？"
+msgstr "插件“%2”无法将您对中间文件的修改封装到“%1”。\n\n原始文件将不会被更改。\n\n是否将解包版本保存为另一文件？"
 
 #, c-format
 msgid ""
@@ -2562,7 +2562,7 @@ msgstr ""
 "\n"
 "原始文件将不会被更改。\n"
 "\n"
-"是否将解包版本另存为另一个文件？"
+"是否将解包版本保存为另一文件？"
 
 #, c-format
 msgid ""
@@ -3073,11 +3073,11 @@ msgid "Elapsed time: %ld ms"
 msgstr "执行时间: %ld 毫秒"
 
 msgid "1 item selected"
-msgstr "选择了 1 个项目"
+msgstr "选中了 1 个项目"
 
 #, c-format
 msgid "%1 items selected"
-msgstr "选择了 %1 个项目"
+msgstr "选中了 %1 个项目"
 
 msgid "Filename or folder name."
 msgstr "文件名或文件夹名。"
@@ -3183,10 +3183,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "在二进制文件处显示星号(*)。"
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "解包插件或流程（pipeline）。"
+msgstr "解包插件名称或流程（pipeline）。"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "预比较插件或或流程（pipeline）。"
+msgstr "预比较插件名称或流程（pipeline）。"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3225,7 +3225,7 @@ msgid "The same file is opened in both panels."
 msgstr "两侧打开的是同一个文件。"
 
 msgid "The selected files are identical."
-msgstr "选择的文件完全相同。"
+msgstr "选中的文件完全相同。"
 
 msgid "An error occurred while comparing the files."
 msgstr "比较文件时发生错误。"
@@ -3273,22 +3273,22 @@ msgstr ""
 "并且打开这两个文件夹？"
 
 msgid "Do you want to move to the next file?"
-msgstr "您是否要移动到下一个文件?"
+msgstr "您是否要跳转到下一个文件？"
 
 msgid "Do you want to move to the previous file?"
-msgstr "您是否要移动到上一个文件?"
+msgstr "您是否要跳转到上一个文件？"
 
 msgid "Do you want to move to the next page?"
-msgstr "您是否要移动到下一页?"
+msgstr "您是否要跳转到下一页？"
 
 msgid "Do you want to move to the previous page?"
-msgstr "您是否要移动到上一页?"
+msgstr "您是否要跳转到上一页？"
 
 msgid "Do you want to move to the first file?"
-msgstr "是否要移动到第一个文件？"
+msgstr "您是否要跳转到第一个文件？"
 
 msgid "Do you want to move to the last file?"
-msgstr "是否要移动到最后一个文件？"
+msgstr "您是否要跳转到最后一个文件？"
 
 #, c-format
 msgid ""
@@ -3663,7 +3663,7 @@ msgid "Resources"
 msgstr "资源文件"
 
 msgid "Shell"
-msgstr "Shell"
+msgstr "系统集成"
 
 msgid "Close &Left Tabs"
 msgstr "关闭左侧标签页(&L)"
