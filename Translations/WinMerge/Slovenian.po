@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2021-12-16 21:13+0100\n"
+"PO-Revision-Date: 2022-01-03 08:03+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -29,13 +29,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SLOVENIAN, SUBLANG_SLOVENIAN"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Kopiraj v srednjo"
 
 msgid "C&opy to Right"
 msgstr "Kopiraj v &desno"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Kopiraj iz srednje"
 
 msgid "Copy fro&m Right"
 msgstr "Kopiraj iz de&sne"
@@ -47,13 +47,13 @@ msgid "Copy &from Left"
 msgstr "Kopiraj iz l&eve"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice v srednjo"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopiraj izbrane vrstice na desno"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz desne"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopiraj izbrane vrstice z desne"
@@ -694,7 +694,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Samo prejšnja desna razlika\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopiraj iz &leve v"
 
 msgid "&Middle"
 msgstr "Sre&dnjo"
@@ -703,22 +703,22 @@ msgid "&Right"
 msgstr "&Desno"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Kopiraj iz &srednje v"
 
 msgid "&Left"
 msgstr "&Levo"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopiraj iz &sesne v"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz le&ve v"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz s&rednje v"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz &desne v"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiraj iz leve\tAlt+Shift+Desno"
@@ -1920,10 +1920,10 @@ msgid "Ignore &Reparse Points"
 msgstr "P&rezri točke ponovne razčlenitve"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Prag za preklop na &hitro primerjavo (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
 msgid ""
 "\n"
@@ -2662,25 +2662,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Prelom na praznem znaku ali ločilu"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Kopiraj v s%rednjo\tAlt+Desno"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Kopiraj v s%rednjo\tAlt+Levo"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopiraj iz srednje\tAlt+Shift+Desno"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopiraj iz srednje\tAlt+Shift+Levo"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Kopiraj v sredino in naprej\tCtrl+Alt+Desno"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Kopiraj v srednjo in naprej\tCtrl+Alt+Levo"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Kopiraj vse v srednjo"
 
 #, c-format
 msgid "Right to Left (%1)"
