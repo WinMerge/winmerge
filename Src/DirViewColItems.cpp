@@ -131,7 +131,13 @@ static int sign64(int64_t val)
  */
 static int cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 {
-	return diffcode1-diffcode2;	
+	bool same1 = (diffcode1 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME;
+	bool same2 = (diffcode2 & DIFFCODE::COMPAREFLAGS) == DIFFCODE::SAME;
+	if (same1 && !same2)
+		return 1;
+	if (!same1 && same2)
+		return -1;
+	return diffcode1 - diffcode2;
 }
 /**
  * @brief Function to compare two doubles for a sort
