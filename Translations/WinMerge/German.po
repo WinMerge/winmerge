@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-31 16:00+0200\n"
+"PO-Revision-Date: 2022-01-05 17:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -4359,116 +4359,116 @@ msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Großbuchstaben erzeugen"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Kleinbuchstaben erzeugen"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Doppelte Zeilen entfernen"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Doppelte Zeilen zählen"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Zeilen aufsteigend sortieren"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Zeilen absteigend sortieren"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Spalten umkehren"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Zeilen umkehren"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Text durch einen anderen Text ersetzen.\r\nVerwendung: Replace [-i] [-e] FIND REPLACE\r\n  FIND - zu suchender Text\r\n  REPLACE - zu ersetzender Text\r\n  -i - Groß-/Kleinschreibung ignorieren (nur für -e)\r\n  -e - den angegebenen Text als regulären Ausdruck behandeln"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "Filterbefehl anwenden. \r\nVerwendung: ExecFilterCommand COMMAND\r\n  COMMAND - auszuführender Befehl. %1 im Befehl wird durch den Dateinamen ersetzt."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Auswahl tokenisieren. \r\nVerwendung: Tokenize PATTERNS\r\n  PATTERNS - regulärer Ausdruck für die Tokenisierung (z. B. [^\\w]+)."
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Leerzeichen kürzen"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Einige Spalten auswählen.\r\nVerwendung: SelectColumns RANGES\r\n   oder: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES - Liste der auszuwählenden Spaltenbereiche (z. B. -3,5-10,30-).\r\n  PATTERNS - regulärer Ausdruck\r\n  -v - nicht übereinstimmende Spalten auswählen\r\n  -i - Groß-/Kleinschreibung ignorieren\r\n  -g - globales Flag aktivieren\r\n  -e - PATTERNS für die Übereinstimmung verwenden"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Einige Zeilen auswählen.\r\nVerwendung: SelectLines RANGES\r\n   oder: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES - Liste der auszuwählenden Zeilenbereiche (z. B. -3,5-10,30-).\r\n  PATTERNS - regulärer Ausdruck\r\n  -v - nicht übereinstimmende Zeilen auswählen\r\n  -i - Groß-/Kleinschreibung ignorieren\r\n  -e - PATTERNS für die Übereinstimmung verwenden"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML-Prettier mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON-Prettier mit jq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl jq übergeben werden."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "XML-Prettier mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML-Prettier mit yq-Befehl. \r\nArgumente: Filter- oder Kommandozeilenoptionen, die an den Befehl yq übergeben werden."
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz Visualizer. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl dot übergeben werden."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "CSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "TSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON-Querier mit jq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl jq übergeben werden."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML-Querier mit yq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl yq übergeben werden."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML-Validator mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "JVM-Bytecode-Disassembler mit javap. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl javap übergeben werden."
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "IL-Disassembler mit ildasm. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl ildasm übergeben werden."
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "Disassembler für nativen Code mit Dumpbin. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl dumpbin übergeben werden."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "Allgemeiner Inhaltsextraktor mit Apache Tika. \r\nArgumente: Befehlszeilenoptionen, die an die Datei tika-app.jar übergeben werden."
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Patch mit GnuWin32-Patch für Windows anwenden"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "Textinhalt von Excel-Dateien anzeigen."
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "Textinhalt von PowerPoint-Dateien anzeigen."
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "Textinhalt von Visio-Dateien anzeigen."
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "Textinhalt von Word-Dateien anzeigen."
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Einige Spalten ignorieren - Liste der ignorierten Spalten aus dem Plugin-Namen oder dem Plugin-Argument"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "Das Plugin ignoriert Kommentare (//... und /* ... */) in Dateien in C, C++, PHP und JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Einige Felder ignorieren - Liste der ignorierten Felder aus dem Plugin-Namen oder dem Plugin-Argument"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Prediff-Zeilenfilter"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Grundlegende Textfunktionen für das Kontextmenü"
