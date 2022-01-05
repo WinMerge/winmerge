@@ -3964,6 +3964,48 @@ BEGIN
     IDS_PLUGIN_TITLE1        "Specify plugin arguments"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION1  "Make characters uppercase"
+    IDS_PLUGIN_DESCRIPTION2  "Make characters lowercase"
+    IDS_PLUGIN_DESCRIPTION3  "Remove duplicate lines"
+    IDS_PLUGIN_DESCRIPTION4  "Count duplicate lines"
+    IDS_PLUGIN_DESCRIPTION5  "Sort lines ascending"
+    IDS_PLUGIN_DESCRIPTION6  "Sort lines descending"
+    IDS_PLUGIN_DESCRIPTION7  "Reverse columns"
+    IDS_PLUGIN_DESCRIPTION8  "Reverse lines"
+    IDS_PLUGIN_DESCRIPTION9  "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+    IDS_PLUGIN_DESCRIPTION10 "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+    IDS_PLUGIN_DESCRIPTION11 "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+    IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
+    IDS_PLUGIN_DESCRIPTION13 "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION14 "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION23 "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION24 "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION25 "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION26 "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION27 "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+    IDS_PLUGIN_DESCRIPTION28 "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION29 "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION30 "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION31 "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION32 "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION33 "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+    IDS_PLUGIN_DESCRIPTION34 "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+    IDS_PLUGIN_DESCRIPTION35 "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+    IDS_PLUGIN_DESCRIPTION37 "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+    IDS_PLUGIN_DESCRIPTION38 "Apply patch using GnuWin32 Patch for Windows"
+    IDS_PLUGIN_DESCRIPTION39 "Display the text content of MS Excel files"
+    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS PowerPoint files"
+    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS Visio files"
+    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Word files"
+    IDS_PLUGIN_DESCRIPTION43 "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION44 "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+    IDS_PLUGIN_DESCRIPTION45 "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION46 "Prediff Line Filter"
+    IDS_PLUGIN_DESCRIPTION47 "Basic text functions for the context menu"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
