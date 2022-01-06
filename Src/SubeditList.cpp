@@ -62,7 +62,7 @@ bool CSubeditList::IsValidRowCol(int nItem, int nSubItem) const
 /**
  * @brief Get the edit style for the specified column.
  * @param [in] nCol Column to get edit style
- * @return @Edit style for the specified column
+ * @return Edit style for the specified column
  * @remarks Returns EditStyle::EDIT_BOX; as default if a column with no edit style is specified.
  */
 CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
@@ -92,7 +92,7 @@ void CSubeditList::SetEditStyle(int nCol, EditStyle style)
 /**
  * @brief Get the character limit for the specified column.
  * @param [in] nCol Column to get character limit
- * @return @Character limit for the specified column
+ * @return Character limit for the specified column
  * @remarks Currently, this setting is valid only for columns whose edit style is EditStyle::WILDCARD_DROPLIST.
  */
 int CSubeditList::GetLimitTextSize(int nCol) const
