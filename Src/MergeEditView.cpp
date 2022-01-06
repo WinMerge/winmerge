@@ -686,19 +686,15 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 		blocks[j].m_nCharPos = begin[m_nThisPane];
 		if (lineInCurrentDiff)
 		{
-			if (m_cachedColors.clrSelDiffText != CLR_NONE)
-				blocks[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
-			else
-				blocks[j].m_nColorIndex = COLORINDEX_NONE;
+			blocks[j].m_nColorIndex = COLORINDEX_APPLYFORCE |
+				((m_cachedColors.clrSelWordDiffText != CLR_NONE) ? COLORINDEX_HIGHLIGHTTEXT1 : COLORINDEX_NONE);
 			blocks[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE | 
 				(deleted ? COLORINDEX_HIGHLIGHTBKGND4 : COLORINDEX_HIGHLIGHTBKGND1);
 		}
 		else
 		{
-			if (m_cachedColors.clrDiffText != CLR_NONE)
-				blocks[j].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT2 | COLORINDEX_APPLYFORCE;
-			else
-				blocks[j].m_nColorIndex = COLORINDEX_NONE;
+			blocks[j].m_nColorIndex = COLORINDEX_APPLYFORCE |
+				((m_cachedColors.clrWordDiffText != CLR_NONE) ? COLORINDEX_HIGHLIGHTTEXT2 : COLORINDEX_NONE);
 			blocks[j].m_nBgColorIndex = COLORINDEX_APPLYFORCE |
 				(deleted ? COLORINDEX_HIGHLIGHTBKGND3 : COLORINDEX_HIGHLIGHTBKGND2);
 		}
