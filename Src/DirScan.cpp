@@ -537,7 +537,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			}
 			int ndiff = CompareItems(queue, myStruct, curpos);
-			// Propogate sub-directory status to this directory
+			// Propagate sub-directory status to this directory
 			if (ndiff > 0)
 			{	// There were differences in the sub-directories
 				if (existsalldirs)
