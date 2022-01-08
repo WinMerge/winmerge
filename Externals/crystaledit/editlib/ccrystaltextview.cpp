@@ -2695,7 +2695,7 @@ OnDraw (CDC * pdc)
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
                 m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1);
               if (m_pTextBuffer->GetTableEditing ())
-                m_pCrystalRenderer->DrawGridLine (rcMargin.left, nSubLines * nLineHeight - 1, rcLine.right, nSubLines * nLineHeight - 1);
+                m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.top + nSubLines * nLineHeight - 1, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1);
               if (nCurrentLine == m_ptCursorPos.y)
                 m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
                   nCursorY + nLineHeight - 1, 1);
