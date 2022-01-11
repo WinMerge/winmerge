@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2021-12-15 11:26+0200\n"
+"POT-Creation-Date: 2022-01-05 21:08+0000\n"
+"PO-Revision-Date: 2022-01-11 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -30,13 +30,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_LITHUANIAN, SUBLANG_DEFAULT"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Kopijuoti į vidurį"
 
 msgid "C&opy to Right"
 msgstr "K&opijuoti į dešinę"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Kopijuoti iš vidurio"
 
 msgid "Copy fro&m Right"
 msgstr "Kopijuoti iš &dešinės"
@@ -48,13 +48,13 @@ msgid "Copy &from Left"
 msgstr "Kopijuoti iš &kairės"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) į vidurį"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopijuoti pažymėtą eilutę (-es) į dešinę"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš vidurio"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopijuoti pažymėtą eilutę (-es) iš dešinės"
@@ -515,7 +515,7 @@ msgid "Save &Left As..."
 msgstr "Išsaugoti &kairįjį kaip..."
 
 msgid "Save &Middle As..."
-msgstr "Išsaugoti vidurinįjį &kaip..."
+msgstr "Išsaugoti vidurinį &kaip..."
 
 msgid "Save &Right As..."
 msgstr "Išsaugoti &dešinįjį kaip..."
@@ -695,31 +695,31 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Praeitas skirtumas Tik dešinėje\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopijuoti iš &kairės į"
 
 msgid "&Middle"
 msgstr "&Vidurinį"
 
 msgid "&Right"
-msgstr "&Dešinį"
+msgstr "&Dešinįjį"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Kopijuoti iš &vidurio į"
 
 msgid "&Left"
-msgstr "&Kairį"
+msgstr "&Kairįjį"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopijuoti iš &dešinės į"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš k&airės į"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš vi&durio į"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Kopijuoti pažymėtą eilutę (-es) iš d&ešinės į"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopijuoti iš kairės\tAlt+Shift+Right"
@@ -1904,10 +1904,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Persijungimo į &spartųjį palyginimą riba (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Persijungimo į &binarinį palyginimą riba (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
@@ -2412,25 +2412,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Skaidyti per tarpą ar skirtuką"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Kopijuoti į &Vidurį\tAlt+Right"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Kopijuoti į &Vidurį\tAlt+Left"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopijuoti iš Vidurio\tAlt+Shift+Right"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopijuoti iš Vidurio\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Kopijuoti į vidurį ir Daugiau\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Kopijuoti į vidurį ir Daugiau\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Kopijuoti viską į vidurį"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -2442,7 +2442,7 @@ msgstr "Dešinįjį į Vidurinį (%1)"
 
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr "Vidurinį į kairįjį (%1 iš %2)"
+msgstr "Vidurinį į Kairįjį (%1 iš %2)"
 
 #, c-format
 msgid "Middle to Right (%1)"
@@ -3621,28 +3621,28 @@ msgid "Specify plugin arguments"
 msgstr "Nurodykite papildinio argumentus"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Konvertuoti į didžiąsias raides"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Konvertuoti į mažąsias raides"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Pašalinti pasikartojančias eilutes"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Suskaičiuoti pasikartojančias eilutes"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Rikiuoti eilutes didėjančiai"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Rikiuoti eilutes mažėjančiai"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Sukeisti stulpelius"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Sukeisti eilutes"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
 msgstr ""
@@ -3655,7 +3655,7 @@ msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular 
 msgstr ""
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Apkirpti tarpus"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
 msgstr ""
@@ -3706,31 +3706,31 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr ""
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Taikyti pataisą naudojant „GnuWin32 Patch for Windows“"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "Rodyti „MS Excel“ failų teksto turinį"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "Rodyti „MS PowerPoint“ failų teksto turinį"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "Rodyti „MS Visio“ failų teksto turinį"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "Rodyti „MS Word“ failų teksto turinį"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Ignoruoti kai kuriuos stulpelius - ignoruojamų stulpelių sąrašas iš papildinio pavadinimo arba argumento"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "Papildinys ignoruoja komentarus (//... and /* ... */) C, C++, PHP and JavaScript failuose."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Ignoruoti kai kuriuos laukus - ignoruojamų laukų sąrašas iš papildinio pavadinimo arba argumento"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Parengėjo eilutės filtras"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Pagrindinės kontekstinio meniu teksto funkcijos"
