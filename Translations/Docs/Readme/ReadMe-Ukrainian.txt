@@ -9,7 +9,7 @@ https://winmerge.org
 
 Початок роботи з WinMerge:
 Щодо цього читайте відповідний розділ онлайн-довідки WinMerge:
-https://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/Quick_start.html
 
 HTML-довідка:
 Довідка доступна онлайн

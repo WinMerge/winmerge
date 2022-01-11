@@ -16,7 +16,7 @@ https://winmerge.org/.
 ===========
 Да би сте сазнали како да користите WinMerge, кликните на дугме
 'Помоћ' и идите на Quick start или идите на интернет и посетите
- https://manual.winmerge.org/QuickStart.html.
+ https://manual.winmerge.org/Quick_start.html.
 
 WinMerge Помоћ
 ============= 

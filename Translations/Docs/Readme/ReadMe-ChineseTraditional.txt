@@ -8,7 +8,7 @@ WinMerge 最新版與資訊在：https://winmerge.org/
 
 立即上手
 ===========
-安裝後，學習基本操作，按 說明 > WinMerge 說明。瀏覽 Quick Start 章。或至 https://manual.winmerge.org/QuickStart.html 瀏覽其網路版。
+安裝後，學習基本操作，按 說明 > WinMerge 說明。瀏覽 Quick Start 章。或至 https://manual.winmerge.org/Quick_start.html 瀏覽其網路版。
 
 WinMerge 說明
 ============= 

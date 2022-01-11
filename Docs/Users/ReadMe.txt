@@ -16,7 +16,7 @@ Quick start
 ===========
 To learn how to perform basic operations after installing WinMerge, click
 Help>WinMerge Help and navigate to the Quick start topic.  Or, go to the Web
-version at https://manual.winmerge.org/QuickStart.html.
+version at https://manual.winmerge.org/Quick_start.html.
 
 WinMerge Help
 ============= 

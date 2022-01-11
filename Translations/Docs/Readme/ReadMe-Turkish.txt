@@ -16,7 +16,7 @@ Hýzlý Baþlangýç
 ===============
 WinMerge uygulamasýný kurduktan sonra temel iþlemleri nasýl yapabileceðinizi öðrenmek için
 Yardým>WinMerge seçeneðine týklayýn ve hýzlý baþlangýç (quick start) baþlýðýna gidin.
-Ayný bilginin Web sürümüne ulaþmak için https://winmerge.org/docs/manual/QuickStart.html adresine bakabilirsiniz.
+Ayný bilginin Web sürümüne ulaþmak için https://manual.winmerge.org/Quick_start.html adresine bakabilirsiniz.
 
 WinMerge Yardýmý
 ================
@@ -26,7 +26,7 @@ için, Yardým>WinMerge seçeneðine týklayýn veya WinMerge ekranýndayken F1 tuþuna 
 satýrýnda ise WinMerge uygulamasýný /? yardým anahtarý ile çalýþtýrýn.
 
 WinMerge yardýmýnýn HTML sürümüne 
-https://winmerge.org/docs/manual/ adresinden de ulaþabilirsiniz.
+https://manual.winmerge.org/ adresinden de ulaþabilirsiniz.
 
 WinMerge Desteði
 ================

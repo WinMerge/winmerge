@@ -12,7 +12,7 @@ https://winmerge.org
 Start rapid către utilizarea WinMerge:
 Citiţi capitolul Quick-start din manualul on-line pentru a vă
 familiariza cu WinMerge:
-https://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/Quick_start.html
 
 Manualul HTML:
 Manualul este disponibil la

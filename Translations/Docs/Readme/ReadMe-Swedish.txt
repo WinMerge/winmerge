@@ -17,7 +17,7 @@ Quick start (Snabbstart)
 För att lära sig hur man ska utföra grundläggande uppgifter efter att ha 
 installerat WinMerge, klicka på "Hjälp > WinMerge Hjälp"
 och navigera till "Quick start"-ämnet, eller gå till Internetversionen hoss
-https://manual.winmerge.org/QuickStart.html.
+https://manual.winmerge.org/Quick_start.html.
 
 WinMerge Help (WinMerges Hjälp)
 ============= 

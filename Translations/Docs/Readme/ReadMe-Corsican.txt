@@ -18,7 +18,7 @@ Lanciu rapidu
 Per amparà cumu fà l’operazioni basichi dopu à l’installazione di WinMerge,
 cliccu nant’à Aiutu > Aiutu WinMerge è navigate à u paragrafu di u lanciu
 rapidu. Osinnò, impiegate a versione web à l’indirizzu :
-	https://manual.winmerge.org/QuickStart.html
+	https://manual.winmerge.org/Quick_start.html
 
 Aiutu WInMerge
 ============== 
