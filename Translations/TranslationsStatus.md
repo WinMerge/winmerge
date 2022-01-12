@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-01-05**:
+Status from **2022-01-12**:
 
 ## WinMerge
 
@@ -13,22 +13,22 @@ Status from **2022-01-05**:
 | Catalan              |  1193 |        567 |     0 |          626 |     48 % |             |
 | ChineseSimplified    |  1193 |       1145 |     0 |           48 |     96 % |             |
 | ChineseTraditional   |  1193 |       1092 |     0 |          101 |     92 % |  2021-12-11 |
-| Corsican             |  1193 |       1156 |     0 |           37 |     97 % |             |
+| Corsican             |  1193 |       1193 |     0 |            0 |    100 % |             |
 | Croatian             |  1193 |        632 |     1 |          560 |     53 % |  2009-02-13 |
 | Czech                |  1193 |        606 |     0 |          587 |     51 % |             |
 | Danish               |  1193 |        640 |     0 |          553 |     54 % |  2013-01-13 |
-| Dutch                |  1193 |       1100 |     0 |           93 |     92 % |  2018-09-06 |
+| Dutch                |  1193 |       1193 |     0 |            0 |    100 % |  2018-09-06 |
 | English              |  1194 |       1194 |     0 |            0 |    100 % |  2022-01-05 |
 | Finnish              |  1193 |        902 |     0 |          291 |     76 % |             |
-| French               |  1193 |       1019 |     0 |          174 |     85 % |  2021-04-29 |
+| French               |  1193 |       1193 |     0 |            0 |    100 % |  2022-01-09 |
 | Galician             |  1193 |       1137 |     0 |           56 |     95 % |  2021-12-18 |
-| German               |  1193 |       1156 |     0 |           37 |     97 % |  2021-12-31 |
+| German               |  1193 |       1193 |     0 |            0 |    100 % |  2022-01-05 |
 | Greek                |  1193 |        605 |     0 |          588 |     51 % |             |
-| Hungarian            |  1193 |       1156 |     0 |           37 |     97 % |  2021-03-15 |
+| Hungarian            |  1193 |       1193 |     0 |            0 |    100 % |  2021-03-15 |
 | Italian              |  1193 |        992 |     0 |          201 |     83 % |  2021-08-09 |
 | Japanese             |  1193 |       1193 |     0 |            0 |    100 % |  2021-11-21 |
 | Korean               |  1193 |       1035 |     0 |          158 |     87 % |  2021-12-10 |
-| Lithuanian           |  1193 |       1115 |     0 |           78 |     93 % |  2021-12-15 |
+| Lithuanian           |  1193 |       1152 |     0 |           41 |     97 % |  2022-01-11 |
 | Norwegian            |  1193 |        633 |     0 |          560 |     53 % |             |
 | Persian              |  1193 |        643 |     0 |          550 |     54 % |  2013-08-15 |
 | Polish               |  1193 |       1111 |     0 |           82 |     93 % |             |
@@ -62,7 +62,7 @@ Status from **2022-01-05**:
 | English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
 | English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
 | Finnish              |     9 |          4 |     0 |            5 |     44 % |             |
-| French               |     9 |          4 |     0 |            5 |     44 % |             |
+| French               |     9 |          9 |     0 |            0 |    100 % |             |
 | Galician             |     9 |          4 |     0 |            5 |     44 % |             |
 | German               |     9 |          9 |     0 |            0 |    100 % |  2021-09-25 |
 | Greek                |     9 |          4 |     0 |            5 |     44 % |             |
@@ -131,6 +131,7 @@ Status from **2022-01-05**:
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
+| Arabic               |     - |          - |     - |            - |        - |             |
 | Basque               |     - |          - |     - |            - |        - |             |
 | Brazilian            |     - |          - |     - |            - |        - |             |
 | Bulgarian            |     - |          - |     - |            - |        - |             |
@@ -139,6 +140,8 @@ Status from **2022-01-05**:
 | ChineseTraditional   |     - |          - |     - |            - |        - |             |
 | Corsican             |     - |          - |     - |            - |        - |             |
 | Croatian             |     - |          - |     - |            - |        - |             |
+| Czech                |     - |          - |     - |            - |        - |             |
+| Danish               |     - |          - |     - |            - |        - |             |
 | Dutch                |     - |          - |     - |            - |        - |             |
 | English              |     - |          - |     - |            - |        - |             |
 | Finnish              |     - |          - |     - |            - |        - |             |
@@ -146,12 +149,19 @@ Status from **2022-01-05**:
 | Galician             |     - |          - |     - |            - |        - |             |
 | German               |     - |          - |     - |            - |        - |             |
 | Greek                |     - |          - |     - |            - |        - |             |
+| Hungarian            |     - |          - |     - |            - |        - |             |
 | Italian              |     - |          - |     - |            - |        - |             |
 | Japanese             |     - |          - |     - |            - |        - |             |
+| Korean               |     - |          - |     - |            - |        - |             |
 | Lithuanian           |     - |          - |     - |            - |        - |             |
+| Norwegian            |     - |          - |     - |            - |        - |             |
+| Persian              |     - |          - |     - |            - |        - |             |
+| Polish               |     - |          - |     - |            - |        - |             |
 | Portuguese           |     - |          - |     - |            - |        - |             |
 | Romanian             |     - |          - |     - |            - |        - |             |
+| Russian              |     - |          - |     - |            - |        - |             |
 | Serbian              |     - |          - |     - |            - |        - |             |
+| Sinhala              |     - |          - |     - |            - |        - |             |
 | Slovak               |     - |          - |     - |            - |        - |             |
 | Slovenian            |     - |          - |     - |            - |        - |             |
 | Spanish              |     - |          - |     - |            - |        - |             |
@@ -327,6 +337,10 @@ Status from **2022-01-05**:
  * Corsican
    - Patriccollu di Santa Maria è Sichè *Maintainer*
    - Patriccollu di Santa Maria è Sichè
+
+ * French
+   - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
+   - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*

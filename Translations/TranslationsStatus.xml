@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2022-01-05</update>
+  <update>2022-01-12</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -161,9 +161,9 @@
       <update></update>
       <strings>
         <count>1193</count>
-        <translated>1156</translated>
+        <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>37</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -239,9 +239,9 @@
       <update>2018-09-06</update>
       <strings>
         <count>1193</count>
-        <translated>1100</translated>
+        <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>93</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -278,12 +278,12 @@
     <translation>
       <language>French</language>
       <file>French.po</file>
-      <update>2021-04-29</update>
+      <update>2022-01-09</update>
       <strings>
         <count>1193</count>
-        <translated>1019</translated>
+        <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>174</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -335,12 +335,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2021-12-31</update>
+      <update>2022-01-05</update>
       <strings>
         <count>1193</count>
-        <translated>1156</translated>
+        <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>37</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -380,9 +380,9 @@
       <update>2021-03-15</update>
       <strings>
         <count>1193</count>
-        <translated>1156</translated>
+        <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>37</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -489,12 +489,12 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2021-12-15</update>
+      <update>2022-01-11</update>
       <strings>
         <count>1193</count>
-        <translated>1115</translated>
+        <translated>1152</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>78</untranslated>
+        <untranslated>41</untranslated>
       </strings>
       <translators>
         <translator>
@@ -1002,10 +1002,20 @@
       <update></update>
       <strings>
         <count>9</count>
-        <translated>4</translated>
+        <translated>9</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>5</untranslated>
+        <untranslated>0</untranslated>
       </strings>
+      <translators>
+        <translator maintainer="1">
+          <name>Lolo S.</name>
+          <mail>slolo2000 at hotmail.com</mail>
+        </translator>
+        <translator>
+          <name>Lolo S.</name>
+          <mail>slolo2000 at hotmail.com</mail>
+        </translator>
+      </translators>
     </translation>
     <translation>
       <language>Galician</language>
@@ -1684,6 +1694,17 @@
   </translations>
   <translations project="Docs/Readme">
     <translation>
+      <language>Arabic</language>
+      <file>ReadMe-Arabic.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
       <language>Basque</language>
       <file>ReadMe-Basque.txt</file>
       <update></update>
@@ -1772,6 +1793,28 @@
       </strings>
     </translation>
     <translation>
+      <language>Czech</language>
+      <file>ReadMe-Czech.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
+      <language>Danish</language>
+      <file>ReadMe-Danish.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
       <language>Dutch</language>
       <file>ReadMe-Dutch.txt</file>
       <update></update>
@@ -1849,6 +1892,17 @@
       </strings>
     </translation>
     <translation>
+      <language>Hungarian</language>
+      <file>ReadMe-Hungarian.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
       <language>Italian</language>
       <file>ReadMe-Italian.txt</file>
       <update></update>
@@ -1871,8 +1925,52 @@
       </strings>
     </translation>
     <translation>
+      <language>Korean</language>
+      <file>ReadMe-Korean.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
       <language>Lithuanian</language>
       <file>ReadMe-Lithuanian.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
+      <language>Norwegian</language>
+      <file>ReadMe-Norwegian.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
+      <language>Persian</language>
+      <file>ReadMe-Persian.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
+      <language>Polish</language>
+      <file>ReadMe-Polish.txt</file>
       <update></update>
       <strings>
         <count>0</count>
@@ -1904,8 +2002,30 @@
       </strings>
     </translation>
     <translation>
+      <language>Russian</language>
+      <file>ReadMe-Russian.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
       <language>Serbian</language>
       <file>ReadMe-Serbian.txt</file>
+      <update></update>
+      <strings>
+        <count>0</count>
+        <translated>0</translated>
+        <fuzzy>0</fuzzy>
+        <untranslated>0</untranslated>
+      </strings>
+    </translation>
+    <translation>
+      <language>Sinhala</language>
+      <file>ReadMe-Sinhala.txt</file>
       <update></update>
       <strings>
         <count>0</count>
