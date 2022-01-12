@@ -5,8 +5,6 @@
 # * Iztok Osredkar <iztok.osredkar at institut-oko.si>
 # * Filip Komar <filip.komar at gmail.com>
 # * Jadran Rudec <jrudec@gmail.com>
-# ID line follows -- this is updated by SVN
-# $Id: Slovenian.po 7593 2013-01-21 04:13:16Z christianlist $
 #
 msgid ""
 msgstr ""

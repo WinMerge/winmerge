@@ -6,8 +6,6 @@
  * This object implements the method PrediffBufferW (q.v.).
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id: WinMergeScript.cpp 3135 2006-03-06 03:01:38Z elsapo $
 
 #include "stdafx.h"
 #include "RCLocalizationHelper.h"

@@ -7,9 +7,6 @@
 # Translators:
 # * Lolo S. <slolo2000 at hotmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

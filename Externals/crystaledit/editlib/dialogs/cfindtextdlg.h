@@ -28,8 +28,6 @@
  *
  *  @brief Declaration Find-dialog.
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #pragma once
 

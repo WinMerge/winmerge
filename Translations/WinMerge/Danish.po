@@ -5,9 +5,6 @@
 # * Christian List <list1974 at hotmail.com>
 # * Rolf Egmose <R.Egmose at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Danish.po 7586 2013-01-14 01:47:18Z christianlist $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

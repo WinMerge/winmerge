@@ -4,9 +4,6 @@
 # Translators:
 # * Ozzii <ivanstar61 at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Serbian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

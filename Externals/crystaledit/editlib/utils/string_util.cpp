@@ -3,8 +3,6 @@
  *
  * @brief Char classification routines implementations.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #include <windows.h>
 #include <tchar.h>

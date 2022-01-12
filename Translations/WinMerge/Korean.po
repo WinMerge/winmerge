@@ -10,9 +10,6 @@
 # * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
 # * cynilyn <cynilyn at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Korean.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16.14.0\n"

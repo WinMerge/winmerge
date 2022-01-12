@@ -4,9 +4,6 @@
 # Translators:
 # * Xabier Aramendi <azpidatziak at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Basque.po 7598 2013-02-03 20:17:44Z christianlist $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

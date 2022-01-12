@@ -5,9 +5,6 @@
 # * Warrior <warr11r at rambler.ru>
 # * Vitaliy Stopchans'kyy <stopcha at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Ukrainian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

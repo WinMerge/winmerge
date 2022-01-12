@@ -7,9 +7,6 @@
 # * Calvin Lin <ylin77 at gmail.com>
 # * Enfeng Tsao <admin at siderealart.me>
 #
-# ID line follows -- this is updated by SVN
-# $Id: ChineseTraditional.po 7123 2010-02-19 19:03:56Z gerundt $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

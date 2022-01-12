@@ -7,8 +7,6 @@
 # * Antonio Angelo <antonio.angelo at gmail.com>
 # * Michele Locati <michele at locati.it>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Italian.po 7556 2011-08-19 15:07:03Z sdottaka $
 msgid ""
 msgstr ""
 "Project-Id-Version: Italian\n"

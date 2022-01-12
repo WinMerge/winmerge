@@ -5,9 +5,6 @@
 # * Jiri Tax <jt at taxoft.cz>
 # * Jan Hryz <janhryz at users.sourceforge.net>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Czech.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

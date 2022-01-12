@@ -6,9 +6,6 @@
 # * Ivan Masár <helix84 at centrum.sk>, 2007, 2008, 2009.
 # * Jozef Matta <jozef.m923@gmail.com>, 2020
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

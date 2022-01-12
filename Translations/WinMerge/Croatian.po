@@ -4,9 +4,6 @@
 # Translators:
 # * Hasan Osmanagić <hasan.osmanagic at public.carnet.hr>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Croatian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

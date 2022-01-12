@@ -32,9 +32,6 @@ Attribute VB_Exposed = True
 '    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 '
 '/////////////////////////////////////////////////////////////////////////////
-'
-' RCS ID line follows -- this is updated by CVS
-' $Id: WinMergeScript.cls 5120 2008-03-04 00:02:01Z gerundt $
 
 Option Explicit
 

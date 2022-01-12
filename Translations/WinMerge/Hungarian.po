@@ -6,9 +6,6 @@
 # * Mihalicza József <jmihalicza at gmail.com>
 # * Egyed Ferenc <efi99 at freemail.hu>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Hungarian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

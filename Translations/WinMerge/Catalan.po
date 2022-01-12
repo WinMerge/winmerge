@@ -4,9 +4,6 @@
 # Translators:
 # * Jordi Vilar <jvilar at users.sourceforge.net>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Catalan.po 6851 2009-06-14 13:59:11Z gerundt $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

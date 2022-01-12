@@ -7,9 +7,6 @@
 # * MaysWind <i at mayswind.net>
 # * CharlesMengCA <CharlesMeng at outlook.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: ChineseSimplified.po 6851 2009-06-14 13:59:11Z gerundt $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

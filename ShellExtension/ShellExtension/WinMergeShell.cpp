@@ -36,8 +36,6 @@
  *
  * @brief Implementation of the ShellExtension class
  */
-// ID line follows -- this is updated by SVN
-// $Id: WinMergeShell.cpp 6933 2009-07-26 14:07:03Z kimmov $
 
 #include "stdafx.h"
 #include "ShellExtension.h"

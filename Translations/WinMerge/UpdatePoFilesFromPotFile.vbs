@@ -4,9 +4,6 @@ Option Explicit
 '
 ' Copyright (C) 2007-2008 by Tim Gerundt
 ' Released under the "GNU General Public License"
-'
-' ID line follows -- this is updated by SVN
-' $Id: UpdatePoFilesFromPotFile.vbs 6754 2009-05-16 17:42:05Z kimmov $
 
 Const ForReading = 1
 

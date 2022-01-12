@@ -6,9 +6,6 @@
 # * Leonardo Peixoto <ljpeixoto at gmail.com>
 # * Felipe Periard Lopes <felipefplzx at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Brazilian.po 6851 2009-06-14 13:59:11Z gerundt $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16.14\n"

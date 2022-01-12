@@ -5,9 +5,6 @@
 # * Medulio <medulio at ciberirmandade.org>
 # * qosobrin (LMS)
 #
-# ID line follows -- this is updated by SVN
-# $Id: Galician.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

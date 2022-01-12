@@ -11,9 +11,6 @@
 # * Jean-F Jolin <jean-f-j at users.sourceforge.net>
 # * Lolo S. <slolo2000 at hotmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: French.po 7565 2011-10-23 08:45:43Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

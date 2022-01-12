@@ -7,9 +7,6 @@
 # * Mario Angel <marioangel70 at gmail.com>
 # * Nelson Ariza <njarizas at hotmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Spanish.po 7567 2011-10-23 08:50:43Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

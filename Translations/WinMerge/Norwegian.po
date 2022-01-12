@@ -5,9 +5,6 @@
 # * Hans Fredrik Nordhaug <hansfn at users.sourceforge.net>
 # * FreewareTips <http://home.c2i.net/freewaretips/>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Norwegian.po 7584 2013-01-13 05:55:34Z christianlist $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

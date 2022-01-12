@@ -4,9 +4,6 @@
 # Translators:
 # * Takashi Sawanaka <sawanaka at d1.dion.ne.jp>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Japanese.po 6996 2009-09-27 13:10:27Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

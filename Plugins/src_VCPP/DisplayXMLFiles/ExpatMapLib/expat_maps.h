@@ -20,10 +20,6 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
-
 #ifndef expat_maps_h_included
 #define expat_maps_h_included
 

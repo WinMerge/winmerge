@@ -4,9 +4,6 @@
 # Translators:
 # * Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Persian.po 7202 2010-06-19 12:46:49Z kimmov $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"

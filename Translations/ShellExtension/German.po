@@ -4,9 +4,6 @@
 # Maintainer:
 # * Tim Gerundt <tim at gerundt.de>
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
