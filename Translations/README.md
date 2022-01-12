@@ -82,4 +82,4 @@ Please consider translating also `ReadMe.txt` file - it is shown in end of insta
 
 ## Translating Website
 
-We use PO files for the website too. But the source files are in its own [GitHub project](https://github.com/winmerge/website/).
+We use PO files for the website too. But the source files are in its own [GitHub project](https://github.com/WinMerge/website/).

@@ -11,7 +11,7 @@ December 2021
 This is a WinMerge beta release which is meant for preview the current state of
 WinMerge development. This release is not recommended for the production.
 
-Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.
+Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/issues">bug-tracker</a>.
 
 ## What Is New in 2.16.17 Beta
 
