@@ -218,6 +218,7 @@ popd
     <None Include="..\Translations\ShellExtension\Catalan.po" />
     <None Include="..\Translations\ShellExtension\ChineseSimplified.po" />
     <None Include="..\Translations\ShellExtension\ChineseTraditional.po" />
+    <None Include="..\Translations\ShellExtension\Corsican.po" />
     <None Include="..\Translations\ShellExtension\CreateMasterPotFile.vbs" />
     <None Include="..\Translations\ShellExtension\Croatian.po" />
     <None Include="..\Translations\ShellExtension\Czech.po" />
@@ -256,6 +257,7 @@ popd
     <None Include="..\Translations\WinMerge\Catalan.po" />
     <None Include="..\Translations\WinMerge\ChineseSimplified.po" />
     <None Include="..\Translations\WinMerge\ChineseTraditional.po" />
+    <None Include="..\Translations\WinMerge\Corsican.po" />
     <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
     <None Include="..\Translations\WinMerge\Croatian.po" />
     <None Include="..\Translations\WinMerge\Czech.po" />

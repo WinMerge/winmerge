@@ -52,6 +52,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITests", "Testing\GoogleT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\BuildBin.vs2017.cmd = Plugins\BuildBin.vs2017.cmd
+		Plugins\BuildBin.vs2019.cmd = Plugins\BuildBin.vs2019.cmd
+		Plugins\BuildBin.vs2022.cmd = Plugins\BuildBin.vs2022.cmd
 		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
 		Plugins\README.md = Plugins\README.md
@@ -245,11 +248,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnoSetup", "InnoSetup", "{
 		Installer\InnoSetup\modpath.iss = Installer\InnoSetup\modpath.iss
 		Installer\InnoSetup\modpathNonAdmin.iss = Installer\InnoSetup\modpathNonAdmin.iss
 		Installer\InnoSetup\README.md = Installer\InnoSetup\README.md
-		Installer\InnoSetup\WinMerge.iss = Installer\InnoSetup\WinMerge.iss
 		Installer\InnoSetup\WinMergeARM64.is6.iss = Installer\InnoSetup\WinMergeARM64.is6.iss
 		Installer\InnoSetup\WinMergeX64.is6.iss = Installer\InnoSetup\WinMergeX64.is6.iss
 		Installer\InnoSetup\WinMergeX64.iss = Installer\InnoSetup\WinMergeX64.iss
 		Installer\InnoSetup\WinMergeX64NonAdmin.iss = Installer\InnoSetup\WinMergeX64NonAdmin.iss
+		Installer\InnoSetup\WinMergeX86.iss = Installer\InnoSetup\WinMergeX86.iss
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arts", "Arts", "{66765216-61B6-4D38-934B-6E92056A97DC}"
@@ -334,7 +337,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apache-Tika", "Apache-Tika", "{5DADCF29-6A44-4AD1-8E42-DCB162A1907D}"
 	ProjectSection(SolutionItems) = preProject
 		Plugins\Commands\Apache-Tika\LICENSE-2.0.txt = Plugins\Commands\Apache-Tika\LICENSE-2.0.txt
-		Plugins\Commands\Apache-Tika\LICENSE-JJ2000.txt = Plugins\Commands\Apache-Tika\LICENSE-JJ2000.txt
 		Plugins\Commands\Apache-Tika\tika.bat = Plugins\Commands\Apache-Tika\tika.bat
 		Plugins\Commands\Apache-Tika\URL.txt = Plugins\Commands\Apache-Tika\URL.txt
 	EndProjectSection
