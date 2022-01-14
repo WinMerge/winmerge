@@ -3056,6 +3056,10 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	{
 		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 	}
+	else
+	{
+		pMenu->AppendMenu(MF_SEPARATOR);
+	}
 
 	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
 		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
