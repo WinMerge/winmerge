@@ -849,7 +849,7 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[3])
 	}
 }
 
-void DiffList::AppendDiffList(const DiffList& list, int offset[] /*= nullptr*/, int doffset /*= 0*/)
+void DiffList::AppendDiffList(const DiffList& list, const int offset[] /*= nullptr*/, int doffset /*= 0*/)
 {
 	for (std::vector<DiffRangeInfo>::const_iterator it = list.m_diffs.begin(); it != list.m_diffs.end(); ++it)
 	{
