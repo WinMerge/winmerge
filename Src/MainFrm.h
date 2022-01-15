@@ -170,7 +170,6 @@ public:
 		const PackingInfo * infoUnpacker = nullptr, const OpenImageFileParams *pOpenParams = nullptr);
 
 	void UpdateResources();
-	void ClearStatusbarItemCount();
 	void ApplyDiffOptions();
 	void SelectFilter();
 	void StartFlashing();
@@ -335,6 +334,7 @@ protected:
 	afx_msg void OnFileOpenConflict();
 	afx_msg void OnPluginsList();
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnDiffWhitespace(UINT nID);
 	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);

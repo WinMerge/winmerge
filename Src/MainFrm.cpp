@@ -295,6 +295,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	// Window manager
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -1647,12 +1648,6 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 	return pMergeDoc;
 }
 
-// Clear the item count in the main status pane
-void CMainFrame::ClearStatusbarItemCount()
-{
-	m_wndStatusBar.SetPaneText(2, _T(""));
-}
-
 /**
  * @brief Generate patch from files selected.
  *
@@ -2879,6 +2874,14 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 	}
 	else
 		pCmdUI->SetText(_T(""));
+}
+
+/**
+ * @brief Called to update the item count in the status bar
+ */
+void CMainFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetText(_T(""));
 }
 
 /**

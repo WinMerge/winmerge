@@ -688,8 +688,6 @@ void CImgMergeFrame::OnClose()
 
 	// clean up pointers.
 	CMergeFrameCommon::OnClose();
-
-	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 void CImgMergeFrame::OnDestroy()

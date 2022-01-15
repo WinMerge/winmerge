@@ -1167,8 +1167,6 @@ void CDirView::OnDestroy()
 	}
 
 	CListView::OnDestroy();
-
-	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 /**
