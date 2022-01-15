@@ -12,9 +12,9 @@ CustomInstallation=自定义安装
 
 ;Components
 AppCoreFiles=WinMerge 核心文件
-Filters=过滤器
+Filters=滤镜
 Plugins=插件
-Frhed=Frhed(免费十六进制编辑器)
+Frhed=Frhed(十六进制编辑器)
 WinIMerge=WinIMerge(图像差异/合并)
 ArchiveSupport=压缩文件支持
 ShellExtension32bit=32 位 WinMerge ShellExtension

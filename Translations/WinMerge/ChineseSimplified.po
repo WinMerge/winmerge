@@ -273,7 +273,7 @@ msgid "&Big"
 msgstr "大(&B)"
 
 msgid "&Huge"
-msgstr "巨(&H)"
+msgstr "特大(&H)"
 
 msgid "&Status Bar"
 msgstr "状态栏(&S)"
@@ -285,7 +285,7 @@ msgid "&Tools"
 msgstr "工具(&T)"
 
 msgid "&Filters..."
-msgstr "过滤器(&F)..."
+msgstr "滤镜(&F)..."
 
 msgid "&Generate Patch..."
 msgstr "生成补丁(&G)..."
@@ -297,10 +297,10 @@ msgid "P&lugin Settings..."
 msgstr "插件设置(&L)"
 
 msgid "Ma&nual Prediffer"
-msgstr "手动预处理(&N)"
+msgstr "手动预比较(&N)"
 
 msgid "A&utomatic Prediffer"
-msgstr "自动预处理(&U)"
+msgstr "自动预比较(&U)"
 
 msgid "&Manual Unpacking"
 msgstr "手动解包(&M)"
@@ -420,10 +420,10 @@ msgid "Tree &Mode"
 msgstr "树状模式(&M)"
 
 msgid "E&xpand All Subfolders"
-msgstr "展开所有子文件夹(&X)"
+msgstr "展开所有子目录(&X)"
 
 msgid "&Collapse All Subfolders"
-msgstr "折叠所有子文件夹(&C)"
+msgstr "折叠所有子目录(&C)"
 
 msgid "Select &Font..."
 msgstr "选择字体(&F)..."
@@ -543,7 +543,7 @@ msgid "&Undo\tCtrl+Z"
 msgstr "撤销(&U)\tCtrl+Z"
 
 msgid "&Redo\tCtrl+Y"
-msgstr "重复(&R)\tCtrl+Y"
+msgstr "重作(&R)\tCtrl+Y"
 
 msgid "Cu&t\tCtrl+X"
 msgstr "剪切(&T)\tCtrl+X"
@@ -750,10 +750,10 @@ msgid "Unpac&ker"
 msgstr "解包插件(&K)"
 
 msgid "&Prediffer"
-msgstr "预处理插件(&P)"
+msgstr "预比较插件(&P)"
 
 msgid "Apply Pre&differ..."
-msgstr "使用预处理插件(&D)"
+msgstr "使用预比较插件(&D)"
 
 msgid "&Transform with editor script..."
 msgstr "用编辑器脚本转换(&T)"
@@ -926,10 +926,10 @@ msgid "&Select..."
 msgstr "选择(&S)..."
 
 msgid "Prediffer Settings"
-msgstr "设置预处理器"
+msgstr "设置预比较插件"
 
 msgid "G&o to Diff"
-msgstr "转到差异(&O)"
+msgstr "转到差异处(&O)"
 
 msgid "&No Moved Blocks"
 msgstr "不显示移动的区块(&N)"
@@ -1657,10 +1657,10 @@ msgid "Which type of filter do you want to create?"
 msgstr "您要创建哪种过滤器？"
 
 msgid "Shared Filter (for all users on this machine)"
-msgstr "共享过滤器 (适用于本机所有用户)"
+msgstr "共享滤镜 (适用于本机所有用户)"
 
 msgid "Private Filter (only for current user)"
-msgstr "私有过滤器 (仅为当前用户)"
+msgstr "私有滤镜 (仅限当前用户)"
 
 msgid "Archive Support"
 msgstr "压缩文件支持"
@@ -2216,10 +2216,10 @@ msgid "Extension"
 msgstr "扩展名"
 
 msgid "Message"
-msgstr ""
+msgstr "消息"
 
 msgid "Answer"
-msgstr ""
+msgstr "你的选择"
 
 msgid "Item"
 msgstr "条目"
@@ -3946,49 +3946,49 @@ msgid "Ignore Comments (C-Family Languages)"
 msgstr "忽略注释（C语言家族）"
 
 msgid "Ignore CSV Fields"
-msgstr "忽略CSV字段"
+msgstr "忽略 CSV 字段"
 
 msgid "Ignore TSV Fields"
-msgstr "忽略TSV字段"
+msgstr "忽略 TSV 字段"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "使用预比较置换滤镜"
 
 msgid "Prettify HTML"
-msgstr "格式化HTML"
+msgstr "格式化 HTML"
 
 msgid "Prettify JSON"
-msgstr "格式化JSON"
+msgstr "格式化 JSON"
 
 msgid "Prettify XML"
-msgstr "格式化XML"
+msgstr "格式化 XML"
 
 msgid "Prettify YAML"
-msgstr "格式化YAML"
+msgstr "格式化 YAML"
 
 msgid "Visualize Graphviz"
-msgstr "可视化Graphviz"
+msgstr "可视化 Graphviz"
 
 msgid "Query CSV Data..."
-msgstr "查询CSV数据..."
+msgstr "查询 CSV 数据..."
 
 msgid "Query TSV Data..."
-msgstr "查询TSV数据..."
+msgstr "查询 TSV 数据..."
 
 msgid "Query JSON Data..."
-msgstr "查询JSON数据..."
+msgstr "查询 JSON 数据..."
 
 msgid "Query YAML Data..."
-msgstr "查询YAML数据..."
+msgstr "查询 YAML 数据..."
 
 msgid "Validate HTML"
-msgstr "验证HTML"
+msgstr "验证 HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr "反汇编JVM字节码"
+msgstr "反汇编 JVM 字节码"
 
 msgid "Disassemble IL Code"
-msgstr "反汇编IL代码"
+msgstr "反汇编 IL 代码"
 
 msgid "Disassemble Native Code"
 msgstr "反汇编本地代码"
@@ -4005,116 +4005,116 @@ msgid "Specify plugin arguments"
 msgstr "指定插件参数"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "变大写"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "变小写"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "删除重复行"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "清点重复行"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "行排序（升序）"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "行排序（降序）"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "反转列"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "反转行"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "文本替换。\r\n用法： Replace [-i] [-e] FIND REPLACE\r\n  FIND    - 查找的文本\r\n  REPLACE - 替换的文本\r\n  -i - 忽略大小写 (只用于 -e)\r\n  -e - 将指定文本视为正则表达式"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "应用滤镜命令. \r\n用法: ExecFilterCommand COMMAND\r\n  COMMAND - 要执行的命令。 命令中的 %1 将替换为文件名。"
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "分割符选择。 \r\n用法: Tokenize PATTERNS\r\n  PATTERNS - 用于分割的正则表达式。 (e.g. [^\\w]+)"
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "删除首尾空格"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "选择一些列。\r\n用法： SelectColumns RANGES\r\n   或： SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - 要选择的列范围列表。（例如 -3,5-10,30-）\r\n  PATTERNS - 正则表达式\r\n  -v - 选择不匹配的列\r\n  -i - 忽略大小写\r\n  -g - 启用全局变量\r\n  -e - 用 PATTERNS 匹配"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "选择一些行.\r\n用法： SelectLines RANGES\r\n   或： SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - 要选择的行范围列表。 （例如 -3,5-10,30-）\r\n  PATTERNS - 正则表达式\r\n  -v - 选择不匹配的行\r\n  -i - 忽略大小写\r\n  -e - 用 PATTERNS 匹配"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "用 tidy-html5 来美化 HTML。 \r\n参数： 发送给 tidy 的命令选项。"
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "用 jq 命令来美化 JSON。\r\n参数： 发送给 jq 的滤镜或命令选项。"
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "用 tidy-html5 来美化 XML。 \r\n参数： 发送给 tidy 的命令选项。"
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "用 jq 命令来美化 YAML。\r\n参数： 发送给 jq 的滤镜或命令选项。"
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz可视化。 \r\n参数： 发送给 dot 的命令选项。"
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "用 q 命令查询 CSV。\r\n参数： 发送给 q 命令的 SQL 语句或命令选项。"
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "用 q 命令查询 TSV。\r\n参数： 发送给 q 命令的 SQL 语句或命令选项。"
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "用 jq 命令查询 JSON。\r\n参数： 发送给 jq 命令的滤镜或命令选项。"
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "用 yq 命令查询 YAML。\r\n参数： 发送给 yq 命令的滤镜或命令选项。"
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "用 tidy-html5 来验证 HTML。 \r\n参数： 发送给 tidy 的命令选项。"
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "用 javap 来反汇编 JVM 字节码。 \r\n参数： 发送给 javap 的命令选项。"
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "用 ildasm 反汇编 IL 代码。 \r\n参数： 发送给 ildasm 的命令选项。"
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "用 dumpbin 反汇编本地代码。 \r\n参数： 发送给 dumpbin 的命令选项。"
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "用 Apache Tika 解包常规文件内容。 \r\n参数： 发送给 tika-app.jar 的命令选项。"
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "用 GnuWin32 Patch for Windows 打补丁"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "显示 MS Excel 文件的文本内容"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "显示 MS PowerPoint 文件的文本内容"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "显示 MS Visio 文件的文本内容"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "显示 MS Word 文件的文本内容"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "忽略一些列 - 忽略名称为插件名称或参数的列"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "这个插件忽略在 C, C++, PHP 和 JavaScript 文件中的 (//... and /* ... */) 注释行。"
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "忽略一些字段 - 忽略名称为插件名称或参数的字段"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "预比较行过滤器"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "用于上下文菜单的基本文本功能"
