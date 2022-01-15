@@ -165,14 +165,14 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeEditView)
 	public:
-	virtual void OnInitialUpdate();
+	virtual void OnInitialUpdate() override;
 	protected:
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
-	virtual void OnBeginPrinting (CDC * pDC, CPrintInfo * pInfo);
-	virtual void OnEndPrinting (CDC * pDC, CPrintInfo * pInfo);
-	virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
+	virtual BOOL PreTranslateMessage(MSG* pMsg) override;
+	virtual void OnBeginPrinting (CDC * pDC, CPrintInfo * pInfo) override;
+	virtual void OnEndPrinting (CDC * pDC, CPrintInfo * pInfo) override;
+	virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo) override;
 	//}}AFX_VIRTUAL
 
 // Implementation
