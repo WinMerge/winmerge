@@ -271,7 +271,7 @@ private:
 
 // Implementation in MergeDocEncoding.cpp
 public:
-	bool DoFileEncodingDialog();
+	bool DoFileEncodingDialog(int pane = -1);
 // End MergeDocEncoding.cpp
 
 // Implementation

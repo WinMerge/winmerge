@@ -4251,7 +4251,7 @@ void CMergeEditView::OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult)
 		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_EDIT_WMGOTO);
 		break;
 	case 1:
-		pDoc->GetView(0, pane)->PostMessage(WM_COMMAND, ID_FILE_ENCODING);
+		pDoc->DoFileEncodingDialog(pane);
 		break;
 	case 2:
 	{
