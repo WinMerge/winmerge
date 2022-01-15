@@ -917,7 +917,7 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 		while (py2 < pen2 && isSafeWhitespace(*py2))
 			py2 = pbeg2 + pIterCharBegin2->next();
 		if ((pen1 < pbeg1 + len1 - 1 || pen2 < pbeg2 + len2 -1)
-			&& (!len1 || !len2 || pbeg1[len1] != pbeg2[len2]))
+			&& (pbeg1[len1] != pbeg2[len2]))
 		{
 			// mismatched broken multibyte ends
 		}
