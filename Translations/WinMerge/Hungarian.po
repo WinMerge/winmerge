@@ -4853,4 +4853,4 @@ msgid "Basic text functions for the context menu"
 msgstr "Alapvető szöveges funkciók a helyi menühöz"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Szűrő alkalmazva"
