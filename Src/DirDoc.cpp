@@ -738,6 +738,13 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	}	
 }
 
+/**
+ * @brief A string to display as a tooltip for MDITabbar
+ */
+CString CDirDoc::GetTooltipString() const
+{
+	return CMergeFrameCommon::GetTooltipString(m_pCtxt->GetNormalizedPaths(), m_strDesc, nullptr, nullptr).c_str();
+}
 
 /**
  * @brief Checks if current folders are opened from archive file.

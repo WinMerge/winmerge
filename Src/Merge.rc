@@ -4006,6 +4006,11 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION47 "Basic text functions for the context menu"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_FILTER_APPLIED      "Filter applied"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

@@ -4228,3 +4228,6 @@ msgstr "比較前処理置換フィルター"
 
 msgid "Basic text functions for the context menu"
 msgstr "基本的なテキスト処理"
+
+msgid "Filter applied"
+msgstr "フィルタ適用"

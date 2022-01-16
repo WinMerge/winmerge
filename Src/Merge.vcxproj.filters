@@ -1310,6 +1310,9 @@
     <ClInclude Include="DirItemIterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common\IMDITab.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

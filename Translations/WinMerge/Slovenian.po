@@ -4183,3 +4183,6 @@ msgstr ""
 
 msgid "Basic text functions for the context menu"
 msgstr ""
+
+msgid "Filter applied"
+msgstr ""

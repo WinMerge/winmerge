@@ -477,6 +477,14 @@ bool CHexMergeDoc::CloseNow()
 }
 
 /**
+ * @brief A string to display as a tooltip for MDITabbar 
+ */
+CString CHexMergeDoc::GetTooltipString() const
+{
+	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr).c_str();
+}
+
+/**
 * @brief Load one file
 */
 HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc)

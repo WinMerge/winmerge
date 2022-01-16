@@ -65,6 +65,7 @@ public:
 	int GetFileCount() const override { return m_filePaths.GetSize(); }
 	String GetPath(int pane) const override { return m_filePaths[pane]; }
 	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }
+	CString GetTooltipString() const override;
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;

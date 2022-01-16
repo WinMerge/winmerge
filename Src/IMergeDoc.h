@@ -1,12 +1,13 @@
 #pragma once
 
 #include "UnicodeString.h"
+#include "IMDITab.h"
 
 class CDirDoc;
 class PackingInfo;
 class PrediffingInfo;
 
-struct IMergeDoc
+struct IMergeDoc : public IMDITab
 {
 	enum class FileChange
 	{

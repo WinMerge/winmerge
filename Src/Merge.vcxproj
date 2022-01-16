@@ -1419,6 +1419,7 @@
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
+    <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\Shell.h" />
     <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />

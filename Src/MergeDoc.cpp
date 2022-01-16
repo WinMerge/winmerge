@@ -254,7 +254,7 @@ void CMergeDoc::SetPrediffer(const PrediffingInfo * infoPrediffer)
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 }
 
-void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
+void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer) const
 {
 	m_diffWrapper.GetPrediffer(infoPrediffer);
 }
@@ -2823,6 +2823,16 @@ bool CMergeDoc::CloseNow()
 
 	GetParentFrame()->DestroyWindow();
 	return true;
+}
+
+/**
+ * @brief A string to display as a tooltip for MDITabbar
+ */
+CString CMergeDoc::GetTooltipString() const
+{
+	PrediffingInfo infoPrediffer;
+	GetPrediffer(&infoPrediffer);
+	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer, m_nTrivialDiffs > 0).c_str();
 }
 
 /**

@@ -4973,3 +4973,6 @@ msgstr "Filtre de pré-comparaison de ligne"
 
 msgid "Basic text functions for the context menu"
 msgstr "Intitulé simplifié pour les fonctions du menu contextuel"
+
+msgid "Filter applied"
+msgstr ""

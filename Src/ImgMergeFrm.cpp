@@ -1286,6 +1286,14 @@ bool CImgMergeFrame::CloseNow()
 }
 
 /**
+ * @brief A string to display as a tooltip for MDITabbar
+ */
+CString CImgMergeFrame::GetTooltipString() const
+{
+	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr).c_str();
+}
+
+/**
  * @brief Update any resources necessary after a GUI language change
  */
 void CImgMergeFrame::UpdateResources()

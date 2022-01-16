@@ -183,7 +183,7 @@ public:
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; }
 	void SetUnpacker(const PackingInfo * infoUnpacker) override;
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
-	void GetPrediffer(PrediffingInfo * infoPrediffer);
+	void GetPrediffer(PrediffingInfo * infoPrediffer) const;
 	const PrediffingInfo *GetPrediffer() const override;
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
@@ -196,6 +196,7 @@ public:
 	int GetFileCount() const override { return m_filePaths.GetSize(); }
 	String GetPath(int pane) const override { return m_filePaths[pane]; } 
 	bool GetReadOnly(int pane) const override { return m_ptBuf[pane]->m_bReadOnly; }
+	CString GetTooltipString() const override;
 	void SwapFiles(int nFromIndex, int nToIndex);
 
 	CMergeEditView * GetView(int group, int buffer) const { return m_pView[group][buffer]; }

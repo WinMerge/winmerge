@@ -16,6 +16,7 @@
 #include "PluginManager.h"
 #include "FileFilterHelper.h"
 #include "DirCmpReport.h"
+#include "IMDITab.h"
 
 class CDirView;
 struct IMergeDoc;
@@ -36,7 +37,7 @@ struct FileLocation;
  * This class also has compare statistics which are updated during compare.
  * GUI calls this class to operate with results.
  */
-class CDirDoc : public CDocument
+class CDirDoc : public CDocument, public IMDITab
 {
 protected:
 	CDirDoc();           // protected constructor used by dynamic creation
@@ -59,6 +60,7 @@ public:
 	public:
 	virtual void Serialize(CArchive& ar);   // overridden for document i/o
 	virtual void SetTitle(LPCTSTR lpszTitle);
+	CString GetTooltipString() const;
 	protected:
 	virtual BOOL OnNewDocument();
 	virtual BOOL SaveModified();

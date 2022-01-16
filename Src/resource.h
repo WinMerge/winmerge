@@ -1641,6 +1641,7 @@
 #define IDS_L2MNEXT                     44504
 #define IDS_R2MNEXT                     44505
 #define IDS_ALL_MIDDLE                  44506
+#define IDS_FILTER_APPLIED              44507
 
 // Next default values for new objects
 // 
