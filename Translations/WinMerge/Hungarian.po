@@ -4320,7 +4320,7 @@ msgid "Suggested plugins"
 msgstr "Javasolt bővítmények"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Minden bővítmény"
 
 #, c-format
 msgid "Private Build: %1"
