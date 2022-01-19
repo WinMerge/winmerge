@@ -3221,7 +3221,7 @@ msgstr ""
 msgid "Suggested plugins"
 msgstr ""
 
-msgid "Other plugins"
+msgid "All plugins"
 msgstr ""
 
 #, c-format
