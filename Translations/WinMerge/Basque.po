@@ -4162,9 +4162,8 @@ msgstr "Ez aurrezberd (normala)"
 msgid "Suggested plugins"
 msgstr "Iradokitutako pluginak"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Beste pluginak"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

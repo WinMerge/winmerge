@@ -4133,9 +4133,8 @@ msgstr "Нема дефинисаног поређења (уобичајено)"
 msgid "Suggested plugins"
 msgstr "Препоручени додаци"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Остали додаци"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

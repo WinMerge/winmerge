@@ -3229,8 +3229,8 @@ msgstr "Без предсравнения (обычно)"
 msgid "Suggested plugins"
 msgstr "Предлагаемые плагины"
 
-msgid "Other plugins"
-msgstr "Другие плагины"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

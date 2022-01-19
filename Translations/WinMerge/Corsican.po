@@ -3707,8 +3707,8 @@ msgstr "Nisunu pre-paragone (nurmale)"
 msgid "Suggested plugins"
 msgstr "Moduli d’estensione cunsigliati"
 
-msgid "Other plugins"
-msgstr "Altri moduli d’estensione"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

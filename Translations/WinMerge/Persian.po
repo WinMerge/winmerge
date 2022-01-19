@@ -4204,9 +4204,8 @@ msgstr " بدون پيش فرق گذار - عادي "
 msgid "Suggested plugins"
 msgstr " افزايه هاي پيشنهادي "
 
-#, c-format
-msgid "Other plugins"
-msgstr " ساير افزايه ها "
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

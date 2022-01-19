@@ -4199,9 +4199,8 @@ msgstr "Ingen prediffer (normal)"
 msgid "Suggested plugins"
 msgstr "Anbefalede plugins"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Andre plugins"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

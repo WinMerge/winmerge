@@ -4092,9 +4092,8 @@ msgstr "No prediferencia (normal)"
 msgid "Suggested plugins"
 msgstr "Connectors suggerits"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Altres connectors"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

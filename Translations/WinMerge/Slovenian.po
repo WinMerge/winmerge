@@ -3669,8 +3669,8 @@ msgstr "Brez predpregleda razlik (običajno)"
 msgid "Suggested plugins"
 msgstr "Priporočeni vtičniki"
 
-msgid "Other plugins"
-msgstr "Drugi vtičniki"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

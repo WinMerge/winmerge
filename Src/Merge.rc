@@ -3704,7 +3704,7 @@ BEGIN
     IDS_UNPACK_AUTO         "The adapted unpacker is applied to both files (one file only needs the extension)."
     IDS_NO_PREDIFFER        "No prediffer (normal)"
     IDS_SUGGESTED_PLUGINS   "Suggested plugins"
-    IDS_NOT_SUGGESTED_PLUGINS "Other plugins"
+    IDS_NOT_SUGGESTED_PLUGINS "All plugins"
 END
 
 // HELP MENU

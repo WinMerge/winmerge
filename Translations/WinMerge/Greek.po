@@ -4139,9 +4139,8 @@ msgstr "Χωρίς προεπεξεργασία διαφορών (Κανονικ
 msgid "Suggested plugins"
 msgstr "Προτεινόμενα Αρθρώματα"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Άλλα αρθρώματα"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

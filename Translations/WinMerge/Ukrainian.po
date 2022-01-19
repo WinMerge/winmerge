@@ -4161,9 +4161,8 @@ msgstr "Без попереднього порівняння"
 msgid "Suggested plugins"
 msgstr "Рекомендовані доповнення"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Інші доповнення"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

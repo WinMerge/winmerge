@@ -4318,9 +4318,8 @@ msgstr "Sen precomparación (normal)"
 msgid "Suggested plugins"
 msgstr "Complementos recomendados"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Outros complementos"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

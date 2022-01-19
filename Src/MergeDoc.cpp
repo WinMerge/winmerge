@@ -3718,7 +3718,7 @@ HMENU CMergeDoc::createPrediffersSubmenu(HMENU hMenu)
 	// build the menu : second part, others plugins
 	// title
 	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 
 	String lastPluginName;
 	String errorMessage;

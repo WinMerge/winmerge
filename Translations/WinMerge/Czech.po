@@ -4094,9 +4094,8 @@ msgstr ""
 msgid "Suggested plugins"
 msgstr "Navržené pluginy"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Ostatní pluginy"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

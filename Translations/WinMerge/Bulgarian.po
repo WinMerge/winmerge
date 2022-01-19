@@ -3657,8 +3657,8 @@ msgstr ""
 msgid "Suggested plugins"
 msgstr "Предложена добавка"
 
-msgid "Other plugins"
-msgstr "Други добавки"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

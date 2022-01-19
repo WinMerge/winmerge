@@ -3607,8 +3607,8 @@ msgstr "Nessun prediffer (normale)"
 msgid "Suggested plugins"
 msgstr "Plugin consigliate"
 
-msgid "Other plugins"
-msgstr "Altri plugin"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

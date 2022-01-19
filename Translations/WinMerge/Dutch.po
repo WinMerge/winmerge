@@ -3654,8 +3654,8 @@ msgstr "Geen voorvergelijking (normaal)"
 msgid "Suggested plugins"
 msgstr "Voorgestelde plugins"
 
-msgid "Other plugins"
-msgstr "Andere plugins"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

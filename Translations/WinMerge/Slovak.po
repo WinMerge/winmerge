@@ -3625,8 +3625,8 @@ msgstr "Bez predspracovania (bežné)"
 msgid "Suggested plugins"
 msgstr "Odporúčané rozšírenia"
 
-msgid "Other plugins"
-msgstr "Iné rozšírenia"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

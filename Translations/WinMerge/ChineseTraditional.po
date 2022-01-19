@@ -4330,9 +4330,8 @@ msgstr "不要先行處理器 (常態)"
 msgid "Suggested plugins"
 msgstr "建議的外掛程式"
 
-#, c-format
-msgid "Other plugins"
-msgstr "其他外掛程式"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

@@ -3078,7 +3078,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	else
 	{
 		pMenu->AppendMenu(MF_SEPARATOR, 0);
-		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 	}
 
 	std::vector<String> processTypes;

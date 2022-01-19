@@ -4161,9 +4161,8 @@ msgstr "Bez dodataka (uobičajeno)"
 msgid "Suggested plugins"
 msgstr "Preporučljivi dodaci"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Ostali dodaci"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

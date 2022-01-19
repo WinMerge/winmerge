@@ -3671,8 +3671,8 @@ msgstr "Ön farklılaştırıcı yok (normal)"
 msgid "Suggested plugins"
 msgstr "Önerilen eklentiler"
 
-msgid "Other plugins"
-msgstr "Diğer eklentiler"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

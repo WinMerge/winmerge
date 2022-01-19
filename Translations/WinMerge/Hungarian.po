@@ -4319,9 +4319,8 @@ msgstr "Nincs elővizsgálat (normál)"
 msgid "Suggested plugins"
 msgstr "Javasolt bővítmények"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Egyéb bővítmények"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

@@ -4251,9 +4251,8 @@ msgstr "Ei esivertailua (normaali)"
 msgid "Suggested plugins"
 msgstr "Suositellut lisäosat"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Muut lisäosat"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

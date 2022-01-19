@@ -3228,8 +3228,8 @@ msgstr "Bez porównywania (normalne)"
 msgid "Suggested plugins"
 msgstr "Sugerowane wtyczki"
 
-msgid "Other plugins"
-msgstr "Pozostałe wtyczki"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

@@ -4323,9 +4323,8 @@ msgstr "Prediffer 없음 (보통)"
 msgid "Suggested plugins"
 msgstr "추천 플러그인"
 
-#, c-format
-msgid "Other plugins"
-msgstr "다른 플러그인"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

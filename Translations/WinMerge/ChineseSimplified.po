@@ -3604,8 +3604,8 @@ msgstr "不使用预处理器 (标准)"
 msgid "Suggested plugins"
 msgstr "推荐的插件"
 
-msgid "Other plugins"
-msgstr "其他插件"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

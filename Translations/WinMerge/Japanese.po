@@ -3600,8 +3600,8 @@ msgstr "比較前処理プラグインを使用しない (標準)"
 msgid "Suggested plugins"
 msgstr "関連するプラグイン"
 
-msgid "Other plugins"
-msgstr "その他のプラグイン"
+msgid "All plugins"
+msgstr "すべてのプラグイン"
 
 #, c-format
 msgid "Private Build: %1"

@@ -4140,9 +4140,8 @@ msgstr "Nu folosi prediferenţiatorul (normal)"
 msgid "Suggested plugins"
 msgstr "Plug-in-uri recomandate"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Alte plug-in-uri"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

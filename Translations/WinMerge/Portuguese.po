@@ -3599,8 +3599,8 @@ msgstr "Não pré-diferenciar (normal)"
 msgid "Suggested plugins"
 msgstr "Plugins sugeridos"
 
-msgid "Other plugins"
-msgstr "Outros plugins"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

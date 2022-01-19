@@ -3600,8 +3600,8 @@ msgstr "Ingen PreDiffer (standard)"
 msgid "Suggested plugins"
 msgstr "Föreslagna tillägg"
 
-msgid "Other plugins"
-msgstr "Andra tillägg"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

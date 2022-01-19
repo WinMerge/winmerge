@@ -3568,8 +3568,8 @@ msgstr "لا اختلافات مسبقة (عادي)"
 msgid "Suggested plugins"
 msgstr "الإضافات المقترحة"
 
-msgid "Other plugins"
-msgstr "الإضافات الأخرى"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"

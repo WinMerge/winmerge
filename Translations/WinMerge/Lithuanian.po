@@ -3227,8 +3227,8 @@ msgstr "Nėra parengėjo (normalu)"
 msgid "Suggested plugins"
 msgstr "Siūlomi papildiniai"
 
-msgid "Other plugins"
-msgstr "Kiti papildiniai"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
