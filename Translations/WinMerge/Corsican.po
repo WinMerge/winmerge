@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-16 09:06+0000\n"
-"PO-Revision-Date: 2022-01-16\n"
+"POT-Creation-Date: 2022-01-19 12:46+0000\n"
+"PO-Revision-Date: 2022-01-19\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/"
 "Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
@@ -3708,7 +3708,7 @@ msgid "Suggested plugins"
 msgstr "Moduli d’estensione cunsigliati"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Tutti i moduli d’estensione"
 
 #, c-format
 msgid "Private Build: %1"
@@ -3993,7 +3993,7 @@ msgid "Decompilation"
 msgstr "Decumpilazione"
 
 msgid "&Others"
-msgstr "&Altri"
+msgstr "&L’altri moduli"
 
 msgid "Make Uppercase"
 msgstr "Mette in maiuscula"
