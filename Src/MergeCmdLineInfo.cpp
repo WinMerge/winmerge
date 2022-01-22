@@ -127,6 +127,7 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR* q)
 	, m_bNoPrefs(false)
 	, m_nCodepage(0)
 	, m_bSelfCompare(false)
+	, m_bClipboardCompare(false)
 	, m_bNewCompare(false)
 	, m_dwLeftFlags(FFILEOPEN_NONE)
 	, m_dwMiddleFlags(FFILEOPEN_NONE)
@@ -316,6 +317,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		{
 			// -self-compare means compare a specified file with a copy of the file
 			m_bSelfCompare = true;
+		}
+		else if (param == _T("clipboard-compare"))
+		{
+			// -clipboard-compare means to compare the two most recent contents of the clipboard history.
+			m_bClipboardCompare = true;
 		}
 		else if (param == _T("new"))
 		{

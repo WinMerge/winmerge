@@ -74,6 +74,7 @@ public:
 	int  m_nCodepage;  /**< Codepage. */
 	bool m_bNoPrefs; /**< Do not load or remember options (preferences) */   
 	bool m_bSelfCompare; /**< Compares the specified file with a copy of the file */
+	bool m_bClipboardCompare; /**< Compare text or bitmaps in the clipboard history */
 	bool m_bNewCompare; /**< Show a new blank window */
 	bool m_bEnableExitCode; /**< Returns the comparison result as a process exit code */
 	int m_nLineIndex; /**< Line number to jump after loading files */

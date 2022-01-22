@@ -3737,3 +3737,16 @@ msgstr "Pagrindinės kontekstinio meniu teksto funkcijos"
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""

@@ -35,6 +35,13 @@ namespace ClipboardHistory
 			return pTempFile;
 		}
 
+		String GetClipboardText()
+		{
+			String text;
+			GetFromClipboard(text, nullptr);
+			return text;
+		}
+
 #ifdef _WIN64
 		std::shared_ptr<TempFile> CreateTempBitmapFile(const DataPackageView& dataPackageView)
 		{
@@ -60,49 +67,58 @@ namespace ClipboardHistory
 		{
 			std::vector<Item> result;
 #ifdef _WIN64
-			auto historyItems = Clipboard::GetHistoryItemsAsync().get();
-			auto items = historyItems.Items();
-			for (unsigned int i = 0; i < num; ++i)
+			try
 			{
-				result.emplace_back();
-				auto& item = result.back();
-				if (i < items.Size())
+				auto historyItems = Clipboard::GetHistoryItemsAsync().get();
+				auto items = historyItems.Items();
+				for (unsigned int i = 0; i < num; ++i)
 				{
-					try
+					result.emplace_back();
+					auto& item = result.back();
+					if (i < items.Size())
 					{
-						auto dataPackageView = items.GetAt(i).Content();
-						item.timestamp = winrt::clock::to_time_t(items.GetAt(i).Timestamp());
-						if (dataPackageView.Contains(StandardDataFormats::Text()))
+						try
 						{
-							item.pTextTempFile = CreateTempTextFile(dataPackageView.GetTextAsync().get().c_str());
+							auto dataPackageView = items.GetAt(i).Content();
+							item.timestamp = winrt::clock::to_time_t(items.GetAt(i).Timestamp());
+							if (dataPackageView.Contains(StandardDataFormats::Text()))
+							{
+								item.pTextTempFile = CreateTempTextFile(dataPackageView.GetTextAsync().get().c_str());
+							}
+							if (dataPackageView.Contains(StandardDataFormats::Bitmap()))
+							{
+								item.pBitmapTempFile = CreateTempBitmapFile(dataPackageView);
+							}
+							if (!item.pTextTempFile && !item.pBitmapTempFile)
+							{
+								item.pTextTempFile = CreateTempTextFile(_T(""));
+							}
 						}
-						if (dataPackageView.Contains(StandardDataFormats::Bitmap()))
+						catch (const winrt::hresult_error& e)
 						{
-							item.pBitmapTempFile = CreateTempBitmapFile(dataPackageView);
+							item.pTextTempFile = CreateTempTextFile(e.message().c_str());
 						}
-						if (!item.pTextTempFile && !item.pBitmapTempFile)
-						{
-							item.pTextTempFile = CreateTempTextFile(_T("Windows Clipboard History is disabled or empty."));
-						}
-					}
-					catch (const winrt::hresult_error& e)
-					{
-						item.pTextTempFile = CreateTempTextFile(e.message().c_str());
-					}
-				}
-				else
-				{
-					if (i == 0)
-					{
-						String text;
-						GetFromClipboard(text, nullptr);
-						time(&item.timestamp);
-						item.pTextTempFile = CreateTempTextFile(text);
 					}
 					else
 					{
-						item.pTextTempFile = CreateTempTextFile(_T("Windows Clipboard History is disabled or empty."));
+						if (i == 0)
+							time(&item.timestamp);
+						item.pTextTempFile = CreateTempTextFile(i == 0 ?
+								GetClipboardText() :
+								(!Clipboard::IsHistoryEnabled() ? _("Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button.") : _T("")));
 					}
+				}
+			}
+			catch (const winrt::hresult_error&)
+			{
+				for (unsigned int i = 0; i < num; ++i)
+				{
+					result.emplace_back();
+					auto& item = result.back();
+					if (i == 0)
+						time(&item.timestamp);
+					item.pTextTempFile = CreateTempTextFile(
+						i == 0 ? GetClipboardText() : _("This system does not support clipboard history."));
 				}
 			}
 #else
@@ -111,16 +127,9 @@ namespace ClipboardHistory
 				result.emplace_back();
 				auto& item = result.back();
 				if (i == 0)
-				{
-					String text;
-					GetFromClipboard(text, nullptr);
 					time(&item.timestamp);
-					item.pTextTempFile = CreateTempTextFile(text);
-				}
-				else
-				{
-					item.pTextTempFile = CreateTempTextFile(_T("WinMerge 32bit version cannot access Windows Clipboard History"));
-				}
+				item.pTextTempFile = CreateTempTextFile(
+					i == 0 ? GetClipboardText() : _("The 32-bit version of WinMerge does not support Clipboard Compare"));
 			}
 #endif
 			return result;
@@ -135,56 +144,3 @@ namespace ClipboardHistory
 		return task.Get();
 	}
 }
-
-/*
-#include <windows.applicationmodel.datatransfer.h>
-#include "WinRTUtils.h"
-using namespace Microsoft::WRL;
-using namespace Microsoft::WRL::Wrappers;
-using namespace ABI::Windows::Foundation;
-using namespace ABI::Windows::ApplicationModel::DataTransfer;
-
-HRESULT GetClipboardHistoryItems(__FIVectorView_1_Windows__CApplicationModel__CDataTransfer__CClipboardHistoryItem** ppItems)
-{
-	if (!WinRTUtils::RoGetActivationFactory)
-		return E_NOTIMPL;
-	ComPtr<IClipboardStatics2> pClipboardStatics2;
-	HRESULT hr = WinRTUtils::RoGetActivationFactory(
-		HStringReference(RuntimeClass_Windows_ApplicationModel_DataTransfer_Clipboard).Get(),
-		IID_PPV_ARGS(&pClipboardStatics2));
-	if (FAILED(hr))
-		return hr;
-	ComPtr<IAsyncOperation<ClipboardHistoryItemsResult *>> pAsync;
-	hr = pClipboardStatics2->GetHistoryItemsAsync(&pAsync);
-	if (FAILED(hr))
-		return hr;
-	ComPtr<IClipboardHistoryItemsResult> pClipboardHistoryItemsResult;
-	WinRTUtils::await(pAsync.Get(),
-		static_cast<IClipboardHistoryItemsResult**>(&pClipboardHistoryItemsResult));
-	return pClipboardHistoryItemsResult->get_Items(ppItems);
-}
-
-		WinRTUtils::load();
-		ComPtr<__FIVectorView_1_Windows__CApplicationModel__CDataTransfer__CClipboardHistoryItem> pItems;
-		if (SUCCEEDED(GetClipboardHistoryItems(&pItems)))
-		{
-			unsigned int size = 0;
-			pItems->get_Size(&size);
-			for (unsigned int i = 0; i < size; ++i)
-			{
-				ComPtr<IClipboardHistoryItem> pItem;
-				ComPtr<IDataPackageView> pDataPackageView;
-				ComPtr<IAsyncOperation<HSTRING>> pAsyncGetTextResult;
-				HString text;
-
-				pItems->GetAt(i, &pItem);
-				pItem->get_Content(&pDataPackageView);
-	//			pDataPackageView->get_AvailableFormats()
-				pDataPackageView->GetTextAsync(&pAsyncGetTextResult);
-				WinRTUtils::await(pAsyncGetTextResult.Get(), text.GetAddressOf());
-				int a = 0;
-			}
-		}
-		WinRTUtils::unload();
-		*/
-

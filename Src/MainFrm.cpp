@@ -68,6 +68,7 @@
 #include "Shell.h"
 #include "WindowsManagerDialog.h"
 #include "ClipboardHistory.h"
+#include "locality.h"
 
 using std::vector;
 using boost::begin;
@@ -2547,19 +2548,21 @@ void CMainFrame::OnFileOpenClipboard()
 	DoOpenClipboard();
 }
 
-bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const String strDesc[] /*= nullptr*/,
-	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
-	const OpenFileParams* pOpenParams /*= nullptr*/)
+bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwFlags[] /*= nullptr*/,
+	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
+	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
 {
 	auto historyItems = ClipboardHistory::GetItems(nBuffers);
 
 	String strDesc2[3];
 	for (int i = 0; i < nBuffers; ++i)
 	{
+		int64_t t = historyItems[nBuffers - i - 1].timestamp;
+		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+		strutils::replace(timestr, _T("\n"), _T(""));
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
-			strDesc[i] : strutils::format(_("Clipboard at %s"), _tctime(&historyItems[nBuffers - i - 1].timestamp));
+			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
 	}
-	DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
 	PathContext tmpPathContext;
 	for (int i = 0; i < nBuffers; ++i)
 	{

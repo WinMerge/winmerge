@@ -1643,6 +1643,10 @@
 #define IDS_R2MNEXT                     44505
 #define IDS_ALL_MIDDLE                  44506
 #define IDS_FILTER_APPLIED              44507
+#define IDS_CLIPBOARDHISTORY_TIME       44510
+#define IDS_CLIPBOARDHISTORY_DISABLED   44511
+#define IDS_CLIPBOARDHISTORY_NOT_SUPPORTED1 44512
+#define IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 44513
 
 // Next default values for new objects
 // 
