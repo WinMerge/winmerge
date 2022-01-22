@@ -276,6 +276,9 @@ msgstr "&O باز کردن ... \tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "&t باز کردن پرونده تعارض ... "
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "&j باز کردن (پروژه) طرح ... \tCtrl+J"
@@ -298,6 +301,10 @@ msgstr "&x خروج \tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&E ويرايش "
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -680,10 +687,6 @@ msgstr "&t برش \tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&C رونوشت برداري \tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

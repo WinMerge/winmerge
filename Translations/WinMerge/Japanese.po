@@ -236,6 +236,9 @@ msgstr "開く(&O)...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "コンフリクト ファイルを開く(&T)..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "プロジェクトを開く(&J)...\tCtrl+J"
 
@@ -253,6 +256,9 @@ msgstr "終了(&X)\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "編集(&E)"
+
+msgid "&Paste\tCtrl+V"
+msgstr "貼り付け(&P)\tCtrl+V"
 
 msgid "&Options..."
 msgstr "設定(&O)..."
@@ -547,9 +553,6 @@ msgstr "切り取り(&T)\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "貼り付け(&P)\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"

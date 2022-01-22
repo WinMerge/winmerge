@@ -273,6 +273,9 @@ msgstr "Avaa...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Avaa ristiriitatiedosto..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Avaa pro&jekti...\tCtrl+J"
@@ -295,6 +298,10 @@ msgstr "Poistu\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "Muokkaa"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "Liitä\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -677,10 +684,6 @@ msgstr "Leikkaa\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Kopioi\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "Liitä\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

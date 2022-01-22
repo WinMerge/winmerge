@@ -276,6 +276,9 @@ msgstr "&Відкрити...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Відкрити файл з кон&фліктами..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Відкрити &проект...\tCtrl+J"
@@ -298,6 +301,10 @@ msgstr "В&ихід\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Редакція"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Вставити\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -680,10 +687,6 @@ msgstr "Ви&різати\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Копіювати\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Вставити\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

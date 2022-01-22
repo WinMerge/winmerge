@@ -275,6 +275,9 @@ msgstr "&Otevřít...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr ""
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Otevřít pro&jekt...\tCtrl+J"
@@ -297,6 +300,10 @@ msgstr "&Konec\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "Úpr&avy"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Vložit\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -679,10 +686,6 @@ msgstr "Vyj&mout\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopírovat\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Vložit\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

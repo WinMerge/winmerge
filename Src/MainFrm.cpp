@@ -67,6 +67,7 @@
 #include "TFile.h"
 #include "Shell.h"
 #include "WindowsManagerDialog.h"
+#include "ClipboardHistory.h"
 
 using std::vector;
 using boost::begin;
@@ -223,6 +224,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
+	ON_COMMAND(ID_FILE_OPENCLIPBOARD, OnFileOpenClipboard)
+	ON_COMMAND(ID_EDIT_PASTE, OnFileOpenClipboard)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
@@ -2534,6 +2537,45 @@ void CMainFrame::OnFileOpenConflict()
 	{
 		DoOpenConflict(conflictFile);
 	}
+}
+
+/**
+ * @brief Called when user selects File/Open Clipboard
+ */
+void CMainFrame::OnFileOpenClipboard()
+{
+	DoOpenClipboard();
+}
+
+bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const String strDesc[] /*= nullptr*/,
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenFileParams* pOpenParams /*= nullptr*/)
+{
+	auto historyItems = ClipboardHistory::GetItems(nBuffers);
+
+	String strDesc2[3];
+	for (int i = 0; i < nBuffers; ++i)
+	{
+		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
+			strDesc[i] : strutils::format(_("Clipboard at %s"), _tctime(&historyItems[nBuffers - i - 1].timestamp));
+	}
+	DWORD dwFlags[3] = {FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+	PathContext tmpPathContext;
+	for (int i = 0; i < nBuffers; ++i)
+	{
+		auto item = historyItems[nBuffers - i - 1];
+		if (item.pTextTempFile)
+		{
+			tmpPathContext.SetPath(i, item.pTextTempFile->GetPath());
+			m_tempFiles.push_back(item.pTextTempFile);
+		}
+		else if (item.pBitmapTempFile)
+		{
+			tmpPathContext.SetPath(i, item.pBitmapTempFile->GetPath());
+			m_tempFiles.push_back(item.pBitmapTempFile);
+		}
+	}
+	return DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
 }
 
 /**

@@ -236,6 +236,9 @@ msgstr "&Apri...\tCtrl+A"
 msgid "Open Conflic&t File..."
 msgstr "Apr&i file conflittuale..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Apri pro&getto...\tCtrl+J"
 
@@ -253,6 +256,9 @@ msgstr "&Esci\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Modifica"
+
+msgid "&Paste\tCtrl+V"
+msgstr "I&ncolla\tCtrl+V"
 
 msgid "&Options..."
 msgstr "Op&zioni..."
@@ -547,9 +553,6 @@ msgstr "&Taglia\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "C&opia\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "I&ncolla\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Tro&va...\tCtrl+F"

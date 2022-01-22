@@ -238,6 +238,9 @@ msgstr "&Otvoriť...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Otvoriť kon&fliktný súbor..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "O&tvoriť projekt...\tCtrl+J"
 
@@ -255,6 +258,9 @@ msgstr "&Koniec\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Upraviť"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Prilepiť\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Nastavenia..."
@@ -549,9 +555,6 @@ msgstr "Vy&strihnúť\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopírovať\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&Prilepiť\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Hľadať...\tCtrl+F"

@@ -239,6 +239,9 @@ msgstr "&فتح...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "ف&تح ملف التعارض..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "فتح مشروع...\tCtrl+J"
 
@@ -256,6 +259,9 @@ msgstr "&خروج\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&تحرير"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&لصق"
 
 msgid "&Options..."
 msgstr "خ&يارات..."
@@ -550,9 +556,6 @@ msgstr "&قص"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&نسخ"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&لصق"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&بحث"

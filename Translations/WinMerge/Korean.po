@@ -282,6 +282,9 @@ msgstr "열기(&O)...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "충돌 파일 열기(&T)..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "프로젝트 열기(&J)...\tCtrl+J"
@@ -304,6 +307,10 @@ msgstr "종료(&X)\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "편집(&E)"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "붙여넣기(&P)\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -686,10 +693,6 @@ msgstr "잘라내기(&T)\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "복사(&C)\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "붙여넣기(&P)\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

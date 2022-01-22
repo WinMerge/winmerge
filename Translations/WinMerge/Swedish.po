@@ -239,6 +239,9 @@ msgstr "Öppna...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Öppna konfliktfil..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Öppna projekt...\tCtrl+J"
 
@@ -256,6 +259,9 @@ msgstr "Avsluta\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "Redigera"
+
+msgid "&Paste\tCtrl+V"
+msgstr "Klistra in\tCtrl+V"
 
 msgid "&Options..."
 msgstr "Alternativ..."
@@ -550,9 +556,6 @@ msgstr "Klipp ut\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "Kopiera\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "Klistra in\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Sök...\tCtrl+F"

@@ -142,6 +142,9 @@ public:
 		const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenFileParams *pOpenParams = nullptr);
 	bool DoOpenConflict(const String& conflictFile, const String strDesc[] = nullptr, bool checked = false);
+	bool DoOpenClipboard(UINT nID = 0, int nBuffers = 2, const String strDesc[] = nullptr,
+		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenFileParams* pOpenParams = nullptr);
 	bool DoSelfCompare(UINT nID, const String& file, const String strDesc[] = nullptr,
 		const PackingInfo* infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenFileParams* pOpenParams = nullptr);
@@ -332,6 +335,7 @@ protected:
 	afx_msg void OnHelpReleasenotes();
 	afx_msg void OnHelpTranslations();
 	afx_msg void OnFileOpenConflict();
+	afx_msg void OnFileOpenClipboard();
 	afx_msg void OnPluginsList();
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);

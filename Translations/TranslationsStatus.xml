@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2022-01-19</update>
+  <update>2022-01-22</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
       <file>Arabic.po</file>
       <update>2019-12-30</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>901</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>293</untranslated>
+        <untranslated>294</untranslated>
       </strings>
     </translation>
     <translation>
@@ -18,10 +18,10 @@
       <file>Basque.po</file>
       <update>2013-02-03</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>639</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>555</untranslated>
+        <untranslated>556</untranslated>
       </strings>
       <translators>
         <translator>
@@ -35,10 +35,10 @@
       <file>Brazilian.po</file>
       <update>2021-08-09</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1086</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>108</untranslated>
+        <untranslated>109</untranslated>
       </strings>
       <translators>
         <translator>
@@ -60,10 +60,10 @@
       <file>Bulgarian.po</file>
       <update>2021-06-28</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>966</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>228</untranslated>
+        <untranslated>229</untranslated>
       </strings>
       <translators>
         <translator>
@@ -85,10 +85,10 @@
       <file>Catalan.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>566</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>628</untranslated>
+        <untranslated>629</untranslated>
       </strings>
       <translators>
         <translator>
@@ -102,10 +102,10 @@
       <file>ChineseSimplified.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1184</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>10</untranslated>
+        <untranslated>11</untranslated>
       </strings>
       <translators>
         <translator>
@@ -131,10 +131,10 @@
       <file>ChineseTraditional.po</file>
       <update>2021-12-11</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1091</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>103</untranslated>
+        <untranslated>104</untranslated>
       </strings>
       <translators>
         <translator>
@@ -158,10 +158,10 @@
     <translation>
       <language>Corsican</language>
       <file>Corsican.po</file>
-      <update>2022-01-16</update>
+      <update>2022-01-19</update>
       <strings>
-        <count>1194</count>
-        <translated>1193</translated>
+        <count>1195</count>
+        <translated>1194</translated>
         <fuzzy>0</fuzzy>
         <untranslated>1</untranslated>
       </strings>
@@ -179,10 +179,10 @@
       <file>Croatian.po</file>
       <update>2009-02-13</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>631</translated>
         <fuzzy>1</fuzzy>
-        <untranslated>562</untranslated>
+        <untranslated>563</untranslated>
       </strings>
       <translators>
         <translator>
@@ -196,10 +196,10 @@
       <file>Czech.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>605</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>589</untranslated>
+        <untranslated>590</untranslated>
       </strings>
       <translators>
         <translator>
@@ -217,10 +217,10 @@
       <file>Danish.po</file>
       <update>2013-01-13</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>639</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>555</untranslated>
+        <untranslated>556</untranslated>
       </strings>
       <translators>
         <translator>
@@ -238,10 +238,10 @@
       <file>Dutch.po</file>
       <update>2018-09-06</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>1</untranslated>
+        <untranslated>2</untranslated>
       </strings>
       <translators>
         <translator>
@@ -256,10 +256,10 @@
     <translation template="1">
       <language>English</language>
       <file>English.pot</file>
-      <update>2022-01-19</update>
+      <update>2022-01-22</update>
       <strings>
-        <count>1195</count>
-        <translated>1195</translated>
+        <count>1196</count>
+        <translated>1196</translated>
         <fuzzy>0</fuzzy>
         <untranslated>0</untranslated>
       </strings>
@@ -269,10 +269,10 @@
       <file>Finnish.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>901</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>293</untranslated>
+        <untranslated>294</untranslated>
       </strings>
     </translation>
     <translation>
@@ -280,10 +280,10 @@
       <file>French.po</file>
       <update>2022-01-09</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>1</untranslated>
+        <untranslated>2</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -317,10 +317,10 @@
       <file>Galician.po</file>
       <update>2021-12-18</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1136</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>58</untranslated>
+        <untranslated>59</untranslated>
       </strings>
       <translators>
         <translator>
@@ -335,10 +335,10 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2022-01-05</update>
+      <update>2022-01-19</update>
       <strings>
-        <count>1194</count>
-        <translated>1193</translated>
+        <count>1195</count>
+        <translated>1194</translated>
         <fuzzy>0</fuzzy>
         <untranslated>1</untranslated>
       </strings>
@@ -362,10 +362,10 @@
       <file>Greek.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>604</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>590</untranslated>
+        <untranslated>591</untranslated>
       </strings>
       <translators>
         <translator>
@@ -379,8 +379,8 @@
       <file>Hungarian.po</file>
       <update>2021-03-15</update>
       <strings>
-        <count>1194</count>
-        <translated>1193</translated>
+        <count>1195</count>
+        <translated>1194</translated>
         <fuzzy>0</fuzzy>
         <untranslated>1</untranslated>
       </strings>
@@ -404,10 +404,10 @@
       <file>Italian.po</file>
       <update>2021-08-09</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>991</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>203</untranslated>
+        <untranslated>204</untranslated>
       </strings>
       <translators>
         <translator>
@@ -433,8 +433,8 @@
       <file>Japanese.po</file>
       <update>2021-11-21</update>
       <strings>
-        <count>1194</count>
-        <translated>1193</translated>
+        <count>1195</count>
+        <translated>1194</translated>
         <fuzzy>0</fuzzy>
         <untranslated>1</untranslated>
       </strings>
@@ -450,10 +450,10 @@
       <file>Korean.po</file>
       <update>2021-12-10</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1034</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>160</untranslated>
+        <untranslated>161</untranslated>
       </strings>
       <translators>
         <translator>
@@ -489,10 +489,10 @@
     <translation>
       <language>Lithuanian</language>
       <file>Lithuanian.po</file>
-      <update>2022-01-11</update>
+      <update>2022-01-20</update>
       <strings>
-        <count>1194</count>
-        <translated>1152</translated>
+        <count>1195</count>
+        <translated>1153</translated>
         <fuzzy>0</fuzzy>
         <untranslated>42</untranslated>
       </strings>
@@ -508,10 +508,10 @@
       <file>Norwegian.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>632</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>562</untranslated>
+        <untranslated>563</untranslated>
       </strings>
       <translators>
         <translator>
@@ -529,10 +529,10 @@
       <file>Persian.po</file>
       <update>2013-08-15</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>642</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>552</untranslated>
+        <untranslated>553</untranslated>
       </strings>
       <translators>
         <translator>
@@ -546,10 +546,10 @@
       <file>Polish.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1110</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>84</untranslated>
+        <untranslated>85</untranslated>
       </strings>
       <translators>
         <translator>
@@ -577,10 +577,10 @@
       <file>Portuguese.po</file>
       <update>2022-01-15</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1193</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>1</untranslated>
+        <untranslated>2</untranslated>
       </strings>
       <translators>
         <translator>
@@ -600,10 +600,10 @@
       <file>Romanian.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>561</translated>
         <fuzzy>44</fuzzy>
-        <untranslated>589</untranslated>
+        <untranslated>590</untranslated>
       </strings>
       <translators>
         <translator>
@@ -617,10 +617,10 @@
       <file>Russian.po</file>
       <update>2021-10-28</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1092</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>102</untranslated>
+        <untranslated>103</untranslated>
       </strings>
       <translators>
         <translator>
@@ -650,10 +650,10 @@
       <file>Serbian.po</file>
       <update></update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>632</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>562</untranslated>
+        <untranslated>563</untranslated>
       </strings>
       <translators>
         <translator>
@@ -667,10 +667,10 @@
       <file>Sinhala.po</file>
       <update>2010-12-12</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>566</translated>
         <fuzzy>59</fuzzy>
-        <untranslated>569</untranslated>
+        <untranslated>570</untranslated>
       </strings>
       <translators>
         <translator>
@@ -683,10 +683,10 @@
       <file>Slovak.po</file>
       <update>2020-11-02</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>974</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>220</untranslated>
+        <untranslated>221</untranslated>
       </strings>
       <translators>
         <translator>
@@ -708,10 +708,10 @@
       <file>Slovenian.po</file>
       <update>2022-01-03</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1155</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>39</untranslated>
+        <untranslated>40</untranslated>
       </strings>
       <translators>
         <translator>
@@ -733,10 +733,10 @@
       <file>Spanish.po</file>
       <update>2020-04-03</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>870</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>324</untranslated>
+        <untranslated>325</untranslated>
       </strings>
       <translators>
         <translator>
@@ -762,10 +762,10 @@
       <file>Swedish.po</file>
       <update>2021-09-15</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1094</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>100</untranslated>
+        <untranslated>101</untranslated>
       </strings>
       <translators>
         <translator>
@@ -791,10 +791,10 @@
       <file>Turkish.po</file>
       <update>2021-12-21</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>1136</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>58</untranslated>
+        <untranslated>59</untranslated>
       </strings>
       <translators>
         <translator>
@@ -816,10 +816,10 @@
       <file>Ukrainian.po</file>
       <update>2009-06-13</update>
       <strings>
-        <count>1194</count>
+        <count>1195</count>
         <translated>637</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>557</untranslated>
+        <untranslated>558</untranslated>
       </strings>
       <translators>
         <translator>

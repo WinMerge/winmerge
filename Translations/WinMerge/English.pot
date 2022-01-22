@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-16 09:06+0000\n"
+"POT-Creation-Date: 2022-01-22 08:16+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -232,6 +232,9 @@ msgstr ""
 msgid "Open Conflic&t File..."
 msgstr ""
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr ""
 
@@ -248,6 +251,9 @@ msgid "E&xit\tCtrl+Q"
 msgstr ""
 
 msgid "&Edit"
+msgstr ""
+
+msgid "&Paste\tCtrl+V"
 msgstr ""
 
 msgid "&Options..."
@@ -542,9 +548,6 @@ msgid "Cu&t\tCtrl+X"
 msgstr ""
 
 msgid "&Copy\tCtrl+C"
-msgstr ""
-
-msgid "&Paste\tCtrl+V"
 msgstr ""
 
 msgid "F&ind...\tCtrl+F"

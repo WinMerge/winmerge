@@ -275,6 +275,9 @@ msgstr "&විවෘත කිරීම\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Open Conflic&t File..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "ව්‍යාපෘතිය විවෘත කිරීම\tCtrl+J"
@@ -297,6 +300,10 @@ msgstr " නික්මීම\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&සංස්කරණය කරන්න"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "ඇලවීම\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -679,10 +686,6 @@ msgstr "වෙන් කීරීම\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "පිටපත් කිරීම\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "ඇලවීම\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

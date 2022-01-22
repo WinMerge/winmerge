@@ -230,6 +230,7 @@ BEGIN
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -244,6 +245,8 @@ BEGIN
     END
     POPUP "&Edit"
     BEGIN
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
     END
     POPUP "&View"
@@ -319,6 +322,7 @@ BEGIN
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -477,6 +481,7 @@ BEGIN
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT

@@ -275,6 +275,9 @@ msgstr "D&eschide...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Deschide fişierul cu conflic&te..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Deschide pro&iectul...\tCtrl+J"
@@ -297,6 +300,10 @@ msgstr "Ieşir&e\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Editare"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "Li&peşte\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -679,10 +686,6 @@ msgstr "&Taie\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Copie\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "Li&peşte\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

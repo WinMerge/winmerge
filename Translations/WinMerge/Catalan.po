@@ -274,6 +274,9 @@ msgstr "&Obre...\tControl+O"
 msgid "Open Conflic&t File..."
 msgstr ""
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Obre un &projecte...\tControl+J"
@@ -296,6 +299,10 @@ msgstr "&Surt\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "E&dita"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "Engan&xa\tControl+V"
 
 #, c-format
 msgid "&Options..."
@@ -678,10 +685,6 @@ msgstr "&Retalla\tControl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "C&opia\tControl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "Engan&xa\tControl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

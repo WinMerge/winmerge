@@ -278,6 +278,9 @@ msgstr "&Ireki...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Ire&ki Gatazka Agiria..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Ireki  Egit&asmoa...\tCtrl+J"
@@ -300,6 +303,10 @@ msgstr "Ir&ten\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Editatu"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Itsatsi\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -682,10 +689,6 @@ msgstr "&Ebaki\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiatu\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Itsatsi\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"

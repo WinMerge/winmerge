@@ -239,6 +239,9 @@ msgstr "打开(&O)...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "打开冲突文件(&T)..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "打开工程(J)...\tCtrl+J"
 
@@ -256,6 +259,9 @@ msgstr "退出(&X)\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "编辑(&E)"
+
+msgid "&Paste\tCtrl+V"
+msgstr "粘贴(&P)\tCtrl+V"
 
 msgid "&Options..."
 msgstr "选项(&O)..."
@@ -550,9 +556,6 @@ msgstr "剪切(&T)\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "复制(&C)\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "粘贴(&P)\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "查找(&I)...\tCtrl+F"

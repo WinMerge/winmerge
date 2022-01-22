@@ -238,6 +238,9 @@ msgstr "&Odpri... \tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Od&pri datoteko v sporu..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Odpri pro&jekt... \tCtrl+J"
 
@@ -255,6 +258,9 @@ msgstr "I&zhod\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Uredi"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Prilepi\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Možnosti..."
@@ -549,9 +555,6 @@ msgstr "Iz&reži\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&Prilepi\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Najdi... \tCtrl+F"

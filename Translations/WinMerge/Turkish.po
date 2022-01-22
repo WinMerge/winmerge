@@ -238,6 +238,9 @@ msgstr "&Aç...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "&Fark dosyası aç..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Pro&je dosyası aç...\tCtrl+J"
 
@@ -255,6 +258,9 @@ msgstr "Çı&kış\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "Düz&enle"
+
+msgid "&Paste\tCtrl+V"
+msgstr "Ya&pıştır\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Ayarlar..."
@@ -549,9 +555,6 @@ msgstr "K&es\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopyala\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "Ya&pıştır\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Bul...\tCtrl+F"

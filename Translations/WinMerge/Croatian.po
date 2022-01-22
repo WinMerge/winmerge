@@ -275,6 +275,9 @@ msgstr "&Usporedi...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Otvori &konfliktne..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Otvori &usporedbu...\tCtrl+J"
@@ -297,6 +300,10 @@ msgstr "I&zlaz\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Uređivanje"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Zalijepi\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -679,10 +686,6 @@ msgstr "Od&reži\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Zalijepi\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
