@@ -1,3 +1,9 @@
+/** 
+ * @file  ClipboardHistory.cpp
+ *
+ * @brief Implementation for Clipboard history functions
+ */
+
 #include "StdAfx.h"
 #include "ClipboardHistory.h"
 #include "ClipBoard.h"

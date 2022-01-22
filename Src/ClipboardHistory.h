@@ -1,3 +1,8 @@
+/** 
+ * @file  ClipboardHistory.h
+ *
+ * @brief Declaration file for Clipboard history functions
+ */
 #pragma once
 
 #include "UnicodeString.h"
