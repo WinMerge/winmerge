@@ -2559,7 +2559,6 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwF
 	{
 		int64_t t = historyItems[nBuffers - i - 1].timestamp;
 		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
-		strutils::replace(timestr, _T("\n"), _T(""));
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
 			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
 	}
