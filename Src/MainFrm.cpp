@@ -2555,12 +2555,14 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwF
 	auto historyItems = ClipboardHistory::GetItems(nBuffers);
 
 	String strDesc2[3];
+	DWORD dwFlags2[3];
 	for (int i = 0; i < nBuffers; ++i)
 	{
 		int64_t t = historyItems[nBuffers - i - 1].timestamp;
 		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
 			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
+		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
 	}
 	for (int i = 0; i < 2; ++i)
 	{
@@ -2580,7 +2582,7 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwF
 			}
 		}
 		if (tmpPathContext.GetSize() == nBuffers)
-			DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+			DoFileOpen(nID, &tmpPathContext, dwFlags2, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
 	}
 	return true;
 }
