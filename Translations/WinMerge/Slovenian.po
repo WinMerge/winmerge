@@ -4070,119 +4070,119 @@ msgid "Specify plugin arguments"
 msgstr "Določi argumente vtičnika"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Naredi znake z velikimi črkami"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Naredi znake z malimi črkami"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Odstrani podvojene vrstice"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Preštej podvojene vrstice"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Razvrsti vrstice naraščajoče"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Razvrsti vrstice padajoče"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Obrni stolpce"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Obrni vrstice"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Zamenjaj besedilo z drugim besedilom.\r\nUporaba: Zamenjaj [-i] [-e] FIND REPLACE\r\n  FIND    - besedilo za iskanje\r\n  REPLACE - besedilo za zamenjavo\r\n  -i - prezri velike in male črke (samo za -e)\r\n  -e - obravnavaj navedeno besedilo kot regularni izraz"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "Uporabi ukaz za filtriranje. \r\nUporaba: ExecFilterCommand COMMAND\r\n  COMMAND - ukaz za izvedbo. %1 v ukazu je nadomeščen z imenom datoteke."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Tokeniziraj izbor. \r\nUporaba: Tokenize PATTERNS\r\n  PATTERNS - regularni izraz za tokenizacijo. (npr. [^\\w]+)"
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Odsekaj presledke"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Izberite nekaj stolpcev.\r\nUporaba: SelectColumns RANGES\r\n ali: SelectColumns [-v] [-i] [-g] -e VZORCI\r\n  RAZPONI - seznam obsegov stolpcev za izbiro. (npr. -3,5-10,30-)\r\n VZORCI - regularni izraz\r\n  -v - izberi neujemajoče se stolpce\r\n  -i - prezri velike in male črke\r\n  -g - omogoči globalno zastavico\r\n  -e - uporabi VZORCE za ujemanje"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Izberite nekaj vrstic.\r\nUporaba: SelectLines RANGES\r\n ali: SelectLines [-v] [-i] -e VZORCI\r\n  RAZPONI - seznam obsegov vrstic za izbiro. (npr. -3,5-10,30-)\r\n  VZORCI - regularni izraz\r\n  -v - izberi neujemajoče se vrstice\r\n  -i - prezri velike in male črke\r\n  -e - uporabi VZORCE za ujemanje"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Lepši HTML s tidy-html5. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza tidy."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "Lepši JSON z ukazom jq. \r\nArgumenti: možnosti filtra ali ukazne vrstice so s prehodom ukaza jq."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Lepši XML s tidy-html5. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza tidy."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "Lepši YAML z ukazom yq. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza yq."
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz vizualizator. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza dot"
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "Poizvedovalec CSV z ukazom q. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza q."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "Poizvedovalec TSV z ukazom q. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza q."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "Poizvedovalec JSON z ukazom jq. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza jq."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "Poizvedovalec YAML z ukazom yq. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza yq."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Preverjevalnik HTML s tidy-html5. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza tidy."
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "Razstavljalec bajtnih kod JVM z javap. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukazu javap."
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "IL razstavljalec z ildasm. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza ildasm."
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "Domači razstavljalnik kode z dumpbin. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza dumpbin."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "Razširjevalec splošne vsebine z Apache Tika. \r\nArgumenti: možnosti ukazne vrstice so s prehodom, posredovane v tika-app.jar."
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Uporabi popravek z uporabo popravka GnuWin32 za Windows"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS Excel"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS PowerPoint"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS Visio"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS Word"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Prezri nekatere stolpce – seznam prezrtih stolpcev iz imena vtičnika ali argumenta vtičnika"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "Vtičnik prezre komentarje (//... in /* ... */) v datotekah C, C++, PHP in JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Prezri nekatera polja – seznam prezrtih polj iz imena vtičnika ali argumenta vtičnika"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Filter vrstic Prediff"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Osnovne funkcije besedila za priročni meni"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filter je uporabljen"
