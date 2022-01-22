@@ -2562,22 +2562,27 @@ bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwF
 		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
 			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
 	}
-	PathContext tmpPathContext;
-	for (int i = 0; i < nBuffers; ++i)
+	for (int i = 0; i < 2; ++i)
 	{
-		auto item = historyItems[nBuffers - i - 1];
-		if (item.pTextTempFile)
+		PathContext tmpPathContext;
+		for (int pane = 0; pane < nBuffers; ++pane)
 		{
-			tmpPathContext.SetPath(i, item.pTextTempFile->GetPath());
-			m_tempFiles.push_back(item.pTextTempFile);
+			auto item = historyItems[nBuffers - pane - 1];
+			if (i == 0 && item.pBitmapTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pBitmapTempFile->GetPath());
+				m_tempFiles.push_back(item.pBitmapTempFile);
+			}
+			if (i == 1 && item.pTextTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pTextTempFile->GetPath());
+				m_tempFiles.push_back(item.pTextTempFile);
+			}
 		}
-		else if (item.pBitmapTempFile)
-		{
-			tmpPathContext.SetPath(i, item.pBitmapTempFile->GetPath());
-			m_tempFiles.push_back(item.pBitmapTempFile);
-		}
+		if (tmpPathContext.GetSize() == nBuffers)
+			DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
 	}
-	return DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+	return true;
 }
 
 /**
