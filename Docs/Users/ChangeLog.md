@@ -9,6 +9,7 @@
 
 ### File compare
 
+- BugFix: wm 2.16.16.0 crashes with file attached (#1101)
 - BugFix: Fix a problem that 'Encountered an improper argument' error occurs
     when a pane split by Window→Split menu item is unsplit by drag operation.
 - BugFix: Colors -> Differences -> Word Difference : Text color ignored (#1116)
