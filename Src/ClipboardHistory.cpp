@@ -10,7 +10,7 @@
 #include "Concurrent.h"
 #include "UniFile.h"
 
-#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>
+#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>)
 
 #include <winrt/windows.foundation.collections.h>
 #include <winrt/windows.applicationmodel.datatransfer.h>
@@ -48,7 +48,7 @@ namespace ClipboardHistory
 			return text;
 		}
 
-#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>
+#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>)
 		std::shared_ptr<TempFile> CreateTempBitmapFile(const DataPackageView& dataPackageView)
 		{
 			std::shared_ptr<TempFile> pTempFile(new TempFile());
@@ -72,7 +72,7 @@ namespace ClipboardHistory
 		std::vector<Item> GetItems(unsigned num)
 		{
 			std::vector<Item> result;
-#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>
+#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>)
 			try
 			{
 				auto historyItems = Clipboard::GetHistoryItemsAsync().get();
