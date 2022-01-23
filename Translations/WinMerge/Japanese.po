@@ -236,6 +236,9 @@ msgstr "開く(&O)...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "コンフリクト ファイルを開く(&T)..."
 
+msgid "Open C&lipboard"
+msgstr "クリップボードを開く(&L)"
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "プロジェクトを開く(&J)...\tCtrl+J"
 
@@ -253,6 +256,9 @@ msgstr "終了(&X)\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "編集(&E)"
+
+msgid "&Paste\tCtrl+V"
+msgstr "貼り付け(&P)\tCtrl+V"
 
 msgid "&Options..."
 msgstr "設定(&O)..."
@@ -547,9 +553,6 @@ msgstr "切り取り(&T)\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "コピー(&C)\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "貼り付け(&P)\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "検索(&I)...\tCtrl+F"
@@ -4231,3 +4234,16 @@ msgstr "基本的なテキスト処理"
 
 msgid "Filter applied"
 msgstr "フィルタ適用"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "クリップボード %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "クリップボード履歴が無効になっています。\r\nクリップボード履歴を有効にするには、Windowsロゴキー + Vを押下後、[有効にする]ボタンをクリックしてください。"
+
+msgid "This system does not support clipboard history."
+msgstr "このシステムではクリップボード履歴はサポートされていません。"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32bit版WinMergeではクリップボード比較はサポートされていません。"

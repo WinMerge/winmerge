@@ -238,6 +238,9 @@ msgstr "&Atverti...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Atver&ti konfliktų failą..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Atverti pro&jektą...\tCtrl+J"
 
@@ -255,6 +258,9 @@ msgstr "&Išeiti\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "R&edaguoti"
+
+msgid "&Paste\tCtrl+V"
+msgstr "Įter&pti\tCtrl+V"
 
 msgid "&Options..."
 msgstr "Nu&ostatos..."
@@ -549,9 +555,6 @@ msgstr "Iškirp&ti\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopijuoti\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "Įter&pti\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "R&asti...\tCtrl+F"
@@ -3734,3 +3737,16 @@ msgstr "Pagrindinės kontekstinio meniu teksto funkcijos"
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""

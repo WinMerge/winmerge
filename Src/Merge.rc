@@ -230,6 +230,7 @@ BEGIN
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -244,6 +245,8 @@ BEGIN
     END
     POPUP "&Edit"
     BEGIN
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
     END
     POPUP "&View"
@@ -319,6 +322,7 @@ BEGIN
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -477,6 +481,7 @@ BEGIN
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -4009,6 +4014,14 @@ END
 STRINGTABLE
 BEGIN
     IDS_FILTER_APPLIED      "Filter applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLIPBOARDHISTORY_TIME     "Clipboard at %s"
+    IDS_CLIPBOARDHISTORY_DISABLED "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED1 "This system does not support clipboard history."
+    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 "The 32-bit version of WinMerge does not support Clipboard Compare"
 END
 
 #endif    // English (United States) resources

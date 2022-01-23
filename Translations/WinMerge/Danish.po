@@ -276,6 +276,9 @@ msgstr "&Åben...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Åben konflik&tfil..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Åben pro&jekt...\tCtrl+J"
@@ -298,6 +301,10 @@ msgstr "&Afslut\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Rediger"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Indsæt\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -680,10 +687,6 @@ msgstr "&Klip\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Ko&pier\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Indsæt\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4723,4 +4726,17 @@ msgid "Basic text functions for the context menu"
 msgstr ""
 
 msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

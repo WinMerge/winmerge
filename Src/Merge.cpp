@@ -795,15 +795,20 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		}
 		else if (cmdInfo.m_Files.GetSize() == 0) // if there are no input args, we can check the display file dialog flag
 		{
-			if (!cmdInfo.m_bNewCompare)
+			if (cmdInfo.m_bNewCompare)
+			{
+				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), pOpenParams.get());
+			}
+			else if (cmdInfo.m_bClipboardCompare)
+			{
+				DWORD dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
+				bCompared = pMainFrame->DoOpenClipboard(nID, 2, dwFlags, strDesc, infoUnpacker.get(), infoPrediffer.get(), pOpenParams.get());
+			}
+			else
 			{
 				bool showFiles = m_pOptions->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
 				if (showFiles)
 					pMainFrame->DoFileOrFolderOpen();
-			}
-			else
-			{
-				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), pOpenParams.get());
 			}
 		}
 	}

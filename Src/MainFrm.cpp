@@ -67,6 +67,8 @@
 #include "TFile.h"
 #include "Shell.h"
 #include "WindowsManagerDialog.h"
+#include "ClipboardHistory.h"
+#include "locality.h"
 
 using std::vector;
 using boost::begin;
@@ -223,6 +225,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
+	ON_COMMAND(ID_FILE_OPENCLIPBOARD, OnFileOpenClipboard)
+	ON_COMMAND(ID_EDIT_PASTE, OnFileOpenClipboard)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
@@ -2534,6 +2538,53 @@ void CMainFrame::OnFileOpenConflict()
 	{
 		DoOpenConflict(conflictFile);
 	}
+}
+
+/**
+ * @brief Called when user selects File/Open Clipboard
+ */
+void CMainFrame::OnFileOpenClipboard()
+{
+	DoOpenClipboard();
+}
+
+bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwFlags[] /*= nullptr*/,
+	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
+	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+{
+	auto historyItems = ClipboardHistory::GetItems(nBuffers);
+
+	String strDesc2[3];
+	DWORD dwFlags2[3];
+	for (int i = 0; i < nBuffers; ++i)
+	{
+		int64_t t = historyItems[nBuffers - i - 1].timestamp;
+		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
+			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
+		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		PathContext tmpPathContext;
+		for (int pane = 0; pane < nBuffers; ++pane)
+		{
+			auto item = historyItems[nBuffers - pane - 1];
+			if (i == 0 && item.pBitmapTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pBitmapTempFile->GetPath());
+				m_tempFiles.push_back(item.pBitmapTempFile);
+			}
+			if (i == 1 && item.pTextTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pTextTempFile->GetPath());
+				m_tempFiles.push_back(item.pTextTempFile);
+			}
+		}
+		if (tmpPathContext.GetSize() == nBuffers)
+			DoFileOpen(nID, &tmpPathContext, dwFlags2, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+	}
+	return true;
 }
 
 /**

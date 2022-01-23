@@ -238,6 +238,9 @@ msgstr "&Odpri... \tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Od&pri datoteko v sporu..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Odpri pro&jekt... \tCtrl+J"
 
@@ -255,6 +258,9 @@ msgstr "I&zhod\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Uredi"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Prilepi\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Možnosti..."
@@ -549,9 +555,6 @@ msgstr "Iz&reži\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&Prilepi\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Najdi... \tCtrl+F"
@@ -4186,3 +4189,16 @@ msgstr "Osnovne funkcije besedila za priročni meni"
 
 msgid "Filter applied"
 msgstr "Filter je uporabljen"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""

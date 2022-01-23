@@ -277,6 +277,9 @@ msgstr "M&egnyitás...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Konfliktus fájl megnyitása..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Projekt megnyitása...\tCtrl+J"
@@ -299,6 +302,10 @@ msgstr "&Kilépés\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "S&zerkesztés"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -681,10 +688,6 @@ msgstr "&Kivágás\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Másolás\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4853,3 +4856,16 @@ msgstr "Alapvető szöveges funkciók a helyi menühöz"
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""

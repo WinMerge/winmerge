@@ -241,6 +241,9 @@ msgstr "A&pre…\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Apre u schedariu in &cunflittu…"
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Apre u prughje&ttu…\tCtrl+J"
 
@@ -258,6 +261,9 @@ msgstr "&Esce\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Mudificà"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Incullà\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Ozzioni…"
@@ -552,9 +558,6 @@ msgstr "&Taglià\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Cupià\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&Incullà\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "Ri&cercà…\tCtrl+F"
@@ -4323,3 +4326,16 @@ msgstr "Funzioni basiche di testu per u listinu cuntestuale"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
