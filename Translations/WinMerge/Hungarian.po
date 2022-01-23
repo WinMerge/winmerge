@@ -278,7 +278,7 @@ msgid "Open Conflic&t File..."
 msgstr "Konfliktus fájl megnyitása..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Vágólap megnyitása"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -4859,13 +4859,13 @@ msgstr "Szűrő alkalmazva"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Vágólap itt: %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
