@@ -1,4 +1,4 @@
-# WinMerge 2.16.17 Beta Release Notes
+# WinMerge 2.16.18 Release Notes
 
 - [About This Release](#about-this-release)
 - [What Is New in 2.16.18?](#what-is-new-in-21618)
@@ -56,6 +56,10 @@ Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/is
 - Make plugin descriptions translatable
 - Upgrade Apache Tika to 2.2.1
 
+### Command line
+
+- Added `/clipboard-compare` command line option
+
 ### Archive support
 
 - Update 7-Zip to 21.07
@@ -79,11 +83,11 @@ Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/is
   - Dutch (PR #1123)
   - French (PR #1121,#1122)
   - German (PR #1110,#1117,#1143)
-  - Hungarian (PR #1102,#1115,#1136,#1141)
+  - Hungarian (PR #1102,#1115,#1136,#1141,#1150)
   - Japanese
   - Lithuanian (PR #1124,#1144)
   - Portuguese (PR #1097,#1098,#1106,#1133,#1149)
-  - Slovenian (PR #1148)
+  - Slovenian (PR #1148,#1153)
   - Turkish (PR #1099)
 
 ### Internals
