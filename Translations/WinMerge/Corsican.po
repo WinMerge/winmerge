@@ -4329,7 +4329,7 @@ msgstr "Filtru appiecatu"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr "Preme’papei à %s"
+msgstr "Preme’papei di u %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr "A cronolugia di u preme’papei hè disattivata.\r\nPer attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
@@ -4338,4 +4338,4 @@ msgid "This system does not support clipboard history."
 msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di u preme’papei."
+msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
