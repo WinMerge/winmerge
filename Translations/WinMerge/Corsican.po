@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-19 12:46+0000\n"
-"PO-Revision-Date: 2022-01-19\n"
+"POT-Creation-Date: 2022-01-22 21:51+0000\n"
+"PO-Revision-Date: 2022-01-23\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/"
 "Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
@@ -242,7 +242,7 @@ msgid "Open Conflic&t File..."
 msgstr "Apre u schedariu in &cunflittu…"
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Apre u preme’pape&i"
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Apre u prughje&ttu…\tCtrl+J"
@@ -545,7 +545,7 @@ msgid "Re&load\tCtrl+F5"
 msgstr "&Ricaricà\tCtrl+F5"
 
 msgid "Reco&mpare As"
-msgstr "R&iparagunà cum’è"
+msgstr "Riparagunà cum’&è"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "&Disfà\tCtrl+Z"
@@ -4329,13 +4329,13 @@ msgstr "Filtru appiecatu"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Preme’papei à %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "A cronolugia di u preme’papei hè disattivata.\r\nPer attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di u preme’papei."
