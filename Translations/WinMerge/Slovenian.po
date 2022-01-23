@@ -4192,13 +4192,13 @@ msgstr "Filter je uporabljen"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Odložišče na %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "Zgodovina odložišča je onemogočena.\r\nZa omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ta sistem ne podpira zgodovine odložišča."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
