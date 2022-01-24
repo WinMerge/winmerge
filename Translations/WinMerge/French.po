@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-01-09 14:21+0100\n"
-"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
+"PO-Revision-Date: 2022-01-24 11:08+0100\n"
+"Last-Translator: Lolo S. <slolo2000 at hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -283,7 +283,7 @@ msgid "Open Conflic&t File..."
 msgstr "Ouvrir le fichier en conflit..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Ouvrir le &Presse-papiers"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -4330,7 +4330,7 @@ msgid "Suggested plugins"
 msgstr "Plugins suggérés"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Tous les plugins"
 
 #, c-format
 msgid "Private Build: %1"
@@ -4977,17 +4977,21 @@ msgid "Basic text functions for the context menu"
 msgstr "Intitulé simplifié pour les fonctions du menu contextuel"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Filtre appliqué"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Presse-papiers à %s"
 
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr ""
+"L'historique du presse-papiers est désactivé.\r\n"
+"Pour activer l'historique du presse-papiers, appuyez sur la touche de logo Windows + V, puis cliquez sur le bouton Activer."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ce système ne prend pas en charge l'historique du presse-papiers."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "La version 32 bits de WinMerge ne prend pas en charge la comparaison du presse-papiers"
