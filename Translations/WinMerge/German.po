@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-01-19 20:00+0200\n"
+"PO-Revision-Date: 2022-01-23 15:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -279,7 +279,7 @@ msgid "Open Conflic&t File..."
 msgstr "&Konfliktdatei öffnen..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Z&wischenablage öffnen"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -4480,13 +4480,13 @@ msgstr "Angewandter Filter"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Zwischenablage am %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie Windows+V und klicken dann auf die Schaltfläche 'Einschalten'."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
