@@ -79,10 +79,10 @@ Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/is
 
 - Translation updates:
   - Chinese Simplified (PR #1109,#1112,#1134)
-  - Corsican (PR #1103,#1119,#1137,#1142)
+  - Corsican (PR #1103,#1119,#1137,#1142,#1154)
   - Dutch (PR #1123)
-  - French (PR #1121,#1122)
-  - German (PR #1110,#1117,#1143)
+  - French (PR #1121,#1122,#1157)
+  - German (PR #1110,#1117,#1143,#1155)
   - Hungarian (PR #1102,#1115,#1136,#1141,#1150)
   - Japanese
   - Lithuanian (PR #1124,#1144)
