@@ -4,9 +4,6 @@
 # Translators:
 # * Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"

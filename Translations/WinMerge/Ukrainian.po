@@ -5,9 +5,6 @@
 # * Warrior <warr11r at rambler.ru>
 # * Vitaliy Stopchans'kyy <stopcha at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Ukrainian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -279,6 +276,9 @@ msgstr "&Відкрити...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Відкрити файл з кон&фліктами..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Відкрити &проект...\tCtrl+J"
@@ -301,6 +301,10 @@ msgstr "В&ихід\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Редакція"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Вставити\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -415,9 +419,6 @@ msgstr ""
 
 #, c-format
 msgid "&Translations"
-msgstr ""
-
-msgid "&Check For Updates"
 msgstr ""
 
 #, c-format
@@ -686,10 +687,6 @@ msgstr "Ви&різати\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Копіювати\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Вставити\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4167,9 +4164,8 @@ msgstr "Без попереднього порівняння"
 msgid "Suggested plugins"
 msgstr "Рекомендовані доповнення"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Інші доповнення"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4689,4 +4685,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

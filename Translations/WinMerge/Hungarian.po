@@ -6,9 +6,6 @@
 # * Mihalicza József <jmihalicza at gmail.com>
 # * Egyed Ferenc <efi99 at freemail.hu>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Hungarian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -280,6 +277,9 @@ msgstr "M&egnyitás...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Konfliktus fájl megnyitása..."
 
+msgid "Open C&lipboard"
+msgstr "Vágólap megnyitása"
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Projekt megnyitása...\tCtrl+J"
@@ -302,6 +302,10 @@ msgstr "&Kilépés\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "S&zerkesztés"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -417,9 +421,6 @@ msgstr "Változási jegyzék"
 #, c-format
 msgid "&Translations"
 msgstr "Fordítások"
-
-msgid "&Check For Updates"
-msgstr ""
 
 #, c-format
 msgid "C&onfiguration"
@@ -687,10 +688,6 @@ msgstr "&Kivágás\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Másolás\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Beillesztés\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -1889,7 +1886,7 @@ msgstr "Szerkesztés..."
 
 #, c-format
 msgid "Delete..."
-msgstr "Töröl..."
+msgstr "Törlés..."
 
 #, c-format
 msgid "Save modified files?"
@@ -4325,9 +4322,8 @@ msgstr "Nincs elővizsgálat (normál)"
 msgid "Suggested plugins"
 msgstr "Javasolt bővítmények"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Egyéb bővítmények"
+msgid "All plugins"
+msgstr "Minden bővítmény"
 
 #, c-format
 msgid "Private Build: %1"
@@ -4500,7 +4496,7 @@ msgstr "CD küszöbérték"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Beszúrés/Törlés érzékelés"
+msgstr "Beszúrás/Törlés érzékelés"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
@@ -4744,116 +4740,132 @@ msgid "Specify plugin arguments"
 msgstr "Bővítmény argumentumok megadása"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Nagybetűsítés"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Kisbetűsítés"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Duplikált sorok eltávolítása"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Duplikált sorok megszámolása"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Sorok növekvő sorrendbe"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Sorok csökkenő sorrendbe"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Oszlopok megfordítása"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Sorok megfordítása"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Szöveg cseréje egy másikra.\r\nHasználata: Replace [-i] [-e] FIND REPLACE\r\n  ahol FIND    - keresendő szöveg\r\n  REPLACE - új szöveg\r\n  -i - kis/nagybetű nem számít (csak ez -e)\r\n  -e - a megadott szöveget reguláris kifejezésként kezeli"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "Szűrőparancs alkalmazása  \r\nHasználata: ExecFilterCommand COMMAND\r\n  ahol COMMAND - a végrehajtandó parancs. %1 a a parancsban a fájlnévvel lesz helyettesítve."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Tokenizálás kijelölése. \r\nHasználat: Tokenize PATTERNS\r\n  ahol PATTERNS - reguláris kifejezés a tokenizáláshoz. (pl. [^\\w]+)"
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Szóközök levágása"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Oszlopok választása.\r\nHasználat: SelectColumns RANGES\r\n   vagy: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  ahol RANGES   - a kiválasztandó oszlopok. (pl. -3,5-10,30-)\r\n  PATTERNS - reguláris kifejezés\r\n  -v - nem egyező oszlopok választása\r\n  -i - kis/nagybetű nem számít\r\n  -g - globális jelölő engedélyezése\r\n  -e - PATTERNS használata az egyezéshez"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Sorok választása.\r\nHasználat: SelectLines RANGES\r\n   vagy: SelectLines [-v] [-i] [-g] -e PATTERNS\r\n  ahol RANGES   - a kiválasztandó sorok. (pl. -3,5-10,30-)\r\n  PATTERNS - reguláris kifejezés\r\n  -v - nem egyező sorok választása\r\n  -i - kis/nagybetű nem számít\r\n  -e - PATTERNS használata az egyezéshez"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML formázás tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfelelő parancssori opciók."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON formázás jq paranccsal. \r\nArgumentumok: A jq parancsnak megfelelő szűrő vagy parancssori opciók."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "XML formázás tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfelelő parancssori opciók."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML formázás yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz Vizualizátor.  \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "TSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON Lekérdező jq paranccsal. \r\nArgumentumok: A jq parancsnak megfelelő szűrő vagy parancssori opciók."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML Lekérdező yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML Validátor tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfelelő parancssori opciók."
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "JVM bytecode disassembler javap-vel. \r\nArgumentumok: A javap parancsnak megfelelő parancssori opciók."
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "IL disassembler ildasm-mal. \r\nArgumentumok: Az ildasm parancsnak megfelelő parancssori opciók."
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "Natív kód disassembler dumpbin-nel. \r\nArgumentumok: A dumpbin parancsnak megfelelő parancssori opciók."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "Általános tartalom kitömörítő Apach Tika-val  \r\nArgumentumok: A tika-app.jar-nak megfelelő parancssori opciók."
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Patchelés alkalmazása a GnuWin32 Patch for Windows segítségével"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "MS Excel fájlok szöveges tartalmának megjelenítése"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "MS PowerPoint fájlok szöveges tartalmának megjelenítése"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "MS Visio fájlok szöveges tartalmának megjelenítése"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "MS Word fájlok szöveges tartalmának megjelenítése"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Oszlopok figyelmen kívül hagyása – a figyelmen kívül hagyott oszlopok listája a beépülő modul nevéből vagy a beépülő modul argumentumából"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "A beépülő figyelmen kívül hagyja a megjegyzéseket (//... and /* ... */) C, C++, PHP és JavaScript fájlokban"
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Mezők figyelmen kívül hagyása – a figyelmen kívül hagyott mezők listája a beépülő modul nevéből vagy a beépülő modul argumentumából"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Elővizsgáló Sorszűrő"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Alapvető szöveges funkciók a helyi menühöz"
+
+msgid "Filter applied"
+msgstr "Szűrő alkalmazva"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Vágólap itt: %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
+
+msgid "This system does not support clipboard history."
+msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"

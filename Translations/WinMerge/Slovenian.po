@@ -5,15 +5,13 @@
 # * Iztok Osredkar <iztok.osredkar at institut-oko.si>
 # * Filip Komar <filip.komar at gmail.com>
 # * Jadran Rudec <jrudec@gmail.com>
-# ID line follows -- this is updated by SVN
-# $Id: Slovenian.po 7593 2013-01-21 04:13:16Z christianlist $
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2021-12-16 21:13+0100\n"
+"PO-Revision-Date: 2022-01-03 08:03+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -29,13 +27,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SLOVENIAN, SUBLANG_SLOVENIAN"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Kopiraj v srednjo"
 
 msgid "C&opy to Right"
 msgstr "Kopiraj v &desno"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Kopiraj iz srednje"
 
 msgid "Copy fro&m Right"
 msgstr "Kopiraj iz de&sne"
@@ -47,13 +45,13 @@ msgid "Copy &from Left"
 msgstr "Kopiraj iz l&eve"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice v srednjo"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopiraj izbrane vrstice na desno"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz desne"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopiraj izbrane vrstice z desne"
@@ -240,6 +238,9 @@ msgstr "&Odpri... \tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Od&pri datoteko v sporu..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Odpri pro&jekt... \tCtrl+J"
 
@@ -257,6 +258,9 @@ msgstr "I&zhod\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Uredi"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Prilepi\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Možnosti..."
@@ -344,9 +348,6 @@ msgstr "Opombe ob i&zdaji"
 
 msgid "&Translations"
 msgstr "P&revodi"
-
-msgid "&Check For Updates"
-msgstr ""
 
 msgid "C&onfiguration"
 msgstr "Nas&tavitve"
@@ -555,9 +556,6 @@ msgstr "Iz&reži\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
 
-msgid "&Paste\tCtrl+V"
-msgstr "&Prilepi\tCtrl+V"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "&Najdi... \tCtrl+F"
 
@@ -697,7 +695,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Samo prejšnja desna razlika\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopiraj iz &leve v"
 
 msgid "&Middle"
 msgstr "Sre&dnjo"
@@ -706,22 +704,22 @@ msgid "&Right"
 msgstr "&Desno"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Kopiraj iz &srednje v"
 
 msgid "&Left"
 msgstr "&Levo"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopiraj iz &sesne v"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz le&ve v"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz s&rednje v"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Kopiraj izbrane vrstice iz &desne v"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiraj iz leve\tAlt+Shift+Desno"
@@ -1923,10 +1921,10 @@ msgid "Ignore &Reparse Points"
 msgstr "P&rezri točke ponovne razčlenitve"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Prag za preklop na &hitro primerjavo (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
 msgid ""
 "\n"
@@ -2665,25 +2663,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Prelom na praznem znaku ali ločilu"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Kopiraj v s%rednjo\tAlt+Desno"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Kopiraj v s%rednjo\tAlt+Levo"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopiraj iz srednje\tAlt+Shift+Desno"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopiraj iz srednje\tAlt+Shift+Levo"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Kopiraj v sredino in naprej\tCtrl+Alt+Desno"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Kopiraj v srednjo in naprej\tCtrl+Alt+Levo"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Kopiraj vse v srednjo"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3674,8 +3672,8 @@ msgstr "Brez predpregleda razlik (običajno)"
 msgid "Suggested plugins"
 msgstr "Priporočeni vtičniki"
 
-msgid "Other plugins"
-msgstr "Drugi vtičniki"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4075,116 +4073,132 @@ msgid "Specify plugin arguments"
 msgstr "Določi argumente vtičnika"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Naredi znake z velikimi črkami"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Naredi znake z malimi črkami"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Odstrani podvojene vrstice"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Preštej podvojene vrstice"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Razvrsti vrstice naraščajoče"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Razvrsti vrstice padajoče"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Obrni stolpce"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Obrni vrstice"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Zamenjaj besedilo z drugim besedilom.\r\nUporaba: Zamenjaj [-i] [-e] FIND REPLACE\r\n  FIND    - besedilo za iskanje\r\n  REPLACE - besedilo za zamenjavo\r\n  -i - prezri velike in male črke (samo za -e)\r\n  -e - obravnavaj navedeno besedilo kot regularni izraz"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "Uporabi ukaz za filtriranje. \r\nUporaba: ExecFilterCommand COMMAND\r\n  COMMAND - ukaz za izvedbo. %1 v ukazu je nadomeščen z imenom datoteke."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Tokeniziraj izbor. \r\nUporaba: Tokenize PATTERNS\r\n  PATTERNS - regularni izraz za tokenizacijo. (npr. [^\\w]+)"
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Odsekaj presledke"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Izberite nekaj stolpcev.\r\nUporaba: SelectColumns RANGES\r\n ali: SelectColumns [-v] [-i] [-g] -e VZORCI\r\n  RAZPONI - seznam obsegov stolpcev za izbiro. (npr. -3,5-10,30-)\r\n VZORCI - regularni izraz\r\n  -v - izberi neujemajoče se stolpce\r\n  -i - prezri velike in male črke\r\n  -g - omogoči globalno zastavico\r\n  -e - uporabi VZORCE za ujemanje"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Izberite nekaj vrstic.\r\nUporaba: SelectLines RANGES\r\n ali: SelectLines [-v] [-i] -e VZORCI\r\n  RAZPONI - seznam obsegov vrstic za izbiro. (npr. -3,5-10,30-)\r\n  VZORCI - regularni izraz\r\n  -v - izberi neujemajoče se vrstice\r\n  -i - prezri velike in male črke\r\n  -e - uporabi VZORCE za ujemanje"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Lepši HTML s tidy-html5. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza tidy."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "Lepši JSON z ukazom jq. \r\nArgumenti: možnosti filtra ali ukazne vrstice so s prehodom ukaza jq."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Lepši XML s tidy-html5. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza tidy."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "Lepši YAML z ukazom yq. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza yq."
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz vizualizator. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza dot"
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "Poizvedovalec CSV z ukazom q. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza q."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "Poizvedovalec TSV z ukazom q. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza q."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "Poizvedovalec JSON z ukazom jq. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza jq."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "Poizvedovalec YAML z ukazom yq. \r\nArgumenti: stavek SQL ali možnosti ukazne vrstice so s prehodom ukaza yq."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Preverjevalnik HTML s tidy-html5. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza tidy."
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "Razstavljalec bajtnih kod JVM z javap. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukazu javap."
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "IL razstavljalec z ildasm. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza ildasm."
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "Domači razstavljalnik kode z dumpbin. \r\nArgumenti: možnosti ukazne vrstice so s prehodom ukaza dumpbin."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "Razširjevalec splošne vsebine z Apache Tika. \r\nArgumenti: možnosti ukazne vrstice so s prehodom, posredovane v tika-app.jar."
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Uporabi popravek z uporabo popravka GnuWin32 za Windows"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS Excel"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS PowerPoint"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS Visio"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "Prikaži besedilno vsebino datotek MS Word"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Prezri nekatere stolpce – seznam prezrtih stolpcev iz imena vtičnika ali argumenta vtičnika"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "Vtičnik prezre komentarje (//... in /* ... */) v datotekah C, C++, PHP in JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Prezri nekatera polja – seznam prezrtih polj iz imena vtičnika ali argumenta vtičnika"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Filter vrstic Prediff"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Osnovne funkcije besedila za priročni meni"
+
+msgid "Filter applied"
+msgstr "Filter je uporabljen"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Odložišče na %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Zgodovina odložišča je onemogočena.\r\nZa omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
+
+msgid "This system does not support clipboard history."
+msgstr "Ta sistem ne podpira zgodovine odložišča."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"

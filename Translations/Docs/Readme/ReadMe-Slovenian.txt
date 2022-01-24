@@ -16,7 +16,7 @@ Hiter zaèetek
 =============
 Èe želite izvedeti, kako izvajati osnovne operacije po namestitvi WinMerge, kliknite na
 Pomoè -> Pomoè za WinMerge in se pomaknite do teme 'Hitri zaèetek', ali pa pojdite na
-spletno razlièico na naslovu https://manual.winmerge.org/QuickStart.html.
+spletno razlièico na naslovu https://manual.winmerge.org/Quick_start.html.
 
 Pomoè za WinMerge
 =================

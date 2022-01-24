@@ -301,7 +301,6 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		bool standardflag = false;
 		bool selectedflag = false;
 		bool disableflag = false;
-		bool checkflag=false;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
 		int dy;
 		INT_PTR xoffset=-1;
@@ -347,7 +346,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			
 			// You need only Text highlight and thats what you get
 			
-			if(checkflag||standardflag||selectedflag||disableflag||(state&ODS_CHECKED)!=0)
+			if(standardflag||selectedflag||disableflag||(state&ODS_CHECKED)!=0)
 				rect2.SetRect(rect.left+m_iconX+4+BCMENU_GAP,rect.top,rect.right,rect.bottom);
 			pDC->FillRect (rect2,&brSelect);
 			
@@ -369,7 +368,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		dy = (rect.Height()-4-m_iconY)/2;
 		dy = dy<0 ? 0 : dy;
 		
-		if(checkflag||standardflag||selectedflag||disableflag){
+		if(standardflag||selectedflag||disableflag){
 			rect2.SetRect(rect.left+1,rect.top+1+dy,rect.left+m_iconX+3,
 				rect.top+m_iconY+3+dy);
 			pDC->Draw3dRect (rect2,clrBack,clrBack);
@@ -420,7 +419,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 				if(xoffset >= 0) m_AllImages.Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
 		}
-		if(xoffset<0 && (state&ODS_CHECKED)!=0 && !checkflag){
+		if(xoffset<0 && (state&ODS_CHECKED)!=0){
 			rect2.SetRect(rect.left+1,rect.top+2+dy,rect.left+m_iconX+1,
 				rect.top+m_iconY+2+dy);
 			CMenuItemInfo info;

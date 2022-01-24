@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-12-16 22:00+0200\n"
+"PO-Revision-Date: 2022-01-23 15:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -29,14 +29,14 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_GERMAN, SUBLANG_GERMAN"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Zur Mitte kopieren"
 
 #, c-format
 msgid "C&opy to Right"
 msgstr "&Nach rechts kopieren\tAlt+Rechts"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Von der Mitte kopieren"
 
 #, c-format
 msgid "Copy fro&m Right"
@@ -51,13 +51,13 @@ msgid "Copy &from Left"
 msgstr "&Von links kopieren\tAlt+Umschalt+Rechts"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) zur Mitte kopieren"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Ausgewählte Zeile(n) nach rechts kopieren"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von der Mitte kopieren"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Ausgewählte Zeile(n) von rechts kopieren"
@@ -278,6 +278,9 @@ msgstr "Ö&ffnen...\tStrg+O"
 msgid "Open Conflic&t File..."
 msgstr "&Konfliktdatei öffnen..."
 
+msgid "Open C&lipboard"
+msgstr "Z&wischenablage öffnen"
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Pro&jekt öffnen...\tStrg+J"
@@ -300,6 +303,10 @@ msgstr "&Beenden\tStrg+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Bearbeiten"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Einfügen\tStrg+V"
 
 #, c-format
 msgid "&Options..."
@@ -415,9 +422,6 @@ msgstr "&Versionshinweise"
 #, c-format
 msgid "&Translations"
 msgstr "&Übersetzungen"
-
-msgid "&Check For Updates"
-msgstr ""
 
 #, c-format
 msgid "C&onfiguration"
@@ -687,10 +691,6 @@ msgid "&Copy\tCtrl+C"
 msgstr "&Kopieren\tStrg+C"
 
 #, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Einfügen\tStrg+V"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "&Suchen...\tStrg+F"
 
@@ -873,7 +873,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Vorheriger Unterschied nur rechts\tAlt+Umschalt+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Von &links kopieren nach"
 
 #, c-format
 msgid "&Middle"
@@ -884,23 +884,23 @@ msgid "&Right"
 msgstr "&Rechts"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Von der &Mitte kopieren nach"
 
 #, c-format
 msgid "&Left"
 msgstr "&Links"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Von &rechts kopieren nach"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von l&inks kopieren nach"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von der Mi&tte kopieren nach"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Ausgewählte Zeile(n) von r&echts kopieren nach"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -2364,7 +2364,7 @@ msgstr "Ordner"
 
 #, c-format
 msgid "S&top after first difference"
-msgstr "Nach dem ersten Unterschied &stoppen"
+msgstr "&Nach dem ersten Unterschied stoppen"
 
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
@@ -2383,10 +2383,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Anal&ysepunkte ignorieren"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Schwellenwert für den Wechsel zum &Schnellvergleich (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 
 msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
 msgstr "\nAnzahl der &Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
@@ -2985,25 +2985,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "An Leerzeichen oder Interpunktion abbrechen"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Zur &Mitte kopieren\tAlt+Rechts"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Zur &Mitte kopieren\tAlt+Links"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Von der Mitte kopieren\tAlt+Umschalt+Rechts"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Von der Mitte kopieren\tAlt+Umschalt+Links"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Zur Mitte kopieren und fortschreiten\tStrg+Alt+Rechts"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Zur Mitte kopieren und fortschreiten\tStrg+Alt+Links"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Alles in die Mitte kopieren"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3952,9 +3952,8 @@ msgstr "Kein Prediffer (normal)"
 msgid "Suggested plugins"
 msgstr "Vorgeschlagene Plugins"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Andere Plugins"
+msgid "All plugins"
+msgstr "Alle Plugins"
 
 #, c-format
 msgid "Private Build: %1"
@@ -4362,116 +4361,132 @@ msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Großbuchstaben erzeugen"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Kleinbuchstaben erzeugen"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Doppelte Zeilen entfernen"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Doppelte Zeilen zählen"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Zeilen aufsteigend sortieren"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Zeilen absteigend sortieren"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Spalten umkehren"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Zeilen umkehren"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Text durch einen anderen Text ersetzen.\r\nVerwendung: Replace [-i] [-e] FIND REPLACE\r\n  FIND - zu suchender Text\r\n  REPLACE - zu ersetzender Text\r\n  -i - Groß-/Kleinschreibung ignorieren (nur für -e)\r\n  -e - den angegebenen Text als regulären Ausdruck behandeln"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "Filterbefehl anwenden. \r\nVerwendung: ExecFilterCommand COMMAND\r\n  COMMAND - auszuführender Befehl. %1 im Befehl wird durch den Dateinamen ersetzt."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Auswahl tokenisieren. \r\nVerwendung: Tokenize PATTERNS\r\n  PATTERNS - regulärer Ausdruck für die Tokenisierung (z. B. [^\\w]+)."
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Leerzeichen kürzen"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Einige Spalten auswählen.\r\nVerwendung: SelectColumns RANGES\r\n   oder: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES - Liste der auszuwählenden Spaltenbereiche (z. B. -3,5-10,30-).\r\n  PATTERNS - regulärer Ausdruck\r\n  -v - nicht übereinstimmende Spalten auswählen\r\n  -i - Groß-/Kleinschreibung ignorieren\r\n  -g - globales Flag aktivieren\r\n  -e - PATTERNS für die Übereinstimmung verwenden"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Einige Zeilen auswählen.\r\nVerwendung: SelectLines RANGES\r\n   oder: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES - Liste der auszuwählenden Zeilenbereiche (z. B. -3,5-10,30-).\r\n  PATTERNS - regulärer Ausdruck\r\n  -v - nicht übereinstimmende Zeilen auswählen\r\n  -i - Groß-/Kleinschreibung ignorieren\r\n  -e - PATTERNS für die Übereinstimmung verwenden"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML-Prettier mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON-Prettier mit jq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl jq übergeben werden."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "XML-Prettier mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML-Prettier mit yq-Befehl. \r\nArgumente: Filter- oder Kommandozeilenoptionen, die an den Befehl yq übergeben werden."
 
 msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz Visualizer. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl dot übergeben werden."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "CSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "TSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON-Querier mit jq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl jq übergeben werden."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML-Querier mit yq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl yq übergeben werden."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML-Validator mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "JVM-Bytecode-Disassembler mit javap. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl javap übergeben werden."
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "IL-Disassembler mit ildasm. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl ildasm übergeben werden."
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "Disassembler für nativen Code mit Dumpbin. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl dumpbin übergeben werden."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "Allgemeiner Inhaltsextraktor mit Apache Tika. \r\nArgumente: Befehlszeilenoptionen, die an die Datei tika-app.jar übergeben werden."
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Patch mit GnuWin32-Patch für Windows anwenden"
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "Textinhalt von Excel-Dateien anzeigen."
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "Textinhalt von PowerPoint-Dateien anzeigen."
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "Textinhalt von Visio-Dateien anzeigen."
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "Textinhalt von Word-Dateien anzeigen."
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Einige Spalten ignorieren - Liste der ignorierten Spalten aus dem Plugin-Namen oder dem Plugin-Argument"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "Das Plugin ignoriert Kommentare (//... und /* ... */) in Dateien in C, C++, PHP und JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Einige Felder ignorieren - Liste der ignorierten Felder aus dem Plugin-Namen oder dem Plugin-Argument"
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Prediff-Zeilenfilter"
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Grundlegende Textfunktionen für das Kontextmenü"
+
+msgid "Filter applied"
+msgstr "Angewandter Filter"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Zwischenablage am %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie Windows+V und klicken dann auf die Schaltfläche 'Einschalten'."
+
+msgid "This system does not support clipboard history."
+msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."

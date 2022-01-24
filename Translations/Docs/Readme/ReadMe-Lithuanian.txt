@@ -17,7 +17,7 @@ Greita pradþia
 ==============
 Norëdami suþinoti kaip atlikti pagrindines operacijas, ádiegæ „WinMerge“,
 spustelëkite Þinynas>„WinMerge“ þinynas ir pereikite prie „Quick start“ temos
-arba perþiûrëkite internete adresu https://manual.winmerge.org/QuickStart.html.
+arba perþiûrëkite internete adresu https://manual.winmerge.org/Quick_start.html.
 
 „WinMerge“ þinynas
 ==================

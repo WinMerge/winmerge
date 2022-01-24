@@ -6,6 +6,7 @@
 
 #include "StdAfx.h"
 #include "MDITabBar.h"
+#include "IMDITab.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -587,17 +588,29 @@ void CMDITabBar::UpdateToolTips(int nTabItemIndex)
 		if (reinterpret_cast<HWND>(tci.lParam) == pFrame->m_hWnd)
 		{
 			HWND hFrameWnd = pFrame->m_hWnd;
-			CString strTitle;
-			CDocument* pDoc = ((CFrameWnd*)FromHandle(hFrameWnd))->GetActiveDocument();
+			CString strTitle, strTooltip;
+			CFrameWnd* pFrameWnd = (CFrameWnd*)FromHandle(hFrameWnd);
+			CDocument* pDoc = pFrameWnd->GetActiveDocument();
+			IMDITab* pITabBar = nullptr;
 			if (pDoc != nullptr)
+			{
 				strTitle = pDoc->GetTitle();
+				pITabBar = dynamic_cast<IMDITab*>(pDoc);
+			}
 			else
-				FromHandle(hFrameWnd)->GetWindowText(strTitle);
+			{
+				pFrameWnd->GetWindowText(strTitle);
+				pITabBar = dynamic_cast<IMDITab*>(pFrameWnd);
+			}
+			strTooltip = pITabBar ? pITabBar->GetTooltipString() : _T("");
 
-			if (strTitle.GetLength() <= GetMaxTitleLength())
-				strTitle = "";
+			if (strTooltip == strTitle && strTitle.GetLength() <= GetMaxTitleLength())
+				strTooltip = "";
 
-			m_tooltips.UpdateTipText(strTitle, this);
+			m_tooltips.UpdateTipText(strTooltip, this);
+			CRect rc;
+			GetClientRect(&rc);
+			m_tooltips.SetMaxTipWidth(rc.Width() * 60 / 100);
 			m_nTooltipTabItemIndex = nTabItemIndex;
 			return;
 		}

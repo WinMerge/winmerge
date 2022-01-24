@@ -690,6 +690,9 @@
     <ClCompile Include="DirAdditionalPropertiesDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClipboardHistory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1308,6 +1311,12 @@
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DirItemIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\IMDITab.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClipboardHistory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

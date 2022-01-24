@@ -17,7 +17,7 @@ Quickstart
 ==========
 om te leren hoe u basisoperaties uitvoert na de installatie van WinMerge klikt u op
 Help > WinMerge Help en navigeert u naar het Quickstart-topic. U kan ook naar de 
-webversie gaan op https://manual.winmerge.org/QuickStart.html.
+webversie gaan op https://manual.winmerge.org/Quick_start.html.
 
 WinMerge-help
 ============= 

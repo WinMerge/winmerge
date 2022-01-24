@@ -8,7 +8,7 @@ Uusin WinMerge versio ja tiedot ovat saatavilla osoitteessa https://winmerge.org
 
 Pika-aloitus
 ============
-Lisätietoja WinMergen perustoiminnoista saat klikkaamalla Ohje>WinMerge Ohje ja siirtymällä Pikakäynnistys-aiheisiin. Tai mene verkkoversioon https://manual.winmerge.org/QuickStart.html.
+Lisätietoja WinMergen perustoiminnoista saat klikkaamalla Ohje>WinMerge Ohje ja siirtymällä Pikakäynnistys-aiheisiin. Tai mene verkkoversioon https://manual.winmerge.org/Quick_start.html.
 
 WinMerge Ohje
 =============

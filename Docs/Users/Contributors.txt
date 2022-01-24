@@ -47,6 +47,7 @@ Localization:
   xmpdhml <xmpdhml at users.sourceforge.net>
   MaysWind <i at mayswind.net>
   YFdyh000 <yfdyh000 at gmail.com>
+  CharlesMengCA <CharlesMeng at outlook.com>
 
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>

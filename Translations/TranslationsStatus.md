@@ -1,48 +1,48 @@
 # Translations Status
 
-Status from **2021-12-23**:
+Status from **2022-01-24**:
 
 ## WinMerge
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
-| Arabic               |  1155 |        902 |     0 |          253 |     78 % |  2019-12-30 |
-| Basque               |  1155 |        640 |     0 |          515 |     55 % |  2013-02-03 |
-| Brazilian            |  1155 |       1086 |     0 |           69 |     94 % |  2021-08-09 |
-| Bulgarian            |  1155 |        967 |     0 |          188 |     84 % |  2021-06-28 |
-| Catalan              |  1155 |        567 |     0 |          588 |     49 % |             |
-| ChineseSimplified    |  1155 |        975 |     0 |          180 |     84 % |             |
-| ChineseTraditional   |  1155 |       1091 |     0 |           64 |     94 % |  2021-12-11 |
-| Corsican             |  1155 |       1136 |     0 |           19 |     98 % |             |
-| Croatian             |  1155 |        632 |     1 |          522 |     55 % |  2009-02-13 |
-| Czech                |  1155 |        606 |     0 |          549 |     52 % |             |
-| Danish               |  1155 |        640 |     0 |          515 |     55 % |  2013-01-13 |
-| Dutch                |  1155 |       1099 |     0 |           56 |     95 % |  2018-09-06 |
-| English              |  1156 |       1156 |     0 |            0 |    100 % |  2021-12-23 |
-| Finnish              |  1155 |        902 |     0 |          253 |     78 % |             |
-| French               |  1155 |       1019 |     0 |          136 |     88 % |  2021-04-29 |
-| Galician             |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-18 |
-| German               |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-16 |
-| Greek                |  1155 |        605 |     0 |          550 |     52 % |             |
-| Hungarian            |  1155 |       1134 |     0 |           21 |     98 % |  2021-03-15 |
-| Italian              |  1155 |        992 |     0 |          163 |     86 % |  2021-08-09 |
-| Japanese             |  1155 |       1153 |     0 |            2 |    100 % |  2021-11-21 |
-| Korean               |  1155 |       1035 |     0 |          120 |     90 % |  2021-12-10 |
-| Lithuanian           |  1155 |       1114 |     0 |           41 |     96 % |  2021-12-15 |
-| Norwegian            |  1155 |        633 |     0 |          522 |     55 % |             |
-| Persian              |  1155 |        643 |     0 |          512 |     56 % |  2013-08-15 |
-| Polish               |  1155 |       1110 |     0 |           45 |     96 % |             |
-| Portuguese           |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-20 |
-| Romanian             |  1155 |        562 |    44 |          549 |     52 % |             |
-| Russian              |  1155 |       1092 |     0 |           63 |     95 % |  2021-10-28 |
-| Serbian              |  1155 |        633 |     0 |          522 |     55 % |             |
-| Sinhala              |  1155 |        567 |    59 |          529 |     54 % |  2010-12-12 |
-| Slovak               |  1155 |        975 |     0 |          180 |     84 % |  2020-11-02 |
-| Slovenian            |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-16 |
-| Spanish              |  1155 |        871 |     0 |          284 |     75 % |  2020-04-03 |
-| Swedish              |  1155 |       1094 |     0 |           61 |     95 % |  2021-09-15 |
-| Turkish              |  1155 |       1136 |     0 |           19 |     98 % |  2021-12-21 |
-| Ukrainian            |  1155 |        638 |     0 |          517 |     55 % |  2009-06-13 |
+| Arabic               |  1199 |        901 |     0 |          298 |     75 % |  2019-12-30 |
+| Basque               |  1199 |        639 |     0 |          560 |     53 % |  2013-02-03 |
+| Brazilian            |  1199 |       1086 |     0 |          113 |     91 % |  2021-08-09 |
+| Bulgarian            |  1199 |        966 |     0 |          233 |     81 % |  2021-06-28 |
+| Catalan              |  1199 |        566 |     0 |          633 |     47 % |             |
+| ChineseSimplified    |  1199 |       1184 |     0 |           15 |     99 % |             |
+| ChineseTraditional   |  1199 |       1091 |     0 |          108 |     91 % |  2021-12-11 |
+| Corsican             |  1199 |       1199 |     0 |            0 |    100 % |  2022-01-23 |
+| Croatian             |  1199 |        631 |     1 |          567 |     53 % |  2009-02-13 |
+| Czech                |  1199 |        605 |     0 |          594 |     50 % |             |
+| Danish               |  1199 |        639 |     0 |          560 |     53 % |  2013-01-13 |
+| Dutch                |  1199 |       1193 |     0 |            6 |     99 % |  2018-09-06 |
+| English              |  1200 |       1200 |     0 |            0 |    100 % |  2022-01-22 |
+| Finnish              |  1199 |        901 |     0 |          298 |     75 % |             |
+| French               |  1199 |       1199 |     0 |            0 |    100 % |  2022-01-24 |
+| Galician             |  1199 |       1136 |     0 |           63 |     95 % |  2021-12-18 |
+| German               |  1199 |       1199 |     0 |            0 |    100 % |  2022-01-23 |
+| Greek                |  1199 |        604 |     0 |          595 |     50 % |             |
+| Hungarian            |  1199 |       1199 |     0 |            0 |    100 % |  2021-03-15 |
+| Italian              |  1199 |        991 |     0 |          208 |     83 % |  2021-08-09 |
+| Japanese             |  1199 |       1199 |     0 |            0 |    100 % |  2021-11-21 |
+| Korean               |  1199 |       1034 |     0 |          165 |     86 % |  2021-12-10 |
+| Lithuanian           |  1199 |       1154 |     0 |           45 |     96 % |  2022-01-20 |
+| Norwegian            |  1199 |        632 |     0 |          567 |     53 % |             |
+| Persian              |  1199 |        642 |     0 |          557 |     54 % |  2013-08-15 |
+| Polish               |  1199 |       1110 |     0 |           89 |     93 % |             |
+| Portuguese           |  1199 |       1195 |     0 |            4 |    100 % |  2022-01-22 |
+| Romanian             |  1199 |        561 |    44 |          594 |     50 % |             |
+| Russian              |  1199 |       1092 |     0 |          107 |     91 % |  2021-10-28 |
+| Serbian              |  1199 |        632 |     0 |          567 |     53 % |             |
+| Sinhala              |  1199 |        566 |    59 |          574 |     52 % |  2010-12-12 |
+| Slovak               |  1199 |        974 |     0 |          225 |     81 % |  2020-11-02 |
+| Slovenian            |  1199 |       1197 |     0 |            2 |    100 % |  2022-01-03 |
+| Spanish              |  1199 |        870 |     0 |          329 |     73 % |  2020-04-03 |
+| Swedish              |  1199 |       1094 |     0 |          105 |     91 % |  2021-09-15 |
+| Turkish              |  1199 |       1136 |     0 |           63 |     95 % |  2021-12-21 |
+| Ukrainian            |  1199 |        637 |     0 |          562 |     53 % |  2009-06-13 |
 
 ## ShellExtension
 
@@ -53,7 +53,7 @@ Status from **2021-12-23**:
 | Brazilian            |     9 |          4 |     0 |            5 |     44 % |             |
 | Bulgarian            |     9 |          4 |     0 |            5 |     44 % |             |
 | Catalan              |     9 |          4 |     0 |            5 |     44 % |             |
-| ChineseSimplified    |     9 |          4 |     0 |            5 |     44 % |             |
+| ChineseSimplified    |     9 |          9 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |     9 |          9 |     0 |            0 |    100 % |             |
 | Corsican             |     9 |          9 |     0 |            0 |    100 % |             |
 | Croatian             |     9 |          4 |     0 |            5 |     44 % |             |
@@ -62,7 +62,7 @@ Status from **2021-12-23**:
 | English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
 | English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
 | Finnish              |     9 |          4 |     0 |            5 |     44 % |             |
-| French               |     9 |          4 |     0 |            5 |     44 % |             |
+| French               |     9 |          9 |     0 |            0 |    100 % |             |
 | Galician             |     9 |          4 |     0 |            5 |     44 % |             |
 | German               |     9 |          9 |     0 |            0 |    100 % |  2021-09-25 |
 | Greek                |     9 |          4 |     0 |            5 |     44 % |             |
@@ -131,6 +131,7 @@ Status from **2021-12-23**:
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
+| Arabic               |     - |          - |     - |            - |        - |             |
 | Basque               |     - |          - |     - |            - |        - |             |
 | Brazilian            |     - |          - |     - |            - |        - |             |
 | Bulgarian            |     - |          - |     - |            - |        - |             |
@@ -139,6 +140,8 @@ Status from **2021-12-23**:
 | ChineseTraditional   |     - |          - |     - |            - |        - |             |
 | Corsican             |     - |          - |     - |            - |        - |             |
 | Croatian             |     - |          - |     - |            - |        - |             |
+| Czech                |     - |          - |     - |            - |        - |             |
+| Danish               |     - |          - |     - |            - |        - |             |
 | Dutch                |     - |          - |     - |            - |        - |             |
 | English              |     - |          - |     - |            - |        - |             |
 | Finnish              |     - |          - |     - |            - |        - |             |
@@ -146,12 +149,19 @@ Status from **2021-12-23**:
 | Galician             |     - |          - |     - |            - |        - |             |
 | German               |     - |          - |     - |            - |        - |             |
 | Greek                |     - |          - |     - |            - |        - |             |
+| Hungarian            |     - |          - |     - |            - |        - |             |
 | Italian              |     - |          - |     - |            - |        - |             |
 | Japanese             |     - |          - |     - |            - |        - |             |
+| Korean               |     - |          - |     - |            - |        - |             |
 | Lithuanian           |     - |          - |     - |            - |        - |             |
+| Norwegian            |     - |          - |     - |            - |        - |             |
+| Persian              |     - |          - |     - |            - |        - |             |
+| Polish               |     - |          - |     - |            - |        - |             |
 | Portuguese           |     - |          - |     - |            - |        - |             |
 | Romanian             |     - |          - |     - |            - |        - |             |
+| Russian              |     - |          - |     - |            - |        - |             |
 | Serbian              |     - |          - |     - |            - |        - |             |
+| Sinhala              |     - |          - |     - |            - |        - |             |
 | Slovak               |     - |          - |     - |            - |        - |             |
 | Slovenian            |     - |          - |     - |            - |        - |             |
 | Spanish              |     - |          - |     - |            - |        - |             |
@@ -183,6 +193,7 @@ Status from **2021-12-23**:
    - [Liaobin](mailto:liaobin%20at%20jite.%20net)
    - [xmpdhml](mailto:xmpdhml%20at%20users.sourceforge.net)
    - [MaysWind](mailto:i%20at%20mayswind.net)
+   - [CharlesMengCA](mailto:CharlesMeng%20at%20outlook.com)
 
  * ChineseTraditional
    - [Koko](mailto:kokokoko%20at%20giga.net.tw)
@@ -326,6 +337,10 @@ Status from **2021-12-23**:
  * Corsican
    - Patriccollu di Santa Maria è Sichè *Maintainer*
    - Patriccollu di Santa Maria è Sichè
+
+ * French
+   - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
+   - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*

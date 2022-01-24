@@ -4,9 +4,6 @@ Option Explicit
 '
 ' Copyright (C) 2007-2009 by Tim Gerundt
 ' Released under the "GNU General Public License"
-'
-' ID line follows -- this is updated by SVN
-' $Id$
 
 Const ForReading = 1
 
@@ -179,9 +176,6 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   
   oPotFile.WriteLine "# This file is part from WinMerge <https://winmerge.org/>"
   oPotFile.WriteLine "# Released under the ""GNU General Public License"""
-  oPotFile.WriteLine "#"
-  oPotFile.WriteLine "# ID line follows -- this is updated by SVN"
-  oPotFile.WriteLine "# $" & "Id: " & "$"
   oPotFile.WriteLine "#"
   oPotFile.WriteLine "msgid """""
   oPotFile.WriteLine "msgstr """""

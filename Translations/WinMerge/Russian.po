@@ -240,6 +240,9 @@ msgstr "&Открыть...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Открыть файл конфликтов..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Открыть проект...\tCtrl+J"
 
@@ -257,6 +260,9 @@ msgstr "В&ыход\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Правка"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Вставить\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Настройки..."
@@ -344,9 +350,6 @@ msgstr "Примечания к выпуску"
 
 msgid "&Translations"
 msgstr "Переводы"
-
-msgid "&Check For Updates"
-msgstr "Проверить обновления"
 
 msgid "C&onfiguration"
 msgstr "&Конфигурация"
@@ -554,9 +557,6 @@ msgstr "Вы&резать\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Копировать\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&Вставить\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Найти...\tCtrl+F"
@@ -3232,8 +3232,8 @@ msgstr "Без предсравнения (обычно)"
 msgid "Suggested plugins"
 msgstr "Предлагаемые плагины"
 
-msgid "Other plugins"
-msgstr "Другие плагины"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -3735,4 +3735,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

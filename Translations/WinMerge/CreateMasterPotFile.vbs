@@ -4,9 +4,6 @@ Option Explicit
 '
 ' Copyright (C) 2007-2009 by Tim Gerundt
 ' Released under the "GNU General Public License"
-'
-' ID line follows -- this is updated by SVN
-' $Id$
 
 Const ForReading = 1
 

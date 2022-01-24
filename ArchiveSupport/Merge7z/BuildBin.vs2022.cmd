@@ -27,6 +27,4 @@ if exist "%SIGNBAT_PATH%" (
   call "%SIGNBAT_PATH%" ..\..\Build\%1\Release\Merge7z\Merge7z.dll
 )
 
-mkdir ..\..\Build\%1\Release\%APPVER% 2> NUL
-copy ..\..\Build\%1\Release\Merge7z\*.pdb "Build\%1\Release\%APPVER%\"
 goto :eof

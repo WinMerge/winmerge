@@ -9,7 +9,7 @@ https://winmerge.org
 
 Бързо въведение в WinMerge:
 Моля, прочетете помощната онлайн информация за кратко въведение в WinMerge:
-https://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/Quick_start.html
 
 HTML ръководство:
 Ръководството е достъпно онлайн на адрес:

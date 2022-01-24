@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
-"Report-Msgid-Bugs-To: http://bugs.winmerge.org/\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-12-23 15:48+0300\n"
 "PO-Revision-Date: 2019-12-30 12:21+0300\n"
 "Language-Team: Arabic <https://downzen.com>\n"
@@ -239,6 +239,9 @@ msgstr "&فتح...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "ف&تح ملف التعارض..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "فتح مشروع...\tCtrl+J"
 
@@ -256,6 +259,9 @@ msgstr "&خروج\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&تحرير"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&لصق"
 
 msgid "&Options..."
 msgstr "خ&يارات..."
@@ -343,9 +349,6 @@ msgstr "ملاح&ظات الإصدار"
 
 msgid "&Translations"
 msgstr "التر&جمات"
-
-msgid "&Check For Updates"
-msgstr ""
 
 msgid "C&onfiguration"
 msgstr "الإ&عدادات"
@@ -553,9 +556,6 @@ msgstr "&قص"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&نسخ"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&لصق"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&بحث"
@@ -3571,8 +3571,8 @@ msgstr "لا اختلافات مسبقة (عادي)"
 msgid "Suggested plugins"
 msgstr "الإضافات المقترحة"
 
-msgid "Other plugins"
-msgstr "الإضافات الأخرى"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4084,4 +4084,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

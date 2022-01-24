@@ -1,9 +1,6 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
-# ID line follows -- this is updated by SVN
-# $Id: $
-#
 # Translators:
 # Thomas De Rocker, 2021
 #

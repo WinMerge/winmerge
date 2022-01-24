@@ -25,6 +25,9 @@ public:
 	int GetLoadCodepage() const { return m_nLoadCodepage; }
 	int GetSaveCodepage() const { return m_nSaveCodepage; }
 	bool GetSaveCodepageBOM() const { return m_bSaveCodepageBOM; }
+	void SetAffectLeft(bool bAffect) { m_bAffectsLeft = bAffect; }
+	void SetAffectMiddle(bool bAffect) { m_bAffectsMiddle = bAffect; }
+	void SetAffectRight(bool bAffect) { m_bAffectsRight = bAffect; }
 	bool DoesAffectLeft() const { return m_bAffectsLeft; }
 	bool DoesAffectMiddle() const { return m_bAffectsMiddle; }
 	bool DoesAffectRight() const { return m_bAffectsRight; }

@@ -1,7 +1,3 @@
 [Apache Tika]
-https://www.apache.org/dyn/closer.cgi/tika/2.0.0/tika-app-2.0.0.jar
-https://www.apache.org/dyn/closer.cgi/tika/2.0.0/tika-2.0.0-src.zip
-
-[jai-imageio-jpeg2000]
-https://github.com/jai-imageio/jai-imageio-jpeg2000/releases/download/jai-imageio-jpeg2000-1.4.0/jai-imageio-jpeg2000-1.4.0.jar
-https://github.com/jai-imageio/jai-imageio-jpeg2000/releases/download/jai-imageio-jpeg2000-1.4.0/jai-imageio-jpeg2000-1.4.0-sources.jar
+https://www.apache.org/dyn/closer.cgi/tika/2.2.1/tika-app-2.2.1.jar
+https://www.apache.org/dyn/closer.cgi/tika/2.2.1/tika-2.2.1-src.zip

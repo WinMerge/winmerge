@@ -20,25 +20,102 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21617-beta-release-notes">WinMerge 2.16.17 Beta Release Notes</h1>
+<h1 id="winmerge-21618-release-notes">WinMerge 2.16.18 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-21618">What Is New in 2.16.18?</a></li>
 <li><a href="#what-is-new-in-21617-beta">What Is New in 2.16.17 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>December 2021</p>
+<p>January 2022</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
-<p>Please submit bug reports to our <a href="http://github.com/winmerge/winmerge/issues">bug-tracker</a>.</p>
-<h2 id="what-is-new-in-21617-beta">What Is New in 2.16.17 Beta</h2>
+<p>This is a WinMerge 2.16.18 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/issues">bug-tracker</a>.</p>
+<h2 id="what-is-new-in-21618">What Is New in 2.16.18</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>[Feature Request] Lengthen title of File Compare window or add tip (#960)</li>
+<li>added me to contributor list (PR #1094)</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: wm 2.16.16.0 crashes with file attached (#1101)</li>
+<li>BugFix: Fix a problem that &#39;Encountered an improper argument&#39; error occurs when a pane split by Window→Split menu item is unsplit by drag operation.</li>
+<li>BugFix: Colors -&gt; Differences -&gt; Word Difference : Text color ignored (#1116)</li>
+<li>3-Way File Merge: No Keyboard / hot keys available for Merging from Left Pane to right pane and vice versa (#957)</li>
+<li>Winmerge hangs when i try to compare files. (#1111)</li>
+<li>Fast encoding switching. (#793)</li>
+</ul>
+<h3 id="clipboard-compare">Clipboard Compare</h3>
+<ul>
+<li>New Feature: Clipboard Compare (PR #1147)
+<ul>
+<li>Click File → Open Clipboard menu item to compare the two most recent contents of the clipboard history.</li>
+<li>You can also compare by pressing Ctrl+V when the child MDI window is not visible.</li>
+<li>This feature is available on Windows 10 version 1809 or higher and WinMerge 64-bit version.</li>
+</ul></li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Sorting on Comparison Result being done incorectly (#483)</li>
+<li>BugFix: Fix an issue where WinMerge sometimes crashes when executing &quot;Refresh Selected&quot; in the folder compare window. (PR #1120)</li>
+<li>BugFix: Fixed a bug that the parent folder icon was not displayed in non-recursive mode.</li>
+<li>BugFix: Fixed the problem that the sort order is different from version 2.16.16 or earlier</li>
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>Fix for <a href="https://github.com/WinMerge/winmerge/discussions/1139">https://github.com/WinMerge/winmerge/discussions/1139</a> (#1139,PR #1140)</li>
+<li>Make plugin descriptions translatable</li>
+<li>Upgrade Apache Tika to 2.2.1</li>
+</ul>
+<h3 id="command-line">Command line</h3>
+<ul>
+<li>Added <code>/clipboard-compare</code> command line option</li>
+</ul>
+<h3 id="archive-support">Archive support</h3>
+<ul>
+<li>Update 7-Zip to 21.07</li>
+</ul>
+<h3 id="installer">Installer</h3>
+<ul>
+<li>BugFix: Incorrect link to &quot;Quick Start&quot; guide at WM installation end (#1127)</li>
+<li>BugFix: Add replacesameversion flag to 7z.dll</li>
+<li>Re-enabled the process of installing ShellExtension for Windows 11.</li>
+</ul>
+<h3 id="manual">Manual</h3>
+<ul>
+<li>BugFix: &quot;Quick compare limit&quot; and &quot;Binary compare limit&quot; settings don&#39;t have the expected (and documented) purpose (#1100)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Chinese Simplified (PR #1109,#1112,#1134)</li>
+<li>Corsican (PR #1103,#1119,#1137,#1142,#1154)</li>
+<li>Dutch (PR #1123)</li>
+<li>French (PR #1121,#1122,#1157)</li>
+<li>German (PR #1110,#1117,#1143,#1155)</li>
+<li>Hungarian (PR #1102,#1115,#1136,#1141,#1150)</li>
+<li>Japanese</li>
+<li>Lithuanian (PR #1124,#1144)</li>
+<li>Portuguese (PR #1097,#1098,#1106,#1133,#1149)</li>
+<li>Slovenian (PR #1148,#1153)</li>
+<li>Turkish (PR #1099)</li>
+</ul></li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Fix typo in DirScan.cpp (#1118)</li>
+</ul>
+<h2 id="what-is-new-in-21617-beta">What Is New in 2.16.17 Beta</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>New Option to ignore numbers. (PR #1025,#923)</li>
 <li>Add the feature to display tooltips on the MDI tab. (PR #1038)</li>
 <li>Issue with closing WinMerge with Esc keyboard key (#1052)</li>
 <li>Add an &quot;Defaults&quot; section to the ini file (PR #1071)</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: Release 2.16.16 crashes when comparing large files - likely a regression (#1036)</li>
 <li>BugFix: Fixed C#(Java, JavaScript) keyword highlighting. (#1040)</li>
@@ -54,7 +131,7 @@
 <ul>
 <li>Added support for creating multi-page image compare report (osdn.net #43374)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Fixed a problem where Duplicate Group Numbers were not assigned to files with the same content but different file names.</li>
 <li>BugFix: Fix crash when comparing 3 folders if additional properties were added</li>
@@ -68,11 +145,11 @@
 <ul>
 <li>Put the diff patch to the clipboard rather than to files (#923)</li>
 </ul>
-<h3 id="plugins">Plugins</h3>
+<h3 id="plugins-1">Plugins</h3>
 <ul>
 <li>BugFix: Fixed the problem that Plugins-&gt;Reload Plugins menu item does not work.</li>
 </ul>
-<h3 id="archive-support">Archive support</h3>
+<h3 id="archive-support-1">Archive support</h3>
 <ul>
 <li>Update 7-Zip to 21.06</li>
 </ul>
@@ -80,7 +157,7 @@
 <ul>
 <li>ShellExtension for Windows 11: Implemented advanced menu</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>New translation:
 <ul>
@@ -101,7 +178,7 @@
 <li>Slovenian</li>
 </ul></li>
 </ul>
-<h3 id="internals">Internals</h3>
+<h3 id="internals-1">Internals</h3>
 <ul>
 <li>BugFix: Fix typo in BCMenu.cpp (PR #1054)</li>
 <li>BugFix: Return better HRESULTs (PR #1077)</li>

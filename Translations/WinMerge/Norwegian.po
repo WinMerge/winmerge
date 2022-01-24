@@ -5,9 +5,6 @@
 # * Hans Fredrik Nordhaug <hansfn at users.sourceforge.net>
 # * FreewareTips <http://home.c2i.net/freewaretips/>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Norwegian.po 7584 2013-01-13 05:55:34Z christianlist $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -278,6 +275,9 @@ msgstr "&Åpne...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Åpne konflik&tfil...
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Åpne p&rosjekt...\tCtrl+J"
@@ -300,6 +300,10 @@ msgstr "&Avslutt\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&Rediger"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Lim inn\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -414,9 +418,6 @@ msgstr ""
 
 #, c-format
 msgid "&Translations"
-msgstr ""
-
-msgid "&Check For Updates"
 msgstr ""
 
 #, c-format
@@ -685,10 +686,6 @@ msgstr "&Klipp ut\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Ko&pier\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Lim inn\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4167,9 +4164,8 @@ msgstr "Ingen prediffer (normal)"
 msgid "Suggested plugins"
 msgstr "Foreslåtte programtillegg"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Andre programtillegg"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4689,4 +4685,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

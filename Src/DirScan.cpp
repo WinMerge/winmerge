@@ -537,7 +537,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			}
 			int ndiff = CompareItems(queue, myStruct, curpos);
-			// Propogate sub-directory status to this directory
+			// Propagate sub-directory status to this directory
 			if (ndiff > 0)
 			{	// There were differences in the sub-directories
 				if (existsalldirs)
@@ -609,6 +609,12 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 	bool bCompareFailure = false;
 	if (parentdiffpos == nullptr)
 		myStruct->pSemaphore->wait();
+
+	// Since the collect thread deletes the DiffItems in the rescan by "Refresh selected",
+	// the compare thread process should not be executed until the collect thread process is completed 
+	// to avoid accessing  the deleted DiffItems.
+	assert(myStruct->nCollectThreadState == CDiffThread::THREAD_COMPLETED);
+
 	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos != nullptr)
 	{
@@ -929,7 +935,7 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	else
 		di->diffcode.diffcode = code | DIFFCODE::THREEWAY;
 
-	if (myStruct->m_fncCollect)
+	if (!myStruct->bMarkedRescan && myStruct->m_fncCollect)
 	{
 		myStruct->context->m_pCompareStats->IncreaseTotalItems();
 		myStruct->pSemaphore->set();

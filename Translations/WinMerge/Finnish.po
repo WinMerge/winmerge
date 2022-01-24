@@ -1,9 +1,6 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -276,6 +273,9 @@ msgstr "Avaa...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Avaa ristiriitatiedosto..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Avaa pro&jekti...\tCtrl+J"
@@ -298,6 +298,10 @@ msgstr "Poistu\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "Muokkaa"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "Liitä\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -413,9 +417,6 @@ msgstr "Versiotiedot"
 #, c-format
 msgid "&Translations"
 msgstr "Käännökset"
-
-msgid "&Check For Updates"
-msgstr ""
 
 #, c-format
 msgid "C&onfiguration"
@@ -683,10 +684,6 @@ msgstr "Leikkaa\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Kopioi\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "Liitä\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4257,9 +4254,8 @@ msgstr "Ei esivertailua (normaali)"
 msgid "Suggested plugins"
 msgstr "Suositellut lisäosat"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Muut lisäosat"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4789,4 +4785,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

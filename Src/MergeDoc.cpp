@@ -254,7 +254,7 @@ void CMergeDoc::SetPrediffer(const PrediffingInfo * infoPrediffer)
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 }
 
-void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer)
+void CMergeDoc::GetPrediffer(PrediffingInfo * infoPrediffer) const
 {
 	m_diffWrapper.GetPrediffer(infoPrediffer);
 }
@@ -2826,6 +2826,16 @@ bool CMergeDoc::CloseNow()
 }
 
 /**
+ * @brief A string to display as a tooltip for MDITabbar
+ */
+CString CMergeDoc::GetTooltipString() const
+{
+	PrediffingInfo infoPrediffer;
+	GetPrediffer(&infoPrediffer);
+	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, &infoPrediffer, m_nTrivialDiffs > 0).c_str();
+}
+
+/**
  * @brief Loads file to buffer and shows load-errors
  * @param [in] sFileName File to open
  * @param [in] nBuffer Index (0-based) of buffer to load
@@ -3708,7 +3718,7 @@ HMENU CMergeDoc::createPrediffersSubmenu(HMENU hMenu)
 	// build the menu : second part, others plugins
 	// title
 	AppendMenu(hMenu, MF_SEPARATOR, 0, nullptr);
-	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+	AppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 
 	String lastPluginName;
 	String errorMessage;

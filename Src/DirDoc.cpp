@@ -352,15 +352,18 @@ void CDirDoc::Rescan()
 			SetGeneratingReport(false);
 			SetReport(nullptr);
 		});
+		m_diffThread.SetMarkedRescan(false);
 	}
 	else if (m_bMarkedRescan)
 	{
-		m_diffThread.SetCollectFunction(nullptr);
-		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
+		m_diffThread.SetCollectFunction([](DiffFuncStruct* myStruct) {
 			int nItems = DirScan_UpdateMarkedItems(myStruct, nullptr);
 			myStruct->context->m_pCompareStats->IncreaseTotalItems(nItems);
+			});
+		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareRequestedItems(myStruct, nullptr);
-		});
+			});
+		m_diffThread.SetMarkedRescan(true);
 	}
 	else
 	{
@@ -376,6 +379,7 @@ void CDirDoc::Rescan()
 		m_diffThread.SetCompareFunction([](DiffFuncStruct* myStruct) {
 			DirScan_CompareItems(myStruct, nullptr);
 		});
+		m_diffThread.SetMarkedRescan(false);
 	}
 	m_diffThread.CompareDirectories();
 	m_bMarkedRescan = false;
@@ -734,6 +738,13 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	}	
 }
 
+/**
+ * @brief A string to display as a tooltip for MDITabbar
+ */
+CString CDirDoc::GetTooltipString() const
+{
+	return CMergeFrameCommon::GetTooltipString(m_pCtxt->GetNormalizedPaths(), m_strDesc, nullptr, nullptr).c_str();
+}
 
 /**
  * @brief Checks if current folders are opened from archive file.

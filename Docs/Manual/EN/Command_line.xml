@@ -65,6 +65,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/clipboard-compare</option></arg>
+
       <arg><option>/minimize</option></arg>
 
       <arg><option>/maximize</option></arg>
@@ -386,6 +388,13 @@
       <term><option>/self-compare</option></term>
       <listitem>
         <para>Compares the specified file with a copy of the file.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/clipboard-compare</option></term>
+      <listitem>
+        <para>Compares the two most recent contents of the clipboard history.</para>
       </listitem>
     </varlistentry>
 

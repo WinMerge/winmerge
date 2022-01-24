@@ -15,7 +15,7 @@ Hasiera Azkarra
 ===========
 WinMerge ezarri ondorengo ohinarrizko eragiketak nola egin jakiteko, klikatu
 Laguntza>WinMerge Laguntza eta nabigatu Hasiera Azkarra gaian. Edo, joan Webgune
-bertsio honetara: https://manual.winmerge.org/QuickStart.html.
+bertsio honetara: https://manual.winmerge.org/Quick_start.html.
 
 WinMerge Laguntza
 ============= 

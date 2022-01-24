@@ -25,15 +25,38 @@
 /**
  * @brief Display file encoding dialog to user & handle user's choices
  */
-bool CMergeDoc::DoFileEncodingDialog()
+bool CMergeDoc::DoFileEncodingDialog(int pane)
 {
 	if (!PromptAndSaveIfNeeded(true))
 		return false;
 	
 	CLoadSaveCodepageDlg dlg(m_nBuffers);
 	dlg.EnableSaveCodepage(true);
-	dlg.SetCodepages(m_ptBuf[0]->getCodepage());
-	dlg.SetCodepageBOM(m_ptBuf[0]->getHasBom());
+	if (pane == -1)
+	{
+		dlg.SetCodepages(m_ptBuf[0]->getCodepage());
+		dlg.SetCodepageBOM(m_ptBuf[0]->getHasBom());
+	}
+	else
+	{
+		dlg.SetCodepages(m_ptBuf[pane]->getCodepage());
+		dlg.SetCodepageBOM(m_ptBuf[pane]->getHasBom());
+		if (pane == 0)
+		{
+			dlg.SetAffectMiddle(false);
+			dlg.SetAffectRight(false);
+		}
+		if (m_nBuffers > 2 && pane == 1)
+		{
+			dlg.SetAffectLeft(false);
+			dlg.SetAffectRight(false);
+		}
+		if (pane == m_nBuffers - 1)
+		{
+			dlg.SetAffectLeft(false);
+			dlg.SetAffectMiddle(false);
+		}
+	}
 	if (IDOK != dlg.DoModal())
 		return false;
 
@@ -42,7 +65,7 @@ bool CMergeDoc::DoFileEncodingDialog()
 	bool doRight = dlg.DoesAffectRight();
 	FileLocation fileloc[3];
 	bool bRO[3];
-	for (int pane = 0; pane < m_nBuffers; pane++)
+	for (pane = 0; pane < m_nBuffers; pane++)
 	{
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
 		if ((pane == 0 && doLeft) ||
@@ -74,7 +97,7 @@ bool CMergeDoc::DoFileEncodingDialog()
 	if (dlg.GetSaveCodepage() != dlg.GetLoadCodepage() || m_ptBuf[0]->getHasBom() != dlg.GetSaveCodepageBOM())
 	{
 		int nSaveCodepage = dlg.GetSaveCodepage();
-		for (int pane = 0; pane < m_nBuffers; pane++)
+		for (pane = 0; pane < m_nBuffers; pane++)
 		{
 			bRO[pane] = m_ptBuf[pane]->GetReadOnly();
 			if (!bRO[pane] && (

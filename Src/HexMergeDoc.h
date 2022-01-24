@@ -76,6 +76,7 @@ public:
 	int GetFileCount() const override { return m_filePaths.GetSize(); }
 	String GetPath(int pane) const override { return m_filePaths[pane]; }
 	bool GetReadOnly(int pane) const override;
+	CString GetTooltipString() const override;
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();

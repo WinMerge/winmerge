@@ -132,8 +132,6 @@ static bool GetAsInt(const String& str, int & val)
 	if (str.empty())
 		return false;
 	const size_t len = str.length();
-	if (len == 0)
-		return false;
 
 	val = 0;
 	for (int i = 0; i < (int)len; ++i)

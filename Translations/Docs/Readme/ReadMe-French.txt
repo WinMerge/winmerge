@@ -19,7 +19,7 @@ Démarrage rapide
 Pour apprendre comment effectuer des opérations de base après l'installation
 de WinMerge, cliquez sur Aide > Rubrique d'aide WinMerge et accédez à la 
 rubrique Démarrage rapide. Ou lisez le manuel en ligne à:
-https://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/Quick_start.html
 
 Aide WinMerge
 =============

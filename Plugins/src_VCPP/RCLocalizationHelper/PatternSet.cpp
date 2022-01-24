@@ -8,9 +8,6 @@
  *
  * This uses the CRegExp class from WinMerge Src\Common.
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
-
 
 #include "stdafx.h"
 #include <stdio.h>

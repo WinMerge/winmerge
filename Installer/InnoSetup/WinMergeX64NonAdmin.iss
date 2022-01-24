@@ -426,7 +426,7 @@ Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {ap
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
 Source: ..\..\Build\{#ARCH}\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
 
@@ -1027,13 +1027,10 @@ begin
 end;
 
 Function IsWindows11OrLater(): Boolean;
-//Var
-  // OSVersion: TWindowsVersion;
+Var
+  OSVersion: TWindowsVersion;
 Begin
-  // Currently, WinMergeContextMenu.dll does not work in some environments on Windows 11 preview version, and I cannot determine at the moment whether the problem is in the OS or in WinMergeContextMenu.dll.
-  // For now, I have decided to give up on registering WinMergeContextMenu.dll as the default.
   Result := false;
-  {
   GetWindowsVersionEx(OSVersion);
   if OSVersion.Major > 10 then
     Result := true
@@ -1043,5 +1040,4 @@ Begin
     Result := true
   else
     Result := false;
-  }
 End;

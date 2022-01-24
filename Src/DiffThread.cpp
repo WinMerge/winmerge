@@ -73,7 +73,7 @@ bool CDiffThread::ShouldAbort() const
  */
 unsigned CDiffThread::CompareDirectories()
 {
-	assert(m_pDiffParm->nThreadState != THREAD_COMPARING);
+	assert(m_pDiffParm->nThreadState != THREAD_COMPARING && m_pDiffParm->nCollectThreadState != THREAD_COMPARING);
 
 	m_pDiffParm->context = m_pDiffContext;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate.get();
@@ -81,6 +81,7 @@ unsigned CDiffThread::CompareDirectories()
 	m_bPaused = false;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
+	m_pDiffParm->nCollectThreadState = THREAD_COMPARING;
 
 	delete m_pDiffParm->pSemaphore;
 	m_pDiffParm->pSemaphore = new Semaphore(0, LONG_MAX);
@@ -115,6 +116,7 @@ static void DiffThreadCollect(void *pParam)
 	myStruct->pSemaphore->set();
 
 	// Send message to UI to update
+	myStruct->nCollectThreadState = CDiffThread::THREAD_COMPLETED;
 	int event = CDiffThread::EVENT_COLLECT_COMPLETED;
 	myStruct->m_listeners.notify(myStruct, event);
 };

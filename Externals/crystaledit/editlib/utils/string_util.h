@@ -3,8 +3,6 @@
  *
  * @brief Char classification routines declarations.
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #pragma once
 

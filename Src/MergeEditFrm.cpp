@@ -308,8 +308,6 @@ void CMergeEditFrame::OnClose()
 {
 	// clean up pointers.
 	CMergeFrameCommon::OnClose();
-
-	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 /// update splitting position for panels 1/2 and headerbar and statusbar 

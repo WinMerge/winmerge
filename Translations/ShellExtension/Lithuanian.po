@@ -4,9 +4,6 @@
 # Translators:
 # * Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Lithuanian.po
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"

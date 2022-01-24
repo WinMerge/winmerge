@@ -77,7 +77,7 @@ void CSizingControlBarCF::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHnd
     CWnd* pFocus = GetFocus();
     bool bActiveOld = m_bActive;
 
-    m_bActive = (pFocus->GetSafeHwnd() && IsChild(pFocus));
+    m_bActive = (pFocus && pFocus->GetSafeHwnd() && IsChild(pFocus));
 
     if (m_bActive != bActiveOld)
         bNeedPaint = true;

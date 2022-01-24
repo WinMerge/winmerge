@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-12-23 22:02+0000\n"
+"POT-Creation-Date: 2022-01-22 21:51+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -232,6 +232,9 @@ msgstr ""
 msgid "Open Conflic&t File..."
 msgstr ""
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr ""
 
@@ -248,6 +251,9 @@ msgid "E&xit\tCtrl+Q"
 msgstr ""
 
 msgid "&Edit"
+msgstr ""
+
+msgid "&Paste\tCtrl+V"
 msgstr ""
 
 msgid "&Options..."
@@ -335,9 +341,6 @@ msgid "R&elease Notes"
 msgstr ""
 
 msgid "&Translations"
-msgstr ""
-
-msgid "&Check For Updates"
 msgstr ""
 
 msgid "C&onfiguration"
@@ -545,9 +548,6 @@ msgid "Cu&t\tCtrl+X"
 msgstr ""
 
 msgid "&Copy\tCtrl+C"
-msgstr ""
-
-msgid "&Paste\tCtrl+V"
 msgstr ""
 
 msgid "F&ind...\tCtrl+F"
@@ -3224,7 +3224,7 @@ msgstr ""
 msgid "Suggested plugins"
 msgstr ""
 
-msgid "Other plugins"
+msgid "All plugins"
 msgstr ""
 
 #, c-format
@@ -3727,5 +3727,21 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""
 

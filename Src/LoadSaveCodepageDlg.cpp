@@ -100,6 +100,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 			}
 			j++;
 		}
+		combol.SetFocus();
 		combol.Detach();
 		combos.Detach();
 	}
@@ -114,8 +115,8 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 
 	if (m_nFiles < 3)
 		EnableDlgItem(IDC_AFFECTS_MIDDLE_BTN, false);
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
+
+	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 

@@ -6,9 +6,6 @@
 # * Ivan Masár <helix84 at centrum.sk>, 2007, 2008, 2009.
 # * Jozef Matta <jozef.m923@gmail.com>, 2020
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -241,6 +238,9 @@ msgstr "&Otvoriť...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Otvoriť kon&fliktný súbor..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "O&tvoriť projekt...\tCtrl+J"
 
@@ -258,6 +258,9 @@ msgstr "&Koniec\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "&Upraviť"
+
+msgid "&Paste\tCtrl+V"
+msgstr "&Prilepiť\tCtrl+V"
 
 msgid "&Options..."
 msgstr "&Nastavenia..."
@@ -345,9 +348,6 @@ msgstr "&Poznámky k vydaniu"
 
 msgid "&Translations"
 msgstr "&Preklady"
-
-msgid "&Check For Updates"
-msgstr ""
 
 msgid "C&onfiguration"
 msgstr "K&onfigurácia"
@@ -555,9 +555,6 @@ msgstr "Vy&strihnúť\tCtrl+X"
 
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopírovať\tCtrl+C"
-
-msgid "&Paste\tCtrl+V"
-msgstr "&Prilepiť\tCtrl+V"
 
 msgid "F&ind...\tCtrl+F"
 msgstr "&Hľadať...\tCtrl+F"
@@ -3631,8 +3628,8 @@ msgstr "Bez predspracovania (bežné)"
 msgid "Suggested plugins"
 msgstr "Odporúčané rozšírenia"
 
-msgid "Other plugins"
-msgstr "Iné rozšírenia"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4144,4 +4141,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

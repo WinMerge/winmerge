@@ -914,14 +914,10 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 			nBottomCoord += INDICATOR_MIN_HEIGHT - (nBottomCoord - nTopCoord);
 		else
 		{
-			// Make sure locationbox has min hight
-			if ((nBottomCoord - nTopCoord) < INDICATOR_MIN_HEIGHT)
-			{
-				// If we have a high number of lines, it may be better
-				// to keep the topline, otherwise the cursor can 
-				// jump up and down unexpected
-				nBottomCoord = nTopCoord + INDICATOR_MIN_HEIGHT;
-			}
+			// If we have a high number of lines, it may be better
+			// to keep the topline, otherwise the cursor can 
+			// jump up and down unexpected
+			nBottomCoord = nTopCoord + INDICATOR_MIN_HEIGHT;
 		}
 	}
 

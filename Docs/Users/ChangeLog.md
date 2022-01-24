@@ -1,5 +1,85 @@
 # Change log
 
+## WinMerge 2.16.18 - 2022-01-27
+
+### General
+
+- [Feature Request] Lengthen title of File Compare window or add tip (#960)
+- added me to contributor list (PR #1094)
+
+### File compare
+
+- BugFix: wm 2.16.16.0 crashes with file attached (#1101)
+- BugFix: Fix a problem that 'Encountered an improper argument' error occurs
+    when a pane split by Window→Split menu item is unsplit by drag operation.
+- BugFix: Colors -> Differences -> Word Difference : Text color ignored (#1116)
+- 3-Way File Merge: No Keyboard / hot keys available for Merging from Left Pane
+    to right pane and vice versa (#957)
+- Winmerge hangs when i try to compare files. (#1111)
+- Fast encoding switching. (#793)
+
+### Clipboard Compare 
+
+- New Feature: Clipboard Compare (PR #1147)
+  - Click File → Open Clipboard menu item to compare the two most recent
+      contents of the clipboard history.
+  - You can also compare by pressing Ctrl+V when the child MDI window is not
+      visible.
+  - This feature is available on Windows 10 version 1809 or higher and
+      WinMerge 64-bit version.
+
+### Folder compare
+
+- BugFix: Sorting on Comparison Result being done incorectly (#483)
+- BugFix: Fix an issue where WinMerge sometimes crashes when executing
+    "Refresh Selected" in the folder compare window. (PR #1120)
+- BugFix: Fixed a bug that the parent folder icon was not displayed in non-recursive mode.
+- BugFix: Fixed the problem that the sort order is different from version 2.16.16 or earlier
+
+### Plugins
+
+- Fix for https://github.com/WinMerge/winmerge/discussions/1139 (#1139,PR #1140)
+- Make plugin descriptions translatable
+- Upgrade Apache Tika to 2.2.1
+
+### Command line
+
+- Added `/clipboard-compare` command line option
+
+### Archive support
+
+- Update 7-Zip to 21.07
+
+### Installer
+
+- BugFix: Incorrect link to "Quick Start" guide at WM installation end (#1127)
+- BugFix: Add replacesameversion flag to 7z.dll
+- Re-enabled the process of installing ShellExtension for Windows 11.
+
+### Manual
+
+- BugFix: "Quick compare limit" and "Binary compare limit" settings don't have
+    the expected (and documented) purpose (#1100)
+
+### Translations
+
+- Translation updates:
+  - Chinese Simplified (PR #1109,#1112,#1134)
+  - Corsican (PR #1103,#1119,#1137,#1142,#1154)
+  - Dutch (PR #1123)
+  - French (PR #1121,#1122,#1157)
+  - German (PR #1110,#1117,#1143,#1155)
+  - Hungarian (PR #1102,#1115,#1136,#1141,#1150)
+  - Japanese
+  - Lithuanian (PR #1124,#1144)
+  - Portuguese (PR #1097,#1098,#1106,#1133,#1149)
+  - Slovenian (PR #1148,#1153)
+  - Turkish (PR #1099)
+
+### Internals
+
+- Fix typo in DirScan.cpp (#1118)
+
 ## WinMerge 2.16.17 - 2021-12-19
 
 ### General

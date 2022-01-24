@@ -8,7 +8,7 @@ Najnovšia verzia WinMerge a informácie o WinMerge sú k dispozícii na stránke htt
 
 Rýchle spustenie
 ================
-Ak sa chcete dozvedie, ako vykona základné operácie po inštalácii programu WinMerge, kliknite na Pomocník>Pomocník WinMerge a prejdite na tému Rýchle spustenie, alebo prejdite na internetovú verziu na stránke https://manual.winmerge.org/QuickStart.html
+Ak sa chcete dozvedie, ako vykona základné operácie po inštalácii programu WinMerge, kliknite na Pomocník>Pomocník WinMerge a prejdite na tému Rýchle spustenie, alebo prejdite na internetovú verziu na stránke https://manual.winmerge.org/Quick_start.html
 
 Pomocník WinMerge
 =================

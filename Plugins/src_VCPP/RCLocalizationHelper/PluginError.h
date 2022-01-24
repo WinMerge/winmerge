@@ -9,8 +9,6 @@
  * when Plugin Errors are implemented.
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #ifndef PluginError_h_included
 #define PluginError_h_included

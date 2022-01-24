@@ -688,8 +688,6 @@ void CImgMergeFrame::OnClose()
 
 	// clean up pointers.
 	CMergeFrameCommon::OnClose();
-
-	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 void CImgMergeFrame::OnDestroy()
@@ -1285,6 +1283,14 @@ bool CImgMergeFrame::CloseNow()
 
 	DestroyWindow();
 	return true;
+}
+
+/**
+ * @brief A string to display as a tooltip for MDITabbar
+ */
+CString CImgMergeFrame::GetTooltipString() const
+{
+	return CMergeFrameCommon::GetTooltipString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr).c_str();
 }
 
 /**

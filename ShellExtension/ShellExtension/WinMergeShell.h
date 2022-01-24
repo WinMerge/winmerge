@@ -21,8 +21,6 @@
  *
  * @brief Declaration file for ShellExtension class
  */
-// ID line follows -- this is updated by SVN
-// $Id: WinMergeShell.h 6933 2009-07-26 14:07:03Z kimmov $
 
 #pragma once
 

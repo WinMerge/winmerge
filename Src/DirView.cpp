@@ -1143,7 +1143,7 @@ void CDirView::SortColumnsAppropriately()
 	//sort using static CompareFunc comparison function
 	CompareState cs(&GetDiffContext(), m_pColItems.get(), sortCol, bSortAscending, m_bTreeMode);
 	std::stable_sort(m_listViewItems.begin(), m_listViewItems.end(), [&cs](const ListViewOwnerDataItem& a, const ListViewOwnerDataItem& b)
-		{ return CompareState::CompareFunc(a.lParam, b.lParam, reinterpret_cast<LPARAM>(&cs)) > 0; });
+		{ return CompareState::CompareFunc(a.lParam, b.lParam, reinterpret_cast<LPARAM>(&cs)) < 0; });
 
 	m_firstDiffItem.reset();
 	m_lastDiffItem.reset();
@@ -1167,8 +1167,6 @@ void CDirView::OnDestroy()
 	}
 
 	CListView::OnDestroy();
-
-	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 /**
@@ -2498,6 +2496,15 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 	CDirDoc * pDoc = GetDocument();
 	ASSERT(pDoc != nullptr);
+
+	// Since the Collect thread deletes the DiffItems in the rescan by "Update selection",
+	// the UI update process should not be executed until the Collect thread process is completed 
+	// to avoid accessing the deleted DiffItem.
+	if (pDoc->m_diffThread.IsMarkedRescan() && pDoc->m_diffThread.GetCollectThreadState() != CDiffThread::THREAD_COMPLETED)
+	{
+		ASSERT(0);
+		return 0;	// return value unused
+	}
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
@@ -4406,6 +4413,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	int i = m_pColItems->ColPhysToLog(pParam->item.iSubItem);
 	if (IsDiffItemSpecial(key))
 	{
+		pParam->item.iImage = m_listViewItems[nIdx].iImage;
 		if (m_pColItems->IsColName(i))
 		{
 			pParam->item.pszText = _T("..");

@@ -19,7 +19,7 @@ WINMERGE
 Για να μάθετε πώς να διεξάγετε βασικές λειτουργίες αφού εγκαταστήσετε το
 WinMerge, επιλέξατε Βοήθεια>Βοήθεια WinMerge και διαβάστε το κεφάλαιο
 Γρήγορη Εκκίνηση. Ή, πηγαίνετε στην αντίστοιχη ιστοσελίδα στη διεύθυνση
-https://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/Quick_start.html
 
 Βοήθεια του WinMerge
 ====================

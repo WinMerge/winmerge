@@ -16,7 +16,7 @@ https://winmerge.org/
 ===========
 WinMergeをインストールした後、基本的な操作の仕方を知るために、[ヘルプ]メニュー→
 [WinMergeヘルプ]をクリックし、クイックスタートトピックを表示してください。
-または、Webバージョンのhttps://manual.winmerge.org/QuickStart.html
+または、Webバージョンのhttps://manual.winmerge.org/Quick_start.html
 を参照してください。
 
 WinMergeのヘルプ

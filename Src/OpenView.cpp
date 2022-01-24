@@ -400,7 +400,7 @@ void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
 			case IDC_PATH2_COMBO:
 				int id2 = 0;
 				CWnd *pwndChild = GetFocus();
-				if (IsChild(pwndChild) && !pwndHit->IsChild(pwndChild)) do
+				if (pwndChild && IsChild(pwndChild) && !pwndHit->IsChild(pwndChild)) do
 				{
 					id2 = pwndChild->GetDlgCtrlID();
 					pwndChild = pwndChild->GetParent();

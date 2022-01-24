@@ -1263,7 +1263,7 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
       int i = 0;
 
       // Pass if the text begins after the right end of the clipping region
-      if (ptOrigin.x < rcClip.right)
+      if (ptOrigin.x < rcClip.right && ptOrigin.y < rcClip.bottom)
         {
           // Because ExtTextOut is buggy when ptOrigin.x < - 4095 * charWidth
           // or when nCount >= 4095
@@ -2682,7 +2682,7 @@ OnDraw (CDC * pdc)
       if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
         nSubLines = GetSubLines(nCurrentLine);
 
-      rcLine.bottom = rcLine.top + nSubLines * nLineHeight;
+      rcLine.bottom = (std::min)(rcClient.bottom, rcLine.top + nSubLines * nLineHeight);
       rcMargin.bottom = rcLine.bottom;
 
       CRect rcMarginAndLine(rcClient.left, rcLine.top, rcClient.right, rcLine.bottom);
@@ -2693,9 +2693,9 @@ OnDraw (CDC * pdc)
               DrawMargin (rcMargin, nCurrentLine, nCurrentLine + 1);
               DrawSingleLine (rcLine, nCurrentLine);
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
-                m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.bottom-1);
+                m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1);
               if (m_pTextBuffer->GetTableEditing ())
-                m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.bottom-1, rcLine.right, rcMargin.bottom-1);
+                m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.top + nSubLines * nLineHeight - 1, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1);
               if (nCurrentLine == m_ptCursorPos.y)
                 m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
                   nCursorY + nLineHeight - 1, 1);
@@ -2709,7 +2709,7 @@ OnDraw (CDC * pdc)
         }
 
       nCurrentLine++;
-      rcLine.top = rcLine.bottom;
+      rcLine.top += nSubLines * nLineHeight;
       rcMargin.top = rcLine.top;
     }
 

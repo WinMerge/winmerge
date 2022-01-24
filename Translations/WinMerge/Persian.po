@@ -4,9 +4,6 @@
 # Translators:
 # * Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Persian.po 7202 2010-06-19 12:46:49Z kimmov $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -279,6 +276,9 @@ msgstr "&O باز کردن ... \tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "&t باز کردن پرونده تعارض ... "
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "&j باز کردن (پروژه) طرح ... \tCtrl+J"
@@ -301,6 +301,10 @@ msgstr "&x خروج \tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "&E ويرايش "
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -416,9 +420,6 @@ msgstr "&e يادداشتهاي نشر "
 #, c-format
 msgid "&Translations"
 msgstr "&T ترجمه ها "
-
-msgid "&Check For Updates"
-msgstr ""
 
 #, c-format
 msgid "C&onfiguration"
@@ -686,10 +687,6 @@ msgstr "&t برش \tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&C رونوشت برداري \tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&P چسباندن \tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4210,9 +4207,8 @@ msgstr " بدون پيش فرق گذار - عادي "
 msgid "Suggested plugins"
 msgstr " افزايه هاي پيشنهادي "
 
-#, c-format
-msgid "Other plugins"
-msgstr " ساير افزايه ها "
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4732,4 +4728,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

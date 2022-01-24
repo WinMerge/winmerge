@@ -67,6 +67,8 @@
 #include "TFile.h"
 #include "Shell.h"
 #include "WindowsManagerDialog.h"
+#include "ClipboardHistory.h"
+#include "locality.h"
 
 using std::vector;
 using boost::begin;
@@ -223,6 +225,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
+	ON_COMMAND(ID_FILE_OPENCLIPBOARD, OnFileOpenClipboard)
+	ON_COMMAND(ID_EDIT_PASTE, OnFileOpenClipboard)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
@@ -297,6 +301,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	// Window manager
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
@@ -1649,12 +1654,6 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 	return pMergeDoc;
 }
 
-// Clear the item count in the main status pane
-void CMainFrame::ClearStatusbarItemCount()
-{
-	m_wndStatusBar.SetPaneText(2, _T(""));
-}
-
 /**
  * @brief Generate patch from files selected.
  *
@@ -2604,6 +2603,53 @@ void CMainFrame::OnFileOpenConflict()
 }
 
 /**
+ * @brief Called when user selects File/Open Clipboard
+ */
+void CMainFrame::OnFileOpenClipboard()
+{
+	DoOpenClipboard();
+}
+
+bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwFlags[] /*= nullptr*/,
+	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
+	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+{
+	auto historyItems = ClipboardHistory::GetItems(nBuffers);
+
+	String strDesc2[3];
+	DWORD dwFlags2[3];
+	for (int i = 0; i < nBuffers; ++i)
+	{
+		int64_t t = historyItems[nBuffers - i - 1].timestamp;
+		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
+			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
+		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		PathContext tmpPathContext;
+		for (int pane = 0; pane < nBuffers; ++pane)
+		{
+			auto item = historyItems[nBuffers - pane - 1];
+			if (i == 0 && item.pBitmapTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pBitmapTempFile->GetPath());
+				m_tempFiles.push_back(item.pBitmapTempFile);
+			}
+			if (i == 1 && item.pTextTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pTextTempFile->GetPath());
+				m_tempFiles.push_back(item.pTextTempFile);
+			}
+		}
+		if (tmpPathContext.GetSize() == nBuffers)
+			DoFileOpen(nID, &tmpPathContext, dwFlags2, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+	}
+	return true;
+}
+
+/**
  * @brief Select and open conflict file for resolving.
  * This function lets user to select conflict file to resolve.
  * Then we parse conflict file to two files to "merge" and
@@ -2944,6 +2990,14 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Called to update the item count in the status bar
+ */
+void CMainFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetText(_T(""));
+}
+
+/**
  * @brief Move to next file
  */
 void CMainFrame::OnNextFile()
@@ -3118,6 +3172,10 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	{
 		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
 	}
+	else
+	{
+		pMenu->AppendMenu(MF_SEPARATOR);
+	}
 
 	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
 		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
@@ -3133,7 +3191,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 	else
 	{
 		pMenu->AppendMenu(MF_SEPARATOR, 0);
-		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("Other plugins").c_str());
+		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 	}
 
 	std::vector<String> processTypes;

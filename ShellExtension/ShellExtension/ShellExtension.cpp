@@ -19,8 +19,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // Look at http://www.codeproject.com/shell/ for excellent guide
 // to Windows Shell programming by Michael Dunn.
-//
-// $Id$
 
 // Note: Proxy/Stub Information
 //      To build a separate proxy/stub DLL,

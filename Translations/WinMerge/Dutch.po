@@ -4,15 +4,15 @@
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
 # * Michel Coene
-# Thomas De Rocker, 2021
+# Thomas De Rocker, 2022
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-12 22:35+0000\n"
+"POT-Creation-Date: 2022-01-05 21:08+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
-"Last-Translator: Thomas De Rocker, 2021\n"
+"Last-Translator: Thomas De Rocker, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,13 +28,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Naar midden kopiëren"
 
 msgid "C&opy to Right"
 msgstr "Naar rechts kopiëren"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Van midden kopiëren"
 
 msgid "Copy fro&m Right"
 msgstr "Van rechts kopiëren"
@@ -46,22 +46,22 @@ msgid "Copy &from Left"
 msgstr "Van links kopiëren"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Geselecteerde regel(s) naar midden kopiëren"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Geselecteerde regel(s) naar rechts kopiëren"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Geselecteerde regel(s) van midden kopiëren"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr "Geselecteerde regel(s) vanaf rechts kopiëren"
+msgstr "Geselecteerde regel(s) van rechts kopiëren"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "Geselecteerde regel(s) naar links kopiëren"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr "Geselecteerde regel(s) vanaf links kopiëren"
+msgstr "Geselecteerde regel(s) van links kopiëren"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
@@ -239,6 +239,9 @@ msgstr "Openen...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr "Conflictbestand openen..."
 
+msgid "Open C&lipboard"
+msgstr ""
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Project openen...\tCtrl+J"
 
@@ -256,6 +259,9 @@ msgstr "Afsluiten\tCtrl+Q"
 
 msgid "&Edit"
 msgstr "Bewerken"
+
+msgid "&Paste\tCtrl+V"
+msgstr "Plakken\tCtrl+V"
 
 msgid "&Options..."
 msgstr "Opties..."
@@ -343,9 +349,6 @@ msgstr "Vrijgave-opmerkingen"
 
 msgid "&Translations"
 msgstr "Vertalingen"
-
-msgid "&Check For Updates"
-msgstr ""
 
 msgid "C&onfiguration"
 msgstr "Configuratie"
@@ -554,9 +557,6 @@ msgstr "Knippen\tCtrl+X"
 msgid "&Copy\tCtrl+C"
 msgstr "Kopiëren\tCtrl+C"
 
-msgid "&Paste\tCtrl+V"
-msgstr "Plakken\tCtrl+V"
-
 msgid "F&ind...\tCtrl+F"
 msgstr "Zoeken...\tCtrl+F"
 
@@ -696,7 +696,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Vorig alleen rechts verschil\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopiëren van links naar"
 
 msgid "&Middle"
 msgstr "Midden"
@@ -705,22 +705,22 @@ msgid "&Right"
 msgstr "Rechts"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Kopiëren van midden naar"
 
 msgid "&Left"
 msgstr "Links"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopiëren van rechts naar"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Geselecteerde regel(s) kopiëren van links naar"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Geselecteerde regel(s) kopiëren van midden naar"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Geselecteerde regel(s) kopiëren van rechts naar"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiëren van links\tAlt+Shift+Rechts"
@@ -965,7 +965,7 @@ msgid "Ignore codepage &differences"
 msgstr "Tekenset-verschillen negeren"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Nummers negeren"
 
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
@@ -1348,19 +1348,19 @@ msgid "Move &Down"
 msgstr "Omlaag verplaatsen"
 
 msgid "&Additional Properties"
-msgstr ""
+msgstr "Extra eigenschappen"
 
 msgid "Additional Properties"
-msgstr ""
+msgstr "Extra eigenschappen"
 
 msgid "&>"
-msgstr ""
+msgstr ">"
 
 msgid "&<"
-msgstr ""
+msgstr "<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Plugin selecteren"
@@ -1828,7 +1828,7 @@ msgid "&Original file's folder"
 msgstr "Map van origineel bestand"
 
 msgid "&Global backup folder:"
-msgstr "Globale backupmap:"
+msgstr "Algemene backupmap:"
 
 msgid "Backup filename:"
 msgstr "Bestandsnaam backup:"
@@ -1925,10 +1925,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Punten voor opnieuw verwerken negeren"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Drempel voor overschakelen naar snel vergelijken (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 
 msgid ""
 "\n"
@@ -2661,25 +2661,25 @@ msgid "Break at whitespace or punctuation"
 msgstr "Afbreken bij witruimte of interpunctie"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Naar midden kopiëren\tAlt+Rechts"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Naar midden kopiëren\tAlt+Links"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopiëren van midden\tAlt+Shift+Rechts"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopiëren van midden\tAlt+Shift+Links"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Naar midden kopiëren en verder gaan\tCtrl+Alt+Rechts"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Naar midden kopiëren en verder gaan\tCtrl+Alt+Links"
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Alles naar midden kopiëren"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -2924,88 +2924,88 @@ msgid "Prediffer"
 msgstr "Voorvergelijken"
 
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 msgid "Middle"
-msgstr ""
+msgstr "Midden"
 
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 msgid "Diff"
-msgstr ""
+msgstr "Verschil"
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Aantal duplicaten links"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Aantal duplicaten rechts"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Aantal duplicaten midden"
 
 msgid "Move"
-msgstr ""
+msgstr "Verplaatsen"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Kalender"
 
 msgid "Communication"
-msgstr ""
+msgstr "Communicatie"
 
 msgid "Contact"
-msgstr ""
+msgstr "Contact"
 
 msgid "Devices"
-msgstr ""
+msgstr "Apparaten"
 
 msgid "Document"
-msgstr ""
+msgstr "Document"
 
 msgid "Home"
-msgstr ""
+msgstr "Thuis"
 
 msgid "Journal"
-msgstr ""
+msgstr "Tijdschrift"
 
 msgid "Link"
-msgstr ""
+msgstr "Koppeling"
 
 msgid "Media"
-msgstr ""
+msgstr "Media"
 
 msgid "Music"
-msgstr ""
+msgstr "Muziek"
 
 msgid "Note"
-msgstr ""
+msgstr "Notitie"
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Tv-opname"
 
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 msgid "Security"
-msgstr ""
+msgstr "Beveiliging"
 
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 msgid "Task"
-msgstr ""
+msgstr "Taak"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Hash"
-msgstr ""
+msgstr "Hash"
 
 msgid "Unable to compare files"
 msgstr "Kan bestanden niet vergelijken"
@@ -3091,7 +3091,7 @@ msgstr "Afbeeldingsbestanden zijn verschillend"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Groep%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3657,8 +3657,8 @@ msgstr "Geen voorvergelijking (normaal)"
 msgid "Suggested plugins"
 msgstr "Voorgestelde plugins"
 
-msgid "Other plugins"
-msgstr "Andere plugins"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -3786,7 +3786,7 @@ msgid "MDI child window only"
 msgstr "Alleen MDI-dochtervenster"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "Hoofdvenster sluiten als er slechts één MDI-dochtervenster is"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3885,7 +3885,7 @@ msgid "Rotated: %d  "
 msgstr "Geroteerd: %d"
 
 msgid "All pages"
-msgstr ""
+msgstr "Alle pagina's"
 
 msgid "<Edit here>"
 msgstr "<hier bewerken>"
@@ -4060,116 +4060,258 @@ msgid "Specify plugin arguments"
 msgstr "Plugin-argumenten opgeven"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Tekens hoofdletters maken"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Tekens kleine letters maken"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Dubbele regels verwijderen"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Dubbele regels tellen"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Regels oplopend sorteren"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Regels aflopend sorteren"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Kolommen omkeren"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Regels omkeren"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression"
+msgstr ""
+"Tekst door andere tekst vervangen.\r\n"
+"Gebruik: Replace [-i] [-e] ZOEKEN VERVANGEN\r\n"
+"  ZOEKEN    - te zoeken tekst\r\n"
+"  VERVANGEN - te vervangen tekst\r\n"
+"  -i - hoofdlettergebruik negeren (alleen voor -e)\r\n"
+"  -e - de opgegeven tekst als een reguliere expressie behandelen"
+
+#, c-format
+msgid ""
+"Apply filter command. \r\n"
+"Usage: ExecFilterCommand COMMAND\r\n"
+"  COMMAND - command to execute. %1 in the command is replaced with the filename."
+msgstr ""
+"Filteropdracht toepassen. \r\n"
+"Gebruik: ExecFilterCommand OPDRACHT\r\n"
+"  OPDRACHT - uit te voeren opdracht. %1 in de opdracht wordt vervangen door de bestandsnaam."
+
+msgid ""
+"Tokenize selection. \r\n"
+"Usage: Tokenize PATTERNS\r\n"
+"  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgstr ""
+"Selectie tokenizeren. \r\n"
+"Gebruik: Tokenize PATRONEN\r\n"
+"  PATRONEN - reguliere expressie voor tokenizeren. (bijvoorbeeld [^\\w]+)"
+
+msgid "Trim spaces"
+msgstr "Spaties verwijderen"
+
+msgid ""
+"Select some columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching columns\r\n"
+"  -i - ignore case\r\n"
+"  -g - enable global flag\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+"Kolommen selecteren.\r\n"
+"Gebruik: SelectColumns BEREIKEN\r\n"
+"   of: SelectColumns [-v] [-i] [-g] -e PATRONEN\r\n"
+"  BEREIKEN   - lijst van te selecteren kolombereiken. (bijvoorbeeld -3,5-10,30-)\r\n"
+"  PATRONEN - reguliere expressie\r\n"
+"  -v - niet-overeenkomende kolommen selecteren\r\n"
+"  -i - hoofdlettergebruik negeren\r\n"
+"  -g - algemene flag inschakelen\r\n"
+"  -e - gebruik PATRONEN voor het overeenkomen"
+
+msgid ""
+"Select some lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching lines\r\n"
+"  -i - ignore case\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+"Regels selecteren.\r\n"
+"Gebruik: SelectLines BEREIKEN\r\n"
+"   of: SelectLines [-v] [-i] -e PATRONEN\r\n"
+"  BEREIKEN   - lijst van te selecteren regelbereiken. (bijvoorbeeld -3,5-10,30-)\r\n"
+"  PATRONEN - reguliere expressie\r\n"
+"  -v - niet-overeenkomende regels selecteren\r\n"
+"  -i - hoofdlettergebruik negeren\r\n"
+"  -e - gebruik PATRONEN voor het overeenkomen"
+
+msgid ""
+"HTML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"HTML mooi maken met tidy-html5. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de tidy-opdracht."
+
+msgid ""
+"JSON Prettier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+"JSON mooi maken met de jq-opdracht. \r\n"
+"Argumenten: filteren of opdrachtregelopties doorgegeven aan de jq-opdracht."
+
+msgid ""
+"XML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"XML mooi maken met tidy-html5. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de tidy-opdracht."
+
+msgid ""
+"YAML Prettier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+"YAML mooi maken met de yq-opdracht. \r\n"
+"Argumenten: filteren of opdrachtregelopties doorgegeven aan de yq-opdracht."
+
+msgid ""
+"Graphviz Visualizer. \r\n"
+"Arguments: Command line options passed to the dot command."
+msgstr ""
+"Graphviz-visualizer. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de dot-opdracht."
+
+msgid ""
+"CSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+"CSV querier met de q-opdracht. \r\n"
+"Argumenten: SQL-statement or opdrachtregelopties doorgegeven aan de q-opdracht."
+
+msgid ""
+"TSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+"TSV querier met de q-opdracht. \r\n"
+"Argumenten: SQL-statement or opdrachtregelopties doorgegeven aan de q-opdracht."
+
+msgid ""
+"JSON Querier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+"JSON querier met de jq-opdracht. \r\n"
+"Argumenten: filteren of opdrachtregelopties doorgegeven aan de jq-opdracht."
+
+msgid ""
+"YAML Querier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+"YAML querier met de yq-opdracht. \r\n"
+"Argumenten: filteren of opdrachtregelopties doorgegeven aan de yq-opdracht."
+
+msgid ""
+"HTML Validator with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"HTML-validator met tidy-html5. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de tidy-opdracht."
+
+msgid ""
+"JVM bytecode disassembler with javap. \r\n"
+"Arguments: Command line options passed to the javap command."
+msgstr ""
+"JVM bytecode disassembler met javap. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de javap-opdracht."
+
+msgid ""
+"IL disassembler with ildasm. \r\n"
+"Arguments: Command line options passed to the ildasm command."
+msgstr ""
+"IL disassembler met ildasm. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de ildasm-opdracht."
+
+msgid ""
+"Native code disassembler with dumpbin. \r\n"
+"Arguments: Command line options passed to the dumpbin command."
+msgstr ""
+"Native code disassembler met dumpbin. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de dumpbin-opdracht."
+
+msgid ""
+"General content extractor with Apache Tika. \r\n"
+"Arguments: Command line options passed to the tika-app.jar."
+msgstr ""
+"Algemene inhoud-extractor met Apache Tika. \r\n"
+"Argumenten: opdrachtregelopties doorgegeven aan de tika-app.jar."
+
+msgid "Apply patch using GnuWin32 Patch for Windows"
+msgstr "Patch toepassen met de GnuWin32 Patch voor Windows"
+
+msgid "Display the text content of MS Excel files"
+msgstr "De tekstinhoud van MS Excel-bestanden weergeven"
+
+msgid "Display the text content of MS PowerPoint files"
+msgstr "De tekstinhoud van MS PowerPoint-bestanden weergeven"
+
+msgid "Display the text content of MS Visio files"
+msgstr "De tekstinhoud van MS Visio-bestanden weergeven"
+
+msgid "Display the text content of MS Word files"
+msgstr "De tekstinhoud van MS Word-bestanden weergeven"
+
+msgid ""
+"Ignore some columns - ignored columns list from the plugin name or the "
+"plugin argument"
+msgstr ""
+"Sommige kolommen negeren - lijst met genegeerde kolommen uit de plugin-naam "
+"of het plugin-argument"
+
+msgid ""
+"The plugin ignores comments (//... and /* ... */) in C, C++, PHP and "
+"JavaScript files."
+msgstr ""
+"De plugin negeert commentaar (//... en /* ... */) in C, C++, PHP en "
+"JavaScript-bestanden."
+
+msgid ""
+"Ignore some fields - ignored fields list from the plugin name or the plugin "
+"argument"
+msgstr ""
+"Sommige velden negeren - lijst met genegeerde velden uit de plugin-naam of "
+"het plugin-argument"
+
+msgid "Prediff Line Filter"
+msgstr "Voorvergelijking-regelfilter"
+
+msgid "Basic text functions for the context menu"
+msgstr "Basis-tekstfuncties voor het contextmenu"
+
+msgid "Filter applied"
 msgstr ""
 
 #, c-format
-msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+msgid "Clipboard at %s"
 msgstr ""
 
-msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr ""
 
-msgid "Trim spaces"
+msgid "This system does not support clipboard history."
 msgstr ""
 
-msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
-
-msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
-
-msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
-
-msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
-
-msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
-
-msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
-
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
-
-msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
-
-msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
-
-msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
-
-msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
-
-msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
-
-msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
-
-msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
-
-msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
-
-msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
-
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
-
-msgid "Display the text content of MS Excel files"
-msgstr ""
-
-msgid "Display the text content of MS PowerPoint files"
-msgstr ""
-
-msgid "Display the text content of MS Visio files"
-msgstr ""
-
-msgid "Display the text content of MS Word files"
-msgstr ""
-
-msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
-
-msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
-
-msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
-
-msgid "Prediff Line Filter"
-msgstr ""
-
-msgid "Basic text functions for the context menu"
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""

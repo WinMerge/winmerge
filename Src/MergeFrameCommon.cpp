@@ -147,7 +147,7 @@ void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIde
 }
 
 String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String desc[],
-	PackingInfo *pInfoUnpacker, PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
+	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
 {
 	const int nBuffers = paths.GetSize();
 	String sFileName[3];
@@ -166,6 +166,36 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 	if (hasTrivialDiffs)
 		flags += _T("F");
 	return sTitle + (flags.empty() ? _T("") : (_T(" (") + flags + _T(")")));
+}
+
+String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const String desc[],
+	const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs)
+{
+	const int nBuffers = paths.GetSize();
+	String sTitle;
+	for (int nBuffer = 0; nBuffer < paths.GetSize(); nBuffer++)
+	{
+		sTitle += strutils::format(_T("%d: "), nBuffer + 1);
+		if (!desc[nBuffer].empty())
+		{
+			sTitle += desc[nBuffer];
+			if (!paths[nBuffer].empty()) 
+				sTitle += _T(" (") + paths[nBuffer] + _T(")");
+		}
+		else
+		{
+			sTitle += paths[nBuffer];
+		}
+		sTitle += _T("\n");
+	}
+	String flags;
+	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
+		sTitle += strutils::format(_T("%s: %s\n"), _("Unpacker"), pInfoUnpacker->GetPluginPipeline());
+	if (pInfoPrediffer && !pInfoPrediffer->GetPluginPipeline().empty())
+		sTitle += strutils::format(_T("%s: %s\n"), _("Prediffer"), pInfoPrediffer->GetPluginPipeline());
+	if (hasTrivialDiffs)
+		sTitle += _("Filter applied") + _T("\n");
+	return sTitle;
 }
 
 void CMergeFrameCommon::ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI)

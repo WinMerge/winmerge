@@ -174,7 +174,7 @@ bool CPropertyPageHost::SetActivePage(int nIndex, bool bAndFocus /*= true*/)
 		if (pCtrl != nullptr)
 			pCtrl->SetFocus();
 	}
-	else
+	else if (pFocus)
 		pFocus->SetFocus();
 
 	m_nSelIndex = nIndex;

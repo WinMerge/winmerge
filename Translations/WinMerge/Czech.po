@@ -5,9 +5,6 @@
 # * Jiri Tax <jt at taxoft.cz>
 # * Jan Hryz <janhryz at users.sourceforge.net>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Czech.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -278,6 +275,9 @@ msgstr "&Otevřít...\tCtrl+O"
 msgid "Open Conflic&t File..."
 msgstr ""
 
+msgid "Open C&lipboard"
+msgstr ""
+
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Otevřít pro&jekt...\tCtrl+J"
@@ -300,6 +300,10 @@ msgstr "&Konec\tCtrl+Q"
 #, c-format
 msgid "&Edit"
 msgstr "Úpr&avy"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Vložit\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -414,9 +418,6 @@ msgstr ""
 
 #, c-format
 msgid "&Translations"
-msgstr ""
-
-msgid "&Check For Updates"
 msgstr ""
 
 #, c-format
@@ -685,10 +686,6 @@ msgstr "Vyj&mout\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopírovat\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Vložit\tCtrl+V"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -4100,9 +4097,8 @@ msgstr ""
 msgid "Suggested plugins"
 msgstr "Navržené pluginy"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Ostatní pluginy"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -4622,4 +4618,20 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""
