@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2022-01-23</update>
+  <update>2022-01-24</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -158,12 +158,12 @@
     <translation>
       <language>Corsican</language>
       <file>Corsican.po</file>
-      <update>2022-01-19</update>
+      <update>2022-01-23</update>
       <strings>
         <count>1199</count>
-        <translated>1195</translated>
+        <translated>1199</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -278,12 +278,12 @@
     <translation>
       <language>French</language>
       <file>French.po</file>
-      <update>2022-01-09</update>
+      <update>2022-01-24</update>
       <strings>
         <count>1199</count>
-        <translated>1193</translated>
+        <translated>1199</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>6</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
@@ -335,12 +335,12 @@
     <translation>
       <language>German</language>
       <file>German.po</file>
-      <update>2022-01-19</update>
+      <update>2022-01-23</update>
       <strings>
         <count>1199</count>
-        <translated>1195</translated>
+        <translated>1199</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>4</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator maintainer="1">
