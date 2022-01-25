@@ -2138,7 +2138,7 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
   if (nEmptySubLines > 0)
     {
       CRect frect = rc;
-      frect.top = frect.bottom - nEmptySubLines * GetLineHeight();
+      frect.top += (nBreaks + 1) * GetLineHeight ();
       m_pCrystalRenderer->FillSolidRectangle(frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
     }
 }

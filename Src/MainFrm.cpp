@@ -1408,6 +1408,7 @@ void CMainFrame::OnViewSelectfont()
 		lf = &m_lfDiff;
 
 	cf.lpLogFont = lf;
+	cf.hwndOwner = m_hWnd;
 
 	if (ChooseFont(&cf))
 	{
