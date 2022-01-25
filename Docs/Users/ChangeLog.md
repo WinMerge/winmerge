@@ -6,6 +6,8 @@
 
 - [Feature Request] Lengthen title of File Compare window or add tip (#960)
 - added me to contributor list (PR #1094)
+- Made so that the parent window cannot be operated while the font selection
+    dialog displayed from View→Select Font menu item is displayed.
 
 ### File compare
 
