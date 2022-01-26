@@ -186,6 +186,13 @@ String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const Strin
 		{
 			sTitle += paths[nBuffer];
 		}
+		sTitle += _T(" - ");
+		if (nBuffer == 0)
+			sTitle += _("Left");
+		else if (nBuffer == 1 && paths.GetSize() > 2)
+			sTitle += _("Middle");
+		else
+			sTitle += _("Right");
 		sTitle += _T("\n");
 	}
 	String flags;

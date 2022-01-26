@@ -18,9 +18,10 @@ Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/is
 
 ### General
 
+- BugFix: Crash when comparing files in Google Drive
 - [Feature Request] Lengthen title of File Compare window or add tip (#960)
 - added me to contributor list (PR #1094)
-- Made so that the parent window cannot be operated while the font selection
+- Made it so that the parent window cannot be operated while the font selection
     dialog displayed from View→Select Font menu item is displayed.
 
 ### File compare
@@ -29,6 +30,7 @@ Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/is
 - BugFix: Fix a problem that 'Encountered an improper argument' error occurs
     when a pane split by Window→Split menu item is unsplit by drag operation.
 - BugFix: Colors -> Differences -> Word Difference : Text color ignored (#1116)
+- BugFix: WinMerge crashes with specific regex search (#1160)
 - 3-Way File Merge: No Keyboard / hot keys available for Merging from Left Pane
     to right pane and vice versa (#957)
 - Winmerge hangs when i try to compare files. (#1111)
@@ -94,7 +96,7 @@ Please submit bug reports to our <a href="http://github.com/WinMerge/winmerge/is
 
 ### Internals
 
-- Fix typo in DirScan.cpp (#1118)
+- Fix typo in DirScan.cpp (PR #1118)
 
 ## What Is New in 2.16.17 Beta
 
