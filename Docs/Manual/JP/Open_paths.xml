@@ -519,6 +519,112 @@ to compare one file/folder against several files/folders.</para> </tip> -->
             <para>1 = Subfolders included</para>
           </listitem>
         </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>unpacker</sgmltag></term>
+
+          <listitem>
+            <para>Unpacker plugin name or plugin pipeline</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>prediffer</sgmltag></term>
+
+          <listitem>
+            <para>Prediffer plugin name or plugin pipeline</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>white-spaces</sgmltag></term>
+
+          <listitem>
+            <para>0 = Compare whitespaces</para>
+
+            <para>1 = Ignore whitespace changes</para>
+
+            <para>2 = Ignore all whitespaces</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-blank-lines</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore blank lines</para>
+
+            <para>1 = Ignore blank lines</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-case</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore case</para>
+
+            <para>1 = Ignore case</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-carriage-return-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore carriage return differences</para>
+
+            <para>1 = Ignore carriage return differences</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-numbers</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore numbers</para>
+
+            <para>1 = Ignore numbers</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-codepage-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore codepage differences</para>
+
+            <para>1 = Ignore codepage differences</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>ignore-comment-diff</sgmltag></term>
+
+          <listitem>
+            <para>0 = Do not ignore comment differences</para>
+
+            <para>1 = Ignore comment differences</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>compare-method</sgmltag></term>
+
+          <listitem>
+            <para>0 = Full Contents</para>
+
+            <para>1 = Quick Contents</para>
+
+            <para>2 = Binary Contents</para>
+
+            <para>3 = Modified Date</para>
+
+            <para>4 = Modified Date and Size</para>
+
+            <para>5 = Size</para>
+          </listitem>
+        </varlistentry>
       </variablelist>
 
       <para>None of the fields is required, and they can be empty (<literal>for

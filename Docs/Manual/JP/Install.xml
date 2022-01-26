@@ -154,10 +154,10 @@
           </varlistentry>
 
           <varlistentry>
-            <term>GnuWin32 Patch for Windows</term>
+            <term>GnuWin32 Patch for Windows/HTML Tidy/jq</term>
 
             <listitem>
-              <para>これとApplyPatch.sctプラグインを使用するとパッチが適用できます。</para>
+              <para>プラグインで使用されるコマンドをインストールします。 </para>
             </listitem>
           </varlistentry>
 
