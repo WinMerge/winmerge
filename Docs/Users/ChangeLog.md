@@ -4,6 +4,7 @@
 
 ### General
 
+- BugFix: Crash when comparing files in Google Drive
 - [Feature Request] Lengthen title of File Compare window or add tip (#960)
 - added me to contributor list (PR #1094)
 - Made it so that the parent window cannot be operated while the font selection
