@@ -10,7 +10,7 @@
 #include "Concurrent.h"
 #include "UniFile.h"
 
-#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>) && _MSC_VER >= 1920
+#if __has_include(<winrt/windows.applicationmodel.datatransfer.h>) && _MSC_VER >= 1930
 
 #include <winrt/windows.foundation.collections.h>
 #include <winrt/windows.applicationmodel.datatransfer.h>
