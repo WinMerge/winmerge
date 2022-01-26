@@ -6,6 +6,7 @@ title: 変更履歴
 
 ### 全般
 
+- 不具合修正: Googleドライブのファイルを比較するとクラッシュすることがある。
 - タブバーのツールチップにフルパス名、使用しているプラグイン、行フィルタ等で無視されている行があるかどうかを表示するようにした。 [(#960)](https://github.com/WinMerge/winmerge/issues/960)
 - Contributors.txt に漏れていた人の名前を追加 [(PR #1094)](https://github.com/WinMerge/winmerge/pull/1094)
 - View→Select Fontメニュー項目から表示されるフォント選択ダイアログを表示している間は、親ウィンドウを操作できないようにしました。
