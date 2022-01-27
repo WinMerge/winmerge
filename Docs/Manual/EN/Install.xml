@@ -156,10 +156,10 @@
           </varlistentry>
 
           <varlistentry>
-            <term>GnuWin32 Patch for Windows</term>
+            <term>GnuWin32 Patch for Windows/HTML Tidy/jq</term>
 
             <listitem>
-              <para>You can use it and ApplyPatch.sct plugin to apply a patch.</para>
+              <para>Install commands used by plugins.</para>
             </listitem>
           </varlistentry>
 
