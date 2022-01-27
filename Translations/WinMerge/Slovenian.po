@@ -239,7 +239,7 @@ msgid "Open Conflic&t File..."
 msgstr "Od&pri datoteko v sporu..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Odpri od&ložišče"
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Odpri pro&jekt... \tCtrl+J"
@@ -2348,10 +2348,10 @@ msgstr ""
 "kasneje."
 
 msgid "Folder Comparison Results"
-msgstr "Rezultati primerjanja map"
+msgstr "Rezultati primerjave map"
 
 msgid "File Comparison"
-msgstr "Primerjanje map"
+msgstr "Primerjava map"
 
 msgid "Untitled left"
 msgstr "Leva neimenovana"
@@ -3673,7 +3673,7 @@ msgid "Suggested plugins"
 msgstr "Priporočeni vtičniki"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Vsi vtičniki"
 
 #, c-format
 msgid "Private Build: %1"
