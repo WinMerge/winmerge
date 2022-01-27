@@ -347,6 +347,9 @@ msgstr "リリースノート(&E)"
 msgid "&Translations"
 msgstr "翻訳(&T)"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "設定(&O)"
 

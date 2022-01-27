@@ -427,6 +427,9 @@ msgstr "Notes de v&ersion"
 msgid "&Translations"
 msgstr "&Traductions"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "&Configuration"

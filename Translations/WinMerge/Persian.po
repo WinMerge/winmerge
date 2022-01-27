@@ -421,6 +421,9 @@ msgstr "&e يادداشتهاي نشر "
 msgid "&Translations"
 msgstr "&T ترجمه ها "
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "&o پيکربندي "

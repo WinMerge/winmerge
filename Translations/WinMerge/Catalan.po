@@ -419,6 +419,9 @@ msgstr ""
 msgid "&Translations"
 msgstr ""
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr ""

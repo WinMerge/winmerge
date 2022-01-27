@@ -350,6 +350,9 @@ msgstr "Informacje o wydaniu"
 msgid "&Translations"
 msgstr "Tłumaczenia"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "Konfiguracja"
 

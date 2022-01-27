@@ -346,6 +346,9 @@ msgstr "Б&ележки към изданието"
 msgid "&Translations"
 msgstr "&Преводи"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "&Настройки"
 

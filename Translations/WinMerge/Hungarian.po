@@ -422,6 +422,9 @@ msgstr "Változási jegyzék"
 msgid "&Translations"
 msgstr "Fordítások"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "Konfigurációs fájl"

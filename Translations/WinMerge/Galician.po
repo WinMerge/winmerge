@@ -421,6 +421,9 @@ msgstr "&Notas da versión"
 msgid "&Translations"
 msgstr "&Traducións"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "&Configuración"

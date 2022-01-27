@@ -351,6 +351,9 @@ msgstr "Примечания к выпуску"
 msgid "&Translations"
 msgstr "Переводы"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "&Конфигурация"
 

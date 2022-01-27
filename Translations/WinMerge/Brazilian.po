@@ -349,6 +349,9 @@ msgstr "N&otas do Lançamento"
 msgid "&Translations"
 msgstr "&Traduções"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "C&onfiguração"
 

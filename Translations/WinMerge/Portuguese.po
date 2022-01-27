@@ -350,6 +350,9 @@ msgstr "Notas da versão"
 msgid "&Translations"
 msgstr "Traduções"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "&Configuração"
 

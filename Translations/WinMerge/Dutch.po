@@ -350,6 +350,9 @@ msgstr "Vrijgave-opmerkingen"
 msgid "&Translations"
 msgstr "Vertalingen"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "Configuratie"
 

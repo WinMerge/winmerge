@@ -418,6 +418,9 @@ msgstr "Versiotiedot"
 msgid "&Translations"
 msgstr "Käännökset"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "Asetukset"

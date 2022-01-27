@@ -420,6 +420,9 @@ msgstr "R&elease Notes"
 msgid "&Translations"
 msgstr "&පරිවර්තන"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "C&onfiguration"
 msgstr "C&onfiguration"

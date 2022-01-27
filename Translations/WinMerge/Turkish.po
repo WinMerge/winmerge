@@ -349,6 +349,9 @@ msgstr "Sürüm &notları"
 msgid "&Translations"
 msgstr "Çe&viriler"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "&Yapılandırma"
 

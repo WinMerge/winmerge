@@ -423,6 +423,9 @@ msgstr "&Versionshinweise"
 msgid "&Translations"
 msgstr "&Übersetzungen"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "&Konfiguration"

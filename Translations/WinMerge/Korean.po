@@ -427,6 +427,9 @@ msgstr "릴리즈 노트(&E)"
 msgid "&Translations"
 msgstr "번역(&T)"
 
+msgid "&Check For Updates"
+msgstr ""
+
 #, c-format
 msgid "C&onfiguration"
 msgstr "설정 로그(&O)"

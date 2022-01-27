@@ -350,6 +350,9 @@ msgstr "Utgivningsnotis"
 msgid "&Translations"
 msgstr "Översättningar"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "Konfiguration"
 

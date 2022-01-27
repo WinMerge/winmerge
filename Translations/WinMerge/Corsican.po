@@ -352,6 +352,9 @@ msgstr "&Note di versione"
 msgid "&Translations"
 msgstr "&Traduzzioni"
 
+msgid "&Check For Updates"
+msgstr ""
+
 msgid "C&onfiguration"
 msgstr "&Cunfigurazione"
 
