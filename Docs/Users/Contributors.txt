@@ -111,6 +111,10 @@ Localization:
   bovirus
   Massimiliano Caniparoli
 
+* Japanese:
+  Takashi Sawanaka <sdottaka@users.sourceforge.net>
+  Rukoto Luther <rukotolucies at hotmail.com>
+
 * Korean:
   Sukjoon <bbcool@gmail.com>
   Lee Jae-Hong <pyrasis@users.sourceforge.net>
