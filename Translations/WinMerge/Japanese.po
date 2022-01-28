@@ -3,13 +3,14 @@
 #
 # Translators:
 # * Takashi Sawanaka <sawanaka at d1.dion.ne.jp>
+# * Rukoto Luther <rukotolucies at hotmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2021-11-21 21:41+0900\n"
+"PO-Revision-Date: 2022-01-28 00:00+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -112,7 +113,7 @@ msgid "Open &Parent Folder..."
 msgstr "親フォルダーを開く(&P)..."
 
 msgid "S&hell Menu"
-msgstr "シェルメニュー(&H)"
+msgstr "シェル メニュー(&H)"
 
 msgid "View &Differences"
 msgstr "差異を表示(&D)"
@@ -324,7 +325,7 @@ msgid "Clo&se All"
 msgstr "すべて閉じる(&S)"
 
 msgid "Change &Pane\tF6"
-msgstr "ペインの変更(&P)\tF6"
+msgstr "ペインの切り替え(&P)\tF6"
 
 msgid "Tile &Horizontally"
 msgstr "上下に並べて表示(&H)"
@@ -342,10 +343,13 @@ msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge ヘルプ\tF1"
 
 msgid "R&elease Notes"
-msgstr "リリースノート(&E)"
+msgstr "リリース ノート(&E)"
 
 msgid "&Translations"
 msgstr "翻訳(&T)"
+
+msgid "&Check For Updates"
+msgstr "アップデートの確認(&U)"
 
 msgid "C&onfiguration"
 msgstr "設定(&O)"
@@ -396,7 +400,7 @@ msgid "S&how Binary Files"
 msgstr "バイナリ ファイルの表示(&H)"
 
 msgid "&3-way Compare"
-msgstr "3方向比較(&3)"
+msgstr "&3方向比較"
 
 msgid "Show &Left Only Different Items"
 msgstr "左側のみ差異のある項目の表示(&L)"
@@ -615,7 +619,7 @@ msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr "全行/0 ～ 9 行切替(&T)\tCtrl+D"
 
 msgid "&Invert (Hide Different Lines)"
-msgstr "反転(差異行を非表示にする)(&I)"
+msgstr "反転 (差異行を非表示にする)(&I)"
 
 msgid "&Lock Panes"
 msgstr "ペインをロック(&L)"
@@ -756,7 +760,7 @@ msgid "Apply Pre&differ..."
 msgstr "比較前処理プラグインを適用(&D)..."
 
 msgid "&Transform with editor script..."
-msgstr "エディタスクリプトで変換(&T)..."
+msgstr "エディター スクリプトで変換(&T)..."
 
 msgid "Sp&lit"
 msgstr "分割(&L)"
@@ -896,13 +900,13 @@ msgid "Differences to... (%1 of %2)"
 msgstr "差異を... (%1 / %2)"
 
 msgid "Left Shell menu"
-msgstr "左側シェルメニュー"
+msgstr "左側シェル メニュー"
 
 msgid "Middle Shell menu"
-msgstr "中央シェルメニュー"
+msgstr "中央シェル メニュー"
 
 msgid "Right Shell menu"
-msgstr "右側シェルメニュー"
+msgstr "右側シェル メニュー"
 
 msgid "Copy"
 msgstr "コピー"
@@ -1377,10 +1381,10 @@ msgid "Display all plugins, don't check the extension."
 msgstr "拡張子を無視してすべてのプラグインを表示する。"
 
 msgid "&Open files in the same window type after unpacking."
-msgstr "展開プラグイン適用後、ファイルを同じウインドウタイプで開く。(&O)"
+msgstr "展開プラグイン適用後、ファイルを同じウインドウ タイプで開く(&O)"
 
 msgid "&Plugin Pipeline:"
-msgstr "プラグインパイプライン(&P):"
+msgstr "プラグイン パイプライン(&P):"
 
 msgid "&Add pipe"
 msgstr "パイプを追加(&A)"
@@ -1503,7 +1507,7 @@ msgid "Reset"
 msgstr "リセット"
 
 msgid "File Filters"
-msgstr "ファイルフィルター"
+msgstr "ファイル フィルター"
 
 msgid "Test..."
 msgstr "テスト..."
@@ -1673,7 +1677,7 @@ msgid "&Detect archive type from file signature"
 msgstr "ファイルのシグネチャからアーカイブ形式を検出する(&D)"
 
 msgid "Items saved to or restored from the project file:"
-msgstr "プロジェクトファイルに保存またはプロジェクトファイルから復元する項目:"
+msgstr "プロジェクト ファイルに保存またはプロジェクト ファイルから復元する項目:"
 
 msgid "Compare Statistics"
 msgstr "比較統計"
@@ -1766,7 +1770,7 @@ msgid "Table"
 msgstr "テーブル"
 
 msgid "File type"
-msgstr "ファイルタイプ"
+msgstr "ファイル タイプ"
 
 msgid "&CSV"
 msgstr "&CSV"
@@ -1856,7 +1860,7 @@ msgid "&Enable plugins"
 msgstr "プラグインを有効にする(&E)"
 
 msgid "File filters:"
-msgstr "ファイルフィルター:"
+msgstr "ファイル フィルター:"
 
 msgid "&Plugin arguments:"
 msgstr "プラグイン引数(&P):"
@@ -1936,7 +1940,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "ユーザー指定文字区切り値"
 
 msgid "File Patterns:"
-msgstr "ファイルパターン:"
+msgstr "ファイル パターン:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2012,10 +2016,10 @@ msgstr ""
 "保存 (Ctrl+S)"
 
 msgid "Unknown error attempting to open project file."
-msgstr "未知のエラー:プロジェクト ファイルが開けません。"
+msgstr "未知のエラー: プロジェクト ファイルが開けません。"
 
 msgid "Unknown error attempting to save project file."
-msgstr "未知のエラー:プロジェクト ファイルが保存できません。"
+msgstr "未知のエラー: プロジェクト ファイルが保存できません。"
 
 msgid "Project file successfully loaded."
 msgstr "プロジェクト ファイルが読み込まれました。"
@@ -2035,7 +2039,7 @@ msgid ""
 "Redo (Ctrl+Y)"
 msgstr ""
 "\n"
-"繰り返す (Ctrl+Y)"
+"やり直し (Ctrl+Y)"
 
 msgid ""
 "\n"
@@ -2111,7 +2115,7 @@ msgid "Don't display this &message again."
 msgstr "再びこのメッセージを表示しない(&M)"
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックスページで [リセット] ボタンを押してください。"
+msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックス ページで [リセット] ボタンを押してください。"
 
 msgid "Syntax"
 msgstr "シンタックス"
@@ -2174,7 +2178,7 @@ msgid ""
 msgstr ""
 "タブ サイズが範囲外です。\n"
 "\n"
-"1から%1までの値を指定してください。"
+"1 から %1 までの値を指定してください。"
 
 msgid "Open"
 msgstr "開く"
@@ -2201,7 +2205,7 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
 
 msgid "File Type"
-msgstr "ファイルタイプ"
+msgstr "ファイル タイプ"
 
 msgid "Extension"
 msgstr "拡張子"
@@ -2397,31 +2401,31 @@ msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr "比較するフォルダーまたはファイルを 2 つ (または 3 つ) 選択してください。"
 
 msgid "Left (1st) path is invalid!"
-msgstr "左側 (1 番目) のパスは不正なパスです!"
+msgstr "左側 (1 番目) のパスが無効です!"
 
 msgid "Middle (2nd) path is invalid!"
-msgstr "中央 (2 番目) のパスは不正なパスです!"
+msgstr "中央 (2 番目) のパスが無効です!"
 
 msgid "Right (2nd) path is invalid!"
-msgstr "右側 (2番目) のパスは不正なパスです!"
+msgstr "右側 (2 番目) のパスが無効です!"
 
 msgid "Right (3rd) path is invalid!"
-msgstr "右側 (3 番目) のパスは不正なパスです!"
+msgstr "右側 (3 番目) のパスが無効です!"
 
 msgid "Both paths are invalid!"
-msgstr "両側のパスは不正なパスです!"
+msgstr "両側 (1 番目と 2 番目) のパスが無効です!"
 
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr "左側 (1 番目) と中央 (2 番目) のパスは不正なパスです!"
+msgstr "左側 (1 番目) と中央 (2 番目) のパスが無効です!"
 
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr "左側 (1 番目) と右側 (3 番目) のパスは不正なパスです!"
+msgstr "左側 (1 番目) と右側 (3 番目) のパスが無効です!"
 
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "中央 (2 番目) と右側 (3 番目) のパスは不正なパスです!"
+msgstr "中央 (2 番目) と右側 (3 番目) のパスが無効です!"
 
 msgid "All paths are invalid!"
-msgstr "すべてのパスが不正なパスです!"
+msgstr "すべてのパスが無効です!"
 
 msgid "Only enabled for file comparisons"
 msgstr "ファイル比較のみ有効"
@@ -2514,7 +2518,7 @@ msgstr ""
 "%1\n"
 "%2\n"
 "- 別名で保存する場合は [OK] を、\n"
-"- 中止する場合は、[キャンセル] を押してください"
+"- 中止する場合は [キャンセル] を押してください。"
 
 #, c-format
 msgid ""
@@ -3618,8 +3622,8 @@ msgid ""
 "A new version of WinMerge is available.\n"
 "%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
-"最新版の WinMerge が入手可能です。\n"
-"%1 が現在の最新版です (お使いのバージョンは %2)。ダウンロードしますか?"
+"新しいバージョンの WinMerge が利用可能です。\n"
+"%1 をダウンロードしますか? (現在 %2 を使用中)"
 
 msgid "Failed to download latest version information"
 msgstr "最新版情報のダウンロードに失敗しました"
@@ -3726,13 +3730,13 @@ msgid "DirectWrite Natural Symmetric"
 msgstr "DirectWrite Natural Symmetric"
 
 msgid "MDI child window or main window"
-msgstr "MDI子ウインドウまたはメインウインドウ"
+msgstr "MDI 子ウインドウまたはメインウインドウ"
 
 msgid "MDI child window only"
-msgstr "MDI子ウインドウのみ"
+msgstr "MDI 子ウインドウのみ"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr "MDI子ウィンドウが1つしかない場合、メインウィンドウを閉じる"
+msgstr "MDI 子ウィンドウが 1 つしかない場合、メインウィンドウを閉じる"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3748,7 +3752,7 @@ msgstr "点滅"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Size"
-msgstr "ブロックサイズ"
+msgstr "ブロック サイズ"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Block Alpha"
@@ -3843,7 +3847,7 @@ msgid "No differences found to add as substitution filter"
 msgstr "置換フィルターに追加する差異がありません"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr "このペアは、既に置換フィルターのリストに存在します"
+msgstr "このペアは、既に置換フィルターのリストに存在しています"
 
 msgid "Add this change to Substitution Filters?"
 msgstr "この差異を置換フィルターに追加しますか?"
@@ -3858,10 +3862,10 @@ msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
 
 msgid "Allow only one instance to run"
-msgstr "1つのみインスタンスを起動する"
+msgstr "1 つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "1つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
+msgstr "1 つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
 
 msgid "Al&l"
 msgstr "すべて(&L)"
@@ -3915,7 +3919,7 @@ msgid "Replace..."
 msgstr "置換..."
 
 msgid "Apply Filter Command..."
-msgstr "フィルタコマンドを適用..."
+msgstr "フィルター コマンドを適用..."
 
 msgid "Tokenize..."
 msgstr "トークン分割..."
@@ -3942,63 +3946,63 @@ msgid "Ignore Columns"
 msgstr "指定列を無視"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr "コメントを無視(C系言語)"
+msgstr "コメントを無視 (C系言語)"
 
 msgid "Ignore CSV Fields"
-msgstr "CSVの指定列を無視"
+msgstr "CSV の指定列を無視"
 
 msgid "Ignore TSV Fields"
-msgstr "TSVの指定列を無視"
+msgstr "TSV の指定列を無視"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr "比較前処理置換フィルタ"
+msgstr "比較前処理置換フィルター"
 
 msgid "Prettify HTML"
-msgstr "HTML整形"
+msgstr "HTML 整形"
 
 msgid "Prettify JSON"
-msgstr "JSON整形"
+msgstr "JSON 整形"
 
 msgid "Prettify XML"
 msgstr "XML整形"
 
 msgid "Prettify YAML"
-msgstr "YAML整形"
+msgstr "YAML 整形"
 
 msgid "Visualize Graphviz"
-msgstr "Graphviz視覚化"
+msgstr "Graphviz 視覚化"
 
 msgid "Query CSV Data..."
-msgstr "CSVデータの問い合わせ..."
+msgstr "CSV データの問い合わせ..."
 
 msgid "Query TSV Data..."
-msgstr "TSVデータの問い合わせ..."
+msgstr "TSV データの問い合わせ..."
 
 msgid "Query JSON Data..."
-msgstr "JSONデータの問い合わせ..."
+msgstr "JSON データの問い合わせ..."
 
 msgid "Query YAML Data..."
-msgstr "YAMLデータの問い合わせ..."
+msgstr "YAML データの問い合わせ..."
 
 msgid "Validate HTML"
-msgstr "HTML検証"
+msgstr "HTML 検証"
 
 msgid "Disassemble JVM Bytecode"
-msgstr "JVMバイトコード逆アセンブル"
+msgstr "JVM バイトコード逆アセンブル"
 
 msgid "Disassemble IL Code"
-msgstr "ILコード逆アセンブル"
+msgstr "IL コード逆アセンブル"
 
 msgid "Disassemble Native Code"
-msgstr "ネイティブコード逆アセンブル"
+msgstr "ネイティブ コード逆アセンブル"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "プラグインパイプラインにプラグイン名が指定されていません: %1"
+msgstr "プラグイン パイプラインにプラグイン名が指定されていません: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "プラグインパイプラインが引用符で閉じていません: %1"
+msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
 
 msgid "Specify plugin arguments"
 msgstr "プラグイン引数を指定してください"
@@ -4039,7 +4043,7 @@ msgstr ""
 "使い方: Replace [-i] [-e] FIND REPLACE\r\n"
 "  FIND    - 検索するテキスト\r\n"
 "  REPLACE - 置換するテキスト\r\n"
-"  -i - 大文字小文字を無視します (-e指定時のみ有効)\r\n"
+"  -i - 大文字小文字を無視します (-e 指定時のみ有効)\r\n"
 "  -e - 指定したテキストを正規表現として扱います"
 
 #, c-format
@@ -4048,9 +4052,9 @@ msgid ""
 "Usage: ExecFilterCommand COMMAND\r\n"
 "  COMMAND - command to execute. %1 in the command is replaced with the filename."
 msgstr ""
-"フィルタコマンドを適用します。\r\n"
+"フィルター コマンドを適用します。\r\n"
 "使い方: ExecFilterCommand COMMAND\r\n"
-"  COMMAND - 実行するコマンド。 コマンド内の %1 はファイル名に置き換わります。"
+"  COMMAND - 実行するコマンド。コマンド内の %1 はファイル名に置き換わります。"
 
 msgid ""
 "Tokenize selection. \r\n"
@@ -4059,7 +4063,7 @@ msgid ""
 msgstr ""
 "トークン分割を行います。\r\n"
 "使い方: Tokenize PATTERNS\r\n"
-"  PATTERNS - トークン分割に使用する正規表現 (例 [^\\w]+)"
+"  PATTERNS - トークン分割に使用する正規表現 (例: [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "行頭行末の空白を削除します"
@@ -4078,12 +4082,12 @@ msgstr ""
 "指定した列を抽出します。\r\n"
 "使い方: SelectColumns RANGES\r\n"
 "または: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
-"  RANGES   - 抽出する列範囲のリスト (例 -3,5-10,30-)\r\n"
+"  RANGES   - 抽出する列範囲のリスト (例: -3,5-10,30-)\r\n"
 "  PATTERNS - 正規表現\r\n"
 "  -v - マッチしない列を抽出します\r\n"
 "  -i - 大文字小文字を無視します\r\n"
-"  -g - グローバルフラグを有効にします\r\n"
-"  -e - パターンマッチングに PATTERNS を使用します"
+"  -g - グローバル フラグを有効にします\r\n"
+"  -e - パターン マッチングに PATTERNS を使用します"
 
 msgid ""
 "Select some lines.\r\n"
@@ -4098,109 +4102,109 @@ msgstr ""
 "指定した行を抽出します。\r\n"
 "使い方: SelectLines RANGES\r\n"
 "または: SelectLines [-v] [-i] -e PATTERNS\r\n"
-"  RANGES   - 抽出する行範囲のリスト (例 -3,5-10,30-)\r\n"
+"  RANGES   - 抽出する行範囲のリスト (例: -3,5-10,30-)\r\n"
 "  PATTERNS - 正規表現\r\n"
 "  -v - マッチしない行を抽出します\r\n"
 "  -i - 大文字小文字を無視します\r\n"
-"  -e - パターンマッチングに PATTERNS を使用します"
+"  -e - パターン マッチングに PATTERNS を使用します"
 
 msgid ""
 "HTML Prettier with tidy-html5. \r\n"
 "Arguments: Command line options passed to the tidy command."
 msgstr ""
 "tidy-html5 を使用して HTML ファイルを整形します。\r\n"
-"引数: tidy コマンドに渡すコマンドラインオプション。"
+"引数: tidy コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "JSON Prettier with jq command. \r\n"
 "Arguments: Filter or command line options passed to the jq command."
 msgstr ""
-"jq コマンドを使用してJSON ファイルを整形します。\r\n"
-"引数: フィルタまたは jq コマンドに渡すコマンドラインオプション。"
+"jq コマンドを使用して JSON ファイルを整形します。\r\n"
+"引数: フィルターまたは jq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "XML Prettier with tidy-html5. \r\n"
 "Arguments: Command line options passed to the tidy command."
 msgstr ""
 "tidy-html5 を使用して XML ファイルを整形します。\r\n"
-"引数: tidy コマンドに渡すコマンドラインオプション。"
+"引数: tidy コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "YAML Prettier with yq command. \r\n"
 "Arguments: Filter or command line options passed to the yq command."
 msgstr ""
-"yq コマンドを使用してYAML ファイルを整形します。\r\n"
-"引数: フィルタまたは yq コマンドに渡すコマンドラインオプション。"
+"yq コマンドを使用して YAML ファイルを整形します。\r\n"
+"引数: フィルターまたは yq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "Graphviz Visualizer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz ファイルを画像化します。 \r\n"
-"引数: dot コマンドに渡すコマンドラインオプション。"
+"Graphviz ファイルを画像化します。\r\n"
+"引数: dot コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "CSV Querier with q command. \r\n"
 "Arguments: SQL statement or command line options passed to the q command."
 msgstr ""
-"q コマンドを使用して CSVファイルからデータを抽出します。\r\n"
-"引数: SQL文または q コマンドに渡すコマンドラインオプション。"
+"q コマンドを使用して CSV ファイルからデータを抽出します。\r\n"
+"引数: SQL文または q コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "TSV Querier with q command. \r\n"
 "Arguments: SQL statement or command line options passed to the q command."
 msgstr ""
-"q コマンドを使用して TSVファイルからデータを抽出します。\r\n"
-"引数: SQL文または q コマンドに渡すコマンドラインオプション。"
+"q コマンドを使用して TSV ファイルからデータを抽出します。\r\n"
+"引数: SQL文または q コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "JSON Querier with jq command. \r\n"
 "Arguments: Filter or command line options passed to the jq command."
 msgstr ""
-"jq コマンドを使用して JSONファイルからデータを抽出します。\r\n"
-"引数: フィルタまたは jq コマンドに渡すコマンドラインオプション。"
+"jq コマンドを使用して JSON ファイルからデータを抽出します。\r\n"
+"引数: フィルターまたは jq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "YAML Querier with yq command. \r\n"
 "Arguments: Filter or command line options passed to the yq command."
 msgstr ""
-"yq コマンドを使用して YAMLファイルからデータを抽出します。\r\n"
-"引数: フィルタまたは yq コマンドに渡すコマンドラインオプション。"
+"yq コマンドを使用して YAML ファイルからデータを抽出します。\r\n"
+"引数: フィルターまたは yq コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "HTML Validator with tidy-html5. \r\n"
 "Arguments: Command line options passed to the tidy command."
 msgstr ""
 "tidy-html5 を使用して HTML ファイルを検証します。\r\n"
-"引数: tidy コマンドに渡すコマンドラインオプション。"
+"引数: tidy コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "JVM bytecode disassembler with javap. \r\n"
 "Arguments: Command line options passed to the javap command."
 msgstr ""
-"javap を使用してJVMバイトコードを逆アセンブルします。\r\n"
-"引数: javap コマンドに渡すコマンドラインオプション。"
+"javap を使用して JVM バイトコードを逆アセンブルします。\r\n"
+"引数: javap コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "IL disassembler with ildasm. \r\n"
 "Arguments: Command line options passed to the ildasm command."
 msgstr ""
-"ildasm を使用してILコードを逆アセンブルします。\r\n"
-"引数: ildasm コマンドに渡すコマンドラインオプション。"
+"ildasm を使用して IL コードを逆アセンブルします。\r\n"
+"引数: ildasm コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "Native code disassembler with dumpbin. \r\n"
 "Arguments: Command line options passed to the dumpbin command."
 msgstr ""
-"dumpbin を使用してネイティブコードを逆アセンブルします。\r\n"
-"引数: dumpbin コマンドに渡すコマンドラインオプション。"
+"dumpbin を使用してネイティブ コードを逆アセンブルします。\r\n"
+"引数: dumpbin コマンドに渡すコマンドライン オプション。"
 
 msgid ""
 "General content extractor with Apache Tika. \r\n"
 "Arguments: Command line options passed to the tika-app.jar."
 msgstr ""
 "Apache Tika を使用してファイルからテキストを抽出します。\r\n"
-"引数: tika-app.jar に渡すコマンドラインオプション。"
+"引数: tika-app.jar に渡すコマンドライン オプション。"
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
 msgstr "GnuWin32 Patch for Windows を使用してパッチを適用します。"
@@ -4218,13 +4222,13 @@ msgid "Display the text content of MS Word files"
 msgstr "MS Word ファイルの内容を表示します。"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr "列を無視します。無視される列のリストはプラグインファイル名またはプラグイン引数で指定します。"
+msgstr "列を無視します。無視される列のリストはプラグイン ファイル名またはプラグイン引数で指定します。"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "C, C++, PHP and JavaScript ファイルのコメント(//... and /* ... */)を無視します。"
+msgstr "C、C++、PHP または JavaScript ファイルのコメント (//... と /* ... */) を無視します。"
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr "フィールドを無視します。無視されるフィールドのリストはプラグインファイル名またはプラグイン引数で指定します。"
+msgstr "フィールドを無視します。無視されるフィールドのリストはプラグイン ファイル名またはプラグイン引数で指定します。"
 
 msgid "Prediff Line Filter"
 msgstr "比較前処理置換フィルター"
@@ -4233,17 +4237,17 @@ msgid "Basic text functions for the context menu"
 msgstr "基本的なテキスト処理"
 
 msgid "Filter applied"
-msgstr "フィルタ適用"
+msgstr "フィルター適用"
 
 #, c-format
 msgid "Clipboard at %s"
 msgstr "クリップボード %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "クリップボード履歴が無効になっています。\r\nクリップボード履歴を有効にするには、Windowsロゴキー + Vを押下後、[有効にする]ボタンをクリックしてください。"
+msgstr "クリップボード履歴が無効になっています。\r\nクリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
 
 msgid "This system does not support clipboard history."
 msgstr "このシステムではクリップボード履歴はサポートされていません。"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32bit版WinMergeではクリップボード比較はサポートされていません。"
+msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
