@@ -144,7 +144,7 @@ void SharedMemoryImpl::map()
 	if (_size >= 1 && !canRead(addr))
 	{
 		UnmapViewOfFile(addr);
-		throw SystemException("Cannot map shared memory object %s", _name);
+		throw SystemException("Cannot map shared memory object", _name);
 	}
 	_address = static_cast<char*>(addr);
 }
