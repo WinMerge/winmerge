@@ -348,9 +348,6 @@ msgstr "リリース ノート(&E)"
 msgid "&Translations"
 msgstr "翻訳(&T)"
 
-msgid "&Check For Updates"
-msgstr "アップデートの確認(&U)"
-
 msgid "C&onfiguration"
 msgstr "設定(&O)"
 

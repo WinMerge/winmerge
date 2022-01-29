@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2022-01-24</update>
+  <update>2022-01-29</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -431,7 +431,7 @@
     <translation>
       <language>Japanese</language>
       <file>Japanese.po</file>
-      <update>2021-11-21</update>
+      <update>2022-01-28</update>
       <strings>
         <count>1199</count>
         <translated>1199</translated>
@@ -442,6 +442,10 @@
         <translator>
           <name>Takashi Sawanaka</name>
           <mail>sawanaka at d1.dion.ne.jp</mail>
+        </translator>
+        <translator>
+          <name>Rukoto Luther</name>
+          <mail>rukotolucies at hotmail.com</mail>
         </translator>
       </translators>
     </translation>
@@ -615,12 +619,12 @@
     <translation>
       <language>Russian</language>
       <file>Russian.po</file>
-      <update>2021-10-28</update>
+      <update>2022-01-27</update>
       <strings>
         <count>1199</count>
-        <translated>1092</translated>
+        <translated>1156</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>107</untranslated>
+        <untranslated>43</untranslated>
       </strings>
       <translators>
         <translator>
@@ -709,9 +713,9 @@
       <update>2022-01-03</update>
       <strings>
         <count>1199</count>
-        <translated>1197</translated>
+        <translated>1199</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>2</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>

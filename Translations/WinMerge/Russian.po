@@ -64,9 +64,6 @@ msgstr "Копировать выбранные строки влево"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копировать выбранные строки слева"
 
-msgid "Copy Selected Line(s) from Right"
-msgstr "Копировать выбранные строки справа"
-
 msgid "Select Line &Difference\tF4"
 msgstr "&Выбрать отличие\tF4"
 
@@ -3755,4 +3752,3 @@ msgstr "Эта система не поддерживает историю бу�
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-битная версия WinMerge не поддерживает буфера обмена"
-
