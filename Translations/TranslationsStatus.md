@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-01-30**:
+Status from **2022-01-31**:
 
 ## WinMerge
 
@@ -84,7 +84,7 @@ Status from **2022-01-30**:
 | Spanish              |     9 |          4 |     0 |            5 |     44 % |             |
 | Swedish              |     9 |          4 |     0 |            5 |     44 % |             |
 | Turkish              |     9 |          9 |     0 |            0 |    100 % |  2021-09-21 |
-| Ukrainian            |     9 |          4 |     0 |            5 |     44 % |             |
+| Ukrainian            |     9 |          9 |     0 |            0 |    100 % |             |
 
 ## InnoSetup
 

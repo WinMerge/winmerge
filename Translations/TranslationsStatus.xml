@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2022-01-30</update>
+  <update>2022-01-31</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -1292,9 +1292,9 @@
       <update></update>
       <strings>
         <count>9</count>
-        <translated>4</translated>
+        <translated>9</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>5</untranslated>
+        <untranslated>0</untranslated>
       </strings>
     </translation>
   </translations>
