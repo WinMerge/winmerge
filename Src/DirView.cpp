@@ -2856,7 +2856,7 @@ struct FileCmpReport: public IFileCmpReport
 			return false;
 		}
 
-		sLinkPath = di.diffFileInfo[0].GetFile();
+		sLinkPath = strutils::format(_T("%d_"), nIndex) + di.diffFileInfo[0].GetFile();
 
 		strutils::replace(sLinkPath, _T("\\"), _T("_"));
 		sLinkPath += _T(".html");
