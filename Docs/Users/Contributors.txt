@@ -129,6 +129,7 @@ Localization:
 
 * Norwegian:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
+  FTno
 
 * Persian:
   Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
