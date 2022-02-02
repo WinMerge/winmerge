@@ -55,15 +55,19 @@ int ImageCompare::compare_files(const String& file1, const String& file2) const
 	m_pImgMergeWindow->SetColorDistanceThreshold(m_colorDistanceThreshold);
 	if (m_pImgMergeWindow->OpenImages(file1.c_str(), file2.c_str()))
 	{
-		bool bImgDiff = true;
+		bool bImgDiff = false;
 		if (m_pImgMergeWindow->GetPageCount(0) == m_pImgMergeWindow->GetPageCount(1))
 		{
 			for (int page = 0; page < m_pImgMergeWindow->GetPageCount(0); ++page)
 			{
 				m_pImgMergeWindow->SetCurrentPageAll(page);
-				if (m_pImgMergeWindow->GetDiffCount() == 0)
-					bImgDiff = false;
+				if (m_pImgMergeWindow->GetDiffCount() > 0)
+					bImgDiff = true;
 			}
+		}
+		else
+		{
+			bImgDiff = true;
 		}
 		code = bImgDiff ? DIFFCODE::DIFF : DIFFCODE::SAME;
 		m_pImgMergeWindow->CloseImages();
