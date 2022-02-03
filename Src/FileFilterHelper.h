@@ -134,7 +134,7 @@ public:
 	void CloneFrom(const FileFilterHelper* pHelper);
 
 protected:
-	String ParseExtensions(const String &extensions) const;
+	std::pair<String, String> ParseExtensions(const String &extensions) const;
 
 private:
 	std::unique_ptr<FilterList> m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */

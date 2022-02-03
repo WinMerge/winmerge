@@ -173,12 +173,15 @@ void FileFilterHelper::SetMask(const String& strMask)
 		throw "Filter mask tried to set when masks disabled!";
 	}
 	m_sMask = strMask;
-	String regExp = ParseExtensions(strMask);
+	auto [regExp, regExpExluded] = ParseExtensions(strMask);
 
 	std::string regexp_str = ucr::toUTF8(regExp);
+	std::string regexp_str_excluded = ucr::toUTF8(regExpExluded);
 
 	m_pMaskFilter->RemoveAllFilters();
-	m_pMaskFilter->AddRegExp(regexp_str);
+	m_pMaskFilter->AddRegExp(regexp_str, false);
+	if (!regexp_str_excluded.empty())
+		m_pMaskFilter->AddRegExp(regexp_str_excluded, true);
 }
 
 /**
@@ -256,12 +259,12 @@ void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String&
  * @param [in] Extension list/mask to convert to regular expression.
  * @return Regular expression that matches extension list.
  */
-String FileFilterHelper::ParseExtensions(const String &extensions) const
+std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extensions) const
 {
 	String strParsed;
-	String strPattern;
+	std::vector<String> patterns;
+	std::vector<String> patternsExcluded;
 	String ext(extensions);
-	bool bFilterAdded = false;
 	static const TCHAR pszSeps[] = _T(" ;|,:");
 
 	ext += _T(";"); // Add one separator char to end
@@ -275,7 +278,6 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		// Only "*." or "*.something" allowed, other ignored
 		if (token.length() >= 1)
 		{
-			bFilterAdded = true;
 			String strRegex = token;
 			strutils::replace(strRegex, _T("."), _T("\\."));
 			strutils::replace(strRegex, _T("?"), _T("."));
@@ -286,25 +288,21 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 			strutils::replace(strRegex, _T("$"), _T("\\$"));
 			strutils::replace(strRegex, _T("*"), _T(".*"));
 			strRegex += _T("$");
-			strPattern += _T("(^|\\\\)") + strRegex;
+			if (strRegex[0] == '!')
+				patternsExcluded.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex.substr(1)));
+			else
+				patterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
 		}
-		else
-			bFilterAdded = false;
 
 		pos = ext.find_first_of(pszSeps); 
-		if (bFilterAdded && pos != String::npos && extensions.length() > 1)
-			strPattern += _T("|");
 	}
 
-	if (strPattern.empty())
+	if (patterns.empty())
 		strParsed = _T(".*"); // Match everything
 	else
-	{
-
-		strPattern = strutils::makelower(strPattern);
-		strParsed = strPattern; //+ _T("$");
-	}
-	return strParsed;
+		strParsed = strutils::join(patterns.begin(), patterns.end(), _T("|"));
+	String strParsedExcluded = strutils::join(patternsExcluded.begin(), patternsExcluded.end(), _T("|"));
+	return { strParsed, strParsedExcluded };
 }
 
 /** 

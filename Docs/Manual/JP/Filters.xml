@@ -153,7 +153,7 @@
 
       <para>このシンタックスは、ファイルマスク用です:</para>
 
-      <synopsis>*.[<replaceable>拡張子</replaceable>][<replaceable>区切り文字</replaceable>*.<replaceable>拡張子</replaceable>...]</synopsis>
+      <synopsis>[!]*.[<replaceable>拡張子</replaceable>][<replaceable>区切り文字</replaceable>[!]*.<replaceable>拡張子</replaceable>...]</synopsis>
 
       <para>有効な区切り文字はスペース、カンマ、コロン、セミコロンです。</para>
 
@@ -161,6 +161,9 @@
       <filename>
         <filename>README</filename>
       </filename>の様な、拡張子なしのファイルを選択します。</para>
+
+      <para>2.16.19 以降、感嘆符(<filename>!</filename>)
+      をマスクの前に付加した場合、そのマスクに一致したファイルは除外されます。</para>
 
       <example>
         <title>ファイルマスク</title>
@@ -460,6 +463,12 @@
           </listitem>
         </varlistentry>
       </variablelist>
+
+      <para>2.16.19 以降、
+      <guilabel>f:</guilabel> と <guilabel>d:</guilabel>
+      でマッチしたファイルまたはフォルダの一部を除外するためのタイプデザイナ
+      <guilabel>f!:</guilabel> と <guilabel>d!:</guilabel> が使用できます。
+      </para>
 
       <para>
         多くの正規表現の特殊文字の中で、次の文字は、ファイルフィルタでは特に重要です:

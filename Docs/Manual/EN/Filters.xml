@@ -145,13 +145,16 @@
 
       <para>Use this syntax for file masks:</para>
 
-      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
+      <synopsis>[!]*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable>[!]*.<replaceable>extension</replaceable> ...]</synopsis>
 
       <para>Valid delimiters are spaces, commas, colons or semicolons.</para>
 
       <para>A mask with no extension ( <filename>*.</filename> ) selects files
       without any extension, such as
       <filename><filename>README</filename></filename>.</para>
+
+      <para>In 2.16.19 and later, if you put an exclamation mark(<filename>!</filename>)
+      in front of a mask, files matching that mask will be excluded.</para>
 
       <example>
         <title>File mask</title>
@@ -427,6 +430,12 @@
           </listitem>
         </varlistentry>
       </variablelist>
+
+      <para>In 2.16.19 and later, the type designators
+      <guilabel>f!:</guilabel> and <guilabel>d!:</guilabel> has been
+      introduced to exclude some of the files or folders matched by
+      <guilabel>f:</guilabel> and <guilabel>d:</guilabel>.
+      </para>
 
       <para>Among the many regexp special characters, the following are
       particularly important in file filter rules:<indexterm>
