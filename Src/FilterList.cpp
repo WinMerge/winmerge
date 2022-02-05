@@ -39,7 +39,7 @@ void FilterList::AddRegExp(const std::string& regularExpression, bool exclude)
 {
 	try
 	{
-		auto& list = exclude ? m_listExcluded : m_list;
+		auto& list = exclude ? m_listExclude : m_list;
 		list.push_back(filter_item_ptr(new filter_item(regularExpression, RegularExpression::RE_UTF8)));
 	}
 	catch (...)
@@ -94,11 +94,14 @@ bool FilterList::Match(const std::string& string, int codepage/*=CP_UTF8*/)
 			++i;
 	}
 
+	if (!retval)
+		return retval;
+
 	i = 0;
-	const size_t countExcluded = m_listExcluded.size();
-	while (i < countExcluded && retval)
+	const size_t countExclude = m_listExclude.size();
+	while (i < countExclude && retval)
 	{
-		const filter_item_ptr& item = m_listExcluded[i];
+		const filter_item_ptr& item = m_listExclude[i];
 		int result = 0;
 		RegularExpression::Match match;
 		try
@@ -135,7 +138,7 @@ void FilterList::CloneFrom(const FilterList* filterList)
 		return;
 
 	m_list.clear();
-	m_listExcluded.clear();
+	m_listExclude.clear();
 
 	size_t count = filterList->m_list.size();
 	for (size_t i = 0; i < count; i++)
@@ -143,10 +146,10 @@ void FilterList::CloneFrom(const FilterList* filterList)
 		filter_item_ptr ptr(new filter_item(filterList->m_list[i].get()));
 		m_list.push_back(ptr);
 	}
-	size_t countExcluded = filterList->m_listExcluded.size();
-	for (size_t i = 0; i < countExcluded; i++)
+	size_t countExclude = filterList->m_listExclude.size();
+	for (size_t i = 0; i < countExclude; i++)
 	{
-		filter_item_ptr ptr(new filter_item(filterList->m_listExcluded[i].get()));
-		m_listExcluded.push_back(ptr);
+		filter_item_ptr ptr(new filter_item(filterList->m_listExclude[i].get()));
+		m_listExclude.push_back(ptr);
 	}
 }

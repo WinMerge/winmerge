@@ -230,13 +230,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		{
 			// file filter
 			String str = sLine.substr(3);
-			AddFilterPattern(&pfilter->filefiltersExcluded, str);
+			AddFilterPattern(&pfilter->filefiltersExclude, str);
 		}
 		else if (0 == sLine.compare(0, 3, _T("d!:"), 3))
 		{
 			// directory filter
 			String str = sLine.substr(3);
-			AddFilterPattern(&pfilter->dirfiltersExcluded, str);
+			AddFilterPattern(&pfilter->dirfiltersExclude, str);
 		}
 	} while (bLinesLeft);
 
@@ -328,7 +328,7 @@ bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 		return true;
 	if (TestAgainstRegList(&pFilter->filefilters, szFileName))
 	{
-		if (pFilter->filefiltersExcluded.empty() || !TestAgainstRegList(&pFilter->filefiltersExcluded, szFileName))
+		if (pFilter->filefiltersExclude.empty() || !TestAgainstRegList(&pFilter->filefiltersExclude, szFileName))
 			return !pFilter->default_include;
 	}
 	return pFilter->default_include;
@@ -352,7 +352,7 @@ bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 		return true;
 	if (TestAgainstRegList(&pFilter->dirfilters, szDirName))
 	{
-		if (pFilter->dirfiltersExcluded.empty() || !TestAgainstRegList(&pFilter->dirfiltersExcluded, szDirName))
+		if (pFilter->dirfiltersExclude.empty() || !TestAgainstRegList(&pFilter->dirfiltersExclude, szDirName))
 			return !pFilter->default_include;
 	}
 	return pFilter->default_include;

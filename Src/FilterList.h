@@ -47,7 +47,7 @@ public:
 
 private:
 	std::vector <filter_item_ptr> m_list;
-	std::vector <filter_item_ptr> m_listExcluded;
+	std::vector <filter_item_ptr> m_listExclude;
 
 };
 
@@ -57,7 +57,7 @@ private:
 inline void FilterList::RemoveAllFilters()
 {
 	m_list.clear();
-	m_listExcluded.clear();
+	m_listExclude.clear();
 }
 
 /** 
@@ -66,5 +66,5 @@ inline void FilterList::RemoveAllFilters()
  */
 inline bool FilterList::HasRegExps() const
 {
-	return !m_list.empty() || !m_listExcluded.empty();
+	return !m_list.empty() || !m_listExclude.empty();
 }
