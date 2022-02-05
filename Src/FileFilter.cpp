@@ -61,4 +61,19 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 		FileFilterElementPtr ptr(new FileFilterElement(filter->dirfilters[i].get()));
 		dirfilters.push_back(ptr);
 	}
+	filefiltersExcluded.clear();
+	count = filter->filefiltersExcluded.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		FileFilterElementPtr ptr(new FileFilterElement(filter->filefiltersExcluded[i].get()));
+		filefiltersExcluded.push_back(ptr);
+	}
+
+	dirfiltersExcluded.clear();
+	count = filter->dirfiltersExcluded.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		FileFilterElementPtr ptr(new FileFilterElement(filter->dirfiltersExcluded[i].get()));
+		dirfiltersExcluded.push_back(ptr);
+	}
 }
