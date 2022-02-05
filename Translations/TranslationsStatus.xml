@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <status>
-  <update>2022-02-03</update>
+  <update>2022-02-06</update>
   <translations project="WinMerge">
     <translation>
       <language>Arabic</language>
@@ -452,12 +452,12 @@
     <translation>
       <language>Korean</language>
       <file>Korean.po</file>
-      <update>2021-12-10</update>
+      <update>2022-02-02</update>
       <strings>
         <count>1199</count>
-        <translated>1034</translated>
+        <translated>1199</translated>
         <fuzzy>0</fuzzy>
-        <untranslated>165</untranslated>
+        <untranslated>0</untranslated>
       </strings>
       <translators>
         <translator>
@@ -487,6 +487,10 @@
         <translator>
           <name>cynilyn</name>
           <mail>cynilyn at gmail.com</mail>
+        </translator>
+        <translator>
+          <name>gro00</name>
+          <mail>gheong.ro at gmail.com</mail>
         </translator>
       </translators>
     </translation>
