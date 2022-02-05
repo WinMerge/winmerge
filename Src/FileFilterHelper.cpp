@@ -173,10 +173,10 @@ void FileFilterHelper::SetMask(const String& strMask)
 		throw "Filter mask tried to set when masks disabled!";
 	}
 	m_sMask = strMask;
-	auto [regExp, regExpExluded] = ParseExtensions(strMask);
+	auto [regExp, regExpExclude] = ParseExtensions(strMask);
 
 	std::string regexp_str = ucr::toUTF8(regExp);
-	std::string regexp_str_excluded = ucr::toUTF8(regExpExluded);
+	std::string regexp_str_excluded = ucr::toUTF8(regExpExclude);
 
 	m_pMaskFilter->RemoveAllFilters();
 	m_pMaskFilter->AddRegExp(regexp_str, false);
@@ -263,7 +263,7 @@ std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extens
 {
 	String strParsed;
 	std::vector<String> patterns;
-	std::vector<String> patternsExcluded;
+	std::vector<String> patternsExclude;
 	String ext(extensions);
 	static const TCHAR pszSeps[] = _T(" ;|,:");
 
@@ -289,7 +289,7 @@ std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extens
 			strutils::replace(strRegex, _T("*"), _T(".*"));
 			strRegex += _T("$");
 			if (strRegex[0] == '!')
-				patternsExcluded.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex.substr(1)));
+				patternsExclude.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex.substr(1)));
 			else
 				patterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
 		}
@@ -301,8 +301,8 @@ std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extens
 		strParsed = _T(".*"); // Match everything
 	else
 		strParsed = strutils::join(patterns.begin(), patterns.end(), _T("|"));
-	String strParsedExcluded = strutils::join(patternsExcluded.begin(), patternsExcluded.end(), _T("|"));
-	return { strParsed, strParsedExcluded };
+	String strParsedExclude = strutils::join(patternsExclude.begin(), patternsExclude.end(), _T("|"));
+	return { strParsed, strParsedExclude };
 }
 
 /** 
