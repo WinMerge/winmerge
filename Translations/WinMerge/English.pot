@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-22 21:51+0000\n"
+"POT-Creation-Date: 2022-02-07 22:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -221,6 +221,9 @@ msgid "&Binary"
 msgstr ""
 
 msgid "&Image"
+msgstr ""
+
+msgid "&Web Page"
 msgstr ""
 
 msgid "New (&3 panes)"

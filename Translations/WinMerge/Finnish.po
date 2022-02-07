@@ -262,6 +262,9 @@ msgstr "Binääri"
 msgid "&Image"
 msgstr "&Kuva"
 
+msgid "&Web Page"
+msgstr ""
+
 #, c-format
 msgid "New (&3 panes)"
 msgstr "Uusi (&3 ruutua)"

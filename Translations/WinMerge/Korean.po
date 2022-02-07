@@ -272,6 +272,9 @@ msgstr "바이너리(&B)"
 msgid "&Image"
 msgstr "이미지(&I)"
 
+msgid "&Web Page"
+msgstr ""
+
 #, c-format
 msgid "New (&3 panes)"
 msgstr "새로 만들기 (&3개 패널)"

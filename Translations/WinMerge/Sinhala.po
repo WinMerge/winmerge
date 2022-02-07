@@ -264,6 +264,9 @@ msgstr ""
 msgid "&Image"
 msgstr ""
 
+msgid "&Web Page"
+msgstr ""
+
 #, c-format
 msgid "New (&3 panes)"
 msgstr ""

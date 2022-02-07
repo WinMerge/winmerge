@@ -228,6 +228,9 @@ msgstr "Bin&ær"
 msgid "&Image"
 msgstr "&Bilde"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Ny (&3 paneler)"
 

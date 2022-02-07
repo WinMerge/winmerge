@@ -229,6 +229,9 @@ msgstr "&Binary"
 msgid "&Image"
 msgstr "&Görsel"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Yeni (&3 pano)"
 

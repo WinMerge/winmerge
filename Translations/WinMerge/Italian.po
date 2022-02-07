@@ -227,6 +227,9 @@ msgstr "&Binario"
 msgid "&Image"
 msgstr "&Immagine"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Nuovo (&3 pannelli)"
 

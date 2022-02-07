@@ -228,6 +228,9 @@ msgstr "バイナリ(&B)"
 msgid "&Image"
 msgstr "画像(&I)"
 
+msgid "&Web Page"
+msgstr "&Web ページ"
+
 msgid "New (&3 panes)"
 msgstr "新規 (&3 ペイン)"
 

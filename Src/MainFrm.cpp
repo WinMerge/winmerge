@@ -32,6 +32,7 @@
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
+#include "WebPageDiffFrm.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "ConflictFileParser.h"
@@ -91,10 +92,12 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_NEW_TABLE,			IDB_FILE_NEW_TABLE,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_HEX,				IDB_FILE_NEW_HEX,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW_IMAGE,			IDB_FILE_NEW_IMAGE,				CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW_WEBPAGE,			IDB_FILE_NEW_WEBPAGE,			CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3,					IDB_FILE_NEW3,					CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_TABLE,			IDB_FILE_NEW3_TABLE,			CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_HEX,				IDB_FILE_NEW3_HEX,				CMainFrame::MENU_ALL },
 	{ ID_FILE_NEW3_IMAGE,			IDB_FILE_NEW3_IMAGE,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3_WEBPAGE,			IDB_FILE_NEW3_WEBPAGE,			CMainFrame::MENU_ALL },
 	{ ID_EDIT_COPY,					IDB_EDIT_COPY,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_CUT,					IDB_EDIT_CUT,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_PASTE,				IDB_EDIT_PASTE,					CMainFrame::MENU_ALL },
@@ -217,10 +220,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_NEW_TABLE, (OnFileNew<2, ID_MERGE_COMPARE_TABLE>))
 	ON_COMMAND(ID_FILE_NEW_HEX, (OnFileNew<2, ID_MERGE_COMPARE_HEX>))
 	ON_COMMAND(ID_FILE_NEW_IMAGE, (OnFileNew<2, ID_MERGE_COMPARE_IMAGE>))
+	ON_COMMAND(ID_FILE_NEW_WEBPAGE, (OnFileNew<2, ID_MERGE_COMPARE_WEBPAGE>))
 	ON_COMMAND(ID_FILE_NEW3, (OnFileNew<3, ID_MERGE_COMPARE_TEXT>))
 	ON_COMMAND(ID_FILE_NEW3_TABLE, (OnFileNew<3, ID_MERGE_COMPARE_TABLE>))
 	ON_COMMAND(ID_FILE_NEW3_HEX, (OnFileNew<3, ID_MERGE_COMPARE_HEX>))
 	ON_COMMAND(ID_FILE_NEW3_IMAGE, (OnFileNew<3, ID_MERGE_COMPARE_IMAGE>))
+	ON_COMMAND(ID_FILE_NEW3_WEBPAGE, (OnFileNew<3, ID_MERGE_COMPARE_WEBPAGE>))
 	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
@@ -601,6 +606,14 @@ HMENU CMainFrame::NewImgMergeViewMenu()
 }
 
 /**
+ * @brief Create new Web page compare (CWebPageMergeView) menu.
+ */
+HMENU CMainFrame::NewWebPageMergeViewMenu()
+{
+	return NewMenu( MENU_WEBPAGEMERGEVIEW, IDR_MERGEDOCTYPE);
+}
+
+/**
  * @brief Create new File compare (COpenView) menu.
  */
 HMENU CMainFrame::NewOpenViewMenu()
@@ -670,7 +683,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 			{
 				CMenu* pMenu = pPopupMenu;
 				// empty the menu
-				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_IMAGE - ID_MERGE_COMPARE_TEXT); --i)
+				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_WEBPAGE - ID_MERGE_COMPARE_TEXT); --i)
 					pMenu->DeleteMenu(i, MF_BYPOSITION);
 
 				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
@@ -792,6 +805,9 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 	case ID_MERGE_COMPARE_IMAGE:
 		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_WEBPAGE:
+		return ShowWebPageMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	default:
 		return ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, pOpenParams);
@@ -992,6 +1008,29 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	return true;
 }
 
+bool CMainFrame::ShowWebPageMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenWebPageParams* pOpenParams /*= nullptr*/)
+{
+	CWebPageDiffFrame *pWebPageMergeFrame = new CWebPageDiffFrame();
+	if (!CWebPageDiffFrame::menu.m_hMenu)
+		CWebPageDiffFrame::menu.m_hMenu = NewWebPageMergeViewMenu();
+	pWebPageMergeFrame->SetSharedMenu(CWebPageDiffFrame::menu.m_hMenu);
+	pWebPageMergeFrame->SetUnpacker(infoUnpacker);
+	pWebPageMergeFrame->SetDirDoc(pDirDoc);
+	pDirDoc->AddMergeDoc(pWebPageMergeFrame);
+		
+	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this))
+		return false;
+
+	pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+
+	if (!sReportFile.empty())
+		pWebPageMergeFrame->GenerateReport(sReportFile);
+
+	return true;
+}
+
 bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
 		const String strDesc[], const String& strFileExt, const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
@@ -1119,6 +1158,7 @@ static bool AddToRecentDocs(const PathContext& paths,
 	case ID_MERGE_COMPARE_TABLE: params += _T("/t table "); break;
 	case ID_MERGE_COMPARE_HEX:   params += _T("/t binary "); break;
 	case ID_MERGE_COMPARE_IMAGE: params += _T("/t image "); break;
+	case ID_MERGE_COMPARE_WEBPAGE: params += _T("/t webpage "); break;
 	}
 	if (pOpenParams)
 	{

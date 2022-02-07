@@ -229,6 +229,9 @@ msgstr "&Binárne"
 msgid "&Image"
 msgstr "&Obrázok"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Nový (&3 panely)"
 

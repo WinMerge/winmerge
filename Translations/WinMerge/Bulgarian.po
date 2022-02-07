@@ -226,6 +226,9 @@ msgstr "&Двоични файлове"
 msgid "&Image"
 msgstr "&Изображения"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Нов (&3 панела)"
 

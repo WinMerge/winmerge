@@ -231,6 +231,9 @@ msgstr "Двоичный"
 msgid "&Image"
 msgstr "Изображение"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Создать (&3 панели)"
 

@@ -232,6 +232,9 @@ msgstr "&Binariu"
 msgid "&Image"
 msgstr "&Fiura"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Novu (&3 pannelli)"
 

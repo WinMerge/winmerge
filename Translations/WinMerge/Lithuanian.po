@@ -229,6 +229,9 @@ msgstr "&Binarinis"
 msgid "&Image"
 msgstr "Pave&ikslėlis"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Naujas (&3 polangiai)"
 

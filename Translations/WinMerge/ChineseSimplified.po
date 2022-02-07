@@ -230,6 +230,9 @@ msgstr "二进制(&B)"
 msgid "&Image"
 msgstr "图像(&I)"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "新建三路比较(&3)"
 

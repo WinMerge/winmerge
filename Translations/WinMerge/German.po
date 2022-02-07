@@ -267,6 +267,9 @@ msgstr "&Binär"
 msgid "&Image"
 msgstr "Bil&d"
 
+msgid "&Web Page"
+msgstr ""
+
 #, c-format
 msgid "New (&3 panes)"
 msgstr "Neu (&3 Ausschnitte)"

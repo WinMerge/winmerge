@@ -136,6 +136,15 @@
     <Filter Include="MFCGui\MDIChild\SelectFilesOrFolders\Header Files">
       <UniqueIdentifier>{4d3d0027-2f4c-4a04-b3ba-a168e25b28d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MFCGui\MDIChild\WebPageCompare">
+      <UniqueIdentifier>{63f050a2-97d2-4e81-b41a-5d0d512cf7ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\WebPageCompare\Header Files">
+      <UniqueIdentifier>{91e184cc-4016-481b-9284-d3bf8be03fdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MFCGui\MDIChild\WebPageCompare\Source Files">
+      <UniqueIdentifier>{531213fd-cf86-41a6-9841-985bf32f78fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="charsets.c">
@@ -692,6 +701,9 @@
     </ClCompile>
     <ClCompile Include="ClipboardHistory.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WebPageDiffFrm.cpp">
+      <Filter>MFCGui\MDIChild\WebPageCompare\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1318,6 +1330,9 @@
     </ClInclude>
     <ClInclude Include="ClipboardHistory.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WebPageDiffFrm.h">
+      <Filter>MFCGui\MDIChild\WebPageCompare\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

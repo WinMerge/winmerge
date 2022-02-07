@@ -220,6 +220,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -227,6 +228,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Web Page",                   ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -312,6 +314,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -319,6 +322,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Web Page",                   ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -471,6 +475,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -478,6 +483,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Web Page",                   ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -528,6 +534,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Web Page",                   ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -796,6 +803,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Web Page",                   ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -997,6 +1005,7 @@ BEGIN
         MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
     END
 END
 
@@ -1008,6 +1017,7 @@ BEGIN
         MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
         MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+        MENUITEM "&Web Page",                   ID_MERGE_COMPARE_WEBPAGE
     END
 END
 

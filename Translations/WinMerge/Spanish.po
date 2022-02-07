@@ -230,6 +230,9 @@ msgstr "&Binario"
 msgid "&Image"
 msgstr "&Imagen"
 
+msgid "&Web Page"
+msgstr ""
+
 msgid "New (&3 panes)"
 msgstr "Nuevo (&3 paneles)"
 
