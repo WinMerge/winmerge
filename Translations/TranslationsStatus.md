@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-02-06**:
+Status from **2022-02-10**:
 
 ## WinMerge
 
@@ -59,8 +59,8 @@ Status from **2022-02-06**:
 | Croatian             |     9 |          4 |     0 |            5 |     44 % |             |
 | Czech                |     9 |          4 |     0 |            5 |     44 % |             |
 | Danish               |     9 |          4 |     0 |            5 |     44 % |             |
-| English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
-| English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
+| Dutch                |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
+| English              |    10 |         10 |     0 |            0 |    100 % |  2021-09-08 |
 | Finnish              |     9 |          4 |     0 |            5 |     44 % |             |
 | French               |     9 |          9 |     0 |            0 |    100 % |             |
 | Galician             |     9 |          4 |     0 |            5 |     44 % |             |
