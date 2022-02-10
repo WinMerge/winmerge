@@ -1,13 +1,13 @@
-; *** Corsican translation for WinMerge’s installer InnoSetup ***
+; *** Corsican translation for WinMergeâ€™s installer InnoSetup ***
 ;
 ;     History of Corsican translations:
 ;
-;     - Created on December 6th, 2021 for version 2.16.17 by Patriccollu di Santa Maria è Sichè
+;     - Created on December 6th, 2021 for version 2.16.17 by Patriccollu di Santa Maria Ã¨ SichÃ¨
 
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Funzioni ozzionale :
+OptionalFeatures=Funzioni ozzionaleÂ :
 CompanyName=Thingamahoochie Software
 
 ;Types
@@ -19,75 +19,75 @@ CustomInstallation=Installazione persunalizata
 ;Components
 AppCoreFiles=Schedarii impurtantissimi di WinMerge
 Filters=Filtri
-Plugins=Moduli d’estensione
+Plugins=Moduli dâ€™estensione
 Frhed=Frhed (editore esadecimale di rigalu)
 WinIMerge=WinIMerge (Sfarenza/Fusione di fiure)
-ArchiveSupport=Accettà l’archivii
+ArchiveSupport=Permette lâ€™archiviera
 ShellExtension32bit=Listinu cuntestuale WinMerge 32-bit
 Commands=Patch GnuWin32 per Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Lingue
-ArabicLanguage=Listini è dialoghi arabi
-BasqueLanguage=Listini è dialoghi baschi
-BulgarianLanguage=Listini è dialoghi bulgari
-CatalanLanguage=Listini è dialoghi catalani
-ChineseSimplifiedLanguage=Listini è dialoghi chinese (simplificatu)
-ChineseTraditionalLanguage=Listini è dialoghi chinese (tradiziunale)
-CorsicanLanguage=Listini è dialoghi corsi
-CroatianLanguage=Listini è dialoghi cruati
-CzechLanguage=Listini è dialoghi cecchi
-DanishLanguage=Listini è dialoghi danesi
-DutchLanguage=Listini è dialoghi neerlandesi
-FinnishLanguage=Listini è dialoghi finlandesi
-FrenchLanguage=Listini è dialoghi francesi
-GalicianLanguage=Listini è dialoghi galleghi
-GermanLanguage=Listini è dialoghi tedeschi
-GreekLanguage=Listini è dialoghi grechi
-HungarianLanguage=Listini è dialoghi ungaresi
-ItalianLanguage=Listini è dialoghi taliani
-JapaneseLanguage=Listini è dialoghi giappunesi
-KoreanLanguage=Listini è dialoghi cureani
-LithuanianLanguage=Listini è dialoghi lituani
-NorwegianLanguage=Listini è dialoghi nurvegesi
-PersianLanguage=Listini è dialoghi persiani
-PolishLanguage=Listini è dialoghi pulunesi
-PortugueseBrazilLanguage=Listini è dialoghi purtughesi di u Brasile
-PortugueseLanguage=Listini è dialoghi purtughesi
-RomanianLanguage=Listini è dialoghi rumeni
-RussianLanguage=Listini è dialoghi russii
-SerbianLanguage=Listini è dialoghi serbi
-SinhalaLanguage=Listini è dialoghi singalesi
-SlovakLanguage=Listini è dialoghi sluvacchi
-SlovenianLanguage=Listini è dialoghi sluveni
-SpanishLanguage=Listini è dialoghi spagnoli
-SwedishLanguage=Listini è dialoghi svedesi
-TurkishLanguage=Listini è dialoghi turchi
-UkrainianLanguage=Listini è dialoghi ucraniani
+ArabicLanguage=Listini Ã¨ dialoghi arabi
+BasqueLanguage=Listini Ã¨ dialoghi baschi
+BulgarianLanguage=Listini Ã¨ dialoghi bulgari
+CatalanLanguage=Listini Ã¨ dialoghi catalani
+ChineseSimplifiedLanguage=Listini Ã¨ dialoghi chinese (simplificatu)
+ChineseTraditionalLanguage=Listini Ã¨ dialoghi chinese (tradiziunale)
+CorsicanLanguage=Listini Ã¨ dialoghi corsi
+CroatianLanguage=Listini Ã¨ dialoghi cruati
+CzechLanguage=Listini Ã¨ dialoghi cecchi
+DanishLanguage=Listini Ã¨ dialoghi danesi
+DutchLanguage=Listini Ã¨ dialoghi neerlandesi
+FinnishLanguage=Listini Ã¨ dialoghi finlandesi
+FrenchLanguage=Listini Ã¨ dialoghi francesi
+GalicianLanguage=Listini Ã¨ dialoghi galleghi
+GermanLanguage=Listini Ã¨ dialoghi tedeschi
+GreekLanguage=Listini Ã¨ dialoghi grechi
+HungarianLanguage=Listini Ã¨ dialoghi ungaresi
+ItalianLanguage=Listini Ã¨ dialoghi taliani
+JapaneseLanguage=Listini Ã¨ dialoghi giappunesi
+KoreanLanguage=Listini Ã¨ dialoghi cureani
+LithuanianLanguage=Listini Ã¨ dialoghi lituani
+NorwegianLanguage=Listini Ã¨ dialoghi nurvegesi
+PersianLanguage=Listini Ã¨ dialoghi persiani
+PolishLanguage=Listini Ã¨ dialoghi pulunesi
+PortugueseBrazilLanguage=Listini Ã¨ dialoghi purtughesi di u Brasile
+PortugueseLanguage=Listini Ã¨ dialoghi purtughesi
+RomanianLanguage=Listini Ã¨ dialoghi rumeni
+RussianLanguage=Listini Ã¨ dialoghi russii
+SerbianLanguage=Listini Ã¨ dialoghi serbi
+SinhalaLanguage=Listini Ã¨ dialoghi singalesi
+SlovakLanguage=Listini Ã¨ dialoghi sluvacchi
+SlovenianLanguage=Listini Ã¨ dialoghi sluveni
+SpanishLanguage=Listini Ã¨ dialoghi spagnoli
+SwedishLanguage=Listini Ã¨ dialoghi svedesi
+TurkishLanguage=Listini Ã¨ dialoghi turchi
+UkrainianLanguage=Listini Ã¨ dialoghi ucraniani
 
 ;Tasks
-ExplorerContextMenu=&Permette l’integrazione di u listinu cuntestuale in l’espluratore
-IntegrateTortoiseCVS=Integrà cù &TortoiseCVS
-IntegrateTortoiseGit=Integrà cù To&rtoiseGit
-IntegrateTortoiseSVN=Integrà cù T&ortoiseSVN
-AddToPath=&Aghjunghje u cartulare WinMerge à u vostru chjassu di u sistema
+ExplorerContextMenu=&Permette lâ€™integrazione di u listinu cuntestuale in lâ€™espluratore
+IntegrateTortoiseCVS=IntegrÃ  cÃ¹ &TortoiseCVS
+IntegrateTortoiseGit=IntegrÃ  cÃ¹ To&rtoiseGit
+IntegrateTortoiseSVN=IntegrÃ  cÃ¹ T&ortoiseSVN
+AddToPath=&Aghjunghje u cartulare WinMerge Ã  u vostru chjassu di u sistema
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=Fusione à 3
-ThreeWayMergeWizardPageDescription=Impiegate WinMerge cum’è attrezzu di fusione à 3 per TortoiseSVN/Git ?
-RegisterWinMergeAs3WayMergeTool=Arregistrà WinMerge cum’è attrezzu di fusione à 3
-MergeAtRightPane=Fusione à u pannellu di diritta
-MergeAtCenterPane=Fusione à u pannellu di u centru
-MergeAtLeftPane=Fusione à u pannellu di manca
-AutoMergeAtStartup=Fusione autumatica à u lanciu
+ThreeWayMergeWizardPageCaption=Fusione Ã  3
+ThreeWayMergeWizardPageDescription=Impiegate WinMerge cumâ€™Ã¨ attrezzu di fusione Ã  3 per TortoiseSVN/GitÂ ?
+RegisterWinMergeAs3WayMergeTool=ArregistrÃ  WinMerge cumâ€™Ã¨ attrezzu di fusione Ã  3
+MergeAtRightPane=Fusione Ã  u pannellu di diritta
+MergeAtCenterPane=Fusione Ã  u pannellu di u centru
+MergeAtLeftPane=Fusione Ã  u pannellu di manca
+AutoMergeAtStartup=Fusione autumatica Ã  u lanciu
 
 ;Icon Labels
 ReadMe=Lighjitemi
-UsersGuide=Guida di l’utilizatore
-ViewStartMenuFolder=&Fighjà u cartulare di u listinu « Démarrer » di WinMerge
+UsersGuide=Guida di lâ€™utilizatore
+ViewStartMenuFolder=&FighjÃ  u cartulare di u listinu Â«Â DÃ©marrerÂ Â» di WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=U stalladore hà vistu chì u listinu « Démarrer » hè statu dispiazzatu da « %s » ver di « %s ». Vulete squassà u cartulare precedente di u listinu « Démarrer » ?
+DeletePreviousStartMenu=U stalladore hÃ  vistu chÃ¬ u listinu Â«Â DÃ©marrerÂ Â» hÃ¨ statu dispiazzatu da Â«Â %sÂ Â» ver di Â«Â %sÂ Â». Vulete squassÃ  u cartulare precedente di u listinu Â«Â DÃ©marrerÂ Â»Â ?
 
 ; Project file description
 ProjectFileDesc=Schedariu di prughjettu WinMerge
