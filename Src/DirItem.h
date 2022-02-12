@@ -37,4 +37,5 @@ struct DirItem
 	String GetFile() const;
 	bool Update(const String &sFilePath);
 	void ClearPartial();
+	bool IsDirectory() const;
 };
