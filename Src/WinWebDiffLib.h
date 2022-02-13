@@ -1,18 +1,30 @@
 #pragma once
 
-#include <Windows.h>
+#include <windef.h>
 #include <wtypes.h>
+#include <Unknwn.h>
+
+struct __declspec(uuid("{DC951F69-C8CA-44DD-8C3C-8A9C76B0022C}")) IWebDiffCallback : IUnknown
+{
+	virtual HRESULT Invoke(HRESULT hr) = 0;
+};
 
 struct IWebDiffWindow
 {
 	virtual bool IsWebView2Installed() const = 0;
-	virtual bool NewUrls(int nUrls) = 0;
-	virtual bool OpenUrls(const wchar_t* url1, const wchar_t* url2) = 0;
-	virtual bool OpenUrls(const wchar_t* url1, const wchar_t* url2, const wchar_t* url3) = 0;
-	virtual bool CloseUrls() = 0;
-	virtual bool ReloadUrls() = 0;
-	virtual bool SaveScreenshot(int pane, const wchar_t* filename) = 0;
-	virtual bool SaveHTML(int pane, const wchar_t* filename) = 0;
+	virtual HRESULT New(int nUrls) = 0;
+	virtual HRESULT Open(const wchar_t* url1, const wchar_t* url2) = 0;
+	virtual HRESULT Open(const wchar_t* url1, const wchar_t* url2, const wchar_t* url3) = 0;
+	virtual void Close() = 0;
+	virtual void NewTab(int pane, const wchar_t *url) = 0;
+	virtual void CloseActiveTab(int pane) = 0;
+	virtual HRESULT Reload() = 0;
+	virtual HRESULT SaveScreenshot(int pane, const wchar_t* filename, IWebDiffCallback *callback) = 0;
+	virtual HRESULT SaveScreenshots(const wchar_t* filename1, const wchar_t* filename2, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveScreenshots(const wchar_t* filename1, const wchar_t* filename2, const wchar_t* filename3, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveHTML(int pane, const wchar_t* filename, IWebDiffCallback *callback) = 0;
+	virtual HRESULT SaveHTMLs(const wchar_t* filename1, const wchar_t* filename2, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveHTMLs(const wchar_t* filename1, const wchar_t* filename2, const wchar_t* filename3, IWebDiffCallback* callback) = 0;
 	virtual const wchar_t *GetCurrentUrl(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;
 	virtual RECT GetPaneWindowRect(int pane) const = 0;
@@ -30,6 +42,10 @@ struct IWebDiffWindow
 	virtual void SetDiffColorAlpha(double diffColorAlpha) = 0;
 	virtual double GetZoom() const = 0;
 	virtual void SetZoom(double zoom) = 0;
+	virtual bool GetFitToWindow() const = 0;
+	virtual void SetFitToWindow(bool fitToWindow) = 0;
+	virtual SIZE GetSize() const = 0;
+	virtual void SetSize(SIZE rc) = 0;
 	virtual bool GetShowDifferences() const = 0;
 	virtual void SetShowDifferences(bool visible) = 0;
 	virtual int  GetDiffCount() const = 0;

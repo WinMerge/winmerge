@@ -317,7 +317,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	bool bResult;
 	if (std::count(m_nBufferType, m_nBufferType + m_filePaths.GetSize(), BUFFERTYPE::UNNAMED) == m_filePaths.GetSize())
 	{
-		bResult = m_pWebPageDiffWindow->NewUrls(m_filePaths.GetSize());
+		bResult = m_pWebPageDiffWindow->New(m_filePaths.GetSize());
 	}
 	else
 	{
@@ -700,9 +700,9 @@ bool CWebPageDiffFrame::OpenUrls()
 		}
 	}
 	if (m_filePaths.GetSize() == 2)
-		bResult = m_pWebPageDiffWindow->OpenUrls(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
+		bResult = m_pWebPageDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
 	else
-		bResult = m_pWebPageDiffWindow->OpenUrls(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
+		bResult = m_pWebPageDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
 	return bResult;
 }
 
