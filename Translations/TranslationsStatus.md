@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-02-03**:
+Status from **2022-02-10**:
 
 ## WinMerge
 
@@ -27,7 +27,7 @@ Status from **2022-02-03**:
 | Hungarian            |  1199 |       1199 |     0 |            0 |    100 % |  2021-03-15 |
 | Italian              |  1199 |        991 |     0 |          208 |     83 % |  2021-08-09 |
 | Japanese             |  1199 |       1199 |     0 |            0 |    100 % |  2022-01-28 |
-| Korean               |  1199 |       1034 |     0 |          165 |     86 % |  2021-12-10 |
+| Korean               |  1199 |       1199 |     0 |            0 |    100 % |  2022-02-02 |
 | Lithuanian           |  1199 |       1154 |     0 |           45 |     96 % |  2022-01-20 |
 | Norwegian            |  1199 |        732 |     0 |          467 |     61 % |             |
 | Persian              |  1199 |        642 |     0 |          557 |     54 % |  2013-08-15 |
@@ -59,8 +59,8 @@ Status from **2022-02-03**:
 | Croatian             |     9 |          4 |     0 |            5 |     44 % |             |
 | Czech                |     9 |          4 |     0 |            5 |     44 % |             |
 | Danish               |     9 |          4 |     0 |            5 |     44 % |             |
-| English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
-| English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
+| Dutch                |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
+| English              |    10 |         10 |     0 |            0 |    100 % |  2021-09-08 |
 | Finnish              |     9 |          4 |     0 |            5 |     44 % |             |
 | French               |     9 |          9 |     0 |            0 |    100 % |             |
 | Galician             |     9 |          4 |     0 |            5 |     44 % |             |
@@ -263,6 +263,7 @@ Status from **2022-02-03**:
    - [teamzamong](mailto:teamzamong%20at%20gmail.com)
    - [BrainS](mailto:29201475+BraINstinct0%20at%20users.noreply.github.com)
    - [cynilyn](mailto:cynilyn%20at%20gmail.com)
+   - [gro00](mailto:gheong.ro%20at%20gmail.com)
 
  * Lithuanian
    - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)

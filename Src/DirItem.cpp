@@ -98,3 +98,12 @@ void DirItem::ClearPartial()
 	size = DirItem::FILE_SIZE_NONE;
 	flags.reset();
 }
+
+/**
+ * @brief Return whether the item is a directory.
+ * @return true if the item is a directory.
+ */
+bool DirItem::IsDirectory() const
+{
+	return ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY);
+}
