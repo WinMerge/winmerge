@@ -232,6 +232,7 @@ void CSelectPluginDlg::OnUnpackerAllowAll()
 
 void CSelectPluginDlg::OnClickedAddPipe()
 {
+	UpdateData();
 	m_strPluginPipeline += _T("|");
 	UpdateData(FALSE);
 }
