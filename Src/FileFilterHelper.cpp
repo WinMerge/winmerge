@@ -21,7 +21,8 @@ using std::vector;
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
-: m_pMaskFilter(nullptr)
+: m_pMaskFileFilter(nullptr)
+, m_pMaskDirFilter(nullptr)
 , m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
 , m_currentFilter(nullptr)
@@ -151,14 +152,19 @@ void FileFilterHelper::UseMask(bool bUseMask)
 	m_bUseMask = bUseMask;
 	if (m_bUseMask)
 	{
-		if (m_pMaskFilter == nullptr)
+		if (m_pMaskFileFilter == nullptr)
 		{
-			m_pMaskFilter.reset(new FilterList);
+			m_pMaskFileFilter.reset(new FilterList);
+		}
+		if (m_pMaskDirFilter == nullptr)
+		{
+			m_pMaskDirFilter.reset(new FilterList);
 		}
 	}
 	else
 	{
-		m_pMaskFilter.reset();
+		m_pMaskFileFilter.reset();
+		m_pMaskDirFilter.reset();
 	}
 }
 
@@ -173,15 +179,21 @@ void FileFilterHelper::SetMask(const String& strMask)
 		throw "Filter mask tried to set when masks disabled!";
 	}
 	m_sMask = strMask;
-	auto [regExp, regExpExclude] = ParseExtensions(strMask);
+	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude] = ParseExtensions(strMask);
 
-	std::string regexp_str = ucr::toUTF8(regExp);
-	std::string regexp_str_excluded = ucr::toUTF8(regExpExclude);
+	std::string regexp_str_file = ucr::toUTF8(regExpFile);
+	std::string regexp_str_file_excluded = ucr::toUTF8(regExpFileExclude);
+	std::string regexp_str_dir = ucr::toUTF8(regExpDir);
+	std::string regexp_str_dir_excluded = ucr::toUTF8(regExpDirExclude);
 
-	m_pMaskFilter->RemoveAllFilters();
-	m_pMaskFilter->AddRegExp(regexp_str, false);
-	if (!regexp_str_excluded.empty())
-		m_pMaskFilter->AddRegExp(regexp_str_excluded, true);
+	m_pMaskFileFilter->RemoveAllFilters();
+	m_pMaskFileFilter->AddRegExp(regexp_str_file, false);
+	if (!regexp_str_file_excluded.empty())
+		m_pMaskFileFilter->AddRegExp(regexp_str_file_excluded, true);
+	m_pMaskDirFilter->RemoveAllFilters();
+	m_pMaskDirFilter->AddRegExp(regexp_str_dir, false);
+	if (!regexp_str_dir_excluded.empty())
+		m_pMaskDirFilter->AddRegExp(regexp_str_dir_excluded, true);
 }
 
 /**
@@ -194,7 +206,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 {
 	if (m_bUseMask)
 	{
-		if (m_pMaskFilter == nullptr)
+		if (m_pMaskFileFilter == nullptr)
 		{
 			throw "Use mask set, but no filter rules for mask!";
 		}
@@ -207,7 +219,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 		if (strFileName.find('.') == String::npos)
 			strFileName = strFileName + _T(".");
 
-		return m_pMaskFilter->Match(ucr::toUTF8(strFileName));
+		return m_pMaskFileFilter->Match(ucr::toUTF8(strFileName));
 	}
 	else
 	{
@@ -227,8 +239,20 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 {
 	if (m_bUseMask)
 	{
-		// directories have no extension
-		return true; 
+		if (m_pMaskDirFilter == nullptr)
+		{
+			throw "Use mask set, but no filter rules for mask!";
+		}
+
+		// preprend a backslash if there is none
+		String strDirName = strutils::makelower(szDirName);
+		if (strDirName.empty() || strDirName[0] != '\\')
+			strDirName = _T("\\") + strDirName;
+		// append a point if there is no extension
+		if (strDirName.find('.') == String::npos)
+			strDirName = strDirName + _T(".");
+
+		return m_pMaskDirFilter->Match(ucr::toUTF8(strDirName));
 	}
 	else
 	{
@@ -259,11 +283,14 @@ void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String&
  * @param [in] Extension list/mask to convert to regular expression.
  * @return Regular expression that matches extension list.
  */
-std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extensions) const
+std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(const String &extensions) const
 {
-	String strParsed;
-	std::vector<String> patterns;
-	std::vector<String> patternsExclude;
+	String strFileParsed;
+	String strDirParsed;
+	std::vector<String> filePatterns;
+	std::vector<String> filePatternsExclude;
+	std::vector<String> dirPatterns;
+	std::vector<String> dirPatternsExclude;
 	String ext(extensions);
 	static const TCHAR pszSeps[] = _T(" ;|,:");
 
@@ -279,6 +306,12 @@ std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extens
 		if (token.length() >= 1)
 		{
 			String strRegex = token;
+			bool exclude = token[0] == '!';
+			if (exclude)
+				strRegex = strRegex.substr(1);
+			bool isdir = token.back() == '\\';
+			if (isdir)
+				strRegex = strRegex.substr(0, strRegex.size() - 1);
 			strutils::replace(strRegex, _T("."), _T("\\."));
 			strutils::replace(strRegex, _T("?"), _T("."));
 			strutils::replace(strRegex, _T("("), _T("\\("));
@@ -288,21 +321,36 @@ std::pair<String, String> FileFilterHelper::ParseExtensions(const String &extens
 			strutils::replace(strRegex, _T("$"), _T("\\$"));
 			strutils::replace(strRegex, _T("*"), _T(".*"));
 			strRegex += _T("$");
-			if (strRegex[0] == '!')
-				patternsExclude.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex.substr(1)));
+			if (exclude)
+			{
+				if (isdir)
+					dirPatternsExclude.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+				else
+					filePatternsExclude.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+			}
 			else
-				patterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+			{
+				if (isdir)
+					dirPatterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+				else
+					filePatterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+			}
 		}
 
 		pos = ext.find_first_of(pszSeps); 
 	}
 
-	if (patterns.empty())
-		strParsed = _T(".*"); // Match everything
+	if (filePatterns.empty())
+		strFileParsed = _T(".*"); // Match everything
 	else
-		strParsed = strutils::join(patterns.begin(), patterns.end(), _T("|"));
-	String strParsedExclude = strutils::join(patternsExclude.begin(), patternsExclude.end(), _T("|"));
-	return { strParsed, strParsedExclude };
+		strFileParsed = strutils::join(filePatterns.begin(), filePatterns.end(), _T("|"));
+	if (dirPatterns.empty())
+		strDirParsed = _T(".*"); // Match everything
+	else
+		strDirParsed = strutils::join(dirPatterns.begin(), dirPatterns.end(), _T("|"));
+	String strFileParsedExclude = strutils::join(filePatternsExclude.begin(), filePatternsExclude.end(), _T("|"));
+	String strDirParsedExclude = strutils::join(dirPatternsExclude.begin(), dirPatternsExclude.end(), _T("|"));
+	return { strFileParsed, strFileParsedExclude, strDirParsed, strDirParsedExclude };
 }
 
 /** 
@@ -454,11 +502,18 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 	if (!pHelper)
 		return;
 
-	if (pHelper->m_pMaskFilter)
+	if (pHelper->m_pMaskFileFilter)
 	{
 		std::unique_ptr<FilterList> filterList(new FilterList());
-		m_pMaskFilter = std::move(filterList);
-		m_pMaskFilter->CloneFrom(pHelper->m_pMaskFilter.get());
+		m_pMaskFileFilter = std::move(filterList);
+		m_pMaskFileFilter->CloneFrom(pHelper->m_pMaskFileFilter.get());
+	}
+
+	if (pHelper->m_pMaskDirFilter)
+	{
+		std::unique_ptr<FilterList> filterList(new FilterList());
+		m_pMaskDirFilter = std::move(filterList);
+		m_pMaskDirFilter->CloneFrom(pHelper->m_pMaskDirFilter.get());
 	}
 
 	if (pHelper->m_fileFilterMgr)
