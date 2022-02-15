@@ -305,22 +305,31 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 		// Only "*." or "*.something" allowed, other ignored
 		if (token.length() >= 1)
 		{
-			String strRegex = token;
+			String strRegex;
 			bool exclude = token[0] == '!';
 			if (exclude)
-				strRegex = strRegex.substr(1);
+				token = token.substr(1);
 			bool isdir = token.back() == '\\';
 			if (isdir)
-				strRegex = strRegex.substr(0, strRegex.size() - 1);
-			if (token.find('.') == token.npos && !token.empty() && token.back() != '*')
-				strRegex += _T(".");
-			strutils::replace(strRegex, _T("\\"), _T("\\\\"));
-			strutils::replace(strRegex, _T("."), _T("\\."));
-			strutils::replace(strRegex, _T("?"), _T("."));
-			strutils::replace(strRegex, _T("("), _T("\\("));
-			strutils::replace(strRegex, _T(")"), _T("\\)"));
-			strutils::replace(strRegex, _T("$"), _T("\\$"));
-			strutils::replace(strRegex, _T("*"), _T(".*"));
+				token = token.substr(0, token.size() - 1);
+			if (token.find('.') == String::npos && !token.empty() && token.back() != '*')
+				token += _T(".");
+			for (auto c : token)
+			{
+				switch (c)
+				{
+				case '\\': strRegex += _T("\\\\"); break;
+				case '.':  strRegex += _T("\\.");  break;
+				case '?':  strRegex += _T(".");    break;
+				case '(':  strRegex += _T("\\(");  break;
+				case ')':  strRegex += _T("\\)");  break;
+				case '$':  strRegex += _T("\\$");  break;
+				case '^':  strRegex += _T("\\^");  break;
+				case '*':  strRegex += _T(".*");   break;
+				case '+':  strRegex += _T("\\+");  break;
+				default:   strRegex += c; break;
+				}
+			}
 			strRegex += _T("$");
 			if (exclude)
 			{
@@ -395,29 +404,18 @@ bool FileFilterHelper::SetFilter(const String &filter)
 	// Remove leading and trailing whitespace characters from the string.
 	String flt = strutils::trim_ws(filter);
 
-	// Star means we have a file extension mask
-	if (filter.find_first_of(_T("*?")) != -1)
+	String path = GetFileFilterPath(flt);
+	if (!path.empty())
+	{
+		UseMask(false);
+		SetFileFilterPath(path);
+	}
+	else
 	{
 		UseMask(true);
 		SetMask(flt);
 		SetFileFilterPath(_T(""));
-	}
-	else
-	{
-		String path = GetFileFilterPath(flt);
-		if (!path.empty())
-		{
-			UseMask(false);
-			SetFileFilterPath(path);
-		}
-		// If filter not found with given name, use default filter
-		else
-		{
-			UseMask(true);
-			SetMask(_T("*.*"));
-			SetFileFilterPath(_T(""));
-			return false;
-		}
+		return false;
 	}
 	return true;
 }

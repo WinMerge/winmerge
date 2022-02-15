@@ -194,7 +194,7 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
-		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx;!Makefile;!.git\\;!abc\\;!de*\\"));
+		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx;!Makefile;!.git\\;!abc\\;!de*\\;!Debug\\;!Release\\"));
 		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
@@ -212,6 +212,10 @@ namespace
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\.git")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("def")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("Release")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Release")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("Debug")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Debug")));
 
 	}
 
