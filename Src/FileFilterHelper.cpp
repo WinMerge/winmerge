@@ -278,6 +278,31 @@ void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String&
 	m_fileFilterMgr->LoadFromDirectory(dir, szPattern, FileFilterExt);
 }
 
+static String ConvertWildcardPatternToRegexp(const String& pattern)
+{
+	String strRegex;
+	for (const TCHAR *p = pattern.c_str(); *p; ++p)
+	{
+		switch (*p)
+		{
+		case '\\': strRegex += _T("\\\\");     break;
+		case '.':  strRegex += _T("\\.");      break;
+		case '[':  strRegex += _T("\\[");      break;
+		case ']':  strRegex += _T("\\]");      break;
+		case '(':  strRegex += _T("\\(");      break;
+		case ')':  strRegex += _T("\\)");      break;
+		case '$':  strRegex += _T("\\$");      break;
+		case '^':  strRegex += _T("\\^");      break;
+		case '+':  strRegex += _T("\\+");      break;
+		case '?':  strRegex += _T("[^\\\\]");  break;
+		case '*':  strRegex += _T("[^\\\\]*"); break;
+		default:   strRegex += *p;             break;
+		}
+	}
+	strRegex += _T("$");
+	return _T("(^|\\\\)") + strRegex;
+}
+
 /** 
  * @brief Convert user-given extension list to valid regular expression.
  * @param [in] Extension list/mask to convert to regular expression.
@@ -305,7 +330,6 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 		// Only "*." or "*.something" allowed, other ignored
 		if (token.length() >= 1)
 		{
-			String strRegex;
 			bool exclude = token[0] == '!';
 			if (exclude)
 				token = token.substr(1);
@@ -314,36 +338,20 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 				token = token.substr(0, token.size() - 1);
 			if (token.find('.') == String::npos && !token.empty() && token.back() != '*')
 				token += _T(".");
-			for (auto c : token)
-			{
-				switch (c)
-				{
-				case '\\': strRegex += _T("\\\\"); break;
-				case '.':  strRegex += _T("\\.");  break;
-				case '?':  strRegex += _T(".");    break;
-				case '(':  strRegex += _T("\\(");  break;
-				case ')':  strRegex += _T("\\)");  break;
-				case '$':  strRegex += _T("\\$");  break;
-				case '^':  strRegex += _T("\\^");  break;
-				case '*':  strRegex += _T(".*");   break;
-				case '+':  strRegex += _T("\\+");  break;
-				default:   strRegex += c; break;
-				}
-			}
-			strRegex += _T("$");
+			String strRegex = strutils::makelower(ConvertWildcardPatternToRegexp(token));
 			if (exclude)
 			{
 				if (isdir)
-					dirPatternsExclude.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+					dirPatternsExclude.push_back(strRegex);
 				else
-					filePatternsExclude.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+					filePatternsExclude.push_back(strRegex);
 			}
 			else
 			{
 				if (isdir)
-					dirPatterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+					dirPatterns.push_back(strRegex);
 				else
-					filePatterns.push_back(strutils::makelower(_T("(^|\\\\)") + strRegex));
+					filePatterns.push_back(strRegex);
 			}
 		}
 
