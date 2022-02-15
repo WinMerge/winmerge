@@ -194,7 +194,7 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
-		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx"));
+		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx;!Makefile;!.git\\;!abc\\;!de*\\"));
 		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
@@ -203,25 +203,16 @@ namespace
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("cpp")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cx")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp.h")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("Makefile")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T(".git")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\.git")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("def")));
 
-		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx;!.git\\"));
-		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
-		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
-		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cxx")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T(".cpp")));
-		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("cpp")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cx")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp.h")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
-		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
-		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc\\.git")));
 	}
 
 

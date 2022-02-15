@@ -312,14 +312,13 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 			bool isdir = token.back() == '\\';
 			if (isdir)
 				strRegex = strRegex.substr(0, strRegex.size() - 1);
-			if (token.find('.') == token.npos)
+			if (token.find('.') == token.npos && !token.empty() && token.back() != '*')
 				strRegex += _T(".");
+			strutils::replace(strRegex, _T("\\"), _T("\\\\"));
 			strutils::replace(strRegex, _T("."), _T("\\."));
 			strutils::replace(strRegex, _T("?"), _T("."));
 			strutils::replace(strRegex, _T("("), _T("\\("));
 			strutils::replace(strRegex, _T(")"), _T("\\)"));
-			strutils::replace(strRegex, _T("["), _T("\\["));
-			strutils::replace(strRegex, _T("]"), _T("\\]"));
 			strutils::replace(strRegex, _T("$"), _T("\\$"));
 			strutils::replace(strRegex, _T("*"), _T(".*"));
 			strRegex += _T("$");
