@@ -32,6 +32,7 @@ import re
 import time
 import codecs
 import math
+import argparse
 
 class TranslationsStatus(object):
     def __init__(self):
@@ -629,14 +630,21 @@ class ReadmeStatus(Status):
             return filename[0].replace('ReadMe-', '')
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--format', nargs='*', default='md', type=str.lower, choices=['xml', 'html', 'md'])
+    args = parser.parse_args()
+
     status = TranslationsStatus()
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
-    status.writeToXmlFile('TranslationsStatus.xml')
-    status.writeToHtmlFile('TranslationsStatus.html')
-    status.writeToMdFile('TranslationsStatus.md')
+    if 'xml' in args.format:
+      status.writeToXmlFile('TranslationsStatus.xml')
+    if 'html' in args.format:
+      status.writeToHtmlFile('TranslationsStatus.html')
+    if 'md' in args.format:
+      status.writeToMdFile('TranslationsStatus.md')
 
 # MAIN #
 if __name__ == "__main__":
