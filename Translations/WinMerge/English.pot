@@ -1434,7 +1434,7 @@ msgstr ""
 msgid "E&nable moved block detection"
 msgstr ""
 
-msgid "&Match similar lines"
+msgid "Align &similar lines"
 msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
