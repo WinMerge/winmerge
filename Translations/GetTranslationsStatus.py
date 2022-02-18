@@ -3,7 +3,7 @@
 
 # The MIT License
 # 
-# Copyright (c) 2009-2018 Tim Gerundt <tim@gerundt.de>
+# Copyright (c) 2009-2022 Tim Gerundt <tim@gerundt.de>
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -515,6 +515,16 @@ class PoStatus(Status):
                   sMsgStr = ''
                   bIsFuzzy = False
           pofile.close()
+          
+          if sMsgId != '': #If a translation remained...
+              self._count += 1
+              if bIsFuzzy == False: #If NOT a fuzzy translation...
+                  if sMsgStr != '':
+                      self._translated += 1
+                  else:
+                      self._untranslated += 1
+              else: #If a fuzzy translation...
+                  self._fuzzy += 1
           
           self.calculateCompleteness()
     
