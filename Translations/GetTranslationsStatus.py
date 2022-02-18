@@ -31,6 +31,7 @@ import string
 import re
 import time
 import codecs
+import math
 
 class TranslationsStatus(object):
     def __init__(self):
@@ -387,7 +388,7 @@ class Status(object):
     
     def calculateCompleteness(self):
         if self._count > 0:
-            self._complete = round(((self._translated + self._fuzzy) * 100 / self._count))
+            self._complete = math.floor(((self._translated + self._fuzzy) * 100 / self._count))
         else:
             self._complete = 0.0
 
