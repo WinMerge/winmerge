@@ -1439,8 +1439,8 @@ msgstr "Пренебре&гване на всички"
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
 
-msgid "&Match similar lines"
-msgstr "Съот&ветствие на подобни редове"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Алгоритъм за различия (експериментално):"

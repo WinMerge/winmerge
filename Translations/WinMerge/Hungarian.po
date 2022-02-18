@@ -1791,9 +1791,8 @@ msgstr "Összes mellőzése"
 msgid "E&nable moved block detection"
 msgstr "Mozgatott &blokk észlelés bekapcsolása"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Hasonló sorok egyezése"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Különbségkereső algoritmus (kísérleti):"

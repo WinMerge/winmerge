@@ -1792,9 +1792,8 @@ msgstr "&g چشم پوشي از همگي "
 msgid "E&nable moved block detection"
 msgstr "&n فعال کردن تشخيص قطعه جابجا شده "
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&M مطابقت کردن خطوط مشابه "
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""

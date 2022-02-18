@@ -1444,8 +1444,8 @@ msgstr "P&rezri vse"
 msgid "E&nable moved block detection"
 msgstr "Omogoči zazna&vanje premaknjenih blokov"
 
-msgid "&Match similar lines"
-msgstr "&Ujemaj enake vrstice"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Al&goritem razlik (poskusno):"

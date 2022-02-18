@@ -1788,9 +1788,8 @@ msgstr "Ignora t&ots els espais"
 msgid "E&nable moved block detection"
 msgstr "&Habilita detecció de blocs desplaçats"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Em&parella les línies similars"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""

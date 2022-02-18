@@ -1441,8 +1441,8 @@ msgstr "Ignoruj wszystkie"
 msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 
-msgid "&Match similar lines"
-msgstr "Dopasuje podobne wiersze"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Algorytm porównywania (eksperymentalny):"

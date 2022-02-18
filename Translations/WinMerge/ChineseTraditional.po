@@ -1798,9 +1798,8 @@ msgstr "忽略空白處之任何差異 (&A)"
 msgid "E&nable moved block detection"
 msgstr "偵測移位的區塊 (&N)"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "找出相似行 (&M)"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "實驗性差異演算法 (&A)："

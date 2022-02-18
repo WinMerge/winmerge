@@ -1440,8 +1440,8 @@ msgstr "I&gnorovať všetko"
 msgid "E&nable moved block detection"
 msgstr "Povoliť &zisťovanie presunu bloku"
 
-msgid "&Match similar lines"
-msgstr "&Podobné riadky ako zhodné"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Algoritmus rozdielov (experimentálne):"

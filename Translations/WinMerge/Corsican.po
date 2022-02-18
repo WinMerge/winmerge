@@ -1450,8 +1450,8 @@ msgstr "&Tuttu ignurà"
 msgid "E&nable moved block detection"
 msgstr "Attivà l’abbentata di i &blocchi dispiazzati"
 
-msgid "&Match similar lines"
-msgstr "&Fà currisponde e linee simile"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Cudificazione di sfarenza (esperimentale) :"

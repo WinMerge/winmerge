@@ -1441,8 +1441,8 @@ msgstr "忽略所有空白字符(&G)"
 msgid "E&nable moved block detection"
 msgstr "启用块移动检测(&N)"
 
-msgid "&Match similar lines"
-msgstr "匹配相似行(&M)"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "比较算法 (实验性) (&A):"

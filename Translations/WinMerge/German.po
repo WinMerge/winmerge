@@ -1793,9 +1793,8 @@ msgstr "&Alle ignorieren"
 msgid "E&nable moved block detection"
 msgstr "Verschobene &Blöcke erkennen"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Ähnliche Zeilen angleichen"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Diff-Algorithmus (experimentell):"

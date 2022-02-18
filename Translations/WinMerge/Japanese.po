@@ -1443,8 +1443,8 @@ msgstr "すべて無視(&G)"
 msgid "E&nable moved block detection"
 msgstr "移動ブロック検出を有効にする(&N)"
 
-msgid "&Match similar lines"
-msgstr "類似行をマッチさせる(&M)"
+msgid "Align &similar lines"
+msgstr "類似行をマッチさせる(&S)"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Diff アルゴリズム (実験的機能)(&A):"

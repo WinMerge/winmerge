@@ -1790,9 +1790,8 @@ msgstr "&Ignorar todo"
 msgid "E&nable moved block detection"
 msgstr "A&ctivar detección de bloques movidos"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Coincidir as liñas semellantes"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Algoritmo de diferenciación (exper.):"

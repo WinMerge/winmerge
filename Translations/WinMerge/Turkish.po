@@ -1444,8 +1444,8 @@ msgstr "Tümü &yok sayılsın"
 msgid "E&nable moved block detection"
 msgstr "Taşı&nmış blok algılaması kullanılsın"
 
-msgid "&Match similar lines"
-msgstr "&Benzer satırlar eşleştirilsin"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Fark algortiması (Deneysel):"

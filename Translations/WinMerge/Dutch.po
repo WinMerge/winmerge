@@ -1445,8 +1445,8 @@ msgstr "Alles negeren"
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
 
-msgid "&Match similar lines"
-msgstr "Gelijke regels laten overeenkomen"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Vergelijkingsalgoritme (experimenteel):"

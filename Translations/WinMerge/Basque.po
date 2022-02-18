@@ -1790,9 +1790,8 @@ msgstr "E&zikusi denak"
 msgid "E&nable moved block detection"
 msgstr "Gaitu bloke &mugitu atzematea"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Berdindu antzeko lerroak"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""

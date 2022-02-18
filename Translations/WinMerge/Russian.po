@@ -1442,8 +1442,8 @@ msgstr "Игнорировать &все невидимые"
 msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"
 
-msgid "&Match similar lines"
-msgstr "Искать похожие строки"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Алгоритм сравнения (эксперимент.):"

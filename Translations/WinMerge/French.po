@@ -1796,9 +1796,8 @@ msgstr "Ignorer &tout"
 msgid "E&nable moved block detection"
 msgstr "&Activer la détection des blocs déplacés"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Assortir les &lignes similaires"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Diff &algorithme (expérimental) :"

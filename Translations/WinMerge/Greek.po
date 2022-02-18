@@ -1788,9 +1788,8 @@ msgstr "Να αγνοούνται τα &πάντα"
 msgid "E&nable moved block detection"
 msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέντων τμημάτων"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Αντιστοίχιση παρομοίων γραμμών"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""

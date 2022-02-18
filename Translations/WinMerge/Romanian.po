@@ -1789,9 +1789,8 @@ msgstr "I&gnoră tot"
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecţie blocuri mutate"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Potriveşte linii si&milare"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""

@@ -1772,9 +1772,8 @@ msgstr "Зане&мари све"
 msgid "E&nable moved block detection"
 msgstr "Омогући откривање премештених група"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Упореди сличне редове"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""

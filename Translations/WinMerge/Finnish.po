@@ -1789,9 +1789,8 @@ msgstr "Hylkää kaikki"
 msgid "E&nable moved block detection"
 msgstr "Ota siirretyn lohkon tunnistus käyttöön"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Täsmää samanlaiset rivit"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Ero&algoritmi (kokeellinen):"
