@@ -173,6 +173,9 @@ Status from **2022-02-19**:
 
 ### WinMerge
 
+ * Arabic
+   - [Downzen team](mailto:https://downzen.com)
+
  * Basque
    - [Xabier Aramendi](mailto:azpidatziak%20at%20gmail.com)
 
@@ -218,6 +221,10 @@ Status from **2022-02-19**:
 
  * Dutch
    - [Ronald Schaap](mailto:ronald%20at%20schaap.demon.nl)
+   - Thomas De Rocker, 2022
+
+ * Finnish
+   - Veikko
 
  * French
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*

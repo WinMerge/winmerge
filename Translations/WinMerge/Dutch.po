@@ -3,7 +3,7 @@
 #
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
-# Thomas De Rocker, 2022
+# * Thomas De Rocker, 2022
 #
 msgid ""
 msgstr ""

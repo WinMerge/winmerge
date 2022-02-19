@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-#	Downzen team <https://downzen.com>
+# * Downzen team <https://downzen.com>
 #
 msgid ""
 msgstr ""
