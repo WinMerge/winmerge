@@ -1792,7 +1792,7 @@ msgid "E&nable moved block detection"
 msgstr "Mozgatott &blokk észlelés bekapcsolása"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "Hasonló sorok igazítása"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Különbségkereső algoritmus (kísérleti):"
