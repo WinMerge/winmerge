@@ -3916,12 +3916,10 @@ msgstr "\nNach rechts kopieren und fortschreiten (Strg+Alt+Rechts)"
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
 
-#, c-format
-msgid "\nAll Right"
+msgid "\nCopy All to Right"
 msgstr "\nAlles nach rechts kopieren"
 
-#, c-format
-msgid "\nAll Left"
+msgid "\nCopy All to Left"
 msgstr "\nAlles nach links kopieren"
 
 #, c-format

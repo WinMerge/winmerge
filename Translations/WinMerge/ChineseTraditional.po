@@ -4269,18 +4269,12 @@ msgstr ""
 "\n"
 "複製到左側後到下一個 (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
+msgid "\nCopy All to Right"
 msgstr ""
 "\n"
 "全部複製到右側"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
+msgid "\nCopy All to Left"
 msgstr ""
 "\n"
 "全部複製到左側"

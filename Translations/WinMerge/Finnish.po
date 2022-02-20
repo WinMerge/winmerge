@@ -4209,21 +4209,11 @@ msgstr ""
 "\n"
 "Kopioi vasen ja etene (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Kaikki oikeat"
+msgid "\nCopy All to Right"
+msgstr "\nKopioi kaikki oikealle"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Kaikki vasemmat"
+msgid "\nCopy All to Left"
+msgstr "\nKopioi kaikki vasemmalle"
 
 #, c-format
 msgid ""

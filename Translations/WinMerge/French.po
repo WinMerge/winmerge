@@ -4265,21 +4265,11 @@ msgstr ""
 "\n"
 "Copier à Gauche et avancer (Ctrl+Alt+Gauche)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Tout à Droite"
+msgid "\nCopy All to Right"
+msgstr "\nTout copier vers la Droite"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Tout à Gauche"
+msgid "\nCopy All to Left"
+msgstr "\nTout copier vers la Gauche"
 
 #, c-format
 msgid ""

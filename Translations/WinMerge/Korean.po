@@ -4262,21 +4262,11 @@ msgstr ""
 "\n"
 "왼쪽으로 복사 후 진행 (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"모두 오른쪽으로"
+msgid "\nCopy All to Right"
+msgstr "\n모두 오른쪽으로 복사"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"모두 왼쪽으로"
+msgid "\nCopy All to Left"
+msgstr "\n모두 왼쪽으로 복사"
 
 #, c-format
 msgid ""

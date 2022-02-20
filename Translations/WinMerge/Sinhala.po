@@ -4121,13 +4121,19 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
+msgid ""
+"\n"
+"Copy All to Right"
 msgstr ""
+"\n"
+"සියල්ල දකුණු පසට කොපිකරන්"
 
-#, c-format
-msgid "\nAll Left"
+msgid ""
+"\n"
+"Copy All to Left"
 msgstr ""
+"\n"
+"සියල්ල වම් පසට කොපිකරන්න"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

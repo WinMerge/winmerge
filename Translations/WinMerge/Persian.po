@@ -4171,13 +4171,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nرونوشت برداري همه به راست"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nرونوشت برداري همه به چپ"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

@@ -3202,11 +3202,11 @@ msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)"
 
-msgid "\nAll Right"
-msgstr "\nВсе направо"
+msgid "\nCopy All to Right"
+msgstr "\nКопировать все направо"
 
-msgid "\nAll Left"
-msgstr "\nВсе налево"
+msgid "\nCopy All to Left"
+msgstr "\nКопировать все налево"
 
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nАвто объединение (Ctrl+Alt+M)"
