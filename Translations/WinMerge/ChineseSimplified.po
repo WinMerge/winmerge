@@ -3570,12 +3570,8 @@ msgstr ""
 "\n"
 "全部复制到右侧"
 
-msgid ""
-"\n"
-"Copy All to LeftLeft"
+msgid "\nCopy All to Left"
 msgstr ""
-"\n"
-"全部复制到左侧"
 
 msgid ""
 "\n"
