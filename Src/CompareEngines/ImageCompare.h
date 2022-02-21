@@ -7,6 +7,7 @@
 
 #include <memory>
 #include "UnicodeString.h"
+#include <Windows.h>
 
 class DIFFITEM;
 class PathContext;
