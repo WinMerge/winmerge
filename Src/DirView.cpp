@@ -32,7 +32,6 @@
 #include "BCMenu.h"
 #include "DirCmpReportDlg.h"
 #include "DirCmpReport.h"
-#include "DirCompProgressBar.h"
 #include "CompareStatisticsDlg.h"
 #include "LoadSaveCodepageDlg.h"
 #include "ConfirmFolderCopyDlg.h"
@@ -92,7 +91,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 CDirView::CDirView()
 		: m_pList(nullptr)
 		, m_nHiddenItems(0)
-		, m_pCmpProgressBar(nullptr)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
 		, m_dirfilter(std::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
@@ -364,10 +362,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MIDDLEDIR_RO, OnUpdateStatusMiddleRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
-	// Progress dialog
-	ON_BN_CLICKED(IDC_COMPARISON_STOP, OnBnClickedComparisonStop)
-	ON_BN_CLICKED(IDC_COMPARISON_PAUSE, OnBnClickedComparisonPause)
-	ON_BN_CLICKED(IDC_COMPARISON_CONTINUE, OnBnClickedComparisonContinue)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -482,17 +476,6 @@ BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
  */
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
-	if (m_pCmpProgressBar == nullptr)
-		m_pCmpProgressBar.reset(new DirCompProgressBar());
-
-	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
-		m_pCmpProgressBar->Create(GetParentFrame());
-
-	m_pCmpProgressBar->SetCompareStat(pCompareStats);
-	m_pCmpProgressBar->StartUpdating();
-
-	GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), TRUE, FALSE);
-
 	m_compareStart = clock();
 }
 
@@ -2384,9 +2367,9 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			// Check if we got 'ESC pressed' -message
 			if (pMsg->wParam == VK_ESCAPE)
 			{
-				if (m_pCmpProgressBar != nullptr)
+				if (GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
 				{
-					OnBnClickedComparisonStop();
+					GetDocument()->AbortCurrentScan();
 					return TRUE;
 				}
 
@@ -2510,11 +2493,6 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	{
 		if (pDoc->GetDiffContext().m_pPropertySystem && pDoc->GetDiffContext().m_pPropertySystem->HasHashProperties())
 			pDoc->GetDiffContext().CreateDuplicateValueMap();
-
-		// Close and destroy the dialog after compare
-		if (m_pCmpProgressBar != nullptr)
-			GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
-		m_pCmpProgressBar.reset();
 
 		pDoc->CompareReady();
 
@@ -4121,27 +4099,6 @@ void CDirView::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 			GetColors (static_cast<int>(lpC->nmcd.dwItemSpec), lpC->iSubItem, lpC->clrTextBk, lpC->clrText);
 		}
 	}
-}
-
-void CDirView::OnBnClickedComparisonStop()
-{
-	if (m_pCmpProgressBar != nullptr)
-		m_pCmpProgressBar->EndUpdating();
-	GetDocument()->AbortCurrentScan();
-}
-
-void CDirView::OnBnClickedComparisonPause()
-{
-	if (m_pCmpProgressBar != nullptr)
-		m_pCmpProgressBar->SetPaused(true);
-	GetDocument()->PauseCurrentScan();
-}
-
-void CDirView::OnBnClickedComparisonContinue()
-{
-	if (m_pCmpProgressBar != nullptr)
-		m_pCmpProgressBar->SetPaused(false);
-	GetDocument()->ContinueCurrentScan();
 }
 
 /**
