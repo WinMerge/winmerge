@@ -1197,7 +1197,7 @@ msgid "Ignore num&bers"
 msgstr "&Nummern ignorieren"
 
 msgid "Ignore c&omment differences"
-msgstr "Kommentarunterschiede ignorieren"
+msgstr "&Kommentarunterschiede ignorieren"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1794,7 +1794,7 @@ msgid "E&nable moved block detection"
 msgstr "Verschobene &Blöcke erkennen"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "&Ähnliche Zeilen ausrichten"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Diff-Algorithmus (experimentell):"
@@ -1803,7 +1803,7 @@ msgid "Enable indent &heuristic"
 msgstr "&Heuristischen Einzug aktivieren"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr "Ignorierte Unterschiede komplett nicht markieren"
+msgstr "Ignorierte &Unterschiede komplett nicht markieren"
 
 #, c-format
 msgid "Editor"
