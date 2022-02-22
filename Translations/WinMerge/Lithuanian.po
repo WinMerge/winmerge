@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-16 09:06+0000\n"
-"PO-Revision-Date: 2022-01-20 08:08+0200\n"
+"POT-Creation-Date: 2022-01-22 21:51+0000\n"
+"PO-Revision-Date: 2022-02-19 02:19+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1440,7 +1440,7 @@ msgstr "I&gnoruoti visus"
 msgid "E&nable moved block detection"
 msgstr "Įju&ngti perkeltų blokų aptikimą"
 
-msgid "&Match similar lines"
+msgid "Align &similar lines"
 msgstr "&Sutapdinti panašias eilutes"
 
 msgid "Diff &algorithm (Experimental):"
@@ -3200,10 +3200,10 @@ msgstr "\nKopijuoti į dešinę ir Daugiau (Ctrl+Alt+Right)"
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nKopijuoti į kairę ir Daugiau (Ctrl+Alt+Left)"
 
-msgid "\nAll Right"
+msgid "\nCopy All to Right"
 msgstr "\nKopijuoti viską į dešinę"
 
-msgid "\nAll Left"
+msgid "\nCopy All to Left"
 msgstr "\nKopijuoti viską į kairę"
 
 msgid "\nAuto Merge (Ctrl+Alt+M)"
@@ -3724,7 +3724,7 @@ msgid "Ignore some columns - ignored columns list from the plugin name or the pl
 msgstr "Ignoruoti kai kuriuos stulpelius - ignoruojamų stulpelių sąrašas iš papildinio pavadinimo arba argumento"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "Papildinys ignoruoja komentarus (//... and /* ... */) C, C++, PHP and JavaScript failuose."
+msgstr "Papildinys ignoruoja komentarus (//... ir /* ... */) C, C++, PHP and JavaScript failuose."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignoruoti kai kuriuos laukus - ignoruojamų laukų sąrašas iš papildinio pavadinimo arba argumento"
@@ -3740,13 +3740,13 @@ msgstr "Pritaikytas filtras"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Mainų sritis %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "Mainų srities istorijos funkcionalumas išjungtas.\r\nNorėdami įjungti, paspauskite Win+V klavišus ir tada „Įjungti“ mygtuką."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ši sistema nepalaiko mainų srities istorijos."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"

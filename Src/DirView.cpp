@@ -3359,10 +3359,7 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 	if ((pNMListView->uOldState & LVIS_SELECTED) !=
 			(pNMListView->uNewState & LVIS_SELECTED))
 	{
-		if ((pNMListView->iItem % 5000) > 0)
-			SetTimer(STATUSBAR_UPDATE, 100, nullptr);
-		else
-			OnTimer(STATUSBAR_UPDATE);
+		SetTimer(STATUSBAR_UPDATE, 100, nullptr);
 	}
 	*pResult = 0;
 }

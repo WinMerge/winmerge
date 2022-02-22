@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-#	Downzen team <https://downzen.com>
+# * Downzen team <https://downzen.com>
 #
 msgid ""
 msgstr ""
@@ -1443,8 +1443,8 @@ msgstr "تجاهل ال&كل"
 msgid "E&nable moved block detection"
 msgstr "&تفعيل كشف المجموعات التي نقلها"
 
-msgid "&Match similar lines"
-msgstr "مطابقة الأسطر المتماثلة"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "خوارزمية المقارنة (تجريبي):"
@@ -3528,19 +3528,11 @@ msgstr ""
 "\n"
 "النسخ لليسار والتقدم (Ctrl+Alt+Left)"
 
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"الكل لليمين"
+msgid "\nCopy All to Right"
+msgstr "\nنسخ الكل إلى الجزء الأيمن"
 
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"الكل لليسار"
+msgid "\nCopy All to Left"
+msgstr "\nنسخ الكل إلى الجزء الأيسر"
 
 msgid ""
 "\n"

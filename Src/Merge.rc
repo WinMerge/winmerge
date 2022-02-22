@@ -1616,7 +1616,7 @@ BEGIN
     CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,239,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,239,10
+    CONTROL         "Align &similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,239,10
     LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,156,239,10
     COMBOBOX        IDC_DIFF_ALGORITHM,6,168,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,239,10
@@ -3693,8 +3693,8 @@ BEGIN
     ID_R2L                  "\nCopy Left (Alt+Left)"
     ID_L2RNEXT              "\nCopy Right and Advance (Ctrl+Alt+Right)"
     ID_R2LNEXT              "\nCopy Left and Advance (Ctrl+Alt+Left)"
-    ID_ALL_RIGHT            "\nAll Right"
-    ID_ALL_LEFT             "\nAll Left"
+    ID_ALL_RIGHT            "\nCopy All to Right"
+    ID_ALL_LEFT             "\nCopy All to Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
     ID_FIRSTFILE            "\nFirst File"
     ID_NEXTFILE             "\nNext File (Ctrl+F8)"

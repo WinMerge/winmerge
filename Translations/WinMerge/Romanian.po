@@ -1789,9 +1789,8 @@ msgstr "I&gnoră tot"
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecţie blocuri mutate"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Potriveşte linii si&milare"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4108,13 +4107,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nCopiază tot la dreapta"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nCopiază tot la stânga"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

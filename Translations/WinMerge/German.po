@@ -1793,9 +1793,8 @@ msgstr "&Alle ignorieren"
 msgid "E&nable moved block detection"
 msgstr "Verschobene &Blöcke erkennen"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Ähnliche Zeilen angleichen"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Diff-Algorithmus (experimentell):"
@@ -3917,12 +3916,10 @@ msgstr "\nNach rechts kopieren und fortschreiten (Strg+Alt+Rechts)"
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
 
-#, c-format
-msgid "\nAll Right"
+msgid "\nCopy All to Right"
 msgstr "\nAlles nach rechts kopieren"
 
-#, c-format
-msgid "\nAll Left"
+msgid "\nCopy All to Left"
 msgstr "\nAlles nach links kopieren"
 
 #, c-format

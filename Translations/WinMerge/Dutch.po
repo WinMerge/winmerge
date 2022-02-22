@@ -3,7 +3,7 @@
 #
 # Translators:
 # * Ronald Schaap <ronald at schaap.demon.nl>
-# Thomas De Rocker, 2022
+# * Thomas De Rocker, 2022
 #
 msgid ""
 msgstr ""
@@ -1445,8 +1445,8 @@ msgstr "Alles negeren"
 msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
 
-msgid "&Match similar lines"
-msgstr "Gelijke regels laten overeenkomen"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Vergelijkingsalgoritme (experimenteel):"
@@ -3594,19 +3594,11 @@ msgstr ""
 "\n"
 "Links kopiëren en verdergaan (Ctrl+Alt+Links)"
 
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Alles rechts"
+msgid "\nCopy All to Right"
+msgstr "\nAlles naar rechts kopiëren"
 
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Alles links"
+msgid "\nCopy All to Left"
+msgstr "\nAlles naar links kopiëren"
 
 msgid ""
 "\n"

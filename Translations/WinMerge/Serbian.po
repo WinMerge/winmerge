@@ -1772,9 +1772,8 @@ msgstr "Зане&мари све"
 msgid "E&nable moved block detection"
 msgstr "Омогући откривање премештених група"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Упореди сличне редове"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4101,13 +4100,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nУмножи све у десно"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nУмножи све у лево"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

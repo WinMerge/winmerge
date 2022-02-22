@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2009-11-08 13:51+0000\n"
-"PO-Revision-Date: 2021-12-11 16:11+0800\n"
+"PO-Revision-Date: 2022-02-19 20:43+0800\n"
 "Last-Translator: SiderealArt <admin@siderealart.me>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -28,14 +28,14 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "複製到中間"
 
 #, c-format
 msgid "C&opy to Right"
 msgstr "複製到右側  (&O)"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "從中間複製"
 
 #, c-format
 msgid "Copy fro&m Right"
@@ -50,13 +50,13 @@ msgid "Copy &from Left"
 msgstr "從左側複製 (&F)"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "複製所選行到中間"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "將所選行複製到右側"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "從中間複製所選行"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "將右側複製所選行"
@@ -277,7 +277,7 @@ msgid "Open Conflic&t File..."
 msgstr "開啟衝突檔 (&T)..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "開啟剪貼簿 (%L)"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -877,7 +877,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "上一個只存在右側的差異\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "從左側複製至 (&L)"
 
 #, c-format
 msgid "&Middle"
@@ -888,23 +888,23 @@ msgid "&Right"
 msgstr "右側 (&R)"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "從中間複製至 (&M)"
 
 #, c-format
 msgid "&Left"
 msgstr "左側 (&L)"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "從右側複製至 (&R)"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "將左側所選行複製至 (&F)"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "將中間所選行複製至 (&D)"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "將右側所選行複製至 (&G)"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -1798,9 +1798,8 @@ msgstr "忽略空白處之任何差異 (&A)"
 msgid "E&nable moved block detection"
 msgstr "偵測移位的區塊 (&N)"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "找出相似行 (&M)"
+msgid "Align &similar lines"
+msgstr "相似行對齊 (&S)"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "實驗性差異演算法 (&A)："
@@ -1864,7 +1863,7 @@ msgid "W&ord break characters:"
 msgstr "斷句字元 (&O)："
 
 msgid "&Rendering Mode:"
-msgstr ""
+msgstr "渲染模式 (&R)："
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge 允許隱藏某些共同訊息盒。按重設鍵以再次顯示所有訊息盒。"
@@ -3165,7 +3164,7 @@ msgid ""
 msgstr ""
 "WinMerge上次掃描過檔案\n"
 "%1\n"
-"後，其他應用程式又再更新它\n"
+"後，其他應用程式又再更新它。\n"
 "\n"
 "要重新載入它嗎？"
 
@@ -3205,16 +3204,16 @@ msgid "Break at whitespace or punctuation"
 msgstr "空白處或標點處中斷"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "複製到中間 (&M)\tAlt+Right"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "複製到中間 (&M)\tAlt+Left"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "從中間複製\tAlt+Shift+Right"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "從中間複製\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr ""
@@ -3223,7 +3222,7 @@ msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr ""
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "全部複製到中間"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -4270,18 +4269,12 @@ msgstr ""
 "\n"
 "複製到左側後到下一個 (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
+msgid "\nCopy All to Right"
 msgstr ""
 "\n"
 "全部複製到右側"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
+msgid "\nCopy All to Left"
 msgstr ""
 "\n"
 "全部複製到左側"
@@ -4334,7 +4327,7 @@ msgid "Suggested plugins"
 msgstr "建議的外掛程式"
 
 msgid "All plugins"
-msgstr ""
+msgstr "所有外掛程式"
 
 #, c-format
 msgid "Private Build: %1"
@@ -4578,7 +4571,7 @@ msgid "Rotated: %d  "
 msgstr ""
 
 msgid "All pages"
-msgstr ""
+msgstr "所有頁面"
 
 msgid "<Edit here>"
 msgstr "<在此編輯>"
@@ -4615,7 +4608,7 @@ msgid "Al&l"
 msgstr "全部 (&L)"
 
 msgid "Prettification"
-msgstr ""
+msgstr "美化"
 
 msgid "Content Extraction"
 msgstr "擷取內容"
@@ -4645,7 +4638,7 @@ msgid "Remove Duplicate Lines"
 msgstr "移除重複行"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "統計重複行"
 
 msgid "Sort Lines Ascending"
 msgstr ""
@@ -4654,10 +4647,10 @@ msgid "Sort Lines Descending"
 msgstr ""
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "顛倒欄"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "顛倒行"
 
 msgid "Replace..."
 msgstr "取代..."
@@ -4690,7 +4683,7 @@ msgid "Ignore Columns"
 msgstr "忽略欄"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr "忽略註解 (C語言家族)"
+msgstr "忽略註解 (C 語言家族)"
 
 msgid "Ignore CSV Fields"
 msgstr "忽略 CSV 欄位"
@@ -4752,16 +4745,16 @@ msgid "Specify plugin arguments"
 msgstr "指定外掛程式參數"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "字元轉換成大寫"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "字元轉換成小寫"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "移除重複行"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "統計重複行"
 
 msgid "Sort lines ascending"
 msgstr ""
@@ -4770,86 +4763,143 @@ msgid "Sort lines descending"
 msgstr ""
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "顛倒欄"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "顛倒行"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression"
 msgstr ""
 
 #, c-format
-msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+msgid ""
+"Apply filter command. \r\n"
+"Usage: ExecFilterCommand COMMAND\r\n"
+"  COMMAND - command to execute. %1 in the command is replaced with the filename."
 msgstr ""
 
-msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgid ""
+"Tokenize selection. \r\n"
+"Usage: Tokenize PATTERNS\r\n"
+"  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
 msgstr ""
 
 msgid "Trim spaces"
+msgstr "刪減空白"
+
+msgid ""
+"Select some columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching columns\r\n"
+"  -i - ignore case\r\n"
+"  -g - enable global flag\r\n"
+"  -e - use PATTERNS for matching"
 msgstr ""
 
-msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+msgid ""
+"Select some lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching lines\r\n"
+"  -i - ignore case\r\n"
+"  -e - use PATTERNS for matching"
 msgstr ""
 
-msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+msgid ""
+"HTML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
 msgstr ""
 
-msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgid ""
+"JSON Prettier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
 msgstr ""
 
-msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgid ""
+"XML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
 msgstr ""
 
-msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgid ""
+"YAML Prettier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
 msgstr ""
 
-msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgid ""
+"Graphviz Visualizer. \r\n"
+"Arguments: Command line options passed to the dot command."
 msgstr ""
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgid ""
+"CSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
 msgstr ""
 
-msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+msgid ""
+"TSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
 msgstr ""
 
-msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+msgid ""
+"JSON Querier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
 msgstr ""
 
-msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgid ""
+"YAML Querier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
 msgstr ""
 
-msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgid ""
+"HTML Validator with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
 msgstr ""
 
-msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgid ""
+"JVM bytecode disassembler with javap. \r\n"
+"Arguments: Command line options passed to the javap command."
 msgstr ""
 
-msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+msgid ""
+"IL disassembler with ildasm. \r\n"
+"Arguments: Command line options passed to the ildasm command."
 msgstr ""
 
-msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+msgid ""
+"Native code disassembler with dumpbin. \r\n"
+"Arguments: Command line options passed to the dumpbin command."
 msgstr ""
 
-msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
-
-msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+msgid ""
+"General content extractor with Apache Tika. \r\n"
+"Arguments: Command line options passed to the tika-app.jar."
 msgstr ""
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
 msgstr ""
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "顯示 MS Excel 檔案的文字內容"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "顯示 MS PowerPoint 檔案的文字內容"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "顯示 MS Visio 檔案的文字內容"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "顯示 MS Word 檔案的文字內容"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
 msgstr ""
@@ -4871,13 +4921,15 @@ msgstr ""
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "於 %s 的剪貼簿"
 
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr ""
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "此系統不支援剪貼簿歷史紀錄。"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"

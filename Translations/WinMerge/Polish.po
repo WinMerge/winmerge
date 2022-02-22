@@ -1441,8 +1441,8 @@ msgstr "Ignoruj wszystkie"
 msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 
-msgid "&Match similar lines"
-msgstr "Dopasuje podobne wiersze"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Algorytm porównywania (eksperymentalny):"
@@ -3201,11 +3201,11 @@ msgstr "\nKopiuj prawą i przejdź dalej (Ctrl+Alt+Right)"
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nKopiuj lewą i przejdź dalej (Ctrl+Alt+Left)"
 
-msgid "\nAll Right"
-msgstr "\nWszystko do prawej"
+msgid "\nCopy All to Right"
+msgstr "\nKopiuj wszystko do prawej"
 
-msgid "\nAll Left"
-msgstr "\nWszystko do lewej"
+msgid "\nCopy All to Left"
+msgstr "\nKopiuj wszystko do lewej"
 
 msgid "\nAuto Merge (Ctrl+Alt+M)"
 msgstr "\nAutomatyczne scalanie (Ctrl+Alt+M)"
