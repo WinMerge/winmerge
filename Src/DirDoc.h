@@ -16,6 +16,7 @@
 #include "PluginManager.h"
 #include "FileFilterHelper.h"
 #include "DirCmpReport.h"
+#include "DirCompProgressBar.h"
 #include "IMDITab.h"
 
 class CDirView;
@@ -130,6 +131,9 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)
 		// NOTE - the ClassWizard will add and remove member functions here.
+	afx_msg void OnBnClickedComparisonStop();
+	afx_msg void OnBnClickedComparisonPause();
+	afx_msg void OnBnClickedComparisonContinue();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -148,6 +152,7 @@ private:
 	bool m_bGeneratingReport;
 	std::unique_ptr<DirCmpReport> m_pReport;
 	FileFilterHelper m_fileHelper; /**< File filter helper */
+	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 };
 
 /**
