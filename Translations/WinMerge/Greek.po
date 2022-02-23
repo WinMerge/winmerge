@@ -1791,9 +1791,8 @@ msgstr "Να αγνοούνται τα &πάντα"
 msgid "E&nable moved block detection"
 msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέντων τμημάτων"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Αντιστοίχιση παρομοίων γραμμών"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4110,13 +4109,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nΑντιγραφή όλων Δεξιά"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nΑντιγραφή όλων Αριστερά"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

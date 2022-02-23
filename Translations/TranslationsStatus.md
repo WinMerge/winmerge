@@ -1,90 +1,90 @@
 # Translations Status
 
-Status from **2022-01-27**:
+Status from **2022-02-23**:
 
 ## WinMerge
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
-| Arabic               |  1200 |        901 |     0 |          299 |     75 % |  2019-12-30 |
-| Basque               |  1200 |        639 |     0 |          561 |     53 % |  2013-02-03 |
-| Brazilian            |  1200 |       1086 |     0 |          114 |     90 % |  2021-08-09 |
-| Bulgarian            |  1200 |        966 |     0 |          234 |     80 % |  2021-06-28 |
-| Catalan              |  1200 |        566 |     0 |          634 |     47 % |             |
-| ChineseSimplified    |  1200 |       1184 |     0 |           16 |     99 % |             |
-| ChineseTraditional   |  1200 |       1091 |     0 |          109 |     91 % |  2021-12-11 |
-| Corsican             |  1200 |       1199 |     0 |            1 |    100 % |  2022-01-23 |
-| Croatian             |  1200 |        631 |     1 |          568 |     53 % |  2009-02-13 |
-| Czech                |  1200 |        605 |     0 |          595 |     50 % |             |
-| Danish               |  1200 |        639 |     0 |          561 |     53 % |  2013-01-13 |
-| Dutch                |  1200 |       1193 |     0 |            7 |     99 % |  2018-09-06 |
-| English              |  1201 |       1201 |     0 |            0 |    100 % |  2022-01-27 |
-| Finnish              |  1200 |        901 |     0 |          299 |     75 % |             |
-| French               |  1200 |       1199 |     0 |            1 |    100 % |  2022-01-24 |
-| Galician             |  1200 |       1136 |     0 |           64 |     95 % |  2021-12-18 |
-| German               |  1200 |       1199 |     0 |            1 |    100 % |  2022-01-23 |
-| Greek                |  1200 |        604 |     0 |          596 |     50 % |             |
-| Hungarian            |  1200 |       1199 |     0 |            1 |    100 % |  2021-03-15 |
-| Italian              |  1200 |        991 |     0 |          209 |     83 % |  2021-08-09 |
-| Japanese             |  1200 |       1199 |     0 |            1 |    100 % |  2021-11-21 |
-| Korean               |  1200 |       1034 |     0 |          166 |     86 % |  2021-12-10 |
-| Lithuanian           |  1200 |       1154 |     0 |           46 |     96 % |  2022-01-20 |
-| Norwegian            |  1200 |        632 |     0 |          568 |     53 % |             |
-| Persian              |  1200 |        642 |     0 |          558 |     54 % |  2013-08-15 |
-| Polish               |  1200 |       1110 |     0 |           90 |     92 % |             |
-| Portuguese           |  1200 |       1195 |     0 |            5 |    100 % |  2022-01-22 |
-| Romanian             |  1200 |        561 |    44 |          595 |     50 % |             |
-| Russian              |  1200 |       1092 |     0 |          108 |     91 % |  2021-10-28 |
-| Serbian              |  1200 |        632 |     0 |          568 |     53 % |             |
-| Sinhala              |  1200 |        566 |    59 |          575 |     52 % |  2010-12-12 |
-| Slovak               |  1200 |        974 |     0 |          226 |     81 % |  2020-11-02 |
-| Slovenian            |  1200 |       1197 |     0 |            3 |    100 % |  2022-01-03 |
-| Spanish              |  1200 |        870 |     0 |          330 |     72 % |  2020-04-03 |
-| Swedish              |  1200 |       1094 |     0 |          106 |     91 % |  2021-09-15 |
-| Turkish              |  1200 |       1136 |     0 |           64 |     95 % |  2021-12-21 |
-| Ukrainian            |  1200 |        637 |     0 |          563 |     53 % |  2009-06-13 |
+| Arabic               |  1201 |        900 |     0 |          301 |     74 % |  2019-12-30 |
+| Basque               |  1201 |        640 |     0 |          561 |     53 % |  2013-02-03 |
+| Brazilian            |  1201 |       1085 |     0 |          116 |     90 % |  2021-08-09 |
+| Bulgarian            |  1201 |        965 |     0 |          236 |     80 % |  2021-06-28 |
+| Catalan              |  1201 |        567 |     0 |          634 |     47 % |             |
+| ChineseSimplified    |  1201 |       1182 |     0 |           19 |     98 % |             |
+| ChineseTraditional   |  1201 |       1128 |     0 |           73 |     93 % |  2022-02-19 |
+| Corsican             |  1201 |       1200 |     0 |            1 |     99 % |  2022-02-19 |
+| Croatian             |  1201 |        632 |     1 |          568 |     52 % |  2009-02-13 |
+| Czech                |  1201 |        606 |     0 |          595 |     50 % |             |
+| Danish               |  1201 |        640 |     0 |          561 |     53 % |  2013-01-13 |
+| Dutch                |  1201 |       1199 |     0 |            2 |     99 % |  2018-09-06 |
+| English              |  1201 |       1201 |     0 |            0 |    100 % |  2022-02-20 |
+| Finnish              |  1201 |        900 |     0 |          301 |     74 % |             |
+| French               |  1201 |       1199 |     0 |            2 |     99 % |  2022-01-24 |
+| Galician             |  1201 |       1135 |     0 |           66 |     94 % |  2021-12-18 |
+| German               |  1201 |       1200 |     0 |            1 |     99 % |  2022-01-23 |
+| Greek                |  1201 |        605 |     0 |          596 |     50 % |             |
+| Hungarian            |  1201 |       1200 |     0 |            1 |     99 % |  2021-03-15 |
+| Italian              |  1201 |        990 |     0 |          211 |     82 % |  2021-08-09 |
+| Japanese             |  1201 |       1200 |     0 |            1 |     99 % |  2022-01-28 |
+| Korean               |  1201 |       1199 |     0 |            2 |     99 % |  2022-02-02 |
+| Lithuanian           |  1201 |       1158 |     0 |           43 |     96 % |  2022-02-19 |
+| Norwegian            |  1201 |        731 |     0 |          470 |     60 % |             |
+| Persian              |  1201 |        643 |     0 |          558 |     53 % |  2013-08-15 |
+| Polish               |  1201 |       1109 |     0 |           92 |     92 % |             |
+| Portuguese           |  1201 |       1199 |     0 |            2 |     99 % |  2022-02-02 |
+| Romanian             |  1201 |        562 |    44 |          595 |     50 % |             |
+| Russian              |  1201 |       1156 |     0 |           45 |     96 % |  2022-01-27 |
+| Serbian              |  1201 |        633 |     0 |          568 |     52 % |             |
+| Sinhala              |  1201 |        567 |    59 |          575 |     52 % |  2010-12-12 |
+| Slovak               |  1201 |       1199 |     0 |            2 |     99 % |  2022-02-17 |
+| Slovenian            |  1201 |       1200 |     0 |            1 |     99 % |  2022-02-21 |
+| Spanish              |  1201 |        869 |     0 |          332 |     72 % |  2020-04-03 |
+| Swedish              |  1201 |       1093 |     0 |          108 |     91 % |  2021-09-15 |
+| Turkish              |  1201 |       1135 |     0 |           66 |     94 % |  2021-12-21 |
+| Ukrainian            |  1201 |        638 |     0 |          563 |     53 % |  2009-06-13 |
 
 ## ShellExtension
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
-| Arabic               |     9 |          3 |     0 |            6 |     33 % |             |
-| Basque               |     9 |          4 |     0 |            5 |     44 % |             |
-| Brazilian            |     9 |          4 |     0 |            5 |     44 % |             |
-| Bulgarian            |     9 |          4 |     0 |            5 |     44 % |             |
-| Catalan              |     9 |          4 |     0 |            5 |     44 % |             |
-| ChineseSimplified    |     9 |          9 |     0 |            0 |    100 % |             |
-| ChineseTraditional   |     9 |          9 |     0 |            0 |    100 % |             |
-| Corsican             |     9 |          9 |     0 |            0 |    100 % |             |
-| Croatian             |     9 |          4 |     0 |            5 |     44 % |             |
-| Czech                |     9 |          4 |     0 |            5 |     44 % |             |
-| Danish               |     9 |          4 |     0 |            5 |     44 % |             |
-| English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
-| English              |     9 |          9 |     0 |            0 |    100 % |  2021-01-28 |
-| Finnish              |     9 |          4 |     0 |            5 |     44 % |             |
-| French               |     9 |          9 |     0 |            0 |    100 % |             |
-| Galician             |     9 |          4 |     0 |            5 |     44 % |             |
-| German               |     9 |          9 |     0 |            0 |    100 % |  2021-09-25 |
-| Greek                |     9 |          4 |     0 |            5 |     44 % |             |
-| Hungarian            |     9 |          9 |     0 |            0 |    100 % |             |
-| Italian              |     9 |          4 |     0 |            5 |     44 % |             |
-| Japanese             |     9 |          9 |     0 |            0 |    100 % |             |
-| Korean               |     9 |          3 |     0 |            6 |     33 % |             |
-| Lithuanian           |     9 |          9 |     0 |            0 |    100 % |  2021-12-17 |
-| Norwegian            |     9 |          3 |     0 |            6 |     33 % |             |
-| Persian              |     9 |          4 |     0 |            5 |     44 % |             |
-| Polish               |     9 |          4 |     0 |            5 |     44 % |             |
-| Portuguese           |     9 |          9 |     0 |            0 |    100 % |  2021-12-20 |
-| Romanian             |     9 |          4 |     0 |            5 |     44 % |             |
-| Russian              |     9 |          6 |     0 |            3 |     67 % |   20-02-25  |
-| Serbian              |     9 |          4 |     0 |            5 |     44 % |             |
-| Sinhala              |     9 |          3 |     0 |            6 |     33 % |             |
-| Slovak               |     9 |          4 |     0 |            5 |     44 % |             |
-| Slovenian            |     9 |          9 |     0 |            0 |    100 % |  2021-12-16 |
-| Spanish              |     9 |          4 |     0 |            5 |     44 % |             |
-| Swedish              |     9 |          4 |     0 |            5 |     44 % |             |
-| Turkish              |     9 |          9 |     0 |            0 |    100 % |  2021-09-21 |
-| Ukrainian            |     9 |          4 |     0 |            5 |     44 % |             |
+| Arabic               |    10 |          3 |     0 |            7 |     30 % |             |
+| Basque               |    10 |          4 |     0 |            6 |     40 % |             |
+| Brazilian            |    10 |          4 |     0 |            6 |     40 % |             |
+| Bulgarian            |    10 |          4 |     0 |            6 |     40 % |             |
+| Catalan              |    10 |          4 |     0 |            6 |     40 % |             |
+| ChineseSimplified    |    10 |         10 |     0 |            0 |    100 % |             |
+| ChineseTraditional   |    10 |         10 |     0 |            0 |    100 % |             |
+| Corsican             |    10 |         10 |     0 |            0 |    100 % |             |
+| Croatian             |    10 |          4 |     0 |            6 |     40 % |             |
+| Czech                |    10 |          4 |     0 |            6 |     40 % |             |
+| Danish               |    10 |          4 |     0 |            6 |     40 % |             |
+| Dutch                |    10 |         10 |     0 |            0 |    100 % |  2021-01-28 |
+| English              |    10 |         10 |     0 |            0 |    100 % |  2021-09-08 |
+| Finnish              |    10 |          4 |     0 |            6 |     40 % |             |
+| French               |    10 |         10 |     0 |            0 |    100 % |             |
+| Galician             |    10 |          4 |     0 |            6 |     40 % |             |
+| German               |    10 |         10 |     0 |            0 |    100 % |  2021-09-25 |
+| Greek                |    10 |          4 |     0 |            6 |     40 % |             |
+| Hungarian            |    10 |         10 |     0 |            0 |    100 % |             |
+| Italian              |    10 |          4 |     0 |            6 |     40 % |             |
+| Japanese             |    10 |         10 |     0 |            0 |    100 % |             |
+| Korean               |    10 |          3 |     0 |            7 |     30 % |             |
+| Lithuanian           |    10 |         10 |     0 |            0 |    100 % |  2021-12-17 |
+| Norwegian            |    10 |          3 |     0 |            7 |     30 % |             |
+| Persian              |    10 |          4 |     0 |            6 |     40 % |             |
+| Polish               |    10 |          4 |     0 |            6 |     40 % |             |
+| Portuguese           |    10 |         10 |     0 |            0 |    100 % |  2021-12-20 |
+| Romanian             |    10 |          4 |     0 |            6 |     40 % |             |
+| Russian              |    10 |          7 |     0 |            3 |     70 % |   20-02-25  |
+| Serbian              |    10 |          4 |     0 |            6 |     40 % |             |
+| Sinhala              |    10 |          3 |     0 |            7 |     30 % |             |
+| Slovak               |    10 |          4 |     0 |            6 |     40 % |             |
+| Slovenian            |    10 |         10 |     0 |            0 |    100 % |  2021-12-16 |
+| Spanish              |    10 |          4 |     0 |            6 |     40 % |             |
+| Swedish              |    10 |          4 |     0 |            6 |     40 % |             |
+| Turkish              |    10 |         10 |     0 |            0 |    100 % |  2021-09-21 |
+| Ukrainian            |    10 |         10 |     0 |            0 |    100 % |             |
 
 ## InnoSetup
 
@@ -173,6 +173,9 @@ Status from **2022-01-27**:
 
 ### WinMerge
 
+ * Arabic
+   - [Downzen team](mailto:https://downzen.com)
+
  * Basque
    - [Xabier Aramendi](mailto:azpidatziak%20at%20gmail.com)
 
@@ -218,7 +221,10 @@ Status from **2022-01-27**:
 
  * Dutch
    - [Ronald Schaap](mailto:ronald%20at%20schaap.demon.nl)
-   - Michel Coene
+   - Thomas De Rocker, 2022
+
+ * Finnish
+   - Veikko
 
  * French
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
@@ -253,6 +259,7 @@ Status from **2022-01-27**:
 
  * Japanese
    - [Takashi Sawanaka](mailto:sawanaka%20at%20d1.dion.ne.jp)
+   - [Rukoto Luther](mailto:rukotolucies%20at%20hotmail.com)
 
  * Korean
    - [Hwang Sukjoon](mailto:bbcool%20at%20gmail.com)
@@ -262,6 +269,7 @@ Status from **2022-01-27**:
    - [teamzamong](mailto:teamzamong%20at%20gmail.com)
    - [BrainS](mailto:29201475+BraINstinct0%20at%20users.noreply.github.com)
    - [cynilyn](mailto:cynilyn%20at%20gmail.com)
+   - [gro00](mailto:gheong.ro%20at%20gmail.com)
 
  * Lithuanian
    - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)

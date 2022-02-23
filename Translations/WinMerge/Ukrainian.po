@@ -1793,9 +1793,8 @@ msgstr "Нехтувати &всіма пропусками"
 msgid "E&nable moved block detection"
 msgstr "Виявлення перемі&щених блоків"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Виконати пошук схожих рядків"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4132,13 +4131,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nСкопіювати все на праву панель"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nСкопіювати все на ліву панель"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

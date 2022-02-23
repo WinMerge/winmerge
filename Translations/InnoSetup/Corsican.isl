@@ -22,7 +22,7 @@ Filters=Filtri
 Plugins=Moduli d’estensione
 Frhed=Frhed (editore esadecimale di rigalu)
 WinIMerge=WinIMerge (Sfarenza/Fusione di fiure)
-ArchiveSupport=Accettà l’archivii
+ArchiveSupport=Permette l’archiviera
 ShellExtension32bit=Listinu cuntestuale WinMerge 32-bit
 Commands=Patch GnuWin32 per Windows/HTML Tidy/jq
 

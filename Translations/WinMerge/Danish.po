@@ -1793,9 +1793,8 @@ msgstr "I&gnorer alle"
 msgid "E&nable moved block detection"
 msgstr "&Aktiver detektion af flyttede blokke"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Match ens linjer"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4168,13 +4167,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nKopier alt til højre"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nKopier alt til venstre"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

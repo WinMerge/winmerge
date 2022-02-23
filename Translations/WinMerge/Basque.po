@@ -1793,9 +1793,8 @@ msgstr "E&zikusi denak"
 msgid "E&nable moved block detection"
 msgstr "Gaitu bloke &mugitu atzematea"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Berdindu antzeko lerroak"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4133,13 +4132,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nKopiatu Dena Eskuinera"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nKopiatu Dena Ezkerrera"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

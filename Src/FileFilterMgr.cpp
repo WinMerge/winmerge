@@ -226,6 +226,18 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->dirfilters, str);
 		}
+		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
+		{
+			// file filter
+			String str = sLine.substr(3);
+			AddFilterPattern(&pfilter->filefiltersExclude, str);
+		}
+		else if (0 == sLine.compare(0, 3, _T("d!:"), 3))
+		{
+			// directory filter
+			String str = sLine.substr(3);
+			AddFilterPattern(&pfilter->dirfiltersExclude, str);
+		}
 	} while (bLinesLeft);
 
 	return pfilter;
@@ -315,7 +327,10 @@ bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 	if (pFilter == nullptr)
 		return true;
 	if (TestAgainstRegList(&pFilter->filefilters, szFileName))
-		return !pFilter->default_include;
+	{
+		if (pFilter->filefiltersExclude.empty() || !TestAgainstRegList(&pFilter->filefiltersExclude, szFileName))
+			return !pFilter->default_include;
+	}
 	return pFilter->default_include;
 }
 
@@ -336,7 +351,10 @@ bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 	if (pFilter == nullptr)
 		return true;
 	if (TestAgainstRegList(&pFilter->dirfilters, szDirName))
-		return !pFilter->default_include;
+	{
+		if (pFilter->dirfiltersExclude.empty() || !TestAgainstRegList(&pFilter->dirfiltersExclude, szDirName))
+			return !pFilter->default_include;
+	}
 	return pFilter->default_include;
 }
 

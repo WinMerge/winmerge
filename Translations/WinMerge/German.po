@@ -1200,7 +1200,7 @@ msgid "Ignore num&bers"
 msgstr "&Nummern ignorieren"
 
 msgid "Ignore c&omment differences"
-msgstr "Kommentarunterschiede ignorieren"
+msgstr "&Kommentarunterschiede ignorieren"
 
 #, c-format
 msgid "&Include Subfolders"
@@ -1796,9 +1796,8 @@ msgstr "&Alle ignorieren"
 msgid "E&nable moved block detection"
 msgstr "Verschobene &Blöcke erkennen"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Ähnliche Zeilen angleichen"
+msgid "Align &similar lines"
+msgstr "&Ähnliche Zeilen ausrichten"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Diff-Algorithmus (experimentell):"
@@ -1807,7 +1806,7 @@ msgid "Enable indent &heuristic"
 msgstr "&Heuristischen Einzug aktivieren"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr "Ignorierte Unterschiede komplett nicht markieren"
+msgstr "Ignorierte &Unterschiede komplett nicht markieren"
 
 #, c-format
 msgid "Editor"
@@ -3920,12 +3919,10 @@ msgstr "\nNach rechts kopieren und fortschreiten (Strg+Alt+Rechts)"
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
 
-#, c-format
-msgid "\nAll Right"
+msgid "\nCopy All to Right"
 msgstr "\nAlles nach rechts kopieren"
 
-#, c-format
-msgid "\nAll Left"
+msgid "\nCopy All to Left"
 msgstr "\nAlles nach links kopieren"
 
 #, c-format

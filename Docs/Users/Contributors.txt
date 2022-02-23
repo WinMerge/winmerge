@@ -111,6 +111,10 @@ Localization:
   bovirus
   Massimiliano Caniparoli
 
+* Japanese:
+  Takashi Sawanaka <sdottaka@users.sourceforge.net>
+  Rukoto Luther <rukotolucies at hotmail.com>
+
 * Korean:
   Sukjoon <bbcool@gmail.com>
   Lee Jae-Hong <pyrasis@users.sourceforge.net>
@@ -119,12 +123,14 @@ Localization:
   teamzamong <teamzamong at gmail.com>
   BrainS <29201475+BraINstinct0 at users.noreply.github.com>
   cynilyn <cynilyn at gmail.com>
+  gro00 <gheong.ro at gmail.com>
 
 * Lithuanian:
   Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
 
 * Norwegian:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
+  FTno
 
 * Persian:
   Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
@@ -193,7 +199,7 @@ Localization:
 * Ukranian
   Vitaliy Stopchans'kyy <stopcha@gmail.com>
   Warrior <warr11r@rambler.ru>
-
+  Vlad
 
 Other Contributors (code, ideas, testing..):
 * James Abbatiello <abbeyj@users.sourceforge.net>

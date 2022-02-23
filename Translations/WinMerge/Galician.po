@@ -1793,9 +1793,8 @@ msgstr "&Ignorar todo"
 msgid "E&nable moved block detection"
 msgstr "A&ctivar detección de bloques movidos"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Coincidir as liñas semellantes"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Algoritmo de diferenciación (exper.):"
@@ -4261,21 +4260,11 @@ msgstr ""
 "\n"
 "Copiar para a esquerda e avanzar (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Todo para a dereita"
+msgid "\nCopy All to Right"
+msgstr "\nCopiar todo para a dereita"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Todo para a esquerda"
+msgid "\nCopy All to Left"
+msgstr "\nCopiar todo para a esquerda"
 
 #, c-format
 msgid ""

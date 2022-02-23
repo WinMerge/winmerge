@@ -1794,9 +1794,8 @@ msgstr "Összes mellőzése"
 msgid "E&nable moved block detection"
 msgstr "Mozgatott &blokk észlelés bekapcsolása"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Hasonló sorok egyezése"
+msgid "Align &similar lines"
+msgstr "Hasonló sorok igazítása"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Különbségkereső algoritmus (kísérleti):"
@@ -4262,21 +4261,11 @@ msgstr ""
 "\n"
 "Másolás balra, továbblépés (Ctrl+Alt+Balra)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Mindet jobbra"
+msgid "\nCopy All to Right"
+msgstr "\nAz összes másolása jobbra"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Mindet balra"
+msgid "\nCopy All to Left"
+msgstr "\nAz összes másolása balra"
 
 #, c-format
 msgid ""

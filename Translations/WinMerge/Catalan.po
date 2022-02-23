@@ -1791,9 +1791,8 @@ msgstr "Ignora t&ots els espais"
 msgid "E&nable moved block detection"
 msgstr "&Habilita detecció de blocs desplaçats"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Em&parella les línies similars"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4063,13 +4062,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nCopia-ho tot a la dreta"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nCopia-ho tot a l'esquerra"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

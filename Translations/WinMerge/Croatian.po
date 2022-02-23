@@ -1792,9 +1792,8 @@ msgstr "Zanemari &sve"
 msgid "E&nable moved block detection"
 msgstr "Omogući &razlikovanje premještenih blokova"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Jednake retke"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4132,13 +4131,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nKopiraj sve u desno"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nKopiraj sve u lijevo"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

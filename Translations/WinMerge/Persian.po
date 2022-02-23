@@ -1795,9 +1795,8 @@ msgstr "&g چشم پوشي از همگي "
 msgid "E&nable moved block detection"
 msgstr "&n فعال کردن تشخيص قطعه جابجا شده "
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&M مطابقت کردن خطوط مشابه "
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -4175,13 +4174,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nرونوشت برداري همه به راست"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nرونوشت برداري همه به چپ"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"
