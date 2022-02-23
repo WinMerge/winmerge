@@ -153,7 +153,7 @@
 
       <para>このシンタックスは、ファイルマスク用です:</para>
 
-      <synopsis>[!]*.[<replaceable>拡張子</replaceable>][<replaceable>区切り文字</replaceable>[!]*.<replaceable>拡張子</replaceable>...]</synopsis>
+      <synopsis>[!](*.[<replaceable>拡張子</replaceable>]|<replaceable>フォルダマスク</replaceable>\)[<replaceable>区切り文字</replaceable>[!](*.<replaceable>拡張子</replaceable>|<replaceable>フォルダマスク</replaceable>\) ...]</synopsis>
 
       <para>有効な区切り文字はスペース、カンマ、コロン、セミコロンです。</para>
 
@@ -163,7 +163,9 @@
       </filename>の様な、拡張子なしのファイルを選択します。</para>
 
       <para>2.16.19 以降、感嘆符(<filename>!</filename>)
-      をマスクの前に付加した場合、そのマスクに一致したファイルは除外されます。</para>
+      をマスクの前に付加した場合、そのマスクに一致したファイルは除外されます。
+      また、バックスラッシュ(<filename>\</filename>)をマスクの後に付加した場合、
+      そのマスクはファイルではなくフォルダが対象となります。</para>
 
       <example>
         <title>ファイルマスク</title>
@@ -176,6 +178,19 @@
 
         <para>
           <userinput>WinMergeU c:\project\docs c:\temp /f *.xml;*.txt</userinput>
+        </para>
+      </example>
+
+      <example>
+        <title>フォルダの除外(2.16.19以降)</title>
+
+        <para>
+          このコマンドラインの例では、フォルダ比較操作は、
+          <filename>.git</filename>と
+          <filename>.vs</filename>フォルダを除外します:</para>
+
+        <para>
+          <userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput>
         </para>
       </example>
     </section>
