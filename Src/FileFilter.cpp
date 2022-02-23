@@ -17,7 +17,9 @@ using std::vector;
 FileFilter::~FileFilter()
 {
 	EmptyFilterList(&filefilters);
+	EmptyFilterList(&filefiltersExclude);
 	EmptyFilterList(&dirfilters);
+	EmptyFilterList(&dirfiltersExclude);
 }
 
 /**
@@ -60,5 +62,20 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 	{
 		FileFilterElementPtr ptr(new FileFilterElement(filter->dirfilters[i].get()));
 		dirfilters.push_back(ptr);
+	}
+	filefiltersExclude.clear();
+	count = filter->filefiltersExclude.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		FileFilterElementPtr ptr(new FileFilterElement(filter->filefiltersExclude[i].get()));
+		filefiltersExclude.push_back(ptr);
+	}
+
+	dirfiltersExclude.clear();
+	count = filter->dirfiltersExclude.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		FileFilterElementPtr ptr(new FileFilterElement(filter->dirfiltersExclude[i].get()));
+		dirfiltersExclude.push_back(ptr);
 	}
 }

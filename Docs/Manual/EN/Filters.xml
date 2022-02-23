@@ -145,13 +145,18 @@
 
       <para>Use this syntax for file masks:</para>
 
-      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
+      <synopsis>[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</replaceable>\)[<replaceable>delimiter</replaceable>[!](*.<replaceable>extension</replaceable>|<replaceable>folder mask</replaceable>\) ...]</synopsis>
 
       <para>Valid delimiters are spaces, commas, colons or semicolons.</para>
 
       <para>A mask with no extension ( <filename>*.</filename> ) selects files
       without any extension, such as
       <filename><filename>README</filename></filename>.</para>
+
+      <para>In 2.16.19 and later, if you put an exclamation mark(<filename>!</filename>)
+      in front of a mask, files matching that mask will be excluded.
+      Also, a backslash(<filename>\</filename>) after the mask will cause
+      the mask to match folders instead of files.</para>
 
       <example>
         <title>File mask</title>
@@ -162,6 +167,17 @@
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f
         *.xml;*.txt</userinput></para>
+      </example>
+
+      <example>
+        <title>Excluding folders (In 2.16.19 or later)</title>
+
+        <para>In this command-line example, the folder compare operation
+        excludes <filename>.git</filename> and
+        <filename>.vs</filename> folders:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f
+        !.git\;!.vs\</userinput></para>
       </example>
     </section>
   </section>
@@ -427,6 +443,12 @@
           </listitem>
         </varlistentry>
       </variablelist>
+
+      <para>In 2.16.19 and later, the type designators
+      <guilabel>f!:</guilabel> and <guilabel>d!:</guilabel> has been
+      introduced to exclude some of the files or folders matched by
+      <guilabel>f:</guilabel> and <guilabel>d:</guilabel>.
+      </para>
 
       <para>Among the many regexp special characters, the following are
       particularly important in file filter rules:<indexterm>
