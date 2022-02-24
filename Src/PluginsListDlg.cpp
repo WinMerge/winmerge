@@ -124,8 +124,11 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		String processType2 = processType.has_value() ? strutils::to_str(*processType) : _T("&Others");
 		processType2 = strutils::strip_hot_key(tr(ucr::toUTF8(processType2)));
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
+		String desc = tr(ucr::toUTF8(plugin->m_description));
+		strutils::replace(desc, _T("\r"), _T(""));
+		strutils::replace(desc, _T("\n"), _T(" "));
 		m_list.SetItemText(ind, 1, (pluginType + _T("/") + processType2).c_str());
-		m_list.SetItemText(ind, 2, tr(ucr::toUTF8(plugin->m_description)).c_str());
+		m_list.SetItemText(ind, 2, desc.c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
 		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
 	}
