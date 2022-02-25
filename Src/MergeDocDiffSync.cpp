@@ -683,53 +683,41 @@ void CMergeDoc::AdjustDiffBlocks3way()
 int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int line1, const std::vector<WordDiff>& worddiffs)
 {
 	int matchlen = 0;
+	WordDiff dummyWordDiff(0, 0, dr.begin[0], dr.begin[0], 0, 0, dr.begin[1], dr.begin[1]);
+	WordDiff& prevWordDiff = dummyWordDiff;
 	for (size_t i = 0; i < worddiffs.size(); ++i)
 	{
-		if (i == 0)
+		if ((prevWordDiff.endline[0] <= line0 && line0 <= worddiffs[i].beginline[0]) &&
+		    (prevWordDiff.endline[1] <= line1 && line1 <= worddiffs[i].beginline[1]))
 		{
-			if (line0 < worddiffs[0].beginline[0] && line1 < worddiffs[0].beginline[1])
+			if (line0 == worddiffs[i].beginline[0])
 			{
-				if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
-					matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
-			}
-			else if (line0 == worddiffs[0].beginline[0] && line1 == worddiffs[0].beginline[1])
-				matchlen += worddiffs[0].begin[0];
-		}
-		else
-		{
-			if (worddiffs[i - 1].endline[0] < line0 && worddiffs[i - 1].endline[1] < line1 &&
-			    line0 < worddiffs[i].beginline[0] && line1 < worddiffs[i].beginline[1])
-			{
-				if (line0 - worddiffs[i - 1].endline[0] == line1 - worddiffs[i - 1].endline[1])
-					matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
-			}
-			else if (worddiffs[i - 1].endline[0] <= line0 && worddiffs[i - 1].endline[1] <= line1 &&
-			    line0 <= worddiffs[i].beginline[0] && line1 <= worddiffs[i].beginline[1])
-			{
-				if (worddiffs[i - 1].endline[0] == worddiffs[i].beginline[0])
-					matchlen += worddiffs[i].begin[0] - worddiffs[i - 1].end[0];
+				if (prevWordDiff.endline[0] == line0)
+					matchlen += worddiffs[i].begin[0] - prevWordDiff.end[0];
 				else
 					matchlen += worddiffs[i].begin[0];
 			}
+			else /* line0 < worddiffs[i].beginline[0] */
+			{
+				if (prevWordDiff.endline[0] == line0)
+					matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - prevWordDiff.end[0];
+				else
+					matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+			}
 		}
-		if (i == worddiffs.size() - 1 ||
-			worddiffs[i + 1].beginline[0] != worddiffs[i].endline[0] && worddiffs[i + 1].beginline[1] != worddiffs[i].endline[1])
-		{
-			if (worddiffs[i].endline[0] == line0 && worddiffs[i].endline[1] == line1)
-				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - worddiffs[i].end[0];
-		}
+		prevWordDiff = worddiffs[i];
 	}
 	if (worddiffs.empty())
 	{
-		if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
-			matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+		matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
 	}
 	else
 	{
-		auto lastWordDiff = worddiffs.back();
-		if (lastWordDiff.endline[0] < line0 && lastWordDiff.endline[1] < line1)
+		if (prevWordDiff.endline[0] <= line0 && prevWordDiff.endline[1] <= line1)
 		{
-			if (line0 - lastWordDiff.endline[0] == line1 - lastWordDiff.endline[1])
+			if (prevWordDiff.endline[0] == line0)
+				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - prevWordDiff.end[0];
+			else
 				matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
 		}
 	}
