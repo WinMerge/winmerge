@@ -66,6 +66,25 @@ PrintVirtualLineToRealLineMap(
 	}
 }
 
+#ifdef _DEBUG
+static void
+PrintWordDiffList(int nPanes, const std::vector<WordDiff>& worddiffs)
+{
+	String lines = _T("[word-diff list]\n");
+	for (size_t i = 0; i < worddiffs.size(); ++i)
+	{
+		lines += strutils::format(_T("worddiff[%d] "), i);
+		for (int j = 0; j < nPanes; ++j)
+		{
+			lines += strutils::format(_T("pane:%d (line:%d,col:%d)-(line:%d,col:%d) "),
+					j, worddiffs[i].beginline[j], worddiffs[i].begin[j], worddiffs[i].endline[j], worddiffs[i].end[j]);
+		}
+		lines += _T("\n");
+	}
+	OutputDebugString(lines.c_str());
+}
+#endif
+
 /**
  * @brief Create map from virtual line to real line.
  */
@@ -327,6 +346,9 @@ void CMergeDoc::AdjustDiffBlocks()
 			int lo0 = 0, hi0 = nlines0-1;
 			int lo1 = 0, hi1 = nlines1-1;
 			const std::vector<WordDiff> worddiffs = GetWordDiffArrayInRange(diffrange.begin, diffrange.end);
+#ifdef _DEBUG
+			PrintWordDiffList(2, worddiffs);
+#endif
 			DiffMap diffmap;
 			diffmap.InitDiffMap(nlines0);
 			AdjustDiffBlock(diffmap, diffrange, worddiffs, 0, 1, lo0, hi0, lo1, hi1);
