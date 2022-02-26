@@ -209,7 +209,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 				if (nWordDiff == worddiffs.size())
 				{
 					m_diffList.GetDiff(nDiff, di);
-					ptStart.y = (di.dend + 1) % nLineCount;
+					ptStart.y = di.dend;
 					worddiffs.clear();
 				}
 			}
@@ -218,7 +218,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 				if (nWordDiff == 0 || nWordDiff == static_cast<size_t>(-1))
 				{
 					m_diffList.GetDiff(nDiff, di);
-					ptStart.y = (di.dbegin - 1) % nLineCount;
+					ptStart.y = di.dbegin;
 					worddiffs.clear();
 				}
 				else
@@ -241,6 +241,7 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 			{
 				nDiff = (nDiff + 1) % m_diffList.GetSize();
 			}
+			m_diffList.GetDiff(nDiff, di);
 			worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
 			nWordDiff = 0;
 		}
@@ -255,8 +256,9 @@ void CMergeDoc::Computelinediff(CMergeEditView *pView, CRect rc[], bool bReverse
 			}
 			else
 			{
-				nDiff = (nDiff - 1) % m_diffList.GetSize();
+				nDiff = (nDiff + m_diffList.GetSize() - 1) % m_diffList.GetSize();
 			}
+			m_diffList.GetDiff(nDiff, di);
 			worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
 			nWordDiff = worddiffs.size() - 1;
 		}
