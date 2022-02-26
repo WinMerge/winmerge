@@ -23,6 +23,7 @@
 *.diagsession
 *.asm
 *.swp
+*.lastbuild
 **/.vs
 **/ipch
 **/BuildTmp
@@ -50,6 +51,8 @@
 **/ARMDebug
 **/x64Release
 **/x64Debug
+**/Win32Release
+**/Win32Debug
 winmerge-cppcheck-build-dir/
 Docs/Manual/Tools/ReadMe_ENG.html
 Testing/Data/ShellFileOpTest/File1.txt
