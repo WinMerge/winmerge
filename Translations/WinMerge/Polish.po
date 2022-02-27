@@ -1561,12 +1561,6 @@ msgstr "Domyślna strona kodowa"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Wybierz domyślne kodowanie dla otwieranych plików nie będących plikami Unicode:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart sesji."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart sesji."
-
 msgid "System codepage"
 msgstr "Strona kodowa systemu"
 
@@ -1575,6 +1569,12 @@ msgstr "Według interfejsu użytkownika WinMerge"
 
 msgid "Custom codepage:"
 msgstr "Niestandardowa strona kodowa:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Wykryj stronę kodową dla plików: .html, .rc, .xml \nWymagany restart sesji."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr "Wykryj stronę kodową dla plików tekstowych wykorzystując mlang.dll\nWymagany restart sesji."
 
 msgid "Options"
 msgstr "Opcje"

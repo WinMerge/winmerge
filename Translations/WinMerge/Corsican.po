@@ -1576,6 +1576,15 @@ msgstr ""
 "Selezziunà a pagina di codice predefinita impiegata à u caricamentu di i "
 "schedarii non-Unicode :"
 
+msgid "System codepage"
+msgstr "Pagina di codice di u sistema"
+
+msgid "According to WinMerge User Interface"
+msgstr "Secondu à l‘interfaccia utilizatore WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Pagina di codice persunalizata :"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1590,15 +1599,6 @@ msgid ""
 msgstr ""
 "Abbentà a pagina di codice per i schedarii di testu cù mlang.dll\n"
 "Què richiede di rilancià a sessione."
-
-msgid "System codepage"
-msgstr "Pagina di codice di u sistema"
-
-msgid "According to WinMerge User Interface"
-msgstr "Secondu à l‘interfaccia utilizatore WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Pagina di codice persunalizata :"
 
 msgid "Options"
 msgstr "Ozzioni"

@@ -1561,6 +1561,15 @@ msgstr "Förvald teckentabell"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Välj förvald teckentabell att använda när icke-Unicode filer öppnas:"
 
+msgid "System codepage"
+msgstr "Systemets teckentabell"
+
+msgid "According to WinMerge User Interface"
+msgstr "Enligt WinMerges användargränssnitt"
+
+msgid "Custom codepage:"
+msgstr "Anpassad teckentabell:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1574,15 +1583,6 @@ msgid ""
 msgstr ""
 "Detektera teckentabell för textfiler med mlang.dll\n"
 "(Sessionen kommer behöva läsas in på nytt)"
-
-msgid "System codepage"
-msgstr "Systemets teckentabell"
-
-msgid "According to WinMerge User Interface"
-msgstr "Enligt WinMerges användargränssnitt"
-
-msgid "Custom codepage:"
-msgstr "Anpassad teckentabell:"
 
 msgid "Options"
 msgstr "Inställningar"

@@ -1565,6 +1565,15 @@ msgstr "صحفة الترميز الإفتراضي"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "تحديد صفحة الترميز الافتراضية عند تحميل ملفات دون ترميز يونيكود:"
 
+msgid "System codepage"
+msgstr "صحفة الترميز للنظام"
+
+msgid "According to WinMerge User Interface"
+msgstr "حسب واجهة المستخدم لبرنامج WinMerge"
+
+msgid "Custom codepage:"
+msgstr "صفحة ترميز مخصصة:"
+
 msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "التحقق من معلومات صفحة الترميز للملفات التالية: .html, .rc, .xml \n"
@@ -1574,15 +1583,6 @@ msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "التحقق من ترميز الصفحة للملفات النصية باستخدام mlang.dll\n"
 "هذا الأمر يتطلب إعادة تشغيل الجلسة."
-
-msgid "System codepage"
-msgstr "صحفة الترميز للنظام"
-
-msgid "According to WinMerge User Interface"
-msgstr "حسب واجهة المستخدم لبرنامج WinMerge"
-
-msgid "Custom codepage:"
-msgstr "صفحة ترميز مخصصة:"
 
 msgid "Options"
 msgstr "الخيارات"

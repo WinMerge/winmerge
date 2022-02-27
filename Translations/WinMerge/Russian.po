@@ -1562,12 +1562,6 @@ msgstr "Кодовая страница по умолчанию"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Определять кодировку для типов файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
-
 msgid "System codepage"
 msgstr "Системная кодовая страница"
 
@@ -1576,6 +1570,12 @@ msgstr "В зависимости от интерфейса WinMerge"
 
 msgid "Custom codepage:"
 msgstr "Пользовательская:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Определять кодировку для типов файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
 
 msgid "Options"
 msgstr "Настройки"

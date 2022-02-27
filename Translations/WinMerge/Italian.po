@@ -1558,6 +1558,15 @@ msgstr "Codice pagina predefinito"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Scegli il codice pagina predefinito assegnato al caricamento di file non-Unicode:"
 
+msgid "System codepage"
+msgstr "Codice di pagina del sistema"
+
+msgid "According to WinMerge User Interface"
+msgstr "Come l'interfaccia di WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Codice pagina personalizzato:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1571,15 +1580,6 @@ msgid ""
 msgstr ""
 "Rilevamento codici di pagina per i file di testo con mlang.dll\n"
 "Riavvio della sessione necessario."
-
-msgid "System codepage"
-msgstr "Codice di pagina del sistema"
-
-msgid "According to WinMerge User Interface"
-msgstr "Come l'interfaccia di WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Codice pagina personalizzato:"
 
 msgid "Options"
 msgstr "Opzioni"

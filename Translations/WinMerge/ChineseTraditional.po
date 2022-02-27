@@ -1950,6 +1950,18 @@ msgstr "編碼頁"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "於載入 non-unicode 檔案時改變所用的編碼頁成:"
 
+#, c-format
+msgid "System codepage"
+msgstr "系統用的編碼頁"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge 使用者介面用的編碼頁"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "自訂編碼頁："
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1963,18 +1975,6 @@ msgid ""
 msgstr ""
 "偵測使用 mlang.dll 文字檔案的編碼頁資訊\n"
 "需要重新啟動程式。"
-
-#, c-format
-msgid "System codepage"
-msgstr "系統用的編碼頁"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge 使用者介面用的編碼頁"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "自訂編碼頁："
 
 #, c-format
 msgid "Options"

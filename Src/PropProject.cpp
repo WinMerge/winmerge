@@ -104,7 +104,7 @@ void PropProject::InitList()
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	String title = _("Item");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(100));
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(150));
 	title = _("Open");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(50));
 	title = _("Load");

@@ -1940,12 +1940,6 @@ msgstr "Προκαθορισμένη Κωδικοσελίδα"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Επιλέξατε την προκαθορισμένη κωδικοσελίδα νοουμένη κατά το άνοιγμα αρχείων χωρίς κωδικοποίηση Unicode"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Κωδικοσελίδα συστήματος"
@@ -1956,6 +1950,12 @@ msgstr "Σύμφωνα με το Περιβάλλον Εργασίας του Wi
 
 #, c-format
 msgid "Custom codepage:"
+msgstr ""
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format

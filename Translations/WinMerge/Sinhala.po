@@ -1941,12 +1941,6 @@ msgstr "Default Codepage"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Select the default codepage assumed when loading non-Unicode files:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "පද්ධති ගුප්ත සංඥා "
@@ -1958,6 +1952,12 @@ msgstr "WinMerge හි පරිශීලික අතුරුමුහුණ�
 #, fuzzy, c-format
 msgid "Custom codepage:"
 msgstr "Custom codepage:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"

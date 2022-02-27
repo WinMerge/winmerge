@@ -1943,12 +1943,6 @@ msgstr "Výchozí kódování"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Zvolte výchozí znakovou stránku, která se použije v případě načtení souborů, které nejsou v kódování Unicode:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "&Systémové kódování"
@@ -1960,6 +1954,12 @@ msgstr "&Podle uživatelského prostředí WinMerge"
 #, c-format
 msgid "Custom codepage:"
 msgstr "&Vlastní znaková stránka:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"

@@ -1942,6 +1942,18 @@ msgstr "Codificación predeterminada"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selecciona a codificación predeterminada para arquivos non-Unicode:"
 
+#, c-format
+msgid "System codepage"
+msgstr "Codificación do sistema"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Igual á interface de usuario de Winmerge"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Personalizar codificación:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1955,18 +1967,6 @@ msgid ""
 msgstr ""
 "Detectar a codificación dos arquivos de texto usando mlang.dll\n"
 "Precísase reiniciar a sesión."
-
-#, c-format
-msgid "System codepage"
-msgstr "Codificación do sistema"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Igual á interface de usuario de Winmerge"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Personalizar codificación:"
 
 #, c-format
 msgid "Options"

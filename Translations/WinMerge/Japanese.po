@@ -1563,6 +1563,15 @@ msgstr "デフォルト コードページ"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
+msgid "System codepage"
+msgstr "システム コードページ"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge ユーザー インターフェイス言語"
+
+msgid "Custom codepage:"
+msgstr "指定したコードページ:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1576,15 +1585,6 @@ msgid ""
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
-
-msgid "System codepage"
-msgstr "システム コードページ"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge ユーザー インターフェイス言語"
-
-msgid "Custom codepage:"
-msgstr "指定したコードページ:"
 
 msgid "Options"
 msgstr "オプション"

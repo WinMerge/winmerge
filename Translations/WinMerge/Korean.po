@@ -1949,6 +1949,18 @@ msgstr "기본 코드페이지"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "비유니코드 파일 열 때 사용할 기본 코드페이지:"
 
+#, c-format
+msgid "System codepage"
+msgstr "시스템 코드페이지"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge 사용자 인터페이스를 따름"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "사용자 지정 코드페이지:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1962,18 +1974,6 @@ msgid ""
 msgstr ""
 "mlang.dll을 이용해 텍스트 파일의 코드페이지 감지\n"
 "세션을 재시작해야 함."
-
-#, c-format
-msgid "System codepage"
-msgstr "시스템 코드페이지"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge 사용자 인터페이스를 따름"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "사용자 지정 코드페이지:"
 
 #, c-format
 msgid "Options"

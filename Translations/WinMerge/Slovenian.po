@@ -1560,6 +1560,15 @@ msgstr "Privzeta kodna stran"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Izberite privzeto dodeljeno kodno stran pri nalaganju ne-Unicode datotek:"
 
+msgid "System codepage"
+msgstr "Sistemska kodna stran"
+
+msgid "According to WinMerge User Interface"
+msgstr "Glede na uporabniški vmesnik WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Poljubna kodna stran:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1573,15 +1582,6 @@ msgid ""
 msgstr ""
 "Zaznaj kodne strani besedilnih datotek z mlang.dll\n"
 "Zahtevan je ponovni zagon seje."
-
-msgid "System codepage"
-msgstr "Sistemska kodna stran"
-
-msgid "According to WinMerge User Interface"
-msgstr "Glede na uporabniški vmesnik WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Poljubna kodna stran:"
 
 msgid "Options"
 msgstr "Možnosti"

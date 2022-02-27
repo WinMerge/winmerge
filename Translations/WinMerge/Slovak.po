@@ -1560,6 +1560,15 @@ msgstr "Predvolená kódová stránka"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Zvoľte predvolenú kódovú stránku, ktorá sa použije pri načítaní ne-Unicode súborov:"
 
+msgid "System codepage"
+msgstr "Systémová kódová stránka"
+
+msgid "According to WinMerge User Interface"
+msgstr "Podľa užívateľského rozhrania WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Vlastná kódová stránka:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1573,15 +1582,6 @@ msgid ""
 msgstr ""
 "Zisťovať kódovú stránku pre textové súbory pomocou súboru mlang.dll\n"
 "Potrebný reštart relácie."
-
-msgid "System codepage"
-msgstr "Systémová kódová stránka"
-
-msgid "According to WinMerge User Interface"
-msgstr "Podľa užívateľského rozhrania WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Vlastná kódová stránka:"
 
 msgid "Options"
 msgstr "Možnosti"

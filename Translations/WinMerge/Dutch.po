@@ -1572,6 +1572,15 @@ msgstr ""
 "Selecteer de standaard veronderstelde tekenset bij laden van niet-"
 "Unicodebestanden:"
 
+msgid "System codepage"
+msgstr "Tekenset van systeem"
+
+msgid "According to WinMerge User Interface"
+msgstr "Volgens WinMerge-gebruikersinterface"
+
+msgid "Custom codepage:"
+msgstr "Aangepaste tekenset:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1585,15 +1594,6 @@ msgid ""
 msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
 "Herstarten sessie noodzakelijk."
-
-msgid "System codepage"
-msgstr "Tekenset van systeem"
-
-msgid "According to WinMerge User Interface"
-msgstr "Volgens WinMerge-gebruikersinterface"
-
-msgid "Custom codepage:"
-msgstr "Aangepaste tekenset:"
 
 msgid "Options"
 msgstr "Opties"

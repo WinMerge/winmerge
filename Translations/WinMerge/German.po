@@ -1749,7 +1749,7 @@ msgid "Go to"
 msgstr "Gehe zu"
 
 msgid "G&o to:"
-msgstr "Zeile/Unt.:"
+msgstr "Zeile/Unterschield:"
 
 #, c-format
 msgid "File"
@@ -1945,12 +1945,6 @@ msgstr "Standard-Codeseite"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Wählen Sie die Standard-Codeseite aus, die beim Laden von Nicht-Unicode-Dateien verwendet wird:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Codeseite für folgende Dateien ermitteln: .html, .rc, .xml\nBenötigt einen Neustart des Programmes."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr "Codeseite für Textdateien mit Hilfe von mlang.dll ermitteln\nBenötigt einen Neustart des Programmes."
-
 #, c-format
 msgid "System codepage"
 msgstr "System-Codeseite"
@@ -1962,6 +1956,12 @@ msgstr "Entsprechend der WinMerge-Benutzeroberfläche"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Benutzerdefiniert:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Codeseite für folgende Dateien ermitteln: .html, .rc, .xml\nBenötigt einen Neustart des Programmes."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr "Codeseite für Textdateien mit Hilfe von mlang.dll ermitteln\nBenötigt einen Neustart des Programmes."
 
 #, c-format
 msgid "Options"

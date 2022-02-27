@@ -1568,6 +1568,15 @@ msgstr "Varsayılan kod sayfası"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
 
+msgid "System codepage"
+msgstr "Sistem kod sayfası"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge kullanıcı arayüzü kod sayfası"
+
+msgid "Custom codepage:"
+msgstr "Özel kod sayfası:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1581,15 +1590,6 @@ msgid ""
 msgstr ""
 "Metin dosyalarının kod sayfası mlang.dll ile algılansın\n"
 "Uygulamanın yeniden başlatılması gerekir."
-
-msgid "System codepage"
-msgstr "Sistem kod sayfası"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge kullanıcı arayüzü kod sayfası"
-
-msgid "Custom codepage:"
-msgstr "Özel kod sayfası:"
 
 msgid "Options"
 msgstr "Ayarlar"

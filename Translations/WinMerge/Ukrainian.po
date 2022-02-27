@@ -1942,14 +1942,6 @@ msgstr "Звичайна сторінка кодування"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Виберіть звичайну сторінку кодування для не Юнікодних файлів:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Виявлення інформації про кодову сторінку для файлів\n"
-" .html, .rc, .xml вимагає перезапуску."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Системна сторінка кодування"
@@ -1961,6 +1953,14 @@ msgstr "Залежно від інтерфейсу користувача WinMer
 #, c-format
 msgid "Custom codepage:"
 msgstr "Кодова сторінка користувача:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Виявлення інформації про кодову сторінку для файлів\n"
+" .html, .rc, .xml вимагає перезапуску."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"

@@ -1560,12 +1560,6 @@ msgstr "Numatytoji koduotė"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Parinkite numatytąją koduotę, kuri bus naudojama įkeliant ne Unicode failus:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Aptikti šio tipo failų koduotę: .html, .rc, .xml\nReikės restartuoti sesiją."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr "Aptikti tekstinių failų koduotę „mlang.dll“ pagalba\nReikės restartuoti sesiją."
-
 msgid "System codepage"
 msgstr "Sistemos koduotė"
 
@@ -1574,6 +1568,12 @@ msgstr "Pagal „WinMerge“ naudotojo sąsają"
 
 msgid "Custom codepage:"
 msgstr "Pasirinkt. koduotė:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Aptikti šio tipo failų koduotę: .html, .rc, .xml\nReikės restartuoti sesiją."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr "Aptikti tekstinių failų koduotę „mlang.dll“ pagalba\nReikės restartuoti sesiją."
 
 msgid "Options"
 msgstr "Nuostatos"

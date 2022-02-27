@@ -1941,14 +1941,6 @@ msgstr "Standardna kodna stranica"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Odaberite standardnu kodnu stranicu za učitanje ne-Unicode datoteka:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
-"Nije potrebno ponovno pokretanje."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Standardna kodna stranica sistema"
@@ -1960,6 +1952,14 @@ msgstr "Prema korisnikovom sučelju WinMerge-a"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Kodna stranica prema želji:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
+"Nije potrebno ponovno pokretanje."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"

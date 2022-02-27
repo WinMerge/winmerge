@@ -1566,6 +1566,15 @@ msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr ""
 "Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
 
+msgid "System codepage"
+msgstr "System-tegnsett"
+
+msgid "According to WinMerge User Interface"
+msgstr "I følge WinMerge brukergrensesnitt"
+
+msgid "Custom codepage:"
+msgstr "Egendefinert tegnsett:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1577,15 +1586,6 @@ msgid ""
 "Detect codepage for text files with mlang.dll\n"
 "Need to restart session."
 msgstr ""
-
-msgid "System codepage"
-msgstr "System-tegnsett"
-
-msgid "According to WinMerge User Interface"
-msgstr "I følge WinMerge brukergrensesnitt"
-
-msgid "Custom codepage:"
-msgstr "Egendefinert tegnsett:"
 
 msgid "Options"
 msgstr "Innstillinger"
