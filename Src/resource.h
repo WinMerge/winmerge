@@ -12,6 +12,7 @@
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDR_MERGEDOCTYPE                109
 #define IDR_DIRDOCTYPE                  110
+#define IDR_POPUP_WEBPAGEDIFFVIEW       111
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
@@ -1005,6 +1006,9 @@
 #define ID_IMG_VECTORIMAGESCALING_400   33723
 #define ID_IMG_VECTORIMAGESCALING_800   33724
 #define ID_IMG_COMPARE_EXTRACTED_TEXT   33725
+#define ID_WEB_COMPARE_SCREENSHOTS      33750
+#define ID_WEB_COMPARE_HTMLS            33751
+#define ID_WEB_COMPARE_RESOURCETREES    33752
 #define ID_FILE_NEW_TABLE               34164
 #define ID_FILE_NEW_HEX                 34165
 #define ID_FILE_NEW_IMAGE               34166
@@ -1435,6 +1439,7 @@
 #define IDS_EOL_MERGED                  43246
 #define IDS_EOL_CONFLICT                43247
 #define IDS_IMAGE_MENU                  43352
+#define IDS_WEBPAGE_MENU                43353
 #define IDS_EOL_DOS                     43400
 #define IDS_EOL_MAC                     43401
 #define IDS_EOL_UNIX                    43402

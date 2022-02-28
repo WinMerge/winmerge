@@ -6,7 +6,7 @@
 
 struct __declspec(uuid("{DC951F69-C8CA-44DD-8C3C-8A9C76B0022C}")) IWebDiffCallback : IUnknown
 {
-	virtual HRESULT Invoke(HRESULT hr) = 0;
+	virtual HRESULT __stdcall Invoke(HRESULT hr) = 0;
 };
 
 struct IWebDiffWindow
@@ -25,6 +25,9 @@ struct IWebDiffWindow
 	virtual HRESULT SaveHTML(int pane, const wchar_t* filename, IWebDiffCallback *callback) = 0;
 	virtual HRESULT SaveHTMLs(const wchar_t* filename1, const wchar_t* filename2, IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveHTMLs(const wchar_t* filename1, const wchar_t* filename2, const wchar_t* filename3, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveResourceTree(int pane, const wchar_t* filename, IWebDiffCallback *callback) = 0;
+	virtual HRESULT SaveResourceTree(const wchar_t* filename1, const wchar_t* filename2, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveResourceTree(const wchar_t* filename1, const wchar_t* filename2, const wchar_t* filename3, IWebDiffCallback* callback) = 0;
 	virtual const wchar_t *GetCurrentUrl(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;
 	virtual RECT GetPaneWindowRect(int pane) const = 0;

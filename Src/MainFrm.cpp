@@ -523,6 +523,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	case MENU_MERGEVIEW:
 	case MENU_HEXMERGEVIEW:
 	case MENU_IMGMERGEVIEW:
+	case MENU_WEBPAGEDIFFVIEW:
 		menu_view = MENU_FILECMP;
 		break;
 	case MENU_DIRVIEW:
@@ -545,6 +546,13 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		m_pImageMenu.reset(new BCMenu);
 		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
 		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+	}
+
+	if (view == MENU_WEBPAGEDIFFVIEW)
+	{
+		m_pWebPageMenu.reset(new BCMenu);
+		m_pWebPageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGEDIFFVIEW));
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_WEBPAGE_MENU).c_str())); 
 	}
 
 	// Load bitmaps to menuitems
@@ -608,9 +616,9 @@ HMENU CMainFrame::NewImgMergeViewMenu()
 /**
  * @brief Create new Web page compare (CWebPageMergeView) menu.
  */
-HMENU CMainFrame::NewWebPageMergeViewMenu()
+HMENU CMainFrame::NewWebPageDiffViewMenu()
 {
-	return NewMenu( MENU_WEBPAGEMERGEVIEW, IDR_MERGEDOCTYPE);
+	return NewMenu( MENU_WEBPAGEDIFFVIEW, IDR_MERGEDOCTYPE);
 }
 
 /**
@@ -1014,7 +1022,7 @@ bool CMainFrame::ShowWebPageMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLo
 {
 	CWebPageDiffFrame *pWebPageMergeFrame = new CWebPageDiffFrame();
 	if (!CWebPageDiffFrame::menu.m_hMenu)
-		CWebPageDiffFrame::menu.m_hMenu = NewWebPageMergeViewMenu();
+		CWebPageDiffFrame::menu.m_hMenu = NewWebPageDiffViewMenu();
 	pWebPageMergeFrame->SetSharedMenu(CWebPageDiffFrame::menu.m_hMenu);
 	pWebPageMergeFrame->SetUnpacker(infoUnpacker);
 	pWebPageMergeFrame->SetDirDoc(pDirDoc);
