@@ -1447,8 +1447,8 @@ msgstr "Tümü &yok sayılsın"
 msgid "E&nable moved block detection"
 msgstr "Taşı&nmış blok algılaması kullanılsın"
 
-msgid "&Match similar lines"
-msgstr "&Benzer satırlar eşleştirilsin"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Fark algortiması (Deneysel):"
@@ -1571,6 +1571,15 @@ msgstr "Varsayılan kod sayfası"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Unikod olmayan dosyalar için kullanılacak kod sayfası:"
 
+msgid "System codepage"
+msgstr "Sistem kod sayfası"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge kullanıcı arayüzü kod sayfası"
+
+msgid "Custom codepage:"
+msgstr "Özel kod sayfası:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1584,15 +1593,6 @@ msgid ""
 msgstr ""
 "Metin dosyalarının kod sayfası mlang.dll ile algılansın\n"
 "Uygulamanın yeniden başlatılması gerekir."
-
-msgid "System codepage"
-msgstr "Sistem kod sayfası"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge kullanıcı arayüzü kod sayfası"
-
-msgid "Custom codepage:"
-msgstr "Özel kod sayfası:"
 
 msgid "Options"
 msgstr "Ayarlar"
@@ -3615,16 +3615,12 @@ msgstr ""
 "\n"
 "Sola kopyala ve ilerle (Ctrl+Alt+Sol)"
 
-msgid ""
-"\n"
-"All Right"
+msgid "\nCopy All to Right"
 msgstr ""
 "\n"
 "Tümünü sağa kopyala"
 
-msgid ""
-"\n"
-"All Left"
+msgid "\nCopy All to Left"
 msgstr ""
 "\n"
 "Tümünü sola kopyala"

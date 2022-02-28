@@ -1775,9 +1775,8 @@ msgstr "Зане&мари све"
 msgid "E&nable moved block detection"
 msgstr "Омогући откривање премештених група"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Упореди сличне редове"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1928,14 +1927,6 @@ msgstr "Подразумевана кодна страница"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
-" Није потребно поново покретање сесије."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Кодна страница система"
@@ -1947,6 +1938,14 @@ msgstr "Према корисничком сучељу WinMerge-а"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Подешена кодна страница"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
+" Није потребно поново покретање сесије."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -4104,13 +4103,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nУмножи све у десно"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nУмножи све у лево"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

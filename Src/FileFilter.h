@@ -55,7 +55,9 @@ struct FileFilter
 	String description;	/**< Filter description text */
 	String fullpath;		/**< Full path to filter file */
 	std::vector<FileFilterElementPtr> filefilters; /**< List of rules for files */
+	std::vector<FileFilterElementPtr> filefiltersExclude; /**< List of rules for files (exclude) */
 	std::vector<FileFilterElementPtr> dirfilters;  /**< List of rules for directories */
+	std::vector<FileFilterElementPtr> dirfiltersExclude;  /**< List of rules for directories (exclude) */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	

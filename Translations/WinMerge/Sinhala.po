@@ -1792,9 +1792,8 @@ msgstr "සියල්ල නොසලකා හරින්න"
 msgid "E&nable moved block detection"
 msgstr "E&nable moved block detection"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "සමාන පේළි ගලපන්න"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1945,12 +1944,6 @@ msgstr "Default Codepage"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Select the default codepage assumed when loading non-Unicode files:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "පද්ධති ගුප්ත සංඥා "
@@ -1962,6 +1955,12 @@ msgstr "WinMerge හි පරිශීලික අතුරුමුහුණ�
 #, fuzzy, c-format
 msgid "Custom codepage:"
 msgstr "Custom codepage:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "මෙම ගොනු සඳහා ගුප්ත සංඥා  විස්තර  අණාවරනය කරන්න: .html, .rc, .xml\n"
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -4125,13 +4124,19 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
+msgid ""
+"\n"
+"Copy All to Right"
 msgstr ""
+"\n"
+"සියල්ල දකුණු පසට කොපිකරන්"
 
-#, c-format
-msgid "\nAll Left"
+msgid ""
+"\n"
+"Copy All to Left"
 msgstr ""
+"\n"
+"සියල්ල වම් පසට කොපිකරන්න"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

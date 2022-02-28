@@ -1793,9 +1793,8 @@ msgstr "&Ignorar todo"
 msgid "E&nable moved block detection"
 msgstr "A&ctivar detección de bloques movidos"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Coincidir as liñas semellantes"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Algoritmo de diferenciación (exper.):"
@@ -1946,6 +1945,18 @@ msgstr "Codificación predeterminada"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selecciona a codificación predeterminada para arquivos non-Unicode:"
 
+#, c-format
+msgid "System codepage"
+msgstr "Codificación do sistema"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Igual á interface de usuario de Winmerge"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Personalizar codificación:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1959,18 +1970,6 @@ msgid ""
 msgstr ""
 "Detectar a codificación dos arquivos de texto usando mlang.dll\n"
 "Precísase reiniciar a sesión."
-
-#, c-format
-msgid "System codepage"
-msgstr "Codificación do sistema"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Igual á interface de usuario de Winmerge"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Personalizar codificación:"
 
 #, c-format
 msgid "Options"
@@ -4261,21 +4260,11 @@ msgstr ""
 "\n"
 "Copiar para a esquerda e avanzar (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Todo para a dereita"
+msgid "\nCopy All to Right"
+msgstr "\nCopiar todo para a dereita"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Todo para a esquerda"
+msgid "\nCopy All to Left"
+msgstr "\nCopiar todo para a esquerda"
 
 #, c-format
 msgid ""

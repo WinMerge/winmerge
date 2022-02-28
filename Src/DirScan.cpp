@@ -783,8 +783,15 @@ static void UpdateDiffItem(DIFFITEM &di, bool & bExists, CDiffContext *pCtxt)
 		di.diffFileInfo[i].ClearPartial();
 		if (pCtxt->UpdateInfoFromDiskHalf(di, i))
 		{
-			di.diffcode.diffcode |= DIFFCODE::FIRST << i;
-			bExists = true;
+			if (di.diffFileInfo[i].IsDirectory() == di.diffcode.isDirectory())
+			{
+				di.diffcode.diffcode |= DIFFCODE::FIRST << i;
+				bExists = true;
+			}
+			else
+			{
+				di.diffFileInfo[i].ClearPartial();
+			}
 		}
 	}
 }

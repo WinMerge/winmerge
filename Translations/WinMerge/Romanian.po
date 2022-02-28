@@ -1792,9 +1792,8 @@ msgstr "I&gnoră tot"
 msgid "E&nable moved block detection"
 msgstr "Activea&ză detecţie blocuri mutate"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Potriveşte linii si&milare"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1945,12 +1944,6 @@ msgstr "Codare caractere implicită"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selectează codarea caracterelor folosită implicit la încărcarea fişierelor non-Unicode:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Codarea sistemului"
@@ -1961,6 +1954,12 @@ msgstr "Conform cu interfaţa WinMerge"
 
 #, c-format
 msgid "Custom codepage:"
+msgstr ""
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -4111,13 +4110,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nCopiază tot la dreapta"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nCopiază tot la stânga"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

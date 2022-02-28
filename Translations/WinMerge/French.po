@@ -16,8 +16,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-01-24 11:08+0100\n"
-"Last-Translator: Lolo S. <slolo2000 at hotmail.com>\n"
+"PO-Revision-Date: 2022-02-26 12:34+0100\n"
+"Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1799,9 +1799,8 @@ msgstr "Ignorer &tout"
 msgid "E&nable moved block detection"
 msgstr "&Activer la détection des blocs déplacés"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Assortir les &lignes similaires"
+msgid "Align &similar lines"
+msgstr "Aligner les lignes &similaires"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Diff &algorithme (expérimental) :"
@@ -1952,6 +1951,18 @@ msgstr "Page de code par défaut"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Sélectionner la page de code par défaut utilisée lors du chargement de fichiers non-Unicode :"
 
+#, c-format
+msgid "System codepage"
+msgstr "Page de code &système"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Conformément à l'&interface utilisateur WinMerge"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Page de code personnalisée :"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1965,18 +1976,6 @@ msgid ""
 msgstr ""
 "Détecter la page de code des fichiers texte à l'aide de mlang.dll\n"
 "Nécessite de redémarrer la session."
-
-#, c-format
-msgid "System codepage"
-msgstr "Page de code &système"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Conformément à l'&interface utilisateur WinMerge"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Page de code personnalisée :"
 
 #, c-format
 msgid "Options"
@@ -4269,21 +4268,19 @@ msgstr ""
 "\n"
 "Copier à Gauche et avancer (Ctrl+Alt+Gauche)"
 
-#, c-format
 msgid ""
 "\n"
-"All Right"
+"Copy All to Right"
 msgstr ""
 "\n"
-"Tout à Droite"
+"Tout copier vers la Droite"
 
-#, c-format
 msgid ""
 "\n"
-"All Left"
+"Copy All to Left"
 msgstr ""
 "\n"
-"Tout à Gauche"
+"Tout copier vers la Gauche"
 
 #, c-format
 msgid ""

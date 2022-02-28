@@ -18,8 +18,7 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
-"X-Poedit-Language: English\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19

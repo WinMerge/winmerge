@@ -3,7 +3,7 @@
 
 # The MIT License
 # 
-# Copyright (c) 2009-2018 Tim Gerundt <tim@gerundt.de>
+# Copyright (c) 2009-2022 Tim Gerundt <tim@gerundt.de>
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -31,6 +31,8 @@ import string
 import re
 import time
 import codecs
+import math
+import argparse
 
 class TranslationsStatus(object):
     def __init__(self):
@@ -387,7 +389,7 @@ class Status(object):
     
     def calculateCompleteness(self):
         if self._count > 0:
-            self._complete = round(((self._translated + self._fuzzy) * 100 / self._count))
+            self._complete = math.floor(((self._translated + self._fuzzy) * 100 / self._count))
         else:
             self._complete = 0.0
 
@@ -515,6 +517,16 @@ class PoStatus(Status):
                   bIsFuzzy = False
           pofile.close()
           
+          if sMsgId != '': #If a translation remained...
+              self._count += 1
+              if bIsFuzzy == False: #If NOT a fuzzy translation...
+                  if sMsgStr != '':
+                      self._translated += 1
+                  else:
+                      self._untranslated += 1
+              else: #If a fuzzy translation...
+                  self._fuzzy += 1
+          
           self.calculateCompleteness()
     
     @property
@@ -618,14 +630,21 @@ class ReadmeStatus(Status):
             return filename[0].replace('ReadMe-', '')
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--format', nargs='*', default='md', type=str.lower, choices=['xml', 'html', 'md'])
+    args = parser.parse_args()
+
     status = TranslationsStatus()
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
-    status.writeToXmlFile('TranslationsStatus.xml')
-    status.writeToHtmlFile('TranslationsStatus.html')
-    status.writeToMdFile('TranslationsStatus.md')
+    if 'xml' in args.format:
+      status.writeToXmlFile('TranslationsStatus.xml')
+    if 'html' in args.format:
+      status.writeToHtmlFile('TranslationsStatus.html')
+    if 'md' in args.format:
+      status.writeToMdFile('TranslationsStatus.md')
 
 # MAIN #
 if __name__ == "__main__":

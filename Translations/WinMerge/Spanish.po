@@ -1444,8 +1444,8 @@ msgstr "I&gnorar todos"
 msgid "E&nable moved block detection"
 msgstr "Habilitar detecció&n de bloques movidos"
 
-msgid "&Match similar lines"
-msgstr "Co&mbinar con líneas similares"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1568,6 +1568,15 @@ msgstr ""
 "Seleccione la página de códigos predeterminada a utilizar cuando se carguen "
 "archivos no Unicode:"
 
+msgid "System codepage"
+msgstr "Página de códigos del sistema"
+
+msgid "According to WinMerge User Interface"
+msgstr "La misma que la interfaz de usuario de WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Página de códigos:"
+
 msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
 "Detectar página de códigos para éstos archivos : .html, .rc, .xml\n"
@@ -1577,15 +1586,6 @@ msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 "Detectar página de códigos para archivos de texto usando mlang.dll\n"
 "Necesita reiniciar sesión."
-
-msgid "System codepage"
-msgstr "Página de códigos del sistema"
-
-msgid "According to WinMerge User Interface"
-msgstr "La misma que la interfaz de usuario de WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Página de códigos:"
 
 msgid "Options"
 msgstr "Configuración"
@@ -3567,19 +3567,11 @@ msgstr ""
 "\n"
 "Copiar a la izq. y avanzar (Ctrl+Alt+Izq.)"
 
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Todo a la Derecha"
+msgid "\nCopy All to Right"
+msgstr "\nCopiar todas al lado Derecho"
 
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Todo a la Izquierda"
+msgid "\nCopy All to Left"
+msgstr "\nCopiar todas al lado Izquierdo"
 
 msgid ""
 "\n"

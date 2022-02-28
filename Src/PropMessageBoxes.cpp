@@ -178,7 +178,7 @@ BOOL PropMessageBoxes::OnInitDialog()
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	String title = _("Message");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(170));
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(220));
 	title = _("Answer");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(70));
 
@@ -188,6 +188,7 @@ BOOL PropMessageBoxes::OnInitDialog()
 	for (unsigned i = 0; i < static_cast<unsigned>(std::size(MessageBoxes)); i++)
 	{
 		String str = LoadResString(MessageBoxes[i].nID);
+		strutils::replace(str, _T("\n"), _T(" "));
 		m_list.InsertItem(i, str.c_str());
 		unsigned type = MessageBoxes[i].type & 0xf;
 		m_list.SetDropdownList(i, 1, (type >= DropdownList.size()) ? std::vector<String>{} : DropdownList[type]);

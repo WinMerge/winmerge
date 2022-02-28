@@ -1444,8 +1444,8 @@ msgstr "忽略所有空白字符(&G)"
 msgid "E&nable moved block detection"
 msgstr "启用块移动检测(&N)"
 
-msgid "&Match similar lines"
-msgstr "匹配相似行(&M)"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "比较算法 (实验性) (&A):"
@@ -1567,6 +1567,15 @@ msgstr "默认代码页"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "请选择当加载“非 Unicode 文件”时默认假定的代码页:"
 
+msgid "System codepage"
+msgstr "系统代码页"
+
+msgid "According to WinMerge User Interface"
+msgstr "根据 WinMerge 用户界面"
+
+msgid "Custom codepage:"
+msgstr "自定义代码页:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1580,15 +1589,6 @@ msgid ""
 msgstr ""
 "使用 mlang.dll 检查文本文件的代码页\n"
 "需要重启会话。"
-
-msgid "System codepage"
-msgstr "系统代码页"
-
-msgid "According to WinMerge User Interface"
-msgstr "根据 WinMerge 用户界面"
-
-msgid "Custom codepage:"
-msgstr "自定义代码页:"
 
 msgid "Options"
 msgstr "选项"
@@ -3568,17 +3568,13 @@ msgstr ""
 
 msgid ""
 "\n"
-"All Right"
+"Copy All to Right"
 msgstr ""
 "\n"
 "全部复制到右侧"
 
-msgid ""
-"\n"
-"All Left"
+msgid "\nCopy All to Left"
 msgstr ""
-"\n"
-"全部复制到左侧"
 
 msgid ""
 "\n"

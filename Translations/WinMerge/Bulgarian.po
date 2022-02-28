@@ -1442,8 +1442,8 @@ msgstr "Пренебре&гване на всички"
 msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
 
-msgid "&Match similar lines"
-msgstr "Съот&ветствие на подобни редове"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Алгоритъм за различия (експериментално):"
@@ -1566,6 +1566,15 @@ msgstr "Стандартна кодова страница"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Изберете стандартната кодова страница за не-Unicode файлове:"
 
+msgid "System codepage"
+msgstr "Кодова страница на системата"
+
+msgid "According to WinMerge User Interface"
+msgstr "Според интерфейса на WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Потребителска кодова страница:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1579,15 +1588,6 @@ msgid ""
 msgstr ""
 "Разпознаване на кодовата страница на текстовите файлове, чрез mlang.dll\n"
 "изисква рестартиране."
-
-msgid "System codepage"
-msgstr "Кодова страница на системата"
-
-msgid "According to WinMerge User Interface"
-msgstr "Според интерфейса на WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Потребителска кодова страница:"
 
 msgid "Options"
 msgstr "Настройки"
@@ -3601,19 +3601,11 @@ msgstr ""
 "\n"
 "Копира вляво и продължава (Ctrl+Alt+Left)"
 
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Всичко вдясно"
+msgid "\nCopy All to Right"
+msgstr "\nКопирай &всичко в дясно"
 
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Всичко вляво"
+msgid "\nCopy All to Left"
+msgstr "\nКопира&й всичко в ляво"
 
 msgid ""
 "\n"

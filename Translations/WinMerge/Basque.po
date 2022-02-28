@@ -1793,9 +1793,8 @@ msgstr "E&zikusi denak"
 msgid "E&nable moved block detection"
 msgstr "Gaitu bloke &mugitu atzematea"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Berdindu antzeko lerroak"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1946,14 +1945,6 @@ msgstr "Berezko Kode-orrialdea"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Hautatu berezko kode-orrialdea ez-Unicode agiriak gertatzerakoan:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
-" .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "&Sistema kode-orrialdea"
@@ -1965,6 +1956,14 @@ msgstr "&WinMerge Erabiltzaile Interfazearen arabera"
 #, c-format
 msgid "Custom codepage:"
 msgstr "&Egile kode-orrialdea:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"&Atzeman kode-orrialde argibideak agiri hauentzat:\n"
+" .html, .rc, .xml. Saioa birrabiaraztea beharrezkoa da."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -4133,13 +4132,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nKopiatu Dena Eskuinera"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nKopiatu Dena Ezkerrera"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

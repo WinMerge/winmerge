@@ -1,9 +1,9 @@
 WINMERGE
 
-WinMerge hè un attrezzu di paragone è di fusione in fonte aperta per Windows.
+WinMerge hè un attrezzu di paragone è di fusione à fonte aperta per Windows.
 WinMerge pò paragunà cartulari è schedarii è affissà e sfarenze in un furmatu
 di testu visuale chì hè capicitoghju è faciule à manighjà. WinMerge pò esse
-impiegatu, sia cum’è un attrezzu di paragone o di fusione, sia cum’è
+impiegatu, sia cum’è un attrezzu esternu di paragone o di fusione, sia cum’è
 un’appiecazione autonoma.
 
 WinMerge cuntene tante funzioni per rende più faciule u paragone, a

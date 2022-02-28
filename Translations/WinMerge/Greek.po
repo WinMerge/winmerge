@@ -1791,9 +1791,8 @@ msgstr "Να αγνοούνται τα &πάντα"
 msgid "E&nable moved block detection"
 msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέντων τμημάτων"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Αντιστοίχιση παρομοίων γραμμών"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1944,12 +1943,6 @@ msgstr "Προκαθορισμένη Κωδικοσελίδα"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Επιλέξατε την προκαθορισμένη κωδικοσελίδα νοουμένη κατά το άνοιγμα αρχείων χωρίς κωδικοποίηση Unicode"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Κωδικοσελίδα συστήματος"
@@ -1960,6 +1953,12 @@ msgstr "Σύμφωνα με το Περιβάλλον Εργασίας του Wi
 
 #, c-format
 msgid "Custom codepage:"
+msgstr ""
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 #, c-format
@@ -4110,13 +4109,11 @@ msgstr ""
 msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nΑντιγραφή όλων Δεξιά"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nΑντιγραφή όλων Αριστερά"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"

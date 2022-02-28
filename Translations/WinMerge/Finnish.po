@@ -1,6 +1,9 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Veikko
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -1792,9 +1795,8 @@ msgstr "Hylkää kaikki"
 msgid "E&nable moved block detection"
 msgstr "Ota siirretyn lohkon tunnistus käyttöön"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "Täsmää samanlaiset rivit"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Ero&algoritmi (kokeellinen):"
@@ -1946,16 +1948,6 @@ msgstr "Koodisivu (oletus)"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Valitse oletuskoodisivu ladattaessa muita kuin Unicode-tiedostoja:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Tunnista koodisivutiedot näille tiedostoille: .html, .rc, .xml\n"
-"vaatii istunnon uudelleen käynnistyksen."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-"Tunnista teksti tiedostojen koodisivu käyttämällä Mlang.dll-tiedostoa\n"
-"istunto on käynnistettävä uudelleen."
-
 #, c-format
 msgid "System codepage"
 msgstr "Järjestelmän koodisivu"
@@ -1967,6 +1959,16 @@ msgstr "WinMerge-käyttöliittymän mukaan"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Mukautettu koodisivu:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Tunnista koodisivutiedot näille tiedostoille: .html, .rc, .xml\n"
+"vaatii istunnon uudelleen käynnistyksen."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
+"Tunnista teksti tiedostojen koodisivu käyttämällä Mlang.dll-tiedostoa\n"
+"istunto on käynnistettävä uudelleen."
 
 #, c-format
 msgid "Options"
@@ -4210,21 +4212,11 @@ msgstr ""
 "\n"
 "Kopioi vasen ja etene (Ctrl+Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"All Right"
-msgstr ""
-"\n"
-"Kaikki oikeat"
+msgid "\nCopy All to Right"
+msgstr "\nKopioi kaikki oikealle"
 
-#, c-format
-msgid ""
-"\n"
-"All Left"
-msgstr ""
-"\n"
-"Kaikki vasemmat"
+msgid "\nCopy All to Left"
+msgstr "\nKopioi kaikki vasemmalle"
 
 #, c-format
 msgid ""

@@ -109,6 +109,10 @@ BOOL CDirDoc::OnNewDocument()
 BEGIN_MESSAGE_MAP(CDirDoc, CDocument)
 	//{{AFX_MSG_MAP(CDirDoc)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
+	// Progress dialog
+	ON_BN_CLICKED(IDC_COMPARISON_STOP, OnBnClickedComparisonStop)
+	ON_BN_CLICKED(IDC_COMPARISON_PAUSE, OnBnClickedComparisonPause)
+	ON_BN_CLICKED(IDC_COMPARISON_CONTINUE, OnBnClickedComparisonContinue)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -280,6 +284,17 @@ void CDirDoc::Rescan()
 	if (!m_bGeneratingReport)
 		m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats.get());
+
+	if (m_pCmpProgressBar == nullptr)
+		m_pCmpProgressBar.reset(new DirCompProgressBar());
+
+	if (!::IsWindow(m_pCmpProgressBar->GetSafeHwnd()))
+		m_pCmpProgressBar->Create(m_pDirView->GetParentFrame());
+
+	m_pCmpProgressBar->SetCompareStat(m_pCompareStats.get());
+	m_pCmpProgressBar->StartUpdating();
+
+	m_pDirView->GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), TRUE, FALSE);
 
 	if (!m_bGeneratingReport)
 		m_pDirView->DeleteAllDisplayItems();
@@ -567,6 +582,10 @@ void CDirDoc::UpdateChangedItem(const PathContext &paths,
  */
 void CDirDoc::CompareReady()
 {
+	// Close and destroy the dialog after compare
+	if (m_pCmpProgressBar != nullptr)
+		m_pDirView->GetParentFrame()->ShowControlBar(m_pCmpProgressBar.get(), FALSE, FALSE);
+	m_pCmpProgressBar.reset();
 }
 
 /**
@@ -619,6 +638,7 @@ BOOL CDirDoc::SaveModified()
 		m_diffThread.Abort();
 		while (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
 			Sleep(50);
+		CompareReady();
 	}
 	
 	return CDocument::SaveModified();
@@ -963,5 +983,26 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	AfxMessageBox(ci.ColGetTextToDisplay(&ctxt, 2, di).c_str(), MB_OK | MB_ICONINFORMATION);
 	theApp.SetLastCompareResult(di.diffcode.isResultDiff() ? 1 : 0);
 	return true;
+}
+
+void CDirDoc::OnBnClickedComparisonStop()
+{
+	if (m_pCmpProgressBar != nullptr)
+		m_pCmpProgressBar->EndUpdating();
+	AbortCurrentScan();
+}
+
+void CDirDoc::OnBnClickedComparisonPause()
+{
+	if (m_pCmpProgressBar != nullptr)
+		m_pCmpProgressBar->SetPaused(true);
+	PauseCurrentScan();
+}
+
+void CDirDoc::OnBnClickedComparisonContinue()
+{
+	if (m_pCmpProgressBar != nullptr)
+		m_pCmpProgressBar->SetPaused(false);
+	ContinueCurrentScan();
 }
 

@@ -7,6 +7,7 @@
 
 #include <memory>
 #include "UnicodeString.h"
+#include <Windows.h>
 
 class DIFFITEM;
 class PathContext;
@@ -32,6 +33,7 @@ private:
     int compare_files(const String& file1, const String& file2) const;
     mutable IImgMergeWindow *m_pImgMergeWindow;
     double m_colorDistanceThreshold;
+    HMODULE m_hModule;
 };
 
 } // namespace CompareEngines
