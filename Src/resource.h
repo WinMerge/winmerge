@@ -185,9 +185,11 @@
 #define IDI_NOTEQUALTEXTFILE            530
 #define IDI_EQUALIMAGE                  531
 #define IDI_NOTEQUALIMAGE               532
-#define IDI_TREE_STATE_COLLAPSED        533
-#define IDI_TREE_STATE_EXPANDED         534
-#define IDI_FILE                        535
+#define IDI_EQUALWEBPAGE                533
+#define IDI_NOTEQUALWEBPAGE             534
+#define IDI_TREE_STATE_COLLAPSED        535
+#define IDI_TREE_STATE_EXPANDED         536
+#define IDI_FILE                        537
 // CONTROLS
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002

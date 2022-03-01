@@ -49,6 +49,8 @@ IDI_EQUALTEXTFILE       ICON                    "res\\equaltextfile.ico"
 IDI_NOTEQUALTEXTFILE    ICON                    "res\\notequaltextfile.ico"
 IDI_EQUALIMAGE          ICON                    "res\\equalimage.ico"
 IDI_NOTEQUALIMAGE       ICON                    "res\\notequalimage.ico"
+IDI_EQUALWEBPAGE        ICON                    "res\\equalwebpage.ico"
+IDI_NOTEQUALWEBPAGE     ICON                    "res\\notequalwebpage.ico"
 IDI_TREE_STATE_COLLAPSED ICON                   "res\\treestate_collapsed.ico"
 IDI_TREE_STATE_EXPANDED ICON                    "res\\treestate_expanded.ico"
 

@@ -113,7 +113,7 @@ CMenu CWebPageDiffFrame::menu;
 // CWebPageDiffFrame construction/destruction
 
 CWebPageDiffFrame::CWebPageDiffFrame()
-: CMergeFrameCommon(IDI_EQUALIMAGE, IDI_NOTEQUALIMAGE)
+: CMergeFrameCommon(IDI_EQUALWEBPAGE, IDI_NOTEQUALWEBPAGE)
 , m_pDirDoc(nullptr)
 , m_bAutoMerged(false)
 , m_pWebDiffWindow(nullptr)
