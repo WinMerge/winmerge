@@ -980,7 +980,16 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 	FolderCmp cmp(&ctxt);
 	CWaitCursor waitstatus;
 	di.diffcode.diffcode |= cmp.prepAndCompareFiles(di);
-	AfxMessageBox(ci.ColGetTextToDisplay(&ctxt, 2, di).c_str(), MB_OK | MB_ICONINFORMATION);
+	if (di.diffcode.isResultSame())
+	{
+		ctxt.GetComparePaths(di, paths);
+		CMergeFrameCommon::ShowIdenticalMessage(paths, true,
+			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+	}
+	else
+	{
+		AfxMessageBox(ci.ColGetTextToDisplay(&ctxt, 2, di).c_str(), MB_OK | MB_ICONINFORMATION);
+	}
 	theApp.SetLastCompareResult(di.diffcode.isResultDiff() ? 1 : 0);
 	return true;
 }
