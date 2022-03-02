@@ -36,24 +36,20 @@ msgstr "LANG_KOREAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "가운데로 복사"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "오른쪽으로 복사(&O)"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr "가운데에서 복사"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "오른쪽에서 복사(&M)"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "왼쪽으로 복사(&Y)"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "왼쪽에서 복사(&F)"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "선택한 줄을 가운데로 복사"
@@ -246,8 +242,8 @@ msgstr "배경색 설정(&S)"
 msgid "&Vector Image Scaling"
 msgstr "벡터 이미지 확대/축소(&V)"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "이미지에서 추출한 텍스트 비교(&T)"
+msgid "Compare Extracted &Text From Images"
+msgstr ""
 
 #, c-format
 msgid "&File"
@@ -1052,10 +1048,6 @@ msgid "&Open Left"
 msgstr "왼쪽 열기(&O)"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "외부 편집기로(&E)"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr "가운데 열기(&L)"
 
@@ -1366,9 +1358,8 @@ msgstr "파일 비교시 파일 시간 보존하기(&P)"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "시작시 \"파일 또는 폴더 선택\" 대화 상자 보이기"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "확인 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr ""
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1713,11 +1704,11 @@ msgstr "설명:"
 msgid "Default arguments:"
 msgstr "기본 인수:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "모든 플러그인을 보이고, 확장 프로그램은 확인하지 않기."
+msgid "Display all plugins, don't check the extension"
+msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "언패킹 이후 동일한 창 종류에서 파일 열기(&O)"
+msgid "&Open files in the same window type after unpacking"
+msgstr ""
 
 msgid "&Plugin Pipeline:"
 msgstr "플러그인 파이프라인(&P):"
@@ -2789,16 +2780,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "파일 필터 (*.flt)|*.flt|전체 필터 (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"필터 템플릿 파일을 찾을 수 없습니다!\n"
-"\n"
-"%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3663,17 +3646,14 @@ msgstr "오류"
 msgid "Text files are identical"
 msgstr "텍스트 파일이 같습니다"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(가운데와 오른쪽은 동일합니다)"
+msgid " (Middle and right are identical)"
+msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(왼쪽과 오른쪽은 동일합니다)"
+msgid " (Left and right are identical)"
+msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(왼쪽과 가운데는 동일합니다)"
+msgid " (Left and middle are identical)"
+msgstr ""
 
 #, c-format
 msgid "Text files are different"
@@ -3769,17 +3749,14 @@ msgstr "가운데 파일 만든 날짜."
 msgid "Tells which side has newer modification date."
 msgstr "어느 쪽이 더 최근에 수정되었는지 알려줍니다."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "왼쪽 파일 버전, 몇몇 파일 형식만."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "오른쪽 파일 버전, 몇몇 파일 형식만."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
-msgstr "가운데 파일 버전, 몇몇 파일 형식만."
+msgid "Middle side file version, only for some file types."
+msgstr ""
 
 #, c-format
 msgid "Short comparison result."
@@ -4230,37 +4207,17 @@ msgstr ""
 "\n"
 "마지막 차이점 (Alt+End)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
-"\n"
-"오른쪽으로 복사 (Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
-"\n"
-"왼쪽으로 복사 (Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
-"\n"
-"오른쪽으로 복사 후 진행 (Ctrl+Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
-"\n"
-"왼쪽으로 복사 후 진행 (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\n모두 오른쪽으로 복사"

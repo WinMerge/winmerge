@@ -31,20 +31,20 @@ msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "Копировать в центр"
 
-msgid "C&opy to Right"
-msgstr "Копировать направо"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr "Копировать из центра"
 
-msgid "Copy fro&m Right"
-msgstr "Копировать справа"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr ""
 
-msgid "Cop&y to Left"
-msgstr "Копировать налево"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-msgid "Copy &from Left"
-msgstr "Копировать слева"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Копировать выбранные строки в центр"
@@ -210,8 +210,8 @@ msgstr "Цвет фона"
 msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "Сравнить извлеченный из изображения текст"
+msgid "Compare Extracted &Text From Images"
+msgstr ""
 
 msgid "&File"
 msgstr "&Файл"
@@ -846,9 +846,6 @@ msgstr "&Скрыть"
 msgid "&Open Left"
 msgstr "Открыть левый"
 
-msgid "With &External Editor"
-msgstr "Внешним редактором"
-
 msgid "Open Midd&le"
 msgstr "Открыть средний"
 
@@ -1097,8 +1094,8 @@ msgstr "Сохранять время файла при сравнении"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Закрывать диалог \"Выбрать файлы или папки\" по ОК"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
@@ -1373,11 +1370,11 @@ msgstr "Описание:"
 msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Отображать все плагины, не проверяя расширение."
+msgid "Display all plugins, don't check the extension"
+msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Открыть файлы в том же типе окна после распаковки."
+msgid "&Open files in the same window type after unpacking"
+msgstr ""
 
 msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
@@ -2183,8 +2180,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файлы фильтров (*.flt)|*.flt|Все файлы (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
-msgstr "Не удается найти файл шаблона фильтра!\n\nСкопируйте файл %1 в папку с фильтрами:\n%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr ""
 
 #, c-format
 msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
@@ -2803,14 +2800,14 @@ msgstr "Ошибка"
 msgid "Text files are identical"
 msgstr "Текстовые файлы идентичны"
 
-msgid "(Middle and right are identical)"
-msgstr "(В центре и справа идентичны)"
+msgid " (Middle and right are identical)"
+msgstr ""
 
-msgid "(Left and right are identical)"
-msgstr "(Слева и справа идентичны)"
+msgid " (Left and right are identical)"
+msgstr ""
 
-msgid "(Left and middle are identical)"
-msgstr "(Слева и в центре идентичны)"
+msgid " (Left and middle are identical)"
+msgstr ""
 
 msgid "Text files are different"
 msgstr "Текстовые файлы отличаются"
@@ -2887,14 +2884,14 @@ msgstr "Время создания файла в центре."
 msgid "Tells which side has newer modification date."
 msgstr "Показать на какой из сторон дата изменения файла новее."
 
-msgid "Left side file version, only for some filetypes."
-msgstr "Версия файла слева, только для некоторых типов файлов."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-msgid "Right side file version, only for some filetypes."
-msgstr "Версия файла справа, только для некоторых типов файлов."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-msgid "Middle side file version, only for some filetypes."
-msgstr "Версия файла в центре, только для некоторых типов файлов."
+msgid "Middle side file version, only for some file types."
+msgstr ""
 
 msgid "Short comparison result."
 msgstr "Результат быстрого сравнения."
@@ -3190,17 +3187,17 @@ msgstr "\nТекущее отличие (Alt+Enter)"
 msgid "\nLast Difference (Alt+End)"
 msgstr "\nПоследнее отличие (Alt+End)"
 
-msgid "\nCopy Right (Alt+Right)"
-msgstr "\nКопировать направо (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr ""
 
-msgid "\nCopy Left (Alt+Left)"
-msgstr "\nКопировать налево (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr ""
 
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
-msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
 
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
-msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
 
 msgid "\nCopy All to Right"
 msgstr "\nКопировать все направо"

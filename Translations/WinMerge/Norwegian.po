@@ -28,20 +28,20 @@ msgstr "LANG_NORWEGIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "Kopier til midten"
 
-msgid "C&opy to Right"
-msgstr "Kopier til &høyre"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr "Kopier fra midten"
 
-msgid "Copy fro&m Right"
-msgstr "Kopier fr&a høyre"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr ""
 
-msgid "Cop&y to Left"
-msgstr "Kopier til &venstre"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-msgid "Copy &from Left"
-msgstr "Kopier &fra venstre"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Kopier valgte linje(r) til midten"
@@ -207,7 +207,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 msgid "&File"
@@ -843,9 +843,6 @@ msgstr "&Skjul objekter"
 msgid "&Open Left"
 msgstr "&Åpne venstre"
 
-msgid "With &External Editor"
-msgstr "Med &eksternt redigeringsprogram"
-
 msgid "Open Midd&le"
 msgstr ""
 
@@ -1094,7 +1091,7 @@ msgstr "&Bevar fil-tid i filsammenligning"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Vis \"Velg filer eller mapper\" dialog ved oppstart"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1372,10 +1369,10 @@ msgstr "Beskrivelse:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -2263,16 +2260,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filfiltere (*.flt)|*.flt|Alle filer (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Kan ikke finne filfilter-mal!\n"
-"\n"
-"Kopier filen %1 til WinMerge/Filtermappe:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3055,13 +3044,13 @@ msgstr "Feil"
 msgid "Text files are identical"
 msgstr "Tekstfiler er identiske"
 
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 msgid "Text files are different"
@@ -3139,13 +3128,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Forteller hvilken side som har en nyere endringsdato."
 
-msgid "Left side file version, only for some filetypes."
-msgstr "Venstre side filversjon, bare for noen filtyper."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-msgid "Right side file version, only for some filetypes."
-msgstr "Høyre side filversjon, bare for noen filetyper."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 msgid "Short comparison result."
@@ -3557,33 +3546,17 @@ msgstr ""
 "\n"
 "Siste forskjell (Alt+End)"
 
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
-"\n"
-"Kopier høyre (Alt+Right)"
 
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
-"\n"
-"Kopier venstre (Alt+Left)"
 
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
-"\n"
-"Kopier høyre og gå videre (Ctrl+Alt+Right)"
 
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
-"\n"
-"Kopier venstre og gå videre (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nKopier alt til høyre"

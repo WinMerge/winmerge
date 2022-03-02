@@ -35,24 +35,20 @@ msgstr "LANG_FRENCH, SUBLANG_FRENCH"
 msgid "Copy to Middle"
 msgstr "Copier vers le Milieu"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "C&opier vers la Droite"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr "Copier depuis le Milieu"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Copier dep&uis la Droite"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Copier vers la &Gauche"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "Copier &depuis la Gauche"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Copier les lignes sélectionnées vers le Milieu"
@@ -245,8 +241,8 @@ msgstr "Définir la couleur du fond"
 msgid "&Vector Image Scaling"
 msgstr "Mise à l'échelle de l'image vectorielle"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "Comparer le &texte extraits depuis l'image"
+msgid "Compare Extracted &Text From Images"
+msgstr ""
 
 #, c-format
 msgid "&File"
@@ -1051,10 +1047,6 @@ msgid "&Open Left"
 msgstr "Ouvrir à &Gauche"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "Avec l'éditeur &externe"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr "Ouvrir Mi&lieu"
 
@@ -1365,9 +1357,8 @@ msgstr "Préserver l'horodatage lors de comparaison de fichier"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Afficher la boîte de dialogue \"sélectionner les fichiers ou dossiers\" au démarrage"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Fermez la boîte de dialogue \"sélectionner les fichiers ou dossiers\" en cliquant sur le bouton OK"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr ""
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1712,11 +1703,11 @@ msgstr "Description :"
 msgid "Default arguments:"
 msgstr "Arguments par défaut :"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Afficher tous les plugins, sans vérification de l'extension."
+msgid "Display all plugins, don't check the extension"
+msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "&Ouvrir les fichiers dans le même type de fenêtre après décompression."
+msgid "&Open files in the same window type after unpacking"
+msgstr ""
 
 msgid "&Plugin Pipeline:"
 msgstr "&Plug-in Chaîne de traitement :"
@@ -2788,16 +2779,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtres de fichier (*.flt)|*.flt|Tous les fichiers (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Ne peut trouver le fichier de modèle de filtre !\n"
-"\n"
-"Veuillez copier le fichier %1 dans WinMerge/Dossier des filtres :\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3666,17 +3649,14 @@ msgstr "Erreur"
 msgid "Text files are identical"
 msgstr "Les fichiers de texte sont identiques"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(Milieu et Droite sont identiques)"
+msgid " (Middle and right are identical)"
+msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(Gauche et Droite sont identiques)"
+msgid " (Left and right are identical)"
+msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(Gauche et Milieu sont identiques)"
+msgid " (Left and middle are identical)"
+msgstr ""
 
 #, c-format
 msgid "Text files are different"
@@ -3772,17 +3752,14 @@ msgstr "Date de création du Milieu."
 msgid "Tells which side has newer modification date."
 msgstr "Indique le côté ayant la date de modification la plus récente."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "Version du fichier du côté Gauche, uniquement pour certain types de fichiers."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "Version du fichier du côté Droite, uniquement pour certain types de fichiers."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
-msgstr "Version fichier du Milieu, uniquement pour certain types de fichiers."
+msgid "Middle side file version, only for some file types."
+msgstr ""
 
 #, c-format
 msgid "Short comparison result."
@@ -4233,37 +4210,17 @@ msgstr ""
 "\n"
 "Dernière différence (Alt+Fin)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
-"\n"
-"Copier à Droite (Alt+Droite)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
-"\n"
-"Copier à Gauche (Alt+Gauche)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
-"\n"
-"Copier à Droite et avancer (Ctrl+Alt+Droite)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
-"\n"
-"Copier à Gauche et avancer (Ctrl+Alt+Gauche)"
 
 msgid ""
 "\n"
