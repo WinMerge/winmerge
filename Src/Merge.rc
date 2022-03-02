@@ -66,18 +66,18 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_L
-        MENUITEM "C&opy to Right",              ID_COPY_TO_RIGHT_L
-        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_L
-        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT_L
-        MENUITEM "Cop&y to Left",               ID_COPY_TO_LEFT_M
-        MENUITEM "C&opy to Right",              ID_COPY_TO_RIGHT_M
-        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT_M
-        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT_M
-        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_R
-        MENUITEM "Cop&y to Left",               ID_COPY_TO_LEFT_R
-        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_R
-        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT_R
+        MENUITEM "Copy to Middle",                    ID_COPY_TO_MIDDLE_L
+        MENUITEM "C&opy to Right\tAlt+Right",         ID_COPY_TO_RIGHT_L
+        MENUITEM "Copy from Middle",                  ID_COPY_FROM_MIDDLE_L
+        MENUITEM "Copy fro&m Right\tAlt+Shift+Left",  ID_COPY_FROM_RIGHT_L
+        MENUITEM "Cop&y to Left\tAlt+Left",           ID_COPY_TO_LEFT_M
+        MENUITEM "C&opy to Right\tAlt+Right",         ID_COPY_TO_RIGHT_M
+        MENUITEM "Copy &from Left\tAlt+Shift+Right",  ID_COPY_FROM_LEFT_M
+        MENUITEM "Copy fro&m Right\tAlt+Shift+Left",  ID_COPY_FROM_RIGHT_M
+        MENUITEM "Copy to Middle",                    ID_COPY_TO_MIDDLE_R
+        MENUITEM "Cop&y to Left\tAlt+Left",           ID_COPY_TO_LEFT_R
+        MENUITEM "Copy from Middle",                  ID_COPY_FROM_MIDDLE_R
+        MENUITEM "Copy &from Left\tAlt+Shift+Right",  ID_COPY_FROM_LEFT_R
         MENUITEM SEPARATOR
         MENUITEM "Copy Selected Line(s) to Middle",   ID_COPY_LINES_TO_MIDDLE_L
         MENUITEM "Copy Selected Line(s) to Right",    ID_COPY_LINES_TO_RIGHT_L
@@ -206,7 +206,7 @@ BEGIN
             MENUITEM "25%",                         ID_IMG_VECTORIMAGESCALING_25
         END
         MENUITEM SEPARATOR
-        MENUITEM "Compare Extracted &Text From Image", ID_IMG_COMPARE_EXTRACTED_TEXT
+        MENUITEM "Compare Extracted &Text From Images", ID_IMG_COMPARE_EXTRACTED_TEXT
     END
 END
 
@@ -831,21 +831,21 @@ BEGIN
         POPUP "&Open Left"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_LEFT
-            MENUITEM "With &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "With &External Editor\tCtrl+Alt+E", ID_DIR_OPEN_LEFT_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_LEFT_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_LEFT_PARENT_FOLDER
         END
         POPUP "Open Midd&le"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_MIDDLE
-            MENUITEM "With &External Editor",       ID_DIR_OPEN_MIDDLE_WITHEDITOR
+            MENUITEM "With &External Editor\tCtrl+Alt+E", ID_DIR_OPEN_MIDDLE_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_MIDDLE_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_MIDDLE_PARENT_FOLDER
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_RIGHT
-            MENUITEM "With &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "With &External Editor\tCtrl+Alt+E", ID_DIR_OPEN_RIGHT_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_RIGHT_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_RIGHT_PARENT_FOLDER
         END
@@ -1253,7 +1253,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,107,270,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,270,10
-    CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
+    CONTROL         "Close ""Select Files or Folders"" Dialog on clicking Compare button",IDC_CLOSE_WITH_OK,
                     "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,270,10
     LTEXT           "Op&en-dialog Auto-Completion:",IDC_STATIC,7,145,270,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,270,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -1553,9 +1553,9 @@ BEGIN
     EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | WS_VSCROLL | ES_READONLY
     LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
     EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_AUTOHSCROLL | ES_READONLY
-    CONTROL         "Display all plugins, don't check the extension.",IDC_PLUGIN_ALLOW_ALL,
+    CONTROL         "Display all plugins, don't check the extension",IDC_PLUGIN_ALLOW_ALL,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,92,300,12
-    CONTROL         "&Open files in the same window type after unpacking.",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
+    CONTROL         "&Open files in the same window type after unpacking",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,104,300,12
     LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,118,83,10
     CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,116,220,95
@@ -3069,7 +3069,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
     IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
     IDS_FILEFILTER_NO_USERFOLDER 
@@ -3434,9 +3434,9 @@ BEGIN
     IDS_DIFFERENT           "Different"
     IDS_CMPRES_ERROR        "Error"
     IDS_TEXT_FILES_SAME     "Text files are identical"
-    IDS_LEFTONLY_DIFF       "(Middle and right are identical)"
-    IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
-    IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
+    IDS_LEFTONLY_DIFF       " (Middle and right are identical)"
+    IDS_MIDDLEONLY_DIFF     " (Left and right are identical)"
+    IDS_RIGHTONLY_DIFF      " (Left and middle are identical)"
     IDS_TEXT_FILES_DIFF     "Text files are different"
     IDS_IMAGE_FILES_SAME    "Image files are identical"
     IDS_IMAGE_FILES_DIFF    "Image files are different"
@@ -3480,13 +3480,13 @@ BEGIN
     IDS_COLDESC_RTIMEC      "Right side creation time."
     IDS_COLDESC_MTIMEC      "Middle side creation time."
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
-    IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
-    IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
+    IDS_COLDESC_LVERSION    "Left side file version, only for some file types."
+    IDS_COLDESC_RVERSION    "Right side file version, only for some file types."
 END
 
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_MVERSION    "Middle side file version, only for some filetypes."
+    IDS_COLDESC_MVERSION    "Middle side file version, only for some file types."
     IDS_COLDESC_RESULT_ABBR "Short comparison result."
     IDS_COLDESC_LATTRIBUTES "Left side attributes."
     IDS_COLDESC_RATTRIBUTES "Right side attributes."
@@ -3689,10 +3689,10 @@ BEGIN
     ID_FIRSTDIFF            "\nFirst Difference (Alt+Home)"
     ID_CURDIFF              "\nCurrent Difference (Alt+Enter)"
     ID_LASTDIFF             "\nLast Difference (Alt+End)"
-    ID_L2R                  "\nCopy Right (Alt+Right)"
-    ID_R2L                  "\nCopy Left (Alt+Left)"
-    ID_L2RNEXT              "\nCopy Right and Advance (Ctrl+Alt+Right)"
-    ID_R2LNEXT              "\nCopy Left and Advance (Ctrl+Alt+Left)"
+    ID_L2R                  "\nCopy to Right (Alt+Right)"
+    ID_R2L                  "\nCopy to Left (Alt+Left)"
+    ID_L2RNEXT              "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "\nCopy to Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "\nCopy All to Right"
     ID_ALL_LEFT             "\nCopy All to Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
