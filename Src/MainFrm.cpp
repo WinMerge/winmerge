@@ -785,6 +785,8 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
+		if (paths::IsURL(ifileloc[pane].filepath))
+			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams *>(pOpenParams));
 		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
 		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
@@ -814,7 +816,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_WEBPAGE:
-		return ShowWebPageMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	default:
 		return ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
@@ -1016,7 +1018,7 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	return true;
 }
 
-bool CMainFrame::ShowWebPageMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenWebPageParams* pOpenParams /*= nullptr*/)
 {
@@ -1261,11 +1263,12 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
-	if (pathsType == paths::DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST &&
+	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
-		COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
+		COpenDoc* pOpenDoc = static_cast<COpenDoc*>(theApp.m_pOpenTemplate->CreateNewDocument());
 		if (dwFlags)
 		{
 			pOpenDoc->m_dwFlags[0] = dwFlags[0];
@@ -1276,33 +1279,31 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_bRecurse = bRecurse;
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
-		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
+		CFrameWnd* pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
-	else
-	{
-		// Add trailing '\' for directories if its missing
-		if (pathsType == paths::IS_EXISTING_DIR)
-		{
-			if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
-				tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
-			if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
-				tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
-			if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
-				tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
-		}
 
-		//save the MRU left and right files.
-		if (dwFlags)
-		{
-			if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[0].c_str(), _T("Files\\Left"));
-			if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[1].c_str(), _T("Files\\Right"));
-			if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[2].c_str(), _T("Files\\Option"));
-		}
+	// Add trailing '\' for directories if its missing
+	if (pathsType == paths::IS_EXISTING_DIR)
+	{
+		if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
+			tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
+		if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
+			tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
+		if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
+			tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
+	}
+
+	//save the MRU left and right files.
+	if (dwFlags)
+	{
+		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[2].c_str(), _T("Files\\Option"));
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;

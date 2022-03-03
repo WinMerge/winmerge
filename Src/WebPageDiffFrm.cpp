@@ -59,8 +59,11 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnFileRecompareAs)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnUpdateFileRecompareAs)
 	// [Edit] menu
+	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
-	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY, OnUpdateEditCopy)
+	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
 	// [View] menu
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
@@ -157,7 +160,7 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 	int nNormalBuffer = 0;
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
-		m_filePaths.SetPath(pane, fileloc[pane].filepath);
+		m_filePaths.SetPath(pane, fileloc[pane].filepath, false);
 		m_bRO[pane] = bRO[pane];
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
 		if (fileloc[pane].filepath.empty())
@@ -889,19 +892,43 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 }
 	
 /**
+ * @brief Cut current selection to clipboard
+ */
+void CWebPageDiffFrame::OnEditCut()
+{
+	GetFocus()->SendMessage(WM_CUT);
+}
+
+/**
  * @brief Copy current selection to clipboard
  */
 void CWebPageDiffFrame::OnEditCopy()
 {
-	//m_pWebDiffWindow->Copy();
+	GetFocus()->SendMessage(WM_COPY);
 }
 
 /**
- * @brief Called when "Copy" item is updated
+ * @brief Paste clipboard content over selected content
  */
-void CWebPageDiffFrame::OnUpdateEditCopy(CCmdUI* pCmdUI)
+void CWebPageDiffFrame::OnEditPaste()
 {
-	//pCmdUI->Enable(m_pWebDiffWindow->IsCopyable());
+	GetFocus()->SendMessage(WM_PASTE);
+}
+
+/**
+ * @brief Undo last action
+ */
+void CWebPageDiffFrame::OnEditUndo()
+{
+	GetFocus()->SendMessage(WM_UNDO);
+}
+
+/**
+ * @brief Redo last action
+ */
+void CWebPageDiffFrame::OnEditRedo()
+{
+//	GetFocus()->SendMessage(WM_REDO);
 }
 
 /**
@@ -909,7 +936,6 @@ void CWebPageDiffFrame::OnUpdateEditCopy(CCmdUI* pCmdUI)
  */
 void CWebPageDiffFrame::OnEditSelectAll()
 {
-	//m_pWebDiffWindow->SelectAll();
 }
 
 /**

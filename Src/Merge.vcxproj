@@ -1661,6 +1661,119 @@
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\aborted.ico" />
+    <Image Include="res\all.bmp" />
+    <Image Include="res\binarydiff12.ico" />
+    <Image Include="res\binarydiff13.ico" />
+    <Image Include="res\binarydiff23.ico" />
+    <Image Include="res\cascade.bmp" />
+    <Image Include="res\change_pane.bmp" />
+    <Image Include="res\clear_bookmarks.bmp" />
+    <Image Include="res\close.bmp" />
+    <Image Include="res\compare.bmp" />
+    <Image Include="res\compare_left1_left2.bmp" />
+    <Image Include="res\compare_left1_right2.bmp" />
+    <Image Include="res\compare_left2_right1.bmp" />
+    <Image Include="res\compare_right1_right2.bmp" />
+    <Image Include="res\copy.bmp" />
+    <Image Include="res\customize_columns.bmp" />
+    <Image Include="res\cut.bmp" />
+    <Image Include="res\delete.bmp" />
+    <Image Include="res\equalbinary12.ico" />
+    <Image Include="res\equalbinary13.ico" />
+    <Image Include="res\equalbinary23.ico" />
+    <Image Include="res\equalfile12.ico" />
+    <Image Include="res\equalfile13.ico" />
+    <Image Include="res\equalfile23.ico" />
+    <Image Include="res\equalfolder.ico" />
+    <Image Include="res\equalimage.ico" />
+    <Image Include="res\equaltextfile.ico" />
+    <Image Include="res\equalwebpage.ico" />
+    <Image Include="res\exit.bmp" />
+    <Image Include="res\FileFilter.ico" />
+    <Image Include="res\fileunknown.ico" />
+    <Image Include="res\filters.bmp" />
+    <Image Include="res\from_left.bmp" />
+    <Image Include="res\from_right.bmp" />
+    <Image Include="res\go_to.bmp" />
+    <Image Include="res\help_contents.bmp" />
+    <Image Include="res\horizontally.bmp" />
+    <Image Include="res\left_to_middle.bmp" />
+    <Image Include="res\LineFilter.ico" />
+    <Image Include="res\lmissing.ico" />
+    <Image Include="res\lmissingfolder.ico" />
+    <Image Include="res\logo.jpg" />
+    <Image Include="res\logo.png" />
+    <Image Include="res\mfile.ico" />
+    <Image Include="res\mfolder.ico" />
+    <Image Include="res\mg_icons.bmp" />
+    <Image Include="res\mg_icons.png" />
+    <Image Include="res\middle.bmp" />
+    <Image Include="res\middle_to_browse.bmp" />
+    <Image Include="res\middle_to_left.bmp" />
+    <Image Include="res\middle_to_right.bmp" />
+    <Image Include="res\mmissing.ico" />
+    <Image Include="res\mmissingfolder.ico" />
+    <Image Include="res\move_middle_to_browse.bmp" />
+    <Image Include="res\new3.bmp" />
+    <Image Include="res\new3_hex.bmp" />
+    <Image Include="res\new3_image.bmp" />
+    <Image Include="res\new3_table.bmp" />
+    <Image Include="res\new3_webpage.bmp" />
+    <Image Include="res\new_hex.bmp" />
+    <Image Include="res\new_image.bmp" />
+    <Image Include="res\new_table.bmp" />
+    <Image Include="res\new_webpage.bmp" />
+    <Image Include="res\next_bookmark.bmp" />
+    <Image Include="res\notequalfile12.ico" />
+    <Image Include="res\notequalfile13.ico" />
+    <Image Include="res\notequalfile23.ico" />
+    <Image Include="res\notequalfolder.ico" />
+    <Image Include="res\notequalimage.ico" />
+    <Image Include="res\notequaltextfile.ico" />
+    <Image Include="res\notequalwebpage.ico" />
+    <Image Include="res\open_conflict.bmp" />
+    <Image Include="res\paste.bmp" />
+    <Image Include="res\patch.bmp" />
+    <Image Include="res\plugins.bmp" />
+    <Image Include="res\prev_bookmark.bmp" />
+    <Image Include="res\print.bmp" />
+    <Image Include="res\replace.bmp" />
+    <Image Include="res\report.bmp" />
+    <Image Include="res\right_to_middle.bmp" />
+    <Image Include="res\rmissing.ico" />
+    <Image Include="res\rmissingfolder.ico" />
+    <Image Include="res\rotate2.ico" />
+    <Image Include="res\search.bmp" />
+    <Image Include="res\selected_lines_from_left.bmp" />
+    <Image Include="res\selected_lines_from_right.bmp" />
+    <Image Include="res\selected_lines_left_to_middle.bmp" />
+    <Image Include="res\selected_lines_left_to_right.bmp" />
+    <Image Include="res\selected_lines_middle_to_left.bmp" />
+    <Image Include="res\selected_lines_middle_to_right.bmp" />
+    <Image Include="res\selected_lines_right_to_left.bmp" />
+    <Image Include="res\selected_lines_right_to_middle.bmp" />
+    <Image Include="res\select_all.bmp" />
+    <Image Include="res\select_font.bmp" />
+    <Image Include="res\splash.jpg" />
+    <Image Include="res\SubstitutionFilter.ico" />
+    <Image Include="res\toggle_bookmark.bmp" />
+    <Image Include="res\ToolbarEnabled.bmp" />
+    <Image Include="res\ToolbarEnabled32.bmp" />
+    <Image Include="res\ToolbarEnabled8bit.bmp" />
+    <Image Include="res\treestate_collapsed.ico" />
+    <Image Include="res\treestate_expanded.ico" />
+    <Image Include="res\vertically.bmp" />
+    <Image Include="res\zoom_in.bmp" />
+    <Image Include="res\zoom_out.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\WinMerge.exe.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\WinMergeU.VisualElementsManifest.xml" />
+  </ItemGroup>
   <Target Name="CopyVisualElements" AfterTargets="Build">
     <ItemGroup>
       <VisualElementsManifest Include="res\WinMergeU.VisualElementsManifest.xml" />

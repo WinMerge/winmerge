@@ -1441,4 +1441,331 @@
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\aborted.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\all.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\binarydiff12.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\binarydiff13.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\binarydiff23.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cascade.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\change_pane.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\clear_bookmarks.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\close.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\compare.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\compare_left1_left2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\compare_left1_right2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\compare_left2_right1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\compare_right1_right2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\copy.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\customize_columns.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cut.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\delete.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalbinary12.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalbinary13.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalbinary23.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalfile12.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalfile13.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalfile23.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalfolder.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalimage.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equaltextfile.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\equalwebpage.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\exit.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\FileFilter.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\fileunknown.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\filters.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\from_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\from_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\go_to.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\help_contents.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\horizontally.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\left_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LineFilter.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\lmissing.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\lmissingfolder.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\logo.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\logo.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mfile.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mfolder.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mg_icons.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mg_icons.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\middle_to_browse.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\middle_to_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\middle_to_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mmissing.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\mmissingfolder.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\move_middle_to_browse.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new_hex.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new_image.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new_table.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new_webpage.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new3_hex.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new3_image.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new3_table.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\new3_webpage.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\next_bookmark.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequalfile12.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequalfile13.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequalfile23.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequalfolder.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequalimage.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequaltextfile.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\notequalwebpage.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\open_conflict.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\paste.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\patch.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\plugins.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\prev_bookmark.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\print.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\replace.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\report.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\right_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rmissing.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rmissingfolder.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\rotate2.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\search.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\select_all.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\select_font.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_from_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_from_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_left_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_left_to_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_middle_to_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_middle_to_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_right_to_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected_lines_right_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\splash.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SubstitutionFilter.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\toggle_bookmark.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ToolbarEnabled.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ToolbarEnabled8bit.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\ToolbarEnabled32.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\treestate_collapsed.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\treestate_expanded.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\vertically.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\zoom_in.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\zoom_out.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\WinMerge.exe.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="res\WinMergeU.VisualElementsManifest.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+  </ItemGroup>
 </Project>

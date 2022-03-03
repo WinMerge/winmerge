@@ -177,7 +177,7 @@ public:
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const OpenImageFileParams *pOpenParams = nullptr);
-	bool ShowWebPageMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+	bool ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const OpenWebPageParams *pOpenParams = nullptr);
 

@@ -141,8 +141,11 @@ private:
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnEditCut();
 	afx_msg void OnEditCopy();
-	afx_msg void OnUpdateEditCopy(CCmdUI* pCmdUI);
+	afx_msg void OnEditPaste();
+	afx_msg void OnEditUndo();
+	afx_msg void OnEditRedo();
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();

@@ -741,6 +741,11 @@ String GetPathOnly(const String& fullpath)
 	return spath;
 }
 
+bool IsURL(const String& path)
+{
+	return PathIsURL(path.c_str());
+}
+
 bool IsURLorCLSID(const String& path)
 {
 	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
