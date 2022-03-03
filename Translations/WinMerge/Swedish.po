@@ -31,19 +31,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopiera till höger\tAlt+Höger"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopiera från höger\tAlt+Shift+Vänster"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopiera till vänstertAlt+Vänster"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopiera från vänster\tAlt+Shift+Höger"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -210,7 +210,7 @@ msgid "&Vector Image Scaling"
 msgstr "Vektorbild skalning"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Jämför extraherad text från bild"
 
 msgid "&File"
 msgstr "Arkiv"
@@ -1094,7 +1094,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Stäng \"Välj filer eller kataloger\" dialogen då ''Jämför'' klickas"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatisk komplettering för Öppna-dialog:"
@@ -1370,10 +1370,10 @@ msgid "Default arguments:"
 msgstr "Standardargument:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Visa alla plugins, kontrollera inte filändelse"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "Öppna filer i samma fönstertyp efter extrahering"
 
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin rörslinga:"
@@ -2247,6 +2247,10 @@ msgstr "Filfilter (*.flt)|*.flt|Alla filer (*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"Kan inte hitta filfilterfilen!\n"
+"\n"
+"Vänligen kopiera filen %1 till WinMerges katalog för filter:\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3028,13 +3032,13 @@ msgid "Text files are identical"
 msgstr "Textfilerna är identiska"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Mittre och höger är identiska)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Vänster och höger är identiska)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Vänster och mittre är identiska)"
 
 msgid "Text files are different"
 msgstr "Textfilerna är olika"
@@ -3112,13 +3116,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Visar vilken sida som har ett senare ändringsdatum."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Vänster filversion, bara för några filtyper."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Höger filversion, bara för några filtyper."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Mittre filversion, bara för några filtyper."
 
 msgid "Short comparison result."
 msgstr "Kortfattat jämförelseresultat."
@@ -3508,15 +3512,23 @@ msgstr ""
 
 msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
+"\n"
+"Kopiera till höger (Alt+Höger)"
 
 msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
+"\n"
+"Kopiera till vänster (Alt+Vänster)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Kopiera till höger och gå vidare (Ctrl+Alt+Höger)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Kopiera till vänster och gå vidare (Ctrl+Alt+Vänster)"
 
 msgid "\nCopy All to Right"
 msgstr ""
