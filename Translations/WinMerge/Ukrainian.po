@@ -29,23 +29,19 @@ msgstr "LANG_UKRAINIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Скопіювати на &праву панель"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Скопіювати на &ліву панель"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -239,7 +235,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -1048,10 +1044,6 @@ msgid "&Open Left"
 msgstr "&Відкрити лівий файл"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "Зо&внішнім редактором"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
@@ -1362,8 +1354,7 @@ msgstr "Зберігати час файлу при порівнянні"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показувати при запуску діалог вибору файлів та тек"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1709,10 +1700,10 @@ msgstr "Опис:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -2755,16 +2746,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файли фільтрів (*.flt)|*.flt|Всі файли (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Не вдалося знайти файл фільтра!\n"
-"\n"
-"Скопіюйте файл %1 у теку з фільтрами:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3602,16 +3585,13 @@ msgstr "Помилка"
 msgid "Text files are identical"
 msgstr "Текстові файли однакові"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3708,16 +3688,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Показати, з якої зі сторін дата зміни файлу новіша"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "Версія файлу ліворуч, лише для деяких типів файлів."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "Версія файлу праворуч, лише для деяких типів файлів."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4115,20 +4092,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"

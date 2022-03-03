@@ -29,23 +29,19 @@ msgstr "LANG_FARSI, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "&o رونوشت برداري به سمت راست "
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "&y رونوشت برداري به سمت چپ "
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -239,7 +235,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -1048,10 +1044,6 @@ msgid "&Open Left"
 msgstr "&O بازکردن سمت چپي "
 
 #, c-format
-msgid "With &External Editor"
-msgstr "&E با ويرايشگر بيروني "
-
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
@@ -1364,8 +1356,7 @@ msgstr ""
 " پنجره محاوره \"انتخاب پرونده ها يا پوشه ها\" به هنگام شروع کار نرم افزار "
 "نمايش داده شود "
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1711,10 +1702,10 @@ msgstr " توصيف : "
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -2772,16 +2763,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr " پرونده صافيها  (*.flt)|*.flt|همه پرونده ها  (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-" نمي توان پرونده قالب صافي را يافت ! \n"
-"\n"
-" لطفا پرونده روبرو به پوشه صافيهاي وينمرج (زير) رونوشت برداري شود : %1 \n"
-"%2"
 
 #, c-format
 msgid ""
@@ -3626,16 +3609,13 @@ msgstr " خطا "
 msgid "Text files are identical"
 msgstr " پرونده هاي متني همسان هستند "
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3732,16 +3712,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr " مي گويد که تاريخ تغيير کدام سمت جديدتر است "
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr " نگارش پرونده سمت چپ، فقط براي برخي از انواع پرونده ها "
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr " نگارش پرونده سمت راست، فقط براي برخي از انواع پرونده ها "
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4158,20 +4135,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"

@@ -28,23 +28,19 @@ msgstr "LANG_CZECH, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Kopírovat dop&rava"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopírovat do&leva"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -238,7 +234,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -1047,10 +1043,6 @@ msgid "&Open Left"
 msgstr "Otevřít &levé"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "Externím &editorem"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
@@ -1361,8 +1353,7 @@ msgstr "Z&achovávat původní čas souboru"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "&Po spuštění vybrat soubory nebo složky"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1708,10 +1699,10 @@ msgstr "Popis:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -2726,16 +2717,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Nelze nalézt soubor s filtrem!\n"
-"\n"
-"Zkopírujte prosím soubor %1 do složky s filtry pro aplikaci WinMerge:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3550,16 +3533,13 @@ msgstr "Chyba"
 msgid "Text files are identical"
 msgstr "Textové soubory jsou shodné"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3656,16 +3636,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Ukáže, na které straně je novější datum změny"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "Verze souboru na levé straně, pouze pro některé typy souborů"
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "Verze souboru na pravé straně, pouze pro některé typy souborů"
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4048,20 +4025,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"

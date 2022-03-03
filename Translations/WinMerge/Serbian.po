@@ -27,23 +27,19 @@ msgstr "LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Умн&ожи у десну"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Ум&ножи у леву"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -237,7 +233,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -1044,10 +1040,6 @@ msgid "&Open Left"
 msgstr "&Отвори леву"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "Cа др&угим уређивачем"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
@@ -1348,8 +1340,7 @@ msgstr "&Задржи ознаке времена и датума у поређ�
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Прикажи \"Одабране датотеке или фасцикле\" дијалог при покретању."
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1693,10 +1684,10 @@ msgstr "Опис:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -2737,16 +2728,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Датотека филтера (*.flt)|*.flt|All Files (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Немогуће је пронаћи филтрирану датотеку шаблона!\n"
-"\n"
-"Молим умножите датотеку %1 у WinMerge/Филтер -фасциклу:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3578,16 +3561,13 @@ msgstr "Грешка"
 msgid "Text files are identical"
 msgstr "Текстови датотека су исти"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3684,16 +3664,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Која страна има новији датум промене"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "Издање на левој страни је само за неке врсте датотеке"
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "Издање на десној страни је само за неке врсте датотеке"
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4087,20 +4064,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"

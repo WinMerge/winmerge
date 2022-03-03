@@ -30,24 +30,20 @@ msgstr "LANG_HUNGARIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "Másolás középre"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Másolás jobbra"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr "Másolás középről"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Másolás jobbról"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Másolás balra"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "Másolás balról"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "A kijelölt sor(ok) középre másolása"
@@ -240,8 +236,8 @@ msgstr "Háttérszín beállítása"
 msgid "&Vector Image Scaling"
 msgstr "Vektor kép méretezése"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "Hasonlítsa össze a képből kinyert szöveget"
+msgid "Compare Extracted &Text From Images"
+msgstr ""
 
 #, c-format
 msgid "&File"
@@ -1049,10 +1045,6 @@ msgid "&Open Left"
 msgstr "Bal megnyitása"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "&Külső szerkesztővel"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr "Középső megnyitása"
 
@@ -1363,9 +1355,8 @@ msgstr "Fájl idők megőrzése összehasonlításkor"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "\"Fájlok vagy könyvtárak választása\" bezárása az OK-val"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr ""
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1710,11 +1701,11 @@ msgstr "Leírás:"
 msgid "Default arguments:"
 msgstr "Alapértelmezett argumentumok:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Az összes bővítmény megjelenítése, ne ellenőrizze a kiterjesztést."
+msgid "Display all plugins, don't check the extension"
+msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
+msgid "&Open files in the same window type after unpacking"
+msgstr ""
 
 msgid "&Plugin Pipeline:"
 msgstr "Bővítmény pipeline"
@@ -2786,16 +2777,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Fájlszűrők (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Nem található a fájlszűrő sablonfájl!\n"
-"\n"
-"Másold a(z) %1 fájlt a WinMerge/Filters mappába:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3662,17 +3645,14 @@ msgstr "Hiba"
 msgid "Text files are identical"
 msgstr "A szövegfájlok megegyeznek"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(Középső és jobb egyforma)"
+msgid " (Middle and right are identical)"
+msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(Bal és jobb egyforma)"
+msgid " (Left and right are identical)"
+msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(Bal és középső egyforma)"
+msgid " (Left and middle are identical)"
+msgstr ""
 
 #, c-format
 msgid "Text files are different"
@@ -3768,17 +3748,14 @@ msgstr "A középső létrehozásának ideje."
 msgid "Tells which side has newer modification date."
 msgstr "Megmutatja, melyik oldalnak újabb a létrehozási dátuma."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "Bal fájlverziója, csak egyes fájltípusoknál."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "Jobb fájlverziója, csak egyes fájltípusoknál."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
-msgstr "Középső fájlverziója, csak egyes fájltípusoknál."
+msgid "Middle side file version, only for some file types."
+msgstr ""
 
 #, c-format
 msgid "Short comparison result."
@@ -4229,37 +4206,17 @@ msgstr ""
 "\n"
 "Utolsó különbség (Alt+End)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
-"\n"
-"Másolás jobbra (Alt+Jobbra)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
-"\n"
-"Másolás balra (Alt+Balra)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
-"\n"
-"Másolás jobbra, továbblépés (Ctrl+Alt+Jobbra)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
-"\n"
-"Másolás balra, továbblépés (Ctrl+Alt+Balra)"
 
 msgid "\nCopy All to Right"
 msgstr "\nAz összes másolása jobbra"

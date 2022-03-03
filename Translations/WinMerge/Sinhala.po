@@ -28,23 +28,19 @@ msgstr "LANG_SINHALESE, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "දකුණු පසට පිටපත් කිරීම"
+msgid "C&opy to Right\tAlt+Right"
+msgstr ""
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "වම් පසට පිටපත් කිරීම"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr ""
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -238,7 +234,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -1047,10 +1043,6 @@ msgid "&Open Left"
 msgstr "වම් පස විවෘත කරන්න"
 
 #, c-format
-msgid "With &External Editor"
-msgstr "බාහිර සම්බන්ධකය සමග"
-
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
@@ -1361,8 +1353,7 @@ msgstr "&Preserve file time in file compare"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Afficher la boîte de dialogue d'ouverture au démarrage"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1708,10 +1699,10 @@ msgstr " විස්තරය:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -2751,17 +2742,9 @@ msgstr "නව පෙරහන සඳහා ලිපිගොනුවේ න�
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "ලිපිගොනු පෙරහන්(*.flt)|*.flt|සියලුම ලිපිගොනු  (*.*)|*.*||"
 
-#, fuzzy, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+#, c-format
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
 
 #, c-format
 msgid ""
@@ -3598,16 +3581,13 @@ msgstr "වැරදි"
 msgid "Text files are identical"
 msgstr "Text files are identical"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3704,16 +3684,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Tells which side has newer modification date."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
-msgstr "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
-msgstr "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
+msgstr ""
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4108,20 +4085,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid ""
