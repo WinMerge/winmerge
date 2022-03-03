@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr "Kopiraj v srednjo"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopiraj v &desno\tAlt+Desno"
 
 msgid "Copy from Middle"
 msgstr "Kopiraj iz srednje"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopiraj iz de&sne\tAlt+Shift+Levo"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopiraj v &levo\tAlt+Levo"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopiraj iz l&eve\tAlt+Shift+Desno"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Kopiraj izbrane vrstice v srednjo"
@@ -209,7 +209,7 @@ msgid "&Vector Image Scaling"
 msgstr "Prilagoditev &vektorskih slik"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Primerjaj razširjeno &besedilo s slike"
 
 msgid "&File"
 msgstr "&Datoteka"
@@ -1093,7 +1093,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Ob zagonu prikaži okno 'Izberi datoteke ali mape'"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
@@ -1369,10 +1369,10 @@ msgid "Default arguments:"
 msgstr "Privzeti argumenti:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Prikaži vse vtičnike, ne preverjaj končnico"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna"
 
 msgid "&Plugin Pipeline:"
 msgstr "Cevovo&d vtičnika:"
@@ -2246,6 +2246,10 @@ msgstr "Datoteke filtrov (*.flt)|*.flt|Vse datoteke (*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"Ni mogoče najti datoteke predloge filtra!\n"
+"\n"
+"Kopirajte datoteko %1 v mapo \"WinMerge/Filters\\:\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3027,13 +3031,13 @@ msgid "Text files are identical"
 msgstr "Besedilne datoteke so enake"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Srednja in desna sta enaki)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Leva in desno sta enaki)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Leva in srednja sta enaki)"
 
 msgid "Text files are different"
 msgstr "Besedilne datoteke so različne"
@@ -3111,13 +3115,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Pove, katera stran ima novejši datum spremembe."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Različica leve datoteke, le za nekatere vrste datotek."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Različica desne datoteke, le za nekatere vrste datotek."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Različica srednje datoteke, le za nekatere vrste datotek."
 
 msgid "Short comparison result."
 msgstr "Rezultat kratke primerjave."
@@ -3508,15 +3512,23 @@ msgstr ""
 
 msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
+"\n"
+"Kopiraj desno (Alt+Desno)"
 
 msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
+"\n"
+"Kopiraj levo (Alt+Levo)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Kopiraj desno in naprej (Ctrl+Alt+Desno)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Kopiraj levo in naprej (Ctrl+Alt+Levo)"
 
 msgid ""
 "\n"

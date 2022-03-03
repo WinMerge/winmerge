@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr "Kopírovať do stredu"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopírovať vpravo\tAlt+→"
 
 msgid "Copy from Middle"
 msgstr "Kopírovať zo stredu"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopírovať &sprava\tAlt+Shift+←"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopírovať vľavo\tAlt+←"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopírovať &zľava\tAlt+Shift+→"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Kopíruje vybrané riadky do stredu"
@@ -209,7 +209,7 @@ msgid "&Vector Image Scaling"
 msgstr "Zmena mierky &vektorového obrázka"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Porovnať extrahovaný &text z obrázka"
 
 msgid "&File"
 msgstr "&Súbor"
@@ -1093,7 +1093,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Zobraziť pri spustení dialóg „Vybrať súbory alebo priečinky“"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Kliknutím na tlačidlo Porovnať zatvoriť dialógové okno „Vybrať súbory alebo priečinky“"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatické dopĺňanie v dialógu &Otvoriť:"
@@ -1369,10 +1369,10 @@ msgid "Default arguments:"
 msgstr "Predvolené argumenty:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Zobrazí všetky rozšírenia, nekontroluje príponu"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "Po rozbalení &otvoriť súbory v rovnakom type okna"
 
 msgid "&Plugin Pipeline:"
 msgstr "Rozšírenie &potrubia:"
@@ -2246,6 +2246,10 @@ msgstr "Filtre súborov (*.flt)|*.flt|Všetky súbory (*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"Nemožno nájsť súbor šablóny filtra súborov!\n"
+"\n"
+"Skopírujte, prosím, súbor %1 do priečinka WinMerge/Filters :\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3027,13 +3031,13 @@ msgid "Text files are identical"
 msgstr "Textové súbory sú identické"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Stredný a pravý sú identické)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Ľavý a pravý sú identické)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Ľavý a stredný sú identické)"
 
 msgid "Text files are different"
 msgstr "Textové súbory sú rozdielne"
@@ -3111,13 +3115,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Hovorí, na ktorej strane je novší dátum zmeny."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Verzia súboru ľavého, iba pre niektoré typy súborov."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Verzia súboru pravého, iba pre niektoré typy súborov."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Verzia súboru stredného, iba pre niektoré typy súborov."
 
 msgid "Short comparison result."
 msgstr "Krátky výsledok porovnania."
@@ -3507,15 +3511,23 @@ msgstr ""
 
 msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
+"\n"
+"Kopírovať vpravo (Alt+→)"
 
 msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
+"\n"
+"Kopírovať doľava (Alt+←)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Kopírovať vpravo a dopredu (Ctrl+Alt+→)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Kopírovať vľavo a dopredu (Ctrl+Alt+←)"
 
 msgid "\nCopy All to Right"
 msgstr "\nKopírovať všetko vpravo"

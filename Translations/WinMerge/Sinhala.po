@@ -29,7 +29,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "දකුණු පසට පිටපත් කිරීම\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -38,7 +38,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "වම් පසට පිටපත් කිරීම\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
