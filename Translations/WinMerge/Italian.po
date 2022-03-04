@@ -28,19 +28,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "&Copia a destra\tAlt+Destra"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copia da &destra\tAlt+Maiusc+Sinistra"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Co&pia a sinistra\tAlt+Sinistra"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copia da &sinistra\tAlt+Maiusc+Destra"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -1091,7 +1091,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Visualizza la finestra “Seleziona file o cartelle” all'avvio"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Visualizza la finestra “Seleziona file o cartelle” quando si fa clic su Confronta"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Com&pletamento automatico selezione file:"
@@ -1367,7 +1367,7 @@ msgid "Default arguments:"
 msgstr "Parametri di default:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Mostra tutti i plugin, senza verificare l'estensione"
 
 msgid "&Open files in the same window type after unpacking"
 msgstr ""
@@ -2241,7 +2241,7 @@ msgstr "Filtri file (*.flt)|*.flt|Tutti i file (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Impossibile trovare il modello per il filtro file!\n\nCopia il file %1 nella cartella WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -3023,13 +3023,13 @@ msgid "Text files are identical"
 msgstr "I file di testo sono uguali"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (centrale e destro sono uguali)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (sinistro e destro sono uguali)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (sinistro e centrale sono uguali)"
 
 msgid "Text files are different"
 msgstr "I file di testo sono diversi"
@@ -3107,13 +3107,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Indica quale lato ha la data dell'ultima modifica più recente."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Versione file lato sinistro, solo per alcuni tipi di file."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Versione file lato destro, solo per alcuni tipi di file."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Versione file lato centrale, solo per alcuni tipi di file."
 
 msgid "Short comparison result."
 msgstr "Risultato confronto in forma breve."
@@ -3514,16 +3514,16 @@ msgstr ""
 "Ultima differenza (Alt+Fine)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nCopia a destra (Alt+Destra)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nCopia a sinistra (Alt+Sinistra)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nCopia a destra e avanza (Ctrl+Alt+Destra)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nCopia a sinistra e avanza (Ctrl+Alt+Sinistra)"
 
 msgid "\nCopy All to Right"
 msgstr "\nCopia tutto a destra"
