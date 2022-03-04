@@ -28,7 +28,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Αντιγραφή Δε&ξιά\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -37,7 +37,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Αντιγραφή Α&ριστερά\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -112,7 +112,7 @@ msgid "With &Registered Application"
 msgstr "Με Αντιστοιχισμένη Ε&φαρμογή"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Μ&ε άλλη Εφαρμογή\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "Με..."
@@ -700,7 +700,7 @@ msgstr "Ει&δικές Εντολές"
 
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "Αντιγραφή με &Αρίθμηση Γραμμών"
+msgstr "Αντιγραφή με &Αρίθμηση Γραμμών\tCtrl+Shift+C"
 
 #, c-format
 msgid "&Bookmarks"
@@ -2740,7 +2740,7 @@ msgstr "Φίλτρα Αρχείων (*.flt)|*.flt|Όλα τα αρχεία (*.*)
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Το πρότυπο αρχείο φίλτρων αρχείων δεν είναι δυνατόν να βρεθεί!\n\nΠαρακαλώ αντιγράψατε το αρχείο %1 στο φάκελο WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -3665,10 +3665,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Πληροφορεί ποια πλευρά έχει την πλέον πρόσφατη ημερομηνία τροποποιήσεως."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Έκδοση αρχείου αριστερής πλευράς, μόνο για ορισμένους τύπους αρχείων."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Έκδοση αρχείου δεξιάς πλευράς, μόνο για ορισμένους τύπους αρχείων."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""
