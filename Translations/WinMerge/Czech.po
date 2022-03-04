@@ -113,7 +113,7 @@ msgid "With &Registered Application"
 msgstr "Přidruženou &aplikací"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Externím &editorem\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Zvolit..."
