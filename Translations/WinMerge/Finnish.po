@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "K&opioi oikealle\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopioi &oikealta\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopio&i vasemmalle\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopioi &vasemmalta\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -1354,7 +1354,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Sulje \"Valitse tiedostot tai kansiot\" dialogi klikkaamalla Vertaa"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -2771,7 +2771,7 @@ msgstr "Tiedostosuotimet (*.flt)|*.flt|Kaikki tiedostot (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Suodatin mallitiedostoa ei löydy!\n\nKopioi tiedosto %1 WinMerge/Suotimet-kansioon:\n%2."
 
 #, c-format
 msgid ""
@@ -3606,13 +3606,13 @@ msgid "Text files are identical"
 msgstr "Tekstitiedostot ovat samanlaisia"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Keskimmäinen ja oikea ovat identtiset)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Vasen ja oikea ovat identtiset)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Vasen ja keskimmäinen ovat identtiset)"
 
 #, c-format
 msgid "Text files are different"
@@ -3709,13 +3709,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Kertoo kummallako puolella on uudempi muutospäivä."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Vasen tiedostoversio, vain joillekin tiedostotyypeille."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Oikean tiedoston versio, vain joillekin tiedostotyypeille."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Keskimmäinen sivu tiedostoversio, vain joillekin tiedostoille."
 
 #, c-format
 msgid "Short comparison result."
@@ -4155,16 +4155,16 @@ msgstr ""
 "Viimeinen ero (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nKopioi oikea (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nKopioi vasen (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nKopioi oikea ja etene (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nKopioi vasen ja etene (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nKopioi kaikki oikealle"
