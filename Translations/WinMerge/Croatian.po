@@ -29,7 +29,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopiraj u &desno\tAlt+desno"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -38,7 +38,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopiraj u &lijevo\tAlt+lijevo"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -2743,7 +2743,7 @@ msgstr "FLT datoteke (*.flt)|*.flt|Sve datoteke (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Nema predloška filtracije datoteke!\n\nMolimo, kopirajte datoteku %1 u WinMerge/Filters mapu:\n%2."
 
 #, c-format
 msgid ""
@@ -3687,10 +3687,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Koja strana je promijenjena ranije?"
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Verzija na lijevoj strani, samo za neke tipove."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Verzija na desnoj strani, samo za neke tipove."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

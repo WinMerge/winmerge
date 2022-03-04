@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "C&opiar pra Direita\tAlt+Direita"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copiar d&a Direita\tAlt+Shift+Esquerda"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Cop&iar pra Esquerda\tAlt+Esquerda"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copiar &da Esquerda\tAlt+Shift+Direita"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -209,7 +209,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Dimensionamento da Imagem Vetorial"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Comparar o Texto &Extraído da Imagens"
 
 msgid "&File"
 msgstr "&Arquivo"
@@ -1092,8 +1092,8 @@ msgstr "&Preservar a hora do arquivo na comparação dos arquivos"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Mostrar o Diálogo \"Selecionar Arquivos ou Pastas\" na Inicialização"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgstr "Fechar o Diálogo \"Selecionar Arquivos ou Pastas\" ao clicar no botão Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Au&to-Conclusão do Diálogo-Abrir:"
@@ -1373,10 +1373,10 @@ msgid "Default arguments:"
 msgstr "Argumentos padrão:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Exibir todos os plugins, não verificar a extensão"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "&Abrir arquivos no mesmo tipo de janela após desempacotar"
 
 msgid "&Plugin Pipeline:"
 msgstr "&Tubulação dos Plugins"
@@ -2274,7 +2274,7 @@ msgstr "Filtros dos Arquivos (*.flt)|*.flt|Todos os Arquivos (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Não pôde achar o arquivo do modelo do filtro do arquivo!\n\nPor favor copie o arquivo %1 pra pasta WinMerge/Filtros:\n%2."
 
 #, c-format
 msgid ""
@@ -3075,13 +3075,13 @@ msgid "Text files are identical"
 msgstr "Os arquivos de texto são idênticos"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (O do meio e o da direita são idênticos)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (O da esquerda e o da direita são idênticos)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (O da esquerda e o do meio são idênticos)"
 
 msgid "Text files are different"
 msgstr "Os arquivos de texto são diferentes"
@@ -3159,13 +3159,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Diz qual lado tem a data de modificação mais nova."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Versão do arquivo do lado esquerdo, só pra alguns tipos de arquivos."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Versão do arquivo do lado direito, só pra alguns tipos de arquivos."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Versão do arquivo do lado do meio, só pra alguns tipos de arquivos."
 
 msgid "Short comparison result."
 msgstr "Resultado curto da comparação."
@@ -3585,16 +3585,16 @@ msgstr ""
 "Última Diferença (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nCopiar pra Direita (Alt+Direita)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nCopiar pra Esquerda (Alt+Esquerda)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nCopiar pra Direita e Avançar (Ctrl+Alt+Direita)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nCopiar pra Esquerda e Avançar (Ctrl+Alt+Esquerda)"
 
 msgid "\nCopy All to Right"
 msgstr "\nCopiar Tudo pra Direita"

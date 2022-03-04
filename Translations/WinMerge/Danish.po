@@ -30,7 +30,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopier til &højre\tAlt+Højre"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -39,7 +39,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopier til &venstre\tAlt+Venstre"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -114,7 +114,7 @@ msgid "With &Registered Application"
 msgstr "Med det &registrerede program"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Med en &ekstern editor\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Med..."
@@ -2758,7 +2758,7 @@ msgstr "Fil Filtre (*.flt)|*.flt|Alle Filer (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Kan ikke finde filter skabelon filen!\n\nKopier filen %1 til WinMerge/Filtermappe:\n%2."
 
 #, c-format
 msgid ""
@@ -3707,10 +3707,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Fortæller hvilken side har den nyeste ændringsdato."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Venstre side filversion, kun for nogle filtyper."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Højre side filversion, kun for nogle filtyper."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

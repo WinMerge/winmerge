@@ -40,7 +40,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr "Kopiera från höger\tAlt+Shift+Vänster"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr "Kopiera till vänstertAlt+Vänster"
+msgstr "Kopiera till vänster\tAlt+Vänster"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Kopiera från vänster\tAlt+Shift+Höger"

@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr "Naar midden kopiëren"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Naar rechts kopiëren\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Van midden kopiëren"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Van rechts kopiëren\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Naar links kopiëren\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Van links kopiëren\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Geselecteerde regel(s) naar midden kopiëren"
@@ -209,7 +209,7 @@ msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
 msgid "&File"
 msgstr "Bestand"
@@ -1093,7 +1093,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op Vergelijken"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
@@ -1374,10 +1374,10 @@ msgid "Default arguments:"
 msgstr "Standaard argumenten:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Alle plug-ins weergeven zonder de extensie te controleren"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "Bestanden openen in hetzelfde venstertype na uitpakken"
 
 msgid "&Plugin Pipeline:"
 msgstr "Plugin pipeline:"
@@ -2271,7 +2271,7 @@ msgstr "Bestandsfilters (*.flt)|*.flt|Alle bestanden (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Kan bestandsfilter-sjabloon niet vinden!\n\nKopieer bestand %1 naar map WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -3060,13 +3060,13 @@ msgid "Text files are identical"
 msgstr "Tekstbestanden zijn identiek"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Midden en rechts zijn identiek)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Links en rechts zijn identiek)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Links en midden zijn identiek)"
 
 msgid "Text files are different"
 msgstr "Tekstbestanden zijn verschillend"
@@ -3144,13 +3144,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Geeft aan welke zijde het recentst gewijzigd is."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Bestandsversie linkerzijde, alleen voor bepaalde bestandstypes."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Bestandsversie rechterzijde, alleen voor bepaalde bestandstypes."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Bestandsversie midden, alleen voor bepaalde bestandstypes."
 
 msgid "Short comparison result."
 msgstr "Kort vergelijkingsresultaat."
@@ -3556,16 +3556,16 @@ msgstr ""
 "Laatste verschil (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nRechts kopiëren (Alt+Rechts)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nLinks kopiëren (Alt+Links)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nRechts kopiëren en verdergaan (Ctrl+Alt+Rechts)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nLinks kopiëren en verdergaan (Ctrl+Alt+Links)"
 
 msgid "\nCopy All to Right"
 msgstr "\nAlles naar rechts kopiëren"

@@ -31,19 +31,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "نسخ إلى ال&يمين\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "نسخ م&ن اليمين\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "نسخ إلى الي&سار\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "نسخ &من اليسار\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -2253,7 +2253,7 @@ msgstr "مرشحات الملفات (*.flt)|*.flt|كل الملفات All Files 
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "لا يمكن إيجاد قالب ملف المرشح!\n\nيرجى نسخ الملف %1 إلى WinMerge/Filters folder:\n%2."
 
 #, c-format
 msgid ""
@@ -3013,13 +3013,13 @@ msgid "Text files are identical"
 msgstr "الملفات النصية متطابقة"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (الجزء الأوسط والجزء الأيمن متطابقان)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (الجزء الأيسر والجزء الأيمن متطابقان)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (الجزء الأيسر والجزء الأوسط متطابقان)"
 
 msgid "Text files are different"
 msgstr "الملفات النصية مختلفة"
@@ -3097,13 +3097,13 @@ msgid "Tells which side has newer modification date."
 msgstr "يحدد أي جانب لديه تاريخ تعديل أحدث."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "إصدار الملف في الجانب الأيسر، فقط لبعض أنواع الملفات."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "إصدار الملف في الجانب الأيمن، فقط لبعض أنواع الملفات."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "إصدار الملف في الجانب الأوسط، فقط لبعض أنواع الملفات."
 
 msgid "Short comparison result."
 msgstr "نتائج المقارنة المختصرة."
@@ -3490,16 +3490,16 @@ msgstr ""
 "الاختلاف الأخير (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nالنسخ لليمين (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nالنسخ لليسار (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nالنسخ لليمين والتقدم (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nالنسخ لليسار والتقدم (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nنسخ الكل إلى الجزء الأيمن"
