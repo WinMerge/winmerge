@@ -936,6 +936,7 @@ void CWebPageDiffFrame::OnEditRedo()
  */
 void CWebPageDiffFrame::OnEditSelectAll()
 {
+	GetFocus()->SendMessage(EM_SETSEL, 0, -1);
 }
 
 /**
