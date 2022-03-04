@@ -114,7 +114,7 @@ msgid "With &Registered Application"
 msgstr "Med det &registrerede program"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Med en &ekstern editor\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Med..."
