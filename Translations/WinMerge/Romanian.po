@@ -29,7 +29,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Copie la &dreapta\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -38,7 +38,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Copie la &stânga\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -2742,6 +2742,10 @@ msgstr "Fişiere filtru (*.flt)|*.flt|Toate fişierele (*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"Nu s-a găsit fişierul filtru şablon!\n"
+"\n"
+"Vă rugăm copiaţi fişierul %1 în directorul WinMerge/Filters :\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3666,10 +3670,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Spune care parte are o dată a modificării mai recentă."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Versiune fişier stânga, numai pentru unele tipuri de fişiere."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Versiune fişier dreapta, numai pentru unele tipuri de fişiere."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""
