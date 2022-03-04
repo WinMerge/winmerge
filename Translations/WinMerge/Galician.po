@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "C&opiar para a dereita\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copiar da &dereita\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Cop&iar para a esquerda\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copiar da &esquerda\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -236,7 +236,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Escalado de imaxe vectorial"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Comparar o &Text extraído da imaxe"
 
 #, c-format
 msgid "&File"
@@ -1352,7 +1352,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Amosar o diálogo \"Selecciona arquivos ou cartafoles\" ao inicio"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Pechar o diálogo \"Selecciona arquivos ou cartafoles\" ao premer o botón Comparar"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1698,10 +1698,10 @@ msgid "Default arguments:"
 msgstr "Argumentos por defecto:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Amosar todos os complementos, non comprobar versión"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "Abrir arquiv&os no mesmo tipo de ventá despois de desempaquetar"
 
 msgid "&Plugin Pipeline:"
 msgstr "Canalización de com&plementos:"
@@ -2774,7 +2774,7 @@ msgstr "Filtros dos arquivos (*.flt)|*.flt|Todos os arquivos (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Non se pode atopar o arquivo modelo do filtro de arquivos!\n\nCopia o arquivo %1 ao cartafol de WinMerge/Filtros:\n%2."
 
 #, c-format
 msgid ""
@@ -3642,13 +3642,13 @@ msgid "Text files are identical"
 msgstr "Os arquivos de texto son idénticos"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Centro e dereita son idénticos)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Esquerda e dereita son idénticos)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Esquerda e centro son idénticos)"
 
 #, c-format
 msgid "Text files are different"
@@ -3745,13 +3745,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Indica que lado ten a data de modificación máis recente."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Versión do arquivo do lado esquerdo, só para algúns tipos de arquivo."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Versión do arquivo do lado dereito, só para algúns tipos de arquivo."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Versión do arquivo do centro, só para algúns tipos de arquivo."
 
 #, c-format
 msgid "Short comparison result."
@@ -4203,16 +4203,16 @@ msgstr ""
 "Derradeira diferenza (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nCopiar para a dereita (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nCopiar para a esquerda (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nCopiar para a dereita e avanzar (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nCopiar para a esquerda e avanzar (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nCopiar todo para a dereita"
