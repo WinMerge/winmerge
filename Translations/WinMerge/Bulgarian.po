@@ -27,19 +27,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Копиране в&дясно\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Копиране отд&ясно\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Копиране в&ляво\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Копиране &отляво\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -1090,7 +1090,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показване „Избиране на файлове или папки“ при стартиране"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Затваряне „Избиране на файлове или папки“ при избиране на бутон Сравняване"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
@@ -2260,7 +2260,7 @@ msgstr "Файлове с филтри (*.flt)|*.flt|Всички файлове
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Шаблонът за филтри не може да бъде намерен!\n\nМоля, копирайте файла %1 в папката WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -3056,13 +3056,13 @@ msgid "Text files are identical"
 msgstr "Текстовите файлове са еднакви"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Среда и дясно са еднакви)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Ляво и дясно са еднакви)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Ляво и среда са еднакви)"
 
 msgid "Text files are different"
 msgstr "Текстовите файлове са различни"
@@ -3140,13 +3140,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Показва коя секция има късна дата на промяна."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Версия на файла вляво, само за файлове от един вид."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Версия на файла вдясно, само за файлове от един вид."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Версия на файла всредата, само за файлове от един вид."
 
 msgid "Short comparison result."
 msgstr "Кратък резултат от сравнението."
@@ -3560,16 +3560,16 @@ msgstr ""
 "Последно различие (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nКопира вдясно (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nКопира вляво (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nКопира вдясно и продължава (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nКопира вляво и продължава (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nКопирай &всичко в дясно"
