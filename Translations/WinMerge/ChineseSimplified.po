@@ -31,19 +31,19 @@ msgid "Copy to Middle"
 msgstr "复制到中间"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "复制到右侧(&O)\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "从中间复制"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "从右侧复制(&M)\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "复制到左侧(&Y)\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "从左侧复制(&F)\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "复制选中行到中间"
@@ -210,7 +210,7 @@ msgid "&Vector Image Scaling"
 msgstr "矢量图形缩放 (&V)"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "比较从图像中解析的文字(&T)"
 
 msgid "&File"
 msgstr "文件(&F)"
@@ -1370,10 +1370,10 @@ msgid "Default arguments:"
 msgstr "默认参数:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "显示所有插件， 不检查文件扩展名"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "解包后在同一窗口类型中打开文件(&O)。"
 
 msgid "&Plugin Pipeline:"
 msgstr "插件流程（pipeline）(&P):"
@@ -2259,7 +2259,7 @@ msgstr "过滤器文件 (*.flt)|*.flt|所有文件 (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "无法找到文件过滤器模板！\n\n请将文件 %1 复制到 WinMerge/Filters 文件夹下。"
 
 #, c-format
 msgid ""
@@ -3037,13 +3037,13 @@ msgid "Text files are identical"
 msgstr "文本文件完全相同"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (中间和右侧完全相同)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (左侧和右侧完全相同)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (左侧和中间完全相同)"
 
 msgid "Text files are different"
 msgstr "文本文件不同"
@@ -3121,13 +3121,13 @@ msgid "Tells which side has newer modification date."
 msgstr "显示哪边是较晚才被修改。"
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "左侧的文件版本，只对部分文件类型有效。"
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "右侧的文件版本，只对部分文件类型有效。"
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "中间的文件版本，只对部分文件类型有效。"
 
 msgid "Short comparison result."
 msgstr "简短格式的比较结果。"
@@ -3526,16 +3526,16 @@ msgstr ""
 "末个差异 (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\n复制到右侧 (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\n复制到左侧 (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\n复制到右侧并前进 (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\n复制到左侧并前进 (Ctrl+Alt+Left)"
 
 msgid ""
 "\n"
