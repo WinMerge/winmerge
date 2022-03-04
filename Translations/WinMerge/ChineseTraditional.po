@@ -31,19 +31,19 @@ msgid "Copy to Middle"
 msgstr "複製到中間"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "複製到右側  (&O)\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "從中間複製"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "從右側複製 (&M)\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "複製到左側 (&Y)\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "從左側複製 (&F)\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "複製所選行到中間"
@@ -237,7 +237,7 @@ msgid "&Vector Image Scaling"
 msgstr "向量圖縮放 (&V)"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "比較從圖片中擷取的文字 (&T)"
 
 #, c-format
 msgid "&File"
@@ -2784,7 +2784,7 @@ msgstr "檔案篩選器 (*.flt)|*.flt|所有檔案 (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "找不到檔案篩選器樣板檔！\n\n請複製檔案 %1 到 WinMerge/檔案篩選器-資料夾：\n%2。"
 
 #, c-format
 msgid ""
@@ -3649,13 +3649,13 @@ msgid "Text files are identical"
 msgstr "文字檔內容相同"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (中間和右側內容相同)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (左側和右側內容相同)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (左側和中間內容相同)"
 
 #, c-format
 msgid "Text files are different"
@@ -3752,13 +3752,13 @@ msgid "Tells which side has newer modification date."
 msgstr "告知哪邊有較新的修改日期。"
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "左側檔案版本，只某些檔案類型。"
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "右側檔案版本，只某些檔案類型。"
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "中間檔案版本，只某些檔案類型。"
 
 #, c-format
 msgid "Short comparison result."
@@ -4215,16 +4215,16 @@ msgstr ""
 "最後一個差異 (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\n複製到右側 (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\n複製到左側 (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\n複製到右側後到下一個 (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\n複製到左側後到下一個 (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr ""
