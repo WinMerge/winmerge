@@ -15,6 +15,8 @@
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
 #include "FileTransform.h"
+#include "TempFile.h"
+#include <memory>
 
 class CDirDoc;
 
@@ -115,6 +117,8 @@ private:
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
 	std::vector<int> m_unpackerSubcodes[3];
+	std::vector<std::shared_ptr<TempFile>> m_tempFiles;
+	std::vector<std::shared_ptr<TempFolder>> m_tempFolders;
 
 	//{{AFX_MSG(CWebPageDiffFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

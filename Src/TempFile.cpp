@@ -71,6 +71,45 @@ bool TempFile::Delete()
 		m_path = _T("");
 	return success;
 }
+
+/**
+ * @brief Delete the temp file when instance is deleted.
+ */
+TempFolder::~TempFolder()
+{
+	Delete();
+}
+
+
+/**
+ * @brief Create a temporary folder with given prefix.
+ * @return Created temp file path.
+ */
+String TempFolder::Create()
+{
+	String temp = env::GetTempChildPath();
+	if (!temp.empty())
+	{
+		m_path = temp;
+	}
+
+	return temp;
+}
+
+/**
+ * @brief Delete the temporary folder, if it exists.
+ * @return true if there was no error.
+ */
+bool TempFolder::Delete()
+{
+	bool success = true;
+	if (!m_path.empty())
+		success = ClearTempfolder(m_path);
+	if (success)
+		m_path = _T("");
+	return success;
+}
+
 /** 
  * @brief Cleanup tempfiles created by WinMerge.
  * This function finds temp folders which don't have WinMerge instance using

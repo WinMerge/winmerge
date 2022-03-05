@@ -318,6 +318,12 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
+	if (!m_pWebDiffWindow->IsWebView2Installed())
+	{
+		AfxMessageBox(_("WebView2 is not installed").c_str(), MB_OK);
+		return FALSE;
+	}
+
 	COLORSETTINGS colors;
 	Options::DiffColors::Load(GetOptionsMgr(), colors);
 	m_pWebDiffWindow->SetDiffColor(colors.clrDiff);
@@ -896,7 +902,8 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
  */
 void CWebPageDiffFrame::OnEditCut()
 {
-	GetFocus()->SendMessage(WM_CUT);
+	if (CWnd *pWnd = GetFocus())
+		pWnd->SendMessage(WM_CUT);
 }
 
 /**
@@ -904,7 +911,8 @@ void CWebPageDiffFrame::OnEditCut()
  */
 void CWebPageDiffFrame::OnEditCopy()
 {
-	GetFocus()->SendMessage(WM_COPY);
+	if (CWnd *pWnd = GetFocus())
+		pWnd->SendMessage(WM_COPY);
 }
 
 /**
@@ -912,7 +920,8 @@ void CWebPageDiffFrame::OnEditCopy()
  */
 void CWebPageDiffFrame::OnEditPaste()
 {
-	GetFocus()->SendMessage(WM_PASTE);
+	if (CWnd *pWnd = GetFocus())
+		pWnd->SendMessage(WM_PASTE);
 }
 
 /**
@@ -920,7 +929,8 @@ void CWebPageDiffFrame::OnEditPaste()
  */
 void CWebPageDiffFrame::OnEditUndo()
 {
-	GetFocus()->SendMessage(WM_UNDO);
+	if (CWnd *pWnd = GetFocus())
+		pWnd->SendMessage(WM_UNDO);
 }
 
 /**
@@ -936,7 +946,8 @@ void CWebPageDiffFrame::OnEditRedo()
  */
 void CWebPageDiffFrame::OnEditSelectAll()
 {
-	GetFocus()->SendMessage(EM_SETSEL, 0, -1);
+	if (CWnd *pWnd = GetFocus())
+		pWnd->SendMessage(EM_SETSEL, 0, -1);
 }
 
 /**
@@ -1116,48 +1127,72 @@ void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 
 void CWebPageDiffFrame::OnWebCompareScreenshots()
 {
-	std::vector<std::wstring> filenames = { L"c:\\tmp\\p0.png", L"c:\\tmp\\p1.png" };
 	PathContext paths;
-	paths.SetPath(0, filenames[0]);
-	paths.SetPath(1, filenames[1]);
-	m_pWebDiffWindow->SaveScreenshots(filenames[0].c_str(), filenames[1].c_str(),
-		Callback<IWebDiffCallback>([paths](HRESULT hr) -> HRESULT
+	const wchar_t *spaths[3];
+	std::vector<String> descs;
+	const int nPanes = m_pWebDiffWindow->GetPaneCount();
+	for (int pane = 0; pane < nPanes; ++pane)
+	{
+		std::shared_ptr<TempFile> pTempFile(new TempFile());
+		pTempFile->Create(_T("SCR"), _T(".png"));
+		paths.SetPath(pane, pTempFile->GetPath());
+		spaths[pane] = paths[pane].c_str();
+		descs.push_back(m_filePaths[pane]);
+		m_tempFiles.push_back(pTempFile);
+	}
+	m_pWebDiffWindow->SaveScreenshots(spaths,
+		Callback<IWebDiffCallback>([paths, descs](HRESULT hr) -> HRESULT
 			{
-				GetMainFrame()->DoFileOpen(0, &paths);
+				GetMainFrame()->DoFileOpen(0, &paths, nullptr, descs.data());
 				return S_OK;
-			})
-		.Get());
+			}).Get());
 }
 
 void CWebPageDiffFrame::OnWebCompareHTMLs()
 {
-	std::vector<std::wstring> filenames = { L"c:\\tmp\\p0.html", L"c:\\tmp\\p1.html" };
 	PathContext paths;
-	paths.SetPath(0, filenames[0]);
-	paths.SetPath(1, filenames[1]);
-	m_pWebDiffWindow->SaveHTMLs(filenames[0].c_str(), filenames[1].c_str(),
-		Callback<IWebDiffCallback>([paths](HRESULT hr) -> HRESULT
+	const wchar_t *spaths[3];
+	std::vector<String> descs;
+	const int nPanes = m_pWebDiffWindow->GetPaneCount();
+	for (int pane = 0; pane < nPanes; ++pane)
+	{
+		std::shared_ptr<TempFile> pTempFile(new TempFile());
+		pTempFile->Create(_T("HTM"), _T(".html"));
+		paths.SetPath(pane, pTempFile->GetPath());
+		spaths[pane] = paths[pane].c_str();
+		descs.push_back(m_filePaths[pane]);
+		m_tempFiles.push_back(pTempFile);
+	}
+	m_pWebDiffWindow->SaveHTMLs(spaths,
+		Callback<IWebDiffCallback>([paths, descs](HRESULT hr) -> HRESULT
 			{
 				PackingInfo infoUnpacker(String(_T("PrettifyHTML")));
-				GetMainFrame()->DoFileOpen(0, &paths, nullptr, nullptr, _T(""), &infoUnpacker);
+				GetMainFrame()->DoFileOpen(0, &paths, nullptr, descs.data(), _T(""), &infoUnpacker);
 				return S_OK;
-			})
-		.Get());
+			}).Get());
 }
 
 void CWebPageDiffFrame::OnWebCompareResourceTrees()
 {
-	std::vector<std::wstring> dirnames = { L"c:\\tmp\\dir1\\", L"c:\\tmp\\dir2\\" };
 	PathContext paths;
-	paths.SetPath(0, dirnames[0]);
-	paths.SetPath(1, dirnames[1]);
-	m_pWebDiffWindow->SaveResourceTree(dirnames[0].c_str(), dirnames[1].c_str(),
-		Callback<IWebDiffCallback>([paths](HRESULT hr) -> HRESULT
+	const wchar_t *spaths[3];
+	std::vector<String> descs;
+	const int nPanes = m_pWebDiffWindow->GetPaneCount();
+	for (int pane = 0; pane < nPanes; ++pane)
+	{
+		std::shared_ptr<TempFolder> pTempFolder(new TempFolder());
+		pTempFolder->Create();
+		paths.SetPath(pane, pTempFolder->GetPath());
+		spaths[pane] = paths[pane].c_str();
+		descs.push_back(m_filePaths[pane]);
+		m_tempFolders.push_back(pTempFolder);
+	}
+	m_pWebDiffWindow->SaveResourceTrees(spaths,
+		Callback<IWebDiffCallback>([paths, descs](HRESULT hr) -> HRESULT
 			{
-				GetMainFrame()->DoFileOrFolderOpen(&paths, nullptr, nullptr, _T(""), true);
+				GetMainFrame()->DoFileOrFolderOpen(&paths, nullptr, descs.data(), _T(""), true);
 				return S_OK;
-			})
-		.Get());
+			}) .Get());
 }
 
 //void CWebPageDiffFrame::OnImgViewDifferences()
