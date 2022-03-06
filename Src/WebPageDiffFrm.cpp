@@ -320,7 +320,10 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 	if (!m_pWebDiffWindow->IsWebView2Installed())
 	{
-		AfxMessageBox(_("WebView2 is not installed").c_str(), MB_OK);
+		if (IDYES == AfxMessageBox(_("WebView2 runtime is not installed. Do you want to download it?").c_str(), MB_ICONWARNING | MB_YESNO))
+		{
+			m_pWebDiffWindow->DownloadWebView2();
+		}
 		return FALSE;
 	}
 
@@ -333,7 +336,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	bool bResult;
 	if (std::count(m_nBufferType, m_nBufferType + m_filePaths.GetSize(), BUFFERTYPE::UNNAMED) == m_filePaths.GetSize())
 	{
-		bResult = m_pWebDiffWindow->New(m_filePaths.GetSize());
+		bResult = SUCCEEDED(m_pWebDiffWindow->New(m_filePaths.GetSize()));
 	}
 	else
 	{
@@ -716,9 +719,9 @@ bool CWebPageDiffFrame::OpenUrls()
 		}
 	}
 	if (m_filePaths.GetSize() == 2)
-		bResult = m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str());
+		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str()));
 	else
-		bResult = m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
+		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str()));
 	return bResult;
 }
 

@@ -249,6 +249,8 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 				m_nWindowType = WindowType::BINARY;
 			else if (param == _T("image"))
 				m_nWindowType = WindowType::IMAGE;
+			else if (param.substr(0, 3) == _T("web"))
+				m_nWindowType = WindowType::WEBPAGE;
 			else
 				m_sErrorMessages.push_back(_T("Unknown window type '") + param + _T("' specified"));
 		}

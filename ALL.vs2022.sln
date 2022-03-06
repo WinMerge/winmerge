@@ -413,6 +413,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WinWebDiff", "WinWebDiff", "{71BCA5B5-F9BB-46CB-9A4E-B169D360F28D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinWebDiff", "Externals\winwebdiff\src\WinWebDiff\WinWebDiff.vcxproj", "{9470B0BF-C97B-4287-BF0F-6CF60EE186D5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{551AB4A6-2721-48F0-96A4-231BD11032B8} = {551AB4A6-2721-48F0-96A4-231BD11032B8}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinWebDiffLib", "Externals\winwebdiff\src\WinWebDiffLib\WinWebDiffLib.vcxproj", "{551AB4A6-2721-48F0-96A4-231BD11032B8}"
 EndProject
