@@ -96,7 +96,7 @@ private:
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 // Generated message map functions
 private:
-	bool OpenUrls();
+	bool OpenUrls(IWebDiffCallback* callback);
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
