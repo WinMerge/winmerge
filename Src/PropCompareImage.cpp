@@ -22,7 +22,7 @@
 PropCompareImage::PropCompareImage(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompareImage::IDD)
  , m_bEnableImageCompare(false)
- , m_nOcrResultType(0)
+ , m_nUserDataFolderType(0)
 {
 }
 
@@ -33,7 +33,7 @@ void PropCompareImage::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMPAREIMAGE_PATTERNS, m_comboPatterns);
 	DDX_Text(pDX, IDC_COMPAREIMAGE_PATTERNS, m_sFilePatterns);
 	DDX_Check(pDX, IDC_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
-	DDX_CBIndex(pDX, IDC_COMPAREIMAGE_OCR_RESULT_TYPE, m_nOcrResultType);
+	DDX_CBIndex(pDX, IDC_COMPAREIMAGE_OCR_RESULT_TYPE, m_nUserDataFolderType);
 	//}}AFX_DATA_MAP
 }
 
@@ -55,7 +55,7 @@ void PropCompareImage::ReadOptions()
 {
 	m_sFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
 	m_bEnableImageCompare = GetOptionsMgr()->GetBool(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP);
-	m_nOcrResultType = GetOptionsMgr()->GetInt(OPT_CMP_IMG_OCR_RESULT_TYPE);
+	m_nUserDataFolderType = GetOptionsMgr()->GetInt(OPT_CMP_IMG_OCR_RESULT_TYPE);
 }
 
 /** 
@@ -68,7 +68,7 @@ void PropCompareImage::WriteOptions()
 	WildcardRemoveDuplicatePatterns(m_sFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_FILEPATTERNS, m_sFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP, m_bEnableImageCompare);
-	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OCR_RESULT_TYPE, m_nOcrResultType);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OCR_RESULT_TYPE, m_nUserDataFolderType);
 }
 
 /** 
@@ -81,7 +81,7 @@ BOOL PropCompareImage::OnInitDialog()
 	combo->AddString(_("Text only").c_str());
 	combo->AddString(_("Line-by-line position and text").c_str());
 	combo->AddString(_("Word-by-word position and text").c_str());
-	combo->SetCurSel(m_nOcrResultType);
+	combo->SetCurSel(m_nUserDataFolderType);
 
 	OptionsPanel::OnInitDialog();
 	return TRUE;  // return TRUE unless you set the focus to a control

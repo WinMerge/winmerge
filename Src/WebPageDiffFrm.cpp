@@ -217,7 +217,7 @@ void CWebPageDiffFrame::ChangeFile(int nBuffer, const String& path)
 	m_strDesc[nBuffer] = _T("");
 	int nActivePane = m_pWebDiffWindow->GetActivePane();
 
-	OpenUrls();
+	OpenUrls(nullptr);
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		m_fileInfo[pane].Update(m_filePaths[pane]);
@@ -333,14 +333,22 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	m_pWebDiffWindow->SetSelDiffColor(colors.clrSelDiff);
 	LoadOptions();
 
+	m_pWebDiffWindow->SetUserDataFolderType(
+		static_cast<IWebDiffWindow::UserDataFolderType>(GetOptionsMgr()->GetInt(OPT_CMP_WEB_USERDATAFOLDER_TYPE)),
+		GetOptionsMgr()->GetBool(OPT_CMP_WEB_USERDATAFOLDER_PERPANE));
+
+	auto callback = Callback<IWebDiffCallback>([](HRESULT hr) -> HRESULT
+		{
+			return S_OK;
+		});
 	bool bResult;
 	if (std::count(m_nBufferType, m_nBufferType + m_filePaths.GetSize(), BUFFERTYPE::UNNAMED) == m_filePaths.GetSize())
 	{
-		bResult = SUCCEEDED(m_pWebDiffWindow->New(m_filePaths.GetSize()));
+		bResult = SUCCEEDED(m_pWebDiffWindow->New(m_filePaths.GetSize(), callback.Get()));
 	}
 	else
 	{
-		bResult = OpenUrls();
+		bResult = OpenUrls(callback.Get());
 	}
 
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
@@ -545,7 +553,7 @@ void CWebPageDiffFrame::OnDestroy()
 void CWebPageDiffFrame::OnFileReload()
 {
 	int nActivePane = m_pWebDiffWindow->GetActivePane();
-	OpenUrls();
+	OpenUrls(nullptr);
 	MoveOnLoad(nActivePane);
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 		m_fileInfo[pane].Update(m_filePaths[pane]);
@@ -705,7 +713,7 @@ void CWebPageDiffFrame::UpdateSplitter()
 {
 }
 
-bool CWebPageDiffFrame::OpenUrls()
+bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 {
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
@@ -719,9 +727,9 @@ bool CWebPageDiffFrame::OpenUrls()
 		}
 	}
 	if (m_filePaths.GetSize() == 2)
-		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str()));
+		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), callback));
 	else
-		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str()));
+		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str(), callback));
 	return bResult;
 }
 

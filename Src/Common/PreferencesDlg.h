@@ -31,6 +31,7 @@
 #include "PropCompareTable.h"
 #include "PropCompareBinary.h"
 #include "PropCompareImage.h"
+#include "PropCompareWebPage.h"
 
 #include "PropertyPageHost.h"
 #include "CMoveConstraint.h"
@@ -79,7 +80,7 @@ protected:
 	PropCompareTable m_pageCompareTable;
 	PropCompareBinary m_pageCompareBinary;
 	PropCompareImage m_pageCompareImage;
-
+	PropCompareWebPage m_pageCompareWebPage;
 
 	CMapPtrToPtr m_mapPP2HTI;
 

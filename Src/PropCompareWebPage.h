@@ -1,7 +1,7 @@
 /** 
- * @file  PropCompareImage.h
+ * @file  PropCompareWebPage.h
  *
- * @brief Declaration of PropCompareImage propertysheet
+ * @brief Declaration of PropCompareWebPage propertysheet
  */
 #pragma once
 
@@ -13,29 +13,27 @@ class COptionsMgr;
 /**
  * @brief Property page to set image compare options for WinMerge.
  */
-class PropCompareImage : public OptionsPanel
+class PropCompareWebPage : public OptionsPanel
 {
 // Construction
 public:
-	explicit PropCompareImage(COptionsMgr *optionsMgr);
+	explicit PropCompareWebPage(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions() override;
 	virtual void WriteOptions() override;
 
 // Dialog Data
-	//{{AFX_DATA(PropCompareImage)
-	enum { IDD = IDD_PROPPAGE_COMPARE_IMAGE };
-	CComboBox m_comboPatterns;
-	String m_sFilePatterns;
-	bool m_bEnableImageCompare;
+	//{{AFX_DATA(PropCompareWebPage)
+	enum { IDD = IDD_PROPPAGE_COMPARE_WEBPAGE };
+	bool m_bUserDataFolderPerPane;
 	int  m_nUserDataFolderType;
 	//}}AFX_DATA
 
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(PropCompareImage)
+	//{{AFX_VIRTUAL(PropCompareWebPage)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -43,11 +41,9 @@ public:
 // Implementation
 protected:
 	// Generated message map functions
-	//{{AFX_MSG(PropCompareImage)
+	//{{AFX_MSG(PropCompareWebPage)
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnDefaults();
-	afx_msg void OnDropDownPatterns();
-	afx_msg void OnCloseUpPatterns();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
