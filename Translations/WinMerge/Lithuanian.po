@@ -211,6 +211,15 @@ msgstr "&Vektorinių vaizdų mastelio keitimas"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "&Failas"
 
@@ -1955,6 +1964,15 @@ msgstr "Lyginti pav&eikslėlius lyginant katalogus"
 msgid "OCR result:"
 msgstr "Optinio ženklų atpažinimo (OCR) rezultatas:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
 
@@ -3296,6 +3314,9 @@ msgstr "Užverti k&itas korteles"
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "„Frhed“ neįdiegtas."
 
@@ -3473,6 +3494,12 @@ msgstr "Paeilutinė pozicija ir tekstas"
 
 msgid "Word-by-word position and text"
 msgstr "Pažodinė pozicija ir tekstas"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių"

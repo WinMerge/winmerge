@@ -244,6 +244,15 @@ msgstr "Mise à l'échelle de l'image vectorielle"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fichier"
@@ -2448,6 +2457,15 @@ msgstr "&Activer la comparaison d'images dans la comparaison de dossiers"
 msgid "OCR result:"
 msgstr "Résultat OCR :"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "Affichage &Hexa"
@@ -4371,6 +4389,9 @@ msgstr "Fermer les autres &onglets"
 msgid "Enable &Auto Max Width"
 msgstr "Activer largeur &auto max"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
 
@@ -4556,6 +4577,12 @@ msgstr "Position et texte ligne par ligne"
 
 msgid "Word-by-word position and text"
 msgstr "Position et texte mot par mot"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 #, c-format
 msgid "Allow only one instance to run"

@@ -245,6 +245,15 @@ msgstr "벡터 이미지 확대/축소(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"
@@ -2449,6 +2458,15 @@ msgstr "폴더 비교시 이미지 비교 활성화(&E)"
 msgid "OCR result:"
 msgstr "OCR 결과:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "16진수 보기(&H)"
@@ -4360,6 +4378,9 @@ msgstr "다른 탭 닫기(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "자동 최대 너비 사용(&A)"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed가 설치되지 않았습니다."
 
@@ -4545,6 +4566,12 @@ msgstr "줄별 위치 및 텍스트"
 
 msgid "Word-by-word position and text"
 msgstr "단어별 위치 및 텍스트"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 #, c-format
 msgid "Allow only one instance to run"

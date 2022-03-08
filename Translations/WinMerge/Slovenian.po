@@ -211,6 +211,15 @@ msgstr "Prilagoditev &vektorskih slik"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "&Datoteka"
 
@@ -1967,6 +1976,15 @@ msgstr "Omogoči primerjavo &slik v primerjanju map"
 msgid "OCR result:"
 msgstr "Rezultat OCR:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
 
@@ -3649,6 +3667,9 @@ msgstr "Zapri d&ruge zavihke"
 msgid "Enable &Auto Max Width"
 msgstr "Omogoči sa&modejno največjo širino"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
 
@@ -3832,6 +3853,12 @@ msgstr "Položaj vrstico po vrstico in besedilo"
 
 msgid "Word-by-word position and text"
 msgstr "Položaj besedo po besedo in besedilo"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"

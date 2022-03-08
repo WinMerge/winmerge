@@ -214,6 +214,15 @@ msgstr "Messa à a scala di a fiura &vettoriale"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "&Schedariu"
 
@@ -1990,6 +1999,15 @@ msgstr "&Permette di paragunà e fiure in u paragone di cartulare"
 msgid "OCR result:"
 msgstr "Risultatu OCR :"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
@@ -3745,6 +3763,9 @@ msgstr "Chjode l’&altre unghjette"
 msgid "Enable &Auto Max Width"
 msgstr "&Attivà a larghezza massima autumatica"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ùn hè micca installatu."
 
@@ -3930,6 +3951,12 @@ msgstr "Pusizione è testu linea à a linea"
 
 msgid "Word-by-word position and text"
 msgstr "Pusizione è testu parolla à a parolla"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"

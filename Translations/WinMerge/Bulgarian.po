@@ -208,6 +208,15 @@ msgstr "Мащабиране на &векторно изображение"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "&Файл"
 
@@ -1972,6 +1981,15 @@ msgstr "&Сравняване и на изображения при сравня
 msgid "OCR result:"
 msgstr "Резултат от OCR:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
 
@@ -3698,6 +3716,9 @@ msgstr "Затваряне на д&ругите раздели"
 msgid "Enable &Auto Max Width"
 msgstr "Автоматична &максимална ширина"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed не е инсталиран."
 
@@ -3881,6 +3902,12 @@ msgstr "Позиция на редове и текст"
 
 msgid "Word-by-word position and text"
 msgstr "Позиция на думи и текст"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Позволи само едно стартирано копие"

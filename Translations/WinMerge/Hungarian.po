@@ -239,6 +239,15 @@ msgstr "Vektor kép méretezése"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fájl"
@@ -2443,6 +2452,15 @@ msgstr "Képösszehasonlítás mappák összehasonlításakor is"
 msgid "OCR result:"
 msgstr "Karakterfelismerő találatai:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "Hexadecimális nézet"
@@ -4356,6 +4374,9 @@ msgstr "Többi tabulátor bezárása"
 msgid "Enable &Auto Max Width"
 msgstr "Auto oszlopszélesség be"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Az Frhed hexa szerkesztő nincs telepítve."
 
@@ -4541,6 +4562,12 @@ msgstr "Pozíció és szöveg sorról sorra"
 
 msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"

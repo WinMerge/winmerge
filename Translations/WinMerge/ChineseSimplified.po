@@ -212,6 +212,15 @@ msgstr "矢量图形缩放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "文件(&F)"
 
@@ -1972,6 +1981,15 @@ msgstr "在文件夹比较中启用图像比较(&E)"
 msgid "OCR result:"
 msgstr "字符识别结果:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
 
@@ -3650,6 +3668,9 @@ msgstr "关闭其他标签页(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "启用自动最大宽度(&A)"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安装"
 
@@ -3833,6 +3854,12 @@ msgstr "逐行定位输入"
 
 msgid "Word-by-word position and text"
 msgstr "逐字定位输入"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "只允许运行一个实例"

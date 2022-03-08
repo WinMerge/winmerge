@@ -210,6 +210,15 @@ msgstr "ベクター画像スケーリング(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "ファイル(&F)"
 
@@ -1970,6 +1979,15 @@ msgstr "フォルダー比較で画像比較を有効にする(&E)"
 msgid "OCR result:"
 msgstr "OCRの結果:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
@@ -3654,6 +3672,9 @@ msgstr "他のタブをすべて閉じる(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed がインストールされていません。"
 
@@ -3837,6 +3858,12 @@ msgstr "行毎の位置情報とテキスト"
 
 msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"

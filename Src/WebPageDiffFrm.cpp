@@ -210,25 +210,6 @@ void CWebPageDiffFrame::MoveOnLoad(int nPane, int)
 	m_pWebDiffWindow->SetActivePane(nPane);
 }
 
-void CWebPageDiffFrame::ChangeFile(int nBuffer, const String& path)
-{
-	m_filePaths[nBuffer] = path;
-	m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
-	m_strDesc[nBuffer] = _T("");
-	int nActivePane = m_pWebDiffWindow->GetActivePane();
-
-	OpenUrls(nullptr);
-	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
-	{
-		m_fileInfo[pane].Update(m_filePaths[pane]);
-	}
-
-	MoveOnLoad(nActivePane);
-
-	UpdateHeaderPath(nBuffer);
-	UpdateLastCompareResult();
-}
-
 /**
  * @brief DirDoc gives us its identity just after it creates us
  */
@@ -553,10 +534,14 @@ void CWebPageDiffFrame::OnDestroy()
 void CWebPageDiffFrame::OnFileReload()
 {
 	int nActivePane = m_pWebDiffWindow->GetActivePane();
-	OpenUrls(nullptr);
-	MoveOnLoad(nActivePane);
-	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
-		m_fileInfo[pane].Update(m_filePaths[pane]);
+	OpenUrls(
+		Callback<IWebDiffCallback>([nActivePane, this](HRESULT hr) -> HRESULT
+			{
+				MoveOnLoad(nActivePane);
+				for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+					m_fileInfo[pane].Update(m_filePaths[pane]);
+				return S_OK;
+			}).Get());
 }
 
 void CWebPageDiffFrame::OnFileClose() 

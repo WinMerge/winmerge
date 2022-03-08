@@ -239,6 +239,15 @@ msgstr "向量圖縮放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "檔案 (&F)"
@@ -2451,6 +2460,15 @@ msgstr "在資料夾比較中啟用圖片比較 (&E)"
 msgid "OCR result:"
 msgstr "OCR 結果："
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "二進制顯示 (&H)"
@@ -4371,6 +4389,9 @@ msgstr "關閉其他分頁 (&O)"
 msgid "Enable &Auto Max Width"
 msgstr "開啟自動最大寬度 (&A)"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安裝。"
 
@@ -4555,6 +4576,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
 msgstr ""
 
 #, c-format

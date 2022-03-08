@@ -211,6 +211,15 @@ msgstr "Vectorafbeeldingsschaling"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "Bestand"
 
@@ -1979,6 +1988,15 @@ msgstr "Afbeeldingsvergelijking in mapvergelijking inschakelen"
 msgid "OCR result:"
 msgstr "OCR-resultaat:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Hex-weergave"
 
@@ -3694,6 +3712,9 @@ msgstr "Andere tabs sluiten"
 msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Fhred is niet geïnstalleerd"
 
@@ -3877,6 +3898,12 @@ msgstr "Positie en tekst regel per regel"
 
 msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"

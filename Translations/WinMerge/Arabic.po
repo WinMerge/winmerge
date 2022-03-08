@@ -212,6 +212,15 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "&ملف"
 
@@ -1965,6 +1974,15 @@ msgstr ""
 msgid "OCR result:"
 msgstr ""
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "ع&رض بصيغة نظام عد ستة عشري"
 
@@ -3609,6 +3627,9 @@ msgstr "إغلا&ق التبويبات الأخرى"
 msgid "Enable &Auto Max Width"
 msgstr "&تفعيل النطاق الأقصى التلقائي"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "المحرر Frhed غير مثبت."
 
@@ -3791,6 +3812,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
 msgstr ""
 
 msgid "Allow only one instance to run"

@@ -212,6 +212,15 @@ msgstr "Vektorbild skalning"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "Arkiv"
 
@@ -1968,6 +1977,15 @@ msgstr "Aktivera bildsjämförelse i mappjämförelse"
 msgid "OCR result:"
 msgstr "OCR resultat:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Hex visning"
 
@@ -3645,6 +3663,9 @@ msgstr "Stäng alla andra flikar"
 msgid "Enable &Auto Max Width"
 msgstr "Aktivera automatisk högsta bredd"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed är inte installerad."
 
@@ -3828,6 +3849,12 @@ msgstr "Rad-för-rad position och text"
 
 msgid "Word-by-word position and text"
 msgstr "Ord-för-ord position och text"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Tillåt endast att en instans körs"

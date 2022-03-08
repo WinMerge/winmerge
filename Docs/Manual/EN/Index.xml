@@ -16,6 +16,7 @@
 <!ENTITY Compare_bin SYSTEM "Compare_bin.xml">
 <!ENTITY Compare_table SYSTEM "Compare_table.xml">
 <!ENTITY Compare_images SYSTEM "Compare_images.xml">
+<!ENTITY Compare_webpages SYSTEM "Compare_webpages.xml">
 <!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY Locales SYSTEM "Locales.xml">
 <!ENTITY Plugins SYSTEM "Plugins.xml">
@@ -122,6 +123,8 @@
   &Compare_table;
 
   &Compare_images;
+
+  &Compare_webpages;
 
   &Configuration;
 

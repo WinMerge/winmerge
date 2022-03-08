@@ -212,6 +212,15 @@ msgstr "Skalowanie obrazu wektorowego"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 msgid "&File"
 msgstr "Plik"
 
@@ -1956,6 +1965,15 @@ msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 msgid "OCR result:"
 msgstr "Wynik OCR:"
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
 
@@ -3297,6 +3315,9 @@ msgstr "Zamknij inne karty"
 msgid "Enable &Auto Max Width"
 msgstr "Włącz automatyczną maksymalną szerokość"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Free Hex Editor nie został zainstalowany."
 
@@ -3474,6 +3495,12 @@ msgstr "Pozycja i tekst wiersz-po-wierszu"
 
 msgid "Word-by-word position and text"
 msgstr "Pozycja i tekst słowo-po-słowie"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Zezwól na uruchomienie tylko jednej instancji programu"

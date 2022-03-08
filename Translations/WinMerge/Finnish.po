@@ -238,6 +238,15 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Compare &Screenshots"
+msgstr ""
+
+msgid "Compare HTMLs"
+msgstr ""
+
+msgid "Compare Resource Trees"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "Tiedosto"
@@ -2439,6 +2448,15 @@ msgstr ""
 msgid "OCR result:"
 msgstr ""
 
+msgid "Web Page"
+msgstr ""
+
+msgid "User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "&Hexanäkymä"
@@ -4291,6 +4309,9 @@ msgstr "Sulje &muut välilehdet"
 msgid "Enable &Auto Max Width"
 msgstr "Käytä &automaattista maksimi leveyttä"
 
+msgid "We&b"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ei ole asennettu."
 
@@ -4475,6 +4496,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
 msgstr ""
 
 #, c-format
