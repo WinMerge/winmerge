@@ -31,7 +31,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Copiar al lado &derecho\tAlt+Der."
 
 msgid "Copy from Middle"
 msgstr ""
@@ -40,7 +40,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Copiar al lado &izquierdo\tAlt+Izq."
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -1106,7 +1106,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Mostrar \"Seleccione Archivos o Carpetas\" al Iniciar"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Cerrar \"Seleccione Archivos o Carpetas\" al hacer clic en Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&uto-completar en diálogos de apertura:"
@@ -2279,6 +2279,10 @@ msgstr "Archivo de filtros (*.flt)|*.flt|Todos los archivos(*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"¡No se encuentra la plantilla de filtro de archivos!\n"
+"\n"
+"Por favor copie el archivo %1 a la carpeta WinMerge/Filters:\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3047,13 +3051,13 @@ msgid "Text files are identical"
 msgstr "Los archivos son iguales"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Central y der. son idénticos)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Izq. y der. son idénticos)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Izq. y central son idénticos)"
 
 msgid "Text files are different"
 msgstr "Los archivos son diferentes"
@@ -3132,12 +3136,15 @@ msgstr "Indica que lado tiene la fecha de modificación más reciente."
 
 msgid "Left side file version, only for some file types."
 msgstr ""
+"Versión del archivo del lado izquierdo, sólo para algunos tipos de archivo."
 
 msgid "Right side file version, only for some file types."
 msgstr ""
+"Versión del archivo del lado derecho, sólo para algunos tipos de archivo."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""
+"Versión del archivo del lado central, sólo para algunos tipos de archivo."
 
 msgid "Short comparison result."
 msgstr "Resultados de la comparación abreviados."
@@ -3545,15 +3552,23 @@ msgstr ""
 
 msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
+"\n"
+"Copiar a la der. (Alt+Der.)"
 
 msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
+"\n"
+"Copiar a la izq. (Alt+Izq.)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Copiar a la der. y avanzar (Ctrl+Alt+Der.)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Copiar a la izq. y avanzar (Ctrl+Alt+Izq.)"
 
 msgid "\nCopy All to Right"
 msgstr "\nCopiar todas al lado Derecho"

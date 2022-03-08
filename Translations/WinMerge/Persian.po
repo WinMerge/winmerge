@@ -30,7 +30,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "&o رونوشت برداري به سمت راست \tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -39,7 +39,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "&y رونوشت برداري به سمت چپ \tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -2783,6 +2783,10 @@ msgstr " پرونده صافيها  (*.flt)|*.flt|همه پرونده ها  (*.*
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+" نمي توان پرونده قالب صافي را يافت ! \n"
+"\n"
+" لطفا پرونده روبرو به پوشه صافيهاي وينمرج (زير) رونوشت برداري شود : %1 \n"
+"%2"
 
 #, c-format
 msgid ""
@@ -3731,10 +3735,10 @@ msgid "Tells which side has newer modification date."
 msgstr " مي گويد که تاريخ تغيير کدام سمت جديدتر است "
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr " نگارش پرونده سمت چپ، فقط براي برخي از انواع پرونده ها "
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr " نگارش پرونده سمت راست، فقط براي برخي از انواع پرونده ها "
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

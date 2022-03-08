@@ -32,7 +32,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "K&opiatu Eskuinera\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -41,7 +41,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kop&iatu Ezkerrera\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -2766,7 +2766,7 @@ msgstr "Agiri Iragazkiak (*.flt)|*.flt|Agiri Denak (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Ezinezkoa iragazki agiri eredua aurkitzea!\n\nMesedez kopiatu agiri hau: %1 WinMerge/Iragazkiak agiritegia:\n%2."
 
 #, c-format
 msgid ""
@@ -3710,10 +3710,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Esaten du zein aldek duen aldaketa egun berriagoa."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Ezkerraldeko agiri bertsioa, agiri-mota batzuentzat bakarrik."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Eskuinaldeko agiri bertsioa, agiri-mota batzuentzat bakarrik."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

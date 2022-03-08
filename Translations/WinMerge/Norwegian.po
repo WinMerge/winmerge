@@ -29,19 +29,19 @@ msgid "Copy to Middle"
 msgstr "Kopier til midten"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopier til &høyre\tAlt+Høyre"
 
 msgid "Copy from Middle"
 msgstr "Kopier fra midten"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopier fr&a høyre\tAlt+Shift+Venstre"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopier til &venstre\tAlt+Venstre"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopier &fra venstre\tAlt+Shift+Høyre"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Kopier valgte linje(r) til midten"
@@ -104,7 +104,7 @@ msgid "With &Registered Application"
 msgstr "Med &registrert program"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Med &eksternt redigeringsprogram\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Med..."
@@ -733,16 +733,16 @@ msgid "Copy Selected Line(s) from Ri&ght to"
 msgstr "Kopier valgte linje(r) fra hø&yre til"
 
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Kopier fra venstre\tAlt+Shift+Right"
+msgstr "Kopier fra venstre\tAlt+Shift+Høyre"
 
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Kopier fra høyre\tAlt+Shift+Left"
+msgstr "Kopier fra høyre\tAlt+Shift+Venstre"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Kopier til høyre og g&å videre\tCtrl+Alt+Right"
+msgstr "Kopier til høyre og g&å videre\tCtrl+Alt+Høyre"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Kopier &til venstre og gå videre\tCtrl+Alt+Left"
+msgstr "Kopier &til venstre og gå videre\tCtrl+Alt+Venstre"
 
 msgid "Copy &All to Right"
 msgstr "&Kopier alt til høyre"
@@ -2282,7 +2282,7 @@ msgstr "Filfiltere (*.flt)|*.flt|Alle filer (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Kan ikke finne filfilter-mal!\n\nKopier filen %1 til WinMerge/Filtermappe:\n%2."
 
 #, c-format
 msgid ""
@@ -2654,22 +2654,22 @@ msgid "Break at whitespace or punctuation"
 msgstr "Bryt ved blanktegn eller tegnsetting"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr "Kopier til &midten\tAlt+Right"
+msgstr "Kopier til &midten\tAlt+Høyre"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr "Kopier til &midten\tAlt+Left"
+msgstr "Kopier til &midten\tAlt+Venstre"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr "Kopier fra midten\tAlt+Shift+Right"
+msgstr "Kopier fra midten\tAlt+Shift+Høyre"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr "Kopier fra midten\tAlt+Shift+Left"
+msgstr "Kopier fra midten\tAlt+Shift+Venstre"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr "Kopier til midten og gå videre\tCtrl+Alt+Right"
+msgstr "Kopier til midten og gå videre\tCtrl+Alt+Høyre"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr "Kopier til midten og gå videre\tCtrl+Alt+Left"
+msgstr "Kopier til midten og gå videre\tCtrl+Alt+Venstre"
 
 msgid "Copy All to Middle"
 msgstr "Kopier alt til midten"
@@ -3150,10 +3150,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Forteller hvilken side som har en nyere endringsdato."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Venstre side filversjon, bare for noen filtyper."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Høyre side filversjon, bare for noen filetyper."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""
@@ -3568,16 +3568,16 @@ msgstr ""
 "Siste forskjell (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nKopier høyre (Alt+Høyre)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nKopier venstre (Alt+Venstre)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nKopier høyre og gå videre (Ctrl+Alt+Høyre)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nKopier venstre og gå videre (Ctrl+Alt+Venstre)"
 
 msgid "\nCopy All to Right"
 msgstr "\nKopier alt til høyre"

@@ -37,19 +37,19 @@ msgid "Copy to Middle"
 msgstr "가운데로 복사"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "오른쪽으로 복사(&O)\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "가운데에서 복사"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "오른쪽에서 복사(&M)\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "왼쪽으로 복사(&Y)\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "왼쪽에서 복사(&F)\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "선택한 줄을 가운데로 복사"
@@ -243,7 +243,7 @@ msgid "&Vector Image Scaling"
 msgstr "벡터 이미지 확대/축소(&V)"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "이미지에서 추출한 텍스트 비교(&T)"
 
 msgid "Compare &Screenshots"
 msgstr ""
@@ -1371,7 +1371,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "시작시 \"파일 또는 폴더 선택\" 대화 상자 보이기"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "비교 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1717,10 +1717,10 @@ msgid "Default arguments:"
 msgstr "기본 인수:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "모든 플러그인을 보이고, 확장 프로그램은 확인하지 않기"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "언패킹 이후 동일한 창 종류에서 파일 열기(&O)"
 
 msgid "&Plugin Pipeline:"
 msgstr "플러그인 파이프라인(&P):"
@@ -2802,7 +2802,7 @@ msgstr "파일 필터 (*.flt)|*.flt|전체 필터 (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "필터 템플릿 파일을 찾을 수 없습니다!\n\n%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n%2."
 
 #, c-format
 msgid ""
@@ -3668,13 +3668,13 @@ msgid "Text files are identical"
 msgstr "텍스트 파일이 같습니다"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (가운데와 오른쪽은 동일합니다)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (왼쪽과 오른쪽은 동일합니다)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (왼쪽과 가운데는 동일합니다)"
 
 #, c-format
 msgid "Text files are different"
@@ -3771,13 +3771,13 @@ msgid "Tells which side has newer modification date."
 msgstr "어느 쪽이 더 최근에 수정되었는지 알려줍니다."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "왼쪽 파일 버전, 몇몇 파일 형식만."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "오른쪽 파일 버전, 몇몇 파일 형식만."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "가운데 파일 버전, 몇몇 파일 형식만."
 
 #, c-format
 msgid "Short comparison result."
@@ -4229,16 +4229,16 @@ msgstr ""
 "마지막 차이점 (Alt+End)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\n오른쪽으로 복사 (Alt+Right)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\n왼쪽으로 복사 (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\n오른쪽으로 복사 후 진행 (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\n왼쪽으로 복사 후 진행 (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\n모두 오른쪽으로 복사"

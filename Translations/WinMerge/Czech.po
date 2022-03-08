@@ -29,7 +29,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Kopírovat dop&rava\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -38,7 +38,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Kopírovat do&leva\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -113,7 +113,7 @@ msgid "With &Registered Application"
 msgstr "Přidruženou &aplikací"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Externím &editorem\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Zvolit..."
@@ -2736,7 +2736,7 @@ msgstr "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Nelze nalézt soubor s filtrem!\n\nZkopírujte prosím soubor %1 do složky s filtry pro aplikaci WinMerge:\n%2."
 
 #, c-format
 msgid ""
@@ -3655,10 +3655,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Ukáže, na které straně je novější datum změny"
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Verze souboru na levé straně, pouze pro některé typy souborů"
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Verze souboru na pravé straně, pouze pro některé typy souborů"
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

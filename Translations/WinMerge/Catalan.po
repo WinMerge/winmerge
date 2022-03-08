@@ -28,19 +28,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Copia a la &dreta\tAlt+Dreta"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copia des de la dreta\tAlt+Shift+Esquerra"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Copia a l'&esquerra\tAlt+Esquerra"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copia des de l'esquerra\tAlt+Shift+Dreta"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -96,7 +96,7 @@ msgid "< Empty >"
 msgstr "< Buit >"
 
 msgid "&Go to...\tCtrl+G"
-msgstr "&Vés a...\tCtrl+G"
+msgstr "&Vés a...\tControl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
 msgstr ""
@@ -112,7 +112,7 @@ msgid "With &Registered Application"
 msgstr ""
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "Amb l'&editor extern\tCtrl+Alt+E"
+msgstr "Amb l'&editor extern\tControl+Alt+E"
 
 msgid "&With..."
 msgstr "A&mb..."
@@ -302,7 +302,7 @@ msgid "Recent F&iles Or Folders"
 msgstr "Fitxers i carpetes recents"
 
 msgid "E&xit\tCtrl+Q"
-msgstr "&Surt\tCtrl+Q"
+msgstr "&Surt\tControl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -389,7 +389,7 @@ msgid "&Window"
 msgstr "Fi&nestra"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr "&Tanca\tCtrl+W"
+msgstr "&Tanca\tControl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -563,7 +563,7 @@ msgstr "Actualit&za\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Actualitza &seleccionats\tCtrl+F5"
+msgstr "Actualitza &seleccionats\tControl+F5"
 
 #, c-format
 msgid "&Merge"
@@ -654,7 +654,7 @@ msgid "Save &Right As..."
 msgstr ""
 
 msgid "&Print...\tCtrl+P"
-msgstr "&Imprimeix...\tCtrl+P"
+msgstr "&Imprimeix...\tControl+P"
 
 msgid "Page Set&up..."
 msgstr "Configuració de la pàgina..."
@@ -720,7 +720,7 @@ msgstr "&Punts d'interès"
 
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "&Activa/desactiva el punt d'interès\tCtrl+F2"
+msgstr "&Activa/desactiva el punt d'interès\tControl+F2"
 
 #, c-format
 msgid "&Next Bookmark\tF2"
@@ -915,10 +915,10 @@ msgid "Copy from Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Copia a la dreta i a&vança\tAlt+Control+Dreta..."
+msgstr "Copia a la dreta i a&vança\tControl+Alt+Dreta"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Copia a l'esquerra i avan&ça\tAlt+Control+Esquerra..."
+msgstr "Copia a l'esquerra i avan&ça\tControl+Alt+Esquerra"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -2733,7 +2733,7 @@ msgstr "Filtres de fitxer (*.flt)|*.flt|Tots els fitxers (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "No s'ha trobat el fitxer de plantilla de filtre de fitxer!\n\nCopieu el fitxer %1 a la carpeta WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -3652,10 +3652,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Diu quin costat te una data de modificació més recent."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Versió del fitxer del costat esquerre, només per a alguns tipus de fitxer."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Versió del fitxer del costat dret. només per a alguns tipus de fitxer."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

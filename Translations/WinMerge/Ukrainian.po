@@ -30,7 +30,7 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Скопіювати на &праву панель\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
@@ -39,7 +39,7 @@ msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Скопіювати на &ліву панель\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
@@ -2766,6 +2766,10 @@ msgstr "Файли фільтрів (*.flt)|*.flt|Всі файли (*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"Не вдалося знайти файл фільтра!\n"
+"\n"
+"Скопіюйте файл %1 у теку з фільтрами:\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3707,10 +3711,10 @@ msgid "Tells which side has newer modification date."
 msgstr "Показати, з якої зі сторін дата зміни файлу новіша"
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Версія файлу ліворуч, лише для деяких типів файлів."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Версія файлу праворуч, лише для деяких типів файлів."
 
 msgid "Middle side file version, only for some file types."
 msgstr ""

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-01-23 15:00+0200\n"
+"PO-Revision-Date: 2022-03-04 16:15+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -32,19 +32,19 @@ msgid "Copy to Middle"
 msgstr "Zur Mitte kopieren"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "&Nach rechts kopieren\tAlt+Rechts"
 
 msgid "Copy from Middle"
 msgstr "Von der Mitte kopieren"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "V&on rechts kopieren\tAlt+Umschalt+Links"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "N&ach links kopieren\tAlt+Links"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "&Von links kopieren\tAlt+Umschalt+Rechts"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Ausgewählte Zeile(n) zur Mitte kopieren"
@@ -238,7 +238,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Vektorbild-Skalierung"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Extrahierten &Text aus den Bildern vergleichen"
 
 msgid "Compare &Screenshots"
 msgstr ""
@@ -259,7 +259,7 @@ msgstr "&Neu"
 
 #, c-format
 msgid "&Text"
-msgstr "&Text\tStrg+N"
+msgstr "&Text"
 
 msgid "T&able"
 msgstr "T&abelle"
@@ -1367,7 +1367,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Öffnen-Dialog beim Programmstart anzeigen"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "Öffnen-Dialog beim Klick auf 'Compare' schließen"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1713,10 +1713,10 @@ msgid "Default arguments:"
 msgstr "Standardargumente:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Alle Plugins anzeigen, die Erweiterung nicht überprüfen"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen"
 
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin-Pipeline:"
@@ -1752,7 +1752,7 @@ msgid "Go to"
 msgstr "Gehe zu"
 
 msgid "G&o to:"
-msgstr "Zeile/Unterschield:"
+msgstr "Zeile/Unterschied:"
 
 #, c-format
 msgid "File"
@@ -2732,7 +2732,7 @@ msgstr "Dateifilter (*.flt)|*.flt|Alle Dateien (*.*)|*.*||"
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr ""
+msgstr "Die Filtervorlage konnte nicht gefunden werden!\n\nBitte kopieren Sie die Datei %1 in den Filterordner:\n%2."
 
 #, c-format
 msgid "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
@@ -3438,13 +3438,13 @@ msgid "Text files are identical"
 msgstr "Textdateien sind identisch"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Mitte und Rechts sind identisch)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Links und Rechts sind identisch)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Links und Mitte sind identisch)"
 
 #, c-format
 msgid "Text files are different"
@@ -3541,13 +3541,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Zeigt, welche Seite ein neueres Änderungsdatum hat."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Linke Dateiversion, nur für einige Dateitypen."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Rechte Dateiversion, nur für einige Dateitypen."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Mittlere Dateiversion, nur für einige Dateitypen."
 
 #, c-format
 msgid "Short comparison result."
@@ -3907,16 +3907,16 @@ msgid "\nLast Difference (Alt+End)"
 msgstr "\nLetzter Unterschied (Alt+Ende)"
 
 msgid "\nCopy to Right (Alt+Right)"
-msgstr ""
+msgstr "\nNach rechts kopieren (Alt+Rechts)"
 
 msgid "\nCopy to Left (Alt+Left)"
-msgstr ""
+msgstr "\nNach links kopieren (Alt+Links)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
+msgstr "\nNach rechts kopieren und fortschreiten (Strg+Alt+Rechts)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
+msgstr "\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
 
 msgid "\nCopy All to Right"
 msgstr "\nAlles nach rechts kopieren"
@@ -4018,11 +4018,11 @@ msgstr "Shell"
 
 #, c-format
 msgid "Close &Left Tabs"
-msgstr "&Linke Tabs schließen"
+msgstr "Tabs &links vom aktuellen Tab schließen"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "&Rechte Tabs schließen"
+msgstr "Tabs &rechts vom aktuellen Tab schließen"
 
 #, c-format
 msgid "Close &Other Tabs"
@@ -4491,7 +4491,7 @@ msgid "Clipboard at %s"
 msgstr "Zwischenablage am %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie Windows+V und klicken dann auf die Schaltfläche 'Einschalten'."
+msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
 
 msgid "This system does not support clipboard history."
 msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."

@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr ""
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr ""
+msgstr "Sağa k&opyala\tAlt+Sağ"
 
 msgid "Copy from Middle"
 msgstr ""
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Sağ&dan kopyala\tAlt+Shift+Sol"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr ""
+msgstr "Sola kop&yala\tAlt+Sol"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "So&ldan kopyala\tAlt+Shift+Sağ"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -209,7 +209,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Vektör görsel ölçekleme"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Görselden &ayıklanan metni karşılaştır"
 
 msgid "Compare &Screenshots"
 msgstr ""
@@ -1105,7 +1105,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Dosya ya da klasör seçin\" &penceresi açılışta görüntülensin"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "\"Dosya ya da klasör seçin\" penceresi &Tamam ile kapatılsın"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Aç &penceresi otomatik olarak doldurulsun:"
@@ -1385,10 +1385,10 @@ msgid "Default arguments:"
 msgstr "Varsayılan değişkenler:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr ""
+msgstr "Uzantıya bakılmadan tüm eklentiler görüntülensin"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr ""
+msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
 
 msgid "&Plugin Pipeline:"
 msgstr "&Eklenti bağlantı yolu:"
@@ -2292,6 +2292,10 @@ msgstr "Dosya süzgeçleri (*.flt)|*.flt|Tüm dosyalar (*.*)|*.*||"
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
+"Dosya süzgeci kalıp dosyası bulunamıyor!\n"
+"\n"
+"Lütfen %1 dosyasını, WinMerge/Filters klasörüne kopyalayın:\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -3090,13 +3094,13 @@ msgid "Text files are identical"
 msgstr "Metin dosyaları aynı"
 
 msgid " (Middle and right are identical)"
-msgstr ""
+msgstr " (Orta ve sağ dosya aynı)"
 
 msgid " (Left and right are identical)"
-msgstr ""
+msgstr " (Sol ve sağ dosya aynı)"
 
 msgid " (Left and middle are identical)"
-msgstr ""
+msgstr " (Sol ve orta dosya aynı)"
 
 msgid "Text files are different"
 msgstr "Metin dosyaları farklı"
@@ -3174,13 +3178,13 @@ msgid "Tells which side has newer modification date."
 msgstr "Hangi panonun en son değişiklik tarihine sahip olduğunu söyler."
 
 msgid "Left side file version, only for some file types."
-msgstr ""
+msgstr "Soldaki dosyanın sürümü, yalnız bazı dosya türleri için."
 
 msgid "Right side file version, only for some file types."
-msgstr ""
+msgstr "Sağdaki dosyanın sürümü, yalnız bazı dosya türleri için."
 
 msgid "Middle side file version, only for some file types."
-msgstr ""
+msgstr "Ortadaki dosyanın sürümü, yalnız bazı dosya türleri için."
 
 msgid "Short comparison result."
 msgstr "Kısa karşılaştırma sonucu."
@@ -3596,15 +3600,23 @@ msgstr ""
 
 msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
+"\n"
+"Sağa kopyala (Alt+Sağ)"
 
 msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
+"\n"
+"Sola kopyala (Alt+Sol)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
+"\n"
+"Sağa kopyala ve ilerle (Ctrl+Alt+Sağ)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
+"\n"
+"Sola kopyala ve ilerle (Ctrl+Alt+Sol)"
 
 msgid "\nCopy All to Right"
 msgstr ""
