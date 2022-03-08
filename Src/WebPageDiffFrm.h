@@ -43,7 +43,7 @@ public:
 
 // Operations
 public:
-	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
+	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
@@ -118,6 +118,7 @@ private:
 	std::vector<int> m_unpackerSubcodes[3];
 	std::vector<std::shared_ptr<TempFile>> m_tempFiles;
 	std::vector<std::shared_ptr<TempFolder>> m_tempFolders;
+	std::function<void()> m_callbackOnOpenCompleted;
 
 	//{{AFX_MSG(CWebPageDiffFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

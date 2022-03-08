@@ -1030,13 +1030,16 @@ bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	pWebPageMergeFrame->SetDirDoc(pDirDoc);
 	pDirDoc->AddMergeDoc(pWebPageMergeFrame);
 		
-	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this))
+	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this, 
+		[this, pWebPageMergeFrame, nFiles, dwFlags, sReportFile]()
+		{
+			pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+
+			if (!sReportFile.empty())
+				pWebPageMergeFrame->GenerateReport(sReportFile);
+
+		}))
 		return false;
-
-	pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
-
-	if (!sReportFile.empty())
-		pWebPageMergeFrame->GenerateReport(sReportFile);
 
 	return true;
 }

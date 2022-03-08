@@ -4,9 +4,21 @@
 #include <wtypes.h>
 #include <Unknwn.h>
 
+struct WebDiffEvent
+{
+	enum EVENT_TYPE { DocumentTitleChanged };
+	EVENT_TYPE type;
+	int pane;
+};
+
 struct __declspec(uuid("{DC951F69-C8CA-44DD-8C3C-8A9C76B0022C}")) IWebDiffCallback : IUnknown
 {
 	virtual HRESULT __stdcall Invoke(HRESULT hr) = 0;
+};
+
+struct __declspec(uuid("{0C75D925-378C-46E2-A5AA-228133AD22EB}")) IWebDiffEventHandler: IUnknown
+{
+	virtual HRESULT __stdcall Invoke(HRESULT hr, const WebDiffEvent& event) = 0;
 };
 
 struct IWebDiffWindow
@@ -14,6 +26,7 @@ struct IWebDiffWindow
 	enum UserDataFolderType { APPDATA, INSTALL };
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
+	virtual void AddEventListener(IWebDiffEventHandler *handler) = 0;
 	virtual void SetUserDataFolderType(UserDataFolderType userDataFolderType, bool perPane) = 0;
 	virtual HRESULT New(int nUrls, IWebDiffCallback* callback) = 0;
 	virtual HRESULT Open(const wchar_t* url1, const wchar_t* url2, IWebDiffCallback* callback) = 0;

@@ -19,14 +19,10 @@
 #include "PathContext.h"
 #include "unicoder.h"
 #include "FileOrFolderSelect.h"
-#include "UniFile.h"
-#include "SaveClosingDlg.h"
 #include "SelectPluginDlg.h"
 #include "FileLocation.h"
 #include "Constants.h"
-#include "DropHandler.h"
 #include "Environment.h"
-#include <cmath>
 #include <wrl.h>
 
 #ifdef _DEBUG
@@ -35,7 +31,7 @@
 
 using namespace Microsoft::WRL;
 
-/** @brief Location for image compare specific help to open. */
+/** @brief Location for Web page compare specific help to open. */
 static const TCHAR WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
 
 /////////////////////////////////////////////////////////////////////////////
@@ -154,8 +150,10 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 	}
 }
 
-bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent)
+bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
+	m_callbackOnOpenCompleted = callback;
+	
 	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;
 	for (int pane = 0; pane < nFiles; ++pane)
@@ -186,14 +184,6 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 	BringToTop(nCmdShow);
 
 	GetParent()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_DRAWFRAME);
-
-	if (nNormalBuffer > 0)
-		OnRefresh();
-	else
-		UpdateDiffItem(m_pDirDoc);
-
-	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-		m_pWebDiffWindow->FirstDiff();
 
 	return true;
 }
@@ -318,8 +308,27 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		static_cast<IWebDiffWindow::UserDataFolderType>(GetOptionsMgr()->GetInt(OPT_CMP_WEB_USERDATAFOLDER_TYPE)),
 		GetOptionsMgr()->GetBool(OPT_CMP_WEB_USERDATAFOLDER_PERPANE));
 
-	auto callback = Callback<IWebDiffCallback>([](HRESULT hr) -> HRESULT
+	auto callback = Callback<IWebDiffCallback>([this](HRESULT hr) -> HRESULT
 		{
+			int nNormalBuffer = 0;
+			for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+			{
+				if (m_nBufferType[pane] != BUFFERTYPE::UNNAMED)
+					++nNormalBuffer;
+			}
+			if (nNormalBuffer > 0)
+				OnRefresh();
+			else
+				UpdateDiffItem(m_pDirDoc);
+
+			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+				m_pWebDiffWindow->FirstDiff();
+
+			if (m_callbackOnOpenCompleted)
+			{
+				m_callbackOnOpenCompleted();
+				m_callbackOnOpenCompleted = nullptr;
+			}
 			return S_OK;
 		});
 	bool bResult;
