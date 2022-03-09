@@ -93,16 +93,17 @@ private:
 	void SaveActivePane();
 	virtual ~CWebPageDiffFrame();
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
-// Generated message map functions
-private:
+	void OnWebDiffEvent(const WebDiffEvent& event);
 	bool OpenUrls(IWebDiffCallback* callback);
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool MergeModeKeyDown(MSG* pMsg);
-	//static void OnChildPaneEvent(const IWebDiffWindow::Event& evt);
 	static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
+
+// Generated message map functions
+private:
 	CLocationBar m_wndLocationBar;
 	IWebDiffWindow *m_pWebDiffWindow;
 	//IWebToolWindow *m_pWebToolWindow;

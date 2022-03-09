@@ -6,7 +6,7 @@
 
 struct WebDiffEvent
 {
-	enum EVENT_TYPE { DocumentTitleChanged };
+	enum EVENT_TYPE { NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted };
 	EVENT_TYPE type;
 	int pane;
 };
@@ -18,7 +18,7 @@ struct __declspec(uuid("{DC951F69-C8CA-44DD-8C3C-8A9C76B0022C}")) IWebDiffCallba
 
 struct __declspec(uuid("{0C75D925-378C-46E2-A5AA-228133AD22EB}")) IWebDiffEventHandler: IUnknown
 {
-	virtual HRESULT __stdcall Invoke(HRESULT hr, const WebDiffEvent& event) = 0;
+	virtual HRESULT __stdcall Invoke(const WebDiffEvent& event) = 0;
 };
 
 struct IWebDiffWindow

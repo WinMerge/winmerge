@@ -252,6 +252,15 @@ void CWebPageDiffFrame::CreateImgWndStatusBar(CStatusBar &wndStatusBar, CWnd *pw
 	wndStatusBar.SetWindowPos(&wndBottom, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }
 
+void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
+{
+	if (event.type == WebDiffEvent::SourceChanged)
+	{
+		m_filePaths[event.pane] = m_pWebDiffWindow->GetCurrentUrl(event.pane);
+		UpdateHeaderPath(event.pane);
+	}
+}
+
 /**
  * @brief returns true if WinWebDiffLib.dll is loadable
  */
@@ -297,6 +306,14 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		}
 		return FALSE;
 	}
+
+	m_pWebDiffWindow->AddEventListener(
+		Callback<IWebDiffEventHandler>([this](const WebDiffEvent& event) -> HRESULT
+		{
+			OnWebDiffEvent(event);
+			return S_OK;
+		}).Get()
+	);
 
 	COLORSETTINGS colors;
 	Options::DiffColors::Load(GetOptionsMgr(), colors);
