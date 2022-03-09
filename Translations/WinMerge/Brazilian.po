@@ -1092,7 +1092,7 @@ msgstr "&Preservar a hora do arquivo na comparação dos arquivos"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Mostrar o Diálogo \"Selecionar Arquivos ou Pastas\" na Inicialização"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr "Fechar o Diálogo \"Selecionar Arquivos ou Pastas\" ao clicar no botão Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
