@@ -366,12 +366,12 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
-	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
-	{
-		TRACE0("Failed to create LocationBar\n");
-		return FALSE;
-	}
+	//String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	//if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
+	//{
+	//	TRACE0("Failed to create LocationBar\n");
+	//	return FALSE;
+	//}
 
 //	IWebToolWindow * (*pfnWinWebDiff_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IWebDiffWindow *) =
 //		(IWebToolWindow * (*)(HINSTANCE hInstance, HWND hWndParent, IWebDiffWindow *pWebPageDiffWindow))GetProcAddress(hModule, "WinWebDiff_CreateToolWindow");
@@ -383,7 +383,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 
 //	m_pWebToolWindow->Translate(TranslateLocationPane);
 
-	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
+	//m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 
 	return TRUE;
 }
@@ -417,10 +417,10 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 
-	m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
-		CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
-	m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
-	DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT);
+	//m_wndLocationBar.SetBarStyle(m_wndLocationBar.GetBarStyle() |
+	//	CBRS_SIZE_DYNAMIC | CBRS_ALIGN_LEFT);
+	//m_wndLocationBar.EnableDocking(CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
+	//DockControlBar(&m_wndLocationBar, AFX_IDW_DOCKBAR_LEFT);
 
 	for (int nPane = 0; nPane < m_pWebDiffWindow->GetPaneCount(); nPane++)
 	{
@@ -439,7 +439,7 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (EnsureValidDockState(pDockState)) // checks for valid so won't ASSERT
 		SetDockState(pDockState);
 	// for the dimensions of the diff and location pane, use the CSizingControlBar loader
-	m_wndLocationBar.LoadState(_T("Settings-WebPageDiffFrame"));
+	//m_wndLocationBar.LoadState(_T("Settings-WebPageDiffFrame"));
 
 	return 0;
 }
@@ -524,7 +524,7 @@ void CWebPageDiffFrame::SavePosition()
 	GetDockState(m_pDockState);
 	m_pDockState.SaveState(_T("Settings-WebPageDiffFrame"));
 	// for the dimensions of the diff pane, use the CSizingControlBar save
-	m_wndLocationBar.SaveState(_T("Settings-WebPageDiffFrame"));
+	//m_wndLocationBar.SaveState(_T("Settings-WebPageDiffFrame"));
 }
 
 void CWebPageDiffFrame::SaveActivePane()
@@ -1149,6 +1149,7 @@ void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 
 void CWebPageDiffFrame::OnWebCompareScreenshots()
 {
+	std::shared_ptr<CWaitCursor> pWaitStatus{ new CWaitCursor() };
 	PathContext paths;
 	const wchar_t *spaths[3];
 	std::vector<String> descs;
@@ -1163,15 +1164,17 @@ void CWebPageDiffFrame::OnWebCompareScreenshots()
 		m_tempFiles.push_back(pTempFile);
 	}
 	m_pWebDiffWindow->SaveScreenshots(spaths,
-		Callback<IWebDiffCallback>([paths, descs](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
 			{
-				GetMainFrame()->DoFileOpen(0, &paths, nullptr, descs.data());
+				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data());
 				return S_OK;
 			}).Get());
 }
 
 void CWebPageDiffFrame::OnWebCompareHTMLs()
 {
+	std::shared_ptr<CWaitCursor> pWaitStatus{ new CWaitCursor() };
 	PathContext paths;
 	const wchar_t *spaths[3];
 	std::vector<String> descs;
@@ -1186,16 +1189,18 @@ void CWebPageDiffFrame::OnWebCompareHTMLs()
 		m_tempFiles.push_back(pTempFile);
 	}
 	m_pWebDiffWindow->SaveHTMLs(spaths,
-		Callback<IWebDiffCallback>([paths, descs](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
 			{
 				PackingInfo infoUnpacker(String(_T("PrettifyHTML")));
-				GetMainFrame()->DoFileOpen(0, &paths, nullptr, descs.data(), _T(""), &infoUnpacker);
+				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""), &infoUnpacker);
 				return S_OK;
 			}).Get());
 }
 
 void CWebPageDiffFrame::OnWebCompareResourceTrees()
 {
+	std::shared_ptr<CWaitCursor> pWaitStatus{ new CWaitCursor() };
 	PathContext paths;
 	const wchar_t *spaths[3];
 	std::vector<String> descs;
@@ -1210,7 +1215,7 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 		m_tempFolders.push_back(pTempFolder);
 	}
 	m_pWebDiffWindow->SaveResourceTrees(spaths,
-		Callback<IWebDiffCallback>([paths, descs](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
 			{
 				GetMainFrame()->DoFileOrFolderOpen(&paths, nullptr, descs.data(), _T(""), true);
 				return S_OK;
