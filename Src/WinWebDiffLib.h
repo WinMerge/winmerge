@@ -6,7 +6,7 @@
 
 struct WebDiffEvent
 {
-	enum EVENT_TYPE { NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted };
+	enum EVENT_TYPE { AcceleratorKeyPressed, ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, HSCROLL, VSCROLL };
 	EVENT_TYPE type;
 	int pane;
 };
@@ -34,7 +34,9 @@ struct IWebDiffWindow
 	virtual void Close() = 0;
 	virtual void NewTab(int pane, const wchar_t *url, IWebDiffCallback* callback) = 0;
 	virtual void CloseActiveTab(int pane) = 0;
-	virtual HRESULT Reload() = 0;
+	virtual HRESULT Reload(int pane) = 0;
+	virtual HRESULT ReloadAll() = 0;
+	virtual HRESULT Recompare(IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveScreenshot(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveScreenshots(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveHTML(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;

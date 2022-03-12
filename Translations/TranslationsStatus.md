@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-03-05**:
+Status from **2022-03-10**:
 
 ## WinMerge
 
@@ -10,7 +10,7 @@ Status from **2022-03-05**:
 | Basque               |  1199 |        639 |     0 |          560 |     53 % |  2013-02-03 |
 | Brazilian            |  1199 |       1084 |     0 |          115 |     90 % |  2021-08-09 |
 | Bulgarian            |  1199 |        964 |     0 |          235 |     80 % |  2021-06-28 |
-| Catalan              |  1199 |        566 |     0 |          633 |     47 % |             |
+| Catalan              |  1199 |       1188 |     0 |           11 |     99 % |             |
 | ChineseSimplified    |  1199 |       1180 |     0 |           19 |     98 % |             |
 | ChineseTraditional   |  1199 |       1126 |     0 |           73 |     93 % |  2022-02-19 |
 | Corsican             |  1199 |       1199 |     0 |            0 |    100 % |  2022-03-03 |
@@ -52,7 +52,7 @@ Status from **2022-03-05**:
 | Basque               |    10 |          4 |     0 |            6 |     40 % |             |
 | Brazilian            |    10 |          4 |     0 |            6 |     40 % |             |
 | Bulgarian            |    10 |          4 |     0 |            6 |     40 % |             |
-| Catalan              |    10 |          4 |     0 |            6 |     40 % |             |
+| Catalan              |    10 |         10 |     0 |            0 |    100 % |             |
 | ChineseSimplified    |    10 |         10 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |    10 |         10 |     0 |            0 |    100 % |             |
 | Corsican             |    10 |         10 |     0 |            0 |    100 % |             |
