@@ -559,7 +559,15 @@ bool DoItemRename(InputIterator& it, const CDiffContext& ctxt, const String& szN
 	for (int index = 0; index < nDirs; index++)
 	{
 		di.diffFileInfo[index].filename = szNewItemName;
-		if (bRename[index] || paths::DoesPathExist(GetItemFileName(ctxt, di, index)))
+		bool bSetSideFlag = bRename[index];
+		if (!bSetSideFlag)
+		{
+			paths::PATH_EXISTENCE pathExist = paths::DoesPathExist(GetItemFileName(ctxt, di, index));
+			bool bIsDirectory = di.diffcode.isDirectory();
+			if (((pathExist == paths::IS_EXISTING_DIR) && bIsDirectory) || ((pathExist == paths::IS_EXISTING_FILE) && !bIsDirectory))
+				bSetSideFlag = true;
+		}
+		if (bSetSideFlag)
 			di.diffcode.setSideFlag(index);
 	}
 	return true;
