@@ -256,6 +256,11 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
 	if (event.type == WebDiffEvent::SourceChanged)
 	{
+		if (m_nBufferType[event.pane] == BUFFERTYPE::UNNAMED)
+		{
+			m_nBufferType[event.pane] = BUFFERTYPE::NORMAL;
+			m_strDesc[event.pane].clear();
+		}
 		m_filePaths[event.pane] = m_pWebDiffWindow->GetCurrentUrl(event.pane);
 		UpdateHeaderPath(event.pane);
 	}
@@ -708,7 +713,10 @@ void CWebPageDiffFrame::SetTitle(LPCTSTR lpszTitle)
 	String sTitle = (lpszTitle != nullptr) ? lpszTitle : CMergeFrameCommon::GetTitleString(m_filePaths, m_strDesc, &m_infoUnpacker, nullptr);
 	CMergeFrameCommon::SetTitle(sTitle.c_str());
 	if (m_hWnd != nullptr)
+	{
 		SetWindowText(sTitle.c_str());
+		GetMainFrame()->OnUpdateFrameTitle(TRUE);
+	}
 }
 
 void CWebPageDiffFrame::UpdateLastCompareResult()
