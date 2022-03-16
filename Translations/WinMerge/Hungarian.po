@@ -127,10 +127,10 @@ msgid "S&hell Menu"
 msgstr "Intéző menü"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Első sor használata fejlécként"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Minden oszlop automatikus illeszkedése"
 
 #, c-format
 msgid "View &Differences"
@@ -798,7 +798,7 @@ msgid "View &Margins"
 msgstr "Margók megjelenítése"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "Felső margók megjelenítése"
 
 #, c-format
 msgid "W&rap Lines"
