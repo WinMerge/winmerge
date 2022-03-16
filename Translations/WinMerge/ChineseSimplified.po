@@ -117,6 +117,12 @@ msgstr "打开上层文件夹(&P)..."
 msgid "S&hell Menu"
 msgstr "外壳菜单(&S)"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "查看差异(&D)"
 
@@ -637,6 +643,9 @@ msgstr "显示行号(&N)"
 
 msgid "View &Margins"
 msgstr "显示页边(&M)"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "自动换行(&R)"

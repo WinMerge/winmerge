@@ -118,6 +118,12 @@ msgstr "Открыть &родительскую папку..."
 msgid "S&hell Menu"
 msgstr "Меню оболочки"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Показывать отличия"
 
@@ -638,6 +644,9 @@ msgstr "Показывать номера строк"
 
 msgid "View &Margins"
 msgstr "Показывать поля"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Переносить по словам"

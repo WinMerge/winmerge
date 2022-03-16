@@ -116,6 +116,12 @@ msgstr "Nad&rejena mapa..."
 msgid "S&hell Menu"
 msgstr "Meni &lupine"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Prika&z razlik"
 
@@ -636,6 +642,9 @@ msgstr "Prikaz številk &vrstic"
 
 msgid "View &Margins"
 msgstr "Prikaz &robov"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Pr&elomi vrstic"

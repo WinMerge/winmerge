@@ -420,12 +420,12 @@ void CCrystalRendererDirectWrite::DrawBoundaryLine(int left, int right, int y)
 		{ static_cast<float>(right), static_cast<float>(y) }, m_pTempBrush.get());
 }
 
-void  CCrystalRendererDirectWrite::DrawGridLine(int x1, int y1, int x2, int y2)
+void  CCrystalRendererDirectWrite::DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha)
 {
 	m_pTempBrush->SetColor(ColorRefToColorF(0));
 	m_renderTarget.DrawLine(
 		{ static_cast<float>(x1), static_cast<float>(y1) },
-		{ static_cast<float>(x2), static_cast<float>(y2) }, m_pTempBrush.get(), 0.1F);
+		{ static_cast<float>(x2), static_cast<float>(y2) }, m_pTempBrush.get(), sourceConstantAlpha / 255.f);
 }
 
 void CCrystalRendererDirectWrite::DrawLineCursor(int left, int right, int y, int height)
@@ -644,12 +644,8 @@ void CCrystalRendererDirectWrite::DrawRuler(int left, int top, int width, int he
 			else
 				return 0.2f;
 		}(i, offset);
-		m_renderTarget.DrawLine(
-			{ x, bottom - height * tickscale },
-			{ x, bottom }, m_pTempBrush.get());
+		DrawGridLine(static_cast<int>(x), static_cast<int>(bottom - height * tickscale), static_cast<int>(x), static_cast<int>(bottom), 70);
 	}
-	m_renderTarget.DrawLine(
-		{ static_cast<float>(left), bottom },
-		{ static_cast<float>(left + width), bottom }, m_pTempBrush.get());
+	DrawGridLine(static_cast<int>(left), static_cast<int>(bottom), static_cast<int>(left + width), static_cast<int>(bottom), 70);
 }
 #endif

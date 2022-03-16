@@ -116,6 +116,12 @@ msgstr "Üs&t klasörü aç..."
 msgid "S&hell Menu"
 msgstr "&Sağ tık menüsü"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "&Farklılıkları görüntüle"
 
@@ -636,6 +642,9 @@ msgstr "Satır nu&maraları görüntülensin"
 
 msgid "View &Margins"
 msgstr "Kenar boşlukları &görüntülensin"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Satı&rlar kaydırılsın"

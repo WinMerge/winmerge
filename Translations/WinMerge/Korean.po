@@ -132,6 +132,12 @@ msgstr "상위 폴더 열기(&P)"
 msgid "S&hell Menu"
 msgstr "셸 메뉴(&H)"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "차이점 보기(&D)"
@@ -796,6 +802,9 @@ msgstr "줄 번호 보기(&N)"
 #, c-format
 msgid "View &Margins"
 msgstr "여백 보기(&M)"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

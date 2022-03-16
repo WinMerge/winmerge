@@ -113,6 +113,12 @@ msgstr "&Родителска папка…"
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Преглед на &различия"
 
@@ -633,6 +639,9 @@ msgstr "&Номериране на редовете"
 
 msgid "View &Margins"
 msgstr "Показване на &отстъпа"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Прена&сяне на редовете"

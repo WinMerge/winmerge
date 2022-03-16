@@ -124,6 +124,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr ""
@@ -788,6 +794,9 @@ msgstr "Prikaži &brojeve redaka"
 #, c-format
 msgid "View &Margins"
 msgstr "Prikaži &margine"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

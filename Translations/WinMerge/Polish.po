@@ -117,6 +117,12 @@ msgstr "Otwórz nadrzędny katalog..."
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Wyświetl różnice"
 
@@ -637,6 +643,9 @@ msgstr "Wyświetl &numery wierszy"
 
 msgid "View &Margins"
 msgstr "Wyświetl &marginesy"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Zawijaj wiersze"

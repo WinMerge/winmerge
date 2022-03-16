@@ -180,7 +180,7 @@ void CCrystalRendererGDI::DrawBoundaryLine(int left, int right, int y)
 	m_pDC->SelectObject(pOldPen);
 }
 
-void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2)
+void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha)
 {
 	if (x1 == x2 || y1 == y2)
 	{
@@ -195,7 +195,7 @@ void CCrystalRendererGDI::DrawGridLine(int x1, int y1, int x2, int y2)
 		dcMem.SetBkColor(RGB(0, 255, 0));
 		BLENDFUNCTION blend = { 0 };
 		blend.BlendOp = AC_SRC_OVER;
-		blend.SourceConstantAlpha = 24;
+		blend.SourceConstantAlpha = static_cast<BYTE>(sourceConstantAlpha);
 		if (x1 == x2)
 			m_pDC->AlphaBlend(x1, y1, 1, y2 - y1, &dcMem, 0, 0, 1, y2 - y1, blend);
 		else
@@ -258,11 +258,9 @@ void CCrystalRendererGDI::DrawRuler(int left, int top, int width, int height, in
 			else
 				return 0.2f;
 		}(i, offset);
-		m_pDC->MoveTo(x, bottom - static_cast<int>(height * tickscale));
-		m_pDC->LineTo(x, bottom);
+		DrawGridLine(x, bottom - static_cast<int>(height * tickscale), x, bottom, 70);
 	}
-	m_pDC->MoveTo(left, bottom);
-	m_pDC->LineTo(left + width, bottom);
+	DrawGridLine(left, bottom, left + width, bottom, 70);
 	m_pDC->SelectObject(pOldPen);
 	m_pDC->SetTextAlign(uiOldAlign);
 	m_pDC->SelectObject(pOldFont);

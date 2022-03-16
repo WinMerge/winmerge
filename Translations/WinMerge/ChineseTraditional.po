@@ -126,6 +126,12 @@ msgstr "開啟父資料夾... (&P)"
 msgid "S&hell Menu"
 msgstr "殼層選單 (&H)"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "檢視差異 (&D)"
@@ -791,6 +797,9 @@ msgstr "檢視行號 (&N)"
 #, c-format
 msgid "View &Margins"
 msgstr "檢視頁邊 (&M)"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

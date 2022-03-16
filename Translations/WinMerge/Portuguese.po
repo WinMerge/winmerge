@@ -117,6 +117,12 @@ msgstr "Abrir &pasta da localização..."
 msgid "S&hell Menu"
 msgstr "M&enu de contexto"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Ver &diferenças"
 
@@ -637,6 +643,9 @@ msgstr "Ver números da linha"
 
 msgid "View &Margins"
 msgstr "Ver &margens"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Mudança de linha"

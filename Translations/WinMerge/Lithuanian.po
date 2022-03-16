@@ -116,6 +116,12 @@ msgstr "Atverti &tėvinį katalogą..."
 msgid "S&hell Menu"
 msgstr "&Sistemos meniu"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Ro&dyti skirtumus"
 
@@ -636,6 +642,9 @@ msgstr "Rodyti eilučių &numerius"
 
 msgid "View &Margins"
 msgstr "Rodyti &paraštes"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "S&kaidyti eilutes"

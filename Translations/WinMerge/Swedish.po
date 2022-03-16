@@ -117,6 +117,12 @@ msgstr "Öppna överordnad mapp..."
 msgid "S&hell Menu"
 msgstr "Skalmeny"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Visa skillnader"
 
@@ -637,6 +643,9 @@ msgstr "Visa radnummer"
 
 msgid "View &Margins"
 msgstr "Visa marginaler"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Bryt rader"

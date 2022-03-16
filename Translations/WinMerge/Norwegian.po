@@ -115,6 +115,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Vis &forskjeller"
 
@@ -635,6 +641,9 @@ msgstr "Vis linje&nummer"
 
 msgid "View &Margins"
 msgstr "Vis &marger"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "&Tekstbrytning"

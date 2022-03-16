@@ -123,6 +123,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr ""
@@ -787,6 +793,9 @@ msgstr "Εμφάνιση &Αριθμήσεως Γραμμών"
 #, c-format
 msgid "View &Margins"
 msgstr "Εμφάνιση Περι&θωρίων"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

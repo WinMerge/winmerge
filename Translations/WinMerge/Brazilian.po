@@ -116,6 +116,12 @@ msgstr "Abrir &Pasta Pai..."
 msgid "S&hell Menu"
 msgstr "M&enu do Contexto"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Visualizar &Diferenças"
 
@@ -636,6 +642,9 @@ msgstr "Visualizar os Números das &Linhas"
 
 msgid "View &Margins"
 msgstr "Visualizar as &Margens"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "O&rganizar as Linhas"

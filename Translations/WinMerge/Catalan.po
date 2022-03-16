@@ -124,6 +124,12 @@ msgstr "Obre el directori &Pare..."
 msgid "S&hell Menu"
 msgstr "Menú de &Sistema"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "Remarca &diferències"
@@ -788,6 +794,9 @@ msgstr "Mostra els &números de línia"
 #, c-format
 msgid "View &Margins"
 msgstr "Mostra els &marges"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

@@ -131,6 +131,12 @@ msgstr "Ouvrir dossier& parent..."
 msgid "S&hell Menu"
 msgstr "Menu S&hell"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "Voir &différences"
@@ -795,6 +801,9 @@ msgstr "Afficher la &numérotation des lignes"
 #, c-format
 msgid "View &Margins"
 msgstr "Afficher les &marges"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

@@ -12,6 +12,7 @@
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDR_MERGEDOCTYPE                109
 #define IDR_DIRDOCTYPE                  110
+#define IDR_POPUP_MERGEVIEWHEADER       111
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
@@ -1016,6 +1017,8 @@
 #define ID_PREVFILE                     34183
 #define ID_NEXTFILE                     34184
 #define ID_LASTFILE                     34185
+#define ID_USE_FIRST_LINE_AS_HEADERS    34190
+#define ID_AUTO_FIT_ALL_COLUMNS         34191
 // Plugin menus
 #define ID_UNPACKERS_FIRST              35001
 #define ID_UNPACKERS_LAST               35200

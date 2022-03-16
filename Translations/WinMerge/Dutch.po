@@ -116,6 +116,12 @@ msgstr "Bovenliggende map openen..."
 msgid "S&hell Menu"
 msgstr "Shellmenu"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Verschillen weergeven"
 
@@ -636,6 +642,9 @@ msgstr "Regelnummers weergeven"
 
 msgid "View &Margins"
 msgstr "Marges weergeven"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Automatische terugloop"

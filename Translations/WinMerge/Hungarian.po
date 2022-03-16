@@ -126,6 +126,12 @@ msgstr "Szölőkönyvtár megnyitása..."
 msgid "S&hell Menu"
 msgstr "Intéző menü"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "Különbségek mutatása"
@@ -790,6 +796,9 @@ msgstr "Sorszámok megjelenítése"
 #, c-format
 msgid "View &Margins"
 msgstr "Margók megjelenítése"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

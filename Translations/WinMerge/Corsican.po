@@ -118,6 +118,12 @@ msgstr "Apre u cartulare di &livellu superiore…"
 msgid "S&hell Menu"
 msgstr "&Listinu Shell"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Fighjà e &sfarenze"
 
@@ -638,6 +644,9 @@ msgstr "Affissà i &numeri di linea"
 
 msgid "View &Margins"
 msgstr "Affissà e &margine"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "&Ritornu autumaticu à a linea"

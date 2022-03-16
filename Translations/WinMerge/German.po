@@ -127,6 +127,12 @@ msgstr "&Elternordner öffnen..."
 msgid "S&hell Menu"
 msgstr "S&hell-Menü"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "&Unterschiede anzeigen"
@@ -791,6 +797,9 @@ msgstr "Zeilennu&mmern anzeigen"
 #, c-format
 msgid "View &Margins"
 msgstr "&Ränder anzeigen"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"

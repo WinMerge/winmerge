@@ -117,6 +117,12 @@ msgstr "المجلد الأساسي..."
 msgid "S&hell Menu"
 msgstr "&قائمة البرنامج الوسيطي (الغلاف)"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "عرض ال&اختلافات"
 
@@ -637,6 +643,9 @@ msgstr "عرض &أرقام الأسطر"
 
 msgid "View &Margins"
 msgstr "عرض ال&هوامش"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "إلت&فاف الأسطر"
