@@ -3842,13 +3842,20 @@ void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 
 void CMergeDoc::OnFileRecompareAsTable()
 {
+	if (m_ptBuf[0]->GetTableEditing())
+	{
+		COpenTableDlg dlg;
+		if (dlg.DoModal() != IDOK)
+			return;
+		m_pTablePropsPrepared.reset(new TableProps{ true, strutils::from_charstr(dlg.m_sDelimiterChar), strutils::from_charstr(dlg.m_sQuoteChar), dlg.m_bAllowNewlinesInQuotes });
+	}
 	m_bEnableTableEditing = true;
 	OnFileReload();
 }
 
 void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(!m_ptBuf[0]->GetTableEditing());
+	pCmdUI->Enable(true);
 }
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)
