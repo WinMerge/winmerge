@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-04 16:15+0200\n"
+"PO-Revision-Date: 2022-03-17 18:15+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -128,10 +128,10 @@ msgid "S&hell Menu"
 msgstr "S&hell-Menü"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Erste Zeile als Überschrift verwenden"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Alle Spalten automatisch anpassen"
 
 #, c-format
 msgid "View &Differences"
@@ -799,7 +799,7 @@ msgid "View &Margins"
 msgstr "&Ränder anzeigen"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "&Obere Ränder anzeigen"
 
 #, c-format
 msgid "W&rap Lines"
@@ -815,7 +815,7 @@ msgstr "U&nterschiedsleiste"
 
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "P&ositionsleiste"
+msgstr "&Positionsleiste"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
