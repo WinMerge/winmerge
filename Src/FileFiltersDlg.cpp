@@ -18,6 +18,7 @@
 #include "SharedFilterDlg.h"
 #include "TestFilterDlg.h"
 #include "FileOrFolderSelect.h"
+#include "UniFile.h"
 
 using std::vector;
 
@@ -144,6 +145,22 @@ void FileFiltersDlg::SelectFilterByIndex(int index)
 	m_listFilters.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
 	bool bPartialOk = false;
 	m_listFilters.EnsureVisible(index, bPartialOk);
+}
+
+/**
+ * @brief Select filter by file path in the listview.
+ * @param [in] path file path
+ */
+void FileFiltersDlg::SelectFilterByFilePath(const String& path)
+{
+	for (size_t i = 0; i < m_Filters.size(); ++i)
+	{
+		if (m_Filters[i].fullpath == path)
+		{
+			SelectFilterByIndex(static_cast<int>(i + 1));
+			break;
+		}
+	}
 }
 
 /**
@@ -437,7 +454,9 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 		// Open-dialog asks about overwriting, so we can overwrite filter file
 		// user has already allowed it.
-		if (!CopyFile(templatePath.c_str(), s.c_str(), FALSE))
+		UniMemFile fileIn;
+		UniStdioFile fileOut;
+		if (!fileIn.OpenReadOnly(templatePath) || !fileOut.OpenCreate(s))
 		{
 			String msg = strutils::format_string1(
 				_( "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."),
@@ -445,6 +464,13 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			AfxMessageBox(msg.c_str(), MB_ICONERROR);
 			return;
 		}
+		String lines;
+		fileIn.ReadStringAll(lines);
+		strutils::replace(lines, _T("${name}"), file);
+		fileOut.WriteString(lines);
+		fileIn.Close();
+		fileOut.Close();
+
 		EditFileFilter(s);
 		FileFilterMgr *pMgr = pGlobalFileFilter->GetManager();
 		int retval = pMgr->AddFilter(s);
@@ -456,6 +482,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			m_Filters = pGlobalFileFilter->GetFileFilters(selected);
 
 			UpdateFiltersList();
+			SelectFilterByFilePath(s);
 		}
 	}
 }
@@ -580,6 +607,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 			m_Filters = pGlobalFileFilter->GetFileFilters(selected);
 
 			UpdateFiltersList();
+			SelectFilterByFilePath(userPath);
 		}
 	}
 }
