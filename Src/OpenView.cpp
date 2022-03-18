@@ -645,7 +645,7 @@ void COpenView::OnCompare(UINT nID)
 			m_files[index] = paths::GetLongPath(m_files[index], bExpand);
 	
 			// Add trailing '\' for directories if its missing
-			if (paths::DoesPathExist(m_files[index]) == paths::IS_EXISTING_DIR)
+			if (paths::DoesPathExist(m_files[index]) == paths::IS_EXISTING_DIR && !IsArchiveFile(m_files[index]))
 				m_files[index] = paths::AddTrailingSlash(m_files[index]);
 			m_strPath[index] = m_files[index];
 		}

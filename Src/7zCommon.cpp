@@ -600,6 +600,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	DecompressResult res(files, nullptr, paths::IS_EXISTING_DIR);
 	try
 	{
+		HRESULT hr;
 		String path;
 		// Handle archives using 7-zip
 		Merge7z::Format *piHandler;
@@ -614,9 +615,12 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[1].erase();
 			do
 			{
-				res.hr = piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str());
-				if (FAILED(res.hr))
+				hr = piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str());
+				if (FAILED(hr))
+				{
+					res.hr = hr;
 					break;
+				}
 				if (res.files[0].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[0])), false));
@@ -643,9 +647,12 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			path = env::GetTempChildPath();
 			do
 			{
-				res.hr = piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str());
-				if (FAILED(res.hr))
+				hr = piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str());
+				if (FAILED(hr))
+				{
+					res.hr = hr;
 					break;
+				}
 				if (res.files[1].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[1])), false));
@@ -671,9 +678,12 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			path = env::GetTempChildPath();
 			do
 			{
-				res.hr = piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str());
-				if (FAILED(res.hr))
+				hr = piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str());
+				if (FAILED(hr))
+				{
+					res.hr = hr;
 					break;
+				}
 				if (res.files[2].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[2])), false));

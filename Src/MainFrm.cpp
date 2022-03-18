@@ -1232,29 +1232,27 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
-	else
+	
+	// Add trailing '\' for directories if its missing
+	if (pathsType == paths::IS_EXISTING_DIR)
 	{
-		// Add trailing '\' for directories if its missing
-		if (pathsType == paths::IS_EXISTING_DIR)
-		{
-			if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
-				tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
-			if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
-				tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
-			if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
-				tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
-		}
+		if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
+			tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
+		if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
+			tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
+		if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
+			tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
+	}
 
-		//save the MRU left and right files.
-		if (dwFlags)
-		{
-			if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[0].c_str(), _T("Files\\Left"));
-			if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[1].c_str(), _T("Files\\Right"));
-			if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[2].c_str(), _T("Files\\Option"));
-		}
+	//save the MRU left and right files.
+	if (dwFlags)
+	{
+		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[2].c_str(), _T("Files\\Option"));
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
