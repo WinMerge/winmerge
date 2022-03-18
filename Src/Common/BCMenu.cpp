@@ -55,9 +55,7 @@ HTHEME BCMenu::m_hTheme = nullptr;
 static class GdiplusToken
 {
 public:
-	GdiplusToken()
-	{
-	}
+	GdiplusToken() = default;
 
 	~GdiplusToken()
 	{

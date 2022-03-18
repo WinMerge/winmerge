@@ -87,9 +87,7 @@ CDiffWrapper::CDiffWrapper()
 /**
  * @brief Destructor.
  */
-CDiffWrapper::~CDiffWrapper()
-{
-}
+CDiffWrapper::~CDiffWrapper() = default;
 
 /**
  * @brief Enables/disables patch-file creation and sets filename.

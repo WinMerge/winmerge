@@ -170,5 +170,5 @@ void CAboutDlg::Impl::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
 }
 
 CAboutDlg::CAboutDlg() : m_pimpl(new CAboutDlg::Impl(this)) {}
-CAboutDlg::~CAboutDlg() {}
+CAboutDlg::~CAboutDlg() = default;
 int CAboutDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }

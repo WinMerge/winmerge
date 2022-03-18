@@ -67,9 +67,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 /**
  * @brief Destructor.
  */
-CDiffContext::~CDiffContext()
-{
-}
+CDiffContext::~CDiffContext() = default;
 
 /**
  * @brief Update info in item in result list from disk.

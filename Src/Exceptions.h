@@ -35,7 +35,7 @@ private:
 	unsigned long nSE;
 public:
 	explicit SE_Exception(unsigned long n) : nSE(n) {}
-	~SE_Exception() {};
+	~SE_Exception() = default;
 
 	unsigned long getSeNumber() { return nSE; }
 #ifdef _MSC_VER

@@ -286,9 +286,7 @@ DropHandler::DropHandler(std::function<void(const std::vector<String>&)> callbac
 {
 }
 
-DropHandler::~DropHandler()
-{
-}
+DropHandler::~DropHandler() = default;
 
 HRESULT STDMETHODCALLTYPE DropHandler::QueryInterface(REFIID riid, void **ppvObject)
 {

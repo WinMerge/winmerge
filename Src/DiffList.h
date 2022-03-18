@@ -53,9 +53,7 @@ struct DIFFRANGE
 	int dend = 0;                /**< Synchronised (ghost lines added) last diff line in file1,2,3 */
 	int blank[3] = {-1, -1, -1}; /**< Number of blank lines in file1,2,3 */
 	OP_TYPE op = OP_NONE;        /**< Operation done with this diff */
-	DIFFRANGE()
-	{
-	}
+	DIFFRANGE() = default;
 	void swap_sides(int index1, int index2);
 };
 
@@ -75,7 +73,7 @@ public:
 
 	std::vector<int> m_map;
 
-	DiffMap() { }
+	DiffMap() = default;
 	void InitDiffMap(int nlines);
 };
 
