@@ -28,9 +28,7 @@ SubstitutionFiltersList::SubstitutionFiltersList()
 /**
  * @brief Destructor, empties the list.
  */
-SubstitutionFiltersList::~SubstitutionFiltersList()
-{
-}
+SubstitutionFiltersList::~SubstitutionFiltersList() = default;
 
 /**
  * @brief Add new filter to the list.

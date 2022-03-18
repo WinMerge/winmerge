@@ -121,7 +121,7 @@ struct DIFFSTATUS
 	IDENTLEVEL Identical = IDENTLEVEL::NONE; /**< diffutils said files are identical */
 	bool bPatchFileFailed = false; /**< Creating patch file failed */
 
-	DIFFSTATUS() {}
+	DIFFSTATUS() = default;
 	void MergeStatus(const DIFFSTATUS& other)
 	{
 		if (Identical == IDENTLEVEL::ALL)

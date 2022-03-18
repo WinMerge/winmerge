@@ -31,7 +31,7 @@ struct DiffFileInfo : public DirItem
 
 // methods
 
-	DiffFileInfo() { }
+	DiffFileInfo() = default;
 	//void Clear();
 	void ClearPartial();
 	bool IsEditableEncoding() const;

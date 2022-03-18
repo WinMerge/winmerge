@@ -35,9 +35,7 @@ CPatchTool::CPatchTool() : m_bOpenToEditor(false), m_bCopyToClipbard(false)
 /**
  * @brief Default destructor.
  */
-CPatchTool::~CPatchTool()
-{
-}
+CPatchTool::~CPatchTool() = default;
 
 /** 
  * @brief Adds files to list for patching.

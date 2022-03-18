@@ -27,9 +27,7 @@ LineFiltersList::LineFiltersList()
 /**
  * @brief Destructor, empties the list.
  */
-LineFiltersList::~LineFiltersList()
-{
-}
+LineFiltersList::~LineFiltersList() = default;
 
 /**
  * @brief Add new filter to the list.

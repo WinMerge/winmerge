@@ -20,7 +20,7 @@ class PathInfo
 {
 	friend class PathContext;
 public:
-	PathInfo() {}
+	PathInfo() = default;
 
 	String GetPath(bool bNormalized = true) const;
 	String& GetRef() { return m_sPath; }
@@ -114,7 +114,7 @@ public:
 	{
 	}
 
-	~PathContextIterator() {}
+	~PathContextIterator() = default;
 
 	PathContextIterator& operator=(const PathContextIterator& it)
 	{

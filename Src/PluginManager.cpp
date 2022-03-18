@@ -11,9 +11,7 @@
 
 using Poco::FastMutex;
 
-PluginManager::~PluginManager()
-{
-}
+PluginManager::~PluginManager() = default;
 
 /**
  * @brief retrieve relevant plugin settings for specified comparison

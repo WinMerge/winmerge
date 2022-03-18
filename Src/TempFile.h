@@ -16,7 +16,7 @@
 class TempFile
 {
 public:
-	TempFile() {}
+	TempFile() = default;
 	~TempFile();
 	String Create(const String& prefix = _T(""), const String& ext = _T(""));
 	/**
