@@ -1260,7 +1260,17 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	CTempPathContext *pTempPathContext = nullptr;
 	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
 	{
-		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
+		DecompressResult res = DecompressArchive(m_hWnd, tFiles);
+		if (FAILED(res.hr))
+		{
+			int ans = AfxMessageBox(IDS_FAILED_EXTRACT_ARCHIVE_FILES, MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
+			if (ans == IDYES)
+			{
+				pathsType = paths::IS_EXISTING_FILE;
+				delete res.pTempPathContext;
+				res.pTempPathContext = nullptr;
+			}
+		}
 		if (res.pTempPathContext)
 		{
 			pathsType = res.pathsType;

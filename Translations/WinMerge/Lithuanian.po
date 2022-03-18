@@ -2558,6 +2558,9 @@ msgstr "Nepavyko paleisti išorinio redaktoriaus: %1"
 msgid "Unknown archive format"
 msgstr "Nežinomo formato archyvas"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Failas"
 

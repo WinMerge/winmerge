@@ -3275,6 +3275,9 @@ msgstr "Αποτυχία κατά το άνοιγμα άλλης εφαρμογ�
 msgid "Unknown archive format"
 msgstr "Άγνωστη μορφή συμπιεσμένου αρχείου"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Όνομα Αρχείου"

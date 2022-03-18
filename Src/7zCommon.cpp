@@ -614,7 +614,8 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[1].erase();
 			do
 			{
-				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str())))
+				res.hr = piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str());
+				if (FAILED(res.hr))
 					break;
 				if (res.files[0].find(path) == 0)
 				{
@@ -642,8 +643,9 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			path = env::GetTempChildPath();
 			do
 			{
-				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str())))
-					break;;
+				res.hr = piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str());
+				if (FAILED(res.hr))
+					break;
 				if (res.files[1].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[1])), false));
@@ -669,8 +671,9 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			path = env::GetTempChildPath();
 			do
 			{
-				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str())))
-					break;;
+				res.hr = piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str());
+				if (FAILED(res.hr))
+					break;
 				if (res.files[2].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[2])), false));
@@ -704,6 +707,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	}
 	catch (CException *e)
 	{
+		res.hr = E_FAIL;
 		e->Delete();
 	}
 	return res;

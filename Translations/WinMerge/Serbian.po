@@ -3272,6 +3272,9 @@ msgstr "Није успело покретање другог уређивача
 msgid "Unknown archive format"
 msgstr "Непознат облик архиве"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Име датотеке"

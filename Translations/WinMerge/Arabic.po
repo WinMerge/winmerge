@@ -2772,6 +2772,9 @@ msgstr "فشل في تشغيل المحرر الخارجي: %1"
 msgid "Unknown archive format"
 msgstr "نوع أرشيف غير معروف"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "اسم الملف"
 

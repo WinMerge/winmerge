@@ -3280,6 +3280,9 @@ msgstr "Execuţia editorului extern a eşuat: %1"
 msgid "Unknown archive format"
 msgstr "Format arhivă necunoscut"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Nume fişier"

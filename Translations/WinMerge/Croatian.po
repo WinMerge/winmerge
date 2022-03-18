@@ -3297,6 +3297,9 @@ msgstr "Greška pri pokretanju vanjskog editora: %1"
 msgid "Unknown archive format"
 msgstr "Nepoznat oblik arhiva"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Naziv datoteke"

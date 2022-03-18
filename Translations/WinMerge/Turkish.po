@@ -2832,6 +2832,9 @@ msgstr "%1 dış düzenleyicisi çalıştırılamadı"
 msgid "Unknown archive format"
 msgstr "Sıkıştırma biçimi bilinmiyor"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Dosya adı"
 

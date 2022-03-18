@@ -2796,6 +2796,9 @@ msgstr "外部编辑器运行失败: %1"
 msgid "Unknown archive format"
 msgstr "未知的压缩包格式"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "文件名称"
 

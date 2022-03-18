@@ -2560,6 +2560,9 @@ msgstr "Не удается запустить внешний редактор: 
 msgid "Unknown archive format"
 msgstr "Неизвестный формат архива"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Имя файла"
 

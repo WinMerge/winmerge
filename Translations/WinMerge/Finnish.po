@@ -3319,6 +3319,9 @@ msgstr "Ulkoisen editorin ajo epäonnistui: %1"
 msgid "Unknown archive format"
 msgstr "Tuntematon arkistomuoto"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Tiedostonimi"

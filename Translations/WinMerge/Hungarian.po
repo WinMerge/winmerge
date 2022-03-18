@@ -3356,6 +3356,9 @@ msgstr "Nem sikerült elindítani a külső szerkesztőt: %1"
 msgid "Unknown archive format"
 msgstr "Ismeretlen archívum formátum"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Fájlnév"

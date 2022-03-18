@@ -3362,6 +3362,9 @@ msgstr "無法執行外部編輯器 %1"
 msgid "Unknown archive format"
 msgstr "未知壓縮格式"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "檔案名稱"

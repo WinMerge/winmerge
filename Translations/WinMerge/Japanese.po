@@ -2789,6 +2789,9 @@ msgstr "外部エディターの実行に失敗しました: %1"
 msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "アーカイブファイルの展開に失敗しました。\nアーカイブファイルをテキストファイルとして比較しますか?"
+
 msgid "Filename"
 msgstr "名前"
 

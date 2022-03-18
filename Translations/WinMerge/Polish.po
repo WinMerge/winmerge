@@ -2559,6 +2559,9 @@ msgstr "Nie można uruchomić zewnętrznego edytora: %1"
 msgid "Unknown archive format"
 msgstr "Nieznany format archiwum"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Nazwa pliku"
 

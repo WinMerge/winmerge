@@ -2791,6 +2791,9 @@ msgstr "Kunde inte starta den externa redigeraren: %1"
 msgid "Unknown archive format"
 msgstr "Okänt format för komprimerade mappar"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Filnamn"
 

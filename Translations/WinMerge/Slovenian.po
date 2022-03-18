@@ -2790,6 +2790,9 @@ msgstr "Ni bilo mogoče zagnati zunanjega urejevalnika: %1"
 msgid "Unknown archive format"
 msgstr "Neznan format arhiva"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Ime datoteke"
 

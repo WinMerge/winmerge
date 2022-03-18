@@ -3319,6 +3319,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    IDS_FAILED_EXTRACT_ARCHIVE_FILES "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #1

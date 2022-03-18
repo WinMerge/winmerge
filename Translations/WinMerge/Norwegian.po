@@ -2804,6 +2804,9 @@ msgstr "Feilet i å kjøre eksternt redigeringsprogram: %1"
 msgid "Unknown archive format"
 msgstr "Ukjent arkivformat"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Filnavn"
 

@@ -2815,6 +2815,9 @@ msgstr "Не може да се стартира външния редактор
 msgid "Unknown archive format"
 msgstr "Непознат архивен формат"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Име"
 

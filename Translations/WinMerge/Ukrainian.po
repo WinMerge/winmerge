@@ -3300,6 +3300,9 @@ msgstr "Неможливо виконати %1"
 msgid "Unknown archive format"
 msgstr "Невідомий формат архіву"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Ім'я файлу"

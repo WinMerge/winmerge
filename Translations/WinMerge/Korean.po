@@ -3360,6 +3360,9 @@ msgstr "외부 편집기 실행 실패: %1"
 msgid "Unknown archive format"
 msgstr "알 수 없는 압축 형식"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "파일 이름"

@@ -3348,6 +3348,9 @@ msgstr "No s'ha pogut executar l'editor extern: %1"
 msgid "Unknown archive format"
 msgstr "El format de l'arxiu és desconegut"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Nom de fitxer"

@@ -2790,6 +2790,9 @@ msgstr "Nepodarilo sa spustiť externý editor: %1"
 msgid "Unknown archive format"
 msgstr "Neznámy formát archívu"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Názov súboru"
 
