@@ -108,10 +108,10 @@ vector<TCHAR> ShellFileOperations::GetPathList(bool source) const
 }
 
 /**
- * @brief Calculate lenght of the C-string required for paths.
+ * @brief Calculate length of the C-string required for paths.
  * @param [in] source If true calculate source paths, else calculate
  *   destination paths.
- * @return Lenght of the string.
+ * @return Length of the string.
  */
 size_t ShellFileOperations::CountStringSize(bool source) const
 {
