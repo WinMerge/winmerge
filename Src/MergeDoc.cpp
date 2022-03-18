@@ -1195,7 +1195,7 @@ void CMergeDoc::DoAutoMerge(int dstPane)
  * @param [in] dr Difference to check.
  * @return true if difference lines match, false otherwise.
  */
-bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
+bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 {
 	const int cd_dbegin = dr.dbegin;
 	const int cd_dend = dr.dend;
@@ -2241,7 +2241,6 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sIdx[32] = { 0 };
 	TCHAR sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_diffList.GetSignificantDiffs();
@@ -2263,6 +2262,7 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	// - show diff number and amount of diffs
 	else
 	{
+		TCHAR sIdx[32] = { 0 };
 		s = _("Difference %1 of %2");
 		const int signInd = m_diffList.GetSignificantIndex(GetCurrentDiff());
 		_itot_s(signInd + 1, sIdx, 10);
@@ -2927,7 +2927,7 @@ void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
  * @param [in] encoding File's encoding.
  * @return One of FileLoadResult values.
  */
-DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, 
+DWORD CMergeDoc::LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, 
 		const FileTextEncoding & encoding)
 {
 	DWORD loadSuccess = FileLoadResult::FRESULT_ERROR;;
@@ -3379,13 +3379,15 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 
 	bool filenameChanged = path != m_filePaths[nBuffer];
-	auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 	{
 		if (!filenameChanged)
+		{
+			auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
 			m_ptBuf[nBuffer]->SetColumnWidths(columnWidths);
+		}
 		MoveOnLoad(nActivePane, nLineIndex);
 	}
 }
@@ -3613,11 +3615,11 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
-	int nActivePane = GetActiveMergeView()->m_nThisPane;
-	CPoint pt = GetActiveMergeView()->GetCursorPos();
-	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 	{
+		CPoint pt = GetActiveMergeView()->GetCursorPos();
+		auto columnWidths = m_ptBuf[0]->GetColumnWidths();
+		int nActivePane = GetActiveMergeView()->m_nThisPane;
 		m_ptBuf[0]->SetColumnWidths(columnWidths);
 		MoveOnLoad(nActivePane, pt.y);
 	}

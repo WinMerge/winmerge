@@ -570,11 +570,11 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	String s;
 	String path;
-	String userPath = pGlobalFileFilter->GetUserFilterPathWithCreate();
 
 	if (SelectFile(GetSafeHwnd(), s, true, path.c_str(),_("Locate filter file to install"),
 		_("File Filters (*.flt)|*.flt|All Files (*.*)|*.*||")))
 	{
+		String userPath = pGlobalFileFilter->GetUserFilterPathWithCreate();
 		userPath = paths::ConcatPath(userPath, paths::FindFileName(s));
 		if (!CopyFile(s.c_str(), userPath.c_str(), TRUE))
 		{

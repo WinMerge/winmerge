@@ -17,7 +17,7 @@ namespace Options { namespace Font {
  * @brief Initialize basic default values in a LOGFONT structure. 
  * A helper function for SetDefaults(); it should not be used otherwise.
  */
-void InitializeLogFont(LOGFONT &logfont, int lfHeight, int lfCharSet, int lfPitchAndFamily, String lfFaceName)
+void InitializeLogFont(LOGFONT &logfont, int lfHeight, int lfCharSet, int lfPitchAndFamily, const String& lfFaceName)
 {
 	logfont.lfHeight = lfHeight;
 	logfont.lfWidth = 0;
