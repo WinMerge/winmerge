@@ -185,10 +185,9 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubH
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
 {
-	CString sPath(szPath);
-
 	if (m_pphost.AddPage(pPage))
 	{
+		CString sPath(szPath);
 		HTREEITEM htiParent = TVI_ROOT; // default
 		int nFind = sPath.Find(PATHDELIM);
 

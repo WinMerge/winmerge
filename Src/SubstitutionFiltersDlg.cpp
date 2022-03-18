@@ -75,7 +75,7 @@ BOOL SubstitutionFiltersDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-static CString RemoveMnemonic(String text)
+static CString RemoveMnemonic(const String& text)
 {
 	Poco::RegularExpression re("\\(&.\\)|&|:");
 	std::string textu8 = ucr::toUTF8(text);

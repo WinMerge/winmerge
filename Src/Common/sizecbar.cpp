@@ -530,7 +530,7 @@ void CSizingControlBar::OnNcPaint()
     mdc.SelectObject(pOldBm);
 }
 
-void CSizingControlBar::NcPaintGripper(CDC* pDC, CRect rcClient)
+void CSizingControlBar::NcPaintGripper(CDC* pDC, const CRect& rcClient)
 {
     UNUSED_ALWAYS(pDC);
     UNUSED_ALWAYS(rcClient);
@@ -791,7 +791,7 @@ void CSizingControlBar::OnTrackInvertTracker()
     m_pDockSite->ReleaseDC(pDC);
 }
 
-bool CSizingControlBar::GetEdgeRect(CRect rcWnd, UINT nHitTest,
+bool CSizingControlBar::GetEdgeRect(const CRect& rcWnd, UINT nHitTest,
                                     CRect& rcEdge)
 {
     rcEdge = rcWnd;

@@ -1469,7 +1469,6 @@ LRESULT CImgMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 
 void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sIdx[32] = { 0 };
 	TCHAR sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_pImgMergeWindow->GetDiffCount();
@@ -1491,6 +1490,7 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	// - show diff number and amount of diffs
 	else
 	{
+		TCHAR sIdx[32] = { 0 };
 		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 		const int signInd = m_pImgMergeWindow->GetCurrentDiffIndex();
 		_itot_s(signInd + 1, sIdx, 10);
@@ -2309,7 +2309,6 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 void CImgMergeFrame::OnToolsGenerateReport()
 {
 	String s;
-	CString folder;
 	BOOL allPages = true;
 	
 #if NTDDI_VERSION >= NTDDI_VISTA
@@ -2322,6 +2321,7 @@ void CImgMergeFrame::OnToolsGenerateReport()
 	dlg.GetCheckButtonState(1001, allPages);
 	s = dlg.GetPathName();
 #else
+	CString folder;
 	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 		return;
 #endif

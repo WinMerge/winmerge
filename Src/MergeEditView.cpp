@@ -1134,10 +1134,10 @@ void CMergeEditView::OnCurdiff()
 void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	CPoint pos = GetCursorPos();
 	int nCurrentDiff = pd->GetCurrentDiff();
 	if (nCurrentDiff == -1)
 	{
+		CPoint pos = GetCursorPos();
 		int nNewDiff = pd->m_diffList.LineToDiff(pos.y);
 		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
 	}

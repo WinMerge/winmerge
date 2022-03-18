@@ -1338,7 +1338,6 @@ void COpenView::SetStatus(UINT msgID)
  */
 void COpenView::OnSelectFilter()
 {
-	String filterPrefix = _("[F] ");
 	String curFilter;
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
@@ -1359,6 +1358,7 @@ void COpenView::OnSelectFilter()
 	}
 	else
 	{
+		String filterPrefix = _("[F] ");
 		filterNameOrMask = filterPrefix + filterNameOrMask;
 		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 	}

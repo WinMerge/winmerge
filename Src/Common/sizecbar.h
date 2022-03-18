@@ -122,12 +122,12 @@ public:
 protected:
     // implementation helpers
     UINT GetEdgeHTCode(int nEdge);
-    bool GetEdgeRect(CRect rcWnd, UINT nHitTest, CRect& rcEdge);
+    bool GetEdgeRect(const CRect& rcWnd, UINT nHitTest, CRect& rcEdge);
     virtual void StartTracking(UINT nHitTest, CPoint point);
     virtual void StopTracking();
     virtual void OnTrackUpdateSize(CPoint& point);
     virtual void OnTrackInvertTracker();
-    virtual void NcPaintGripper(CDC* pDC, CRect rcClient);
+    virtual void NcPaintGripper(CDC* pDC, const CRect& rcClient);
     virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID);
 
     virtual void AlignControlBars();
