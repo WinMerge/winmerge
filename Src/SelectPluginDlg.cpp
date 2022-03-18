@@ -164,7 +164,7 @@ void CSelectPluginDlg::prepareListbox()
 		m_cboPluginName.AddString(automaticPlugin->m_name.c_str());
 	}
 
-	std::vector<String> processTypes;
+	std::list<String> processTypes;
 	for (const auto& [processType, pluginList] : m_Plugins)
 		processTypes.push_back(processType);
 

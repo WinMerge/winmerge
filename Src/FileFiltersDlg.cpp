@@ -440,7 +440,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		TCHAR dir[_MAX_DIR] = {0};
 		TCHAR drive[_MAX_DRIVE] = {0};
 		_tsplitpath_s(s.c_str(), drive, _MAX_DRIVE, dir, _MAX_DIR, file, _MAX_FNAME, ext, _MAX_EXT);
-		if (_tcslen(ext) == 0)
+		if (ext[0] == '\0')
 		{
 			s += FileFilterExt;
 		}

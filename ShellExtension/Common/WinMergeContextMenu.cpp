@@ -174,6 +174,7 @@ bool WinMergeContextMenu::UpdateMenuState(const std::vector<std::wstring>& paths
 std::vector<MenuItem> WinMergeContextMenu::GetMenuItemList() const
 {
 	std::vector<MenuItem> list;
+	list.reserve(3);
 	bool isdir = m_strPaths.empty() ? false : !!PathIsDirectory(m_strPaths[0].c_str());
 	bool enabled = (m_strPaths.size() <= MaxFileCount);
 	int icon = isdir ? IDI_WINMERGEDIR : IDI_WINMERGE;

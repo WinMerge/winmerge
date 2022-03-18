@@ -305,7 +305,7 @@ bool CConfigLog::DoFile(String &sError)
 	text = GetWindowsVer();
 	FileWriteString(text);
 	text = GetProcessorInfo();
-	if (text != _T(""))
+	if (!text.empty())
 	{		
 		FileWriteString(_T("\r\n Processor:           "));
 		FileWriteString(text);
@@ -445,12 +445,12 @@ String CConfigLog::GetProcessorInfo()
 	String sProductName = _T("");
 	if (key.QueryRegMachine(_T("Hardware\\Description\\System\\CentralProcessor\\0")))
 		sProductName = key.ReadString(_T("Identifier"), _T(""));
-	if (sProductName != _T(""))
+	if (!sProductName.empty())
 	{
 		// This is the full identifier of the processor
 		//	(e.g. "Intel64 Family 6 Model 158 Stepping 9")
 		//	but we'll only keep the first word (e.g. "Intel64")
-		int x = (int)sProductName.find_first_of(_T(" "));
+		int x = (int)sProductName.find_first_of(_T(' '));
 		sProductName = sProductName.substr(0, x);
 	}
 

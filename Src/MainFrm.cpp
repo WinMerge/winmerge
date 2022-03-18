@@ -1628,9 +1628,9 @@ HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
 }
 
-std::list<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
+std::vector<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
 {
-	std::list<CImgMergeFrame *> list;
+	std::vector<CImgMergeFrame *> list;
 	// Close Non-Document/View frame with confirmation
 	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
 	while (pChild != nullptr)
@@ -3141,7 +3141,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 	}
 
-	std::vector<String> processTypes;
+	std::list<String> processTypes;
 	for (const auto& [processType, pluginList] : allPlugins)
 		processTypes.push_back(processType);
 	auto it = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
@@ -3151,7 +3151,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		processTypes.push_back(_("&Others"));
 	}
 
-	for (const auto& processType: processTypes)
+	for (const auto& processType : processTypes)
 	{
 		CMenu popup;
 		popup.CreatePopupMenu();
