@@ -285,7 +285,7 @@ void CImgMergeFrame::ChangeFile(int nBuffer, const String& path)
 
 	m_filePaths[nBuffer] = path;
 	m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
-	m_strDesc[nBuffer] = _T("");
+	m_strDesc[nBuffer].clear();
 	int nActivePane = m_pImgMergeWindow->GetActivePane();
 
 	OpenImages();

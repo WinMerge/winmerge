@@ -195,7 +195,6 @@ String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const Strin
 			sTitle += _("Right");
 		sTitle += _T("\n");
 	}
-	String flags;
 	if (pInfoUnpacker && !pInfoUnpacker->GetPluginPipeline().empty())
 		sTitle += strutils::format(_T("%s: %s\n"), _("Unpacker"), pInfoUnpacker->GetPluginPipeline());
 	if (pInfoPrediffer && !pInfoPrediffer->GetPluginPipeline().empty())

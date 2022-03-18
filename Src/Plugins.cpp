@@ -749,7 +749,7 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 								String nameNew = name + strutils::format(_T("(%d)"), i + 2);
 								if (pluginNames.find(nameNew) == pluginNames.end())
 								{
-									name = nameNew;
+									name = std::move(nameNew);
 									break;
 								}
 							}

@@ -957,7 +957,7 @@ void CDirView::DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, cons
 	try {
 		// First we build a list of desired actions
 		FileActionScript actionScript;
-		actionScript.m_destBase = destPath;
+		actionScript.m_destBase = std::move(destPath);
 		DirItemWithIndexIterator begin(m_pIList.get(), -1, true);
 		DirItemWithIndexIterator end;
 		FileActionScript *rsltScript;
@@ -3112,7 +3112,7 @@ void CDirView::OnPluginSettings(UINT nID)
 	{
 	case ID_PREDIFFER_SETTINGS_NONE:
 	case ID_UNPACKER_SETTINGS_NONE:
-		pluginPipeline = _T("");
+		pluginPipeline.clear();
 		break;
 	case ID_PREDIFFER_SETTINGS_AUTO:
 	case ID_UNPACKER_SETTINGS_AUTO:

@@ -286,7 +286,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		HANDLE h = FindFirstFile(TFile(sTemp).wpath().c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
-			sLong = sTemp;
+			sLong = std::move(sTemp);
 			if (ptr != nullptr)
 			{
 				sLong += '\\';

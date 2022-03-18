@@ -706,7 +706,8 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			if (!PathFileExists(res.files[0].c_str()) || !PathFileExists(res.files[1].c_str()))
 			{
 				// not a Perry style patch: diff with itself...
-				res.files[0] = res.files[1] = path;
+				res.files[0] = path;
+				res.files[1] = std::move(path);
 			}
 			else
 			{

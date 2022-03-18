@@ -118,9 +118,9 @@ void CPatchDlg::OnOK()
 
 		PATCHFILES tFiles = m_fileList[0];
 		if (tFiles.lfile != m_file1 && !tFiles.pathLeft.empty())
-			tFiles.pathLeft = _T("");
+			tFiles.pathLeft.clear();
 		if (tFiles.rfile != m_file2 && !tFiles.pathRight.empty())
-			tFiles.pathRight = _T("");
+			tFiles.pathRight.clear();
 		tFiles.lfile = m_file1;
 		tFiles.rfile = m_file2;
 		m_fileList[0] = tFiles;

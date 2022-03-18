@@ -173,7 +173,7 @@ public:
 					else if (localName == ExtendedPropertiesElement)
 						plugin.m_extendedProperties = value;
 					else if (localName == ArgumentsElement)
-						plugin.m_arguments = value;
+						plugin.m_arguments = std::move(value);
 				}
 				else if (localName == PrediffFileElement)
 				{

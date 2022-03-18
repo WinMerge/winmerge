@@ -1626,7 +1626,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 		if (SelectFile(GetActiveMergeView()->GetSafeHwnd(), s, false, strPath.c_str(), title))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
-			strSavePath = s;
+			strSavePath = std::move(s);
 			nSaveResult = pBuffer->SaveToFile(strSavePath, false, sError,
 				infoTempUnpacker);
 
@@ -1774,9 +1774,9 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 		}
 
 		m_ptBuf[nBuffer]->SetModified(false);
-		m_pSaveFileInfo[nBuffer]->Update(strSavePath.c_str());
-		m_filePaths[nBuffer] = strSavePath;
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
+		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
+		m_filePaths[nBuffer] = std::move(strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
@@ -1837,7 +1837,7 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
-		m_filePaths[nBuffer] = strSavePath;
+		m_filePaths[nBuffer] = std::move(strSavePath);
 		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
@@ -3374,7 +3374,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	}
 	std::copy_n(m_strDesc, m_nBuffers, strDesc);
 
-	strDesc[nBuffer] = _T("");
+	strDesc[nBuffer].clear();
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 
