@@ -310,7 +310,8 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 			mycpyt2w(_T("script:"), wc, DIMOF(wc));
 		else
 			mycpyt2w(_T(""), wc, DIMOF(wc));
-		mycpyt2w(source, wc+wcslen(wc), DIMOF(wc)-wcslen(wc));
+		size_t len = wcslen(wc);
+		mycpyt2w(source, wc + len, DIMOF(wc) - len);
 
 		// I observed that CoGetObject() may internally provoke an access
 		// violation and succeed anyway. No idea how to avoid this.

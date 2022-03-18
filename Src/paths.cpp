@@ -464,10 +464,10 @@ bool IsDirectory(const String &path)
  */
 String ExpandShortcut(const String &inFile)
 {
-	assert(inFile != _T(""));
+	assert(!inFile.empty());
 
 	// No path, nothing to return
-	if (inFile == _T(""))
+	if (inFile.empty())
 		return _T("");
 
 	String outFile;

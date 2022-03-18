@@ -578,7 +578,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 			{
 				std::vector<int> *pWordDiffs;
 				if (list.find(firstDiff) == list.end())
-					list.insert(std::pair<int, std::vector<int> *>(firstDiff, new std::vector<int>()));
+					list.emplace(firstDiff, new std::vector<int>());
 				pWordDiffs = list[firstDiff];
 				for (int i = firstWordDiff; i <= lastWordDiff; ++i)
 				{
@@ -589,7 +589,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 		}
 	}
 	for (auto& it : list)
-		ret.insert(std::pair<int, std::vector<int>>(it.first, *it.second));
+		ret.emplace(it.first, *it.second);
 	return ret;
 }
 

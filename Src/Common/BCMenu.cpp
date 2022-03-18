@@ -1713,7 +1713,7 @@ bool BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 			INT_PTR menulistsize=m_MenuList.GetSize();	
 			if(uiId<(UINT)menulistsize){
 				CString str=m_MenuList[uiId]->GetString();
-				if(str==""){
+				if(str.IsEmpty()){
 					delete m_MenuList.GetAt(uiId);
 					m_MenuList.RemoveAt(uiId);
 				}

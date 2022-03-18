@@ -605,7 +605,7 @@ void CMDITabBar::UpdateToolTips(int nTabItemIndex)
 			strTooltip = pITabBar ? pITabBar->GetTooltipString() : _T("");
 
 			if (strTooltip == strTitle && strTitle.GetLength() <= GetMaxTitleLength())
-				strTooltip = "";
+				strTooltip.Empty();
 
 			m_tooltips.UpdateTipText(strTooltip, this);
 			CRect rc;

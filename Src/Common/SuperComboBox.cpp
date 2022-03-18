@@ -460,7 +460,7 @@ void CSuperComboBox::ResetContent()
 		m_sFullStateText.resize(m_nMaxItems);
 		for (int i = 0; i < m_nMaxItems; i++)
 		{
-			m_sFullStateText[i] = _T("");
+			m_sFullStateText[i].Empty();
 		}
 	}
 	CComboBoxEx::ResetContent();
