@@ -94,10 +94,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "转到(&G)...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "转到左侧和中间移动的行\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "转到中间和右侧移动的行\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "打开(&E)"
@@ -118,10 +118,10 @@ msgid "S&hell Menu"
 msgstr "外壳菜单(&S)"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "将第一行做为标题行"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "自动适应所有列"
 
 msgid "View &Differences"
 msgstr "查看差异(&D)"
@@ -246,10 +246,10 @@ msgid "Open Conflic&t File..."
 msgstr "打开冲突文件(&T)..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "打开剪贴板(&L)"
 
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "打开工程(J)...\tCtrl+J"
+msgstr "打开工程(&J)...\tCtrl+J"
 
 msgid "Sa&ve Project..."
 msgstr "保存工程(&V)..."
@@ -642,10 +642,10 @@ msgid "View Line &Numbers"
 msgstr "显示行号(&N)"
 
 msgid "View &Margins"
-msgstr "显示页边(&M)"
+msgstr "显示页边距(&M)"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "查看上页边距(&P)"
 
 msgid "W&rap Lines"
 msgstr "自动换行(&R)"
@@ -1103,7 +1103,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "启动时显示“选择文件或文件夹”对话框"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr ""
+msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "“打开”对话框的自动完成(&E):"
@@ -1355,13 +1355,13 @@ msgid "Additional Properties"
 msgstr "附加属性"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "选择插件"
@@ -1448,7 +1448,7 @@ msgid "E&nable moved block detection"
 msgstr "启用块移动检测(&N)"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "对齐相似的行(&S)"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "比较算法 (实验性) (&A):"
@@ -2797,7 +2797,7 @@ msgid "Unknown archive format"
 msgstr "未知的压缩包格式"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr ""
+msgstr "解压文件失败。\n是否按文本文件格式进行比较？"
 
 msgid "Filename"
 msgstr "文件名称"
@@ -2943,7 +2943,7 @@ msgid "Document"
 msgstr "文档"
 
 msgid "Home"
-msgstr ""
+msgstr "家"
 
 msgid "Journal"
 msgstr "日志"
@@ -2958,7 +2958,7 @@ msgid "Music"
 msgstr "音乐"
 
 msgid "Note"
-msgstr ""
+msgstr "记事"
 
 msgid "Photo"
 msgstr "照片"
@@ -3068,7 +3068,7 @@ msgstr "图像文件有差异"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "分组%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3557,7 +3557,7 @@ msgstr ""
 "全部复制到右侧"
 
 msgid "\nCopy All to Left"
-msgstr ""
+msgstr "\n全部复制到左侧"
 
 msgid ""
 "\n"
@@ -3590,11 +3590,11 @@ msgid "Suggested plugins"
 msgstr "推荐的插件"
 
 msgid "All plugins"
-msgstr ""
+msgstr "全部插件"
 
 #, c-format
 msgid "Private Build: %1"
-msgstr "Private Build: %1"
+msgstr "定制版本: %1"
 
 msgid "Your software is up to date."
 msgstr "您的软件是最新的。"
@@ -4105,17 +4105,17 @@ msgid "Basic text functions for the context menu"
 msgstr "用于上下文菜单的基本文本功能"
 
 msgid "Filter applied"
-msgstr ""
+msgstr "滤镜已应用"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "剪贴板位于 %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "剪贴板历史记录被禁用了。\r\n要启用剪贴板历史记录， 请按 Windows 徽标键 + V，然后单击“打开”按钮。"
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "当前系统不支持剪贴板历史记录。"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32位的 WinMerge 不支持剪贴板比较"
