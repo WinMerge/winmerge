@@ -548,7 +548,6 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, bool bSelect
 	// Draw only colored blocks
 	if (cr != CLR_NONE && cr != GetSysColor(COLOR_WINDOW))
 	{
-		CBrush brush(cr);
 		CRect drawRect(r);
 		drawRect.DeflateRect(1, 0);
 

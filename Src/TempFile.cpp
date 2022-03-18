@@ -50,7 +50,7 @@ String TempFile::Create(const String& prefix, const String& ext)
 		{
 			String tempext = temp + ext;
 			if (MoveFile(temp.c_str(), tempext.c_str()))
-				temp = tempext;
+				temp = std::move(tempext);
 		}
 		m_path = temp;
 	}
@@ -68,7 +68,7 @@ bool TempFile::Delete()
 	if (!m_path.empty())
 		success = !!DeleteFile(m_path.c_str());
 	if (success)
-		m_path = _T("");
+		m_path.clear();
 	return success;
 }
 /** 

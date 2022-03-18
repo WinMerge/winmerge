@@ -209,8 +209,8 @@ bool CShellContextMenu::QueryShellContextMenu()
 		return false;
 	}
 
-	m_pShellContextMenu2 = pCMenu2;
-	m_pShellContextMenu3 = pCMenu3;
+	m_pShellContextMenu2 = std::move(pCMenu2);
+	m_pShellContextMenu3 = std::move(pCMenu3);
 
 	return true;
 }

@@ -143,10 +143,10 @@ static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const Str
 		strDest = paths::AddTrailingSlash(dest);
 
 	exp.m_question = question;
-	exp.m_fromText = sOrig;
-	exp.m_toText = sDest;
-	exp.m_fromPath = strSrc;
-	exp.m_toPath = strDest;
+	exp.m_fromText = std::move(sOrig);
+	exp.m_toText = std::move(sDest);
+	exp.m_fromPath = std::move(strSrc);
+	exp.m_toPath = std::move(strDest);
 
 	throw exp;
 }

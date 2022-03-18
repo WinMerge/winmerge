@@ -281,7 +281,7 @@ void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const 
 		if (!sDir1.empty())
 			pathLeft = sDir1 + backslash;
 		pathLeft += ent1->filename.get();
-		tFiles.pathLeft = pathLeft;
+		tFiles.pathLeft = std::move(pathLeft);
 	}
 
 	if (ent2 != nullptr)
@@ -293,7 +293,7 @@ void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const 
 			pathRight = sDir2 + backslash;
 		pathRight += ent2->filename.get();
 
-		tFiles.pathRight = pathRight;
+		tFiles.pathRight = std::move(pathRight);
 	}
 
 	fileList->push_back(tFiles);

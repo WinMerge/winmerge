@@ -30,9 +30,9 @@ void CSelectPluginDlg::Initialize(PluginType pluginType)
 	//{{AFX_DATA_INIT(CSelectPluginDlg)
 	m_bNoExtensionCheck = false;
 	m_bOpenInSameFrameType = false;
-	m_strDescription = _T("");
-	m_strExtensions = _T("");
-	m_strArguments = _T("");
+	m_strDescription.clear();
+	m_strExtensions.clear();
+	m_strArguments.clear();
 	//}}AFX_DATA_INIT
 
 	// texts for the default unpackers

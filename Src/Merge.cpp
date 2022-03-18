@@ -999,7 +999,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 			PropBackups::FOLDER_ORIGINAL)
 		{
 			// Put backups to same folder than original file
-			bakPath = path;
+			bakPath = std::move(path);
 		}
 		else if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
 			PropBackups::FOLDER_GLOBAL)
@@ -1007,7 +1007,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 			// Put backups to global folder defined in options
 			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
 			if (bakPath.empty())
-				bakPath = path;
+				bakPath = std::move(path);
 			else
 				bakPath = paths::GetLongPath(bakPath);
 		}
@@ -1093,7 +1093,6 @@ int CMergeApp::HandleReadonlySave(String& strSavePath, bool bMultiFile,
 	bool bFileExists = false;
 	String s;
 	String str;
-	CString title;
 
 	if (!strSavePath.empty())
 	{

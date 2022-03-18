@@ -523,7 +523,7 @@ int CRegOptionsMgr::SetRegRootKey(const String& key)
 	if (ind != 0)
 		keyname.insert(0, _T("Software\\"));
 	
-	m_registryRoot = keyname;
+	m_registryRoot = std::move(keyname);
 
 	LONG retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, nullptr,
 		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, nullptr, &hKey, &action);
