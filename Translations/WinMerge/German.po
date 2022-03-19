@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-17 18:15+0200\n"
+"PO-Revision-Date: 2022-03-19 19:15+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3131,7 +3131,7 @@ msgid "Unknown archive format"
 msgstr "Unbekanntes Archivformat"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr ""
+msgstr "Archivdateien konnten nicht extrahiert werden.\nMöchten Sie die Archivdateien als Textdateien vergleichen?"
 
 #, c-format
 msgid "Filename"
