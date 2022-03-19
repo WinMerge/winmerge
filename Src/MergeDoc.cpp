@@ -3379,13 +3379,14 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 
 	bool filenameChanged = path != m_filePaths[nBuffer];
+	auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 	{
+		// Restore column widths and active pane changed by OpenDocs to their previous state
 		if (!filenameChanged)
 		{
-			auto columnWidths = m_ptBuf[nBuffer]->GetColumnWidths();
 			m_ptBuf[nBuffer]->SetColumnWidths(columnWidths);
 		}
 		MoveOnLoad(nActivePane, nLineIndex);
@@ -3615,11 +3616,12 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
+	int nActivePane = GetActiveMergeView()->m_nThisPane;
+	CPoint pt = GetActiveMergeView()->GetCursorPos();
+	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 	{
-		CPoint pt = GetActiveMergeView()->GetCursorPos();
-		auto columnWidths = m_ptBuf[0]->GetColumnWidths();
-		int nActivePane = GetActiveMergeView()->m_nThisPane;
+		// Restore column widths and active pane changed by OpenDocs to their previous state
 		m_ptBuf[0]->SetColumnWidths(columnWidths);
 		MoveOnLoad(nActivePane, pt.y);
 	}
