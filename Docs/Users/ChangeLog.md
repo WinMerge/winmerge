@@ -64,10 +64,10 @@
   - Catalan (PR #1237)
   - Chinese Simplified (PR #1257)
   - Chinese Traditional (PR #1204)
-  - Corsican (PR #1188,#1205,#1221,#1251)
+  - Corsican (PR #1188,#1205,#1221,#1251,#1260)
   - Dutch (PR #1187)
   - French (PR #1211)
-  - German (PR #1208,#1228,#1254)
+  - German (PR #1208,#1228,#1254,#1262)
   - Hungarian (PR #1203,#1220,#1252,#1259)
   - Japanese (PR #1165)
   - Korean (PR #1181)
@@ -76,7 +76,7 @@
   - Portuguese (PR #1178,#1222)
   - Russian (PR #1164)
   - Slovak (PR #1196)
-  - Slovenian (PR #1163)
+  - Slovenian (PR #1163,#1261)
   - Ukrainian (PR #1172)
 
 ### Internals
