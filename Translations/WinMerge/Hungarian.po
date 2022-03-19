@@ -3357,7 +3357,7 @@ msgid "Unknown archive format"
 msgstr "Ismeretlen archívum formátum"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr ""
+msgstr "Nem sikerült kibontani az archív fájlokat.\nSzeretnéd összehasonlítani az archív fájlokat szöveges fájlokként?"
 
 #, c-format
 msgid "Filename"
