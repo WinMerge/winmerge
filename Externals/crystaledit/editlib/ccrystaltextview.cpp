@@ -777,6 +777,8 @@ ScrollToChar (int nNewOffsetChar, bool bNoSmoothScroll /*= false*/, bool bTrackS
       CRect rcScroll;
       GetClientRect (&rcScroll);
       rcScroll.left += GetMarginWidth ();
+	  CRect rcTopMargin(rcScroll.right - GetCharWidth (), rcScroll.top, rcScroll.right, GetTopMarginHeight());
+	  InvalidateRect (&rcTopMargin); // Make sure the ruler is drawn correctly when scrolling horizontally 
       ScrollWindow (nScrollChars * GetCharWidth (), 0, &rcScroll, &rcScroll);
       UpdateWindow ();
       if (bTrackScrollBar)
