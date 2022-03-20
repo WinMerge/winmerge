@@ -248,7 +248,7 @@ msgid "&Vector Image Scaling"
 msgstr "Mise à l'échelle de l'image vectorielle"
 
 msgid "Compare Extracted &Text From Images"
-msgstr "Comparer le &texte extraits depuis d'images"
+msgstr "Comparer le &texte extraits depuis les images"
 
 #, c-format
 msgid "&File"
