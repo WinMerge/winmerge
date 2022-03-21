@@ -564,7 +564,7 @@ void COpenView::OnPathButton(UINT nId)
 	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder.c_str()))
 	{
 		m_strPath[index] = s;
-		m_strBrowsePath[index] = s;
+		m_strBrowsePath[index] = std::move(s);
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
@@ -646,7 +646,7 @@ void COpenView::OnCompare(UINT nID)
 			m_files[index] = paths::GetLongPath(m_files[index], bExpand);
 	
 			// Add trailing '\' for directories if its missing
-			if (paths::DoesPathExist(m_files[index]) == paths::IS_EXISTING_DIR)
+			if (paths::DoesPathExist(m_files[index]) == paths::IS_EXISTING_DIR && !IsArchiveFile(m_files[index]))
 				m_files[index] = paths::AddTrailingSlash(m_files[index]);
 			m_strPath[index] = m_files[index];
 		}
@@ -808,7 +808,7 @@ void COpenView::OnLoadProject()
 	{
 		m_strPath[0] = paths[0];
 		m_strPath[1] = paths[1];
-		m_strPath[2] = _T("");
+		m_strPath[2].clear();
 		m_bReadOnly[0] = projItem.GetLeftReadOnly();
 		m_bReadOnly[1] = projItem.GetRightReadOnly();
 		m_bReadOnly[2] = false;
@@ -937,7 +937,7 @@ void COpenView::OnSaveProject()
 
 void COpenView::DropDown(NMHDR* pNMHDR, LRESULT* pResult, UINT nID, UINT nPopupID)
 {
-	CRect rcButton, rcView;
+	CRect rcButton;
 	GetDlgItem(nID)->GetWindowRect(&rcButton);
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(nPopupID));
@@ -1345,7 +1345,6 @@ void COpenView::SetStatus(UINT msgID)
  */
 void COpenView::OnSelectFilter()
 {
-	String filterPrefix = _("[F] ");
 	String curFilter;
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 
@@ -1366,6 +1365,7 @@ void COpenView::OnSelectFilter()
 	}
 	else
 	{
+		String filterPrefix = _("[F] ");
 		filterNameOrMask = filterPrefix + filterNameOrMask;
 		SetDlgItemText(IDC_EXT_COMBO, filterNameOrMask);
 	}

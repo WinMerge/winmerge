@@ -317,6 +317,7 @@ public :
     const std::vector<int>& GetColumnWidths () const { return m_pSharedTableProps->m_aColumnWidths; }
     void SetColumnWidths (const std::vector<int>& columnWidths);
     int  GetColumnCount (int nLineIndex) const;
+    CString GetCellText (int nLineIndex, int nColumnIndex) const;
     void SetAllowNewlinesInQuotes (bool bAllowNewlinesInQuotes) { m_bAllowNewlinesInQuotes = bAllowNewlinesInQuotes; }
     TCHAR GetAllowNewlinesInQuotes () const { return m_bAllowNewlinesInQuotes; }
     void SetFieldDelimiter (TCHAR cFieldDelimiter) { m_cFieldDelimiter = cFieldDelimiter; }

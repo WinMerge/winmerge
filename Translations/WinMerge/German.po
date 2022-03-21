@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-04 16:15+0200\n"
+"PO-Revision-Date: 2022-03-19 19:15+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,12 @@ msgstr "&Elternordner öffnen..."
 
 msgid "S&hell Menu"
 msgstr "S&hell-Menü"
+
+msgid "Use First Line as Headers"
+msgstr "Erste Zeile als Überschrift verwenden"
+
+msgid "Auto-Fit All Columns"
+msgstr "Alle Spalten automatisch anpassen"
 
 #, c-format
 msgid "View &Differences"
@@ -804,6 +810,9 @@ msgstr "Zeilennu&mmern anzeigen"
 msgid "View &Margins"
 msgstr "&Ränder anzeigen"
 
+msgid "View To&p Margins"
+msgstr "&Obere Ränder anzeigen"
+
 #, c-format
 msgid "W&rap Lines"
 msgstr "Zeilen &umbrechen"
@@ -818,7 +827,7 @@ msgstr "U&nterschiedsleiste"
 
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "P&ositionsleiste"
+msgstr "&Positionsleiste"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
@@ -3141,6 +3150,9 @@ msgstr "Konnte externen Editor nicht ausführen: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Unbekanntes Archivformat"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "Archivdateien konnten nicht extrahiert werden.\nMöchten Sie die Archivdateien als Textdateien vergleichen?"
 
 #, c-format
 msgid "Filename"

@@ -123,6 +123,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr ""
@@ -799,6 +805,9 @@ msgstr "Εμφάνιση &Αριθμήσεως Γραμμών"
 #, c-format
 msgid "View &Margins"
 msgstr "Εμφάνιση Περι&θωρίων"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3286,6 +3295,9 @@ msgstr "Αποτυχία κατά το άνοιγμα άλλης εφαρμογ�
 #, c-format
 msgid "Unknown archive format"
 msgstr "Άγνωστη μορφή συμπιεσμένου αρχείου"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

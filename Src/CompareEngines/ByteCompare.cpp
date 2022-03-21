@@ -39,9 +39,7 @@ ByteCompare::ByteCompare()
 /**
  * @brief Default destructor.
  */
-ByteCompare::~ByteCompare()
-{
-}
+ByteCompare::~ByteCompare() = default;
 
 /**
  * @brief Set compare options from general compare options.

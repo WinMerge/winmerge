@@ -105,7 +105,7 @@ void CSizingControlBarG::NcCalcClient(LPRECT pRc, UINT nDockBarID)
     *pRc = rc;
 }
 
-void CSizingControlBarG::NcPaintGripper(CDC* pDC, CRect rcClient)
+void CSizingControlBarG::NcPaintGripper(CDC* pDC, const CRect& rcClient)
 {
     if (!HasGripper())
         return;

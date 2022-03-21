@@ -115,6 +115,12 @@ msgstr "親フォルダーを開く(&P)..."
 msgid "S&hell Menu"
 msgstr "シェル メニュー(&H)"
 
+msgid "Use First Line as Headers"
+msgstr "最初の行をヘッダとして使用する"
+
+msgid "Auto-Fit All Columns"
+msgstr "全列幅を自動調整する"
+
 msgid "View &Differences"
 msgstr "差異を表示(&D)"
 
@@ -647,6 +653,9 @@ msgstr "行番号を表示(&N)"
 
 msgid "View &Margins"
 msgstr "マージンを表示(&M)"
+
+msgid "View To&p Margins"
+msgstr "上マージを表示(&P)"
 
 msgid "W&rap Lines"
 msgstr "行を右端で折返す(&R)"
@@ -2800,6 +2809,9 @@ msgstr "外部エディターの実行に失敗しました: %1"
 
 msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "アーカイブファイルの展開に失敗しました。\nアーカイブファイルをテキストファイルとして比較しますか?"
 
 msgid "Filename"
 msgstr "名前"

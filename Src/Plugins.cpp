@@ -588,13 +588,12 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
  */
 int PluginInfo::LoadPlugin(const String & scriptletFilepath)
 {
-	// set up object in case we need to log info
-	ScriptInfo scinfo(scriptletFilepath);
-
 	// Search for the class "WinMergeScript"
 	LPDISPATCH lpDispatch = CreateDispatchBySource(scriptletFilepath.c_str(), L"WinMergeScript");
 	if (lpDispatch == nullptr)
 	{
+		// set up object in case we need to log info
+		ScriptInfo scinfo(scriptletFilepath);
 		scinfo.Log(_T("WinMergeScript entry point not found"));
 		return -10; // error
 	}
@@ -749,7 +748,7 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 								String nameNew = name + strutils::format(_T("(%d)"), i + 2);
 								if (pluginNames.find(nameNew) == pluginNames.end())
 								{
-									name = nameNew;
+									name = std::move(nameNew);
 									break;
 								}
 							}

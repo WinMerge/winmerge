@@ -86,7 +86,7 @@ void CSizingControlBarCF::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHnd
         SendMessage(WM_NCPAINT);
 }
 
-void CSizingControlBarCF::NcPaintGripper(CDC* pDC, CRect rcClient)
+void CSizingControlBarCF::NcPaintGripper(CDC* pDC, const CRect& rcClient)
 {
     if (!HasGripper())
         return;

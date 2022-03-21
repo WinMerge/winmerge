@@ -38,9 +38,7 @@ FileActionScript::FileActionScript()
 /**
  * @brief Standard destructor.
  */
-FileActionScript::~FileActionScript()
-{
-}
+FileActionScript::~FileActionScript() = default;
 
 /**
  * @brief Remove last action item from the list.

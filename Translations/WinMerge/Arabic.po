@@ -117,6 +117,12 @@ msgstr "المجلد الأساسي..."
 msgid "S&hell Menu"
 msgstr "&قائمة البرنامج الوسيطي (الغلاف)"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "عرض ال&اختلافات"
 
@@ -649,6 +655,9 @@ msgstr "عرض &أرقام الأسطر"
 
 msgid "View &Margins"
 msgstr "عرض ال&هوامش"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "إلت&فاف الأسطر"
@@ -2783,6 +2792,9 @@ msgstr "فشل في تشغيل المحرر الخارجي: %1"
 
 msgid "Unknown archive format"
 msgstr "نوع أرشيف غير معروف"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "اسم الملف"

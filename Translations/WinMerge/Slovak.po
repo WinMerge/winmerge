@@ -116,6 +116,12 @@ msgstr "Otvoriť &nadradený priečinok..."
 msgid "S&hell Menu"
 msgstr "&Vzhľad ponuky"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Zobraziť &rozdiely"
 
@@ -648,6 +654,9 @@ msgstr "Zobraziť čísla &riadkov"
 
 msgid "View &Margins"
 msgstr "Zobraziť &okraje"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "&Zvinúť riadky"
@@ -2801,6 +2810,9 @@ msgstr "Nepodarilo sa spustiť externý editor: %1"
 
 msgid "Unknown archive format"
 msgstr "Neznámy formát archívu"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "Názov súboru"

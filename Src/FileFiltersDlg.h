@@ -42,6 +42,7 @@ private:
 protected:
 	void InitList();
 	void SelectFilterByIndex(int index);
+	void SelectFilterByFilePath(const String& path);
 	void AddToGrid(int filterIndex);
 	bool IsFilterItemNone(int item) const;
 	void UpdateFiltersList();

@@ -115,6 +115,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Vis &forskjeller"
 
@@ -647,6 +653,9 @@ msgstr "Vis linje&nummer"
 
 msgid "View &Margins"
 msgstr "Vis &marger"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "&Tekstbrytning"
@@ -2815,6 +2824,9 @@ msgstr "Feilet i å kjøre eksternt redigeringsprogram: %1"
 
 msgid "Unknown archive format"
 msgstr "Ukjent arkivformat"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "Filnavn"

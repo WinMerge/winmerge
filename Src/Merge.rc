@@ -122,6 +122,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_MERGEVIEWHEADER MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Use First Line as Headers",  ID_USE_FIRST_LINE_AS_HEADERS
+        MENUITEM "Auto-Fit All Columns",       ID_AUTO_FIT_ALL_COLUMNS
+    END
+END
+
 IDR_POPUP_IMGMERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
@@ -624,6 +633,7 @@ BEGIN
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
         MENUITEM "View &Margins",               ID_VIEW_SELMARGIN
+        MENUITEM "View To&p Margins",           ID_VIEW_TOPMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         POPUP "Sw&ap Panes"
@@ -3351,6 +3361,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    IDS_FAILED_EXTRACT_ARCHIVE_FILES "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #1

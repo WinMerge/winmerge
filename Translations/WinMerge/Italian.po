@@ -114,6 +114,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr "Men&u shell"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Visializza &differenze"
 
@@ -646,6 +652,9 @@ msgstr "Visualizza &numeri righe"
 
 msgid "View &Margins"
 msgstr "Visualizza &margini"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "A capo a&utomatico"
@@ -2793,6 +2802,9 @@ msgstr "Impossibile avviare l'editor esterno: %1"
 
 msgid "Unknown archive format"
 msgstr "Formato archivio sconosciuto"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "Nome file"

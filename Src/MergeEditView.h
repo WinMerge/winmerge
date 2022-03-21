@@ -318,6 +318,11 @@ protected:
 	afx_msg void OnHelp();
 	afx_msg void OnViewMargin();
 	afx_msg void OnUpdateViewMargin(CCmdUI* pCmdUI);
+	afx_msg void OnViewTopMargin();
+	afx_msg void OnUpdateViewTopMargin(CCmdUI* pCmdUI);
+	afx_msg void OnUseFirstLineAsHeaders();
+	afx_msg void OnUpdateUseFirstLineAsHeaders(CCmdUI* pCmdUI);
+	afx_msg void OnAutoFitAllColumns();
 	afx_msg void OnUpdateViewChangeScheme(CCmdUI *pCmdUI);
 	afx_msg void OnChangeScheme(UINT nID);
 	afx_msg void OnUpdateChangeScheme(CCmdUI* pCmdUI);

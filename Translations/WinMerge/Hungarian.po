@@ -126,6 +126,12 @@ msgstr "Szölőkönyvtár megnyitása..."
 msgid "S&hell Menu"
 msgstr "Intéző menü"
 
+msgid "Use First Line as Headers"
+msgstr "Első sor használata fejlécként"
+
+msgid "Auto-Fit All Columns"
+msgstr "Minden oszlop automatikus illeszkedése"
+
 #, c-format
 msgid "View &Differences"
 msgstr "Különbségek mutatása"
@@ -802,6 +808,9 @@ msgstr "Sorszámok megjelenítése"
 #, c-format
 msgid "View &Margins"
 msgstr "Margók megjelenítése"
+
+msgid "View To&p Margins"
+msgstr "Felső margók megjelenítése"
 
 #, c-format
 msgid "W&rap Lines"
@@ -3367,6 +3376,9 @@ msgstr "Nem sikerült elindítani a külső szerkesztőt: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Ismeretlen archívum formátum"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "Nem sikerült kibontani az archív fájlokat.\nSzeretnéd összehasonlítani az archív fájlokat szöveges fájlokként?"
 
 #, c-format
 msgid "Filename"

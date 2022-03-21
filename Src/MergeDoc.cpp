@@ -1195,7 +1195,7 @@ void CMergeDoc::DoAutoMerge(int dstPane)
  * @param [in] dr Difference to check.
  * @return true if difference lines match, false otherwise.
  */
-bool CMergeDoc::SanityCheckDiff(DIFFRANGE dr) const
+bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 {
 	const int cd_dbegin = dr.dbegin;
 	const int cd_dend = dr.dend;
@@ -1626,7 +1626,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 		if (SelectFile(GetActiveMergeView()->GetSafeHwnd(), s, false, strPath.c_str(), title))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer].get();
-			strSavePath = s;
+			strSavePath = std::move(s);
 			nSaveResult = pBuffer->SaveToFile(strSavePath, false, sError,
 				infoTempUnpacker);
 
@@ -1774,9 +1774,9 @@ bool CMergeDoc::DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 		}
 
 		m_ptBuf[nBuffer]->SetModified(false);
-		m_pSaveFileInfo[nBuffer]->Update(strSavePath.c_str());
-		m_filePaths[nBuffer] = strSavePath;
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer].c_str());
+		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
+		m_filePaths[nBuffer] = std::move(strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
 		result = true;
@@ -1837,7 +1837,7 @@ bool CMergeDoc::DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
-		m_filePaths[nBuffer] = strSavePath;
+		m_filePaths[nBuffer] = std::move(strSavePath);
 		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = true;
@@ -2241,7 +2241,6 @@ void CMergeDoc::OnUpdateStatusRO(CCmdUI* pCmdUI)
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sIdx[32] = { 0 };
 	TCHAR sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_diffList.GetSignificantDiffs();
@@ -2263,6 +2262,7 @@ void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	// - show diff number and amount of diffs
 	else
 	{
+		TCHAR sIdx[32] = { 0 };
 		s = _("Difference %1 of %2");
 		const int signInd = m_diffList.GetSignificantIndex(GetCurrentDiff());
 		_itot_s(signInd + 1, sIdx, 10);
@@ -2927,7 +2927,7 @@ void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
  * @param [in] encoding File's encoding.
  * @return One of FileLoadResult values.
  */
-DWORD CMergeDoc::LoadOneFile(int index, String filename, bool readOnly, const String& strDesc, 
+DWORD CMergeDoc::LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, 
 		const FileTextEncoding & encoding)
 {
 	DWORD loadSuccess = FileLoadResult::FRESULT_ERROR;;
@@ -3374,7 +3374,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	}
 	std::copy_n(m_strDesc, m_nBuffers, strDesc);
 
-	strDesc[nBuffer] = _T("");
+	strDesc[nBuffer].clear();
 	fileloc[nBuffer].setPath(path);
 	fileloc[nBuffer].encoding = codepage_detect::Guess(path, GetOptionsMgr()->GetInt(OPT_CP_DETECT));
 
@@ -3384,8 +3384,11 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 	
 	if (OpenDocs(m_nBuffers, fileloc, bRO, strDesc))
 	{
+		// Restore column widths and active pane changed by OpenDocs to their previous state
 		if (!filenameChanged)
+		{
 			m_ptBuf[nBuffer]->SetColumnWidths(columnWidths);
+		}
 		MoveOnLoad(nActivePane, nLineIndex);
 	}
 }
@@ -3618,6 +3621,7 @@ void CMergeDoc::OnFileReload()
 	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 	{
+		// Restore column widths and active pane changed by OpenDocs to their previous state
 		m_ptBuf[0]->SetColumnWidths(columnWidths);
 		MoveOnLoad(nActivePane, pt.y);
 	}
@@ -3842,13 +3846,20 @@ void CMergeDoc::OnUpdateFileRecompareAsText(CCmdUI *pCmdUI)
 
 void CMergeDoc::OnFileRecompareAsTable()
 {
+	if (m_ptBuf[0]->GetTableEditing())
+	{
+		COpenTableDlg dlg;
+		if (dlg.DoModal() != IDOK)
+			return;
+		m_pTablePropsPrepared.reset(new TableProps{ true, strutils::from_charstr(dlg.m_sDelimiterChar), strutils::from_charstr(dlg.m_sQuoteChar), dlg.m_bAllowNewlinesInQuotes });
+	}
 	m_bEnableTableEditing = true;
 	OnFileReload();
 }
 
 void CMergeDoc::OnUpdateFileRecompareAsTable(CCmdUI *pCmdUI)
 {
-	pCmdUI->Enable(!m_ptBuf[0]->GetTableEditing());
+	pCmdUI->Enable(true);
 }
 
 void CMergeDoc::OnFileRecompareAs(UINT nID)

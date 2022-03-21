@@ -395,7 +395,7 @@ private:
 	MergeDocList &GetAllMergeDocs();
 	DirDocList &GetAllDirDocs();
 	HexMergeDocList &GetAllHexMergeDocs();
-	std::list<CImgMergeFrame *> GetAllImgMergeFrames();
+	std::vector<CImgMergeFrame *> GetAllImgMergeFrames();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	CMergeEditView * GetActiveMergeEditView();

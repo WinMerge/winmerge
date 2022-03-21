@@ -113,6 +113,12 @@ msgstr "&Родителска папка…"
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Преглед на &различия"
 
@@ -645,6 +651,9 @@ msgstr "&Номериране на редовете"
 
 msgid "View &Margins"
 msgstr "Показване на &отстъпа"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Прена&сяне на редовете"
@@ -2826,6 +2835,9 @@ msgstr "Не може да се стартира външния редактор
 
 msgid "Unknown archive format"
 msgstr "Непознат архивен формат"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "Име"

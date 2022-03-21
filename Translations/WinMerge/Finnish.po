@@ -125,6 +125,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr "&Liittymävalikko"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "Näytä &erot"
@@ -800,6 +806,9 @@ msgstr "Näytä rivinumerot"
 #, c-format
 msgid "View &Margins"
 msgstr "Näytä &marginaalit"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3330,6 +3339,9 @@ msgstr "Ulkoisen editorin ajo epäonnistui: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Tuntematon arkistomuoto"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

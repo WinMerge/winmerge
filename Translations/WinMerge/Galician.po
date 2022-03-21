@@ -125,6 +125,12 @@ msgstr "Abrir Cartafol &Pai…"
 msgid "S&hell Menu"
 msgstr "Menú conte&xtual"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "&Ver diferenzas"
@@ -801,6 +807,9 @@ msgstr "Ver &números de liña"
 #, c-format
 msgid "View &Margins"
 msgstr "Ver &marxes"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3366,6 +3375,9 @@ msgstr "Non se puido executar o editor externo: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Formato de arquivo descoñecido"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

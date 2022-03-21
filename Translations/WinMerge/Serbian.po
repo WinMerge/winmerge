@@ -123,6 +123,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr ""
@@ -798,6 +804,9 @@ msgstr "Приказ броја ре&дова"
 #, c-format
 msgid "View &Margins"
 msgstr "Приказ иви&ца"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3283,6 +3292,9 @@ msgstr "Није успело покретање другог уређивача
 #, c-format
 msgid "Unknown archive format"
 msgstr "Непознат облик архиве"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

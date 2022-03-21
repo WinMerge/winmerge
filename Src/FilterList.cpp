@@ -15,9 +15,7 @@ using Poco::RegularExpression;
 /** 
  * @brief Constructor.
  */
- FilterList::FilterList()
-{
-}
+FilterList::FilterList() = default;
 
 /** 
  * @brief Destructor.

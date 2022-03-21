@@ -124,6 +124,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr ""
@@ -800,6 +806,9 @@ msgstr "Prikaži &brojeve redaka"
 #, c-format
 msgid "View &Margins"
 msgstr "Prikaži &margine"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3308,6 +3317,9 @@ msgstr "Greška pri pokretanju vanjskog editora: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Nepoznat oblik arhiva"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

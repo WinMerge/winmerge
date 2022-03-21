@@ -490,7 +490,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 			sLine.append(GetLineChars(line), nLineLength);
 		}
 		else
-			sLine = _T("");
+			sLine.clear();
 
 		if (bTempFile && m_bTableEditing && m_bAllowNewlinesInQuotes)
 		{

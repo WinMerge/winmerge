@@ -117,6 +117,12 @@ msgstr "Otwórz nadrzędny katalog..."
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Wyświetl różnice"
 
@@ -649,6 +655,9 @@ msgstr "Wyświetl &numery wierszy"
 
 msgid "View &Margins"
 msgstr "Wyświetl &marginesy"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Zawijaj wiersze"
@@ -2570,6 +2579,9 @@ msgstr "Nie można uruchomić zewnętrznego edytora: %1"
 
 msgid "Unknown archive format"
 msgstr "Nieznany format archiwum"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "Nazwa pliku"

@@ -125,6 +125,12 @@ msgstr ""
 msgid "S&hell Menu"
 msgstr ""
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr ""
@@ -801,6 +807,9 @@ msgstr "&N مشاهده شماره خطوط "
 #, c-format
 msgid "View &Margins"
 msgstr "&M مشاهده کناره ها "
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3335,6 +3344,9 @@ msgstr " اجراي ناموفق ويراستار خارجي : %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr " بايگاني با قالب بندي ناشناس "
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

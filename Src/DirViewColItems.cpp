@@ -423,7 +423,7 @@ static String ColDiffsGet(const CDiffContext *, const void *p, int)
 	}
 	else if (r == CDiffContext::DIFFS_UNKNOWN)
 	{ // Unique item
-		s = _T("");
+		s.clear();
 	}
 	else
 	{

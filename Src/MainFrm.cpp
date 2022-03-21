@@ -1312,7 +1312,17 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	CTempPathContext *pTempPathContext = nullptr;
 	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
 	{
-		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
+		DecompressResult res = DecompressArchive(m_hWnd, tFiles);
+		if (FAILED(res.hr))
+		{
+			int ans = AfxMessageBox(IDS_FAILED_EXTRACT_ARCHIVE_FILES, MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
+			if (ans == IDYES)
+			{
+				pathsType = paths::IS_EXISTING_FILE;
+				delete res.pTempPathContext;
+				res.pTempPathContext = nullptr;
+			}
+		}
 		if (res.pTempPathContext)
 		{
 			pathsType = res.pathsType;
@@ -1672,9 +1682,9 @@ HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
 }
 
-std::list<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
+std::vector<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
 {
-	std::list<CImgMergeFrame *> list;
+	std::vector<CImgMergeFrame *> list;
 	// Close Non-Document/View frame with confirmation
 	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
 	while (pChild != nullptr)
@@ -3185,7 +3195,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 	}
 
-	std::vector<String> processTypes;
+	std::list<String> processTypes;
 	for (const auto& [processType, pluginList] : allPlugins)
 		processTypes.push_back(processType);
 	auto it = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
@@ -3195,7 +3205,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		processTypes.push_back(_("&Others"));
 	}
 
-	for (const auto& processType: processTypes)
+	for (const auto& processType : processTypes)
 	{
 		CMenu popup;
 		popup.CreatePopupMenu();

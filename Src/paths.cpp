@@ -286,7 +286,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		HANDLE h = FindFirstFile(TFile(sTemp).wpath().c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
-			sLong = sTemp;
+			sLong = std::move(sTemp);
 			if (ptr != nullptr)
 			{
 				sLong += '\\';
@@ -464,10 +464,10 @@ bool IsDirectory(const String &path)
  */
 String ExpandShortcut(const String &inFile)
 {
-	assert(inFile != _T(""));
+	assert(!inFile.empty());
 
 	// No path, nothing to return
-	if (inFile == _T(""))
+	if (inFile.empty())
 		return _T("");
 
 	String outFile;

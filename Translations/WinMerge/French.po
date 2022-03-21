@@ -131,6 +131,12 @@ msgstr "Ouvrir dossier& parent..."
 msgid "S&hell Menu"
 msgstr "Menu S&hell"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "Voir &différences"
@@ -242,7 +248,7 @@ msgid "&Vector Image Scaling"
 msgstr "Mise à l'échelle de l'image vectorielle"
 
 msgid "Compare Extracted &Text From Images"
-msgstr "Comparer le &texte extraits depuis d'images"
+msgstr "Comparer le &texte extraits depuis les images"
 
 msgid "Compare &Screenshots"
 msgstr ""
@@ -807,6 +813,9 @@ msgstr "Afficher la &numérotation des lignes"
 #, c-format
 msgid "View &Margins"
 msgstr "Afficher les &marges"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3374,6 +3383,9 @@ msgstr "Lancement de l'éditeur externe a échoué : %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Format d'archives inconnu"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

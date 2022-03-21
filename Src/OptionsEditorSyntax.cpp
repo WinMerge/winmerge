@@ -26,7 +26,7 @@ void GetDefaults(COptionsMgr* pOptionsMgr, String* pExtension)
 		{
 			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			String exts = pOptionsMgr->GetDefault<String>(name);
-			pExtension[i-1] = exts;
+			pExtension[i-1] = std::move(exts);
 		}
 	}
 }
@@ -75,7 +75,7 @@ void Load(COptionsMgr *pOptionsMgr, String* pExtension)
 		{
 			String name = strutils::format(_T("%s/%s.exts"), Section, def->name);
 			String exts = pOptionsMgr->GetString(name);
-			pExtension[i-1] = exts;
+			pExtension[i-1] = std::move(exts);
 		}
 	}
 }

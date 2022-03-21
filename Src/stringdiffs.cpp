@@ -251,9 +251,7 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
  * @brief Destructor.
  * The destructor frees all diffs added to the vectors.
  */
-stringdiffs::~stringdiffs()
-{
-}
+stringdiffs::~stringdiffs() = default;
 
 #ifdef STRINGDIFF_LOGGING
 void

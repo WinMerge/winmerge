@@ -126,6 +126,12 @@ msgstr "開啟父資料夾... (&P)"
 msgid "S&hell Menu"
 msgstr "殼層選單 (&H)"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "檢視差異 (&D)"
@@ -803,6 +809,9 @@ msgstr "檢視行號 (&N)"
 #, c-format
 msgid "View &Margins"
 msgstr "檢視頁邊 (&M)"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3373,6 +3382,9 @@ msgstr "無法執行外部編輯器 %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "未知壓縮格式"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

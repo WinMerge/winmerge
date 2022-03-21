@@ -117,6 +117,12 @@ msgstr "Abrir &pasta da localização..."
 msgid "S&hell Menu"
 msgstr "M&enu de contexto"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 msgid "View &Differences"
 msgstr "Ver &diferenças"
 
@@ -649,6 +655,9 @@ msgstr "Ver números da linha"
 
 msgid "View &Margins"
 msgstr "Ver &margens"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Mudança de linha"
@@ -2805,6 +2814,9 @@ msgstr "Erro ao executar editor externo: %1"
 
 msgid "Unknown archive format"
 msgstr "Formato de ficheiro desconhecido"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 msgid "Filename"
 msgstr "Nome do ficheiro"

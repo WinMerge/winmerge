@@ -124,6 +124,12 @@ msgstr "Obre el directori &Pare..."
 msgid "S&hell Menu"
 msgstr "Menú de &Sistema"
 
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
+
 #, c-format
 msgid "View &Differences"
 msgstr "Remarca &diferències"
@@ -800,6 +806,9 @@ msgstr "Mostra els &números de línia"
 #, c-format
 msgid "View &Margins"
 msgstr "Mostra els &marges"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -3359,6 +3368,9 @@ msgstr "No s'ha pogut executar l'editor extern: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "El format de l'arxiu és desconegut"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"

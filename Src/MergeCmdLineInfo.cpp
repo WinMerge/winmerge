@@ -252,7 +252,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			else if (param.substr(0, 3) == _T("web"))
 				m_nWindowType = WindowType::WEBPAGE;
 			else
-				m_sErrorMessages.push_back(_T("Unknown window type '") + param + _T("' specified"));
+				m_sErrorMessages.emplace_back(_T("Unknown window type '") + param + _T("' specified"));
 		}
 		else if (param == _T("m"))
 		{
@@ -276,7 +276,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 			else if (param == _T("size"))
 				m_nCompMethod = CompareMethodType::SIZE;
 			else
-				m_sErrorMessages.push_back(_T("Unknown compare method '") + param + _T("' specified"));
+				m_sErrorMessages.emplace_back(_T("Unknown compare method '") + param + _T("' specified"));
 		}
 		else if (param == _T("r"))
 		{
@@ -529,7 +529,7 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 		}
 		else
 		{
-			m_sErrorMessages.push_back(_T("Unknown option '/") + param + _T("'"));
+			m_sErrorMessages.emplace_back(_T("Unknown option '/") + param + _T("'"));
 		}
 	}
 	// If "compare file dir" make it "compare file dir\file".

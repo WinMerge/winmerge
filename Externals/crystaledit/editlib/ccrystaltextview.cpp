@@ -515,6 +515,7 @@ CCrystalTextView::CCrystalTextView ()
 , m_nRenderingMode(s_nRenderingModeDefault)
 , m_pCrystalRendererSaved(nullptr)
 , m_nColumnResizing(-1)
+, m_nLineNumberUsedAsHeaders(-1)
 {
 #ifdef _WIN64
   if (m_nRenderingMode == RENDERING_MODE::GDI)
@@ -776,6 +777,8 @@ ScrollToChar (int nNewOffsetChar, bool bNoSmoothScroll /*= false*/, bool bTrackS
       CRect rcScroll;
       GetClientRect (&rcScroll);
       rcScroll.left += GetMarginWidth ();
+	  CRect rcTopMargin(rcScroll.right - GetCharWidth (), rcScroll.top, rcScroll.right, GetTopMarginHeight());
+	  InvalidateRect (&rcTopMargin); // Make sure the ruler is drawn correctly when scrolling horizontally 
       ScrollWindow (nScrollChars * GetCharWidth (), 0, &rcScroll, &rcScroll);
       UpdateWindow ();
       if (bTrackScrollBar)
@@ -801,6 +804,14 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
     {
       CRect rcScroll;
       GetClientRect (&rcScroll);
+
+      if (m_pTextBuffer->GetTableEditing () &&
+         ((m_nTopSubLine > 0 && nNewTopSubLine == 0) || (m_nTopSubLine == 0 && nNewTopSubLine > 0)))
+        {
+          CRect rcTopMargin(rcScroll.left, rcScroll.top, rcScroll.right, GetTopMarginHeight ());
+          InvalidateRect (&rcTopMargin);
+        }
+
       rcScroll.top += GetTopMarginHeight ();
 
       if (bNoSmoothScroll || ! m_bSmoothScroll)
@@ -820,7 +831,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
           // OnDraw() uses m_nTopLine to determine topline
           int dummy;
           GetLineBySubLine(m_nTopSubLine, m_nTopLine, dummy);
-          ScrollWindow(0, nScrollLines * GetLineHeight(), nullptr, rcScroll);
+          ScrollWindow(0, nScrollLines * GetLineHeight(), rcScroll, rcScroll);
           UpdateWindow();
           if (bTrackScrollBar)
             {
@@ -842,7 +853,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                     nTopSubLine = nNewTopSubLine;
                   const int nScrollLines = nTopSubLine - m_nTopSubLine;
                   m_nTopSubLine = nTopSubLine;
-                  ScrollWindow(0, - nLineHeight * nScrollLines, nullptr, rcScroll);
+                  ScrollWindow(0, - nLineHeight * nScrollLines, rcScroll, rcScroll);
                   UpdateWindow();
                   if (bTrackScrollBar)
                     {
@@ -2418,11 +2429,8 @@ GetLineFlags (int nLineIndex) const
 }
 
 void CCrystalTextView::
-DrawTopMargin (const CRect& rect)
+GetTopMarginText (const CRect& rect, CString& text, std::vector<int>& nWidths)
 {
-  if (!m_bTopMargin)
-    return;
-
   auto getColumnName = [](int nColumn) -> CString
     {
       CString columnName;
@@ -2437,33 +2445,73 @@ DrawTopMargin (const CRect& rect)
       return columnName;
     };
 
+  auto replaceControlChars = [](const CString& text) -> CString
+    {
+      CString result;
+      for (int i = 0; i < text.GetLength(); ++i)
+        {
+          if (_istcntrl(text[i]))
+            {
+              if (i == 0 || !_istcntrl(text[i - 1]))
+                  result += L' ';
+            }
+          else
+            result += text[i];
+        }
+      return result;
+    };
+
+  const int nCharWidth = GetCharWidth ();
+  const int nMarginWidth = GetMarginWidth ();
+  for (int nColumn = 0, x = nMarginWidth - m_nOffsetChar * nCharWidth; x < rect.Width (); ++nColumn)
+    {
+      int nColumnWidth = m_pTextBuffer->GetColumnWidth (nColumn);
+      CString columnName;
+      if (m_nTopSubLine > 0 && m_nLineNumberUsedAsHeaders >= 0 && m_nLineNumberUsedAsHeaders < m_pTextBuffer->GetLineCount())
+        columnName = replaceControlChars (m_pTextBuffer->GetCellText (m_nLineNumberUsedAsHeaders, nColumn));
+      if (columnName.IsEmpty())
+        columnName = getColumnName (nColumn);
+      int columnNameLen = 0;
+      std::vector<int> nCharWidths;
+      for (int i = 0; i < columnName.GetLength(); ++i)
+        {
+          int cnt = GetCharCellCountFromChar (((const TCHAR*)columnName) + i);
+          nCharWidths.push_back (cnt * nCharWidth);
+          columnNameLen += cnt;
+        }
+      while (nColumnWidth < columnNameLen)
+        {
+          columnNameLen -= nCharWidths.back() / nCharWidth;
+          columnName.Truncate(columnName.GetLength() - 1);
+          nCharWidths.resize(columnName.GetLength());
+        }
+      const int leftspaces = (nColumnWidth - columnNameLen) / 2;
+      const int rightspaces = nColumnWidth - leftspaces - columnNameLen;
+      text += CString (' ', leftspaces) + columnName + CString (' ', rightspaces);
+      std::vector<int> preWidths(leftspaces, nCharWidth);
+      std::vector<int> postWidths(rightspaces, nCharWidth);
+      nCharWidths.insert (nCharWidths.begin (), preWidths.begin (), preWidths.end ());
+      nCharWidths.insert (nCharWidths.end (), postWidths.begin (), postWidths.end ());
+      x += nColumnWidth * nCharWidth;
+      nWidths.insert (nWidths.end (), nCharWidths.begin (), nCharWidths.end ());
+    }
+}
+
+void CCrystalTextView::
+DrawTopMargin (const CRect& rect)
+{
+  if (!m_bTopMargin)
+    return;
   m_pCrystalRenderer->SetBkColor (GetColor (COLORINDEX_SELMARGIN));
   m_pCrystalRenderer->FillRectangle (rect);
   m_pCrystalRenderer->SetTextColor (GetColor (COLORINDEX_NORMALTEXT));
   if (m_pTextBuffer->GetTableEditing ())
     {
-      const int nCharWidth = GetCharWidth ();
-      const int nMarginWidth = GetMarginWidth ();
       CString columnNames;
-      for (int nColumn = 0, x = nMarginWidth - m_nOffsetChar * nCharWidth; x < rect.Width (); ++nColumn)
-        {
-          int nColumnWidth = m_pTextBuffer->GetColumnWidth (nColumn);
-          CString columnName = getColumnName (nColumn);
-          int columnNameLen = columnName.GetLength ();
-          if (nColumnWidth < columnNameLen)
-            columnNames += columnName.Right (nColumnWidth);
-          else
-            {
-              int leftspaces = (nColumnWidth - columnNameLen) / 2;
-              columnNames += CString (' ', leftspaces) + columnName + CString (' ', nColumnWidth - leftspaces - columnNameLen);
-            }
-          x += nColumnWidth * nCharWidth;
-        }
-      columnNames = columnNames.Mid (m_nOffsetChar).Left(rect.Width () / nCharWidth + 1);
-
-      std::vector<int> nWidths (columnNames.GetLength (), nCharWidth);
+      std::vector<int> nWidths;
+      GetTopMarginText (rect, columnNames, nWidths);
       m_pCrystalRenderer->SwitchFont (false, false);
-      m_pCrystalRenderer->DrawText (nMarginWidth, 0, rect, columnNames, columnNames.GetLength (), nWidths.data ());
+      m_pCrystalRenderer->DrawText (rect.left + GetMarginWidth () - m_nOffsetChar * GetCharWidth (), 0, rect, columnNames, columnNames.GetLength (), nWidths.data ());
     }
   else
     m_pCrystalRenderer->DrawRuler (GetMarginWidth (), 0, rect.Width (), rect.Height (), GetCharWidth (), m_nOffsetChar);
@@ -2695,7 +2743,7 @@ OnDraw (CDC * pdc)
               if (nCurrentLine+1 < nLineCount && !GetLineVisible (nCurrentLine + 1))
                 m_pCrystalRenderer->DrawBoundaryLine (rcMargin.left, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1);
               if (m_pTextBuffer->GetTableEditing ())
-                m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.top + nSubLines * nLineHeight - 1, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1);
+                m_pCrystalRenderer->DrawGridLine (rcMargin.left, rcMargin.top + nSubLines * nLineHeight - 1, rcLine.right, rcMargin.top + nSubLines * nLineHeight - 1, 24);
               if (nCurrentLine == m_ptCursorPos.y)
                 m_pCrystalRenderer->DrawLineCursor (rcMargin.left, rcLine.right, 
                   nCursorY + nLineHeight - 1, 1);
@@ -2725,7 +2773,7 @@ OnDraw (CDC * pdc)
            x += m_pTextBuffer->GetColumnWidth (nColumn++) * nCharWidth)
         {
           if (x >= nMarginWidth && nColumn > 0)
-            m_pCrystalRenderer->DrawGridLine (x, rcClient.top, x, nLastLineBottom);
+            m_pCrystalRenderer->DrawGridLine (x, rcClient.top, x, nLastLineBottom, 24);
         }
     }
 
@@ -2781,7 +2829,8 @@ UpdateCaret ()
 {
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);
   if (m_bFocused && !m_bCursorHidden &&
-        CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x) >= m_nOffsetChar)
+        CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x) >= m_nOffsetChar &&
+        m_ptCursorPos.y >= m_nTopLine)
     {
       int nCaretHeight = GetLineVisible(m_ptCursorPos.y) ? GetLineHeight () : 0;
       if (m_bOvrMode)  //UPDATE
@@ -4095,6 +4144,7 @@ OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
       break;
     }
   ScrollToSubLine(nCurPos, bDisableSmooth);
+  UpdateCaret ();
 }
 
 void CCrystalTextView::
@@ -4227,8 +4277,15 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
       ScreenToClient (&pt);
       if (pt.y < GetTopMarginHeight ())
         {
-          const int nColumnResizing = ClientToColumnResizing (pt.x);
-          ::SetCursor (::LoadCursor (nullptr, nColumnResizing >= 0 ? IDC_SIZEWE : IDC_ARROW));
+          if (m_pTextBuffer->GetTableEditing ())
+            {
+              const int nColumnResizing = ClientToColumnResizing (pt.x);
+              ::SetCursor (::LoadCursor (nullptr, nColumnResizing >= 0 ? IDC_SIZEWE : IDC_ARROW));
+            }
+          else
+            {
+              ::SetCursor (::LoadCursor (nullptr, IDC_ARROW));
+            }
         }
       else if (pt.x < GetMarginWidth ())
         {
@@ -6308,6 +6365,7 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 
   ScrollToSubLine(nNewTopSubLine, true);
   UpdateSiblingScrollPos(false);
+  UpdateCaret ();
 
   return CView::OnMouseWheel (nFlags, zDelta, pt);
 }

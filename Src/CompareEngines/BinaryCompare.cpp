@@ -20,9 +20,7 @@ BinaryCompare::BinaryCompare() : m_piAbortable(nullptr)
 {
 }
 
-BinaryCompare::~BinaryCompare()
-{
-}
+BinaryCompare::~BinaryCompare() = default;
 
 /**
  * @brief Set Abortable-interface.

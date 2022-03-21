@@ -19,9 +19,7 @@ struct FileLocation
 	/**
 	 * The default constructor.
 	 */
-	FileLocation()
-	{
-	}
+	FileLocation() = default;
 
 	/**
 	 * The constructor taking a path as a parameter.

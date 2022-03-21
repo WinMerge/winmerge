@@ -115,6 +115,7 @@ private :
     bool m_bTopMargin;
     bool m_bSelMargin;
     bool m_bViewLineNumbers;
+    int  m_nLineNumberUsedAsHeaders;
     DWORD m_dwFlags;
 
     //  Amount of lines/characters that completely fits the client area
@@ -491,6 +492,7 @@ protected:
     void DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
                          COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
     virtual void DrawSingleLine (const CRect & rect, int nLineIndex);
+    virtual void GetTopMarginText (const CRect& rect, CString& columnnames, std::vector<int>& nWidths);
     virtual void DrawTopMargin (const CRect & rect);
     virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber);
 
@@ -709,6 +711,8 @@ public :
     void SetSelectionMargin (bool bSelMargin);
     bool GetViewLineNumbers() const { return m_bViewLineNumbers; }
     void SetViewLineNumbers(bool bViewLineNumbers);
+    int  GetLineUsedAsHeaders () const { return m_nLineNumberUsedAsHeaders; }
+    void SetLineUsedAsHeaders(int nLineNumberUsedAsHeaders) { m_nLineNumberUsedAsHeaders = nLineNumberUsedAsHeaders; }
     void GetFont (LOGFONT & lf) const { lf = m_lfBaseFont; }
     void SetFont (const LOGFONT & lf);
     DWORD GetFlags () const { return m_dwFlags; }

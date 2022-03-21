@@ -47,7 +47,7 @@ public:
 	{
 	}
 
-	~DirItemWithIndexIterator() {}
+	~DirItemWithIndexIterator() = default;
 
 	DirItemWithIndexIterator& operator=(const DirItemWithIndexIterator& it)
 	{
@@ -130,7 +130,7 @@ public:
 	{
 	}
 
-	~DirItemIterator() {}
+	~DirItemIterator() = default;
 
 	DirItemIterator::DirItemIterator(const DirItemIterator& it)
 	{

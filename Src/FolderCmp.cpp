@@ -41,9 +41,7 @@ FolderCmp::FolderCmp(CDiffContext *pCtxt)
 {
 }
 
-FolderCmp::~FolderCmp()
-{
-}
+FolderCmp::~FolderCmp() = default;
 
 bool FolderCmp::RunPlugins(PluginsContext * plugCtxt, String &errStr)
 {

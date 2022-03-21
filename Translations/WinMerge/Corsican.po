@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-03 08:38+0000\n"
-"PO-Revision-Date: 2022-03-03 18:20+0100\n"
+"POT-Creation-Date: 2022-03-18 21:36+0000\n"
+"PO-Revision-Date: 2022-03-19 18:58+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -117,6 +117,12 @@ msgstr "Apre u cartulare di &livellu superiore…"
 
 msgid "S&hell Menu"
 msgstr "&Listinu Shell"
+
+msgid "Use First Line as Headers"
+msgstr "Impiegà a prima linea cum’è intestature"
+
+msgid "Auto-Fit All Columns"
+msgstr "Adattà autumaticamente tutte e culonne"
 
 msgid "View &Differences"
 msgstr "Fighjà e &sfarenze"
@@ -650,6 +656,9 @@ msgstr "Affissà i &numeri di linea"
 
 msgid "View &Margins"
 msgstr "Affissà e &margine"
+
+msgid "View To&p Margins"
+msgstr "Affissà e margine ins&ù"
 
 msgid "W&rap Lines"
 msgstr "&Ritornu autumaticu à a linea"
@@ -2814,6 +2823,9 @@ msgstr "Impussibule di lancià l’editore esternu : %1"
 
 msgid "Unknown archive format"
 msgstr "Furmatu scunnisciutu d’archiviu"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "Fiascu durante l’estrazzione di i schedarii d’archiviu.\nVulete paragunà i schedarii d’archiviu cum’è schedarii di testu ?"
 
 msgid "Filename"
 msgstr "Nome di schedariu"

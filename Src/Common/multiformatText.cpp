@@ -100,7 +100,7 @@ const TCHAR *storageForPlugins::GetDestFileName()
 			try
 			{
 				TFile(m_tempFilenameDst).renameTo(tempFilenameDstNew);
-				m_tempFilenameDst = tempFilenameDstNew;
+				m_tempFilenameDst = std::move(tempFilenameDstNew);
 			}
 			catch (Exception& e)
 			{

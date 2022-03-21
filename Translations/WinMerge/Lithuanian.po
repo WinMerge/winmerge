@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-03 08:38+0000\n"
-"PO-Revision-Date: 2022-03-04 07:38+0200\n"
+"POT-Creation-Date: 2022-03-18 21:36+0000\n"
+"PO-Revision-Date: 2022-03-20 09:09+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -115,6 +115,12 @@ msgstr "Atverti &tėvinį katalogą..."
 
 msgid "S&hell Menu"
 msgstr "&Sistemos meniu"
+
+msgid "Use First Line as Headers"
+msgstr "Naudoti pirmą eilutę antraštėms"
+
+msgid "Auto-Fit All Columns"
+msgstr "Automatiškai talpinti visus stulpelius"
 
 msgid "View &Differences"
 msgstr "Ro&dyti skirtumus"
@@ -647,7 +653,10 @@ msgid "View Line &Numbers"
 msgstr "Rodyti eilučių &numerius"
 
 msgid "View &Margins"
-msgstr "Rodyti &paraštes"
+msgstr "Rodyti pa&raštes"
+
+msgid "View To&p Margins"
+msgstr "Rodyti virš. &paraštes"
 
 msgid "W&rap Lines"
 msgstr "S&kaidyti eilutes"
@@ -2569,6 +2578,9 @@ msgstr "Nepavyko paleisti išorinio redaktoriaus: %1"
 
 msgid "Unknown archive format"
 msgstr "Nežinomo formato archyvas"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "Nepavyko išskleisti archyvo failų.\nAr norite archyvo failus lyginti kaip tekstinius failus?"
 
 msgid "Filename"
 msgstr "Failas"

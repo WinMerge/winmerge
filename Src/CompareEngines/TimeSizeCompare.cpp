@@ -20,9 +20,7 @@ TimeSizeCompare::TimeSizeCompare()
 {
 }
 
-TimeSizeCompare::~TimeSizeCompare()
-{
-}
+TimeSizeCompare::~TimeSizeCompare() = default;
 
 /**
  * @brief Set compare-type specific options.
