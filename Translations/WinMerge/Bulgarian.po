@@ -242,7 +242,7 @@ msgid "Open Conflic&t File..."
 msgstr "Отваряне на файл с &конфликти…"
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Отваряне на междинната &памет"
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Отваряне на &проект…\tCtrl+J"
@@ -967,7 +967,7 @@ msgid "Ignore codepage &differences"
 msgstr "Пропускане на &различия в кодова страница"
 
 msgid "Ignore num&bers"
-msgstr ""
+msgstr "Пропускане на &числа"
 
 msgid "Ignore c&omment differences"
 msgstr "Пропускане на различия в &коментари"
@@ -1308,7 +1308,7 @@ msgid "&Swap"
 msgstr "&Разменяне"
 
 msgid "&Copy to Clipboard"
-msgstr "&Копиране в системния буфер"
+msgstr "&Копиране в междинната памет"
 
 msgid "&Append to existing file"
 msgstr "&Прилагане към съществуващ файл"
@@ -1446,7 +1446,7 @@ msgid "E&nable moved block detection"
 msgstr "Разпознаване на преместени па&раграфи"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "Подра&вняване на подобни редове"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "&Алгоритъм за различия (експериментално):"
@@ -1680,7 +1680,7 @@ msgid "&Detect archive type from file signature"
 msgstr "Откриване на вида на &архива от подписа на файла"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Елементи, възстановени от или запазени в проект:"
 
 msgid "Compare Statistics"
 msgstr "Статистика на сравнението"
@@ -1921,10 +1921,10 @@ msgid "Ignore &Reparse Points"
 msgstr ""
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Ограничение за превключване към &бързо сравняване (МБ):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Ограничение за превключване към &двоично сравняване (МБ):"
 
 msgid ""
 "\n"
@@ -2138,7 +2138,7 @@ msgid "Folder Compare"
 msgstr "Сравняване на папки"
 
 msgid "Project"
-msgstr ""
+msgstr "Проект"
 
 msgid "Differences"
 msgstr "Различия"
@@ -2269,7 +2269,7 @@ msgstr "Файлове с филтри (*.flt)|*.flt|Всички файлове
 
 #, c-format
 msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr "Шаблонът за филтри не може да бъде намерен!\n\nМоля, копирайте файла %1 в папката WinMerge/Filters:\n%2."
+msgstr "Шаблонът за филтри не е намерен!\n\nKопирайте файла %1 в папката WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -3087,7 +3087,7 @@ msgstr "Файловете с изображения са различни"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Група%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3584,10 +3584,10 @@ msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nКопира вляво и продължава (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
-msgstr "\nКопирай &всичко в дясно"
+msgstr "\nКопира всичко вдясно"
 
 msgid "\nCopy All to Left"
-msgstr "\nКопира&й всичко в ляво"
+msgstr "\nКопира всичко вляво"
 
 msgid ""
 "\n"
@@ -3638,7 +3638,7 @@ msgid "Suggested plugins"
 msgstr "Предложена добавка"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Всички добавки"
 
 #, c-format
 msgid "Private Build: %1"
@@ -3865,7 +3865,7 @@ msgid "Rotated: %d  "
 msgstr ""
 
 msgid "All pages"
-msgstr ""
+msgstr "Всички страници"
 
 msgid "<Edit here>"
 msgstr "<въведете>"
