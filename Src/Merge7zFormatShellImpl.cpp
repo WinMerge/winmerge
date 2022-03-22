@@ -47,7 +47,7 @@ static HRESULT MySHCreateEnumShellItemsFromPath(PCWSTR pszPath, IEnumShellItems 
 Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
 {
 	int i;
-	static const TCHAR *exts[] = {_T(".zip"), _T(".lzh"), _T("://"), _T("::{")};
+	static const TCHAR *exts[] = {_T(".zip"), _T(".lzh"), _T("ftp://"), _T("::{")};
 	for (i = 0; i < sizeof(exts)/sizeof(exts[0]); ++i)
 	{
 		if (path.find(exts[i]) != String::npos)

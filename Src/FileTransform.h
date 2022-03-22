@@ -87,7 +87,7 @@ public:
 	{
 	}
 
-	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bReverse,
+	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 		std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 		String *pPluginPipelineResolved, String& errorMessage) const;
 

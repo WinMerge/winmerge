@@ -1,5 +1,15 @@
 <?xml version="1.0"?>
 <plugins>
+  <plugin name="HandleHTTP">
+    <event value="FILE_FOLDER_PROTOCOL_PACK_UNPACK" />
+    <description value="HTTP Protocol Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
+    <file-filters value="http://.*$;https://.*$" />
+    <is-automatic value="true" />
+    <arguments value="" />
+    <unpack-file>
+      <command>curl ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
+    </unpack-file>
+  </plugin>
   <plugin name="PrettifyHTML">
     <event value="FILE_PACK_UNPACK" />
     <description value="HTML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line options passed to the tidy command." />

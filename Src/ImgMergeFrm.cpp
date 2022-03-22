@@ -225,7 +225,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	int nNormalBuffer = 0;
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
-		m_filePaths.SetPath(pane, fileloc[pane].filepath);
+		m_filePaths.SetPath(pane, fileloc[pane].filepath, false);
 		m_bRO[pane] = bRO[pane];
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
 		if (fileloc[pane].filepath.empty())

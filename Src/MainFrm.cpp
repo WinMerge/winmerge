@@ -1213,7 +1213,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
-	if (pathsType == paths::DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST &&
+	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();

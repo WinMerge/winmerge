@@ -627,7 +627,8 @@ void COpenView::OnCompare(UINT nID)
 
 	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
 
-	if (pathsType == paths::DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST &&
+		!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
@@ -1057,7 +1058,12 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 			{
 				pathType[i] = paths::DoesPathExist(paths[i], IsArchiveFile);
 				if (pathType[i] == paths::DOES_NOT_EXIST)
-					bInvalid[i] = true;
+				{
+					if (paths::IsURL(paths[i]))
+						pathType[i] = paths::IS_EXISTING_FILE;
+					else
+						bInvalid[i] = true;
+				}
 			}
 		}
 

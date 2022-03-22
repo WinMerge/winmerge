@@ -59,6 +59,7 @@ const wchar_t *TransformationCategories[] =
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",
 	L"FILE_FOLDER_PACK_UNPACK",
+	L"FILE_FOLDER_PROTOCOL_PACK_UNPACK",
 	nullptr,		// last empty : necessary
 };
 
@@ -424,7 +425,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		bFound &= SearchScriptForMethodName(L"UnpackFile");
 		bFound &= SearchScriptForMethodName(L"PackFile");
 	}
-	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK"))
+	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK") || m_event == _T("FILE_FOLDER_PROTOCOL_PACK_UNPACK"))
 	{
 		bFound &= SearchScriptForMethodName(L"IsFolder");
 		bFound &= SearchScriptForMethodName(L"UnpackFile");
@@ -725,7 +726,7 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 {
 	std::vector<std::vector<String>> eventsAry = 
 	{
-		{ L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
+		{ L"FILE_FOLDER_PROTOCOL_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
 		{ L"FILE_PREDIFF", L"BUFFER_PREDIFF" },
 		{ L"EDITOR_SCRIPT"},
 	};
@@ -928,16 +929,6 @@ void CScriptsOfThread::ReloadAllScripts()
 {
 	FreeAllScripts();
 	m_aPluginsByEvent = ::GetAvailableScripts();
-}
-
-PluginInfo* CScriptsOfThread::GetUnpackerPluginByFilter(const String& filteredText)
-{
-	PluginInfo *plugin = GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
-	if (plugin == nullptr)
-		plugin = GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
-	if (plugin == nullptr)
-		plugin = GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
-	return plugin;
 }
 
 PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
