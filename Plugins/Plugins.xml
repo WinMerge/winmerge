@@ -3,9 +3,10 @@
   <plugin name="HandleHTTP">
     <event value="FILE_FOLDER_PROTOCOL_PACK_UNPACK" />
     <description value="HTTP Protocol Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
-    <file-filters value="http://.*$;https://.*$" />
+    <file-filters value="^http://.*$;^https://.*$" />
+    <extended-properties value="ProcessType=Protocol Handling" />
     <is-automatic value="true" />
-    <arguments value="" />
+    <arguments value="--fail" />
     <unpack-file>
       <command>curl ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
