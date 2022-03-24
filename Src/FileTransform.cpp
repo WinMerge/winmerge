@@ -286,17 +286,17 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 }
 
 // known handler
-bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
+bool PackingInfo::Packing(String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
 {
 	// no handler : return true
-	bool bUrl = paths::IsURL(filepath);
+	bool bUrl = paths::IsURL(dstFilepath);
 	if (m_PluginPipeline.empty() && !bUrl)
 		return true;
 
 	// control value
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
-	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, errorMessage))
+	if (!GetPackUnpackPlugin(dstFilepath, bUrl, true, plugins, nullptr, errorMessage))
 	{
 		AppErrorMessageBox(errorMessage);
 		return false;
@@ -327,7 +327,8 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 		{
 			// use a temporary dest name
 			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-			String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+			String dstFileName = plugin->m_event == L"FILE_FOLDER_PROTOCOL_PACK_UNPACK" ?
+				dstFilepath : bufferData.GetDestFileName(); // <-Call order is important
 			bHandled = plugin::InvokePackFile(srcFileName,
 				dstFileName,
 				bufferData.GetNChanged(),
@@ -363,14 +364,17 @@ bool PackingInfo::Packing(String & filepath, const std::vector<int>& handlerSubc
 bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
 {
 	String csTempFileName = srcFilepath;
-	if (!Packing(csTempFileName, handlerSubcodes, variables))
+	if (!Packing(csTempFileName, dstFilepath, handlerSubcodes, variables))
 		return false;
 	try
 	{
-		TFile file1(csTempFileName);
-		file1.copyTo(dstFilepath);
-		if (srcFilepath!= csTempFileName)
-			file1.remove();
+		if (!paths::IsURL(dstFilepath))
+		{
+			TFile file1(csTempFileName);
+			file1.copyTo(dstFilepath);
+			if (srcFilepath != csTempFileName)
+				file1.remove();
+		}
 		return true;
 	}
 	catch (Poco::Exception& e)

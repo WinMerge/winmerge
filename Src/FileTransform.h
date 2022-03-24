@@ -119,7 +119,7 @@ public:
 	 * @note Event FILE_PACK
 	 * Never do Unicode conversion, it was done in SaveFromFile
 	 */
-	bool Packing(String & filepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
+	bool Packing(String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
 	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 

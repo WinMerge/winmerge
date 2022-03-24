@@ -553,7 +553,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		if (!bSaveSuccess)
 		{
 			// returns now, don't overwrite the original file
-			return infoUnpacker.GetPluginPipeline().empty() ? SAVE_FAILED : SAVE_PACK_FAILED;
+			return m_unpackerSubcodes.empty() ? SAVE_FAILED : SAVE_PACK_FAILED;
 		}
 
 		if (bClearModifiedFlag)
