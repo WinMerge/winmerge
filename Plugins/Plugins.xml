@@ -1,14 +1,26 @@
 <?xml version="1.0"?>
 <plugins>
   <plugin name="HandleHTTP">
-    <event value="FILE_FOLDER_PROTOCOL_PACK_UNPACK" />
+    <event value="URL_PACK_UNPACK" />
     <description value="HTTP Protocol Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
     <file-filters value="^http://.*$;^https://.*$" />
-    <extended-properties value="ProcessType=Protocol Handling" />
+    <extended-properties value="ProcessType=URL Handling" />
     <is-automatic value="true" />
     <arguments value="--fail" />
     <unpack-file>
       <command>curl ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="HandleRegistry">
+    <event value="URL_PACK_UNPACK" />
+    <description value="Windows Registry URL Handler. &#xD;&#xA;Arguments: Command line options passed to the reg.exe command." />
+    <file-filters value="^reg:.*$" />
+    <extended-properties value="ProcessType=URL Handling" />
+    <is-automatic value="true" />
+    <unpacked-file-extension value=".reg" />
+    <arguments value="/y" />
+    <unpack-file>
+      <command>reg.exe export "${SRC_URL_SUFFIX}" "${DST_FILE}" ${*}</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyHTML">

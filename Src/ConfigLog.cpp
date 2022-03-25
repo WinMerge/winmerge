@@ -400,7 +400,7 @@ bool CConfigLog::DoFile(String &sError)
 // Plugins
 	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
 	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
-	WritePluginsInLogFile(L"FILE_FOLDER_PROTOCOL_PACK_UNPACK");
+	WritePluginsInLogFile(L"URL_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");

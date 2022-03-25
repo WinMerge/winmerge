@@ -748,7 +748,7 @@ bool IsURL(const String& path)
 
 bool IsURLorCLSID(const String& path)
 {
-	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
+	return PathIsURL(path.c_str()) || path.find(_T("::{")) != String::npos;
 }
 
 bool IsDecendant(const String& path, const String& ancestor)

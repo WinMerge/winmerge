@@ -15,6 +15,7 @@
 #include <iostream>
 #include <sstream>
 #include <windows.h>
+#include <Shlwapi.h>
 #include "MergeApp.h"
 #include "paths.h"
 #include "Environment.h"
@@ -403,6 +404,20 @@ protected:
 	String replaceMacros(const String& cmd, const String & fileSrc, const String& fileDst)
 	{
 		String command = cmd;
+		if (paths::IsURL(fileSrc))
+		{
+			PARSEDURL parsedURL{sizeof(PARSEDURL)};
+			ParseURL(fileSrc.c_str(), &parsedURL);
+			strutils::replace(command, _T("${SRC_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
+			strutils::replace(command, _T("${SRC_URL_SUFFIX}"), parsedURL.pszSuffix);
+		}
+		if (paths::IsURL(fileDst))
+		{
+			PARSEDURL parsedURL{sizeof(PARSEDURL)};
+			ParseURL(fileDst.c_str(), &parsedURL);
+			strutils::replace(command, _T("${DST_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
+			strutils::replace(command, _T("${DST_URL_SUFFIX}"), parsedURL.pszSuffix);
+		}
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
 		std::vector<StringView> vars = strutils::split(m_sVariables, '\0');

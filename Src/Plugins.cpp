@@ -59,7 +59,7 @@ const wchar_t *TransformationCategories[] =
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",
 	L"FILE_FOLDER_PACK_UNPACK",
-	L"FILE_FOLDER_PROTOCOL_PACK_UNPACK",
+	L"URL_PACK_UNPACK",
 	nullptr,		// last empty : necessary
 };
 
@@ -478,7 +478,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		bFound &= SearchScriptForMethodName(L"UnpackFile");
 		bFound &= SearchScriptForMethodName(L"PackFile");
 	}
-	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK") || m_event == _T("FILE_FOLDER_PROTOCOL_PACK_UNPACK"))
+	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK") || m_event == _T("URL_PACK_UNPACK"))
 	{
 		bFound &= SearchScriptForMethodName(L"IsFolder");
 		bFound &= SearchScriptForMethodName(L"UnpackFile");
@@ -779,7 +779,7 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 {
 	std::vector<std::vector<String>> eventsAry = 
 	{
-		{ L"FILE_FOLDER_PROTOCOL_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
+		{ L"URL_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
 		{ L"FILE_PREDIFF", L"BUFFER_PREDIFF" },
 		{ L"EDITOR_SCRIPT"},
 	};

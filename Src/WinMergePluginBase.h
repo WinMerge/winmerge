@@ -126,7 +126,7 @@ public:
 			methodDataCount = sizeof(methodData_FILE_PACK_UNPACK) / sizeof(methodData_FILE_PACK_UNPACK[0]);
 			pMethodData = methodData_FILE_PACK_UNPACK;
 		}
-		else if (sEvent == L"FILE_FOLDER_PACK_UNPACK" || sEvent == L"FILE_FOLDER_PROTOCOL_PACK_UNPACK")
+		else if (sEvent == L"FILE_FOLDER_PACK_UNPACK" || sEvent == L"URL_PACK_UNPACK")
 		{
 			methodDataCount = sizeof(methodData_FILE_FOLDER_PACK_UNPACK) / sizeof(methodData_FILE_FOLDER_PACK_UNPACK[0]);
 			pMethodData = methodData_FILE_FOLDER_PACK_UNPACK;

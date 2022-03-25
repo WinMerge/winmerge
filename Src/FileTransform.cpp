@@ -222,7 +222,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 	{
 		std::vector<String> args;
 		bool bWithFile = true;
-		PluginInfo* plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PROTOCOL_PACK_UNPACK", filteredFilenames);
+		PluginInfo* plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", filteredFilenames);
 		if (plugin)
 			plugins.push_back({ plugin, args, bWithFile });
 	}
@@ -327,7 +327,7 @@ bool PackingInfo::Packing(String & filepath, const String& dstFilepath, const st
 		{
 			// use a temporary dest name
 			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-			String dstFileName = plugin->m_event == L"FILE_FOLDER_PROTOCOL_PACK_UNPACK" ?
+			String dstFileName = plugin->m_event == L"URL_PACK_UNPACK" ?
 				dstFilepath : bufferData.GetDestFileName(); // <-Call order is important
 			bHandled = plugin::InvokePackFile(srcFileName,
 				dstFileName,
@@ -388,6 +388,9 @@ bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, 
 
 bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables)
 {
+	if (handlerSubcodes)
+		handlerSubcodes->clear();
+
 	// no handler : return true
 	bool bUrl = paths::IsURL(filepath);
 	if (m_PluginPipeline.empty() && !bUrl)
@@ -401,9 +404,6 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
-
-	if (handlerSubcodes)
-		handlerSubcodes->clear();
 
 	for (auto& [plugin, args, bWithFile] : plugins)
 	{
