@@ -89,7 +89,7 @@ public:
 
 	bool GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 		std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
-		String *pPluginPipelineResolved, String& errorMessage) const;
+		String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const;
 
 	// Events handler
 	// WinMerge uses one of these entry points to call a plugin
@@ -119,11 +119,13 @@ public:
 	 * @note Event FILE_PACK
 	 * Never do Unicode conversion, it was done in SaveFromFile
 	 */
-	bool Packing(String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
+	bool pack(String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
 	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
 	String GetUnpackedFileExtension(const String& filteredFilenames) const;
+private:
+	String m_URLHandler;
 };
 
 /**

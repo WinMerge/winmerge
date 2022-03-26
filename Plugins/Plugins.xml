@@ -2,25 +2,25 @@
 <plugins>
   <plugin name="HandleHTTP">
     <event value="URL_PACK_UNPACK" />
-    <description value="HTTP Protocol Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
+    <description value="HTTP URL Scheme Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
     <file-filters value="^http://.*$;^https://.*$" />
     <extended-properties value="ProcessType=URL Handling" />
     <is-automatic value="true" />
-    <arguments value="--fail" />
+    <arguments value="--fail -L " />
     <unpack-file>
       <command>curl ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
   <plugin name="HandleRegistry">
     <event value="URL_PACK_UNPACK" />
-    <description value="Windows Registry URL Handler. &#xD;&#xA;Arguments: Command line options passed to the reg.exe command." />
+    <description value="Windows Registry URL Scheme Handler. &#xD;&#xA;Arguments: Command line options passed to the reg.exe command." />
     <file-filters value="^reg:.*$" />
     <extended-properties value="ProcessType=URL Handling" />
     <is-automatic value="true" />
     <unpacked-file-extension value=".reg" />
-    <arguments value="/y" />
+    <arguments value="" />
     <unpack-file>
-      <command>reg.exe export "${SRC_URL_SUFFIX}" "${DST_FILE}" ${*}</command>
+      <command>reg.exe export "${SRC_URL_SUFFIX}" "${DST_FILE}" /y ${*}</command>
     </unpack-file>
   </plugin>
   <plugin name="PrettifyHTML">
@@ -205,6 +205,13 @@ WScript.StdOut.WriteLine "Hello World!"
 WScript.StdOut.WriteLine WScript.Arguments(0)
       </script>
     </unpack-file>
+    <pack-file>
+      <command>cmd /c cscript //nologo "${SCRIPT_FILE}" "${SRC_FILE}" > "${DST_FILE}"</command>
+      <script fileExtension=".vbs">
+WScript.StdOut.WriteLine "!dlroW olleH"
+WScript.StdOut.WriteLine WScript.Arguments(0)
+      </script>
+    </pack-file>
   </plugin>
   -->
 </plugins>
