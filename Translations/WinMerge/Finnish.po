@@ -666,9 +666,8 @@ msgstr "Muunna &rivinloput >"
 msgid "Mer&ge Mode\tF9"
 msgstr "Yhdistäminen\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "&Lataa uudelleen\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Lataauu&delleen\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"

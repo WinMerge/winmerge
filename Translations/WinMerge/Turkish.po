@@ -544,8 +544,8 @@ msgstr "Sa&tır sonlarını dönüştür"
 msgid "Mer&ge Mode\tF9"
 msgstr "Birleştir&me kipi\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Yeniden yük&le\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Yenidenyük&le\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "&Farklı karşılaştır"

@@ -665,8 +665,7 @@ msgstr "&Converteix retorns de línia a"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Mode de combinació\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Recarrega\tControl+F5"
 
 #, c-format

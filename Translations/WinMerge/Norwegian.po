@@ -543,8 +543,8 @@ msgstr "&Konverter linjeslutt til"
 msgid "Mer&ge Mode\tF9"
 msgstr "Sammenslå-&modus\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "&Last på nytt\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Lastpån&ytt\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Sa&mmenlign på nytt som"

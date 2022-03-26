@@ -668,9 +668,8 @@ msgstr "轉換換行字元 (&C)"
 msgid "Mer&ge Mode\tF9"
 msgstr "開/關合併模式 (&G)\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "重新載入 (&L)\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "重新載入(&D)\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"

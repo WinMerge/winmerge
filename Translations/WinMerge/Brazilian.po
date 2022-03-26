@@ -544,7 +544,7 @@ msgstr "&Converter os Finais das Linhas pra"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mod&o de União\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
 
 msgid "Reco&mpare As"

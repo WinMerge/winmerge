@@ -666,8 +666,7 @@ msgstr "Converter salt&os de liña a"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Modo mestura\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "R&ecargar\tCtrl+F5"
 
 #, c-format

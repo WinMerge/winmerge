@@ -543,8 +543,8 @@ msgstr "改行コードの変換(&C)"
 msgid "Mer&ge Mode\tF9"
 msgstr "マージモード(&G)\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "再読み込み(&L)\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "再読み込み(&D)\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"

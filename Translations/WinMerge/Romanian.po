@@ -665,8 +665,7 @@ msgstr "Converteşte sfârşiturile de linie la"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Modul fuziune\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format

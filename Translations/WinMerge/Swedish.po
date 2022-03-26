@@ -545,8 +545,8 @@ msgstr "Omvandla radslut till"
 msgid "Mer&ge Mode\tF9"
 msgstr "Sammanfogningsläge\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Ladda om\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Laddaom\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Jämför igen som"

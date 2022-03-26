@@ -664,8 +664,7 @@ msgstr "&Μετατροπή Χαρακτήρων Τερματισμού"
 msgid "Mer&ge Mode\tF9"
 msgstr "Λειτουργία Συγ&χωνεύσεως\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
