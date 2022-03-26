@@ -546,7 +546,7 @@ msgstr "&Заменить концы строк на"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим объединения\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Обновить\tCtrl+F5"
 
 msgid "Reco&mpare As"

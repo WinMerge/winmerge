@@ -667,8 +667,7 @@ msgstr "Sorvégek átalakítása erre"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Egyesítési mód\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Újratöltés\tCtrl+F5"
 
 #, c-format

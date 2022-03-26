@@ -545,7 +545,7 @@ msgstr "&Convertir Saltos de Línea a"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Modo Combinación\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 msgid "Reco&mpare As"

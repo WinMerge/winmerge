@@ -545,8 +545,8 @@ msgstr "&تحويل نهاية الأسطر إلى"
 msgid "Mer&ge Mode\tF9"
 msgstr "&وضع الدمج\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "إ&عادة تحميل\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "إ&عادةتحميل\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"

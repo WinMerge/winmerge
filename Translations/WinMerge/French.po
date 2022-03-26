@@ -672,9 +672,8 @@ msgstr "&Convertir les fins de ligne"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mode &Fusion\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "Recharger Ctrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "RechargerCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"

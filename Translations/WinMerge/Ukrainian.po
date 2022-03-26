@@ -666,8 +666,7 @@ msgstr "Замінити перенесення &рядків на"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим &злиття\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format

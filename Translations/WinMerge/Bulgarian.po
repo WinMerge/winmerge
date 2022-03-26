@@ -541,7 +541,7 @@ msgstr "Про&меняне на знака за нов ред"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим на &сливане\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Пре&зареждане\tCtrl+F5"
 
 msgid "Reco&mpare As"

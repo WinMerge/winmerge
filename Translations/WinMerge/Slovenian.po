@@ -544,8 +544,8 @@ msgstr "&Pretvori konce vrstic v"
 msgid "Mer&ge Mode\tF9"
 msgstr "Združevalni način\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Znova nal&oži\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Znovanal&oži\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"

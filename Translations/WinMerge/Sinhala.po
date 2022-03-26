@@ -665,8 +665,7 @@ msgstr "&Convert Line Endings to"
 msgid "Mer&ge Mode\tF9"
 msgstr "ඒකාබද්ධ කිරීමේ ක්‍රමය\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format

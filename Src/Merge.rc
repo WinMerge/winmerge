@@ -529,7 +529,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mer&ge Mode\tF9",             ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
+        MENUITEM "Reloa&d\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Reco&mpare As"
         BEGIN

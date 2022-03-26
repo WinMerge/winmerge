@@ -542,7 +542,7 @@ msgstr "&Converti caratteri di fine linea in"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Modalità unione\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "&Ricarica\tCtrl+F5"
 
 msgid "Reco&mpare As"

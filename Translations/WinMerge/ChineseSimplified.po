@@ -545,8 +545,8 @@ msgstr "将换行符转换为(&C)"
 msgid "Mer&ge Mode\tF9"
 msgstr "合并模式(&G)\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "重新加载(&L)\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "重新加载(&D)\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"

@@ -544,8 +544,8 @@ msgstr "&Konvertovať konce riadkov na"
 msgid "Mer&ge Mode\tF9"
 msgstr "Režim &zlučenia\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Znova načítať\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Znovanačítať\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"

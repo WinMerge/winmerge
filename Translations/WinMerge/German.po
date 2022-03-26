@@ -668,9 +668,8 @@ msgstr "&Zeilenenden konvertieren nach"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Merge-Modus\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "Neu &laden\tStrg+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Neu&laden\tStrg+F5"
 
 #, c-format
 msgid "Reco&mpare As"
