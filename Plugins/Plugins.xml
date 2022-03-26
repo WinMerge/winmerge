@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <plugins>
-  <plugin name="HandleHTTP">
+  <plugin name="HandleSchemeHTTP">
     <event value="URL_PACK_UNPACK" />
     <description value="HTTP URL Scheme Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
     <file-filters value="^http://.*$;^https://.*$" />
@@ -11,7 +11,7 @@
       <command>curl ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
     </unpack-file>
   </plugin>
-  <plugin name="HandleRegistry">
+  <plugin name="HandleSchemeReg">
     <event value="URL_PACK_UNPACK" />
     <description value="Windows Registry URL Scheme Handler. &#xD;&#xA;Arguments: Command line options passed to the reg.exe command." />
     <file-filters value="^reg:.*$" />

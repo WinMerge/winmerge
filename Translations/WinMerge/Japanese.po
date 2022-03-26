@@ -3877,6 +3877,9 @@ msgstr "逆コンパイル"
 msgid "&Others"
 msgstr "その他(&O)"
 
+msgid "URL Handling"
+msgstr "URL 処理"
+
 msgid "Make Uppercase"
 msgstr "大文字に変換"
 
@@ -4221,6 +4224,12 @@ msgstr "比較前処理置換フィルター"
 
 msgid "Basic text functions for the context menu"
 msgstr "基本的なテキスト処理"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr "curl を使用して HTTP URL スキーマを処理します。\r\n引数: curl コマンドに渡すコマンドライン オプション"
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr "Windows レジストリ URL スキーマを処理します。\r\n引数: reg.exe コマンドに渡すコマンドライン オプション"
 
 msgid "Filter applied"
 msgstr "フィルター適用"

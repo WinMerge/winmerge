@@ -3948,6 +3948,9 @@ msgstr ""
 msgid "&Others"
 msgstr "&Outros"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Tornar Maiúscula"
 
@@ -4177,6 +4180,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"
