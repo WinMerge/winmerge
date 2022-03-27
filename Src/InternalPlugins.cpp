@@ -15,6 +15,7 @@
 #include <iostream>
 #include <sstream>
 #include <windows.h>
+#include <Shlwapi.h>
 #include "MergeApp.h"
 #include "paths.h"
 #include "Environment.h"
@@ -99,6 +100,7 @@ struct Info
 	std::unique_ptr<Method> m_prediffFile;
 	std::unique_ptr<Method> m_unpackFile;
 	std::unique_ptr<Method> m_packFile;
+	std::unique_ptr<Method> m_isFolder;
 	std::unique_ptr<Method> m_unpackFolder;
 	std::unique_ptr<Method> m_packFolder;
 	std::map<String, Method> m_editorScripts;
@@ -120,6 +122,7 @@ public:
 	inline static const std::string PrediffFileElement = "prediff-file";
 	inline static const std::string UnpackFileElement = "unpack-file";
 	inline static const std::string PackFileElement = "pack-file";
+	inline static const std::string IsFolderElement = "is-folder";
 	inline static const std::string UnpackFolderElement = "unpack-folder";
 	inline static const std::string PackFolderElement = "pack-folder";
 	inline static const std::string CommandElement = "command";
@@ -189,6 +192,11 @@ public:
 				{
 					plugin.m_packFile.reset(new Method());
 					m_pMethod = plugin.m_packFile.get();
+				}
+				else if (localName == IsFolderElement)
+				{
+					plugin.m_isFolder.reset(new Method());
+					m_pMethod = plugin.m_isFolder.get();
 				}
 				else if (localName == UnpackFolderElement)
 				{
@@ -398,13 +406,73 @@ public:
 		return hr;
 	}
 
+	HRESULT STDMETHODCALLTYPE IsFolder(BSTR file, VARIANT_BOOL* pbFolder) override
+	{
+		if (!m_info.m_isFolder)
+		{
+			*pbFolder = VARIANT_FALSE;
+			return S_OK;
+		}
+		TempFile scriptFile;
+		String command = replaceMacros(m_info.m_isFolder->m_command, file, file);
+		if (m_info.m_isFolder->m_script)
+		{
+			createScript(*m_info.m_isFolder->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+		*pbFolder = SUCCEEDED(hr) && dwExitCode == 0;
+		return hr;
+	}
+
+	HRESULT STDMETHODCALLTYPE UnpackFolder(BSTR fileSrc, BSTR folderDst, VARIANT_BOOL* pbChanged, INT* pSubcode, VARIANT_BOOL* pbSuccess) override
+	{
+		if (!m_info.m_unpackFolder)
+		{
+			*pSubcode = 0;
+			*pbChanged = VARIANT_FALSE;
+			*pbSuccess = VARIANT_FALSE;
+			return S_OK;
+		}
+		TempFile scriptFile;
+		String command = replaceMacros(m_info.m_unpackFolder->m_command, fileSrc, folderDst);
+		if (m_info.m_unpackFolder->m_script)
+		{
+			createScript(*m_info.m_unpackFolder->m_script, scriptFile);
+			strutils::replace(command, _T("${SCRIPT_FILE}"), scriptFile.GetPath());
+		}
+		DWORD dwExitCode;
+		HRESULT hr = launchProgram(command, SW_HIDE, dwExitCode);
+
+		*pSubcode = 0;
+		*pbChanged = SUCCEEDED(hr);
+		*pbSuccess = SUCCEEDED(hr);
+		return hr;
+	}
+
 protected:
 
 	String replaceMacros(const String& cmd, const String & fileSrc, const String& fileDst)
 	{
 		String command = cmd;
+		if (paths::IsURL(fileSrc))
+		{
+			PARSEDURL parsedURL{sizeof(PARSEDURL)};
+			ParseURL(fileSrc.c_str(), &parsedURL);
+			strutils::replace(command, _T("${SRC_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
+			strutils::replace(command, _T("${SRC_URL_SUFFIX}"), parsedURL.pszSuffix);
+		}
+		if (paths::IsURL(fileDst))
+		{
+			PARSEDURL parsedURL{sizeof(PARSEDURL)};
+			ParseURL(fileDst.c_str(), &parsedURL);
+			strutils::replace(command, _T("${DST_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
+			strutils::replace(command, _T("${DST_URL_SUFFIX}"), parsedURL.pszSuffix);
+		}
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		strutils::replace(command, _T("${DST_FOLDER}"), fileDst);
 		std::vector<StringView> vars = strutils::split(m_sVariables, '\0');
 		for (size_t i = 0; i < vars.size(); ++i)
 			strutils::replace(command, strutils::format(_T("${%d}"), i), strutils::to_str(vars[i]));

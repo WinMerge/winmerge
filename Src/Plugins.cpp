@@ -59,6 +59,7 @@ const wchar_t *TransformationCategories[] =
 	L"BUFFER_PACK_UNPACK",
 	L"FILE_PACK_UNPACK",
 	L"FILE_FOLDER_PACK_UNPACK",
+	L"URL_PACK_UNPACK",
 	nullptr,		// last empty : necessary
 };
 
@@ -67,7 +68,7 @@ static vector<String> theScriptletList;
 static vector<HANDLE> theScriptletHandleList;
 static bool scriptletsLoaded=false;
 static FastMutex scriptletsSem;
-static std::unordered_map<StringView, std::unordered_map<StringView, StringView>> customSettingsMap;
+static std::unordered_map<String, std::unordered_map<String, String>> customSettingsMap;
 
 template<class T> struct AutoReleaser
 {
@@ -308,24 +309,77 @@ ScriptletError(const String & scriptletFilepath, const TCHAR *szError)
     LogErrorString(msg);
 }
 
-static std::unordered_map<StringView, std::unordered_map<StringView, StringView>> GetCustomSettingsMap()
+static String
+Decode(const String& text)
 {
-	std::unordered_map<StringView, std::unordered_map<StringView, StringView>> map;
+	String result;
+	for (size_t i = 0; i < text.length(); ++i)
+	{
+		if (text[i] == '%')
+		{
+			if (i < text.length() - 1 && text[i + 1] == '%')
+			{
+				result += '%';
+				i++;
+			}
+			else if (i < text.length() - 2 && text[i + 1] == '3' && text[i + 2] == 'A')
+			{
+				result += ':';
+				i += 2;
+			}
+			else if (i < text.length() - 2 && text[i + 1] == '7' && text[i + 2] == 'C')
+			{
+				result += '|';
+				i += 2;
+			}
+			else
+				result += text[i];
+		}
+		else
+			result += text[i];
+	}
+	return result;
+}
+
+static String
+Encode(const String& text)
+{
+	String result;
+	for (size_t i = 0; i < text.length(); ++i)
+	{
+		switch (text[i])
+		{
+		case '%': result += _T("%%");  break;
+		case ':': result += _T("%3A"); break;
+		case '|': result += _T("%7C"); break;
+		default:  result += text[i];   break;
+		}
+	}
+	return result;
+}
+
+static std::unordered_map<String, std::unordered_map<String, String>> GetCustomSettingsMap()
+{
+	std::unordered_map<String, std::unordered_map<String, String>> map;
 	const String& text = GetOptionsMgr()->GetString(OPT_PLUGINS_CUSTOM_SETTINGS_LIST);
 	for (const auto& nameAndKeyValues : strutils::split(text, '\t'))
 	{
 		auto nv = strutils::split(nameAndKeyValues, '=');
 		if (nv.size() == 2)
 		{
-			map.insert_or_assign(nv[0], std::unordered_map<StringView, StringView>{});
-			for (const auto& keyValue : strutils::split(nv[1], '|'))
+			String nv0{ nv[0].data(), nv[0].length() };
+			String nv1{ nv[1].data(), nv[1].length() };
+			map.insert_or_assign(nv0, std::unordered_map<String, String>{});
+			for (const auto& keyValue : strutils::split(nv1, '|'))
 			{
 				const auto kv = strutils::split(keyValue, ':');
-				map[nv[0]].insert_or_assign(kv[0], kv.size() > 1 ? kv[1] : _T(""));
+				String kv0{ kv[0].data(), kv[0].length() };
+				String kv1{ kv.size() > 1 ? Decode({kv[1].data(), kv[1].length()}) : _T("") };
+				map[nv0].insert_or_assign(kv0, kv1);
 			}
 		}
 	}
-	map.insert_or_assign(_T("||initialized||"), std::unordered_map<StringView, StringView>{});
+	map.insert_or_assign(_T("||initialized||"), std::unordered_map<String, String>{});
 	return map;
 }
 
@@ -424,7 +478,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		bFound &= SearchScriptForMethodName(L"UnpackFile");
 		bFound &= SearchScriptForMethodName(L"PackFile");
 	}
-	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK"))
+	else if (m_event == _T("FILE_FOLDER_PACK_UNPACK") || m_event == _T("URL_PACK_UNPACK"))
 	{
 		bFound &= SearchScriptForMethodName(L"IsFolder");
 		bFound &= SearchScriptForMethodName(L"UnpackFile");
@@ -725,7 +779,7 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 {
 	std::vector<std::vector<String>> eventsAry = 
 	{
-		{ L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
+		{ L"URL_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
 		{ L"FILE_PREDIFF", L"BUFFER_PREDIFF" },
 		{ L"EDITOR_SCRIPT"},
 	};
@@ -900,9 +954,9 @@ void CScriptsOfThread::SaveSettings()
 			if (plugin->m_disabled)
 				ary.push_back(_T("disabled"));
 			if (plugin->m_filtersTextDefault != plugin->m_filtersText)
-				ary.push_back(_T("filters:") + plugin->m_filtersText);
+				ary.push_back(_T("filters:") + Encode(plugin->m_filtersText));
 			if (plugin->m_argumentsDefault != plugin->m_arguments)
-				ary.push_back(_T("arguments:") + plugin->m_arguments);
+				ary.push_back(_T("arguments:") + Encode(plugin->m_arguments));
 			if (plugin->m_bAutomaticDefault != plugin->m_bAutomatic)
 				ary.push_back(String(_T("automatic:")) + (plugin->m_bAutomatic ? _T("true") : _T("false")));
 			if (!ary.empty())
@@ -928,16 +982,6 @@ void CScriptsOfThread::ReloadAllScripts()
 {
 	FreeAllScripts();
 	m_aPluginsByEvent = ::GetAvailableScripts();
-}
-
-PluginInfo* CScriptsOfThread::GetUnpackerPluginByFilter(const String& filteredText)
-{
-	PluginInfo *plugin = GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
-	if (plugin == nullptr)
-		plugin = GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
-	if (plugin == nullptr)
-		plugin = GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
-	return plugin;
 }
 
 PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)

@@ -1213,7 +1213,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
-	if (pathsType == paths::DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST &&
+	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
@@ -2681,10 +2682,26 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 {
 	String ext = paths::FindExtension(file);
 	TempFilePtr wTemp(new TempFile());
-	String copiedFile = wTemp->Create(_T("self-compare_"), ext);
+	String copiedFile;
+	if (paths::IsURL(file))
+	{
+		CWaitCursor wait;
+		copiedFile = file;
+		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
+		if (!infoUnpacker2.Unpacking(nullptr, copiedFile, copiedFile, { copiedFile }))
+		{
+			String sError = strutils::format_string1(_("File not unpacked: %1"), file.c_str());
+			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+			return false;
+		}
+		wTemp->Attach(copiedFile);
+	}
+	else
+	{
+		copiedFile = wTemp->Create(_T("self-compare_"), ext);
+		TFile(file).copyTo(copiedFile);
+	}
 	m_tempFiles.push_back(wTemp);
-
-	TFile(file).copyTo(copiedFile);
 
 	String strDesc2[2] = { 
 		(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Original File"),

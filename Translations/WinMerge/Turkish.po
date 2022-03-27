@@ -3972,6 +3972,9 @@ msgstr "Kod çözme"
 msgid "&Others"
 msgstr "&Diğerleri"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Büyük harflere dönüştür"
 
@@ -4335,6 +4338,12 @@ msgstr "Ön farklılaştırıcı satır süzgeci"
 
 msgid "Basic text functions for the context menu"
 msgstr "İçerik menüsü için temel metin işlevleri"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
