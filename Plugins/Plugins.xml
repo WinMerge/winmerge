@@ -213,5 +213,20 @@ WScript.StdOut.WriteLine WScript.Arguments(0)
       </script>
     </pack-file>
   </plugin>
+  <plugin name="URL-handler-test">
+    <event value="URL_PACK_UNPACK" />
+    <description value="test scheme handler" />
+    <file-filters value="^test://.*$" />
+    <is-automatic value="true" />
+    <is-folder>
+      <command>cmd /c echo ${SRC_FILE} | findstr folder</command>
+    </is-folder>
+    <unpack-file>
+      <command>cmd /c echo file > "${DST_FILE}"</command>
+    </unpack-file>
+    <unpack-folder>
+      <command>cmd /c echo folder > "${DST_FOLDER}\test.txt"</command>
+    </unpack-folder>
+  </plugin>
   -->
 </plugins>
