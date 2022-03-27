@@ -47,6 +47,8 @@ static struct MessageBox
 	{ IDS_CANNOT_CREATE_BINARYPATCH, IDS_CANNOT_CREATE_BINARYPATCH, nullptr, MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN },
 	{ IDS_DIFF_FILEOVERWRITE, IDS_DIFF_FILEOVERWRITE, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	{ IDS_DIFF_SUCCEEDED, IDS_DIFF_SUCCEEDED, nullptr, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN },
+	// archive support
+	{ IDS_FAILED_EXTRACT_ARCHIVE_FILES, IDS_FAILED_EXTRACT_ARCHIVE_FILES, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING }
 };
 
 static std::vector<String> Answers;
@@ -178,7 +180,7 @@ BOOL PropMessageBoxes::OnInitDialog()
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	String title = _("Message");
-	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(170));
+	m_list.InsertColumn(0, title.c_str(), LVCFMT_LEFT, pointToPixel(220));
 	title = _("Answer");
 	m_list.InsertColumn(1, title.c_str(), LVCFMT_LEFT, pointToPixel(70));
 

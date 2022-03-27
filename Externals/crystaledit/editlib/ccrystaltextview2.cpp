@@ -460,6 +460,7 @@ ScrollUp ()
   if (m_nTopLine > 0)
     {
       ScrollToLine (m_nTopLine - 1);
+      UpdateCaret ();
       UpdateSiblingScrollPos (false);
     }
 }
@@ -470,6 +471,7 @@ ScrollDown ()
   if (m_nTopLine < GetLineCount () - 1)
     {
       ScrollToLine (m_nTopLine + 1);
+      UpdateCaret ();
       UpdateSiblingScrollPos (false);
     }
 }
@@ -921,6 +923,7 @@ OnTimer (UINT_PTR nIDEvent)
       if (m_nTopLine != nNewTopLine)
         {
           ScrollToLine (nNewTopLine);
+          UpdateCaret ();
           UpdateSiblingScrollPos (false);
           bChanged = true;
         }

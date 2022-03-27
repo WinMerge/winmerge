@@ -211,14 +211,14 @@ void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
   if (m_pGhostTextBuffer != nullptr)
     m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
   else
-    text = _T ("");
+    text.Empty();
 }
 
 void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
 	if (m_pGhostTextBuffer == nullptr)
 	{
-		text = _T ("");
+		text.Empty();
 		return;
 	}
 

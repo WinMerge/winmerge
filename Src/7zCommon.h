@@ -95,11 +95,12 @@ int NTAPI HasZipSupport();
 struct DecompressResult
 {
 	DecompressResult(const PathContext& files, CTempPathContext *pTempPathContext, paths::PATH_EXISTENCE pathsType) :
-		files(files), pTempPathContext(pTempPathContext), pathsType(pathsType)
+		files(files), pTempPathContext(pTempPathContext), pathsType(pathsType), hr(S_OK)
 	{
 	}
 	PathContext files;
 	CTempPathContext *pTempPathContext;
 	paths::PATH_EXISTENCE pathsType;
+	HRESULT hr;
 };
 DecompressResult DecompressArchive(HWND hWnd, const PathContext& infiles);

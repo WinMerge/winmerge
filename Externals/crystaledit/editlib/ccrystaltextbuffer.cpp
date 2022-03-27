@@ -2072,6 +2072,26 @@ int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
   return nColumnCount;
 }
 
+CString CCrystalTextBuffer::GetCellText (int nLineIndex, int nColumnIndex) const
+{
+  ASSERT( nLineIndex >= 0 && nColumnIndex >= 0 && GetTableEditing() );
+  CString sText;
+  int nColumnCount = 0;
+  const TCHAR* pszLine = GetLineChars (nLineIndex);
+  int nLength = GetLineLength (nLineIndex);
+  bool bInQuote = false;
+  for (int j = 0; j < nLength && nColumnCount <= nColumnIndex; ++j)
+    {
+      if (nColumnIndex == nColumnCount && (bInQuote || pszLine[j] != m_cFieldDelimiter))
+        sText += pszLine[j];
+      if (pszLine[j] == m_cFieldEnclosure)
+        bInQuote = !bInQuote;
+      else if (!bInQuote && pszLine[j] == m_cFieldDelimiter)
+        ++nColumnCount;
+    }
+  return sText;
+}
+
 void CCrystalTextBuffer::JoinLinesForTableEditingMode ()
 {
   if (!m_bAllowNewlinesInQuotes)

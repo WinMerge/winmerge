@@ -1215,7 +1215,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
-	if (pathsType == paths::DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST &&
+	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
@@ -1234,35 +1235,43 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
-	else
+	
+	// Add trailing '\' for directories if its missing
+	if (pathsType == paths::IS_EXISTING_DIR)
 	{
-		// Add trailing '\' for directories if its missing
-		if (pathsType == paths::IS_EXISTING_DIR)
-		{
-			if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
-				tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
-			if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
-				tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
-			if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
-				tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
-		}
+		if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
+			tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
+		if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
+			tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
+		if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
+			tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
+	}
 
-		//save the MRU left and right files.
-		if (dwFlags)
-		{
-			if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[0].c_str(), _T("Files\\Left"));
-			if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[1].c_str(), _T("Files\\Right"));
-			if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[2].c_str(), _T("Files\\Option"));
-		}
+	//save the MRU left and right files.
+	if (dwFlags)
+	{
+		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[2].c_str(), _T("Files\\Option"));
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
 	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
 	{
-		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
+		DecompressResult res = DecompressArchive(m_hWnd, tFiles);
+		if (FAILED(res.hr))
+		{
+			int ans = AfxMessageBox(IDS_FAILED_EXTRACT_ARCHIVE_FILES, MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
+			if (ans == IDYES)
+			{
+				pathsType = paths::IS_EXISTING_FILE;
+				delete res.pTempPathContext;
+				res.pTempPathContext = nullptr;
+			}
+		}
 		if (res.pTempPathContext)
 		{
 			pathsType = res.pathsType;
@@ -1622,9 +1631,9 @@ HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
 }
 
-std::list<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
+std::vector<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
 {
-	std::list<CImgMergeFrame *> list;
+	std::vector<CImgMergeFrame *> list;
 	// Close Non-Document/View frame with confirmation
 	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
 	while (pChild != nullptr)
@@ -2735,10 +2744,26 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 {
 	String ext = paths::FindExtension(file);
 	TempFilePtr wTemp(new TempFile());
-	String copiedFile = wTemp->Create(_T("self-compare_"), ext);
+	String copiedFile;
+	if (paths::IsURL(file))
+	{
+		CWaitCursor wait;
+		copiedFile = file;
+		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
+		if (!infoUnpacker2.Unpacking(nullptr, copiedFile, copiedFile, { copiedFile }))
+		{
+			String sError = strutils::format_string1(_("File not unpacked: %1"), file.c_str());
+			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+			return false;
+		}
+		wTemp->Attach(copiedFile);
+	}
+	else
+	{
+		copiedFile = wTemp->Create(_T("self-compare_"), ext);
+		TFile(file).copyTo(copiedFile);
+	}
 	m_tempFiles.push_back(wTemp);
-
-	TFile(file).copyTo(copiedFile);
 
 	String strDesc2[2] = { 
 		(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Original File"),
@@ -3195,7 +3220,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
 	}
 
-	std::vector<String> processTypes;
+	std::list<String> processTypes;
 	for (const auto& [processType, pluginList] : allPlugins)
 		processTypes.push_back(processType);
 	auto it = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
@@ -3205,7 +3230,7 @@ void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames
 		processTypes.push_back(_("&Others"));
 	}
 
-	for (const auto& processType: processTypes)
+	for (const auto& processType : processTypes)
 	{
 		CMenu popup;
 		popup.CreatePopupMenu();

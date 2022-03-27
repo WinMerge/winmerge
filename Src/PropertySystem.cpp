@@ -75,9 +75,7 @@ static bool CalculateHashValue(const String& path, const PROPERTYKEY& key, PROPV
 	return false;
 }
 
-PropertyValues::PropertyValues()
-{
-}
+PropertyValues::PropertyValues() = default;
 
 PropertyValues::~PropertyValues()
 {

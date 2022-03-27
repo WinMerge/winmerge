@@ -29,23 +29,19 @@ msgstr "LANG_UKRAINIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Скопіювати на &праву панель"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Скопіювати на &праву панель\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Скопіювати на &ліву панель"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Скопіювати на &ліву панель\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -127,6 +123,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -239,7 +241,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -667,8 +669,7 @@ msgstr "Замінити перенесення &рядків на"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим &злиття\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -796,6 +797,9 @@ msgstr "Показувати &номера рядків"
 #, c-format
 msgid "View &Margins"
 msgstr "Показувати п&оля"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1046,10 +1050,6 @@ msgstr "&Сховати"
 #, c-format
 msgid "&Open Left"
 msgstr "&Відкрити лівий файл"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "Зо&внішнім редактором"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1362,8 +1362,7 @@ msgstr "Зберігати час файлу при порівнянні"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показувати при запуску діалог вибору файлів та тек"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1709,10 +1708,10 @@ msgstr "Опис:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1945,14 +1944,6 @@ msgstr "Звичайна сторінка кодування"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Виберіть звичайну сторінку кодування для не Юнікодних файлів:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Виявлення інформації про кодову сторінку для файлів\n"
-" .html, .rc, .xml вимагає перезапуску."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Системна сторінка кодування"
@@ -1964,6 +1955,14 @@ msgstr "Залежно від інтерфейсу користувача WinMer
 #, c-format
 msgid "Custom codepage:"
 msgstr "Кодова сторінка користувача:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Виявлення інформації про кодову сторінку для файлів\n"
+" .html, .rc, .xml вимагає перезапуску."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -2755,11 +2754,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файли фільтрів (*.flt)|*.flt|Всі файли (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
 "Не вдалося знайти файл фільтра!\n"
 "\n"
@@ -3307,6 +3302,9 @@ msgstr "Неможливо виконати %1"
 msgid "Unknown archive format"
 msgstr "Невідомий формат архіву"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Ім'я файлу"
@@ -3602,16 +3600,13 @@ msgstr "Помилка"
 msgid "Text files are identical"
 msgstr "Текстові файли однакові"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3708,16 +3703,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Показати, з якої зі сторін дата зміни файлу новіша"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Версія файлу ліворуч, лише для деяких типів файлів."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Версія файлу праворуч, лише для деяких типів файлів."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4115,20 +4107,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -4456,6 +4444,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4685,6 +4676,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

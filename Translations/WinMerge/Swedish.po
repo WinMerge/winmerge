@@ -30,20 +30,20 @@ msgstr "LANG_SWEDISH, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-msgid "C&opy to Right"
-msgstr "Kopiera till höger"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopiera till höger\tAlt+Höger"
 
 msgid "Copy from Middle"
 msgstr ""
 
-msgid "Copy fro&m Right"
-msgstr "Kopiera från höger"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Kopiera från höger\tAlt+Shift+Vänster"
 
-msgid "Cop&y to Left"
-msgstr "Kopiera till vänster"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopiera till vänster\tAlt+Vänster"
 
-msgid "Copy &from Left"
-msgstr "Kopiera från vänster"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Kopiera från vänster\tAlt+Shift+Höger"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -116,6 +116,12 @@ msgstr "Öppna överordnad mapp..."
 
 msgid "S&hell Menu"
 msgstr "Skalmeny"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 msgid "View &Differences"
 msgstr "Visa skillnader"
@@ -209,7 +215,7 @@ msgstr "Sätt bakgrundsfärg"
 msgid "&Vector Image Scaling"
 msgstr "Vektorbild skalning"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "Jämför extraherad text från bild"
 
 msgid "&File"
@@ -542,8 +548,8 @@ msgstr "Omvandla radslut till"
 msgid "Mer&ge Mode\tF9"
 msgstr "Sammanfogningsläge\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Ladda om\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Laddaom\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Jämför igen som"
@@ -640,6 +646,9 @@ msgstr "Visa radnummer"
 
 msgid "View &Margins"
 msgstr "Visa marginaler"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Bryt rader"
@@ -847,9 +856,6 @@ msgstr "Dölj objekt"
 
 msgid "&Open Left"
 msgstr "Öppna vänster"
-
-msgid "With &External Editor"
-msgstr "Med externt program"
 
 msgid "Open Midd&le"
 msgstr "Öppna mitten"
@@ -1099,8 +1105,8 @@ msgstr "Bevara ändringsdatum i filjämförelse"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Stäng \"Välj filer eller kataloger\" dialogen då ''OK'' klickas"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Stäng \"Välj filer eller kataloger\" dialogen då ''Jämför'' klickas"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatisk komplettering för Öppna-dialog:"
@@ -1375,11 +1381,11 @@ msgstr "Beskrivning:"
 msgid "Default arguments:"
 msgstr "Standardargument:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Visa alla plugins, kontrollera inte filändelse."
+msgid "Display all plugins, don't check the extension"
+msgstr "Visa alla plugins, kontrollera inte filändelse"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Öppna filer i samma fönstertyp efter extrahering."
+msgid "&Open files in the same window type after unpacking"
+msgstr "Öppna filer i samma fönstertyp efter extrahering"
 
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin rörslinga:"
@@ -1564,6 +1570,15 @@ msgstr "Förvald teckentabell"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Välj förvald teckentabell att använda när icke-Unicode filer öppnas:"
 
+msgid "System codepage"
+msgstr "Systemets teckentabell"
+
+msgid "According to WinMerge User Interface"
+msgstr "Enligt WinMerges användargränssnitt"
+
+msgid "Custom codepage:"
+msgstr "Anpassad teckentabell:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1577,15 +1592,6 @@ msgid ""
 msgstr ""
 "Detektera teckentabell för textfiler med mlang.dll\n"
 "(Sessionen kommer behöva läsas in på nytt)"
-
-msgid "System codepage"
-msgstr "Systemets teckentabell"
-
-msgid "According to WinMerge User Interface"
-msgstr "Enligt WinMerges användargränssnitt"
-
-msgid "Custom codepage:"
-msgstr "Anpassad teckentabell:"
 
 msgid "Options"
 msgstr "Inställningar"
@@ -2251,11 +2257,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filfilter (*.flt)|*.flt|Alla filer (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
 "Kan inte hitta filfilterfilen!\n"
 "\n"
@@ -2792,6 +2794,9 @@ msgstr "Kunde inte starta den externa redigeraren: %1"
 msgid "Unknown archive format"
 msgstr "Okänt format för komprimerade mappar"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Filnamn"
 
@@ -3041,14 +3046,14 @@ msgstr "Fel"
 msgid "Text files are identical"
 msgstr "Textfilerna är identiska"
 
-msgid "(Middle and right are identical)"
-msgstr "(Mittre och höger är identiska)"
+msgid " (Middle and right are identical)"
+msgstr " (Mittre och höger är identiska)"
 
-msgid "(Left and right are identical)"
-msgstr "(Vänster och höger är identiska)"
+msgid " (Left and right are identical)"
+msgstr " (Vänster och höger är identiska)"
 
-msgid "(Left and middle are identical)"
-msgstr "(Vänster och mittre är identiska)"
+msgid " (Left and middle are identical)"
+msgstr " (Vänster och mittre är identiska)"
 
 msgid "Text files are different"
 msgstr "Textfilerna är olika"
@@ -3125,13 +3130,13 @@ msgstr "Mittre skapelsetid."
 msgid "Tells which side has newer modification date."
 msgstr "Visar vilken sida som har ett senare ändringsdatum."
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Vänster filversion, bara för några filtyper."
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Höger filversion, bara för några filtyper."
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Mittre filversion, bara för några filtyper."
 
 msgid "Short comparison result."
@@ -3520,30 +3525,22 @@ msgstr ""
 "\n"
 "Sista skillnad (Alt+End)"
 
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 "\n"
 "Kopiera till höger (Alt+Höger)"
 
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 "\n"
 "Kopiera till vänster (Alt+Vänster)"
 
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
 "Kopiera till höger och gå vidare (Ctrl+Alt+Höger)"
 
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
 "Kopiera till vänster och gå vidare (Ctrl+Alt+Vänster)"
@@ -3886,6 +3883,9 @@ msgstr "Dekompilering"
 msgid "&Others"
 msgstr "Andra"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Gör till VERSALER"
 
@@ -4115,6 +4115,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

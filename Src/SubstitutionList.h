@@ -26,7 +26,7 @@ struct SubstitutionItem
 class SubstitutionList
 {
 public:
-	SubstitutionList() {};
+	SubstitutionList() = default;
 
 	void Add(const std::string& pattern, const std::string& replacement, int regexpCompileOptions);
 	void Add(const std::string& pattern, const std::string& replacement, bool caseSensitive, bool matchWholeWordOnly);

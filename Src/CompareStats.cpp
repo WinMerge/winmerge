@@ -27,9 +27,7 @@ CompareStats::CompareStats(int nDirs)
 /** 
  * @brief Destructor, deletes critical section.
  */
-CompareStats::~CompareStats()
-{
-}
+CompareStats::~CompareStats() = default;
 
 /** 
  * @brief Add compared item.

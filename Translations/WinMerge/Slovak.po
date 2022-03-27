@@ -29,20 +29,20 @@ msgstr "LANG_SLOVAK, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "Kopírovať do stredu"
 
-msgid "C&opy to Right"
-msgstr "Kopírovať vpravo"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopírovať vpravo\tAlt+→"
 
 msgid "Copy from Middle"
 msgstr "Kopírovať zo stredu"
 
-msgid "Copy fro&m Right"
-msgstr "Kopírovať &sprava"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Kopírovať &sprava\tAlt+Shift+←"
 
-msgid "Cop&y to Left"
-msgstr "Kopírovať vľavo"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopírovať vľavo\tAlt+←"
 
-msgid "Copy &from Left"
-msgstr "Kopírovať &zľava"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Kopírovať &zľava\tAlt+Shift+→"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Kopíruje vybrané riadky do stredu"
@@ -115,6 +115,12 @@ msgstr "Otvoriť &nadradený priečinok..."
 
 msgid "S&hell Menu"
 msgstr "&Vzhľad ponuky"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 msgid "View &Differences"
 msgstr "Zobraziť &rozdiely"
@@ -208,7 +214,7 @@ msgstr "Nastaviť farbu &pozadia"
 msgid "&Vector Image Scaling"
 msgstr "Zmena mierky &vektorového obrázka"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "Porovnať extrahovaný &text z obrázka"
 
 msgid "&File"
@@ -541,8 +547,8 @@ msgstr "&Konvertovať konce riadkov na"
 msgid "Mer&ge Mode\tF9"
 msgstr "Režim &zlučenia\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Znova načítať\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Znovanačítať\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "&Znovu porovnať ako"
@@ -639,6 +645,9 @@ msgstr "Zobraziť čísla &riadkov"
 
 msgid "View &Margins"
 msgstr "Zobraziť &okraje"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "&Zvinúť riadky"
@@ -846,9 +855,6 @@ msgstr "&Skryť položky"
 
 msgid "&Open Left"
 msgstr "&Otvoriť ľavý"
-
-msgid "With &External Editor"
-msgstr "&Externým editorom"
 
 msgid "Open Midd&le"
 msgstr "Otvoriť &stredný"
@@ -1098,8 +1104,8 @@ msgstr "&Zachovávať čas súboru pri porovnaní"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Zobraziť pri spustení dialóg „Vybrať súbory alebo priečinky“"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Kliknutím na tlačidlo OK zatvoriť dialógové okno „Vybrať súbory alebo priečinky“"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Kliknutím na tlačidlo Porovnať zatvoriť dialógové okno „Vybrať súbory alebo priečinky“"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatické dopĺňanie v dialógu &Otvoriť:"
@@ -1374,11 +1380,11 @@ msgstr "Popis:"
 msgid "Default arguments:"
 msgstr "Predvolené argumenty:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Zobrazí všetky rozšírenia, nekontroluje príponu."
+msgid "Display all plugins, don't check the extension"
+msgstr "Zobrazí všetky rozšírenia, nekontroluje príponu"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Po rozbalení &otvoriť súbory v rovnakom type okna."
+msgid "&Open files in the same window type after unpacking"
+msgstr "Po rozbalení &otvoriť súbory v rovnakom type okna"
 
 msgid "&Plugin Pipeline:"
 msgstr "Rozšírenie &potrubia:"
@@ -1563,6 +1569,15 @@ msgstr "Predvolená kódová stránka"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Zvoľte predvolenú kódovú stránku, ktorá sa použije pri načítaní ne-Unicode súborov:"
 
+msgid "System codepage"
+msgstr "Systémová kódová stránka"
+
+msgid "According to WinMerge User Interface"
+msgstr "Podľa užívateľského rozhrania WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Vlastná kódová stránka:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1576,15 +1591,6 @@ msgid ""
 msgstr ""
 "Zisťovať kódovú stránku pre textové súbory pomocou súboru mlang.dll\n"
 "Potrebný reštart relácie."
-
-msgid "System codepage"
-msgstr "Systémová kódová stránka"
-
-msgid "According to WinMerge User Interface"
-msgstr "Podľa užívateľského rozhrania WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Vlastná kódová stránka:"
 
 msgid "Options"
 msgstr "Možnosti"
@@ -2250,11 +2256,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtre súborov (*.flt)|*.flt|Všetky súbory (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
 "Nemožno nájsť súbor šablóny filtra súborov!\n"
 "\n"
@@ -2791,6 +2793,9 @@ msgstr "Nepodarilo sa spustiť externý editor: %1"
 msgid "Unknown archive format"
 msgstr "Neznámy formát archívu"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Názov súboru"
 
@@ -3040,14 +3045,14 @@ msgstr "Chyba"
 msgid "Text files are identical"
 msgstr "Textové súbory sú identické"
 
-msgid "(Middle and right are identical)"
-msgstr "(Stredný a pravý sú identické)"
+msgid " (Middle and right are identical)"
+msgstr " (Stredný a pravý sú identické)"
 
-msgid "(Left and right are identical)"
-msgstr "(Ľavý a pravý sú identické)"
+msgid " (Left and right are identical)"
+msgstr " (Ľavý a pravý sú identické)"
 
-msgid "(Left and middle are identical)"
-msgstr "(Ľavý a stredný sú identické)"
+msgid " (Left and middle are identical)"
+msgstr " (Ľavý a stredný sú identické)"
 
 msgid "Text files are different"
 msgstr "Textové súbory sú rozdielne"
@@ -3124,13 +3129,13 @@ msgstr "Dátum vytvorenia na stredného."
 msgid "Tells which side has newer modification date."
 msgstr "Hovorí, na ktorej strane je novší dátum zmeny."
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Verzia súboru ľavého, iba pre niektoré typy súborov."
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Verzia súboru pravého, iba pre niektoré typy súborov."
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Verzia súboru stredného, iba pre niektoré typy súborov."
 
 msgid "Short comparison result."
@@ -3519,30 +3524,22 @@ msgstr ""
 "\n"
 "Posledný rozdiel (Alt+End)"
 
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 "\n"
 "Kopírovať vpravo (Alt+→)"
 
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 "\n"
 "Kopírovať doľava (Alt+←)"
 
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
 "Kopírovať vpravo a dopredu (Ctrl+Alt+→)"
 
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
 "Kopírovať vľavo a dopredu (Ctrl+Alt+←)"
@@ -3880,6 +3877,9 @@ msgstr "Dekompilácia"
 
 msgid "&Others"
 msgstr "&Ostatné"
+
+msgid "URL Handling"
+msgstr ""
 
 msgid "Make Uppercase"
 msgstr "Vytvoriť veľké písmená"
@@ -4225,6 +4225,12 @@ msgstr "Filter predbežného spracovania rozdielov riadku"
 
 msgid "Basic text functions for the context menu"
 msgstr "Základné textové funkcie pre kontextovú ponuku"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Použitý filter"

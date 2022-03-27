@@ -153,7 +153,7 @@ void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String
 		return;
 
 	for (size_t i = m_dropListFixedPattern.size(); i <= static_cast<size_t>(nItem); i++)
-		m_dropListFixedPattern.push_back(std::vector<String>());
+		m_dropListFixedPattern.emplace_back(std::initializer_list<String>{});
 
 	for (size_t i = m_dropListFixedPattern[nItem].size(); i <= static_cast<size_t>(nSubItem); i++)
 		m_dropListFixedPattern[nItem].push_back(_T(""));

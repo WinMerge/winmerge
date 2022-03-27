@@ -86,6 +86,6 @@ END_MESSAGE_MAP()
 
 WMGotoDlg::WMGotoDlg()
 	: m_pimpl(new WMGotoDlg::Impl(this)), m_nFile(-1), m_nGotoWhat(-1) {}
-WMGotoDlg::~WMGotoDlg() {}
+WMGotoDlg::~WMGotoDlg() = default;
 int WMGotoDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }
 

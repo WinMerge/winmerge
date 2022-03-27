@@ -36,24 +36,20 @@ msgstr "LANG_KOREAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "가운데로 복사"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "오른쪽으로 복사(&O)"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "오른쪽으로 복사(&O)\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "가운데에서 복사"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "오른쪽에서 복사(&M)"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "오른쪽에서 복사(&M)\tAlt+Shift+Left"
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "왼쪽으로 복사(&Y)"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "왼쪽으로 복사(&Y)\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "왼쪽에서 복사(&F)"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "왼쪽에서 복사(&F)\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "선택한 줄을 가운데로 복사"
@@ -135,6 +131,12 @@ msgstr "상위 폴더 열기(&P)"
 
 msgid "S&hell Menu"
 msgstr "셸 메뉴(&H)"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 #, c-format
 msgid "View &Differences"
@@ -246,7 +248,7 @@ msgstr "배경색 설정(&S)"
 msgid "&Vector Image Scaling"
 msgstr "벡터 이미지 확대/축소(&V)"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "이미지에서 추출한 텍스트 비교(&T)"
 
 #, c-format
@@ -674,9 +676,8 @@ msgstr "줄끝 변환(&C)"
 msgid "Mer&ge Mode\tF9"
 msgstr "병합 모드(&G)\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "다시 불러오기(&L)\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "다시불러오기(&D)\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -803,6 +804,9 @@ msgstr "줄 번호 보기(&N)"
 #, c-format
 msgid "View &Margins"
 msgstr "여백 보기(&M)"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1053,10 +1057,6 @@ msgstr "항목 숨기기(&H)"
 #, c-format
 msgid "&Open Left"
 msgstr "왼쪽 열기(&O)"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "외부 편집기로(&E)"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1369,9 +1369,8 @@ msgstr "파일 비교시 파일 시간 보존하기(&P)"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "시작시 \"파일 또는 폴더 선택\" 대화 상자 보이기"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "확인 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "비교 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1716,10 +1715,10 @@ msgstr "설명:"
 msgid "Default arguments:"
 msgstr "기본 인수:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "모든 플러그인을 보이고, 확장 프로그램은 확인하지 않기."
+msgid "Display all plugins, don't check the extension"
+msgstr "모든 플러그인을 보이고, 확장 프로그램은 확인하지 않기"
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr "언패킹 이후 동일한 창 종류에서 파일 열기(&O)"
 
 msgid "&Plugin Pipeline:"
@@ -1952,6 +1951,18 @@ msgstr "기본 코드페이지"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "비유니코드 파일 열 때 사용할 기본 코드페이지:"
 
+#, c-format
+msgid "System codepage"
+msgstr "시스템 코드페이지"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge 사용자 인터페이스를 따름"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "사용자 지정 코드페이지:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1965,18 +1976,6 @@ msgid ""
 msgstr ""
 "mlang.dll을 이용해 텍스트 파일의 코드페이지 감지\n"
 "세션을 재시작해야 함."
-
-#, c-format
-msgid "System codepage"
-msgstr "시스템 코드페이지"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge 사용자 인터페이스를 따름"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "사용자 지정 코드페이지:"
 
 #, c-format
 msgid "Options"
@@ -2792,16 +2791,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "파일 필터 (*.flt)|*.flt|전체 필터 (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"필터 템플릿 파일을 찾을 수 없습니다!\n"
-"\n"
-"%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "필터 템플릿 파일을 찾을 수 없습니다!\n\n%1 파일을 다음 WinMerge/Filters 폴더에 복사하세요:\n%2."
 
 #, c-format
 msgid ""
@@ -3371,6 +3362,9 @@ msgstr "외부 편집기 실행 실패: %1"
 msgid "Unknown archive format"
 msgstr "알 수 없는 압축 형식"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "파일 이름"
@@ -3666,17 +3660,14 @@ msgstr "오류"
 msgid "Text files are identical"
 msgstr "텍스트 파일이 같습니다"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(가운데와 오른쪽은 동일합니다)"
+msgid " (Middle and right are identical)"
+msgstr " (가운데와 오른쪽은 동일합니다)"
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(왼쪽과 오른쪽은 동일합니다)"
+msgid " (Left and right are identical)"
+msgstr " (왼쪽과 오른쪽은 동일합니다)"
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(왼쪽과 가운데는 동일합니다)"
+msgid " (Left and middle are identical)"
+msgstr " (왼쪽과 가운데는 동일합니다)"
 
 #, c-format
 msgid "Text files are different"
@@ -3772,16 +3763,13 @@ msgstr "가운데 파일 만든 날짜."
 msgid "Tells which side has newer modification date."
 msgstr "어느 쪽이 더 최근에 수정되었는지 알려줍니다."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "왼쪽 파일 버전, 몇몇 파일 형식만."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "오른쪽 파일 버전, 몇몇 파일 형식만."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "가운데 파일 버전, 몇몇 파일 형식만."
 
 #, c-format
@@ -4233,37 +4221,17 @@ msgstr ""
 "\n"
 "마지막 차이점 (Alt+End)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
-msgstr ""
-"\n"
-"오른쪽으로 복사 (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\n오른쪽으로 복사 (Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
-msgstr ""
-"\n"
-"왼쪽으로 복사 (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\n왼쪽으로 복사 (Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"오른쪽으로 복사 후 진행 (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\n오른쪽으로 복사 후 진행 (Ctrl+Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"왼쪽으로 복사 후 진행 (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\n왼쪽으로 복사 후 진행 (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\n모두 오른쪽으로 복사"
@@ -4620,6 +4588,9 @@ msgstr "디컴파일"
 msgid "&Others"
 msgstr "기타(&O)"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "대문자로 변환"
 
@@ -4907,6 +4878,12 @@ msgstr "Prediff Line Filter"
 
 msgid "Basic text functions for the context menu"
 msgstr "우클릭 메뉴를 위한 기본 텍스트 기능"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filter 적용됨"

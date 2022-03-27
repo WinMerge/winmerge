@@ -27,23 +27,19 @@ msgstr "LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Умн&ожи у десну"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Умн&ожи у десну\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Ум&ножи у леву"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Ум&ножи у леву\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -116,7 +112,7 @@ msgid "With &Registered Application"
 msgstr "Са инс&талираним програмом"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Cа др&угим уређивачем\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Са"
@@ -125,6 +121,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -237,7 +239,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -664,8 +666,7 @@ msgstr "Заврши ред према"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Начин поређења\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -793,6 +794,9 @@ msgstr "Приказ броја ре&дова"
 #, c-format
 msgid "View &Margins"
 msgstr "Приказ иви&ца"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1042,10 +1046,6 @@ msgstr "&Сакриј ставке"
 #, c-format
 msgid "&Open Left"
 msgstr "&Отвори леву"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "Cа др&угим уређивачем"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1348,13 +1348,12 @@ msgstr "&Задржи ознаке времена и датума у поређ�
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Прикажи \"Одабране датотеке или фасцикле\" дијалог при покретању."
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
-msgstr "Отвори дијалог самодовршења"
+msgstr "Отвори дијалог самодовршења:"
 
 #, c-format
 msgid "Language:"
@@ -1510,15 +1509,15 @@ msgstr "Текст"
 
 #, c-format
 msgid "Difference:"
-msgstr "Разлике"
+msgstr "Разлике:"
 
 #, c-format
 msgid "Selected Difference:"
-msgstr "Обележи разлике"
+msgstr "Обележи разлике:"
 
 #, c-format
 msgid "Ignored Difference:"
-msgstr "Занемари разлике"
+msgstr "Занемари разлике:"
 
 #, c-format
 msgid "Moved:"
@@ -1526,7 +1525,7 @@ msgstr "Премештено:"
 
 #, c-format
 msgid "Selected Moved:"
-msgstr "Премештање изабраног"
+msgstr "Премештање изабраног:"
 
 msgid "Same As The Next (3 panes):"
 msgstr ""
@@ -1587,7 +1586,7 @@ msgstr "Привремена системска фасцикла"
 
 #, c-format
 msgid "C&ustom folder:"
-msgstr "Подешена фасцикла"
+msgstr "Подешена фасцикла:"
 
 #, c-format
 msgid "Br&owse..."
@@ -1631,11 +1630,11 @@ msgstr "&Облик"
 
 #, c-format
 msgid "St&yle:"
-msgstr "На&чин"
+msgstr "На&чин:"
 
 #, c-format
 msgid "&Context:"
-msgstr "У &оквиру"
+msgstr "У &оквиру:"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -1693,10 +1692,10 @@ msgstr "Опис:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1725,7 +1724,7 @@ msgstr "Поређење ставки:"
 
 #, c-format
 msgid "Items total:"
-msgstr "Укупно ставки :"
+msgstr "Укупно ставки:"
 
 msgid "Go to"
 msgstr "Иди на"
@@ -1809,7 +1808,7 @@ msgstr "Језичци"
 
 #, c-format
 msgid "&Tab size:"
-msgstr "Величина &језичака"
+msgstr "Величина &језичака:"
 
 #, c-format
 msgid "&Insert Tabs"
@@ -1821,7 +1820,7 @@ msgstr "Уметни размак"
 
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Обоји различите редове "
+msgstr "Обоји различите редове"
 
 #, c-format
 msgid "View line differences"
@@ -1843,7 +1842,7 @@ msgid "&Rendering Mode:"
 msgstr ""
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge омогућава скривање неких уобичајених порука.Притисните 'Почетни'да поруке опет буду видљиве"
+msgstr "WinMerge омогућава скривање неких уобичајених порука. Притисните 'Почетни' да поруке опет буду видљиве."
 
 #, c-format
 msgid "Reset"
@@ -1925,15 +1924,7 @@ msgstr "Подразумевана кодна страница"
 
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена"
-
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
-" Није потребно поново покретање сесије."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
+msgstr "Одабери подразумевану кодну страницу кад учитана Уникод датотека није прихваћена:"
 
 #, c-format
 msgid "System codepage"
@@ -1945,7 +1936,15 @@ msgstr "Према корисничком сучељу WinMerge-а"
 
 #, c-format
 msgid "Custom codepage:"
-msgstr "Подешена кодна страница"
+msgstr "Подешена кодна страница:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Дај обавештења кодне стране за ове датотеке:.html, .rc, .xml\n"
+" Није потребно поново покретање сесије."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -2029,7 +2028,7 @@ msgstr "Датотека изве&штаја:"
 
 #, c-format
 msgid "&Style:"
-msgstr "&Начин"
+msgstr "&Начин:"
 
 #, c-format
 msgid "&Include File Compare Report"
@@ -2076,7 +2075,7 @@ msgstr "Фасцикле"
 
 #, c-format
 msgid "Files:"
-msgstr "Датотеке"
+msgstr "Датотеке:"
 
 #, c-format
 msgid "Different"
@@ -2084,7 +2083,7 @@ msgstr "Разлика"
 
 #, c-format
 msgid "Binary:"
-msgstr "Бинарни"
+msgstr "Бинарни:"
 
 #, c-format
 msgid "Unique"
@@ -2163,7 +2162,7 @@ msgstr "Проверавање филтера:"
 
 #, c-format
 msgid "&Enter text to test:"
-msgstr "Ун&еси текст за проверу"
+msgstr "Ун&еси текст за проверу:"
 
 #, c-format
 msgid "&Folder Name"
@@ -2247,11 +2246,11 @@ msgstr "Изв&орна фасцикла датотеке"
 
 #, c-format
 msgid "&Global backup folder:"
-msgstr "Општа резервна фасцикла "
+msgstr "Општа резервна фасцикла:"
 
 #, c-format
 msgid "Backup filename:"
-msgstr "Име резервне датотеке"
+msgstr "Име резервне датотеке:"
 
 msgid "&Append .bak extension"
 msgstr "Дод&ај .bak наставак"
@@ -2266,7 +2265,7 @@ msgstr "Потврди копирање"
 
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Да ли сте сигурни да желите копирати XXX ставки"
+msgstr "Да ли сте сигурни да желите копирати XXX ставки?"
 
 #, c-format
 msgid "From left"
@@ -2278,7 +2277,7 @@ msgstr "У десно"
 
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "Не питај поново"
+msgstr "Не питај поново."
 
 #, c-format
 msgid "Yes"
@@ -2523,7 +2522,7 @@ msgstr ""
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge је програм БЕЗ ГАРАНЦИЈЕ.Ово је бесплатан програм  који можете даље делити према GNU јавној лиценци коју погледајте у датотеци /Помоћ/"
+msgstr "WinMerge је програм БЕЗ ГАРАНЦИЈЕ. Ово је бесплатан програм  који можете даље делити према GNU јавној лиценци коју погледајте у датотеци /Помоћ/."
 
 #, c-format
 msgid "&Abort"
@@ -2571,7 +2570,7 @@ msgstr "Изост&ави све"
 
 #, c-format
 msgid "Don't display this &message again."
-msgstr "Не приказуј ову поруку поново"
+msgstr "Не приказуј ову поруку поново."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
@@ -2737,16 +2736,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Датотека филтера (*.flt)|*.flt|All Files (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Немогуће је пронаћи филтрирану датотеку шаблона!\n"
-"\n"
-"Молим умножите датотеку %1 у WinMerge/Филтер -фасциклу:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Немогуће је пронаћи филтрирану датотеку шаблона!\n\nМолим умножите датотеку %1 у WinMerge/Филтер фасциклу:\n%2."
 
 #, c-format
 msgid ""
@@ -2794,11 +2785,11 @@ msgid ""
 msgstr ""
 "Инсталирање филтера није успело.\n"
 "\n"
-"Не могу умножити нови филтер у фасцикли филтера"
+"Не могу умножити нови филтер у фасцикли филтера."
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Филтер већ постоји.Замени постојећи филтер"
+msgstr "Филтер већ постоји. Замени постојећи филтер?"
 
 #, c-format
 msgid "Regular expression"
@@ -2808,7 +2799,7 @@ msgid "Filters were updated. Do you want to refresh all open folder compares?\n\
 msgstr ""
 "Фитери су освежени. Да ли желите освежити сва отворена поређења?\n"
 "\n"
-"Ако изаберете /Не/ то можете и касније урадити"
+"Ако изаберете /Не/ то можете и касније урадити."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -2937,7 +2928,7 @@ msgstr "Не могу упоредити датотеку и фасциклу!"
 
 #, c-format
 msgid "File not found: %1"
-msgstr "Датотека није пронађена"
+msgstr "Датотека није пронађена: %1"
 
 #, c-format
 msgid "File not unpacked: %1"
@@ -2982,7 +2973,7 @@ msgstr "Сачувај измене %1? "
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
-msgstr "%1 је означена само за читање.Желите ли да је поништите?(Не, сачувана је под новим именом)"
+msgstr "%1 је означена само за читање. Желите ли да је поништите? (Не, сачувана је под новим именом)"
 
 #, c-format
 msgid "Error backing up file"
@@ -3018,7 +3009,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Додатак '%2' не може спаковати промене леве датотеке'%1'.\n"
+"Додатак '%2' не може спаковати промене леве датотеке '%1'.\n"
 "\n"
 "Изворна датотека неће бити промењена.\n"
 "\n"
@@ -3062,7 +3053,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"је означена само за читање.Желите ли да је замените?"
+"је означена само за читање. Желите ли да је замените?"
 
 #, c-format
 msgid ""
@@ -3074,7 +3065,7 @@ msgid ""
 msgstr ""
 "Други програм је освежио датотеку\n"
 "%1\n"
-"од задњег прегледа WinMerge-а.Желите ли поново учитати датотеку?"
+"од задњег прегледа WinMerge-а. Желите ли поново учитати датотеку?"
 
 #, c-format
 msgid "Save Left File As"
@@ -3096,7 +3087,7 @@ msgid ""
 msgstr ""
 "Датотека\n"
 "%1\n"
-"је нестала.Молимо Вас да сачувате умножену датотеку да бисте наставили"
+"је нестала. Молимо Вас да сачувате умножену датотеку да бисте наставили."
 
 #, c-format
 msgid ""
@@ -3106,7 +3097,7 @@ msgid ""
 msgstr ""
 "Не могу објединити разлике када документи нису усаглашени.\n"
 "\n"
-"Освежи документе пре наставка"
+"Освежи документе пре наставка."
 
 #, c-format
 msgid "Break at whitespace"
@@ -3282,6 +3273,9 @@ msgstr "Није успело покретање другог уређивача
 #, c-format
 msgid "Unknown archive format"
 msgstr "Непознат облик архиве"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"
@@ -3578,16 +3572,13 @@ msgstr "Грешка"
 msgid "Text files are identical"
 msgstr "Текстови датотека су исти"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3684,16 +3675,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Која страна има новији датум промене"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Издање на левој страни је само за неке врсте датотеке"
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Издање на десној страни је само за неке врсте датотеке"
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -3735,15 +3723,15 @@ msgstr ""
 
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Број занемарених разлика у датотеци.Ове разлике је занемарио WinMerge и не могу бити обједињене"
+msgstr "Број занемарених разлика у датотеци. Ове разлике је занемарио WinMerge и не могу бити обједињене."
 
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "Број разлика у датотеци.Овај број не укључује занемарене разлике"
+msgstr "Број разлика у датотеци. Овај број не укључује занемарене разлике."
 
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "Приказује звездицу (*), ако је датотека бинарна"
+msgstr "Приказује звездицу (*), ако је датотека бинарна."
 
 msgid "Unpacker plugin name or pipeline."
 msgstr ""
@@ -3773,7 +3761,7 @@ msgstr "Једноставни XML"
 
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Датотека извештаја већ постоји.Да ли желите заменити постојећу датотеку"
+msgstr "Датотека извештаја већ постоји. Да ли желите заменити постојећу датотеку?"
 
 #, c-format
 msgid ""
@@ -3785,26 +3773,26 @@ msgstr ""
 
 #, c-format
 msgid "The report has been created successfully."
-msgstr "Извештај је успешно направљен"
+msgstr "Извештај је успешно направљен."
 
 msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "Иста датотека је отворена у обе табле"
+msgstr "Иста датотека је отворена у обе табле."
 
 #, c-format
 msgid "The selected files are identical."
-msgstr "Изабране датотеке су исте"
+msgstr "Изабране датотеке су исте."
 
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "Дошло је до грешке при поређењу"
+msgstr "Дошло је до грешке при поређењу."
 
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Привремена датотека не може бити створена.Проверите и подесите привремену путању"
+msgstr "Привремена датотека не може бити створена. Проверите и подесите привремену путању."
 
 msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
@@ -3812,15 +3800,15 @@ msgstr ""
 "\n"
 "Да ли желите задржати различите преласке у други ред?\n"
 "\n"
-"Напомена:Желите ли увек задржати различите преласка у други ред, одаберите 'Занемари разлике ознака завршетка реда (Windows/Unix/Mac)' у дијалошкој картици поређење прозора (Уређивање/Поставке)"
+"Напомена:Желите ли увек задржати различите преласка у други ред, одаберите 'Занемари разлике ознака завршетка реда (Windows/Unix/Mac)' у дијалошкој картици поређење прозора (Уређивање/Поставке)."
 
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "Одабрана фасцикла је неупотребљива"
+msgstr "Одабрана фасцикла је неупотребљива."
 
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Не могу отворити бинарну датотеку у уређивачу"
+msgstr "Не могу отворити бинарну датотеку у уређивачу."
 
 #, c-format
 msgid ""
@@ -3923,7 +3911,7 @@ msgstr "Различите табле"
 
 #, c-format
 msgid "Patch file successfully written."
-msgstr "Датотека разлика је успешно сачувана"
+msgstr "Датотека разлика је успешно сачувана."
 
 msgid "1. item is not found!"
 msgstr ""
@@ -3933,7 +3921,7 @@ msgstr ""
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "Датотека разлика већ постоји.Да ли желите да je замените?"
+msgstr "Датотека разлика већ постоји. Да ли желите да je замените?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -3983,7 +3971,7 @@ msgstr "Фасцикла не постоји"
 msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "Рад са архивама је онемогућен.\n"
-"Све потребне компоненте (7-Zip и/или Merge7z*.dll)за архиву не могу бити нађене.\n"
+"Све потребне компоненте (7-Zip и/или Merge7z*.dll) за архиву не могу бити нађене.\n"
 "Погледајте упутство како омогућити рад са архивама"
 
 #, c-format
@@ -4087,20 +4075,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -4428,6 +4412,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4657,6 +4644,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

@@ -87,9 +87,7 @@ CDiffWrapper::CDiffWrapper()
 /**
  * @brief Destructor.
  */
-CDiffWrapper::~CDiffWrapper()
-{
-}
+CDiffWrapper::~CDiffWrapper() = default;
 
 /**
  * @brief Enables/disables patch-file creation and sets filename.
@@ -1476,7 +1474,7 @@ const SubstitutionList* CDiffWrapper::GetSubstitutionList() const
 
 void CDiffWrapper::SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionList)
 {
-	m_pSubstitutionList = pSubstitutionList;
+	m_pSubstitutionList = std::move(pSubstitutionList);
 }
 
 void CDiffWrapper::SetFilterCommentsSourceDef(const String& ext)

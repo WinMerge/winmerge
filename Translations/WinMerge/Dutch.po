@@ -29,20 +29,20 @@ msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 msgid "Copy to Middle"
 msgstr "Naar midden kopiëren"
 
-msgid "C&opy to Right"
-msgstr "Naar rechts kopiëren"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Naar rechts kopiëren\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Van midden kopiëren"
 
-msgid "Copy fro&m Right"
-msgstr "Van rechts kopiëren"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Van rechts kopiëren\tAlt+Shift+Left"
 
-msgid "Cop&y to Left"
-msgstr "Naar links kopiëren"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Naar links kopiëren\tAlt+Left"
 
-msgid "Copy &from Left"
-msgstr "Van links kopiëren"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Van links kopiëren\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Geselecteerde regel(s) naar midden kopiëren"
@@ -115,6 +115,12 @@ msgstr "Bovenliggende map openen..."
 
 msgid "S&hell Menu"
 msgstr "Shellmenu"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 msgid "View &Differences"
 msgstr "Verschillen weergeven"
@@ -208,7 +214,7 @@ msgstr "Achtergrondkleur instellen"
 msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
 msgid "&File"
@@ -541,8 +547,8 @@ msgstr "Regeleindes converteren naar"
 msgid "Mer&ge Mode\tF9"
 msgstr "Samenvoegmodus\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Opnieuw laden\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Opnieuwladen\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
@@ -639,6 +645,9 @@ msgstr "Regelnummers weergeven"
 
 msgid "View &Margins"
 msgstr "Marges weergeven"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Automatische terugloop"
@@ -846,9 +855,6 @@ msgstr "Items verbergen"
 
 msgid "&Open Left"
 msgstr "Links openen"
-
-msgid "With &External Editor"
-msgstr "Met externe editor"
 
 msgid "Open Midd&le"
 msgstr "Midden openen"
@@ -1098,8 +1104,8 @@ msgstr "Bestandstijd behouden bij bestandsvergelijking"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op OK"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op Vergelijken"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
@@ -1379,11 +1385,11 @@ msgstr "Beschrijving:"
 msgid "Default arguments:"
 msgstr "Standaard argumenten:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Alle plug-ins weergeven zonder de extensie te controleren."
+msgid "Display all plugins, don't check the extension"
+msgstr "Alle plug-ins weergeven zonder de extensie te controleren"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Bestanden openen in hetzelfde venstertype na uitpakken."
+msgid "&Open files in the same window type after unpacking"
+msgstr "Bestanden openen in hetzelfde venstertype na uitpakken"
 
 msgid "&Plugin Pipeline:"
 msgstr "Plugin pipeline:"
@@ -1575,6 +1581,15 @@ msgstr ""
 "Selecteer de standaard veronderstelde tekenset bij laden van niet-"
 "Unicodebestanden:"
 
+msgid "System codepage"
+msgstr "Tekenset van systeem"
+
+msgid "According to WinMerge User Interface"
+msgstr "Volgens WinMerge-gebruikersinterface"
+
+msgid "Custom codepage:"
+msgstr "Aangepaste tekenset:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1588,15 +1603,6 @@ msgid ""
 msgstr ""
 "Tekenset detecteren voor tekstbestanden via mlang.dll\n"
 "Herstarten sessie noodzakelijk."
-
-msgid "System codepage"
-msgstr "Tekenset van systeem"
-
-msgid "According to WinMerge User Interface"
-msgstr "Volgens WinMerge-gebruikersinterface"
-
-msgid "Custom codepage:"
-msgstr "Aangepaste tekenset:"
 
 msgid "Options"
 msgstr "Opties"
@@ -2276,16 +2282,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Bestandsfilters (*.flt)|*.flt|Alle bestanden (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Kan bestandsfilter-sjabloon niet vinden!\n"
-"\n"
-"Kopieer bestand %1 naar map WinMerge/Filters:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Kan bestandsfilter-sjabloon niet vinden!\n\nKopieer bestand %1 naar map WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -2824,6 +2822,9 @@ msgstr "Uitvoeren externe editor mislukt: %1"
 msgid "Unknown archive format"
 msgstr "Onbekend archiefformaat"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Bestandsnaam"
 
@@ -3073,14 +3074,14 @@ msgstr "Fout"
 msgid "Text files are identical"
 msgstr "Tekstbestanden zijn identiek"
 
-msgid "(Middle and right are identical)"
-msgstr "(Midden en rechts zijn identiek)"
+msgid " (Middle and right are identical)"
+msgstr " (Midden en rechts zijn identiek)"
 
-msgid "(Left and right are identical)"
-msgstr "(Links en rechts zijn identiek)"
+msgid " (Left and right are identical)"
+msgstr " (Links en rechts zijn identiek)"
 
-msgid "(Left and middle are identical)"
-msgstr "(Links en midden zijn identiek)"
+msgid " (Left and middle are identical)"
+msgstr " (Links en midden zijn identiek)"
 
 msgid "Text files are different"
 msgstr "Tekstbestanden zijn verschillend"
@@ -3157,13 +3158,13 @@ msgstr "Aanmaaktijdstip midden."
 msgid "Tells which side has newer modification date."
 msgstr "Geeft aan welke zijde het recentst gewijzigd is."
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Bestandsversie linkerzijde, alleen voor bepaalde bestandstypes."
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Bestandsversie rechterzijde, alleen voor bepaalde bestandstypes."
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Bestandsversie midden, alleen voor bepaalde bestandstypes."
 
 msgid "Short comparison result."
@@ -3569,33 +3570,17 @@ msgstr ""
 "\n"
 "Laatste verschil (Alt+End)"
 
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
-msgstr ""
-"\n"
-"Rechts kopiëren (Alt+Rechts)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nRechts kopiëren (Alt+Rechts)"
 
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
-msgstr ""
-"\n"
-"Links kopiëren (Alt+Links)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nLinks kopiëren (Alt+Links)"
 
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"Rechts kopiëren en verdergaan (Ctrl+Alt+Rechts)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nRechts kopiëren en verdergaan (Ctrl+Alt+Rechts)"
 
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"Links kopiëren en verdergaan (Ctrl+Alt+Links)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nLinks kopiëren en verdergaan (Ctrl+Alt+Links)"
 
 msgid "\nCopy All to Right"
 msgstr "\nAlles naar rechts kopiëren"
@@ -3936,6 +3921,9 @@ msgstr "Decompilatie"
 
 msgid "&Others"
 msgstr "Andere"
+
+msgid "URL Handling"
+msgstr ""
 
 msgid "Make Uppercase"
 msgstr "Hoofdletters maken"
@@ -4293,6 +4281,12 @@ msgstr "Voorvergelijking-regelfilter"
 
 msgid "Basic text functions for the context menu"
 msgstr "Basis-tekstfuncties voor het contextmenu"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filter toegepast"

@@ -30,24 +30,20 @@ msgstr "LANG_HUNGARIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "Másolás középre"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Másolás jobbra"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Másolás jobbra\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Másolás középről"
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Másolás jobbról"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Másolás jobbról\tAlt+Shift+Left"
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Másolás balra"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Másolás balra\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "Másolás balról"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Másolás balról\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "A kijelölt sor(ok) középre másolása"
@@ -129,6 +125,12 @@ msgstr "Szölőkönyvtár megnyitása..."
 
 msgid "S&hell Menu"
 msgstr "Intéző menü"
+
+msgid "Use First Line as Headers"
+msgstr "Első sor használata fejlécként"
+
+msgid "Auto-Fit All Columns"
+msgstr "Minden oszlop automatikus illeszkedése"
 
 #, c-format
 msgid "View &Differences"
@@ -240,8 +242,8 @@ msgstr "Háttérszín beállítása"
 msgid "&Vector Image Scaling"
 msgstr "Vektor kép méretezése"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "Hasonlítsa össze a képből kinyert szöveget"
+msgid "Compare Extracted &Text From Images"
+msgstr "Hasonlítsa össze a képekből kinyert szöveget"
 
 #, c-format
 msgid "&File"
@@ -668,8 +670,7 @@ msgstr "Sorvégek átalakítása erre"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Egyesítési mód\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Újratöltés\tCtrl+F5"
 
 #, c-format
@@ -797,6 +798,9 @@ msgstr "Sorszámok megjelenítése"
 #, c-format
 msgid "View &Margins"
 msgstr "Margók megjelenítése"
+
+msgid "View To&p Margins"
+msgstr "Felső margók megjelenítése"
 
 #, c-format
 msgid "W&rap Lines"
@@ -1047,10 +1051,6 @@ msgstr "Elemek &rejtése"
 #, c-format
 msgid "&Open Left"
 msgstr "Bal megnyitása"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "&Külső szerkesztővel"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1363,9 +1363,8 @@ msgstr "Fájl idők megőrzése összehasonlításkor"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "\"Fájlok vagy könyvtárak választása\" bezárása az OK-val"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehasonlít gombbal"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1710,11 +1709,11 @@ msgstr "Leírás:"
 msgid "Default arguments:"
 msgstr "Alapértelmezett argumentumok:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Az összes bővítmény megjelenítése, ne ellenőrizze a kiterjesztést."
+msgid "Display all plugins, don't check the extension"
+msgstr "Az összes bővítmény megjelenítése, ne ellenőrizze a kiterjesztést"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Kicsomagolás után a fájlok megnyitása ugyanolyan ablakban"
+msgid "&Open files in the same window type after unpacking"
+msgstr "Kicsomagolás után a fájlok megnyitása ugyanabban az ablakban"
 
 msgid "&Plugin Pipeline:"
 msgstr "Bővítmény pipeline"
@@ -1946,6 +1945,18 @@ msgstr "Alapértelmezett kódlap"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Válaszd ki az alapértelmezett kódlapot a nem-Unicode fájlokhoz:"
 
+#, c-format
+msgid "System codepage"
+msgstr "Rendszer kódlap"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "A Winmerge felhasználói felületéhez igazodva"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Egyéni kódlap:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1959,18 +1970,6 @@ msgid ""
 msgstr ""
 "Kódlap detektálása mlang.dll-t használó szövegfájlnál\n"
 "A program újraindítása szükséges."
-
-#, c-format
-msgid "System codepage"
-msgstr "Rendszer kódlap"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "A Winmerge felhasználói felületéhez igazodva"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Egyéni kódlap:"
 
 #, c-format
 msgid "Options"
@@ -2786,16 +2785,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Fájlszűrők (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Nem található a fájlszűrő sablonfájl!\n"
-"\n"
-"Másold a(z) %1 fájlt a WinMerge/Filters mappába:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Nem található a fájlszűrő sablonfájl!\n\nMásold a(z) %1 fájlt a WinMerge/Filters mappába:\n%2."
 
 #, c-format
 msgid ""
@@ -3367,6 +3358,9 @@ msgstr "Nem sikerült elindítani a külső szerkesztőt: %1"
 msgid "Unknown archive format"
 msgstr "Ismeretlen archívum formátum"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "Nem sikerült kibontani az archív fájlokat.\nSzeretnéd összehasonlítani az archív fájlokat szöveges fájlokként?"
+
 #, c-format
 msgid "Filename"
 msgstr "Fájlnév"
@@ -3662,17 +3656,14 @@ msgstr "Hiba"
 msgid "Text files are identical"
 msgstr "A szövegfájlok megegyeznek"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(Középső és jobb egyforma)"
+msgid " (Middle and right are identical)"
+msgstr " (Középső és jobb egyforma)"
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(Bal és jobb egyforma)"
+msgid " (Left and right are identical)"
+msgstr " (Bal és jobb egyforma)"
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(Bal és középső egyforma)"
+msgid " (Left and middle are identical)"
+msgstr " (Bal és középső egyforma)"
 
 #, c-format
 msgid "Text files are different"
@@ -3768,16 +3759,13 @@ msgstr "A középső létrehozásának ideje."
 msgid "Tells which side has newer modification date."
 msgstr "Megmutatja, melyik oldalnak újabb a létrehozási dátuma."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Bal fájlverziója, csak egyes fájltípusoknál."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Jobb fájlverziója, csak egyes fájltípusoknál."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Középső fájlverziója, csak egyes fájltípusoknál."
 
 #, c-format
@@ -4229,37 +4217,17 @@ msgstr ""
 "\n"
 "Utolsó különbség (Alt+End)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
-msgstr ""
-"\n"
-"Másolás jobbra (Alt+Jobbra)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nMásolás jobbra (Alt+Jobbra)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
-msgstr ""
-"\n"
-"Másolás balra (Alt+Balra)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nMásolás balra (Alt+Balra)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"Másolás jobbra, továbblépés (Ctrl+Alt+Jobbra)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nMásolás jobbra, továbblépés (Ctrl+Alt+Jobbra)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"Másolás balra, továbblépés (Ctrl+Alt+Balra)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nMásolás balra, továbblépés (Ctrl+Alt+Balra)"
 
 msgid "\nCopy All to Right"
 msgstr "\nAz összes másolása jobbra"
@@ -4615,6 +4583,9 @@ msgstr "Visszafejtés"
 msgid "&Others"
 msgstr "Egyéb"
 
+msgid "URL Handling"
+msgstr "URL-kezelés"
+
 msgid "Make Uppercase"
 msgstr "Nagybetűsítés"
 
@@ -4845,6 +4816,12 @@ msgstr "Elővizsgáló Sorszűrő"
 
 msgid "Basic text functions for the context menu"
 msgstr "Alapvető szöveges funkciók a helyi menühöz"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr "HTTP URL-sémakezelő curl-lel. \r\nArgumentumok: A curl parancsnak átadott parancssori beállítások."
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr "Windows rendszerleíró adatbázis URL-séma kezelő. \r\nArgumentumok: A reg.exe parancsnak átadott parancssori beállítások."
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"

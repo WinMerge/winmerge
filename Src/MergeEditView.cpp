@@ -125,6 +125,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_EOL, OnUpdateViewEOL)
 	ON_COMMAND(ID_VIEW_SELMARGIN, OnViewMargin)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SELMARGIN, OnUpdateViewMargin)
+	ON_COMMAND(ID_VIEW_TOPMARGIN, OnViewTopMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_TOPMARGIN, OnUpdateViewTopMargin)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
@@ -226,6 +228,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_FILE_OPEN_PARENT_FOLDER, OnOpenParentFolder)
+	// Context menu (Header)
+	ON_COMMAND(ID_USE_FIRST_LINE_AS_HEADERS, OnUseFirstLineAsHeaders)
+	ON_UPDATE_COMMAND_UI(ID_USE_FIRST_LINE_AS_HEADERS, OnUpdateUseFirstLineAsHeaders)
+	ON_COMMAND(ID_AUTO_FIT_ALL_COLUMNS, OnAutoFitAllColumns)
 	// Status bar
 	ON_NOTIFY(NM_DBLCLK, AFX_IDW_STATUS_BAR, OnStatusBarDblClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
@@ -572,7 +578,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 			{
 				std::vector<int> *pWordDiffs;
 				if (list.find(firstDiff) == list.end())
-					list.insert(std::pair<int, std::vector<int> *>(firstDiff, new std::vector<int>()));
+					list.emplace(firstDiff, new std::vector<int>());
 				pWordDiffs = list[firstDiff];
 				for (int i = firstWordDiff; i <= lastWordDiff; ++i)
 				{
@@ -583,7 +589,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 		}
 	}
 	for (auto& it : list)
-		ret.insert(std::pair<int, std::vector<int>>(it.first, *it.second));
+		ret.emplace(it.first, *it.second);
 	return ret;
 }
 
@@ -1128,10 +1134,10 @@ void CMergeEditView::OnCurdiff()
 void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	CPoint pos = GetCursorPos();
 	int nCurrentDiff = pd->GetCurrentDiff();
 	if (nCurrentDiff == -1)
 	{
+		CPoint pos = GetCursorPos();
 		int nNewDiff = pd->m_diffList.LineToDiff(pos.y);
 		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
 	}
@@ -2718,6 +2724,24 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
+	CRect rect;
+	GetClientRect(rect);
+	ClientToScreen(rect);
+
+	if (GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing())
+	{
+		if (rect.top <= point.y && point.y < rect.top + GetTopMarginHeight())
+		{
+			BCMenu menu;
+			VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEWHEADER));
+			theApp.TranslateMenu(menu.m_hMenu);
+			BCMenu* pSub = static_cast<BCMenu*>(menu.GetSubMenu(0));
+			pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+				point.x, point.y, AfxGetMainWnd());
+			return;
+		}
+	}
+
 	// Create the menu and populate it with the available functions
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
@@ -2781,10 +2805,6 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Context menu opened using keyboard has no coordinates
 	if (point.x == -1 && point.y == -1)
 	{
-		CRect rect;
-		GetClientRect(rect);
-		ClientToScreen(rect);
-
 		point = rect.TopLeft();
 		point.Offset(5, 5);
 	}
@@ -2879,7 +2899,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 void CMergeEditView::OnL2RNext()
 {
 	OnL2r();
-	if (IsCursorInDiff()) // for 3-way file compare
+	if (GetDocument()->m_nBuffers > 2 && IsCursorInDiff()) // for 3-way file compare
 		OnNextdiff();
 	OnNextdiff();
 }
@@ -2898,7 +2918,7 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
 void CMergeEditView::OnR2LNext()
 {
 	OnR2l();
-	if (IsCursorInDiff()) // for 3-way file compare
+	if (GetDocument()->m_nBuffers > 2 && IsCursorInDiff()) // for 3-way file compare
 		OnNextdiff();
 	OnNextdiff();
 }
@@ -3181,6 +3201,9 @@ void CMergeEditView::RefreshOptions()
 		SetInsertTabs(false);
 
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+	SetTopMargin(GetOptionsMgr()->GetBool(
+		GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing() ? OPT_VIEW_TOPMARGIN_TABLE : OPT_VIEW_TOPMARGIN));
+	SetLineUsedAsHeaders(GetOptionsMgr()->GetInt(OPT_LINE_NUMBER_USED_AS_HEADERS));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		SetTextType(CrystalLineParser::SRC_PLAIN);
@@ -3814,13 +3837,14 @@ void CMergeEditView::DocumentsLoaded()
 {
 	if (GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing())
 	{
-		SetTopMargin(true);
+		SetTopMargin(GetOptionsMgr()->GetBool(OPT_VIEW_TOPMARGIN_TABLE));
+		SetLineUsedAsHeaders(GetOptionsMgr()->GetInt(OPT_LINE_NUMBER_USED_AS_HEADERS));
 		if (m_nThisPane == GetDocument()->m_nBuffers - 1 && !m_bDetailView)
 			AutoFitColumn();
 	}
 	else
 	{
-		SetTopMargin(false);
+		SetTopMargin(GetOptionsMgr()->GetBool(OPT_VIEW_TOPMARGIN));
 	}
 
 	// SetTextType will revert to language dependent defaults for tab
@@ -3896,6 +3920,54 @@ void CMergeEditView::OnUpdateViewMargin(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+}
+
+/**
+ * @brief Enable/Disable view's top margins.
+ */
+void CMergeEditView::OnViewTopMargin()
+{
+	bool bTableEditing = GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing();
+	bool bViewMargin = GetOptionsMgr()->GetBool(bTableEditing ? OPT_VIEW_TOPMARGIN_TABLE : OPT_VIEW_TOPMARGIN);
+	GetOptionsMgr()->SaveOption(bTableEditing ? OPT_VIEW_TOPMARGIN_TABLE : OPT_VIEW_TOPMARGIN, !bViewMargin);
+
+	SetTopMargin(!bViewMargin);
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+	pDoc->UpdateAllViews(this);
+}
+
+/**
+ * @brief Update GUI for Enable/Disable view's top margin.
+ * @param [in] pCmdUI Pointer to UI item to update.
+ */
+void CMergeEditView::OnUpdateViewTopMargin(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(
+		GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing() ? OPT_VIEW_TOPMARGIN_TABLE : OPT_VIEW_TOPMARGIN));
+}
+
+void CMergeEditView::OnUseFirstLineAsHeaders()
+{
+	bool bUseFirstLineAsHeaders = GetOptionsMgr()->GetInt(OPT_LINE_NUMBER_USED_AS_HEADERS) != -1;
+	GetOptionsMgr()->SaveOption(OPT_LINE_NUMBER_USED_AS_HEADERS, !bUseFirstLineAsHeaders ? 0 : -1);
+
+	SetLineUsedAsHeaders(!bUseFirstLineAsHeaders ? 0 : -1);
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+	pDoc->UpdateAllViews(this);
+}
+
+void CMergeEditView::OnUpdateUseFirstLineAsHeaders(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetInt(OPT_LINE_NUMBER_USED_AS_HEADERS) != -1);
+}
+
+void CMergeEditView::OnAutoFitAllColumns()
+{
+	AutoFitColumn();
 }
 
 /**

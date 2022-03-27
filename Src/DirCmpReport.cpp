@@ -471,7 +471,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
 	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, nullptr);
-	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
+	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T('.'))) + _T(".files");
 	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
 	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 		paths::CreateIfNeeded(sDestDir);

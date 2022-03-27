@@ -28,23 +28,19 @@ msgstr "LANG_CZECH, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Kopírovat dop&rava"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopírovat dop&rava\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopírovat do&leva"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopírovat do&leva\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -117,7 +113,7 @@ msgid "With &Registered Application"
 msgstr "Přidruženou &aplikací"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Externím &editorem\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Zvolit..."
@@ -126,6 +122,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -238,7 +240,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -666,8 +668,7 @@ msgstr "Převést konce řá&dků"
 msgid "Mer&ge Mode\tF9"
 msgstr "Režim sl&učování\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -795,6 +796,9 @@ msgstr "Zobrazit čísla řád&ků"
 #, c-format
 msgid "View &Margins"
 msgstr "Zobrazit &levé okraje"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1045,10 +1049,6 @@ msgstr "&Skrýt položky"
 #, c-format
 msgid "&Open Left"
 msgstr "Otevřít &levé"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "Externím &editorem"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1361,8 +1361,7 @@ msgstr "Z&achovávat původní čas souboru"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "&Po spuštění vybrat soubory nebo složky"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1708,10 +1707,10 @@ msgstr "Popis:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1946,12 +1945,6 @@ msgstr "Výchozí kódování"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Zvolte výchozí znakovou stránku, která se použije v případě načtení souborů, které nejsou v kódování Unicode:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "&Systémové kódování"
@@ -1963,6 +1956,12 @@ msgstr "&Podle uživatelského prostředí WinMerge"
 #, c-format
 msgid "Custom codepage:"
 msgstr "&Vlastní znaková stránka:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "&Zjistit informaci o kódování u těchto souborů: .html, .rc, .xml\n(vyžaduje opětovné spuštění programu)."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -2726,16 +2725,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Nelze nalézt soubor s filtrem!\n"
-"\n"
-"Zkopírujte prosím soubor %1 do složky s filtry pro aplikaci WinMerge:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Nelze nalézt soubor s filtrem!\n\nZkopírujte prosím soubor %1 do složky s filtry pro aplikaci WinMerge:\n%2."
 
 #, c-format
 msgid ""
@@ -3255,6 +3246,9 @@ msgstr "Nelze spustit externí editor: %1"
 msgid "Unknown archive format"
 msgstr "Neznámý formát archivu"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Název souboru"
@@ -3550,16 +3544,13 @@ msgstr "Chyba"
 msgid "Text files are identical"
 msgstr "Textové soubory jsou shodné"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3656,16 +3647,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Ukáže, na které straně je novější datum změny"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Verze souboru na levé straně, pouze pro některé typy souborů"
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Verze souboru na pravé straně, pouze pro některé typy souborů"
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4048,20 +4036,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -4389,6 +4373,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4618,6 +4605,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

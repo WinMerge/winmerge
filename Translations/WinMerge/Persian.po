@@ -29,23 +29,19 @@ msgstr "LANG_FARSI, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "&o رونوشت برداري به سمت راست "
+msgid "C&opy to Right\tAlt+Right"
+msgstr "&o رونوشت برداري به سمت راست \tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "&y رونوشت برداري به سمت چپ "
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "&y رونوشت برداري به سمت چپ \tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -127,6 +123,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -239,7 +241,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -667,8 +669,7 @@ msgstr "&C تبديل پايان خط به "
 msgid "Mer&ge Mode\tF9"
 msgstr "&M سبک پيوند \tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -796,6 +797,9 @@ msgstr "&N مشاهده شماره خطوط "
 #, c-format
 msgid "View &Margins"
 msgstr "&M مشاهده کناره ها "
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1046,10 +1050,6 @@ msgstr "&H پنهان کردن موارد  "
 #, c-format
 msgid "&Open Left"
 msgstr "&O بازکردن سمت چپي "
-
-#, c-format
-msgid "With &External Editor"
-msgstr "&E با ويرايشگر بيروني "
 
 #, c-format
 msgid "Open Midd&le"
@@ -1364,8 +1364,7 @@ msgstr ""
 " پنجره محاوره \"انتخاب پرونده ها يا پوشه ها\" به هنگام شروع کار نرم افزار "
 "نمايش داده شود "
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1711,10 +1710,10 @@ msgstr " توصيف : "
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1951,14 +1950,6 @@ msgstr ""
 " موقعي که پرونده هاي غير يوني کد بارگيري مي شوند، انتخاب صفحه کد پيش فرض در "
 "نظر گرفته مي شود : "
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-" تشخيص اطلاعات صفحه کد براي اين پرونده ها : .html, .rc, .xml\n"
-" نيازمند جلسه شروع دوباره /  بازآغازي "
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr " صفحه کد سيستم "
@@ -1970,6 +1961,14 @@ msgstr " مطابق با رابط کاربر وينمرج "
 #, c-format
 msgid "Custom codepage:"
 msgstr " صفحه کد سفارشي : "
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+" تشخيص اطلاعات صفحه کد براي اين پرونده ها : .html, .rc, .xml\n"
+" نيازمند جلسه شروع دوباره /  بازآغازي "
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -2772,11 +2771,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr " پرونده صافيها  (*.flt)|*.flt|همه پرونده ها  (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
 " نمي توان پرونده قالب صافي را يافت ! \n"
 "\n"
@@ -3331,6 +3326,9 @@ msgstr " اجراي ناموفق ويراستار خارجي : %1"
 msgid "Unknown archive format"
 msgstr " بايگاني با قالب بندي ناشناس "
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr " نام پرونده "
@@ -3626,16 +3624,13 @@ msgstr " خطا "
 msgid "Text files are identical"
 msgstr " پرونده هاي متني همسان هستند "
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3732,16 +3727,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr " مي گويد که تاريخ تغيير کدام سمت جديدتر است "
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr " نگارش پرونده سمت چپ، فقط براي برخي از انواع پرونده ها "
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr " نگارش پرونده سمت راست، فقط براي برخي از انواع پرونده ها "
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4158,20 +4150,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -4499,6 +4487,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4728,6 +4719,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

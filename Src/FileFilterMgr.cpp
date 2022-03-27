@@ -175,7 +175,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 	paths::SplitFilename(szFilepath, nullptr, &fileName, nullptr);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
-	pfilter->name = fileName; // Filename is the default name
+	pfilter->name = std::move(fileName); // Filename is the default name
 
 	String sLine;
 	bool lossy = false;
@@ -185,7 +185,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		// Returns false when last line is read
 		String tmpLine;
 		bLinesLeft = file.ReadString(tmpLine, &lossy);
-		sLine = tmpLine;
+		sLine = std::move(tmpLine);
 		sLine = strutils::trim_ws(sLine);
 
 		if (0 == sLine.compare(0, 5, _T("name:"), 5))
@@ -194,7 +194,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(5);
 			str = strutils::trim_ws_begin(str);
 			if (!str.empty())
-				pfilter->name = str;
+				pfilter->name = std::move(str);
 		}
 		else if (0 == sLine.compare(0, 5, _T("desc:"), 5))
 		{
@@ -202,7 +202,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(5);
 			str = strutils::trim_ws_begin(str);
 			if (!str.empty())
-				pfilter->description = str;
+				pfilter->description = std::move(str);
 		}
 		else if (0 == sLine.compare(0, 4, _T("def:"), 4))
 		{

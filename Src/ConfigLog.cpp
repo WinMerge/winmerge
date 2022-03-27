@@ -305,7 +305,7 @@ bool CConfigLog::DoFile(String &sError)
 	text = GetWindowsVer();
 	FileWriteString(text);
 	text = GetProcessorInfo();
-	if (text != _T(""))
+	if (!text.empty())
 	{		
 		FileWriteString(_T("\r\n Processor:           "));
 		FileWriteString(text);
@@ -400,6 +400,7 @@ bool CConfigLog::DoFile(String &sError)
 // Plugins
 	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
 	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
+	WritePluginsInLogFile(L"URL_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");
@@ -445,12 +446,12 @@ String CConfigLog::GetProcessorInfo()
 	String sProductName = _T("");
 	if (key.QueryRegMachine(_T("Hardware\\Description\\System\\CentralProcessor\\0")))
 		sProductName = key.ReadString(_T("Identifier"), _T(""));
-	if (sProductName != _T(""))
+	if (!sProductName.empty())
 	{
 		// This is the full identifier of the processor
 		//	(e.g. "Intel64 Family 6 Model 158 Stepping 9")
 		//	but we'll only keep the first word (e.g. "Intel64")
-		int x = (int)sProductName.find_first_of(_T(" "));
+		int x = (int)sProductName.find_first_of(_T(' '));
 		sProductName = sProductName.substr(0, x);
 	}
 

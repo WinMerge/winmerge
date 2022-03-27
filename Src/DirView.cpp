@@ -957,7 +957,7 @@ void CDirView::DoDirActionTo(SIDE_TYPE stype, DirActions::method_type func, cons
 	try {
 		// First we build a list of desired actions
 		FileActionScript actionScript;
-		actionScript.m_destBase = destPath;
+		actionScript.m_destBase = std::move(destPath);
 		DirItemWithIndexIterator begin(m_pIList.get(), -1, true);
 		DirItemWithIndexIterator end;
 		FileActionScript *rsltScript;
@@ -3112,7 +3112,7 @@ void CDirView::OnPluginSettings(UINT nID)
 	{
 	case ID_PREDIFFER_SETTINGS_NONE:
 	case ID_UNPACKER_SETTINGS_NONE:
-		pluginPipeline = _T("");
+		pluginPipeline.clear();
 		break;
 	case ID_PREDIFFER_SETTINGS_AUTO:
 	case ID_UNPACKER_SETTINGS_AUTO:
@@ -4203,8 +4203,6 @@ void CDirView::OnSearch()
  */
 void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	COleDataSource *DropData = new COleDataSource();
-
 	std::list<String> list;
 	CopyPathnamesForDragAndDrop(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
 	String filesForDroping = strutils::join(list.begin(), list.end(), _T("\n")) + _T("\n");
@@ -4215,6 +4213,7 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(TCHAR), 0);
 	if (hMem != nullptr) 
 	{
+		COleDataSource* DropData = new COleDataSource();
 		DropData->CacheGlobalData(CF_UNICODETEXT, hMem);
 		DROPEFFECT de = DropData->DoDragDrop(DROPEFFECT_COPY | DROPEFFECT_MOVE, nullptr);
 	}

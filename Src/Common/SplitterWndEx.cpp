@@ -449,9 +449,9 @@ static COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio)
 
 void CSplitterWndEx::OnDrawSplitter(CDC* pDC, ESplitType nType, const CRect& rectArg)
 {
-	CRect rect = rectArg;
 	if (nType == splitBorder && pDC != nullptr && !m_bHideBorders)
 	{
+		CRect rect = rectArg;
 		COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
 		COLORREF clrFace    = GetSysColor(COLOR_BTNFACE);
 		COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow, 0.9f);

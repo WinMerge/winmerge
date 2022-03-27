@@ -41,9 +41,7 @@ varprop::VariantValue COptionsMgr::m_emptyValue;
 /**
  * @brief Default constructor.
  */
-COption::COption()
-{
-}
+COption::COption() = default;
 
 /**
  * @brief Copy constructor.

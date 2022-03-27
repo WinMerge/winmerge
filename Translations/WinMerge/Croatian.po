@@ -28,23 +28,19 @@ msgstr "LANG_CROATIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Kopiraj u &desno"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopiraj u &desno\tAlt+desno"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopiraj u &lijevo"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopiraj u &lijevo\tAlt+lijevo"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -126,6 +122,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -238,7 +240,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -666,8 +668,7 @@ msgstr "&Završi retke prema"
 msgid "Mer&ge Mode\tF9"
 msgstr "Usporedni način"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -795,6 +796,9 @@ msgstr "Prikaži &brojeve redaka"
 #, c-format
 msgid "View &Margins"
 msgstr "Prikaži &margine"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1045,10 +1049,6 @@ msgstr "&Sakrij stavke"
 #, c-format
 msgid "&Open Left"
 msgstr "&Otvori lijevi"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "&Vanjskim uređivačem"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1361,8 +1361,7 @@ msgstr "&Zadrži oznake vremena i datuma u usporedbi"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Pri pokretanju prikaži dijalog\"Odabir datoteke ili mape\""
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1708,10 +1707,10 @@ msgstr "Opis:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1944,14 +1943,6 @@ msgstr "Standardna kodna stranica"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Odaberite standardnu kodnu stranicu za učitanje ne-Unicode datoteka:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
-"Nije potrebno ponovno pokretanje."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Standardna kodna stranica sistema"
@@ -1963,6 +1954,14 @@ msgstr "Prema korisnikovom sučelju WinMerge-a"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Kodna stranica prema želji:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
+"Nije potrebno ponovno pokretanje."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -2754,16 +2753,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "FLT datoteke (*.flt)|*.flt|Sve datoteke (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Nema predloška filtracije datoteke!\n"
-"\n"
-"Molimo, kopirajte datoteku %1 u WinMerge/Filters -mapu:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Nema predloška filtracije datoteke!\n\nMolimo, kopirajte datoteku %1 u WinMerge/Filters mapu:\n%2."
 
 #, c-format
 msgid ""
@@ -3308,6 +3299,9 @@ msgstr "Greška pri pokretanju vanjskog editora: %1"
 msgid "Unknown archive format"
 msgstr "Nepoznat oblik arhiva"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Naziv datoteke"
@@ -3603,16 +3597,13 @@ msgstr "Greška"
 msgid "Text files are identical"
 msgstr "Tekstovi su identični"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3709,16 +3700,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Koja strana je promijenjena ranije?"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Verzija na lijevoj strani, samo za neke tipove."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Verzija na desnoj strani, samo za neke tipove."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4115,20 +4103,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -4456,6 +4440,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4685,6 +4672,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

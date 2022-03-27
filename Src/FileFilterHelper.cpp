@@ -32,9 +32,7 @@ FileFilterHelper::FileFilterHelper()
 /** 
  * @brief Destructor, deletes filtermanager.
  */
-FileFilterHelper::~FileFilterHelper()
-{
-}
+FileFilterHelper::~FileFilterHelper() = default;
 
 /**
  * @brief Store current filter path.

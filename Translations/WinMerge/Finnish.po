@@ -29,24 +29,20 @@ msgstr "LANG_FINNISH, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "K&opioi oikealle"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "K&opioi oikealle\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Kopioi &oikealta"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Kopioi &oikealta\tAlt+Shift+Left"
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopio&i vasemmalle"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopio&i vasemmalle\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "Kopioi &vasemmalta"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Kopioi &vasemmalta\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -128,6 +124,12 @@ msgstr ""
 
 msgid "S&hell Menu"
 msgstr "&Liittymävalikko"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 #, c-format
 msgid "View &Differences"
@@ -239,7 +241,7 @@ msgstr "A&seta taustaväri"
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -667,9 +669,8 @@ msgstr "Muunna &rivinloput >"
 msgid "Mer&ge Mode\tF9"
 msgstr "Yhdistäminen\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "&Lataa uudelleen\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Lataauu&delleen\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -795,6 +796,9 @@ msgstr "Näytä rivinumerot"
 #, c-format
 msgid "View &Margins"
 msgstr "Näytä &marginaalit"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1048,10 +1052,6 @@ msgstr "Piilota kohteet"
 #, c-format
 msgid "&Open Left"
 msgstr "Avaa vasen"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "Ulkoisella &editorilla"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1364,9 +1364,8 @@ msgstr "Säilytä tiedostoaika tiedostovertailussa"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Sulje \"Valitse tiedostot tai kansiot\" dialogi klikkaamalla OK"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Sulje \"Valitse tiedostot tai kansiot\" dialogi klikkaamalla Vertaa"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1711,10 +1710,10 @@ msgstr "Kuvaus:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1948,16 +1947,6 @@ msgstr "Koodisivu (oletus)"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Valitse oletuskoodisivu ladattaessa muita kuin Unicode-tiedostoja:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Tunnista koodisivutiedot näille tiedostoille: .html, .rc, .xml\n"
-"vaatii istunnon uudelleen käynnistyksen."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-"Tunnista teksti tiedostojen koodisivu käyttämällä Mlang.dll-tiedostoa\n"
-"istunto on käynnistettävä uudelleen."
-
 #, c-format
 msgid "System codepage"
 msgstr "Järjestelmän koodisivu"
@@ -1969,6 +1958,16 @@ msgstr "WinMerge-käyttöliittymän mukaan"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Mukautettu koodisivu:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Tunnista koodisivutiedot näille tiedostoille: .html, .rc, .xml\n"
+"vaatii istunnon uudelleen käynnistyksen."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
+"Tunnista teksti tiedostojen koodisivu käyttämällä Mlang.dll-tiedostoa\n"
+"istunto on käynnistettävä uudelleen."
 
 #, c-format
 msgid "Options"
@@ -2782,16 +2781,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Tiedostosuotimet (*.flt)|*.flt|Kaikki tiedostot (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Suodatin mallitiedostoa ei löydy!\n"
-"\n"
-"Kopioi tiedosto %1 WinMerge/Suotimet-kansioon:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Suodatin mallitiedostoa ei löydy!\n\nKopioi tiedosto %1 WinMerge/Suotimet-kansioon:\n%2."
 
 #, c-format
 msgid ""
@@ -3330,6 +3321,9 @@ msgstr "Ulkoisen editorin ajo epäonnistui: %1"
 msgid "Unknown archive format"
 msgstr "Tuntematon arkistomuoto"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Tiedostonimi"
@@ -3625,17 +3619,14 @@ msgstr "Virhe"
 msgid "Text files are identical"
 msgstr "Tekstitiedostot ovat samanlaisia"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(Keskimmäinen ja oikea ovat identtiset)"
+msgid " (Middle and right are identical)"
+msgstr " (Keskimmäinen ja oikea ovat identtiset)"
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(Vasen ja oikea ovat identtiset)"
+msgid " (Left and right are identical)"
+msgstr " (Vasen ja oikea ovat identtiset)"
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(Vasen ja keskimmäinen ovat identtiset)"
+msgid " (Left and middle are identical)"
+msgstr " (Vasen ja keskimmäinen ovat identtiset)"
 
 #, c-format
 msgid "Text files are different"
@@ -3731,16 +3722,13 @@ msgstr "Keskimmäisen sivun luontiaika."
 msgid "Tells which side has newer modification date."
 msgstr "Kertoo kummallako puolella on uudempi muutospäivä."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Vasen tiedostoversio, vain joillekin tiedostotyypeille."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Oikean tiedoston versio, vain joillekin tiedostotyypeille."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Keskimmäinen sivu tiedostoversio, vain joillekin tiedostoille."
 
 #, c-format
@@ -4180,37 +4168,17 @@ msgstr ""
 "\n"
 "Viimeinen ero (Alt+End)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
-msgstr ""
-"\n"
-"Kopioi oikea (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nKopioi oikea (Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
-msgstr ""
-"\n"
-"Kopioi vasen (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nKopioi vasen (Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"Kopioi oikea ja etene (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nKopioi oikea ja etene (Ctrl+Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"Kopioi vasen ja etene (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nKopioi vasen ja etene (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nKopioi kaikki oikealle"
@@ -4551,6 +4519,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4780,6 +4751,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

@@ -28,20 +28,20 @@ msgstr "LANG_JAPANESE, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "中央にコピー"
 
-msgid "C&opy to Right"
-msgstr "右側にコピー(&O)"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "右側にコピー(&O)\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "中央からコピー"
 
-msgid "Copy fro&m Right"
-msgstr "右側からコピー(&M)"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "右側からコピー(&M)\tAlt+Shift+Left"
 
-msgid "Cop&y to Left"
-msgstr "左側にコピー(&Y)"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "左側にコピー(&Y)\tAlt+Left"
 
-msgid "Copy &from Left"
-msgstr "左側からコピー(&F)"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "左側からコピー(&F)\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "選択した行を中央にコピー"
@@ -53,13 +53,13 @@ msgid "Copy Selected Line(s) from Middle"
 msgstr "選択した行を中央からコピー"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr "選択した行を右からコピー"
+msgstr "選択した行を右側からコピー"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "選択した行を左側にコピー"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr "選択した行を左からコピー"
+msgstr "選択した行を左側からコピー"
 
 msgid "Select Line &Difference\tF4"
 msgstr "行内差異を選択(&D)\tF4"
@@ -114,6 +114,12 @@ msgstr "親フォルダーを開く(&P)..."
 
 msgid "S&hell Menu"
 msgstr "シェル メニュー(&H)"
+
+msgid "Use First Line as Headers"
+msgstr "最初の行をヘッダとして使用する"
+
+msgid "Auto-Fit All Columns"
+msgstr "全列幅を自動調整する"
 
 msgid "View &Differences"
 msgstr "差異を表示(&D)"
@@ -207,7 +213,7 @@ msgstr "透明色を設定(&S)"
 msgid "&Vector Image Scaling"
 msgstr "ベクター画像スケーリング(&V)"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
 msgid "&File"
@@ -540,8 +546,8 @@ msgstr "改行コードの変換(&C)"
 msgid "Mer&ge Mode\tF9"
 msgstr "マージモード(&G)\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "再読み込み(&L)\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "再読み込み(&D)\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "形式を指定して再比較(&M)"
@@ -638,6 +644,9 @@ msgstr "行番号を表示(&N)"
 
 msgid "View &Margins"
 msgstr "マージンを表示(&M)"
+
+msgid "View To&p Margins"
+msgstr "上マージを表示(&P)"
 
 msgid "W&rap Lines"
 msgstr "行を右端で折返す(&R)"
@@ -845,9 +854,6 @@ msgstr "選択項目を非表示(&H)"
 
 msgid "&Open Left"
 msgstr "左側を開く(&O)"
-
-msgid "With &External Editor"
-msgstr "外部エディターで(&E)"
 
 msgid "Open Midd&le"
 msgstr "中央を開く(&L)"
@@ -1097,8 +1103,8 @@ msgstr "ファイル比較時のファイル時刻を保つ(&P)"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "起動時に [ファイルまたはフォルダーの選択] ダイアログを表示する"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "[OK] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "[開く] ダイアログのオートコンプリート(&E):"
@@ -1377,10 +1383,10 @@ msgstr "説明:"
 msgid "Default arguments:"
 msgstr "デフォルト引数:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "拡張子を無視してすべてのプラグインを表示する。"
+msgid "Display all plugins, don't check the extension"
+msgstr "拡張子を無視してすべてのプラグインを表示する"
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr "展開プラグイン適用後、ファイルを同じウインドウ タイプで開く(&O)"
 
 msgid "&Plugin Pipeline:"
@@ -1566,6 +1572,15 @@ msgstr "デフォルト コードページ"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "非 Unicode ファイルを読み込んだ際のデフォルト コードページ:"
 
+msgid "System codepage"
+msgstr "システム コードページ"
+
+msgid "According to WinMerge User Interface"
+msgstr "WinMerge ユーザー インターフェイス言語"
+
+msgid "Custom codepage:"
+msgstr "指定したコードページ:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1579,15 +1594,6 @@ msgid ""
 msgstr ""
 "'mlang.dll' を使用してファイルのコードページを検出する\n"
 "この設定を有効にするとフォルダー スキャンがかなり遅くなります。また、セッションの再起動が必要です。"
-
-msgid "System codepage"
-msgstr "システム コードページ"
-
-msgid "According to WinMerge User Interface"
-msgstr "WinMerge ユーザー インターフェイス言語"
-
-msgid "Custom codepage:"
-msgstr "指定したコードページ:"
 
 msgid "Options"
 msgstr "オプション"
@@ -2253,11 +2259,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "ファイル フィルター (*.flt)|*.flt|すべてのファイル (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
 "ファイル フィルターのテンプレート ファイルが見つかりません!\n"
 "\n"
@@ -2790,6 +2792,9 @@ msgstr "外部エディターの実行に失敗しました: %1"
 msgid "Unknown archive format"
 msgstr "未知のアーカイブ形式です"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr "アーカイブファイルの展開に失敗しました。\nアーカイブファイルをテキストファイルとして比較しますか?"
+
 msgid "Filename"
 msgstr "名前"
 
@@ -3039,14 +3044,14 @@ msgstr "エラー"
 msgid "Text files are identical"
 msgstr "テキスト ファイルは同一です"
 
-msgid "(Middle and right are identical)"
-msgstr "(中央と右側は同一です)"
+msgid " (Middle and right are identical)"
+msgstr " (中央と右側は同一です)"
 
-msgid "(Left and right are identical)"
-msgstr "(左側と右側は同一です)"
+msgid " (Left and right are identical)"
+msgstr " (左側と右側は同一です)"
 
-msgid "(Left and middle are identical)"
-msgstr "(左側と中央は同一です)"
+msgid " (Left and middle are identical)"
+msgstr " (左側と中央は同一です)"
 
 msgid "Text files are different"
 msgstr "テキスト ファイルは異なります"
@@ -3123,13 +3128,13 @@ msgstr "中央の作成日時です。"
 msgid "Tells which side has newer modification date."
 msgstr "どちらが最新の更新日時かを表示します。"
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "左側ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "右側ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "中央ファイルのバージョンです。一部のファイル形式に限り表示されます。"
 
 msgid "Short comparison result."
@@ -3521,30 +3526,22 @@ msgstr ""
 "\n"
 "最後の差異 (Alt+End)"
 
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 "\n"
 "右側へコピー (Alt+Right)"
 
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 "\n"
 "左側へコピー (Alt+Left)"
 
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
 "右側へコピーし次へ (Ctrl+Alt+Right)"
 
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
 "左側へコピーし次へ (Ctrl+Alt+Left)"
@@ -3882,6 +3879,9 @@ msgstr "逆コンパイル"
 
 msgid "&Others"
 msgstr "その他(&O)"
+
+msgid "URL Handling"
+msgstr "URL 処理"
 
 msgid "Make Uppercase"
 msgstr "大文字に変換"
@@ -4227,6 +4227,12 @@ msgstr "比較前処理置換フィルター"
 
 msgid "Basic text functions for the context menu"
 msgstr "基本的なテキスト処理"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr "curl を使用して HTTP URL スキーマを処理します。\r\n引数: curl コマンドに渡すコマンドライン オプション"
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr "Windows レジストリ URL スキーマを処理します。\r\n引数: reg.exe コマンドに渡すコマンドライン オプション"
 
 msgid "Filter applied"
 msgstr "フィルター適用"

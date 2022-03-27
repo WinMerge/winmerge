@@ -29,23 +29,19 @@ msgstr "LANG_DANISH, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Kopier til &højre"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopier til &højre\tAlt+Højre"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopier til &venstre"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopier til &venstre\tAlt+Venstre"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -118,7 +114,7 @@ msgid "With &Registered Application"
 msgstr "Med det &registrerede program"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Med en &ekstern editor\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Med..."
@@ -127,6 +123,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -239,7 +241,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 #, c-format
@@ -667,8 +669,7 @@ msgstr "&Konverter linjeendelserne til"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Flette modus\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -796,6 +797,9 @@ msgstr "Vis linje&numre"
 #, c-format
 msgid "View &Margins"
 msgstr "Vis &margener"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1046,10 +1050,6 @@ msgstr "&Skjul emner"
 #, c-format
 msgid "&Open Left"
 msgstr "&Åben venstre"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "Med en &ekstern editor"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1362,8 +1362,7 @@ msgstr "Bevar filtid i filsammenligning"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Vis dialogen \"Vælg filer eller mapper...\" ved hver start"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -1709,10 +1708,10 @@ msgstr "Beskrivelse:"
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1949,14 +1948,6 @@ msgstr ""
 "Vælg den standard codepage der antages når der indlæses filer der ikke er "
 "unicode:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Find codepage automatisk for disse filer: .html, .rc, .xml\n"
-"WinMerge skal genstartes før dette tager effekt."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "System codepage"
@@ -1968,6 +1959,14 @@ msgstr "Samme som WinMerge brugerflade"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Udvalgt codepage:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Find codepage automatisk for disse filer: .html, .rc, .xml\n"
+"WinMerge skal genstartes før dette tager effekt."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -2769,16 +2768,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Fil Filtre (*.flt)|*.flt|Alle Filer (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Kan ikke finde filter skabelon filen!\n"
-"\n"
-"Kopier filen %1 til WinMerge/Filtermappe:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Kan ikke finde filter skabelon filen!\n\nKopier filen %1 til WinMerge/Filtermappe:\n%2."
 
 #, c-format
 msgid ""
@@ -3328,6 +3319,9 @@ msgstr "Kunne ikke eksekvere ekstern editor: %1"
 msgid "Unknown archive format"
 msgstr "Ukendt arkivformat"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Filnavn"
@@ -3623,16 +3617,13 @@ msgstr "Fejl"
 msgid "Text files are identical"
 msgstr "Tekstfiler er identiske"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3729,16 +3720,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Fortæller hvilken side har den nyeste ændringsdato."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Venstre side filversion, kun for nogle filtyper."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Højre side filversion, kun for nogle filtyper."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -4151,20 +4139,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -4494,6 +4478,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4723,6 +4710,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

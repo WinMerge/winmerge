@@ -46,6 +46,7 @@ bool IsPathAbsolute(const String & path);
 String EnsurePathExist(const String & sPath);
 void SplitFilename(const String& s, String * path, String * name, String * ext);
 String GetPathOnly(const String& fullpath);
+bool IsURL(const String& path);
 bool IsURLorCLSID(const String& path);
 bool IsDecendant(const String& path, const String& ancestor);
 inline String AddTrailingSlash(const String& path) { return !EndsWithSlash(path) ? path + _T("\\") : path; }

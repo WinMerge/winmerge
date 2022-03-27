@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-02-20 12:19+0000\n"
+"POT-Creation-Date: 2022-03-26 23:25+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -23,19 +23,19 @@ msgstr ""
 msgid "Copy to Middle"
 msgstr ""
 
-msgid "C&opy to Right"
+msgid "C&opy to Right\tAlt+Right"
 msgstr ""
 
 msgid "Copy from Middle"
 msgstr ""
 
-msgid "Copy fro&m Right"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
 
-msgid "Cop&y to Left"
+msgid "Cop&y to Left\tAlt+Left"
 msgstr ""
 
-msgid "Copy &from Left"
+msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
@@ -108,6 +108,12 @@ msgid "Open &Parent Folder..."
 msgstr ""
 
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 msgid "View &Differences"
@@ -202,7 +208,7 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr ""
 
 msgid "&File"
@@ -535,7 +541,7 @@ msgstr ""
 msgid "Mer&ge Mode\tF9"
 msgstr ""
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 msgid "Reco&mpare As"
@@ -632,6 +638,9 @@ msgid "View Line &Numbers"
 msgstr ""
 
 msgid "View &Margins"
+msgstr ""
+
+msgid "View To&p Margins"
 msgstr ""
 
 msgid "W&rap Lines"
@@ -839,9 +848,6 @@ msgid "&Hide Items"
 msgstr ""
 
 msgid "&Open Left"
-msgstr ""
-
-msgid "With &External Editor"
 msgstr ""
 
 msgid "Open Midd&le"
@@ -1092,7 +1098,7 @@ msgstr ""
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr ""
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1368,10 +1374,10 @@ msgstr ""
 msgid "Default arguments:"
 msgstr ""
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr ""
 
-msgid "&Open files in the same window type after unpacking."
+msgid "&Open files in the same window type after unpacking"
 msgstr ""
 
 msgid "&Plugin Pipeline:"
@@ -1557,12 +1563,6 @@ msgstr ""
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr ""
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr ""
-
 msgid "System codepage"
 msgstr ""
 
@@ -1570,6 +1570,12 @@ msgid "According to WinMerge User Interface"
 msgstr ""
 
 msgid "Custom codepage:"
+msgstr ""
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
 msgstr ""
 
 msgid "Options"
@@ -2178,7 +2184,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr ""
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr ""
 
 #, c-format
@@ -2549,6 +2555,9 @@ msgstr ""
 msgid "Unknown archive format"
 msgstr ""
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr ""
 
@@ -2798,13 +2807,13 @@ msgstr ""
 msgid "Text files are identical"
 msgstr ""
 
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 msgid "Text files are different"
@@ -2882,13 +2891,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr ""
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr ""
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr ""
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 msgid "Short comparison result."
@@ -3185,16 +3194,16 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
 msgid "\nCopy All to Right"
@@ -3501,6 +3510,9 @@ msgstr ""
 msgid "&Others"
 msgstr ""
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -3730,6 +3742,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

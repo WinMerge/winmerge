@@ -79,6 +79,9 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
 	pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)1, 0, 2);
 	pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
+	pOptions->InitOption(OPT_VIEW_TOPMARGIN, false);
+	pOptions->InitOption(OPT_VIEW_TOPMARGIN_TABLE, true);
+	pOptions->InitOption(OPT_LINE_NUMBER_USED_AS_HEADERS, -1);
 	pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
 	pOptions->InitOption(OPT_INVERT_DIFF_CONTEXT, false);
 	pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);

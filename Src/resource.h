@@ -12,6 +12,7 @@
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDR_MERGEDOCTYPE                109
 #define IDR_DIRDOCTYPE                  110
+#define IDR_POPUP_MERGEVIEWHEADER       111
 #define IDR_POPUP_DIFF_OPTIONS          113
 #define IDR_POPUP_IMGMERGEVIEW          114
 #define IDR_POPUP_PROJECT               115
@@ -1016,6 +1017,8 @@
 #define ID_PREVFILE                     34183
 #define ID_NEXTFILE                     34184
 #define ID_LASTFILE                     34185
+#define ID_USE_FIRST_LINE_AS_HEADERS    34190
+#define ID_AUTO_FIT_ALL_COLUMNS         34191
 // Plugin menus
 #define ID_UNPACKERS_FIRST              35001
 #define ID_UNPACKERS_LAST               35200
@@ -1218,6 +1221,7 @@
 #define IDS_CONFIRM_CLOSE_WINDOW        41700
 #define IDS_ERROR_EXECUTE_FILE          41719
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      41731
+#define IDS_FAILED_EXTRACT_ARCHIVE_FILES 41732
 #define IDS_COLHDR_FILENAME             41751
 #define IDS_COLHDR_DIR                  41752
 #define IDS_COLHDR_RESULT               41753
@@ -1632,9 +1636,12 @@
 #define IDS_PLUGIN_DESCRIPTION45        44395
 #define IDS_PLUGIN_DESCRIPTION46        44396
 #define IDS_PLUGIN_DESCRIPTION47        44397
-#define IDS_PLUGIN_MISSING_PLUGIN_NAME  44400
-#define IDS_PLUGIN_MISSING_QUOTATION_MARK 44401
-#define IDS_PLUGIN_TITLE1               44402
+#define IDS_PLUGIN_DESCRIPTION48        44398
+#define IDS_PLUGIN_DESCRIPTION49        44399
+#define IDS_PLUGIN_DESCRIPTION50        44340
+#define IDS_PLUGIN_MISSING_PLUGIN_NAME  44490
+#define IDS_PLUGIN_MISSING_QUOTATION_MARK 44491
+#define IDS_PLUGIN_TITLE1               44492
 #define IDS_L2M                         44500
 #define IDS_R2M                         44501
 #define IDS_COPY_FROM_MIDDLE_R          44502

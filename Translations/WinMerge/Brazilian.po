@@ -29,20 +29,20 @@ msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN"
 msgid "Copy to Middle"
 msgstr ""
 
-msgid "C&opy to Right"
-msgstr "C&opiar pra Direita"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "C&opiar pra Direita\tAlt+Direita"
 
 msgid "Copy from Middle"
 msgstr ""
 
-msgid "Copy fro&m Right"
-msgstr "Copiar d&a Direita"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Copiar d&a Direita\tAlt+Shift+Esquerda"
 
-msgid "Cop&y to Left"
-msgstr "Cop&iar pra Esquerda"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Cop&iar pra Esquerda\tAlt+Esquerda"
 
-msgid "Copy &from Left"
-msgstr "Copiar &da Esquerda"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Copiar &da Esquerda\tAlt+Shift+Direita"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -115,6 +115,12 @@ msgstr "Abrir &Pasta Pai..."
 
 msgid "S&hell Menu"
 msgstr "M&enu do Contexto"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 msgid "View &Differences"
 msgstr "Visualizar &Diferenças"
@@ -208,8 +214,8 @@ msgstr "&Definir a Cor do 2º Plano"
 msgid "&Vector Image Scaling"
 msgstr "&Dimensionamento da Imagem Vetorial"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "Comparar o Texto &Extraído da Imagem"
+msgid "Compare Extracted &Text From Images"
+msgstr "Comparar o Texto &Extraído da Imagens"
 
 msgid "&File"
 msgstr "&Arquivo"
@@ -541,7 +547,7 @@ msgstr "&Converter os Finais das Linhas pra"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mod&o de União\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -639,6 +645,9 @@ msgstr "Visualizar os Números das &Linhas"
 
 msgid "View &Margins"
 msgstr "Visualizar as &Margens"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "O&rganizar as Linhas"
@@ -846,9 +855,6 @@ msgstr "&Esconder os Itens"
 
 msgid "&Open Left"
 msgstr "&Abrir a Esquerda"
-
-msgid "With &External Editor"
-msgstr "Com o &Editor Externo"
 
 msgid "Open Midd&le"
 msgstr "Abrir o do Me&io"
@@ -1098,9 +1104,8 @@ msgstr "&Preservar a hora do arquivo na comparação dos arquivos"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Mostrar o Diálogo \"Selecionar Arquivos ou Pastas\" na Inicialização"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr ""
-"Fechar o Diálogo \"Selecionar Arquivos ou Pastas\" ao clicar no botão OK"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Fechar o Diálogo \"Selecionar Arquivos ou Pastas\" ao clicar no botão Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Au&to-Conclusão do Diálogo-Abrir:"
@@ -1379,11 +1384,11 @@ msgstr "Descrição:"
 msgid "Default arguments:"
 msgstr "Argumentos padrão:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Exibir todos os plugins, não verificar a extensão."
+msgid "Display all plugins, don't check the extension"
+msgstr "Exibir todos os plugins, não verificar a extensão"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "&Abrir arquivos no mesmo tipo de janela após desempacotar."
+msgid "&Open files in the same window type after unpacking"
+msgstr "&Abrir arquivos no mesmo tipo de janela após desempacotar"
 
 msgid "&Plugin Pipeline:"
 msgstr "&Tubulação dos Plugins"
@@ -1574,6 +1579,15 @@ msgstr ""
 "Selecionar o código padrão da página assumido quando carrega arquivos não-"
 "unicode:"
 
+msgid "System codepage"
+msgstr "Código da página do sistema"
+
+msgid "According to WinMerge User Interface"
+msgstr "De Acordo com a Interface do Usuário do WinMerge"
+
+msgid "Custom codepage:"
+msgstr "Código de página personalizado:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1588,15 +1602,6 @@ msgid ""
 msgstr ""
 "Detecta o código da página pros arquivos de texto usando o mlang.dll\n"
 "É necessário reiniciar a sessão."
-
-msgid "System codepage"
-msgstr "Código da página do sistema"
-
-msgid "According to WinMerge User Interface"
-msgstr "De Acordo com a Interface do Usuário do WinMerge"
-
-msgid "Custom codepage:"
-msgstr "Código de página personalizado:"
 
 msgid "Options"
 msgstr "Opções"
@@ -2280,16 +2285,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtros dos Arquivos (*.flt)|*.flt|Todos os Arquivos (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Não pôde achar o arquivo do modelo do filtro do arquivo!\n"
-"\n"
-"Por favor copie o arquivo %1 pra -pasta WinMerge/Filtros:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Não pôde achar o arquivo do modelo do filtro do arquivo!\n\nPor favor copie o arquivo %1 pra pasta WinMerge/Filtros:\n%2."
 
 #, c-format
 msgid ""
@@ -2840,6 +2837,9 @@ msgstr "Falhou em executar o editor externo: %1"
 msgid "Unknown archive format"
 msgstr "Formato do arquivo desconhecido"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Nome do Arquivo"
 
@@ -3089,14 +3089,14 @@ msgstr "Erro"
 msgid "Text files are identical"
 msgstr "Os arquivos de texto são idênticos"
 
-msgid "(Middle and right are identical)"
-msgstr "(O do meio e o da direita são idênticos)"
+msgid " (Middle and right are identical)"
+msgstr " (O do meio e o da direita são idênticos)"
 
-msgid "(Left and right are identical)"
-msgstr "(O da esquerda e o da direita são idênticos)"
+msgid " (Left and right are identical)"
+msgstr " (O da esquerda e o da direita são idênticos)"
 
-msgid "(Left and middle are identical)"
-msgstr "(O da esquerda e o do meio são idênticos)"
+msgid " (Left and middle are identical)"
+msgstr " (O da esquerda e o do meio são idênticos)"
 
 msgid "Text files are different"
 msgstr "Os arquivos de texto são diferentes"
@@ -3173,13 +3173,13 @@ msgstr "Hora da criação do lado do meio."
 msgid "Tells which side has newer modification date."
 msgstr "Diz qual lado tem a data de modificação mais nova."
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Versão do arquivo do lado esquerdo, só pra alguns tipos de arquivos."
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Versão do arquivo do lado direito, só pra alguns tipos de arquivos."
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Versão do arquivo do lado do meio, só pra alguns tipos de arquivos."
 
 msgid "Short comparison result."
@@ -3599,33 +3599,17 @@ msgstr ""
 "\n"
 "Última Diferença (Alt+End)"
 
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
-msgstr ""
-"\n"
-"Copiar pra Direita (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nCopiar pra Direita (Alt+Direita)"
 
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
-msgstr ""
-"\n"
-"Copiar pra Esquerda (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nCopiar pra Esquerda (Alt+Esquerda)"
 
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"Copiar pra Direita e Avançar (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nCopiar pra Direita e Avançar (Ctrl+Alt+Direita)"
 
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"Copiar pra Esquerda e Avançar (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nCopiar pra Esquerda e Avançar (Ctrl+Alt+Esquerda)"
 
 msgid "\nCopy All to Right"
 msgstr "\nCopiar Tudo pra Direita"
@@ -3967,6 +3951,9 @@ msgstr ""
 msgid "&Others"
 msgstr "&Outros"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Tornar Maiúscula"
 
@@ -4196,6 +4183,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

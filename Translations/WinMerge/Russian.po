@@ -31,20 +31,20 @@ msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr "Копировать в центр"
 
-msgid "C&opy to Right"
-msgstr "Копировать направо"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Копировать направо\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Копировать из центра"
 
-msgid "Copy fro&m Right"
-msgstr "Копировать справа"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Копировать справа\tAlt+Shift+Left"
 
-msgid "Cop&y to Left"
-msgstr "Копировать налево"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Копировать налево\tAlt+Left"
 
-msgid "Copy &from Left"
-msgstr "Копировать слева"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Копировать слева\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Копировать выбранные строки в центр"
@@ -117,6 +117,12 @@ msgstr "Открыть &родительскую папку..."
 
 msgid "S&hell Menu"
 msgstr "Меню оболочки"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 msgid "View &Differences"
 msgstr "Показывать отличия"
@@ -210,7 +216,7 @@ msgstr "Цвет фона"
 msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "Сравнить извлеченный из изображения текст"
 
 msgid "&File"
@@ -543,7 +549,7 @@ msgstr "&Заменить концы строк на"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим объединения\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Обновить\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -641,6 +647,9 @@ msgstr "Показывать номера строк"
 
 msgid "View &Margins"
 msgstr "Показывать поля"
+
+msgid "View To&p Margins"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Переносить по словам"
@@ -848,9 +857,6 @@ msgstr "&Скрыть"
 
 msgid "&Open Left"
 msgstr "Открыть левый"
-
-msgid "With &External Editor"
-msgstr "Внешним редактором"
 
 msgid "Open Midd&le"
 msgstr "Открыть средний"
@@ -1100,8 +1106,8 @@ msgstr "Сохранять время файла при сравнении"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Закрывать диалог \"Выбрать файлы или папки\" по ОК"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Закрывать диалог \"Выбрать файлы или папки\" по Сравнение"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
@@ -1376,11 +1382,11 @@ msgstr "Описание:"
 msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Отображать все плагины, не проверяя расширение."
+msgid "Display all plugins, don't check the extension"
+msgstr "Отображать все плагины, не проверяя расширение"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Открыть файлы в том же типе окна после распаковки."
+msgid "&Open files in the same window type after unpacking"
+msgstr "Открыть файлы в том же типе окна после распаковки"
 
 msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
@@ -1565,12 +1571,6 @@ msgstr "Кодовая страница по умолчанию"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Выберите кодовую страницу по умолчанию, для не Юникод-файлов:"
 
-msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
-msgstr "Определять кодировку для типов файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
-
-msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
-msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
-
 msgid "System codepage"
 msgstr "Системная кодовая страница"
 
@@ -1579,6 +1579,12 @@ msgstr "В зависимости от интерфейса WinMerge"
 
 msgid "Custom codepage:"
 msgstr "Пользовательская:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr "Определять кодировку для типов файлов: .html, .rc, .xml \nНеобходим перезапуск сессии."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr "Определять кодировку для текстовых файлов с помощью mlang.dll\nНеобходим перезапуск сессии."
 
 msgid "Options"
 msgstr "Настройки"
@@ -2186,7 +2192,7 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Файлы фильтров (*.flt)|*.flt|Все файлы (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
 msgstr "Не удается найти файл шаблона фильтра!\n\nСкопируйте файл %1 в папку с фильтрами:\n%2."
 
 #, c-format
@@ -2557,6 +2563,9 @@ msgstr "Не удается запустить внешний редактор: 
 msgid "Unknown archive format"
 msgstr "Неизвестный формат архива"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Имя файла"
 
@@ -2806,14 +2815,14 @@ msgstr "Ошибка"
 msgid "Text files are identical"
 msgstr "Текстовые файлы идентичны"
 
-msgid "(Middle and right are identical)"
-msgstr "(В центре и справа идентичны)"
+msgid " (Middle and right are identical)"
+msgstr " (В центре и справа идентичны)"
 
-msgid "(Left and right are identical)"
-msgstr "(Слева и справа идентичны)"
+msgid " (Left and right are identical)"
+msgstr " (Слева и справа идентичны)"
 
-msgid "(Left and middle are identical)"
-msgstr "(Слева и в центре идентичны)"
+msgid " (Left and middle are identical)"
+msgstr " (Слева и в центре идентичны)"
 
 msgid "Text files are different"
 msgstr "Текстовые файлы отличаются"
@@ -2890,13 +2899,13 @@ msgstr "Время создания файла в центре."
 msgid "Tells which side has newer modification date."
 msgstr "Показать на какой из сторон дата изменения файла новее."
 
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Версия файла слева, только для некоторых типов файлов."
 
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Версия файла справа, только для некоторых типов файлов."
 
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Версия файла в центре, только для некоторых типов файлов."
 
 msgid "Short comparison result."
@@ -3193,16 +3202,16 @@ msgstr "\nТекущее отличие (Alt+Enter)"
 msgid "\nLast Difference (Alt+End)"
 msgstr "\nПоследнее отличие (Alt+End)"
 
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr "\nКопировать направо (Alt+Right)"
 
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr "\nКопировать налево (Alt+Left)"
 
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr "\nКопировать направо и перейти (Ctrl+Alt+Right)"
 
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr "\nКопировать налево и перейти (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
@@ -3509,6 +3518,9 @@ msgstr "Декомпиляция"
 msgid "&Others"
 msgstr "Другое"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Сделать прописными"
 
@@ -3739,6 +3751,12 @@ msgstr "Фильтр предсравнения строк"
 
 msgid "Basic text functions for the context menu"
 msgstr "Основные текстовые функции контекстного меню"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Фильтр применен"

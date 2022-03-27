@@ -29,24 +29,20 @@ msgstr "LANG_GALICIAN, SUBLANG_DEFAULT"
 msgid "Copy to Middle"
 msgstr ""
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "C&opiar para a dereita"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "C&opiar para a dereita\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
-msgstr "Copiar da &dereita"
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Copiar da &dereita\tAlt+Shift+Left"
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Cop&iar para a esquerda"
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Cop&iar para a esquerda\tAlt+Left"
 
-#, c-format
-msgid "Copy &from Left"
-msgstr "Copiar da &esquerda"
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Copiar da &esquerda\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr ""
@@ -128,6 +124,12 @@ msgstr "Abrir Cartafol &Pai…"
 
 msgid "S&hell Menu"
 msgstr "Menú conte&xtual"
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
+msgstr ""
 
 #, c-format
 msgid "View &Differences"
@@ -239,7 +241,7 @@ msgstr "Es&tablecer cor de fondo"
 msgid "&Vector Image Scaling"
 msgstr "&Escalado de imaxe vectorial"
 
-msgid "Compare Extracted &Text From Image"
+msgid "Compare Extracted &Text From Images"
 msgstr "Comparar o &Text extraído da imaxe"
 
 #, c-format
@@ -667,8 +669,7 @@ msgstr "Converter salt&os de liña a"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Modo mestura\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "R&ecargar\tCtrl+F5"
 
 #, c-format
@@ -796,6 +797,9 @@ msgstr "Ver &números de liña"
 #, c-format
 msgid "View &Margins"
 msgstr "Ver &marxes"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -1046,10 +1050,6 @@ msgstr "&Ocultar elementos"
 #, c-format
 msgid "&Open Left"
 msgstr "&Abrir arquivo esquerdo"
-
-#, c-format
-msgid "With &External Editor"
-msgstr "Cun &editor externo"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1362,9 +1362,8 @@ msgstr "&Preservar hora do arquivo nas comparacións de arquivos"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Amosar o diálogo \"Selecciona arquivos ou cartafoles\" ao inicio"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Pechar o diálogo \"Selecciona arquivos ou cartafoles\" ao premer o botón Aceptar"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Pechar o diálogo \"Selecciona arquivos ou cartafoles\" ao premer o botón Comparar"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1709,11 +1708,11 @@ msgstr "Descrición:"
 msgid "Default arguments:"
 msgstr "Argumentos por defecto:"
 
-msgid "Display all plugins, don't check the extension."
+msgid "Display all plugins, don't check the extension"
 msgstr "Amosar todos os complementos, non comprobar versión"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Abrir arquiv&os no mesmo tipo de ventá despois de desempaquetar."
+msgid "&Open files in the same window type after unpacking"
+msgstr "Abrir arquiv&os no mesmo tipo de ventá despois de desempaquetar"
 
 msgid "&Plugin Pipeline:"
 msgstr "Canalización de com&plementos:"
@@ -1945,6 +1944,18 @@ msgstr "Codificación predeterminada"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Selecciona a codificación predeterminada para arquivos non-Unicode:"
 
+#, c-format
+msgid "System codepage"
+msgstr "Codificación do sistema"
+
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Igual á interface de usuario de Winmerge"
+
+#, c-format
+msgid "Custom codepage:"
+msgstr "Personalizar codificación:"
+
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
@@ -1958,18 +1969,6 @@ msgid ""
 msgstr ""
 "Detectar a codificación dos arquivos de texto usando mlang.dll\n"
 "Precísase reiniciar a sesión."
-
-#, c-format
-msgid "System codepage"
-msgstr "Codificación do sistema"
-
-#, c-format
-msgid "According to WinMerge User Interface"
-msgstr "Igual á interface de usuario de Winmerge"
-
-#, c-format
-msgid "Custom codepage:"
-msgstr "Personalizar codificación:"
 
 #, c-format
 msgid "Options"
@@ -2785,16 +2784,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtros dos arquivos (*.flt)|*.flt|Todos os arquivos (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Non se pode atopar o arquivo modelo do filtro de arquivos!\n"
-"\n"
-"Copia o arquivo %1 ao cartafol de WinMerge/Filtros:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Non se pode atopar o arquivo modelo do filtro de arquivos!\n\nCopia o arquivo %1 ao cartafol de WinMerge/Filtros:\n%2."
 
 #, c-format
 msgid ""
@@ -3366,6 +3357,9 @@ msgstr "Non se puido executar o editor externo: %1"
 msgid "Unknown archive format"
 msgstr "Formato de arquivo descoñecido"
 
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 #, c-format
 msgid "Filename"
 msgstr "Nome do arquivo"
@@ -3661,17 +3655,14 @@ msgstr "Erro"
 msgid "Text files are identical"
 msgstr "Os arquivos de texto son idénticos"
 
-#, c-format
-msgid "(Middle and right are identical)"
-msgstr "(Centro e dereita son idénticos)"
+msgid " (Middle and right are identical)"
+msgstr " (Centro e dereita son idénticos)"
 
-#, c-format
-msgid "(Left and right are identical)"
-msgstr "(Esquerda e dereita son idénticos)"
+msgid " (Left and right are identical)"
+msgstr " (Esquerda e dereita son idénticos)"
 
-#, c-format
-msgid "(Left and middle are identical)"
-msgstr "(Esquerda e centro son idénticos)"
+msgid " (Left and middle are identical)"
+msgstr " (Esquerda e centro son idénticos)"
 
 #, c-format
 msgid "Text files are different"
@@ -3767,16 +3758,13 @@ msgstr "Data de creación do arquivo central."
 msgid "Tells which side has newer modification date."
 msgstr "Indica que lado ten a data de modificación máis recente."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Versión do arquivo do lado esquerdo, só para algúns tipos de arquivo."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Versión do arquivo do lado dereito, só para algúns tipos de arquivo."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr "Versión do arquivo do centro, só para algúns tipos de arquivo."
 
 #, c-format
@@ -4228,37 +4216,17 @@ msgstr ""
 "\n"
 "Derradeira diferenza (Alt+End)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right (Alt+Right)"
-msgstr ""
-"\n"
-"Copiar para a dereita (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nCopiar para a dereita (Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left (Alt+Left)"
-msgstr ""
-"\n"
-"Copiar para a esquerda (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nCopiar para a esquerda (Alt+Left)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"Copiar para a dereita e avanzar (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nCopiar para a dereita e avanzar (Ctrl+Alt+Right)"
 
-#, c-format
-msgid ""
-"\n"
-"Copy Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"Copiar para a esquerda e avanzar (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nCopiar para a esquerda e avanzar (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nCopiar todo para a dereita"
@@ -4615,6 +4583,9 @@ msgstr "Descompilación"
 msgid "&Others"
 msgstr "&Outros"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Pasar a maiúsculas"
 
@@ -4844,6 +4815,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"
