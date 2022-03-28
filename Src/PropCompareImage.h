@@ -29,7 +29,7 @@ public:
 	CComboBox m_comboPatterns;
 	String m_sFilePatterns;
 	bool m_bEnableImageCompare;
-	int  m_nUserDataFolderType;
+	int  m_nOcrResultType;
 	//}}AFX_DATA
 
 

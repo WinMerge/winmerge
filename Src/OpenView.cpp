@@ -1037,7 +1037,6 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		bool bIsaFolderCompare = true;
 		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
-		bool bIsaUrl[3] = { false, false, false };
 		paths::PATH_EXISTENCE pathType[3] = {paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST};
 		int iStatusMsgId = IDS_OPEN_FILESDIRS;
 
