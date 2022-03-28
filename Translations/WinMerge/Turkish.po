@@ -556,8 +556,8 @@ msgstr "Sa&tır sonlarını dönüştür"
 msgid "Mer&ge Mode\tF9"
 msgstr "Birleştir&me kipi\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Yeniden yük&le\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Yenidenyük&le\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "&Farklı karşılaştır"
@@ -4002,6 +4002,9 @@ msgstr "Kod çözme"
 msgid "&Others"
 msgstr "&Diğerleri"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Büyük harflere dönüştür"
 
@@ -4366,6 +4369,12 @@ msgstr "Ön farklılaştırıcı satır süzgeci"
 msgid "Basic text functions for the context menu"
 msgstr "İçerik menüsü için temel metin işlevleri"
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
 
@@ -4387,104 +4396,3 @@ msgstr "Bu sistemde pano geçmişi özelliği yok."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
-
-#~ msgid "C&opy to Right"
-#~ msgstr "Sağa k&opyala"
-
-#~ msgid "With &External Editor"
-#~ msgstr "Dış düz&enleyici ile"
-
-#~ msgid "&Quick compare limit (MB):"
-#~ msgstr "&Hızlı karşılaştırma sınırı (MB):"
-
-#~ msgid "&Binary compare limit (MB):"
-#~ msgstr "&Binary karşılaştırma sınırı (MB):"
-
-#~ msgid ""
-#~ "\n"
-#~ "All Right"
-#~ msgstr ""
-#~ "\n"
-#~ "Tümünü sağa kopyala"
-
-#~ msgid ""
-#~ "\n"
-#~ "All Left"
-#~ msgstr ""
-#~ "\n"
-#~ "Tümünü sola kopyala"
-
-#~ msgid "Other plugins"
-#~ msgstr "Diğer eklentiler"
-
-#~ msgid "Ignor&e blank lines"
-#~ msgstr "Boş satırlar yok sayılsı&n"
-
-#~ msgid "Cannot create a patch file from directories."
-#~ msgstr "Klasörlerden yama dosyası hazırlanamaz."
-
-#~ msgid "&Select Line Difference\tF4"
-#~ msgstr "Satır &farkını seç\tF4"
-
-#~ msgid "&XML"
-#~ msgstr "&XML"
-
-#~ msgid "&No prediffer"
-#~ msgstr "Ö&n farklılaştırıcı yok"
-
-#~ msgid "Auto prediffer"
-#~ msgstr "Otomatik ön farklılaştırıcı"
-
-#~ msgid "Select Unpacker"
-#~ msgstr "Ayıklayıcı seçin"
-
-#~ msgid "File unpacker:"
-#~ msgstr "Dosya ayıklayıcı:"
-
-#~ msgid "&Goto..."
-#~ msgstr "&Git..."
-
-#~ msgid "&New\tCtrl+N"
-#~ msgstr "Ye&ni\tCtrl+N"
-
-#~ msgid "E&xit"
-#~ msgstr "Çı&kış"
-
-#~ msgid "Cl&ose"
-#~ msgstr "&Kapat"
-
-#~ msgid "File En&coding..."
-#~ msgstr "&Dosya Kodlaması..."
-
-#~ msgid "&Print..."
-#~ msgstr "&Yazdır..."
-
-#~ msgid "Moved Block for &Current Diff"
-#~ msgstr "İmleçteki Fark &Yerine Taşınmış Blok"
-
-#~ msgid "Case sensi&tive"
-#~ msgstr "BÜYÜK-küçük &harf ayrımı yapılsın"
-
-#~ msgid "Go To"
-#~ msgstr "Git"
-
-#~ msgid "G&oto:"
-#~ msgstr "&Git:"
-
-#~ msgid "Filefilters"
-#~ msgstr "Dosya Süzgeçleri"
-
-#~ msgid ""
-#~ "Developers:\n"
-#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
-#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-#~ msgstr ""
-#~ "Geliştiriciler:\n"
-#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
-#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
-#~ msgid "Lua"
-#~ msgstr "Lua"
-
-#~ msgid "VHDL"
-#~ msgstr "VHDL"

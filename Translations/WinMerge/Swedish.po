@@ -557,8 +557,8 @@ msgstr "Omvandla radslut till"
 msgid "Mer&ge Mode\tF9"
 msgstr "Sammanfogningsläge\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Ladda om\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Laddaom\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Jämför igen som"
@@ -3910,6 +3910,9 @@ msgstr "Dekompilering"
 msgid "&Others"
 msgstr "Andra"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Gör till VERSALER"
 
@@ -4139,6 +4142,12 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"

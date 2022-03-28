@@ -360,7 +360,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	{
 		// Check if files have been modified since last rescan
 		// Ignore checking in case of scratchpads (empty filenames)
-		if (!m_filePaths[nBuffer].empty())
+		if (!m_filePaths[nBuffer].empty() && !paths::IsURL(m_filePaths[nBuffer]))
 		{
 			Changed[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(),
 					fileInfo, false, nBuffer);

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-03-03 18:21+0000\n"
+"PO-Revision-Date: 2022-03-25 19:55+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -118,10 +118,10 @@ msgid "S&hell Menu"
 msgstr "M&enu de contexto"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Usar a primeira linha como cabeçalhos"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Ajustar automaticamente todas as colunas"
 
 msgid "View &Differences"
 msgstr "Ver &diferenças"
@@ -557,7 +557,7 @@ msgstr "Converter os fins de linha para"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mod&o de Fusão\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -657,7 +657,7 @@ msgid "View &Margins"
 msgstr "Ver &margens"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "Ver margens su&periores"
 
 msgid "W&rap Lines"
 msgstr "Mudança de linha"
@@ -2815,8 +2815,12 @@ msgstr "Erro ao executar editor externo: %1"
 msgid "Unknown archive format"
 msgstr "Formato de ficheiro desconhecido"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgid ""
+"Failed to extract archive files.\n"
+"Do you want to compare the archive files as text files?"
 msgstr ""
+"Falha ao extrair ficheiros do arquivo.\n"
+"Quer comparar os ficheiros do arquivo como ficheiros de texto?"
 
 msgid "Filename"
 msgstr "Nome do ficheiro"
@@ -3925,6 +3929,9 @@ msgstr "Descompilação"
 msgid "&Others"
 msgstr "&Outros"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Converter para maiúsculas"
 
@@ -4269,6 +4276,12 @@ msgstr "Filtro de linha de pré-diferenciação"
 
 msgid "Basic text functions for the context menu"
 msgstr "Funções básicas de texto para o menu de contexto"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"

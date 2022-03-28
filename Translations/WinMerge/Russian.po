@@ -558,7 +558,7 @@ msgstr "&Заменить концы строк на"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим объединения\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Обновить\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -3545,6 +3545,9 @@ msgstr "Декомпиляция"
 msgid "&Others"
 msgstr "Другое"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Сделать прописными"
 
@@ -3775,6 +3778,12 @@ msgstr "Фильтр предсравнения строк"
 
 msgid "Basic text functions for the context menu"
 msgstr "Основные текстовые функции контекстного меню"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Фильтр применен"

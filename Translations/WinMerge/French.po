@@ -684,9 +684,8 @@ msgstr "&Convertir les fins de ligne"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mode &Fusion\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "Recharger Ctrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "RechargerCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -4627,6 +4626,9 @@ msgstr "Décompilation"
 msgid "&Others"
 msgstr "&Autres"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Mettre en majuscule"
 
@@ -4971,6 +4973,12 @@ msgstr "Filtre de pré-comparaison de ligne"
 
 msgid "Basic text functions for the context menu"
 msgstr "Intitulé simplifié pour les fonctions du menu contextuel"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtre appliqué"

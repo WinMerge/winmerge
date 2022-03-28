@@ -110,7 +110,6 @@ friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
 	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
-	PluginInfo * GetUnpackerPluginByFilter(const String& filteredText);
 	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
@@ -239,15 +238,15 @@ bool InvokeUnpackFile(const String& fileSource, const String& fileDest, int & nC
  */
 bool InvokePackFile(const String& fileSource, const String& fileDest, int & nChanged, LPDISPATCH piScript, int subCode);
 /**
- * @brief Call the plugin "IsFolder" method, event FILE_FOLDER_PACK_UNPACK
+ * @brief Call the plugin "IsFolder" method, event FILE_FOLDER_PACK_UNPACK or URL_PACK_UNPACK
  */
 bool InvokeIsFolder(const String& file, IDispatch *piScript);
 /**
- * @brief Call the plugin "UnpackFolder" method, event FILE_FOLDER_PACK_UNPACK
+ * @brief Call the plugin "UnpackFolder" method, event FILE_FOLDER_PACK_UNPACK or URL_PACK_UNPACK
  */
 bool InvokeUnpackFolder(const String& fileSource, const String& folderDest, int & nChanged, IDispatch *piScript, int & subCode);
 /**
- * @brief Call the plugin "PackFolder" method, event FILE_FOLDER_PACK_UNPACK
+ * @brief Call the plugin "PackFolder" method, event FILE_FOLDER_PACK_UNPACK or URL_PACK_UNPACK
  */
 bool InvokePackFolder(const String& folderSource, const String& fileDest, int & nChanged, IDispatch *piScript, int subCode);
 /**

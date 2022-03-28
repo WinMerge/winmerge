@@ -677,8 +677,7 @@ msgstr "&Converteix retorns de línia a"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Mode de combinació\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Recarrega\tControl+F5"
 
 #, c-format
@@ -4628,6 +4627,9 @@ msgstr "Decompilació"
 msgid "&Others"
 msgstr "Altres"
 
+msgid "URL Handling"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Fes majúcules"
 
@@ -4972,6 +4974,12 @@ msgstr "Filtre de línia per prediferenciació"
 
 msgid "Basic text functions for the context menu"
 msgstr "Funcions de text bàsic pel menú contextual"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtre aplicat"

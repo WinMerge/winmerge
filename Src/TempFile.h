@@ -19,6 +19,7 @@ public:
 	TempFile() = default;
 	~TempFile();
 	String Create(const String& prefix = _T(""), const String& ext = _T(""));
+	void Attach(const String& path) { Delete(); m_path = path; }
 	/**
 	 * @brief Get temp file path (including filename).
 	 * @return Full path to temp file.

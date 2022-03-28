@@ -494,7 +494,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
 		if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
 			return E_FAIL;
 		m_pView[index]->SetReadOnly(readOnly);
-		m_filePaths.SetPath(index, filename);
+		m_filePaths.SetPath(index, filename, false);
 		ASSERT(m_nBufferType[index] == BUFFERTYPE::NORMAL); // should have been initialized to BUFFERTYPE::NORMAL in constructor
 		if (!strDesc.empty())
 		{

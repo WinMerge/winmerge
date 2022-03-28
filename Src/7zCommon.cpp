@@ -190,7 +190,9 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 
 	try
 	{
-		Merge7z::Format *pFormat = m_Merge7z->GuessFormat(path2.c_str());
+		Merge7z::Format* pFormat = nullptr;
+		if (!paths::IsURL(path2))
+			pFormat = m_Merge7z->GuessFormat(path2.c_str());
 		if (pFormat == nullptr)
 			pFormat = Merge7zFormatRegister::GuessFormat(path2);
 		return pFormat;

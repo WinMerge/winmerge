@@ -265,7 +265,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		if (!infoUnpacker.GetPluginPipeline().empty())
+		if (!m_unpackerSubcodes.empty())
 		{
 			// re-detect codepage
 			int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -553,7 +553,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		if (!bSaveSuccess)
 		{
 			// returns now, don't overwrite the original file
-			return infoUnpacker.GetPluginPipeline().empty() ? SAVE_FAILED : SAVE_PACK_FAILED;
+			return m_unpackerSubcodes.empty() ? SAVE_FAILED : SAVE_PACK_FAILED;
 		}
 
 		if (bClearModifiedFlag)

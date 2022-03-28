@@ -545,7 +545,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mer&ge Mode\tF9",             ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
+        MENUITEM "Reloa&d\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Reco&mpare As"
         BEGIN
@@ -3993,6 +3993,7 @@ BEGIN
     IDS_PLUGIN_PROCESS_TYPE6 "Validation"
     IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
     IDS_PLUGIN_PROCESS_TYPE8 "&Others"
+    IDS_PLUGIN_PROCESS_TYPE9 "URL Handling"
     IDS_PLUGIN_MENU_CAPTION1  "Make Uppercase"
     IDS_PLUGIN_MENU_CAPTION2  "Make Lowercase"
     IDS_PLUGIN_MENU_CAPTION3  "Remove Duplicate Lines"
@@ -4073,6 +4074,8 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION45 "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
     IDS_PLUGIN_DESCRIPTION46 "Prediff Line Filter"
     IDS_PLUGIN_DESCRIPTION47 "Basic text functions for the context menu"
+    IDS_PLUGIN_DESCRIPTION48 "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+    IDS_PLUGIN_DESCRIPTION49 "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 END
 
 STRINGTABLE
