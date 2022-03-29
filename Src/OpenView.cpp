@@ -1278,9 +1278,13 @@ void COpenView::OnSelectUnpacker()
 		m_files[nFiles] = strPath;
 		nFiles++;
 	}
-	pathsType = paths::GetPairComparability(m_files);
+	PathContext tmpFiles = m_files;
+	if (tmpFiles.GetSize() == 2 && tmpFiles[1].empty())
+		tmpFiles[1] = tmpFiles[0];
+	pathsType = paths::GetPairComparability(tmpFiles, IsArchiveFile);
 
-	if (pathsType != paths::IS_EXISTING_FILE) 
+	if (pathsType == paths::IS_EXISTING_DIR || (pathsType == paths::DOES_NOT_EXIST &&
+		!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); })))
 		return;
 
 	// let the user select a handler
