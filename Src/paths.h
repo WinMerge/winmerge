@@ -23,7 +23,6 @@ typedef enum
 	DOES_NOT_EXIST, /**< File or folder does not exist. */
 	IS_EXISTING_FILE, /**< It is existing file */
 	IS_EXISTING_DIR, /**< It is existing folder */
-	IS_EXISTING_DIR_ARCHIVE, /**< It is existing folder */
 } PATH_EXISTENCE;
 
 bool EndsWithSlash(const String& s);
