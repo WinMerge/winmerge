@@ -2471,9 +2471,9 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 0,
-    0, 0, 0, 0
+    0, 0, 0, 0,
     100, 0, 0, 0,
-    100, 0, 0, 0,
+    100, 0, 0, 0
 END
 
 IDD_DIALOG_WINDOWSMANAGER AFX_DIALOG_LAYOUT
@@ -2484,14 +2484,14 @@ END
 IDD_PREFERENCES AFX_DIALOG_LAYOUT
 BEGIN
     0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 100, 0,
-    0, 0, 100, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    0, 0, 0, 100,
+    0, 0, 100, 100,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 0, 0
 END
 
 IDD_PROPPAGE_GENERAL AFX_DIALOG_LAYOUT
@@ -2802,15 +2802,15 @@ IDD_PROPPAGE_MESSAGEBOXES AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
-    100, 0, 0, 0
-    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_PROJECT AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
-    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
@@ -2839,7 +2839,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0
+    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0
 END

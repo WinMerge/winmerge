@@ -134,7 +134,6 @@ BOOL CPreferencesDlg::OnInitDialog()
  
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
-	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OptionsDlg"), false); // persist size via registry
 	return TRUE;  // return TRUE unless you set the focus to a control
