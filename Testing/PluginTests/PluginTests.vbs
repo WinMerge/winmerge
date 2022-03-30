@@ -178,10 +178,10 @@ Sub EditorAddinTest
     AssertEquals "XXX def XXX def", p.Replace("abc def abc def")
     p.PluginArguments = "-e ^\d+ XXX"
     AssertEquals "XXX abc" & vbCrLf & "XXX def", p.Replace("1000 abc" & vbCrLf & "1001 def")
-    p.PluginArguments = "-e (.{3}) $1$r$n"
+    p.PluginArguments = "-e (.{3}) $1\r\n"
     AssertEquals "012" & vbCrLf & "345" & vbCrLf & "678" & vbCrLf & "9", p.Replace("0123456789")
-    p.PluginArguments = "-e \d+ $a$b$t$n$v$f$r$$"
-    AssertEquals Chr(&H07) & Chr(&H08) & Chr(&H09) & Chr(&H0A) & Chr(&H0B) & Chr(&H0C) & Chr(&H0D) & "$", p.Replace("0123456789")
+    p.PluginArguments = "-e (\d+) \a\b\t\n\v\f\r\\$1\1\0"
+    AssertEquals Chr(&H07) & Chr(&H08) & Chr(&H09) & Chr(&H0A) & Chr(&H0B) & Chr(&H0C) & Chr(&H0D) & "\0123456789\1\0", p.Replace("0123456789")
 
     ' ReverseColumns
     SetTestName "ReverseColumns"

@@ -356,7 +356,8 @@ Function Unescape(text)
 	i = 1
 	Do While i <= textLen
 		ch = Mid(text, i, 1)
-		If ch = "$" Then
+		Select Case ch
+		Case "\"
 			If i <= textLen - 1 Then
 				i = i + 1
 				ch = Mid(text, i, 1)
@@ -375,15 +376,17 @@ Function Unescape(text)
 					Unescape = Unescape & Chr(&H0C)
 				Case "r"
 					Unescape = Unescape & Chr(&H0D)
+				Case "\"
+					Unescape = Unescape & "\"
 				Case Else
-					Unescape = Unescape & "$" & ch
+					Unescape = Unescape & "\" & ch
 				End Select
 			Else
 				Unescape = Unescape & ch
 			End If
-		Else
+		Case Else
 			Unescape = Unescape & ch
-		End If
+		End Select
 		i = i + 1
 	Loop
 End Function
