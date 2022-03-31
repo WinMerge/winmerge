@@ -164,21 +164,21 @@ msgid "Flip H&orizontally"
 msgstr "左右反転(&O)"
 
 msgid "&Zoom"
-msgstr "拡大(&Z)"
+msgstr "拡大/縮小(&Z)"
 
 #, c-format
 msgid "25%"
 msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
-msgstr "ズームイン(&I)\tCtrl++"
+msgstr "拡大(&I)\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "ズームアウト(&O)\tCtrl+-"
+msgstr "縮小(&O)\tCtrl+-"
 
 #. Zoom to normal
 msgid "&Normal\tCtrl+*"
-msgstr "元に戻す(&N)\tCtrl+*"
+msgstr "標準に戻す(&N)\tCtrl+*"
 
 msgid "&Overlay"
 msgstr "重ね合わせ(&O)"

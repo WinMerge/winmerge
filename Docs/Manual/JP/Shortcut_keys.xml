@@ -879,7 +879,7 @@
   </table>
 
   <table>
-    <title>ズーム</title>
+    <title>拡大/縮小</title>
 
     <tgroup cols="2">
       <thead>
@@ -898,7 +898,7 @@
               <keycap>+</keycap>
             </keycombo></entry>
 
-          <entry>フォントサイズを拡大</entry>
+          <entry>フォントの表示倍率を拡大</entry>
         </row>
 
         <row>
@@ -908,7 +908,7 @@
               <keycap>-</keycap>
             </keycombo></entry>
 
-          <entry>フォントサイズを縮小</entry>
+          <entry>フォントの表示倍率を縮小</entry>
         </row>
 
         <row>
@@ -918,7 +918,7 @@
               <keycap>*</keycap>
             </keycombo></entry>
 
-          <entry>フォントサイズを元に戻す</entry>
+          <entry>フォントの表示倍率を標準に戻す</entry>
         </row>
 
         <row>
@@ -928,7 +928,7 @@
               <mousebutton>マウスホイールを上へ</mousebutton>
             </keycombo></entry>
 
-          <entry>フォントサイズを拡大</entry>
+          <entry>フォントの表示倍率を拡大</entry>
         </row>
 
         <row>
@@ -938,7 +938,7 @@
               <mousebutton>マウスホイールを下へ</mousebutton>
             </keycombo></entry>
 
-          <entry>フォントサイズを縮小</entry>
+          <entry>フォントの表示倍率を縮小</entry>
         </row>
       </tbody>
     </tgroup>
