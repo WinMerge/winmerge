@@ -169,6 +169,8 @@ private:
 	afx_msg void OnUpdateNextConflict(CCmdUI* pCmdUI);
 	afx_msg void OnPrevConflict();
 	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
+	afx_msg void OnWebSize(UINT nID);
+	afx_msg void OnWebFitToWindow();
 	afx_msg void OnWebCompareScreenshots();
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();

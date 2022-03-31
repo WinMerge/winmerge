@@ -245,13 +245,32 @@ msgstr "向量圖縮放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "比較從圖片中擷取的文字 (&T)"
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+#, c-format
+msgid "&Compare"
+msgstr "比對空白處 (&W)"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 #, c-format
@@ -1792,10 +1811,6 @@ msgstr "比較"
 #, c-format
 msgid "Whitespaces"
 msgstr "空白處"
-
-#, c-format
-msgid "&Compare"
-msgstr "比對空白處 (&W)"
 
 #, c-format
 msgid "&Ignore change"

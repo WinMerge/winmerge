@@ -246,13 +246,32 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+#, c-format
+msgid "&Compare"
+msgstr "Al&deratu"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 #, c-format
@@ -1785,10 +1804,6 @@ msgstr "Alderatu"
 
 msgid "Whitespaces"
 msgstr "&Zurigunea"
-
-#, c-format
-msgid "&Compare"
-msgstr "Al&deratu"
 
 #, c-format
 msgid "&Ignore change"

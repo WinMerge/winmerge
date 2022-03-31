@@ -223,9 +223,19 @@ IDR_POPUP_WEBPAGEDIFFVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Compare &Screenshots",               ID_WEB_COMPARE_SCREENSHOTS
-        MENUITEM "Compare HTMLs",                      ID_WEB_COMPARE_HTMLS
-        MENUITEM "Compare Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+        POPUP "&Size"
+        BEGIN
+            MENUITEM "&Fit to Window",              ID_WEB_SIZE_FIT_TO_WINDOW
+            MENUITEM "1024x600",                    ID_WEB_SIZE_1024x600
+            MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
+            MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
+        END
+        POPUP "&Compare"
+        BEGIN
+            MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+            MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+            MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+        END
     END
 END
 

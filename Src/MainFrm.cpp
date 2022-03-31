@@ -785,8 +785,6 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
-		if (paths::IsURL(ifileloc[pane].filepath))
-			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams *>(pOpenParams));
 		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
 		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
@@ -1271,7 +1269,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
-		COpenDoc* pOpenDoc = static_cast<COpenDoc*>(theApp.m_pOpenTemplate->CreateNewDocument());
+		COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 		if (dwFlags)
 		{
 			pOpenDoc->m_dwFlags[0] = dwFlags[0];
@@ -1282,11 +1280,11 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_bRecurse = bRecurse;
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
-		CFrameWnd* pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
+		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
-
+	
 	// Add trailing '\' for directories if its missing
 	if (pathsType == paths::IS_EXISTING_DIR)
 	{

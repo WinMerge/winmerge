@@ -219,13 +219,31 @@ msgstr "&Масштаб изображений"
 msgid "Compare Extracted &Text From Images"
 msgstr "Сравнить извлеченный из изображения текст"
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+msgid "&Compare"
+msgstr "Учитывать &невидимые"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 msgid "&File"
@@ -1447,9 +1465,6 @@ msgstr "Сравнение"
 
 msgid "Whitespaces"
 msgstr "Невидимые"
-
-msgid "&Compare"
-msgstr "Учитывать &невидимые"
 
 msgid "&Ignore change"
 msgstr "Игнорировать измененные невидимые"

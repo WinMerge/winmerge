@@ -216,13 +216,31 @@ msgstr "ベクター画像スケーリング(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+msgid "&Compare"
+msgstr "比較する(&C)"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 msgid "&File"
@@ -1448,9 +1466,6 @@ msgstr "比較"
 
 msgid "Whitespaces"
 msgstr "空白"
-
-msgid "&Compare"
-msgstr "比較する(&C)"
 
 msgid "&Ignore change"
 msgstr "変更を無視(&I)"

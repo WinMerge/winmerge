@@ -242,13 +242,32 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+#, c-format
+msgid "&Compare"
+msgstr "&Упореди"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 #, c-format
@@ -1766,10 +1785,6 @@ msgstr "Упоређивање"
 #, c-format
 msgid "Whitespaces"
 msgstr "Размак"
-
-#, c-format
-msgid "&Compare"
-msgstr "&Упореди"
 
 #, c-format
 msgid "&Ignore change"

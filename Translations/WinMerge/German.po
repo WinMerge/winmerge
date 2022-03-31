@@ -246,13 +246,32 @@ msgstr "&Vektorbild-Skalierung"
 msgid "Compare Extracted &Text From Images"
 msgstr "Extrahierten &Text aus den Bildern vergleichen"
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+#, c-format
+msgid "&Compare"
+msgstr "&Vergleichen"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 #, c-format
@@ -1787,10 +1806,6 @@ msgstr "Vergleichen"
 #, c-format
 msgid "Whitespaces"
 msgstr "Leerzeichen"
-
-#, c-format
-msgid "&Compare"
-msgstr "&Vergleichen"
 
 #, c-format
 msgid "&Ignore change"

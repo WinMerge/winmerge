@@ -218,13 +218,31 @@ msgstr "矢量图形缩放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "比较从图像中解析的文字(&T)"
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+msgid "&Compare"
+msgstr "比较空白字符(&C)"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 msgid "&File"
@@ -1446,9 +1464,6 @@ msgstr "比较"
 
 msgid "Whitespaces"
 msgstr "空白"
-
-msgid "&Compare"
-msgstr "比较空白字符(&C)"
 
 msgid "&Ignore change"
 msgstr "忽略空白字符的变化(&I)"

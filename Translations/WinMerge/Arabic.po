@@ -218,13 +218,31 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+msgid "&Compare"
+msgstr "م&قارنة"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 msgid "&File"
@@ -1448,9 +1466,6 @@ msgstr "مقارنة"
 
 msgid "Whitespaces"
 msgstr "مساحة بيضاء (خالية)"
-
-msgid "&Compare"
-msgstr "م&قارنة"
 
 msgid "&Ignore change"
 msgstr "تجاهل الت&غييرات"

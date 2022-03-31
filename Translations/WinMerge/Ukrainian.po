@@ -244,13 +244,32 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "Compare &Screenshots"
+msgid "&Size"
 msgstr ""
 
-msgid "Compare HTMLs"
+msgid "&Fit to Window"
 msgstr ""
 
-msgid "Compare Resource Trees"
+msgid "1024x600"
+msgstr ""
+
+msgid "1280x800"
+msgstr ""
+
+msgid "1440x900"
+msgstr ""
+
+#, c-format
+msgid "&Compare"
+msgstr "Враховувати &пропуски"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
 msgstr ""
 
 #, c-format
@@ -1784,10 +1803,6 @@ msgstr "Порівняння"
 #, c-format
 msgid "Whitespaces"
 msgstr "Пропуски"
-
-#, c-format
-msgid "&Compare"
-msgstr "Враховувати &пропуски"
 
 #, c-format
 msgid "&Ignore change"
