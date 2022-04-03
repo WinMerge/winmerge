@@ -85,6 +85,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_PREVCONFLICT, OnUpdatePrevConflict)
 	// [Web] menu
 	ON_COMMAND(ID_WEB_SIZE_FIT_TO_WINDOW, OnWebFitToWindow)
+	ON_UPDATE_COMMAND_UI(ID_WEB_SIZE_FIT_TO_WINDOW, OnUpdateWebFitToWindow)
 	ON_COMMAND_RANGE(ID_WEB_SIZE_1024x600, ID_WEB_SIZE_1440x900, OnWebSize)
 	ON_COMMAND(ID_WEB_COMPARE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
@@ -751,7 +752,8 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.GetPluginPipeline().empty() && !m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
+		if (!m_infoUnpacker.GetPluginPipeline().empty() && m_infoUnpacker.GetPluginPipeline() != _T("<Automatic>") &&
+		    !m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
 		{
 			//return false;
 		}
@@ -1192,6 +1194,11 @@ void CWebPageDiffFrame::OnWebFitToWindow()
 {
 	m_pWebDiffWindow->SetFitToWindow(true);
 	SaveOptions();
+}
+
+void CWebPageDiffFrame::OnUpdateWebFitToWindow(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_pWebDiffWindow->GetFitToWindow());
 }
 
 void CWebPageDiffFrame::OnWebCompareScreenshots()
