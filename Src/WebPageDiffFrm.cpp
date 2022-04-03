@@ -20,6 +20,7 @@
 #include "unicoder.h"
 #include "FileOrFolderSelect.h"
 #include "SelectPluginDlg.h"
+#include "SizeDlg.h"
 #include "FileLocation.h"
 #include "Constants.h"
 #include "Environment.h"
@@ -87,14 +88,13 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_WEB_SIZE_FIT_TO_WINDOW, OnWebFitToWindow)
 	ON_UPDATE_COMMAND_UI(ID_WEB_SIZE_FIT_TO_WINDOW, OnUpdateWebFitToWindow)
 	ON_COMMAND_RANGE(ID_WEB_SIZE_1024x600, ID_WEB_SIZE_1440x900, OnWebSize)
+	ON_COMMAND(ID_WEB_SIZE_CUSTOMIZE, OnWebSizeCustomize)
 	ON_COMMAND(ID_WEB_COMPARE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
 	// [Image] menu
 //	ON_COMMAND(ID_IMG_VIEWDIFFERENCES, OnImgViewDifferences)
 //	ON_UPDATE_COMMAND_UI(ID_IMG_VIEWDIFFERENCES, OnUpdateImgViewDifferences)
-//	ON_COMMAND_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnImgZoom)
-//	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_ZOOM_25, ID_IMG_ZOOM_800, OnUpdateImgZoom)
 	// [Tools] menu
 //	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
@@ -503,11 +503,11 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 void CWebPageDiffFrame::LoadOptions()
 {
 //	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
-//	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_IMG_ZOOM) / 1000.0);
 	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_IMG_BACKCOLOR);
 	RGBQUAD backColor = { GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor) };
 //	m_pWebDiffWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFCOLORALPHA) / 100.0);
 
+	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
 	m_pWebDiffWindow->SetSize(size);
 	m_pWebDiffWindow->SetFitToWindow(GetOptionsMgr()->GetBool(OPT_CMP_WEB_FIT_TO_WINDOW));
@@ -516,12 +516,12 @@ void CWebPageDiffFrame::LoadOptions()
 void CWebPageDiffFrame::SaveOptions()
 {
 	//	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
-	//	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_ZOOM, static_cast<int>(m_pWebDiffWindow->GetZoom() * 1000));
 	//	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFCOLORALPHA, static_cast<int>(m_pWebDiffWindow->GetDiffColorAlpha() * 100.0));
 	SIZE size = m_pWebDiffWindow->GetSize();
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_WIDTH, size.cx);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_HEIGHT, size.cy);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_FIT_TO_WINDOW, m_pWebDiffWindow->GetFitToWindow());
+	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_ZOOM, static_cast<int>(m_pWebDiffWindow->GetZoom() * 1000));
 }
 
 /**
@@ -758,6 +758,8 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 			//return false;
 		}
 	}
+	if (m_infoUnpacker.GetPluginPipeline() == _T("<Automatic>"))
+		m_infoUnpacker.ClearPluginPipeline();
 	if (m_filePaths.GetSize() == 2)
 		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), callback));
 	else
@@ -1168,6 +1170,17 @@ void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 	);
 }
 
+void CWebPageDiffFrame::OnWebFitToWindow()
+{
+	m_pWebDiffWindow->SetFitToWindow(true);
+	SaveOptions();
+}
+
+void CWebPageDiffFrame::OnUpdateWebFitToWindow(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_pWebDiffWindow->GetFitToWindow());
+}
+
 void CWebPageDiffFrame::OnWebSize(UINT nID)
 {
 	switch (nID)
@@ -1190,15 +1203,13 @@ void CWebPageDiffFrame::OnWebSize(UINT nID)
 	}
 }
 
-void CWebPageDiffFrame::OnWebFitToWindow()
+void CWebPageDiffFrame::OnWebSizeCustomize()
 {
-	m_pWebDiffWindow->SetFitToWindow(true);
+	CSizeDlg dlg(m_pWebDiffWindow->GetSize());
+	if (dlg.DoModal() != IDOK)
+		return;
+	m_pWebDiffWindow->SetSize(dlg.m_size);
 	SaveOptions();
-}
-
-void CWebPageDiffFrame::OnUpdateWebFitToWindow(CCmdUI* pCmdUI)
-{
-	pCmdUI->SetCheck(m_pWebDiffWindow->GetFitToWindow());
 }
 
 void CWebPageDiffFrame::OnWebCompareScreenshots()
@@ -1286,18 +1297,7 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 //{
 //	pCmdUI->SetCheck(m_pWebDiffWindow->GetShowDifferences() ? 1 : 0);
 //}
-//
-//void CWebPageDiffFrame::OnImgZoom(UINT nId)
-//{
-//	m_pWebDiffWindow->SetZoom(pow(2.0, int(nId - ID_IMG_ZOOM_100)));
-//	SaveOptions();
-//}
-//
-//void CWebPageDiffFrame::OnUpdateImgZoom(CCmdUI* pCmdUI)
-//{
-//	pCmdUI->SetRadio(pow(2.0, int(pCmdUI->m_nID - ID_IMG_ZOOM_100)) == m_pWebDiffWindow->GetZoom());
-//}
-//
+
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 {
 	//return GenerateReport(sFileName, true);

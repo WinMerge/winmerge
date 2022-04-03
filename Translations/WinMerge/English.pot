@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-31 22:37+0000\n"
+"POT-Creation-Date: 2022-04-03 15:52+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -211,6 +211,18 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "&Compare"
+msgstr ""
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
 msgid "&Size"
 msgstr ""
 
@@ -226,16 +238,7 @@ msgstr ""
 msgid "1440x900"
 msgstr ""
 
-msgid "&Compare"
-msgstr ""
-
-msgid "&Screenshots"
-msgstr ""
-
-msgid "&HTMLs"
-msgstr ""
-
-msgid "&Resource Trees"
+msgid "&Customize..."
 msgstr ""
 
 msgid "&File"

@@ -214,6 +214,18 @@ msgstr "Мащабиране на &векторно изображение"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "&Compare"
+msgstr "&Сравняване"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
 msgid "&Size"
 msgstr ""
 
@@ -229,16 +241,7 @@ msgstr ""
 msgid "1440x900"
 msgstr ""
 
-msgid "&Compare"
-msgstr "&Сравняване"
-
-msgid "&Screenshots"
-msgstr ""
-
-msgid "&HTMLs"
-msgstr ""
-
-msgid "&Resource Trees"
+msgid "&Customize..."
 msgstr ""
 
 msgid "&File"

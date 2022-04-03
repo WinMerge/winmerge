@@ -243,6 +243,19 @@ msgstr "Escala de la imatge &vectorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Compara el &text extret de les imatges"
 
+#, c-format
+msgid "&Compare"
+msgstr "Compara els &espais"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
 msgid "&Size"
 msgstr ""
 
@@ -258,17 +271,7 @@ msgstr ""
 msgid "1440x900"
 msgstr ""
 
-#, c-format
-msgid "&Compare"
-msgstr "Compara els &espais"
-
-msgid "&Screenshots"
-msgstr ""
-
-msgid "&HTMLs"
-msgstr ""
-
-msgid "&Resource Trees"
+msgid "&Customize..."
 msgstr ""
 
 #, c-format

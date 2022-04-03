@@ -169,16 +169,15 @@ private:
 	afx_msg void OnUpdateNextConflict(CCmdUI* pCmdUI);
 	afx_msg void OnPrevConflict();
 	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
-	afx_msg void OnWebSize(UINT nID);
 	afx_msg void OnWebFitToWindow();
 	afx_msg void OnUpdateWebFitToWindow(CCmdUI* pCmdUI);
+	afx_msg void OnWebSize(UINT nID);
+	afx_msg void OnWebSizeCustomize();
 	afx_msg void OnWebCompareScreenshots();
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();
 	//afx_msg void OnImgViewDifferences();
 	//afx_msg void OnUpdateImgViewDifferences(CCmdUI* pCmdUI);
-	//afx_msg void OnImgZoom(UINT nId);
-	//afx_msg void OnUpdateImgZoom(CCmdUI* pCmdUI);
 	//afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);

@@ -244,6 +244,19 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+#, c-format
+msgid "&Compare"
+msgstr "&Sammenlign"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
 msgid "&Size"
 msgstr ""
 
@@ -259,17 +272,7 @@ msgstr ""
 msgid "1440x900"
 msgstr ""
 
-#, c-format
-msgid "&Compare"
-msgstr "&Sammenlign"
-
-msgid "&Screenshots"
-msgstr ""
-
-msgid "&HTMLs"
-msgstr ""
-
-msgid "&Resource Trees"
+msgid "&Customize..."
 msgstr ""
 
 #, c-format

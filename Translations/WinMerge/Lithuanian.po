@@ -217,6 +217,18 @@ msgstr "&Vektorinių vaizdų mastelio keitimas"
 msgid "Compare Extracted &Text From Images"
 msgstr "Lyginti iš paveikslėlių ištrauktą &tekstą"
 
+msgid "&Compare"
+msgstr "&Lyginti"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
 msgid "&Size"
 msgstr ""
 
@@ -232,16 +244,7 @@ msgstr ""
 msgid "1440x900"
 msgstr ""
 
-msgid "&Compare"
-msgstr "&Lyginti"
-
-msgid "&Screenshots"
-msgstr ""
-
-msgid "&HTMLs"
-msgstr ""
-
-msgid "&Resource Trees"
+msgid "&Customize..."
 msgstr ""
 
 msgid "&File"

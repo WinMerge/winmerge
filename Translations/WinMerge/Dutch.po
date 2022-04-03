@@ -217,6 +217,18 @@ msgstr "Vectorafbeeldingsschaling"
 msgid "Compare Extracted &Text From Images"
 msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
+msgid "&Compare"
+msgstr "Vergelijken"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
 msgid "&Size"
 msgstr ""
 
@@ -232,16 +244,7 @@ msgstr ""
 msgid "1440x900"
 msgstr ""
 
-msgid "&Compare"
-msgstr "Vergelijken"
-
-msgid "&Screenshots"
-msgstr ""
-
-msgid "&HTMLs"
-msgstr ""
-
-msgid "&Resource Trees"
+msgid "&Customize..."
 msgstr ""
 
 msgid "&File"
