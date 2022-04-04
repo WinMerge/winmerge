@@ -252,6 +252,9 @@ msgstr "比對空白處 (&W)"
 msgid "&Screenshots"
 msgstr ""
 
+msgid "&Full Size Screenshots"
+msgstr ""
+
 msgid "&HTMLs"
 msgstr ""
 

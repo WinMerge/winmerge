@@ -37,8 +37,8 @@ struct IWebDiffWindow
 	virtual HRESULT Reload(int pane) = 0;
 	virtual HRESULT ReloadAll() = 0;
 	virtual HRESULT Recompare(IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveScreenshot(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveScreenshots(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveScreenshot(int pane, const wchar_t* filename, bool fullSize, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveScreenshots(const wchar_t* filenames[], bool fullSize, IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveHTML(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveHTMLs(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveResourceTree(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;

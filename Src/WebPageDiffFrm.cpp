@@ -89,7 +89,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_WEB_SIZE_FIT_TO_WINDOW, OnUpdateWebFitToWindow)
 	ON_COMMAND_RANGE(ID_WEB_SIZE_1024x600, ID_WEB_SIZE_1440x900, OnWebSize)
 	ON_COMMAND(ID_WEB_SIZE_CUSTOMIZE, OnWebSizeCustomize)
-	ON_COMMAND(ID_WEB_COMPARE_SCREENSHOTS, OnWebCompareScreenshots)
+	ON_COMMAND_RANGE(ID_WEB_COMPARE_SCREENSHOTS, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
 	// [Image] menu
@@ -1212,7 +1212,7 @@ void CWebPageDiffFrame::OnWebSizeCustomize()
 	SaveOptions();
 }
 
-void CWebPageDiffFrame::OnWebCompareScreenshots()
+void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
 {
 	std::shared_ptr<CWaitCursor> pWaitStatus{ new CWaitCursor() };
 	PathContext paths;
@@ -1228,7 +1228,7 @@ void CWebPageDiffFrame::OnWebCompareScreenshots()
 		descs.push_back(m_filePaths[pane]);
 		m_tempFiles.push_back(pTempFile);
 	}
-	m_pWebDiffWindow->SaveScreenshots(spaths,
+	m_pWebDiffWindow->SaveScreenshots(spaths, nID == ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
 			{
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };

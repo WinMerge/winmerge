@@ -173,7 +173,7 @@ private:
 	afx_msg void OnUpdateWebFitToWindow(CCmdUI* pCmdUI);
 	afx_msg void OnWebSize(UINT nID);
 	afx_msg void OnWebSizeCustomize();
-	afx_msg void OnWebCompareScreenshots();
+	afx_msg void OnWebCompareScreenshots(UINT nID);
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();
 	//afx_msg void OnImgViewDifferences();

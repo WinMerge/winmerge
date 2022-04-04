@@ -221,6 +221,9 @@ msgstr "&Confronta"
 msgid "&Screenshots"
 msgstr ""
 
+msgid "&Full Size Screenshots"
+msgstr ""
+
 msgid "&HTMLs"
 msgstr ""
 

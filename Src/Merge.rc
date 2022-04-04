@@ -226,6 +226,7 @@ BEGIN
         POPUP "&Compare"
         BEGIN
             MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+            MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
             MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
             MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
         END
