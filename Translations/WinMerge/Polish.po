@@ -94,10 +94,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "Idź do...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "Idź do przeniesionego wiersza między lewą a środkiem\tCtrl+Shift+G"
+msgstr "Idź do przeniesionego wiersza między lewym a środkiem\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "Idź do przeniesionego wiersza między środkiem a prawą\tCtrl+Alt+G"
+msgstr "Idź do przeniesionego wiersza między środkiem a prawym\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "Otwórz"
@@ -510,25 +510,25 @@ msgid "Sav&e"
 msgstr "Zapisz"
 
 msgid "Save &Left"
-msgstr "Zapisz lewą"
+msgstr "Zapisz lewy"
 
 msgid "Save &Middle"
-msgstr "Zapisz środkową"
+msgstr "Zapisz środkowy"
 
 msgid "Save &Right"
-msgstr "Zapisz prawą"
+msgstr "Zapisz prawy"
 
 msgid "Save &As"
 msgstr "Zapisz jako"
 
 msgid "Save &Left As..."
-msgstr "Zapisz lewą jako..."
+msgstr "Zapisz lewy jako..."
 
 msgid "Save &Middle As..."
-msgstr "Zapisz środkową jako..."
+msgstr "Zapisz środkowy jako..."
 
 msgid "Save &Right As..."
-msgstr "Zapisz prawą jako..."
+msgstr "Zapisz prawy jako..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "Drukuj...\tCtrl+P"
@@ -669,34 +669,34 @@ msgid "A&dvanced"
 msgstr "Zaawansowane"
 
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr "Następna różnica między lewą a środkiem\tAlt+1"
+msgstr "Następna różnica między lewym a środkiem\tAlt+1"
 
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr "Poprzednia różnica między lewą a środkiem\tAlt+Shift+1"
+msgstr "Poprzednia różnica między lewym a środkiem\tAlt+Shift+1"
 
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr "Następna różnica między lewą a prawą\tAlt+2"
+msgstr "Następna różnica między lewym a prawym\tAlt+2"
 
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr "Poprzednia różnica między lewą a prawą\tAlt+Shift+2"
+msgstr "Poprzednia różnica między lewym a prawym\tAlt+Shift+2"
 
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr "Następna różnica między środkiem a prawą\tAlt+3"
+msgstr "Następna różnica między środkiem a prawym\tAlt+3"
 
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr "Poprzednia różnica między środkiem a prawą\tAlt+Shift+3"
+msgstr "Poprzednia różnica między środkiem a prawym\tAlt+Shift+3"
 
 msgid "Next Left Only Difference\tAlt+7"
-msgstr "Następna różnica tylko w lewej\tAlt+7"
+msgstr "Następna różnica tylko w lewym\tAlt+7"
 
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr "Poprzednia różnica tylko w lewej\tAlt+Shift+7"
+msgstr "Poprzednia różnica tylko w lewym\tAlt+Shift+7"
 
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr "Następna różnica tylko w środkowej\tAlt+8"
+msgstr "Następna różnica tylko w środku\tAlt+8"
 
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr "Poprzednia różnica tylko w środkowej\tAlt+Shift+8"
+msgstr "Poprzednia różnica tylko w środku\tAlt+Shift+8"
 
 msgid "Next Right Only Difference\tAlt+9"
 msgstr "Następna różnica tylko w prawej\tAlt+9"
@@ -705,7 +705,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Poprzednia różnica tylko w prawej\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopiuj z lewej do"
 
 msgid "&Middle"
 msgstr "Środkowy"
@@ -714,22 +714,22 @@ msgid "&Right"
 msgstr "P&rawy"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Kopiuj ze środka do"
 
 msgid "&Left"
 msgstr "&Lewy"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopiuj z prawej do"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Kopiuj zaznaczony wiersz(e) z lewej do"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Kopiuj zaznaczony wiersz(e) ze środka do"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Kopiuj zaznaczony wiersz(e) z prawej do"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiuj z lewej\tAlt+Shift+Right"
@@ -802,11 +802,11 @@ msgstr "Porównaj jako"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr "Lewy do środkowego (%1 z %2)"
+msgstr "Lewy do środka (%1 z %2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Lewy do prawego (%1 z %2)"
+msgstr "Lewy do prawej (%1 z %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
@@ -814,23 +814,23 @@ msgstr "Lewy do... (%1 z %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr "Środkowy do lewego (%1 z %2)"
+msgstr "Środek do lewej (%1 z %2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "Środkowy do prawego (%1 z %2)"
+msgstr "Środek do prawej (%1 z %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "Środkowy do... (%1 z %2)"
+msgstr "Środek do... (%1 z %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr "Prawy do środkowego (%1 z %2)"
+msgstr "Prawy do środka (%1 z %2)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "Prawy do lewego (%1 z %2)"
+msgstr "Prawy do lewej (%1 z %2)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
@@ -852,32 +852,32 @@ msgid "&Hide Items"
 msgstr "Ukryj elementy"
 
 msgid "&Open Left"
-msgstr "&Otwórz lewą"
+msgstr "&Otwórz lewy"
 
 msgid "Open Midd&le"
-msgstr "Otwórz środkową"
+msgstr "Otwórz środkowy"
 
 msgid "O&pen Right"
-msgstr "Otwórz &prawą"
+msgstr "Otwórz &prawy"
 
 msgid "Cop&y Pathnames"
 msgstr "Kopiuj nazwy ścieżek"
 
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "Lewa (%1 z %2)"
+msgstr "Lewy (%1 z %2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr "Środkowa (%1 z %2)"
+msgstr "Środkowy (%1 z %2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "Prawa (%1 z %2)"
+msgstr "Prawy (%1 z %2)"
 
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Obie (%1 z %2)"
+msgstr "Oba (%1 z %2)"
 
 #, c-format
 msgid "All (%1 of %2)"
@@ -905,13 +905,13 @@ msgid "Differences to... (%1 of %2)"
 msgstr "Różnice do... (%1 z %2)"
 
 msgid "Left Shell menu"
-msgstr "Menu powłoki po lewej"
+msgstr "Lewe menu powłoki"
 
 msgid "Middle Shell menu"
-msgstr "Menu powłoki na środku"
+msgstr "Środkowe menu powłoki"
 
 msgid "Right Shell menu"
-msgstr "Menu powłoki po prawej"
+msgstr "Prawe menu powłoki"
 
 msgid "Copy"
 msgstr "Kopiuj"
@@ -1529,7 +1529,7 @@ msgid "Save modified files?"
 msgstr "Zapisać zmodyfikowane pliki?"
 
 msgid "Left side file"
-msgstr "Plik po lewej stronie"
+msgstr "Lewy plik"
 
 msgid "&Save changes"
 msgstr "Zapisz zmiany"
@@ -1547,7 +1547,7 @@ msgid "Discard c&hanges"
 msgstr "Odrzuć zmiany"
 
 msgid "Right side file"
-msgstr "Plik po prawej stronie"
+msgstr "Prawy plik"
 
 msgid "S&ave changes"
 msgstr "Zapisz zmiany"
@@ -1709,13 +1709,13 @@ msgid "Middle:"
 msgstr "Środek:"
 
 msgid "Missing Left:"
-msgstr "Brakujące po lewej:"
+msgstr "Brakujące w lewej:"
 
 msgid "Missing Middle:"
 msgstr "Brakujące na środku:"
 
 msgid "Missing Right:"
-msgstr "Brakujące po prawej:"
+msgstr "Brakujące w prawej:"
 
 msgid "Affects"
 msgstr "Działanie"
@@ -2441,31 +2441,31 @@ msgstr "Kopiuj wszystko do środka"
 
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "Prawa do lewej (%1)"
+msgstr "Prawy do lewego (%1)"
 
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr "Prawa do środka (%1)"
+msgstr "Prawy do środka (%1)"
 
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr "Środek do lewej (%1)"
+msgstr "Środek do lewego (%1)"
 
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr "Środek do prawej (%1)"
+msgstr "Środek do prawego (%1)"
 
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "Lewa do prawej (%1)"
+msgstr "Lewy do prawego (%1)"
 
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr "Lewa do środka (%1)"
+msgstr "Lewy do środka (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Lewa do... (%1)"
+msgstr "Lewy do... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
@@ -2473,7 +2473,7 @@ msgstr "Środek do... (%1)"
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Prawa do... (%1)"
+msgstr "Prawy do... (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
@@ -2489,7 +2489,7 @@ msgstr "Różnice do... (%1)"
 
 #, c-format
 msgid "Left (%1)"
-msgstr "Lewa (%1)"
+msgstr "Lewy (%1)"
 
 #, c-format
 msgid "Middle (%1)"
@@ -2497,7 +2497,7 @@ msgstr "Środek (%1)"
 
 #, c-format
 msgid "Right (%1)"
-msgstr "Prawa (%1)"
+msgstr "Prawy (%1)"
 
 #, c-format
 msgid "Both (%1)"
@@ -2676,10 +2676,10 @@ msgid "Diff"
 msgstr "Różnica"
 
 msgid "Left Duplicate Count"
-msgstr "Liczba duplikatów po lewej stronie"
+msgstr "Liczba duplikatów po lewej"
 
 msgid "Right Duplicate Count"
-msgstr "Liczba duplikatów po prawej stronie"
+msgstr "Liczba duplikatów po prawej"
 
 msgid "Middle Duplicate Count"
 msgstr "Liczba duplikatów na środku"
@@ -3359,7 +3359,7 @@ msgid "MDI child window only"
 msgstr "Tylko okno podrzędne"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "Zamknij okno główne, jeśli jest tylko jedno okno podrzędne"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
