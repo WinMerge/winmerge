@@ -92,7 +92,7 @@ private:
 	void SavePosition();
 	void SaveActivePane();
 	virtual ~CWebPageDiffFrame();
-	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
+	void CreateWebWndStatusBar(CStatusBar &, CWnd *);
 	void OnWebDiffEvent(const WebDiffEvent& event);
 	bool OpenUrls(IWebDiffCallback* callback);
 	int UpdateDiffItem(CDirDoc * pDirDoc);
@@ -176,8 +176,6 @@ private:
 	afx_msg void OnWebCompareScreenshots(UINT nID);
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();
-	//afx_msg void OnImgViewDifferences();
-	//afx_msg void OnUpdateImgViewDifferences(CCmdUI* pCmdUI);
 	//afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);

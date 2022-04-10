@@ -13,8 +13,6 @@
 #include "DirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include "OptionsDiffColors.h"
-#include "OptionsCustomColors.h"
 #include "paths.h"
 #include "PathContext.h"
 #include "unicoder.h"
@@ -24,14 +22,30 @@
 #include "FileLocation.h"
 #include "Constants.h"
 #include "Environment.h"
-#include <wrl.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
-using namespace Microsoft::WRL;
+template <typename T, typename Func>
+struct CallbackImpl : public T
+{
+	CallbackImpl(Func&& callback) : m_callback(std::move(callback)) {}
+	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override { return E_NOTIMPL; }
+	ULONG STDMETHODCALLTYPE AddRef(void) override { return ++m_nRef; }
+	ULONG STDMETHODCALLTYPE Release(void) override { if (--m_nRef == 0) { delete this; return 0; } return m_nRef; }
+	HRESULT STDMETHODCALLTYPE Invoke(HRESULT hr) { return m_callback(hr); }
+	HRESULT STDMETHODCALLTYPE Invoke(const WebDiffEvent& event) { return m_callback(event); }
+	Func m_callback;
+	int m_nRef = 0;
+};
 
+template<typename T, typename Func>
+CComPtr<T> Callback(Func&& callback)
+{
+	return CComPtr<T>(new CallbackImpl<T, Func>(std::move(callback)));
+}
+ 
 /** @brief Location for Web page compare specific help to open. */
 static const TCHAR WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
 
@@ -92,9 +106,6 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_WEB_COMPARE_SCREENSHOTS, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
-	// [Image] menu
-//	ON_COMMAND(ID_IMG_VIEWDIFFERENCES, OnImgViewDifferences)
-//	ON_UPDATE_COMMAND_UI(ID_IMG_VIEWDIFFERENCES, OnUpdateImgViewDifferences)
 	// [Tools] menu
 //	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
@@ -246,7 +257,7 @@ void CWebPageDiffFrame::CheckFileChanged(void)
 /**
  * @brief Create a status bar to be associated with a heksedit control
  */
-void CWebPageDiffFrame::CreateImgWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
+void CWebPageDiffFrame::CreateWebWndStatusBar(CStatusBar &wndStatusBar, CWnd *pwndPane)
 {
 	wndStatusBar.Create(pwndPane, WS_CHILD|WS_VISIBLE);
 	wndStatusBar.SetIndicators(0, 1);
@@ -257,7 +268,7 @@ void CWebPageDiffFrame::CreateImgWndStatusBar(CStatusBar &wndStatusBar, CWnd *pw
 
 void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
-	if (event.type == WebDiffEvent::SourceChanged)
+	if (event.type == WebDiffEvent::SourceChanged || event.type == WebDiffEvent::TabChanged)
 	{
 		if (m_nBufferType[event.pane] == BUFFERTYPE::UNNAMED)
 		{
@@ -320,13 +331,9 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		{
 			OnWebDiffEvent(event);
 			return S_OK;
-		}).Get()
+		})
 	);
 
-	COLORSETTINGS colors;
-	Options::DiffColors::Load(GetOptionsMgr(), colors);
-	m_pWebDiffWindow->SetDiffColor(colors.clrDiff);
-	m_pWebDiffWindow->SetSelDiffColor(colors.clrSelDiff);
 	LoadOptions();
 
 	m_pWebDiffWindow->SetUserDataFolderType(
@@ -359,12 +366,10 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	bool bResult;
 	if (std::count(m_nBufferType, m_nBufferType + m_filePaths.GetSize(), BUFFERTYPE::UNNAMED) == m_filePaths.GetSize())
 	{
-		bResult = SUCCEEDED(m_pWebDiffWindow->New(m_filePaths.GetSize(), callback.Get()));
+		for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
+			m_filePaths[pane] = _T("about:blank");
 	}
-	else
-	{
-		bResult = OpenUrls(callback.Get());
-	}
+	bResult = OpenUrls(callback);
 
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
@@ -432,15 +437,13 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	for (int nPane = 0; nPane < m_pWebDiffWindow->GetPaneCount(); nPane++)
 	{
-//		m_pWebDiffWindow->SetReadOnly(nPane, m_bRO[nPane]);
-
 		m_wndFilePathBar.SetActive(nPane, FALSE);
-		CreateImgWndStatusBar(m_wndStatusBar[nPane], CWnd::FromHandle(m_pWebDiffWindow->GetPaneHWND(nPane)));
+//		CreateWebWndStatusBar(m_wndStatusBar[nPane], CWnd::FromHandle(m_pWebDiffWindow->GetPaneHWND(nPane)));
 		UpdateHeaderPath(nPane);
 	}
 
-	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
-	m_rectBorder.bottom = size.cy;
+//	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
+//	m_rectBorder.bottom = size.cy;
 
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings-WebPageDiffFrame"));
@@ -503,9 +506,9 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 void CWebPageDiffFrame::LoadOptions()
 {
 //	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
-	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_IMG_BACKCOLOR);
-	RGBQUAD backColor = { GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor) };
 //	m_pWebDiffWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFCOLORALPHA) / 100.0);
+//	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_IMG_BACKCOLOR);
+//	RGBQUAD backColor = { GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor) };
 
 	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
@@ -584,7 +587,7 @@ void CWebPageDiffFrame::OnFileReload()
 				for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 					m_fileInfo[pane].Update(m_filePaths[pane]);
 				return S_OK;
-			}).Get());
+			}));
 }
 
 void CWebPageDiffFrame::OnFileClose() 
@@ -710,7 +713,7 @@ void CWebPageDiffFrame::UpdateHeaderSizes()
 			for (int pane = 0; pane < nPaneCount; pane++)
 			{
 				rc.right += w[pane] + 4 + 2;
-				m_wndStatusBar[pane].MoveWindow(&rc);
+//				m_wndStatusBar[pane].MoveWindow(&rc);
 				rc.left = rc.right;
 			}
 		}
@@ -947,8 +950,7 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
  */
 void CWebPageDiffFrame::OnEditCut()
 {
-	if (CWnd *pWnd = GetFocus())
-		pWnd->SendMessage(WM_CUT);
+	m_pWebDiffWindow->Cut();
 }
 
 /**
@@ -956,8 +958,7 @@ void CWebPageDiffFrame::OnEditCut()
  */
 void CWebPageDiffFrame::OnEditCopy()
 {
-	if (CWnd *pWnd = GetFocus())
-		pWnd->SendMessage(WM_COPY);
+	m_pWebDiffWindow->Copy();
 }
 
 /**
@@ -965,8 +966,7 @@ void CWebPageDiffFrame::OnEditCopy()
  */
 void CWebPageDiffFrame::OnEditPaste()
 {
-	if (CWnd *pWnd = GetFocus())
-		pWnd->SendMessage(WM_PASTE);
+	m_pWebDiffWindow->Paste();
 }
 
 /**
@@ -974,8 +974,7 @@ void CWebPageDiffFrame::OnEditPaste()
  */
 void CWebPageDiffFrame::OnEditUndo()
 {
-	if (CWnd *pWnd = GetFocus())
-		pWnd->SendMessage(WM_UNDO);
+	m_pWebDiffWindow->Undo();
 }
 
 /**
@@ -983,7 +982,7 @@ void CWebPageDiffFrame::OnEditUndo()
  */
 void CWebPageDiffFrame::OnEditRedo()
 {
-//	GetFocus()->SendMessage(WM_REDO);
+	m_pWebDiffWindow->Redo();
 }
 
 /**
@@ -991,8 +990,7 @@ void CWebPageDiffFrame::OnEditRedo()
  */
 void CWebPageDiffFrame::OnEditSelectAll()
 {
-	if (CWnd *pWnd = GetFocus())
-		pWnd->SendMessage(EM_SETSEL, 0, -1);
+	m_pWebDiffWindow->SelectAll();
 }
 
 /**
@@ -1090,13 +1088,15 @@ void CWebPageDiffFrame::OnNextdiff()
  */
 void CWebPageDiffFrame::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
+	bool enabled = false;
+	/*
 	bool enabled =
 		m_pWebDiffWindow->GetNextDiffIndex() >= 0 ||
 		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1);
 
 	if (!enabled && m_pDirDoc != nullptr)
 		enabled = m_pDirDoc->MoveableToNextDiff();
-
+	*/
 	pCmdUI->Enable(enabled);
 }
 
@@ -1118,13 +1118,15 @@ void CWebPageDiffFrame::OnPrevdiff()
  */
 void CWebPageDiffFrame::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
+	bool enabled = false;
+	/*
 	bool enabled =
 		m_pWebDiffWindow->GetPrevDiffIndex() >= 0 ||
 		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1);
 
 	if (!enabled && m_pDirDoc != nullptr)
 		enabled = m_pDirDoc->MoveableToPrevDiff();
-
+	*/
 	pCmdUI->Enable(enabled);
 }
 
@@ -1142,10 +1144,13 @@ void CWebPageDiffFrame::OnNextConflict()
 void CWebPageDiffFrame::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(
+		false
+		/*
 		m_pWebDiffWindow->GetPaneCount() > 2 && (
 			m_pWebDiffWindow->GetNextConflictIndex() >= 0 ||
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
 		)
+		*/
 	);
 }
 
@@ -1163,10 +1168,13 @@ void CWebPageDiffFrame::OnPrevConflict()
 void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(
+		false
+		/*
 		m_pWebDiffWindow->GetPaneCount() > 2 && (
 			m_pWebDiffWindow->GetPrevConflictIndex() >= 0 ||
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
 		)
+		*/
 	);
 }
 
@@ -1209,6 +1217,7 @@ void CWebPageDiffFrame::OnWebSizeCustomize()
 	if (dlg.DoModal() != IDOK)
 		return;
 	m_pWebDiffWindow->SetSize(dlg.m_size);
+	m_pWebDiffWindow->SetFitToWindow(false);
 	SaveOptions();
 }
 
@@ -1234,7 +1243,7 @@ void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data());
 				return S_OK;
-			}).Get());
+			}));
 }
 
 void CWebPageDiffFrame::OnWebCompareHTMLs()
@@ -1260,7 +1269,7 @@ void CWebPageDiffFrame::OnWebCompareHTMLs()
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""), &infoUnpacker);
 				return S_OK;
-			}).Get());
+			}));
 }
 
 void CWebPageDiffFrame::OnWebCompareResourceTrees()
@@ -1284,19 +1293,8 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 			{
 				GetMainFrame()->DoFileOrFolderOpen(&paths, nullptr, descs.data(), _T(""), true);
 				return S_OK;
-			}) .Get());
+			}));
 }
-
-//void CWebPageDiffFrame::OnImgViewDifferences()
-//{
-//	m_pWebDiffWindow->SetShowDifferences(!m_pWebDiffWindow->GetShowDifferences());
-//	SaveOptions();
-//}
-//
-//void CWebPageDiffFrame::OnUpdateImgViewDifferences(CCmdUI* pCmdUI)
-//{
-//	pCmdUI->SetCheck(m_pWebDiffWindow->GetShowDifferences() ? 1 : 0);
-//}
 
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 {

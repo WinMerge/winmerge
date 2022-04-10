@@ -6,7 +6,7 @@
 
 struct WebDiffEvent
 {
-	enum EVENT_TYPE { AcceleratorKeyPressed, ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, HSCROLL, VSCROLL };
+	enum EVENT_TYPE { AcceleratorKeyPressed, ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, TabChanged, HSCROLL, VSCROLL };
 	EVENT_TYPE type;
 	int pane;
 };
@@ -84,6 +84,13 @@ struct IWebDiffWindow
 	virtual int  GetPrevConflictIndex() const = 0;
 	virtual HWND GetHWND() const = 0;
 	virtual HWND GetPaneHWND(int pane) const = 0;
+	virtual bool Copy() = 0;
+	virtual bool Cut() = 0;
+	virtual bool Delete() = 0;
+	virtual bool Paste() = 0;
+	virtual bool SelectAll() = 0;
+	virtual bool Undo() = 0;
+	virtual bool Redo() = 0;
 };
 
 extern "C"
