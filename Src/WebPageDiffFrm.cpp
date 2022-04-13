@@ -34,7 +34,7 @@ struct CallbackImpl : public T
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override { return E_NOTIMPL; }
 	ULONG STDMETHODCALLTYPE AddRef(void) override { return ++m_nRef; }
 	ULONG STDMETHODCALLTYPE Release(void) override { if (--m_nRef == 0) { delete this; return 0; } return m_nRef; }
-	HRESULT STDMETHODCALLTYPE Invoke(HRESULT hr) { return m_callback(hr); }
+	HRESULT STDMETHODCALLTYPE Invoke(const WebDiffCallbackResult& result) { return m_callback(result); }
 	HRESULT STDMETHODCALLTYPE Invoke(const WebDiffEvent& event) { return m_callback(event); }
 	Func m_callback;
 	int m_nRef = 0;
@@ -340,7 +340,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		static_cast<IWebDiffWindow::UserDataFolderType>(GetOptionsMgr()->GetInt(OPT_CMP_WEB_USERDATAFOLDER_TYPE)),
 		GetOptionsMgr()->GetBool(OPT_CMP_WEB_USERDATAFOLDER_PERPANE));
 
-	auto callback = Callback<IWebDiffCallback>([this](HRESULT hr) -> HRESULT
+	auto callback = Callback<IWebDiffCallback>([this](const WebDiffCallbackResult& result) -> HRESULT
 		{
 			int nNormalBuffer = 0;
 			for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
@@ -379,13 +379,13 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	//String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
-	//if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
-	//{
-	//	TRACE0("Failed to create LocationBar\n");
-	//	return FALSE;
-	//}
-
+//	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+//	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
+//	{
+//		TRACE0("Failed to create LocationBar\n");
+//		return FALSE;
+//	}
+//
 //	IWebToolWindow * (*pfnWinWebDiff_CreateToolWindow)(HINSTANCE hInstance, HWND hWndParent, IWebDiffWindow *) =
 //		(IWebToolWindow * (*)(HINSTANCE hInstance, HWND hWndParent, IWebDiffWindow *pWebPageDiffWindow))GetProcAddress(hModule, "WinWebDiff_CreateToolWindow");
 //	if (pfnWinWebDiff_CreateToolWindow == nullptr ||
@@ -393,18 +393,18 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 //	{
 //		return FALSE;
 //	}
-
+//
 //	m_pWebToolWindow->Translate(TranslateLocationPane);
-
-	//m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
+//
+//	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
 
 	return TRUE;
 }
 
-void CWebPageDiffFrame::TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst)
-{
-	swprintf_s(dst, dstbufsize, L"%s", tr("WebPageDiffFrame|LocationPane", ucr::toUTF8(org)).c_str());
-}
+//void CWebPageDiffFrame::TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst)
+//{
+//	swprintf_s(dst, dstbufsize, L"%s", tr("WebPageDiffFrame|LocationPane", ucr::toUTF8(org)).c_str());
+//}
 
 /////////////////////////////////////////////////////////////////////////////
 // CWebPageDiffFrame message handlers
@@ -505,9 +505,9 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 
 void CWebPageDiffFrame::LoadOptions()
 {
-//	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
-//	m_pWebDiffWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_DIFFCOLORALPHA) / 100.0);
-//	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_IMG_BACKCOLOR);
+//	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SHOWDIFFERENCES));
+//	m_pWebDiffWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_WEB_DIFFCOLORALPHA) / 100.0);
+//	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_WEB_BACKCOLOR);
 //	RGBQUAD backColor = { GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor) };
 
 	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
@@ -518,8 +518,8 @@ void CWebPageDiffFrame::LoadOptions()
 
 void CWebPageDiffFrame::SaveOptions()
 {
-	//	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
-	//	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_DIFFCOLORALPHA, static_cast<int>(m_pWebDiffWindow->GetDiffColorAlpha() * 100.0));
+	//	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
+	//	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_DIFFCOLORALPHA, static_cast<int>(m_pWebDiffWindow->GetDiffColorAlpha() * 100.0));
 	SIZE size = m_pWebDiffWindow->GetSize();
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_WIDTH, size.cx);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_HEIGHT, size.cy);
@@ -581,7 +581,7 @@ void CWebPageDiffFrame::OnFileReload()
 {
 	int nActivePane = m_pWebDiffWindow->GetActivePane();
 	OpenUrls(
-		Callback<IWebDiffCallback>([nActivePane, this](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([nActivePane, this](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				MoveOnLoad(nActivePane);
 				for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
@@ -1238,7 +1238,7 @@ void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
 		m_tempFiles.push_back(pTempFile);
 	}
 	m_pWebDiffWindow->SaveScreenshots(spaths, nID == ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS,
-		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data());
@@ -1263,7 +1263,7 @@ void CWebPageDiffFrame::OnWebCompareHTMLs()
 		m_tempFiles.push_back(pTempFile);
 	}
 	m_pWebDiffWindow->SaveHTMLs(spaths,
-		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				PackingInfo infoUnpacker(String(_T("PrettifyHTML")));
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
@@ -1289,9 +1289,12 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 		m_tempFolders.push_back(pTempFolder);
 	}
 	m_pWebDiffWindow->SaveResourceTrees(spaths,
-		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](HRESULT hr) -> HRESULT
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				GetMainFrame()->DoFileOrFolderOpen(&paths, nullptr, descs.data(), _T(""), true);
+				DWORD dwFlags[3]{};
+				for (int pane = 0; pane < paths.GetSize(); ++pane)
+					dwFlags[pane] = FFILEOPEN_NOMRU;
+				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), true);
 				return S_OK;
 			}));
 }

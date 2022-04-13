@@ -100,7 +100,7 @@ private:
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool MergeModeKeyDown(MSG* pMsg);
-	static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
+	//static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 
 // Generated message map functions
 private:

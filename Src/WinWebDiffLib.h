@@ -11,9 +11,15 @@ struct WebDiffEvent
 	int pane;
 };
 
+struct WebDiffCallbackResult
+{
+	HRESULT errorCode;
+	const wchar_t* returnObjectAsJson;
+};
+
 struct __declspec(uuid("{DC951F69-C8CA-44DD-8C3C-8A9C76B0022C}")) IWebDiffCallback : IUnknown
 {
-	virtual HRESULT __stdcall Invoke(HRESULT hr) = 0;
+	virtual HRESULT __stdcall Invoke(const WebDiffCallbackResult& result) = 0;
 };
 
 struct __declspec(uuid("{0C75D925-378C-46E2-A5AA-228133AD22EB}")) IWebDiffEventHandler: IUnknown
