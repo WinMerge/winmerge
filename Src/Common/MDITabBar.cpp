@@ -607,6 +607,10 @@ void CMDITabBar::UpdateToolTips(int nTabItemIndex)
 			if (strTooltip == strTitle && strTitle.GetLength() <= GetMaxTitleLength())
 				strTooltip.Empty();
 
+			constexpr size_t MAX_TIP_TEXT_LENGTH = 1024;
+			if (strTooltip.GetLength() > MAX_TIP_TEXT_LENGTH)
+				strTooltip.Truncate(MAX_TIP_TEXT_LENGTH);
+
 			m_tooltips.UpdateTipText(strTooltip, this);
 			CRect rc;
 			GetClientRect(&rc);
