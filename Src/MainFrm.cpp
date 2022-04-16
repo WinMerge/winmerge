@@ -2976,8 +2976,10 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		int ID = ID_MRU_FIRST;	// first ID in menu
 		for (i = 0 ; i < mrus.size() ; i++, ID++)
 			::AppendMenu(hMenu, MF_STRING, ID, 
-				((i < 9 ? strutils::format(_T("&%d "), i+1) : strutils::format(_T("&%c "), 'a' + i - 9)) 
-					+ mrus[i].title).c_str());
+				((i < 9 ?
+					strutils::format(_T("&%d %.128s"), i+1, mrus[i].title) :
+					strutils::format(_T("&%c %.128s"), 'a' + i - 9, mrus[i].title))
+					).c_str());
 	}
 
 	pCmdUI->Enable(true);
