@@ -233,10 +233,18 @@ BEGIN
         POPUP "&Size"
         BEGIN
             MENUITEM "&Fit to Window",              ID_WEB_SIZE_FIT_TO_WINDOW
-            MENUITEM "1024x600",                    ID_WEB_SIZE_1024x600
+            MENUITEM "320x512",                     ID_WEB_SIZE_320x512
+            MENUITEM "375x600",                     ID_WEB_SIZE_375x600
+            MENUITEM "1024x640",                    ID_WEB_SIZE_1024x640
             MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
             MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
             MENUITEM "&Customize...",               ID_WEB_SIZE_CUSTOMIZE
+        END
+        POPUP "C&lear"
+        BEGIN
+            MENUITEM "C&ache",                      ID_WEB_CLEAR_CACHE
+            MENUITEM "C&ookies",                    ID_WEB_CLEAR_COOKIES
+            MENUITEM "&Navigation History for Current Page", ID_WEB_CLEAR_NAVIGATIONHISTORYFORCURRENTPAGE
         END
     END
 END
@@ -4146,6 +4154,12 @@ BEGIN
     IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 
                             "The 32-bit version of WinMerge does not support Clipboard Compare"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED "WebView2 runtime is not installed. Do you want to download it?"
+END
+
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

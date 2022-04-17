@@ -238,16 +238,19 @@ msgstr ""
 msgid "&Fit to Window"
 msgstr ""
 
-msgid "1024x600"
-msgstr ""
-
-msgid "1280x800"
-msgstr ""
-
-msgid "1440x900"
-msgstr ""
-
 msgid "&Customize..."
+msgstr ""
+
+msgid "C&lear"
+msgstr ""
+
+msgid "C&ache"
+msgstr ""
+
+msgid "C&ookies"
+msgstr ""
+
+msgid "&Navigation History for Current Page"
 msgstr ""
 
 msgid "&File"
@@ -4417,3 +4420,6 @@ msgstr "Bu sistemde pano geçmişi özelliği yok."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

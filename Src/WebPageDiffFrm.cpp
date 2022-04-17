@@ -101,11 +101,14 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	// [Web] menu
 	ON_COMMAND(ID_WEB_SIZE_FIT_TO_WINDOW, OnWebFitToWindow)
 	ON_UPDATE_COMMAND_UI(ID_WEB_SIZE_FIT_TO_WINDOW, OnUpdateWebFitToWindow)
-	ON_COMMAND_RANGE(ID_WEB_SIZE_1024x600, ID_WEB_SIZE_1440x900, OnWebSize)
+	ON_COMMAND_RANGE(ID_WEB_SIZE_320x512, ID_WEB_SIZE_1440x900, OnWebSize)
 	ON_COMMAND(ID_WEB_SIZE_CUSTOMIZE, OnWebSizeCustomize)
 	ON_COMMAND_RANGE(ID_WEB_COMPARE_SCREENSHOTS, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
+	ON_COMMAND(ID_WEB_CLEAR_CACHE, OnWebClearCache)
+	ON_COMMAND(ID_WEB_CLEAR_COOKIES, OnWebClearCookies)
+	ON_COMMAND(ID_WEB_CLEAR_NAVIGATIONHISTORYFORCURRENTPAGE, OnWebClearNavigationHistoryForCurrentPage)
 	// [Tools] menu
 //	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
@@ -1193,9 +1196,17 @@ void CWebPageDiffFrame::OnWebSize(UINT nID)
 {
 	switch (nID)
 	{
-	case ID_WEB_SIZE_1024x600:
+	case ID_WEB_SIZE_320x512:
 		m_pWebDiffWindow->SetFitToWindow(false);
-		m_pWebDiffWindow->SetSize({ 1024, 600 });
+		m_pWebDiffWindow->SetSize({ 320, 512 });
+		break;
+	case ID_WEB_SIZE_375x600:
+		m_pWebDiffWindow->SetFitToWindow(false);
+		m_pWebDiffWindow->SetSize({ 375, 600 });
+		break;
+	case ID_WEB_SIZE_1024x640:
+		m_pWebDiffWindow->SetFitToWindow(false);
+		m_pWebDiffWindow->SetSize({ 1024, 640 });
 		SaveOptions();
 		break;
 	case ID_WEB_SIZE_1280x800:
@@ -1299,6 +1310,21 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 			}));
 }
 
+void CWebPageDiffFrame::OnWebClearCache()
+{
+	m_pWebDiffWindow->ClearBrowsingData(-1, IWebDiffWindow::BrowsingDataKinds::CACHE);
+}
+
+void CWebPageDiffFrame::OnWebClearCookies()
+{
+	m_pWebDiffWindow->ClearBrowsingData(-1, IWebDiffWindow::BrowsingDataKinds::COOKIES);
+}
+
+void CWebPageDiffFrame::OnWebClearNavigationHistoryForCurrentPage()
+{
+	m_pWebDiffWindow->ClearBrowsingData(-1, IWebDiffWindow::BrowsingDataKinds::NAVIGATIONHISTORYFORCURRENTPAGE);
+}
+
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 {
 	//return GenerateReport(sFileName, true);
@@ -1322,11 +1348,18 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 
 void CWebPageDiffFrame::OnRefresh()
 {
-	if (UpdateDiffItem(m_pDirDoc) == 0)
-	{
-		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
-	}
+	m_pWebDiffWindow->Recompare(
+		Callback<IWebDiffCallback>([this](const WebDiffCallbackResult& result) -> HRESULT
+			{
+				if (UpdateDiffItem(m_pDirDoc) == 0 &&
+				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
+				{
+					CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
+						[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+				}
+				return S_OK;
+			})
+		);
 }
 
 void CWebPageDiffFrame::OnSetFocus(CWnd* pNewWnd)
@@ -1334,7 +1367,6 @@ void CWebPageDiffFrame::OnSetFocus(CWnd* pNewWnd)
 	if (m_nActivePane != -1)
 		m_pWebDiffWindow->SetActivePane(m_nActivePane);
 }
-
 
 /**
  * @brief Open help from mainframe when user presses F1

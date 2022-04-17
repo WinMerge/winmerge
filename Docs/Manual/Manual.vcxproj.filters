@@ -160,6 +160,12 @@
     <Xml Include="Shared\xsl\htmlhelp.xsl">
       <Filter>Shared\xsl</Filter>
     </Xml>
+    <Xml Include="EN\Compare_webpages.xml">
+      <Filter>EN</Filter>
+    </Xml>
+    <Xml Include="JP\Compare_webpages.xml">
+      <Filter>JP</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="EN">

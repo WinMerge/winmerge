@@ -30,6 +30,7 @@ struct __declspec(uuid("{0C75D925-378C-46E2-A5AA-228133AD22EB}")) IWebDiffEventH
 struct IWebDiffWindow
 {
 	enum UserDataFolderType { APPDATA, INSTALL };
+	enum BrowsingDataKinds { CACHE, COOKIES, NAVIGATIONHISTORYFORCURRENTPAGE };
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
 	virtual void AddEventListener(IWebDiffEventHandler *handler) = 0;
@@ -49,6 +50,7 @@ struct IWebDiffWindow
 	virtual HRESULT SaveHTMLs(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveResourceTree(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveResourceTrees(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
+	virtual HRESULT ClearBrowsingData(int pane, BrowsingDataKinds datakinds) = 0;
 	virtual const wchar_t *GetCurrentUrl(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;
 	virtual RECT GetPaneWindowRect(int pane) const = 0;

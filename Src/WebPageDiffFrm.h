@@ -176,6 +176,9 @@ private:
 	afx_msg void OnWebCompareScreenshots(UINT nID);
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();
+	afx_msg void OnWebClearCache();
+	afx_msg void OnWebClearCookies();
+	afx_msg void OnWebClearNavigationHistoryForCurrentPage();
 	//afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
