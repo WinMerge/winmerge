@@ -22,6 +22,7 @@
 #include "FileLocation.h"
 #include "Constants.h"
 #include "Environment.h"
+#include <Poco/RegularExpression.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -106,9 +107,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_WEB_COMPARE_SCREENSHOTS, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
-	ON_COMMAND(ID_WEB_CLEAR_CACHE, OnWebClearCache)
-	ON_COMMAND(ID_WEB_CLEAR_COOKIES, OnWebClearCookies)
-	ON_COMMAND(ID_WEB_CLEAR_NAVIGATIONHISTORYFORCURRENTPAGE, OnWebClearNavigationHistoryForCurrentPage)
+	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
 	// [Tools] menu
 //	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
@@ -296,6 +295,26 @@ bool CWebPageDiffFrame::IsLoadable()
 			return false;
 	}
 	return true;
+}
+
+
+/**
+ * @brief returns true if URL matches configured pattern
+ */
+bool CWebPageDiffFrame::MatchURLPattern(const String& url)
+{
+	const String& includePattern = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_INCLUDE_REGEXP);
+	if (includePattern.empty())
+		return false;
+	std::string textu8 = ucr::toUTF8(url);
+	Poco::RegularExpression reInclude(ucr::toUTF8(includePattern));
+	if (!reInclude.match(textu8))
+		return false;
+	const String& excludePattern = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_EXCLUDE_REGEXP);
+	if (excludePattern.empty())
+		return true;
+	Poco::RegularExpression reExclude(ucr::toUTF8(excludePattern));
+	return !reExclude.match(textu8);
 }
 
 /**
@@ -1310,19 +1329,19 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 			}));
 }
 
-void CWebPageDiffFrame::OnWebClearCache()
+void CWebPageDiffFrame::OnWebClear(UINT nID)
 {
-	m_pWebDiffWindow->ClearBrowsingData(-1, IWebDiffWindow::BrowsingDataKinds::CACHE);
-}
-
-void CWebPageDiffFrame::OnWebClearCookies()
-{
-	m_pWebDiffWindow->ClearBrowsingData(-1, IWebDiffWindow::BrowsingDataKinds::COOKIES);
-}
-
-void CWebPageDiffFrame::OnWebClearNavigationHistoryForCurrentPage()
-{
-	m_pWebDiffWindow->ClearBrowsingData(-1, IWebDiffWindow::BrowsingDataKinds::NAVIGATIONHISTORYFORCURRENTPAGE);
+	IWebDiffWindow::BrowsingDataKinds dataKinds;
+	switch (nID)
+	{
+	case ID_WEB_CLEAR_DISK_CACHE:       dataKinds = IWebDiffWindow::BrowsingDataKinds::DISK_CACHE; break;
+	case ID_WEB_CLEAR_COOKIES:          dataKinds = IWebDiffWindow::BrowsingDataKinds::COOKIES; break;
+	case ID_WEB_CLEAR_BROWSING_HISTORY: dataKinds = IWebDiffWindow::BrowsingDataKinds::BROWSING_HISTORY; break;
+	case ID_WEB_CLEAR_ALL_PROFILE:      dataKinds = IWebDiffWindow::BrowsingDataKinds::ALL_PROFILE; break;
+	default:
+		return;
+	}
+	m_pWebDiffWindow->ClearBrowsingData(-1, dataKinds);
 }
 
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const

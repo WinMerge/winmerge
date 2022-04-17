@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-04-17 10:26+0000\n"
+"POT-Creation-Date: 2022-04-17 22:19+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -235,16 +235,19 @@ msgstr ""
 msgid "&Customize..."
 msgstr ""
 
-msgid "C&lear"
+msgid "Clear &Browsing Data"
 msgstr ""
 
-msgid "C&ache"
+msgid "&Disk Cache"
 msgstr ""
 
-msgid "C&ookies"
+msgid "&Cookies"
 msgstr ""
 
-msgid "&Navigation History for Current Page"
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
 msgstr ""
 
 msgid "&File"

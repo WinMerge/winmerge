@@ -240,11 +240,12 @@ BEGIN
             MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
             MENUITEM "&Customize...",               ID_WEB_SIZE_CUSTOMIZE
         END
-        POPUP "C&lear"
+        POPUP "Clear &Browsing Data"
         BEGIN
-            MENUITEM "C&ache",                      ID_WEB_CLEAR_CACHE
-            MENUITEM "C&ookies",                    ID_WEB_CLEAR_COOKIES
-            MENUITEM "&Navigation History for Current Page", ID_WEB_CLEAR_NAVIGATIONHISTORYFORCURRENTPAGE
+            MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
+            MENUITEM "&Cookies",                    ID_WEB_CLEAR_COOKIES
+            MENUITEM "&Browsing History",           ID_WEB_CLEAR_BROWSING_HISTORY
+            MENUITEM "&All Profile",                ID_WEB_CLEAR_ALL_PROFILE
         END
     END
 END

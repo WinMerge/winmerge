@@ -785,6 +785,8 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
+		if (CWebPageDiffFrame::MatchURLPattern(ifileloc[pane].filepath))
+			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
 		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams *>(pOpenParams));

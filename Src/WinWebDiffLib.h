@@ -30,7 +30,23 @@ struct __declspec(uuid("{0C75D925-378C-46E2-A5AA-228133AD22EB}")) IWebDiffEventH
 struct IWebDiffWindow
 {
 	enum UserDataFolderType { APPDATA, INSTALL };
-	enum BrowsingDataKinds { CACHE, COOKIES, NAVIGATIONHISTORYFORCURRENTPAGE };
+	enum BrowsingDataKinds {
+		FILE_SYSTEMS        = ( 1 << 0 ),
+		INDEXED_DB          = ( 1 << 1 ),
+		LOCAL_STORAGE       = ( 1 << 2 ),
+		WEB_SQL             = ( 1 << 3 ),
+		CACHE_STORAGE       = ( 1 << 4 ),
+		ALL_DOM_STORAGE     = ( 1 << 5 ),
+		COOKIES             = ( 1 << 6 ),
+		ALL_SITE            = ( 1 << 7 ),
+		DISK_CACHE          = ( 1 << 8 ),
+		DOWNLOAD_HISTORY    = ( 1 << 9 ),
+		GENERAL_AUTOFILL    = ( 1 << 10 ),
+		PASSWORD_AUTOSAVE   = ( 1 << 11 ),
+		BROWSING_HISTORY    = ( 1 << 12 ),
+		SETTINGS            = ( 1 << 13 ),
+		ALL_PROFILE         = ( 1 << 14 ) 
+	};
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
 	virtual void AddEventListener(IWebDiffEventHandler *handler) = 0;

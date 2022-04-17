@@ -269,16 +269,19 @@ msgstr ""
 msgid "&Customize..."
 msgstr ""
 
-msgid "C&lear"
+msgid "Clear &Browsing Data"
 msgstr ""
 
-msgid "C&ache"
+msgid "&Disk Cache"
 msgstr ""
 
-msgid "C&ookies"
+msgid "&Cookies"
 msgstr ""
 
-msgid "&Navigation History for Current Page"
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
 msgstr ""
 
 #, c-format

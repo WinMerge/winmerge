@@ -66,6 +66,7 @@ public:
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; }
 	static bool IsLoadable();
+	static bool MatchURLPattern(const String& url);
 
 // Attributes
 protected:
@@ -176,9 +177,7 @@ private:
 	afx_msg void OnWebCompareScreenshots(UINT nID);
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();
-	afx_msg void OnWebClearCache();
-	afx_msg void OnWebClearCookies();
-	afx_msg void OnWebClearNavigationHistoryForCurrentPage();
+	afx_msg void OnWebClear(UINT nID);
 	//afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
