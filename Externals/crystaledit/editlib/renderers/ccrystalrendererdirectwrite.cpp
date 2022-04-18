@@ -340,7 +340,10 @@ bool CCrystalRendererDirectWrite::GetCharWidth(unsigned start, unsigned end, int
 	if (!m_pFont)
 	{
 		m_pFont.reset(new CFont());
-		m_pFont->CreateFontIndirect(&m_lfBaseFont);
+		LOGFONT lfFont = m_lfBaseFont;
+		lfFont.lfWeight = FW_BOLD;
+		lfFont.lfItalic = TRUE;
+		m_pFont->CreateFontIndirect(&lfFont);
 	}
 	CClientDC dc (CWnd::GetDesktopWindow());
 	CFont *pOldFont = dc.SelectObject(m_pFont.get());
