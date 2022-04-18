@@ -29,6 +29,8 @@ void PropCompareWebPage::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareWebPage)
+	DDX_Text(pDX, IDC_COMPAREWEBPAGE_URLPATTERNTOINCLUDE, m_sURLPatternToInclude);
+	DDX_Text(pDX, IDC_COMPAREWEBPAGE_URLPATTERNTOEXCLUDE, m_sURLPatternToExclude);
 	DDX_CBIndex(pDX, IDC_COMPAREWEBPAGE_USERDATAFOLDER_TYPE, m_nUserDataFolderType);
 	DDX_Check(pDX, IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE, m_bUserDataFolderPerPane);
 	//}}AFX_DATA_MAP
@@ -48,6 +50,8 @@ END_MESSAGE_MAP()
  */
 void PropCompareWebPage::ReadOptions()
 {
+	m_sURLPatternToInclude = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE);
+	m_sURLPatternToExclude = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE);
 	m_nUserDataFolderType = GetOptionsMgr()->GetInt(OPT_CMP_WEB_USERDATAFOLDER_TYPE);
 	m_bUserDataFolderPerPane = GetOptionsMgr()->GetBool(OPT_CMP_WEB_USERDATAFOLDER_PERPANE);
 }
@@ -59,6 +63,8 @@ void PropCompareWebPage::ReadOptions()
  */
 void PropCompareWebPage::WriteOptions()
 {
+	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE, m_sURLPatternToInclude);
+	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE, m_sURLPatternToExclude);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, m_nUserDataFolderType);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, m_bUserDataFolderPerPane);
 }

@@ -303,18 +303,25 @@ bool CWebPageDiffFrame::IsLoadable()
  */
 bool CWebPageDiffFrame::MatchURLPattern(const String& url)
 {
-	const String& includePattern = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_INCLUDE_REGEXP);
+	const String& includePattern = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE);
 	if (includePattern.empty())
 		return false;
 	std::string textu8 = ucr::toUTF8(url);
-	Poco::RegularExpression reInclude(ucr::toUTF8(includePattern));
-	if (!reInclude.match(textu8))
+	try
+	{
+		Poco::RegularExpression reInclude(ucr::toUTF8(includePattern));
+		if (!reInclude.match(textu8))
+			return false;
+		const String& excludePattern = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE);
+		if (excludePattern.empty())
+			return true;
+		Poco::RegularExpression reExclude(ucr::toUTF8(excludePattern));
+		return !reExclude.match(textu8);
+	}
+	catch (...)
+	{
 		return false;
-	const String& excludePattern = GetOptionsMgr()->GetString(OPT_CMP_WEB_URL_EXCLUDE_REGEXP);
-	if (excludePattern.empty())
-		return true;
-	Poco::RegularExpression reExclude(ucr::toUTF8(excludePattern));
-	return !reExclude.match(textu8);
+	}
 }
 
 /**

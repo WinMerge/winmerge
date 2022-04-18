@@ -2027,6 +2027,12 @@ msgstr "OCR-resultaat:"
 msgid "Web Page"
 msgstr ""
 
+msgid "URL pattern to include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to exclude (Regular expression):"
+msgstr ""
+
 msgid "User data folder location:"
 msgstr ""
 

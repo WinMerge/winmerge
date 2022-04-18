@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-04-17 22:19+0000\n"
+"POT-Creation-Date: 2022-04-18 08:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1995,6 +1995,12 @@ msgid "OCR result:"
 msgstr ""
 
 msgid "Web Page"
+msgstr ""
+
+msgid "URL pattern to include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to exclude (Regular expression):"
 msgstr ""
 
 msgid "User data folder location:"

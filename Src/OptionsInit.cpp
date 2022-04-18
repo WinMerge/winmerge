@@ -178,8 +178,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_VIEW_WIDTH, 1024, 1, 9999);
 	pOptions->InitOption(OPT_CMP_WEB_VIEW_HEIGHT, 600, 1, 9999);
 	pOptions->InitOption(OPT_CMP_WEB_ZOOM, 1000, 250, 5000);
-	pOptions->InitOption(OPT_CMP_WEB_URL_INCLUDE_REGEXP, _T(""));
-	pOptions->InitOption(OPT_CMP_WEB_URL_EXCLUDE_REGEXP, _T(""));
+	pOptions->InitOption(OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE, _T(""));
+	pOptions->InitOption(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE, _T(""));
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));
 	pOptions->InitOption(OPT_USE_SYSTEM_TEMP_PATH, true);

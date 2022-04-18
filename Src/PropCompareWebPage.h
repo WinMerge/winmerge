@@ -28,6 +28,8 @@ public:
 	enum { IDD = IDD_PROPPAGE_COMPARE_WEBPAGE };
 	bool m_bUserDataFolderPerPane;
 	int  m_nUserDataFolderType;
+	String m_sURLPatternToInclude;
+	String m_sURLPatternToExclude;
 	//}}AFX_DATA
 
 
