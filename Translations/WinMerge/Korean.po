@@ -251,9 +251,8 @@ msgstr "벡터 이미지 확대/축소(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "이미지에서 추출한 텍스트 비교(&T)"
 
-#, c-format
-msgid "&Compare"
-msgstr "비교하기(&C)"
+msgid "Co&mpare"
+msgstr "비교(&M)"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1361,9 +1360,6 @@ msgstr " 파일: 언패커 플러그인"
 msgid "Se&lect..."
 msgstr "선택(&L)..."
 
-msgid "Co&mpare"
-msgstr "비교(&M)"
-
 #, c-format
 msgid "Cancel"
 msgstr "취소"
@@ -1822,6 +1818,10 @@ msgstr "비교"
 #, c-format
 msgid "Whitespaces"
 msgstr "공백 문자"
+
+#, c-format
+msgid "&Compare"
+msgstr "비교하기(&C)"
 
 #, c-format
 msgid "&Ignore change"

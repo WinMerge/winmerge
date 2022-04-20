@@ -89,6 +89,8 @@ BOOL PropCompareWebPage::OnInitDialog()
  */
 void PropCompareWebPage::OnDefaults()
 {
+	m_sURLPatternToInclude = GetOptionsMgr()->GetDefault<String>(OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE);
+	m_sURLPatternToExclude = GetOptionsMgr()->GetDefault<String>(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE);
 	m_bUserDataFolderPerPane = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_WEB_USERDATAFOLDER_PERPANE);
 	m_nUserDataFolderType = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_WEB_USERDATAFOLDER_TYPE);
 	UpdateData(FALSE);

@@ -218,7 +218,7 @@ msgstr "Vektorbild skalning"
 msgid "Compare Extracted &Text From Images"
 msgstr "Jämför extraherad text från bild"
 
-msgid "&Compare"
+msgid "Co&mpare"
 msgstr "Jämför"
 
 msgid "&Screenshots"
@@ -1105,9 +1105,6 @@ msgstr " Fil: Unpacker tillägg"
 msgid "Se&lect..."
 msgstr "Välj..."
 
-msgid "Co&mpare"
-msgstr "Jämför"
-
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1476,6 +1473,9 @@ msgstr "Jämför"
 
 msgid "Whitespaces"
 msgstr "Blankutrymme"
+
+msgid "&Compare"
+msgstr "Jämför"
 
 msgid "&Ignore change"
 msgstr "Ignorera skillnader"

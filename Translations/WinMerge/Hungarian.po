@@ -245,9 +245,8 @@ msgstr "Vektor kép méretezése"
 msgid "Compare Extracted &Text From Images"
 msgstr "Hasonlítsa össze a képekből kinyert szöveget"
 
-#, c-format
-msgid "&Compare"
-msgstr "&Összehasonlít"
+msgid "Co&mpare"
+msgstr "Összehasonlít"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1355,9 +1354,6 @@ msgstr " Fájl: Kitömörítő bővítmény"
 msgid "Se&lect..."
 msgstr "Kiválasztás..."
 
-msgid "Co&mpare"
-msgstr "Összehasonlít"
-
 #, c-format
 msgid "Cancel"
 msgstr "Mégsem"
@@ -1816,6 +1812,10 @@ msgstr "Összehasonlít"
 #, c-format
 msgid "Whitespaces"
 msgstr "Szóközök"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Összehasonlít"
 
 #, c-format
 msgid "&Ignore change"

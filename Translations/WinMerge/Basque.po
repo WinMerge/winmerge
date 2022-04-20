@@ -246,9 +246,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-#, c-format
-msgid "&Compare"
-msgstr "Al&deratu"
+msgid "Co&mpare"
+msgstr ""
 
 msgid "&Screenshots"
 msgstr ""
@@ -1356,9 +1355,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-msgid "Co&mpare"
-msgstr ""
-
 #, c-format
 msgid "Cancel"
 msgstr "Ezeztatu"
@@ -1816,6 +1812,10 @@ msgstr "Alderatu"
 
 msgid "Whitespaces"
 msgstr "&Zurigunea"
+
+#, c-format
+msgid "&Compare"
+msgstr "Al&deratu"
 
 #, c-format
 msgid "&Ignore change"

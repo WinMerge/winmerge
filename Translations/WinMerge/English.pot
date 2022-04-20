@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-04-18 08:57+0000\n"
+"POT-Creation-Date: 2022-04-19 12:38+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "&Compare"
+msgid "Co&mpare"
 msgstr ""
 
 msgid "&Screenshots"
@@ -1098,9 +1098,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-msgid "Co&mpare"
-msgstr ""
-
 msgid "Cancel"
 msgstr ""
 
@@ -1468,6 +1465,9 @@ msgid "Compare"
 msgstr ""
 
 msgid "Whitespaces"
+msgstr ""
+
+msgid "&Compare"
 msgstr ""
 
 msgid "&Ignore change"

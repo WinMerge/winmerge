@@ -218,8 +218,8 @@ msgstr "矢量图形缩放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "比较从图像中解析的文字(&T)"
 
-msgid "&Compare"
-msgstr "比较空白字符(&C)"
+msgid "Co&mpare"
+msgstr "比较(&M)"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1105,9 +1105,6 @@ msgstr " 文件: 解包插件"
 msgid "Se&lect..."
 msgstr "选择(&L)"
 
-msgid "Co&mpare"
-msgstr "比较(&M)"
-
 msgid "Cancel"
 msgstr "取消"
 
@@ -1476,6 +1473,9 @@ msgstr "比较"
 
 msgid "Whitespaces"
 msgstr "空白"
+
+msgid "&Compare"
+msgstr "比较空白字符(&C)"
 
 msgid "&Ignore change"
 msgstr "忽略空白字符的变化(&I)"

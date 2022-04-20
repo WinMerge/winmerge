@@ -217,8 +217,8 @@ msgstr "&Dimensionamento da Imagem Vetorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar o Texto &Extraído da Imagens"
 
-msgid "&Compare"
-msgstr "&Comparar"
+msgid "Co&mpare"
+msgstr "Co&mparar"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1104,9 +1104,6 @@ msgstr " Arquivo: Plugin do Desempacotador"
 msgid "Se&lect..."
 msgstr "Se&lecionar..."
 
-msgid "Co&mpare"
-msgstr "Co&mparar"
-
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1479,6 +1476,9 @@ msgstr "Comparar"
 
 msgid "Whitespaces"
 msgstr "Espaços em Branco"
+
+msgid "&Compare"
+msgstr "&Comparar"
 
 msgid "&Ignore change"
 msgstr "&Ignorar mudança"

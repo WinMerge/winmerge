@@ -217,8 +217,8 @@ msgstr "Zmena mierky &vektorového obrázka"
 msgid "Compare Extracted &Text From Images"
 msgstr "Porovnať extrahovaný &text z obrázka"
 
-msgid "&Compare"
-msgstr "Porovnávať &netlačiteľné znaky"
+msgid "Co&mpare"
+msgstr "Po&rovnať"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1104,9 +1104,6 @@ msgstr " File: Rozšírenie rozbaľovača"
 msgid "Se&lect..."
 msgstr "Vy&brať..."
 
-msgid "Co&mpare"
-msgstr "Po&rovnať"
-
 msgid "Cancel"
 msgstr "Zrušiť"
 
@@ -1475,6 +1472,9 @@ msgstr "Porovnať"
 
 msgid "Whitespaces"
 msgstr "Netlačiteľné znaky"
+
+msgid "&Compare"
+msgstr "Porovnávať &netlačiteľné znaky"
 
 msgid "&Ignore change"
 msgstr "&Ignorovať zmeny"

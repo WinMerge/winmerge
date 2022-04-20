@@ -246,9 +246,8 @@ msgstr "&Vektorbild-Skalierung"
 msgid "Compare Extracted &Text From Images"
 msgstr "Extrahierten &Text aus den Bildern vergleichen"
 
-#, c-format
-msgid "&Compare"
-msgstr "&Vergleichen"
+msgid "Co&mpare"
+msgstr "Vergleichen"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1357,9 +1356,6 @@ msgstr " Datei: Entpacker-Plugin"
 msgid "Se&lect..."
 msgstr "Auswählen..."
 
-msgid "Co&mpare"
-msgstr "Vergleichen"
-
 #, c-format
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -1818,6 +1814,10 @@ msgstr "Vergleichen"
 #, c-format
 msgid "Whitespaces"
 msgstr "Leerzeichen"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Vergleichen"
 
 #, c-format
 msgid "&Ignore change"

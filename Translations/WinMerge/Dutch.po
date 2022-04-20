@@ -217,7 +217,7 @@ msgstr "Vectorafbeeldingsschaling"
 msgid "Compare Extracted &Text From Images"
 msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
-msgid "&Compare"
+msgid "Co&mpare"
 msgstr "Vergelijken"
 
 msgid "&Screenshots"
@@ -1104,9 +1104,6 @@ msgstr "Bestand: uitpak-plugin"
 msgid "Se&lect..."
 msgstr "Selecteren..."
 
-msgid "Co&mpare"
-msgstr "Vergelijken"
-
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -1480,6 +1477,9 @@ msgstr "Vergelijken"
 
 msgid "Whitespaces"
 msgstr "Witruimtes"
+
+msgid "&Compare"
+msgstr "Vergelijken"
 
 msgid "&Ignore change"
 msgstr "Wijziging negeren"

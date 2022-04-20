@@ -243,9 +243,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-#, c-format
-msgid "&Compare"
-msgstr "&Usporedi"
+msgid "Co&mpare"
+msgstr ""
 
 msgid "&Screenshots"
 msgstr ""
@@ -1353,9 +1352,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-msgid "Co&mpare"
-msgstr ""
-
 #, c-format
 msgid "Cancel"
 msgstr "Odustajem"
@@ -1814,6 +1810,10 @@ msgstr "Usporedba"
 #, c-format
 msgid "Whitespaces"
 msgstr "Skriveni znaci i razmaci"
+
+#, c-format
+msgid "&Compare"
+msgstr "&Usporedi"
 
 #, c-format
 msgid "&Ignore change"

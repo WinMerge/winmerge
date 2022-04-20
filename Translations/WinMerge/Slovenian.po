@@ -217,8 +217,8 @@ msgstr "Prilagoditev &vektorskih slik"
 msgid "Compare Extracted &Text From Images"
 msgstr "Primerjaj razširjeno &besedilo s slike"
 
-msgid "&Compare"
-msgstr "Primer&jaj"
+msgid "Co&mpare"
+msgstr "Pri&merjaj"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1104,9 +1104,6 @@ msgstr " Datoteka: Vtičnik razpakovalca"
 msgid "Se&lect..."
 msgstr "Iz&beri..."
 
-msgid "Co&mpare"
-msgstr "Pri&merjaj"
-
 msgid "Cancel"
 msgstr "Prekliči"
 
@@ -1475,6 +1472,9 @@ msgstr "Primerjaj"
 
 msgid "Whitespaces"
 msgstr "Prazen znak"
+
+msgid "&Compare"
+msgstr "Primer&jaj"
 
 msgid "&Ignore change"
 msgstr "&Prezri spremembe"

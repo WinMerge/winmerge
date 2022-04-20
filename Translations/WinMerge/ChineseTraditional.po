@@ -245,9 +245,8 @@ msgstr "向量圖縮放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "比較從圖片中擷取的文字 (&T)"
 
-#, c-format
-msgid "&Compare"
-msgstr "比對空白處 (&W)"
+msgid "Co&mpare"
+msgstr "比較 (&M)"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1360,9 +1359,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr "選擇... (&L)"
 
-msgid "Co&mpare"
-msgstr "比較 (&M)"
-
 #, c-format
 msgid "Cancel"
 msgstr "取消"
@@ -1823,6 +1819,10 @@ msgstr "比較"
 #, c-format
 msgid "Whitespaces"
 msgstr "空白處"
+
+#, c-format
+msgid "&Compare"
+msgstr "比對空白處 (&W)"
 
 #, c-format
 msgid "&Ignore change"

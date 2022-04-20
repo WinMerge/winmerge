@@ -244,9 +244,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-#, c-format
-msgid "&Compare"
-msgstr "Враховувати &пропуски"
+msgid "Co&mpare"
+msgstr ""
 
 msgid "&Screenshots"
 msgstr ""
@@ -1354,9 +1353,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-msgid "Co&mpare"
-msgstr ""
-
 #, c-format
 msgid "Cancel"
 msgstr "Скасувати"
@@ -1815,6 +1811,10 @@ msgstr "Порівняння"
 #, c-format
 msgid "Whitespaces"
 msgstr "Пропуски"
+
+#, c-format
+msgid "&Compare"
+msgstr "Враховувати &пропуски"
 
 #, c-format
 msgid "&Ignore change"

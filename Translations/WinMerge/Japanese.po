@@ -216,8 +216,8 @@ msgstr "ベクター画像スケーリング(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
-msgid "&Compare"
-msgstr "比較する(&C)"
+msgid "Co&mpare"
+msgstr "比較(&M)"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1103,9 +1103,6 @@ msgstr " ファイル: 展開プラグイン"
 msgid "Se&lect..."
 msgstr "選択(&L)..."
 
-msgid "Co&mpare"
-msgstr "比較(&M)"
-
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -1478,6 +1475,9 @@ msgstr "比較"
 
 msgid "Whitespaces"
 msgstr "空白"
+
+msgid "&Compare"
+msgstr "比較する(&C)"
 
 msgid "&Ignore change"
 msgstr "変更を無視(&I)"

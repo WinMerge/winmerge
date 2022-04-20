@@ -218,8 +218,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "&Compare"
-msgstr "م&قارنة"
+msgid "Co&mpare"
+msgstr "مقارنة"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1107,9 +1107,6 @@ msgstr " ملف: إضافة فك الحزمة"
 msgid "Se&lect..."
 msgstr "تحديد..."
 
-msgid "Co&mpare"
-msgstr "مقارنة"
-
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -1478,6 +1475,9 @@ msgstr "مقارنة"
 
 msgid "Whitespaces"
 msgstr "مساحة بيضاء (خالية)"
+
+msgid "&Compare"
+msgstr "م&قارنة"
 
 msgid "&Ignore change"
 msgstr "تجاهل الت&غييرات"

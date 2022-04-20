@@ -216,8 +216,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "&Compare"
-msgstr "S&ammenlign"
+msgid "Co&mpare"
+msgstr ""
 
 msgid "&Screenshots"
 msgstr ""
@@ -1103,9 +1103,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr ""
 
-msgid "Co&mpare"
-msgstr ""
-
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -1476,6 +1473,9 @@ msgstr "Sammenlign"
 
 msgid "Whitespaces"
 msgstr "Blanktegn"
+
+msgid "&Compare"
+msgstr "S&ammenlign"
 
 msgid "&Ignore change"
 msgstr "Ignorer e&ndringer"

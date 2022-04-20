@@ -1108,7 +1108,7 @@ void CMainFrame::OnOptions()
 		theApp.SetupTempPath();
 
 		// Set new filterpath
-		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+		const String& filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 		theApp.GetGlobalFileFilter()->SetUserFilterPath(filterPath);
 
 		CCrystalTextView::RENDERING_MODE nRenderingMode = static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));

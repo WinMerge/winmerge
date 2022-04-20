@@ -218,7 +218,7 @@ msgstr "Skalowanie obrazu wektorowego"
 msgid "Compare Extracted &Text From Images"
 msgstr "Porównaj wyodrębniony tekst z obrazu"
 
-msgid "&Compare"
+msgid "Co&mpare"
 msgstr "Porównaj"
 
 msgid "&Screenshots"
@@ -1105,9 +1105,6 @@ msgstr " Plik: wtyczka rozpakowująca"
 msgid "Se&lect..."
 msgstr "Wybierz..."
 
-msgid "Co&mpare"
-msgstr "Porównaj"
-
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -1476,6 +1473,9 @@ msgstr "Porównaj"
 
 msgid "Whitespaces"
 msgstr "Białe znaki"
+
+msgid "&Compare"
+msgstr "Porównaj"
 
 msgid "&Ignore change"
 msgstr "Ignoruj zmiany"

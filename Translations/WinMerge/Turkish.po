@@ -217,8 +217,8 @@ msgstr "&Vektör görsel ölçekleme"
 msgid "Compare Extracted &Text From Images"
 msgstr "Görsellerden &ayıklanan metni karşılaştır"
 
-msgid "&Compare"
-msgstr "&Karşılaştırılsın"
+msgid "Co&mpare"
+msgstr "&Karşılaştır"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1104,9 +1104,6 @@ msgstr " Dosya: Ayıklayıcı eklentisi"
 msgid "Se&lect..."
 msgstr "&Seçin..."
 
-msgid "Co&mpare"
-msgstr "&Karşılaştır"
-
 msgid "Cancel"
 msgstr "İptal"
 
@@ -1480,6 +1477,9 @@ msgstr "Karşılaştırma"
 
 msgid "Whitespaces"
 msgstr "Beyaz boşluklar"
+
+msgid "&Compare"
+msgstr "&Karşılaştırılsın"
 
 msgid "&Ignore change"
 msgstr "&Değişiklik yok sayılsın"

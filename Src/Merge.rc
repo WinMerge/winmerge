@@ -223,7 +223,7 @@ IDR_POPUP_WEBPAGEDIFFVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        POPUP "&Compare"
+        POPUP "Co&mpare"
         BEGIN
             MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
             MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
@@ -2844,6 +2844,10 @@ END
 IDD_PROPPAGE_COMPARE_WEBPAGE AFX_DIALOG_LAYOUT
 BEGIN
     0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,

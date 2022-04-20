@@ -217,8 +217,8 @@ msgstr "&Vektorinių vaizdų mastelio keitimas"
 msgid "Compare Extracted &Text From Images"
 msgstr "Lyginti iš paveikslėlių ištrauktą &tekstą"
 
-msgid "&Compare"
-msgstr "&Lyginti"
+msgid "Co&mpare"
+msgstr "Ly&ginti"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1104,9 +1104,6 @@ msgstr " Failams: Išpakuotojas"
 msgid "Se&lect..."
 msgstr "Pa&rinkti..."
 
-msgid "Co&mpare"
-msgstr "Ly&ginti"
-
 msgid "Cancel"
 msgstr "Atsisakyti"
 
@@ -1475,6 +1472,9 @@ msgstr "Lyginimo"
 
 msgid "Whitespaces"
 msgstr "Tarpai"
+
+msgid "&Compare"
+msgstr "&Lyginti"
 
 msgid "&Ignore change"
 msgstr "&Ignoruoti pokyčius"

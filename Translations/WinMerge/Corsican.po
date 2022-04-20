@@ -219,7 +219,7 @@ msgstr "Messa à a scala di a fiura &vettoriale"
 msgid "Compare Extracted &Text From Images"
 msgstr "Paragunà u &testu estrattu da e fiure"
 
-msgid "&Compare"
+msgid "Co&mpare"
 msgstr "&Paragunà"
 
 msgid "&Screenshots"
@@ -1106,9 +1106,6 @@ msgstr " Schedariu : Modulu d’estensione di u spacchittadore"
 msgid "Se&lect..."
 msgstr "Sele&zziunà…"
 
-msgid "Co&mpare"
-msgstr "&Paragunà"
-
 msgid "Cancel"
 msgstr "Abbandunà"
 
@@ -1479,6 +1476,9 @@ msgstr "Paragunà"
 
 msgid "Whitespaces"
 msgstr "Spazii bianchi"
+
+msgid "&Compare"
+msgstr "&Paragunà"
 
 msgid "&Ignore change"
 msgstr "&Ignurà i cambiamenti"

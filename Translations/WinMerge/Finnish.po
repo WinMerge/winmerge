@@ -244,9 +244,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-#, c-format
-msgid "&Compare"
-msgstr "Vertaa"
+msgid "Co&mpare"
+msgstr "Ver&taa"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1356,9 +1355,6 @@ msgstr " Tiedosto: Purkaja-lisäosa"
 msgid "Se&lect..."
 msgstr "Va&litse..."
 
-msgid "Co&mpare"
-msgstr "Ver&taa"
-
 #, c-format
 msgid "Cancel"
 msgstr "Peruuta"
@@ -1817,6 +1813,10 @@ msgstr "Vertaa"
 #, c-format
 msgid "Whitespaces"
 msgstr "Välilyönti"
+
+#, c-format
+msgid "&Compare"
+msgstr "Vertaa"
 
 #, c-format
 msgid "&Ignore change"

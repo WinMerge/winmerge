@@ -243,9 +243,8 @@ msgstr "Escala de la imatge &vectorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Compara el &text extret de les imatges"
 
-#, c-format
-msgid "&Compare"
-msgstr "Compara els &espais"
+msgid "Co&mpare"
+msgstr "Co&mpara"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1353,9 +1352,6 @@ msgstr " Fitxer: Connector de desempaquetament"
 msgid "Se&lect..."
 msgstr "Selecciona..."
 
-msgid "Co&mpare"
-msgstr "Co&mpara"
-
 #, c-format
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -1814,6 +1810,10 @@ msgstr "Comparació"
 #, c-format
 msgid "Whitespaces"
 msgstr "Espais en blanc"
+
+#, c-format
+msgid "&Compare"
+msgstr "Compara els &espais"
 
 #, c-format
 msgid "&Ignore change"

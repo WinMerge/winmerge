@@ -218,8 +218,8 @@ msgstr "Escala da imagem &vetorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar &texto extraído de imagens"
 
-msgid "&Compare"
-msgstr "&Comparar"
+msgid "Co&mpare"
+msgstr "Co&mparar"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1105,9 +1105,6 @@ msgstr " Ficheiro: Plugin descompactador"
 msgid "Se&lect..."
 msgstr "Se&lecionar..."
 
-msgid "Co&mpare"
-msgstr "Co&mparar"
-
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1476,6 +1473,9 @@ msgstr "Comparar"
 
 msgid "Whitespaces"
 msgstr "Espaço"
+
+msgid "&Compare"
+msgstr "&Comparar"
 
 msgid "&Ignore change"
 msgstr "&Ignorar alteração"

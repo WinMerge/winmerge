@@ -214,7 +214,7 @@ msgstr "Мащабиране на &векторно изображение"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "&Compare"
+msgid "Co&mpare"
 msgstr "&Сравняване"
 
 msgid "&Screenshots"
@@ -1101,9 +1101,6 @@ msgstr " Файл: добавка разопаковчик"
 msgid "Se&lect..."
 msgstr "Изби&ране…"
 
-msgid "Co&mpare"
-msgstr "&Сравняване"
-
 msgid "Cancel"
 msgstr "Отменяне"
 
@@ -1474,6 +1471,9 @@ msgstr "Сравняване"
 
 msgid "Whitespaces"
 msgstr "Интервали"
+
+msgid "&Compare"
+msgstr "&Сравняване"
 
 msgid "&Ignore change"
 msgstr "&Пренебрегване на променените"

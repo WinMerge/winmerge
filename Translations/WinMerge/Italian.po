@@ -215,8 +215,8 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "&Compare"
-msgstr "&Confronta"
+msgid "Co&mpare"
+msgstr "Co&nfronta"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1102,9 +1102,6 @@ msgstr " File: plugin Decompressore"
 msgid "Se&lect..."
 msgstr "Se&leziona..."
 
-msgid "Co&mpare"
-msgstr "Co&nfronta"
-
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -1473,6 +1470,9 @@ msgstr "Confronta"
 
 msgid "Whitespaces"
 msgstr "Spazi"
+
+msgid "&Compare"
+msgstr "&Confronta"
 
 msgid "&Ignore change"
 msgstr "&Ignora cambiamento"

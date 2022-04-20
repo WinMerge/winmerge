@@ -218,8 +218,8 @@ msgstr "Escalado de imagen &vectorial"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
-msgid "&Compare"
-msgstr "&Comparar"
+msgid "Co&mpare"
+msgstr "Co&mparar"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1105,9 +1105,6 @@ msgstr ""
 msgid "Se&lect..."
 msgstr "Se&leccionar..."
 
-msgid "Co&mpare"
-msgstr "Co&mparar"
-
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -1476,6 +1473,9 @@ msgstr "Comparar"
 
 msgid "Whitespaces"
 msgstr "Espacios en blanco"
+
+msgid "&Compare"
+msgstr "&Comparar"
 
 msgid "&Ignore change"
 msgstr "&Ignorar cambios"

@@ -219,8 +219,8 @@ msgstr "&Масштаб изображений"
 msgid "Compare Extracted &Text From Images"
 msgstr "Сравнить извлеченный из изображения текст"
 
-msgid "&Compare"
-msgstr "Учитывать &невидимые"
+msgid "Co&mpare"
+msgstr "Сравнить"
 
 msgid "&Screenshots"
 msgstr ""
@@ -1106,9 +1106,6 @@ msgstr " Файл: плагин распаковщика"
 msgid "Se&lect..."
 msgstr "Выбрать..."
 
-msgid "Co&mpare"
-msgstr "Сравнить"
-
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -1477,6 +1474,9 @@ msgstr "Сравнение"
 
 msgid "Whitespaces"
 msgstr "Невидимые"
+
+msgid "&Compare"
+msgstr "Учитывать &невидимые"
 
 msgid "&Ignore change"
 msgstr "Игнорировать измененные невидимые"
