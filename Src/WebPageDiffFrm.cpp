@@ -114,7 +114,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 //	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 //	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
-	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
+	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Status bar
@@ -673,9 +673,12 @@ void CWebPageDiffFrame::OnOpenWithUnpacker()
 	}
 }
 
-void  CWebPageDiffFrame::OnWindowChangePane() 
+void  CWebPageDiffFrame::OnWindowChangePane(UINT nID) 
 {
-	m_pWebDiffWindow->SetActivePane((m_pWebDiffWindow->GetActivePane() + 1) % m_pWebDiffWindow->GetPaneCount());
+	int npanes = m_pWebDiffWindow->GetPaneCount();
+	int pane = m_pWebDiffWindow->GetActivePane();
+	pane = (nID == ID_NEXT_PANE) ? ((pane + 1) % npanes) : ((pane + npanes - 1) % npanes);
+	m_pWebDiffWindow->SetActivePane(pane);
 }
 
 /**
