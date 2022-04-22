@@ -167,7 +167,7 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
-	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnWindowChangePane)
+	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Status bar
@@ -1014,9 +1014,12 @@ void CImgMergeFrame::OnOpenWithUnpacker()
 	}
 }
 
-void  CImgMergeFrame::OnWindowChangePane() 
+void  CImgMergeFrame::OnWindowChangePane(UINT nID) 
 {
-	m_pImgMergeWindow->SetActivePane((m_pImgMergeWindow->GetActivePane() + 1) % m_pImgMergeWindow->GetPaneCount());
+	int npanes = m_pImgMergeWindow->GetPaneCount();
+	int pane = m_pImgMergeWindow->GetActivePane();
+	pane = (nID == ID_NEXT_PANE) ? ((pane + 1) % npanes) : ((pane + npanes - 1) % npanes);
+	m_pImgMergeWindow->SetActivePane(pane);
 }
 
 /**
