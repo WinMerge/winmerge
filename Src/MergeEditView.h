@@ -286,7 +286,7 @@ protected:
 	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
 	afx_msg void OnR2LNext();
 	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
-	afx_msg void OnChangePane();
+	afx_msg void OnChangePane(UINT nID);
 	afx_msg void OnWMGoto();
 	afx_msg void OnGotoMovedLineLM();
 	afx_msg void OnUpdateGotoMovedLineLM(CCmdUI* pCmdUI);

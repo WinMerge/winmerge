@@ -209,8 +209,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
 	// [Window] menu
-	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
-	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
+	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnChangePane)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_SPLIT, OnUpdateWindowSplit)
 	// [Help] menu
@@ -2938,7 +2937,7 @@ void CMergeEditView::OnUpdateR2LNext(CCmdUI* pCmdUI)
  * active pane but we could be smarter too? Maybe update cursor
  * only when it is not visible in new pane?
  */
-void CMergeEditView::OnChangePane()
+void CMergeEditView::OnChangePane(UINT nID)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, false);
 	CMergeEditView *pWnd = static_cast<CMergeEditView*>(pSplitterWnd->GetActivePane());
@@ -2947,6 +2946,9 @@ void CMergeEditView::OnChangePane()
 	CMergeEditView *pNextActiveView = nullptr;
 	std::vector<CMergeEditView *> list = pDoc->GetViewList();
 	list.insert(list.end(), list.begin(), list.end());
+	if (nID == ID_PREV_PANE)
+		std::reverse(list.begin(), list.end());
+
 	for (auto& pView : list)
 	{
 		if (bFound && pView->m_bDetailView == pWnd->m_bDetailView)
