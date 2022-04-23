@@ -30,7 +30,7 @@
     <is-automatic value="false" />
     <unpacked-file-extension value=".html" />
     <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify HTML;GenerateEditorScript" />
-    <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha " />
+    <arguments value="--tidy-mark no -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha " />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0</command>
     </unpack-file>
