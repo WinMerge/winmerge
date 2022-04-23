@@ -6,6 +6,7 @@
 #pragma once
 
 #include "TrDialogs.h"
+#include "SuperComboBox.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CSizeDlgDlg dialog
@@ -14,13 +15,17 @@ class CSizeDlg : public CTrDialog
 {
 public:
 // Construction
-	CSizeDlg(const SIZE& size, CWnd* pParent = nullptr);
+	CSizeDlg(bool fitToWindow, const SIZE& size, double zoom, const String& userAgent, CWnd* pParent = nullptr);
 	~CSizeDlg();
 
 // Dialog Data
 	//{{AFX_DATA(CSizeDlg)
 	enum { IDD = IDD_WEB_SIZE };
+	CSuperComboBox m_ctlUserAgent;
+	bool m_fitToWindow;
 	SIZE m_size;
+	double m_zoom;
+	String m_userAgent;
 	
 	//}}AFX_DATA
 

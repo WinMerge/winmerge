@@ -543,6 +543,7 @@ void CWebPageDiffFrame::LoadOptions()
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
 	m_pWebDiffWindow->SetSize(size);
 	m_pWebDiffWindow->SetFitToWindow(GetOptionsMgr()->GetBool(OPT_CMP_WEB_FIT_TO_WINDOW));
+	m_pWebDiffWindow->SetUserAgent(GetOptionsMgr()->GetString(OPT_CMP_WEB_USER_AGENT).c_str());
 }
 
 void CWebPageDiffFrame::SaveOptions()
@@ -554,6 +555,7 @@ void CWebPageDiffFrame::SaveOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_HEIGHT, size.cy);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_FIT_TO_WINDOW, m_pWebDiffWindow->GetFitToWindow());
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_ZOOM, static_cast<int>(m_pWebDiffWindow->GetZoom() * 1000));
+	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_USER_AGENT, m_pWebDiffWindow->GetUserAgent());
 }
 
 /**
@@ -1255,11 +1257,17 @@ void CWebPageDiffFrame::OnWebSize(UINT nID)
 
 void CWebPageDiffFrame::OnWebSizeCustomize()
 {
-	CSizeDlg dlg(m_pWebDiffWindow->GetSize());
+	CSizeDlg dlg(
+		m_pWebDiffWindow->GetFitToWindow(),
+		m_pWebDiffWindow->GetSize(),
+		m_pWebDiffWindow->GetZoom() * 100.0,
+		m_pWebDiffWindow->GetUserAgent());
 	if (dlg.DoModal() != IDOK)
 		return;
 	m_pWebDiffWindow->SetSize(dlg.m_size);
-	m_pWebDiffWindow->SetFitToWindow(false);
+	m_pWebDiffWindow->SetFitToWindow(dlg.m_fitToWindow);
+	m_pWebDiffWindow->SetZoom(dlg.m_zoom / 100.0);
+	m_pWebDiffWindow->SetUserAgent(dlg.m_userAgent.c_str());
 	SaveOptions();
 }
 

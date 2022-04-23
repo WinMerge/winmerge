@@ -84,6 +84,8 @@ struct IWebDiffWindow
 	virtual void SetDiffColorAlpha(double diffColorAlpha) = 0;
 	virtual double GetZoom() const = 0;
 	virtual void SetZoom(double zoom) = 0;
+	virtual const wchar_t* GetUserAgent() const = 0;
+	virtual void SetUserAgent(const wchar_t* userAgent) = 0;
 	virtual bool GetFitToWindow() const = 0;
 	virtual void SetFitToWindow(bool fitToWindow) = 0;
 	virtual SIZE GetSize() const = 0;

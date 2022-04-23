@@ -3,7 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDB_TOOLBAR_ENABLED8BIT         100  // = IDR_MAINFRAME
+#define IDB_TOOLBAR_ENABLED8BIT         100
 #define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
@@ -193,7 +193,6 @@
 #define IDI_TREE_STATE_COLLAPSED        535
 #define IDI_TREE_STATE_EXPANDED         536
 #define IDI_FILE                        537
-// CONTROLS
 #define IDC_PATH0_BUTTON                1001
 #define IDC_PATH1_BUTTON                1002
 #define IDC_PATH2_BUTTON                1003
@@ -601,9 +600,12 @@
 #define IDC_PROPS_DEL                   1621
 #define IDC_PROPS_DELALL                1622
 #define IDC_PROPS_LISTVIEW              1623
-#define IDC_WIDTH                       1624
-#define IDC_HEIGHT                      1625
-// CrystalEdit dialog controls
+#define IDC_FITTOWINDOW                 1624
+#define IDC_WIDTH                       1625
+#define IDC_HEIGHT                      1626
+#define IDC_ZOOM                        1627
+#define IDC_USERAGENT                   1628
+#define IDC_CHECK1                      1629
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -621,7 +623,6 @@
 #define IDC_EDIT_MARKER_BGCOLORIDX      8821
 #define IDC_EDIT_MARKER_NEW             8822
 #define IDC_EDIT_MARKER_DELETE          8823
-// COMMANDS
 #define ID_DIFF_OPTIONS_WHITESPACE_COMPARE 16423
 #define ID_DIFF_OPTIONS_WHITESPACE_IGNORE 16424
 #define ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL 16425
@@ -861,7 +862,7 @@
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33148
 #define ID_VIEW_CHANGESCHEME            33151
 #define ID_COLORSCHEME_FIRST            33152
-#define IDS_COLORSCHEME_PLAIN           33152 // = ID_COLORSCHEME_FIRST
+#define IDS_COLORSCHEME_PLAIN           33152
 #define IDS_COLORSCHEME_ASP             33153
 #define IDS_COLORSCHEME_AUTOIT          33154
 #define IDS_COLORSCHEME_BASIC           33155
@@ -903,7 +904,7 @@
 #define IDS_COLORSCHEME_VERILOG         33191
 #define IDS_COLORSCHEME_VHDL            33192
 #define IDS_COLORSCHEME_XML             33193
-#define ID_COLORSCHEME_LAST             33193 // = IDS_COLORSCHEME_XML
+#define ID_COLORSCHEME_LAST             33193
 #define ID_TOOLBAR_NONE                 33194
 #define ID_TOOLBAR_SMALL                33195
 #define ID_TOOLBAR_BIG                  33196
@@ -1049,20 +1050,17 @@
 #define ID_LASTFILE                     34185
 #define ID_USE_FIRST_LINE_AS_HEADERS    34190
 #define ID_AUTO_FIT_ALL_COLUMNS         34191
-// Plugin menus
 #define ID_UNPACKERS_FIRST              35001
 #define ID_UNPACKERS_LAST               35200
 #define ID_PREDIFFERS_FIRST             35201
 #define ID_PREDIFFERS_LAST              35300
 #define ID_SCRIPT_FIRST                 35301
 #define ID_SCRIPT_LAST                  35400
-// Recent files or folders
 #define ID_FILE_PROJECT_MRU_FIRST       35401
 #define ID_FILE_PROJECT_MRU_LAST        35450
 #define ID_NO_MRU                       35451
 #define ID_MRU_FIRST                    35452
 #define ID_MRU_LAST                     35500
-// String resources
 #define IDS_SPLASH_GPLTEXT              38977
 #define IDS_MESSAGEBOX_OK               39001
 #define IDS_MESSAGEBOX_CANCEL           39002
@@ -1697,7 +1695,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        258
 #define _APS_NEXT_COMMAND_VALUE         34194
-#define _APS_NEXT_CONTROL_VALUE         1626
+#define _APS_NEXT_CONTROL_VALUE         1630
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif
