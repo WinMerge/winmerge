@@ -182,20 +182,58 @@ static String MakeShortSize(int64_t size)
 /* @{ */
 /**
  * @brief Format Filename column data.
+ * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to DIFFITEM.
  * @return String to show in the column.
  */
 template<class Type>
-static Type ColFileNameGet(const CDiffContext *, const void *p, int) //sfilename
+static Type ColFileNameGet(const CDiffContext * pCtxt, const void *p, int) //sfilename
 {
-	const boost::flyweight<String> &lfilename = static_cast<const DIFFITEM*>(p)->diffFileInfo[0].filename;
-	const boost::flyweight<String> &rfilename = static_cast<const DIFFITEM*>(p)->diffFileInfo[1].filename;
-	if (lfilename.get().empty())
-		return rfilename;
-	else if (rfilename.get().empty() || lfilename == rfilename)
-		return lfilename;
+	assert(pCtxt != nullptr && p != nullptr);
+
+	int nDirs = pCtxt->GetCompareDirs();
+
+	const DIFFITEM* pDiffItem = static_cast<const DIFFITEM*>(p);
+	const DiffFileInfo* pDiffFileInfo = pDiffItem->diffFileInfo;
+
+	bool bExist[3] = {};
+	for (int i = 0; i < nDirs; i++)
+		bExist[i] = (pDiffItem->diffcode.exists(i) && (!pDiffFileInfo[i].filename.get().empty()));
+
+	bool bIsSameName = true;
+	int index = -1;
+	for (int i = 0; i < nDirs; i++)
+	{
+		if (bExist[i])
+		{
+			if (index == -1)
+				index = i;
+			else if (pDiffFileInfo[i].filename != pDiffFileInfo[index].filename)
+			{
+				bIsSameName = false;
+				break;
+			}
+		}
+	}
+
+	if (bIsSameName)
+	{
+		if (index == -1)
+			index = 0;
+		return pDiffFileInfo[index].filename;
+	}
 	else
-		return static_cast<Type>(lfilename.get() + _T("|") + rfilename.get());
+	{
+		if (nDirs < 3)
+			return static_cast<Type>(pDiffFileInfo[0].filename.get() + _T("|") + pDiffFileInfo[1].filename.get());
+		else
+		{
+			String none = _("<None>");
+			return static_cast<Type>((bExist[0] ? pDiffFileInfo[0].filename.get() : none) + _T("|")
+				+ (bExist[1] ? pDiffFileInfo[1].filename.get() : none) + _T("|")
+				+ (bExist[2] ? pDiffFileInfo[2].filename.get() : none));
+		}
+	}
 }
 
 /**
