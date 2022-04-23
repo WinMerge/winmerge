@@ -165,7 +165,7 @@ String CMergeFrameCommon::GetTitleString(const PathContext& paths, const String 
 		flags += _T("P");
 	if (hasTrivialDiffs)
 		flags += _T("F");
-	return sTitle + (flags.empty() ? _T("") : (_T(" (") + flags + _T(")")));
+	return (flags.empty() ? _T("") : (_T("(") + flags + _T(") "))) + sTitle;
 }
 
 String CMergeFrameCommon::GetTooltipString(const PathContext& paths, const String desc[],
