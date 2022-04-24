@@ -12,10 +12,12 @@
 #include "IMergeDoc.h"
 #include "WinWebDiffLib.h"
 #include "LocationBar.h"
+#include "WebPageDiffBar.h"
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
 #include "FileTransform.h"
 #include "TempFile.h"
+#include "SuperComboBox.h"
 #include <memory>
 
 class CDirDoc;
@@ -101,10 +103,12 @@ private:
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool MergeModeKeyDown(MSG* pMsg);
+	void UpdateWebPageDiffBar();
 	//static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 
 // Generated message map functions
 private:
+	CWebPageDiffBar m_wndWebPageDiffBar;
 	CLocationBar m_wndLocationBar;
 	IWebDiffWindow *m_pWebDiffWindow;
 	//IWebToolWindow *m_pWebToolWindow;
@@ -121,6 +125,7 @@ private:
 	std::vector<std::shared_ptr<TempFile>> m_tempFiles;
 	std::vector<std::shared_ptr<TempFolder>> m_tempFolders;
 	std::function<void()> m_callbackOnOpenCompleted;
+	bool m_bInUpdateWebPageDiffBar;
 
 	//{{AFX_MSG(CWebPageDiffFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -173,7 +178,6 @@ private:
 	afx_msg void OnWebFitToWindow();
 	afx_msg void OnUpdateWebFitToWindow(CCmdUI* pCmdUI);
 	afx_msg void OnWebSize(UINT nID);
-	afx_msg void OnWebSizeCustomize();
 	afx_msg void OnWebCompareScreenshots(UINT nID);
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareResourceTrees();
@@ -182,6 +186,14 @@ private:
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();
+	afx_msg void OnBnClickedFitToWindow();
+	afx_msg void OnBnClickedCompare();
+	afx_msg void OnEnChangeWidth();
+	afx_msg void OnEnChangeHeight();
+	afx_msg void OnEnChangeZoom();
+	afx_msg void OnEnChangeUserAgent();
+	afx_msg void OnKillFocusBarControls();
+	afx_msg void OnDropDownCompare(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

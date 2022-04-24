@@ -263,10 +263,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -307,7 +304,7 @@ msgstr "二進制 (&B)"
 msgid "&Image"
 msgstr "圖片 (&I)"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -2495,7 +2492,7 @@ msgstr "在資料夾比較中啟用圖片比較 (&E)"
 msgid "OCR result:"
 msgstr "OCR 結果："
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -4433,7 +4430,7 @@ msgstr "關閉其他分頁 (&O)"
 msgid "Enable &Auto Max Width"
 msgstr "開啟自動最大寬度 (&A)"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

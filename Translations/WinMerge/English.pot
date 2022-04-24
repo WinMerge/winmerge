@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-04-20 22:31+0000\n"
+"POT-Creation-Date: 2022-04-24 12:27+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -229,10 +229,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -268,7 +265,7 @@ msgstr ""
 msgid "&Image"
 msgstr ""
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -1994,7 +1991,7 @@ msgstr ""
 msgid "OCR result:"
 msgstr ""
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -3353,7 +3350,7 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

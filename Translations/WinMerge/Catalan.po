@@ -261,10 +261,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -305,7 +302,7 @@ msgstr "&Binari"
 msgid "&Image"
 msgstr "&Imatge"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 #, c-format
@@ -2485,7 +2482,7 @@ msgstr "Habilita la comparació d'imatge en la comparació de directoris"
 msgid "OCR result:"
 msgstr "Resultat OCR:"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -4434,7 +4431,7 @@ msgstr "Tanca les altres pestanyes"
 msgid "Enable &Auto Max Width"
 msgstr "Activa l'amplada màxima automàtica"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

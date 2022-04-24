@@ -232,10 +232,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -271,7 +268,7 @@ msgstr "&Двоични файлове"
 msgid "&Image"
 msgstr "&Изображения"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -2017,7 +2014,7 @@ msgstr "&Сравняване и на изображения при сравня
 msgid "OCR result:"
 msgstr "Резултат от OCR:"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -3761,7 +3758,7 @@ msgstr "Затваряне на д&ругите раздели"
 msgid "Enable &Auto Max Width"
 msgstr "Автоматична &максимална ширина"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

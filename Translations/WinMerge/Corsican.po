@@ -237,10 +237,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -276,7 +273,7 @@ msgstr "&Binariu"
 msgid "&Image"
 msgstr "&Fiura"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -2016,7 +2013,7 @@ msgstr "&Permette di paragunà e fiure in u paragone di cartulare"
 msgid "OCR result:"
 msgstr "Risultatu OCR :"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -3746,7 +3743,7 @@ msgstr "Chjode l’&altre unghjette"
 msgid "Enable &Auto Max Width"
 msgstr "&Attivà a larghezza massima autumatica"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

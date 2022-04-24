@@ -708,8 +708,8 @@
     <ClCompile Include="PropCompareWebPage.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SizeDlg.cpp">
-      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    <ClCompile Include="WebPageDiffBar.cpp">
+      <Filter>MFCGui\MDIChild\WebPageCompare\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1343,8 +1343,8 @@
     <ClInclude Include="PropCompareWebPage.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SizeDlg.h">
-      <Filter>MFCGui\Dialogs\Header Files</Filter>
+    <ClInclude Include="WebPageDiffBar.h">
+      <Filter>MFCGui\MDIChild\WebPageCompare\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

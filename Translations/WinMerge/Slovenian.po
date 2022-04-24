@@ -235,10 +235,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -274,7 +271,7 @@ msgstr "&Dvojiško"
 msgid "&Image"
 msgstr "S&lika"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -2012,7 +2009,7 @@ msgstr "Omogoči primerjavo &slik v primerjanju map"
 msgid "OCR result:"
 msgstr "Rezultat OCR:"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -3740,7 +3737,7 @@ msgstr "Zapri d&ruge zavihke"
 msgid "Enable &Auto Max Width"
 msgstr "Omogoči sa&modejno največjo širino"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

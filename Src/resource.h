@@ -24,6 +24,7 @@
 #define IDR_POPUP_SAVE                  120
 #define IDR_POPUP_IMG_CTXT              121
 #define IDR_POPUP_PROJECT_DIFF_OPTIONS  122
+#define IDR_POPUP_WEBPAGE_COMPARE       123
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
@@ -78,6 +79,7 @@
 #define IDD_EDIT_FIND                   282
 #define IDD_EDIT_MARKER                 283
 #define IDD_EDIT_REPLACE                284
+#define IDD_WEBPAGEDIFF_BAR             285
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -606,6 +608,7 @@
 #define IDC_ZOOM                        1627
 #define IDC_USERAGENT                   1628
 #define IDC_CHECK1                      1629
+#define IDC_COMPARE                     1630
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1023,7 +1026,6 @@
 #define ID_WEB_SIZE_1024x640            33753
 #define ID_WEB_SIZE_1280x800            33754
 #define ID_WEB_SIZE_1440x900            33755
-#define ID_WEB_SIZE_CUSTOMIZE           33756
 #define ID_WEB_COMPARE_SCREENSHOTS      33760
 #define ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS 33761
 #define ID_WEB_COMPARE_HTMLS            33762
@@ -1695,7 +1697,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        258
 #define _APS_NEXT_COMMAND_VALUE         34194
-#define _APS_NEXT_CONTROL_VALUE         1630
+#define _APS_NEXT_CONTROL_VALUE         1631
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

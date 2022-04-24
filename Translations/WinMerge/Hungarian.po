@@ -263,10 +263,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -307,7 +304,7 @@ msgstr "Bináris"
 msgid "&Image"
 msgstr "Kép"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 #, c-format
@@ -2487,7 +2484,7 @@ msgstr "Képösszehasonlítás mappák összehasonlításakor is"
 msgid "OCR result:"
 msgstr "Karakterfelismerő találatai:"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -4418,7 +4415,7 @@ msgstr "Többi tabulátor bezárása"
 msgid "Enable &Auto Max Width"
 msgstr "Auto oszlopszélesség be"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

@@ -235,10 +235,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -274,7 +271,7 @@ msgstr "&Binarinis"
 msgid "&Image"
 msgstr "Pave&ikslėlis"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -2000,7 +1997,7 @@ msgstr "Lyginti pav&eikslėlius lyginant katalogus"
 msgid "OCR result:"
 msgstr "Optinio ženklų atpažinimo (OCR) rezultatas:"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -3359,7 +3356,7 @@ msgstr "Užverti k&itas korteles"
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

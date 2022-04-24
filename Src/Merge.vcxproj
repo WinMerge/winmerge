@@ -935,7 +935,6 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="PropMessageBoxes.cpp" />
-    <ClCompile Include="SizeDlg.cpp" />
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1397,6 +1396,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="WebPageDiffBar.cpp" />
     <ClCompile Include="WebPageDiffFrm.cpp" />
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
@@ -1437,7 +1437,6 @@
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />
-    <ClInclude Include="SizeDlg.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />
@@ -1617,6 +1616,7 @@
     <ClInclude Include="TrDialogs.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
+    <ClInclude Include="WebPageDiffBar.h" />
     <ClInclude Include="WebPageDiffFrm.h" />
     <ClInclude Include="WildcardDropList.h" />
     <ClInclude Include="WindowsManagerDialog.h" />

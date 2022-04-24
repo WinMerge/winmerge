@@ -232,13 +232,12 @@ BEGIN
         END
         POPUP "&Size"
         BEGIN
-            MENUITEM "&Fit to Window",              ID_WEB_SIZE_FIT_TO_WINDOW
+            MENUITEM "Fit to Window",               ID_WEB_SIZE_FIT_TO_WINDOW
             MENUITEM "320x512",                     ID_WEB_SIZE_320x512
             MENUITEM "375x600",                     ID_WEB_SIZE_375x600
             MENUITEM "1024x640",                    ID_WEB_SIZE_1024x640
             MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
             MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
-            MENUITEM "&Customize...",               ID_WEB_SIZE_CUSTOMIZE
         END
         POPUP "Clear &Browsing Data"
         BEGIN
@@ -260,7 +259,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
-            MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -268,7 +267,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
-            MENUITEM "&Web Page",                   ID_FILE_NEW3_WEBPAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -354,7 +353,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
-            MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -362,7 +361,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
-            MENUITEM "&Web Page",                   ID_FILE_NEW3_WEBPAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -515,7 +514,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
-            MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -523,7 +522,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
-            MENUITEM "&Web Page",                   ID_FILE_NEW3_WEBPAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -574,7 +573,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-            MENUITEM "&Web Page",                   ID_MERGE_COMPARE_WEBPAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -844,7 +843,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-            MENUITEM "&Web Page",                   ID_MERGE_COMPARE_WEBPAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -1046,7 +1045,7 @@ BEGIN
         MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
-        MENUITEM "&Web Page",                   ID_FILE_NEW_WEBPAGE
+        MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
     END
 END
 
@@ -1058,7 +1057,7 @@ BEGIN
         MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
         MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
-        MENUITEM "&Web Page",                   ID_MERGE_COMPARE_WEBPAGE
+        MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
     END
 END
 
@@ -1124,6 +1123,16 @@ BEGIN
     END
 END
 
+IDR_POPUP_WEBPAGE_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+        MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+        MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+        MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2217,7 +2226,7 @@ END
 
 IDD_PROPPAGE_COMPARE_WEBPAGE DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Web Page"
+CAPTION "Webpage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "URL pattern to &include (Regular expression):",IDC_STATIC,7,6,269,10
@@ -2271,21 +2280,18 @@ BEGIN
     CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
 END
 
-IDD_WEB_SIZE DIALOGEX 0, 0, 171, 74
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Size / Zoom / User Agent"
+IDD_WEBPAGEDIFF_BAR DIALOGEX 0, 0, 714, 18
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    CONTROL         "&Fit to Window",IDC_FITTOWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,6,162,10
-    EDITTEXT        IDC_WIDTH,6,18,42,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    LTEXT           "x",IDC_STATIC,54,18,8,10
-    EDITTEXT        IDC_HEIGHT,66,18,42,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    EDITTEXT        IDC_ZOOM,114,18,42,12,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    LTEXT           "%",IDC_STATIC,156,18,8,10
-    LTEXT           "UA:",IDC_STATIC,6,36,16,10
-    CONTROL         "",IDC_USERAGENT,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,20,36,144,95
-    DEFPUSHBUTTON   "OK",IDOK,60,54,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,114,54,50,14
+    CONTROL         "Compare",IDC_COMPARE,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,2,72,14
+    CONTROL         "",IDC_FITTOWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,2,14,14
+    EDITTEXT        IDC_WIDTH,98,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    LTEXT           "x",-1,134,4,8,10
+    EDITTEXT        IDC_HEIGHT,140,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    LTEXT           "UA:",-1,214,4,16,10
+    EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
 END
 
 
@@ -2421,9 +2427,9 @@ BEGIN
     BEGIN
     END
 
-    IDD_WEB_SIZE, DIALOG
+    IDD_WEBPAGEDIFF_BAR, DIALOG
     BEGIN
-        BOTTOMMARGIN, 58
+        RIGHTMARGIN, 237
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -2950,6 +2956,11 @@ BEGIN
     0
 END
 
+IDD_WEBPAGEDIFF_BAR AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3075,7 +3086,7 @@ BEGIN
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE NC_("Options dialog|Categories", "Binary")
     IDS_OPTIONSPG_TABLECOMPARE "Table"
-    IDS_OPTIONSPG_WEBPAGECOMPARE "Web Page"
+    IDS_OPTIONSPG_WEBPAGECOMPARE "Webpage"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -3931,7 +3942,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_WEBPAGE_MENU        "We&b"
+    IDS_WEBPAGE_MENU        "We&bpage"
 END
 
 STRINGTABLE

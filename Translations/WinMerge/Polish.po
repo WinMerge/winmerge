@@ -236,10 +236,7 @@ msgstr ""
 msgid "&Size"
 msgstr ""
 
-msgid "&Fit to Window"
-msgstr ""
-
-msgid "&Customize..."
+msgid "Fit to Window"
 msgstr ""
 
 msgid "Clear &Browsing Data"
@@ -275,7 +272,7 @@ msgstr "&Binarny"
 msgid "&Image"
 msgstr "Obraz"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr ""
 
 msgid "New (&3 panes)"
@@ -2001,7 +1998,7 @@ msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 msgid "OCR result:"
 msgstr "Wynik OCR:"
 
-msgid "Web Page"
+msgid "Webpage"
 msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
@@ -3360,7 +3357,7 @@ msgstr "Zamknij inne karty"
 msgid "Enable &Auto Max Width"
 msgstr "Włącz automatyczną maksymalną szerokość"
 
-msgid "We&b"
+msgid "We&bpage"
 msgstr ""
 
 msgid "Frhed is not installed."

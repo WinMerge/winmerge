@@ -234,11 +234,8 @@ msgstr "リソースツリー(&R)"
 msgid "&Size"
 msgstr "サイズ(&S)"
 
-msgid "&Fit to Window"
-msgstr "ウインドウに合わせる(&F)"
-
-msgid "&Customize..."
-msgstr "カスタマイズ(&C)..."
+msgid "Fit to Window"
+msgstr "ウインドウに合わせる"
 
 msgid "Clear &Browsing Data"
 msgstr "閲覧データのクリア(&B)"
@@ -273,7 +270,7 @@ msgstr "バイナリ(&B)"
 msgid "&Image"
 msgstr "画像(&I)"
 
-msgid "&Web Page"
+msgid "&Webpage"
 msgstr "&Web ページ"
 
 msgid "New (&3 panes)"
@@ -2015,8 +2012,8 @@ msgstr "フォルダー比較で画像比較を有効にする(&E)"
 msgid "OCR result:"
 msgstr "OCRの結果:"
 
-msgid "Web Page"
-msgstr "ウェブページ"
+msgid "Webpage"
+msgstr "Webページ"
 
 msgid "URL pattern to &include (Regular expression):"
 msgstr "URL パターン (正規表現) (&I):"
@@ -3741,8 +3738,8 @@ msgstr "他のタブをすべて閉じる(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
-msgid "We&b"
-msgstr "ウェブ(&B)"
+msgid "We&bpage"
+msgstr "We&bページ"
 
 msgid "Frhed is not installed."
 msgstr "Frhed がインストールされていません。"

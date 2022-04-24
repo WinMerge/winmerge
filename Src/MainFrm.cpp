@@ -614,7 +614,7 @@ HMENU CMainFrame::NewImgMergeViewMenu()
 }
 
 /**
- * @brief Create new Web page compare (CWebPageMergeView) menu.
+ * @brief Create new Webpage compare (CWebPageMergeView) menu.
  */
 HMENU CMainFrame::NewWebPageDiffViewMenu()
 {

@@ -18,7 +18,6 @@
 #include "unicoder.h"
 #include "FileOrFolderSelect.h"
 #include "SelectPluginDlg.h"
-#include "SizeDlg.h"
 #include "FileLocation.h"
 #include "Constants.h"
 #include "Environment.h"
@@ -47,7 +46,7 @@ CComPtr<T> Callback(Func&& callback)
 	return CComPtr<T>(new CallbackImpl<T, Func>(std::move(callback)));
 }
  
-/** @brief Location for Web page compare specific help to open. */
+/** @brief Location for Webpage compare specific help to open. */
 static const TCHAR WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
 
 /////////////////////////////////////////////////////////////////////////////
@@ -103,7 +102,6 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_WEB_SIZE_FIT_TO_WINDOW, OnWebFitToWindow)
 	ON_UPDATE_COMMAND_UI(ID_WEB_SIZE_FIT_TO_WINDOW, OnUpdateWebFitToWindow)
 	ON_COMMAND_RANGE(ID_WEB_SIZE_320x512, ID_WEB_SIZE_1440x900, OnWebSize)
-	ON_COMMAND(ID_WEB_SIZE_CUSTOMIZE, OnWebSizeCustomize)
 	ON_COMMAND_RANGE(ID_WEB_COMPARE_SCREENSHOTS, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
@@ -117,6 +115,18 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
 	// [Help] menu
 	ON_COMMAND(ID_HELP, OnHelp)
+	// Dialog bar
+	ON_BN_CLICKED(IDC_FITTOWINDOW, OnBnClickedFitToWindow)
+	ON_BN_CLICKED(IDC_COMPARE, OnBnClickedCompare)
+	ON_EN_CHANGE(IDC_WIDTH, OnEnChangeWidth)
+	ON_EN_CHANGE(IDC_HEIGHT, OnEnChangeHeight)
+	ON_EN_CHANGE(IDC_ZOOM, OnEnChangeZoom)
+	ON_EN_CHANGE(IDC_USERAGENT, OnEnChangeUserAgent)
+	ON_EN_KILLFOCUS(IDC_WIDTH, OnKillFocusBarControls)
+	ON_EN_KILLFOCUS(IDC_HEIGHT, OnKillFocusBarControls)
+	ON_EN_KILLFOCUS(IDC_ZOOM, OnKillFocusBarControls)
+	ON_EN_KILLFOCUS(IDC_USERAGENT, OnKillFocusBarControls)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_COMPARE, OnDropDownCompare)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
@@ -136,6 +146,7 @@ CWebPageDiffFrame::CWebPageDiffFrame()
 , m_nBufferType{BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL, BUFFERTYPE::NORMAL}
 , m_bRO{}
 , m_nActivePane(-1)
+, m_bInUpdateWebPageDiffBar(false)
 {
 }
 
@@ -270,8 +281,10 @@ void CWebPageDiffFrame::CreateWebWndStatusBar(CStatusBar &wndStatusBar, CWnd *pw
 
 void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
-	if (event.type == WebDiffEvent::SourceChanged || event.type == WebDiffEvent::TabChanged)
+	switch (event.type)
 	{
+	case WebDiffEvent::SourceChanged:
+	case WebDiffEvent::TabChanged:
 		if (m_nBufferType[event.pane] == BUFFERTYPE::UNNAMED)
 		{
 			m_nBufferType[event.pane] = BUFFERTYPE::NORMAL;
@@ -279,6 +292,10 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 		}
 		m_filePaths[event.pane] = m_pWebDiffWindow->GetCurrentUrl(event.pane);
 		UpdateHeaderPath(event.pane);
+		break;
+	case WebDiffEvent::ZoomFactorChanged:
+		UpdateWebPageDiffBar();
+		break;
 	}
 }
 
@@ -448,11 +465,13 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CMergeFrameCommon::RemoveBarBorder();
 
 	// Merge frame has a header bar at top
-	if (!m_wndFilePathBar.Create(this))
+	if (!m_wndWebPageDiffBar.Create(this) || !m_wndFilePathBar.Create(this))
 	{
 		TRACE0("Failed to create dialog bar\n");
 		return -1;      // fail to create
 	}
+
+	UpdateWebPageDiffBar();
 
 	m_wndFilePathBar.SetPaneCount(m_pWebDiffWindow->GetPaneCount());
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) { m_pWebDiffWindow->SetActivePane(pane); });
@@ -947,6 +966,105 @@ LRESULT CWebPageDiffFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
+void CWebPageDiffFrame::UpdateWebPageDiffBar()
+{
+	m_bInUpdateWebPageDiffBar = true;
+	bool fitToWindow = m_pWebDiffWindow->GetFitToWindow();
+	m_wndWebPageDiffBar.CheckDlgButton(IDC_FITTOWINDOW, fitToWindow);
+	m_wndWebPageDiffBar.GetDlgItem(IDC_WIDTH)->EnableWindow(!fitToWindow);
+	m_wndWebPageDiffBar.GetDlgItem(IDC_HEIGHT)->EnableWindow(!fitToWindow);
+	SIZE size = m_pWebDiffWindow->GetSize();
+	m_wndWebPageDiffBar.SetDlgItemText(IDC_WIDTH, strutils::format(_T("%d"), size.cx));
+	m_wndWebPageDiffBar.SetDlgItemText(IDC_HEIGHT, strutils::format(_T("%d"), size.cy));
+	m_wndWebPageDiffBar.SetDlgItemText(IDC_ZOOM, strutils::format(_T("%.1f%%"), 
+		m_pWebDiffWindow->GetZoom() * 100.0));
+	m_wndWebPageDiffBar.SetDlgItemText(IDC_USERAGENT, m_pWebDiffWindow->GetUserAgent());
+	m_bInUpdateWebPageDiffBar = false;
+}
+
+void CWebPageDiffFrame::OnBnClickedFitToWindow()
+{
+	m_pWebDiffWindow->SetFitToWindow(m_wndWebPageDiffBar.IsDlgButtonChecked(IDC_FITTOWINDOW));
+	UpdateWebPageDiffBar();
+}
+
+void CWebPageDiffFrame::OnBnClickedCompare()
+{
+	CRect rc;
+	m_wndWebPageDiffBar.GetDlgItem(IDC_COMPARE)->GetWindowRect(&rc);
+	CPoint point { rc.left, rc.bottom };
+	BCMenu menuPopup;
+	menuPopup.LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGE_COMPARE));
+	theApp.TranslateMenu(menuPopup.m_hMenu);
+	BCMenu* pPopup = (BCMenu*)menuPopup.GetSubMenu(0);
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+		point.x, point.y, AfxGetMainWnd());
+}
+
+void CWebPageDiffFrame::OnDropDownCompare(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	OnBnClickedCompare();
+}
+
+void CWebPageDiffFrame::OnEnChangeWidth()
+{
+	if (m_bInUpdateWebPageDiffBar)
+		return;
+	String text;
+	m_wndWebPageDiffBar.GetDlgItemText(IDC_WIDTH, text);
+	int v = _ttoi(text.c_str());
+	if (v > 0 && v < 32678)
+	{
+		SIZE size = m_pWebDiffWindow->GetSize();
+		size.cx = v;
+		m_pWebDiffWindow->SetSize(size);
+	}
+}
+
+void CWebPageDiffFrame::OnEnChangeHeight()
+{
+	if (m_bInUpdateWebPageDiffBar)
+		return;
+	String text;
+	m_wndWebPageDiffBar.GetDlgItemText(IDC_HEIGHT, text);
+	int v = _ttoi(text.c_str());
+	if (v > 0 && v < 32678)
+	{
+		SIZE size = m_pWebDiffWindow->GetSize();
+		size.cy = v;
+		m_pWebDiffWindow->SetSize(size);
+	}
+}
+
+void CWebPageDiffFrame::OnEnChangeZoom()
+{
+	if (m_bInUpdateWebPageDiffBar)
+		return;
+	String text;
+	m_wndWebPageDiffBar.GetDlgItemText(IDC_ZOOM, text);
+	TCHAR* endptr = nullptr;
+	double v = _tcstod(text.c_str(), &endptr);
+	if ((* endptr == '\0' || *endptr == '%') && v >= 25.0 && v <= 500.0)
+		m_pWebDiffWindow->SetZoom(v / 100.0);
+}
+
+void CWebPageDiffFrame::OnEnChangeUserAgent()
+{
+	if (m_bInUpdateWebPageDiffBar)
+		return;
+	String text;
+	m_wndWebPageDiffBar.GetDlgItemText(IDC_USERAGENT, text);
+	m_pWebDiffWindow->SetUserAgent(text.c_str());
+}
+
+void CWebPageDiffFrame::OnKillFocusBarControls()
+{
+	UpdateWebPageDiffBar();
+	SaveOptions();
+	CString text;
+	m_wndFilePathBar.GetDlgItemTextW(IDC_USERAGENT, text);
+}
+
 void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	TCHAR sIdx[32] = { 0 };
@@ -1253,22 +1371,6 @@ void CWebPageDiffFrame::OnWebSize(UINT nID)
 		SaveOptions();
 		break;
 	}
-}
-
-void CWebPageDiffFrame::OnWebSizeCustomize()
-{
-	CSizeDlg dlg(
-		m_pWebDiffWindow->GetFitToWindow(),
-		m_pWebDiffWindow->GetSize(),
-		m_pWebDiffWindow->GetZoom() * 100.0,
-		m_pWebDiffWindow->GetUserAgent());
-	if (dlg.DoModal() != IDOK)
-		return;
-	m_pWebDiffWindow->SetSize(dlg.m_size);
-	m_pWebDiffWindow->SetFitToWindow(dlg.m_fitToWindow);
-	m_pWebDiffWindow->SetZoom(dlg.m_zoom / 100.0);
-	m_pWebDiffWindow->SetUserAgent(dlg.m_userAgent.c_str());
-	SaveOptions();
 }
 
 void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
