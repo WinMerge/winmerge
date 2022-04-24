@@ -132,6 +132,7 @@ private:
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg void OnClose();
 	afx_msg void OnDestroy();
+	/*
 	afx_msg void OnFileSave();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveLeft();
@@ -142,6 +143,7 @@ private:
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsRight();
+	*/
 	afx_msg void OnFileReload();
 	afx_msg void OnFileClose();
 	afx_msg void OnFileRecompareAs(UINT nID);
@@ -157,6 +159,8 @@ private:
 	afx_msg void OnEditPaste();
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditRedo();
+	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
@@ -180,6 +184,7 @@ private:
 	afx_msg void OnWebSize(UINT nID);
 	afx_msg void OnWebCompareScreenshots(UINT nID);
 	afx_msg void OnWebCompareHTMLs();
+	afx_msg void OnWebCompareTexts();
 	afx_msg void OnWebCompareResourceTrees();
 	afx_msg void OnWebClear(UINT nID);
 	//afx_msg void OnToolsGenerateReport();

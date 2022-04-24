@@ -262,6 +262,9 @@ msgstr ""
 msgid "&HTMLs"
 msgstr ""
 
+msgid "&Texts"
+msgstr ""
+
 msgid "&Resource Trees"
 msgstr ""
 

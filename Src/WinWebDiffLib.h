@@ -29,8 +29,16 @@ struct __declspec(uuid("{0C75D925-378C-46E2-A5AA-228133AD22EB}")) IWebDiffEventH
 
 struct IWebDiffWindow
 {
-	enum UserDataFolderType { APPDATA, INSTALL };
-	enum BrowsingDataKinds {
+	enum UserdataFolderType
+	{
+		APPDATA, INSTALL
+	};
+	enum FormatType
+	{
+		SCREENSHOT, FULLSIZE_SCREENSHOT, HTML, TEXT, RESOURCETREE
+	};
+	enum BrowsingDataType
+	{
 		FILE_SYSTEMS        = ( 1 << 0 ),
 		INDEXED_DB          = ( 1 << 1 ),
 		LOCAL_STORAGE       = ( 1 << 2 ),
@@ -50,7 +58,7 @@ struct IWebDiffWindow
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
 	virtual void AddEventListener(IWebDiffEventHandler *handler) = 0;
-	virtual void SetUserDataFolderType(UserDataFolderType userDataFolderType, bool perPane) = 0;
+	virtual void SetUserDataFolderType(UserdataFolderType userDataFolderType, bool perPane) = 0;
 	virtual HRESULT New(int nUrls, IWebDiffCallback* callback) = 0;
 	virtual HRESULT Open(const wchar_t* url1, const wchar_t* url2, IWebDiffCallback* callback) = 0;
 	virtual HRESULT Open(const wchar_t* url1, const wchar_t* url2, const wchar_t* url3, IWebDiffCallback* callback) = 0;
@@ -60,13 +68,9 @@ struct IWebDiffWindow
 	virtual HRESULT Reload(int pane) = 0;
 	virtual HRESULT ReloadAll() = 0;
 	virtual HRESULT Recompare(IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveScreenshot(int pane, const wchar_t* filename, bool fullSize, IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveScreenshots(const wchar_t* filenames[], bool fullSize, IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveHTML(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveHTMLs(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveResourceTree(int pane, const wchar_t* filename, IWebDiffCallback* callback) = 0;
-	virtual HRESULT SaveResourceTrees(const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
-	virtual HRESULT ClearBrowsingData(int pane, BrowsingDataKinds datakinds) = 0;
+	virtual HRESULT SaveFile(int pane, FormatType kind, const wchar_t* filename, IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveFiles(FormatType kind, const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
+	virtual HRESULT ClearBrowsingData(int pane, BrowsingDataType datakinds) = 0;
 	virtual const wchar_t *GetCurrentUrl(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;
 	virtual RECT GetPaneWindowRect(int pane) const = 0;
@@ -117,6 +121,8 @@ struct IWebDiffWindow
 	virtual bool SelectAll() = 0;
 	virtual bool Undo() = 0;
 	virtual bool Redo() = 0;
+	virtual bool CanUndo() = 0;
+	virtual bool CanRedo() = 0;
 };
 
 extern "C"

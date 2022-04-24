@@ -75,6 +75,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_REDO, OnUpdateEditRedo)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
 	// [View] menu
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
@@ -104,6 +106,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND_RANGE(ID_WEB_SIZE_320x512, ID_WEB_SIZE_1440x900, OnWebSize)
 	ON_COMMAND_RANGE(ID_WEB_COMPARE_SCREENSHOTS, ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS, OnWebCompareScreenshots)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
+	ON_COMMAND(ID_WEB_COMPARE_TEXTS, OnWebCompareTexts)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
 	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
 	// [Tools] menu
@@ -383,7 +386,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 	LoadOptions();
 
 	m_pWebDiffWindow->SetUserDataFolderType(
-		static_cast<IWebDiffWindow::UserDataFolderType>(GetOptionsMgr()->GetInt(OPT_CMP_WEB_USERDATAFOLDER_TYPE)),
+		static_cast<IWebDiffWindow::UserdataFolderType>(GetOptionsMgr()->GetInt(OPT_CMP_WEB_USERDATAFOLDER_TYPE)),
 		GetOptionsMgr()->GetBool(OPT_CMP_WEB_USERDATAFOLDER_PERPANE));
 
 	auto callback = Callback<IWebDiffCallback>([this](const WebDiffCallbackResult& result) -> HRESULT
@@ -1140,6 +1143,24 @@ void CWebPageDiffFrame::OnEditRedo()
 }
 
 /**
+ * @brief Update the tool bar's "Undo" icon. It should be enabled when
+ * renaming an item and undo is possible.
+ */
+void CWebPageDiffFrame::OnUpdateEditUndo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pWebDiffWindow->CanUndo());
+}
+
+/**
+ * @brief Update the tool bar's "Redo" icon. It should be enabled when
+ * renaming an item and undo is possible.
+ */
+void CWebPageDiffFrame::OnUpdateEditRedo(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pWebDiffWindow->CanRedo());
+}
+
+/**
  * @brief Select entire image
  */
 void CWebPageDiffFrame::OnEditSelectAll()
@@ -1389,7 +1410,9 @@ void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
 		descs.push_back(m_filePaths[pane]);
 		m_tempFiles.push_back(pTempFile);
 	}
-	m_pWebDiffWindow->SaveScreenshots(spaths, nID == ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS,
+	m_pWebDiffWindow->SaveFiles(
+		(nID == ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS) ? IWebDiffWindow::FULLSIZE_SCREENSHOT : IWebDiffWindow::SCREENSHOT,
+		spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
@@ -1414,12 +1437,37 @@ void CWebPageDiffFrame::OnWebCompareHTMLs()
 		descs.push_back(m_filePaths[pane]);
 		m_tempFiles.push_back(pTempFile);
 	}
-	m_pWebDiffWindow->SaveHTMLs(spaths,
+	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::HTML, spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				PackingInfo infoUnpacker(String(_T("PrettifyHTML")));
 				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""), &infoUnpacker);
+				return S_OK;
+			}));
+}
+
+void CWebPageDiffFrame::OnWebCompareTexts()
+{
+	std::shared_ptr<CWaitCursor> pWaitStatus{ new CWaitCursor() };
+	PathContext paths;
+	const wchar_t *spaths[3];
+	std::vector<String> descs;
+	const int nPanes = m_pWebDiffWindow->GetPaneCount();
+	for (int pane = 0; pane < nPanes; ++pane)
+	{
+		std::shared_ptr<TempFile> pTempFile(new TempFile());
+		pTempFile->Create(_T("TXT"), _T(".txt"));
+		paths.SetPath(pane, pTempFile->GetPath());
+		spaths[pane] = paths[pane].c_str();
+		descs.push_back(m_filePaths[pane]);
+		m_tempFiles.push_back(pTempFile);
+	}
+	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::TEXT, spaths,
+		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
+			{
+				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""));
 				return S_OK;
 			}));
 }
@@ -1440,7 +1488,7 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 		descs.push_back(m_filePaths[pane]);
 		m_tempFolders.push_back(pTempFolder);
 	}
-	m_pWebDiffWindow->SaveResourceTrees(spaths,
+	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::RESOURCETREE, spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				DWORD dwFlags[3]{};
@@ -1453,13 +1501,13 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 
 void CWebPageDiffFrame::OnWebClear(UINT nID)
 {
-	IWebDiffWindow::BrowsingDataKinds dataKinds;
+	IWebDiffWindow::BrowsingDataType dataKinds;
 	switch (nID)
 	{
-	case ID_WEB_CLEAR_DISK_CACHE:       dataKinds = IWebDiffWindow::BrowsingDataKinds::DISK_CACHE; break;
-	case ID_WEB_CLEAR_COOKIES:          dataKinds = IWebDiffWindow::BrowsingDataKinds::COOKIES; break;
-	case ID_WEB_CLEAR_BROWSING_HISTORY: dataKinds = IWebDiffWindow::BrowsingDataKinds::BROWSING_HISTORY; break;
-	case ID_WEB_CLEAR_ALL_PROFILE:      dataKinds = IWebDiffWindow::BrowsingDataKinds::ALL_PROFILE; break;
+	case ID_WEB_CLEAR_DISK_CACHE:       dataKinds = IWebDiffWindow::BrowsingDataType::DISK_CACHE; break;
+	case ID_WEB_CLEAR_COOKIES:          dataKinds = IWebDiffWindow::BrowsingDataType::COOKIES; break;
+	case ID_WEB_CLEAR_BROWSING_HISTORY: dataKinds = IWebDiffWindow::BrowsingDataType::BROWSING_HISTORY; break;
+	case ID_WEB_CLEAR_ALL_PROFILE:      dataKinds = IWebDiffWindow::BrowsingDataType::ALL_PROFILE; break;
 	default:
 		return;
 	}
