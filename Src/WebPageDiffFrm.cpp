@@ -129,7 +129,9 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_EN_KILLFOCUS(IDC_HEIGHT, OnKillFocusBarControls)
 	ON_EN_KILLFOCUS(IDC_ZOOM, OnKillFocusBarControls)
 	ON_EN_KILLFOCUS(IDC_USERAGENT, OnKillFocusBarControls)
+#ifdef BCN_DROPDOWN
 	ON_NOTIFY(BCN_DROPDOWN, IDC_COMPARE, OnDropDownCompare)
+#endif
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP

@@ -24,4 +24,4 @@
 	url = https://github.com/microsoft/wil
 [submodule "Externals/winwebdiff"]
 	path = Externals/winwebdiff
-	url = https://github.com/sdottaka/winwebdiff
+	url = https://github.com/WinMerge/winwebdiff
