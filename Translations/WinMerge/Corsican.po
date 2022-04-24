@@ -219,6 +219,45 @@ msgstr "Messa à a scala di a fiura &vettoriale"
 msgid "Compare Extracted &Text From Images"
 msgstr "Paragunà u &testu estrattu da e fiure"
 
+msgid "Co&mpare"
+msgstr "&Paragunà"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Schedariu"
 
@@ -236,6 +275,9 @@ msgstr "&Binariu"
 
 msgid "&Image"
 msgstr "&Fiura"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Novu (&3 pannelli)"
@@ -1063,9 +1105,6 @@ msgstr " Schedariu : Modulu d’estensione di u spacchittadore"
 
 msgid "Se&lect..."
 msgstr "Sele&zziunà…"
-
-msgid "Co&mpare"
-msgstr "&Paragunà"
 
 msgid "Cancel"
 msgstr "Abbandunà"
@@ -1976,6 +2015,21 @@ msgstr "&Permette di paragunà e fiure in u paragone di cartulare"
 
 msgid "OCR result:"
 msgstr "Risultatu OCR :"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
@@ -3692,6 +3746,9 @@ msgstr "Chjode l’&altre unghjette"
 msgid "Enable &Auto Max Width"
 msgstr "&Attivà a larghezza massima autumatica"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ùn hè micca installatu."
 
@@ -3875,6 +3932,12 @@ msgstr "Pusizione è testu linea à a linea"
 
 msgid "Word-by-word position and text"
 msgstr "Pusizione è testu parolla à a parolla"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
@@ -4279,3 +4342,6 @@ msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

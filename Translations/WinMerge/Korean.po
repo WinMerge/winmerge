@@ -251,6 +251,45 @@ msgstr "벡터 이미지 확대/축소(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "이미지에서 추출한 텍스트 비교(&T)"
 
+msgid "Co&mpare"
+msgstr "비교(&M)"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "파일(&F)"
@@ -273,6 +312,9 @@ msgstr "바이너리(&B)"
 #, c-format
 msgid "&Image"
 msgstr "이미지(&I)"
+
+msgid "&Webpage"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -1317,9 +1359,6 @@ msgstr " 파일: 언패커 플러그인"
 #, c-format
 msgid "Se&lect..."
 msgstr "선택(&L)..."
-
-msgid "Co&mpare"
-msgstr "비교(&M)"
 
 #, c-format
 msgid "Cancel"
@@ -2453,6 +2492,21 @@ msgstr "폴더 비교시 이미지 비교 활성화(&E)"
 
 msgid "OCR result:"
 msgstr "OCR 결과:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"
@@ -4368,6 +4422,9 @@ msgstr "다른 탭 닫기(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "자동 최대 너비 사용(&A)"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed가 설치되지 않았습니다."
 
@@ -4553,6 +4610,12 @@ msgstr "줄별 위치 및 텍스트"
 
 msgid "Word-by-word position and text"
 msgstr "단어별 위치 및 텍스트"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -4897,3 +4960,6 @@ msgstr "이 시스템은 클립보드 히스토리를 지원하지 않습니다.
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32비트 버전의 WinMerge는 클립보드 비교를 지원하지 않습니다"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

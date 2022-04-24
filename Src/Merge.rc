@@ -219,6 +219,37 @@ BEGIN
     END
 END
 
+IDR_POPUP_WEBPAGEDIFFVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "Co&mpare"
+        BEGIN
+            MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+            MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+            MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+            MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
+            MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+        END
+        POPUP "&Size"
+        BEGIN
+            MENUITEM "Fit to Window",               ID_WEB_SIZE_FIT_TO_WINDOW
+            MENUITEM "320x512",                     ID_WEB_SIZE_320x512
+            MENUITEM "375x600",                     ID_WEB_SIZE_375x600
+            MENUITEM "1024x640",                    ID_WEB_SIZE_1024x640
+            MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
+            MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
+        END
+        POPUP "Clear &Browsing Data"
+        BEGIN
+            MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
+            MENUITEM "&Cookies",                    ID_WEB_CLEAR_COOKIES
+            MENUITEM "&Browsing History",           ID_WEB_CLEAR_BROWSING_HISTORY
+            MENUITEM "&All Profile",                ID_WEB_CLEAR_ALL_PROFILE
+        END
+    END
+END
+
 IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
@@ -229,6 +260,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -236,6 +268,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -321,6 +354,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -328,6 +362,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -480,6 +515,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -487,6 +523,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -537,6 +574,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -806,6 +844,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -1007,6 +1046,7 @@ BEGIN
         MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
     END
 END
 
@@ -1018,6 +1058,7 @@ BEGIN
         MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
         MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+        MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
     END
 END
 
@@ -1083,6 +1124,17 @@ BEGIN
     END
 END
 
+IDR_POPUP_WEBPAGE_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+        MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+        MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+        MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
+        MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2174,6 +2226,22 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
+IDD_PROPPAGE_COMPARE_WEBPAGE DIALOGEX 0, 0, 285, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Webpage"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "URL pattern to &include (Regular expression):",IDC_STATIC,7,6,269,10
+    EDITTEXT        IDC_COMPAREWEBPAGE_URLPATTERNTOINCLUDE,7,18,270,14,ES_AUTOHSCROLL
+    LTEXT           "URL pattern to &exclude (Regular expression):",IDC_STATIC,7,32,269,10
+    EDITTEXT        IDC_COMPAREWEBPAGE_URLPATTERNTOEXCLUDE,7,44,270,14,ES_AUTOHSCROLL
+    LTEXT           "&User data folder location:",IDC_STATIC,7,60,269,10
+    COMBOBOX        IDC_COMPAREWEBPAGE_USERDATAFOLDER_TYPE,7,72,270,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Separate user data folders for each pane",IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,270,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
+END
+
 IDD_ENCODINGERROR DIALOGEX 0, 0, 450, 55
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -2212,6 +2280,20 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
+END
+
+IDD_WEBPAGEDIFF_BAR DIALOGEX 0, 0, 714, 18
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Compare",IDC_COMPARE,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,2,72,14
+    CONTROL         "",IDC_FITTOWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,2,14,14
+    EDITTEXT        IDC_WIDTH,98,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    LTEXT           "x",-1,134,4,8,10
+    EDITTEXT        IDC_HEIGHT,140,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    LTEXT           "UA:",-1,214,4,16,10
+    EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
 END
 
 
@@ -2254,6 +2336,10 @@ BEGIN
     END
 
     IDD_PROPPAGE_SYSTEM, DIALOG
+    BEGIN
+    END
+
+    IDD_DIRCOLS, DIALOG
     BEGIN
     END
 
@@ -2341,6 +2427,11 @@ BEGIN
 
     IDD_PROPPAGE_COMPARE_IMAGE, DIALOG
     BEGIN
+    END
+
+    IDD_WEBPAGEDIFF_BAR, DIALOG
+    BEGIN
+        RIGHTMARGIN, 237
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -2764,6 +2855,19 @@ BEGIN
     100, 0, 0, 0
 END
 
+IDD_PROPPAGE_COMPARE_WEBPAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
 IDD_PROPPAGE_EDITOR AFX_DIALOG_LAYOUT
 BEGIN
     0,
@@ -2845,6 +2949,16 @@ BEGIN
 END
 
 IDD_FILTERS_LINEFILTERS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_WEB_SIZE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_WEBPAGEDIFF_BAR AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -2974,6 +3088,7 @@ BEGIN
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE NC_("Options dialog|Categories", "Binary")
     IDS_OPTIONSPG_TABLECOMPARE "Table"
+    IDS_OPTIONSPG_WEBPAGECOMPARE "Webpage"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -3829,6 +3944,11 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_WEBPAGE_MENU        "We&bpage"
+END
+
+STRINGTABLE
+BEGIN
     IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
 END
 
@@ -3913,6 +4033,12 @@ BEGIN
     IDS_OCRRESULT_TEXTONLY  "Text only"
     IDS_OCRRESULT_POS_LINE  "Line-by-line position and text"
     IDS_OCRRESULT_POS_WORD  "Word-by-word position and text"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_USERDATAFOLDER_APPDATA "AppData folder"
+    IDS_USERDATAFOLDER_INSTALL "Install folder"
 END
 
 STRINGTABLE
@@ -4056,6 +4182,12 @@ BEGIN
     IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 
                             "The 32-bit version of WinMerge does not support Clipboard Compare"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED "WebView2 runtime is not installed. Do you want to download it?"
+END
+
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

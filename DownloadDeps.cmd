@@ -24,6 +24,9 @@ https://github.com/WinMerge/winimerge/releases/download/v1.0.33/winimerge-1.0.33
 https://github.com/WinMerge/winimerge/releases/download/v1.0.33/winimerge-1.0.33.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.33/winimerge-1.0.33.0-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.33/winimerge-1.0.33.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.0/winwebdiff-1.0.0.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.0/winwebdiff-1.0.0.0-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.0/winwebdiff-1.0.0.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
@@ -54,6 +57,7 @@ for %%i in (x86 x64 ARM ARM64) do (
   for %%j in (Release Debug Test) do (
     mkdir Build\%%i\%%j\Merge7z 2> NUL
     mkdir Build\%%i\%%j\WinIMerge 2> NUL
+    mkdir Build\%%i\%%j\WinWebDiff 2> NUL
     mkdir Build\%%i\%%j\Frhed 2> NUL
     mkdir Build\%%i\%%j\Filters 2> NUL
     mkdir Build\%%i\%%j\ColorSchemes 2> NUL
@@ -64,6 +68,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
     xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
     copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
+    copy Build\%%i\Release\WinWebDiff\WinWebDiffLib.dll Build\%%i\%%j\WinWebDiff\ 2> NUL
     xcopy /s/y Build\GnuWin32 Build\%%i\%%j\Commands\GnuWin32\
     copy Build\jq\jq-win32.exe Build\%%i\%%j\Commands\jq\jq.exe
     copy Build\jq\jq-jq-1.4\COPYING Build\%%i\%%j\Commands\jq\

@@ -186,6 +186,7 @@ Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Type
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
 Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
 Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
+Name: WinWebDiff; Description: {cm:WinWebDiff}; Flags: disablenouninstallwarning; Types: full typical
 Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
 Name: Commands; Description: {cm:Commands}; Flags: disablenouninstallwarning; Types: full typical
 
@@ -584,6 +585,10 @@ Source: ..\..\Build\{#ARCH}\Release\WinIMerge\freeimage-license-gplv2.txt; DestD
 ;Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
 Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
 Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: WinIMerge
+
+;WinWebDiff
+Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: WinWebDiff
+Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: WinWebDiff
 
 ;GnuWin32 Patch for Windows
 Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands

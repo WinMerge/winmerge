@@ -218,6 +218,45 @@ msgstr "Skalowanie obrazu wektorowego"
 msgid "Compare Extracted &Text From Images"
 msgstr "Porównaj wyodrębniony tekst z obrazu"
 
+msgid "Co&mpare"
+msgstr "Porównaj"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "Plik"
 
@@ -235,6 +274,9 @@ msgstr "&Binarny"
 
 msgid "&Image"
 msgstr "Obraz"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Nowy (3 panele)"
@@ -1062,9 +1104,6 @@ msgstr " Plik: wtyczka rozpakowująca"
 
 msgid "Se&lect..."
 msgstr "Wybierz..."
-
-msgid "Co&mpare"
-msgstr "Porównaj"
 
 msgid "Cancel"
 msgstr "Anuluj"
@@ -1961,6 +2000,21 @@ msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 
 msgid "OCR result:"
 msgstr "Wynik OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
@@ -3306,6 +3360,9 @@ msgstr "Zamknij inne karty"
 msgid "Enable &Auto Max Width"
 msgstr "Włącz automatyczną maksymalną szerokość"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Free Hex Editor nie został zainstalowany."
 
@@ -3483,6 +3540,12 @@ msgstr "Pozycja i tekst wiersz-po-wierszu"
 
 msgid "Word-by-word position and text"
 msgstr "Pozycja i tekst słowo-po-słowie"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
@@ -3769,3 +3832,6 @@ msgstr "Ten system nie obsługuje historii schowka."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

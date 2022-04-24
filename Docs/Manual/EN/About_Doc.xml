@@ -135,6 +135,14 @@
       </varlistentry>
 
       <varlistentry>
+        <term><xref linkend="Compare_webpages" /></term>
+
+        <listitem>
+          <para>Explains the Web page comparison window.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term><xref linkend="Configuration" /></term>
 
         <listitem>

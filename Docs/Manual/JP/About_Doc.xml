@@ -135,6 +135,14 @@
       </varlistentry>
 
       <varlistentry>
+        <term><xref linkend="Compare_webpages" /></term>
+
+        <listitem>
+          <para>Webページ比較ウインドウについて説明します。</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term><xref linkend="Configuration" /></term>
 
         <listitem>

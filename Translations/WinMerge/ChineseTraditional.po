@@ -245,6 +245,45 @@ msgstr "向量圖縮放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "比較從圖片中擷取的文字 (&T)"
 
+msgid "Co&mpare"
+msgstr "比較 (&M)"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "檔案 (&F)"
@@ -267,6 +306,9 @@ msgstr "二進制 (&B)"
 #, c-format
 msgid "&Image"
 msgstr "圖片 (&I)"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "新增三方比較 (&3)"
@@ -1316,9 +1358,6 @@ msgstr ""
 #, c-format
 msgid "Se&lect..."
 msgstr "選擇... (&L)"
-
-msgid "Co&mpare"
-msgstr "比較 (&M)"
 
 #, c-format
 msgid "Cancel"
@@ -2455,6 +2494,21 @@ msgstr "在資料夾比較中啟用圖片比較 (&E)"
 
 msgid "OCR result:"
 msgstr "OCR 結果："
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"
@@ -4379,6 +4433,9 @@ msgstr "關閉其他分頁 (&O)"
 msgid "Enable &Auto Max Width"
 msgstr "開啟自動最大寬度 (&A)"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安裝。"
 
@@ -4563,6 +4620,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
 msgstr ""
 
 #, c-format
@@ -4910,3 +4973,6 @@ msgstr "此系統不支援剪貼簿歷史紀錄。"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

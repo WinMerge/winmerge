@@ -243,6 +243,45 @@ msgstr "Escala de la imatge &vectorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Compara el &text extret de les imatges"
 
+msgid "Co&mpare"
+msgstr "Co&mpara"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fitxer"
@@ -265,6 +304,9 @@ msgstr "&Binari"
 #, c-format
 msgid "&Image"
 msgstr "&Imatge"
+
+msgid "&Webpage"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -1309,9 +1351,6 @@ msgstr " Fitxer: Connector de desempaquetament"
 #, c-format
 msgid "Se&lect..."
 msgstr "Selecciona..."
-
-msgid "Co&mpare"
-msgstr "Co&mpara"
 
 #, c-format
 msgid "Cancel"
@@ -2445,6 +2484,21 @@ msgstr "Habilita la comparació d'imatge en la comparació de directoris"
 
 msgid "OCR result:"
 msgstr "Resultat OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"
@@ -4380,6 +4434,9 @@ msgstr "Tanca les altres pestanyes"
 msgid "Enable &Auto Max Width"
 msgstr "Activa l'amplada màxima automàtica"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "L'aplicació Frhed no està instal·lada."
 
@@ -4565,6 +4622,12 @@ msgstr "Posició Línia a línia i text"
 
 msgid "Word-by-word position and text"
 msgstr "Posició paraula a paraula i text"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -4970,3 +5033,6 @@ msgstr "Aquest sistema no té suport per a l'historial del porta-retalls."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "La versió de 32 bits del WinMerge no suporta comparar via porta-retalls"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

@@ -217,6 +217,45 @@ msgstr "Prilagoditev &vektorskih slik"
 msgid "Compare Extracted &Text From Images"
 msgstr "Primerjaj razširjeno &besedilo s slike"
 
+msgid "Co&mpare"
+msgstr "Pri&merjaj"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Datoteka"
 
@@ -234,6 +273,9 @@ msgstr "&Dvojiško"
 
 msgid "&Image"
 msgstr "S&lika"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Nova (&3 okna)"
@@ -1061,9 +1103,6 @@ msgstr " Datoteka: Vtičnik razpakovalca"
 
 msgid "Se&lect..."
 msgstr "Iz&beri..."
-
-msgid "Co&mpare"
-msgstr "Pri&merjaj"
 
 msgid "Cancel"
 msgstr "Prekliči"
@@ -1972,6 +2011,21 @@ msgstr "Omogoči primerjavo &slik v primerjanju map"
 
 msgid "OCR result:"
 msgstr "Rezultat OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
@@ -3686,6 +3740,9 @@ msgstr "Zapri d&ruge zavihke"
 msgid "Enable &Auto Max Width"
 msgstr "Omogoči sa&modejno največjo širino"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
 
@@ -3869,6 +3926,12 @@ msgstr "Položaj vrstico po vrstico in besedilo"
 
 msgid "Word-by-word position and text"
 msgstr "Položaj besedo po besedo in besedilo"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
@@ -4281,3 +4344,6 @@ msgstr "Ta sistem ne podpira zgodovine odložišča."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

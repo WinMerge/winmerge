@@ -217,6 +217,45 @@ msgstr "Zmena mierky &vektorového obrázka"
 msgid "Compare Extracted &Text From Images"
 msgstr "Porovnať extrahovaný &text z obrázka"
 
+msgid "Co&mpare"
+msgstr "Po&rovnať"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Súbor"
 
@@ -234,6 +273,9 @@ msgstr "&Binárne"
 
 msgid "&Image"
 msgstr "&Obrázok"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Nový (&3 panely)"
@@ -1061,9 +1103,6 @@ msgstr " File: Rozšírenie rozbaľovača"
 
 msgid "Se&lect..."
 msgstr "Vy&brať..."
-
-msgid "Co&mpare"
-msgstr "Po&rovnať"
 
 msgid "Cancel"
 msgstr "Zrušiť"
@@ -1972,6 +2011,21 @@ msgstr "&Povoliť porovnanie obrázkov pri porovnaní priečinkov"
 
 msgid "OCR result:"
 msgstr "Výsledok OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Zobraziť &hexadecimálne"
@@ -3661,6 +3715,9 @@ msgstr "Zavrieť ďa&lšie karty"
 msgid "Enable &Auto Max Width"
 msgstr "Povoliť &automaticky maximalizovať šírku"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed nie je nainštalovaný."
 
@@ -3844,6 +3901,12 @@ msgstr "Pozícia po riadkoch a text"
 
 msgid "Word-by-word position and text"
 msgstr "Pozícia a text po slovách"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Povoliť spustenie iba jednej inštancie"
@@ -4248,3 +4311,6 @@ msgstr "Tento systém nepodporuje históriu schránky."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bitová verzia WinMerge nepodporuje porovnávanie schránky"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

@@ -31,5 +31,27 @@ private:
 	String m_path; /**< Temporary file path. */
 };
 
+/**
+ * @brief A simple temporary folder holder class.
+ * This class creates and holds temporary folder names. When instance
+ * gets destroyed, the temporary folder is also deleted.
+ */
+class TempFolder
+{
+public:
+	TempFolder() {}
+	~TempFolder();
+	String Create();
+	/**
+	 * @brief Get temp folder path
+	 * @return Full path to temp folder.
+	 */
+	const String& GetPath() const { return m_path; }
+	bool Delete();
+
+private:
+	String m_path; /**< Temporary folder path. */
+};
+
 void CleanupWMtemp();
 bool ClearTempfolder(const String &pathName);

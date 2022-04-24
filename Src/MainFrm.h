@@ -103,6 +103,11 @@ public:
 		int m_y = -1;
 	};
 
+	struct OpenWebPageParams : public OpenFileParams
+	{
+		virtual ~OpenWebPageParams() {}
+	};
+
 	struct OpenAutoFileParams : public OpenTableFileParams, public OpenBinaryFileParams, public OpenImageFileParams
 	{
 		virtual ~OpenAutoFileParams() {}
@@ -123,6 +128,7 @@ public:
 	HMENU NewMergeViewMenu();
 	HMENU NewHexMergeViewMenu();
 	HMENU NewImgMergeViewMenu();
+	HMENU NewWebPageDiffViewMenu();
 	HMENU NewOpenViewMenu();
 	HMENU NewDefaultMenu(int ID = 0);
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
@@ -171,6 +177,9 @@ public:
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
 		const PackingInfo * infoUnpacker = nullptr, const OpenImageFileParams *pOpenParams = nullptr);
+	bool ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+		const DWORD dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
+		const PackingInfo * infoUnpacker = nullptr, const OpenWebPageParams *pOpenParams = nullptr);
 
 	void UpdateResources();
 	void ApplyDiffOptions();
@@ -256,6 +265,7 @@ protected:
 		MENU_DIRVIEW,
 		MENU_HEXMERGEVIEW,
 		MENU_IMGMERGEVIEW,
+		MENU_WEBPAGEDIFFVIEW,
 		MENU_OPENVIEW,
 		MENU_COUNT, // Add new items before this item
 	};
@@ -284,6 +294,7 @@ protected:
 
 	std::unique_ptr<BCMenu> m_pMenus[MENU_COUNT]; /**< Menus for different views */
 	std::unique_ptr<BCMenu> m_pImageMenu;
+	std::unique_ptr<BCMenu> m_pWebPageMenu;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 

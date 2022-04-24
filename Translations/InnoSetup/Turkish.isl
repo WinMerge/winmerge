@@ -16,6 +16,7 @@ Filters=Süzgeçler
 Plugins=Uygulama Ekleri
 Frhed=Frhed(Özgür onaltýlýk düzenleyici)
 WinIMerge=WinIMerge(Görsel Fark/Birleþtirme)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Arþiv Desteði
 ShellExtension32bit=32-bit WinMerge Kabuk Eklentisi
 Commands=GnuWin32 Windows Yamasý/HTML Tidy/jq

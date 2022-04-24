@@ -59,6 +59,7 @@ public:
 		TABLE,
 		BINARY,
 		IMAGE,
+		WEBPAGE,
 	};
 
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */

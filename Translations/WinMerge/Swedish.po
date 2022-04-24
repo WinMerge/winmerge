@@ -218,6 +218,45 @@ msgstr "Vektorbild skalning"
 msgid "Compare Extracted &Text From Images"
 msgstr "Jämför extraherad text från bild"
 
+msgid "Co&mpare"
+msgstr "Jämför"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "Arkiv"
 
@@ -235,6 +274,9 @@ msgstr "Binär"
 
 msgid "&Image"
 msgstr "Bild"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Ny (3 rutor)"
@@ -1062,9 +1104,6 @@ msgstr " Fil: Unpacker tillägg"
 
 msgid "Se&lect..."
 msgstr "Välj..."
-
-msgid "Co&mpare"
-msgstr "Jämför"
 
 msgid "Cancel"
 msgstr "Avbryt"
@@ -1973,6 +2012,21 @@ msgstr "Aktivera bildsjämförelse i mappjämförelse"
 
 msgid "OCR result:"
 msgstr "OCR resultat:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Hex visning"
@@ -3666,6 +3720,9 @@ msgstr "Stäng alla andra flikar"
 msgid "Enable &Auto Max Width"
 msgstr "Aktivera automatisk högsta bredd"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed är inte installerad."
 
@@ -3849,6 +3906,12 @@ msgstr "Rad-för-rad position och text"
 
 msgid "Word-by-word position and text"
 msgstr "Ord-för-ord position och text"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Tillåt endast att en instans körs"
@@ -4134,4 +4197,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""
