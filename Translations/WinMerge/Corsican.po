@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-18 21:36+0000\n"
-"PO-Revision-Date: 2022-03-19 18:58+0100\n"
+"POT-Creation-Date: 2022-04-24 15:17+0000\n"
+"PO-Revision-Date: 2022-04-25 17:45+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -223,40 +223,40 @@ msgid "Co&mpare"
 msgstr "&Paragunà"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "Catture di &screnu"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "Cattu&re di screnu in dimensione sana"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTML"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Testi"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Arburi di risorse"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Dimensione"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Adattà à a finestra"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "&Viutà i dati di navigazione"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "&Impiatta di discu"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Canistrelli"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "Cronolugia di &navigazione"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "T&utti i prufili"
 
 msgid "&File"
 msgstr "&Schedariu"
@@ -277,7 +277,7 @@ msgid "&Image"
 msgstr "&Fiura"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "Pagina &web"
 
 msgid "New (&3 panes)"
 msgstr "Novu (&3 pannelli)"
@@ -2017,19 +2017,19 @@ msgid "OCR result:"
 msgstr "Risultatu OCR :"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Pagina web"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Mudellu d’indirizzu web à include (espressione regulare) :"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Mudellu d’indirizzu web à esclude (espressione regulare) :"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "&Lucalizazione di u cartulare di dati di l’utilizatore :"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
@@ -2857,8 +2857,12 @@ msgstr "Impussibule di lancià l’editore esternu : %1"
 msgid "Unknown archive format"
 msgstr "Furmatu scunnisciutu d’archiviu"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr "Fiascu durante l’estrazzione di i schedarii d’archiviu.\nVulete paragunà i schedarii d’archiviu cum’è schedarii di testu ?"
+msgid ""
+"Failed to extract archive files.\n"
+"Do you want to compare the archive files as text files?"
+msgstr ""
+"Fiascu durante l’estrazzione di i schedarii d’archiviu.\n"
+"Vulete paragunà i schedarii d’archiviu cum’è schedarii di testu ?"
 
 msgid "Filename"
 msgstr "Nome di schedariu"
@@ -3747,7 +3751,7 @@ msgid "Enable &Auto Max Width"
 msgstr "&Attivà a larghezza massima autumatica"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Pagina we&b"
 
 msgid "Frhed is not installed."
 msgstr "Frhed ùn hè micca installatu."
@@ -3934,10 +3938,10 @@ msgid "Word-by-word position and text"
 msgstr "Pusizione è testu parolla à a parolla"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Cartulare AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Cartulare d’installazione"
 
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
@@ -3970,7 +3974,7 @@ msgid "&Others"
 msgstr "&L’altri moduli"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Ghjestione d’indirizzu web"
 
 msgid "Make Uppercase"
 msgstr "Mette in maiuscula"
@@ -4317,11 +4321,19 @@ msgstr "Filtru di linea di preparagone"
 msgid "Basic text functions for the context menu"
 msgstr "Funzioni basiche di testu per u listinu cuntestuale"
 
-msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
 msgstr ""
+"Ghjestiunariu di mudellu d’indirizzu web HTTP cù curl.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « curl »."
 
-msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
 msgstr ""
+"Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
@@ -4344,4 +4356,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
