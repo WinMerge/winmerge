@@ -1,15 +1,82 @@
-# WinMerge 2.16.19 Beta Release Notes
+# WinMerge 2.16.20 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.20?](#what-is-new-in-21620)
 - [What Is New in 2.16.19 beta?](#what-is-new-in-21619-beta)
 - [Known issues](#known-issues)
 
-March 2022
+April 2022
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.20 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
+
+Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.20
+
+### General
+
+- BugFix: New filter (F) display (#1281 a))
+
+### File compare
+
+- BugFix: Fixed a problem where the caret would not display in the correct
+    position on lines containing tab characters, depending on the font in use
+      (osdn.net #44417)
+
+### Webpage compare
+
+- Webpage Compare \[EXPERIMENTAL\] (PR #1182)
+  - Requires WebView2 Runtime.
+  - Only supported on Windows 10 and above.
+  - Currently, it is not possible to directly highlight differences between
+      web pages, but it is possible to display two or three web pages side by
+      side. You can also compare the following content of the displayed web
+      pages
+    - Screenshots
+    - HTML contents
+    - Extracted texts
+    - Resource trees
+
+### Folder compare
+
+- BugFix: Fix an issue where items with different case are not displayed
+    correctly in the folder compare window when comparing three directories.
+    (PR #1299)
+
+### Options dialog
+
+- Allow resizing Options dialog box in both directions (#1265)
+
+### Plugins
+
+- BugFix: CompareMSExcelFiles.sct: Date formats interpreted inconsistently
+    (#279)
+- Add URL handler plugins (PR #1270)
+- Replace plugin: When regular expression substitution is performed with the
+    `-e` option, `\r` and `\n` in the second argument are now treated as
+    control characters CR and LF.
+- PrettifyHTML plugin: Added "--tidy-mark no" to default plugin arguments
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #1269)
+  - French (PR #1294)
+  - Galician (PR 1292)
+  - German (PR #1276)
+  - Hungarian (PR #1274)
+  - Japanese
+  - Lithuanian (PR #1263, #1275)
+  - Polish (PR #1272, #1287, #1288)
+  - Portuguese (PR #1273, #1277)
+  - Slovenian (#1289)
+  - Turkish (PR #1264)
+
+### Internals
+
 
 ## What Is New in 2.16.19 Beta
 
