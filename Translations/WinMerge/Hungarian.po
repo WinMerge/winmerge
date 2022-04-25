@@ -249,40 +249,40 @@ msgid "Co&mpare"
 msgstr "Összehasonlít"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "Képernyőmentések"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "Teljes méretű képernyőmentések"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "HTML-ek"
 
 msgid "&Texts"
-msgstr ""
+msgstr "Szövegek"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "Erőforrásfák"
 
 msgid "&Size"
-msgstr ""
+msgstr "Méret"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Ablakhoz igazít"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "Böngészési adatok törlése"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "Lemez gyorsítótár"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "Sütik"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "Böngészési előzmények"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "Minden profil"
 
 #, c-format
 msgid "&File"
@@ -308,7 +308,7 @@ msgid "&Image"
 msgstr "Kép"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "Weboldal"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -2488,19 +2488,19 @@ msgid "OCR result:"
 msgstr "Karakterfelismerő találatai:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Weboldal"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Beleveendő URL minta (reguláris kifejezés):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Kihagyandó URL minta (reguláris kifejezés):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "Felhasználói adatmappa helye:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr Önálló felhasználói adatmappa minden panelhez""
 
 #, c-format
 msgid "&Hex View"
@@ -4419,7 +4419,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Auto oszlopszélesség be"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Weboldal"
 
 msgid "Frhed is not installed."
 msgstr "Az Frhed hexa szerkesztő nincs telepítve."
@@ -4608,10 +4608,10 @@ msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Programadat mappa"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Mappa telepítése"
 
 msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
@@ -4620,7 +4620,7 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
 msgid "Al&l"
-msgstr "Minden"
+msgstr "Összes"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
@@ -4900,4 +4900,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
