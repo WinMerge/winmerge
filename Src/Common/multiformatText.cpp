@@ -348,7 +348,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 			int textRealSize = textForeseenSize;
 
 			// allocate the memory
-			std::unique_ptr<wchar_t[]> tempBSTR(new wchar_t[textForeseenSize]);
+			auto tempBSTR = std::make_unique<wchar_t[]>(textForeseenSize);
 
 			// fill in the data
 			wchar_t * pbstrBuffer = tempBSTR.get();

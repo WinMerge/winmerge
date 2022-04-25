@@ -3169,7 +3169,7 @@ void CMergeEditView::OnShellMenu()
 	pFrame->m_bAutoMenuEnable = FALSE;
 
 	String path = GetDocument()->m_filePaths[m_nThisPane];
-	std::unique_ptr<CShellContextMenu> pContextMenu(new CShellContextMenu(0x9000, 0x9FFF));
+	auto pContextMenu = std::make_unique<CShellContextMenu>(CShellContextMenu(0x9000, 0x9FFF));
 	pContextMenu->Initialize();
 	pContextMenu->AddItem(paths::GetParentPath(path), paths::FindFileName(path));
 	pContextMenu->RequeryShellContextMenu();

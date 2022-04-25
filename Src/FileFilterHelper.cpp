@@ -509,21 +509,21 @@ void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
 
 	if (pHelper->m_pMaskFileFilter)
 	{
-		std::unique_ptr<FilterList> filterList(new FilterList());
+		auto filterList = std::make_unique<FilterList>(FilterList());
 		m_pMaskFileFilter = std::move(filterList);
 		m_pMaskFileFilter->CloneFrom(pHelper->m_pMaskFileFilter.get());
 	}
 
 	if (pHelper->m_pMaskDirFilter)
 	{
-		std::unique_ptr<FilterList> filterList(new FilterList());
+		auto filterList = std::make_unique<FilterList>(FilterList());
 		m_pMaskDirFilter = std::move(filterList);
 		m_pMaskDirFilter->CloneFrom(pHelper->m_pMaskDirFilter.get());
 	}
 
 	if (pHelper->m_fileFilterMgr)
 	{
-		std::unique_ptr<FileFilterMgr> fileFilterMgr(new FileFilterMgr());
+		auto fileFilterMgr = std::make_unique<FileFilterMgr>(FileFilterMgr());
 		m_fileFilterMgr = std::move(fileFilterMgr);
 		m_fileFilterMgr->CloneFrom(pHelper->m_fileFilterMgr.get());
 	}

@@ -52,30 +52,26 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 	size_t count = filter->filefilters.size();
 	for (size_t i = 0; i < count; i++)
 	{
-		FileFilterElementPtr ptr(new FileFilterElement(filter->filefilters[i].get()));
-		filefilters.push_back(ptr);
+		filefilters.emplace_back(std::make_shared<FileFilterElement>(filter->filefilters[i].get()));
 	}
 
 	dirfilters.clear();
 	count = filter->dirfilters.size();
 	for (size_t i = 0; i < count; i++)
 	{
-		FileFilterElementPtr ptr(new FileFilterElement(filter->dirfilters[i].get()));
-		dirfilters.push_back(ptr);
+		dirfilters.emplace_back(std::make_shared<FileFilterElement>(filter->dirfilters[i].get()));
 	}
 	filefiltersExclude.clear();
 	count = filter->filefiltersExclude.size();
 	for (size_t i = 0; i < count; i++)
 	{
-		FileFilterElementPtr ptr(new FileFilterElement(filter->filefiltersExclude[i].get()));
-		filefiltersExclude.push_back(ptr);
+		filefiltersExclude.emplace_back(std::make_shared<FileFilterElement>(filter->filefiltersExclude[i].get()));
 	}
 
 	dirfiltersExclude.clear();
 	count = filter->dirfiltersExclude.size();
 	for (size_t i = 0; i < count; i++)
 	{
-		FileFilterElementPtr ptr(new FileFilterElement(filter->dirfiltersExclude[i].get()));
-		dirfiltersExclude.push_back(ptr);
+		dirfiltersExclude.emplace_back(std::make_shared<FileFilterElement>(filter->dirfiltersExclude[i].get()));
 	}
 }

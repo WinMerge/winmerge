@@ -126,7 +126,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	UpdateData(FALSE);
 
-	const std::vector<String> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
+	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
 	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];
 
 	if (m_bArgumentsRequired)
