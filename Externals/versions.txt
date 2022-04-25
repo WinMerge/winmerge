@@ -8,7 +8,7 @@ This file lists versions of the external components we are using.
 - frhed: 0.10904.2017.9
 - WinIMerge: 1.0.33.0
   - freeimage: 3.18.0
-- WinWebDiff: 1.0.0.0
+- WinWebDiff: 1.0.1.0
   - WebView2: 1.0.1189-release
   - wil: 1.0.220201.1
   - rapidjson: 1.1.1
