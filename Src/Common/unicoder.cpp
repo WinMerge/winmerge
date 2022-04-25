@@ -690,7 +690,7 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 	// Convert input to Unicode, using specified codepage
 	DWORD flags = 0;
 	int wlen = srclen * 2 + 6;
-	std::unique_ptr<wchar_t[]> wbuff(new wchar_t[wlen]);
+	auto wbuff = std::make_unique<wchar_t[]>(wlen);
 	int n;
 	if (cpin == CP_UCS2LE)
 	{

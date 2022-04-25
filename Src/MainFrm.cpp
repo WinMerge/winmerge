@@ -1001,7 +1001,7 @@ bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String t
 		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
-		TempFilePtr wTemp(new TempFile());
+		auto wTemp = std::make_shared<TempFile>(TempFile());
 		String workFile = wTemp->Create(_T("text_"), strFileExt);
 		m_tempFiles.push_back(wTemp);
 		wTemp->Create(_T(""), strFileExt);
@@ -1923,8 +1923,8 @@ void CMainFrame::OnToolsFilters()
 	LineFiltersDlg lineFiltersDlg;
 	SubstitutionFiltersDlg substitutionFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
-	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
-	std::unique_ptr<SubstitutionFiltersList> SubstitutionFilters(new SubstitutionFiltersList());
+	auto lineFilters = std::make_unique<LineFiltersList>(LineFiltersList());
+	auto SubstitutionFilters = std::make_unique<SubstitutionFiltersList>(SubstitutionFiltersList());
 	String selectedFilter;
 	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
 	const String origFilter = pGlobalFileFilter->GetFilterNameOrMask();
@@ -2629,13 +2629,13 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	// Create temp files and put them into the list,
 	// from where they get deleted when MainFrame is deleted.
 	String ext = paths::FindExtension(conflictFile);
-	TempFilePtr wTemp(new TempFile());
+	auto wTemp = std::make_shared<TempFile>(TempFile());
 	String workFile = wTemp->Create(_T("confw_"), ext);
 	m_tempFiles.push_back(wTemp);
-	TempFilePtr vTemp(new TempFile());
+	auto vTemp = std::make_shared<TempFile>(TempFile());
 	String revFile = vTemp->Create(_T("confv_"), ext);
 	m_tempFiles.push_back(vTemp);
-	TempFilePtr bTemp(new TempFile());
+	auto bTemp = std::make_shared<TempFile>(TempFile());
 	String baseFile = vTemp->Create(_T("confb_"), ext);
 	m_tempFiles.push_back(bTemp);
 
@@ -2681,7 +2681,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 	const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	String ext = paths::FindExtension(file);
-	TempFilePtr wTemp(new TempFile());
+	auto wTemp = std::make_shared<TempFile>(TempFile());
 	String copiedFile;
 	if (paths::IsURL(file))
 	{
@@ -2690,7 +2690,7 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
 		if (!infoUnpacker2.Unpacking(nullptr, copiedFile, copiedFile, { copiedFile }))
 		{
-			String sError = strutils::format_string1(_("File not unpacked: %1"), file.c_str());
+			String sError = strutils::format_string1(_("File not unpacked: %1"), file);
 			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
 			return false;
 		}

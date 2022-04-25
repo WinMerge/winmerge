@@ -36,7 +36,7 @@ LineFiltersList::~LineFiltersList() = default;
  */
 void LineFiltersList::AddFilter(const String& filter, bool enabled)
 {
-	LineFilterItemPtr item(new LineFilterItem());
+	auto item = std::make_shared<LineFilterItem>(LineFilterItem());
 	item->enabled = enabled;
 	item->filterStr = filter;
 	m_items.push_back(item);

@@ -35,7 +35,7 @@ namespace ClipboardHistory
 	{
 		std::shared_ptr<TempFile> CreateTempTextFile(const String& text)
 		{
-			std::shared_ptr<TempFile> pTempFile(new TempFile());
+			auto pTempFile = std::make_shared<TempFile>(TempFile());
 			pTempFile->Create(_T("CLP"), L".txt");
 			String path = pTempFile->GetPath();
 			UniStdioFile file;

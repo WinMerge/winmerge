@@ -53,7 +53,7 @@ namespace
 
 			// Allocate memory to contain full pathname & zero byte
 			wPathnameSize += 1;
-			std::unique_ptr<TCHAR[]> npszFile(new TCHAR[wPathnameSize]);
+			auto npszFile = std::make_unique<TCHAR[]>(wPathnameSize);
 
 			// Copy the pathname into the buffer
 			DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);

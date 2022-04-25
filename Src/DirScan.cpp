@@ -490,7 +490,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
 	for (int i = 0; i < nworkers; ++i)
 	{
-		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context, i)));
+		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i));
 		threadPool.start(*workers[i]);
 	}
 
