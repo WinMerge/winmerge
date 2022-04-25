@@ -49,11 +49,12 @@
 ### Translations
 
 - Translation updates:
+  - Corsican (PR #1305)
   - Bulgarian (PR #1269)
   - French (PR #1294)
   - Galician (PR 1292)
   - German (PR #1276)
-  - Hungarian (PR #1274)
+  - Hungarian (PR #1274, #1306)
   - Japanese
   - Lithuanian (PR #1263, #1275)
   - Polish (PR #1272, #1287, #1288)
