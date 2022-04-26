@@ -2500,7 +2500,7 @@ msgid "&User data folder location:"
 msgstr "Felhasználói adatmappa helye:"
 
 msgid "&Separate user data folders for each pane"
-msgstr Önálló felhasználói adatmappa minden panelhez""
+msgstr "Önálló felhasználói adatmappa minden panelhez"
 
 #, c-format
 msgid "&Hex View"
