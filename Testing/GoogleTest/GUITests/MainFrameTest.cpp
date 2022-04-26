@@ -246,7 +246,7 @@ TEST_P(MainFrameTest, WindowCloseAll)
 TEST_P(MainFrameTest, WindowChangePane)
 {
 	selectMenu(ID_FILE_NEW);
-	selectMenuAndSaveWindowImage(ID_WINDOW_CHANGE_PANE);
+	selectMenuAndSaveWindowImage(ID_NEXT_PANE);
 }
 
 TEST_P(MainFrameTest, WindowArrangement)

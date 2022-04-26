@@ -249,7 +249,7 @@
         <para>ファイルを表示するウインドウの種類を指定します。
         次のキーワードが指定できます。 <userinput>Text</userinput>,
         <userinput>Table</userinput>, <userinput>Binary</userinput>,
-        <userinput>Image</userinput></para>
+        <userinput>Image</userinput>, <userinput>Webpage</userinput></para>
       </listitem>
     </varlistentry>
 

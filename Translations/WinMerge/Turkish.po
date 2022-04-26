@@ -217,6 +217,45 @@ msgstr "&Vektör görsel ölçekleme"
 msgid "Compare Extracted &Text From Images"
 msgstr "Görsellerden &ayıklanan metni karşılaştır"
 
+msgid "Co&mpare"
+msgstr "&Karşılaştır"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Dosya"
 
@@ -234,6 +273,9 @@ msgstr "&Binary"
 
 msgid "&Image"
 msgstr "&Görsel"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Yeni (&3 pano)"
@@ -1064,9 +1106,6 @@ msgstr " Dosya: Ayıklayıcı eklentisi"
 
 msgid "Se&lect..."
 msgstr "&Seçin..."
-
-msgid "Co&mpare"
-msgstr "&Karşılaştır"
 
 msgid "Cancel"
 msgstr "İptal"
@@ -1986,6 +2025,21 @@ msgstr "Klasör karşılaştırmasında görs&el karşılaştırması yapılsın
 
 msgid "OCR result:"
 msgstr "Karakter tanıma sonucu:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Onaltılık &görünüm"
@@ -3761,6 +3815,9 @@ msgstr "&Diğer sekmeleri kapat"
 msgid "Enable &Auto Max Width"
 msgstr "Otom&atik en fazla genişlik"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed kurulmamış."
 
@@ -3944,6 +4001,12 @@ msgstr "Satır satır konum ve metin"
 
 msgid "Word-by-word position and text"
 msgstr "Sözcük sözcük konum ve metin"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Yalnız bir kopya çalışsın"
@@ -4369,3 +4432,6 @@ msgstr "Bu sistemde pano geçmişi özelliği yok."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

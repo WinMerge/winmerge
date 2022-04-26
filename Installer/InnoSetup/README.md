@@ -27,7 +27,7 @@ First make sure you have all needed files compiled and available:
  * Filters: `/Filters/*`
  * ColorSchemes: `/ColorSchemes/*`
  * Plugins: `/Plugins/{arch}/dlls/*`
- * Other: *Frhed*, *WinIMerge*, *Merge7z* and *GnuWin32 Patch*
+ * Other: *Frhed*, *WinIMerge*, *WinWebDiff*, *Merge7z* and *GnuWin32 Patch*
    (The above files can be downloaded by executing DownloadDeps.cmd)
 
 These files are produced by compiling WinMerge, documentation etc, but that's not subject of this document.

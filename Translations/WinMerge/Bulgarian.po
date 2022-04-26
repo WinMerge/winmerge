@@ -214,6 +214,45 @@ msgstr "Мащабиране на &векторно изображение"
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Co&mpare"
+msgstr "&Сравняване"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Файл"
 
@@ -231,6 +270,9 @@ msgstr "&Двоични файлове"
 
 msgid "&Image"
 msgstr "&Изображения"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Нов (&3 панела)"
@@ -1061,9 +1103,6 @@ msgstr " Файл: добавка разопаковчик"
 
 msgid "Se&lect..."
 msgstr "Изби&ране…"
-
-msgid "Co&mpare"
-msgstr "&Сравняване"
 
 msgid "Cancel"
 msgstr "Отменяне"
@@ -1980,6 +2019,21 @@ msgstr "&Сравняване и на изображения при сравня
 
 msgid "OCR result:"
 msgstr "Резултат от OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
@@ -3710,6 +3764,9 @@ msgstr "Затваряне на д&ругите раздели"
 msgid "Enable &Auto Max Width"
 msgstr "Автоматична &максимална ширина"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed не е инсталиран."
 
@@ -3893,6 +3950,12 @@ msgstr "Позиция на редове и текст"
 
 msgid "Word-by-word position and text"
 msgstr "Позиция на думи и текст"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Позволи само едно стартирано копие"
@@ -4178,4 +4241,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

@@ -217,6 +217,45 @@ msgstr "&Dimensionamento da Imagem Vetorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar o Texto &Extraído da Imagens"
 
+msgid "Co&mpare"
+msgstr "Co&mparar"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Arquivo"
 
@@ -234,6 +273,9 @@ msgstr "&Binário"
 
 msgid "&Image"
 msgstr "&Imagem"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Novo (&3 painéis)"
@@ -1064,9 +1106,6 @@ msgstr " Arquivo: Plugin do Desempacotador"
 
 msgid "Se&lect..."
 msgstr "Se&lecionar..."
-
-msgid "Co&mpare"
-msgstr "Co&mparar"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -1989,6 +2028,21 @@ msgstr "&Ativar comparação de imagens na comparação das pastas"
 
 msgid "OCR result:"
 msgstr "Resultado do OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "&Visualização Hex"
@@ -3735,6 +3789,9 @@ msgstr "Fechar as &Outras Abas"
 msgid "Enable &Auto Max Width"
 msgstr "Ativar o &Máximo de Largura Automática"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "O Frhed não está instalado."
 
@@ -3919,6 +3976,12 @@ msgstr "Posição e texto linha-por-linha"
 
 msgid "Word-by-word position and text"
 msgstr "Posição e texto palavra-por-palavra"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Permitir só uma instância a ser executada"
@@ -4205,4 +4268,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

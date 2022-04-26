@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2022-03-27 22:20+0900\n"
+"PO-Revision-Date: 2022-04-20 22:45+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -216,6 +216,45 @@ msgstr "ベクター画像スケーリング(&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 
+msgid "Co&mpare"
+msgstr "比較(&M)"
+
+msgid "&Screenshots"
+msgstr "スクリーンショット(&S)"
+
+msgid "&Full Size Screenshots"
+msgstr "フルサイズスクリーンショット(&F)"
+
+msgid "&HTMLs"
+msgstr "&HTML"
+
+msgid "&Texts"
+msgstr "テキスト(&T)"
+
+msgid "&Resource Trees"
+msgstr "リソースツリー(&R)"
+
+msgid "&Size"
+msgstr "サイズ(&S)"
+
+msgid "Fit to Window"
+msgstr "ウインドウに合わせる"
+
+msgid "Clear &Browsing Data"
+msgstr "閲覧データのクリア(&B)"
+
+msgid "&Disk Cache"
+msgstr "ディスクキャッシュ(&D)"
+
+msgid "&Cookies"
+msgstr "クッキー(&C)"
+
+msgid "&Browsing History"
+msgstr "閲覧履歴(&B)"
+
+msgid "&All Profile"
+msgstr "すべてのプロファイル(&A)"
+
 msgid "&File"
 msgstr "ファイル(&F)"
 
@@ -233,6 +272,9 @@ msgstr "バイナリ(&B)"
 
 msgid "&Image"
 msgstr "画像(&I)"
+
+msgid "&Webpage"
+msgstr "Web ページ(&W)"
 
 msgid "New (&3 panes)"
 msgstr "新規 (&3 ペイン)"
@@ -1063,9 +1105,6 @@ msgstr " ファイル: 展開プラグイン"
 
 msgid "Se&lect..."
 msgstr "選択(&L)..."
-
-msgid "Co&mpare"
-msgstr "比較(&M)"
 
 msgid "Cancel"
 msgstr "キャンセル"
@@ -1978,6 +2017,21 @@ msgstr "フォルダー比較で画像比較を有効にする(&E)"
 
 msgid "OCR result:"
 msgstr "OCRの結果:"
+
+msgid "Webpage"
+msgstr "Webページ"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "URL パターン (正規表現) (&I):"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "除外 URL パターン (正規表現) (&E):"
+
+msgid "&User data folder location:"
+msgstr "ユーザーデータフォルダーの場所(&U):"
+
+msgid "&Separate user data folders for each pane"
+msgstr "ユーザーデータフォルダーをペイン毎に分離する(&S)"
 
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
@@ -3690,6 +3744,9 @@ msgstr "他のタブをすべて閉じる(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "タブ幅の自動調整を有効にする(&A)"
 
+msgid "We&bpage"
+msgstr "Webページ(&B)"
+
 msgid "Frhed is not installed."
 msgstr "Frhed がインストールされていません。"
 
@@ -3873,6 +3930,12 @@ msgstr "行毎の位置情報とテキスト"
 
 msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
+
+msgid "AppData folder"
+msgstr "AppData フォルダ"
+
+msgid "Install folder"
+msgstr "インストールフォルダ"
 
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"
@@ -4285,3 +4348,6 @@ msgstr "このシステムではクリップボード履歴はサポートされ
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"

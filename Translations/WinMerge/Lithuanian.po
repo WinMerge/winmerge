@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-18 21:36+0000\n"
-"PO-Revision-Date: 2022-03-20 09:09+0200\n"
+"POT-Creation-Date: 2022-03-26 23:25+0000\n"
+"PO-Revision-Date: 2022-03-28 09:49+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -217,6 +217,45 @@ msgstr "&Vektorinių vaizdų mastelio keitimas"
 msgid "Compare Extracted &Text From Images"
 msgstr "Lyginti iš paveikslėlių ištrauktą &tekstą"
 
+msgid "Co&mpare"
+msgstr "Ly&ginti"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Failas"
 
@@ -234,6 +273,9 @@ msgstr "&Binarinis"
 
 msgid "&Image"
 msgstr "Pave&ikslėlis"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Naujas (&3 polangiai)"
@@ -1064,9 +1106,6 @@ msgstr " Failams: Išpakuotojas"
 
 msgid "Se&lect..."
 msgstr "Pa&rinkti..."
-
-msgid "Co&mpare"
-msgstr "Ly&ginti"
 
 msgid "Cancel"
 msgstr "Atsisakyti"
@@ -1963,6 +2002,21 @@ msgstr "Lyginti pav&eikslėlius lyginant katalogus"
 
 msgid "OCR result:"
 msgstr "Optinio ženklų atpažinimo (OCR) rezultatas:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
@@ -3308,6 +3362,9 @@ msgstr "Užverti k&itas korteles"
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "„Frhed“ neįdiegtas."
 
@@ -3486,6 +3543,12 @@ msgstr "Paeilutinė pozicija ir tekstas"
 msgid "Word-by-word position and text"
 msgstr "Pažodinė pozicija ir tekstas"
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 
@@ -3517,7 +3580,7 @@ msgid "&Others"
 msgstr "Kiti"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "URL apdorojimas"
 
 msgid "Make Uppercase"
 msgstr "Pakeisti didžiosiomis raidėmis"
@@ -3771,3 +3834,6 @@ msgstr "Ši sistema nepalaiko mainų srities istorijos."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

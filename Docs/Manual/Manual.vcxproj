@@ -337,6 +337,7 @@
     <Xml Include="EN\Compare_files.xml" />
     <Xml Include="EN\Compare_images.xml" />
     <Xml Include="EN\Compare_table.xml" />
+    <Xml Include="EN\Compare_webpages.xml" />
     <Xml Include="EN\Configuration.xml" />
     <Xml Include="EN\Faq.xml" />
     <Xml Include="EN\Filters.xml" />
@@ -362,6 +363,7 @@
     <Xml Include="JP\Compare_files.xml" />
     <Xml Include="JP\Compare_images.xml" />
     <Xml Include="JP\Compare_table.xml" />
+    <Xml Include="JP\Compare_webpages.xml" />
     <Xml Include="JP\Configuration.xml" />
     <Xml Include="JP\Faq.xml" />
     <Xml Include="JP\Filters.xml" />

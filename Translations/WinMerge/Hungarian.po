@@ -245,6 +245,45 @@ msgstr "Vektor kép méretezése"
 msgid "Compare Extracted &Text From Images"
 msgstr "Hasonlítsa össze a képekből kinyert szöveget"
 
+msgid "Co&mpare"
+msgstr "Összehasonlít"
+
+msgid "&Screenshots"
+msgstr "Képernyőmentések"
+
+msgid "&Full Size Screenshots"
+msgstr "Teljes méretű képernyőmentések"
+
+msgid "&HTMLs"
+msgstr "HTML-ek"
+
+msgid "&Texts"
+msgstr "Szövegek"
+
+msgid "&Resource Trees"
+msgstr "Erőforrásfák"
+
+msgid "&Size"
+msgstr "Méret"
+
+msgid "Fit to Window"
+msgstr "Ablakhoz igazít"
+
+msgid "Clear &Browsing Data"
+msgstr "Böngészési adatok törlése"
+
+msgid "&Disk Cache"
+msgstr "Lemez gyorsítótár"
+
+msgid "&Cookies"
+msgstr "Sütik"
+
+msgid "&Browsing History"
+msgstr "Böngészési előzmények"
+
+msgid "&All Profile"
+msgstr "Minden profil"
+
 #, c-format
 msgid "&File"
 msgstr "&Fájl"
@@ -267,6 +306,9 @@ msgstr "Bináris"
 #, c-format
 msgid "&Image"
 msgstr "Kép"
+
+msgid "&Webpage"
+msgstr "Weboldal"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -1314,9 +1356,6 @@ msgstr " Fájl: Kitömörítő bővítmény"
 #, c-format
 msgid "Se&lect..."
 msgstr "Kiválasztás..."
-
-msgid "Co&mpare"
-msgstr "Összehasonlít"
 
 #, c-format
 msgid "Cancel"
@@ -2450,6 +2489,21 @@ msgstr "Képösszehasonlítás mappák összehasonlításakor is"
 
 msgid "OCR result:"
 msgstr "Karakterfelismerő találatai:"
+
+msgid "Webpage"
+msgstr "Weboldal"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "Beleveendő URL minta (reguláris kifejezés):"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "Kihagyandó URL minta (reguláris kifejezés):"
+
+msgid "&User data folder location:"
+msgstr "Felhasználói adatmappa helye:"
+
+msgid "&Separate user data folders for each pane"
+msgstr "Önálló felhasználói adatmappa minden panelhez"
 
 #, c-format
 msgid "&Hex View"
@@ -4367,6 +4421,9 @@ msgstr "Többi tabulátor bezárása"
 msgid "Enable &Auto Max Width"
 msgstr "Auto oszlopszélesség be"
 
+msgid "We&bpage"
+msgstr "Weboldal"
+
 msgid "Frhed is not installed."
 msgstr "Az Frhed hexa szerkesztő nincs telepítve."
 
@@ -4553,6 +4610,12 @@ msgstr "Pozíció és szöveg sorról sorra"
 msgid "Word-by-word position and text"
 msgstr "Pozíció és szöveg szóról szóra"
 
+msgid "AppData folder"
+msgstr "Programadat mappa"
+
+msgid "Install folder"
+msgstr "Mappa telepítése"
+
 msgid "Allow only one instance to run"
 msgstr "Csak egy példány futhat egyszerre"
 
@@ -4560,7 +4623,7 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
 msgid "Al&l"
-msgstr "Minden"
+msgstr "Összes"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
@@ -4838,3 +4901,6 @@ msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"

@@ -244,6 +244,45 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Co&mpare"
+msgstr "Ver&taa"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "Tiedosto"
@@ -266,6 +305,9 @@ msgstr "Binääri"
 #, c-format
 msgid "&Image"
 msgstr "&Kuva"
+
+msgid "&Webpage"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -1315,9 +1357,6 @@ msgstr " Tiedosto: Purkaja-lisäosa"
 #, c-format
 msgid "Se&lect..."
 msgstr "Va&litse..."
-
-msgid "Co&mpare"
-msgstr "Ver&taa"
 
 #, c-format
 msgid "Cancel"
@@ -2445,6 +2484,21 @@ msgid "&Enable image compare in folder compare"
 msgstr ""
 
 msgid "OCR result:"
+msgstr ""
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
 msgstr ""
 
 #, c-format
@@ -4302,6 +4356,9 @@ msgstr "Sulje &muut välilehdet"
 msgid "Enable &Auto Max Width"
 msgstr "Käytä &automaattista maksimi leveyttä"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ei ole asennettu."
 
@@ -4486,6 +4543,12 @@ msgid "Line-by-line position and text"
 msgstr ""
 
 msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
 msgstr ""
 
 #, c-format
@@ -4773,4 +4836,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

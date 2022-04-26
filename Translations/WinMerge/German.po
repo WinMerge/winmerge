@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-19 19:15+0200\n"
+"PO-Revision-Date: 2022-03-28 17:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -246,6 +246,45 @@ msgstr "&Vektorbild-Skalierung"
 msgid "Compare Extracted &Text From Images"
 msgstr "Extrahierten &Text aus den Bildern vergleichen"
 
+msgid "Co&mpare"
+msgstr "Vergleichen"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Datei"
@@ -268,6 +307,9 @@ msgstr "&Binär"
 #, c-format
 msgid "&Image"
 msgstr "Bil&d"
+
+msgid "&Webpage"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -1316,9 +1358,6 @@ msgstr " Datei: Entpacker-Plugin"
 #, c-format
 msgid "Se&lect..."
 msgstr "Auswählen..."
-
-msgid "Co&mpare"
-msgstr "Vergleichen"
 
 #, c-format
 msgid "Cancel"
@@ -2440,6 +2479,21 @@ msgstr "&Bildvergleich im Ordnervergleich aktivieren"
 
 msgid "OCR result:"
 msgstr "OCR-Resultat:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 #, c-format
 msgid "&Hex View"
@@ -4025,6 +4079,9 @@ msgstr "&Alle anderen Tabs schließen"
 msgid "Enable &Auto Max Width"
 msgstr "Automatisch maximale Breite aktivieren"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ist nicht installiert."
 
@@ -4205,6 +4262,12 @@ msgstr "Position und Text zeilenweise"
 msgid "Word-by-word position and text"
 msgstr "Position und Text wortweise"
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "Nur eine Instanz zulassen"
@@ -4237,7 +4300,7 @@ msgid "&Others"
 msgstr "Andere"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "URL-Handling"
 
 msgid "Make Uppercase"
 msgstr "Großbuchstaben erzeugen"
@@ -4471,10 +4534,10 @@ msgid "Basic text functions for the context menu"
 msgstr "Grundlegende Textfunktionen für das Kontextmenü"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
-msgstr ""
+msgstr "HTTP-URL-Scheme-Handler mit curl. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl curl übergeben werden."
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
+msgstr "Windows-Registry-URL-Scheme-Handler. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl reg.exe übergeben werden."
 
 msgid "Filter applied"
 msgstr "Angewandter Filter"
@@ -4491,3 +4554,6 @@ msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

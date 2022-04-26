@@ -17,6 +17,10 @@
 #include <winrt/windows.graphics.imaging.h>
 #include <winrt/windows.storage.streams.h>
 
+#if !__has_include(<winrt/windows.applicationmodel.holographic.h>)
+#pragma comment(lib, "windowsapp.lib") // < Windows SDK 10.0.22000.0
+#endif
+
 using namespace winrt::Windows::ApplicationModel::DataTransfer;
 using namespace winrt::Windows::Graphics::Imaging;
 using namespace winrt::Windows::Storage;
@@ -31,7 +35,7 @@ namespace ClipboardHistory
 	{
 		std::shared_ptr<TempFile> CreateTempTextFile(const String& text)
 		{
-			std::shared_ptr<TempFile> pTempFile(new TempFile());
+			auto pTempFile = std::make_shared<TempFile>(TempFile());
 			pTempFile->Create(_T("CLP"), L".txt");
 			String path = pTempFile->GetPath();
 			UniStdioFile file;

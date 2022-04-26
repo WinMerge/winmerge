@@ -347,6 +347,50 @@ Function ParseReplaceArguments(args, regex, ignoreCase)
 	ParseReplaceArguments = patterns
 End Function
 
+Function Unescape(text)
+	Dim textLen
+	Dim i
+	Dim ch
+
+	textLen = Len(text)
+	i = 1
+	Do While i <= textLen
+		ch = Mid(text, i, 1)
+		Select Case ch
+		Case "\"
+			If i <= textLen - 1 Then
+				i = i + 1
+				ch = Mid(text, i, 1)
+				Select Case ch
+				Case "a"
+					Unescape = Unescape & Chr(&H07)
+				Case "b"
+					Unescape = Unescape & Chr(&H08)
+				Case "t"
+					Unescape = Unescape & Chr(&H09)
+				Case "n"
+					Unescape = Unescape & Chr(&H0A)
+				Case "v"
+					Unescape = Unescape & Chr(&H0B)
+				Case "f"
+					Unescape = Unescape & Chr(&H0C)
+				Case "r"
+					Unescape = Unescape & Chr(&H0D)
+				Case "\"
+					Unescape = Unescape & "\"
+				Case Else
+					Unescape = Unescape & "\" & ch
+				End Select
+			Else
+				Unescape = Unescape & ch
+			End If
+		Case Else
+			Unescape = Unescape & ch
+		End Select
+		i = i + 1
+	Loop
+End Function
+
 Function SplitLines(text, eol)
 	Dim re, matches
 	Set re = New RegExp
@@ -556,7 +600,7 @@ Function ReplaceText(Text)
 			re.Multiline = True
 			re.Pattern = patterns(i)
 			If i + 1 <= UBound(patterns) Then
-				ReplaceText = re.Replace(ReplaceText, patterns(i + 1))
+				ReplaceText = re.Replace(ReplaceText, Unescape(patterns(i + 1)))
 			Else
 				ReplaceText = re.Replace(ReplaceText, "")
 			End If

@@ -219,6 +219,45 @@ msgstr "&Масштаб изображений"
 msgid "Compare Extracted &Text From Images"
 msgstr "Сравнить извлеченный из изображения текст"
 
+msgid "Co&mpare"
+msgstr "Сравнить"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Файл"
 
@@ -236,6 +275,9 @@ msgstr "Двоичный"
 
 msgid "&Image"
 msgstr "Изображение"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Создать (&3 панели)"
@@ -1066,9 +1108,6 @@ msgstr " Файл: плагин распаковщика"
 
 msgid "Se&lect..."
 msgstr "Выбрать..."
-
-msgid "Co&mpare"
-msgstr "Сравнить"
 
 msgid "Cancel"
 msgstr "Отмена"
@@ -1965,6 +2004,21 @@ msgstr "Cравнивать изображения в папках сравне�
 
 msgid "OCR result:"
 msgstr "Результат OCR"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "&Hex"
@@ -3310,6 +3364,9 @@ msgstr "Закрыть другие вкладки"
 msgid "Enable &Auto Max Width"
 msgstr "Включить максимальную авто ширину"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed не установлен."
 
@@ -3487,6 +3544,12 @@ msgstr "Построчная позиция и текст"
 
 msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
@@ -3773,3 +3836,6 @@ msgstr "Эта система не поддерживает историю бу�
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-битная версия WinMerge не поддерживает буфера обмена"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

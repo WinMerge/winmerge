@@ -16,6 +16,7 @@ Filters=Filters
 Plugins=Plugins
 Frhed=Frhed(Free hex editor)
 WinIMerge=WinIMerge(Image Diff/Merge)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
 Commands=GnuWin32 Patch for Windows/HTML Tidy/jq

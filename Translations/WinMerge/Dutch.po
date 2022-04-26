@@ -217,6 +217,45 @@ msgstr "Vectorafbeeldingsschaling"
 msgid "Compare Extracted &Text From Images"
 msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
+msgid "Co&mpare"
+msgstr "Vergelijken"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "Bestand"
 
@@ -234,6 +273,9 @@ msgstr "Binair"
 
 msgid "&Image"
 msgstr "Afbeelding"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Nieuw (3 vensters)"
@@ -1064,9 +1106,6 @@ msgstr "Bestand: uitpak-plugin"
 
 msgid "Se&lect..."
 msgstr "Selecteren..."
-
-msgid "Co&mpare"
-msgstr "Vergelijken"
 
 msgid "Cancel"
 msgstr "Annuleren"
@@ -1987,6 +2026,21 @@ msgstr "Afbeeldingsvergelijking in mapvergelijking inschakelen"
 
 msgid "OCR result:"
 msgstr "OCR-resultaat:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Hex-weergave"
@@ -3706,6 +3760,9 @@ msgstr "Andere tabs sluiten"
 msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Fhred is niet geïnstalleerd"
 
@@ -3889,6 +3946,12 @@ msgstr "Positie en tekst regel per regel"
 
 msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"
@@ -4307,3 +4370,6 @@ msgstr "Dit systeem ondersteunt geen klembordgeschiedenis."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "De 32-bit-versie van WinMerge ondersteunt geen klembordvergelijking"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

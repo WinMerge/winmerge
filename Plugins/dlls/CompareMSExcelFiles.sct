@@ -419,7 +419,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
 		End If 
 	End If
-	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0))
+	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0),,,,,,,,,,,,True)
 
 	On Error Resume Next
 
@@ -522,7 +522,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
 		End If 
 	End If
-	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0))
+	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0),,,,,,,,,,,,True)
 
 	On Error Resume Next
 
