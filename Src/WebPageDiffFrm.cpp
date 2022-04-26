@@ -1359,6 +1359,7 @@ void CWebPageDiffFrame::OnWebFitToWindow()
 {
 	m_pWebDiffWindow->SetFitToWindow(true);
 	SaveOptions();
+	UpdateWebPageDiffBar();
 }
 
 void CWebPageDiffFrame::OnUpdateWebFitToWindow(CCmdUI* pCmdUI)
@@ -1373,25 +1374,30 @@ void CWebPageDiffFrame::OnWebSize(UINT nID)
 	case ID_WEB_SIZE_320x512:
 		m_pWebDiffWindow->SetFitToWindow(false);
 		m_pWebDiffWindow->SetSize({ 320, 512 });
+		UpdateWebPageDiffBar();
 		break;
 	case ID_WEB_SIZE_375x600:
 		m_pWebDiffWindow->SetFitToWindow(false);
 		m_pWebDiffWindow->SetSize({ 375, 600 });
+		UpdateWebPageDiffBar();
 		break;
 	case ID_WEB_SIZE_1024x640:
 		m_pWebDiffWindow->SetFitToWindow(false);
 		m_pWebDiffWindow->SetSize({ 1024, 640 });
 		SaveOptions();
+		UpdateWebPageDiffBar();
 		break;
 	case ID_WEB_SIZE_1280x800:
 		m_pWebDiffWindow->SetFitToWindow(false);
 		m_pWebDiffWindow->SetSize({ 1280, 800 });
 		SaveOptions();
+		UpdateWebPageDiffBar();
 		break;
 	case ID_WEB_SIZE_1440x900:
 		m_pWebDiffWindow->SetFitToWindow(false);
 		m_pWebDiffWindow->SetSize({ 1440, 900 });
 		SaveOptions();
+		UpdateWebPageDiffBar();
 		break;
 	}
 }
