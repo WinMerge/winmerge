@@ -1786,8 +1786,6 @@
 
         <arg><option>-i</option></arg>
 
-        <arg><option>-g</option></arg>
-
         <arg><option>-e</option> <replaceable>patterns</replaceable></arg>
 
       </cmdsynopsis>
