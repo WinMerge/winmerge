@@ -60,6 +60,10 @@ Please submit bug reports to our bug-tracker.
     control characters CR and LF.
 - PrettifyHTML plugin: Added "--tidy-mark no" to default plugin arguments
 
+### Manual
+
+- BugFix: Help file: Small issue for plugins (#1309)
+
 ### Translations
 
 - Translation updates:

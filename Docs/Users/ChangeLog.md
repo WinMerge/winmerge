@@ -46,19 +46,23 @@
     control characters CR and LF.
 - PrettifyHTML plugin: Added "--tidy-mark no" to default plugin arguments
 
+### Manual
+
+- BugFix: Help file: Small issue for plugins (#1309)
+
 ### Translations
 
 - Translation updates:
-  - Corsican (PR #1305)
+  - Corsican (PR #1305,#1307)
   - Bulgarian (PR #1269)
   - French (PR #1294)
   - Galician (PR 1292)
   - German (PR #1276)
-  - Hungarian (PR #1274, #1306)
+  - Hungarian (PR #1274,#1306)
   - Japanese
-  - Lithuanian (PR #1263, #1275)
-  - Polish (PR #1272, #1287, #1288)
-  - Portuguese (PR #1273, #1277)
+  - Lithuanian (PR #1263,#1275)
+  - Polish (PR #1272,#1287,#1288)
+  - Portuguese (PR #1273,#1277)
   - Slovenian (#1289)
   - Turkish (PR #1264)
 
