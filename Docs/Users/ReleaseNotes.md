@@ -55,10 +55,22 @@ Please submit bug reports to our bug-tracker.
 - BugFix: CompareMSExcelFiles.sct: Date formats interpreted inconsistently
     (#279)
 - Add URL handler plugins (PR #1270)
+  - HTTP/HTTPS scheme handler plugin
+    - This plugin retrieves a file with the specified HTTP or HTTPS URL using
+        the curl command.
+  - Windows Registry scheme(reg:) handler plugin
+    - This plugin handles URLs like
+        `reg:HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge`.
+        After `reg:`, it considers it a registry key and uses the reg.exe
+        command to retrieve information about that registry key.
 - Replace plugin: When regular expression substitution is performed with the
     `-e` option, `\r` and `\n` in the second argument are now treated as
     control characters CR and LF.
 - PrettifyHTML plugin: Added "--tidy-mark no" to default plugin arguments
+
+### Command line
+
+- Added `/t webpage` command line option
 
 ### Manual
 
@@ -67,7 +79,7 @@ Please submit bug reports to our bug-tracker.
 ### Translations
 
 - Translation updates:
-  - Corsican (PR #1305)
+  - Corsican (PR #1305,#1307)
   - Bulgarian (PR #1269)
   - French (PR #1294)
   - Galician (PR 1292)
@@ -82,6 +94,9 @@ Please submit bug reports to our bug-tracker.
 
 ### Internals
 
+- Code refactor with C++17 features replace optimize create smart pointers
+    (PR #1304)
+- Fixed link errors occurring in Windows 10 SDK version 10.0.19041.0 and lower
 
 ## What Is New in 2.16.19 Beta
 

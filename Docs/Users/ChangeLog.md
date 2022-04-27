@@ -41,10 +41,22 @@
 - BugFix: CompareMSExcelFiles.sct: Date formats interpreted inconsistently
     (#279)
 - Add URL handler plugins (PR #1270)
+  - HTTP/HTTPS scheme handler plugin
+    - This plugin retrieves a file with the specified HTTP or HTTPS URL using
+        the curl command.
+  - Windows Registry scheme(reg:) handler plugin
+    - This plugin handles URLs like
+        `reg:HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge`.
+        After `reg:`, it considers it a registry key and uses the reg.exe
+        command to retrieve information about that registry key.
 - Replace plugin: When regular expression substitution is performed with the
     `-e` option, `\r` and `\n` in the second argument are now treated as
     control characters CR and LF.
 - PrettifyHTML plugin: Added "--tidy-mark no" to default plugin arguments
+
+### Command line
+
+- Added `/t webpage` command line option
 
 ### Manual
 
