@@ -250,40 +250,40 @@ msgid "Co&mpare"
 msgstr "Vergleichen"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "&Screenshots"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "Screenshots in &voller Größe"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTMLs"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Texte"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Ressourcenbäume"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Größe"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "An Fenster anpassen"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "&Browserdaten löschen"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "Festplatten-Cache"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Cookies"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "&Browserverlauf"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "&Alle Profile"
 
 #, c-format
 msgid "&File"
@@ -309,7 +309,7 @@ msgid "&Image"
 msgstr "Bil&d"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "&Webseite"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -2478,19 +2478,19 @@ msgid "OCR result:"
 msgstr "OCR-Resultat:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Webseite"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Einzuschließendes URL-Muster (Regulärer Ausdruck):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Auszuschließendes URL-Muster (Regulärer Ausdruck):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "Ort des Benutzerdatenordners:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Separate Benutzerdatenordner für jeden Bereich"
 
 #, c-format
 msgid "&Hex View"
@@ -4077,7 +4077,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Automatisch maximale Breite aktivieren"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "We&bseite"
 
 msgid "Frhed is not installed."
 msgstr "Frhed ist nicht installiert."
@@ -4260,10 +4260,10 @@ msgid "Word-by-word position and text"
 msgstr "Position und Text wortweise"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData-Ordner"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Installationsordner"
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -4553,4 +4553,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
