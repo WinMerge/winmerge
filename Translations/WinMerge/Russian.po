@@ -216,8 +216,8 @@ msgstr "Цвет фона"
 msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
-msgid "Compare Extracted &Text From Image"
-msgstr "Сравнить извлеченный из изображения текст"
+msgid "Compare Extracted &Text From Images"
+msgstr "Сравнитьизвлеченныйизизображениятекст"
 
 msgid "Co&mpare"
 msgstr "Сравнить"
@@ -588,7 +588,7 @@ msgstr "&Заменить концы строк на"
 msgid "Mer&ge Mode\tF9"
 msgstr "Режим объединения\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "&Обновить\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -1142,9 +1142,9 @@ msgstr "Сохранять время файла при сравнении"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
-msgstr "Закрывать диалог \"Выбрать файлы или папки\" по ОК"
-
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgstr "Закрыватьдиалог\"Выбрать
+файлыилипапки\"поОК"
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
 
@@ -1418,11 +1418,11 @@ msgstr "Описание:"
 msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
-msgid "Display all plugins, don't check the extension."
-msgstr "Отображать все плагины, не проверяя расширение."
+msgid "Display all plugins, don't check the extension"
+msgstr "Отображатьвсеплагины,непроверяярасширение"
 
-msgid "&Open files in the same window type after unpacking."
-msgstr "Открыть файлы в том же типе окна после распаковки."
+msgid "&Open files in the same window type after unpacking"
+msgstr "Открытьфайлывтомжетипеокнапослераспаковки"
 
 msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
