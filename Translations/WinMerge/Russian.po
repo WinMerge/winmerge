@@ -1143,8 +1143,8 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Закрыватьдиалог\"Выбрать
-файлыилипапки\"поОК"
+msgstr "Закрыватьдиалог\"Выбрать файлыилипапки\"поОК"
+
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
 
