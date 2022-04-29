@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Filters">
-  <title>フィルタの使用<indexterm>
+  <title>フィルターの使用<indexterm>
       <primary>filters</primary>
 
       <seealso>file filters</seealso>
@@ -13,9 +13,9 @@
     </indexterm></title>
 
   <para>
-    ファイルやフォルダ比較の際、比較範囲を限定するためにファイルフィルタを使用することができます。
+    ファイルやフォルダー比較の際、比較範囲を限定するためにファイルフィルターを使用することができます。
     これは、比較結果から、あなたが興味のない差異を取り除きたい場合に便利です。
-    フィルタは、正規表現を元に規定します。
+    フィルターは、正規表現を元に規定します。
     WinMerge は、ポピュラーな PCRE (Perl Compatible Regular Expressions) 正規表現エンジンを使用しています。<indexterm>
       <primary>regular expressions</primary>
 
@@ -29,17 +29,17 @@
     </indexterm></para>
 
   <para>
-    <!-- TODO: ちょっと自信ない-->フィルタの基本機能はシンプルです。
-    通常比較されるであろう、それぞれのアイテム(フォルダ、ファイル、ファイル中の行)を評価し、
-    対象のアイテムがフィルタ式にマッチした場合、フィルタを適用します。
-    フィルタタイプにより、アイテムは、比較に含められるか、除外されるかのどちらかです。</para>
+    <!-- TODO: ちょっと自信ない-->フィルターの基本機能はシンプルです。
+    通常比較されるであろう、それぞれのアイテム(フォルダー、ファイル、ファイル中の行)を評価し、
+    対象のアイテムがフィルター式にマッチした場合、フィルターを適用します。
+    フィルタータイプにより、アイテムは、比較に含められるか、除外されるかのどちらかです。</para>
 
-  <para>フォルダ比較用とファイル比較用の異なる WinMerge
-    フィルタがあります。</para>
+  <para>フォルダー比較用とファイル比較用の異なる WinMerge
+    フィルターがあります。</para>
 
   <variablelist>
     <varlistentry>
-      <term>フォルダ比較: ファイルマスクとファイルフィルタ<indexterm>
+      <term>フォルダー比較: ファイルマスクとファイルフィルター<indexterm>
           <primary>comparing folders</primary>
 
           <secondary>filtering</secondary>
@@ -48,25 +48,25 @@
       <listitem>
         <para>
           <!-- TODO:ちょっと複雑すぎる気がする-->
-          単純なファイルマスク、または、より複雑なフィルタにより、
-          ファイルフィルタ中で指定された複数の規則を適用することで、
-          フォルダ比較中に含めるファイルを指定することができます。
-          ファイルマスクとファイルフィルタの両方を、同一の操作中で適用することができます。</para>
+          単純なファイルマスク、または、より複雑なフィルターにより、
+          ファイルフィルター中で指定された複数の規則を適用することで、
+          フォルダー比較中に含めるファイルを指定することができます。
+          ファイルマスクとファイルフィルターの両方を、同一の操作中で適用することができます。</para>
 
         <para>
-          フィルタされるファイルやフォルダは、デフォルトで隠されます。
-          それは、典型的にあなたが望むものでしょう。フィルタされたアイテムを表示するには、
+          フィルターされるファイルやフォルダーは、デフォルトで隠されます。
+          それは、典型的にあなたが望むものでしょう。フィルターされたアイテムを表示するには、
         <menuchoice>
           <guimenu>表示</guimenu>
           <guimenuitem>スキップされた項目の表示</guimenuitem>
     </menuchoice>をクリックしてください。
-    しかし、フォルダ比較ウィンドウは、それらについて最小限の情報しか表示しません。
+    しかし、フォルダー比較ウィンドウは、それらについて最小限の情報しか表示しません。
     例えば、あなたは、スキップされたファイルがテキストファイルかバイナリファイルか判らないでしょう。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
-      <term>ファイル比較: 行フィルタと置換フィルタ<indexterm>
+      <term>ファイル比較: 行フィルターと置換フィルター<indexterm>
           <primary>comparing files</primary>
 
           <secondary>filtering</secondary>
@@ -74,10 +74,10 @@
 
       <listitem>
         <para>
-          行フィルタは、ファイル比較操作のみに適用されます。
+          行フィルターは、ファイル比較操作のみに適用されます。
           それにより、単一行の差異を無視することができます。</para>
-        <para>置換フィルタは、ファイル比較操作のみに適用されます。
-         置換フィルタは、diffブロック内の文字列を指定された文字列に置換して比較し、
+        <para>置換フィルターは、ファイル比較操作のみに適用されます。
+         置換フィルターは、diffブロック内の文字列を指定された文字列に置換して比較し、
          結果が一致する場合はそのdiffブロックを無視します。
          これは、興味のない多数の変更を無視するのに役立ちます。
         </para>
@@ -98,7 +98,7 @@
         <secondary>in folder comparisons</secondary>
       </indexterm></title>
 
-    <para>フォルダ比較中に含める拡張子を指定する、1つか複数の
+    <para>フォルダー比較中に含める拡張子を指定する、1つか複数の
       <glossterm>ファイルマスク</glossterm>を使用することができます。
       その他すべてのファイルは、選択から省かれます。</para>
 
@@ -110,17 +110,17 @@
         </indexterm></title>
 
       <para>
-      フォルダ比較操作を実行時に、ファイルマスクを定義し適用する:</para>
+      フォルダー比較操作を実行時に、ファイルマスクを定義し適用する:</para>
 
       <itemizedlist>
         <listitem>
           <para>
-            ファイルまたはフォルダの選択ダイアログを使用しているなら、
+            ファイルまたはフォルダーの選択ダイアログを使用しているなら、
             <guilabel>1(左)</guilabel>と
-            <guilabel>2(右)</guilabel>のフォルダ選択後、
-            <guilabel>フィルタ</guilabel>フィールドへ、
+            <guilabel>2(右)</guilabel>のフォルダー選択後、
+            <guilabel>フィルター</guilabel>フィールドへ、
             1つか複数のファイルマスクを入力してください。
-            マスクは、フォルダ比較操作を開始した時に適用されます。</para>
+            マスクは、フォルダー比較操作を開始した時に適用されます。</para>
         </listitem>
 
         <listitem>
@@ -132,7 +132,7 @@
       </itemizedlist>
 
       <para>
-        フィールドやコマンドラインで、ファイルマスクとファイルフィルタの、
+        フィールドやコマンドラインで、ファイルマスクとファイルフィルターの、
         両方を指定することはできないことを憶えておいてください。</para>
     </section>
 
@@ -153,7 +153,7 @@
 
       <para>このシンタックスは、ファイルマスク用です:</para>
 
-      <synopsis>[!](*.[<replaceable>拡張子</replaceable>]|<replaceable>フォルダマスク</replaceable>\)[<replaceable>区切り文字</replaceable>[!](*.<replaceable>拡張子</replaceable>|<replaceable>フォルダマスク</replaceable>\) ...]</synopsis>
+      <synopsis>[!](*.[<replaceable>拡張子</replaceable>]|<replaceable>フォルダーマスク</replaceable>\)[<replaceable>区切り文字</replaceable>[!](*.<replaceable>拡張子</replaceable>|<replaceable>フォルダーマスク</replaceable>\) ...]</synopsis>
 
       <para>有効な区切り文字はスペース、カンマ、コロン、セミコロンです。</para>
 
@@ -165,13 +165,13 @@
       <para>2.16.19 以降、感嘆符(<filename>!</filename>)
       をマスクの前に付加した場合、そのマスクに一致したファイルは除外されます。
       また、バックスラッシュ(<filename>\</filename>)をマスクの後に付加した場合、
-      そのマスクはファイルではなくフォルダが対象となります。</para>
+      そのマスクはファイルではなくフォルダーが対象となります。</para>
 
       <example>
         <title>ファイルマスク</title>
 
         <para>
-          このコマンドラインの例では、フォルダ比較操作は、拡張子
+          このコマンドラインの例では、フォルダー比較操作は、拡張子
           <filename>xml</filename>か
           <filename>txt</filename>のファイルのみを含みます。
           その他すべてのファイルは省かれます:</para>
@@ -182,12 +182,12 @@
       </example>
 
       <example>
-        <title>フォルダの除外(2.16.19以降)</title>
+        <title>フォルダーの除外(2.16.19以降)</title>
 
         <para>
-          このコマンドラインの例では、フォルダ比較操作は、
+          このコマンドラインの例では、フォルダー比較操作は、
           <filename>.git</filename>と
-          <filename>.vs</filename>フォルダを除外します:</para>
+          <filename>.vs</filename>フォルダーを除外します:</para>
 
         <para>
           <userinput>WinMergeU c:\project\docs c:\temp /f !.git\;!.vs\</userinput>
@@ -197,7 +197,7 @@
   </section>
 
   <section id="Filters_FileFilter">
-    <title>ファイルフィルタの使用<indexterm>
+    <title>ファイルフィルターの使用<indexterm>
         <primary>filters</primary>
 
         <secondary>file filters</secondary>
@@ -208,28 +208,28 @@
       </indexterm></title>
 
     <para>
-      <glossterm>ファイルフィルタ</glossterm>は、拡張子
+      <glossterm>ファイルフィルター</glossterm>は、拡張子
       <filename>flt</filename>のテキストファイルです。
-      これらは、フォルダ比較用の複数のフィルタルールを適用することを可能にします。
+      これらは、フォルダー比較用の複数のフィルタールールを適用することを可能にします。
       <!-- FIXME: いい訳思いつかず-->
-      ファイルマスクと異なり、ファイルフィルタは、含むか除外、どちらかにマッチすることができます。</para>
+      ファイルマスクと異なり、ファイルフィルターは、含むか除外、どちらかにマッチすることができます。</para>
 
     <para><indexterm>
         <primary>file filters</primary>
 
         <secondary>template</secondary>
       </indexterm>
-      WinMergeは、たくさんの定義済ファイルフィルタをインストールします。
-      もし、必要なフィルタが、これらのファイルフィルタで提供されていなかったら、
+      WinMergeは、たくさんの定義済ファイルフィルターをインストールします。
+      もし、必要なフィルターが、これらのファイルフィルターで提供されていなかったら、
       自分自身で作成することができます。
       タスクをもっと簡単にするために、WinMergeは、
       <filename>FileFilter.tmpl</filename>という名前のテンプレートも提供しています。
-      このセクションは、比較にファイルフィルタを適用する方法と、ファイルフィルタの文法を説明します。
+      このセクションは、比較にファイルフィルターを適用する方法と、ファイルフィルターの文法を説明します。
       <!-- TODO: リンク切れ？-->
-      <xref linkend="Filters_dlg" />では、フィルタの追加、編集、管理方法について説明します。</para>
+      <xref linkend="Filters_dlg" />では、フィルターの追加、編集、管理方法について説明します。</para>
 
     <section id="Filters_FileFilterLoc">
-      <title>ファイルフィルタの場所<indexterm>
+      <title>ファイルフィルターの場所<indexterm>
           <primary>Filters folders</primary>
 
           <secondary>locations</secondary>
@@ -239,77 +239,77 @@
           <secondary>locations</secondary>
         </indexterm></title>
 
-      <para>WinMergeは、次の場所のファイルフィルタを自動的に検出します:</para>
+      <para>WinMergeは、次の場所のファイルフィルターを自動的に検出します:</para>
       <variablelist>
         <varlistentry>
-          <term>WinMerge インストールフォルダのFilters フォルダ</term>
+          <term>WinMerge インストールフォルダーのFilters フォルダー</term>
 
           <listitem>
             <para>
-              ここには、定義済ファイルフィルタがインストールされています。例えば、
+              ここには、定義済ファイルフィルターがインストールされています。例えば、
               <filename>C:\Program Files\WinMerge\Filters</filename>。
               システム上のすべてのユーザーに有効にするために、
-              ここにファイルフィルタを作成、または、コピーすることができます。</para>
+              ここにファイルフィルターを作成、または、コピーすることができます。</para>
 
             <para>
-              新しいファイルフィルタを作る前に、定義済フィルタに必要なものが含まれているか確認してください。
+              新しいファイルフィルターを作る前に、定義済フィルターに必要なものが含まれているか確認してください。
               含まれていない場合、定義済ファイルの中から役立つルールが見つかるかもしれません。</para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>デフォルトプライベートフィルタフォルダ</term>
+          <term>デフォルトプライベートフィルターフォルダー</term>
           <listitem>
-            <para>このフォルダの場所は、WinMerge
+            <para>このフォルダーの場所は、WinMerge
               オプションの、システムページで定義されています。
-              デフォルトでは、あなたのユーザプロファイルフォルダのサブフォルダとして指定されています
+              デフォルトでは、あなたのユーザープロファイルフォルダーのサブフォルダーとして指定されています
               (Windows 10なら、<filename>Documents\WinMerge\Filters</filename>)。
-              通常、ここに作成、または、コピーされたフィルタは、
+              通常、ここに作成、または、コピーされたフィルターは、
               あなただけが見ることができます。
-              新しいファイルフィルタを作成したら、それらをプライベートにするために、
+              新しいファイルフィルターを作成したら、それらをプライベートにするために、
               ここにコピーすることができます。</para>
           </listitem>
         </varlistentry>
       </variablelist>
 
       <para>
-        その他のフォルダにあるファイルフィルタを適用する前に、
+        その他のフォルダーにあるファイルフィルターを適用する前に、
         それらをインストールしなければなりません。</para>
     </section>
 
     <section id="Filters_FileFilterApply">
-      <title>ファイルフィルタの適用<indexterm>
-          <primary>ファイルフィルタ</primary>
+      <title>ファイルフィルターの適用<indexterm>
+          <primary>ファイルフィルター</primary>
 
           <secondary>適用</secondary>
         </indexterm></title>
 
       <para>
-      次のいくつかの方法で、ファイルフィルタを適用することができます:</para>
+      次のいくつかの方法で、ファイルフィルターを適用することができます:</para>
       <itemizedlist>
         <listitem>
           <para>
-          ファイルまたはフォルダの選択ダイアログから、フォルダ比較を起動した時:</para>
+          ファイルまたはフォルダーの選択ダイアログから、フォルダー比較を起動した時:</para>
 
           <orderedlist>
             <listitem>
               <para>
                 <guilabel>1(左)</guilabel>と
-                <guilabel>2(右)</guilabel>のフォルダ選択後、
-                <guilabel>フィルタ</guilabel>フィールドの隣にある
+                <guilabel>2(右)</guilabel>のフォルダー選択後、
+                <guilabel>フィルター</guilabel>フィールドの隣にある
                 <guibutton>選択</guibutton>ボタンをクリックしてください。</para>
             </listitem>
 
             <listitem>
               <para>
-                フィルタダイアログで、ファイルフィルタを選択し、
-                <guilabel>フィルタ</guilabel>フィールドへロードするには、ファイルフィルタタブを使用します。</para>
+                フィルターダイアログで、ファイルフィルターを選択し、
+                <guilabel>フィルター</guilabel>フィールドへロードするには、ファイルフィルタータブを使用します。</para>
 
               <note>
                 <para>
-                  ファイルフィルタが有効になっている(訳注:
-                  何れかのファイルフィルタが選択されている状態)場合、選択されたファイルフィルタは、
-                  <guilabel>フィルタ</guilabel>フィールドへ既にロードされています。</para>
+                  ファイルフィルターが有効になっている(訳注:
+                  何れかのファイルフィルターが選択されている状態)場合、選択されたファイルフィルターは、
+                  <guilabel>フィルター</guilabel>フィールドへ既にロードされています。</para>
               </note>
               <para></para>
             </listitem>
@@ -317,34 +317,34 @@
             <listitem>
               <para>
                 比較操作を続けてください。操作を開始した時、
-                <guilabel>フィルタ</guilabel>フィールドのファイルが適用されます。</para>
+                <guilabel>フィルター</guilabel>フィールドのファイルが適用されます。</para>
             </listitem>
           </orderedlist>
         </listitem>
 
         <listitem>
           <para>
-            フォルダ比較操作起動後(違うフィルタを適用した、
-            または、フィルタを無効にしてしまった時など)にファイルフィルタを変更するには:</para>
+            フォルダー比較操作起動後(違うフィルターを適用した、
+            または、フィルターを無効にしてしまった時など)にファイルフィルターを変更するには:</para>
           <orderedlist>
             <listitem>
               <para>
                 <menuchoice>
                   <guimenu>ツール</guimenu>
-                  <guimenuitem>フィルタ</guimenuitem>
+                  <guimenuitem>フィルター</guimenuitem>
               </menuchoice>をクリックしてください。</para>
             </listitem>
 
             <listitem>
               <para>
-                フィルタダイアログで、新しいフィルタを設定し、
+                フィルターダイアログで、新しいフィルターを設定し、
                 <guibutton>OK</guibutton>をクリックしてください。</para>
             </listitem>
 
             <listitem>
               <para>
-                フィルタダイアログを閉じた時、新しいフィルタは自動では適用されません:
-                フォルダ比較ウィンドウ中で新しい結果を見るには、
+                フィルターダイアログを閉じた時、新しいフィルターは自動では適用されません:
+                フォルダー比較ウィンドウ中で新しい結果を見るには、
                 <keycap>F5</keycap>を押下してください。</para>
             </listitem>
           </orderedlist>
@@ -356,7 +356,7 @@
 
               <secondary>applying file filters</secondary>
             </indexterm>WinMerge コマンドラインから、
-            フォルダ比較起動時にファイルフィルタを指定するには、
+            フォルダー比較起動時にファイルフィルターを指定するには、
 
             <!-- TODO: /f の誤り？ -->
             <option>-f</option>フラグを使用してください。</para>
@@ -365,12 +365,12 @@
 
       <para>
         フィールドやコマンドラインで、
-        ファイルマスクとファイルフィルタの両方を指定する
+        ファイルマスクとファイルフィルターの両方を指定する
         ことはできないことを思い出してください。</para>
     </section>
 
     <section id="Filters_FileFilterSyntax">
-      <title>ファイルフィルタの文法<indexterm>
+      <title>ファイルフィルターの文法<indexterm>
           <primary>rules</primary>
 
           <secondary>file filter</secondary>
@@ -381,7 +381,7 @@
         </indexterm></title>
 
       <para>このセクションは、WinMerge
-        ファイルフィルタの文法と、記述のためのガイドラインの提供について説明します。</para>
+        ファイルフィルターの文法と、記述のためのガイドラインの提供について説明します。</para>
 
       <para>コメント記号は、
         <code>##</code>です。
@@ -391,7 +391,7 @@
         ルール中で、
         <code>##</code>を文字列として使用するには、後ろの空白文字を取り除いてください。</para>
 
-      <para>ファイルフィルタで、まずはじめに必要な2行は:</para>
+      <para>ファイルフィルターで、まずはじめに必要な2行は:</para>
 
       <variablelist>
         <varlistentry>
@@ -399,7 +399,7 @@
 
           <listitem>
             <para>
-              ファイルダイアログに表示されるフィルタ名です</para>
+              ファイルダイアログに表示されるフィルター名です</para>
           </listitem>
         </varlistentry>
 
@@ -408,7 +408,7 @@
 
           <listitem>
             <para>
-              適用されるフィルタタイプです。次の値のうち、1つを指定してください:</para>
+              適用されるフィルタータイプです。次の値のうち、1つを指定してください:</para>
 
             <variablelist>
               <varlistentry>
@@ -428,9 +428,9 @@
                     指定されたルールにマッチしたアイテム以外はすべて除外します。</para>
 
                   <para>exclude
-                    メソッドを選択した時は、サブフォルダを指定する
+                    メソッドを選択した時は、サブフォルダーを指定する
                     <guilabel>d</guilabel>(ディレクトリ)ルールも追加しなければなりません。
-                    このように、すべてのサブフォルダを指定するのは、通常良いアイデアです:</para>
+                    このように、すべてのサブフォルダーを指定するのは、通常良いアイデアです:</para>
 
                   <screen>d: \\*$ ## Subfolders</screen>
                 </listitem>
@@ -439,7 +439,7 @@
 
             <tip>
               <para>
-                これらの用語で混乱しないでください。ファイルフィルタの
+                これらの用語で混乱しないでください。ファイルフィルターの
 
                 <guilabel>include</guilabel>ルールは、「何を含めるか」を指定するわけではありません。
                 「何を<emphasis>含めない</emphasis>」かを指定します。
@@ -451,12 +451,12 @@
       </variablelist>
 
       <para>
-        次に、フィルタファイルは、1つ以上のフィルタルールを含むべきです。
+        次に、フィルターファイルは、1つ以上のフィルタールールを含むべきです。
         あなたは、たくさんのルールを好きなだけ追加できます。
         1行には1つのルールがあるべきで、それぞれのルールは、
         それぞれ1行にあるべきです(ルール中での改行は許可されません)。
         (訳注: 回りくどいですが、「ルールは1行で記述してください」ということです。)
-        それぞれのルールは、タイプデザイナ
+        それぞれのルールは、タイプデザイナー
 
         <guilabel>f:</guilabel>か 
         <guilabel>d:</guilabel>を含み、その後に、正規表現が続きます:</para>
@@ -474,19 +474,19 @@
           <term>d: <replaceable>regexp</replaceable></term>
 
           <listitem>
-            <para>フォルダにマッチ</para>
+            <para>フォルダーにマッチ</para>
           </listitem>
         </varlistentry>
       </variablelist>
 
       <para>2.16.19 以降、
       <guilabel>f:</guilabel> と <guilabel>d:</guilabel>
-      でマッチしたファイルまたはフォルダの一部を除外するためのタイプデザイナ
+      でマッチしたファイルまたはフォルダーの一部を除外するためのタイプデザイナー
       <guilabel>f!:</guilabel> と <guilabel>d!:</guilabel> が使用できます。
       </para>
 
       <para>
-        多くの正規表現の特殊文字の中で、次の文字は、ファイルフィルタでは特に重要です:
+        多くの正規表現の特殊文字の中で、次の文字は、ファイルフィルターでは特に重要です:
         <indexterm>
           <primary>regular expressions</primary>
 
@@ -528,8 +528,8 @@
           <listitem>
             <para>
               通常の文字を、特殊文字にマッチさせるために使います。
-              例えば、フォルダ名にマッチするために、
-              フォルダ区切り文字のバックスラッシュの前に、
+              例えば、フォルダー名にマッチするために、
+              フォルダー区切り文字のバックスラッシュの前に、
               バックスラッシュを置きます(<code>\\</code>)。
               ファイル名中のドットにマッチするために、
               バックスラッシュを指定し、その後にドットを置きます(<code>\.</code>)。</para>
@@ -546,18 +546,18 @@
         <filename>compare.BAT</filename>にマッチします。</para>
 
       <example>
-        <title>ファイルフィルタルールの例</title>
+        <title>ファイルフィルタールールの例</title>
 
-        <para>シンプルなファイルフィルタルール:</para>
+        <para>シンプルなファイルフィルタールール:</para>
 
         <screen>f: \.cpp$ ## <filename>*.cpp</filename>ファイルにマッチ
           f: \.h$ ## <filename>*.h</filename>ファイルにマッチ
           f: ^My ## <filename>My*.*</filename>ファイルにマッチ
           f: Dlg\. ## <filename>*Dlg.*</filename>ファイルにマッチ
-          d: \\test$ ## <filename>test</filename>フォルダにマッチ
-          d: ^\\Build$ ## <filename>Build</filename>フォルダマッチ
-          d: Temp$ ## <filename>*Temp</filename>フォルダにマッチ (例:<filename>FirstTemp</filename>)
-          d: Src ## <filename>*Src*</filename>フォルダにマッチ</screen>
+          d: \\test$ ## <filename>test</filename>フォルダーにマッチ
+          d: ^\\Build$ ## <filename>Build</filename>フォルダーマッチ
+          d: Temp$ ## <filename>*Temp</filename>フォルダーにマッチ (例:<filename>FirstTemp</filename>)
+          d: Src ## <filename>*Src*</filename>フォルダーにマッチ</screen>
 
         <para>
           いくつかのルールは、もっと複雑な正規表現です:</para>
@@ -573,35 +573,35 @@
   </section>
 
   <section id="Filters_LineFilter">
-    <title>行フィルタの使用<indexterm>
-        <primary>フィルタ</primary>
+    <title>行フィルターの使用<indexterm>
+        <primary>フィルター</primary>
 
         <secondary>行</secondary>
       </indexterm><indexterm>
-        <primary>フィルタ</primary>
+        <primary>フィルター</primary>
 
         <secondary>in file comparisons</secondary>
       </indexterm></title>
 
     <para>
-      ファイル比較で単一行を無視するために、行フィルタを使用することができます。
+      ファイル比較で単一行を無視するために、行フィルターを使用することができます。
       例えば、コメント、生成されたコードの決まった型や、
       バージョン管理システムのタイムスタンプの様なものを無視するために、
-      行フィルタを使うかもしれません。各行フィルタは1つのルールです。
-      ファイル比較のために、たくさんの行フィルタを使用することができます。</para>
+      行フィルターを使うかもしれません。各行フィルターは1つのルールです。
+      ファイル比較のために、たくさんの行フィルターを使用することができます。</para>
 
-    <para>フィルタの追加、編集、管理については、
+    <para>フィルターの追加、編集、管理については、
       <!-- TODO: リンク切れ？ --><xref linkend="Filters_dlg" />を参照してください。</para>
 
     <section id="Filters_LineFilterApply">
-      <title>行フィルタの適用</title>
+      <title>行フィルターの適用</title>
 
       <para>
-        次の方法で、行フィルタを適用することができます:</para>
+        次の方法で、行フィルターを適用することができます:</para>
       <itemizedlist>
         <listitem>
           <para>
-            ファイルまたはフォルダの選択ダイアログから、
+            ファイルまたはフォルダーの選択ダイアログから、
             ファイル比較を起動する場合</para>
 
           <orderedlist>
@@ -609,18 +609,18 @@
               <para>
                 <guilabel>1(左)</guilabel>と 
                 <guilabel>2(右)</guilabel>のファイル選択後、
-                <guilabel>フィルタ</guilabel>フィールドの隣の 
+                <guilabel>フィルター</guilabel>フィールドの隣の 
                 <guibutton>選択</guibutton>をクリックしてください。</para>
             </listitem>
 
             <listitem>
-              <para>フィルタダイアログで、使用したい行フィルタを有効化するため、
-                また、現在どの行フィルタが有効かを確認するには、行フィルタタブを使います。</para>
+              <para>フィルターダイアログで、使用したい行フィルターを有効化するため、
+                また、現在どの行フィルターが有効かを確認するには、行フィルタータブを使います。</para>
 
               <note>
                 <para>
-                  <guilabel>フィルタ</guilabel>フィールドは、
-                  どの行フィルタが有効化されているかを表示しません。</para>
+                  <guilabel>フィルター</guilabel>フィールドは、
+                  どの行フィルターが有効化されているかを表示しません。</para>
               </note>
               <para></para>
             </listitem>
@@ -628,7 +628,7 @@
             <listitem>
               <para>
                 ファイル比較操作を続けてください。
-                操作を開始した時に、有効化された行フィルタが適用されます。</para>
+                操作を開始した時に、有効化された行フィルターが適用されます。</para>
             </listitem>
           </orderedlist>
         </listitem>
@@ -636,44 +636,44 @@
         <listitem>
           <para>
             既に、ファイル比較操作を起動後
-            (違うフィルタを適用した、または、フィルタを無効にしてしまった時など)は、</para>
+            (違うフィルターを適用した、または、フィルターを無効にしてしまった時など)は、</para>
           <orderedlist>
             <listitem>
               <para>
               <menuchoice>
                   <guimenu>ツール</guimenu>
 
-                  <guimenuitem>フィルタ</guimenuitem>
+                  <guimenuitem>フィルター</guimenuitem>
                 </menuchoice>をクリックしてください。</para>
             </listitem>
 
             <listitem>
               <para>
-              ファイルフィルタタブを開いてください。</para>
+              ファイルフィルタータブを開いてください。</para>
             </listitem>
 
             <listitem>
               <para>
-                あなたが適用したい行フィルタの行にチェックしてください。
-                また、適用したくないフィルタは、チェックを外してください。</para>
+                あなたが適用したい行フィルターの行にチェックしてください。
+                また、適用したくないフィルターは、チェックを外してください。</para>
 
               <para>
                 <guibutton>新規</guibutton>、
                 <guibutton>編集</guibutton>、
                 <guibutton>削除</guibutton>ボタンを使用して、
-                フィルタを追加、編集、削除することもできます。</para>
+                フィルターを追加、編集、削除することもできます。</para>
             </listitem>
 
             <listitem>
-              <para>行フィルタ機能を有効にするには、
-                <guilabel>行フィルタを有効にする</guilabel>にチェックしてください。
-                行フィルタ機能を無効にするには、チェックを外してください。</para>
+              <para>行フィルター機能を有効にするには、
+                <guilabel>行フィルターを有効にする</guilabel>にチェックしてください。
+                行フィルター機能を無効にするには、チェックを外してください。</para>
             </listitem>
 
             <listitem>
               <para>
                 <guibutton>OK</guibutton>をクリックして、
-                ファイルフィルタダイアログを閉じてください。</para>
+                ファイルフィルターダイアログを閉じてください。</para>
             </listitem>
 
             <listitem>
@@ -687,7 +687,7 @@
     </section>
 
     <section id="Filters_LineFilterSyntax">
-      <title>行フィルタの文法<indexterm>
+      <title>行フィルターの文法<indexterm>
           <primary>rules</primary>
 
           <secondary>line filter</secondary>
@@ -702,7 +702,7 @@
         </indexterm></title>
 
       <para>
-        <!-- TODO: わかりにく。。。-->行フィルタは、行フィルタルールが有効化されている場合、
+        <!-- TODO: わかりにく。。。-->行フィルターは、行フィルタールールが有効化されている場合、
         比較ファイル中の単一行の差異毎に評価されるルールです。
         単一行の差異にルールがマッチした時、その差異は無視されます。</para>
 
@@ -713,13 +713,13 @@
         しかし、無視された差異は、選択やマージすることができません。</para>
 
       <para>
-        行フィルタマッチは、2つの考えに基づいて記述されるかもしれません:</para>
+        行フィルターマッチは、2つの考えに基づいて記述されるかもしれません:</para>
 
       <itemizedlist>
         <listitem>
           <para>
             ルールが、行のある部分にマッチした時、差異全体が無視されます。
-            つまり、行の一部だけをフィルタすることはできません。
+            つまり、行の一部だけをフィルターすることはできません。
             例えば、2つのファイルに、次の単一行の差異があると仮定した場合:</para>
           <formalpara>
             <title>File1:</title>
@@ -738,8 +738,8 @@
           </formalpara>
 
           <para>
-            フィルタなしの場合、行は差異として検出されます。
-            しかし、行フィルタを
+            フィルターなしの場合、行は差異として検出されます。
+            しかし、行フィルターを
             <code>^#</code>の式とともに適用する場合、その行は同一であると評価されます。
             なぜなら、式は、両方のファイルにマッチする最初の文字のみを指定しているからです。</para>
         </listitem>
@@ -783,49 +783,49 @@ Pekka Himanen</screen>
       </tip>
 
       <example>
-        <title>行フィルタサンプル</title>
+        <title>行フィルターサンプル</title>
 
         <screen format="linespecific">^MYTAG$</screen>
 
         <para>厳密に、
-          <literal>MYTAG</literal>にマッチする行をフィルタします</para>
+          <literal>MYTAG</literal>にマッチする行をフィルターします</para>
 
         <screen format="linespecific">^::</screen>
         <para>
-          <literal>::</literal>で始まる行をフィルタします</para>
+          <literal>::</literal>で始まる行をフィルターします</para>
         <screen format="linespecific">^/\*.*\*/$</screen>
 
         <para>
           <literal><constant>/*</constant></literal>で始まり、
-          <literal>*/</literal>で終わる行をフィルタします</para>
+          <literal>*/</literal>で終わる行をフィルターします</para>
         <screen format="linespecific">^[1-5]00</screen>
 
         <para>数字の、100、200、300、400、500
-          で始まる行をフィルタします</para>
+          で始まる行をフィルターします</para>
       </example>
 
       <example>
-        <title>CVS の Id 行にマッチする行フィルタルール</title>
+        <title>CVS の Id 行にマッチする行フィルタールール</title>
 
         <para>CVS の Id 行は、次の様なものです:</para>
 
         <screen>// $Id: Filters.xml 7591 2013-01-20 15:47:42Z christianlist $</screen>
 
         <para>
-          そしてこれは、次のルールでフィルタできます:</para>
+          そしてこれは、次のルールでフィルターできます:</para>
 
         <screen>^// \WId: .*\$</screen>
       </example>
 
       <example>
-        <title>poファイルの行コメントフィルタ</title>
+        <title>poファイルの行コメントフィルター</title>
 
         <para>poファイルの行コメントは、次の様なものです:</para>
 
         <screen>#: src/filename.c:766</screen>
 
         <para>
-          そしてこれは、次のルールでフィルタできます:</para>
+          そしてこれは、次のルールでフィルターできます:</para>
 
         <screen>^#</screen>
       </example>
@@ -847,7 +847,7 @@ Pekka Himanen</screen>
   </section>
 
   <section id="Filters_dlg">
-    <title>フィルタダイアログの使用<indexterm>
+    <title>フィルターダイアログの使用<indexterm>
         <primary>Filters dialog</primary>
       </indexterm><indexterm>
         <primary>filters</primary>
@@ -856,40 +856,40 @@ Pekka Himanen</screen>
       </indexterm></title>
 
     <para>
-      このセクションは、ファイルフィルタと行フィルタの作成・管理機能を提供する、
-      フィルタダイアログの説明をします。</para>
+      このセクションは、ファイルフィルターと行フィルターの作成・管理機能を提供する、
+      フィルターダイアログの説明をします。</para>
 
     <para>
-      フィルタダイアログを開くには、次の何れかの方法を使用してください:</para>
+      フィルターダイアログを開くには、次の何れかの方法を使用してください:</para>
 
     <itemizedlist>
       <listitem>
-        <para>ファイルまたはフォルダの選択ダイアログで、
-          <guibutton>フィルタ</guibutton>フィールドの右にある、
+        <para>ファイルまたはフォルダーの選択ダイアログで、
+          <guibutton>フィルター</guibutton>フィールドの右にある、
           <guilabel>選択</guilabel>ボタンをクリックしてください。
-          フォルダ比較用のファイルフィルタを適用したい時は、方法を使用してください。</para>
+          フォルダー比較用のファイルフィルターを適用したい時は、方法を使用してください。</para>
       </listitem>
 
       <listitem>
         <para>
           <menuchoice>
             <guimenu>ツール</guimenu>
-            <guimenuitem>フィルタ</guimenuitem>
+            <guimenuitem>フィルター</guimenuitem>
         </menuchoice>をクリックしてください。
-        この方法は、ファイルまたはフォルダの選択ダイアログを開いている時以外に使用可能です。</para>
+        この方法は、ファイルまたはフォルダーの選択ダイアログを開いている時以外に使用可能です。</para>
       </listitem>
     </itemizedlist>
 
-    <para>フィルタダイアログには、それぞれの
-      WinMergeフィルタ用のタブがあります:</para>
+    <para>フィルターダイアログには、それぞれの
+      WinMergeフィルター用のタブがあります:</para>
 
     <variablelist>
       <varlistentry>
-        <term>ファイルフィルタ</term>
+        <term>ファイルフィルター</term>
 
         <listitem>
           <para>
-            フォルダ比較用のファイルフィルタを設定するには、このタブを選択してください。</para>
+            フォルダー比較用のファイルフィルターを設定するには、このタブを選択してください。</para>
         </listitem>
       </varlistentry>
 
@@ -898,7 +898,7 @@ Pekka Himanen</screen>
 
         <listitem>
           <para>
-            ファイル比較用の行フィルタを設定するには、こちらのタブを使用してください。</para>
+            ファイル比較用の行フィルターを設定するには、こちらのタブを使用してください。</para>
         </listitem>
       </varlistentry>
 
@@ -913,36 +913,36 @@ Pekka Himanen</screen>
     </variablelist>
 
     <section id="Filters_FileFiltersTab">
-      <title>ファイルフィルタタブの使用<indexterm>
+      <title>ファイルフィルタータブの使用<indexterm>
           <primary>file filters</primary>
 
           <secondary>enabling</secondary>
         </indexterm></title>
 
       <para>
-        このタブの主要部分は、フォルダ比較用に利用可能なファイルフィルタの一覧です。
+        このタブの主要部分は、フォルダー比較用に利用可能なファイルフィルターの一覧です。
         このリストは、共有、個人、そして、<!-- TODO: リンク切れ？ -->
         <xref linkend="Filters_FileFilterLoc" />で説明されている、
-        WinMergeが知り得るインストール済みのファイルフィルタを含んでいます。</para>
+        WinMergeが知り得るインストール済みのファイルフィルターを含んでいます。</para>
 
       <section id="Filters_FileFilterEnabling">
-        <title>ファイルフィルタの有効化と無効化</title>
+        <title>ファイルフィルターの有効化と無効化</title>
 
         <para>
           <!-- FIXME:言わんとしとることが全くわからん-->
-          ファイルフィルタが、フォルダ比較操作で、それを有効にすること、
-          また、フィルタが使用され始めてから、
-          現在のフィルタを止めるために無効にすることを可能にしなければなりません:</para>
+          ファイルフィルターが、フォルダー比較操作で、それを有効にすること、
+          また、フィルターが使用され始めてから、
+          現在のフィルターを止めるために無効にすることを可能にしなければなりません:</para>
 
         <orderedlist>
           <listitem>
             <para>
-              まだ、フィルタダイアログを開いていない場合は、開いてください</para>
+              まだ、フィルターダイアログを開いていない場合は、開いてください</para>
           </listitem>
 
           <listitem>
             <para>
-              ファイルフィルタを選択、もしくは、リストから
+              ファイルフィルターを選択、もしくは、リストから
               <guimenuitem>
                 &lt;なし&gt;</guimenuitem>を選択しくてださい。</para>
           </listitem>
@@ -950,22 +950,22 @@ Pekka Himanen</screen>
           <listitem>
             <para>
               <guibutton> OK</guibutton>をクリックして、
-              フィルタダイアログを閉じてください。</para>
+              フィルターダイアログを閉じてください。</para>
           </listitem>
         </orderedlist>
 
         <para>
-          ファイルフィルタを有効にした後でそれらを適用する方法が、いくつかあります。
+          ファイルフィルターを有効にした後でそれらを適用する方法が、いくつかあります。
           詳細は、<!-- TODO: リンク切れ？ -->
           <xref linkend="Filters_FileFilterApply" />を参照してください。</para>
       </section>
 
       <section id="Filters_FileFilterCfg">
-        <title>ファイルフィルタの設定</title>
+        <title>ファイルフィルターの設定</title>
 
         <para>
-          <guilabel>ファイルフィルタ</guilabel>リストの管理と
-          フィルタの新規作成には、これらのボタンを使用してください:</para>
+          <guilabel>ファイルフィルター</guilabel>リストの管理と
+          フィルターの新規作成には、これらのボタンを使用してください:</para>
 
         <variablelist>
           <varlistentry>
@@ -973,8 +973,8 @@ Pekka Himanen</screen>
 
             <listitem>
               <para>
-                フィルタがどのように動作するか素早く確認するには、
-                リスト中のファイルフィルタを選択し、
+                フィルターがどのように動作するか素早く確認するには、
+                リスト中のファイルフィルターを選択し、
                 <guibutton>テスト</guibutton>をクリックしてください。
                 詳細は、<!-- TODO: リンク切れ？ -->
                 <xref linkend="Filters_TestingDlg" />を参照してください。</para>
@@ -986,9 +986,9 @@ Pekka Himanen</screen>
 
             <listitem>
               <para>
-                ファイルフィルタを配置し、フィルタリストへ追加することができます。
-                ファイルフィルタは、それらをインストールしない限り、
-                共有フォルダ、デフォルトのプライベートフォルダのどちらでも検出されません。</para>
+                ファイルフィルターを配置し、フィルターリストへ追加することができます。
+                ファイルフィルターは、それらをインストールしない限り、
+                共有フォルダー、デフォルトのプライベートフォルダーのどちらでも検出されません。</para>
             </listitem>
           </varlistentry>
 
@@ -997,7 +997,7 @@ Pekka Himanen</screen>
 
             <listitem>
               <para>
-                共有フォルダかプライベートフィルタフォルダのどちらかに、
+                共有フォルダーかプライベートフィルターフォルダーのどちらかに、
                 ファイルテンプレートの新しいコピーを作成します。
                 <xref linkend="Filters_CreatingFile" />で説明されているように、
                 テンプレートを編集、ルールの追加を行ってください。</para>
@@ -1009,7 +1009,7 @@ Pekka Himanen</screen>
 
             <listitem>
               <para>
-                デフォルトエディタでファイルを開くには、リスト中のファイルフィルタを選択し、
+                デフォルトエディターでファイルを開くには、リスト中のファイルフィルターを選択し、
                 <guibutton>編集</guibutton>をクリックしてください。</para>
             </listitem>
           </varlistentry>
@@ -1020,7 +1020,7 @@ Pekka Himanen</screen>
             <listitem>
               <para>
                 ファイルを削除しリストから取り除くには、
-                リスト中のファイルフィルタを選択し、
+                リスト中のファイルフィルターを選択し、
                 <guibutton>削除</guibutton>をクリックしてください。
                 これで、本当にファイルは削除されました。</para>
             </listitem>
@@ -1029,51 +1029,51 @@ Pekka Himanen</screen>
 
         <para>
           <guibutton>OK</guibutton>をクリックして、
-          フィルタダイアログを閉じた時、変更は保存されます。
-          行フィルタは、Windowsのレジストリに保存されます。</para>
+          フィルターダイアログを閉じた時、変更は保存されます。
+          行フィルターは、Windowsのレジストリに保存されます。</para>
       </section>
 
       <section id="Filters_CreatingFile">
-        <title>ファイルフィルタの作成</title>
+        <title>ファイルフィルターの作成</title>
 
-        <para>WinMergeにインストール済のファイルフィルタが、
-          お望みのフィルタを提供していないなら、あなた自身で作成することができます:</para>
+        <para>WinMergeにインストール済のファイルフィルターが、
+          お望みのフィルターを提供していないなら、あなた自身で作成することができます:</para>
 
         <orderedlist>
           <listitem>
             <para>
               <menuchoice>
                 <guimenu>ツール</guimenu>
-                <guimenuitem>フィルタ</guimenuitem>
+                <guimenuitem>フィルター</guimenuitem>
               </menuchoice>をクリックしてください。
-              または、ファイルまたはフォルダの選択ダイアログから、
-              <guibutton>フィルタ</guibutton>フィールドの右にある、
+              または、ファイルまたはフォルダーの選択ダイアログから、
+              <guibutton>フィルター</guibutton>フィールドの右にある、
               <guilabel>選択</guilabel>ボタンをクリックしてください。</para>
           </listitem>
 
           <listitem id="Filters_New_step">
             <para>
-              フィルタダイアログのファイルフィルタタブの、
+              フィルターダイアログのファイルフィルタータブの、
               <guibutton>新規</guibutton>ボタンをクリックしてください。</para>
           </listitem>
 
           <listitem>
-            <para>共有/プライベートフィルタダイアログで、
-              <guilabel>共有フィルタ</guilabel>、または、
-              <guilabel>プライベートフィルタ</guilabel>
+            <para>共有/プライベートフィルターダイアログで、
+              <guilabel>共有フィルター</guilabel>、または、
+              <guilabel>プライベートフィルター</guilabel>
               (これらを何に使用するかは、<!-- TODO: リンク切れ？ -->
               <xref linkend="Filters_FileFilterLoc" />を参照してください)を選択し、
               <keycap>OK</keycap>をクリックしてください。</para>
 
             <para>
-              お使いのシステムの共有、または、プライベートフォルダが、
-              「新しいフィルタのファイル名を指定してください」ダイアログに開きます
-              (プライベートフォルダが存在しない場合は、WinMergeが作成します)。</para>
+              お使いのシステムの共有、または、プライベートフォルダーが、
+              「新しいフィルターのファイル名を指定してください」ダイアログに開きます
+              (プライベートフォルダーが存在しない場合は、WinMergeが作成します)。</para>
           </listitem>
 
           <listitem>
             <para>
-              「新しいフィルタのファイル名を指定してください」ダイアログで、
+              「新しいフィルターのファイル名を指定してください」ダイアログで、
               ファイル名を入力し
               <guibutton>保存</guibutton>をクリックしてください。</para>
 
@@ -1086,21 +1086,21 @@ Pekka Himanen</screen>
 
             <para>WinMergeは、新しいファイルを、テンプレート:
               <filename>FileFilter.tmpl</filename>を用いて作成し、
-              デフォルトのテキストエディタでそれを開きます。</para>
+              デフォルトのテキストエディターでそれを開きます。</para>
           </listitem>
 
           <listitem>
             <para>
               テンプレートの編集は、テンプレートの指示に従って、
-              プレースホルダ名と説明の更新、
+              プレースホルダー名と説明の更新、
               <xref linkend="Filters_FileFilterSyntax" />で説明されている、
-              フィルタルールの追加を行ってください。
-              テキストエディタでファイルを保存してください。</para>
+              フィルタールールの追加を行ってください。
+              テキストエディターでファイルを保存してください。</para>
 
             <tip>
               <para>
                 あなたが作成中のルールを、素早くテストしたい場合は、
-                フィルタダイアログの「テスト」ボタンをクリックしてみてください。
+                フィルターダイアログの「テスト」ボタンをクリックしてみてください。
                 詳細は、<xref linkend="Filters_TestingDlg" />を参照してください。</para>
             </tip>
             <para></para>
@@ -1108,36 +1108,36 @@ Pekka Himanen</screen>
 
           <listitem>
             <para>標準の
-              <filename>フィルタ</filename>フォルダに
-              、ファイルフィルタを作成したにも関わらず、
-              フィルタダイアログがその新しいファイルフィルタを表示しない場合は、
+              <filename>フィルター</filename>フォルダーに
+              、ファイルフィルターを作成したにも関わらず、
+              フィルターダイアログがその新しいファイルフィルターを表示しない場合は、
               一度、<guibutton>OK</guibutton>をクリックしてダイアログを閉じてください。
               次に、
               <menuchoice>
                 <guimenu>ツール</guimenu>
-                <guimenuitem>フィルタ</guimenuitem>
+                <guimenuitem>フィルター</guimenuitem>
               </menuchoice>をクリックし、再度ダイアログを開いてください。
-              <guilabel>ファイルフィルタ</guilabel>リストは、
-              新しいファイルフィルタを含んでいるでしょう。</para>
+              <guilabel>ファイルフィルター</guilabel>リストは、
+              新しいファイルフィルターを含んでいるでしょう。</para>
 
             <para>
               お使いのシステム上の、別の場所にファイルを保存した場合、
               あなたがインストールしない限り、WinMergeは、それを検出することができません。
-              システム上のどこかにあるファイルフィルタを検出させるには:</para>
+              システム上のどこかにあるファイルフィルターを検出させるには:</para>
 
             <orderedlist numeration="loweralpha">
               <listitem>
-                <para>フィルタダイアログの
+                <para>フィルターダイアログの
                   <guibutton>インストール</guibutton>をクリックしてください。</para>
               </listitem>
 
               <listitem>
                 <para>
-                  「インストールするファイルフィルタの位置」ダイアログで、システム上の
+                  「インストールするファイルフィルターの位置」ダイアログで、システム上の
 
                   <filename>flt</filename>ファイルを選択し、
                   <guibutton>開く</guibutton>をクリックしてください。
-                  ファイルフィルタリストは、インストールされたファイルフィルタを含んでいるでしょう。</para>
+                  ファイルフィルターリストは、インストールされたファイルフィルターを含んでいるでしょう。</para>
               </listitem>
             </orderedlist>
           </listitem>
@@ -1145,7 +1145,7 @@ Pekka Himanen</screen>
       </section>
 
       <section id="Filters_TestingDlg">
-        <title>ファイルフィルタのテスト<indexterm>
+        <title>ファイルフィルターのテスト<indexterm>
             <primary>file filters</primary>
 
             <secondary>testing</secondary>
@@ -1155,16 +1155,16 @@ Pekka Himanen</screen>
 
         <para>
           新しいルール作成や既存のルールの理解を補助するため、
-          サンプルデータに対し素早くファイルフィルタをテストするには、
-          テストフィルタダイアログを使用してください。
+          サンプルデータに対し素早くファイルフィルターをテストするには、
+          テストフィルターダイアログを使用してください。
           それは、フルで比較操作を走らせるより簡単です。</para>
 
-        <para>フィルタダイアログから始めます:</para>
+        <para>フィルターダイアログから始めます:</para>
 
         <orderedlist>
           <listitem>
             <para>
-              ファイルフィルタタブで、テストしたいファイルフィルタを選択してください。</para>
+              ファイルフィルタータブで、テストしたいファイルフィルターを選択してください。</para>
           </listitem>
 
           <listitem>
@@ -1180,20 +1180,20 @@ Pekka Himanen</screen>
 
           <listitem>
             <para>
-              フィルタのテストダイアログで、テストするルールの型を選択してください:</para>
+              フィルターのテストダイアログで、テストするルールの型を選択してください:</para>
 
             <itemizedlist>
               <listitem>
                 <para>
-                  ファイルフィルタ中のファイルルール、
+                  ファイルフィルター中のファイルルール、
                   <guilabel>f:</guilabel>をテストするには、
-                  <guilabel>フォルダ名</guilabel>オプションのチェックを外してください。</para>
+                  <guilabel>フォルダー名</guilabel>オプションのチェックを外してください。</para>
               </listitem>
 
               <listitem>
-                <para>フォルダルール、
+                <para>フォルダールール、
                 <guilabel>d:</guilabel>をテストするには、
-                <guilabel>フォルダ名</guilabel>オプションにチェックを入れてください。</para>
+                <guilabel>フォルダー名</guilabel>オプションにチェックを入れてください。</para>
               </listitem>
             </itemizedlist>
           </listitem>
@@ -1204,8 +1204,8 @@ Pekka Himanen</screen>
 
             <para>
               テキストは、テストするルールの型に適したものであるべきです。
-              例えば、<guilabel>フォルダ名</guilabel>オプションをチェックした場合、
-              あなたは「\temp」の様なフォルダ名を入力したいでしょう。</para>
+              例えば、<guilabel>フォルダー名</guilabel>オプションをチェックした場合、
+              あなたは「\temp」の様なフォルダー名を入力したいでしょう。</para>
 
             <para>
               <guilabel>結果</guilabel>欄は、入力したテキストを、
@@ -1219,19 +1219,19 @@ Pekka Himanen</screen>
     </section>
 
     <section id="Filters_LineFiltersTab">
-      <title>行フィルタタブの使用<indexterm>
+      <title>行フィルタータブの使用<indexterm>
           <primary>line filters</primary>
 
           <secondary>enabling</secondary>
         </indexterm></title>
 
       <para>
-        ファイル比較用の行フィルタの設定と有効化には、このタブを使用してください。
+        ファイル比較用の行フィルターの設定と有効化には、このタブを使用してください。
         タブは、ルールの一覧を持っています。それぞれのルールは、1つの正規表現を含みます。
         ファイル比較用に、リストから複数のルールを組み合わせて適用することができます。</para>
 
       <section id="Filters_LineFilterCfg">
-        <title>行フィルタの設定</title>
+        <title>行フィルターの設定</title>
 
         <para>下の
           <guilabel>正規表現</guilabel>リストには、
@@ -1283,7 +1283,7 @@ Pekka Himanen</screen>
       </section>
 
       <section id="Filters_LineFilterEnabling">
-        <title>行フィルタの有効化と無効化<indexterm>
+        <title>行フィルターの有効化と無効化<indexterm>
             <primary>line filters</primary>
 
             <secondary>list of available</secondary>
@@ -1293,26 +1293,26 @@ Pekka Himanen</screen>
           <listitem>
             <para>
               <guilabel>正規表現</guilabel>リストで、
-              適用したいフィルタにチェックを入れ、適用したくないフィルタはチェックを外すだけです。</para>
+              適用したいフィルターにチェックを入れ、適用したくないフィルターはチェックを外すだけです。</para>
           </listitem>
 
           <listitem>
             <para>
-              <guilabel>行フィルタを有効にする</guilabel>オプションに
+              <guilabel>行フィルターを有効にする</guilabel>オプションに
               チェックを入れるか、外してください。
-              行フィルタを有効にした場合、
+              行フィルターを有効にした場合、
               <guilabel>正規表現</guilabel>リストで、現在チェックされているすべてのルールが使用されます。
-              行フィルタを無効にした場合、たとえそれらがチェックされていても、ルールは使用されません。</para>
+              行フィルターを無効にした場合、たとえそれらがチェックされていても、ルールは使用されません。</para>
           </listitem>
 
           <listitem>
             <para>
-              <guibutton>OK</guibutton>をクリックして、フィルタダイアログを閉じ、設定を保存してください。</para>
+              <guibutton>OK</guibutton>をクリックして、フィルターダイアログを閉じ、設定を保存してください。</para>
           </listitem>
         </orderedlist>
 
         <para>
-          それらを有効にした後にファイルフィルタを適用する、いくつかの方法があります。
+          それらを有効にした後にファイルフィルターを適用する、いくつかの方法があります。
           詳細は、<!-- TODO: リンク切れ？ -->
           <xref linkend="Filters_LineFilterApply" />を参照してください。</para>
       </section>
@@ -1354,8 +1354,8 @@ Pekka Himanen</screen>
       </indexterm></title>
 
     <para>正規表現は、非常に複雑になり得ます。幸い、WinMerge 
-      のほとんどのファイルフィルタは、このトピックの例からもわかるように、シンプルな範囲の表現です。
-      WinMergeと共にインストールされるフィルタファイルは、多くの役に立つ例を含んでいます。</para>
+      のほとんどのファイルフィルターは、このトピックの例からもわかるように、シンプルな範囲の表現です。
+      WinMergeと共にインストールされるフィルターファイルは、多くの役に立つ例を含んでいます。</para>
 
     <para>最後に、Web上には、正規表現を手助けする、これらのサイトを含むたくさんの情報源があります:</para>
 

@@ -8,8 +8,8 @@
       <see>コマンドライン</see>
     </indexterm></title>
 
-  <para>WinMergeのコマンドラインは、比較するパスに加えいくつかのパラメータを受け付けます。
-  これらのパラメータのほとんどは、外部比較ツールとして使用したり、バッチファイルから比較操作を
+  <para>WinMergeのコマンドラインは、比較するパスに加えいくつかのパラメーターを受け付けます。
+  これらのパラメーターのほとんどは、外部比較ツールとして使用したり、バッチファイルから比較操作を
   開始できるようにすることを目的としています。
   </para>
 
@@ -163,8 +163,8 @@
     rep="norepeat"><replaceable>conflictfile</replaceable></arg>
   </cmdsynopsis>
 
-  <para>パラメータなしかパス名を入力すると単にWinMergeウインドウを開きます。
-  パラメータは、スラッシュ( <literal>/</literal> ) か、ダッシュ ( <literal>-</literal> ) 文字が
+  <para>パラメーターなしかパス名を入力すると単にWinMergeウインドウを開きます。
+  パラメーターは、スラッシュ( <literal>/</literal> ) か、ダッシュ ( <literal>-</literal> ) 文字が
   前に付加されます。パス名にはプリフィックス文字を付加しません。
   </para>
 
@@ -178,15 +178,15 @@
 
     <varlistentry>
       <indexterm>
-        <primary>再帰フォルダ比較</primary>
+        <primary>再帰フォルダー比較</primary>
       </indexterm>
       <term><option>/r</option></term>
       <listitem>
-        <para>すべてのサブフォルダ内のすべてのファイルを比較します(再帰比較)。
-        ユニークフォルダ (片方のみ存在するフォルダ)は、分離された項目として比較結果内にリストされます。
-        サブフォルダまで含めるとかなり比較時間が増大してしまうことに注意してください。
-        このパラメータを指定しなかった場合、WinMergeは比較するフォルダ内のファイルとトップレベルのサブフォルダのみリストします。
-        サブフォルダの中までは比較しません。</para>
+        <para>すべてのサブフォルダー内のすべてのファイルを比較します(再帰比較)。
+        ユニークフォルダー (片方のみ存在するフォルダー)は、分離された項目として比較結果内にリストされます。
+        サブフォルダーまで含めるとかなり比較時間が増大してしまうことに注意してください。
+        このパラメーターを指定しなかった場合、WinMergeは比較するフォルダー内のファイルとトップレベルのサブフォルダーのみリストします。
+        サブフォルダーの中までは比較しません。</para>
       </listitem>
     </varlistentry>
 
@@ -208,17 +208,17 @@
 
     <varlistentry>
       <indexterm>
-        <primary>フィルタ</primary>
+        <primary>フィルター</primary>
         <secondary>コマンドラインでの適用</secondary>
       </indexterm>
 
       <term><option>/f</option></term>
       <listitem>
-        <para>比較を制限するために、指定したフィルタを適用します。
-        フィルタは<filename><userinput>*.h
+        <para>比較を制限するために、指定したフィルターを適用します。
+        フィルターは<filename><userinput>*.h
         *.cpp</userinput></filename>のようなファイルマスクか、
-        <userinput>XML/HTML Devel</userinput>のようなファイルフィルタの名前です。
-        スペースを含むフィルタマスクやフィルタ名はダブルクォーテーションマークで括ってください。</para>
+        <userinput>XML/HTML Devel</userinput>のようなファイルフィルターの名前です。
+        スペースを含むフィルターマスクやフィルター名はダブルクォーテーションマークで括ってください。</para>
       </listitem>
     </varlistentry>
 
@@ -230,7 +230,7 @@
 
       <term><option>/m <replaceable>compare-method</replaceable></option></term>
       <listitem>
-        <para>フォルダ比較方法を指定します。
+        <para>フォルダー比較方法を指定します。
         次のキーワードが指定できます。<userinput>Full</userinput>,
         <userinput>Quick</userinput>, <userinput>Binary</userinput>,
         <userinput>Date</userinput>, <userinput>SizeDate</userinput> 
@@ -258,9 +258,9 @@
       <listitem>
         <para>同一ファイルの比較をしたときにWinMergeを閉じます。
         (情報ダイアログを表示した後)
-        このパラメータは比較後に効果がなくなります。
+        このパラメーターは比較後に効果がなくなります。
         例えば、もしファイルがマージか編集の結果として同一となった場合です。
-        このパラメータは、WinMergeを外部アプリケーションとして使用したり、
+        このパラメーターは、WinMergeを外部アプリケーションとして使用したり、
         差異のないファイルを無視することによって余分なステップを取り除きたい場合に便利です。
       </para>
       </listitem>
@@ -315,7 +315,7 @@
       <term><option>/ul</option></term>
       <listitem>
         <para>左側パスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
-        外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
+        外部アプリケーションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを
         追加するべきではありません。</para>
       </listitem>
     </varlistentry>
@@ -324,7 +324,7 @@
       <term><option>/um</option></term>
       <listitem>
         <para>中央のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
-        外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
+        外部アプリケーションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを
         追加するべきではありません。</para>
       </listitem>
     </varlistentry>
@@ -333,7 +333,7 @@
       <term><option>/ur</option></term>
       <listitem>
         <para>右側パスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
-        外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
+        外部アプリケーションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを
         追加するべきではありません。</para>
       </listitem>
     </varlistentry>
@@ -342,7 +342,7 @@
       <term><option>/u</option></term>
       <listitem>
         <para>(または<option>/ub</option>) 各々(左、右、中央)のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。
-        外部アプリケーションは、ファイルまたはフォルダの選択ダイアログのMRUリストにパスを
+        外部アプリケーションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを
         追加するべきではありません。
         </para>
       </listitem>
@@ -464,7 +464,7 @@
       <term><option>/dl</option></term>
       <listitem>
         <para>左側タイトルバーの説明を指定します。
-        デフォルトのフォルダやファイル名テキストに上書きされます。例:
+        デフォルトのフォルダーやファイル名テキストに上書きされます。例:
         <userinput>/dl "Version 1.0</userinput>" や <userinput>/dl
         WorkingCopy</userinput>. スペースを含む説明はダブルクォーテーションマークで括ってください。
         </para>
@@ -609,7 +609,7 @@
     <varlistentry>
       <term><option><replaceable>leftpath</replaceable></option></term>
       <listitem>
-        <para>左側で開くフォルダやファイルを指定します。
+        <para>左側で開くフォルダーやファイルを指定します。
         </para>
       </listitem>
     </varlistentry>
@@ -617,7 +617,7 @@
     <varlistentry>
       <term><option><replaceable>middle</replaceable></option></term>
       <listitem>
-        <para>中央で開くフォルダやファイルを指定します。
+        <para>中央で開くフォルダーやファイルを指定します。
         </para>
       </listitem>
     </varlistentry>
@@ -625,21 +625,21 @@
     <varlistentry>
       <term><option><replaceable>right</replaceable></option></term>
       <listitem>
-        <para>右側で開くフォルダやファイルを指定します。
+        <para>右側で開くフォルダーやファイルを指定します。
         </para>
 
-        <para>WinMergeは、ファイルとフォルダを比較できません。そのためパスパラメータ両方(または3つすべて)
+        <para>WinMergeは、ファイルとフォルダーを比較できません。そのためパスパラメーター両方(または3つすべて)
         (<option><replaceable>leftpath</replaceable></option> と
         (<option><replaceable>middlepath</replaceable></option> と)
-        <option><replaceable>rightpath</replaceable></option>) には、同じ種類(フォルダかファイルのどちらか)
+        <option><replaceable>rightpath</replaceable></option>) には、同じ種類(フォルダーかファイルのどちらか)
         を指し差なければなりません。
         もし、WinMergeが指定したパスのどちらかを見つけることができなければ、
-        ファイルまたはフォルダ選択ダイアログを開きます。
-        ファイルまたはフォルダ選択ダイアログでは、正しいパスを選択できます。</para>
+        ファイルまたはフォルダー選択ダイアログを開きます。
+        ファイルまたはフォルダー選択ダイアログでは、正しいパスを選択できます。</para>
 
         <tip>
-          <para>ファイル比較では、パスパラメータの一つとしてフォルダ名を指定できます。
-          ただし、フォルダは他方のファイル名と同じファイルを含んでいる必要があります。
+          <para>ファイル比較では、パスパラメーターの一つとしてフォルダー名を指定できます。
+          ただし、フォルダーは他方のファイル名と同じファイルを含んでいる必要があります。
           </para>
 
           <para>例えば、以下のコマンドを考えます:</para>

@@ -8,7 +8,7 @@
     おなじみのショートカットキーを含んでいます。</para>
 
   <table>
-    <title>フォルダ比較</title>
+    <title>フォルダー比較</title>
 
     <tgroup cols="2">
       <thead>
@@ -23,19 +23,19 @@
         <row>
           <entry><keycap>Enter</keycap></entry>
 
-          <entry>選択されているファイル、または、フォルダを開く</entry>
+          <entry>選択されているファイル、または、フォルダーを開く</entry>
         </row>
 
         <row>
           <entry><keycap>Backspace</keycap></entry>
 
-          <entry>もし、可能なら(サブフォルダが比較対象に含まれない時のみ)親フォルダを開く</entry>
+          <entry>もし、可能なら(サブフォルダーが比較対象に含まれない時のみ)親フォルダーを開く</entry>
         </row>
 
         <row>
           <entry><keycap>F5</keycap></entry>
 
-          <entry>フォルダの再スキャン</entry>
+          <entry>フォルダーの再スキャン</entry>
         </row>
 
         <row>
@@ -45,7 +45,7 @@
               <keycap>Home</keycap>
             </keycombo></entry>
 
-          <entry>ファイル、または、フォルダの最初の差異に移動</entry>
+          <entry>ファイル、または、フォルダーの最初の差異に移動</entry>
         </row>
 
         <row>
@@ -55,7 +55,7 @@
               <keycap>End</keycap>
             </keycombo></entry>
 
-          <entry>ファイル、または、フォルダの最後の差異に移動</entry>
+          <entry>ファイル、または、フォルダーの最後の差異に移動</entry>
         </row>
 
         <row>
@@ -75,7 +75,7 @@
               <keycap>上矢印</keycap>
             </keycombo></entry>
 
-          <entry>ファイル、または、フォルダの前の差異に移動</entry>
+          <entry>ファイル、または、フォルダーの前の差異に移動</entry>
         </row>
 
         <row>
@@ -85,7 +85,7 @@
               <keycap>下矢印</keycap>
             </keycombo></entry>
 
-          <entry>ファイル、または、フォルダの次の差異に移動</entry>
+          <entry>ファイル、または、フォルダーの次の差異に移動</entry>
         </row>
 
         <row>

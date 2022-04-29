@@ -20,7 +20,7 @@
 
     <listitem>
       <para><filename class="directory">MergePlugins</filename>
-      サブフォルダにインストールされます。WinMergeは、いくつかのプラグインをインストールします。</para>
+      サブフォルダーにインストールされます。WinMergeは、いくつかのプラグインをインストールします。</para>
     </listitem>
 
     <listitem>
@@ -39,12 +39,12 @@
 
     <variablelist>
       <varlistentry>
-        <term>エディタスクリプトプラグイン<indexterm>
+        <term>エディタースクリプトプラグイン<indexterm>
             <primary>editor complement plugins</primary>
           </indexterm></term>
 
         <listitem>
-          <para>このタイプのプラグインは、ファイル比較ウィンドウのアクティブなエディタ（ファイルペイン）で選択したテキストに対してカスタム操作を実行します。
+          <para>このタイプのプラグインは、ファイル比較ウィンドウのアクティブなエディター（ファイルペイン）で選択したテキストに対してカスタム操作を実行します。
           </para>
         </listitem>
       </varlistentry>
@@ -60,8 +60,8 @@
           </para>
 
           <para>展開プラグインは、選択されたテキストやファイル内の差分に対してではなく、ファイル全体に対して機能します。
-          したがって、フォルダ比較ウインドウまたはファイルまたは
-          フォルダの選択ダイアログからファイル比較を起動するときのみ利用可能です。
+          したがって、フォルダー比較ウインドウまたはファイルまたは
+          フォルダーの選択ダイアログからファイル比較を起動するときのみ利用可能です。
           展開プラグインはファイル比較ウィンドウでは利用できません。
           </para>
 
@@ -72,11 +72,11 @@
           </para>
 
           <note>
-            <para>フォルダを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに
+            <para>フォルダーを比較すると、WinMergeは圧縮ファイルと非圧縮ファイルに
             対して異なる結果をもたらす可能性があります。
             たとえば、圧縮されていないときには同一のファイルでも、
             圧縮された場合、作成日が含まれているために異なる場合があります。
-            WinMergeはすべての状況で展開プラグインを適用します。フォルダを比較するときや、
+            WinMergeはすべての状況で展開プラグインを適用します。フォルダーを比較するときや、
             ２つのファイルを比較するときでも同じ結果が得られます</para>
           </note>
 
@@ -110,7 +110,7 @@
 
     <para>WinMergeはどのようにして渡されたファイルに適切なプラグインを適用しているのでしょうか？
     各プラグインはファイル拡張子のリストを持っています
-    （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>ファイルフィルタ</citetitle>にも
+    （<xref linkend = "Plugins_available" />セクションの各プラグインの<citetitle>ファイルフィルター</citetitle>にも
     リストされています) その拡張子は、1つ以上のファイルタイプをプラグインに関連付けるために使用されます。:
     比較するファイルの拡張子があるプラグインの拡張子リストと一致する場合、
     そのプラグインが<firstterm>提案されたプラグイン</firstterm>となります。
@@ -118,7 +118,7 @@
 
     <para>このトピックで後述する展開プラグインタイプと比較前処理プラグインタイプには
     別々のオプションがあり、これらを使用して手動または自動でプラグインを適用できます。
-    エディタスクリプトプラグインには自動モードはありません。
+    エディタースクリプトプラグインには自動モードはありません。
     </para>
 
     <para>自動モードを使用して選択したファイルにプラグインを適用すると、
@@ -136,7 +136,7 @@
     フォルダーとファイルのどちらを比較するかどうかによっても異なります。</para>
 
     <section>
-      <title>ファイル比較ウインドウでのエディタスクリプトプラグイン適用
+      <title>ファイル比較ウインドウでのエディタースクリプトプラグイン適用
       </title>
 
       <para>ファイル比較ウィンドウのファイルペインにカーソルを置き、
@@ -192,7 +192,7 @@
         </listitem>
 
         <listitem>
-          <para><function>フィルタコマンドを適用...</function></para>
+          <para><function>フィルターコマンドを適用...</function></para>
         </listitem>
 
         <listitem>
@@ -224,7 +224,7 @@
     </section>
 
     <section>
-      <title>フォルダ比較ウインドウでの展開プラグインの適用</title>
+      <title>フォルダー比較ウインドウでの展開プラグインの適用</title>
 
       <para>展開プラグインを適用する前に、
       モードを自動モードまたは手動モードに設定できます。</para>
@@ -306,7 +306,7 @@
     </section>
 
     <section>
-      <title>ファイル/フォルダ選択ダイアログでの展開プラグインの適用
+      <title>ファイル/フォルダー選択ダイアログでの展開プラグインの適用
       </title>
 
       <para>「ファイルまたはフォルダーの選択」ダイアログからファイル比較を起動するときに、
@@ -315,7 +315,7 @@
     </section>
 
     <section>
-      <title>フォルダ比較ウインドウでの比較前処理プラグインの適用</title>
+      <title>フォルダー比較ウインドウでの比較前処理プラグインの適用</title>
 
       <para>比較前処理プラグインでは、モード(<firstterm>&lt;Automatic&gt;</firstterm>または
       <firstterm>&lt;None&gt;</firstterm>）またはプラグイン名を個々のファイルに設定します。 
@@ -350,7 +350,7 @@
         <guimenuitem>&lt;None&gt;</guimenuitem>にリセットされます。</para>
       </note>
 
-      <para>フォルダ比較ウィンドウからファイルを開くと、
+      <para>フォルダー比較ウィンドウからファイルを開くと、
       ファイル比較ウィンドウが開く前にそのファイルの比較前処理プラグイン設定が適用されます。
       </para>
     </section>
@@ -390,7 +390,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -436,7 +436,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -482,7 +482,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -529,7 +529,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -587,7 +587,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -641,7 +641,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -686,7 +686,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>フィルタまたは jq コマンドに渡すコマンドラインオプション。</para>
+            <para>フィルターまたは jq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -694,7 +694,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -739,7 +739,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>フィルタまたは yq コマンドに渡すコマンドラインオプション。</para>
+            <para>フィルターまたは yq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -747,7 +747,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -801,7 +801,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -854,7 +854,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -899,7 +899,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>フィルタまたは jq コマンドに渡すコマンドラインオプション。</para>
+            <para>フィルターまたは jq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -907,7 +907,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -952,7 +952,7 @@
         <varlistentry>
           <term><option><replaceable>arguments</replaceable></option></term>
           <listitem>
-            <para>フィルタまたは yq コマンドに渡すコマンドラインオプション。</para>
+            <para>フィルターまたは yq コマンドに渡すコマンドラインオプション。</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -960,7 +960,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1014,7 +1014,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1068,7 +1068,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1122,7 +1122,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1175,7 +1175,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1228,7 +1228,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1284,7 +1284,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1319,7 +1319,7 @@
           <primary>ExecFilterCommand plugin file</primary>
         </indexterm></filename></title>
 
-      <para>フィルタコマンドを適用します。</para>
+      <para>フィルターコマンドを適用します。</para>
 
       <cmdsynopsis sepchar=" ">
         <command>ExecFilterCommand</command>
@@ -1340,7 +1340,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1377,7 +1377,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1414,7 +1414,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1451,7 +1451,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1488,7 +1488,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1525,7 +1525,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1562,7 +1562,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1599,7 +1599,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1636,7 +1636,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1738,7 +1738,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1831,7 +1831,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1913,7 +1913,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -1967,7 +1967,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2004,7 +2004,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2091,7 +2091,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2119,7 +2119,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2161,7 +2161,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2197,7 +2197,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2227,7 +2227,7 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>プラグイン引数</segtitle>
 
@@ -2317,7 +2317,7 @@
         </listitem>
 
         <listitem>
-          <simpara><guimenuitem>フィルタコマンドを適用...</guimenuitem> 選択範囲を指定したフィルタコマンドの出力に置き換えます。
+          <simpara><guimenuitem>フィルターコマンドを適用...</guimenuitem> 選択範囲を指定したフィルターコマンドの出力に置き換えます。
           コマンド内の %1 は現在のペインのファイル名に置き換わります。</simpara>
         </listitem>
 
@@ -2334,11 +2334,11 @@
 
       <para><segmentedlist>
           <segtitle>分類</segtitle>
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>エディタ補完</seg>
+            <seg>エディター補完</seg>
             <seg>*</seg>
             <seg>No</seg>
           </seglistitem>
@@ -2371,12 +2371,12 @@
       <para><segmentedlist>
           <segtitle>分類</segtitle>
 
-          <segtitle>ファイルフィルタ</segtitle>
+          <segtitle>ファイルフィルター</segtitle>
 
           <segtitle>設定ダイアログサポート</segtitle>
 
           <seglistitem>
-            <seg>エディタ補完</seg>
+            <seg>エディター補完</seg>
 
             <seg>*</seg>
 
