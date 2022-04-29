@@ -67,7 +67,7 @@
 
         <listitem>
           <para><ulink
-          url="https://winmerge.org/">winmerge.org</ulink>をブラウザで開いてください。<ulink 
+          url="https://winmerge.org/">winmerge.org</ulink>をブラウザーで開いてください。<ulink 
           url="https://winmerge.org/docs/">Documentation</ulink>の
           <ulink url="https://manual.winmerge.org/">Manual</ulink>
           リンクをたどってください。 最新版のヘルプが開きます。</para>
@@ -96,7 +96,7 @@
         <term><xref linkend="Compare_dirs" /></term>
 
         <listitem>
-          <para>フォルダ比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。
+          <para>フォルダー比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。
           </para>
         </listitem>
       </varlistentry>
@@ -159,7 +159,7 @@
         <term><xref linkend="Open_paths" /></term>
 
         <listitem>
-          <para>WinMergeでファイルとフォルダを開くいくつかの方法(たくさんあります!)について紹介します。
+          <para>WinMergeでファイルとフォルダーを開くいくつかの方法(たくさんあります!)について紹介します。
           例えば、詳細モードでのシェル拡張コンテキストメニューの使い方を知っていますか?
           </para>
         </listitem>
@@ -178,7 +178,7 @@
         <term><xref linkend="Filters" /></term>
 
         <listitem>
-          <para>フォルダやファイル比較ウインドウで比較される対象を制御する方法を説明します
+          <para>フォルダーやファイル比較ウインドウで比較される対象を制御する方法を説明します
           </para>
         </listitem>
       </varlistentry>
@@ -187,7 +187,7 @@
         <term><xref linkend="Command_line" /></term>
 
         <listitem>
-          <para>他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラメータを記載します。
+          <para>他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラメーターを記載します。
           </para>
         </listitem>
       </varlistentry>
@@ -284,7 +284,7 @@
 
           <row>
             <entry><replaceable>options file</replaceable>.iniを入力してください。<para>
-            操作対象からファイルを除外するために<guilabel>フィルタ</guilabel>フィールドを使用してください。
+            操作対象からファイルを除外するために<guilabel>フィルター</guilabel>フィールドを使用してください。
             </para><para>連続した1つかそれ以上の差異行は、一つの差異(または
             <glossterm>diff差分</glossterm>)を形成します。</para></entry>
 

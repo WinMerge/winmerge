@@ -65,7 +65,7 @@
 
     <para>
     差分比較、または、マージの設定を頻繁に変更する場合、また、
-    あなたの設定を他のWinMergeユーザと共有したい場合は、
+    あなたの設定を他のWinMergeユーザーと共有したい場合は、
     設定をファイルへエクスポートして保存することを検討してください。
     あとでそれらの設定を使いたい時は、手動でオプションを設定する代わりに、単に設定ファイルをインポートすることができます。</para>
 
@@ -114,7 +114,7 @@
       <itemizedlist>
         <listitem>
           <para><option>無効</option>(デフォルト): 
-          比較ウィンドウは、フォルダ、または、ファイルの先頭を表示し、差異を選択しません。</para>
+          比較ウィンドウは、フォルダー、または、ファイルの先頭を表示し、差異を選択しません。</para>
         </listitem>
 
         <listitem>
@@ -124,7 +124,7 @@
 
           <itemizedlist>
             <listitem>
-              <para>フォルダ比較では、ファイル、または、フォルダの最初の差異を選択します。
+              <para>フォルダー比較では、ファイル、または、フォルダーの最初の差異を選択します。
               </para>
             </listitem>
 
@@ -166,10 +166,10 @@
           <keycap>Esc</keycap>キーでWinMergeウィンドウを閉じられるようにします。
           <!-- NOTE: このセクション、そのまま訳すとわかりにくい -->
           <keycap>
-          Esc</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダ比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
+          Esc</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キーを合計3回押下する必要があります(最初に、ファイル比較ウィンドウ、次に、フォルダー比較ウィンドウ、そして最後に、WinMergeウィンドウ)。</para>
 
           <para>注) WinMergeのコマンドラインの
-          <parameter>-e</parameter>パラメータは、WinMergeを
+          <parameter>-e</parameter>パラメーターは、WinMergeを
           <keycap>Esc</keycap>1回で終了することを可能にします。</para>
         </listitem>
 
@@ -191,14 +191,14 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>有効</option>(デフォルト): ファイルまたはフォルダの選択ダイアログで、
+          <para><option>有効</option>(デフォルト): ファイルまたはフォルダーの選択ダイアログで、
           パスを入力した時に、それらをチェックします。
           <guibutton>OK</guibutton>ボタンは、両方(または3つすべて)のパスが検証されるまで、使用不可となります。注) 
           <!-- TODO: かなり意訳 -->このチェックは、ほんの少しだけ時間がかかることがあります。</para>
         </listitem>
 
         <listitem>
-          <para><option>無効</option>: ファイルまたはフォルダの選択ダイアログの
+          <para><option>無効</option>: ファイルまたはフォルダーの選択ダイアログの
           <guibutton>OK</guibutton>ボタンは常に使用可能となり、
           指定したパスを開こうとします。検証による遅延がないため、
           パスの選択が速くなります。しかし、パスが開かれなかった場合、
@@ -283,7 +283,7 @@
     </section>
 
     <section>
-      <title>起動時にファイルまたはフォルダの選択ダイアログを表示する<indexterm>
+      <title>起動時にファイルまたはフォルダーの選択ダイアログを表示する<indexterm>
           <primary>Select Files or Folders dialog</primary>
 
           <secondary>opening automatically</secondary>
@@ -291,7 +291,7 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>無効</option>(デフォルト): WinMerge起動時に、WinMergeウィンドウが開きます。ファイル、または、フォルダを選択するには、
+          <para><option>無効</option>(デフォルト): WinMerge起動時に、WinMergeウィンドウが開きます。ファイル、または、フォルダーを選択するには、
           <menuchoice>
               <guimenu>ファイル</guimenu>
 
@@ -301,23 +301,23 @@
 
         <listitem>
           <para>
-          <option>有効</option>: WinMergeを起動した時、WinMergeウィンドウと共に、ファイルまたはフォルダの選択ダイアログが開きます。</para>
+          <option>有効</option>: WinMergeを起動した時、WinMergeウィンドウと共に、ファイルまたはフォルダーの選択ダイアログが開きます。</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>OK押下時にファイルまたはフォルダの選択ダイアログを閉じる<indexterm>
+      <title>OK押下時にファイルまたはフォルダーの選択ダイアログを閉じる<indexterm>
           <primary>Select Files or Folders dialog</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><option>無効</option> (デフォルト): <guibutton>比較</guibutton>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログは閉じずに開いたままになります。</para>
+          <para><option>無効</option> (デフォルト): <guibutton>比較</guibutton>ボタンをクリックすると、ファイルまたはフォルダーの選択ダイアログは閉じずに開いたままになります。</para>
         </listitem>
 
         <listitem>
-          <para><option>有効</option>: <guibutton>比較</guibutton>ボタンをクリックすると、ファイルまたはフォルダの選択ダイアログが閉じます。</para>
+          <para><option>有効</option>: <guibutton>比較</guibutton>ボタンをクリックすると、ファイルまたはフォルダーの選択ダイアログが閉じます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -331,7 +331,7 @@
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダの選択ダイアログでパス入力した時、
+          <para><guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダーの選択ダイアログでパス入力した時、
           オートコンプリートは実行されません。
           </para>
         </listitem>
@@ -375,7 +375,7 @@
       <note>
         <para>
         WinMergeを新しいバージョンにアップデートした時は、メッセージを省略することはオススメしません。
-        インストーラは、それらを自動的に表示するようにします。しかし、インストーラを使用しない場合、
+        インストーラーは、それらを自動的に表示するようにします。しかし、インストーラーを使用しない場合、
         <guibutton>リセット</guibutton>ボタンを使って、メッセージの表示を有効にすることを思い出してください。</para>
       </note>
     </section>
@@ -424,7 +424,7 @@
         </listitem>
 
         <listitem>
-          <para>フォルダ比較では、無視された差異のみが含まれているファイルは、同一のファイルとしてマークされます。
+          <para>フォルダー比較では、無視された差異のみが含まれているファイルは、同一のファイルとしてマークされます。
           </para>
         </listitem>
       </itemizedlist>
@@ -509,7 +509,7 @@
         <xref linkend="CompareFiles_linediff-highlight" />で説明されています。</para>
 
         <para>
-        <!-- FIXME: 超難解な日本語 -->オプションダイアログのエディタページは、単語間の区切りを検出するために、ホワイトスペースがどのように使われるかの制御に関する設定を含んでいます。詳細は、
+        <!-- FIXME: 超難解な日本語 -->オプションダイアログのエディターページは、単語間の区切りを検出するために、ホワイトスペースがどのように使われるかの制御に関する設定を含んでいます。詳細は、
         <xref linkend="Configuration_viewlinediffs" />を参照してください</para>
       </note>
     </section>
@@ -775,7 +775,7 @@
             <guilabel>フルコンテンツ</guilabel>よりも高速です。</para>
 
             <para>
-            短所は、比較時に行フィルタが許可されないことです。例えば、この方法は、行フィルタをファイルのすべての差異を無視するように設定していても、それらを差異として検出します。
+            短所は、比較時に行フィルターが許可されないことです。例えば、この方法は、行フィルターをファイルのすべての差異を無視するように設定していても、それらを差異として検出します。
             </para>
           </listitem>
         </varlistentry>
@@ -785,7 +785,7 @@
 
           <listitem>
             <para>この比較方法は、クイックコンテンツの比較方法よりも高速です。
-            ただし、プラグインや行フィルタ、「大文字と小文字を区別しない」
+            ただし、プラグインや行フィルター、「大文字と小文字を区別しない」
             オプションなどは適用されません。まず、ファイルサイズを比較し、
             ファイルサイズが異なる場合は、内容を比較せずにファイルの内容を異なるもの
             として扱います。ファイルサイズが一致していれば、単にファイルの内容を
@@ -1058,7 +1058,7 @@
     </section>
 
     <section>
-      <title>ユーザ指定文字区切り値</title>
+      <title>ユーザー指定文字区切り値</title>
       <para>
       カンマやタブ文字ではなく、別の文字で区切られた値のテキストファイルをテーブル形式で開きたい場合、
       そのファイルのファイル名パターンと区切り文字を指定します。
@@ -1148,7 +1148,7 @@
     </section>
 
     <section>
-      <title>フォルダ比較で画像比較を有効にする</title>
+      <title>フォルダー比較で画像比較を有効にする</title>
       <para>TBD</para>
     </section>
 
@@ -1159,7 +1159,7 @@
   </section>
 
   <section id="Configuration_editor">
-    <title>エディタページ<indexterm>
+    <title>エディターページ<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1504,7 +1504,7 @@
   </section>
 
   <section id="Configuration_foldercomparecolors">
-    <title>色/フォルダ比較 ページ<indexterm>
+    <title>色/フォルダー比較 ページ<indexterm>
         <primary>folder compare colors</primary>
 
         <secondary>options</secondary>
@@ -1593,7 +1593,7 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>有効</option>(デフォルト): フォルダ比較ウィンドウで削除したファイルやフォルダは、
+          <para><option>有効</option>(デフォルト): フォルダー比較ウィンドウで削除したファイルやフォルダーは、
           可能な場合、ゴミ箱へ移動されます。
           </para>
 
@@ -1606,79 +1606,79 @@
         </listitem>
 
         <listitem>
-          <para><option>無効</option>: フォルダ比較ウィンドウで削除されたファイルやフォルダは、
+          <para><option>無効</option>: フォルダー比較ウィンドウで削除されたファイルやフォルダーは、
           本当に削除されます。</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section id="Configuration_external_editor">
-      <title>外部エディタ<indexterm>
+      <title>外部エディター<indexterm>
         <primary>external editor</primary>
 
         <secondary>configuring</secondary>
       </indexterm></title>
 
       <para>WinMergeのファイル比較ウィンドウは、一般的な編集機能を提供します。
-      あなたのお気に入りのフル機能のエディタを使いたい場合、フォルダ比較コンテキストメニューから、WinMerge
-      が外部エディタを開くように設定することができます。
+      あなたのお気に入りのフル機能のエディターを使いたい場合、フォルダー比較コンテキストメニューから、WinMerge
+      が外部エディターを開くように設定することができます。
       </para>
 
-      <para>デフォルトの外部エディタには、すべての Windows
+      <para>デフォルトの外部エディターには、すべての Windows
       システムにある、メモ帳(notepad.exe)が設定されています。
-      異なる外部エディタを設定するには、その実行ファイルのフルパスを入力してください。</para>
+      異なる外部エディターを設定するには、その実行ファイルのフルパスを入力してください。</para>
 
       <tip>
-        <para>パスと一緒に、その外部ツールでサポートされている、いくらかのコマンドラインパラメータを含むことができます。このようなフォーマットです。
+        <para>パスと一緒に、その外部ツールでサポートされている、いくらかのコマンドラインパラメーターを含むことができます。このようなフォーマットです。
         <command><replaceable>実行ファイルのパス</replaceable></command>
         <option>-option1</option>
         <option>-option2</option>
         <option><replaceable>...</replaceable></option></para>
       </tip>
 
-      <para>設定された外部エディタを使うには、フォルダ比較ウィンドウ中のファイルを右クリックし、
+      <para>設定された外部エディターを使うには、フォルダー比較ウィンドウ中のファイルを右クリックし、
       <menuchoice>
           <guimenuitem>左を開く</guimenuitem>
 
-          <guimenuitem>外部エディタで</guimenuitem>
+          <guimenuitem>外部エディターで</guimenuitem>
         </menuchoice>、または、<menuchoice>
           <guimenuitem>右を開く</guimenuitem>
 
-          <guimenuitem>外部エディタで</guimenuitem>
+          <guimenuitem>外部エディターで</guimenuitem>
         </menuchoice>を選択してください。</para>
     </section>
 
     <section>
-      <title>フィルタフォルダ<indexterm>
+      <title>フィルターフォルダー<indexterm>
           <primary>Filters folders</primary>
 
           <secondary>specifying default private folder</secondary>
         </indexterm></title>
 
-      <para>ファイルフィルタ用の個人フォルダの指定には、このフィールドを使用してください。デフォルトでは、このフォルダは、
+      <para>ファイルフィルター用の個人フォルダーの指定には、このフィールドを使用してください。デフォルトでは、このフォルダーは、
       Windows 10 では
       <filename>
-      ドキュメント</filename>といった)、あなたのユーザープロファイルフォルダです。ファイルフィルタを作成したら、このフォルダへ自動的に追加されます。
+      ドキュメント</filename>といった)、あなたのユーザープロファイルフォルダーです。ファイルフィルターを作成したら、このフォルダーへ自動的に追加されます。
       </para>
     </section>
 
     <section>
-      <title>テンポラリファイルフォルダ<indexterm>
+      <title>テンポラリファイルフォルダー<indexterm>
         <primary>temporary files, folder used</primary>
       </indexterm></title>
 
-      <para>WinMerge が、一時ファイルを保存するフォルダを指定してください。次のうち、何れか1つが有効です:
+      <para>WinMerge が、一時ファイルを保存するフォルダーを指定してください。次のうち、何れか1つが有効です:
       </para>
 
       <itemizedlist>
         <listitem>
-          <para>システムのテンポラリフォルダ (デフォルト): 例えば、お使いのシステムでは、
+          <para>システムのテンポラリフォルダー (デフォルト): 例えば、お使いのシステムでは、
           <filename>C:\Windows\Temp</filename>かもしれません。</para>
         </listitem>
 
         <listitem>
-          <para>カスタムフォルダ: 
-          <guibutton>参照</guibutton>をクリックし、書き込み可能なフォルダを選択してください。</para>
+          <para>カスタムフォルダー: 
+          <guibutton>参照</guibutton>をクリックし、書き込み可能なフォルダーを選択してください。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1701,7 +1701,7 @@
       <itemizedlist>
         <listitem>
           <para>
-          <guilabel>フォルダ比較</guilabel>(デフォルトで無効): ファイルが上書き(コピー)される度に、バックアップファイルが作成されます。
+          <guilabel>フォルダー比較</guilabel>(デフォルトで無効): ファイルが上書き(コピー)される度に、バックアップファイルが作成されます。
           </para>
         </listitem>
 
@@ -1720,15 +1720,15 @@
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>元ファイルのフォルダ</guilabel>(デフォルトで有効):
-          バックアップファイルは、元ファイルと同じフォルダに作成されます。
-          これは、大抵良い選択です。マイナス面は、巨大なフォルダは、バックアップファイルを片付けるのが大変だということです。
+          <para><guilabel>元ファイルのフォルダー</guilabel>(デフォルトで有効):
+          バックアップファイルは、元ファイルと同じフォルダーに作成されます。
+          これは、大抵良い選択です。マイナス面は、巨大なフォルダーは、バックアップファイルを片付けるのが大変だということです。
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>バックアップフォルダ</guilabel>(デフォルトで無効):
-          すべてのバックアップファイルは、1つのフォルダに作成されます。
+          <para><guilabel>バックアップフォルダー</guilabel>(デフォルトで無効):
+          すべてのバックアップファイルは、1つのフォルダーに作成されます。
           これは、バックアップファイルを片付けるのを容易にします。
           しかし、複数のソースファイルが同じファイル名だった場合、
           最も新しいバックアップファイルは、以前に作成された同名のファイルを上書きします。</para>
@@ -1814,7 +1814,7 @@
 
         <listitem>
           <para><guilabel>
-          <!-- TODO: インストール後に変更していたら、そうじゃない気がする -->現在のWinMergeユーザーインターフェース言語に従う</guilabel>:
+          <!-- TODO: インストール後に変更していたら、そうじゃない気がする -->現在のWinMergeユーザーインターフェイス言語に従う</guilabel>:
           WinMerge のインストールに使用したエンコーディングです。
           <!--This is just a guess - don't find any info on this option.--></para>
         </listitem>
@@ -1868,10 +1868,10 @@ or is this understood?--></para>
 
           <caution>
             <para>外部アプリケーションにテキストをコピー、または、貼り付ける時、外部アプリケーションは、WinMerge
-            と同じコードページを使用するでしょう。外部エディタのドキュメントを参照してください。
+            と同じコードページを使用するでしょう。外部エディターのドキュメントを参照してください。
             WinMerge へのコピーについては、Internet Explorer
             は、コードページ選択機能を提供しています。
-            外部エディタが、カスタムコードページをサポートしていない場合、
+            外部エディターが、カスタムコードページをサポートしていない場合、
             このオプションは無効にしてください。</para>
           </caution>
         </listitem>
@@ -1890,13 +1890,13 @@ or is this understood?--></para>
     <title>シェル統合ページ</title>
 
     <section id="Configuration_winexplorer-integ">
-      <title>エクスプローラ<indexterm>
+      <title>エクスプローラー<indexterm>
         <primary>integration</primary>
 
         <secondary>with Windows shell</secondary>
       </indexterm></title>
       <para>The 
-      <option>コンテキストメニューに追加</option>オプションは、Windows エクスプローラから、直接、WinMerge
+      <option>コンテキストメニューに追加</option>オプションは、Windows エクスプローラーから、直接、WinMerge
       を起動可能にし、そこで選択したアイテムを比較します。
       それは、WinMergeインストールの最中に、デフォルトで有効か無効にされます。
       有効な場合、次のオプションのうち、一方、または、両方を有効にすることができます:
@@ -1909,13 +1909,13 @@ or is this understood?--></para>
           <listitem>
             <itemizedlist>
               <listitem>
-                <para><option>無効</option>(デフォルト): Windows エクスプローラのコンテキストメニューには、
+                <para><option>無効</option>(デフォルト): Windows エクスプローラーのコンテキストメニューには、
                 <guimenuitem>WinMerge</guimenuitem>ショートカットのみが含まれます。
                 </para>
               </listitem>
 
               <listitem>
-                <para><option>有効</option>: エクスプローラのコンテキストメニュー中の、
+                <para><option>有効</option>: エクスプローラーのコンテキストメニュー中の、
                 <guimenuitem>WinMerge</guimenuitem>ショートカットを、
                 <guimenuitem>比較</guimenuitem>ショートカットで置き換えます。
                 </para>

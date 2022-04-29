@@ -4,9 +4,9 @@
       <primary>localizing WinMerge</primary>
     </indexterm></title>
 
-  <para>WinMergeのインタフェースはデフォルトで英語となっていますが、ローカライズが可能です。
-  各種インタフェース、メニュー、ダイアログ、ツールチップ、メニュー、
-  メッセージの各種インタフェースが
+  <para>WinMergeのインターフェイスはデフォルトで英語となっていますが、ローカライズが可能です。
+  各種インターフェイス、メニュー、ダイアログ、ツールチップ、メニュー、
+  メッセージの各種インターフェイスが
   選択した言語に翻訳されます。</para>
 
   <para>ローカライズされるのは文字列のみであることに注意してください。 
@@ -42,14 +42,14 @@
       </listitem>
 
       <listitem>
-        <para>インストール時に、翻訳ファイルを構成しなかった(または、インストーラを全く使用しなかった)場合も、
+        <para>インストール時に、翻訳ファイルを構成しなかった(または、インストーラーを全く使用しなかった)場合も、
          WinMergeを再インストールする必要はありません。WinMergeサイトから最新の翻訳ファイルを手に入れて構成することができます。
          </para>
 
         <orderedlist>
           <listitem>
             <simpara>WinMergeのインストールディレクトリ(WinMerge.exeかWinMergeU.exeがあるディレクトリ）に
-             <filename class="directory">Languages</filename>という名前のフォルダを作成します。（既にLanguagesフォルダが存在する場合はスキップして構いません。）</simpara>
+             <filename class="directory">Languages</filename>という名前のフォルダーを作成します。（既にLanguagesフォルダーが存在する場合はスキップして構いません。）</simpara>
           </listitem>
 
           <listitem>
@@ -61,7 +61,7 @@
           <listitem>
             <simpara>ダウンロードされたアーカイブを解凍し、その中より<filename>*.po</filename>ファイルを探します。
             (*の個所は言語名となります。例えば、スウェーデンの翻訳ファイル名であれば<filename>Swedish.po</filename>となります。)
-            WinMergeインストールディレクトリの<filename>Languages</filename>サブフォルダにあなたの欲しい翻訳ファイルをコピーしてください。</simpara>
+            WinMergeインストールディレクトリの<filename>Languages</filename>サブフォルダーにあなたの欲しい翻訳ファイルをコピーしてください。</simpara>
           </listitem>
         </orderedlist>
 
@@ -94,7 +94,7 @@
       </listitem>
     </orderedlist>
 
-    <para>GUI言語の変更は、即座にWinMergeの各インタフェースに反映されます。
+    <para>GUI言語の変更は、即座にWinMergeの各インターフェイスに反映されます。
     </para>
   </section>
 

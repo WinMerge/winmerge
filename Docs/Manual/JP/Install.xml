@@ -4,8 +4,8 @@
       <primary>WinMergeのインストール</primary>
     </indexterm></title>
 
-  <para>WinMergeは、インストーラ、または、アーカイブから展開したファイルにより、インストールすることができます。
-  インストーラを使用するのが、オススメの方法です。</para>
+  <para>WinMergeは、インストーラー、または、アーカイブから展開したファイルにより、インストールすることができます。
+  インストーラーを使用するのが、オススメの方法です。</para>
 
   <section>
     <title>ファイルのダウンロード</title>
@@ -49,24 +49,24 @@
   </section>
   
   <section id="Installing_usinginstaller">
-    <title>インストーラを使用する (推奨)</title>
+    <title>インストーラーを使用する (推奨)</title>
     <para></para>
     <note>
-      <para>インストーラは、Administrator権限を必要とします。
+      <para>インストーラーは、Administrator権限を必要とします。
       Administrator権限を持っていないなら、アーカイブファイルより展開するか、
-      ユーザー単位インストーラ(WinMerge-x.x.x-x64-PerUser-Setup.exe)を使用することで、
+      ユーザー単位インストーラー(WinMerge-x.x.x-x64-PerUser-Setup.exe)を使用することで、
       WinMergeをインストールできます(<xref
       linkend="InstallFromArchive" />を参照してください).</para>
     </note>
 
-    <para>インストーラを使用することは、ほとんどのユーザにオススメです。
-    インストーラは、WinMergeがインストールされる場所を促します。
+    <para>インストーラーを使用することは、ほとんどのユーザーにオススメです。
+    インストーラーは、WinMergeがインストールされる場所を促します。
     ファイルがインストールされるとき、シェル統合、WinMergeをスタートメニューに追加するなどを設定します。
     WinMergeのインストール:</para>
 
     <orderedlist>
       <listitem>
-        <simpara>インストーラの開始(通常、
+        <simpara>インストーラーの開始(通常、
         <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>のような名前)。</simpara>
       </listitem>
 
@@ -84,7 +84,7 @@
 
       <listitem>
         <simpara>コンポーネントの選択ページ中の、一番上の項目の中から、予め設定されたインストール方法を選択してください。
-        ほとんどのユーザには、<guilabel>標準インストール</guilabel>をオススメします。
+        ほとんどのユーザーには、<guilabel>標準インストール</guilabel>をオススメします。
         下部のボックスは、すべての有効なコンポーネントを表示します。
         コンポーネントのチェックをON、または、OFFにすることで、既定の設定を変更することができます。
         たとえば、英語より異なった言語用のWinMergeローカライゼーションを使用したいなら、
@@ -113,10 +113,10 @@
           </varlistentry>
 
           <varlistentry>
-            <term>フィルタ</term>
+            <term>フィルター</term>
 
             <listitem>
-              <para>ファイル・フィルタファイルは、比較範囲を限定することができます。</para>
+              <para>ファイル・フィルターファイルは、比較範囲を限定することができます。</para>
             </listitem>
           </varlistentry>
 
@@ -167,7 +167,7 @@
             <listitem>
               <para>WinMerge翻訳ファイル。WinMergeを、英語より異なる言語で使用したいなら、
                 この項目を展開し、有効な翻訳ファイルをひとつ以上選択してください。
-                インストーラは、WinMergeフォルダの中に、あなたが選択した言語の*.po翻訳ファイルを含むLanguagesサブフォルダを作成します。
+                インストーラーは、WinMergeフォルダーの中に、あなたが選択した言語の*.po翻訳ファイルを含むLanguagesサブフォルダーを作成します。
                 インストール後、WinMergeを起動し、ローカライズを変更することができます。
                 詳しくは、<xref linkend="Locales" />を参照してください。</para>
             </listitem>
@@ -182,7 +182,7 @@
 
         <itemizedlist>
           <listitem>
-            <para>プログラムショートカット作成の、既定の設定を受け入れるか、異なるフォルダを指定してください。</para>
+            <para>プログラムショートカット作成の、既定の設定を受け入れるか、異なるフォルダーを指定してください。</para>
           </listitem>
 
           <listitem>
@@ -207,7 +207,7 @@
 
         <variablelist>
           <varlistentry>
-            <term>エクスプローラのコンテキストメニューに追加(E)</term>
+            <term>エクスプローラーのコンテキストメニューに追加(E)</term>
 
             <listitem>
               <indexterm>
@@ -220,16 +220,16 @@
                 <primary>Windows shell integration</primary>
               </indexterm>
 
-              <para><link linkend="OpenPaths_shell-integ">Windowsエクスプローラから、WinMergeの比較操作を行う</link>ことを可能にします
+              <para><link linkend="OpenPaths_shell-integ">Windowsエクスプローラーから、WinMergeの比較操作を行う</link>ことを可能にします
                 (このシェル統合は、WinMergeの設定の中で、有効、または、無効にすることができます)。</para>
             </listitem>
           </varlistentry>
 
           <varlistentry>
-            <term>システム環境変数PATHへWinMergeのフォルダを追加する(A)</term>
+            <term>システム環境変数PATHへWinMergeのフォルダーを追加する(A)</term>
 
             <listitem>
-              <para>WinMergeのインストールフォルダを、システム環境変数へ追加します。</para>
+              <para>WinMergeのインストールフォルダーを、システム環境変数へ追加します。</para>
             </listitem>
           </varlistentry>
 
@@ -345,8 +345,8 @@
       </listitem>
 
       <listitem>
-        <simpara>インストーラが、ファイルのコピーを完了すると、最後の画面が表示されます。
-          二つのチェックボックスを使用して、作成されたWinMergeのスタートメニューフォルダが開けるかどうか、
+        <simpara>インストーラーが、ファイルのコピーを完了すると、最後の画面が表示されます。
+          二つのチェックボックスを使用して、作成されたWinMergeのスタートメニューフォルダーが開けるかどうか、
           WinMergeが起動可能かどうかを確認することができます。</simpara>
       </listitem>
     </orderedlist>
@@ -363,12 +363,12 @@
              It is not tightly integrated with Windows, and does not use many DLLs.-->
     </para>
 
-    <para>アーカイブファイルは、正しいフォルダ構成を持ちます。WinMergeは、
-        このフォルダ構成を保ったまま、インストール場所へ展開されるべきです。
-        たとえば、ルートフォルダが、<filename class="directory">C:\Program Files\</filename>以下の
+    <para>アーカイブファイルは、正しいフォルダー構成を持ちます。WinMergeは、
+        このフォルダー構成を保ったまま、インストール場所へ展開されるべきです。
+        たとえば、ルートフォルダーが、<filename class="directory">C:\Program Files\</filename>以下の
         <filename class="directory">WinMerge-<replaceable>version</replaceable></filename>
-        (<filename class="directory">WinMerge-2.6.0</filename>など)フォルダに作成されます。
-        このフォルダをリネーム、または、ファイルを別のフォルダへ(フォルダ構成を保ったまま!)コピーすることができます。
+        (<filename class="directory">WinMerge-2.6.0</filename>など)フォルダーに作成されます。
+        このフォルダーをリネーム、または、ファイルを別のフォルダーへ(フォルダー構成を保ったまま!)コピーすることができます。
     </para>
 
     <para>ファイル展開後、WinMergeは、起動する準備ができています。
@@ -377,7 +377,7 @@
   </section>
 
   <section>
-    <title>インストーラなしでWindowsエクスプローラシェル統合を有効にする
+    <title>インストーラーなしでWindowsエクスプローラーシェル統合を有効にする
     <indexterm>
         <primary>integration</primary>
 

@@ -223,7 +223,7 @@ msgid "&Screenshots"
 msgstr "スクリーンショット(&S)"
 
 msgid "&Full Size Screenshots"
-msgstr "フルサイズスクリーンショット(&F)"
+msgstr "フルサイズ スクリーンショット(&F)"
 
 msgid "&HTMLs"
 msgstr "&HTML"
@@ -232,7 +232,7 @@ msgid "&Texts"
 msgstr "テキスト(&T)"
 
 msgid "&Resource Trees"
-msgstr "リソースツリー(&R)"
+msgstr "リソース ツリー(&R)"
 
 msgid "&Size"
 msgstr "サイズ(&S)"
@@ -244,7 +244,7 @@ msgid "Clear &Browsing Data"
 msgstr "閲覧データのクリア(&B)"
 
 msgid "&Disk Cache"
-msgstr "ディスクキャッシュ(&D)"
+msgstr "ディスク キャッシュ(&D)"
 
 msgid "&Cookies"
 msgstr "クッキー(&C)"
@@ -274,7 +274,7 @@ msgid "&Image"
 msgstr "画像(&I)"
 
 msgid "&Webpage"
-msgstr "Web ページ(&W)"
+msgstr "&Webページ"
 
 msgid "New (&3 panes)"
 msgstr "新規 (&3 ペイン)"
@@ -397,10 +397,10 @@ msgid "&Translations"
 msgstr "翻訳(&T)"
 
 msgid "&Check For Updates"
-msgstr "更新の確認(&C)"
+msgstr "アップデートの確認(&C)"
 
 msgid "C&onfiguration"
-msgstr "設定(&O)"
+msgstr "設定ログ(&O)"
 
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
@@ -2022,16 +2022,16 @@ msgid "Webpage"
 msgstr "Webページ"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr "URL パターン (正規表現) (&I):"
+msgstr "URL パターン (正規表現)(&I):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "除外 URL パターン (正規表現) (&E):"
+msgstr "除外 URL パターン (正規表現)(&E):"
 
 msgid "&User data folder location:"
-msgstr "ユーザーデータフォルダーの場所(&U):"
+msgstr "ユーザー データ フォルダーの場所(&U):"
 
 msgid "&Separate user data folders for each pane"
-msgstr "ユーザーデータフォルダーをペイン毎に分離する(&S)"
+msgstr "ユーザー データ フォルダーをペイン毎に分離する(&S)"
 
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
@@ -3932,10 +3932,10 @@ msgid "Word-by-word position and text"
 msgstr "単語毎の位置情報とテキスト"
 
 msgid "AppData folder"
-msgstr "AppData フォルダ"
+msgstr "AppData フォルダー"
 
 msgid "Install folder"
-msgstr "インストールフォルダ"
+msgstr "インストール フォルダー"
 
 msgid "Allow only one instance to run"
 msgstr "1 つのみインスタンスを起動する"

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Compare_dirs">
-  <title>フォルダの比較とマージ<indexterm>
-      <primary>フォルダの比較</primary>
+  <title>フォルダーの比較とマージ<indexterm>
+      <primary>フォルダーの比較</primary>
     </indexterm></title>
 
-  <para>このトピックは、フォルダ比較ウィンドウを使用して、
-    フォルダを比較・マージする方法を説明しています。</para>
+  <para>このトピックは、フォルダー比較ウィンドウを使用して、
+    フォルダーを比較・マージする方法を説明しています。</para>
 
   <section id="Compare_dirs_starting">
-    <title>フォルダ比較操作の開始</title>
+    <title>フォルダー比較操作の開始</title>
 
     <para>WinMergeウィンドウ、または、コマンドプロンプトから、
-      フォルダ比較操作を開始できます。</para>
+      フォルダー比較操作を開始できます。</para>
 
     <variablelist>
       <varlistentry>
@@ -22,11 +22,11 @@
               <guimenu>ファイル</guimenu>
 
               <guimenuitem>開く</guimenuitem>
-            </menuchoice>をクリックしてください。ファイルまたはフォルダの選択ダイアログを使用して、
-            比較する1と2のフォルダを指定してください。
-          デフォルトでは、フォルダ中のすべてのファイルが比較対象に含まれ、サブフォルダも比較対象に含まれます。
+            </menuchoice>をクリックしてください。ファイルまたはフォルダーの選択ダイアログを使用して、
+            比較する1と2のフォルダーを指定してください。
+          デフォルトでは、フォルダー中のすべてのファイルが比較対象に含まれ、サブフォルダーも比較対象に含まれます。
           これらのオプションの変更と、
-          ファイルまたはフォルダの選択ダイアログのより詳細な情報については、<xref
+          ファイルまたはフォルダーの選択ダイアログのより詳細な情報については、<xref
           linkend="Open_paths" />を参照してください。</para>
         </listitem>
       </varlistentry>
@@ -36,8 +36,8 @@
 
         <listitem>
           <para>WinMergeインストールディレクトリにある、<command>WinMergeU.exe</command>を起動してください。
-          コマンド引数には、比較する1と2のフォルダを含みます。
-          デフォルトでは、フォルダ中のすべてのファイルが比較対象に含まれ、サブフォルダは比較対象に含まれません。
+          コマンド引数には、比較する1と2のフォルダーを含みます。
+          デフォルトでは、フォルダー中のすべてのファイルが比較対象に含まれ、サブフォルダーは比較対象に含まれません。
           これらのオプションの変更と、
           その他のコマンドオプションの情報については、<xref
           linkend="Command_line" />を参照してください。</para>
@@ -55,17 +55,17 @@
             </indexterm></term>
 
           <listitem>
-            <para>再帰モードは、全体のフォルダ構造の中から、差異ファイルを見つけたり、
+            <para>再帰モードは、全体のフォルダー構造の中から、差異ファイルを見つけたり、
               操作したりするのに便利です。
-             しかしながら、多くのサブフォルダやファイルがある場合は遅くなります。
+             しかしながら、多くのサブフォルダーやファイルがある場合は遅くなります。
             深くネストしたディレクトリ構造を、比較ウィンドウで操作し易くするために<xref
             linkend="Compare_dirs_treeview" />を有効にすることを考えてください。
             </para>
 
-            <para>非再帰モードは、多くのサブフォルダが存在しても、
+            <para>非再帰モードは、多くのサブフォルダーが存在しても、
               それらを検査する必要がないため、速度面で有利です。
               さらに、表示の管理もより簡単です。
-              なぜなら、選択されたフォルダの項目だけを表示すれば良いからです。</para>
+              なぜなら、選択されたフォルダーの項目だけを表示すれば良いからです。</para>
           </listitem>
         </varlistentry>
 
@@ -76,7 +76,7 @@
             <para>ファイル比較のための<guilabel>クイックコンテンツ</guilabel>方式は、
               <xref linkend="Configuration" />で説明されています。これは、
               巨大なバイナリファイルを比較する時に便利です。そしてそれは、4MBを超えるファイル比較の場合、自動的に使用されます。
-              起こりうる不都合としては、ラインフィルタが効かないことと、フォルダ比較ウィンドウに差異カウントが表示されません。
+              起こりうる不都合としては、ラインフィルターが効かないことと、フォルダー比較ウィンドウに差異カウントが表示されません。
               しかし、これは、ほとんどのケースで取るに足らないことです。
               なぜなら、そのような巨大なファイルは、たいていバイナリだからです。</para>
 
@@ -103,11 +103,11 @@
     </tip>
 
     <section>
-      <title>フォルダ比較状況ウインドウ<indexterm>
-          <primary>フォルダ比較状況ウインドウ</primary>
+      <title>フォルダー比較状況ウインドウ<indexterm>
+          <primary>フォルダー比較状況ウインドウ</primary>
         </indexterm></title>
 
-      <para>フォルダ比較操作を開始すると、
+      <para>フォルダー比較操作を開始すると、
         WinMergeはこのステータスウィンドウを表示します。</para>
 
       <mediaobject>
@@ -120,9 +120,9 @@
         </textobject>
       </mediaobject>
 
-      <para>比較操作が素早い場合、WinMergeはフォルダ比較結果を表示して、
+      <para>比較操作が素早い場合、WinMergeはフォルダー比較結果を表示して、
         直ぐにそれを閉じるため、プログレスウィンドウに気づかないかもしれません。
-        プログレスウィンドウは、その操作対象に含まれるファイルとフォルダの数と、
+        プログレスウィンドウは、その操作対象に含まれるファイルとフォルダーの数と、
         比較した項目の数を表示します。
         プログレスバーは、比較した項目をグラフィカルに表示します。</para>
 
@@ -135,15 +135,15 @@
 
       <para><guibutton>停止</guibutton>をクリックすると、比較操作が終了する前に、いつでも操作を中止できます。
         <!-- FIXME: 以下、ちょっと何言ってるかわからない。 -->
-        フォルダ比較ウィンドウは、未完了の結果を省略して、その時に計算された結果で表示されます。
+        フォルダー比較ウィンドウは、未完了の結果を省略して、その時に計算された結果で表示されます。
         <!--I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 I get the partial list, but no Abort indicator.--></para>
     </section>
   </section>
 
   <section id="Compare_dirs_window">
-    <title>フォルダ比較ウインドウ<indexterm>
-        <primary>フォルダ比較ウインドウ</primary>
+    <title>フォルダー比較ウインドウ<indexterm>
+        <primary>フォルダー比較ウインドウ</primary>
 
         <seealso>Compare window</seealso>
       </indexterm><indexterm>
@@ -156,7 +156,7 @@ I get the partial list, but no Abort indicator.--></para>
         <secondary>in Folder Compare window</secondary>
       </indexterm></title>
 
-    <para>フォルダ比較ウィンドウは、フォルダ比較の結果を表示します。
+    <para>フォルダー比較ウィンドウは、フォルダー比較の結果を表示します。
     二つの異なるビューが使用できます。</para>
 
     <variablelist>
@@ -166,7 +166,7 @@ I get the partial list, but no Abort indicator.--></para>
           </indexterm></term>
 
         <listitem>
-          <para>テーブルビューでは、ファイルやフォルダは、それぞれが行に表示されます。
+          <para>テーブルビューでは、ファイルやフォルダーは、それぞれが行に表示されます。
             これは、デフォルトのビューです。ここに例を示します。</para>
 
           <mediaobject>
@@ -185,8 +185,8 @@ I get the partial list, but no Abort indicator.--></para>
           </indexterm></term>
 
         <listitem>
-          <para>ツリービューでは、フォルダは含んでいるファイルやサブフォルダを、展開したり畳んだりできます。
-            ツリービューは、再帰比較(サブフォルダを含む)モードでのみ有効です。
+          <para>ツリービューでは、フォルダーは含んでいるファイルやサブフォルダーを、展開したり畳んだりできます。
+            ツリービューは、再帰比較(サブフォルダーを含む)モードでのみ有効です。
             例えば、</para>
 
           <mediaobject>
@@ -199,21 +199,21 @@ I get the partial list, but no Abort indicator.--></para>
 
           <itemizedlist>
             <listitem>
-              <para>単独のフォルダを展開したり、折り畳んだりするには、
-                フォルダアイコンの隣にある、プラス、または、マイナス記号をクリックするか、
+              <para>単独のフォルダーを展開したり、折り畳んだりするには、
+                フォルダーアイコンの隣にある、プラス、または、マイナス記号をクリックするか、
                 行のどこかをダブルクリックしてください。</para>
             </listitem>
 
             <listitem>
-              <para>ビュー内のすべてのフォルダを展開、または、折りたたむには、メニューの
+              <para>ビュー内のすべてのフォルダーを展開、または、折りたたむには、メニューの
               <menuchoice>
                   <guimenu>表示</guimenu>
 
-                  <guimenuitem>すべてのサブフォルダを展開する</guimenuitem>
+                  <guimenuitem>すべてのサブフォルダーを展開する</guimenuitem>
                 </menuchoice>をクリック、または、<menuchoice>
                   <guimenu>表示</guimenu>
 
-                  <guimenuitem>すべてのサブフォルダを折りたたむ</guimenuitem>
+                  <guimenuitem>すべてのサブフォルダーを折りたたむ</guimenuitem>
                 </menuchoice>をクリックしてください。</para>
             </listitem>
           </itemizedlist>
@@ -222,7 +222,7 @@ I get the partial list, but no Abort indicator.--></para>
     </variablelist>
 
     <para>再帰的に比較している間に、
-      (ファイルまたはフォルダの選択ダイアログで、<option>サブフォルダを含む</option>オプションを有効にした場合)、
+      (ファイルまたはフォルダーの選択ダイアログで、<option>サブフォルダーを含む</option>オプションを有効にした場合)、
       <menuchoice>
         <guimenu>表示</guimenu>
 
@@ -258,7 +258,7 @@ I get the partial list, but no Abort indicator.--></para>
           <secondary>results view</secondary>
         </indexterm></title>
 
-        <para>フォルダ比較ウィンドウは、再帰比較モードと非再帰比較モードで、
+        <para>フォルダー比較ウィンドウは、再帰比較モードと非再帰比較モードで、
           見た目と挙動が少しばかり異なります。</para>
 
       <variablelist>
@@ -266,16 +266,16 @@ I get the partial list, but no Abort indicator.--></para>
           <term>Recursive folder compare</term>
 
           <listitem>
-            <para>比較結果は、すべてのサブフォルダが含まれています。
-              <guimenu>表示</guimenu>メニューのオプションによって、フォルダに含まれる項目のうち、
+            <para>比較結果は、すべてのサブフォルダーが含まれています。
+              <guimenu>表示</guimenu>メニューのオプションによって、フォルダーに含まれる項目のうち、
              表示される項目のタイプをコントロールできます(例えば、
-            <guimenuitem>同一項目の表示</guimenuitem>)。 フォルダ列は、常に空で、
-            フォルダの中にあるファイルだけが表示されています。
-            一つの項目のサブフォルダを見て、比較結果列の項目のパスを見てください。
+            <guimenuitem>同一項目の表示</guimenuitem>)。 フォルダー列は、常に空で、
+            フォルダーの中にあるファイルだけが表示されています。
+            一つの項目のサブフォルダーを見て、比較結果列の項目のパスを見てください。
             <guimenu>表示</guimenu>メニューの、<guimenuitem>左側のみに存在する項目の表示</guimenuitem>、
             <guimenuitem>中央のみに存在する項目の表示</guimenuitem>、
             または、<guimenuitem>右側のみに存在する項目の表示</guimenuitem>が有効になっている場合、
-            片方だけに存在するフォルダが表示されます。
+            片方だけに存在するフォルダーが表示されます。
             <!-- XXX: 原文では、両方'Show Left Unique Files'となっているが間違いだろう --></para>
           </listitem>
         </varlistentry>
@@ -284,8 +284,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term>Nonrecursive folder compare</term>
 
           <listitem>
-            <para>結果は、選択されたフォルダのファイルと、最上位のサブフォルダのみを含んでいます。
-              しかしながら、いくつかのサブフォルダを比較したいなら、
+            <para>結果は、選択されたフォルダーのファイルと、最上位のサブフォルダーのみを含んでいます。
+              しかしながら、いくつかのサブフォルダーを比較したいなら、
               それらをブラウズすることができます。</para>
           </listitem>
         </varlistentry>
@@ -293,13 +293,13 @@ I get the partial list, but no Abort indicator.--></para>
     </section>
 
     <section>
-      <title>ファイル・フォルダアイコン<indexterm>
+      <title>ファイル・フォルダーアイコン<indexterm>
           <primary>icons</primary>
 
           <secondary>Folder Compare window</secondary>
         </indexterm></title>
 
-      <para>フォルダ比較ウィンドウの中で、ファイルとフォルダは比較され、
+      <para>フォルダー比較ウィンドウの中で、ファイルとフォルダーは比較され、
         いくつかのカテゴリに分類されます。
         カテゴリは、各行の左側の列で、これらのアイコンのうちの一つにより明確に識別されます。</para>
 
@@ -351,35 +351,35 @@ I get the partial list, but no Abort indicator.--></para>
               <imagedata contentwidth="16" fileref="screenshots/foldersame.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> 同一のフォルダ(ツリービューのみ)</member>
+          </inlinemediaobject> 同一のフォルダー(ツリービューのみ)</member>
 
         <member><inlinemediaobject>
             <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/folderdiff.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> 異なるフォルダ(ツリービューのみ)</member>
+          </inlinemediaobject> 異なるフォルダー(ツリービューのみ)</member>
 
         <member><inlinemediaobject>
             <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/lfolder.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> 左のみに存在するフォルダ</member>
+          </inlinemediaobject> 左のみに存在するフォルダー</member>
 
         <member><inlinemediaobject>
             <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/mfolder.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> 中央のみに存在するフォルダ</member>
+          </inlinemediaobject> 中央のみに存在するフォルダー</member>
 
         <member><inlinemediaobject>
             <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> 右のみに存在するフォルダ</member>
+          </inlinemediaobject> 右のみに存在するフォルダー</member>
 
         <member><inlinemediaobject>
             <imageobject>
@@ -407,14 +407,14 @@ I get the partial list, but no Abort indicator.--></para>
               <imagedata contentwidth="16" fileref="screenshots/folderskip.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> スキップ(フィルタ)されたフォルダ</member>
+          </inlinemediaobject> スキップ(フィルター)されたフォルダー</member>
 
         <member><inlinemediaobject>
             <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/fileskip.png"
                          format="PNG" />
             </imageobject>
-          </inlinemediaobject> スキップ(フィルタ)されたファイル</member>
+          </inlinemediaobject> スキップ(フィルター)されたファイル</member>
 
         <member><inlinemediaobject>
             <imageobject>
@@ -435,7 +435,7 @@ I get the partial list, but no Abort indicator.--></para>
     </section>
 
     <section>
-      <title>フォルダ比較ウインドウの操作</title>
+      <title>フォルダー比較ウインドウの操作</title>
 
       <indexterm>
         <primary>navigation functions</primary>
@@ -445,7 +445,7 @@ I get the partial list, but no Abort indicator.--></para>
 
       <para><link
           linkend="Shortcut_keys">キーボード</link>と同様にマウスを使用して、
-        フォルダ比較ウィンドウをコンテキストメニューでナビゲートできます。
+        フォルダー比較ウィンドウをコンテキストメニューでナビゲートできます。
         例えば、<inlinemediaobject>
           <imageobject>
             <imagedata contentdepth="15" fileref="screenshots/nextdiff_btn.png" />
@@ -455,27 +455,27 @@ I get the partial list, but no Abort indicator.--></para>
             <phrase>Next Difference button</phrase>
           </textobject>
         </inlinemediaobject> <guimenuitem>次の差異</guimenuitem>ボタンは、
-      ファイル、または、フォルダの次の差異を見つけ、選択します。</para>
+      ファイル、または、フォルダーの次の差異を見つけ、選択します。</para>
 
       <note>
         <para><!-- FIXME: ちょっと何言ってるかわからない -->
-          ユニークなファイルやフォルダは、異なるそれと同様の方法でナビゲートされます。</para>
+          ユニークなファイルやフォルダーは、異なるそれと同様の方法でナビゲートされます。</para>
       </note>
 
-      <para>複数のファイルやフォルダを選択することができます。しかしながら、いくつかの操作
+      <para>複数のファイルやフォルダーを選択することができます。しかしながら、いくつかの操作
       (<command>リネーム</command>など)は、複数選択時は無効です。
       </para>
 
       <para>ナビゲーションボタンを使って、比較されたファイル中の差異を(<guibutton>次の差異</guibutton>,
       <guibutton>前の差異</guibutton>など)横断してください。
       WinMergeの機能を使って、
-      ファイルやサブフォルダをマージ、コピー、移動、または、削除してください。
+      ファイルやサブフォルダーをマージ、コピー、移動、または、削除してください。
       </para>
     </section>
   </section>
 
   <section id="Compare_dirs_fileops">
-    <title>フォルダ比較のファイル操作<indexterm>
+    <title>フォルダー比較のファイル操作<indexterm>
         <primary>file operations</primary>
 
         <secondary>in Folder Compare window</secondary>
@@ -485,11 +485,11 @@ I get the partial list, but no Abort indicator.--></para>
         <secondary>file operations</secondary>
       </indexterm></title>
 
-    <para>フォルダ比較ウィンドウは、編集、コピー、削除、移動やリネームなど、ファイルに対する一般的な操作をサポートしています
+    <para>フォルダー比較ウィンドウは、編集、コピー、削除、移動やリネームなど、ファイルに対する一般的な操作をサポートしています
     (移動は、コピーして削除するのと等価です)。
-    これらのファイル操作と、フォルダコンテンツのマージなど、
+    これらのファイル操作と、フォルダーコンテンツのマージなど、
     幾つかの特別なWinMergeの機能を使用することができます。
-    ファイルを、関連付られたプログラム、または、外部エディタで開くこともできます。.</para>
+    ファイルを、関連付られたプログラム、または、外部エディターで開くこともできます。.</para>
 
     <para>これらのタスクを実行するための最も手近な方法は、
       一つか複数の項目を右クリックして、
@@ -502,7 +502,7 @@ I get the partial list, but no Abort indicator.--></para>
           <secondary>in Folder Compare window</secondary>
         </indexterm></title>
 
-      <para>フォルダ比較ウィンドウ中で最も一般的なファイル操作は、
+      <para>フォルダー比較ウィンドウ中で最も一般的なファイル操作は、
       左右にファイルをコピーすることです。WinMergeのコピー機能には、幾つかの形があります。
       同一ファイルのコピーはマージにおいて使用しないので、異なるファイルのみをすべてコピーする。
       このコピー機能は、
@@ -512,7 +512,7 @@ I get the partial list, but no Abort indicator.--></para>
       <section>
         <title>コンテキストメニューの[コピー]メニュー項目</title>
 
-        <para>フォルダ比較ウィンドウのコンテキストメニューで、
+        <para>フォルダー比較ウィンドウのコンテキストメニューで、
         <guimenuitem>コピー</guimenuitem>は、4つのショートカットを含んだサブメニュー項目です。
         </para>
 
@@ -541,10 +541,10 @@ I get the partial list, but no Abort indicator.--></para>
 
           <listitem>
             <para><guimenuitem>左を...</guimenuitem>と<guimenuitem>右を
-                ...</guimenuitem>で、比較フォルダの代わりに、
-              システム中のコピー先フォルダを指定することができます。
-              フォルダダイアログが開くので、
-              お使いのシステム中のフォルダを選択(または、フォルダを新規作成)し、
+                ...</guimenuitem>で、比較フォルダーの代わりに、
+              システム中のコピー先フォルダーを指定することができます。
+              フォルダーダイアログが開くので、
+              お使いのシステム中のフォルダーを選択(または、フォルダーを新規作成)し、
             <guibutton>OK</guibutton>をクリックしてください。</para>
           </listitem>
         </itemizedlist>
@@ -568,7 +568,7 @@ I get the partial list, but no Abort indicator.--></para>
       <section>
         <title>ツールバーと[コピー]メニューコマンド</title>
 
-        <para>フォルダ比較ツールバーの、<inlinemediaobject>
+        <para>フォルダー比較ツールバーの、<inlinemediaobject>
             <imageobject>
               <imagedata contentwidth="17"
                          fileref="screenshots/copyr_button.png" />
@@ -622,7 +622,7 @@ I get the partial list, but no Abort indicator.--></para>
         <para><guilabel>削除されたファイルをゴミ箱に移動する
         </guilabel>オプションを有効にしたままにすることをオススメします。 <xref
         linkend="Configuration" />)を参照してください。アクシデントが起きた場合、削除をアンドゥすることができます。さらに、ゴミ箱は有効にしておくべきです。Windows上で、ゴミ箱を無効にした場合、WinMergeのオプションは働きません。もう一度。WinMergeの<guilabel>削除されたファイルをゴミ箱に移動する</guilabel>オプションと
-        Windowsのゴミ箱の両方を使用しない限り、ファイル、または、フォルダの削除のアンドゥはできません！</para>
+        Windowsのゴミ箱の両方を使用しない限り、ファイル、または、フォルダーの削除のアンドゥはできません！</para>
       </warning>
     </section>
 
@@ -633,10 +633,10 @@ I get the partial list, but no Abort indicator.--></para>
           <secondary>in Folder Compare window</secondary>
         </indexterm></title>
 
-      <para>ファイル、または、フォルダをリネームするには、コンテキストメニューの<guimenuitem>名前を変更</guimenuitem>
+      <para>ファイル、または、フォルダーをリネームするには、コンテキストメニューの<guimenuitem>名前を変更</guimenuitem>
       、または、<keycap>F2</keycap>キーを押下してください。エディットボックス内で
       <keycap>Return</keycap>キーを押下すると、名前を変更します。また、
-      <keycap>Esc</keycap>キーを押下するとキャンセルします。一つのファイル、または、フォルダをリネームできます。リネームは、
+      <keycap>Esc</keycap>キーを押下するとキャンセルします。一つのファイル、または、フォルダーをリネームできます。リネームは、
       両側(または3つすべて)のアイテムを変更することに注意してください。現在、
       片側のアイテムだけのリネームはできません。</para>
     </section>
@@ -663,7 +663,7 @@ I get the partial list, but no Abort indicator.--></para>
             </para>
 
             <tip>
-              <para>このショートカットは、いつも新しいWindowsエクスプローラでフォルダを開きます。
+              <para>このショートカットは、いつも新しいWindowsエクスプローラーでフォルダーを開きます。
               </para>
             </tip>
             <para></para>
@@ -674,8 +674,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term>With External Editor</term>
 
           <listitem>
-            <para>外部エディタでファイルを開くデフォルトエディタはメモ帳ですが、
-            WinMergeのオプションで、別のエディタを設定することがきます。
+            <para>外部エディターでファイルを開くデフォルトエディターはメモ帳ですが、
+            WinMergeのオプションで、別のエディターを設定することがきます。
             </para>
           </listitem>
         </varlistentry>
@@ -736,7 +736,7 @@ I get the partial list, but no Abort indicator.--></para>
           <see>protecting files</see>
         </indexterm></title>
 
-      <para>どちらか片側のファイルとフォルダを変更から保護するには、
+      <para>どちらか片側のファイルとフォルダーを変更から保護するには、
       <menuchoice>
           <guimenu>ファイル</guimenu>
 
@@ -753,12 +753,12 @@ I get the partial list, but no Abort indicator.--></para>
         </menuchoice>のチェックボックスを有効にします。</para>
 
       <important>
-        <para>ファイルとフォルダの読み取り専用オプションは、現在の比較ビューのみの設定です。
+        <para>ファイルとフォルダーの読み取り専用オプションは、現在の比較ビューのみの設定です。
 これらのファイルの、Windows上の属性には影響ありません。
         </para>
       </important>
 
-      <para><!-- TODO: ちょっと自信ない -->この読み取り専用状態は、フォルダ比較で開いたファイルにも継承されます。例えば、2つのフォルダの比較で、片側を読み取り専用にセットし、比較のため2つのファイルを開いた場合、
+      <para><!-- TODO: ちょっと自信ない -->この読み取り専用状態は、フォルダー比較で開いたファイルにも継承されます。例えば、2つのフォルダーの比較で、片側を読み取り専用にセットし、比較のため2つのファイルを開いた場合、
       読み取り専用がセットされた側のファイルは書き込み保護されています。同じように、読み取り専用でない側から、
       読み取り専用側へのファイルコピーはできません。</para>
 
@@ -772,7 +772,7 @@ I get the partial list, but no Abort indicator.--></para>
           <primary>refreshing view</primary>
         </indexterm></title>
 
-      <para>大きなフォルダをフルリフレッシュするには長時間かかります。
+      <para>大きなフォルダーをフルリフレッシュするには長時間かかります。
       WinMerge 2.2 か、それ以前では、WinMergeの外でファイルを編集した後はいつも、フルリフレッシュしなければなりませんでした。
       バージョン2.4から、WinMergeは、選択されたアイテムだけをリフレッシュできるようになりました。
       コンテキストメニューの<guimenuitem>選択項目を最新更新</guimenuitem>、または、
@@ -805,7 +805,7 @@ I get the partial list, but no Abort indicator.--></para>
           <term>左側</term>
 
           <listitem>
-            <para>左側のファイルとフォルダを再帰的にアーカイブファイルに加えます
+            <para>左側のファイルとフォルダーを再帰的にアーカイブファイルに加えます
             </para>
           </listitem>
         </varlistentry>
@@ -814,7 +814,7 @@ I get the partial list, but no Abort indicator.--></para>
           <term>中央</term>
 
           <listitem>
-            <para>中央のファイルとフォルダを再帰的にアーカイブファイルに加えます
+            <para>中央のファイルとフォルダーを再帰的にアーカイブファイルに加えます
             </para>
           </listitem>
         </varlistentry>
@@ -823,7 +823,7 @@ I get the partial list, but no Abort indicator.--></para>
           <term>右側</term>
 
           <listitem>
-            <para>右側のファイルとフォルダを再帰的にアーカイブファイルに加えます
+            <para>右側のファイルとフォルダーを再帰的にアーカイブファイルに加えます
             </para>
           </listitem>
         </varlistentry>
@@ -832,8 +832,8 @@ I get the partial list, but no Abort indicator.--></para>
           <term>両側</term>
 
           <listitem>
-            <para>両側のファイルとフォルダを再帰的にアーカイブファイルに加えますファイル名が同じため、これらは、アーカイブ中の<filename class="directory">Original</filename>と
-            <filename class="directory">Altered</filename>という名前の、別のサブフォルダへ入れられます。
+            <para>両側のファイルとフォルダーを再帰的にアーカイブファイルに加えますファイル名が同じため、これらは、アーカイブ中の<filename class="directory">Original</filename>と
+            <filename class="directory">Altered</filename>という名前の、別のサブフォルダーへ入れられます。
             左側のファイルは、<filename class="directory">Original</filename>へ、
             右側のファイルは、<filename class="directory">Altered</filename>へ格納されます。</para>
           </listitem>
@@ -864,12 +864,12 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 -->
 
       <tip>
-        <para><!-- FIXME: 良い訳が思いつかない。。。 -->WinMergeは、アーカイブファイルの中の、両側で同じ名前のファイルを比較することができます。WinMergeは、サブフォルダ<filename
+        <para><!-- FIXME: 良い訳が思いつかない。。。 -->WinMergeは、アーカイブファイルの中の、両側で同じ名前のファイルを比較することができます。WinMergeは、サブフォルダー<filename
         class="directory">Original</filename>と<filename
-        class="directory">Altered</filename>を探し、これら2つのフォルダの内容を比較します。</para>
+        class="directory">Altered</filename>を探し、これら2つのフォルダーの内容を比較します。</para>
       </tip>
 
-      <para><!-- FIXME: 良い訳が思いつかない --> フォルダ比較が、アーカイブファイルの内容を含む場合、
+      <para><!-- FIXME: 良い訳が思いつかない --> フォルダー比較が、アーカイブファイルの内容を含む場合、
         WinMerge中で行われたそれらのファイルへの変更(例えば、
         <guimenuitem>開く</guimenuitem>を使用したファイル編集)は、アーカイブファイル中に保存されます。
         しかし、WinMergeの<guimenuitem>コピー</guimenuitem>、<guimenuitem>移動</guimenuitem>,
@@ -880,24 +880,24 @@ added/deleted/copied. User can create a new archive file using above menuitems i
   </section>
 
   <section id="Compare_dirs_browsing">
-    <title>ファイル比較ウインドウでフォルダをブラウズする<indexterm>
+    <title>ファイル比較ウインドウでフォルダーをブラウズする<indexterm>
         <primary>folders</primary>
 
         <secondary>browsing in Folder Compare window</secondary>
       </indexterm></title>
 
-    <para>このセクションでは、フォルダ比較ウィンドウに表示されている、
-    フォルダをブラウズする方法について述べます。<!-- FIXME: なにが言いたいんだろう。。。 -->
-    フォルダをブラウズする時は、全く新しい比較操作を実行します。その結果は、ウィンドウ中の現在の比較結果に上書きします。
+    <para>このセクションでは、フォルダー比較ウィンドウに表示されている、
+    フォルダーをブラウズする方法について述べます。<!-- FIXME: なにが言いたいんだろう。。。 -->
+    フォルダーをブラウズする時は、全く新しい比較操作を実行します。その結果は、ウィンドウ中の現在の比較結果に上書きします。
     </para>
 
     <section>
-      <title>非再帰的比較でフォルダをブラウズする</title>
+      <title>非再帰的比較でフォルダーをブラウズする</title>
 
-      <para>たとえ、非再帰的なフォルダ比較がサブフォルダの内容を含まないとしても、
-      サブフォルダは結果にファイルとしてリストされます。同様に、比較フォルダの親フォルダは、
-      表の一番上にファイルとしてリストされます。直接、フォルダ比較ウィンドウでこれらのフォルダをくことにより、
-      ディレクトリツリーを選択的にブラウズすることができます。このアプローチ - あなたが興味のあるサブフォルダだけを比較することは、
+      <para>たとえ、非再帰的なフォルダー比較がサブフォルダーの内容を含まないとしても、
+      サブフォルダーは結果にファイルとしてリストされます。同様に、比較フォルダーの親フォルダーは、
+      表の一番上にファイルとしてリストされます。直接、フォルダー比較ウィンドウでこれらのフォルダーをくことにより、
+      ディレクトリツリーを選択的にブラウズすることができます。このアプローチ - あなたが興味のあるサブフォルダーだけを比較することは、
       ディレクトリツリー全体を再帰的に比較するより、より効果的です。
       </para>
 
@@ -906,7 +906,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
           <term>Browsing the parent folder</term>
 
           <listitem>
-            <para>親フォルダの比較は、(一番上にあるパス<guilabel>..</guilabel>)<inlinemediaobject>
+            <para>親フォルダーの比較は、(一番上にあるパス<guilabel>..</guilabel>)<inlinemediaobject>
                 <imageobject>
                   <imagedata fileref="screenshots/folderup.png" format="PNG" />
                 </imageobject>
@@ -914,8 +914,8 @@ added/deleted/copied. User can create a new archive file using above menuitems i
               <keycap>Enter</keycap>キーを押下してください。
               </para>
 
-            <para>時々、(あなたがアクセス権を持っていない時などは)親フォルダを開くことができません。
-            これら2つのアイコンは、親フォルダが開けるかどうかを表しています。
+            <para>時々、(あなたがアクセス権を持っていない時などは)親フォルダーを開くことができません。
+            これら2つのアイコンは、親フォルダーが開けるかどうかを表しています。
             </para>
 
             <simplelist type="vert">
@@ -923,14 +923,14 @@ added/deleted/copied. User can create a new archive file using above menuitems i
                   <imageobject>
                     <imagedata fileref="screenshots/folderup.png" format="PNG" />
                   </imageobject>
-                </inlinemediaobject> 親フォルダを開くことができます。</member>
+                </inlinemediaobject> 親フォルダーを開くことができます。</member>
 
               <member><inlinemediaobject>
                   <imageobject>
                     <imagedata fileref="screenshots/folderup_disable.png"
                                format="PNG" />
                   </imageobject>
-                </inlinemediaobject> 親フォルダを開くことができません。</member>
+                </inlinemediaobject> 親フォルダーを開くことができません。</member>
             </simplelist>
           </listitem>
         </varlistentry>
@@ -938,23 +938,23 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <variablelist>
         <varlistentry>
-          <term>両側(または3つすべてに)存在する単一のサブフォルダをブラウズする</term>
+          <term>両側(または3つすべてに)存在する単一のサブフォルダーをブラウズする</term>
 
           <listitem>
-            <para>両側に存在する単一のサブフォルダを比較するには、
-            フォルダ比較ウィンドウ内のフォルダをダブルクリックしてください。</para>
+            <para>両側に存在する単一のサブフォルダーを比較するには、
+            フォルダー比較ウィンドウ内のフォルダーをダブルクリックしてください。</para>
           </listitem>
         </varlistentry>
       </variablelist>
 
       <variablelist>
         <varlistentry>
-          <term>片側にだけ存在するサブフォルダをブラウズする</term>
+          <term>片側にだけ存在するサブフォルダーをブラウズする</term>
 
           <listitem>
             <para><!-- FIXME: 後半わからない -->
-                    左、または、右側にだけ存在するフォルダをブラウズする場合、
-                    WinMergeは、もう一方にマッチするフォルダを新しく作成することができます。詳細は、<xref linkend="CompareDirs_browse_unique" />を参照してください。
+                    左、または、右側にだけ存在するフォルダーをブラウズする場合、
+                    WinMergeは、もう一方にマッチするフォルダーを新しく作成することができます。詳細は、<xref linkend="CompareDirs_browse_unique" />を参照してください。
             </para>
           </listitem>
         </varlistentry>
@@ -962,14 +962,14 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <variablelist>
         <varlistentry>
-          <term>2つの異なるサブフォルダをブラウズする</term>
+          <term>2つの異なるサブフォルダーをブラウズする</term>
 
           <listitem>
-            <para>それぞれのサブフォルダが異なる2つのサブフォルダ(つまり2行選択している)を
-            比較することはできません<!-- TODO: 何がいいたい？ -->ただ、以前に同一のフォルダを比較している場合
-            (例えば、比較結果中の単一のサブフォルダをブラウズするなど)は、
-            2つのサブフォルダを比較することができます。
-            次の図に示すように、まず、フォルダ比較ウィンドウ中の2つのフォルダを選択してください。
+            <para>それぞれのサブフォルダーが異なる2つのサブフォルダー(つまり2行選択している)を
+            比較することはできません<!-- TODO: 何がいいたい？ -->ただ、以前に同一のフォルダーを比較している場合
+            (例えば、比較結果中の単一のサブフォルダーをブラウズするなど)は、
+            2つのサブフォルダーを比較することができます。
+            次の図に示すように、まず、フォルダー比較ウィンドウ中の2つのフォルダーを選択してください。
             </para>
 
             <mediaobject>
@@ -985,11 +985,11 @@ added/deleted/copied. User can create a new archive file using above menuitems i
             </mediaobject>
             <para></para>
 
-            <para>選択する順番は重要です。最初に選択したフォルダは、結果の左側のフォルダ、
-            二番目に選択したフォルダは、右側のフォルダになります。
+            <para>選択する順番は重要です。最初に選択したフォルダーは、結果の左側のフォルダー、
+            二番目に選択したフォルダーは、右側のフォルダーになります。
             </para>
 
-            <para>2つのフォルダが選択された状態で、右クリックし
+            <para>2つのフォルダーが選択された状態で、右クリックし
             <guimenuitem>比較</guimenuitem>(または、メニューの<menuchoice>
                 <guimenu>マージ</guimenu>
 
@@ -999,8 +999,8 @@ added/deleted/copied. User can create a new archive file using above menuitems i
             <tip>
               <para>さらに、<guimenuitem>比較</guimenuitem>操作は、
               先のスクリーンショットが示すように、
-              フォルダ比較ウィンドウ中の、現在の左側と右側のフォルダのパスが同一の場合にのみ有効です。
-              例えば、カレントウィンドウが2つの異なるフォルダ比較の場合、これは有効ではありません。
+              フォルダー比較ウィンドウ中の、現在の左側と右側のフォルダーのパスが同一の場合にのみ有効です。
+              例えば、カレントウィンドウが2つの異なるフォルダー比較の場合、これは有効ではありません。
               </para>
             </tip>
           </listitem>
@@ -1009,27 +1009,27 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     </section>
 
     <section id="CompareDirs_browse_unique">
-      <title>ユニークフォルダのブラウズ<indexterm>
+      <title>ユニークフォルダーのブラウズ<indexterm>
           <primary>unique folders</primary>
 
           <secondary>comparing</secondary>
         </indexterm></title>
 
-      <para>WinMergeは、存在するフォルダと存在しないフォルダを比較できなかったため、
-      WinMerge 2.6か、それ以前のバージョンでは、ユニークなフォルダ(比較結果の片側のみに存在するフォルダ)
+      <para>WinMergeは、存在するフォルダーと存在しないフォルダーを比較できなかったため、
+      WinMerge 2.6か、それ以前のバージョンでは、ユニークなフォルダー(比較結果の片側のみに存在するフォルダー)
      をブラウズできません。
-      WinMergeで、ユニークなフォルダから何かコピーするには、
-      はじめにフォルダ構造全体をコピーしなければなりませんでした。</para>
+      WinMergeで、ユニークなフォルダーから何かコピーするには、
+      はじめにフォルダー構造全体をコピーしなければなりませんでした。</para>
 
-      <para>しかしながら、フォルダ構造全体をコピーすることを好まないかもしれません。
-      バージョン2.8以降では、WinMergeは、代わりに新しい空のフォルダを作成する方法を提供します。
-      これは、作成された空のフォルダへ、元のユニークなフォルダから必要な要素だけをコピーすることができます。
+      <para>しかしながら、フォルダー構造全体をコピーすることを好まないかもしれません。
+      バージョン2.8以降では、WinMergeは、代わりに新しい空のフォルダーを作成する方法を提供します。
+      これは、作成された空のフォルダーへ、元のユニークなフォルダーから必要な要素だけをコピーすることができます。
       この手順を示します。
       </para>
 
       <orderedlist>
         <listitem>
-          <para>ユニークフォルダをブラウズ(フォルダを選択して
+          <para>ユニークフォルダーをブラウズ(フォルダーを選択して
           <keycap>Enter</keycap>を押下するか、それをダブルクリック、または、右クリックし、
           <guimenuitem>比較</guimenuitem>を選択)してください。例えば、</para>
 
@@ -1045,15 +1045,15 @@ added/deleted/copied. User can create a new archive file using above menuitems i
             </textobject>
           </mediaobject>
 
-          <para>WinMergeのメッセージは、フォルダが片側のみに存在し、
+          <para>WinMergeのメッセージは、フォルダーが片側のみに存在し、
 開くことができなかったことを知らせています。<!-- FIXME: かなりイマイチ -->
-このメッセージは、一致するフォルダを作成し、比較結果の片側として開くかどうかを確認します。</para>
+このメッセージは、一致するフォルダーを作成し、比較結果の片側として開くかどうかを確認します。</para>
         </listitem>
 
         <listitem>
           <para><guibutton>はい</guibutton>をクリックすると確定
           (<guibutton>いいえ</guibutton>は比較をキャンセル)します。新たな比較結果では、
-          ユニークなフォルダは左側に、新しく作成された空のフォルダは右側に開かれます。</para>
+          ユニークなフォルダーは左側に、新しく作成された空のフォルダーは右側に開かれます。</para>
 
           <mediaobject>
             <imageobject>
@@ -1069,7 +1069,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
           </mediaobject>
 
           <para>比較結果では、アイテムを(例えば、右クリックのコンテキストメニューを使って)
-          ユニークなフォルダから作成されたフォルダへコピー、または、移動することができます。
+          ユニークなフォルダーから作成されたフォルダーへコピー、または、移動することができます。
           </para>
         </listitem>
       </orderedlist>
@@ -1077,13 +1077,13 @@ added/deleted/copied. User can create a new archive file using above menuitems i
   </section>
 
   <section id="Compare_dirs_customizing">
-    <title>フォルダ比較のカスタマイズ<indexterm>
+    <title>フォルダー比較のカスタマイズ<indexterm>
         <primary>Folder Compare window</primary>
 
         <secondary>customizing</secondary>
       </indexterm></title>
 
-    <para>このセクションでは、フォルダ比較ウィンドウの表示結果を制御する方法について説明します。
+    <para>このセクションでは、フォルダー比較ウィンドウの表示結果を制御する方法について説明します。
     表の列の、表示・非表示、並べ替えの表示をカスタマイズすることができます。
     </para>
 
@@ -1126,7 +1126,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
         <listitem>
           <para><guimenuitem>スキップされた項目の表示</guimenuitem>: 
-          ファイルフィルタにより省かれたファイルとディレクトリ</para>
+          ファイルフィルターにより省かれたファイルとディレクトリ</para>
         </listitem>
 
         <listitem>
@@ -1139,13 +1139,13 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     <section>
       <title>列ソートの変更</title>
 
-      <para>フォルダ比較ウィンドウの行は、特定の列のソート順によって並べられます。
-      このソート列は、ヘッダの小さな矢印によって表されます。
+      <para>フォルダー比較ウィンドウの行は、特定の列のソート順によって並べられます。
+      このソート列は、ヘッダーの小さな矢印によって表されます。
       矢印が上向きの場合は昇順に、下向きの場合は降順で列はソートされています。
-      このトピックの上部にあるフォルダ比較の例は、
+      このトピックの上部にあるフォルダー比較の例は、
       ファイル名の列で昇順にソートされています。</para>
 
-      <para>他の順序列を選択するには、単にその列ヘッダをクリックしてください。
+      <para>他の順序列を選択するには、単にその列ヘッダーをクリックしてください。
       選択した列は、そのデフォルトソート順に設定され、
       すべての行は列のソート順によって並べ替えられます。</para>
 
@@ -1158,12 +1158,12 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     <section>
       <title>列の追加、削除、順序変更</title>
 
-      <para>フォルダ比較ウィンドウに表示されている列を変更するには
+      <para>フォルダー比較ウィンドウに表示されている列を変更するには
       </para>
 
       <orderedlist>
         <listitem>
-          <para>これらの列ヘッダを右クリックし、<guimenuitem>列の設定
+          <para>これらの列ヘッダーを右クリックし、<guimenuitem>列の設定
           </guimenuitem>か、<menuchoice>
               <guimenu>ツール</guimenu>
 
@@ -1212,16 +1212,16 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>ファイル名</guilabel>: 比較されたアイテムの名前非再帰比較では、この列はファイルとフォルダの両方を含んでいます。
-　　　　　再帰比較では、フォルダは含まれていません。
-          代わりに、フォルダはフォルダ列に表示されます。
+          <para><guilabel>ファイル名</guilabel>: 比較されたアイテムの名前非再帰比較では、この列はファイルとフォルダーの両方を含んでいます。
+　　　　　再帰比較では、フォルダーは含まれていません。
+          代わりに、フォルダーはフォルダー列に表示されます。
           </para>
         </listitem>
 
         <listitem>
-          <para><guilabel>フォルダ</guilabel>: 比較されたサブフォルダの、
-          比較フォルダからの相対パス非再帰比較の場合、この列はいつも空です。
-          フォルダは、代わりに<guilabel>ファイル名</guilabel>列に表示されています。
+          <para><guilabel>フォルダー</guilabel>: 比較されたサブフォルダーの、
+          比較フォルダーからの相対パス非再帰比較の場合、この列はいつも空です。
+          フォルダーは、代わりに<guilabel>ファイル名</guilabel>列に表示されています。
           </para>
         </listitem>
 
@@ -1303,7 +1303,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>無視された差異数</guilabel>: ファイル中の無視された差異数これらは、行フィルタによって無視された差異です。
+          <para><guilabel>無視された差異数</guilabel>: ファイル中の無視された差異数これらは、行フィルターによって無視された差異です。
           </para>
         </listitem>
 
@@ -1337,9 +1337,9 @@ added/deleted/copied. User can create a new archive file using above menuitems i
   </section>
 
   <section id="CompareDirs_winshell">
-    <title>フォルダ比較ウィンドウから、Windowsのシェルコマンドを使う</title>
+    <title>フォルダー比較ウィンドウから、Windowsのシェルコマンドを使う</title>
 
-    <para>フォルダ比較ウィンドウ内で選択項目を右クリックし、
+    <para>フォルダー比較ウィンドウ内で選択項目を右クリックし、
     コンテキストメニューから直接Windowsのシェルコマンドを起動することができます。
     </para>
 
@@ -1353,7 +1353,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       <!-- FIXME: わからない -->つまり、WinMergeは、WinMerge内部で実行される操作と同じ方法で、
       いくつかの操作に応答しないかもしれません。
       例えば、WinMergeの<command>削除</command>コマンドの代りに、
-      このシェル統合を介してファイルを削除すると、その変更はフォルダ比較ウィンドウ内に、
+      このシェル統合を介してファイルを削除すると、その変更はフォルダー比較ウィンドウ内に、
       自動的には表示されません(変更を見るためには、手動でリフレッシュしなければなりません)。
       </para>
     </caution>

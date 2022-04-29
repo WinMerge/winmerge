@@ -86,7 +86,7 @@
       and ways that you can customize the File panes.</para>
 
       <section>
-        <title>ファイルペインヘッダ</title>
+        <title>ファイルペインヘッダー</title>
 
         <para>The header at the top of each File pane shows the full path of the
         source file. The left and right file names are also identified in the
