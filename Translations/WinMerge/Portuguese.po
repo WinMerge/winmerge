@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-03-29 13:28+0100\n"
+"PO-Revision-Date: 2022-04-30 18:21+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -222,40 +222,40 @@ msgid "Co&mpare"
 msgstr "Co&mparar"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "Capturas de ecrã"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "Capturas de ecrã em tamanho total"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTMLs"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Textos"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "Árvores de &recursos"
 
 msgid "&Size"
-msgstr ""
+msgstr "Tamanho"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Ajustar à janela"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "Limpar dados de navegação"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "Cache do &disco"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Cookies"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "Histórico de &navegação"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "Todo o perfil"
 
 msgid "&File"
 msgstr "&Ficheiro"
@@ -276,7 +276,7 @@ msgid "&Image"
 msgstr "Imagem"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "&Página web"
 
 msgid "New (&3 panes)"
 msgstr "Novo (&3 painéis)"
@@ -2014,19 +2014,19 @@ msgid "OCR result:"
 msgstr "Resultado do OCR:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Página web"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Padrão de URL a &incluir (expressão regular):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Padrão de URL a &excluir (expressão regular):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "Localização da pasta de dados do &utilizador:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Separar pastas de dados do utilizador para cada painel"
 
 msgid "&Hex View"
 msgstr "Visualização &Hex"
@@ -3740,7 +3740,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Ativar largura máxima automática"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "&Página web"
 
 msgid "Frhed is not installed."
 msgstr "O Frhed não está instalado."
@@ -3927,10 +3927,10 @@ msgid "Word-by-word position and text"
 msgstr "Posição e texto palavra por palavra"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Pasta AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Pasta de instalação"
 
 msgid "Allow only one instance to run"
 msgstr "Permitir apenas uma execução"
@@ -4345,4 +4345,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A versão de 32 bits do WinMerge não suporta a comparação da área de transferência"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "O runtime WebView2 não está instalado. Quer transferi-lo?"
