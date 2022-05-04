@@ -111,6 +111,9 @@ void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 	case 3:
 		m_diffAlgorithm = DIFF_ALGORITHM_HISTOGRAM;
 		break;
+	case 4:
+		m_diffAlgorithm = DIFF_ALGORITHM_NONE;
+		break;
 	default:
 		throw "Unknown diff algorithm value!";
 		break;

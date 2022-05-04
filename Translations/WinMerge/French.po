@@ -4497,6 +4497,9 @@ msgstr "patience"
 msgid "histogram"
 msgstr "histograme"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

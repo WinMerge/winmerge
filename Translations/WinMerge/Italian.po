@@ -3748,6 +3748,9 @@ msgstr ""
 msgid "histogram"
 msgstr "istogramma"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr ""
 

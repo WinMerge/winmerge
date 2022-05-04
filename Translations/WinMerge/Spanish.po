@@ -3753,6 +3753,9 @@ msgstr "paciente"
 msgid "histogram"
 msgstr "histograma"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr ""
 

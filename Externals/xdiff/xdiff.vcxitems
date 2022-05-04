@@ -26,6 +26,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)xmerge.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)xnone.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)xpatience.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

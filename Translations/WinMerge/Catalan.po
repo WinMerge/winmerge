@@ -4470,6 +4470,9 @@ msgstr "paciència"
 msgid "histogram"
 msgstr "histograma"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

@@ -4454,6 +4454,9 @@ msgstr "kitartó"
 msgid "histogram"
 msgstr "hisztogram"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

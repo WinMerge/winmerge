@@ -4311,6 +4311,9 @@ msgstr ""
 msgid "histogram"
 msgstr ""
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr ""
 

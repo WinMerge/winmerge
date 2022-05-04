@@ -4469,6 +4469,9 @@ msgstr "耐心"
 msgid "histogram"
 msgstr "長條圖"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

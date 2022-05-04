@@ -3754,6 +3754,9 @@ msgstr "Långvarig"
 msgid "histogram"
 msgstr "Histogram"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

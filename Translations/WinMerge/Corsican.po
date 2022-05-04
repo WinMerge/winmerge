@@ -3784,6 +3784,9 @@ msgstr "pazienza"
 msgid "histogram"
 msgstr "graficu à barre"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

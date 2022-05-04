@@ -4106,6 +4106,9 @@ msgstr "Patience"
 msgid "histogram"
 msgstr "Histogramm"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

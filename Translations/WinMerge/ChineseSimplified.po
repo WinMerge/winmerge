@@ -3747,6 +3747,9 @@ msgstr "耐心"
 msgid "histogram"
 msgstr "直方图"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 

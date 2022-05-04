@@ -3389,6 +3389,9 @@ msgstr "терпеливо"
 msgid "histogram"
 msgstr "гистограмма"
 
+msgid "none"
+msgstr ""
+
 msgid "GDI"
 msgstr "GDI"
 
