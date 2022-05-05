@@ -3880,7 +3880,7 @@ msgstr "%1 összehasonlítása ezzel: %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "%1 összehasonlítása ezekkel: %2 és %3"
 
 #, c-format
 msgid "Comma-separated list"
@@ -4459,7 +4459,7 @@ msgid "histogram"
 msgstr "hisztogram"
 
 msgid "none"
-msgstr ""
+msgstr "nincs"
 
 msgid "GDI"
 msgstr "GDI"
