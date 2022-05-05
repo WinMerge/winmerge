@@ -289,4 +289,18 @@ String format_string2(const String& fmt, const String& arg1, const String& arg2)
 	return format_strings(fmt, args, 2);
 }
 
+/**
+ * @brief Output the converted string according to the printf()-style formatting.
+ * @param [in] fmt printf()-style formatting.
+ * @param [in] arg1 Value of "%1" of fmt.
+ * @param [in] arg2 Value of "%2" of fmt.
+ * @param [in] arg3 Value of "%3" of fmt.
+ * @return Formatted output string.
+ */
+String format_string3(const String& fmt, const String& arg1, const String& arg2, const String& arg3)
+{
+	const String* args[] = { &arg1, &arg2, &arg3 };
+	return format_strings(fmt, args, 3);
+}
+
 }

@@ -3007,6 +3007,10 @@ msgstr "Nazwa wtyczki porównywającej lub pipeline."
 msgid "Compare %1 with %2"
 msgstr "Porównaj %1 z %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Lista z przecinkami"
 
