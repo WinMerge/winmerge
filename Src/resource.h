@@ -1388,6 +1388,7 @@
 #define IDS_PRPCAT_VIDEO                41971
 #define IDS_PRPCAT_HASH                 41972
 #define IDS_DIRECTORY_REPORT_TITLE      41980
+#define IDS_DIRECTORY_REPORT_TITLE3     41981
 #define IDS_REPORT_COMMALIST            41990
 #define IDS_REPORT_TABLIST              41991
 #define IDS_REPORT_SIMPLEHTML           41992

@@ -3247,6 +3247,10 @@ msgstr "Pré-diferenciar nome de plugin ou pipeline."
 msgid "Compare %1 with %2"
 msgstr "Comparar %1 com %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Lista separada por vírgulas"
 

@@ -3655,6 +3655,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
+    IDS_DIRECTORY_REPORT_TITLE3 "Compare %1 with %2 and %3"
     IDS_REPORT_COMMALIST    "Comma-separated list"
     IDS_REPORT_TABLIST      "Tab-separated list"
     IDS_REPORT_SIMPLEHTML   "Simple HTML"

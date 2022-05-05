@@ -3008,6 +3008,10 @@ msgstr "Имя плагина предсравнения или конвейер
 msgid "Compare %1 with %2"
 msgstr "Сравнение %1 с %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Список с разделителем Запятая"
 

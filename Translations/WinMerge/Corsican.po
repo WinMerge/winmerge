@@ -3255,6 +3255,10 @@ msgstr "Nome o cundottu di u modulu d’estensione di u preparagone."
 msgid "Compare %1 with %2"
 msgstr "Paragunà %1 cù %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Lista staccata da virgule"
 

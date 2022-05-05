@@ -3238,6 +3238,10 @@ msgstr "Názov rozšírenia predbežného spracovateľa rozdielov alebo potrubia
 msgid "Compare %1 with %2"
 msgstr "Porovnať %1 s %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Zoznam oddelený čiarkami"
 
