@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-28 17:30+0200\n"
+"PO-Revision-Date: 2022-05-07 10:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1402,7 +1402,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Öffnen-Dialog beim Programmstart anzeigen"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Öffnen-Dialog beim Klick auf 'Compare' schließen"
+msgstr "Öffnen-Dialog beim Klick auf 'Vergleichen' schließen"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -3654,7 +3654,7 @@ msgstr "%1 mit %2 vergleichen"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "%1 mit %2 und %3 vergleichen"
 
 #, c-format
 msgid "Comma-separated list"
@@ -4111,7 +4111,7 @@ msgid "histogram"
 msgstr "Histogramm"
 
 msgid "none"
-msgstr ""
+msgstr "keine"
 
 msgid "GDI"
 msgstr "GDI"
