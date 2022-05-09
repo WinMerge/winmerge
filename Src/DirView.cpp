@@ -1409,7 +1409,7 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], F
 			GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 		}
 
-		GetMainFrame()->ShowAutoMergeDoc(GetDocument(), paths.GetSize(), fileloc,
+		GetMainFrame()->ShowAutoMergeDoc(0, GetDocument(), paths.GetSize(), fileloc,
 			dwFlags, strDesc, _T(""), infoUnpacker);
 	}
 }
@@ -1586,7 +1586,8 @@ void CDirView::OpenSelectionAs(UINT id)
 	{
 		PackingInfo infoUnpacker(
 				CMainFrame::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
-		GetMainFrame()->ShowAutoMergeDoc(pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
+		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
+			ctxt.m_bRecursive, nullptr, &infoUnpacker, nullptr, 0);
 	}
 	else
 	{

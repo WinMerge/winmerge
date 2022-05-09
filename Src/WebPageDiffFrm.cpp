@@ -654,7 +654,7 @@ void CWebPageDiffFrame::OnFileClose()
 
 void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 {
-	FileLocation fileloc[3];
+	PathContext paths = m_filePaths;
 	DWORD dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_filePaths.GetSize();
@@ -664,18 +664,18 @@ void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
-		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
 		dwFlags[nBuffer] = m_bRO[nBuffer] ? FFILEOPEN_READONLY : 0;
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
-		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_WEBPAGE : -1;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_WEBPAGE : -ID_MERGE_COMPARE_WEBPAGE;
 	}
 
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
+	GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
+		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID);
 }
 
 void CWebPageDiffFrame::OnUpdateFileRecompareAs(CCmdUI* pCmdUI)

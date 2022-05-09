@@ -759,7 +759,7 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 	fileloc.encoding = codepage_detect::Guess(fileloc.filepath, iGuessEncoding);
 }
 
-bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
+bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
@@ -793,7 +793,26 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
 			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
 	}
-	return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams *>(pOpenParams));
+	switch (nID)
+	{
+	case ID_MERGE_COMPARE_TEXT:
+		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_TABLE:
+		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_HEX:
+		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_IMAGE:
+		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_WEBPAGE:
+		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+	default:
+		return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	}
 }
 
 bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
@@ -819,7 +838,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	default:
-		return ShowAutoMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowAutoMergeDoc(std::abs(static_cast<int>(nID)), pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, pOpenParams);
 	}
 }
@@ -1266,7 +1285,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
-	if (pathsType == paths::DOES_NOT_EXIST &&
+	bool allowFolderCompare = (static_cast<int>(nID) <= 0);
+	if (allowFolderCompare && pathsType == paths::DOES_NOT_EXIST &&
 	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
@@ -1310,7 +1330,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
-	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
+	if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 	{
 		DecompressResult res = DecompressArchive(m_hWnd, tFiles);
 		if (FAILED(res.hr))
@@ -1335,7 +1355,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	// an archive. Don't open a new dirview if we are comparing files.
 	if (pDirDoc == nullptr)
 	{
-		if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
+		if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 		{
 			CDirDoc::m_nDirsTemp = tFiles.GetSize();
 			if (m_pMenus[MENU_DIRVIEW] == nullptr)
@@ -1349,7 +1369,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	}
 
 	// open the diff
-	if (nID == 0 && pathsType == paths::IS_EXISTING_DIR)
+	if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 	{
 		if (pDirDoc != nullptr)
 		{
@@ -1385,7 +1405,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
-		String filter = (nID == 0 && pathsType == paths::IS_EXISTING_DIR) ?
+		String filter = (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR) ?
 			theApp.GetGlobalFileFilter()->GetFilterNameOrMask() : _T("");
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
