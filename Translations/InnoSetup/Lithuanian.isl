@@ -16,7 +16,7 @@ Filters=Filtrai
 Plugins=Papildiniai
 Frhed=„Frhed“ (nemokamas ðeðioliktainis redaktorius)
 WinIMerge=„WinIMerge“ (vaizdø Diff/Merge)
-ArchiveSupport=Archyvø palaikymas
+WinWebDiff=WinWebDiff(Web Page Diff)
 ShellExtension32bit=32-bitø „WinMerge ShellExtension“
 Commands=GnuWin32 pataisa „Windows“/HTML Tidy/jq
 

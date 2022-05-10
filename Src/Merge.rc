@@ -66,31 +66,31 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Copy to Middle",                    ID_COPY_TO_MIDDLE_L
-        MENUITEM "C&opy to Right\tAlt+Right",         ID_COPY_TO_RIGHT_L
-        MENUITEM "Copy from Middle",                  ID_COPY_FROM_MIDDLE_L
-        MENUITEM "Copy fro&m Right\tAlt+Shift+Left",  ID_COPY_FROM_RIGHT_L
-        MENUITEM "Cop&y to Left\tAlt+Left",           ID_COPY_TO_LEFT_M
-        MENUITEM "C&opy to Right\tAlt+Right",         ID_COPY_TO_RIGHT_M
-        MENUITEM "Copy &from Left\tAlt+Shift+Right",  ID_COPY_FROM_LEFT_M
-        MENUITEM "Copy fro&m Right\tAlt+Shift+Left",  ID_COPY_FROM_RIGHT_M
-        MENUITEM "Copy to Middle",                    ID_COPY_TO_MIDDLE_R
-        MENUITEM "Cop&y to Left\tAlt+Left",           ID_COPY_TO_LEFT_R
-        MENUITEM "Copy from Middle",                  ID_COPY_FROM_MIDDLE_R
-        MENUITEM "Copy &from Left\tAlt+Shift+Right",  ID_COPY_FROM_LEFT_R
+        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_L
+        MENUITEM "C&opy to Right\tAlt+Right",   ID_COPY_TO_RIGHT_L
+        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_L
+        MENUITEM "Copy fro&m Right\tAlt+Shift+Left", ID_COPY_FROM_RIGHT_L
+        MENUITEM "Cop&y to Left\tAlt+Left",     ID_COPY_TO_LEFT_M
+        MENUITEM "C&opy to Right\tAlt+Right",   ID_COPY_TO_RIGHT_M
+        MENUITEM "Copy &from Left\tAlt+Shift+Right", ID_COPY_FROM_LEFT_M
+        MENUITEM "Copy fro&m Right\tAlt+Shift+Left", ID_COPY_FROM_RIGHT_M
+        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_R
+        MENUITEM "Cop&y to Left\tAlt+Left",     ID_COPY_TO_LEFT_R
+        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_R
+        MENUITEM "Copy &from Left\tAlt+Shift+Right", ID_COPY_FROM_LEFT_R
         MENUITEM SEPARATOR
-        MENUITEM "Copy Selected Line(s) to Middle",   ID_COPY_LINES_TO_MIDDLE_L
-        MENUITEM "Copy Selected Line(s) to Right",    ID_COPY_LINES_TO_RIGHT_L
+        MENUITEM "Copy Selected Line(s) to Middle", ID_COPY_LINES_TO_MIDDLE_L
+        MENUITEM "Copy Selected Line(s) to Right", ID_COPY_LINES_TO_RIGHT_L
         MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_L
-        MENUITEM "Copy Selected Line(s) from Right",  ID_COPY_LINES_FROM_RIGHT_L
-        MENUITEM "Copy Selected Line(s) to Left",     ID_COPY_LINES_TO_LEFT_M
-        MENUITEM "Copy Selected Line(s) to Right",    ID_COPY_LINES_TO_RIGHT_M
-        MENUITEM "Copy Selected Line(s) from Left",   ID_COPY_LINES_FROM_LEFT_M
-        MENUITEM "Copy Selected Line(s) from Right",  ID_COPY_LINES_FROM_RIGHT_M
-        MENUITEM "Copy Selected Line(s) to Middle",   ID_COPY_LINES_TO_MIDDLE_R
-        MENUITEM "Copy Selected Line(s) to Left",     ID_COPY_LINES_TO_LEFT_R
+        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT_L
+        MENUITEM "Copy Selected Line(s) to Left", ID_COPY_LINES_TO_LEFT_M
+        MENUITEM "Copy Selected Line(s) to Right", ID_COPY_LINES_TO_RIGHT_M
+        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_M
+        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT_M
+        MENUITEM "Copy Selected Line(s) to Middle", ID_COPY_LINES_TO_MIDDLE_R
+        MENUITEM "Copy Selected Line(s) to Left", ID_COPY_LINES_TO_LEFT_R
         MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
-        MENUITEM "Copy Selected Line(s) from Left",   ID_COPY_LINES_FROM_LEFT_R
+        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_R
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
@@ -109,7 +109,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM
-        MENUITEM "Go to Moved Line Between Middle and Right\tCtrl+Alt+G",  ID_GOTO_MOVED_LINE_MR
+        MENUITEM "Go to Moved Line Between Middle and Right\tCtrl+Alt+G", ID_GOTO_MOVED_LINE_MR
         MENUITEM SEPARATOR
         POPUP "Op&en"
         BEGIN
@@ -126,8 +126,8 @@ IDR_POPUP_MERGEVIEWHEADER MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Use First Line as Headers",  ID_USE_FIRST_LINE_AS_HEADERS
-        MENUITEM "Auto-Fit All Columns",       ID_AUTO_FIT_ALL_COLUMNS
+        MENUITEM "Use First Line as Headers",   ID_USE_FIRST_LINE_AS_HEADERS
+        MENUITEM "Auto-Fit All Columns",        ID_AUTO_FIT_ALL_COLUMNS
     END
 END
 
@@ -219,6 +219,37 @@ BEGIN
     END
 END
 
+IDR_POPUP_WEBPAGEDIFFVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "Co&mpare"
+        BEGIN
+            MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+            MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+            MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+            MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
+            MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+        END
+        POPUP "&Size"
+        BEGIN
+            MENUITEM "Fit to Window",               ID_WEB_SIZE_FIT_TO_WINDOW
+            MENUITEM "320x512",                     ID_WEB_SIZE_320x512
+            MENUITEM "375x600",                     ID_WEB_SIZE_375x600
+            MENUITEM "1024x640",                    ID_WEB_SIZE_1024x640
+            MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
+            MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
+        END
+        POPUP "Clear &Browsing Data"
+        BEGIN
+            MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
+            MENUITEM "&Cookies",                    ID_WEB_CLEAR_COOKIES
+            MENUITEM "&Browsing History",           ID_WEB_CLEAR_BROWSING_HISTORY
+            MENUITEM "&All Profile",                ID_WEB_CLEAR_ALL_PROFILE
+        END
+    END
+END
+
 IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
@@ -229,6 +260,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -236,6 +268,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -292,7 +325,7 @@ BEGIN
         MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "Change &Pane\tF6",            ID_NEXT_PANE
         MENUITEM SEPARATOR
         MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
@@ -321,6 +354,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -328,6 +362,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -451,7 +486,7 @@ BEGIN
         MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "Change &Pane\tF6",            ID_NEXT_PANE
         MENUITEM SEPARATOR
         MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
@@ -480,6 +515,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW_HEX
             MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
         END
         POPUP "New (&3 panes)"
         BEGIN
@@ -487,6 +523,7 @@ BEGIN
             MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
             MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
             MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
         END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
@@ -529,7 +566,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mer&ge Mode\tF9",             ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
+        MENUITEM "Reloa&d\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Reco&mpare As"
         BEGIN
@@ -537,6 +574,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -621,9 +659,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Sw&ap Panes"
         BEGIN
-            MENUITEM "Swap &1st | 2nd", ID_SWAPPANES_SWAP12
-            MENUITEM "Swap &2nd | 3rd", ID_SWAPPANES_SWAP23
-            MENUITEM "Swap 1st | &3rd", ID_SWAPPANES_SWAP13
+            MENUITEM "Swap &1st | 2nd",             ID_SWAPPANES_SWAP12
+            MENUITEM "Swap &2nd | 3rd",             ID_SWAPPANES_SWAP23
+            MENUITEM "Swap 1st | &3rd",             ID_SWAPPANES_SWAP13
         END
         MENUITEM "Split V&ertically",           ID_VIEW_SPLITVERTICALLY
         MENUITEM SEPARATOR
@@ -673,37 +711,37 @@ BEGIN
             MENUITEM "Next Right Only Difference\tAlt+9", ID_NEXTDIFFRO
             MENUITEM "Previous Right Only Difference\tAlt+Shift+9", ID_PREVDIFFRO
             MENUITEM SEPARATOR
-			POPUP "Copy from &Left to"
-			BEGIN
-				MENUITEM "&Middle", ID_COPY_TO_MIDDLE_L
-				MENUITEM "&Right", ID_COPY_TO_RIGHT_L
-			END
-			POPUP "Copy from &Middle to"
-			BEGIN
-				MENUITEM "&Left", ID_COPY_TO_LEFT_M
-				MENUITEM "&Right", ID_COPY_TO_RIGHT_M
-			END
-			POPUP "Copy from &Right to"
-			BEGIN
-				MENUITEM "&Left", ID_COPY_TO_LEFT_R
-				MENUITEM "&Middle", ID_COPY_TO_MIDDLE_R
-			END
+            POPUP "Copy from &Left to"
+            BEGIN
+                MENUITEM "&Middle",                     ID_COPY_TO_MIDDLE_L
+                MENUITEM "&Right",                      ID_COPY_TO_RIGHT_L
+            END
+            POPUP "Copy from &Middle to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_TO_LEFT_M
+                MENUITEM "&Right",                      ID_COPY_TO_RIGHT_M
+            END
+            POPUP "Copy from &Right to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_TO_LEFT_R
+                MENUITEM "&Middle",                     ID_COPY_TO_MIDDLE_R
+            END
             MENUITEM SEPARATOR
-			POPUP "Copy Selected Line(s) from Le&ft to"
-			BEGIN
-				MENUITEM "&Middle", ID_COPY_LINES_TO_MIDDLE_L
-				MENUITEM "&Right", ID_COPY_LINES_TO_RIGHT_L
-			END
-			POPUP "Copy Selected Line(s) from Mi&ddle to"
-			BEGIN
-				MENUITEM "&Left", ID_COPY_LINES_TO_LEFT_M
-				MENUITEM "&Right", ID_COPY_LINES_TO_RIGHT_M
-			END
-			POPUP "Copy Selected Line(s) from Ri&ght to"
-			BEGIN
-				MENUITEM "&Left", ID_COPY_LINES_TO_LEFT_R
-				MENUITEM "&Middle", ID_COPY_LINES_TO_MIDDLE_R
-			END
+            POPUP "Copy Selected Line(s) from Le&ft to"
+            BEGIN
+                MENUITEM "&Middle",                     ID_COPY_LINES_TO_MIDDLE_L
+                MENUITEM "&Right",                      ID_COPY_LINES_TO_RIGHT_L
+            END
+            POPUP "Copy Selected Line(s) from Mi&ddle to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_LINES_TO_LEFT_M
+                MENUITEM "&Right",                      ID_COPY_LINES_TO_RIGHT_M
+            END
+            POPUP "Copy Selected Line(s) from Ri&ght to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_LINES_TO_LEFT_R
+                MENUITEM "&Middle",                     ID_COPY_LINES_TO_MIDDLE_R
+            END
         END
         MENUITEM SEPARATOR
         MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
@@ -755,7 +793,7 @@ BEGIN
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
-        MENUITEM "&Transform with editor script...",      ID_TRANSFORM_WITH_SCRIPT
+        MENUITEM "&Transform with editor script...", ID_TRANSFORM_WITH_SCRIPT
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
@@ -764,7 +802,7 @@ BEGIN
         MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "Change &Pane\tF6",            ID_NEXT_PANE
         MENUITEM SEPARATOR
         MENUITEM "Sp&lit",                      ID_WINDOW_SPLIT
         MENUITEM SEPARATOR
@@ -806,6 +844,7 @@ BEGIN
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
             MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
@@ -954,8 +993,8 @@ BEGIN
         MENUITEM "Ignore &case",                ID_DIFF_OPTIONS_IGNORE_CASE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_DIFF_OPTIONS_IGNORE_EOL
         MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
-        MENUITEM "Ignore num&bers",                IDC_DIFF_IGNORENUMBERS
-        MENUITEM "Ignore c&omment differences" ,ID_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM "Ignore num&bers",             IDC_DIFF_IGNORENUMBERS
+        MENUITEM "Ignore c&omment differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
         MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
@@ -976,25 +1015,25 @@ BEGIN
     BEGIN
         POPUP "W&hitespaces"
         BEGIN
-            MENUITEM "Com&pare", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
-            MENUITEM "I&gnore changes", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
-            MENUITEM "Ig&nore all", ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
+            MENUITEM "Com&pare",                    ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",             ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",                 ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
         END
-        MENUITEM "Ignore blan&k lines", ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
-        MENUITEM "Ignore &case", ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Ignore blan&k lines",         ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case",                ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
         MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
         MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
-        MENUITEM "Ignore num&bers", ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
+        MENUITEM "Ignore num&bers",             ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
         MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
         POPUP "&Compare method:"
         BEGIN
-            MENUITEM "Full Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
-            MENUITEM "Quick Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
-            MENUITEM "Binary Contents", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
-            MENUITEM "Modified Date", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_MODDATE
-            MENUITEM "Modified Date and Size", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_DATESIZE
-            MENUITEM "Size", ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE
+            MENUITEM "Full Contents",               ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",              ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",             ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date",               ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size",      ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                        ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE
         END
     END
 END
@@ -1007,6 +1046,7 @@ BEGIN
         MENUITEM "T&able",                      ID_FILE_NEW_TABLE
         MENUITEM "&Binary",                     ID_FILE_NEW_HEX
         MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
     END
 END
 
@@ -1018,6 +1058,7 @@ BEGIN
         MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
         MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
         MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+        MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
     END
 END
 
@@ -1080,6 +1121,18 @@ BEGIN
         MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
         MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
         MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+    END
+END
+
+IDR_POPUP_WEBPAGE_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+        MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+        MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+        MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
+        MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
     END
 END
 
@@ -1201,43 +1254,37 @@ CAPTION "Select Files or Folders"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 //	LOGO			res\\logo.jpg :: Height = 80px, Width=336px (extended fully to Right)
-    CONTROL         "&1st File or Folder",IDC_FILES_DIRS_GROUP0,"Button",BS_GROUPBOX,6,54,454,46,WS_EX_TRANSPARENT
+    GROUPBOX        "&1st File or Folder",IDC_FILES_DIRS_GROUP0,6,54,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,66,446,95
     CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,84,100,10
     PUSHBUTTON      "",IDC_SWAP01_BUTTON,120,82,15,14
     LTEXT           "Swap 1st | 2nd",IDC_SWAP01_STATIC,138,84,100,12
     PUSHBUTTON      "&Browse...",IDC_PATH0_BUTTON,383,82,73,14
-
-    CONTROL         "&2nd File or Folder",IDC_FILES_DIRS_GROUP1,"Button",BS_GROUPBOX,6,102,454,46,WS_EX_TRANSPARENT
+    GROUPBOX        "&2nd File or Folder",IDC_FILES_DIRS_GROUP1,6,102,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,114,446,95
     CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,132,100,10
     PUSHBUTTON      "",IDC_SWAP12_BUTTON,120,130,15,14
     LTEXT           "Swap 2nd | 3rd",IDC_SWAP12_STATIC,138,132,100,12
     PUSHBUTTON      "B&rowse...",IDC_PATH1_BUTTON,383,130,73,14
-
-    CONTROL         "&3rd File or Folder (Optional)",IDC_FILES_DIRS_GROUP2,"Button",BS_GROUPBOX,6,150,454,46,WS_EX_TRANSPARENT
+    GROUPBOX        "&3rd File or Folder (Optional)",IDC_FILES_DIRS_GROUP2,6,150,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,162,446,95
     CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,180,100,10
     PUSHBUTTON      "",IDC_SWAP02_BUTTON,120,178,15,14
     LTEXT           "Swap 1st | 3rd",IDC_SWAP02_STATIC,138,180,100,12
     PUSHBUTTON      "Browse...",IDC_PATH2_BUTTON,383,178,73,14
-
     GROUPBOX        "",IDC_FILES_DIRS_GROUP3X,6,197,224,42
     LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
-
     GROUPBOX        "",IDC_FILES_DIRS_GROUP4X,236,197,224,42
     LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,198,86,11
     CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,209,140,140
     PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
-
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
     CONTROL         "Co&mpare",IDOK,"Button",BS_SPLITBUTTON | WS_TABSTOP,316,245,70,20
     PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
     LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
-
     PUSHBUTTON      "Help",ID_HELP,383,10,72,14
     CONTROL         "&Options...",IDC_OPTIONS,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,29,72,14
 END
@@ -1541,17 +1588,17 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Additional Properties"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_PROPS_TREEVIEW,"SysTreeView32", TVS_HASBUTTONS | TVS_LINESATROOT | TVS_HASLINES | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_HSCROLL | WS_TABSTOP,6,6,170,130
+    CONTROL         "",IDC_PROPS_TREEVIEW,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_HSCROLL | WS_TABSTOP,6,6,170,130
     PUSHBUTTON      "&>",IDC_PROPS_ADD,181,40,20,14
     PUSHBUTTON      "&<",IDC_PROPS_DEL,181,60,20,14
     PUSHBUTTON      "<<",IDC_PROPS_DELALL,181,80,20,14
-    CONTROL         "",IDC_PROPS_LISTVIEW, "SysListView32", LVS_REPORT | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 205,6,120,130
+    CONTROL         "",IDC_PROPS_LISTVIEW,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,205,6,120,130
     DEFPUSHBUTTON   "OK",IDOK,221,143,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,275,143,50,14
 END
 
 IDD_PLUGINS_SELECTPLUGIN DIALOGEX 0, 0, 318, 152
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Select Plugin"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1560,7 +1607,7 @@ BEGIN
     LTEXT           "Extensions list:",IDC_STATIC,7,26,83,10
     EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Description:",IDC_STATIC,7,43,83,10
-    EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | WS_VSCROLL | ES_READONLY
+    EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | ES_READONLY | WS_VSCROLL
     LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
     EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_AUTOHSCROLL | ES_READONLY
     CONTROL         "Display all plugins, don't check the extension",IDC_PLUGIN_ALLOW_ALL,
@@ -1663,8 +1710,8 @@ IDD_PROPPAGE_EDITOR_SYNTAX DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_SYNTAX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 7, 271, 215
-    PUSHBUTTON      "Defaults", IDC_COMPARE_DEFAULTS, 191, 228, 88, 14
+    CONTROL         "",IDC_SYNTAX_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,271,215
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
 IDD_PROPPAGE_MESSAGEBOXES DIALOGEX 0, 0, 285, 242
@@ -1673,7 +1720,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,7,270,30
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,191,28,88,14,NOT WS_TABSTOP
-    CONTROL         "",IDC_MESSAGEBOX_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 47, 271, 195
+    CONTROL         "",IDC_MESSAGEBOX_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,47,271,195
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1743,7 +1790,7 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,249,257,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,303,257,50,14
     PUSHBUTTON      "Help",IDC_TREEOPT_HELP,357,257,50,14
-    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | TVS_FULLROWSELECT | WS_HSCROLL | WS_TABSTOP,6,6,109,240
+    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | TVS_FULLROWSELECT | WS_BORDER | WS_HSCROLL | WS_TABSTOP,6,6,109,240
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE | WS_DISABLED,122,0,285,242
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,250,400,1
     PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,257,60,14
@@ -1847,7 +1894,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Items saved to or restored from the project file:",IDC_STATIC,7,10,270,10
-    CONTROL         "", IDC_PROJECT_LIST, "SysListView32", LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP, 7, 22, 270, 64
+    CONTROL         "",IDC_PROJECT_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,22,270,64
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 174
@@ -1969,8 +2016,7 @@ BEGIN
     COMBOBOX        IDC_LOAD_CODEPAGE_TEXTBOX,96,74,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,90,67,10
     COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,96,90,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&BOM",IDC_SAVE_CODEPAGE_BOM,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,107,165,10
+    CONTROL         "&BOM",IDC_SAVE_CODEPAGE_BOM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,107,165,10
     CONTROL         "&Use same codepage for both",IDC_LOAD_SAVE_SAME_CODEPAGE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,120,250,10
     DEFPUSHBUTTON   "&Ok",IDOK,165,141,50,14
@@ -2063,7 +2109,8 @@ BEGIN
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,10
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | ES_READONLY
-    CONTROL         "Don't ask this &question again.",IDC_FLDCONFIRM_DONTASKAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,81,232,10
+    CONTROL         "Don't ask this &question again.",IDC_FLDCONFIRM_DONTASKAGAIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,81,232,10
     DEFPUSHBUTTON   "Yes",IDYES,174,95,50,14
     PUSHBUTTON      "No",IDNO,228,95,50,14
 END
@@ -2079,7 +2126,8 @@ BEGIN
     COMBOBOX        IDC_PLUGIN_FILEFILTERS,80,183,305,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "&Plugin arguments:",IDC_STATIC,7,200,70,10
     EDITTEXT        IDC_PLUGIN_ARGUMENTS,80,200,305,14,ES_AUTOHSCROLL | WS_GROUP
-    CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
+    CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
     PUSHBUTTON      "Defaults",IDC_PLUGIN_DEFAULTS,393,183,70,14
     PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,236,95,14
     DEFPUSHBUTTON   "OK",IDOK,293,236,50,14
@@ -2178,6 +2226,22 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
+IDD_PROPPAGE_COMPARE_WEBPAGE DIALOGEX 0, 0, 285, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Webpage"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "URL pattern to &include (Regular expression):",IDC_STATIC,7,6,269,10
+    EDITTEXT        IDC_COMPAREWEBPAGE_URLPATTERNTOINCLUDE,7,18,270,14,ES_AUTOHSCROLL
+    LTEXT           "URL pattern to &exclude (Regular expression):",IDC_STATIC,7,32,269,10
+    EDITTEXT        IDC_COMPAREWEBPAGE_URLPATTERNTOEXCLUDE,7,44,270,14,ES_AUTOHSCROLL
+    LTEXT           "&User data folder location:",IDC_STATIC,7,60,269,10
+    COMBOBOX        IDC_COMPAREWEBPAGE_USERDATAFOLDER_TYPE,7,72,270,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Separate user data folders for each pane",IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,270,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
+END
+
 IDD_ENCODINGERROR DIALOGEX 0, 0, 450, 55
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -2218,6 +2282,20 @@ BEGIN
     CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
 END
 
+IDD_WEBPAGEDIFF_BAR DIALOGEX 0, 0, 714, 18
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Compare",IDC_COMPARE,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,2,72,14
+    CONTROL         "",IDC_FITTOWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,2,14,14
+    EDITTEXT        IDC_WIDTH,98,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    LTEXT           "x",-1,134,4,8,10
+    EDITTEXT        IDC_HEIGHT,140,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    LTEXT           "UA:",-1,214,4,16,10
+    EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2243,7 +2321,6 @@ BEGIN
 
     IDD_FILTERS_SUBSTITUTIONFILTERS, DIALOG
     BEGIN
-        BOTTOMMARGIN, 196
     END
 
     IDD_PROPPAGE_COLOR_SCHEMES, DIALOG
@@ -2259,6 +2336,14 @@ BEGIN
     END
 
     IDD_PROPPAGE_SYSTEM, DIALOG
+    BEGIN
+    END
+
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+    END
+
+    IDD_PLUGINS_SELECTPLUGIN, DIALOG
     BEGIN
     END
 
@@ -2346,6 +2431,11 @@ BEGIN
 
     IDD_PROPPAGE_COMPARE_IMAGE, DIALOG
     BEGIN
+    END
+
+    IDD_WEBPAGEDIFF_BAR, DIALOG
+    BEGIN
+        RIGHTMARGIN, 237
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -2471,9 +2561,9 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 0,
-    0, 0, 0, 0
+    0, 0, 0, 0,
     100, 0, 0, 0,
-    100, 0, 0, 0,
+    100, 0, 0, 0
 END
 
 IDD_DIALOG_WINDOWSMANAGER AFX_DIALOG_LAYOUT
@@ -2484,14 +2574,14 @@ END
 IDD_PREFERENCES AFX_DIALOG_LAYOUT
 BEGIN
     0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 100, 0,
-    0, 0, 100, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    0, 0, 0, 100,
+    0, 0, 100, 100,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 0, 0
 END
 
 IDD_PROPPAGE_GENERAL AFX_DIALOG_LAYOUT
@@ -2769,6 +2859,19 @@ BEGIN
     100, 0, 0, 0
 END
 
+IDD_PROPPAGE_COMPARE_WEBPAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
 IDD_PROPPAGE_EDITOR AFX_DIALOG_LAYOUT
 BEGIN
     0,
@@ -2794,23 +2897,23 @@ END
 IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
 BEGIN
     0,
-    0, 0, 100, 0,
-    100, 0, 0, 0
+    0, 0, 100, 100,
+    100, 100, 0, 0
 END
 
 IDD_PROPPAGE_MESSAGEBOXES AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
-    100, 0, 0, 0
-    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 100
 END
 
 IDD_PROPPAGE_PROJECT AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
-    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_SYSTEM AFX_DIALOG_LAYOUT
@@ -2839,7 +2942,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0
+    0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0
 END
@@ -2852,6 +2955,36 @@ END
 IDD_FILTERS_LINEFILTERS AFX_DIALOG_LAYOUT
 BEGIN
     0
+END
+
+IDD_WEB_SIZE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_WEBPAGEDIFF_BAR AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PLUGINS_SELECTPLUGIN AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    0, 100, 100, 0,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0
 END
 
 
@@ -2942,10 +3075,8 @@ BEGIN
     IDS_MESSAGEBOX_SKIP     "&Skip"
     IDS_MESSAGEBOX_SKIPALL  "Skip &all"
     IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 
-                            "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN 
-                            "Don't ask this &question again."
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
     IDS_MESSAGEBOX_CHECKBOX_TOOLTIP 
                             "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 END
@@ -2981,6 +3112,7 @@ BEGIN
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE NC_("Options dialog|Categories", "Binary")
     IDS_OPTIONSPG_TABLECOMPARE "Table"
+    IDS_OPTIONSPG_WEBPAGECOMPARE "Webpage"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -3051,17 +3183,17 @@ END
 // MESSAGEBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_MESSAGEBOX_MESSAGE "Message"
-    IDS_MESSAGEBOX_ANSWER  "Answer"
+    IDS_MESSAGEBOX_MESSAGE  "Message"
+    IDS_MESSAGEBOX_ANSWER   "Answer"
 END
 
 // PROJECT OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_PROJECT_ITEM "Item"
-    IDS_PROJECT_OPEN "Open"
-    IDS_PROJECT_LOAD "Load"
-    IDS_PROJECT_SAVE "Save"
+    IDS_PROJECT_ITEM        "Item"
+    IDS_PROJECT_OPEN        "Open"
+    IDS_PROJECT_LOAD        "Load"
+    IDS_PROJECT_SAVE        "Save"
     IDS_PROJECT_ITEM_FILE_FILTER "File Filters"
     IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS "Include Subfolders"
     IDS_PROJECT_ITEM_PLUGIN "Plugins"
@@ -3122,8 +3254,7 @@ END
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL 
-                            "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
     IDS_LINE_STATUS_INFO_SEL "  Sel: %d | %d"
@@ -3158,8 +3289,7 @@ BEGIN
     IDS_OPEN_MIDDLERIGHTINVALID 
                             "Middle (2nd) and Right (3rd) paths are invalid!"
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
-    IDS_OPEN_UNPACKERDISABLED 
-                            "Only enabled for file comparisons"
+    IDS_OPEN_UNPACKERDISABLED "Only enabled for file comparisons"
     IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
 END
 
@@ -3218,13 +3348,13 @@ END
 // Merge menu for 3-way compare
 STRINGTABLE
 BEGIN
-    IDS_L2M "Copy to &Middle\tAlt+Right"
-    IDS_R2M "Copy to &Middle\tAlt+Left"
-    IDS_COPY_FROM_MIDDLE_R "Copy from Middle\tAlt+Shift+Right"
-    IDS_COPY_FROM_MIDDLE_L "Copy from Middle\tAlt+Shift+Left"
-    IDS_L2MNEXT "Copy to Middle and Advance\tCtrl+Alt+Right"
-    IDS_R2MNEXT "Copy to Middle and Advance\tCtrl+Alt+Left"
-    IDS_ALL_MIDDLE "Copy All to Middle"
+    IDS_L2M                 "Copy to &Middle\tAlt+Right"
+    IDS_R2M                 "Copy to &Middle\tAlt+Left"
+    IDS_COPY_FROM_MIDDLE_R  "Copy from Middle\tAlt+Shift+Right"
+    IDS_COPY_FROM_MIDDLE_L  "Copy from Middle\tAlt+Shift+Left"
+    IDS_L2MNEXT             "Copy to Middle and Advance\tCtrl+Alt+Right"
+    IDS_R2MNEXT             "Copy to Middle and Advance\tCtrl+Alt+Left"
+    IDS_ALL_MIDDLE          "Copy All to Middle"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -3319,7 +3449,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
-    IDS_FAILED_EXTRACT_ARCHIVE_FILES "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+    IDS_FAILED_EXTRACT_ARCHIVE_FILES 
+                            "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #1
@@ -3524,6 +3655,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
+    IDS_DIRECTORY_REPORT_TITLE3 "Compare %1 with %2 and %3"
     IDS_REPORT_COMMALIST    "Comma-separated list"
     IDS_REPORT_TABLIST      "Tab-separated list"
     IDS_REPORT_SIMPLEHTML   "Simple HTML"
@@ -3837,6 +3969,11 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_WEBPAGE_MENU        "We&bpage"
+END
+
+STRINGTABLE
+BEGIN
     IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
 END
 
@@ -3857,6 +3994,7 @@ BEGIN
     IDS_DIFF_ALGORITHM_MINIMAL "minimal"
     IDS_DIFF_ALGORITHM_PATIENCE "patience"
     IDS_DIFF_ALGORITHM_HISTOGRAM "histogram"
+    IDS_DIFF_ALGORITHM_NONE "none"
 END
 
 STRINGTABLE
@@ -3909,18 +4047,24 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_IGNSUB_STR1 "<Edit here>"
-    IDS_IGNSUB_STR2 "No differences to select found"
-    IDS_IGNSUB_STR3 "No differences found to add as substitution filter"
-    IDS_IGNSUB_STR4 "The pair is already present in the list of Substitution Filters"
-    IDS_IGNSUB_STR5 "Add this change to Substitution Filters?"
+    IDS_IGNSUB_STR1         "<Edit here>"
+    IDS_IGNSUB_STR2         "No differences to select found"
+    IDS_IGNSUB_STR3         "No differences found to add as substitution filter"
+    IDS_IGNSUB_STR4         "The pair is already present in the list of Substitution Filters"
+    IDS_IGNSUB_STR5         "Add this change to Substitution Filters?"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_OCRRESULT_TEXTONLY "Text only"
-    IDS_OCRRESULT_POS_LINE "Line-by-line position and text"
-    IDS_OCRRESULT_POS_WORD "Word-by-word position and text"
+    IDS_OCRRESULT_TEXTONLY  "Text only"
+    IDS_OCRRESULT_POS_LINE  "Line-by-line position and text"
+    IDS_OCRRESULT_POS_WORD  "Word-by-word position and text"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_USERDATAFOLDER_APPDATA "AppData folder"
+    IDS_USERDATAFOLDER_INSTALL "Install folder"
 END
 
 STRINGTABLE
@@ -3931,7 +4075,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_ALL           "Al&l"
+    IDS_PLUGIN_ALL          "Al&l"
     IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
     IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
     IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
@@ -3940,15 +4084,16 @@ BEGIN
     IDS_PLUGIN_PROCESS_TYPE6 "Validation"
     IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
     IDS_PLUGIN_PROCESS_TYPE8 "&Others"
-    IDS_PLUGIN_MENU_CAPTION1  "Make Uppercase"
-    IDS_PLUGIN_MENU_CAPTION2  "Make Lowercase"
-    IDS_PLUGIN_MENU_CAPTION3  "Remove Duplicate Lines"
-    IDS_PLUGIN_MENU_CAPTION4  "Count Duplicate Lines"
-    IDS_PLUGIN_MENU_CAPTION5  "Sort Lines Ascending"
-    IDS_PLUGIN_MENU_CAPTION6  "Sort Lines Descending"
-    IDS_PLUGIN_MENU_CAPTION7  "Reverse Columns"
-    IDS_PLUGIN_MENU_CAPTION8  "Reverse Lines"
-    IDS_PLUGIN_MENU_CAPTION9  "Replace..."
+    IDS_PLUGIN_PROCESS_TYPE9 "URL Handling"
+    IDS_PLUGIN_MENU_CAPTION1 "Make Uppercase"
+    IDS_PLUGIN_MENU_CAPTION2 "Make Lowercase"
+    IDS_PLUGIN_MENU_CAPTION3 "Remove Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION4 "Count Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION5 "Sort Lines Ascending"
+    IDS_PLUGIN_MENU_CAPTION6 "Sort Lines Descending"
+    IDS_PLUGIN_MENU_CAPTION7 "Reverse Columns"
+    IDS_PLUGIN_MENU_CAPTION8 "Reverse Lines"
+    IDS_PLUGIN_MENU_CAPTION9 "Replace..."
     IDS_PLUGIN_MENU_CAPTION10 "Apply Filter Command..."
     IDS_PLUGIN_MENU_CAPTION11 "Tokenize..."
     IDS_PLUGIN_MENU_CAPTION12 "Trim Spaces"
@@ -3975,51 +4120,78 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION33 "Disassemble JVM Bytecode"
     IDS_PLUGIN_MENU_CAPTION34 "Disassemble IL Code"
     IDS_PLUGIN_MENU_CAPTION35 "Disassemble Native Code"
-    IDS_PLUGIN_MISSING_PLUGIN_NAME "Missing plugin name in plugin pipeline: %1"
-    IDS_PLUGIN_MISSING_QUOTATION_MARK"Missing quotation mark in plugin pipeline: %1"
-    IDS_PLUGIN_TITLE1        "Specify plugin arguments"
+    IDS_PLUGIN_MISSING_PLUGIN_NAME 
+                            "Missing plugin name in plugin pipeline: %1"
+    IDS_PLUGIN_MISSING_QUOTATION_MARK 
+                            "Missing quotation mark in plugin pipeline: %1"
+    IDS_PLUGIN_TITLE1       "Specify plugin arguments"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_DESCRIPTION1  "Make characters uppercase"
-    IDS_PLUGIN_DESCRIPTION2  "Make characters lowercase"
-    IDS_PLUGIN_DESCRIPTION3  "Remove duplicate lines"
-    IDS_PLUGIN_DESCRIPTION4  "Count duplicate lines"
-    IDS_PLUGIN_DESCRIPTION5  "Sort lines ascending"
-    IDS_PLUGIN_DESCRIPTION6  "Sort lines descending"
-    IDS_PLUGIN_DESCRIPTION7  "Reverse columns"
-    IDS_PLUGIN_DESCRIPTION8  "Reverse lines"
-    IDS_PLUGIN_DESCRIPTION9  "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-    IDS_PLUGIN_DESCRIPTION10 "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-    IDS_PLUGIN_DESCRIPTION11 "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+    IDS_PLUGIN_DESCRIPTION1 "Make characters uppercase"
+    IDS_PLUGIN_DESCRIPTION2 "Make characters lowercase"
+    IDS_PLUGIN_DESCRIPTION3 "Remove duplicate lines"
+    IDS_PLUGIN_DESCRIPTION4 "Count duplicate lines"
+    IDS_PLUGIN_DESCRIPTION5 "Sort lines ascending"
+    IDS_PLUGIN_DESCRIPTION6 "Sort lines descending"
+    IDS_PLUGIN_DESCRIPTION7 "Reverse columns"
+    IDS_PLUGIN_DESCRIPTION8 "Reverse lines"
+    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+    IDS_PLUGIN_DESCRIPTION10 
+                            "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+    IDS_PLUGIN_DESCRIPTION11 
+                            "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
     IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
-    IDS_PLUGIN_DESCRIPTION13 "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-    IDS_PLUGIN_DESCRIPTION14 "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-    IDS_PLUGIN_DESCRIPTION23 "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-    IDS_PLUGIN_DESCRIPTION24 "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-    IDS_PLUGIN_DESCRIPTION25 "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-    IDS_PLUGIN_DESCRIPTION26 "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-    IDS_PLUGIN_DESCRIPTION27 "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-    IDS_PLUGIN_DESCRIPTION28 "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-    IDS_PLUGIN_DESCRIPTION29 "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-    IDS_PLUGIN_DESCRIPTION30 "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-    IDS_PLUGIN_DESCRIPTION31 "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-    IDS_PLUGIN_DESCRIPTION32 "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-    IDS_PLUGIN_DESCRIPTION33 "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-    IDS_PLUGIN_DESCRIPTION34 "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-    IDS_PLUGIN_DESCRIPTION35 "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-    IDS_PLUGIN_DESCRIPTION37 "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+    IDS_PLUGIN_DESCRIPTION13 
+                            "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION14 
+                            "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION23 
+                            "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION24 
+                            "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION25 
+                            "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION26 
+                            "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION27 
+                            "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+    IDS_PLUGIN_DESCRIPTION28 
+                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION29 
+                            "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION30 
+                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION31 
+                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION32 
+                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION33 
+                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+    IDS_PLUGIN_DESCRIPTION34 
+                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+    IDS_PLUGIN_DESCRIPTION35 
+                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+    IDS_PLUGIN_DESCRIPTION37 
+                            "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
     IDS_PLUGIN_DESCRIPTION38 "Apply patch using GnuWin32 Patch for Windows"
     IDS_PLUGIN_DESCRIPTION39 "Display the text content of MS Excel files"
     IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS PowerPoint files"
     IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS Visio files"
     IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Word files"
-    IDS_PLUGIN_DESCRIPTION43 "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-    IDS_PLUGIN_DESCRIPTION44 "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-    IDS_PLUGIN_DESCRIPTION45 "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION43 
+                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION44 
+                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+    IDS_PLUGIN_DESCRIPTION45 
+                            "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
     IDS_PLUGIN_DESCRIPTION46 "Prediff Line Filter"
     IDS_PLUGIN_DESCRIPTION47 "Basic text functions for the context menu"
+    IDS_PLUGIN_DESCRIPTION48 
+                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+    IDS_PLUGIN_DESCRIPTION49 
+                            "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 END
 
 STRINGTABLE
@@ -4031,9 +4203,17 @@ STRINGTABLE
 BEGIN
     IDS_CLIPBOARDHISTORY_TIME     "Clipboard at %s"
     IDS_CLIPBOARDHISTORY_DISABLED "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED1 "This system does not support clipboard history."
-    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 "The 32-bit version of WinMerge does not support Clipboard Compare"
+    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED1 
+                            "This system does not support clipboard history."
+    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 
+                            "The 32-bit version of WinMerge does not support Clipboard Compare"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED "WebView2 runtime is not installed. Do you want to download it?"
+END
+
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

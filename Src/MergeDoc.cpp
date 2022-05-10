@@ -97,7 +97,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TEXT, OnUpdateFileRecompareAsText)
 	ON_COMMAND(ID_MERGE_COMPARE_TABLE, OnFileRecompareAsTable)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_TABLE, OnUpdateFileRecompareAsTable)
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_HEX, ID_MERGE_COMPARE_WEBPAGE, OnFileRecompareAs)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	// [View] menu
 	ON_COMMAND_RANGE(ID_VIEW_DIFFCONTEXT_ALL, ID_VIEW_DIFFCONTEXT_INVERT, OnDiffContext)
@@ -360,7 +360,7 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	{
 		// Check if files have been modified since last rescan
 		// Ignore checking in case of scratchpads (empty filenames)
-		if (!m_filePaths[nBuffer].empty())
+		if (!m_filePaths[nBuffer].empty() && !paths::IsURL(m_filePaths[nBuffer]))
 		{
 			Changed[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(),
 					fileInfo, false, nBuffer);
@@ -2970,7 +2970,7 @@ CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& pat
 	const TCHAR quote = strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_TBL_QUOTE_CHAR));
 	FileFilterHelper filterCSV, filterTSV, filterDSV;
 	bool allowNewlineIQuotes = GetOptionsMgr()->GetBool(OPT_CMP_TBL_ALLOW_NEWLINES_IN_QUOTES);
-	const String csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
+	const String& csvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
 	if (!csvFilePattern.empty())
 	{
 		filterCSV.UseMask(true);
@@ -2978,7 +2978,7 @@ CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& pat
 		if (filterCSV.includeFile(path))
 			return { true, ',', quote, allowNewlineIQuotes };
 	}
-	const String tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
+	const String& tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
 	if (!tsvFilePattern.empty())
 	{
 		filterTSV.UseMask(true);
@@ -2986,7 +2986,7 @@ CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& pat
 		if (filterTSV.includeFile(path))
 			return { true, '\t', quote, allowNewlineIQuotes };
 	}
-	const String dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
+	const String& dsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
 	if (!dsvFilePattern.empty())
 	{
 		filterDSV.UseMask(true);
@@ -3651,9 +3651,10 @@ void CMergeDoc::OnOpenWithUnpacker()
 	DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 	String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 	int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
-	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -1;
+	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -nID;
 
-	if (GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker))
+	if (GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
+		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 
@@ -3868,7 +3869,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 		return;
 	
 	DWORD dwFlags[3] = { 0 };
-	FileLocation fileloc[3];
+	PathContext paths = m_filePaths;
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
 	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
@@ -3877,7 +3878,6 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
-		fileloc[pane].setPath(m_filePaths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
 		strDesc[pane] = m_strDesc[pane];
 	}
@@ -3885,10 +3885,11 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	{
 		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
-		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -1;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -static_cast<int>(nID);
 	}
 
-	if (GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker))
+	if (GetMainFrame()->DoFileOrFolderOpen(&m_filePaths, dwFlags, strDesc, _T(""),
+	    GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 

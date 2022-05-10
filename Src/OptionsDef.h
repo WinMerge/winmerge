@@ -234,6 +234,17 @@ inline const String OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO {_T("Settings/ImageVecto
 inline const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP {_T("Settings/EnableImageCompareInFolderCompare"s)};
 inline const String OPT_CMP_IMG_OCR_RESULT_TYPE {_T("Settings/ImageOcrResultType"s)};
 
+// WebPage Compare options
+inline const String OPT_CMP_WEB_USERDATAFOLDER_TYPE {_T("Settings/WebPageUserDataFolderType"s)};
+inline const String OPT_CMP_WEB_USERDATAFOLDER_PERPANE {_T("Settings/WebPageUserDataFolderPerPane"s)};
+inline const String OPT_CMP_WEB_FIT_TO_WINDOW {_T("Settings/WebPageFitToWindow"s)};
+inline const String OPT_CMP_WEB_VIEW_WIDTH {_T("Settings/WebPageViewWidth"s)};
+inline const String OPT_CMP_WEB_VIEW_HEIGHT {_T("Settings/WebPageViewHeight"s)};
+inline const String OPT_CMP_WEB_ZOOM {_T("Settings/WebZoom"s)};
+inline const String OPT_CMP_WEB_USER_AGENT {_T("Settings/WebUserAgent"s)};
+inline const String OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE {_T("Settings/WebPageURLPatternToInclude"s)};
+inline const String OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE {_T("Settings/WebPageURLPatternToExclude"s)};
+
 // Binary options
 inline const String OPT_CMP_BIN_FILEPATTERNS {_T("Settings/BinaryFilePatterns"s)};
 

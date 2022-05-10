@@ -101,7 +101,7 @@ public:
 		else
 		{
 			size_t wsize = *srcbytes * 2 + 6;
-			std::unique_ptr<wchar_t[]> pbuf(new wchar_t[wsize]);
+			auto pbuf = std::make_unique<wchar_t[]>(wsize);
 			bsucceeded = convertToUnicode(srcCodepage, (const char *)src, srcbytes, pbuf.get(), &wsize);
 			if (!bsucceeded)
 			{
@@ -149,7 +149,7 @@ public:
 			return defcodepage;
 		srcsize = static_cast<UINT>(size);
 		dstsize = static_cast<UINT>(size * sizeof(wchar_t));
-		std::unique_ptr<unsigned char[]> pdst(new unsigned char[size * sizeof(wchar_t)]);
+		auto pdst = std::make_unique<unsigned char[]>(size * sizeof(wchar_t));
 		SetLastError(0);
 		hr = pcc->DoConversion((unsigned char *)data, &srcsize, pdst.get(), &dstsize);
 		pcc->GetSourceCodePage((unsigned *)&codepage);
@@ -228,7 +228,7 @@ public:
 		HRESULT hr = m_pmlang->EnumCodePages(MIMECONTF_SAVABLE_BROWSER | MIMECONTF_VALID | MIMECONTF_VALID_NLS, 0, &pEnumCodePage);
 		if (FAILED(hr))
 			return cpinfo;
-		std::unique_ptr<MIMECPINFO[]> pcpInfo(new MIMECPINFO[256]);
+		auto pcpInfo = std::make_unique<MIMECPINFO[]>(256);
 		if (FAILED(pEnumCodePage->Next(256, pcpInfo.get(), &ccpInfo)))
 			return cpinfo;
 

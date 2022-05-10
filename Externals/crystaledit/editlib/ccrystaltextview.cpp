@@ -777,7 +777,7 @@ ScrollToChar (int nNewOffsetChar, bool bNoSmoothScroll /*= false*/, bool bTrackS
       CRect rcScroll;
       GetClientRect (&rcScroll);
       rcScroll.left += GetMarginWidth ();
-	  CRect rcTopMargin(rcScroll.right - GetCharWidth (), rcScroll.top, rcScroll.right, GetTopMarginHeight());
+	  CRect rcTopMargin(rcScroll.left, rcScroll.top, rcScroll.right, GetTopMarginHeight());
 	  InvalidateRect (&rcTopMargin); // Make sure the ruler is drawn correctly when scrolling horizontally 
       ScrollWindow (nScrollChars * GetCharWidth (), 0, &rcScroll, &rcScroll);
       UpdateWindow ();
@@ -7103,15 +7103,19 @@ int CCrystalTextView::GetCharCellCountUnicodeChar(const wchar_t *pch)
           wchar_t nEnd = nStart + 255;
           m_pCrystalRenderer->GetCharWidth(nStart, nEnd, nWidthArray);
           int nCharWidth = GetCharWidth();
+          const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE::GDI);
           for (int i = 0; i < 256; i++) 
             {
+              wchar_t ch2 = static_cast<wchar_t>(nStart + i);
               if (nCharWidth * 15 < nWidthArray[i] * 10)
-                m_iChDoubleWidthFlags[(nStart+i)/32] |= 1 << (i % 32);
+                {
+                  if (ch2 != lpspc->c_space[0] && ch2 != lpspc->c_tab[0])
+                    m_iChDoubleWidthFlags[ch2 / 32] |= 1 << (i % 32);
+                }
               else
                 {
-                  wchar_t ch2 = static_cast<wchar_t>(nStart + i);
                   if (wcwidth(ch2) > 1)
-                    m_iChDoubleWidthFlags[(nStart + i) / 32] |= 1 << (i % 32);
+                    m_iChDoubleWidthFlags[ch2 / 32] |= 1 << (i % 32);
                 }
             }
           m_bChWidthsCalculated[ch / 256] = true;

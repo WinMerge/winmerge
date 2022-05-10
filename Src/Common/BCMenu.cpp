@@ -91,7 +91,7 @@ typedef sBGR *pBGR;
 
 
 // Returns the DI (Device Independent) bits of the Bitmap
-// Here I use 32 bit since it's easy to adress in memory and no
+// Here I use 32 bit since it's easy to address in memory and no
 // padding of the horizontal lines is required.
 static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
 {

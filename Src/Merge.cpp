@@ -627,7 +627,7 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 void CMergeApp::InitializeFileFilters()
 {
 	assert(m_pGlobalFileFilter != nullptr);
-	String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+	const String& filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 
 	if (!filterPath.empty())
 	{

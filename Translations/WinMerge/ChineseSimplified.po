@@ -218,6 +218,45 @@ msgstr "矢量图形缩放 (&V)"
 msgid "Compare Extracted &Text From Images"
 msgstr "比较从图像中解析的文字(&T)"
 
+msgid "Co&mpare"
+msgstr "比较(&M)"
+
+msgid "&Screenshots"
+msgstr "截图(&S)"
+
+msgid "&Full Size Screenshots"
+msgstr "全尺寸截图(&F)"
+
+msgid "&HTMLs"
+msgstr "网页(&H)"
+
+msgid "&Texts"
+msgstr "纯文本(&T)"
+
+msgid "&Resource Trees"
+msgstr "资源树(&R)"
+
+msgid "&Size"
+msgstr "大小(&S)"
+
+msgid "Fit to Window"
+msgstr "窗口内显示"
+
+msgid "Clear &Browsing Data"
+msgstr "清除浏览数据(&B)"
+
+msgid "&Disk Cache"
+msgstr "磁盘缓存(&D)"
+
+msgid "&Cookies"
+msgstr "Cookies(&C)"
+
+msgid "&Browsing History"
+msgstr "浏览历程记录(&B)"
+
+msgid "&All Profile"
+msgstr "所有配置文件(&A)"
+
 msgid "&File"
 msgstr "文件(&F)"
 
@@ -235,6 +274,9 @@ msgstr "二进制(&B)"
 
 msgid "&Image"
 msgstr "图像(&I)"
+
+msgid "&Webpage"
+msgstr "网页(&W)"
 
 msgid "New (&3 panes)"
 msgstr "新建三路比较(&3)"
@@ -545,8 +587,8 @@ msgstr "将换行符转换为(&C)"
 msgid "Mer&ge Mode\tF9"
 msgstr "合并模式(&G)\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "重新加载(&L)\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "重新加载(&D)\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "重新比较(&M)"
@@ -1062,9 +1104,6 @@ msgstr " 文件: 解包插件"
 
 msgid "Se&lect..."
 msgstr "选择(&L)"
-
-msgid "Co&mpare"
-msgstr "比较(&M)"
 
 msgid "Cancel"
 msgstr "取消"
@@ -1977,6 +2016,21 @@ msgstr "在文件夹比较中启用图像比较(&E)"
 
 msgid "OCR result:"
 msgstr "字符识别结果:"
+
+msgid "Webpage"
+msgstr "网页"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "要包含的网址模式(正则表达式)(&I)："
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "要排除的网址模式(正则表达式)(&E)："
+
+msgid "&User data folder location:"
+msgstr "用户数据文件夹位置(&U)"
+
+msgid "&Separate user data folders for each pane"
+msgstr "每个窗格使用单独的用户数据文件夹(&S)"
 
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
@@ -3194,6 +3248,10 @@ msgstr "预比较插件名称或流程（pipeline）。"
 msgid "Compare %1 with %2"
 msgstr "比较 %1 和 %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "比较 %1 与 %2 和 %3"
+
 msgid "Comma-separated list"
 msgstr "逗号分隔的列表"
 
@@ -3659,6 +3717,9 @@ msgstr "关闭其他标签页(&O)"
 msgid "Enable &Auto Max Width"
 msgstr "启用自动最大宽度(&A)"
 
+msgid "We&bpage"
+msgstr "网页(&B)"
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安装"
 
@@ -3689,6 +3750,9 @@ msgstr "耐心"
 
 msgid "histogram"
 msgstr "直方图"
+
+msgid "none"
+msgstr "无"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3843,6 +3907,12 @@ msgstr "逐行定位输入"
 msgid "Word-by-word position and text"
 msgstr "逐字定位输入"
 
+msgid "AppData folder"
+msgstr "AppData文件夹"
+
+msgid "Install folder"
+msgstr "安装文件夹"
+
 msgid "Allow only one instance to run"
 msgstr "只允许运行一个实例"
 
@@ -3872,6 +3942,9 @@ msgstr "反编译"
 
 msgid "&Others"
 msgstr "其它(&O)"
+
+msgid "URL Handling"
+msgstr "网址处理"
 
 msgid "Make Uppercase"
 msgstr "变大写"
@@ -4104,6 +4177,12 @@ msgstr "预比较行过滤器"
 msgid "Basic text functions for the context menu"
 msgstr "用于上下文菜单的基本文本功能"
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr "使用 curl 的 HTTP URL 方案处理程序。\r\n参数：传递给 curl 的命令行选项。"
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr "Windows 注册表 URL 方案处理程序。\r\n参数：传递给 reg.exe 的命令行选项。"
+
 msgid "Filter applied"
 msgstr "滤镜已应用"
 
@@ -4119,3 +4198,6 @@ msgstr "当前系统不支持剪贴板历史记录。"
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32位的 WinMerge 不支持剪贴板比较"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "未安装WebView2运行库。你想下载吗？"

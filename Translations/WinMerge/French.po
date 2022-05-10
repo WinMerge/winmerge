@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-02-26 12:34+0100\n"
+"PO-Revision-Date: 2022-04-13 09:43+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -132,10 +132,10 @@ msgid "S&hell Menu"
 msgstr "Menu S&hell"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Utiliser la première ligne comme en-tête"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Ajuster automatiquement toutes les colonnes"
 
 #, c-format
 msgid "View &Differences"
@@ -250,6 +250,45 @@ msgstr "Mise à l'échelle de l'image vectorielle"
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparer le &texte extraits depuis les images"
 
+msgid "Co&mpare"
+msgstr "Co&mparer"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Fichier"
@@ -272,6 +311,9 @@ msgstr "&Binaire"
 #, c-format
 msgid "&Image"
 msgstr "&Image"
+
+msgid "&Webpage"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -672,9 +714,8 @@ msgstr "&Convertir les fins de ligne"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mode &Fusion\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr "Recharger Ctrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "RechargerCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -803,7 +844,7 @@ msgid "View &Margins"
 msgstr "Afficher les &marges"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "Afficher les marges &hautes"
 
 #, c-format
 msgid "W&rap Lines"
@@ -1317,9 +1358,6 @@ msgstr " Fichier : Plugin décompresseur"
 #, c-format
 msgid "Se&lect..."
 msgstr "Sé&lectionner..."
-
-msgid "Co&mpare"
-msgstr "Co&mparer"
 
 #, c-format
 msgid "Cancel"
@@ -2454,6 +2492,21 @@ msgstr "&Activer la comparaison d'images dans la comparaison de dossiers"
 msgid "OCR result:"
 msgstr "Résultat OCR :"
 
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 #, c-format
 msgid "&Hex View"
 msgstr "Affichage &Hexa"
@@ -2697,7 +2750,7 @@ msgid ""
 msgstr ""
 "La valeur de la taille des tabulations n'entre pas dans la plage acceptée.\n"
 "\n"
-"Voici la plage des valeurs acceptées 1 - %1."
+"Plage des valeurs acceptées 1 - %1."
 
 #, c-format
 msgid "Open"
@@ -2788,8 +2841,16 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filtres de fichier (*.flt)|*.flt|Tous les fichiers (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr "Ne peut trouver le fichier de modèle de filtre !\n\nVeuillez copier le fichier %1 dans WinMerge/Dossier des filtres :\n%2."
+msgid ""
+"Cannot find file filter template file!\n"
+"\n"
+"Please copy file %1 to WinMerge/Filters folder:\n"
+"%2."
+msgstr ""
+"Ne peut trouver le fichier de modèle de filtre !\n"
+"\n"
+"Veuillez copier le fichier %1 dans le dossier WinMerge/Filters :\n"
+"%2."
 
 #, c-format
 msgid ""
@@ -2823,7 +2884,7 @@ msgstr ""
 "Ne peut supprimer le fichier de filtre :\n"
 "%1\n"
 "\n"
-"Cause probable: fichier en lecture seule?"
+"Le fichier est peut-être en lecture seule ?"
 
 #, c-format
 msgid "Locate filter file to install"
@@ -2841,7 +2902,7 @@ msgstr ""
 
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Le fichier de filtre existe déjà. Écraser le filtre existant?"
+msgstr "Le fichier de filtre existe déjà. Écraser le filtre existant ?"
 
 #, c-format
 msgid "Regular expression"
@@ -3363,8 +3424,12 @@ msgstr "Lancement de l'éditeur externe a échoué : %1"
 msgid "Unknown archive format"
 msgstr "Format d'archives inconnu"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgid ""
+"Failed to extract archive files.\n"
+"Do you want to compare the archive files as text files?"
 msgstr ""
+"Échec de l'extraction des fichiers d'archive.\n"
+"Voulez-vous comparer les fichiers d'archive en tant que fichiers texte ?"
 
 #, c-format
 msgid "Filename"
@@ -3833,6 +3898,10 @@ msgid "Compare %1 with %2"
 msgstr "Comparer %1 avec %2"
 
 #, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
+#, c-format
 msgid "Comma-separated list"
 msgstr "Liste délimitée par des virgules"
 
@@ -4222,17 +4291,33 @@ msgstr ""
 "\n"
 "Dernière différence (Alt+Fin)"
 
-msgid "\nCopy to Right (Alt+Right)"
-msgstr "\nCopier à Droite (Alt+Droite)"
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)"
+msgstr ""
+"\n"
+"Copier à Droite (Alt+Droite)"
 
-msgid "\nCopy to Left (Alt+Left)"
-msgstr "\nCopier à Gauche (Alt+Gauche)"
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)"
+msgstr ""
+"\n"
+"Copier à Gauche (Alt+Gauche)"
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr "\nCopier à Droite et avancer (Ctrl+Alt+Droite)"
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+"\n"
+"Copier à Droite et avancer (Ctrl+Alt+Droite)"
 
-msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr "\nCopier à Gauche et avancer (Ctrl+Alt+Gauche)"
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+"\n"
+"Copier à Gauche et avancer (Ctrl+Alt+Gauche)"
 
 msgid ""
 "\n"
@@ -4380,6 +4465,9 @@ msgstr "Fermer les autres &onglets"
 msgid "Enable &Auto Max Width"
 msgstr "Activer largeur &auto max"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
 
@@ -4412,6 +4500,9 @@ msgstr "patience"
 
 msgid "histogram"
 msgstr "histograme"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"
@@ -4566,6 +4657,12 @@ msgstr "Position et texte ligne par ligne"
 msgid "Word-by-word position and text"
 msgstr "Position et texte mot par mot"
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "Permettre une seule instance en exécution"
@@ -4596,6 +4693,9 @@ msgstr "Décompilation"
 
 msgid "&Others"
 msgstr "&Autres"
+
+msgid "URL Handling"
+msgstr "Gestion des URL"
 
 msgid "Make Uppercase"
 msgstr "Mettre en majuscule"
@@ -4942,6 +5042,20 @@ msgstr "Filtre de pré-comparaison de ligne"
 msgid "Basic text functions for the context menu"
 msgstr "Intitulé simplifié pour les fonctions du menu contextuel"
 
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
+msgstr ""
+"Gestionnaire de schéma d'URL HTTP avec curl.\r\n"
+"Arguments : options de ligne de commande transmises à la commande curl."
+
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
+msgstr ""
+"Gestionnaire de schéma d'URL de registre Windows.\r\n"
+"Arguments : options de ligne de commande transmises à la commande reg.exe."
+
 msgid "Filter applied"
 msgstr "Filtre appliqué"
 
@@ -4961,3 +5075,6 @@ msgstr "Ce système ne prend pas en charge l'historique du presse-papiers."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "La version 32 bits de WinMerge ne prend pas en charge la comparaison du presse-papiers"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

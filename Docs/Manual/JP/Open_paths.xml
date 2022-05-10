@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Open_paths">
-  <title>ファイルとフォルダを開く<indexterm>
+  <title>ファイルとフォルダーを開く<indexterm>
       <primary>opening files and folders</primary>
     </indexterm></title>
 
@@ -34,7 +34,7 @@
   </itemizedlist>
 
   <section id="OpenPaths_opendialog">
-    <title>ファイル・フォルダ選択-ダイアログ<indexterm>
+    <title>ファイル・フォルダー選択-ダイアログ<indexterm>
         <primary>Select Files or Folders dialog</primary>
       </indexterm></title>
 
@@ -87,7 +87,7 @@
     </section>
 
     <section id="Open_paths_filters">
-      <title>フィルタの指定<indexterm>
+      <title>フィルターの指定<indexterm>
           <primary>filters</primary>
 
           <secondary>applying in Select Files or Folders dialog</secondary>
@@ -150,7 +150,7 @@
         <primary>Windowsシェル統合</primary>
       </indexterm><indexterm>
         <primary>context menu, WinMerge shortcuts in Windows Explorer</primary>
-      </indexterm>WindowsエクスプローラからWinMergeの起動</title>
+      </indexterm>WindowsエクスプローラーからWinMergeの起動</title>
 
     <para>The optional Windows shell integration enables you to run WinMerge
     compare operations directly from Windows Explorer, using WinMerge shortcuts
@@ -159,7 +159,7 @@
     <!--WinMerge provides two optional types of integration with Windows Explorer. The first type lets you launch WinMerge compare operations directly from Windows Explorer, skipping the Select Files or Folders dialog. The second type lets you run Windows shell commands from the WinMerge window.-->
 
     <section>
-      <title>Windowsエクスプローラ統合を有効にする</title>
+      <title>Windowsエクスプローラー統合を有効にする</title>
 
       <para>The Windows Explorer shell integration is available only if enabled.
       You can enable it either <link linkend="Installing_usinginstaller">during
@@ -283,7 +283,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
     </section>
 
     <section>
-      <title>Windowsエクスプローラ統合使用時にサブフォルダを含める
+      <title>Windowsエクスプローラー統合使用時にサブフォルダーを含める
       <indexterm>
           <primary>recursive folder compare</primary>
 

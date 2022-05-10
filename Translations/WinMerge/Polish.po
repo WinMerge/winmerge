@@ -28,13 +28,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_POLISH, SUBLANG_DEFAULT"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Kopiuj do środka"
 
 msgid "C&opy to Right\tAlt+Right"
 msgstr "Kopiuj do prawej\tAlt+Right"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Kopiuj ze środka"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr "Kopiuj z prawej\tAlt+Shift+Left"
@@ -46,13 +46,13 @@ msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Kopiuj z lewej\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Kopiuj zaznaczone wiersze do środka"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Kopiuj zaznaczone wiersze do prawej"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Kopiuj zaznaczone wiersze ze środka"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Kopiuj zaznaczone wiersze z prawej"
@@ -94,10 +94,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "Idź do...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "Idź do przeniesionego wiersza między lewą a środkiem\tCtrl+Shift+G"
+msgstr "Idź do przeniesionego wiersza między lewym a środkiem\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "Idź do przeniesionego wiersza między środkiem a prawą\tCtrl+Alt+G"
+msgstr "Idź do przeniesionego wiersza między środkiem a prawym\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "Otwórz"
@@ -118,10 +118,10 @@ msgid "S&hell Menu"
 msgstr "Menu powłoki"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Użyj pierwszego wiersza jako nagłówki"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Automatycznie dopasuj wszystkie kolumny"
 
 msgid "View &Differences"
 msgstr "Wyświetl różnice"
@@ -218,6 +218,45 @@ msgstr "Skalowanie obrazu wektorowego"
 msgid "Compare Extracted &Text From Images"
 msgstr "Porównaj wyodrębniony tekst z obrazu"
 
+msgid "Co&mpare"
+msgstr "Porównaj"
+
+msgid "&Screenshots"
+msgstr "Zrzuty ekranu"
+
+msgid "&Full Size Screenshots"
+msgstr "Zrzuty ekranu całej strony"
+
+msgid "&HTMLs"
+msgstr "Pliki HTML"
+
+msgid "&Texts"
+msgstr "Pliki tekstowe"
+
+msgid "&Resource Trees"
+msgstr "Drzewa zasobów"
+
+msgid "&Size"
+msgstr "Rozmiar"
+
+msgid "Fit to Window"
+msgstr "Dopasuj do okna"
+
+msgid "Clear &Browsing Data"
+msgstr "Wyczyść dane przeglądania"
+
+msgid "&Disk Cache"
+msgstr "Pamięć podręczna dysku"
+
+msgid "&Cookies"
+msgstr "Ciasteczka"
+
+msgid "&Browsing History"
+msgstr "Historia przeglądania"
+
+msgid "&All Profile"
+msgstr "Wszystkie profile"
+
 msgid "&File"
 msgstr "Plik"
 
@@ -236,6 +275,9 @@ msgstr "&Binarny"
 msgid "&Image"
 msgstr "Obraz"
 
+msgid "&Webpage"
+msgstr "Strona internetowa"
+
 msgid "New (&3 panes)"
 msgstr "Nowy (3 panele)"
 
@@ -246,7 +288,7 @@ msgid "Open Conflic&t File..."
 msgstr "Otwórz plik konfliktu..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Otwórz schowek"
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Otwórz projekt...\tCtrl+J"
@@ -510,25 +552,25 @@ msgid "Sav&e"
 msgstr "Zapisz"
 
 msgid "Save &Left"
-msgstr "Zapisz lewą"
+msgstr "Zapisz lewy"
 
 msgid "Save &Middle"
-msgstr "Zapisz środkową"
+msgstr "Zapisz środkowy"
 
 msgid "Save &Right"
-msgstr "Zapisz prawą"
+msgstr "Zapisz prawy"
 
 msgid "Save &As"
 msgstr "Zapisz jako"
 
 msgid "Save &Left As..."
-msgstr "Zapisz lewą jako..."
+msgstr "Zapisz lewy jako..."
 
 msgid "Save &Middle As..."
-msgstr "Zapisz środkową jako..."
+msgstr "Zapisz środkowy jako..."
 
 msgid "Save &Right As..."
-msgstr "Zapisz prawą jako..."
+msgstr "Zapisz prawy jako..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "Drukuj...\tCtrl+P"
@@ -545,7 +587,7 @@ msgstr "Konwertuj końce linii do"
 msgid "Mer&ge Mode\tF9"
 msgstr "Tryb scalania\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Odśwież\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -645,7 +687,7 @@ msgid "View &Margins"
 msgstr "Wyświetl &marginesy"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "Wyświetl górne marginesy"
 
 msgid "W&rap Lines"
 msgstr "Zawijaj wiersze"
@@ -669,34 +711,34 @@ msgid "A&dvanced"
 msgstr "Zaawansowane"
 
 msgid "Next Difference Between Left and Middle\tAlt+1"
-msgstr "Następna różnica między lewą a środkiem\tAlt+1"
+msgstr "Następna różnica między lewym a środkiem\tAlt+1"
 
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr "Poprzednia różnica między lewą a środkiem\tAlt+Shift+1"
+msgstr "Poprzednia różnica między lewym a środkiem\tAlt+Shift+1"
 
 msgid "Next Difference Between Left and Right\tAlt+2"
-msgstr "Następna różnica między lewą a prawą\tAlt+2"
+msgstr "Następna różnica między lewym a prawym\tAlt+2"
 
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr "Poprzednia różnica między lewą a prawą\tAlt+Shift+2"
+msgstr "Poprzednia różnica między lewym a prawym\tAlt+Shift+2"
 
 msgid "Next Difference Between Middle and Right\tAlt+3"
-msgstr "Następna różnica między środkiem a prawą\tAlt+3"
+msgstr "Następna różnica między środkiem a prawym\tAlt+3"
 
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr "Poprzednia różnica między środkiem a prawą\tAlt+Shift+3"
+msgstr "Poprzednia różnica między środkiem a prawym\tAlt+Shift+3"
 
 msgid "Next Left Only Difference\tAlt+7"
-msgstr "Następna różnica tylko w lewej\tAlt+7"
+msgstr "Następna różnica tylko w lewym\tAlt+7"
 
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr "Poprzednia różnica tylko w lewej\tAlt+Shift+7"
+msgstr "Poprzednia różnica tylko w lewym\tAlt+Shift+7"
 
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr "Następna różnica tylko w środkowej\tAlt+8"
+msgstr "Następna różnica tylko w środku\tAlt+8"
 
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr "Poprzednia różnica tylko w środkowej\tAlt+Shift+8"
+msgstr "Poprzednia różnica tylko w środku\tAlt+Shift+8"
 
 msgid "Next Right Only Difference\tAlt+9"
 msgstr "Następna różnica tylko w prawej\tAlt+9"
@@ -705,7 +747,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Poprzednia różnica tylko w prawej\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Kopiuj z lewej do"
 
 msgid "&Middle"
 msgstr "Środkowy"
@@ -714,22 +756,22 @@ msgid "&Right"
 msgstr "P&rawy"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Kopiuj ze środka do"
 
 msgid "&Left"
 msgstr "&Lewy"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Kopiuj z prawej do"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Kopiuj zaznaczony wiersz(e) z lewej do"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Kopiuj zaznaczony wiersz(e) ze środka do"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Kopiuj zaznaczony wiersz(e) z prawej do"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Kopiuj z lewej\tAlt+Shift+Right"
@@ -802,11 +844,11 @@ msgstr "Porównaj jako"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr "Lewy do środkowego (%1 z %2)"
+msgstr "Lewy do środka (%1 z %2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Lewy do prawego (%1 z %2)"
+msgstr "Lewy do prawej (%1 z %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
@@ -814,23 +856,23 @@ msgstr "Lewy do... (%1 z %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr "Środkowy do lewego (%1 z %2)"
+msgstr "Środek do lewej (%1 z %2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "Środkowy do prawego (%1 z %2)"
+msgstr "Środek do prawej (%1 z %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "Środkowy do... (%1 z %2)"
+msgstr "Środek do... (%1 z %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr "Prawy do środkowego (%1 z %2)"
+msgstr "Prawy do środka (%1 z %2)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "Prawy do lewego (%1 z %2)"
+msgstr "Prawy do lewej (%1 z %2)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
@@ -852,32 +894,32 @@ msgid "&Hide Items"
 msgstr "Ukryj elementy"
 
 msgid "&Open Left"
-msgstr "&Otwórz lewą"
+msgstr "&Otwórz lewy"
 
 msgid "Open Midd&le"
-msgstr "Otwórz środkową"
+msgstr "Otwórz środkowy"
 
 msgid "O&pen Right"
-msgstr "Otwórz &prawą"
+msgstr "Otwórz &prawy"
 
 msgid "Cop&y Pathnames"
 msgstr "Kopiuj nazwy ścieżek"
 
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "Lewa (%1 z %2)"
+msgstr "Lewy (%1 z %2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr "Środkowa (%1 z %2)"
+msgstr "Środkowy (%1 z %2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "Prawa (%1 z %2)"
+msgstr "Prawy (%1 z %2)"
 
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Obie (%1 z %2)"
+msgstr "Oba (%1 z %2)"
 
 #, c-format
 msgid "All (%1 of %2)"
@@ -905,13 +947,13 @@ msgid "Differences to... (%1 of %2)"
 msgstr "Różnice do... (%1 z %2)"
 
 msgid "Left Shell menu"
-msgstr "Menu powłoki po lewej"
+msgstr "Lewe menu powłoki"
 
 msgid "Middle Shell menu"
-msgstr "Menu powłoki na środku"
+msgstr "Środkowe menu powłoki"
 
 msgid "Right Shell menu"
-msgstr "Menu powłoki po prawej"
+msgstr "Prawe menu powłoki"
 
 msgid "Copy"
 msgstr "Kopiuj"
@@ -1062,9 +1104,6 @@ msgstr " Plik: wtyczka rozpakowująca"
 
 msgid "Se&lect..."
 msgstr "Wybierz..."
-
-msgid "Co&mpare"
-msgstr "Porównaj"
 
 msgid "Cancel"
 msgstr "Anuluj"
@@ -1529,7 +1568,7 @@ msgid "Save modified files?"
 msgstr "Zapisać zmodyfikowane pliki?"
 
 msgid "Left side file"
-msgstr "Plik po lewej stronie"
+msgstr "Lewy plik"
 
 msgid "&Save changes"
 msgstr "Zapisz zmiany"
@@ -1547,7 +1586,7 @@ msgid "Discard c&hanges"
 msgstr "Odrzuć zmiany"
 
 msgid "Right side file"
-msgstr "Plik po prawej stronie"
+msgstr "Prawy plik"
 
 msgid "S&ave changes"
 msgstr "Zapisz zmiany"
@@ -1709,13 +1748,13 @@ msgid "Middle:"
 msgstr "Środek:"
 
 msgid "Missing Left:"
-msgstr "Brakujące po lewej:"
+msgstr "Brakujące w lewej:"
 
 msgid "Missing Middle:"
 msgstr "Brakujące na środku:"
 
 msgid "Missing Right:"
-msgstr "Brakujące po prawej:"
+msgstr "Brakujące w prawej:"
 
 msgid "Affects"
 msgstr "Działanie"
@@ -1961,6 +2000,21 @@ msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 
 msgid "OCR result:"
 msgstr "Wynik OCR:"
+
+msgid "Webpage"
+msgstr "Strona internetowa"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr "Lokalizacja folderu danych użytkownika:"
+
+msgid "&Separate user data folders for each pane"
+msgstr "Oddzielne foldery danych użytkownika dla każdego panelu"
 
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
@@ -2419,16 +2473,16 @@ msgid "Break at whitespace or punctuation"
 msgstr "Zatrzymaj na białym znaku lub interpunkcji"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Kopiuj do środka\tAlt+Right"
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Kopiuj do środka\tAlt+Left"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Kopiuj ze środka\tAlt+Shift+Right"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopiuj ze środka\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr ""
@@ -2437,35 +2491,35 @@ msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr ""
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Kopiuj wszystko do środka"
 
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "Prawa do lewej (%1)"
+msgstr "Prawy do lewego (%1)"
 
 #, c-format
 msgid "Right to Middle (%1)"
-msgstr "Prawa do środka (%1)"
+msgstr "Prawy do środka (%1)"
 
 #, c-format
 msgid "Middle to Left (%1)"
-msgstr "Środek do lewej (%1)"
+msgstr "Środek do lewego (%1)"
 
 #, c-format
 msgid "Middle to Right (%1)"
-msgstr "Środek do prawej (%1)"
+msgstr "Środek do prawego (%1)"
 
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "Lewa do prawej (%1)"
+msgstr "Lewy do prawego (%1)"
 
 #, c-format
 msgid "Left to Middle (%1)"
-msgstr "Lewa do środka (%1)"
+msgstr "Lewy do środka (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Lewa do... (%1)"
+msgstr "Lewy do... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
@@ -2473,7 +2527,7 @@ msgstr "Środek do... (%1)"
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Prawa do... (%1)"
+msgstr "Prawy do... (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
@@ -2489,7 +2543,7 @@ msgstr "Różnice do... (%1)"
 
 #, c-format
 msgid "Left (%1)"
-msgstr "Lewa (%1)"
+msgstr "Lewy (%1)"
 
 #, c-format
 msgid "Middle (%1)"
@@ -2497,7 +2551,7 @@ msgstr "Środek (%1)"
 
 #, c-format
 msgid "Right (%1)"
-msgstr "Prawa (%1)"
+msgstr "Prawy (%1)"
 
 #, c-format
 msgid "Both (%1)"
@@ -2676,16 +2730,16 @@ msgid "Diff"
 msgstr "Różnica"
 
 msgid "Left Duplicate Count"
-msgstr "Liczba duplikatów po lewej stronie"
+msgstr "Liczba duplikatów po lewej"
 
 msgid "Right Duplicate Count"
-msgstr "Liczba duplikatów po prawej stronie"
+msgstr "Liczba duplikatów po prawej"
 
 msgid "Middle Duplicate Count"
 msgstr "Liczba duplikatów na środku"
 
 msgid "Move"
-msgstr ""
+msgstr "Przesuń"
 
 msgid "Audio"
 msgstr "Dźwięk"
@@ -2709,7 +2763,7 @@ msgid "Home"
 msgstr "Dom"
 
 msgid "Journal"
-msgstr ""
+msgstr "Dziennik"
 
 msgid "Link"
 msgstr "Odnośnik"
@@ -2730,7 +2784,7 @@ msgid "RecordedTV"
 msgstr "Nagranie TV"
 
 msgid "Search"
-msgstr ""
+msgstr "Szukaj"
 
 msgid "Security"
 msgstr "Bezpieczeństwo"
@@ -2952,6 +3006,10 @@ msgstr "Nazwa wtyczki porównywającej lub pipeline."
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Porównaj %1 z %2"
+
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
 
 msgid "Comma-separated list"
 msgstr "Lista z przecinkami"
@@ -3241,7 +3299,7 @@ msgid "Suggested plugins"
 msgstr "Sugerowane wtyczki"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Wszystkie wtyczki"
 
 #, c-format
 msgid "Private Build: %1"
@@ -3306,6 +3364,9 @@ msgstr "Zamknij inne karty"
 msgid "Enable &Auto Max Width"
 msgstr "Włącz automatyczną maksymalną szerokość"
 
+msgid "We&bpage"
+msgstr "Strona internetowa"
+
 msgid "Frhed is not installed."
 msgstr "Free Hex Editor nie został zainstalowany."
 
@@ -3330,6 +3391,9 @@ msgstr "Cierpliwy"
 
 msgid "histogram"
 msgstr "Histogram"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"
@@ -3359,7 +3423,7 @@ msgid "MDI child window only"
 msgstr "Tylko okno podrzędne"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "Zamknij okno główne, jeśli jest tylko jedno okno podrzędne"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3458,7 +3522,7 @@ msgid "Rotated: %d  "
 msgstr "Obrót: %d  "
 
 msgid "All pages"
-msgstr ""
+msgstr "Wszystkie strony"
 
 msgid "<Edit here>"
 msgstr "<Edytuj tutaj>"
@@ -3483,6 +3547,12 @@ msgstr "Pozycja i tekst wiersz-po-wierszu"
 
 msgid "Word-by-word position and text"
 msgstr "Pozycja i tekst słowo-po-słowie"
+
+msgid "AppData folder"
+msgstr "Folder AppData"
+
+msgid "Install folder"
+msgstr "Folder instalacji"
 
 msgid "Allow only one instance to run"
 msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
@@ -3513,6 +3583,9 @@ msgstr "Dekompilacja"
 
 msgid "&Others"
 msgstr "Pozostałe"
+
+msgid "URL Handling"
+msgstr ""
 
 msgid "Make Uppercase"
 msgstr "Zrób duże litery"
@@ -3631,28 +3704,28 @@ msgid "Specify plugin arguments"
 msgstr "Określ argumenty wtyczki"
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Zrób duże litery"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Zrób małe litery"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Usuń zduplikowane wiersze"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Policz zduplikowane wiersze"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Sortuj wiersze rosnąco"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Sortuj wiersze malejąco"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Odwróć kolumny"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Odwróć wiersze"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
 msgstr ""
@@ -3665,7 +3738,7 @@ msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular 
 msgstr ""
 
 msgid "Trim spaces"
-msgstr ""
+msgstr "Usuń spacje"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
 msgstr ""
@@ -3719,44 +3792,53 @@ msgid "Apply patch using GnuWin32 Patch for Windows"
 msgstr ""
 
 msgid "Display the text content of MS Excel files"
-msgstr ""
+msgstr "Wyświetl zawartość tekstową plików MS Excel"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr ""
+msgstr "Wyświetl zawartość tekstową plików MS PowerPoint"
 
 msgid "Display the text content of MS Visio files"
-msgstr ""
+msgstr "Wyświetl zawartość tekstową plików MS Visio"
 
 msgid "Display the text content of MS Word files"
-msgstr ""
+msgstr "Wyświetl zawartość tekstową plików MS Word"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Ignoruj niektóre kolumny - lista ignorowanych kolumn z nazwy wtyczki lub argumentu wtyczki"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr ""
+msgstr "Wtyczka ignorująca komentarze (//... i /* ... */) w plikach C, C++, PHP i JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr ""
+msgstr "Ignoruj niektóre pola - lista ignorowanych pól z nazwy wtyczki lub argumentu wtyczki"
 
 msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
+msgstr "Podstawowe funkcje tekstowe dla menu kontekstowego"
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
 msgid "Filter applied"
-msgstr ""
+msgstr "Zastosowano filtr"
 
 #, c-format
 msgid "Clipboard at %s"
 msgstr ""
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
+msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
 
 msgid "This system does not support clipboard history."
-msgstr ""
+msgstr "Ten system nie obsługuje historii schowka."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
+msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"

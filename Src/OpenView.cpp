@@ -105,8 +105,8 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND(ID_EDIT_CUT, OnEditAction<WM_CUT>)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditAction<WM_UNDO>)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, (OnEditAction<EM_SETSEL, 0, -1>))
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnCompare)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateCompare)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnCompare)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnUpdateCompare)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnCompare)
 	ON_COMMAND_RANGE(ID_OPEN_WITH_UNPACKER, ID_OPEN_WITH_UNPACKER, OnCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
@@ -627,7 +627,8 @@ void COpenView::OnCompare(UINT nID)
 
 	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
 
-	if (pathsType == paths::DOES_NOT_EXIST)
+	if (pathsType == paths::DOES_NOT_EXIST &&
+		!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
@@ -1057,7 +1058,12 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 			{
 				pathType[i] = paths::DoesPathExist(paths[i], IsArchiveFile);
 				if (pathType[i] == paths::DOES_NOT_EXIST)
-					bInvalid[i] = true;
+				{
+					if (paths::IsURL(paths[i]))
+						pathType[i] = paths::IS_EXISTING_FILE;
+					else
+						bInvalid[i] = true;
+				}
 			}
 		}
 
@@ -1272,9 +1278,13 @@ void COpenView::OnSelectUnpacker()
 		m_files[nFiles] = strPath;
 		nFiles++;
 	}
-	pathsType = paths::GetPairComparability(m_files);
+	PathContext tmpFiles = m_files;
+	if (tmpFiles.GetSize() == 2 && tmpFiles[1].empty())
+		tmpFiles[1] = tmpFiles[0];
+	pathsType = paths::GetPairComparability(tmpFiles, IsArchiveFile);
 
-	if (pathsType != paths::IS_EXISTING_FILE) 
+	if (pathsType == paths::IS_EXISTING_DIR || (pathsType == paths::DOES_NOT_EXIST &&
+		!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); })))
 		return;
 
 	// let the user select a handler

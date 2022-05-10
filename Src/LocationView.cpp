@@ -91,6 +91,7 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
 	ON_WM_MOUSEACTIVATE()
+	ON_WM_MOUSEWHEEL()
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
@@ -636,6 +637,15 @@ void CLocationView::OnMouseMove(UINT nFlags, CPoint point)
 int  CLocationView::OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message)
 {
 	return MA_NOACTIVATE;
+}
+
+BOOL CLocationView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	CMergeEditView* pView = GetDocument()->GetActiveMergeView();
+	if (pView)
+		return static_cast<BOOL>(pView->SendMessage(WM_MOUSEWHEEL,
+			MAKEWPARAM(nFlags, zDelta), MAKELPARAM(pt.x, pt.y)));
+	return CView::OnMouseWheel(nFlags, zDelta, pt);
 }
 
 /**

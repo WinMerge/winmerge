@@ -92,8 +92,8 @@ BEGIN_MESSAGE_MAP(CHexMergeDoc, CDocument)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_MIDDLE, OnUpdateFileSaveMiddle)
 	ON_UPDATE_COMMAND_UI(ID_FILE_SAVE_RIGHT, OnUpdateFileSaveRight)
 	ON_COMMAND(ID_RESCAN, OnFileReload)
-	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnFileRecompareAs)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_IMAGE, OnUpdateFileRecompareAs)
+	ON_COMMAND_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnFileRecompareAs)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_MERGE_COMPARE_TEXT, ID_MERGE_COMPARE_WEBPAGE, OnUpdateFileRecompareAs)
 	// [View] menu
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
@@ -494,7 +494,7 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, co
 		if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
 			return E_FAIL;
 		m_pView[index]->SetReadOnly(readOnly);
-		m_filePaths.SetPath(index, filename);
+		m_filePaths.SetPath(index, filename, false);
 		ASSERT(m_nBufferType[index] == BUFFERTYPE::NORMAL); // should have been initialized to BUFFERTYPE::NORMAL in constructor
 		if (!strDesc.empty())
 		{
@@ -928,7 +928,7 @@ void CHexMergeDoc::OnRefresh()
 
 void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 {
-	FileLocation fileloc[3];
+	PathContext paths = m_filePaths;
 	DWORD dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
@@ -938,18 +938,18 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
-		fileloc[nBuffer].setPath(m_filePaths[nBuffer]);
 		dwFlags[nBuffer] = m_pView[nBuffer]->GetReadOnly() ? FFILEOPEN_READONLY : 0;
 		strDesc[nBuffer] = m_strDesc[nBuffer];
 	}
 	if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
-		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -1;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -ID_MERGE_COMPARE_HEX;
 	}
 
 	CloseNow();
-	GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker);
+	GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
+		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID);
 }
 
 void CHexMergeDoc::OnOpenWithUnpacker()
@@ -963,9 +963,9 @@ void CHexMergeDoc::OnOpenWithUnpacker()
 		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
-		GetMainFrame()->DoFileOpen(
-			GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -1,
-			&paths, dwFlags, strDesc, _T(""), &infoUnpacker);
+		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
+			GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr,
+			GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? ID_MERGE_COMPARE_HEX : -ID_MERGE_COMPARE_HEX);
 	}
 }
 

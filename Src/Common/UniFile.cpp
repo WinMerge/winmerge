@@ -780,7 +780,7 @@ bool UniStdioFile::ReadBom()
 
 	// Read 8 KB at max for get enough data determining UTF-8 without BOM.
 	const int max_size = 8 * 1024;
-	std::unique_ptr<unsigned char[]> buff(new unsigned char[max_size]);
+	auto buff = std::make_unique<unsigned char[]>(max_size);
 
 	size_t bytes = fread(&buff[0], 1, max_size, m_fp);
 	m_data = 0;

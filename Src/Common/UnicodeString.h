@@ -65,6 +65,7 @@ inline String format(String const & fmt, Args const & ... args)
 String format_strings(const String& fmt, const String *args[], size_t nargs);
 String format_string1(const String& fmt, const String& arg1);
 String format_string2(const String& fmt, const String& arg1, const String& arg2);
+String format_string3(const String& fmt, const String& arg1, const String& arg2, const String& arg3);
 
 template <class InputIterator>
 String join(const InputIterator& begin, const InputIterator& end, const String& delim)

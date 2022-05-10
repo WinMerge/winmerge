@@ -215,6 +215,45 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Co&mpare"
+msgstr "Co&nfronta"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&File"
 
@@ -232,6 +271,9 @@ msgstr "&Binario"
 
 msgid "&Image"
 msgstr "&Immagine"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Nuovo (&3 pannelli)"
@@ -542,7 +584,7 @@ msgstr "&Converti caratteri di fine linea in"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Modalità unione\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "&Ricarica\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -1059,9 +1101,6 @@ msgstr " File: plugin Decompressore"
 
 msgid "Se&lect..."
 msgstr "Se&leziona..."
-
-msgid "Co&mpare"
-msgstr "Co&nfronta"
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -1968,6 +2007,21 @@ msgstr "&Abilita il confronto delle immagini in confronto cartelle"
 
 msgid "OCR result:"
 msgstr "Risultato OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
@@ -3180,6 +3234,10 @@ msgstr ""
 msgid "Compare %1 with %2"
 msgstr "Confronta %1 con %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Elenco separato da virgole"
 
@@ -3658,6 +3716,9 @@ msgstr "Chiudi &altre schede"
 msgid "Enable &Auto Max Width"
 msgstr "Abilita altezza massima &automatica"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed non è installato."
 
@@ -3690,6 +3751,9 @@ msgstr ""
 
 msgid "histogram"
 msgstr "istogramma"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr ""
@@ -3844,6 +3908,12 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 
@@ -3872,6 +3942,9 @@ msgid "Decompilation"
 msgstr ""
 
 msgid "&Others"
+msgstr ""
+
+msgid "URL Handling"
 msgstr ""
 
 msgid "Make Uppercase"
@@ -4105,6 +4178,12 @@ msgstr ""
 msgid "Basic text functions for the context menu"
 msgstr ""
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr ""
 
@@ -4119,4 +4198,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

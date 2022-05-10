@@ -1,5 +1,28 @@
 <?xml version="1.0"?>
 <plugins>
+  <plugin name="HandleSchemeHTTP">
+    <event value="URL_PACK_UNPACK" />
+    <description value="HTTP URL Scheme Handler with curl. &#xD;&#xA;Arguments: Command line options passed to the curl command." />
+    <file-filters value="^http://.*$;^https://.*$" />
+    <extended-properties value="ProcessType=URL Handling" />
+    <is-automatic value="true" />
+    <arguments value="--fail -L " />
+    <unpack-file>
+      <command>curl ${*} -o "${DST_FILE}" "${SRC_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="HandleSchemeReg">
+    <event value="URL_PACK_UNPACK" />
+    <description value="Windows Registry URL Scheme Handler. &#xD;&#xA;Arguments: Command line options passed to the reg.exe command." />
+    <file-filters value="^reg:.*$" />
+    <extended-properties value="ProcessType=URL Handling" />
+    <is-automatic value="true" />
+    <unpacked-file-extension value=".reg" />
+    <arguments value="" />
+    <unpack-file>
+      <command>reg.exe export "${SRC_URL_SUFFIX}" "${DST_FILE}" /y ${*}</command>
+    </unpack-file>
+  </plugin>
   <plugin name="PrettifyHTML">
     <event value="FILE_PACK_UNPACK" />
     <description value="HTML Prettier with tidy-html5. &#xD;&#xA;Arguments: Command line options passed to the tidy command." />
@@ -7,7 +30,7 @@
     <is-automatic value="false" />
     <unpacked-file-extension value=".html" />
     <extended-properties value="ProcessType=Prettification;MenuCaption=Prettify HTML;GenerateEditorScript" />
-    <arguments value="-indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha " />
+    <arguments value="--tidy-mark no -indent --indent-attributes yes --tab-size 4 --indent-spaces 4 -wrap 0 --sort-attributes alpha " />
     <unpack-file>
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} --force-output yes -o "${DST_FILE}" | exit 0</command>
     </unpack-file>
@@ -182,6 +205,28 @@ WScript.StdOut.WriteLine "Hello World!"
 WScript.StdOut.WriteLine WScript.Arguments(0)
       </script>
     </unpack-file>
+    <pack-file>
+      <command>cmd /c cscript //nologo "${SCRIPT_FILE}" "${SRC_FILE}" > "${DST_FILE}"</command>
+      <script fileExtension=".vbs">
+WScript.StdOut.WriteLine "!dlroW olleH"
+WScript.StdOut.WriteLine WScript.Arguments(0)
+      </script>
+    </pack-file>
+  </plugin>
+  <plugin name="URL-handler-test">
+    <event value="URL_PACK_UNPACK" />
+    <description value="test scheme handler" />
+    <file-filters value="^test://.*$" />
+    <is-automatic value="true" />
+    <is-folder>
+      <command>cmd /c echo ${SRC_FILE} | findstr folder</command>
+    </is-folder>
+    <unpack-file>
+      <command>cmd /c echo file > "${DST_FILE}"</command>
+    </unpack-file>
+    <unpack-folder>
+      <command>cmd /c echo folder > "${DST_FOLDER}\test.txt"</command>
+    </unpack-folder>
   </plugin>
   -->
 </plugins>

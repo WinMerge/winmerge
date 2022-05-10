@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-03-19 20:29+0100\n"
+"PO-Revision-Date: 2022-05-09 18:00+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -217,6 +217,45 @@ msgstr "Prilagoditev &vektorskih slik"
 msgid "Compare Extracted &Text From Images"
 msgstr "Primerjaj razširjeno &besedilo s slike"
 
+msgid "Co&mpare"
+msgstr "Pri&merjaj"
+
+msgid "&Screenshots"
+msgstr "&Posnetki zaslona"
+
+msgid "&Full Size Screenshots"
+msgstr "&Celozaslonski posnetki zaslona"
+
+msgid "&HTMLs"
+msgstr "&HTML-ji"
+
+msgid "&Texts"
+msgstr "&Besedila"
+
+msgid "&Resource Trees"
+msgstr "&Drevesa virov"
+
+msgid "&Size"
+msgstr "&Velikost"
+
+msgid "Fit to Window"
+msgstr "Prilagodi oknu"
+
+msgid "Clear &Browsing Data"
+msgstr "Počis&ti podatke brskanja"
+
+msgid "&Disk Cache"
+msgstr "Predpom&nilnik diska"
+
+msgid "&Cookies"
+msgstr "Pišk&otki"
+
+msgid "&Browsing History"
+msgstr "&Zgodovina brskanja"
+
+msgid "&All Profile"
+msgstr "Vsi pro&fili"
+
 msgid "&File"
 msgstr "&Datoteka"
 
@@ -234,6 +273,9 @@ msgstr "&Dvojiško"
 
 msgid "&Image"
 msgstr "S&lika"
+
+msgid "&Webpage"
+msgstr "SP&letna stran"
 
 msgid "New (&3 panes)"
 msgstr "Nova (&3 okna)"
@@ -544,8 +586,8 @@ msgstr "&Pretvori konce vrstic v"
 msgid "Mer&ge Mode\tF9"
 msgstr "Združevalni način\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "Znova nal&oži\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Znovanal&oži\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Znova primerjaj kot"
@@ -1061,9 +1103,6 @@ msgstr " Datoteka: Vtičnik razpakovalca"
 
 msgid "Se&lect..."
 msgstr "Iz&beri..."
-
-msgid "Co&mpare"
-msgstr "Pri&merjaj"
 
 msgid "Cancel"
 msgstr "Prekliči"
@@ -1972,6 +2011,21 @@ msgstr "Omogoči primerjavo &slik v primerjanju map"
 
 msgid "OCR result:"
 msgstr "Rezultat OCR:"
+
+msgid "Webpage"
+msgstr "Domača stran"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "Vzorec URL-ja za v&ključitev (regularni izraz):"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "Vzorec URL-ja za &izključitev (regularni izraz):"
+
+msgid "&User data folder location:"
+msgstr "&Mesto mape z uporabniškimi podatki:"
+
+msgid "&Separate user data folders for each pane"
+msgstr "&Ločene mape z uporabniškimi podtaki za vsako podokno"
 
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
@@ -3192,6 +3246,10 @@ msgstr "Ime vtičnika predrazlikovalca ali cevovod."
 msgid "Compare %1 with %2"
 msgstr "Primerjaj %1 z %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "Primerjaj %1 z %2 in %3"
+
 msgid "Comma-separated list"
 msgstr "Seznam, ločen z vejicami"
 
@@ -3686,6 +3744,9 @@ msgstr "Zapri d&ruge zavihke"
 msgid "Enable &Auto Max Width"
 msgstr "Omogoči sa&modejno največjo širino"
 
+msgid "We&bpage"
+msgstr "&Spletna stran"
+
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
 
@@ -3716,6 +3777,9 @@ msgstr "potrpežljivo"
 
 msgid "histogram"
 msgstr "histogram"
+
+msgid "none"
+msgstr "brez"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3870,6 +3934,12 @@ msgstr "Položaj vrstico po vrstico in besedilo"
 msgid "Word-by-word position and text"
 msgstr "Položaj besedo po besedo in besedilo"
 
+msgid "AppData folder"
+msgstr "Mapa aplikacijskih podatkov"
+
+msgid "Install folder"
+msgstr "Namestitvena mapa"
+
 msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
 
@@ -3899,6 +3969,9 @@ msgstr "Decompilation"
 
 msgid "&Others"
 msgstr "&Drugo"
+
+msgid "URL Handling"
+msgstr "Upravljanje URL-jev"
 
 msgid "Make Uppercase"
 msgstr "VELIKE ČRKE"
@@ -4245,6 +4318,20 @@ msgstr "Filter vrstic Prediff"
 msgid "Basic text functions for the context menu"
 msgstr "Osnovne funkcije besedila za priročni meni"
 
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
+msgstr ""
+"Upravljalec sheme URL-jev HTTP s curl.\n"
+"Argumenti: možnosti ukazne vrstice so bile posredovane ukazu curl."
+
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
+msgstr ""
+"Upravljavec sheme URL registra Windows.\n"
+"Argumenti: možnosti ukazne vrstice, posredovane ukazu reg.exe."
+
 msgid "Filter applied"
 msgstr "Filter je uporabljen"
 
@@ -4264,3 +4351,6 @@ msgstr "Ta sistem ne podpira zgodovine odložišča."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"

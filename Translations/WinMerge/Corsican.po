@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-18 21:36+0000\n"
-"PO-Revision-Date: 2022-03-19 18:58+0100\n"
+"POT-Creation-Date: 2022-05-05 12:15+0000\n"
+"PO-Revision-Date: 2022-05-08 14:09+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -125,7 +125,7 @@ msgid "Auto-Fit All Columns"
 msgstr "Adattà autumaticamente tutte e culonne"
 
 msgid "View &Differences"
-msgstr "Fighjà e &sfarenze"
+msgstr "Affissà e &sfarenze"
 
 msgid "Diff &Block Size"
 msgstr "Dimensione di &bloccu di a sfarenza"
@@ -155,7 +155,7 @@ msgid "&Active Pane"
 msgstr "Pannellu &attivu"
 
 msgid "Rotate &Right 90deg"
-msgstr "Grà à &diritta di 90°"
+msgstr "Girà à &diritta di 90°"
 
 msgid "Rotate &Left 90deg"
 msgstr "Girà à &manca di 90°"
@@ -219,6 +219,45 @@ msgstr "Messa à a scala di a fiura &vettoriale"
 msgid "Compare Extracted &Text From Images"
 msgstr "Paragunà u &testu estrattu da e fiure"
 
+msgid "Co&mpare"
+msgstr "&Paragunà"
+
+msgid "&Screenshots"
+msgstr "Catture di &screnu"
+
+msgid "&Full Size Screenshots"
+msgstr "Cattu&re di screnu in dimensione sana"
+
+msgid "&HTMLs"
+msgstr "&HTML"
+
+msgid "&Texts"
+msgstr "&Testi"
+
+msgid "&Resource Trees"
+msgstr "&Arburi di risorse"
+
+msgid "&Size"
+msgstr "&Dimensione"
+
+msgid "Fit to Window"
+msgstr "Adattà à a finestra"
+
+msgid "Clear &Browsing Data"
+msgstr "&Viutà i dati di navigazione"
+
+msgid "&Disk Cache"
+msgstr "&Impiatta di discu"
+
+msgid "&Cookies"
+msgstr "&Canistrelli"
+
+msgid "&Browsing History"
+msgstr "Cronolugia di &navigazione"
+
+msgid "&All Profile"
+msgstr "T&utti i prufili"
+
 msgid "&File"
 msgstr "&Schedariu"
 
@@ -236,6 +275,9 @@ msgstr "&Binariu"
 
 msgid "&Image"
 msgstr "&Fiura"
+
+msgid "&Webpage"
+msgstr "Pagina &web"
 
 msgid "New (&3 panes)"
 msgstr "Novu (&3 pannelli)"
@@ -546,7 +588,7 @@ msgstr "Cun&vertisce i caratteri di fine di linea in"
 msgid "Mer&ge Mode\tF9"
 msgstr "Modu di &fusione\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "&Ricaricà\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -1064,9 +1106,6 @@ msgstr " Schedariu : Modulu d’estensione di u spacchittadore"
 msgid "Se&lect..."
 msgstr "Sele&zziunà…"
 
-msgid "Co&mpare"
-msgstr "&Paragunà"
-
 msgid "Cancel"
 msgstr "Abbandunà"
 
@@ -1490,7 +1529,7 @@ msgid "Line Difference Coloring"
 msgstr "Culurazione di sfarenza di linea"
 
 msgid "View line differences"
-msgstr "Fighjà e sfarenze di linea"
+msgstr "Affissà e sfarenze di linea"
 
 msgid "&Character level"
 msgstr "À u livellu di u &caratteru"
@@ -1957,7 +1996,7 @@ msgid "Frhed settings"
 msgstr "Preferenze Frhed"
 
 msgid "View &Settings..."
-msgstr "Fighjà e &preferenze…"
+msgstr "Affissà e &preferenze…"
 
 msgid "&Binary Mode..."
 msgstr "Modu &binariu…"
@@ -1976,6 +2015,21 @@ msgstr "&Permette di paragunà e fiure in u paragone di cartulare"
 
 msgid "OCR result:"
 msgstr "Risultatu OCR :"
+
+msgid "Webpage"
+msgstr "Pagina web"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "Mudellu d’indirizzu web à include (espressione regulare) :"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "Mudellu d’indirizzu web à esclude (espressione regulare) :"
+
+msgid "&User data folder location:"
+msgstr "&Lucalizazione di u cartulare di dati di l’utilizatore :"
+
+msgid "&Separate user data folders for each pane"
+msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
@@ -2083,7 +2137,7 @@ msgid ""
 "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU "
 "General Public License in the Help menu for details."
 msgstr ""
-"WinMerge hè furnitu senza ALCUNA GUARANTIA. Ghjè un prugramma liberu è si pò ridistribuiscelu secondu à certe cundizioni ; per sapene di più, fighjate "
+"WinMerge hè furnitu senza ALCUNA GUARANTIA. Ghjè un prugramma liberu è si pò ridistribuiscelu secondu à certe cundizioni ; per sapene di più, lighjite "
 "a licenza publica generale GNU in u listinu d’aiutu."
 
 msgid "&Abort"
@@ -2483,7 +2537,7 @@ msgid ""
 "Do you want to show only the comparison results, not the contents of the files?\n"
 "\n"
 msgstr ""
-"Site à ghjorni di paragunà schedarii assai maiò.\n"
+"State per paragunà schedarii assai maiò.\n"
 "L’affissera di u cuntenutu di i schedarii richiede una quantità assai maiò di memoria.\n"
 "Vulete affissà solu i risultati di paragone, è micca u cuntenutu di i schedarii ?\n"
 "\n"
@@ -2794,7 +2848,7 @@ msgid "Confirm Move"
 msgstr "Cunfirmà u dispiazzamentu"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "Site à ghjorni di chjode a finestra chì paraguneghja i cartulari. Vulete chjode a finestra da veru ?"
+msgstr "State per chjode a finestra chì paraguneghja i cartulari. Vulete chjode a finestra da veru ?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -2803,8 +2857,12 @@ msgstr "Impussibule di lancià l’editore esternu : %1"
 msgid "Unknown archive format"
 msgstr "Furmatu scunnisciutu d’archiviu"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr "Fiascu durante l’estrazzione di i schedarii d’archiviu.\nVulete paragunà i schedarii d’archiviu cum’è schedarii di testu ?"
+msgid ""
+"Failed to extract archive files.\n"
+"Do you want to compare the archive files as text files?"
+msgstr ""
+"Fiascu durante l’estrazzione di i schedarii d’archiviu.\n"
+"Vulete paragunà i schedarii d’archiviu cum’è schedarii di testu ?"
 
 msgid "Filename"
 msgstr "Nome di schedariu"
@@ -3197,6 +3255,10 @@ msgstr "Nome o cundottu di u modulu d’estensione di u preparagone."
 msgid "Compare %1 with %2"
 msgstr "Paragunà %1 cù %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "Paragunà %1 cù %2 è %3"
+
 msgid "Comma-separated list"
 msgstr "Lista staccata da virgule"
 
@@ -3414,7 +3476,7 @@ msgid ""
 msgstr ""
 "L’impiegu di l’archiviera ùn hè micca attivatu.\n"
 "Ùn si pò micca truvà tutti i cumpunenti richiesti (7-Zip è/o Merge7z*.dll) per impiegà l’archiviera.\n"
-"Fighjate u manuale per sapene di più nant’à l’impiegu di l’archiviera è cumu attivalla."
+"Lighjite u manuale per sapene di più nant’à l’impiegu di l’archiviera è cumu attivalla."
 
 msgid "Select file for export"
 msgstr "Selezziunà u schedariu per l’espurtazione"
@@ -3439,7 +3501,7 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"Site à ghjorni di chjode parechje finestre di paragone.\n"
+"State per chjode parechje finestre di paragone.\n"
 "\n"
 "Vulete cuntinuà ?"
 
@@ -3692,6 +3754,9 @@ msgstr "Chjode l’&altre unghjette"
 msgid "Enable &Auto Max Width"
 msgstr "&Attivà a larghezza massima autumatica"
 
+msgid "We&bpage"
+msgstr "Pagina we&b"
+
 msgid "Frhed is not installed."
 msgstr "Frhed ùn hè micca installatu."
 
@@ -3722,6 +3787,9 @@ msgstr "pazienza"
 
 msgid "histogram"
 msgstr "graficu à barre"
+
+msgid "none"
+msgstr "nisunu"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3876,6 +3944,12 @@ msgstr "Pusizione è testu linea à a linea"
 msgid "Word-by-word position and text"
 msgstr "Pusizione è testu parolla à a parolla"
 
+msgid "AppData folder"
+msgstr "Cartulare AppData"
+
+msgid "Install folder"
+msgstr "Cartulare d’installazione"
+
 msgid "Allow only one instance to run"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
 
@@ -3905,6 +3979,9 @@ msgstr "Decumpilazione"
 
 msgid "&Others"
 msgstr "&L’altri moduli"
+
+msgid "URL Handling"
+msgstr "Ghjestione d’indirizzu web"
 
 msgid "Make Uppercase"
 msgstr "Mette in maiuscula"
@@ -4251,6 +4328,20 @@ msgstr "Filtru di linea di preparagone"
 msgid "Basic text functions for the context menu"
 msgstr "Funzioni basiche di testu per u listinu cuntestuale"
 
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
+msgstr ""
+"Ghjestiunariu di mudellu d’indirizzu web HTTP cù curl.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « curl »."
+
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
+msgstr ""
+"Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
+
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
 
@@ -4270,3 +4361,6 @@ msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"

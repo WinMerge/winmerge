@@ -242,6 +242,45 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Co&mpare"
+msgstr ""
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Датотека"
@@ -262,6 +301,9 @@ msgstr ""
 
 #, c-format
 msgid "&Image"
+msgstr ""
+
+msgid "&Webpage"
 msgstr ""
 
 #, c-format
@@ -663,8 +705,7 @@ msgstr "Заврши ред према"
 msgid "Mer&ge Mode\tF9"
 msgstr "&Начин поређења\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
 
 #, c-format
@@ -1296,9 +1337,6 @@ msgid " File: Unpacker Plugin"
 msgstr ""
 
 msgid "Se&lect..."
-msgstr ""
-
-msgid "Co&mpare"
 msgstr ""
 
 #, c-format
@@ -2418,6 +2456,21 @@ msgid "&Enable image compare in folder compare"
 msgstr ""
 
 msgid "OCR result:"
+msgstr ""
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
 msgstr ""
 
 #, c-format
@@ -3742,6 +3795,10 @@ msgid "Compare %1 with %2"
 msgstr "Упореди %1 са %2"
 
 #, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
+#, c-format
 msgid "Comma-separated list"
 msgstr "Списак је одвојен зарезом"
 
@@ -4199,6 +4256,9 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr ""
 
@@ -4224,6 +4284,9 @@ msgid "patience"
 msgstr ""
 
 msgid "histogram"
+msgstr ""
+
+msgid "none"
 msgstr ""
 
 msgid "GDI"
@@ -4379,6 +4442,12 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 #, c-format
 msgid "Allow only one instance to run"
 msgstr "Дозволи само једну покренуту надлежност"
@@ -4408,6 +4477,9 @@ msgid "Decompilation"
 msgstr ""
 
 msgid "&Others"
+msgstr ""
+
+msgid "URL Handling"
 msgstr ""
 
 msgid "Make Uppercase"
@@ -4641,6 +4713,12 @@ msgstr ""
 msgid "Basic text functions for the context menu"
 msgstr ""
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr ""
 
@@ -4655,4 +4733,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

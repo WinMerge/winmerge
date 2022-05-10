@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-18 21:36+0000\n"
-"PO-Revision-Date: 2022-03-20 09:09+0200\n"
+"POT-Creation-Date: 2022-05-05 12:15+0000\n"
+"PO-Revision-Date: 2022-05-06 05:06+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -217,6 +217,45 @@ msgstr "&Vektorinių vaizdų mastelio keitimas"
 msgid "Compare Extracted &Text From Images"
 msgstr "Lyginti iš paveikslėlių ištrauktą &tekstą"
 
+msgid "Co&mpare"
+msgstr "Ly&ginti"
+
+msgid "&Screenshots"
+msgstr "Ekrano kopija&s"
+
+msgid "&Full Size Screenshots"
+msgstr "&Viso dydžio ekrano kopijas"
+
+msgid "&HTMLs"
+msgstr "&HTML'us"
+
+msgid "&Texts"
+msgstr "&Tekstus"
+
+msgid "&Resource Trees"
+msgstr "&Resursų medžius"
+
+msgid "&Size"
+msgstr "Dydi&s"
+
+msgid "Fit to Window"
+msgstr "Talpinti į langą"
+
+msgid "Clear &Browsing Data"
+msgstr "Išvalyti &Naršymo duomenis"
+
+msgid "&Disk Cache"
+msgstr "&Disko talpykla"
+
+msgid "&Cookies"
+msgstr "&Slapukai"
+
+msgid "&Browsing History"
+msgstr "&Naršymo istorija"
+
+msgid "&All Profile"
+msgstr "Visi profili&ai"
+
 msgid "&File"
 msgstr "&Failas"
 
@@ -235,6 +274,9 @@ msgstr "&Binarinis"
 msgid "&Image"
 msgstr "Pave&ikslėlis"
 
+msgid "&Webpage"
+msgstr "Ti&nklapis"
+
 msgid "New (&3 panes)"
 msgstr "Naujas (&3 polangiai)"
 
@@ -245,7 +287,7 @@ msgid "Open Conflic&t File..."
 msgstr "Atver&ti konfliktų failą..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Atverti &mainų sritį"
 
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Atverti pro&jektą...\tCtrl+J"
@@ -544,7 +586,7 @@ msgstr "Keisti eilučių pabaigos formatą į"
 msgid "Mer&ge Mode\tF9"
 msgstr "Sulieji&mo režimas\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "&Atnaujinti\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -1061,9 +1103,6 @@ msgstr " Failams: Išpakuotojas"
 
 msgid "Se&lect..."
 msgstr "Pa&rinkti..."
-
-msgid "Co&mpare"
-msgstr "Ly&ginti"
 
 msgid "Cancel"
 msgstr "Atsisakyti"
@@ -1960,6 +1999,21 @@ msgstr "Lyginti pav&eikslėlius lyginant katalogus"
 
 msgid "OCR result:"
 msgstr "Optinio ženklų atpažinimo (OCR) rezultatas:"
+
+msgid "Webpage"
+msgstr "Tinklalapių"
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr "URL šablonas, ką įtraukt&i (Reguliarioji išraiška)"
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr "URL šablonas, ką pašalinti (Reguliarioji išraiška)"
+
+msgid "&User data folder location:"
+msgstr "Na&udotojo duomenų katalogo vieta:"
+
+msgid "&Separate user data folders for each pane"
+msgstr "At&skiri naudotojo duomenų katalogai kiekvienam polangiui"
 
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
@@ -2952,6 +3006,10 @@ msgstr "Paruošėjo papildinio pavadinimas arba komandų grandinė."
 msgid "Compare %1 with %2"
 msgstr "Lyginti %1 su %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "Lyginti %1 su %2 ir %3"
+
 msgid "Comma-separated list"
 msgstr "Kableliais sudalintas sąrašas"
 
@@ -3305,6 +3363,9 @@ msgstr "Užverti k&itas korteles"
 msgid "Enable &Auto Max Width"
 msgstr "Įjungti &Automatinį maks. plotį"
 
+msgid "We&bpage"
+msgstr "Ti&nklapiai"
+
 msgid "Frhed is not installed."
 msgstr "„Frhed“ neįdiegtas."
 
@@ -3329,6 +3390,9 @@ msgstr "kantrus"
 
 msgid "histogram"
 msgstr "histograma"
+
+msgid "none"
+msgstr "joks"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3483,6 +3547,12 @@ msgstr "Paeilutinė pozicija ir tekstas"
 msgid "Word-by-word position and text"
 msgstr "Pažodinė pozicija ir tekstas"
 
+msgid "AppData folder"
+msgstr "„AppData“ katalogas"
+
+msgid "Install folder"
+msgstr "Diegimo katalogas"
+
 msgid "Allow only one instance to run"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 
@@ -3512,6 +3582,9 @@ msgstr "Dekompiliavimas"
 
 msgid "&Others"
 msgstr "Kiti"
+
+msgid "URL Handling"
+msgstr "URL apdorojimas"
 
 msgid "Make Uppercase"
 msgstr "Pakeisti didžiosiomis raidėmis"
@@ -3744,6 +3817,12 @@ msgstr "Parengėjo eilutės filtras"
 msgid "Basic text functions for the context menu"
 msgstr "Pagrindinės kontekstinio meniu teksto funkcijos"
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
 
@@ -3759,3 +3838,6 @@ msgstr "Ši sistema nepalaiko mainų srities istorijos."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"

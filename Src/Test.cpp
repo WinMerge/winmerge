@@ -13,6 +13,7 @@
 #include "MergeEditFrm.h"
 #include "HexMergeFrm.h"
 #include "ImgMergeFrm.h"
+#include "WebPageDiffFrm.h"
 #include "DiffContext.h"
 #include "CompareStats.h"
 #include "unicoder.h"
@@ -460,6 +461,9 @@ TEST(CommandLineTest, WindowType)
 	String pathsImage =
 		paths::ConcatPath(projectRoot, L"Src/res/aborted.ico") + L" " +
 		paths::ConcatPath(projectRoot, L"Src/res/binarydiff.ico");
+	String pathsWebpage =
+		paths::ConcatPath(projectRoot, L"Docs/User/ReleaseNotes.html") + L" " +
+		paths::ConcatPath(projectRoot, L"Docs/User/ChangeLog.html");
 
 	MergeCmdLineInfo cmdInfo((progpath + L" /t text " + pathsTable).c_str());
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
@@ -489,8 +493,14 @@ TEST(CommandLineTest, WindowType)
 	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
 	pFrame->PostMessage(WM_CLOSE);
 
-	MergeCmdLineInfo cmdInfo5((progpath + L" /t automatic " + pathsImage).c_str());
+	MergeCmdLineInfo cmdInfo5((progpath + L" /t webpage " + pathsWebpage).c_str());
 	theApp.ParseArgsAndDoOpen(cmdInfo5, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo6((progpath + L" /t automatic " + pathsImage).c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo6, GetMainFrame());
 	pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
 	pFrame->PostMessage(WM_CLOSE);
@@ -557,8 +567,14 @@ TEST(CommandLineTest, New)
 	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)));
 	pFrame->PostMessage(WM_CLOSE);
 
-	MergeCmdLineInfo cmdInfo8((progpath + L" /t automatic /new").c_str());
+	MergeCmdLineInfo cmdInfo8((progpath + L" /t webpage /new").c_str());
 	theApp.ParseArgsAndDoOpen(cmdInfo8, GetMainFrame());
+	pFrame = GetMainFrame()->GetActiveFrame();
+	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)));
+	pFrame->PostMessage(WM_CLOSE);
+
+	MergeCmdLineInfo cmdInfo9((progpath + L" /t automatic /new").c_str());
+	theApp.ParseArgsAndDoOpen(cmdInfo9, GetMainFrame());
 	pFrame = GetMainFrame()->GetActiveFrame();
 	EXPECT_TRUE(pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame)));
 	pFrame->PostMessage(WM_CLOSE);

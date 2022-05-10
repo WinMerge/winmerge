@@ -741,9 +741,15 @@ String GetPathOnly(const String& fullpath)
 	return spath;
 }
 
+bool IsURL(const String& path)
+{
+	size_t pos = path.find(':');
+	return (pos != String::npos && pos > 1);
+}
+
 bool IsURLorCLSID(const String& path)
 {
-	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
+	return IsURL(path) || path.find(_T("::{")) != String::npos;
 }
 
 bool IsDecendant(const String& path, const String& ancestor)

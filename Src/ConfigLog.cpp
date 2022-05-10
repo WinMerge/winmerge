@@ -383,6 +383,7 @@ bool CConfigLog::DoFile(String &sError)
 	WriteVersionOf1(2, _T(".\\WinMergeContextMenu.dll"));
 	WriteVersionOf1(2, _T(".\\Frhed\\hekseditU.dll"));
 	WriteVersionOf1(2, _T(".\\WinIMerge\\WinIMergeLib.dll"));
+	WriteVersionOf1(2, _T(".\\WinWebDiff\\WinWebDiffLib.dll"));
 	WriteVersionOf1(2, _T(".\\Merge7z\\7z.dll"));
 
 // System settings
@@ -400,6 +401,7 @@ bool CConfigLog::DoFile(String &sError)
 // Plugins
 	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
 	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
+	WritePluginsInLogFile(L"URL_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");

@@ -217,6 +217,45 @@ msgstr "&Dimensionamento da Imagem Vetorial"
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar o Texto &Extraído da Imagens"
 
+msgid "Co&mpare"
+msgstr "Co&mparar"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Arquivo"
 
@@ -234,6 +273,9 @@ msgstr "&Binário"
 
 msgid "&Image"
 msgstr "&Imagem"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Novo (&3 painéis)"
@@ -544,7 +586,7 @@ msgstr "&Converter os Finais das Linhas pra"
 msgid "Mer&ge Mode\tF9"
 msgstr "Mod&o de União\tF9"
 
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr "Re&carregar\tCtrl+F5"
 
 msgid "Reco&mpare As"
@@ -1061,9 +1103,6 @@ msgstr " Arquivo: Plugin do Desempacotador"
 
 msgid "Se&lect..."
 msgstr "Se&lecionar..."
-
-msgid "Co&mpare"
-msgstr "Co&mparar"
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -1986,6 +2025,21 @@ msgstr "&Ativar comparação de imagens na comparação das pastas"
 
 msgid "OCR result:"
 msgstr "Resultado do OCR:"
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "&Visualização Hex"
@@ -3236,6 +3290,10 @@ msgstr "Nome ou tubulação do plugin do pré-diferenciamento."
 msgid "Compare %1 with %2"
 msgstr "Comparar o %1 com o %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Lista separada por vírgula"
 
@@ -3732,6 +3790,9 @@ msgstr "Fechar as &Outras Abas"
 msgid "Enable &Auto Max Width"
 msgstr "Ativar o &Máximo de Largura Automática"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "O Frhed não está instalado."
 
@@ -3762,6 +3823,9 @@ msgstr "paciência"
 
 msgid "histogram"
 msgstr "histograma"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"
@@ -3917,6 +3981,12 @@ msgstr "Posição e texto linha-por-linha"
 msgid "Word-by-word position and text"
 msgstr "Posição e texto palavra-por-palavra"
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "Permitir só uma instância a ser executada"
 
@@ -3947,6 +4017,9 @@ msgstr ""
 
 msgid "&Others"
 msgstr "&Outros"
+
+msgid "URL Handling"
+msgstr ""
 
 msgid "Make Uppercase"
 msgstr "Tornar Maiúscula"
@@ -4179,6 +4252,12 @@ msgstr ""
 msgid "Basic text functions for the context menu"
 msgstr ""
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr ""
 
@@ -4193,4 +4272,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

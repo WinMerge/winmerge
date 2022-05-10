@@ -218,6 +218,45 @@ msgstr ""
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 
+msgid "Co&mpare"
+msgstr "مقارنة"
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&ملف"
 
@@ -235,6 +274,9 @@ msgstr "ملف &ثنائي"
 
 msgid "&Image"
 msgstr "&صورة"
+
+msgid "&Webpage"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "جديد - &3 أجزاء"
@@ -545,8 +587,8 @@ msgstr "&تحويل نهاية الأسطر إلى"
 msgid "Mer&ge Mode\tF9"
 msgstr "&وضع الدمج\tF9"
 
-msgid "Re&load\tCtrl+F5"
-msgstr "إ&عادة تحميل\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
+msgstr "إ&عادةتحميل\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "إعادة مقارنة بصيغة أخرى"
@@ -1064,9 +1106,6 @@ msgstr " ملف: إضافة فك الحزمة"
 
 msgid "Se&lect..."
 msgstr "تحديد..."
-
-msgid "Co&mpare"
-msgstr "مقارنة"
 
 msgid "Cancel"
 msgstr "إلغاء"
@@ -1969,6 +2008,21 @@ msgid "&Enable image compare in folder compare"
 msgstr ""
 
 msgid "OCR result:"
+msgstr ""
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
 msgstr ""
 
 msgid "&Hex View"
@@ -3172,6 +3226,10 @@ msgstr ""
 msgid "Compare %1 with %2"
 msgstr "قارن بين %1 و %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "قائمة مرتبة بالفاصلة"
 
@@ -3618,6 +3676,9 @@ msgstr "إغلا&ق التبويبات الأخرى"
 msgid "Enable &Auto Max Width"
 msgstr "&تفعيل النطاق الأقصى التلقائي"
 
+msgid "We&bpage"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "المحرر Frhed غير مثبت."
 
@@ -3647,6 +3708,9 @@ msgid "patience"
 msgstr ""
 
 msgid "histogram"
+msgstr ""
+
+msgid "none"
 msgstr ""
 
 msgid "GDI"
@@ -3802,6 +3866,12 @@ msgstr ""
 msgid "Word-by-word position and text"
 msgstr ""
 
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
 msgid "Allow only one instance to run"
 msgstr "السماح بتشغيل عنصر واحد فقط"
 
@@ -3830,6 +3900,9 @@ msgid "Decompilation"
 msgstr ""
 
 msgid "&Others"
+msgstr ""
+
+msgid "URL Handling"
 msgstr ""
 
 msgid "Make Uppercase"
@@ -4063,6 +4136,12 @@ msgstr ""
 msgid "Basic text functions for the context menu"
 msgstr ""
 
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr ""
 
@@ -4077,4 +4156,7 @@ msgid "This system does not support clipboard history."
 msgstr ""
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""
