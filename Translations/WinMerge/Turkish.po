@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-03-18 21:36+0000\n"
-"PO-Revision-Date: 2022-03-20 11:52+0300\n"
+"POT-Creation-Date: 2022-05-05 12:15+0000\n"
+"PO-Revision-Date: 2022-05-10 20:14+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -221,40 +221,40 @@ msgid "Co&mpare"
 msgstr "&Karşılaştır"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "&Ekran görüntüleri"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "&Tam boyutlu ekran görüntüleri"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTML dosyaları"
 
 msgid "&Texts"
-msgstr ""
+msgstr "Me&tinler"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Kaynak ağaçları"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Boyut"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "&Pencereye sığdır"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "&Tarayıcı verilerini temizle"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "&Disk ön belleği"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "Çere&zler"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "Tarayıcı &geçmişi"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "&Tüm profil"
 
 msgid "&File"
 msgstr "&Dosya"
@@ -275,7 +275,7 @@ msgid "&Image"
 msgstr "&Görsel"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "&Web sayfası"
 
 msgid "New (&3 panes)"
 msgstr "Yeni (&3 pano)"
@@ -587,7 +587,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "Birleştir&me kipi\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "Yenidenyük&le\tCtrl+F5"
+msgstr "Yeniden yük&le\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "&Farklı karşılaştır"
@@ -2024,19 +2024,19 @@ msgid "OCR result:"
 msgstr "Karakter tanıma sonucu:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Web sayfası"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Katılacak &adres modeli (kurallı ifade):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Katılmayacak adres &modeli (kurallı ifade):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "Kullanıcı &verileri klasörü konumu:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Her panonun kullanıcı verileri klasörü ayrı olsun"
 
 msgid "&Hex View"
 msgstr "Onaltılık &görünüm"
@@ -3297,7 +3297,7 @@ msgstr "%1 ile %2 ögesini karşılaştır"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "%1 ile %2 ve %3 ögelerini karşılaştır"
 
 msgid "Comma-separated list"
 msgstr "Virgül ile ayrılmış liste"
@@ -3817,7 +3817,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Otom&atik en fazla genişlik"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "We&b sayfası"
 
 msgid "Frhed is not installed."
 msgstr "Frhed kurulmamış."
@@ -3851,7 +3851,7 @@ msgid "histogram"
 msgstr "Histogram"
 
 msgid "none"
-msgstr ""
+msgstr "Yok"
 
 msgid "GDI"
 msgstr "GDI"
@@ -4007,10 +4007,10 @@ msgid "Word-by-word position and text"
 msgstr "Sözcük sözcük konum ve metin"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "AppData klasörü"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Kurulum klasörü"
 
 msgid "Allow only one instance to run"
 msgstr "Yalnız bir kopya çalışsın"
@@ -4043,7 +4043,7 @@ msgid "&Others"
 msgstr "&Diğerleri"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Adres işleme"
 
 msgid "Make Uppercase"
 msgstr "Büyük harflere dönüştür"
@@ -4409,11 +4409,19 @@ msgstr "Ön farklılaştırıcı satır süzgeci"
 msgid "Basic text functions for the context menu"
 msgstr "İçerik menüsü için temel metin işlevleri"
 
-msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
 msgstr ""
+"cURL ile HTTP URL şema işleyici.\r\n"
+"Parametreler: curl komutuna aktarılacak komut satırı parametreleri."
 
-msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
 msgstr ""
+"Windows kayıt defteri adresi şema işleyici. \r\n"
+"Parametreler: reg.exe komutuna aktarılacak komut satırı parametreleri."
 
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
@@ -4438,4 +4446,105 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "WebView2 çalıştırıcı bulunamadı. İndirmek ister misiniz?"
+
+#~ msgid "C&opy to Right"
+#~ msgstr "Sağa k&opyala"
+
+#~ msgid "With &External Editor"
+#~ msgstr "Dış düz&enleyici ile"
+
+#~ msgid "&Quick compare limit (MB):"
+#~ msgstr "&Hızlı karşılaştırma sınırı (MB):"
+
+#~ msgid "&Binary compare limit (MB):"
+#~ msgstr "&Binary karşılaştırma sınırı (MB):"
+
+#~ msgid ""
+#~ "\n"
+#~ "All Right"
+#~ msgstr ""
+#~ "\n"
+#~ "Tümünü sağa kopyala"
+
+#~ msgid ""
+#~ "\n"
+#~ "All Left"
+#~ msgstr ""
+#~ "\n"
+#~ "Tümünü sola kopyala"
+
+#~ msgid "Other plugins"
+#~ msgstr "Diğer eklentiler"
+
+#~ msgid "Ignor&e blank lines"
+#~ msgstr "Boş satırlar yok sayılsı&n"
+
+#~ msgid "Cannot create a patch file from directories."
+#~ msgstr "Klasörlerden yama dosyası hazırlanamaz."
+
+#~ msgid "&Select Line Difference\tF4"
+#~ msgstr "Satır &farkını seç\tF4"
+
+#~ msgid "&XML"
+#~ msgstr "&XML"
+
+#~ msgid "&No prediffer"
+#~ msgstr "Ö&n farklılaştırıcı yok"
+
+#~ msgid "Auto prediffer"
+#~ msgstr "Otomatik ön farklılaştırıcı"
+
+#~ msgid "Select Unpacker"
+#~ msgstr "Ayıklayıcı seçin"
+
+#~ msgid "File unpacker:"
+#~ msgstr "Dosya ayıklayıcı:"
+
+#~ msgid "&Goto..."
+#~ msgstr "&Git..."
+
+#~ msgid "&New\tCtrl+N"
+#~ msgstr "Ye&ni\tCtrl+N"
+
+#~ msgid "E&xit"
+#~ msgstr "Çı&kış"
+
+#~ msgid "Cl&ose"
+#~ msgstr "&Kapat"
+
+#~ msgid "File En&coding..."
+#~ msgstr "&Dosya Kodlaması..."
+
+#~ msgid "&Print..."
+#~ msgstr "&Yazdır..."
+
+#~ msgid "Moved Block for &Current Diff"
+#~ msgstr "İmleçteki Fark &Yerine Taşınmış Blok"
+
+#~ msgid "Case sensi&tive"
+#~ msgstr "BÜYÜK-küçük &harf ayrımı yapılsın"
+
+#~ msgid "Go To"
+#~ msgstr "Git"
+
+#~ msgid "G&oto:"
+#~ msgstr "&Git:"
+
+#~ msgid "Filefilters"
+#~ msgstr "Dosya Süzgeçleri"
+
+#~ msgid ""
+#~ "Developers:\n"
+#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
+#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+#~ msgstr ""
+#~ "Geliştiriciler:\n"
+#~ "Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, "
+#~ "Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+
+#~ msgid "Lua"
+#~ msgstr "Lua"
+
+#~ msgid "VHDL"
+#~ msgstr "VHDL"
