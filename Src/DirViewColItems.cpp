@@ -943,7 +943,9 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return strutils::compare_nocase(ColFileNameGet<boost::flyweight<String> >(pCtxt, p, 0), ColFileNameGet<boost::flyweight<String> >(pCtxt, q, 0));
+	return StrCmpLogicalW(
+		ColFileNameGet<boost::flyweight<String>>(pCtxt, p, 0).get().c_str(),
+		ColFileNameGet<boost::flyweight<String>>(pCtxt, q, 0).get().c_str());
 }
 
 /**
