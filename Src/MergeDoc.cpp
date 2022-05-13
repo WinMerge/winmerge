@@ -3943,8 +3943,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
-		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n")
-		);
+		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n");
 	String header = 
 		strutils::format((LPCTSTR)headerText, nFontSize, (LPCTSTR)m_pView[0][0]->GetHTMLStyles());
 	file.WriteString(header);
