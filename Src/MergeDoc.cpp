@@ -3925,7 +3925,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	}
 
 	file.SetCodepage(ucr::CP_UTF_8);
-
 	CString headerText =
 		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
@@ -3945,12 +3944,25 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("</head>\n")
 		_T("<body>\n")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n")
-		_T("<thead>\n")
-		_T("<tr>\n");
+		);
 	String header = 
 		strutils::format((LPCTSTR)headerText, nFontSize, (LPCTSTR)m_pView[0][0]->GetHTMLStyles());
 	file.WriteString(header);
 
+	file.WriteString(_T("<colgroup>\n"));
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		String data = strutils::format(
+			_T("<col style=\"width: 4em;\" />\n")
+			_T("<col style=\"width: calc(100%% / %d - 4em);\" />\n"),
+			m_nBuffers);
+		file.WriteString(data);
+	}
+	file.WriteString(
+		_T("</colgroup>\n")
+		_T("<thead>\n")
+		_T("<tr>\n"));
+	
 	// Get paths
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
@@ -3973,8 +3985,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		String data = strutils::format(_T("<th colspan=\"2\" class=\"title\" style=\"width:%f%%\">"),
-			(double)100 / m_nBuffers);
+		String data = _T("<th colspan=\"2\" class=\"title\">");
 		file.WriteString(data);
 		file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 		file.WriteString(_T("</th>\n"));
