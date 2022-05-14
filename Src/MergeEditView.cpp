@@ -462,7 +462,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 					int worddiffLen = worddiffs[i].end[m_nThisPane] - worddiffs[i].begin[m_nThisPane];
 					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
 						(firstLine == worddiffs[i].endline[m_nThisPane] && 
-						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) >= ptStart.x))
+						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) > ptStart.x))
 					{
 						firstWordDiff = static_cast<int>(i);
 						break;
@@ -2018,17 +2018,10 @@ void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 		auto [ptStart, ptEnd] = GetSelection();
 		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
-			if (m_bCurrentLineIsDiff || (m_pTextBuffer->GetLineFlags(m_ptSelStart.y) & LF_NONTRIVIAL_DIFF) != 0)
-			{
-				pCmdUI->Enable(true);
-			}
-			else
-			{
-				int firstDiff, lastDiff;
-				GetFullySelectedDiffs(firstDiff, lastDiff);
+			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
 
-				pCmdUI->Enable(firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff));
-			}
+			pCmdUI->Enable(firstDiff != -1 && lastDiff != -1 && firstWordDiff != -1 && lastWordDiff != -1);
 		}
 		else
 		{
