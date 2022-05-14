@@ -3949,12 +3949,14 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	file.WriteString(header);
 
 	file.WriteString(_T("<colgroup>\n"));
+	double marginWidth = m_pView[0][0]->GetViewLineNumbers() ? 
+		strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
 	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		String data = strutils::format(
-			_T("<col style=\"width: 4em;\" />\n")
-			_T("<col style=\"width: calc(100%% / %d - 4em);\" />\n"),
-			m_nBuffers);
+			_T("<col style=\"width: %.1fem;\" />\n")
+			_T("<col style=\"width: calc(100%% / %d - %.1fem);\" />\n"),
+				marginWidth, m_nBuffers, marginWidth);
 		file.WriteString(data);
 	}
 	file.WriteString(
