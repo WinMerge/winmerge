@@ -943,9 +943,7 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return StrCmpLogicalW(
-		ColFileNameGet<boost::flyweight<String>>(pCtxt, p, 0).get().c_str(),
-		ColFileNameGet<boost::flyweight<String>>(pCtxt, q, 0).get().c_str());
+	return strutils::compare_logical(ColFileNameGet<boost::flyweight<String>>(pCtxt, p, 0), ColFileNameGet<boost::flyweight<String>>(pCtxt, q, 0));
 }
 
 /**
@@ -963,7 +961,7 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q, i
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return strutils::compare_nocase(ColExtGet(pCtxt, p, 0), ColExtGet(pCtxt, q, 0));
+	return strutils::compare_logical(ColExtGet(pCtxt, p, 0), ColExtGet(pCtxt, q, 0));
 }
 
 /**
@@ -975,7 +973,7 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q, i
  */
 static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q, int)
 {
-	return strutils::compare_nocase(ColPathGet(pCtxt, p, 0), ColPathGet(pCtxt, q, 0));
+	return strutils::compare_logical(ColPathGet(pCtxt, p, 0), ColPathGet(pCtxt, q, 0));
 }
 
 /**
@@ -1211,7 +1209,7 @@ static int ColPropertyDiffSort(const CDiffContext *pCtxt, const void *p, const v
 	bool snumeric = false;
 	String r2 = ColPropertyDiffGetEx(pCtxt, p, opt, false, rnumeric, &rnumdiff);
 	String s2 = ColPropertyDiffGetEx(pCtxt, q, opt, false, snumeric, &snumdiff);
-	int result = strutils::compare_nocase(r2, s2);
+	int result = strutils::compare_logical(r2, s2);
 	if (pCtxt->GetCompareDirs() == 2 && result == 0 && rnumeric && snumeric)
 	{
 		if (rnumdiff == snumdiff)
@@ -1231,7 +1229,7 @@ static int ColPropertyMoveSort(const CDiffContext *pCtxt, const void *p, const v
 {
 	String r2 = ColPropertyMoveGet(pCtxt, p, opt);
 	String s2 = ColPropertyMoveGet(pCtxt, q, opt);
-	return strutils::compare_nocase(r2, s2);
+	return strutils::compare_logical(r2, s2);
 }
 
 /* @} */
@@ -1789,7 +1787,7 @@ DirViewColItems::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM &ldi
 	{
 		String p = (*fnc)(pCtxt, arg1, opt);
 		String q = (*fnc)(pCtxt, arg2, opt);
-		return strutils::compare_nocase(p, q);
+		return strutils::compare_logical(p, q);
 	}
 	return 0;
 }

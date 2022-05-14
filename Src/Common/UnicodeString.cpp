@@ -17,6 +17,8 @@
 #include <cerrno>
 #include <vector>
 
+extern "C" int __stdcall StrCmpLogicalW(const wchar_t* psz1, const wchar_t* psz2);
+
 namespace strutils
 {
 
@@ -149,6 +151,18 @@ void replace_chars(String& str, const TCHAR* chars, const TCHAR *rep)
 int compare_nocase(const String &str1, const String &str2)
 {
 	return _tcsicoll(str1.c_str(), str2.c_str());
+}
+
+/**
+ * @brief Compare two strings ignoring the character casing. 
+ *        Digits in the strings are considered as numerical content rather than text.
+ * @param [in] str1 First string to compare.
+ * @param [in] str2 Second string to compare.
+ * @return As strcmp(), 0 if strings match.
+ */
+int compare_logical(const String& str1, const String& str2)
+{
+	return StrCmpLogicalW(str1.c_str(), str2.c_str());
 }
 
 /**

@@ -38,6 +38,7 @@ void replace_chars(String& str, const TCHAR* chars, const TCHAR* rep);
 
 // Comparing
 int compare_nocase(const String &str1, const String &str2);
+int compare_logical(const String& str1, const String& str2);
 
 // Trimming
 String trim_ws(const String & str);
