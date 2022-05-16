@@ -1782,7 +1782,7 @@ msgid "File &Saving:"
 msgstr "ファイルの保存(&S)"
 
 msgid "&Use same codepage for both"
-msgstr "両側に同じコードページを使用する(&U)"
+msgstr "読み込みと保存で同じコードページを使用する(&U)"
 
 msgid "&Cancel"
 msgstr "キャンセル(&C)"
