@@ -2332,6 +2332,7 @@ void CDirView::MoveFocus(int currentInd, int i, int selCount)
 		m_pList->SetItemState(currentInd, 0, LVIS_SELECTED);
 		m_pList->SetItemState(currentInd, 0, LVIS_FOCUSED);
 		m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
+		m_pList->SetSelectionMark(i);
 	}
 
 	// Move focus to specified item
