@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-04-30 18:21+0100\n"
+"PO-Revision-Date: 2022-05-20 18:12+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -3249,7 +3249,7 @@ msgstr "Comparar %1 com %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Comparar %1 com %2 e %3"
 
 msgid "Comma-separated list"
 msgstr "Lista separada por vírgulas"
@@ -3778,7 +3778,7 @@ msgid "histogram"
 msgstr "histograma"
 
 msgid "none"
-msgstr ""
+msgstr "nenhum"
 
 msgid "GDI"
 msgstr "GDI"
