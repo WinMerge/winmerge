@@ -547,7 +547,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 				WriteString(_T("/"));
 				WriteString(sLinkPath);
 				WriteString(_T("\">"));
-				WriteString(m_pList->GetItemText(currRow, currCol));
+				WriteStringEntityAware(m_pList->GetItemText(currRow, currCol));
 				WriteString(_T("</a>"));
 			}
 			else
