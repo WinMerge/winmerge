@@ -2,10 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Maintainer:
-# * Patriccollu di Santa Maria è Sichè
-#
-# Translators:
-# * Patriccollu di Santa Maria è Sichè
+# * Patriccollu di Santa Maria è Sichè <patriccollu at gmail.com>
 #
 msgid ""
 msgstr ""
