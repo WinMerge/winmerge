@@ -205,8 +205,7 @@ Status from **2022-05-21**:
    - [Enfeng Tsao](mailto:admin%20at%20siderealart.me)
 
  * Corsican
-   - Patriccollu di Santa Maria è Sichè *Maintainer*
-   - Patriccollu di Santa Maria è Sichè
+   - [Patriccollu di Santa Maria è Sichè](mailto:patriccollu%20at%20gmail.com) *Maintainer*
 
  * Croatian
    - [Hasan Osmanagić](mailto:hasan.osmanagic%20at%20public.carnet.hr)
