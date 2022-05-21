@@ -1059,7 +1059,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 		{
 			String msg = strutils::format_string1(
 				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
-				pszPath);
+				pszPath + _T("\n(\u2192 ") + bakPath + _T(")"));
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_BACKUP_FAILED_PROMPT) != IDYES)
 				return false;
 		}
