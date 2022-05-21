@@ -1145,8 +1145,10 @@ void CMainFrame::OnOptions()
 			pDirDoc->RefreshOptions();
 		for (auto pOpenDoc : GetAllOpenDocs())
 			pOpenDoc->RefreshOptions();
-		for (auto pMergeDoc : GetAllHexMergeDocs())
-			pMergeDoc->RefreshOptions();
+		for (auto pHexMergeDoc : GetAllHexMergeDocs())
+			pHexMergeDoc->RefreshOptions();
+		for (auto pImgMergeFrame : GetAllImgMergeFrames())
+			pImgMergeFrame->RefreshOptions();
 	}
 }
 

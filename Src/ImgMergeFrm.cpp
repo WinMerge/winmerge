@@ -455,12 +455,6 @@ BOOL CImgMergeFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 
-	COLORSETTINGS colors;
-	Options::DiffColors::Load(GetOptionsMgr(), colors);
-	m_pImgMergeWindow->SetDiffColor(colors.clrDiff);
-	m_pImgMergeWindow->SetDiffDeletedColor(colors.clrDiffDeleted);
-	m_pImgMergeWindow->SetSelDiffColor(colors.clrSelDiff);
-	m_pImgMergeWindow->SetSelDiffDeletedColor(colors.clrSelDiffDeleted);
 	m_pImgMergeWindow->AddEventListener(OnChildPaneEvent, this);
 	LoadOptions();
 
@@ -613,6 +607,7 @@ BOOL CImgMergeFrame::DestroyWindow()
 
 void CImgMergeFrame::LoadOptions()
 {
+	RefreshOptions();
 	m_pImgMergeWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_IMG_SHOWDIFFERENCES));
 	m_pImgMergeWindow->SetOverlayMode(static_cast<IImgMergeWindow::OVERLAY_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYMODE)));
 	m_pImgMergeWindow->SetOverlayAlpha(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYALPHA) / 100.0);
@@ -1302,6 +1297,17 @@ CString CImgMergeFrame::GetTooltipString() const
 void CImgMergeFrame::UpdateResources()
 {
 	m_pImgToolWindow->Translate(TranslateLocationPane);
+}
+
+void CImgMergeFrame::RefreshOptions()
+{
+	COLORSETTINGS colors;
+	Options::DiffColors::Load(GetOptionsMgr(), colors);
+	m_pImgMergeWindow->SetDiffColor(colors.clrDiff);
+	m_pImgMergeWindow->SetDiffDeletedColor(colors.clrDiffDeleted);
+	m_pImgMergeWindow->SetSelDiffColor(colors.clrSelDiff);
+	m_pImgMergeWindow->SetSelDiffDeletedColor(colors.clrSelDiffDeleted);
+	m_pImgMergeWindow->SetDiffAlgorithm(static_cast<IImgMergeWindow::DIFF_ALGORITHM>(GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM)));
 }
 
 /**
