@@ -29,6 +29,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\gotodlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\memcombo.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LineInfo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\asp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\autoit.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\basic.cpp" />

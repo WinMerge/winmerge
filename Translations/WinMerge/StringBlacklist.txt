@@ -13,6 +13,7 @@ ComboEx32
 Version 1.0
 WinMerge
 ../Version.h
+ABAP
 ASP
 AutoIt
 Basic
