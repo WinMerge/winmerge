@@ -24,9 +24,9 @@ https://github.com/WinMerge/winimerge/releases/download/v1.0.34/winimerge-1.0.34
 https://github.com/WinMerge/winimerge/releases/download/v1.0.34/winimerge-1.0.34.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.34/winimerge-1.0.34.0-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.34/winimerge-1.0.34.0-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winwebdiff/releases/download/v1.0.2/winwebdiff-1.0.2.0-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winwebdiff/releases/download/v1.0.2/winwebdiff-1.0.2.0-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/winwebdiff/releases/download/v1.0.2/winwebdiff-1.0.2.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.3/winwebdiff-1.0.3.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.3/winwebdiff-1.0.3.0-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.3/winwebdiff-1.0.3.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
