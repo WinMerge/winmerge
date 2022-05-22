@@ -93,7 +93,7 @@ static BOOL LaunchWinMerge(const String &winmergePath,
 	PROCESS_INFORMATION processInfo = { 0 };
 
 	retVal = CreateProcess(NULL, (LPTSTR)strCommandLine.c_str(),
-		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE | CREATE_BREAKAWAY_FROM_JOB | CREATE_NEW_PROCESS_GROUP | DETACHED_PROCESS, NULL, NULL,
+		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 		&stInfo, &processInfo);
 
 	if (retVal)
