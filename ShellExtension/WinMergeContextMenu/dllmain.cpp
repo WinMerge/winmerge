@@ -310,7 +310,8 @@ public:
     const EXPCMDFLAGS Flags() override
     {
         if ((m_contextMenu.GetContextMenuEnabled() & (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED))
-            == (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED) && m_contextMenu.GetMenuItemList().size() > 1)
+            == (WinMergeContextMenu::EXT_ENABLED | WinMergeContextMenu::EXT_ADVANCED) &&
+            (m_contextMenu.GetMenuItemList().size() > 1 || m_contextMenu.GetPaths().size() == 0))
             return ECF_HASSUBCOMMANDS;
         else
             return ECF_DEFAULT;
