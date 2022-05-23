@@ -2,12 +2,11 @@
 #include "RegKey.h"
 #include "LanguageSelect.h"
 #include "../ShellExtension/Resource.h"
-#include <Shlwapi.h>
-#include <atlbase.h>
-#include <shobjidl_core.h>
-#include <ShlObj_core.h>
 #include <shldisp.h>
-#include <ShlGuid.h>
+#include <shlobj.h>
+#include <exdisp.h>
+#include <atlbase.h>
+#include <Shlwapi.h>
 
 /// Max. filecount to select
 static const int MaxFileCount = 3;
