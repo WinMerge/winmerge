@@ -38,7 +38,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IExplorerCommand>
+class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IExplorerCommand, IObjectWithSite>
 {
 public:
     WinMergeExplorerCommandBase(WinMergeContextMenu* pContextMenu) : m_pContextMenu(pContextMenu) {}
@@ -100,6 +100,10 @@ public:
         *enumCommands = nullptr;
         return E_NOTIMPL;
     }
+
+    // IObjectWithSite
+    IFACEMETHODIMP SetSite(_In_ IUnknown* site) noexcept { m_site = site; m_pContextMenu->SetSite(site); return S_OK; }
+    IFACEMETHODIMP GetSite(_In_ REFIID riid, _COM_Outptr_ void** site) noexcept { return m_site.CopyTo(riid, site); }
 
 protected:
 
@@ -220,6 +224,7 @@ protected:
         return paths;
     }
     WinMergeContextMenu* m_pContextMenu;
+    ComPtr<IUnknown> m_site;
 };
 
 class SubExplorerCommandHandler final : public WinMergeExplorerCommandBase

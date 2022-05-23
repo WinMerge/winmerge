@@ -61,6 +61,8 @@ public:
 	std::wstring GetResourceString(UINT id) const;
 	DWORD GetMenuState() const { return m_dwMenuState; }
 	DWORD GetContextMenuEnabled() const { return m_dwContextMenuEnabled; }
+	void SetSite(IUnknown* pUnknown) { m_pSite = pUnknown; };
+	const std::vector<std::wstring>& GetPaths() const { return m_strPaths; }
 
 private:
 	DWORD m_dwMenuState; /**< Shown menuitems */
@@ -70,5 +72,6 @@ private:
 	inline static CLanguageSelect* s_pLang;
 	mutable LANGID m_langID; /**< Current Language Id */
 	DWORD m_dwContextMenuEnabled; /**< 0, 2: context menu disabled 1: context menu enabled 3: Advanced menu enabled */
+    IUnknown *m_pSite;
 };
 
