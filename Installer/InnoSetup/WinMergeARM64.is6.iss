@@ -1048,6 +1048,16 @@ begin
   g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
 end;
 
+procedure DeinitializeSetup();
+var
+  ResultCode: Integer;
+  { Start Explorer just before exiting the installer if the Explorer restart that was run to install the ShellExtension fails. }
+begin
+  if FindWindowByClassName('progman') = 0 then begin
+    Exec(ExpandConstant('{win}\explorer.exe'), '', '', SW_SHOW, ewNoWait, ResultCode)
+  end
+end;
+
 Function IsWindows11OrLater(): Boolean;
 Var
   OSVersion: TWindowsVersion;
