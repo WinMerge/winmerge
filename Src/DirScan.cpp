@@ -607,6 +607,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 	FolderCmp fc(pCtxt);
 	int res = 0;
 	bool bCompareFailure = false;
+	bool bCompareIndeterminate = false;
 	if (parentdiffpos == nullptr)
 		myStruct->pSemaphore->wait();
 
@@ -651,6 +652,11 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 					di.diffcode.diffcode |= DIFFCODE::CMPERR;
 					bCompareFailure = true;
 				}
+				else
+				if (ndiff == -2)
+				{	// There were files that have not been compared
+					bCompareIndeterminate = true;
+				}
 			}
 		}
 		else
@@ -658,7 +664,8 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 			if (di.diffcode.isScanNeeded())
 			{
 				CompareDiffItem(fc, di);
-				if (di.diffcode.isResultError()) { 
+				if (di.diffcode.isResultError())
+				{ 
 					DIFFITEM *diParent = di.GetParentLink();
 					assert(diParent != nullptr);
 					if (diParent != nullptr)
@@ -666,15 +673,21 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 						diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
 						bCompareFailure = true;
 					}
+				}
 			}
-				
+			else
+			{
+				if (di.diffcode.isResultError())
+					bCompareFailure = true;
+				else if (di.diffcode.isResultNone() || di.diffcode.isResultAbort())
+					bCompareIndeterminate = true;
 			}
 		}
 		if (di.diffcode.isResultDiff() ||
 			(!existsalldirs && !di.diffcode.isResultFiltered()))
 			res++;
 	}
-	return bCompareFailure ? -1 : res;;
+	return bCompareIndeterminate ? -2 : (bCompareFailure ? -1 : res);
 }
 
 int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
