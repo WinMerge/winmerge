@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2022-01-27 00:00+0000\n"
+"POT-Creation-Date: 2022-04-24 15:17+0000\n"
+"PO-Revision-Date: 2022-04-27 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -119,10 +119,10 @@ msgid "S&hell Menu"
 msgstr "Меню оболочки"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Использовать первую строку как заголовок"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Автоширина столбцов"
 
 msgid "View &Differences"
 msgstr "Показывать отличия"
@@ -217,16 +217,16 @@ msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
 msgid "Compare Extracted &Text From Images"
-msgstr "Сравнить извлеченный из изображения текст"
+msgstr "Сравнитьизвлеченныйизизображениятекст"
 
 msgid "Co&mpare"
 msgstr "Сравнить"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "&Скриншоты"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "&Полноразмерные скриншоты"
 
 msgid "&HTMLs"
 msgstr ""
@@ -238,25 +238,25 @@ msgid "&Resource Trees"
 msgstr ""
 
 msgid "&Size"
-msgstr ""
+msgstr "&Размер"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Подогнать по окну"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "Очистить &историю просмотров"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "&Дисковый кэш"
 
 msgid "&Cookies"
 msgstr ""
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "&История просмотров"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "&Все профили"
 
 msgid "&File"
 msgstr "&Файл"
@@ -277,7 +277,7 @@ msgid "&Image"
 msgstr "Изображение"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "&Веб-страница"
 
 msgid "New (&3 panes)"
 msgstr "Создать (&3 панели)"
@@ -592,7 +592,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "Режим объединения\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "Обновить\tCtrl+F5"
+msgstr "&Обновить\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Пересравнить как"
@@ -691,7 +691,7 @@ msgid "View &Margins"
 msgstr "Показывать поля"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "&Вид верхних полей"
 
 msgid "W&rap Lines"
 msgstr "Переносить по словам"
@@ -1146,7 +1146,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Закрывать диалог \"Выбрать файлы или папки\" по Сравнение"
+msgstr "Закрыватьдиалог\"Выбрать файлыилипапки\"поОК"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
@@ -1422,10 +1422,10 @@ msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr "Отображать все плагины, не проверяя расширение"
+msgstr "Отображатьвсеплагины,непроверяярасширение"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr "Открыть файлы в том же типе окна после распаковки"
+msgstr "Открытьфайлывтомжетипеокнапослераспаковки"
 
 msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
@@ -1491,7 +1491,7 @@ msgid "E&nable moved block detection"
 msgstr "Обнаружение переме&щенных блоков"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "Выровнять по&хожие строки"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Алгоритм сравнения (эксперимент.):"
@@ -2006,19 +2006,19 @@ msgid "OCR result:"
 msgstr "Результат OCR"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Веб-страница"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Шаблон URL для включения (regexp):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Шаблон URL для исключения (regexp):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "Расположение папки данных пользователя:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "Отдельные папки пользовательских данных для каждой панели"
 
 msgid "&Hex View"
 msgstr "&Hex"
@@ -2618,7 +2618,7 @@ msgid "Unknown archive format"
 msgstr "Неизвестный формат архива"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr ""
+msgstr "Не удалось извлечь архивные файлы.\nВы хотите сравнить архивные файлы как текстовые файлы?"
 
 msgid "Filename"
 msgstr "Имя файла"
@@ -3011,6 +3011,10 @@ msgstr "Имя плагина предсравнения или конвейер
 msgid "Compare %1 with %2"
 msgstr "Сравнение %1 с %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Список с разделителем Запятая"
 
@@ -3365,7 +3369,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Включить максимальную авто ширину"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Веб-страница"
 
 msgid "Frhed is not installed."
 msgstr "Frhed не установлен."
@@ -3391,6 +3395,9 @@ msgstr "терпеливо"
 
 msgid "histogram"
 msgstr "гистограмма"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"
@@ -3546,10 +3553,10 @@ msgid "Word-by-word position and text"
 msgstr "Пословная позиция и текст"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Папка данных"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Папка установки"
 
 msgid "Allow only one instance to run"
 msgstr "Разрешить запуск только одной копии"
@@ -3582,7 +3589,7 @@ msgid "&Others"
 msgstr "Другое"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Обработка URL"
 
 msgid "Make Uppercase"
 msgstr "Сделать прописными"
@@ -3816,10 +3823,10 @@ msgid "Basic text functions for the context menu"
 msgstr "Основные текстовые функции контекстного меню"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
-msgstr ""
+msgstr "Обработчик схемы URL HTTP с помощью curl. \r\nАргументы: Параметры командной строки, передаваемые программе curl."
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
+msgstr "Обработчик схемы URL реестра Windows. \r\nАргументы: Параметры командной строки, передаваемые программе reg.exe."
 
 msgid "Filter applied"
 msgstr "Фильтр применен"
@@ -3838,4 +3845,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-битная версия WinMerge не поддерживает буфера обмена"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "Не установлена среда выполнения WebView2. Хотите скачать его?"

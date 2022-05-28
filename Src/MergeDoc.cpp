@@ -3651,9 +3651,10 @@ void CMergeDoc::OnOpenWithUnpacker()
 	DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 	String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 	int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
-	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -1;
+	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -nID;
 
-	if (GetMainFrame()->DoFileOpen(nID, &paths, dwFlags, strDesc, _T(""), &infoUnpacker))
+	if (GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
+		GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 
@@ -3868,7 +3869,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 		return;
 	
 	DWORD dwFlags[3] = { 0 };
-	FileLocation fileloc[3];
+	PathContext paths = m_filePaths;
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
 	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
@@ -3877,7 +3878,6 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
-		fileloc[pane].setPath(m_filePaths[pane]);
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_READONLY : 0);
 		strDesc[pane] = m_strDesc[pane];
 	}
@@ -3885,10 +3885,11 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	{
 		infoUnpacker.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
-		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -1;
+		nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -static_cast<int>(nID);
 	}
 
-	if (GetMainFrame()->ShowMergeDoc(nID, pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), &infoUnpacker))
+	if (GetMainFrame()->DoFileOrFolderOpen(&m_filePaths, dwFlags, strDesc, _T(""),
+	    GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS), nullptr, &infoUnpacker, nullptr, nID))
 		GetParentFrame()->DestroyWindow();
 }
 
@@ -3924,7 +3925,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	}
 
 	file.SetCodepage(ucr::CP_UTF_8);
-
 	CString headerText =
 		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
@@ -3943,13 +3943,27 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
-		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n")
-		_T("<thead>\n")
-		_T("<tr>\n");
+		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n");
 	String header = 
 		strutils::format((LPCTSTR)headerText, nFontSize, (LPCTSTR)m_pView[0][0]->GetHTMLStyles());
 	file.WriteString(header);
 
+	file.WriteString(_T("<colgroup>\n"));
+	double marginWidth = m_pView[0][0]->GetViewLineNumbers() ? 
+		strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
+		String data = strutils::format(
+			_T("<col style=\"width: %.1fem;\" />\n")
+			_T("<col style=\"width: calc(100%% / %d - %.1fem);\" />\n"),
+				marginWidth, m_nBuffers, marginWidth);
+		file.WriteString(data);
+	}
+	file.WriteString(
+		_T("</colgroup>\n")
+		_T("<thead>\n")
+		_T("<tr>\n"));
+	
 	// Get paths
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
@@ -3972,8 +3986,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		String data = strutils::format(_T("<th colspan=\"2\" class=\"title\" style=\"width:%f%%\">"),
-			(double)100 / m_nBuffers);
+		String data = _T("<th colspan=\"2\" class=\"title\">");
 		file.WriteString(data);
 		file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
 		file.WriteString(_T("</th>\n"));

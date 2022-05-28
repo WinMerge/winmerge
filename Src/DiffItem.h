@@ -140,6 +140,7 @@ public:
 	}
 
 	// compare result
+	bool isResultNone() const { return CheckCompare(diffcode, 0); }
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
 	bool isResultDiff() const { return (CheckCompare(diffcode, DIFFCODE::DIFF) && !isResultFiltered() &&
 			existAll()); }

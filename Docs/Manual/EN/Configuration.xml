@@ -695,6 +695,12 @@
           <para><option>histogram</option>: This algorithm extends the patience
           algorithm to "support low-occurrence common elements".</para>
         </listitem>
+
+        <listitem>
+          <para><option>none</option>: This algorithm does not detect insertions
+          or deletions of lines.
+          </para>
+        </listitem>
       </itemizedlist>
     </section>
 

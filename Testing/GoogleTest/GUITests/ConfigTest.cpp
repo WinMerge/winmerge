@@ -217,7 +217,7 @@ namespace
 		{ OPT_CMP_COMPARE_THREADS, varprop::VT_INT, {-1, 1, 2}, {}},
 		{ OPT_CMP_IGNORE_REPARSE_POINTS, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_INCLUDE_SUBDIRS, varprop::VT_BOOL, {}, {}},
-		{ OPT_CMP_DIFF_ALGORITHM, varprop::VT_INT, {0, 1, 2, 3}, {}},
+		{ OPT_CMP_DIFF_ALGORITHM, varprop::VT_INT, {0, 1, 2, 3, 4}, {}},
 		{ OPT_CMP_INDENT_HEURISTIC, varprop::VT_BOOL, {}, {}},
 		{ OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, varprop::VT_BOOL, {}, {}},
 		// Image Compare options

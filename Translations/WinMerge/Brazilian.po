@@ -3293,6 +3293,10 @@ msgstr "Nome ou tubulação do plugin do pré-diferenciamento."
 msgid "Compare %1 with %2"
 msgstr "Comparar o %1 com o %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Lista separada por vírgula"
 
@@ -3822,6 +3826,9 @@ msgstr "paciência"
 
 msgid "histogram"
 msgstr "histograma"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"

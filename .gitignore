@@ -24,6 +24,7 @@
 *.asm
 *.swp
 *.lastbuild
+*.mo
 **/.vs
 **/ipch
 **/BuildTmp
@@ -57,6 +58,8 @@ winmerge-cppcheck-build-dir/
 Docs/Manual/Tools/ReadMe_ENG.html
 Testing/Data/ShellFileOpTest/File1.txt
 Testing/result-*.txt
+Testing/PerfTest*.cmd
+Testing/result.csv
 Translations/WinMerge/MergeLang.lastbuild
 ShellExtension/ShellExtension/*_i.c
 ShellExtension/ShellExtension/*_p.c
@@ -85,3 +88,5 @@ Plugins/src_VCPP/IgnoreFieldsComma/IgnoreFieldsComma.h
 Plugins/src_VCPP/IgnoreFieldsTab/IgnoreFieldsTab.h
 Plugins/src_VCPP/WatchBeginningOfLog/WatchBeginningOfLog.h
 Plugins/src_VCPP/WatchEndOfLog/WatchEndOfLog.h
+Tools/Scripts/MenuResources.txt
+Tools/Scripts/UnusedResources.txt

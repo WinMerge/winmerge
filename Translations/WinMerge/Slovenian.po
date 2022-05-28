@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-04-07 14:37+0200\n"
+"PO-Revision-Date: 2022-05-09 18:00+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -221,40 +221,40 @@ msgid "Co&mpare"
 msgstr "Pri&merjaj"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "&Posnetki zaslona"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "&Celozaslonski posnetki zaslona"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTML-ji"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Besedila"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Drevesa virov"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Velikost"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Prilagodi oknu"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "Počis&ti podatke brskanja"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "Predpom&nilnik diska"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "Pišk&otki"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "&Zgodovina brskanja"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "Vsi pro&fili"
 
 msgid "&File"
 msgstr "&Datoteka"
@@ -275,7 +275,7 @@ msgid "&Image"
 msgstr "S&lika"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "SP&letna stran"
 
 msgid "New (&3 panes)"
 msgstr "Nova (&3 okna)"
@@ -2016,19 +2016,19 @@ msgid "OCR result:"
 msgstr "Rezultat OCR:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Domača stran"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Vzorec URL-ja za v&ključitev (regularni izraz):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Vzorec URL-ja za &izključitev (regularni izraz):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "&Mesto mape z uporabniškimi podatki:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Ločene mape z uporabniškimi podtaki za vsako podokno"
 
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
@@ -3249,6 +3249,10 @@ msgstr "Ime vtičnika predrazlikovalca ali cevovod."
 msgid "Compare %1 with %2"
 msgstr "Primerjaj %1 z %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr "Primerjaj %1 z %2 in %3"
+
 msgid "Comma-separated list"
 msgstr "Seznam, ločen z vejicami"
 
@@ -3744,7 +3748,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Omogoči sa&modejno največjo širino"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "&Spletna stran"
 
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
@@ -3776,6 +3780,9 @@ msgstr "potrpežljivo"
 
 msgid "histogram"
 msgstr "histogram"
+
+msgid "none"
+msgstr "brez"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3931,10 +3938,10 @@ msgid "Word-by-word position and text"
 msgstr "Položaj besedo po besedo in besedilo"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Mapa aplikacijskih podatkov"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Namestitvena mapa"
 
 msgid "Allow only one instance to run"
 msgstr "Dovoli zagon samo enega primerka programa"
@@ -4349,4 +4356,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"

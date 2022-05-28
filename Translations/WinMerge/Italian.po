@@ -3237,6 +3237,10 @@ msgstr ""
 msgid "Compare %1 with %2"
 msgstr "Confronta %1 con %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Elenco separato da virgole"
 
@@ -3750,6 +3754,9 @@ msgstr ""
 
 msgid "histogram"
 msgstr "istogramma"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr ""

@@ -3857,6 +3857,10 @@ msgid "Compare %1 with %2"
 msgstr " همسنجي  %1 با  %2"
 
 #, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
+#, c-format
 msgid "Comma-separated list"
 msgstr " فهرستي که با کاما جدا شده باشد "
 
@@ -4358,6 +4362,9 @@ msgid "patience"
 msgstr ""
 
 msgid "histogram"
+msgstr ""
+
+msgid "none"
 msgstr ""
 
 msgid "GDI"

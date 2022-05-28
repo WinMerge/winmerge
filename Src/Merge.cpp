@@ -207,6 +207,10 @@ CMergeApp theApp;
 BOOL CMergeApp::InitInstance()
 {
 	// Prevents DLL hijacking
+#ifdef _WIN64
+	::SetSearchPathMode(BASE_SEARCH_PATH_ENABLE_SAFE_SEARCHMODE | BASE_SEARCH_PATH_PERMANENT);
+	::SetDllDirectory(_T(""));
+#else
 	HMODULE hLibrary = GetModuleHandle(_T("kernel32.dll"));
 	BOOL (WINAPI *pfnSetSearchPathMode)(DWORD) = (BOOL (WINAPI *)(DWORD))GetProcAddress(hLibrary, "SetSearchPathMode");
 	if (pfnSetSearchPathMode != nullptr)
@@ -214,6 +218,7 @@ BOOL CMergeApp::InitInstance()
 	BOOL (WINAPI *pfnSetDllDirectoryA)(LPCSTR) = (BOOL (WINAPI *)(LPCSTR))GetProcAddress(hLibrary, "SetDllDirectoryA");
 	if (pfnSetDllDirectoryA != nullptr)
 		pfnSetDllDirectoryA("");
+#endif
 
 	JumpList::SetCurrentProcessExplicitAppUserModelID(L"Thingamahoochie.WinMerge");
 
@@ -1059,7 +1064,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 		{
 			String msg = strutils::format_string1(
 				_("Unable to backup original file:\n%1\n\nContinue anyway?"),
-				pszPath);
+				pszPath + _T("\n(\u2192 ") + bakPath + _T(")"));
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_BACKUP_FAILED_PROMPT) != IDYES)
 				return false;
 		}

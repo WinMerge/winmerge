@@ -87,13 +87,24 @@ void DirCmpReport::SetList(IListCtrl *pList)
 
 /**
  * @brief Set root-paths of current compare so we can add them to report.
+ * @param [in] paths Root path information for the directory for which the report is generated.
  */
 void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
-	m_rootPaths.SetLeft(paths.GetLeft());
-	m_rootPaths.SetRight(paths.GetRight());
-	m_sTitle = strutils::format_string2(_("Compare %1 with %2"),
-		m_rootPaths.GetLeft(), m_rootPaths.GetRight());
+	if (paths.GetSize() < 3)
+	{
+		m_rootPaths.SetLeft(paths.GetLeft());
+		m_rootPaths.SetRight(paths.GetRight());
+		m_sTitle = strutils::format_string2(_("Compare %1 with %2"),
+			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
+	}
+	else {
+		m_rootPaths.SetLeft(paths.GetLeft());
+		m_rootPaths.SetMiddle(paths.GetMiddle());
+		m_rootPaths.SetRight(paths.GetRight());
+		m_sTitle = strutils::format_string3(_("Compare %1 with %2 and %3"),
+			m_rootPaths.GetLeft(), m_rootPaths.GetMiddle(), m_rootPaths.GetRight());
+	}
 }
 
 /**
@@ -443,8 +454,14 @@ void DirCmpReport::GenerateXmlHeader()
 				_T("<WinMergeDiffReport version=\"2\">\n")
 				_T("<left>"));
 	WriteStringEntityAware(m_rootPaths.GetLeft());
-	WriteString(_T("</left>\n")
-				_T("<right>"));
+	WriteString(_T("</left>\n"));
+	if (m_rootPaths.GetSize() == 3)
+	{
+		WriteString(_T("<middle>"));
+		WriteStringEntityAware(m_rootPaths.GetMiddle());
+		WriteString(_T("</middle>\n"));
+	}
+	WriteString(_T("<right>"));
 	WriteStringEntityAware(m_rootPaths.GetRight());
 	WriteString(_T("</right>\n")
 				_T("<time>"));
@@ -530,7 +547,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 				WriteString(_T("/"));
 				WriteString(sLinkPath);
 				WriteString(_T("\">"));
-				WriteString(m_pList->GetItemText(currRow, currCol));
+				WriteStringEntityAware(m_pList->GetItemText(currRow, currCol));
 				WriteString(_T("</a>"));
 			}
 			else

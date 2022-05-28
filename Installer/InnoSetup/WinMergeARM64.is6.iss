@@ -430,8 +430,8 @@ Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.
 ; Shell extension
 Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension32bit}'))
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}'))
-Source: ..\..\Build\ShellExtension\{#ARCH}\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage
+Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}')) and KillProcesses_ExplorerSeparateProcess
+Source: ..\..\Build\ShellExtension\{#ARCH}\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage and KillProcesses_DllHostWinMergeContextMenu
 Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
 
 ; ArchiveSupport
@@ -1020,6 +1020,71 @@ begin
     Result := false;
 end;
 
+function GetCurrentProcessId:DWORD;
+external 'GetCurrentProcessId@kernel32.dll stdcall';
+
+function GetCurrentSessionId() : Integer;
+var
+  locator: Variant;
+  services: Variant;
+  process: Variant;
+  processes: Variant;
+  i: Integer;
+  ResultCode: Integer;
+begin
+  Result := -1
+  locator := CreateOleObject('WbemScripting.SWbemLocator');
+  services := locator.ConnectServer('', 'root\CIMV2');
+  processes := services.ExecQuery('SELECT ProcessId, SessionId FROM Win32_Process WHERE ProcessId = ' + IntToStr(GetCurrentProcessId()));
+  if not VarIsNull(processes) then begin
+    for i := 0 to processes.Count - 1 do begin
+      process := processes.ItemIndex(i);
+      if not VarIsNull(process) then begin
+        Result := process.SessionId
+      end;
+    end;
+  end;
+end;
+
+procedure KillProcesses(filter: String);
+var
+  locator: Variant;
+  services: Variant;
+  process: Variant;
+  processes: Variant;
+  i: Integer;
+  ResultCode: Integer;
+begin
+  locator := CreateOleObject('WbemScripting.SWbemLocator');
+  services := locator.ConnectServer('', 'root\CIMV2');
+  processes := services.ExecQuery('SELECT ProcessId FROM Win32_Process WHERE ' + filter);
+  if not VarIsNull(processes) then begin
+    for i := 0 to processes.Count - 1 do begin
+      process := processes.ItemIndex(i);
+      if not VarIsNull(process) then begin
+        if GetUserNameString() = process.ExecMethod_('GetOwner').User then begin
+          process.Terminate();
+        end;
+      end;
+    end;
+  end;
+end;
+
+{ To avoid ShellExtension installation failures, terminate Explorer running as a separate process if it is not in the middle of a file operation. }
+function KillProcesses_ExplorerSeparateProcess() : Boolean;
+begin
+  if FindWindowByClassName('OperationStatusWindow') = 0 then begin
+    KillProcesses('Name = "explorer.exe" AND CommandLine LIKE "%/factory,{%" AND SessionId = ' + IntToStr(GetCurrentSessionId()));
+  end;
+  Result := true;
+end;
+
+function KillProcesses_DllHostWinMergeContextMenu() : Boolean;
+begin
+  KillProcesses('Name = "dllhost.exe" AND CommandLine LIKE "%/Processid:{90340779-F37E-468E-9728-A2593498ED32}%"');
+  Result := true;
+end;
+
 procedure RegisterPreviousData(PreviousDataKey: Integer);
 begin
   SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
@@ -1048,6 +1113,16 @@ begin
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtCenterPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtCenterPane', 'false')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
   g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
+end;
+
+procedure DeinitializeSetup();
+var
+  ResultCode: Integer;
+  { Start Explorer just before exiting the installer if the Explorer restart that was run to install the ShellExtension fails. }
+begin
+  if FindWindowByClassName('progman') = 0 then begin
+    Exec(ExpandConstant('{win}\explorer.exe'), '', '', SW_SHOW, ewNoWait, ResultCode)
+  end
 end;
 
 Function IsWindows11OrLater(): Boolean;

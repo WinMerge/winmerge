@@ -22,7 +22,7 @@ void Init(COptionsMgr *pOptionsMgr)
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_CASE, false);
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_NUMBERS, false);
 	pOptionsMgr->InitOption(OPT_CMP_IGNORE_EOL, false);
-	pOptionsMgr->InitOption(OPT_CMP_DIFF_ALGORITHM, (int)0, 0, 3);
+	pOptionsMgr->InitOption(OPT_CMP_DIFF_ALGORITHM, (int)0, 0, 4);
 	pOptionsMgr->InitOption(OPT_CMP_INDENT_HEURISTIC, true);
 	pOptionsMgr->InitOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, false);
 }

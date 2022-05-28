@@ -113,10 +113,17 @@ BOOL CSelectPluginDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
+	// setup handler for resizing this dialog	
+	m_constraint.InitializeCurrentSize(this);
+	m_constraint.SubclassWnd(); // install subclassing
+	// persist size via registry
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SelectPluginDlg"), false);
+
+	prepareListbox();
+
 	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
 	m_bOpenInSameFrameType = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE);
 
-	prepareListbox();
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
 		std::vector<const TCHAR *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }

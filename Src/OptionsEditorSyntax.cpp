@@ -19,7 +19,7 @@ void GetDefaults(COptionsMgr* pOptionsMgr, String* pExtension)
 	if (pOptionsMgr == nullptr || pExtension == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ASP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
 	{
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
 		if (def != nullptr)
@@ -42,7 +42,7 @@ void Init(COptionsMgr *pOptionsMgr)
 	if (pOptionsMgr == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ASP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
 	{
 		// Register the extension settings defined in CrystalLineParser in OptionsMgr as the default value.
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
@@ -68,7 +68,7 @@ void Load(COptionsMgr *pOptionsMgr, String* pExtension)
 	if (pOptionsMgr == nullptr || pExtension == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ASP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
 	{
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);
 		if (def != nullptr)
@@ -90,7 +90,7 @@ void Save(COptionsMgr* pOptionsMgr, const String* const pExtension)
 	if (pOptionsMgr == nullptr || pExtension == nullptr)
 		return;
 
-	for (int i = CrystalLineParser::SRC_ASP; i <= CrystalLineParser::SRC_XML; i++)
+	for (int i = CrystalLineParser::SRC_ABAP; i <= CrystalLineParser::SRC_XML; i++)
 	{
 		// Save the extension settings to OptionsMgr.
 		CrystalLineParser::TextDefinition* def = CrystalLineParser::GetTextType(i);

@@ -317,6 +317,9 @@ int xdl_do_diff(mmfile_t *mf1, mmfile_t *mf2, xpparam_t const *xpp,
 	if (XDF_DIFF_ALG(xpp->flags) == XDF_HISTOGRAM_DIFF)
 		return xdl_do_histogram_diff(mf1, mf2, xpp, xe);
 
+	if (XDF_DIFF_ALG(xpp->flags) == XDF_NONE_DIFF)
+		return xdl_do_none_diff(mf1, mf2, xpp, xe);
+
 	if (xdl_prepare_env(mf1, mf2, xpp, xe) < 0) {
 
 		return -1;
@@ -804,6 +807,9 @@ int xdl_change_compact(xdfile_t *xdf, xdfile_t *xdfo, long flags) {
 	struct xdlgroup g, go;
 	long earliest_end, end_matching_other;
 	long groupsize;
+
+	if (XDF_DIFF_ALG(flags) == XDF_NONE_DIFF)
+		return 0;
 
 	group_init(xdf, &g);
 	group_init(xdfo, &go);

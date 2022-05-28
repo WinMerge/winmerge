@@ -71,6 +71,7 @@ struct TEXTBLOCK
 typedef enum
 {
 	SRC_PLAIN = 0,
+	SRC_ABAP,
 	SRC_ASP,
 	SRC_AUTOIT,
 	SRC_BASIC,
@@ -146,6 +147,7 @@ TextDefinition* GetTextType(int index);
 void SetExtension(int index, const TCHAR *pszExts);
 
 unsigned ParseLinePlain(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineAbap(unsigned dwCookie, const TCHAR* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
 unsigned ParseLineAsp(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineAutoIt(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineBasic(unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

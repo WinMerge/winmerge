@@ -698,6 +698,12 @@
           このアルゴリズムはpatienceアルゴリズムを低頻度の共通要素に対応するように拡張しています。
           </para>
         </listitem>
+
+        <listitem>
+          <para><option>none</option>: 
+          このアルゴリズムは行の挿入や削除を検出しません。
+          </para>
+        </listitem>
       </itemizedlist>
     </section>
 

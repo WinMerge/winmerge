@@ -64,6 +64,9 @@ namespace JumpList
 bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 {
 	g_appid = appid;
+#ifdef _WIN64
+	return ::SetCurrentProcessExplicitAppUserModelID(appid.c_str()) == S_OK;
+#else
 	HMODULE hLibrary = GetModuleHandle(_T("shell32.dll"));
 	if (hLibrary == nullptr)
 		return false;
@@ -72,6 +75,7 @@ bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 	if (pfnSetCurrentProcessExplicitAppUserModelID == nullptr)
 		return false;
 	return pfnSetCurrentProcessExplicitAppUserModelID(appid.c_str()) == S_OK;
+#endif
 }
 
 bool AddToRecentDocs(const String& app_path, const String& params, const String& title, const String& desc, int icon_index)

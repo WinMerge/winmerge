@@ -246,6 +246,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h">

@@ -3242,6 +3242,10 @@ msgstr "Namn eller rörslinga för PreDiffer (tillägg)"
 msgid "Compare %1 with %2"
 msgstr "Jämför %1 med %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Kommaseparerad lista"
 
@@ -3756,6 +3760,9 @@ msgstr "Långvarig"
 
 msgid "histogram"
 msgstr "Histogram"
+
+msgid "none"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"

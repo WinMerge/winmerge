@@ -3264,6 +3264,10 @@ msgstr ""
 msgid "Compare %1 with %2"
 msgstr "Sammenligning %1 med %2"
 
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Komma-separert liste"
 
@@ -3779,6 +3783,9 @@ msgid "patience"
 msgstr ""
 
 msgid "histogram"
+msgstr ""
+
+msgid "none"
 msgstr ""
 
 msgid "GDI"

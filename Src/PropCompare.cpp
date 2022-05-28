@@ -116,6 +116,7 @@ BOOL PropCompare::OnInitDialog()
 	combo->AddString(_("minimal").c_str());
 	combo->AddString(_("patience").c_str());
 	combo->AddString(_("histogram").c_str());
+	combo->AddString(_("none").c_str());
 	combo->SetCurSel(m_nDiffAlgorithm);
 
 	OptionsPanel::OnInitDialog();
@@ -150,5 +151,6 @@ void PropCompare::OnCbnSelchangeDiffAlgorithm()
 void PropCompare::UpdateControls()
 {
 	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_DIFF_ALGORITHM);
-	EnableDlgItem(IDC_INDENT_HEURISTIC, pCombo->GetCurSel() != 0);
+	int cursel = pCombo->GetCurSel();
+	EnableDlgItem(IDC_INDENT_HEURISTIC, cursel != 0/*default*/ && cursel != 4/*none*/);
 }

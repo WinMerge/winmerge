@@ -208,7 +208,7 @@ std::string CMarkdown::Entities(const std::string& v)
 			{
 				ptrdiff_t i = p - &ret[0];
 				ptrdiff_t j = q - &ret[0];
-				size_t b = v.length();
+				size_t b = ret.length();
 				ret.resize(b + cchValue - 1);
 				p = &ret[0] + i;
 				q = &ret[0] + j;

@@ -36,6 +36,9 @@ unsigned long make_xdl_flags(const DiffutilsOptions& options)
 	case DIFF_ALGORITHM_HISTOGRAM:
 		xdl_flags |= XDF_HISTOGRAM_DIFF;
 		break;
+	case DIFF_ALGORITHM_NONE:
+		xdl_flags |= XDF_NONE_DIFF;
+		break;
 	default:
 		break;
 	}

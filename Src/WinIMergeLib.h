@@ -44,6 +44,9 @@ struct IImgMergeWindow
 	enum OCR_RESULT_TYPE {
 		TEXT_ONLY = 0, TEXT_PER_LINE_YAML, TEXT_PER_WORD_YAML
 	};
+	enum DIFF_ALGORITHM {
+		MYERS_DIFF, MINIMAL_DIFF, PATIENCE_DIFF, HISTOGRAM_DIFF, NONE_DIFF
+	};
 	struct Event
 	{
 		void *userdata;
@@ -177,6 +180,8 @@ struct IImgMergeWindow
 	virtual void SetHorizontalFlip(int pane, bool flip) = 0;
 	virtual bool GetVerticalFlip(int pane) const = 0;
 	virtual void SetVerticalFlip(int pane, bool flip) = 0;
+	virtual DIFF_ALGORITHM GetDiffAlgorithm() const = 0;
+	virtual void SetDiffAlgorithm(DIFF_ALGORITHM diffAlgorithm) = 0;
 };
 
 struct IImgToolWindow
