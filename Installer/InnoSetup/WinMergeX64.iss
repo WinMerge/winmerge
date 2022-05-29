@@ -1053,15 +1053,19 @@ end;
 { To avoid ShellExtension installation failures, terminate Explorer running as a separate process if it is not in the middle of a file operation. }
 function KillProcesses_ExplorerSeparateProcess() : Boolean;
 begin
+  (*
   if FindWindowByClassName('OperationStatusWindow') = 0 then begin
     KillProcesses('Name = "explorer.exe" AND CommandLine LIKE "%/factory,{%" AND SessionId = ' + IntToStr(GetCurrentSessionId()));
   end;
+  *)
   Result := true;
 end;
 
 function KillProcesses_DllHostWinMergeContextMenu() : Boolean;
 begin
+  (*
   KillProcesses('Name = "dllhost.exe" AND CommandLine LIKE "%/Processid:{90340779-F37E-468E-9728-A2593498ED32}%"');
+  *)
   Result := true;
 end;
 
