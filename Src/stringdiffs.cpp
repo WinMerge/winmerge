@@ -560,7 +560,7 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 		}
 		else
 		{
-			ch = static_cast<unsigned>(_totupper(ch));
+			ch = static_cast<unsigned>(_totlower(ch));
 			h += HASH(h, ch);
 		}
 	}
@@ -609,7 +609,7 @@ stringdiffs::caseMatch(TCHAR ch1, TCHAR ch2) const
 	if (m_case_sensitive) 
 		return ch1==ch2;
 	else 
-		return _totupper(ch1)==_totupper(ch2);
+		return _totlower(ch1)==_totlower(ch2);
 }
 
 /**
@@ -773,7 +773,7 @@ matchchar(const TCHAR *ch1, const TCHAR *ch2, size_t len, bool casitive)
 		return memcmp(ch1, ch2, len * sizeof(TCHAR)) == 0;
 	for (size_t i = 0; i < len; ++i)
 	{
-		if (_totupper(ch1[i]) != _totupper(ch2[i]))
+		if (_totlower(ch1[i]) != _totlower(ch2[i]))
 			return false;
 	}
 	return true;
