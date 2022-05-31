@@ -171,7 +171,9 @@ out:
           continue;
         }
 
-      if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/'))
+      if ((pszCommentEnd < pszChars + I) && I > 0 && (
+          (pszChars[I] == '/' && pszChars[nPrevI] == '/') ||
+          (pszChars[I] == '-' && pszChars[nPrevI] == '-')))
         {
           DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
