@@ -796,15 +796,18 @@ static void UpdateDiffItem(DIFFITEM &di, bool & bExists, CDiffContext *pCtxt)
 		di.diffFileInfo[i].ClearPartial();
 		if (pCtxt->UpdateInfoFromDiskHalf(di, i))
 		{
+			bool bUpdated = false;
 			if (di.diffFileInfo[i].IsDirectory() == di.diffcode.isDirectory())
 			{
-				di.diffcode.diffcode |= DIFFCODE::FIRST << i;
-				bExists = true;
+				String filepath = paths::ConcatPath(pCtxt->GetPath(i), di.diffFileInfo[i].GetFile());
+				if (di.diffFileInfo[i].UpdateFileName(filepath)) {
+					di.diffcode.diffcode |= DIFFCODE::FIRST << i;
+					bExists = true;
+					bUpdated = true;
+				}
 			}
-			else
-			{
+			if (!bUpdated)
 				di.diffFileInfo[i].ClearPartial();
-			}
 		}
 	}
 }
