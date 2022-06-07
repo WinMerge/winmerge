@@ -834,6 +834,10 @@ isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers)
 //		GetStringTypeW(CT_CTYPE3, &nextCh, 1, &wCharTypeNext);
 //		return (wCharType != wCharTypeNext);
 //		
+		WORD wCharType = 0;
+		GetStringTypeW(CT_CTYPE1, &ch, 1, &wCharType);
+		if ((wCharType & (C1_UPPER | C1_LOWER | C1_DIGIT)) != 0)
+			return false;
 		return true;
 	}
 }
