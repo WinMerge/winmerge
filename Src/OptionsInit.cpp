@@ -175,6 +175,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, 0, 0, 1);
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, true);
 	pOptions->InitOption(OPT_CMP_WEB_FIT_TO_WINDOW, true);
+	pOptions->InitOption(OPT_CMP_WEB_SHOWDIFFERENCES, true);
 	pOptions->InitOption(OPT_CMP_WEB_VIEW_WIDTH, 1024, 1, 9999);
 	pOptions->InitOption(OPT_CMP_WEB_VIEW_HEIGHT, 600, 1, 9999);
 	pOptions->InitOption(OPT_CMP_WEB_ZOOM, 1000, 250, 5000);

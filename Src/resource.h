@@ -609,6 +609,7 @@
 #define IDC_USERAGENT                   1628
 #define IDC_CHECK1                      1629
 #define IDC_COMPARE                     1630
+#define IDC_SHOWDIFFERENCES             1631
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1701,7 +1702,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        258
 #define _APS_NEXT_COMMAND_VALUE         34194
-#define _APS_NEXT_CONTROL_VALUE         1631
+#define _APS_NEXT_CONTROL_VALUE         1632
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

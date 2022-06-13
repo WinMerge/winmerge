@@ -192,6 +192,7 @@ private:
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();
 	afx_msg void OnBnClickedFitToWindow();
+	afx_msg void OnBnClickedShowDifferences();
 	afx_msg void OnBnClickedCompare();
 	afx_msg void OnEnChangeWidth();
 	afx_msg void OnEnChangeHeight();
