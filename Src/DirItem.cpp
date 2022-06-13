@@ -11,6 +11,7 @@
 #include "paths.h"
 #include "TFile.h"
 #include "DebugNew.h"
+#include <filesystem>
 
 /**
  * @brief Set filename and path for the item.
@@ -69,6 +70,29 @@ bool DirItem::Update(const String &sFilePath)
 
 			flags.attributes = GetFileAttributes(file.wpath().c_str());
 
+			retVal = true;
+		}
+		catch (...)
+		{
+		}
+	}
+	return retVal;
+}
+
+/**
+ * @brief Update filename from given file.
+ * @param [in] sFilePath Full path to file/directory to update
+ * @return true if information was updated (item was found).
+ */
+bool DirItem::UpdateFileName(const String& sFilePath)
+{
+	bool retVal = false;
+	if (!sFilePath.empty())
+	{
+		try
+		{
+			std::filesystem::path canonicalPath = std::filesystem::canonical(sFilePath);
+			filename = canonicalPath.filename();
 			retVal = true;
 		}
 		catch (...)
