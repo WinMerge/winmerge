@@ -52,6 +52,24 @@ bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 	return false;
 }
 
+/**
+ * @brief Return all ancestors of the current item.
+ */
+std::vector<const DIFFITEM*> DIFFITEM::GetAncestors() const
+{
+	int depth = GetDepth();
+	std::vector<const DIFFITEM*> ancestors(depth);
+
+	const DIFFITEM* cur;
+	int i;
+	for (i = 0, cur = parent; cur->parent != nullptr; i++, cur = cur->parent)
+	{
+		assert(depth - i - 1 >= 0 && depth - i - 1 < depth);
+		ancestors[depth - i - 1] = cur;
+	}
+	return ancestors;
+}
+
 /** @brief Remove and delete all children DIFFITEM entries */
 void DIFFITEM::RemoveChildren()
 {
