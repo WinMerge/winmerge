@@ -266,6 +266,7 @@ public:
 	void RemoveChildren();
 	int GetDepth() const;
 	bool IsAncestor(const DIFFITEM *pdi) const;
+	std::vector<const DIFFITEM*> GetAncestors() const;
 	inline DIFFITEM *GetFwdSiblingLink() const { return Flink; }
 	inline DIFFITEM *GetFirstChild() const { return children; }
 	inline DIFFITEM *GetParentLink() const { return parent; }

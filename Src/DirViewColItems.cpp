@@ -254,47 +254,74 @@ static String ColExtGet(const CDiffContext *, const void *p, int) //sfilename
 
 /**
  * @brief Format Folder column data.
+ * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to DIFFITEM.
  * @return String to show in the column.
  */
-static String ColPathGet(const CDiffContext *, const void *p, int)
+static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 {
+	assert(pCtxt != nullptr && p != nullptr);
+
+	int nDirs = pCtxt->GetCompareDirs();
+
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-	String s = di.diffFileInfo[1].path;
-	const String &t = di.diffFileInfo[0].path;
 
-	// If we have unique path, just print the existing path name
-	if (s.length() == 0 || t.length() == 0)
+	if (nDirs < 3)
 	{
-		if (s.length() == 0)
-			return t;
-		else
-			return s;
-	}
-
-	size_t i = 0, j = 0;
-	do
-	{
-		const TCHAR *pi = _tcschr(s.c_str() + i, '\\');
-		const TCHAR *pj = _tcschr(t.c_str() + j, '\\');
-		size_t i_ahead = (pi != nullptr ? pi - s.c_str() : std::string::npos);
-		size_t j_ahead = (pj != nullptr ? pj - t.c_str() : std::string::npos);
-		size_t length_s = ((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
-		size_t length_t = ((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
-		if (length_s != length_t ||
-			memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
+		String s = di.diffFileInfo[1].path;
+		const String& t = di.diffFileInfo[0].path;
+		
+		// If we have unique path, just print the existing path name
+		if (s.length() == 0 || t.length() == 0)
 		{
-			String u(t.c_str() + j, length_t + 1);
-			u[length_t] = '|';
-			s.insert(i, u);
-			i_ahead += u.length();
+			if (s.length() == 0)
+				return t;
+			else
+				return s;
 		}
-		i = i_ahead + 1;
-		j = j_ahead + 1;
-	} while (i && j);
-	if (s.empty())
-		s = _T(".");
-	return s;
+
+		size_t i = 0, j = 0;
+		do
+		{
+			const TCHAR* pi = _tcschr(s.c_str() + i, '\\');
+			const TCHAR* pj = _tcschr(t.c_str() + j, '\\');
+			size_t i_ahead = (pi != nullptr ? pi - s.c_str() : std::string::npos);
+			size_t j_ahead = (pj != nullptr ? pj - t.c_str() : std::string::npos);
+			size_t length_s = ((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
+			size_t length_t = ((j_ahead != std::string::npos ? j_ahead : t.length()) - j);
+			if (length_s != length_t ||
+				memcmp(s.c_str() + i, t.c_str() + j, length_s) != 0)
+			{
+				String u(t.c_str() + j, length_t + 1);
+				u[length_t] = '|';
+				s.insert(i, u);
+				i_ahead += u.length();
+			}
+			i = i_ahead + 1;
+			j = j_ahead + 1;
+		} while (i && j);
+		if (s.empty())
+			s = _T(".");
+		return s;
+	}
+	else
+	{
+		// If we have unique path, just print the existing path name
+		const DiffFileInfo* pDiffFileInfo = di.diffFileInfo;
+		if (pDiffFileInfo[0].path == pDiffFileInfo[1].path && pDiffFileInfo[0].path == pDiffFileInfo[2].path)
+			return pDiffFileInfo[0].path;
+
+		String s;
+		const std::vector<const DIFFITEM*> ancestors = di.GetAncestors();
+		size_t depth = ancestors.size();
+		for (int i = 0; i < depth; i++)
+		{
+			if (i > 0)
+				s += _T("\\");
+			s += ColFileNameGet<String>(pCtxt, ancestors[i], 0);
+		}
+		return s;
+	}
 }
 
 /**
