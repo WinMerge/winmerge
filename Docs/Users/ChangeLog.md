@@ -45,6 +45,9 @@
 - BugFix: Refresh Selected Marks Unscanned Folders as Identical (#1349)
 - BugFix: Make the file name refreshed to detect case changes when running
     "Refresh Selected". (PR #1358)
+- BugFix: Fix an issue where paths with different case are not displayed
+    correctly in the folder column of the folder compare window when comparing
+    three directories. (PR #1372 )
 - Tab behaviour on comparisons of files vs folders (#1367)
 - Make the sort order of file names including numbers the same as Explorer.
    (osdn.net #44557)
