@@ -106,7 +106,6 @@ private:
 	void UpdateWebPageDiffBar();
 	//static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 
-// Generated message map functions
 private:
 	CWebPageDiffBar m_wndWebPageDiffBar;
 	CLocationBar m_wndLocationBar;
@@ -127,6 +126,8 @@ private:
 	std::function<void()> m_callbackOnOpenCompleted;
 	bool m_bInUpdateWebPageDiffBar;
 
+// Generated message map functions
+protected:
 	//{{AFX_MSG(CWebPageDiffFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
@@ -154,13 +155,13 @@ private:
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnEditUndo();
+	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnEditRedo();
+	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnEditCut();
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditPaste();
-	afx_msg void OnEditUndo();
-	afx_msg void OnEditRedo();
-	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
