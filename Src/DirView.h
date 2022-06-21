@@ -201,7 +201,6 @@ protected:
 	int m_nEscCloses; /**< Cached value for option for ESC closing window */
 	bool m_bExpandSubdirs;
 	CFont m_font; /**< User-selected font */
-	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	bool m_bTreeMode; /**< `true` if tree mode is on*/
 	DirViewFilterSettings m_dirfilter;
 	clock_t m_compareStart; /**< Starting process time of the compare */

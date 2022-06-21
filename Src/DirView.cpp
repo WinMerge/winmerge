@@ -90,7 +90,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 
 CDirView::CDirView()
 		: m_pList(nullptr)
-		, m_nHiddenItems(0)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
 		, m_dirfilter(std::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
@@ -3279,7 +3278,6 @@ void CDirView::OnHideFilenames()
 		SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 		DeleteItem(selection_index);
 		ctxt.m_vCurrentlyHiddenItems.push_back(hiddden_item_path);
-		m_nHiddenItems++;
 	}
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
@@ -3503,8 +3501,9 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
  */
 void CDirView::OnViewShowHiddenItems()
 {
+	CDiffContext& ctxt = GetDiffContext();
 	SetItemViewFlag(GetDiffContext(), ViewCustomFlags::VISIBLE, ViewCustomFlags::VISIBILITY);
-	m_nHiddenItems = 0;
+	ctxt.m_vCurrentlyHiddenItems.clear();
 	Redisplay();
 }
 
@@ -3513,7 +3512,8 @@ void CDirView::OnViewShowHiddenItems()
  */
 void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_nHiddenItems > 0);
+	const CDiffContext& ctxt = GetDiffContext();
+	pCmdUI->Enable(ctxt.m_vCurrentlyHiddenItems.size() > 0);
 }
 
 /**
@@ -4156,6 +4156,8 @@ void CDirView::OnSearch()
 	CDirDoc *pDoc = GetDocument();
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	int nRows = m_pList->GetItemCount();
+	CDiffContext& ctxt = GetDiffContext();
+
 	for (int currRow = nRows - 1; currRow >= 0; currRow--)
 	{
 		DIFFITEM *pos = GetItemKey(currRow);
@@ -4165,6 +4167,7 @@ void CDirView::OnSearch()
 		bool bFound = false;
 		DIFFITEM &di = GetDiffItem(currRow);
 		PathContext paths;
+
 		for (int i = 0; i < pDoc->m_nDirs; i++)
 		{
 			if (di.diffcode.exists(i) && !di.diffcode.isDirectory())
@@ -4201,9 +4204,10 @@ void CDirView::OnSearch()
 		}
 		if (!bFound)
 		{
+			String hiddden_item_path = di.getItemRelativePath();
 			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 			DeleteItem(currRow);
-			m_nHiddenItems++;
+			ctxt.m_vCurrentlyHiddenItems.push_back(hiddden_item_path);
 		}
 	}
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
