@@ -59,6 +59,8 @@ DownloadDeps.cmd
 BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ~~~
 
+Keep in mind that the last two commands need to be run from the Developer Command Prompt
+
 ## Folder Structure
 
 Source code for the WinMerge program, its plugins, filters, setup program,
@@ -118,3 +120,12 @@ Subfolders include:
    It contains temporary files created during the compilation and can be 
    safely deleted. 
 
+
+## How to RUN and DEBUG
+
+   The winmerge folder has different Visual Studio solution files (.sln) that you can use to build, debug and run while you test your changes
+   
+   If you have run any of the BuildAll scripts you can run WinMerge from path `\Build\X64\Release\WinMergeU.exe` 
+   if your architecture is not `X64` look for any of the other folders generated after the build has finished
+   
+   Another way to Debug, run the exe from previous step, then from VS attach to the running process.

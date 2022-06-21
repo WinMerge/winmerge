@@ -3264,13 +3264,21 @@ void CDirView::OnUpdateItemRename(CCmdUI* pCmdUI)
  */
 void CDirView::OnHideFilenames()
 {
+	CDiffContext& ctxt = GetDiffContext();
+	int selection_index;
+	String hiddden_item_path;
+	
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	DirItemIterator it;
+
 	while ((it = SelRevBegin()) != SelRevEnd())
 	{
 		DIFFITEM &di = *it;
+		selection_index = it.m_sel;
+		hiddden_item_path = di.getItemRelativePath();
 		SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
-		DeleteItem(it.m_sel);
+		DeleteItem(selection_index);
+		ctxt.m_vCurrentlyHiddenItems.push_back(hiddden_item_path);
 		m_nHiddenItems++;
 	}
 	m_pList->SetRedraw(TRUE);	// Turn updating back on

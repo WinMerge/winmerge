@@ -50,6 +50,7 @@ const char Ignore_numbers_element_name[] = "ignore-numbers";
 const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
 const char Compare_method_element_name[] = "compare-method";
+const char Hidden_items_element_name[] = "hidden-items";
 
 namespace
 {
@@ -180,6 +181,11 @@ public:
 		{
 			currentItem.m_nCompareMethod = atoi(std::string(ch + start, length).c_str());
 			currentItem.m_bHasCompareMethod = true;
+		}
+		else if (nodename == Hidden_items_element_name)
+		{
+			currentItem.m_vSavedHiddenItems.clear();
+			currentItem.m_bHasHiddenItems = true;
 		}
 	}
 	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}

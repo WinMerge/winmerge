@@ -113,6 +113,10 @@ private:
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	bool m_bHasCompareMethod; /**< Has "Compare method" setting? */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
+
+	bool m_bHasHiddenItems; /**< Has "Compare method" setting? */
+	std::vector<std::string> m_vSavedHiddenItems; /**< The list of hidden items saved */
+
 	bool m_bSaveFilter; /**< Save filter? */
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
