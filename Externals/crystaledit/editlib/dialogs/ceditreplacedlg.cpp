@@ -195,13 +195,14 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
   if (m_nDirection == 0)
     dwSearchFlags |= FIND_DIRECTION_UP;
 
-  m_ptFoundAt = m_pBuddy->GetSearchPos (dwSearchFlags);
+  if (m_nScope != 0)
+    m_ptFoundAt = m_pBuddy->GetSearchPos (dwSearchFlags);
 
   bool bFound;
   if (m_nScope == 0)
     {
       //  Searching selection only
-      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptBlockBegin, m_ptBlockBegin, m_ptBlockEnd,
+      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, false, &m_ptFoundAt);
     }
   else if (m_bDontWrap)
