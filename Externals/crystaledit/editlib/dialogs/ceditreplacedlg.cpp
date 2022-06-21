@@ -525,6 +525,8 @@ UpdateControls()
 {
   for (auto id: {IDC_EDIT_FINDPREV, IDC_EDIT_SKIP, IDC_EDIT_REPLACE, IDC_EDIT_REPLACE_ALL})
     GetDlgItem(id)->EnableWindow( !m_sText.IsEmpty() );
+  if (m_nScope == 0)
+    GetDlgItem(IDC_EDIT_REPLACE)->EnableWindow(false);
  
   UpdateRegExp();
 }
