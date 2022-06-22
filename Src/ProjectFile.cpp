@@ -244,6 +244,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveIgnoreCodepage(true)
 , m_bSaveFilterCommentsLines(true)
 , m_bSaveCompareMethod(true)
+, m_bHasHiddenItems(false)
 {
 }
 
