@@ -68,6 +68,14 @@ void writeElement(XMLWriter& writer, const std::string& tagname, const std::stri
 	writer.endElement("", "", tagname);
 }
 
+void saveHiddenItems(XMLWriter& writer, const CDiffContext& diffContext) {
+	writer.startElement("", "", Hidden_list_element_name);
+	for (String hiddenItem : diffContext.m_vCurrentlyHiddenItems) {
+		writeElement(writer, Hidden_items_element_name, toUTF8(hiddenItem));
+	}
+	writer.endElement("", "", Hidden_list_element_name);
+}
+
 }
 
 class ProjectFileHandler: public ContentHandler
@@ -402,20 +410,13 @@ bool ProjectFile::Save(const String& path, const CDiffContext& diffContext) cons
 					writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
 				if (item.m_bSaveCompareMethod)
 					writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
+				if (diffContext.m_vCurrentlyHiddenItems.size() > 0) 
+					saveHiddenItems(writer, diffContext);
 			}
 			writer.endElement("", "", Paths_element_name);
-		}
-
-		if (diffContext.m_vCurrentlyHiddenItems.size() > 0) {
-			writer.startElement("", "", Hidden_list_element_name);
-			for (String hiddenItem : diffContext.m_vCurrentlyHiddenItems) {
-				writeElement(writer, Hidden_items_element_name, toUTF8(hiddenItem));
-			}
-			writer.endElement("", "", Hidden_list_element_name);
 		}
 	}
 	writer.endElement("", "", Root_element_name);
 	writer.endDocument();
 	return true;
 }
-
