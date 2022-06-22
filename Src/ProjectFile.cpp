@@ -50,6 +50,7 @@ const char Ignore_numbers_element_name[] = "ignore-numbers";
 const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
 const char Compare_method_element_name[] = "compare-method";
+const char Hidden_list_element_name[] = "hidden-list";
 const char Hidden_items_element_name[] = "hidden-items";
 
 namespace
@@ -182,7 +183,8 @@ public:
 			currentItem.m_nCompareMethod = atoi(std::string(ch + start, length).c_str());
 			currentItem.m_bHasCompareMethod = true;
 		}
-		else if (nodename == Hidden_items_element_name)
+		/*@todo MGG: fix this method to read each item and set the flag correctly*/
+		else if (nodename == Hidden_list_element_name)
 		{
 			currentItem.m_vSavedHiddenItems.clear();
 			currentItem.m_bHasHiddenItems = true;
@@ -355,7 +357,7 @@ bool ProjectFile::Read(const String& path)
  * @param [out] sError Error string if error happened.
  * @return true if saving succeeded, false if error happened.
  */
-bool ProjectFile::Save(const String& path) const
+bool ProjectFile::Save(const String& path, const CDiffContext& diffContext) const
 {
 	FileStream out(toUTF8(path), FileStream::trunc);
 	XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
@@ -402,6 +404,14 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
 			}
 			writer.endElement("", "", Paths_element_name);
+		}
+
+		if (diffContext.m_vCurrentlyHiddenItems.size() > 0) {
+			writer.startElement("", "", Hidden_list_element_name);
+			for (String hiddenItem : diffContext.m_vCurrentlyHiddenItems) {
+				writeElement(writer, Hidden_items_element_name, toUTF8(hiddenItem));
+			}
+			writer.endElement("", "", Hidden_list_element_name);
 		}
 	}
 	writer.endElement("", "", Root_element_name);

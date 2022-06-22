@@ -8,6 +8,7 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
+#include "DiffContext.h"
 
 class ProjectFileItem
 {
@@ -141,7 +142,7 @@ class ProjectFile
 {
 public:
 	bool Read(const String& path);
-	bool Save(const String& path) const;
+	bool Save(const String& path, const CDiffContext& diffContext) const;
 	const std::list<ProjectFileItem>& Items() const { return m_items; };
 	std::list<ProjectFileItem>& Items() { return m_items; }
 	static const String PROJECTFILE_EXT;

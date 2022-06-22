@@ -1231,7 +1231,7 @@ bool CMergeApp::SaveProjectFile(const String& sProject, const ProjectFile &proje
 {
 	try
 	{
-		project.Save(sProject);
+		project.Save(sProject, *diffContext.get());
 	}
 	catch (Poco::Exception& e)
 	{
