@@ -51,7 +51,7 @@ const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
 const char Compare_method_element_name[] = "compare-method";
 const char Hidden_list_element_name[] = "hidden-list";
-const char Hidden_items_element_name[] = "hidden-items";
+const char Hidden_items_element_name[] = "hidden-item";
 
 namespace
 {
