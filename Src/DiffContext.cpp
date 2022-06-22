@@ -65,7 +65,6 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 		m_paths.SetPath(index, paths[index]);
 }
 
-
 /**
  * @brief Destructor.
  */

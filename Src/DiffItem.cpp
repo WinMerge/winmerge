@@ -32,13 +32,13 @@ String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 String DIFFITEM::getItemRelativePath() const
 {
 	String resp = _T("");
+	int compareIndex ;
 
-	int compareIndex = 0;
-	while ((compareIndex < 3) && (diffFileInfo[compareIndex].size == -1)){
-		compareIndex++;
-	} 
+	//determine what is the trees contain the item to be hidden
+	for (compareIndex = 0; (compareIndex < 3) && (diffFileInfo[compareIndex].size == -1); compareIndex++);
 
-	if (compareIndex < 3) {
+	if (compareIndex < 3) 
+	{
 		resp = paths::ConcatPath(diffFileInfo[compareIndex].path, diffFileInfo[compareIndex].filename);
 	}
 

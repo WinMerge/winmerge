@@ -55,11 +55,11 @@ git clone https://github.com/winmerge/winmerge
 cd winmerge
 git submodule init
 git submodule update
-DownloadDeps.cmd
+>DownloadDeps.cmd
 BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ~~~
 
-Keep in mind that the last two commands need to be run from the Developer Command Prompt
+Keep in mind that the `DownloadDeps.cmd` needs to be run from the VS Developer Command Prompt
 
 ## Folder Structure
 
@@ -120,6 +120,15 @@ Subfolders include:
    It contains temporary files created during the compilation and can be 
    safely deleted. 
 
+
+## How to CONTRIBUTE
+
+   You will need to fork the main Winmerge repository and create a branch on that fork
+   
+   Your new code needs to follow Eric Allman identation https://en.wikipedia.org/wiki/Indentation_style#Allman_style
+   
+   When your code is ready for a review/merge create a pull request explaining the changes that you made
+   
 
 ## How to RUN and DEBUG
 

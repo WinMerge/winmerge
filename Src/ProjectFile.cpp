@@ -68,7 +68,8 @@ void writeElement(XMLWriter& writer, const std::string& tagname, const std::stri
 	writer.endElement("", "", tagname);
 }
 
-void saveHiddenItems(XMLWriter& writer, const CDiffContext& diffContext) {
+void saveHiddenItems(XMLWriter& writer, const CDiffContext& diffContext) 
+{
 	writer.startElement("", "", Hidden_list_element_name);
 	for (String hiddenItem : diffContext.m_vCurrentlyHiddenItems) {
 		writeElement(writer, Hidden_items_element_name, toUTF8(hiddenItem));
