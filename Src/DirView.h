@@ -390,6 +390,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	bool OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	bool OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
+	void HideItems(std::vector<String> ItemsToHide);
+	bool IsItemToHide(String currentItem, std::vector<String> ItemsToHide);
 
 private:
 	void Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
