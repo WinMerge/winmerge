@@ -159,14 +159,8 @@ void CDirDoc::InitCompare(const PathContext & paths, bool bRecursive, CTempPathC
 	if (m_pCompareStats == nullptr)
 		m_pCompareStats.reset(new CompareStats(m_nDirs));
 
-	/** @todo This is needed in order to have the diffContext on the Merge (theApp) class when saving project files
-		but could definatly be done better
-	**/
 	m_pCtxt.reset(new CDiffContext(paths,
 			GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
-	theApp.diffContext.reset(m_pCtxt.get());
-	/****/
-
 	m_pCtxt->m_bRecursive = bRecursive;
 
 	if (pTempPathContext != nullptr)

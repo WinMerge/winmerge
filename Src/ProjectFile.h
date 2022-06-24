@@ -8,7 +8,6 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
-#include "DiffContext.h"
 
 class ProjectFileItem
 {
@@ -31,6 +30,7 @@ public:
 	bool HasIgnoreCodepage() const;
 	bool HasFilterCommentsLines() const;
 	bool HasCompareMethod() const;
+	bool HasHiddenItems() const;
 
 	String GetLeft(bool * pReadOnly = nullptr) const;
 	bool GetLeftReadOnly() const;
@@ -50,6 +50,7 @@ public:
 	bool GetIgnoreCodepage() const;
 	bool GetFilterCommentsLines() const;
 	int GetCompareMethod() const;
+	const std::vector<String>& GetHiddenItems() const;
 
 	void SetLeft(const String& sLeft, const bool * pReadOnly = nullptr);
 	void SetMiddle(const String& sMiddle, const bool * pReadOnly = nullptr);
@@ -66,6 +67,7 @@ public:
 	void SetIgnoreCodepage(bool bIgnoreCodepage);
 	void SetFilterCommentsLines(bool bFilterCommentsLines);
 	void SetCompareMethod(int nCompareMethod);
+	void SetHiddenItems(const std::vector<String>& hiddenItems);
 
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);
@@ -114,8 +116,8 @@ private:
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	bool m_bHasCompareMethod; /**< Has "Compare method" setting? */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
-	bool m_bHasHiddenItems; /**< Has "Compare method" setting? */
-	std::vector<std::string> m_vSavedHiddenItems; /**< The list of hidden items saved */
+	bool m_bHasHiddenItems; /**< Has "Hidden items" setting? */
+	std::vector<String> m_vSavedHiddenItems; /**< The list of hidden items saved */
 	bool m_bSaveFilter; /**< Save filter? */
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
@@ -140,7 +142,7 @@ class ProjectFile
 {
 public:
 	bool Read(const String& path);
-	bool Save(const String& path, const CDiffContext& diffContext) const;
+	bool Save(const String& path) const;
 	const std::list<ProjectFileItem>& Items() const { return m_items; };
 	std::list<ProjectFileItem>& Items() { return m_items; }
 	static const String PROJECTFILE_EXT;
@@ -280,6 +282,15 @@ inline bool ProjectFileItem::HasFilterCommentsLines() const
 inline bool ProjectFileItem::HasCompareMethod() const
 {
 	return m_bHasCompareMethod;
+}
+
+/** 
+ * @brief Returns if "Hidden items" setting is defined in projectfile.
+ * @return true if project file has "Hidden items" setting definition.
+ */
+inline bool ProjectFileItem::HasHiddenItems() const
+{
+	return m_bHasHiddenItems;
 }
 
 /** 
@@ -522,6 +533,24 @@ inline int ProjectFileItem::GetCompareMethod() const
 inline void ProjectFileItem::SetCompareMethod(int nCompareMethod)
 {
 	m_nCompareMethod = nCompareMethod;
+}
+
+/** 
+ * @brief Returns the value of the "Hidden items" setting.
+ * @return The value of the "Hidden items" setting
+ */
+inline const std::vector<String>& ProjectFileItem::GetHiddenItems() const
+{
+	return m_vSavedHiddenItems;
+}
+
+/** 
+ * @brief Set the value of the "Hidden items" setting.
+ * @param [in] hiddenItems New value of the "Hidden items" setting to set.
+ */
+inline void ProjectFileItem::SetHiddenItems(const std::vector<String>& hiddenItems)
+{
+	m_vSavedHiddenItems = hiddenItems;
 }
 
 /** 

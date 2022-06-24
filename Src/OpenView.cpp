@@ -926,6 +926,7 @@ void COpenView::OnSaveProject()
 		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
 		projItem.SetCompareMethod(m_nCompareMethod);
 	}
+	projItem.SetHiddenItems(GetDocument()->m_hiddenItems);
 
 	project.Items().push_back(projItem);
 
