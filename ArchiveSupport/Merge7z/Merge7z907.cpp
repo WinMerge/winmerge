@@ -204,6 +204,7 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 			false,
 			NExtract::NPathMode::kFullPaths,
 			NExtract::NOverwriteMode::kOverwrite,
+			NExtract::NZoneIdMode::kNone,
 			false
 		);
 
