@@ -195,13 +195,14 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
   if (m_nDirection == 0)
     dwSearchFlags |= FIND_DIRECTION_UP;
 
-  m_ptFoundAt = m_pBuddy->GetSearchPos (dwSearchFlags);
+  if (m_nScope != 0)
+    m_ptFoundAt = m_pBuddy->GetSearchPos (dwSearchFlags);
 
   bool bFound;
   if (m_nScope == 0)
     {
       //  Searching selection only
-      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptBlockBegin, m_ptBlockBegin, m_ptBlockEnd,
+      bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, false, &m_ptFoundAt);
     }
   else if (m_bDontWrap)
@@ -524,6 +525,8 @@ UpdateControls()
 {
   for (auto id: {IDC_EDIT_FINDPREV, IDC_EDIT_SKIP, IDC_EDIT_REPLACE, IDC_EDIT_REPLACE_ALL})
     GetDlgItem(id)->EnableWindow( !m_sText.IsEmpty() );
+  if (m_nScope == 0)
+    GetDlgItem(IDC_EDIT_REPLACE)->EnableWindow(false);
  
   UpdateRegExp();
 }
