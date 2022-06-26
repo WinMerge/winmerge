@@ -111,6 +111,7 @@ Localization:
   Michele Locati <michele@locati.it>
   bovirus
   Massimiliano Caniparoli
+  Simone Saviolo
 
 * Japanese:
   Takashi Sawanaka <sdottaka@users.sourceforge.net>

@@ -193,6 +193,16 @@ void DiffutilsOptions::SetToDiffUtils()
 	horizon_lines = 0;
 	heuristic = 1;
 	recursive = 0;
+
+	no_diff_means_no_output = 0;
+	no_details_flag = 0;
+	line_end_char = '\n';
+	tab_align_flag = 0;
+	tab_expand_flag = 0;
+	paginate_flag = 0;
+	switch_string = NULL;
+	file_label[0] = NULL;
+	file_label[1] = NULL;
 }
 
 /**

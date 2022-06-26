@@ -240,10 +240,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{231348
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnoSetup", "InnoSetup", "{5360DC20-6552-4F74-8D4D-BF88B23E0B3A}"
 	ProjectSection(SolutionItems) = preProject
-		Docs\Manual\Shared\xsl\common.xsl = Docs\Manual\Shared\xsl\common.xsl
 		Installer\InnoSetup\ExternalArchiveFormat.ini = Installer\InnoSetup\ExternalArchiveFormat.ini
-		Docs\Manual\Shared\xsl\html.xsl = Docs\Manual\Shared\xsl\html.xsl
-		Docs\Manual\Shared\xsl\htmlhelp.xsl = Docs\Manual\Shared\xsl\htmlhelp.xsl
 		Installer\InnoSetup\modpath.is6.iss = Installer\InnoSetup\modpath.is6.iss
 		Installer\InnoSetup\modpath.iss = Installer\InnoSetup\modpath.iss
 		Installer\InnoSetup\modpathNonAdmin.iss = Installer\InnoSetup\modpathNonAdmin.iss

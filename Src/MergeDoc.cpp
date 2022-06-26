@@ -1088,6 +1088,8 @@ static std::pair<MergeResult, Type> DoMergeValue(Type left, Type middle, Type ri
  */
 void CMergeDoc::DoAutoMerge(int dstPane)
 {
+	if (m_nBuffers < 3)
+		return;
 	const int lastDiff = m_diffList.GetSize() - 1;
 	const int firstDiff = 0;
 	bool bGroupWithPrevious = false;

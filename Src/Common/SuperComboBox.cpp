@@ -436,7 +436,7 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 			// shell functionality.
 			m_bAutoComplete = false;
 
-			// ComboBox's edit control is alway 1001.
+			// ComboBox's edit control is always 1001.
 			CWnd *pWnd = m_bComboBoxEx ? this->GetEditCtrl() : GetDlgItem(1001);
 			ASSERT(pWnd != nullptr);
 			SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);

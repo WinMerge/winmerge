@@ -24,43 +24,43 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_BULGARIAN, SUBLANG_DEFAULT"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Копиране в средата"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr "Копиране в&дясно\tAlt+Right"
+msgstr "Копиране в &дясно\tAlt+Right"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Копиране от средата"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr "Копиране отд&ясно\tAlt+Shift+Left"
+msgstr "Копиране от д&ясно\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr "Копиране в&ляво\tAlt+Left"
+msgstr "Копиране в &ляво\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr "Копиране &отляво\tAlt+Shift+Right"
+msgstr "Копиране &от ляво\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Копиране избраните редове в средата"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr "Копиране на избрани редове вдясно"
+msgstr "Копиране избраните редове вдясно"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Копиране избраните редове от средата"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr "Копиране на избрани редове от дясно"
+msgstr "Копиране избраните редове от дясно"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr "Копиране на избрани редове вляво"
+msgstr "Копиране избраните редове вляво"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr "Копиране на избрани редове от ляво"
+msgstr "Копиране избраните редове от ляво"
 
 msgid "Select Line &Difference\tF4"
-msgstr "&Избиране на различия на реда\tF4"
+msgstr "&Избиране на различията на реда\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Нов заместващ &филтър от тази промяна"
@@ -90,10 +90,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "Отиване &към…\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "Към преместени редове между ляво и среда\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "Към преместени редове между среда и дясно\tCtrl+Alt+G"
 
 msgid "Op&en"
 msgstr "&Отваряне"
@@ -111,25 +111,25 @@ msgid "Open &Parent Folder..."
 msgstr "&Родителска папка…"
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "Меню на о&бкръжението"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Първият ред като заглавка"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Автоматично побиране на колоните"
 
 msgid "View &Differences"
-msgstr "Преглед на &различия"
+msgstr "Преглед на &различията"
 
 msgid "Diff &Block Size"
-msgstr "Размер на &блок за различия"
+msgstr "Размер на &блока за различия"
 
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Разпознаван&е на вмъкване/изтриване"
 
 msgid "&None"
 msgstr "&Няма"
@@ -150,16 +150,16 @@ msgid "&Active Pane"
 msgstr "&Текущ панел"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Завъртане на&дясно 90⁰"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Завъртане на&ляво 90⁰"
 
 msgid "Flip V&ertically"
-msgstr ""
+msgstr "Завъртане по &хоризонталната ос"
 
 msgid "Flip H&orizontally"
-msgstr ""
+msgstr "Завъртане по &вертикалната ос"
 
 msgid "&Zoom"
 msgstr "Маща&биране"
@@ -218,7 +218,7 @@ msgid "Co&mpare"
 msgstr "&Сравняване"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "Снимки на &екрана"
 
 msgid "&Full Size Screenshots"
 msgstr ""
@@ -674,19 +674,19 @@ msgid "&View Whitespace"
 msgstr "&Интервали"
 
 msgid "View E&OL"
-msgstr "Показване на знаци за нов &ред"
+msgstr "Знаци за нов &ред"
 
 msgid "Vie&w Line Differences"
-msgstr "Показване на &различия на реда"
+msgstr "Ра&зличия на реда"
 
 msgid "View Line &Numbers"
 msgstr "&Номериране на редовете"
 
 msgid "View &Margins"
-msgstr "Показване на &отстъпа"
+msgstr "&Oтстъп"
 
 msgid "View To&p Margins"
-msgstr ""
+msgstr "Горна с&кала"
 
 msgid "W&rap Lines"
 msgstr "Прена&сяне на редовете"
@@ -746,25 +746,25 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Предишно различие само от Дясно\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr ""
+msgstr "Копиране от &ляво в"
 
 msgid "&Middle"
-msgstr "В&средата"
+msgstr "&Средата"
 
 msgid "&Right"
-msgstr "Отд&ясно"
+msgstr "&Дясно"
 
 msgid "Copy from &Middle to"
-msgstr ""
+msgstr "Копиране от &средата в"
 
 msgid "&Left"
-msgstr "От&ляво"
+msgstr "&Ляво"
 
 msgid "Copy from &Right to"
-msgstr ""
+msgstr "Копиране от &дясно в"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Копиране на избраните редове от &ляво в"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
 msgstr ""
@@ -818,7 +818,7 @@ msgid "Comp&are"
 msgstr "&Сравняване"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Сравняване в нов &прозорец"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Нехоризонтално &сравняване…"
@@ -887,22 +887,22 @@ msgid "&All"
 msgstr "&Всички"
 
 msgid "Re&name"
-msgstr "&Преименувай"
+msgstr "&Преименуване"
 
 msgid "&Hide Items"
-msgstr "&Скрий"
+msgstr "&Скрийване"
 
 msgid "&Open Left"
-msgstr "&Отвори в ляво"
+msgstr "&Отваряне на &левия"
 
 msgid "Open Midd&le"
-msgstr "Отвори сре&ден"
+msgstr "Отваряне на &средния"
 
 msgid "O&pen Right"
-msgstr "О&твори в дясно"
+msgstr "Отваряне на &десния"
 
 msgid "Cop&y Pathnames"
-msgstr "Копирай &пътя"
+msgstr "Копиране на &пътя"
 
 #, c-format
 msgid "Left (%1 of %2)"
@@ -918,7 +918,7 @@ msgstr "Десен (%1 от %2)"
 
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "Двете (%1 от %2)"
+msgstr "Двата (%1 от %2)"
 
 #, c-format
 msgid "All (%1 of %2)"
@@ -931,11 +931,11 @@ msgid "Copy Items To Clip&board"
 msgstr "&Копиране елементите в системния буфер"
 
 msgid "&Zip"
-msgstr "&Зип"
+msgstr "&Zip"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
-msgstr "И двете… (%1 от %2)"
+msgstr "И двата… (%1 от %2)"
 
 #, c-format
 msgid "All to... (%1 of %2)"
@@ -946,13 +946,13 @@ msgid "Differences to... (%1 of %2)"
 msgstr "Различията към… (%1 от %2)"
 
 msgid "Left Shell menu"
-msgstr ""
+msgstr "Меню на обкръжението на левия"
 
 msgid "Middle Shell menu"
-msgstr ""
+msgstr "Меню на обкръжението на средния"
 
 msgid "Right Shell menu"
-msgstr ""
+msgstr "Меню на обкръжението на десния"
 
 msgid "Copy"
 msgstr "Копиране"
@@ -1012,10 +1012,10 @@ msgid "Ignore codepage &differences"
 msgstr "Пропускане на &различия в кодова страница"
 
 msgid "Ignore num&bers"
-msgstr "Пропускане на &числа"
+msgstr "Пренебрегване на &числа"
 
 msgid "Ignore c&omment differences"
-msgstr "Пропускане на различия в &коментари"
+msgstr "Пренебрегване на различията в &коментари"
 
 msgid "&Include Subfolders"
 msgstr "&Включително подпапки"
@@ -1129,10 +1129,10 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Автоматична проверка на пътищата в диалога за отваряне"
 
 msgid "Single instance mode:"
-msgstr ""
+msgstr "Режим на единствен екземпляр:"
 
 msgid "As&k when closing multiple windows"
-msgstr "Потвърждение при &затваряне на много прозорци"
+msgstr "Потвърждение при &затваряне на няколко прозореца"
 
 msgid "&Preserve file time in file compare"
 msgstr "Запазване &времето на файла при сравняване"
@@ -1141,7 +1141,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показване „Избиране на файлове или папки“ при стартиране"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Затваряне „Избиране на файлове или папки“ при избиране на бутон Сравняване"
+msgstr "Затваряне „Избиране на файлове или папки“ при натискане на Сравняване"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
@@ -2867,10 +2867,10 @@ msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Не може да се стартира външния редактор: %1"
+msgstr "Външният редактор не може да стартира: %1"
 
 msgid "Unknown archive format"
-msgstr "Непознат архивен формат"
+msgstr "Непознат архив"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
 msgstr ""
@@ -2998,73 +2998,73 @@ msgid "Middle Duplicate Count"
 msgstr ""
 
 msgid "Move"
-msgstr ""
+msgstr "Преместване"
 
 msgid "Audio"
-msgstr ""
+msgstr "Аудио"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Календар"
 
 msgid "Communication"
-msgstr ""
+msgstr "Разговори"
 
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 msgid "Devices"
-msgstr ""
+msgstr "Устройства"
 
 msgid "Document"
-msgstr ""
+msgstr "Документ"
 
 msgid "Home"
-msgstr ""
+msgstr "Дом"
 
 msgid "Journal"
-msgstr ""
+msgstr "Дневник"
 
 msgid "Link"
-msgstr ""
+msgstr "Препратка"
 
 msgid "Media"
-msgstr ""
+msgstr "Медия"
 
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 msgid "Note"
-msgstr ""
+msgstr "Бележка"
 
 msgid "Photo"
-msgstr ""
+msgstr "Снимка"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Запис"
 
 msgid "Search"
-msgstr ""
+msgstr "Търсене"
 
 msgid "Security"
-msgstr ""
+msgstr "Сигурност"
 
 msgid "Software"
-msgstr ""
+msgstr "Софтуер"
 
 msgid "Task"
-msgstr ""
+msgstr "Задача"
 
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 msgid "Hash"
-msgstr ""
+msgstr "Цифров отпечатък"
 
 msgid "Unable to compare files"
-msgstr "Не може да бъде извършено сравняване на файлове"
+msgstr "Файловете не могат да бъдат сравнени"
 
 msgid "Item aborted"
-msgstr ""
+msgstr "Елементът е прекъснат"
 
 msgid "File skipped"
 msgstr "Пропуснат файл"
@@ -3274,7 +3274,7 @@ msgstr "Сравняване на %1 с %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Сравняване на %1 с %2 и %3""
 
 msgid "Comma-separated list"
 msgstr "Списък, разделен със запетая"

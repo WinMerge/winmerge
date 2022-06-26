@@ -482,10 +482,10 @@ line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
 
 	  if (ignore_case_flag)
 	    {
-	      if (islower (c1))
-		c1 = (unsigned char)toupper (c1);
-	      if (islower (c2))
-		c2 = (unsigned char)toupper (c2);
+	      if (isupper (c1))
+	        c1 = (unsigned char)tolower (c1);
+	      if (isupper(c2))
+	        c2 = (unsigned char)tolower (c2);
 	    }
 
 	  if (ignore_eol_diff)

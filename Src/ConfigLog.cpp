@@ -432,7 +432,23 @@ String CConfigLog::GetWindowsVer()
 {
 	CRegKeyEx key;
 	if (key.QueryRegMachine(_T("Software\\Microsoft\\Windows NT\\CurrentVersion")))
-		return key.ReadString(_T("ProductName"), _T("Unknown OS"));
+	{
+		String productName = key.ReadString(_T("ProductName"), _T("Unknown OS"));
+		if (HMODULE hModule = GetModuleHandle(_T("ntdll.dll")))
+		{
+			using RtlGetNtVersionNumbersFunc = void (WINAPI*)(DWORD*, DWORD*, DWORD*);
+			DWORD dwMajor = 0, dwMinor = 0, dwBuildNumber = 0;
+			if (RtlGetNtVersionNumbersFunc RtlGetNtVersionNumbers =
+				reinterpret_cast<RtlGetNtVersionNumbersFunc>(GetProcAddress(hModule, "RtlGetNtVersionNumbers")))
+			{
+				RtlGetNtVersionNumbers(&dwMajor, &dwMinor, &dwBuildNumber);
+				dwBuildNumber &= ~0xF0000000;
+				if (dwMajor == 10 && dwMinor == 0 && dwBuildNumber >= 22000)
+					strutils::replace(productName, _T("Windows 10"), _T("Windows 11"));
+			}
+		}
+		return productName;
+	}
 	return _T("Unknown OS");
 }
 
