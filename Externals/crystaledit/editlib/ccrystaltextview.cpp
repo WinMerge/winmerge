@@ -5486,17 +5486,22 @@ static const TCHAR *memstr(const TCHAR *str1, size_t str1len, const TCHAR *str2,
   return nullptr;
 }
 
+inline TCHAR mytoupper(TCHAR ch)
+{
+    return reinterpret_cast<TCHAR>(CharUpper(reinterpret_cast<LPTSTR>(ch)));
+}
+
 static const TCHAR *memistr(const TCHAR *str1, size_t str1len, const TCHAR *str2, size_t str2len)
 {
   ASSERT(str1 && str2 && str2len > 0);
   for (const TCHAR *p = str1; p < str1 + str1len; ++p)
     {
-      if (toupper(*p) == toupper(*str2))
+      if (mytoupper(*p) == mytoupper(*str2))
         {
           size_t i;
           for (i = 0; i < str2len; ++i)
             {
-              if (toupper(p[i]) != toupper(str2[i]))
+              if (mytoupper(p[i]) != mytoupper(str2[i]))
                 break;
             }
           if (i == str2len)
