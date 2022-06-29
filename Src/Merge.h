@@ -24,7 +24,6 @@
 #include <memory>
 #include "MergeCmdLineInfo.h"
 #include "resource.h"       // main symbols
-#include "DiffContext.h"
 
 struct FileFilter;
 class FileFilterHelper;
@@ -68,7 +67,6 @@ public:
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
-	std::unique_ptr<CDiffContext> diffContext ; /* diffContext to keep/restore list of hidden items */
 
 	WORD GetLangId() const;
 	String GetLangName() const;

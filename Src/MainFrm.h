@@ -113,6 +113,12 @@ public:
 		virtual ~OpenAutoFileParams() {}
 	};
 
+	struct OpenFolderParams : public OpenFileParams
+	{
+		virtual ~OpenFolderParams() {}
+		std::vector<String> m_hiddenItems;
+	};
+
 	CMainFrame();
 
 // Attributes

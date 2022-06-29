@@ -68,10 +68,10 @@ void writeElement(XMLWriter& writer, const std::string& tagname, const std::stri
 	writer.endElement("", "", tagname);
 }
 
-void saveHiddenItems(XMLWriter& writer, const CDiffContext& diffContext) 
+void saveHiddenItems(XMLWriter& writer, const std::vector<String>& hiddenItems) 
 {
 	writer.startElement("", "", Hidden_list_element_name);
-	for (String hiddenItem : diffContext.m_vCurrentlyHiddenItems) {
+	for (const auto& hiddenItem : hiddenItems) {
 		writeElement(writer, Hidden_items_element_name, toUTF8(hiddenItem));
 	}
 	writer.endElement("", "", Hidden_list_element_name);
@@ -198,7 +198,7 @@ public:
 		//This nodes are under Hidden_list_element_name
 		else if (nodename ==  Hidden_items_element_name)
 		{
-			currentItem.m_vSavedHiddenItems.push_back(token);
+			currentItem.m_vSavedHiddenItems.push_back(toTString(token));
 			currentItem.m_bHasHiddenItems = true;
 		}
 	}
@@ -369,7 +369,7 @@ bool ProjectFile::Read(const String& path)
  * @param [out] sError Error string if error happened.
  * @return true if saving succeeded, false if error happened.
  */
-bool ProjectFile::Save(const String& path, const CDiffContext& diffContext) const
+bool ProjectFile::Save(const String& path) const
 {
 	FileStream out(toUTF8(path), FileStream::trunc);
 	XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
@@ -414,8 +414,8 @@ bool ProjectFile::Save(const String& path, const CDiffContext& diffContext) cons
 					writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
 				if (item.m_bSaveCompareMethod)
 					writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
-				if (diffContext.m_vCurrentlyHiddenItems.size() > 0) 
-					saveHiddenItems(writer, diffContext);
+				if (item.m_vSavedHiddenItems.size() > 0) 
+					saveHiddenItems(writer, item.m_vSavedHiddenItems);
 			}
 			writer.endElement("", "", Paths_element_name);
 		}

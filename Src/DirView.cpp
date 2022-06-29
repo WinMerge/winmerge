@@ -2540,14 +2540,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			else
 				Redisplay();
 		}
-		//@todo mgg - pass the value from the .winmerge here
-		std::vector<String> testHiddenItems;
-		testHiddenItems.push_back(L"create-parking");
-		testHiddenItems.push_back(L"parking-free-capacity");
-		testHiddenItems.push_back(L"app.module.ts.bak");
 
-		//HideItems(GetDiffContext().m_vCurrentlyHiddenItems);
-		HideItems(testHiddenItems);
+		HideItems(GetDiffContext().m_vCurrentlyHiddenItems);
 	}
 
 	return 0; // return value unused
@@ -3293,7 +3287,7 @@ void CDirView::OnHideFilenames()
 /**
  * @brief determine if an item-relative-path is contained in the list of items to hide
  */
-bool CDirView::IsItemToHide(String currentItem, std::vector<String> ItemsToHide)
+bool CDirView::IsItemToHide(const String& currentItem, const std::vector<String>& ItemsToHide) const
 {
 	return std::find(ItemsToHide.begin(), ItemsToHide.end(), currentItem) != ItemsToHide.end();
 }
@@ -3302,7 +3296,7 @@ bool CDirView::IsItemToHide(String currentItem, std::vector<String> ItemsToHide)
  * @brief hides items specified in the .winmerge file
  */
 
-void CDirView::HideItems(std::vector<String> ItemsToHide)
+void CDirView::HideItems(const std::vector<String>& ItemsToHide)
 {
 	CDiffContext& ctxt = GetDiffContext();
 	DirItemIterator it;
@@ -3323,14 +3317,12 @@ void CDirView::HideItems(std::vector<String> ItemsToHide)
 		{
 			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 			DeleteItem(it.m_sel);
-			ctxt.m_vCurrentlyHiddenItems.push_back(item_path);
 			num_hidden++;
 		}
 		++it;
 	}
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
-
 
 /**
  * @brief update menu item
