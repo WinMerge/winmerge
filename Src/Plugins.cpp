@@ -699,7 +699,10 @@ static vector<String>& LoadTheScriptletList()
 				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins")) })
 		{
 			if (enabledWSH)
-				GetScriptletsAt(path, _T(".sct"), theScriptletList);		// VBS/JVS scriptlet
+			{
+				GetScriptletsAt(path, _T(".sct"), theScriptletList);	// VBS/JVS scriptlet
+				GetScriptletsAt(path, _T(".wsc"), theScriptletList);	// VBS/JVS scriptlet
+			}
 			GetScriptletsAt(path, _T(".ocx"), theScriptletList);		// VB COM object
 			GetScriptletsAt(path, _T(".dll"), theScriptletList);		// VC++ COM object
 		}
@@ -709,7 +712,9 @@ static vector<String>& LoadTheScriptletList()
 		for (size_t i = 0 ; i < theScriptletList.size() ; i++)
 		{
 			String scriptlet = theScriptletList.at(i);
-			if (scriptlet.length() > 4 && strutils::compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".sct")) != 0)
+			if (scriptlet.length() > 4 && 
+				  (strutils::compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".sct")) != 0
+				|| strutils::compare_nocase(scriptlet.substr(scriptlet.length() - 4), _T(".wsc")) != 0))
 			{
 				// don't need to lock this file
 				theScriptletHandleList.push_back(nullptr);
