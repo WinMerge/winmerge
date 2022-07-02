@@ -562,7 +562,7 @@
 
 - Add a feature to save/restore compare options to/from a project file.(#498)
     (PR #915)
-    
+
 ### Options dialog
 
 - Add a feature to set items saved to or restored from the project file.
