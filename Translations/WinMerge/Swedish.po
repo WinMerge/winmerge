@@ -2286,6 +2286,9 @@ msgstr "Inkludera undermappar"
 msgid "Compare Options"
 msgstr "Jämförelsealternativ"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Namn"
 

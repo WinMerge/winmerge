@@ -2221,6 +2221,9 @@ msgstr "Включая подпапки"
 msgid "Compare Options"
 msgstr "Настройки сравнения"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Имя"
 

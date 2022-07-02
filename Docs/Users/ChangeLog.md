@@ -562,13 +562,11 @@
 
 - Add a feature to save/restore compare options to/from a project file.(#498)
     (PR #915)
-- Add a feature to save/restore hidden items to/from a project file.(PR #1377)
-
+    
 ### Options dialog
 
 - Add a feature to set items saved to or restored from the project file.
     (PR #953)
-- New setting to decide when to save/restore hidden items when project is saved/loaded (PR #1377)
 
 ### Plugins
 

@@ -2288,6 +2288,9 @@ msgstr "サブフォルダーを含める"
 msgid "Compare Options"
 msgstr "比較オプション"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "名前"
 

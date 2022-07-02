@@ -2285,6 +2285,9 @@ msgstr "Vključi podmape"
 msgid "Compare Options"
 msgstr "Primerjaj možnosti"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Ime"
 

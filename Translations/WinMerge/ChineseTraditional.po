@@ -2815,6 +2815,9 @@ msgstr "包括子資料夾"
 msgid "Compare Options"
 msgstr "比較選項"
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "名稱"

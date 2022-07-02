@@ -847,6 +847,10 @@ void COpenView::OnLoadProject()
 			m_nCompareMethod = projItem.GetCompareMethod();
 	}
 
+	if ((Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::HiddenItems)) && projItem.HasHiddenItems())
+	{
+		m_bSaveHiddenItems = projItem.HasHiddenItems();
+	}
 	UpdateData(FALSE);
 	UpdateButtonStates();
 	LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
@@ -870,6 +874,7 @@ void COpenView::OnSaveProject()
 	bool bSaveIncludeSubfolders = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::IncludeSubfolders);
 	bool bSaveUnpackerPlugin = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::UnpackerPlugin);
 	bool bSaveCompareOptions = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::CompareOptions);
+	bool bSaveHiddenItems = Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Save, Options::Project::Item::HiddenItems);
 
 	projItem.SetSaveFilter(bSaveFileFilter);
 	projItem.SetSaveSubfolders(bSaveIncludeSubfolders);
@@ -882,6 +887,7 @@ void COpenView::OnSaveProject()
 	projItem.SetSaveIgnoreCodepage(bSaveCompareOptions);
 	projItem.SetSaveFilterCommentsLines(bSaveCompareOptions);
 	projItem.SetSaveCompareMethod(bSaveCompareOptions);
+	projItem.SetSaveHiddenItems(bSaveHiddenItems);
 
 	if (!m_strPath[0].empty())
 		projItem.SetLeft(m_strPath[0], &m_bReadOnly[0]);
@@ -926,6 +932,8 @@ void COpenView::OnSaveProject()
 		projItem.SetFilterCommentsLines(m_bFilterCommentsLines);
 		projItem.SetCompareMethod(m_nCompareMethod);
 	}
+
+	//SaveHidenItems ?
 	projItem.SetHiddenItems(GetDocument()->m_hiddenItems);
 
 	project.Items().push_back(projItem);

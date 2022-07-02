@@ -1338,7 +1338,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		}
 
 		std::unique_ptr<CMainFrame::OpenFolderParams> pOpenFolderParams;
-		if (projItem.HasHiddenItems())
+		if ((Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::HiddenItems)) && projItem.HasHiddenItems())
 		{
 			pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>();
 			pOpenFolderParams->m_hiddenItems = projItem.GetHiddenItems();

@@ -2807,6 +2807,9 @@ msgstr "Almappák is"
 msgid "Compare Options"
 msgstr "Összehasonlító opciók"
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Név"

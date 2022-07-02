@@ -2743,6 +2743,9 @@ msgstr "Unterordner einbeziehen"
 msgid "Compare Options"
 msgstr "Vergleichseinstellungen"
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Name"

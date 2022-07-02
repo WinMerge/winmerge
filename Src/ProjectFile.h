@@ -83,6 +83,7 @@ public:
 	void SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage);
 	void SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines);
 	void SetSaveCompareMethod(bool bSaveCompareMethod);
+	void SetSaveHiddenItems(bool bSaveHiddenItems);
 
 private:
 	PathContext m_paths;
@@ -129,6 +130,7 @@ private:
 	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
 	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
 	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
+	bool m_bSaveHiddenItems;/* Save "Hidden item" settings?*/
 };
 
 /**
@@ -662,4 +664,9 @@ inline void ProjectFileItem::SetSaveFilterCommentsLines(bool bSaveFilterComments
 inline void ProjectFileItem::SetSaveCompareMethod(bool bSaveCompareMethod)
 {
 	m_bSaveCompareMethod = bSaveCompareMethod;
+}
+
+inline void ProjectFileItem::SetSaveHiddenItems(bool bSaveHiddenItems)
+{
+	m_bSaveHiddenItems = bSaveHiddenItems;
 }

@@ -2281,6 +2281,9 @@ msgstr "Includi sottocartelle"
 msgid "Compare Options"
 msgstr "Opzioni di confronto"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Nome"
 

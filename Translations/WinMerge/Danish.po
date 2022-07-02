@@ -2790,6 +2790,9 @@ msgstr ""
 msgid "Compare Options"
 msgstr ""
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Navn"

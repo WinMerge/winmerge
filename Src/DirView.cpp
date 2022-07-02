@@ -3308,9 +3308,11 @@ void CDirView::HideItems(const std::vector<String>& ItemsToHide)
 	num_hidden = 0;
 	num_to_hide = ItemsToHide.size();
 	it = Begin();
+
 	while((num_hidden < num_to_hide) && (it != End()))
 	{
 		DIFFITEM& di = *it;
+		di.customFlags |= ViewCustomFlags::EXPANDED;
 		item_path = di.getItemRelativePath();
 		
 		if (IsItemToHide(item_path, ItemsToHide))
