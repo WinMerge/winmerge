@@ -1977,19 +1977,19 @@ CCrystalTextView::GetMarkerTextBlocks(int nLineIndex) const
               size_t nPos = ::FindStringHelper(pszChars, nLineLength, p, marker.second.sFindWhat, marker.second.dwFlags | FIND_NO_WRAP, nMatchLen, node, &matches);
               if (nPos == -1)
                 break;
-              if (nLineLength < static_cast<int>((p - pszChars) + nPos) + nMatchLen)
-                nMatchLen = static_cast<int>(nLineLength - (p - pszChars));
-              ASSERT(((p - pszChars) + nPos) < INT_MAX);
-              blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos);
+              if (nLineLength < static_cast<int>(nPos) + nMatchLen)
+                nMatchLen = static_cast<int>(nLineLength - nPos);
+              ASSERT(nPos < INT_MAX);
+              blocks[nBlocks].m_nCharPos = static_cast<int>(nPos);
               blocks[nBlocks].m_nBgColorIndex = marker.second.nBgColorIndex | COLORINDEX_APPLYFORCE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
-              ASSERT(((p - pszChars) + nPos + nMatchLen) < INT_MAX);
-              blocks[nBlocks].m_nCharPos = static_cast<int>((p - pszChars) + nPos + nMatchLen);
+              ASSERT((nPos + nMatchLen) < INT_MAX);
+              blocks[nBlocks].m_nCharPos = static_cast<int>(nPos + nMatchLen);
               blocks[nBlocks].m_nBgColorIndex = COLORINDEX_NONE;
               blocks[nBlocks].m_nColorIndex = COLORINDEX_NONE;
               ++nBlocks;
-              p += nPos + (nMatchLen == 0 ? 1 : nMatchLen);
+              p = pszChars + nPos + (nMatchLen == 0 ? 1 : nMatchLen);
             }
           RxFree (node);
           blocks.resize(nBlocks);
@@ -5524,7 +5524,7 @@ FindStringHelper (LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere
       if (pszFindWhat[0] == '^' && pszLineBegin != pszFindWhere)
         return pos;
       rxnode = RxCompile (pszFindWhat, (dwFlags & FIND_MATCH_CASE) != 0 ? RX_CASE : 0);
-      if (rxnode && RxExec (rxnode, pszFindWhere, nLineLength - (pszFindWhere - pszLineBegin), pszFindWhere, rxmatch))
+      if (rxnode && RxExec (rxnode, pszLineBegin, nLineLength, pszFindWhere, rxmatch))
         {
           pos = rxmatch->Open[0];
           ASSERT((rxmatch->Close[0] - rxmatch->Open[0]) < INT_MAX);
@@ -5536,7 +5536,7 @@ FindStringHelper (LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere
     {
       ASSERT (pszFindWhere != nullptr);
       ASSERT (pszFindWhat != nullptr);
-      int nCur = 0;
+      int nCur = static_cast<int>(pszFindWhere - pszLineBegin);
       int nLength = (int) _tcslen (pszFindWhat);
       LPCTSTR pszFindWhereOrig = pszFindWhere;
       nLen = nLength;
@@ -5754,10 +5754,10 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               size_t nPos = 0;
               for (;;)
                 {
-                  size_t nPosRel = ::FindStringHelper(line, nLineLen, static_cast<LPCTSTR>(line) + nPos, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-                  if (nPosRel == -1)
+                  nPos = ::FindStringHelper(line, nLineLen, static_cast<LPCTSTR>(line) + nPos, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+                  if (nPos == -1)
                     break;
-                  nFoundPos = nPos + nPosRel;
+                  nFoundPos = nPos;
                   nMatchLen = m_nLastFindWhatLen;
                   nPos += nMatchLen == 0 ? 1 : nMatchLen;
                 }
@@ -5846,14 +5846,14 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                         }
                       else
                         {
-                          ptCurrentPos.x += static_cast<LONG>(nPos - (current - (LPCTSTR) item));
+                          ptCurrentPos.x = static_cast<LONG>(nPos - (current - (LPCTSTR) item));
                         }
                       if (ptCurrentPos.x < 0)
                         ptCurrentPos.x = 0;
                     }
                   else
                     {
-                      ptCurrentPos.x += static_cast<LONG>(nPos);
+                      ptCurrentPos.x = static_cast<LONG>(nPos);
                     }
                   //  Check of the text found is outside the block.
                   if (ptCurrentPos.y == ptBlockEnd.y && ptCurrentPos.x >= ptBlockEnd.x)
