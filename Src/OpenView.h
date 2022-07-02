@@ -89,7 +89,6 @@ private:
 	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
-	bool m_bSaveHiddenItems;/* Save "Hidden item" settings?*/
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);

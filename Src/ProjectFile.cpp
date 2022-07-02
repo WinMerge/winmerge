@@ -246,6 +246,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bHasFilterCommentsLines(false)
 , m_bFilterCommentsLines(false)
 , m_bHasCompareMethod(false)
+, m_bHasHiddenItems(false)
 , m_nCompareMethod(0)
 , m_bSaveFilter(true)
 , m_bSaveSubfolders(true)
@@ -258,7 +259,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveIgnoreCodepage(true)
 , m_bSaveFilterCommentsLines(true)
 , m_bSaveCompareMethod(true)
-, m_bHasHiddenItems(false)
+, m_bSaveHiddenItems(true)
 {
 }
 
@@ -414,7 +415,7 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
 				if (item.m_bSaveCompareMethod)
 					writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
-				if (item.m_bHasHiddenItems && item.m_vSavedHiddenItems.size() > 0) 
+				if (item.m_bSaveHiddenItems && item.m_vSavedHiddenItems.size() > 0) 
 					saveHiddenItems(writer, item.m_vSavedHiddenItems);
 			}
 			writer.endElement("", "", Paths_element_name);
