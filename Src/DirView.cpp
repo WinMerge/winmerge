@@ -3299,30 +3299,30 @@ bool CDirView::IsItemToHide(const String& currentItem, const std::vector<String>
 void CDirView::HideItems(const std::vector<String>& ItemsToHide)
 {
 	CDiffContext& ctxt = GetDiffContext();
-	DirItemIterator it;
-	String item_path;
-	int num_hidden;
-	size_t num_to_hide;
+	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos != nullptr)
+	{
+		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
+		if (IsItemToHide(di.getItemRelativePath(), ItemsToHide))
+			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
+	}
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
-	num_hidden = 0;
-	num_to_hide = ItemsToHide.size();
-	it = Begin();
 
-	while((num_hidden < num_to_hide) && (it != End()))
+	int num_hidden = 0;
+	const size_t num_to_hide = ItemsToHide.size();
+	DirItemIterator it = RevBegin();
+	while((num_hidden < num_to_hide) && (it != RevEnd()))
 	{
 		DIFFITEM& di = *it;
-		di.customFlags |= ViewCustomFlags::EXPANDED;
-		item_path = di.getItemRelativePath();
-		
-		if (IsItemToHide(item_path, ItemsToHide))
+		if (di.customFlags & ViewCustomFlags::HIDDEN)
 		{
-			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 			DeleteItem(it.m_sel);
 			num_hidden++;
 		}
 		++it;
 	}
+
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
 

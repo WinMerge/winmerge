@@ -711,18 +711,24 @@ void COpenView::OnCompare(UINT nID)
 	PathContext tmpPathContext(pDoc->m_files);
 	std::array<DWORD, 3> dwFlags = pDoc->m_dwFlags;
 	bool recurse = pDoc->m_bRecurse;
+	std::unique_ptr<CMainFrame::OpenFolderParams> pOpenFolderParams;
+	if (!pDoc->m_hiddenItems.empty())
+	{
+		pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>();
+		pOpenFolderParams->m_hiddenItems = pDoc->m_hiddenItems;
+	}
 	if (nID == IDOK)
 	{
 		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
-			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
+			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr, 0, pOpenFolderParams.get());
 	}
 	else if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
 	{
 		tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->DoFileOrFolderOpen(
 			&tmpPathContext, dwFlags.data(),
-			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
+			nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr, 0, pOpenFolderParams.get());
 	}
 	else if (nID == ID_OPEN_WITH_UNPACKER)
 	{
@@ -733,12 +739,12 @@ void COpenView::OnCompare(UINT nID)
 			tmpPackingInfo.SetPluginPipeline(dlg.GetPluginPipeline());
 			GetMainFrame()->DoFileOrFolderOpen(
 				&tmpPathContext, dwFlags.data(),
-				nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr);
+				nullptr, _T(""), recurse, nullptr, &tmpPackingInfo, nullptr, 0, pOpenFolderParams.get());
 		}
 	}
 	else
 	{
-		GetMainFrame()->DoFileOpen(nID, &tmpPathContext, dwFlags.data(), nullptr, _T(""), &tmpPackingInfo);
+		GetMainFrame()->DoFileOpen(nID, &tmpPathContext, dwFlags.data(), nullptr, _T(""), &tmpPackingInfo, nullptr, pOpenFolderParams.get());
 	}
 }
 
@@ -847,9 +853,9 @@ void COpenView::OnLoadProject()
 			m_nCompareMethod = projItem.GetCompareMethod();
 	}
 
-	if ((Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::HiddenItems)) && projItem.HasHiddenItems())
+	if ((Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::HiddenItems)) && projItem.HasHiddenItems())
 	{
-		m_bSaveHiddenItems = projItem.HasHiddenItems();
+		GetDocument()->m_hiddenItems = projItem.GetHiddenItems();
 	}
 	UpdateData(FALSE);
 	UpdateButtonStates();
@@ -933,8 +939,8 @@ void COpenView::OnSaveProject()
 		projItem.SetCompareMethod(m_nCompareMethod);
 	}
 
-	//SaveHidenItems ?
-	projItem.SetHiddenItems(GetDocument()->m_hiddenItems);
+	if (bSaveHiddenItems)
+		projItem.SetHiddenItems(GetDocument()->m_hiddenItems);
 
 	project.Items().push_back(projItem);
 
