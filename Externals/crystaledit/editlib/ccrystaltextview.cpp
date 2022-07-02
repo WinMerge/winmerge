@@ -5754,10 +5754,10 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               size_t nPos = 0;
               for (;;)
                 {
-                  size_t nPosRel = ::FindStringHelper(line, nLineLen, static_cast<LPCTSTR>(line) + nPos, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-                  if (nPosRel == -1)
+                  nPos = ::FindStringHelper(line, nLineLen, static_cast<LPCTSTR>(line) + nPos, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+                  if (nPos == -1)
                     break;
-                  nFoundPos = nPosRel;
+                  nFoundPos = nPos;
                   nMatchLen = m_nLastFindWhatLen;
                   nPos += nMatchLen == 0 ? 1 : nMatchLen;
                 }
@@ -5846,7 +5846,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                         }
                       else
                         {
-                          ptCurrentPos.x += static_cast<LONG>(nPos - (current - (LPCTSTR) item));
+                          ptCurrentPos.x = static_cast<LONG>(nPos - (current - (LPCTSTR) item));
                         }
                       if (ptCurrentPos.x < 0)
                         ptCurrentPos.x = 0;
