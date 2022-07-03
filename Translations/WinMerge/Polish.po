@@ -2220,6 +2220,9 @@ msgstr "Uwzględnij podfoldery"
 msgid "Compare Options"
 msgstr "Opcje porównania"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Nazwa"
 

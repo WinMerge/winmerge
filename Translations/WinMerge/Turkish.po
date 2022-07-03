@@ -2311,6 +2311,9 @@ msgstr "Alt klasörler katılsın"
 msgid "Compare Options"
 msgstr "Karşılaştırma seçenekleri"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Ad"
 

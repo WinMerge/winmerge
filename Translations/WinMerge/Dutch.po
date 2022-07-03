@@ -2311,6 +2311,9 @@ msgstr "Submappen bijvoegen"
 msgid "Compare Options"
 msgstr "Vergelijkingsopties"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Naam"
 

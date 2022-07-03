@@ -2286,6 +2286,9 @@ msgstr "Incluir subpastas"
 msgid "Compare Options"
 msgstr "Comparar opções"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Nome"
 

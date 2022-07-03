@@ -2806,6 +2806,9 @@ msgstr "Incluír subcarpetas"
 msgid "Compare Options"
 msgstr "Opcións de comparación"
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nome"

@@ -2813,6 +2813,9 @@ msgstr "하위 폴더 포함"
 msgid "Compare Options"
 msgstr "옵션 비교"
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "이름"

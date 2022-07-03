@@ -2291,6 +2291,9 @@ msgstr "Include i sottucartulari"
 msgid "Compare Options"
 msgstr "Ozzioni di paragone"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Nome"
 

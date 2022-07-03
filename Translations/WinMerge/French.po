@@ -2812,6 +2812,9 @@ msgstr "Inclure les sous-dossiers"
 msgid "Compare Options"
 msgstr "Options de comparaison"
 
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Nom"

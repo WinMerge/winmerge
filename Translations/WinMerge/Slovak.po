@@ -2285,6 +2285,9 @@ msgstr "Zahrnúť podpriečinky"
 msgid "Compare Options"
 msgstr "Možnosti porovnania"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Názov"
 

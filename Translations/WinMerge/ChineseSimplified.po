@@ -2299,6 +2299,9 @@ msgstr "包含子目录"
 msgid "Compare Options"
 msgstr "比较选项"
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "名称"
 

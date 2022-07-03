@@ -23,6 +23,7 @@ public:
 	bool	m_bRecurse;
 	String	m_strExt;
 	String	m_strUnpackerPipeline;
+	std::vector<String> m_hiddenItems;
 
 protected:
 	virtual BOOL OnNewDocument();

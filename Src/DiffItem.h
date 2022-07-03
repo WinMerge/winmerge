@@ -246,6 +246,8 @@ public:
 	unsigned customFlags;			/**< ViewCustomFlags flags */
 
 	String getFilepath(int nIndex, const String &sRoot) const;
+	String getItemRelativePath() const;
+
 	void Swap(int idx1, int idx2);
 	void ClearAllAdditionalProperties();
 
