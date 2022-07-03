@@ -5488,7 +5488,7 @@ static const TCHAR *memstr(const TCHAR *str1, size_t str1len, const TCHAR *str2,
 
 inline TCHAR mytoupper(TCHAR ch)
 {
-    return reinterpret_cast<TCHAR>(CharUpper(reinterpret_cast<LPTSTR>(ch)));
+    return static_cast<TCHAR>(reinterpret_cast<uintptr_t>(CharUpper(reinterpret_cast<LPTSTR>(ch))));
 }
 
 static const TCHAR *memistr(const TCHAR *str1, size_t str1len, const TCHAR *str2, size_t str2len)
