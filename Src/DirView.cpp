@@ -48,6 +48,7 @@
 #include "PatchTool.h"
 #include "SyntaxColors.h"
 #include "Shell.h"
+#include "DirTravel.h"
 #include <numeric>
 #include <functional>
 
@@ -3460,7 +3461,31 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			try {
 				DirItemIterator it(m_pIList.get(), reinterpret_cast<NMLVDISPINFO *>(pNMHDR)->item.iItem);
+				DIFFITEM& di = *it;
+				unsigned sideFlags = (di.diffcode.diffcode & DIFFCODE::SIDEFLAGS);
 				*pResult = DoItemRename(it, GetDiffContext(), String(sText));
+				// Rescan the item if side flags change due to renaming.
+				if (*pResult && ((di.diffcode.diffcode & DIFFCODE::SIDEFLAGS) != sideFlags))
+				{
+					// Delete the item with the same file name as after renaming.
+					if (di.HasParent())
+					{
+						for (DIFFITEM* pItem = di.GetParentLink()->GetFirstChild(); pItem != nullptr; pItem = pItem->GetFwdSiblingLink())
+						{
+							if ((pItem != &di) && (pItem->diffcode.isDirectory() == di.diffcode.isDirectory()) && (collstr(pItem->diffFileInfo[0].filename, di.diffFileInfo[0].filename, false) == 0))
+							{
+								pItem->DelinkFromSiblings();
+								delete pItem;
+								break;
+							}
+						}
+					}
+					// Rescan the item.
+					MarkForRescan(di);
+					m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
+					GetDocument()->SetMarkedRescan();
+					GetDocument()->Rescan();
+				}
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
