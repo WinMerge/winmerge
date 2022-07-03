@@ -1400,53 +1400,40 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
     }
 }
 
+bool CCrystalTextView::
+GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight)
+{
+    int nLineLength = GetLineLength (nLineIndex);
+    nSelLeft = 0;
+    nSelRight = 0;
+    if ( !m_bRectangularSelection )
+      {
+        if (m_ptDrawSelStart.y > nLineIndex)
+            nSelLeft = nLineLength;
+        else if (m_ptDrawSelStart.y == nLineIndex)
+          nSelLeft = m_ptDrawSelStart.x;
+        if (m_ptDrawSelEnd.y > nLineIndex)
+            nSelRight = nLineLength;
+        else if (m_ptDrawSelEnd.y == nLineIndex)
+          nSelRight = m_ptDrawSelEnd.x;
+        return (m_ptDrawSelStart.y <= nLineIndex && nLineIndex <= m_ptDrawSelEnd.y);
+      }
+    else
+      return GetColumnSelection (nLineIndex, nSelLeft, nSelRight);
+}
+
 void CCrystalTextView::
 DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex, 
-                COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos)
+                COLORREF crText, COLORREF crBkgnd,
+                int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos,
+                int nSelLeft, int nSelRight)
 {
   if (nCount > 0)
     {
       if (m_bFocused || m_bShowInactiveSelection)
         {
-          int nSelBegin = 0, nSelEnd = 0;
-          if ( !m_bRectangularSelection )
-            {
-              if (m_ptDrawSelStart.y > ptTextPos.y)
-                {
-                  nSelBegin = nCount;
-                }
-              else if (m_ptDrawSelStart.y == ptTextPos.y)
-                {
-                  nSelBegin = m_ptDrawSelStart.x - ptTextPos.x;
-                  if (nSelBegin < 0)
-                    nSelBegin = 0;
-                  if (nSelBegin > nCount)
-                    nSelBegin = nCount;
-                }
-              if (m_ptDrawSelEnd.y > ptTextPos.y)
-                {
-                  nSelEnd = nCount;
-                }
-              else if (m_ptDrawSelEnd.y == ptTextPos.y)
-                {
-                  nSelEnd = m_ptDrawSelEnd.x - ptTextPos.x;
-                  if (nSelEnd < 0)
-                    nSelEnd = 0;
-                  if (nSelEnd > nCount)
-                    nSelEnd = nCount;
-                }
-            }
-          else
-            {
-              int nSelLeft, nSelRight;
-              GetColumnSelection (ptTextPos.y, nSelLeft, nSelRight);
-              nSelBegin = nSelLeft - ptTextPos.x;
-              nSelEnd = nSelRight - ptTextPos.x;
-              if (nSelBegin < 0) nSelBegin = 0;
-              if (nSelBegin > nCount) nSelBegin = nCount;
-              if (nSelEnd < 0) nSelEnd = 0;
-              if (nSelEnd > nCount) nSelEnd = nCount;
-            }
+          int nSelBegin = std::clamp<int>(nSelLeft - ptTextPos.x, 0, nCount);
+          int nSelEnd = std::clamp<int>(nSelRight - ptTextPos.x, 0, nCount);
 
           ASSERT (nSelBegin >= 0 && nSelBegin <= nCount);
           ASSERT (nSelEnd >= 0 && nSelEnd <= nCount);
@@ -1677,6 +1664,9 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
   int nBlockSize = static_cast<int>(blocks.size());
   ASSERT( nActualItem < nBlockSize );
 
+  int nSelLeft = 0, nSelRight = 0;
+  GetSelectionLeftRight(ptTextPos.y, nSelLeft, nSelRight);
+
   if( nBlockSize > 0 && nActualItem < nBlockSize - 1 && 
     blocks[nActualItem + 1].m_nCharPos >= nOffset && 
     blocks[nActualItem + 1].m_nCharPos <= nOffset + nCount )
@@ -1699,14 +1689,14 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
               DrawLineHelper(ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex, crText, crBkgnd, nLineIndex,
                 (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                 blocks[I + 1].m_nCharPos - nOffsetToUse,
-                nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
+                nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ), nSelLeft, nSelRight);
               if (bPrevZeroWidthBlock)
                 {
                   CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
                   DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock, crText, crBkgnd, nLineIndex,
                       (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                       blocks[I + 1].m_nCharPos - nOffsetToUse,
-                      nOldActualOffset, CPoint( nOffsetToUse, ptTextPos.y ));
+                      nOldActualOffset, CPoint( nOffsetToUse, ptTextPos.y ), nSelLeft, nSelRight);
                   bPrevZeroWidthBlock = false;
                 }
             }
@@ -1753,14 +1743,14 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
           DrawLineHelper(ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex,
                   crText, crBkgnd, nLineIndex, blk.m_nCharPos,
                   nOffset + nCount - blk.m_nCharPos,
-                  nActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y));
+                  nActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y), nSelLeft, nSelRight);
           if (bPrevZeroWidthBlock)
             {
               CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
               DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock,
                   crText, crBkgnd, nLineIndex, blk.m_nCharPos,
                   nOffset + nCount - blk.m_nCharPos,
-                  nOldActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y));
+                  nOldActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y), nSelLeft, nSelRight);
               bPrevZeroWidthBlock = false;
             }
         }
@@ -1787,7 +1777,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
     {
       DrawLineHelper(
               ptOrigin, rcClip, blocks[nActualItem].m_nColorIndex, blocks[nActualItem].m_nBgColorIndex,
-              crText, crBkgnd, nLineIndex, nOffset, nCount, nActualOffset, ptTextPos);
+              crText, crBkgnd, nLineIndex, nOffset, nCount, nActualOffset, ptTextPos, nSelLeft, nSelRight);
     }
 
   // Draw space on the right of the text
