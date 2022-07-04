@@ -2808,7 +2808,7 @@ msgid "Compare Options"
 msgstr "Összehasonlító opciók"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Rejtett elemek"
 
 #, c-format
 msgid "Name"
@@ -2874,7 +2874,7 @@ msgstr ""
 "Nem sikerült törölni a szűrőfájlt:\n"
 "%1\n"
 "\n"
-"Lehet, hogy írásvédett?"
+"Lehet, hogy a fájl írásvédett?"
 
 #, c-format
 msgid "Locate filter file to install"
