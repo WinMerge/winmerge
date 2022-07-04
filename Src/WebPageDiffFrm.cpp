@@ -402,9 +402,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 				if (m_nBufferType[pane] != BUFFERTYPE::UNNAMED)
 					++nNormalBuffer;
 			}
-			if (nNormalBuffer > 0)
-				OnRefresh();
-			else
+			if (nNormalBuffer == 0)
 				UpdateDiffItem(m_pDirDoc);
 
 			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
