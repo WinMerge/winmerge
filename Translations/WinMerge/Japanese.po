@@ -2289,7 +2289,7 @@ msgid "Compare Options"
 msgstr "比較オプション"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "非表示の項目"
 
 msgid "Name"
 msgstr "名前"
