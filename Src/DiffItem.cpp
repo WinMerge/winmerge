@@ -28,6 +28,22 @@ String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 	return _T("");
 }
 
+/** @brief Return the relative path to file/folder including the item name*/
+String DIFFITEM::getItemRelativePath() const
+{
+	String resp = _T("");
+	int compareIndex ;
+
+	//determine what is the trees contain the item to be hidden
+	for (compareIndex = 0; (compareIndex < 3) && (diffFileInfo[compareIndex].size == -1); compareIndex++);
+
+	if (compareIndex < 3) 
+	{
+		resp = paths::ConcatPath(diffFileInfo[compareIndex].path, diffFileInfo[compareIndex].filename);
+	}
+
+	return resp; 
+}
 /** @brief Return depth of path */
 int DIFFITEM::GetDepth() const
 {

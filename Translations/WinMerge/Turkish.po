@@ -963,6 +963,12 @@ msgstr "Tam yolu &kopyala"
 msgid "Copy &Filename"
 msgstr "&Dosya adını kopyala"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Seçi&n..."
+
 msgid "Unpacker Settings"
 msgstr "Ayıklayıcı ayarları"
 
@@ -971,9 +977,6 @@ msgstr "<Yok>"
 
 msgid "<Automatic>"
 msgstr "<Otomatik>"
-
-msgid "&Select..."
-msgstr "Seçi&n..."
 
 msgid "Prediffer Settings"
 msgstr "Ön farklılaştırıcı ayarları"
@@ -2310,6 +2313,9 @@ msgstr "Alt klasörler katılsın"
 
 msgid "Compare Options"
 msgstr "Karşılaştırma seçenekleri"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Ad"

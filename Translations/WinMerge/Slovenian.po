@@ -963,6 +963,12 @@ msgstr "&Kopiraj celotno pot"
 msgid "Copy &Filename"
 msgstr "Kopiraj &ime datoteke"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Izberi..."
+
 msgid "Unpacker Settings"
 msgstr "Nastavitve razpakovalca"
 
@@ -971,9 +977,6 @@ msgstr "<Brez>"
 
 msgid "<Automatic>"
 msgstr "<Samodejno>"
-
-msgid "&Select..."
-msgstr "&Izberi..."
 
 msgid "Prediffer Settings"
 msgstr "Nastavitve predogleda razlik"
@@ -2284,6 +2287,9 @@ msgstr "Vključi podmape"
 
 msgid "Compare Options"
 msgstr "Primerjaj možnosti"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Ime"

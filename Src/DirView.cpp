@@ -48,6 +48,7 @@
 #include "PatchTool.h"
 #include "SyntaxColors.h"
 #include "Shell.h"
+#include "DirTravel.h"
 #include <numeric>
 #include <functional>
 
@@ -90,7 +91,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 
 CDirView::CDirView()
 		: m_pList(nullptr)
-		, m_nHiddenItems(0)
 		, m_compareStart(0)
 		, m_bTreeMode(false)
 		, m_dirfilter(std::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
@@ -2541,6 +2541,8 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			else
 				Redisplay();
 		}
+
+		HideItems(GetDiffContext().m_vCurrentlyHiddenItems);
 	}
 
 	return 0; // return value unused
@@ -3264,15 +3266,64 @@ void CDirView::OnUpdateItemRename(CCmdUI* pCmdUI)
  */
 void CDirView::OnHideFilenames()
 {
+	CDiffContext& ctxt = GetDiffContext();
+	int selection_index;
+	String hiddden_item_path;
+	
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	DirItemIterator it;
+
 	while ((it = SelRevBegin()) != SelRevEnd())
 	{
 		DIFFITEM &di = *it;
+		selection_index = it.m_sel;
+		hiddden_item_path = di.getItemRelativePath();
 		SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
-		DeleteItem(it.m_sel);
-		m_nHiddenItems++;
+		DeleteItem(selection_index);
+		ctxt.m_vCurrentlyHiddenItems.push_back(hiddden_item_path);
 	}
+	m_pList->SetRedraw(TRUE);	// Turn updating back on
+}
+
+/**
+ * @brief determine if an item-relative-path is contained in the list of items to hide
+ */
+bool CDirView::IsItemToHide(const String& currentItem, const std::vector<String>& ItemsToHide) const
+{
+	return std::find(ItemsToHide.begin(), ItemsToHide.end(), currentItem) != ItemsToHide.end();
+}
+
+/**
+ * @brief hides items specified in the .winmerge file
+ */
+
+void CDirView::HideItems(const std::vector<String>& ItemsToHide)
+{
+	CDiffContext& ctxt = GetDiffContext();
+	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos != nullptr)
+	{
+		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
+		if (IsItemToHide(di.getItemRelativePath(), ItemsToHide))
+			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
+	}
+
+	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
+
+	int num_hidden = 0;
+	const size_t num_to_hide = ItemsToHide.size();
+	DirItemIterator it = RevBegin();
+	while((num_hidden < num_to_hide) && (it != RevEnd()))
+	{
+		DIFFITEM& di = *it;
+		if (di.customFlags & ViewCustomFlags::HIDDEN)
+		{
+			DeleteItem(it.m_sel);
+			num_hidden++;
+		}
+		++it;
+	}
+
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
 
@@ -3410,7 +3461,31 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			try {
 				DirItemIterator it(m_pIList.get(), reinterpret_cast<NMLVDISPINFO *>(pNMHDR)->item.iItem);
+				DIFFITEM& di = *it;
+				unsigned sideFlags = (di.diffcode.diffcode & DIFFCODE::SIDEFLAGS);
 				*pResult = DoItemRename(it, GetDiffContext(), String(sText));
+				// Rescan the item if side flags change due to renaming.
+				if (*pResult && ((di.diffcode.diffcode & DIFFCODE::SIDEFLAGS) != sideFlags))
+				{
+					// Delete the item with the same file name as after renaming.
+					if (di.HasParent())
+					{
+						for (DIFFITEM* pItem = di.GetParentLink()->GetFirstChild(); pItem != nullptr; pItem = pItem->GetFwdSiblingLink())
+						{
+							if ((pItem != &di) && (pItem->diffcode.isDirectory() == di.diffcode.isDirectory()) && (collstr(pItem->diffFileInfo[0].filename, di.diffFileInfo[0].filename, false) == 0))
+							{
+								pItem->DelinkFromSiblings();
+								delete pItem;
+								break;
+							}
+						}
+					}
+					// Rescan the item.
+					MarkForRescan(di);
+					m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
+					GetDocument()->SetMarkedRescan();
+					GetDocument()->Rescan();
+				}
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
@@ -3495,8 +3570,9 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
  */
 void CDirView::OnViewShowHiddenItems()
 {
+	CDiffContext& ctxt = GetDiffContext();
 	SetItemViewFlag(GetDiffContext(), ViewCustomFlags::VISIBLE, ViewCustomFlags::VISIBILITY);
-	m_nHiddenItems = 0;
+	ctxt.m_vCurrentlyHiddenItems.clear();
 	Redisplay();
 }
 
@@ -3505,7 +3581,8 @@ void CDirView::OnViewShowHiddenItems()
  */
 void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(m_nHiddenItems > 0);
+	const CDiffContext& ctxt = GetDiffContext();
+	pCmdUI->Enable(ctxt.m_vCurrentlyHiddenItems.size() > 0);
 }
 
 /**
@@ -4148,6 +4225,8 @@ void CDirView::OnSearch()
 	CDirDoc *pDoc = GetDocument();
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	int nRows = m_pList->GetItemCount();
+	CDiffContext& ctxt = GetDiffContext();
+
 	for (int currRow = nRows - 1; currRow >= 0; currRow--)
 	{
 		DIFFITEM *pos = GetItemKey(currRow);
@@ -4157,6 +4236,7 @@ void CDirView::OnSearch()
 		bool bFound = false;
 		DIFFITEM &di = GetDiffItem(currRow);
 		PathContext paths;
+
 		for (int i = 0; i < pDoc->m_nDirs; i++)
 		{
 			if (di.diffcode.exists(i) && !di.diffcode.isDirectory())
@@ -4193,9 +4273,10 @@ void CDirView::OnSearch()
 		}
 		if (!bFound)
 		{
+			String hiddden_item_path = di.getItemRelativePath();
 			SetItemViewFlag(di, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 			DeleteItem(currRow);
-			m_nHiddenItems++;
+			ctxt.m_vCurrentlyHiddenItems.push_back(hiddden_item_path);
 		}
 	}
 	m_pList->SetRedraw(TRUE);	// Turn updating back on

@@ -480,7 +480,14 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	UpdateWebPageDiffBar();
 
 	m_wndFilePathBar.SetPaneCount(m_pWebDiffWindow->GetPaneCount());
-	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) { m_pWebDiffWindow->SetActivePane(pane); });
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
+		if (m_nActivePane != pane)
+			m_pWebDiffWindow->SetActivePane(pane);
+	});
+	m_wndFilePathBar.SetOnCaptionChangedCallback([&](int pane, const String& sText) {
+		m_strDesc[pane] = sText;
+		UpdateHeaderPath(pane);
+	});
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 

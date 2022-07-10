@@ -118,3 +118,21 @@ Subfolders include:
    It contains temporary files created during the compilation and can be 
    safely deleted. 
 
+
+## How to CONTRIBUTE
+
+   You will need to fork the main Winmerge repository and create a branch on that fork
+   
+   Your new code needs to follow Eric Allman identation https://en.wikipedia.org/wiki/Indentation_style#Allman_style
+   
+   When your code is ready for a review/merge create a pull request explaining the changes that you made
+   
+
+## How to RUN and DEBUG
+
+   The winmerge folder has different Visual Studio solution files (.sln) that you can use to build, debug and run while you test your changes
+   
+   If you have run any of the BuildAll scripts you can run WinMerge from path `\Build\X64\Release\WinMergeU.exe` 
+   if your architecture is not `X64` look for any of the other folders generated after the build has finished
+   
+   Another way to Debug, run the exe from previous step, then from VS attach to the running process.

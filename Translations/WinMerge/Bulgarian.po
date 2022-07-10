@@ -960,6 +960,12 @@ msgstr "&Копиране на пълния път"
 msgid "Copy &Filename"
 msgstr "Копиране на &името"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Избиране…"
+
 msgid "Unpacker Settings"
 msgstr "Настройки на разопаковчик"
 
@@ -968,9 +974,6 @@ msgstr "<Няма>"
 
 msgid "<Automatic>"
 msgstr "<Автоматично>"
-
-msgid "&Select..."
-msgstr "&Избиране…"
 
 msgid "Prediffer Settings"
 msgstr ""
@@ -2298,6 +2301,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 msgid "Name"

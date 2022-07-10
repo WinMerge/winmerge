@@ -489,8 +489,11 @@ protected:
     virtual bool GetItalic (int nColorIndex);
     virtual bool GetBold (int nColorIndex);
 
+    bool GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight);
     void DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
-                         COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
+                         COLORREF crText, COLORREF crBkgnd,
+                         int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos,
+                         int nSelLeft, int nSelRight);
     virtual void DrawSingleLine (const CRect & rect, int nLineIndex);
     virtual void GetTopMarginText (const CRect& rect, CString& columnnames, std::vector<int>& nWidths);
     virtual void DrawTopMargin (const CRect & rect);

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-05-05 12:15+0000\n"
+"POT-Creation-Date: 2022-07-10 10:12+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -957,6 +957,12 @@ msgstr ""
 msgid "Copy &Filename"
 msgstr ""
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr ""
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -964,9 +970,6 @@ msgid "<None>"
 msgstr ""
 
 msgid "<Automatic>"
-msgstr ""
-
-msgid "&Select..."
 msgstr ""
 
 msgid "Prediffer Settings"
@@ -2211,6 +2214,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 msgid "Name"

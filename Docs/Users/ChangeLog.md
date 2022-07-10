@@ -1,5 +1,15 @@
 # Change log
 
+## WinMerge 2.16.22 - 2022-07-27
+
+### Project file
+
+- Add a feature to save/restore hidden items to/from a project file.(PR #1377)
+
+### Options dialog
+
+- New setting to decide when to save/restore hidden items when project is saved/loaded (PR #1377)
+
 ## WinMerge 2.16.21 - 2022-06-20
 
 ### General

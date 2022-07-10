@@ -1168,6 +1168,13 @@ msgstr "Αντιγραφή πλήρους Δια&δρομής"
 msgid "Copy &Filename"
 msgstr "Αντιγραφή Ο&νόματος"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&Επιλογή..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1178,10 +1185,6 @@ msgstr "<Ουδέν>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Αυτόματο>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Επιλογή..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2770,6 +2773,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

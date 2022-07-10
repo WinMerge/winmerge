@@ -965,6 +965,12 @@ msgstr "Копировать полный путь"
 msgid "Copy &Filename"
 msgstr "Копировать имя файла"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Выбрать..."
+
 msgid "Unpacker Settings"
 msgstr "Параметры распаковщика"
 
@@ -973,9 +979,6 @@ msgstr "<Нет>"
 
 msgid "<Automatic>"
 msgstr "<Автоматически>"
-
-msgid "&Select..."
-msgstr "Выбрать..."
 
 msgid "Prediffer Settings"
 msgstr "Параметры предсравнения"
@@ -2220,6 +2223,9 @@ msgstr "Включая подпапки"
 
 msgid "Compare Options"
 msgstr "Настройки сравнения"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"

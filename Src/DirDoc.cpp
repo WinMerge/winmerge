@@ -312,6 +312,10 @@ void CDirDoc::Rescan()
 		m_pDirView->SetActivePane(pane);
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, pane);
 	});
+	pf->GetHeaderInterface()->SetOnCaptionChangedCallback([&](int pane, const String& sText) {
+		m_strDesc[pane] = sText;
+		UpdateHeaderPath(pane);
+	});
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{
 		UpdateHeaderPath(nIndex);

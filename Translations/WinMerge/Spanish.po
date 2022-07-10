@@ -28,13 +28,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SPANISH, SUBLANG_SPANISH_MODERN"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Copiar al Medio"
 
 msgid "C&opy to Right\tAlt+Right"
 msgstr "Copiar al lado &derecho\tAlt+Der."
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Copiar desde el Medio"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr ""
@@ -46,28 +46,28 @@ msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr ""
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados al Medio"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados a la derecha"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados del Medio"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados la Derecha"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados a la Izquierda"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados de la Izquierda"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Seleccionar &dif. de línea\tF4"
+msgstr "Seleccionar &dif. de renglon\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Agregar este cambio al &Filtro de Sustitucion"
 
 msgid "&Undo"
 msgstr "Des&hacer"
@@ -112,22 +112,22 @@ msgid "&With..."
 msgstr "&Con..."
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "Abrir Carpeta &Padre"
 
 msgid "S&hell Menu"
 msgstr ""
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Usar primer renglon como encabezados"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Autoajustar todas las columnas"
 
 msgid "View &Differences"
 msgstr "Ver &Diferencias"
 
 msgid "Diff &Block Size"
-msgstr ""
+msgstr "Tamaño del &Bloque Diff"
 
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr "&Ignorar Diferencia de Color (Límite de Distancia de Color)"
@@ -139,10 +139,10 @@ msgid "&None"
 msgstr "&Ninguno"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "&Vertical"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Horizontal"
 
 msgid "&Previous Page"
 msgstr "&Página Anterior"
@@ -154,16 +154,16 @@ msgid "&Active Pane"
 msgstr "P&anel Activo"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Rotar a la derecha 90 grados"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Rotar a la izquierda 90 grados"
 
 msgid "Flip V&ertically"
-msgstr ""
+msgstr "Invertir V&erticalmente"
 
 msgid "Flip H&orizontally"
-msgstr ""
+msgstr "Invertir H&orizontalmente"
 
 msgid "&Zoom"
 msgstr "&Zoom"
@@ -964,6 +964,12 @@ msgstr "&Copiar ruta completa"
 msgid "Copy &Filename"
 msgstr "Copiar &nombre de archivo"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Seleccionar..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -972,9 +978,6 @@ msgstr "<Ninguno>"
 
 msgid "<Automatic>"
 msgstr "<Automático>"
-
-msgid "&Select..."
-msgstr "&Seleccionar..."
 
 msgid "Prediffer Settings"
 msgstr "Config. precomparación"
@@ -2297,6 +2300,9 @@ msgstr ""
 msgid "Compare Options"
 msgstr ""
 
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Nombre"
 
@@ -2304,7 +2310,7 @@ msgid "Location"
 msgstr "Ubicación"
 
 msgid "Filters"
-msgstr "Filtos"
+msgstr "Filtros"
 
 msgid "[F] "
 msgstr "[F] "

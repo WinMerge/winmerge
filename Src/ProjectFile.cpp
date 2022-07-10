@@ -50,6 +50,8 @@ const char Ignore_numbers_element_name[] = "ignore-numbers";
 const char Ignore_codepage_diff_element_name[] = "ignore-codepage-diff";
 const char Ignore_comment_diff_element_name[] = "ignore-comment-diff";
 const char Compare_method_element_name[] = "compare-method";
+const char Hidden_list_element_name[] = "hidden-list";
+const char Hidden_items_element_name[] = "hidden-item";
 
 namespace
 {
@@ -64,6 +66,15 @@ void writeElement(XMLWriter& writer, const std::string& tagname, const std::stri
 	writer.startElement("", "", tagname);
 	writer.characters(characters);
 	writer.endElement("", "", tagname);
+}
+
+void saveHiddenItems(XMLWriter& writer, const std::vector<String>& hiddenItems) 
+{
+	writer.startElement("", "", Hidden_list_element_name);
+	for (const auto& hiddenItem : hiddenItems) {
+		writeElement(writer, Hidden_items_element_name, toUTF8(hiddenItem));
+	}
+	writer.endElement("", "", Hidden_list_element_name);
 }
 
 }
@@ -88,12 +99,15 @@ public:
 	}
 	void characters(const XMLChar ch[], int start, int length)
 	{
+		//process .winmerge entries of third level deep only
 		if (m_stack.size() != 3 && m_pProject->size() == 0)
 			return;
 
 		ProjectFileItem& currentItem = m_pProject->back();
 
 		const std::string& nodename = m_stack.top();
+		const std::string& token = std::string(ch + start, length);
+
 		if (nodename == Left_element_name)
 		{
 			currentItem.m_paths.SetLeft(currentItem.m_paths.GetLeft() + xmlch2tstr(ch + start, length), false);
@@ -116,20 +130,20 @@ public:
 		}
 		else if (nodename == Subfolders_element_name)
 		{
-			currentItem.m_subfolders = atoi(std::string(ch + start, length).c_str());
+			currentItem.m_subfolders = atoi(token.c_str());
 			currentItem.m_bHasSubfolders = true;
 		}
 		else if (nodename == Left_ro_element_name)
 		{
-			currentItem.m_bLeftReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bLeftReadOnly = atoi(token.c_str()) != 0;
 		}
 		else if (nodename == Middle_ro_element_name)
 		{
-			currentItem.m_bMiddleReadOnly = atoi(std::string(ch +  start, length).c_str()) != 0;
+			currentItem.m_bMiddleReadOnly = atoi(token.c_str()) != 0;
 		}
 		else if (nodename == Right_ro_element_name)
 		{
-			currentItem.m_bRightReadOnly = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bRightReadOnly = atoi(token.c_str()) != 0;
 		}
 		else if (nodename == Unpacker_element_name)
 		{
@@ -143,43 +157,49 @@ public:
 		}
 		else if (nodename == White_spaces_element_name)
 		{
-			currentItem.m_nIgnoreWhite = atoi(std::string(ch + start, length).c_str());
+			currentItem.m_nIgnoreWhite = atoi(token.c_str());
 			currentItem.m_bHasIgnoreWhite = true;
 		}
 		else if (nodename == Ignore_blank_lines_element_name)
 		{
-			currentItem.m_bIgnoreBlankLines = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bIgnoreBlankLines = atoi(token.c_str()) != 0;
 			currentItem.m_bHasIgnoreBlankLines = true;
 		}
 		else if (nodename == Ignore_case_element_name)
 		{
-			currentItem.m_bIgnoreCase = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bIgnoreCase = atoi(token.c_str()) != 0;
 			currentItem.m_bHasIgnoreCase = true;
 		}
 		else if (nodename == Ignore_cr_diff_element_name)
 		{
-			currentItem.m_bIgnoreEol = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bIgnoreEol = atoi(token.c_str()) != 0;
 			currentItem.m_bHasIgnoreEol = true;
 		}
 		else if (nodename == Ignore_numbers_element_name)
 		{
-			currentItem.m_bIgnoreNumbers = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bIgnoreNumbers = atoi(token.c_str()) != 0;
 			currentItem.m_bHasIgnoreNumbers = true;
 		}
 		else if (nodename == Ignore_codepage_diff_element_name)
 		{
-			currentItem.m_bIgnoreCodepage = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bIgnoreCodepage = atoi(token.c_str()) != 0;
 			currentItem.m_bHasIgnoreCodepage = true;
 		}
 		else if (nodename == Ignore_comment_diff_element_name)
 		{
-			currentItem.m_bFilterCommentsLines = atoi(std::string(ch + start, length).c_str()) != 0;
+			currentItem.m_bFilterCommentsLines = atoi(token.c_str()) != 0;
 			currentItem.m_bHasFilterCommentsLines = true;
 		}
 		else if (nodename == Compare_method_element_name)
 		{
-			currentItem.m_nCompareMethod = atoi(std::string(ch + start, length).c_str());
+			currentItem.m_nCompareMethod = atoi(token.c_str());
 			currentItem.m_bHasCompareMethod = true;
+		}
+		//This nodes are under Hidden_list_element_name
+		else if (nodename ==  Hidden_items_element_name)
+		{
+			currentItem.m_vSavedHiddenItems.push_back(toTString(token));
+			currentItem.m_bHasHiddenItems = true;
 		}
 	}
 	void ignorableWhitespace(const XMLChar ch[], int start, int length)	{}
@@ -226,6 +246,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bHasFilterCommentsLines(false)
 , m_bFilterCommentsLines(false)
 , m_bHasCompareMethod(false)
+, m_bHasHiddenItems(false)
 , m_nCompareMethod(0)
 , m_bSaveFilter(true)
 , m_bSaveSubfolders(true)
@@ -238,6 +259,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveIgnoreCodepage(true)
 , m_bSaveFilterCommentsLines(true)
 , m_bSaveCompareMethod(true)
+, m_bSaveHiddenItems(true)
 {
 }
 
@@ -393,6 +415,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Ignore_comment_diff_element_name, item.m_bFilterCommentsLines ? "1" : "0");
 				if (item.m_bSaveCompareMethod)
 					writeElement(writer, Compare_method_element_name, std::to_string(item.m_nCompareMethod));
+				if (item.m_bSaveHiddenItems && item.m_vSavedHiddenItems.size() > 0) 
+					saveHiddenItems(writer, item.m_vSavedHiddenItems);
 			}
 			writer.endElement("", "", Paths_element_name);
 		}
@@ -401,4 +425,3 @@ bool ProjectFile::Save(const String& path) const
 	writer.endDocument();
 	return true;
 }
-

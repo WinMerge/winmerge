@@ -962,6 +962,12 @@ msgstr "&Kopier full bane"
 msgid "Copy &Filename"
 msgstr "Kopier &filnavn"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Velg..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -970,9 +976,6 @@ msgstr "<Ingen>"
 
 msgid "<Automatic>"
 msgstr "<Automatisk>"
-
-msgid "&Select..."
-msgstr "&Velg..."
 
 msgid "Prediffer Settings"
 msgstr "Prediffer-innstillinger"
@@ -2299,6 +2302,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 msgid "Name"

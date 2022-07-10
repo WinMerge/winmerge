@@ -964,6 +964,12 @@ msgstr "Copiar localização completa"
 msgid "Copy &Filename"
 msgstr "Co&piar nome de ficheiro"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Selecionar..."
+
 msgid "Unpacker Settings"
 msgstr "Definições do descompactador"
 
@@ -972,9 +978,6 @@ msgstr "<None>"
 
 msgid "<Automatic>"
 msgstr "<Automatic>"
-
-msgid "&Select..."
-msgstr "&Selecionar..."
 
 msgid "Prediffer Settings"
 msgstr "Definições de pré-diferenciação"
@@ -2285,6 +2288,9 @@ msgstr "Incluir subpastas"
 
 msgid "Compare Options"
 msgstr "Comparar opções"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Nome"

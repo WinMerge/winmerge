@@ -1170,6 +1170,13 @@ msgstr "&C رونوشت برداري کل مسير "
 msgid "Copy &Filename"
 msgstr "&F رونوشت برداري نام پرونده"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&S انتخاب ... "
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1180,10 +1187,6 @@ msgstr "<هيچکدام>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<خودکار>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&S انتخاب ... "
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2791,6 +2794,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

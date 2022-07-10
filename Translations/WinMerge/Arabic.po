@@ -964,6 +964,12 @@ msgstr "&نسخ المسار الكامل"
 msgid "Copy &Filename"
 msgstr "نسخ اسم الملف"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&تحديد..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -972,9 +978,6 @@ msgstr "<لا يوجد>"
 
 msgid "<Automatic>"
 msgstr "<تلقائي>"
-
-msgid "&Select..."
-msgstr "&تحديد..."
 
 msgid "Prediffer Settings"
 msgstr "إعدادات الاختلافات المسبقة"
@@ -2291,6 +2294,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 msgid "Name"

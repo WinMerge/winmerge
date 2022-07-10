@@ -962,6 +962,12 @@ msgstr "&Cupià u chjassu sanu"
 msgid "Copy &Filename"
 msgstr "Cupià u nome di &schedariu"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Selezziunà…"
+
 msgid "Unpacker Settings"
 msgstr "Preferenze di u spacchittadore"
 
@@ -970,9 +976,6 @@ msgstr "<nisunu>"
 
 msgid "<Automatic>"
 msgstr "<autumaticu>"
-
-msgid "&Select..."
-msgstr "&Selezziunà…"
 
 msgid "Prediffer Settings"
 msgstr "Preferenze di u preparagone"
@@ -2290,6 +2293,9 @@ msgstr "Include i sottucartulari"
 
 msgid "Compare Options"
 msgstr "Ozzioni di paragone"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Nome"

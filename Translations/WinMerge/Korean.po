@@ -1177,6 +1177,13 @@ msgstr "전체 경로 복사(&C)"
 msgid "Copy &Filename"
 msgstr "파일 이름 복사(&F)"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "선택(&S)..."
+
 msgid "Unpacker Settings"
 msgstr "언패커 설정"
 
@@ -1187,10 +1194,6 @@ msgstr "<없음>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<자동>"
-
-#, c-format
-msgid "&Select..."
-msgstr "선택(&S)..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2812,6 +2815,9 @@ msgstr "하위 폴더 포함"
 
 msgid "Compare Options"
 msgstr "옵션 비교"
+
+msgid "Hidden Items"
+msgstr ""
 
 #, c-format
 msgid "Name"

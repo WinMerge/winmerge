@@ -963,6 +963,12 @@ msgstr "Volledig pad kopiëren"
 msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Selecteren..."
+
 msgid "Unpacker Settings"
 msgstr "Instellingen uitpakker"
 
@@ -971,9 +977,6 @@ msgstr "<None>"
 
 msgid "<Automatic>"
 msgstr "<Automatic>"
-
-msgid "&Select..."
-msgstr "Selecteren..."
 
 msgid "Prediffer Settings"
 msgstr "Instellingen voorvergelijking"
@@ -2310,6 +2313,9 @@ msgstr "Submappen bijvoegen"
 
 msgid "Compare Options"
 msgstr "Vergelijkingsopties"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Naam"
