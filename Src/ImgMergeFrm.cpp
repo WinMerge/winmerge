@@ -526,7 +526,17 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 
 	m_wndFilePathBar.SetPaneCount(m_pImgMergeWindow->GetPaneCount());
-	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) { m_pImgMergeWindow->SetActivePane(pane); });
+	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
+		if (m_nActivePane != pane)
+			m_pImgMergeWindow->SetActivePane(pane);
+	});
+	m_wndFilePathBar.SetOnCaptionChangedCallback([&](int pane, const String& sText) {
+		m_strDesc[pane] = sText;
+		UpdateHeaderPath(pane);
+	});
+	m_wndFilePathBar.SetOnFileSelectedCallback([&](int pane, const String& sFilepath) {
+		ChangeFile(pane, sFilepath);
+	});
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 

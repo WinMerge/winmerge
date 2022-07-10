@@ -1171,6 +1171,13 @@ msgstr "&Teljes útvonal másolása"
 msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&Kiválasztás..."
+
 msgid "Unpacker Settings"
 msgstr "Kicsomagoló beállításai"
 
@@ -1181,10 +1188,6 @@ msgstr "<Nincs>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatikus>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Kiválasztás..."
 
 #, c-format
 msgid "Prediffer Settings"

@@ -1176,6 +1176,13 @@ msgstr "Copier le c&hemin complet"
 msgid "Copy &Filename"
 msgstr "Copier le nom de &fichier"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "C&hoisir..."
+
 msgid "Unpacker Settings"
 msgstr "Paramètres du décompresseur"
 
@@ -1186,10 +1193,6 @@ msgstr "<Aucun>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatique>"
-
-#, c-format
-msgid "&Select..."
-msgstr "C&hoisir..."
 
 #, c-format
 msgid "Prediffer Settings"

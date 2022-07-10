@@ -1172,6 +1172,13 @@ msgstr "&Vollständigen Pfad kopieren"
 msgid "Copy &Filename"
 msgstr "&Dateinamen kopieren"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "Auswählen..."
+
 msgid "Unpacker Settings"
 msgstr "Entpackereinstellungen"
 
@@ -1182,10 +1189,6 @@ msgstr "<Keine>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatisch>"
-
-#, c-format
-msgid "&Select..."
-msgstr "Auswählen..."
 
 #, c-format
 msgid "Prediffer Settings"

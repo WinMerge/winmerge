@@ -964,6 +964,12 @@ msgstr "复制完整路径(&C)"
 msgid "Copy &Filename"
 msgstr "复制文件名(&F)"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "选择(&S)..."
+
 msgid "Unpacker Settings"
 msgstr "解包插件设置"
 
@@ -972,9 +978,6 @@ msgstr "<无>"
 
 msgid "<Automatic>"
 msgstr "<自动>"
-
-msgid "&Select..."
-msgstr "选择(&S)..."
 
 msgid "Prediffer Settings"
 msgstr "设置预比较插件"

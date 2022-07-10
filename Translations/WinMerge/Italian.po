@@ -961,6 +961,12 @@ msgstr "Copia &percorso completo"
 msgid "Copy &Filename"
 msgstr "Copia nome del &file"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Sele&ziona..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -969,9 +975,6 @@ msgstr "<Nessuno>"
 
 msgid "<Automatic>"
 msgstr "<Automatico>"
-
-msgid "&Select..."
-msgstr "Sele&ziona..."
 
 msgid "Prediffer Settings"
 msgstr "Impostazioni prediffer"

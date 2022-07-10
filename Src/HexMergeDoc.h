@@ -84,6 +84,7 @@ public:
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const { return m_strDesc[pane]; };
+	void SetDescription(int pane, const String& strDesc) {  m_strDesc[pane] = strDesc; };
 	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
 private:
 	bool DoFileSave(int nBuffer);

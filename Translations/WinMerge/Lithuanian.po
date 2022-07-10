@@ -963,6 +963,12 @@ msgstr "Kopijuoti pilną &kelią"
 msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Pa&rinkti..."
+
 msgid "Unpacker Settings"
 msgstr "Išpakuotojo nuostatos"
 
@@ -971,9 +977,6 @@ msgstr "<Nėra>"
 
 msgid "<Automatic>"
 msgstr "<Automatinis>"
-
-msgid "&Select..."
-msgstr "Pa&rinkti..."
 
 msgid "Prediffer Settings"
 msgstr "Parengėjo nuostatos"

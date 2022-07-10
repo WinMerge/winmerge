@@ -1176,6 +1176,13 @@ msgstr "複製完整路徑 (&C)"
 msgid "Copy &Filename"
 msgstr "複製檔名 (&F)"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "選取 (&S)..."
+
 msgid "Unpacker Settings"
 msgstr "解壓縮程式設定"
 
@@ -1186,10 +1193,6 @@ msgstr "<無>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<自動>"
-
-#, c-format
-msgid "&Select..."
-msgstr "選取 (&S)..."
 
 #, c-format
 msgid "Prediffer Settings"

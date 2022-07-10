@@ -26,6 +26,8 @@ public:
 	virtual void SetPaneCount(int nPanes) = 0;
 	virtual void Resize() = 0;
 	virtual void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) = 0;
+	virtual void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) = 0;
+	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) = 0;
 };
 
 
@@ -50,6 +52,8 @@ public :
 	void Resize() override;
 	void Resize(int widths[]);
 	void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) override;
+	void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) override;
+	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) override;
 
 	// Implement IFilepathHeaders
 	void SetText(int pane, const String& sString) override;
@@ -61,6 +65,8 @@ protected:
 	//{{AFX_MSG(CEditorFilePathBar)
 	afx_msg BOOL OnToolTipNotify( UINT id, NMHDR * pTTTStruct, LRESULT * pResult );
 	afx_msg void OnSetFocusEdit(UINT id);
+	afx_msg void OnChangeEdit(UINT id);
+	afx_msg void OnSelectEdit(UINT id);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP();
 
@@ -69,7 +75,9 @@ private:
 	CFilepathEdit m_Edit[3]; /**< Edit controls. */
 	CFont m_font; /**< Font for editcontrols */
 	int m_nPanes;
-	std::function<void(int)> m_callbackfunc;
+	std::function<void(int)> m_setFocusCallbackfunc;
+	std::function<void(int, const String& sText)> m_captionChangedCallbackfunc;
+	std::function<void(int, const String& sFilepath)> m_fileSelectedCallbackfunc;
 };
 
 inline void CEditorFilePathBar::SetPaneCount(int nPanes)
@@ -82,6 +90,18 @@ inline void CEditorFilePathBar::SetPaneCount(int nPanes)
  */
 inline void CEditorFilePathBar::SetOnSetFocusCallback(const std::function<void(int)> callbackfunc)
 {
-	m_callbackfunc = callbackfunc;
+	m_setFocusCallbackfunc = callbackfunc;
+}
+
+inline void CEditorFilePathBar::SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc)
+{
+	m_captionChangedCallbackfunc = callbackfunc;
+}
+
+inline void CEditorFilePathBar::SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc)
+{
+	m_fileSelectedCallbackfunc = callbackfunc;
+	for (int pane = 0; pane < m_nPanes; ++pane)
+		m_Edit[pane].EnableFileSelection(true);
 }
 

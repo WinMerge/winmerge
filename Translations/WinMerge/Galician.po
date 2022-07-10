@@ -1170,6 +1170,13 @@ msgstr "&Copiar ruta completa"
 msgid "Copy &Filename"
 msgstr "Copiar nome do &ficheiro"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&Seleccionar…"
+
 msgid "Unpacker Settings"
 msgstr "Axustes do desempaquetador"
 
@@ -1180,10 +1187,6 @@ msgstr "<Ningún>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automático>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Seleccionar…"
 
 #, c-format
 msgid "Prediffer Settings"

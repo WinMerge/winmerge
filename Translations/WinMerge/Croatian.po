@@ -1169,6 +1169,13 @@ msgstr "&Kopiraj stazu"
 msgid "Copy &Filename"
 msgstr "Kopiraj &naziv datoteke"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "Oda&bir..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1179,10 +1186,6 @@ msgstr "Ništa"
 #, c-format
 msgid "<Automatic>"
 msgstr "Automatski"
-
-#, c-format
-msgid "&Select..."
-msgstr "Oda&bir..."
 
 #, c-format
 msgid "Prediffer Settings"
