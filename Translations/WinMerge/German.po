@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-07-06 18:30+0200\n"
+"PO-Revision-Date: 2022-07-10 19:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1162,18 +1162,18 @@ msgstr "Rechtes Shell-Menü"
 
 #, c-format
 msgid "Copy"
-msgstr "&Kopieren"
+msgstr "Kopieren"
 
 #, c-format
 msgid "&Copy Full Path"
-msgstr "&Vollständigen Pfad kopieren"
+msgstr "Vollständigen Pfad kopieren"
 
 #, c-format
 msgid "Copy &Filename"
-msgstr "&Dateinamen kopieren"
+msgstr "Dateinamen kopieren"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "Titelzeile bearbeiten"
 
 #, c-format
 msgid "&Select..."
