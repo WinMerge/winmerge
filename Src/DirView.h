@@ -204,6 +204,7 @@ protected:
 	bool m_bTreeMode; /**< `true` if tree mode is on*/
 	DirViewFilterSettings m_dirfilter;
 	clock_t m_compareStart; /**< Starting process time of the compare */
+	clock_t m_elapsed; /**< Elapsed time of the compare */
 	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
 
