@@ -92,6 +92,7 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 CDirView::CDirView()
 		: m_pList(nullptr)
 		, m_compareStart(0)
+		, m_elapsed(0)
 		, m_bTreeMode(false)
 		, m_dirfilter(std::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
 		, m_pShellContextMenuLeft(nullptr)
@@ -2514,11 +2515,9 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			MoveFocus(0, 0, 0);
 
 		// If compare took more than TimeToSignalCompare seconds, notify user
-		clock_t elapsed = clock() - m_compareStart;
-		GetParentFrame()->SetStatus(
-			strutils::format(_("Elapsed time: %ld ms"), elapsed).c_str()
-		);
-		if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
+		m_elapsed = clock() - m_compareStart;
+		SetTimer(STATUSBAR_UPDATE, 150, nullptr);
+		if (m_elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);
 		GetMainFrame()->StartFlashing();
 	}
@@ -2683,7 +2682,16 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 	{
 		KillTimer(STATUSBAR_UPDATE);
 		int items = GetSelectedCount();
-		String msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
+		String msg;
+		if (m_elapsed != 0)
+		{
+			msg = strutils::format(_("Elapsed time: %ld ms"), m_elapsed);
+			m_elapsed = 0;
+		}
+		else
+		{
+			msg = (items == 1) ? _("1 item selected") : strutils::format_string1(_("%1 items selected"), strutils::to_str(items));
+		}
 		GetParentFrame()->SetStatus(msg.c_str());
 	}
 	

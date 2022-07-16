@@ -1172,7 +1172,7 @@ msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "Felirat szerkesztése"
 
 #, c-format
 msgid "&Select..."
