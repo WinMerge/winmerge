@@ -13,6 +13,7 @@
 #include "DirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsDiffColors.h"
 #include "paths.h"
 #include "PathContext.h"
 #include "unicoder.h"
@@ -566,10 +567,6 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 
 void CWebPageDiffFrame::LoadOptions()
 {
-//	m_pWebDiffWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_WEB_DIFFCOLORALPHA) / 100.0);
-//	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_WEB_BACKCOLOR);
-//	RGBQUAD backColor = { GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor) };
-
 	m_pWebDiffWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
 	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
@@ -577,6 +574,12 @@ void CWebPageDiffFrame::LoadOptions()
 	m_pWebDiffWindow->SetFitToWindow(GetOptionsMgr()->GetBool(OPT_CMP_WEB_FIT_TO_WINDOW));
 	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SHOWDIFFERENCES));
 	m_pWebDiffWindow->SetUserAgent(GetOptionsMgr()->GetString(OPT_CMP_WEB_USER_AGENT).c_str());
+	COLORSETTINGS colors;
+	Options::DiffColors::Load(GetOptionsMgr(), colors);
+	m_pWebDiffWindow->SetDiffColor(colors.clrDiff);
+	m_pWebDiffWindow->SetSelDiffColor(colors.clrSelDiff);
+	m_pWebDiffWindow->SetTextDiffColor(colors.clrDiffText);
+	m_pWebDiffWindow->SetSelTextDiffColor(colors.clrSelDiffText);
 }
 
 void CWebPageDiffFrame::SaveOptions()

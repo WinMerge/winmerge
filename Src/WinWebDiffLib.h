@@ -55,6 +55,21 @@ struct IWebDiffWindow
 		SETTINGS            = ( 1 << 13 ),
 		ALL_PROFILE         = ( 1 << 14 ) 
 	};
+	struct DiffOptions
+	{
+		enum DiffAlgorithm {
+			MYERS_DIFF, MINIMAL_DIFF, PATIENCE_DIFF, HISTOGRAM_DIFF, NONE_DIFF
+		};
+		int  ignoreWhitespace; /**< Ignore whitespace -option. */
+		bool ignoreCase; /**< Ignore case -option. */
+		bool ignoreNumbers; /**< Ignore numbers -option. */
+		bool ignoreBlankLines; /**< Ignore blank lines -option. */
+		bool ignoreEol; /**< Ignore EOL differences -option. */
+		bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
+		int  diffAlgorithm; /**< Diff algorithm -option. */
+		bool indentHeuristic; /**< Ident heuristic -option */
+		bool completelyBlankOutIgnoredChanges;
+	};
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
 	virtual void AddEventListener(IWebDiffEventHandler *handler) = 0;
@@ -82,10 +97,12 @@ struct IWebDiffWindow
 	virtual void SetHorizontalSplit(bool horizontalSplit) = 0;
 	virtual COLORREF GetDiffColor() const = 0;
 	virtual void SetDiffColor(COLORREF clrDiffColor) = 0;
+	virtual COLORREF GetTextDiffColor() const = 0;
+	virtual void SetTextDiffColor(COLORREF clrDiffTextColor) = 0;
 	virtual COLORREF GetSelDiffColor() const = 0;
 	virtual void SetSelDiffColor(COLORREF clrSelDiffColor) = 0;
-	virtual double GetDiffColorAlpha() const = 0;
-	virtual void SetDiffColorAlpha(double diffColorAlpha) = 0;
+	virtual COLORREF GetSelTextDiffColor() const = 0;
+	virtual void SetSelTextDiffColor(COLORREF clrSelDiffTextColor) = 0;
 	virtual double GetZoom() const = 0;
 	virtual void SetZoom(double zoom) = 0;
 	virtual const wchar_t* GetUserAgent() const = 0;
@@ -123,6 +140,8 @@ struct IWebDiffWindow
 	virtual bool Redo() = 0;
 	virtual bool CanUndo() = 0;
 	virtual bool CanRedo() = 0;
+	virtual const DiffOptions& GetDiffOptions() const = 0;
+	virtual void SetDiffOptions(const DiffOptions& diffOptions) = 0;
 };
 
 extern "C"
