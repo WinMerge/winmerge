@@ -102,7 +102,7 @@ ComputeWordDiffs(int nFiles, const String *str,
 	std::vector<wdiff> diffs;
 	if (nFiles == 2)
 	{
-		stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
+		stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, byte_level, &diffs);
 		// Hash all words in both lines and then compare them word by word
 		// storing differences into m_wdiffs
 		sdiffs.BuildWordDiffList();
@@ -118,7 +118,7 @@ ComputeWordDiffs(int nFiles, const String *str,
 	{
 		if (str[0].empty())
 		{
-			stringdiffs sdiffs(str[1], str[2], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
+			stringdiffs sdiffs(str[1], str[2], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, byte_level, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -136,7 +136,7 @@ ComputeWordDiffs(int nFiles, const String *str,
 		}
 		else if (str[1].empty())
 		{
-			stringdiffs sdiffs(str[0], str[2], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
+			stringdiffs sdiffs(str[0], str[2], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, byte_level, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -154,7 +154,7 @@ ComputeWordDiffs(int nFiles, const String *str,
 		}
 		else if (str[2].empty())
 		{
-			stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, &diffs);
+			stringdiffs sdiffs(str[0], str[1], case_sensitive, eol_sensitive, whitespace, ignore_numbers, breakType, byte_level, &diffs);
 			sdiffs.BuildWordDiffList();
 			if (byte_level)
 				sdiffs.wordLevelToByteLevel();
@@ -173,8 +173,8 @@ ComputeWordDiffs(int nFiles, const String *str,
 		else
 		{
 			std::vector<wdiff> diffs10, diffs12;
-			stringdiffs sdiffs10(str[1], str[0], case_sensitive, eol_sensitive, 0, ignore_numbers, breakType, &diffs10);
-			stringdiffs sdiffs12(str[1], str[2], case_sensitive, eol_sensitive, 0, ignore_numbers, breakType, &diffs12);
+			stringdiffs sdiffs10(str[1], str[0], case_sensitive, eol_sensitive, 0, ignore_numbers, breakType, byte_level, &diffs10);
+			stringdiffs sdiffs12(str[1], str[2], case_sensitive, eol_sensitive, 0, ignore_numbers, breakType, byte_level, &diffs12);
 			// Hash all words in both lines and then compare them word by word
 			// storing differences into m_wdiffs
 			sdiffs10.BuildWordDiffList();
@@ -234,6 +234,7 @@ int Compare(const String& str1, const String& str2,
  */
 stringdiffs::stringdiffs(const String & str1, const String & str2,
 	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType,
+	bool byte_level,
 	std::vector<wdiff> * pDiffs)
 : m_str1(str1)
 , m_str2(str2)
@@ -243,7 +244,7 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 , m_ignore_numbers(ignore_numbers)
 , m_breakType(breakType)
 , m_pDiffs(pDiffs)
-, m_matchblock(true) // Change to false to get word to word compare
+, m_matchblock(!byte_level) // Change to false to get word to word compare
 {
 }
 
@@ -452,7 +453,9 @@ inspace:
 	// state when we are inside a word
 inword:
 	bool atspace=false;
-	if (i == iLen || ((atspace = isSafeWhitespace(str[i])) != 0) || isWordBreak(m_breakType, str.c_str(), i, m_ignore_numbers))
+	if (i == iLen || ((atspace = isSafeWhitespace(str[i])) != 0) 
+		|| !m_matchblock
+		|| isWordBreak(m_breakType, str.c_str(), i, m_ignore_numbers))
 	{
 		if (begin<i)
 		{
