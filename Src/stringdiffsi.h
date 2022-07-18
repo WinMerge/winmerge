@@ -110,7 +110,7 @@ private:
 	bool BuildWordDiffList_DP();
 	int dp(std::vector<char> & edscript);
 	int onp(std::vector<char> & edscript);
-	int snake(int k, int y, bool exchanged);
+	int snake(int k, int y, int M, int N, bool exchanged);
 #ifdef STRINGDIFF_LOGGING
 	void debugoutput();
 #endif

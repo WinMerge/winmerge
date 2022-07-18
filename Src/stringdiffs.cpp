@@ -244,7 +244,7 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 , m_ignore_numbers(ignore_numbers)
 , m_breakType(breakType)
 , m_pDiffs(pDiffs)
-, m_matchblock(!byte_level) // Change to false to get word to word compare
+, m_matchblock(!byte_level) // Set false to char-by-char comparison
 {
 }
 
@@ -454,7 +454,7 @@ inspace:
 inword:
 	bool atspace=false;
 	if (i == iLen || ((atspace = isSafeWhitespace(str[i])) != 0) 
-		|| !m_matchblock
+		// || !m_matchblock		// Set false to char-by-char comparison
 		|| isWordBreak(m_breakType, str.c_str(), i, m_ignore_numbers))
 	{
 		if (begin<i)
@@ -625,12 +625,12 @@ stringdiffs::onp(std::vector<char> &edscript)
 
 	int M = static_cast<int>(m_words1.size() - 1);
 	int N = static_cast<int>(m_words2.size() - 1);
-	bool exchanged = false;
-	if (M > N)
+	bool exchanged = (M > N) ? true : false;
+	if (exchanged)
 	{
-		M = static_cast<int>(m_words2.size() - 1);
-		N = static_cast<int>(m_words1.size() - 1);
-		exchanged = true;
+		int tmp = M;
+		M = N;
+		N = tmp;
 	}
 	int *fp = (new int[(M+1) + 1 + (N+1)]) + (M+1);
 	struct EditScriptElem { int op; int neq; int pk; int pi; };
@@ -666,18 +666,18 @@ stringdiffs::onp(std::vector<char> &edscript)
 		p = p + 1;
 		for (k = -p; k <= DELTA-1; k++)
 		{
-			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
+			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
 			addEditScriptElem(k);
 			count++;
 		}
 		for (k = DELTA + p; k >= DELTA+1; k--)
 		{
-			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
+			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
 			addEditScriptElem(k);
 			count++;
 		}
 		k = DELTA;
-		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
+		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
 		addEditScriptElem(k);
 		count++;
 
@@ -753,13 +753,25 @@ stringdiffs::onp(std::vector<char> &edscript)
 }
 
 int
-stringdiffs::snake(int k, int y, bool exchanged)
+stringdiffs::snake(int k, int y, int M, int N, bool exchanged)
 {
-	int M = static_cast<int>(exchanged ? m_words2.size() - 1 : m_words1.size() - 1);
-	int N = static_cast<int>(exchanged ? m_words1.size() - 1 : m_words2.size() - 1);
+	//int M = static_cast<int>(exchanged ? m_words2.size() - 1 : m_words1.size() - 1);
+	//int N = static_cast<int>(exchanged ? m_words1.size() - 1 : m_words2.size() - 1);
 	int x = y - k;
-	while (x < M && y < N && (exchanged ? AreWordsSame(m_words1[y + 1], m_words2[x + 1]) : AreWordsSame(m_words1[x + 1], m_words2[y + 1]))) {
-		x = x + 1; y = y + 1;
+	if (exchanged)
+	{
+		while (x < M && y < N && AreWordsSame(m_words1[y + 1], m_words2[x + 1]))
+		{
+			x++; y++;
+		}
+	}
+	else
+	{
+		while (x < M && y < N && AreWordsSame(m_words1[x + 1], m_words2[y + 1]))
+		{
+			x++; y++;
+		}
+
 	}
 	return y;
 }
