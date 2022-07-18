@@ -3473,26 +3473,37 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 				unsigned sideFlags = (di.diffcode.diffcode & DIFFCODE::SIDEFLAGS);
 				*pResult = DoItemRename(it, GetDiffContext(), String(sText));
 				// Rescan the item if side flags change due to renaming.
-				if (*pResult && ((di.diffcode.diffcode & DIFFCODE::SIDEFLAGS) != sideFlags))
+				if (*pResult)
 				{
-					// Delete the item with the same file name as after renaming.
-					if (di.HasParent())
+					if ((di.diffcode.diffcode & DIFFCODE::SIDEFLAGS) != sideFlags)
 					{
-						for (DIFFITEM* pItem = di.GetParentLink()->GetFirstChild(); pItem != nullptr; pItem = pItem->GetFwdSiblingLink())
+						// Delete the item with the same file name as after renaming.
+						if (di.HasParent())
 						{
-							if ((pItem != &di) && (pItem->diffcode.isDirectory() == di.diffcode.isDirectory()) && (collstr(pItem->diffFileInfo[0].filename, di.diffFileInfo[0].filename, false) == 0))
+							for (DIFFITEM* pItem = di.GetParentLink()->GetFirstChild(); pItem != nullptr; pItem = pItem->GetFwdSiblingLink())
 							{
-								pItem->DelinkFromSiblings();
-								delete pItem;
-								break;
+								if ((pItem != &di) && (pItem->diffcode.isDirectory() == di.diffcode.isDirectory()) && (collstr(pItem->diffFileInfo[0].filename, di.diffFileInfo[0].filename, false) == 0))
+								{
+									pItem->DelinkFromSiblings();
+									delete pItem;
+									break;
+								}
 							}
 						}
+						// Rescan the item.
+						MarkForRescan(di);
+						m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
+						GetDocument()->SetMarkedRescan();
+						GetDocument()->Rescan();
 					}
-					// Rescan the item.
-					MarkForRescan(di);
-					m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
-					GetDocument()->SetMarkedRescan();
-					GetDocument()->Rescan();
+					else {
+						int nDirs = GetDiffContext().GetCompareDirs();
+						assert(nDirs == 2 || nDirs == 3);
+						UpdatePaths(nDirs, di);
+
+						int nIdx = reinterpret_cast<NMLVDISPINFO*>(pNMHDR)->item.iItem;
+						UpdateDiffItemStatus(nIdx);
+					}
 				}
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
