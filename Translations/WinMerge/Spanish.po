@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2022-07-17 21:13-0500\n"
+"PO-Revision-Date: 2022-07-20 20:19-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_419\n"
@@ -821,7 +821,7 @@ msgid "Comp&are"
 msgstr "Com&parar"
 
 msgid "Compare in new &window"
-msgstr ""
+msgstr "Comparar en nueva ventana"
 
 msgid "Compare Non-hor&izontally..."
 msgstr "Comparar no hor&izontalmente..."
@@ -836,7 +836,7 @@ msgid "First &right item with second right item"
 msgstr "Prime&r elemento derecho con segundo elemento derecho"
 
 msgid "&First left item with second right item"
-msgstr ""
+msgstr "Primer elemento de la izq. con segundo elemento de la der."
 
 msgid "&Second left item with first right item"
 msgstr "&Segundo elemento izquierdo con primer elemento derecho"
@@ -952,7 +952,7 @@ msgid "Left Shell menu"
 msgstr "Menú Izquierda"
 
 msgid "Middle Shell menu"
-msgstr ""
+msgstr "Menu shell del medio"
 
 msgid "Right Shell menu"
 msgstr "Menú Derecha"
@@ -1225,7 +1225,7 @@ msgid "&Apply"
 msgstr "&Aplicar"
 
 msgid "Line Filters"
-msgstr ""
+msgstr "Filtros de renglon"
 
 msgid "Enable Line Filters"
 msgstr "Permitir filtros de línea"
@@ -1252,7 +1252,7 @@ msgid "Add"
 msgstr "Agregar"
 
 msgid "Clear"
-msgstr ""
+msgstr "Limpiar"
 
 msgid "Colors"
 msgstr "Colores"
@@ -1549,7 +1549,7 @@ msgid "Reset"
 msgstr "Restablecer"
 
 msgid "File Filters"
-msgstr ""
+msgstr "Filtros de archivos"
 
 msgid "Test..."
 msgstr "Probar..."
@@ -1582,10 +1582,10 @@ msgid "Middle side file"
 msgstr "Archivo del lado central"
 
 msgid "Sa&ve changes"
-msgstr ""
+msgstr "Grabar cambios"
 
 msgid "Discard c&hanges"
-msgstr ""
+msgstr "Descartar cambios"
 
 msgid "Right side file"
 msgstr "Archivo en lado Derecho"
@@ -1809,28 +1809,28 @@ msgid "&Close"
 msgstr "&Cerrar"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabla"
 
 msgid "File type"
-msgstr ""
+msgstr "Tipo de archivo"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr ""
+msgstr "Valores Personalizados de Delimitador"
 
 msgid "D&elimiter character:"
-msgstr ""
+msgstr "Carácter delimitador"
 
 msgid "&Allow newlines in quotes"
-msgstr ""
+msgstr "Permitir nuevos renglones en comillas"
 
 msgid "&Quote character:"
-msgstr ""
+msgstr "Caracter de comilla"
 
 msgid "&Use customized text colors"
 msgstr "&Usar colores personalizados para el texto"
@@ -1905,7 +1905,7 @@ msgid "File filters:"
 msgstr "Filtros de archivos:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "Argumentos para plugin"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr "Habilitar desempaquetado/PREDIFFING para el plugin"
@@ -1935,10 +1935,10 @@ msgid "Unregister shell extension for current user on&ly"
 msgstr "Quitar extensión de Shell só&lo para usuario actual"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr ""
+msgstr "Vincular extensiones shell para &Windows 11 o mas reciente"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr ""
+msgstr "Desvincular extensiones shell para &Windows 11 o mas reciente"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -1980,7 +1980,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr ""
 
 msgid "File Patterns:"
-msgstr ""
+msgstr "Patrones de Archivo:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2011,10 +2011,10 @@ msgid "&Enable image compare in folder compare"
 msgstr ""
 
 msgid "OCR result:"
-msgstr ""
+msgstr "Resultado de OCR"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Pagina Web"
 
 msgid "URL pattern to &include (Regular expression):"
 msgstr ""
@@ -2176,13 +2176,13 @@ msgid "Syntax"
 msgstr "Sintaxis"
 
 msgid "Color Schemes"
-msgstr ""
+msgstr "Esquema de Colores"
 
 msgid "Folder Compare"
 msgstr "Comparar de carpetas"
 
 msgid "Project"
-msgstr ""
+msgstr "Proyecto"
 
 msgid "Differences"
 msgstr "Diferencias"
@@ -2206,10 +2206,10 @@ msgid "To right:"
 msgstr "A la derecha:"
 
 msgid "From middle:"
-msgstr ""
+msgstr "Desde el medio:"
 
 msgid "To middle:"
-msgstr ""
+msgstr "Al medio:"
 
 #, c-format
 msgid "Version %1"
@@ -2260,28 +2260,28 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Archivos XML (*.xml)|*.xml|Todos los archivos (*.*)|*.*||"
 
 msgid "File Type"
-msgstr ""
+msgstr "Tipo de archivo"
 
 msgid "Extension"
 msgstr "Extensión"
 
 msgid "Message"
-msgstr ""
+msgstr "Mensaje"
 
 msgid "Answer"
-msgstr ""
+msgstr "Respuesta"
 
 msgid "Item"
-msgstr ""
+msgstr "Elemento"
 
 msgid "Load"
-msgstr ""
+msgstr "Abrir"
 
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 msgid "Include Subfolders"
-msgstr ""
+msgstr "Incluir subcarpetas"
 
 msgid "Compare Options"
 msgstr "Opciones de Comparación"
@@ -2398,7 +2398,7 @@ msgid "Untitled right"
 msgstr "Sin título derecha"
 
 msgid "Base File"
-msgstr ""
+msgstr "Archivo base"
 
 msgid "Theirs File"
 msgstr "Archivo externo"
@@ -2407,7 +2407,7 @@ msgid "Mine File"
 msgstr "Archivo interno"
 
 msgid "Original File"
-msgstr ""
+msgstr "Archivo original"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2532,6 +2532,10 @@ msgid ""
 "Do you want to show only the comparison results, not the contents of the files?\n"
 "\n"
 msgstr ""
+"Esta a punto de comparar archivos muy grandes\n"
+"Mostrar los contenidos de esos archivos requiere una gran cantidad de memoria\n"
+"Quiere mostrar unicamente las diferencias en lugar de todo el contenido de los archivos ?\n"
+"\n"
 
 msgid "Save As"
 msgstr "Guardar Como"
@@ -2955,13 +2959,13 @@ msgid "Prediffer"
 msgstr "Precomparación"
 
 msgid "Left"
-msgstr ""
+msgstr "Izquierda"
 
 msgid "Middle"
-msgstr ""
+msgstr "Medio"
 
 msgid "Right"
-msgstr ""
+msgstr "Derecha"
 
 msgid "Diff"
 msgstr ""
@@ -2976,25 +2980,25 @@ msgid "Middle Duplicate Count"
 msgstr ""
 
 msgid "Move"
-msgstr ""
+msgstr "Mover"
 
 msgid "Audio"
-msgstr ""
+msgstr "Audio"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Calendario"
 
 msgid "Communication"
-msgstr ""
+msgstr "Comunicación"
 
 msgid "Contact"
-msgstr ""
+msgstr "Contacto"
 
 msgid "Devices"
-msgstr ""
+msgstr "Dispositivos"
 
 msgid "Document"
-msgstr ""
+msgstr "Documento"
 
 msgid "Home"
 msgstr ""
@@ -3003,37 +3007,37 @@ msgid "Journal"
 msgstr ""
 
 msgid "Link"
-msgstr ""
+msgstr "Enlace"
 
 msgid "Media"
-msgstr ""
+msgstr "Medio"
 
 msgid "Music"
-msgstr ""
+msgstr "Musica"
 
 msgid "Note"
 msgstr ""
 
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 msgid "RecordedTV"
 msgstr ""
 
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 msgid "Security"
-msgstr ""
+msgstr "Seguridad"
 
 msgid "Software"
-msgstr ""
+msgstr "Software"
 
 msgid "Task"
-msgstr ""
+msgstr "Tarea"
 
 msgid "Video"
-msgstr ""
+msgstr "Video"
 
 msgid "Hash"
 msgstr ""
@@ -3670,7 +3674,7 @@ msgid "Suggested plugins"
 msgstr "Plugins sugeridos"
 
 msgid "All plugins"
-msgstr ""
+msgstr "Todas las extensiones"
 
 #, c-format
 msgid "Private Build: %1"
