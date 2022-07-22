@@ -28,6 +28,7 @@ Please submit bug reports to our bug-tracker.
 - BugFix: vertical editing for .h file is quite slow (#1386)
 - BugFix: replace text using regular expressions behaves incorrectly if
     multiple matches on the same line (#1387, PR #1388)
+- Optimize snake function (PR #1411)
 
 ### Folder compare
 
@@ -37,6 +38,8 @@ Please submit bug reports to our bug-tracker.
 - BugFix: Fix renaming process in folder compare window. (PR #1392)
 - BugFix: Elapsed time was no longer displayed in the status bar after folder
     comparison.
+- BugFix: Fix an issue where the folder column is not updated for child items
+    after renaming a directory in the folder compare window. (PR #1408)
 
 ### Plugins
 
@@ -61,9 +64,10 @@ Please submit bug reports to our bug-tracker.
   - Bulgarian (PR #1375)
   - Galician (PR #1400)
   - German (PR #1396,#1399)
-  - Hungarian (PR #1392,#1398)
+  - Hungarian (PR #1393,#1398)
   - Japanese
   - Lithuanian (PR #1394)
+  - Portuguese (PR #1416)
 
 ### Internals
 
@@ -116,7 +120,7 @@ Please submit bug reports to our bug-tracker.
     "Refresh Selected". (PR #1358)
 - BugFix: Fix an issue where paths with different case are not displayed
     correctly in the folder column of the folder compare window when comparing
-    three directories. (PR #1372 )
+    three directories. (PR #1372)
 - Tab behaviour on comparisons of files vs folders (#1367)
 - Make the sort order of file names including numbers the same as Explorer.
    (osdn.net #44557)
