@@ -187,6 +187,7 @@ Please submit bug reports to our bug-tracker.
 
 ## Known issues
 
- - Crashes when comparing large files (GitHub #325)
- - Very slow to compare significantly different directories (GitHub #322)
- - Vertical scrollbar breaks after pasting text (GitHub #296)
+ - Suggestion to make the result of image comparison more reliable (#1391)
+ - Crashes when comparing large files (#325)
+ - Very slow to compare significantly different directories (#322)
+ - Vertical scrollbar breaks after pasting text (#296)
