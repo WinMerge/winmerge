@@ -1061,6 +1061,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
 {
 	if (m_pImgMergeWindow != nullptr)
 	{
+		const int scrollbarWidth = GetSystemMetrics(SM_CXVSCROLL);
 		int w[3];
 		CRect rc, rcMergeWindow;
 		int nPaneCount = m_pImgMergeWindow->GetPaneCount();
@@ -1073,13 +1074,15 @@ void CImgMergeFrame::UpdateHeaderSizes()
 			{
 				RECT rc1 = m_pImgMergeWindow->GetPaneWindowRect(pane);
 				w[pane] = rc1.right - rc1.left - 4;
+				if (pane == nPaneCount - 1)
+					w[pane] -= scrollbarWidth;
 				if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
 			}
 		}
 		else
 		{
 			for (int pane = 0; pane < nPaneCount; pane++)
-				w[pane] = rcMergeWindow.Width() / nPaneCount - 4;
+				w[pane] = (rcMergeWindow.Width() - scrollbarWidth) / nPaneCount - 6;
 		}
 
 		if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))
