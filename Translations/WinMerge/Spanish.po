@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2022-07-20 20:19-0500\n"
+"PO-Revision-Date: 2022-07-23 18:54-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_419\n"
@@ -29,13 +29,13 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_SPANISH, SUBLANG_SPANISH_MODERN"
 
 msgid "Copy to Middle"
-msgstr "Copiar al Medio"
+msgstr "Copiar a la Mitad"
 
 msgid "C&opy to Right\tAlt+Right"
 msgstr "Copiar al lado &Derecho\tAlt+Der."
 
 msgid "Copy from Middle"
-msgstr "Copiar desde el Medio"
+msgstr "Copiar desde la Mitad"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
 msgstr "Copiar desde lado derecho\tAlt+Shift+Izq."
@@ -47,13 +47,13 @@ msgid "Copy &from Left\tAlt+Shift+Right"
 msgstr "Copiar desde lado izquierda\tAlt+Shift+Der."
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr "Copiar renglon(es) seleccionados al Medio"
+msgstr "Copiar renglon(es) seleccionados a la Mitad"
 
 msgid "Copy Selected Line(s) to Right"
 msgstr "Copiar renglon(es) seleccionados a la derecha"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr "Copiar renglon(es) seleccionados del Medio"
+msgstr "Copiar renglon(es) seleccionados a la Mitad"
 
 msgid "Copy Selected Line(s) from Right"
 msgstr "Copiar renglon(es) seleccionados la Derecha"
@@ -437,10 +437,10 @@ msgid "Show L&eft Unique Items"
 msgstr "Mostrar elementos únicos en lado i&zquierdo"
 
 msgid "Show Midd&le Unique Items"
-msgstr "Mostrar e&lementos únicos en lado medio"
+msgstr "Mostrar e&lementos únicos en la Mitad"
 
 msgid "Show Ri&ght Unique Items"
-msgstr "Mostrar elementos únicos en lado &derecho"
+msgstr "Mostrar elementos únicos en lado &Derecho"
 
 msgid "Show S&kipped Items"
 msgstr "Mostrar elementos i&gnorados"
@@ -557,7 +557,7 @@ msgid "Save &Left"
 msgstr "Guardar &lado Izquierdo"
 
 msgid "Save &Middle"
-msgstr "Guardar lado &Medio"
+msgstr "Guardar el de la Mitad"
 
 msgid "Save &Right"
 msgstr "Gua&rdar lado Derecho"
@@ -569,7 +569,7 @@ msgid "Save &Left As..."
 msgstr "Guardar &Lado Izquierdo Como..."
 
 msgid "Save &Middle As..."
-msgstr "Guardar Lado &Medio Como..."
+msgstr "Guardar el de la &Mitad Como..."
 
 msgid "Save &Right As..."
 msgstr "Gua&rdar Lado Derecho Como..."
@@ -767,13 +767,13 @@ msgid "Copy from &Right to"
 msgstr "Copiar desde la Der. a"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados de la Izquierda a"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados de la Mitad a"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Copiar renglon(es) seleccionados desde la Derecha a"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Copiar desde lado izquierdo\tAlt+Shift+Der."
@@ -846,7 +846,7 @@ msgstr "Co&mparar Como"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
-msgstr "Lado izquierdo a lado medio (%1 de %2)"
+msgstr "Lado izquierdo a la mitad (%1 de %2)"
 
 #, c-format
 msgid "Left to Right (%1 of %2)"
@@ -858,19 +858,19 @@ msgstr "Lado izquierdo a... (%1 de %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
-msgstr "Lado medio a lado izquierdo (%1 de %2)"
+msgstr "De la mitad a lado izquierdo (%1 de %2)"
 
 #, c-format
 msgid "Middle to Right (%1 of %2)"
-msgstr "Lado medio a lado derecho (%1 de %2)"
+msgstr "De la mitad a lado derecho (%1 de %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "Lado medio a... (%1 de %2)"
+msgstr "De la mitad a... (%1 de %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
-msgstr "Lado derecho a lado medio (%1 de %2)"
+msgstr "Lado derecho a la mitad (%1 de %2)"
 
 #, c-format
 msgid "Right to Left (%1 of %2)"
@@ -899,7 +899,7 @@ msgid "&Open Left"
 msgstr "Abrir archivo &Izquierdo"
 
 msgid "Open Midd&le"
-msgstr "Abrir archivo &Medio"
+msgstr "Abrir archivo de la &Mitad"
 
 msgid "O&pen Right"
 msgstr "Abrir archivo &Derecho"
@@ -913,7 +913,7 @@ msgstr "Lado izquierdo (%1 de %2)"
 
 #, c-format
 msgid "Middle (%1 of %2)"
-msgstr "Lado medio (%1 de %2)"
+msgstr "Lado de la mitad (%1 de %2)"
 
 #, c-format
 msgid "Right (%1 of %2)"
@@ -952,7 +952,7 @@ msgid "Left Shell menu"
 msgstr "Menú Izquierda"
 
 msgid "Middle Shell menu"
-msgstr "Menu shell del medio"
+msgstr "Menu shell de la mitad"
 
 msgid "Right Shell menu"
 msgstr "Menú Derecha"
@@ -1396,13 +1396,13 @@ msgid "Additional Properties"
 msgstr "Propiedades Adicionales"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Plugin Selecionado"
@@ -2206,10 +2206,10 @@ msgid "To right:"
 msgstr "A la derecha:"
 
 msgid "From middle:"
-msgstr "Desde el medio:"
+msgstr "Desde la mitad:"
 
 msgid "To middle:"
-msgstr "Al medio:"
+msgstr "A la mitad:"
 
 #, c-format
 msgid "Version %1"
@@ -2710,7 +2710,7 @@ msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr ""
 
 msgid "Copy All to Middle"
-msgstr ""
+msgstr "Copiar todo a la Mitad"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -2856,6 +2856,8 @@ msgid ""
 "Failed to extract archive files.\n"
 "Do you want to compare the archive files as text files?"
 msgstr ""
+"Error al extraer archivos del comprimido\n"
+"Quiere compararlos los archivos comprimidos como texto planos ?"
 
 msgid "Filename"
 msgstr "Nombre"
@@ -2883,7 +2885,7 @@ msgid "Right Size"
 msgstr "Tamaño der."
 
 msgid "Middle Size"
-msgstr ""
+msgstr "Tamaño Medio"
 
 msgid "Right Size (Short)"
 msgstr "Tamaño dcha. (Corto)"
@@ -2901,7 +2903,7 @@ msgid "Right Creation Time"
 msgstr "Fecha de creación der."
 
 msgid "Middle Creation Time"
-msgstr ""
+msgstr "Fecha de Creación de la Mitad"
 
 msgid "Newer File"
 msgstr "Archivo más reciente"
@@ -2913,7 +2915,7 @@ msgid "Right File Version"
 msgstr "Versión archivo der."
 
 msgid "Middle File Version"
-msgstr ""
+msgstr "Version de Archivo de la Mitad"
 
 msgid "Short Result"
 msgstr "Resultados abreviados"
@@ -2925,13 +2927,13 @@ msgid "Right Attributes"
 msgstr "Atributos derecha"
 
 msgid "Middle Attributes"
-msgstr ""
+msgstr "Atributos de la Mitad"
 
 msgid "Left EOL"
 msgstr "EOL de la Izquierda"
 
 msgid "Middle EOL"
-msgstr ""
+msgstr "EOL de la Mitad"
 
 msgid "Right EOL"
 msgstr "EOL de la Derecha"
@@ -2943,7 +2945,7 @@ msgid "Right Encoding"
 msgstr "Codificación derecha"
 
 msgid "Middle Encoding"
-msgstr ""
+msgstr "Codificación de la Mitad"
 
 msgid "Ignored Diff"
 msgstr "Difs. ignoradas"
@@ -2962,7 +2964,7 @@ msgid "Left"
 msgstr "Izquierda"
 
 msgid "Middle"
-msgstr "Medio"
+msgstr "Mitad"
 
 msgid "Right"
 msgstr "Derecha"
@@ -3010,7 +3012,7 @@ msgid "Link"
 msgstr "Enlace"
 
 msgid "Media"
-msgstr "Medio"
+msgstr "Medios"
 
 msgid "Music"
 msgstr "Musica"
