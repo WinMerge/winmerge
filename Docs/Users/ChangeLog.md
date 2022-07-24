@@ -48,6 +48,7 @@
 
 - Translation updates:
   - Bulgarian (PR #1375)
+  - French (PR #1418)
   - Galician (PR #1400)
   - German (PR #1396,#1399)
   - Hungarian (PR #1393,#1398)
