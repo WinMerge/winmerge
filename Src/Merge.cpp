@@ -1337,8 +1337,15 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 				GetOptionsMgr()->Set(OPT_CMP_METHOD, projItem.GetCompareMethod());
 		}
 
+		std::unique_ptr<CMainFrame::OpenFolderParams> pOpenFolderParams;
+		if ((Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::HiddenItems)) && projItem.HasHiddenItems())
+		{
+			pOpenFolderParams = std::make_unique<CMainFrame::OpenFolderParams>();
+			pOpenFolderParams->m_hiddenItems = projItem.GetHiddenItems();
+		}
+
 		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
-			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get());
+			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), 0, pOpenFolderParams.get());
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());

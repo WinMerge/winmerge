@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-05-05 12:15+0000\n"
-"PO-Revision-Date: 2022-05-06 05:06+0200\n"
+"POT-Creation-Date: 2022-06-29 10:03+0000\n"
+"PO-Revision-Date: 2022-07-04 13:18+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -966,6 +966,12 @@ msgstr "Kopijuoti pilną &kelią"
 msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Pa&rinkti..."
+
 msgid "Unpacker Settings"
 msgstr "Išpakuotojo nuostatos"
 
@@ -974,9 +980,6 @@ msgstr "<Nėra>"
 
 msgid "<Automatic>"
 msgstr "<Automatinis>"
-
-msgid "&Select..."
-msgstr "Pa&rinkti..."
 
 msgid "Prediffer Settings"
 msgstr "Parengėjo nuostatos"
@@ -2221,6 +2224,9 @@ msgstr "Su pakatalogiais"
 
 msgid "Compare Options"
 msgstr "Lyginimo nuostatos"
+
+msgid "Hidden Items"
+msgstr "Paslėpti elementai"
 
 msgid "Name"
 msgstr "Pavadinimas"

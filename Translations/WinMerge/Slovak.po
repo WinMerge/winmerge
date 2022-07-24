@@ -966,6 +966,12 @@ msgstr "&Kopírovať plnú cestu"
 msgid "Copy &Filename"
 msgstr "Kopírovať názov &súboru"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Vybrať..."
+
 msgid "Unpacker Settings"
 msgstr "Nastavenia rozbaľovača"
 
@@ -974,9 +980,6 @@ msgstr "<Žiadny>"
 
 msgid "<Automatic>"
 msgstr "<Automatické>"
-
-msgid "&Select..."
-msgstr "&Vybrať..."
 
 msgid "Prediffer Settings"
 msgstr "Nastavenia predbežného spracovateľa rozdielov"
@@ -2287,6 +2290,9 @@ msgstr "Zahrnúť podpriečinky"
 
 msgid "Compare Options"
 msgstr "Možnosti porovnania"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Názov"

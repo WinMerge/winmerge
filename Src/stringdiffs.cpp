@@ -663,18 +663,18 @@ stringdiffs::onp(std::vector<char> &edscript)
 		p = p + 1;
 		for (k = -p; k <= DELTA-1; k++)
 		{
-			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
+			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
 			addEditScriptElem(k);
 			count++;
 		}
 		for (k = DELTA + p; k >= DELTA+1; k--)
 		{
-			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
+			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
 			addEditScriptElem(k);
 			count++;
 		}
 		k = DELTA;
-		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), exchanged);
+		fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
 		addEditScriptElem(k);
 		count++;
 
@@ -750,13 +750,20 @@ stringdiffs::onp(std::vector<char> &edscript)
 }
 
 int
-stringdiffs::snake(int k, int y, bool exchanged)
+stringdiffs::snake(int k, int y, int M, int N, bool exchanged)
 {
-	int M = static_cast<int>(exchanged ? m_words2.size() - 1 : m_words1.size() - 1);
-	int N = static_cast<int>(exchanged ? m_words1.size() - 1 : m_words2.size() - 1);
 	int x = y - k;
-	while (x < M && y < N && (exchanged ? AreWordsSame(m_words1[y + 1], m_words2[x + 1]) : AreWordsSame(m_words1[x + 1], m_words2[y + 1]))) {
-		x = x + 1; y = y + 1;
+	if (exchanged)
+	{
+		while (x < M && y < N && AreWordsSame(m_words1[y + 1], m_words2[x + 1])) {
+			x++; y++;
+		}
+	}
+	else
+	{
+		while (x < M && y < N && AreWordsSame(m_words1[x + 1], m_words2[y + 1])) {
+			x++; y++;
+		}
 	}
 	return y;
 }

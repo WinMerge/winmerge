@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-04-10 17:54+0200\n"
+"PO-Revision-Date: 2022-07-10 22:49+0200\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "Language: gl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -248,40 +248,40 @@ msgid "Co&mpare"
 msgstr "Co&mparar"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "Captura&s de pantalla"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "Cap&turas de pantalla a tamaño completo"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTMLs"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Textos"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Árbores de recursos"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Tamaño"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Axustar á ventá"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "&Borrar datos de navegación"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "Caché de &disco"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Cookies"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "&Historial de navegación"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "&Todos os perfís"
 
 #, c-format
 msgid "&File"
@@ -307,7 +307,7 @@ msgid "&Image"
 msgstr "&Imaxe"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "&Páxina web"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -1173,6 +1173,13 @@ msgstr "&Copiar ruta completa"
 msgid "Copy &Filename"
 msgstr "Copiar nome do &ficheiro"
 
+msgid "&Edit Caption"
+msgstr "&Editar Título"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Seleccionar…"
+
 msgid "Unpacker Settings"
 msgstr "Axustes do desempaquetador"
 
@@ -1183,10 +1190,6 @@ msgstr "<Ningún>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automático>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Seleccionar…"
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2490,19 +2493,19 @@ msgid "OCR result:"
 msgstr "Resultado de OCR:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Páxina web"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Padrón de URL para &incluír (expresión regular):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Padrón de URL para &excluír (expresión regular):"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "&Ubicación do cartafol de datos de usuario:"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "Cartafole&s de datos de usuario diferentes para cada panel"
 
 #, c-format
 msgid "&Hex View"
@@ -2808,6 +2811,9 @@ msgstr "Incluír subcarpetas"
 
 msgid "Compare Options"
 msgstr "Opcións de comparación"
+
+msgid "Hidden Items"
+msgstr "Elementos ocultos"
 
 #, c-format
 msgid "Name"
@@ -3894,7 +3900,7 @@ msgstr "Comparar %1 con %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Comparar %1 con %2 e con %3"
 
 #, c-format
 msgid "Comma-separated list"
@@ -4461,7 +4467,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Activar &anchura máxima automática"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Páxina we&b"
 
 msgid "Frhed is not installed."
 msgstr "Frhed non está instalado."
@@ -4497,7 +4503,7 @@ msgid "histogram"
 msgstr "histogram"
 
 msgid "none"
-msgstr ""
+msgstr "nada"
 
 msgid "GDI"
 msgstr "GDI"
@@ -4653,10 +4659,10 @@ msgid "Word-by-word position and text"
 msgstr "Posición e texto palabra a palabra"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Cartafol AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Cartafol de instalación"
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -5072,4 +5078,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "A versión de 32-bit de WinMerge non soporta a comparación de Portapapeis"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "O runtime WebView2 non está instalado. Queres descargalo?"

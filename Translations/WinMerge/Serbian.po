@@ -1169,6 +1169,13 @@ msgstr "&Умножи путању"
 msgid "Copy &Filename"
 msgstr "Умножи на&зив датотеке"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&Изабери..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1179,10 +1186,6 @@ msgstr "<Ништа>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Аутоматски>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Изабери..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2759,6 +2762,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

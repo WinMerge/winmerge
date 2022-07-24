@@ -1172,6 +1172,13 @@ msgstr "Kopírovat celé &umístění"
 msgid "Copy &Filename"
 msgstr "Kopírovat &název souboru"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "Vy&brat..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1182,10 +1189,6 @@ msgstr "<žádný>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<automaticky>"
-
-#, c-format
-msgid "&Select..."
-msgstr "Vy&brat..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2748,6 +2751,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

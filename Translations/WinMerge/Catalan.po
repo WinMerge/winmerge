@@ -1172,6 +1172,13 @@ msgstr "&Copia el camí sencer del fitxer"
 msgid "Copy &Filename"
 msgstr "Copia el nom del &fitxer"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "T&ria..."
+
 msgid "Unpacker Settings"
 msgstr "Opcions del desempaquetador"
 
@@ -1182,10 +1189,6 @@ msgstr "<Cap>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automàtic>"
-
-#, c-format
-msgid "&Select..."
-msgstr "T&ria..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2793,6 +2796,9 @@ msgstr "Inclou les subcarpetes"
 
 msgid "Compare Options"
 msgstr "Opcions de comparació"
+
+msgid "Hidden Items"
+msgstr ""
 
 #, c-format
 msgid "Name"

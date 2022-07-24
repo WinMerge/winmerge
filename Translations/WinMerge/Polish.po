@@ -967,6 +967,12 @@ msgstr "Kopiuj pełną ś&cieżkę"
 msgid "Copy &Filename"
 msgstr "Kopiuj nazwę pliku"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "Wybierz..."
+
 msgid "Unpacker Settings"
 msgstr "Ustawienia programu rozpakowującego"
 
@@ -975,9 +981,6 @@ msgstr "<Brak>"
 
 msgid "<Automatic>"
 msgstr "<Automatycznie>"
-
-msgid "&Select..."
-msgstr "Wybierz..."
 
 msgid "Prediffer Settings"
 msgstr "Ustawienia porównywania"
@@ -2222,6 +2225,9 @@ msgstr "Uwzględnij podfoldery"
 
 msgid "Compare Options"
 msgstr "Opcje porównania"
+
+msgid "Hidden Items"
+msgstr ""
 
 msgid "Name"
 msgstr "Nazwa"

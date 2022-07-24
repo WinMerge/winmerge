@@ -1172,6 +1172,13 @@ msgstr "&Copy Full Path"
 msgid "Copy &Filename"
 msgstr "ගොනුවෙ නම  පිටපත් කිරීම"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "තෝරන්න..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1182,10 +1189,6 @@ msgstr "<None>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatic>"
-
-#, c-format
-msgid "&Select..."
-msgstr "තෝරන්න..."
 
 #, fuzzy, c-format
 msgid "Prediffer Settings"
@@ -2774,6 +2777,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

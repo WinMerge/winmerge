@@ -965,6 +965,12 @@ msgstr "フルパスをコピー(&C)"
 msgid "Copy &Filename"
 msgstr "ファイル名をコピー(&F)"
 
+msgid "&Edit Caption"
+msgstr "キャプションの編集(&E)"
+
+msgid "&Select..."
+msgstr "選択(&S)..."
+
 msgid "Unpacker Settings"
 msgstr "展開プラグイン設定"
 
@@ -973,9 +979,6 @@ msgstr "<なし>"
 
 msgid "<Automatic>"
 msgstr "<自動>"
-
-msgid "&Select..."
-msgstr "選択(&S)..."
 
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
@@ -2290,6 +2293,9 @@ msgstr "サブフォルダーを含める"
 
 msgid "Compare Options"
 msgstr "比較オプション"
+
+msgid "Hidden Items"
+msgstr "非表示の項目"
 
 msgid "Name"
 msgstr "名前"

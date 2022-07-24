@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-04-13 09:43+0200\n"
+"PO-Revision-Date: 2022-07-23 13:56+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -254,40 +254,40 @@ msgid "Co&mpare"
 msgstr "Co&mparer"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "&Captures d'écran"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "Captures d'écran en taille &réelle"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&HTMLs"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Textes"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Arborescences de ressources"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Taille"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Ajuster à la fenêtre"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "Effacer les données de &navigation"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "Cache &disque"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Cookies"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "&Historique de navigation"
 
 msgid "&All Profile"
-msgstr ""
+msgstr "&Tous les profils"
 
 #, c-format
 msgid "&File"
@@ -313,7 +313,7 @@ msgid "&Image"
 msgstr "&Image"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "Page &Web"
 
 #, c-format
 msgid "New (&3 panes)"
@@ -569,7 +569,7 @@ msgstr "A&fficher les éléments cachés"
 
 #, c-format
 msgid "Tree &Mode"
-msgstr "Arborescence"
+msgstr "&Mode Arborescence"
 
 #, c-format
 msgid "E&xpand All Subfolders"
@@ -1179,6 +1179,13 @@ msgstr "Copier le c&hemin complet"
 msgid "Copy &Filename"
 msgstr "Copier le nom de &fichier"
 
+msgid "&Edit Caption"
+msgstr "&Modifier la légende"
+
+#, c-format
+msgid "&Select..."
+msgstr "C&hoisir..."
+
 msgid "Unpacker Settings"
 msgstr "Paramètres du décompresseur"
 
@@ -1189,10 +1196,6 @@ msgstr "<Aucun>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatique>"
-
-#, c-format
-msgid "&Select..."
-msgstr "C&hoisir..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2496,19 +2499,19 @@ msgid "OCR result:"
 msgstr "Résultat OCR :"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Page web"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Modèle d'URL à &inclure (Expression régulière) :"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Modèle d'URL à &exclure (Expression régulière) :"
 
 msgid "&User data folder location:"
-msgstr ""
+msgstr "&Emplacement du dossier de données utilisateur :"
 
 msgid "&Separate user data folders for each pane"
-msgstr ""
+msgstr "&Séparer les dossiers de données utilisateur pour chaque volet"
 
 #, c-format
 msgid "&Hex View"
@@ -2814,6 +2817,9 @@ msgstr "Inclure les sous-dossiers"
 
 msgid "Compare Options"
 msgstr "Options de comparaison"
+
+msgid "Hidden Items"
+msgstr "Eléments cachés"
 
 #, c-format
 msgid "Name"
@@ -3902,7 +3908,7 @@ msgstr "Comparer %1 avec %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Comparer %1 avec %2 et %3"
 
 #, c-format
 msgid "Comma-separated list"
@@ -4469,7 +4475,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Activer largeur &auto max"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Page &web"
 
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
@@ -4505,7 +4511,7 @@ msgid "histogram"
 msgstr "histograme"
 
 msgid "none"
-msgstr ""
+msgstr "aucun"
 
 msgid "GDI"
 msgstr "GDI"
@@ -4661,10 +4667,10 @@ msgid "Word-by-word position and text"
 msgstr "Position et texte mot par mot"
 
 msgid "AppData folder"
-msgstr ""
+msgstr "Dossier AppData"
 
 msgid "Install folder"
-msgstr ""
+msgstr "Dossier d'installation"
 
 #, c-format
 msgid "Allow only one instance to run"
@@ -5080,4 +5086,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "La version 32 bits de WinMerge ne prend pas en charge la comparaison du presse-papiers"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
+msgstr "Le runtime WebView2 n'est pas installé. Voulez-vous le télécharger ?"

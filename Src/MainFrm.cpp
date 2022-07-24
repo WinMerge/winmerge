@@ -1381,6 +1381,9 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(tFiles, bRecurse, pTempPathContext);
 
+			const auto* pOpenFolderParams = dynamic_cast<const OpenFolderParams*>(pOpenParams);
+			if (pOpenFolderParams)
+				pDirDoc->SetHiddenItems(pOpenFolderParams->m_hiddenItems);
 			pDirDoc->SetReportFile(sReportFile);
 			pDirDoc->SetDescriptions(strDesc);
 			pDirDoc->SetTitle(nullptr);
@@ -2351,6 +2354,7 @@ void CMainFrame::OnSaveProject()
 			}
 			pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
 			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
+			pOpenDoc->m_hiddenItems = ctxt.m_vCurrentlyHiddenItems;
 		}
 	}
 

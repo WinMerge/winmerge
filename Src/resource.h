@@ -681,6 +681,8 @@
 #define ID_EDITOR_COPY_PATH             18182
 #define ID_EDITOR_COPY_FILENAME         18183
 #define ID_EDITOR_COPY                  18184
+#define ID_EDITOR_EDIT_CAPTION          18185
+#define ID_EDITOR_SELECT_FILE           18186
 #define ID_FILE_NEW3                    32767
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_MIDDLE             32769
@@ -1693,7 +1695,7 @@
 #define IDS_CLIPBOARDHISTORY_NOT_SUPPORTED1 44512
 #define IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 44513
 #define IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED 44514
-
+#define IDS_PROJECT_ITEM_HIDDEN_ITEMS	44515
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED

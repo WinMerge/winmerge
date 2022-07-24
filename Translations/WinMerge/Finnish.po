@@ -1175,6 +1175,13 @@ msgstr "Kopioi täysi polku"
 msgid "Copy &Filename"
 msgstr "Kopioi tiedostonimi"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "Valitse..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1185,10 +1192,6 @@ msgstr "<Ei mitään>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automaattinen>"
-
-#, c-format
-msgid "&Select..."
-msgstr "Valitse..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2804,6 +2807,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

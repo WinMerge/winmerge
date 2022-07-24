@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-05-07 10:30+0200\n"
+"PO-Revision-Date: 2022-07-10 19:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1165,15 +1165,22 @@ msgstr "Rechtes Shell-Menü"
 
 #, c-format
 msgid "Copy"
-msgstr "&Kopieren"
+msgstr "Kopieren"
 
 #, c-format
 msgid "&Copy Full Path"
-msgstr "&Vollständigen Pfad kopieren"
+msgstr "Vollständigen Pfad kopieren"
 
 #, c-format
 msgid "Copy &Filename"
-msgstr "&Dateinamen kopieren"
+msgstr "Dateinamen kopieren"
+
+msgid "&Edit Caption"
+msgstr "Titelzeile bearbeiten"
+
+#, c-format
+msgid "&Select..."
+msgstr "Auswählen..."
 
 msgid "Unpacker Settings"
 msgstr "Entpackereinstellungen"
@@ -1185,10 +1192,6 @@ msgstr "<Keine>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatisch>"
-
-#, c-format
-msgid "&Select..."
-msgstr "Auswählen..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1345,7 +1348,7 @@ msgstr "1. | 3. vertauschen"
 
 #, c-format
 msgid "Browse..."
-msgstr "Su&chen..."
+msgstr "&Suchen..."
 
 #, c-format
 msgid " Folder: Filter"
@@ -1383,14 +1386,14 @@ msgid "Automatically s&croll to first inline difference"
 msgstr "Automatisch zum ersten Inline-&Unterschied scrollen"
 
 msgid "Cl&ose windows with 'Esc':"
-msgstr "Fenster mit '&Esc' schließen:"
+msgstr "&Fenster mit 'Esc' schließen:"
 
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Pfade im Öffnen-Dialog automatisch überprüfen"
 
 msgid "Single instance mode:"
-msgstr "Einzelinstanzmodus:"
+msgstr "&Einzelinstanzmodus:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1402,10 +1405,10 @@ msgstr "Datei&zeit beim Dateivergleich bewahren"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Öffnen-Dialog beim Programmstart anzeigen"
+msgstr "Öffnen-&Dialog beim Programmstart anzeigen"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Öffnen-Dialog beim Klick auf 'Vergleichen' schließen"
+msgstr "Öffnen-Dialog beim &Klick auf 'Vergleichen' schließen"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -2745,6 +2748,9 @@ msgstr "Unterordner einbeziehen"
 
 msgid "Compare Options"
 msgstr "Vergleichseinstellungen"
+
+msgid "Hidden Items"
+msgstr "Ausgeblendete Objekte"
 
 #, c-format
 msgid "Name"

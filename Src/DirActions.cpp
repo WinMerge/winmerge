@@ -1100,6 +1100,26 @@ void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index)
 	}
 }
 
+/**
+ * @brief Update the paths of the diff items recursively.
+ * @param[in] nDirs Number of directories to compare.
+ * @param[in,out] di@Item to update the path.
+ */
+void UpdatePaths(int nDirs, DIFFITEM& di)
+{
+	assert(nDirs == 2 || nDirs == 3);
+
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+		{
+			for (int i = 0; i < nDirs; i++)
+				pdic->diffFileInfo[i].path = paths::ConcatPath(di.diffFileInfo[i].path, di.diffFileInfo[i].filename);
+			UpdatePaths(nDirs, *pdic);
+		}
+	}
+}
+
 void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored)
 {
 	di.nidiffs = ignored; // see StoreDiffResult() in DirScan.cpp

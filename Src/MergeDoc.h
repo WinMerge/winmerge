@@ -244,6 +244,7 @@ public:
 	bool HasSyncPoints();
 	std::vector<std::vector<int> > GetSyncPointList();
 	String GetDescription(int pane) const { return m_strDesc[pane]; }
+	void SetDescription(int pane, const String& sText) { m_strDesc[pane] = sText; }
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

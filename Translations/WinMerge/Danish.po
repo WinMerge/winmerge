@@ -1173,6 +1173,13 @@ msgstr "&Kopier det fulde stinavn"
 msgid "Copy &Filename"
 msgstr "Kopier &filnavn"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "Væ&lg..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1183,10 +1190,6 @@ msgstr "<Ingen>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatisk>"
-
-#, c-format
-msgid "&Select..."
-msgstr "Væ&lg..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2791,6 +2794,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

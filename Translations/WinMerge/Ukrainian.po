@@ -1173,6 +1173,13 @@ msgstr "&Скопіювати повний шлях"
 msgid "Copy &Filename"
 msgstr "Скопіювати &ім'я файлу"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "Вибрати..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1183,10 +1190,6 @@ msgstr "<Нема>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Автоматично>"
-
-#, c-format
-msgid "&Select..."
-msgstr "Вибрати..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2777,6 +2780,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

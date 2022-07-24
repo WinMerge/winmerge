@@ -966,6 +966,12 @@ msgstr "&Copiar o Caminho Completo"
 msgid "Copy &Filename"
 msgstr "Copiar &o Nome do Arquivo"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Select..."
+msgstr "&Selecionar..."
+
 msgid "Unpacker Settings"
 msgstr "Configurações do Desempacotador"
 
@@ -974,9 +980,6 @@ msgstr "<Nenhum>"
 
 msgid "<Automatic>"
 msgstr "<Automático>"
-
-msgid "&Select..."
-msgstr "&Selecionar..."
 
 msgid "Prediffer Settings"
 msgstr "Configurações do Pré-Diferenciamento"
@@ -2315,6 +2318,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 msgid "Name"

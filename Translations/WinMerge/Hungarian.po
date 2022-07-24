@@ -1174,6 +1174,13 @@ msgstr "&Teljes útvonal másolása"
 msgid "Copy &Filename"
 msgstr "&Fájlnév másolása"
 
+msgid "&Edit Caption"
+msgstr "Felirat szerkesztése"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Kiválasztás..."
+
 msgid "Unpacker Settings"
 msgstr "Kicsomagoló beállításai"
 
@@ -1184,10 +1191,6 @@ msgstr "<Nincs>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatikus>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Kiválasztás..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2810,6 +2813,9 @@ msgstr "Almappák is"
 msgid "Compare Options"
 msgstr "Összehasonlító opciók"
 
+msgid "Hidden Items"
+msgstr "Rejtett elemek"
+
 #, c-format
 msgid "Name"
 msgstr "Név"
@@ -2874,7 +2880,7 @@ msgstr ""
 "Nem sikerült törölni a szűrőfájlt:\n"
 "%1\n"
 "\n"
-"Lehet, hogy írásvédett?"
+"Lehet, hogy a fájl írásvédett?"
 
 #, c-format
 msgid "Locate filter file to install"

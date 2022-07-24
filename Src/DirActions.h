@@ -168,6 +168,7 @@ void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
 void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst);
 void UnsetDiffSide(DIFFITEM& di, int index);
 void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index);
+void UpdatePaths(int nDirs, DIFFITEM& di);
 void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored);
 void SetItemViewFlag(DIFFITEM& di, unsigned flag, unsigned mask);
 void SetItemViewFlag(CDiffContext& ctxt, unsigned flag, unsigned mask);

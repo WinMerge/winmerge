@@ -1,17 +1,78 @@
-# WinMerge 2.16.21 Beta Release Notes
+# WinMerge 2.16.22 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.22?](#what-is-new-in-21622)
 - [What Is New in 2.16.21 beta?](#what-is-new-in-21621-beta)
 - [Known issues](#known-issues)
 
-June 2022
+July 2022
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.22 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.22
+
+### General
+
+- Allow renaming of untitled pages (#1395)
+
+### File compare
+
+- BugFix: "Replace All" doesn't work when Replace in "Selection" and the new
+    string contains the old string. (#1376)
+- BugFix: “Match case” in Search always enabled (#1380)
+- BugFix: vertical editing for .h file is quite slow (#1386)
+- BugFix: replace text using regular expressions behaves incorrectly if
+    multiple matches on the same line (#1387, PR #1388)
+- Optimize snake function (PR #1411)
+
+### Folder compare
+
+- BugFix: Fix an issue where paths with different case are not displayed
+    correctly in the folder column of the folder compare window when comparing
+    three directories. (PR #1372)
+- BugFix: Fix renaming process in folder compare window. (PR #1392)
+- BugFix: Elapsed time was no longer displayed in the status bar after folder
+    comparison.
+- BugFix: Fix an issue where the folder column is not updated for child items
+    after renaming a directory in the folder compare window. (PR #1408)
+
+### Plugins
+
+- Modify textbox behavior (CompareMSExcelFiles options dialog) (PR #1374)
+- Make wsc files available as plug-in (PR #1390)
+
+### Archive support
+
+- Update 7-Zip to 22.00
+
+### Project file
+
+- Add a feature to save/restore hidden items to/from a project file.(PR #1377)
+
+### Options dialog
+
+- New setting to decide when to save/restore hidden items when project is saved/loaded (PR #1377)
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #1375)
+  - French (PR #1418)
+  - Galician (PR #1400)
+  - German (PR #1396,#1399)
+  - Hungarian (PR #1393,#1398)
+  - Japanese
+  - Lithuanian (PR #1394)
+  - Portuguese (PR #1416)
+
+### Internals
+
+  - Fix typo in SuperComboBox.cpp (PR #1379)
 
 ## What Is New in 2.16.21 Beta
 
@@ -60,7 +121,7 @@ Please submit bug reports to our bug-tracker.
     "Refresh Selected". (PR #1358)
 - BugFix: Fix an issue where paths with different case are not displayed
     correctly in the folder column of the folder compare window when comparing
-    three directories. (PR #1372 )
+    three directories. (PR #1372)
 - Tab behaviour on comparisons of files vs folders (#1367)
 - Make the sort order of file names including numbers the same as Explorer.
    (osdn.net #44557)
@@ -127,6 +188,7 @@ Please submit bug reports to our bug-tracker.
 
 ## Known issues
 
- - Crashes when comparing large files (GitHub #325)
- - Very slow to compare significantly different directories (GitHub #322)
- - Vertical scrollbar breaks after pasting text (GitHub #296)
+ - Suggestion to make the result of image comparison more reliable (#1391)
+ - Crashes when comparing large files (#325)
+ - Very slow to compare significantly different directories (#322)
+ - Vertical scrollbar breaks after pasting text (#296)

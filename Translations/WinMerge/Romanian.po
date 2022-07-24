@@ -1172,6 +1172,13 @@ msgstr "&Copie calea întreagă"
 msgid "Copy &Filename"
 msgstr "Copie numele de &fişier"
 
+msgid "&Edit Caption"
+msgstr ""
+
+#, c-format
+msgid "&Select..."
+msgstr "&Selectează..."
+
 msgid "Unpacker Settings"
 msgstr ""
 
@@ -1182,10 +1189,6 @@ msgstr "<Deloc>"
 #, fuzzy, c-format
 msgid "<Automatic>"
 msgstr "<Automat>"
-
-#, c-format
-msgid "&Select..."
-msgstr "&Selectează..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -2774,6 +2777,9 @@ msgid "Include Subfolders"
 msgstr ""
 
 msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
 msgstr ""
 
 #, c-format

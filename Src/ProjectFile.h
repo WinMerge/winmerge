@@ -30,6 +30,7 @@ public:
 	bool HasIgnoreCodepage() const;
 	bool HasFilterCommentsLines() const;
 	bool HasCompareMethod() const;
+	bool HasHiddenItems() const;
 
 	String GetLeft(bool * pReadOnly = nullptr) const;
 	bool GetLeftReadOnly() const;
@@ -49,6 +50,7 @@ public:
 	bool GetIgnoreCodepage() const;
 	bool GetFilterCommentsLines() const;
 	int GetCompareMethod() const;
+	const std::vector<String>& GetHiddenItems() const;
 
 	void SetLeft(const String& sLeft, const bool * pReadOnly = nullptr);
 	void SetMiddle(const String& sMiddle, const bool * pReadOnly = nullptr);
@@ -65,6 +67,7 @@ public:
 	void SetIgnoreCodepage(bool bIgnoreCodepage);
 	void SetFilterCommentsLines(bool bFilterCommentsLines);
 	void SetCompareMethod(int nCompareMethod);
+	void SetHiddenItems(const std::vector<String>& hiddenItems);
 
 	void GetPaths(PathContext& files, bool & bSubFolders) const;
 	void SetPaths(const PathContext& files, bool bSubFolders = false);
@@ -80,6 +83,7 @@ public:
 	void SetSaveIgnoreCodepage(bool bSaveIgnoreCodepage);
 	void SetSaveFilterCommentsLines(bool bSaveFilterCommentsLines);
 	void SetSaveCompareMethod(bool bSaveCompareMethod);
+	void SetSaveHiddenItems(bool bSaveHiddenItems);
 
 private:
 	PathContext m_paths;
@@ -113,6 +117,8 @@ private:
 	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
 	bool m_bHasCompareMethod; /**< Has "Compare method" setting? */
 	int m_nCompareMethod; /**< The value of the "Compare method" setting */
+	bool m_bHasHiddenItems; /**< Has "Hidden items" setting? */
+	std::vector<String> m_vSavedHiddenItems; /**< The list of hidden items saved */
 	bool m_bSaveFilter; /**< Save filter? */
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
@@ -124,6 +130,7 @@ private:
 	bool m_bSaveIgnoreCodepage; /**< Save "Ignore codepage differences" setting? */
 	bool m_bSaveFilterCommentsLines; /**< Save "Ignore comment differences" setting? */
 	bool m_bSaveCompareMethod; /**< Save "Compare method" setting? */
+	bool m_bSaveHiddenItems;/* Save "Hidden item" settings?*/
 };
 
 /**
@@ -277,6 +284,15 @@ inline bool ProjectFileItem::HasFilterCommentsLines() const
 inline bool ProjectFileItem::HasCompareMethod() const
 {
 	return m_bHasCompareMethod;
+}
+
+/** 
+ * @brief Returns if "Hidden items" setting is defined in projectfile.
+ * @return true if project file has "Hidden items" setting definition.
+ */
+inline bool ProjectFileItem::HasHiddenItems() const
+{
+	return m_bHasHiddenItems;
 }
 
 /** 
@@ -522,6 +538,24 @@ inline void ProjectFileItem::SetCompareMethod(int nCompareMethod)
 }
 
 /** 
+ * @brief Returns the value of the "Hidden items" setting.
+ * @return The value of the "Hidden items" setting
+ */
+inline const std::vector<String>& ProjectFileItem::GetHiddenItems() const
+{
+	return m_vSavedHiddenItems;
+}
+
+/** 
+ * @brief Set the value of the "Hidden items" setting.
+ * @param [in] hiddenItems New value of the "Hidden items" setting to set.
+ */
+inline void ProjectFileItem::SetHiddenItems(const std::vector<String>& hiddenItems)
+{
+	m_vSavedHiddenItems = hiddenItems;
+}
+
+/** 
  * @brief 
  *
  * @param [in] paths Files in project
@@ -630,4 +664,9 @@ inline void ProjectFileItem::SetSaveFilterCommentsLines(bool bSaveFilterComments
 inline void ProjectFileItem::SetSaveCompareMethod(bool bSaveCompareMethod)
 {
 	m_bSaveCompareMethod = bSaveCompareMethod;
+}
+
+inline void ProjectFileItem::SetSaveHiddenItems(bool bSaveHiddenItems)
+{
+	m_bSaveHiddenItems = bSaveHiddenItems;
 }
