@@ -965,7 +965,7 @@ msgid "Copy &Filename"
 msgstr "Kopiuj nazwę pliku"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "Edytuj podpis"
 
 msgid "&Select..."
 msgstr "Wybierz..."
@@ -1490,7 +1490,7 @@ msgid "E&nable moved block detection"
 msgstr "Włącz wykrywanie przeniesionych bloków"
 
 msgid "Align &similar lines"
-msgstr ""
+msgstr "Wyrównaj podobne wiersze"
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Algorytm porównywania (eksperymentalny):"
@@ -2008,10 +2008,10 @@ msgid "Webpage"
 msgstr "Strona internetowa"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Szablon URL do uwzględnienia (wyrażenie regularne):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Szablon URL do wykluczenia (wyrażenie regularne):"
 
 msgid "&User data folder location:"
 msgstr "Lokalizacja folderu danych użytkownika:"
@@ -2224,7 +2224,7 @@ msgid "Compare Options"
 msgstr "Opcje porównania"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Ukryte elementy"
 
 msgid "Name"
 msgstr "Nazwa"
@@ -2491,10 +2491,10 @@ msgid "Copy from Middle\tAlt+Shift+Left"
 msgstr "Kopiuj ze środka\tAlt+Shift+Left"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Kopiuj do środka i przejdź dalej\tCtrl+Alt+Right"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Kopiuj do środka i przejdź dalej\tCtrl+Alt+Left"
 
 msgid "Copy All to Middle"
 msgstr "Kopiuj wszystko do środka"
@@ -2805,7 +2805,7 @@ msgid "Video"
 msgstr "Wideo"
 
 msgid "Hash"
-msgstr ""
+msgstr "Hash"
 
 msgid "Unable to compare files"
 msgstr "Nie można porównać plików"
@@ -2891,7 +2891,7 @@ msgstr "Pliki obrazów są różne"
 
 #, c-format
 msgid "Group%d"
-msgstr ""
+msgstr "Grupa%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
@@ -3015,7 +3015,7 @@ msgstr "Porównaj %1 z %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Porównaj %1 z %2 i %3"
 
 msgid "Comma-separated list"
 msgstr "Lista z przecinkami"
@@ -3269,10 +3269,10 @@ msgid "\nCopy to Left (Alt+Left)"
 msgstr "\nKopiuj do lewej (Alt+Left)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr "\nKopiuj prawą i przejdź dalej (Ctrl+Alt+Right)"
+msgstr "\nKopiuj do prawej i przejdź dalej (Ctrl+Alt+Right)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr "\nKopiuj lewą i przejdź dalej (Ctrl+Alt+Left)"
+msgstr "\nKopiuj do lewej i przejdź dalej (Ctrl+Alt+Left)"
 
 msgid "\nCopy All to Right"
 msgstr "\nKopiuj wszystko do prawej"
@@ -3399,7 +3399,7 @@ msgid "histogram"
 msgstr "Histogram"
 
 msgid "none"
-msgstr ""
+msgstr "brak"
 
 msgid "GDI"
 msgstr "GDI"
@@ -3624,7 +3624,7 @@ msgid "Apply Filter Command..."
 msgstr "Zastosuj filtrowanie..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenizacja tekstu..."
 
 msgid "Trim Spaces"
 msgstr "Usuń spacje"
@@ -3690,13 +3690,13 @@ msgid "Validate HTML"
 msgstr "Walidacja HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Dezasembluj kod bajtowy JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Dezasembluj kod IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Dezasembluj kod natywny"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
@@ -3741,7 +3741,7 @@ msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND -
 msgstr ""
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr ""
+msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie:: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "Usuń spacje"
