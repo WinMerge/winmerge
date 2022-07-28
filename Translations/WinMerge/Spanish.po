@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2022-07-23 18:54-0500\n"
+"PO-Revision-Date: 2022-07-27 22:32-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_419\n"
@@ -1960,10 +1960,10 @@ msgid "Ignore &Reparse Points"
 msgstr "Ignora&r y volver a analizar puntos"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Limite para cambiarse a comparación rápida (MB)"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Limite para cambiarse a comparación binaria (MB)"
 
 msgid ""
 "\n"
@@ -1971,13 +1971,13 @@ msgid ""
 msgstr ""
 
 msgid "&CSV File Patterns:"
-msgstr ""
+msgstr "Patrones Archiv &CSV"
 
 msgid "&TSV File Patterns:"
-msgstr ""
+msgstr "Patrones Archiv &TSV"
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
+msgstr "Separador Personalizado de Valores"
 
 msgid "File Patterns:"
 msgstr "Patrones de Archivo:"
@@ -2008,7 +2008,7 @@ msgid "Image File &Patterns:"
 msgstr "&Patrones de archivo de imagen:"
 
 msgid "&Enable image compare in folder compare"
-msgstr ""
+msgstr "Habilitar comparación de imágenes al comparar folders"
 
 msgid "OCR result:"
 msgstr "Resultado de OCR"
@@ -2017,10 +2017,10 @@ msgid "Webpage"
 msgstr "Pagina Web"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr ""
+msgstr "Patrón URL a &incluir (Expresión regular)"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr ""
+msgstr "Patrón URL a &excluir (Expresión regular)"
 
 msgid "&User data folder location:"
 msgstr "Ubicación de las carpetas de datos de usuario"
@@ -2973,13 +2973,13 @@ msgid "Diff"
 msgstr ""
 
 msgid "Left Duplicate Count"
-msgstr ""
+msgstr "Cuenta Duplicados Izquierda"
 
 msgid "Right Duplicate Count"
-msgstr ""
+msgstr "Cuenta Duplicados Derecha"
 
 msgid "Middle Duplicate Count"
-msgstr ""
+msgstr "Cuenta Duplicados Mitad"
 
 msgid "Move"
 msgstr "Mover"
@@ -3003,7 +3003,7 @@ msgid "Document"
 msgstr "Documento"
 
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 msgid "Journal"
 msgstr ""
@@ -3018,7 +3018,7 @@ msgid "Music"
 msgstr "Musica"
 
 msgid "Note"
-msgstr ""
+msgstr "Nota"
 
 msgid "Photo"
 msgstr "Foto"
@@ -3252,7 +3252,7 @@ msgstr "Comparar %1 con %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Comparar %1 con %2 con %3"
 
 msgid "Comma-separated list"
 msgstr "Lista separada por comas"
@@ -3281,7 +3281,7 @@ msgid "The report has been created successfully."
 msgstr "El informe se ha creado correctamente."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr ""
+msgstr "No se puede agregar punto de sincronización a este renglón"
 
 msgid "The same file is opened in both panels."
 msgstr "El mismo archivo está abierto en ambos paneles."
@@ -3397,13 +3397,13 @@ msgid "The change of codepage has been merged."
 msgstr "El cambio de codepage se ha combinado"
 
 msgid "The changes of codepage are conflicting."
-msgstr ""
+msgstr "Los cambios de codepage generan conflictos"
 
 msgid "The change of EOL has been merged."
 msgstr "El cambio de EOL se ha combinado"
 
 msgid "The changes of EOL are conflicting."
-msgstr ""
+msgstr "Los cambios de EOL generan conflictivos"
 
 msgid "Location Pane"
 msgstr "Panel de ubicación"
@@ -3513,7 +3513,7 @@ msgid "Marker Color %d"
 msgstr "Color del marcador %d"
 
 msgid "New Pattern"
-msgstr ""
+msgstr "Nuevo Patrón"
 
 msgid "Type"
 msgstr "Tipo"
@@ -3665,6 +3665,8 @@ msgid ""
 "\n"
 "Previous File (Ctrl+F7)"
 msgstr ""
+"\n"
+"Archivo Previo (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "El desempaquetador elegido se aplica a ambos archivos (sólo un archivo necesita tener la extensión)."
@@ -3780,7 +3782,7 @@ msgid "histogram"
 msgstr "histograma"
 
 msgid "none"
-msgstr ""
+msgstr "ninguno/a"
 
 msgid "GDI"
 msgstr ""
@@ -3810,7 +3812,7 @@ msgid "MDI child window only"
 msgstr "Ventana secundaria MDI únicamente"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "Cerrar ventana principal si solo hay una una ventana hija MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3909,13 +3911,13 @@ msgid "Rotated: %d  "
 msgstr ""
 
 msgid "All pages"
-msgstr ""
+msgstr "Todas las páginas"
 
 msgid "<Edit here>"
-msgstr ""
+msgstr "<Editar aca>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "No se encontrar diferencias a seleccionar"
 
 msgid "No differences found to add as substitution filter"
 msgstr ""
@@ -3927,7 +3929,7 @@ msgid "Add this change to Substitution Filters?"
 msgstr ""
 
 msgid "Text only"
-msgstr ""
+msgstr "Texto únicamente"
 
 msgid "Line-by-line position and text"
 msgstr ""
@@ -3939,13 +3941,13 @@ msgid "AppData folder"
 msgstr ""
 
 msgid "Install folder"
-msgstr ""
+msgstr "Folder de instalación"
 
 msgid "Allow only one instance to run"
 msgstr "Permitir solo una instancia en ejecución"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr ""
+msgstr "Permitir únicamente una instancia en ejecución y esperar a que termine ejecución"
 
 msgid "Al&l"
 msgstr ""
@@ -3954,16 +3956,16 @@ msgid "Prettification"
 msgstr ""
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Extracción de Contenido"
 
 msgid "Visualization"
-msgstr ""
+msgstr "Visualización"
 
 msgid "Data Query"
 msgstr ""
 
 msgid "Validation"
-msgstr ""
+msgstr "Validación"
 
 msgid "Decompilation"
 msgstr ""
@@ -3972,52 +3974,52 @@ msgid "&Others"
 msgstr ""
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Manejo de URL"
 
 msgid "Make Uppercase"
-msgstr ""
+msgstr "Convertir a Minúsculas"
 
 msgid "Make Lowercase"
-msgstr ""
+msgstr "Convertir a Mayúsculas"
 
 msgid "Remove Duplicate Lines"
-msgstr ""
+msgstr "Remover Renglones Duplicados"
 
 msgid "Count Duplicate Lines"
-msgstr ""
+msgstr "Contar Renglones Duplicados"
 
 msgid "Sort Lines Ascending"
-msgstr ""
+msgstr "Ordenar Renglones Ascendentemente"
 
 msgid "Sort Lines Descending"
-msgstr ""
+msgstr "Ordenar Renglones Descendentemente"
 
 msgid "Reverse Columns"
-msgstr ""
+msgstr "Columnas Invertidas"
 
 msgid "Reverse Lines"
-msgstr ""
+msgstr "Renglones Invertidos"
 
 msgid "Replace..."
-msgstr ""
+msgstr "Remplazar..."
 
 msgid "Apply Filter Command..."
-msgstr ""
+msgstr "Aplicar Comando de Filtro"
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Tokenizar..."
 
 msgid "Trim Spaces"
-msgstr ""
+msgstr "Remover Espacios"
 
 msgid "Select Columns..."
-msgstr ""
+msgstr "Seleccionar Columnas"
 
 msgid "Select Lines..."
-msgstr ""
+msgstr "Seleccionar renglones ..."
 
 msgid "Insert Date"
-msgstr ""
+msgstr "Insertar Fecha"
 
 msgid "Insert Time"
 msgstr ""
@@ -4091,28 +4093,28 @@ msgid "Specify plugin arguments"
 msgstr ""
 
 msgid "Make characters uppercase"
-msgstr ""
+msgstr "Convertir letras a mayúscula"
 
 msgid "Make characters lowercase"
-msgstr ""
+msgstr "Convertir letras a minùscula"
 
 msgid "Remove duplicate lines"
-msgstr ""
+msgstr "Remover renglones duplicados"
 
 msgid "Count duplicate lines"
-msgstr ""
+msgstr "Contar renglones duplicados"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Ordenar renglones ascendentemente"
 
 msgid "Sort lines descending"
-msgstr ""
+msgstr "Ordenar renglones descendente"
 
 msgid "Reverse columns"
-msgstr ""
+msgstr "Columnas invertidas"
 
 msgid "Reverse lines"
-msgstr ""
+msgstr "Renglones invertidos"
 
 msgid ""
 "Replace text with another text.\r\n"
@@ -4186,6 +4188,8 @@ msgid ""
 "Graphviz Visualizer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
+"Visualizador Graphviz. \r\n"
+"Argumentos: Options de comando para el comando (dot)"
 
 msgid ""
 "CSV Querier with q command. \r\n"
@@ -4260,7 +4264,7 @@ msgid "Prediff Line Filter"
 msgstr ""
 
 msgid "Basic text functions for the context menu"
-msgstr ""
+msgstr "Funciones de texto básico para menu contextual"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
