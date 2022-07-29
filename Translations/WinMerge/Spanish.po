@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2022-07-27 22:32-0500\n"
+"PO-Revision-Date: 2022-07-28 21:33-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_419\n"
@@ -187,7 +187,7 @@ msgid "&Overlay"
 msgstr "S&obrepuesto"
 
 msgid "&Alpha Blend"
-msgstr "Transparencia Alpha "
+msgstr "Transparencia Alpha"
 
 msgid "Alpha &Blend Animation"
 msgstr "Animación de Transparencia Alpha"
@@ -812,7 +812,7 @@ msgid "Apply Pre&differ..."
 msgstr ""
 
 msgid "&Transform with editor script..."
-msgstr ""
+msgstr "&Transformar con script editor"
 
 msgid "Sp&lit"
 msgstr "&Dividir"
@@ -931,7 +931,7 @@ msgid "Copy &Filenames"
 msgstr "Copiar nombres de &archivos"
 
 msgid "Copy Items To Clip&board"
-msgstr "Copiar Items al Portapapeles"
+msgstr "Copiar Elementos al Portapapeles"
 
 msgid "&Zip"
 msgstr "&Zip"
@@ -1240,10 +1240,10 @@ msgid "Remove"
 msgstr "Eliminar"
 
 msgid "Substitution Filters"
-msgstr "Filtros de sub"
+msgstr "Filtros de substitución"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "Los cambios que aparecen en los paneles, como aparecen en parejas abajo, serán ignorados o marcado como insignificante. Los parches no serán afectados"
+msgstr "Los cambios que aparecen en los paneles, como aparecen en parejas abajo, serán ignorados o marcado como insignificante. Los parches no serán afectados."
 
 msgid "Enable"
 msgstr "Habilitar"
@@ -1420,7 +1420,7 @@ msgid "Default arguments:"
 msgstr "Argumentos por defecto:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr "Mostrar todos los plugins, no revisar la extensión. "
+msgstr "Mostrar todos los plugins, no revisar la extensión."
 
 msgid "&Open files in the same window type after unpacking"
 msgstr "Abrir archivos en la misma ventana después de desempaquetar"
@@ -1719,7 +1719,7 @@ msgid "&Detect archive type from file signature"
 msgstr "&Detectar tipo de archivo por su firma"
 
 msgid "Items saved to or restored from the project file:"
-msgstr ""
+msgstr "Elementos guardados o restaurados del archivo:"
 
 msgid "Compare Statistics"
 msgstr "Estadísticas de comparación"
@@ -1824,13 +1824,13 @@ msgid "Custom &Delimiter-Separated Values"
 msgstr "Valores Personalizados de Delimitador"
 
 msgid "D&elimiter character:"
-msgstr "Carácter delimitador"
+msgstr "Carácter delimitador:"
 
 msgid "&Allow newlines in quotes"
 msgstr "Permitir nuevos renglones en comillas"
 
 msgid "&Quote character:"
-msgstr "Caracter de comilla"
+msgstr "Caracter de comilla:"
 
 msgid "&Use customized text colors"
 msgstr "&Usar colores personalizados para el texto"
@@ -1905,7 +1905,7 @@ msgid "File filters:"
 msgstr "Filtros de archivos:"
 
 msgid "&Plugin arguments:"
-msgstr "Argumentos para plugin"
+msgstr "Argumentos para plugin:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr "Habilitar desempaquetado/PREDIFFING para el plugin"
@@ -2011,7 +2011,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "Habilitar comparación de imágenes al comparar folders"
 
 msgid "OCR result:"
-msgstr "Resultado de OCR"
+msgstr "Resultado de OCR:"
 
 msgid "Webpage"
 msgstr "Pagina Web"
@@ -2023,7 +2023,7 @@ msgid "URL pattern to &exclude (Regular expression):"
 msgstr "Patrón URL a &excluir (Expresión regular)"
 
 msgid "&User data folder location:"
-msgstr "Ubicación de las carpetas de datos de usuario"
+msgstr "Ubicación de las carpetas de datos de usuario:"
 
 msgid "&Separate user data folders for each pane"
 msgstr "Separar los datos de usuario de cada panel"
@@ -2287,7 +2287,7 @@ msgid "Compare Options"
 msgstr "Opciones de Comparación"
 
 msgid "Hidden Items"
-msgstr "Items Ocultos"
+msgstr "Elementos Ocultos"
 
 msgid "Name"
 msgstr "Nombre"
@@ -2692,22 +2692,22 @@ msgid "Break at whitespace or punctuation"
 msgstr "Detener en espacio en blanco o puntuación"
 
 msgid "Copy to &Middle\tAlt+Right"
-msgstr ""
+msgstr "Copiar a la &Mitad\tAlt+Der."
 
 msgid "Copy to &Middle\tAlt+Left"
-msgstr ""
+msgstr "Copiar a la &Mitad\tAlt+Izq."
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr ""
+msgstr "Copiar desde la Mitad\tAlt+Shift+Der."
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr ""
+msgstr "Copiar desde la Mitad\tAlt+Shift+Izq."
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr ""
+msgstr "Copiar a la Mitad y Avanzar\tCtrl+Alt+Der."
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr ""
+msgstr "Copiar a la Mitad y Avanzar\tCtrl+Alt+Izq."
 
 msgid "Copy All to Middle"
 msgstr "Copiar todo a la Mitad"
@@ -3281,7 +3281,7 @@ msgid "The report has been created successfully."
 msgstr "El informe se ha creado correctamente."
 
 msgid "Cannot add a synchronization point at this line."
-msgstr "No se puede agregar punto de sincronización a este renglón"
+msgstr "No se puede agregar punto de sincronización a este renglón."
 
 msgid "The same file is opened in both panels."
 msgstr "El mismo archivo está abierto en ambos paneles."
@@ -3394,16 +3394,16 @@ msgstr ""
 "Número de conflictos sin resolver: %2"
 
 msgid "The change of codepage has been merged."
-msgstr "El cambio de codepage se ha combinado"
+msgstr "El cambio de codepage se ha combinado."
 
 msgid "The changes of codepage are conflicting."
-msgstr "Los cambios de codepage generan conflictos"
+msgstr "Los cambios de codepage generan conflictos."
 
 msgid "The change of EOL has been merged."
-msgstr "El cambio de EOL se ha combinado"
+msgstr "El cambio de EOL se ha combinado."
 
 msgid "The changes of EOL are conflicting."
-msgstr "Los cambios de EOL generan conflictivos"
+msgstr "Los cambios de EOL generan conflictivos."
 
 msgid "Location Pane"
 msgstr "Panel de ubicación"
@@ -3736,13 +3736,13 @@ msgid "Shell"
 msgstr "Shell"
 
 msgid "Close &Left Tabs"
-msgstr ""
+msgstr "Cerrar Pestañas de la Izquierda"
 
 msgid "Close R&ight Tabs"
-msgstr ""
+msgstr "Cerrar Pestañas de la Derecha"
 
 msgid "Close &Other Tabs"
-msgstr ""
+msgstr "Cerrar Demas Pestañas"
 
 msgid "Enable &Auto Max Width"
 msgstr "Habilitar Ancho Máximo &Automático"
@@ -3904,11 +3904,11 @@ msgstr ""
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr ""
+msgstr "Invertida: %s "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr ""
+msgstr "Rotada: %d "
 
 msgid "All pages"
 msgstr "Todas las páginas"
@@ -3920,22 +3920,22 @@ msgid "No differences to select found"
 msgstr "No se encontrar diferencias a seleccionar"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "No se encontraron diferencias para agregarlas al filtro de sustitución"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr ""
+msgstr "La pareja ya esta presente in la lista de Filtros de Sustitución"
 
 msgid "Add this change to Substitution Filters?"
-msgstr ""
+msgstr "Agregar este cambio a los Filtros de Substitución?"
 
 msgid "Text only"
 msgstr "Texto únicamente"
 
 msgid "Line-by-line position and text"
-msgstr ""
+msgstr "Posicionamiento y texto Renglon-por-Renglon"
 
 msgid "Word-by-word position and text"
-msgstr ""
+msgstr "Posicionamiento y texto Palabra-por-Palabra"
 
 msgid "AppData folder"
 msgstr ""
@@ -3971,7 +3971,7 @@ msgid "Decompilation"
 msgstr ""
 
 msgid "&Others"
-msgstr ""
+msgstr "&Otros"
 
 msgid "URL Handling"
 msgstr "Manejo de URL"
@@ -4004,7 +4004,7 @@ msgid "Replace..."
 msgstr "Remplazar..."
 
 msgid "Apply Filter Command..."
-msgstr "Aplicar Comando de Filtro"
+msgstr "Aplicar Comando de Filtro..."
 
 msgid "Tokenize..."
 msgstr "Tokenizar..."
@@ -4022,37 +4022,37 @@ msgid "Insert Date"
 msgstr "Insertar Fecha"
 
 msgid "Insert Time"
-msgstr ""
+msgstr "Insertar Hora"
 
 msgid "Apply Patch..."
-msgstr ""
+msgstr "Aplicar Parche..."
 
 msgid "Ignore Columns"
-msgstr ""
+msgstr "Ignorar Columnas"
 
 msgid "Ignore Comments (C-Family Languages)"
-msgstr ""
+msgstr "Ignorar Commentarios (Estilo Lenguage C)"
 
 msgid "Ignore CSV Fields"
-msgstr ""
+msgstr "Ignorar Campos CSV"
 
 msgid "Ignore TSV Fields"
-msgstr ""
+msgstr "Ignorar Campos TSV"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Formatear HTML"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Formatear JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "Formatear XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "Formatear YAML"
 
 msgid "Visualize Graphviz"
 msgstr ""
@@ -4070,7 +4070,7 @@ msgid "Query YAML Data..."
 msgstr ""
 
 msgid "Validate HTML"
-msgstr ""
+msgstr "Validar HTML"
 
 msgid "Disassemble JVM Bytecode"
 msgstr ""
@@ -4083,14 +4083,14 @@ msgstr ""
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
+msgstr "Nombre de plugin faltante en el pipeline: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
+msgstr "Comilla faltante en el pipeline: %1"
 
 msgid "Specify plugin arguments"
-msgstr ""
+msgstr "Especifique argumentos de plugin"
 
 msgid "Make characters uppercase"
 msgstr "Convertir letras a mayúscula"
@@ -4288,7 +4288,7 @@ msgid ""
 "To enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr ""
 "Historia de Portapapeles esta deshabilitado.\r\n"
-"Para habilitarlo, presione la teccla Windows + V y luego presione el botón Turn on"
+"Para habilitarlo, presione la teccla Windows + V y luego presione el botón Turn on."
 
 msgid "This system does not support clipboard history."
 msgstr "Este sistema no soporta historial de portapeles"
