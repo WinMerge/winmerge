@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2022-07-28 21:33-0500\n"
+"PO-Revision-Date: 2022-07-30 09:29-0500\n"
 "Last-Translator: Mario Angel <marioangel70 at gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_419\n"
@@ -2411,7 +2411,7 @@ msgstr "Archivo original"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr ""
+msgstr "Ren: %s  Col: %d/%d  Car: %d/%d  EOL: %s"
 
 #, c-format
 msgid "Line: %s"
@@ -2419,11 +2419,11 @@ msgstr "Línea: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr ""
+msgstr "Ren: %s  Col: %d/%d  Car: %d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr ""
+msgstr "  Sel: %d | %d"
 
 msgid "Merge"
 msgstr "Combinar"
@@ -3006,7 +3006,7 @@ msgid "Home"
 msgstr "Inicio"
 
 msgid "Journal"
-msgstr ""
+msgstr "Diario"
 
 msgid "Link"
 msgstr "Enlace"
@@ -3748,7 +3748,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Habilitar Ancho Máximo &Automático"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "We&bpage"
 
 msgid "Frhed is not installed."
 msgstr "Frhed no está instalado."
@@ -4073,13 +4073,13 @@ msgid "Validate HTML"
 msgstr "Validar HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr ""
+msgstr "Desensamblar Codigo JVM"
 
 msgid "Disassemble IL Code"
-msgstr ""
+msgstr "Desensamblar Codigo IL"
 
 msgid "Disassemble Native Code"
-msgstr ""
+msgstr "Desensamblar Codigo Nativo"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
