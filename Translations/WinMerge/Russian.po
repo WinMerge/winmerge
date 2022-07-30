@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-04-24 15:17+0000\n"
-"PO-Revision-Date: 2022-04-27 00:00+0000\n"
+"POT-Creation-Date: 2022-07-10 10:12+0000\n"
+"PO-Revision-Date: 2022-07-27 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -217,7 +217,7 @@ msgid "&Vector Image Scaling"
 msgstr "&Масштаб изображений"
 
 msgid "Compare Extracted &Text From Images"
-msgstr "Сравнитьизвлеченныйизизображениятекст"
+msgstr "Сравнить извлеченный из изображения текст"
 
 msgid "Co&mpare"
 msgstr "Сравнить"
@@ -966,10 +966,10 @@ msgid "Copy &Filename"
 msgstr "Копировать имя файла"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "&Изменить заголовок"
 
 msgid "&Select..."
-msgstr "Выбрать..."
+msgstr "&Выбрать..."
 
 msgid "Unpacker Settings"
 msgstr "Параметры распаковщика"
@@ -1146,7 +1146,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Закрыватьдиалог\"Выбрать файлыилипапки\"поОК"
+msgstr "Закрывать диалог \"Выбрать файлы или папки\" по ОК"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
@@ -1422,10 +1422,10 @@ msgid "Default arguments:"
 msgstr "Аргументы по умолчанию:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr "Отображатьвсеплагины,непроверяярасширение"
+msgstr "Отображать все плагины, не проверяя расширение"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr "Открытьфайлывтомжетипеокнапослераспаковки"
+msgstr "Открыть файлы в том же типе окна после распаковки"
 
 msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
@@ -2225,7 +2225,7 @@ msgid "Compare Options"
 msgstr "Настройки сравнения"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Скрытые элементы"
 
 msgid "Name"
 msgstr "Имя"
@@ -3016,7 +3016,7 @@ msgstr "Сравнение %1 с %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Сравнить %1 с %2 и %3"
 
 msgid "Comma-separated list"
 msgstr "Список с разделителем Запятая"
@@ -3400,7 +3400,7 @@ msgid "histogram"
 msgstr "гистограмма"
 
 msgid "none"
-msgstr ""
+msgstr "нет"
 
 msgid "GDI"
 msgstr "GDI"
