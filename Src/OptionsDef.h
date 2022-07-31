@@ -86,6 +86,7 @@ inline const String OPT_VIEW_LINENUMBERS {_T("Settings/ViewLineNumbers"s)};
 inline const String OPT_VIEW_FILEMARGIN {_T("Settings/ViewFileMargin"s)};
 inline const String OPT_VIEW_TOPMARGIN {_T("Settings/ViewTopMargin"s)};
 inline const String OPT_VIEW_TOPMARGIN_TABLE {_T("Settings/ViewTopMarginTable"s)};
+inline const String OPT_VIEW_ZOOM {_T("Settings/ViewZoom"s)};
 inline const String OPT_LINE_NUMBER_USED_AS_HEADERS {_T("Settings/LineNumberUsedAsHeaders"s)};
 inline const String OPT_DIFF_CONTEXT {_T("Settings/DiffContextV2"s)};
 inline const String OPT_INVERT_DIFF_CONTEXT {_T("Settings/InvertDiffContext"s)};
