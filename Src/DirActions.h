@@ -252,6 +252,20 @@ struct DirActions
 		return false;
 	}
 
+	/**
+	 * @brief Return whether the specified diff item is renamable.
+	 * @param [in] di Diff item to check
+	 * @return true if the specified diff item is renamable.
+	 */
+	bool IsItemRenamable(const DIFFITEM& di) const
+	{
+		int nDirs = m_ctxt.GetCompareDirs();
+		for (int i = 0; i < nDirs; i++)
+			if (di.diffcode.exists(i) && m_RO[i])
+				return false;
+		return true;
+	}
+
 	template <SIDE_TYPE src>
 	bool IsItemMovableToOn(const DIFFITEM& di) const
 	{
