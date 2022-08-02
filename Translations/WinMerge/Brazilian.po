@@ -3291,11 +3291,11 @@ msgstr "Nome ou tubulação do plugin do pré-diferenciamento."
 
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "Comparar o %1 com o %2"
+msgstr "Comparar %1 com %2"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr ""
+msgstr "Comparar %1 com %2 e %3"
 
 msgid "Comma-separated list"
 msgstr "Lista separada por vírgula"
