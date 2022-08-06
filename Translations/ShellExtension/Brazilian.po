@@ -43,29 +43,29 @@ msgstr "Extensão do Shell"
 #: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "&Comparar"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Comparar&..."
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Selecionar &Esquerda"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Selecionar &Meio"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Re-selecionar &Esquerda"
