@@ -597,7 +597,9 @@ void CMergeEditView::OnInitialUpdate()
 	PushCursors();
 	CCrystalEditViewEx::OnInitialUpdate();
 	PopCursors();
-	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
+	LOGFONT lf = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff;
+	lf.lfHeight *= GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0;
+	SetFont(lf);
 	SetAlternateDropTarget(new DropHandler(std::bind(&CMergeEditView::OnDropFiles, this, std::placeholders::_1)));
 
 	m_lineBegin = 0;
@@ -4086,12 +4088,12 @@ void CMergeEditView::ZoomText(short amount)
 	const int nLogPixelsY = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
 	int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
 
+	int nOrgPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);
+	if (nOrgPointSize ==  0)
+		nOrgPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
+
 	if ( amount == 0)
-	{
-		nPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);
-		if (nPointSize ==  0)
-			nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
-	}
+		nPointSize = nOrgPointSize;
 
 	nPointSize += amount;
 	if (nPointSize < 2)
@@ -4115,6 +4117,8 @@ void CMergeEditView::ZoomText(short amount)
 			}
 		}
 	}
+
+	GetOptionsMgr()->SaveOption(OPT_VIEW_ZOOM, nPointSize * 1000 / nOrgPointSize);
 }
 
 bool CMergeEditView::QueryEditable()
