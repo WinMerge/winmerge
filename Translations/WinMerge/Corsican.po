@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-05-05 12:15+0000\n"
-"PO-Revision-Date: 2022-05-08 14:09+0200\n"
+"POT-Creation-Date: 2022-07-10 10:12+0000\n"
+"PO-Revision-Date: 2022-08-07 12:46+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -963,7 +963,7 @@ msgid "Copy &Filename"
 msgstr "Cupià u nome di &schedariu"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "&Mudificà a legenda"
 
 msgid "&Select..."
 msgstr "&Selezziunà…"
@@ -1879,7 +1879,7 @@ msgid "Confirm Copy"
 msgstr "Cunfirmazione di copia"
 
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Vulete cupià XXX elementi da veru ?"
+msgstr "Da veru vulete cupià XXX elementi ?"
 
 msgid "From left"
 msgstr "Da a manca"
@@ -1891,10 +1891,10 @@ msgid "Don't ask this &question again."
 msgstr "Ùn mi &dumandà più."
 
 msgid "Yes"
-msgstr "Iè"
+msgstr "Sì"
 
 msgid "No"
-msgstr "Innò"
+msgstr "Nò"
 
 msgid "Plugins"
 msgstr "Moduli d’estensione"
@@ -2153,16 +2153,16 @@ msgid "Ignore &all"
 msgstr "&Tuttu ignurà"
 
 msgid "&Yes"
-msgstr "&Iè"
+msgstr "&Sì"
 
 msgid "Yes to &all"
-msgstr "Iè per t&utti"
+msgstr "Sì per t&utti"
 
 msgid "&No"
-msgstr "I&nnò"
+msgstr "&Nò"
 
 msgid "No to a&ll"
-msgstr "Innò &per tutti"
+msgstr "Nò &per tutti"
 
 msgid "&Continue"
 msgstr "&Cuntinuà"
@@ -2295,7 +2295,7 @@ msgid "Compare Options"
 msgstr "Ozzioni di paragone"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Elementi piattati"
 
 msgid "Name"
 msgstr "Nome"
@@ -2811,16 +2811,16 @@ msgid ""
 "\n"
 "%1 ?"
 msgstr ""
-"Vulete squassà da veru\n"
+"Da veru vulete squassà\n"
 "\n"
 "%1 ?"
 
 msgid "Are you sure you want to copy?"
-msgstr "Vulete cupià da veru ?"
+msgstr "Da veru vulete cupià ?"
 
 #, c-format
 msgid "Are you sure you want to copy %d items?"
-msgstr "Vulete cupià %d elementi da veru ?"
+msgstr "Da veru vulete cupià %d elementi ?"
 
 #, c-format
 msgid ""
@@ -2841,17 +2841,17 @@ msgstr ""
 "Ci vole à attualizà u paragone."
 
 msgid "Are you sure you want to move?"
-msgstr "Vulete dispiazzà da veru ?"
+msgstr "Da veru vulete dispiazzà ?"
 
 #, c-format
 msgid "Are you sure you want to move %d items?"
-msgstr "Vulete cupià %d elementi da veru ?"
+msgstr "Da veru vulete cupià %d elementi ?"
 
 msgid "Confirm Move"
 msgstr "Cunfirmà u dispiazzamentu"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "State per chjode a finestra chì paraguneghja i cartulari. Vulete chjode a finestra da veru ?"
+msgstr "State per chjode a finestra chì paraguneghja i cartulari. Da veru vulete chjode a finestra ?"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
