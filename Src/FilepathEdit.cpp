@@ -404,7 +404,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		String dir = paths::GetParentPath(static_cast<const TCHAR*>(text));
 		if (SelectFile(m_hWnd, m_sFilepath, true, dir.c_str()))
 			GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
-		break;
+		return;
 	}
 	default:
 		return;
