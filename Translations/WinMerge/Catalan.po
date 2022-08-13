@@ -3399,6 +3399,9 @@ msgstr "Confirmeu l'acció de moure"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Esteu a punt de tancar la finestra que compara els directoris. Esteu segurs de tancar la finestra?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "No s'ha pogut executar l'editor extern: %1"

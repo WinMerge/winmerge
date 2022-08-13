@@ -2835,6 +2835,9 @@ msgstr ""
 "Si sta per chiudere la finestra che sta confrontando le cartelle.\n"
 "Vuoi chiudere la finestra?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Impossibile avviare l'editor esterno: %1"

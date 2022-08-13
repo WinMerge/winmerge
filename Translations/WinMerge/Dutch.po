@@ -2872,6 +2872,9 @@ msgstr ""
 "U staat op het punt om het venster te sluiten dat mappen aan het vergelijken"
 " is. Weet u zeker dat u het venster wilt sluiten?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Uitvoeren externe editor mislukt: %1"

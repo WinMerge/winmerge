@@ -2853,6 +2853,9 @@ msgstr "Cunfirmà u dispiazzamentu"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "State per chjode a finestra chì paraguneghja i cartulari. Da veru vulete chjode a finestra ?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Impussibule di lancià l’editore esternu : %1"

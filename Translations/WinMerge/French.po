@@ -3422,6 +3422,9 @@ msgstr "Confirmez le déplacement"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Vous êtes sur le point de fermer la fenêtre qui compare les dossiers. Êtes-vous sûr de vouloir fermer la fenêtre ?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Lancement de l'éditeur externe a échoué : %1"

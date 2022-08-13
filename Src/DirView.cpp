@@ -3471,7 +3471,7 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		CString sText;
 		pEdit->GetWindowText(sText);
 
-		if (!sText.IsEmpty())
+		if (!sText.IsEmpty() && paths::IsValidName(String(sText)))
 		{
 			try {
 				DirItemIterator it(m_pIList.get(), reinterpret_cast<NMLVDISPINFO *>(pNMHDR)->item.iItem);
@@ -3514,6 +3514,10 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
+		}
+		else
+		{
+			LangMessageBox(IDS_ERROR_INVALID_DIR_FILE_NAME, MB_ICONWARNING);
 		}
 	}
 }

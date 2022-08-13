@@ -2846,6 +2846,9 @@ msgstr "移動の確認"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "フォルダー比較中のウィンドウを閉じようとしています。本当にウィンドウを閉じますか?"
 
+msgid "The file or folder name is invalid."
+msgstr "ファイル名またはフォルダー名が無効です。"
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "外部エディターの実行に失敗しました: %1"

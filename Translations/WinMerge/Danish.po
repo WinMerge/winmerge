@@ -3368,6 +3368,9 @@ msgstr "Bekræft flytning"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr ""
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Kunne ikke eksekvere ekstern editor: %1"
