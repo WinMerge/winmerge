@@ -2868,6 +2868,9 @@ msgstr ""
 "На път сте да затворите прозореца, в който се сравняват папки. Наистина ли "
 "искате да затворите този прозорец?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Външният редактор не може да стартира: %1"

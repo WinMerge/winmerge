@@ -3440,6 +3440,8 @@ BEGIN
     IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
     IDS_CONFIRM_CLOSE_WINDOW 
                             "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+    IDS_ERROR_INVALID_DIR_FILE_NAME
+                            "The file or folder name is invalid."
 END
 
 // DIRECTORY DIFFING : OPEN FILE
