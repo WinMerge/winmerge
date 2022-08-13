@@ -70,6 +70,37 @@ struct IWebDiffWindow
 		bool indentHeuristic; /**< Ident heuristic -option */
 		bool completelyBlankOutIgnoredChanges;
 	};
+	struct ColorSettings
+	{
+		COLORREF	clrDiff;			/**< Difference color */
+		COLORREF	clrDiffDeleted;		/**< Difference deleted color */
+		COLORREF	clrDiffText;		/**< Difference text color */
+		COLORREF	clrSelDiff;			/**< Selected difference color */
+		COLORREF	clrSelDiffDeleted;	/**< Selected difference deleted color */
+		COLORREF	clrSelDiffText;		/**< Selected difference text color */
+		COLORREF	clrTrivial;			/**< Ignored difference color */
+		COLORREF	clrTrivialDeleted;	/**< Ignored difference deleted color */
+		COLORREF	clrTrivialText;		/**< Ignored difference text color */
+		COLORREF	clrMoved;			/**< Moved block color */
+		COLORREF	clrMovedDeleted;	/**< Moved block deleted color */
+		COLORREF	clrMovedText;		/**< Moved block text color */
+		COLORREF	clrSelMoved;		/**< Selected moved block color */
+		COLORREF	clrSelMovedDeleted;	/**< Selected moved block deleted color */
+		COLORREF	clrSelMovedText;	/**< Selected moved block text color */
+		COLORREF	clrSNP;				/**< SNP block color */
+		COLORREF	clrSNPDeleted;		/**< SNP block deleted color */
+		COLORREF	clrSNPText;			/**< SNP block text color */
+		COLORREF	clrSelSNP;			/**< Selected SNP block color */
+		COLORREF	clrSelSNPDeleted;	/**< Selected SNP block deleted color */
+		COLORREF	clrSelSNPText;		/**< Selected SNP block text color */
+		COLORREF	clrWordDiff;		/**< Word difference color */
+		COLORREF	clrWordDiffDeleted;	/**< Word differenceDeleted color */
+		COLORREF	clrWordDiffText;	/**< Word difference text color */
+		COLORREF	clrSelWordDiff;		/**< Selected word difference color */
+		COLORREF	clrSelWordDiffDeleted;	/**< Selected word difference deleted color */
+		COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */
+	};
+
 	virtual bool IsWebView2Installed() const = 0;
 	virtual bool DownloadWebView2() const = 0;
 	virtual void AddEventListener(IWebDiffEventHandler *handler) = 0;
@@ -95,22 +126,8 @@ struct IWebDiffWindow
 	virtual void SetActivePane(int pane) = 0;
 	virtual bool GetHorizontalSplit() const = 0;
 	virtual void SetHorizontalSplit(bool horizontalSplit) = 0;
-	virtual COLORREF GetDiffColor() const = 0;
-	virtual void SetDiffColor(COLORREF clrDiffColor) = 0;
-	virtual COLORREF GetTextDiffColor() const = 0;
-	virtual void SetTextDiffColor(COLORREF clrDiffTextColor) = 0;
-	virtual COLORREF GetSelDiffColor() const = 0;
-	virtual void SetSelDiffColor(COLORREF clrSelDiffColor) = 0;
-	virtual COLORREF GetSelTextDiffColor() const = 0;
-	virtual void SetSelTextDiffColor(COLORREF clrSelTextDiffColor) = 0;
-	virtual COLORREF GetSNPDiffColor() const = 0;
-	virtual void SetSNPDiffColor(COLORREF clrSNPTextDiffColor) = 0;
-	virtual COLORREF GetSNPTextDiffColor() const = 0;
-	virtual void SetSNPTextDiffColor(COLORREF clrSNPTextDiffColor) = 0;
-	virtual COLORREF GetSelSNPDiffColor() const = 0;
-	virtual void SetSelSNPDiffColor(COLORREF clrSNPTextDiffColor) = 0;
-	virtual COLORREF GetSelSNPTextDiffColor() const = 0;
-	virtual void SetSelSNPTextDiffColor(COLORREF clrSelSNPTextDiffColor) = 0;
+	virtual void GetDiffColorSettings(ColorSettings& settings) const = 0;
+	virtual void SetDiffColorSettings(const ColorSettings& settings) = 0;
 	virtual double GetZoom() const = 0;
 	virtual void SetZoom(double zoom) = 0;
 	virtual const wchar_t* GetUserAgent() const = 0;

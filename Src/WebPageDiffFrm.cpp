@@ -575,15 +575,23 @@ void CWebPageDiffFrame::LoadOptions()
 	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SHOWDIFFERENCES));
 	m_pWebDiffWindow->SetUserAgent(GetOptionsMgr()->GetString(OPT_CMP_WEB_USER_AGENT).c_str());
 	COLORSETTINGS colors;
+	IWebDiffWindow::ColorSettings colorSettings;
 	Options::DiffColors::Load(GetOptionsMgr(), colors);
-	m_pWebDiffWindow->SetDiffColor(colors.clrDiff);
-	m_pWebDiffWindow->SetSelDiffColor(colors.clrSelDiff);
-	m_pWebDiffWindow->SetSNPDiffColor(colors.clrSNP);
-	m_pWebDiffWindow->SetSelSNPDiffColor(colors.clrSelSNP);
-	m_pWebDiffWindow->SetTextDiffColor(colors.clrDiffText);
-	m_pWebDiffWindow->SetSelTextDiffColor(colors.clrSelDiffText);
-	m_pWebDiffWindow->SetSNPTextDiffColor(colors.clrSNPText);
-	m_pWebDiffWindow->SetSelSNPTextDiffColor(colors.clrSelSNPText);
+	colorSettings.clrDiff = colors.clrDiff;
+	colorSettings.clrDiffText = colors.clrDiffText;
+	colorSettings.clrSelDiff = colors.clrSelDiff;
+	colorSettings.clrSelDiffText = colors.clrSelDiffText;
+	colorSettings.clrSNP = colors.clrSNP;
+	colorSettings.clrSNPText = colors.clrSNPText;
+	colorSettings.clrSelSNP = colors.clrSelSNP;
+	colorSettings.clrSelSNPText = colors.clrSelSNPText;
+	colorSettings.clrWordDiff = colors.clrWordDiff;
+	colorSettings.clrWordDiffDeleted = colors.clrWordDiffDeleted;
+	colorSettings.clrWordDiffText = colors.clrWordDiffText;
+	colorSettings.clrSelWordDiff = colors.clrSelWordDiff;
+	colorSettings.clrSelWordDiffDeleted = colors.clrSelWordDiffDeleted;
+	colorSettings.clrSelWordDiffText = colors.clrSelWordDiffText;
+	m_pWebDiffWindow->SetDiffColorSettings(colorSettings);
 }
 
 void CWebPageDiffFrame::SaveOptions()
