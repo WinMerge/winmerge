@@ -3411,6 +3411,9 @@ msgstr "이동 확인"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "폴더 비교 중인 창을 닫으려고 합니다. 이 창을 정말 닫을까요?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "외부 편집기 실행 실패: %1"

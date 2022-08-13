@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-07-10 10:12+0000\n"
+"POT-Creation-Date: 2022-08-12 10:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2603,6 +2603,9 @@ msgid "Confirm Move"
 msgstr ""
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr ""
+
+msgid "The file or folder name is invalid."
 msgstr ""
 
 #, c-format

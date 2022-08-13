@@ -2825,6 +2825,9 @@ msgstr ""
 "أنت على وشك إغلاق النافذة التي تقوم بالمقارنة بين المجلدات. هل أنت متأكد "
 "برغبتك في إغلاقها؟"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "فشل في تشغيل المحرر الخارجي: %1"

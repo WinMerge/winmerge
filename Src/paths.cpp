@@ -780,4 +780,19 @@ String ToUnixPath(const String& path)
 	return unixpath;
 }
 
+/**
+ * @brief Return whether whether the given name can be used as a filename or directory name.
+ * This function performs a test PathGetCharType() on each character in the specified name.
+ * @param [in] name Filename or directory name to check.
+ * @return true if the given name can be used as a filename or directory name.
+ */
+bool IsValidName(const String& name)
+{
+	for (String::const_iterator it = name.begin(); it != name.end(); ++it)
+		if (!(PathGetCharType(*it) & GCT_LFNCHAR))
+			return false;
+
+	return true;
+}
+
 }

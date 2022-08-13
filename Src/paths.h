@@ -51,5 +51,5 @@ bool IsDecendant(const String& path, const String& ancestor);
 inline String AddTrailingSlash(const String& path) { return !EndsWithSlash(path) ? path + _T("\\") : path; }
 String ToWindowsPath(const String& path);
 String ToUnixPath(const String& path);
-
+bool IsValidName(const String& name);
 }	

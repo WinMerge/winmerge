@@ -2890,6 +2890,9 @@ msgstr ""
 "Klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak "
 "istediğinize emin misiniz?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "%1 dış düzenleyicisi çalıştırılamadı"

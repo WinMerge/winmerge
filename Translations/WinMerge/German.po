@@ -3181,6 +3181,9 @@ msgstr "Verschieben bestätigen"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Sie schließen gerade das Fenster, in dem Ordner verglichen werden. Möchten Sie das Fenster wirklich schließen?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Konnte externen Editor nicht ausführen: %1"

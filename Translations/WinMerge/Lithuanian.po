@@ -2611,6 +2611,9 @@ msgstr "Patvirtinti perkėlimą"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Jūs ketinate užverti langą, kuriame lyginami katalogai. Ar tikrai norite užverti langą?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Nepavyko paleisti išorinio redaktoriaus: %1"

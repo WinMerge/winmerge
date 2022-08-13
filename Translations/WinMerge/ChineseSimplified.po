@@ -2849,6 +2849,9 @@ msgid ""
 "you want to close the window?"
 msgstr "您即将关闭比较文件夹的窗口。确定关闭该窗口？"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "外部编辑器运行失败: %1"

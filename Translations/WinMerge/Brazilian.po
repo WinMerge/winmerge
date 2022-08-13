@@ -2884,6 +2884,9 @@ msgstr ""
 "Você está pra fechar a janela que está comparando as pastas. Você tem "
 "certeza que você quer fechar a janela?"
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Falhou em executar o editor externo: %1"

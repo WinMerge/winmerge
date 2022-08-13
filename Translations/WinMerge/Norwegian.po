@@ -2857,6 +2857,9 @@ msgid ""
 "you want to close the window?"
 msgstr ""
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Feilet i å kjøre eksternt redigeringsprogram: %1"
