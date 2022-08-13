@@ -102,7 +102,15 @@ struct IWebDiffWindow
 	virtual COLORREF GetSelDiffColor() const = 0;
 	virtual void SetSelDiffColor(COLORREF clrSelDiffColor) = 0;
 	virtual COLORREF GetSelTextDiffColor() const = 0;
-	virtual void SetSelTextDiffColor(COLORREF clrSelDiffTextColor) = 0;
+	virtual void SetSelTextDiffColor(COLORREF clrSelTextDiffColor) = 0;
+	virtual COLORREF GetSNPDiffColor() const = 0;
+	virtual void SetSNPDiffColor(COLORREF clrSNPTextDiffColor) = 0;
+	virtual COLORREF GetSNPTextDiffColor() const = 0;
+	virtual void SetSNPTextDiffColor(COLORREF clrSNPTextDiffColor) = 0;
+	virtual COLORREF GetSelSNPDiffColor() const = 0;
+	virtual void SetSelSNPDiffColor(COLORREF clrSNPTextDiffColor) = 0;
+	virtual COLORREF GetSelSNPTextDiffColor() const = 0;
+	virtual void SetSelSNPTextDiffColor(COLORREF clrSelSNPTextDiffColor) = 0;
 	virtual double GetZoom() const = 0;
 	virtual void SetZoom(double zoom) = 0;
 	virtual const wchar_t* GetUserAgent() const = 0;

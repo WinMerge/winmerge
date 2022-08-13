@@ -578,8 +578,12 @@ void CWebPageDiffFrame::LoadOptions()
 	Options::DiffColors::Load(GetOptionsMgr(), colors);
 	m_pWebDiffWindow->SetDiffColor(colors.clrDiff);
 	m_pWebDiffWindow->SetSelDiffColor(colors.clrSelDiff);
+	m_pWebDiffWindow->SetSNPDiffColor(colors.clrSNP);
+	m_pWebDiffWindow->SetSelSNPDiffColor(colors.clrSelSNP);
 	m_pWebDiffWindow->SetTextDiffColor(colors.clrDiffText);
 	m_pWebDiffWindow->SetSelTextDiffColor(colors.clrSelDiffText);
+	m_pWebDiffWindow->SetSNPTextDiffColor(colors.clrSNPText);
+	m_pWebDiffWindow->SetSelSNPTextDiffColor(colors.clrSelSNPText);
 }
 
 void CWebPageDiffFrame::SaveOptions()
