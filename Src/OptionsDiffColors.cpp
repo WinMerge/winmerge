@@ -45,10 +45,10 @@ void Init(COptionsMgr *pOptionsMgr)
 void Load(const COptionsMgr *pOptionsMgr, COLORSETTINGS& colors)
 {
 	colors.clrDiff = pOptionsMgr->GetInt(OPT_CLR_DIFF);
-	colors.clrSelDiff = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
 	colors.clrDiffDeleted = pOptionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
-	colors.clrSelDiffDeleted = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
 	colors.clrDiffText = pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	colors.clrSelDiff = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
+	colors.clrSelDiffDeleted = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
 	colors.clrSelDiffText = pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
 	colors.clrTrivial = pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
 	colors.clrTrivialDeleted = pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
@@ -67,19 +67,19 @@ void Load(const COptionsMgr *pOptionsMgr, COLORSETTINGS& colors)
 	colors.clrSelSNPText = pOptionsMgr->GetInt(OPT_CLR_SELECTED_SNP_TEXT);
 	colors.clrWordDiff = pOptionsMgr->GetInt(OPT_CLR_WORDDIFF);
 	colors.clrWordDiffDeleted = pOptionsMgr->GetInt(OPT_CLR_WORDDIFF_DELETED);
+	colors.clrWordDiffText = pOptionsMgr->GetInt(OPT_CLR_WORDDIFF_TEXT);
 	colors.clrSelWordDiff = pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF);
 	colors.clrSelWordDiffDeleted = pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_DELETED);
-	colors.clrWordDiffText = pOptionsMgr->GetInt(OPT_CLR_WORDDIFF_TEXT);
 	colors.clrSelWordDiffText = pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
 void Save(COptionsMgr *pOptionsMgr, const COLORSETTINGS& colors)
 {
 	pOptionsMgr->SaveOption(OPT_CLR_DIFF, (int)colors.clrDiff);
-	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, (int)colors.clrSelDiff);
 	pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, (int)colors.clrDiffDeleted);
-	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)colors.clrSelDiffDeleted);
 	pOptionsMgr->SaveOption(OPT_CLR_DIFF_TEXT, (int)colors.clrDiffText);
+	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, (int)colors.clrSelDiff);
+	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)colors.clrSelDiffDeleted);
 	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)colors.clrSelDiffText);
 	pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF, (int)colors.clrTrivial);
 	pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)colors.clrTrivialDeleted);
@@ -98,9 +98,9 @@ void Save(COptionsMgr *pOptionsMgr, const COLORSETTINGS& colors)
 	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_SNP_TEXT, (int)colors.clrSelSNPText);
 	pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF, (int)colors.clrWordDiff);
 	pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_DELETED, (int)colors.clrWordDiffDeleted);
+	pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)colors.clrWordDiffText);
 	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF, (int)colors.clrSelWordDiff);
 	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_DELETED, (int)colors.clrSelWordDiffDeleted);
-	pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)colors.clrWordDiffText);
 	pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)colors.clrSelWordDiffText);
 }
 
