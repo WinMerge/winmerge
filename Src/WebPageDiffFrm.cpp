@@ -89,6 +89,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
+	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
@@ -1223,6 +1225,22 @@ void CWebPageDiffFrame::OnViewZoomOut()
 void CWebPageDiffFrame::OnViewZoomNormal()
 {
 	m_pWebDiffWindow->SetZoom(1.0);
+}
+
+/**
+ * @brief Enables/disables linediff (different color for diffs)
+ */
+void CWebPageDiffFrame::OnViewLineDiffs() 
+{
+	bool bWordDiffHighlight = !GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, bWordDiffHighlight);
+	m_pWebDiffWindow->SetShowWordDifferences(bWordDiffHighlight);
+}
+
+void CWebPageDiffFrame::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT));
 }
 
 /**

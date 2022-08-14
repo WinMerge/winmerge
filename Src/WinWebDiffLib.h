@@ -138,6 +138,8 @@ struct IWebDiffWindow
 	virtual void SetSize(SIZE rc) = 0;
 	virtual bool GetShowDifferences() const = 0;
 	virtual void SetShowDifferences(bool visible) = 0;
+	virtual bool GetShowWordDifferences() const = 0;
+	virtual void SetShowWordDifferences(bool visible) = 0;
 	virtual int  GetDiffCount() const = 0;
 	virtual int  GetConflictCount() const = 0;
 	virtual int  GetCurrentDiffIndex() const = 0;
