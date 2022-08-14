@@ -3408,7 +3408,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Bezárni készülsz a mappákat összehasonlító ablakot. Biztosan bezárod az ablakot?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "A fájl- vagy a mappanév érvénytelen"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
