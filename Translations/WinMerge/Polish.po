@@ -2401,7 +2401,7 @@ msgid "Cannot open file\n%1\n\n%2"
 msgstr "Nie można otworzyć pliku\n%1\n\n%2"
 
 msgid "Failed to parse conflict file."
-msgstr "Nie można przeanalizować pliku konfliktu."
+msgstr "Nie udało się przeanalizować pliku konfliktu."
 
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
@@ -2613,7 +2613,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Zamierzasz zamknąć okno porównujące foldery. Czy na pewno chcesz zamknąć okno?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Nazwa pliku lub folderu jest nieprawidłowa."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -2623,7 +2623,7 @@ msgid "Unknown archive format"
 msgstr "Nieznany format archiwum"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr ""
+msgstr "Nie udało się wyodrębnić plików archiwum.\nCzy chcesz porównać pliki archiwum jak pliki tekstowe?"
 
 msgid "Filename"
 msgstr "Nazwa pliku"
@@ -3508,11 +3508,11 @@ msgstr "Poz: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "Odległość: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "Odległość: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
@@ -3573,16 +3573,16 @@ msgid "Al&l"
 msgstr "Wszystkie"
 
 msgid "Prettification"
-msgstr ""
+msgstr "Upiększanie"
 
 msgid "Content Extraction"
-msgstr ""
+msgstr "Wydobywanie zawartości"
 
 msgid "Visualization"
 msgstr "Wizualizacja"
 
 msgid "Data Query"
-msgstr ""
+msgstr "Kwerenda danych"
 
 msgid "Validation"
 msgstr "Walidacja"
@@ -3663,31 +3663,31 @@ msgid "Apply Prediff Substitution Filters"
 msgstr "Zastosuj filtry zamiany przed porównaniem"
 
 msgid "Prettify HTML"
-msgstr ""
+msgstr "Upiększ kod HTML"
 
 msgid "Prettify JSON"
-msgstr ""
+msgstr "Upiększ kod JSON"
 
 msgid "Prettify XML"
-msgstr ""
+msgstr "Upiększ kod XML"
 
 msgid "Prettify YAML"
-msgstr ""
+msgstr "Upiększ kod YAML"
 
 msgid "Visualize Graphviz"
 msgstr "Wizualizacja Graphviz"
 
 msgid "Query CSV Data..."
-msgstr ""
+msgstr "Kwerenda danych CSV..."
 
 msgid "Query TSV Data..."
-msgstr ""
+msgstr "Kwerenda danych TSV..."
 
 msgid "Query JSON Data..."
-msgstr ""
+msgstr "Kwerenda danych JSON..."
 
 msgid "Query YAML Data..."
-msgstr ""
+msgstr "Kwerenda danych YAML..."
 
 msgid "Validate HTML"
 msgstr "Walidacja HTML"
