@@ -187,6 +187,7 @@ Localization:
   Mario Angel <marioangel70@gmail.com>
   Nelson Ariza <njarizas@hotmail.com>
   borjafg
+  Mauricio Gracia Gutierrez
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
