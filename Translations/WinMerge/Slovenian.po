@@ -2848,7 +2848,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Ime datoteke ali mape ni veljavno."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
