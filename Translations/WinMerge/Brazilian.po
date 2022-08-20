@@ -3850,5 +3850,3 @@ msgstr "A versão 32-bits do WinMerge não suporta Comparação de Área de tran
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "O runtime do WebView2 não está instalado. Deseja baixá-lo?"
-
-Footer
