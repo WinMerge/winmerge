@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-08-18**:
+Status from **2022-08-20**:
 
 ## WinMerge
 
@@ -8,7 +8,7 @@ Status from **2022-08-18**:
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
 | Arabic               |  1233 |        898 |     0 |          335 |     72 % |  2019-12-30 |
 | Basque               |  1233 |        639 |     0 |          594 |     51 % |  2013-02-03 |
-| Brazilian            |  1233 |       1232 |     0 |            1 |     99 % |  2022-08-16 |
+| Brazilian            |  1233 |       1233 |     0 |            0 |    100 % |  2022-08-19 |
 | Bulgarian            |  1233 |       1022 |     0 |          211 |     82 % |  2021-06-28 |
 | Catalan              |  1233 |       1188 |     0 |           45 |     96 % |             |
 | ChineseSimplified    |  1233 |       1229 |     0 |            4 |     99 % |             |
@@ -38,7 +38,7 @@ Status from **2022-08-18**:
 | Serbian              |  1233 |        633 |     0 |          600 |     51 % |             |
 | Sinhala              |  1233 |        564 |    58 |          611 |     50 % |  2010-12-12 |
 | Slovak               |  1233 |       1198 |     0 |           35 |     97 % |  2022-02-17 |
-| Slovenian            |  1233 |       1232 |     0 |            1 |     99 % |  2022-07-27 |
+| Slovenian            |  1233 |       1233 |     0 |            0 |    100 % |  2022-07-27 |
 | Spanish              |  1233 |       1174 |     1 |           58 |     95 % |  2022-07-30 |
 | Swedish              |  1233 |       1092 |     0 |          141 |     88 % |  2021-09-15 |
 | Turkish              |  1233 |       1230 |     0 |            3 |     99 % |  2022-05-10 |
@@ -183,6 +183,7 @@ Status from **2022-08-18**:
    - [Wender Firmino](mailto:wender%20at%20pta.com.br)
    - [Leonardo Peixoto](mailto:ljpeixoto%20at%20gmail.com)
    - [Felipe Periard Lopes](mailto:felipefplzx%20at%20gmail.com)
+   - [Marcello Oliveira](mailto:marcello.mco%20at%20gmail.com)
 
  * Bulgarian
    - [sld](mailto:sld%20at%20mail.bg)
