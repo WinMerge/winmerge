@@ -1,21 +1,27 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Maintainer:
+# * Lolo S. <slolo2000 at hotmail.com>
+#
+# Translators:
+# * Lolo S. <slolo2000 at hotmail.com>
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2021-09-08 23:40+0000\n"
+"PO-Revision-Date: 2022-08-21 20:42+0300\n"
+"Last-Translator: Maikkoum\n"
 "Language-Team: Greek <winmerge-translate@lists.sourceforge.net>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: el\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -43,29 +49,29 @@ msgstr "Επέκταση Περιβάλλοντος"
 #: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "&Σύγκριση"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "&Σύγκριση..."
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Επιλογή &Αριστερού"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Επιλογή &Μεσαίου"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Επανεπιλογή &Αριστερού"
