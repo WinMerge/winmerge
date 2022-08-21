@@ -2023,7 +2023,7 @@ void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
 
-			pCmdUI->Enable(firstDiff != -1 && lastDiff != -1 && firstWordDiff != -1 && lastWordDiff != -1);
+			pCmdUI->Enable((firstDiff != -1 && lastDiff != -1) || (firstWordDiff != -1 && lastWordDiff != -1));
 		}
 		else
 		{

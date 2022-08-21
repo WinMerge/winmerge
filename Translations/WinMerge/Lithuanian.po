@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-07-10 10:12+0000\n"
-"PO-Revision-Date: 2022-07-29 07:29+0200\n"
+"POT-Creation-Date: 2022-08-12 10:50+0000\n"
+"PO-Revision-Date: 2022-08-16 07:13+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -2612,7 +2612,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Jūs ketinate užverti langą, kuriame lyginami katalogai. Ar tikrai norite užverti langą?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Netinkamas failo ar katalogo pavadinimas."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
