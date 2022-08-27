@@ -33,6 +33,7 @@ struct FileLocation;
 class DropHandler;
 class CMainFrame;
 class CImgMergeFrame;
+class CWebPageDiffFrame;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -66,6 +67,7 @@ public:
 		FRAME_FILE, /**< File compare frame. */
 		FRAME_HEXFILE, /**< Hex file compare frame. */
 		FRAME_IMGFILE, /**< Image file compare frame. */
+		FRAME_WEBPAGE, /**< Web page compare frame. */
 		FRAME_OTHER, /**< No frame? */
 	};
 
@@ -402,6 +404,7 @@ private:
 	DirDocList &GetAllDirDocs();
 	HexMergeDocList &GetAllHexMergeDocs();
 	std::vector<CImgMergeFrame *> GetAllImgMergeFrames();
+	std::vector<CWebPageDiffFrame *> GetAllWebPageDiffFrames();
 	void UpdateFont(FRAMETYPE frame);
 	BOOL CreateToolbar();
 	CMergeEditView * GetActiveMergeEditView();
