@@ -1095,7 +1095,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
   nColumn = nColumnBegin;
   nColumnTotalWidth = nColumnTotalWidthBegin;
   bInQuote = bInQuoteBegin;
-  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator (pszChars, nLength);
+  auto pIterChar = ICUBreakIterator::getCharacterBreakIterator (pszChars, nLineLength - nOffset);
   auto nextColumnDistance = [&](int nCurPos)
     {
       return (nColumn == nColumnCount - 1) ? INT_MAX : nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nCurPos;
@@ -1186,10 +1186,11 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
           ++nColumn;
         }
     };
-  for (int i = 0, next = 0; i < nLength; i = next)
+  int i, next;
+  for (i = 0, next = 0; i < nLength; i = next)
     {
       next = pIterChar->next ();
-      const TCHAR c = pszChars[i];
+      TCHAR c = pszChars[i];
       if (c == quote)
         bInQuote = !bInQuote;
       int nLen = GetCharCellCountFromChar (pszChars + i);
@@ -1198,7 +1199,27 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
           appendChars (i, next, nCurPos + curColumnTextCellWidth, curColumnText, curColumnTextCellWidth);
           if (next + nOffset == m_ptCursorPos.x || next >= nLength)
             {
-              beforeCursorPos = false;
+              int curColumnTextLenAppended = 0;
+              int curColumnTextCellWidthAppended = 0;
+              if (next + nOffset == m_ptCursorPos.x)
+                beforeCursorPos = false;
+              else
+                {
+                  int curColumnTextLenSaved = curColumnText.GetLength();
+                  int curColumnTextCellWidthSaved = curColumnTextCellWidth;
+                  i = next;
+                  for (; i < nLineLength - nOffset && nColumn == nCurColumn && next + nOffset < m_ptCursorPos.x; i = next)
+                    {
+                      next = pIterChar->next ();
+                      c = pszChars[i];
+                      if (c == quote)
+                        bInQuote = !bInQuote;
+                      nLen = GetCharCellCountFromChar (pszChars + i);
+                      appendChars (i, next, nCurPos + curColumnTextCellWidth, curColumnText, curColumnTextCellWidth);
+                    }
+                  curColumnTextLenAppended = curColumnText.GetLength() - curColumnTextLenSaved;
+                  curColumnTextCellWidthAppended = curColumnTextCellWidth - curColumnTextCellWidthSaved;
+                }
               if (curColumnTextCellWidth > nextColumnDistance (nCurPos))
                 {
                   for (size_t k = 0; k < curColumnByteLenCellWidth.size () && curColumnTextCellWidth > nextColumnDistance (nCurPos); ++k)
@@ -1214,8 +1235,19 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
                       curColumnTextCellWidth = m_pTextBuffer->GetColumnWidth (nColumn);
                     }
                 }
-              line += curColumnText;
-              nCurPos += curColumnTextCellWidth;
+              if (curColumnTextLenAppended > 0)
+                {
+                  if (curColumnTextLenAppended < curColumnText.GetLength())
+                    {
+                      line += curColumnText.Left(curColumnText.GetLength() - curColumnTextLenAppended);
+                      nCurPos += curColumnTextCellWidth - curColumnTextCellWidthAppended;
+                    }
+                }
+              else
+                {
+                  line += curColumnText;
+                  nCurPos += curColumnTextCellWidth;
+                }
             }
         }
       else
