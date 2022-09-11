@@ -14,6 +14,8 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
+#include "OptionsDiffOptions.h"
+#include "CompareOptions.h"
 #include "paths.h"
 #include "PathContext.h"
 #include "unicoder.h"
@@ -595,6 +597,18 @@ void CWebPageDiffFrame::LoadOptions()
 	colorSettings.clrSelWordDiffDeleted = colors.clrSelWordDiffDeleted;
 	colorSettings.clrSelWordDiffText = colors.clrSelWordDiffText;
 	m_pWebDiffWindow->SetDiffColorSettings(colorSettings);
+	DIFFOPTIONS options;
+	IWebDiffWindow::DiffOptions diffOptions;
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
+	diffOptions.bFilterCommentsLines = options.bFilterCommentsLines;
+	diffOptions.completelyBlankOutIgnoredChanges = options.bCompletelyBlankOutIgnoredChanges;
+	diffOptions.diffAlgorithm = options.nDiffAlgorithm;
+	diffOptions.ignoreBlankLines = options.bIgnoreBlankLines;
+	diffOptions.ignoreCase = options.bIgnoreCase;
+	diffOptions.ignoreEol = options.bIgnoreEol;
+	diffOptions.ignoreNumbers = options.bIgnoreNumbers;
+	diffOptions.ignoreWhitespace = options.nIgnoreWhitespace;
+	m_pWebDiffWindow->SetDiffOptions(diffOptions);
 }
 
 void CWebPageDiffFrame::SaveOptions()
@@ -901,6 +915,11 @@ CString CWebPageDiffFrame::GetTooltipString() const
 void CWebPageDiffFrame::UpdateResources()
 {
 	//m_pWebToolWindow->Translate(TranslateLocationPane);
+}
+
+void CWebPageDiffFrame::RefreshOptions()
+{
+	LoadOptions();
 }
 
 /**

@@ -50,6 +50,7 @@ public:
 	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void UpdateResources();
+	void RefreshOptions();
 	bool CloseNow() override;
 	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
 	void UpdateLastCompareResult();
