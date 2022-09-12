@@ -219,8 +219,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
 	ON_COMMAND(ID_ADD_TO_LINE_FILTERS, OnAddToLineFilters)
 	ON_UPDATE_COMMAND_UI(ID_ADD_TO_LINE_FILTERS, OnUpdateAddToLineFilters)
-
-
 	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
@@ -2706,7 +2704,6 @@ void CMergeEditView::OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }
 
-
 void CMergeEditView::OnAddToLineFilters()
 {
 	// Pass this to the document, to compare this file to other
@@ -2738,7 +2735,6 @@ void CMergeEditView::OnUpdateAddToLineFilters(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }
-
 
 /**
  * @brief Enable/disable Replace-menuitem

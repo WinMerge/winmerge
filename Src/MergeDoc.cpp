@@ -591,14 +591,13 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
 	CString text = theApp.addToFilter;
-	if (text != (CString)L"") {
+	if (text != (CString)L"")
+	{
 		theApp.m_pLineFilters->AddFilter(text.GetString(), true);
 		text = (CString)L"";
 		theApp.addToFilter = text;
 	}
 	HideFilterLines();
-
-
 
 	return nResult;
 }
@@ -2646,23 +2645,26 @@ void CMergeDoc::HideFilterLines()
 	String filterNames = theApp.m_pLineFilters->GetAsString();
 	for (nLine = 0; nLine < nLineCount; nLine++)
 	{
-		for (file = 0; file < m_nBuffers; file++) {
+		for (file = 0; file < m_nBuffers; file++)
+		{
 			std::wstring text = L"";
-			if(m_ptBuf[file]->GetLineChars(nLine)!=nullptr){
+			if(m_ptBuf[file]->GetLineChars(nLine) != nullptr)
+			{
 				text = (std::wstring)m_ptBuf[file]->GetLineChars(nLine);
 			}
 			int count = theApp.m_pLineFilters->GetCount();
-			for(int i = 0; i <count; i++){
+			for (int i = 0; i <count; i++)
+			{
 				String filter = theApp.m_pLineFilters->GetAt(i).filterStr;
-				if ((theApp.m_pLineFilters->GetAt(i).enabled)&&(text.find(filter) != std::wstring::npos))
+				if ((theApp.m_pLineFilters->GetAt(i).enabled) && (text.find(filter) != std::wstring::npos))
 				{
-					for (int f = 0; f < m_nBuffers; f++) {
+					for (int f = 0; f < m_nBuffers; f++)
+					{
 						m_ptBuf[f]->SetLineFlag(nLine, LF_SNP,true, false, false);
 					}
 				}
 			}
 		}
-
 	}
 	ForEachView([](auto& pView) { pView->SetEnableHideLines(true); });
 }
