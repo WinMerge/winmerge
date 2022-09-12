@@ -68,6 +68,9 @@ msgstr "Satır &farkını seç\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "&Bu değişikliği değişiklik süzgeçlerine ekle"
 
+msgid "Add to Line &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Geri a&l"
 

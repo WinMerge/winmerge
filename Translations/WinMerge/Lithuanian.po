@@ -68,6 +68,9 @@ msgstr "Pažymėti &skirtumą"
 msgid "Add this change to Substitution &Filters"
 msgstr "Įtraukti šį skirtumą į Keitinių &filtrus"
 
+msgid "Add to Line &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Atša&ukti"
 

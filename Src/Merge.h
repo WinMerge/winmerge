@@ -45,7 +45,6 @@ class PackingInfo;
 //
 
 enum { IDLE_TIMER = 9754 };
-
 /**
  * @brief WinMerge application class
  */
@@ -79,7 +78,7 @@ public:
 
 	CMergeApp();
 	~CMergeApp();
-
+	CString addToFilter;
 public:
 	void AddToRecentProjectsMRU(LPCTSTR sPathName);
 	void SetNeedIdleTimer();

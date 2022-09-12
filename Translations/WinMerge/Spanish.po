@@ -70,6 +70,9 @@ msgstr "Seleccionar &dif. de renglon\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Agregar este cambio al &Filtro de Sustitucion"
 
+msgid "Add to Line &Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Des&hacer"
 

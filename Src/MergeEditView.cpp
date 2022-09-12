@@ -217,6 +217,10 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	// Context menu
 	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
 	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
+	ON_COMMAND(ID_ADD_TO_LINE_FILTERS, OnAddToLineFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_LINE_FILTERS, OnUpdateAddToLineFilters)
+
+
 	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
@@ -2701,6 +2705,40 @@ void CMergeEditView::OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }
+
+
+void CMergeEditView::OnAddToLineFilters()
+{
+	// Pass this to the document, to compare this file to other
+	CMergeDoc* pDoc = GetDocument();
+	auto [ptSelStart, ptSelEnd] = GetSelection();
+
+	// Nothing selected
+	if (ptSelStart == ptSelEnd)
+		return;
+
+	CString text;
+
+	if (!m_bRectangularSelection)
+	{
+		CDiffTextBuffer* buffer = pDoc->m_ptBuf[m_nThisPane].get();
+
+		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+			ptSelEnd.y, ptSelEnd.x, text);
+	}
+	else
+		GetTextWithoutEmptysInColumnSelection(text);
+
+	theApp.addToFilter = text;
+	CMergeDoc* pd = GetDocument();
+	pd->FlushAndRescan(true);
+}
+
+void CMergeEditView::OnUpdateAddToLineFilters(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
+}
+
 
 /**
  * @brief Enable/disable Replace-menuitem
