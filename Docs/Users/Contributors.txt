@@ -267,6 +267,7 @@ Other Contributors (code, ideas, testing..):
 * yuanshouyan1823
 * Mauricio Gracia Gutierrez
 * HaroldPetersInskipp (Midnight color schema)
+* srgank
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
