@@ -70,7 +70,7 @@ msgstr "&Выбрать отличие\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Добавить это изменение в &фильтры замены"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 msgid "&Undo"

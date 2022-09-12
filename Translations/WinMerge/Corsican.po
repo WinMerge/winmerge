@@ -67,7 +67,7 @@ msgstr "&Selezziunà a sfarenza di linea\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Aghjunghje stu cambiamentu à i &filtri di sustituzione"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 msgid "&Undo"

@@ -71,7 +71,7 @@ msgstr "Hautatu Lerro &Ezberdintasunak\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr ""
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 #, c-format

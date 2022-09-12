@@ -76,7 +76,7 @@ msgstr "다음 차이점 선택(&D)\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "변경 사항을 치환 필터에 추가하기(&F)"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 #, c-format

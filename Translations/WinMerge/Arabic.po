@@ -69,7 +69,7 @@ msgstr "تحديد الاختلاف في السطر"
 msgid "Add this change to Substitution &Filters"
 msgstr ""
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 msgid "&Undo"

@@ -65,7 +65,7 @@ msgstr "&Избиране на различията на реда\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Нов заместващ &филтър от тази промяна"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 msgid "&Undo"

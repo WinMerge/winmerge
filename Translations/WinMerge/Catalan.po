@@ -68,7 +68,7 @@ msgstr "Selecciona la diferència de la &línia\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Afegeix aquest canvi als F&iltres de substitució"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 #, c-format

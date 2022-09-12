@@ -70,7 +70,7 @@ msgstr "選取行內差異 (&D)\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "將此變動加入替代篩選器 (&F)"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 #, c-format

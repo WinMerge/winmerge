@@ -94,7 +94,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
-        MENUITEM "Add to Line &Filters", ID_ADD_TO_LINE_FILTERS
+        MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO

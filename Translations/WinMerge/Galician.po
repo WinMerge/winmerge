@@ -69,7 +69,7 @@ msgstr "Seleccionar diferen&zas de liña\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Engadir este cambio aos &Filtros de substitución"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 #, c-format

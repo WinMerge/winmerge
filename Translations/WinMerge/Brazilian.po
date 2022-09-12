@@ -68,7 +68,7 @@ msgstr "Selecionar a &Diferença da Linha\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Adicionar esta mudança aos &filtros de substituição"
 
-msgid "Add to Line &Filters"
+msgid "Add to &Line Filters"
 msgstr ""
 
 msgid "&Undo"
