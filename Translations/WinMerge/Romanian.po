@@ -68,6 +68,9 @@ msgstr "Selectează &diferenţele pe linie\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr ""
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "An&ulează"

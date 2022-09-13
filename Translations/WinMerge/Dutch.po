@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-08-12 10:50+0000\n"
+"POT-Creation-Date: 2022-01-22 21:51+0000\n"
 "PO-Revision-Date: 2018-09-06 10:18+0000\n"
 "Last-Translator: Thomas De Rocker, 2022\n"
 "Language-Team: Dutch (https://www.transifex.com/rockytdr/teams/91037/nl/)\n"
@@ -30,19 +30,19 @@ msgid "Copy to Middle"
 msgstr "Naar midden kopiëren"
 
 msgid "C&opy to Right\tAlt+Right"
-msgstr "Naar rechts kopiëren\tAlt+Rechts"
+msgstr "Naar rechts kopiëren\tAlt+Right"
 
 msgid "Copy from Middle"
 msgstr "Van midden kopiëren"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr "Van rechts kopiëren\tAlt+Shift+Links"
+msgstr "Van rechts kopiëren\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr "Naar links kopiëren\tAlt+Links"
+msgstr "Naar links kopiëren\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr "Van links kopiëren\tAlt+Shift+Rechts"
+msgstr "Van links kopiëren\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Geselecteerde regel(s) naar midden kopiëren"
@@ -67,6 +67,9 @@ msgstr "Regelverschil selecteren\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Deze wijziging aan vervangingsfilters toevoegen"
+
+msgid "Add to &Line Filters"
+msgstr ""
 
 msgid "&Undo"
 msgstr "Ongedaan maken"
@@ -117,10 +120,10 @@ msgid "S&hell Menu"
 msgstr "Shellmenu"
 
 msgid "Use First Line as Headers"
-msgstr "Eerste regel als koppen gebruiken"
+msgstr ""
 
 msgid "Auto-Fit All Columns"
-msgstr "Alle kolommen automatisch aanpassen"
+msgstr ""
 
 msgid "View &Differences"
 msgstr "Verschillen weergeven"
@@ -215,46 +218,46 @@ msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
 
 msgid "Compare Extracted &Text From Images"
-msgstr "Uitgepakte tekst van afbeeldingen vergelijken"
+msgstr "Uitgepakte tekst van afbeelding vergelijken"
 
 msgid "Co&mpare"
 msgstr "Vergelijken"
 
 msgid "&Screenshots"
-msgstr "Screenshots"
+msgstr ""
 
 msgid "&Full Size Screenshots"
-msgstr "Screenshots volledige grootte"
+msgstr ""
 
 msgid "&HTMLs"
-msgstr "HTML's"
+msgstr ""
 
 msgid "&Texts"
-msgstr "Teksten"
+msgstr ""
 
 msgid "&Resource Trees"
-msgstr "Bron-boomstructuren"
+msgstr ""
 
 msgid "&Size"
-msgstr "Grootte"
+msgstr ""
 
 msgid "Fit to Window"
-msgstr "Passend op scherm"
+msgstr ""
 
 msgid "Clear &Browsing Data"
-msgstr "Bladergegevens wissen"
+msgstr ""
 
 msgid "&Disk Cache"
-msgstr "Schijfbuffer"
+msgstr ""
 
 msgid "&Cookies"
-msgstr "Cookies"
+msgstr ""
 
 msgid "&Browsing History"
-msgstr "Bladergeschiedenis"
+msgstr ""
 
 msgid "&All Profile"
-msgstr "Volledig profiel"
+msgstr ""
 
 msgid "&File"
 msgstr "Bestand"
@@ -275,7 +278,7 @@ msgid "&Image"
 msgstr "Afbeelding"
 
 msgid "&Webpage"
-msgstr "Webpagina"
+msgstr ""
 
 msgid "New (&3 panes)"
 msgstr "Nieuw (3 vensters)"
@@ -587,7 +590,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "Samenvoegmodus\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "Opnieuw laden\tCtrl+F5"
+msgstr "Opnieuwladen\tCtrl+F5"
 
 msgid "Reco&mpare As"
 msgstr "Opnieuw vergelijken als"
@@ -686,7 +689,7 @@ msgid "View &Margins"
 msgstr "Marges weergeven"
 
 msgid "View To&p Margins"
-msgstr "Bovenste marges weergeven"
+msgstr ""
 
 msgid "W&rap Lines"
 msgstr "Automatische terugloop"
@@ -773,10 +776,10 @@ msgid "Copy Selected Line(s) from Ri&ght to"
 msgstr "Geselecteerde regel(s) kopiëren van rechts naar"
 
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Van links kopiëren\tAlt+Shift+Rechts"
+msgstr "Kopiëren van links\tAlt+Shift+Rechts"
 
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Van rechts kopiëren\tAlt+Shift+Links"
+msgstr "Kopiëren van rechts\tAlt+Shift+Links"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
 msgstr "Naar rechts kopiëren en verder gaan\tCtrl+Alt+Rechts"
@@ -964,7 +967,7 @@ msgid "Copy &Filename"
 msgstr "Bestandsnaam kopiëren"
 
 msgid "&Edit Caption"
-msgstr "Ondertitel bewerken"
+msgstr ""
 
 msgid "&Select..."
 msgstr "Selecteren..."
@@ -1144,7 +1147,7 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op vergelijken"
+msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op Vergelijken"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
@@ -1494,7 +1497,7 @@ msgid "E&nable moved block detection"
 msgstr "Detectie verplaatste blokken inschakelen"
 
 msgid "Align &similar lines"
-msgstr "Gelijkaardige regels uitlijnen"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr "Vergelijkingsalgoritme (experimenteel):"
@@ -2028,19 +2031,19 @@ msgid "OCR result:"
 msgstr "OCR-resultaat:"
 
 msgid "Webpage"
-msgstr "Webpagina"
+msgstr ""
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr "URL-patroon om bij te voegen (reguliere expressie):"
+msgstr ""
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "URL-patroon om uit te sluiten (reguliere expressie):"
+msgstr ""
 
 msgid "&User data folder location:"
-msgstr "Locatie van map met gebruikersgegevens"
+msgstr ""
 
 msgid "&Separate user data folders for each pane"
-msgstr "Aparte mappen met gebruikersgegevens voor elk venster"
+msgstr ""
 
 msgid "&Hex View"
 msgstr "Hex-weergave"
@@ -2315,7 +2318,7 @@ msgid "Compare Options"
 msgstr "Vergelijkingsopties"
 
 msgid "Hidden Items"
-msgstr "Verborgen items"
+msgstr ""
 
 msgid "Name"
 msgstr "Naam"
@@ -2339,16 +2342,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Bestandsfilters (*.flt)|*.flt|Alle bestanden (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters folder:\n"
-"%2."
-msgstr ""
-"Kan bestandsfilter-sjabloon niet vinden!\n"
-"\n"
-"Kopieer bestand %1 naar map WinMerge/Filters:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Kan bestandsfilter-sjabloon niet vinden!\n\nKopieer bestand %1 naar map WinMerge/Filters:\n%2."
 
 #, c-format
 msgid ""
@@ -2732,10 +2727,10 @@ msgid "Copy to &Middle\tAlt+Left"
 msgstr "Naar midden kopiëren\tAlt+Links"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr "Van midden kopiëren\tAlt+Shift+Rechts"
+msgstr "Kopiëren van midden\tAlt+Shift+Rechts"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr "Van midden kopiëren\tAlt+Shift+Links"
+msgstr "Kopiëren van midden\tAlt+Shift+Links"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
 msgstr "Naar midden kopiëren en verder gaan\tCtrl+Alt+Rechts"
@@ -2881,7 +2876,7 @@ msgstr ""
 " is. Weet u zeker dat u het venster wilt sluiten?"
 
 msgid "The file or folder name is invalid."
-msgstr "Bestands- of mapnaam is ongeldig."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -2890,12 +2885,8 @@ msgstr "Uitvoeren externe editor mislukt: %1"
 msgid "Unknown archive format"
 msgstr "Onbekend archiefformaat"
 
-msgid ""
-"Failed to extract archive files.\n"
-"Do you want to compare the archive files as text files?"
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
 msgstr ""
-"Uitpakken van archiefbestanden mislukt.\n"
-"Wilt u de archiefbestanden als tekstbestanden vergelijken?"
 
 msgid "Filename"
 msgstr "Bestandsnaam"
@@ -3297,7 +3288,7 @@ msgstr "%1 met %2 vergelijken"
 
 #, c-format
 msgid "Compare %1 with %2 and %3"
-msgstr "%1 vergelijken met %2 en %3"
+msgstr ""
 
 msgid "Comma-separated list"
 msgstr "Komma-gescheiden lijst"
@@ -3646,47 +3637,23 @@ msgstr ""
 "\n"
 "Laatste verschil (Alt+End)"
 
-msgid ""
-"\n"
-"Copy to Right (Alt+Right)"
-msgstr ""
-"\n"
-"Naar rechts kopiëren (Alt+Rechts)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nRechts kopiëren (Alt+Rechts)"
 
-msgid ""
-"\n"
-"Copy to Left (Alt+Left)"
-msgstr ""
-"\n"
-"Naar links kopiëren (Alt+Links)"
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nLinks kopiëren (Alt+Links)"
 
-msgid ""
-"\n"
-"Copy to Right and Advance (Ctrl+Alt+Right)"
-msgstr ""
-"\n"
-"Naar rechts kopiëren en verder gaan (Ctrl+Alt+Rechts)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nRechts kopiëren en verdergaan (Ctrl+Alt+Rechts)"
 
-msgid ""
-"\n"
-"Copy to Left and Advance (Ctrl+Alt+Left)"
-msgstr ""
-"\n"
-"Naar links kopiëren en verder gaan (Ctrl+Alt+Links)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nLinks kopiëren en verdergaan (Ctrl+Alt+Links)"
 
-msgid ""
-"\n"
-"Copy All to Right"
-msgstr ""
-"\n"
-"Alles naar rechts kopiëren"
+msgid "\nCopy All to Right"
+msgstr "\nAlles naar rechts kopiëren"
 
-msgid ""
-"\n"
-"Copy All to Left"
-msgstr ""
-"\n"
-"Alles naar links kopiëren"
+msgid "\nCopy All to Left"
+msgstr "\nAlles naar links kopiëren"
 
 msgid ""
 "\n"
@@ -3807,7 +3774,7 @@ msgid "Enable &Auto Max Width"
 msgstr "Automatische maximale breedte inschakelen"
 
 msgid "We&bpage"
-msgstr "Webpagina"
+msgstr ""
 
 msgid "Frhed is not installed."
 msgstr "Fhred is niet geïnstalleerd"
@@ -3841,7 +3808,7 @@ msgid "histogram"
 msgstr "histogram"
 
 msgid "none"
-msgstr "geen"
+msgstr ""
 
 msgid "GDI"
 msgstr "GDI"
@@ -3997,10 +3964,10 @@ msgid "Word-by-word position and text"
 msgstr "Positie en tekst woord voor woord"
 
 msgid "AppData folder"
-msgstr "AppData-map"
+msgstr ""
 
 msgid "Install folder"
-msgstr "Installatiemap"
+msgstr ""
 
 msgid "Allow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"
@@ -4035,7 +4002,7 @@ msgid "&Others"
 msgstr "Andere"
 
 msgid "URL Handling"
-msgstr "URL-behandeling"
+msgstr ""
 
 msgid "Make Uppercase"
 msgstr "Hoofdletters maken"
@@ -4394,19 +4361,11 @@ msgstr "Voorvergelijking-regelfilter"
 msgid "Basic text functions for the context menu"
 msgstr "Basis-tekstfuncties voor het contextmenu"
 
-msgid ""
-"HTTP URL Scheme Handler with curl. \r\n"
-"Arguments: Command line options passed to the curl command."
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr ""
-"HTTP URL-schema-handler met curl.\r\n"
-"Argumenten: opdrachtregelopties doorgegeven aan de curl-opdracht."
 
-msgid ""
-"Windows Registry URL Scheme Handler. \r\n"
-"Arguments: Command line options passed to the reg.exe command."
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
-"Windows register URL-schema-handler.\r\n"
-"Argumenten: opdrachtregelopties doorgegeven aan de reg.exe-opdracht."
 
 msgid "Filter applied"
 msgstr "Filter toegepast"
@@ -4429,4 +4388,4 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "De 32-bit-versie van WinMerge ondersteunt geen klembordvergelijking"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2-runtime is niet geïnstalleerd. Wilt u het downloaden?"
+msgstr ""

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-08-14 15:30+0200\n"
+"PO-Revision-Date: 2022-09-12 17:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -70,6 +70,9 @@ msgstr "Zeilen&unterschied markieren\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Diese Änderung zu den Ersetzungsfiltern hinzuf&ügen"
+
+msgid "Add to &Line Filters"
+msgstr "&Zu Zeilenfiltern hinzufügen"
 
 #, c-format
 msgid "&Undo"
@@ -4039,7 +4042,7 @@ msgid "G&o to Line %1"
 msgstr "Gehe zu &Zeile %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr "&Zur verschobenen Zeile gehen\tStrg+Umschalt+G"
+msgstr "Zur &verschobenen Zeile gehen\tStrg+Umschalt+G"
 
 #, c-format
 msgid "Disabled"

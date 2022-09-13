@@ -67,6 +67,9 @@ msgstr "Valitse riviero\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr ""
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "K&umoa"
 

@@ -590,6 +590,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
+	HideFilterLines();
+
 	return nResult;
 }
 
@@ -2621,6 +2623,51 @@ void CMergeDoc::HideLines()
 
 	ForEachView([](auto& pView) { pView->SetEnableHideLines(true); });
 }
+
+void CMergeDoc::AddToLineFilters(const String& text)
+{
+	theApp.m_pLineFilters->AddFilter(text, true);
+}
+
+void CMergeDoc::HideFilterLines()
+{
+	int nLine;
+	int file;
+
+	int nLineCount = 0x7fffffff;
+	for (file = 0; file < m_nBuffers; file++)
+	{
+		if (nLineCount > m_ptBuf[file]->GetLineCount())
+			nLineCount = m_ptBuf[file]->GetLineCount();
+	}
+	String filterNames = theApp.m_pLineFilters->GetAsString();
+	for (nLine = 0; nLine < nLineCount; nLine++)
+	{
+		for (file = 0; file < m_nBuffers; file++)
+		{
+			std::wstring text = L"";
+			if(m_ptBuf[file]->GetLineChars(nLine) != nullptr)
+			{
+				text = (std::wstring)m_ptBuf[file]->GetLineChars(nLine);
+			}
+			int count = theApp.m_pLineFilters->GetCount();
+			for (int i = 0; i <count; i++)
+			{
+				String filter = theApp.m_pLineFilters->GetAt(i).filterStr;
+				if ((theApp.m_pLineFilters->GetAt(i).enabled) && (text.find(filter) != std::wstring::npos))
+				{
+					for (int f = 0; f < m_nBuffers; f++)
+					{
+						m_ptBuf[f]->SetLineFlag(nLine, LF_SNP,true, false, false);
+					}
+				}
+			}
+		}
+	}
+	ForEachView([](auto& pView) { pView->SetEnableHideLines(true); });
+}
+
+
 
 /**
  * @brief Asks and then saves modified files.

@@ -75,6 +75,9 @@ msgstr "&Sélectionner la ligne différente\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Ajouter cette modification aux &Filtres de Substitution"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "Ann&uler"

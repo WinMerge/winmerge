@@ -1051,6 +1051,7 @@
 #define ID_SWAPPANES_SWAP23             34173
 #define ID_SWAPPANES_SWAP13             34174
 #define ID_ADD_TO_IGNORED_SUBSTITUTIONS 34175
+#define ID_ADD_TO_LINE_FILTERS          34176
 #define ID_FIRSTFILE                    34182
 #define ID_PREVFILE                     34183
 #define ID_NEXTFILE                     34184
