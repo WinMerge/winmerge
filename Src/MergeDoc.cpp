@@ -590,13 +590,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
-	CString text = theApp.addToFilter;
-	if (text != (CString)L"")
-	{
-		theApp.m_pLineFilters->AddFilter(text.GetString(), true);
-		text = (CString)L"";
-		theApp.addToFilter = text;
-	}
 	HideFilterLines();
 
 	return nResult;
@@ -2629,6 +2622,11 @@ void CMergeDoc::HideLines()
 	}
 
 	ForEachView([](auto& pView) { pView->SetEnableHideLines(true); });
+}
+
+void CMergeDoc::AddToLineFilters(const String& text)
+{
+	theApp.m_pLineFilters->AddFilter(text, true);
 }
 
 void CMergeDoc::HideFilterLines()

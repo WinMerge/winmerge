@@ -2726,8 +2726,8 @@ void CMergeEditView::OnAddToLineFilters()
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
-	theApp.addToFilter = text;
 	CMergeDoc* pd = GetDocument();
+	pd->AddToLineFilters(text.GetString());
 	pd->FlushAndRescan(true);
 }
 

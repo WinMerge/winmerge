@@ -79,7 +79,7 @@ public:
 
 	CMergeApp();
 	~CMergeApp();
-	CString addToFilter;
+
 public:
 	void AddToRecentProjectsMRU(LPCTSTR sPathName);
 	void SetNeedIdleTimer();

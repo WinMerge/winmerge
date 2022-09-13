@@ -262,6 +262,7 @@ public:
 	typedef enum { BYTEDIFF, WORDDIFF } DIFFLEVEL;
 	void Showlinediff(CMergeEditView *pView, bool bReversed = false);
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
+	void AddToLineFilters(const String& text);
 	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
 	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
 	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1 = -1, int pane2 = -1);
