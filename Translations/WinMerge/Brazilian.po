@@ -69,7 +69,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "Adicionar esta mudança aos &filtros de substituição"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Adicionar a Filtros de &Linha"
 
 msgid "&Undo"
 msgstr "&Desfazer"
