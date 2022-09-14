@@ -100,6 +100,31 @@ String to_charstr(TCHAR ch)
 	return String(1, ch);
 }
 
+String to_regex(const String& text)
+{
+	String ret;
+	for (auto ch : text)
+	{
+		switch (ch)
+		{
+		case '\\': ret += _T("\\\\"); break;
+		case '*': ret += _T("\\*"); break;
+		case '+': ret += _T("\\+"); break;
+		case '?': ret += _T("\\?"); break;
+		case '|': ret += _T("\\|"); break;
+		case '.': ret += _T("\\."); break;
+		case '^': ret += _T("\\^"); break;
+		case '$': ret += _T("\\$"); break;
+		case '(': ret += _T("\\("); break;
+		case ')': ret += _T("\\)"); break;
+		case '[': ret += _T("\\["); break;
+		case ']': ret += _T("\\]"); break;
+		default:  ret += ch; break;
+		}
+	}
+	return ret;
+}
+
 /**
  * @brief Replace a string inside a string with another string.
  * This function searches for a string inside another string an if found,

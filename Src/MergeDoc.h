@@ -427,7 +427,6 @@ protected:
 private:
 	void PrimeTextBuffers();
 	void HideLines();
-	void HideFilterLines();
 	void AdjustDiffBlocks();
 	void AdjustDiffBlocks3way();
 	void AdjustDiffBlock(DiffMap & diffmap, const DIFFRANGE & diffrange,

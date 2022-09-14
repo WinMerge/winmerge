@@ -2733,7 +2733,7 @@ void CMergeEditView::OnAddToLineFilters()
 
 void CMergeEditView::OnUpdateAddToLineFilters(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
+	pCmdUI->Enable(IsSelection() && GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }
 
 /**
