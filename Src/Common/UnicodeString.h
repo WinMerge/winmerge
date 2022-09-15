@@ -32,6 +32,7 @@ String strip_hot_key(const String& str);
 
 TCHAR from_charstr(const String& str);
 String to_charstr(TCHAR ch);
+String to_regex(const String& text);
 
 void replace(String &target, const String &find, const String &replace);
 void replace_chars(String& str, const TCHAR* chars, const TCHAR* rep);

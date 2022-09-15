@@ -1286,21 +1286,17 @@ bool InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, IDispatch *piScript)
 
 	// prepare the arguments
 	// argument text buffer by reference
-	VARIANT vpbstrBuf;
-	vpbstrBuf.vt = VT_BYREF | VT_BSTR;
+	VARIANT vpbstrBuf{ VT_BYREF | VT_BSTR };
 	vpbstrBuf.pbstrVal = &bstrBuf;
 	// argument buffer size by reference
-	VARIANT vpiSize;
-	vpiSize.vt = VT_BYREF | VT_I4;
+	VARIANT vpiSize{ VT_BYREF | VT_I4 };
 	vpiSize.plVal = (long*) &nBufSize;
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	VARIANT vpboolChanged{ VT_BYREF | VT_BOOL };
 	vpboolChanged.pboolVal = &changed;
 	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1334,25 +1330,20 @@ bool InvokeUnpackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, in
 
 	// prepare the arguments
 	// argument file buffer
-	VARIANT vparrayBuf;
-	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
+	VARIANT vparrayBuf{ VT_BYREF | VT_ARRAY | VT_UI1 };
 	vparrayBuf.pparray = &(array.parray);
 	// argument buffer size by reference
-	VARIANT vpiSize;
-	vpiSize.vt = VT_BYREF | VT_I4;
+	VARIANT vpiSize{ VT_BYREF | VT_I4 };
 	vpiSize.plVal = (long*) &nArraySize;
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	VARIANT vpboolChanged{ VT_BYREF | VT_BOOL };
 	vpboolChanged.pboolVal = &changed;
 	// argument subcode by reference
-	VARIANT viSubcode;
-	viSubcode.vt = VT_BYREF | VT_I4;
+	VARIANT viSubcode{ VT_BYREF | VT_I4 };
 	viSubcode.plVal = (long*) &subcode;
 	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1389,25 +1380,20 @@ bool InvokePackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int 
 
 	// prepare the arguments
 	// argument file buffer
-	VARIANT vparrayBuf;
-	vparrayBuf.vt = VT_BYREF | VT_ARRAY | VT_UI1;
+	VARIANT vparrayBuf{ VT_BYREF | VT_ARRAY | VT_UI1 };
 	vparrayBuf.pparray = &(array.parray);
 	// argument buffer size by reference
-	VARIANT vpiSize;
-	vpiSize.vt = VT_BYREF | VT_I4;
+	VARIANT vpiSize{ VT_BYREF | VT_I4 };
 	vpiSize.plVal = (long*) &nArraySize;
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	VARIANT vpboolChanged{ VT_BYREF | VT_BOOL };
 	vpboolChanged.pboolVal = &changed;
 	// argument subcode
-	VARIANT viSubcode;
-	viSubcode.vt = VT_I4;
+	VARIANT viSubcode{ VT_I4 };
 	viSubcode.lVal = subcode;
 	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1439,25 +1425,20 @@ bool InvokePackBuffer(VARIANT & array, int & nChanged, IDispatch *piScript, int 
 static bool unpack(const wchar_t *method, const String& source, const String& dest, int & nChanged, IDispatch *piScript, int & subCode)
 {
 	// argument text  
-	VARIANT vbstrSrc;
-	vbstrSrc.vt = VT_BSTR;
+	VARIANT vbstrSrc{ VT_BSTR };
 	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(source).c_str());
 	// argument transformed text 
-	VARIANT vbstrDst;
-	vbstrDst.vt = VT_BSTR;
+	VARIANT vbstrDst{ VT_BSTR };
 	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(dest).c_str());
 	// argument subcode by reference
-	VARIANT vpiSubcode;
-	vpiSubcode.vt = VT_BYREF | VT_I4;
+	VARIANT vpiSubcode{ VT_BYREF | VT_I4 };
 	vpiSubcode.plVal = (long*) &subCode;
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	VARIANT vpboolChanged{ VT_BYREF | VT_BOOL };
 	vpboolChanged.pboolVal = &changed;
 	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1477,25 +1458,20 @@ static bool unpack(const wchar_t *method, const String& source, const String& de
 static bool pack(const wchar_t *method, const String& source, const String& dest, int & nChanged, IDispatch *piScript, int & subCode)
 {
 	// argument text  
-	VARIANT vbstrSrc;
-	vbstrSrc.vt = VT_BSTR;
+	VARIANT vbstrSrc{ VT_BSTR };
 	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(source).c_str());
 	// argument transformed text 
-	VARIANT vbstrDst;
-	vbstrDst.vt = VT_BSTR;
+	VARIANT vbstrDst{ VT_BSTR };
 	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(dest).c_str());
 	// argument subcode
-	VARIANT viSubcode;
-	viSubcode.vt = VT_I4;
+	VARIANT viSubcode{ VT_I4 };
 	viSubcode.lVal = subCode;
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	VARIANT vpboolChanged{ VT_BYREF | VT_BOOL };
 	vpboolChanged.pboolVal = &changed;
 	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1535,21 +1511,17 @@ bool InvokePackFolder(const String& folderSource, const String& fileDest, int & 
 bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & nChanged, IDispatch *piScript)
 {
 	// argument text  
-	VARIANT vbstrSrc;
-	vbstrSrc.vt = VT_BSTR;
+	VARIANT vbstrSrc{ VT_BSTR };
 	vbstrSrc.bstrVal = SysAllocString(ucr::toUTF16(fileSource).c_str());
 	// argument transformed text 
-	VARIANT vbstrDst;
-	vbstrDst.vt = VT_BSTR;
+	VARIANT vbstrDst{ VT_BSTR };
 	vbstrDst.bstrVal = SysAllocString(ucr::toUTF16(fileDest).c_str());
 	// argument flag changed (VT_BOOL is short)
 	VARIANT_BOOL changed = 0;
-	VARIANT vpboolChanged;
-	vpboolChanged.vt = VT_BYREF | VT_BOOL;
+	VARIANT vpboolChanged{ VT_BYREF | VT_BOOL };
 	vpboolChanged.pboolVal = &changed;
 	// argument return value (VT_BOOL is short)
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1570,8 +1542,7 @@ bool InvokePrediffFile(const String& fileSource, const String& fileDest, int & n
 bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int fncId)
 {
 	// argument text  
-	VARIANT pvPszBuf;
-	pvPszBuf.vt = VT_BSTR;
+	VARIANT pvPszBuf{ VT_BSTR };
 #ifdef _UNICODE
 	pvPszBuf.bstrVal = SysAllocStringLen(text.data(), static_cast<unsigned>(text.length()));
 #else
@@ -1579,8 +1550,7 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 	pvPszBuf.bstrVal = SysAllocStringLen(wtext.data(), static_cast<unsigned>(wtext.length()));
 #endif
 	// argument transformed text 
-	VARIANT vTransformed;
-	vTransformed.vt = VT_BSTR;
+	VARIANT vTransformed{ VT_BSTR };
 	vTransformed.bstrVal = nullptr;
 
 	// invoke method by ordinal
@@ -1609,12 +1579,10 @@ bool InvokeTransformText(String & text, int & changed, IDispatch *piScript, int 
 bool InvokeIsFolder(const String& path, IDispatch *piScript)
 {
 	// argument text  
-	VARIANT vbstrPath;
-	vbstrPath.vt = VT_BSTR;
+	VARIANT vbstrPath{ VT_BSTR };
 	vbstrPath.bstrVal = SysAllocString(ucr::toUTF16(path).c_str());
 
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1630,8 +1598,7 @@ bool InvokeIsFolder(const String& path, IDispatch *piScript)
 
 bool InvokeShowSettingsDialog(IDispatch *piScript)
 {
-	VARIANT vboolHandled;
-	vboolHandled.vt = VT_BOOL;
+	VARIANT vboolHandled{ VT_BOOL };
 	vboolHandled.boolVal = false;
 
 	// invoke method by name, reverse order for arguments
@@ -1648,8 +1615,7 @@ bool InvokeShowSettingsDialog(IDispatch *piScript)
 bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript)
 {
 	// argument text  
-	VARIANT vbstrArgs;
-	vbstrArgs.vt = VT_BSTR;
+	VARIANT vbstrArgs{ VT_BSTR };
 	std::wstring wargs = ucr::toUTF16(args);
 	vbstrArgs.bstrVal = SysAllocStringLen(wargs.data(), static_cast<unsigned>(wargs.size()));
 
@@ -1660,8 +1626,7 @@ bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript)
 bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
 {
 	// argument text  
-	VARIANT vbstrVars;
-	vbstrVars.vt = VT_BSTR;
+	VARIANT vbstrVars{ VT_BSTR };
 	std::wstring wvars = ucr::toUTF16(vars);
 	vbstrVars.bstrVal = SysAllocStringLen(wvars.data(), static_cast<unsigned>(wvars.size()));
 

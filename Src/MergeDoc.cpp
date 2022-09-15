@@ -438,8 +438,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	else
 	{
 		const std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
-		int nStartLine[3] = {0};
-		int nLines[3], nRealLine[3];
+		int nStartLine[3]{};
+		int nLines[3]{}, nRealLine[3]{};
 		for (size_t i = 0; i <= syncpoints.size(); ++i)
 		{
 			// Save text buffer to file
@@ -590,8 +590,6 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	GetParentFrame()->SetLastCompareResult(identical != IDENTLEVEL::ALL ? 1 : 0);
 
-	HideFilterLines();
-
 	return nResult;
 }
 
@@ -599,7 +597,7 @@ void CMergeDoc::CheckFileChanged(void)
 {
 	int nBuffer;
 	DiffFileInfo fileInfo;
-	FileChange FileChange[3];
+	FileChange FileChange[3]{};
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -2626,48 +2624,9 @@ void CMergeDoc::HideLines()
 
 void CMergeDoc::AddToLineFilters(const String& text)
 {
-	theApp.m_pLineFilters->AddFilter(text, true);
+	theApp.m_pLineFilters->AddFilter(strutils::to_regex(text), true);
+	theApp.m_pLineFilters->SaveFilters();
 }
-
-void CMergeDoc::HideFilterLines()
-{
-	int nLine;
-	int file;
-
-	int nLineCount = 0x7fffffff;
-	for (file = 0; file < m_nBuffers; file++)
-	{
-		if (nLineCount > m_ptBuf[file]->GetLineCount())
-			nLineCount = m_ptBuf[file]->GetLineCount();
-	}
-	String filterNames = theApp.m_pLineFilters->GetAsString();
-	for (nLine = 0; nLine < nLineCount; nLine++)
-	{
-		for (file = 0; file < m_nBuffers; file++)
-		{
-			std::wstring text = L"";
-			if(m_ptBuf[file]->GetLineChars(nLine) != nullptr)
-			{
-				text = (std::wstring)m_ptBuf[file]->GetLineChars(nLine);
-			}
-			int count = theApp.m_pLineFilters->GetCount();
-			for (int i = 0; i <count; i++)
-			{
-				String filter = theApp.m_pLineFilters->GetAt(i).filterStr;
-				if ((theApp.m_pLineFilters->GetAt(i).enabled) && (text.find(filter) != std::wstring::npos))
-				{
-					for (int f = 0; f < m_nBuffers; f++)
-					{
-						m_ptBuf[f]->SetLineFlag(nLine, LF_SNP,true, false, false);
-					}
-				}
-			}
-		}
-	}
-	ForEachView([](auto& pView) { pView->SetEnableHideLines(true); });
-}
-
-
 
 /**
  * @brief Asks and then saves modified files.
@@ -3294,7 +3253,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
 		String sext[3];
-		bool bTyped[3];
+		bool bTyped[3]{};
 		int paneTyped = 0;
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -3413,7 +3372,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 
 	FileLocation fileloc[3];
 	String strDesc[3];
-	bool bRO[3];
+	bool bRO[3]{};
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
@@ -3657,7 +3616,7 @@ void CMergeDoc::OnFileReload()
 		return;
 	
 	FileLocation fileloc[3];
-	bool bRO[3];
+	bool bRO[3]{};
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
@@ -4177,7 +4136,7 @@ void CMergeDoc::OnToolsGeneratePatch()
  */
 void CMergeDoc::AddSyncPoint()
 {
-	int nLine[3];
+	int nLine[3]{};
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		int tmp = m_pView[0][nBuffer]->GetCursorPos().y;

@@ -43,6 +43,8 @@ public:
 		, m_nFreeFunctions(0)
 		, m_disabled(false)
 		, m_hasArgumentsProperty(false)
+		, m_hasVariablesProperty(false)
+		, m_bAutomaticDefault(false)
 	{	
 	}
 
