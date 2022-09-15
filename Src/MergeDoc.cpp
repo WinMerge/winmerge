@@ -438,8 +438,8 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 	else
 	{
 		const std::vector<std::vector<int> > syncpoints = GetSyncPointList();	
-		int nStartLine[3] = {0};
-		int nLines[3], nRealLine[3];
+		int nStartLine[3]{};
+		int nLines[3]{}, nRealLine[3]{};
 		for (size_t i = 0; i <= syncpoints.size(); ++i)
 		{
 			// Save text buffer to file
@@ -597,7 +597,7 @@ void CMergeDoc::CheckFileChanged(void)
 {
 	int nBuffer;
 	DiffFileInfo fileInfo;
-	FileChange FileChange[3];
+	FileChange FileChange[3]{};
 
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
@@ -3253,7 +3253,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
 		String sext[3];
-		bool bTyped[3];
+		bool bTyped[3]{};
 		int paneTyped = 0;
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
@@ -3372,7 +3372,7 @@ void CMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
 
 	FileLocation fileloc[3];
 	String strDesc[3];
-	bool bRO[3];
+	bool bRO[3]{};
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
@@ -3616,7 +3616,7 @@ void CMergeDoc::OnFileReload()
 		return;
 	
 	FileLocation fileloc[3];
-	bool bRO[3];
+	bool bRO[3]{};
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
@@ -4136,7 +4136,7 @@ void CMergeDoc::OnToolsGeneratePatch()
  */
 void CMergeDoc::AddSyncPoint()
 {
-	int nLine[3];
+	int nLine[3]{};
 	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
 	{
 		int tmp = m_pView[0][nBuffer]->GetCursorPos().y;

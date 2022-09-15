@@ -600,7 +600,7 @@ void CMergeEditView::OnInitialUpdate()
 	CCrystalEditViewEx::OnInitialUpdate();
 	PopCursors();
 	LOGFONT lf = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff;
-	lf.lfHeight *= GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0;
+	lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
 	SetFont(lf);
 	SetAlternateDropTarget(new DropHandler(std::bind(&CMergeEditView::OnDropFiles, this, std::placeholders::_1)));
 
@@ -682,7 +682,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 			else if (m_nThisPane == 2 && worddiffs[i].op == OP_1STONLY)
 				continue;
 		}
-		int begin[3], end[3];
+		int begin[3]{}, end[3]{};
 		bool deleted = false;
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
@@ -3735,7 +3735,7 @@ void CMergeEditView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 	CSize sz = rDraw.Size();
 	CMergeDoc *pDoc = GetDocument();
 
-	SIZE szLeftTop, szRightBottom;
+	SIZE szLeftTop{}, szRightBottom{};
 	GetPrintMargins(szLeftTop.cx, szLeftTop.cy, szRightBottom.cx, szRightBottom.cy);
 	pDC->HIMETRICtoLP(&szLeftTop);
 	pDC->HIMETRICtoLP(&szRightBottom);
@@ -4018,7 +4018,7 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
 	{
 		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING | ((j % 22) == 21) ? MF_MENUBREAK : 0, i, name.c_str());
+		AppendMenu(hSubMenu, MF_STRING | (((j % 22) == 21) ? MF_MENUBREAK : 0), i, name.c_str());
 	}
 
 	pCmdUI->Enable(true);
