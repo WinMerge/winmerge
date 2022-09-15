@@ -108,17 +108,21 @@ String to_regex(const String& text)
 		switch (ch)
 		{
 		case '\\': ret += _T("\\\\"); break;
-		case '*': ret += _T("\\*"); break;
-		case '+': ret += _T("\\+"); break;
-		case '?': ret += _T("\\?"); break;
-		case '|': ret += _T("\\|"); break;
-		case '.': ret += _T("\\."); break;
-		case '^': ret += _T("\\^"); break;
-		case '$': ret += _T("\\$"); break;
-		case '(': ret += _T("\\("); break;
-		case ')': ret += _T("\\)"); break;
-		case '[': ret += _T("\\["); break;
-		case ']': ret += _T("\\]"); break;
+		case '*':  ret += _T("\\*");  break;
+		case '+':  ret += _T("\\+");  break;
+		case '?':  ret += _T("\\?");  break;
+		case '|':  ret += _T("\\|");  break;
+		case '.':  ret += _T("\\.");  break;
+		case '^':  ret += _T("\\^");  break;
+		case '$':  ret += _T("\\$");  break;
+		case '(':  ret += _T("\\(");  break;
+		case ')':  ret += _T("\\)");  break;
+		case '[':  ret += _T("\\[");  break;
+		case ']':  ret += _T("\\]");  break;
+		case '\t': ret += _T("\\t");  break;
+		case '\n': ret += _T("\\n");  break;
+		case '\r': ret += _T("\\r");  break;
+		case '\a': ret += _T("\\a");  break;
 		default:  ret += ch; break;
 		}
 	}
