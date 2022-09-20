@@ -1688,6 +1688,8 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
 	}
+	for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
+		pWebPageDiffFrame->RefreshOptions();
 	for (auto pOpenDoc : GetAllOpenDocs())
 		pOpenDoc->RefreshOptions();
 }

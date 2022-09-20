@@ -238,6 +238,9 @@ void CWebPageDiffFrame::MoveOnLoad(int nPane, int)
 	}
 
 	m_pWebDiffWindow->SetActivePane(nPane);
+
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) && m_pWebDiffWindow->GetDiffCount() > 0)
+		m_pWebDiffWindow->SelectDiff(0);
 }
 
 /**
