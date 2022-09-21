@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-07-23 13:56+0200\n"
+"PO-Revision-Date: 2022-09-21 09:34+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -76,7 +76,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "Ajouter cette modification aux &Filtres de Substitution"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Ajouter aux &Filtres de ligne"
 
 #, c-format
 msgid "&Undo"
@@ -3426,7 +3426,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Vous êtes sur le point de fermer la fenêtre qui compare les dossiers. Êtes-vous sûr de vouloir fermer la fenêtre ?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Le nom du fichier ou du dossier n'est pas valide."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
