@@ -63,12 +63,12 @@ static const TCHAR * s_apszSqlKeywordList[] =
 
 static const TCHAR * s_apszUser1KeywordList[] =
   {
-    _T ("BYTE"),
     _T ("BIGINT"),
     _T ("BINARY"),
     _T ("BIT"),
     _T ("BLOB"),
     _T ("BOOLEAN"),
+    _T ("BYTE"),
     _T ("CHAR"),
     _T ("CLOB"),
     _T ("DATE"),
@@ -77,8 +77,8 @@ static const TCHAR * s_apszUser1KeywordList[] =
     _T ("DOUBLE"),
     _T ("FLOAT"),
     _T ("IMAGE"),
-    _T ("INTEGER"),
     _T ("INT"),
+    _T ("INTEGER"),
     _T ("MEMO"),
     _T ("MONEY"),
     _T ("NCHAR"),
