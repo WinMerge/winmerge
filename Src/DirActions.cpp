@@ -237,7 +237,8 @@ void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & action
  * @brief Update results for FileActionItem.
  * This functions is called to update DIFFITEM after FileActionItem.
  * @param [in] act Action that was done.
- * @param [in] pos List position for DIFFITEM affected.
+ * @param [in] ctxt Compare context: contains difflist, encoding info etc.
+ * @param [in,out] di Item to update the results.
  */
 UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContext& ctxt, DIFFITEM &di)
 {
@@ -257,7 +258,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		if (ctxt.GetCompareDirs() > 2)
 			SetDiffCompare(di, DIFFCODE::NOCMP);
 		else
-			SetDiffCompare(di, DIFFCODE::SAME);
+			UpdateCompareFlagsAfterSync(di, ctxt.m_bRecursive);
 		SetDiffCounts(di, 0, 0);
 		break;
 
@@ -1098,6 +1099,59 @@ void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index)
 		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
 			UpdateStatusFromDisk(ctxt, *pdic, index);
 	}
+}
+
+/**
+ * @brief Update compare flags recursively after sync.
+ * @param [in,out] di Item to update the compare flag.
+ * @param [in] bRecursive `true` if tree mode is on
+ * @return number of diff items
+ */
+int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive)
+{
+	// Do not update compare flags for filtered items.
+	if (di.diffcode.isResultFiltered())
+		return 0;
+
+	int res = 0;
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
+		{
+			int ndiff = UpdateCompareFlagsAfterSync(*pdic, bRecursive);
+			if (ndiff > 0)
+			{
+				res += ndiff;
+			}
+		}
+
+		// Update compare flags for items that exist on both sides.
+		// (Do not update compare flags for items that exist on only one side.)
+		if (di.diffcode.existAll())
+		{
+			di.diffcode.diffcode &= (~DIFFCODE::COMPAREFLAGS);
+			unsigned flag = (res > 0) ? DIFFCODE::DIFF : DIFFCODE::SAME;
+			di.diffcode.diffcode |= flag;
+		}
+	}
+	else {
+		// Update compare flags for files and directories in tree mode.
+		// (Do not update directory compare flags when not in tree mode.)
+		if (!di.diffcode.isDirectory() || bRecursive)
+		{
+			if (di.diffcode.existAll())
+			{
+				di.diffcode.diffcode &= (~DIFFCODE::COMPAREFLAGS);
+				di.diffcode.diffcode |= DIFFCODE::SAME;
+			}
+			else
+			{
+				res++;
+			}
+		}
+	}
+
+	return res;
 }
 
 /**

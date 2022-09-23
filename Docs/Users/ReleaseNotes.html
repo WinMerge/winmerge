@@ -20,23 +20,68 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21622-release-notes">WinMerge 2.16.22 Release Notes</h1>
+<h1 id="winmerge-21623-beta-release-notes">WinMerge 2.16.23 Beta Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21622">What Is New in 2.16.22?</a></li>
-<li><a href="#what-is-new-in-21621-beta">What Is New in 2.16.21 beta?</a></li>
+<li><a href="#what-is-new-in-21623-beta">What Is New in 2.16.23 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>July 2022</p>
+<p>September 2022</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.22 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21622">What Is New in 2.16.22</h2>
+<h2 id="what-is-new-in-21623-beta">What Is New in 2.16.23 Beta</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>BugFix: Fix an issue where filenames containing &quot;&amp;&quot; are not displayed properly in the MDI tab bar and its tooltips. (PR #1466)</li>
+</ul>
+<h3 id="color-schemes">Color schemes</h3>
+<ul>
+<li>Create Midnight.ini (PR #1430)</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>BugFix: Non existing backup directory should be automatically created (#1438)</li>
+<li>Remember zoom level for all files (#1433)</li>
+<li>The feature will allow the user to right-click the selected lines and… add them to Line Filter so that those lines added to the Line Filter will be ignored if found in any file. (PR #1481)</li>
+<li>CrystalEdit/parsers/SQL: Added more keywords (PR #1493)</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>BugFix: Disable rename operations when in read-only mode in the folder compare window. (PR #1434)</li>
+<li>BugFix: Fix an issue where renaming to a file name or directory name containing &quot;&quot; or &quot;/&quot; is not done properly. (PR #1451)</li>
+<li>BugFix: Fix &quot;Left to Right&quot; and &quot;Right to Left&quot; copying in 2-way folder comparison. (PR #1495)</li>
+</ul>
+<h3 id="archive-support">Archive support</h3>
+<ul>
+<li>Update 7-Zip to 22.01 (#1425)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>Translation updates:
+<ul>
+<li>Brazilian (PR #1436,#1437,#1441,#1459,#1463)</li>
+<li>Corsican (PR #1443,#1480,#1486)</li>
+<li>Dutch (PR #1474)</li>
+<li>Finnish (PR #1460)</li>
+<li>French (PR #1491)</li>
+<li>German (PR #1455,#1484)</li>
+<li>Hungarian (PR #1431,#1454)</li>
+<li>Japanese</li>
+<li>Lithuanian (PR #1457,#1485)</li>
+<li>Polish (PR #1427,#1456)</li>
+<li>Portuguese (PR #1453,#1490)</li>
+<li>Russian (PR #1426)</li>
+<li>Slovenian (#1424,PR #1461)</li>
+<li>Spanish (PR #1406)</li>
+</ul></li>
+</ul>
+<h2 id="winmerge-21622---2022-07-27">WinMerge 2.16.22 - 2022-07-27</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>Allow renaming of untitled pages (#1395)</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: &quot;Replace All&quot; doesn&#39;t work when Replace in &quot;Selection&quot; and the new string contains the old string. (#1376)</li>
 <li>BugFix: “Match case” in Search always enabled (#1380)</li>
@@ -44,7 +89,7 @@
 <li>BugFix: replace text using regular expressions behaves incorrectly if multiple matches on the same line (#1387, PR #1388)</li>
 <li>Optimize snake function (PR #1411)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Fix an issue where paths with different case are not displayed correctly in the folder column of the folder compare window when comparing three directories. (PR #1372)</li>
 <li>BugFix: Fix renaming process in folder compare window. (PR #1392)</li>
@@ -56,7 +101,7 @@
 <li>Modify textbox behavior (CompareMSExcelFiles options dialog) (PR #1374)</li>
 <li>Make wsc files available as plug-in (PR #1390)</li>
 </ul>
-<h3 id="archive-support">Archive support</h3>
+<h3 id="archive-support-1">Archive support</h3>
 <ul>
 <li>Update 7-Zip to 22.00</li>
 </ul>
@@ -68,7 +113,7 @@
 <ul>
 <li>New setting to decide when to save/restore hidden items when project is saved/loaded (PR #1377)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
@@ -85,97 +130,6 @@
 <h3 id="internals">Internals</h3>
 <ul>
 <li>Fix typo in SuperComboBox.cpp (PR #1379)</li>
-</ul>
-<h2 id="what-is-new-in-21621-beta">What Is New in 2.16.21 Beta</h2>
-<h3 id="general-1">General</h3>
-<ul>
-<li>In windows 11 i have error 78 sidebyside with the winmerge manifest (#1312)</li>
-</ul>
-<h3 id="file-compare-1">File compare</h3>
-<ul>
-<li>BugFix: Copy left/right different behavior (#1334)</li>
-<li>BugFix: Line difference coloring in “Word-level” mode does not work correctly for Cyrillic-based languages (#1362)</li>
-<li>BugFix: Syntax highlighting: SQL comments (#1354)</li>
-<li>Request for updating code: a new language(ABAP) in &quot;syntax highlighting&quot; (PR #1340)</li>
-<li>Added &quot;none&quot; diff algorithm</li>
-<li>Enable mouse wheel scrolling on the location pane.</li>
-<li>Backup files: Misleading error message when file cannot be written (#1326)</li>
-</ul>
-<h3 id="binary-compare">Binary compare</h3>
-<ul>
-<li>Allow the &quot;Split Vertically&quot; menu item to be unchecked.</li>
-</ul>
-<h3 id="image-compare">Image compare</h3>
-<ul>
-<li>BugFix: Fix an issue where the pane was split vertically the next time the window was displayed, even though the &quot;Split Vertically&quot; menu item was unchecked.</li>
-<li>Make patience and histogram diff algorithm selectable.</li>
-</ul>
-<h3 id="webpage-compare">Webpage compare</h3>
-<ul>
-<li>BugFix: Fix text disappearing when pressing the &#39;K&#39; key in the address bar</li>
-<li>BugFix: Fix an issue where the pane was split vertically the next time the window was displayed, even though the &quot;Split Vertically&quot; menu item was unchecked.</li>
-<li>ResourceTree compare: Set the last-modified date and time in resource files</li>
-<li>Added Ctrl+L keyboard shortcut</li>
-</ul>
-<h3 id="folder-compare-1">Folder compare</h3>
-<ul>
-<li>BugFix: Alt/Shift key highlighting issue not resetting start point from move. (#1335)</li>
-<li>BugFix: Refresh Selected Marks Unscanned Folders as Identical (#1349)</li>
-<li>BugFix: Make the file name refreshed to detect case changes when running &quot;Refresh Selected&quot;. (PR #1358)</li>
-<li>BugFix: Fix an issue where paths with different case are not displayed correctly in the folder column of the folder compare window when comparing three directories. (PR #1372)</li>
-<li>Tab behaviour on comparisons of files vs folders (#1367)</li>
-<li>Make the sort order of file names including numbers the same as Explorer. (osdn.net #44557)</li>
-</ul>
-<h3 id="reports">Reports</h3>
-<ul>
-<li>BugFix: Fix report generation process. (PR #1324)</li>
-<li>BugFix: Fix report generation process about replacement with HTML entity (PR #1344)</li>
-<li>Modify &quot;Tools - Generate Report&quot; (Add column width definition to html output) (PR #1333)</li>
-<li>BugFix: Fix an issue where WinMerge crashes depending on the filename when generating a file compare report. (PR #1319)</li>
-</ul>
-<h3 id="configuration-log">Configuration log</h3>
-<ul>
-<li>BugFix: [Bug Report] WinMerge does not recognize Win 11 (#1192)</li>
-</ul>
-<h3 id="plugins-1">Plugins</h3>
-<ul>
-<li>BugFix: CompareMSExcelFiles Plugins did not compare folders when opening .xlsx files from Plugins-&gt; Edit with Unpacker menu item even though the &quot;Extract workbook data to multiple files&quot; option is enabled in the plugin settings (osdn.net #44522)</li>
-<li>BugFix: Fix a problem where the &quot;Open files in the same window type after unpacking&quot; checkbox was checked, but the checkbox was not checked the next time the dialog was opened.</li>
-<li>Sugg: Increase the dialogue for Plugins (#1308)</li>
-</ul>
-<h3 id="command-line">Command line</h3>
-<ul>
-<li>BugFix: Crash on command line compare (#1363)</li>
-</ul>
-<h3 id="shell-extension">Shell extension</h3>
-<ul>
-<li>BugFix: Fix an issue where the WinMerge menu displayed in the&quot;Show more options&quot; menu of the Windows 11 Explorer context menu is not an advanced menu, even though the advanced menu is enabled.</li>
-<li>BugFix: Fix the problem that the WinMerge icon is not correctly displayed on the taskbar when WinMerge is started from the Windows 11 context menu.</li>
-</ul>
-<h3 id="translations-1">Translations</h3>
-<ul>
-<li>Translation updates:
-<ul>
-<li>Chinese Simplified (PR #1330)</li>
-<li>Corsican (PR #1331,#1347)</li>
-<li>German (PR #1311,#1329)</li>
-<li>Hungarian (PR #1325)</li>
-<li>Italian (PR #1355)</li>
-<li>Japanese (PR #1338)</li>
-<li>Lithuanian (PR #1318,#1327)</li>
-<li>Polish (#1323)</li>
-<li>Portuguese (PR #1317,#1345)</li>
-<li>Slovenian</li>
-<li>Turkish (#1332)</li>
-<li>Russian (PR #1310)</li>
-</ul></li>
-</ul>
-<h3 id="internals-1">Internals</h3>
-<ul>
-<li>Fix typo in BCMenu.cpp (PR #1313)</li>
-<li>Fix type: GPL (PR #1342)</li>
-<li>Use isupper+tolower instead of islower+toupper (diffutils ver2.7) (PR #1351)</li>
-<li>Initialize variables defined at &quot;diff.h&quot; (PR #1360)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>
