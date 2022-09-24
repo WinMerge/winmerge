@@ -1149,8 +1149,6 @@ void CMainFrame::OnOptions()
 			pHexMergeDoc->RefreshOptions();
 		for (auto pImgMergeFrame : GetAllImgMergeFrames())
 			pImgMergeFrame->RefreshOptions();
-		for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
-			pWebPageDiffFrame->RefreshOptions();
 	}
 }
 
