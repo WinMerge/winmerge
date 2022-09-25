@@ -125,6 +125,7 @@ private:
 	std::vector<std::shared_ptr<TempFile>> m_tempFiles;
 	std::vector<std::shared_ptr<TempFolder>> m_tempFolders;
 	std::function<void()> m_callbackOnOpenCompleted;
+	bool m_bCompareCompleted;
 	bool m_bInUpdateWebPageDiffBar;
 
 // Generated message map functions

@@ -160,6 +160,7 @@ CWebPageDiffFrame::CWebPageDiffFrame()
 , m_bRO{}
 , m_nActivePane(-1)
 , m_bInUpdateWebPageDiffBar(false)
+, m_bCompareCompleted(false)
 {
 }
 
@@ -193,6 +194,7 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
 	m_callbackOnOpenCompleted = callback;
+	m_bCompareCompleted = false;
 	
 	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;
@@ -421,6 +423,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 				m_callbackOnOpenCompleted();
 				m_callbackOnOpenCompleted = nullptr;
 			}
+			m_bCompareCompleted = true;
 			return S_OK;
 		});
 	bool bResult;
@@ -838,7 +841,8 @@ void CWebPageDiffFrame::SetTitle(LPCTSTR lpszTitle)
 
 void CWebPageDiffFrame::UpdateLastCompareResult()
 {
-	SetLastCompareResult(m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0);
+	if (m_bCompareCompleted)
+		SetLastCompareResult(m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0);
 }
 
 void CWebPageDiffFrame::UpdateAutoPaneResize()
@@ -1051,7 +1055,7 @@ void CWebPageDiffFrame::OnBnClickedShowDifferences()
 
 void CWebPageDiffFrame::OnBnClickedCompare()
 {
-	m_pWebDiffWindow->Recompare(nullptr);
+	OnRefresh();
 }
 
 void CWebPageDiffFrame::OnDropDownCompare(NMHDR *pNMHDR, LRESULT *pResult)
@@ -1337,9 +1341,9 @@ void CWebPageDiffFrame::OnNextdiff()
  */
 void CWebPageDiffFrame::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
-	bool enabled =
+	bool enabled = m_bCompareCompleted && (
 		m_pWebDiffWindow->GetNextDiffIndex() >= 0 ||
-		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1);
+		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1));
 
 	if (!enabled && m_pDirDoc != nullptr)
 		enabled = m_pDirDoc->MoveableToNextDiff();
@@ -1364,9 +1368,9 @@ void CWebPageDiffFrame::OnPrevdiff()
  */
 void CWebPageDiffFrame::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
-	bool enabled =
+	bool enabled = m_bCompareCompleted && (
 		m_pWebDiffWindow->GetPrevDiffIndex() >= 0 ||
-		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1);
+		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1));
 
 	if (!enabled && m_pDirDoc != nullptr)
 		enabled = m_pDirDoc->MoveableToPrevDiff();
@@ -1386,7 +1390,7 @@ void CWebPageDiffFrame::OnNextConflict()
  */
 void CWebPageDiffFrame::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(
+	pCmdUI->Enable(m_bCompareCompleted && 
 		m_pWebDiffWindow->GetPaneCount() > 2 && (
 			m_pWebDiffWindow->GetNextConflictIndex() >= 0 ||
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
@@ -1407,7 +1411,7 @@ void CWebPageDiffFrame::OnPrevConflict()
  */
 void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(
+	pCmdUI->Enable(m_bCompareCompleted &&
 		m_pWebDiffWindow->GetPaneCount() > 2 && (
 			m_pWebDiffWindow->GetPrevConflictIndex() >= 0 ||
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
@@ -1605,9 +1609,13 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 
 void CWebPageDiffFrame::OnRefresh()
 {
+	if (!m_bCompareCompleted)
+		return;
+	m_bCompareCompleted = false;
 	m_pWebDiffWindow->Recompare(
 		Callback<IWebDiffCallback>([this](const WebDiffCallbackResult& result) -> HRESULT
 			{
+				m_bCompareCompleted = true;
 				if (UpdateDiffItem(m_pDirDoc) == 0 &&
 				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
 				{
