@@ -1543,6 +1543,8 @@ void CMainFrame::UpdateResources()
 		pDoc->UpdateResources();
 	for (auto pFrame: GetAllImgMergeFrames())
 		pFrame->UpdateResources();
+	for (auto pFrame: GetAllWebPageDiffFrames())
+		pFrame->UpdateResources();
 }
 
 /**
@@ -1644,6 +1646,11 @@ void CMainFrame::OnClose()
 		if (!pFrame->CloseNow())
 			return;
 	}
+	for (auto pFrame: GetAllWebPageDiffFrames())
+	{
+		if (!pFrame->CloseNow())
+			return;
+	}
 
 	CMDIFrameWnd::OnClose();
 }
@@ -1679,6 +1686,8 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
 	}
+	for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
+		pWebPageDiffFrame->RefreshOptions();
 	for (auto pOpenDoc : GetAllOpenDocs())
 		pOpenDoc->RefreshOptions();
 }
@@ -1717,6 +1726,21 @@ std::vector<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
 		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
 		if (GetFrameType(pChild) == FRAME_IMGFILE)
 			list.push_back(static_cast<CImgMergeFrame *>(pChild));
+		pChild = pNextChild;
+	}
+	return list;
+}
+
+std::vector<CWebPageDiffFrame *> CMainFrame::GetAllWebPageDiffFrames()
+{
+	std::vector<CWebPageDiffFrame *> list;
+	// Close Non-Document/View frame with confirmation
+	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
+	while (pChild != nullptr)
+	{
+		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
+		if (GetFrameType(pChild) == FRAME_WEBPAGE)
+			list.push_back(static_cast<CWebPageDiffFrame *>(pChild));
 		pChild = pNextChild;
 	}
 	return list;
@@ -2278,6 +2302,11 @@ void CMainFrame::OnWindowCloseAll()
 			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
 				return;
 		}
+		else if (GetFrameType(pChild) == FRAME_WEBPAGE)
+		{
+			if (!static_cast<CWebPageDiffFrame *>(pChild)->CloseNow())
+				return;
+		}
 		else
 		{
 			pChild->DestroyWindow();
@@ -2800,6 +2829,7 @@ CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame)
 	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame));
 	bool bHexMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
 	bool bImgMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
+	bool bWebPageDiffFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame));
 	bool bDirFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
@@ -2808,6 +2838,8 @@ CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame)
 		return FRAME_HEXFILE;
 	else if (bImgMergeFrame)
 		return FRAME_IMGFILE;
+	else if (bWebPageDiffFrame)
+		return FRAME_WEBPAGE;
 	else if (bDirFrame)
 		return FRAME_FOLDER;
 	else
@@ -3139,6 +3171,7 @@ void CMainFrame::ReloadMenu()
 	HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
 	HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
 	HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
+	HMENU hNewWebPageDiffMenu = pMainFrame->NewWebPageDiffViewMenu();
 	HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
 	if (hNewDefaultMenu != nullptr && hNewMergeMenu != nullptr && hNewDirMenu != nullptr)
 	{
@@ -3146,6 +3179,7 @@ void CMainFrame::ReloadMenu()
 		CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
 		CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
 		CMenu * pNewImgMergeMenu = CMenu::FromHandle(hNewImgMergeMenu);
+		CMenu * pNewWebPageDiffMenu = CMenu::FromHandle(hNewWebPageDiffMenu);
 		CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
 
 		CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
@@ -3157,6 +3191,8 @@ void CMainFrame::ReloadMenu()
 				static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
 				static_cast<CImgMergeFrame *>(pFrame)->SetSharedMenu(hNewImgMergeMenu);
+			if (pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)))
+				static_cast<CWebPageDiffFrame *>(pFrame)->SetSharedMenu(hNewWebPageDiffMenu);
 			else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
 				static_cast<COpenFrame *>(pFrame)->SetSharedMenu(hNewDefaultMenu);
 			else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
@@ -3173,6 +3209,8 @@ void CMainFrame::ReloadMenu()
 				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
 				pMainFrame->MDISetMenu(pNewImgMergeMenu, nullptr);
+			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)))
+				pMainFrame->MDISetMenu(pNewWebPageDiffMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
 				pMainFrame->MDISetMenu(pNewDirMenu, nullptr);
 			else

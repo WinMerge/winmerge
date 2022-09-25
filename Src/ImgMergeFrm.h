@@ -100,7 +100,6 @@ private:
 	void SaveActivePane();
 	virtual ~CImgMergeFrame();
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
-// Generated message map functions
 private:
 	bool OpenImages();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
@@ -127,7 +126,8 @@ private:
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
 	std::vector<int> m_unpackerSubcodes[3];
-
+// Generated message map functions
+protected:
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
