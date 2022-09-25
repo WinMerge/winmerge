@@ -32,6 +32,16 @@ Please submit bug reports to our bug-tracker.
     ignored if found in any file. (PR #1481)
 - CrystalEdit/parsers/SQL: Added more keywords (PR #1493)
 
+### Table compare
+
+- Bugfix: Inline differences ware not displayed even if the caret is moved to
+    the position of an inline difference that is hidden due to the narrow
+    column width.
+
+### Webpage compare
+
+- [EXPERIMENTAL] Webpage Compare: Highlight differences (PR #1357) 
+
 ### Folder compare
 
 - BugFix: Disable rename operations when in read-only mode in the folder
@@ -40,6 +50,8 @@ Please submit bug reports to our bug-tracker.
     containing "\" or "/" is not done properly. (PR #1451)
 - BugFix: Fix "Left to Right" and "Right to Left" copying in 2-way folder
     comparison. (PR #1495)
+- BugFix: Folder compare with jpg images crashes  (#1176)
+    (Previous versions were linked with unfixed freeimage.)
 
 ### Archive support
 
