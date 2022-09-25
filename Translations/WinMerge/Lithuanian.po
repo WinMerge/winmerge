@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-06-29 10:03+0000\n"
-"PO-Revision-Date: 2022-07-04 13:18+0200\n"
+"POT-Creation-Date: 2022-09-12 23:52+0000\n"
+"PO-Revision-Date: 2022-09-13 08:13+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -67,6 +67,9 @@ msgstr "Pažymėti &skirtumą"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Įtraukti šį skirtumą į Keitinių &filtrus"
+
+msgid "Add to &Line Filters"
+msgstr "Įtraukti į Ei&lutės filtrus"
 
 msgid "&Undo"
 msgstr "Atša&ukti"
@@ -967,7 +970,7 @@ msgid "Copy &Filename"
 msgstr "Kopijuoti &failo vardą"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "R&edaguoti antraštę"
 
 msgid "&Select..."
 msgstr "Pa&rinkti..."
@@ -2613,6 +2616,9 @@ msgstr "Patvirtinti perkėlimą"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Jūs ketinate užverti langą, kuriame lyginami katalogai. Ar tikrai norite užverti langą?"
+
+msgid "The file or folder name is invalid."
+msgstr "Netinkamas failo ar katalogo pavadinimas."
 
 #, c-format
 msgid "Failed to execute external editor: %1"

@@ -14,7 +14,6 @@
 #include <Shlwapi.h>
 #include "FilepathEdit.h"
 #include "Merge.h"
-#include "BCMenu.h"
 #include "ClipBoard.h"
 #include "FileOrFolderSelect.h"
 #include "Win_VersionHelper.h"
@@ -234,11 +233,11 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			point.Offset(5, 5);
 		}
 
-		BCMenu menu;
+		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_EDITOR_HEADERBAR));
 		theApp.TranslateMenu(menu.m_hMenu);
 
-		BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(0));
+		CMenu* pPopup = menu.GetSubMenu(0);
 		ASSERT(pPopup != nullptr);
 
 		DWORD sel = GetSel();
@@ -405,7 +404,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		String dir = paths::GetParentPath(static_cast<const TCHAR*>(text));
 		if (SelectFile(m_hWnd, m_sFilepath, true, dir.c_str()))
 			GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
-		break;
+		return;
 	}
 	default:
 		return;

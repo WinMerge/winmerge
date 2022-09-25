@@ -168,6 +168,7 @@ void SetDiffCompare(DIFFITEM& di, unsigned diffcode);
 void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst);
 void UnsetDiffSide(DIFFITEM& di, int index);
 void UpdateStatusFromDisk(CDiffContext& ctxt, DIFFITEM& di, int index);
+int UpdateCompareFlagsAfterSync(DIFFITEM& di, bool bRecursive);
 void UpdatePaths(int nDirs, DIFFITEM& di);
 void SetDiffCounts(DIFFITEM& di, unsigned diffs, unsigned ignored);
 void SetItemViewFlag(DIFFITEM& di, unsigned flag, unsigned mask);
@@ -250,6 +251,20 @@ struct DirActions
 			return (i == m_ctxt.GetCompareDirs());
 		}
 		return false;
+	}
+
+	/**
+	 * @brief Return whether the specified diff item is renamable.
+	 * @param [in] di Diff item to check
+	 * @return true if the specified diff item is renamable.
+	 */
+	bool IsItemRenamable(const DIFFITEM& di) const
+	{
+		int nDirs = m_ctxt.GetCompareDirs();
+		for (int i = 0; i < nDirs; i++)
+			if (di.diffcode.exists(i) && m_RO[i])
+				return false;
+		return true;
 	}
 
 	template <SIDE_TYPE src>

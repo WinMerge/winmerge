@@ -86,6 +86,7 @@ inline const String OPT_VIEW_LINENUMBERS {_T("Settings/ViewLineNumbers"s)};
 inline const String OPT_VIEW_FILEMARGIN {_T("Settings/ViewFileMargin"s)};
 inline const String OPT_VIEW_TOPMARGIN {_T("Settings/ViewTopMargin"s)};
 inline const String OPT_VIEW_TOPMARGIN_TABLE {_T("Settings/ViewTopMarginTable"s)};
+inline const String OPT_VIEW_ZOOM {_T("Settings/ViewZoom"s)};
 inline const String OPT_LINE_NUMBER_USED_AS_HEADERS {_T("Settings/LineNumberUsedAsHeaders"s)};
 inline const String OPT_DIFF_CONTEXT {_T("Settings/DiffContextV2"s)};
 inline const String OPT_INVERT_DIFF_CONTEXT {_T("Settings/InvertDiffContext"s)};
@@ -238,6 +239,7 @@ inline const String OPT_CMP_IMG_OCR_RESULT_TYPE {_T("Settings/ImageOcrResultType
 inline const String OPT_CMP_WEB_USERDATAFOLDER_TYPE {_T("Settings/WebPageUserDataFolderType"s)};
 inline const String OPT_CMP_WEB_USERDATAFOLDER_PERPANE {_T("Settings/WebPageUserDataFolderPerPane"s)};
 inline const String OPT_CMP_WEB_FIT_TO_WINDOW {_T("Settings/WebPageFitToWindow"s)};
+inline const String OPT_CMP_WEB_SHOWDIFFERENCES {_T("Settings/WebPageShowDifferences"s)};
 inline const String OPT_CMP_WEB_VIEW_WIDTH {_T("Settings/WebPageViewWidth"s)};
 inline const String OPT_CMP_WEB_VIEW_HEIGHT {_T("Settings/WebPageViewHeight"s)};
 inline const String OPT_CMP_WEB_ZOOM {_T("Settings/WebZoom"s)};

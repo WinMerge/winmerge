@@ -13,6 +13,9 @@
 #include "DirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "OptionsDiffColors.h"
+#include "OptionsDiffOptions.h"
+#include "CompareOptions.h"
 #include "paths.h"
 #include "PathContext.h"
 #include "unicoder.h"
@@ -88,6 +91,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
+	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
@@ -124,6 +129,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_HELP, OnHelp)
 	// Dialog bar
 	ON_BN_CLICKED(IDC_FITTOWINDOW, OnBnClickedFitToWindow)
+	ON_BN_CLICKED(IDC_SHOWDIFFERENCES, OnBnClickedShowDifferences)
 	ON_BN_CLICKED(IDC_COMPARE, OnBnClickedCompare)
 	ON_EN_CHANGE(IDC_WIDTH, OnEnChangeWidth)
 	ON_EN_CHANGE(IDC_HEIGHT, OnEnChangeHeight)
@@ -154,6 +160,7 @@ CWebPageDiffFrame::CWebPageDiffFrame()
 , m_bRO{}
 , m_nActivePane(-1)
 , m_bInUpdateWebPageDiffBar(false)
+, m_bCompareCompleted(false)
 {
 }
 
@@ -187,6 +194,7 @@ CWebPageDiffFrame::~CWebPageDiffFrame()
 bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback)
 {
 	m_callbackOnOpenCompleted = callback;
+	m_bCompareCompleted = false;
 	
 	CWaitCursor waitstatus;
 	int nNormalBuffer = 0;
@@ -232,6 +240,9 @@ void CWebPageDiffFrame::MoveOnLoad(int nPane, int)
 	}
 
 	m_pWebDiffWindow->SetActivePane(nPane);
+
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) && m_pWebDiffWindow->GetDiffCount() > 0)
+		m_pWebDiffWindow->SelectDiff(0);
 }
 
 /**
@@ -401,9 +412,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 				if (m_nBufferType[pane] != BUFFERTYPE::UNNAMED)
 					++nNormalBuffer;
 			}
-			if (nNormalBuffer > 0)
-				OnRefresh();
-			else
+			if (nNormalBuffer == 0)
 				UpdateDiffItem(m_pDirDoc);
 
 			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
@@ -414,6 +423,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 				m_callbackOnOpenCompleted();
 				m_callbackOnOpenCompleted = nullptr;
 			}
+			m_bCompareCompleted = true;
 			return S_OK;
 		});
 	bool bResult;
@@ -567,27 +577,54 @@ BOOL CWebPageDiffFrame::DestroyWindow()
 
 void CWebPageDiffFrame::LoadOptions()
 {
-//	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SHOWDIFFERENCES));
-//	m_pWebDiffWindow->SetDiffColorAlpha(GetOptionsMgr()->GetInt(OPT_CMP_WEB_DIFFCOLORALPHA) / 100.0);
-//	COLORREF clrBackColor = GetOptionsMgr()->GetInt(OPT_CMP_WEB_BACKCOLOR);
-//	RGBQUAD backColor = { GetBValue(clrBackColor), GetGValue(clrBackColor), GetRValue(clrBackColor) };
-
 	m_pWebDiffWindow->SetHorizontalSplit(GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY));
 	m_pWebDiffWindow->SetZoom(GetOptionsMgr()->GetInt(OPT_CMP_WEB_ZOOM) / 1000.0);
 	SIZE size{ GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_WIDTH), GetOptionsMgr()->GetInt(OPT_CMP_WEB_VIEW_HEIGHT) };
 	m_pWebDiffWindow->SetSize(size);
 	m_pWebDiffWindow->SetFitToWindow(GetOptionsMgr()->GetBool(OPT_CMP_WEB_FIT_TO_WINDOW));
+	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SHOWDIFFERENCES));
+	m_pWebDiffWindow->SetShowWordDifferences(GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT));
 	m_pWebDiffWindow->SetUserAgent(GetOptionsMgr()->GetString(OPT_CMP_WEB_USER_AGENT).c_str());
+	COLORSETTINGS colors;
+	IWebDiffWindow::ColorSettings colorSettings;
+	Options::DiffColors::Load(GetOptionsMgr(), colors);
+	colorSettings.clrDiff = colors.clrDiff;
+	colorSettings.clrDiffText = colors.clrDiffText;
+	colorSettings.clrSelDiff = colors.clrSelDiff;
+	colorSettings.clrSelDiffText = colors.clrSelDiffText;
+	colorSettings.clrSNP = colors.clrSNP;
+	colorSettings.clrSNPText = colors.clrSNPText;
+	colorSettings.clrSelSNP = colors.clrSelSNP;
+	colorSettings.clrSelSNPText = colors.clrSelSNPText;
+	colorSettings.clrWordDiff = colors.clrWordDiff;
+	colorSettings.clrWordDiffDeleted = colors.clrWordDiffDeleted;
+	colorSettings.clrWordDiffText = colors.clrWordDiffText;
+	colorSettings.clrSelWordDiff = colors.clrSelWordDiff;
+	colorSettings.clrSelWordDiffDeleted = colors.clrSelWordDiffDeleted;
+	colorSettings.clrSelWordDiffText = colors.clrSelWordDiffText;
+	m_pWebDiffWindow->SetDiffColorSettings(colorSettings);
+	DIFFOPTIONS options;
+	IWebDiffWindow::DiffOptions diffOptions;
+	Options::DiffOptions::Load(GetOptionsMgr(), options);
+	diffOptions.bFilterCommentsLines = options.bFilterCommentsLines;
+	diffOptions.completelyBlankOutIgnoredChanges = options.bCompletelyBlankOutIgnoredChanges;
+	diffOptions.diffAlgorithm = options.nDiffAlgorithm;
+	diffOptions.ignoreBlankLines = options.bIgnoreBlankLines;
+	diffOptions.ignoreCase = options.bIgnoreCase;
+	diffOptions.ignoreEol = options.bIgnoreEol;
+	diffOptions.ignoreNumbers = options.bIgnoreNumbers;
+	diffOptions.ignoreWhitespace = options.nIgnoreWhitespace;
+	m_pWebDiffWindow->SetDiffOptions(diffOptions);
 }
 
 void CWebPageDiffFrame::SaveOptions()
 {
-	//	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
 	//	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_DIFFCOLORALPHA, static_cast<int>(m_pWebDiffWindow->GetDiffColorAlpha() * 100.0));
 	SIZE size = m_pWebDiffWindow->GetSize();
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_WIDTH, size.cx);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_VIEW_HEIGHT, size.cy);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_FIT_TO_WINDOW, m_pWebDiffWindow->GetFitToWindow());
+	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_ZOOM, static_cast<int>(m_pWebDiffWindow->GetZoom() * 1000));
 	GetOptionsMgr()->SaveOption(OPT_CMP_WEB_USER_AGENT, m_pWebDiffWindow->GetUserAgent());
 }
@@ -804,7 +841,8 @@ void CWebPageDiffFrame::SetTitle(LPCTSTR lpszTitle)
 
 void CWebPageDiffFrame::UpdateLastCompareResult()
 {
-	SetLastCompareResult(m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0);
+	if (m_bCompareCompleted)
+		SetLastCompareResult(m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0);
 }
 
 void CWebPageDiffFrame::UpdateAutoPaneResize()
@@ -884,6 +922,11 @@ CString CWebPageDiffFrame::GetTooltipString() const
 void CWebPageDiffFrame::UpdateResources()
 {
 	//m_pWebToolWindow->Translate(TranslateLocationPane);
+}
+
+void CWebPageDiffFrame::RefreshOptions()
+{
+	LoadOptions();
 }
 
 /**
@@ -986,6 +1029,7 @@ void CWebPageDiffFrame::UpdateWebPageDiffBar()
 	m_bInUpdateWebPageDiffBar = true;
 	bool fitToWindow = m_pWebDiffWindow->GetFitToWindow();
 	m_wndWebPageDiffBar.CheckDlgButton(IDC_FITTOWINDOW, fitToWindow);
+	m_wndWebPageDiffBar.CheckDlgButton(IDC_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
 	m_wndWebPageDiffBar.GetDlgItem(IDC_WIDTH)->EnableWindow(!fitToWindow);
 	m_wndWebPageDiffBar.GetDlgItem(IDC_HEIGHT)->EnableWindow(!fitToWindow);
 	SIZE size = m_pWebDiffWindow->GetSize();
@@ -1003,7 +1047,18 @@ void CWebPageDiffFrame::OnBnClickedFitToWindow()
 	UpdateWebPageDiffBar();
 }
 
+void CWebPageDiffFrame::OnBnClickedShowDifferences()
+{
+	m_pWebDiffWindow->SetShowDifferences(m_wndWebPageDiffBar.IsDlgButtonChecked(IDC_SHOWDIFFERENCES));
+	UpdateWebPageDiffBar();
+}
+
 void CWebPageDiffFrame::OnBnClickedCompare()
+{
+	OnRefresh();
+}
+
+void CWebPageDiffFrame::OnDropDownCompare(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	CRect rc;
 	m_wndWebPageDiffBar.GetDlgItem(IDC_COMPARE)->GetWindowRect(&rc);
@@ -1014,11 +1069,6 @@ void CWebPageDiffFrame::OnBnClickedCompare()
 	BCMenu* pPopup = (BCMenu*)menuPopup.GetSubMenu(0);
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 		point.x, point.y, AfxGetMainWnd());
-}
-
-void CWebPageDiffFrame::OnDropDownCompare(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	OnBnClickedCompare();
 }
 
 void CWebPageDiffFrame::OnEnChangeWidth()
@@ -1205,6 +1255,22 @@ void CWebPageDiffFrame::OnViewZoomNormal()
 }
 
 /**
+ * @brief Enables/disables linediff (different color for diffs)
+ */
+void CWebPageDiffFrame::OnViewLineDiffs() 
+{
+	bool bWordDiffHighlight = !GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, bWordDiffHighlight);
+	m_pWebDiffWindow->SetShowWordDifferences(bWordDiffHighlight);
+}
+
+void CWebPageDiffFrame::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT));
+}
+
+/**
  * @brief Split panes vertically
  */
 void CWebPageDiffFrame::OnViewSplitVertically() 
@@ -1275,15 +1341,12 @@ void CWebPageDiffFrame::OnNextdiff()
  */
 void CWebPageDiffFrame::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
-	bool enabled = false;
-	/*
-	bool enabled =
+	bool enabled = m_bCompareCompleted && (
 		m_pWebDiffWindow->GetNextDiffIndex() >= 0 ||
-		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1);
+		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1));
 
 	if (!enabled && m_pDirDoc != nullptr)
 		enabled = m_pDirDoc->MoveableToNextDiff();
-	*/
 	pCmdUI->Enable(enabled);
 }
 
@@ -1305,15 +1368,12 @@ void CWebPageDiffFrame::OnPrevdiff()
  */
 void CWebPageDiffFrame::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
-	bool enabled = false;
-	/*
-	bool enabled =
+	bool enabled = m_bCompareCompleted && (
 		m_pWebDiffWindow->GetPrevDiffIndex() >= 0 ||
-		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1);
+		(m_pWebDiffWindow->GetDiffCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1));
 
 	if (!enabled && m_pDirDoc != nullptr)
 		enabled = m_pDirDoc->MoveableToPrevDiff();
-	*/
 	pCmdUI->Enable(enabled);
 }
 
@@ -1330,14 +1390,11 @@ void CWebPageDiffFrame::OnNextConflict()
  */
 void CWebPageDiffFrame::OnUpdateNextConflict(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(
-		false
-		/*
+	pCmdUI->Enable(m_bCompareCompleted && 
 		m_pWebDiffWindow->GetPaneCount() > 2 && (
 			m_pWebDiffWindow->GetNextConflictIndex() >= 0 ||
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
 		)
-		*/
 	);
 }
 
@@ -1354,14 +1411,11 @@ void CWebPageDiffFrame::OnPrevConflict()
  */
 void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(
-		false
-		/*
+	pCmdUI->Enable(m_bCompareCompleted &&
 		m_pWebDiffWindow->GetPaneCount() > 2 && (
 			m_pWebDiffWindow->GetPrevConflictIndex() >= 0 ||
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
 		)
-		*/
 	);
 }
 
@@ -1555,9 +1609,13 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 
 void CWebPageDiffFrame::OnRefresh()
 {
+	if (!m_bCompareCompleted)
+		return;
+	m_bCompareCompleted = false;
 	m_pWebDiffWindow->Recompare(
 		Callback<IWebDiffCallback>([this](const WebDiffCallbackResult& result) -> HRESULT
 			{
+				m_bCompareCompleted = true;
 				if (UpdateDiffItem(m_pDirDoc) == 0 &&
 				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
 				{

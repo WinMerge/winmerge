@@ -3266,7 +3266,12 @@ void CDirView::OnItemRename()
 void CDirView::OnUpdateItemRename(CCmdUI* pCmdUI)
 {
 	bool bEnabled = (1 == m_pList->GetSelectedCount());
-	pCmdUI->Enable(bEnabled && SelBegin() != SelEnd());
+	if (bEnabled)
+	{
+		Counts counts = Count(&DirActions::IsItemRenamable);
+		bEnabled = (counts.count > 0 && counts.total == 1);
+	}
+	pCmdUI->Enable(bEnabled);
 }
 
 /**
@@ -3411,7 +3416,8 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
  */
 afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
-	*pResult = (SelBegin() == SelEnd());
+	Counts counts = Count(&DirActions::IsItemRenamable);
+	*pResult = !(counts.count > 0 && counts.total == 1);
 
 	// If label edit is allowed.
 	if (*pResult == FALSE)
@@ -3465,7 +3471,7 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		CString sText;
 		pEdit->GetWindowText(sText);
 
-		if (!sText.IsEmpty())
+		if (!sText.IsEmpty() && paths::IsValidName(String(sText)))
 		{
 			try {
 				DirItemIterator it(m_pIList.get(), reinterpret_cast<NMLVDISPINFO *>(pNMHDR)->item.iItem);
@@ -3508,6 +3514,10 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 			} catch (ContentsChangedException& e) {
 				AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 			}
+		}
+		else
+		{
+			LangMessageBox(IDS_ERROR_INVALID_DIR_FILE_NAME, MB_ICONWARNING);
 		}
 	}
 }

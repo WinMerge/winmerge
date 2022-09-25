@@ -587,6 +587,9 @@ void CHexMergeView::OnHelp()
 void CHexMergeView::ZoomText(int amount)
 {
 	m_pif->CMD_zoom(amount);
+	IHexEditorWindow::Settings *settings = m_pif->get_settings();
+	const int iNewFontSize = settings->iFontSize + settings->iFontZoom;
+	GetOptionsMgr()->SaveOption(OPT_VIEW_ZOOM, iNewFontSize * 1000 / settings->iFontSize);
 }
 
 /**

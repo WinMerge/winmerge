@@ -68,6 +68,9 @@ msgstr "Vybrať riadky roz&dielov\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Pridá túto zmenu do položky &Filtre nahradenia"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "&Späť"
 
@@ -2845,6 +2848,9 @@ msgstr "Potvrdiť presun"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Chystáte sa zavrieť okno s porovnaním priečinkov. Naozaj chcete zavrieť okno?"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

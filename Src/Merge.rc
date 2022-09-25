@@ -94,6 +94,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
+        MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -2299,6 +2300,7 @@ BEGIN
     EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "UA:",-1,214,4,16,10
     EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
+    CONTROL         "View &Differences",IDC_SHOWDIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,2,96,14
 END
 
 
@@ -3443,6 +3445,8 @@ BEGIN
     IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
     IDS_CONFIRM_CLOSE_WINDOW 
                             "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+    IDS_ERROR_INVALID_DIR_FILE_NAME
+                            "The file or folder name is invalid."
 END
 
 // DIRECTORY DIFFING : OPEN FILE

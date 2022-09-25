@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-07-10 19:30+0200\n"
+"PO-Revision-Date: 2022-09-12 17:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -70,6 +70,9 @@ msgstr "Zeilen&unterschied markieren\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Diese Änderung zu den Ersetzungsfiltern hinzuf&ügen"
+
+msgid "Add to &Line Filters"
+msgstr "&Zu Zeilenfiltern hinzufügen"
 
 #, c-format
 msgid "&Undo"
@@ -3184,6 +3187,9 @@ msgstr "Verschieben bestätigen"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Sie schließen gerade das Fenster, in dem Ordner verglichen werden. Möchten Sie das Fenster wirklich schließen?"
 
+msgid "The file or folder name is invalid."
+msgstr "Der Datei- oder Ordnername ist ungültig."
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Konnte externen Editor nicht ausführen: %1"
@@ -4039,7 +4045,7 @@ msgid "G&o to Line %1"
 msgstr "Gehe zu &Zeile %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr "&Zur verschobenen Zeile gehen\tStrg+Umschalt+G"
+msgstr "Zur &verschobenen Zeile gehen\tStrg+Umschalt+G"
 
 #, c-format
 msgid "Disabled"

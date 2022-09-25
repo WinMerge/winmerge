@@ -8,10 +8,10 @@
 struct COLORSETTINGS
 {
 	COLORREF	clrDiff;			/**< Difference color */
-	COLORREF	clrSelDiff;			/**< Selected difference color */
 	COLORREF	clrDiffDeleted;		/**< Difference deleted color */
-	COLORREF	clrSelDiffDeleted;	/**< Selected difference deleted color */
 	COLORREF	clrDiffText;		/**< Difference text color */
+	COLORREF	clrSelDiff;			/**< Selected difference color */
+	COLORREF	clrSelDiffDeleted;	/**< Selected difference deleted color */
 	COLORREF	clrSelDiffText;		/**< Selected difference text color */
 	COLORREF	clrTrivial;			/**< Ignored difference color */
 	COLORREF	clrTrivialDeleted;	/**< Ignored difference deleted color */

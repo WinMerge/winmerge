@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-07-10 10:12+0000\n"
+"POT-Creation-Date: 2022-09-12 23:52+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -60,6 +60,9 @@ msgid "Select Line &Difference\tF4"
 msgstr ""
 
 msgid "Add this change to Substitution &Filters"
+msgstr ""
+
+msgid "Add to &Line Filters"
 msgstr ""
 
 msgid "&Undo"
@@ -2606,6 +2609,9 @@ msgid "Confirm Move"
 msgstr ""
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr ""
+
+msgid "The file or folder name is invalid."
 msgstr ""
 
 #, c-format

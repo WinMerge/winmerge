@@ -217,6 +217,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	// Context menu
 	ON_COMMAND(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnAddToSubstitutionFilters)
 	ON_UPDATE_COMMAND_UI(ID_ADD_TO_IGNORED_SUBSTITUTIONS, OnUpdateAddToSubstitutionFilters)
+	ON_COMMAND(ID_ADD_TO_LINE_FILTERS, OnAddToLineFilters)
+	ON_UPDATE_COMMAND_UI(ID_ADD_TO_LINE_FILTERS, OnUpdateAddToLineFilters)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_LM, OnGotoMovedLineLM)
 	ON_UPDATE_COMMAND_UI(ID_GOTO_MOVED_LINE_LM, OnUpdateGotoMovedLineLM)
 	ON_COMMAND(ID_GOTO_MOVED_LINE_MR, OnGotoMovedLineMR)
@@ -597,7 +599,9 @@ void CMergeEditView::OnInitialUpdate()
 	PushCursors();
 	CCrystalEditViewEx::OnInitialUpdate();
 	PopCursors();
-	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
+	LOGFONT lf = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff;
+	lf.lfHeight = static_cast<LONG>(lf.lfHeight * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0);
+	SetFont(lf);
 	SetAlternateDropTarget(new DropHandler(std::bind(&CMergeEditView::OnDropFiles, this, std::placeholders::_1)));
 
 	m_lineBegin = 0;
@@ -678,7 +682,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 			else if (m_nThisPane == 2 && worddiffs[i].op == OP_1STONLY)
 				continue;
 		}
-		int begin[3], end[3];
+		int begin[3]{}, end[3]{};
 		bool deleted = false;
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
@@ -2021,7 +2025,7 @@ void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
 
-			pCmdUI->Enable(firstDiff != -1 && lastDiff != -1 && firstWordDiff != -1 && lastWordDiff != -1);
+			pCmdUI->Enable((firstDiff != -1 && lastDiff != -1) || (firstWordDiff != -1 && lastWordDiff != -1));
 		}
 		else
 		{
@@ -2698,6 +2702,38 @@ void CMergeEditView::OnAddToSubstitutionFilters()
 void CMergeEditView::OnUpdateAddToSubstitutionFilters(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
+}
+
+void CMergeEditView::OnAddToLineFilters()
+{
+	// Pass this to the document, to compare this file to other
+	CMergeDoc* pDoc = GetDocument();
+	auto [ptSelStart, ptSelEnd] = GetSelection();
+
+	// Nothing selected
+	if (ptSelStart == ptSelEnd)
+		return;
+
+	CString text;
+
+	if (!m_bRectangularSelection)
+	{
+		CDiffTextBuffer* buffer = pDoc->m_ptBuf[m_nThisPane].get();
+
+		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
+			ptSelEnd.y, ptSelEnd.x, text);
+	}
+	else
+		GetTextWithoutEmptysInColumnSelection(text);
+
+	CMergeDoc* pd = GetDocument();
+	pd->AddToLineFilters(text.GetString());
+	pd->FlushAndRescan(true);
+}
+
+void CMergeEditView::OnUpdateAddToLineFilters(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(IsSelection() && GetDocument()->m_nBuffers == 2 && !GetDocument()->IsEditedAfterRescan());
 }
 
 /**
@@ -3699,7 +3735,7 @@ void CMergeEditView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 	CSize sz = rDraw.Size();
 	CMergeDoc *pDoc = GetDocument();
 
-	SIZE szLeftTop, szRightBottom;
+	SIZE szLeftTop{}, szRightBottom{};
 	GetPrintMargins(szLeftTop.cx, szLeftTop.cy, szRightBottom.cx, szRightBottom.cy);
 	pDC->HIMETRICtoLP(&szLeftTop);
 	pDC->HIMETRICtoLP(&szRightBottom);
@@ -3982,7 +4018,7 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
 	{
 		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING | ((j % 22) == 21) ? MF_MENUBREAK : 0, i, name.c_str());
+		AppendMenu(hSubMenu, MF_STRING | (((j % 22) == 21) ? MF_MENUBREAK : 0), i, name.c_str());
 	}
 
 	pCmdUI->Enable(true);
@@ -4086,12 +4122,12 @@ void CMergeEditView::ZoomText(short amount)
 	const int nLogPixelsY = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
 	int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
 
+	int nOrgPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);
+	if (nOrgPointSize ==  0)
+		nOrgPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
+
 	if ( amount == 0)
-	{
-		nPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);
-		if (nPointSize ==  0)
-			nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_HEIGHT), 72, nLogPixelsY);
-	}
+		nPointSize = nOrgPointSize;
 
 	nPointSize += amount;
 	if (nPointSize < 2)
@@ -4115,6 +4151,8 @@ void CMergeEditView::ZoomText(short amount)
 			}
 		}
 	}
+
+	GetOptionsMgr()->SaveOption(OPT_VIEW_ZOOM, nPointSize * 1000 / nOrgPointSize);
 }
 
 bool CMergeEditView::QueryEditable()

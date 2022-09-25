@@ -150,6 +150,7 @@ Localization:
   Igor Rückert
   jota11
   Gabriel Camargo Fukushima
+  Marcello-mco
 
 * Portuguese (Portugal):
   Nelson Simão
@@ -186,6 +187,7 @@ Localization:
   Mario Angel <marioangel70@gmail.com>
   Nelson Ariza <njarizas@hotmail.com>
   borjafg
+  Mauricio Gracia Gutierrez
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
@@ -264,6 +266,9 @@ Other Contributors (code, ideas, testing..):
 * stonee-K
 * yuanshouyan1823
 * Mauricio Gracia Gutierrez
+* HaroldPetersInskipp (Midnight color schema)
+* srgank
+* baka0815
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

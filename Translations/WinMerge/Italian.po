@@ -66,6 +66,9 @@ msgstr "Seleziona &differenze di riga\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr ""
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Annul&la"
 
@@ -2837,6 +2840,9 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr ""
 "Si sta per chiudere la finestra che sta confrontando le cartelle.\n"
 "Vuoi chiudere la finestra?"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

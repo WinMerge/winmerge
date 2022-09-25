@@ -1015,6 +1015,8 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 				bakPath = std::move(path);
 			else
 				bakPath = paths::GetLongPath(bakPath);
+
+			paths::CreateIfNeeded(bakPath);
 		}
 		else
 		{

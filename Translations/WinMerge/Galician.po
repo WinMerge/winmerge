@@ -69,6 +69,9 @@ msgstr "Seleccionar diferen&zas de liña\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Engadir este cambio aos &Filtros de substitución"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "&Desfacer"
@@ -3416,6 +3419,9 @@ msgstr "Confirmar movemento"
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Vas pechar a ventá de comparación de cartafoles. Seguro que queres continuar?"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

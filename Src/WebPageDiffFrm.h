@@ -50,6 +50,7 @@ public:
 	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void UpdateResources();
+	void RefreshOptions();
 	bool CloseNow() override;
 	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
 	void UpdateLastCompareResult();
@@ -106,7 +107,6 @@ private:
 	void UpdateWebPageDiffBar();
 	//static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 
-// Generated message map functions
 private:
 	CWebPageDiffBar m_wndWebPageDiffBar;
 	CLocationBar m_wndLocationBar;
@@ -125,8 +125,11 @@ private:
 	std::vector<std::shared_ptr<TempFile>> m_tempFiles;
 	std::vector<std::shared_ptr<TempFolder>> m_tempFolders;
 	std::function<void()> m_callbackOnOpenCompleted;
+	bool m_bCompareCompleted;
 	bool m_bInUpdateWebPageDiffBar;
 
+// Generated message map functions
+protected:
 	//{{AFX_MSG(CWebPageDiffFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
@@ -154,17 +157,19 @@ private:
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnEditUndo();
+	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnEditRedo();
+	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnEditCut();
 	afx_msg void OnEditCopy();
 	afx_msg void OnEditPaste();
-	afx_msg void OnEditUndo();
-	afx_msg void OnEditRedo();
-	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
+	afx_msg void OnViewLineDiffs();
+	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
 	afx_msg void OnViewSplitVertically();
 	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
 	afx_msg void OnFirstdiff();
@@ -192,6 +197,7 @@ private:
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();
 	afx_msg void OnBnClickedFitToWindow();
+	afx_msg void OnBnClickedShowDifferences();
 	afx_msg void OnBnClickedCompare();
 	afx_msg void OnEnChangeWidth();
 	afx_msg void OnEnChangeHeight();

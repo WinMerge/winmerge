@@ -68,6 +68,9 @@ msgstr "Regelverschil selecteren\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Deze wijziging aan vervangingsfilters toevoegen"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Ongedaan maken"
 
@@ -2874,6 +2877,9 @@ msgid ""
 msgstr ""
 "U staat op het punt om het venster te sluiten dat mappen aan het vergelijken"
 " is. Weet u zeker dat u het venster wilt sluiten?"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

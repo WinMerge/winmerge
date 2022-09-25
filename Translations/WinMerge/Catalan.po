@@ -68,6 +68,9 @@ msgstr "Selecciona la diferència de la &línia\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "Afegeix aquest canvi als F&iltres de substitució"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "&Desfés"
@@ -3401,6 +3404,9 @@ msgstr "Confirmeu l'acció de moure"
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Esteu a punt de tancar la finestra que compara els directoris. Esteu segurs de tancar la finestra?"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

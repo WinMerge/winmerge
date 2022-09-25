@@ -618,6 +618,7 @@ void CHexMergeDoc::UpdateHeaderPath(int pane)
 static void Customize(IHexEditorWindow::Settings *settings)
 {
 	settings->bSaveIni = false;
+	settings->iFontZoom = static_cast<int>(settings->iFontSize * GetOptionsMgr()->GetInt(OPT_VIEW_ZOOM) / 1000.0 - settings->iFontSize);
 	//settings->iAutomaticBPL = false;
 	//settings->iBytesPerLine = 16;
 	//settings->iFontSize = 8;

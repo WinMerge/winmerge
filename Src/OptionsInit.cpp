@@ -81,6 +81,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
 	pOptions->InitOption(OPT_VIEW_TOPMARGIN, false);
 	pOptions->InitOption(OPT_VIEW_TOPMARGIN_TABLE, true);
+	pOptions->InitOption(OPT_VIEW_ZOOM, 1000, 100, 8000);
 	pOptions->InitOption(OPT_LINE_NUMBER_USED_AS_HEADERS, -1);
 	pOptions->InitOption(OPT_DIFF_CONTEXT, (int)-1);
 	pOptions->InitOption(OPT_INVERT_DIFF_CONTEXT, false);
@@ -175,6 +176,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, 0, 0, 1);
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_PERPANE, true);
 	pOptions->InitOption(OPT_CMP_WEB_FIT_TO_WINDOW, true);
+	pOptions->InitOption(OPT_CMP_WEB_SHOWDIFFERENCES, true);
 	pOptions->InitOption(OPT_CMP_WEB_VIEW_WIDTH, 1024, 1, 9999);
 	pOptions->InitOption(OPT_CMP_WEB_VIEW_HEIGHT, 600, 1, 9999);
 	pOptions->InitOption(OPT_CMP_WEB_ZOOM, 1000, 250, 5000);

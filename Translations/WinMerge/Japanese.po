@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2022-04-20 22:45+0900\n"
+"PO-Revision-Date: 2022-09-14 22:42+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -66,6 +66,9 @@ msgstr "行内差異を選択(&D)\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "この差異を置換フィルターに追加する(&F)"
+
+msgid "Add to &Line Filters"
+msgstr "行フィルターに追加する(&L)"
 
 msgid "&Undo"
 msgstr "元に戻す(&U)"
@@ -2848,6 +2851,9 @@ msgstr "移動の確認"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "フォルダー比較中のウィンドウを閉じようとしています。本当にウィンドウを閉じますか?"
+
+msgid "The file or folder name is invalid."
+msgstr "ファイル名またはフォルダー名が無効です。"
 
 #, c-format
 msgid "Failed to execute external editor: %1"

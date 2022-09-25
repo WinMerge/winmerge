@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-05-09 18:00+0200\n"
+"PO-Revision-Date: 2022-09-12 21:17+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -67,6 +67,9 @@ msgstr "Izberi &razliko vrstice\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Dodaj to spremembmo med &Nadomestne filtre"
+
+msgid "Add to &Line Filters"
+msgstr "Dodaj v filtre &vrstic"
 
 msgid "&Undo"
 msgstr "&Razveljavi"
@@ -967,7 +970,7 @@ msgid "Copy &Filename"
 msgstr "Kopiraj &ime datoteke"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "&Uredi napis"
 
 msgid "&Select..."
 msgstr "&Izberi..."
@@ -1985,7 +1988,7 @@ msgid "Custom Delimiter-Separated Values"
 msgstr "Ločilo po meri-Ločene vrednosti"
 
 msgid "File Patterns:"
-msgstr "Vrste datotek:"
+msgstr "Vzorci datotek:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
@@ -2292,7 +2295,7 @@ msgid "Compare Options"
 msgstr "Primerjaj možnosti"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Skriti vnosi"
 
 msgid "Name"
 msgstr "Ime"
@@ -2849,6 +2852,9 @@ msgstr "Potrdi premik"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
+
+msgid "The file or folder name is invalid."
+msgstr "Ime datoteke ali mape ni veljavno."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3956,7 +3962,7 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"
 
 msgid "Al&l"
-msgstr "Alnl"
+msgstr "V&se"
 
 msgid "Prettification"
 msgstr "Polepšanje"

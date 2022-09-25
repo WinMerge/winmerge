@@ -69,6 +69,9 @@ msgstr "选中行内差异(&D)\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "将此改动添加到置换过滤器(&F)"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "撤销(&U)"
 
@@ -2851,6 +2854,9 @@ msgid ""
 "You are about to close the window that is comparing folders. Are you sure "
 "you want to close the window?"
 msgstr "您即将关闭比较文件夹的窗口。确定关闭该窗口？"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

@@ -67,6 +67,9 @@ msgstr "Επιλο&γή Διαφοράς Γραμμής\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr ""
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "Α&ναίρεση"
@@ -3327,6 +3330,9 @@ msgstr "Επιβεβαιώσατε Μετακίνηση"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgstr ""
+
+msgid "The file or folder name is invalid."
 msgstr ""
 
 #, c-format

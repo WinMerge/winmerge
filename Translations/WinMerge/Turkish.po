@@ -68,6 +68,9 @@ msgstr "Satır &farkını seç\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "&Bu değişikliği değişiklik süzgeçlerine ekle"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 msgid "&Undo"
 msgstr "Geri a&l"
 
@@ -2892,6 +2895,9 @@ msgid ""
 msgstr ""
 "Klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak "
 "istediğinize emin misiniz?"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"

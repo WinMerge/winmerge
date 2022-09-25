@@ -609,6 +609,7 @@
 #define IDC_USERAGENT                   1628
 #define IDC_CHECK1                      1629
 #define IDC_COMPARE                     1630
+#define IDC_SHOWDIFFERENCES             1631
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1050,6 +1051,7 @@
 #define ID_SWAPPANES_SWAP23             34173
 #define ID_SWAPPANES_SWAP13             34174
 #define ID_ADD_TO_IGNORED_SUBSTITUTIONS 34175
+#define ID_ADD_TO_LINE_FILTERS          34176
 #define ID_FIRSTFILE                    34182
 #define ID_PREVFILE                     34183
 #define ID_NEXTFILE                     34184
@@ -1254,6 +1256,7 @@
 #define IDS_CONFIRM_COPY_CAPTION        41698
 #define IDS_CONFIRM_MOVE_CAPTION        41699
 #define IDS_CONFIRM_CLOSE_WINDOW        41700
+#define IDS_ERROR_INVALID_DIR_FILE_NAME 41701
 #define IDS_ERROR_EXECUTE_FILE          41719
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      41731
 #define IDS_FAILED_EXTRACT_ARCHIVE_FILES 41732
@@ -1703,7 +1706,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        258
 #define _APS_NEXT_COMMAND_VALUE         34194
-#define _APS_NEXT_CONTROL_VALUE         1631
+#define _APS_NEXT_CONTROL_VALUE         1632
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

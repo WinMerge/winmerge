@@ -70,6 +70,9 @@ msgstr "選取行內差異 (&D)\tF4"
 msgid "Add this change to Substitution &Filters"
 msgstr "將此變動加入替代篩選器 (&F)"
 
+msgid "Add to &Line Filters"
+msgstr ""
+
 #, c-format
 msgid "&Undo"
 msgstr "復原 (&U)"
@@ -3415,6 +3418,9 @@ msgstr "確認移除"
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "您要關閉一個正在比較資料夾的視窗，您確定要關閉視窗嗎？"
+
+msgid "The file or folder name is invalid."
+msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"
