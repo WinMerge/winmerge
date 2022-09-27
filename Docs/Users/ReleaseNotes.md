@@ -9,7 +9,8 @@ September 2022
 ## About This Release
 
 This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+WinMerge development. This release is not recommended for production
+environments.
 
 Please submit bug reports to our bug-tracker.
 
