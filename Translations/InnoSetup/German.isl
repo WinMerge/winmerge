@@ -16,7 +16,7 @@ Filters=Filter
 Plugins=Plugins
 Frhed=Frhed (Freier Hex-Editor)
 WinIMerge=WinIMerge (Bildvergleich)
-WinWebDiff=WinWebDiff(Web Page Diff)
+WinWebDiff=WinWebDiff (Webseitenvergleich)
 ArchiveSupport=Archivsupport
 ShellExtension32bit=32-Bit-WinMerge-Shellintegration
 Commands=GnuWin32-Patch für Windows/HTML Tidy/jq
@@ -47,7 +47,7 @@ LithuanianLanguage=Litauische Menüs und Dialoge
 NorwegianLanguage=Norwegische Menüs und Dialoge
 PersianLanguage=Persische Menüs und Dialoge
 PolishLanguage=Polnische Menüs und Dialoge
-PortugueseBrazilLanguage=Portugiesische (brasilianische) Menüs und Dialoge
+PortugueseBrazilLanguage=Portugiesische (brasilianisch) Menüs und Dialoge
 PortugueseLanguage=Portugiesische Menüs und Dialoge
 RomanianLanguage=Rumänische Menüs und Dialoge
 RussianLanguage=Russische Menüs und Dialoge
@@ -79,7 +79,7 @@ AutoMergeAtStartup=Beim Start automatisch zusammenführen
 ;Icon Labels
 ReadMe=Liesmich-Datei
 UsersGuide=Benutzerhandbuch
-ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
+ViewStartMenuFolder=&Startmenü-Ordner anzeigen
 
 ;Code Dialogs
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
