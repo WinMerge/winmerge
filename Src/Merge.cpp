@@ -1268,7 +1268,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		projItem.GetPaths(tFiles, bDummy);
 		for (int i = 0; i < tFiles.GetSize(); ++i)
 		{
-			if (!paths::IsPathAbsolute(tFiles[i]))
+			if (!paths::IsPathAbsolute(tFiles[i]) && !paths::IsURL(tFiles[i]))
 			{
 				String sProjectDir = paths::GetParentPath(sProject);
 				if (tFiles[i].substr(0, 1) == _T("\\"))
