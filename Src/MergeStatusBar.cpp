@@ -69,6 +69,7 @@ static UINT indicatorsBottom[] =
 };
 
 BEGIN_MESSAGE_MAP(CMergeStatusBar, CStatusBar)
+	ON_WM_SETCURSOR()
 END_MESSAGE_MAP()
 
 /**
@@ -324,3 +325,10 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		Update();
 	}
 }
+
+BOOL CMergeStatusBar::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
+{
+    ::SetCursor (::LoadCursor (nullptr, IDC_HAND));
+	return TRUE;
+}
+

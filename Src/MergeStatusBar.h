@@ -29,6 +29,7 @@ public :
 	void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 
 protected:
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	DECLARE_MESSAGE_MAP();
 
 private:
