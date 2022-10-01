@@ -897,10 +897,14 @@ void COpenView::OnSaveProject()
 
 	if (!m_strPath[0].empty())
 		projItem.SetLeft(m_strPath[0], &m_bReadOnly[0]);
+	if (!GetDocument()->m_strDesc[0].empty())
+		projItem.SetLeftDesc(GetDocument()->m_strDesc[0]);
 	if (m_strPath[2].empty())
 	{
 		if (!m_strPath[1].empty())
 			projItem.SetRight(m_strPath[1], &m_bReadOnly[1]);
+		if (!GetDocument()->m_strDesc[1].empty())
+			projItem.SetRightDesc(GetDocument()->m_strDesc[1]);
 	}
 	else
 	{
@@ -908,6 +912,10 @@ void COpenView::OnSaveProject()
 			projItem.SetMiddle(m_strPath[1], &m_bReadOnly[1]);
 		if (!m_strPath[2].empty())
 			projItem.SetRight(m_strPath[2], &m_bReadOnly[2]);
+		if (!GetDocument()->m_strDesc[1].empty())
+			projItem.SetMiddleDesc(GetDocument()->m_strDesc[1]);
+		if (!GetDocument()->m_strDesc[2].empty())
+			projItem.SetRightDesc(GetDocument()->m_strDesc[2]);
 	}
 	if (bSaveFileFilter && !m_strExt.empty())
 	{
@@ -926,6 +934,8 @@ void COpenView::OnSaveProject()
 		projItem.SetSubfolders(m_bRecurse);
 	if (bSaveUnpackerPlugin && !m_strUnpackerPipeline.empty())
 		projItem.SetUnpacker(m_strUnpackerPipeline);
+	if (GetDocument()->m_nWindowType != -1)
+		projItem.SetWindowType(GetDocument()->m_nWindowType);
 
 	if (bSaveCompareOptions)
 	{

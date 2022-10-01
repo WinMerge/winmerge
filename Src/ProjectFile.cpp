@@ -35,6 +35,9 @@ const char Paths_element_name[] = "paths";
 const char Left_element_name[] = "left";
 const char Middle_element_name[] = "middle";
 const char Right_element_name[] = "right";
+const char Left_desc_element_name[] = "left-desc";
+const char Middle_desc_element_name[] = "middle-desc";
+const char Right_desc_element_name[] = "right-desc";
 const char Filter_element_name[] = "filter";
 const char Subfolders_element_name[] = "subfolders";
 const char Left_ro_element_name[] = "left-readonly";
@@ -42,6 +45,7 @@ const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 const char Unpacker_element_name[] = "unpacker";
 const char Prediffer_element_name[] = "prediffer";
+const char Window_type_element_name[] = "window-type";
 const char White_spaces_element_name[] = "white-spaces";
 const char Ignore_blank_lines_element_name[] = "ignore-blank-lines";
 const char Ignore_case_element_name[] = "ignore-case";
@@ -123,6 +127,21 @@ public:
 			currentItem.m_paths.SetRight(currentItem.m_paths.GetRight() + xmlch2tstr(ch + start, length), false);
 			currentItem.m_bHasRight = true;
 		}
+		else if (nodename == Left_desc_element_name)
+		{
+			currentItem.m_leftDesc += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasLeftDesc = true;
+		}
+		else if (nodename == Middle_desc_element_name)
+		{
+			currentItem.m_middleDesc += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasMiddleDesc = true;
+		}
+		else if (nodename == Right_desc_element_name)
+		{
+			currentItem.m_rightDesc += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasRightDesc = true;
+		}
 		else if (nodename == Filter_element_name)
 		{
 			currentItem.m_filter += xmlch2tstr(ch + start, length);
@@ -154,6 +173,11 @@ public:
 		{
 			currentItem.m_prediffer += xmlch2tstr(ch + start, length);
 			currentItem.m_bHasPrediffer = true;
+		}
+		else if (nodename == Window_type_element_name)
+		{
+			currentItem.m_nWindowType = atoi(token.c_str());
+			currentItem.m_bHasWindowType = true;
 		}
 		else if (nodename == White_spaces_element_name)
 		{
@@ -223,14 +247,19 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 : m_bHasLeft(false)
 , m_bHasMiddle(false)
 , m_bHasRight(false)
+, m_bHasLeftDesc(false)
+, m_bHasMiddleDesc(false)
+, m_bHasRightDesc(false)
 , m_bHasFilter(false)
 , m_bHasSubfolders(false)
 , m_bHasUnpacker(false)
 , m_bHasPrediffer(false)
+, m_bHasWindowType(false)
 , m_subfolders(-1)
 , m_bLeftReadOnly(false)
 , m_bMiddleReadOnly(false)
 , m_bRightReadOnly(false)
+, m_nWindowType(-1)
 , m_bHasIgnoreWhite(false)
 , m_nIgnoreWhite(0)
 , m_bHasIgnoreBlankLines(false)
@@ -387,6 +416,12 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Middle_element_name, toUTF8(item.m_paths.GetMiddle()));
 				if (!item.m_paths.GetRight().empty())
 					writeElement(writer, Right_element_name, toUTF8(item.m_paths.GetRight()));
+				if (!item.m_leftDesc.empty())
+					writeElement(writer, Left_desc_element_name, toUTF8(item.m_leftDesc));
+				if (!item.m_middleDesc.empty())
+					writeElement(writer, Middle_desc_element_name, toUTF8(item.m_middleDesc));
+				if (!item.m_rightDesc.empty())
+					writeElement(writer, Right_desc_element_name, toUTF8(item.m_rightDesc));
 				if (item.m_bSaveFilter && !item.m_filter.empty())
 					writeElement(writer, Filter_element_name, toUTF8(item.m_filter));
 				if (item.m_bSaveSubfolders)
@@ -399,6 +434,8 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
 				if (!item.m_prediffer.empty())
 					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
+				if (item.m_nWindowType != -1)
+					writeElement(writer, Window_type_element_name, std::to_string(item.m_nWindowType));
 				if (item.m_bSaveIgnoreWhite)
 					writeElement(writer, White_spaces_element_name, std::to_string(item.m_nIgnoreWhite));
 				if (item.m_bSaveIgnoreBlankLines)

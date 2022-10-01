@@ -71,7 +71,7 @@ public:
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
 	void CheckFileChanged(void) override;
-	String GetDescription(int pane) const { return m_strDesc[pane]; }
+	String GetDescription(int pane) const override { return m_strDesc[pane]; }
 	static bool IsLoadable();
 
 // Attributes

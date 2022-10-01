@@ -23,6 +23,8 @@ public:
 	bool	m_bRecurse;
 	String	m_strExt;
 	String	m_strUnpackerPipeline;
+	String	m_strDesc[3];
+	int		m_nWindowType;
 	std::vector<String> m_hiddenItems;
 
 protected:

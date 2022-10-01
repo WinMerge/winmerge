@@ -1296,7 +1296,11 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 			pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
 		if (projItem.HasPrediffer())
 			pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
+		int nID = 0;
+		if (projItem.HasWindowType())
+			nID = ID_MERGE_COMPARE_TEXT + projItem.GetWindowType() - 1;
 
+		String strDesc[3];
 		DWORD dwFlags[3] = {
 			static_cast<DWORD>(tFiles.GetPath(0).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
 			static_cast<DWORD>(tFiles.GetPath(1).empty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT),
@@ -1304,10 +1308,14 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		};
 		if (bLeftReadOnly)
 			dwFlags[0] |= FFILEOPEN_READONLY;
+		if (projItem.HasLeftDesc())
+			strDesc[0] = projItem.GetLeftDesc();
 		if (tFiles.GetSize() == 2)
 		{
 			if (bRightReadOnly)
 				dwFlags[1] |= FFILEOPEN_READONLY;
+			if (projItem.HasRightDesc())
+				strDesc[1] = projItem.GetRightDesc();
 		}
 		else
 		{
@@ -1315,6 +1323,10 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 				dwFlags[1] |= FFILEOPEN_READONLY;
 			if (bRightReadOnly)
 				dwFlags[2] |= FFILEOPEN_READONLY;
+			if (projItem.HasMiddleDesc())
+				strDesc[1] = projItem.GetMiddleDesc();
+			if (projItem.HasRightDesc())
+				strDesc[2] = projItem.GetRightDesc();
 		}
 
 		GetOptionsMgr()->Set(OPT_CMP_INCLUDE_SUBDIRS, bRecursive);
@@ -1346,8 +1358,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 			pOpenFolderParams->m_hiddenItems = projItem.GetHiddenItems();
 		}
 
-		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, sReportFile, bRecursive,
-			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), 0, pOpenFolderParams.get());
+		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, strDesc, sReportFile, bRecursive,
+			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), nID, pOpenFolderParams.get());
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());
