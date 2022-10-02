@@ -2368,8 +2368,7 @@ void CMainFrame::OnSaveProject()
 			case FRAME_FILE:
 			{
 				CMergeDoc* pDoc = static_cast<CMergeDoc*>(pMergeDoc);
-				bool bTable = pDoc->GetEnableTableEditing().value_or(false);
-				if (bTable)
+				if (pDoc->m_ptBuf[0]->GetTableEditing())
 				{
 					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TABLE - ID_MERGE_COMPARE_TEXT + 1;
 					pOpenDoc->m_cTableDelimiter = pDoc->m_ptBuf[0]->GetFieldDelimiter();
