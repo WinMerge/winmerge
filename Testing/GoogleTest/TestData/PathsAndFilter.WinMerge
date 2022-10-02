@@ -6,5 +6,11 @@
 		<filter>Filter Name</filter>
 		<prediffer>IgnoreColumns.dll</prediffer>
 		<unpacker>CompareMSExcelFiles.sct</unpacker>
+		<left-desc>left description</left-desc>
+		<right-desc>right description</right-desc>
+		<window-type>2</window-type>
+		<table-delimiter>	</table-delimiter>
+		<table-quote>"</table-quote>
+		<table-allownewlinesinquotes>1</table-allownewlinesinquotes>
 	</paths>
 </project>
