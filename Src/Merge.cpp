@@ -1299,6 +1299,14 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		int nID = 0;
 		if (projItem.HasWindowType())
 			nID = ID_MERGE_COMPARE_TEXT + projItem.GetWindowType() - 1;
+		std::unique_ptr<CMainFrame::OpenTableFileParams> pOpenTableFileParams;
+		if (nID == ID_MERGE_COMPARE_TABLE)
+		{
+			pOpenTableFileParams = std::make_unique<CMainFrame::OpenTableFileParams>();
+			pOpenTableFileParams->m_tableDelimiter = projItem.GetTableDelimiter();
+			pOpenTableFileParams->m_tableQuote = projItem.GetTableQuote();
+			pOpenTableFileParams->m_tableAllowNewlinesInQuotes = projItem.GetTableAllowNewLinesInQuotes();
+		}
 
 		String strDesc[3];
 		DWORD dwFlags[3] = {
@@ -1359,7 +1367,10 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		}
 
 		rtn &= GetMainFrame()->DoFileOrFolderOpen(&tFiles, dwFlags, strDesc, sReportFile, bRecursive,
-			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), nID, pOpenFolderParams.get());
+			nullptr, pInfoUnpacker.get(), pInfoPrediffer.get(), nID,
+			nID == ID_MERGE_COMPARE_TABLE ?
+				static_cast<CMainFrame::OpenFileParams*>(pOpenTableFileParams.get()) :
+				static_cast<CMainFrame::OpenFileParams*>(pOpenFolderParams.get()));
 	}
 
 	AddToRecentProjectsMRU(sProject.c_str());

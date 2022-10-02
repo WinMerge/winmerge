@@ -26,6 +26,9 @@ public:
 	bool HasUnpacker() const;
 	bool HasPrediffer() const;
 	bool HasWindowType() const;
+	bool HasTableDelimiter() const;
+	bool HasTableQuote() const;
+	bool HasTableAllowNewLinesInQuotes() const;
 	bool HasIgnoreWhite() const;
 	bool HasIgnoreBlankLines() const;
 	bool HasIgnoreCase() const;
@@ -50,6 +53,9 @@ public:
 	String GetUnpacker() const;
 	String GetPrediffer() const;
 	int GetWindowType() const;
+	TCHAR GetTableDelimiter() const;
+	TCHAR GetTableQuote() const;
+	bool GetTableAllowNewLinesInQuotes() const;
 	int GetIgnoreWhite() const;
 	bool GetIgnoreBlankLines() const;
 	bool GetIgnoreCase() const;
@@ -71,6 +77,9 @@ public:
 	void SetUnpacker(const String& sUnpacker);
 	void SetPrediffer(const String& sPrediffer);
 	void SetWindowType(int nWindowType);
+	void SetTableDelimiter(TCHAR cTableDelimiter);
+	void SetTableQuote(TCHAR cTableQuote);
+	void SetTableAllowNewLinesInQuotes(bool bAllowNewLinesInQuotes);
 	void SetIgnoreWhite(int nIgnoreWhite);
 	void SetIgnoreBlankLines(bool bIgnoreBlankLines);
 	void SetIgnoreCase(bool bIgnoreCase);
@@ -121,6 +130,12 @@ private:
 	String m_prediffer; /**< Prediffer name or pipeline */
 	bool m_bHasWindowType; /**< Has window type? */
 	int m_nWindowType; /**< The value of the window type */
+	TCHAR m_cTableDelimiter;
+	bool m_bHasTableDelimiter; /**< Has table delimiter? */
+	TCHAR m_cTableQuote;
+	bool m_bHasTableQuote; /**< Has table quote? */
+	bool m_bTableAllowNewLinesInQuotes;
+	bool m_bHasTableAllowNewLinesInQuotes; /**< Has table allow new lines in quotes? */
 	bool m_bHasIgnoreWhite; /**< Has "Whitespaces" setting? */
 	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
 	bool m_bHasIgnoreBlankLines; /**< Has "Ignore blank lines" setting? */
@@ -324,6 +339,33 @@ inline bool ProjectFileItem::HasWindowType() const
 }
 
 /** 
+ * @brief Returns if table delimiter is defined in projectfile.
+ * @return true if project file has table delimiter definition.
+ */
+inline bool ProjectFileItem::HasTableDelimiter() const
+{
+	return m_bHasTableDelimiter;
+}
+
+/** 
+ * @brief Returns if table quote is defined in projectfile.
+ * @return true if project file has table quote definition.
+ */
+inline bool ProjectFileItem::HasTableQuote() const
+{
+	return m_bHasTableQuote;
+}
+
+/** 
+ * @brief Returns if table-allownewlinesinquotes is defined in projectfile.
+ * @return true if project file has table-allownewlinesinquotes definition.
+ */
+inline bool ProjectFileItem::HasTableAllowNewLinesInQuotes() const
+{
+	return m_bHasTableAllowNewLinesInQuotes;
+}
+
+/** 
  * @brief Returns if "Whitespaces" setting is defined in projectfile.
  * @return true if project file has "Whitespaces" setting definition.
  */
@@ -518,6 +560,60 @@ inline int ProjectFileItem::GetWindowType() const
 inline void ProjectFileItem::SetWindowType(int nWindowType)
 {
 	m_nWindowType = nWindowType;
+}
+
+/** 
+ * @brief Returns table delimiter
+ * @return Table delimiter
+ */
+inline TCHAR ProjectFileItem::GetTableDelimiter() const
+{
+	return m_cTableDelimiter;
+}
+
+/** 
+ * @brief Set table delimiter
+ * @param [in] cTableDelimiter New table delimiter to set.
+ */
+inline void ProjectFileItem::SetTableDelimiter(TCHAR cTableDelimiter)
+{
+	m_cTableDelimiter = cTableDelimiter;
+}
+
+/** 
+ * @brief Returns table quote
+ * @return Table quote
+ */
+inline TCHAR ProjectFileItem::GetTableQuote() const
+{
+	return m_cTableQuote;
+}
+
+/** 
+ * @brief Set table quote
+ * @param [in] cTableQuote New table quote to set.
+ */
+inline void ProjectFileItem::SetTableQuote(TCHAR cTableQuote)
+{
+	m_cTableQuote = cTableQuote;
+}
+
+/** 
+ * @brief Returns table-allownewlinesinquotes
+ * @return Table-allownewlinesinquotes
+ */
+inline bool ProjectFileItem::GetTableAllowNewLinesInQuotes() const
+{
+	return m_bTableAllowNewLinesInQuotes;
+}
+
+/** 
+ * @brief Set table-allownewlinesinquotes
+ * @param [in] cTableAllowNewLinesInQuotes New table-allownewlinesinquotes to set.
+ */
+inline void ProjectFileItem::SetTableAllowNewLinesInQuotes(bool bTableAllowNewLinesInQuotes)
+{
+	m_bTableAllowNewLinesInQuotes = bTableAllowNewLinesInQuotes;
 }
 
 /** 

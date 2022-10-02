@@ -46,6 +46,9 @@ const char Right_ro_element_name[] = "right-readonly";
 const char Unpacker_element_name[] = "unpacker";
 const char Prediffer_element_name[] = "prediffer";
 const char Window_type_element_name[] = "window-type";
+const char Table_delimiter_element_name[] = "table-delimiter";
+const char Table_quote_element_name[] = "table-quote";
+const char Table_allownewlinesinquotes_element_name[] = "table-allownewlinesinquotes";
 const char White_spaces_element_name[] = "white-spaces";
 const char Ignore_blank_lines_element_name[] = "ignore-blank-lines";
 const char Ignore_case_element_name[] = "ignore-case";
@@ -179,6 +182,21 @@ public:
 			currentItem.m_nWindowType = atoi(token.c_str());
 			currentItem.m_bHasWindowType = true;
 		}
+		else if (nodename == Table_delimiter_element_name)
+		{
+			currentItem.m_cTableDelimiter = token.c_str()[0];
+			currentItem.m_bHasTableDelimiter = true;
+		}
+		else if (nodename == Table_quote_element_name)
+		{
+			currentItem.m_cTableQuote = token.c_str()[0];
+			currentItem.m_bHasTableQuote = true;
+		}
+		else if (nodename == Table_allownewlinesinquotes_element_name)
+		{
+			currentItem.m_bTableAllowNewLinesInQuotes = atoi(token.c_str());
+			currentItem.m_bHasTableAllowNewLinesInQuotes = true;
+		}
 		else if (nodename == White_spaces_element_name)
 		{
 			currentItem.m_nIgnoreWhite = atoi(token.c_str());
@@ -254,12 +272,18 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bHasSubfolders(false)
 , m_bHasUnpacker(false)
 , m_bHasPrediffer(false)
-, m_bHasWindowType(false)
 , m_subfolders(-1)
 , m_bLeftReadOnly(false)
 , m_bMiddleReadOnly(false)
 , m_bRightReadOnly(false)
+, m_bHasWindowType(false)
 , m_nWindowType(-1)
+, m_bHasTableDelimiter(false)
+, m_cTableDelimiter(',')
+, m_bHasTableQuote(false)
+, m_cTableQuote('\"')
+, m_bHasTableAllowNewLinesInQuotes(false)
+, m_bTableAllowNewLinesInQuotes(true)
 , m_bHasIgnoreWhite(false)
 , m_nIgnoreWhite(0)
 , m_bHasIgnoreBlankLines(false)
@@ -275,8 +299,8 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bHasFilterCommentsLines(false)
 , m_bFilterCommentsLines(false)
 , m_bHasCompareMethod(false)
-, m_bHasHiddenItems(false)
 , m_nCompareMethod(0)
+, m_bHasHiddenItems(false)
 , m_bSaveFilter(true)
 , m_bSaveSubfolders(true)
 , m_bSaveUnpacker(true)
@@ -436,6 +460,12 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
 				if (item.m_nWindowType != -1)
 					writeElement(writer, Window_type_element_name, std::to_string(item.m_nWindowType));
+				if (item.m_nWindowType == 2 /* table */)
+				{
+					writeElement(writer, Table_delimiter_element_name, toUTF8(String(&item.m_cTableDelimiter, 1)));
+					writeElement(writer, Table_quote_element_name, toUTF8(String(&item.m_cTableQuote, 1)));
+					writeElement(writer, Table_allownewlinesinquotes_element_name, item.m_bTableAllowNewLinesInQuotes ? "1" : "0");
+				}
 				if (item.m_bSaveIgnoreWhite)
 					writeElement(writer, White_spaces_element_name, std::to_string(item.m_nIgnoreWhite));
 				if (item.m_bSaveIgnoreBlankLines)

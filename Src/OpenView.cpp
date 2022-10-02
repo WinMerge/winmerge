@@ -833,6 +833,15 @@ void COpenView::OnLoadProject()
 	if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::UnpackerPlugin) && projItem.HasUnpacker())
 		m_strUnpackerPipeline = projItem.GetUnpacker();
 
+	if (projItem.HasWindowType())
+		GetDocument()->m_nWindowType = projItem.GetWindowType();
+	if (projItem.HasTableDelimiter())
+		GetDocument()->m_cTableDelimiter = projItem.GetTableDelimiter();
+	if (projItem.HasTableQuote())
+		GetDocument()->m_cTableQuote = projItem.GetTableQuote();
+	if (projItem.HasTableAllowNewLinesInQuotes())
+		GetDocument()->m_bTableAllowNewLinesInQuotes = projItem.GetTableAllowNewLinesInQuotes();
+
 	if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Load, Options::Project::Item::CompareOptions))
 	{
 		if (projItem.HasIgnoreWhite())
@@ -936,6 +945,12 @@ void COpenView::OnSaveProject()
 		projItem.SetUnpacker(m_strUnpackerPipeline);
 	if (GetDocument()->m_nWindowType != -1)
 		projItem.SetWindowType(GetDocument()->m_nWindowType);
+	if (GetDocument()->m_nWindowType == 2 /* table */)
+	{
+		projItem.SetTableDelimiter(GetDocument()->m_cTableDelimiter);
+		projItem.SetTableQuote(GetDocument()->m_cTableQuote);
+		projItem.SetTableAllowNewLinesInQuotes(GetDocument()->m_bTableAllowNewLinesInQuotes);
+	}
 
 	if (bSaveCompareOptions)
 	{

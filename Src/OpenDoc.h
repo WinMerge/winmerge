@@ -25,6 +25,9 @@ public:
 	String	m_strUnpackerPipeline;
 	String	m_strDesc[3];
 	int		m_nWindowType;
+	TCHAR	m_cTableDelimiter;
+	TCHAR	m_cTableQuote;
+	bool	m_bTableAllowNewLinesInQuotes;
 	std::vector<String> m_hiddenItems;
 
 protected:

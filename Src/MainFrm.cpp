@@ -2366,9 +2366,22 @@ void CMainFrame::OnSaveProject()
 			switch (frame)
 			{
 			case FRAME_FILE:
-				pOpenDoc->m_nWindowType = (static_cast<CMergeDoc*>(pMergeDoc)->GetEnableTableEditing().value_or(false) ?
-					ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT) - ID_MERGE_COMPARE_TEXT + 1;
+			{
+				CMergeDoc* pDoc = static_cast<CMergeDoc*>(pMergeDoc);
+				bool bTable = pDoc->GetEnableTableEditing().value_or(false);
+				if (bTable)
+				{
+					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TABLE - ID_MERGE_COMPARE_TEXT + 1;
+					pOpenDoc->m_cTableDelimiter = pDoc->m_ptBuf[0]->GetFieldDelimiter();
+					pOpenDoc->m_cTableQuote = pDoc->m_ptBuf[0]->GetFieldEnclosure();
+					pOpenDoc->m_bTableAllowNewLinesInQuotes = pDoc->m_ptBuf[0]->GetAllowNewlinesInQuotes();
+				}
+				else
+				{
+					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TEXT - ID_MERGE_COMPARE_TEXT + 1;
+				}
 				break;
+			}
 			case FRAME_HEXFILE:
 				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_HEX - ID_MERGE_COMPARE_TEXT + 1;
 				break;
