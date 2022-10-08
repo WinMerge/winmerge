@@ -99,16 +99,22 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 			// increment char counter (evtl. expand tab)
 			else if (ch == _T('\t'))
 			{
-				nLineCharCount ++;
-				nCharCount ++;
-				// remember whitespace
-				bBreakable = true;
+				if (sep != ch || bInQuote)
+				{
+					nLineCharCount ++;
+					nCharCount ++;
+					// remember whitespace
+					bBreakable = true;
+				}
 			}
 			else if (ch >= _T('\x00') && ch <= _T('\x1F'))
 			{
-				nLineCharCount+= 3;
-				nCharCount+= 3;
-				bBreakable = true;
+				if (sep != ch || bInQuote)
+				{
+					nLineCharCount+= 3;
+					nCharCount+= 3;
+					bBreakable = true;
+				}
 			}
 			else
 			{
