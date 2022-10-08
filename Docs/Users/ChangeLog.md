@@ -14,6 +14,7 @@
 ### File compare
 
 - BugFix: Non existing backup directory should be automatically created (#1438)
+- BugFix: Bug: Can't copy selected text, if it has non-changed lines (#1507) 
 - Remember zoom level for all files (#1433)
 - The feature will allow the user to right-click the selected lines and… add
     them to Line Filter so that those lines added to the Line Filter will be
