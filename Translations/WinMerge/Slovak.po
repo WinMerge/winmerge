@@ -1107,6 +1107,9 @@ msgstr "Prehľadávať..."
 msgid " Folder: Filter"
 msgstr " Priečinok: Filter"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " File: Rozšírenie rozbaľovača"
 

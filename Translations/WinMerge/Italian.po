@@ -1105,6 +1105,9 @@ msgstr "Sfoglia..."
 msgid " Folder: Filter"
 msgstr " Cartella: Filtro"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " File: plugin Decompressore"
 

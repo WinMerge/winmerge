@@ -1110,6 +1110,9 @@ msgstr "Examinar..."
 msgid " Folder: Filter"
 msgstr " Carpeta: Filtro"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Archivo: Plugin de Desempaquetador"
 

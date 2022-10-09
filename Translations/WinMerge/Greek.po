@@ -1352,6 +1352,9 @@ msgstr "Ανα&ζήτηση..."
 msgid " Folder: Filter"
 msgstr ""
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr ""

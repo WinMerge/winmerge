@@ -1107,6 +1107,9 @@ msgstr "Rasti..."
 msgid " Folder: Filter"
 msgstr " Katalogams: Filtras"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Failams: Išpakuotojas"
 

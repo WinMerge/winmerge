@@ -1107,6 +1107,9 @@ msgstr "Prebrskaj..."
 msgid " Folder: Filter"
 msgstr " Mapa: Filter"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Datoteka: Vtičnik razpakovalca"
 

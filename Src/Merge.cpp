@@ -1292,10 +1292,13 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		bool bRecursive = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::IncludeSubfolders) && projItem.HasSubfolders())
 			bRecursive = projItem.GetSubfolders() > 0;
-		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::UnpackerPlugin) && projItem.HasUnpacker())
-			pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
-		if (projItem.HasPrediffer())
-			pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
+		if (Options::Project::Get(GetOptionsMgr(), Options::Project::Operation::Open, Options::Project::Item::Plugin))
+		{
+			if (projItem.HasUnpacker())
+				pInfoUnpacker.reset(new PackingInfo(projItem.GetUnpacker()));
+			if (projItem.HasPrediffer())
+				pInfoPrediffer.reset(new PrediffingInfo(projItem.GetPrediffer()));
+		}
 		int nID = 0;
 		if (projItem.HasWindowType())
 			nID = ID_MERGE_COMPARE_TEXT + projItem.GetWindowType() - 1;

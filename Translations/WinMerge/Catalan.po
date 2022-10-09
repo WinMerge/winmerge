@@ -1353,6 +1353,9 @@ msgstr "Nave&ga..."
 msgid " Folder: Filter"
 msgstr " Carpeta: Filtre"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Fitxer: Connector de desempaquetament"

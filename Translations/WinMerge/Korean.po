@@ -1361,6 +1361,9 @@ msgstr "찾아보기..."
 msgid " Folder: Filter"
 msgstr " 폴더: 필터"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr " 파일: 언패커 플러그인"

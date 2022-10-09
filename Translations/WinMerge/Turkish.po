@@ -1107,6 +1107,9 @@ msgstr "Göz at..."
 msgid " Folder: Filter"
 msgstr " Klasör: Süzgeç"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Dosya: Ayıklayıcı eklentisi"
 

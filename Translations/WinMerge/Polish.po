@@ -1108,6 +1108,9 @@ msgstr "Przeglądaj..."
 msgid " Folder: Filter"
 msgstr " Folder: filtr"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Plik: wtyczka rozpakowująca"
 

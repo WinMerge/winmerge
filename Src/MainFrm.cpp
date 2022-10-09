@@ -2363,6 +2363,7 @@ void CMainFrame::OnSaveProject()
 			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetFilterNameOrMask();
 			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker()->GetPluginPipeline();
+			pOpenDoc->m_strPredifferPipeline = pMergeDoc->GetPrediffer()->GetPluginPipeline();
 			switch (frame)
 			{
 			case FRAME_FILE:

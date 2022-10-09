@@ -1357,6 +1357,9 @@ msgstr "&Suchen..."
 msgid " Folder: Filter"
 msgstr " Ordner: Filter"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Datei: Entpacker-Plugin"

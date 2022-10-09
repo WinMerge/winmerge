@@ -1107,6 +1107,9 @@ msgstr "Procurar..."
 msgid " Folder: Filter"
 msgstr " Pasta: Filtro"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Arquivo: Plugin do Desempacotador"
 

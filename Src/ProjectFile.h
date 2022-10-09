@@ -96,6 +96,7 @@ public:
 	void SetSaveFilter(bool bSaveFilter);
 	void SetSaveSubfolders(bool bSaveSubfolders);
 	void SetSaveUnpacker(bool bSaveUnpacker);
+	void SetSavePrediffer(bool bSavePrediffer);
 	void SetSaveIgnoreWhite(bool bSaveIgnoreWhite);
 	void SetSaveIgnoreBlankLines(bool bSaveIgnoreBlankLines);
 	void SetSaveIgnoreCase(bool bSaveIgnoreCase);
@@ -157,6 +158,7 @@ private:
 	bool m_bSaveFilter; /**< Save filter? */
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
+	bool m_bSavePrediffer; /**< Save prediffer? */
 	bool m_bSaveIgnoreWhite; /**< Save "Whitespaces" setting? */
 	bool m_bSaveIgnoreBlankLines; /**< Save "Ignore blank lines" setting? */
 	bool m_bSaveIgnoreCase; /**< Save "Ignore case" setting? */
@@ -815,6 +817,15 @@ inline void ProjectFileItem::SetSaveSubfolders(bool bSaveSubfolders)
 inline void ProjectFileItem::SetSaveUnpacker(bool bSaveUnpacker)
 {
 	m_bSaveUnpacker = bSaveUnpacker;
+}
+
+/** 
+ * @brief Set whether to save unpacker.
+ * @param [in] bSavePrediffer Whether to save unpacker.
+ */
+inline void ProjectFileItem::SetSavePrediffer(bool bSavePrediffer)
+{
+	m_bSavePrediffer = bSavePrediffer;
 }
 
 /** 

@@ -23,6 +23,7 @@ public:
 	bool	m_bRecurse;
 	String	m_strExt;
 	String	m_strUnpackerPipeline;
+	String	m_strPredifferPipeline;
 	String	m_strDesc[3];
 	int		m_nWindowType;
 	TCHAR	m_cTableDelimiter;

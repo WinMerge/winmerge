@@ -1109,6 +1109,9 @@ msgstr "Обзор..."
 msgid " Folder: Filter"
 msgstr " Папка: Фильтр"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
 

@@ -1108,6 +1108,9 @@ msgstr "浏览..."
 msgid " Folder: Filter"
 msgstr " 文件夹: 过滤器"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " 文件: 解包插件"
 

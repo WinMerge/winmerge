@@ -1106,6 +1106,9 @@ msgstr "参照..."
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルター"
 
+msgid " File: Prediffer Plugin"
+msgstr " ファイル: 比較前処理プラグイン"
+
 msgid " File: Unpacker Plugin"
 msgstr " ファイル: 展開プラグイン"
 

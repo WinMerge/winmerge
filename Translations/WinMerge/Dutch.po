@@ -1107,6 +1107,9 @@ msgstr "Bladeren..."
 msgid " Folder: Filter"
 msgstr "Map: filter"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr "Bestand: uitpak-plugin"
 

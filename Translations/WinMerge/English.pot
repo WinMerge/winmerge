@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-09 16:20+0000\n"
+"POT-Creation-Date: 2022-10-09 11:00+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1099,6 +1099,9 @@ msgid "Browse..."
 msgstr ""
 
 msgid " Folder: Filter"
+msgstr ""
+
+msgid " File: Prediffer Plugin"
 msgstr ""
 
 msgid " File: Unpacker Plugin"

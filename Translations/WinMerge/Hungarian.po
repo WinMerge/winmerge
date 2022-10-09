@@ -1355,6 +1355,9 @@ msgstr "Tallózás..."
 msgid " Folder: Filter"
 msgstr " Mappa: Szűrő"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Fájl: Kitömörítő bővítmény"

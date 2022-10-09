@@ -1360,6 +1360,9 @@ msgstr "Parc&ourir..."
 msgid " Folder: Filter"
 msgstr " Dossier : filtre"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Fichier : Plugin décompresseur"

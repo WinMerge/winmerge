@@ -1108,6 +1108,9 @@ msgstr "Bläddra..."
 msgid " Folder: Filter"
 msgstr " Mapp: Filter"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Fil: Unpacker tillägg"
 

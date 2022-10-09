@@ -1354,6 +1354,9 @@ msgstr "Explorar…"
 msgid " Folder: Filter"
 msgstr " Cartafol: Filtro"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 #, c-format
 msgid " File: Unpacker Plugin"
 msgstr " Ficheiro: Complemento de desempaquetamento"

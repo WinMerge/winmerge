@@ -1106,6 +1106,9 @@ msgstr "Na&vigà…"
 msgid " Folder: Filter"
 msgstr " Cartulare : Filtru"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Schedariu : Modulu d’estensione di u spacchittadore"
 

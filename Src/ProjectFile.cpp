@@ -304,6 +304,7 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bSaveFilter(true)
 , m_bSaveSubfolders(true)
 , m_bSaveUnpacker(true)
+, m_bSavePrediffer(true)
 , m_bSaveIgnoreWhite(true)
 , m_bSaveIgnoreBlankLines(true)
 , m_bSaveIgnoreCase(true)
@@ -456,7 +457,7 @@ bool ProjectFile::Save(const String& path) const
 				writeElement(writer, Right_ro_element_name, item.m_bRightReadOnly ? "1" : "0");
 				if (item.m_bSaveUnpacker && !item.m_unpacker.empty())
 					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
-				if (!item.m_prediffer.empty())
+				if (item.m_bSavePrediffer && !item.m_prediffer.empty())
 					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
 				if (item.m_nWindowType != -1)
 					writeElement(writer, Window_type_element_name, std::to_string(item.m_nWindowType));

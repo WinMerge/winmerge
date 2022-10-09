@@ -1107,6 +1107,9 @@ msgstr "Selaa..."
 msgid " Folder: Filter"
 msgstr " Kansio: Suodin"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " Tiedosto: Purkaja-lisäosa"
 

@@ -1110,6 +1110,9 @@ msgstr "بحث..."
 msgid " Folder: Filter"
 msgstr " مجلد: مرشح"
 
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr " ملف: إضافة فك الحزمة"
 
