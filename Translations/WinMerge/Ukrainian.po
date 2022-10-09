@@ -1176,9 +1176,8 @@ msgstr "Скопіювати &ім'я файлу"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "Вибрати..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1190,6 +1189,10 @@ msgstr "<Нема>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Автоматично>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Вибрати..."
 
 #, c-format
 msgid "Prediffer Settings"

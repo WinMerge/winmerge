@@ -969,8 +969,8 @@ msgstr "Bestandsnaam kopiëren"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "Selecteren..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Instellingen uitpakker"
@@ -980,6 +980,9 @@ msgstr "<None>"
 
 msgid "<Automatic>"
 msgstr "<Automatic>"
+
+msgid "&Select..."
+msgstr "Selecteren..."
 
 msgid "Prediffer Settings"
 msgstr "Instellingen voorvergelijking"

@@ -969,8 +969,8 @@ msgstr "Kopioi tiedostonimi"
 msgid "&Edit Caption"
 msgstr "Muokkaa &otsikkoa"
 
-msgid "&Select..."
-msgstr "Valitse..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Pakkauksen purkuasetukset"
@@ -980,6 +980,9 @@ msgstr "<Ei mitään>"
 
 msgid "<Automatic>"
 msgstr "<Automaattinen>"
+
+msgid "&Select..."
+msgstr "Valitse..."
 
 msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"

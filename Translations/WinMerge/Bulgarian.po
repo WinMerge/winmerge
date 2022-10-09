@@ -966,8 +966,8 @@ msgstr "Копиране на &името"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "&Избиране…"
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Настройки на разопаковчик"
@@ -977,6 +977,9 @@ msgstr "<Няма>"
 
 msgid "<Automatic>"
 msgstr "<Автоматично>"
+
+msgid "&Select..."
+msgstr "&Избиране…"
 
 msgid "Prediffer Settings"
 msgstr ""

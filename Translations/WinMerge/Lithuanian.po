@@ -969,8 +969,8 @@ msgstr "Kopijuoti &failo vardą"
 msgid "&Edit Caption"
 msgstr "R&edaguoti antraštę"
 
-msgid "&Select..."
-msgstr "Pa&rinkti..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Išpakuotojo nuostatos"
@@ -980,6 +980,9 @@ msgstr "<Nėra>"
 
 msgid "<Automatic>"
 msgstr "<Automatinis>"
+
+msgid "&Select..."
+msgstr "Pa&rinkti..."
 
 msgid "Prediffer Settings"
 msgstr "Parengėjo nuostatos"

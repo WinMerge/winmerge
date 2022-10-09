@@ -1175,9 +1175,8 @@ msgstr "Copia el nom del &fitxer"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "T&ria..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Opcions del desempaquetador"
@@ -1189,6 +1188,10 @@ msgstr "<Cap>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automàtic>"
+
+#, c-format
+msgid "&Select..."
+msgstr "T&ria..."
 
 #, c-format
 msgid "Prediffer Settings"

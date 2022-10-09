@@ -1182,9 +1182,8 @@ msgstr "Copier le nom de &fichier"
 msgid "&Edit Caption"
 msgstr "&Modifier la légende"
 
-#, c-format
-msgid "&Select..."
-msgstr "C&hoisir..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Paramètres du décompresseur"
@@ -1196,6 +1195,10 @@ msgstr "<Aucun>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatique>"
+
+#, c-format
+msgid "&Select..."
+msgstr "C&hoisir..."
 
 #, c-format
 msgid "Prediffer Settings"

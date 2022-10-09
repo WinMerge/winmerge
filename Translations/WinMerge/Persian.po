@@ -1176,9 +1176,8 @@ msgstr "&F رونوشت برداري نام پرونده"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "&S انتخاب ... "
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1190,6 +1189,10 @@ msgstr "<هيچکدام>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<خودکار>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&S انتخاب ... "
 
 #, c-format
 msgid "Prediffer Settings"

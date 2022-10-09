@@ -1178,9 +1178,8 @@ msgstr "Kopiatu &Agirizena"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "&Hautatu..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1192,6 +1191,10 @@ msgstr "<Ezer ez>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Berezgaitasunez>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Hautatu..."
 
 #, c-format
 msgid "Prediffer Settings"

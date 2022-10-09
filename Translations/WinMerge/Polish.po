@@ -970,8 +970,8 @@ msgstr "Kopiuj nazwę pliku"
 msgid "&Edit Caption"
 msgstr "Edytuj podpis"
 
-msgid "&Select..."
-msgstr "Wybierz..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Ustawienia programu rozpakowującego"
@@ -981,6 +981,9 @@ msgstr "<Brak>"
 
 msgid "<Automatic>"
 msgstr "<Automatycznie>"
+
+msgid "&Select..."
+msgstr "Wybierz..."
 
 msgid "Prediffer Settings"
 msgstr "Ustawienia porównywania"

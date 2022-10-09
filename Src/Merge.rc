@@ -950,7 +950,8 @@ BEGIN
         MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
         MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
         MENUITEM "&Edit Caption",               ID_EDITOR_EDIT_CAPTION
-        MENUITEM "&Select...",                  ID_EDITOR_SELECT_FILE
+        MENUITEM SEPARATOR
+        MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
     END
 END
 

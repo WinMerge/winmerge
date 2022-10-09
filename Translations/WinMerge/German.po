@@ -1178,9 +1178,8 @@ msgstr "Dateinamen kopieren"
 msgid "&Edit Caption"
 msgstr "Titelzeile bearbeiten"
 
-#, c-format
-msgid "&Select..."
-msgstr "Auswählen..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Entpackereinstellungen"
@@ -1192,6 +1191,10 @@ msgstr "<Keine>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatisch>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Auswählen..."
 
 #, c-format
 msgid "Prediffer Settings"

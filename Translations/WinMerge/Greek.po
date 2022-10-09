@@ -1174,9 +1174,8 @@ msgstr "Αντιγραφή Ο&νόματος"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "&Επιλογή..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1188,6 +1187,10 @@ msgstr "<Ουδέν>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Αυτόματο>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Επιλογή..."
 
 #, c-format
 msgid "Prediffer Settings"

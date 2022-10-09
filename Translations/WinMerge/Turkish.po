@@ -969,8 +969,8 @@ msgstr "&Dosya adını kopyala"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "Seçi&n..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Ayıklayıcı ayarları"
@@ -980,6 +980,9 @@ msgstr "<Yok>"
 
 msgid "<Automatic>"
 msgstr "<Otomatik>"
+
+msgid "&Select..."
+msgstr "Seçi&n..."
 
 msgid "Prediffer Settings"
 msgstr "Ön farklılaştırıcı ayarları"

@@ -968,8 +968,8 @@ msgstr "Cupià u nome di &schedariu"
 msgid "&Edit Caption"
 msgstr "&Mudificà a legenda"
 
-msgid "&Select..."
-msgstr "&Selezziunà…"
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Preferenze di u spacchittadore"
@@ -979,6 +979,9 @@ msgstr "<nisunu>"
 
 msgid "<Automatic>"
 msgstr "<autumaticu>"
+
+msgid "&Select..."
+msgstr "&Selezziunà…"
 
 msgid "Prediffer Settings"
 msgstr "Preferenze di u preparagone"

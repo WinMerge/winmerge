@@ -968,8 +968,8 @@ msgstr "Kopier &filnavn"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "&Velg..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -979,6 +979,9 @@ msgstr "<Ingen>"
 
 msgid "<Automatic>"
 msgstr "<Automatisk>"
+
+msgid "&Select..."
+msgstr "&Velg..."
 
 msgid "Prediffer Settings"
 msgstr "Prediffer-innstillinger"

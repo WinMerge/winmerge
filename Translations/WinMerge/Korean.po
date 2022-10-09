@@ -1183,9 +1183,8 @@ msgstr "파일 이름 복사(&F)"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "선택(&S)..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "언패커 설정"
@@ -1197,6 +1196,10 @@ msgstr "<없음>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<자동>"
+
+#, c-format
+msgid "&Select..."
+msgstr "선택(&S)..."
 
 #, c-format
 msgid "Prediffer Settings"

@@ -972,8 +972,8 @@ msgstr "Copiar &nombre de archivo"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "&Seleccionar..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Opciones de Desempaquetador"
@@ -983,6 +983,9 @@ msgstr "<Ninguno>"
 
 msgid "<Automatic>"
 msgstr "<Automático>"
+
+msgid "&Select..."
+msgstr "&Seleccionar..."
 
 msgid "Prediffer Settings"
 msgstr "Config. precomparación"
