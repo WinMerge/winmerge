@@ -1178,7 +1178,7 @@ msgid "&Edit Caption"
 msgstr "Felirat szerkesztése"
 
 msgid "&Open..."
-msgstr ""
+msgstr "Megnyitás..."
 
 msgid "Unpacker Settings"
 msgstr "Kicsomagoló beállításai"
@@ -1356,7 +1356,7 @@ msgid " Folder: Filter"
 msgstr " Mappa: Szűrő"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Fájl: Elővizsgáló bővítmény"
 
 #, c-format
 msgid " File: Unpacker Plugin"
