@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-09-12 17:30+0200\n"
+"PO-Revision-Date: 2022-10-09 12:30+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1179,7 +1179,7 @@ msgid "&Edit Caption"
 msgstr "Titelzeile bearbeiten"
 
 msgid "&Open..."
-msgstr ""
+msgstr "&Öffnen..."
 
 msgid "Unpacker Settings"
 msgstr "Entpackereinstellungen"
@@ -1358,7 +1358,7 @@ msgid " Folder: Filter"
 msgstr " Ordner: Filter"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Datei: Prediffer-Plugin"
 
 #, c-format
 msgid " File: Unpacker Plugin"
