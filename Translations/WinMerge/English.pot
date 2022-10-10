@@ -1960,7 +1960,7 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "\n&Number of compare threads (a negative value indicates use of all available CPU cores):"
 msgstr ""
 
 msgid "&CSV File Patterns:"
