@@ -157,10 +157,10 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 	{
 		LPTSTR errorText = ReportError(sc, 0);
 		LPTSTR tmp;
-		tmp = FormatMessageFromString(_T("32bitプラグイン(%1)のロードに失敗しました。:%2\n")
-			_T("WinMerge32BitPluginProxy.exeが登録されていないかもしれません。\n")
-			_T("管理者権限のコマンドプロンプトで以下を実行してみてください。\n\n")
-			_T("\"{WinMergeインストールパス}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
+		tmp = FormatMessageFromString(_T("Failed to load 32bit plugin(%1):%2\n")
+			_T("WinMerge32BitPluginProxy.exe may not be registered.\n")
+			_T("Try running the following in an elevated command prompt.\n\n")
+			_T("\"{WinMerge installation path}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
 		LocalFree(errorText);
 		errorText = tmp;
 		MessageBox(NULL, errorText, NULL, MB_ICONSTOP|MB_TASKMODAL);
