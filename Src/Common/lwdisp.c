@@ -157,10 +157,10 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 	{
 		LPTSTR errorText = ReportError(sc, 0);
 		LPTSTR tmp;
-		tmp = FormatMessageFromString(_T("32bitƒvƒ‰ƒOƒCƒ“(%1)‚Ìƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½B:%2\n")
-			_T("WinMerge32BitPluginProxy.exe‚ª“o˜^‚³‚ê‚Ä‚¢‚È‚¢‚©‚à‚µ‚ê‚Ü‚¹‚ñB\n")
-			_T("ŠÇ—ÒŒ ŒÀ‚ÌƒRƒ}ƒ“ƒhƒvƒƒ“ƒvƒg‚ÅˆÈ‰º‚ğÀs‚µ‚Ä‚İ‚Ä‚­‚¾‚³‚¢B\n\n")
-			_T("\"{WinMergeƒCƒ“ƒXƒg[ƒ‹ƒpƒX}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
+		tmp = FormatMessageFromString(_T("32bitãƒ—ãƒ©ã‚°ã‚¤ãƒ³(%1)ã®ãƒ­ãƒ¼ãƒ‰ã«å¤±æ•—ã—ã¾ã—ãŸã€‚:%2\n")
+			_T("WinMerge32BitPluginProxy.exeãŒç™»éŒ²ã•ã‚Œã¦ã„ãªã„ã‹ã‚‚ã—ã‚Œã¾ã›ã‚“ã€‚\n")
+			_T("ç®¡ç†è€…æ¨©é™ã®ã‚³ãƒãƒ³ãƒ‰ãƒ—ãƒ­ãƒ³ãƒ—ãƒˆã§ä»¥ä¸‹ã‚’å®Ÿè¡Œã—ã¦ã¿ã¦ãã ã•ã„ã€‚\n\n")
+			_T("\"{WinMergeã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«ãƒ‘ã‚¹}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
 		LocalFree(errorText);
 		errorText = tmp;
 		MessageBox(NULL, errorText, NULL, MB_ICONSTOP|MB_TASKMODAL);
@@ -213,7 +213,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
  * 
  * @Note We can use this code with unregistered COM DLL
  * For VC++ DLL, we need a custom CComTypeInfoHolder as the default one search the registry
- * For VB DLL, instance can not be shared accross thread, one must be created for each thread
+ * For VB DLL, instance can not be shared across thread, one must be created for each thread
  *
  * Don't catch unknown errors in this function, because we want to catch
  * both C++ and C errors, and this is a C file.
