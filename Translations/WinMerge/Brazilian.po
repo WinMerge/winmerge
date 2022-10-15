@@ -1967,7 +1967,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para alternar para comparação binária (MB):"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "&Número de núcleos de CPU a serem utilizados:"
 
 msgid "&CSV File Patterns:"
 msgstr "Padrões do Arquivo &CSV:"
