@@ -45,6 +45,7 @@ public:
 	unsigned m_nQuickCompareLimit;
 	unsigned m_nBinaryCompareLimit;
 	int     m_nCompareThreads;
+	int     m_nCompareThreadsPrev;
 	//}}AFX_DATA
 
 

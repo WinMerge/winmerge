@@ -2448,12 +2448,8 @@ msgstr "Seuil de passage en comparaison &rapide (Mo) :"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Seuil de passage à la comparaison &binaire (Mo) :"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"&Nombre de threads utilisés pour la comparaison (une valeur négative implique l'utilisation de tous les cœurs CPU disponibles) :"
 
 msgid "&CSV File Patterns:"
 msgstr "Modèles de fichiers &CSV :"

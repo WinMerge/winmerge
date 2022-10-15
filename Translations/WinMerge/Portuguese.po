@@ -1975,12 +1975,8 @@ msgstr "Limite para trocar para comparação &rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"&Número de tópicos de comparação (um valor negativo implica a adição do número de núcleos de CPU disponíveis)"
 
 msgid "&CSV File Patterns:"
 msgstr "Padrões de ficheiros &CSV:"

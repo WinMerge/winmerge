@@ -1978,12 +1978,8 @@ msgstr "Sogliu per passà à u paragone &rapidu (Mo) :"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Numeru d’unità d’esecuzione impiegate per u paragone (impiegate un valore nigativu per aghjunghje u numeru di cori CPU dispunibule) :"
 
 msgid "&CSV File Patterns:"
 msgstr "Mudelli di schedariu &CSV :"

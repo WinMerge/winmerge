@@ -1966,8 +1966,8 @@ msgstr "Persijungimo į &spartųjį palyginimą riba (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Persijungimo į &binarinį palyginimą riba (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\nLygi&nimo srautų skaičius (neigiama reikšmė reiškia turimų procesoriaus branduolių skaičiaus pridėjimą):"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "&CSV File Patterns:"
 msgstr "&CSV failų šablonai:"

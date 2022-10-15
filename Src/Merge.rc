@@ -2180,8 +2180,8 @@ BEGIN
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
     LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,279,10
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,150,30,14,ES_AUTOHSCROLL
-    LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,6,166,239,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,198,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Number of CPU cores to use:",IDC_STATIC,6,166,239,30
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,178,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 

@@ -1974,12 +1974,8 @@ msgstr "Prahová hodnota pre prepnutie pre &rýchle porovnanie (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prahová hodnota pre prepnutie na &binárne porovnanie (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"&Počet porovnávaných vlákien (záporná hodnota znamená pridanie počtu dostupných jadier CPU):"
 
 msgid "&CSV File Patterns:"
 msgstr "Vzory súborov &CSV:"

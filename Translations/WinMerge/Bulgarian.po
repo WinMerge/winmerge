@@ -1977,14 +1977,8 @@ msgstr "Ограничение за превключване към &бързо 
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Ограничение за превключване към &двоично сравняване (МБ):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Брой &нишки извършващи сравняване (отрицателните стойности се добавят към "
-"броя налични ядра на CPU):"
 
 msgid "&CSV File Patterns:"
 msgstr "Шаблони за име на файл на &CSV:"

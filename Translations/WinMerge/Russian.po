@@ -1968,8 +1968,8 @@ msgstr "Порог для перехода к быстрому сравнени�
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "&CSV File Patterns:"
 msgstr "Шаблоны CSV-файлов:"

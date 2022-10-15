@@ -2443,12 +2443,8 @@ msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Összehasonlító szálak száma (egy negatív érték a rendelkezésre álló CPU magok igénybevételét jelenti):"
 
 msgid "&CSV File Patterns:"
 msgstr "CSV típusú fájlok kiterjesztése:"

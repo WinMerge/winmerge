@@ -1974,12 +1974,8 @@ msgstr "Prag za preklop na &hitro primerjavo (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Število primerjalnih &niti (negativna vrednost pomeni dodajanje števila razpoložljivih jeder CPE):"
 
 msgid "&CSV File Patterns:"
 msgstr "Vzorci datotek &CSV:"

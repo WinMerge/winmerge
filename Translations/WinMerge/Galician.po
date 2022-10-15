@@ -2442,12 +2442,8 @@ msgstr "Limiar para cambiar a com&paración rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limiar para cambiar a com&paración binaria (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"&Número de fíos de comparación (valores negativos indican que se engaden ao número de núcleos da CPU)"
 
 msgid "&CSV File Patterns:"
 msgstr "Padróns de ficheiro &CSV:"
