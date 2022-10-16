@@ -112,7 +112,7 @@ msgid "With &External Editor\tCtrl+Alt+E"
 msgstr "W zewnętrznym edytorze\tCtrl+Alt+E"
 
 msgid "&With..."
-msgstr "Z..."
+msgstr "Za pomocą..."
 
 msgid "Open &Parent Folder..."
 msgstr "Otwórz nadrzędny katalog..."
@@ -971,7 +971,7 @@ msgid "&Edit Caption"
 msgstr "Edytuj podpis"
 
 msgid "&Open..."
-msgstr ""
+msgstr "Otwórz..."
 
 msgid "Unpacker Settings"
 msgstr "Ustawienia programu rozpakowującego"
@@ -1109,7 +1109,7 @@ msgid " Folder: Filter"
 msgstr " Folder: filtr"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Plik: wtyczka porównywająca"
 
 msgid " File: Unpacker Plugin"
 msgstr " Plik: wtyczka rozpakowująca"
@@ -1962,13 +1962,13 @@ msgid "Ignore &Reparse Points"
 msgstr "Ignoruj punkty ponownej analizy składniowej"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr ""
+msgstr "Próg przejścia na szybkie porównywanie (MB):"
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr ""
+msgstr "Próg przejścia na binarne porównywanie (MB):"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "Liczba rdzeni CPU do wykorzystania:"
 
 msgid "&CSV File Patterns:"
 msgstr "Szablony pliku &CSV:"
@@ -3192,7 +3192,7 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Nie można utworzyć łatki z plików binarnych."
 
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
-msgstr "Proszę najpierw zapisać wszystkie pliki.\n\nTworzenie łatki wymaga zapisania wszystkich zmian w plikach."
+msgstr "Najpierw zapisz wszystkie pliki.\n\nTworzenie łatki wymaga zapisania wszystkich zmian w plikach."
 
 msgid "Folder does not exist."
 msgstr "Folder nie istnieje."
@@ -3441,7 +3441,7 @@ msgid "MDI child window only"
 msgstr "Tylko okno podrzędne"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr "Zamknij okno główne, jeśli jest tylko jedno okno podrzędne"
+msgstr "Zamknij okno główne, jeśli istnieje tylko jedno okno podrzędne"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3807,7 +3807,7 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr ""
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr ""
+msgstr "Zastosuj poprawkę używając GnuWin32 Patch dla Windows"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Wyświetl zawartość tekstową plików MS Excel"
