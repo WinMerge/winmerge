@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2022-10-16**:
+Status from **2022-10-18**:
 
 ## WinMerge
 
@@ -8,12 +8,12 @@ Status from **2022-10-16**:
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
 | Arabic               |  1236 |        897 |     0 |          339 |     72 % |  2019-12-30 |
 | Basque               |  1236 |        639 |     0 |          597 |     51 % |  2013-02-03 |
-| Brazilian            |  1236 |       1235 |     0 |            1 |     99 % |  2022-10-09 |
+| Brazilian            |  1236 |       1236 |     0 |            0 |    100 % |  2022-10-09 |
 | Bulgarian            |  1236 |       1021 |     0 |          215 |     82 % |  2021-06-28 |
 | Catalan              |  1236 |       1187 |     0 |           49 |     96 % |             |
 | ChineseSimplified    |  1236 |       1228 |     0 |            8 |     99 % |             |
 | ChineseTraditional   |  1236 |       1125 |     0 |          111 |     91 % |  2022-02-19 |
-| Corsican             |  1236 |       1235 |     0 |            1 |     99 % |  2022-10-09 |
+| Corsican             |  1236 |       1236 |     0 |            0 |    100 % |  2022-10-17 |
 | Croatian             |  1236 |        631 |     1 |          604 |     51 % |  2009-02-13 |
 | Czech                |  1236 |        606 |     0 |          630 |     49 % |             |
 | Danish               |  1236 |        640 |     0 |          596 |     51 % |  2013-01-13 |
@@ -22,16 +22,16 @@ Status from **2022-10-16**:
 | Finnish              |  1236 |       1198 |     0 |           38 |     96 % |             |
 | French               |  1236 |       1233 |     0 |            3 |     99 % |  2022-09-21 |
 | Galician             |  1236 |       1231 |     0 |            5 |     99 % |  2022-07-10 |
-| German               |  1236 |       1235 |     0 |            1 |     99 % |  2022-10-09 |
+| German               |  1236 |       1236 |     0 |            0 |    100 % |  2022-10-17 |
 | Greek                |  1236 |        605 |     0 |          631 |     48 % |             |
-| Hungarian            |  1236 |       1234 |     0 |            2 |     99 % |  2021-03-15 |
+| Hungarian            |  1236 |       1235 |     0 |            1 |     99 % |  2021-03-15 |
 | Italian              |  1236 |       1106 |     0 |          130 |     89 % |  2022-06-01 |
-| Japanese             |  1236 |       1235 |     0 |            1 |     99 % |  2022-09-14 |
+| Japanese             |  1236 |       1236 |     0 |            0 |    100 % |  2022-09-14 |
 | Korean               |  1236 |       1197 |     0 |           39 |     96 % |  2022-02-02 |
-| Lithuanian           |  1236 |       1192 |     0 |           44 |     96 % |  2022-10-10 |
+| Lithuanian           |  1236 |       1193 |     0 |           43 |     96 % |  2022-10-17 |
 | Norwegian            |  1236 |        731 |     0 |          505 |     59 % |             |
 | Persian              |  1236 |        642 |     0 |          594 |     51 % |  2013-08-15 |
-| Polish               |  1236 |       1204 |     0 |           32 |     97 % |             |
+| Polish               |  1236 |       1210 |     0 |           26 |     97 % |             |
 | Portuguese           |  1236 |       1233 |     0 |            3 |     99 % |  2022-09-14 |
 | Romanian             |  1236 |        561 |    44 |          631 |     48 % |             |
 | Russian              |  1236 |       1184 |     0 |           52 |     95 % |  2022-07-27 |
@@ -55,7 +55,7 @@ Status from **2022-10-16**:
 | Catalan              |    10 |         10 |     0 |            0 |    100 % |             |
 | ChineseSimplified    |    10 |         10 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |    10 |         10 |     0 |            0 |    100 % |             |
-| Corsican             |    10 |         10 |     0 |            0 |    100 % |             |
+| Corsican             |    10 |         10 |     0 |            0 |    100 % |  2022-10-17 |
 | Croatian             |    10 |          4 |     0 |            6 |     40 % |             |
 | Czech                |    10 |          4 |     0 |            6 |     40 % |             |
 | Danish               |    10 |          4 |     0 |            6 |     40 % |             |
@@ -344,8 +344,8 @@ Status from **2022-10-16**:
 ### ShellExtension
 
  * Corsican
-   - Patriccollu di Santa Maria è Sichè *Maintainer*
-   - Patriccollu di Santa Maria è Sichè
+   - [Patriccollu di Santa Maria è Sichè](mailto:patriccollu%20at%20gmail.com) *Maintainer*
+   - Patriccollu di Santa Maria è Sichè, 2021-2022
 
  * French
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
