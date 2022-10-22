@@ -48,6 +48,7 @@
 #include "SyntaxColors.h"
 #include "MergeApp.h"
 #include "SubstitutionList.h"
+#include "codepage_detect.h"
 
 using Poco::Debugger;
 using Poco::format;
@@ -1322,17 +1323,18 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_files[1];
 	path1 = paths::ToUnixPath(path1);
 	path2 = paths::ToUnixPath(path2);
-	if ((inf_patch[0].linbuf && ucr::CheckForInvalidUtf8(inf_patch[0].buffer, inf_patch[0].buffered_chars)) ||
-		(inf_patch[1].linbuf && ucr::CheckForInvalidUtf8(inf_patch[1].buffer, inf_patch[1].buffered_chars)))
+	auto strdupPath = [](const String& path, const void *buffer, size_t buffered_chars) -> char*
 	{
-		inf_patch[0].name = _strdup(ucr::toThreadCP(path1).c_str());
-		inf_patch[1].name = _strdup(ucr::toThreadCP(path2).c_str());
-	}
-	else
-	{
-		inf_patch[0].name = _strdup(ucr::toUTF8(path1).c_str());
-		inf_patch[1].name = _strdup(ucr::toUTF8(path2).c_str());
-	}
+		FileTextEncoding encoding = codepage_detect::Guess(_T(""), buffer, buffered_chars, 1);
+		if (encoding.m_unicoding != ucr::NONE)
+			encoding.SetUnicoding(ucr::UTF8);
+		ucr::buffer buf(256);
+		ucr::convert(ucr::CP_TCHAR, reinterpret_cast<const unsigned char *>(path.c_str()), static_cast<int>(path.size() * sizeof(TCHAR)), encoding.m_codepage, &buf);
+		return _strdup(reinterpret_cast<const char *>(buf.ptr));
+
+	};
+	inf_patch[0].name = strdupPath(path1, inf_patch[0].buffer, inf_patch[0].buffered_chars);
+	inf_patch[1].name = strdupPath(path2, inf_patch[1].buffer, inf_patch[1].buffered_chars);
 
 	// If paths in m_s1File and m_s2File point to original files, then we can use
 	// them to fix potentially meaningless stats from potentially temporary files,
@@ -1362,16 +1364,6 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		return;
 	}
 
-	// Print "command line"
-	if (m_bAddCmdLine && output_style != OUTPUT_HTML)
-	{
-		String switches = FormatSwitchString();
-		_ftprintf(outfile, _T("diff%s %s %s\n"),
-			switches.c_str(), 
-			path1 == _T("NUL") ? _T("/dev/null") : path1.c_str(),
-			path2 == _T("NUL") ? _T("/dev/null") : path2.c_str());
-	}
-
 	if (strcmp(inf[0].name, "NUL") == 0)
 	{
 		free((void *)inf_patch[0].name);
@@ -1381,6 +1373,14 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	{
 		free((void *)inf_patch[1].name);
 		inf_patch[1].name = _strdup("/dev/null");
+	}
+
+	// Print "command line"
+	if (m_bAddCmdLine && output_style != OUTPUT_HTML)
+	{
+		String switches = FormatSwitchString();
+		fprintf(outfile, "diff%S %s %s\n",
+			switches.c_str(), inf_patch[0].name, inf_patch[1].name);
 	}
 
 	// Output patchfile
