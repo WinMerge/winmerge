@@ -1331,7 +1331,6 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		ucr::buffer buf(256);
 		ucr::convert(ucr::CP_TCHAR, reinterpret_cast<const unsigned char *>(path.c_str()), static_cast<int>(path.size() * sizeof(TCHAR)), encoding.m_codepage, &buf);
 		return _strdup(reinterpret_cast<const char *>(buf.ptr));
-
 	};
 	inf_patch[0].name = strdupPath(path1, inf_patch[0].buffer, inf_patch[0].buffered_chars);
 	inf_patch[1].name = strdupPath(path2, inf_patch[1].buffer, inf_patch[1].buffered_chars);
