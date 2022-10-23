@@ -5,7 +5,7 @@
 - [What Is New in 2.16.23 beta?](#what-is-new-in-21623-beta)
 - [Known issues](#known-issues)
 
-September 2022
+October 2022
 
 ## About This Release
 
