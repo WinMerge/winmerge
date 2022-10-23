@@ -9,6 +9,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsPanel.h"
+#include <Poco/Environment.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,6 +33,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_nQuickCompareLimit(4 * Mega)
  , m_nBinaryCompareLimit(64 * Mega)
  , m_nCompareThreads(-1)
+ , m_nCompareThreadsPrev(-1)
 {
 }
 
@@ -78,7 +80,11 @@ void PropCompareFolder::ReadOptions()
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT) / Mega ;
 	m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT) / Mega ;
-	m_nCompareThreads = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
+	m_nCompareThreadsPrev = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
+	m_nCompareThreads = m_nCompareThreadsPrev;
+	if (m_nCompareThreads <= 0)
+		m_nCompareThreads = Poco::Environment::processorCount() + m_nCompareThreads;
+	m_nCompareThreads = std::clamp(m_nCompareThreads, 1, static_cast<int>(Poco::Environment::processorCount()));
 }
 
 /** 
@@ -102,7 +108,9 @@ void PropCompareFolder::WriteOptions()
 	if (m_nBinaryCompareLimit > 2000)
 		m_nBinaryCompareLimit = 2000;
 	GetOptionsMgr()->SaveOption(OPT_CMP_BINARY_LIMIT, m_nBinaryCompareLimit * Mega);
-	GetOptionsMgr()->SaveOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads);
+	if ((m_nCompareThreadsPrev >  0 && m_nCompareThreads != m_nCompareThreadsPrev) ||
+	    (m_nCompareThreadsPrev <= 0 && m_nCompareThreads != static_cast<int>(Poco::Environment::processorCount() + m_nCompareThreadsPrev)))
+		GetOptionsMgr()->SaveOption(OPT_CMP_COMPARE_THREADS, m_nCompareThreads);
 }
 
 /** 
@@ -145,6 +153,8 @@ void PropCompareFolder::OnDefaults()
 	m_nQuickCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_QUICK_LIMIT) / Mega;
 	m_nBinaryCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_BINARY_LIMIT) / Mega;
 	m_nCompareThreads = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_COMPARE_THREADS);
+	if (m_nCompareThreads <= 0)
+		m_nCompareThreads = Poco::Environment::processorCount() + m_nCompareThreads;
 	UpdateData(FALSE);
 }
 

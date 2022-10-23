@@ -31,7 +31,12 @@ enum
 {
 	CP_UTF_8  = 65001,
 	CP_UCS2LE = 1200,
-	CP_UCS2BE = 1201
+	CP_UCS2BE = 1201,
+#ifdef _UNICODE
+	CP_TCHAR = CP_UCS2LE
+#else
+	CP_TCHAR = 0
+#endif
 };
 
 /** @brief Known Unicode encodings. */

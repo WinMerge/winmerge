@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-09-12 21:17+0200\n"
+"PO-Revision-Date: 2022-10-09 20:32+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -972,8 +972,8 @@ msgstr "Kopiraj &ime datoteke"
 msgid "&Edit Caption"
 msgstr "&Uredi napis"
 
-msgid "&Select..."
-msgstr "&Izberi..."
+msgid "&Open..."
+msgstr "&Odpri..."
 
 msgid "Unpacker Settings"
 msgstr "Nastavitve razpakovalca"
@@ -983,6 +983,9 @@ msgstr "<Brez>"
 
 msgid "<Automatic>"
 msgstr "<Samodejno>"
+
+msgid "&Select..."
+msgstr "&Izberi..."
 
 msgid "Prediffer Settings"
 msgstr "Nastavitve predogleda razlik"
@@ -1106,6 +1109,9 @@ msgstr "Prebrskaj..."
 
 msgid " Folder: Filter"
 msgstr " Mapa: Filter"
+
+msgid " File: Prediffer Plugin"
+msgstr "Datoteka: Prediffer vtičnik"
 
 msgid " File: Unpacker Plugin"
 msgstr " Datoteka: Vtičnik razpakovalca"
@@ -1971,12 +1977,8 @@ msgstr "Prag za preklop na &hitro primerjavo (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Število primerjalnih &niti (negativna vrednost pomeni dodajanje števila razpoložljivih jeder CPE):"
 
 msgid "&CSV File Patterns:"
 msgstr "Vzorci datotek &CSV:"

@@ -35,6 +35,9 @@ const char Paths_element_name[] = "paths";
 const char Left_element_name[] = "left";
 const char Middle_element_name[] = "middle";
 const char Right_element_name[] = "right";
+const char Left_desc_element_name[] = "left-desc";
+const char Middle_desc_element_name[] = "middle-desc";
+const char Right_desc_element_name[] = "right-desc";
 const char Filter_element_name[] = "filter";
 const char Subfolders_element_name[] = "subfolders";
 const char Left_ro_element_name[] = "left-readonly";
@@ -42,6 +45,10 @@ const char Middle_ro_element_name[] = "middle-readonly";
 const char Right_ro_element_name[] = "right-readonly";
 const char Unpacker_element_name[] = "unpacker";
 const char Prediffer_element_name[] = "prediffer";
+const char Window_type_element_name[] = "window-type";
+const char Table_delimiter_element_name[] = "table-delimiter";
+const char Table_quote_element_name[] = "table-quote";
+const char Table_allownewlinesinquotes_element_name[] = "table-allownewlinesinquotes";
 const char White_spaces_element_name[] = "white-spaces";
 const char Ignore_blank_lines_element_name[] = "ignore-blank-lines";
 const char Ignore_case_element_name[] = "ignore-case";
@@ -123,6 +130,21 @@ public:
 			currentItem.m_paths.SetRight(currentItem.m_paths.GetRight() + xmlch2tstr(ch + start, length), false);
 			currentItem.m_bHasRight = true;
 		}
+		else if (nodename == Left_desc_element_name)
+		{
+			currentItem.m_leftDesc += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasLeftDesc = true;
+		}
+		else if (nodename == Middle_desc_element_name)
+		{
+			currentItem.m_middleDesc += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasMiddleDesc = true;
+		}
+		else if (nodename == Right_desc_element_name)
+		{
+			currentItem.m_rightDesc += xmlch2tstr(ch + start, length);
+			currentItem.m_bHasRightDesc = true;
+		}
 		else if (nodename == Filter_element_name)
 		{
 			currentItem.m_filter += xmlch2tstr(ch + start, length);
@@ -154,6 +176,26 @@ public:
 		{
 			currentItem.m_prediffer += xmlch2tstr(ch + start, length);
 			currentItem.m_bHasPrediffer = true;
+		}
+		else if (nodename == Window_type_element_name)
+		{
+			currentItem.m_nWindowType = atoi(token.c_str());
+			currentItem.m_bHasWindowType = true;
+		}
+		else if (nodename == Table_delimiter_element_name)
+		{
+			currentItem.m_cTableDelimiter = token.c_str()[0];
+			currentItem.m_bHasTableDelimiter = true;
+		}
+		else if (nodename == Table_quote_element_name)
+		{
+			currentItem.m_cTableQuote = token.c_str()[0];
+			currentItem.m_bHasTableQuote = true;
+		}
+		else if (nodename == Table_allownewlinesinquotes_element_name)
+		{
+			currentItem.m_bTableAllowNewLinesInQuotes = atoi(token.c_str());
+			currentItem.m_bHasTableAllowNewLinesInQuotes = true;
 		}
 		else if (nodename == White_spaces_element_name)
 		{
@@ -223,6 +265,9 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 : m_bHasLeft(false)
 , m_bHasMiddle(false)
 , m_bHasRight(false)
+, m_bHasLeftDesc(false)
+, m_bHasMiddleDesc(false)
+, m_bHasRightDesc(false)
 , m_bHasFilter(false)
 , m_bHasSubfolders(false)
 , m_bHasUnpacker(false)
@@ -231,6 +276,14 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bLeftReadOnly(false)
 , m_bMiddleReadOnly(false)
 , m_bRightReadOnly(false)
+, m_bHasWindowType(false)
+, m_nWindowType(-1)
+, m_bHasTableDelimiter(false)
+, m_cTableDelimiter(',')
+, m_bHasTableQuote(false)
+, m_cTableQuote('\"')
+, m_bHasTableAllowNewLinesInQuotes(false)
+, m_bTableAllowNewLinesInQuotes(true)
 , m_bHasIgnoreWhite(false)
 , m_nIgnoreWhite(0)
 , m_bHasIgnoreBlankLines(false)
@@ -246,11 +299,12 @@ const String ProjectFile::PROJECTFILE_EXT = toTString("WinMerge");
 , m_bHasFilterCommentsLines(false)
 , m_bFilterCommentsLines(false)
 , m_bHasCompareMethod(false)
-, m_bHasHiddenItems(false)
 , m_nCompareMethod(0)
+, m_bHasHiddenItems(false)
 , m_bSaveFilter(true)
 , m_bSaveSubfolders(true)
 , m_bSaveUnpacker(true)
+, m_bSavePrediffer(true)
 , m_bSaveIgnoreWhite(true)
 , m_bSaveIgnoreBlankLines(true)
 , m_bSaveIgnoreCase(true)
@@ -387,6 +441,12 @@ bool ProjectFile::Save(const String& path) const
 					writeElement(writer, Middle_element_name, toUTF8(item.m_paths.GetMiddle()));
 				if (!item.m_paths.GetRight().empty())
 					writeElement(writer, Right_element_name, toUTF8(item.m_paths.GetRight()));
+				if (!item.m_leftDesc.empty())
+					writeElement(writer, Left_desc_element_name, toUTF8(item.m_leftDesc));
+				if (!item.m_middleDesc.empty())
+					writeElement(writer, Middle_desc_element_name, toUTF8(item.m_middleDesc));
+				if (!item.m_rightDesc.empty())
+					writeElement(writer, Right_desc_element_name, toUTF8(item.m_rightDesc));
 				if (item.m_bSaveFilter && !item.m_filter.empty())
 					writeElement(writer, Filter_element_name, toUTF8(item.m_filter));
 				if (item.m_bSaveSubfolders)
@@ -397,8 +457,16 @@ bool ProjectFile::Save(const String& path) const
 				writeElement(writer, Right_ro_element_name, item.m_bRightReadOnly ? "1" : "0");
 				if (item.m_bSaveUnpacker && !item.m_unpacker.empty())
 					writeElement(writer, Unpacker_element_name, toUTF8(item.m_unpacker));
-				if (!item.m_prediffer.empty())
+				if (item.m_bSavePrediffer && !item.m_prediffer.empty())
 					writeElement(writer, Prediffer_element_name, toUTF8(item.m_prediffer));
+				if (item.m_nWindowType != -1)
+					writeElement(writer, Window_type_element_name, std::to_string(item.m_nWindowType));
+				if (item.m_nWindowType == 2 /* table */)
+				{
+					writeElement(writer, Table_delimiter_element_name, toUTF8(String(&item.m_cTableDelimiter, 1)));
+					writeElement(writer, Table_quote_element_name, toUTF8(String(&item.m_cTableQuote, 1)));
+					writeElement(writer, Table_allownewlinesinquotes_element_name, item.m_bTableAllowNewLinesInQuotes ? "1" : "0");
+				}
 				if (item.m_bSaveIgnoreWhite)
 					writeElement(writer, White_spaces_element_name, std::to_string(item.m_nIgnoreWhite));
 				if (item.m_bSaveIgnoreBlankLines)

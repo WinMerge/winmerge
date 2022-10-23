@@ -975,8 +975,8 @@ msgstr "Copiar &nombre de archivo"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "&Seleccionar..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Opciones de Desempaquetador"
@@ -986,6 +986,9 @@ msgstr "<Ninguno>"
 
 msgid "<Automatic>"
 msgstr "<Automático>"
+
+msgid "&Select..."
+msgstr "&Seleccionar..."
 
 msgid "Prediffer Settings"
 msgstr "Config. precomparación"
@@ -1109,6 +1112,9 @@ msgstr "Examinar..."
 
 msgid " Folder: Filter"
 msgstr " Carpeta: Filtro"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr " Archivo: Plugin de Desempaquetador"
@@ -1974,9 +1980,7 @@ msgstr "Limite para cambiarse a comparación rápida (MB)"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para cambiarse a comparación binaria (MB)"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-09-12 23:52+0000\n"
+"POT-Creation-Date: 2022-10-16 00:15+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -966,7 +966,7 @@ msgstr ""
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
+msgid "&Open..."
 msgstr ""
 
 msgid "Unpacker Settings"
@@ -976,6 +976,9 @@ msgid "<None>"
 msgstr ""
 
 msgid "<Automatic>"
+msgstr ""
+
+msgid "&Select..."
 msgstr ""
 
 msgid "Prediffer Settings"
@@ -1099,6 +1102,9 @@ msgid "Browse..."
 msgstr ""
 
 msgid " Folder: Filter"
+msgstr ""
+
+msgid " File: Prediffer Plugin"
 msgstr ""
 
 msgid " File: Unpacker Plugin"
@@ -1957,7 +1963,7 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"

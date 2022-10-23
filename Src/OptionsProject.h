@@ -18,7 +18,7 @@ enum class Item
 {
 	FileFilter,
 	IncludeSubfolders,
-	UnpackerPlugin,
+	Plugin,
 	CompareOptions,
 	HiddenItems
 };

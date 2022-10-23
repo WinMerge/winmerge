@@ -971,8 +971,8 @@ msgstr "ファイル名をコピー(&F)"
 msgid "&Edit Caption"
 msgstr "キャプションの編集(&E)"
 
-msgid "&Select..."
-msgstr "選択(&S)..."
+msgid "&Open..."
+msgstr "開く(&O)..."
 
 msgid "Unpacker Settings"
 msgstr "展開プラグイン設定"
@@ -982,6 +982,9 @@ msgstr "<なし>"
 
 msgid "<Automatic>"
 msgstr "<自動>"
+
+msgid "&Select..."
+msgstr "選択(&S)..."
 
 msgid "Prediffer Settings"
 msgstr "比較前処理プラグイン設定"
@@ -1105,6 +1108,9 @@ msgstr "参照..."
 
 msgid " Folder: Filter"
 msgstr " フォルダー: フィルター"
+
+msgid " File: Prediffer Plugin"
+msgstr " ファイル: 比較前処理プラグイン"
 
 msgid " File: Unpacker Plugin"
 msgstr " ファイル: 展開プラグイン"
@@ -1974,12 +1980,8 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
-"比較スレッドの数(&N):\n"
-"負の値を指定した場合、スレッド数は使用可能な CPU コア数を加算した値になります。"
+msgid "&Number of CPU cores to use:"
+msgstr "使用するCPUコアの数(&N):"
 
 msgid "&CSV File Patterns:"
 msgstr "&CSV ファイルとして扱うパターン:"

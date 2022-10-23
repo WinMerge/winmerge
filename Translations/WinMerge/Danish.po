@@ -1179,9 +1179,8 @@ msgstr "Kopier &filnavn"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "Væ&lg..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1193,6 +1192,10 @@ msgstr "<Ingen>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatisk>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Væ&lg..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1352,6 +1355,9 @@ msgstr "Gennemse..."
 
 #, c-format
 msgid " Folder: Filter"
+msgstr ""
+
+msgid " File: Prediffer Plugin"
 msgstr ""
 
 #, c-format
@@ -2437,7 +2443,7 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"

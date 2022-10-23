@@ -972,8 +972,8 @@ msgstr "&Dosya adını kopyala"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "Seçi&n..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Ayıklayıcı ayarları"
@@ -983,6 +983,9 @@ msgstr "<Yok>"
 
 msgid "<Automatic>"
 msgstr "<Otomatik>"
+
+msgid "&Select..."
+msgstr "Seçi&n..."
 
 msgid "Prediffer Settings"
 msgstr "Ön farklılaştırıcı ayarları"
@@ -1106,6 +1109,9 @@ msgstr "Göz at..."
 
 msgid " Folder: Filter"
 msgstr " Klasör: Süzgeç"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr " Dosya: Ayıklayıcı eklentisi"
@@ -1980,14 +1986,8 @@ msgstr "&Hızlı karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Karşılaştırma işlemleri&nin sayısı (eksi değerler kullanılabilecek işlemci "
-"çekirdeklerine eklenir):"
 
 msgid "&CSV File Patterns:"
 msgstr "&CSV dosya örnekleri:"

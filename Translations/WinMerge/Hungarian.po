@@ -1180,9 +1180,8 @@ msgstr "&Fájlnév másolása"
 msgid "&Edit Caption"
 msgstr "Felirat szerkesztése"
 
-#, c-format
-msgid "&Select..."
-msgstr "&Kiválasztás..."
+msgid "&Open..."
+msgstr "Megnyitás..."
 
 msgid "Unpacker Settings"
 msgstr "Kicsomagoló beállításai"
@@ -1194,6 +1193,10 @@ msgstr "<Nincs>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatikus>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Kiválasztás..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1354,6 +1357,9 @@ msgstr "Tallózás..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Mappa: Szűrő"
+
+msgid " File: Prediffer Plugin"
+msgstr " Fájl: Elővizsgáló bővítmény"
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -2440,12 +2446,8 @@ msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr ""
-"\n"
-"Összehasonlító szálak száma (egy negatív érték a rendelkezésre álló CPU magok igénybevételét jelenti):"
+msgid "&Number of CPU cores to use:"
+msgstr "Használandó CPU magok száma:"
 
 msgid "&CSV File Patterns:"
 msgstr "CSV típusú fájlok kiterjesztése:"

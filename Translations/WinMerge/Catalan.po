@@ -1178,9 +1178,8 @@ msgstr "Copia el nom del &fitxer"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "T&ria..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Opcions del desempaquetador"
@@ -1192,6 +1191,10 @@ msgstr "<Cap>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automàtic>"
+
+#, c-format
+msgid "&Select..."
+msgstr "T&ria..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1352,6 +1355,9 @@ msgstr "Nave&ga..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Carpeta: Filtre"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -2438,12 +2444,8 @@ msgstr "Llindar per realitzar una comparació ràpida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Llindar per realitzar una comparació binària (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Quantitat de fils de comparació (un valor negatiu implica l'increment del nombre de nuclis de CPU disponibles):"
 
 msgid "&CSV File Patterns:"
 msgstr "Patrons del fitxer &CSV:"

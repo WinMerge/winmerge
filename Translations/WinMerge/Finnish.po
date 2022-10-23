@@ -972,8 +972,8 @@ msgstr "Kopioi tiedostonimi"
 msgid "&Edit Caption"
 msgstr "Muokkaa &otsikkoa"
 
-msgid "&Select..."
-msgstr "Valitse..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Pakkauksen purkuasetukset"
@@ -983,6 +983,9 @@ msgstr "<Ei mitään>"
 
 msgid "<Automatic>"
 msgstr "<Automaattinen>"
+
+msgid "&Select..."
+msgstr "Valitse..."
 
 msgid "Prediffer Settings"
 msgstr "Esivertailun asetukset"
@@ -1106,6 +1109,9 @@ msgstr "Selaa..."
 
 msgid " Folder: Filter"
 msgstr " Kansio: Suodin"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr " Tiedosto: Purkaja-lisäosa"
@@ -1978,14 +1984,8 @@ msgstr "Kynnysarvo, jossa siirrytään &nopeaan vertailuun (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Kynnysarvo, jossa siirrytään &binaariseen vertailuun (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Vertailusäikeide&n määrä (negatiivinen arvo merkitsee käytettävissä olevien "
-"CPU-ytimien määrän lisäämistä):"
 
 msgid "&CSV File Patterns:"
 msgstr "&CSV-tiedostomallit:"

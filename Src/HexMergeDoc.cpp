@@ -533,6 +533,8 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 		if (m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL || m_nBufferType[nBuffer] == BUFFERTYPE::NORMAL_NAMED)
 			++nNormalBuffer;
 	}
+	if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFERTYPE::UNNAMED) == m_nBuffers)
+		m_infoUnpacker.Initialize(false);
 	if (nBuffer == nFiles)
 	{
 		// An extra ResizeWindow() on the left view aligns scroll ranges, and

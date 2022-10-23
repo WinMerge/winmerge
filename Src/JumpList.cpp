@@ -123,7 +123,8 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 						PropVariantInit(&pv);
 						if (SUCCEEDED(pPS->GetValue(PKEY_Title, &pv)))
 						{
-							list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
+							if (pv.vt == VT_LPWSTR && pv.bstrVal)
+								list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
 							PropVariantClear(&pv);
 						}
 						pPS->Release();

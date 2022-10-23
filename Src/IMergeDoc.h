@@ -27,6 +27,7 @@ struct IMergeDoc : public IMDITab
 	virtual const PrediffingInfo *GetPrediffer() const = 0;
 	virtual int GetFileCount() const = 0;
 	virtual String GetPath(int pane) const = 0;
+	virtual String GetDescription(int pane) const = 0;
 	virtual bool GetReadOnly(int pane) const = 0;
 };
 

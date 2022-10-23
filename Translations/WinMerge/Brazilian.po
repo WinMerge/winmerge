@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.22\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-07-30 21:57+0000\n"
-"PO-Revision-Date: 2022-08-19 15:33-0300\n"
+"PO-Revision-Date: 2022-10-09 20:16-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -972,8 +972,8 @@ msgstr "Copiar &o Nome do Arquivo"
 msgid "&Edit Caption"
 msgstr "&Editar Legenda"
 
-msgid "&Select..."
-msgstr "&Selecionar..."
+msgid "&Open..."
+msgstr "&Abrir..."
 
 msgid "Unpacker Settings"
 msgstr "Configurações do Desempacotador"
@@ -983,6 +983,9 @@ msgstr "<Nenhum>"
 
 msgid "<Automatic>"
 msgstr "<Automático>"
+
+msgid "&Select..."
+msgstr "&Selecionar..."
 
 msgid "Prediffer Settings"
 msgstr "Configurações da Pré-Diferenciação"
@@ -1106,6 +1109,9 @@ msgstr "Procurar..."
 
 msgid " Folder: Filter"
 msgstr " Pasta: Filtro"
+
+msgid " File: Prediffer Plugin"
+msgstr " Arquivo: Plugin de Pré-diferenciação"
 
 msgid " File: Unpacker Plugin"
 msgstr " Arquivo: Plugin do Desempacotador"
@@ -1963,8 +1969,8 @@ msgstr "Limite para alternar para comparação rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para alternar para comparação binária (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\n&Número dos threads de comparação (um valor negativo implica em adição do número de núcleos da CPU disponíveis):"
+msgid "&Number of CPU cores to use:"
+msgstr "&Número de núcleos de CPU a serem utilizados:"
 
 msgid "&CSV File Patterns:"
 msgstr "Padrões do Arquivo &CSV:"

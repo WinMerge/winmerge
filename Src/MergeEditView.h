@@ -335,7 +335,7 @@ protected:
 	afx_msg void OnViewZoomNormal();
 	afx_msg void OnWindowSplit();
 	afx_msg void OnUpdateWindowSplit(CCmdUI* pCmdUI);
-	afx_msg void OnStatusBarDblClick(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult);
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

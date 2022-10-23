@@ -972,8 +972,8 @@ msgstr "Bestandsnaam kopiëren"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "Selecteren..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Instellingen uitpakker"
@@ -983,6 +983,9 @@ msgstr "<None>"
 
 msgid "<Automatic>"
 msgstr "<Automatic>"
+
+msgid "&Select..."
+msgstr "Selecteren..."
 
 msgid "Prediffer Settings"
 msgstr "Instellingen voorvergelijking"
@@ -1106,6 +1109,9 @@ msgstr "Bladeren..."
 
 msgid " Folder: Filter"
 msgstr "Map: filter"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr "Bestand: uitpak-plugin"
@@ -1983,12 +1989,8 @@ msgstr "Drempel voor overschakelen naar snel vergelijken (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Aantal vergelijkingsthreads (een negatieve waarde impliceert optelling van het aantal beschikbare CPU-kernen):"
 
 msgid "&CSV File Patterns:"
 msgstr "CSV-bestand-patronen:"

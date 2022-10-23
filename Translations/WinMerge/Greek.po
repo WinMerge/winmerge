@@ -1177,9 +1177,8 @@ msgstr "Αντιγραφή Ο&νόματος"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "&Επιλογή..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1191,6 +1190,10 @@ msgstr "<Ουδέν>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Αυτόματο>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&Επιλογή..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1350,6 +1353,9 @@ msgstr "Ανα&ζήτηση..."
 
 #, c-format
 msgid " Folder: Filter"
+msgstr ""
+
+msgid " File: Prediffer Plugin"
 msgstr ""
 
 #, c-format
@@ -2429,7 +2435,7 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"

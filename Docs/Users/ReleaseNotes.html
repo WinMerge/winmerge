@@ -20,18 +20,84 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21623-beta-release-notes">WinMerge 2.16.23 Beta Release Notes</h1>
+<h1 id="winmerge-21624-release-notes">WinMerge 2.16.24 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
+<li><a href="#what-is-new-in-21624">What Is New in 2.16.24?</a></li>
 <li><a href="#what-is-new-in-21623-beta">What Is New in 2.16.23 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
 <p>September 2022</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
+<p>This is a WinMerge 2.16.24 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21623-beta">What Is New in 2.16.23 Beta</h2>
+<h2 id="what-is-new-in-21624">What Is New in 2.16.24</h2>
 <h3 id="general">General</h3>
+<ul>
+<li>BugFix: Fixed crash when displaying file menu if jump list contains invalid title (osdn.net #45916)</li>
+</ul>
+<h3 id="file-compare">File compare</h3>
+<ul>
+<li>Changed operation of displaying dialogs and context menus from status bar from double-click to single-click.</li>
+</ul>
+<h3 id="table-compare">Table compare</h3>
+<ul>
+<li>BugFix: when TSV files were displayed in table mode with word wrap enabled, clicking on a character would not move the caret to that character&#39;s position</li>
+</ul>
+<h3 id="folder-compare">Folder compare</h3>
+<ul>
+<li>Fixed memory leak in folder comparison when PDF files were targeted for image comparison.</li>
+</ul>
+<h3 id="options-dialog">Options dialog</h3>
+<ul>
+<li>Improved translation regarding CPU cores (PR #1513)</li>
+</ul>
+<h3 id="select-files-or-folders-dialog">Select Files or Folders dialog</h3>
+<ul>
+<li>Made it possible to specify Prediffer plugin</li>
+</ul>
+<h3 id="plugins">Plugins</h3>
+<ul>
+<li>BugFix: Select Plugin dialog: Fixed that &quot;Display all plugins&quot; checkbox did not work</li>
+</ul>
+<h3 id="project-file">Project file</h3>
+<ul>
+<li>BugFix: Fixed comparison failure when left file path and right file path in project file are URLs.</li>
+<li>Allow saving following in project file.
+<ul>
+<li>Description</li>
+<li>Window type</li>
+<li>Table delimiter</li>
+</ul></li>
+</ul>
+<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
+<ul>
+<li>BugFix: The command line section in the generated patch file was garbled (osdn.net #45935)</li>
+</ul>
+<h3 id="translations">Translations</h3>
+<ul>
+<li>BugFix: Fix an issue where the following message displayed when two files are identical in a 3-way folder comparison is not translated. (PR #1535)</li>
+<li>Translation updates:
+<ul>
+<li>Brazilian (PR #1511,#1523)</li>
+<li>Corsican (PR #1510,#1527)</li>
+<li>German (PR #1498,#1509,#1528)</li>
+<li>Hungarian (PR #1508,#1524)</li>
+<li>Japanese</li>
+<li>Lithuanian (PR #1514,#1526)</li>
+<li>Polish (PR #1525)</li>
+<li>Portuguese (PR #1529)</li>
+<li>Slovenian</li>
+</ul></li>
+</ul>
+<h3 id="others">Others</h3>
+<ul>
+<li>BugFix: Fixed English verbiage (PR #1499)</li>
+<li>BugFix: typo fixed in README.md (PR #1504)</li>
+<li>BugFix: Fix typo in lwdisp.c (PR #1515)</li>
+</ul>
+<h2 id="what-is-new-in-21623-beta">What Is New in 2.16.23 Beta</h2>
+<h3 id="general-1">General</h3>
 <ul>
 <li>BugFix: Fix an issue where filenames containing &quot;&amp;&quot; are not displayed properly in the MDI tab bar and its tooltips. (PR #1466)</li>
 </ul>
@@ -39,14 +105,15 @@
 <ul>
 <li>Create Midnight.ini (PR #1430)</li>
 </ul>
-<h3 id="file-compare">File compare</h3>
+<h3 id="file-compare-1">File compare</h3>
 <ul>
 <li>BugFix: Non existing backup directory should be automatically created (#1438)</li>
+<li>BugFix: Bug: Can&#39;t copy selected text, if it has non-changed lines (#1507)</li>
 <li>Remember zoom level for all files (#1433)</li>
 <li>The feature will allow the user to right-click the selected lines and… add them to Line Filter so that those lines added to the Line Filter will be ignored if found in any file. (PR #1481)</li>
 <li>CrystalEdit/parsers/SQL: Added more keywords (PR #1493)</li>
 </ul>
-<h3 id="table-compare">Table compare</h3>
+<h3 id="table-compare-1">Table compare</h3>
 <ul>
 <li>Bugfix: Inline differences ware not displayed even if the caret is moved to the position of an inline difference that is hidden due to the narrow column width.</li>
 </ul>
@@ -54,7 +121,7 @@
 <ul>
 <li>[EXPERIMENTAL] Webpage Compare: Highlight differences (PR #1357)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="folder-compare-1">Folder compare</h3>
 <ul>
 <li>BugFix: Disable rename operations when in read-only mode in the folder compare window. (PR #1434)</li>
 <li>BugFix: Fix an issue where renaming to a file name or directory name containing &quot;&quot; or &quot;/&quot; is not done properly. (PR #1451)</li>
@@ -65,7 +132,7 @@
 <ul>
 <li>Update 7-Zip to 22.01 (#1425)</li>
 </ul>
-<h3 id="translations">Translations</h3>
+<h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>

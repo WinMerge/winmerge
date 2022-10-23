@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-09-12 17:30+0200\n"
+"PO-Revision-Date: 2022-10-17 13:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1181,9 +1181,8 @@ msgstr "Dateinamen kopieren"
 msgid "&Edit Caption"
 msgstr "Titelzeile bearbeiten"
 
-#, c-format
-msgid "&Select..."
-msgstr "Auswählen..."
+msgid "&Open..."
+msgstr "&Öffnen..."
 
 msgid "Unpacker Settings"
 msgstr "Entpackereinstellungen"
@@ -1195,6 +1194,10 @@ msgstr "<Keine>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatisch>"
+
+#, c-format
+msgid "&Select..."
+msgstr "Auswählen..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1356,6 +1359,9 @@ msgstr "&Suchen..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " Ordner: Filter"
+
+msgid " File: Prediffer Plugin"
+msgstr " Datei: Prediffer-Plugin"
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -2434,8 +2440,8 @@ msgstr "Schwellenwert für den Wechsel zum &Schnellvergleich (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\nAnzahl der &Vergleichs-Threads\n(negativer Wert bedeutet Summe der verfügbaren CPUs):"
+msgid "&Number of CPU cores to use:"
+msgstr "Anzahl der zu verwendenden &CPU-Kerne:"
 
 msgid "&CSV File Patterns:"
 msgstr "&CSV-Dateimuster:"

@@ -974,8 +974,8 @@ msgstr "Копировать имя файла"
 msgid "&Edit Caption"
 msgstr "&Изменить заголовок"
 
-msgid "&Select..."
-msgstr "&Выбрать..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Параметры распаковщика"
@@ -985,6 +985,9 @@ msgstr "<Нет>"
 
 msgid "<Automatic>"
 msgstr "<Автоматически>"
+
+msgid "&Select..."
+msgstr "&Выбрать..."
 
 msgid "Prediffer Settings"
 msgstr "Параметры предсравнения"
@@ -1108,6 +1111,9 @@ msgstr "Обзор..."
 
 msgid " Folder: Filter"
 msgstr " Папка: Фильтр"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
@@ -1965,8 +1971,8 @@ msgstr "Порог для перехода к быстрому сравнени�
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
-msgstr "\nЧисло потоков сравнения\n(отрицательное значение = ядрам процессора)"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "&CSV File Patterns:"
 msgstr "Шаблоны CSV-файлов:"

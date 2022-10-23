@@ -72,6 +72,7 @@ public:
 	void InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *);
 	void DiffThreadCallback(int& state);
 	void Rescan();
+	String GetDescription(int nIndex) const { return m_strDesc[nIndex]; };
 	bool GetReadOnly(int nIndex) const;
 	const bool *GetReadOnly(void) const;
 	void SetReadOnly(int nIndex, bool bReadOnly);

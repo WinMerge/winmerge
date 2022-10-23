@@ -123,7 +123,7 @@ Subfolders include:
 
    You will need to fork the main Winmerge repository and create a branch on that fork
    
-   Your new code needs to follow Eric Allman identation https://en.wikipedia.org/wiki/Indentation_style#Allman_style
+   Your new code needs to follow [Eric Allman indentation](https://en.wikipedia.org/wiki/Indentation_style#Allman_style)
    
    When your code is ready for a review/merge create a pull request explaining the changes that you made
    

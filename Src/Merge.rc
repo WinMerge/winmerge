@@ -953,7 +953,8 @@ BEGIN
         MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
         MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
         MENUITEM "&Edit Caption",               ID_EDITOR_EDIT_CAPTION
-        MENUITEM "&Select...",                  ID_EDITOR_SELECT_FILE
+        MENUITEM SEPARATOR
+        MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
     END
 END
 
@@ -1142,6 +1143,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -1283,6 +1285,9 @@ BEGIN
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
+    LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,10,198,120,11,NOT WS_VISIBLE
+    CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,10,209,140,95
+    PUSHBUTTON      "&Select...",IDC_SELECT_PREDIFFER,153,209,73,14,NOT WS_VISIBLE
     GROUPBOX        "",IDC_FILES_DIRS_GROUP4X,236,197,224,42
     LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,198,86,11
     CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,209,140,140
@@ -2178,8 +2183,8 @@ BEGIN
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
     LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,279,10
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,150,30,14,ES_AUTOHSCROLL
-    LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,6,166,239,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,198,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Number of CPU cores to use:",IDC_STATIC,6,166,239,30
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,178,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
@@ -2527,6 +2532,9 @@ BEGIN
     0, 0, 50, 0,
     50, 0, 0, 0,
     0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 50, 0,
+    50, 0, 0, 0,
     50, 0, 50, 0,
     50, 0, 0, 0,
     50, 0, 50, 0,

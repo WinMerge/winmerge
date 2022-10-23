@@ -1145,8 +1145,6 @@ void CMainFrame::OnOptions()
 		// Update all dirdoc settings
 		for (auto pDirDoc : GetAllDirDocs())
 			pDirDoc->RefreshOptions();
-		for (auto pOpenDoc : GetAllOpenDocs())
-			pOpenDoc->RefreshOptions();
 		for (auto pHexMergeDoc : GetAllHexMergeDocs())
 			pHexMergeDoc->RefreshOptions();
 		for (auto pImgMergeFrame : GetAllImgMergeFrames())
@@ -2352,7 +2350,7 @@ void CMainFrame::OnSaveProject()
 	CFrameWnd * pFrame = GetActiveFrame();
 	FRAMETYPE frame = pFrame ? GetFrameType(pFrame) : FRAME_OTHER;
 
-	if (frame == FRAME_FILE || frame == FRAME_HEXFILE || frame == FRAME_IMGFILE)
+	if (frame == FRAME_FILE || frame == FRAME_HEXFILE || frame == FRAME_IMGFILE || frame == FRAME_WEBPAGE)
 	{
 		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
 		{
@@ -2360,12 +2358,42 @@ void CMainFrame::OnSaveProject()
 			for (int pane = 0; pane < pMergeDoc->GetFileCount(); ++pane)
 			{
 				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
-				paths.SetPath(pane, pMergeDoc->GetPath(pane));
+				paths.SetPath(pane, pMergeDoc->GetPath(pane), false);
+				pOpenDoc->m_strDesc[pane] = pMergeDoc->GetDescription(pane);
 			}
 			pOpenDoc->m_files = paths;
 			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetFilterNameOrMask();
 			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker()->GetPluginPipeline();
+			pOpenDoc->m_strPredifferPipeline = pMergeDoc->GetPrediffer()->GetPluginPipeline();
+			switch (frame)
+			{
+			case FRAME_FILE:
+			{
+				CMergeDoc* pDoc = static_cast<CMergeDoc*>(pMergeDoc);
+				if (pDoc->m_ptBuf[0]->GetTableEditing())
+				{
+					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TABLE - ID_MERGE_COMPARE_TEXT + 1;
+					pOpenDoc->m_cTableDelimiter = pDoc->m_ptBuf[0]->GetFieldDelimiter();
+					pOpenDoc->m_cTableQuote = pDoc->m_ptBuf[0]->GetFieldEnclosure();
+					pOpenDoc->m_bTableAllowNewLinesInQuotes = pDoc->m_ptBuf[0]->GetAllowNewlinesInQuotes();
+				}
+				else
+				{
+					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TEXT - ID_MERGE_COMPARE_TEXT + 1;
+				}
+				break;
+			}
+			case FRAME_HEXFILE:
+				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_HEX - ID_MERGE_COMPARE_TEXT + 1;
+				break;
+			case FRAME_IMGFILE:
+				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_IMAGE - ID_MERGE_COMPARE_TEXT + 1;
+				break;
+			case FRAME_WEBPAGE:
+				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_WEBPAGE - ID_MERGE_COMPARE_TEXT + 1;
+				break;
+			}
 		}
 	}
 	else if (frame == FRAME_FOLDER)
@@ -2380,6 +2408,7 @@ void CMainFrame::OnSaveProject()
 			{
 				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
 				pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+				pOpenDoc->m_strDesc[pane] = pDoc->GetDescription(pane);
 			}
 			pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
 			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
@@ -2948,6 +2977,7 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 	*pResult = 0;
 }
+
 void CMainFrame::OnDiffWhitespace(UINT nID)
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nID - ID_DIFF_OPTIONS_WHITESPACE_COMPARE);

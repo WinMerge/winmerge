@@ -969,8 +969,8 @@ msgstr "Копиране на &името"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "&Избиране…"
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Настройки на разопаковчик"
@@ -980,6 +980,9 @@ msgstr "<Няма>"
 
 msgid "<Automatic>"
 msgstr "<Автоматично>"
+
+msgid "&Select..."
+msgstr "&Избиране…"
 
 msgid "Prediffer Settings"
 msgstr ""
@@ -1103,6 +1106,9 @@ msgstr "Разглеждане…"
 
 msgid " Folder: Filter"
 msgstr " Папка: Филтър"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: добавка разопаковчик"
@@ -1974,14 +1980,8 @@ msgstr "Ограничение за превключване към &бързо 
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Ограничение за превключване към &двоично сравняване (МБ):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number "
-"of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"Брой &нишки извършващи сравняване (отрицателните стойности се добавят към "
-"броя налични ядра на CPU):"
 
 msgid "&CSV File Patterns:"
 msgstr "Шаблони за име на файл на &CSV:"

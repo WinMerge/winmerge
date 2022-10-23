@@ -18,10 +18,17 @@ public:
 	bool HasLeft() const;
 	bool HasMiddle() const;
 	bool HasRight() const;
+	bool HasLeftDesc() const;
+	bool HasMiddleDesc() const;
+	bool HasRightDesc() const;
 	bool HasFilter() const;
 	bool HasSubfolders() const;
 	bool HasUnpacker() const;
 	bool HasPrediffer() const;
+	bool HasWindowType() const;
+	bool HasTableDelimiter() const;
+	bool HasTableQuote() const;
+	bool HasTableAllowNewLinesInQuotes() const;
 	bool HasIgnoreWhite() const;
 	bool HasIgnoreBlankLines() const;
 	bool HasIgnoreCase() const;
@@ -33,15 +40,22 @@ public:
 	bool HasHiddenItems() const;
 
 	String GetLeft(bool * pReadOnly = nullptr) const;
+	String GetLeftDesc() const;
 	bool GetLeftReadOnly() const;
 	String GetMiddle(bool * pReadOnly = nullptr) const;
+	String GetMiddleDesc() const;
 	bool GetMiddleReadOnly() const;
 	String GetRight(bool * pReadOnly = nullptr) const;
+	String GetRightDesc() const;
 	bool GetRightReadOnly() const;
 	String GetFilter() const;
 	int GetSubfolders() const;
 	String GetUnpacker() const;
 	String GetPrediffer() const;
+	int GetWindowType() const;
+	TCHAR GetTableDelimiter() const;
+	TCHAR GetTableQuote() const;
+	bool GetTableAllowNewLinesInQuotes() const;
 	int GetIgnoreWhite() const;
 	bool GetIgnoreBlankLines() const;
 	bool GetIgnoreCase() const;
@@ -55,10 +69,17 @@ public:
 	void SetLeft(const String& sLeft, const bool * pReadOnly = nullptr);
 	void SetMiddle(const String& sMiddle, const bool * pReadOnly = nullptr);
 	void SetRight(const String& sRight, const bool * pReadOnly = nullptr);
+	void SetLeftDesc(const String& sLeftDesc);
+	void SetMiddleDesc(const String& sMiddleDesc);
+	void SetRightDesc(const String& sRightDesc);
 	void SetFilter(const String& sFilter);
 	void SetSubfolders(bool bSubfolder);
 	void SetUnpacker(const String& sUnpacker);
 	void SetPrediffer(const String& sPrediffer);
+	void SetWindowType(int nWindowType);
+	void SetTableDelimiter(TCHAR cTableDelimiter);
+	void SetTableQuote(TCHAR cTableQuote);
+	void SetTableAllowNewLinesInQuotes(bool bAllowNewLinesInQuotes);
 	void SetIgnoreWhite(int nIgnoreWhite);
 	void SetIgnoreBlankLines(bool bIgnoreBlankLines);
 	void SetIgnoreCase(bool bIgnoreCase);
@@ -75,6 +96,7 @@ public:
 	void SetSaveFilter(bool bSaveFilter);
 	void SetSaveSubfolders(bool bSaveSubfolders);
 	void SetSaveUnpacker(bool bSaveUnpacker);
+	void SetSavePrediffer(bool bSavePrediffer);
 	void SetSaveIgnoreWhite(bool bSaveIgnoreWhite);
 	void SetSaveIgnoreBlankLines(bool bSaveIgnoreBlankLines);
 	void SetSaveIgnoreCase(bool bSaveIgnoreCase);
@@ -90,6 +112,12 @@ private:
 	bool m_bHasLeft; /**< Has left path? */
 	bool m_bHasMiddle; /**< Has middle path? */
 	bool m_bHasRight; /**< Has right path? */
+	String m_leftDesc;
+	String m_middleDesc;
+	String m_rightDesc;
+	bool m_bHasLeftDesc; /**< Has left description? */
+	bool m_bHasMiddleDesc; /**< Has middle description? */
+	bool m_bHasRightDesc; /**< Has right description? */
 	bool m_bHasFilter; /**< Has filter? */
 	String m_filter; /**< Filter name or mask */
 	bool m_bHasSubfolders; /**< Has subfolders? */
@@ -101,6 +129,14 @@ private:
 	String m_unpacker; /**< Unpacker name or pipeline */
 	bool m_bHasPrediffer; /**< Has prediffer? */
 	String m_prediffer; /**< Prediffer name or pipeline */
+	bool m_bHasWindowType; /**< Has window type? */
+	int m_nWindowType; /**< The value of the window type */
+	TCHAR m_cTableDelimiter;
+	bool m_bHasTableDelimiter; /**< Has table delimiter? */
+	TCHAR m_cTableQuote;
+	bool m_bHasTableQuote; /**< Has table quote? */
+	bool m_bTableAllowNewLinesInQuotes;
+	bool m_bHasTableAllowNewLinesInQuotes; /**< Has table allow new lines in quotes? */
 	bool m_bHasIgnoreWhite; /**< Has "Whitespaces" setting? */
 	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
 	bool m_bHasIgnoreBlankLines; /**< Has "Ignore blank lines" setting? */
@@ -122,6 +158,7 @@ private:
 	bool m_bSaveFilter; /**< Save filter? */
 	bool m_bSaveSubfolders; /**< Save subfolders? */
 	bool m_bSaveUnpacker; /**< Save unpacker? */
+	bool m_bSavePrediffer; /**< Save prediffer? */
 	bool m_bSaveIgnoreWhite; /**< Save "Whitespaces" setting? */
 	bool m_bSaveIgnoreBlankLines; /**< Save "Ignore blank lines" setting? */
 	bool m_bSaveIgnoreCase; /**< Save "Ignore case" setting? */
@@ -179,6 +216,86 @@ inline bool ProjectFileItem::HasRight() const
 }
 
 /** 
+ * @brief Returns if left description is defined in project file.
+ * @return true if project file has left description.
+ */
+inline bool ProjectFileItem::HasLeftDesc() const
+{
+	return m_bHasLeftDesc;
+}
+
+/** 
+ * @brief Returns if middle description is defined.
+ */
+inline bool ProjectFileItem::HasMiddleDesc() const
+{
+	return m_bHasMiddleDesc;
+}
+
+/** 
+ * @brief Returns if right description is defined in project file.
+ * @return true if project file has right description.
+ */
+inline bool ProjectFileItem::HasRightDesc() const
+{
+	return m_bHasRightDesc;
+}
+
+/** 
+ * @brief Returns left description.
+ * @return left description.
+ */
+inline String ProjectFileItem::GetLeftDesc() const
+{
+	return m_leftDesc;
+}
+
+/** 
+ * @brief Returns middle description.
+ * @return middle description.
+ */
+inline String ProjectFileItem::GetMiddleDesc() const
+{
+	return m_middleDesc;
+}
+
+/** 
+ * @brief Returns right description.
+ * @return right description.
+ */
+inline String ProjectFileItem::GetRightDesc() const
+{
+	return m_rightDesc;
+}
+
+/** 
+ * @brief Set left description.
+ * @param [in] sDesc New left description.
+ */
+inline void ProjectFileItem::SetLeftDesc(const String& sDesc)
+{
+	m_leftDesc = sDesc;
+}
+
+/** 
+ * @brief Set middle description.
+ * @param [in] sDesc New middle description.
+ */
+inline void ProjectFileItem::SetMiddleDesc(const String& sDesc)
+{
+	m_middleDesc = sDesc;
+}
+
+/** 
+ * @brief Set right description.
+ * @param [in] sDesc New right description.
+ */
+inline void ProjectFileItem::SetRightDesc(const String& sDesc)
+{
+	m_rightDesc = sDesc;
+}
+
+/** 
  * @brief Returns if filter is defined in project file.
  * @return true if project file has filter.
  */
@@ -212,6 +329,42 @@ inline bool ProjectFileItem::HasUnpacker() const
 inline bool ProjectFileItem::HasPrediffer() const
 {
 	return m_bHasPrediffer;
+}
+
+/** 
+ * @brief Returns if window type is defined in projectfile.
+ * @return true if project file has window type definition.
+ */
+inline bool ProjectFileItem::HasWindowType() const
+{
+	return m_bHasWindowType;
+}
+
+/** 
+ * @brief Returns if table delimiter is defined in projectfile.
+ * @return true if project file has table delimiter definition.
+ */
+inline bool ProjectFileItem::HasTableDelimiter() const
+{
+	return m_bHasTableDelimiter;
+}
+
+/** 
+ * @brief Returns if table quote is defined in projectfile.
+ * @return true if project file has table quote definition.
+ */
+inline bool ProjectFileItem::HasTableQuote() const
+{
+	return m_bHasTableQuote;
+}
+
+/** 
+ * @brief Returns if table-allownewlinesinquotes is defined in projectfile.
+ * @return true if project file has table-allownewlinesinquotes definition.
+ */
+inline bool ProjectFileItem::HasTableAllowNewLinesInQuotes() const
+{
+	return m_bHasTableAllowNewLinesInQuotes;
 }
 
 /** 
@@ -391,6 +544,78 @@ inline String ProjectFileItem::GetPrediffer() const
 inline void ProjectFileItem::SetPrediffer(const String& sPrediffer)
 {
 	m_prediffer = sPrediffer;
+}
+
+/** 
+ * @brief Returns window type
+ * @return Window type
+ */
+inline int ProjectFileItem::GetWindowType() const
+{
+	return m_nWindowType;
+}
+
+/** 
+ * @brief Set window type
+ * @param [in] nWindowType New window type to set.
+ */
+inline void ProjectFileItem::SetWindowType(int nWindowType)
+{
+	m_nWindowType = nWindowType;
+}
+
+/** 
+ * @brief Returns table delimiter
+ * @return Table delimiter
+ */
+inline TCHAR ProjectFileItem::GetTableDelimiter() const
+{
+	return m_cTableDelimiter;
+}
+
+/** 
+ * @brief Set table delimiter
+ * @param [in] cTableDelimiter New table delimiter to set.
+ */
+inline void ProjectFileItem::SetTableDelimiter(TCHAR cTableDelimiter)
+{
+	m_cTableDelimiter = cTableDelimiter;
+}
+
+/** 
+ * @brief Returns table quote
+ * @return Table quote
+ */
+inline TCHAR ProjectFileItem::GetTableQuote() const
+{
+	return m_cTableQuote;
+}
+
+/** 
+ * @brief Set table quote
+ * @param [in] cTableQuote New table quote to set.
+ */
+inline void ProjectFileItem::SetTableQuote(TCHAR cTableQuote)
+{
+	m_cTableQuote = cTableQuote;
+}
+
+/** 
+ * @brief Returns table-allownewlinesinquotes
+ * @return Table-allownewlinesinquotes
+ */
+inline bool ProjectFileItem::GetTableAllowNewLinesInQuotes() const
+{
+	return m_bTableAllowNewLinesInQuotes;
+}
+
+/** 
+ * @brief Set table-allownewlinesinquotes
+ * @param [in] cTableAllowNewLinesInQuotes New table-allownewlinesinquotes to set.
+ */
+inline void ProjectFileItem::SetTableAllowNewLinesInQuotes(bool bTableAllowNewLinesInQuotes)
+{
+	m_bTableAllowNewLinesInQuotes = bTableAllowNewLinesInQuotes;
 }
 
 /** 
@@ -592,6 +817,15 @@ inline void ProjectFileItem::SetSaveSubfolders(bool bSaveSubfolders)
 inline void ProjectFileItem::SetSaveUnpacker(bool bSaveUnpacker)
 {
 	m_bSaveUnpacker = bSaveUnpacker;
+}
+
+/** 
+ * @brief Set whether to save unpacker.
+ * @param [in] bSavePrediffer Whether to save unpacker.
+ */
+inline void ProjectFileItem::SetSavePrediffer(bool bSavePrediffer)
+{
+	m_bSavePrediffer = bSavePrediffer;
 }
 
 /** 

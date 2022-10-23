@@ -1179,9 +1179,8 @@ msgstr "&F رونوشت برداري نام پرونده"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "&S انتخاب ... "
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr ""
@@ -1193,6 +1192,10 @@ msgstr "<هيچکدام>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<خودکار>"
+
+#, c-format
+msgid "&Select..."
+msgstr "&S انتخاب ... "
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1352,6 +1355,9 @@ msgstr " مرور ... "
 
 #, c-format
 msgid " Folder: Filter"
+msgstr ""
+
+msgid " File: Prediffer Plugin"
 msgstr ""
 
 #, c-format
@@ -2439,7 +2445,7 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"

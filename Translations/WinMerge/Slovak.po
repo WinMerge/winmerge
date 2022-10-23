@@ -972,8 +972,8 @@ msgstr "Kopírovať názov &súboru"
 msgid "&Edit Caption"
 msgstr ""
 
-msgid "&Select..."
-msgstr "&Vybrať..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "Nastavenia rozbaľovača"
@@ -983,6 +983,9 @@ msgstr "<Žiadny>"
 
 msgid "<Automatic>"
 msgstr "<Automatické>"
+
+msgid "&Select..."
+msgstr "&Vybrať..."
 
 msgid "Prediffer Settings"
 msgstr "Nastavenia predbežného spracovateľa rozdielov"
@@ -1106,6 +1109,9 @@ msgstr "Prehľadávať..."
 
 msgid " Folder: Filter"
 msgstr " Priečinok: Filter"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 msgid " File: Unpacker Plugin"
 msgstr " File: Rozšírenie rozbaľovača"
@@ -1971,12 +1977,8 @@ msgstr "Prahová hodnota pre prepnutie pre &rýchle porovnanie (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prahová hodnota pre prepnutie na &binárne porovnanie (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"&Počet porovnávaných vlákien (záporná hodnota znamená pridanie počtu dostupných jadier CPU):"
 
 msgid "&CSV File Patterns:"
 msgstr "Vzory súborov &CSV:"

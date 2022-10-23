@@ -1186,9 +1186,8 @@ msgstr "파일 이름 복사(&F)"
 msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "선택(&S)..."
+msgid "&Open..."
+msgstr ""
 
 msgid "Unpacker Settings"
 msgstr "언패커 설정"
@@ -1200,6 +1199,10 @@ msgstr "<없음>"
 #, c-format
 msgid "<Automatic>"
 msgstr "<자동>"
+
+#, c-format
+msgid "&Select..."
+msgstr "선택(&S)..."
 
 #, c-format
 msgid "Prediffer Settings"
@@ -1360,6 +1363,9 @@ msgstr "찾아보기..."
 #, c-format
 msgid " Folder: Filter"
 msgstr " 폴더: 필터"
+
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -2446,12 +2452,8 @@ msgstr "&quick compare로 전환하기 위한 임계값 (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "&binary compare로 전환하기 위한 임계값 (MB):"
 
-msgid ""
-"\n"
-"&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
-"\n"
-"비교 쓰레드 개수(&N) (음수값은 사용 가능한 CPU 코어 개수의 추가를 뜻합니다):"
 
 msgid "&CSV File Patterns:"
 msgstr "CSV 파일 패턴(&C)"
