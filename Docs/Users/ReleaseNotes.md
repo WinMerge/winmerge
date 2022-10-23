@@ -1,6 +1,7 @@
-# WinMerge 2.16.23 Beta Release Notes
+# WinMerge 2.16.24 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.24?](#what-is-new-in-21624)
 - [What Is New in 2.16.23 beta?](#what-is-new-in-21623-beta)
 - [Known issues](#known-issues)
 
@@ -8,11 +9,81 @@ September 2022
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for production
-environments.
+This is a WinMerge 2.16.24 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.24
+
+### General
+
+- BugFix: Fixed crash when displaying file menu if jump list contains invalid
+    title (osdn.net #45916)
+
+### File compare
+
+- Changed operation of displaying dialogs and context menus from status
+    bar from double-click to single-click.
+
+### Table compare
+
+- BugFix: when TSV files were displayed in table mode with word wrap enabled,
+    clicking on a character would not move the caret to that character's
+    position
+
+### Folder compare
+
+- Fixed memory leak in folder comparison when PDF files
+    were targeted for image comparison.
+
+### Options dialog
+
+- Improved translation regarding CPU cores (PR #1513)
+
+### Select Files or Folders dialog
+
+- Made it possible to specify Prediffer plugin
+
+### Plugins
+
+- BugFix: Select Plugin dialog: Fixed that "Display all plugins"
+    checkbox did not work
+
+### Project file
+
+- BugFix: Fixed comparison failure when left file path and right
+    file path in project file are URLs.
+- Allow saving following in project file.
+  - Description
+  - Window type
+  - Table delimiter
+
+### Patch Generator dialog
+
+- BugFix: The command line section in the generated patch file was garbled
+    (osdn.net #45935)
+
+### Translations
+
+- BugFix: Fix an issue where the following message displayed when two files
+    are identical in a 3-way folder comparison is not translated. (PR #1535)
+- Translation updates:
+  - Brazilian (PR #1511,#1523)
+  - Corsican (PR #1510,#1527)
+  - German (PR #1498,#1509,#1528)
+  - Hungarian (PR #1508,#1524)
+  - Japanese
+  - Lithuanian (PR #1514,#1526)
+  - Polish (PR #1525)
+  - Portuguese (PR #1529)
+  - Slovenian
+
+### Others
+
+- BugFix: Fixed English verbiage (PR #1499)
+- BugFix: typo fixed in README.md (PR #1504)
+- BugFix: Fix typo in lwdisp.c (PR #1515)
 
 ## What Is New in 2.16.23 Beta
 ### General
