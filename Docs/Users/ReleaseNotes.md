@@ -71,6 +71,7 @@ Please submit bug reports to our bug-tracker.
 - Translation updates:
   - Brazilian (PR #1511,#1523)
   - Corsican (PR #1510,#1527)
+  - French (PR #1538)
   - German (PR #1498,#1509,#1528)
   - Hungarian (PR #1508,#1524)
   - Japanese
