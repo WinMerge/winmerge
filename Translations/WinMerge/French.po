@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-09-21 09:34+0200\n"
+"PO-Revision-Date: 2022-10-26 16:01+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -1183,7 +1183,7 @@ msgid "&Edit Caption"
 msgstr "&Modifier la légende"
 
 msgid "&Open..."
-msgstr ""
+msgstr "&Ouvrir..."
 
 msgid "Unpacker Settings"
 msgstr "Paramètres du décompresseur"
@@ -1361,7 +1361,7 @@ msgid " Folder: Filter"
 msgstr " Dossier : filtre"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Fichier : Plugin Prediffer"
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -2449,7 +2449,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Seuil de passage à la comparaison &binaire (Mo) :"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "&Nombre de cœurs de processeur à utiliser :"
 
 msgid "&CSV File Patterns:"
 msgstr "Modèles de fichiers &CSV :"
