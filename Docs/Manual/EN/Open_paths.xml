@@ -477,6 +477,14 @@ to compare one file/folder against several files/folders.</para> </tip> -->
         </varlistentry>
 
         <varlistentry>
+          <term><sgmltag>left-desc</sgmltag></term>
+
+          <listitem>
+            <para>Left description</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term><sgmltag>left-readonly</sgmltag></term>
 
           <listitem>
@@ -495,6 +503,14 @@ to compare one file/folder against several files/folders.</para> </tip> -->
         </varlistentry>
 
         <varlistentry>
+          <term><sgmltag>middle-desc</sgmltag></term>
+
+          <listitem>
+            <para>Middle description</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term><sgmltag>middle-readonly</sgmltag></term>
 
           <listitem>
@@ -509,6 +525,14 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
           <listitem>
             <para>Right path to open</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right-desc</sgmltag></term>
+
+          <listitem>
+            <para>Right description</para>
           </listitem>
         </varlistentry>
 
@@ -553,6 +577,30 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
           <listitem>
             <para>Prediffer plugin name or plugin pipeline</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>window-type</sgmltag></term>
+
+          <listitem>
+            <para>1 = Text compare window</para>
+
+            <para>2 = Table compare window</para>
+
+            <para>3 = Binary compare window</para>
+
+            <para>4 = Image compare window</para>
+
+            <para>5 = Webpage compare window</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>table-delimiter</sgmltag></term>
+
+          <listitem>
+            <para>Delimiter for table editing</para>
           </listitem>
         </varlistentry>
 
