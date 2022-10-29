@@ -338,6 +338,7 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	// skipped items before unique items, for example, so that
 	// skipped unique items are labeled as skipped, not unique.
 	String s;
+	bool bAddCompareFlags3WayString = false;
 	if (di.diffcode.isResultError())
 	{
 		s = _("Unable to compare files");
@@ -380,16 +381,19 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 	{
 		s = strutils::format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedLeft());
+		bAddCompareFlags3WayString = true;
 	}
 	else if (nDirs > 2 && !di.diffcode.existsSecond())
 	{
 		s = strutils::format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedMiddle());
+		bAddCompareFlags3WayString = true;
 	}
 	else if (nDirs > 2 && !di.diffcode.existsThird())
 	{
 		s = strutils::format_string1(_("Does not exist in %1"),
 				pCtxt->GetNormalizedRight());
+		bAddCompareFlags3WayString = true;
 	}
 	else if (di.diffcode.isResultSame())
 	{
@@ -415,13 +419,15 @@ static String ColStatusGet(const CDiffContext *pCtxt, const void *p, int)
 		else
 			s = _("Files are different");
 		if (nDirs > 2)
+			bAddCompareFlags3WayString = true;
+	}
+	if (bAddCompareFlags3WayString)
+	{
+		switch (di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY)
 		{
-			switch (di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY)
-			{
-			case DIFFCODE::DIFF1STONLY: s += _(" (Middle and right are identical)"); break;
-			case DIFFCODE::DIFF2NDONLY: s += _(" (Left and right are identical)"); break;
-			case DIFFCODE::DIFF3RDONLY: s += _(" (Left and middle are identical)"); break;
-			}
+		case DIFFCODE::DIFF1STONLY: s += _(" (Middle and right are identical)"); break;
+		case DIFFCODE::DIFF2NDONLY: s += _(" (Left and right are identical)"); break;
+		case DIFFCODE::DIFF3RDONLY: s += _(" (Left and middle are identical)"); break;
 		}
 	}
 	return s;
