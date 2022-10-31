@@ -738,7 +738,7 @@ Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: 
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Components: ShellExtension32bit
 Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle
-Filename: powershell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
+Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Components: ShellExtension32bit
@@ -857,7 +857,7 @@ var
   ResultCode: Integer;
 Begin;
   if RegKeyExists(HKCU, 'SOFTWARE\Classes\PackagedCom\ClassIndex\{90340779-F37E-468E-9728-A2593498ED32}') then
-    Exec('powershell.exe', '-c "$host.ui.RawUI.WindowTitle = ""Unregistering WinMergeContextMenu package...""; Get-AppxPackage -name WinMerge | Remove-AppxPackage"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);  
+    Exec(ExpandConstant('{win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe'), '-c "$host.ui.RawUI.WindowTitle = ""Unregistering WinMergeContextMenu package...""; Get-AppxPackage -name WinMerge | Remove-AppxPackage"', '', SW_SHOW, ewWaitUntilTerminated, ResultCode);  
   Result := true;
 End;
 
