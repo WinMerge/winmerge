@@ -164,6 +164,7 @@ Localization:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
   Timon34
   wvxwxvw
+  Den1704
 
 * Serbian:
   Ozzii <ivanstar61@gmail.com>
