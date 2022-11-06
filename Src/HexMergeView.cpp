@@ -233,7 +233,7 @@ void CHexMergeView::OnActivateView(BOOL bActivate, CView* pActivateView, CView* 
 /**
  * @brief Get pointer to control's content buffer
  */
-BYTE *CHexMergeView::GetBuffer(int length)
+BYTE *CHexMergeView::GetBuffer(size_t length)
 {
 	return m_pif->get_buffer(length);
 }
@@ -241,7 +241,7 @@ BYTE *CHexMergeView::GetBuffer(int length)
 /**
  * @brief Get length of control's content buffer
  */
-int CHexMergeView::GetLength()
+size_t CHexMergeView::GetLength()
 {
 	return m_pif->get_length();
 }
@@ -281,14 +281,24 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
 	if (h == INVALID_HANDLE_VALUE)
 		return hr;
-	DWORD length = GetFileSize(h, 0);
-	hr = SE(length != INVALID_FILE_SIZE);
+	LARGE_INTEGER length64{};
+	hr = SE(GetFileSizeEx(h, &length64));
+	if (sizeof(size_t) == 4 && length64.HighPart > 0)
+		hr = E_OUTOFMEMORY;
+	size_t length = static_cast<size_t>(length64.QuadPart);
 	if (hr == S_OK)
 	{
 		if (void *buffer = GetBuffer(length))
 		{
-			DWORD cb = 0;
-			hr = SE(ReadFile(h, buffer, length, &cb, 0) && cb == length);
+			size_t pos = 0;
+			while (pos < length && SUCCEEDED(hr))
+			{
+				DWORD cb = 0;
+				hr = SE(ReadFile(h, reinterpret_cast<BYTE *>(buffer) + pos, 
+					(length - pos) < 0x10000000 ?  static_cast<DWORD>(length - pos) : 0x10000000,
+					&cb, 0));
+				pos += cb;
+			}
 			if (hr != S_OK)
 				GetBuffer(0);
 		}
@@ -333,15 +343,21 @@ HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
 	HRESULT hr = SE(h != INVALID_HANDLE_VALUE);
 	if (h == INVALID_HANDLE_VALUE)
 		return hr;
-	DWORD length = GetLength();
+	size_t length = GetLength();
 	void *buffer = GetBuffer(length);
 	if (buffer == 0)
 	{
 		CloseHandle(h);
 		return E_POINTER;
 	}
-	DWORD cb = 0;
-	hr = SE(WriteFile(h, buffer, length, &cb, 0) && cb == length);
+	size_t pos = 0;
+	while (pos < length && SUCCEEDED(hr))
+	{
+		DWORD cb = 0;
+		hr = SE(WriteFile(h, reinterpret_cast<const BYTE*>(buffer) + pos,
+			length - pos < 0x10000000 ? static_cast<DWORD>(length - pos) : 0x10000000, &cb, 0));
+		pos += cb;
+	}
 	CloseHandle(h);
 	if (hr != S_OK)
 		return hr;
