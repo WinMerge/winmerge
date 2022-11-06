@@ -322,6 +322,9 @@ BOOL CMergeApp::InitInstance()
 
 	LoadStdProfileSettings(GetOptionsMgr()->GetInt(OPT_MRU_MAX));  // Load standard INI file options (including MRU)
 
+	// Initialize i18n (multiple language) support
+	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
+
 	charsets_init();
 	UpdateCodepageModule();
 
@@ -389,10 +392,6 @@ BOOL CMergeApp::InitInstance()
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
-
-	// Initialize i18n (multiple language) support
-
-	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
 	m_mainThreadScripts = new CAssureScriptsForThread;
 

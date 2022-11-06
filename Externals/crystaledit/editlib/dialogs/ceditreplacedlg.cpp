@@ -391,16 +391,8 @@ OnEditReplace ()
   //  Manually recalculate points
   if (m_bEnableScopeSelection)
     {
-      if (m_ptBlockBegin.y == m_ptFoundAt.y && m_ptBlockBegin.x > m_ptFoundAt.x)
-        {
-          m_ptBlockBegin.x -= m_pBuddy->m_nLastFindWhatLen;
-          m_ptBlockBegin.x += m_pBuddy->m_nLastReplaceLen;
-        }
-      if (m_ptBlockEnd.y == m_ptFoundAt.y && m_ptBlockEnd.x > m_ptFoundAt.x)
-        {
-          m_ptBlockEnd.x -= m_pBuddy->m_nLastFindWhatLen;
-          m_ptBlockEnd.x += m_pBuddy->m_nLastReplaceLen;
-        }
+      m_ptBlockBegin = m_pBuddy->m_ptSavedSelStart;
+      m_ptBlockEnd = m_pBuddy->m_ptSavedSelEnd;
     }
   m_ptFoundAt = m_pBuddy->GetCursorPos ();
   m_bFound = DoHighlightText ( true );
@@ -450,16 +442,8 @@ OnEditReplaceAll ()
       //  Manually recalculate points
       if (m_bEnableScopeSelection)
         {
-          if (m_ptBlockBegin.y == m_ptFoundAt.y && m_ptBlockBegin.x > m_ptFoundAt.x)
-            {
-              m_ptBlockBegin.x -= m_pBuddy->m_nLastFindWhatLen;
-              m_ptBlockBegin.x += m_pBuddy->m_nLastReplaceLen;
-            }
-          if (m_ptBlockEnd.y == m_ptFoundAt.y && m_ptBlockEnd.x > m_ptFoundAt.x)
-            {
-              m_ptBlockEnd.x -= m_pBuddy->m_nLastFindWhatLen;
-              m_ptBlockEnd.x += m_pBuddy->m_nLastReplaceLen;
-            }
+          m_ptBlockBegin = m_pBuddy->m_ptSavedSelStart;
+          m_ptBlockEnd = m_pBuddy->m_ptSavedSelEnd;
         }
       // recalculate m_ptFirstFound
       if (m_ptFirstFound.y == m_ptFoundAt.y && m_ptFirstFound.x > m_ptFoundAt.x)

@@ -1,51 +1,51 @@
 WINMERGE
 
-WinMerge is an Open Source comparing and merging tool for Windows. WinMerge can
-compare both folders and files, presenting differences in a visual text format
-that is easy to understand and handle. WinMerge can be used as an external
-differencing/merging tool or as a standalone application.
+WinMerge это инструмент сравнения и слияния файлов для Windows с открытым исходным кодом. WinMerge может
+сравнивать как папки, так и файлы, представляя различия в визуальном текстовом формате, 
+который легко понять и обработать. WinMerge можно использовать как внешний
+инструмент для разделения / слияния или как отдельное приложение.
 
-WinMerge has many helpful supporting features to make comparing, synchronising,
-and merging as easy and useful as possible. Several programming languages and
-other file formats are syntax-highlighted.
+WinMerge имеет множество полезных вспомогательных функций, которые делают сравнение, синхронизацию
+и объединение максимально простыми и полезными. Несколько языков программирования и
+другие форматы файлов выделены синтаксисом.
 
-The latest WinMerge version and WinMerge information is available at
-https://winmerge.org/.
+Последняя версия WinMerge и информация о WinMerge доступны по адресу
+https://winmerge.org /.
 
-Quick start
+Быстрый старт
 ===========
-To learn how to perform basic operations after installing WinMerge, click
-Help>WinMerge Help and navigate to the Quick start topic.  Or, go to the Web
-version at https://manual.winmerge.org/Quick_start.html.
+Чтобы узнать, как выполнять основные операции после установки WinMerge, нажмите
+Помощь>Справка WinMerge и перейдите к разделу быстрого старта. Или перейдите к веб
+-версии по адресу https://manual.winmerge.org/Quick_start.html .
 
-WinMerge Help
-============= 
-WinMerge Help is installed locally as a Microsoft HTML Help file, WinMerge.chm,
-when you install WinMerge. To open Help, click Help>WinMerge Help or press F1 in
-the WinMerge window. On the command line, run the WinMerge executable with the 
-/? help switch.
+Помощь WinMerge
+=============
+Справка WinMerge устанавливается локально в виде файла справки Microsoft HTML WinMerge.chm
+при установке WinMerge. Чтобы открыть справку, выберите Справка>Справка WinMerge или нажмите клавишу F1 в
+окне WinMerge. В командной строке запустите исполняемый файл WinMerge с
+помощью переключателя /? help.
 
-You can also browse the HTML version of WinMerge Help at 
-https://manual.winmerge.org/.
+Вы также можете просмотреть HTML-версию справки WinMerge по адресу
+https://manual.winmerge.org /.
 
-WinMerge Support
+Поддержка WinMerge
 ================
-Questions or suggestions about WinMerge? A good place to start is the WinMerge
-community bulletin board at https://forums.winmerge.org/. Developers frequently
-read and respond to questions in both forums. Use the Open Discussion forum for
-general WinMerge issues, such as questions about usage. Use the Developers forum
-for WinMerge development issues.
+Есть вопросы или предложения по поводу WinMerge? Хорошим местом для начала является
+доска объявлений сообщества WinMerge по адресу https://forums.winmerge.org /. Разработчики часто
+читают вопросы на обоих форумах и отвечают на них. Используйте Открытый дискуссионный форум для
+решения общих вопросов WinMerge, таких как вопросы об использовании.
+По вопросам разработки WinMerge обращайтесь на форум разработчиков.
 
-Bugs and feature requests
+Ошибки и запросы на новые функции
 =========================
-If an issue is not resolved in the the WinMerge forums, check the project
-trackers: go to https://project.winmerge.org/, and click a link in the Trackers
-menu, like Bugs and Feature Requests, where you can browse or submit items.
+Если проблема не решена на форумах WinMerge, проверьте
+трекеры проектов: перейдите на https://project.winmerge.org /, и нажмите на ссылку в
+меню трекеров, например, "Ошибки" и "Запросы функций", где вы можете просматривать или отправлять элементы.
 
-If you submit a bug, please include the WinMerge version number in your
-report. You can generate a configuration log by clicking Help>Configuration.
-Please attach the configuration log to the bug report; it has lots of useful
-information for developers.
+Если вы сообщаете об ошибке, пожалуйста, укажите номер версии WinMerge в своем
+отчете. Вы можете сгенерировать журнал конфигурации, нажав Помощь>Конфигурация.
+Пожалуйста, приложите журнал конфигурации к сообщению об ошибке; в нем содержится много полезной
+информации для разработчиков.
 
 
-- The WinMerge Developers
+- Разработчики WinMerge
