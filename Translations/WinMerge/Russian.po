@@ -3513,15 +3513,15 @@ msgid "Page:"
 msgstr "Страница:"
 
 #, c-format
-msgid "Чс: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 msgstr "Чс: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
-msgid "Расп: %g  "
+msgid "Dist: %g  "
 msgstr "Расп: %g  "
 
 #, c-format
-msgid "Расп: %g, %g  "
+msgid "Dist: %g, %g  "
 msgstr "Расп: %g, %g  "
 
 #, c-format
