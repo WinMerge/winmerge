@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-11-13 12:00+0000\n"
-"PO-Revision-Date: \n"
+"POT-Creation-Date: 2022-10-16 00:15+0000\n"
+"PO-Revision-Date: 2022-11-10 00:15+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -70,7 +70,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "Dodaj tę zmianę do filtrów zamiany"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Dodaj do filtrów wiersza"
 
 msgid "&Undo"
 msgstr "Cofnij"
@@ -1235,10 +1235,10 @@ msgid "&Apply"
 msgstr "Z&astosuj"
 
 msgid "Line Filters"
-msgstr "Filtry wierszy"
+msgstr "Filtry wiersza"
 
 msgid "Enable Line Filters"
-msgstr "Włącz filtry wierszy"
+msgstr "Włącz filtry wiersza"
 
 msgid "Regular Expressions (one per line):"
 msgstr "Wyrażenia regularne (jedno na wiersz):"
@@ -2017,10 +2017,10 @@ msgid "Webpage"
 msgstr "Strona internetowa"
 
 msgid "URL pattern to &include (Regular expression):"
-msgstr "Szablon URL do uwzględnienia (wyrażenie regularne):"
+msgstr "Szablon adresu URL do uwzględnienia (wyrażenie regularne):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "Szablon URL do wykluczenia (wyrażenie regularne):"
+msgstr "Szablon adresu URL do wykluczenia (wyrażenie regularne):"
 
 msgid "&User data folder location:"
 msgstr "Lokalizacja folderu danych użytkownika:"
@@ -3192,7 +3192,7 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Nie można utworzyć łatki z plików binarnych."
 
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
-msgstr "Najpierw zapisz wszystkie pliki.\n\nTworzenie łatki wymaga zapisania wszystkich zmian w plikach."
+msgstr "Najpierw zapisz wszystkie pliki.\n\nAby utworzyć łatkę, konieczne jest, aby w plikach nie było żadnych niezapisanych zmian."
 
 msgid "Folder does not exist."
 msgstr "Folder nie istnieje."
@@ -3380,7 +3380,7 @@ msgid "Close &Other Tabs"
 msgstr "Zamknij inne karty"
 
 msgid "Enable &Auto Max Width"
-msgstr "Włącz automatyczną maksymalną szerokość"
+msgstr "Włącz automatycznie maksymalną szerokość"
 
 msgid "We&bpage"
 msgstr "Strona internetowa"
@@ -3603,7 +3603,7 @@ msgid "&Others"
 msgstr "Pozostałe"
 
 msgid "URL Handling"
-msgstr ""
+msgstr "Obsługa adresów URL"
 
 msgid "Make Uppercase"
 msgstr "Zrób duże litery"
@@ -3801,10 +3801,10 @@ msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed t
 msgstr ""
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr ""
+msgstr "Natywny kod disassemblera z dumpbin. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia dumpbin."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr ""
+msgstr "Ogólny ekstraktor zawartości z Apache Tika. \r\nArgumenty: Opcje linii poleceń przekazywane do tika-app.jar."
 
 msgid "Apply patch using GnuWin32 Patch for Windows"
 msgstr "Zastosuj poprawkę używając GnuWin32 Patch dla Windows"
@@ -3837,10 +3837,10 @@ msgid "Basic text functions for the context menu"
 msgstr "Podstawowe funkcje tekstowe dla menu kontekstowego"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
-msgstr ""
+msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia curl."
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
+msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia reg.exe."
 
 msgid "Filter applied"
 msgstr "Zastosowano filtr"
