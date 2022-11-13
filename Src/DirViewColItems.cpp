@@ -117,15 +117,6 @@ static int cmpu64(uint64_t i1, uint64_t i2)
 	return i1>i2 ? 1 : -1;
 }
 /**
- * @brief Convert int64_t to int sign
- */
-static int sign64(int64_t val)
-{
-  if (val>0) return 1;
-  if (val<0) return -1;
-  return 0;
-}
-/**
  * @brief Function to compare two diffcodes for a sort
  * @todo How shall we order diff statuses?
  */
@@ -138,17 +129,6 @@ static int cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
 	if (!same1 && same2)
 		return -1;
 	return diffcode1 - diffcode2;
-}
-/**
- * @brief Function to compare two doubles for a sort
- */
-static int cmpfloat(double v1, double v2)
-{
-	if (v1>v2)
-		return 1;
-	if (v1<v2)
-		return -1;
-	return 0;
 }
 /**
  * @brief Formats a size as a short string.

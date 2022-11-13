@@ -65,18 +65,6 @@ static const UINT_PTR CRYSTAL_TIMER_DRAGSEL = 1001;
 static const UINT_PTR CRYSTAL_RECALC_VSCROLLBAR = 1002;
 static const UINT_PTR CRYSTAL_RECALC_HSCROLLBAR = 1003;
 
-static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
-{
-  LPTSTR next = ::CharNext(current);
-  return next > current ? next : next + 1;
-}
-
-static LPTSTR NTAPI EnsureCharPrev(LPCTSTR start, LPCTSTR current)
-{
-  LPTSTR prev = ::CharPrev(start, current);
-  return prev < current ? prev : prev - 1;
-}
-
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView
 

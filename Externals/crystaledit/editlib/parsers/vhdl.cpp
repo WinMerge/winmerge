@@ -321,14 +321,6 @@ IsVhdlNumber (const TCHAR *pszChars, int nLength)
 }
 
 static bool
-IsVhdlString (const TCHAR *pszChars, int nLength)
-{
-  if (nLength > 3 && pszChars[0] == '"' && pszChars[nLength-1] == '"')
-    return true;
-  return false;
-}
-
-static bool
 IsVhdlChar (const TCHAR *pszChars, int nLength)
 {
   if (nLength == 3 && pszChars[0] == '\'' && pszChars[2] == '\'')
