@@ -674,7 +674,6 @@ bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView
 		return true;
 
 	// control value
-	bool bHandled = false;
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, int>> plugins;
 	if (!GetEditorScriptPlugin(plugins, errorMessage))

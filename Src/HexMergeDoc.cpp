@@ -935,8 +935,6 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	DWORD dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
-	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
-		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
 
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)

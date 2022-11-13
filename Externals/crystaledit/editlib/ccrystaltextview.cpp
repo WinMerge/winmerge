@@ -4623,7 +4623,7 @@ TextToClient (const CPoint & point)
           bool bInQuote = false;
           const int sep = m_pTextBuffer->GetFieldDelimiter ();
           const int quote = m_pTextBuffer->GetFieldEnclosure ();
-          for (int nIndex = 0, nTabs = 0; nIndex < point.x; nIndex = pIterChar->next())
+          for (int nIndex = 0; nIndex < point.x; nIndex = pIterChar->next())
             {
               if (!bInQuote && pszLine[nIndex] == sep)
                 {

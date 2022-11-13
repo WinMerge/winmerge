@@ -1352,7 +1352,6 @@ bool CMergeDoc::PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLi
 	bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
 {
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
 	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;
 
@@ -1445,7 +1444,6 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 		const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
 {
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
 	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;
 
@@ -1499,9 +1497,6 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 		}
 		ForEachView(dstPane, [currentPos](auto& pView) { pView->SetCursorPos(currentPos); });
 	}
-
-	// if the current diff contains missing lines, remove them from both sides
-	int limit = cd_dend;
 
 	// curView is the view which is changed, so the opposite of the source view
 	dbuf.BeginUndoGroup(bGroupWithPrevious);
@@ -3880,8 +3875,6 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	PathContext paths = m_filePaths;
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
-	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
-		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
 
 	for (int pane = 0; pane < m_nBuffers; pane++)

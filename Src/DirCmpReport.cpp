@@ -282,7 +282,6 @@ void DirCmpReport::WriteString(const String& sText)
 {
 	std::string sOctets(m_bOutputUTF8 ? ucr::toUTF8(sText) : ucr::toThreadCP(sText));
 	const char *pchOctets = sOctets.c_str();
-	void *pvOctets = const_cast<char *>(pchOctets);
 	size_t cchAhead = sOctets.length();
 	while (const char *pchAhead = (const char *)memchr(pchOctets, '\n', cchAhead))
 	{

@@ -116,8 +116,6 @@ BOOL CMergeEditSplitterView::Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowNam
 void CMergeEditSplitterView::OnInitialUpdate()
 {
 	CView::OnInitialUpdate();
-	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(GetDocument());
-
 }
 
 void CMergeEditSplitterView::OnDraw(CDC* pDC)

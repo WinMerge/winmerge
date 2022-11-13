@@ -407,7 +407,6 @@ void CLocationView::OnDraw(CDC* pDC)
 	CBrush* oldBrush = (CBrush*)dc.SelectObject(&brush);
 	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		int nBottom = (int)(m_lineInPix * pDoc->GetView(nGroup, pane)->GetSubLineCount() + Y_OFFSET + 1);
 		CBrush *pOldBrush = nullptr;
 		if (pDoc->IsEditedAfterRescan(pane))
 			pOldBrush = (CBrush *)dc.SelectStockObject(HOLLOW_BRUSH);
