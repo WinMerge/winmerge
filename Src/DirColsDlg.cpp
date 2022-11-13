@@ -250,15 +250,20 @@ void CDirColsDlg::OnOK()
 {
 	SanitizeOrder();
 
+	size_t colssize = m_cols.size();
 	for (int i = 0; i < m_listColumns.GetItemCount(); i++)
 	{
 		bool checked = !!m_listColumns.GetCheck(i);
 		DWORD_PTR data = m_listColumns.GetItemData(i);
-		column & col1 = m_cols[data];
-		if (checked)
-			col1.phy_col = i;
-		else
-			col1.phy_col = -1;
+		assert(data >= 0 && data < colssize);
+		if (data >= 0 && data < colssize)
+		{
+			column& col1 = m_cols[data];
+			if (checked)
+				col1.phy_col = i;
+			else
+				col1.phy_col = -1;
+		}
 	}
 
 	CTrDialog::OnOK();
@@ -299,5 +304,16 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		EnableDlgItem(IDC_DOWN,
 			ind != m_listColumns.GetItemCount() - static_cast<int>(m_listColumns.GetSelectedCount()));
 	}
+
+	// Disable the "OK" button when no items are checked.
+	bool bChecked = false;
+	for (int i = 0; i < m_listColumns.GetItemCount(); i++)
+		if (!!m_listColumns.GetCheck(i))
+		{
+			bChecked = true;
+			break;
+		}
+	EnableDlgItem(IDOK, bChecked);
+
 	*pResult = 0;
 }

@@ -4550,6 +4550,7 @@ void CDirView::OnEditColumns()
 				dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
 			}
 		}
+		assert(m_pColItems->GetColCount() == dlg.GetColumns().size());
 
 		// Add default order of columns for resetting to defaults
 		for (l = 0; l < m_pColItems->GetColCount(); ++l)
@@ -4611,14 +4612,12 @@ void CDirView::OnEditColumns()
 
 	if (m_pColItems->GetDispColCount() < 1)
 	{
-		// Ignore them if they didn't leave a column showing
+		// Set them back to default if they didn't leave a column showing
+		// (However, if none of the items are checked, this process will not be executed because the "OK" button in the "Display Columns" dialog cannot be pressed.)
 		m_pColItems->ResetColumnOrdering();
 	}
-	else
-	{
-		ReloadColumns();
-		Redisplay();
-	}
+	ReloadColumns();
+	Redisplay();
 }
 
 DirActions CDirView::MakeDirActions(DirActions::method_type func) const
