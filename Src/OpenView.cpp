@@ -48,7 +48,6 @@ const UINT IDT_CHECKFILES = 1;
 const UINT IDT_RETRY = 2;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 const int RETRY_MAX = 3;
-static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
 /** @brief Location for Open-dialog specific help to open. */
 static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
