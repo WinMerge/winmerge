@@ -406,6 +406,7 @@ protected :
     //END SW
     int GetCharWidth ();
     int GetMaxLineLength (int nTopLine, int nLines);
+    bool CoverLength(int nTopLine, int nLines, int min_length);
     int GetScreenLines ();
     int GetScreenChars ();
 
