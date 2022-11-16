@@ -270,6 +270,7 @@ Other Contributors (code, ideas, testing..):
 * HaroldPetersInskipp (Midnight color schema)
 * srgank
 * baka0815
+* Yurii Hordiienko 
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
