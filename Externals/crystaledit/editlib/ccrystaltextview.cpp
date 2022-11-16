@@ -3313,7 +3313,7 @@ GetMaxLineLength (int nTopLine, int nLines)
 bool CCrystalTextView::
 CoverLength(int nTopLine, int nLines, int min_length)
 {
-    const int nLineCount = std::min(nTopLine + nLines, GetLineCount());
+    const int nLineCount = (std::min)(nTopLine + nLines, GetLineCount());
     for (int I = nTopLine; I != nLineCount; I++) {
         if (GetLineActualLength(I) >= min_length)
             return true;
