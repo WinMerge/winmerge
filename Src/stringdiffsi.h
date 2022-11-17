@@ -64,7 +64,7 @@ private:
 		int hash;
 		int bBreak; // Is it a isWordBreak 0 = word -1= whitespace -2 = empty 1 = breakWord
 		word(int s = 0, int e = 0, int b = 0, int h = 0) : start(s), end(e), bBreak(b),hash(h) { }
-		int length() const { return end+1-start; }
+		inline int length() const { return end+1-start; }
 	};
 
 // Implementation methods
@@ -73,7 +73,7 @@ private:
 	void ComputeByteDiff(const String& str1, const String& str2,
 			bool casitive, int xwhite, 
 			int begin[2], int end[2], bool equal);
-	std::vector<word> BuildWordsArray(const String & str);
+	std::vector<word> BuildWordsArray(const String & str) const;
 	unsigned Hash(const String & str, int begin, int end, unsigned h ) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool IsWord(const word & word1) const;
@@ -105,11 +105,10 @@ private:
 	{
 		return (word1.bBreak == dlinsert);
 	}
-	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
 	bool BuildWordDiffList_DP();
 	int dp(std::vector<char> & edscript);
 	int onp(std::vector<char> & edscript);
-	int snake(int k, int y, int M, int N, bool exchanged);
+	int snake(int k, int y, int M, int N, bool exchanged) const;
 #ifdef STRINGDIFF_LOGGING
 	void debugoutput();
 #endif
@@ -118,11 +117,11 @@ private:
 private:
 	const String & m_str1;
 	const String & m_str2;
+	int m_whitespace;
+	int m_breakType;
 	bool m_case_sensitive;
 	bool m_eol_sensitive;
-	int m_whitespace;
 	bool m_ignore_numbers = false;
-	int m_breakType;
 	bool m_matchblock;
 	std::vector<wdiff> * m_pDiffs;
 	std::vector<word> m_words1;

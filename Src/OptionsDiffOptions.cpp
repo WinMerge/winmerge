@@ -30,7 +30,7 @@ void Init(COptionsMgr *pOptionsMgr)
 void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
 {
 	options.nIgnoreWhitespace = pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-    options.nDiffAlgorithm = pOptionsMgr->GetInt(OPT_CMP_DIFF_ALGORITHM);
+	options.nDiffAlgorithm = pOptionsMgr->GetInt(OPT_CMP_DIFF_ALGORITHM);
 	options.bIgnoreBlankLines = pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bFilterCommentsLines = pOptionsMgr->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	options.bIgnoreCase = pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
@@ -43,7 +43,7 @@ void Load(const COptionsMgr *pOptionsMgr, DIFFOPTIONS& options)
 void Save(COptionsMgr *pOptionsMgr, const DIFFOPTIONS& options)
 {
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, options.nIgnoreWhitespace);
-    pOptionsMgr->SaveOption(OPT_CMP_DIFF_ALGORITHM, options.nDiffAlgorithm);
+	pOptionsMgr->SaveOption(OPT_CMP_DIFF_ALGORITHM, options.nDiffAlgorithm);
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, options.bIgnoreBlankLines);
 	pOptionsMgr->SaveOption(OPT_CMP_FILTER_COMMENTLINES, options.bFilterCommentsLines);
 	pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, options.bIgnoreCase);

@@ -79,7 +79,7 @@ enum DiffOutputType
 struct DIFFOPTIONS
 {
 	int nIgnoreWhitespace; /**< Ignore whitespace -option. */
-    int nDiffAlgorithm; /**< Diff algorithm -option. */
+	int nDiffAlgorithm; /**< Diff algorithm -option. */
 	bool bIgnoreCase; /**< Ignore case -option. */
 	bool bIgnoreNumbers; /**< Ignore numbers -option. */
 	bool bIgnoreBlankLines; /**< Ignore blank lines -option. */
@@ -123,7 +123,7 @@ public:
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options) override;
 
 	DiffOutputType m_outputStyle; /**< Output style (for patch files) */
-    DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
+	DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
 	int m_contextLines; /**< Number of context lines (for patch files) */
 	bool m_filterCommentsLines;/**< Ignore Multiline comments differences.*/
 	bool m_bIndentHeuristic; /**< Indent heuristic */
