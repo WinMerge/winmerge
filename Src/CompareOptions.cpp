@@ -56,7 +56,6 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 QuickCompareOptions::QuickCompareOptions()
 : m_bStopAfterFirstDiff(false)
 {
-
 }
 
 /**
@@ -64,11 +63,11 @@ QuickCompareOptions::QuickCompareOptions()
  */
 DiffutilsOptions::DiffutilsOptions()
 : m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 , m_contextLines(0)
 , m_filterCommentsLines(false)
 , m_bCompletelyBlankOutIgnoredDiffereneces(false)
 , m_bIndentHeuristic(true)
-, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 {
 }
 
@@ -79,11 +78,11 @@ DiffutilsOptions::DiffutilsOptions()
 DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
 : CompareOptions(options)
 , m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 , m_contextLines(0)
 , m_filterCommentsLines(false)
 , m_bCompletelyBlankOutIgnoredDiffereneces(false)
 , m_bIndentHeuristic(true)
-, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
 {
 }
 
@@ -116,7 +115,6 @@ void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 		break;
 	default:
 		throw "Unknown diff algorithm value!";
-		break;
 	}
 }
 
@@ -150,43 +148,14 @@ void DiffutilsOptions::SetToDiffUtils()
 
 	context = m_contextLines;
 
-	if (m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
-		ignore_space_change_flag = 1;
-	else
-		ignore_space_change_flag = 0;
-
-	if (m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
-		ignore_all_space_flag = 1;
-	else
-		ignore_all_space_flag = 0;
-
-	if (m_bIgnoreBlankLines)
-		ignore_blank_lines_flag = 1;
-	else
-		ignore_blank_lines_flag = 0;
-
-	if (m_bIgnoreCase)
-		ignore_case_flag = 1;
-	else
-		ignore_case_flag = 0;
-
-	ignore_numbers_flag = m_bIgnoreNumbers ? 1 : 0;
-
-	if (m_bIgnoreEOLDifference)
-		ignore_eol_diff = 1;
-	else
-		ignore_eol_diff = 0;
-
-	if (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL || m_bIgnoreCase ||
-			m_bIgnoreBlankLines || m_bIgnoreEOLDifference)
-		ignore_some_changes = 1;
-	else
-		ignore_some_changes = 0;
-
-	if (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL)
-		length_varies = 1;
-	else
-		length_varies = 0;
+	ignore_space_change_flag = (m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE);
+	ignore_all_space_flag = (m_ignoreWhitespace == WHITESPACE_IGNORE_ALL);
+	ignore_blank_lines_flag = m_bIgnoreBlankLines;
+	ignore_case_flag = m_bIgnoreCase;
+	ignore_numbers_flag = m_bIgnoreNumbers;
+	ignore_eol_diff = m_bIgnoreEOLDifference;
+	ignore_some_changes = (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL || m_bIgnoreCase ||	m_bIgnoreBlankLines || m_bIgnoreEOLDifference);
+	length_varies = (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL);
 
 	// We have no interest changing these values, hard-code them.
 	always_text_flag = 0; // diffutils needs to detect binary files
