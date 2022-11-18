@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  LISP keywords
 static const TCHAR * s_apszLispKeywordList[] =
   {
     _T ("abs"),

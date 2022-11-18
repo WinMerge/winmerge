@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  SQL keywords
 static const TCHAR * s_apszSqlKeywordList[] =
   {
     _T ("all"),
@@ -61,6 +61,7 @@ static const TCHAR * s_apszSqlKeywordList[] =
     _T ("where"),
   };
 
+//  SQL data type keywords
 static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("BIGINT"),
