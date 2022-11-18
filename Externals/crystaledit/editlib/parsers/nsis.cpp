@@ -34,7 +34,7 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  NSIS keywords
 static const TCHAR * s_apszNsisKeywordList[] =
   {
     _T ("Abort"),
