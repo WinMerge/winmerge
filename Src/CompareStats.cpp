@@ -137,9 +137,9 @@ CompareStats::RESULT CompareStats::GetResultFromCode(unsigned diffcode) const
 	{
 		switch (diffcode & DIFFCODE::ALL)
 		{
-		case (DIFFCODE::SECOND | DIFFCODE::THIRD) :	return is_dir ? RESULT_LDIRMISSING : RESULT_LMISSING;
+		case (DIFFCODE::SECOND | DIFFCODE::THIRD) : return is_dir ? RESULT_LDIRMISSING : RESULT_LMISSING;
 		case (DIFFCODE::FIRST  | DIFFCODE::THIRD) : return is_dir ? RESULT_MDIRMISSING : RESULT_MMISSING;
-		case (DIFFCODE::FIRST  | DIFFCODE::SECOND):	return is_dir ? RESULT_RDIRMISSING : RESULT_RMISSING;
+		case (DIFFCODE::FIRST  | DIFFCODE::SECOND): return is_dir ? RESULT_RDIRMISSING : RESULT_RMISSING;
 		}
 	}
 	if (di.isResultError())
