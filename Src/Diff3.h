@@ -9,7 +9,6 @@ template<typename Element, typename Comp02Func>
 size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& diff10, const std::vector<Element>& diff12,
 	Comp02Func cmpfunc, bool has_trivial_diffs)
 {
-	const size_t diff3count  = diff3.size();
 	const size_t diff10count = diff10.size();
 	const size_t diff12count = diff12.size();
 
@@ -205,7 +204,7 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 		diff3.push_back(dr3);
 	}
 	
-	size_t cnt = diff3.size() - diff3count;
+	size_t cnt = diff3.size();
 	if (cnt)
 	{
 		for (size_t i = 0; i != (cnt - 1); i++)
