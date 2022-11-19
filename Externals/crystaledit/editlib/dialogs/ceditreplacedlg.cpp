@@ -195,9 +195,6 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
   if (m_nDirection == 0)
     dwSearchFlags |= FIND_DIRECTION_UP;
 
-  if (m_nScope != 0)
-    m_ptFoundAt = m_pBuddy->GetSearchPos (dwSearchFlags);
-
   bool bFound;
   if (m_nScope == 0)
     {
@@ -205,15 +202,9 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
       bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, false, &m_ptFoundAt);
     }
-  else if (m_bDontWrap)
-    {
-      //  Searching whole text, no wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, false, &m_ptFoundAt);
-    }
   else
     {
-      //  Searching whole text, wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, true, &m_ptFoundAt);
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, !m_bDontWrap, &m_ptFoundAt);
     }
 
   if (!bFound)
@@ -247,15 +238,9 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
       bFound = m_pBuddy->FindTextInBlock (m_sText, m_ptFoundAt, m_ptBlockBegin, m_ptBlockEnd,
                                           dwSearchFlags, false, &m_ptFoundAt);
     }
-  else if (m_bDontWrap)
-    {
-      //  Searching whole text, no wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, false, &m_ptFoundAt);
-    }
   else
     {
-      //  Searching whole text, wrap
-      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, true, &m_ptFoundAt);
+      bFound = m_pBuddy->FindText (m_sText, m_ptFoundAt, dwSearchFlags, !m_bDontWrap, &m_ptFoundAt);
     }
 
   if (!bFound)
@@ -269,6 +254,41 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
     }
 
   m_pBuddy->HighlightText (m_ptFoundAt, m_pBuddy->m_nLastFindWhatLen);
+  return true;
+}
+
+bool CEditReplaceDlg::
+AdjustSearchPos (CPoint& ptFoundAt) const
+{
+  if (m_nScope != 0)
+	ptFoundAt = m_pBuddy->GetSearchPos (m_nDirection == 0 ? FIND_DIRECTION_UP : 0);
+  if (!m_pBuddy->m_nLastFindWhatLen)
+    {
+      if (m_nDirection != 0)
+        {
+          if (ptFoundAt.y + 1 < m_pBuddy->GetLineCount ())
+            {
+              ptFoundAt.x = 0;
+              ptFoundAt.y++;
+            }
+          else
+            {
+              return false;
+            }
+        }
+      else
+        {
+          if (ptFoundAt.y - 1 >= 0)
+            {
+              ptFoundAt.y--;
+              ptFoundAt.x = m_pBuddy->GetLineLength ( ptFoundAt.y );
+            }
+          else
+            {
+              return false;
+            }
+        }
+    }
   return true;
 }
 
@@ -289,6 +309,7 @@ FindNextPrev (bool bNext)
 
   if (!m_bFound)
     {
+      m_ptFoundAt = m_pBuddy->GetCursorPos ();
       m_bFound = DoHighlightText ( true );
       if (m_bFound)
         {
@@ -305,19 +326,11 @@ FindNextPrev (bool bNext)
       return;
     }
 
-  if (!m_pBuddy->m_nLastFindWhatLen)
-    if (m_ptFoundAt.y + 1 < m_pBuddy->GetLineCount ())
-      {
-        m_ptFoundAt.x = 0;
-        m_ptFoundAt.y++;
-      }
-    else
-      {
-        m_bFound = false;
-        return;
-      }
-  else
-    m_ptFoundAt.x += 1;
+  if (!AdjustSearchPos (m_ptFoundAt))
+    {
+      m_bFound = false;
+      return;
+    }
   m_bFound = DoHighlightText ( true );
   if (m_bFound)
     {
@@ -358,6 +371,7 @@ OnEditReplace ()
 
   if (!m_bFound)
     {
+      m_ptFoundAt = m_pBuddy->GetCursorPos ();
       m_bFound = DoHighlightText ( true );
       CButton *pSkip = (CButton*) GetDlgItem (IDC_EDIT_SKIP);
       CButton *pRepl = (CButton*) GetDlgItem (IDC_EDIT_REPLACE);
@@ -394,7 +408,11 @@ OnEditReplace ()
       m_ptBlockBegin = m_pBuddy->m_ptSavedSelStart;
       m_ptBlockEnd = m_pBuddy->m_ptSavedSelEnd;
     }
-  m_ptFoundAt = m_pBuddy->GetCursorPos ();
+  if (!AdjustSearchPos (m_ptFoundAt))
+    {
+      m_bFound = false;
+      return;
+    }
   m_bFound = DoHighlightText ( true );
 
   m_pBuddy->SaveLastSearch(&lastSearch);
@@ -435,9 +453,14 @@ OnEditReplaceAll ()
         dwSearchFlags |= FIND_WHOLE_WORD;
       if (m_bRegExp)
         dwSearchFlags |= FIND_REGEXP;
+      if (m_nDirection == 0)
+        dwSearchFlags |= FIND_DIRECTION_UP;
     
       //  We have highlighted text
-      VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags, bGroupWithPrevious));
+      m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags, bGroupWithPrevious);
+
+      if (m_pBuddy->m_nLastFindWhatLen != 0 || m_pBuddy->m_nLastReplaceLen != 0)
+        nNumReplaced++;
 
       //  Manually recalculate points
       if (m_bEnableScopeSelection)
@@ -459,8 +482,11 @@ OnEditReplaceAll ()
       // (1) One is the position of the word that was found.
       // (2) The other is next position to search.
       // The code below calculates the latter.
-      m_ptFoundAt = m_pBuddy->GetCursorPos ();
-      nNumReplaced++;
+      if (!AdjustSearchPos (m_ptFoundAt))
+        {
+          m_bFound = false;
+          break;
+        }
 
       // find the next instance
       m_bFound = DoHighlightText ( false, false );
