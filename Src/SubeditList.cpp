@@ -32,10 +32,10 @@ void CSubeditList::SetColumnAttribute(int nCol, int limit, int attribute)
 	if (!IsValidCol(nCol))
 		return;
 
-	if (m_columsAttributes.size() <= static_cast<size_t>(nCol))
-		m_columsAttributes.resize(static_cast<size_t>(nCol) + 1);
+	if (m_columnsAttributes.size() <= static_cast<size_t>(nCol))
+		m_columnsAttributes.resize(static_cast<size_t>(nCol) + 1);
 
-	std::pair<int, int>& r = m_columsAttributes[nCol];
+	std::pair<int, int>& r = m_columnsAttributes[nCol];
 	if (limit) r.first = limit;
 	r.second |= attribute;
 }
@@ -78,10 +78,10 @@ bool CSubeditList::IsValidRowCol(int nItem, int nSubItem) const
  */
 CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
 {
-	if (static_cast<size_t>(nCol) >= m_columsAttributes.size() || !IsValidCol(nCol))
+	if (static_cast<size_t>(nCol) >= m_columnsAttributes.size() || !IsValidCol(nCol))
 		return EditStyle::EDIT_BOX;
 
-	return static_cast<EditStyle>(m_columsAttributes[nCol].second & EDIT_STYLES_ALL);
+	return static_cast<EditStyle>(m_columnsAttributes[nCol].second & EDIT_STYLES_ALL);
 }
 
 /**
@@ -96,10 +96,10 @@ void CSubeditList::SetEditStyle(int nCol, EditStyle style)
 
 	static_assert(static_cast<int>(EditStyle::EDIT_BOX) == 0, "assume 0-value by default");
 
-	if (m_columsAttributes.size() <= static_cast<size_t>(nCol))
-		m_columsAttributes.resize(static_cast<size_t>(nCol) + 1);
+	if (m_columnsAttributes.size() <= static_cast<size_t>(nCol))
+		m_columnsAttributes.resize(static_cast<size_t>(nCol) + 1);
 
-	auto& r = m_columsAttributes[nCol];
+	auto& r = m_columnsAttributes[nCol];
 	r.second = (r.second & ~EDIT_STYLES_ALL) | static_cast<int>(style);
 }
 
@@ -115,7 +115,7 @@ int CSubeditList::GetLimitTextSize(int nCol) const
 	if (!IsValidCol(nCol) || GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return 0;
 
-	return m_columsAttributes[nCol].first;
+	return m_columnsAttributes[nCol].first;
 }
 
 /**
@@ -129,10 +129,10 @@ void CSubeditList::SetLimitTextSize(int nCol, int nLimitTextSize)
 	if (!IsValidCol(nCol) || GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
-	if (m_columsAttributes.size() <= static_cast<size_t>(nCol))
-		m_columsAttributes.resize(static_cast<size_t>(nCol) + 1);
+	if (m_columnsAttributes.size() <= static_cast<size_t>(nCol))
+		m_columnsAttributes.resize(static_cast<size_t>(nCol) + 1);
 
-	m_columsAttributes[nCol].first = nLimitTextSize;
+	m_columnsAttributes[nCol].first = nLimitTextSize;
 }
 
 /**
@@ -455,14 +455,14 @@ void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 	int index = HitTestEx(point, &colnum);
 	if( index != -1 )
 	{
-		if ((size_t)colnum >= m_columsAttributes.size())
+		if ((size_t)colnum >= m_columnsAttributes.size())
 			return;
 
 		UINT flag = LVIS_FOCUSED;
 		//if ((GetItemState(index, flag) & flag) == flag && colnum > 0)
 		if ((GetItemState(index, flag) & flag) == flag)
 		{
-			auto pr = m_columsAttributes[(size_t)colnum];
+			auto pr = m_columnsAttributes[(size_t)colnum];
 			if (!(pr.second & READ_ONLY))
 			{
 				if (pr.second & BOOLEAN_VALUE)

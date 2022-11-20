@@ -107,7 +107,7 @@ private:
 	//low 16 bits reserved for EditStyle
 	enum { EDIT_STYLES_ALL = 0xffff, READ_ONLY = (1 << 16), BOOLEAN_VALUE = (1 << 17) };
 
-	std::vector<std::pair<int, int>> m_columsAttributes;		/**< Stores pairs of <Character limit for each column; bitset of attributes|EditStyle> */
+	std::vector<std::pair<int, int>> m_columnsAttributes;		/**< Stores pairs of <Character limit for each column; bitset of attributes|EditStyle> */
 	std::vector<std::vector<String>> m_dropListFixedPattern;	/**< Wildcard drop list fixed pattern for each cell */
 	std::vector<std::vector<std::vector<String>>> m_dropList;	/**< dropdown list data for each cell */
 
@@ -139,8 +139,8 @@ public:
 	void EditSubLabelWildcardDropList(int nItem, int nCol);
 	void EditSubLabelDropdownList(int nItem, int nCol);
 private:
-    bool IsValidCol(int nSubItem) const;
-    bool IsValidRowCol(int nItem, int nSubItem) const;
+	bool IsValidCol(int nSubItem) const;
+	bool IsValidRowCol(int nItem, int nSubItem) const;
 	//set parameter only if not equal 0
 	void SetColumnAttribute(int nCol, int limit, int attribute);
 public:
