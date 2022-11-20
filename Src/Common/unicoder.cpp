@@ -1128,70 +1128,47 @@ std::string toThreadCP(const std::wstring& str)
  * @param [in] size Size of the buffer in bytes.
  * @return true if invalid bytes found, false otherwise.
  */
-bool CheckForInvalidUtf8(const char *pBuffer, size_t size)
+bool CheckForInvalidUtf8(const char* pBuffer, size_t size)
 {
-	unsigned char * pVal2 = (unsigned char *)pBuffer;
-	for (size_t j = 0; j < size; ++j)
-	{
-		if ((*pVal2 == 0xC0) || (*pVal2 == 0xC1) || (*pVal2 >= 0xF5))
-			return true;
-		pVal2++;
-	}
-	pVal2 = (unsigned char *)pBuffer;
 	bool bUTF8 = false;
-	for (size_t i = 0; i < size; ++i)
+	for (unsigned char* pb = (unsigned char*)pBuffer, *end = pb + size; pb < end;)
 	{
-		if ((*pVal2 & 0x80) == 0x00)
-			;
-		else if ((*pVal2 & 0xE0) == 0xC0)
+		unsigned c = *pb++;
+		if ((c == 0xC0) || (c == 0xC1) || (c >= 0xF5))
+			return true;
+
+		if (!(c & 0x80)) continue;
+
+		uint32_t v = 0x80808080;
+
+		if ((c & 0xE0) == 0xC0)
 		{
-			if (i >= size - 1)
+			if (pb == end)
 				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			bUTF8 = true;
+			memcpy(&v, pb++, 1);
 		}
-		else if ((*pVal2 & 0xF0) == 0xE0)
+		else if ((c & 0xF0) == 0xE0)
 		{
-			if (i >= size - 2)
+			if (pb > end - 2)
 				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			bUTF8 = true;
+			memcpy(&v, pb, 2);
+			pb += 2;
 		}
-		else if ((*pVal2 & 0xF8) == 0xF0)
+		else if ((c & 0xF8) == 0xF0)
 		{
-			if (i >= size - 3)
+			if (pb > end - 3)
 				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			bUTF8 = true;
+			memcpy(&v, pb, 3);
+			pb += 3;
 		}
 		else
 			return true;
-		pVal2++;
+
+		if ((v & (0xC0C0C0C0)) != 0x80808080)
+			return true;
+		bUTF8 = true;
 	}
-	if (bUTF8)
-		return false;
-	return true;
+	return !bUTF8;
 }
 
 /**
