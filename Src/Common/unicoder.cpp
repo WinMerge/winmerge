@@ -1145,20 +1145,23 @@ bool CheckForInvalidUtf8(const char* pBuffer, size_t size)
 		{
 			if (pb == end)
 				return true;
-			memcpy(&v, pb++, 1);
+			reinterpret_cast<unsigned char*>(&v)[0] = *pb++;
 		}
 		else if ((c & 0xF0) == 0xE0)
 		{
 			if (pb > end - 2)
 				return true;
-			memcpy(&v, pb, 2);
+			*reinterpret_cast<uint16_t*>(&v) = *reinterpret_cast<uint16_t*>(pb);
 			pb += 2;
 		}
 		else if ((c & 0xF8) == 0xF0)
 		{
 			if (pb > end - 3)
 				return true;
-			memcpy(&v, pb, 3);
+			static_assert(sizeof(char) == sizeof(uint8_t), "unexpected char-size");
+
+			*reinterpret_cast<uint16_t*>(&v) = *reinterpret_cast<uint16_t*>(pb);
+			reinterpret_cast<uint8_t*>(&v)[2] = pb[2];
 			pb += 3;
 		}
 		else
