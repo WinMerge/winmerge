@@ -454,14 +454,14 @@ unsigned get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
  */
 bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool * lossy)
 {
-	int defcodepage = getDefaultCodepage();
-
 	if (!len)
 	{
 		str.clear();
 		return true;
 	}
 
+	int defcodepage = getDefaultCodepage();
+	
 	// 0 is a valid value (CP_ACP)!
 	if (codepage == -1)
 		codepage = defcodepage;
