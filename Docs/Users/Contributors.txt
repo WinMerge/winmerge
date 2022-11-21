@@ -89,6 +89,7 @@ Localization:
 * Galician:
   Medulio
   Luis A. Martínez Sobrino <luis.martinez.sobrino at gmail.com>
+  P0rsche-911
 
 * German:
   Tim Gerundt <tim@gerundt.de>
