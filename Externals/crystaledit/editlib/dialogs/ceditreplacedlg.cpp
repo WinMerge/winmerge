@@ -261,7 +261,9 @@ bool CEditReplaceDlg::
 AdjustSearchPos (CPoint& ptFoundAt) const
 {
   if (m_nScope != 0)
-	ptFoundAt = m_pBuddy->GetSearchPos (m_nDirection == 0 ? FIND_DIRECTION_UP : 0);
+    ptFoundAt = m_pBuddy->GetSearchPos (m_nDirection == 0 ? FIND_DIRECTION_UP : 0);
+  else
+    ptFoundAt = m_pBuddy->GetCursorPos ();
   if (!m_pBuddy->m_nLastFindWhatLen)
     {
       if (m_nDirection != 0)
