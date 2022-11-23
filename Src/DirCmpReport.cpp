@@ -508,6 +508,9 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 			(*m_pFileCmpReport.get())(REPORT_TYPE_SIMPLEHTML, m_pList.get(), currRow, sDestDir, sLinkPath);
 
+		strutils::replace(sLinkPath, _T("%"), _T("%25"));
+		strutils::replace(sLinkPath, _T("#"), _T("%23"));
+
 		String rowEl = _T("tr");
 		if (xml)
 		{
