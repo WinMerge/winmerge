@@ -164,7 +164,6 @@ void CAboutDlg::Impl::OnBnClickedOpenContributors()
 
 void CAboutDlg::Impl::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	PNMLINK pNMLink = (PNMLINK)pNMHDR;
 	int tmp = 0;
 	m_p->m_onclick_url.notify(m_p, tmp);
 }

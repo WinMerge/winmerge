@@ -282,7 +282,6 @@ void DirCmpReport::WriteString(const String& sText)
 {
 	std::string sOctets(m_bOutputUTF8 ? ucr::toUTF8(sText) : ucr::toThreadCP(sText));
 	const char *pchOctets = sOctets.c_str();
-	void *pvOctets = const_cast<char *>(pchOctets);
 	size_t cchAhead = sOctets.length();
 	while (const char *pchAhead = (const char *)memchr(pchOctets, '\n', cchAhead))
 	{
@@ -508,6 +507,9 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 			m_myStruct->context->m_pCompareStats->BeginCompare(pdi, 0);
 		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 			(*m_pFileCmpReport.get())(REPORT_TYPE_SIMPLEHTML, m_pList.get(), currRow, sDestDir, sLinkPath);
+
+		strutils::replace(sLinkPath, _T("%"), _T("%25"));
+		strutils::replace(sLinkPath, _T("#"), _T("%23"));
 
 		String rowEl = _T("tr");
 		if (xml)

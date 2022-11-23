@@ -3310,6 +3310,18 @@ GetMaxLineLength (int nTopLine, int nLines)
   return nMaxLineLength;
 }
 
+bool CCrystalTextView::
+CoverLength(int nTopLine, int nLines, int min_length)
+{
+  const int nLineCount = (std::min)(nTopLine + nLines, GetLineCount ());
+  for (int I = nTopLine; I != nLineCount; I++)
+    {
+      if (GetLineActualLength (I) >= min_length)
+        return true;
+    }
+  return false;
+}
+
 CCrystalTextView *CCrystalTextView::
 GetSiblingView (int nRow, int nCol)
 {
@@ -3888,8 +3900,8 @@ AttachToBuffer (CCrystalTextBuffer * pBuf /*= nullptr*/ )
                                          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
   CScrollBar *pHorzScrollBarCtrl = GetScrollBarCtrl (SB_HORZ);
   if (pHorzScrollBarCtrl != nullptr)
-    pHorzScrollBarCtrl->EnableScrollBar (GetScreenChars () >= GetMaxLineLength (m_nTopLine, GetScreenLines())?
-                                         ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
+      pHorzScrollBarCtrl->EnableScrollBar(CoverLength(m_nTopLine, GetScreenLines(), GetScreenChars()) ?
+          ESB_DISABLE_BOTH : ESB_ENABLE_BOTH);
 
   //  Update scrollbars
   InvalidateVertScrollBar ();
@@ -4623,7 +4635,7 @@ TextToClient (const CPoint & point)
           bool bInQuote = false;
           const int sep = m_pTextBuffer->GetFieldDelimiter ();
           const int quote = m_pTextBuffer->GetFieldEnclosure ();
-          for (int nIndex = 0, nTabs = 0; nIndex < point.x; nIndex = pIterChar->next())
+          for (int nIndex = 0; nIndex < point.x; nIndex = pIterChar->next())
             {
               if (!bInQuote && pszLine[nIndex] == sep)
                 {

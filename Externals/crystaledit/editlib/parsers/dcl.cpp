@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
+//  DCL keywords
 static const TCHAR * s_apszDclKeywordList[] =
   {
     _T ("boxed_column"),

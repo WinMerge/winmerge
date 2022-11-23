@@ -7,6 +7,8 @@
 
 #include "TrDialogs.h"
 #include "UnicodeString.h"
+#include "Concurrent.h"
+#include "ExConverter.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLoadSaveCodepageDlg dialog
@@ -59,6 +61,8 @@ private:
 	bool m_bSaveCodepageBOM;
 	bool m_bEnableSaveCodepage;
 	int m_nFiles;
+	std::vector<CodePageInfo> m_cpList;
+	Concurrent::Task<std::vector<CodePageInfo>> m_asyncCodepagesLoader;
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -77,6 +81,7 @@ protected:
 	afx_msg void OnAffectsMiddleBtnClicked();
 	afx_msg void OnAffectsRightBtnClicked();
 	afx_msg void OnLoadSaveSameCodepage();
+	afx_msg LRESULT OnLoadCodepages(WPARAM, LPARAM);
 	virtual void OnOK ();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

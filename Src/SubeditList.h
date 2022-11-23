@@ -7,8 +7,6 @@
 // SubeditList.h : header file
 //
 
-#include <set>
-
 class CInPlaceEdit : public CEdit
 {
 // Construction
@@ -106,17 +104,17 @@ public:
 
 // Attributes
 private:
-	std::set<bool> m_readOnlyColumns;							/**< Set of read-only columns */
-	std::set<int> m_binaryValueColumns;
-	std::vector<EditStyle> m_editStyle;							/**< Edit style for each column */
-	std::vector<int> m_limitTextSize;							/**< Character limit for each column */
+	//low 16 bits reserved for EditStyle
+	enum { EDIT_STYLES_ALL = 0xffff, READ_ONLY = (1 << 16), BOOLEAN_VALUE = (1 << 17) };
+
+	std::vector<std::pair<int, int>> m_columnsAttributes;		/**< Stores pairs of <Character limit for each column; bitset of attributes|EditStyle> */
 	std::vector<std::vector<String>> m_dropListFixedPattern;	/**< Wildcard drop list fixed pattern for each cell */
 	std::vector<std::vector<std::vector<String>>> m_dropList;	/**< dropdown list data for each cell */
 
 // Operations
 public:
-	void SetReadOnlyColumn(int nCol) { m_readOnlyColumns.insert(nCol); };
-	void SetBooleanValueColumn(int nCol) { m_binaryValueColumns.insert(nCol); };
+	void SetReadOnlyColumn(int nCol) { SetColumnAttribute(nCol, 0, READ_ONLY); }
+	void SetBooleanValueColumn(int nCol) { SetColumnAttribute(nCol, 0, BOOLEAN_VALUE); }
 	void SetItemBooleanValue(int nItem, int nSubItem, bool value);
 	bool GetItemBooleanValue(int nItem, int nSubItem) const;
 	EditStyle GetEditStyle(int nCol) const;
@@ -143,6 +141,8 @@ public:
 private:
 	bool IsValidCol(int nSubItem) const;
 	bool IsValidRowCol(int nItem, int nSubItem) const;
+	//set parameter only if not equal 0
+	void SetColumnAttribute(int nCol, int limit, int attribute);
 public:
 	// Generated message map functions
 //protected:

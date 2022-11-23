@@ -51,10 +51,8 @@ in a visual format that is easy to understand and manipulate.
 ## How to Build
 
 ~~~
-git clone https://github.com/winmerge/winmerge
+git clone --recurse-submodules https://github.com/WinMerge/winmerge
 cd winmerge
-git submodule init
-git submodule update
 DownloadDeps.cmd
 BuildAll.vs2022.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2019.cmd [x86|x64|ARM|ARM64] or BuildAll.vs2017.cmd [x86|x64|ARM|ARM64]
 ~~~

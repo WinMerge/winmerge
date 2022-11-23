@@ -1241,6 +1241,9 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
+	const int top = m_pList->GetTopIndex();
+	const size_t num = m_listViewItems.size();
+
 	CDiffContext &ctxt = GetDiffContext();
 	dip.customFlags |= ViewCustomFlags::EXPANDED;
 	if (bRecursive)
@@ -1251,10 +1254,14 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 	int alldiffs;
 	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
 
+	for (size_t i = 0; i < m_listViewItems.size() - num; ++i)
+		m_pList->InsertItem(sel + 1, nullptr);
+
 	SortColumnsAppropriately();
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
+	m_pList->EnsureVisible(top, TRUE);
 	m_pList->Invalidate();
 }
 
@@ -4543,6 +4550,7 @@ void CDirView::OnEditColumns()
 				dlg.AddColumn(m_pColItems->GetColDisplayName(l), m_pColItems->GetColDescription(l), l);
 			}
 		}
+		assert(m_pColItems->GetColCount() == dlg.GetColumns().size());
 
 		// Add default order of columns for resetting to defaults
 		for (l = 0; l < m_pColItems->GetColCount(); ++l)
@@ -4604,14 +4612,12 @@ void CDirView::OnEditColumns()
 
 	if (m_pColItems->GetDispColCount() < 1)
 	{
-		// Ignore them if they didn't leave a column showing
+		// Set them back to default if they didn't leave a column showing
+		// (However, if none of the items are checked, this process will not be executed because the "OK" button in the "Display Columns" dialog cannot be pressed.)
 		m_pColItems->ResetColumnOrdering();
 	}
-	else
-	{
-		ReloadColumns();
-		Redisplay();
-	}
+	ReloadColumns();
+	Redisplay();
 }
 
 DirActions CDirView::MakeDirActions(DirActions::method_type func) const

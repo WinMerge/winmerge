@@ -27,6 +27,19 @@ CSubeditList::~CSubeditList()
 {
 }
 
+void CSubeditList::SetColumnAttribute(int nCol, int limit, int attribute)
+{
+	if (!IsValidCol(nCol))
+		return;
+
+	if (m_columnsAttributes.size() <= static_cast<size_t>(nCol))
+		m_columnsAttributes.resize(static_cast<size_t>(nCol) + 1);
+
+	std::pair<int, int>& r = m_columnsAttributes[nCol];
+	if (limit) r.first = limit;
+	r.second |= attribute;
+}
+
 void CSubeditList::SetItemBooleanValue(int nItem, int nSubItem, bool value)
 {
 	if (IsWin7_OrGreater())
@@ -44,16 +57,14 @@ bool CSubeditList::GetItemBooleanValue(int nItem, int nSubItem) const
 bool CSubeditList::IsValidCol(int nSubItem) const
 {
 	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
-	int nColumnCount = pHeader->GetItemCount();
-	if (nSubItem < 0 || nSubItem >= nColumnCount)
-		return false;
-	return true;
+	unsigned nColumnCount = static_cast<unsigned>(pHeader->GetItemCount());
+	return static_cast<unsigned>(nSubItem) < nColumnCount;
 }
 
 bool CSubeditList::IsValidRowCol(int nItem, int nSubItem) const
 {
-	int nItemCount = GetItemCount();
-	if (nItem < 0 || nItem >= nItemCount)
+	unsigned nItemCount = static_cast<unsigned>(GetItemCount());
+	if (static_cast<unsigned>(nItem) >= nItemCount)
 		return false;
 
 	return IsValidCol(nSubItem);
@@ -67,10 +78,10 @@ bool CSubeditList::IsValidRowCol(int nItem, int nSubItem) const
  */
 CSubeditList::EditStyle CSubeditList::GetEditStyle(int nCol) const
 {
-	if (!IsValidCol(nCol) || static_cast<size_t>(nCol) >= m_editStyle.size())
+	if (static_cast<size_t>(nCol) >= m_columnsAttributes.size() || !IsValidCol(nCol))
 		return EditStyle::EDIT_BOX;
 
-	return m_editStyle.at(nCol);
+	return static_cast<EditStyle>(m_columnsAttributes[nCol].second & EDIT_STYLES_ALL);
 }
 
 /**
@@ -83,10 +94,13 @@ void CSubeditList::SetEditStyle(int nCol, EditStyle style)
 	if (!IsValidCol(nCol))
 		return;
 
-	for (size_t i = m_editStyle.size(); i <= static_cast<size_t>(nCol); i++)
-		m_editStyle.push_back(EditStyle::EDIT_BOX);
+	static_assert(static_cast<int>(EditStyle::EDIT_BOX) == 0, "assume 0-value by default");
 
-	m_editStyle[nCol] = style;
+	if (m_columnsAttributes.size() <= static_cast<size_t>(nCol))
+		m_columnsAttributes.resize(static_cast<size_t>(nCol) + 1);
+
+	auto& r = m_columnsAttributes[nCol];
+	r.second = (r.second & ~EDIT_STYLES_ALL) | static_cast<int>(style);
 }
 
 /**
@@ -101,7 +115,7 @@ int CSubeditList::GetLimitTextSize(int nCol) const
 	if (!IsValidCol(nCol) || GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return 0;
 
-	return m_limitTextSize.at(nCol);
+	return m_columnsAttributes[nCol].first;
 }
 
 /**
@@ -115,10 +129,10 @@ void CSubeditList::SetLimitTextSize(int nCol, int nLimitTextSize)
 	if (!IsValidCol(nCol) || GetEditStyle(nCol) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
-	for (size_t i = m_limitTextSize.size(); i <= static_cast<size_t>(nCol); i++)
-		m_limitTextSize.push_back(0);
+	if (m_columnsAttributes.size() <= static_cast<size_t>(nCol))
+		m_columnsAttributes.resize(static_cast<size_t>(nCol) + 1);
 
-	m_limitTextSize[nCol] = nLimitTextSize;
+	m_columnsAttributes[nCol].first = nLimitTextSize;
 }
 
 /**
@@ -152,13 +166,14 @@ void CSubeditList::SetDropListFixedPattern(int nItem, int nSubItem, const String
 	if (!IsValidRowCol(nItem, nSubItem) || GetEditStyle(nSubItem) != EditStyle::WILDCARD_DROP_LIST)
 		return;
 
-	for (size_t i = m_dropListFixedPattern.size(); i <= static_cast<size_t>(nItem); i++)
-		m_dropListFixedPattern.emplace_back(std::initializer_list<String>{});
+	if (m_dropListFixedPattern.size() <= static_cast<size_t>(nItem))
+		m_dropListFixedPattern.resize(static_cast<size_t>(nItem) + 1);
 
-	for (size_t i = m_dropListFixedPattern[nItem].size(); i <= static_cast<size_t>(nSubItem); i++)
-		m_dropListFixedPattern[nItem].push_back(_T(""));
+	auto& sub = m_dropListFixedPattern[nItem];
+	if (sub.size() <= static_cast<size_t>(nSubItem))
+		sub.resize(static_cast<size_t>(nSubItem) + 1, _T(""));
 
-	m_dropListFixedPattern[nItem][nSubItem] = fixedPattern;
+	sub[nSubItem] = fixedPattern;
 }
 
 /**
@@ -192,13 +207,14 @@ void CSubeditList::SetDropdownList(int nItem, int nSubItem, const std::vector<St
 	if (!IsValidRowCol(nItem, nSubItem) || GetEditStyle(nSubItem) != EditStyle::DROPDOWN_LIST)
 		return;
 
-	for (size_t i = m_dropList.size(); i <= static_cast<size_t>(nItem); i++)
-		m_dropList.push_back({});
+	if (m_dropList.size() <= static_cast<size_t>(nItem))
+		m_dropList.resize(static_cast<size_t>(nItem) + 1);
 
-	for (size_t i = m_dropList[nItem].size(); i <= static_cast<size_t>(nSubItem); i++)
-		m_dropList[nItem].push_back({});
+	auto& sub = m_dropList[nItem];
+	if (sub.size() <= static_cast<size_t>(nSubItem))
+		sub.resize(static_cast<size_t>(nSubItem) + 1);
 
-	m_dropList[nItem][nSubItem] = list;
+	sub[nSubItem] = list;
 }
 
 // HitTestEx	- Determine the row index and column index for a point
@@ -218,8 +234,9 @@ int CSubeditList::HitTestEx(CPoint &point, int *col) const
 	// Get the top and bottom row visible
 	row = GetTopIndex();
 	int bottom = row + GetCountPerPage();
-	if( bottom > GetItemCount() )
-		bottom = GetItemCount();
+	int itemCount = GetItemCount();
+	if( bottom > itemCount )
+		bottom = itemCount;
 	
 	// Get the number of columns
 	CHeaderCtrl* pHeader = (CHeaderCtrl*)GetDlgItem(0);
@@ -286,7 +303,7 @@ CInPlaceEdit* CSubeditList::EditSubLabel( int nItem, int nCol )
 	int nColumnCount = pHeader->GetItemCount();
 	if( nCol >= nColumnCount || GetColumnWidth(nCol) < 5 )
 		return NULL;
-	 
+
 	if (GetEditStyle(nCol) != EditStyle::EDIT_BOX)
 		return NULL;
 	// Get the column offset
@@ -300,13 +317,11 @@ CInPlaceEdit* CSubeditList::EditSubLabel( int nItem, int nCol )
 	// Now scroll if we need to expose the column
 	CRect rcClient;
 	GetClientRect( &rcClient );
-	if( offset + rect.left < 0 || offset + rect.left > rcClient.right )
+	int dx = offset + rect.left;
+	if( dx < 0 || dx > rcClient.right )
 	{
-		CSize size;
-		size.cx = offset + rect.left;
-		size.cy = 0;
-		Scroll( size );
-		rect.left -= size.cx;
+		Scroll(CSize(dx, 0));
+		rect.left -= dx;
 	}
 
 	// Get Column alignment
@@ -361,13 +376,11 @@ void CSubeditList::EditSubLabelDropdownList( int nItem, int nCol )
 	// Now scroll if we need to expose the column
 	CRect rcClient;
 	GetClientRect( &rcClient );
-	if( offset + rect.left < 0 || offset + rect.left > rcClient.right )
+	int dx = offset + rect.left;
+	if( dx < 0 || dx > rcClient.right )
 	{
-		CSize size;
-		size.cx = offset + rect.left;
-		size.cy = 0;
-		Scroll( size );
-		rect.left -= size.cx;
+		Scroll(CSize(dx, 0));
+		rect.left -= dx;
 	}
 
 	// Get Column alignment
@@ -437,18 +450,22 @@ void CSubeditList::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
 
 void CSubeditList::OnLButtonDown(UINT nFlags, CPoint point)
 {
-	int index;
 	int colnum;
 	CListCtrl::OnLButtonDown(nFlags, point);
-	if( ( index = HitTestEx( point, &colnum )) != -1 )
+	int index = HitTestEx(point, &colnum);
+	if( index != -1 )
 	{
+		if ((size_t)colnum >= m_columnsAttributes.size())
+			return;
+
 		UINT flag = LVIS_FOCUSED;
 		//if ((GetItemState(index, flag) & flag) == flag && colnum > 0)
 		if ((GetItemState(index, flag) & flag) == flag)
 		{
-			if (m_readOnlyColumns.find(colnum) == m_readOnlyColumns.end())
+			auto pr = m_columnsAttributes[(size_t)colnum];
+			if (!(pr.second & READ_ONLY))
 			{
-				if (m_binaryValueColumns.find(colnum) != m_binaryValueColumns.end())
+				if (pr.second & BOOLEAN_VALUE)
 				{
 					CString text = GetItemText(index, colnum);
 					if (IsWin7_OrGreater())
@@ -581,9 +598,8 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	CWindowDC dc(this);
 	CFont *pFont = GetParent()->GetFont();
 	CFont *pFontDC = dc.SelectObject( pFont );
-	CSize size = dc.GetTextExtent( str );
+	LONG width = dc.GetTextExtent( str ).cx + 5; // add some extra buffer
 	dc.SelectObject( pFontDC );
-	size.cx += 5;			   	// add some extra buffer
 
 	// Get client rect
 	CRect rect, parentrect;
@@ -596,12 +612,10 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	// Check whether control needs to be resized
 	// and whether there is space to grow
-	if( size.cx > rect.Width() )
+	if( width > rect.Width() )
 	{
-		if( size.cx + rect.left < parentrect.right )
-			rect.right = rect.left + size.cx;
-		else
-			rect.right = parentrect.right;
+		width += rect.left;
+		rect.right = (std::min)(width, parentrect.right);
 		MoveWindow( &rect );
 	}
 }

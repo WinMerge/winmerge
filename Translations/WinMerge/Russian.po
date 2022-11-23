@@ -65,19 +65,19 @@ msgid "Copy Selected Line(s) from Left"
 msgstr "Копировать выбранные строки слева"
 
 msgid "Select Line &Difference\tF4"
-msgstr "&Выбрать отличие\tF4"
+msgstr "Выбрать &отличие\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Добавить это изменение в &фильтры замены"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Добавить в &фильтры замены"
 
 msgid "&Undo"
 msgstr "&Отменить"
 
 msgid "&Redo"
-msgstr "В&ернуть"
+msgstr "&Вернуть"
 
 msgid "Cu&t"
 msgstr "Вы&резать"
@@ -174,7 +174,7 @@ msgstr "&Масштаб"
 
 #, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
 msgid "Zoom &In\tCtrl++"
 msgstr "Увеличить\tCtrl++"
@@ -232,13 +232,13 @@ msgid "&Full Size Screenshots"
 msgstr "&Полноразмерные скриншоты"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&Файлы HTML"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Тексты"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Древа ресурсов"
 
 msgid "&Size"
 msgstr "&Размер"
@@ -253,7 +253,7 @@ msgid "&Disk Cache"
 msgstr "&Дисковый кэш"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Файлы куки"
 
 msgid "&Browsing History"
 msgstr "&История просмотров"
@@ -975,7 +975,7 @@ msgid "&Edit Caption"
 msgstr "&Изменить заголовок"
 
 msgid "&Open..."
-msgstr ""
+msgstr "&Открыть..."
 
 msgid "Unpacker Settings"
 msgstr "Параметры распаковщика"
@@ -1113,7 +1113,7 @@ msgid " Folder: Filter"
 msgstr " Папка: Фильтр"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Файл: плагин предсравнения"
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: плагин распаковщика"
@@ -1410,13 +1410,13 @@ msgid "Additional Properties"
 msgstr "Дополнительные свойства"
 
 msgid "&>"
-msgstr ""
+msgstr "&>"
 
 msgid "&<"
-msgstr ""
+msgstr "&<"
 
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 msgid "Select Plugin"
 msgstr "Выбрать плагин"
@@ -1821,10 +1821,10 @@ msgid "File type"
 msgstr "Тип файла"
 
 msgid "&CSV"
-msgstr ""
+msgstr "&Файлы CSV"
 
 msgid "&TSV"
-msgstr ""
+msgstr "&Файлы TSV"
 
 msgid "Custom &Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
@@ -1972,7 +1972,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "&Число доступных для использования ядер ЦП:"
 
 msgid "&CSV File Patterns:"
 msgstr "Шаблоны CSV-файлов:"
@@ -2033,25 +2033,25 @@ msgid "&Separate user data folders for each pane"
 msgstr "Отдельные папки пользовательских данных для каждой панели"
 
 msgid "&Hex View"
-msgstr "&Hex"
+msgstr "&Hex Вид"
 
 msgid "EXT"
-msgstr ""
+msgstr "EXT"
 
 msgid "CAP"
-msgstr ""
+msgstr "CAP"
 
 msgid "NUM"
-msgstr ""
+msgstr "NUM"
 
 msgid "SCRL"
-msgstr ""
+msgstr "SCRL"
 
 msgid "OVR"
-msgstr ""
+msgstr "OVR"
 
 msgid "REC"
-msgstr ""
+msgstr "REC"
 
 msgid "\nNew Documents (Ctrl+N)"
 msgstr "\nСоздать документы (Ctrl+N)"
@@ -2105,7 +2105,7 @@ msgid "&Yes"
 msgstr "&Да"
 
 msgid "Yes to &all"
-msgstr "Д&а для всех"
+msgstr "Да д&ля всех"
 
 msgid "&No"
 msgstr "&Нет"
@@ -2172,7 +2172,7 @@ msgid "Version %1"
 msgstr "Версия %1"
 
 msgid "X64"
-msgstr ""
+msgstr "X64"
 
 #, c-format
 msgid "Options (%1)"
@@ -2249,7 +2249,7 @@ msgid "Filters"
 msgstr "Фильтры"
 
 msgid "[F] "
-msgstr ""
+msgstr "[F] "
 
 msgid "Description"
 msgstr "Описание"
@@ -2349,7 +2349,7 @@ msgstr "Найдено всего одно отличие"
 
 #. Abbreviation from "Read Only"
 msgid "RO"
-msgstr ""
+msgstr "RO"
 
 #, c-format
 msgid "Item %1 of %2"
@@ -2761,67 +2761,67 @@ msgid "Middle Duplicate Count"
 msgstr "Кол-во дублей в центре"
 
 msgid "Move"
-msgstr ""
+msgstr "Переместить"
 
 msgid "Audio"
-msgstr ""
+msgstr "Аудио"
 
 msgid "Calendar"
-msgstr ""
+msgstr "Календарь"
 
 msgid "Communication"
-msgstr ""
+msgstr "Коммуникация"
 
 msgid "Contact"
-msgstr ""
+msgstr "Контакт"
 
 msgid "Devices"
-msgstr ""
+msgstr "Устройства"
 
 msgid "Document"
-msgstr ""
+msgstr "Документ"
 
 msgid "Home"
-msgstr ""
+msgstr "Домой"
 
 msgid "Journal"
-msgstr ""
+msgstr "Журнал"
 
 msgid "Link"
-msgstr ""
+msgstr "Ссылка"
 
 msgid "Media"
-msgstr ""
+msgstr "Медиа"
 
 msgid "Music"
-msgstr ""
+msgstr "Музыка"
 
 msgid "Note"
-msgstr ""
+msgstr "Заметка"
 
 msgid "Photo"
-msgstr ""
+msgstr "Фото"
 
 msgid "RecordedTV"
-msgstr ""
+msgstr "Записанное ТВ"
 
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 msgid "Security"
-msgstr ""
+msgstr "Безопасность"
 
 msgid "Software"
-msgstr ""
+msgstr "ПО"
 
 msgid "Task"
-msgstr ""
+msgstr "Задача"
 
 msgid "Video"
-msgstr ""
+msgstr "Видео"
 
 msgid "Hash"
-msgstr ""
+msgstr "Хэш"
 
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
@@ -3497,7 +3497,7 @@ msgstr "Альфа"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "XOR"
-msgstr ""
+msgstr "XOR"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Alpha Blend"
@@ -3517,15 +3517,15 @@ msgstr "Страница:"
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr ""
+msgstr "Чс: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr ""
+msgstr "Расп: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr ""
+msgstr "Расп: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
@@ -3533,7 +3533,7 @@ msgstr "Страница: %d/%d  Масштаб: %d%%  %dx%dpx  %dbpp  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "Rc: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
@@ -3640,7 +3640,7 @@ msgid "Apply Filter Command..."
 msgstr "Применить фильтрацию..."
 
 msgid "Tokenize..."
-msgstr ""
+msgstr "Токенизировать..."
 
 msgid "Trim Spaces"
 msgstr "Трим пробелов"
@@ -3738,16 +3738,16 @@ msgid "Count duplicate lines"
 msgstr "Кол-во дублей строк"
 
 msgid "Sort lines ascending"
-msgstr ""
+msgstr "Сортировать строки по возрастанию"
 
 msgid "Sort lines descending"
 msgstr "Сортировать строки по убыванию"
 
 msgid "Reverse columns"
-msgstr "Реверс столбцов"
+msgstr "Обратить столбцы"
 
 msgid "Reverse lines"
-msgstr "Реверс строк"
+msgstr "Обратить строки"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
 msgstr "Заменить текст.\r\n• : Replace [-i] [-e] FIND REPLACE\r\n FIND - текст для поиска\r\n REPLACE - текст для замены\r\n -i - игнорировать регистр (только с -e)\r\n -e - рассматривать как регулярное выражение"

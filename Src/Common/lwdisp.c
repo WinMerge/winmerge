@@ -130,17 +130,6 @@ static void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, size_t limit)
 #endif
 }
 
-static void mycpyt2a(LPCTSTR tsz, char * adest, size_t limit)
-{
-#ifdef _UNICODE
-	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, (int)limit, 0, 0);
-	// always terminate the string
-	adest[limit-1] = 0;
-#else
-	StringCchCopyA(adest, limit, tsz);
-#endif
-}
-
 #ifdef _WIN64
 LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 {

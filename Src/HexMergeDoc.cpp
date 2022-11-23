@@ -178,11 +178,11 @@ int CHexMergeDoc::UpdateDiffItem(CDirDoc *pDirDoc)
 		}
 	}
 	bool bDiff = false;
-	int lengthFirst = m_pView[0]->GetLength();
+	size_t lengthFirst = m_pView[0]->GetLength();
 	void *bufferFirst = m_pView[0]->GetBuffer(lengthFirst);
 	for (int nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
 	{
-		int length = m_pView[nBuffer]->GetLength();
+		size_t length = m_pView[nBuffer]->GetLength();
 		if (lengthFirst != length)
 			bDiff = true;
 		else
@@ -935,8 +935,6 @@ void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 	DWORD dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
-	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc : 
-		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
 
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)

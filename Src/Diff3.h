@@ -9,14 +9,11 @@ template<typename Element, typename Comp02Func>
 size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& diff10, const std::vector<Element>& diff12,
 	Comp02Func cmpfunc, bool has_trivial_diffs)
 {
-	size_t diff10count = diff10.size();
-	size_t diff12count = diff12.size();
+	const size_t diff10count = diff10.size();
+	const size_t diff12count = diff12.size();
 
 	size_t diff10i = 0;
 	size_t diff12i = 0;
-	size_t diff3i = 0;
-
-	bool firstDiffBlockIsDiff12;
 
 	Element dr3, dr10, dr12, dr10first, dr10last, dr12first, dr12last;
 
@@ -24,11 +21,10 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 	int linelast1 = 0;
 	int linelast2 = 0;
 
+	bool firstDiffBlockIsDiff12;
+
 	for (;;)
 	{
-		if (diff10i >= diff10count && diff12i >= diff12count)
-			break;
-
 		/* 
 		 * merge overlapped diff blocks
 		 * diff10 is diff blocks between file1 and file0.
@@ -46,28 +42,24 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 		 *                 |___|             |___|
 		 */
 
-		if (diff10i >= diff10count && diff12i < diff12count)
+		if (diff10i >= diff10count)
 		{
-			dr12first = diff12.at(diff12i);
-			dr12last = dr12first;
+			if (diff12i >= diff12count)
+				break;
+
+			dr12last = dr12first = diff12[diff12i];
 			firstDiffBlockIsDiff12 = true;
 		}
-		else if (diff10i < diff10count && diff12i >= diff12count)
+		else if (diff12i >= diff12count)
 		{
-			dr10first = diff10.at(diff10i);	
-			dr10last = dr10first;
+			dr10last = dr10first = diff10[diff10i];
 			firstDiffBlockIsDiff12 = false;
 		}
 		else
 		{
-			dr10first = diff10.at(diff10i);	
-			dr12first = diff12.at(diff12i);
-			dr10last = dr10first;
-			dr12last = dr12first;
-			if (dr12first.begin[0] <= dr10first.begin[0])
-				firstDiffBlockIsDiff12 = true;
-			else
-				firstDiffBlockIsDiff12 = false;
+			dr10last = dr10first = diff10[diff10i];
+			dr12last = dr12first = diff12[diff12i];
+			firstDiffBlockIsDiff12 = (dr12first.begin[0] <= dr10first.begin[0]);
 		}
 		bool lastDiffBlockIsDiff12 = firstDiffBlockIsDiff12;
 
@@ -78,8 +70,8 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 			if (diff10itmp >= diff10count || diff12itmp >= diff12count)
 				break;
 
-			dr10 = diff10.at(diff10itmp);
-			dr12 = diff12.at(diff12itmp);
+			dr10 = diff10[diff10itmp];
+			dr12 = diff12[diff12itmp];
 
 			if (dr10.end[0] == dr12.end[0])
 			{
@@ -206,19 +198,19 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 				dr3.op = OP_TRIVIAL;
 		}
 
-		diff3.push_back(dr3);
-
-		diff3i++;
 		diff10i = diff10itmp;
 		diff12i = diff12itmp;
+
+		diff3.push_back(dr3);
 	}
 	
-	for (size_t i = 0; i < diff3i; i++)
+	size_t cnt = diff3.size();
+	if (cnt)
 	{
-		Element& dr3r = diff3.at(i);
-		if (i < diff3i - 1)
+		for (size_t i = 0; i != (cnt - 1); i++)
 		{
-			Element& dr3next = diff3.at(i + 1);
+			Element& dr3r = diff3[i];
+			Element& dr3next = diff3[i + 1];
 			for (int j = 0; j < 3; j++)
 			{
 				if (dr3r.end[j] >= dr3next.begin[j])
@@ -227,5 +219,5 @@ size_t Make3wayDiff(std::vector<Element>& diff3, const std::vector<Element>& dif
 		}
 	}
 	
-	return diff3i;
+	return cnt;
 }

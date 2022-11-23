@@ -133,10 +133,7 @@ public:
 	}
 	bool existAll() const
 	{
-		if ((diffcode & DIFFCODE::THREEWAY) == 0)
-			return (existsFirst() && existsSecond());
-		else
-			return (existsFirst() && existsSecond() && existsThird());
+		return ((diffcode & DIFFCODE::THREEWAY) ? DIFFCODE::ALL : DIFFCODE::BOTH) == (diffcode & DIFFCODE::ALL);
 	}
 
 	// compare result

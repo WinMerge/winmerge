@@ -43,6 +43,8 @@ class EDITPADC_CLASS CCrystalEditView : public CCrystalTextView
   {
     DECLARE_DYNCREATE (CCrystalEditView)
 
+    friend CEditReplaceDlg;
+
 public :
     int m_nLastReplaceLen;
     CMap<CString, LPCTSTR, CString, LPCTSTR> *m_mapExpand;

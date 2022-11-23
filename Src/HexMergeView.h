@@ -35,8 +35,8 @@ public:
 	HRESULT LoadFile(LPCTSTR);
 	HRESULT SaveFile(LPCTSTR, bool packing = true);
 	IHexEditorWindow *GetInterface() const { return m_pif; }
-	BYTE *GetBuffer(int);
-	int GetLength();
+	BYTE *GetBuffer(size_t);
+	size_t GetLength();
 	bool GetModified();
 	void SetSavePoint();
 	void ClearUndoRecords();

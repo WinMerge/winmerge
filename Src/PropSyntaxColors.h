@@ -11,8 +11,6 @@
 #include "SyntaxColors.h"
 #include <array>
 
-const int NumCustomColors = 16;
-
 class PropSyntaxColors : public OptionsPanel
 {
 	DECLARE_DYNAMIC(PropSyntaxColors)

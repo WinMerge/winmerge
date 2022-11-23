@@ -44,12 +44,6 @@ unsigned CCrystalParser::ParseLine(unsigned /*dwCookie*/,
 	return 0;
 }
 
-static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
-{
-	LPTSTR next = ::CharNext(current);
-	return next > current ? next : next + 1;
-}
-
 void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int>* anBreaks, int& nBreaks )
 {
 	// The parser must be attached to a view!

@@ -2166,7 +2166,6 @@ InvalidateColumns ()
       POSITION pos = buf->m_lpViews.GetHeadPosition ();
       while (pos != nullptr)
         {
-          POSITION thispos = pos;
           CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
           pView->InvalidateScreenRect ();
           pView->UpdateView (nullptr, nullptr, UPDATE_HORZRANGE | UPDATE_VERTRANGE, -1);

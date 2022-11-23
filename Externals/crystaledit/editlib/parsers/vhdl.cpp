@@ -321,14 +321,6 @@ IsVhdlNumber (const TCHAR *pszChars, int nLength)
 }
 
 static bool
-IsVhdlString (const TCHAR *pszChars, int nLength)
-{
-  if (nLength > 3 && pszChars[0] == '"' && pszChars[nLength-1] == '"')
-    return true;
-  return false;
-}
-
-static bool
 IsVhdlChar (const TCHAR *pszChars, int nLength)
 {
   if (nLength == 3 && pszChars[0] == '\'' && pszChars[2] == '\'')
@@ -344,7 +336,6 @@ CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const TCHAR *pszChars, int 
 
   bool bRedefineBlock = true;
   bool bDecIndex = false;
-  bool bNum = false;
   int nIdentBegin = -1;
   int nAttributeBegin = 0;
   int nPrevI = -1;

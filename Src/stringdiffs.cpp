@@ -19,40 +19,34 @@ using std::vector;
 namespace strdiff
 {
 
-static bool Initialized;
-static bool CustomChars;
-static TCHAR *BreakChars;
+static TCHAR *BreakChars = nullptr;
 static TCHAR BreakCharDefaults[] = _T(",.;:");
-static int TimeoutMilliSeconds = 500;
+static const int TimeoutMilliSeconds = 500;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers);
 
 void Init()
 {
-	BreakChars = &BreakCharDefaults[0];
-	Initialized = true;
+	BreakChars = BreakCharDefaults;
 }
 
 void Close()
 {
-	if (CustomChars)
+	if (BreakChars != BreakCharDefaults)
 	{
 		free(BreakChars);
 		BreakChars = nullptr;
-		CustomChars = false;
 	}
-	Initialized = false;
 }
 
 void SetBreakChars(const TCHAR *breakChars)
 {
-	assert(Initialized);
+	assert(BreakChars != nullptr);
 
-	if (CustomChars)
+	if (BreakChars != BreakCharDefaults)
 		free(BreakChars);
 
-	CustomChars = true;
 	BreakChars = _tcsdup(breakChars);
 }
 
@@ -237,11 +231,11 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 	std::vector<wdiff> * pDiffs)
 : m_str1(str1)
 , m_str2(str2)
+, m_whitespace(whitespace)
+, m_breakType(breakType)
 , m_case_sensitive(case_sensitive)
 , m_eol_sensitive(eol_sensitive)
-, m_whitespace(whitespace)
 , m_ignore_numbers(ignore_numbers)
-, m_breakType(breakType)
 , m_pDiffs(pDiffs)
 , m_matchblock(true) // Change to false to get word to word compare
 {
@@ -416,18 +410,15 @@ stringdiffs::BuildWordDiffList()
  * @brief Break line into constituent words
  */
 std::vector<stringdiffs::word>
-stringdiffs::BuildWordsArray(const String & str)
+stringdiffs::BuildWordsArray(const String & str) const
 {
-	std::vector<word> words;
+	std::vector<word> words = { word(0, -1, 0, 0) }; // dummy;
 	int i = 0, begin = 0;
 	ICUBreakIterator *pIterChar = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(str.c_str()), static_cast<int32_t>(str.length()));
 
 	size_t sLen = str.length();
 	assert(sLen < INT_MAX);
 	int iLen = static_cast<int>(sLen);
-
-	// dummy;
-	words.push_back(word(0, -1, 0, 0));
 
 	// state when we are looking for next word
 inspace:
@@ -475,11 +466,10 @@ inword:
 		{
 			// start a new word because we hit a non-whitespace word break (eg, a comma)
 			// but, we have to put each word break character into its own word
-			int break_type = dlbreak;
-			if (m_ignore_numbers && _istdigit(str[i]))
-			{
-				break_type = dlnumber;
-			}
+			int break_type = (m_ignore_numbers && _istdigit(str[i]))
+				? dlnumber
+				: dlbreak;
+
 			int inext = pIterChar->next();
 			words.push_back(word(i, inext - 1, break_type, Hash(str, i, inext - 1, 0)));
 			i = inext;
@@ -551,15 +541,19 @@ stringdiffs::PopulateDiffs()
 unsigned
 stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 {
-	for (int i = begin; i <= end; ++i)
+	if (m_case_sensitive)
 	{
-		TCHAR ch = static_cast<unsigned>(str[i]);
-		if (m_case_sensitive)
+		for (int i = begin; i <= end; ++i)
 		{
+			TCHAR ch = static_cast<unsigned>(str[i]);
 			h += HASH(h, ch);
 		}
-		else
+	}
+	else
+	{
+		for (int i = begin; i <= end; ++i)
 		{
+			TCHAR ch = static_cast<unsigned>(str[i]);
 			ch = static_cast<unsigned>(_totlower(ch));
 			h += HASH(h, ch);
 		}
@@ -572,7 +566,7 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
  * @brief Compare two words (by reference to original strings)
  */
 bool
-stringdiffs::AreWordsSame(const word & word1, const word & word2) const
+stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 {
 	if (this->m_whitespace != WHITESPACE_COMPARE_ALL)
 	{
@@ -581,35 +575,37 @@ stringdiffs::AreWordsSame(const word & word1, const word & word2) const
 	}
 	if (m_ignore_numbers)
 	{
-		auto a = m_str1[word1.start];
-		auto b = m_str2[word2.start];
-		if (_istdigit(a) && _istdigit(b))
+		if (_istdigit(m_str1[word1.start]) && _istdigit(m_str2[word2.start]))
 			return true;
-
 	}
-	
+
 	if (word1.hash != word2.hash)
 		return false;
-	if (word1.length() != word2.length())
+	
+	int length = word1.length();
+	if (length != word2.length())
 		return false;
-	for (int i=0; i<word1.length(); ++i)
+	
+	if (m_case_sensitive)
 	{
-		if (!caseMatch(m_str1[word1.start+i], m_str2[word2.start+i]))
-			return false;
+		for (int i = 0; i < length; ++i)
+		{
+			if (m_str1[word1.start + i] != m_str2[word2.start + i])
+				return false;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < length; ++i)
+		{
+			TCHAR ch1 = m_str1[word1.start + i];
+			TCHAR ch2 = m_str2[word2.start + i];
+
+			if (_totlower(ch1) != _totlower(ch2))
+				return false;
+		}
 	}
 	return true;
-}
-
-/**
- * @brief Return true if characters match
- */
-bool
-stringdiffs::caseMatch(TCHAR ch1, TCHAR ch2) const
-{
-	if (m_case_sensitive) 
-		return ch1==ch2;
-	else 
-		return _totlower(ch1)==_totlower(ch2);
 }
 
 /**
@@ -622,13 +618,10 @@ stringdiffs::onp(std::vector<char> &edscript)
 
 	int M = static_cast<int>(m_words1.size() - 1);
 	int N = static_cast<int>(m_words2.size() - 1);
-	bool exchanged = false;
-	if (M > N)
-	{
-		M = static_cast<int>(m_words2.size() - 1);
-		N = static_cast<int>(m_words1.size() - 1);
-		exchanged = true;
-	}
+	const bool exchanged = (M > N);
+	if (exchanged)
+		std::swap(M, N);
+
 	int *fp = (new int[(M+1) + 1 + (N+1)]) + (M+1);
 	struct EditScriptElem { int op; int neq; int pk; int pi; };
 	std::vector<EditScriptElem> *es = (new std::vector<EditScriptElem>[(M+1) + 1 + (N+1)]) + (M+1);
@@ -660,7 +653,7 @@ stringdiffs::onp(std::vector<char> &edscript)
 	int p = -1;
 	do
 	{
-		p = p + 1;
+		p++;
 		for (k = -p; k <= DELTA-1; k++)
 		{
 			fp[k] = snake(k, std::max(fp[k-1] + 1, fp[k+1]), M, N, exchanged);
@@ -708,39 +701,22 @@ stringdiffs::onp(std::vector<char> &edscript)
 	std::reverse(ses.begin(), ses.end());
 
 	int D = 0;
-	for (i = 1; i < static_cast<int>(ses.size()); i++)
+	for (size_t n = 1, cnt = ses.size(); n < cnt; n++)
 	{
-		switch (ses[i])
+		char c = '!';
+		int ch = ses[n];
+		bool is_plus = (ch == '+');
+		if (is_plus || ch == '-')
 		{
-		case '+':
-			if (static_cast<size_t>(i + 1) < ses.size() && ses[i + 1] == '-')
-			{
-				edscript.push_back('!');
-				i++;
-				D++;
-			}
+			if (n != (cnt - 1) && ses[n + 1] == "+-"[is_plus])
+				n++;
 			else
-			{
-				edscript.push_back(exchanged ? '-' : '+');
-				D++;
-			}
-			break;
-		case '-':
-			if (static_cast<size_t>(i + 1) < ses.size() && ses[i + 1] == '+')
-			{
-				edscript.push_back('!');
-				i++;
-				D++;
-			}
-			else
-			{
-				edscript.push_back(exchanged ? '+' : '-');
-				D++;
-			}
-			break;
-		default:
-			edscript.push_back('=');
+				c = "+-"[exchanged == is_plus]; //('+' : exchanged ? '-' : '+'); ('-' : exchanged ? '+' : '-')
+			D++;
 		}
+		else
+			c = '=';
+		edscript.push_back(c);
 	}
 		
 	delete [] (es - (M+1));
@@ -750,7 +726,7 @@ stringdiffs::onp(std::vector<char> &edscript)
 }
 
 int
-stringdiffs::snake(int k, int y, int M, int N, bool exchanged)
+stringdiffs::snake(int k, int y, int M, int N, bool exchanged) const
 {
 	int x = y - k;
 	if (exchanged)
@@ -843,9 +819,7 @@ isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers)
 //		
 		WORD wCharType = 0;
 		GetStringTypeW(CT_CTYPE1, &ch, 1, &wCharType);
-		if ((wCharType & (C1_UPPER | C1_LOWER | C1_DIGIT)) != 0)
-			return false;
-		return true;
+		return !(wCharType & (C1_UPPER | C1_LOWER | C1_DIGIT));
 	}
 }
 
@@ -881,7 +855,7 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 {
 	// Set to sane values
 	// Also this way can distinguish if we set begin[0] to -1 for no diff in line
-	begin[0] = end[0] = begin[1] = end[1] = 0;
+	begin[0] = begin[1] = end[0] = end[1] = 0;
 
 	int len1 = static_cast<int>(str1.length());
 	int len2 = static_cast<int>(str2.length());
@@ -898,11 +872,13 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	{
 		if (len1 == len2)
 		{
-			begin[0] = -1;
-			begin[1] = -1;
+			begin[0] = begin[1] = end[0] = end[1] = -1;
 		}
-		end[0] = len1 - 1;
-		end[1] = len2 - 1;
+		else
+		{
+			end[0] = len1 - 1;
+			end[1] = len2 - 1;
+		}
 		return;
 	}
 
@@ -1024,7 +1000,7 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 		// Check if either side finished
 		if (pz1 < py1 && pz2 < py2)
 		{
-			begin[0] = end[0] = begin[1] = end[1] = -1;
+			begin[0] = begin[1] = end[0] = end[1] = -1;
 			break;
 		}
 		if (pz1 < py1 || pz2 < py2)
@@ -1108,9 +1084,8 @@ void stringdiffs::wordLevelToByteLevel()
 	{
 		int begin[3], end[3];
 		wdiff& diff = m_wdiffs[i];
-		String str1_2, str2_2;
-		str1_2 = m_str1.substr(diff.begin[0], diff.end[0] - diff.begin[0] + 1);
-		str2_2 = m_str2.substr(diff.begin[1], diff.end[1] - diff.begin[1] + 1);
+		String str1_2 = m_str1.substr(diff.begin[0], diff.end[0] - diff.begin[0] + 1);
+		String str2_2 = m_str2.substr(diff.begin[1], diff.end[1] - diff.begin[1] + 1);
 		ComputeByteDiff(str1_2, str2_2, m_case_sensitive, m_whitespace, begin, end, false);
 		if (begin[0] == -1)
 		{

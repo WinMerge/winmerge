@@ -33,8 +33,6 @@ using std::vector;
 
 /** @brief Size of empty frame above and below bars (in pixels). */
 static const int Y_OFFSET = 5;
-/** @brief Size of y-margin for visible area indicator (in pixels). */
-static const long INDICATOR_MARGIN = 2;
 /** @brief Max pixels in view per line in file. */
 static const double MAX_LINEPIX = 4.0;
 /** @brief Top of difference marker, relative to difference start. */
@@ -407,7 +405,6 @@ void CLocationView::OnDraw(CDC* pDC)
 	CBrush* oldBrush = (CBrush*)dc.SelectObject(&brush);
 	for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 	{
-		int nBottom = (int)(m_lineInPix * pDoc->GetView(nGroup, pane)->GetSubLineCount() + Y_OFFSET + 1);
 		CBrush *pOldBrush = nullptr;
 		if (pDoc->IsEditedAfterRescan(pane))
 			pOldBrush = (CBrush *)dc.SelectStockObject(HOLLOW_BRUSH);

@@ -89,6 +89,7 @@ Localization:
 * Galician:
   Medulio
   Luis A. Martínez Sobrino <luis.martinez.sobrino at gmail.com>
+  P0rsche-911
 
 * German:
   Tim Gerundt <tim@gerundt.de>
@@ -164,6 +165,7 @@ Localization:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
   Timon34
   wvxwxvw
+  Den1704
 
 * Serbian:
   Ozzii <ivanstar61@gmail.com>
@@ -269,6 +271,7 @@ Other Contributors (code, ideas, testing..):
 * HaroldPetersInskipp (Midnight color schema)
 * srgank
 * baka0815
+* Yurii Hordiienko 
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)

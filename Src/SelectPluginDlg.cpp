@@ -161,7 +161,6 @@ void CSelectPluginDlg::prepareListbox()
 {
 	int sel = -1;
 	PluginInfo* pSelPlugin = nullptr;
-	int i = 0;
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;

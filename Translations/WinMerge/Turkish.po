@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-05-05 12:15+0000\n"
-"PO-Revision-Date: 2022-05-10 20:14+0300\n"
+"POT-Creation-Date: 2022-10-16 00:15+0000\n"
+"PO-Revision-Date: 2022-11-10 08:03+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -69,7 +69,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "&Bu değişikliği değişiklik süzgeçlerine ekle"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Satır süz&geçlerine ekle"
 
 msgid "&Undo"
 msgstr "Geri a&l"
@@ -970,10 +970,10 @@ msgid "Copy &Filename"
 msgstr "&Dosya adını kopyala"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "&Başlığı düzenle"
 
 msgid "&Open..."
-msgstr ""
+msgstr "&Aç..."
 
 msgid "Unpacker Settings"
 msgstr "Ayıklayıcı ayarları"
@@ -1111,7 +1111,7 @@ msgid " Folder: Filter"
 msgstr " Klasör: Süzgeç"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Dosya: Ön farklılaştırıcı eklentisi"
 
 msgid " File: Unpacker Plugin"
 msgstr " Dosya: Ayıklayıcı eklentisi"
@@ -1987,7 +1987,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
 
 msgid "&CSV File Patterns:"
 msgstr "&CSV dosya örnekleri:"
@@ -2321,7 +2321,7 @@ msgid "Compare Options"
 msgstr "Karşılaştırma seçenekleri"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Gizli ögeler"
 
 msgid "Name"
 msgstr "Ad"
@@ -2897,7 +2897,7 @@ msgstr ""
 "istediğinize emin misiniz?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Dosya ya da klasör adı geçersiz."
 
 #, c-format
 msgid "Failed to execute external editor: %1"

@@ -47,6 +47,7 @@ private :
     bool DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
     void UpdateControls();
     void FindNextPrev (bool bNext);
+    bool AdjustSearchPos (CPoint& ptFoundAt) const;
 
     // Construction
 public :

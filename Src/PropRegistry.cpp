@@ -17,10 +17,6 @@
 #define new DEBUG_NEW
 #endif
 
-// registry values
-static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
-static LPCTSTR f_RegValuePath = _T("Executable");
-
 PropRegistry::PropRegistry(COptionsMgr *optionsMgr)
 : OptionsPanel(optionsMgr, PropRegistry::IDD)
 , m_bUseRecycleBin(true)

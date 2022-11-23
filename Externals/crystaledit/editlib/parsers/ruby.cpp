@@ -109,18 +109,6 @@ static const TCHAR * s_apszRubyConstantsList[] =
   };
 
 static bool
-IsXKeyword (const TCHAR *apszKeywords[], const TCHAR *pszChars, int nLength)
-{
-  for (int L = 0; apszKeywords[L] != nullptr; L++)
-    {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
-            && apszKeywords[L][nLength] == 0)
-        return true;
-    }
-  return false;
-}
-
-static bool
 IsRubyKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszRubyKeywordList, pszChars, nLength);

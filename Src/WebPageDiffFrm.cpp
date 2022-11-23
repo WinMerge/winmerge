@@ -703,8 +703,6 @@ void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 	DWORD dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_filePaths.GetSize();
-	CDirDoc *pDirDoc = m_pDirDoc->GetMainView() ? m_pDirDoc :
-		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
 
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
@@ -886,10 +884,10 @@ int CWebPageDiffFrame::UpdateDiffItem(CDirDoc *pDirDoc)
 	// If directory compare has results
 	if (pDirDoc && pDirDoc->HasDiffs())
 	{
-		const String &pathLeft = m_filePaths.GetLeft();
-		const String &pathRight = m_filePaths.GetRight();
-		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
 // FIXME:
+//		const String &pathLeft = m_filePaths.GetLeft();
+//		const String &pathRight = m_filePaths.GetRight();
+//		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
 //		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
 //		{
 //			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);

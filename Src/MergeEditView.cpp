@@ -4320,7 +4320,6 @@ void CMergeEditView::OnWindowSplit()
 	auto& wndSplitter = dynamic_cast<CMergeEditFrame *>(GetParentFrame())->GetSplitter();
 	CMergeDoc *pDoc = GetDocument();
 	CMergeEditView *pView = pDoc->GetView(0, m_nThisPane);
-	auto* pwndSplitterChild = pView->GetParentSplitter(pView, false);
 	int nBuffer = m_nThisPane;
 	if (pDoc->m_nGroups <= 2)
 	{
