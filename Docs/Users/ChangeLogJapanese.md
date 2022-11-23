@@ -1,6 +1,45 @@
 ---
 title: 変更履歴
 ---
+### 2022/11/29 2.16.24-jp-2
+
+#### ファイル比較
+
+- 不具合修正: オプションダイアログの[コードページ]カテゴリで[WinMerge ユーザーインターフェイス言語]を選択した場合、常にデフォルトコードページが1252になってしまう問題を修正。
+- 不具合修正: 範囲選択して置換するとすべて置換されないことがある問題を修正。[(#1556)](https://github.com/WinMerge/winmerge/issues/1556)
+- 不具合修正: 正規表現を使用した置換でハングすることがある問題を修正。[(#1575)](https://github.com/WinMerge/winmerge/issues/1575)
+- ステータスバーのエンコーディング部をクリックしたときに表示されるコードページダイアログの表示を高速化。
+- htmlファイルのシンタックスハイライトキーワードを最新化。[(PR #1565)](https://github.com/WinMerge/winmerge/pull/1565)(PRいただきました。ありがとうございます。)
+- cssファイルのシンタックスハイライトキーワードを最新化。[(PR #1572)](https://github.com/WinMerge/winmerge/pull/1572)(PRいただきました。ありがとうございます。)
+- サイズが大きいファイルの表示速度を改善。[(PR #1574)](https://github.com/WinMerge/winmerge/pull/1574)(PRいただきました。ありがとうございます。)
+
+#### フォルダ比較
+
+- 不具合修正: ファイルやフォルダをコピーするときクラッシュすることがあるのを修正。[(#1558)](https://github.com/WinMerge/winmerge/issues/1558)
+- 不具合修正: ツリーモードでフォルダを展開したとき、想定外の位置にスクロールすることがあるのを修正。[(osdn.net #46061)](https://osdn.net/projects/winmerge-jp/ticket/46061)
+- 不具合修正: ツリーモードでフォルダを展開したとき、選択した項目が変わってしまうことがあるのを修正。
+- 不具合修正: [列の表示]ダイアログでOKボタンを押すとクラッシュすることがある問題を修正。[(PR #1568)](https://github.com/WinMerge/winmerge/pull/1568)(PRいただきました。ありがとうございます。)
+- 不具合修正: フォルダ比較レポート内の#や%を含むファイル名のファイル比較レポートへのリンクが正しくない問題を修正。[(osdn.net #46082)](https://osdn.net/projects/winmerge-jp/ticket/46082)
+- 3フォルダー比較で3つ存在しないファイルの「比較結果」列の表示を改善。[(PR #1513)](https://github.com/WinMerge/winmerge/pull/1513)(PRいただきました。ありがとうございます。)
+
+#### バイナリ比較
+
+- 64bit版ではファイルサイズが2GB以上のファイルも開けるようにした。[(PR #1549)](https://github.com/WinMerge/winmerge/pull/1549)
+
+#### インストーラ
+
+- シェルエクステンションの登録等で powershell を起動する際にプルパスで起動するように変更。
+
+#### その他
+
+- pngファイルのサイズを縮小。[(PR #1541)](https://github.com/WinMerge/winmerge/pull/1541)(PRいただきました。ありがとうございます。)
+- サイズ最適化のためフィールドを再配置。[(PR #1546)](https://github.com/WinMerge/winmerge/pull/1546)(PRいただきました。ありがとうございます。)
+- Diff3.h のリファクタリング。[(PR #1577)](https://github.com/WinMerge/winmerge/pull/1577)(PRいただきました。ありがとうございます。)
+- コメントの誤りの修正。[(PR #1578)](https://github.com/WinMerge/winmerge/pull/1578)(PRいただきました。ありがとうございます。)
+- 同じファイルを開く場合の処理の最適化。[(PR #1579)](https://github.com/WinMerge/winmerge/pull/1579)(PRいただきました。ありがとうございます。)
+- SubeditList.cpp のリファクタリング。[(PR #1580)](https://github.com/WinMerge/winmerge/pull/1580)(PRいただきました。ありがとうございます。)
+- CheckForInvalidUtf8 のリファクタリング。[(PR #1582)](https://github.com/WinMerge/winmerge/pull/1582)(PRいただきました。ありがとうございます。)
+
 ### 2022/10/29 2.16.24-jp-1
 
 #### 全般
