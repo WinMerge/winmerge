@@ -1134,18 +1134,19 @@ bool CheckForInvalidUtf8(const char* pBuffer, size_t size)
 	for (unsigned char* pb = (unsigned char*)pBuffer, *end = pb + size; pb < end;)
 	{
 		unsigned c = *pb++;
-		if ((c == 0xC0) || (c == 0xC1) || (c >= 0xF5))
+		
+		if (!(c & 0x80)) continue;
+		
+		if ((c >= 0xF5) || (c == 0xC0) || (c == 0xC1))
 			return true;
 
-		if (!(c & 0x80)) continue;
-
-		uint32_t v = 0x80808080;
+		uint32_t v = 0x80808000; //1st 0-byte covers scenario if no any next "if" fired at all
 
 		if ((c & 0xE0) == 0xC0)
 		{
 			if (pb == end)
 				return true;
-			reinterpret_cast<unsigned char*>(&v)[0] = *pb++;
+			*reinterpret_cast<unsigned char*>(&v) = *pb++;
 		}
 		else if ((c & 0xF0) == 0xE0)
 		{
@@ -1164,8 +1165,6 @@ bool CheckForInvalidUtf8(const char* pBuffer, size_t size)
 			reinterpret_cast<uint8_t*>(&v)[2] = pb[2];
 			pb += 3;
 		}
-		else
-			return true;
 
 		if ((v & (0xC0C0C0C0)) != 0x80808080)
 			return true;
