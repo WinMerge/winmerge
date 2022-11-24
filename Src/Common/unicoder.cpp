@@ -792,7 +792,7 @@ void buffer::resize(size_t newSize)
 		unsigned char *tmp = static_cast<unsigned char *>(realloc(ptr, capacity));
 		if (tmp == nullptr)
 			throw std::bad_alloc();
-        capacity = newSize;
+		capacity = newSize;
 		ptr = tmp;
 	}
 }
