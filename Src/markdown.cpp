@@ -773,7 +773,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			TFile file(path);
 			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ);
 			pImage = m_pSharedMemory->begin();
-			cbImage = m_pSharedMemory->end() - m_pSharedMemory->begin();
+			cbImage = m_pSharedMemory->end() - pImage;
 		}
 		catch (...)
 		{
@@ -799,6 +799,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			}
 
 			delete m_pSharedMemory;
+			m_pSharedMemory = nullptr;
 			pImage = pCopy;
 			if (pImage != nullptr)
 			{
