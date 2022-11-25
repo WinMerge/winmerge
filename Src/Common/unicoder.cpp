@@ -269,10 +269,9 @@ int to_utf8_advance(unsigned u, unsigned char * &lpd)
  */
 void maketchar(String & ch, unsigned unich, bool & lossy)
 {
-	static unsigned codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 
-	maketchar(ch, unich, lossy, codepage);
+	maketchar(ch, unich, lossy, CP_ACP);
 }
 
 /**
@@ -335,10 +334,8 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
  */
 unsigned byteToUnicode(unsigned char ch)
 {
-	static unsigned codepage = CP_ACP;
 	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
-
-	return byteToUnicode(ch, codepage);
+	return byteToUnicode(ch, CP_ACP);
 }
 
 /**
@@ -792,10 +789,10 @@ void buffer::resize(size_t newSize)
 {
 	if (capacity < newSize)
 	{
-		capacity = newSize;
 		unsigned char *tmp = static_cast<unsigned char *>(realloc(ptr, capacity));
 		if (tmp == nullptr)
 			throw std::bad_alloc();
+		capacity = newSize;
 		ptr = tmp;
 	}
 }
@@ -895,21 +892,21 @@ std::string toUTF8(const String& tstr)
 void toUTF8(const String& tstr, std::string& u8str)
 {
 #ifdef _UNICODE
-	u8str.clear();
-	size_t len = tstr.length();
+	const size_t len = tstr.length();
+	u8str.resize(len * 3);
+
 	if (len == 0)
 		return;
-	u8str.resize(len * 3);
+
 	char *p = &u8str[0];
-	for (String::const_iterator it = tstr.begin(); it != tstr.end(); ++it)
+	for (size_t i = 0; i < len; ++i)
 	{
-		unsigned uc = *it;
+		unsigned uc = tstr[i];
 		if (uc >= 0xd800 && uc < 0xdc00)
 		{
-			++it;
-			if (it != tstr.end())
+			if (++i != len)
 			{
-				wchar_t uc2 = *it;
+				wchar_t uc2 = tstr[i];
 				uc = ((uc & 0x3ff) << 10) + (uc2 & 0x3ff) + 0x10000;
 			}
 		}
@@ -970,8 +967,8 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, si
 		for (size_t i = 0; i < srcbytes; i += 2)
 		{
 			// Byte-swap into destination
-			dest->ptr[i] = src[i+1];
-			dest->ptr[i+1] = src[i];
+			uint16_t c = *(const uint16_t*)(src + i);
+			*(uint16_t*)(dest->ptr + i) = ((c << 8) | (c >> 8));
 		}
 		dest->ptr[srcbytes] = 0;
 		dest->ptr[srcbytes+1] = 0;
