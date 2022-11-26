@@ -773,7 +773,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			TFile file(path);
 			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ);
 			pImage = m_pSharedMemory->begin();
-			cbImage = m_pSharedMemory->end() - pImage;
+			cbImage = m_pSharedMemory->end() - static_cast<char *>(pImage);
 		}
 		catch (...)
 		{
