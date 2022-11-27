@@ -408,9 +408,20 @@ const DIFFITEM &DirItemEnumerator::Next()
 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
 	{
 		m_strFolderPrefix = *m_curFolderPrefix++;
-		m_index = 1;
+		m_index++;
 	}
-	return m_pView->GetDiffItem(m_nIndex);
+	const auto& di = m_pView->GetDiffItem(m_nIndex);
+	// If the current item is a folder, ignore the current item if the next selected item is a child element of that folder.
+	if (m_index > (((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0) ? 1 : 2) || !di.diffcode.isDirectory())
+		return di;
+	const int nextIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask);
+	if (nextIndex == -1)
+		return di;
+	const auto& diNext = m_pView->GetDiffItem(nextIndex);
+	const String curRelPath = strutils::makelower(di.diffFileInfo[m_index].GetFile());
+	if (strutils::makelower(diNext.diffFileInfo[m_index].GetFile()).find(curRelPath) != 0)
+		return di;
+	return *DIFFITEM::GetEmptyItem();
 }
 
 /**
@@ -432,7 +443,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 	const CDiffContext& ctxt = m_pView->GetDiffContext();
 	const DIFFITEM &di = Next();
 
-	if ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di))
+	if (di.isEmpty() || ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di)))
 	{
 		return 0;
 	}
