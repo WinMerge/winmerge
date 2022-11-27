@@ -20,6 +20,7 @@ title: 変更履歴
 - 不具合修正: ツリーモードでフォルダを展開したとき、選択した項目が変わってしまうことがあるのを修正。
 - 不具合修正: [列の表示]ダイアログでOKボタンを押すとクラッシュすることがある問題を修正。[(PR #1568)](https://github.com/WinMerge/winmerge/pull/1568)(PRいただきました。ありがとうございます。)
 - 不具合修正: フォルダ比較レポート内の#や%を含むファイル名のファイル比較レポートへのリンクが正しくない問題を修正。[(osdn.net #46082)](https://osdn.net/projects/winmerge-jp/ticket/46082)
+- 不具合修正: フォルダとフォルダ内のファイルを選択して圧縮ファイルを作成すると、圧縮ファイルに同じファイルが含まれてしまう問題を修正。[(#1588)](https://github.com/WinMerge/winmerge/issues/1588)
 - 3フォルダー比較で3つ存在しないファイルの「比較結果」列の表示を改善。[(PR #1513)](https://github.com/WinMerge/winmerge/pull/1513)(PRいただきました。ありがとうございます。)
 
 #### バイナリ比較
@@ -38,7 +39,8 @@ title: 変更履歴
 - コメントの誤りの修正。[(PR #1578)](https://github.com/WinMerge/winmerge/pull/1578)(PRいただきました。ありがとうございます。)
 - 同じファイルを開く場合の処理の最適化。[(PR #1579)](https://github.com/WinMerge/winmerge/pull/1579)(PRいただきました。ありがとうございます。)
 - SubeditList.cpp のリファクタリング。[(PR #1580)](https://github.com/WinMerge/winmerge/pull/1580)(PRいただきました。ありがとうございます。)
-- CheckForInvalidUtf8 のリファクタリング。[(PR #1582)](https://github.com/WinMerge/winmerge/pull/1582)(PRいただきました。ありがとうございます。)
+- unicoder.cpp のリファクタリング。[(PR #1582)](https://github.com/WinMerge/winmerge/pull/1582), [(PR #1584)](https://github.com/WinMerge/winmerge/pull/1584), [(PR #1586)](https://github.com/WinMerge/winmerge/pull/1586)(PRいただきました。ありがとうございます。)
+- markdown.cpp のリファクタリング。[(PR #1590)](https://github.com/WinMerge/winmerge/pull/1590)(PRいただきました。ありがとうございます。)
 
 ### 2022/10/29 2.16.24-jp-1
 
