@@ -703,6 +703,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	ASSERT(pPopup != nullptr);
 
 	int sel = GetFocusedItem();
+	if (sel == -1)
+		sel = GetFirstSelectedInd();
+	if (sel == -1)
+		return;
 	const DIFFITEM& di = GetDiffItem(sel);
 	if (GetDiffContext().m_bRecursive && di.diffcode.isDirectory())
 		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
