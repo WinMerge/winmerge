@@ -74,10 +74,10 @@ public :
 	*/
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
 			int nEndLine, int nEndChar, CString &text,
-			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC,
+			CRLFSTYLE nCrlfStyle =CRLFSTYLE::AUTOMATIC,
 			bool bExcludeInvisibleLines = true) const override;
 
-	virtual bool IsIndentableLine(int nLine) const { return (GetLineFlags(nLine) & LF_GHOST) == 0; }
+	virtual bool IsIndentableLine(int nLine) const override { return (GetLineFlags(nLine) & LF_GHOST) == 0; }
 
 	// Text modification functions
 	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,

@@ -29,7 +29,8 @@
 PropGeneral::PropGeneral(COptionsMgr *optionsMgr) 
 	: OptionsPanel(optionsMgr, PropGeneral::IDD)
 	, m_bScroll(false)
-	, m_bSingleInstance(false)
+	, m_bScrollToFirstInlineDiff(false)
+	, m_nSingleInstance(0)
 	, m_bVerifyPaths(false)
 	, m_nCloseWindowWithEsc(1)
 	, m_bAskMultiWindowClose(false)
@@ -63,8 +64,18 @@ BOOL PropGeneral::OnInitDialog()
 	pWnd->AddString(_("Disabled").c_str());
 	pWnd->AddString(_("MDI child window or main window").c_str());
 	pWnd->AddString(_("MDI child window only").c_str());
+	pWnd->AddString(_("Close main window if there is only one MDI child window").c_str());
 
 	pWnd->SetCurSel(m_nCloseWindowWithEsc);
+
+	pWnd = (CComboBox*)GetDlgItem(IDC_SINGLE_INSTANCE);
+	ASSERT(pWnd != nullptr);
+
+	pWnd->AddString(_("Disabled").c_str());
+	pWnd->AddString(_("Allow only one instance to run").c_str());
+	pWnd->AddString(_("Allow only one instance to run and wait for the instance to terminate").c_str());
+
+	pWnd->SetCurSel(m_nSingleInstance);
 
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
@@ -81,7 +92,8 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropGeneral)
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
-	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
+	DDX_Check(pDX, IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK, m_bScrollToFirstInlineDiff);
+	DDX_CBIndex(pDX, IDC_SINGLE_INSTANCE, m_nSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_CBIndex(pDX, IDC_ESC_CLOSES_WINDOW, m_nCloseWindowWithEsc);
 	DDX_Check(pDX, IDC_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
@@ -96,7 +108,6 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropGeneral, OptionsPanel)
 	//{{AFX_MSG_MAP(PropGeneral)
-	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	ON_MESSAGE(WM_APP, OnLoadLanguages)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -107,7 +118,8 @@ END_MESSAGE_MAP()
 void PropGeneral::ReadOptions()
 {
 	m_bScroll = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST);
-	m_bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE);
+	m_bScrollToFirstInlineDiff = GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF);
+	m_nSingleInstance = GetOptionsMgr()->GetInt(OPT_SINGLE_INSTANCE);
 	m_bVerifyPaths = GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_nCloseWindowWithEsc = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	m_bAskMultiWindowClose = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
@@ -123,7 +135,8 @@ void PropGeneral::ReadOptions()
 void PropGeneral::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll);
-	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance);
+	GetOptionsMgr()->SaveOption(OPT_SCROLL_TO_FIRST_INLINE_DIFF, m_bScrollToFirstInlineDiff);
+	GetOptionsMgr()->SaveOption(OPT_SINGLE_INSTANCE, m_nSingleInstance);
 	GetOptionsMgr()->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_ESC, m_nCloseWindowWithEsc);
 	GetOptionsMgr()->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
@@ -137,17 +150,6 @@ void PropGeneral::WriteOptions()
 		WORD lang = (WORD)m_ctlLangList.GetItemData(index);
 		GetOptionsMgr()->SaveOption(OPT_SELECTED_LANGUAGE, (int)lang);
 	}
-}
-
-/** 
- * @brief Called when user wants to see all messageboxes again.
- */
-void PropGeneral::OnResetAllMessageBoxes()
-{
-	CMessageBoxDialog::ResetMessageBoxes();
-	// The "don't show again" checkbox of the Confirm Copy dialog uses the same registry key
-	// as CMessageBoxDialog does, so its state will also be reset
-	AfxMessageBox(_("All message boxes are now displayed again.").c_str(), MB_ICONINFORMATION);
 }
 
 LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)

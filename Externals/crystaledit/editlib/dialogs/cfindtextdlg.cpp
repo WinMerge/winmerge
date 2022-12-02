@@ -45,7 +45,7 @@ CFindTextDlg::CFindTextDlg (CCrystalTextView * pBuddy)
 , m_bWholeWord(false)
 , m_bRegExp(false)
 , m_bNoWrap(false)
-, m_bNoClose(false)
+, m_bNoClose(true)
 , lastSearch({0})
 {
   ASSERT (pBuddy != nullptr);

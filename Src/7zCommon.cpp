@@ -145,7 +145,7 @@ bool IsArchiveFile(const String& pszFile)
  */
 Merge7z::Format *ArchiveGuessFormat(const String& path)
 {
-	if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
+	if (!GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE))
 		return nullptr;
 	if (paths::IsDirectory(path))
 		return nullptr;
@@ -190,7 +190,9 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 
 	try
 	{
-		Merge7z::Format *pFormat = m_Merge7z->GuessFormat(path2.c_str());
+		Merge7z::Format* pFormat = nullptr;
+		if (!paths::IsURL(path2))
+			pFormat = m_Merge7z->GuessFormat(path2.c_str());
 		if (pFormat == nullptr)
 			pFormat = Merge7zFormatRegister::GuessFormat(path2);
 		return pFormat;
@@ -271,7 +273,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 	{
 		// Merge7z has not yet been loaded
 
-		if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
+		if (!GetOptionsMgr()->GetBool(OPT_ARCHIVE_ENABLE))
 			throw new CResourceException();
 		if (DWORD ver = VersionOf7z())
 		{
@@ -406,9 +408,20 @@ const DIFFITEM &DirItemEnumerator::Next()
 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
 	{
 		m_strFolderPrefix = *m_curFolderPrefix++;
-		m_index = 1;
+		m_index++;
 	}
-	return m_pView->GetDiffItem(m_nIndex);
+	const auto& di = m_pView->GetDiffItem(m_nIndex);
+	// If the current item is a folder, ignore the current item if the next selected item is a child element of that folder.
+	if (m_index > (((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0) ? 1 : 2) || !di.diffcode.isDirectory())
+		return di;
+	const int nextIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask);
+	if (nextIndex == -1)
+		return di;
+	const auto& diNext = m_pView->GetDiffItem(nextIndex);
+	const String curRelPath = strutils::makelower(di.diffFileInfo[m_index].GetFile());
+	if (strutils::makelower(diNext.diffFileInfo[m_index].GetFile()).find(curRelPath) != 0)
+		return di;
+	return *DIFFITEM::GetEmptyItem();
 }
 
 /**
@@ -430,7 +443,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 	const CDiffContext& ctxt = m_pView->GetDiffContext();
 	const DIFFITEM &di = Next();
 
-	if ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di))
+	if (di.isEmpty() || ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di)))
 	{
 		return 0;
 	}
@@ -600,8 +613,8 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	DecompressResult res(files, nullptr, paths::IS_EXISTING_DIR);
 	try
 	{
+		HRESULT hr;
 		String path;
-		USES_CONVERSION;
 		// Handle archives using 7-zip
 		Merge7z::Format *piHandler;
 		piHandler = ArchiveGuessFormat(res.files[0]);
@@ -615,14 +628,18 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 				res.files[1].erase();
 			do
 			{
-				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str())))
+				hr = piHandler->DeCompressArchive(hWnd, res.files[0].c_str(), path.c_str());
+				if (FAILED(hr))
+				{
+					res.hr = hr;
 					break;
+				}
 				if (res.files[0].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[0].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[0])), false));
 				}
 				BSTR pTmp = piHandler->GetDefaultName(hWnd, res.files[0].c_str());
-				res.files[0] = OLE2T(pTmp);
+				res.files[0] = ucr::toTString(pTmp);
 				SysFreeString(pTmp);
 				res.files[0].insert(0, _T("\\"));
 				res.files[0].insert(0, path);
@@ -643,8 +660,12 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			path = env::GetTempChildPath();
 			do
 			{
-				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str())))
-					break;;
+				hr = piHandler->DeCompressArchive(hWnd, res.files[1].c_str(), path.c_str());
+				if (FAILED(hr))
+				{
+					res.hr = hr;
+					break;
+				}
 				if (res.files[1].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[1].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[1])), false));
@@ -670,8 +691,12 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			path = env::GetTempChildPath();
 			do
 			{
-				if (FAILED(piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str())))
-					break;;
+				hr = piHandler->DeCompressArchive(hWnd, res.files[2].c_str(), path.c_str());
+				if (FAILED(hr))
+				{
+					res.hr = hr;
+					break;
+				}
 				if (res.files[2].find(path) == 0)
 				{
 					VERIFY(::DeleteFile(res.files[2].c_str()) || (LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), res.files[2])), false));
@@ -694,7 +719,8 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 			if (!PathFileExists(res.files[0].c_str()) || !PathFileExists(res.files[1].c_str()))
 			{
 				// not a Perry style patch: diff with itself...
-				res.files[0] = res.files[1] = path;
+				res.files[0] = path;
+				res.files[1] = std::move(path);
 			}
 			else
 			{
@@ -705,6 +731,7 @@ DecompressResult DecompressArchive(HWND hWnd, const PathContext& files)
 	}
 	catch (CException *e)
 	{
+		res.hr = E_FAIL;
 		e->Delete();
 	}
 	return res;

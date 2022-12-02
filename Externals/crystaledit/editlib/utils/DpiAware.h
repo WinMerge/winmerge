@@ -13,6 +13,8 @@
 
 #ifndef WM_DPICHANGED
 #define WM_DPICHANGED 0x02E0
+#endif
+#ifndef WM_DPICHANGED_BEFOREPARENT
 #define WM_DPICHANGED_BEFOREPARENT 0x02E2
 #define WM_DPICHANGED_AFTERPARENT 0x02E3
 #endif
@@ -22,7 +24,11 @@
 
 namespace DpiAware
 {
+#if(WINVER >= 0x0600)
+	struct NONCLIENTMETRICS6 : public NONCLIENTMETRICS { };
+#else
 	struct NONCLIENTMETRICS6 : public NONCLIENTMETRICS { int iPaddedBorderWidth; };
+#endif
 
 	using AdjustWindowRectExForDpiType = BOOL(__stdcall*)(LPRECT lpRect, DWORD dwStyle, BOOL bMenu, DWORD dwExStyle, UINT dpi);
 	using GetDpiForWindowType = UINT(__stdcall*)(HWND hwnd);

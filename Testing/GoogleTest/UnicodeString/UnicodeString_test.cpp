@@ -1,8 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
-#include <tchar.h>
-
 #include "UnicodeString.h"
 
 namespace
@@ -360,6 +357,90 @@ namespace
 		EXPECT_TRUE(String(255, ' ') == strutils::format(_T("%s"), String(255, ' ').c_str()));
 		EXPECT_TRUE(String(256, ' ') == strutils::format(_T("%s"), String(256, ' ').c_str()));
 		EXPECT_TRUE(String(257, ' ') == strutils::format(_T("%s"), String(257, ' ').c_str()));
+	}
+
+	TEST_F(UnicodeStringTest, Join)
+	{
+		std::vector<String> strs;
+		strs = std::vector<String>{ _T("") };
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>();
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T(""), _T("") };
+		EXPECT_EQ(_T("|"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a") };
+		EXPECT_EQ(_T("a"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("b") };
+		EXPECT_EQ(_T("a|b"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T(""),  _T("b") };
+		EXPECT_EQ(_T("|b"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("") };
+		EXPECT_EQ(_T("a|"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("a|b|c"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T(""),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("|b|c"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T(""), _T("c") };
+		EXPECT_EQ(_T("a||c"), strutils::join(strs.begin(), strs.end(), _T("|")));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("") };
+		EXPECT_EQ(_T("a|b|"), strutils::join(strs.begin(), strs.end(), _T("|")));
+
+		strs = std::vector<String>{ };
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("") };
+		EXPECT_EQ(_T(""), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T(""), _T("")};
+		EXPECT_EQ(_T("|"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("A|B|C"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T(""),  _T("b"), _T("c") };
+		EXPECT_EQ(_T("|B|C"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("a"),  _T(""), _T("c") };
+		EXPECT_EQ(_T("A||C"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+		strs = std::vector<String>{ _T("a"),  _T("b"), _T("") };
+		EXPECT_EQ(_T("A|B|"), strutils::join(strs.begin(), strs.end(), _T("|"),
+			[](const auto& str) { return strutils::makeupper(str); }));
+	}
+
+	TEST_F(UnicodeStringTest, FromCharStr)
+	{
+		EXPECT_EQ('\a', strutils::from_charstr(_T("\\a")));
+		EXPECT_EQ('\b', strutils::from_charstr(_T("\\b")));
+		EXPECT_EQ('\f', strutils::from_charstr(_T("\\f")));
+		EXPECT_EQ('\n', strutils::from_charstr(_T("\\n")));
+		EXPECT_EQ('\r', strutils::from_charstr(_T("\\r")));
+		EXPECT_EQ('\t', strutils::from_charstr(_T("\\t")));
+		EXPECT_EQ('\v', strutils::from_charstr(_T("\\v")));
+		EXPECT_EQ('"', strutils::from_charstr(_T("\\\"")));
+		EXPECT_EQ('\'', strutils::from_charstr(_T("\\'")));
+
+		EXPECT_EQ('\a', strutils::from_charstr(_T("Bel")));
+		EXPECT_EQ('\b', strutils::from_charstr(_T("bs")));
+		EXPECT_EQ('\f', strutils::from_charstr(_T("FF")));
+		EXPECT_EQ('\n', strutils::from_charstr(_T("LF")));
+		EXPECT_EQ('\r', strutils::from_charstr(_T("CR")));
+		EXPECT_EQ('\t', strutils::from_charstr(_T("TAB")));
+		EXPECT_EQ('\v', strutils::from_charstr(_T("VT")));
+		EXPECT_EQ('"', strutils::from_charstr(_T("DQ")));
+		EXPECT_EQ('\'', strutils::from_charstr(_T("SQ")));
+		EXPECT_EQ('"', strutils::from_charstr(_T("double-quote")));
+		EXPECT_EQ('\'', strutils::from_charstr(_T("singlequote")));
+
+		EXPECT_EQ(' ', strutils::from_charstr(_T("\x20")));
+		EXPECT_EQ('\t', strutils::from_charstr(_T("0x09")));
+		EXPECT_EQ(0x7f, strutils::from_charstr(_T("0x7F")));
+	}
+
+	TEST_F(UnicodeStringTest, ToCharStr)
+	{
+		EXPECT_EQ(_T(" "), strutils::to_charstr(' '));
+		EXPECT_EQ(_T("\\x09"), strutils::to_charstr('\t'));
 	}
 
 }  // namespace

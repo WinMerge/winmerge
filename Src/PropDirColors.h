@@ -12,7 +12,7 @@
 
 class COptionsMgr;
 
-const int CustomDirColorsAmount = 16;
+constexpr int CustomDirColorsAmount = 16;
 
 /** @brief Property page for folder compare colors options; used in options property sheet */
 class PropDirColors : public OptionsPanel

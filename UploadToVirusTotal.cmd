@@ -2,13 +2,18 @@ cd /d "%~dp0"
 
 set DISTDIR=.\Build\Releases
 
+call Tools\Scripts\URLFileSizeSHA256.cmd
+
 for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
+  echo %%f | findstr /v /c:"-pdb.7z" && (
+    "%ProgramFiles(x86)%\VirusTotalUploader2\VirusTotalUploader2.2.exe" %%f
+    timeout 30
+  )
 )
 
 @echo off
 echo.
 for /F "delims=" %%f in ('type "%DISTDIR%\files.txt"') do (
-  for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v hash') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
+  for /F %%h in ('certutil -hashfile %%f SHA256 ^| findstr -v SHA256 ^| findstr -v hash') do echo %%~nxf: https://www.virustotal.com/en/file/%%h/analysis/
 )
 

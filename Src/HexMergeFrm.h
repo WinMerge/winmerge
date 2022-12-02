@@ -32,7 +32,6 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	void CloseNow();
 	IHeaderBar * GetHeaderInterface();
 	CHexMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 
@@ -46,6 +45,8 @@ protected:
 	CSplitterWndEx m_wndSplitter;
 	CEditorFilePathBar m_wndFilePathBar;
 	CStatusBar m_wndStatusBar[3];
+	SCROLLINFO m_HScrollInfo[3];
+	SCROLLINFO m_VScrollInfo[3];
 // Overrides
 public:
 	// ClassWizard generated virtual function overrides
@@ -72,6 +73,8 @@ private:
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
+	afx_msg void OnViewSplitVertically();
+	afx_msg void OnUpdateViewSplitVertically(CCmdUI* pCmdUI);
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

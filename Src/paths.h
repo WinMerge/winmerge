@@ -23,7 +23,6 @@ typedef enum
 	DOES_NOT_EXIST, /**< File or folder does not exist. */
 	IS_EXISTING_FILE, /**< It is existing file */
 	IS_EXISTING_DIR, /**< It is existing folder */
-	IS_EXISTING_DIR_ARCHIVE, /**< It is existing folder */
 } PATH_EXISTENCE;
 
 bool EndsWithSlash(const String& s);
@@ -31,6 +30,7 @@ bool EndsWithSlash(const String& s);
 PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) = nullptr);
 String FindFileName(const String& path);
 String FindExtension(const String& path);
+String RemoveExtension(const String& path);
 void normalize(String & sPath);
 String GetLongPath(const String& szPath, bool bExpandEnvs = true);
 bool CreateIfNeeded(const String& szPath);
@@ -45,10 +45,11 @@ bool IsPathAbsolute(const String & path);
 String EnsurePathExist(const String & sPath);
 void SplitFilename(const String& s, String * path, String * name, String * ext);
 String GetPathOnly(const String& fullpath);
+bool IsURL(const String& path);
 bool IsURLorCLSID(const String& path);
 bool IsDecendant(const String& path, const String& ancestor);
 inline String AddTrailingSlash(const String& path) { return !EndsWithSlash(path) ? path + _T("\\") : path; }
 String ToWindowsPath(const String& path);
 String ToUnixPath(const String& path);
-
+bool IsValidName(const String& name);
 }	

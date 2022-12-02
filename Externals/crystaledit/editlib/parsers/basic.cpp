@@ -24,7 +24,7 @@
 #endif
 
 //  (Visual) Basic keywords
-static LPCTSTR s_apszBasicKeywordList[] =
+static const TCHAR * s_apszBasicKeywordList[] =
   {
     _T ("Abs"),
     _T ("AddHandler"),
@@ -308,12 +308,12 @@ static LPCTSTR s_apszBasicKeywordList[] =
   };
 
 static bool
-IsBasicKeyword (LPCTSTR pszChars, int nLength)
+IsBasicKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszBasicKeywordList, pszChars, nLength);
 }
 
-inline void
+static inline void
 DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
 {
   if (IsBasicKeyword (pszChars + nIdentBegin, I - nIdentBegin))
@@ -346,13 +346,12 @@ DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXT
     }
 }
 
-DWORD
-CrystalLineParser::ParseLineBasic (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineBasic (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -437,12 +436,6 @@ out:
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           dwCookie |= COOKIE_STRING;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

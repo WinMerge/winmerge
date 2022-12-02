@@ -16,9 +16,10 @@ Filters= ÕÇİíåÇ
 Plugins= æÕá ÔÏäíåÇ 
 Frhed=Frhed(Free hex editor)
 WinIMerge=WinIMerge(Image Diff/Merge)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages= ÒÈÇäåÇ 
@@ -28,6 +29,7 @@ BulgarianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÈáÛÇÑí
 CatalanLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÇÊÇáÇä 
 ChineseSimplifiedLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íäí ÓÇÏå ÔÏå  
 ChineseTraditionalLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå íäí ÓäÊí  
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜ÑæÇÊíä  
 CzechLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ˜æÓáæÇ˜í   
 DanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÏÇäãÇÑ˜í  
@@ -63,7 +65,6 @@ ExplorerContextMenu=&E İÚÇá äãæÏä í˜ÇÑå ÓÇÒí İåÑÓÊ ÌÓÊÌæÑ ãÊä
 IntegrateTortoiseCVS=&T í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ Óí æí ÇÓ 
 IntegrateTortoiseGit=Integrate with To&rtoiseGit
 IntegrateTortoiseSVN=&o í˜ÇÑÌå ÓÇÒí ÈÇ ÊæÑÊæÆíÒ ÇÓ æí Çä 
-IntegrateClearCase=&C í˜ÇÑå ÓÇÒí ÈÇ ÑÔäÇá ˜áÑ˜íÓ 
 AddToPath=&A ÇÖÇİå äãæÏä æÔå æíäãÑÌ Èå ãÓíÑåÇí ÓíÓÊã 
 
 ; 3-way merge wizard page

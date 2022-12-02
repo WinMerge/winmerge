@@ -3,8 +3,6 @@
  *
  *  @brief Declaration DirItemIterator classes.
  */ 
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #pragma once
 
@@ -49,7 +47,7 @@ public:
 	{
 	}
 
-	~DirItemWithIndexIterator() {}
+	~DirItemWithIndexIterator() = default;
 
 	DirItemWithIndexIterator& operator=(const DirItemWithIndexIterator& it)
 	{
@@ -132,7 +130,16 @@ public:
 	{
 	}
 
-	~DirItemIterator() {}
+	~DirItemIterator() = default;
+
+	DirItemIterator::DirItemIterator(const DirItemIterator& it)
+	{
+		m_sel = it.m_sel;
+		m_pList = it.m_pList;
+		m_pdi = it.m_pdi;
+		m_selected = it.m_selected;
+		m_reverse = it.m_reverse;
+	}
 
 	DirItemIterator& operator=(const DirItemIterator& it)
 	{

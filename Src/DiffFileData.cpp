@@ -26,7 +26,7 @@ DiffFileData::DiffFileData()
 : m_inf(new file_data[2]{})
 , m_used(false)
 {
-	Reset();
+	//Reset(); //this call not needed because memset implicitly used in line 26
 }
 
 /** @brief deallocate member data */
@@ -54,11 +54,12 @@ void DiffFileData::SetDisplayFilepaths(const String& szTrueFilepath1, const Stri
 	m_sDisplayFilepath[1] = szTrueFilepath2;
 }
 
-
 /** @brief Open file descriptors in the inf structure (return false if failure) */
 bool DiffFileData::DoOpenFiles()
 {
 	Reset();
+
+	const bool same_file = !strutils::compare_nocase(m_FileLocation[0].filepath, m_FileLocation[1].filepath);
 
 	for (int i = 0; i < 2; ++i)
 	{
@@ -77,20 +78,19 @@ bool DiffFileData::DoOpenFiles()
 		{
 			_tsopen_s(&m_inf[i].desc, TFile(m_FileLocation[i].filepath).wpath().c_str(),
 					O_RDONLY | O_BINARY, _SH_DENYNO, _S_IREAD);
-		}
-		if (m_inf[i].desc < 0)
-			return false;
 
-		// Get file stats (diffutils uses these)
-		if (myfstat(m_inf[i].desc, &m_inf[i].stat) != 0)
-		{
-			return false;
+			if (m_inf[i].desc < 0)
+				return false;
+
+			// Get file stats (diffutils uses these)
+			if (myfstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+				return false;
 		}
 		
-		if (strutils::compare_nocase(m_FileLocation[0].filepath,
-				m_FileLocation[1].filepath) == 0)
+		if (same_file)
 		{
 			m_inf[1].desc = m_inf[0].desc;
+			m_inf[1].stat = m_inf[0].stat;
 		}
 	}
 
@@ -110,20 +110,18 @@ void DiffFileData::Reset()
 	}
 	// clean up any open file handles, and zero stuff out
 	// open file handles might be leftover from a failure in DiffFileData::OpenFiles
+	if (m_inf[1].desc == m_inf[0].desc)
+	{
+		m_inf[1].desc = 0;
+	}
 	for (int i = 0; i < 2; ++i)
 	{
-		if (m_inf[1].desc == m_inf[0].desc)
-		{
-			m_inf[1].desc = 0;
-		}
 		free((void *)m_inf[i].name);
-		m_inf[i].name = nullptr;
 
 		if (m_inf[i].desc > 0)
 		{
 			_close(m_inf[i].desc);
 		}
-		m_inf[i].desc = 0;
 		m_inf[i] = {};
 	}
 }
@@ -135,7 +133,7 @@ void DiffFileData::Reset()
  */
 bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	const FileTextEncoding & encoding, const String & filepath, String & filepathTransformed,
-	const String& filteredFilenames, PrediffingInfo * infoPrediffer)
+	const String& filteredFilenames, PrediffingInfo& infoPrediffer)
 {
 	// third step : prediff (plugins)
 	bool bMayOverwrite =  // temp variable set each time it is used
@@ -145,7 +143,7 @@ bool DiffFileData::Filepath_Transform(bool bForceUTF8,
 	// if a prediffer fails, we consider it is not the good one, that's all
 	// FileTransform_Prediffing returns `false` only if the prediffer works, 
 	// but the data can not be saved to disk (no more place ??)
-	if (!FileTransform::Prediffing(infoPrediffer, filepathTransformed, filteredFilenames, bMayOverwrite))
+	if (!infoPrediffer.Prediffing(filepathTransformed, filteredFilenames, bMayOverwrite, { filepath }))
 		return false;
 
 	if ((encoding.m_unicoding && encoding.m_unicoding != ucr::UTF8) || bForceUTF8)

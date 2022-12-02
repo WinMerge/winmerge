@@ -208,7 +208,7 @@ std::string CMarkdown::Entities(const std::string& v)
 			{
 				ptrdiff_t i = p - &ret[0];
 				ptrdiff_t j = q - &ret[0];
-				size_t b = v.length();
+				size_t b = ret.length();
 				ret.resize(b + cchValue - 1);
 				p = &ret[0] + i;
 				q = &ret[0] + j;
@@ -637,7 +637,7 @@ int CMarkdown::Token::IsSpecial(const char *p, const char *ahead)
 					++p;
 				} while (p < ahead && *p != c);
 			}
-			// fall through
+			[[fallthrough]];
 		case '/':
 		case '=':
 		case '<':
@@ -773,7 +773,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			TFile file(path);
 			m_pSharedMemory = new SharedMemory(file, SharedMemory::AM_READ);
 			pImage = m_pSharedMemory->begin();
-			cbImage = m_pSharedMemory->end() - m_pSharedMemory->begin();
+			cbImage = m_pSharedMemory->end() - static_cast<char *>(pImage);
 		}
 		catch (...)
 		{
@@ -791,7 +791,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		case 2 + 1 + 8:
 			// big endian: swab first
 			cbImage &= ~1UL;
-			pCopy = new unsigned char[cbImage];
+			pCopy = new(std::nothrow) unsigned char[cbImage];
 			if (pCopy != nullptr)
 			{
 				for (size_t i = 0; i < cbImage / 2; ++i)
@@ -799,9 +799,11 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			}
 
 			delete m_pSharedMemory;
+			m_pSharedMemory = nullptr;
 			pImage = pCopy;
 			if (pImage != nullptr)
 			{
+				[[fallthrough]];
 			case 2 + 0:
 			case 2 + 0 + 8:
 				// little endian
@@ -813,7 +815,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 					--cchImage;
 				}
 				cbImage = ucr::Utf8len_of_string(pchImage, cchImage);
-				pCopy = new unsigned char[cbImage];
+				pCopy = new(std::nothrow) unsigned char[cbImage];
 				if (pCopy != nullptr)
 				{
 					uint16_t *pu16;
@@ -832,7 +834,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 		case 4 + 2 + 8:
 			// odd word endianness: swab first
 			cbImage &= ~3UL;
-			pCopy = new unsigned char[cbImage];
+			pCopy = new(std::nothrow) unsigned char[cbImage];
 			if (pCopy != nullptr)
 			{
 				for (size_t i = 0; i < cbImage / 2; ++i)
@@ -843,6 +845,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 			pImage = pCopy;
 			if (pImage != nullptr)
 			{
+				[[fallthrough]];
 			case 4 + 0:
 			case 4 + 0 + 8:
 			case 4 + 3:
@@ -865,7 +868,7 @@ CMarkdown::FileImage::FileImage(const TCHAR *path, size_t trunc, unsigned flags)
 						uch = ByteOrder::fromLittleEndian(uch);
 					cbImage += ucr::Utf8len_fromCodepoint(uch);
 				}
-				void *pCopy2 = new unsigned char[cbImage];
+				void *pCopy2 = new(std::nothrow) unsigned char[cbImage];
 				if (pCopy2 != nullptr)
 				{
 					cbImage = 0;

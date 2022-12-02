@@ -131,11 +131,14 @@ public:
 	bool includeFile(const String& szFileName) const override;
 	bool includeDir(const String& szDirName) const override;
 
+	void CloneFrom(const FileFilterHelper* pHelper);
+
 protected:
-	String ParseExtensions(const String &extensions) const;
+	std::tuple<String, String, String, String> ParseExtensions(const String &extensions) const;
 
 private:
-	std::unique_ptr<FilterList> m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */
+	std::unique_ptr<FilterList> m_pMaskFileFilter; /*< Filter for filemasks (*.cpp) */
+	std::unique_ptr<FilterList> m_pMaskDirFilter;  /*< Filter for dirmasks */
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
 	std::unique_ptr<FileFilterMgr> m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	String m_sFileFilterPath;        /*< Path to current filter */

@@ -21,6 +21,7 @@
 PropCompare::PropCompare(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompare::IDD)
  , m_bIgnoreCase(false)
+ , m_bIgnoreNumbers(false)
  , m_bIgnoreBlankLines(false)
  , m_bIgnoreEol(true)
  , m_bIgnoreCodepage(true)
@@ -30,6 +31,7 @@ PropCompare::PropCompare(COptionsMgr *optionsMgr)
  , m_bFilterCommentsLines(false)
  , m_nDiffAlgorithm(0)
  , m_bIndentHeuristic(true)
+ , m_bCompleteBlankOutIgnoredChanges(false)
 {
 }
 
@@ -44,9 +46,11 @@ void PropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
 	DDX_Check(pDX, IDC_CP_SENSITIVE, m_bIgnoreCodepage);
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
+	DDX_Check(pDX, IDC_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
+	DDX_Check(pDX, IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES, m_bCompleteBlankOutIgnoredChanges);
 	//}}AFX_DATA_MAP
 	UpdateControls();
 }
@@ -70,12 +74,14 @@ void PropCompare::ReadOptions()
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	m_bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreNumbers = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS);
 	m_bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 	m_bIgnoreCodepage = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CODEPAGE);
 	m_bMovedBlocks = GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM);
 	m_bIndentHeuristic = GetOptionsMgr()->GetBool(OPT_CMP_INDENT_HEURISTIC);
+	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetBool(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 }
 
 /** 
@@ -91,10 +97,12 @@ void PropCompare::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CODEPAGE, m_bIgnoreCodepage);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, m_bIgnoreNumbers);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks);
 	GetOptionsMgr()->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	GetOptionsMgr()->SaveOption(OPT_CMP_DIFF_ALGORITHM, m_nDiffAlgorithm);
 	GetOptionsMgr()->SaveOption(OPT_CMP_INDENT_HEURISTIC, m_bIndentHeuristic);
+	GetOptionsMgr()->SaveOption(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES, m_bCompleteBlankOutIgnoredChanges);
 }
 
 /** 
@@ -108,6 +116,7 @@ BOOL PropCompare::OnInitDialog()
 	combo->AddString(_("minimal").c_str());
 	combo->AddString(_("patience").c_str());
 	combo->AddString(_("histogram").c_str());
+	combo->AddString(_("none").c_str());
 	combo->SetCurSel(m_nDiffAlgorithm);
 
 	OptionsPanel::OnInitDialog();
@@ -125,10 +134,12 @@ void PropCompare::OnDefaults()
 	m_bIgnoreBlankLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_BLANKLINES);
 	m_bFilterCommentsLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_FILTER_COMMENTLINES);
 	m_bIgnoreCase = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_CASE);
+	m_bIgnoreNumbers = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_NUMBERS);
 	m_bMovedBlocks = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MOVED_BLOCKS);
 	m_bMatchSimilarLines = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_nDiffAlgorithm = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_DIFF_ALGORITHM);
 	m_bIndentHeuristic = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_INDENT_HEURISTIC);
+	m_bCompleteBlankOutIgnoredChanges = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_COMPLETELY_BLANK_OUT_IGNORED_CHANGES);
 	UpdateData(FALSE);
 }
 
@@ -140,5 +151,6 @@ void PropCompare::OnCbnSelchangeDiffAlgorithm()
 void PropCompare::UpdateControls()
 {
 	CComboBox * pCombo = (CComboBox*)GetDlgItem(IDC_DIFF_ALGORITHM);
-	EnableDlgItem(IDC_INDENT_HEURISTIC, pCombo->GetCurSel() != 0);
+	int cursel = pCombo->GetCurSel();
+	EnableDlgItem(IDC_INDENT_HEURISTIC, cursel != 0/*default*/ && cursel != 4/*none*/);
 }

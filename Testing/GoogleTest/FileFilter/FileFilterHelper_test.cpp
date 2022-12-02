@@ -1,7 +1,5 @@
 #include "pch.h"
 #include <gtest/gtest.h>
-#include <windows.h>
-#include <tchar.h>
 #include <vector>
 #include "FileFilterHelper.h"
 #include "Environment.h"
@@ -122,6 +120,8 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("ex.ext")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("aex.ext")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
@@ -136,6 +136,7 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("ex\\svn")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.ext")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
 
@@ -178,6 +179,45 @@ namespace
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
 		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
+
+		m_fileFilterHelper.SetMask(_T("!*.h"));
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cxx")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T(".cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cx")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cpp.h")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
+
+		m_fileFilterHelper.SetMask(_T("*.c*;!*.cxx;!Makefile;!.git\\;!abc\\;!de*hi\\;!Debug\\;!Release\\"));
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.c")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("a.cxx")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T(".cpp")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("cpp")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cx")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("a.cpp.h")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("Makefile")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("svn")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("a.b.c")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T(".git")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\.git")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("defghi")));
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("de\\hi")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("Release")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Release")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("Debug")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Debug")));
+
 	}
 
 

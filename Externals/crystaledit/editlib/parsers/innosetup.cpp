@@ -23,8 +23,8 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszInnoSetupKeywordList[] =
+//  innosetup keywords
+static const TCHAR * s_apszInnoSetupKeywordList[] =
   {
     _T ("AdminPrivilegesRequired"),
     _T ("AfterInstall"),
@@ -54,17 +54,12 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("AppUpdatesURL"),
     _T ("AppVerName"),
     _T ("AppVersion"),
-    _T ("array"),
-    _T ("asm"),
-    _T ("assembler"),
     _T ("Attribs"),
     _T ("BackColor"),
     _T ("BackColor2"),
     _T ("BackColorDirection"),
     _T ("BackSolid"),
     _T ("BeforeInstall"),
-    _T ("begin"),
-    _T ("case"),
     _T ("ChangesAssociations"),
     _T ("ChangesEnvironment"),
     _T ("Check"),
@@ -72,8 +67,6 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("Comment"),
     _T ("Components"),
     _T ("Compression"),
-    _T ("const"),
-    _T ("constructor"),
     _T ("CopyMode"),
     _T ("CreateAppDir"),
     _T ("CreateUninstallRegKey"),
@@ -85,7 +78,6 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("Description"),
     _T ("DestDir"),
     _T ("DestName"),
-    _T ("destructor"),
     _T ("DirExistsWarning"),
     _T ("DisableDirPage"),
     _T ("DisableFinishedPage"),
@@ -97,56 +89,31 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("DiskSliceSize"),
     _T ("DiskSpaceMBLabel"),
     _T ("DiskSpanning"),
-    _T ("div"),
-    _T ("do"),
     _T ("DontMergeDuplicateFiles"),
-    _T ("downto"),
-    _T ("else"),
     _T ("EnableDirDoesntExistWarning"),
     _T ("Encryption"),
-    _T ("end"),
     _T ("Excludes"),
-    _T ("exit"),
-    _T ("external"),
     _T ("ExtraDiskSpaceRequired"),
-    _T ("far"),
-    _T ("file"),
     _T ("Filename"),
     _T ("Flags"),
     _T ("FlatComponentsList"),
     _T ("FontInstall"),
-    _T ("for"),
-    _T ("function"),
-    _T ("goto"),
     _T ("GroupDescription"),
     _T ("HotKey"),
     _T ("IconFilename"),
     _T ("IconIndex"),
-    _T ("if"),
-    _T ("implementation"),
     _T ("InfoAfterFile"),
     _T ("InfoBeforeFile"),
-    _T ("inherited"),
-    _T ("inline"),
-    _T ("interface"),
     _T ("InternalCompressLevel"),
     _T ("Key"),
-    _T ("label"),
     _T ("LanguageDetectionMethod"),
     _T ("Languages"),
     _T ("LicenseFile"),
     _T ("MergeDuplicateFiles"),
     _T ("MessagesFile"),
     _T ("MinVersion"),
-    _T ("mod"),
     _T ("Name"),
-    _T ("near"),
-    _T ("nil"),
-    _T ("not"),
-    _T ("object"),
-    _T ("of"),
     _T ("OnlyBelowVersion"),
-    _T ("or"),
     _T ("OutputBaseFilename"),
     _T ("OutputDir"),
     _T ("OutputManifestFile"),
@@ -154,16 +121,11 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("Password"),
     _T ("Permissions"),
     _T ("PrivilegesRequired"),
-    _T ("procedure"),
-    _T ("program"),
-    _T ("record"),
-    _T ("repeat"),
     _T ("ReserveBytes"),
     _T ("RestartIfNeededByRun"),
     _T ("Root"),
     _T ("RunOnceId"),
     _T ("Section"),
-    _T ("set"),
     _T ("SetupIconFile"),
     _T ("ShowComponentSizes"),
     _T ("ShowLanguageDialog"),
@@ -173,16 +135,13 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("Source"),
     _T ("SourceDir"),
     _T ("StatusMsg"),
-    _T ("string"),
+    _T ("String"),
     _T ("Subkey"),
     _T ("Tasks"),
-    _T ("then"),
     _T ("TimeStampRounding"),
     _T ("TimeStampsInUTC"),
-    _T ("to"),
     _T ("TouchDate"),
     _T ("TouchTime"),
-    _T ("type"),
     _T ("Type"),
     _T ("Types"),
     _T ("Uninstallable"),
@@ -193,8 +152,6 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("UninstallLogMode"),
     _T ("UninstallRestartComputer"),
     _T ("UninstallStyle"),
-    _T ("unit"),
-    _T ("until"),
     _T ("UpdateUninstallLogAppName"),
     _T ("UsePreviousAppDir"),
     _T ("UsePreviousGroup"),
@@ -202,23 +159,18 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("UsePreviousTasks"),
     _T ("UsePreviousUserInfo"),
     _T ("UserInfoPage"),
-    _T ("uses"),
     _T ("UseSetupLdr"),
     _T ("ValueData"),
     _T ("ValueName"),
     _T ("ValueType"),
-    _T ("var"),
     _T ("VersionInfoCompany"),
     _T ("VersionInfoDescription"),
     _T ("VersionInfoTextVersion"),
     _T ("VersionInfoVersion"),
-    _T ("virtual"),
-    _T ("while"),
     _T ("WindowResizable"),
     _T ("WindowShowCaption"),
     _T ("WindowStartMaximized"),
     _T ("WindowVisible"),
-    _T ("with"),
     _T ("WizardImageBackColor"),
     _T ("WizardImageFile"),
     _T ("WizardImageStretch"),
@@ -226,10 +178,9 @@ static LPCTSTR s_apszInnoSetupKeywordList[] =
     _T ("WizardSmallImageFile"),
     _T ("WizardStyle"),
     _T ("WorkingDir"),
-    _T ("xor"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("alwaysoverwrite"),
     _T ("alwaysskipifsameorolder"),
@@ -313,22 +264,52 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsInnoSetupKeyword (LPCTSTR pszChars, int nLength)
+IsInnoSetupKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszInnoSetupKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineInnoSetup (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+static bool
+IsLineSection(const TCHAR *pszChars, int nLength, bool& bCodeSection)
+{
+  int I = 0;
+  while (I < nLength && xisspace(pszChars[I]))
+    ++I;
+  if (I == nLength || pszChars[I] != '[')
+    return false;
+  int nSectionBegin = I + 1;
+  while (I < nLength && pszChars[I] != ']')
+    ++I;
+  if (I == nLength || pszChars[I] != ']')
+    return false;
+  int nSectionNameLen = I - nSectionBegin;
+  if (nSectionNameLen == sizeof("Code") - 1 &&
+      _tcsnicmp(pszChars + nSectionBegin, _T("Code"), nSectionNameLen) == 0)
+    bCodeSection = true;
+  else
+    bCodeSection = false;
+  return true;
+}
+
+unsigned
+CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
+    return dwCookie & (COOKIE_EXT_USER1 | COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
+
+  bool bCodeSection;
+  if ((dwCookie & COOKIE_EXT_USER1) && !IsLineSection(pszChars, nLength, bCodeSection))
+    {
+      dwCookie = CrystalLineParser::ParseLinePascal(dwCookie & ~COOKIE_EXT_USER1, pszChars, nLength, pBuf, nActualItems);
+      return dwCookie | COOKIE_EXT_USER1;
+    }
+  dwCookie = 0;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
@@ -350,9 +331,13 @@ CrystalLineParser::ParseLineInnoSetup (DWORD dwCookie, const TCHAR *pszChars, in
           int nPos = I;
           if (bDecIndex)
             nPos = nPrevI;
-          if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2))
+          if (dwCookie & (COOKIE_COMMENT))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
+            }
+          else if (dwCookie & (COOKIE_VARIABLE))
+            {
+              DEFINE_BLOCK (nPos, COLORINDEX_USER2);
             }
           else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
             {
@@ -419,34 +404,15 @@ out:
           continue;
         }
 
-      //  Extended comment (*....*)
-      if (dwCookie & COOKIE_EXT_COMMENT)
-        {
-          // if (I > 0 && pszChars[I] == ')' && pszChars[nPrevI] == '*')
-          if ((I > 1 && pszChars[I] == ')' && pszChars[nPrevI] == '*' && *::CharPrev(pszChars, pszChars + nPrevI) != '(') || (I == 1 && pszChars[I] == ')' && pszChars[nPrevI] == '*'))
-            {
-              dwCookie &= ~COOKIE_EXT_COMMENT;
-              bRedefineBlock = true;
-            }
-          continue;
-        }
-
-      //  Extended comment {....}
-      if (dwCookie & COOKIE_EXT_COMMENT2)
+      //  Constants {....}
+      if (dwCookie & COOKIE_VARIABLE)
         {
           if (pszChars[I] == '}')
             {
-              dwCookie &= ~COOKIE_EXT_COMMENT2;
+              dwCookie &= ~COOKIE_VARIABLE;
               bRedefineBlock = true;
             }
           continue;
-        }
-
-      if (I > 0 && pszChars[I] == '/' && pszChars[nPrevI] == '/')
-        {
-          DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_COMMENT;
-          break;
         }
 
       // Section header [...]
@@ -477,17 +443,10 @@ out:
               continue;
             }
         }
-      if (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '(')
-        {
-          DEFINE_BLOCK (nPrevI, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_EXT_COMMENT;
-          continue;
-        }
-
       if (pszChars[I] == '{')
         {
-          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_EXT_COMMENT2;
+          DEFINE_BLOCK (I, COLORINDEX_USER2);
+          dwCookie |= COOKIE_VARIABLE;
           continue;
         }
 
@@ -604,6 +563,9 @@ out:
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-    dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_EXT_COMMENT2);
+    dwCookie = 0;
+
+  if (IsLineSection(pszChars, nLength, bCodeSection) && bCodeSection)
+    dwCookie = COOKIE_EXT_USER1;
   return dwCookie;
 }

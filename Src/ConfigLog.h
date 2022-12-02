@@ -36,9 +36,9 @@ protected:
 private:
 	bool DoFile(String &sError);
 	void WritePluginsInLogFile(const wchar_t *transformationEvent);
-	String GetWindowsVer() const;
-	String GetProcessorInfo() const;
-	String GetBuildFlags() const;
+	static String GetWindowsVer();
+	static String GetProcessorInfo();
+	static String GetBuildFlags();
 	void FileWriteString(const String& lpsz);
 	void CloseFile();
 

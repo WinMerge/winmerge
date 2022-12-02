@@ -1,4 +1,4 @@
-; *** Inno Setup version 6.0.0+ Swedish messages ***
+; *** Inno Setup version 6.1.0+ Swedish messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/files/istrans/
@@ -151,6 +151,9 @@ IncorrectPassword=Lösenordet du angav är inkorrekt. Försök igen.
 ; *** "License Agreement" wizard page
 
 
+
+
+
 WizardLicense=Licensavtal
 LicenseLabel=Var god och läs följande viktiga information innan du fortsätter.
 LicenseLabel3=Var god och läs följande licensavtal. Du måste acceptera villkoren i avtalet innan du kan fortsätta med installationen.
@@ -158,6 +161,9 @@ LicenseAccepted=Jag &accepterar avtalet
 LicenseNotAccepted=Jag accepterar &inte avtalet
 
 ; *** "Information" wizard pages
+
+
+
 
 
 WizardInfoBefore=Information
@@ -170,6 +176,9 @@ InfoAfterClickLabel=När du är klar att fortsätta med installationen klickar du p
 ; *** "User Information" wizard page
 
 
+
+
+
 WizardUserInfo=Användarinformation
 UserInfoDesc=Var god och fyll i följande uppgifter.
 UserInfoName=&Namn:
@@ -180,10 +189,14 @@ UserInfoNameRequired=Du måste fylla i ett namn.
 ; *** "Select Destination Directory" wizard page
 
 
+
+
+
 WizardSelectDir=Välj installationsplats
 SelectDirDesc=Var skall [name] installeras?
 SelectDirLabel3=Installationsprogrammet kommer att installera [name] i följande katalog
 SelectDirBrowseLabel=För att fortsätta klickar du på Nästa. Om du vill välja en annan katalog klickar du på Bläddra.
+DiskSpaceGBLabel=Programmet kräver minst [gb] MB hårddiskutrymme.
 DiskSpaceMBLabel=Programmet kräver minst [mb] MB hårddiskutrymme.
 CannotInstallToNetworkDrive=Setup kan inte installeras på nätverksdisk.
 CannotInstallToUNCPath=Setup kan inte installeras på UNC sökväg.
@@ -202,11 +215,17 @@ DirDoesntExist=Katalogen:%n%n%1%n%nfinns inte. Vill du skapa den?
 ; *** "Select Components" wizard page
 
 
+
+
+
 WizardSelectComponents=Välj komponenter
 SelectComponentsDesc=Vilka komponenter skall installeras?
 SelectComponentsLabel2=Välj de komponenter som du vill ska installeras; avmarkera de komponenter som du inte vill ha. Klicka sedan på Nästa när du är klar att  fortsätta.
 FullInstallation=Fullständig installation
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
+
+
+
 
 
 CompactInstallation=Kompakt installation
@@ -215,9 +234,13 @@ NoUninstallWarningTitle=Komponenter finns
 NoUninstallWarning=Installationsprogrammet har upptäckt att följande komponenter redan finns installerade på din dator:%n%n%1%n%nAtt  avmarkera dessa komponenter kommer inte att avinstallera dom.%n%nVill du fortsätta ändå?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=Aktuella val kräver minst [gb] GB diskutrymme.
 ComponentsDiskSpaceMBLabel=Aktuella val kräver minst [mb] MB diskutrymme.
 
 ; *** "Select Additional Tasks" wizard page
+
+
+
 
 
 WizardSelectTasks=Välj extra uppgifter
@@ -225,6 +248,9 @@ SelectTasksDesc=Vilka extra uppgifter skall utföras?
 SelectTasksLabel2=Markera ytterligare uppgifter att utföra vid installation av [name], tryck sedan på Nästa.
 
 ; *** "Select Start Menu Folder" wizard page
+
+
+
 
 
 WizardSelectProgramGroup=Välj Startmenykatalogen
@@ -240,6 +266,9 @@ NoProgramGroupCheck2=&Skapa ingen Startmenykatalog
 ; *** "Ready to Install" wizard page
 
 
+
+
+
 WizardReady=Redo att installera
 ReadyLabel1=Installationsprogrammet är nu redo att installera [name] på din dator.
 ReadyLabel2a=Tryck på Installera om du vill fortsätta, eller på gå Tillbaka om du vill granska eller ändra på något.
@@ -250,8 +279,21 @@ ReadyMemoType=Installationstyp:
 ReadyMemoComponents=Valda komponenter:
 ReadyMemoGroup=Startmenykatalog:
 ReadyMemoTasks=Extra uppgifter:
+DownloadingLabel=Laddar ner ytterligare filer...
+ButtonStopDownload=&Stoppa nedladdning
+StopDownload=Är du säker på att du vill stoppa nedladdningen?
+ErrorDownloadAborted=Nedladdningen avbruten
+ErrorDownloadFailed=Nedladdningen misslyckades: %1 %2
+ErrorDownloadSizeFailed=Få storlek misslyckades: %1 %2
+ErrorFileHash1=Filhash misslyckades: %1
+ErrorFileHash2=Ogiltig filhash: förväntat %1, hittat %2
+ErrorProgress=Ogiltig framfart: %1 of %2
+ErrorFileSize=Ogiltig filstorlek: förväntad %1, hittad %2
 
 ; *** "Preparing to Install" wizard page
+
+
+
 
 
 WizardPreparing=Förbereder installationen
@@ -263,14 +305,21 @@ ApplicationsFound2=Följande program använder filer som måste uppdateras av Setup
 CloseApplications=&Stäng programmen automatiskt
 DontCloseApplications=&Stäng inte programmen
 ErrorCloseApplications=Installationsprogrammet kunde inte stänga alla program. Innan installationen fortsätter rekommenderar vi att du stänger alla program som använder filer som Setup behöver uppdatera. 
+PrepareToInstallNeedsRestart=Installationen måste starta om din dator. När du har startat om datorn kör du Setup igen för att slutföra installationen av [name].%n%nVill du starta om nu?
 
 ; *** "Installing" wizard page
+
+
+
 
 
 WizardInstalling=Installerar
 InstallingLabel=Vänta medan [name] installeras på din dator.
 
 ; *** "Setup Completed" wizard page
+
+
+
 
 
 FinishedHeadingLabel=Avslutar installationen av [name]
@@ -285,13 +334,22 @@ NoRadio=&Nej, jag startar själv om datorn senare
 ; used for example as 'Run MyProg.exe'
 
 
+
+
+
 RunEntryExec=Kör %1
 ; used for example as 'View Readme.txt'
+
+
+
 
 
 RunEntryShellExec=Läs %1
 
 ; *** "Setup Needs the Next Disk" stuff
+
+
+
 
 
 ChangeDiskTitle=Installationsprogrammet behöver nästa diskett
@@ -303,6 +361,9 @@ SelectDirectoryLabel=Var god ange sökvägen för nästa diskett.
 ; *** Installation phase messages
 
 
+
+
+
 SetupAborted=Installationen slutfördes inte.%n%nVar god rätta till felet och kör installationen igen.
 AbortRetryIgnoreSelectAction=Välj åtgärd
 AbortRetryIgnoreRetry=&Försök igen
@@ -310,6 +371,9 @@ AbortRetryIgnoreIgnore=&Ignorera felet och fortsätt
 AbortRetryIgnoreCancel=Avbryt installationen
 
 ; *** Installation status messages
+
+
+
 
 
 StatusClosingApplications=Stänger program...
@@ -327,6 +391,9 @@ StatusRollback=Återställer ändringar...
 ; *** Misc. errors
 
 
+
+
+
 ErrorInternal2=Internt fel: %1
 ErrorFunctionFailedNoCode=%1 misslyckades
 ErrorFunctionFailed=%1 misslyckades; kod %2
@@ -336,11 +403,17 @@ ErrorExecutingProgram=Kan inte köra filen:%n%1
 ; *** Registry errors
 
 
+
+
+
 ErrorRegOpenKey=Fel vid öppning av registernyckel:%n%1\%2
 ErrorRegCreateKey=Kan ej skapa registernyckel:%n%1\%2
 ErrorRegWriteKey=Kan ej skriva till registernyckel:%n%1\%2
 
 ; *** INI errors
+
+
+
 
 
 ErrorIniEntry=Kan inte skriva nytt INI-värde i filen "%1".
@@ -352,8 +425,16 @@ ExistingFileReadOnly2=Den befintliga filen kunde inte bytas ut eftersom den är m
 ExistingFileReadOnlyRetry=&Ta bort skrivskyddad attributet och försök igen
 ExistingFileReadOnlyKeepExisting=&Behåll den befintliga filen
 ErrorReadingExistingDest=Ett fel uppstod vid försök att läsa den befintliga filen:
-FileExists=Filen finns redan.%n%nVill du skriva över den?
-ExistingFileNewer=Den befintliga filen är nyare än den som ska installeras. Du rekommenderas att behålla den befintliga filen. %n%nVill Du behålla den befintliga filen?
+FileExistsSelectAction=Välj åtgärd
+FileExists2=Filen finns redan.
+FileExistsOverwriteExisting=&Skriv över den befintliga filen
+FileExistsKeepExisting=&Behåll befintlig fil
+FileExistsOverwriteOrKeepAll=&Gör detta för nästa konflikt
+ExistingFileNewerSelectAction=Välj åtgärd
+ExistingFileNewer2=Den befintliga filen är nyare än den som Setup försöker installera.
+ExistingFileNewerOverwriteExisting=&Skriv över den befintliga filen
+ExistingFileNewerKeepExisting=&Behåll befintlig fil (rekommenderas)
+ExistingFileNewerOverwriteOrKeepAll=&Gör detta för nästa konflikt
 ErrorChangingAttr=Ett fel uppstod vid försök att ändra attribut på den befintliga filen:
 ErrorCreatingTemp=Ett fel uppstod vid ett försök att skapa installationskatalogen:
 ErrorReadingSource=Ett fel uppstod vid ett försök att läsa källfilen:
@@ -374,10 +455,16 @@ UninstallDisplayNameMarkCurrentUser=Nuvarande användare
 ; *** Post-installation errors
 
 
+
+
+
 ErrorOpeningReadme=Ett fel uppstod vid öppnandet av LÄS MIG-filen.
 ErrorRestartingComputer=Installationsprogrammet kunde inte starta om datorn. Var god gör det manuellt.
 
 ; *** Uninstaller messages
+
+
+
 
 
 UninstallNotFound=Filen "%1" finns inte. Kan inte avinstallera.
@@ -396,6 +483,9 @@ UninstallDataCorrupted=Filen "%1" är felaktig. Kan inte avinstallera
 ; *** Uninstallation phase messages
 
 
+
+
+
 ConfirmDeleteSharedFileTitle=Ta bort delad fil?
 ConfirmDeleteSharedFile2=Systemet indikerar att följande delade fil inte längre används av några program. Vill du ta bort den delade filen?%n%n%1%n%nOm något program fortfarande använder denna fil och den raderas, kommer programmet kanske att sluta fungera. Om du är osäker, välj Nej. Att låta filen ligga kvar i systemet kommer inte att orsaka någon skada.
 SharedFileNameLabel=Filnamn:
@@ -404,6 +494,9 @@ WizardUninstalling=Avinstallationsstatus
 StatusUninstalling=Avinstallerar %1...
 
 ; *** Shutdown block reasons
+
+
+
 
 
 ShutdownBlockReasonInstallingApp=Installerar %1.
@@ -415,11 +508,14 @@ ShutdownBlockReasonUninstallingApp=Avinstallerar %1.
 
 
 
+
+
+
 [CustomMessages]
 NameAndVersion=%1 version %2
 AdditionalIcons=Återstående ikoner:
-CreateDesktopIcon=Skapa en ikon på skrivbordet
-CreateQuickLaunchIcon=Skapa en ikon i Snabbstartfältet
+CreateDesktopIcon=Skapa en genväg på skrivbordet
+CreateQuickLaunchIcon=Skapa en genväg i Snabbstartfältet
 ProgramOnTheWeb=%1 på Webben
 UninstallProgram=Avinstallera %1
 LaunchProgram=Starta %1

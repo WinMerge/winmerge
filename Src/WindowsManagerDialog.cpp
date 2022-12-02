@@ -29,8 +29,7 @@ CWindowsManagerDialog::~CWindowsManagerDialog()
 {
 	if (NULL != m_pIL->GetSafeHandle())
 		m_pIL->DeleteImageList();
-	if (NULL != m_pIL)
-		delete m_pIL;
+	delete m_pIL;
 }
 
 void CWindowsManagerDialog::DoDataExchange(CDataExchange* pDX)
@@ -60,8 +59,6 @@ END_MESSAGE_MAP()
 
 BOOL CWindowsManagerDialog::PreTranslateMessage(MSG* pMsg)
 {
-	// TODO: Add your specialized code here and/or call the base class
-
 	if ((WM_KEYUP == pMsg->message && VK_CONTROL == pMsg->wParam) || 
 		(WM_KEYDOWN == pMsg->message && VK_ESCAPE == pMsg->wParam))
 	{
@@ -79,8 +76,6 @@ BOOL CWindowsManagerDialog::PreTranslateMessage(MSG* pMsg)
 BOOL CWindowsManagerDialog::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
-	// TODO: Add extra initialization here
 
 	m_List.SetExtendedStyle(LVS_EX_INFOTIP | LVS_EX_FULLROWSELECT);
 
@@ -120,15 +115,22 @@ void CWindowsManagerDialog::PopulateList()
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* pArrChild = m_pFrame->GetChildArray();
 	for (int i = 0; i < pArrChild->GetSize(); ++i)
 	{
-		HICON hIcon = pArrChild->GetAt(i)->GetIcon(TRUE);
+		sText.Empty();
+		HICON hIcon = pArrChild->GetAt(i)->GetIcon(FALSE);
 		if (NULL == hIcon)
-			hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		{
+			hIcon = pArrChild->GetAt(i)->GetIcon(TRUE);
+			if (NULL == hIcon)
+				hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+		}
 		m_pIL->Add(hIcon);
-		sText = pArrChild->GetAt(i)->GetActiveDocument()->GetPathName();
-		if(sText.IsEmpty())
+		const CDocument* pDoc = pArrChild->GetAt(i)->GetActiveDocument();
+		if (nullptr != pDoc)
+			sText = pDoc->GetPathName();
+		if (sText.IsEmpty())
 			pArrChild->GetAt(i)->GetWindowText(sText);
 		m_List.InsertItem(i, sText, m_pIL->GetImageCount() - 1);
-		m_List.SetItemData(i, (DWORD_PTR)pArrChild->GetAt(i));
+		m_List.SetItemData(i, reinterpret_cast<DWORD_PTR>(pArrChild->GetAt(i)));
 	}
 }
 // adjust size to listctrl column and dialog
@@ -178,8 +180,6 @@ void CWindowsManagerDialog::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	// TODO: Add your message handler code here
-
 	if(NULL != m_List.GetSafeHwnd() && cx > 0 && cy > 0)
 		m_List.MoveWindow(0, 0, cx, cy);
 }
@@ -194,8 +194,6 @@ void CWindowsManagerDialog::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinim
 
 void CWindowsManagerDialog::OnClose()
 {
-	// TODO: Add your message handler code here and/or call default
-
 	if (m_bAutoCleanup)
 		DestroyWindow();
 	else
@@ -204,8 +202,6 @@ void CWindowsManagerDialog::OnClose()
 
 void CWindowsManagerDialog::OnOK()
 {
-	// TODO: Add extra validation here
-
 	if (m_bAutoCleanup)
 		DestroyWindow();
 	else
@@ -214,8 +210,6 @@ void CWindowsManagerDialog::OnOK()
 
 void CWindowsManagerDialog::OnCancel()
 {
-	// TODO: Add extra cleanup here
-
 	if (m_bAutoCleanup)
 		DestroyWindow();
 	else
@@ -224,7 +218,6 @@ void CWindowsManagerDialog::OnCancel()
 
 void CWindowsManagerDialog::PostNcDestroy()
 {
-	// TODO: Add your specialized code here and/or call the base class
 	CDialog::PostNcDestroy();
 
 	if (m_bAutoCleanup)
@@ -235,11 +228,9 @@ void CWindowsManagerDialog::OnDestroy()
 {
 	CDialog::OnDestroy();
 
-	// TODO: Add your message handler code here
-
 	const int nIndex = m_List.GetNextItem(-1, LVNI_SELECTED);
 	if (nIndex >= 0 && nIndex < m_List.GetItemCount())
-		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATE, 0, (LPARAM)m_List.GetItemData(nIndex));
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATE, 0, static_cast<LPARAM>(m_List.GetItemData(nIndex)));
 }
 
 LRESULT CWindowsManagerDialog::OnIsOpen(WPARAM wParam, LPARAM lParam)
@@ -273,9 +264,7 @@ LRESULT CWindowsManagerDialog::OnSelectNext(WPARAM wParam, LPARAM lParam)
 
 void CWindowsManagerDialog::OnNMCustomdrawListFile(NMHDR* pNMHDR, LRESULT* pResult)
 {
-//	LPNMCUSTOMDRAW pNMCD = reinterpret_cast<LPNMCUSTOMDRAW>(pNMHDR);
 	NMLVCUSTOMDRAW* pLVCD = reinterpret_cast<NMLVCUSTOMDRAW*>(pNMHDR);
-	// TODO: Add your control notification handler code here
 
 	switch (pLVCD->nmcd.dwDrawStage)
 	{
@@ -298,8 +287,6 @@ void CWindowsManagerDialog::OnNMCustomdrawListFile(NMHDR* pNMHDR, LRESULT* pResu
 
 void CWindowsManagerDialog::OnNMDblclkListFile(NMHDR* pNMHDR, LRESULT* pResult)
 {
-	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
-	// TODO: Add your control notification handler code here
 	*pResult = 0;
 
 	PostMessage(WM_CLOSE);

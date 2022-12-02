@@ -77,28 +77,28 @@ public:
 	{
 		int iFileChanged;
 		int const(iEnteringMode);
-		int const(iCurByte);
+		size_t const(iCurByte);
 		int const(iCurNibble);
-		int const(iVscrollMax);
-		int const(iVscrollPos);
+		int64_t const(iVscrollMax64);
+		int64_t const(iVscrollPos64);
 		int const(iHscrollMax);
 		int const(iHscrollPos);
-		int const(bSelected);
-		int const(iStartOfSelection);
-		int const(iEndOfSelection);
+		bool const(bSelected);
+		size_t const(iStartOfSelection);
+		size_t const(iEndOfSelection);
 	};
 
 	struct SharedUndoRecords;
 
 	virtual unsigned STDMETHODCALLTYPE get_interface_version() = 0;
-	virtual unsigned char *STDMETHODCALLTYPE get_buffer(int) = 0;
-	virtual int STDMETHODCALLTYPE get_length() = 0;
+	virtual unsigned char *STDMETHODCALLTYPE get_buffer(size_t) = 0;
+	virtual size_t STDMETHODCALLTYPE get_length() = 0;
 	virtual void STDMETHODCALLTYPE set_sibling(IHexEditorWindow *) = 0;
 	virtual Colors *STDMETHODCALLTYPE get_colors() = 0;
 	virtual Settings *STDMETHODCALLTYPE get_settings() = 0;
 	virtual Status *STDMETHODCALLTYPE get_status() = 0;
 	virtual void STDMETHODCALLTYPE resize_window() = 0;
-	virtual void STDMETHODCALLTYPE repaint(int from, int to) = 0;
+	virtual void STDMETHODCALLTYPE repaint(size_t from, size_t to) = 0;
 	virtual void STDMETHODCALLTYPE adjust_hscrollbar() = 0;
 	virtual void STDMETHODCALLTYPE adjust_vscrollbar() = 0;
 	virtual int STDMETHODCALLTYPE translate_accelerator(MSG *) = 0;

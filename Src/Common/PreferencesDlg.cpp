@@ -41,6 +41,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pSyntaxColors(colors)
 , m_pageGeneral(regOptions)
 , m_pageCompare(regOptions)
+, m_pageMessageBoxes(regOptions)
 , m_pageColorSchemes(regOptions)
 , m_pageMergeColors(regOptions)
 , m_pageTextColors(regOptions, colors)
@@ -50,6 +51,8 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageArchive(regOptions)
 , m_pageCodepage(regOptions)
 , m_pageEditor(regOptions)
+, m_pageEditorSyntax(regOptions)
+, m_pageProject(regOptions)
 , m_pageSystem(regOptions)
 , m_pageBackups(regOptions)
 , m_pageShell(regOptions)
@@ -57,6 +60,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageCompareTable(regOptions)
 , m_pageCompareBinary(regOptions)
 , m_pageCompareImage(regOptions)
+, m_pageCompareWebPage(regOptions)
 {
 	UNREFERENCED_PARAMETER(nMenuID);
 }
@@ -104,7 +108,10 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageCompareTable, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_TABLECOMPARE);
 	AddPage(&m_pageCompareBinary, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_BINARYCOMPARE);
 	AddPage(&m_pageCompareImage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_IMAGECOMPARE);
-	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
+	AddPage(&m_pageCompareWebPage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_WEBPAGECOMPARE);
+	AddPage(&m_pageMessageBoxes, IDS_OPTIONSPG_MESSAGEBOXES);
+	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR, IDS_OPTIONSPG_GENEDITOR);
+	AddPage(&m_pageEditorSyntax, IDS_OPTIONSPG_EDITOR, IDS_OPTIONSPG_EDITOR_SYNTAX);
 	AddPage(&m_pageColorSchemes, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_COLOR_SCHEMES);
 	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MERGECOLORS);
 	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_SYNTAXCOLORS);
@@ -112,6 +119,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageMarkerColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MARKERCOLORS);
 	AddPage(&m_pageDirColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_DIRCOLORS);
 	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
+	AddPage(&m_pageProject, IDS_OPTIONSPG_PROJECT);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
 	AddPage(&m_pageBackups, IDS_OPTIONSPG_BACKUPS);
 	AddPage(&m_pageCodepage, IDS_OPTIONSPG_CODEPAGE);
@@ -128,7 +136,6 @@ BOOL CPreferencesDlg::OnInitDialog()
  
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
-	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OptionsDlg"), false); // persist size via registry
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -180,10 +187,9 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubH
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
 {
-	CString sPath(szPath);
-
 	if (m_pphost.AddPage(pPage))
 	{
+		CString sPath(szPath);
 		HTREEITEM htiParent = TVI_ROOT; // default
 		int nFind = sPath.Find(PATHDELIM);
 
@@ -289,9 +295,13 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	m_pageCompareTable.ReadOptions();
 	m_pageCompareBinary.ReadOptions();
 	m_pageCompareImage.ReadOptions();
+	m_pageCompareWebPage.ReadOptions();
+	m_pageMessageBoxes.ReadOptions();
 	m_pageEditor.ReadOptions();
+	m_pageEditorSyntax.ReadOptions();
 	m_pageCodepage.ReadOptions();
 	m_pageArchive.ReadOptions();
+	m_pageProject.ReadOptions();
 	m_pageBackups.ReadOptions();
 	m_pageShell.ReadOptions();
 
@@ -310,9 +320,12 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 		SafeUpdatePage(&m_pageCompareTable, false);
 		SafeUpdatePage(&m_pageCompareBinary, false);
 		SafeUpdatePage(&m_pageCompareImage, false);
+		SafeUpdatePage(&m_pageMessageBoxes, false);
 		SafeUpdatePage(&m_pageEditor, false);
+		SafeUpdatePage(&m_pageEditorSyntax, false);
 		SafeUpdatePage(&m_pageCodepage, false);
 		SafeUpdatePage(&m_pageArchive, false);
+		SafeUpdatePage(&m_pageProject, false);
 		SafeUpdatePage(&m_pageBackups, false);
 		SafeUpdatePage(&m_pageShell, false);
 	}
@@ -330,7 +343,10 @@ void CPreferencesDlg::SaveOptions()
 	m_pageCompareTable.WriteOptions();
 	m_pageCompareBinary.WriteOptions();
 	m_pageCompareImage.WriteOptions();
+	m_pageCompareWebPage.WriteOptions();
+	m_pageMessageBoxes.WriteOptions();
 	m_pageEditor.WriteOptions();
+	m_pageEditorSyntax.WriteOptions();
 	m_pageColorSchemes.WriteOptions();
 	m_pageMergeColors.WriteOptions();
 	m_pageTextColors.WriteOptions();
@@ -339,6 +355,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageDirColors.WriteOptions();
 	m_pageCodepage.WriteOptions();
 	m_pageArchive.WriteOptions();
+	m_pageProject.WriteOptions();
 	m_pageBackups.WriteOptions();
 	m_pageShell.WriteOptions();
 }

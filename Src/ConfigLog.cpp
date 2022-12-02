@@ -56,8 +56,10 @@ static String GetCompilerVersion()
 	sVisualStudio = _T("VS.2017 (15.3) - "); 
 #elif	_MSC_VER >= 1912 && _MSC_VER <  1920
 	sVisualStudio = strutils::format(_T("VS.2017 (15.%d) - "), 5 + (_MSC_VER - 1912));
-#elif   _MSC_VER >= 1920 && _MSC_VER <  2000
+#elif   _MSC_VER >= 1920 && _MSC_VER <  1930
 	sVisualStudio = strutils::format(_T("VS.2019 (16.%d) - "), (_MSC_VER - 1920));
+#elif   _MSC_VER >= 1930 && _MSC_VER <  2000
+	sVisualStudio = strutils::format(_T("VS.2022 (17.%d) - "), (_MSC_VER - 1930));
 #elif	_MSC_VER >= 2000
 	# error "** Unknown NEW Version of Visual Studio **"
 #endif
@@ -111,24 +113,35 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
+		String sPluginText;
+		if (plugin->m_filepath.find(':') != String::npos)
+		{
+			String sFileName = paths::GetLongPath(plugin->m_filepath);
+			if (sFileName.length() > sEXEPath.length())
+				if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
+					sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
 
-		String sFileName = paths::GetLongPath(plugin->m_filepath);
-		if (sFileName.length() > sEXEPath.length())
-			if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
-				sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
-		
-		String sModifiedTime = _T("");
-		sModifiedTime = GetLastModified(plugin->m_filepath);
-		if (!sModifiedTime.empty())
-			sModifiedTime = _T("[") + sModifiedTime + _T("]");
-		
-		String sPluginText = strutils::format
+			String sModifiedTime = _T("");
+			sModifiedTime = GetLastModified(plugin->m_filepath);
+			if (!sModifiedTime.empty())
+				sModifiedTime = _T("[") + sModifiedTime + _T("]");
+
+			sPluginText = strutils::format
 			(_T("\r\n  %s%-36s path=%s  %s"),
-			plugin->m_disabled ? _T("!") : _T(" "),
-			plugin->m_name,
-			sFileName,
-			sModifiedTime
+				plugin->m_disabled ? _T("!") : _T(" "),
+				plugin->m_name,
+				sFileName,
+				sModifiedTime
 			);
+		}
+		else
+		{
+			sPluginText = strutils::format
+			(_T("\r\n  %s%-36s"),
+				plugin->m_disabled ? _T("!") : _T(" "),
+				plugin->m_name
+			);
+		}
 		m_pfile->WriteString(sPluginText);
 	}
 }
@@ -268,9 +281,13 @@ bool CConfigLog::DoFile(String &sError)
 
 	if (!m_pfile->OpenCreateUtf8(m_sFileName))
 	{
-		const UniFile::UniError &err = m_pfile->GetLastUniError();
-		sError = err.GetError();
-		return false;
+		m_sFileName = paths::ConcatPath(env::GetTemporaryPath(), _T("WinMerge.txt"));
+		if (!m_pfile->OpenCreateUtf8(m_sFileName))
+		{
+			const UniFile::UniError& err = m_pfile->GetLastUniError();
+			sError = err.GetError();
+			return false;
+		}
 	}
 	m_pfile->SetBom(true);
 	m_pfile->WriteBom();
@@ -288,7 +305,7 @@ bool CConfigLog::DoFile(String &sError)
 	text = GetWindowsVer();
 	FileWriteString(text);
 	text = GetProcessorInfo();
-	if (text != _T(""))
+	if (!text.empty())
 	{		
 		FileWriteString(_T("\r\n Processor:           "));
 		FileWriteString(text);
@@ -346,6 +363,11 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("\r\n\r\nCommand Line:        "));
 	FileWriteString(szCmdLine);
 
+	TCHAR szCurrentDirectory[MAX_PATH]{};
+	GetCurrentDirectory(sizeof(szCurrentDirectory) / sizeof(TCHAR), szCurrentDirectory);
+	FileWriteString(_T("\r\n\r\nCurrent Directory:    "));
+	FileWriteString(szCurrentDirectory);
+
 	FileWriteString(_T("\r\n\r\nModule Names:         '~' prefix indicates module is loaded into the WinMerge process.\r\n"));
 	FileWriteString(_T(" Windows:\r\n"));
 	WriteVersionOf1(2, _T("kernel32.dll"));
@@ -356,8 +378,12 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T(        " WinMerge:            Path names are relative to the Code File's directory.\r\n"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionU.dll"));
 	WriteVersionOf1(2, _T(".\\ShellExtensionX64.dll"));
+	WriteVersionOf1(2, _T(".\\ShellExtensionARM.dll"));
+	WriteVersionOf1(2, _T(".\\ShellExtensionARM64.dll"));
+	WriteVersionOf1(2, _T(".\\WinMergeContextMenu.dll"));
 	WriteVersionOf1(2, _T(".\\Frhed\\hekseditU.dll"));
 	WriteVersionOf1(2, _T(".\\WinIMerge\\WinIMergeLib.dll"));
+	WriteVersionOf1(2, _T(".\\WinWebDiff\\WinWebDiffLib.dll"));
 	WriteVersionOf1(2, _T(".\\Merge7z\\7z.dll"));
 
 // System settings
@@ -375,6 +401,7 @@ bool CConfigLog::DoFile(String &sError)
 // Plugins
 	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
 	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
+	WritePluginsInLogFile(L"URL_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");
@@ -401,11 +428,27 @@ bool CConfigLog::DoFile(String &sError)
  * @brief Parse Windows version data to string.
  * @return String describing Windows version.
  */
-String CConfigLog::GetWindowsVer() const
+String CConfigLog::GetWindowsVer()
 {
 	CRegKeyEx key;
 	if (key.QueryRegMachine(_T("Software\\Microsoft\\Windows NT\\CurrentVersion")))
-		return key.ReadString(_T("ProductName"), _T("Unknown OS"));
+	{
+		String productName = key.ReadString(_T("ProductName"), _T("Unknown OS"));
+		if (HMODULE hModule = GetModuleHandle(_T("ntdll.dll")))
+		{
+			using RtlGetNtVersionNumbersFunc = void (WINAPI*)(DWORD*, DWORD*, DWORD*);
+			DWORD dwMajor = 0, dwMinor = 0, dwBuildNumber = 0;
+			if (RtlGetNtVersionNumbersFunc RtlGetNtVersionNumbers =
+				reinterpret_cast<RtlGetNtVersionNumbersFunc>(GetProcAddress(hModule, "RtlGetNtVersionNumbers")))
+			{
+				RtlGetNtVersionNumbers(&dwMajor, &dwMinor, &dwBuildNumber);
+				dwBuildNumber &= ~0xF0000000;
+				if (dwMajor == 10 && dwMinor == 0 && dwBuildNumber >= 22000)
+					strutils::replace(productName, _T("Windows 10"), _T("Windows 11"));
+			}
+		}
+		return productName;
+	}
 	return _T("Unknown OS");
 }
 
@@ -414,18 +457,18 @@ String CConfigLog::GetWindowsVer() const
  * @brief Parse Processor Information data to string.
  * @return String describing Windows version.
  */
-String CConfigLog::GetProcessorInfo() const
+String CConfigLog::GetProcessorInfo()
 {
 	CRegKeyEx key;
 	String sProductName = _T("");
 	if (key.QueryRegMachine(_T("Hardware\\Description\\System\\CentralProcessor\\0")))
 		sProductName = key.ReadString(_T("Identifier"), _T(""));
-	if (sProductName != _T(""))
+	if (!sProductName.empty())
 	{
 		// This is the full identifier of the processor
 		//	(e.g. "Intel64 Family 6 Model 158 Stepping 9")
 		//	but we'll only keep the first word (e.g. "Intel64")
-		int x = (int)sProductName.find_first_of(_T(" "));
+		int x = (int)sProductName.find_first_of(_T(' '));
 		sProductName = sProductName.substr(0, x);
 	}
 
@@ -448,7 +491,7 @@ String CConfigLog::GetProcessorInfo() const
 /** 
  * @brief Return string representation of build flags (for reporting in config log)
  */
-String CConfigLog::GetBuildFlags() const
+String CConfigLog::GetBuildFlags()
 {
 	String flags;
 

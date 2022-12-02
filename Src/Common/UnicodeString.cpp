@@ -17,6 +17,8 @@
 #include <cerrno>
 #include <vector>
 
+extern "C" int __stdcall StrCmpLogicalW(const wchar_t* psz1, const wchar_t* psz2);
+
 namespace strutils
 {
 
@@ -48,12 +50,91 @@ String makeupper(const String &str)
 	return ret;
 }
 
+String strip_hot_key(const String& str)
+{
+	String str2 = str;
+	auto it = str2.find(_T("(&"));
+	if (it != String::npos)
+		str2.erase(it, it + 2);
+	strutils::replace(str2, _T("&"), _T(""));
+	return str2;
+}
+
+TCHAR from_charstr(const String& str)
+{
+	TCHAR ch = 0;
+	String str2 = strutils::makelower(str);
+	strutils::replace(str2, _T("-"), _T(""));
+	if (str2 == _T("\\a") || str2 == _T("bel"))
+		ch = '\a';
+	else if (str2 == _T("\\b") || str2 == _T("bs"))
+		ch = '\b';
+	else if (str2 == _T("\\f") || str2 == _T("ff"))
+		ch = '\f';
+	else if (str2 == _T("\\n") || str2 == _T("lf"))
+		ch = '\n';
+	else if (str2 == _T("\\r") || str2 == _T("cr"))
+		ch = '\r';
+	else if (str2 == _T("\\t") || str2 == _T("tab"))
+		ch = '\t';
+	else if (str2 == _T("\\v") || str2 == _T("vt"))
+		ch = '\v';
+	else if (str2 == _T("\\'") || str2 == _T("sq") || str2 == _T("singlequote"))
+		ch = '\'';
+	else if (str2 == _T("\\\"") || str2 == _T("dq") || str2 == _T("doublequote"))
+		ch = '"';
+	else if (str2.find(_T("\\x"), 0) == 0 || str2.find(_T("0x"), 0) == 0)
+	{
+		TCHAR *pend = nullptr;
+		ch = static_cast<TCHAR>(_tcstol(str2.substr(2).c_str(), &pend, 16));
+	}
+	else
+		ch = str.c_str()[0];
+	return ch;
+}
+
+String to_charstr(TCHAR ch)
+{
+	if (iscntrl(ch))
+		return strutils::format(_T("\\x%02x"), ch);
+	return String(1, ch);
+}
+
+String to_regex(const String& text)
+{
+	String ret;
+	for (auto ch : text)
+	{
+		switch (ch)
+		{
+		case '\\': ret += _T("\\\\"); break;
+		case '*':  ret += _T("\\*");  break;
+		case '+':  ret += _T("\\+");  break;
+		case '?':  ret += _T("\\?");  break;
+		case '|':  ret += _T("\\|");  break;
+		case '.':  ret += _T("\\.");  break;
+		case '^':  ret += _T("\\^");  break;
+		case '$':  ret += _T("\\$");  break;
+		case '(':  ret += _T("\\(");  break;
+		case ')':  ret += _T("\\)");  break;
+		case '[':  ret += _T("\\[");  break;
+		case ']':  ret += _T("\\]");  break;
+		case '\t': ret += _T("\\t");  break;
+		case '\n': ret += _T("\\n");  break;
+		case '\r': ret += _T("\\r");  break;
+		case '\a': ret += _T("\\a");  break;
+		default:  ret += ch; break;
+		}
+	}
+	return ret;
+}
+
 /**
  * @brief Replace a string inside a string with another string.
  * This function searches for a string inside another string an if found,
  * replaces it with another string. Function can replace several instances
  * of the string inside one string.
- * @param [in] target A string containing another string to replace.
+ * @param [in,out] target A string containing another string to replace.
  * @param [in] find A string to search and replace with another (@p replace).
  * @param [in] replace A string used to replace original (@p find).
  */
@@ -70,6 +151,27 @@ void replace(String &target, const String &find, const String &replace)
 }
 
 /**
+ * @brief Replace the characters that matche characters specified in its arguments
+ * @param [in,out] str - A string containing another string to replace.
+ * @param [in] chars - characters to search for
+ * @param [in] rep - String to replace
+ */
+void replace_chars(String& str, const TCHAR* chars, const TCHAR *rep)
+{
+	String::size_type pos = 0;
+	size_t replen = _tcslen(rep);
+	while ((pos = str.find_first_of(chars, pos)) != std::string::npos)
+	{
+		std::string::size_type posend = str.find_first_not_of(chars, pos);
+		if (posend != String::npos)
+			str.replace(pos, posend - pos, rep);
+		else
+			str.replace(pos, str.length() - pos, rep);
+		pos += replen;
+	}
+}
+
+/**
  * @brief Compare two strings ignoring the character casing.
  * @param [in] str1 First string to compare.
  * @param [in] str2 Second string to compare.
@@ -78,6 +180,18 @@ void replace(String &target, const String &find, const String &replace)
 int compare_nocase(const String &str1, const String &str2)
 {
 	return _tcsicoll(str1.c_str(), str2.c_str());
+}
+
+/**
+ * @brief Compare two strings ignoring the character casing. 
+ *        Digits in the strings are considered as numerical content rather than text.
+ * @param [in] str1 First string to compare.
+ * @param [in] str2 Second string to compare.
+ * @return As strcmp(), 0 if strings match.
+ */
+int compare_logical(const String& str1, const String& str2)
+{
+	return StrCmpLogicalW(str1.c_str(), str2.c_str());
 }
 
 /**
@@ -216,6 +330,20 @@ String format_string2(const String& fmt, const String& arg1, const String& arg2)
 {
 	const String* args[] = {&arg1, &arg2};
 	return format_strings(fmt, args, 2);
+}
+
+/**
+ * @brief Output the converted string according to the printf()-style formatting.
+ * @param [in] fmt printf()-style formatting.
+ * @param [in] arg1 Value of "%1" of fmt.
+ * @param [in] arg2 Value of "%2" of fmt.
+ * @param [in] arg3 Value of "%3" of fmt.
+ * @return Formatted output string.
+ */
+String format_string3(const String& fmt, const String& arg1, const String& arg2, const String& arg3)
+{
+	const String* args[] = { &arg1, &arg2, &arg3 };
+	return format_strings(fmt, args, 3);
 }
 
 }

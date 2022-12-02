@@ -16,9 +16,6 @@
 #define new DEBUG_NEW
 #endif
 
-/** @brief Section name for settings in registry. */
-static const TCHAR Section[] = _T("Custom Colors");
-
 /** 
  * @brief Default constructor.
  */

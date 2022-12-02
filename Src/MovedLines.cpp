@@ -22,10 +22,10 @@ void MovedLines::Clear()
  * @param [in] line1 Linenumber in side first side.
  * @param [in] line2 Linenumber in second side.
  */
-void MovedLines::Add(ML_SIDE side1, unsigned line1,	unsigned line2)
+void MovedLines::Add(SIDE side1, unsigned line1,	unsigned line2)
 {
 	MovedLinesMap *list;
-	if (side1 == SIDE_LEFT)
+	if (side1 == SIDE::LEFT)
 		list = &m_moved0;
 	else
 		list = &m_moved1;
@@ -38,9 +38,9 @@ void MovedLines::Add(ML_SIDE side1, unsigned line1,	unsigned line2)
  * @param [in] line Linenumber to check.
  * @param [in] side Side of the linenumber.
  */
-int MovedLines::LineInBlock(unsigned line, ML_SIDE side) const
+int MovedLines::LineInBlock(unsigned line, SIDE side) const
 {
-	if (side == SIDE_LEFT)
+	if (side == SIDE::LEFT)
 		return SecondSideInMovedBlock(line);
 	else
 		return FirstSideInMovedBlock(line);

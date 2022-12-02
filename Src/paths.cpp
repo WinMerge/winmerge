@@ -123,6 +123,12 @@ String FindExtension(const String& path)
 	return ::PathFindExtension(path.c_str());
 }
 
+String RemoveExtension(const String& path)
+{
+	String ext = FindExtension(path);
+	return path.substr(0, path.length() - ext.length());
+}
+
 /** 
  * @brief Strip trailing slas.
  * This function strips trailing slash from given path. Root paths are special
@@ -280,7 +286,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 		HANDLE h = FindFirstFile(TFile(sTemp).wpath().c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
-			sLong = sTemp;
+			sLong = std::move(sTemp);
 			if (ptr != nullptr)
 			{
 				sLong += '\\';
@@ -458,10 +464,10 @@ bool IsDirectory(const String &path)
  */
 String ExpandShortcut(const String &inFile)
 {
-	assert(inFile != _T(""));
+	assert(!inFile.empty());
 
 	// No path, nothing to return
-	if (inFile == _T(""))
+	if (inFile.empty())
 		return _T("");
 
 	String outFile;
@@ -735,9 +741,15 @@ String GetPathOnly(const String& fullpath)
 	return spath;
 }
 
+bool IsURL(const String& path)
+{
+	size_t pos = path.find(':');
+	return (pos != String::npos && pos > 1);
+}
+
 bool IsURLorCLSID(const String& path)
 {
-	return (path.find(_T("://")) != String::npos || path.find(_T("::{")) != String::npos);
+	return IsURL(path) || path.find(_T("::{")) != String::npos;
 }
 
 bool IsDecendant(const String& path, const String& ancestor)
@@ -766,6 +778,21 @@ String ToUnixPath(const String& path)
 	String unixpath = path;
 	replace_char(&*unixpath.begin(), '\\', '/');
 	return unixpath;
+}
+
+/**
+ * @brief Return whether whether the given name can be used as a filename or directory name.
+ * This function performs a test PathGetCharType() on each character in the specified name.
+ * @param [in] name Filename or directory name to check.
+ * @return true if the given name can be used as a filename or directory name.
+ */
+bool IsValidName(const String& name)
+{
+	for (String::const_iterator it = name.begin(); it != name.end(); ++it)
+		if (!(PathGetCharType(*it) & GCT_LFNCHAR))
+			return false;
+
+	return true;
 }
 
 }

@@ -5,7 +5,7 @@
   <para>ここでの主題は、WinMergeがどのようにして、テキストファイル中の
     差分を見つけ、また、表示するのかということ。
     そして、単純なファイルの比較とマージ操作のデモを行います。
-    バイナリファイルに関する情報は、<xref linkend="Intro_diffs" />を参照してください。</para>
+    バイナリファイルに関する情報は、<xref linkend="Compare_bin" />を参照してください。</para>
 
   <section id="Intro_diffs_comparing">
     <title>ファイルの比較<indexterm>
@@ -18,13 +18,13 @@
       たとえば、別々の時間、または、別々の人によって編集された二つのバージョンのファイルなどです。
       そのような二つのファイルを検査すれば、いくつかの同じような領域と
       同様に、異なる文字と単語、異なる行、連続したテキストブロックの差分など、くつかの違いを見つけることができます。
-      しかし、二つのファイル間のすべての差異を、お気に入りのエディタで調べることは、
+      しかし、二つのファイル間のすべての差異を、お気に入りのエディターで調べることは、
       退屈で間違いを起こしやすいでしょう。
       WinMergeの様な、比較／マージに特化したツールは、
       この作業を体系的かつ効率的に
       行えるように設計されています。</para>
 
-    <para>多くの人が使っている、スペルチェッカのような、シンプルな差分ユーティリティは、
+    <para>多くの人が使っている、スペルチェッカーのような、シンプルな差分ユーティリティは、
     体系的な手段で文書の最後まで、辞書と異なる単語をハイライトし、
     スペル間違いを解決するのを助けます。
     しかしながら、文字と単語のみで見ることは、複数ファイル間の差異を理解するために
@@ -52,7 +52,7 @@
 
       <orderedlist>
         <listitem>
-          <para>テキストエディタを使って、ここに示す内容と名前の二つのファイルを、
+          <para>テキストエディターを使って、ここに示す内容と名前の二つのファイルを、
             単語と改行に注意して正確に作成してください。
           </para>
 
@@ -87,7 +87,7 @@ Believe it or not.</screen></para>
         </listitem>
 
         <listitem>
-          <para>ファイルとフォルダの選択ダイアログで、
+          <para>ファイルとフォルダーの選択ダイアログで、
             <filename>File1</filename>を<guilabel>1番目</guilabel>に、
           <filename>File2</filename>を<guilabel>2番目</guilabel>のファイルに指定し、
           <guibutton>比較</guibutton>をクリックしてください。このように、左と右のファイルペインに二つのファイルが開かれ、
@@ -100,7 +100,7 @@ Believe it or not.</screen></para>
             </imageobject>
 
             <textobject>
-              <phrase>Compare Files screen shot</phrase>
+              <phrase>Compare Files screenshot</phrase>
             </textobject>
           </mediaobject>
 
@@ -148,18 +148,18 @@ Believe it or not.</screen></para>
                 <para>WinMergeは、他方のバージョンにより多くの行が存在すると、
                   1行、または、それより多くの灰色の空行を、一方のバージョンに挿入します。
                 これらの灰色の空行は、ソースファイル中の空行を表しているわけではありません。
-                これらは、表示上のプレースホルダに過ぎません。
-                プレースホルダ行の目的は、左と右のバージョンの差分を垂直に整列させることです。
+                これらは、表示上のプレースホルダーに過ぎません。
+                プレースホルダー行の目的は、左と右のバージョンの差分を垂直に整列させることです。
                 例で述べたように、
                 <computeroutput>WinMerge compares lines</computeroutput>のテキストは、
                 たとえソースファイル中では異なる行にあっても、
                 比較ウィンドウには並んで表示されます。
                 このことが、WinMergeでの差分比較を、
-                従来のエディタより容易にさせています。</para>
+                従来のエディターより容易にさせています。</para>
 
                 <tip>
                   <para>空行の一つの重要性は、たとえ、ソースファイルではそうでなくても、
-                    ファイル比較ウィンドウの両方のペインには、
+                    ファイル比較ウィンドウの両方(または3つすべて)のペインには、
                     いつも同じ総行数が表示されていることです。</para>
                 </tip>
               </listitem>
@@ -216,6 +216,7 @@ Believe it or not.</screen></para>
               <phrase>Compare Files Diff Pane</phrase>
             </textobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -377,6 +378,7 @@ Believe it or not.</screen></para>
                          fileref="screenshots/filemerged1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -411,7 +413,7 @@ Believe it or not.</screen></para>
 
         <para>マージ結果が保たれるようにコントロールしてください。
           WinMergeのファイル比較ウィンドウには、幾つかのマージツールがそうであるように、
-          分割された結果ペインがありません。 最も単純な方策は、片方、または、両方のソースファイルの変更を保存することです。
+          分割された結果ペインがありません。 最も単純な方策は、片方、または、両方(または3つすべて)のソースファイルの変更を保存することです。
           <keycombo>
           <keycap>Ctrl</keycap>
 
@@ -442,7 +444,7 @@ Believe it or not.</screen></para>
 
       <para>同様に、WinMergeのコマンドラインで、<xref linkend="Command_line" />で説明されている、
         任意の<option>outputfile</option>引数を使用して、
-        両方のソースファイルが変更されていない状態のままにしておくことができます。</para>
+        両方(または3つすべて)のソースファイルが変更されていない状態のままにしておくことができます。</para>
     </section>
   </section>
 </article>

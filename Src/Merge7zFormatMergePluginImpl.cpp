@@ -8,6 +8,11 @@
 #include "paths.h"
 #include "Plugins.h"
 #include "Merge7zFormatRegister.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "MergeApp.h"
+#include "Environment.h"
+#include "7zCommon.h"
 #include <list>
 #include <Poco/Mutex.h>
 
@@ -29,27 +34,90 @@ static Merge7zFormatMergePluginImpl *GetInstance()
 
 Merge7z::Format *Merge7zFormatMergePluginImpl::GuessFormat(const String& path)
 {
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return nullptr;
 	Merge7zFormatMergePluginImpl *format = GetInstance();
+	Merge7z::Format* formatChild = nullptr;
+	PluginInfo* URLHandler = nullptr;
 	PluginInfo *plugin = nullptr;
-	if (format->m_infoUnpacker.m_PluginOrPredifferMode != PLUGIN_MANUAL)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", path);
-	else if (!format->m_infoUnpacker.m_PluginName.empty())
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.m_PluginName);
-	if (plugin == nullptr)
-		return nullptr;
-	if (!plugin::InvokeIsFolder(path, plugin->m_lpDispatch))
-		return nullptr;
+	String dummypath = path;
+	bool isfolder = false;
+	if (paths::IsURL(path))
+	{
+		URLHandler = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", path);
+		if (!URLHandler)
+			return nullptr;
+		isfolder = plugin::InvokeIsFolder(path, URLHandler->m_lpDispatch);
+		if (!isfolder)
+		{
+			dummypath = paths::ConcatPath(env::GetTemporaryPath(), _T("tmp"));
+			String ext = URLHandler->m_ext;
+			if (!ext.empty())
+				dummypath += ext;
+			else
+				dummypath += paths::FindExtension(path);
+		}
+	}
+	if (!isfolder)
+	{
+		if (format->m_infoUnpacker.GetPluginPipeline().find(_T("<Automatic>")) != String::npos)
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", dummypath);
+		else if (!format->m_infoUnpacker.GetPluginPipeline().empty())
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", format->m_infoUnpacker.GetPluginPipeline());
+		if (plugin == nullptr)
+		{
+			if (URLHandler == nullptr)
+				return nullptr;
+			formatChild = ArchiveGuessFormat(dummypath);
+			if (formatChild == nullptr)
+				return nullptr;
+		}
+		if (plugin)
+		{
+			if (!plugin::InvokeIsFolder(dummypath, plugin->m_lpDispatch))
+				return nullptr;
+		}
+	}
 	format->m_plugin = plugin;
+	format->m_URLHandler = URLHandler;
+	format->m_format = formatChild;
 	return format;
 }
 
 HRESULT Merge7zFormatMergePluginImpl::DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder)
 {
-	if (m_plugin == nullptr)
-		return E_FAIL;
-	paths::CreateIfNeeded(path);
 	int nChanged = 0;
-	return plugin::InvokeUnpackFolder(path, folder, nChanged, m_plugin->m_lpDispatch, m_infoUnpacker.m_subcode) ? S_OK : E_FAIL;
+	int subcode = 0;
+	if (m_URLHandler == nullptr && m_plugin == nullptr && m_format == nullptr)
+		return E_FAIL;
+	String srcpath = path;
+	paths::CreateIfNeeded(folder);
+	if (m_URLHandler != nullptr && m_plugin == nullptr && m_format == nullptr)
+		return plugin::InvokeUnpackFolder(srcpath, folder, nChanged, m_URLHandler->m_lpDispatch, subcode) ? S_OK : E_FAIL;
+	if (m_URLHandler)
+	{
+		String ext = m_URLHandler->m_ext;
+		String dstpath = env::GetTemporaryFileName(env::GetTemporaryPath(), _T("URL"))
+			+ (!ext.empty() ? ext : paths::FindExtension(path));
+		if (!plugin::InvokeUnpackFile(srcpath, dstpath, nChanged, m_URLHandler->m_lpDispatch, subcode))
+			return E_FAIL;
+		srcpath = dstpath;
+	}
+	if (m_plugin)
+	{
+		HRESULT hr = plugin::InvokeUnpackFolder(srcpath, folder, nChanged, m_plugin->m_lpDispatch, subcode) ? S_OK : E_FAIL;
+		if (m_URLHandler != nullptr)
+			DeleteFile(srcpath.c_str());
+		return hr;
+	}
+	else if (m_format)
+	{
+		HRESULT hr = m_format->DeCompressArchive(nullptr, srcpath.c_str(), folder);
+		if (m_URLHandler != nullptr)
+			DeleteFile(srcpath.c_str());
+		return hr;
+	}
+	return E_FAIL;
 }
 
 HRESULT Merge7zFormatMergePluginImpl::CompressArchive(HWND, LPCTSTR path, Merge7z::DirItemEnumerator *)

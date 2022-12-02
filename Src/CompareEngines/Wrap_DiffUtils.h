@@ -9,10 +9,10 @@
 
 class CompareOptions;
 class FilterList;
+class SubstitutionList;
 class DiffutilsOptions;
 struct file_data;
 struct FileTextStats;
-class FilterCommentsManager;
 class CDiffWrapper;
 
 namespace CompareEngines
@@ -33,8 +33,9 @@ public:
 	~DiffUtils();
 	void SetCompareOptions(const CompareOptions & options);
 	void SetFilterList(FilterList * list);
-	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager);
 	void ClearFilterList();
+	void SetSubstitutionList(std::shared_ptr<SubstitutionList> plist);
+	void ClearSubstitutionList();
 	void SetFileData(int items, file_data *data);
 	int diffutils_compare_files();
 	bool RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const;

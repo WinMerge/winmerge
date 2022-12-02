@@ -39,15 +39,16 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	ON_WM_CLOSE()
 	ON_WM_MDIACTIVATE()
 	ON_WM_TIMER()
+	ON_WM_SIZE()
+	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
+	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
+	// [View] menu
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
-	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
-	ON_WM_SIZE()
-	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -117,6 +118,13 @@ BOOL CMergeEditFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndFilePathBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
 		m_pMergeDoc->GetView(0, pane)->SetActivePane();
+	});
+	m_wndFilePathBar.SetOnCaptionChangedCallback([&](int pane, const String& sText) {
+		m_pMergeDoc->SetDescription(pane, sText);
+		m_pMergeDoc->UpdateHeaderPath(pane);
+	});
+	m_wndFilePathBar.SetOnFileSelectedCallback([&](int pane, const String& sFilepath) {
+		m_pMergeDoc->ChangeFile(pane, sFilepath);
 	});
 	m_wndStatusBar.SetPaneCount(m_pMergeDoc->m_nBuffers);
 	
@@ -212,6 +220,18 @@ int CMergeEditFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+BOOL CMergeEditFrame::OnBarCheck(UINT nID)
+{
+	BOOL result = __super::OnBarCheck(nID);
+	// Fix for osdn.net #42862
+	if (nID == ID_VIEW_DETAIL_BAR && m_wndDetailBar.IsWindowVisible())
+	{
+		int nDiff = m_pMergeDoc->GetCurrentDiff();
+		m_pMergeDoc->ForEachView ([nDiff](auto& pView) { if (pView->m_bDetailView) pView->OnDisplayDiff(nDiff); });
+	}
+	return result;
+}
+
 /**
  * @brief We must use this function before a call to SetDockState
  *
@@ -254,7 +274,11 @@ BOOL CMergeEditFrame::DestroyWindow()
 	SavePosition();
 	SaveActivePane();
 	SaveWindowState();
-	return CMergeFrameCommon::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 /**
@@ -291,8 +315,6 @@ void CMergeEditFrame::OnClose()
 {
 	// clean up pointers.
 	CMergeFrameCommon::OnClose();
-
-	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 /// update splitting position for panels 1/2 and headerbar and statusbar 
@@ -316,12 +338,10 @@ void CMergeEditFrame::UpdateHeaderSizes()
 	}
 	else
 	{
-		CRect rect;
-		wndSplitter.GetWindowRect(&rect);
+		int w2, wmin;
+		wndSplitter.GetColumnInfo(0, w2, wmin);
 		for (pane = 0; pane < pDoc->m_nBuffers; pane++)
-		{
-			w[pane] = rect.Width() /  pDoc->m_nBuffers;
-		}
+			w[pane] = (w2 - 4 * pDoc->m_nBuffers) / pDoc->m_nBuffers;
 	}
 
 	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + pDoc->m_nBuffers - 1, w))
@@ -409,15 +429,6 @@ void CMergeEditFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI)
 	auto& wndSplitter = GetMergeEditSplitterWnd(0);
 	pCmdUI->Enable(TRUE);
 	pCmdUI->SetCheck((wndSplitter.GetColumnCount() != 1));
-}
-
-/// Document commanding us to close
-void CMergeEditFrame::CloseNow()
-{
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	MDIActivate();
-	MDIDestroy();
 }
 
 /**

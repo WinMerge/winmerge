@@ -32,6 +32,7 @@ public :
 protected:
 
 	//{{AFX_MSG(CEditorFilePathBar)
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM, LPARAM);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP();
@@ -52,7 +53,7 @@ protected:
 		MergeStatus();
 		// Implement MergeEditStatus
 		void SetLineInfo(LPCTSTR szLine, int nColumn, int nColumns,
-			int nChar, int nChars, LPCTSTR szEol, int nCodepage, bool bHasBom);
+			int nChar, int nChars, int nSelectedLines, int nSelectedChars, LPCTSTR szEol, int nCodepage, bool bHasBom) override;
 		void UpdateResources();
 	protected:
 		void Update();
@@ -66,6 +67,8 @@ protected:
 		int m_nChar; /**< Current char */
 		int m_nChars; /**< Amount of chars in line */
 		int m_nCodepage;
+		int m_nSelectedLines;
+		int m_nSelectedChars;
 		bool m_bHasBom;
 		String m_sEol;
 		String m_sEolDisplay;

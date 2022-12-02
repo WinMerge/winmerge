@@ -53,6 +53,7 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy) = 0;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) = 0;
+	virtual bool ReadStringAll(String & line) = 0;
 	virtual int GetLineNumber() const = 0;
 	virtual int64_t GetPosition() const = 0;
 	virtual bool WriteString(const String & line) = 0;
@@ -84,7 +85,7 @@ inline bool UniFile::UniError::HasError() const
  */
 inline void UniFile::UniError::ClearError()
 {
-	desc.erase();
+	desc.clear();
 }
 
 /**
@@ -138,6 +139,7 @@ public:
 
 	virtual int GetLineNumber() const override { return m_lineno; }
 	virtual const txtstats & GetTxtStats() const override { return m_txtstats; }
+	virtual int64_t GetFileSize() const{ return m_filesize; }
 
 	bool IsUnicode() override;
 
@@ -147,15 +149,15 @@ protected:
 
 protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
+	int m_lineno; // current 0-based line of m_current
 	int64_t m_filesize;
 	String m_filepath;
 	String m_filename;
-	int m_lineno; // current 0-based line of m_current
 	UniError m_lastError;
-	ucr::UNICODESET m_unicoding;
 	int m_charsize; // 2 for UCS-2, else 1
 	int m_codepage; // only valid if m_unicoding==ucr::NONE;
 	txtstats m_txtstats;
+	ucr::UNICODESET m_unicoding;
 	bool m_bom; /**< Did the file have a BOM when reading? */
 	bool m_bUnicodingChecked; /**< Has unicoding been checked for the file? */
 	bool m_bUnicode; /**< Is the file unicode file? */
@@ -166,7 +168,6 @@ protected:
  */
 class UniMemFile : public UniLocalFile
 {
-	friend class UniMarkdownFile;
 public:
 	enum AccessMode
 	{
@@ -192,8 +193,10 @@ public:
 public:
 	virtual bool ReadString(String & line, bool * lossy) override;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
+	virtual bool ReadStringAll(String & line) override;
 	virtual int64_t GetPosition() const override { return m_current - m_base; }
 	virtual bool WriteString(const String & line) override;
+	unsigned char* GetBase() const { return m_base; }
 
 // Implementation methods
 protected:
@@ -262,6 +265,7 @@ public:
 protected:
 	virtual bool ReadString(String & line, bool * lossy) override;
 	virtual bool ReadString(String & line, String & eol, bool * lossy) override;
+	virtual bool ReadStringAll(String & line) override;
 
 public:
 	virtual int64_t GetPosition() const override;

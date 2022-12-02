@@ -17,9 +17,12 @@
 #define new DEBUG_NEW
 #endif
 
+
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, DpiAware::CDpiAwareWnd<CDialogBar>)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
 	ON_CONTROL_RANGE (EN_SETFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSetFocusEdit)
+	ON_CONTROL_RANGE (EN_USER_CAPTION_CHANGED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnChangeEdit)
+	ON_CONTROL_RANGE (EN_USER_FILE_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSelectEdit)
 	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
@@ -56,11 +59,13 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 		m_font.CreateFontIndirect(&lfStatusFont);
 
 	// subclass the two custom edit boxes
+	const int nLogPixelsY = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
+	int cx = -MulDiv(lfStatusFont.lfHeight, nLogPixelsY, 72);
 	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
 	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 		m_Edit[pane].SetFont(&m_font);
-		m_Edit[pane].SetMargins(4, 4);
+		m_Edit[pane].SetMargins(4, 4 + cx);
 	}
 	return TRUE;
 };
@@ -83,12 +88,12 @@ void CEditorFilePathBar::Resize()
 	if (m_hWnd == nullptr)
 		return;
 
-	WINDOWPLACEMENT infoBar;
+	WINDOWPLACEMENT infoBar = {};
 	GetWindowPlacement(&infoBar);
 
-	int widths[3];
+	int widths[3] = {};
 	for (int pane = 0; pane < m_nPanes; pane++)
-		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes);
+		widths[pane] = (infoBar.rcNormalPosition.right / m_nPanes) - ((pane == 0) ? 7 : 5);
 	Resize(widths);
 }
 
@@ -173,8 +178,29 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 void CEditorFilePathBar::OnSetFocusEdit(UINT id)
 {
-	if (m_callbackfunc)
-		m_callbackfunc(id - IDC_STATIC_TITLE_PANE0);
+	if (m_setFocusCallbackfunc)
+		m_setFocusCallbackfunc(id - IDC_STATIC_TITLE_PANE0);
+}
+
+void CEditorFilePathBar::OnChangeEdit(UINT id)
+{
+	const int pane = id - IDC_STATIC_TITLE_PANE0;
+	if (m_captionChangedCallbackfunc)
+	{
+		CString text;
+		m_Edit[pane].GetWindowText(text);
+		m_captionChangedCallbackfunc(pane, (LPCTSTR)text);
+	}
+}
+
+void CEditorFilePathBar::OnSelectEdit(UINT id)
+{
+	const int pane = id - IDC_STATIC_TITLE_PANE0;
+	if (m_fileSelectedCallbackfunc)
+	{
+		String filename = m_Edit[pane].GetSelectedFile();
+		m_fileSelectedCallbackfunc(pane, filename);
+	}
 }
 
 LRESULT CEditorFilePathBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)

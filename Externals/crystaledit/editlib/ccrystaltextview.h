@@ -49,6 +49,7 @@ class SyntaxColors;
 class CFindTextDlg;
 struct LastSearchInfos;
 class CCrystalTextMarkers;
+class CEditReplaceDlg;
 
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
@@ -89,6 +90,7 @@ class EDITPADC_CLASS CCrystalTextView : public DpiAware::CDpiAwareWnd<CView>
 
     friend CCrystalParser;
     friend CCrystalTextBuffer;
+    friend CEditReplaceDlg;
 
 protected:
     //  Search parameters
@@ -97,10 +99,9 @@ protected:
     LPTSTR m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
     CFindTextDlg *m_pFindTextDlg;
-
-private :
     bool m_bCursorHidden;
 
+private :
     //  Painting caching bitmap
     CBitmap *m_pCacheBitmap;
 
@@ -115,6 +116,7 @@ private :
     bool m_bTopMargin;
     bool m_bSelMargin;
     bool m_bViewLineNumbers;
+    int  m_nLineNumberUsedAsHeaders;
     DWORD m_dwFlags;
 
     //  Amount of lines/characters that completely fits the client area
@@ -203,15 +205,15 @@ protected:
     void ToggleBookmark(int nLine);
 
 public :
-    enum RENDERING_MODE
+    enum class RENDERING_MODE
     {
-      RENDERING_MODE_GDI = -1,
-      RENDERING_MODE_DWRITE_DFEAULT = 0,
-      RENDERING_MODE_DWRITE_ALIASED = 1,
-      RENDERING_MODE_DWRITE_GDI_CLASSIC = 2,
-      RENDERING_MODE_DWRITE_GDI_NATURAL = 3,
-      RENDERING_MODE_DWRITE_NATURAL = 4,
-      RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC = 5,
+      GDI = -1,
+      DWRITE_DFEAULT = 0,
+      DWRITE_ALIASED = 1,
+      DWRITE_GDI_CLASSIC = 2,
+      DWRITE_GDI_NATURAL = 3,
+      DWRITE_NATURAL = 4,
+      DWRITE_NATURAL_SYMMETRIC = 5,
     };
 
     virtual void ResetView ();
@@ -229,7 +231,7 @@ public :
 protected :
     CPoint WordToRight (CPoint pt);
     CPoint WordToLeft (CPoint pt);
-    bool           m_bOverrideCaret;
+    bool m_bOvrMode;
 
     bool m_bSingle;
     CCrystalTextBuffer *m_pTextBuffer;
@@ -297,7 +299,9 @@ protected :
     bool IsSelection () const;
     bool IsInsideSelection (const CPoint & ptTextPos);
     bool GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
-    void GetSelection (CPoint & ptStart, CPoint & ptEnd);
+    std::pair<CPoint, CPoint> GetSelection ();
+    void GetSelection (CPoint & ptStart, CPoint & ptEnd)
+      { std::tie(ptStart, ptEnd) = GetSelection(); }
     void GetFullySelectedLines(int & firstLine, int & lastLine);
     virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true);
 
@@ -403,6 +407,7 @@ protected :
     //END SW
     int GetCharWidth ();
     int GetMaxLineLength (int nTopLine, int nLines);
+    bool CoverLength(int nTopLine, int nLines, int min_length);
     int GetScreenLines ();
     int GetScreenChars ();
 
@@ -480,15 +485,19 @@ protected:
     virtual void OnDropSource (DROPEFFECT de);
     bool IsDraggingText () const;
 
-    virtual COLORREF GetColor (int nColorIndex);
+    virtual COLORREF GetColor (int nColorIndex) const;
     virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, bool & bDrawWhitespace);
     virtual bool GetItalic (int nColorIndex);
     virtual bool GetBold (int nColorIndex);
 
+    bool GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight);
     void DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
-                         COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
+                         COLORREF crText, COLORREF crBkgnd,
+                         int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos,
+                         int nSelLeft, int nSelRight);
     virtual void DrawSingleLine (const CRect & rect, int nLineIndex);
+    virtual void GetTopMarginText (const CRect& rect, CString& columnnames, std::vector<int>& nWidths);
     virtual void DrawTopMargin (const CRect & rect);
     virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber);
 
@@ -603,6 +612,8 @@ protected:
     virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
     virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
     void InvalidateScreenRect(bool bInvalidateView = true);
+    void InvalidateVertScrollBar();
+    void InvalidateHorzScrollBar();
     //END SW
 
     virtual HINSTANCE GetResourceHandle ();
@@ -619,6 +630,7 @@ protected:
     //END SW
 
     std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
+    virtual std::vector<CrystalLineParser::TEXTBLOCK> GetWhitespaceTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
@@ -686,12 +698,12 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    DWORD ParseLine (DWORD dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (unsigned dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
-    int GetCRLFMode ();
-    void SetCRLFMode (enum CRLFSTYLE nCRLFMode);
+    enum class CRLFSTYLE GetCRLFMode ();
+    void SetCRLFMode (CRLFSTYLE nCRLFMode);
     bool GetViewTabs () const { return m_bViewTabs; }
     void SetViewTabs (bool bViewTabs);
     bool GetViewEols () const { return m_bViewEols; }
@@ -704,6 +716,8 @@ public :
     void SetSelectionMargin (bool bSelMargin);
     bool GetViewLineNumbers() const { return m_bViewLineNumbers; }
     void SetViewLineNumbers(bool bViewLineNumbers);
+    int  GetLineUsedAsHeaders () const { return m_nLineNumberUsedAsHeaders; }
+    void SetLineUsedAsHeaders(int nLineNumberUsedAsHeaders) { m_nLineNumberUsedAsHeaders = nLineNumberUsedAsHeaders; }
     void GetFont (LOGFONT & lf) const { lf = m_lfBaseFont; }
     void SetFont (const LOGFONT & lf);
     DWORD GetFlags () const { return m_dwFlags; }
@@ -794,7 +808,7 @@ public :
                           DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
     bool FindText (const LastSearchInfos * lastSearch);
     bool HighlightText (const CPoint & ptStartPos, int nLength,
-      bool bCursorToLeft = false);
+      bool bCursorToLeft = false, bool bUpdateView = true);
 
     // IME (input method editor)
     void UpdateCompositionWindowPos();

@@ -46,14 +46,14 @@ namespace
 		UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, nullptr, 0);
 
 		// get all file names. but we'll only need the first one.
-		for (WORD x = 0; x < wNumFilesDropped; x++)
+		for (UINT x = 0; x < wNumFilesDropped; x++)
 		{
 			// Get the number of bytes required by the file's full pathname
 			UINT wPathnameSize = DragQueryFile(dropInfo, x, nullptr, 0);
 
 			// Allocate memory to contain full pathname & zero byte
 			wPathnameSize += 1;
-			std::unique_ptr<TCHAR[]> npszFile(new TCHAR[wPathnameSize]);
+			auto npszFile = std::make_unique<TCHAR[]>(wPathnameSize);
 
 			// Copy the pathname into the buffer
 			DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
@@ -286,9 +286,7 @@ DropHandler::DropHandler(std::function<void(const std::vector<String>&)> callbac
 {
 }
 
-DropHandler::~DropHandler()
-{
-}
+DropHandler::~DropHandler() = default;
 
 HRESULT STDMETHODCALLTYPE DropHandler::QueryInterface(REFIID riid, void **ppvObject)
 {

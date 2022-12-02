@@ -23,6 +23,8 @@
 #define new DEBUG_NEW
 #endif
 
+#define SWAPPARAMS_IF(c, a, b) (c ? a : b), (c ? b : a)
+
 /////////////////////////////////////////////////////////////////////////////
 // CHexMergeFrame
 
@@ -34,11 +36,14 @@ BEGIN_MESSAGE_MAP(CHexMergeFrame, CMergeFrameCommon)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
-	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
-	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
+	// [View] menu
+	ON_COMMAND(ID_VIEW_SPLITVERTICALLY, OnViewSplitVertically)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SPLITVERTICALLY, OnUpdateViewSplitVertically)
+	//ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
+	//ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
+	//ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
+	//ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -60,6 +65,7 @@ enum
 
 CHexMergeFrame::CHexMergeFrame()
 	: CMergeFrameCommon(IDI_EQUALBINARY, IDI_BINARYDIFF)
+	, m_HScrollInfo{}, m_VScrollInfo{}
 {
 	m_pMergeDoc = 0;
 }
@@ -89,9 +95,10 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
 	m_pMergeDoc = dynamic_cast<CHexMergeDoc *>(pContext->m_pCurrentDoc);
+	bool bSplitVert = !GetOptionsMgr()->GetBool(OPT_SPLIT_HORIZONTALLY);
 
 	// create a splitter with 1 row, 2 columns
-	if (!m_wndSplitter.CreateStatic(this, 1, m_pMergeDoc->m_nBuffers, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
+	if (!m_wndSplitter.CreateStatic(this, SWAPPARAMS_IF(bSplitVert, 1, m_pMergeDoc->m_nBuffers), WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
@@ -100,7 +107,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	int nPane;
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 	{
-		if (!m_wndSplitter.CreateView(0, nPane,
+		if (!m_wndSplitter.CreateView(SWAPPARAMS_IF(bSplitVert, 0, nPane),
 			RUNTIME_CLASS(CHexMergeView), CSize(-1, 200), pContext))
 		{
 			TRACE0("Failed to create first pane\n");
@@ -122,6 +129,10 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndFilePathBar.SetOnSetFocusCallback([&](int pane) {
 		SetActivePane(pane);
 	});
+	m_wndFilePathBar.SetOnCaptionChangedCallback([&](int pane, const String& sText) {
+		m_pMergeDoc->SetDescription(pane ,sText);
+		m_pMergeDoc->UpdateHeaderPath(pane);
+	});
 
 	// Set filename bars inactive so colors get initialized
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
@@ -129,7 +140,7 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 
 	CHexMergeView *pView[3];
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
-		pView[nPane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, nPane));
+		pView[nPane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(SWAPPARAMS_IF(bSplitVert, 0, nPane)));
 
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
 		CreateHexWndStatusBar(m_wndStatusBar[nPane], pView[nPane]);
@@ -185,7 +196,11 @@ BOOL CHexMergeFrame::DestroyWindow()
 	SavePosition();
 	SaveActivePane();
 	SaveWindowState();
-	return CMDIChildWnd::DestroyWindow();
+	CFrameWnd* pParentFrame = GetParentFrame();
+	BOOL result = CMergeFrameCommon::DestroyWindow();
+	if (pParentFrame)
+		pParentFrame->OnUpdateFrameTitle(FALSE);
+	return result;
 }
 
 /**
@@ -227,12 +242,26 @@ void CHexMergeFrame::UpdateHeaderSizes()
 {
 	if (!m_wndSplitter.m_hWnd || !m_wndFilePathBar.m_hWnd)
 		return;
+	CRect rcFrame;
+	GetClientRect(&rcFrame);
 	int w[3],wmin;
 	int nPaneCount = m_wndSplitter.GetColumnCount();
-	for (int pane = 0; pane < nPaneCount; pane++)
+	if (nPaneCount > 1)
 	{
-		m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
-		if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+		for (int pane = 0; pane < nPaneCount; pane++)
+		{
+			m_wndSplitter.GetColumnInfo(pane, w[pane], wmin);
+			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+		}
+	}
+	else
+	{
+		nPaneCount = m_wndSplitter.GetRowCount();
+		for (int pane = 0; pane < nPaneCount; pane++)
+		{
+			w[pane] = rcFrame.Width() / nPaneCount;
+			if (w[pane]<1) w[pane]=1; // Perry 2003-01-22 (I don't know why this happens)
+		}
 	}
 	
 	if (!std::equal(m_nLastSplitPos, m_nLastSplitPos + nPaneCount - 1, w))
@@ -241,9 +270,7 @@ void CHexMergeFrame::UpdateHeaderSizes()
 
 		// resize controls in header dialog bar
 		m_wndFilePathBar.Resize(w);
-		RECT rcFrame, rc;
-		GetClientRect(&rcFrame);
-		rc = rcFrame;
+		RECT rc = rcFrame;
 		rc.top = rc.bottom - m_rectBorder.bottom;
 		rc.right = 0;
 		for (int pane = 0; pane < nPaneCount; pane++)
@@ -316,6 +343,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 		SCROLLINFO si, siView[3];
 		// Synchronize horizontal scrollbars
 		pView[0]->GetScrollInfo(SB_HORZ, &si, SIF_ALL | SIF_DISABLENOSCROLL);
+		m_HScrollInfo[0] = si;
 		for (pane = 1; pane < nColumns; ++pane)
 		{
 			SCROLLINFO siCur;
@@ -327,11 +355,12 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 				si.nPage = siCur.nPage;
 			if (si.nMax < siCur.nMax)
 				si.nMax = siCur.nMax;
-			if (GetFocus() == pView[pane])
+			if (memcmp(&siCur, &m_HScrollInfo[pane], sizeof si))
 			{
 				si.nPos = siCur.nPos;
 				si.nTrackPos = siCur.nTrackPos;
 			}
+			m_HScrollInfo[pane] = siCur;
 		}
 		for (pane = 0; pane < nColumns; ++pane)
 		{
@@ -346,6 +375,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 
 		// Synchronize vertical scrollbars
 		pView[0]->GetScrollInfo(SB_VERT, &si, SIF_ALL | SIF_DISABLENOSCROLL);
+		m_VScrollInfo[0] = si;
 		for (pane = 1; pane < nColumns; ++pane)
 		{
 			SCROLLINFO siCur;
@@ -355,11 +385,12 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 				si.nMin = siCur.nMin;
 			if (si.nMax < siCur.nMax)
 				si.nMax = siCur.nMax;
-			if (GetFocus() == pView[pane])
+			if (memcmp(&siCur, &m_VScrollInfo[pane], sizeof si))
 			{
 				si.nPos = siCur.nPos;
 				si.nTrackPos = siCur.nTrackPos;
 			}
+			m_VScrollInfo[pane] = siCur;
 		}
 		for (pane = 0; pane < nColumns; ++pane)
 		{
@@ -373,15 +404,6 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 			m_wndSplitter.GetScrollBarCtrl(pView[nColumns - 1], SB_VERT)->SetScrollInfo(&si);
 	}
 	CMDIChildWnd::OnIdleUpdateCmdUI();
-}
-
-/// Document commanding us to close
-void CHexMergeFrame::CloseNow()
-{
-	SavePosition(); // Save settings before closing!
-	SaveActivePane();
-	MDIActivate();
-	MDIDestroy();
 }
 
 /**
@@ -399,3 +421,24 @@ LRESULT CHexMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 	SavePosition();
 	return 0;
 }
+
+/**
+ * @brief Split panes vertically
+ */
+void CHexMergeFrame::OnViewSplitVertically() 
+{
+	bool bSplitVertically = (m_wndSplitter.GetColumnCount() != 1);
+	bSplitVertically = !bSplitVertically; // toggle
+	GetOptionsMgr()->SaveOption(OPT_SPLIT_HORIZONTALLY, !bSplitVertically);
+	m_wndSplitter.FlipSplit();
+}
+
+/**
+ * @brief Update "Split Vertically" UI items
+ */
+void CHexMergeFrame::OnUpdateViewSplitVertically(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck((m_wndSplitter.GetColumnCount() != 1));
+}
+

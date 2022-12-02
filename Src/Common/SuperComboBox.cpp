@@ -440,7 +440,7 @@ void CSuperComboBox::SetAutoComplete(INT nSource)
 			// shell functionality.
 			m_bAutoComplete = false;
 
-			// ComboBox's edit control is alway 1001.
+			// ComboBox's edit control is always 1001.
 			CWnd *pWnd = m_bComboBoxEx ? this->GetEditCtrl() : GetDlgItem(1001);
 			ASSERT(pWnd != nullptr);
 			SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
@@ -464,7 +464,7 @@ void CSuperComboBox::ResetContent()
 		m_sFullStateText.resize(m_nMaxItems);
 		for (int i = 0; i < m_nMaxItems; i++)
 		{
-			m_sFullStateText[i] = _T("");
+			m_sFullStateText[i].Empty();
 		}
 	}
 	__super::ResetContent();
@@ -510,7 +510,13 @@ static DWORD WINAPI SHGetFileInfoThread(LPVOID pParam)
 	// If SHGetFileInfo() fails, intentionally leave sfi.iIcon as 0 (indicating
 	// a file of inspecific type) so as to not obstruct CBEIF_DI_SETITEM logic.
 	if (!sPath.IsEmpty())
-		SHGetFileInfo(sPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+	{
+		if (SUCCEEDED(CoInitialize(nullptr)))
+		{
+			SHGetFileInfo(sPath, 0, &sfi, sizeof(sfi), SHGFI_SYSICONINDEX);
+			CoUninitialize();
+		}
+	}
 	sPath.~CString();
 	return sfi.iIcon;
 }

@@ -17,6 +17,14 @@ static const TCHAR LeftPath[] = _T("C:\\Temp\\Left");
 static const TCHAR RightPath[] = _T("C:\\Temp\\Right");
 /** @brief Filter we should get from file. */
 static const TCHAR Filter[] = _T("Filter Name");
+/** @brief Prediffer we should get from file. */
+static const TCHAR Prediffer[] = _T("IgnoreColumns.dll");
+/** @brief Unpacker we should get from file. */
+static const TCHAR Unpacker[] = _T("CompareMSExcelFiles.sct");
+/** @brief Left desc we should get from file. */
+static const TCHAR LeftDesc[] = _T("left description");
+/** @brief Right desc we should get from file. */
+static const TCHAR RightDesc[] = _T("right description");
 
 namespace
 {
@@ -143,6 +151,76 @@ TEST_F(PathAndFilterTest, GetFilter)
 
 	String filter = m_pProjectFileItem->GetFilter();
 	ASSERT_TRUE(filter.compare(Filter) == 0);
+}
+
+/**
+ * @brief Read prediffer.
+ */
+TEST_F(PathAndFilterTest, GetPrediffer)
+{
+	// Now we have a prediffer
+	bool bHasPrediffer = m_pProjectFileItem->HasPrediffer();
+	ASSERT_TRUE(bHasPrediffer == true);
+
+	String prediffer = m_pProjectFileItem->GetPrediffer();
+	ASSERT_TRUE(prediffer.compare(Prediffer) == 0);
+}
+
+/**
+ * @brief Read unpacker.
+ */
+TEST_F(PathAndFilterTest, GetUnpacker)
+{
+	// Now we have a unpacker
+	bool bHasUnpacker = m_pProjectFileItem->HasUnpacker();
+	ASSERT_TRUE(bHasUnpacker == true);
+
+	String unpacker = m_pProjectFileItem->GetUnpacker();
+	ASSERT_TRUE(unpacker.compare(Unpacker) == 0);
+}
+
+/**
+ * @brief Read left/right description.
+ */
+TEST_F(PathAndFilterTest, GetDesc)
+{
+	// Now we have a left description
+	bool bHasLeftDesc = m_pProjectFileItem->HasLeftDesc();
+	ASSERT_TRUE(bHasLeftDesc == true);
+
+	String leftDesc = m_pProjectFileItem->GetLeftDesc();
+	ASSERT_TRUE(leftDesc.compare(LeftDesc) == 0);
+
+	// Now we have a right description
+	bool bHasRightDesc = m_pProjectFileItem->HasRightDesc();
+	ASSERT_TRUE(bHasRightDesc == true);
+
+	String rightDesc = m_pProjectFileItem->GetRightDesc();
+	ASSERT_TRUE(rightDesc.compare(RightDesc) == 0);
+}
+
+/**
+ * @brief Read table properties
+ */
+TEST_F(PathAndFilterTest, GetTableProperties)
+{
+	bool bHasTableDelimiter = m_pProjectFileItem->HasTableDelimiter();
+	ASSERT_TRUE(bHasTableDelimiter == true);
+
+	TCHAR tableDelimiter = m_pProjectFileItem->GetTableDelimiter();
+	ASSERT_TRUE(tableDelimiter == '\t');
+
+	bool bHasTableQuote = m_pProjectFileItem->HasTableQuote();
+	ASSERT_TRUE(bHasTableQuote == true);
+
+	TCHAR tableQuote = m_pProjectFileItem->GetTableQuote();
+	ASSERT_TRUE(tableQuote == '\"');
+
+	bool bHasTableAllowNewLinesInQuotes = m_pProjectFileItem->HasTableAllowNewLinesInQuotes();
+	ASSERT_TRUE(bHasTableAllowNewLinesInQuotes == true);
+
+	bool tableAllowNewLinesInQuotes = m_pProjectFileItem->GetTableAllowNewLinesInQuotes();
+	ASSERT_TRUE(tableAllowNewLinesInQuotes == true);
 }
 
 }

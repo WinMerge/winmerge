@@ -25,7 +25,7 @@
 #endif
 
 //  Rust keywords
-static LPCTSTR s_apszRustKeywordList[] =
+static const TCHAR * s_apszRustKeywordList[] =
   {
     _T ("Self"),
     _T ("abstract"),
@@ -81,7 +81,7 @@ static LPCTSTR s_apszRustKeywordList[] =
     _T ("yield"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("String"),
     _T ("binary32"),
@@ -104,26 +104,26 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsRustKeyword (LPCTSTR pszChars, int nLength)
+IsRustKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszRustKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineRust (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineRust (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING | COOKIE_STRING | 0xFF000000);
 
-  LPCTSTR pszRawStringBegin = nullptr;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszRawStringBegin = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;

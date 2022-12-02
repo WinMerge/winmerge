@@ -32,9 +32,12 @@
 #include "HexMergeDoc.h"
 #include "HexMergeView.h"
 #include "ImgMergeFrm.h"
+#include "WebPageDiffFrm.h"
 #include "LineFiltersList.h"
+#include "SubstitutionFiltersList.h"
 #include "ConflictFileParser.h"
 #include "LineFiltersDlg.h"
+#include "SubstitutionFiltersDlg.h"
 #include "paths.h"
 #include "Environment.h"
 #include "PatchTool.h"
@@ -50,6 +53,7 @@
 #include "PreferencesDlg.h"
 #include "FileOrFolderSelect.h"
 #include "PluginsListDlg.h"
+#include "SelectPluginDlg.h"
 #include "stringdiffs.h"
 #include "MergeCmdLineInfo.h"
 #include "OptionsFont.h"
@@ -60,8 +64,12 @@
 #include "Bitmap.h"
 #include "CCrystalTextMarkers.h"
 #include "utils/hqbitmap.h"
-
+#include "UniFile.h"
+#include "TFile.h"
+#include "Shell.h"
 #include "WindowsManagerDialog.h"
+#include "ClipboardHistory.h"
+#include "locality.h"
 
 using std::vector;
 using boost::begin;
@@ -81,7 +89,15 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
  */
 const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_FILE_OPENCONFLICT,			IDB_FILE_OPENCONFLICT,			CMainFrame::MENU_ALL },
-	{ ID_FILE_NEW3,                 IDB_FILE_NEW3,                  CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW_TABLE,			IDB_FILE_NEW_TABLE,				CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW_HEX,				IDB_FILE_NEW_HEX,				CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW_IMAGE,			IDB_FILE_NEW_IMAGE,				CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW_WEBPAGE,			IDB_FILE_NEW_WEBPAGE,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3,					IDB_FILE_NEW3,					CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3_TABLE,			IDB_FILE_NEW3_TABLE,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3_HEX,				IDB_FILE_NEW3_HEX,				CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3_IMAGE,			IDB_FILE_NEW3_IMAGE,			CMainFrame::MENU_ALL },
+	{ ID_FILE_NEW3_WEBPAGE,			IDB_FILE_NEW3_WEBPAGE,			CMainFrame::MENU_ALL },
 	{ ID_EDIT_COPY,					IDB_EDIT_COPY,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_CUT,					IDB_EDIT_CUT,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_PASTE,				IDB_EDIT_PASTE,					CMainFrame::MENU_ALL },
@@ -90,7 +106,7 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_WINDOW_TILE_HORZ,			IDB_WINDOW_HORIZONTAL,			CMainFrame::MENU_ALL },
 	{ ID_WINDOW_TILE_VERT,			IDB_WINDOW_VERTICAL,			CMainFrame::MENU_ALL },
 	{ ID_FILE_CLOSE,				IDB_WINDOW_CLOSE,				CMainFrame::MENU_ALL },
-	{ ID_WINDOW_CHANGE_PANE,		IDB_WINDOW_CHANGEPANE,			CMainFrame::MENU_ALL },
+	{ ID_NEXT_PANE,					IDB_WINDOW_CHANGEPANE,			CMainFrame::MENU_ALL },
 	{ ID_EDIT_WMGOTO,				IDB_EDIT_GOTO,					CMainFrame::MENU_ALL },
 	{ ID_EDIT_REPLACE,				IDB_EDIT_REPLACE,				CMainFrame::MENU_ALL },
 	{ ID_VIEW_SELECTFONT,			IDB_VIEW_SELECTFONT,			CMainFrame::MENU_ALL },
@@ -101,8 +117,6 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_TOOLS_CUSTOMIZECOLUMNS,	IDB_TOOLS_COLUMNS,				CMainFrame::MENU_ALL },
 	{ ID_TOOLS_GENERATEPATCH,		IDB_TOOLS_GENERATEPATCH,		CMainFrame::MENU_ALL },
 	{ ID_PLUGINS_LIST,				IDB_PLUGINS_LIST,				CMainFrame::MENU_ALL },
-	{ ID_COPY_FROM_LEFT,			IDB_COPY_FROM_LEFT,				CMainFrame::MENU_ALL },
-	{ ID_COPY_FROM_RIGHT,			IDB_COPY_FROM_RIGHT,			CMainFrame::MENU_ALL },
 	{ ID_FILE_PRINT,				IDB_FILE_PRINT,					CMainFrame::MENU_FILECMP },
 	{ ID_TOOLS_GENERATEREPORT,		IDB_TOOLS_GENERATEREPORT,		CMainFrame::MENU_FILECMP },
 	{ ID_EDIT_TOGGLE_BOOKMARK,		IDB_EDIT_TOGGLE_BOOKMARK,		CMainFrame::MENU_FILECMP },
@@ -111,6 +125,36 @@ const CMainFrame::MENUITEM_ICON CMainFrame::m_MenuIcons[] = {
 	{ ID_EDIT_CLEAR_ALL_BOOKMARKS,	IDB_EDIT_CLEAR_ALL_BOOKMARKS,	CMainFrame::MENU_FILECMP },
 	{ ID_VIEW_ZOOMIN,				IDB_VIEW_ZOOMIN,				CMainFrame::MENU_FILECMP },
 	{ ID_VIEW_ZOOMOUT,				IDB_VIEW_ZOOMOUT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_TO_LEFT_M,			IDB_MIDDLE_TO_LEFT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_TO_LEFT_R,			IDB_RIGHT_TO_LEFT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_TO_MIDDLE_L,			IDB_LEFT_TO_MIDDLE,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_TO_MIDDLE_R,			IDB_RIGHT_TO_MIDDLE,			CMainFrame::MENU_FILECMP },
+	{ ID_COPY_TO_RIGHT_L,			IDB_LEFT_TO_RIGHT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_TO_RIGHT_M,			IDB_MIDDLE_TO_RIGHT,			CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_LEFT_R,			IDB_LEFT_TO_RIGHT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_LEFT_M,			IDB_LEFT_TO_MIDDLE,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_MIDDLE_L,		IDB_MIDDLE_TO_LEFT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_MIDDLE_R,		IDB_MIDDLE_TO_RIGHT,			CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_RIGHT_L,			IDB_RIGHT_TO_LEFT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_RIGHT_M,			IDB_RIGHT_TO_MIDDLE,			CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_LEFT,			IDB_COPY_FROM_LEFT,				CMainFrame::MENU_FILECMP },
+	{ ID_COPY_FROM_RIGHT,			IDB_COPY_FROM_RIGHT,			CMainFrame::MENU_FILECMP },
+	{ ID_LINES_R2L,					IDB_COPY_SELECTED_LINES_RIGHT_TO_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_LINES_L2R,					IDB_COPY_SELECTED_LINES_LEFT_TO_RIGHT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_LEFT,		IDB_COPY_SELECTED_LINES_FROM_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_RIGHT,		IDB_COPY_SELECTED_LINES_FROM_RIGHT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_TO_LEFT_M,		IDB_COPY_SELECTED_LINES_MIDDLE_TO_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_TO_LEFT_R,		IDB_COPY_SELECTED_LINES_RIGHT_TO_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_TO_MIDDLE_L,	IDB_COPY_SELECTED_LINES_LEFT_TO_MIDDLE,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_TO_MIDDLE_R,	IDB_COPY_SELECTED_LINES_RIGHT_TO_MIDDLE,CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_TO_RIGHT_L,		IDB_COPY_SELECTED_LINES_LEFT_TO_RIGHT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_TO_RIGHT_M,		IDB_COPY_SELECTED_LINES_MIDDLE_TO_RIGHT,CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_LEFT_R,	IDB_COPY_SELECTED_LINES_LEFT_TO_RIGHT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_LEFT_M,	IDB_COPY_SELECTED_LINES_LEFT_TO_MIDDLE,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_MIDDLE_L,	IDB_COPY_SELECTED_LINES_MIDDLE_TO_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_MIDDLE_R,	IDB_COPY_SELECTED_LINES_MIDDLE_TO_RIGHT,CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_RIGHT_L,	IDB_COPY_SELECTED_LINES_RIGHT_TO_LEFT,	CMainFrame::MENU_FILECMP },
+	{ ID_COPY_LINES_FROM_RIGHT_M,	IDB_COPY_SELECTED_LINES_RIGHT_TO_MIDDLE,CMainFrame::MENU_FILECMP },
 	{ ID_MERGE_COMPARE,				IDB_MERGE_COMPARE,				CMainFrame::MENU_FOLDERCMP },
 	{ ID_MERGE_COMPARE_LEFT1_LEFT2,		IDB_MERGE_COMPARE_LEFT1_LEFT2,	CMainFrame::MENU_FOLDERCMP },
 	{ ID_MERGE_COMPARE_RIGHT1_RIGHT2,	IDB_MERGE_COMPARE_RIGHT1_RIGHT2,CMainFrame::MENU_FOLDERCMP },
@@ -164,75 +208,114 @@ BEGIN_MESSAGE_MAP(CMainFrame, DpiAware::CDpiAwareWnd<CMDIFrameWnd>)
 	ON_WM_MEASUREITEM()
 	ON_WM_INITMENUPOPUP()
 	ON_WM_INITMENU()
-	ON_WM_CREATE()
-	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
-	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
-	ON_COMMAND(ID_OPTIONS, OnOptions)
-	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
-	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
-	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_WM_CLOSE()
-	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	ON_WM_CREATE()
 	ON_WM_TIMER()
 	ON_WM_DESTROY()
-	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
-	ON_COMMAND_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnPluginPrediffMode)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnUpdatePluginPrediffMode)
-	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdateReloadPlugins)
-	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
-	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
-	ON_COMMAND(ID_FILE_NEW, OnFileNew)
-	ON_COMMAND(ID_FILE_NEW3, OnFileNew3)
-	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
-	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
-	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
-	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
-	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
-	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
-	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
-	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_WM_ACTIVATEAPP()
-	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
-	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
-	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
-	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
-	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
+	// [File] menu
+	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
+	ON_COMMAND(ID_FILE_NEW_TABLE, (OnFileNew<2, ID_MERGE_COMPARE_TABLE>))
+	ON_COMMAND(ID_FILE_NEW_HEX, (OnFileNew<2, ID_MERGE_COMPARE_HEX>))
+	ON_COMMAND(ID_FILE_NEW_IMAGE, (OnFileNew<2, ID_MERGE_COMPARE_IMAGE>))
+	ON_COMMAND(ID_FILE_NEW_WEBPAGE, (OnFileNew<2, ID_MERGE_COMPARE_WEBPAGE>))
+	ON_COMMAND(ID_FILE_NEW3, (OnFileNew<3, ID_MERGE_COMPARE_TEXT>))
+	ON_COMMAND(ID_FILE_NEW3_TABLE, (OnFileNew<3, ID_MERGE_COMPARE_TABLE>))
+	ON_COMMAND(ID_FILE_NEW3_HEX, (OnFileNew<3, ID_MERGE_COMPARE_HEX>))
+	ON_COMMAND(ID_FILE_NEW3_IMAGE, (OnFileNew<3, ID_MERGE_COMPARE_IMAGE>))
+	ON_COMMAND(ID_FILE_NEW3_WEBPAGE, (OnFileNew<3, ID_MERGE_COMPARE_WEBPAGE>))
+	ON_COMMAND(ID_FILE_OPEN, OnFileOpen)
+	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenProject)
+	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
-	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
-	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
-	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnDiffOptionsDropDown)
-	ON_COMMAND_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnDiffWhitespace)
-	ON_UPDATE_COMMAND_UI_RANGE(IDC_DIFF_WHITESPACE_COMPARE, IDC_DIFF_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
-	ON_COMMAND(IDC_DIFF_CASESENSITIVE, OnDiffCaseSensitive)
-	ON_UPDATE_COMMAND_UI(IDC_DIFF_CASESENSITIVE, OnUpdateDiffCaseSensitive)
-	ON_COMMAND(IDC_DIFF_IGNOREEOL, OnDiffIgnoreEOL)
-	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNOREEOL, OnUpdateDiffIgnoreEOL)
-	ON_COMMAND(IDC_DIFF_IGNORECP, OnDiffIgnoreCP)
-	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORECP, OnUpdateDiffIgnoreCP)
-	ON_COMMAND(IDC_RECURS_CHECK, OnIncludeSubfolders)
-	ON_UPDATE_COMMAND_UI(IDC_RECURS_CHECK, OnUpdateIncludeSubfolders)
-	ON_COMMAND_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnCompareMethod)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_COMPMETHOD_FULL_CONTENTS, ID_COMPMETHOD_SIZE, OnUpdateCompareMethod)
+	ON_COMMAND(ID_FILE_OPENCLIPBOARD, OnFileOpenClipboard)
+	ON_COMMAND(ID_EDIT_PASTE, OnFileOpenClipboard)
 	ON_COMMAND_RANGE(ID_MRU_FIRST, ID_MRU_LAST, OnMRUs)
 	ON_UPDATE_COMMAND_UI(ID_MRU_FIRST, OnUpdateNoMRUs)
 	ON_UPDATE_COMMAND_UI(ID_NO_MRU, OnUpdateNoMRUs)
 	ON_COMMAND(ID_ACCEL_QUIT, &CMainFrame::OnAccelQuit)
-	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
+	// [Edit] menu
+	ON_COMMAND(ID_OPTIONS, OnOptions)
+	// [View] menu
+	ON_COMMAND(ID_VIEW_SELECTFONT, OnViewSelectfont)
+	ON_COMMAND(ID_VIEW_USEDEFAULTFONT, OnViewUsedefaultfont)
+	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
+	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
+	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
+	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnUpdateToolbarSize)
+	// [Plugins] menu
+	ON_COMMAND(ID_PLUGINS_LIST, OnPluginsList)
+	ON_COMMAND_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnPluginUnpackMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_UNPACK_MANUAL, ID_UNPACK_AUTO, OnUpdatePluginUnpackMode)
+	ON_COMMAND_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnPluginPrediffMode)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFER_MANUAL, ID_PREDIFFER_AUTO, OnUpdatePluginPrediffMode)
+	ON_UPDATE_COMMAND_UI(ID_OPEN_WITH_UNPACKER, OnUpdatePluginRelatedMenu)
+	ON_UPDATE_COMMAND_UI(ID_APPLY_PREDIFFER, OnUpdatePluginRelatedMenu)
+	ON_UPDATE_COMMAND_UI(ID_TRANSFORM_WITH_SCRIPT, OnUpdatePluginRelatedMenu)
+	ON_UPDATE_COMMAND_UI(ID_RELOAD_PLUGINS, OnUpdatePluginRelatedMenu)
+	ON_COMMAND(ID_RELOAD_PLUGINS, OnReloadPlugins)
+	// [Tools] menu
+	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
+	ON_COMMAND(ID_TOOLS_GENERATEPATCH, OnToolsGeneratePatch)
+	// [Window] menu
+	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	ON_COMMAND_EX(ID_WINDOW_ARRANGE, OnMDIWindowCmd)
 	ON_COMMAND_EX(ID_WINDOW_CASCADE, OnMDIWindowCmd)
 	ON_COMMAND_EX(ID_WINDOW_TILE_HORZ, OnMDIWindowCmd)
 	ON_COMMAND_EX(ID_WINDOW_TILE_VERT, OnMDIWindowCmd)
-	//}}AFX_MSG_MAP
+	// [Help] menu
+	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
+	ON_COMMAND(ID_HELP_GNULICENSE, OnHelpGnulicense)
+	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
+	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
+	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
+	// Tool bar icon
+	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
+	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
+	ON_COMMAND(ID_FIRSTFILE, OnFirstFile)
+	ON_UPDATE_COMMAND_UI(ID_FIRSTFILE, OnUpdateFirstFile)
+	ON_COMMAND(ID_PREVFILE, OnPrevFile)
+	ON_UPDATE_COMMAND_UI(ID_PREVFILE, OnUpdatePrevFile)
+	ON_COMMAND(ID_NEXTFILE, OnNextFile)
+	ON_UPDATE_COMMAND_UI(ID_NEXTFILE, OnUpdateNextFile)
+	ON_COMMAND(ID_LASTFILE, OnLastFile)
+	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
+	// Tool bar drop-down menu
+	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnToolbarButtonDropDown)
+	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnDiffWhitespace)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_BLANKLINES, OnDiffIgnoreBlankLines)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_BLANKLINES, OnUpdateDiffIgnoreBlankLines)
+	ON_COMMAND(IDC_DIFF_IGNORENUMBERS, OnDiffIgnoreNumbers)
+	ON_UPDATE_COMMAND_UI(IDC_DIFF_IGNORENUMBERS, OnUpdateDiffIgnoreNumbers)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_CASE, OnDiffIgnoreCase)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_CASE, OnUpdateDiffIgnoreCase)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_EOL, OnDiffIgnoreEOL)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_EOL, OnUpdateDiffIgnoreEOL)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_CODEPAGE, OnDiffIgnoreCP)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_CODEPAGE, OnUpdateDiffIgnoreCP)
+	ON_COMMAND(ID_DIFF_OPTIONS_IGNORE_COMMENTS, OnDiffIgnoreComments)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_IGNORE_COMMENTS, OnUpdateDiffIgnoreComments)
+	ON_COMMAND(ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS, OnIncludeSubfolders)
+	ON_UPDATE_COMMAND_UI(ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS, OnUpdateIncludeSubfolders)
+	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, OnCompareMethod)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, OnUpdateCompareMethod)
+	// Status bar
+	ON_UPDATE_COMMAND_UI(ID_STATUS_PLUGIN, OnUpdatePluginName)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	// Window manager
 	ON_MESSAGE(WMU_CHILDFRAMEADDED, &CMainFrame::OnChildFrameAdded)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATE, &CMainFrame::OnChildFrameActivate)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATED, &CMainFrame::OnChildFrameActivated)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /**
@@ -387,42 +470,31 @@ void CMainFrame::OnDestroy(void)
 		RevokeDragDrop(m_hWnd);
 }
 
-static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, bool bFirstSubmenu)
+static HMENU GetSubmenu(HMENU menu, int nthSubmenu)
+{
+	for (int nth = 0, i = 0; i < ::GetMenuItemCount(menu); i++)
+	{
+		if (::GetSubMenu(menu, i) != nullptr)
+		{
+			if (nth == nthSubmenu)
+				return ::GetSubMenu(menu, i);
+			nth++;
+		}
+	}
+	// error, submenu not found
+	return nullptr;
+}
+
+static HMENU GetSubmenu(HMENU mainMenu, UINT nIDFirstMenuItem, int nthSubmenu)
 {
 	int i;
 	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
 		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == nIDFirstMenuItem)
 			break;
 	HMENU menu = ::GetSubMenu(mainMenu, i);
-
-	if (!bFirstSubmenu)
-	{
-		// look for last submenu
-		for (i = ::GetMenuItemCount(menu) ; i >= 0  ; i--)
-			if (::GetSubMenu(menu, i) != nullptr)
-				return ::GetSubMenu(menu, i);
-	}
-	else
-	{
-		// look for first submenu
-		for (i = 0 ; i < ::GetMenuItemCount(menu) ; i++)
-			if (::GetSubMenu(menu, i) != nullptr)
-				return ::GetSubMenu(menu, i);
-	}
-
-	// error, submenu not found
-	return nullptr;
-}
-
-/** 
- * @brief Find the scripts submenu from the main menu
- * As now this is the first submenu in "Edit" menu
- * We find the "Edit" menu by looking for a menu 
- *  starting with ID_EDIT_UNDO.
- */
-HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
-{
-	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, false);
+	if (!menu)
+		return nullptr;
+	return GetSubmenu(menu, nthSubmenu);
 }
 
 /**
@@ -433,7 +505,7 @@ HMENU CMainFrame::GetScriptsSubmenu(HMENU mainMenu)
  */
 HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 {
-	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, true);
+	return GetSubmenu(mainMenu, ID_PLUGINS_LIST, 1);
 }
 
 /**
@@ -455,6 +527,9 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	switch (view)
 	{
 	case MENU_MERGEVIEW:
+	case MENU_HEXMERGEVIEW:
+	case MENU_IMGMERGEVIEW:
+	case MENU_WEBPAGEDIFFVIEW:
 		menu_view = MENU_FILECMP;
 		break;
 	case MENU_DIRVIEW:
@@ -477,6 +552,13 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		m_pImageMenu.reset(new BCMenu);
 		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
 		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+	}
+
+	if (view == MENU_WEBPAGEDIFFVIEW)
+	{
+		m_pWebPageMenu.reset(new BCMenu);
+		m_pWebPageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGEDIFFVIEW));
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_WEBPAGE_MENU).c_str())); 
 	}
 
 	// Load bitmaps to menuitems
@@ -538,6 +620,14 @@ HMENU CMainFrame::NewImgMergeViewMenu()
 }
 
 /**
+ * @brief Create new Webpage compare (CWebPageMergeView) menu.
+ */
+HMENU CMainFrame::NewWebPageDiffViewMenu()
+{
+	return NewMenu( MENU_WEBPAGEDIFFVIEW, IDR_MERGEDOCTYPE);
+}
+
+/**
  * @brief Create new File compare (COpenView) menu.
  */
 HMENU CMainFrame::NewOpenViewMenu()
@@ -590,14 +680,69 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
  */
 void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu) 
 {
-	__super::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
-	
 	if (!bSysMenu)
 	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		{
+			PathContext paths;
+			for (int i = 0; i < pMergeDoc->GetFileCount(); ++i)
+				paths.SetPath(i, pMergeDoc->GetPath(i));
+			String filteredFilenames = strutils::join(paths.begin(), paths.end(), _T("|"));
+			unsigned topMenuId = pPopupMenu->GetMenuItemID(0);
+			if (topMenuId == ID_NO_PREDIFFER)
+			{
+				UpdatePrediffersMenu();
+			}
+			else if (topMenuId == ID_MERGE_COMPARE_TEXT)
+			{
+				CMenu* pMenu = pPopupMenu;
+				// empty the menu
+				for (int i = pMenu->GetMenuItemCount() - 1; i > (ID_MERGE_COMPARE_WEBPAGE - ID_MERGE_COMPARE_TEXT); --i)
+					pMenu->DeleteMenu(i, MF_BYPOSITION);
+
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
+			}
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
+			{
+				CMenu* pMenu = pPopupMenu;
+				ASSERT(pMenu != nullptr);
+
+				// empty the menu
+				int i = pMenu->GetMenuItemCount();
+				while (i--)
+					pMenu->DeleteMenu(0, MF_BYPOSITION);
+
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
+			}
+			else if (topMenuId == ID_PLUGINS_LIST)
+			{
+				for (int j = 0; j < 2; j++)
+				{
+					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 4));
+					ASSERT(pMenu != nullptr);
+
+					// empty the menu
+					int i = pMenu->GetMenuItemCount();
+					while (i--)
+						pMenu->DeleteMenu(0, MF_BYPOSITION);
+
+					if (j == 0)
+						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, false, ID_UNPACKERS_FIRST);
+					else
+						CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
+				}
+			}
+		}
+
+		CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
 		if (BCMenu::IsMenu(pPopupMenu))
 		{
 			BCMenu::UpdateMenu(pPopupMenu);
 		}
+	}
+	else
+	{
+		CMDIFrameWnd::OnInitMenuPopup(pPopupMenu, nIndex, bSysMenu);
 	}
 }
 
@@ -606,7 +751,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 
 void CMainFrame::OnFileOpen() 
 {
-	DoFileOpen();
+	DoFileOrFolderOpen();
 }
 
 /**
@@ -617,17 +762,28 @@ void CMainFrame::OnFileOpen()
 static void
 FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 {
-	fileloc.encoding = GuessCodepageEncoding(fileloc.filepath, iGuessEncoding);
+	fileloc.encoding = codepage_detect::Guess(fileloc.filepath, iGuessEncoding);
 }
 
-bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
+bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
 {
+	ASSERT(pDirDoc != nullptr);
+
 	if (sReportFile.empty() && pDirDoc->CompareFilesIfFilesAreLarge(nFiles, ifileloc))
 		return false;
 
+	String unpackedFileExtension;
+	if (infoUnpacker && GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+	{
+		std::vector<String> filepaths(nFiles);
+		std::transform(ifileloc, ifileloc + nFiles, filepaths.begin(),
+			[](auto& file) { return file.filepath; });
+		String filteredFilenames = strutils::join(filepaths.begin(), filepaths.end(), _T("|"));
+		unpackedFileExtension = infoUnpacker->GetUnpackedFileExtension(filteredFilenames);
+	}
 	FileFilterHelper filterImg, filterBin;
 	filterImg.UseMask(true);
 	filterImg.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
@@ -635,12 +791,62 @@ bool CMainFrame::ShowAutoMergeDoc(CDirDoc * pDirDoc,
 	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
-		if (filterImg.includeFile(ifileloc[pane].filepath) && CImgMergeFrame::IsLoadable())
-			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
-		else if (filterBin.includeFile(ifileloc[pane].filepath) && CHexMergeView::IsLoadable())
-			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+		if (CWebPageDiffFrame::MatchURLPattern(ifileloc[pane].filepath))
+			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
+		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
+			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
+		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
+			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
 	}
-	return ShowMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+	switch (nID)
+	{
+	case ID_MERGE_COMPARE_TEXT:
+		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_TABLE:
+		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_HEX:
+		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_IMAGE:
+		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_WEBPAGE:
+		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+	default:
+		return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	}
+}
+
+bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
+	int nFiles, const FileLocation ifileloc[],
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+{
+	switch (nID)
+	{
+	case ID_MERGE_COMPARE_TEXT:
+		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_TABLE:
+		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_HEX:
+		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_IMAGE:
+		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
+	case ID_MERGE_COMPARE_WEBPAGE:
+		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+	default:
+		return ShowAutoMergeDoc(std::abs(static_cast<int>(nID)), pDirDoc, nFiles, ifileloc, dwFlags,
+			strDesc, sReportFile, infoUnpacker, pOpenParams);
+	}
 }
 
 std::array<bool, 3> GetROFromFlags(int nFiles, const DWORD dwFlags[])
@@ -675,10 +881,10 @@ int GetActivePaneFromFlags(int nFiles, const DWORD dwFlags[])
  * @param [in] infoUnpacker Plugin info.
  * @return success/failure
  */
-bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
+bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
 	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
 		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
@@ -710,6 +916,20 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		}
 	}
 
+	pMergeDoc->SetEnableTableEditing(table);
+	if (pOpenParams && table.value_or(false))
+	{
+		CMergeDoc::TableProps props = CMergeDoc::MakeTablePropertiesByFileName(
+			pOpenParams->m_fileExt.empty() ? fileloc[0].filepath : pOpenParams->m_fileExt, true, false);
+		if (const auto* pOpenTableFileParams = dynamic_cast<const OpenTableFileParams*>(pOpenParams))
+		{
+			props.delimiter = pOpenTableFileParams->m_tableDelimiter.value_or(props.delimiter);
+			props.quote = pOpenTableFileParams->m_tableQuote.value_or(props.quote);
+			props.allowNewlinesInQuotes = pOpenTableFileParams->m_tableAllowNewlinesInQuotes.value_or(props.allowNewlinesInQuotes);
+		}
+		pMergeDoc->SetPreparedTableProperties(props);
+	}
+
 	// Note that OpenDocs() takes care of closing compare window when needed.
 	bool bResult = pMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc);
 	if (bResult)
@@ -722,6 +942,9 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	{
 		return false;
 	}
+
+	if (pOpenParams && !pOpenParams->m_fileExt.empty())
+		pMergeDoc->SetTextType(pOpenParams->m_fileExt);
 
 	for (int pane = 0; pane < nFiles; pane++)
 	{
@@ -740,7 +963,11 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		}
 	}
 
-	pMergeDoc->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+	pMergeDoc->MoveOnLoad(
+		GetActivePaneFromFlags(nFiles, dwFlags),
+		pOpenParams ? pOpenParams->m_line : -1,
+		true,
+		pOpenParams ? pOpenParams->m_char: -1);
 
 	if (!sReportFile.empty())
 		pMergeDoc->GenerateReport(sReportFile);
@@ -748,15 +975,33 @@ bool CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	return true;
 }
 
+bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc,
+	int nFiles, const FileLocation ifileloc[],
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+{
+	return ShowTextOrTableMergeDoc(false, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams); 
+}
+
+bool CMainFrame::ShowTableMergeDoc(CDirDoc* pDirDoc,
+	int nFiles, const FileLocation ifileloc[],
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+{
+	return ShowTextOrTableMergeDoc(true, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams);
+}
+
 bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenBinaryFileParams* pOpenParams /*= nullptr*/)
 {
 	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
 		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
 	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
 	if (pHexMergeDoc == nullptr)
 		return false;
+
+	pHexMergeDoc->SetUnpacker(infoUnpacker);
 
 	if (!pHexMergeDoc->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc))
 		return false;
@@ -771,18 +1016,18 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 
 bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/)
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenImageFileParams* pOpenParams /*= nullptr*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
 	if (!CImgMergeFrame::menu.m_hMenu)
 		CImgMergeFrame::menu.m_hMenu = NewImgMergeViewMenu();
 	pImgMergeFrame->SetSharedMenu(CImgMergeFrame::menu.m_hMenu);
-
+	pImgMergeFrame->SetUnpacker(infoUnpacker);
 	pImgMergeFrame->SetDirDoc(pDirDoc);
 	pDirDoc->AddMergeDoc(pImgMergeFrame);
 		
 	if (!pImgMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this))
-		return ShowMergeDoc(pDirDoc, nFiles, fileloc, dwFlags, strDesc, sReportFile, infoUnpacker);
+		return false;
 
 	for (int pane = 0; pane < nFiles; pane++)
 	{
@@ -798,13 +1043,62 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	return true;
 }
 
+bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+	const DWORD dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
+	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenWebPageParams* pOpenParams /*= nullptr*/)
+{
+	CWebPageDiffFrame *pWebPageMergeFrame = new CWebPageDiffFrame();
+	if (!CWebPageDiffFrame::menu.m_hMenu)
+		CWebPageDiffFrame::menu.m_hMenu = NewWebPageDiffViewMenu();
+	pWebPageMergeFrame->SetSharedMenu(CWebPageDiffFrame::menu.m_hMenu);
+	pWebPageMergeFrame->SetUnpacker(infoUnpacker);
+	pWebPageMergeFrame->SetDirDoc(pDirDoc);
+	pDirDoc->AddMergeDoc(pWebPageMergeFrame);
+		
+	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this, 
+		[this, pWebPageMergeFrame, nFiles, dwFlags, sReportFile]()
+		{
+			pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+
+			if (!sReportFile.empty())
+				pWebPageMergeFrame->GenerateReport(sReportFile);
+
+		}))
+		return false;
+
+	return true;
+}
+
+bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
+		const String strDesc[], const String& strFileExt, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+{
+	FileLocation fileloc[3];
+	DWORD dwFlags[3] = {};
+	CDirDoc* pDirDoc2 = pDirDoc->GetMainView() ? pDirDoc :
+		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
+	{
+		auto wTemp = std::make_shared<TempFile>(TempFile());
+		String workFile = wTemp->Create(_T("text_"), strFileExt);
+		m_tempFiles.push_back(wTemp);
+		wTemp->Create(_T(""), strFileExt);
+		UniStdioFile file;
+		if (file.OpenCreateUtf8(workFile))
+		{
+			file.WriteString(text[nBuffer]);
+		}
+		fileloc[nBuffer].setPath(workFile);
+	}
+	return ShowTextMergeDoc(pDirDoc2, nBuffers, fileloc, dwFlags, strDesc, _T(""), nullptr, pOpenParams);
+}
+
 /**
  * @brief Show GNU licence information in notepad (local file) or in Web Browser
  */
 void CMainFrame::OnHelpGnulicense() 
 {
 	const String spath = paths::ConcatPath(env::GetProgPath(), LicenseFile);
-	theApp.OpenFileOrUrl(spath.c_str(), LicenceUrl);
+	shell::OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
 /**
@@ -839,8 +1133,8 @@ void CMainFrame::OnOptions()
 		theApp.SetupTempPath();
 
 		// Set new filterpath
-		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.m_pGlobalFileFilter->SetUserFilterPath(filterPath);
+		const String& filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+		theApp.GetGlobalFileFilter()->SetUserFilterPath(filterPath);
 
 		CCrystalTextView::RENDERING_MODE nRenderingMode = static_cast<CCrystalTextView::RENDERING_MODE>(GetOptionsMgr()->GetInt(OPT_RENDERING_MODE));
 		CCrystalTextView::SetRenderingModeDefault(nRenderingMode);
@@ -855,27 +1149,35 @@ void CMainFrame::OnOptions()
 		// Update all dirdoc settings
 		for (auto pDirDoc : GetAllDirDocs())
 			pDirDoc->RefreshOptions();
-		for (auto pOpenDoc : GetAllOpenDocs())
-			pOpenDoc->RefreshOptions();
-		for (auto pMergeDoc : GetAllHexMergeDocs())
-			pMergeDoc->RefreshOptions();
+		for (auto pHexMergeDoc : GetAllHexMergeDocs())
+			pHexMergeDoc->RefreshOptions();
+		for (auto pImgMergeFrame : GetAllImgMergeFrames())
+			pImgMergeFrame->RefreshOptions();
 	}
 }
 
-static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bool recurse, const String& filter)
+static bool AddToRecentDocs(const PathContext& paths,
+	const unsigned flags[], const String desc[],
+	bool recurse, const String& filter,
+	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
+	UINT nID, const CMainFrame::OpenFileParams *pOpenParams)
 {
+	ASSERT(paths.GetSize() <= 3);
+	const TCHAR *lmr= (paths.GetSize() == 2) ? _T("lr") : _T("lmr");
 	String params, title;
 	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
 	{
-		if (flags && (flags[nIndex] & FFILEOPEN_READONLY))
+		if (flags)
 		{
-			switch (nIndex)
-			{
-			case 0: params += _T("/wl "); break;
-			case 1: params += paths.GetSize() == 2 ? _T("/wr ") : _T("/wm "); break;
-			case 2:	params += _T("/wr "); break;
-			}
+			if (flags[nIndex] & FFILEOPEN_READONLY)
+				params += strutils::format(_T("/w%c "), lmr[nIndex]);
+			if (flags[nIndex] & FFILEOPEN_SETFOCUS)
+				params += strutils::format(_T("/f%c "), lmr[nIndex]);
+			if (flags[nIndex] & FFILEOPEN_AUTOMERGE)
+				params += strutils::format(_T("/a%c "), lmr[nIndex]);
 		}
+		if (desc && !desc[nIndex].empty())
+			params += strutils::format(_T("/d%c \"%s\" "), lmr[nIndex], desc[nIndex]);
 		params += _T("\"") + paths[nIndex] + _T("\" ");
 
 		String path = paths[nIndex];
@@ -888,6 +1190,59 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
 		params += _T("/r ");
 	if (!filter.empty())
 		params += _T("/f \"") + filter + _T("\" ");
+	switch (nID)
+	{
+	case ID_MERGE_COMPARE_TEXT:  params += _T("/t text "); break;
+	case ID_MERGE_COMPARE_TABLE: params += _T("/t table "); break;
+	case ID_MERGE_COMPARE_HEX:   params += _T("/t binary "); break;
+	case ID_MERGE_COMPARE_IMAGE: params += _T("/t image "); break;
+	case ID_MERGE_COMPARE_WEBPAGE: params += _T("/t webpage "); break;
+	}
+	if (pOpenParams)
+	{
+		if (const auto* pOpenTextFileParams = dynamic_cast<const CMainFrame::OpenTextFileParams*>(pOpenParams))
+		{
+			if (pOpenTextFileParams->m_line >= 0)
+				params += strutils::format(_T("/l %d "), pOpenTextFileParams->m_line + 1);
+			if (!pOpenTextFileParams->m_fileExt.empty())
+				params += _T("/fileext ") + pOpenTextFileParams->m_fileExt + _T(" ");
+		}
+		if (const auto* pOpenTableFileParams = dynamic_cast<const CMainFrame::OpenTableFileParams*>(pOpenParams))
+		{
+			if (pOpenTableFileParams->m_tableDelimiter.has_value())
+			{
+				String delim = strutils::to_charstr(*pOpenTableFileParams->m_tableDelimiter);
+				if (*pOpenTableFileParams->m_tableDelimiter == '\'')
+					delim = _T("sq");
+				else if (*pOpenTableFileParams->m_tableDelimiter == '"')
+					delim = _T("dq");
+				params += strutils::format(_T("/table-delimiter %s "), delim);
+			}
+			if (pOpenTableFileParams->m_tableQuote.has_value())
+			{
+				String quote = strutils::to_charstr(*pOpenTableFileParams->m_tableQuote);
+				if (*pOpenTableFileParams->m_tableDelimiter == '\'')
+					quote = _T("sq");
+				else if (*pOpenTableFileParams->m_tableDelimiter == '"')
+					quote = _T("dq");
+				params += strutils::format(_T("/table-quote %s "), quote);
+			}
+			if (pOpenTableFileParams->m_tableAllowNewlinesInQuotes.has_value())
+				params += strutils::format(_T("/table-allownewlinesinquotes %d "), *pOpenTableFileParams->m_tableAllowNewlinesInQuotes);
+		}
+	}
+	if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+	{
+		String pipeline = infoUnpacker->GetPluginPipeline();
+		strutils::replace(pipeline, _T("\""), _T("\"\""));
+		params += _T("/unpacker \"") + pipeline + _T("\" ");
+	}
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+	{
+		String pipeline = infoPrediffer->GetPluginPipeline();
+		strutils::replace(pipeline, _T("\""), _T("\"\""));
+		params += _T("/prediffer \"") + pipeline + _T("\" ");
+	}
 
 	Concurrent::CreateTask([params, title](){
 			CoInitialize(nullptr);
@@ -905,18 +1260,21 @@ static bool AddToRecentDocs(const PathContext& paths, const unsigned flags[], bo
  * @param [in] dwRightFlags Right-side flags.
  * @param [in] bRecurse Do we run recursive (folder) compare?
  * @param [in] pDirDoc Dir compare document to use.
- * @param [in] prediffer Prediffer plugin name.
+ * @param [in] infoUnpacker Unpacker plugin name.
+ * @param [in] infoPrediffer Prediffer plugin name.
  * @return `true` if opening files and compare succeeded, `false` otherwise.
  */
-bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
-	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/, bool bRecurse /*= false*/, CDirDoc *pDirDoc/*= nullptr*/,
-	String prediffer /*= _T("")*/, const PackingInfo *infoUnpacker /*= nullptr*/)
+bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
+	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/,
+	bool bRecurse /*= false*/, CDirDoc* pDirDoc/*= nullptr*/,
+	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
+	UINT nID /*= 0*/, const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	if (pDirDoc != nullptr && !pDirDoc->CloseMergeDocs())
 		return false;
 
-	FileTransform::g_UnpackerMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_UNPACKER_MODE));
-	FileTransform::g_PredifferMode = static_cast<PLUGIN_MODE>(GetOptionsMgr()->GetInt(OPT_PLUGINS_PREDIFFER_MODE));
+	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
+	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
 
 	Merge7zFormatMergePluginScope scope(infoUnpacker);
 
@@ -933,7 +1291,9 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
-	if (pathsType == paths::DOES_NOT_EXIST)
+	bool allowFolderCompare = (static_cast<int>(nID) <= 0);
+	if (allowFolderCompare && pathsType == paths::DOES_NOT_EXIST &&
+	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
@@ -947,40 +1307,48 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_files = tFiles;
 		pOpenDoc->m_bRecurse = bRecurse;
 		if (infoUnpacker)
-			pOpenDoc->m_infoHandler = *infoUnpacker;
+			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
 		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
 		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
-	else
+	
+	// Add trailing '\' for directories if its missing
+	if (pathsType == paths::IS_EXISTING_DIR)
 	{
-		// Add trailing '\' for directories if its missing
-		if (pathsType == paths::IS_EXISTING_DIR)
-		{
-			if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
-				tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
-			if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
-				tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
-			if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
-				tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
-		}
+		if (!paths::EndsWithSlash(tFiles[0]) && !IsArchiveFile(tFiles[0]))
+			tFiles[0] = paths::AddTrailingSlash(tFiles[0]);
+		if (!paths::EndsWithSlash(tFiles[1]) && !IsArchiveFile(tFiles[1]))
+			tFiles[1] = paths::AddTrailingSlash(tFiles[1]);
+		if (tFiles.GetSize() == 3 && !paths::EndsWithSlash(tFiles[2]) && !IsArchiveFile(tFiles[1]))
+			tFiles[2] = paths::AddTrailingSlash(tFiles[2]);
+	}
 
-		//save the MRU left and right files.
-		if (dwFlags)
-		{
-			if (!(dwFlags[0] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[0].c_str(), _T("Files\\Left"));
-			if (!(dwFlags[1] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[1].c_str(), _T("Files\\Right"));
-			if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
-				addToMru(tFiles[2].c_str(), _T("Files\\Option"));
-		}
+	//save the MRU left and right files.
+	if (dwFlags)
+	{
+		if (!(dwFlags[0] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[0].c_str(), _T("Files\\Left"));
+		if (!(dwFlags[1] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[1].c_str(), _T("Files\\Right"));
+		if (tFiles.GetSize() == 3 && !(dwFlags[2] & FFILEOPEN_NOMRU))
+			addToMru(tFiles[2].c_str(), _T("Files\\Option"));
 	}
 
 	CTempPathContext *pTempPathContext = nullptr;
-	if (pathsType == paths::IS_EXISTING_DIR)
+	if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 	{
-		DecompressResult res= DecompressArchive(m_hWnd, tFiles);
+		DecompressResult res = DecompressArchive(m_hWnd, tFiles);
+		if (FAILED(res.hr))
+		{
+			int ans = AfxMessageBox(IDS_FAILED_EXTRACT_ARCHIVE_FILES, MB_YESNO | MB_DONT_ASK_AGAIN | MB_ICONWARNING, IDS_FAILED_EXTRACT_ARCHIVE_FILES);
+			if (ans == IDYES)
+			{
+				pathsType = paths::IS_EXISTING_FILE;
+				delete res.pTempPathContext;
+				res.pTempPathContext = nullptr;
+			}
+		}
 		if (res.pTempPathContext)
 		{
 			pathsType = res.pathsType;
@@ -993,7 +1361,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	// an archive. Don't open a new dirview if we are comparing files.
 	if (pDirDoc == nullptr)
 	{
-		if (pathsType == paths::IS_EXISTING_DIR)
+		if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 		{
 			CDirDoc::m_nDirsTemp = tFiles.GetSize();
 			if (m_pMenus[MENU_DIRVIEW] == nullptr)
@@ -1007,7 +1375,7 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 	}
 
 	// open the diff
-	if (pathsType == paths::IS_EXISTING_DIR)
+	if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 	{
 		if (pDirDoc != nullptr)
 		{
@@ -1015,6 +1383,9 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(tFiles, bRecurse, pTempPathContext);
 
+			const auto* pOpenFolderParams = dynamic_cast<const OpenFolderParams*>(pOpenParams);
+			if (pOpenFolderParams)
+				pDirDoc->SetHiddenItems(pOpenFolderParams->m_hiddenItems);
 			pDirDoc->SetReportFile(sReportFile);
 			pDirDoc->SetDescriptions(strDesc);
 			pDirDoc->SetTitle(nullptr);
@@ -1031,23 +1402,47 @@ bool CMainFrame::DoFileOpen(const PathContext * pFiles /*= nullptr*/,
 		for (int nPane = 0; nPane < tFiles.GetSize(); nPane++)
 			fileloc[nPane].setPath(tFiles[nPane]);
 
-		if (!prediffer.empty())
+		if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
 		{
 			String strBothFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
-			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, prediffer);
+			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginPipeline());
 		}
 
-		ShowAutoMergeDoc(pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
-				infoUnpacker);
+		ShowMergeDoc(nID, pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
+				infoUnpacker, pOpenParams);
 	}
 
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
 	{
-		String filter = GetOptionsMgr()->GetString(OPT_FILEFILTER_CURRENT);
-		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, bRecurse, filter);
+		String filter = (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR) ?
+			theApp.GetGlobalFileFilter()->GetFilterNameOrMask() : _T("");
+		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, bRecurse, filter, infoUnpacker, infoPrediffer, nID, pOpenParams);
 	}
 
 	return true;
+}
+
+bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles,
+	const DWORD dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/,
+	const String& sReportFile /*= _T("")*/,
+	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
+	const OpenFileParams *pOpenParams /*= nullptr*/)
+{
+	ASSERT(pFiles != nullptr);
+	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	FileLocation fileloc[3];
+	for (int pane = 0; pane < pFiles->GetSize(); pane++)
+		fileloc[pane].setPath((*pFiles)[pane]);
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+	{
+		String strBothFilenames = strutils::join(pFiles->begin(), pFiles->end(), _T("|"));
+		pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginPipeline());
+	}
+	bool result = ShowMergeDoc(nID, pDirDoc, pFiles->GetSize(), fileloc,
+		dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams);
+	if (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU))
+		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, false, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams);
+	return result;
 }
 
 void CMainFrame::UpdateFont(FRAMETYPE frame)
@@ -1102,6 +1497,7 @@ void CMainFrame::OnViewSelectfont()
 		lf = &m_lfDiff;
 
 	cf.lpLogFont = lf;
+	cf.hwndOwner = m_hWnd;
 
 	if (ChooseFont(&cf))
 	{
@@ -1151,6 +1547,8 @@ void CMainFrame::UpdateResources()
 		pDoc->UpdateResources();
 	for (auto pFrame: GetAllImgMergeFrames())
 		pFrame->UpdateResources();
+	for (auto pFrame: GetAllWebPageDiffFrames())
+		pFrame->UpdateResources();
 }
 
 /**
@@ -1184,7 +1582,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 
 	m_bFirstTime = false;
 
-	WINDOWPLACEMENT wp;
+	WINDOWPLACEMENT wp = {};
 	wp.length = sizeof(WINDOWPLACEMENT);
 	GetWindowPlacement(&wp);
 	wp.rcNormalPosition.left=theApp.GetProfileInt(_T("Settings"), _T("MainLeft"),0);
@@ -1237,12 +1635,8 @@ void CMainFrame::OnClose()
 			return;
 	}
 
-	// Save last selected filter
-	String filter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
-	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
-
 	// save main window position
-	WINDOWPLACEMENT wp;
+	WINDOWPLACEMENT wp = {};
 	wp.length = sizeof(WINDOWPLACEMENT);
 	GetWindowPlacement(&wp);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainLeft"),wp.rcNormalPosition.left);
@@ -1252,6 +1646,11 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
 
 	for (auto pFrame: GetAllImgMergeFrames())
+	{
+		if (!pFrame->CloseNow())
+			return;
+	}
+	for (auto pFrame: GetAllWebPageDiffFrames())
 	{
 		if (!pFrame->CloseNow())
 			return;
@@ -1291,6 +1690,10 @@ void CMainFrame::ApplyDiffOptions()
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
 	}
+	for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
+		pWebPageDiffFrame->RefreshOptions();
+	for (auto pOpenDoc : GetAllOpenDocs())
+		pOpenDoc->RefreshOptions();
 }
 
 /// Get list of OpenDocs (documents underlying edit sessions)
@@ -1317,9 +1720,9 @@ HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
 }
 
-std::list<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
+std::vector<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
 {
-	std::list<CImgMergeFrame *> list;
+	std::vector<CImgMergeFrame *> list;
 	// Close Non-Document/View frame with confirmation
 	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
 	while (pChild != nullptr)
@@ -1327,6 +1730,21 @@ std::list<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
 		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
 		if (GetFrameType(pChild) == FRAME_IMGFILE)
 			list.push_back(static_cast<CImgMergeFrame *>(pChild));
+		pChild = pNextChild;
+	}
+	return list;
+}
+
+std::vector<CWebPageDiffFrame *> CMainFrame::GetAllWebPageDiffFrames()
+{
+	std::vector<CWebPageDiffFrame *> list;
+	// Close Non-Document/View frame with confirmation
+	CMDIChildWnd *pChild = static_cast<CMDIChildWnd *>(CWnd::FromHandle(m_hWndMDIClient)->GetWindow(GW_CHILD));
+	while (pChild != nullptr)
+	{
+		CMDIChildWnd *pNextChild = static_cast<CMDIChildWnd *>(pChild->GetWindow(GW_HWNDNEXT));
+		if (GetFrameType(pChild) == FRAME_WEBPAGE)
+			list.push_back(static_cast<CWebPageDiffFrame *>(pChild));
 		pChild = pNextChild;
 	}
 	return list;
@@ -1350,12 +1768,6 @@ DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, in
 	return pMergeDoc;
 }
 
-// Clear the item count in the main status pane
-void CMainFrame::ClearStatusbarItemCount()
-{
-	m_wndStatusBar.SetPaneText(2, _T(""));
-}
-
 /**
  * @brief Generate patch from files selected.
  *
@@ -1376,7 +1788,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 
 	bool recurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
 	// Do a reverse comparison with the current 'Include Subfolders' settings when pressing Control key
-	if (!!::GetAsyncKeyState(VK_CONTROL))
+	if (::GetAsyncKeyState(VK_CONTROL) & 0x8000)
 		recurse = !recurse;
 
 	// If user has <Shift> pressed with one file selected,
@@ -1395,14 +1807,14 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 			theApp.LoadAndOpenProjectFile(tFiles[0]);
 			return;
 		}
-		if (IsConflictFile(tFiles[0]))
+		if (ConflictFileParser::IsConflictFile(tFiles[0]))
 		{
 			DoOpenConflict(tFiles[0], nullptr, true);
 			return;
 		}
 	}
 
-	DoFileOpen(&tFiles, dwFlags, nullptr, _T(""), recurse);
+	DoFileOrFolderOpen(&tFiles, dwFlags, nullptr, _T(""), recurse);
 }
 
 void CMainFrame::OnPluginUnpackMode(UINT nID )
@@ -1410,13 +1822,18 @@ void CMainFrame::OnPluginUnpackMode(UINT nID )
 	switch (nID)
 	{
 	case ID_UNPACK_MANUAL:
-		FileTransform::g_UnpackerMode = PLUGIN_MANUAL;
+		FileTransform::AutoUnpacking = false;
 		break;
 	case ID_UNPACK_AUTO:
-		FileTransform::g_UnpackerMode = PLUGIN_AUTO;
+		FileTransform::AutoUnpacking = true;
 		break;
 	}
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, FileTransform::g_UnpackerMode);
+	for (auto pDirDoc : GetAllDirDocs())
+	{
+		pDirDoc->GetPluginManager().SetUnpackerSettingAll(FileTransform::AutoUnpacking);
+		pDirDoc->UpdateAllViews(nullptr);
+	}
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACKER_MODE, static_cast<int>(FileTransform::AutoUnpacking));
 }
 
 void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI) 
@@ -1424,27 +1841,31 @@ void CMainFrame::OnUpdatePluginUnpackMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_UNPACK_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_UnpackerMode);
+		pCmdUI->SetRadio(!FileTransform::AutoUnpacking);
 	if (pCmdUI->m_nID == ID_UNPACK_AUTO)
-		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_UnpackerMode);
+		pCmdUI->SetRadio(FileTransform::AutoUnpacking);
 }
+
 void CMainFrame::OnPluginPrediffMode(UINT nID )
 {
 	switch (nID)
 	{
 	case ID_PREDIFFER_MANUAL:
-		FileTransform::g_PredifferMode = PLUGIN_MANUAL;
+		FileTransform::AutoPrediffing = false;
 		break;
 	case ID_PREDIFFER_AUTO:
-		FileTransform::g_PredifferMode = PLUGIN_AUTO;
+		FileTransform::AutoPrediffing = true;
 		break;
 	}
 	PrediffingInfo infoPrediffer;
 	for (auto pMergeDoc : GetAllMergeDocs())
 		pMergeDoc->SetPrediffer(&infoPrediffer);
 	for (auto pDirDoc : GetAllDirDocs())
-		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::g_PredifferMode);
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, FileTransform::g_PredifferMode);
+	{
+		pDirDoc->GetPluginManager().SetPrediffSettingAll(FileTransform::AutoPrediffing);
+		pDirDoc->UpdateAllViews(nullptr);
+	}
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_PREDIFFER_MODE, FileTransform::AutoPrediffing);
 }
 
 void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI) 
@@ -1452,29 +1873,24 @@ void CMainFrame::OnUpdatePluginPrediffMode(CCmdUI* pCmdUI)
 	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 
 	if (pCmdUI->m_nID == ID_PREDIFFER_MANUAL)
-		pCmdUI->SetRadio(PLUGIN_MANUAL == FileTransform::g_PredifferMode);
+		pCmdUI->SetRadio(!FileTransform::AutoPrediffing);
 	if (pCmdUI->m_nID == ID_PREDIFFER_AUTO)
-		pCmdUI->SetRadio(PLUGIN_AUTO == FileTransform::g_PredifferMode);
+		pCmdUI->SetRadio(FileTransform::AutoPrediffing);
 }
 /**
  * @brief Called when "Reload Plugins" item is updated
  */
-void CMainFrame::OnUpdateReloadPlugins(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
+	bool enabled = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED);
+	if (enabled && (pCmdUI->m_nID == ID_APPLY_PREDIFFER || pCmdUI->m_nID == ID_TRANSFORM_WITH_SCRIPT))
+		enabled = GetFrameType(GetActiveFrame()) == FRAME_FILE;
+	pCmdUI->Enable(enabled);
 }
 
 void CMainFrame::OnReloadPlugins()
 {
-	// delete all script interfaces
-	// (interfaces will be created again automatically when WinMerge needs them)
-	CAllThreadsScripts::GetActiveSet()->FreeAllScripts();
-
-	// update the editor scripts submenu
-	HMENU scriptsSubmenu = GetScriptsSubmenu(m_hMenuDefault);
-	if (scriptsSubmenu != nullptr)
-		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
-	UpdatePrediffersMenu();
+	CAllThreadsScripts::ReloadAllScripts();
 }
 
 /** @brief Return active merge edit view, if can figure it out/is available */
@@ -1511,7 +1927,7 @@ void CMainFrame::UpdatePrediffersMenu()
 	{
 		CMergeEditView * pEditView = GetActiveMergeEditView();
 		if (pEditView != nullptr)
-			pEditView->createPrediffersSubmenu(prediffersSubmenu);
+			pEditView->GetDocument()->createPrediffersSubmenu(prediffersSubmenu);
 		else
 		{
 			// no view or dir view : display an empty submenu
@@ -1534,7 +1950,7 @@ void CMainFrame::OnSaveConfigData()
 	if (configLog.WriteLogFile(sError))
 	{
 		String sFileName = configLog.GetFileName();
-		theApp.OpenFileToExternalEditor(sFileName);
+		CMergeApp::OpenFileToExternalEditor(sFileName);
 	}
 	else
 	{
@@ -1554,33 +1970,37 @@ void CMainFrame::OnSaveConfigData()
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-void CMainFrame::FileNew(int nPanes) 
+bool CMainFrame::DoFileNew(UINT nID, int nPanes, const String strDesc[],
+	const PrediffingInfo *infoPrediffer /*= nullptr*/,
+	const OpenFileParams *pOpenParams)
 {
 	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
 	DWORD dwFlags[3] = {0, 0, 0};
-	String strDesc[3];
 	FileLocation fileloc[3];
+	String strDesc2[3];
 	if (nPanes == 2)
 	{
-		strDesc[0] = _("Untitled left");
-		strDesc[1] = _("Untitled right");
-		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
-		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
-		ShowMergeDoc(pDirDoc, 2, fileloc, dwFlags, strDesc);
+		strDesc2[0] = _("Untitled left");
+		strDesc2[1] = _("Untitled right");
 	}
 	else
 	{
-		strDesc[0] = _("Untitled left");
-		strDesc[1] = _("Untitled middle");
-		strDesc[2] = _("Untitled right");
-		fileloc[0].encoding.SetCodepage(ucr::getDefaultCodepage());
-		fileloc[1].encoding.SetCodepage(ucr::getDefaultCodepage());
-		fileloc[2].encoding.SetCodepage(ucr::getDefaultCodepage());
-		ShowMergeDoc(pDirDoc, 3, fileloc, dwFlags, strDesc);
+		strDesc2[0] = _("Untitled left");
+		strDesc2[1] = _("Untitled middle");
+		strDesc2[2] = _("Untitled right");
 	}
+	for (int i = 0; i < nPanes; ++i)
+	{
+		if (strDesc && !strDesc[i].empty())
+			strDesc2[i] = strDesc[i];
+		fileloc[i].encoding.SetCodepage(ucr::getDefaultCodepage());
+	}
+	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+		pDirDoc->GetPluginManager().SetPrediffer(_T("|"), infoPrediffer->GetPluginPipeline());
+	return ShowMergeDoc(nID, pDirDoc, nPanes, fileloc, dwFlags, strDesc2, _T(""), nullptr, pOpenParams);
 }
 
 /**
@@ -1593,14 +2013,10 @@ void CMainFrame::FileNew(int nPanes)
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
+template <int nFiles, unsigned nID>
 void CMainFrame::OnFileNew() 
 {
-	FileNew(2);
-}
-
-void CMainFrame::OnFileNew3() 
-{
-	FileNew(3);
+	DoFileNew(nID, nFiles);
 }
 
 /**
@@ -1611,24 +2027,33 @@ void CMainFrame::OnToolsFilters()
 	String title = _("Filters");
 	CPropertySheet sht(title.c_str());
 	LineFiltersDlg lineFiltersDlg;
+	SubstitutionFiltersDlg substitutionFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
-	std::unique_ptr<LineFiltersList> lineFilters(new LineFiltersList());
+	auto lineFilters = std::make_unique<LineFiltersList>(LineFiltersList());
+	auto SubstitutionFilters = std::make_unique<SubstitutionFiltersList>(SubstitutionFiltersList());
 	String selectedFilter;
-	const String origFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+	auto* pGlobalFileFilter = theApp.GetGlobalFileFilter();
+	const String origFilter = pGlobalFileFilter->GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
+	sht.AddPage(&substitutionFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
-	theApp.m_pGlobalFileFilter->ReloadUpdatedFilters();
+	pGlobalFileFilter->ReloadUpdatedFilters();
 
-	fileFiltersDlg.SetFilterArray(theApp.m_pGlobalFileFilter->GetFileFilters(selectedFilter));
+	fileFiltersDlg.SetFilterArray(pGlobalFileFilter->GetFileFilters(selectedFilter));
 	fileFiltersDlg.SetSelected(selectedFilter);
 	const bool lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
 	lineFilters->CloneFrom(theApp.m_pLineFilters.get());
 	lineFiltersDlg.SetList(lineFilters.get());
+
+	SubstitutionFilters->CloneFrom(theApp.m_pSubstitutionFiltersList.get());
+	substitutionFiltersDlg.SetList(SubstitutionFilters.get());
+
+	sht.SetActivePage(AfxGetApp()->GetProfileInt(_T("Settings"), _T("FilterStartPage"), 0));
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -1637,18 +2062,18 @@ void CMainFrame::OnToolsFilters()
 		if (path.find(strNone) != String::npos)
 		{
 			// Don't overwrite mask we already have
-			if (!theApp.m_pGlobalFileFilter->IsUsingMask())
+			if (!pGlobalFileFilter->IsUsingMask())
 			{
 				String sFilter(_T("*.*"));
-				theApp.m_pGlobalFileFilter->SetFilter(sFilter);
+				pGlobalFileFilter->SetFilter(sFilter);
 				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 			}
 		}
 		else
 		{
-			theApp.m_pGlobalFileFilter->SetFileFilterPath(path);
-			theApp.m_pGlobalFileFilter->UseMask(false);
-			String sFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			pGlobalFileFilter->SetFileFilterPath(path);
+			pGlobalFileFilter->UseMask(false);
+			String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
@@ -1661,15 +2086,19 @@ void CMainFrame::OnToolsFilters()
 		FRAMETYPE frame = GetFrameType(pFrame);
 		if (frame == FRAME_FILE)
 		{
-			if (lineFiltersEnabledOrig != linefiltersEnabled ||
-					!theApp.m_pLineFilters->Compare(lineFilters.get()))
+			if
+			(
+				   linefiltersEnabled != lineFiltersEnabledOrig
+				|| !lineFilters->Compare(theApp.m_pLineFilters.get())
+				|| !SubstitutionFilters->Compare(theApp.m_pSubstitutionFiltersList.get())
+			)
 			{
 				bFileCompareRescan = true;
 			}
 		}
 		else if (frame == FRAME_FOLDER)
 		{
-			const String newFilter = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+			const String newFilter = pGlobalFileFilter->GetFilterNameOrMask();
 			if (lineFiltersEnabledOrig != linefiltersEnabled || 
 					!theApp.m_pLineFilters->Compare(lineFilters.get()) || origFilter != newFilter)
 			{
@@ -1682,6 +2111,9 @@ void CMainFrame::OnToolsFilters()
 		// Save new filters before (possibly) rescanning
 		theApp.m_pLineFilters->CloneFrom(lineFilters.get());
 		theApp.m_pLineFilters->SaveFilters();
+
+		theApp.m_pSubstitutionFiltersList->CloneFrom(SubstitutionFilters.get());
+		theApp.m_pSubstitutionFiltersList->SaveFilters();
 
 		if (bFileCompareRescan)
 		{
@@ -1717,12 +2149,13 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		if (theApp.m_bEscShutdown && m_wndTabBar.GetItemCount() <= 1)
+		int nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
+		if ((theApp.m_bEscShutdown || nEscCloses == 3) && m_wndTabBar.GetItemCount() <= 1)
 		{
 			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
-		else if (GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) == 1 && m_wndTabBar.GetItemCount() == 0)
+		else if (nEscCloses == 1 && m_wndTabBar.GetItemCount() == 0)
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return FALSE;
@@ -1846,15 +2279,8 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
-	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame != nullptr)
-	{
-		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (pMergeDoc == nullptr)
-			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-		if (pMergeDoc != nullptr)
-			pMergeDoc->CheckFileChanged();
-	}
+	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
+		pMergeDoc->CheckFileChanged();
 	return 0;
 }
 
@@ -1878,6 +2304,11 @@ void CMainFrame::OnWindowCloseAll()
 		else if (GetFrameType(pChild) == FRAME_IMGFILE)
 		{
 			if (!static_cast<CImgMergeFrame *>(pChild)->CloseNow())
+				return;
+		}
+		else if (GetFrameType(pChild) == FRAME_WEBPAGE)
+		{
+			if (!static_cast<CWebPageDiffFrame *>(pChild)->CloseNow())
 				return;
 		}
 		else
@@ -1920,33 +2351,73 @@ void CMainFrame::OnSaveProject()
 		theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
 	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
 
-	PathContext paths;
 	CFrameWnd * pFrame = GetActiveFrame();
-	FRAMETYPE frame = GetFrameType(pFrame);
+	FRAMETYPE frame = pFrame ? GetFrameType(pFrame) : FRAME_OTHER;
 
-	if (frame == FRAME_FILE)
+	if (frame == FRAME_FILE || frame == FRAME_HEXFILE || frame == FRAME_IMGFILE || frame == FRAME_WEBPAGE)
 	{
-		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pFrame->GetActiveDocument());
-		pOpenDoc->m_files = pMergeDoc->m_filePaths;
-		for (int pane = 0; pane < pOpenDoc->m_files.GetSize(); ++pane)
-			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->m_ptBuf[pane]->GetReadOnly() ? FFILEOPEN_PROJECT : 0);
-		pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-		pOpenDoc->m_strExt = theApp.m_pGlobalFileFilter->GetFilterNameOrMask();
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		{
+			PathContext paths;
+			for (int pane = 0; pane < pMergeDoc->GetFileCount(); ++pane)
+			{
+				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pMergeDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
+				paths.SetPath(pane, pMergeDoc->GetPath(pane), false);
+				pOpenDoc->m_strDesc[pane] = pMergeDoc->GetDescription(pane);
+			}
+			pOpenDoc->m_files = paths;
+			pOpenDoc->m_bRecurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+			pOpenDoc->m_strExt = theApp.GetGlobalFileFilter()->GetFilterNameOrMask();
+			pOpenDoc->m_strUnpackerPipeline = pMergeDoc->GetUnpacker() ? pMergeDoc->GetUnpacker()->GetPluginPipeline() : _T("");
+			pOpenDoc->m_strPredifferPipeline = pMergeDoc->GetPrediffer() ? pMergeDoc->GetPrediffer()->GetPluginPipeline() : _T("");
+			switch (frame)
+			{
+			case FRAME_FILE:
+			{
+				CMergeDoc* pDoc = static_cast<CMergeDoc*>(pMergeDoc);
+				if (pDoc->m_ptBuf[0]->GetTableEditing())
+				{
+					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TABLE - ID_MERGE_COMPARE_TEXT + 1;
+					pOpenDoc->m_cTableDelimiter = pDoc->m_ptBuf[0]->GetFieldDelimiter();
+					pOpenDoc->m_cTableQuote = pDoc->m_ptBuf[0]->GetFieldEnclosure();
+					pOpenDoc->m_bTableAllowNewLinesInQuotes = pDoc->m_ptBuf[0]->GetAllowNewlinesInQuotes();
+				}
+				else
+				{
+					pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_TEXT - ID_MERGE_COMPARE_TEXT + 1;
+				}
+				break;
+			}
+			case FRAME_HEXFILE:
+				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_HEX - ID_MERGE_COMPARE_TEXT + 1;
+				break;
+			case FRAME_IMGFILE:
+				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_IMAGE - ID_MERGE_COMPARE_TEXT + 1;
+				break;
+			case FRAME_WEBPAGE:
+				pOpenDoc->m_nWindowType = ID_MERGE_COMPARE_WEBPAGE - ID_MERGE_COMPARE_TEXT + 1;
+				break;
+			}
+		}
 	}
 	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
-		const CDirDoc * pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument());
-		const CDiffContext& ctxt = pDoc->GetDiffContext();
-
-		// Set-up the dialog
-		for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+		if (const CDirDoc* pDoc = static_cast<const CDirDoc*>(pFrame->GetActiveDocument()))
 		{
-			pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
-			pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+			const CDiffContext& ctxt = pDoc->GetDiffContext();
+
+			// Set-up the dialog
+			for (int pane = 0; pane < ctxt.GetCompareDirs(); ++pane)
+			{
+				pOpenDoc->m_dwFlags[pane] = FFILEOPEN_PROJECT | (pDoc->GetReadOnly(pane) ? FFILEOPEN_READONLY : 0);
+				pOpenDoc->m_files.SetPath(pane, paths::AddTrailingSlash(ctxt.GetNormalizedPath(pane)));
+				pOpenDoc->m_strDesc[pane] = pDoc->GetDescription(pane);
+			}
+			pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
+			pOpenDoc->m_strExt = static_cast<FileFilterHelper*>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
+			pOpenDoc->m_hiddenItems = ctxt.m_vCurrentlyHiddenItems;
 		}
-		pOpenDoc->m_bRecurse = ctxt.m_bRecursive;
-		pOpenDoc->m_strExt = static_cast<FileFilterHelper *>(ctxt.m_piFilterGlobal)->GetFilterNameOrMask();
 	}
 
 	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
@@ -1975,15 +2446,8 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	__super::OnActivateApp(bActive, hTask);
 #endif
 
-	CFrameWnd * pFrame = GetActiveFrame();
-	if (pFrame != nullptr)
-	{
-		IMergeDoc *pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame->GetActiveDocument());
-		if (pMergeDoc == nullptr)
-			pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
-		if (pMergeDoc != nullptr)
-			PostMessage(WM_USER+1);
-	}
+	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
+		PostMessage(WM_USER+1);
 }
 
 BOOL CMainFrame::CreateToolbar()
@@ -2012,11 +2476,14 @@ BOOL CMainFrame::CreateToolbar()
 	LoadToolbarImages();
 
 	UINT nID, nStyle;
-	int iImage;
-	int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(ID_OPTIONS);
-	m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
-	nStyle |= TBSTYLE_DROPDOWN;
-	m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
+	for (auto cmd : { ID_OPTIONS, ID_FILE_NEW, ID_FILE_OPEN, ID_FILE_SAVE })
+	{
+		int iImage;
+		int index = m_wndToolBar.GetToolBarCtrl().CommandToIndex(cmd);
+		m_wndToolBar.GetButtonInfo(index, nID, nStyle, iImage);
+		nStyle |= TBSTYLE_DROPDOWN;
+		m_wndToolBar.SetButtonInfo(index, nID, nStyle, iImage);
+	}
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
@@ -2029,28 +2496,29 @@ BOOL CMainFrame::CreateToolbar()
 /** @brief Load toolbar images from the resource. */
 void CMainFrame::LoadToolbarImages()
 {
-	const int toolbarNewImgSize = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16) * (1 + GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE));
+	const int toolbarNewImgSize = MulDiv(16, GetSystemMetrics(SM_CXSMICON), 16) * 
+		(1 + std::clamp(GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE), 0, ID_TOOLBAR_HUGE - ID_TOOLBAR_SMALL));
 	const int toolbarOrgImgSize = toolbarNewImgSize <= 20 ? 16 : 32;
 	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
-
-	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].Detach();
-	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].Detach();
+	CImageList imgEnabled, imgDisabled;
 	CSize sizeButton(0, 0);
 
 	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
 		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		false, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+		false, imgEnabled);
 	LoadToolbarImageList(toolbarOrgImgSize, toolbarNewImgSize,
 		toolbarOrgImgSize <= 16 ? IDB_TOOLBAR_ENABLED : IDB_TOOLBAR_ENABLED32,
-		true, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+		true, imgDisabled);
 
 	sizeButton = CSize(toolbarNewImgSize + 8, toolbarNewImgSize + 8);
 
 	BarCtrl.SetButtonSize(sizeButton);
-	if (CImageList *pImgList = BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]))
+	if (CImageList* pImgList = BarCtrl.SetImageList(&imgEnabled))
 		pImgList->DeleteImageList();
-	if (CImageList *pImgList = BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]))
+	if (CImageList* pImgList = BarCtrl.SetDisabledImageList(&imgDisabled))
 		pImgList->DeleteImageList();
+	imgEnabled.Detach();
+	imgDisabled.Detach();
 
 	// resize the rebar.
 	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
@@ -2078,7 +2546,7 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nN
  */
 static void LoadToolbarImageList(int orgImageWidth, int newImageWidth, UINT nIDResource, bool bGrayscale, CImageList& ImgList)
 {
-	const int ImageCount = 22;
+	const int ImageCount = 26;
 	const int orgImageHeight = orgImageWidth - 1;
 	const int newImageHeight = newImageWidth - 1;
 	LoadHiColImageList(nIDResource, orgImageWidth, orgImageHeight, newImageWidth, newImageHeight, ImageCount, bGrayscale, ImgList);
@@ -2198,8 +2666,10 @@ bool CMainFrame::AskCloseConfirmation()
  */
 void CMainFrame::OnHelpReleasenotes()
 {
-	const String sPath = paths::ConcatPath(env::GetProgPath(), RelNotes);
-	ShellExecute(nullptr, _T("open"), sPath.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+	String sPath = paths::ConcatPath(env::GetProgPath(),strutils::format(RelNotes, theApp.GetLangName()));
+	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
+		sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(RelNotes, _T("")));
+	shell::Open(sPath.c_str());
 }
 
 /**
@@ -2208,7 +2678,7 @@ void CMainFrame::OnHelpReleasenotes()
  */
 void CMainFrame::OnHelpTranslations()
 {
-	ShellExecute(nullptr, _T("open"), TranslationsUrl, nullptr, nullptr, SW_SHOWNORMAL);
+	shell::Open(TranslationsUrl);
 }
 
 /**
@@ -2221,6 +2691,53 @@ void CMainFrame::OnFileOpenConflict()
 	{
 		DoOpenConflict(conflictFile);
 	}
+}
+
+/**
+ * @brief Called when user selects File/Open Clipboard
+ */
+void CMainFrame::OnFileOpenClipboard()
+{
+	DoOpenClipboard();
+}
+
+bool CMainFrame::DoOpenClipboard(UINT nID, int nBuffers /*= 2*/, const DWORD dwFlags[] /*= nullptr*/,
+	const String strDesc[] /*= nullptr*/, const PackingInfo* infoUnpacker /*= nullptr*/,
+	const PrediffingInfo* infoPrediffer /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+{
+	auto historyItems = ClipboardHistory::GetItems(nBuffers);
+
+	String strDesc2[3];
+	DWORD dwFlags2[3];
+	for (int i = 0; i < nBuffers; ++i)
+	{
+		int64_t t = historyItems[nBuffers - i - 1].timestamp;
+		String timestr = t == 0 ? _T("---") : locality::TimeString(&t);
+		strDesc2[i] = (strDesc && !strDesc[i].empty()) ?
+			strDesc[i] : strutils::format(_("Clipboard at %s"), timestr);
+		dwFlags2[i] = (dwFlags ? dwFlags[i] : 0) | FFILEOPEN_NOMRU;
+	}
+	for (int i = 0; i < 2; ++i)
+	{
+		PathContext tmpPathContext;
+		for (int pane = 0; pane < nBuffers; ++pane)
+		{
+			auto item = historyItems[nBuffers - pane - 1];
+			if (i == 0 && item.pBitmapTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pBitmapTempFile->GetPath());
+				m_tempFiles.push_back(item.pBitmapTempFile);
+			}
+			if (i == 1 && item.pTextTempFile)
+			{
+				tmpPathContext.SetPath(pane, item.pTextTempFile->GetPath());
+				m_tempFiles.push_back(item.pTextTempFile);
+			}
+		}
+		if (tmpPathContext.GetSize() == nBuffers)
+			DoFileOpen(nID, &tmpPathContext, dwFlags2, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+	}
+	return true;
 }
 
 /**
@@ -2243,7 +2760,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 
 	if (!checked)
 	{
-		bool confFile = IsConflictFile(conflictFile);
+		bool confFile = ConflictFileParser::IsConflictFile(conflictFile);
 		if (!confFile)
 		{
 			String message = strutils::format_string1(_("The file\n%1\nis not a conflict file."), conflictFile);
@@ -2255,20 +2772,20 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	// Create temp files and put them into the list,
 	// from where they get deleted when MainFrame is deleted.
 	String ext = paths::FindExtension(conflictFile);
-	TempFilePtr wTemp(new TempFile());
+	auto wTemp = std::make_shared<TempFile>(TempFile());
 	String workFile = wTemp->Create(_T("confw_"), ext);
 	m_tempFiles.push_back(wTemp);
-	TempFilePtr vTemp(new TempFile());
+	auto vTemp = std::make_shared<TempFile>(TempFile());
 	String revFile = vTemp->Create(_T("confv_"), ext);
 	m_tempFiles.push_back(vTemp);
-	TempFilePtr bTemp(new TempFile());
+	auto bTemp = std::make_shared<TempFile>(TempFile());
 	String baseFile = vTemp->Create(_T("confb_"), ext);
 	m_tempFiles.push_back(bTemp);
 
 	// Parse conflict file into two files.
 	bool inners, threeWay;
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
-	bool success = ParseConflictFile(conflictFile, workFile, revFile, baseFile, iGuessEncodingType, inners, threeWay);
+	bool success = ConflictFileParser::ParseConflictFile(conflictFile, workFile, revFile, baseFile, iGuessEncodingType, inners, threeWay);
 
 	if (success)
 	{
@@ -2282,7 +2799,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
-			conflictCompared = DoFileOpen(&tmpPathContext, dwFlags, strDesc2);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2);
 		}
 		else
 		{
@@ -2292,7 +2809,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
 			DWORD dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOpen(&tmpPathContext, dwFlags, strDesc3);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3);
 		}
 	}
 	else
@@ -2302,16 +2819,52 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	return conflictCompared;
 }
 
+bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDesc[] /*= nullptr*/,
+	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
+	const OpenFileParams *pOpenParams /*= nullptr*/)
+{
+	String ext = paths::FindExtension(file);
+	auto wTemp = std::make_shared<TempFile>(TempFile());
+	String copiedFile;
+	if (paths::IsURL(file))
+	{
+		CWaitCursor wait;
+		copiedFile = file;
+		PackingInfo infoUnpacker2 = infoUnpacker ? *infoUnpacker : PackingInfo{};
+		if (!infoUnpacker2.Unpacking(nullptr, copiedFile, copiedFile, { copiedFile }))
+		{
+			String sError = strutils::format_string1(_("File not unpacked: %1"), file);
+			AfxMessageBox(sError.c_str(), MB_OK | MB_ICONSTOP | MB_MODELESS);
+			return false;
+		}
+		wTemp->Attach(copiedFile);
+	}
+	else
+	{
+		copiedFile = wTemp->Create(_T("self-compare_"), ext);
+		TFile(file).copyTo(copiedFile);
+	}
+	m_tempFiles.push_back(wTemp);
+
+	String strDesc2[2] = { 
+		(strDesc && !strDesc[0].empty()) ? strDesc[0] : _("Original File"),
+		(strDesc && !strDesc[1].empty()) ? strDesc[1] : _("") };
+	DWORD dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU};
+	PathContext tmpPathContext(copiedFile, file);
+	return DoFileOpen(nID, &tmpPathContext, dwFlags, strDesc2, _T(""), infoUnpacker, infoPrediffer, pOpenParams);
+}
+
 /**
  * @brief Get type of frame (File/Folder compare).
  * @param [in] pFrame Pointer to frame to check.
  * @return FRAMETYPE of the given frame.
 */
-CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
+CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame)
 {
 	bool bMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CMergeEditFrame));
 	bool bHexMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CHexMergeFrame));
 	bool bImgMergeFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame));
+	bool bWebPageDiffFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame));
 	bool bDirFrame = !!pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bMergeFrame)
@@ -2320,6 +2873,8 @@ CMainFrame::FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 		return FRAME_HEXFILE;
 	else if (bImgMergeFrame)
 		return FRAME_IMGFILE;
+	else if (bWebPageDiffFrame)
+		return FRAME_WEBPAGE;
 	else if (bDirFrame)
 		return FRAME_FOLDER;
 	else
@@ -2335,12 +2890,28 @@ void CMainFrame::OnPluginsList()
 	dlg.DoModal();
 }
 
-void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
+void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
 	ClientToScreen(&(pToolBar->rcButton));
 	BCMenu menu;
-	VERIFY(menu.LoadMenu(IDR_POPUP_DIFF_OPTIONS));
+	int id;
+	switch (pToolBar->iItem)
+	{
+	case ID_FILE_NEW:
+		id = IDR_POPUP_NEW;
+		break;
+	case ID_FILE_OPEN:
+		id = IDR_POPUP_OPEN;
+		break;
+	case ID_FILE_SAVE:
+		id = IDR_POPUP_SAVE;
+		break;
+	default:
+		id = IDR_POPUP_DIFF_OPTIONS;
+		break;
+	}
+	VERIFY(menu.LoadMenu(id));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (pPopup != nullptr)
@@ -2350,27 +2921,52 @@ void CMainFrame::OnDiffOptionsDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 	*pResult = 0;
 }
+
 void CMainFrame::OnDiffWhitespace(UINT nID)
 {
-	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nID - IDC_DIFF_WHITESPACE_COMPARE);
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_WHITESPACE, nID - ID_DIFF_OPTIONS_WHITESPACE_COMPARE);
 	ApplyDiffOptions();
 }
 
 void CMainFrame::OnUpdateDiffWhitespace(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - IDC_DIFF_WHITESPACE_COMPARE) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE)));
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_DIFF_OPTIONS_WHITESPACE_COMPARE) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE)));
 	pCmdUI->Enable();
 }
 
-void CMainFrame::OnDiffCaseSensitive()
+void CMainFrame::OnDiffIgnoreBlankLines()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_BLANKLINES, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreBlankLines(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreCase()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_CASE, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
 	ApplyDiffOptions();
 }
 
-void CMainFrame::OnUpdateDiffCaseSensitive(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(!GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE));
+	pCmdUI->Enable();
+}
+
+void CMainFrame::OnDiffIgnoreNumbers()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_NUMBERS, !GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreNumbers(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_NUMBERS));
 	pCmdUI->Enable();
 }
 
@@ -2398,6 +2994,18 @@ void CMainFrame::OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI)
 	pCmdUI->Enable();
 }
 
+void CMainFrame::OnDiffIgnoreComments()
+{
+	GetOptionsMgr()->SaveOption(OPT_CMP_FILTER_COMMENTLINES, !GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES));
+	ApplyDiffOptions();
+}
+
+void CMainFrame::OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES));
+	pCmdUI->Enable();
+}
+
 void CMainFrame::OnIncludeSubfolders()
 {
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, !GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS));
@@ -2416,19 +3024,21 @@ void CMainFrame::OnUpdateIncludeSubfolders(CCmdUI* pCmdUI)
 
 void CMainFrame::OnCompareMethod(UINT nID)
 { 
-	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_COMPMETHOD_FULL_CONTENTS);
+	GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS);
+	for (auto pOpenDoc : GetAllOpenDocs())
+		pOpenDoc->RefreshOptions();
 }
 
 void CMainFrame::OnUpdateCompareMethod(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetRadio((pCmdUI->m_nID - ID_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
+	pCmdUI->SetRadio((pCmdUI->m_nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS) == static_cast<UINT>(GetOptionsMgr()->GetInt(OPT_CMP_METHOD)));
 	pCmdUI->Enable();
 }
 
 void CMainFrame::OnMRUs(UINT nID)
 {
 	std::vector<JumpList::Item> mrus = JumpList::GetRecentDocs(GetOptionsMgr()->GetInt(OPT_MRU_MAX));
-	const size_t idx = nID - ID_MRU_FIRST;
+	const size_t idx = static_cast<size_t>(nID) - ID_MRU_FIRST;
 	if (idx < mrus.size())
 	{
 		MergeCmdLineInfo cmdInfo((_T("\"") + mrus[idx].path + _T("\" ") + mrus[idx].params).c_str());
@@ -2439,9 +3049,10 @@ void CMainFrame::OnMRUs(UINT nID)
 void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 {
 	// append the MRU submenu
-	HMENU hMenu = GetSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu, ID_FILE_NEW, false);
-	if (hMenu == nullptr)
+	CMenu *pMenu = pCmdUI->m_pSubMenu ? pCmdUI->m_pSubMenu : pCmdUI->m_pMenu;
+	if (pMenu == nullptr)
 		return;
+	HMENU hMenu = pMenu->m_hMenu;
 	
 	// empty the menu
 	size_t i = ::GetMenuItemCount(hMenu);
@@ -2453,7 +3064,7 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 	if (mrus.size() == 0)
 	{
 		// no script : create a <empty> entry
-		::AppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(IDS_NO_EDIT_SCRIPTS).c_str());
+		::AppendMenu(hMenu, MF_STRING, ID_NO_MRU, theApp.LoadString(IDS_NO_EDIT_SCRIPTS).c_str());
 	}
 	else
 	{
@@ -2461,8 +3072,10 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
 		int ID = ID_MRU_FIRST;	// first ID in menu
 		for (i = 0 ; i < mrus.size() ; i++, ID++)
 			::AppendMenu(hMenu, MF_STRING, ID, 
-				((i < 9 ? strutils::format(_T("&%d "), i+1) : strutils::format(_T("&%c "), 'a' + i - 9)) 
-					+ mrus[i].title).c_str());
+				((i < 9 ?
+					strutils::format(_T("&%d %.128s"), i+1, mrus[i].title) :
+					strutils::format(_T("&%c %.128s"), 'a' + i - 9, mrus[i].title))
+					).c_str());
 	}
 
 	pCmdUI->Enable(true);
@@ -2474,7 +3087,115 @@ void CMainFrame::OnUpdateNoMRUs(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 {
+	if (auto pMergeDoc = GetActiveIMergeDoc())
+	{
+		String pluginNames;
+		const PackingInfo* infoUnpacker = pMergeDoc->GetUnpacker();
+		if (infoUnpacker && !infoUnpacker->GetPluginPipeline().empty())
+			pluginNames += infoUnpacker->GetPluginPipeline() + _T("&");
+		const PrediffingInfo* infoPrediffer = pMergeDoc->GetPrediffer();
+		if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
+			pluginNames += infoPrediffer->GetPluginPipeline() + _T("&");
+		pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
+	}
+	else
+		pCmdUI->SetText(_T(""));
+}
+
+/**
+ * @brief Called to update the item count in the status bar
+ */
+void CMainFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
+{
 	pCmdUI->SetText(_T(""));
+}
+
+/**
+ * @brief Move to next file
+ */
+void CMainFrame::OnNextFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToNextFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to next file is updated
+ */
+void CMainFrame::OnUpdateNextFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsLastFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to previous file
+ */
+void CMainFrame::OnPrevFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToPrevFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to previous file is updated
+ */
+void CMainFrame::OnUpdatePrevFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsFirstFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to first file
+ */
+void CMainFrame::OnFirstFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToFirstFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to first file is updated
+ */
+void CMainFrame::OnUpdateFirstFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsFirstFile();
+	pCmdUI->Enable(enabled);
+}
+
+/**
+ * @brief Move to last file
+ */
+void CMainFrame::OnLastFile()
+{
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			pDirDoc->MoveToLastFile(pMergeDoc);
+}
+
+/**
+ * @brief Called when Move to last file item is updated
+ */
+void CMainFrame::OnUpdateLastFile(CCmdUI* pCmdUI)
+{
+	bool enabled = false;
+	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+			enabled = !pDirDoc->IsLastFile();
+	pCmdUI->Enable(enabled);
 }
 
 void CMainFrame::ReloadMenu()
@@ -2486,6 +3207,7 @@ void CMainFrame::ReloadMenu()
 	HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
 	HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
 	HMENU hNewImgMergeMenu = pMainFrame->NewImgMergeViewMenu();
+	HMENU hNewWebPageDiffMenu = pMainFrame->NewWebPageDiffViewMenu();
 	HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
 	if (hNewDefaultMenu != nullptr && hNewMergeMenu != nullptr && hNewDirMenu != nullptr)
 	{
@@ -2493,6 +3215,7 @@ void CMainFrame::ReloadMenu()
 		CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
 		CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
 		CMenu * pNewImgMergeMenu = CMenu::FromHandle(hNewImgMergeMenu);
+		CMenu * pNewWebPageDiffMenu = CMenu::FromHandle(hNewWebPageDiffMenu);
 		CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
 
 		CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
@@ -2504,6 +3227,8 @@ void CMainFrame::ReloadMenu()
 				static_cast<CHexMergeFrame *>(pFrame)->SetSharedMenu(hNewMergeMenu);
 			if (pFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
 				static_cast<CImgMergeFrame *>(pFrame)->SetSharedMenu(hNewImgMergeMenu);
+			if (pFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)))
+				static_cast<CWebPageDiffFrame *>(pFrame)->SetSharedMenu(hNewWebPageDiffMenu);
 			else if (pFrame->IsKindOf(RUNTIME_CLASS(COpenFrame)))
 				static_cast<COpenFrame *>(pFrame)->SetSharedMenu(hNewDefaultMenu);
 			else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
@@ -2520,6 +3245,8 @@ void CMainFrame::ReloadMenu()
 				pMainFrame->MDISetMenu(pNewMergeMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CImgMergeFrame)))
 				pMainFrame->MDISetMenu(pNewImgMergeMenu, nullptr);
+			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CWebPageDiffFrame)))
+				pMainFrame->MDISetMenu(pNewWebPageDiffMenu, nullptr);
 			else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
 				pMainFrame->MDISetMenu(pNewDirMenu, nullptr);
 			else
@@ -2548,6 +3275,124 @@ void CMainFrame::ReloadMenu()
 		// force redrawing the menu bar
 		pMainFrame->DrawMenuBar();
 	}
+}
+
+void CMainFrame::AppendPluginMenus(CMenu *pMenu, const String& filteredFilenames,
+	const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId)
+{
+	if (!GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+		return;
+
+	CWaitCursor waitstatus;
+
+	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(filteredFilenames, events, baseId);
+
+	if (!addAllMenu)
+	{
+		pMenu->AppendMenu(MF_STRING, ID_SUGGESTED_PLUGINS, _("Suggested plugins").c_str());
+	}
+	else
+	{
+		pMenu->AppendMenu(MF_SEPARATOR);
+	}
+
+	for (const auto& [caption, name, id, plugin] : suggestedPlugins)
+		pMenu->AppendMenu(MF_STRING, id, caption.c_str());
+
+	CMenu* pMenu2 = pMenu;
+	CMenu popupAll;
+	if (addAllMenu)
+	{
+		popupAll.CreatePopupMenu();
+		pMenu->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popupAll.m_hMenu), _("Al&l").c_str());
+		pMenu2 = &popupAll;
+	}
+	else
+	{
+		pMenu->AppendMenu(MF_SEPARATOR, 0);
+		pMenu->AppendMenu(MF_STRING, ID_NOT_SUGGESTED_PLUGINS, _("All plugins").c_str());
+	}
+
+	std::list<String> processTypes;
+	for (const auto& [processType, pluginList] : allPlugins)
+		processTypes.push_back(processType);
+	auto it = std::find(processTypes.begin(), processTypes.end(), _("&Others"));
+	if (it != processTypes.end())
+	{
+		processTypes.erase(it);
+		processTypes.push_back(_("&Others"));
+	}
+
+	for (const auto& processType : processTypes)
+	{
+		CMenu popup;
+		popup.CreatePopupMenu();
+		if (processType.empty())
+		{
+			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
+				pMenu2->AppendMenu(MF_STRING, id, caption.c_str());
+		}
+		else
+		{
+			for (const auto& [caption, name, id, plugin] : allPlugins[processType])
+				popup.AppendMenu(MF_STRING, id, caption.c_str());
+			pMenu2->AppendMenu(MF_POPUP, reinterpret_cast<UINT_PTR>(popup.m_hMenu), processType.c_str());
+		}
+		popup.Detach();
+	}
+
+	if (addAllMenu)
+	{
+		if (baseId == ID_UNPACKERS_FIRST)
+			pMenu2->AppendMenu(MF_STRING, ID_OPEN_WITH_UNPACKER, _("&Select...").c_str());
+		else if (baseId == ID_PREDIFFERS_FIRST)
+			pMenu2->AppendMenu(MF_STRING, ID_APPLY_PREDIFFER, _("&Select...").c_str());
+	}
+	popupAll.Detach();
+}
+
+String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId)
+{
+	PluginInfo* pluginFound = nullptr;
+	String pluginName;
+	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
+	for (const auto& [processType, pluginList] : allPlugins)
+	{
+		for (const auto& [caption, name, id, plugin] : pluginList)
+		{
+			if (id == idSearch)
+			{
+				pluginName = name;
+				pluginFound = plugin;
+				break;
+			}
+		}
+	}
+	if (pluginFound)
+	{
+		if (!pluginFound->GetExtendedPropertyValue(_T("ArgumentsRequired")).has_value() && 
+		    !pluginFound->GetExtendedPropertyValue(pluginName + _T(".ArgumentsRequired")).has_value())
+			return pluginName;
+		CSelectPluginDlg dlg(pluginName, _T(""), 
+			(baseId == ID_UNPACKERS_FIRST)  ? CSelectPluginDlg::PluginType::Unpacker    : (
+			(baseId == ID_PREDIFFERS_FIRST) ? CSelectPluginDlg::PluginType::Prediffer   : 
+			                                  CSelectPluginDlg::PluginType::EditorScript), true);
+		if (dlg.DoModal() != IDOK)
+			return {};
+		return dlg.GetPluginPipeline();
+	}
+	return {};
+}
+
+IMergeDoc* CMainFrame::GetActiveIMergeDoc()
+{
+	CFrameWnd* pFrame = GetActiveFrame();
+	if (!pFrame)
+		return nullptr;
+	IMergeDoc* pMergeDoc = dynamic_cast<IMergeDoc*>(pFrame->GetActiveDocument());
+	if (!pMergeDoc)
+		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
+	return pMergeDoc;
 }
 
 void CMainFrame::UpdateDocTitle()

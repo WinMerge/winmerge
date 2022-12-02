@@ -15,6 +15,9 @@
 	<property name="PluginUnpackedFileExtension">
 		<get/>
 	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -48,6 +51,7 @@
 Option Explicit
 
 Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSExcelFiles.sct\"
+Const pbGroup = 6
 Dim MsgCannotGetMacros
 MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
 	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
@@ -166,7 +170,7 @@ Sub ungroupShapes(sht)
     Do
         cnt = sht.Shapes.Count
         For Each shp In sht.Shapes
-            shp.ungroup
+            If shp.Type = pbGroup Then shp.ungroup
         Next
     Loop While cnt <> sht.Shapes.Count
 End Sub
@@ -390,12 +394,17 @@ Function get_PluginUnpackedFileExtension()
 	get_PluginUnpackedFileExtension = ".tsv"
 End Function
 
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
+End Function
+
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim xl
 	Dim wbk
 	Dim sht
 	Dim cmp
+	Dim fileSrc2
 
 	Set fo = fso.CreateTextFile(fileDst, True, True)
 
@@ -403,7 +412,14 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	xl.EnableEvents = False
 	xl.DisplayAlerts = False
 
-	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0),,,,,,,,,,,,True)
 
 	On Error Resume Next
 
@@ -484,7 +500,10 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim wbk
 	Dim sht
 	Dim cmp
+	Dim digit
+	Dim zf
 	Dim No
+	Dim fileSrc2
 
 	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
 
@@ -495,25 +514,37 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim backgroundChecking
 	backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking
 	xl.ErrorCheckingOptions.BackgroundChecking = False
-    
-	Set wbk = xl.Workbooks.Open(fileSrc, regRead(RegKeyPath & "UpdateLinks", 0))
+
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0),,,,,,,,,,,,True)
 
 	On Error Resume Next
 
+	digit = Len(CStr(wbk.Worksheets.Count))
+	If digit <= 0 Then digit = 1
+	zf = String(digit, "0")
+
 	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), True, True)
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & zf & ")DocumentProperties.txt"), True, True)
 		writeObjectProperties fo, wbk.BuiltinDocumentProperties
 		fo.Close
 	End If
 
 	If regRead(RegKeyPath & "CompareNames", True) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)Names.txt"), True, True)
+		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & zf & ")Names.txt"), True, True)
 		writeObjectProperties fo, wbk.Names
 		fo.Close
 	End If
 
 	No = 1
 	For Each sht In wbk.Worksheets
+		No = Right(zf & CInt(No), digit)
 		If regRead(RegKeyPath & "CompareCellValues", True) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".tsv"), True, True)
 			writeCellValues fo, sht
@@ -542,7 +573,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
 			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name))
 		End If
-		No = No + 1
+		No = CInt(No) + 1
 	Next
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(wbk) Then
@@ -550,7 +581,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 			fo.WriteLine MsgCannotGetMacros
 			fo.Close
 		End If
-		
+
 		For Each cmp In wbk.VBProject.VBComponents
 			cmp.Export fso.BuildPath(folderDst, cmp.Name & getModuleExtension(cmp))
 		Next
@@ -576,9 +607,14 @@ End Function
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim mshta
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	Run wsh, "mshta.exe """ & tname & """"
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+	If Not fso.FileExists(mshta) Then
+		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
+	End If
+	Run wsh, """" & mshta & """ """ & tname & """"
 	fso.DeleteFile tname 
 End Function
 
@@ -599,98 +635,123 @@ End Sub
       ul { list-style:none; }
     </style>
     <script type="text/javascript">
-      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSExcelFiles.sct\\";
+        var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSExcelFiles.sct\\";
 
-      function regRead(key, defaultValue) {
-        try {
-          return (new ActiveXObject("WScript.Shell")).RegRead(key);
-        } catch (e) {
-          return defaultValue;
+        function regRead(key, defaultValue) {
+            try {
+                return (new ActiveXObject("WScript.Shell")).RegRead(key);
+            } catch (e) {
+                return defaultValue;
+            }
         }
-      }
 
-      function regWrite(key, value, type) {
-        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
-      }
-
-      function onload() {
-
-        var w = 800, h = 600;
-        window.resizeTo(w, h);
-        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
-
-        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-        setLanguage(navigator.browserLanguage);
-        chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
-        chkUpdateLinks.checked = (regRead(REGKEY_PATH + "UpdateLinks", 0) == 3);
-        chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
-        chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
-        chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
-        chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
-        txtImageWidth.value  = regRead(REGKEY_PATH + "ImageWidth",  1000);
-        txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
-        chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
-        chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
-        chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
-        chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
-        chkUnpackToFolder_onclick();
-        chkCompareWorksheetsAsImage_onclick();
-      }
-
-      function setLanguage(lang) {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline }';
-        } else {
-          html += '.ja { display: none } .en { display: inline }';
+        function regWrite(key, value, type) {
+            (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
         }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
-      }
 
-      function cboLanguage_onclick() {
-        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
-      }
+        function onload() {
+            var w = 800, h = 600;
+            window.resizeTo(w, h);
+            window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-      function chkUnpackToFolder_onclick() {
-        if (!chkUnpackToFolder.checked)
-          chkCompareWorksheetsAsImage.checked = false;
-      }
+            cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
+            setLanguage(navigator.browserLanguage);
+            chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
+            chkUpdateLinks.checked = (regRead(REGKEY_PATH + "UpdateLinks", 0) == 3);
+            chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
+            chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
+            chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
+            chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
+            txtImageWidth.value = regRead(REGKEY_PATH + "ImageWidth", 1000);
+            txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
+            chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
+            chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
+            chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
+            chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
+            chkUnpackToFolder_onclick();
+            chkCompareWorksheetsAsImage_onclick();
+        }
 
-      function chkCompareWorksheetsAsImage_onclick() {
-        if (chkCompareWorksheetsAsImage.checked)
-          chkUnpackToFolder.checked = true;
-      }
+        function setLanguage(lang) {
+            var div = document.getElementById("language") || document.createElement('div')
+            div.id = "language";
+            var html = '&shy;<style>';
+            if (lang.substr(0, 2).toLowerCase() === 'ja') {
+                html += '.en { display: none } .ja { display: inline }';
+            } else {
+                html += '.ja { display: none } .en { display: inline }';
+            }
+            div.innerHTML = html;
+            if (!document.getElementById("language"))
+                document.body.appendChild(div);
+        }
 
-      function btnOk_onclick() {
-        regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "UpdateLinks", chkUpdateLinks.checked ? 3 : 0, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "ImageWidth",  Number(txtImageWidth.value),  "REG_DWORD");
-        regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
-        regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
-      }
+        function cboLanguage_onclick() {
+            setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
+        }
 
-      function btnCancel_onclick() {
-        window.close();
-      }
-      
-      function onlyNumeric() {
-        var k = event.keyCode;
-        if ( k ==  9 || k == 13 || k == 37 || k == 39 || k == 46 || k ==  8 || ( k >= 48 && k <= 57 ) || ( k >= 96 && k <= 105 )) return true;
-        event.returnValue = false;
-        return false;
-      }
-      
+        function chkUnpackToFolder_onclick() {
+            if (!chkUnpackToFolder.checked)
+                chkCompareWorksheetsAsImage.checked = false;
+        }
+
+        function chkCompareWorksheetsAsImage_onclick() {
+            if (chkCompareWorksheetsAsImage.checked)
+                chkUnpackToFolder.checked = true;
+        }
+
+        function btnOk_onclick() {
+            regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "UpdateLinks", chkUpdateLinks.checked ? 3 : 0, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "ImageWidth", Number(txtImageWidth.value), "REG_DWORD");
+            regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+        }
+
+        function btnCancel_onclick() {
+            window.close();
+        }
+
+        function onlyNumeric() {
+            var k = event.keyCode;
+
+            if (event.shiftKey) {
+                if (k == 37 || k == 39) {
+                    return true;
+                }
+            } else if (event.altKey) {
+                return true;
+            } else if (event.ctrlKey) {
+                return true;
+            } else if (k == 8 || k == 9 || k == 37 || k == 39 || k == 46 /* || k == 144 */
+                || (48 <= k && k <= 57) || (96 <= k && k <= 105)) {
+                return true;
+            }
+
+            event.returnValue = false;
+            return false;
+        }
+
+        function onPaste() {
+            var paste = (event.clipboardData || window.clipboardData).getData("text");
+            if (!paste.match(/^[0-9]{0,4}$/)) {
+                paste = "";
+                if (event.preventDefault) {
+                    event.preventDefault();
+                }
+                event.returnValue = false;
+                return false;
+            } else {
+                return true;
+            }
+        }
     </script>
   </head>
   <body onload="onload();">
@@ -737,9 +798,9 @@ End Sub
           <label class="ja">ワークシートを画像化して比較する (処理時間増大)</label>
           <span class="en"> - Image split size: </span>
           <span class="ja"> - 画像分割サイズ: </span>
-          <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();"/>
+          <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
           <span> x </span>
-          <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();"/>
+          <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
         </li>
         <li>
           <input id="chkCompareFormulas" type="checkbox" />

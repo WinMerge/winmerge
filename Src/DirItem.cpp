@@ -7,31 +7,11 @@
 
 #include "pch.h"
 #include "DirItem.h"
-#include <windows.h>
 #include "UnicodeString.h"
 #include "paths.h"
 #include "TFile.h"
 #include "DebugNew.h"
-
-/**
-	* @brief Convert file flags to string presentation.
-	* This function converts file flags to a string presentation that can be
-	* shown in the GUI.
-	* @return File flags as a string.
-	*/
-String FileFlags::ToString() const
-{
-	String sflags;
-	if (attributes & FILE_ATTRIBUTE_READONLY)
-		sflags += _T("R");
-	if (attributes & FILE_ATTRIBUTE_HIDDEN)
-		sflags += _T("H");
-	if (attributes & FILE_ATTRIBUTE_SYSTEM)
-		sflags += _T("S");
-	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
-		sflags += _T("A");
-	return sflags;
-}
+#include <filesystem>
 
 /**
  * @brief Set filename and path for the item.
@@ -100,6 +80,29 @@ bool DirItem::Update(const String &sFilePath)
 }
 
 /**
+ * @brief Update filename from given file.
+ * @param [in] sFilePath Full path to file/directory to update
+ * @return true if information was updated (item was found).
+ */
+bool DirItem::UpdateFileName(const String& sFilePath)
+{
+	bool retVal = false;
+	if (!sFilePath.empty())
+	{
+		try
+		{
+			std::filesystem::path canonicalPath = std::filesystem::canonical(sFilePath);
+			filename = canonicalPath.filename();
+			retVal = true;
+		}
+		catch (...)
+		{
+		}
+	}
+	return retVal;
+}
+
+/**
  * @brief Clears FileInfo data.
  */
 /*void DirItem::Clear()
@@ -117,6 +120,14 @@ void DirItem::ClearPartial()
 	ctime = 0;
 	mtime = 0;
 	size = DirItem::FILE_SIZE_NONE;
-	version.Clear();
 	flags.reset();
+}
+
+/**
+ * @brief Return whether the item is a directory.
+ * @return true if the item is a directory.
+ */
+bool DirItem::IsDirectory() const
+{
+	return ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == FILE_ATTRIBUTE_DIRECTORY);
 }

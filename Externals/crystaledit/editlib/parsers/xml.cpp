@@ -23,8 +23,8 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszXmlKeywordList[] =
+//  XML keywords
+static const TCHAR * s_apszXmlKeywordList[] =
   {
     _T ("ATTLIST"),
     _T ("DOCTYPE"),
@@ -34,7 +34,7 @@ static LPCTSTR s_apszXmlKeywordList[] =
     _T ("xml"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T ("#FIXED"),
     _T ("#IMPLIED"),
@@ -61,24 +61,23 @@ static LPCTSTR s_apszUser1KeywordList[] =
   };
 
 static bool
-IsXmlKeyword (LPCTSTR pszChars, int nLength)
+IsXmlKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszXmlKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineXml (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineXml (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -209,12 +208,6 @@ out:
           dwCookie |= COOKIE_EXT_COMMENT;
           dwCookie &= ~COOKIE_PREPROCESSOR;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

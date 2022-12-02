@@ -3,12 +3,9 @@
  *
  * @brief Declaration file for SyntaxColors class
  */
-// ID line follows -- this is updated by SVN
-// $Id$
 
 #pragma once
 
-#include <Windows.h>
 #include <array>
 
 /** 
@@ -53,7 +50,9 @@ enum COLORINDEX
 	COLORINDEX_LAST, // Please keep this as last item (not counting masks or
 	                 // other special values)
     //
+    COLORINDEX_INTERMEDIATECOLOR = 0x40000000,
     COLORINDEX_APPLYFORCE = 0x80000000,
+    COLORINDEX_MASK = 0xC0000000,
 };
 
 const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
@@ -71,13 +70,14 @@ const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
 class SyntaxColors
 {
 public:
+	typedef unsigned COLORREF;
 	SyntaxColors();
 	explicit SyntaxColors(const SyntaxColors *pColors);
 	void Clone(const SyntaxColors *pColors);
-	COLORREF GetColor(UINT index) const { return m_colors[index]; }
-	void SetColor(UINT index, COLORREF color);
-	bool GetBold(UINT index) const { return m_bolds[index]; }
-	void SetBold(UINT index, bool bold);
+	COLORREF GetColor(unsigned index) const { return m_colors[index]; }
+	void SetColor(unsigned index, COLORREF color);
+	bool GetBold(unsigned index) const { return m_bolds[index]; }
+	void SetBold(unsigned index, bool bold);
 	void SetDefaults();
 	bool IsThemeableColorIndex(int nColorIndex) const;
 	bool GetSystemColorIndex(int nColorIndex, int * pSysIndex) const;

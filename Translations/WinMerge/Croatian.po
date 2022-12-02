@@ -4,9 +4,6 @@
 # Translators:
 # * Hasan Osmanagić <hasan.osmanagic at public.carnet.hr>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Croatian.po 7556 2011-08-19 15:07:03Z sdottaka $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
@@ -28,25 +25,51 @@ msgstr ""
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CROATIAN, SUBLANG_DEFAULT"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Kopiraj u &desno"
+msgid "Copy to Middle"
+msgstr ""
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopiraj u &lijevo"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopiraj u &desno\tAlt+desno"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy from Middle"
+msgstr ""
+
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopiraj u &lijevo\tAlt+lijevo"
+
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Right"
+msgstr ""
+
+msgid "Copy Selected Line(s) to Left"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Left"
 msgstr ""
 
 #, c-format
-msgid "Copy fro&m Right"
+msgid "Select Line &Difference\tF4"
+msgstr "Istakni &razliku\tF4"
+
+msgid "Add this change to Substitution &Filters"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Označi različite retke"
+msgid "Add to &Line Filters"
+msgstr ""
 
 #, c-format
 msgid "&Undo"
@@ -69,8 +92,21 @@ msgid "&Paste"
 msgstr "&Zalijepi"
 
 #, c-format
-msgid "&Goto..."
-msgstr "Idi &na redak"
+msgid "&Scripts"
+msgstr "&Skripte"
+
+#, c-format
+msgid "< Empty >"
+msgstr "< ništa >"
+
+msgid "&Go to...\tCtrl+G"
+msgstr "Idi &na redak\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
 
 #, c-format
 msgid "Op&en"
@@ -85,7 +121,16 @@ msgstr ""
 msgid "&With..."
 msgstr "&S..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
+msgstr ""
+
+msgid "Use First Line as Headers"
+msgstr ""
+
+msgid "Auto-Fit All Columns"
 msgstr ""
 
 #, c-format
@@ -123,6 +168,18 @@ msgstr ""
 
 #, c-format
 msgid "&Active Pane"
+msgstr ""
+
+msgid "Rotate &Right 90deg"
+msgstr ""
+
+msgid "Rotate &Left 90deg"
+msgstr ""
+
+msgid "Flip V&ertically"
+msgstr ""
+
+msgid "Flip H&orizontally"
 msgstr ""
 
 #, c-format
@@ -176,6 +233,9 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
+msgid "Rectangle &Select"
+msgstr ""
+
 #, c-format
 msgid "&Set Background Color"
 msgstr ""
@@ -183,13 +243,73 @@ msgstr ""
 msgid "&Vector Image Scaling"
 msgstr ""
 
+msgid "Compare Extracted &Text From Images"
+msgstr ""
+
+msgid "Co&mpare"
+msgstr ""
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 #, c-format
 msgid "&File"
 msgstr "&Datoteka"
 
 #, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Nova usporedba\tCtrl+N"
+msgid "&New"
+msgstr "&Nova usporedba"
+
+#, c-format
+msgid "&Text"
+msgstr ""
+
+msgid "T&able"
+msgstr ""
+
+#, c-format
+msgid "&Binary"
+msgstr ""
+
+#, c-format
+msgid "&Image"
+msgstr ""
+
+msgid "&Webpage"
+msgstr ""
 
 #, c-format
 msgid "New (&3 panes)"
@@ -201,6 +321,9 @@ msgstr "&Usporedi...\tCtrl+O"
 
 msgid "Open Conflic&t File..."
 msgstr "Otvori &konfliktne..."
+
+msgid "Open C&lipboard"
+msgstr ""
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -218,17 +341,16 @@ msgstr "Zadnje usporedbe"
 msgid "Recent F&iles Or Folders"
 msgstr ""
 
-#, c-format
-msgid "< Empty >"
-msgstr "< ništa >"
-
-#, c-format
-msgid "E&xit"
-msgstr "I&zlaz"
+msgid "E&xit\tCtrl+Q"
+msgstr "I&zlaz\tCtrl+Q"
 
 #, c-format
 msgid "&Edit"
 msgstr "&Uređivanje"
+
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Zalijepi\tCtrl+V"
 
 #, c-format
 msgid "&Options..."
@@ -306,9 +428,8 @@ msgstr "&Učitaj dodatke ponovo"
 msgid "&Window"
 msgstr "Paneli i &okna"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&Zatvori panele"
+msgid "Cl&ose\tCtrl+W"
+msgstr "&Zatvori panele\tCtrl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -375,8 +496,8 @@ msgid "Ri&ght Read-only"
 msgstr "Samo za čitanje - d&esna"
 
 #, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
@@ -463,12 +584,21 @@ msgstr "Koristi standardni f&ont"
 msgid "Sw&ap Panes"
 msgstr "&Zamijeni panele"
 
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 #, c-format
 msgid "Com&pare Statistics..."
 msgstr "Usporedbena &statistika..."
 
 #, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "Osv&ježi\tF5"
 
 #, c-format
@@ -563,9 +693,8 @@ msgstr ""
 msgid "Save &Right As..."
 msgstr ""
 
-#, c-format
-msgid "&Print..."
-msgstr "&Ispis"
+msgid "&Print...\tCtrl+P"
+msgstr "&Ispis\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "Postava &stranice..."
@@ -581,35 +710,11 @@ msgstr "&Završi retke prema"
 msgid "Mer&ge Mode\tF9"
 msgstr "Usporedni način"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
+msgid "Reloa&d\tCtrl+F5"
 msgstr ""
-
-#, c-format
-msgid "&File Encoding..."
-msgstr "De&kodiranje datoteke..."
 
 #, c-format
 msgid "Reco&mpare As"
-msgstr ""
-
-#, c-format
-msgid "&Text"
-msgstr ""
-
-msgid "T&able"
-msgstr ""
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
 msgstr ""
 
 #, c-format
@@ -627,14 +732,6 @@ msgstr "Od&reži\tCtrl+X"
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "&Kopiraj\tCtrl+C"
-
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Zalijepi\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "Istakni &razliku\tF4"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
@@ -677,10 +774,6 @@ msgid "&Clear All Bookmarks"
 msgstr "Ukloni sve oznake"
 
 #, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "Idi &na...\tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr "Označavanje sintakse"
 
@@ -720,6 +813,9 @@ msgstr ""
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 #, c-format
 msgid "&Lock Panes"
 msgstr "Za&ključaj panele"
@@ -742,6 +838,9 @@ msgstr "Prikaži &brojeve redaka"
 #, c-format
 msgid "View &Margins"
 msgstr "Prikaži &margine"
+
+msgid "View To&p Margins"
+msgstr ""
 
 #, c-format
 msgid "W&rap Lines"
@@ -819,6 +918,36 @@ msgstr ""
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr ""
 
+msgid "Copy from &Left to"
+msgstr ""
+
+#, c-format
+msgid "&Middle"
+msgstr ""
+
+#, c-format
+msgid "&Right"
+msgstr "&desnu datoteku"
+
+msgid "Copy from &Middle to"
+msgstr ""
+
+#, c-format
+msgid "&Left"
+msgstr "&lijevu datoteku"
+
+msgid "Copy from &Right to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr ""
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr ""
+
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr ""
@@ -852,13 +981,18 @@ msgstr ""
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
+msgid "Unpac&ker"
+msgstr ""
+
 #, c-format
 msgid "&Prediffer"
 msgstr "&Dodaci"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Skripte"
+msgid "Apply Pre&differ..."
+msgstr ""
+
+msgid "&Transform with editor script..."
+msgstr ""
 
 #, c-format
 msgid "Sp&lit"
@@ -867,6 +1001,9 @@ msgstr ""
 #, c-format
 msgid "Comp&are"
 msgstr "&Usporedba"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
@@ -936,18 +1073,6 @@ msgid "&Delete"
 msgstr "&Obriši"
 
 #, c-format
-msgid "&Left"
-msgstr "&lijevu datoteku"
-
-#, c-format
-msgid "&Middle"
-msgstr ""
-
-#, c-format
-msgid "&Right"
-msgstr "&desnu datoteku"
-
-#, c-format
 msgid "&Both"
 msgstr "&Obje"
 
@@ -966,13 +1091,6 @@ msgstr "&Sakrij stavke"
 #, c-format
 msgid "&Open Left"
 msgstr "&Otvori lijevi"
-
-#, c-format
-msgid "with &External Editor"
-msgstr "&vanjskim uređivačem"
-
-msgid "Open &Parent Folder..."
-msgstr ""
 
 #, c-format
 msgid "Open Midd&le"
@@ -1054,20 +1172,32 @@ msgstr "&Kopiraj stazu"
 msgid "Copy &Filename"
 msgstr "Kopiraj &naziv datoteke"
 
+msgid "&Edit Caption"
+msgstr ""
+
+msgid "&Open..."
+msgstr ""
+
+msgid "Unpacker Settings"
+msgstr ""
+
+#, c-format
+msgid "<None>"
+msgstr "Ništa"
+
+#, c-format
+msgid "<Automatic>"
+msgstr "Automatski"
+
+#, c-format
+msgid "&Select..."
+msgstr "Oda&bir..."
+
 #, c-format
 msgid "Prediffer Settings"
 msgstr "Dodaci - postavke "
 
-#, c-format
-msgid "&No prediffer"
-msgstr "&Nema dodataka"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Automatski dodaci"
-
-#, c-format
-msgid "G&oto Diff"
+msgid "G&o to Diff"
 msgstr "Idi &na razliku"
 
 #, c-format
@@ -1077,10 +1207,6 @@ msgstr "&Ne premještaj blokove"
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "Premještaj &svih blokova"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Premjesti blok &ove razlike"
 
 #, c-format
 msgid "W&hitespaces"
@@ -1099,8 +1225,12 @@ msgid "Ig&nore all"
 msgstr "Zanemari &sve"
 
 #, c-format
-msgid "Case sensi&tive"
-msgstr "&Razlikuj V/m slova"
+msgid "Ignore blan&k lines"
+msgstr "Zanemari prazne &retke"
+
+#, c-format
+msgid "Ignore &case"
+msgstr "Zanemari V/m &slova"
 
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
@@ -1108,6 +1238,12 @@ msgstr "&Zanemari različitost oznaka završetka retka (Windows/Unix/Mac)"
 
 #, c-format
 msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
@@ -1150,8 +1286,7 @@ msgstr ""
 msgid "About WinMerge"
 msgstr "O WinMerge"
 
-#, c-format
-msgid "Visit the WinMerge HomePage!"
+msgid "Visit the WinMerge Homepage!"
 msgstr "WinMerge stranica na Web-u"
 
 #, c-format
@@ -1218,9 +1353,8 @@ msgstr "Odabir..."
 msgid " Folder: Filter"
 msgstr ""
 
-#, c-format
-msgid "&Select..."
-msgstr "Oda&bir..."
+msgid " File: Prediffer Plugin"
+msgstr ""
 
 #, c-format
 msgid " File: Unpacker Plugin"
@@ -1228,9 +1362,6 @@ msgstr ""
 
 #, c-format
 msgid "Se&lect..."
-msgstr ""
-
-msgid "Co&mpare"
 msgstr ""
 
 #, c-format
@@ -1253,6 +1384,9 @@ msgstr "Opće"
 msgid "Automatically &scroll to first difference"
 msgstr "Uvijek kreni od &prve razlike"
 
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
+
 msgid "Cl&ose windows with 'Esc':"
 msgstr "Zatvori usporedbu tipkom '&Esc':"
 
@@ -1260,9 +1394,8 @@ msgstr "Zatvori usporedbu tipkom '&Esc':"
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "&Prethodno provjeri stazu u dijalogu odabira"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "Samo &jedna instanca WinMerge-a"
+msgid "Single instance mode:"
+msgstr ""
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -1276,24 +1409,16 @@ msgstr "&Zadrži oznake vremena i datuma u usporedbi"
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Pri pokretanju prikaži dijalog\"Odabir datoteke ili mape\""
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Otvori dijalog &samodovršenja"
 
 #, c-format
 msgid "Language:"
 msgstr ""
-
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge omogućuje skrivanje uobičajenih poruka. Pritisnite 'Poništi' da poruke opet budu vidljive."
-
-#, c-format
-msgid "Reset"
-msgstr "Poništi"
 
 #, c-format
 msgid "Find"
@@ -1390,9 +1515,8 @@ msgstr ""
 msgid "&Apply"
 msgstr "&Primjeni"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Filtar redaka"
+msgid "Line Filters"
+msgstr ""
 
 #, c-format
 msgid "Enable Line Filters"
@@ -1409,6 +1533,21 @@ msgstr "Uređivanje"
 #, c-format
 msgid "Remove"
 msgstr "Ukloni"
+
+msgid "Substitution Filters"
+msgstr ""
+
+msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
 
 #, c-format
 msgid "Colors"
@@ -1533,6 +1672,10 @@ msgid "&Swap"
 msgstr "&Obrni D<->L"
 
 #, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopiraj u međumemoriju"
+
+#, c-format
 msgid "&Append to existing file"
 msgstr "&Priključi postojećoj datoteci"
 
@@ -1555,10 +1698,6 @@ msgstr "St&il"
 #, c-format
 msgid "&Context:"
 msgstr "&Dubina:"
-
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "&Zanemari prazne retke"
 
 #, c-format
 msgid "Inclu&de command line"
@@ -1584,16 +1723,26 @@ msgstr "Pomakni &gore"
 msgid "Move &Down"
 msgstr "Pomakni &dole"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Izbor arhivera"
+msgid "&Additional Properties"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Arhiver datoteka:"
+msgid "Additional Properties"
+msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Prikaži sve arhivere bez provjere ekstenzije."
+msgid "&>"
+msgstr ""
+
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
+msgid "Select Plugin"
+msgstr ""
+
+msgid "Plugin &Name:"
+msgstr ""
 
 #, c-format
 msgid "Extensions list:"
@@ -1602,6 +1751,21 @@ msgstr "Popis ekstenzija"
 #, c-format
 msgid "Description:"
 msgstr "Opis:"
+
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all plugins, don't check the extension"
+msgstr ""
+
+msgid "&Open files in the same window type after unpacking"
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -1627,20 +1791,17 @@ msgstr "Stavki uspoređeno:"
 msgid "Items total:"
 msgstr "Stavki ukupno:"
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr "Idi na"
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "Redak &br:"
 
 #, c-format
 msgid "File"
 msgstr "datoteku"
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr "u datoteci"
 
 #, c-format
@@ -1651,8 +1812,7 @@ msgstr "&redak"
 msgid "&Difference"
 msgstr "&razliku"
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "Idi &na"
 
 #, c-format
@@ -1676,20 +1836,11 @@ msgid "I&gnore all"
 msgstr "Zanemari &sve"
 
 #, c-format
-msgid "Ignore blan&k lines"
-msgstr "Zanemari prazne &retke"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Zanemari V/m &slova"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "Omogući &razlikovanje premještenih blokova"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Jednake retke"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1697,13 +1848,8 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-#, c-format
-msgid "Comments"
-msgstr "Komentari"
-
-#, c-format
-msgid "Filter Comments"
-msgstr "Filtriraj komentare"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
 #, c-format
 msgid "Editor"
@@ -1760,9 +1906,15 @@ msgstr ""
 msgid "&Rendering Mode:"
 msgstr ""
 
+msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
+msgstr "WinMerge omogućuje skrivanje uobičajenih poruka. Pritisnite 'Poništi' da poruke opet budu vidljive."
+
 #, c-format
-msgid "Filefilters"
-msgstr "Filtar redaka"
+msgid "Reset"
+msgstr "Poništi"
+
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Test..."
@@ -1839,14 +1991,6 @@ msgstr "Standardna kodna stranica"
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "Odaberite standardnu kodnu stranicu za učitanje ne-Unicode datoteka:"
 
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
-msgstr ""
-"Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
-"Nije potrebno ponovno pokretanje."
-
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
-msgstr ""
-
 #, c-format
 msgid "System codepage"
 msgstr "Standardna kodna stranica sistema"
@@ -1858,6 +2002,14 @@ msgstr "Prema korisnikovom sučelju WinMerge-a"
 #, c-format
 msgid "Custom codepage:"
 msgstr "Kodna stranica prema želji:"
+
+msgid "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session."
+msgstr ""
+"Odredi info kodne stranice za datoteke: .html, .rc, .xml\n"
+"Nije potrebno ponovno pokretanje."
+
+msgid "Detect codepage for text files with mlang.dll\nNeed to restart session."
+msgstr ""
 
 #, c-format
 msgid "Options"
@@ -1948,10 +2100,6 @@ msgid "&Include File Compare Report"
 msgstr ""
 
 #, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopiraj u međumemoriju"
-
-#, c-format
 msgid "Shared or Private Filter"
 msgstr "Zajednički ili osobni filtar"
 
@@ -1978,6 +2126,9 @@ msgstr "Omogući rad s &arhivima"
 #, c-format
 msgid "&Detect archive type from file signature"
 msgstr "&Očitaj tip arhiva iz zaglavlja datoteke"
+
+msgid "Items saved to or restored from the project file:"
+msgstr ""
 
 #, c-format
 msgid "Compare Statistics"
@@ -2212,6 +2363,12 @@ msgstr "&Omogući dodatke"
 msgid "File filters:"
 msgstr ""
 
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 #, c-format
 msgid "Shell Integration"
 msgstr "Shell integracija"
@@ -2242,6 +2399,12 @@ msgstr ""
 msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Mapa"
@@ -2255,7 +2418,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Zanemari razlike manje od 3 sekunde"
 
 #, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2266,14 +2429,13 @@ msgstr ""
 msgid "Ignore &Reparse Points"
 msgstr ""
 
-#, c-format
-msgid "&Quick compare limit (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
 msgstr ""
 
-msgid "&Binary compare limit (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"
@@ -2320,6 +2482,24 @@ msgid "Image File &Patterns:"
 msgstr ""
 
 msgid "&Enable image compare in folder compare"
+msgstr ""
+
+msgid "OCR result:"
+msgstr ""
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
 msgstr ""
 
 #, c-format
@@ -2420,11 +2600,6 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "WinMerge Usporedba mapa"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-msgstr ""
-"Razvojni tim:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
-
 #, fuzzy, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr "WinMerge je program BEZ IKAKVE GARANCIJE. To je besplatan softver koji možete dalje distribuirati pod određenim okolnostima prema GNU javnoj licenci koju pogledajte u datoteci pomoći."
@@ -2477,22 +2652,28 @@ msgstr "Izostavi &sve"
 msgid "Don't display this &message again."
 msgstr "Ne prikazuj više ovu poruku."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
-msgstr ""
-
-msgid "Color Schemes"
+msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 
 #, c-format
 msgid "Syntax"
 msgstr ""
 
+msgid "Color Schemes"
+msgstr ""
+
 msgid "Folder Compare"
+msgstr ""
+
+msgid "Project"
 msgstr ""
 
 #, c-format
 msgid "Differences"
 msgstr "Razlike"
+
+msgid "Message Boxes"
+msgstr ""
 
 #, c-format
 msgid "To:"
@@ -2578,6 +2759,37 @@ msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Sve datoteke (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML datoteke (*.xml)|*.xml|Sve datoteke (*.*)|*.*||"
 
+msgid "File Type"
+msgstr ""
+
+#, c-format
+msgid "Extension"
+msgstr "Tip"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
+msgstr ""
+
 #, c-format
 msgid "Name"
 msgstr "Naziv"
@@ -2607,16 +2819,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "FLT datoteke (*.flt)|*.flt|Sve datoteke (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Nema predloška filtracije datoteke!\n"
-"\n"
-"Molimo, kopirajte datoteku %1 u WinMerge/Filters -mapu:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Nema predloška filtracije datoteke!\n\nMolimo, kopirajte datoteku %1 u WinMerge/Filters mapu:\n%2."
 
 #, c-format
 msgid ""
@@ -2700,6 +2904,9 @@ msgstr ""
 msgid "Untitled right"
 msgstr "Neimenovan"
 
+msgid "Base File"
+msgstr ""
+
 #, c-format
 msgid "Theirs File"
 msgstr "Tuđe datoteke"
@@ -2707,6 +2914,9 @@ msgstr "Tuđe datoteke"
 #, c-format
 msgid "Mine File"
 msgstr "Moje datoteke"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2718,6 +2928,10 @@ msgstr "Redak: %s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr ""
+
+#, c-format
+msgid "  Sel: %d | %d"
 msgstr ""
 
 #, c-format
@@ -2893,6 +3107,10 @@ msgstr ""
 "Pohraniti nespakiranu verziju kao datoteku?"
 
 #, c-format
+msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+msgstr ""
+
+#, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
 "\n"
@@ -2979,6 +3197,27 @@ msgstr "Stani na razmaku"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Stani na razmaku ili interpunkciji"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr ""
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr ""
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr ""
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr ""
+
+msgid "Copy All to Middle"
+msgstr ""
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3118,6 +3357,9 @@ msgstr "Potvrdite premještanje"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr ""
 
+msgid "The file or folder name is invalid."
+msgstr ""
+
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Greška pri pokretanju vanjskog editora: %1"
@@ -3125,6 +3367,9 @@ msgstr "Greška pri pokretanju vanjskog editora: %1"
 #, c-format
 msgid "Unknown archive format"
 msgstr "Nepoznat oblik arhiva"
+
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
 
 #, c-format
 msgid "Filename"
@@ -3149,10 +3394,6 @@ msgstr "Datum sadašnji"
 #, c-format
 msgid "Middle Date"
 msgstr ""
-
-#, c-format
-msgid "Extension"
-msgstr "Tip"
 
 #, c-format
 msgid "Left Size"
@@ -3254,6 +3495,98 @@ msgid "Binary"
 msgstr "Binarno"
 
 #, c-format
+msgid "Unpacker"
+msgstr "Raspakiravač"
+
+#, c-format
+msgid "Prediffer"
+msgstr "Prediffer"
+
+msgid "Left"
+msgstr ""
+
+msgid "Middle"
+msgstr ""
+
+msgid "Right"
+msgstr ""
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
+#, c-format
 msgid "Unable to compare files"
 msgstr "Ne mogu usporediti datoteke"
 
@@ -3333,16 +3666,13 @@ msgstr "Greška"
 msgid "Text files are identical"
 msgstr "Tekstovi su identični"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
 #, c-format
@@ -3353,6 +3683,10 @@ msgid "Image files are identical"
 msgstr ""
 
 msgid "Image files are different"
+msgstr ""
+
+#, c-format
+msgid "Group%d"
 msgstr ""
 
 #, c-format
@@ -3435,16 +3769,13 @@ msgstr ""
 msgid "Tells which side has newer modification date."
 msgstr "Koja strana je promijenjena ranije?"
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Verzija na lijevoj strani, samo za neke tipove."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Verzija na desnoj strani, samo za neke tipove."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
 #, c-format
@@ -3496,9 +3827,19 @@ msgstr "Broj razlika u datoteci. Zanemarene razlike nisu uključene."
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Prikaži zvjezdicu (*) uz binarnu datoteku."
 
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
+
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Usporedi %1 s %2"
+
+#, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
 
 #, c-format
 msgid "Comma-separated list"
@@ -3595,6 +3936,12 @@ msgstr ""
 
 #, c-format
 msgid "Do you want to move to the previous page?"
+msgstr ""
+
+msgid "Do you want to move to the first file?"
+msgstr ""
+
+msgid "Do you want to move to the last file?"
 msgstr ""
 
 #, c-format
@@ -3709,10 +4056,6 @@ msgid "Cannot create a patch file from binary files."
 msgstr "Ne mogu stvoriti datoteku razlika iz binarnih datoteka"
 
 #, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Ne mogu stvoriti datoteku razlika mapa."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3726,14 +4069,10 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "Mapa ne postoji"
 
-#, c-format
-msgid ""
-"Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
-"See manual for more info about archive support and how to enable it."
+msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
 msgstr ""
 "Rad s arhivama nije omogućen.\n"
-"Nema nužnih komponenata (7-zip i/ili Merge7z*.dll) .\n"
+"Nema nužnih komponenata (7-Zip i/ili Merge7z*.dll) .\n"
 "Pregledajte upute kako omogućiti rad s arhivama."
 
 #, c-format
@@ -3794,14 +4133,6 @@ msgid "Type"
 msgstr "Tip"
 
 #, c-format
-msgid "Unpacker"
-msgstr "Raspakiravač"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
-
-#, c-format
 msgid "Editor script"
 msgstr "Uređivač skripti"
 
@@ -3845,32 +4176,38 @@ msgstr ""
 msgid "\nLast Difference (Alt+End)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid "\nCopy to Left (Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 
-#, c-format
-msgid "\nAll Right"
-msgstr ""
+msgid "\nCopy All to Right"
+msgstr "\nKopiraj sve u desno"
 
-#, c-format
-msgid "\nAll Left"
-msgstr ""
+msgid "\nCopy All to Left"
+msgstr "\nKopiraj sve u lijevo"
 
 #, c-format
 msgid "\nAuto Merge (Ctrl+Alt+M)"
+msgstr ""
+
+msgid "\nFirst File"
+msgstr ""
+
+msgid "\nNext File (Ctrl+F8)"
+msgstr ""
+
+msgid "\nLast File"
+msgstr ""
+
+msgid "\nPrevious File (Ctrl+F7)"
 msgstr ""
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
@@ -3884,9 +4221,8 @@ msgstr "Bez dodataka (uobičajeno)"
 msgid "Suggested plugins"
 msgstr "Preporučljivi dodaci"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Ostali dodaci"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -3912,16 +4248,11 @@ msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH dodatak nije nađen! - .sct skripte su onemogućene"
 
 #, c-format
-msgid "<None>"
-msgstr "Ništa"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "Automatski"
-
-#, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "Idi &na redak"
+
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
 
 #, c-format
 msgid "Disabled"
@@ -3943,9 +4274,6 @@ msgstr "Nije označeno"
 msgid "Batch"
 msgstr "Batch"
 
-msgid "Lua"
-msgstr ""
-
 #, c-format
 msgid "Portable Object"
 msgstr "Prenosni objekt"
@@ -3957,10 +4285,6 @@ msgstr "Resursi"
 #, c-format
 msgid "Shell"
 msgstr "Shell"
-
-#, c-format
-msgid "VHDL"
-msgstr ""
 
 #, c-format
 msgid "Close &Left Tabs"
@@ -3978,8 +4302,10 @@ msgstr ""
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "We&bpage"
+msgstr ""
+
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format
@@ -4004,6 +4330,9 @@ msgid "patience"
 msgstr ""
 
 msgid "histogram"
+msgstr ""
+
+msgid "none"
 msgstr ""
 
 msgid "GDI"
@@ -4031,6 +4360,9 @@ msgid "MDI child window or main window"
 msgstr ""
 
 msgid "MDI child window only"
+msgstr ""
+
+msgid "Close main window if there is only one MDI child window"
 msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
@@ -4114,6 +4446,340 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr ""
+
+msgid "All pages"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
+#, c-format
+msgid "Allow only one instance to run"
+msgstr "Samo jedna instanca WinMerge-a"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "Decompilation"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "URL Handling"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify HTML"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
+msgstr ""
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""
+
+msgid "Make characters uppercase"
+msgstr ""
+
+msgid "Make characters lowercase"
+msgstr ""
+
+msgid "Remove duplicate lines"
+msgstr ""
+
+msgid "Count duplicate lines"
+msgstr ""
+
+msgid "Sort lines ascending"
+msgstr ""
+
+msgid "Sort lines descending"
+msgstr ""
+
+msgid "Reverse columns"
+msgstr ""
+
+msgid "Reverse lines"
+msgstr ""
+
+msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+msgstr ""
+
+#, c-format
+msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+msgstr ""
+
+msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgstr ""
+
+msgid "Trim spaces"
+msgstr ""
+
+msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+msgstr ""
+
+msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+msgstr ""
+
+msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgstr ""
+
+msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgstr ""
+
+msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+msgstr ""
+
+msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+msgstr ""
+
+msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+msgstr ""
+
+msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+msgstr ""
+
+msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+msgstr ""
+
+msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+msgstr ""
+
+msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+msgstr ""
+
+msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+msgstr ""
+
+msgid "Apply patch using GnuWin32 Patch for Windows"
+msgstr ""
+
+msgid "Display the text content of MS Excel files"
+msgstr ""
+
+msgid "Display the text content of MS PowerPoint files"
+msgstr ""
+
+msgid "Display the text content of MS Visio files"
+msgstr ""
+
+msgid "Display the text content of MS Word files"
+msgstr ""
+
+msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+msgstr ""
+
+msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+msgstr ""
+
+msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgstr ""
+
+msgid "Prediff Line Filter"
+msgstr ""
+
+msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

@@ -26,10 +26,12 @@ private:
 	bool  m_bAutoMaxWidth;
 	int   m_nDraggingTabItemIndex;
 	CFont m_font;
+	CToolTipCtrl m_tooltips;		/**< Tooltip for the tab */
+	int   m_nTooltipTabItemIndex;	/**< Index of the tab displaying tooltip */
 	int m_cxSMIcon;
 
 public:
-	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(nullptr), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1), m_cxSMIcon(0) {}
+	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(nullptr), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1), m_nTooltipTabItemIndex(-1), m_cxSMIcon(0) {}
 	virtual ~CMDITabBar() {}
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
@@ -59,6 +61,8 @@ public:
 	{ ASSERT(::IsWindow(m_hWnd)); return (BOOL)::SendMessage(m_hWnd, TCM_GETITEMRECT, (WPARAM)nItem, (LPARAM)lpRect); }
 
 protected:
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 	//{{AFX_MSG(CMDITabBar)
 	afx_msg void OnPaint();
 	afx_msg BOOL OnEraseBkgnd(CDC *pDC);
@@ -79,4 +83,6 @@ private:
 	CRect GetCloseButtonRect(int nItem) const;
 	int GetItemIndexFromPoint(CPoint pt) const;
 	void SwapTabs(int nIndexA, int nIndexB);
+	int GetMaxTitleLength() const;
+	void UpdateToolTips(int index);
 };

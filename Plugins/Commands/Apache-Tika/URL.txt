@@ -1,0 +1,3 @@
+[Apache Tika]
+https://www.apache.org/dyn/closer.cgi/tika/2.2.1/tika-app-2.2.1.jar
+https://www.apache.org/dyn/closer.cgi/tika/2.2.1/tika-2.2.1-src.zip

@@ -242,3 +242,6 @@ UninstallProgram=Odinštalova aplikáciu %1
 LaunchProgram=Spusti aplikáciu %1
 AssocFileExtension=Vytvori &asociáciu medzi súbormi typu %2 a aplikáciou %1
 AssocingFileExtension=Vytvára sa asociácia medzi súbormi typu %2 a aplikáciou %1...
+AutoStartProgramGroupDescription=Pri spustení:
+AutoStartProgram=Automaticky spusti %1
+AddonHostProgramNotFound=Nepodarilo sa nájs %1 v adresári, ktorı ste zvolili.%n%nChcete napriek tomu pokraèova?

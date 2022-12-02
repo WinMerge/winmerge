@@ -141,7 +141,7 @@ void SharedMemoryImpl::map()
 		DWORD dwRetVal = GetLastError();
 		throw SystemException(format("Cannot map shared memory object %s [Error %d: %s]", _name, (int)dwRetVal, Error::getMessage(dwRetVal)));
 	}
-	if (_size == 1 && !canRead(addr))
+	if (_size >= 1 && !canRead(addr))
 	{
 		UnmapViewOfFile(addr);
 		throw SystemException("Cannot map shared memory object", _name);

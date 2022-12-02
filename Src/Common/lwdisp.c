@@ -130,17 +130,6 @@ static void mycpyt2w(LPCTSTR tsz, wchar_t * wdest, size_t limit)
 #endif
 }
 
-static void mycpyt2a(LPCTSTR tsz, char * adest, size_t limit)
-{
-#ifdef _UNICODE
-	WideCharToMultiByte(CP_ACP, 0, tsz, -1, adest, (int)limit, 0, 0);
-	// always terminate the string
-	adest[limit-1] = 0;
-#else
-	StringCchCopyA(adest, limit, tsz);
-#endif
-}
-
 #ifdef _WIN64
 LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 {
@@ -157,10 +146,10 @@ LPDISPATCH CreatDispatchBy32BitProxy(LPCTSTR source, LPCWSTR progid)
 	{
 		LPTSTR errorText = ReportError(sc, 0);
 		LPTSTR tmp;
-		tmp = FormatMessageFromString(_T("32bitプラグイン(%1)のロードに失敗しました。:%2\n")
-			_T("WinMerge32BitPluginProxy.exeが登録されていないかもしれません。\n")
-			_T("管理者権限のコマンドプロンプトで以下を実行してみてください。\n\n")
-			_T("\"{WinMergeインストールパス}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
+		tmp = FormatMessageFromString(_T("Failed to load 32bit plugin(%1):%2\n")
+			_T("WinMerge32BitPluginProxy.exe may not be registered.\n")
+			_T("Try running the following in an elevated command prompt.\n\n")
+			_T("\"{WinMerge installation path}\\WinMerge32BitPluginProxy.exe\" /RegServer"), source, errorText);
 		LocalFree(errorText);
 		errorText = tmp;
 		MessageBox(NULL, errorText, NULL, MB_ICONSTOP|MB_TASKMODAL);
@@ -199,6 +188,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
 			if (SUCCEEDED(sc = DllGetClassObject(pObjectCLSID, &IID_IClassFactory, &piClassFactory)))
 			{
 				sc = piClassFactory->lpVtbl->CreateInstance(piClassFactory, 0, &IID_IDispatch, &pv);
+				piClassFactory->lpVtbl->Release(piClassFactory);
 			}
 		}
 		if (pv == NULL)
@@ -212,7 +202,7 @@ LPDISPATCH CreateDispatchBySourceAndCLSID(LPCTSTR source, CLSID *pObjectCLSID)
  * 
  * @Note We can use this code with unregistered COM DLL
  * For VC++ DLL, we need a custom CComTypeInfoHolder as the default one search the registry
- * For VB DLL, instance can not be shared accross thread, one must be created for each thread
+ * For VB DLL, instance can not be shared across thread, one must be created for each thread
  *
  * Don't catch unknown errors in this function, because we want to catch
  * both C++ and C errors, and this is a C file.
@@ -305,11 +295,14 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 		bind_opts.grfMode = STGM_READWRITE;
 		bind_opts.dwTickCountDeadline = 0;
 		// prepend appropriate moniker:
-		if (PathIsContentType(source, _T("text/scriptlet")) || PathMatchSpec(source, _T("*.sct")))
+		if (PathIsContentType(source, _T("text/scriptlet")) 
+			|| PathMatchSpec(source, _T("*.sct")) 
+			|| PathMatchSpec(source, _T("*.wsc")))
 			mycpyt2w(_T("script:"), wc, DIMOF(wc));
 		else
 			mycpyt2w(_T(""), wc, DIMOF(wc));
-		mycpyt2w(source, wc+wcslen(wc), DIMOF(wc)-wcslen(wc));
+		size_t len = wcslen(wc);
+		mycpyt2w(source, wc + len, DIMOF(wc) - len);
 
 		// I observed that CoGetObject() may internally provoke an access
 		// violation and succeed anyway. No idea how to avoid this.
@@ -450,7 +443,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 			}
 			else
 			{
-				ReportError(excepInfo.scode, MB_ICONSTOP|MB_TASKMODAL);
+				ReportError(excepInfo.scode == 0 ? sc : excepInfo.scode, MB_ICONSTOP|MB_TASKMODAL);
 			}
 			SysFreeString(excepInfo.bstrDescription);
 			SysFreeString(excepInfo.bstrSource);

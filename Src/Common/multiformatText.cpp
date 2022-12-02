@@ -85,7 +85,7 @@ void storageForPlugins::SetDataFileEncoding(const String& filename, FileTextEnco
 }
 void storageForPlugins::SetDataFileUnknown(const String& filename, bool bOverwrite /*= false*/) 
 {
-	FileTextEncoding encoding = GuessCodepageEncoding(filename, 1);
+	FileTextEncoding encoding = codepage_detect::Guess(filename, 1);
 	SetDataFileEncoding(filename, encoding, bOverwrite);
 }
 
@@ -100,7 +100,7 @@ const TCHAR *storageForPlugins::GetDestFileName()
 			try
 			{
 				TFile(m_tempFilenameDst).renameTo(tempFilenameDstNew);
-				m_tempFilenameDst = tempFilenameDstNew;
+				m_tempFilenameDst = std::move(tempFilenameDstNew);
 			}
 			catch (Exception& e)
 			{
@@ -348,7 +348,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 			int textRealSize = textForeseenSize;
 
 			// allocate the memory
-			std::unique_ptr<wchar_t[]> tempBSTR(new wchar_t[textForeseenSize]);
+			auto tempBSTR = std::make_unique<wchar_t[]>(textForeseenSize);
 
 			// fill in the data
 			wchar_t * pbstrBuffer = tempBSTR.get();
@@ -435,6 +435,7 @@ const TCHAR *storageForPlugins::GetDataFileAnsi()
 			GetDestFileName();
 			TFile fileOut(m_tempFilenameDst);
 			fileOut.setSize(textForeseenSize);
+			if (textForeseenSize > 0)
 			{
 				SharedMemory shmOut(fileOut, SharedMemory::AM_WRITE);
 

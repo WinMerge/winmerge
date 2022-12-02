@@ -5,74 +5,101 @@
 # * Hans Fredrik Nordhaug <hansfn at users.sourceforge.net>
 # * FreewareTips <http://home.c2i.net/freewaretips/>
 #
-# ID line follows -- this is updated by SVN
-# $Id: Norwegian.po 7584 2013-01-13 05:55:34Z christianlist $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2022-01-22 21:51+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: FreewareTips <http://home.c2i.net/freewaretips/>\n"
+"Last-Translator: FTno\n"
 "Language-Team: Norwegian <winmerge-translate@lists.sourceforge.net>\n"
+"Language: no\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Norwegian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../Src/\n"
+"X-Poedit-Basepath: ../../Src\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
-#, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_NORWEGIAN, SUBLANG_DEFAULT"
 
-#, c-format
-msgid "C&opy to Right"
-msgstr "Kopier til &høyre"
+msgid "Copy to Middle"
+msgstr "Kopier til midten"
 
-#, c-format
-msgid "Cop&y to Left"
-msgstr "Kopier til &venstre"
+msgid "C&opy to Right\tAlt+Right"
+msgstr "Kopier til &høyre\tAlt+Høyre"
 
-#, c-format
-msgid "Copy &from Left"
+msgid "Copy from Middle"
+msgstr "Kopier fra midten"
+
+msgid "Copy fro&m Right\tAlt+Shift+Left"
+msgstr "Kopier fr&a høyre\tAlt+Shift+Venstre"
+
+msgid "Cop&y to Left\tAlt+Left"
+msgstr "Kopier til &venstre\tAlt+Venstre"
+
+msgid "Copy &from Left\tAlt+Shift+Right"
+msgstr "Kopier &fra venstre\tAlt+Shift+Høyre"
+
+msgid "Copy Selected Line(s) to Middle"
+msgstr "Kopier valgte linje(r) til midten"
+
+msgid "Copy Selected Line(s) to Right"
+msgstr "Kopier valgte linje(r) til høyre"
+
+msgid "Copy Selected Line(s) from Middle"
+msgstr "Kopier valgte linje(r) fra midten"
+
+msgid "Copy Selected Line(s) from Right"
+msgstr "Kopier valgte linje(r) fra høyre"
+
+msgid "Copy Selected Line(s) to Left"
+msgstr "Kopier valgte linje(r) til venstre"
+
+msgid "Copy Selected Line(s) from Left"
+msgstr "Kopier valgte linje(r) fra venstre"
+
+msgid "Select Line &Difference\tF4"
+msgstr "&Marker linjeforskjell\tF4"
+
+msgid "Add this change to Substitution &Filters"
 msgstr ""
 
-#, c-format
-msgid "Copy fro&m Right"
+msgid "Add to &Line Filters"
 msgstr ""
 
-#, c-format
-msgid "&Select Line Difference"
-msgstr "&Marker linjeforskjell"
-
-#, c-format
 msgid "&Undo"
 msgstr "&Angre"
 
-#, c-format
 msgid "&Redo"
 msgstr "Ann&uler angre"
 
-#, c-format
 msgid "Cu&t"
 msgstr "&Klipp ut"
 
-#, c-format
 msgid "&Copy"
 msgstr "Ko&pier"
 
-#, c-format
 msgid "&Paste"
 msgstr "&Lim inn"
 
-#, c-format
-msgid "&Goto..."
-msgstr "Gå &til..."
+msgid "&Scripts"
+msgstr "&Skript"
 
-#, c-format
+msgid "< Empty >"
+msgstr "< Tom >"
+
+msgid "&Go to...\tCtrl+G"
+msgstr "Gå &til...\tCtrl+G"
+
+msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
+msgstr ""
+
+msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
+msgstr ""
+
 msgid "Op&en"
 msgstr "&Åpne"
 
@@ -80,52 +107,65 @@ msgid "With &Registered Application"
 msgstr "Med &registrert program"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "Med &eksternt redigeringsprogram\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&Med..."
 
+msgid "Open &Parent Folder..."
+msgstr ""
+
 msgid "S&hell Menu"
 msgstr ""
 
-#, c-format
-msgid "View &Differences"
+msgid "Use First Line as Headers"
 msgstr ""
 
-#, c-format
+msgid "Auto-Fit All Columns"
+msgstr ""
+
+msgid "View &Differences"
+msgstr "Vis &forskjeller"
+
 msgid "Diff &Block Size"
 msgstr ""
 
-#, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
 msgstr ""
 
 msgid "Ins&ertion/Deletion Detection"
 msgstr ""
 
-#, c-format
 msgid "&None"
 msgstr "&Ingen"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "&Vertikal"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Horisontal"
 
-#, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Forrige side"
 
-#, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "&Neste side"
 
-#, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "&Aktive panel"
 
-#, c-format
+msgid "Rotate &Right 90deg"
+msgstr "Roter &høyre 90gr"
+
+msgid "Rotate &Left 90deg"
+msgstr "Roter &venstre 90gr"
+
+msgid "Flip V&ertically"
+msgstr "Speilvend v&ertikalt"
+
+msgid "Flip H&orizontally"
+msgstr "Speilvend h&orisontalt"
+
 msgid "&Zoom"
 msgstr "&Zoom"
 
@@ -133,40 +173,31 @@ msgstr "&Zoom"
 msgid "25%"
 msgstr ""
 
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "Zoom &inn\tCtrl++"
 
-#, c-format
 msgid "Zoom &Out\tCtrl+-"
 msgstr "Zoom &ut\tCtrl+-"
 
 #. Zoom to normal
-#, c-format
 msgid "&Normal\tCtrl+*"
 msgstr "&Normal\tCtrl+*"
 
-#, c-format
 msgid "&Overlay"
-msgstr ""
+msgstr "&Overlegg"
 
-#, c-format
 msgid "&Alpha Blend"
 msgstr ""
 
-#, c-format
 msgid "Alpha &Blend Animation"
 msgstr ""
 
-#, c-format
 msgid "Dragging &Mode"
 msgstr ""
 
-#, c-format
 msgid "&Move"
 msgstr "&Flytt"
 
-#, c-format
 msgid "&Adjust Offset"
 msgstr ""
 
@@ -176,253 +207,255 @@ msgstr ""
 msgid "&Horizontal Wipe"
 msgstr ""
 
-#, c-format
+msgid "Rectangle &Select"
+msgstr ""
+
 msgid "&Set Background Color"
 msgstr ""
 
 msgid "&Vector Image Scaling"
 msgstr ""
 
-#, c-format
+msgid "Compare Extracted &Text From Images"
+msgstr ""
+
+msgid "Co&mpare"
+msgstr ""
+
+msgid "&Screenshots"
+msgstr ""
+
+msgid "&Full Size Screenshots"
+msgstr ""
+
+msgid "&HTMLs"
+msgstr ""
+
+msgid "&Texts"
+msgstr ""
+
+msgid "&Resource Trees"
+msgstr ""
+
+msgid "&Size"
+msgstr ""
+
+msgid "Fit to Window"
+msgstr ""
+
+msgid "Clear &Browsing Data"
+msgstr ""
+
+msgid "&Disk Cache"
+msgstr ""
+
+msgid "&Cookies"
+msgstr ""
+
+msgid "&Browsing History"
+msgstr ""
+
+msgid "&All Profile"
+msgstr ""
+
 msgid "&File"
 msgstr "&Fil"
 
-#, c-format
-msgid "&New\tCtrl+N"
-msgstr "&Ny\tCtrl+N"
+msgid "&New"
+msgstr "&Ny"
 
-#, c-format
-msgid "New (&3 panes)"
+msgid "&Text"
+msgstr "&Tekst"
+
+msgid "T&able"
+msgstr "T&abell"
+
+msgid "&Binary"
+msgstr "Bin&ær"
+
+msgid "&Image"
+msgstr "&Bilde"
+
+msgid "&Webpage"
 msgstr ""
 
-#, c-format
+msgid "New (&3 panes)"
+msgstr "Ny (&3 paneler)"
+
 msgid "&Open...\tCtrl+O"
 msgstr "&Åpne...\tCtrl+O"
 
 msgid "Open Conflic&t File..."
-msgstr "Åpne konflik&tfil...
+msgstr "Åpne konflik&tfil..."
 
-#, c-format
+msgid "Open C&lipboard"
+msgstr "Åpne utk&lippstavle"
+
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "Åpne p&rosjekt...\tCtrl+J"
 
-#, c-format
 msgid "Sa&ve Project..."
 msgstr "Lagre pr&osjekt..."
 
-#, c-format
 msgid "Recent Projects"
 msgstr "Seneste prosjekter"
 
-#, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
+msgstr "Nylige f&iler eller mapper"
 
-#, c-format
-msgid "< Empty >"
-msgstr "< Tom >"
+msgid "E&xit\tCtrl+Q"
+msgstr "&Avslutt\tCtrl+Q"
 
-#, c-format
-msgid "E&xit"
-msgstr "&Avslutt"
-
-#, c-format
 msgid "&Edit"
 msgstr "&Rediger"
 
-#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "&Lim inn\tCtrl+V"
+
 msgid "&Options..."
 msgstr "&Innstillinger..."
 
-#, c-format
 msgid "&View"
 msgstr "&Vis"
 
-#, c-format
 msgid "&Toolbar"
 msgstr "Verkt&øylinje"
 
-#, c-format
 msgid "&Small"
 msgstr "&Liten"
 
-#, c-format
 msgid "&Big"
 msgstr "&Stor"
 
-#, c-format
 msgid "&Huge"
 msgstr ""
 
-#, c-format
 msgid "&Status Bar"
 msgstr "Stat&uslinje"
 
-#, c-format
 msgid "Ta&b Bar"
 msgstr "F&anelinje"
 
-#, c-format
 msgid "&Tools"
 msgstr "&Verktøy"
 
-#, c-format
 msgid "&Filters..."
 msgstr "&Filter..."
 
-#, c-format
 msgid "&Generate Patch..."
 msgstr "&Generer rettelse..."
 
-#, c-format
 msgid "&Plugins"
 msgstr "&Programtillegg"
 
-#, c-format
 msgid "P&lugin Settings..."
-msgstr ""
+msgstr "P&rogramtillegginnstillinger..."
 
-#, c-format
 msgid "Ma&nual Prediffer"
 msgstr ""
 
-#, c-format
 msgid "A&utomatic Prediffer"
 msgstr ""
 
-#, c-format
 msgid "&Manual Unpacking"
 msgstr "&Manuell utpakking"
 
-#, c-format
 msgid "&Automatic Unpacking"
 msgstr "&Automatisk utpakking"
 
-#, c-format
 msgid "&Reload plugins"
 msgstr "&Gjeninnlast programtillegg"
 
-#, c-format
 msgid "&Window"
 msgstr "&Vindu"
 
-#, c-format
-msgid "Cl&ose"
-msgstr "&Lukk"
+msgid "Cl&ose\tCtrl+W"
+msgstr "&Lukk\tCtrl+W"
 
-#, c-format
 msgid "Clo&se All"
 msgstr "L&ukk alle"
 
-#, c-format
 msgid "Change &Pane\tF6"
 msgstr "&Skift panel\tF6"
 
-#, c-format
 msgid "Tile &Horizontally"
 msgstr "&Horisontale vinduer"
 
-#, c-format
 msgid "Tile &Vertically"
 msgstr "&Vertikale vinduer"
 
-#, c-format
 msgid "&Cascade"
 msgstr "&Overlappende"
 
-#, c-format
 msgid "&Help"
 msgstr "&Hjelp"
 
-#, c-format
 msgid "&WinMerge Help\tF1"
 msgstr "&WinMerge hjelp\tF1"
 
-#, c-format
 msgid "R&elease Notes"
 msgstr ""
 
-#, c-format
 msgid "&Translations"
 msgstr ""
 
-#, c-format
 msgid "C&onfiguration"
 msgstr "&Konfigurasjon"
 
-#, c-format
 msgid "&GNU General Public License"
 msgstr "&GNU General Public License"
 
-#, c-format
 msgid "&About WinMerge..."
 msgstr "Om Win&Merge..."
 
-#, c-format
 msgid "&Read-only"
-msgstr ""
+msgstr "Skrive&beskyttet"
 
-#, c-format
 msgid "L&eft Read-only"
 msgstr "Venstre skrive&beskyttet"
 
-#, c-format
 msgid "M&iddle Read-only"
-msgstr ""
+msgstr "M&idten skrivebeskyttet"
 
-#, c-format
 msgid "Ri&ght Read-only"
 msgstr "H&øyre skrivebeskyttet"
 
-#, c-format
-msgid "File En&coding..."
-msgstr ""
+msgid "&File Encoding..."
+msgstr "Filko&ding..."
 
-#, c-format
 msgid "Select &All\tCtrl+A"
 msgstr "Me&rk alt\tCtrl+A"
 
-#, c-format
 msgid "Show &Identical Items"
 msgstr "Vis &identiske objekter"
 
-#, c-format
 msgid "Show &Different Items"
 msgstr "Vis &forskjellige objekter"
 
-#, c-format
 msgid "Show L&eft Unique Items"
 msgstr "Vis &venstre unike objekter"
 
-#, c-format
 msgid "Show Midd&le Unique Items"
 msgstr ""
 
-#, c-format
 msgid "Show Ri&ght Unique Items"
 msgstr "Vis &høyre unike objekter"
 
-#, c-format
 msgid "Show S&kipped Items"
 msgstr "Vis ob&jekter hoppet over"
 
-#, c-format
 msgid "S&how Binary Files"
 msgstr "V&is binærfiler"
 
-#, c-format
 msgid "&3-way Compare"
 msgstr ""
 
-#, c-format
 msgid "Show &Left Only Different Items"
 msgstr ""
 
-#, c-format
 msgid "Show &Middle Only Different Items"
 msgstr ""
 
-#, c-format
 msgid "Show &Right Only Different Items"
 msgstr ""
 
@@ -435,137 +468,113 @@ msgstr ""
 msgid "Show Rig&ht Only Missing Items"
 msgstr ""
 
-#, c-format
 msgid "Show Hidd&en Items"
 msgstr "Vis sk&julte objekter"
 
-#, c-format
 msgid "Tree &Mode"
 msgstr "Tre&modus"
 
-#, c-format
 msgid "E&xpand All Subfolders"
 msgstr "&Utvid alle undermapper"
 
-#, c-format
 msgid "&Collapse All Subfolders"
 msgstr "Sammen&trekk alle undermapper"
 
-#, c-format
 msgid "Select &Font..."
 msgstr "Velg &skrifttype..."
 
-#, c-format
 msgid "Use Default Font"
 msgstr "Bruk standard s&krifttype"
 
-#, c-format
 msgid "Sw&ap Panes"
 msgstr "&Bytt om paneler"
 
-#, c-format
+msgid "Swap &1st | 2nd"
+msgstr ""
+
+msgid "Swap &2nd | 3rd"
+msgstr ""
+
+msgid "Swap 1st | &3rd"
+msgstr ""
+
 msgid "Com&pare Statistics..."
 msgstr "Sammen&lign statistikker..."
 
-#, c-format
-msgid "Refre&sh\tF5"
+msgid "Refresh\tF5"
 msgstr "&Gjenoppfrisk\tF5"
 
-#, c-format
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "G&jenoppfrisk valgte\tCtrl+F5"
 
-#, c-format
 msgid "&Merge"
 msgstr "&Sammenslå"
 
-#, c-format
 msgid "Co&mpare\tEnter"
 msgstr "Sa&mmenlign\tEnter"
 
-#, c-format
 msgid "&Next Difference\tAlt+Down"
 msgstr "&Neste forskjell\tAlt+Down"
 
-#, c-format
 msgid "&Previous Difference\tAlt+Up"
 msgstr "&Forrige forskjell\tAlt+Up"
 
-#, c-format
 msgid "&First Difference\tAlt+Home"
 msgstr "F&ørste forskjell\tAlt+Home"
 
-#, c-format
 msgid "&Current Difference\tAlt+Enter"
 msgstr "&Aktuelle forskjell\tAlt+Enter"
 
-#, c-format
 msgid "&Last Difference\tAlt+End"
 msgstr "&Siste forskjell\tAlt+End"
 
-#, c-format
 msgid "Copy to &Right\tAlt+Right"
 msgstr "Kopier til &høyre\tAlt+Høyre"
 
-#, c-format
 msgid "Copy to L&eft\tAlt+Left"
 msgstr "Kopier til &venstre\tAlt+Venstre"
 
-#, c-format
 msgid "&Delete\tDel"
 msgstr "Sle&tt\tDel"
 
-#, c-format
 msgid "&Customize Columns..."
 msgstr "&Tilpass kolonner..."
 
-#, c-format
 msgid "Generate &Report..."
 msgstr "Generer &rapport..."
 
-#, c-format
 msgid "&Edit with Unpacker..."
 msgstr ""
 
-#, c-format
 msgid "&Save\tCtrl+S"
 msgstr "&Lagre\tCtrl+S"
 
-#, c-format
 msgid "Sav&e"
-msgstr ""
+msgstr "Lagr&e"
 
-#, c-format
 msgid "Save &Left"
 msgstr "Lagre &venstre"
 
-#, c-format
 msgid "Save &Middle"
-msgstr ""
+msgstr "Lagre &midten"
 
-#, c-format
 msgid "Save &Right"
 msgstr "Lagre &høyre"
 
-#, c-format
 msgid "Save &As"
-msgstr ""
+msgstr "Lagre &som"
 
-#, c-format
 msgid "Save &Left As..."
-msgstr ""
+msgstr "Lagre &venstre som..."
 
-#, c-format
 msgid "Save &Middle As..."
-msgstr ""
+msgstr "Lagre &midten som..."
 
-#, c-format
 msgid "Save &Right As..."
-msgstr ""
+msgstr "Lagre &høyre som..."
 
-#, c-format
-msgid "&Print..."
-msgstr "&Skriv ut..."
+msgid "&Print...\tCtrl+P"
+msgstr "Skri&v ut...\tCtrl+P"
 
 msgid "Page Set&up..."
 msgstr "&Utskriftsformat..."
@@ -573,325 +582,264 @@ msgstr "&Utskriftsformat..."
 msgid "Print Previe&w..."
 msgstr "&Forhåndsvisning..."
 
-#, c-format
 msgid "&Convert Line Endings to"
 msgstr "&Konverter linjeslutt til"
 
-#, c-format
 msgid "Mer&ge Mode\tF9"
 msgstr "Sammenslå-&modus\tF9"
 
-#, c-format
-msgid "Re&load\tCtrl+F5"
-msgstr ""
+msgid "Reloa&d\tCtrl+F5"
+msgstr "Lastpån&ytt\tCtrl+F5"
 
-#, c-format
-msgid "&File Encoding..."
-msgstr "Filko&ding..."
-
-#, c-format
 msgid "Reco&mpare As"
-msgstr ""
+msgstr "Sa&mmenlign på nytt som"
 
-#, c-format
-msgid "&Text"
-msgstr ""
-
-msgid "T&able"
-msgstr ""
-
-#, c-format
-msgid "&XML"
-msgstr "&XML"
-
-#, c-format
-msgid "&Binary"
-msgstr ""
-
-#, c-format
-msgid "&Image"
-msgstr ""
-
-#, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "&Angre\tCtrl+Z"
 
-#, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "Ann&uler angre\tCtrl+Y"
 
-#, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "&Klipp ut\tCtrl+X"
 
-#, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "Ko&pier\tCtrl+C"
 
-#, c-format
-msgid "&Paste\tCtrl+V"
-msgstr "&Lim inn\tCtrl+V"
-
-#, c-format
-msgid "Select Line &Difference\tF4"
-msgstr "&Marker linjeforskjell\tF4"
-
-#, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "S&øk...\tCtrl+F"
 
-#, c-format
 msgid "Repla&ce...\tCtrl+H"
 msgstr "&Erstatt...\tCtrl+H"
 
-#, c-format
 msgid "&Marker...\tCtrl+Shift+M"
 msgstr ""
 
-#, c-format
 msgid "Advanced"
 msgstr "Avansert"
 
-#, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
 msgstr "&Kopier med linjenummer\tCtrl+Shift+C"
 
-#, c-format
 msgid "&Bookmarks"
 msgstr "&Bokmerker"
 
-#, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "&Vis/Skjul bokmerke\tCtrl+F2"
 
-#, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "&Neste bokmerke\tF2"
 
-#, c-format
 msgid "&Previous bookmark\tShift+F2"
 msgstr "&Forrige bokmerke\tShift+F2"
 
-#, c-format
 msgid "&Clear All Bookmarks"
 msgstr "Fjern &alle bokmerker"
 
-#, c-format
-msgid "&Go To...\tCtrl+G"
-msgstr "&Gå til...\tCtrl+G"
-
-#, c-format
 msgid "Syntax Highlight"
 msgstr "Syntaksmarkering"
 
-#, c-format
 msgid "&Diff Context"
 msgstr ""
 
-#, c-format
 msgid "&All Lines"
 msgstr ""
 
-#, c-format
 msgid "&0 Lines"
 msgstr ""
 
-#, c-format
 msgid "&1 Line"
 msgstr ""
 
-#, c-format
 msgid "&3 Lines"
 msgstr ""
 
-#, c-format
 msgid "&5 Lines"
 msgstr ""
 
-#, c-format
 msgid "&7 Lines"
 msgstr ""
 
-#, c-format
 msgid "&9 Lines"
 msgstr ""
 
-#, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
 msgstr ""
 
-#, c-format
+msgid "&Invert (Hide Different Lines)"
+msgstr ""
+
 msgid "&Lock Panes"
 msgstr "&Lås paneler"
 
-#, c-format
 msgid "&View Whitespace"
 msgstr "&Vis blanktegn"
 
 msgid "View E&OL"
 msgstr ""
 
-#, c-format
 msgid "Vie&w Line Differences"
 msgstr "Vis linjefo&rksjell"
 
-#, c-format
 msgid "View Line &Numbers"
 msgstr "Vis linje&nummer"
 
-#, c-format
 msgid "View &Margins"
 msgstr "Vis &marger"
 
-#, c-format
+msgid "View To&p Margins"
+msgstr ""
+
 msgid "W&rap Lines"
 msgstr "&Tekstbrytning"
 
-#, c-format
 msgid "Split V&ertically"
-msgstr ""
+msgstr "Splitt v&ertikalt"
 
-#, c-format
 msgid "Diff &Pane"
 msgstr "&Forskjellspanel"
 
-#, c-format
 msgid "Lo&cation Pane"
 msgstr "L&okaliseringspanel"
 
-#, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr ""
+msgstr "Neste k&onflikt\tAlt+Shift+Down"
 
-#, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr ""
+msgstr "Forri&ge konflikt\tAlt+Shift+Up"
 
-#, c-format
 msgid "A&dvanced"
-msgstr ""
+msgstr "Avanse&rt"
 
-#, c-format
 msgid "Next Difference Between Left and Middle\tAlt+1"
 msgstr ""
 
-#, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
 msgstr ""
 
-#, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
 msgstr ""
 
-#, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
 msgstr ""
 
-#, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
 msgstr ""
 
-#, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
 msgstr ""
 
-#, c-format
 msgid "Next Left Only Difference\tAlt+7"
 msgstr ""
 
-#, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
 msgstr ""
 
-#, c-format
 msgid "Next Middle Only Difference\tAlt+8"
 msgstr ""
 
-#, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
 msgstr ""
 
-#, c-format
 msgid "Next Right Only Difference\tAlt+9"
 msgstr ""
 
-#, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr ""
 
-#, c-format
-msgid "Copy from Left\tAlt+Shift+Right"
-msgstr ""
+msgid "Copy from &Left to"
+msgstr "Kopier fra &venstre til"
 
-#, c-format
+msgid "&Middle"
+msgstr "&Midten"
+
+msgid "&Right"
+msgstr "&Høyre"
+
+msgid "Copy from &Middle to"
+msgstr "Kopier fra &midten til"
+
+msgid "&Left"
+msgstr "&Venstre"
+
+msgid "Copy from &Right to"
+msgstr "Kopier fra &høyre til"
+
+msgid "Copy Selected Line(s) from Le&ft to"
+msgstr "Kopier valgte linje(r) fra &venstre til"
+
+msgid "Copy Selected Line(s) from Mi&ddle to"
+msgstr "Kopier valgte linje(r) fra mi&dten til"
+
+msgid "Copy Selected Line(s) from Ri&ght to"
+msgstr "Kopier valgte linje(r) fra hø&yre til"
+
+msgid "Copy from Left\tAlt+Shift+Right"
+msgstr "Kopier fra venstre\tAlt+Shift+Høyre"
+
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Kopier fra høyre\tAlt+Shift+Venstre"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Kopier til høyre og g&å videre\tCtrl+Alt+Right"
+msgstr "Kopier til høyre og g&å videre\tCtrl+Alt+Høyre"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Kopier &til venstre og gå videre\tCtrl+Alt+Left"
+msgstr "Kopier &til venstre og gå videre\tCtrl+Alt+Venstre"
 
-#, c-format
 msgid "Copy &All to Right"
 msgstr "&Kopier alt til høyre"
 
-#, c-format
 msgid "Cop&y All to Left"
 msgstr "K&opier alt til venstre"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr ""
+msgstr "A&uto-sammenslå\tCtrl+Alt+M"
 
-#, c-format
 msgid "Add &Synchronization Point\tAlt+S"
 msgstr ""
 
-#, c-format
 msgid "Clear Sync&hronization Points"
 msgstr ""
 
-#, c-format
+msgid "Unpac&ker"
+msgstr ""
+
 msgid "&Prediffer"
 msgstr "&Prediffer"
 
-#, c-format
-msgid "&Scripts"
-msgstr "&Skript"
-
-#, c-format
-msgid "Sp&lit"
+msgid "Apply Pre&differ..."
 msgstr ""
 
-#, c-format
+msgid "&Transform with editor script..."
+msgstr ""
+
+msgid "Sp&lit"
+msgstr "S&plitt"
+
 msgid "Comp&are"
 msgstr "Samm&enlign"
+
+msgid "Compare in new &window"
+msgstr ""
 
 msgid "Compare Non-hor&izontally..."
 msgstr ""
 
-#, c-format
 msgid "Compare Non-hor&izontally"
 msgstr ""
 
-#, c-format
 msgid "First &left item with second left item"
 msgstr ""
 
-#, c-format
 msgid "First &right item with second right item"
 msgstr ""
 
-#, c-format
 msgid "&First left item with second right item"
 msgstr ""
 
-#, c-format
 msgid "&Second left item with first right item"
 msgstr ""
 
-#, c-format
 msgid "Co&mpare As"
 msgstr ""
 
@@ -931,58 +879,30 @@ msgstr "Høyre til venstre (%1 av %2)"
 msgid "Right to... (%1 of %2)"
 msgstr "Høyre til... (%1 av %2)"
 
-#, c-format
 msgid "&Delete"
 msgstr "&Slett"
 
-#, c-format
-msgid "&Left"
-msgstr "&Venstre"
-
-#, c-format
-msgid "&Middle"
-msgstr ""
-
-#, c-format
-msgid "&Right"
-msgstr "&Høyre"
-
-#, c-format
 msgid "&Both"
 msgstr "&Begge"
 
-#, c-format
 msgid "&All"
 msgstr ""
 
-#, c-format
 msgid "Re&name"
 msgstr "En&dre navn"
 
-#, c-format
 msgid "&Hide Items"
 msgstr "&Skjul objekter"
 
-#, c-format
 msgid "&Open Left"
 msgstr "&Åpne venstre"
 
-#, c-format
-msgid "with &External Editor"
-msgstr "med &eksternt redigeringsprogram"
-
-msgid "Open &Parent Folder..."
-msgstr ""
-
-#, c-format
 msgid "Open Midd&le"
 msgstr ""
 
-#, c-format
 msgid "O&pen Right"
 msgstr "Å&pne høyre"
 
-#, c-format
 msgid "Cop&y Pathnames"
 msgstr "Kop&ier baner"
 
@@ -1006,15 +926,12 @@ msgstr "Begge (%1 av %2)"
 msgid "All (%1 of %2)"
 msgstr ""
 
-#, c-format
 msgid "Copy &Filenames"
 msgstr "Kopier &filnavn"
 
-#, c-format
 msgid "Copy Items To Clip&board"
 msgstr ""
 
-#, c-format
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -1030,438 +947,362 @@ msgstr ""
 msgid "Differences to... (%1 of %2)"
 msgstr ""
 
-#, c-format
 msgid "Left Shell menu"
 msgstr "Venstre skallmeny"
 
-#, c-format
 msgid "Middle Shell menu"
 msgstr ""
 
-#, c-format
 msgid "Right Shell menu"
 msgstr "Høyre skallmeny"
 
-#, c-format
 msgid "Copy"
 msgstr ""
 
-#, c-format
 msgid "&Copy Full Path"
 msgstr "&Kopier full bane"
 
-#, c-format
 msgid "Copy &Filename"
 msgstr "Kopier &filnavn"
 
-#, c-format
-msgid "Prediffer Settings"
-msgstr "Prediffer-innstillinger"
-
-#, c-format
-msgid "&No prediffer"
-msgstr "&Ingen prediffer"
-
-#, c-format
-msgid "Auto prediffer"
-msgstr "Auto-prediffer"
-
-#, c-format
-msgid "G&oto Diff"
-msgstr "G&å til forskjell"
-
-#, c-format
-msgid "&No Moved Blocks"
-msgstr "&Ingen flyttede blokker"
-
-#, c-format
-msgid "&All Moved Blocks"
-msgstr "&Alle flyttede blokker"
-
-#, c-format
-msgid "Moved Block for &Current Diff"
-msgstr "Flyttet blokk for g&jeldende forskjell"
-
-#, c-format
-msgid "W&hitespaces"
-msgstr "&Blanktegn"
-
-#, c-format
-msgid "Com&pare"
-msgstr "Sammen&lign"
-
-#, c-format
-msgid "I&gnore changes"
-msgstr "I&gnorer endringer"
-
-#, c-format
-msgid "Ig&nore all"
-msgstr "Ig&norer alle"
-
-#, c-format
-msgid "Case sensi&tive"
-msgstr "Skill mellom store/små &bokstaver"
-
-#, c-format
-msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Igno&rer linjebruddforskjeller (Windows/Unix/Mac)"
-
-#, c-format
-msgid "Ignore codepage &differences"
+msgid "&Edit Caption"
 msgstr ""
 
-#, c-format
-msgid "&Include Subfolders"
-msgstr "&Inkluder undermapper"
-
-#, c-format
-msgid "&Compare method:"
+msgid "&Open..."
 msgstr ""
 
-#, c-format
-msgid "Full Contents"
-msgstr "Fullt innhold"
-
-#, c-format
-msgid "Quick Contents"
-msgstr "Raskt innhold"
-
-#, c-format
-msgid "Binary Contents"
+msgid "Unpacker Settings"
 msgstr ""
 
-#, c-format
-msgid "Modified Date"
-msgstr "Endringsdato"
+msgid "<None>"
+msgstr "<Ingen>"
 
-#, c-format
-msgid "Modified Date and Size"
-msgstr "Endringsdato og størrelse"
+msgid "<Automatic>"
+msgstr "<Automatisk>"
 
-#, c-format
-msgid "Size"
-msgstr "Størrelse"
-
-#, c-format
-msgid "&Load Project..."
-msgstr ""
-
-#, c-format
-msgid "About WinMerge"
-msgstr "Om WinMerge"
-
-#, c-format
-msgid "Visit the WinMerge HomePage!"
-msgstr "Besøk hjemmesiden til WinMerge!"
-
-#, c-format
-msgid "OK"
-msgstr "OK"
-
-#, c-format
-msgid "Contributors"
-msgstr "Bidragsytere"
-
-#, c-format
-msgid "Select Files or Folders"
-msgstr "Velg filer eller mapper..."
-
-#, c-format
-msgid "&1st File or Folder"
-msgstr ""
-
-#, c-format
-msgid "Re&ad-only"
-msgstr "Sk&rivebeskyttet"
-
-#, c-format
-msgid "Swap 1st | 2nd"
-msgstr ""
-
-#, c-format
-msgid "&Browse..."
-msgstr "&Bla gjennom.."
-
-#, c-format
-msgid "&2nd File or Folder"
-msgstr ""
-
-#, c-format
-msgid "Rea&d-only"
-msgstr ""
-
-#, c-format
-msgid "Swap 2nd | 3rd"
-msgstr ""
-
-#, c-format
-msgid "B&rowse..."
-msgstr "B&la gjennom.."
-
-#, c-format
-msgid "&3rd File or Folder (Optional)"
-msgstr ""
-
-#, c-format
-msgid "Read-o&nly"
-msgstr ""
-
-#, c-format
-msgid "Swap 1st | 3rd"
-msgstr ""
-
-#, c-format
-msgid "Browse..."
-msgstr "Bla gjennom.."
-
-#, c-format
-msgid " Folder: Filter"
-msgstr ""
-
-#, c-format
 msgid "&Select..."
 msgstr "&Velg..."
 
-#, c-format
+msgid "Prediffer Settings"
+msgstr "Prediffer-innstillinger"
+
+msgid "G&o to Diff"
+msgstr "G&å til forskjell"
+
+msgid "&No Moved Blocks"
+msgstr "&Ingen flyttede blokker"
+
+msgid "&All Moved Blocks"
+msgstr "&Alle flyttede blokker"
+
+msgid "W&hitespaces"
+msgstr "&Blanktegn"
+
+msgid "Com&pare"
+msgstr "Sammen&lign"
+
+msgid "I&gnore changes"
+msgstr "I&gnorer endringer"
+
+msgid "Ig&nore all"
+msgstr "Ig&norer alle"
+
+msgid "Ignore blan&k lines"
+msgstr "Ignorer blan&ke linjer"
+
+msgid "Ignore &case"
+msgstr "Ignorer store/små &bokstaver"
+
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr "Igno&rer linjebruddforskjeller (Windows/Unix/Mac)"
+
+msgid "Ignore codepage &differences"
+msgstr ""
+
+msgid "Ignore num&bers"
+msgstr ""
+
+msgid "Ignore c&omment differences"
+msgstr ""
+
+msgid "&Include Subfolders"
+msgstr "&Inkluder undermapper"
+
+msgid "&Compare method:"
+msgstr "&Sammenligningsmetode:"
+
+msgid "Full Contents"
+msgstr "Fullt innhold"
+
+msgid "Quick Contents"
+msgstr "Raskt innhold"
+
+msgid "Binary Contents"
+msgstr "Binærinnhold"
+
+msgid "Modified Date"
+msgstr "Endringsdato"
+
+msgid "Modified Date and Size"
+msgstr "Endringsdato og størrelse"
+
+msgid "Size"
+msgstr "Størrelse"
+
+msgid "&Load Project..."
+msgstr ""
+
+msgid "About WinMerge"
+msgstr "Om WinMerge"
+
+msgid "Visit the WinMerge Homepage!"
+msgstr "Besøk hjemmesiden til WinMerge!"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Contributors"
+msgstr "Bidragsytere"
+
+msgid "Select Files or Folders"
+msgstr "Velg filer eller mapper"
+
+msgid "&1st File or Folder"
+msgstr ""
+
+msgid "Re&ad-only"
+msgstr "Sk&rivebeskyttet"
+
+msgid "Swap 1st | 2nd"
+msgstr ""
+
+msgid "&Browse..."
+msgstr "&Bla gjennom.."
+
+msgid "&2nd File or Folder"
+msgstr ""
+
+msgid "Rea&d-only"
+msgstr ""
+
+msgid "Swap 2nd | 3rd"
+msgstr ""
+
+msgid "B&rowse..."
+msgstr "B&la gjennom.."
+
+msgid "&3rd File or Folder (Optional)"
+msgstr ""
+
+msgid "Read-o&nly"
+msgstr ""
+
+msgid "Swap 1st | 3rd"
+msgstr ""
+
+msgid "Browse..."
+msgstr "Bla gjennom.."
+
+msgid " Folder: Filter"
+msgstr ""
+
+msgid " File: Prediffer Plugin"
+msgstr ""
+
 msgid " File: Unpacker Plugin"
 msgstr ""
 
-#, c-format
 msgid "Se&lect..."
 msgstr ""
 
-msgid "Co&mpare"
-msgstr ""
-
-#, c-format
 msgid "Cancel"
 msgstr "Avbryt"
 
-#, c-format
 msgid "Status:"
 msgstr "Status:"
 
-#, c-format
 msgid "Help"
 msgstr "Hjelp"
 
-#, c-format
 msgid "General"
 msgstr "Generelt"
 
-#, c-format
 msgid "Automatically &scroll to first difference"
 msgstr "Automatisk &rulling til første forskjell"
+
+msgid "Automatically s&croll to first inline difference"
+msgstr ""
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "L&ukk vinduer med 'Esc':"
 
-#, c-format
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "Verifiser baner automatisk i Åpne-dialog"
 
-#, c-format
-msgid "All&ow only one instance to run"
-msgstr "&Tillat bare en instans å kjøre"
+msgid "Single instance mode:"
+msgstr ""
 
-#, c-format
 msgid "As&k when closing multiple windows"
 msgstr "Sp&ør ved lukking av flere vinduer"
 
-#, c-format
 msgid "&Preserve file time in file compare"
 msgstr "&Bevar fil-tid i filsammenligning"
 
-#, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Vis \"Velg filer eller mapper\" dialog ved oppstart"
 
-#, c-format
-msgid "Close \"Select Files or Folders\" Dialog on clicking OK button"
+msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
-#, c-format
-msgid "O&pen-dialog Auto-Completion:"
+msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-fullførelse for Å&pne-dialog:"
 
-#, c-format
 msgid "Language:"
 msgstr ""
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-knappen for å gjøre alle meldingsboksene synlige igjen."
-
-#, c-format
-msgid "Reset"
-msgstr "Tilbakestill"
-
-#, c-format
 msgid "Find"
 msgstr "Søk"
 
-#, c-format
 msgid "Fi&nd what:"
 msgstr "F&inn hva:"
 
-#, c-format
 msgid "Match &whole word only"
 msgstr "Bare &hele ord"
 
-#, c-format
 msgid "Match &case"
 msgstr "Skill mellom store/små &bokstaver"
 
-#, c-format
 msgid "Regular &expression"
 msgstr "Regulære &uttrykk"
 
-#, c-format
 msgid "D&on't wrap end of file"
 msgstr "Ikke br&yt ved filende"
 
-#, c-format
 msgid "&Don't close this dialog box"
 msgstr ""
 
-#, c-format
 msgid "&Find Next"
 msgstr "&Finn neste"
 
-#, c-format
 msgid "Find &Prev"
 msgstr ""
 
-#, c-format
 msgid "&Ok"
 msgstr "&Ok"
 
-#, c-format
 msgid "Replace"
 msgstr "Erstatt"
 
-#, c-format
 msgid "Re&place with:"
 msgstr "Ers&tatt med:"
 
-#, c-format
 msgid "&Don't wrap end of file"
 msgstr "&Ikke bryt ved filende"
 
-#, c-format
 msgid "Replace in"
 msgstr "Erstatt i"
 
-#, c-format
 msgid "&Selection"
 msgstr "&Merket område"
 
-#, c-format
 msgid "Wh&ole file"
 msgstr "He&le filen"
 
 msgid "Find Pre&v"
 msgstr ""
 
-#, c-format
 msgid "&Replace"
 msgstr "&Erstatt"
 
-#, c-format
 msgid "Replace &All"
 msgstr "Erstatt &alle"
 
-#, c-format
 msgid "Markers"
 msgstr ""
 
-#, c-format
 msgid "Enable &Markers"
 msgstr ""
 
-#, c-format
 msgid "New"
 msgstr "Ny"
 
-#, c-format
 msgid "&Background color:"
 msgstr ""
 
-#, c-format
 msgid "&Apply"
 msgstr "&Bruk"
 
-#, c-format
-msgid "Linefilters"
-msgstr "Linjefiltere"
+msgid "Line Filters"
+msgstr ""
 
-#, c-format
 msgid "Enable Line Filters"
 msgstr "Aktiver linjefiltere"
 
-#, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "Regulære uttrykk (en pr. linje):"
 
-#, c-format
 msgid "Edit"
 msgstr "Rediger"
 
-#, c-format
 msgid "Remove"
 msgstr "Fjern"
 
-#, c-format
+msgid "Substitution Filters"
+msgstr ""
+
+msgid ""
+"The changes that appear on the panels as the listed pairs below will be "
+"ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+
+msgid "Enable"
+msgstr ""
+
+msgid "Add"
+msgstr ""
+
+msgid "Clear"
+msgstr ""
+
 msgid "Colors"
 msgstr "Farger"
 
 msgid "Color Scheme:"
 msgstr ""
 
-#, c-format
 msgid "Background"
 msgstr "Bakgrunn"
 
-#, c-format
 msgid "Deleted"
 msgstr "Slettet"
 
-#, c-format
 msgid "Text"
 msgstr "Tekst"
 
-#, c-format
 msgid "Difference:"
 msgstr "Forskjell:"
 
-#, c-format
 msgid "Selected Difference:"
 msgstr "Valgt forskjell:"
 
-#, c-format
 msgid "Ignored Difference:"
 msgstr "Ignorert forskjell:"
 
-#, c-format
 msgid "Moved:"
 msgstr "Flyttet:"
 
-#, c-format
 msgid "Selected Moved:"
 msgstr "Valgt flyttet:"
 
-#, c-format
 msgid "Same As The Next (3 panes):"
 msgstr ""
 
-#, c-format
 msgid "Same As The Next (Selected):"
 msgstr ""
 
-#, c-format
 msgid "Word Difference:"
 msgstr "Ordforskjell:"
 
-#, c-format
 msgid "Selected Word Diff:"
 msgstr "Valgt ordforskjell:"
 
@@ -1480,216 +1321,185 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
 msgid "Margin:"
 msgstr ""
 
-#, c-format
 msgid "System"
 msgstr "System"
 
-#, c-format
 msgid "&Send deleted files to Recycle Bin"
 msgstr "&Send slettede filer til papirkurven"
 
-#, c-format
 msgid "&External editor:"
 msgstr "&Eksternt redigeringsprogram:"
 
-#, c-format
 msgid "&Filter folder:"
 msgstr "&Filter-mappe:"
 
-#, c-format
 msgid "Temporary files folder"
 msgstr "Mappe for midlertidige filer"
 
-#, c-format
 msgid "S&ystem's temp folder"
 msgstr "S&ystemets midlertidige mappe"
 
-#, c-format
 msgid "C&ustom folder:"
 msgstr "E&gen mappe:"
 
-#, c-format
 msgid "Br&owse..."
 msgstr "B&la gjennom.."
 
-#, c-format
 msgid "Patch Generator"
 msgstr "Rettelsegenerator"
 
-#, c-format
 msgid "File&1:"
 msgstr "Fil&1:"
 
-#, c-format
 msgid "File&2:"
 msgstr "Fil&2:"
 
-#, c-format
 msgid "&Swap"
 msgstr "B&ytt"
 
-#, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopier til utklippstavle"
+
 msgid "&Append to existing file"
 msgstr "&Legg til i eksisterende fil"
 
-#, c-format
 msgid "&Result:"
 msgstr "&Resultat:"
 
-#, c-format
 msgid "Bro&wse..."
 msgstr "Bla &gjennom.."
 
-#, c-format
 msgid "&Format"
 msgstr "&Format"
 
-#, c-format
 msgid "St&yle:"
 msgstr "St&il:"
 
-#, c-format
 msgid "&Context:"
 msgstr "&Kontekst:"
 
-#, c-format
-msgid "Ignor&e blank lines"
-msgstr "Ignor&er tomme linjer"
-
-#, c-format
 msgid "Inclu&de command line"
 msgstr "Inklud&er kommandolinje"
 
-#, c-format
 msgid "Open to e&xternal editor"
 msgstr "Åpne i e&ksternt redigeringsprogram"
 
-#, c-format
 msgid "Defaults"
 msgstr "Standardverdier"
 
-#, c-format
 msgid "Display Columns"
 msgstr "Visningskolonner"
 
-#, c-format
 msgid "Move &Up"
 msgstr "Flytt &opp"
 
-#, c-format
 msgid "Move &Down"
 msgstr "Flytt &ned"
 
-#, c-format
-msgid "Select Unpacker"
-msgstr "Velg utpakker"
+msgid "&Additional Properties"
+msgstr ""
 
-#, c-format
-msgid "File unpacker:"
-msgstr "Filutpakker:"
+msgid "Additional Properties"
+msgstr ""
 
-msgid "Display all unpackers, don't check the extension."
-msgstr "Vis alle utpakkere, ikke kontroller filtype."
+msgid "&>"
+msgstr ""
 
-#, c-format
+msgid "&<"
+msgstr ""
+
+msgid "<<"
+msgstr ""
+
+msgid "Select Plugin"
+msgstr ""
+
+msgid "Plugin &Name:"
+msgstr ""
+
 msgid "Extensions list:"
 msgstr "Filetypeliste:"
 
-#, c-format
 msgid "Description:"
 msgstr "Beskrivelse:"
 
-#, c-format
+msgid "Default arguments:"
+msgstr ""
+
+msgid "Display all plugins, don't check the extension"
+msgstr ""
+
+msgid "&Open files in the same window type after unpacking"
+msgstr ""
+
+msgid "&Plugin Pipeline:"
+msgstr ""
+
+msgid "&Add pipe"
+msgstr ""
+
 msgid "Stop"
 msgstr "Stopp"
 
-#, c-format
 msgid "Pause"
 msgstr ""
 
-#, c-format
 msgid "Continue"
 msgstr ""
 
-#, c-format
 msgid "Comparing items..."
 msgstr "Sammenligner objekter..."
 
-#, c-format
 msgid "Items compared:"
 msgstr "Objekter sammenlignet:"
 
-#, c-format
 msgid "Items total:"
 msgstr "Objekter totalt:"
 
-#, c-format
-msgid "Go To"
+msgid "Go to"
 msgstr "Gå til"
 
-#, c-format
-msgid "G&oto:"
+msgid "G&o to:"
 msgstr "G&å til:"
 
-#, c-format
 msgid "File"
 msgstr "Fil"
 
-#, c-format
-msgid "Goto what"
+msgid "Go to what"
 msgstr "Gå til hva"
 
-#, c-format
 msgid "Li&ne"
 msgstr "Li&nje"
 
-#, c-format
 msgid "&Difference"
 msgstr "&Forskjell"
 
-#, c-format
-msgid "&Go To"
+msgid "&Go to"
 msgstr "&Gå til"
 
-#, c-format
 msgid "Compare"
 msgstr "Sammenlign"
 
-#, c-format
 msgid "Whitespaces"
 msgstr "Blanktegn"
 
-#, c-format
 msgid "&Compare"
 msgstr "S&ammenlign"
 
-#, c-format
 msgid "&Ignore change"
 msgstr "Ignorer e&ndringer"
 
-#, c-format
 msgid "I&gnore all"
 msgstr "Ignorer &alle"
 
-#, c-format
-msgid "Ignore blan&k lines"
-msgstr "Ignorer blan&ke linjer"
-
-#, c-format
-msgid "Ignore &case"
-msgstr "Ignorer store/små &bokstaver"
-
-#, c-format
 msgid "E&nable moved block detection"
 msgstr "&Aktiver flyttet blokk-oppdagelse"
 
-#, c-format
-msgid "&Match similar lines"
-msgstr "&Match lignende linjer"
+msgid "Align &similar lines"
+msgstr ""
 
 msgid "Diff &algorithm (Experimental):"
 msgstr ""
@@ -1697,405 +1507,322 @@ msgstr ""
 msgid "Enable indent &heuristic"
 msgstr ""
 
-#, c-format
-msgid "Comments"
-msgstr "Kommentarer"
+msgid "Completely unhighlight the ignored differences"
+msgstr ""
 
-#, c-format
-msgid "Filter Comments"
-msgstr "Filter-kommentarer"
-
-#, c-format
 msgid "Editor"
 msgstr "Redigering"
 
-#, c-format
 msgid "&Highlight syntax"
 msgstr "&Marker syntaksen"
 
-#, c-format
 msgid "&Automatic rescan"
 msgstr "Automatisk &oppdatering"
 
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr "&Bevar originale EOL-tegn"
 
-#, c-format
 msgid "Tabs"
 msgstr "Tabulator"
 
-#, c-format
 msgid "&Tab size:"
 msgstr "&Tabulatorstørrelse:"
 
-#, c-format
 msgid "&Insert Tabs"
 msgstr "Sett inn tabulatorer"
 
-#, c-format
 msgid "Insert &Spaces"
 msgstr "Sett inn mellomrom"
 
-#, c-format
 msgid "Line Difference Coloring"
 msgstr "Linjeforskjells-farger"
 
-#, c-format
 msgid "View line differences"
 msgstr "Vis linjeforskjeller"
 
-#, c-format
 msgid "&Character level"
 msgstr "&Tegnnivå"
 
-#, c-format
 msgid "&Word-level:"
 msgstr "&Ord-nivå:"
 
-#, c-format
 msgid "W&ord break characters:"
 msgstr ""
 
 msgid "&Rendering Mode:"
 msgstr ""
 
-#, c-format
-msgid "Filefilters"
-msgstr "Filfiltere"
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge tillater å skjule noen vanlige meldingsbokser. Trykk tilbakestill-"
+"knappen for å gjøre alle meldingsboksene synlige igjen."
+
+msgid "Reset"
+msgstr "Tilbakestill"
+
+msgid "File Filters"
+msgstr ""
 
 msgid "Test..."
 msgstr "Test..."
 
-#, c-format
 msgid "Install..."
 msgstr "Installer..."
 
-#, c-format
 msgid "New..."
 msgstr "Ny..."
 
-#, c-format
 msgid "Edit..."
 msgstr "Rediger..."
 
-#, c-format
 msgid "Delete..."
 msgstr "Slett..."
 
-#, c-format
 msgid "Save modified files?"
 msgstr "Lagre endrede filer?"
 
-#, c-format
 msgid "Left side file"
 msgstr "Fil på venstre side"
 
-#, c-format
 msgid "&Save changes"
 msgstr "&Lagre endringer"
 
-#, c-format
 msgid "&Discard changes"
 msgstr "&Forkast endringer"
 
-#, c-format
 msgid "Middle side file"
 msgstr ""
 
-#, c-format
 msgid "Sa&ve changes"
 msgstr ""
 
-#, c-format
 msgid "Discard c&hanges"
 msgstr ""
 
-#, c-format
 msgid "Right side file"
 msgstr "Fil på høyre side"
 
-#, c-format
 msgid "S&ave changes"
 msgstr "L&agre endringer"
 
-#, c-format
 msgid "Dis&card changes"
 msgstr "Fork&ast endringer"
 
-#, c-format
 msgid "Disca&rd All"
 msgstr ""
 
-#, c-format
 msgid "Codepage"
 msgstr "Tegnsett"
 
-#, c-format
 msgid "Default Codepage"
 msgstr "Standard tegnsett"
 
-#, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
-
-msgid "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session."
 msgstr ""
-"Oppdag tegnsett-info for disse filer: .html, .rc, .xml\n"
-"nødvendig å starte programmet på nytt"
+"Velg standard tegnsett som blir antatt når det lastes ikke-Unicode filer:"
 
-msgid "Detect codepage for text files using mlang.dll\nNeed to restart session."
-msgstr ""
-
-#, c-format
 msgid "System codepage"
 msgstr "System-tegnsett"
 
-#, c-format
 msgid "According to WinMerge User Interface"
 msgstr "I følge WinMerge brukergrensesnitt"
 
-#, c-format
 msgid "Custom codepage:"
-msgstr "Egendefinert tegnsett"
+msgstr "Egendefinert tegnsett:"
 
-#, c-format
+msgid ""
+"Detect codepage info for these type of files: .html, .rc, .xml\n"
+"Need to restart session."
+msgstr ""
+"Oppdag tegnsett-info for disse filer: .html, .rc, .xml\n"
+"Nødvendig å starte programmet på nytt."
+
+msgid ""
+"Detect codepage for text files with mlang.dll\n"
+"Need to restart session."
+msgstr ""
+
 msgid "Options"
 msgstr "Innstillinger"
 
-#, c-format
 msgid "Import..."
 msgstr "Importer..."
 
-#, c-format
 msgid "Export..."
 msgstr "Eksporter..."
 
-#, c-format
 msgid "Dialog"
 msgstr "Dialog"
 
-#, c-format
 msgid "Keywords:"
 msgstr "Nøkkelord:"
 
-#, c-format
 msgid "Function names:"
 msgstr "Funksjonsnavn:"
 
-#, c-format
 msgid "Comments:"
 msgstr "Kommentarer:"
 
-#, c-format
 msgid "Numbers:"
 msgstr "Nummere:"
 
-#, c-format
 msgid "Operators:"
 msgstr "Operatorer:"
 
-#, c-format
 msgid "Strings:"
 msgstr "Strenger:"
 
-#, c-format
 msgid "Preprocessor:"
 msgstr "Preprosessor:"
 
-#, c-format
 msgid "User 1:"
 msgstr "Bruker 1:"
 
-#, c-format
 msgid "User 2:"
 msgstr "Bruker 2:"
 
-#, c-format
 msgid "Bold"
 msgstr "Fet"
 
-#, c-format
 msgid "Search Marker:"
 msgstr ""
 
-#, c-format
 msgid "User Defined Marker1:"
 msgstr ""
 
-#, c-format
 msgid "User Defined Marker2:"
 msgstr ""
 
-#, c-format
 msgid "User Defined Marker3:"
 msgstr ""
 
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Mappesammenlignings-rapport"
 
-#, c-format
 msgid "Report &File:"
 msgstr "Rapport&fil:"
 
-#, c-format
 msgid "&Style:"
 msgstr "&Stil:"
 
-#, c-format
 msgid "&Include File Compare Report"
 msgstr ""
 
-#, c-format
-msgid "&Copy to Clipboard"
-msgstr "&Kopier til utklippstavle"
-
-#, c-format
 msgid "Shared or Private Filter"
 msgstr "Delt eller privat filter"
 
-#, c-format
 msgid "Which type of filter do you want to create?"
 msgstr "Hvilken filtertype vil du opprette?"
 
-#, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr "Delt filter (for alle brukere på denne maskin)"
 
-#, c-format
 msgid "Private Filter (only for current user)"
 msgstr "Privat filter (bare for aktuelle bruker)"
 
-#, c-format
 msgid "Archive Support"
 msgstr "Arkiv-støtte"
 
-#, c-format
 msgid "&Enable archive file support"
 msgstr "&Aktiver arkivfil-støtte"
 
-#, c-format
 msgid "&Detect archive type from file signature"
 msgstr "&Detekter arkivtype fra filsignatur"
 
-#, c-format
+msgid "Items saved to or restored from the project file:"
+msgstr ""
+
 msgid "Compare Statistics"
 msgstr "Sammenlignings-statistikk"
 
-#, c-format
 msgid "Folders:"
 msgstr "Mapper:"
 
-#, c-format
 msgid "Files:"
 msgstr "Filer:"
 
-#, c-format
 msgid "Different"
 msgstr "Forskjellig"
 
-#, c-format
 msgid "Binary:"
 msgstr "Binær:"
 
-#, c-format
 msgid "Unique"
 msgstr "Unik"
 
-#, c-format
 msgid "Left:"
 msgstr "Venstre:"
 
-#, c-format
 msgid "Right:"
 msgstr "Høyre:"
 
-#, c-format
 msgid "Identical"
 msgstr "Identiske"
 
-#, c-format
 msgid "Total:"
 msgstr "Totalt:"
 
-#, c-format
 msgid "Close"
 msgstr "Lukk"
 
-#, c-format
 msgid "Middle:"
 msgstr ""
 
-#, c-format
 msgid "Missing Left:"
 msgstr ""
 
-#, c-format
 msgid "Missing Middle:"
 msgstr ""
 
-#, c-format
 msgid "Missing Right:"
 msgstr ""
 
-#, c-format
 msgid "Affects"
 msgstr "Påvirker"
 
-#, c-format
 msgid "(Affects)"
 msgstr "(Påvirker)"
 
-#, c-format
 msgid "Select Codepage for"
 msgstr "Velg tegnsett til"
 
-#, c-format
 msgid "&File Loading:"
 msgstr "&Fil-lasting:"
 
-#, c-format
 msgid "File &Saving:"
 msgstr "Fil-&lagring:"
 
-#, c-format
 msgid "&Use same codepage for both"
 msgstr "&Bruk samme tegnsett for begge"
 
-#, c-format
 msgid "&Cancel"
 msgstr "&Avbryt"
 
-#, c-format
 msgid "Test Filter"
 msgstr "Test filter"
 
 msgid "Testing filter:"
 msgstr "Tester filter:"
 
-#, c-format
 msgid "&Enter text to test:"
 msgstr "&Oppfør tekst å teste:"
 
-#, c-format
 msgid "&Folder Name"
 msgstr "&Mappenavn"
 
-#, c-format
 msgid "Result:"
 msgstr "Resultat:"
 
-#, c-format
 msgid "&Test"
 msgstr "&Test"
 
-#, c-format
 msgid "&Close"
 msgstr "&Lukk"
 
 msgid "Table"
-msgstr ""
+msgstr "Tabell"
 
 msgid "File type"
 msgstr ""
@@ -2118,121 +1845,99 @@ msgstr ""
 msgid "&Quote character:"
 msgstr ""
 
-#, c-format
 msgid "&Use customized text colors"
 msgstr "&Bruk egendefinerte tekstfarger"
 
-#, c-format
 msgid "Whitespace:"
 msgstr "Blanktegn:"
 
-#, c-format
 msgid "Regular text:"
 msgstr "Normal tekst:"
 
-#, c-format
 msgid "Selection:"
 msgstr "Markering:"
 
-#, c-format
 msgid "Backup Files"
 msgstr "Sikkerhetskopifiler"
 
-#, c-format
 msgid "Create backup files in:"
 msgstr "Opprett sikkerhetskopifiler i:"
 
-#, c-format
 msgid "&Folder compare"
 msgstr "&Mappe-sammenligning"
 
-#, c-format
 msgid "Fil&e compare"
 msgstr "&Fil-sammenligning"
 
-#, c-format
 msgid "Create backup files into:"
 msgstr "Opprett sikkerhetskopifiler til:"
 
-#, c-format
 msgid "&Original file's folder"
 msgstr "&Originalfilens mappe"
 
-#, c-format
 msgid "&Global backup folder:"
 msgstr "&Global sikkerhetskopi-mappe:"
 
-#, c-format
 msgid "Backup filename:"
 msgstr "Sikkerhetskopi-filnavn:"
 
 msgid "&Append .bak extension"
 msgstr "&Legg til .bak -endelse"
 
-#, c-format
 msgid "A&ppend timestamp"
 msgstr "L&egg til tidsstempel"
 
-#, c-format
 msgid "Confirm Copy"
 msgstr "Bekreft kopiering"
 
-#, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr "Er du sikker på at du vil kopiere XXX objekter?"
 
-#, c-format
 msgid "From left"
 msgstr "Fra venstre"
 
-#, c-format
 msgid "To right"
 msgstr "Til høyre"
 
-#, c-format
 msgid "Don't ask this &question again."
 msgstr "Ikke still dette &spørsmålet igjen."
 
-#, c-format
 msgid "Yes"
 msgstr "Ja"
 
-#, c-format
 msgid "No"
 msgstr "Nei"
 
-#, c-format
 msgid "Plugins"
 msgstr "Programtillegg"
 
-#, c-format
 msgid "&Enable plugins"
 msgstr "&Aktiver programtillegg"
 
 msgid "File filters:"
 msgstr ""
 
-#, c-format
+msgid "&Plugin arguments:"
+msgstr ""
+
+msgid "Enable &automatic unpacking/prediffing for the plugin"
+msgstr ""
+
 msgid "Shell Integration"
 msgstr "Skall-integrasjon"
 
-#, c-format
 msgid "Explorer"
 msgstr "Utforsker"
 
-#, c-format
 msgid "E&nable advanced menu"
 msgstr "&Aktiver avansert meny"
 
-#, c-format
 msgid "&Add to context menu"
 msgstr "Le&gg til i høyreklikkmeny"
 
-#, c-format
 msgid "&Register shell extension"
 msgstr ""
 
-#, c-format
 msgid "&Unregister shell extension"
 msgstr ""
 
@@ -2242,38 +1947,38 @@ msgstr ""
 msgid "Unregister shell extension for current user on&ly"
 msgstr ""
 
+msgid "Register shell extension for &Windows 11 or later"
+msgstr ""
+
+msgid "Unregister shell extension for W&indows 11 or later"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Mappe"
 
-#, c-format
 msgid "S&top after first difference"
-msgstr "S&topp etter første forskjell "
+msgstr "S&topp etter første forskjell"
 
-#, c-format
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskjeller mindre enn 3 sekunder"
 
-#, c-format
-msgid "&Include unique subfolders contents"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
-#, c-format
 msgid "&Automatically expand all subfolders"
 msgstr ""
 
-#, c-format
 msgid "Ignore &Reparse Points"
 msgstr ""
 
-#, c-format
-msgid "&Quick compare limit (MB):"
+msgid "Threshold for switching to &quick compare (MB):"
 msgstr ""
 
-msgid "&Binary compare limit (MB):"
+msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "&CSV File Patterns:"
@@ -2292,75 +1997,89 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binær"
 
-#, c-format
 msgid "Binary File &Patterns:"
 msgstr ""
 
-#, c-format
 msgid "Frhed settings"
 msgstr ""
 
-#, c-format
 msgid "View &Settings..."
 msgstr ""
 
-#, c-format
 msgid "&Binary Mode..."
 msgstr ""
 
-#, c-format
 msgid "&Character Set..."
 msgstr ""
 
 msgid "Image"
-msgstr ""
+msgstr "Bilde"
 
-#, c-format
 msgid "Image File &Patterns:"
 msgstr ""
 
 msgid "&Enable image compare in folder compare"
 msgstr ""
 
-#, c-format
+msgid "OCR result:"
+msgstr ""
+
+msgid "Webpage"
+msgstr ""
+
+msgid "URL pattern to &include (Regular expression):"
+msgstr ""
+
+msgid "URL pattern to &exclude (Regular expression):"
+msgstr ""
+
+msgid "&User data folder location:"
+msgstr ""
+
+msgid "&Separate user data folders for each pane"
+msgstr ""
+
 msgid "&Hex View"
 msgstr ""
 
-#, c-format
 msgid "EXT"
 msgstr "EXT"
 
-#, c-format
 msgid "CAP"
 msgstr "CAP"
 
-#, c-format
 msgid "NUM"
 msgstr "NUM"
 
-#, c-format
 msgid "SCRL"
 msgstr "SCRL"
 
-#, c-format
 msgid "OVR"
 msgstr "OVR"
 
-#, c-format
 msgid "REC"
 msgstr "REC"
 
-#, c-format
-msgid "\nNew Documents (Ctrl+N)"
+msgid ""
+"\n"
+"New Documents (Ctrl+N)"
 msgstr ""
+"\n"
+"Nye dokumenter (Ctrl+N)"
 
-#, c-format
-msgid "\nOpen (Ctrl+O)"
+msgid ""
+"\n"
+"Open (Ctrl+O)"
 msgstr ""
+"\n"
+"Åpne (Ctrl+O)"
 
-#, c-format
-msgid "\nSave (Ctrl+S)"
+msgid ""
+"\n"
+"Save (Ctrl+S)"
 msgstr ""
+"\n"
+"Lagre (Ctrl+S)"
 
 msgid "Unknown error attempting to open project file."
 msgstr "Ukjent feil ved forsøk på å åpne prosjektfil."
@@ -2368,23 +2087,26 @@ msgstr "Ukjent feil ved forsøk på å åpne prosjektfil."
 msgid "Unknown error attempting to save project file."
 msgstr "Ukjent feil ved forsøk på å lagre prosjektfil."
 
-#, c-format
 msgid "Project file successfully loaded."
 msgstr "Prosjektfil lastet vellykket."
 
-#, c-format
 msgid "Project file successfully saved."
 msgstr "Prosjektfil lagret vellykket."
 
-#, c-format
-msgid "\nUndo (Ctrl+Z)"
+msgid ""
+"\n"
+"Undo (Ctrl+Z)"
 msgstr ""
+"\n"
+"Angre (Ctrl+Z)"
 
-#, c-format
-msgid "\nRedo (Ctrl+Y)"
+msgid ""
+"\n"
+"Redo (Ctrl+Y)"
 msgstr ""
+"\n"
+"Annuler angre (Ctrl+Y)"
 
-#, c-format
 msgid ""
 "\n"
 "FileCompare\n"
@@ -2402,7 +2124,6 @@ msgstr ""
 "WinMerge.Filsammenligning\n"
 "WinMerge Filsammenligning"
 
-#, c-format
 msgid ""
 "\n"
 "FolderCompare\n"
@@ -2420,97 +2141,86 @@ msgstr ""
 "WinMerge.Mappesammenligning\n"
 "WinMerge Mappesammenligning"
 
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+msgid ""
+"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
+"are welcome to redistribute it under certain circumstances; see the GNU "
+"General Public License in the Help menu for details."
 msgstr ""
-"Utviklere:\n"
-"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
+"WinMerge kommer med ABSOLUTT INGEN GARANTIER. Dette er gratis programvare og "
+"du er velkommen til å videredistribuere den under visse omstendigheter; se "
+"GNU General Public License i Hjelp-menyen for detaljer."
 
-#, c-format
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge kommer med ABSOLUTT INGEN GARANTIER. Dette er gratis programvare og du er velkommen til å videredistribuere den under visse omstendigheter; se GNU General Public License i Hjelp-menyen for detaljer."
-
-#, c-format
 msgid "&Abort"
 msgstr "&Avbryt"
 
-#, c-format
 msgid "&Retry"
 msgstr "&Prøv igjen"
 
-#, c-format
 msgid "&Ignore"
 msgstr "&Ignorer"
 
-#, c-format
 msgid "Ignore &all"
 msgstr "Ignorer &alle"
 
-#, c-format
 msgid "&Yes"
 msgstr "&Ja"
 
-#, c-format
 msgid "Yes to &all"
 msgstr "Ja til &alt"
 
-#, c-format
 msgid "&No"
 msgstr "&Nei"
 
-#, c-format
 msgid "No to a&ll"
 msgstr "Nei til a&lt"
 
-#, c-format
 msgid "&Continue"
 msgstr "&Fortsett"
 
-#, c-format
 msgid "&Skip"
 msgstr "&Hopp over"
 
-#, c-format
 msgid "Skip &all"
 msgstr "Hopp over &alle"
 
-#, c-format
 msgid "Don't display this &message again."
 msgstr "Ikke vis denne &meldingen igjen."
 
-msgid "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+msgid ""
+"To make this message box visible again, press the Reset button on the "
+"Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Syntax"
 msgstr ""
 
 msgid "Color Schemes"
 msgstr ""
 
-#, c-format
-msgid "Syntax"
-msgstr ""
-
 msgid "Folder Compare"
 msgstr ""
 
-#, c-format
+msgid "Project"
+msgstr "Prosjekt"
+
 msgid "Differences"
 msgstr "Forskjeller"
 
-#, c-format
+msgid "Message Boxes"
+msgstr "Meldingsbokser"
+
 msgid "To:"
 msgstr "Til:"
 
-#, c-format
 msgid "From left:"
 msgstr "Fra venstre:"
 
-#, c-format
 msgid "To left:"
 msgstr "Til venstre:"
 
-#, c-format
 msgid "From right:"
 msgstr "Fra høyre:"
 
-#, c-format
 msgid "To right:"
 msgstr "Til høyre:"
 
@@ -2524,7 +2234,6 @@ msgstr ""
 msgid "Version %1"
 msgstr "Versjon %1"
 
-#, c-format
 msgid "X64"
 msgstr "X64"
 
@@ -2532,7 +2241,6 @@ msgstr "X64"
 msgid "Options (%1)"
 msgstr "Innstillinger (%1)"
 
-#, c-format
 msgid "All message boxes are now displayed again."
 msgstr "Alle meldingsbokser vises nå igjen."
 
@@ -2542,81 +2250,93 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Verdi i Tabulator-størrelsesfeltet er ikke innen område WinMerge aksepterer.\n"
+"Verdi i Tabulator-størrelsesfeltet er ikke innen område WinMerge "
+"aksepterer.\n"
 "\n"
 "Bruk verdiene 1 - %1."
 
-#, c-format
 msgid "Open"
 msgstr "Åpne"
 
-#, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "Programmer|*.exe;*.bat;*.cmd|Alle filer (*.*)|*.*||"
 
-#, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr "Alle filer (*.*)|*.*||"
 
-#, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge prosjektfiler (*.WinMerge)|*.WinMerge||"
 
-#, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Innstillingsfiler (*.ini)|*.ini|Alle filer (*.*)|*.*||"
 
-#, c-format
-msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "Tekstfiler (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alle filer (*.*)|*.*||"
+msgid ""
+"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|"
+"*.*||"
+msgstr ""
+"Tekstfiler (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alle filer (*."
+"*)|*.*||"
 
-#, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML-filer (*.htm,*.html)|*.htm;*.html|Alle filer (*.*)|*.*||"
 
-#, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-filer (*.xml)|*.xml|Alle filer (*.*)|*.*||"
 
-#, c-format
+msgid "File Type"
+msgstr ""
+
+msgid "Extension"
+msgstr "Filtype"
+
+msgid "Message"
+msgstr ""
+
+msgid "Answer"
+msgstr ""
+
+msgid "Item"
+msgstr ""
+
+msgid "Load"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Include Subfolders"
+msgstr ""
+
+msgid "Compare Options"
+msgstr ""
+
+msgid "Hidden Items"
+msgstr ""
+
 msgid "Name"
 msgstr "Navn"
 
-#, c-format
 msgid "Location"
 msgstr "Plassering"
 
-#, c-format
 msgid "Filters"
 msgstr "Filter"
 
-#, c-format
 msgid "[F] "
 msgstr "[F] "
 
-#, c-format
 msgid "Description"
 msgstr "Beskrivelse"
 
-#, c-format
 msgid "Select filename for new filter"
 msgstr "Velg navn for nytt filter"
 
-#, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Filfiltere (*.flt)|*.flt|Alle filer (*.*)|*.*||"
 
 #, c-format
-msgid ""
-"Cannot find file filter template file!\n"
-"\n"
-"Please copy file %1 to WinMerge/Filters -folder:\n"
-"%2."
-msgstr ""
-"Kan ikke finne filfilter-mal!\n"
-"\n"
-"Kopier filen %1 til WinMerge/Filtermappe:\n"
-"%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Kan ikke finne filfilter-mal!\n\nKopier filen %1 til WinMerge/Filtermappe:\n%2."
 
 #, c-format
 msgid ""
@@ -2630,7 +2350,6 @@ msgstr ""
 "\n"
 "Forsikre om at mappen eksisterer og kan skrives til."
 
-#, c-format
 msgid ""
 "User's filter file folder is not defined!\n"
 "\n"
@@ -2652,11 +2371,9 @@ msgstr ""
 "\n"
 "Kanskje filen er skrivebeskyttet?"
 
-#, c-format
 msgid "Locate filter file to install"
 msgstr "Velg filter-fil å installere"
 
-#, c-format
 msgid ""
 "Installing filter file failed.\n"
 "\n"
@@ -2666,47 +2383,49 @@ msgstr ""
 "\n"
 "Kunne ikke kopiere ny filter-fil til filter-mappe."
 
-#, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "Filter-fil eksisterer allerede. Overskrive eksisterende filter?"
 
-#, c-format
 msgid "Regular expression"
 msgstr "Regulære uttrykk"
 
-msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select 'No' and refresh compares later."
+msgid ""
+"Filters were updated. Do you want to refresh all open folder compares?\n"
+"\n"
+"If you do not want to refresh all compares now you can select 'No' and "
+"refresh compares later."
 msgstr ""
 "Filtre ble oppdaterte. Vil du gjenoppfriske alle åpne mappesammenligninger?\n"
 "\n"
-"Om du ikke vil gjenoppfriske alle sammenligninger nå kan du velge 'Nei' og gjenoppfriske sammenligninger senere."
+"Om du ikke vil gjenoppfriske alle sammenligninger nå kan du velge 'Nei' og "
+"gjenoppfriske sammenligninger senere."
 
-#, c-format
 msgid "Folder Comparison Results"
 msgstr "Resultat av mappesammenligning"
 
-#, c-format
 msgid "File Comparison"
 msgstr "Filsammenligning"
 
-#, c-format
 msgid "Untitled left"
 msgstr "Venstre uten tittel"
 
-#, c-format
 msgid "Untitled middle"
-msgstr ""
+msgstr "Midten uten tittel"
 
-#, c-format
 msgid "Untitled right"
 msgstr "Høyre uten tittel"
 
-#, c-format
+msgid "Base File"
+msgstr ""
+
 msgid "Theirs File"
 msgstr "Deres fil"
 
-#, c-format
 msgid "Mine File"
 msgstr "Min fil"
+
+msgid "Original File"
+msgstr ""
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
@@ -2721,6 +2440,9 @@ msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
 #, c-format
+msgid "  Sel: %d | %d"
+msgstr ""
+
 msgid "Merge"
 msgstr "Slå sammen"
 
@@ -2732,12 +2454,10 @@ msgstr "Forskjell %1 av %2"
 msgid "%1 Differences Found"
 msgstr "%1 forskjeller funnet"
 
-#, c-format
 msgid "1 Difference Found"
 msgstr "1 forskjell funnet"
 
 #. Abbreviation from "Read Only"
-#, c-format
 msgid "RO"
 msgstr "SB"
 
@@ -2752,54 +2472,42 @@ msgstr "Objekter: %1"
 msgid "Select two existing folders or files to compare."
 msgstr "Velg to eksisterende mapper eller filer for å sammenligne."
 
-#, c-format
 msgid "Folder Selection"
 msgstr "Mappe-valg"
 
-#, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
 msgstr ""
 
-#, c-format
 msgid "Left (1st) path is invalid!"
 msgstr ""
 
-#, c-format
 msgid "Middle (2nd) path is invalid!"
 msgstr ""
 
-#, c-format
 msgid "Right (2nd) path is invalid!"
 msgstr ""
 
-#, c-format
 msgid "Right (3rd) path is invalid!"
 msgstr ""
 
-#, c-format
 msgid "Both paths are invalid!"
 msgstr "Begge baner er ugyldig!"
 
-#, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
 msgstr ""
 
-#, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
 msgstr ""
 
-#, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
 msgstr ""
 
-#, c-format
 msgid "All paths are invalid!"
 msgstr ""
 
 msgid "Only enabled for file comparisons"
 msgstr ""
 
-#, c-format
 msgid "Cannot compare file and folder!"
 msgstr "Kan ikke sammenligne fil og mappe!"
 
@@ -2823,9 +2531,8 @@ msgstr ""
 "\n"
 "%2"
 
-#, c-format
 msgid "Failed to parse conflict file."
-msgstr "Kunne ikke analysere konflikt-fil"
+msgstr "Kunne ikke analysere konflikt-fil."
 
 #, c-format
 msgid ""
@@ -2837,10 +2544,14 @@ msgstr ""
 "%1\n"
 "er ikke en konfliktfil."
 
-msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
+msgid ""
+"You are about to compare very large files.\n"
+"Showing the contents of the files requires a very large amount of memory.\n"
+"Do you want to show only the comparison results, not the contents of the "
+"files?\n"
+"\n"
 msgstr ""
 
-#, c-format
 msgid "Save As"
 msgstr "Lagre som"
 
@@ -2849,10 +2560,13 @@ msgid "Save changes to %1?"
 msgstr "Lagre endringer til %1?"
 
 #, c-format
-msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
-msgstr "%1 er merket som skrivebeskyttet. Vil du overskrive den skrivebeskyttede filen? (Nei for å lagre filen med et annet navn.)"
+msgid ""
+"%1 is marked read-only. Would you like to override the read-only file? (No "
+"to save as new filename.)"
+msgstr ""
+"%1 er merket som skrivebeskyttet. Vil du overskrive den skrivebeskyttede "
+"filen? (Nei for å lagre filen med et annet navn.)"
 
-#, c-format
 msgid "Error backing up file"
 msgstr "Feil under sikkerhetskopiering av filen"
 
@@ -2869,7 +2583,13 @@ msgstr ""
 "Fortsette likevel?"
 
 #, c-format
-msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t- use a different filename (Press OK)\n"
+"\t- abort the current operation (Press Cancel)?"
 msgstr ""
 "Lagring av fil feilet.\n"
 "%1\n"
@@ -2886,11 +2606,21 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Programtillegg '%2' kan ikke pakke endringene dine for venstre fil tilbake inn i '%1'.\n"
+"Programtillegg '%2' kan ikke pakke endringene dine for venstre fil tilbake "
+"inn i '%1'.\n"
 "\n"
 "Den original filen blir ikke endret.\n"
 "\n"
 "Vil du lagre den utpakkede versjonen til en annen fil?"
+
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -2900,7 +2630,8 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Programtillegg '%2' kan ikke pakke endringene dine for høyre fil tilbake inn i '%1'.\n"
+"Programtillegg '%2' kan ikke pakke endringene dine for høyre fil tilbake inn "
+"i '%1'.\n"
 "\n"
 "Den original filen blir ikke endret.\n"
 "\n"
@@ -2942,15 +2673,12 @@ msgstr ""
 "\n"
 "Vil du laste inn igjen filen?"
 
-#, c-format
 msgid "Save Left File As"
 msgstr "Lagre venstre fil som"
 
-#, c-format
 msgid "Save Middle File As"
 msgstr ""
 
-#, c-format
 msgid "Save Right File As"
 msgstr "Lagre høyre fil som"
 
@@ -2964,7 +2692,6 @@ msgstr ""
 "%1\n"
 "har forsvunnet. Lagre en kopi av filen for å fortsette."
 
-#, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
 "\n"
@@ -2979,6 +2706,27 @@ msgstr "Bryt ved blanktegn"
 
 msgid "Break at whitespace or punctuation"
 msgstr "Bryt ved blanktegn eller tegnsetting"
+
+msgid "Copy to &Middle\tAlt+Right"
+msgstr "Kopier til &midten\tAlt+Høyre"
+
+msgid "Copy to &Middle\tAlt+Left"
+msgstr "Kopier til &midten\tAlt+Venstre"
+
+msgid "Copy from Middle\tAlt+Shift+Right"
+msgstr "Kopier fra midten\tAlt+Shift+Høyre"
+
+msgid "Copy from Middle\tAlt+Shift+Left"
+msgstr "Kopier fra midten\tAlt+Shift+Venstre"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
+msgstr "Kopier til midten og gå videre\tCtrl+Alt+Høyre"
+
+msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
+msgstr "Kopier til midten og gå videre\tCtrl+Alt+Venstre"
+
+msgid "Copy All to Middle"
+msgstr "Kopier alt til midten"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3048,15 +2796,12 @@ msgstr "Begge (%1)"
 msgid "All (%1)"
 msgstr ""
 
-#, c-format
 msgid "Left side - select destination folder:"
 msgstr "Venstre side - velg målmappe:"
 
-#, c-format
 msgid "Middle side - select destination folder:"
 msgstr ""
 
-#, c-format
 msgid "Right side - select destination folder:"
 msgstr "Høyre side - velg målmappe:"
 
@@ -3110,23 +2855,27 @@ msgstr "Er du sikker på at du vil flytte?"
 msgid "Are you sure you want to move %d items?"
 msgstr "Er du sikker på at du vil flytte %d objekter?"
 
-#, c-format
 msgid "Confirm Move"
 msgstr "Bekreft flytting"
 
-#, c-format
-msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+msgid ""
+"You are about to close the window that is comparing folders. Are you sure "
+"you want to close the window?"
+msgstr ""
+
+msgid "The file or folder name is invalid."
 msgstr ""
 
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "Feilet i å kjøre eksternt redigeringsprogram: %1"
 
-#, c-format
 msgid "Unknown archive format"
 msgstr "Ukjent arkivformat"
 
-#, c-format
+msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
+msgstr ""
+
 msgid "Filename"
 msgstr "Filnavn"
 
@@ -3134,115 +2883,84 @@ msgctxt "DirView|ColumnHeader"
 msgid "Folder"
 msgstr "Mappe"
 
-#, c-format
 msgid "Comparison result"
 msgstr "Resultat av sammenligningen"
 
-#, c-format
 msgid "Left Date"
 msgstr "Venstre dato"
 
-#, c-format
 msgid "Right Date"
 msgstr "Høyre dato"
 
-#, c-format
 msgid "Middle Date"
 msgstr ""
 
-#, c-format
-msgid "Extension"
-msgstr "Filtype"
-
-#, c-format
 msgid "Left Size"
 msgstr "Venstre størrelse"
 
-#, c-format
 msgid "Right Size"
 msgstr "Høyre størrelse"
 
-#, c-format
 msgid "Middle Size"
 msgstr ""
 
-#, c-format
 msgid "Right Size (Short)"
 msgstr "Høyre størrelse (kort)"
 
-#, c-format
 msgid "Left Size (Short)"
 msgstr "Venstre størrelse (kort)"
 
-#, c-format
 msgid "Middle Size (Short)"
 msgstr ""
 
-#, c-format
 msgid "Left Creation Time"
 msgstr "Venstre opprettelsestid"
 
-#, c-format
 msgid "Right Creation Time"
 msgstr "Høyre opprettelsestid"
 
-#, c-format
 msgid "Middle Creation Time"
 msgstr ""
 
-#, c-format
 msgid "Newer File"
 msgstr "Nyere fil"
 
-#, c-format
 msgid "Left File Version"
 msgstr "Venstre filversjon"
 
-#, c-format
 msgid "Right File Version"
 msgstr "Høyre filversjon"
 
-#, c-format
 msgid "Middle File Version"
 msgstr ""
 
-#, c-format
 msgid "Short Result"
 msgstr "Kort resultat"
 
-#, c-format
 msgid "Left Attributes"
 msgstr "Venstre attributter"
 
-#, c-format
 msgid "Right Attributes"
 msgstr "Høyre attributter"
 
-#, c-format
 msgid "Middle Attributes"
 msgstr ""
 
-#, c-format
 msgid "Left EOL"
 msgstr "Venstre EOL"
 
-#, c-format
 msgid "Middle EOL"
 msgstr ""
 
-#, c-format
 msgid "Right EOL"
 msgstr "Høyre EOL"
 
-#, c-format
 msgid "Left Encoding"
 msgstr "Venstre koding"
 
-#, c-format
 msgid "Right Encoding"
 msgstr "Høyre koding"
 
-#, c-format
 msgid "Middle Encoding"
 msgstr ""
 
@@ -3253,19 +2971,105 @@ msgctxt "DirView|ColumnHeader"
 msgid "Binary"
 msgstr "Binær"
 
-#, c-format
+msgid "Unpacker"
+msgstr "Utpakker"
+
+msgid "Prediffer"
+msgstr "Prediffer"
+
+msgid "Left"
+msgstr "Venstre"
+
+msgid "Middle"
+msgstr "Midten"
+
+msgid "Right"
+msgstr "Høyre"
+
+msgid "Diff"
+msgstr ""
+
+msgid "Left Duplicate Count"
+msgstr ""
+
+msgid "Right Duplicate Count"
+msgstr ""
+
+msgid "Middle Duplicate Count"
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "Audio"
+msgstr ""
+
+msgid "Calendar"
+msgstr ""
+
+msgid "Communication"
+msgstr ""
+
+msgid "Contact"
+msgstr ""
+
+msgid "Devices"
+msgstr ""
+
+msgid "Document"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Journal"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Media"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Note"
+msgstr ""
+
+msgid "Photo"
+msgstr ""
+
+msgid "RecordedTV"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Security"
+msgstr ""
+
+msgid "Software"
+msgstr ""
+
+msgid "Task"
+msgstr ""
+
+msgid "Video"
+msgstr ""
+
+msgid "Hash"
+msgstr ""
+
 msgid "Unable to compare files"
 msgstr "Kan ikke sammenligne filer"
 
-#, c-format
 msgid "Item aborted"
 msgstr "Objekt avbrutt"
 
-#, c-format
 msgid "File skipped"
 msgstr "Fil hoppet over"
 
-#, c-format
 msgid "Folder skipped"
 msgstr "Mappe hoppet over"
 
@@ -3285,81 +3089,68 @@ msgstr "Bare høyre: %1"
 msgid "Does not exist in %1"
 msgstr ""
 
-#, c-format
 msgid "Binary files are identical"
 msgstr "Binære filer er identiske"
 
-#, c-format
 msgid "Binary files are different"
 msgstr "Binære filer er forskjellige"
 
-#, c-format
 msgid "Files are different"
 msgstr "Filer er forskjellige"
 
-#, c-format
 msgid "Folders are different"
 msgstr "Mapper er forskjellige"
 
-#, c-format
 msgid "Left Only"
 msgstr "Bare venstre"
 
-#, c-format
 msgid "Right Only"
 msgstr "Bare høyre"
 
-#, c-format
 msgid "Middle Only"
 msgstr ""
 
-#, c-format
 msgid "No item in left"
 msgstr ""
 
-#, c-format
 msgid "No item in right"
 msgstr ""
 
-#, c-format
 msgid "No item in middle"
 msgstr ""
 
-#, c-format
 msgid "Error"
 msgstr "Feil"
 
-#, c-format
 msgid "Text files are identical"
 msgstr "Tekstfiler er identiske"
 
-#, c-format
-msgid "(Middle and right are identical)"
+msgid " (Middle and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and right are identical)"
+msgid " (Left and right are identical)"
 msgstr ""
 
-#, c-format
-msgid "(Left and middle are identical)"
+msgid " (Left and middle are identical)"
 msgstr ""
 
-#, c-format
 msgid "Text files are different"
 msgstr "Tekstfiler er forskjellige"
 
 msgid "Image files are identical"
-msgstr ""
+msgstr "Bildefiler er identiske"
 
 msgid "Image files are different"
+msgstr "Bildefiler er forskjellige"
+
+#, c-format
+msgid "Group%d"
 msgstr ""
 
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Forløpt tid: %ld ms"
 
-#, c-format
 msgid "1 item selected"
 msgstr "1 objekt valgt"
 
@@ -3367,99 +3158,75 @@ msgstr "1 objekt valgt"
 msgid "%1 items selected"
 msgstr "%1 objekter valgt"
 
-#, c-format
 msgid "Filename or folder name."
 msgstr "Fil eller mappe-navn."
 
-#, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Undermappenavn når undermapper er inkludert."
 
-#, c-format
 msgid "Comparison result, long form."
 msgstr "Sammenligningsresultat, lang form."
 
-#, c-format
 msgid "Left side modification date."
 msgstr "Venstre side endringsdato."
 
-#, c-format
 msgid "Right side modification date."
 msgstr "Høyre side endringsdato."
 
-#, c-format
 msgid "Middle side modification date."
 msgstr ""
 
-#, c-format
 msgid "File's extension."
 msgstr "Filtype."
 
-#, c-format
 msgid "Left file size in bytes."
 msgstr "Venstre filstørrelse i byte."
 
-#, c-format
 msgid "Right file size in bytes."
 msgstr "Høyre filstørrelse i byte."
 
-#, c-format
 msgid "Middle file size in bytes."
 msgstr ""
 
-#, c-format
 msgid "Left file size abbreviated."
-msgstr "Venstre filstørrelse forkortet"
+msgstr "Venstre filstørrelse forkortet."
 
-#, c-format
 msgid "Right file size abbreviated."
-msgstr "Høyre filstørrelse forkortet"
+msgstr "Høyre filstørrelse forkortet."
 
-#, c-format
 msgid "Middle file size abbreviated."
 msgstr ""
 
-#, c-format
 msgid "Left side creation time."
 msgstr "Venstre side opprettelsestid."
 
-#, c-format
 msgid "Right side creation time."
 msgstr "Høyre side opprettelsestid."
 
-#, c-format
 msgid "Middle side creation time."
 msgstr ""
 
-#, c-format
 msgid "Tells which side has newer modification date."
 msgstr "Forteller hvilken side som har en nyere endringsdato."
 
-#, c-format
-msgid "Left side file version, only for some filetypes."
+msgid "Left side file version, only for some file types."
 msgstr "Venstre side filversjon, bare for noen filtyper."
 
-#, c-format
-msgid "Right side file version, only for some filetypes."
+msgid "Right side file version, only for some file types."
 msgstr "Høyre side filversjon, bare for noen filetyper."
 
-#, c-format
-msgid "Middle side file version, only for some filetypes."
+msgid "Middle side file version, only for some file types."
 msgstr ""
 
-#, c-format
 msgid "Short comparison result."
 msgstr "Kort sammenligningsresultat."
 
-#, c-format
 msgid "Left side attributes."
 msgstr "Venstre side attributter."
 
-#, c-format
 msgid "Right side attributes."
 msgstr "Høyre side attributter."
 
-#, c-format
 msgid "Middle side attributes."
 msgstr ""
 
@@ -3472,51 +3239,58 @@ msgstr "Høyre side fil EOL type."
 msgid "Middle side file EOL type."
 msgstr ""
 
-#, c-format
 msgid "Left side encoding."
 msgstr "Venstre side koding."
 
-#, c-format
 msgid "Right side encoding."
 msgstr "Høyre side koding."
 
-#, c-format
 msgid "Middle side encoding."
 msgstr ""
 
-#, c-format
-msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Antall ignorerte forskjeller i filen. Disse forskjeller ignoreres av WinMerge og kan ikke slås sammen."
+msgid ""
+"Number of ignored differences in file. These differences are ignored by "
+"WinMerge and cannot be merged."
+msgstr ""
+"Antall ignorerte forskjeller i filen. Disse forskjeller ignoreres av "
+"WinMerge og kan ikke slås sammen."
 
-#, c-format
-msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "Antall forskjeller i filen. Dette antall inkluderer ikke ignorerte forskjeller."
+msgid ""
+"Number of differences in file. This number does not include ignored "
+"differences."
+msgstr ""
+"Antall forskjeller i filen. Dette antall inkluderer ikke ignorerte "
+"forskjeller."
 
-#, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Viser asterisk (*) hvis filen er binær."
+
+msgid "Unpacker plugin name or pipeline."
+msgstr ""
+
+msgid "Prediffer plugin name or pipeline."
+msgstr ""
 
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "Sammenligning %1 med %2"
 
 #, c-format
+msgid "Compare %1 with %2 and %3"
+msgstr ""
+
 msgid "Comma-separated list"
 msgstr "Komma-separert liste"
 
-#, c-format
 msgid "Tab-separated list"
 msgstr "Tab-separarert liste"
 
-#, c-format
 msgid "Simple HTML"
 msgstr "Enkel HTML"
 
-#, c-format
 msgid "Simple XML"
 msgstr "Enkel XML"
 
-#, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "Rapportfilen eksisterer allerede. Vil du overskrive eksisterende fil?"
 
@@ -3528,44 +3302,50 @@ msgstr ""
 "Feil ved oppretting av rapporten:\n"
 "%1"
 
-#, c-format
 msgid "The report has been created successfully."
-msgstr "Rapporten er opprettet vellykket"
+msgstr "Rapporten er vellykket opprettet."
 
 msgid "Cannot add a synchronization point at this line."
 msgstr ""
 
-#, c-format
 msgid "The same file is opened in both panels."
 msgstr "Samme filen er åpen i begge paneler."
 
-#, c-format
 msgid "The selected files are identical."
 msgstr "De valgte filene er identiske."
 
-#, c-format
 msgid "An error occurred while comparing the files."
 msgstr "Det skjedde en feil under sammenligning av filene."
 
-#, c-format
-msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Midlertidige filer kan ikke opprettes. Sjekk TEMP-mappebane innstillinger."
+msgid ""
+"Temporary files could not be created. Check your temporary path settings."
+msgstr ""
+"Midlertidige filer kan ikke opprettes. Sjekk TEMP-mappebane innstillinger."
 
-msgid "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this "
+"comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, "
+"set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in "
+"the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Disse filene har forskjellig linjeskifttype.\n"
 "\n"
 "Vil du behandle alle linjeskifttypene likt for denne sammenligningen?\n"
 "\n"
-"Merknad: Hvis du alltid vil behandle linjeskifttypene likt, velg innstillingen 'Ignorer linjebruddforskjeller (Windows/Unix/Mac)' i sammenligningsarket i innstillingsdialogen (tilgjengelig under Rediger/Innstillinger)."
+"Merknad: Hvis du alltid vil behandle linjeskifttypene likt, velg "
+"innstillingen 'Ignorer linjebruddforskjeller (Windows/Unix/Mac)' i "
+"sammenligningsarket i innstillingsdialogen (tilgjengelig under Rediger/"
+"Innstillinger)."
 
-#, c-format
 msgid "The selected folder is invalid."
-msgstr "Valgte mappe er ugyldig"
+msgstr "Den valgte mappen er ugyldig."
 
-#, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "Kan ikke åpne en binærfil til redigering"
+msgstr "Kan ikke åpne en binærfil til redigering."
 
 #, c-format
 msgid ""
@@ -3581,50 +3361,53 @@ msgstr ""
 "%1\n"
 "på andre siden og åpne disse mapper?"
 
-#, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""
 
-#, c-format
 msgid "Do you want to move to the previous file?"
 msgstr ""
 
-#, c-format
 msgid "Do you want to move to the next page?"
 msgstr ""
 
-#, c-format
 msgid "Do you want to move to the previous page?"
 msgstr ""
 
-#, c-format
-msgid "Different codepages found in left (cp%d) and right (cp%d) files.\nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default Windows codepage (recommended)?"
+msgid "Do you want to move to the first file?"
 msgstr ""
-"Forskjellige tegnsett funnet i venstre (cp%d) og høyre (cp%d) filer.\n"
-"Visning av hver fil i sitt tegnsett ser best ut, men sammenslåing/kopiering blir farlig.\n"
-"Vil du behandle begge filer som om de var i standard Windows tegnsett (anbefales)?"
+
+msgid "Do you want to move to the last file?"
+msgstr ""
 
 #, c-format
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files.\n"
+"Displaying each file in its codepage will give a better display but merging/"
+"copying will be dangerous.\n"
+"Would you like to treat both files as being in the default Windows codepage "
+"(recommended)?"
+msgstr ""
+"Forskjellige tegnsett funnet i venstre (cp%d) og høyre (cp%d) filer.\n"
+"Visning av hver fil i sitt tegnsett ser best ut, men sammenslåing/kopiering "
+"blir farlig.\n"
+"Vil du behandle begge filer som om de var i standard Windows tegnsett "
+"(anbefales)?"
+
 msgid "Information lost due to encoding errors: both files"
 msgstr "Informasjon tapt på grunn av kodings-feil: begge filer"
 
-#, c-format
 msgid "Information lost due to encoding errors: first file"
 msgstr ""
 
-#, c-format
 msgid "Information lost due to encoding errors: second file"
 msgstr ""
 
-#, c-format
 msgid "Information lost due to encoding errors: third file"
 msgstr ""
 
-#, c-format
 msgid "No difference"
 msgstr "Ingen forskjell"
 
-#, c-format
 msgid "Line difference"
 msgstr "Linjeforskjell"
 
@@ -3636,11 +3419,15 @@ msgstr "Erstattet %1 streng(er)."
 msgid "Cannot find string \"%s\"."
 msgstr "Kan ikke finne strengen \"%s\"."
 
-msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
+msgid ""
+"You are now entering Merge Mode. If you want to turn off Merge Mode, press "
+"F9 key."
 msgstr ""
 
 #, c-format
-msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
+msgid ""
+"The number of automatically merged changes: %1\n"
+"The number of unresolved conflicts: %2"
 msgstr ""
 
 msgid "The change of codepage has been merged."
@@ -3655,15 +3442,12 @@ msgstr ""
 msgid "The changes of EOL are conflicting."
 msgstr ""
 
-#, c-format
 msgid "Location Pane"
 msgstr "Lokaliseringspanel"
 
-#, c-format
 msgid "Diff Pane"
 msgstr "Forskjellspanel"
 
-#, c-format
 msgid "Patch file successfully written."
 msgstr "Fil med rettelser vellykket skrevet."
 
@@ -3673,7 +3457,6 @@ msgstr ""
 msgid "2. item is not found!"
 msgstr ""
 
-#, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "Rettelsesfilen eksisterer allerede. Vil du overskrive den?"
 
@@ -3681,15 +3464,12 @@ msgstr "Rettelsesfilen eksisterer allerede. Vil du overskrive den?"
 msgid "[%1 files selected]"
 msgstr "[%1 filer valgt]"
 
-#, c-format
 msgid "Normal"
 msgstr "Normal"
 
-#, c-format
 msgid "Context"
 msgstr "Kontekst"
 
-#, c-format
 msgid "Unified"
 msgstr "Forenet"
 
@@ -3704,15 +3484,9 @@ msgstr "Den spesifiserte utdata-bane er ikke en absolutt bane: %1"
 msgid "Specify an output file."
 msgstr "Spesifiser en utdata-fil."
 
-#, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan ikke opprette en patch-fil fra binære filer."
 
-#, c-format
-msgid "Cannot create a patch file from directories."
-msgstr "Kan ikke opprette en patch-fil fra mapper."
-
-#, c-format
 msgid ""
 "Please save all files first.\n"
 "\n"
@@ -3720,47 +3494,41 @@ msgid ""
 msgstr ""
 "Lagre alle filer først.\n"
 "\n"
-"Opprettelse av en patch krever at det ikke er noen ulagrede endringer i filer."
+"Opprettelse av en patch krever at det ikke er noen ulagrede endringer i "
+"filer."
 
-#, c-format
 msgid "Folder does not exist."
 msgstr "Mappe eksisterer ikke."
 
-#, c-format
 msgid ""
 "Archive support is not enabled.\n"
-"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot "
+"be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
 "Arkivstøtte er ikke arkivert.\n"
-"Alle nødvendig komponenter (7-zip og/eller Merge7z*.dll) for arkivstøtte ble ikke funnet.\n"
+"Alle nødvendig komponenter (7-Zip og/eller Merge7z*.dll) for arkivstøtte ble "
+"ikke funnet.\n"
 "Se manualen for mer informasjon om arkivstøtte og hvordan aktivere den."
 
-#, c-format
 msgid "Select file for export"
 msgstr "Velg fil for eksport"
 
-#, c-format
 msgid "Select file for import"
 msgstr "Velg fil for import"
 
-#, c-format
 msgid "Options imported from the file."
 msgstr "Innstillinger importert fra filen."
 
-#, c-format
 msgid "Options exported to the file."
 msgstr "Innstillinger eksportert til filen."
 
-#, c-format
 msgid "Failed to import options from the file."
 msgstr "Feilet i å  importere innstillinger fra filen."
 
-#, c-format
 msgid "Failed to write options to the file."
 msgstr "Feilet i å skrive innstillinger til filen."
 
-#, c-format
 msgid ""
 "You are about to close several compare windows.\n"
 "\n"
@@ -3770,7 +3538,6 @@ msgstr ""
 "\n"
 "Vil du fortsette?"
 
-#, c-format
 msgid "Mixed"
 msgstr "Blandet"
 
@@ -3778,7 +3545,6 @@ msgctxt "EOL Type"
 msgid "Binary"
 msgstr "Binær"
 
-#, c-format
 msgid "None"
 msgstr "Ingen"
 
@@ -3789,104 +3555,150 @@ msgstr ""
 msgid "New Pattern"
 msgstr ""
 
-#, c-format
 msgid "Type"
 msgstr "Type"
 
-#, c-format
-msgid "Unpacker"
-msgstr "Utpakker"
-
-#, c-format
-msgid "Prediffer"
-msgstr "Prediffer"
-
-#, c-format
 msgid "Editor script"
 msgstr "Redigeringsskript"
 
-#, c-format
-msgid "\nDifference in the Current Line"
+msgid ""
+"\n"
+"Difference in the Current Line"
 msgstr ""
+"\n"
+"Forskjell i den gjeldende linjen"
 
-#, c-format
-msgid "\nOptions"
+msgid ""
+"\n"
+"Options"
 msgstr ""
+"\n"
+"Innstillinger"
 
-#, c-format
-msgid "\nRefresh (F5)"
+msgid ""
+"\n"
+"Refresh (F5)"
 msgstr ""
+"\n"
+"Gjenoppfrisk (F5)"
 
-#, c-format
-msgid "\nPrevious Difference (Alt+Up)"
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"\n"
+"Forrige forskjell (Alt+Up)"
 
-#, c-format
-msgid "\nNext Difference (Alt+Down)"
+msgid ""
+"\n"
+"Next Difference (Alt+Down)"
 msgstr ""
+"\n"
+"Neste forskjell (Alt+Down)"
 
-#, c-format
-msgid "\nPrevious Conflict (Alt+Shift+Up)"
+msgid ""
+"\n"
+"Previous Conflict (Alt+Shift+Up)"
 msgstr ""
+"\n"
+"Forrige konflikt (Alt+Shift+Up)"
 
-#, c-format
-msgid "\nNext Conflict (Alt+Shift+Down)"
+msgid ""
+"\n"
+"Next Conflict (Alt+Shift+Down)"
 msgstr ""
+"\n"
+"Neste konflikt (Alt+Shift+Down)"
 
-#, c-format
-msgid "\nFirst Difference (Alt+Home)"
+msgid ""
+"\n"
+"First Difference (Alt+Home)"
 msgstr ""
+"\n"
+"Første forskjell (Alt+Home)"
 
-#, c-format
-msgid "\nCurrent Difference (Alt+Enter)"
+msgid ""
+"\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
+"\n"
+"Gjeldende forskjell (Alt+Enter)"
 
-#, c-format
-msgid "\nLast Difference (Alt+End)"
+msgid ""
+"\n"
+"Last Difference (Alt+End)"
 msgstr ""
+"\n"
+"Siste forskjell (Alt+End)"
 
-#, c-format
-msgid "\nCopy Right (Alt+Right)"
+msgid "\nCopy to Right (Alt+Right)"
+msgstr "\nKopier høyre (Alt+Høyre)"
+
+msgid "\nCopy to Left (Alt+Left)"
+msgstr "\nKopier venstre (Alt+Venstre)"
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+msgstr "\nKopier høyre og gå videre (Ctrl+Alt+Høyre)"
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+msgstr "\nKopier venstre og gå videre (Ctrl+Alt+Venstre)"
+
+msgid "\nCopy All to Right"
+msgstr "\nKopier alt til høyre"
+
+msgid "\nCopy All to Left"
+msgstr "\nKopier alt til venstre"
+
+msgid ""
+"\n"
+"Auto Merge (Ctrl+Alt+M)"
 msgstr ""
+"\n"
+"Auto-sammenslå (Ctrl+Alt+M)"
 
-#, c-format
-msgid "\nCopy Left (Alt+Left)"
+msgid ""
+"\n"
+"First File"
 msgstr ""
+"\n"
+"Første fil"
 
-#, c-format
-msgid "\nCopy Right and Advance (Ctrl+Alt+Right)"
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
 msgstr ""
+"\n"
+"Neste fil (Ctrl+F8)"
 
-#, c-format
-msgid "\nCopy Left and Advance (Ctrl+Alt+Left)"
+msgid ""
+"\n"
+"Last File"
 msgstr ""
+"\n"
+"Siste fil"
 
-#, c-format
-msgid "\nAll Right"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
 msgstr ""
+"\n"
+"Forrige fil (Ctrl+F7)"
 
-#, c-format
-msgid "\nAll Left"
+msgid ""
+"The adapted unpacker is applied to both files (one file only needs the "
+"extension)."
 msgstr ""
+"Den tilpassede utpakkeren brukes på begge filer (bare en fil behøver "
+"filendelsen)."
 
-#, c-format
-msgid "\nAuto Merge (Ctrl+Alt+M)"
-msgstr ""
-
-msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
-msgstr "Den tilpassede utpakkeren brukes på begge filer (bare en fil behøver filendelsen)."
-
-#, c-format
 msgid "No prediffer (normal)"
 msgstr "Ingen prediffer (normal)"
 
-#, c-format
 msgid "Suggested plugins"
 msgstr "Foreslåtte programtillegg"
 
-#, c-format
-msgid "Other plugins"
-msgstr "Andre programtillegg"
+msgid "All plugins"
+msgstr ""
 
 #, c-format
 msgid "Private Build: %1"
@@ -3896,102 +3708,80 @@ msgid "Your software is up to date."
 msgstr ""
 
 #, c-format
-msgid "A new version of WinMerge is available.\n%1 is now available (you have %2). Would you like to download it now?"
+msgid ""
+"A new version of WinMerge is available.\n"
+"%1 is now available (you have %2). Would you like to download it now?"
 msgstr ""
 
-#, c-format
 msgid "Failed to download latest version information"
 msgstr ""
 
-#, c-format
 msgid "Plugin Settings"
 msgstr "Innstillinger for programtillegg"
 
-#, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH ikke funnet - .sct skript ikke aktivert"
 
 #, c-format
-msgid "<None>"
-msgstr "<Ingen>"
-
-#, c-format
-msgid "<Automatic>"
-msgstr "<Automatisk>"
-
-#, c-format
-msgid "G&oto Line %1"
+msgid "G&o to Line %1"
 msgstr "G&å til linje %1"
 
-#, c-format
+msgid "Go to Moved Line\tCtrl+Shift+G"
+msgstr ""
+
 msgid "Disabled"
 msgstr "Deaktivert"
 
-#, c-format
 msgid "From file system"
 msgstr "Fra filsystem"
 
-#, c-format
 msgid "From Most Recently Used list"
 msgstr "Fra MRU-liste"
 
-#, c-format
 msgid "No Highlighting"
 msgstr "Ingen markering"
 
-#, c-format
 msgid "Batch"
 msgstr "Batch"
 
-msgid "Lua"
-msgstr ""
-
-#, c-format
 msgid "Portable Object"
 msgstr "Portable Object"
 
-#, c-format
 msgid "Resources"
 msgstr "Resources"
 
-#, c-format
 msgid "Shell"
 msgstr "Shell"
 
-#, c-format
-msgid "VHDL"
-msgstr ""
-
-#, c-format
 msgid "Close &Left Tabs"
 msgstr ""
 
-#, c-format
 msgid "Close R&ight Tabs"
 msgstr ""
 
-#, c-format
 msgid "Close &Other Tabs"
 msgstr ""
 
-#, c-format
 msgid "Enable &Auto Max Width"
 msgstr ""
 
-#, c-format
-msgid "frhed is not installed"
+msgid "We&bpage"
+msgstr ""
+
+msgid "Frhed is not installed."
 msgstr ""
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
 msgstr ""
 
-#, c-format
 msgid "Failed to create folder."
 msgstr ""
 
-#, c-format
-msgid "You can specify the following parameters to the path:\n$file: Path name of the current file\n$linenum: Line number of the current cursor position"
+msgid ""
+"You can specify the following parameters to the path:\n"
+"$file: Path name of the current file\n"
+"$linenum: Line number of the current cursor position"
 msgstr ""
 
 msgid "default"
@@ -4004,6 +3794,9 @@ msgid "patience"
 msgstr ""
 
 msgid "histogram"
+msgstr ""
+
+msgid "none"
 msgstr ""
 
 msgid "GDI"
@@ -4031,6 +3824,9 @@ msgid "MDI child window or main window"
 msgstr ""
 
 msgid "MDI child window only"
+msgstr ""
+
+msgid "Close main window if there is only one MDI child window"
 msgstr ""
 
 msgctxt "ImgMergeFrame|LocationPane"
@@ -4114,6 +3910,406 @@ msgid "Dist: %g, %g  "
 msgstr ""
 
 #, c-format
-msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
 msgstr ""
 
+#, c-format
+msgid "Rc: (%d, %d)  "
+msgstr ""
+
+#, c-format
+msgid "Flipped: %s  "
+msgstr ""
+
+#, c-format
+msgid "Rotated: %d  "
+msgstr ""
+
+msgid "All pages"
+msgstr ""
+
+msgid "<Edit here>"
+msgstr ""
+
+msgid "No differences to select found"
+msgstr ""
+
+msgid "No differences found to add as substitution filter"
+msgstr ""
+
+msgid "The pair is already present in the list of Substitution Filters"
+msgstr ""
+
+msgid "Add this change to Substitution Filters?"
+msgstr ""
+
+msgid "Text only"
+msgstr ""
+
+msgid "Line-by-line position and text"
+msgstr ""
+
+msgid "Word-by-word position and text"
+msgstr ""
+
+msgid "AppData folder"
+msgstr ""
+
+msgid "Install folder"
+msgstr ""
+
+msgid "Allow only one instance to run"
+msgstr "Tillat bare en instans å kjøre"
+
+msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Al&l"
+msgstr ""
+
+msgid "Prettification"
+msgstr ""
+
+msgid "Content Extraction"
+msgstr ""
+
+msgid "Visualization"
+msgstr ""
+
+msgid "Data Query"
+msgstr ""
+
+msgid "Validation"
+msgstr ""
+
+msgid "Decompilation"
+msgstr ""
+
+msgid "&Others"
+msgstr ""
+
+msgid "URL Handling"
+msgstr ""
+
+msgid "Make Uppercase"
+msgstr ""
+
+msgid "Make Lowercase"
+msgstr ""
+
+msgid "Remove Duplicate Lines"
+msgstr ""
+
+msgid "Count Duplicate Lines"
+msgstr ""
+
+msgid "Sort Lines Ascending"
+msgstr ""
+
+msgid "Sort Lines Descending"
+msgstr ""
+
+msgid "Reverse Columns"
+msgstr ""
+
+msgid "Reverse Lines"
+msgstr ""
+
+msgid "Replace..."
+msgstr ""
+
+msgid "Apply Filter Command..."
+msgstr ""
+
+msgid "Tokenize..."
+msgstr ""
+
+msgid "Trim Spaces"
+msgstr ""
+
+msgid "Select Columns..."
+msgstr ""
+
+msgid "Select Lines..."
+msgstr ""
+
+msgid "Insert Date"
+msgstr ""
+
+msgid "Insert Time"
+msgstr ""
+
+msgid "Apply Patch..."
+msgstr ""
+
+msgid "Ignore Columns"
+msgstr ""
+
+msgid "Ignore Comments (C-Family Languages)"
+msgstr ""
+
+msgid "Ignore CSV Fields"
+msgstr ""
+
+msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Apply Prediff Substitution Filters"
+msgstr ""
+
+msgid "Prettify HTML"
+msgstr ""
+
+msgid "Prettify JSON"
+msgstr ""
+
+msgid "Prettify XML"
+msgstr ""
+
+msgid "Prettify YAML"
+msgstr ""
+
+msgid "Visualize Graphviz"
+msgstr ""
+
+msgid "Query CSV Data..."
+msgstr ""
+
+msgid "Query TSV Data..."
+msgstr ""
+
+msgid "Query JSON Data..."
+msgstr ""
+
+msgid "Query YAML Data..."
+msgstr ""
+
+msgid "Validate HTML"
+msgstr ""
+
+msgid "Disassemble JVM Bytecode"
+msgstr ""
+
+msgid "Disassemble IL Code"
+msgstr ""
+
+msgid "Disassemble Native Code"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""
+
+msgid "Make characters uppercase"
+msgstr ""
+
+msgid "Make characters lowercase"
+msgstr ""
+
+msgid "Remove duplicate lines"
+msgstr ""
+
+msgid "Count duplicate lines"
+msgstr ""
+
+msgid "Sort lines ascending"
+msgstr ""
+
+msgid "Sort lines descending"
+msgstr ""
+
+msgid "Reverse columns"
+msgstr ""
+
+msgid "Reverse lines"
+msgstr ""
+
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression"
+msgstr ""
+
+#, c-format
+msgid ""
+"Apply filter command. \r\n"
+"Usage: ExecFilterCommand COMMAND\r\n"
+"  COMMAND - command to execute. %1 in the command is replaced with the "
+"filename."
+msgstr ""
+
+msgid ""
+"Tokenize selection. \r\n"
+"Usage: Tokenize PATTERNS\r\n"
+"  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgstr ""
+
+msgid "Trim spaces"
+msgstr ""
+
+msgid ""
+"Select some columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching columns\r\n"
+"  -i - ignore case\r\n"
+"  -g - enable global flag\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+
+msgid ""
+"Select some lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching lines\r\n"
+"  -i - ignore case\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+
+msgid ""
+"HTML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid ""
+"JSON Prettier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+
+msgid ""
+"XML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid ""
+"YAML Prettier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+
+msgid ""
+"Graphviz Visualizer. \r\n"
+"Arguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid ""
+"CSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+
+msgid ""
+"TSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+
+msgid ""
+"JSON Querier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+
+msgid ""
+"YAML Querier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+
+msgid ""
+"HTML Validator with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+
+msgid ""
+"JVM bytecode disassembler with javap. \r\n"
+"Arguments: Command line options passed to the javap command."
+msgstr ""
+
+msgid ""
+"IL disassembler with ildasm. \r\n"
+"Arguments: Command line options passed to the ildasm command."
+msgstr ""
+
+msgid ""
+"Native code disassembler with dumpbin. \r\n"
+"Arguments: Command line options passed to the dumpbin command."
+msgstr ""
+
+msgid ""
+"General content extractor with Apache Tika. \r\n"
+"Arguments: Command line options passed to the tika-app.jar."
+msgstr ""
+
+msgid "Apply patch using GnuWin32 Patch for Windows"
+msgstr ""
+
+msgid "Display the text content of MS Excel files"
+msgstr ""
+
+msgid "Display the text content of MS PowerPoint files"
+msgstr ""
+
+msgid "Display the text content of MS Visio files"
+msgstr ""
+
+msgid "Display the text content of MS Word files"
+msgstr ""
+
+msgid ""
+"Ignore some columns - ignored columns list from the plugin name or the "
+"plugin argument"
+msgstr ""
+
+msgid ""
+"The plugin ignores comments (//... and /* ... */) in C, C++, PHP and "
+"JavaScript files."
+msgstr ""
+
+msgid ""
+"Ignore some fields - ignored fields list from the plugin name or the plugin "
+"argument"
+msgstr ""
+
+msgid "Prediff Line Filter"
+msgstr ""
+
+msgid "Basic text functions for the context menu"
+msgstr ""
+
+msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+msgstr ""
+
+msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""

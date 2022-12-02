@@ -3,7 +3,7 @@
 //    Copyright (C) 1997  Dean P. Grimm
 //    SPDX-License-Identifier: GPL-2.0-or-later
 /////////////////////////////////////////////////////////////////////////////
-/** 
+/**
  * @file  Merge.h
  *
  * @brief main header file for the MERGE application
@@ -34,9 +34,10 @@ class MergeCmdLineInfo;
 class ProjectFile;
 class COptionsMgr;
 class LineFiltersList;
+class SubstitutionFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
-class FilterCommentsManager;
+class PackingInfo;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -45,7 +46,7 @@ class FilterCommentsManager;
 
 enum { IDLE_TIMER = 9754 };
 
-/** 
+/**
  * @brief WinMerge application class
  */
 class CMergeApp : public CWinApp
@@ -57,7 +58,6 @@ public:
 	CMultiDocTemplate* m_pHexMergeTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
-	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
@@ -66,15 +66,16 @@ public:
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
-	std::unique_ptr<FilterCommentsManager> m_pFilterCommentsManager;
+	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
 
 	WORD GetLangId() const;
+	String GetLangName() const;
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	void ChangeDialogFont(HWND hwnd, int dpi) const;
 	String LoadString(UINT) const;
-	bool TranslateString(const std::string&, String&) const; 
+	bool TranslateString(const std::string&, String&) const;
 	std::wstring LoadDialogCaption(LPCTSTR) const;
 
 	CMergeApp();
@@ -86,21 +87,22 @@ public:
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
-	FileFilterHelper * GetGlobalFileFilter() { return m_pGlobalFileFilter.get(); }
+	FileFilterHelper* GetGlobalFileFilter();
 	void ShowHelp(LPCTSTR helpLocation = nullptr);
-	void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
-	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
-	bool CreateBackup(bool bFolder, const String& pszPath);
-	int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
+	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
+	static bool CreateBackup(bool bFolder, const String& pszPath);
+	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
+	static String GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
-	void SetupTempPath();
+	static void SetupTempPath();
 	bool IsReallyIdle() const;
 
 	virtual UINT GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault) override;
 	virtual BOOL WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue) override;
 	virtual CString GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault = NULL) override;
 	virtual BOOL WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue) override;
+	virtual HINSTANCE LoadAppLangResourceDLL() override { return nullptr; }; // Disable loading lang resource dll
 
 // Implementation
 protected:
@@ -166,23 +168,25 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	std::unique_ptr<COptionsMgr> m_pOptions;
+	std::unique_ptr<FileFilterHelper> m_pGlobalFileFilter;
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
+	bool m_bEnableExitCode;
 	mutable std::map<int, CFont> m_mapFontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
 };
 
 extern CMergeApp theApp;
 
-/** 
+/**
  * @brief Set flag so that application will broadcast notification at next
  * idle time (via WM_TIMER id=IDLE_TIMER)
  */
 inline void CMergeApp::SetNeedIdleTimer()
 {
-	m_bNeedIdleTimer = true; 
+	m_bNeedIdleTimer = true;
 }
 

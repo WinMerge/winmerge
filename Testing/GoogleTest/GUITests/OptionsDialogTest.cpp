@@ -56,7 +56,7 @@ public:
 	{
 		HWND hwndCtrl = GetDlgItem(hwndDlg, IDC_TREEOPT_PAGES);
 		SetFocus(hwndCtrl);
-		HTREEITEM hTreeItem = TreeView_GetFirstVisible(hwndCtrl);
+		HTREEITEM hTreeItem = TreeView_GetRoot(hwndCtrl);
 		for (int i = 0; i < index; ++i)
 			hTreeItem = TreeView_GetNextVisible(hwndCtrl, hTreeItem);
 		TreeView_SelectItem(hwndCtrl, hTreeItem);
@@ -78,30 +78,42 @@ TEST_P(OptionsDialogTest, Pages)
 		selectCategory(hwndDlg, 3);
 		saveForegroundDialogImage("Compare/Folder");
 		selectCategory(hwndDlg, 4);
-		saveForegroundDialogImage("Compare/Binary");
+		saveForegroundDialogImage("Compare/Table");
 		selectCategory(hwndDlg, 5);
-		saveForegroundDialogImage("Compare/Image");
+		saveForegroundDialogImage("Compare/Binary");
 		selectCategory(hwndDlg, 6);
-		saveForegroundDialogImage("Editor");
+		saveForegroundDialogImage("Compare/Image");
+		selectCategory(hwndDlg, 7);
+		saveForegroundDialogImage("Compare/Webpage");
 		selectCategory(hwndDlg, 8);
-		saveForegroundDialogImage("Colors/Differences");
-		selectCategory(hwndDlg, 9);
-		saveForegroundDialogImage("Colors/Syntax");
+		saveForegroundDialogImage("Message Boxes");
 		selectCategory(hwndDlg, 10);
-		saveForegroundDialogImage("Colors/Text");
+		saveForegroundDialogImage("Editor/General");
 		selectCategory(hwndDlg, 11);
-		saveForegroundDialogImage("Colors/Markers");
-		selectCategory(hwndDlg, 12);
-		saveForegroundDialogImage("Colors/FolderCompare");
+		saveForegroundDialogImage("Editor/Syntax");
 		selectCategory(hwndDlg, 13);
-		saveForegroundDialogImage("Archive Support");
+		saveForegroundDialogImage("Colors/Color Schemes");
 		selectCategory(hwndDlg, 14);
-		saveForegroundDialogImage("System");
+		saveForegroundDialogImage("Colors/Differences");
 		selectCategory(hwndDlg, 15);
-		saveForegroundDialogImage("Backup Files");
+		saveForegroundDialogImage("Colors/Syntax");
 		selectCategory(hwndDlg, 16);
-		saveForegroundDialogImage("Codepage");
+		saveForegroundDialogImage("Colors/Text");
 		selectCategory(hwndDlg, 17);
+		saveForegroundDialogImage("Colors/Markers");
+		selectCategory(hwndDlg, 18);
+		saveForegroundDialogImage("Colors/FolderCompare");
+		selectCategory(hwndDlg, 19);
+		saveForegroundDialogImage("Archive Support");
+		selectCategory(hwndDlg, 20);
+		saveForegroundDialogImage("Project");
+		selectCategory(hwndDlg, 21);
+		saveForegroundDialogImage("System");
+		selectCategory(hwndDlg, 22);
+		saveForegroundDialogImage("Backup Files");
+		selectCategory(hwndDlg, 23);
+		saveForegroundDialogImage("Codepage");
+		selectCategory(hwndDlg, 24);
 		saveForegroundDialogImage("Shell Integration");
 		typeText(L"\x1b");
 		waitUntilClose(hwndDlg);
@@ -110,7 +122,7 @@ TEST_P(OptionsDialogTest, Pages)
 
 }
 
-INSTANTIATE_TEST_CASE_P(OptionsDialogTestInstance,
+INSTANTIATE_TEST_SUITE_P(OptionsDialogTestInstance,
 	OptionsDialogTest,
 	testing::ValuesIn(GUITestUtils::languages()));
 

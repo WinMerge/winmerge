@@ -96,8 +96,7 @@ void COpenFrame::ActivateFrame(int nCmdShow)
 	{
 		if (CView* const pView = GetActiveView())
 		{
-			WINDOWPLACEMENT wp;
-			wp.length = sizeof wp;
+			WINDOWPLACEMENT wp = { sizeof wp };
 			GetWindowPlacement(&wp);
 			CRect rc;
 			pView->GetWindowRect(&rc);

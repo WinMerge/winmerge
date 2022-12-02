@@ -8,6 +8,8 @@
       <seealso>file masks</seealso>
 
       <seealso>line filters</seealso>
+
+      <seealso>substitution filters</seealso>
     </indexterm></title>
 
   <para>When you compare files or folders, you can use filters to narrow the
@@ -61,7 +63,7 @@
     </varlistentry>
 
     <varlistentry>
-      <term>File comparisons: Line filters<indexterm>
+      <term>File comparisons: Line filters and substitution filters<indexterm>
           <primary>comparing files</primary>
 
           <secondary>filtering</secondary>
@@ -70,6 +72,11 @@
       <listitem>
         <para>Line filters are applied only to file compare operations. They let
         you ignore single line differences.</para>
+        <para>Substitution filters are applied only to file compare operations.
+        They replace the strings in the diff block with the specified strings,
+        compare them, and ignore the diff block if the replacement results match.
+        They are useful for ignoring large numbers of uninteresting changes. 
+        </para>
       </listitem>
     </varlistentry>
   </variablelist>
@@ -138,13 +145,18 @@
 
       <para>Use this syntax for file masks:</para>
 
-      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
+      <synopsis>[!](*.[<replaceable>extension</replaceable>]|<replaceable>folder mask</replaceable>\)[<replaceable>delimiter</replaceable>[!](*.<replaceable>extension</replaceable>|<replaceable>folder mask</replaceable>\) ...]</synopsis>
 
       <para>Valid delimiters are spaces, commas, colons or semicolons.</para>
 
       <para>A mask with no extension ( <filename>*.</filename> ) selects files
       without any extension, such as
       <filename><filename>README</filename></filename>.</para>
+
+      <para>In 2.16.19 and later, if you put an exclamation mark(<filename>!</filename>)
+      in front of a mask, files matching that mask will be excluded.
+      Also, a backslash(<filename>\</filename>) after the mask will cause
+      the mask to match folders instead of files.</para>
 
       <example>
         <title>File mask</title>
@@ -155,6 +167,17 @@
 
         <para><userinput>WinMergeU c:\project\docs c:\temp /f
         *.xml;*.txt</userinput></para>
+      </example>
+
+      <example>
+        <title>Excluding folders (In 2.16.19 or later)</title>
+
+        <para>In this command-line example, the folder compare operation
+        excludes <filename>.git</filename> and
+        <filename>.vs</filename> folders:</para>
+
+        <para><userinput>WinMergeU c:\project\docs c:\temp /f
+        !.git\;!.vs\</userinput></para>
       </example>
     </section>
   </section>
@@ -223,11 +246,10 @@
           <listitem>
             <para>The location of this folder is defined in the System page of
             WinMerge options. By default, it is specified as a subfolder in your
-            user profile folder (for example, <filename>My
-            Documents\WinMerge\Filters</filename> in Windows XP). Filters that
-            are created or copied here are normally visible only to you. If you
-            create new file filters, you can copy them here to keep them
-            private.</para>
+            user profile folder (for example, <filename>Documents</filename> in
+            Windows 10). Filters that are created or copied here are normally
+            visible only to you. If you create new file filters, you can copy
+            them here to keep them private.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -259,7 +281,7 @@
             </listitem>
 
             <listitem>
-              <para>In the Filters dialog, use the Filefilters tab to choose a
+              <para>In the Filters dialog, use the File Filters tab to choose a
               file filter and load it in the <guilabel>Filter</guilabel>
               field.</para>
 
@@ -268,6 +290,7 @@
                 filter is already loaded in the <guilabel>Filter</guilabel>
                 field.</para>
               </note>
+              <para></para>
             </listitem>
 
             <listitem>
@@ -421,6 +444,12 @@
         </varlistentry>
       </variablelist>
 
+      <para>In 2.16.19 and later, the type designators
+      <guilabel>f!:</guilabel> and <guilabel>d!:</guilabel> has been
+      introduced to exclude some of the files or folders matched by
+      <guilabel>f:</guilabel> and <guilabel>d:</guilabel>.
+      </para>
+
       <para>Among the many regexp special characters, the following are
       particularly important in file filter rules:<indexterm>
           <primary>regular expressions</primary>
@@ -537,7 +566,7 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
             </listitem>
 
             <listitem>
-              <para>In the Filters dialog, use the Linefilters tab to enable the
+              <para>In the Filters dialog, use the Line Filters tab to enable the
               line filters you want to use (if any), or to see what line filters
               are currently enabled.</para>
 
@@ -545,6 +574,7 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
                 <para>The <guilabel>Filter</guilabel> field does not indicate
                 what line filters are enabled.</para>
               </note>
+              <para></para>
             </listitem>
 
             <listitem>
@@ -568,7 +598,7 @@ f: ^[h,k,m] ## <filename>h*.*</filename>, <filename>k*.*</filename>, and <filena
             </listitem>
 
             <listitem>
-              <para>Open the Filefilters tab.</para>
+              <para>Open the File Filters tab.</para>
             </listitem>
 
             <listitem>
@@ -731,6 +761,20 @@ Pekka Himanen</screen></para>
     </section>
   </section>
 
+  <section id="Filters_SubstitutionFilter">
+    <title>Using substitution filters<indexterm>
+        <primary>filters</primary>
+
+        <secondary>substitution</secondary>
+      </indexterm><indexterm>
+        <primary>filters</primary>
+
+        <secondary>in file comparisons</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
   <section id="Filters_dlg">
     <title>Using the Filters dialog<indexterm>
         <primary>Filters dialog</primary>
@@ -767,7 +811,7 @@ Pekka Himanen</screen></para>
 
     <variablelist>
       <varlistentry>
-        <term>Filefilters</term>
+        <term>File Filters</term>
 
         <listitem>
           <para>Choose this tab to work with file filters for folder compare
@@ -776,17 +820,26 @@ Pekka Himanen</screen></para>
       </varlistentry>
 
       <varlistentry>
-        <term>Linefilters</term>
+        <term>Line Filters</term>
 
         <listitem>
           <para>Choose this tab to work with line filters for file compare
           operations.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>Substitution Filters</term>
+
+        <listitem>
+          <para>Choose this tab to work with substitution filters for file compare
+          operations.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
 
     <section id="Filters_FileFiltersTab">
-      <title>Using the Filefilters tab<indexterm>
+      <title>Using the File Filters tab<indexterm>
           <primary>file filters</primary>
 
           <secondary>enabling</secondary>
@@ -827,7 +880,7 @@ Pekka Himanen</screen></para>
       <section id="Filters_FileFilterCfg">
         <title>Configuring file filters</title>
 
-        <para>Use these buttons to manage your <guilabel>Filefilters</guilabel>
+        <para>Use these buttons to manage your <guilabel>File Filters</guilabel>
         list and create new file filters:</para>
 
         <variablelist>
@@ -907,7 +960,7 @@ Pekka Himanen</screen></para>
           </listitem>
 
           <listitem id="Filters_New_step">
-            <para>In the Filters dialog Filefilters tab, click
+            <para>In the Filters dialog File Filters tab, click
             <guibutton>New</guibutton>.</para>
           </listitem>
 
@@ -933,7 +986,7 @@ Pekka Himanen</screen></para>
             </note>
 
             <para>WinMerge initializes the new file with the contents of the
-            <filename>FileFilter.tmpl</filename> tempate, and opens it in your
+            <filename>FileFilter.tmpl</filename> template, and opens it in your
             default text editor.</para>
           </listitem>
 
@@ -948,6 +1001,7 @@ Pekka Himanen</screen></para>
               try clicking Test in the Filters dialog. See <xref
               linkend="Filters_TestingDlg" /> for details.</para>
             </tip>
+            <para></para>
           </listitem>
 
           <listitem>
@@ -959,7 +1013,7 @@ Pekka Himanen</screen></para>
 
                 <guimenuitem>Filters</guimenuitem>
               </menuchoice> again to reopen it. The
-            <guilabel>Filefilters</guilabel> list should now include the new
+            <guilabel>File Filters</guilabel> list should now include the new
             file filter.</para>
 
             <para>If you saved the file in an alternate location on your file
@@ -975,7 +1029,7 @@ Pekka Himanen</screen></para>
               <listitem>
                 <para>In the Locate filter file to install dialog, navigate to
                 the <filename>flt</filename> file on your system, and click
-                <guibutton>Open</guibutton>. The Filefilters list should now
+                <guibutton>Open</guibutton>. The File Filters list should now
                 include the installed file filter.</para>
               </listitem>
             </orderedlist>
@@ -1001,12 +1055,12 @@ Pekka Himanen</screen></para>
 
         <orderedlist>
           <listitem>
-            <para>In the Filefilters tab, choose the file filter you want to
+            <para>In the File Filters tab, choose the file filter you want to
             test.</para>
           </listitem>
 
           <listitem>
-            <para>If you want to see the rules you will be testing,click
+            <para>If you want to see the rules you will be testing, click
             <guibutton>Edit</guibutton> now to open the file so that you can
             view it during the next steps.</para>
           </listitem>
@@ -1051,7 +1105,7 @@ Pekka Himanen</screen></para>
     </section>
 
     <section id="Filters_LineFiltersTab">
-      <title>Using the Linefilters tab<indexterm>
+      <title>Using the Line Filters tab<indexterm>
           <primary>line filters</primary>
 
           <secondary>enabling</secondary>
@@ -1139,6 +1193,33 @@ Pekka Himanen</screen></para>
 
         <para>There are several ways to apply file filters after enabling them.
         For details, see <xref linkend="Filters_LineFilterApply" />.</para>
+      </section>
+    </section>
+
+    <section id="Filters_SubstitutionFiltersTab">
+      <title>Using the Substitution Filters tab<indexterm>
+          <primary>substitution filters</primary>
+
+          <secondary>enabling</secondary>
+        </indexterm></title>
+
+        <para>TBD</para>
+
+      <section id="Filters_SubstitutionFilterCfg">
+        <title>Configuring substitution filters</title>
+
+        <para>TBD</para>
+
+      </section>
+
+      <section id="Filters_SubstitutionFilterEnabling">
+        <title>Enabling and disabling substitution filters<indexterm>
+            <primary>substitution filters</primary>
+
+            <secondary>list of available</secondary>
+          </indexterm></title>
+
+        <para>TBD</para>
       </section>
     </section>
   </section>

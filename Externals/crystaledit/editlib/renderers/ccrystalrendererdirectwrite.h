@@ -41,7 +41,7 @@ public:
 	virtual void DrawMarginIcon(int x, int y, int iconIndex, int iconsize) override;
 	virtual void DrawMarginLineNumber(int x, int y, int number) override;
 	virtual void DrawBoundaryLine(int left, int right, int y) override;
-	virtual void DrawGridLine(int x1, int y1, int x2, int y2) override;
+	virtual void DrawGridLine(int x1, int y1, int x2, int y2, int sourceConstantAlpha) override;
 	virtual void DrawLineCursor(int left, int right, int y, int height) override;
 	virtual void DrawRuler(int left, int top, int width, int height, int charwidth, int offset) override;
 

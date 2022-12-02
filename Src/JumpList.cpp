@@ -64,6 +64,9 @@ namespace JumpList
 bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 {
 	g_appid = appid;
+#ifdef _WIN64
+	return ::SetCurrentProcessExplicitAppUserModelID(appid.c_str()) == S_OK;
+#else
 	HMODULE hLibrary = GetModuleHandle(_T("shell32.dll"));
 	if (hLibrary == nullptr)
 		return false;
@@ -72,6 +75,7 @@ bool SetCurrentProcessExplicitAppUserModelID(const std::wstring& appid)
 	if (pfnSetCurrentProcessExplicitAppUserModelID == nullptr)
 		return false;
 	return pfnSetCurrentProcessExplicitAppUserModelID(appid.c_str()) == S_OK;
+#endif
 }
 
 bool AddToRecentDocs(const String& app_path, const String& params, const String& title, const String& desc, int icon_index)
@@ -116,9 +120,11 @@ std::vector<Item> GetRecentDocs(size_t nMaxItems)
 					if (SUCCEEDED(pShellLink->QueryInterface(IID_IPropertyStore, (void **)&pPS)))
 					{
 						PROPVARIANT pv;
+						PropVariantInit(&pv);
 						if (SUCCEEDED(pPS->GetValue(PKEY_Title, &pv)))
 						{
-							list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
+							if (pv.vt == VT_LPWSTR && pv.bstrVal)
+								list.push_back(Item(ucr::toTString(szPath), ucr::toTString(szArguments), ucr::toTString(pv.bstrVal), ucr::toTString(szDescription)));
 							PropVariantClear(&pv);
 						}
 						pPS->Release();

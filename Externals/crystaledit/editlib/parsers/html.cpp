@@ -23,14 +23,24 @@
 #define new DEBUG_NEW
 #endif
 
-DWORD
-CrystalLineParser::ParseLineHtml (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+static void AdjustCharPosInTextBlocks(CrystalLineParser::TEXTBLOCK* pBuf, int startBlock, int endBlock, int offset)
+{
+  for (int i = startBlock; i <= endBlock; ++i)
+    pBuf[i].m_nCharPos += offset;
+}
+
+unsigned
+CrystalLineParser::ParseLineHtmlEx (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage)
 {
   if (nLength == 0)
-    return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1);
+    {
+      unsigned dwCookieStrChar = ((nEmbeddedLanguage == SRC_PHP || nEmbeddedLanguage == SRC_SMARTY) && (dwCookie & COOKIE_EXT_USER1)) ? (dwCookie & (COOKIE_STRING | COOKIE_CHAR)) : 0;
+      return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_USER1|COOKIE_ELEMENT|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE|dwCookieStrChar);
+    }
 
-  bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT|COOKIE_EXT_USER1)) == 0;
   bool bRedefineBlock = true;
+  if (!(dwCookie & COOKIE_ELEMENT))
+    bRedefineBlock = !(dwCookie & (COOKIE_EXT_USER1|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE));
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
@@ -49,7 +59,7 @@ CrystalLineParser::ParseLineHtml (DWORD dwCookie, const TCHAR *pszChars, int nLe
           int nPos = I;
           if (bDecIndex)
             nPos = nPrevI;
-          if (dwCookie & (COOKIE_COMMENT | COOKIE_EXT_COMMENT))
+          if (dwCookie & COOKIE_EXT_COMMENT)
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
@@ -57,13 +67,9 @@ CrystalLineParser::ParseLineHtml (DWORD dwCookie, const TCHAR *pszChars, int nLe
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
             }
-          else if (dwCookie & COOKIE_PREPROCESSOR)
+          else if (dwCookie & COOKIE_ELEMENT)
             {
               DEFINE_BLOCK (nPos, COLORINDEX_PREPROCESSOR);
-            }
-          else if (dwCookie & COOKIE_EXT_USER1)
-            {
-              DEFINE_BLOCK (nPos, COLORINDEX_FUNCNAME);
             }
           else
             {
@@ -89,11 +95,126 @@ out:
       if (I >= nLength || pszChars[I] == 0)
         break;
 
-      if (dwCookie & COOKIE_COMMENT)
+      if (!(dwCookie & COOKIE_ELEMENT) && (dwCookie & (COOKIE_EXT_USER1|COOKIE_BLOCK_SCRIPT|COOKIE_BLOCK_STYLE)))
         {
-          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
-          dwCookie |= COOKIE_COMMENT;
-          break;
+          if (dwCookie & COOKIE_BLOCK_SCRIPT)
+            {
+              const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</script>"));
+              int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
+              int nActualItemsEmbedded = 0;
+              dwCookie = ParseLineJavaScript(dwCookie & ~COOKIE_BLOCK_SCRIPT, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
+              if (!pszEnd)
+                dwCookie |= COOKIE_BLOCK_SCRIPT;
+              else
+                {
+                  dwCookie = 0;
+                  bRedefineBlock = true;
+                }
+              I = nextI - 1;
+            }
+          else if (dwCookie & COOKIE_BLOCK_STYLE)
+            {
+              const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("</style>"));
+              int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
+              int nActualItemsEmbedded = 0;
+              dwCookie = ParseLineCss(dwCookie & ~COOKIE_BLOCK_STYLE, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+              AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+              nActualItems += nActualItemsEmbedded;
+              if (!pszEnd)
+                dwCookie |= COOKIE_BLOCK_STYLE;
+              else
+                {
+                  dwCookie = 0;
+                  bRedefineBlock = true;
+                }
+              I = nextI - 1;
+            }
+          else if ((dwCookie & COOKIE_EXT_USER1))
+            {
+              if (nEmbeddedLanguage != SRC_SMARTY)
+                {
+                  const TCHAR *pszEnd = _tcsstr(pszChars + I, _T("?>"));
+                  if (!pszEnd)
+                    pszEnd = _tcsstr(pszChars + I, _T("%>"));
+                  int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
+                  unsigned (*pParseLineFunc)(unsigned, const TCHAR *, int, TEXTBLOCK *, int &);
+                  switch (nEmbeddedLanguage)
+                  {
+                  case SRC_BASIC: pParseLineFunc = ParseLineBasic; break;
+                  case SRC_PHP: pParseLineFunc = ParseLinePhpLanguage; break;
+                  default: pParseLineFunc = ParseLineJavaScript; break;
+                  }
+                  int nActualItemsEmbedded = 0;
+                  dwCookie = pParseLineFunc(dwCookie & ~COOKIE_EXT_USER1, pszChars + I, nextI - I, pBuf + nActualItems, nActualItemsEmbedded);
+                  AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, I);
+                  nActualItems += nActualItemsEmbedded;
+                  if (!pszEnd)
+                    {
+                      dwCookie |= COOKIE_EXT_USER1;
+                      nextI += 1;
+                    }
+                  else if ((nEmbeddedLanguage == SRC_PHP) && (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR)))
+                    {
+                      // A closing tag in a comment or string.
+                      if (dwCookie & COOKIE_EXT_COMMENT)
+                        {
+                           DEFINE_BLOCK(I, COLORINDEX_COMMENT);
+                        }
+                      else if (dwCookie & (COOKIE_STRING | COOKIE_CHAR))
+                        {
+                          DEFINE_BLOCK(I, COLORINDEX_STRING);
+                        }
+                      nextI += 2;    // Length of "?>"
+                      dwCookie |= COOKIE_EXT_USER1;
+                      bRedefineBlock = true;
+                    }
+                  else
+                    {
+                      if (I > 0)
+                        nextI += 1;
+                      dwCookie = 0;
+                      bRedefineBlock = true;
+                    }
+                  I = nextI - 1;
+                }
+              else
+                {
+                  const TCHAR* pszEnd = _tcsstr(pszChars + I, _T("}"));
+                  int nextI = pszEnd ? static_cast<int>(pszEnd - pszChars) : nLength;
+                  int nActualItemsEmbedded = 0;
+                  int nOffset = (I > 0 && pszChars[I - 1] == '{') ? (I - 1) : I;
+                  dwCookie = ParseLineSmartyLanguage(dwCookie & ~COOKIE_EXT_USER1, pszChars + nOffset, nextI - nOffset + 1, pBuf + nActualItems, nActualItemsEmbedded);
+                  AdjustCharPosInTextBlocks(pBuf, nActualItems, nActualItems + nActualItemsEmbedded - 1, nOffset);
+                  nActualItems += nActualItemsEmbedded;
+                  if (!pszEnd)
+                      dwCookie |= COOKIE_EXT_USER1;
+                  else if (dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING))
+                    {
+                      // A closing tag in a comment or string.
+                      if (dwCookie & COOKIE_EXT_COMMENT)
+                        {
+                          DEFINE_BLOCK(I, COLORINDEX_COMMENT);
+                        }
+                      else if (dwCookie & (COOKIE_STRING | COOKIE_CHAR))
+                        {
+                          DEFINE_BLOCK(I, COLORINDEX_STRING);
+                        }
+                      nextI += 1;    // Length of "}"
+                      dwCookie |= COOKIE_EXT_USER1;
+                      bRedefineBlock = true;
+                    }
+                  else
+                    {
+                      nextI += 1;    // Length of "}"
+                      dwCookie = 0;
+                      bRedefineBlock = true;
+                    }
+                  I = nextI - 1;
+                }
+            }
+          continue;
         }
 
       //  String constant "...."
@@ -129,26 +250,15 @@ out:
           continue;
         }
 
-      //  Extended comment <?....?>
-      if (dwCookie & COOKIE_EXT_USER1)
-        {
-          if (I > 0 && pszChars[I] == '>' && (pszChars[nPrevI] == '?' || pszChars[nPrevI] == '%'))
-            {
-              dwCookie &= ~COOKIE_EXT_USER1;
-              bRedefineBlock = true;
-            }
-          continue;
-        }
-
       //  Normal text
-      if ((dwCookie & COOKIE_PREPROCESSOR) && pszChars[I] == '"')
+      if ((dwCookie & COOKIE_ELEMENT) && pszChars[I] == '"')
         {
           DEFINE_BLOCK (I, COLORINDEX_STRING);
           dwCookie |= COOKIE_STRING;
           continue;
         }
 
-      if ((dwCookie & COOKIE_PREPROCESSOR) && pszChars[I] == '\'')
+      if ((dwCookie & COOKIE_ELEMENT) && pszChars[I] == '\'')
         {
           // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
           if (!I || !xisalnum (pszChars[nPrevI]))
@@ -159,19 +269,34 @@ out:
             }
         }
 
-      if (!(dwCookie & COOKIE_EXT_USER1) && I < nLength - 3 && pszChars[I] == '<' && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-')
+      if (I < nLength - 3 && pszChars[I] == '<' && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-')
         {
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           I += 3;
           dwCookie |= COOKIE_EXT_COMMENT;
-          dwCookie &= ~COOKIE_PREPROCESSOR;
+          dwCookie &= ~COOKIE_ELEMENT;
           continue;
         }
 
-      if (bFirstChar)
+      //  User1 start: <?
+      if (I < nLength && pszChars[I] == '<' && I < nLength - 1 && (pszChars[I + 1] == '?' || pszChars[I + 1] == '%'))
         {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
+          DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
+          dwCookie |= COOKIE_EXT_USER1;
+          nIdentBegin = -1;
+          continue;
+        }
+
+      if (nEmbeddedLanguage == SRC_SMARTY)
+        {
+          // In Smarty templates, the { and } braces will be ignored so long as they are surrounded by white space.
+          bool bLeftDelim = ((I < nLength&& pszChars[I] == '{') && ((I > 0 && (!xisspace(pszChars[I - 1]))) || (I + 1 < nLength && (!xisspace(pszChars[I + 1])))));
+          if (bLeftDelim)
+            {
+              dwCookie |= COOKIE_EXT_USER1;
+              nIdentBegin = -1;
+              continue;
+            }
         }
 
       if (pBuf == nullptr)
@@ -187,11 +312,18 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (dwCookie & COOKIE_PREPROCESSOR)
+              if (dwCookie & COOKIE_ELEMENT)
                 {
                   if (IsHtmlKeyword (pszChars + nIdentBegin, I - nIdentBegin) && (pszChars[nIdentBegin - 1] == _T ('<') || pszChars[nIdentBegin - 1] == _T ('/')))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+                      if (nEmbeddedLanguage != SRC_SMARTY)
+                        {
+                          if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
+                            dwCookie |= COOKIE_BLOCK_SCRIPT;
+                          else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
+                            dwCookie |= COOKIE_BLOCK_STYLE;
+                        }
                     }
                   else if (IsHtmlUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
@@ -224,44 +356,22 @@ next:
               ;
             }
 
-          //  User1 start: <?
-          if (I < nLength && pszChars[I] == '<' && I < nLength - 1 && (pszChars[I + 1] == '?' || pszChars[I + 1] == '%'))
-            {
-              DEFINE_BLOCK (I, COLORINDEX_FUNCNAME);
-              dwCookie |= COOKIE_EXT_USER1;
-              nIdentBegin = -1;
-              continue;
-            }
-
           //  Preprocessor start: < or bracket
-          if (!(dwCookie & COOKIE_EXT_USER1) && I < nLength && (pszChars[I] == '<' && !(I < nLength - 3 && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-')/* || pszChars[I] == '{'*/))
+          if (I < nLength && pszChars[I] == '<' && !(I < nLength - 3 && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-'))
             {
               DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
               DEFINE_BLOCK (I + 1, COLORINDEX_PREPROCESSOR);
-              dwCookie |= COOKIE_PREPROCESSOR;
+              dwCookie |= COOKIE_ELEMENT;
               nIdentBegin = -1;
               continue;
             }
 
-          //  User1 end: ?>
-          if (dwCookie & COOKIE_EXT_USER1)
-            {
-              if (I > 0 && pszChars[I] == '>' && (pszChars[nPrevI] == '?' || pszChars[nPrevI] == '%'))
-                {
-                  dwCookie &= ~COOKIE_EXT_USER1;
-                  nIdentBegin = -1;
-                  bRedefineBlock = true;
-                  bDecIndex = true;
-                  continue;
-                }
-            }
-
           //  Preprocessor end: > or bracket
-          if (dwCookie & COOKIE_PREPROCESSOR)
+          if (dwCookie & COOKIE_ELEMENT)
             {
-              if (pszChars[I] == '>'/* || pszChars[I] == '}'*/)
+              if (pszChars[I] == '>')
                 {
-                  dwCookie &= ~COOKIE_PREPROCESSOR;
+                  dwCookie &= ~COOKIE_ELEMENT;
                   nIdentBegin = -1;
                   bRedefineBlock = true;
                   bDecIndex = true;
@@ -290,11 +400,18 @@ next:
         }
     }
 
-  if (nIdentBegin >= 0 && (dwCookie & COOKIE_PREPROCESSOR))
+  if (nIdentBegin >= 0 && (dwCookie & COOKIE_ELEMENT))
     {
       if (IsHtmlKeyword (pszChars + nIdentBegin, I - nIdentBegin) && (pszChars[nIdentBegin - 1] == _T ('<') || pszChars[nIdentBegin - 1] == _T ('/')))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+          if (nEmbeddedLanguage != SRC_SMARTY)
+            {
+              if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<script"), sizeof("<script") - 1) == 0)
+                dwCookie |= COOKIE_BLOCK_SCRIPT;
+              else if (nIdentBegin > 0 && _tcsnicmp(pszChars + nIdentBegin - 1, _T("<style"), sizeof("<style") - 1) == 0)
+                dwCookie |= COOKIE_BLOCK_STYLE;
+            }
         }
       else if (IsHtmlUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
@@ -308,68 +425,15 @@ next:
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
         }
-      else
-        {
-          bool bFunction = false;
-
-          for (int j = I; j < nLength; j++)
-            {
-              if (!xisspace (pszChars[j]))
-                {
-                  if (pszChars[j] == '(')
-                    {
-                      bFunction = true;
-                    }
-                  break;
-                }
-            }
-          if (bFunction)
-            {
-              DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-            }
-        }
     }
 
-  //  User1 start: <?
-  if (I < nLength && pszChars[I] == '<' && I < nLength - 1 && (pszChars[I + 1] == '?' || pszChars[I + 1] == '%'))
-    {
-      DEFINE_BLOCK (I, COLORINDEX_FUNCNAME);
-      dwCookie |= COOKIE_EXT_USER1;
-      nIdentBegin = -1;
-      goto end;
-    }
-
-  //  Preprocessor start: < or {
-  if (!(dwCookie & COOKIE_EXT_USER1) && I < nLength && (pszChars[I] == '<' && !(I < nLength - 3 && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-')/* || pszChars[I] == '{'*/))
-    {
-      DEFINE_BLOCK (I, COLORINDEX_OPERATOR);
-      DEFINE_BLOCK (I + 1, COLORINDEX_PREPROCESSOR);
-      dwCookie |= COOKIE_PREPROCESSOR;
-      nIdentBegin = -1;
-      goto end;
-    }
-
-  //  User1 end: ?>
-  if (dwCookie & COOKIE_EXT_USER1)
-    {
-      if (I > 0 && pszChars[I] == '>' && (pszChars[nPrevI] == '?' || pszChars[nPrevI] == '%'))
-        {
-          dwCookie &= ~COOKIE_EXT_USER1;
-          nIdentBegin = -1;
-        }
-    }
-
-  //  Preprocessor end: > or }
-  if (dwCookie & COOKIE_PREPROCESSOR)
-    {
-      if (pszChars[I] == '>'/* || pszChars[I] == '}'*/)
-        {
-          dwCookie &= ~COOKIE_PREPROCESSOR;
-          nIdentBegin = -1;
-        }
-    }
-
-end:
-  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_PREPROCESSOR | COOKIE_EXT_USER1);
+  unsigned dwCookieChar = ((nEmbeddedLanguage == SRC_PHP || nEmbeddedLanguage == SRC_SMARTY) && (dwCookie & COOKIE_EXT_USER1)) ? (dwCookie & COOKIE_CHAR) : 0;
+  dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_ELEMENT | COOKIE_EXT_USER1 | COOKIE_BLOCK_SCRIPT | COOKIE_BLOCK_STYLE | COOKIE_EXT_DEFINITION | COOKIE_EXT_VALUE | dwCookieChar);
   return dwCookie;
+}
+
+unsigned
+CrystalLineParser::ParseLineHtml (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+{
+  return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_JAVA);
 }

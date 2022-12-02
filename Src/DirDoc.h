@@ -16,6 +16,8 @@
 #include "PluginManager.h"
 #include "FileFilterHelper.h"
 #include "DirCmpReport.h"
+#include "DirCompProgressBar.h"
+#include "IMDITab.h"
 
 class CDirView;
 struct IMergeDoc;
@@ -36,7 +38,7 @@ struct FileLocation;
  * This class also has compare statistics which are updated during compare.
  * GUI calls this class to operate with results.
  */
-class CDirDoc : public CDocument
+class CDirDoc : public CDocument, public IMDITab
 {
 protected:
 	CDirDoc();           // protected constructor used by dynamic creation
@@ -59,6 +61,7 @@ public:
 	public:
 	virtual void Serialize(CArchive& ar);   // overridden for document i/o
 	virtual void SetTitle(LPCTSTR lpszTitle);
+	CString GetTooltipString() const;
 	protected:
 	virtual BOOL OnNewDocument();
 	virtual BOOL SaveModified();
@@ -69,11 +72,14 @@ public:
 	void InitCompare(const PathContext & paths, bool bRecursive, CTempPathContext *);
 	void DiffThreadCallback(int& state);
 	void Rescan();
+	String GetDescription(int nIndex) const { return m_strDesc[nIndex]; };
 	bool GetReadOnly(int nIndex) const;
 	const bool *GetReadOnly(void) const;
 	void SetReadOnly(int nIndex, bool bReadOnly);
 	String GetReportFile() const { return m_sReportFile; }
 	void SetReportFile(const String& sReportFile) { m_sReportFile = sReportFile; }
+	const std::vector<String>& GetHiddenItems() const { return m_pCtxt->m_vCurrentlyHiddenItems; }
+	void SetHiddenItems(const std::vector<String>& hiddenItems) { m_pCtxt->m_vCurrentlyHiddenItems = hiddenItems; }
 	bool GetGeneratingReport() const { return m_bGeneratingReport; }
 	void SetGeneratingReport(bool bGeneratingReport) { m_bGeneratingReport = bGeneratingReport; }
 	void SetReport(DirCmpReport* pReport) { m_pReport.reset(pReport);  }
@@ -111,16 +117,26 @@ public:
 	bool MoveableToPrevDiff();
 	void MoveToNextDiff(IMergeDoc *pMergeDoc);
 	void MoveToPrevDiff(IMergeDoc *pMergeDoc);
-	
+	void MoveToFirstFile(IMergeDoc* pMergeDoc);
+	void MoveToLastFile(IMergeDoc* pMergeDoc);
+	void MoveToNextFile(IMergeDoc* pMergeDoc);
+	void MoveToPrevFile(IMergeDoc* pMergeDoc);
+	bool IsFirstFile();
+	bool IsLastFile();
+
 	bool CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifileloc[]);
 
 protected:
 	void InitDiffContext(CDiffContext *pCtxt);
 	void LoadLineFilterList(CDiffContext *pCtxt);
+	void LoadSubstitutionFiltersList(CDiffContext* pCtxt);
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)
 		// NOTE - the ClassWizard will add and remove member functions here.
+	afx_msg void OnBnClickedComparisonStop();
+	afx_msg void OnBnClickedComparisonPause();
+	afx_msg void OnBnClickedComparisonContinue();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -138,6 +154,8 @@ private:
 	bool m_bMarkedRescan; /**< If `true` next rescan scans only marked items */
 	bool m_bGeneratingReport;
 	std::unique_ptr<DirCmpReport> m_pReport;
+	FileFilterHelper m_fileHelper; /**< File filter helper */
+	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
 };
 
 /**

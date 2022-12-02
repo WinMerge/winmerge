@@ -1,0 +1,78 @@
+# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Maintainer:
+# * Patriccollu di Santa Maria è Sichè <patriccollu at gmail.com>
+#
+# Translators:
+# * Patriccollu di Santa Maria è Sichè, 2021-2022
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge in Corsican\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"POT-Creation-Date: 2022-01-12 15:12+0000\n"
+"PO-Revision-Date: 2022-10-17 12:59+0200\n"
+"Language-Team: Patriccollu di Santa Maria è Sichè\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"X-Generator: Poedit 3.1.1\n"
+"Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: co\n"
+
+#. AFX_TARG_*
+#: ShellExtension.rc:19
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_COS"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtension.rc:20
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_CORSICAN, SUBLANG_DEFAULT"
+
+#. Codepage
+#: ShellExtension.rc:21
+#, c-format
+msgid "1252"
+msgstr "65001"
+
+#: ShellExtension.rc:111
+#, c-format
+msgid "ShellExtension"
+msgstr "Estensione di u Shell"
+
+#: ShellExtension.rc:112
+#, c-format
+msgid "&WinMerge"
+msgstr "&WinMerge"
+
+#: ShellExtension.rc:113
+#, c-format
+msgid "&Compare"
+msgstr "&Paragunà"
+
+#: ShellExtension.rc:114
+#, c-format
+msgid "Compare&..."
+msgstr "Paragunà&…"
+
+#: ShellExtension.rc:115
+#, c-format
+msgid "Select &Left"
+msgstr "Selezziunà à &manca"
+
+#: ShellExtension.rc:116
+#, c-format
+msgid "Select &Middle"
+msgstr "Selezziunà à u &centru"
+
+#: ShellExtension.rc:117
+#, c-format
+msgid "Re-select &Left"
+msgstr "Riselezziunà à &manca"

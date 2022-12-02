@@ -4,9 +4,6 @@ Option Explicit
 '
 ' Copyright (C) 2007-2009 by Tim Gerundt
 ' Released under the "GNU General Public License"
-'
-' ID line follows -- this is updated by SVN
-' $Id$
 
 Const ForReading = 1
 
@@ -14,7 +11,7 @@ Const NO_BLOCK = 0
 Const STRINGTABLE_BLOCK = 1
 
 Const PATH_ENGLISH_POT = "English.pot"
-Const PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/Languages/ShellExtensionTemplate.rc"
+Const PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/ShellExtension/ShellExtension.rc"
 
 Dim oFSO, bRunFromCmd
 
@@ -36,7 +33,7 @@ Sub Main
   
   StartTime = Time
   
-  InfoBox "Creating POT file from ShellExtensionTemplate.rc...", 3
+  InfoBox "Creating POT file from ShellExtension.rc...", 3
   
   bNecessary = True
   If (oFSO.FileExists(PATH_ENGLISH_POT) = True) And (oFSO.FileExists(PATH_SHELLEXTTEMPLATE_RC) = True) Then 'If the POT and RC file exists...
@@ -179,9 +176,6 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
   
   oPotFile.WriteLine "# This file is part from WinMerge <https://winmerge.org/>"
   oPotFile.WriteLine "# Released under the ""GNU General Public License"""
-  oPotFile.WriteLine "#"
-  oPotFile.WriteLine "# ID line follows -- this is updated by SVN"
-  oPotFile.WriteLine "# $" & "Id: " & "$"
   oPotFile.WriteLine "#"
   oPotFile.WriteLine "msgid """""
   oPotFile.WriteLine "msgstr """""

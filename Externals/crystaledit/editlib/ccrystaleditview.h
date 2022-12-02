@@ -43,6 +43,8 @@ class EDITPADC_CLASS CCrystalEditView : public CCrystalTextView
   {
     DECLARE_DYNCREATE (CCrystalEditView)
 
+    friend CEditReplaceDlg;
+
 public :
     int m_nLastReplaceLen;
     CMap<CString, LPCTSTR, CString, LPCTSTR> *m_mapExpand;
@@ -68,7 +70,6 @@ protected:
     bool m_bSelectionPushed;
     CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
 private :
-    bool m_bOvrMode;
     CPoint m_ptDropPos;
     bool m_bAutoIndent;
 
@@ -103,6 +104,8 @@ public :
     //  [JRT]
     void SetDisableBSAtSOL (bool bDisableBSAtSOL);
     bool GetDisableBSAtSOL () const;
+
+    void CopyProperties (CCrystalTextView* pSource) override;
 
     // Operations
 public :

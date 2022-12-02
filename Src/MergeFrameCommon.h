@@ -6,7 +6,12 @@
  */
 #pragma once
 
+#include "UnicodeString.h"
+#include "PathContext.h"
 #include "utils/DpiAware.h"
+
+class PrediffingInfo;
+class PackingInfo;
 
 class CMergeFrameCommon: public DpiAware::CDpiAwareWnd<CMDIChildWnd>
 {
@@ -16,6 +21,11 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
+	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (LPCTSTR, UINT, UINT)> funcMessageBox);
+	static String GetTitleString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
+	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
+	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);
+	static std::pair<int, int> MenuIDtoXY(UINT nID, int nActivePane, int nBuffers);
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();
@@ -28,6 +38,7 @@ protected:
 	int m_nLastSplitPos[2];
 private:
 	bool m_bActivated;
+	HICON m_hCurrent;
 	HICON m_hIdentical;
 	HICON m_hDifferent;
 

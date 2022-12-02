@@ -43,10 +43,11 @@ private :
     CCrystalEditView * m_pBuddy;
     bool m_bFound;
     CPoint m_ptFoundAt;
-    bool DoHighlightText ( bool bNotifyIfNotFound );
+    bool DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView = true );
     bool DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
     void UpdateControls();
     void FindNextPrev (bool bNext);
+    bool AdjustSearchPos (CPoint& ptFoundAt) const;
 
     // Construction
 public :

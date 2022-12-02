@@ -66,12 +66,35 @@ IDR_POPUP_MERGEVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
-        MENUITEM "Copy &from Left",             ID_COPY_FROM_LEFT
-        MENUITEM "Copy fro&m Right",            ID_COPY_FROM_RIGHT
+        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_L
+        MENUITEM "C&opy to Right\tAlt+Right",   ID_COPY_TO_RIGHT_L
+        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_L
+        MENUITEM "Copy fro&m Right\tAlt+Shift+Left", ID_COPY_FROM_RIGHT_L
+        MENUITEM "Cop&y to Left\tAlt+Left",     ID_COPY_TO_LEFT_M
+        MENUITEM "C&opy to Right\tAlt+Right",   ID_COPY_TO_RIGHT_M
+        MENUITEM "Copy &from Left\tAlt+Shift+Right", ID_COPY_FROM_LEFT_M
+        MENUITEM "Copy fro&m Right\tAlt+Shift+Left", ID_COPY_FROM_RIGHT_M
+        MENUITEM "Copy to Middle",              ID_COPY_TO_MIDDLE_R
+        MENUITEM "Cop&y to Left\tAlt+Left",     ID_COPY_TO_LEFT_R
+        MENUITEM "Copy from Middle",            ID_COPY_FROM_MIDDLE_R
+        MENUITEM "Copy &from Left\tAlt+Shift+Right", ID_COPY_FROM_LEFT_R
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",     ID_SELECTLINEDIFF
+        MENUITEM "Copy Selected Line(s) to Middle", ID_COPY_LINES_TO_MIDDLE_L
+        MENUITEM "Copy Selected Line(s) to Right", ID_COPY_LINES_TO_RIGHT_L
+        MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_L
+        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT_L
+        MENUITEM "Copy Selected Line(s) to Left", ID_COPY_LINES_TO_LEFT_M
+        MENUITEM "Copy Selected Line(s) to Right", ID_COPY_LINES_TO_RIGHT_M
+        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_M
+        MENUITEM "Copy Selected Line(s) from Right", ID_COPY_LINES_FROM_RIGHT_M
+        MENUITEM "Copy Selected Line(s) to Middle", ID_COPY_LINES_TO_MIDDLE_R
+        MENUITEM "Copy Selected Line(s) to Left", ID_COPY_LINES_TO_LEFT_R
+        MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
+        MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_R
+        MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
+        MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -80,15 +103,32 @@ BEGIN
         MENUITEM "&Copy",                       ID_EDIT_COPY
         MENUITEM "&Paste",                      ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        POPUP "&Scripts"
+        BEGIN
+            MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "Go to Moved Line Between Left and Middle\tCtrl+Shift+G", ID_GOTO_MOVED_LINE_LM
+        MENUITEM "Go to Moved Line Between Middle and Right\tCtrl+Alt+G", ID_GOTO_MOVED_LINE_MR
         MENUITEM SEPARATOR
         POPUP "Op&en"
         BEGIN
             MENUITEM "With &Registered Application", ID_FILE_OPEN_REGISTERED
             MENUITEM "With &External Editor\tCtrl+Alt+E", ID_FILE_OPEN_WITHEDITOR
             MENUITEM "&With...",                    ID_FILE_OPEN_WITH
+            MENUITEM "Open &Parent Folder...",      ID_FILE_OPEN_PARENT_FOLDER
         END
         MENUITEM "S&hell Menu",                 ID_FILE_SHELLMENU
+    END
+END
+
+IDR_POPUP_MERGEVIEWHEADER MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Use First Line as Headers",   ID_USE_FIRST_LINE_AS_HEADERS
+        MENUITEM "Auto-Fit All Columns",        ID_AUTO_FIT_ALL_COLUMNS
     END
 END
 
@@ -127,6 +167,10 @@ BEGIN
         MENUITEM "&Next Page",                  ID_IMG_NEXTPAGE
         POPUP "&Active Pane"
         BEGIN
+            MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
+            MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
+            MENUITEM "Flip V&ertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+            MENUITEM "Flip H&orizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
             MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
             MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
         END
@@ -159,6 +203,7 @@ BEGIN
             MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
             MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
             MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
+            MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
         END
         MENUITEM "&Set Background Color",       ID_IMG_USEBACKCOLOR
         POPUP "&Vector Image Scaling"
@@ -170,6 +215,39 @@ BEGIN
             MENUITEM "&50%",                        ID_IMG_VECTORIMAGESCALING_50
             MENUITEM "25%",                         ID_IMG_VECTORIMAGESCALING_25
         END
+        MENUITEM SEPARATOR
+        MENUITEM "Compare Extracted &Text From Images", ID_IMG_COMPARE_EXTRACTED_TEXT
+    END
+END
+
+IDR_POPUP_WEBPAGEDIFFVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "Co&mpare"
+        BEGIN
+            MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+            MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+            MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+            MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
+            MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+        END
+        POPUP "&Size"
+        BEGIN
+            MENUITEM "Fit to Window",               ID_WEB_SIZE_FIT_TO_WINDOW
+            MENUITEM "320x512",                     ID_WEB_SIZE_320x512
+            MENUITEM "375x600",                     ID_WEB_SIZE_375x600
+            MENUITEM "1024x640",                    ID_WEB_SIZE_1024x640
+            MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
+            MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
+        END
+        POPUP "Clear &Browsing Data"
+        BEGIN
+            MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
+            MENUITEM "&Cookies",                    ID_WEB_CLEAR_COOKIES
+            MENUITEM "&Browsing History",           ID_WEB_CLEAR_BROWSING_HISTORY
+            MENUITEM "&All Profile",                ID_WEB_CLEAR_ALL_PROFILE
+        END
     END
 END
 
@@ -177,10 +255,25 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "T&able",                      ID_FILE_NEW_TABLE
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -191,10 +284,12 @@ BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tCtrl+Q",               ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+        MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
     END
     POPUP "&View"
@@ -228,10 +323,10 @@ BEGIN
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
+        MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "Change &Pane\tF6",            ID_NEXT_PANE
         MENUITEM SEPARATOR
         MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
@@ -254,10 +349,25 @@ IDR_DIRDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "T&able",                      ID_FILE_NEW_TABLE
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -269,14 +379,14 @@ BEGIN
             MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "File En&coding...",           ID_FILE_ENCODING
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tCtrl+Q",               ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
@@ -313,7 +423,12 @@ BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default Font",            ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        POPUP "Sw&ap Panes"
+        BEGIN
+            MENUITEM "Swap &1st | 2nd",             ID_SWAPPANES_SWAP12
+            MENUITEM "Swap &2nd | 3rd",             ID_SWAPPANES_SWAP23
+            MENUITEM "Swap 1st | &3rd",             ID_SWAPPANES_SWAP13
+        END
         MENUITEM SEPARATOR
         POPUP "&Toolbar"
         BEGIN
@@ -327,7 +442,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
         MENUITEM "&Refresh Selected\tCtrl+F5",  ID_RESCAN
     END
     POPUP "&Merge"
@@ -363,16 +478,16 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "&Edit with Unpacker...",      ID_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
+        MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "Change &Pane\tF6",            ID_NEXT_PANE
         MENUITEM SEPARATOR
         MENUITEM "Tile &Horizontally",          ID_WINDOW_TILE_HORZ
         MENUITEM "Tile &Vertically",            ID_WINDOW_TILE_VERT
@@ -395,10 +510,25 @@ IDR_MERGEDOCTYPE MENU
 BEGIN
     POPUP "&File"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "New (&3 panes)",              ID_FILE_NEW3
+        POPUP "&New"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW
+            MENUITEM "T&able",                      ID_FILE_NEW_TABLE
+            MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+        END
+        POPUP "New (&3 panes)"
+        BEGIN
+            MENUITEM "&Text",                       ID_FILE_NEW3
+            MENUITEM "T&able",                      ID_FILE_NEW3_TABLE
+            MENUITEM "&Binary",                     ID_FILE_NEW3_HEX
+            MENUITEM "&Image",                      ID_FILE_NEW3_IMAGE
+            MENUITEM "&Webpage",                    ID_FILE_NEW3_WEBPAGE
+        END
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM "Open Conflic&t File...",      ID_FILE_OPENCONFLICT
+        MENUITEM "Open C&lipboard",             ID_FILE_OPENCLIPBOARD
         MENUITEM SEPARATOR
         MENUITEM "Open Pro&ject...\tCtrl+J",    ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -417,7 +547,7 @@ BEGIN
             MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
         MENUITEM "Page Set&up...",              ID_FILE_PAGE_SETUP
         MENUITEM "Print Previe&w...",           ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
@@ -437,15 +567,16 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mer&ge Mode\tF9",             ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "Re&load\tCtrl+F5",            ID_RESCAN
+        MENUITEM "Reloa&d\tCtrl+F5",            ID_RESCAN
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
         POPUP "Reco&mpare As"
         BEGIN
             MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
             MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
         POPUP "Recent F&iles Or Folders"
@@ -453,7 +584,7 @@ BEGIN
             MENUITEM "< Empty >",                   ID_NO_MRU
         END
         MENUITEM SEPARATOR
-        MENUITEM "E&xit",                       ID_APP_EXIT
+        MENUITEM "E&xit\tCtrl+Q",               ID_APP_EXIT
     END
     POPUP "&Edit"
     BEGIN
@@ -482,7 +613,7 @@ BEGIN
             MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
             MENUITEM "&Clear All Bookmarks",        ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
-        MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Options...",                 ID_OPTIONS
     END
@@ -514,6 +645,8 @@ BEGIN
             MENUITEM "&9 Lines",                    ID_VIEW_DIFFCONTEXT_9
             MENUITEM SEPARATOR
             MENUITEM "&Toggle All and 0-9 Lines\tCtrl+D", ID_VIEW_DIFFCONTEXT_TOGGLE
+            MENUITEM SEPARATOR
+            MENUITEM "&Invert (Hide Different Lines)", ID_VIEW_DIFFCONTEXT_INVERT
         END
         MENUITEM SEPARATOR
         MENUITEM "&Lock Panes",                 ID_VIEW_RESIZE_PANES
@@ -522,9 +655,15 @@ BEGIN
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
         MENUITEM "View &Margins",               ID_VIEW_SELMARGIN
+        MENUITEM "View To&p Margins",           ID_VIEW_TOPMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        POPUP "Sw&ap Panes"
+        BEGIN
+            MENUITEM "Swap &1st | 2nd",             ID_SWAPPANES_SWAP12
+            MENUITEM "Swap &2nd | 3rd",             ID_SWAPPANES_SWAP23
+            MENUITEM "Swap 1st | &3rd",             ID_SWAPPANES_SWAP13
+        END
         MENUITEM "Split V&ertically",           ID_VIEW_SPLITVERTICALLY
         MENUITEM SEPARATOR
         POPUP "&Toolbar"
@@ -539,7 +678,7 @@ BEGIN
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
-        MENUITEM "Refre&sh\tF5",                ID_REFRESH
+        MENUITEM "Refresh\tF5",                 ID_REFRESH
     END
     POPUP "&Merge"
     BEGIN
@@ -548,6 +687,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Ne&xt Conflict\tAlt+Shift+Down", ID_NEXTCONFLICT
         MENUITEM "Pre&vious Conflict\tAlt+Shift+Up", ID_PREVCONFLICT
+        MENUITEM SEPARATOR
+        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
+        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
         POPUP "A&dvanced"
         BEGIN
@@ -568,11 +711,39 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "Next Right Only Difference\tAlt+9", ID_NEXTDIFFRO
             MENUITEM "Previous Right Only Difference\tAlt+Shift+9", ID_PREVDIFFRO
+            MENUITEM SEPARATOR
+            POPUP "Copy from &Left to"
+            BEGIN
+                MENUITEM "&Middle",                     ID_COPY_TO_MIDDLE_L
+                MENUITEM "&Right",                      ID_COPY_TO_RIGHT_L
+            END
+            POPUP "Copy from &Middle to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_TO_LEFT_M
+                MENUITEM "&Right",                      ID_COPY_TO_RIGHT_M
+            END
+            POPUP "Copy from &Right to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_TO_LEFT_R
+                MENUITEM "&Middle",                     ID_COPY_TO_MIDDLE_R
+            END
+            MENUITEM SEPARATOR
+            POPUP "Copy Selected Line(s) from Le&ft to"
+            BEGIN
+                MENUITEM "&Middle",                     ID_COPY_LINES_TO_MIDDLE_L
+                MENUITEM "&Right",                      ID_COPY_LINES_TO_RIGHT_L
+            END
+            POPUP "Copy Selected Line(s) from Mi&ddle to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_LINES_TO_LEFT_M
+                MENUITEM "&Right",                      ID_COPY_LINES_TO_RIGHT_M
+            END
+            POPUP "Copy Selected Line(s) from Ri&ght to"
+            BEGIN
+                MENUITEM "&Left",                       ID_COPY_LINES_TO_LEFT_R
+                MENUITEM "&Middle",                     ID_COPY_LINES_TO_MIDDLE_R
+            END
         END
-        MENUITEM SEPARATOR
-        MENUITEM "&First Difference\tAlt+Home", ID_FIRSTDIFF
-        MENUITEM "&Current Difference\tAlt+Enter", ID_CURDIFF
-        MENUITEM "&Last Difference\tAlt+End",   ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "Copy to &Right\tAlt+Right",   ID_L2R
         MENUITEM "Copy to L&eft\tAlt+Left",     ID_R2L
@@ -607,26 +778,32 @@ BEGIN
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "&Edit with Unpacker...",      ID_POPUP_OPEN_WITH_UNPACKER
+        POPUP "Unpac&ker"
+        BEGIN
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
+        END
+        MENUITEM "&Edit with Unpacker...",      ID_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
             MENUITEM "<PlaceHolder>",               ID_NO_PREDIFFER
         END
+        MENUITEM "Apply Pre&differ...",         ID_APPLY_PREDIFFER
         MENUITEM SEPARATOR
         POPUP "&Scripts"
         BEGIN
             MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
+        MENUITEM "&Transform with editor script...", ID_TRANSFORM_WITH_SCRIPT
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
     POPUP "&Window"
     BEGIN
-        MENUITEM "Cl&ose",                      ID_FILE_CLOSE
+        MENUITEM "Cl&ose\tCtrl+W",              ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
+        MENUITEM "Change &Pane\tF6",            ID_NEXT_PANE
         MENUITEM SEPARATOR
         MENUITEM "Sp&lit",                      ID_WINDOW_SPLIT
         MENUITEM SEPARATOR
@@ -652,6 +829,7 @@ BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM "Compare in new &window",      ID_MERGE_COMPARE_IN_NEW_WINDOW
         MENUITEM "Compare Non-hor&izontally...", ID_MERGE_COMPARE_NONHORIZONTALLY
         POPUP "Compare Non-hor&izontally"
         BEGIN
@@ -663,9 +841,12 @@ BEGIN
         END
         POPUP "Co&mpare As"
         BEGIN
-            MENUITEM "&XML",                        ID_MERGE_COMPARE_XML
+            MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+            MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
             MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
             MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+            MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
+            MENUITEM "< Empty >",                   ID_NO_UNPACKER
         END
         MENUITEM SEPARATOR
         POPUP "&Copy"
@@ -700,21 +881,21 @@ BEGIN
         POPUP "&Open Left"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_LEFT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_LEFT_WITHEDITOR
+            MENUITEM "With &External Editor\tCtrl+Alt+E", ID_DIR_OPEN_LEFT_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_LEFT_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_LEFT_PARENT_FOLDER
         END
         POPUP "Open Midd&le"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_MIDDLE
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_MIDDLE_WITHEDITOR
+            MENUITEM "With &External Editor\tCtrl+Alt+E", ID_DIR_OPEN_MIDDLE_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_MIDDLE_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_MIDDLE_PARENT_FOLDER
         END
         POPUP "O&pen Right"
         BEGIN
             MENUITEM "With &Registered Application", ID_DIR_OPEN_RIGHT
-            MENUITEM "with &External Editor",       ID_DIR_OPEN_RIGHT_WITHEDITOR
+            MENUITEM "With &External Editor\tCtrl+Alt+E", ID_DIR_OPEN_RIGHT_WITHEDITOR
             MENUITEM "&With...",                    ID_DIR_OPEN_RIGHT_WITH
             MENUITEM "Open &Parent Folder...",      ID_DIR_OPEN_RIGHT_PARENT_FOLDER
         END
@@ -752,6 +933,8 @@ BEGIN
         MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
         MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
         MENUITEM "Right Shell menu",            ID_DIR_SHELL_CONTEXT_MENU_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -766,15 +949,25 @@ BEGIN
         MENUITEM "Copy",                        ID_EDITOR_COPY
         MENUITEM "&Copy Full Path",             ID_EDITOR_COPY_PATH
         MENUITEM "Copy &Filename",              ID_EDITOR_COPY_FILENAME
+        MENUITEM "&Edit Caption",               ID_EDITOR_EDIT_CAPTION
+        MENUITEM SEPARATOR
+        MENUITEM "&Open...",                    ID_EDITOR_SELECT_FILE
     END
 END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
+    POPUP "Unpacker Settings"
+    BEGIN
+        MENUITEM "<None>",                      ID_UNPACKER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_UNPACKER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_UNPACKER_SETTINGS_SELECT
+    END
     POPUP "Prediffer Settings"
     BEGIN
-        MENUITEM "&No prediffer",               ID_PREDIFF_MANUAL
-        MENUITEM "Auto prediffer",              ID_PREDIFF_AUTO
+        MENUITEM "<None>",                      ID_PREDIFFER_SETTINGS_NONE
+        MENUITEM "<Automatic>",                 ID_PREDIFFER_SETTINGS_AUTO
+        MENUITEM "&Select...",                  ID_PREDIFFER_SETTINGS_SELECT
     END
 END
 
@@ -782,12 +975,11 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&oto Diff",                  ID_LOCBAR_GOTODIFF
-        MENUITEM "&Goto...",                    ID_EDIT_WMGOTO
+        MENUITEM "G&o to Diff",                 ID_LOCBAR_GOTODIFF
+        MENUITEM "&Go to...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -797,24 +989,88 @@ BEGIN
     BEGIN
         POPUP "W&hitespaces"
         BEGIN
-            MENUITEM "Com&pare",                    IDC_DIFF_WHITESPACE_COMPARE
-            MENUITEM "I&gnore changes",             IDC_DIFF_WHITESPACE_IGNORE
-            MENUITEM "Ig&nore all",                 IDC_DIFF_WHITESPACE_IGNOREALL
+            MENUITEM "Com&pare",                    ID_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",             ID_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",                 ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL
         END
-        MENUITEM "Case sensi&tive",             IDC_DIFF_CASESENSITIVE
-        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", IDC_DIFF_IGNOREEOL
-        MENUITEM "Ignore codepage &differences", IDC_DIFF_IGNORECP
+        MENUITEM "Ignore blan&k lines",         ID_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case",                ID_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_DIFF_OPTIONS_IGNORE_EOL
+        MENUITEM "Ignore codepage &differences", ID_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore num&bers",             IDC_DIFF_IGNORENUMBERS
+        MENUITEM "Ignore c&omment differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
-        MENUITEM "&Include Subfolders",         IDC_RECURS_CHECK
+        MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
         BEGIN
-            MENUITEM "Full Contents",               ID_COMPMETHOD_FULL_CONTENTS
-            MENUITEM "Quick Contents",              ID_COMPMETHOD_QUICK_CONTENTS
-            MENUITEM "Binary Contents",             ID_COMPMETHOD_BINARY_CONTENTS
-            MENUITEM "Modified Date",               ID_COMPMETHOD_MODDATE
-            MENUITEM "Modified Date and Size",      ID_COMPMETHOD_DATESIZE
-            MENUITEM "Size",                        ID_COMPMETHOD_SIZE
+            MENUITEM "Full Contents",               ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",              ID_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",             ID_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date",               ID_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size",      ID_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                        ID_DIFF_OPTIONS_COMPMETHOD_SIZE
         END
+    END
+END
+
+IDR_POPUP_PROJECT_DIFF_OPTIONS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        POPUP "W&hitespaces"
+        BEGIN
+            MENUITEM "Com&pare",                    ID_PROJECT_DIFF_OPTIONS_WHITESPACE_COMPARE
+            MENUITEM "I&gnore changes",             ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNORE
+            MENUITEM "Ig&nore all",                 ID_PROJECT_DIFF_OPTIONS_WHITESPACE_IGNOREALL
+        END
+        MENUITEM "Ignore blan&k lines",         ID_PROJECT_DIFF_OPTIONS_IGNORE_BLANKLINES
+        MENUITEM "Ignore &case",                ID_PROJECT_DIFF_OPTIONS_IGNORE_CASE
+        MENUITEM "Igno&re carriage return differences (Windows/Unix/Mac)", ID_PROJECT_DIFF_OPTIONS_IGNORE_EOL
+        MENUITEM "Ignore codepage &differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_CODEPAGE
+        MENUITEM "Ignore num&bers",             ID_PROJECT_DIFF_OPTIONS_IGNORE_NUMBERS
+        MENUITEM "Ignore c&omment differences", ID_PROJECT_DIFF_OPTIONS_IGNORE_COMMENTS
+        MENUITEM SEPARATOR
+        POPUP "&Compare method:"
+        BEGIN
+            MENUITEM "Full Contents",               ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+            MENUITEM "Quick Contents",              ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+            MENUITEM "Binary Contents",             ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+            MENUITEM "Modified Date",               ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_MODDATE
+            MENUITEM "Modified Date and Size",      ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+            MENUITEM "Size",                        ID_PROJECT_DIFF_OPTIONS_COMPMETHOD_SIZE
+        END
+    END
+END
+
+IDR_POPUP_NEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Text",                       ID_FILE_NEW
+        MENUITEM "T&able",                      ID_FILE_NEW_TABLE
+        MENUITEM "&Binary",                     ID_FILE_NEW_HEX
+        MENUITEM "&Image",                      ID_FILE_NEW_IMAGE
+        MENUITEM "&Webpage",                    ID_FILE_NEW_WEBPAGE
+    END
+END
+
+IDR_POPUP_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Text",                       ID_MERGE_COMPARE_TEXT
+        MENUITEM "T&able",                      ID_MERGE_COMPARE_TABLE
+        MENUITEM "&Binary",                     ID_MERGE_COMPARE_HEX
+        MENUITEM "&Image",                      ID_MERGE_COMPARE_IMAGE
+        MENUITEM "&Webpage",                    ID_MERGE_COMPARE_WEBPAGE
+    END
+END
+
+IDR_POPUP_OPEN MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "< Empty >",                   ID_NO_MRU
     END
 END
 
@@ -828,6 +1084,20 @@ BEGIN
     END
 END
 
+IDR_POPUP_SAVE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Save &Left",                  ID_FILE_SAVE_LEFT
+        MENUITEM "Save &Middle",                ID_FILE_SAVE_MIDDLE
+        MENUITEM "Save &Right",                 ID_FILE_SAVE_RIGHT
+        MENUITEM SEPARATOR
+        MENUITEM "Save &Left As...",            ID_FILE_SAVEAS_LEFT
+        MENUITEM "Save &Middle As...",          ID_FILE_SAVEAS_MIDDLE
+        MENUITEM "Save &Right As...",           ID_FILE_SAVEAS_RIGHT
+    END
+END
+
 IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL MENU
 BEGIN
     POPUP "_POPUP_"
@@ -837,6 +1107,39 @@ BEGIN
         MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
     END
 END
+
+IDR_POPUP_IMG_CTXT MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Rotate &Right 90deg",         ID_IMG_CURPANE_ROTATE_RIGHT_90
+        MENUITEM "Rotate &Left 90deg",          ID_IMG_CURPANE_ROTATE_LEFT_90
+        MENUITEM "Flip V&ertically",            ID_IMG_CURPANE_FLIP_VERTICALLY
+        MENUITEM "Flip H&orizontally",          ID_IMG_CURPANE_FLIP_HORIZONTALLY
+        MENUITEM SEPARATOR
+        MENUITEM "&Previous Page",              ID_IMG_CURPANE_PREVPAGE
+        MENUITEM "&Next Page",                  ID_IMG_CURPANE_NEXTPAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Move",                       ID_IMG_DRAGGINGMODE_MOVE
+        MENUITEM "&Adjust Offset",              ID_IMG_DRAGGINGMODE_ADJUST_OFFSET
+        MENUITEM "&Vertical Wipe",              ID_IMG_DRAGGINGMODE_VERTICAL_WIPE
+        MENUITEM "&Horizontal Wipe",            ID_IMG_DRAGGINGMODE_HORIZONTAL_WIPE
+        MENUITEM "Rectangle &Select",           ID_IMG_DRAGGINGMODE_RECTANGLE_SELECT
+    END
+END
+
+IDR_POPUP_WEBPAGE_COMPARE MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
+        MENUITEM "&Full Size Screenshots",      ID_WEB_COMPARE_FULLSIZE_SCREENSHOTS
+        MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
+        MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
+        MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -869,6 +1172,8 @@ BEGIN
     "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
+    "G",            ID_GOTO_MOVED_LINE_LM,  VIRTKEY, SHIFT, CONTROL, NOINVERT
+    "G",            ID_GOTO_MOVED_LINE_MR,  VIRTKEY, CONTROL, ALT, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
     "J",            ID_FILE_OPENPROJECT,    VIRTKEY, CONTROL, NOINVERT
     "M",            ID_EDIT_MARK,           VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -892,8 +1197,10 @@ BEGIN
     VK_DOWN,        ID_NEXTCONFLICT,        VIRTKEY, SHIFT, ALT, NOINVERT
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F8,          ID_NEXTCONFLICT,        VIRTKEY, SHIFT, NOINVERT
+    VK_F8,          ID_NEXTFILE,            VIRTKEY, CONTROL, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVCONFLICT,        VIRTKEY, SHIFT, NOINVERT
+    VK_F7,          ID_PREVFILE,            VIRTKEY, CONTROL, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
     VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
@@ -940,7 +1247,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_GNU_ASCII,7,50,200,120
     LTEXT           "Version 1.0",IDC_VERSION,240,153,133,21,SS_NOPREFIX
-    CONTROL         "Visit the WinMerge HomePage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,222,167,10
+    CONTROL         "Visit the WinMerge Homepage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,222,167,10
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,174,350,42
     DEFPUSHBUTTON   "OK",IDOK,295,220,65,14
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,220,65,14
@@ -952,92 +1259,89 @@ CAPTION "Select Files or Folders"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 //	LOGO			res\\logo.jpg :: Height = 80px, Width=336px (extended fully to Right)
-    CONTROL         "&1st File or Folder",IDC_FILES_DIRS_GROUP0,"Button",BS_GROUPBOX,6,54,454,46,WS_EX_TRANSPARENT
+    GROUPBOX        "&1st File or Folder",IDC_FILES_DIRS_GROUP0,6,54,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH0_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,66,446,95
     CONTROL         "Re&ad-only",IDC_PATH0_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,84,100,10
     PUSHBUTTON      "",IDC_SWAP01_BUTTON,120,82,15,14
-    LTEXT           "Swap 1st | 2nd",IDC_SWAP01_STATIC,138,84,88,12
+    LTEXT           "Swap 1st | 2nd",IDC_SWAP01_STATIC,138,84,100,12
     PUSHBUTTON      "&Browse...",IDC_PATH0_BUTTON,383,82,73,14
-
-    CONTROL         "&2nd File or Folder",IDC_FILES_DIRS_GROUP1,"Button",BS_GROUPBOX,6,102,454,46,WS_EX_TRANSPARENT
+    GROUPBOX        "&2nd File or Folder",IDC_FILES_DIRS_GROUP1,6,102,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH1_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,114,446,95
     CONTROL         "Rea&d-only",IDC_PATH1_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,132,100,10
     PUSHBUTTON      "",IDC_SWAP12_BUTTON,120,130,15,14
-    LTEXT           "Swap 2nd | 3rd",IDC_SWAP12_STATIC,138,132,88,12
+    LTEXT           "Swap 2nd | 3rd",IDC_SWAP12_STATIC,138,132,100,12
     PUSHBUTTON      "B&rowse...",IDC_PATH1_BUTTON,383,130,73,14
-
-    CONTROL         "&3rd File or Folder (Optional)",IDC_FILES_DIRS_GROUP2,"Button",BS_GROUPBOX,6,150,454,46,WS_EX_TRANSPARENT
+    GROUPBOX        "&3rd File or Folder (Optional)",IDC_FILES_DIRS_GROUP2,6,150,454,46,0,WS_EX_TRANSPARENT
     CONTROL         "",IDC_PATH2_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,10,162,446,95
     CONTROL         "Read-o&nly",IDC_PATH2_READONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,180,100,10
     PUSHBUTTON      "",IDC_SWAP02_BUTTON,120,178,15,14
-    LTEXT           "Swap 1st | 3rd",IDC_SWAP02_STATIC,138,180,88,12
+    LTEXT           "Swap 1st | 3rd",IDC_SWAP02_STATIC,138,180,100,12
     PUSHBUTTON      "Browse...",IDC_PATH2_BUTTON,383,178,73,14
-
     GROUPBOX        "",IDC_FILES_DIRS_GROUP3X,6,197,224,42
     LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
-
+    LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,10,198,120,11,NOT WS_VISIBLE
+    CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,10,209,140,95
+    PUSHBUTTON      "&Select...",IDC_SELECT_PREDIFFER,153,209,73,14,NOT WS_VISIBLE
     GROUPBOX        "",IDC_FILES_DIRS_GROUP4X,236,197,224,42
     LTEXT           " File: Unpacker Plugin",IDC_FILES_DIRS_GROUP4,240,198,86,11
-    EDITTEXT        IDC_UNPACKER_EDIT,240,209,140,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "",IDC_UNPACKER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,240,209,140,140
     PUSHBUTTON      "Se&lect...",IDC_SELECT_UNPACKER,383,209,73,14
-
     CONTROL         "Sa&ve Project...",ID_SAVE_PROJECT,"Button",BS_SPLITBUTTON | WS_TABSTOP,10,245,100,14
-    DEFPUSHBUTTON   "Co&mpare",IDOK,316,245,70,20
+    CONTROL         "Co&mpare",IDOK,"Button",BS_SPLITBUTTON | WS_TABSTOP,316,245,70,20
     PUSHBUTTON      "Cancel",IDCANCEL,390,245,70,20
     LTEXT           "Status:",IDC_OPEN_STATUS,6,272,440,12
-
     PUSHBUTTON      "Help",ID_HELP,383,10,72,14
     CONTROL         "&Options...",IDC_OPTIONS,"Button",BS_SPLITBUTTON | WS_TABSTOP,383,29,72,14
 END
 
-IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_GENERAL DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Automatically &scroll to first difference",IDC_SCROLL_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,240,10
-    LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,16,240,10
-    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,27,240,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,270,10
+    CONTROL         "Automatically s&croll to first inline difference",IDC_SCROLL_TO_FIRST_INLINE_DIFF_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,270,10
+    LTEXT           "Cl&ose windows with 'Esc':",IDC_STATIC,7,28,270,10
+    COMBOBOX        IDC_ESC_CLOSES_WINDOW,7,39,270,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Automatically verify paths in Open-dialog",IDC_VERIFY_OPEN_PATHS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,42,240,10
-    CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,56,270,10
+    LTEXT           "Single instance mode:",IDC_STATIC,7,67,270,10
+    COMBOBOX        IDC_SINGLE_INSTANCE,7,78,270,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,66,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,95,270,10
     CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,78,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,107,270,10
     CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,90,240,10
-    CONTROL         "Close ""Select Files or Folders"" Dialog on clicking OK button",IDC_CLOSE_WITH_OK,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,102,240,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,7,122,240,10
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,134,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Language:",IDC_STATIC,7,152,240,10
-    COMBOBOX        IDC_LANGUAGE_LIST,7,164,240,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,192,240,30
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,161,228,88,14,NOT WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,270,10
+    CONTROL         "Close ""Select Files or Folders"" Dialog on clicking Compare button",IDC_CLOSE_WITH_OK,
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,270,10
+    LTEXT           "Op&en-dialog Auto-Completion:",IDC_STATIC,7,145,270,10
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,159,270,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Language:",IDC_STATIC,7,175,270,10
+    COMBOBOX        IDC_LANGUAGE_LIST,7,187,270,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 305, 96
+IDD_EDIT_FIND DIALOGEX 30, 73, 324, 96
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Find"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Fi&nd what:",IDC_STATIC,7,9,60,10
-    COMBOBOX        IDC_EDIT_FINDTEXT,69,7,150,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Fi&nd what:",IDC_STATIC,7,9,70,10
+    COMBOBOX        IDC_EDIT_FINDTEXT,80,7,160,65,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Match &whole word only",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,24,140,10
     CONTROL         "Match &case",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,36,140,10
     CONTROL         "Regular &expression",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,48,140,10
     CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,60,200,10
     CONTROL         "&Don't close this dialog box",IDC_FINDDLG_DONTCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,200,10
-    DEFPUSHBUTTON   "&Find Next",IDOK,226,7,72,14,WS_GROUP
-    PUSHBUTTON      "Find &Prev",IDC_EDIT_FINDPREV,226,24,72,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,226,41,72,14
+    DEFPUSHBUTTON   "&Find Next",IDOK,247,7,70,14,WS_GROUP
+    PUSHBUTTON      "Find &Prev",IDC_EDIT_FINDPREV,247,24,70,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,247,41,70,14
 END
 
 IDD_DIR_FILTER DIALOGEX 30, 73, 293, 74
@@ -1099,29 +1403,42 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,240,154,50,14
 END
 
-IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 365, 188
+IDD_FILTERS_LINEFILTERS DIALOGEX 0, 0, 530, 176
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
-CAPTION "Linefilters"
+CAPTION "Line Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Enable Line Filters",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,351,15
-    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,28,351,10
-    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,121
-    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
-    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
-    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
+    LTEXT           "Regular Expressions (one per line):",IDC_STATIC,7,24,351,10
+    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,39,516,111
+    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,6,156,50,14
+    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,61,156,50,14
+    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,115,156,50,14
 END
 
-IDD_PROPPAGE_COLOR_SCHEMES DIALOGEX 0, 0, 255, 242
+IDD_FILTERS_SUBSTITUTIONFILTERS DIALOGEX 0, 0, 530, 176
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
+CAPTION "Substitution Filters"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected.",IDC_STATIC,8,6,516,19
+    CONTROL         "Enable",IDC_IGNORED_SUSBSTITUTIONS_ENABLED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,28,351,9
+    CONTROL         "",IDC_SUBSTITUTION_FILTERS,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,6,40,516,111
+    PUSHBUTTON      "Add",IDC_LFILTER_ADDBTN,7,156,50,14
+    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,63,156,50,14
+    PUSHBUTTON      "Clear",IDC_LFILTER_CLEARBTN,474,156,50,14
+END
+
+IDD_PROPPAGE_COLOR_SCHEMES DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Color Scheme:",IDC_STATIC,7,10,233,10
-    COMBOBOX        IDC_COLOR_SCHEMES,7,22,233,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Color Scheme:",IDC_STATIC,7,10,266,10
+    COMBOBOX        IDC_COLOR_SCHEMES,7,22,266,93,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1176,13 +1493,13 @@ BEGIN
     CONTROL         "",IDC_SEL_WORDDIFF_TEXT_COLOR,"Button",BS_OWNERDRAW,214,189,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_PROPPAGE_COLORS_DIR DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COLORS_DIR DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Colors"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Use folder compare colors",IDC_USE_DIR_COMPARE_COLORS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,234,8
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,264,10
     CTEXT           "Background",IDC_STATIC,144,30,50,10
     CTEXT           "Text",IDC_STATIC,197,30,29,10
     RTEXT           "Items equal:",IDC_STATIC,6,48,144,11
@@ -1201,24 +1518,24 @@ BEGIN
     CONTROL         "",IDC_DIR_MARGIN_COLOR,"Button",BS_OWNERDRAW,162,120,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_PROPPAGE_SYSTEM DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_SYSTEM DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "System"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Send deleted files to Recycle Bin",IDC_USE_RECYCLE_BIN,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,239,10
-    LTEXT           "&External editor:",IDC_STATIC,7,18,239,10
-    EDITTEXT        IDC_EXT_EDITOR_PATH,7,30,187,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Browse...",IDC_EXT_EDITOR_BROWSE,199,30,50,14
-    LTEXT           "&Filter folder:",IDC_STATIC,7,54,239,10
-    EDITTEXT        IDC_FILTER_USER_PATH,7,66,187,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "B&rowse...",IDC_FILTER_USER_BROWSE,199,66,50,14
-    GROUPBOX        "Temporary files folder",IDC_STATIC,7,90,241,56
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,269,10
+    LTEXT           "&External editor:",IDC_STATIC,7,18,269,10
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,30,217,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Browse...",IDC_EXT_EDITOR_BROWSE,229,30,50,14
+    LTEXT           "&Filter folder:",IDC_STATIC,7,54,269,10
+    EDITTEXT        IDC_FILTER_USER_PATH,7,66,217,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "B&rowse...",IDC_FILTER_USER_BROWSE,229,66,50,14
+    GROUPBOX        "Temporary files folder",IDC_STATIC,7,90,271,56
     CONTROL         "S&ystem's temp folder",IDC_TMPFOLDER_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,102,223,10
-    CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,17,114,223,10
-    EDITTEXT        IDC_TMPFOLDER_NAME,27,126,161,14,ES_AUTOHSCROLL | WS_GROUP
-    PUSHBUTTON      "Br&owse...",IDC_TMPFOLDER_BROWSE,194,126,50,14
+    CONTROL         "C&ustom folder:",IDC_STATIC,"Button",BS_AUTORADIOBUTTON,17,114,253,10
+    EDITTEXT        IDC_TMPFOLDER_NAME,27,126,191,14,ES_AUTOHSCROLL | WS_GROUP
+    PUSHBUTTON      "Br&owse...",IDC_TMPFOLDER_BROWSE,224,126,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 190
@@ -1233,6 +1550,7 @@ BEGIN
     COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Br&owse...",IDC_DIFF_BROWSE_FILE2,283,24,52,14
     PUSHBUTTON      "&Swap",IDC_DIFF_SWAPFILES,283,41,52,14
+    CONTROL         "&Copy to Clipboard",IDC_DIFF_COPYCLIPBOARD,"Button",BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,48,40,230,10
     CONTROL         "&Append to existing file",IDC_DIFF_APPENDFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
     LTEXT           "&Result:",IDC_STATIC,7,66,37,10
     COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -1242,17 +1560,8 @@ BEGIN
     COMBOBOX        IDC_DIFF_STYLE,63,92,80,68,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "&Context:",IDC_STATIC,13,109,46,10
     COMBOBOX        IDC_DIFF_CONTEXT,63,108,80,65,CBS_DROPDOWN | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "W&hitespaces",IDC_STATIC,155,81,123,46
-    CONTROL         "Com&pare",IDC_DIFF_WHITESPACE_COMPARE,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
-    CONTROL         "I&gnore changes",IDC_DIFF_WHITESPACE_IGNORE,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
-    CONTROL         "Ig&nore all",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
-    CONTROL         "Ignor&e blank lines",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
-                    "Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,134,142,10
-    CONTROL         "Case sensi&tive",IDC_DIFF_CASESENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
-    CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_DIFF_IGNOREEOL,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,156,281,10
-    CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
-    CONTROL         "Open to e&xternal editor",IDC_DIFF_OPENTOEDITOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,155,145,170,10
+    CONTROL         "Inclu&de command line",IDC_DIFF_INCLCMDLINE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,170,10
+    CONTROL         "Open to e&xternal editor",IDC_DIFF_OPENTOEDITOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,145,170,10
     PUSHBUTTON      "Defaults",IDC_DIFF_DEFAULTS,7,170,70,14
     DEFPUSHBUTTON   "OK",IDOK,230,170,52,14
     PUSHBUTTON      "Cancel",IDCANCEL,283,170,52,14
@@ -1276,26 +1585,48 @@ BEGIN
     PUSHBUTTON      "Move &Up",IDC_UP,175,8,55,14
     PUSHBUTTON      "Move &Down",IDC_DOWN,175,26,55,14
     EDITTEXT        IDC_COLDLG_DESC,175,80,145,50,ES_MULTILINE | ES_READONLY
+    PUSHBUTTON      "&Additional Properties",IDC_COLDLG_ADDITIONAL_PROPERTIES,80,143,120,14
     PUSHBUTTON      "Defaults",IDC_COLDLG_DEFAULTS,7,143,70,14
     DEFPUSHBUTTON   "OK",IDOK,221,143,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,275,143,50,14
 END
 
-IDD_SELECTUNPACKER DIALOGEX 0, 0, 318, 102
+IDD_DIRADDITIONALPROPS DIALOGEX 0, 0, 331, 163
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Select Unpacker"
+CAPTION "Additional Properties"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,168,84,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,222,84,50,14
-    LTEXT           "File unpacker:",IDC_STATIC,7,9,83,10
-    COMBOBOX        IDC_UNPACKER_NAME,92,7,220,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Display all unpackers, don't check the extension.",IDC_UNPACKER_ALLOW_ALL,
-                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,92,64,220,20
-    LTEXT           "Extensions list:",IDC_STATIC,7,26,63,10
-    LTEXT           "Description:",IDC_STATIC,7,43,63,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_UNPACKER_DESCRIPTION,92,38,220,24,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    CONTROL         "",IDC_PROPS_TREEVIEW,"SysTreeView32",TVS_HASBUTTONS | TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | WS_HSCROLL | WS_TABSTOP,6,6,170,130
+    PUSHBUTTON      "&>",IDC_PROPS_ADD,181,40,20,14
+    PUSHBUTTON      "&<",IDC_PROPS_DEL,181,60,20,14
+    PUSHBUTTON      "<<",IDC_PROPS_DELALL,181,80,20,14
+    CONTROL         "",IDC_PROPS_LISTVIEW,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,205,6,120,130
+    DEFPUSHBUTTON   "OK",IDOK,221,143,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,275,143,50,14
+END
+
+IDD_PLUGINS_SELECTPLUGIN DIALOGEX 0, 0, 318, 152
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Select Plugin"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Plugin &Name:",IDC_STATIC,7,9,83,10
+    COMBOBOX        IDC_PLUGIN_NAME,92,7,220,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Extensions list:",IDC_STATIC,7,26,83,10
+    EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Description:",IDC_STATIC,7,43,83,10
+    EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+    LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "Display all plugins, don't check the extension",IDC_PLUGIN_ALLOW_ALL,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,92,300,12
+    CONTROL         "&Open files in the same window type after unpacking",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,104,300,12
+    LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,118,83,10
+    CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,116,220,95
+    PUSHBUTTON      "&Add pipe",IDC_PLUGIN_ADDPIPE,136,134,70,14
+    DEFPUSHBUTTON   "OK",IDOK,210,134,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,264,134,50,14
 END
 
 IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 256, 60
@@ -1314,70 +1645,90 @@ BEGIN
     LTEXT           "",IDC_PATH_COMPARING,137,29,111,10
 END
 
-IDD_WMGOTO DIALOGEX 0, 0, 210, 80
+IDD_WMGOTO DIALOGEX 0, 0, 218, 80
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Go To"
+CAPTION "Go to"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "G&oto:",IDC_STATIC,7,9,36,10
-    EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
-    GROUPBOX        "File",IDC_STATIC,7,27,57,45
-    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,48,10
-    CONTROL         "&Middle",IDC_WMGOTO_FILEMIDDLE,"Button",BS_AUTORADIOBUTTON,13,48,47,10
-    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,13,58,47,10
-    GROUPBOX        "Goto what",IDC_STATIC,69,27,78,45
-    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,76,38,68,10
-    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",BS_AUTORADIOBUTTON,76,48,68,10
-    DEFPUSHBUTTON   "&Go To",IDOK,153,7,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,153,24,50,14
+    LTEXT           "G&o to:",IDC_STATIC,7,9,68,10
+    EDITTEXT        IDC_WMGOTO_PARAM,77,7,78,14,ES_AUTOHSCROLL | ES_NUMBER
+    GROUPBOX        "File",IDC_STATIC,7,27,65,45
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,56,10
+    CONTROL         "&Middle",IDC_WMGOTO_FILEMIDDLE,"Button",BS_AUTORADIOBUTTON,13,48,56,10
+    CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,13,58,56,10
+    GROUPBOX        "Go to what",IDC_STATIC,77,27,78,45
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,84,38,68,10
+    CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",BS_AUTORADIOBUTTON,84,48,68,10
+    DEFPUSHBUTTON   "&Go to",IDOK,161,7,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,161,24,50,14
 END
 
-IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Compare"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,241,50
-    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,226,10
-    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,226,10
-    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,226,10
-    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,60,239,10
-    CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,239,10
+    GROUPBOX        "Whitespaces",IDC_STATIC,7,7,271,50
+    CONTROL         "&Compare",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,19,256,10
+    CONTROL         "&Ignore change",IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON,14,30,256,10
+    CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,14,41,256,10
+    CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,60,269,10
+    CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,72,269,10
     CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",IDC_EOL_SENSITIVE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,239,10
-    CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,239,10
-    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,239,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
-    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,132,239,10
-    COMBOBOX        IDC_DIFF_ALGORITHM,6,144,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,162,239,10
-    GROUPBOX        "Comments",IDC_STATIC,6,180,241,32
-    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,193,226,10
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,84,269,10
+    CONTROL         "Ignore num&bers",IDC_IGNORE_NUMBERS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,269,10
+    CONTROL         "Ignore codepage &differences",IDC_CP_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,108,269,10
+    CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
+    CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,269,10
+    CONTROL         "Align &similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
+    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,156,269,10
+    COMBOBOX        IDC_DIFF_ALGORITHM,6,168,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,269,10
+    CONTROL         "Completely unhighlight the ignored differences",IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,198,269,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,239,10
-    CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,239,10
-    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,239,10
-    GROUPBOX        "Tabs",IDC_STATIC,7,42,241,72,WS_GROUP
-    LTEXT           "&Tab size:",IDC_STATIC,14,54,226,10
+    CONTROL         "&Highlight syntax",IDC_HILITE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,269,10
+    CONTROL         "&Automatic rescan",IDC_AUTOMRESCAN_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,18,269,10
+    CONTROL         "&Preserve original EOL chars",IDC_MIXED_EOL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,30,269,10
+    GROUPBOX        "Tabs",IDC_STATIC,7,42,271,72,WS_GROUP
+    LTEXT           "&Tab size:",IDC_STATIC,14,54,256,10
     EDITTEXT        IDC_TAB_EDIT,24,66,18,12,ES_RIGHT | ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,84,226,10
-    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,96,226,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,241,96,WS_GROUP
-    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,226,10
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,24,138,216,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",BS_AUTORADIOBUTTON,24,150,216,10
-    COMBOBOX        IDC_BREAK_TYPE,36,162,204,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
-    LTEXT           "W&ord break characters:",IDC_STATIC,24,180,216,10
-    EDITTEXT        IDC_BREAK_CHARS,24,192,216,14,ES_AUTOHSCROLL
-    LTEXT           "&Rendering Mode:",IDC_STATIC,6,214,240,10
-    COMBOBOX        IDC_RENDERING_MODE,6,226,240,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "&Insert Tabs",IDC_PROP_INSERT_TABS,"Button",BS_AUTORADIOBUTTON | WS_GROUP,14,84,256,10
+    CONTROL         "Insert &Spaces",IDC_PROP_INSERT_SPACES,"Button",BS_AUTORADIOBUTTON,14,96,256,10
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,114,271,96,WS_GROUP
+    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,14,126,256,10
+    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",BS_AUTORADIOBUTTON | WS_GROUP,24,138,246,10
+    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",BS_AUTORADIOBUTTON,24,150,246,10
+    COMBOBOX        IDC_BREAK_TYPE,36,162,234,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    LTEXT           "W&ord break characters:",IDC_STATIC,24,180,246,10
+    EDITTEXT        IDC_BREAK_CHARS,24,192,246,14,ES_AUTOHSCROLL
+    LTEXT           "&Rendering Mode:",IDC_STATIC,6,214,270,10
+    COMBOBOX        IDC_RENDERING_MODE,6,226,270,34,CBS_DROPDOWNLIST | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+END
+
+IDD_PROPPAGE_EDITOR_SYNTAX DIALOGEX 0, 0, 285, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SYNTAX_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,271,215
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
+END
+
+IDD_PROPPAGE_MESSAGEBOXES DIALOGEX 0, 0, 285, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again.",IDC_STATIC,7,7,270,30
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,191,28,88,14,NOT WS_TABSTOP
+    CONTROL         "",IDC_MESSAGEBOX_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,47,271,195
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
@@ -1386,17 +1737,17 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
 
-IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "Filefilters"
+IDD_FILTERS_FILEFILTERS DIALOGEX 0, 0, 530, 176
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "File Filters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,7,114,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,192,114,50,14
-    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,246,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
+    CONTROL         "",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,6,6,516,144
+    PUSHBUTTON      "Test...",IDC_FILTERFILE_TEST_BTN,6,156,50,14
+    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,305,156,50,14
+    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,360,156,50,14
+    PUSHBUTTON      "Edit...",IDC_FILTERFILE_EDITBTN,414,156,50,14
+    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,473,156,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 217
@@ -1421,40 +1772,40 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,205,195,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,241,93
-    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",IDC_STATIC,14,18,228,20
-    CONTROL         "Detect codepage info for these files: .html, .rc, .xml\nNeed to restart session.",IDC_DETECT_CODEPAGE,
-                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,105,230,30
-    CONTROL         "Detect codepage for text files using mlang.dll\nNeed to restart session.",IDC_DETECT_CODEPAGE2,
-                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,139,230,34
-    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,217,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,42,230,10
-    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",BS_AUTORADIOBUTTON,13,55,230,10
-    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",BS_AUTORADIOBUTTON,13,68,230,10
-    COMBOBOX        IDC_CUSTOM_CP_NUMBER,12,80,229,130,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,271,93
+    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",IDC_STATIC,14,18,258,20
+    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,42,260,10
+    CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",BS_AUTORADIOBUTTON,13,55,260,10
+    CONTROL         "Custom codepage:",IDC_CP_CUSTOM,"Button",BS_AUTORADIOBUTTON,13,68,260,10
+    COMBOBOX        IDC_CUSTOM_CP_NUMBER,12,80,259,130,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_GROUP | WS_TABSTOP
+    CONTROL         "Detect codepage info for these type of files: .html, .rc, .xml\nNeed to restart session.",IDC_DETECT_CODEPAGE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,105,269,30
+    CONTROL         "Detect codepage for text files with mlang.dll\nNeed to restart session.",IDC_DETECT_CODEPAGE2,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,139,269,34
+    COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,247,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_PREFERENCES DIALOGEX 0, 0, 384, 280
+IDD_PREFERENCES DIALOGEX 0, 0, 414, 280
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Options"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,219,257,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,273,257,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,327,257,50,14
-    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | WS_BORDER | TVS_FULLROWSELECT | WS_HSCROLL | WS_TABSTOP,6,6,109,240
-    CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE | WS_DISABLED,122,0,255,242
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,250,370,1
-    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,257,50,14
-    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,257,50,14
+    DEFPUSHBUTTON   "OK",IDOK,249,257,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,303,257,50,14
+    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,357,257,50,14
+    CONTROL         "",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP | TVS_SHOWSELALWAYS | TVS_FULLROWSELECT | WS_BORDER | WS_HSCROLL | WS_TABSTOP,6,6,109,240
+    CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE | WS_DISABLED,122,0,285,242
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,250,400,1
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,257,60,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,72,257,60,14
 END
 
-IDD_PROPPAGE_COLORS_SYNTAX DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COLORS_SYNTAX DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1468,7 +1819,7 @@ BEGIN
     RTEXT           "Preprocessor:",IDC_STATIC,7,156,144,10
     RTEXT           "User 1:",IDC_STATIC,7,174,144,10
     RTEXT           "User 2:",IDC_STATIC,7,192,144,10
-    CTEXT           "Text",IDC_STATIC,144,30,50,8
+    CTEXT           "Text",IDC_STATIC,144,30,50,10
     CONTROL         "",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | WS_TABSTOP,162,48,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,48,55,10
     CONTROL         "",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | WS_TABSTOP,162,66,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
@@ -1489,7 +1840,7 @@ BEGIN
     CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,201,192,55,10
 END
 
-IDD_PROPPAGE_COLORS_MARKER DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COLORS_MARKER DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1522,7 +1873,7 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,211,76,50,14
 END
 
-IDD_SHARED_FILTER DIALOGEX 0, 0, 250, 75
+IDD_FILTERS_FILEFILTERS_SHARED DIALOGEX 0, 0, 250, 75
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shared or Private Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1536,14 +1887,22 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,135,55,50,14
 END
 
-IDD_PROP_ARCHIVE DIALOGEX 0, 0, 255, 126
+IDD_PROPPAGE_ARCHIVE DIALOGEX 0, 0, 285, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Archive Support"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,241,10
+    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,6,271,10
     CONTROL         "&Detect archive type from file signature",IDC_ARCHIVE_DETECTTYPE,
-                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_GROUP | WS_TABSTOP,7,18,241,20
+                    "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_GROUP | WS_TABSTOP,7,18,271,10
+END
+
+IDD_PROPPAGE_PROJECT DIALOGEX 0, 0, 285, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Items saved to or restored from the project file:",IDC_STATIC,7,10,270,10
+    CONTROL         "",IDC_PROJECT_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,22,270,76
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 174
@@ -1648,7 +2007,7 @@ BEGIN
     DEFPUSHBUTTON   "Close",IDOK,200,193,50,14
 END
 
-IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 278, 150
+IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 278, 163
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1660,18 +2019,19 @@ BEGIN
     LTEXT           "(Affects)",IDC_MIDDLE_FILES_LABEL,70,29,193,10
     CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,40,54,10
     LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,40,193,10
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,59,266,63
+    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,59,266,76
     LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,75,172,10
-    COMBOBOX        IDC_LOAD_CODEPAGE_TEXTBOX,86,74,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_LOAD_CODEPAGE_TEXTBOX,96,74,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,90,67,10
-    COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,86,90,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SAVE_CODEPAGE_TEXTBOX,96,90,165,12,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&BOM",IDC_SAVE_CODEPAGE_BOM,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,96,107,165,10
     CONTROL         "&Use same codepage for both",IDC_LOAD_SAVE_SAME_CODEPAGE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,107,250,10
-    DEFPUSHBUTTON   "&Ok",IDOK,165,128,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,221,128,50,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,12,120,250,10
+    DEFPUSHBUTTON   "&Ok",IDOK,165,141,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,221,141,50,14
 END
 
-IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
+IDD_FILTERS_FILEFILTERS_TEST DIALOGEX 0, 0, 249, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Test Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1707,18 +2067,18 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,165,126,66,18
 END
 
-IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Use customized text colors",IDC_DEFAULT_STANDARD_COLORS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,234,8
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,12,234,10
     RTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,6,48,144,10
     RTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,6,66,144,10
     RTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,6,84,144,10
-    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,144,30,50,8
-    CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,193,30,29,8
+    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,144,30,50,10
+    CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,193,30,29,10
     CONTROL         "",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,162,48,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CONTROL         "",IDC_REGULAR_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,162,66,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
     CONTROL         "",IDC_SELECTION_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,162,84,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
@@ -1728,26 +2088,26 @@ BEGIN
     CONTROL         "",IDC_MARGIN_BKGD_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,162,102,17,14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
 END
 
-IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Backup Files"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,6,239,10
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,229,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,229,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,42,239,10
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,54,229,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",BS_AUTORADIOBUTTON,17,66,229,10
-    EDITTEXT        IDC_BACKUP_FOLDER,29,78,165,14,ES_AUTOHSCROLL | WS_GROUP
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,199,78,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,96,239,10
-    CONTROL         "&Append .bak extension",IDC_BACKUP_APPEND_BAK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,108,229,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,120,229,10
+    LTEXT           "Create backup files in:",IDC_STATIC,7,6,269,10
+    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,259,10
+    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,259,10
+    LTEXT           "Create backup files into:",IDC_STATIC,7,42,269,10
+    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",BS_AUTORADIOBUTTON | WS_GROUP,17,54,259,10
+    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",BS_AUTORADIOBUTTON,17,66,259,10
+    EDITTEXT        IDC_BACKUP_FOLDER,29,78,195,14,ES_AUTOHSCROLL | WS_GROUP
+    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,229,78,50,14
+    LTEXT           "Backup filename:",IDC_STATIC,7,96,269,10
+    CONTROL         "&Append .bak extension",IDC_BACKUP_APPEND_BAK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,108,259,10
+    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,120,259,10
 END
 
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 115
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "Confirm Copy"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1757,112 +2117,137 @@ BEGIN
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,10
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | ES_READONLY
-	CONTROL         "Don't ask this &question again.",IDC_FLDCONFIRM_DONTASKAGAIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,81,232,10
+    CONTROL         "Don't ask this &question again.",IDC_FLDCONFIRM_DONTASKAGAIN,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,46,81,232,10
     DEFPUSHBUTTON   "Yes",IDYES,174,95,50,14
     PUSHBUTTON      "No",IDNO,228,95,50,14
 END
 
-IDD_PLUGINS_LIST DIALOGEX 0, 0, 470, 231
+IDD_PLUGINS_LIST DIALOGEX 0, 0, 470, 257
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Plugins"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Enable plugins",IDC_PLUGINS_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,266,10
     CONTROL         "",IDC_PLUGINSLIST_LIST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,7,22,456,155
-    LTEXT           "File filters:",IDC_STATIC,7,190,70,10
-    COMBOBOX        IDC_PLUGIN_FILEFILTERS,80,187,305,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Defaults",IDC_PLUGIN_FILEFILTERS_DEFAULTS,393,187,70,14
-    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,210,95,14
-    DEFPUSHBUTTON   "OK",IDOK,293,210,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,354,210,50,14
-    PUSHBUTTON      "Help",ID_HELP,413,210,50,14
+    LTEXT           "File filters:",IDC_STATIC,7,183,70,10
+    COMBOBOX        IDC_PLUGIN_FILEFILTERS,80,183,305,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Plugin arguments:",IDC_STATIC,7,200,70,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,80,200,305,14,ES_AUTOHSCROLL | WS_GROUP
+    CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
+    PUSHBUTTON      "Defaults",IDC_PLUGIN_DEFAULTS,393,183,70,14
+    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,236,95,14
+    DEFPUSHBUTTON   "OK",IDOK,293,236,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,354,236,50,14
+    PUSHBUTTON      "Help",ID_HELP,413,236,50,14
 END
 
-IDD_PROPPAGE_SHELL DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_SHELL DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shell Integration"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Explorer",IDC_STATIC,7,6,238,112
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,30,210,10
-    CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,220,10
-    PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,220,14
-    PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,64,220,14
-    PUSHBUTTON      "Register shell extension for current user &only",IDC_REGISTER_SHELLEXTENSION_PERUSER,17,80,220,14
-    PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,96,220,14
+    GROUPBOX        "Explorer",IDC_STATIC,7,6,270,144
+    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,30,240,10
+    CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,250,10
+    PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,250,14
+    PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,64,250,14
+    PUSHBUTTON      "Register shell extension for current user &only",IDC_REGISTER_SHELLEXTENSION_PERUSER,17,80,250,14
+    PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,96,250,14
+    PUSHBUTTON      "Register shell extension for &Windows 11 or later",IDC_REGISTER_WINMERGECONTEXTMENU,17,112,250,14
+    PUSHBUTTON      "Unregister shell extension for W&indows 11 or later",IDC_UNREGISTER_WINMERGECONTEXTMENU,17,128,250,14
 END
 
-IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION NC_("Options dialog|Categories", "Folder")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Compare method:",IDC_STATIC,7,6,239,10
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,6,18,240,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Compare method:",IDC_STATIC,7,6,269,10
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,6,18,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,239,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,239,10
-    CONTROL         "&Include unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,239,10
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,239,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,279,10
+    CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,279,10
+    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,239,10
-    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,239,10
-    LTEXT           "&Quick compare limit (MB):",IDC_STATIC,6,108,239,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,279,10
+    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
+    LTEXT           "Threshold for switching to &quick compare (MB):",IDC_STATIC,6,108,279,10
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
-    LTEXT           "&Binary compare limit (MB):",IDC_STATIC,6,138,239,10
+    LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,279,10
     EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,150,30,14,ES_AUTOHSCROLL
-    LTEXT           "\n&Number of compare threads (a negative value implies addition of the number of available CPU cores):",IDC_STATIC,6,166,239,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,198,30,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
+    LTEXT           "&Number of CPU cores to use:",IDC_STATIC,6,166,239,30
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,178,30,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
-IDD_PROPPAGE_COMPARE_TABLE DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COMPARE_TABLE DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Table"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&CSV File Patterns:",IDC_STATIC,6,6,240,10
-    COMBOBOX        IDC_COMPARETABLE_CSV_PATTERNS,7,18,240,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&TSV File Patterns:",IDC_STATIC,7,36,240,10
-    COMBOBOX        IDC_COMPARETABLE_TSV_PATTERNS,7,48,240,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,66,240,72
-    LTEXT           "File Patterns:",IDC_STATIC,12,78,228,10
-    COMBOBOX        IDC_COMPARETABLE_DSV_PATTERNS,12,90,228,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "D&elimiter character:",IDC_STATIC,12,108,228,10
+    LTEXT           "&CSV File Patterns:",IDC_STATIC,6,6,270,10
+    COMBOBOX        IDC_COMPARETABLE_CSV_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&TSV File Patterns:",IDC_STATIC,7,36,270,10
+    COMBOBOX        IDC_COMPARETABLE_TSV_PATTERNS,7,48,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,66,270,72
+    LTEXT           "File Patterns:",IDC_STATIC,12,78,258,10
+    COMBOBOX        IDC_COMPARETABLE_DSV_PATTERNS,12,90,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "D&elimiter character:",IDC_STATIC,12,108,258,10
     EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,12,120,30,14,ES_AUTOHSCROLL
     CONTROL         "&Allow newlines in quotes",IDC_COMPARETABLE_ALLOWNEWLINE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,144,240,10
-    LTEXT           "&Quote character:",IDC_STATIC,6,156,240,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,144,270,10
+    LTEXT           "&Quote character:",IDC_STATIC,6,156,270,10
     EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,168,30,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
-IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION NC_("Options dialog|Categories", "Binary")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,239,10
-    COMBOBOX        IDC_COMPAREBINARY_PATTERNS,7,18,240,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Frhed settings",IDC_STATIC,7,40,241,88
-    PUSHBUTTON      "View &Settings...",IDC_COMPAREBINARY_VIEWSETTINGS,37,58,170,14
-    PUSHBUTTON      "&Binary Mode...",IDC_COMPAREBINARY_BINARYMODE,37,82,170,14
-    PUSHBUTTON      "&Character Set...",IDC_COMPAREBINARY_CHARACTERSET,37,106,170,14
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
+    LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,269,10
+    COMBOBOX        IDC_COMPAREBINARY_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Frhed settings",IDC_STATIC,7,40,271,88
+    PUSHBUTTON      "View &Settings...",IDC_COMPAREBINARY_VIEWSETTINGS,17,58,252,14
+    PUSHBUTTON      "&Binary Mode...",IDC_COMPAREBINARY_BINARYMODE,17,82,252,14
+    PUSHBUTTON      "&Character Set...",IDC_COMPAREBINARY_CHARACTERSET,17,106,252,14
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
-IDD_PROPPAGE_COMPARE_IMAGE DIALOGEX 0, 0, 255, 242
+IDD_PROPPAGE_COMPARE_IMAGE DIALOGEX 0, 0, 285, 242
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Image"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,239,10
-    COMBOBOX        IDC_COMPAREIMAGE_PATTERNS,7,18,240,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,269,10
+    COMBOBOX        IDC_COMPAREIMAGE_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,239,10
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,161,228,88,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,269,10
+    LTEXT           "OCR result:",IDC_STATIC,7,46,269,10
+    COMBOBOX        IDC_COMPAREIMAGE_OCR_RESULT_TYPE,7,58,269,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
+END
+
+IDD_PROPPAGE_COMPARE_WEBPAGE DIALOGEX 0, 0, 285, 242
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Webpage"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "URL pattern to &include (Regular expression):",IDC_STATIC,7,6,269,10
+    EDITTEXT        IDC_COMPAREWEBPAGE_URLPATTERNTOINCLUDE,7,18,270,14,ES_AUTOHSCROLL
+    LTEXT           "URL pattern to &exclude (Regular expression):",IDC_STATIC,7,32,269,10
+    EDITTEXT        IDC_COMPAREWEBPAGE_URLPATTERNTOEXCLUDE,7,44,270,14,ES_AUTOHSCROLL
+    LTEXT           "&User data folder location:",IDC_STATIC,7,60,269,10
+    COMBOBOX        IDC_COMPAREWEBPAGE_USERDATAFOLDER_TYPE,7,72,270,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "&Separate user data folders for each pane",IDC_COMPAREWEBPAGE_USERDATAFOLDER_PERPANE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,88,270,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
 IDD_ENCODINGERROR DIALOGEX 0, 0, 450, 55
@@ -1905,6 +2290,21 @@ BEGIN
     CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
 END
 
+IDD_WEBPAGEDIFF_BAR DIALOGEX 0, 0, 714, 18
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Compare",IDC_COMPARE,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,2,72,14
+    CONTROL         "",IDC_FITTOWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,2,14,14
+    EDITTEXT        IDC_WIDTH,98,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    LTEXT           "x",-1,134,4,8,10
+    EDITTEXT        IDC_HEIGHT,140,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
+    EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
+    LTEXT           "UA:",-1,214,4,16,10
+    EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
+    CONTROL         "View &Differences",IDC_SHOWDIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,2,96,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1924,7 +2324,11 @@ BEGIN
     BEGIN
     END
 
-    IDD_PROPPAGE_FILTER, DIALOG
+    IDD_FILTERS_LINEFILTERS, DIALOG
+    BEGIN
+    END
+
+    IDD_FILTERS_SUBSTITUTIONFILTERS, DIALOG
     BEGIN
     END
 
@@ -1944,6 +2348,14 @@ BEGIN
     BEGIN
     END
 
+    IDD_DIRCOLS, DIALOG
+    BEGIN
+    END
+
+    IDD_PLUGINS_SELECTPLUGIN, DIALOG
+    BEGIN
+    END
+
     IDD_DIRCOMP_PROGRESS, DIALOG
     BEGIN
     END
@@ -1953,6 +2365,14 @@ BEGIN
     END
 
     IDD_PROPPAGE_EDITOR, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_EDITOR_SYNTAX, DIALOG
+    BEGIN
+    END
+
+    IDD_FILTERS_FILEFILTERS, DIALOG
     BEGIN
     END
 
@@ -1980,7 +2400,11 @@ BEGIN
     BEGIN
     END
 
-    IDD_PROP_ARCHIVE, DIALOG
+    IDD_PROPPAGE_ARCHIVE, DIALOG
+    BEGIN
+    END
+
+    IDD_PROPPAGE_PROJECT, DIALOG
     BEGIN
     END
 
@@ -2016,6 +2440,11 @@ BEGIN
 
     IDD_PROPPAGE_COMPARE_IMAGE, DIALOG
     BEGIN
+    END
+
+    IDD_WEBPAGEDIFF_BAR, DIALOG
+    BEGIN
+        RIGHTMARGIN, 237
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -2100,6 +2529,9 @@ BEGIN
     0, 0, 50, 0,
     50, 0, 0, 0,
     0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 50, 0,
+    50, 0, 0, 0,
     50, 0, 50, 0,
     50, 0, 0, 0,
     50, 0, 50, 0,
@@ -2141,9 +2573,9 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 0,
+    0, 0, 0, 0,
     100, 0, 0, 0,
-    100, 0, 0, 0,
-    0, 0, 0, 0
+    100, 0, 0, 0
 END
 
 IDD_DIALOG_WINDOWSMANAGER AFX_DIALOG_LAYOUT
@@ -2154,14 +2586,14 @@ END
 IDD_PREFERENCES AFX_DIALOG_LAYOUT
 BEGIN
     0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
-    100, 0, 0, 0,
-    0, 0, 0, 0,
-    0, 0, 100, 0,
-    0, 0, 100, 0,
-    0, 0, 0, 0,
-    0, 0, 0, 0
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    0, 0, 0, 100,
+    0, 0, 100, 100,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 0, 0
 END
 
 IDD_PROPPAGE_GENERAL AFX_DIALOG_LAYOUT
@@ -2181,10 +2613,12 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
-IDD_PROP_ARCHIVE AFX_DIALOG_LAYOUT
+IDD_PROPPAGE_ARCHIVE AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
@@ -2372,6 +2806,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
@@ -2413,6 +2848,8 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
     100, 0, 0, 0
 END
 
@@ -2434,6 +2871,19 @@ BEGIN
     100, 0, 0, 0
 END
 
+IDD_PROPPAGE_COMPARE_WEBPAGE AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0
+END
+
 IDD_PROPPAGE_EDITOR AFX_DIALOG_LAYOUT
 BEGIN
     0,
@@ -2452,6 +2902,28 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0
+END
+
+IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 100,
+    100, 100, 0, 0
+END
+
+IDD_PROPPAGE_MESSAGEBOXES AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 100, 100
+END
+
+IDD_PROPPAGE_PROJECT AFX_DIALOG_LAYOUT
+BEGIN
+    0,
     0, 0, 100, 0,
     0, 0, 100, 0
 END
@@ -2482,7 +2954,49 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
     0, 0, 100, 0
+END
+
+IDD_FILTERS_FILEFILTERS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_FILTERS_LINEFILTERS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_WEB_SIZE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_WEBPAGEDIFF_BAR AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PLUGINS_SELECTPLUGIN AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    0, 100, 100, 0,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0
 END
 
 
@@ -2548,7 +3062,6 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaka, Gal Hammer, Alexander Skinner"
     IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 END
 
@@ -2574,12 +3087,10 @@ BEGIN
     IDS_MESSAGEBOX_SKIP     "&Skip"
     IDS_MESSAGEBOX_SKIPALL  "Skip &all"
     IDS_MESSAGEBOX_HELP     "&Help"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN 
-                            "Don't display this &message again."
-    IDS_MESSAGEBOX_DONT_ASK_AGAIN 
-                            "Don't ask this &question again."
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Don't display this &message again."
+    IDS_MESSAGEBOX_DONT_ASK_AGAIN "Don't ask this &question again."
     IDS_MESSAGEBOX_CHECKBOX_TOOLTIP 
-                            "To make this message box visible again, press the Reset button on the General page of the Options dialog."
+                            "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 END
 
 // Options-dialog page captions
@@ -2588,6 +3099,8 @@ BEGIN
     IDS_OPTIONSPG_GENERAL   "General"
     IDS_OPTIONSPG_COMPARE   "Compare"
     IDS_OPTIONSPG_EDITOR    "Editor"
+    IDS_OPTIONSPG_GENEDITOR "General"
+    IDS_OPTIONSPG_EDITOR_SYNTAX "Syntax"
     IDS_OPTIONSPG_COLORS    "Colors"
     IDS_OPTIONSPG_COLOR_SCHEMES "Color Schemes"
     IDS_OPTIONSPG_TEXTCOLORS "Text"
@@ -2597,10 +3110,12 @@ BEGIN
     IDS_OPTIONSPG_SYSTEM    "System"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
     IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_PROJECT   "Project"
     IDS_OPTIONSPG_BACKUPS   "Backup Files"
     IDS_OPTIONSPG_SHELL     "Shell Integration"
     IDS_OPTIONSPG_MERGECOLORS "Differences"
     IDS_OPTIONSPG_GENCOMPARE "General"
+    IDS_OPTIONSPG_MESSAGEBOXES "Message Boxes"
 END
 
 STRINGTABLE
@@ -2609,6 +3124,7 @@ BEGIN
     IDS_OPTIONSPG_IMAGECOMPARE "Image"
     IDS_OPTIONSPG_BINARYCOMPARE NC_("Options dialog|Categories", "Binary")
     IDS_OPTIONSPG_TABLECOMPARE "Table"
+    IDS_OPTIONSPG_WEBPAGECOMPARE "Webpage"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -2669,6 +3185,34 @@ BEGIN
     IDS_COMPMETHOD_SIZE     "Size"
 END
 
+// EDITOR OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_SYNTAXTABLE_FILETYPE "File Type"
+    IDS_SYNTAXTABLE_EXTENSION "Extension"
+END
+
+// MESSAGEBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_MESSAGEBOX_MESSAGE  "Message"
+    IDS_MESSAGEBOX_ANSWER   "Answer"
+END
+
+// PROJECT OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_PROJECT_ITEM        "Item"
+    IDS_PROJECT_OPEN        "Open"
+    IDS_PROJECT_LOAD        "Load"
+    IDS_PROJECT_SAVE        "Save"
+    IDS_PROJECT_ITEM_FILE_FILTER "File Filters"
+    IDS_PROJECT_ITEM_INCLUDE_SUBFOLDERS "Include Subfolders"
+    IDS_PROJECT_ITEM_PLUGIN "Plugins"
+    IDS_PROJECT_ITEM_COMPARE_OPTIONS "Compare Options"
+    IDS_PROJECT_ITEM_HIDDEN_ITEMS "Hidden Items"
+END
+
 // FILTER OPTIONS
 STRINGTABLE
 BEGIN
@@ -2680,7 +3224,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Select filename for new filter"
     IDS_FILEFILTER_FILEMASK "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
     IDS_FILEFILTER_NO_USERFOLDER 
@@ -2714,17 +3258,19 @@ BEGIN
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_MIDDLE_FILE   "Untitled middle"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_CONFLICT_BASE_FILE  "Base File"
     IDS_CONFLICT_THEIRS_FILE "Theirs File"
     IDS_CONFLICT_MINE_FILE  "Mine File"
+    IDS_SELFCOMPARE_ORIGINAL_FILE "Original File"
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
 STRINGTABLE
 BEGIN
-    IDS_LINE_STATUS_INFO_EOL 
-                            "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+    IDS_LINE_STATUS_INFO_EOL "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
     IDS_EMPTY_LINE_STATUS_INFO "Line: %s"
     IDS_LINE_STATUS_INFO    "Ln: %s  Col: %d/%d  Ch: %d/%d"
+    IDS_LINE_STATUS_INFO_SEL "  Sel: %d | %d"
     IDS_MERGEMODE_MERGING   "Merge"
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
@@ -2756,8 +3302,7 @@ BEGIN
     IDS_OPEN_MIDDLERIGHTINVALID 
                             "Middle (2nd) and Right (3rd) paths are invalid!"
     IDS_OPEN_ALLINVALID     "All paths are invalid!"
-    IDS_OPEN_UNPACKERDISABLED 
-                            "Only enabled for file comparisons"
+    IDS_OPEN_UNPACKERDISABLED "Only enabled for file comparisons"
     IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
 END
 
@@ -2784,6 +3329,8 @@ BEGIN
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT 
                             "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
+    IDS_FILEPACK_FAILED_MIDDLE 
+                            "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT 
                             "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILECHANGED_ONDISK  "Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"
@@ -2809,6 +3356,18 @@ STRINGTABLE
 BEGIN
     IDS_BREAK_ON_WHITESPACE "Break at whitespace"
     IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
+END
+
+// Merge menu for 3-way compare
+STRINGTABLE
+BEGIN
+    IDS_L2M                 "Copy to &Middle\tAlt+Right"
+    IDS_R2M                 "Copy to &Middle\tAlt+Left"
+    IDS_COPY_FROM_MIDDLE_R  "Copy from Middle\tAlt+Shift+Right"
+    IDS_COPY_FROM_MIDDLE_L  "Copy from Middle\tAlt+Shift+Left"
+    IDS_L2MNEXT             "Copy to Middle and Advance\tCtrl+Alt+Right"
+    IDS_R2MNEXT             "Copy to Middle and Advance\tCtrl+Alt+Left"
+    IDS_ALL_MIDDLE          "Copy All to Middle"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -2891,6 +3450,8 @@ BEGIN
     IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
     IDS_CONFIRM_CLOSE_WINDOW 
                             "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
+    IDS_ERROR_INVALID_DIR_FILE_NAME
+                            "The file or folder name is invalid."
 END
 
 // DIRECTORY DIFFING : OPEN FILE
@@ -2903,6 +3464,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Unknown archive format"
+    IDS_FAILED_EXTRACT_ARCHIVE_FILES 
+                            "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #1
@@ -2959,6 +3522,44 @@ BEGIN
     IDS_COLHDR_NIDIFFS      "Ignored Diff"
     IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       NC_("DirView|ColumnHeader", "Binary")
+    IDS_COLHDR_UNPACKER     "Unpacker"
+    IDS_COLHDR_PREDIFFER    "Prediffer"
+    IDS_COLHDR_LEFT         "Left"
+    IDS_COLHDR_MIDDLE       "Middle"
+    IDS_COLHDR_RIGHT        "Right"
+    IDS_COLHDR_DIFF         "Diff"
+    IDS_COLHDR_LEFT_DUPLICATE "Left Duplicate Count"
+    IDS_COLHDR_RIGHT_DUPLICATE "Right Duplicate Count"
+    IDS_COLHDR_MIDDLE_DUPLICATE "Middle Duplicate Count"
+    IDS_COLHDR_MOVE         "Move"
+END
+
+// DIRECTORY DIFFING : PROPERTY CATEGORIES
+STRINGTABLE
+BEGIN
+    IDS_PRPCAT_SYSTEM       "System"
+    IDS_PRPCAT_AUDIO        "Audio"
+    IDS_PRPCAT_CALENDAR     "Calendar"
+    IDS_PRPCAT_COMMUNICATION "Communication"
+    IDS_PRPCAT_CONTACT      "Contact"
+    IDS_PRPCAT_DEVICES      "Devices"
+    IDS_PRPCAT_DOCUMENT     "Document"
+    IDS_PRPCAT_HOME         "Home"
+    IDS_PRPCAT_IMAGE        "Image"
+    IDS_PRPCAT_JOURNAL      "Journal"
+    IDS_PRPCAT_LINK         "Link"
+    IDS_PRPCAT_MEDIA        "Media"
+    IDS_PRPCAT_MESSAGE      "Message"
+    IDS_PRPCAT_MUSIC        "Music"
+    IDS_PRPCAT_NOTE         "Note"
+    IDS_PRPCAT_PHOTO        "Photo"
+    IDS_PRPCAT_RECORDEDTV   "RecordedTV"
+    IDS_PRPCAT_SEARCH       "Search"
+    IDS_PRPCAT_SECURITY     "Security"
+    IDS_PRPCAT_SOFTWARE     "Software"
+    IDS_PRPCAT_TASK         "Task"
+    IDS_PRPCAT_VIDEO        "Video"
+    IDS_PRPCAT_HASH         "Hash"
 END
 
 // DIRECTORY DIFFING : FILE COMPARISON RESULT, FULL & SHORTENED FORMS
@@ -2990,12 +3591,13 @@ BEGIN
     IDS_DIFFERENT           "Different"
     IDS_CMPRES_ERROR        "Error"
     IDS_TEXT_FILES_SAME     "Text files are identical"
-    IDS_LEFTONLY_DIFF       "(Middle and right are identical)"
-    IDS_MIDDLEONLY_DIFF     "(Left and right are identical)"
-    IDS_RIGHTONLY_DIFF      "(Left and middle are identical)"
+    IDS_LEFTONLY_DIFF       " (Middle and right are identical)"
+    IDS_MIDDLEONLY_DIFF     " (Left and right are identical)"
+    IDS_RIGHTONLY_DIFF      " (Left and middle are identical)"
     IDS_TEXT_FILES_DIFF     "Text files are different"
     IDS_IMAGE_FILES_SAME    "Image files are identical"
     IDS_IMAGE_FILES_DIFF    "Image files are different"
+    IDS_HASH_GROUP          "Group%d"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -3035,13 +3637,13 @@ BEGIN
     IDS_COLDESC_RTIMEC      "Right side creation time."
     IDS_COLDESC_MTIMEC      "Middle side creation time."
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
-    IDS_COLDESC_LVERSION    "Left side file version, only for some filetypes."
-    IDS_COLDESC_RVERSION    "Right side file version, only for some filetypes."
+    IDS_COLDESC_LVERSION    "Left side file version, only for some file types."
+    IDS_COLDESC_RVERSION    "Right side file version, only for some file types."
 END
 
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_MVERSION    "Middle side file version, only for some filetypes."
+    IDS_COLDESC_MVERSION    "Middle side file version, only for some file types."
     IDS_COLDESC_RESULT_ABBR "Short comparison result."
     IDS_COLDESC_LATTRIBUTES "Left side attributes."
     IDS_COLDESC_RATTRIBUTES "Right side attributes."
@@ -3060,12 +3662,15 @@ BEGIN
     IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
     IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Shows an asterisk (*) if the file is binary."
+    IDS_COLDESC_UNPACKER    "Unpacker plugin name or pipeline."
+    IDS_COLDESC_PREDIFFER   "Prediffer plugin name or pipeline."
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT
 STRINGTABLE
 BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Compare %1 with %2"
+    IDS_DIRECTORY_REPORT_TITLE3 "Compare %1 with %2 and %3"
     IDS_REPORT_COMMALIST    "Comma-separated list"
     IDS_REPORT_TABLIST      "Tab-separated list"
     IDS_REPORT_SIMPLEHTML   "Simple HTML"
@@ -3105,6 +3710,8 @@ BEGIN
     IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
     IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
     IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
+    IDS_MOVE_TO_FIRSTFILE   "Do you want to move to the first file?"
+    IDS_MOVE_TO_LASTFILE    "Do you want to move to the last file?"
 END
 
 // Encoding issues
@@ -3176,14 +3783,13 @@ BEGIN
     IDS_MUST_SPECIFY_OUTPUT "Specify an output file."
     IDS_CANNOT_CREATE_BINARYPATCH 
                             "Cannot create a patch file from binary files."
-    IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
     IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE
 BEGIN
-    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\nAll needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+    IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
     IDS_OPT_EXPORT_CAPTION  "Select file for export"
     IDS_OPT_IMPORT_CAPTION  "Select file for import"
     IDS_OPT_IMPORT_DONE     "Options imported from the file."
@@ -3193,7 +3799,7 @@ BEGIN
     IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
 END
 
-// EOL types shown in folder compare EOL type column and in file compare statusbar
+// EOL types shown in folder compare EOL type column and in file compare status bar
 STRINGTABLE
 BEGIN
     IDS_EOL_DOS             "Win"
@@ -3241,13 +3847,18 @@ BEGIN
     ID_FIRSTDIFF            "\nFirst Difference (Alt+Home)"
     ID_CURDIFF              "\nCurrent Difference (Alt+Enter)"
     ID_LASTDIFF             "\nLast Difference (Alt+End)"
-    ID_L2R                  "\nCopy Right (Alt+Right)"
-    ID_R2L                  "\nCopy Left (Alt+Left)"
-    ID_L2RNEXT              "\nCopy Right and Advance (Ctrl+Alt+Right)"
-    ID_R2LNEXT              "\nCopy Left and Advance (Ctrl+Alt+Left)"
-    ID_ALL_RIGHT            "\nAll Right"
-    ID_ALL_LEFT             "\nAll Left"
+    ID_L2R                  "\nCopy to Right (Alt+Right)"
+    ID_R2L                  "\nCopy to Left (Alt+Left)"
+    ID_L2RNEXT              "\nCopy to Right and Advance (Ctrl+Alt+Right)"
+    ID_R2LNEXT              "\nCopy to Left and Advance (Ctrl+Alt+Left)"
+    ID_ALL_RIGHT            "\nCopy All to Right"
+    ID_ALL_LEFT             "\nCopy All to Left"
     ID_AUTO_MERGE           "\nAuto Merge (Ctrl+Alt+M)"
+    ID_FIRSTFILE            "\nFirst File"
+    ID_NEXTFILE             "\nNext File (Ctrl+F8)"
+    ID_LASTFILE             "\nLast File"
+    ID_PREVFILE             "\nPrevious File (Ctrl+F7)"
+
 END
 
 // PLUGINS MENU
@@ -3256,7 +3867,7 @@ BEGIN
     IDS_UNPACK_AUTO         "The adapted unpacker is applied to both files (one file only needs the extension)."
     IDS_NO_PREDIFFER        "No prediffer (normal)"
     IDS_SUGGESTED_PLUGINS   "Suggested plugins"
-    IDS_NOT_SUGGESTED_PLUGINS "Other plugins"
+    IDS_NOT_SUGGESTED_PLUGINS "All plugins"
 END
 
 // HELP MENU
@@ -3286,7 +3897,13 @@ END
 // LOCATIONBAR CONTEXT MENU
 STRINGTABLE
 BEGIN
-    IDS_LOCBAR_GOTOLINE_FMT "G&oto Line %1"
+    IDS_LOCBAR_GOTOLINE_FMT "G&o to Line %1"
+END
+
+// MERGEVIEW CONTEXT MENU
+STRINGTABLE
+BEGIN
+    IDS_GOTO_MOVED_LINE "Go to Moved Line\tCtrl+Shift+G"
 END
 
 // AUTOCOMPLETE COMBOBOX OPTIONS
@@ -3301,13 +3918,16 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLORSCHEME_PLAIN   "No Highlighting"
+    IDS_COLORSCHEME_ABAP    "ABAP"
     IDS_COLORSCHEME_ASP     "ASP"
+    IDS_COLORSCHEME_AUTOIT  "AutoIt"
     IDS_COLORSCHEME_BASIC   "Basic"
     IDS_COLORSCHEME_BATCH   "Batch"
     IDS_COLORSCHEME_C       "C/C++"
     IDS_COLORSCHEME_CSHARP  "C#"
     IDS_COLORSCHEME_CSS     "CSS"
     IDS_COLORSCHEME_DCL     "DCL"
+    IDS_COLORSCHEME_DLANG   "D"
     IDS_COLORSCHEME_FORTRAN "Fortran"
     IDS_COLORSCHEME_GO      "Go"
     IDS_COLORSCHEME_HTML    "HTML"
@@ -3315,6 +3935,8 @@ BEGIN
     IDS_COLORSCHEME_INNOSETUP "InnoSetup"
     IDS_COLORSCHEME_INSTALLSHIELD "InstallShield"
     IDS_COLORSCHEME_JAVA    "Java"
+    IDS_COLORSCHEME_JAVASCRIPT "JavaScript"
+    IDS_COLORSCHEME_JSON    "JSON"
     IDS_COLORSCHEME_LISP    "AutoLISP"
     IDS_COLORSCHEME_LUA     "Lua"
 END
@@ -3335,6 +3957,7 @@ BEGIN
     IDS_COLORSCHEME_SGML    "SGML"
     IDS_COLORSCHEME_SH      "Shell"
     IDS_COLORSCHEME_SIOD    "SIOD"
+    IDS_COLORSCHEME_SMARTY  "Smarty"
     IDS_COLORSCHEME_SQL     "SQL"
     IDS_COLORSCHEME_TCL     "TCL"
 END
@@ -3362,7 +3985,12 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED  "frhed is not installed"
+    IDS_WEBPAGE_MENU        "We&bpage"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
 END
 
 STRINGTABLE
@@ -3382,6 +4010,7 @@ BEGIN
     IDS_DIFF_ALGORITHM_MINIMAL "minimal"
     IDS_DIFF_ALGORITHM_PATIENCE "patience"
     IDS_DIFF_ALGORITHM_HISTOGRAM "histogram"
+    IDS_DIFF_ALGORITHM_NONE "none"
 END
 
 STRINGTABLE
@@ -3399,6 +4028,7 @@ STRINGTABLE
 BEGIN
     IDS_CLOSE_WINDOWS_WITH_ESC_1 "MDI child window or main window"
     IDS_CLOSE_WINDOWS_WITH_ESC_2 "MDI child window only"
+    IDS_CLOSE_WINDOWS_WITH_ESC_3 "Close main window if there is only one MDI child window"
 END
 
 STRINGTABLE
@@ -3424,8 +4054,182 @@ BEGIN
     IDS_IMGCMP_STATUS_PT_RGBA_FMT "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
     IDS_IMGCMP_STATUS_DIST1_FMT "Dist: %g  "
     IDS_IMGCMP_STATUS_DIST2_FMT "Dist: %g, %g  "
-    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp"
+    IDS_IMGCMP_STATUS_PAGE_ZOOM_SIZE_BPP_FMT "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
+    IDS_IMGCMP_STATUS_RC_FMT "Rc: (%d, %d)  "
+    IDS_IMGCMP_STATUS_FLIPPED_FMT "Flipped: %s  "
+    IDS_IMGCMP_STATUS_ROTATED_FMT "Rotated: %d  "
+    IDS_IMGCMP_REPORT_ALLPAGES "All pages"
 END
+
+STRINGTABLE
+BEGIN
+    IDS_IGNSUB_STR1         "<Edit here>"
+    IDS_IGNSUB_STR2         "No differences to select found"
+    IDS_IGNSUB_STR3         "No differences found to add as substitution filter"
+    IDS_IGNSUB_STR4         "The pair is already present in the list of Substitution Filters"
+    IDS_IGNSUB_STR5         "Add this change to Substitution Filters?"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_OCRRESULT_TEXTONLY  "Text only"
+    IDS_OCRRESULT_POS_LINE  "Line-by-line position and text"
+    IDS_OCRRESULT_POS_WORD  "Word-by-word position and text"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_USERDATAFOLDER_APPDATA "AppData folder"
+    IDS_USERDATAFOLDER_INSTALL "Install folder"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_SINGLEINSTANCE_STR1 "Allow only one instance to run"
+    IDS_SINGLEINSTANCE_STR2 "Allow only one instance to run and wait for the instance to terminate"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_ALL          "Al&l"
+    IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
+    IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
+    IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
+    IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
+    IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
+    IDS_PLUGIN_PROCESS_TYPE6 "Validation"
+    IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
+    IDS_PLUGIN_PROCESS_TYPE8 "&Others"
+    IDS_PLUGIN_PROCESS_TYPE9 "URL Handling"
+    IDS_PLUGIN_MENU_CAPTION1 "Make Uppercase"
+    IDS_PLUGIN_MENU_CAPTION2 "Make Lowercase"
+    IDS_PLUGIN_MENU_CAPTION3 "Remove Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION4 "Count Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION5 "Sort Lines Ascending"
+    IDS_PLUGIN_MENU_CAPTION6 "Sort Lines Descending"
+    IDS_PLUGIN_MENU_CAPTION7 "Reverse Columns"
+    IDS_PLUGIN_MENU_CAPTION8 "Reverse Lines"
+    IDS_PLUGIN_MENU_CAPTION9 "Replace..."
+    IDS_PLUGIN_MENU_CAPTION10 "Apply Filter Command..."
+    IDS_PLUGIN_MENU_CAPTION11 "Tokenize..."
+    IDS_PLUGIN_MENU_CAPTION12 "Trim Spaces"
+    IDS_PLUGIN_MENU_CAPTION13 "Select Columns..."
+    IDS_PLUGIN_MENU_CAPTION14 "Select Lines..."
+    IDS_PLUGIN_MENU_CAPTION15 "Insert Date"
+    IDS_PLUGIN_MENU_CAPTION16 "Insert Time"
+    IDS_PLUGIN_MENU_CAPTION17 "Apply Patch..."
+    IDS_PLUGIN_MENU_CAPTION18 "Ignore Columns"
+    IDS_PLUGIN_MENU_CAPTION19 "Ignore Comments (C-Family Languages)"
+    IDS_PLUGIN_MENU_CAPTION20 "Ignore CSV Fields"
+    IDS_PLUGIN_MENU_CAPTION21 "Ignore TSV Fields"
+    IDS_PLUGIN_MENU_CAPTION22 "Apply Prediff Substitution Filters"
+    IDS_PLUGIN_MENU_CAPTION23 "Prettify HTML"
+    IDS_PLUGIN_MENU_CAPTION24 "Prettify JSON"
+    IDS_PLUGIN_MENU_CAPTION25 "Prettify XML"
+    IDS_PLUGIN_MENU_CAPTION26 "Prettify YAML"
+    IDS_PLUGIN_MENU_CAPTION27 "Visualize Graphviz"
+    IDS_PLUGIN_MENU_CAPTION28 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION29 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION30 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION31 "Query YAML Data..."
+    IDS_PLUGIN_MENU_CAPTION32 "Validate HTML"
+    IDS_PLUGIN_MENU_CAPTION33 "Disassemble JVM Bytecode"
+    IDS_PLUGIN_MENU_CAPTION34 "Disassemble IL Code"
+    IDS_PLUGIN_MENU_CAPTION35 "Disassemble Native Code"
+    IDS_PLUGIN_MISSING_PLUGIN_NAME 
+                            "Missing plugin name in plugin pipeline: %1"
+    IDS_PLUGIN_MISSING_QUOTATION_MARK 
+                            "Missing quotation mark in plugin pipeline: %1"
+    IDS_PLUGIN_TITLE1       "Specify plugin arguments"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION1 "Make characters uppercase"
+    IDS_PLUGIN_DESCRIPTION2 "Make characters lowercase"
+    IDS_PLUGIN_DESCRIPTION3 "Remove duplicate lines"
+    IDS_PLUGIN_DESCRIPTION4 "Count duplicate lines"
+    IDS_PLUGIN_DESCRIPTION5 "Sort lines ascending"
+    IDS_PLUGIN_DESCRIPTION6 "Sort lines descending"
+    IDS_PLUGIN_DESCRIPTION7 "Reverse columns"
+    IDS_PLUGIN_DESCRIPTION8 "Reverse lines"
+    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+    IDS_PLUGIN_DESCRIPTION10 
+                            "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+    IDS_PLUGIN_DESCRIPTION11 
+                            "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+    IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
+    IDS_PLUGIN_DESCRIPTION13 
+                            "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION14 
+                            "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION23 
+                            "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION24 
+                            "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION25 
+                            "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION26 
+                            "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION27 
+                            "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+    IDS_PLUGIN_DESCRIPTION28 
+                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION29 
+                            "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION30 
+                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION31 
+                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION32 
+                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION33 
+                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+    IDS_PLUGIN_DESCRIPTION34 
+                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+    IDS_PLUGIN_DESCRIPTION35 
+                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+    IDS_PLUGIN_DESCRIPTION37 
+                            "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+    IDS_PLUGIN_DESCRIPTION38 "Apply patch using GnuWin32 Patch for Windows"
+    IDS_PLUGIN_DESCRIPTION39 "Display the text content of MS Excel files"
+    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS PowerPoint files"
+    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS Visio files"
+    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Word files"
+    IDS_PLUGIN_DESCRIPTION43 
+                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION44 
+                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+    IDS_PLUGIN_DESCRIPTION45 
+                            "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION46 "Prediff Line Filter"
+    IDS_PLUGIN_DESCRIPTION47 "Basic text functions for the context menu"
+    IDS_PLUGIN_DESCRIPTION48 
+                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+    IDS_PLUGIN_DESCRIPTION49 
+                            "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_FILTER_APPLIED      "Filter applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_CLIPBOARDHISTORY_TIME     "Clipboard at %s"
+    IDS_CLIPBOARDHISTORY_DISABLED "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED1 
+                            "This system does not support clipboard history."
+    IDS_CLIPBOARDHISTORY_NOT_SUPPORTED2 
+                            "The 32-bit version of WinMerge does not support Clipboard Compare"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED "WebView2 runtime is not installed. Do you want to download it?"
+END
+
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

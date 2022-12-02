@@ -19,6 +19,7 @@
 #include "LocationBar.h"
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
+#include "FileTransform.h"
 
 class CDirDoc;
 
@@ -28,12 +29,12 @@ class CDirDoc;
 class CImgMergeFrame : public CMergeFrameCommon,public IMergeDoc
 {
 	private:
-	enum BUFFERTYPE
+	enum class BUFFERTYPE
 	{
-		BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-		BUFFER_NORMAL_NAMED, /**< Normal, description given */
-		BUFFER_UNNAMED, /**< Empty, created buffer */
-		BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+		NORMAL = 0, /**< Normal, file loaded from disk */
+		NORMAL_NAMED, /**< Normal, description given */
+		UNNAMED, /**< Empty, created buffer */
+		UNNAMED_SAVED, /**< Empty buffer saved with filename */
 	};
 
 	using CMDIChildWnd::Create;
@@ -48,19 +49,29 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void ChangeFile(int pane, const String& path);
+	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void UpdateResources();
+	void RefreshOptions();
 	bool CloseNow() override;
 	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
 	void UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
+	bool GenerateReport(const String& sFileName, bool allPages) const;
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
+	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
+	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; }
+	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }
+	CString GetTooltipString() const override;
 	void DoAutoMerge(int dstPane);
 	bool IsModified() const;
 	IMergeDoc::FileChange IsFileChangedOnDisk(int pane) const;
 	void CheckFileChanged(void) override;
-	String GetDescription(int pane) const { return m_strDesc[pane]; }
+	String GetDescription(int pane) const override { return m_strDesc[pane]; }
 	static bool IsLoadable();
 
 // Attributes
@@ -89,14 +100,14 @@ private:
 	void SaveActivePane();
 	virtual ~CImgMergeFrame();
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
-// Generated message map functions
 private:
+	bool OpenImages();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool DoFileSave(int pane);
-	bool DoFileSaveAs(int pane);
+	bool DoFileSaveAs(int pane, bool packing = true);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	bool MergeModeKeyDown(MSG* pMsg);
 	static void OnChildPaneEvent(const IImgMergeWindow::Event& evt);
@@ -113,7 +124,10 @@ private:
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
 	int m_nActivePane;
-
+	PackingInfo m_infoUnpacker;
+	std::vector<int> m_unpackerSubcodes[3];
+// Generated message map functions
+protected:
 	//{{AFX_MSG(CImgMergeFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
@@ -129,17 +143,18 @@ private:
 	afx_msg void OnFileSaveAsMiddle();
 	afx_msg void OnUpdateFileSaveAsMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnFileSaveAsRight();
-	afx_msg void OnLeftReadOnly();
-	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnMiddleReadOnly();
-	afx_msg void OnUpdateMiddleReadOnly(CCmdUI* pCmdUI);
-	afx_msg void OnRightReadOnly();
-	afx_msg void OnUpdateRightReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyLeft();
+	afx_msg void OnUpdateFileReadOnlyLeft(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyMiddle();
+	afx_msg void OnUpdateFileReadOnlyMiddle(CCmdUI* pCmdUI);
+	afx_msg void OnFileReadOnlyRight();
+	afx_msg void OnUpdateFileReadOnlyRight(CCmdUI* pCmdUI);
 	afx_msg void OnFileReload();
 	afx_msg void OnFileClose();
-	afx_msg void OnFileRecompareAs(UINT nId);
+	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
-	afx_msg void OnWindowChangePane();
+	afx_msg void OnOpenWithUnpacker();
+	afx_msg void OnWindowChangePane(UINT nID);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
@@ -148,6 +163,13 @@ private:
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	afx_msg void OnEditRedo();
 	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
+	afx_msg void OnEditCut();
+	afx_msg void OnUpdateEditCut(CCmdUI* pCmdUI);
+	afx_msg void OnEditCopy();
+	afx_msg void OnUpdateEditCopy(CCmdUI* pCmdUI);
+	afx_msg void OnEditPaste();
+	afx_msg void OnUpdateEditPaste(CCmdUI* pCmdUI);
+	afx_msg void OnEditSelectAll();
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
@@ -166,11 +188,13 @@ private:
 	afx_msg void OnPrevConflict();
 	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
 	afx_msg void OnX2Y(int srcPane, int dstPane);
-	afx_msg void OnUpdateX2Y(CCmdUI* pCmdUI, int srcPane, int dstPane);
+	afx_msg void OnUpdateX2Y(CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromLeft();
 	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
@@ -179,6 +203,8 @@ private:
 	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
 	afx_msg void OnAllRight();
 	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
+	afx_msg void OnCopyX2Y(UINT nID);
+	afx_msg void OnUpdateCopyFromXToY(CCmdUI *pCmdUI);
 	afx_msg void OnAutoMerge();
 	afx_msg void OnUpdateAutoMerge(CCmdUI* pCmdUI);
 	afx_msg void OnImgViewDifferences();
@@ -199,6 +225,10 @@ private:
 	afx_msg void OnUpdateImgPrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgNextPage();
 	afx_msg void OnUpdateImgNextPage(CCmdUI* pCmdUI);
+	afx_msg void OnImgCurPaneRotateRight90();
+	afx_msg void OnImgCurPaneRotateLeft90();
+	afx_msg void OnImgCurPaneFlipVertically();
+	afx_msg void OnImgCurPaneFlipHorizontally();
 	afx_msg void OnImgCurPanePrevPage();
 	afx_msg void OnUpdateImgCurPanePrevPage(CCmdUI* pCmdUI);
 	afx_msg void OnImgCurPaneNextPage();
@@ -207,6 +237,7 @@ private:
 	afx_msg void OnImgVectorImageScaling(UINT nId);
 	afx_msg void OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
+	afx_msg void OnImgCompareExtractedText();
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);

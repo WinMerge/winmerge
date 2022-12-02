@@ -346,6 +346,8 @@ LRESULT CALLBACK
 CMoveConstraint::ConstraintWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 	void * data = GetProp(hwnd, _T("CMoveConstraintData"));
+	if (!data)
+		return DefWindowProc(hwnd, msg, wParam, lParam);
 	CMoveConstraint * constraint = reinterpret_cast<CMoveConstraint *>(data);
 
 	LRESULT lresult;
@@ -360,10 +362,19 @@ CMoveConstraint::SubclassWnd()
 	void * data = reinterpret_cast<void *>(this);
 	// this will return false if this window/wndproc combination has already
 	// been established (subclassed)
-	m_bSubclassed = true;
 	m_oldWndProc = reinterpret_cast<WNDPROC>(GetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC));
-	SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(CMoveConstraint::ConstraintWndProc));
-	SetProp(m_hwndDlg, _T("CMoveConstraintData"), data);
+	if (SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(CMoveConstraint::ConstraintWndProc)) != 0)
+	{
+		if (SetProp(m_hwndDlg, _T("CMoveConstraintData"), data))
+		{
+			m_bSubclassed = true;
+		}
+		else
+		{
+			SetWindowLongPtr(m_hwndDlg, GWLP_WNDPROC, (__int3264)(LONG_PTR)(m_oldWndProc));
+			m_oldWndProc = nullptr;
+		}
+	}
 	return m_bSubclassed;
 }
 bool

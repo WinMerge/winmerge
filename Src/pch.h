@@ -14,4 +14,3 @@
 #include <functional>
 #include <cassert>
 #include <ctime>
-#include <tchar.h>

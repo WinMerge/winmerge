@@ -16,9 +16,10 @@ Filters=Фильтры
 Plugins=Плагины
 Frhed=Frhed(Бесплатный HEX редактор)
 WinIMerge=WinIMerge(Image Diff/Merge)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Поддержка архивов
 ShellExtension32bit=32-битное расширение оболочки WinMerge
-Patch=GnuWin32 патч для Windows
+Commands=GnuWin32 патч для Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Языки интерфейса (меню и диалоги)
@@ -28,6 +29,7 @@ BulgarianLanguage=Болгарский
 CatalanLanguage=Каталанский
 ChineseSimplifiedLanguage=Китайский (упрощенный)
 ChineseTraditionalLanguage=Китайский (традиционный)
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Хорватский
 CzechLanguage=Чешский
 DanishLanguage=Датский
@@ -63,7 +65,6 @@ ExplorerContextMenu=&Enable Explorer context menu integration
 IntegrateTortoiseCVS=Integrate with &TortoiseCVS
 IntegrateTortoiseGit=Integrate with To&rtoiseGit
 IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
 AddToPath=&Add WinMerge folder to your system path
 
 ; 3-way merge wizard page

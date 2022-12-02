@@ -2,7 +2,7 @@ set workdir=BuildTmp\Src
 if "%1" == "vs2017" (
   set vsversion=vs2017
 ) else (
-  set vsversion=vs2019x64_vs2017Win32
+  set vsversion=vs2022x64_vs2017Win32
 )
 
 pushd "%~dp0"
@@ -39,6 +39,10 @@ for /d %%d in (Build\Release\?.*.*) do (
 for /d %%d in (Build\x64\Release\?.*.*) do (
   mkdir ..\..\Build\Releases\PDB\%%~nxd\x64 2> NUL
   xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\x64\
+)
+for /d %%d in (Build\ARM64\Release\?.*.*) do (
+  mkdir ..\..\Build\Releases\PDB\%%~nxd\ARM64 2> NUL
+  xcopy /y /s %%d ..\..\Build\Releases\PDB\%%~nxd\ARM64\
 )
 popd
 

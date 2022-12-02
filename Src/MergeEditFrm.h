@@ -33,7 +33,6 @@ public:
 // Operations
 public:
 	void UpdateResources();
-	void CloseNow();
 	IHeaderBar * GetHeaderInterface();
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 
@@ -56,6 +55,7 @@ public:
 	//{{AFX_VIRTUAL(CMergeEditFrame)
 	public:
 	virtual BOOL OnCreateClient(LPCREATESTRUCT lpcs, CCreateContext* pContext);
+	virtual BOOL OnBarCheck(UINT nID);
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
 	protected:

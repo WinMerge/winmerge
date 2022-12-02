@@ -16,9 +16,10 @@ Filters=フィルタ
 Plugins=プラグイン
 Frhed=Frhed(Free hex editor)
 WinIMerge=WinIMerge(Image Diff/Merge)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=言語
@@ -28,6 +29,7 @@ BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
 ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
 ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Czech menus and dialogs
 DanishLanguage=Danish menus and dialogs
@@ -63,7 +65,6 @@ ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
 IntegrateTortoiseGit=TortoiseGitとの連携(&R)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
-IntegrateClearCase=Rational ClearCaseとの連携(&C)
 AddToPath=システム環境変数PATHへWinMergeのフォルダを追加する(&A)
 
 ; 3-way merge wizard page

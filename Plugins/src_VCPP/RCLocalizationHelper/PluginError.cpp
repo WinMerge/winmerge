@@ -9,8 +9,6 @@
  * when Plugin Errors are implemented.
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #include "StdAfx.h"
 #include <stdio.h>

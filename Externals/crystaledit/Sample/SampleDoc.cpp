@@ -49,7 +49,7 @@ CSampleDoc::CSampleDoc()
 	m_pMarkers = new CCrystalTextMarkers();
 	m_pMarkers->LoadFromRegistry();
 #ifdef _WIN64
-	CCrystalTextView::SetRenderingModeDefault(CCrystalTextView::RENDERING_MODE_DWRITE_NATURAL_SYMMETRIC);
+	CCrystalTextView::SetRenderingModeDefault(CCrystalTextView::RENDERING_MODE::DWRITE_NATURAL_SYMMETRIC);
 #endif
 }
 

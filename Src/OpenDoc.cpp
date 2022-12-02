@@ -12,11 +12,18 @@
 
 IMPLEMENT_DYNCREATE(COpenDoc, CDocument)
 
-COpenDoc::COpenDoc() :
-	m_bRecurse(false)
-,	m_dwFlags()
-,	m_infoHandler{}
+COpenDoc::COpenDoc()
+	: m_bRecurse(false)
+	, m_dwFlags()
+	, m_nWindowType(-1)
+	, m_cTableDelimiter(',')
+	, m_cTableQuote('\"')
+	, m_bTableAllowNewLinesInQuotes(false)
 {
+	PackingInfo infoUnpacker;
+	PrediffingInfo infoPrediffer;
+	m_strUnpackerPipeline = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? infoUnpacker.GetPluginPipeline() : _T("");
+	m_strPredifferPipeline = GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED) ? infoPrediffer.GetPluginPipeline() : _T("");
 }
 
 BOOL COpenDoc::OnNewDocument()

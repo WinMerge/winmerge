@@ -6,6 +6,7 @@
 
 #include "StdAfx.h"
 #include "MDITabBar.h"
+#include "IMDITab.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -46,9 +47,26 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 
 	OnDpiChangedBeforeParent(0, 0);
 
+	m_tooltips.Create(m_pMainFrame, TTS_NOPREFIX);
+	m_tooltips.AddTool(this, _T(""));
+
 	return TRUE;
 }
 
+
+/**
+ * @brief Called before messages are translated.
+ * Passes a mouse message to the ToolTip control for processing.
+ * @param [in] pMsg Points to an MSG structure that contains the message to be chcecked
+ */
+BOOL CMDITabBar::PreTranslateMessage(MSG* pMsg)
+{
+	if (pMsg->message == WM_MOUSEMOVE)
+		m_tooltips.RelayEvent(pMsg);
+
+	// Call the parent method.
+	return CControlBar::PreTranslateMessage(pMsg);
+}
 
 /** 
  * @brief This method calculates the horizontal size of a control bar.
@@ -67,6 +85,14 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	return CSize(SHRT_MAX, tm.tmHeight + 10);
 }
 
+static COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio)
+{
+	const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
+	const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
+	const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
+	return RGB(R, G, B);
+}
+
 void CMDITabBar::OnPaint() 
 {
 	CPaintDC dc(this);
@@ -79,6 +105,7 @@ void CMDITabBar::OnPaint()
 	for (int i = GetItemCount() - 1; i >= 0; --i)
 	{
 		GetItemRect(i, &dis.rcItem);
+		RECT rcItem = dis.rcItem;
 		dis.itemID = i;
 		if (i != nCurSel)
 		{
@@ -96,8 +123,31 @@ void CMDITabBar::OnPaint()
 			dis.rcItem.top -= 2;
 		}
 		DrawItem(&dis);
-		dc.FillSolidRect(CRect(dis.rcItem.right - 1, dis.rcItem.top, dis.rcItem.right, dis.rcItem.bottom + 2),
-			GetSysColor(COLOR_3DLIGHT));
+		if (i == nCurSel)
+		{
+			for (int x = 0; x < 6; x++)
+			{
+				COLORREF clr = GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
+					1.0f - sqrtf(1.0f - powf(x / 6.0f - 1.0f, 2.0f)));
+				dc.FillSolidRect(CRect(rcItem.right - 1 + x, rcItem.top - 2, rcItem.right + x, rcItem.bottom + 4),
+					clr);
+			}
+		}
+		else if (i == nCurSel - 1)
+		{
+			for (int x = 0; x < 4; x++)
+			{
+				COLORREF clr = GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
+					1.0f - sqrtf(1.0f - powf(x / 4.0f - 1.0f, 2.0f)));
+				dc.FillSolidRect(CRect(rcItem.right - 1 - x, rcItem.top - 2, rcItem.right - x, rcItem.bottom + 4),
+					clr);
+			}
+		}
+		else
+		{
+			dc.FillSolidRect(CRect(rcItem.right - 1, rcItem.top - 2, rcItem.right, rcItem.bottom + 4),
+				GetSysColor(COLOR_3DLIGHT));
+		}
 	}
 }
 
@@ -145,12 +195,17 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	if (!pPopup->GetMenuItemInfo(ID_CLOSE_OTHER_TABS, &mii, FALSE))
 	{
 		pPopup->AppendMenu(MF_SEPARATOR, 0, _T(""));
-		pPopup->AppendMenu(MF_STRING, ID_TABBAR_AUTO_MAXWIDTH, _("Enable &Auto Max Width").c_str());
+		pPopup->AppendMenu(MF_STRING, ID_TABBAR_AUTO_MAXWIDTH, _T(""));
 		pPopup->AppendMenu(MF_SEPARATOR, 0, _T(""));
-		pPopup->AppendMenu(MF_STRING, ID_CLOSE_OTHER_TABS, _("Close &Other Tabs").c_str());
-		pPopup->AppendMenu(MF_STRING, ID_CLOSE_RIGHT_TABS, _("Close R&ight Tabs").c_str());
-		pPopup->AppendMenu(MF_STRING, ID_CLOSE_LEFT_TABS, _("Close &Left Tabs").c_str());
+		pPopup->AppendMenu(MF_STRING, ID_CLOSE_OTHER_TABS, _T(""));
+		pPopup->AppendMenu(MF_STRING, ID_CLOSE_RIGHT_TABS, _T(""));
+		pPopup->AppendMenu(MF_STRING, ID_CLOSE_LEFT_TABS, _T(""));
 	}
+	pPopup->ModifyMenu(ID_TABBAR_AUTO_MAXWIDTH, MF_BYCOMMAND, ID_TABBAR_AUTO_MAXWIDTH, _("Enable &Auto Max Width").c_str());
+	pPopup->ModifyMenu(ID_CLOSE_OTHER_TABS, MF_BYCOMMAND, ID_CLOSE_OTHER_TABS, _("Close &Other Tabs").c_str());
+	pPopup->ModifyMenu(ID_CLOSE_RIGHT_TABS, MF_BYCOMMAND, ID_CLOSE_RIGHT_TABS, _("Close R&ight Tabs").c_str());
+	pPopup->ModifyMenu(ID_CLOSE_LEFT_TABS, MF_BYCOMMAND, ID_CLOSE_LEFT_TABS, _("Close &Left Tabs").c_str());
+
 	pPopup->CheckMenuItem(ID_TABBAR_AUTO_MAXWIDTH, m_bAutoMaxWidth ? MF_CHECKED : MF_UNCHECKED);
 	// invoke context menu
 	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y,
@@ -241,6 +296,9 @@ void CMDITabBar::UpdateTabs()
 		if (strTitle.GetLength() > nMaxTitleLength)
 			strTitle = strTitle.Left(nMaxTitleLength - 3) + _T("...");
 
+		// Escape the '&' to prevent it from being removed and underlining the next character in the string.
+		strTitle.Replace(_T("&"), _T("&&"));
+
 		if (item == -1)
 		{
 			tci.mask = TCIF_PARAM | TCIF_TEXT;
@@ -281,6 +339,8 @@ void CMDITabBar::UpdateTabs()
 				m_pMainFrame->RecalcLayout();
 		}
 	}
+
+	m_nTooltipTabItemIndex = -1;
 }
 
 LRESULT CMDITabBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
@@ -408,6 +468,9 @@ void CMDITabBar::OnMouseMove(UINT nFlags, CPoint point)
 			Invalidate();
 		}
 	}
+
+	if (nTabItemIndex != m_nTooltipTabItemIndex)
+		UpdateToolTips(nTabItemIndex);
 }
 
 void CMDITabBar::OnMouseLeave()
@@ -498,4 +561,71 @@ void CMDITabBar::SwapTabs(int nIndexA, int nIndexB)
 		SetCurSel(nIndexB);
 	if (nCurSel == nIndexB)
 		SetCurSel(nIndexA);
+}
+
+/**
+ * @brief Get the maximum length of the title.
+ */
+int CMDITabBar::GetMaxTitleLength() const
+{
+	int nMaxTitleLength = m_bAutoMaxWidth ? static_cast<int>(MDITABBAR_MAXTITLELENGTH - (GetItemCount() - 1) * 6) : MDITABBAR_MAXTITLELENGTH;
+	if (nMaxTitleLength < MDITABBAR_MINTITLELENGTH)
+		nMaxTitleLength = MDITABBAR_MINTITLELENGTH;
+
+	return nMaxTitleLength;
+}
+
+/**
+ * @brief Update tooltip text.
+ * @param [in] nTabItemIndex Index of the tab displaying tooltip.
+ */
+void CMDITabBar::UpdateToolTips(int nTabItemIndex)
+{
+	TC_ITEM tci;
+	tci.mask = TCIF_PARAM;
+	GetItem(nTabItemIndex, &tci);
+
+	if (!m_pMainFrame)
+		return;
+	CMDIChildWnd* pActiveWnd = m_pMainFrame->MDIGetActive();
+	if (!pActiveWnd)
+		return;
+	CWnd* pParentWnd = pActiveWnd->GetParent();
+	if (!pParentWnd)
+		return;
+
+	for (CWnd* pFrame = pParentWnd->GetTopWindow(); pFrame; pFrame = pFrame->GetNextWindow())
+		if (reinterpret_cast<HWND>(tci.lParam) == pFrame->m_hWnd)
+		{
+			HWND hFrameWnd = pFrame->m_hWnd;
+			CString strTitle, strTooltip;
+			CFrameWnd* pFrameWnd = (CFrameWnd*)FromHandle(hFrameWnd);
+			CDocument* pDoc = pFrameWnd->GetActiveDocument();
+			IMDITab* pITabBar = nullptr;
+			if (pDoc != nullptr)
+			{
+				strTitle = pDoc->GetTitle();
+				pITabBar = dynamic_cast<IMDITab*>(pDoc);
+			}
+			else
+			{
+				pFrameWnd->GetWindowText(strTitle);
+				pITabBar = dynamic_cast<IMDITab*>(pFrameWnd);
+			}
+			strTooltip = pITabBar ? pITabBar->GetTooltipString() : _T("");
+
+			if (strTooltip == strTitle && strTitle.GetLength() <= GetMaxTitleLength())
+				strTooltip.Empty();
+
+			constexpr size_t MAX_TIP_TEXT_LENGTH = 1024;
+			if (strTooltip.GetLength() > MAX_TIP_TEXT_LENGTH)
+				strTooltip.Truncate(MAX_TIP_TEXT_LENGTH);
+
+			m_tooltips.UpdateTipText(strTooltip, this);
+			CRect rc;
+			GetClientRect(&rc);
+			m_tooltips.SetMaxTipWidth(rc.Width() * 60 / 100);
+			m_nTooltipTabItemIndex = nTabItemIndex;
+			return;
+		}
 }

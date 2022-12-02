@@ -175,7 +175,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 	paths::SplitFilename(szFilepath, nullptr, &fileName, nullptr);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
-	pfilter->name = fileName; // Filename is the default name
+	pfilter->name = std::move(fileName); // Filename is the default name
 
 	String sLine;
 	bool lossy = false;
@@ -185,7 +185,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		// Returns false when last line is read
 		String tmpLine;
 		bLinesLeft = file.ReadString(tmpLine, &lossy);
-		sLine = tmpLine;
+		sLine = std::move(tmpLine);
 		sLine = strutils::trim_ws(sLine);
 
 		if (0 == sLine.compare(0, 5, _T("name:"), 5))
@@ -194,7 +194,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(5);
 			str = strutils::trim_ws_begin(str);
 			if (!str.empty())
-				pfilter->name = str;
+				pfilter->name = std::move(str);
 		}
 		else if (0 == sLine.compare(0, 5, _T("desc:"), 5))
 		{
@@ -202,7 +202,7 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(5);
 			str = strutils::trim_ws_begin(str);
 			if (!str.empty())
-				pfilter->description = str;
+				pfilter->description = std::move(str);
 		}
 		else if (0 == sLine.compare(0, 4, _T("def:"), 4))
 		{
@@ -226,6 +226,18 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 			String str = sLine.substr(2);
 			AddFilterPattern(&pfilter->dirfilters, str);
 		}
+		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
+		{
+			// file filter
+			String str = sLine.substr(3);
+			AddFilterPattern(&pfilter->filefiltersExclude, str);
+		}
+		else if (0 == sLine.compare(0, 3, _T("d!:"), 3))
+		{
+			// directory filter
+			String str = sLine.substr(3);
+			AddFilterPattern(&pfilter->dirfiltersExclude, str);
+		}
 	} while (bLinesLeft);
 
 	return pfilter;
@@ -248,6 +260,20 @@ FileFilter * FileFilterMgr::GetFilterByPath(const String& szFilterPath)
 		++iter;
 	}
 	return 0;
+}
+
+/**
+ * @brief Give client back a pointer to the actual filter.
+ *
+ * @param [in] i Index of filter.
+ * @return Pointer to filefilter in given index or `nullptr`.
+ */
+FileFilter * FileFilterMgr::GetFilterByIndex(int i)
+{
+	if (i < 0 || i >= m_filters.size())
+		return nullptr;
+
+	return m_filters[i].get();
 }
 
 /**
@@ -301,7 +327,10 @@ bool FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 	if (pFilter == nullptr)
 		return true;
 	if (TestAgainstRegList(&pFilter->filefilters, szFileName))
-		return !pFilter->default_include;
+	{
+		if (pFilter->filefiltersExclude.empty() || !TestAgainstRegList(&pFilter->filefiltersExclude, szFileName))
+			return !pFilter->default_include;
+	}
 	return pFilter->default_include;
 }
 
@@ -322,7 +351,10 @@ bool FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 	if (pFilter == nullptr)
 		return true;
 	if (TestAgainstRegList(&pFilter->dirfilters, szDirName))
-		return !pFilter->default_include;
+	{
+		if (pFilter->dirfiltersExclude.empty() || !TestAgainstRegList(&pFilter->dirfiltersExclude, szDirName))
+			return !pFilter->default_include;
+	}
 	return pFilter->default_include;
 }
 
@@ -376,4 +408,26 @@ int FileFilterMgr::ReloadFilterFromDisk(const String& szFullPath)
 	else
 		errorcode = FILTER_NOTFOUND;
 	return errorcode;
+}
+
+/**
+ * @brief Clone file filter manager from another file filter Manager.
+ * This function clones file filter manager from another file filter manager.
+ * Current contents in the file filter manager are removed and new contents added from the given file filter manager.
+ * @param [in] fileFilterManager File filter manager to clone.
+ */
+void FileFilterMgr::CloneFrom(const FileFilterMgr* fileFilterMgr)
+{
+	if (!fileFilterMgr)
+		return;
+
+	m_filters.clear();
+
+	size_t count = fileFilterMgr->m_filters.size();
+	for (size_t i = 0; i < count; i++)
+	{
+		auto ptr = std::make_shared<FileFilter>(FileFilter());
+		ptr->CloneFrom(fileFilterMgr->m_filters[i].get());
+		m_filters.push_back(ptr);
+	}
 }

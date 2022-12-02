@@ -22,10 +22,10 @@ class PrediffingInfo;
 struct DiffFileData;
 class PathContext;
 struct file_data;
-class FilterCommentsManager;
-struct FilterCommentsSet;
 class MovedLines;
 class FilterList;
+class SubstitutionList;
+namespace CrystalLineParser { struct TextDefinition; };
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -104,13 +104,13 @@ struct PATCHOPTIONS
 	bool bAddCommandline; /**< Add diff-style commandline to patch file. */
 };
 
-typedef enum {
-	IDENTLEVEL_ALL,
-	IDENTLEVEL_NONE,
-	IDENTLEVEL_EXCEPTLEFT,
-	IDENTLEVEL_EXCEPTMIDDLE,
-	IDENTLEVEL_EXCEPTRIGHT,
-} IDENTLEVEL;
+enum class IDENTLEVEL {
+	ALL,
+	NONE,
+	EXCEPTLEFT,
+	EXCEPTMIDDLE,
+	EXCEPTRIGHT,
+};
 /**
  * @brief Diffutils returns this statusdata about files compared
  */
@@ -118,19 +118,19 @@ struct DIFFSTATUS
 {
 	bool bMissingNL[3] {}; /**< file is missing EOL before EOF */
 	bool bBinaries = false; /**< Files are binaries */
-	IDENTLEVEL Identical = IDENTLEVEL_NONE; /**< diffutils said files are identical */
+	IDENTLEVEL Identical = IDENTLEVEL::NONE; /**< diffutils said files are identical */
 	bool bPatchFileFailed = false; /**< Creating patch file failed */
 
-	DIFFSTATUS() {}
+	DIFFSTATUS() = default;
 	void MergeStatus(const DIFFSTATUS& other)
 	{
-		if (Identical == IDENTLEVEL_ALL)
+		if (Identical == IDENTLEVEL::ALL)
 			Identical = other.Identical;
 		else if (
-			 (Identical == IDENTLEVEL_EXCEPTLEFT   && other.Identical != IDENTLEVEL_EXCEPTLEFT) ||
-			 (Identical == IDENTLEVEL_EXCEPTRIGHT  && other.Identical != IDENTLEVEL_EXCEPTRIGHT) ||
-			 (Identical == IDENTLEVEL_EXCEPTMIDDLE && other.Identical != IDENTLEVEL_EXCEPTMIDDLE))
-			Identical = IDENTLEVEL_NONE;
+			 (Identical == IDENTLEVEL::EXCEPTLEFT   && other.Identical != IDENTLEVEL::EXCEPTLEFT) ||
+			 (Identical == IDENTLEVEL::EXCEPTRIGHT  && other.Identical != IDENTLEVEL::EXCEPTRIGHT) ||
+			 (Identical == IDENTLEVEL::EXCEPTMIDDLE && other.Identical != IDENTLEVEL::EXCEPTMIDDLE))
+			Identical = IDENTLEVEL::NONE;
 		if (other.bPatchFileFailed)
 			bPatchFileFailed = true;
 		if (other.bBinaries)
@@ -139,7 +139,13 @@ struct DIFFSTATUS
 	}
 };
 
-class FilterCommentsManager;
+struct PostFilterContext
+{
+	int nParsedLineEndLeft = -1;
+	int nParsedLineEndRight = -1;
+	unsigned dwCookieLeft = 0;
+	unsigned dwCookieRight = 0;
+};
 
 /**
  * @brief Wrapper class for diffengine (diffutils and ByteComparator).
@@ -178,18 +184,13 @@ public:
 	void WritePatchFileTerminator(enum output_style output_style);
 	void SetFilterList(const String& filterStr);
 	void SetFilterList(const FilterList *pFilterList);
-	void SetFilterCommentsManager(const FilterCommentsManager *pFilterCommentsManager) { m_pFilterCommentsManager = pFilterCommentsManager; };
+	const SubstitutionList* GetSubstitutionList() const;
+	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
+	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
+	void SetFilterCommentsSourceDef(const String& ext);
 	void EnablePlugins(bool enable);
-	bool IsTrivialBytes(const char* Start, const char* End,
-		const FilterCommentsSet& filtercommentsset) const;
-	bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
-	   const char * EndOfComment, const char * InLineComment,
-	   const FilterCommentsSet& filtercommentsset) const;
-	bool PostFilter(int StartPos, int EndPos, int Direction,
-		int QtyLinesInBlock, OP_TYPE &Op, const file_data *pinf,
-		FilterCommentsSet& filtercommentsset) const;
-	void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const String& FileNameExt, const file_data *file_data_ary) const;
+	void PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+		int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const;
 
 protected:
 	String FormatSwitchString() const;
@@ -208,6 +209,8 @@ private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	std::unique_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
+	std::shared_ptr<SubstitutionList> m_pSubstitutionList;
+
 	PathContext m_files; /**< Full path to diff'ed file. */
 	PathContext m_alternativePaths; /**< file's alternative path (may be relative). */
 	PathContext m_originalFile; /**< file's original (NON-TEMP) path. */
@@ -225,7 +228,7 @@ private:
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
-	const FilterCommentsManager* m_pFilterCommentsManager; /**< Comments filtering manager */
+	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
 

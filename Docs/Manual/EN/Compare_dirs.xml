@@ -176,6 +176,7 @@ I get the partial list, but no Abort indicator.--></para>
                          fileref="screenshots/foldercomp1.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
         </listitem>
       </varlistentry>
 
@@ -195,6 +196,7 @@ I get the partial list, but no Abort indicator.--></para>
                          fileref="screenshots/treeview-01.png" format="PNG" />
             </imageobject>
           </mediaobject>
+          <para></para>
 
           <itemizedlist>
             <listitem>
@@ -273,7 +275,8 @@ I get the partial list, but no Abort indicator.--></para>
             see an item's subfolder, look at its path in the Compare result
             column. Folders that exist on only one side are displayed if one of
             the <guimenu>View</guimenu> menu options, <guimenuitem>Show Left
-            Unique Files</guimenuitem> or <guimenuitem>Show Left Unique
+            Unique Files</guimenuitem>, <guimenuitem>Show Middle Unique Files
+            </guimenuitem> or <guimenuitem>Show Right Unique
             Files</guimenuitem>, is enabled.</para>
           </listitem>
         </varlistentry>
@@ -297,9 +300,9 @@ I get the partial list, but no Abort indicator.--></para>
           <secondary>Folder Compare window</secondary>
         </indexterm></title>
 
-      <para>In the Compare Folders window, files and folders are compared and
+      <para>In the Folder Compare window, files and folders are compared and
       divided into several categories. In each row, the category is clearly
-      identified in the left column with one of these icons :</para>
+      identified in the left column with one of these icons:</para>
 
       <simplelist>
         <member><inlinemediaobject>
@@ -367,6 +370,13 @@ I get the partial list, but no Abort indicator.--></para>
 
         <member><inlinemediaobject>
             <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/mfolder.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Middle-only folders</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
               <imagedata contentwidth="16" fileref="screenshots/rfolder.png"
                          format="PNG" />
             </imageobject>
@@ -378,6 +388,13 @@ I get the partial list, but no Abort indicator.--></para>
                          format="PNG" />
             </imageobject>
           </inlinemediaobject> Left-only files</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata contentwidth="16" fileref="screenshots/mfile.png"
+                         format="PNG" />
+            </imageobject>
+          </inlinemediaobject> Middle-only files</member>
 
         <member><inlinemediaobject>
             <imageobject>
@@ -532,6 +549,21 @@ I get the partial list, but no Abort indicator.--></para>
             <guibutton>OK</guibutton>.</para>
           </listitem>
         </itemizedlist>
+        <para>In the Folder Compare window with three folders, the
+        <guimenuitem>Copy</guimenuitem> item has a submenu with nine
+        shortcuts:</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata contentwidth="410"
+                       fileref="screenshots/ctx_menu_copy2.png" format="PNG" />
+          </imageobject>
+
+          <textobject>
+            <phrase>Folder Compare window Copy context menu</phrase>
+          </textobject>
+        </mediaobject>
+
       </section>
 
       <section>
@@ -584,10 +616,11 @@ I get the partial list, but no Abort indicator.--></para>
         </indexterm></title>
 
       <para>You can use the <guimenuitem>Delete</guimenuitem> context menu item
-      to delete selected items in either or both sides. Like other file
+      to delete selected items in either or all sides. Like other file
       operations, <guimenuitem>Delete</guimenuitem> has a submenu with
-      <guimenuitem>Left</guimenuitem>, <guimenuitem>Right</guimenuitem>, and
-      <guimenuitem>Both</guimenuitem> shortcuts.</para>
+      <guimenuitem>Left</guimenuitem>, <guimenuitem>Middle</guimenuitem>,
+      <guimenuitem>Right</guimenuitem>, and <guimenuitem>All</guimenuitem>
+      shortcuts.</para>
 
       <warning>
         <para>We highly recommend that you keep the <guilabel>Send deleted files
@@ -610,9 +643,9 @@ I get the partial list, but no Abort indicator.--></para>
 
       <para>To rename a file or folder, choose <guimenuitem>Rename</guimenuitem>
       in its context menu or press <keycap>F2</keycap>. Then change the name in
-      the edit box and press <keycap>Return</keycap>, or press
+      the edit box and press <keycap>Enter</keycap>, or press
       <keycap>Esc</keycap> to cancel. You can only rename a single file or
-      folder. Note that renaming changes items in both sides: it is not
+      folder. Note that renaming changes items in both or all three sides: it is not
       currently possible to rename an item on just one side.</para>
     </section>
 
@@ -623,14 +656,15 @@ I get the partial list, but no Abort indicator.--></para>
           <secondary>in Folder Compare window</secondary>
         </indexterm></title>
 
-      <para>In the context menu, you can use either <guimenuitem>Open
-      Left</guimenuitem> and <guimenuitem>Open Right</guimenuitem>, depending on
-      which side you want to operate on. Each <guimenuitem>Open</guimenuitem>
-      menu item has a submenu with these shortcuts:</para>
+      <para>In the context menu, you can use <guimenuitem>Open
+      Left</guimenuitem>, <guimenuitem>Open Middle</guimenuitem> or
+      <guimenuitem>Open Right</guimenuitem>, depending on which side you want to
+      operate on. Each <guimenuitem>Open</guimenuitem> menu item has a submenu
+      with these shortcuts:</para>
 
       <variablelist>
         <varlistentry>
-          <term><guimenuitem>with Registered Application</guimenuitem></term>
+          <term>With Registered Application</term>
 
           <listitem>
             <para>Opens the file with the application (if any) that is
@@ -640,11 +674,12 @@ I get the partial list, but no Abort indicator.--></para>
               <para>This shortcut usually opens a folder in a new Windows
               Explorer.</para>
             </tip>
+            <para></para>
           </listitem>
         </varlistentry>
 
         <varlistentry>
-          <term>with External Editor</term>
+          <term>With External Editor</term>
 
           <listitem>
             <para>Opens the file with an external editor. The default editor is
@@ -654,7 +689,7 @@ I get the partial list, but no Abort indicator.--></para>
         </varlistentry>
 
         <varlistentry>
-          <term><guimenuitem>with...</guimenuitem></term>
+          <term>With...</term>
 
           <listitem>
             <para>Opens the <guilabel>Open With</guilabel> dialog, where you can
@@ -714,6 +749,10 @@ I get the partial list, but no Abort indicator.--></para>
           <guimenu>File</guimenu>
 
           <guimenuitem>Left Read-only</guimenuitem>
+        </menuchoice>, <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Middle Read-only</guimenuitem>
         </menuchoice> or <menuchoice>
           <guimenu>File</guimenu>
 
@@ -732,7 +771,7 @@ I get the partial list, but no Abort indicator.--></para>
       protected side is write-protected. Similarly, you cannot copy a file from
       the unprotected side to the protected side.</para>
 
-      <para>The <guilabel>RO</guilabel> code in the left or right side's pane in
+      <para>The <guilabel>RO</guilabel> code in the left side's, middle or right side's pane in
       the status bar (near the bottom right of the window) indicates that the
       side is currently read-only.</para>
     </section>
@@ -768,7 +807,7 @@ I get the partial list, but no Abort indicator.--></para>
         7-Zip plugin.</para>
       </note>
 
-      <para>The Zip menu item has a submenu with four shortcuts:</para>
+      <para>The <guimenu>Zip</guimenu> menu item has a submenu with five shortcuts:</para>
 
       <variablelist>
         <varlistentry>
@@ -776,6 +815,15 @@ I get the partial list, but no Abort indicator.--></para>
 
           <listitem>
             <para>Adds left-side files and folders recursively to the archive
+            file</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Middle</term>
+
+          <listitem>
+            <para>Adds middle files and folders recursively to the archive
             file</para>
           </listitem>
         </varlistentry>
@@ -794,6 +842,21 @@ I get the partial list, but no Abort indicator.--></para>
 
           <listitem>
             <para>Adds files and folders recursively from both sides to the
+            archive file. Because the filenames are same, they are added to
+            different subfolders, named <filename
+            class="directory">Original</filename> and <filename
+            class="directory">Altered</filename>, inside the archive: left-side
+            files are put to <filename class="directory">Original</filename>,
+            and right-side files are put into <filename
+            class="directory">Altered</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>All</term>
+
+          <listitem>
+            <para>Adds files and folders recursively from all sides to the
             archive file. Because the filenames are same, they are added to
             different subfolders, named <filename
             class="directory">Original</filename> and <filename
@@ -855,7 +918,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       </indexterm></title>
 
     <para>This section discusses ways to browse folders that are listed in a
-    Compare Folder window. When you browse a folder, you perform a completely
+    Folder Compare window. When you browse a folder, you perform a completely
     new compare operation. Its result overwrites the current result in the
     window.</para>
 
@@ -908,11 +971,12 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <variablelist>
         <varlistentry>
-          <term>Browsing a single subfolder that exists on both sides</term>
+          <term>Browsing a single subfolder that exists on both or all three
+          sides</term>
 
           <listitem>
-            <para>To compare a single subfolder that exists on both sides,
-            double-click the folder in the folder compare window.</para>
+            <para>To compare a single subfolder that exists on both or all three
+            sides, double-click the folder in the folder compare window.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -922,10 +986,10 @@ added/deleted/copied. User can create a new archive file using above menuitems i
           <term>Browsing a single subfolder that exists only one side</term>
 
           <listitem>
-            <para>If you browse to a subfolder that exists only the left or
-            right side, WinMerge can create a new, matching folder on the other
-            side. See <xref linkend="CompareDirs_browse_unique" /> for
-            details.</para>
+            <para>If you browse to a subfolder that exists only one side,
+            WinMerge can create a new, matching folder on the other side
+            respective both other sides. See
+           <xref linkend="CompareDirs_browse_unique" /> for details.</para>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -953,6 +1017,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
                 <phrase>Folder Compare window, two folders selected</phrase>
               </textobject>
             </mediaobject>
+            <para></para>
 
             <para>The order of selection is significant: the folder you select
             first is the left folder in the result; the second selected folder
@@ -969,7 +1034,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
               <para>Again, the <guimenuitem>Compare</guimenuitem> operation is
               available only when the current left and right folder paths are
               identical in the Folder Compare window, as shown in the preceding
-              screen shot. For example, it is not available if the current
+              screenshot. For example, it is not available if the current
               window compares two different folders.</para>
             </tip>
           </listitem>
@@ -1086,6 +1151,11 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
+          <para><guimenuitem>Show Middle Unique Items</guimenuitem>: Files and
+          directories present only in the middle</para>
+        </listitem>
+
+        <listitem>
           <para><guimenuitem>Show Right Unique Items</guimenuitem>: Files and
           directories present only in right side</para>
         </listitem>
@@ -1178,7 +1248,7 @@ added/deleted/copied. User can create a new archive file using above menuitems i
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Filename (default)</guilabel>: Name of compared item.
+          <para><guilabel>Filename</guilabel>: Name of compared item.
           In a nonrecursive compare, this column includes both files and
           folders; in a recursive compare, it does not include folders: instead,
           folders are listed in the Folder column.</para>
@@ -1197,10 +1267,10 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>Left Date</guilabel>, <guilabel>Right Date</guilabel>:
-          Modification dates of item in each side. The newer of the two dates
-          (or the date for any unique item) is prefixed with an asterisk ( *
-          ).</para>
+          <para><guilabel>Left Date</guilabel>, <guilabel>Middle
+          Date</guilabel>, <guilabel>Right Date</guilabel>: Modification dates
+          of item in each side. The newer of the two dates (or the date for any
+          unique item) is prefixed with an asterisk ( * ).</para>
         </listitem>
 
         <listitem>
@@ -1226,37 +1296,42 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>Left Attributes</guilabel>, <guilabel>Right
-          Attributes</guilabel>: Shows file attributes.</para>
+          <para><guilabel>Left Attributes</guilabel>, <guilabel>Middle
+          Attributes</guilabel>, <guilabel>Right Attributes</guilabel>: Shows
+          file attributes.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Left Creation Time</guilabel>, <guilabel>Right
-          Creation Time</guilabel>: Item creation time.</para>
+          <para><guilabel>Left Creation Time</guilabel>, <guilabel>Middle
+          Creation Time</guilabel>, <guilabel>Right Creation Time</guilabel>:
+          Item creation time.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Left Encoding</guilabel>, <guilabel>Right
-          Encoding</guilabel>: File encoding. Shows the codepage number for ANSI
-          files and Unicode encoding for Unicode files.</para>
+          <para><guilabel>Left Encoding</guilabel>, <guilabel>Middle
+          Encoding</guilabel>, <guilabel>Right Encoding</guilabel>: File
+          encoding. Shows the codepage number for ANSI files and Unicode
+          encoding for Unicode files.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Left File Version</guilabel>, <guilabel>Right File
-          Version</guilabel>: Version number from the file, if present. Note
-          that the version is read only for some binary file types known to
-          usually have a version resource.</para>
+          <para><guilabel>Left File Version</guilabel>, <guilabel>Middle File
+          Version</guilabel>, <guilabel>Right File Version</guilabel>: Version
+          number from the file, if present. Note that the version is read only
+          for some binary file types known to usually have a version
+          resource.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Left Size</guilabel>, <guilabel>Right Size</guilabel>:
-          File size in bytes.</para>
+          <para><guilabel>Left Size</guilabel>, <guilabel>Middle
+          Size</guilabel>, <guilabel>Right Size</guilabel>: File size in
+          bytes.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>Left Size (Short)</guilabel>, <guilabel>Right Size
-          (Short)</guilabel>: Shorter versions of file sizes, rounded to KB, MB,
-          or GB.</para>
+          <para><guilabel>Left Size (Short)</guilabel>, <guilabel>Middle Size
+          (Short)</guilabel>, <guilabel>Right Size (Short)</guilabel>: Shorter
+          versions of file sizes, rounded to KB, MB, or GB.</para>
         </listitem>
 
         <listitem>
@@ -1275,8 +1350,9 @@ added/deleted/copied. User can create a new archive file using above menuitems i
         </listitem>
 
         <listitem>
-          <para><guilabel>Left EOL</guilabel>, <guilabel>Right EOL</guilabel>:
-          Shows the EOL (linefeed) style of files.</para>
+          <para><guilabel>Left EOL</guilabel>, <guilabel>Middle EOL</guilabel>,
+          <guilabel>Right EOL</guilabel>: Shows the EOL (linefeed) style of
+          files.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1311,9 +1387,11 @@ added/deleted/copied. User can create a new archive file using above menuitems i
     context menu.</para>
 
     <para>If the selection occurs on both sides, you can choose either the
-    <guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>;
-    if the item occurs only on one side, only that side's shell menu is
-    available.</para>
+    <guimenu>Left shell menu</guimenu> or <guimenu>Right shell menu</guimenu>.
+    If the selection occurs on all sides, you can choose the
+    <guimenu>Left shell menu</guimenu>, <guimenu>Middle shell menu</guimenu> or
+    <guimenu>Right shell menu</guimenu>. If the item occurs only on one side,
+    only that side's shell menu is available.</para>
 
     <caution>
       <para>Please consider that shell menu commands run entirely outside of
@@ -1325,4 +1403,5 @@ added/deleted/copied. User can create a new archive file using above menuitems i
       see the change).</para>
     </caution>
   </section>
+  <para></para>
 </article>

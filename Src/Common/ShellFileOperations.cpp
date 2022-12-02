@@ -8,7 +8,6 @@
 #include "pch.h"
 #include "ShellFileOperations.h"
 #include <windows.h>
-#include <tchar.h>
 #include <vector>
 #include <shellAPI.h>
 #pragma warning (push)			// prevent "warning C4091: 'typedef ': ignored on left of 'tagGPFIDL_FLAGS' when no variable is declared"
@@ -109,10 +108,10 @@ vector<TCHAR> ShellFileOperations::GetPathList(bool source) const
 }
 
 /**
- * @brief Calculate lenght of the C-string required for paths.
+ * @brief Calculate length of the C-string required for paths.
  * @param [in] source If true calculate source paths, else calculate
  *   destination paths.
- * @return Lenght of the string.
+ * @return Length of the string.
  */
 size_t ShellFileOperations::CountStringSize(bool source) const
 {
@@ -164,33 +163,30 @@ bool ShellFileOperations::Run()
 	if (m_function == 0)
 		return false; // Operation not set!
 
-	vector<TCHAR> destStr;
-	vector<TCHAR> sourceStr = GetPathList(true);
-	if (m_function != FO_DELETE)
-		destStr = GetPathList(false);
-
-	SHFILEOPSTRUCT fileop = {m_parentWindow, m_function, &sourceStr[0], 
-		m_function != FO_DELETE ? &destStr[0] : nullptr, m_flags, FALSE, 0, 0};
-	int ret = SHFileOperation(&fileop);
-
-	if (ret == 0x75 || fileop.fAnyOperationsAborted) // DE_OPCANCELLED
-		m_isCanceled = true;
-
-	bool anyAborted = !!fileop.fAnyOperationsAborted;
-
-	// SHFileOperation returns 0 when succeeds
-	if (ret == 0 && !anyAborted)
-		return true;
-	if (anyAborted)
-		return false;
-
-	// If SHFileOperation() function fails, file operations are performed using the IFileOperation interface.
-	// Later, make this the default if Vista or higher
 	HRESULT hr;
 	IFileOperationPtr pFileOperation;
 	if (FAILED(hr = pFileOperation.CreateInstance(CLSID_FileOperation, nullptr, CLSCTX_ALL)))
+	{
+		vector<TCHAR> destStr;
+		vector<TCHAR> sourceStr = GetPathList(true);
+		if (m_function != FO_DELETE)
+			destStr = GetPathList(false);
+
+		SHFILEOPSTRUCT fileop = {m_parentWindow, m_function, &sourceStr[0],
+			m_function != FO_DELETE ? &destStr[0] : nullptr, m_flags, FALSE, 0, 0};
+		int ret = SHFileOperation(&fileop);
+
+		if (ret == 0x75 || fileop.fAnyOperationsAborted) // DE_OPCANCELLED
+			m_isCanceled = true;
+
+		bool anyAborted = !!fileop.fAnyOperationsAborted;
+
+		// SHFileOperation returns 0 when succeeds
+		if (ret == 0 && !anyAborted)
+			return true;
 		return false;
-	
+	}
+
 	auto CreateShellItemParseDisplayName = [](const String& path, IShellItem **psi)
 	{
 		HRESULT hr;
@@ -218,7 +214,7 @@ bool ShellFileOperations::Run()
 		return hr;
 	};
 
-	pFileOperation->SetOperationFlags(m_flags);
+	pFileOperation->SetOperationFlags(m_flags & ~FOF_MULTIDESTFILES);
 
 	auto itsrc = m_sources.begin();
 	auto itdst = m_destinations.begin();

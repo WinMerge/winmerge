@@ -15,6 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#if __has_include(<Poco/RegularExpression.h>)
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
@@ -36,7 +37,7 @@ struct _RxNode {
 RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
     RxNode *n = nullptr;
     if (Regexp == nullptr) return nullptr;
-    n = new RxNode();
+    n = new(std::nothrow) RxNode();
     if (n == nullptr) return nullptr;
 
 	const char * errormsg = nullptr;
@@ -100,8 +101,19 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *
 		for (i = 0; i < result; i++)
 		{
 #ifdef UNICODE
-			Match->Open[i] = ucr::stringlen_of_utf8(compString.c_str(), ovector[i].offset);
-			Match->Close[i] = ucr::stringlen_of_utf8(compString.c_str(), ovector[i].offset + ovector[i].length);
+			std::wstring utf16str;
+            if (ovector[i].offset != -1)
+            {
+                UnicodeConverter::toUTF16(std::string(compString.c_str(), ovector[i].offset), utf16str);
+                Match->Open[i] = utf16str.length();
+                UnicodeConverter::toUTF16(std::string(compString.c_str() + ovector[i].offset, ovector[i].length), utf16str);
+                Match->Close[i] = Match->Open[i] + utf16str.length();
+            }
+            else
+            {
+                Match->Open[i] = -1;
+                Match->Close[i] = 0;
+            }
 #else
 			Match->Open[i] = ovector[i].offset;
 			Match->Close[i] = ovector[i].offset + ovector[i].length;
@@ -285,3 +297,4 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
     *Dest = dest;
     return 0;
 }
+#endif

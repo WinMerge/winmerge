@@ -4,9 +4,6 @@ Option Explicit
 '
 ' Copyright (C) 2008 by Tim Gerundt
 ' Released under the "GNU General Public License"
-'
-' ID line follows -- this is updated by SVN
-' $Id$
 
 Const ForReading = 1
 
@@ -44,6 +41,7 @@ Sub Main
   
   Set oCppIds = CreateObject("Scripting.Dictionary")
   GetIdsFromCppFiles "..\..\Src\", oCppIds
+  GetIdsFromCppFiles "..\..\Externals\crystaledit\editlib\", oCppIds
   
   Set oTxtFile = oFSO.CreateTextFile("UnusedResources.txt", True)
   
@@ -151,9 +149,9 @@ Function GetIdsFromResourceFile(ByVal sRcPath)
         sLine = ""
         'IGNORE FOR SPEEDUP!
       ElseIf (sLine <> "") Then 'If NOT empty line...
-        If (iBlockType = MENU_BLOCK) Or (iBlockType = DIALOGEX_BLOCK) Then
-          sLine = ""
-        End If
+        'If (iBlockType = MENU_BLOCK) Or (iBlockType = DIALOGEX_BLOCK) Then
+        '  sLine = ""
+        'End If
       End If
       
       sId = ""

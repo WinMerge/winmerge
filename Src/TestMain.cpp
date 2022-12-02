@@ -2,7 +2,7 @@
 #ifdef TEST_WINMERGE
 #include "TestMain.h"
 #include "OptionsMgr.h"
-#include "../../Externals/gtest/src/gtest-all.cc"
+#include "../../Externals/googletest/googletest/src/gtest-all.cc"
 
 namespace WinMergeTest
 {

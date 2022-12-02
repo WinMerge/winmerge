@@ -52,7 +52,7 @@ public:
 // Implementation
 protected:
     // implementation helpers
-    virtual void NcPaintGripper(CDC* pDC, CRect rcClient) override;
+    virtual void NcPaintGripper(CDC* pDC, const CRect& rcClient) override;
 
 protected:
     bool    m_bActive; // a child has focus

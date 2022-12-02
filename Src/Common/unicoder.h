@@ -31,7 +31,12 @@ enum
 {
 	CP_UTF_8  = 65001,
 	CP_UCS2LE = 1200,
-	CP_UCS2BE = 1201
+	CP_UCS2BE = 1201,
+#ifdef _UNICODE
+	CP_TCHAR = CP_UCS2LE
+#else
+	CP_TCHAR = 0
+#endif
 };
 
 /** @brief Known Unicode encodings. */
@@ -93,7 +98,17 @@ void dealloc(void *ptr);
 String toTString(const std::wstring& str);
 String toTString(const std::string& str);
 void toUTF16(const String& tstr, std::wstring& wstr);
-std::wstring toUTF16(const String& tstr);
+inline std::wstring toUTF16(const String& tstr)
+{
+#ifdef UNICODE
+	return tstr;
+#else
+	std::wstring wstr;
+	toUTF16(tstr, wstr);
+	return wstr;
+#endif
+}
+
 void toUTF8(const String& tstr, std::string& u8str);
 std::string toUTF8(const String& tstr);
 std::string toSystemCP(const std::string& str);

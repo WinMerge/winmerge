@@ -20,9 +20,6 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-// RCS ID line follows -- this is updated by CVS
-// $Id: WinMergeScript.cpp 5855 2008-08-24 15:49:22Z kimmov $
-
 #include "stdafx.h"
 #include <stdio.h>
 #include "DisplayXMLFiles.h"

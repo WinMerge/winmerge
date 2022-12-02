@@ -9,21 +9,29 @@
 #include "DiffItem.h"
 #include "PathContext.h"
 #include "TFile.h"
+#include "IAbortable.h"
 #include <io.h>
 #include <fcntl.h>
 
 namespace CompareEngines
 {
 
-BinaryCompare::BinaryCompare()
+BinaryCompare::BinaryCompare() : m_piAbortable(nullptr)
 {
 }
 
-BinaryCompare::~BinaryCompare()
+BinaryCompare::~BinaryCompare() = default;
+
+/**
+ * @brief Set Abortable-interface.
+ * @param [in] piAbortable Pointer to abortable interface.
+ */
+void BinaryCompare::SetAbortable(const IAbortable * piAbortable)
 {
+	m_piAbortable = const_cast<IAbortable*>(piAbortable);
 }
 
-static int compare_files(const String& file1, const String& file2)
+static int compare_files(const String& file1, const String& file2, IAbortable *piAbortable)
 {
 	const size_t bufsize = 1024 * 256;
 	int code;
@@ -35,6 +43,11 @@ static int compare_files(const String& file1, const String& file2)
 	{
 		for (;;)
 		{
+			if (piAbortable && piAbortable->ShouldAbort())
+			{
+				code = DIFFCODE::CMPABORT;
+				break;
+			}
 			char buf1[bufsize];
 			char buf2[bufsize];
 			int size1 = _read(fd1, buf1, sizeof(buf1));
@@ -77,12 +90,12 @@ int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) co
 	{
 	case 2:
 		return di.diffFileInfo[0].size != di.diffFileInfo[1].size ? 
-			DIFFCODE::DIFF : compare_files(files[0], files[1]);
+			DIFFCODE::DIFF : compare_files(files[0], files[1], m_piAbortable);
 	case 3:
 		unsigned code10 = (di.diffFileInfo[1].size != di.diffFileInfo[0].size) ?
-			DIFFCODE::DIFF : compare_files(files[1], files[0]);
+			DIFFCODE::DIFF : compare_files(files[1], files[0], m_piAbortable);
 		unsigned code12 = (di.diffFileInfo[1].size != di.diffFileInfo[2].size) ?
-			DIFFCODE::DIFF : compare_files(files[1], files[2]);
+			DIFFCODE::DIFF : compare_files(files[1], files[2], m_piAbortable);
 		unsigned code02 = DIFFCODE::SAME;
 		if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
 			return DIFFCODE::SAME;
@@ -93,7 +106,7 @@ int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) co
 		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
 		{
 			code02 = di.diffFileInfo[0].size != di.diffFileInfo[2].size ?
-				DIFFCODE::DIFF : compare_files(files[0], files[2]);
+				DIFFCODE::DIFF : compare_files(files[0], files[2], m_piAbortable);
 			if (code02 == DIFFCODE::SAME)
 				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
 		}

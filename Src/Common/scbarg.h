@@ -90,7 +90,7 @@ public:
     
 protected:
     // implementation helpers
-    virtual void NcPaintGripper(CDC* pDC, CRect rcClient) override;
+    virtual void NcPaintGripper(CDC* pDC, const CRect& rcClient) override;
     virtual void NcCalcClient(LPRECT pRc, UINT nDockBarID) override;
 
 protected:

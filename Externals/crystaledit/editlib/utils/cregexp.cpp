@@ -15,6 +15,7 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
+#if !__has_include(<Poco/RegularExpression.h>)
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -728,7 +729,7 @@ int RxMatch(RxNode *rx) {
                 if (*n->fChar != *rex) return 0;
                 if (memcmp(rex, n->fChar, n->fLen) != 0) return 0;
             } else {
-                for (size_t i = 0; i < n->fLen; i+= _tcsinc(&rex[i]) - &rex[i])
+                for (size_t i = 0; static_cast<short>(i) < n->fLen; i+= _tcsinc(&rex[i]) - &rex[i])
                     if (_totupper(mytcsnextc(&rex[i])) != _totupper(mytcsnextc(&n->fChar[i])))
                         return 0;
             }
@@ -1206,5 +1207,7 @@ int main() {
     }
     return 0;
 }
+
+#endif
 
 #endif

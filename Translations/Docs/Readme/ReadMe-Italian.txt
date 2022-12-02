@@ -16,7 +16,7 @@ Avvio veloce
 ===========
 Per informazioni su come eseguire le operazioni di base dopo l'installazione di WinMerge,
 fai clic su 'Aiuto' -> 'Aiuto WinMerge' e vai all'argomento 'Avvio rapido'. 
-Oppure, vai alla pagina web https://manual.winmerge.org/QuickStart.html.
+Oppure, vai alla pagina web https://manual.winmerge.org/Quick_start.html.
 
 Guida di WinMerge
 =============

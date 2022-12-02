@@ -16,9 +16,10 @@ Filters=Filtre
 Plugins=Plugins
 Frhed=Frhed(Free hex editor)
 WinIMerge=WinIMerge(Image Diff/Merge)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Patch=GnuWin32 Patch for Windows
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Sprog
@@ -28,6 +29,7 @@ BulgarianLanguage=Bulgarske menuer og dialoger
 CatalanLanguage=Katalanske menuer og dialoger
 ChineseSimplifiedLanguage=Kinesiske (simpel) menuer og dialoger
 ChineseTraditionalLanguage=Kinesiske (traditionel) menuer og dialoger
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Kroatiske menuer og dialoger
 CzechLanguage=Tjekkiske menuer og dialoger
 DanishLanguage=Danske menuer og dialoger
@@ -63,7 +65,6 @@ ExplorerContextMenu=&Installer Explorer kontekst menu integrationen
 IntegrateTortoiseCVS=Integrer med &TortoiseCVS
 IntegrateTortoiseGit=Integrer med To&rtoiseGit
 IntegrateTortoiseSVN=Integrer med T&ortoiseSVN
-IntegrateClearCase=Integrer med Rational &ClearCase
 AddToPath=&Tilføj WinMerge folderen til din system path
 
 ; 3-way merge wizard page

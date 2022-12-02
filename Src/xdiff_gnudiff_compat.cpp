@@ -36,11 +36,16 @@ unsigned long make_xdl_flags(const DiffutilsOptions& options)
 	case DIFF_ALGORITHM_HISTOGRAM:
 		xdl_flags |= XDF_HISTOGRAM_DIFF;
 		break;
+	case DIFF_ALGORITHM_NONE:
+		xdl_flags |= XDF_NONE_DIFF;
+		break;
 	default:
 		break;
 	}
 	if (options.m_bIgnoreCase)
 		xdl_flags |= XDF_IGNORE_CASE;
+	if (options.m_bIgnoreNumbers)
+		xdl_flags |= XDF_IGNORE_NUMBERS;
 	if (options.m_bIgnoreBlankLines)
 		xdl_flags |= XDF_IGNORE_BLANK_LINES;
 	if (options.m_bIgnoreEOLDifference)

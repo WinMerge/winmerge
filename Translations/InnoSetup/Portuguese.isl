@@ -16,9 +16,10 @@ Filters=Filtros
 Plugins=Plugins
 Frhed=Frhed(Editor hex gratuito)
 WinIMerge=WinIMerge (Dividir/Juntar Imagens)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Suporte de ficheiros
 ShellExtension32bit=Extensão Shell WinMerge 32 bits
-Patch=Pacote GnuWin32 para Windows
+Commands=Pacote GnuWin32 para Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Idiomas
@@ -28,6 +29,7 @@ BulgarianLanguage=Búlgaro menus e diálogos
 CatalanLanguage=Catalão menus e diálogos
 ChineseSimplifiedLanguage=Chinês (Simplificado) menus e diálogos
 ChineseTraditionalLanguage=Chinês (Tradicional) menus e diálogos
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Croata menus e diálogos
 CzechLanguage=Checo menus e diálogos
 DanishLanguage=Dinamarquês menus e diálogos
@@ -63,7 +65,6 @@ ExplorerContextMenu=&Permitir o menu de contexto no Explorador
 IntegrateTortoiseCVS=Integrar com &TortoiseCVS
 IntegrateTortoiseGit=Integrar com To&rtoiseGit
 IntegrateTortoiseSVN=Integrar com T&ortoiseSVN
-IntegrateClearCase=Integrar com Rational &ClearCase
 AddToPath=&Criar pasta do WinMerge no caminho do sistema
 
 ; 3-way merge wizard page

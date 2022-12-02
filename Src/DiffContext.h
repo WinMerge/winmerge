@@ -11,6 +11,8 @@
 #include "PathContext.h"
 #include "DiffItemList.h"
 #include "FilterList.h"
+#include "SubstitutionList.h"
+#include "PropertySystem.h"
 
 class PackingInfo;
 class PrediffingInfo;
@@ -20,7 +22,6 @@ class IAbortable;
 class CDiffWrapper;
 class CompareOptions;
 struct DIFFOPTIONS;
-class FilterCommentsManager;
 
 /** Interface to a provider of plugin info */
 class IPluginInfos
@@ -29,6 +30,14 @@ public:
 	virtual void FetchPluginInfos(const String& filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
                                       PrediffingInfo ** infoPrediffer) = 0;
+};
+
+/** Information on the number of duplicate hash values */
+struct DuplicateInfo
+{
+	int groupid;
+	int count[3];
+	bool nonpaired;
 };
 
 /**
@@ -151,6 +160,11 @@ public:
 
 	const DIFFOPTIONS *GetOptions() const { return m_pOptions.get(); }
 
+	void GetComparePaths(const DIFFITEM& di, PathContext& tFiles) const;
+	String GetFilteredFilenames(const DIFFITEM& di) const;
+	static String GetFilteredFilenames(const PathContext& paths) { return strutils::join(paths.begin(), paths.end(), _T("|")); }
+	void CreateDuplicateValueMap();
+
 	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IDiffFilter * m_pImgfileFilter; /**< Interface for image file filtering */
 	IPluginInfos * m_piPluginInfos;
@@ -195,7 +209,10 @@ public:
 	bool m_bRecursive; /**< Do we include subfolders to compare? */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	std::unique_ptr<FilterList> m_pFilterList; /**< Filter list for line filters */
-	FilterCommentsManager *m_pFilterCommentsManager;
+	std::shared_ptr<SubstitutionList> m_pSubstitutionList; /// list for Substitution Filters
+	std::unique_ptr<PropertySystem> m_pPropertySystem; /**< pointer to Property System */
+	std::vector<std::map<std::vector<uint8_t>, DuplicateInfo>> m_duplicateValues; /**< Number of duplicate hash values */
+	std::vector<String> m_vCurrentlyHiddenItems; /**< The list of currently hidden items */
 
 private:
 	/**

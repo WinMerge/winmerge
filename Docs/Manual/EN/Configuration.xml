@@ -71,6 +71,20 @@
 
     <variablelist>
       <varlistentry>
+        <term>To import options</term>
+
+        <listitem>
+          <para>When you want to reuse your saved options, click
+          <guibutton>Import</guibutton>. In the Select file for import dialog,
+          navigate to the saved <filename>ini</filename> file and click
+          <guibutton>Open</guibutton>.</para>
+
+          <para>The values in your imported options file replace all existing
+          settings.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term>To export options</term>
 
         <listitem>
@@ -82,20 +96,6 @@
 
           <para>In the generated text <filename>ini</filename> file, each line
           contains a name-value pair that defines a single option.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>To import options</term>
-
-        <listitem>
-          <para>When you want to reuse your saved options, click
-          <guibutton>Import</guibutton>. In the Select file for import dialog,
-          navigate to the saved <filename>ini</filename> file and click
-          <guibutton>Open</guibutton>.</para>
-
-          <para>The values in your imported options file replace all existing
-          settings.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -138,31 +138,48 @@
     </section>
 
     <section>
-      <title>Close Windows with <keycap>ESC</keycap><indexterm>
+      <title>Automatically scroll to first inline difference<indexterm>
+          <primary>autoscrolling to first inline difference</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: TBD</para>
+
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Close Windows with '<keycap>Esc</keycap>'<indexterm>
           <primary>closing windows using Esc key</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para><option>MDI child window or main window</option> (default): Lets you use the
-          <keycap>ESC</keycap> key to close WinMerge windows. Pressing
-          <keycap>ESC</keycap> once closes one window, so with one File Compare
+          <keycap>Esc</keycap> key to close WinMerge windows. Pressing
+          <keycap>Esc</keycap> once closes one window, so with one File Compare
           window open, it takes three key presses to close WinMerge: first the
           File Compare window, then the Folder Compare window, and finally the
           WinMerge window.</para>
 
           <para>Note that in the WinMerge command line, the
           <parameter>-e</parameter> parameter enables you to close WinMerge by
-          pressing <keycap>ESC</keycap> just once.</para>
+          pressing <keycap>Esc</keycap> just once.</para>
         </listitem>
 
         <listitem>
-          <para><option>MDI child window only</option>: Pressing <keycap>ESC</keycap>
+          <para><option>MDI child window only</option>: Pressing <keycap>Esc</keycap>
           closes a child window, but not the last remaining main window.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: Pressing <keycap>ESC</keycap> does
+          <para><option>Disabled</option>: Pressing <keycap>Esc</keycap> does
           not close any WinMerge windows.</para>
         </listitem>
       </itemizedlist>
@@ -174,13 +191,14 @@
       <itemizedlist>
         <listitem>
           <para><option>Enabled</option> (default): The Select Files or Folders
-          dialog checks both paths as you enter them. The
-          <guibutton>OK</guibutton> button remains disabled until both paths are
-          validated. Note that this checking can cause some delay.</para>
+          dialog checks both or all three paths as you enter them. The
+          <guibutton>Compare</guibutton> button remains disabled until both or
+          all three paths are validated. Note that this checking can cause some
+          delay.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: The <guibutton>OK</guibutton> button
+          <para><option>Disabled</option>: The <guibutton>Compare</guibutton> button
           in the Select Files or Folders dialog is always enabled, and attempts
           to open any paths you specify. Since there is no delay during
           validation, this can speed up the selection of paths. However, if the
@@ -289,17 +307,17 @@
     </section>
 
     <section>
-      <title>Close "Select Files or Folders" Dialog on clicking OK button<indexterm>
+      <title>Close "Select Files or Folders" Dialog on clicking Compare button<indexterm>
           <primary>Select Files or Folders dialog</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): When you click <guilabel>Compare</guilabel> button, the Select File or Folder dialog will remain open instead of closing.</para>
+          <para><option>Disabled</option> (default): When you click <guibutton>Compare</guibutton> button, the Select File or Folders dialog will remain open instead of closing.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: Clicking <guilabel>Compare</guilabel> button closes the Select Files or Folders dialog.</para>
+          <para><option>Enabled</option>: Clicking <guibutton>Compare</guibutton> button closes the Select Files or Folders dialog.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -398,16 +416,16 @@
         </listitem>
 
         <listitem>
-          <para>Ignored differences cannot be merged</para>
+          <para>Ignored differences cannot be merged.</para>
         </listitem>
 
         <listitem>
-          <para>Ignored differences are not included in difference counts</para>
+          <para>Ignored differences are not included in difference counts.</para>
         </listitem>
 
         <listitem>
           <para>Files containing only ignored differences are marked as
-          identical in a folder comparison</para>
+          identical in a folder comparison.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -581,6 +599,29 @@
     </section>
 
     <section>
+      <title>Ignore comment differences<indexterm>
+          <primary>filters</primary>
+
+          <secondary>comments</secondary>
+        </indexterm></title>
+
+      <!--Just guessing what this does - ask a developer.-->
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge compares comments
+          in code, along with other content.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: This option optimizes comparisons by
+          detecting comments in certain programming language file types (such as
+          C++ and Java), and ignoring them.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Enable moved block detection<indexterm>
           <primary>moved differences</primary>
         </indexterm></title>
@@ -630,7 +671,7 @@
     </section>
 
     <section>
-      <title>Diff algorithm<indexterm>
+      <title>Diff algorithm (Experimental)<indexterm>
           <primary>algorithm</primary>
         </indexterm></title>
 
@@ -654,6 +695,12 @@
           <para><option>histogram</option>: This algorithm extends the patience
           algorithm to "support low-occurrence common elements".</para>
         </listitem>
+
+        <listitem>
+          <para><option>none</option>: This algorithm does not detect insertions
+          or deletions of lines.
+          </para>
+        </listitem>
       </itemizedlist>
     </section>
 
@@ -670,34 +717,28 @@
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option> Disable the heuristic.</para>
+          <para><option>Disabled</option>: Disable the heuristic.</para>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Filter Comments<indexterm>
-          <primary>filters</primary>
-
-          <secondary>comments</secondary>
+      <title>Completely unhighlight the ignored differences<indexterm>
+          <primary>unhighlight ignored differences</primary>
         </indexterm></title>
-
-      <!--Just guessing what this does - ask a developer.-->
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): WinMerge compares comments
-          in code, along with other content.</para>
+          <para><option>Enabled</option>:
+          Makes the color of the different lines ignored by line filters and substitution
+          filters the same as the color of the identical lines.
+          </para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: This option optimizes comparisons by
-          detecting comments in certain programming language file types (such as
-          C++ and Java), and ignoring them.</para>
-
-          <para>The recognized file types and their comment markers are defined
-          in the file, <filename>IgnoreSectionMarkers.ini</filename>, at the top
-          of the WinMerge installation directory.</para>
+          <para><option>Disabled</option> (default):
+          Difference lines ignored by line filters and substitution filters are
+          displayed in the color of Ignored Difference.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -707,7 +748,7 @@
     <title>Compare Folder page</title>
 
     <section id="Configuration_compmethod">
-      <title>File Compare method<indexterm>
+      <title>Compare method<indexterm>
           <primary>comparing files</primary>
 
           <secondary>detection options</secondary>
@@ -873,11 +914,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): WinMerge ignore unique subfolders when comparing folders.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: WinMerge also shows the content from unique subfolders.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -891,11 +932,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Enabled</option> (default): TBD</para>
+          <para><option>Enabled</option> (default): WinMerge doing a recursive comparing and also includes subfolders.</para>
         </listitem>
 
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Disabled</option>: WinMerge only comparing the files in the root folder.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -909,11 +950,11 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
+          <para><option>Disabled</option> (default): WinMerge don't expand all subfolders after a folder compare.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: WinMerge automatically expand all subfolders after finishing a folder compare.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -937,7 +978,7 @@
     </section>
 	
     <section>
-      <title>Quick compare limit (MB)<indexterm>
+      <title>Threshold for switching to quick compare (MB)<indexterm>
           <primary>Quick compare</primary>
 
           <secondary>limit</secondary>
@@ -946,30 +987,23 @@
       <itemizedlist>
         <listitem>
           <para><option>Disabled</option>: Is not active unless the Compare method 
-		  is set to Quick Contents.</para>
+		  is set to other than <guilabel>Full Contents</guilabel> compare method.</para>
         </listitem>
 
         <listitem>
           <para><option>Enabled</option>: Is active when the Compare method 
-		  is set to Quick Contents.</para>
+		  is set to <guilabel>Full Contents</guilabel> compare method.</para>
 
-          <para>This option sets the limit when WinMerge should stop comparing.
-		  If the limit is set to for instance 4 MB, then WinMerge will only read 
-		  the first 4 MB of a file. If no differences are founf before the 
-		  Quick Compare limit is reached, then the files will be marked as identical.
+          <para>Threshold size for switching to <guilabel>Quick Contents</guilabel> compare method. 
+ 	          When <guilabel>Full Contents</guilabel> compare method is selected, files bigger (in mega bytes) than this 
+ 	          value are compared using <guilabel>Quick Contents</guilabel> compare method.
 		  </para>
-
-          <warning>
-            <para>This option should be enabled only when you are sure any differences 
-			are in the first part of the file.
-            Otherwise, it can cause incorrect compare results.</para>
-          </warning>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Binary compare limit (MB)<indexterm>
+      <title>Threshold for switching to binary compare (MB)<indexterm>
           <primary>Binary compare</primary>
 
           <secondary>limit</secondary>
@@ -977,11 +1011,18 @@
 
       <itemizedlist>
         <listitem>
-          <para><option>Disabled</option>: TBD</para>
+          <para><option>Disabled</option>: Is not active unless the Compare method 
+          is set to other than <guilabel>Full Contents</guilabel> and <guilabel>Quick Contents</guilabel> compare method.</para>
         </listitem>
 
         <listitem>
-          <para><option>Enabled</option>: TBD</para>
+          <para><option>Enabled</option>: Is active when the Compare method 
+          is set to <guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> compare method.</para>
+
+          <para>Threshold size for switching to Binary Contents compare method. 
+ 	          When <guilabel>Full Contents</guilabel> or <guilabel>Quick Contents</guilabel> compare method is selected, files bigger (in mega bytes) than this 
+ 	          value are compared using <guilabel>Binary Contents</guilabel> compare method.
+		  </para>
         </listitem>
       </itemizedlist>
     </section>
@@ -991,19 +1032,10 @@
           <primary>compare threads</primary>
         </indexterm></title>
 
-      <para>TBD</para>
+      <para>Number of threads which use to comparing. With a negative value WinMerge
+      will use addition of the number of available CPU cores.</para>
     </section>
 
-  </section>
-
-  <section id="Configuration_compare_binary">
-    <title>Compare Binary page</title>
-    <section>
-      <title>Binary File Patterns<indexterm>
-          <primary>binary files</primary>
-        </indexterm></title>
-      <para>TBD</para>
-    </section>
   </section>
 
   <section id="Configuration_compare_table">
@@ -1067,6 +1099,47 @@
     </section>
   </section>
 
+  <section id="Configuration_compare_binary">
+    <title>Compare Binary page</title>
+    <section>
+      <title>Binary File Patterns<indexterm>
+          <primary>binary files</primary>
+        </indexterm></title>
+      <para>TBD</para>
+    </section>
+    <section>
+      <title>Frhed settings<indexterm>
+          <primary>frhed</primary>
+        </indexterm></title>
+      <para>TBD</para>
+      <variablelist>
+        <varlistentry>
+          <term>View Settings...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Binary Mode...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Character Set...</term>
+
+          <listitem>
+            <para>TBD</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+    </section>
+  </section>
+
   <section id="Configuration_compare_image">
     <title>Compare Image page<indexterm>
           <primary>image files</primary>
@@ -1080,6 +1153,11 @@
       <title>Enable image compare in folder compare</title>
       <para>TBD</para>
     </section>
+
+    <section>
+      <title>OCR result</title>
+      <para>TBD</para>
+    </section>
   </section>
 
   <section id="Configuration_editor">
@@ -1090,7 +1168,7 @@
       </indexterm></title>
 
     <section id="Configuration_syntaxhighlight">
-      <title>Syntax highlighting<indexterm>
+      <title>Highlight syntax<indexterm>
           <primary>syntax highlighting</primary>
 
           <secondary>enabling and disabling</secondary>
@@ -1187,7 +1265,7 @@
     </section>
 
     <section>
-      <title>Tab options<indexterm>
+      <title>Tabs<indexterm>
           <primary>tabs</primary>
 
           <secondary>editing options</secondary>
@@ -1199,7 +1277,7 @@
 
           <listitem>
             <para>Width of a tab space. Specify a value
-            <replaceable>n</replaceable> : the resulting width is equivalent to
+            <replaceable>n</replaceable>: the resulting width is equivalent to
             that of <replaceable>n</replaceable> characters. Default: 4. The
             maximum value is 64.</para>
           </listitem>
@@ -1231,7 +1309,7 @@
     </section>
 
     <section id="Configuration_viewlinediffs">
-      <title>View line differences<indexterm>
+      <title>Line Difference Coloring<indexterm>
           <primary>line differences</primary>
 
           <secondary>viewing options</secondary>
@@ -1241,58 +1319,76 @@
       differences</glossterm> (changes within the lines of difference
       blocks):</para>
 
-      <itemizedlist>
+      <variablelist>
+        <varlistentry>
+          <term>View line differences</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>Enabled</option> (default): WinMerge highlights
+                differences within lines. Also enables the <menuchoice>
+                    <guimenu>View</guimenu>
+      
+                    <guimenuitem>View Line Differences</guimenuitem>
+                  </menuchoice> menu item.</para>
+      
+                <para>Choose one of these suboptions:</para>
+      
+                <itemizedlist>
+                  <listitem>
+                    <para><guilabel>Character level</guilabel>: Highlights individual
+                    characters that are different. This option can be useful if you
+                    are looking for changes within words, or for file formats that do
+                    not have clear word breaks.</para>
+                  </listitem>
+      
+                  <listitem>
+                    <para><guilabel>Word-level</guilabel> (default): Highlights
+                    entire words that are different.</para>
+      
+                    <itemizedlist>
+                      <listitem>
+                        <para><guilabel>Break at whitespace</guilabel> (default):
+                        Words are assumed to be separated by whitespace characters.
+                        This usually works for typical text files.</para>
+                      </listitem>
+      
+                      <listitem>
+                        <para><guilabel>Break at whitespace or punctuation</guilabel>:
+                        Considers both whitespace and punctuation characters to be
+                        word breaks. This can useful for handling lists that are
+                        separated with punctuation (like comma-separated
+                        lists).</para>
+                      </listitem>
+                    </itemizedlist>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+
+              <listitem>
+                <para><option>Disabled</option>: WinMerge does not highlight line
+                differences, and all settings for the level and whitespace options are
+                ignored. Also disables the <menuchoice>
+                    <guimenu>View</guimenu>
+      
+                    <guimenuitem>View Line Differences</guimenuitem>
+                  </menuchoice> menu item.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <variablelist>
+        <varlistentry>
+          <term>Word break characters</term>
+
         <listitem>
-          <para><option>Enabled</option> (default): WinMerge highlights
-          differences within lines. Also enables the <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item.</para>
-
-          <para>Choose one of these suboptions:</para>
-
-          <itemizedlist>
-            <listitem>
-              <para><guilabel>Character level</guilabel>: Highlights individual
-              characters that are different. This option can be useful if you
-              are looking for changes within words, or for file formats that do
-              not have clear word breaks.</para>
-            </listitem>
-
-            <listitem>
-              <para><guilabel>simiWord-level</guilabel> (default): Highlights
-              entire words that are different.</para>
-
-              <itemizedlist>
-                <listitem>
-                  <para><guilabel>Break at whitespace</guilabel> (default):
-                  Words are assumed to be separated by whitespace characters.
-                  This usually works for typical text files.</para>
-                </listitem>
-
-                <listitem>
-                  <para><guilabel>Break at whitespace or punctuation</guilabel>:
-                  Considers both whitespace and punctuation characters to be
-                  word breaks. This can useful for handling lists that are
-                  separated with punctuation (like comma-separated
-                  lists).</para>
-                </listitem>
-              </itemizedlist>
-            </listitem>
-          </itemizedlist>
+          <para>TBD</para>
         </listitem>
-
-        <listitem>
-          <para><option>Disabled</option>: WinMerge does not highlight line
-          differences, and all settings for the level and whitespace options are
-          ignored. Also disables the <menuchoice>
-              <guimenu>View</guimenu>
-
-              <guimenuitem>View Line Differences</guimenuitem>
-            </menuchoice> menu item.</para>
-        </listitem>
-      </itemizedlist>
+        </varlistentry>
+      </variablelist>
 
       <note>
         <title>Related topic</title>
@@ -1300,6 +1396,42 @@
         <para><xref linkend="CompareFiles_linediff-highlight" /> explains in
         more detail how WinMerge detects and marks line differences.</para>
       </note>
+    </section>
+
+    <section>
+      <title>Rendering Mode<indexterm>
+          <primary>rendering</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>GDI</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Default</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Aliased</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Classic</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
@@ -1319,8 +1451,35 @@
     then click <guibutton>OK</guibutton> to load the new color in the
     box.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
+  </section>
+
+  <section id="Configuration_differencescolors">
+    <title>Differences Colors page<indexterm>
+        <primary>differences colors</primary>
+
+        <secondary>options</secondary>
+      </indexterm></title>
+
+    <para>TBD</para>
+  </section>
+
+  <section id="Configuration_syntaxcolors">
+    <title>Syntax Colors page<indexterm>
+        <primary>syntax highlighting</primary>
+
+        <secondary>color options</secondary>
+      </indexterm></title>
+
+    <para>By default, the WinMerge File Compare window marks the syntax of
+    certain kinds of source code, as described in <xref
+    linkend="Configuration_syntaxhighlight" />. This page lists the syntax
+    elements that are recognized, and enables you to change their text color and
+    weight.</para>
+
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
   <section id="Configuration_textcolors">
@@ -1337,25 +1496,8 @@
     color for the background and the text.</para>
   </section>
 
-  <section id="Configuration_syntaxcolors">
-    <title>Syntax Colors page<indexterm>
-        <primary>syntax highlighting</primary>
-
-        <secondary>color options</secondary>
-      </indexterm></title>
-
-    <para>By default, the WinMerge File Compare window marks the syntax of
-    certain kinds of source code, as described in <xref
-    linkend="Configuration_syntaxhighlight" />. This page lists the syntax
-    elements that are recognized, and enables you to change their text color and
-    weight.</para>
-
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
-  </section>
-
   <section id="Configuration_markercolors">
-    <title>Maker Colors page<indexterm>
+    <title>Marker Colors page<indexterm>
         <primary>marker colors</primary>
 
         <secondary>options</secondary>
@@ -1380,8 +1522,8 @@
     then click <guibutton>OK</guibutton> to load the new color in the
     box.</para>
 
-    <para>At any time, you can click <guibutton>Defaults</guibutton> to reload
-    the installed color scheme.</para>
+    <para>To revert to the default colors of a scheme, choose a different scheme
+    and return to the modified scheme.</para>
   </section>
 
   <section id="Configuration_archive">
@@ -1463,6 +1605,7 @@
             deactivated, this option does not work, and deleted files are
             lost!</para>
           </important>
+          <para></para>
         </listitem>
 
         <listitem>
@@ -1500,16 +1643,16 @@
       Folder Compare window and choose <menuchoice>
           <guimenuitem>Open Left</guimenuitem>
 
-          <guimenuitem>with External Editor</guimenuitem>
+          <guimenuitem>With External Editor</guimenuitem>
         </menuchoice> or <menuchoice>
           <guimenuitem>Open Right</guimenuitem>
 
-          <guimenuitem>with External Editor</guimenuitem>
+          <guimenuitem>With External Editor</guimenuitem>
         </menuchoice>.</para>
     </section>
 
     <section>
-      <title>Filter Folder<indexterm>
+      <title>Filter folder<indexterm>
           <primary>Filters folders</primary>
 
           <secondary>specifying default private folder</secondary>
@@ -1517,8 +1660,7 @@
 
       <para>Use this field to specify your own private folder for file filters.
       By default this folder is your user profile directory (for example,
-      <filename>My Documents</filename> on Windows XP, or
-      <filename>Documents</filename> on Windows Vista). When you create a file
+      <filename>Documents</filename> on Windows 10). When you create a file
       filter, it is automatically added to this folder.</para>
     </section>
 
@@ -1532,12 +1674,12 @@
 
       <itemizedlist>
         <listitem>
-          <para>System's temp folder (default): For example, this might be
+          <para><guilabel>System's temp folder</guilabel> (default): For example, this might be
           <filename>C:\Windows\Temp</filename> on your system.</para>
         </listitem>
 
         <listitem>
-          <para>Custom folder: Click <guibutton>Browse</guibutton> and select a
+          <para><guilabel>Custom folder</guilabel>: Click <guibutton>Browse</guibutton> and select a
           different folder where you have write access.</para>
         </listitem>
       </itemizedlist>
@@ -1605,13 +1747,13 @@
 
       <itemizedlist>
         <listitem>
-          <para><guilabel>Append .bak -extension</guilabel> (enabled by
+          <para><guilabel>Append .bak extension</guilabel> (enabled by
           default): For example, the <filename>file.txt</filename> is backed up
           to <filename>file.txt.bak</filename>.</para>
         </listitem>
 
         <listitem>
-          <para><guilabel>File compare</guilabel> (enabled by default):
+          <para><guilabel>Append timestamp</guilabel> (enabled by default):
           Timestamps are almost always unique, so this option usually avoids
           duplicating backup file names when the source files have the same
           names.</para>
@@ -1658,7 +1800,7 @@
     </note>
 
     <section>
-      <title>Default codepage for non-Unicode files</title>
+      <title>Default Codepage</title>
 
       <para>Choose one of these radio buttons to set the default codepage that
       WinMerge uses when handling ANSI files:</para>
@@ -1685,7 +1827,7 @@
     </section>
 
     <section>
-      <title>Detect codepage info for these files: .html .rc .xml</title>
+      <title>Detect codepage info for these files: .html, .rc, .xml</title>
 
       <important>
         <para>Uncheck this option in <filename>WinMerge.exe</filename>.
@@ -1705,7 +1847,7 @@ or is this understood?--></para>
 
         <listitem>
           <para><option>Enabled</option>: WinMerge detects the codepage for
-          these extensions : <filename class="extension">html</filename>,
+          these extensions: <filename class="extension">html</filename>,
           <filename class="extension">rc</filename> (resource files for VC++)
           and <filename class="extension">xml</filename>. The detected codepage
           overrides the setting for the default codepage option.</para>
@@ -1733,6 +1875,13 @@ or is this understood?--></para>
           </caution>
         </listitem>
       </itemizedlist>
+    </section>
+
+    <section>
+      <title>Detect codepage for text files using mlang.dll</title>
+
+      <para>TBD</para>
+
     </section>
   </section>
 

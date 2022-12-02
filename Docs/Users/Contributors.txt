@@ -41,16 +41,22 @@ Localization:
 * Catalan:
   Jordi Vilar <jvilar@users.sourceforge.net>
   Domènec <domenec72 at gmail.com>
+  Josep Maria Antolín Segura 
 
 * Simplified Chinese:
   Liaobin <liaobin@jite. net>
   xmpdhml <xmpdhml at users.sourceforge.net>
   MaysWind <i at mayswind.net>
   YFdyh000 <yfdyh000 at gmail.com>
+  CharlesMengCA <CharlesMeng at outlook.com>
 
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>
   Calvin Lin <ylin77 at gmail.com>
+  SiderealArt <admin at siderealart.me>
+
+* Corsican:
+  Patriccollu di Santa Maria è Sichè
 
 * Croatian:
   Hasan Osmanagiæ <hasan.osmanagic@public.carnet.hr>
@@ -78,10 +84,12 @@ Localization:
   Dominique Saussereau <redguff@users.sourceforge.net>
   Matthieu Pupat
   gandf
+  Lolo S. <slolo2000 at hotmail.com>
 
 * Galician:
   Medulio
   Luis A. Martínez Sobrino <luis.martinez.sobrino at gmail.com>
+  P0rsche-911
 
 * German:
   Tim Gerundt <tim@gerundt.de>
@@ -95,6 +103,7 @@ Localization:
 * Hungarian:
   Márton Balázs <documan@users.sourceforge.net>
   Mihalicza József <jmihalicza@gmail.com>
+  Egyed Ferenc <efi99 at freemail.hu>
 
 * Italian:
   Andrea Decorte <deco1985@hotmail.com>
@@ -102,18 +111,29 @@ Localization:
   Michele Merega <michele.merega@ifminfomaster.com>
   Michele Locati <michele@locati.it>
   bovirus
+  Massimiliano Caniparoli
+  Simone Saviolo
+
+* Japanese:
+  Takashi Sawanaka <sdottaka@users.sourceforge.net>
+  Rukoto Luther <rukotolucies at hotmail.com>
 
 * Korean:
   Sukjoon <bbcool@gmail.com>
   Lee Jae-Hong <pyrasis@users.sourceforge.net>
   Sushizang <sushizang@empal.com>
   sheppaul <sheppaul at gmail.com>
+  teamzamong <teamzamong at gmail.com>
+  BrainS <29201475+BraINstinct0 at users.noreply.github.com>
+  cynilyn <cynilyn at gmail.com>
+  gro00 <gheong.ro at gmail.com>
 
 * Lithuanian:
   Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
 
 * Norwegian:
   Hans Fredrik Nordhaug <hansfn@users.sourceforge.net>
+  FTno
 
 * Persian:
   Abolfazl Rostamzadeh <a.rostamzadeh at gmail.com>
@@ -129,6 +149,9 @@ Localization:
   Wender Firmino <wender@pta.com.br>
   Felipe Periard Lopes <felipefpl@ig.com.br>
   Igor Rückert
+  jota11
+  Gabriel Camargo Fukushima
+  Marcello-mco
 
 * Portuguese (Portugal):
   Nelson Simão
@@ -142,6 +165,7 @@ Localization:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
   Timon34
   wvxwxvw
+  Den1704
 
 * Serbian:
   Ozzii <ivanstar61@gmail.com>
@@ -152,6 +176,7 @@ Localization:
 * Slovak:
   Majvan <vancojur@decef.elf.stuba.sk>
   Ivan Masár <helix84@centrum.sk>
+  Jozef Matta <jozef.m923@gmail.com>
 
 * Slovenian:
   Iztok Osredkar <iztok.osredkar@institut-oko.si>
@@ -164,11 +189,13 @@ Localization:
   Mario Angel <marioangel70@gmail.com>
   Nelson Ariza <njarizas@hotmail.com>
   borjafg
+  Mauricio Gracia Gutierrez
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>
   Göran Håkansson <goran.x.hakansson@telia.com>
   pgert <pgert at yahoo.se>
+  Timmy Almroth <timmy.almroth at tim-international.net>
 
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>
@@ -178,7 +205,7 @@ Localization:
 * Ukranian
   Vitaliy Stopchans'kyy <stopcha@gmail.com>
   Warrior <warr11r@rambler.ru>
-
+  Vlad
 
 Other Contributors (code, ideas, testing..):
 * James Abbatiello <abbeyj@users.sourceforge.net>
@@ -230,6 +257,21 @@ Other Contributors (code, ideas, testing..):
 * H.Saido
 * Flaviu_
 * Jun Tajima
+* EugeneLaptev
+* ranjwarrior
+* elsonwei
+* evoc
+* devmynote
+* Michał Lipok
+* Samuel Plentz
+* Herman Semenov
+* stonee-K
+* yuanshouyan1823
+* Mauricio Gracia Gutierrez
+* HaroldPetersInskipp (Midnight color schema)
+* srgank
+* baka0815
+* Yurii Hordiienko 
 
 WinMerge includes code from:
 * Jared Breland <jbreland@legroom.net> (Installer's modpath script)
@@ -239,11 +281,12 @@ WinMerge includes code from:
 * Francis Irving (original conflict file parser)
 * Michael P. Mehl (CMessageBoxDialog)
 * Cristi Posea (CSizingControlBar)
-* Ferdinand Prantl (CrystalEditor syntax rules)
+* Ferdinand Prantl (Crystal Edit syntax rules)
 * Keith Rule (CMemDC - memory DC)
 * Paul Senzee (String formatting)
 * Henry Spencer (CRegExp)
-* Andrei Stcherbatchenko (CrystalEditor)
+* Andrei Stcherbatchenko (Author of Crystal Edit)
+* Sven Wiegand (Crystal Edit)
 
 *** NOTE ***
 If your name is missing please let us know (or create a pull request).

@@ -480,11 +480,8 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 	{
 		nworkers = GetOptionsMgr()->GetInt(OPT_CMP_COMPARE_THREADS);
 		if (nworkers <= 0)
-		{
 			nworkers += Environment::processorCount();
-			if (nworkers <= 0)
-				nworkers = 1;
-		}
+		nworkers = std::clamp(nworkers, 1, static_cast<int>(Environment::processorCount()));
 	}
 
 	ThreadPool threadPool(nworkers, nworkers);
@@ -493,7 +490,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 	myStruct->context->m_pCompareStats->SetCompareThreadCount(nworkers);
 	for (int i = 0; i < nworkers; ++i)
 	{
-		workers.push_back(DiffWorkerPtr(new DiffWorker(queue, myStruct->context, i)));
+		workers.emplace_back(std::make_shared<DiffWorker>(queue, myStruct->context, i));
 		threadPool.start(*workers[i]);
 	}
 
@@ -540,7 +537,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 				di.diffcode.diffcode &= ~(DIFFCODE::DIFF | DIFFCODE::SAME);
 			}
 			int ndiff = CompareItems(queue, myStruct, curpos);
-			// Propogate sub-directory status to this directory
+			// Propagate sub-directory status to this directory
 			if (ndiff > 0)
 			{	// There were differences in the sub-directories
 				if (existsalldirs)
@@ -610,8 +607,15 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 	FolderCmp fc(pCtxt);
 	int res = 0;
 	bool bCompareFailure = false;
+	bool bCompareIndeterminate = false;
 	if (parentdiffpos == nullptr)
 		myStruct->pSemaphore->wait();
+
+	// Since the collect thread deletes the DiffItems in the rescan by "Refresh selected",
+	// the compare thread process should not be executed until the collect thread process is completed 
+	// to avoid accessing  the deleted DiffItems.
+	assert(myStruct->nCollectThreadState == CDiffThread::THREAD_COMPLETED);
+
 	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos != nullptr)
 	{
@@ -648,6 +652,11 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 					di.diffcode.diffcode |= DIFFCODE::CMPERR;
 					bCompareFailure = true;
 				}
+				else
+				if (ndiff == -2)
+				{	// There were files that have not been compared
+					bCompareIndeterminate = true;
+				}
 			}
 		}
 		else
@@ -655,7 +664,8 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 			if (di.diffcode.isScanNeeded())
 			{
 				CompareDiffItem(fc, di);
-				if (di.diffcode.isResultError()) { 
+				if (di.diffcode.isResultError())
+				{ 
 					DIFFITEM *diParent = di.GetParentLink();
 					assert(diParent != nullptr);
 					if (diParent != nullptr)
@@ -663,15 +673,21 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 						diParent->diffcode.diffcode |= DIFFCODE::CMPERR;
 						bCompareFailure = true;
 					}
+				}
 			}
-				
+			else
+			{
+				if (di.diffcode.isResultError())
+					bCompareFailure = true;
+				else if (di.diffcode.isResultNone() || di.diffcode.isResultAbort())
+					bCompareIndeterminate = true;
 			}
 		}
 		if (di.diffcode.isResultDiff() ||
 			(!existsalldirs && !di.diffcode.isResultFiltered()))
 			res++;
 	}
-	return bCompareFailure ? -1 : res;;
+	return bCompareIndeterminate ? -2 : (bCompareFailure ? -1 : res);
 }
 
 int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
@@ -780,8 +796,18 @@ static void UpdateDiffItem(DIFFITEM &di, bool & bExists, CDiffContext *pCtxt)
 		di.diffFileInfo[i].ClearPartial();
 		if (pCtxt->UpdateInfoFromDiskHalf(di, i))
 		{
-			di.diffcode.diffcode |= DIFFCODE::FIRST << i;
-			bExists = true;
+			bool bUpdated = false;
+			if (di.diffFileInfo[i].IsDirectory() == di.diffcode.isDirectory())
+			{
+				String filepath = paths::ConcatPath(pCtxt->GetPath(i), di.diffFileInfo[i].GetFile());
+				if (di.diffFileInfo[i].UpdateFileName(filepath)) {
+					di.diffcode.diffcode |= DIFFCODE::FIRST << i;
+					bExists = true;
+					bUpdated = true;
+				}
+			}
+			if (!bUpdated)
+				di.diffFileInfo[i].ClearPartial();
 		}
 	}
 }
@@ -932,7 +958,7 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 	else
 		di->diffcode.diffcode = code | DIFFCODE::THREEWAY;
 
-	if (myStruct->m_fncCollect)
+	if (!myStruct->bMarkedRescan && myStruct->m_fncCollect)
 	{
 		myStruct->context->m_pCompareStats->IncreaseTotalItems();
 		myStruct->pSemaphore->set();

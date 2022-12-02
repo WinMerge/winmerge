@@ -157,7 +157,7 @@ void CGhostTextView::PopCursors ()
 	const int nMaxLineLength = GetMaxLineLength(m_nTopLine, GetScreenLines());
 	m_nOffsetChar = (m_nOffsetCharPushed < nMaxLineLength) ? m_nOffsetCharPushed : nMaxLineLength;
     RecalcVertScrollBar(true);
-    RecalcHorzScrollBar();
+    InvalidateHorzScrollBar();
 }
 
 void CGhostTextView::PushCursors ()
@@ -205,26 +205,26 @@ int CGhostTextView::ComputeApparentLine (int nRealLine) const
 
 void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		int nEndLine, int nEndChar, CString &text,
-		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+		CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
 		bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pGhostTextBuffer != nullptr)
     m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
   else
-    text = _T ("");
+    text.Empty();
 }
 
 void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
 	if (m_pGhostTextBuffer == nullptr)
 	{
-		text = _T ("");
+		text.Empty();
 		return;
 	}
 
 	PrepareSelBounds ();
 
-	CString sEol = m_pGhostTextBuffer->GetStringEol (CRLF_STYLE_DOS);
+	CString sEol = m_pGhostTextBuffer->GetStringEol (CRLFSTYLE::DOS);
 
 	int nBufSize = 1;
 	for (int L = m_ptDrawSelStart.y; L <= m_ptDrawSelEnd.y; L++)

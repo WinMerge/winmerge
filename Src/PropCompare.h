@@ -33,6 +33,7 @@ public:
 	bool    m_bIgnoreCodepage;
 	bool    m_bIgnoreEol;
 	bool    m_bIgnoreCase;
+	bool    m_bIgnoreNumbers;
 	bool    m_bIgnoreBlankLines;
 	int     m_nIgnoreWhite;
 	bool    m_bMovedBlocks;
@@ -40,6 +41,7 @@ public:
 	bool    m_bFilterCommentsLines;
 	int     m_nDiffAlgorithm;
 	bool    m_bIndentHeuristic;
+	bool    m_bCompleteBlankOutIgnoredChanges;
 	//}}AFX_DATA
 
 

@@ -1,9 +1,6 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
-# ID line follows -- this is updated by SVN
-# $Id: $
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
@@ -21,70 +18,55 @@ msgstr ""
 "Language: ru_RU\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:24
+#. AFX_TARG_*
+#: ShellExtension.rc:19
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_RUS"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:26
+#: ShellExtension.rc:20
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_RUSSIAN, SUBLANG_DEFAULT"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:27
+#: ShellExtension.rc:21
 #, c-format
 msgid "1252"
-msgstr ""
+msgstr "1252"
 
-#: ShellExtensionTemplate.rc:41
+#: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
-msgstr ""
+msgstr "Расширение проводника"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtension.rc:112
 #, c-format
-msgid "WinMerge"
-msgstr ""
+msgid "&WinMerge"
+msgstr "&WinMerge"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "Открыть в WinMerge"
+msgid "&Compare"
+msgstr "&Сравнить"
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtension.rc:114
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Выберите не более 2 элементов"
+msgid "Compare&..."
+msgstr "Сравнить&..."
 
-#: ShellExtensionTemplate.rc:45
+#: ShellExtension.rc:115
 #, c-format
-msgid "Compare"
-msgstr "Сравнение"
+msgid "Select &Left"
+msgstr "Выбрать &левый"
 
-#: ShellExtensionTemplate.rc:46
+#: ShellExtension.rc:116
 #, c-format
-msgid "Compare..."
-msgstr "Сравнить..."
+msgid "Select &Middle"
+msgstr "Выбрать &средний"
 
-#: ShellExtensionTemplate.rc:47
+#: ShellExtension.rc:117
 #, c-format
-msgid "Compare To"
-msgstr "Сравнить с"
-
-#: ShellExtensionTemplate.rc:48
-#, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "Сохранить путь и выбрать второй."
-
-#: ShellExtensionTemplate.rc:49
-#, c-format
-msgid "Compare to saved path (%1)"
-msgstr "Сравнить с (%1)"
-
-#: ShellExtensionTemplate.rc:50
-#, c-format
-msgid "Re-select First"
-msgstr "Выбрать заново"
+msgid "Re-select &Left"
+msgstr "Перевыбрать &левый"

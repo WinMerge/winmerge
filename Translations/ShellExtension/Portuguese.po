@@ -1,89 +1,75 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
-# ID line follows -- this is updated by SVN
-# $Id$
+# Translator:
+# Hugo Carvalho <hugokarvalho@hotmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-01 22:54+0900\n"
-"Last-Translator: Lippe35\n"
+"PO-Revision-Date: 2021-12-20 18:02+0000\n"
+"Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: pt\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtension.rc:19
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_PTG"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtension.rc:20
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_PORTUGUESE, SUBLANG_PORTUGUESE"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtension.rc:21
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
 msgstr "ShellExtension"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtension.rc:112
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr "&WinMerge"
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "Abrir com WinMerge"
+msgid "&Compare"
+msgstr "&Comparar"
 
-#: ShellExtensionTemplate.rc:45
+#: ShellExtension.rc:114
 #, c-format
-msgid "Please select no more than 2 items"
-msgstr "Não selecione mais de 2 itens"
+msgid "Compare&..."
+msgstr "Comparar&..."
 
-#: ShellExtensionTemplate.rc:46
+#: ShellExtension.rc:115
 #, c-format
-msgid "Compare"
-msgstr "Comparar"
+msgid "Select &Left"
+msgstr "Selecionar à &esquerda"
 
-#: ShellExtensionTemplate.rc:47
+#: ShellExtension.rc:116
 #, c-format
-msgid "Compare..."
-msgstr "Comparar..."
+msgid "Select &Middle"
+msgstr "Selecionar o do &meio"
 
-#: ShellExtensionTemplate.rc:48
+#: ShellExtension.rc:117
 #, c-format
-msgid "Compare To"
-msgstr "Comparar com"
-
-#: ShellExtensionTemplate.rc:49
-#, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "Guardar esta localização. Selecione outra localização para comparar com esta."
-
-#: ShellExtensionTemplate.rc:50
-#, c-format
-msgid "Compare to saved path (%1)"
-msgstr "Comparar com localização guardada (%1)"
-
-#: ShellExtensionTemplate.rc:51
-#, c-format
-msgid "Re-select First"
-msgstr "Selecione novamente a primeira"
+msgid "Re-select &Left"
+msgstr "Selecionar novamente à &esquerda"

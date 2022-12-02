@@ -170,17 +170,21 @@ AboutInfo::AboutInfo()
 
 #if defined _M_IX86
 	version += _T(" ");
-	version += _("x86");
+	version += _T("x86");
 #elif defined _M_IA64
 	version += _T(" IA64");
 #elif defined _M_X64
 	version += _T(" ");
 	version += _("X64");
+#elif defined _M_ARM
+	version += _T(" ARM");
+#elif defined _M_ARM64
+	version += _T(" ARM64");
 #endif
 
 #if defined _DEBUG
 	version += _T(" (");
-	version += _("Debug");
+	version += _T("Debug");
 	version += _T(")");
 #endif
 

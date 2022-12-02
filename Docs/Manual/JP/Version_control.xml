@@ -12,9 +12,9 @@
     このトピックは、他のツールと共に使用するための主な方法について説明しています。</para>
 
   <section>
-    <title>コマンドインターフェース(CLI)を使用する</title>
+    <title>コマンドインターフェイス(CLI)を使用する</title>
 
-    <para><xref linkend="Command_line" />で説明されている、コマンドライン・インタフェース(CLI)により、
+    <para><xref linkend="Command_line" />で説明されている、コマンドライン・インターフェイス(CLI)により、
       コマンド・プロンプト、スクリプト、または、他のツールやプログラムから、
       WinMergeを起動することができます。
       基本的に、少なくともパスを指定して外部の実行ファイルを呼び出せるプログラムならどれでも
@@ -25,7 +25,7 @@
     <itemizedlist>
       <listitem>
         <para>バッチファイルは、WinMergeを起動することができ、
-          パラメータを対話的に指定することができます。</para>
+          パラメーターを対話的に指定することができます。</para>
 
         <literallayout>start "WinMerge" /B "C:\Program Files\WinMerge\WinMergeU.exe" /e /s /u /dl %3 /dr %5 %6 %7</literallayout>
       </listitem>
@@ -80,7 +80,7 @@
 
         <orderedlist>
           <listitem>
-            <para>Windowsのエクスプローラ中で、チェックアウトしたSubversion作業コピーをナビゲートします。
+            <para>Windowsのエクスプローラー中で、チェックアウトしたSubversion作業コピーをナビゲートします。
             </para>
           </listitem>
 
@@ -127,7 +127,7 @@
 
         <orderedlist>
           <listitem>
-            <para>Windowsのエクスプローラで、<keycap>Ctrl</keycap>を押しながら二つのファイルを選択し、
+            <para>Windowsのエクスプローラーで、<keycap>Ctrl</keycap>を押しながら二つのファイルを選択し、
             右クリックします。</para>
           </listitem>
 

@@ -1,0 +1,2 @@
+https://github.com/mikefarah/yq/releases/download/v4.11.1/yq_windows_386.exe
+https://github.com/mikefarah/yq/archive/refs/tags/v4.11.1.zip

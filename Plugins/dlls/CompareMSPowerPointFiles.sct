@@ -12,6 +12,9 @@
 	<property name="PluginIsAutomatic">
 		<get/>
 	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -139,12 +142,17 @@ Function get_PluginIsAutomatic()
 	get_PluginIsAutomatic = True
 End Function
 
+Function get_PluginExtendedProperties()
+	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-PowerPoint;MenuCaption=MS-PowerPoint"
+End Function
+
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim pp
 	Dim prs
 	Dim sld
 	Dim cmp
+	Dim fileSrc2
 
 	Set fo = fso.CreateTextFile(fileDst, True, True)
 
@@ -152,7 +160,14 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	pp.Visible = True
 	pp.DisplayAlerts = False
 
-	Set prs = pp.Presentations.Open(fileSrc)
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSPowerPointFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set prs = pp.Presentations.Open(fileSrc2)
 
 	On Error Resume Next
 
@@ -216,6 +231,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	Dim prs
 	Dim sld
 	Dim cmp
+	Dim fileSrc2
 
 	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
 
@@ -223,7 +239,14 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	pp.Visible = True
 	pp.DisplayAlerts = False
 
-	Set prs = pp.Presentations.Open(fileSrc)
+	fileSrc2 = fileSrc
+	If fso.GetExtensionName(fileSrc2) = "lnk" Then
+		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
+		If Not fso.FileExists(fileSrc2) Then
+			Err.Raise 30001, "CompareMSPowerPointFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
+		End If 
+	End If
+	Set prs = pp.Presentations.Open(fileSrc2)
 
 	On Error Resume Next
 
@@ -281,9 +304,14 @@ End Function
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim mshta
 	tfile.Write getResource("dialog1")
 	tfile.Close
-	Run wsh, "mshta.exe """ & tname & """"
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+	If Not fso.FileExists(mshta) Then
+		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
+	End If
+	Run wsh, """" & mshta & """ """ & tname & """"
 	fso.DeleteFile tname 
 End Function
 

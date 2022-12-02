@@ -2,19 +2,18 @@
 
 ## Needed programs:
 
- * [Inno Setup](http://www.jrsoftware.org/)
+ * [Inno Setup](https://jrsoftware.org/isinfo.php) (both versions 5.x and 6.x)
  * [ISTool](https://sourceforge.net/projects/istool/) **recommended** - great help managing Inno Setup installer scripts
 
-There is download package called "QuickStart Pack" available in Inno Setup downloads. It contains all needed components in one installer.
 
 ## Installer script:
 
-Installer script is in `Installer/InnoSetup` folder: `WinMerge.iss`
+Installer script is in `Installer/InnoSetup` folder: `WinMerge{arch}.iss` (for Inno Setup 5.x) and `WinMerge{arch}.is6.iss` (for Inno Setup 6.x)
 
 ## Checklist:
 
  * Installer reads version number from `WinMergeU.exe`. So make sure you have version resource correctly set.
- * Installer checks that files listed are present. But some files are included as folder (like `/Plugins/Dlls`) or as filemask (like `*.flt`) so take extra care to make sure all needed files are present in locations shown below. 
+ * Installer checks that files listed are present. But some files are included as folder (like `/Plugins/{arch}/Dlls`) or as filemask (like `*.flt`) so take extra care to make sure all needed files are present in locations shown below. 
 
 ## Folder structure and files needed:
 
@@ -23,38 +22,34 @@ First make sure you have all needed files compiled and available:
  * WinMerge executable: `WinMergeU.exe`
  * Executable translations: `/Translations/WinMerge/*.po`
  * Manual: `WinMerge.chm`
- * ShellExtension: `ShellExtensionU.dll` and `ShellExtensionX64.dll`
+ * ShellExtension: `ShellExtensionU.dll` and `ShellExtension{arch}.dll`
  * Documents: `/Docs/Users/*`
  * Filters: `/Filters/*`
- * Plugins: `/Plugins/dlls/*`
- * Other: *Frhed*, *WinIMerge*, *Merge7z* and *GnuWin32 Patch*
+ * ColorSchemes: `/ColorSchemes/*`
+ * Plugins: `/Plugins/{arch}/dlls/*`
+ * Other: *Frhed*, *WinIMerge*, *WinWebDiff*, *Merge7z* and *GnuWin32 Patch*
+   (The above files can be downloaded by executing DownloadDeps.cmd)
 
 These files are produced by compiling WinMerge, documentation etc, but that's not subject of this document.
 
 ### Folder structure
 
  * `Build/`
-   * `Frhed/`
-     * `*.*`
    * `GnuWin32/`
      * `*.*`
    * `Manual/htmlhelp/`
-     * `WinMerge.chm`
-   * `Merge7z/`
-     * `*.*`
-   * `Release/`
-     * `WinMergeU.exe`
-   * `WinIMerge/`
-     * `*.*`
+     * `WinMerge*.chm`
    * `ShellExtension/`
-     * `ShellExtensionU.dll`
-     * `ShellExtensionX64.dll`
-   * `x64`
-     * `Frhed/`
-       * `*.*`
-     * `Merge7z/`
-       * `*.*`
+     * `ShellExtension*.dll`
+     * `{arch}`
+       * `WinMergeContextMenu.dll`
+     * `WinMergeContextMenuPackage.msix`
+   * `{arch}`
      * `Release/`
+       * `Frhed/`
+         * `*.*`
+       * `Merge7z/`
+         * `*.*`
        * `WinMergeU.exe`
  * `Docs/`
    * `Users/`
@@ -63,15 +58,19 @@ These files are produced by compiling WinMerge, documentation etc, but that's no
      * `GPL.rtf`
      * `ReadMe.txt`
      * `ReleaseNotes.html`
+ * `ColorSchemes/`
+   * `*.ini`
  * `Filters/`
    * `FileFilter.tmpl`
    * `*.flt`
  * `Plugins/`
+   * `Commands/`
+     * `**/*.bat`
+     * `**/*.txt`
    * `dlls/`
-     * `*.dll`
-     * `*.sct`
-     * `X64/`
+     * `{arch}`
        * `*.dll`
+     * `*.sct`
    * `WinMerge32BitPluginProxy/Release/`
      * `WinMerge32BitPluginProxy.exe`
  * `Translations/`
@@ -79,12 +78,14 @@ These files are produced by compiling WinMerge, documentation etc, but that's no
      * `*.*`
    * `InnoSetup/`
      * `*.isl`
+   * `ShellExtension/`
+     * `*.po`
    * `WinMerge/`
      * `*.po`
 
 ## Running Inno Setup to create installer
 
-`WinMerge.iss` (in InnoSetup folder) is script used to create WinMerge installer.
+`WinMerge{arch}*.iss` (in InnoSetup folder) is script used to create WinMerge installer.
 
 Rest of this section assumes ISTool is used. If not, then refer to InnoSetup manual for creating installer from script.
 

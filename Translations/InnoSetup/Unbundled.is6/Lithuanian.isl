@@ -1,7 +1,7 @@
-; *** Inno Setup version 6.0.0+ Lithuanian messages ***
+; *** Inno Setup version 6.1.0+ Lithuanian messages ***
 ;
 ; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/files/istrans/
+;   https://jrsoftware.org/files/istrans/
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -9,7 +9,7 @@
 ; two periods being displayed).
 ; Translated by Robertas Rimas (Loptar AT takas DOT lt)
 ; Corrected and updated by Rolandas Rudomanskis (rolandasr AT gmail DOT com)
-; Corrected and updated to version 6.0.0+ by Dalius Guzauskas (aka Tichij) (tichij AT mail DOT com)
+; Corrected and updated to version 6.0.3+ by Dalius Guzauskas (aka Tichij) (tichij AT mail DOT com)
 
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
@@ -154,6 +154,7 @@ WizardSelectDir=Pasirinkite diegimo katalogà
 SelectDirDesc=Kur turi bûti ádiegta „[name]“?
 SelectDirLabel3=Diegimo programa ádiegs „[name]“ á nurodytà katalogà.
 SelectDirBrowseLabel=Norëdami tæsti diegimà spauskite „Pirmyn“. Jei norite pasirinkti kità katalogà, spauskite „Nurodyti“.
+DiskSpaceGBLabel=Reikia maþiausiai [gb] GB laisvos vietos kietajame diske.
 DiskSpaceMBLabel=Reikia maþiausiai [mb] MB laisvos vietos kietajame diske.
 CannotInstallToNetworkDrive=Diegimo programa negali diegti á tinkliná diskà.
 CannotInstallToUNCPath=Diegimo programa negali diegti á UNC tipo katalogà.
@@ -164,9 +165,9 @@ DiskSpaceWarning=Diegimui reikia bent %1 KB laisvos vietos, bet nurodytame diske
 DirNameTooLong=Katalogo pavadinimas ar kelias iki jo per ilgas.
 InvalidDirName=Nekorektiðkas katalogo pavadinimas.
 BadDirName32=Katalogo pavadinime neturi bûti simboliø:%n%n%1
-DirExistsTitle=Toks katalogas egzistuoja
-DirExists=Katalogas:%n%n%1%n%n jau egzistuoja. Vis tiek norite diegti programà tame kataloge?
-DirDoesntExistTitle=Toks katalogas neegzistuoja.
+DirExistsTitle=Tokio katalogo nëra
+DirExists=Katalogas:%n%n%1%n%n jau yra. Vis tiek norite diegti programà tame kataloge?
+DirDoesntExistTitle=Tokio katalogo nëra.
 DirDoesntExist=Katalogas:%n%n%1%n%n neegzistuoja. Norite kad katalogas bûtø sukurtas?
 
 ; *** "Select Components" wizard page
@@ -181,6 +182,7 @@ NoUninstallWarningTitle=Komponentai egzistuoja
 NoUninstallWarning=Diegimo programa aptiko, kad ðie komponentai jau ádiegti Jûsø kompiuteryje:%n%n%1%n%nJei nuimsite þymes nuo ðiø komponentø, jie vis tiek nebus iðtrinti.%n%nVis tiek norite tæsti diegimà?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=Dabartinis Jûsø pasirinkimas reikalauja [gb] GB laisvos vietos diske.
 ComponentsDiskSpaceMBLabel=Dabartinis Jûsø pasirinkimas reikalauja [mb] MB laisvos vietos diske.
 
 ; *** "Select Additional Tasks" wizard page
@@ -211,6 +213,18 @@ ReadyMemoComponents=Pasirinkti komponentai:
 ReadyMemoGroup=„Start Menu“ katalogas:
 ReadyMemoTasks=Papildomi veiksmai:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=Parsisiunèiami papildomi failai...
+ButtonStopDownload=&Stabdyti parsisiuntimà
+StopDownload=Ar tikrai norite sustabdyti parsisiuntimà?
+ErrorDownloadAborted=Parsisiuntimas nutrauktas
+ErrorDownloadFailed=Parsisiøsti nepavyko: %1 %2
+ErrorDownloadSizeFailed=Nepavyko gauti dydþio: %1 %2
+ErrorFileHash1=Failo patikrinimas nepavyko: %1
+ErrorFileHash2=Neteisinga failo „hash“ reikðmë: numatyta %1, rasta %2
+ErrorProgress=Netinkama eiga: %1 ið %2
+ErrorFileSize=Neteisingas failo dydis: numatytas %1, rastas %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Pasirengimas diegimui
 PreparingDesc=Diegimo programa pasirengusi „[name]“ diegimui Jûsø kompiuteryje.
@@ -221,6 +235,7 @@ ApplicationsFound2=Ðios programos naudoja failus, kurie turi bûti perraðyti dieg
 CloseApplications=&Automatiðkai uþdaryti programas
 DontCloseApplications=&Neuþdarinëti programø
 ErrorCloseApplications=Diegimo programai nepavyko automatiðkai uþdaryti visø programø. Prieð tæsiant diegimà, rekomeduojama uþdaryti visas programas, naudojanèias failus, kurie turi bûti perraðyti diegimo metu.
+PrepareToInstallNeedsRestart=Diegimo programai reikia perkrauti kompiuterá. Po perkovimo, vël paleiskite diegimo programà „[name]“ diegimo uþbaigimui.%n%nNorite perkrauti já dabar?
 
 ; *** "Installing" wizard page
 WizardInstalling=Vyksta diegimas
@@ -287,18 +302,27 @@ ErrorIniEntry=Klaida raðant INI áraðà „%1“ faile.
 FileAbortRetryIgnoreSkipNotRecommended=Pralei&sti ðá failà (nerekomenduojama)
 FileAbortRetryIgnoreIgnoreNotRecommended=&Ignoruoti klaidà ir tæsti (nerekomenduojama)
 SourceIsCorrupted=Pradinis failas sugadintas
-SourceDoesntExist=Pradinis failas „%1“ neegzistuoja
-ExistingFileReadOnly2=Egzistuojantis failas yra paþymëtas „Tik skaitymui“ todël negali bûti pakeistas.
+SourceDoesntExist=Pradinio failo „%1“ nëra
+ExistingFileReadOnly2=Esamas failas yra paþymëtas „Tik skaitymui“ todël negali bûti pakeistas.
 ExistingFileReadOnlyRetry=Paðalinkite at&ributà „Tik skaitymui“ ir bandykite vël
-ExistingFileReadOnlyKeepExisting=Pali&kti egzistuojantá failà
-ErrorReadingExistingDest=Skaitant egzistuojantá failà ávyko klaida:
-FileExists=Toks failas jau egzistuoja.%n%nNorite, kad diegimo programa perraðytø failà?
-ExistingFileNewer=Egzistuojantis failas yra naujesnis uþ tà, kurá diegimo programa bando áraðyti. Rekomenduojama palikti esantá naujesná failà.%n%nNorite palikti naujesná failà?
+ExistingFileReadOnlyKeepExisting=Pali&kti esamà failà
+ErrorReadingExistingDest=Skaitant esamà failà ávyko klaida:
+FileExistsSelectAction=Pasirinkite veiksmà
+FileExists2=Toks failas jau yra.
+FileExistsOverwriteExisting=&Perraðyti esamà failà
+FileExistsKeepExisting=Pali&kti esamà failà
+FileExistsOverwriteOrKeepAll=&Daryti taip ir esant kitiems konfliktams
+ExistingFileNewerSelectAction=Pasirinkite veiksmà
+ExistingFileNewer=Esamas failas yra naujesnis uþ tà, kurá diegimo programa bando áraðyti. Rekomenduojama palikti esamà failà.%n%nPalikti naujesná failà?
+ExistingFileNewer2=Esamas failas yra naujesnis uþ tà, kurá diegimo programa bando áraðyti.
+ExistingFileNewerOverwriteExisting=&Perraðyti esamà failà
+ExistingFileNewerKeepExisting=Pali&kti esamà failà (rekomenduojama)
+ExistingFileNewerOverwriteOrKeepAll=&Daryti taip ir esant kitiems konfliktams
 ErrorChangingAttr=Keièiant failo atributus ávyko klaida:
 ErrorCreatingTemp=Kuriant failà pasirinktame kataloge ávyko klaida:
 ErrorReadingSource=Skaitant diegiamàjá failà ávyko klaida:
 ErrorCopying=Kopijuojant failà ávyko klaida:
-ErrorReplacingExistingFile=Perraðant egzistuojantá failà ávyko klaida:
+ErrorReplacingExistingFile=Perraðant esamà failà ávyko klaida:
 ErrorRestartReplace=Perkrovimas/Perraðymas nepavyko:
 ErrorRenamingTemp=Pervadinant failà pasirinktame kataloge ávyko klaida:
 ErrorRegisterServer=Nepavyko uþregistruoti DLL/OCX bibliotekos: „%1“
@@ -320,7 +344,7 @@ ErrorOpeningReadme=Bandant atidaryti „README“ failà ávyko klaida.
 ErrorRestartingComputer=Diegimo programa negali perkrauti kompiuterio. Perkraukite kompiuterá áprastu bûdu.
 
 ; *** Uninstaller messages
-UninstallNotFound=„%1“ failas neegzistuoja. Paðalinti neámanoma.
+UninstallNotFound=„%1“ failo nëra. Paðalinti neámanoma.
 UninstallOpenError=„%1“ failas negali bûti atidarytas. Paðalinti neámanoma.
 UninstallUnsupportedVer=Paðalinimo þurnalo failas „%1“ yra paðalinimo programai nesuprantamo formato. Paðalinti neámanoma.
 UninstallUnknownEntry=Neþinomas áraðas (%1) rastas paðalinimo þurnalo faile.
@@ -359,6 +383,6 @@ UninstallProgram=Paðalinti „%1“
 LaunchProgram=Paleisti „%1“
 AssocFileExtension=&Susieti „%1“ programà su failo plëtiniu %2
 AssocingFileExtension=„%1“ programa susiejama su failo plëtiniu %2...
-AutoStartProgramGroupDescription=Atomatinë paleistis:
-AutoStartProgram=Atomatiðkai paleisti „%1“
+AutoStartProgramGroupDescription=Automatinë paleistis:
+AutoStartProgram=Automatiðkai paleisti „%1“
 AddonHostProgramNotFound=„%1“ nerasta Jûsø nurodytame kataloge.%n%nVis tiek norite tæsti?

@@ -162,8 +162,8 @@ void CAboutDlg::Impl::OnBnClickedOpenContributors()
 
 void CAboutDlg::Impl::OnBnClickedWWW(NMHDR *pNMHDR, LRESULT *pResult)
 {
-	PNMLINK pNMLink = (PNMLINK)pNMHDR;
-	ShellExecute(nullptr, _T("open"), pNMLink->item.szUrl, nullptr, nullptr, SW_SHOWNORMAL);
+	int tmp = 0;
+	m_p->m_onclick_url.notify(m_p, tmp);
 }
 
 LRESULT CAboutDlg::Impl::OnDpiChanged(WPARAM wParam, LPARAM lParam)
@@ -198,5 +198,5 @@ void CAboutDlg::Impl::RecreateResources()
 }
 
 CAboutDlg::CAboutDlg() : m_pimpl(new CAboutDlg::Impl(this)) {}
-CAboutDlg::~CAboutDlg() {}
+CAboutDlg::~CAboutDlg() = default;
 int CAboutDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }

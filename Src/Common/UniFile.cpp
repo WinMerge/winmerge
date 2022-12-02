@@ -69,14 +69,14 @@ UniLocalFile::UniLocalFile()
 void UniLocalFile::Clear()
 {
 	m_statusFetched = 0;
-	m_filesize = 0;
-	m_filepath.erase();
-	m_filename.erase();
 	m_lineno = -1;
-	m_unicoding = ucr::NONE;
+	m_filesize = 0;
+	m_filepath.clear();
+	m_filename.clear();
 	m_charsize = 1;
 	m_codepage = ucr::getDefaultCodepage();
 	m_txtstats.clear();
+	m_unicoding = ucr::NONE;
 	m_bom = false;
 	m_bUnicodingChecked = false;
 	m_bUnicode = false;
@@ -280,9 +280,8 @@ bool UniMemFile::ReadBom()
 		return false;
 
 	unsigned char * lpByte = m_base;
-	m_current = m_data = m_base;
 	m_charsize = 1;
-	bool unicode = false;
+	bool unicode = true;
 	bool bom = false;
 
 	m_unicoding = ucr::DetermineEncoding(lpByte, m_filesize, &bom);
@@ -292,24 +291,19 @@ bool UniMemFile::ReadBom()
 		m_codepage = ucr::CP_UCS2LE;
 		m_charsize = 2;
 		m_data = lpByte + 2;
-		unicode = true;
 		break;
 	case ucr::UCS2BE:
 		m_codepage = ucr::CP_UCS2BE;
 		m_charsize = 2;
 		m_data = lpByte + 2;
-		unicode = true;
 		break;
 	case ucr::UTF8:
 		m_codepage = ucr::CP_UTF_8;
-		m_charsize = 1;
-		if (bom)
-			m_data = lpByte + 3;
-		else
-			m_data = lpByte;
-		unicode = true;
+		m_data = lpByte + (bom ? 3 : 0);
 		break;
 	default:
+		m_data = m_base;
+		unicode = false;
 		break;
 	}
 
@@ -331,11 +325,29 @@ bool UniMemFile::ReadString(String & line, bool * lossy)
 	return ReadString(line, eol, lossy);
 }
 
+bool UniMemFile::ReadStringAll(String& text)
+{
+	text.clear();
+	text.reserve(static_cast<size_t>(m_filesize));
+
+	String tmp, eol;
+	bool lossy = false, lossytmp = false, last;
+	do
+	{
+		last = ReadString(tmp, eol, &lossytmp);
+		text += tmp;
+		text += eol;
+		if (lossytmp)
+			lossy = true;
+	} while (last);
+	return lossy;
+}
+
 /**
  * @brief Append characters to string.
  * This function appends characters to the string. The storage for the string
  * is grown exponentially to avoid unnecessary allocations and copying.
- * @param [in, out] strBuffer A string to wich new characters are appended.
+ * @param [in, out] strBuffer A string to which new characters are appended.
  * @param [in] ccHead Index in the string where new chars are appended.
  * @param [in] pchTail Characters to append.
  * @param [in] cchTail Amount of characters to append.
@@ -377,8 +389,8 @@ static void RecordZero(UniFile::txtstats & txstats, size_t offset)
  */
 bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 {
-	line.erase();
-	eol.erase();
+	line.clear();
+	eol.clear();
 	const TCHAR * pchLine = (const TCHAR *)m_current;
 	
 	// shortcut methods in case file is in the same encoding as our Strings
@@ -512,7 +524,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			++m_lineno;
 			if (*eolptr == '\r')
 			{
-				if (eolptr - m_base + (m_charsize - 1) < m_filesize && eolptr[1] == '\n')
+				if (eolptr - m_base + m_charsize + (m_charsize - 1) < m_filesize && eolptr[1] == '\n')
 				{
 					eol += '\n';
 					++m_txtstats.ncrlfs;
@@ -761,39 +773,34 @@ bool UniStdioFile::ReadBom()
 	fseek(m_fp, 0, SEEK_SET);
 
 	// Read 8 KB at max for get enough data determining UTF-8 without BOM.
-	const int max_size = 8 * 1024;
-	std::unique_ptr<unsigned char[]> buff(new unsigned char[max_size]);
+	const size_t max_size = 8 * 1024;
+	unsigned char buff[max_size];
 
-	size_t bytes = fread(&buff[0], 1, max_size, m_fp);
-	m_data = 0;
+	size_t bytes = fread(buff, 1, max_size, m_fp);
 	m_charsize = 1;
-	bool unicode = false;
+	bool unicode = true;
 	bool bom = false;
 
-	m_unicoding = ucr::DetermineEncoding(&buff[0], bytes, &bom);
+	m_unicoding = ucr::DetermineEncoding(buff, bytes, &bom);
 	switch (m_unicoding)
 	{
 	case ucr::UCS2LE:
 		m_codepage = ucr::CP_UCS2LE;
 		m_charsize = 2;
 		m_data = 2;
-		unicode = true;
 		break;
 	case ucr::UCS2BE:
 		m_codepage = ucr::CP_UCS2BE;
 		m_charsize = 2;
 		m_data = 2;
-		unicode = true;
 		break;
 	case ucr::UTF8:
 		m_codepage = ucr::CP_UTF_8;
-		if (bom)
-			m_data = 3;
-		else
-			m_data = 0;
-		unicode = true;
+		m_data = bom ? 3 : 0;
 		break;
 	default:
+		m_data = 0;
+		unicode = false;
 		break;
 	}
 
@@ -809,6 +816,12 @@ bool UniStdioFile::ReadString(String & line, bool * lossy)
 }
 
 bool UniStdioFile::ReadString(String & line, String & eol, bool * lossy)
+{
+	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
+	return false;
+}
+
+bool UniStdioFile::ReadStringAll(String & line)
 {
 	assert(false); // unimplemented -- currently cannot read from a UniStdioFile!
 	return false;

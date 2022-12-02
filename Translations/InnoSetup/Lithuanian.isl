@@ -16,18 +16,20 @@ Filters=Filtrai
 Plugins=Papildiniai
 Frhed=„Frhed“ (nemokamas ðeðioliktainis redaktorius)
 WinIMerge=„WinIMerge“ (vaizdø Diff/Merge)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archyvø palaikymas
 ShellExtension32bit=32-bitø „WinMerge ShellExtension“
-Patch=GnuWin32 pataisa „Windows“
+Commands=GnuWin32 pataisa „Windows“/HTML Tidy/jq
 
 ;Localization Components
 Languages=Kalbos
-ArabicLanguage=Arabu meniu ir dialogai
+ArabicLanguage=Arabø meniu ir dialogai
 BasqueLanguage=Baskø meniu ir dialogai
 BulgarianLanguage=Bulgarø meniu ir dialogai
 CatalanLanguage=Katalonø meniu ir dialogai
 ChineseSimplifiedLanguage=Kinø (supaprastinta) meniu ir dialogai
 ChineseTraditionalLanguage=Kinø (tradicinë) meniu ir dialogai
+CorsicanLanguage=Korsikieèiø meniu ir dialogai
 CroatianLanguage=Kroatø meniu ir dialogai
 CzechLanguage=Èekø meniu ir dialogai
 DanishLanguage=Danø meniu ir dialogai
@@ -63,7 +65,6 @@ ExplorerContextMenu=L&eisti „Explorer“ kontekstinio meniu integracijà
 IntegrateTortoiseCVS=Integruoti su „&TortoiseCVS“
 IntegrateTortoiseGit=Integruoti su „To&rtoiseGit“
 IntegrateTortoiseSVN=Integruoti su „T&ortoiseSVN“
-IntegrateClearCase=Integruoti su „Rational &ClearCase“
 AddToPath=Átr&aukti „WinMerge“ katalogà á sistemos %PATH% kintamajá
 
 ; 3-way merge wizard page

@@ -20,8 +20,7 @@ class PathInfo
 {
 	friend class PathContext;
 public:
-	PathInfo() {}
-	PathInfo(const PathInfo &pi);
+	PathInfo() = default;
 
 	String GetPath(bool bNormalized = true) const;
 	String& GetRef() { return m_sPath; }
@@ -59,7 +58,6 @@ public:
 	explicit PathContext(const String& sLeft);
 	PathContext(const String& sLeft, const String& sRight);
 	PathContext(const String& sLeft, const String& sMiddle, const String& sRight);
-	PathContext(const PathContext &paths);
 	explicit PathContext(const std::vector<String>& paths);
 
 	String GetAt(int nIndex) const;
@@ -79,7 +77,7 @@ public:
 	void SetSize(int nFiles);
 	int GetSize() const;
 	void RemoveAll();
-	void Swap();
+	void Swap(int nFromIndex, int nToIndex);
 
 	const_iterator begin() const;
 	const_iterator end() const;
@@ -116,7 +114,7 @@ public:
 	{
 	}
 
-	~PathContextIterator() {}
+	~PathContextIterator() = default;
 
 	PathContextIterator& operator=(const PathContextIterator& it)
 	{

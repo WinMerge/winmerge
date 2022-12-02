@@ -9,7 +9,7 @@ https://winmerge.org
 
 Guia de utilização rápida do WinMerge: 
 Leia atentamente o guia de utilização rápida do WinMerge disponível online para iniciar o WinMerge:
-https://manual.winmerge.org/QuickStart.html
+https://manual.winmerge.org/Quick_start.html
 
 Manual em HTML: O manual está disponível online em: 
 https://manual.winmerge.org/ 

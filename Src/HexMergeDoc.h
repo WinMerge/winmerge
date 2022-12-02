@@ -13,6 +13,7 @@
 #include "PathContext.h"
 #include "FileLocation.h"
 #include "IMergeDoc.h"
+#include "FileTransform.h"
 
 class CDirDoc;
 class CHexMergeFrame;
@@ -24,12 +25,12 @@ class CHexMergeView;
 class CHexMergeDoc : public CDocument, public IMergeDoc
 {
 public:
-	enum BUFFERTYPE
+	enum class BUFFERTYPE
 	{
-		BUFFER_NORMAL = 0, /**< Normal, file loaded from disk */
-		BUFFER_NORMAL_NAMED, /**< Normal, description given */
-		BUFFER_UNNAMED, /**< Empty, created buffer */
-		BUFFER_UNNAMED_SAVED, /**< Empty buffer saved with filename */
+		NORMAL = 0, /**< Normal, file loaded from disk */
+		NORMAL_NAMED, /**< Normal, description given */
+		UNNAMED, /**< Empty, created buffer */
+		UNNAMED_SAVED, /**< Empty buffer saved with filename */
 	};
 
 // Attributes
@@ -63,20 +64,31 @@ public:
 	~CHexMergeDoc();
 	int UpdateDiffItem(CDirDoc * pDirDoc);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
+	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(CDirDoc * pDirDoc) override;
 	void DirDocClosing(CDirDoc * pDirDoc) override;
 	bool CloseNow() override;
 	bool GenerateReport(const String& sFileName) const override { return true; }
+	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
+	PackingInfo* GetUnpacker() { return &m_infoUnpacker; };
+	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker;  };
+	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
+	int GetFileCount() const override { return m_filePaths.GetSize(); }
+	String GetPath(int pane) const override { return m_filePaths[pane]; }
+	bool GetReadOnly(int pane) const override;
+	CString GetTooltipString() const override;
 	CHexMergeFrame * GetParentFrame() const;
 	void UpdateHeaderPath(int pane);
 	void RefreshOptions();
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[]);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void CheckFileChanged(void) override;
-	String GetDescription(int pane) const { return m_strDesc[pane]; };
+	String GetDescription(int pane) const override { return m_strDesc[pane]; };
+	void SetDescription(int pane, const String& strDesc) {  m_strDesc[pane] = strDesc; };
+	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
 private:
-	void DoFileSave(int nBuffer);
-	void DoFileSaveAs(int nBuffer);
+	bool DoFileSave(int nBuffer);
+	bool DoFileSaveAs(int nBuffer, bool packing = true);
 	HRESULT LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc);
 	void RecompareAs(UINT id);
 // Implementation data
@@ -85,6 +97,7 @@ protected:
 	CDirDoc * m_pDirDoc;
 	String m_strDesc[3]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[3];
+	PackingInfo m_infoUnpacker;
 
 // Generated message map functions
 protected:
@@ -102,18 +115,29 @@ protected:
 	afx_msg void OnUpdateFileSaveMiddle(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
+	afx_msg void OnCopyX2Y(UINT nID);
+	afx_msg void OnUpdateX2Y(CCmdUI* pCmdUI);
 	afx_msg void OnL2r();
+	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
+	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateR2LNext(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromLeft();
+	afx_msg void OnUpdateCopyFromLeft(CCmdUI* pCmdUI);
 	afx_msg void OnCopyFromRight();
+	afx_msg void OnUpdateCopyFromRight(CCmdUI* pCmdUI);
 	afx_msg void OnAllRight();
+	afx_msg void OnUpdateAllRight(CCmdUI* pCmdUI);
 	afx_msg void OnAllLeft();
+	afx_msg void OnUpdateAllLeft(CCmdUI* pCmdUI);
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
 	afx_msg void OnRefresh();
 	afx_msg void OnFileRecompareAs(UINT nID);
 	afx_msg void OnUpdateFileRecompareAs(CCmdUI* pCmdUI);
+	afx_msg void OnOpenWithUnpacker();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -7,7 +7,7 @@ CompanyName=Thingamahoochie Software
 ;Types
 TypicalInstallation=Tipièna namestitev
 FullInstallation=Popolna namestitev
-CompactInstallation=Kompaktna namestitev
+CompactInstallation=Strnjena namestitev
 CustomInstallation=Namestitev po meri
 
 ;Components
@@ -16,9 +16,10 @@ Filters=Filtri
 Plugins=Vtièniki
 Frhed=Frhed(Brezplaèni 16-tiški urejevalnik)
 WinIMerge=WinIMerge (Slika razlik/združitev)
+WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Podpora arhivov
 ShellExtension32bit=32-bitna razširitev lupine WinMerge
-Patch=GnuWin32 popravek za Windows
+Commands=GnuWin32 popravek za Windows/HTML Tidy/jq
 
 ;Localization Components
 Languages=Jeziki
@@ -28,6 +29,7 @@ BulgarianLanguage=Bolgarski meniji in pogovorna okna
 CatalanLanguage=Katalonski meniji in pogovorna okna
 ChineseSimplifiedLanguage=Kitajski (poenostavljeni) meniji in pogovorna okna
 ChineseTraditionalLanguage=Kitajski (tradicionalni) meniji in pogovorna okna
+CorsicanLanguage=Corsican menus and dialogs
 CroatianLanguage=Hrvaški meniji in pogovorna okna
 CzechLanguage=Èeški meniji in pogovorna okna
 DanishLanguage=Danski meniji in pogovorna okna
@@ -63,7 +65,6 @@ ExplorerContextMenu=&Omogoèi integracijo v priroèni meni Raziskovalca
 IntegrateTortoiseCVS=Integracija s &TortoiseCVS
 IntegrateTortoiseGit=Integracija s To&rtoiseGit
 IntegrateTortoiseSVN=Integracija s T&ortoiseSVN
-IntegrateClearCase=Integracija z Rational &ClearCase
 AddToPath=&Dodaj v sistemsko pot mapo WinMerge
 
 ; 3-way merge wizard page
@@ -78,7 +79,7 @@ AutoMergeAtStartup=Samodejno združi ob zagonu
 ;Icon Labels
 ReadMe=Beri me
 UsersGuide=Uporabniški priroènik
-ViewStartMenuFolder=&Ogled si mape zaèetnega menija WinMerge
+ViewStartMenuFolder=&Ogled mape zaèetnega menija WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Namestitveni program je zaznal, da ste spremenili mesto svojega zaèetnega menija iz "%s" v "%s".  Ali želite izbrisati prejšnjo mapo zaèetnega menija?

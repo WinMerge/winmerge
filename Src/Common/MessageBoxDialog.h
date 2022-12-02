@@ -98,11 +98,11 @@ public:
 
 	// Constructor of the class for direct providing of the message strings.
 	CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
-		CString strTitle = _T(""), UINT nStyle = MB_OK, UINT nHelp = 0 );
+		CString strTitle = _T(""), UINT nStyle = MB_OK, UINT nHelp = 0, const CString& strRegistryKey = _T("") );
 
 	// Constructor of the class for loading the strings from the resources.
 	CMessageBoxDialog ( CWnd* pParent, UINT nMessageID, UINT nTitleID = 0,
-		UINT nStyle = MB_OK, UINT nHelp = 0 );
+		UINT nStyle = MB_OK, UINT nHelp = 0, const CString& strRegistryKey = _T("") );
 
 	// Default destructor of the class.
 	virtual ~CMessageBoxDialog ( );
@@ -162,6 +162,7 @@ public:
 
 	// Method for resetting the message boxes stored in the registry.
 	static void ResetMessageBoxes ( );
+	static CString GenerateRegistryKey (UINT nMessageID, UINT nHelpID);
 
 public:
 

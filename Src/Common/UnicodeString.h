@@ -8,6 +8,7 @@
 #pragma once
 
 #include <string>
+#include <string_view>
 #include <tchar.h>
 
 #ifdef _UNICODE
@@ -16,7 +17,10 @@
 #define std_tchar(type) std::type
 #endif // _UNICODE
 
+using namespace std::string_literals;
+
 typedef std_tchar(string) String;
+typedef std_tchar(string_view) StringView;
 
 namespace strutils
 {
@@ -24,10 +28,18 @@ namespace strutils
 String makelower(const String &str);
 String makeupper(const String &str);
 
+String strip_hot_key(const String& str);
+
+TCHAR from_charstr(const String& str);
+String to_charstr(TCHAR ch);
+String to_regex(const String& text);
+
 void replace(String &target, const String &find, const String &replace);
+void replace_chars(String& str, const TCHAR* chars, const TCHAR* rep);
 
 // Comparing
 int compare_nocase(const String &str1, const String &str2);
+int compare_logical(const String& str1, const String& str2);
 
 // Trimming
 String trim_ws(const String & str);
@@ -55,6 +67,7 @@ inline String format(String const & fmt, Args const & ... args)
 String format_strings(const String& fmt, const String *args[], size_t nargs);
 String format_string1(const String& fmt, const String& arg1);
 String format_string2(const String& fmt, const String& arg1, const String& arg2);
+String format_string3(const String& fmt, const String& arg1, const String& arg2, const String& arg3);
 
 template <class InputIterator>
 String join(const InputIterator& begin, const InputIterator& end, const String& delim)
@@ -69,7 +82,7 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	result.reserve(sum);
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += *it;
 	}
 	return result;
@@ -81,11 +94,29 @@ String join(const InputIterator& begin, const InputIterator& end, const String& 
 	String result;
 	for (InputIterator it = begin; it != end; ++it)
 	{
-		if (!result.empty()) result.append(delim);
+		if (it != begin) result.append(delim);
 		result += func(*it);
 	}
 	return result;
 }
+
+template<class T = std::vector<StringView>>
+T split(StringView str, TCHAR delim)
+{
+	T result;
+	size_t start = 0;
+	for (size_t i = 0; i < str.size(); i++)
+	{
+		if (str[i] == delim)
+		{
+			result.emplace_back(str.data() + start, i - start);
+			start = i + 1;
+		}
+	}
+	result.emplace_back(str.data() + start, str.size() - start);
+	return result;
+}
+
 
 inline String to_str(int val) { return strutils::format(_T("%d"), val); }
 inline String to_str(unsigned val) { return strutils::format(_T("%u"), val); }
@@ -95,5 +126,6 @@ inline String to_str(long long val) { return strutils::format(_T("%I64d"), val);
 inline String to_str(unsigned long long val) { return strutils::format(_T("%I64u"), val); }
 inline String to_str(float val) { return strutils::format(_T("%f"), val); }
 inline String to_str(double val) { return strutils::format(_T("%f"), val); }
+inline String to_str(const StringView& val) { return { val.data(), val.size() }; }
 
 }

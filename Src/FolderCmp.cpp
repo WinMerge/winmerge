@@ -21,14 +21,14 @@
 #include "TimeSizeCompare.h"
 #include "TFile.h"
 #include "FileFilterHelper.h"
+#include "PropertySystem.h"
+#include "MergeApp.h"
 #include "DebugNew.h"
 
 using CompareEngines::ByteCompare;
 using CompareEngines::BinaryCompare;
 using CompareEngines::TimeSizeCompare;
 using CompareEngines::ImageCompare;
-
-static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & files);
 
 FolderCmp::FolderCmp(CDiffContext *pCtxt)
 : m_pCtxt(pCtxt)
@@ -41,9 +41,7 @@ FolderCmp::FolderCmp(CDiffContext *pCtxt)
 {
 }
 
-FolderCmp::~FolderCmp()
-{
-}
+FolderCmp::~FolderCmp() = default;
 
 bool FolderCmp::RunPlugins(PluginsContext * plugCtxt, String &errStr)
 {
@@ -97,7 +95,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			m_diffFileData.m_textStats[nIndex].clear();
 
 		PathContext tFiles;
-		GetComparePaths(m_pCtxt, di, tFiles);
+		m_pCtxt->GetComparePaths(di, tFiles);
 		struct change *script10 = nullptr;
 		struct change *script12 = nullptr;
 		struct change *script02 = nullptr;
@@ -112,7 +110,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 		// Transformation happens here
 		// text used for automatic mode : plugin filter must match it
-		String filteredFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
+		String filteredFilenames = CDiffContext::GetFilteredFilenames(tFiles);
 
 		PackingInfo * infoUnpacker = nullptr;
 		PrediffingInfo * infoPrediffer = nullptr;
@@ -134,18 +132,15 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			// Invoke unpacking plugins
 			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
 			{
-				if (!FileTransform::Unpacking(infoUnpacker, filepathUnpacked[nIndex], filteredFilenames))
+				if (!infoUnpacker->Unpacking(nullptr, filepathUnpacked[nIndex], filteredFilenames, { tFiles[nIndex] }))
 					goto exitPrepAndCompare;
-
-				// we use the same plugins for both files, so they must be defined before second file
-				assert(!infoUnpacker->m_PluginOrPredifferMode != PLUGIN_MANUAL);
 			}
 
 			// As we keep handles open on unpacked files, Transform() may not delete them.
 			// Unpacked files will be deleted at end of this function.
 			filepathTransformed[nIndex] = filepathUnpacked[nIndex];
 
-			encoding[nIndex] = GuessCodepageEncoding(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
+			encoding[nIndex] = codepage_detect::Guess(filepathTransformed[nIndex], m_pCtxt->m_iGuessEncodingType);
 			m_diffFileData.m_FileLocation[nIndex].encoding = encoding[nIndex];
 		}
 
@@ -155,7 +150,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 		for (nIndex = 0; nIndex < nDirs; nIndex++)
 		{
 		// Invoke prediff'ing plugins
-			if (infoPrediffer && !m_diffFileData.Filepath_Transform(bForceUTF8, encoding[nIndex], filepathUnpacked[nIndex], filepathTransformed[nIndex], filteredFilenames, infoPrediffer))
+			if (infoPrediffer && !m_diffFileData.Filepath_Transform(bForceUTF8, encoding[nIndex], filepathUnpacked[nIndex], filepathTransformed[nIndex], filteredFilenames, *infoPrediffer))
 				goto exitPrepAndCompare;
 		}
 
@@ -211,7 +206,10 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
-				m_pDiffUtilsEngine->SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+				if (m_pCtxt->m_pSubstitutionList != nullptr)
+					m_pDiffUtilsEngine->SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
+				else
+					m_pDiffUtilsEngine->ClearSubstitutionList();
 			}
 			if (tFiles.GetSize() == 2)
 			{
@@ -251,6 +249,11 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 				code = DIFFCODE::FILE;
 
+				String Ext = tFiles[0];
+				size_t PosOfDot = Ext.rfind('.');
+				if (PosOfDot != String::npos)
+					Ext.erase(0, PosOfDot + 1);
+
 				CDiffWrapper dw;
 				DiffList diffList;
 				DIFFSTATUS status;
@@ -259,7 +262,8 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				dw.SetCompareFiles(tFiles);
 				dw.SetOptions(m_pCtxt->GetOptions());
 				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
-				dw.SetFilterCommentsManager(m_pCtxt->m_pFilterCommentsManager);
+				dw.SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
+				dw.SetFilterCommentsSourceDef(Ext);
 				dw.SetCreateDiffList(&diffList);
 				dw.LoadWinMergeDiffsFromDiffUtilsScript3(
 					script10, script12,
@@ -408,17 +412,17 @@ exitPrepAndCompare:
 		diffdata02.Reset();
 		
 		// delete the temp files after comparison
-		if (filepathTransformed[0] != filepathUnpacked[0])
+		if (filepathTransformed[0] != filepathUnpacked[0] && !filepathTransformed[0].empty())
 			try { TFile(filepathTransformed[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[0])); }
-		if (filepathTransformed[1] != filepathUnpacked[1])
+		if (filepathTransformed[1] != filepathUnpacked[1] && !filepathTransformed[1].empty())
 			try { TFile(filepathTransformed[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[1])); }
-		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2])
+		if (nDirs > 2 && filepathTransformed[2] != filepathUnpacked[2] && !filepathTransformed[2].empty())
 			try { TFile(filepathTransformed[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathTransformed[2])); }
-		if (filepathUnpacked[0] != tFiles[0])
+		if (filepathUnpacked[0] != tFiles[0] && !filepathUnpacked[0].empty())
 			try { TFile(filepathUnpacked[0]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[0])); }
-		if (filepathUnpacked[1] != tFiles[1])
+		if (filepathUnpacked[1] != tFiles[1] && !filepathUnpacked[1].empty())
 			try { TFile(filepathUnpacked[1]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[1])); }
-		if (nDirs > 2 && filepathUnpacked[2] != tFiles[2])
+		if (nDirs > 2 && filepathUnpacked[2] != tFiles[2] && !filepathUnpacked[2].empty())
 			try { TFile(filepathUnpacked[2]).remove(); } catch (...) { LogErrorString(strutils::format(_T("DeleteFile(%s) failed"), filepathUnpacked[2])); }
 
 		// When comparing empty file and nonexistent file, `DIFFCODE::SAME` flag is set to the variable `code`, so change the flag to `DIFFCODE::DIFF`
@@ -430,9 +434,9 @@ exitPrepAndCompare:
 	{
 		if (m_pBinaryCompare == nullptr)
 			m_pBinaryCompare.reset(new BinaryCompare());
-
+		m_pBinaryCompare->SetAbortable(m_pCtxt->GetAbortable());
 		PathContext tFiles;
-		GetComparePaths(m_pCtxt, di, tFiles);
+		m_pCtxt->GetComparePaths(di, tFiles);
 		code = m_pBinaryCompare->CompareFiles(tFiles, di);
 	}
 	else if (nCompMethod == CMP_DATE || nCompMethod == CMP_DATE_SIZE || nCompMethod == CMP_SIZE)
@@ -452,7 +456,7 @@ exitPrepAndCompare:
 		}
 
 		PathContext tFiles;
-		GetComparePaths(m_pCtxt, di, tFiles);
+		m_pCtxt->GetComparePaths(di, tFiles);
 		code = DIFFCODE::IMAGE | m_pImageCompare->CompareFiles(tFiles, di);
 	}
 	else
@@ -461,33 +465,27 @@ exitPrepAndCompare:
 		throw "Invalid compare type, DiffFileData can't handle it";
 	}
 
+	if (m_pCtxt->m_pPropertySystem)
+	{
+		size_t numprops = m_pCtxt->m_pPropertySystem->GetCanonicalNames().size();
+		PathContext tFiles;
+		m_pCtxt->GetComparePaths(di, tFiles);
+		for (int i = 0; i < nDirs; ++i)
+		{
+			auto& properties = di.diffFileInfo[i].m_pAdditionalProperties;
+			if (di.diffcode.exists(i))
+			{
+				properties.reset(new PropertyValues());
+				m_pCtxt->m_pPropertySystem->GetPropertyValues(tFiles[i], *properties);
+			}
+			else
+			{
+				properties.reset(new PropertyValues());
+				properties->Resize(numprops);
+			}
+		}
+	}
+
 	return code;
 }
 
-/**
- * @brief Get actual compared paths from DIFFITEM.
- * @param [in] pCtx Pointer to compare context.
- * @param [in] di DiffItem from which the paths are created.
- * @param [out] left Gets the left compare path.
- * @param [out] right Gets the right compare path.
- * @note If item is unique, same path is returned for both.
- */
-void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, PathContext & tFiles)
-{
-	int nDirs = pCtxt->GetCompareDirs();
-
-	tFiles.SetSize(nDirs);
-
-	for (int nIndex = 0; nIndex < nDirs; nIndex++)
-	{
-		if (di.diffcode.exists(nIndex))
-		{
-			tFiles.SetPath(nIndex,
-				paths::ConcatPath(pCtxt->GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);
-		}
-		else
-		{
-			tFiles.SetPath(nIndex, _T("NUL"), false);
-		}
-	}
-}

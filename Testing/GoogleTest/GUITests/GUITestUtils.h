@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <filesystem>
 #include <set>
+#include <optional>
 
 namespace GUITestUtils
 {
@@ -13,6 +14,7 @@ namespace GUITestUtils
 	void typeKey(unsigned char vk);
 	void nextControl();
 	void prevControl();
+	void setFocusDlgItem(HWND hwnd, int id);
 	std::filesystem::path getModuleFileName();
 	std::filesystem::path getModuleFolder();
 	bool isMenuItemChecked(HWND hwnd, int id);
@@ -25,6 +27,13 @@ namespace GUITestUtils
 	HWND execInstaller(const std::string& args = "");
 	const std::set<int> languages();
 	const char * languageIdToName(int id);
+	std::optional<bool> regReadBool(const std::wstring& name);
+	std::optional<int> regReadInt(const std::wstring& name);
+	std::optional<std::wstring> regReadString(const std::wstring& name);
+	bool regWrite(const std::wstring& name, bool value);
+	bool regWrite(const std::wstring& name, int value);
+	bool regWrite(const std::wstring& name, const std::wstring& value);
+	bool regDelete(const std::wstring& name);
 }
 
 #define selectMenuAndSaveWindowImage(id) selectMenuAndSaveWindowImageHelper(id, #id)
@@ -41,6 +50,27 @@ public:
 	void selectMenuAsync(UINT id)
 	{
 		GUITestUtils::selectMenu(m_hwndWinMerge, id, true);
+	}
+
+	void selectYesOnFileNavConfirmationMessageBox()
+	{
+		HWND foreground = GetForegroundWindow();
+		if (foreground)
+		{
+			int cTxtLen = GetWindowTextLength(foreground);
+			// Expecting message box title "WinMerge" in File navigation confirmations
+			// for Tests not run in English, tbd, needed?
+			if (cTxtLen > 0)
+			{
+				LPWSTR pszMem = (LPWSTR)VirtualAlloc((LPVOID)NULL, (DWORD)(cTxtLen + 1), MEM_COMMIT, PAGE_READWRITE);
+				GetWindowText(foreground, pszMem, cTxtLen + 1);
+				if (wcscmp(pszMem, L"WinMerge") == 0)
+				{
+					GUITestUtils::typeKey(VK_RETURN);
+				}
+				VirtualFree(pszMem, 0, MEM_RELEASE);
+			}
+		}
 	}
 
 	void selectMenuAndSaveWindowImageHelper(UINT id, const char *str)

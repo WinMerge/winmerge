@@ -46,18 +46,20 @@ public:
 	enum { IDD = IDD_OPEN };
 	CSuperComboBox	m_ctlExt;
 	CSuperComboBox	m_ctlPath[3];
+	CSuperComboBox	m_ctlUnpackerPipeline;
+	CSuperComboBox	m_ctlPredifferPipeline;
 	String m_strPath[3];
 	bool m_bReadOnly[3];
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
-	String	m_strUnpacker;
+	String	m_strUnpackerPipeline;
+	String	m_strPredifferPipeline;
 	//}}AFX_DATA
 
 // other public data
 	/// unpacker info
 	std::array<DWORD, 3> m_dwFlags;
-	PackingInfo m_infoHandler;
 
 // Attributes
 public:
@@ -81,6 +83,14 @@ private:
 	std::array<bool, 3> m_bAutoCompleteReady;
 	DropHandler *m_pDropHandler;
 	int m_retryCount;
+	int m_nIgnoreWhite; /**< The value of the "Whitespaces" setting */
+	bool m_bIgnoreBlankLines; /**< The value of the "Ignore blank lines" setting */
+	bool m_bIgnoreCase; /**< The value of the "Ignore case" setting */
+	bool m_bIgnoreEol; /**< The value of the "Ignore carriage return differences" setting */
+	bool m_bIgnoreNumbers; /**< The value of the "Ignore numbers" setting */
+	bool m_bIgnoreCodepage; /**< The value of the "Ignore codepage differences" setting */
+	bool m_bFilterCommentsLines; /**< The value of the "Ignore comment differences" setting */
+	int m_nCompareMethod; /**< The value of the "Compare method" setting */
 // Overrides
 	public:
 virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -95,13 +105,12 @@ public:
 
 protected:
 	void SetStatus(UINT msgID);
-	void SetUnpackerStatus(UINT msgID);
-	bool LoadProjectFile(const String &path);
 	void TerminateThreadIfRunning();
 	void TrimPaths();
 	void LoadComboboxStates();
 	void SaveComboboxStates();
 	String AskProjectFileName(bool bOpen);
+	void DropDown(NMHDR *pNMHDR, LRESULT *pResult, UINT nID, UINT nPopupID);
 
 // Generated message map functions
 protected:
@@ -109,9 +118,12 @@ protected:
 	afx_msg void OnPathButton(UINT nID);
 	afx_msg void OnOK();
 	afx_msg void OnCancel();
+	afx_msg void OnCompare(UINT nID);
+	afx_msg void OnUpdateCompare(CCmdUI *pCmdUI);
 	afx_msg void OnLoadProject();
 	afx_msg void OnSaveProject();
-	afx_msg void OnDropDownSaveProject(NMHDR *pNMHDR, LRESULT *pResult);
+	template<UINT id, UINT popupid>
+	afx_msg void OnDropDown(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnSelchangePathCombo(UINT nID);
 	afx_msg void OnSetfocusPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnDragBeginPathCombo(UINT id, NMHDR *pNMHDR, LRESULT *pResult);
@@ -120,10 +132,25 @@ protected:
 	afx_msg void OnSwapButton();
 	afx_msg void OnEditEvent(UINT nID);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	afx_msg void OnSelectUnpacker();
+	afx_msg void OnSelectPlugin(UINT nID);
 	afx_msg void OnSelectFilter();
 	afx_msg void OnOptions();
-	afx_msg void OnDropDownOptions(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnDiffWhitespace(UINT nID);
+	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreBlankLines();
+	afx_msg void OnUpdateDiffIgnoreBlankLines(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreCase();
+	afx_msg void OnUpdateDiffIgnoreCase(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreEOL();
+	afx_msg void OnUpdateDiffIgnoreEOL(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreNumbers();
+	afx_msg void OnUpdateDiffIgnoreNumbers(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreCP();
+	afx_msg void OnUpdateDiffIgnoreCP(CCmdUI* pCmdUI);
+	afx_msg void OnDiffIgnoreComments();
+	afx_msg void OnUpdateDiffIgnoreComments(CCmdUI* pCmdUI);
+	afx_msg void OnCompareMethod(UINT nID);
+	afx_msg void OnUpdateCompareMethod(CCmdUI* pCmdUI);
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnEditAction(int msg, WPARAM wParam, LPARAM LPARAM);
 	template <int MSG, int WPARAM = 0, int LPARAM = 0>

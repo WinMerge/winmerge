@@ -19,33 +19,7 @@ CompareOptions::CompareOptions()
 , m_bIgnoreBlankLines(false)
 , m_bIgnoreCase(false)
 , m_bIgnoreEOLDifference(false)
-, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
-, m_bIndentHeuristic(true)
-{
-}
-
-/**
- * @brief Copy constructor.
- */
-CompareOptions::CompareOptions(const CompareOptions & options)
-: m_ignoreWhitespace(options.m_ignoreWhitespace)
-, m_bIgnoreBlankLines(options.m_bIgnoreBlankLines)
-, m_bIgnoreCase(options.m_bIgnoreCase)
-, m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
-, m_diffAlgorithm(options.m_diffAlgorithm)
-, m_bIndentHeuristic(options.m_bIndentHeuristic)
-{
-}
-
-/**
- * @brief Sets options from DiffutilsOptions structure.
- * @param [in] options Diffutils options.
- */
-DiffutilsOptions::DiffutilsOptions(const DiffutilsOptions& options)
-: CompareOptions(options)
-, m_contextLines(options.m_contextLines)
-, m_filterCommentsLines(options.m_filterCommentsLines)
-, m_outputStyle(options.m_outputStyle)
+, m_bIgnoreNumbers(false)
 {
 }
 
@@ -73,6 +47,54 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
 	m_bIgnoreCase = options.bIgnoreCase;
 	m_bIgnoreEOLDifference = options.bIgnoreEol;
+	m_bIgnoreNumbers = options.bIgnoreNumbers;
+}
+
+/**
+ * @brief Default constructor.
+ */
+QuickCompareOptions::QuickCompareOptions()
+: m_bStopAfterFirstDiff(false)
+{
+}
+
+/**
+ * @brief Default constructor.
+ */
+DiffutilsOptions::DiffutilsOptions()
+: m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
+, m_contextLines(0)
+, m_filterCommentsLines(false)
+, m_bCompletelyBlankOutIgnoredDiffereneces(false)
+, m_bIndentHeuristic(true)
+{
+}
+
+/**
+ * @brief Constructor cloning CompareOptions.
+ * @param [in] options CompareOptions instance to clone.
+ */
+DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
+: CompareOptions(options)
+, m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
+, m_contextLines(0)
+, m_filterCommentsLines(false)
+, m_bCompletelyBlankOutIgnoredDiffereneces(false)
+, m_bIndentHeuristic(true)
+{
+}
+
+/**
+ * @brief Sets options from DIFFOPTIONS structure.
+ * @param [in] options Diffutils options.
+ */
+void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
+{
+	CompareOptions::SetFromDiffOptions(options);
+	m_bCompletelyBlankOutIgnoredDiffereneces = options.bCompletelyBlankOutIgnoredChanges;
+	m_filterCommentsLines = options.bFilterCommentsLines;
 	m_bIndentHeuristic = options.bIndentHeuristic;
 	switch (options.nDiffAlgorithm)
 	{
@@ -88,51 +110,12 @@ void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 	case 3:
 		m_diffAlgorithm = DIFF_ALGORITHM_HISTOGRAM;
 		break;
+	case 4:
+		m_diffAlgorithm = DIFF_ALGORITHM_NONE;
+		break;
 	default:
 		throw "Unknown diff algorithm value!";
-		break;
 	}
-}
-
-/**
- * @brief Default constructor.
- */
-QuickCompareOptions::QuickCompareOptions()
-: m_bStopAfterFirstDiff(false)
-{
-
-}
-
-/**
- * @brief Default constructor.
- */
-DiffutilsOptions::DiffutilsOptions()
-: m_outputStyle(DIFF_OUTPUT_NORMAL)
-, m_contextLines(0)
-, m_filterCommentsLines(false)
-{
-}
-
-/**
- * @brief Constructor cloning CompareOptions.
- * @param [in] options CompareOptions instance to clone.
- */
-DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
-: CompareOptions(options)
-, m_outputStyle(DIFF_OUTPUT_NORMAL)
-, m_contextLines(0)
-, m_filterCommentsLines(false)
-{
-}
-
-/**
- * @brief Sets options from DIFFOPTIONS structure.
- * @param [in] options Diffutils options.
- */
-void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
-{
-	CompareOptions::SetFromDiffOptions(options);
-	m_filterCommentsLines = options.bFilterCommentsLines;
 }
 
 /**
@@ -165,47 +148,30 @@ void DiffutilsOptions::SetToDiffUtils()
 
 	context = m_contextLines;
 
-	if (m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
-		ignore_space_change_flag = 1;
-	else
-		ignore_space_change_flag = 0;
-
-	if (m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
-		ignore_all_space_flag = 1;
-	else
-		ignore_all_space_flag = 0;
-
-	if (m_bIgnoreBlankLines)
-		ignore_blank_lines_flag = 1;
-	else
-		ignore_blank_lines_flag = 0;
-
-	if (m_bIgnoreCase)
-		ignore_case_flag = 1;
-	else
-		ignore_case_flag = 0;
-
-	if (m_bIgnoreEOLDifference)
-		ignore_eol_diff = 1;
-	else
-		ignore_eol_diff = 0;
-
-	if (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL || m_bIgnoreCase ||
-			m_bIgnoreBlankLines || m_bIgnoreEOLDifference)
-		ignore_some_changes = 1;
-	else
-		ignore_some_changes = 0;
-
-	if (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL)
-		length_varies = 1;
-	else
-		length_varies = 0;
+	ignore_space_change_flag = (m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE);
+	ignore_all_space_flag = (m_ignoreWhitespace == WHITESPACE_IGNORE_ALL);
+	ignore_blank_lines_flag = m_bIgnoreBlankLines;
+	ignore_case_flag = m_bIgnoreCase;
+	ignore_numbers_flag = m_bIgnoreNumbers;
+	ignore_eol_diff = m_bIgnoreEOLDifference;
+	ignore_some_changes = (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL || m_bIgnoreCase ||	m_bIgnoreBlankLines || m_bIgnoreEOLDifference);
+	length_varies = (m_ignoreWhitespace != WHITESPACE_COMPARE_ALL);
 
 	// We have no interest changing these values, hard-code them.
 	always_text_flag = 0; // diffutils needs to detect binary files
 	horizon_lines = 0;
 	heuristic = 1;
 	recursive = 0;
+
+	no_diff_means_no_output = 0;
+	no_details_flag = 0;
+	line_end_char = '\n';
+	tab_align_flag = 0;
+	tab_expand_flag = 0;
+	paginate_flag = 0;
+	switch_string = NULL;
+	file_label[0] = NULL;
+	file_label[1] = NULL;
 }
 
 /**
@@ -214,11 +180,13 @@ void DiffutilsOptions::SetToDiffUtils()
  */
 void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 {
+	options.bCompletelyBlankOutIgnoredChanges = m_bCompletelyBlankOutIgnoredDiffereneces;
 	options.bFilterCommentsLines = m_filterCommentsLines;
 	options.bIgnoreBlankLines = m_bIgnoreBlankLines;
 	options.bIgnoreCase = m_bIgnoreCase;
 	options.bIgnoreEol = m_bIgnoreEOLDifference;
-	
+	options.bIgnoreNumbers = m_bIgnoreNumbers;
+
 	switch (m_ignoreWhitespace)
 	{
 	case WHITESPACE_COMPARE_ALL:

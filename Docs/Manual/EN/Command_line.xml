@@ -31,11 +31,21 @@
       <arg choice="opt" rep="norepeat"><option>/f</option>
       <replaceable>filter</replaceable></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/m</option>
+      <replaceable>compare-method</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/t</option>
+      <replaceable>window-type</replaceable></arg>
+
       <arg><option>/x</option></arg>
 
       <arg><option>/xq</option></arg>
 
       <arg><option>/s</option></arg>
+
+      <arg><option>/sw</option></arg>
+
+      <arg><option>/s-</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
@@ -51,6 +61,12 @@
 
       <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/new</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/self-compare</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/clipboard-compare</option></arg>
+
       <arg><option>/minimize</option></arg>
 
       <arg><option>/maximize</option></arg>
@@ -61,6 +77,15 @@
 
       <arg choice="opt" rep="norepeat"><option>/fr</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/l</option>
+      <replaceable>linenumber</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/c</option>
+      <replaceable>charpos</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/table-delimiter</option>
+      <replaceable>delimiter</replaceable></arg>
+
       <arg choice="opt" rep="norepeat"><option>/dl</option>
       <replaceable>leftdesc</replaceable></arg>
 
@@ -69,6 +94,48 @@
 
       <arg choice="opt" rep="norepeat"><option>/dr</option>
       <replaceable>rightdesc</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noninteractive</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/noprefs</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/enableexitcode</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorews</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreblanklines</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecase</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignoreeol</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecodepage</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/ignorecomments</option></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/unpacker</option>
+      <replaceable>unpacker-name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/prediffer</option>
+      <replaceable>prediffer-name</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cp</option>
+      <replaceable>codepage</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/fileext</option>
+      <replaceable>file-extension</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/cfg</option>
+      <replaceable>name=value</replaceable></arg>
+
+      <arg choice="opt" rep="norepeat"><option>/inifile</option>
+      <replaceable>inifile</replaceable></arg>
 
       <arg choice="plain"
       rep="norepeat"><replaceable>leftpath</replaceable></arg>
@@ -83,11 +150,9 @@
       rep="norepeat"><option>/o</option>
       <replaceable>outputpath</replaceable></arg>
 
-      <arg choice="opt" rep="norepeat"><option>/al</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/am</option></arg>
-
-      <arg choice="opt" rep="norepeat"><option>/ar</option></arg>
+      <arg choice="opt"
+      rep="norepeat"><option>/or</option>
+      <replaceable>reportpath</replaceable></arg>
 
     </cmdsynopsis></para>
 
@@ -159,6 +224,37 @@
     </varlistentry>
 
     <varlistentry>
+      <indexterm>
+        <primary>compare method</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/m <replaceable>compare-method</replaceable></option></term>
+      <listitem>
+        <para>Sets the compare method to use for the comparison.
+        This can be one of the keywords <userinput>Full</userinput>,
+        <userinput>Quick</userinput>, <userinput>Binary</userinput>,
+        <userinput>Date</userinput>, <userinput>SizeDate</userinput> or 
+        <userinput>Size</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>window type</primary>
+        <secondary>applying in command line</secondary>
+      </indexterm>
+
+      <term><option>/t <replaceable>window-type</replaceable></option></term>
+      <listitem>
+        <para>Specifies the type of window in which to display files.
+        This can be one of the keywords <userinput>Text</userinput>,
+        <userinput>Table</userinput>, <userinput>Binary</userinput>,
+        <userinput>Image</userinput> or <userinput>Webpage</userinput>.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <term><option>/x</option></term>
       <listitem>
         <para>Closes WinMerge (after displaying an information
@@ -192,6 +288,23 @@
         same instance. Without this parameter, multiple windows are allowed:
         depending on other settings, a new compare might open in the existing
         window or in a new window.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/sw</option></term>
+      <listitem>
+        <para>Limit the WinMerge window to one instance as well as the option /s.
+         However, it waits for the instance displaying the window to terminate.
+        </para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/s-</option></term>
+      <listitem>
+        <para>Ensure that another instance is always executed, ignoring the
+        value of the "Allow only one instance to run" option.</para>
       </listitem>
     </varlistentry>
 
@@ -265,6 +378,27 @@
     </varlistentry>
 
     <varlistentry>
+      <term><option>/new</option></term>
+      <listitem>
+        <para>Opens a new blank window.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/self-compare</option></term>
+      <listitem>
+        <para>Compares the specified file with a copy of the file.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/clipboard-compare</option></term>
+      <listitem>
+        <para>Compares the two most recent contents of the clipboard history.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
       <indexterm>
         <primary>WinMerge window</primary>
         <secondary>opening minimized or maximized</secondary>
@@ -288,21 +422,42 @@
     <varlistentry>
       <term><option>/fl</option></term>
       <listitem>
-        <para>Sets focus to the left side at startup</para>
+        <para>Sets focus to the left side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fm</option></term>
       <listitem>
-        <para>Sets focus to the middle side at startup</para>
+        <para>Sets focus to the middle side at startup.</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/fr</option></term>
       <listitem>
-        <para>Sets focus to the right side at startup</para>
+        <para>Sets focus to the right side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/l <replaceable>linenumber</replaceable></option></term>
+      <listitem>
+        <para>Specifies a line number to jump to after loading the files.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/c <replaceable>charpos</replaceable></option></term>
+      <listitem>
+        <para>Specifies a character position to jump to after loading the files.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/table-delimiter <replaceable>delimiter</replaceable></option></term>
+      <listitem>
+        <para>Specifies a delimiter character for table editing. To specify a tab character, specify "tab", "\t", or "\x09".</para>
       </listitem>
     </varlistentry>
 
@@ -334,7 +489,126 @@
     </varlistentry>
 
     <varlistentry>
-      <term><option>leftpath</option></term>
+      <term><option>/al</option></term>
+      <listitem>
+        <para>Auto-merges at the left side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/am</option></term>
+      <listitem>
+        <para>Auto-merges at the middle side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ar</option></term>
+      <listitem>
+        <para>Auto-merges at the right side at startup.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noninteractive</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/noprefs</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/enableexitcode</option></term>
+      <listitem>
+        <para>Sets the comparison result to the process exit code. 0: identical, 1: different, 2: error</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorews</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreblanklines</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecase</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignoreeol</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecodepage</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/ignorecomments</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/unpacker</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/prediffer</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cp</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/fileext <replaceable>file-extension</replaceable></option></term>
+      <listitem>
+        <para>Specifies a file extension for determining syntax hightliting.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option>/cfg</option></term>
+      <listitem>
+        <para>TBD</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term><option><replaceable>leftpath</replaceable></option></term>
       <listitem>
         <para>Specifies the folder, file or project file to open on the left side.</para>
       </listitem>
@@ -352,8 +626,9 @@
       <listitem>
         <para>Specifies the folder, file or project file to open on the right side.</para>
 
-        <para>WinMerge cannot compare files to folders, so both path parameters
-        (<option><replaceable>leftpath</replaceable></option> and
+        <para>WinMerge cannot compare files to folders, so the path parameters
+        (<option><replaceable>leftpath</replaceable></option>,
+        <option><replaceable>middlepath</replaceable></option> and
         <option><replaceable>rightpath</replaceable></option>) must point to the
         same target type (either folders or files). If WinMerge cannot find either
         of the specified paths, it opens the Select Files or Folders dialog, where
@@ -376,6 +651,7 @@
           class="directory">C:\Folder2</filename> does <emphasis>not</emphasis>
           contain a file named <filename>File.txt</filename>.</para>
         </tip>
+        <para></para>
       </listitem>
     </varlistentry>
 
@@ -387,7 +663,7 @@
 
       <term><option>/o <replaceable>outputpath</replaceable></option></term>
       <listitem>
-        <para>Specifies an optional output folder where you want merged result files to be
+        <para>Specifies an optional output file path where you want merged result files to be
         saved.</para>
 
         <para>The output path is rarely needed when you start WinMerge from
@@ -408,23 +684,9 @@
     </varlistentry>
 
     <varlistentry>
-      <term><option>/al</option></term>
+      <term><option>/or</option></term>
       <listitem>
-        <para>Auto-merges at the left side at startup.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/am</option></term>
-      <listitem>
-        <para>Auto-merges at the middle side at startup.</para>
-      </listitem>
-    </varlistentry>
-
-    <varlistentry>
-      <term><option>/ar</option></term>
-      <listitem>
-        <para>Auto-merges at the right side at startup.</para>
+        <para>TBD</para>
       </listitem>
     </varlistentry>
 
@@ -443,5 +705,18 @@
         with a conflict file.</para>
       </listitem>
     </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>ini file</primary>
+        <secondary>specifying on command line</secondary>
+      </indexterm>
+
+      <term><option>/inifile <replaceable>inifile</replaceable></option></term>
+      <listitem>
+        <para>specifies an INI file used to load and save settings instead of the registry.</para>
+      </listitem>
+    </varlistentry>
+
   </variablelist>
 </article>

@@ -37,17 +37,11 @@ CCrystalParser::~CCrystalParser()
 }
 
 
-DWORD CCrystalParser::ParseLine(DWORD /*dwCookie*/, 
+unsigned CCrystalParser::ParseLine(unsigned /*dwCookie*/, 
 								int /*nLineIndex*/, 
 								CCrystalTextBlock * /*pBlock*/ )
 {
 	return 0;
-}
-
-static LPTSTR NTAPI EnsureCharNext(LPCTSTR current)
-{
-	LPTSTR next = ::CharNext(current);
-	return next > current ? next : next + 1;
 }
 
 void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<int>* anBreaks, int& nBreaks )
@@ -74,7 +68,6 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 		int nMaxBreaks = 0;
 		int nColumn = 0;
 		bool bInQuote = false;
-		bool bFoundDelimiter = false;
 		const int sep = m_pTextView->m_pTextBuffer->GetFieldDelimiter ();
 		const int quote = m_pTextView->m_pTextBuffer->GetFieldEnclosure ();
 		for (int i = 0; i < nLineLength; )
@@ -102,14 +95,16 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 			{
 				nLineCharCount ++;
 				nCharCount ++;
-				// remember whitespace
-				bBreakable = true;
+				if (sep != ch || bInQuote)
+					// remember whitespace
+					bBreakable = true;
 			}
 			else if (ch >= _T('\x00') && ch <= _T('\x1F'))
 			{
 				nLineCharCount+= 3;
 				nCharCount+= 3;
-				bBreakable = true;
+				if (sep != ch || bInQuote)
+					bBreakable = true;
 			}
 			else
 			{

@@ -4,16 +4,13 @@
 # Maintainer:
 # * Tim Gerundt <tim at gerundt.de>
 #
-# ID line follows -- this is updated by SVN
-# $Id$
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2019-02-01 22:43+0900\n"
-"Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
+"PO-Revision-Date: 2021-09-25 20:43+0200\n"
+"Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,70 +20,55 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Poedit 2.1.1\n"
 
-#. AFX_TARG
-#: ShellExtensionTemplate.rc:25
+#. AFX_TARG_*
+#: ShellExtension.rc:19
 #, c-format
 msgid "AFX_TARG_ENU"
 msgstr "AFX_TARG_DEU"
 
 #. LANGUAGE, SUBLANGUAGE
-#: ShellExtensionTemplate.rc:27
+#: ShellExtension.rc:20
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_GERMAN, SUBLANG_GERMAN"
 
 #. Codepage
-#: ShellExtensionTemplate.rc:28
+#: ShellExtension.rc:21
 #, c-format
 msgid "1252"
 msgstr "65001"
 
-#: ShellExtensionTemplate.rc:42
+#: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
 msgstr "ShellExtension"
 
-#: ShellExtensionTemplate.rc:43
+#: ShellExtension.rc:112
 #, c-format
-msgid "WinMerge"
-msgstr "WinMerge"
+msgid "&WinMerge"
+msgstr "&WinMerge"
 
-#: ShellExtensionTemplate.rc:44
+#: ShellExtension.rc:113
 #, c-format
-msgid "Open with WinMerge"
-msgstr "Öffnen mit WinMerge"
-
-#: ShellExtensionTemplate.rc:45
-#, c-format
-msgid "Please select no more than 2 items"
-msgstr "Bitte wählen Sie nicht mehr als 2 Objekte aus."
-
-#: ShellExtensionTemplate.rc:46
-#, c-format
-msgid "Compare"
+msgid "&Compare"
 msgstr "Vergleichen"
 
-#: ShellExtensionTemplate.rc:47
+#: ShellExtension.rc:114
 #, c-format
-msgid "Compare..."
+msgid "Compare&..."
 msgstr "Vergleichen..."
 
-#: ShellExtensionTemplate.rc:48
+#: ShellExtension.rc:115
 #, c-format
-msgid "Compare To"
-msgstr "Vergleichen mit"
+msgid "Select &Left"
+msgstr "Links auswählen"
 
-#: ShellExtensionTemplate.rc:49
+#: ShellExtension.rc:116
 #, c-format
-msgid "Save this path. Select another path to compare with this path."
-msgstr "Diesen Pfad speichern. Wählen Sie einen anderen Pfad, um ihn mit diesem Pfad zu vergleichen."
+msgid "Select &Middle"
+msgstr "Mitte auswählen"
 
-#: ShellExtensionTemplate.rc:50
+#: ShellExtension.rc:117
 #, c-format
-msgid "Compare to saved path (%1)"
-msgstr "Vergleichen mit dem gespeicherten Pfad (%1)"
-
-#: ShellExtensionTemplate.rc:51
-#, c-format
-msgid "Re-select First"
-msgstr "Ersten erneut wählen"
+msgid "Re-select &Left"
+msgstr "Links erneut auswählen"

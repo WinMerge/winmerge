@@ -28,6 +28,22 @@ String DIFFITEM::getFilepath(int nIndex, const String &sRoot) const
 	return _T("");
 }
 
+/** @brief Return the relative path to file/folder including the item name*/
+String DIFFITEM::getItemRelativePath() const
+{
+	String resp = _T("");
+	int compareIndex ;
+
+	//determine what is the trees contain the item to be hidden
+	for (compareIndex = 0; (compareIndex < 3) && (diffFileInfo[compareIndex].size == -1); compareIndex++);
+
+	if (compareIndex < 3) 
+	{
+		resp = paths::ConcatPath(diffFileInfo[compareIndex].path, diffFileInfo[compareIndex].filename);
+	}
+
+	return resp; 
+}
 /** @brief Return depth of path */
 int DIFFITEM::GetDepth() const
 {
@@ -50,6 +66,24 @@ bool DIFFITEM::IsAncestor(const DIFFITEM *pdi) const
 			return true;
 	}
 	return false;
+}
+
+/**
+ * @brief Return all ancestors of the current item.
+ */
+std::vector<const DIFFITEM*> DIFFITEM::GetAncestors() const
+{
+	int depth = GetDepth();
+	std::vector<const DIFFITEM*> ancestors(depth);
+
+	const DIFFITEM* cur;
+	int i;
+	for (i = 0, cur = parent; cur->parent != nullptr; i++, cur = cur->parent)
+	{
+		assert(depth - i - 1 >= 0 && depth - i - 1 < depth);
+		ancestors[depth - i - 1] = cur;
+	}
+	return ancestors;
 }
 
 /** @brief Remove and delete all children DIFFITEM entries */
@@ -78,6 +112,18 @@ void DIFFITEM::Swap(int idx1, int idx2)
 	}
 }
 
+void DIFFITEM::ClearAllAdditionalProperties()
+{
+	const int n = ((diffcode.diffcode & DIFFCODE::THREEWAY) != 0) ? 3 : 2;
+	for (int i = 0; i < n; ++i)
+		diffFileInfo[i].m_pAdditionalProperties.reset();
+	if (HasChildren())
+	{
+		for (DIFFITEM *p = children; p != nullptr; p = p->Flink)
+			p->ClearAllAdditionalProperties();
+	}
+
+}
 
 /* static */
 DIFFITEM *DIFFITEM::GetEmptyItem()  
@@ -164,3 +210,42 @@ void DIFFITEM::DelinkFromSiblings()
 	Flink = Blink = nullptr;
 }
 
+void DIFFCODE::swap(int idx1, int idx2)
+{
+	bool e[3] = { false, false, false };
+	for (int i = 0; i < 3; ++i)
+		e[i] = exists(i);
+	std::swap(e[idx1], e[idx2]);
+	setSideNone();
+	for (int i = 0; i < 3; ++i)
+		if (e[i]) setSideFlag(i);
+	bool binflag1 = (diffcode & (BINSIDE1 << idx1));
+	bool binflag2 = (diffcode & (BINSIDE1 << idx2));
+	Set(BINSIDE1 << idx1, binflag2 ? (BINSIDE1 << idx1) : 0);
+	Set(BINSIDE1 << idx2, binflag1 ? (BINSIDE1 << idx2) : 0);
+	if ((diffcode & THREEWAY) != 0)
+	{
+		int idx = -1;
+		switch (diffcode & COMPAREFLAGS3WAY)
+		{
+		case DIFF1STONLY:
+			if (idx1 == 0 || idx2 == 0)
+				idx = (idx1 == 0) ? idx2 : idx1;
+			break;
+		case DIFF2NDONLY:
+			if (idx1 == 1 || idx2 == 1)
+				idx = (idx1 == 1) ? idx2 : idx1;
+			break;
+		case DIFF3RDONLY:
+			if (idx1 == 2 || idx2 == 2)
+				idx = (idx1 == 2) ? idx2 : idx1;
+			break;
+		}
+		if (idx == 0)
+			Set(COMPAREFLAGS3WAY, DIFF1STONLY);
+		else if (idx == 1)
+			Set(COMPAREFLAGS3WAY, DIFF2NDONLY);
+		else if (idx == 2)
+			Set(COMPAREFLAGS3WAY, DIFF3RDONLY);
+	}
+}

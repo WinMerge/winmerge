@@ -315,7 +315,7 @@ line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
      when the line has been entirely scanned.
      c2 is the equivalent of c1 for the line s2 */
 
-  if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag | ignore_eol_diff)
+  if (ignore_case_flag | ignore_space_change_flag | ignore_all_space_flag | ignore_eol_diff | ignore_numbers_flag)
     {
       t1 = (unsigned char const *) s1;
       t2 = (unsigned char const *) s2;
@@ -449,14 +449,43 @@ line_cmp (char const *s1, size_t len1, char const *s2, size_t len2)
 		}
 	    }
 
+		if (ignore_numbers_flag)
+		{
+			/* For ..., just skip past any numbers.  */
+			while (isdigit(c1))
+			{
+				if (t1 - (unsigned char*)s1 < (int)len1)
+				{
+					c1 = *t1++;
+				}
+				else
+				{
+					c1 = 0;
+					break;
+				}
+			}
+			while (isdigit(c2))
+			{
+				if (t2 - (unsigned char*)s2 < (int)len2)
+				{
+					c2 = *t2++;
+				}
+				else
+				{
+					c2 = 0;
+					break;
+				}
+			}
+		}
+
 	  /* Upcase all letters if -i is specified.  */
 
 	  if (ignore_case_flag)
 	    {
-	      if (islower (c1))
-		c1 = (unsigned char)toupper (c1);
-	      if (islower (c2))
-		c2 = (unsigned char)toupper (c2);
+	      if (isupper (c1))
+	        c1 = (unsigned char)tolower (c1);
+	      if (isupper(c2))
+	        c2 = (unsigned char)tolower (c2);
 	    }
 
 	  if (ignore_eol_diff)
@@ -740,6 +769,19 @@ int iseolch (char ch)
   return ch=='\n' || ch=='\r';
 }
 
+int is_blank_line (char const *pch, char const *limit)
+{
+  while (pch < limit)
+    {
+      if ((*pch) == '\n' || (*pch) == '\r')
+        break;
+      if ((*pch) != ' ' && (*pch) != '\t')
+        return 0;
+      pch++;
+    }
+  return 1;
+}
+
 /* Look at a hunk of edit script and report the range of lines in each file
    that it applies to.  HUNK is the start of the hunk, which is a chain
    of `struct change'.  The first and last line numbers of file 0 are stored in
@@ -754,7 +796,10 @@ int iseolch (char ch)
    set to 0.  */
 
 void
-analyze_hunk (struct change *hunk, int *first0, int *last0, int *first1, int *last1, int *deletes, int *inserts, const struct file_data fd[])
+analyze_hunk (struct change *hunk, 
+    int *first0, int *last0, 
+    int *first1, int *last1, 
+    int *deletes, int *inserts, const struct file_data fd[])
 {
   int l0, l1, show_from, show_to;
   int i;
@@ -775,18 +820,37 @@ analyze_hunk (struct change *hunk, int *first0, int *last0, int *first1, int *la
       show_to += next->inserted;
 
       for (i = next->line0; i <= l0 && trivial; i++)
-        if (!ignore_blank_lines_flag || (!iseolch(fd[0].linbuf[i][0]) &&
-            fd[0].linbuf[i][0] != 0))
-          {
-            trivial = 0;
-          }
-
+        {
+          if (!ignore_blank_lines_flag)
+            {
+              trivial = 0;
+            }
+          else if (ignore_all_space_flag | ignore_space_change_flag)
+            {
+              if (!is_blank_line(fd[0].linbuf[i], fd[0].linbuf[i + 1]))
+                trivial = 0;
+            }
+          else if (!iseolch(fd[0].linbuf[i][0]) && fd[0].linbuf[i][0] != 0)
+            {
+              trivial = 0;
+            }
+        }
       for (i = next->line1; i <= l1 && trivial; i++)
-        if (!ignore_blank_lines_flag || (!iseolch(fd[1].linbuf[i][0]) &&
-            fd[1].linbuf[i][0] != 0))
-          {
-            trivial = 0;
-          }
+        {
+          if (!ignore_blank_lines_flag)
+            {
+              trivial = 0;
+            }
+          else if (ignore_all_space_flag | ignore_space_change_flag)
+            {
+              if (!is_blank_line(fd[1].linbuf[i], fd[1].linbuf[i + 1]))
+                trivial = 0;
+            }
+          else if (!iseolch(fd[1].linbuf[i][0]) && fd[1].linbuf[i][0] != 0)
+            {
+              trivial = 0;
+            }
+        }
     }
   while ((next = next->link) != NULL);
 

@@ -7,7 +7,6 @@
 #include "pch.h"
 #include "DiffItemList.h"
 #include <cassert>
-#include "DebugNew.h"
 
 /**
  * @brief Constructor
@@ -57,6 +56,13 @@ void DiffItemList::InitDiffItemList()
 {
 	assert(m_pRoot == nullptr);
 	m_pRoot = new DIFFITEM;
+}
+
+void DiffItemList::ClearAllAdditionalProperties()
+{
+	assert(m_pRoot != nullptr);
+	for (DIFFITEM* p = GetFirstDiffPosition(); p != nullptr; p = p->GetFwdSiblingLink())
+		p->ClearAllAdditionalProperties();
 }
 
 /**

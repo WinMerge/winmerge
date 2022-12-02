@@ -56,9 +56,7 @@ HTHEME BCMenu::m_hTheme = nullptr;
 static class GdiplusToken
 {
 public:
-	GdiplusToken()
-	{
-	}
+	GdiplusToken() = default;
 
 	~GdiplusToken()
 	{
@@ -94,7 +92,7 @@ typedef sBGR *pBGR;
 
 
 // Returns the DI (Device Independent) bits of the Bitmap
-// Here I use 32 bit since it's easy to adress in memory and no
+// Here I use 32 bit since it's easy to address in memory and no
 // padding of the horizontal lines is required.
 static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
 {
@@ -194,8 +192,7 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
     {
 		const size_t MenuSiz = wcslen(szWideString) + 1;
 		m_szMenuText = new wchar_t[MenuSiz];
-		if (m_szMenuText)
-			wcscpy_s(m_szMenuText, MenuSiz, szWideString);
+		wcscpy_s(m_szMenuText, MenuSiz, szWideString);
     }
 	else
 		m_szMenuText=nullptr;//set to nullptr so we need not bother about dangling non-nullptr Ptrs
@@ -271,7 +268,7 @@ void BCMenu::DrawItem(LPDRAWITEMSTRUCT)
 ---------------------------------------
 
   Called by the framework when a particular item needs to be drawn.  We
-  overide this to draw the menu item in a custom-fashion, including icons
+  override this to draw the menu item in a custom-fashion, including icons
   and the 3D rectangle bar.
   ==========================================================================
 */
@@ -310,7 +307,6 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		bool standardflag = false;
 		bool selectedflag = false;
 		bool disableflag = false;
-		bool checkflag=false;
 		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
 		int dy;
 		INT_PTR xoffset=-1;
@@ -356,7 +352,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 			
 			// You need only Text highlight and thats what you get
 			
-			if(checkflag||standardflag||selectedflag||disableflag||(state&ODS_CHECKED)!=0)
+			if(standardflag||selectedflag||disableflag||(state&ODS_CHECKED)!=0)
 				rect2.SetRect(rect.left+m_iconX+4+BCMENU_GAP,rect.top,rect.right,rect.bottom);
 			pDC->FillRect (rect2,&brSelect);
 			
@@ -378,7 +374,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 		dy = (rect.Height()-4-m_iconY)/2;
 		dy = dy<0 ? 0 : dy;
 		
-		if(checkflag||standardflag||selectedflag||disableflag){
+		if(standardflag||selectedflag||disableflag){
 			rect2.SetRect(rect.left+1,rect.top+1+dy,rect.left+m_iconX+3,
 				rect.top+m_iconY+3+dy);
 			pDC->Draw3dRect (rect2,clrBack,clrBack);
@@ -429,7 +425,7 @@ void BCMenu::DrawItem_Win9xNT2000 (LPDRAWITEMSTRUCT lpDIS)
 				if(xoffset >= 0) m_AllImages.Draw(pDC,(int)xoffset,ptImage,ILD_TRANSPARENT);
 			}
 		}
-		if(xoffset<0 && (state&ODS_CHECKED)!=0 && !checkflag){
+		if(xoffset<0 && (state&ODS_CHECKED)!=0){
 			rect2.SetRect(rect.left+1,rect.top+2+dy,rect.left+m_iconX+1,
 				rect.top+m_iconY+2+dy);
 			CMenuItemInfo info;
@@ -611,18 +607,11 @@ void BCMenu::DrawItem_Theme(LPDRAWITEMSTRUCT lpDIS)
 		}
 		else leftStr=strText;
 		
-		int iOldMode = pDC->GetBkMode();
-		pDC->SetBkMode( TRANSPARENT);
-		
 		// Draw the text in the correct colour:
-		
-		UINT nFormat  = DT_LEFT|DT_SINGLELINE|DT_VCENTER;
-		UINT nFormatr = DT_RIGHT|DT_SINGLELINE|DT_VCENTER;
-		pDC->SetTextColor(
-			((lpDIS->itemState & ODS_GRAYED)==0) ? GetSysColor(COLOR_MENUTEXT) : GetSysColor(COLOR_GRAYTEXT));
-		pDC->DrawText (leftStr,rectt,nFormat);
-		if(tablocr!=-1) pDC->DrawText (rightStr,rectt,nFormatr);
-		pDC->SetBkMode( iOldMode );
+		DWORD nFormat  = DT_LEFT|DT_SINGLELINE|DT_VCENTER;
+		DWORD nFormatr = DT_RIGHT|DT_SINGLELINE|DT_VCENTER;
+		DrawThemeText(m_hTheme, hDC, MENU_POPUPITEM, stateId, leftStr, leftStr.GetLength(), nFormat, 0, &rectt);
+		if(tablocr!=-1) DrawThemeText(m_hTheme, hDC, MENU_POPUPITEM, stateId, rightStr, rightStr.GetLength(), nFormatr, 0, &rectt);
 	}
 }
 
@@ -728,7 +717,7 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 	}
 	else{
 		CFont fontMenu;
-		LOGFONT lfMenuFont;
+		LOGFONT lfMenuFont{};
 		const int dpi = DpiAware::GetDpiForWindow(AfxGetMainWnd()->m_hWnd);
 		DpiAware::GetNonClientLogFont(lfMenuFont, offsetof(NONCLIENTMETRICS, lfMenuFont), dpi);
 		fontMenu.CreateFontIndirect (&lfMenuFont);
@@ -752,14 +741,26 @@ void BCMenu::MeasureItem( LPMEASUREITEMSTRUCT lpMIS )
 		
 		// Set width and height:
 		
+		int temp = GetSystemMetrics(SM_CYMENU);
 		const int BCMENU_PAD=4;
+		lpMIS->itemHeight = temp>m_iconY+BCMENU_PAD ? temp : m_iconY+BCMENU_PAD;
 		if (m_hTheme == nullptr)
-			lpMIS->itemWidth = MulDiv(m_iconX+BCMENU_PAD+8, dpi, USER_DEFAULT_SCREEN_DPI) +t.cx;
+		{
+			lpMIS->itemWidth = MulDiv(m_iconX + BCMENU_PAD + 8, dpi, USER_DEFAULT_SCREEN_DPI) + t.cx;
+		}
 		else
+		{
 			lpMIS->itemWidth = m_gutterWidth+m_textBorder+t.cx+m_arrowWidth;
-		int temp = DpiAware::GetSystemMetricsForDpi(SM_CYMENU, dpi);
-		int temp2 = MulDiv(m_iconY + BCMENU_PAD, dpi, USER_DEFAULT_SCREEN_DPI);
-		lpMIS->itemHeight = temp>temp2 ? temp : temp2;
+			/*
+			int temp = DpiAware::GetSystemMetricsForDpi(SM_CYMENU, dpi);
+			int temp2 = MulDiv(m_iconY + BCMENU_PAD, dpi, USER_DEFAULT_SCREEN_DPI);
+			lpMIS->itemHeight = temp>temp2 ? temp : temp2;
+			*/
+			unsigned menuHeight = static_cast<unsigned>(
+				m_sizeCheck.cy + m_marginCheck.cyTopHeight + m_marginCheck.cyBottomHeight);
+			if (menuHeight > lpMIS->itemHeight)
+				lpMIS->itemHeight = menuHeight;
+		}
 	}
 }
 
@@ -1726,7 +1727,7 @@ bool BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 			INT_PTR menulistsize=m_MenuList.GetSize();	
 			if(uiId<(UINT)menulistsize){
 				CString str=m_MenuList[uiId]->GetString();
-				if(str==""){
+				if(str.IsEmpty()){
 					delete m_MenuList.GetAt(uiId);
 					m_MenuList.RemoveAt(uiId);
 				}

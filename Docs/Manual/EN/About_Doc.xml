@@ -47,7 +47,7 @@
         <term>Context-sensitive help</term>
 
         <listitem>
-          <para>While using any WinMerge window, press F1. If a specific topic
+          <para>While using any WinMerge window, press <keycap>F1</keycap>. If a specific topic
           is available for your current window, Help opens at that topic. If
           not, Help opens at the beginning.</para>
         </listitem>
@@ -135,6 +135,14 @@
       </varlistentry>
 
       <varlistentry>
+        <term><xref linkend="Compare_webpages" /></term>
+
+        <listitem>
+          <para>Explains the Web page comparison window.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
         <term><xref linkend="Configuration" /></term>
 
         <listitem>
@@ -192,7 +200,7 @@
           developers.</para>
 
           <para>Before submitting questions to <ulink
-          url="https://github.com/winmerge/winmerge/">GitHub</ulink>,
+          url="https://github.com/WinMerge/winmerge/">GitHub</ulink>,
           please check the <xref linkend="Faq" /> topic first to see if your
           question is answered there.</para>
         </listitem>
@@ -204,7 +212,7 @@
     <title>Documentation conventions<indexterm>
         <primary>conventions, documentation</primary>
       </indexterm></title>
-
+    <para></para>
     <informaltable>
       <tgroup cols="2">
         <thead>
@@ -343,5 +351,6 @@
         </tbody>
       </tgroup>
     </informaltable>
+    <para></para>
   </section>
 </article>

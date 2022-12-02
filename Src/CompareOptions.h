@@ -32,6 +32,7 @@ enum DiffAlgorithm
 	DIFF_ALGORITHM_MINIMAL = 1,
 	DIFF_ALGORITHM_PATIENCE = 2,
 	DIFF_ALGORITHM_HISTOGRAM = 3,
+	DIFF_ALGORITHM_NONE = 4,
 };
 
 /**
@@ -78,12 +79,14 @@ enum DiffOutputType
 struct DIFFOPTIONS
 {
 	int nIgnoreWhitespace; /**< Ignore whitespace -option. */
+	int nDiffAlgorithm; /**< Diff algorithm -option. */
 	bool bIgnoreCase; /**< Ignore case -option. */
+	bool bIgnoreNumbers; /**< Ignore numbers -option. */
 	bool bIgnoreBlankLines; /**< Ignore blank lines -option. */
 	bool bIgnoreEol; /**< Ignore EOL differences -option. */
 	bool bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
-	int nDiffAlgorithm; /**< Diff algorithm -option. */
 	bool bIndentHeuristic; /**< Ident heuristic -option */
+	bool bCompletelyBlankOutIgnoredChanges;
 };
 
 /**
@@ -95,15 +98,13 @@ class CompareOptions
 {
 public:
 	CompareOptions();
-	CompareOptions(const CompareOptions & options);
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);
 
 	enum WhitespaceIgnoreChoices m_ignoreWhitespace; /**< Ignore whitespace characters */
 	bool m_bIgnoreBlankLines; /**< Ignore blank lines (both sides) */
 	bool m_bIgnoreCase; /**< Ignore case differences? */
+	bool m_bIgnoreNumbers; /**< Ignore number differences? */
 	bool m_bIgnoreEOLDifference; /**< Ignore EOL style differences? */
-	enum DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
-	bool m_bIndentHeuristic; /**< Indent heuristic */
 };
 
 /**
@@ -117,14 +118,16 @@ class DiffutilsOptions : public CompareOptions
 public:
 	DiffutilsOptions();
 	explicit DiffutilsOptions(const CompareOptions& options);
-	DiffutilsOptions(const DiffutilsOptions& options);
 	void SetToDiffUtils();
 	void GetAsDiffOptions(DIFFOPTIONS &options) const;
 	virtual void SetFromDiffOptions(const DIFFOPTIONS & options) override;
 
-	enum DiffOutputType m_outputStyle; /**< Output style (for patch files) */
+	DiffOutputType m_outputStyle; /**< Output style (for patch files) */
+	DiffAlgorithm m_diffAlgorithm; /** Diff algorithm */
 	int m_contextLines; /**< Number of context lines (for patch files) */
 	bool m_filterCommentsLines;/**< Ignore Multiline comments differences.*/
+	bool m_bIndentHeuristic; /**< Indent heuristic */
+	bool m_bCompletelyBlankOutIgnoredDiffereneces; /**< Completely blank out ignored differences */
 };
 
 /**

@@ -6,6 +6,8 @@
  */
 #pragma once
 
+#include "UnicodeString.h"
+
 /** @brief URL for hyperlink in About-dialog. */
 const TCHAR WinMergeURL[] = _T("https://winmerge.org/");
 
@@ -28,7 +30,7 @@ const TCHAR DocsPath[] = _T("Docs/WinMerge%s.chm");
 const TCHAR ContributorsPath[] = _T("contributors.txt");
 
 /** @brief Release notes in HTML format. */
-const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
+const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes%s.html");
 
 /** @brief GPL Licence local file name. */
 const TCHAR LicenseFile[] = _T("Copying");
@@ -42,11 +44,6 @@ const TCHAR WinMergeDocumentsFolder[] = _T("WinMerge");
  * So it makes sense to have own subfolder for filters.
  */
 const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge/Filters");
-
-/** @brief Executable Filename for ANSI build. */
-const TCHAR ExecutableFilename[] = _T("WinMerge.exe");
-/** @brief Executable Filename for Unicode build. */
-const TCHAR ExecutableFilenameU[] = _T("WinMergeU.exe");
 
 /** @brief Temp folder name prefix for WinMerge temp folders. */
 const TCHAR TempFolderPrefix[] = _T("WinMerge_TEMP_");

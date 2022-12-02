@@ -30,17 +30,12 @@ using std::swap;
  */
 CPatchDlg::CPatchDlg(CWnd* pParent /*= nullptr*/)
 	: CTrDialog(CPatchDlg::IDD, pParent)
-	, m_caseSensitive(false)
-	, m_ignoreBlanks(false)
-	, m_ignoreEOLDifference(false)
-	, m_whitespaceCompare(0)
+	, m_copyToClipboard(false)
 	, m_appendFile(false)
 	, m_openToEditor(false)
 	, m_includeCmdLine(false)
 	, m_outputStyle(OUTPUT_NORMAL)
 	, m_contextLines(0)
-	, m_diffAlgorithm(DIFF_ALGORITHM_DEFAULT)
-	, m_indentHeuristic(true)
 {
 }
 
@@ -53,10 +48,7 @@ void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(CPatchDlg)
 	DDX_Control(pDX, IDC_DIFF_STYLE, m_comboStyle);
 	DDX_Control(pDX, IDC_DIFF_CONTEXT, m_comboContext);
-	DDX_Check(pDX, IDC_DIFF_CASESENSITIVE, m_caseSensitive);
-	DDX_Check(pDX, IDC_DIFF_WHITESPACE_IGNOREBLANKS, m_ignoreBlanks);
-	DDX_Radio(pDX, IDC_DIFF_WHITESPACE_COMPARE, m_whitespaceCompare);
-	DDX_Check(pDX, IDC_DIFF_IGNOREEOL, m_ignoreEOLDifference);
+	DDX_Check(pDX, IDC_DIFF_COPYCLIPBOARD, m_copyToClipboard);
 	DDX_Check(pDX, IDC_DIFF_APPENDFILE, m_appendFile);
 	DDX_Control(pDX, IDC_DIFF_FILE1, m_ctlFile1);
 	DDX_Control(pDX, IDC_DIFF_FILE2, m_ctlFile2);
@@ -126,9 +118,9 @@ void CPatchDlg::OnOK()
 
 		PATCHFILES tFiles = m_fileList[0];
 		if (tFiles.lfile != m_file1 && !tFiles.pathLeft.empty())
-			tFiles.pathLeft = _T("");
+			tFiles.pathLeft.clear();
 		if (tFiles.rfile != m_file2 && !tFiles.pathRight.empty())
-			tFiles.pathRight = _T("");
+			tFiles.pathRight.clear();
 		tFiles.lfile = m_file1;
 		tFiles.rfile = m_file2;
 		m_fileList[0] = tFiles;
@@ -178,8 +170,6 @@ void CPatchDlg::OnOK()
 	}
 
 	m_contextLines = GetDlgItemInt(IDC_DIFF_CONTEXT);
-	m_diffAlgorithm = static_cast<DiffAlgorithm>(GetOptionsMgr()->GetInt(OPT_CMP_DIFF_ALGORITHM));
-	m_indentHeuristic = GetOptionsMgr()->GetBool(OPT_CMP_INDENT_HEURISTIC);
 
 	SaveSettings();
 
@@ -397,19 +387,9 @@ void CPatchDlg::LoadSettings()
 	if (m_contextLines < 0 || m_contextLines > 50)
 		m_contextLines = 0;
 
-	m_caseSensitive = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_CASE_SENSITIVE);
-	m_ignoreEOLDifference = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_EOL_SENSITIVE);
-	m_ignoreBlanks = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_IGNORE_BLANK_LINES);
-	
-	m_whitespaceCompare = GetOptionsMgr()->GetInt(OPT_PATCHCREATOR_WHITESPACE);
-	if (m_whitespaceCompare < WHITESPACE_COMPARE_ALL ||
-		m_whitespaceCompare > WHITESPACE_IGNORE_ALL)
-	{
-		m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
-	}
-	
 	m_openToEditor = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_OPEN_TO_EDITOR);
 	m_includeCmdLine = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_INCLUDE_CMD_LINE);
+	m_copyToClipboard = GetOptionsMgr()->GetBool(OPT_PATCHCREATOR_COPY_TO_CLIPBOARD);
 
 	UpdateSettings();
 }
@@ -422,12 +402,9 @@ void CPatchDlg::SaveSettings()
 	COptionsMgr *pOptions = GetOptionsMgr();
 	pOptions->SaveOption(OPT_PATCHCREATOR_PATCH_STYLE, m_outputStyle);
 	pOptions->SaveOption(OPT_PATCHCREATOR_CONTEXT_LINES, m_contextLines);
-	pOptions->SaveOption(OPT_PATCHCREATOR_CASE_SENSITIVE, m_caseSensitive);
-	pOptions->SaveOption(OPT_PATCHCREATOR_EOL_SENSITIVE, m_ignoreEOLDifference);
-	pOptions->SaveOption(OPT_PATCHCREATOR_IGNORE_BLANK_LINES, m_ignoreBlanks);
-	pOptions->SaveOption(OPT_PATCHCREATOR_WHITESPACE, m_whitespaceCompare);
 	pOptions->SaveOption(OPT_PATCHCREATOR_OPEN_TO_EDITOR, m_openToEditor);
 	pOptions->SaveOption(OPT_PATCHCREATOR_INCLUDE_CMD_LINE, m_includeCmdLine);
+	pOptions->SaveOption(OPT_PATCHCREATOR_COPY_TO_CLIPBOARD, m_copyToClipboard);
 }
 
 /** 
@@ -437,12 +414,9 @@ void CPatchDlg::OnDefaultSettings()
 {
 	m_outputStyle = (enum output_style) DIFF_OUTPUT_NORMAL;
 	m_contextLines = 0;
-	m_caseSensitive = true;
-	m_ignoreEOLDifference = false;
-	m_ignoreBlanks = false;
-	m_whitespaceCompare = WHITESPACE_COMPARE_ALL;
 	m_openToEditor = false;
 	m_includeCmdLine = false;
+	m_copyToClipboard = false;
 
 	UpdateSettings();
 }

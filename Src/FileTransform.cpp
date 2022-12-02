@@ -14,417 +14,705 @@
 #include "FileTransform.h"
 #include <vector>
 #include <Poco/Exception.h>
+#include <Poco/Mutex.h>
 #include "Plugins.h"
 #include "multiformatText.h"
-#include "UniMarkdownFile.h"
 #include "Environment.h"
 #include "TFile.h"
+#include "paths.h"
+#include "MergeApp.h"
 
 using Poco::Exception;
 
-namespace FileTransform
-{
-
-PLUGIN_MODE g_UnpackerMode = PLUGIN_MANUAL;
-PLUGIN_MODE g_PredifferMode = PLUGIN_MANUAL;
-
-
-
-
+static Poco::FastMutex g_mutex;
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformations : packing unpacking
 
-bool getPackUnpackPlugin(const String& pluginName, PluginInfo*& plugin, bool& bWithFile)
+
+std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(String& errorMessage) const
 {
-	bWithFile = true;
-	plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
-	if (plugin == nullptr)
+	return ParsePluginPipeline(m_PluginPipeline, errorMessage);
+}
+
+std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(const String& pluginPipeline, String& errorMessage)
+{
+	std::vector<PluginForFile::PipelineItem> result;
+	bool inQuotes = false;
+	TCHAR quoteChar = 0;
+	std::vector<String> args;
+	String token, name;
+	errorMessage.clear();
+	const TCHAR* p = pluginPipeline.c_str();
+	while (_istspace(*p)) p++;
+	while (*p)
 	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
-		if (plugin == nullptr)
+		TCHAR sep = 0;
+		while (*p)
 		{
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
-			if (plugin == nullptr)
+			if (!inQuotes)
 			{
-				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
-				if (plugin == nullptr)
+				if (*p == '"' || *p == '\'')
 				{
-					AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+					inQuotes = true;
+					quoteChar = *p;
+				}
+				else if (_istspace(*p))
+				{
+					sep = *p;
+					break;
+				}
+				else if (*p == '|')
+				{
+					sep = *p;
+					break;
+				}
+				else
+					token += *p;
+			}
+			else
+			{
+				if (*p == quoteChar)
+				{
+					if (*(p + 1) == quoteChar)
+					{
+						token += *p;
+						++p;
+					}
+					else
+					{
+						inQuotes = false;
+					}
 				}
 				else
 				{
-					plugin = nullptr;
-					AppErrorMessageBox(strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName));
+					token += *p;
 				}
-				return false;
 			}
-			bWithFile = false;
+			++p;
+		}
+		if (name.empty())
+		{
+			name = token;
+		}
+		else
+		{
+			args.push_back(token);
+		}
+		while (_istspace(*p)) p++;
+		if (*p == '|')
+			sep = *p;
+		if (sep == '|')
+			p++;
+		token.clear();
+		if (sep == '|' || !*p)
+		{
+			if (name.empty() || (sep == '|' && !*p))
+			{
+				errorMessage = strutils::format_string1(_("Missing plugin name in plugin pipeline: %1"), pluginPipeline);
+				break;
+			}
+			result.push_back({ name, args, quoteChar });
+			name.clear();
+			args.clear();
+			quoteChar = 0;
+		}
+	};
+	if (inQuotes)
+		errorMessage = strutils::format_string1(_("Missing quotation mark in plugin pipeline: %1"), pluginPipeline);
+	return result;
+}
+
+String PluginForFile::MakePluginPipeline(const std::vector<PluginForFile::PipelineItem>& list)
+{
+	int i = 0;
+	String pipeline;
+	for (const auto& [name, args, quoteChar] : list)
+	{
+		if (quoteChar && name.find_first_of(_T(" '\"")) != String::npos)
+		{
+			String nameQuoted = name;
+			strutils::replace(nameQuoted, String(1, quoteChar), String(2, quoteChar));
+			pipeline += strutils::format(_T("%c%s%c"), quoteChar, nameQuoted, quoteChar);
+		}
+		else
+		{
+			pipeline += name;
+		}
+		if (!args.empty())
+		{
+			for (const auto& arg : args)
+			{
+				if (quoteChar)
+				{
+					String argQuoted = arg;
+					strutils::replace(argQuoted, String(1, quoteChar), String(2, quoteChar));
+					pipeline += strutils::format(_T(" %c%s%c"), quoteChar, argQuoted, quoteChar);
+				}
+				else
+				{
+					pipeline += _T(" ") + arg;
+				}
+			}
+		}
+		if (i < list.size() - 1)
+			pipeline += _T("|");
+		i++;
+	}
+	return pipeline;
+}
+
+String PluginForFile::MakeArguments(const std::vector<String>& args, const std::vector<StringView>& variables)
+{
+	String newstr;
+	int i = 0;
+	for (const auto& arg : args)
+	{
+		String newarg;
+		for (const TCHAR* p = arg.c_str(); *p; ++p)
+		{
+			if (*p == '%' && *(p + 1) != 0)
+			{
+				++p;
+				TCHAR c = *p;
+				if (c == '%')
+				{
+					newarg += '%';
+				}
+				else if (c >= '1' && c <= '9')
+				{
+					if ((c - '1') < variables.size())
+						newarg += strutils::to_str(variables[(c - '1')]);
+				}
+				else
+				{
+					newarg += *(p - 1);
+					newarg += c;
+				}
+			}
+			else
+			{
+				newarg += *p;
+			}
+		}
+		if (newarg.find_first_of(_T(" \"")) != String::npos)
+		{
+			strutils::replace(newarg, _T("\""), _T("\"\""));
+			newstr += _T("\"") + newarg + _T("\"");
+		}
+		else
+		{
+			newstr += newarg;
+		}
+		if (i < args.size() - 1)
+			newstr += ' ';
+		i++;
+	}
+	return newstr;
+}
+
+bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
+	String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const
+{
+	auto result = ParsePluginPipeline(errorMessage);
+	if (!errorMessage.empty())
+		return false;
+	if (bUrl)
+	{
+		std::vector<String> args;
+		bool bWithFile = true;
+		PluginInfo* plugin = nullptr;
+		if (m_URLHandler.empty())
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"URL_PACK_UNPACK", filteredFilenames);
+		else
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"URL_PACK_UNPACK", m_URLHandler);
+		if (plugin)
+			plugins.push_back({ plugin, args, bWithFile });
+		if (pURLHandlerResolved)
+			*pURLHandlerResolved = plugin ? plugin->m_name : _T("");
+	}
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	for (auto& [pluginName, args, quoteChar] : result)
+	{
+		PluginInfo* plugin = nullptr;
+		bool bWithFile = true;
+		if (pluginName == _T("<None>") || pluginName == _("<None>"))
+			;
+		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredFilenames);
+			if (plugin == nullptr)
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredFilenames);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredFilenames);
+				bWithFile = false;
+			}
+		}
+		else
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", pluginName);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_FOLDER_PACK_UNPACK", pluginName);
+				if (plugin == nullptr)
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", pluginName);
+					if (plugin == nullptr)
+					{
+						plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+						if (plugin == nullptr)
+						{
+							errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
+						}
+						else
+						{
+							plugin = nullptr;
+							errorMessage = strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName);
+						}
+						return false;
+					}
+					bWithFile = false;
+				}
+			}
+		}
+		if (plugin)
+		{
+			pipelineResolved.push_back({plugin->m_name, args, quoteChar });
+			if (bReverse)
+				plugins.insert(plugins.begin(), { plugin, args, bWithFile });
+			else
+				plugins.push_back({ plugin, args, bWithFile });
+		}
+	}
+	if (pPluginPipelineResolved)
+		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
+	return true;
+}
+
+// known handler
+bool PackingInfo::pack(String & filepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
+{
+	// no handler : return true
+	bool bUrl = paths::IsURL(dstFilepath);
+	if (m_PluginPipeline.empty() && !bUrl)
+		return true;
+
+	// control value
+	String errorMessage;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
+	if (!GetPackUnpackPlugin(_T(""), bUrl, true, plugins, nullptr, nullptr, errorMessage))
+	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+
+	auto itSubcode = handlerSubcodes.rbegin();
+	for (auto& [plugin, args, bWithFile] : plugins)
+	{
+		bool bHandled = false;
+		storageForPlugins bufferData;
+		bufferData.SetDataFileAnsi(filepath);
+
+		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
+
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
+				return false;
+		}
+		if (plugin->m_hasArgumentsProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
+				return false;
+		}
+
+		if (bWithFile)
+		{
+			// use a temporary dest name
+			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+			String dstFileName = plugin->m_event == L"URL_PACK_UNPACK" ?
+				dstFilepath : bufferData.GetDestFileName(); // <-Call order is important
+			bHandled = plugin::InvokePackFile(srcFileName,
+				dstFileName,
+				bufferData.GetNChanged(),
+				piScript, *itSubcode);
+			if (bHandled)
+				bufferData.ValidateNewFile();
+		}
+		else
+		{
+			bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
+				bufferData.GetNChanged(),
+				piScript, *itSubcode);
+			if (bHandled)
+				bufferData.ValidateNewBuffer();
+		}
+
+		// if this packer does not work, that is an error
+		if (!bHandled)
+			return false;
+
+		// if the buffer changed, write it before leaving
+		if (bufferData.GetNChangedValid() > 0)
+		{
+			bool bSuccess = bufferData.SaveAsFile(filepath);
+			if (!bSuccess)
+				return false;
+		}
+		++itSubcode;
+	}
+	return true;
+}
+
+bool PackingInfo::Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const
+{
+	String csTempFileName = srcFilepath;
+	if (!pack(csTempFileName, dstFilepath, handlerSubcodes, variables))
+		return false;
+	try
+	{
+		if (!paths::IsURL(dstFilepath))
+		{
+			TFile file1(csTempFileName);
+			file1.copyTo(dstFilepath);
+			if (srcFilepath != csTempFileName)
+				file1.remove();
+		}
+		return true;
+	}
+	catch (Poco::Exception& e)
+	{
+		DWORD dwErrCode = GetLastError();
+		LogErrorStringUTF8(e.displayText());
+		SetLastError(dwErrCode);
+		return false;
+	}
+}
+
+bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepath, const String& filteredText, const std::vector<StringView>& variables)
+{
+	if (handlerSubcodes)
+		handlerSubcodes->clear();
+
+	// no handler : return true
+	bool bUrl = paths::IsURL(filepath);
+	if (m_PluginPipeline.empty() && !bUrl)
+		return true;
+
+	// control value
+	String errorMessage;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
+	if (!GetPackUnpackPlugin(filteredText, bUrl, false, plugins, &m_PluginPipeline, &m_URLHandler, errorMessage))
+	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+
+	for (auto& [plugin, args, bWithFile] : plugins)
+	{
+		bool bHandled = false;
+		storageForPlugins bufferData;
+		bufferData.SetDataFileAnsi(filepath);
+
+		// temporary subcode 
+		int subcode = 0;
+
+		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
+
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
+				return false;
+		}
+		if (plugin->m_hasArgumentsProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
+				return false;
+		}
+
+		if (bWithFile)
+		{
+			// use a temporary dest name
+			bufferData.SetDestFileExtension(!plugin->m_ext.empty() ? plugin->m_ext : paths::FindExtension(filepath));
+			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+			String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+			bHandled = plugin::InvokeUnpackFile(srcFileName,
+				dstFileName,
+				bufferData.GetNChanged(),
+				piScript, subcode);
+			if (bHandled)
+				bufferData.ValidateNewFile();
+		}
+		else
+		{
+			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
+				bufferData.GetNChanged(),
+				piScript, subcode);
+			if (bHandled)
+				bufferData.ValidateNewBuffer();
+		}
+
+		// if this unpacker does not work, that is an error
+		if (!bHandled)
+			return false;
+
+		// valid the subcode
+		if (handlerSubcodes)
+			handlerSubcodes->push_back(subcode);
+
+		// if the buffer changed, write it before leaving
+		if (bufferData.GetNChangedValid() > 0)
+		{
+			bool bSuccess = bufferData.SaveAsFile(filepath);
+			if (!bSuccess)
+				return false;
 		}
 	}
 	return true;
 }
 
-// known handler
-bool Packing(String & filepath, PackingInfo handler)
+String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) const
 {
-	// no handler : return true
-	if (handler.m_PluginName.empty())
-		return true;
-
-	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
-
-	// control value
-	bool bHandled = false;
-	bool bWithFile = true;
-	PluginInfo* plugin = nullptr;
-	if (!getPackUnpackPlugin(handler.m_PluginName, plugin, bWithFile))
-		return false;
-
-	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (bWithFile)
+	String ext;
+	String errorMessage;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
+	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, nullptr, errorMessage))
 	{
-		// use a temporary dest name
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokePackFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			piScript, handler.m_subcode);
-		if (bHandled)
-			bufferData.ValidateNewFile();
+		for (auto& [plugin, args, bWithFile] : plugins)
+			ext += plugin->m_ext;
 	}
-	else
-	{
-		bHandled = plugin::InvokePackBuffer(*bufferData.GetDataBufferAnsi(),
-			bufferData.GetNChanged(),
-			piScript, handler.m_subcode);
-		if (bHandled)
-			bufferData.ValidateNewBuffer();
-	}
-
-	// if this packer does not work, that is an error
-	if (!bHandled)
-		return false;
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
-// known handler
-bool Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
-{
-	// no handler : return true
-	if (handler == nullptr || handler->m_PluginName.empty())
-		return true;
-
-	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
-
-	// temporary subcode 
-	int subcode;
-
-	// control value
-	bool bHandled = false;
-	bool bWithFile = true;
-	PluginInfo* plugin = nullptr;
-	if (!getPackUnpackPlugin(handler->m_PluginName, plugin, bWithFile))
-		return false;
-
-	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (bWithFile)
-	{
-		// use a temporary dest name
-		bufferData.SetDestFileExtension(plugin->m_ext);
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokeUnpackFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			piScript, subcode);
-		if (bHandled)
-			bufferData.ValidateNewFile();
-	}
-	else
-	{
-		bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
-			bufferData.GetNChanged(),
-			piScript, subcode);
-		if (bHandled)
-			bufferData.ValidateNewBuffer();
-	}
-
-	// if this unpacker does not work, that is an error
-	if (!bHandled)
-		return false;
-
-	// valid the subcode
-	*handlerSubcode = subcode;
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
-
-// scan plugins for the first handler
-bool Unpacking(String & filepath, const String& filteredText, PackingInfo * handler, int * handlerSubcode)
-{
-	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
-	if (handler->m_PluginOrPredifferMode == PLUGIN_BUILTIN_XML)
-	{
-		handler->m_pufile = new UniMarkdownFile;
-		handler->m_textType = _T("xml");
-		handler->m_bDisallowMixedEOL = true;
-		handler->m_PluginName.erase(); // Make FileTransform_Packing() a NOP
-		// Leave eToBeScanned alone so above lines will continue to execute on
-		// subsequent calls to this function
-		return true;
-	}
-
-	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
-
-	// control value
-	bool bHandled = false;
-
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PACK_UNPACK", filteredText);
-	if (plugin == nullptr)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_FOLDER_PACK_UNPACK", filteredText);
-	if (plugin != nullptr)
-	{
-		handler->m_PluginName = plugin->m_name;
-		// use a temporary dest name
-		bufferData.SetDestFileExtension(plugin->m_ext);
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokeUnpackFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			plugin->m_lpDispatch, handler->m_subcode);
-		if (bHandled)
-			bufferData.ValidateNewFile();
-	}
-
-	// We can not assume that the file is text, so use a safearray and not a BSTR
-	// TODO : delete this event ? 	Is anyone going to use this ?
-
-	if (!bHandled)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PACK_UNPACK", filteredText);
-		if (plugin != nullptr)
-		{
-			handler->m_PluginName = plugin->m_name;
-			bHandled = plugin::InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
-				bufferData.GetNChanged(),
-				plugin->m_lpDispatch, handler->m_subcode);
-			if (bHandled)
-				bufferData.ValidateNewBuffer();
-		}
-	}
-
-	if (!bHandled)
-	{
-		// we didn't find any unpacker, just hope it is normal Ansi/Unicode
-		handler->m_PluginName = _T("");
-		handler->m_subcode = 0;
-		bHandled = true;
-	}
-
-	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
-
-	// assign the sucode
-	*handlerSubcode = handler->m_subcode;
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
-bool Unpacking(PackingInfo *handler, String& filepath, const String& filteredText)
-{
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
-		return Unpacking(filepath, filteredText, handler, &handler->m_subcode);
-	else
-		return Unpacking(filepath, handler, &handler->m_subcode);
+	return ext;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // transformation prediffing
 
-bool getPrediffPlugin(const String& pluginName, PluginInfo*& plugin, bool& bWithFile)
+bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bReverse,
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
+	String *pPluginPipelineResolved, String& errorMessage) const
 {
-	bWithFile = true;
-	plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
-	if (plugin == nullptr)
+	auto result = ParsePluginPipeline(errorMessage);
+	if (!errorMessage.empty())
+		return false;
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	for (auto& [pluginName, args, quoteChar] : result)
 	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
-		if (plugin == nullptr)
+		PluginInfo* plugin = nullptr;
+		bool bWithFile = true;
+		if (pluginName == _T("<None>") || pluginName == _("<None>"))
+			;
+		else if (pluginName == _T("<Automatic>") || pluginName == _("<Automatic>"))
 		{
-			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredFilenames);
 			if (plugin == nullptr)
 			{
-				AppErrorMessageBox(strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName));
+				plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredFilenames);
+				if (plugin)
+					bWithFile = false;
 			}
-			else
-			{
-				plugin = nullptr;
-				AppErrorMessageBox(strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName));
-			}
-			return false;
 		}
-		bWithFile = false;
+		else
+		{
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", pluginName);
+			if (plugin == nullptr)
+			{
+				plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", pluginName);
+				if (plugin == nullptr)
+				{
+					plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, pluginName);
+					if (plugin == nullptr)
+					{
+						errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
+					}
+					else
+					{
+						errorMessage = strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName);
+					}
+					return false;
+				}
+				bWithFile = false;
+			}
+		}
+		if (plugin)
+		{
+			pipelineResolved.push_back({ plugin->m_name, args, quoteChar });
+			if (bReverse)
+				plugins.insert(plugins.begin(), { plugin, args, bWithFile });
+			else
+				plugins.push_back({ plugin, args, bWithFile });
+		}
+	}
+	if (pPluginPipelineResolved)
+		*pPluginPipelineResolved = MakePluginPipeline(pipelineResolved);
+	return true;
+}
+
+bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, bool bMayOverwrite, const std::vector<StringView>& variables)
+{
+	// no handler : return true
+	if (m_PluginPipeline.empty())
+		return true;
+
+	// control value
+	bool bHandled = false;
+	String errorMessage;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
+	if (!GetPrediffPlugin(filteredText, false, plugins, &m_PluginPipeline, errorMessage))
+	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+
+	for (const auto& [plugin, args, bWithFile] : plugins)
+	{
+		storageForPlugins bufferData;
+		// detect Ansi or Unicode file
+		bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
+		// TODO : set the codepage
+		// bufferData.SetCodepage();
+
+		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
+
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
+				return false;
+		}
+		if (plugin->m_hasArgumentsProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
+				return false;
+		}
+
+		if (bWithFile)
+		{
+			// use a temporary dest name
+			String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
+			String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
+			bHandled = plugin::InvokePrediffFile(srcFileName,
+				dstFileName,
+				bufferData.GetNChanged(),
+				piScript);
+			if (bHandled)
+				bufferData.ValidateNewFile();
+		}
+		else
+		{
+			// probably it is for VB/VBscript so use a BSTR as argument
+			bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
+				bufferData.GetNChanged(),
+				piScript);
+			if (bHandled)
+				bufferData.ValidateNewBuffer();
+		}
+
+		// if this unpacker does not work, that is an error
+		if (!bHandled)
+			return false;
+
+		// if the buffer changed, write it before leaving
+		if (bufferData.GetNChangedValid() > 0)
+		{
+			// bufferData changes filepath here to temp filepath
+			bool bSuccess = bufferData.SaveAsFile(filepath);
+			if (!bSuccess)
+				return false;
+		}
 	}
 	return true;
 }
 
-// known handler
-bool Prediffing(String & filepath, PrediffingInfo handler, bool bMayOverwrite)
+////////////////////////////////////////////////////////////////////////////////
+// transformation text
+
+bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
+	String& errorMessage) const
 {
-	// no handler : return true
-	if (handler.m_PluginName.empty())
-		return true;
-
-	storageForPlugins bufferData;
-	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
-	// TODO : set the codepage
-	// bufferData.SetCodepage();
-
-	// control value
-	bool bHandled = false;
-	bool bWithFile = true;
-	PluginInfo* plugin = nullptr;
-	if (!getPrediffPlugin(handler.m_PluginName, plugin, bWithFile))
+	auto result = ParsePluginPipeline(errorMessage);
+	if (!errorMessage.empty())
 		return false;
-
-	LPDISPATCH piScript = plugin->m_lpDispatch;
-	if (bWithFile)
+	for (auto& [pluginName, args, quoteChar] : result)
 	{
-		// use a temporary dest name
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokePrediffFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			piScript);
-		if (bHandled)
-			bufferData.ValidateNewFile();
-	}
-	else
-	{
-		// probably it is for VB/VBscript so use a BSTR as argument
-		bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
-			bufferData.GetNChanged(),
-			piScript);
-		if (bHandled)
-			bufferData.ValidateNewBuffer();
-	}
-
-	// if this unpacker does not work, that is an error
-	if (!bHandled)
-		return false;
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		// bufferData changes filepath here to temp filepath
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
-}
-
-
-// scan plugins for the first handler
-bool Prediffing(String & filepath, const String& filteredText, PrediffingInfo * handler, bool bMayOverwrite)
-{
-	storageForPlugins bufferData;
-	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
-	// TODO : set the codepage
-	// bufferData.SetCodepage();
-
-	// control value
-	bool bHandled = false;
-
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"FILE_PREDIFF", filteredText);
-	if (plugin != nullptr)
-	{
-		handler->m_PluginName = plugin->m_name;
-		// use a temporary dest name
-		String srcFileName = bufferData.GetDataFileAnsi(); // <-Call order is important
-		String dstFileName = bufferData.GetDestFileName(); // <-Call order is important
-		bHandled = plugin::InvokePrediffFile(srcFileName,
-			dstFileName,
-			bufferData.GetNChanged(),
-			plugin->m_lpDispatch);
-		if (bHandled)
-			bufferData.ValidateNewFile();
-	}
-
-	if (!bHandled)
-	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(L"BUFFER_PREDIFF", filteredText);
-		if (plugin != nullptr)
+		bool found = false;
+		PluginArray *pluginInfoArray = CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"EDITOR_SCRIPT");
+		for (const auto& plugin : *pluginInfoArray)
 		{
-			handler->m_PluginName = plugin->m_name;
-			// probably it is for VB/VBscript so use a BSTR as argument
-			bHandled = plugin::InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
-				bufferData.GetNChanged(),
-				plugin->m_lpDispatch);
-			if (bHandled)
-				bufferData.ValidateNewBuffer();
+			std::vector<String> namesArray;
+			std::vector<int> idArray;
+			int nFunc = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
+			for (int i = 0; i < nFunc; ++i)
+			{
+				if (namesArray[i] == pluginName)
+				{
+					plugins.push_back({ plugin.get(), args, idArray[i] });
+					found = true;
+					break;
+				}
+			}
+			if (found)
+				break;
+		}
+		if (!found)
+		{
+			errorMessage = strutils::format_string1(_("Plugin not found or invalid: %1"), pluginName);
+			return false;
 		}
 	}
-
-	if (!bHandled)
-	{
-		// we didn't find any prediffer, that is OK anyway
-		handler->m_PluginName = _T("");
-		bHandled = true;
-	}
-
-	// the handler is now defined
-	handler->m_PluginOrPredifferMode = PLUGIN_MANUAL;
-
-	// if the buffer changed, write it before leaving
-	bool bSuccess = true;
-	if (bufferData.GetNChangedValid() > 0)
-	{
-		bSuccess = bufferData.SaveAsFile(filepath);
-	}
-
-	return bSuccess;
+	return true;
 }
 
-bool Prediffing(PrediffingInfo * handler, String & filepath, const String& filteredText, bool bMayOverwrite)
+bool EditorScriptInfo::TransformText(String & text, const std::vector<StringView>& variables, bool& changed)
 {
-	if (handler->m_PluginOrPredifferMode != PLUGIN_MANUAL)
-		return Prediffing(filepath, filteredText, handler, bMayOverwrite);
-	else
-		return Prediffing(filepath, *handler, bMayOverwrite);
+	changed = false;
+	// no handler : return true
+	if (m_PluginPipeline.empty())
+		return true;
+
+	// control value
+	String errorMessage;
+	std::vector<std::tuple<PluginInfo*, std::vector<String>, int>> plugins;
+	if (!GetEditorScriptPlugin(plugins, errorMessage))
+	{
+		AppErrorMessageBox(errorMessage);
+		return false;
+	}
+
+	for (const auto& [plugin, args, fncID] : plugins)
+	{
+		LPDISPATCH piScript = plugin->m_lpDispatch;
+		Poco::FastMutex::ScopedLock lock(g_mutex);
+
+		if (plugin->m_hasVariablesProperty)
+		{
+			if (!plugin::InvokePutPluginVariables(strutils::to_str(variables[0]), piScript))
+				return false;
+		}
+		if (plugin->m_hasArgumentsProperty)
+		{
+			if (!plugin::InvokePutPluginArguments(args.empty() ? plugin->m_arguments : MakeArguments(args, variables), piScript))
+				return false;
+		}
+
+		// execute the transform operation
+		int nChanged = 0;
+		if (!plugin::InvokeTransformText(text, nChanged, plugin->m_lpDispatch, fncID))
+			return false;
+		if (!changed)
+			changed = (nChanged != 0);
+	}
+	return true;
 }
 
+namespace FileTransform
+{
+
+bool AutoUnpacking = false;
+bool AutoPrediffing = false;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -471,71 +759,95 @@ bool AnyCodepageToUTF8(int codepage, String & filepath, bool bMayOverwrite)
 	return bSuccess;
 }
 
-
-////////////////////////////////////////////////////////////////////////////////
-// transformation : TextTransform_Interactive (editor scripts)
-
-std::vector<String> GetFreeFunctionsInScripts(const wchar_t *TransformationEvent)
+std::pair<
+	std::vector<std::tuple<String, String, unsigned, PluginInfo *>>,
+	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>>
+>
+CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId)
 {
-	std::vector<String> sNamesArray;
-
-	// get an array with the available scripts
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
-
-	// fill in these structures
-	int nFnc = 0;	
-	size_t iScript;
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
+	std::vector<std::tuple<String, String, unsigned, PluginInfo *>> suggestedPlugins;
+	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> allPlugins;
+	std::map<String, int> captions;
+	unsigned id = baseId;
+	bool addedNoneAutomatic = false;
+	static PluginInfo noPlugin;
+	static PluginInfo autoPlugin;
+	if (autoPlugin.m_name.empty())
+		autoPlugin.m_name = _T("<Automatic>");
+	for (const auto& event: events)
 	{
-		const PluginInfoPtr & plugin = piScriptArray->at(iScript);
-		if (plugin->m_disabled)
-			continue;
-		LPDISPATCH piScript = plugin->m_lpDispatch;
-		std::vector<String> scriptNamesArray;
-		std::vector<int> scriptIdsArray;
-		int nScriptFnc = plugin::GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
-		sNamesArray.resize(nFnc+nScriptFnc);
+		auto pScriptArray =
+			CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(event.c_str());
+		for (auto& plugin : *pScriptArray)
+		{
+			if (!plugin->m_disabled)
+			{
+				if (event != L"EDITOR_SCRIPT")
+				{
+					if (!addedNoneAutomatic)
+					{
+						String process = _T("");
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, &noPlugin);
+						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), id++, &autoPlugin);
+						addedNoneAutomatic = true;
+					}
+					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
+					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+					const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
+						strutils::to_str(*menuCaption) : plugin->m_name));
+					const String process = tr(ucr::toUTF8(processType.has_value() ?
+						strutils::to_str(*processType) : _T("&Others")));
 
-		int iFnc;
-		for (iFnc = 0 ; iFnc < nScriptFnc ; iFnc++)
-			sNamesArray[nFnc+iFnc] = scriptNamesArray[iFnc];
+					if (plugin->TestAgainstRegList(filteredFilenames))
+						suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
 
-		nFnc += nScriptFnc;
+					if (allPlugins.find(process) == allPlugins.end())
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+					allPlugins[process].emplace_back(caption, plugin->m_name, id, plugin.get());
+					captions[caption]++;
+					id++;
+				}
+				else
+				{
+					LPDISPATCH piScript = plugin->m_lpDispatch;
+					std::vector<String> scriptNamesArray;
+					std::vector<int> scriptIdsArray;
+					int nScriptFnc = plugin::GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
+					bool matched = plugin->TestAgainstRegList(filteredFilenames);
+					for (int i = 0; i < nScriptFnc; ++i, ++id)
+					{
+						const auto menuCaption = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".MenuCaption"));
+						auto processType = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".ProcessType"));
+						if (!processType.has_value())
+							processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+						const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
+							strutils::to_str(*menuCaption) : scriptNamesArray[i]));
+						const String process = tr(ucr::toUTF8(processType.has_value() ?
+							strutils::to_str(*processType) : _T("&Others")));
+						if (matched)
+							suggestedPlugins.emplace_back(caption, scriptNamesArray[i], id, plugin.get());
+						if (allPlugins.find(process) == allPlugins.end())
+							allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+						allPlugins[process].emplace_back(caption, scriptNamesArray[i], id, plugin.get());
+					}
+				}
+			}
+		}
 	}
-	return sNamesArray;
-}
-
-bool Interactive(String & text, const wchar_t *TransformationEvent, int iFncChosen)
-{
-	if (iFncChosen < 0)
-		return false;
-
-	// get an array with the available scripts
-	PluginArray * piScriptArray = 
-		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(TransformationEvent);
-
-	size_t iScript;
-	for (iScript = 0 ; iScript < piScriptArray->size() ; iScript++)
+	auto ResolveConflictMenuCaptions = [&captions](auto& plugins)
 	{
-		if (iFncChosen < piScriptArray->at(iScript)->m_nFreeFunctions)
-			// we have found the script file
-			break;
-		iFncChosen -= piScriptArray->at(iScript)->m_nFreeFunctions;
-	}
-
-	if (iScript >= piScriptArray->size())
-		return false;
-
-	// iFncChosen is the index of the function in the script file
-	// we must convert it to the function ID
-	int fncID = plugin::GetMethodIDInScript(piScriptArray->at(iScript)->m_lpDispatch, iFncChosen);
-
-	// execute the transform operation
-	int nChanged = 0;
-	plugin::InvokeTransformText(text, nChanged, piScriptArray->at(iScript)->m_lpDispatch, fncID);
-
-	return (nChanged != 0);
+		for (auto& plugin : plugins)
+		{
+			const String& caption = std::get<0>(plugin);
+			if (captions[caption] > 1)
+				std::get<0>(plugin) = caption + _T("(") + std::get<1>(plugin) + _T(")");
+		}
+	};
+	ResolveConflictMenuCaptions(suggestedPlugins);
+	for (auto& [processType, plugins] : allPlugins)
+		ResolveConflictMenuCaptions(plugins);
+	return { suggestedPlugins, allPlugins };
 }
 
 }

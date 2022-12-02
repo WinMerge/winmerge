@@ -23,8 +23,8 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszLispKeywordList[] =
+//  LISP keywords
+static const TCHAR * s_apszLispKeywordList[] =
   {
     _T ("abs"),
     _T ("acad_colordlg"),
@@ -255,20 +255,19 @@ static LPCTSTR s_apszLispKeywordList[] =
   };
 
 static bool
-IsLispKeyword (LPCTSTR pszChars, int nLength)
+IsLispKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszLispKeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineLisp (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineLisp (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -393,12 +392,6 @@ out:
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

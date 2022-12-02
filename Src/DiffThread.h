@@ -30,16 +30,20 @@ struct DiffFuncStruct
 	CDiffContext * context; /**< Compare context. */
 	Poco::BasicEvent<int> m_listeners; /**< Event listeners */
 	int nThreadState; /**< Thread state. */
+	int nCollectThreadState; /**< Collect thread state. */
 	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
 	Poco::Semaphore *pSemaphore; /**< Semaphore for synchronizing threads. */
 	std::function<void (DiffFuncStruct*)> m_fncCollect;
 	std::function<void (DiffFuncStruct*)> m_fncCompare;
+	bool bMarkedRescan;	/**< Is the rescan due to "Refresh Selected"? */
 
 	DiffFuncStruct()
 		: context(nullptr)
 		, nThreadState(0/*CDiffThread::THREAD_NOTSTARTED*/)
+		, nCollectThreadState(0/*CDiffThread::THREAD_NOTSTARTED*/)
 		, m_pAbortgate(nullptr)
 		, pSemaphore(nullptr)
+		, bMarkedRescan(false)
 		{}
 };
 
@@ -83,9 +87,12 @@ public:
 	}
 	void SetCollectFunction(std::function<void(DiffFuncStruct*)> func) { m_pDiffParm->m_fncCollect = func; }
 	void SetCompareFunction(std::function<void(DiffFuncStruct*)> func) { m_pDiffParm->m_fncCompare = func; }
+	void SetMarkedRescan(bool bMarkedRescan);
+	bool IsMarkedRescan() const;
 
 // runtime interface for main thread, called on main thread
 	unsigned GetThreadState() const;
+	unsigned GetCollectThreadState() const;
 	void Abort() { m_bAborting = true; }
 	bool IsAborting() const { return m_bAborting; }
 	void Pause() { m_bPaused = true; }
@@ -119,4 +126,29 @@ inline void CDiffThread::SetContext(CDiffContext * pCtx)
 inline unsigned CDiffThread::GetThreadState() const
 {
 	return m_pDiffParm->nThreadState;
+}
+
+/**
+ * @brief Returns collect thread's current state
+ */
+inline unsigned CDiffThread::GetCollectThreadState() const
+{
+	return m_pDiffParm->nCollectThreadState;
+}
+
+/**
+ * @brief Sets whether the rescan is due to "Refresh Selected"
+ * @param [in] bMarkedRescan Is the rescan due to "Refresh Selected"?
+ */
+inline void CDiffThread::SetMarkedRescan(bool bMarkedRescan)
+{
+	m_pDiffParm->bMarkedRescan = bMarkedRescan;
+}
+
+/**
+ * @brief Returns whether the rescan is due to "Refresh Selected"
+ */
+inline bool CDiffThread::IsMarkedRescan() const
+{
+	return m_pDiffParm->bMarkedRescan;
 }

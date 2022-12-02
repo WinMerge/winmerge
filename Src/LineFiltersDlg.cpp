@@ -43,21 +43,21 @@ void LineFiltersDlg::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(LineFiltersDlg)
 	DDX_Check(pDX, IDC_IGNOREREGEXP, m_bIgnoreRegExp);
-	//}}AFX_DATA_MAP
 	DDX_Control(pDX, IDC_LFILTER_LIST, m_filtersList);
+	//}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(LineFiltersDlg, CTrPropertyPage)
 	//{{AFX_MSG_MAP(LineFiltersDlg)
 	ON_COMMAND(ID_HELP, OnHelp)
-	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_LFILTER_ADDBTN, OnBnClickedLfilterAddBtn)
 	ON_BN_CLICKED(IDC_LFILTER_EDITBTN, OnBnClickedLfilterEditbtn)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedLfilterRemovebtn)
 	ON_NOTIFY(LVN_ITEMACTIVATE, IDC_LFILTER_LIST, OnLvnItemActivateLfilterList)
 	ON_NOTIFY(LVN_KEYDOWN, IDC_LFILTER_LIST, OnLvnKeyDownLfilterList)
 	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_LFILTER_LIST, OnEndLabelEditLfilterList)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 
@@ -88,7 +88,7 @@ void LineFiltersDlg::InitList()
 	m_filtersList.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT | LVS_EX_INFOTIP);
 
 	String title = _("Regular expression");
-	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, PointToPixel(375));
+	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, PointToPixel(570));
 
 	size_t count = m_pList->GetCount();
 	for (size_t i = 0; i < count; i++)
@@ -171,6 +171,8 @@ void LineFiltersDlg::OnOK()
 
 		m_pList->AddFilter(text, enabled);
 	}
+
+	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
 
 	CPropertyPage::OnClose();
 }

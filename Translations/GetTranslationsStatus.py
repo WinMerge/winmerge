@@ -3,7 +3,7 @@
 
 # The MIT License
 # 
-# Copyright (c) 2009-2018 Tim Gerundt <tim@gerundt.de>
+# Copyright (c) 2009-2022 Tim Gerundt <tim@gerundt.de>
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-# $Id$
-
 # Python script to get the status of the translations
 
 import os
@@ -33,6 +31,8 @@ import string
 import re
 import time
 import codecs
+import math
+import argparse
 
 class TranslationsStatus(object):
     def __init__(self):
@@ -152,6 +152,10 @@ class TranslationsStatus(object):
         htmlfile.write('    .left { text-align: left; }\n')
         htmlfile.write('    .center { text-align: center; }\n')
         htmlfile.write('    .right { text-align: right; }\n')
+        htmlfile.write('\n')
+        htmlfile.write('    .translated { color: #2D802B; }\n')
+        htmlfile.write('    .fuzzy { color: #05359B; }\n')
+        htmlfile.write('    .untranslated { color: #D42323; }\n')
         htmlfile.write('  -->\n')
         htmlfile.write('  </style>\n')
         htmlfile.write('</head>\n')
@@ -164,9 +168,10 @@ class TranslationsStatus(object):
             htmlfile.write('  <tr>\n')
             htmlfile.write('    <th class="left">Language</th>\n')
             htmlfile.write('    <th class="right">Total</th>\n')
-            htmlfile.write('    <th class="right">Translated</th>\n')
-            htmlfile.write('    <th class="right">Fuzzy</th>\n')
-            htmlfile.write('    <th class="right">Untranslated</th>\n')
+            htmlfile.write('    <th class="right translated">Translated</th>\n')
+            htmlfile.write('    <th class="right fuzzy">Fuzzy</th>\n')
+            htmlfile.write('    <th class="right untranslated">Untranslated</th>\n')
+            htmlfile.write('    <th class="right">Complete</th>\n')
             htmlfile.write('    <th class="center">Last Update</th>\n')
             htmlfile.write('  </tr>\n')
             for language in project.languages: #For all (sorted) languages...
@@ -176,25 +181,29 @@ class TranslationsStatus(object):
                 if status1.template: #If a template file...
                     if status1.count > 0: #If KNOWN status...
                         htmlfile.write('    <td class="right">%u</td>\n' % (status1.count))
-                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.count))
-                        htmlfile.write('    <td class="right">0</td>\n')
-                        htmlfile.write('    <td class="right">0</td>\n')
+                        htmlfile.write('    <td class="right translated">%u</td>\n' % (status1.count))
+                        htmlfile.write('    <td class="right fuzzy">0</td>\n')
+                        htmlfile.write('    <td class="right untranslated">0</td>\n')
+                        htmlfile.write('    <td class="right">100 %</td>\n')
                     else: #If UNKNOWN status...
                         htmlfile.write('    <td class="right">-</td>\n')
-                        htmlfile.write('    <td class="right">-</td>\n')
-                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right translated">-</td>\n')
+                        htmlfile.write('    <td class="right fuzzy">-</td>\n')
+                        htmlfile.write('    <td class="right untranslated">-</td>\n')
                         htmlfile.write('    <td class="right">-</td>\n')
                     htmlfile.write('    <td class="center">%s</td>\n' % (status1.updatedate[0:10]))
                 else: #If NOT a template file...
                     if status1.count > 0: #If KNOWN status...
                         htmlfile.write('    <td class="right">%u</td>\n' % (status1.count))
-                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.translated))
-                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.fuzzy))
-                        htmlfile.write('    <td class="right">%u</td>\n' % (status1.untranslated))
+                        htmlfile.write('    <td class="right translated">%u</td>\n' % (status1.translated))
+                        htmlfile.write('    <td class="right fuzzy">%u</td>\n' % (status1.fuzzy))
+                        htmlfile.write('    <td class="right untranslated">%u</td>\n' % (status1.untranslated))
+                        htmlfile.write('    <td class="right">%u %%</td>\n' % (status1.complete))
                     else: #If UNKNOWN status...
                         htmlfile.write('    <td class="right">-</td>\n')
-                        htmlfile.write('    <td class="right">-</td>\n')
-                        htmlfile.write('    <td class="right">-</td>\n')
+                        htmlfile.write('    <td class="right translated">-</td>\n')
+                        htmlfile.write('    <td class="right fuzzy">-</td>\n')
+                        htmlfile.write('    <td class="right untranslated">-</td>\n')
                         htmlfile.write('    <td class="right">-</td>\n')
                     htmlfile.write('    <td class="center">%s</td>\n' % (status1.updatedate[0:10]))
                 htmlfile.write('  </tr>\n')
@@ -236,6 +245,61 @@ class TranslationsStatus(object):
         htmlfile.write('</body>\n')
         htmlfile.write('</html>\n')
         htmlfile.close()
+    
+    def writeToMdFile(self, mdpath):
+        mdfile = codecs.open(mdpath, 'w', 'utf-8')
+        
+        mdfile.write('# Translations Status\n\n')
+        mdfile.write('Status from **%s**:\n\n' % (time.strftime('%Y-%m-%d')))
+        for project in self._projects: #For all projects...
+            mdfile.write('## %s\n\n' % (project.name))
+            mdfile.write('| Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |\n')
+            mdfile.write('|:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|\n')
+            for language in project.languages: #For all (sorted) languages...
+                status1 = project[language]
+                formatedlanguage = status1.language.ljust(20)
+                formatedupdatedate = status1.updatedate[0:10].center(11)
+                if status1.template: #If a template file...
+                    if status1.count > 0: #If KNOWN status...
+                        formatedcount = str(status1.count).rjust(5)
+                        formatedtranslated = str(status1.count).rjust(10)
+                        mdfile.write('| %s | %s | %s |     0 |            0 |    100 %% | %s |\n' % (formatedlanguage, formatedcount, formatedtranslated, formatedupdatedate))
+                    else: #If UNKNOWN status...
+                        mdfile.write('| %s |     - |          - |     - |            - |        - | %s |\n' % (formatedlanguage, formatedupdatedate))
+                else: #If NOT a template file...
+                    if status1.count > 0: #If KNOWN status...
+                        formatedcount = str(status1.count).rjust(5)
+                        formatedtranslated = str(status1.translated).rjust(10)
+                        formatedfuzzy = str(status1.fuzzy).rjust(5)
+                        formateduntranslated = str(status1.untranslated).rjust(12)
+                        formatedcomplete = str(status1.complete).rjust(6)
+                        mdfile.write('| %s | %s | %s | %s | %s | %s %% | %s |\n' % (formatedlanguage, formatedcount, formatedtranslated, formatedfuzzy, formateduntranslated, formatedcomplete, formatedupdatedate))
+                    else: #If UNKNOWN status...
+                        mdfile.write('| %s |     - |          - |     - |            - |        - | %s |\n' % (formatedlanguage, formatedupdatedate))
+            mdfile.write('\n')
+        
+        #Translators...
+        mdfile.write('## Translators\n')
+        for project in self._projects: #For all projects...
+            mdfile.write('\n### %s\n' % project.name)
+            for language in self.noneTemplateLanguages: #For all NONE template languages...
+                status1 = project[language]
+                if status1:
+                    if status1.translators: #If translators exists...
+                        mdfile.write('\n * %s\n' % language)
+                        for translator in status1.translators: #For all translators...
+                            if (translator.ismaintainer): #If maintainer...
+                                if (translator.mail): #If mail address exists...
+                                    mdfile.write('   - [%s](mailto:%s) *Maintainer*\n' % (translator.name, translator.mail.replace(" ", "%20")))
+                                else: #If NO mail address exists...
+                                    mdfile.write('   - %s *Maintainer*\n' % (translator.name))
+                            else: #If NOT maintainer...
+                                if (translator.mail): #If mail address exists...
+                                    mdfile.write('   - [%s](mailto:%s)\n' % (translator.name, translator.mail.replace(" ", "%20")))
+                                else: #If NO mail address exists...
+                                    mdfile.write('   - %s\n' % (translator.name))
+        
+        mdfile.close()
 
 class Project(object):
     def __getitem__(self, key):
@@ -312,12 +376,22 @@ class Status(object):
         return self._fuzzy
     
     @property
+    def complete(self):
+        return self._complete
+    
+    @property
     def updatedate(self):
         return self._updatedate
     
     @property
     def translators(self):
         return self._translators
+    
+    def calculateCompleteness(self):
+        if self._count > 0:
+            self._complete = math.floor(((self._translated + self._fuzzy) * 100 / self._count))
+        else:
+            self._complete = 0.0
 
 class Translator(object):
     def __init__(self, name, mail, ismaintainer):
@@ -350,6 +424,7 @@ class PoStatus(Status):
         self._translated = 0
         self._untranslated = 0
         self._fuzzy = 0
+        self._complete = 0.0
         self._porevisiondate = ''
         self._potcreationdate = ''
         self._poeditlanguage = ''
@@ -441,6 +516,18 @@ class PoStatus(Status):
                   sMsgStr = ''
                   bIsFuzzy = False
           pofile.close()
+          
+          if sMsgId != '': #If a translation remained...
+              self._count += 1
+              if bIsFuzzy == False: #If NOT a fuzzy translation...
+                  if sMsgStr != '':
+                      self._translated += 1
+                  else:
+                      self._untranslated += 1
+              else: #If a fuzzy translation...
+                  self._fuzzy += 1
+          
+          self.calculateCompleteness()
     
     @property
     def updatedate(self):
@@ -543,13 +630,21 @@ class ReadmeStatus(Status):
             return filename[0].replace('ReadMe-', '')
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-f', '--format', nargs='*', default='md', type=str.lower, choices=['xml', 'html', 'md'])
+    args = parser.parse_args()
+
     status = TranslationsStatus()
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
     status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
-    status.writeToXmlFile('TranslationsStatus.xml')
-    status.writeToHtmlFile('TranslationsStatus.html')
+    if 'xml' in args.format:
+      status.writeToXmlFile('TranslationsStatus.xml')
+    if 'html' in args.format:
+      status.writeToHtmlFile('TranslationsStatus.html')
+    if 'md' in args.format:
+      status.writeToMdFile('TranslationsStatus.md')
 
 # MAIN #
 if __name__ == "__main__":

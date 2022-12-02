@@ -23,8 +23,8 @@
 #define new DEBUG_NEW
 #endif
 
-//  C++ keywords (MSVC5.0 + POET5.0)
-static LPCTSTR s_apszSiodKeywordList[] =
+//  SIOD keywords
+static const TCHAR * s_apszSiodKeywordList[] =
   {
     _T("abs"),
     _T("alarm"),
@@ -98,7 +98,7 @@ static LPCTSTR s_apszSiodKeywordList[] =
     _T("symbol?"),
   };
 
-static LPCTSTR s_apszUser1KeywordList[] =
+static const TCHAR * s_apszUser1KeywordList[] =
   {
     _T("acos"),
     _T("asin"),
@@ -111,7 +111,7 @@ static LPCTSTR s_apszUser1KeywordList[] =
     _T("tan"),
   };
 
-static LPCTSTR s_apszUser2KeywordList[] =
+static const TCHAR * s_apszUser2KeywordList[] =
   {
     _T("%%%memref"),
     _T("%%closure-code"),
@@ -319,32 +319,31 @@ static LPCTSTR s_apszUser2KeywordList[] =
   };
 
 static bool
-IsSiodKeyword (LPCTSTR pszChars, int nLength)
+IsSiodKeyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszSiodKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (LPCTSTR pszChars, int nLength)
+IsUser1Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (LPCTSTR pszChars, int nLength)
+IsUser2Keyword (const TCHAR *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
-DWORD
-CrystalLineParser::ParseLineSiod (DWORD dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+unsigned
+CrystalLineParser::ParseLineSiod (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  LPCTSTR pszCommentBegin = nullptr;
-  LPCTSTR pszCommentEnd = nullptr;
+  const TCHAR *pszCommentBegin = nullptr;
+  const TCHAR *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -469,12 +468,6 @@ out:
           dwCookie |= COOKIE_EXT_COMMENT;
           pszCommentBegin = pszChars + I + 1;
           continue;
-        }
-
-      if (bFirstChar)
-        {
-          if (!xisspace (pszChars[I]))
-            bFirstChar = false;
         }
 
       if (pBuf == nullptr)

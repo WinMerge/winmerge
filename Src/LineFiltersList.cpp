@@ -14,7 +14,7 @@
 using std::vector;
 
 /** @brief Registry key for saving linefilters. */
-static const TCHAR FiltersRegPath[] =_T("LineFilters");
+static const TCHAR LineFiltersRegPath[] = _T("LineFilters");
 
 /**
  * @brief Default constructor.
@@ -27,9 +27,7 @@ LineFiltersList::LineFiltersList()
 /**
  * @brief Destructor, empties the list.
  */
-LineFiltersList::~LineFiltersList()
-{
-}
+LineFiltersList::~LineFiltersList() = default;
 
 /**
  * @brief Add new filter to the list.
@@ -38,7 +36,7 @@ LineFiltersList::~LineFiltersList()
  */
 void LineFiltersList::AddFilter(const String& filter, bool enabled)
 {
-	LineFilterItemPtr item(new LineFilterItem());
+	auto item = std::make_shared<LineFilterItem>(LineFilterItem());
 	item->enabled = enabled;
 	item->filterStr = filter;
 	m_items.push_back(item);
@@ -132,7 +130,7 @@ bool LineFiltersList::Compare(const LineFiltersList *list) const
 void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 {
 	assert(pOptionsMgr != nullptr);
-	String valuename(FiltersRegPath);
+	String valuename(LineFiltersRegPath);
 
 	m_pOptionsMgr = pOptionsMgr;
 
@@ -143,11 +141,11 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	for (unsigned i = 0; i < count; i++)
 	{
-		String name = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, i);
+		String name = strutils::format(_T("%s/Filter%02u"), LineFiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
 		String filter = m_pOptionsMgr->GetString(name);
 
-		name = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, i);
+		name = strutils::format(_T("%s/Enabled%02u"), LineFiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, (int)true);
 		int enabled = m_pOptionsMgr->GetInt(name);
 		bool bEnabled = enabled ? true : false;
@@ -162,7 +160,7 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 void LineFiltersList::SaveFilters()
 {
 	assert(m_pOptionsMgr != nullptr);
-	String valuename(FiltersRegPath);
+	String valuename(LineFiltersRegPath);
 
 	size_t count = m_items.size();
 	valuename += _T("/Values");
@@ -172,29 +170,29 @@ void LineFiltersList::SaveFilters()
 	{
 		const LineFilterItemPtr& item = m_items[i];
 
-		String name = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, i);
+		String name = strutils::format(_T("%s/Filter%02u"), LineFiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
 		m_pOptionsMgr->SaveOption(name, item->filterStr);
 
-		name = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, i);
+		name = strutils::format(_T("%s/Enabled%02u"), LineFiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, 0);
 		m_pOptionsMgr->SaveOption(name, (int)item->enabled);
 	}
 
 	// Remove options we don't need anymore
 	// We could have earlier 10 pcs but now we only need 5
-	String filter = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, count);
+	String filter = strutils::format(_T("%s/Filter%02u"), LineFiltersRegPath, count);
 	int retval1 = m_pOptionsMgr->RemoveOption(filter);
 
-	filter = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, count);
+	filter = strutils::format(_T("%s/Enabled%02u"), LineFiltersRegPath, count);
 	int retval2 = m_pOptionsMgr->RemoveOption(filter);
 	
 	while (retval1 == COption::OPT_OK || retval2 == COption::OPT_OK)
 	{
 		++count;
-		filter = strutils::format(_T("%s/Filter%02u"), FiltersRegPath, count);
+		filter = strutils::format(_T("%s/Filter%02u"), LineFiltersRegPath, count);
 		retval1 = m_pOptionsMgr->RemoveOption(filter);
-		filter = strutils::format(_T("%s/Enabled%02u"), FiltersRegPath, count);
+		filter = strutils::format(_T("%s/Enabled%02u"), LineFiltersRegPath, count);
 		retval2 = m_pOptionsMgr->RemoveOption(filter);
 	}
 }

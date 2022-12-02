@@ -11,6 +11,7 @@
 #include "Plugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include "unicoder.h"
 #include "Merge.h"
 
 /** @brief Location for plugins specific help to open. */
@@ -21,7 +22,7 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
-	ON_BN_CLICKED(IDC_PLUGIN_FILEFILTERS_DEFAULTS, OnBnClickedFileFiltesDefaults)
+	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
 	ON_CBN_CLOSEUP(IDC_PLUGIN_FILEFILTERS, OnCloseUpPatterns)
 	ON_NOTIFY(NM_DBLCLK, IDC_PLUGINSLIST_LIST, OnNMDblclkList)
@@ -93,9 +94,10 @@ void PluginsListDlg::InitList()
 void PluginsListDlg::AddPlugins()
 {
 	String type = _("Unpacker");
+	AddPluginsToList(L"URL_PACK_UNPACK", type);
+	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	AddPluginsToList(L"FILE_PACK_UNPACK", type);
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
-	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	type = _("Prediffer");
 	AddPluginsToList(L"FILE_PREDIFF", type);
 	AddPluginsToList(L"BUFFER_PREDIFF", type);
@@ -116,17 +118,26 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
+		auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
+		String processType2 = processType.has_value() ? strutils::to_str(*processType) : _T("&Others");
+		processType2 = strutils::strip_hot_key(tr(ucr::toUTF8(processType2)));
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
-		m_list.SetItemText(ind, 1, pluginType.c_str());
-		m_list.SetItemText(ind, 2, plugin->m_description.c_str());
+		String desc = tr(ucr::toUTF8(plugin->m_description));
+		strutils::replace(desc, _T("\r"), _T(""));
+		strutils::replace(desc, _T("\n"), _T(" "));
+		m_list.SetItemText(ind, 1, (pluginType + _T("/") + processType2).c_str());
+		m_list.SetItemText(ind, 2, desc.c_str());
 		m_list.SetCheck(ind, !plugin->m_disabled);
+		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
 	}
 }
 
 PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 {
-	String name = m_list.GetItemText(m_list.GetNextItem(-1, LVNI_SELECTED), 0);
-	return CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, name);
+	int ind = m_list.GetNextItem(-1, LVNI_SELECTED);
+	if (ind < 0)
+		return nullptr;
+	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
 /**
@@ -142,10 +153,12 @@ void PluginsListDlg::OnBnClickedOk()
 	for (int i = 0; i < m_list.GetItemCount(); ++i)
 	{
 		PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, String(m_list.GetItemText(i, 0)));
-		plugin->m_disabled = !m_list.GetCheck(i);
+		if (plugin)
+			plugin->m_disabled = !m_list.GetCheck(i);
 	}
 
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
+	CAllThreadsScripts::ReloadCustomSettings();
 	OnOK();
 }
 
@@ -174,7 +187,11 @@ void PluginsListDlg::OnBnClickedFileFiltesDefaults()
 {
 	PluginInfo *plugin = GetSelectedPluginInfo();
 	if (plugin)
+	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersTextDefault);
+		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_argumentsDefault);
+		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomaticDefault);
+	}
 }
 
 void PluginsListDlg::OnNMDblclkList(NMHDR *pNMHDR, LRESULT *pResult)
@@ -190,6 +207,8 @@ void PluginsListDlg::OnLVNItemChanging(NMHDR *pNMHDR, LRESULT *pResult)
 		GetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		WildcardRemoveDuplicatePatterns(plugin->m_filtersText);
 		plugin->LoadFilterString();
+		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
+		plugin->m_bAutomatic = !!IsDlgButtonChecked(IDC_PLUGIN_AUTOMATIC);
 	}
 }
 
@@ -197,7 +216,11 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	PluginInfo *plugin = GetSelectedPluginInfo();
 	if (plugin)
+	{
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
+		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
+		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
+	}
 }
 
 /**

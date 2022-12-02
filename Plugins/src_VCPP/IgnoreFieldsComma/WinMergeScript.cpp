@@ -3,7 +3,7 @@
 #include "IgnoreFieldsComma.h"
 #include "WinMergeScript.h"
 #include "resource.h"
-#include <atlstr.h>
+#include <atlutil.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
@@ -160,21 +160,37 @@ STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"Ignore some fields - ignored fields list from the plugin name");
+	*pVal = SysAllocString(L"Ignore some fields - ignored fields list from the plugin name or the plugin argument");
 	return S_OK;
 }
 
-// not used yet
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
 	*pVal = SysAllocString(L"\\.csv$");
 	return S_OK;
 }
 
-// not used yet
 STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
 {
 	*pVal = VARIANT_TRUE;
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::get_PluginArguments(BSTR *pVal)
+{
+	*pVal = m_bstrArguments.Copy();
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::put_PluginArguments(BSTR val)
+{
+	m_bstrArguments = val;
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::get_PluginExtendedProperties(BSTR *pVal)
+{
+	*pVal = SysAllocString(L"MenuCaption=Ignore CSV Fields");
 	return S_OK;
 }
 
@@ -184,7 +200,11 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	long nSize = *pSize;
 	WCHAR * pEndText = pBeginText + nSize;
 
-	CString rangestr = GetColumnRangeString();
+	int argc = 0;
+	wchar_t** argv = CommandLineToArgvW(m_bstrArguments.m_str, &argc);
+	CString rangestr = (m_bstrArguments.Length() > 0 && argc > 0) ? argv[0] : GetColumnRangeString();
+	if (argv)
+		LocalFree(argv);
 
 	int nExcludedRanges = CreateArrayFromRangeString(rangestr, NULL);
 	int (* aExcludedRanges)[2] = new int[nExcludedRanges][2];

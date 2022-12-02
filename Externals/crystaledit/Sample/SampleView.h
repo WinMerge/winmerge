@@ -54,6 +54,7 @@ protected:
 	afx_msg void OnWordWrap();
 	afx_msg void OnViewWhitespace();
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);
+	afx_msg void OnViewSelectFont();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

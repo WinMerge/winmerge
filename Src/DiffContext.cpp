@@ -44,6 +44,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_piAbortable(nullptr)
 , m_bStopAfterFirstDiff(false)
 , m_pFilterList(nullptr)
+, m_pSubstitutionList(nullptr)
 , m_pContentCompareOptions(nullptr)
 , m_pQuickCompareOptions(nullptr)
 , m_pOptions(nullptr)
@@ -56,8 +57,8 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 , m_nQuickCompareLimit(0)
 , m_nBinaryCompareLimit(0)
 , m_bEnableImageCompare(false)
+, m_pImgfileFilter(nullptr)
 , m_dColorDistanceThreshold(0.0)
-, m_pFilterCommentsManager(nullptr)
 {
 	int index;
 	for (index = 0; index < paths.GetSize(); index++)
@@ -67,9 +68,7 @@ CDiffContext::CDiffContext(const PathContext & paths, int compareMethod)
 /**
  * @brief Destructor.
  */
-CDiffContext::~CDiffContext()
-{
-}
+CDiffContext::~CDiffContext() = default;
 
 /**
  * @brief Update info in item in result list from disk.
@@ -101,7 +100,7 @@ bool CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM &di, int nIndex)
 	if (!dfi.Update(filepath))
 		return false;
 	UpdateVersion(di, nIndex);
-	dfi.encoding = GuessCodepageEncoding(filepath, m_iGuessEncodingType);
+	dfi.encoding = codepage_detect::Guess(filepath, m_iGuessEncodingType);
 	return true;
 }
 
@@ -173,10 +172,7 @@ bool CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 	m_pContentCompareOptions.reset();
 	m_pQuickCompareOptions.reset();
 	m_pOptions.reset(new DIFFOPTIONS);
-	if (m_pOptions != nullptr)
-		std::memcpy(m_pOptions.get(), &options, sizeof(DIFFOPTIONS));
-	else
-		return false;
+	*m_pOptions.get() = options;
 
 	m_nCompMethod = compareMethod;
 	if (GetCompareOptions(m_nCompMethod) == nullptr)
@@ -235,7 +231,8 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
-	assert(m_piPluginInfos != nullptr);
+	if (!m_piPluginInfos)
+		return;
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
 
@@ -246,4 +243,96 @@ void CDiffContext::FetchPluginInfos(const String& filteredFilenames,
 bool CDiffContext::ShouldAbort() const
 {
 	return m_piAbortable!=nullptr && m_piAbortable->ShouldAbort();
+}
+
+/**
+ * @brief Get actual compared paths from DIFFITEM.
+ * @param [in] pCtx Pointer to compare context.
+ * @param [in] di DiffItem from which the paths are created.
+ * @param [out] left Gets the left compare path.
+ * @param [out] right Gets the right compare path.
+ * @note If item is unique, same path is returned for both.
+ */
+void CDiffContext::GetComparePaths(const DIFFITEM &di, PathContext & tFiles) const
+{
+	int nDirs = GetCompareDirs();
+
+	tFiles.SetSize(nDirs);
+
+	for (int nIndex = 0; nIndex < nDirs; nIndex++)
+	{
+		if (di.diffcode.exists(nIndex))
+		{
+			tFiles.SetPath(nIndex,
+				paths::ConcatPath(GetPath(nIndex), di.diffFileInfo[nIndex].GetFile()), false);
+		}
+		else
+		{
+			tFiles.SetPath(nIndex, _T("NUL"), false);
+		}
+	}
+}
+
+String CDiffContext::GetFilteredFilenames(const DIFFITEM& di) const
+{
+	PathContext paths;
+	GetComparePaths(di, paths);
+	return GetFilteredFilenames(paths);
+}
+
+void CDiffContext::CreateDuplicateValueMap()
+{
+	if (!m_pPropertySystem)
+		return;
+	const int nDirs = GetCompareDirs();
+	m_duplicateValues.clear();
+	m_duplicateValues.resize(m_pPropertySystem->GetCanonicalNames().size());
+	DIFFITEM *pos = GetFirstDiffPosition();
+	std::vector<int> currentGroupId(m_duplicateValues.size());
+	while (pos != nullptr)
+	{
+		const DIFFITEM& di = GetNextDiffPosition(pos);
+		for (int pane = 0; pane < nDirs; ++pane)
+		{
+			const PropertyValues* pValues = di.diffFileInfo[pane].m_pAdditionalProperties.get();
+			if (pValues)
+			{
+				for (size_t j = 0; j < pValues->GetSize(); ++j)
+				{
+					if (pValues->IsHashValue(j) )
+					{
+						std::vector<uint8_t> value = pValues->GetHashValue(j);
+						if (!value.empty())
+						{
+							auto it = m_duplicateValues[j].find(value);
+							if (it == m_duplicateValues[j].end())
+							{
+								DuplicateInfo info{};
+								++info.count[pane];
+								info.nonpaired = !di.diffcode.existAll();
+								m_duplicateValues[j].insert_or_assign(value, info);
+							}
+							else
+							{
+								if (it->second.groupid == 0)
+								{
+									int count = 0;
+									for (int k = 0; k < nDirs; ++k)
+										count += it->second.count[k];
+									if (count > 0)
+									{
+										++currentGroupId[j];
+										it->second.groupid = currentGroupId[j];
+									}
+								}
+								++it->second.count[pane];
+								if (!it->second.nonpaired && !di.diffcode.existAll())
+									it->second.nonpaired = true;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

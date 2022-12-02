@@ -22,8 +22,14 @@ public:
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
-	String	m_strUnpacker;
-	PackingInfo m_infoHandler;
+	String	m_strUnpackerPipeline;
+	String	m_strPredifferPipeline;
+	String	m_strDesc[3];
+	int		m_nWindowType;
+	TCHAR	m_cTableDelimiter;
+	TCHAR	m_cTableQuote;
+	bool	m_bTableAllowNewLinesInQuotes;
+	std::vector<String> m_hiddenItems;
 
 protected:
 	virtual BOOL OnNewDocument();

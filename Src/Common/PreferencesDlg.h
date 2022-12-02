@@ -12,7 +12,9 @@
 #include "TrDialogs.h"
 #include "PropGeneral.h"
 #include "PropCompare.h"
+#include "PropMessageBoxes.h"
 #include "PropEditor.h"
+#include "PropEditorSyntax.h"
 #include "PropRegistry.h"
 #include "PropColorSchemes.h"
 #include "PropMergeColors.h"
@@ -22,12 +24,14 @@
 #include "PropDirColors.h"
 #include "PropCodepage.h"
 #include "PropArchive.h"
+#include "PropProject.h"
 #include "PropBackups.h"
 #include "PropShell.h"
 #include "PropCompareFolder.h"
 #include "PropCompareTable.h"
 #include "PropCompareBinary.h"
 #include "PropCompareImage.h"
+#include "PropCompareWebPage.h"
 
 #include "PropertyPageHost.h"
 #include "CMoveConstraint.h"
@@ -57,7 +61,9 @@ protected:
 	
 	PropGeneral m_pageGeneral;
 	PropCompare m_pageCompare;
+	PropMessageBoxes m_pageMessageBoxes;
 	PropEditor m_pageEditor;
+	PropEditorSyntax m_pageEditorSyntax;
 	PropRegistry m_pageSystem;
 	PropCodepage m_pageCodepage;
 	PropColorSchemes m_pageColorSchemes;
@@ -67,13 +73,14 @@ protected:
 	PropMarkerColors m_pageMarkerColors;
 	PropDirColors m_pageDirColors;
 	PropArchive m_pageArchive;
+	PropProject m_pageProject;
 	PropBackups m_pageBackups;
 	PropShell m_pageShell;
 	PropCompareFolder m_pageCompareFolder;
 	PropCompareTable m_pageCompareTable;
 	PropCompareBinary m_pageCompareBinary;
 	PropCompareImage m_pageCompareImage;
-
+	PropCompareWebPage m_pageCompareWebPage;
 
 	CMapPtrToPtr m_mapPP2HTI;
 

@@ -134,6 +134,7 @@ public:
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;
 	virtual int InitOption(const String& name, const TCHAR *defaultValue) = 0;
 	virtual int InitOption(const String& name, int defaultValue, bool serializable = true) = 0;
+	virtual int InitOption(const String& name, int defaultValue, int minValue, int maxValue, bool serializable = true);
 	virtual int InitOption(const String& name, bool defaultValue) = 0;
 
 	virtual int SaveOption(const String& name) = 0;
@@ -146,12 +147,16 @@ public:
 
 	virtual int RemoveOption(const String& name);
 
-	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const = 0;
-	virtual int ImportOptions(const String& filename) = 0;
+	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const;
+	virtual int ImportOptions(const String& filename);
 	
 	virtual void SetSerializing(bool serializing=true) = 0;
 
 protected:
+	static String EscapeValue(const String& text);
+	static String UnescapeValue(const String& text);
+	static std::pair<String, String> SplitName(const String& strName);
+
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
 
 private:

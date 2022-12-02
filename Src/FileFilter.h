@@ -27,7 +27,12 @@
 struct FileFilterElement
 {
 	Poco::RegularExpression regexp; /**< Compiled regular expression */
-	FileFilterElement(const std::string &regex, int reOpts) : regexp(regex, reOpts)
+	std::string _regex; /**< Regular expression string to set to Poco::RegularExpression */
+	int _reOpts; /**< Options to set to Poco::RegularExpression */
+	FileFilterElement(const std::string& regex, int reOpts) : regexp(regex, reOpts), _regex(regex), _reOpts(reOpts)
+	{
+	}
+	FileFilterElement(const FileFilterElement* element) : regexp(element->_regex, element->_reOpts), _regex(element->_regex), _reOpts(element->_reOpts)
 	{
 	}
 };
@@ -50,11 +55,14 @@ struct FileFilter
 	String description;	/**< Filter description text */
 	String fullpath;		/**< Full path to filter file */
 	std::vector<FileFilterElementPtr> filefilters; /**< List of rules for files */
+	std::vector<FileFilterElementPtr> filefiltersExclude; /**< List of rules for files (exclude) */
 	std::vector<FileFilterElementPtr> dirfilters;  /**< List of rules for directories */
+	std::vector<FileFilterElementPtr> dirfiltersExclude;  /**< List of rules for directories (exclude) */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 	
 	static void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
+	void CloneFrom(const FileFilter* filter);
 };
 
 typedef std::shared_ptr<FileFilter> FileFilterPtr;

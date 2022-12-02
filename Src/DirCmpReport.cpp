@@ -87,13 +87,24 @@ void DirCmpReport::SetList(IListCtrl *pList)
 
 /**
  * @brief Set root-paths of current compare so we can add them to report.
+ * @param [in] paths Root path information for the directory for which the report is generated.
  */
 void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
-	m_rootPaths.SetLeft(paths.GetLeft());
-	m_rootPaths.SetRight(paths.GetRight());
-	m_sTitle = strutils::format_string2(_("Compare %1 with %2"),
-		m_rootPaths.GetLeft(), m_rootPaths.GetRight());
+	if (paths.GetSize() < 3)
+	{
+		m_rootPaths.SetLeft(paths.GetLeft());
+		m_rootPaths.SetRight(paths.GetRight());
+		m_sTitle = strutils::format_string2(_("Compare %1 with %2"),
+			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
+	}
+	else {
+		m_rootPaths.SetLeft(paths.GetLeft());
+		m_rootPaths.SetMiddle(paths.GetMiddle());
+		m_rootPaths.SetRight(paths.GetRight());
+		m_sTitle = strutils::format_string3(_("Compare %1 with %2 and %3"),
+			m_rootPaths.GetLeft(), m_rootPaths.GetMiddle(), m_rootPaths.GetRight());
+	}
 }
 
 /**
@@ -271,7 +282,6 @@ void DirCmpReport::WriteString(const String& sText)
 {
 	std::string sOctets(m_bOutputUTF8 ? ucr::toUTF8(sText) : ucr::toThreadCP(sText));
 	const char *pchOctets = sOctets.c_str();
-	void *pvOctets = const_cast<char *>(pchOctets);
 	size_t cchAhead = sOctets.length();
 	while (const char *pchAhead = (const char *)memchr(pchOctets, '\n', cchAhead))
 	{
@@ -443,8 +453,14 @@ void DirCmpReport::GenerateXmlHeader()
 				_T("<WinMergeDiffReport version=\"2\">\n")
 				_T("<left>"));
 	WriteStringEntityAware(m_rootPaths.GetLeft());
-	WriteString(_T("</left>\n")
-				_T("<right>"));
+	WriteString(_T("</left>\n"));
+	if (m_rootPaths.GetSize() == 3)
+	{
+		WriteString(_T("<middle>"));
+		WriteStringEntityAware(m_rootPaths.GetMiddle());
+		WriteString(_T("</middle>\n"));
+	}
+	WriteString(_T("<right>"));
 	WriteStringEntityAware(m_rootPaths.GetRight());
 	WriteString(_T("</right>\n")
 				_T("<time>"));
@@ -471,7 +487,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 {
 	String sFileName, sParentDir;
 	paths::SplitFilename((const TCHAR *)m_pFile->GetFilePath(), &sParentDir, &sFileName, nullptr);
-	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T("."))) + _T(".files");
+	String sRelDestDir = sFileName.substr(0, sFileName.find_last_of(_T('.'))) + _T(".files");
 	String sDestDir = paths::ConcatPath(sParentDir, sRelDestDir);
 	if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 		paths::CreateIfNeeded(sDestDir);
@@ -491,6 +507,9 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 			m_myStruct->context->m_pCompareStats->BeginCompare(pdi, 0);
 		if (!xml && m_bIncludeFileCmpReport && m_pFileCmpReport != nullptr)
 			(*m_pFileCmpReport.get())(REPORT_TYPE_SIMPLEHTML, m_pList.get(), currRow, sDestDir, sLinkPath);
+
+		strutils::replace(sLinkPath, _T("%"), _T("%25"));
+		strutils::replace(sLinkPath, _T("#"), _T("%23"));
 
 		String rowEl = _T("tr");
 		if (xml)
@@ -530,7 +549,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 				WriteString(_T("/"));
 				WriteString(sLinkPath);
 				WriteString(_T("\">"));
-				WriteString(m_pList->GetItemText(currRow, currCol));
+				WriteStringEntityAware(m_pList->GetItemText(currRow, currCol));
 				WriteString(_T("</a>"));
 			}
 			else

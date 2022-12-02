@@ -14,6 +14,12 @@
 #include "paths.h"
 #include "Merge.h"
 #include "DirTravel.h"
+#include "OptionsDiffOptions.h"
+#include "UniFile.h"
+#include "codepage_detect.h"
+#include "OptionsMgr.h"
+#include "OptionsDef.h"
+#include "ClipBoard.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,16 +28,14 @@
 /**
  * @brief Default constructor.
  */
-CPatchTool::CPatchTool() : m_bOpenToEditor(false)
+CPatchTool::CPatchTool() : m_bOpenToEditor(false), m_bCopyToClipbard(false)
 {
 }
 
 /**
  * @brief Default destructor.
  */
-CPatchTool::~CPatchTool()
-{
-}
+CPatchTool::~CPatchTool() = default;
 
 /** 
  * @brief Adds files to list for patching.
@@ -186,6 +190,7 @@ int CPatchTool::CreatePatch()
 			
 			m_sPatchFile = dlgPatch.m_fileResult;
 			m_bOpenToEditor = dlgPatch.m_openToEditor;
+			m_bCopyToClipbard = dlgPatch.m_copyToClipboard;
 			retVal = 1;
 		}
 	}
@@ -193,7 +198,25 @@ int CPatchTool::CreatePatch()
 	if (retVal)
 	{
 		if (m_bOpenToEditor)
-			theApp.OpenFileToExternalEditor(m_sPatchFile);
+			CMergeApp::OpenFileToExternalEditor(m_sPatchFile);
+		if (m_bCopyToClipbard)
+		{
+			UniMemFile file;
+			if (file.OpenReadOnly(m_sPatchFile))
+			{
+				int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
+				FileTextEncoding encoding = codepage_detect::Guess(m_sPatchFile, iGuessEncodingType);
+				file.SetUnicoding(encoding.m_unicoding);
+				file.SetCodepage(encoding.m_codepage);
+				file.SetBom(encoding.m_bom);
+				if (encoding.m_bom)
+					file.ReadBom();
+				String lines;
+				file.ReadStringAll(lines);
+				file.Close();
+				PutToClipboard(lines, AfxGetMainWnd()->m_hWnd);
+			}
+		}
 	}
 	return retVal;
 }
@@ -223,17 +246,8 @@ bool CPatchTool::ShowDialog(CPatchDlg *pDlgPatch)
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong
-		diffOptions.nIgnoreWhitespace = pDlgPatch->m_whitespaceCompare;
-		diffOptions.bIgnoreBlankLines = pDlgPatch->m_ignoreBlanks;
 		m_diffWrapper.SetAppendFiles(pDlgPatch->m_appendFile);
-
-		// Use this because non-sensitive setting can't write
-		// patch file EOLs correctly
-		diffOptions.bIgnoreEol = pDlgPatch->m_ignoreEOLDifference;
-		
-		diffOptions.bIgnoreCase = !pDlgPatch->m_caseSensitive;
-		diffOptions.nDiffAlgorithm = pDlgPatch->m_diffAlgorithm;
-		diffOptions.bIndentHeuristic = pDlgPatch->m_indentHeuristic;
+		Options::DiffOptions::Load(GetOptionsMgr(), diffOptions);
 		m_diffWrapper.SetOptions(&diffOptions);
 	}
 	else
@@ -267,7 +281,7 @@ void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const 
 		if (!sDir1.empty())
 			pathLeft = sDir1 + backslash;
 		pathLeft += ent1->filename.get();
-		tFiles.pathLeft = pathLeft;
+		tFiles.pathLeft = std::move(pathLeft);
 	}
 
 	if (ent2 != nullptr)
@@ -279,7 +293,7 @@ void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const 
 			pathRight = sDir2 + backslash;
 		pathRight += ent2->filename.get();
 
-		tFiles.pathRight = pathRight;
+		tFiles.pathRight = std::move(pathRight);
 	}
 
 	fileList->push_back(tFiles);

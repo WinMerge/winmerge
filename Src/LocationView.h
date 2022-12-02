@@ -12,16 +12,6 @@ class CMergeDoc;
 class CMergeEditView;
 
 /**
- * @brief Status for display moved block
- */
-enum DISPLAY_MOVED_BLOCKS
-{
-	DISPLAY_MOVED_NONE = 0,
-	DISPLAY_MOVED_ALL,
-	DISPLAY_MOVED_FOLLOW_DIFF,
-};
-
-/**
  * @brief Endpoints of line connecting moved blocks
  */
 struct MovedLine
@@ -70,7 +60,7 @@ public:
 	CLocationView();
 	~CLocationView();
 	DECLARE_DYNCREATE(CLocationView)
-	void SetConnectMovedBlocks(int displayMovedBlocks);
+	void SetConnectMovedBlocks(bool displayMovedBlocks);
 	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
 	void SetFrameHwnd(HWND hwndFrame);
 	void ForceRecalculate();
@@ -88,7 +78,7 @@ protected:
 protected:
 	CMergeDoc* GetDocument();
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, bool bSelected = false);
-	bool GotoLocation(const CPoint& point, bool bRealLine = true);
+	bool GotoLocation(const CPoint& point, bool bRealLine = true, bool bMoveAnchor = true);
 	int GetLineFromYPos(int nYCoord, int bar, bool bRealLine = true);
 	int IsInsideBar(const CRect& rc, const POINT& pt);
 	void DrawVisibleAreaRect(CDC* pDC, int nTopLine = -1, int nBottomLine = -1);
@@ -102,7 +92,7 @@ protected:
 	void DrawBackground(CDC* pDC);
 
 private:
-	int m_displayMovedBlocks; //*< Setting for displaying moved blocks */
+	bool m_displayMovedBlocks; //*< Setting for displaying moved blocks */
 	double m_pixInLines; //*< How many pixels is one line in bars */
 	double m_lineInPix; //*< How many lines is one pixel?
 	CRect m_bar[3]; //*< Left/middle/riggt bar */
@@ -124,6 +114,7 @@ protected:
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg int  OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
+	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnClose();

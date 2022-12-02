@@ -21,7 +21,8 @@ using std::vector;
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
-: m_pMaskFilter(nullptr)
+: m_pMaskFileFilter(nullptr)
+, m_pMaskDirFilter(nullptr)
 , m_bUseMask(true)
 , m_fileFilterMgr(new FileFilterMgr)
 , m_currentFilter(nullptr)
@@ -31,9 +32,7 @@ FileFilterHelper::FileFilterHelper()
 /** 
  * @brief Destructor, deletes filtermanager.
  */
-FileFilterHelper::~FileFilterHelper()
-{
-}
+FileFilterHelper::~FileFilterHelper() = default;
 
 /**
  * @brief Store current filter path.
@@ -151,14 +150,19 @@ void FileFilterHelper::UseMask(bool bUseMask)
 	m_bUseMask = bUseMask;
 	if (m_bUseMask)
 	{
-		if (m_pMaskFilter == nullptr)
+		if (m_pMaskFileFilter == nullptr)
 		{
-			m_pMaskFilter.reset(new FilterList);
+			m_pMaskFileFilter.reset(new FilterList);
+		}
+		if (m_pMaskDirFilter == nullptr)
+		{
+			m_pMaskDirFilter.reset(new FilterList);
 		}
 	}
 	else
 	{
-		m_pMaskFilter.reset();
+		m_pMaskFileFilter.reset();
+		m_pMaskDirFilter.reset();
 	}
 }
 
@@ -173,12 +177,21 @@ void FileFilterHelper::SetMask(const String& strMask)
 		throw "Filter mask tried to set when masks disabled!";
 	}
 	m_sMask = strMask;
-	String regExp = ParseExtensions(strMask);
+	auto [regExpFile, regExpFileExclude, regExpDir, regExpDirExclude] = ParseExtensions(strMask);
 
-	std::string regexp_str = ucr::toUTF8(regExp);
+	std::string regexp_str_file = ucr::toUTF8(regExpFile);
+	std::string regexp_str_file_excluded = ucr::toUTF8(regExpFileExclude);
+	std::string regexp_str_dir = ucr::toUTF8(regExpDir);
+	std::string regexp_str_dir_excluded = ucr::toUTF8(regExpDirExclude);
 
-	m_pMaskFilter->RemoveAllFilters();
-	m_pMaskFilter->AddRegExp(regexp_str);
+	m_pMaskFileFilter->RemoveAllFilters();
+	m_pMaskFileFilter->AddRegExp(regexp_str_file, false);
+	if (!regexp_str_file_excluded.empty())
+		m_pMaskFileFilter->AddRegExp(regexp_str_file_excluded, true);
+	m_pMaskDirFilter->RemoveAllFilters();
+	m_pMaskDirFilter->AddRegExp(regexp_str_dir, false);
+	if (!regexp_str_dir_excluded.empty())
+		m_pMaskDirFilter->AddRegExp(regexp_str_dir_excluded, true);
 }
 
 /**
@@ -191,7 +204,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 {
 	if (m_bUseMask)
 	{
-		if (m_pMaskFilter == nullptr)
+		if (m_pMaskFileFilter == nullptr)
 		{
 			throw "Use mask set, but no filter rules for mask!";
 		}
@@ -204,7 +217,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 		if (strFileName.find('.') == String::npos)
 			strFileName = strFileName + _T(".");
 
-		return m_pMaskFilter->Match(ucr::toUTF8(strFileName));
+		return m_pMaskFileFilter->Match(ucr::toUTF8(strFileName));
 	}
 	else
 	{
@@ -224,8 +237,20 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 {
 	if (m_bUseMask)
 	{
-		// directories have no extension
-		return true; 
+		if (m_pMaskDirFilter == nullptr)
+		{
+			throw "Use mask set, but no filter rules for mask!";
+		}
+
+		// preprend a backslash if there is none
+		String strDirName = strutils::makelower(szDirName);
+		if (strDirName.empty() || strDirName[0] != '\\')
+			strDirName = _T("\\") + strDirName;
+		// append a point if there is no extension
+		if (strDirName.find('.') == String::npos)
+			strDirName = strDirName + _T(".");
+
+		return m_pMaskDirFilter->Match(ucr::toUTF8(strDirName));
 	}
 	else
 	{
@@ -251,17 +276,45 @@ void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String&
 	m_fileFilterMgr->LoadFromDirectory(dir, szPattern, FileFilterExt);
 }
 
+static String ConvertWildcardPatternToRegexp(const String& pattern)
+{
+	String strRegex;
+	for (const TCHAR *p = pattern.c_str(); *p; ++p)
+	{
+		switch (*p)
+		{
+		case '\\': strRegex += _T("\\\\");     break;
+		case '.':  strRegex += _T("\\.");      break;
+		case '[':  strRegex += _T("\\[");      break;
+		case ']':  strRegex += _T("\\]");      break;
+		case '(':  strRegex += _T("\\(");      break;
+		case ')':  strRegex += _T("\\)");      break;
+		case '$':  strRegex += _T("\\$");      break;
+		case '^':  strRegex += _T("\\^");      break;
+		case '+':  strRegex += _T("\\+");      break;
+		case '?':  strRegex += _T("[^\\\\]");  break;
+		case '*':  strRegex += _T("[^\\\\]*"); break;
+		default:   strRegex += *p;             break;
+		}
+	}
+	strRegex += _T("$");
+	return _T("(^|\\\\)") + strRegex;
+}
+
 /** 
  * @brief Convert user-given extension list to valid regular expression.
  * @param [in] Extension list/mask to convert to regular expression.
  * @return Regular expression that matches extension list.
  */
-String FileFilterHelper::ParseExtensions(const String &extensions) const
+std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(const String &extensions) const
 {
-	String strParsed;
-	String strPattern;
+	String strFileParsed;
+	String strDirParsed;
+	std::vector<String> filePatterns;
+	std::vector<String> filePatternsExclude;
+	std::vector<String> dirPatterns;
+	std::vector<String> dirPatternsExclude;
 	String ext(extensions);
-	bool bFilterAdded = false;
 	static const TCHAR pszSeps[] = _T(" ;|,:");
 
 	ext += _T(";"); // Add one separator char to end
@@ -275,36 +328,45 @@ String FileFilterHelper::ParseExtensions(const String &extensions) const
 		// Only "*." or "*.something" allowed, other ignored
 		if (token.length() >= 1)
 		{
-			bFilterAdded = true;
-			String strRegex = token;
-			strutils::replace(strRegex, _T("."), _T("\\."));
-			strutils::replace(strRegex, _T("?"), _T("."));
-			strutils::replace(strRegex, _T("("), _T("\\("));
-			strutils::replace(strRegex, _T(")"), _T("\\)"));
-			strutils::replace(strRegex, _T("["), _T("\\["));
-			strutils::replace(strRegex, _T("]"), _T("\\]"));
-			strutils::replace(strRegex, _T("$"), _T("\\$"));
-			strutils::replace(strRegex, _T("*"), _T(".*"));
-			strRegex += _T("$");
-			strPattern += _T("(^|\\\\)") + strRegex;
+			bool exclude = token[0] == '!';
+			if (exclude)
+				token = token.substr(1);
+			bool isdir = token.back() == '\\';
+			if (isdir)
+				token = token.substr(0, token.size() - 1);
+			if (token.find('.') == String::npos && !token.empty() && token.back() != '*')
+				token += _T(".");
+			String strRegex = strutils::makelower(ConvertWildcardPatternToRegexp(token));
+			if (exclude)
+			{
+				if (isdir)
+					dirPatternsExclude.push_back(strRegex);
+				else
+					filePatternsExclude.push_back(strRegex);
+			}
+			else
+			{
+				if (isdir)
+					dirPatterns.push_back(strRegex);
+				else
+					filePatterns.push_back(strRegex);
+			}
 		}
-		else
-			bFilterAdded = false;
 
 		pos = ext.find_first_of(pszSeps); 
-		if (bFilterAdded && pos != String::npos && extensions.length() > 1)
-			strPattern += _T("|");
 	}
 
-	if (strPattern.empty())
-		strParsed = _T(".*"); // Match everything
+	if (filePatterns.empty())
+		strFileParsed = _T(".*"); // Match everything
 	else
-	{
-
-		strPattern = strutils::makelower(strPattern);
-		strParsed = strPattern; //+ _T("$");
-	}
-	return strParsed;
+		strFileParsed = strutils::join(filePatterns.begin(), filePatterns.end(), _T("|"));
+	if (dirPatterns.empty())
+		strDirParsed = _T(".*"); // Match everything
+	else
+		strDirParsed = strutils::join(dirPatterns.begin(), dirPatterns.end(), _T("|"));
+	String strFileParsedExclude = strutils::join(filePatternsExclude.begin(), filePatternsExclude.end(), _T("|"));
+	String strDirParsedExclude = strutils::join(dirPatternsExclude.begin(), dirPatternsExclude.end(), _T("|"));
+	return { strFileParsed, strFileParsedExclude, strDirParsed, strDirParsedExclude };
 }
 
 /** 
@@ -348,29 +410,18 @@ bool FileFilterHelper::SetFilter(const String &filter)
 	// Remove leading and trailing whitespace characters from the string.
 	String flt = strutils::trim_ws(filter);
 
-	// Star means we have a file extension mask
-	if (filter.find_first_of(_T("*?")) != -1)
+	String path = GetFileFilterPath(flt);
+	if (!path.empty())
+	{
+		UseMask(false);
+		SetFileFilterPath(path);
+	}
+	else
 	{
 		UseMask(true);
 		SetMask(flt);
 		SetFileFilterPath(_T(""));
-	}
-	else
-	{
-		String path = GetFileFilterPath(flt);
-		if (!path.empty())
-		{
-			UseMask(false);
-			SetFileFilterPath(path);
-		}
-		// If filter not found with given name, use default filter
-		else
-		{
-			UseMask(true);
-			SetMask(_T("*.*"));
-			SetFileFilterPath(_T(""));
-			return false;
-		}
+		return false;
 	}
 	return true;
 }
@@ -445,3 +496,53 @@ String FileFilterHelper::GetUserFilterPathWithCreate() const
 	return paths::EnsurePathExist(m_sUserSelFilterPath);
 }
 
+/**
+ * @brief Clone file filter helper from another file filter helper.
+ * This function clones file filter helper from another file filter helper.
+ * Current contents in the file filter helper are removed and new contents added from the given file filter helper.
+ * @param [in] pHelper File filter helper to clone.
+ */
+void FileFilterHelper::CloneFrom(const FileFilterHelper* pHelper)
+{
+	if (!pHelper)
+		return;
+
+	if (pHelper->m_pMaskFileFilter)
+	{
+		auto filterList = std::make_unique<FilterList>(FilterList());
+		m_pMaskFileFilter = std::move(filterList);
+		m_pMaskFileFilter->CloneFrom(pHelper->m_pMaskFileFilter.get());
+	}
+
+	if (pHelper->m_pMaskDirFilter)
+	{
+		auto filterList = std::make_unique<FilterList>(FilterList());
+		m_pMaskDirFilter = std::move(filterList);
+		m_pMaskDirFilter->CloneFrom(pHelper->m_pMaskDirFilter.get());
+	}
+
+	if (pHelper->m_fileFilterMgr)
+	{
+		auto fileFilterMgr = std::make_unique<FileFilterMgr>(FileFilterMgr());
+		m_fileFilterMgr = std::move(fileFilterMgr);
+		m_fileFilterMgr->CloneFrom(pHelper->m_fileFilterMgr.get());
+	}
+
+	m_currentFilter = nullptr;
+	if (pHelper->m_currentFilter && pHelper->m_fileFilterMgr)
+	{
+		int count = pHelper->m_fileFilterMgr->GetFilterCount();
+		for (int i = 0; i < count; i++)
+			if (pHelper->m_fileFilterMgr->GetFilterByIndex(i) == pHelper->m_currentFilter)
+			{
+				m_currentFilter = m_fileFilterMgr->GetFilterByIndex(i);
+				break;
+			}
+	}
+
+	m_sFileFilterPath = pHelper->m_sFileFilterPath;
+	m_sMask = pHelper->m_sMask;
+	m_bUseMask = pHelper->m_bUseMask;
+	m_sGlobalFilterPath = pHelper->m_sGlobalFilterPath;
+	m_sUserSelFilterPath = pHelper->m_sUserSelFilterPath;
+}

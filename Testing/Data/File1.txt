@@ -20,8 +20,6 @@
  * @brief Declaration file for CAboutDlg.
  *
  */
-// RCS ID line follows -- this is updated by CVS
-// $Id$
 
 #ifndef _ABOUTDLG_H_
 #define _ABOUTDLG_H_

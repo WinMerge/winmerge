@@ -186,24 +186,24 @@ LRESULT CSizingControlBar::OnSetText(WPARAM wParam, LPARAM lParam)
     return lResult;
 }
 
-const bool CSizingControlBar::IsFloating() const
+bool CSizingControlBar::IsFloating() const
 {
     return !IsHorzDocked() && !IsVertDocked();
 }
 
-const bool CSizingControlBar::IsHorzDocked() const
+bool CSizingControlBar::IsHorzDocked() const
 {
     return (m_nDockBarID == AFX_IDW_DOCKBAR_TOP ||
         m_nDockBarID == AFX_IDW_DOCKBAR_BOTTOM);
 }
 
-const bool CSizingControlBar::IsVertDocked() const
+bool CSizingControlBar::IsVertDocked() const
 {
     return (m_nDockBarID == AFX_IDW_DOCKBAR_LEFT ||
         m_nDockBarID == AFX_IDW_DOCKBAR_RIGHT);
 }
 
-const bool CSizingControlBar::IsSideTracking() const
+bool CSizingControlBar::IsSideTracking() const
 {
     // don't call this when not tracking
     ASSERT(m_bTracking && !IsFloating());
@@ -531,7 +531,7 @@ void CSizingControlBar::OnNcPaint()
     mdc.SelectObject(pOldBm);
 }
 
-void CSizingControlBar::NcPaintGripper(CDC* pDC, CRect rcClient)
+void CSizingControlBar::NcPaintGripper(CDC* pDC, const CRect& rcClient)
 {
     UNUSED_ALWAYS(pDC);
     UNUSED_ALWAYS(rcClient);
@@ -792,7 +792,7 @@ void CSizingControlBar::OnTrackInvertTracker()
     m_pDockSite->ReleaseDC(pDC);
 }
 
-bool CSizingControlBar::GetEdgeRect(CRect rcWnd, UINT nHitTest,
+bool CSizingControlBar::GetEdgeRect(const CRect& rcWnd, UINT nHitTest,
                                     CRect& rcEdge)
 {
     rcEdge = rcWnd;

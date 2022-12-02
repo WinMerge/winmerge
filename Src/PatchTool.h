@@ -66,4 +66,5 @@ private:
 	CDiffWrapper m_diffWrapper; /**< DiffWrapper instance we use to create patch. */
 	String m_sPatchFile; /**< Patch file path and filename. */
 	bool m_bOpenToEditor; /**< Is patch file opened to external editor? */
+	bool m_bCopyToClipbard; /**< Is patch file copied to clipboard? */
 };

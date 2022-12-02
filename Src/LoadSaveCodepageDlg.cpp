@@ -25,6 +25,7 @@ CLoadSaveCodepageDlg::CLoadSaveCodepageDlg(int nFiles, CWnd* pParent /*= nullptr
 , m_bLoadSaveSameCodepage(true)
 // String m_sAffectsLeftString
 // String m_sAffectsRightString
+, m_bSaveCodepageBOM(false)
 , m_nLoadCodepage(-1)
 , m_nSaveCodepage(-1)
 , m_bEnableSaveCodepage(false)
@@ -55,6 +56,7 @@ void CLoadSaveCodepageDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_AFFECTS_RIGHT_BTN, m_AffectsRightBtn);
 	DDX_Text(pDX, IDC_LOAD_CODEPAGE_TEXTBOX, m_nLoadCodepage);
 	DDX_Text(pDX, IDC_SAVE_CODEPAGE_TEXTBOX, m_nSaveCodepage);
+	DDX_Check(pDX, IDC_SAVE_CODEPAGE_BOM, m_bSaveCodepageBOM);
 	//}}AFX_DATA_MAP
 }
 
@@ -65,6 +67,7 @@ BEGIN_MESSAGE_MAP(CLoadSaveCodepageDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_AFFECTS_MIDDLE_BTN, OnAffectsMiddleBtnClicked)
 	ON_BN_CLICKED(IDC_AFFECTS_RIGHT_BTN, OnAffectsRightBtnClicked)
 	ON_BN_CLICKED(IDC_LOAD_SAVE_SAME_CODEPAGE, OnLoadSaveSameCodepage)
+	ON_MESSAGE(WM_APP, OnLoadCodepages)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -79,29 +82,6 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
-	IExconverter *pexconv = Exconverter::getInstance();
-	if (pexconv != nullptr)
-	{
-		CComboBox combol, combos;
-		combol.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));
-		combos.Attach(::GetDlgItem(m_hWnd, IDC_SAVE_CODEPAGE_TEXTBOX));
-		std::vector<CodePageInfo> cpi = pexconv->enumCodePages();
-		for (size_t i = 0, j = 0; i < cpi.size(); i++)
-		{
-			String desc = strutils::format(_T("%05d - %s"), cpi[i].codepage, cpi[i].desc);
-			combol.AddString(desc.c_str());
-			combos.AddString(desc.c_str());
-			if (cpi[i].codepage == m_nLoadCodepage)
-			{
-				combol.SetCurSel(static_cast<int>(j));
-				combos.SetCurSel(static_cast<int>(j));
-			}
-			j++;
-		}
-		combol.Detach();
-		combos.Detach();
-	}
-
 	CenterWindow();
 
 	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString);
@@ -112,8 +92,17 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 
 	if (m_nFiles < 3)
 		EnableDlgItem(IDC_AFFECTS_MIDDLE_BTN, false);
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
+
+	m_asyncCodepagesLoader = Concurrent::CreateTask([hwnd = m_hWnd] {
+			std::vector<CodePageInfo> cpi;
+			IExconverter *pexconv = Exconverter::getInstance();
+			if (pexconv != nullptr)
+				cpi = pexconv->enumCodePages();
+			::PostMessage(hwnd, WM_APP, 0, 0);
+			return cpi;
+		});
+
+	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
@@ -180,16 +169,43 @@ void CLoadSaveCodepageDlg::OnLoadSaveSameCodepage()
 	UpdateSaveGroup();
 }
 
+LRESULT CLoadSaveCodepageDlg::OnLoadCodepages(WPARAM, LPARAM)
+{
+	CComboBox combol, combos;
+	combol.Attach(::GetDlgItem(m_hWnd, IDC_LOAD_CODEPAGE_TEXTBOX));
+	combos.Attach(::GetDlgItem(m_hWnd, IDC_SAVE_CODEPAGE_TEXTBOX));
+	m_cpList = m_asyncCodepagesLoader.Get();
+	for (size_t i = 0, j = 0; i < m_cpList.size(); i++)
+	{
+		String desc = strutils::format(_T("%05d - %s"), m_cpList[i].codepage, m_cpList[i].desc);
+		combol.AddString(desc.c_str());
+		combos.AddString(desc.c_str());
+		if (m_cpList[i].codepage == m_nLoadCodepage)
+		{
+			combol.SetCurSel(static_cast<int>(j));
+			combos.SetCurSel(static_cast<int>(j));
+		}
+		j++;
+	}
+	combol.SetFocus();
+	combol.Detach();
+	combos.Detach();
+	UpdateSaveGroup();
+	return 0;
+}
+
 /**
  * @brief Disable save group if save codepage slaved to load codepage
  */
 void CLoadSaveCodepageDlg::UpdateSaveGroup()
 {
 	UpdateDataFromWindow();
+	EnableDlgItem(IDC_LOAD_CODEPAGE_TEXTBOX, m_cpList.size() > 0);
 	if (!m_bEnableSaveCodepage)
 		EnableDlgItem(IDC_LOAD_SAVE_SAME_CODEPAGE, false);
 	bool EnableSave = m_bEnableSaveCodepage && !m_bLoadSaveSameCodepage;
-	EnableDlgItem(IDC_SAVE_CODEPAGE_TEXTBOX, EnableSave);
+	EnableDlgItem(IDC_SAVE_CODEPAGE_TEXTBOX, EnableSave && m_cpList.size() > 0);
+	EnableDlgItem(IDC_SAVE_CODEPAGE_BOM, EnableSave);
 }
 
 /**

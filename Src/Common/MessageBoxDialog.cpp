@@ -84,7 +84,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  *	given, the application name will be used as the title of the dialog.
  */
  CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
-	CString strTitle, UINT nStyle, UINT nHelp ) 
+	CString strTitle, UINT nStyle, UINT nHelp, const CString& strRegistryKey ) 
 	: DpiAware::CDpiAwareWnd<CDialog> ( CMessageBoxDialog::IDD, pParent )
 	, m_strMessage(strMessage)
 	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
@@ -94,7 +94,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 	, m_nTimeoutSeconds(0)
 	, m_bTimeoutDisabled(false)
 	, m_nTimeoutTimer(0)
-	, m_strRegistryKey(_T(""))
+	, m_strRegistryKey(strRegistryKey)
 	, m_nDefaultButton(IDC_STATIC)
 	, m_nEscapeButton(IDC_STATIC)
 	, m_sDialogUnit(CSize(0, 0))
@@ -120,11 +120,11 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  *	application name will be used as the title of the dialog.
  */
 CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, UINT nMessageID,
-	UINT nTitleID, UINT nStyle, UINT nHelp ) 
+	UINT nTitleID, UINT nStyle, UINT nHelp, const CString& strRegistryKey ) 
 	: CMessageBoxDialog(pParent, 
 		LoadResString(nMessageID).c_str(), 
 		nTitleID == 0 ? AfxGetAppName() : LoadResString(nTitleID).c_str(), 
-		nStyle, nHelp )
+		nStyle, nHelp, strRegistryKey )
 {
 }
 
@@ -321,6 +321,12 @@ void CMessageBoxDialog::ResetMessageBoxes ( )
 		// Delete the message box results stored in the registry.
 		pApplication->WriteProfileString(REGISTRY_SECTION_MESSAGEBOX, nullptr, nullptr);
 	}
+}
+
+CString CMessageBoxDialog::GenerateRegistryKey(UINT nMessageID, UINT nHelpID)
+{
+	CMessageBoxDialog dlg{ nullptr, nMessageID, 0, 0, nHelpID };
+	return dlg.GenerateRegistryKey();
 }
 
 //////////////////////////////////////////////////////////////////////////////
