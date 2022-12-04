@@ -207,6 +207,14 @@ bool BCMenu::ReopenTheme(int dpi)
 	m_hTheme = DpiAware::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
 	if (m_hTheme == nullptr)
 		return false;
+	const int dpi = CClientDC(CWnd::GetDesktopWindow()).GetDeviceCaps(LOGPIXELSX);
+	auto resizeMargins = [dpi](MARGINS& margins)
+	{
+		margins.cxLeftWidth = MulDiv(margins.cxLeftWidth, dpi, 96);
+		margins.cxRightWidth = MulDiv(margins.cxRightWidth, dpi, 96);
+		margins.cyTopHeight = MulDiv(margins.cyTopHeight, dpi, 96);
+		margins.cyBottomHeight = MulDiv(margins.cyBottomHeight, dpi, 96);
+	};
 	MARGINS marginCheckBg, marginArrow;	
 	GetThemePartSize(m_hTheme, nullptr, MENU_POPUPCHECK, 0, nullptr, TS_TRUE, &m_sizeCheck);
 	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECK, 0, TMT_CONTENTMARGINS, nullptr, &m_marginCheck);
@@ -215,6 +223,9 @@ bool BCMenu::ReopenTheme(int dpi)
 	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPCHECKBACKGROUND, 0, TMT_CONTENTMARGINS, nullptr, &marginCheckBg);
 	GetThemeMargins(m_hTheme, nullptr, MENU_POPUPSUBMENU, 0, TMT_CONTENTMARGINS, nullptr, &marginArrow);
 	GetThemeInt(m_hTheme, MENU_POPUPBACKGROUND, 0, TMT_BORDERSIZE, &m_textBorder);
+	for (auto* pmargins : { &m_marginCheck, &m_marginSeparator, &marginCheckBg, &marginArrow })
+		resizeMargins(*pmargins);
+	m_textBorder = MulDiv(m_textBorder, dpi, 96);
 	m_checkBgWidth = m_marginCheck.cxLeftWidth + m_sizeCheck.cx + m_marginCheck.cxRightWidth;
 	m_gutterWidth = marginCheckBg.cxLeftWidth + m_checkBgWidth + marginCheckBg.cxRightWidth;
 	m_arrowWidth = marginArrow.cxRightWidth;

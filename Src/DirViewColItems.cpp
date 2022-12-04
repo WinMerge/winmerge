@@ -61,6 +61,15 @@ const char *COLHDR_NSDIFFS      = N_("Differences");
 const char *COLHDR_BINARY       = NC_("DirView|ColumnHeader", "Binary");
 const char *COLHDR_UNPACKER     = N_("Unpacker");
 const char *COLHDR_PREDIFFER    = N_("Prediffer");
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+const char *COLHDR_DEBUG_DIFFCODE    = N_("[Debug]diffcode");
+const char *COLHDR_DEBUG_CUSTOMFLAGS = N_("[Debug]customFlags");
+const char *COLHDR_DEBUG_THIS        = N_("[Debug]this");
+const char *COLHDR_DEBUG_PARENT      = N_("[Debug]parent");
+const char *COLHDR_DEBUG_CHILDREN    = N_("[Debug]children");
+const char *COLHDR_DEBUG_FLINK       = N_("[Debug]Flink");
+const char *COLHDR_DEBUG_BLINK       = N_("[Debug]Blink");
+#endif // SHOW_DIFFITEM_DEBUG_INFO
 
 const char *COLDESC_FILENAME    = N_("Filename or folder name.");
 const char *COLDESC_DIR         = N_("Subfolder name when subfolders are included.");
@@ -97,6 +106,15 @@ const char *COLDESC_NSDIFFS     = N_("Number of differences in file. This number
 const char *COLDESC_BINARY      = N_("Shows an asterisk (*) if the file is binary.");
 const char *COLDESC_UNPACKER    = N_("Unpacker plugin name or pipeline.");
 const char *COLDESC_PREDIFFER   = N_("Prediffer plugin name or pipeline.");
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+const char *COLDESC_DEBUG_DIFFCODE    = N_("Compare result");
+const char *COLDESC_DEBUG_CUSTOMFLAGS = N_("ViewCustomFlags flags");
+const char *COLDESC_DEBUG_THIS        = N_("This item");
+const char *COLDESC_DEBUG_PARENT      = N_("Parent of current item");
+const char *COLDESC_DEBUG_CHILDREN    = N_("Link to first child of this item");
+const char *COLDESC_DEBUG_FLINK       = N_("Forward \"sibling\" link");
+const char *COLDESC_DEBUG_BLINK       = N_("Backward \"sibling\" link");
+#endif // SHOW_DIFFITEM_DEBUG_INFO
 }
 
 /**
@@ -757,6 +775,140 @@ static String ColPluginPipelineGet(const CDiffContext* pCtxt, const void *p, int
 		return pInfoPrediffer ? pInfoPrediffer->GetPluginPipeline() : _T("");
 }
 
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+/**
+ * @brief Format "[Debug]diffcode" column data.
+ * @param [in] p Pointer to DIFFITEM.
+ * @return String to show in the column.
+ */
+static String ColDebugDiffCodeGet(const CDiffContext *, const void* p, int)
+{
+	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
+	unsigned int diffcode = di.diffcode.diffcode;
+
+	String s = strutils::format(_T("0x%08x"), diffcode);
+
+	std::vector<String> flags;
+	if (diffcode & DIFFCODE::FIRST)
+		flags.push_back(_T("FIRST"));
+	if (diffcode & DIFFCODE::SECOND)
+		flags.push_back(_T("SECOND"));
+	if (diffcode & DIFFCODE::THIRD)
+		flags.push_back(_T("THIRD"));
+	if (diffcode & DIFFCODE::THREEWAY)
+		flags.push_back(_T("THREEWAY"));
+	if (diffcode & DIFFCODE::NEEDSCAN)
+		flags.push_back(_T("NEEDSCAN"));
+	if (diffcode & DIFFCODE::SKIPPED)
+		flags.push_back(_T("SKIPPED"));
+	switch (diffcode & DIFFCODE::COMPAREFLAGS3WAY)
+	{
+	case DIFFCODE::DIFF1STONLY: flags.push_back(_T("DIFF1STONLY")); break;
+	case DIFFCODE::DIFF2NDONLY: flags.push_back(_T("DIFF2NDONLY")); break;
+	case DIFFCODE::DIFF3RDONLY: flags.push_back(_T("DIFF3RDONLY")); break;
+	}
+	switch (diffcode & DIFFCODE::COMPAREFLAGS)
+	{
+	case DIFFCODE::DIFF: flags.push_back(_T("DIFF")); break;
+	case DIFFCODE::SAME: flags.push_back(_T("SAME")); break;
+	case DIFFCODE::CMPERR: flags.push_back(_T("CMPERR")); break;
+	case DIFFCODE::CMPABORT: flags.push_back(_T("CMPABORT")); break;
+	}
+	if (diffcode & DIFFCODE::FILE)
+		flags.push_back(_T("FILE"));
+	if (diffcode & DIFFCODE::DIR)
+		flags.push_back(_T("DIR"));
+	if (diffcode & DIFFCODE::TEXT)
+		flags.push_back(_T("TEXT"));
+	if (diffcode & DIFFCODE::BIN)
+		flags.push_back(_T("BIN"));
+	if (diffcode & DIFFCODE::BINSIDE1)
+		flags.push_back(_T("BINSIDE1"));
+	if (diffcode & DIFFCODE::BINSIDE2)
+		flags.push_back(_T("BINSIDE2"));
+	if (diffcode & DIFFCODE::BINSIDE3)
+		flags.push_back(_T("BINSIDE3"));
+	if (diffcode & DIFFCODE::IMAGE)
+		flags.push_back(_T("IMAGE"));
+
+	if (!flags.empty())
+	{
+		s += _T(" (");
+		for (size_t i = 0; i < flags.size(); i++)
+		{
+			s += flags[i];
+			if (i < flags.size() - 1)
+				s += _T(" ");
+		}
+		s += _T(")");
+	}
+
+	return s;
+}
+#endif // SHOW_DIFFITEM_DEBUG_INFO
+
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+/**
+ * @brief Format "[Debug]customFlags" column data.
+ * @param [in] p Pointer to DIFFITEM.
+ * @return String to show in the column.
+ */
+static String ColDebugCustomFlagsGet(const CDiffContext *, const void* p, int)
+{
+	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
+	unsigned customFlags = di.customFlags;
+
+	String s = strutils::format(_T("0x%08x"), customFlags);
+
+	std::vector<String> flags;
+	if (customFlags & ViewCustomFlags::EXPANDED)
+		flags.push_back(_T("EXPANDED"));
+	if (customFlags & ViewCustomFlags::HIDDEN)
+		flags.push_back(_T("HIDDEN"));
+	if (customFlags & ViewCustomFlags::VISIBLE)
+		flags.push_back(_T("VISIBLE"));
+
+	if (!flags.empty())
+	{
+		s += _T(" (");
+		for (size_t i = 0; i < flags.size(); i++)
+		{
+			s += flags[i];
+			if (i < flags.size() - 1)
+				s += _T(" ");
+		}
+		s += _T(")");
+	}
+
+	return s;
+}
+#endif // SHOW_DIFFITEM_DEBUG_INFO
+
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+/**
+ * @brief Format "[Debug]this", "[Debug]parent", "[Debug]children", "[Debug]Flink" and "[Debug]Blink" column data.
+ * @param [in] p Pointer to DIFFITEM.
+ * @param [in] opt Type of data to show (0:"[Debug]this", 1:"[Debug]parent", 2:"[Debug]children", 3:"[Debug]Flink", 4:"[Debug]Blink")
+ * @return String to show in the column.
+ */
+static String ColDebugNodeGet(const CDiffContext *, const void* p, int opt)
+{
+	const DIFFITEM& di = *static_cast<const DIFFITEM*>(p);
+
+	const DIFFITEM* pdi = nullptr;
+	switch (opt)
+	{
+	case 0: pdi = &di; break;
+	case 1: pdi = di.GetParentLink(); break;
+	case 2: pdi = di.GetFirstChild(); break;
+	case 3: pdi = di.GetFwdSiblingLink(); break;
+	case 4: pdi = di.GetBackwardSiblingLink(); break;
+	}
+
+	return strutils::format(_T("%p"), pdi);
+}
+#endif // SHOW_DIFFITEM_DEBUG_INFO
+
 static String ColPropertyGet(const CDiffContext *pCtxt, const void *p, int opt)
 {
 	const DiffFileInfo &dfi = *static_cast<const DiffFileInfo *>(p);
@@ -1294,6 +1446,15 @@ static DirColInfo f_cols[] =
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+	{ _T("diffcode"), nullptr, COLHDR_DEBUG_DIFFCODE, COLDESC_DEBUG_DIFFCODE, &ColDebugDiffCodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("customFlags"), nullptr, COLHDR_DEBUG_CUSTOMFLAGS, COLDESC_DEBUG_CUSTOMFLAGS, &ColDebugCustomFlagsGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("this"), nullptr, COLHDR_DEBUG_THIS, COLDESC_DEBUG_THIS, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("parent"), nullptr, COLHDR_DEBUG_PARENT, COLDESC_DEBUG_PARENT, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
+	{ _T("children"), nullptr, COLHDR_DEBUG_CHILDREN, COLDESC_DEBUG_CHILDREN, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },
+	{ _T("Flink"), nullptr, COLHDR_DEBUG_FLINK, COLDESC_DEBUG_FLINK, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 3 },
+	{ _T("Blink"), nullptr, COLHDR_DEBUG_BLINK, COLDESC_DEBUG_BLINK, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 4 },
+#endif // SHOW_DIFFITEM_DEBUG_INFO
 };
 static DirColInfo f_cols3[] =
 {
@@ -1332,6 +1493,15 @@ static DirColInfo f_cols3[] =
 	{ _T("Reoltype"), nullptr, COLHDR_REOL_TYPE, COLDESC_REOL_TYPE, &ColEOLTypeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },
 	{ _T("Unpacker"), nullptr, COLHDR_UNPACKER, COLDESC_UNPACKER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
 	{ _T("Prediffer"), nullptr, COLHDR_PREDIFFER, COLDESC_PREDIFFER, &ColPluginPipelineGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+#ifdef SHOW_DIFFITEM_DEBUG_INFO
+	{ _T("diffcode"), nullptr, COLHDR_DEBUG_DIFFCODE, COLDESC_DEBUG_DIFFCODE, &ColDebugDiffCodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("customFlags"), nullptr, COLHDR_DEBUG_CUSTOMFLAGS, COLDESC_DEBUG_CUSTOMFLAGS, &ColDebugCustomFlagsGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT },
+	{ _T("this"), nullptr, COLHDR_DEBUG_THIS, COLDESC_DEBUG_THIS, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 0 },
+	{ _T("parent"), nullptr, COLHDR_DEBUG_PARENT, COLDESC_DEBUG_PARENT, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 1 },
+	{ _T("children"), nullptr, COLHDR_DEBUG_CHILDREN, COLDESC_DEBUG_CHILDREN, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 2 },
+	{ _T("Flink"), nullptr, COLHDR_DEBUG_FLINK, COLDESC_DEBUG_FLINK, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 3 },
+	{ _T("Blink"), nullptr, COLHDR_DEBUG_BLINK, COLDESC_DEBUG_BLINK, &ColDebugNodeGet, 0, 0, -1, true, DirColInfo::ALIGN_LEFT, 4 },
+#endif // SHOW_DIFFITEM_DEBUG_INFO
 };
 
 String DirColInfo::GetDisplayName() const

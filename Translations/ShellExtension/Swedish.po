@@ -7,15 +7,15 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: pgert <pgert@yahoo.se>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: sv\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -38,34 +38,34 @@ msgstr "65001"
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
-msgstr "GränssnittsMeny"
+msgstr "SkalFörlängning"
 
 #: ShellExtension.rc:112
 #, c-format
 msgid "&WinMerge"
-msgstr ""
+msgstr "WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "Jämför"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Jämför..."
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Välj Vänster"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Välj Mitter"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Åter-välj Vänster"
