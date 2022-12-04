@@ -94,7 +94,7 @@ CMergeStatusBar::~CMergeStatusBar()
 
 BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 {
-	if (! CStatusBar::Create(pParentWnd))
+	if (! __super::Create(pParentWnd))
 		return FALSE;
 
 	SetIndicators(indicatorsBottom, sizeof(indicatorsBottom) / sizeof(UINT));

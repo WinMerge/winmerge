@@ -67,7 +67,7 @@ END_MESSAGE_MAP()
 
 void CSizingControlBarCF::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHndler)
 {
-    baseCSizingControlBarCF::OnUpdateCmdUI(pTarget, bDisableIfNoHndler);
+    __super::OnUpdateCmdUI(pTarget, bDisableIfNoHndler);
 
     if (!HasGripper())
         return;
@@ -215,7 +215,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, const CRect& rcClient)
 
 LRESULT CSizingControlBarCF::OnSetText(WPARAM wParam, LPARAM lParam)
 {
-    LRESULT lResult = baseCSizingControlBarCF::OnSetText(wParam, lParam);
+    LRESULT lResult = __super::OnSetText(wParam, lParam);
 
     SendMessage(WM_NCPAINT);
 

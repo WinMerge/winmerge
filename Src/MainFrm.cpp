@@ -373,7 +373,7 @@ const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	WNDCLASS wndcls;
-	BOOL bRes = CMDIFrameWnd::PreCreateWindow(cs);
+	BOOL bRes = __super::PreCreateWindow(cs);
 	HINSTANCE hInst = AfxGetInstanceHandle();
 	// see if the class already exists
 	if (!::GetClassInfo(hInst, szClassName, &wndcls))
@@ -391,7 +391,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
+	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
@@ -410,7 +410,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
-		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
+		__super::ShowControlBar(&m_wndTabBar, false, 0);
 
 	if (!m_wndStatusBar.Create(this))
 	{
@@ -428,7 +428,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
-		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
+		__super::ShowControlBar(&m_wndStatusBar, false, 0);
 
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -440,7 +440,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
-	CMDIFrameWnd::OnTimer(nIDEvent);
+	__super::OnTimer(nIDEvent);
 
 	if (nIDEvent == IDT_UPDATEMAINMENU)
 	{
@@ -652,7 +652,7 @@ void CMainFrame::OnMeasureItem(int nIDCtl,
 	}
 
 	if (!setflag)
-		CMDIFrameWnd::OnMeasureItem(nIDCtl, lpMeasureItemStruct);
+		__super::OnMeasureItem(nIDCtl, lpMeasureItemStruct);
 }
 
 /**
@@ -665,7 +665,7 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
 	if(m_pMenus[MENU_DEFAULT]->IsMenu(pMenu))
 		lresult=BCMenu::FindKeyboardShortcut(nChar, nFlags, pMenu);
 	else
-		lresult=CMDIFrameWnd::OnMenuChar(nChar, nFlags, pMenu);
+		lresult=__super::OnMenuChar(nChar, nFlags, pMenu);
 	return lresult;
 }
 
@@ -1570,7 +1570,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 {
 	if (!m_bFirstTime)
 	{
-		CMDIFrameWnd::ActivateFrame(nCmdShow);
+		__super::ActivateFrame(nCmdShow);
 		return;
 	}
 
@@ -1604,10 +1604,10 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 		if (dsk_rc.PtInRect(ptTopLeft))
 			SetWindowPlacement(&wp);
 		else
-			CMDIFrameWnd::ActivateFrame(nCmdShow);
+			__super::ActivateFrame(nCmdShow);
 	}
 	else
-		CMDIFrameWnd::ActivateFrame(nCmdShow);
+		__super::ActivateFrame(nCmdShow);
 }
 
 /**
@@ -1650,7 +1650,7 @@ void CMainFrame::OnClose()
 			return;
 	}
 
-	CMDIFrameWnd::OnClose();
+	__super::OnClose();
 }
 
 /**
@@ -2164,7 +2164,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		return TRUE;
 	}
 
-	return CMDIFrameWnd::PreTranslateMessage(pMsg);
+	return __super::PreTranslateMessage(pMsg);
 }
 
 /**
@@ -2175,7 +2175,7 @@ void CMainFrame::OnViewStatusBar()
 	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_STATUSBAR, bShow);
 
-	CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, bShow, 0);
+	__super::ShowControlBar(&m_wndStatusBar, bShow, 0);
 }
 
 /**
@@ -2194,7 +2194,7 @@ void CMainFrame::OnViewTabBar()
 	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_TABBAR, bShow);
 
-	CMDIFrameWnd::ShowControlBar(&m_wndTabBar, bShow, 0);
+	__super::ShowControlBar(&m_wndTabBar, bShow, 0);
 }
 
 /**
@@ -2435,9 +2435,9 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 #endif
 {
 #if _MFC_VER > 0x0600
-	CMDIFrameWnd::OnActivateApp(bActive, dwThreadID);
+	__super::OnActivateApp(bActive, dwThreadID);
 #else
-	CMDIFrameWnd::OnActivateApp(bActive, hTask);
+	__super::OnActivateApp(bActive, hTask);
 #endif
 
 	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
@@ -2481,7 +2481,7 @@ BOOL CMainFrame::CreateToolbar()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
+		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 
 	return TRUE;
@@ -2563,7 +2563,7 @@ void CMainFrame::OnToolbarSize(UINT id)
 	if (id == ID_TOOLBAR_NONE)
 	{
 		GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, false);
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
+		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 	else
 	{
@@ -2572,7 +2572,7 @@ void CMainFrame::OnToolbarSize(UINT id)
 
 		LoadToolbarImages();
 
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, true, 0);
+		__super::ShowControlBar(&m_wndToolBar, true, 0);
 	}
 }
 

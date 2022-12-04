@@ -56,7 +56,7 @@ void CMergeFrameCommon::ActivateFrame(int nCmdShow)
 			nCmdShow = SW_SHOWNORMAL;
 	}
 
-	CMDIChildWnd::ActivateFrame(nCmdShow);
+	__super::ActivateFrame(nCmdShow);
 }
 
 void CMergeFrameCommon::SaveWindowState()
@@ -368,7 +368,7 @@ std::pair<int, int> CMergeFrameCommon::MenuIDtoXY(UINT nID, int nActivePane, int
 
 void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
-	CMDIChildWnd::OnGetMinMaxInfo(lpMMI);
+	__super::OnGetMinMaxInfo(lpMMI);
 	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
 	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
 #if _MFC_VER >= 0x0800
@@ -387,7 +387,7 @@ void CMergeFrameCommon::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* 
 {
 	// call the base class to let standard processing switch to
 	// the top-level menu associated with this window
-	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
+	__super::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
 
 	if (bActivate)
 		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEACTIVATED, 0, reinterpret_cast<LPARAM>(this));

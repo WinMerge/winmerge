@@ -153,7 +153,7 @@ COpenView::~COpenView()
 
 void COpenView::DoDataExchange(CDataExchange* pDX)
 {
-	CFormView::DoDataExchange(pDX);
+	__super::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(COpenView)
 	DDX_Control(pDX, IDC_EXT_COMBO, m_ctlExt);
 	DDX_Control(pDX, IDC_PATH0_COMBO, m_ctlPath[0]);
@@ -180,7 +180,7 @@ BOOL COpenView::PreCreateWindow(CREATESTRUCT& cs)
 	//  the CREATESTRUCT cs
 	cs.style &= ~WS_BORDER;
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
-	return CFormView::PreCreateWindow(cs);
+	return __super::PreCreateWindow(cs);
 }
 
 void COpenView::OnInitialUpdate()
@@ -203,7 +203,7 @@ void COpenView::OnInitialUpdate()
 		m_image.Create(1, 1, 24, 0);
 	}
 
-	CFormView::OnInitialUpdate();
+	__super::OnInitialUpdate();
 
 	// set caption to "swap paths" button
 	LOGFONT lf;
@@ -387,7 +387,7 @@ void COpenView::OnPaint()
 	dc.LineTo(rc.right, rcStatus.top - 3);
 	dc.SelectObject(oldpen);
 
-	CFormView::OnPaint();
+	__super::OnPaint();
 }
 
 void COpenView::OnLButtonUp(UINT nFlags, CPoint point)
@@ -512,7 +512,7 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 			pFrameWnd->SetWindowPlacement(&wp);
 		}
 	}
-	CFormView::OnWindowPosChanged(lpwndpos);
+	__super::OnWindowPosChanged(lpwndpos);
 }
 
 void COpenView::OnDestroy()
@@ -520,7 +520,7 @@ void COpenView::OnDestroy()
 	if (m_pDropHandler != nullptr)
 		RevokeDragDrop(m_hWnd);
 
-	CFormView::OnDestroy();
+	__super::OnDestroy();
 }
 
 LRESULT COpenView::OnNcHitTest(CPoint point)
@@ -534,7 +534,7 @@ LRESULT COpenView::OnNcHitTest(CPoint point)
 		if (PtInRect(&rc, point))
 			return HTRIGHT;
 	}
-	return CFormView::OnNcHitTest(point);
+	return __super::OnNcHitTest(point);
 }
 
 /** 
@@ -1318,7 +1318,7 @@ void COpenView::OnTimer(UINT_PTR nIDEvent)
 	if (nIDEvent == IDT_CHECKFILES || nIDEvent == IDT_RETRY)
 		UpdateButtonStates();
 
-	CFormView::OnTimer(nIDEvent);
+	__super::OnTimer(nIDEvent);
 }
 
 /**
@@ -1615,7 +1615,7 @@ void COpenView::TrimPaths()
  */
 void COpenView::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
-	CFormView::OnActivate(nState, pWndOther, bMinimized);
+	__super::OnActivate(nState, pWndOther, bMinimized);
 
 	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
 		UpdateButtonStates();

@@ -74,7 +74,7 @@ END_MESSAGE_MAP()
 
 void CSuperComboBox::PreSubclassWindow()
 {
-	CComboBoxEx::PreSubclassWindow();
+	__super::PreSubclassWindow();
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
 	
@@ -115,7 +115,7 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 {
 	if (m_bComboBoxEx)
 	{
-		CString sShortName;		// scoped to remain valid for calling CComboBoxEx::InsertItem()
+		CString sShortName;		// scoped to remain valid for calling __super::InsertItem()
 		if (m_bExtendedFileNames)
 		{
 			if (nIndex >= static_cast<int>(m_sFullStateText.size()))
@@ -150,7 +150,7 @@ int CSuperComboBox::InsertString(int nIndex, LPCTSTR lpszItem)
 		cbitem.iItem = nIndex;
 		cbitem.iImage = I_IMAGECALLBACK;
 		cbitem.iSelectedImage = I_IMAGECALLBACK;
-		return CComboBoxEx::InsertItem(&cbitem);
+		return __super::InsertItem(&cbitem);
 	}
 	else
 	{
@@ -165,7 +165,7 @@ int CSuperComboBox::DeleteString(int nIndex)
 	{
 		m_sFullStateText.erase(m_sFullStateText.begin() + nIndex);
 	}
-	return CComboBoxEx::DeleteString(nIndex);
+	return __super::DeleteString(nIndex);
 }
 
 int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
@@ -256,7 +256,7 @@ void CSuperComboBox::GetLBText(int nIndex, CString &rString) const
 	}
 	else
 	{
-		CComboBoxEx::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
+		__super::GetLBText(nIndex, rString.GetBufferSetLength(GetLBTextLen(nIndex)));
 		rString.ReleaseBuffer();
 	}
 }
@@ -269,7 +269,7 @@ int CSuperComboBox::GetLBTextLen(int nIndex) const
 	}
 	else
 	{
-		return CComboBoxEx::GetLBTextLen(nIndex);
+		return __super::GetLBTextLen(nIndex);
 	}
 }
 
@@ -419,7 +419,7 @@ BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 		}
     }
 
-    return CComboBoxEx::PreTranslateMessage(pMsg);
+    return __super::PreTranslateMessage(pMsg);
 }
 
 void CSuperComboBox::SetAutoComplete(INT nSource)
@@ -463,12 +463,12 @@ void CSuperComboBox::ResetContent()
 			m_sFullStateText[i].Empty();
 		}
 	}
-	CComboBoxEx::ResetContent();
+	__super::ResetContent();
 }
 
 int CSuperComboBox::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
-	if (CComboBoxEx::OnCreate(lpCreateStruct) == -1)
+	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
 	
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
@@ -578,7 +578,7 @@ void CSuperComboBox::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 			0, 0, GetSysColor(COLOR_WINDOW), CLR_NONE, ILD_NORMAL);
 		return;
 	}
-	CComboBoxEx::OnDrawItem(nIDCtl, lpDrawItemStruct);
+	__super::OnDrawItem(nIDCtl, lpDrawItemStruct);
 }
 
 /**
