@@ -23,7 +23,7 @@ T &placement_cast(void *p)
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox
 
-HIMAGELIST CSuperComboBox::m_himlSystem = nullptr;
+std::map<int, HIMAGELIST> CSuperComboBox::m_himlSystemMap;
 
 CSuperComboBox::CSuperComboBox()
 	: m_pDropHandler(nullptr)
@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(CSuperComboBox, CComboBoxEx)
 	ON_WM_DESTROY()
 	ON_WM_DRAWITEM()
 	ON_NOTIFY_REFLECT(CBEN_GETDISPINFO, OnGetDispInfo)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -74,6 +75,7 @@ END_MESSAGE_MAP()
 
 void CSuperComboBox::PreSubclassWindow()
 {
+	UpdateDpi();
 	__super::PreSubclassWindow();
 	m_pDropHandler = new DropHandler(std::bind(&CSuperComboBox::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -199,16 +201,18 @@ int CSuperComboBox::FindString(int nStartAfter, LPCTSTR lpszString) const
  */
 bool CSuperComboBox::AttachSystemImageList()
 {
+	HIMAGELIST hImageList = nullptr;
 	ASSERT(m_bComboBoxEx);
-	if (m_himlSystem==nullptr)
+	if (m_himlSystemMap.find(m_dpi) == m_himlSystemMap.end())
 	{
-		SHFILEINFO sfi = {0};
-		m_himlSystem = (HIMAGELIST)SHGetFileInfo(_T(""), 0, 
-			&sfi, sizeof(sfi), SHGFI_SMALLICON | SHGFI_SYSICONINDEX);
-		if (m_himlSystem==nullptr)
+		hImageList = DpiAware::LoadShellImageList(m_dpi);
+		if (hImageList == nullptr)
 			return false;
+		m_himlSystemMap.emplace(m_dpi, hImageList);
 	}
-	SetImageList(CImageList::FromHandle(m_himlSystem));
+	else
+		hImageList = m_himlSystemMap[m_dpi];
+	SetImageList(CImageList::FromHandle(hImageList));
 	m_bHasImageList = true;
 	return true;
 }
@@ -573,7 +577,7 @@ void CSuperComboBox::OnDrawItem(int nIDCtl, LPDRAWITEMSTRUCT lpDrawItemStruct)
 		if (!pEdit->GetModify() || GetFocus() != pEdit)
 			GetWindowText(sText);
 		int iIcon = GetFileTypeIconIndex(pvText);
-		ImageList_DrawEx(m_himlSystem, iIcon, lpDrawItemStruct->hDC,
+		ImageList_DrawEx(m_himlSystemMap[m_dpi], iIcon, lpDrawItemStruct->hDC,
 			lpDrawItemStruct->rcItem.left, lpDrawItemStruct->rcItem.top,
 			0, 0, GetSysColor(COLOR_WINDOW), CLR_NONE, ILD_NORMAL);
 		return;
@@ -597,4 +601,21 @@ void CSuperComboBox::OnGetDispInfo(NMHDR *pNotifyStruct, LRESULT *pResult)
 		pDispInfo->ceItem.iSelectedImage = iIcon;
 	}
 	*pResult = 0;
+}
+
+LRESULT CSuperComboBox::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+	if (m_bHasImageList)
+	{
+		if (m_himlSystemMap.find(m_dpi) == m_himlSystemMap.end())
+		{
+			HIMAGELIST hImageList = DpiAware::LoadShellImageList(m_dpi);
+			if (!hImageList)
+				return 0;
+			m_himlSystemMap.emplace(m_dpi, hImageList);
+		}
+		SetImageList(CImageList::FromHandle(m_himlSystemMap[m_dpi]));
+	}
+	return 0;
 }

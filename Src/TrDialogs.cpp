@@ -6,6 +6,24 @@ IMPLEMENT_DYNAMIC(CTrDialog, CDialog)
 IMPLEMENT_DYNAMIC(CTrPropertyPage, CPropertyPage)
 IMPLEMENT_DYNAMIC(CTrDialogBar, CDialogBar)
 
+BEGIN_MESSAGE_MAP(CTrDialog, DpiAware::CDpiAwareDialog<CDialog>)
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
+END_MESSAGE_MAP()
+
+BEGIN_MESSAGE_MAP(CTrPropertyPage, DpiAware::CDpiAwareDialog<CPropertyPage>)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
+END_MESSAGE_MAP()
+
+BEGIN_MESSAGE_MAP(CTrDialogBar, DpiAware::CDpiAwareDialog<CDialogBar>)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
+END_MESSAGE_MAP()
+
+void DpiChangedImplHelper(HWND hwnd, int olddpi, int newdpi)
+{
+	theApp.ChangeDialogFont(hwnd, newdpi);
+	DpiAware::Dialog_UpdateControlInnerWidths(hwnd, olddpi, newdpi);
+}
+
 void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
 {
 	size_t i = 0, j = 0, k = 0;

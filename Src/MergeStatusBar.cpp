@@ -68,8 +68,9 @@ static UINT indicatorsBottom[] =
 	ID_SEPARATOR,
 };
 
-BEGIN_MESSAGE_MAP(CMergeStatusBar, CStatusBar)
+BEGIN_MESSAGE_MAP(CMergeStatusBar, DpiAware::CDpiAwareWnd<CStatusBar>)
 	ON_WM_SETCURSOR()
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 /**
@@ -169,17 +170,15 @@ void CMergeStatusBar::Resize(int widths[])
 	// Set bottom statusbar panel widths
 	// Kimmo - I don't know why 4 seems to be right for me
 	int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{
-		int fixedPaneWidth = pointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH) +
+		int fixedPaneWidth = PointToPixel(RO_PANEL_WIDTH + ENCODING_PANEL_WIDTH + EOL_PANEL_WIDTH) +
 			(3 * borderWidth);
 		int paneWidth = widths[pane] - fixedPaneWidth;
-		int encodingWidth = pointToPixel(ENCODING_PANEL_WIDTH) - borderWidth;
-		int roWidth = pointToPixel(RO_PANEL_WIDTH) - borderWidth;
-		int eolWidth = pointToPixel(EOL_PANEL_WIDTH) - borderWidth;
+		int encodingWidth = PointToPixel(ENCODING_PANEL_WIDTH) - borderWidth;
+		int roWidth = PointToPixel(RO_PANEL_WIDTH) - borderWidth;
+		int eolWidth = PointToPixel(EOL_PANEL_WIDTH) - borderWidth;
 		if (paneWidth < 0)
 		{
 			paneWidth = 0;
@@ -330,5 +329,20 @@ BOOL CMergeStatusBar::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
     ::SetCursor (::LoadCursor (nullptr, IDC_HAND));
 	return TRUE;
+}
+
+LRESULT CMergeStatusBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+	
+	if (m_font.m_hObject == GetFont()->m_hObject)
+		m_font.DeleteObject();
+
+	LOGFONT lfStatusFont;
+	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+		m_font.CreateFontIndirect(&lfStatusFont);
+
+	SetFont(&m_font);
+	return 0;
 }
 

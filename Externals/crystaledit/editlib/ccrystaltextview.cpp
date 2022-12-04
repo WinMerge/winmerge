@@ -168,7 +168,7 @@ CCrystalTextView::RENDERING_MODE CCrystalTextView::s_nRenderingModeDefault = REN
 
 static ptrdiff_t FindStringHelper(LPCTSTR pszLineBegin, size_t nLineLength, LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch);
 
-BEGIN_MESSAGE_MAP (CCrystalTextView, CView)
+BEGIN_MESSAGE_MAP (CCrystalTextView, DpiAware::CDpiAwareWnd<CView>)
 //{{AFX_MSG_MAP(CCrystalTextView)
 ON_WM_DESTROY ()
 ON_WM_ERASEBKGND ()
@@ -225,9 +225,9 @@ ON_COMMAND (ID_EDIT_TEXT_END, OnTextEnd)
 ON_COMMAND (ID_EDIT_EXT_TEXT_END, OnExtTextEnd)
 //  Standard printing commands
 ON_COMMAND (ID_FILE_PAGE_SETUP, OnFilePageSetup)
-ON_COMMAND (ID_FILE_PRINT, CView::OnFilePrint)
-ON_COMMAND (ID_FILE_PRINT_DIRECT, CView::OnFilePrint)
-ON_COMMAND (ID_FILE_PRINT_PREVIEW, CView::OnFilePrintPreview)
+ON_COMMAND (ID_FILE_PRINT, __super::OnFilePrint)
+ON_COMMAND (ID_FILE_PRINT_DIRECT, __super::OnFilePrint)
+ON_COMMAND (ID_FILE_PRINT_PREVIEW, __super::OnFilePrintPreview)
 //  Status
 ON_UPDATE_COMMAND_UI (ID_EDIT_INDICATOR_CRLF, OnUpdateIndicatorCRLF)
 ON_UPDATE_COMMAND_UI (ID_EDIT_INDICATOR_POSITION, OnUpdateIndicatorPosition)
@@ -266,6 +266,7 @@ ON_COMMAND (ID_FORCE_REDRAW, OnForceRedraw)
   ON_UPDATE_COMMAND_UI(ID_EDIT_FIND_INCREMENTAL_BACKWARD, OnUpdateEditFindIncrementalBackward)
   //END SW
   ON_COMMAND (ID_EDIT_TOGGLE_COLUMNSELECTION, OnToggleColumnSelection)
+  ON_MESSAGE (WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP ()
 
 #define EXPAND_PRIMITIVE(impl, func)    \
@@ -595,7 +596,7 @@ PreCreateWindow (CREATESTRUCT & cs)
       //END SW
     }
   cs.lpszClass = AfxRegisterWndClass (CS_DBLCLKS);
-  return CView::PreCreateWindow (cs);
+  return __super::PreCreateWindow (cs);
 }
 
 
@@ -3378,7 +3379,7 @@ GoToLine (int nLine, bool bRelative)
 void CCrystalTextView::
 OnInitialUpdate ()
 {
-  CView::OnInitialUpdate ();
+  __super::OnInitialUpdate ();
   CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
   if (!sExt.IsEmpty())
     SetTextType (sExt);
@@ -3446,7 +3447,7 @@ OnInitialUpdate ()
 void CCrystalTextView::
 OnPrepareDC (CDC * pDC, CPrintInfo * pInfo /*= nullptr*/)
 {
-  CView::OnPrepareDC (pDC, pInfo);
+  __super::OnPrepareDC (pDC, pInfo);
 
   if (pInfo != nullptr)
     {
@@ -3973,7 +3974,7 @@ OnDestroy ()
   DetachFromBuffer ();
   m_hAccel = nullptr;
 
-  CView::OnDestroy ();
+  __super::OnDestroy ();
 
   if (m_pCacheBitmap != nullptr)
     {
@@ -3992,7 +3993,7 @@ OnEraseBkgnd (CDC * pdc)
 void CCrystalTextView::
 OnSize (UINT nType, int cx, int cy)
 {
-  CView::OnSize (nType, cx, cy);
+  __super::OnSize (nType, cx, cy);
 
   //BEGIN SW
   // get char position of top left visible character with old cached word wrap
@@ -4121,7 +4122,7 @@ RecalcVertScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
 void CCrystalTextView::
 OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 {
-  CView::OnVScroll (nSBCode, nPos, pScrollBar);
+  __super::OnVScroll (nSBCode, nPos, pScrollBar);
 
   // Note we cannot use nPos because of its 16-bit nature
   SCROLLINFO si = {0};
@@ -4240,7 +4241,7 @@ void CCrystalTextView::
 OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 {
   // Default handler not needed
-  //CView::OnHScroll (nSBCode, nPos, pScrollBar);
+  //__super::OnHScroll (nSBCode, nPos, pScrollBar);
 
   //  Again, we cannot use nPos because it's 16-bit
   SCROLLINFO si = {0};
@@ -4342,7 +4343,7 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
         }
       return true;
     }
-  return CView::OnSetCursor (pWnd, nHitTest, message);
+  return __super::OnSetCursor (pWnd, nHitTest, message);
 }
 
 int CCrystalTextView::
@@ -4786,7 +4787,7 @@ AdjustTextPoint (CPoint & point)
 void CCrystalTextView::
 OnSetFocus (CWnd * pOldWnd)
 {
-  CView::OnSetFocus (pOldWnd);
+  __super::OnSetFocus (pOldWnd);
 
   m_bFocused = true;
   if (m_ptSelStart != m_ptSelEnd)
@@ -4985,7 +4986,7 @@ EnsureVisible (CPoint pt)
 void CCrystalTextView::
 OnKillFocus (CWnd * pNewWnd)
 {
-  CView::OnKillFocus (pNewWnd);
+  __super::OnKillFocus (pNewWnd);
 
   m_bFocused = false;
   UpdateCaret ();
@@ -5002,7 +5003,7 @@ OnKillFocus (CWnd * pNewWnd)
 void CCrystalTextView::
 OnSysColorChange ()
 {
-  CView::OnSysColorChange ();
+  __super::OnSysColorChange ();
   Invalidate ();
 }
 
@@ -5206,7 +5207,7 @@ OnCreate (LPCREATESTRUCT lpCreateStruct)
   m_lfBaseFont.lfQuality = DEFAULT_QUALITY;
   m_lfBaseFont.lfPitchAndFamily = DEFAULT_PITCH;
 
-  if (CView::OnCreate (lpCreateStruct) == -1)
+  if (__super::OnCreate (lpCreateStruct) == -1)
     return -1;
 
   ASSERT (m_hAccel == nullptr);
@@ -5249,7 +5250,7 @@ PreTranslateMessage (MSG * pMsg)
       OnLButtonTrippleClk(static_cast<UINT>(pMsg->wParam), { GET_X_LPARAM(pMsg->lParam), GET_Y_LPARAM(pMsg->lParam) });
       return true;
     }
-  return CView::PreTranslateMessage (pMsg);
+  return __super::PreTranslateMessage (pMsg);
 }
 
 void CCrystalTextView::
@@ -6406,7 +6407,7 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
   UpdateSiblingScrollPos(false);
   UpdateCaret ();
 
-  return CView::OnMouseWheel (nFlags, zDelta, pt);
+  return __super::OnMouseWheel (nFlags, zDelta, pt);
 }
 
 void CCrystalTextView::
@@ -6426,7 +6427,7 @@ OnMouseHWheel (UINT nFlags, short zDelta, CPoint pt)
   UpdateCaret ();
   UpdateSiblingScrollPos (true);
 
-  CView::OnMouseHWheel (nFlags, zDelta, pt);
+  __super::OnMouseHWheel (nFlags, zDelta, pt);
 }
 
 void CCrystalTextView::
@@ -6805,6 +6806,19 @@ OnToggleColumnSelection ()
   Invalidate ();
 }
 
+LRESULT CCrystalTextView::
+OnDpiChangedBeforeParent (WPARAM wParam, LPARAM lParam)
+{
+  const int oldDpi = m_dpi;
+  __super::OnDpiChangedBeforeParent(wParam, lParam);
+  if (m_dpi != oldDpi)
+    {
+      m_lfBaseFont.lfHeight = MulDiv(m_lfBaseFont.lfHeight, m_dpi, oldDpi);
+      SetFont (m_lfBaseFont);
+    }
+  return 0;
+}
+
 void CCrystalTextView::SetRenderingMode(RENDERING_MODE nRenderingMode)
 {
 #ifdef _WIN64
@@ -6861,7 +6875,7 @@ BOOL CCrystalTextView::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
 {
   // just look for commands
   if( nCode != CN_COMMAND || pExtra != nullptr )
-    return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+    return __super::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 
   // handle code:
   // each command that is not related to incremental search
@@ -6869,17 +6883,17 @@ BOOL CCrystalTextView::OnCmdMsg( UINT nID, int nCode, void* pExtra, AFX_CMDHANDL
   if( nID == ID_EDIT_FIND_INCREMENTAL_FORWARD || 
     nID == ID_EDIT_FIND_INCREMENTAL_BACKWARD || 
     nID == ID_EDIT_DELETE_BACK )
-    return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+    return __super::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 
   if( nID >= ID_EDIT_FIRST && nID <= ID_EDIT_LAST )
     m_bIncrementalSearchForward = m_bIncrementalSearchBackward = false;
 
-  return CView::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
+  return __super::OnCmdMsg( nID, nCode, pExtra, pHandlerInfo );
 }
 
 void CCrystalTextView::OnChar( wchar_t nChar, UINT nRepCnt, UINT nFlags )
 {
-  CView::OnChar( nChar, nRepCnt, nFlags );
+  __super::OnChar( nChar, nRepCnt, nFlags );
 
   // we only have to handle character-input, if we are in incremental search mode
   if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )

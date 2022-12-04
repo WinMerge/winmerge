@@ -8,11 +8,12 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
+#include "utils/DpiAware.h"
 
 class PrediffingInfo;
 class PackingInfo;
 
-class CMergeFrameCommon: public CMDIChildWnd
+class CMergeFrameCommon: public DpiAware::CDpiAwareWnd<CMDIChildWnd>
 {
 	DECLARE_DYNCREATE(CMergeFrameCommon)
 public:
@@ -28,6 +29,7 @@ public:
 	void SaveWindowState();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; }
 	void RemoveBarBorder();
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual BOOL IsTabbedMDIChild()
 	{
 		return TRUE; // https://stackoverflow.com/questions/35553955/getting-rid-of-3d-look-of-mdi-frame-window
@@ -46,6 +48,7 @@ protected:
 protected:
 	//{{AFX_MSG(CMergeFrameCommon)
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnDestroy();
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	//}}AFX_MSG

@@ -512,6 +512,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Externals\crystaledit\editlib\utils\DpiAware.cpp" />
     <ClCompile Include="..\..\Src\charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
@@ -801,6 +802,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Externals\crystaledit\editlib\utils\DpiAware.h" />
     <ClInclude Include="..\..\Src\charsets.h" />
     <ClInclude Include="..\..\Src\codepage_detect.h" />
     <ClInclude Include="..\..\Src\Common\ExConverter.h" />

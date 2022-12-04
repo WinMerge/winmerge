@@ -85,7 +85,7 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
  */
  CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, CString strMessage, 
 	CString strTitle, UINT nStyle, UINT nHelp, const CString& strRegistryKey ) 
-	: CDialog ( CMessageBoxDialog::IDD, pParent )
+	: DpiAware::CDpiAwareWnd<CDialog> ( CMessageBoxDialog::IDD, pParent )
 	, m_strMessage(strMessage)
 	, m_strTitle(strTitle.IsEmpty() ? AfxGetAppName() : strTitle)
 	, m_nStyle(nStyle)
@@ -108,23 +108,8 @@ IMPLEMENT_DYNAMIC(CMessageBoxDialog, CDialog)
 
 	m_aButtons.clear();
 
-	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
-	m_font.CreateFontIndirect(&ncm.lfMessageFont);
-
-	LOGFONT lf = { 0 };
-	HTHEME hTheme = OpenThemeData(nullptr, _T("TEXTSTYLE"));
-	if (hTheme != nullptr && SUCCEEDED(GetThemeFont(hTheme, nullptr, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
-	{
-		m_fontMainInstruction.CreateFontIndirect(&lf);
-		GetThemeColor(hTheme, TEXT_MAININSTRUCTION, 0, TMT_TEXTCOLOR, &m_clrMainInstructionFont);
-		CloseThemeData(hTheme);
-	}
-	else
-	{
-		m_fontMainInstruction.CreateFontIndirect(&ncm.lfMessageFont);
-		m_clrMainInstructionFont = GetSysColor(COLOR_WINDOWTEXT);
-	}
+	const int dpi = DpiAware::GetDpiForWindow((pParent ? pParent : AfxGetMainWnd())->m_hWnd);
+	UpdateResources(dpi);
 }
 
 /*
@@ -820,6 +805,22 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return __super::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
+LRESULT CMessageBoxDialog::OnDpiChanged(WPARAM wParam, LPARAM lParam)
+{
+	__super::OnDpiChanged(wParam, lParam);
+	UpdateResources(m_dpi);
+	Default();
+	if (!GetDlgItem(IDCHECKBOX))
+		return 0;
+	for (vector<MSGBOXBTN>::iterator iter = m_aButtons.begin(); iter != m_aButtons.end(); ++iter)
+		GetDlgItem(iter->nID)->SetFont(&m_font);
+	GetDlgItem(IDCHECKBOX)->SetFont(&m_font);
+	m_stcMessage.SetFont(&m_fontMainInstruction);
+	Invalidate();
+	m_sDialogUnit = {};
+	return 0;
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // Other dialog handling methods.
 
@@ -854,10 +855,11 @@ BOOL CMessageBoxDialog::OnWndMsg ( UINT message, WPARAM wParam, LPARAM lParam,
 	return __super::OnWndMsg(message, wParam, lParam, pResult);
 }
 
-BEGIN_MESSAGE_MAP(CMessageBoxDialog, CDialog)
+BEGIN_MESSAGE_MAP(CMessageBoxDialog, DpiAware::CDpiAwareWnd<CDialog>)
 	ON_WM_TIMER()
 	ON_WM_ERASEBKGND()
 	ON_WM_CTLCOLOR()
+	ON_MESSAGE(WM_DPICHANGED, OnDpiChanged)
 END_MESSAGE_MAP()
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1183,37 +1185,44 @@ void CMessageBoxDialog::ParseStyle ( )
 	if ( ( m_nStyle & MB_ICONMASK ) && ( m_hIcon == nullptr ) )
 	{
 		// Switch the icon.
+		LPTSTR icon = nullptr;
 		switch ( m_nStyle & MB_ICONMASK )
 		{
 
 			case MB_ICONEXCLAMATION:
 
 				// Load the icon with the exclamation mark.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_EXCLAMATION);
+				icon = IDI_EXCLAMATION;
 
 				break;
 
 			case MB_ICONHAND:
 
 				// Load the icon with the error symbol.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_HAND);
+				icon = IDI_HAND;
 
 				break;
 
 			case MB_ICONQUESTION:
 
 				// Load the icon with the question mark.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_QUESTION);
+				icon = IDI_QUESTION;
 
 				break;
 
 			case MB_ICONASTERISK:
 
 				// Load the icon with the information symbol.
-				m_hIcon = AfxGetApp()->LoadStandardIcon(IDI_ASTERISK);
+				icon = IDI_ASTERISK;
 
 				break;
 
+		}
+		if (icon)
+		{
+			const int cx = GetSystemMetrics(SM_CXICON);
+			const int cy = GetSystemMetrics(SM_CYICON);
+			DpiAware::LoadIconWithScaleDown(nullptr, icon, cx, cy, &m_hIcon);
 		}
 	}
 }
@@ -1277,8 +1286,12 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	// Select the new font and store the old one.
 	CFont* pOldFont = dcDisplay.SelectObject(&m_fontMainInstruction);
 
+	HMONITOR monitor = MonitorFromWindow(m_hWnd, MONITOR_DEFAULTTONEAREST);
+	MONITORINFO info{ sizeof MONITORINFO };
+	GetMonitorInfo(monitor, &info);
+
 	// Define the maximum width of the message.
-	int nMaxWidth = ( GetSystemMetrics(SM_CXSCREEN) / 2 ) + 100;
+	int nMaxWidth = ( info.rcMonitor.right / 2 ) + 100;
 
 	// Check whether an icon is displayed.
 	if ( m_hIcon != nullptr )
@@ -1603,4 +1616,27 @@ void CMessageBoxDialog::DefineLayout ( )
 
 	// Center the window.
 	CenterWindow();
+}
+
+void CMessageBoxDialog::UpdateResources(int dpi)
+{
+	LOGFONT lfMessageFont;
+	DpiAware::GetNonClientLogFont(lfMessageFont, offsetof(NONCLIENTMETRICS, lfMessageFont), dpi);
+	m_font.DeleteObject();
+	m_font.CreateFontIndirect(&lfMessageFont);
+
+	m_fontMainInstruction.DeleteObject();
+	LOGFONT lf = { 0 };
+	HTHEME hTheme = DpiAware::OpenThemeDataForDpi(nullptr, _T("TEXTSTYLE"), dpi);
+	if (hTheme != nullptr && SUCCEEDED(GetThemeFont(hTheme, nullptr, TEXT_MAININSTRUCTION, 0, TMT_FONT, &lf)))
+	{
+		m_fontMainInstruction.CreateFontIndirect(&lf);
+		GetThemeColor(hTheme, TEXT_MAININSTRUCTION, 0, TMT_TEXTCOLOR, &m_clrMainInstructionFont);
+		CloseThemeData(hTheme);
+	}
+	else
+	{
+		m_fontMainInstruction.CreateFontIndirect(&lfMessageFont);
+		m_clrMainInstructionFont = GetSysColor(COLOR_WINDOWTEXT);
+	}
 }
