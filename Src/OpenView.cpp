@@ -501,8 +501,7 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
 			m_constraint.Persist(true, false);
-			WINDOWPLACEMENT wp = {};
-			wp.length = sizeof wp;
+			WINDOWPLACEMENT wp = { sizeof wp };
 			pFrameWnd->GetWindowPlacement(&wp);
 			CRect rc;
 			GetWindowRect(&rc);

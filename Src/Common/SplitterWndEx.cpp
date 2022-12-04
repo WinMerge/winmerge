@@ -294,8 +294,7 @@ void CSplitterWndEx::RecalcLayout()
 		bool bSplitPanesInHalf = true;
 		if (hLeftMonitor != hRightMonitor)
 		{
-			MONITORINFO info;
-			info.cbSize = sizeof(MONITORINFO);
+			MONITORINFO info{ sizeof(MONITORINFO) };
 			GetMonitorInfo(hLeftMonitor, &info);
 
 			int iDesiredWidthOfLeftPane = info.rcMonitor.right - vSplitterWndRect.left;

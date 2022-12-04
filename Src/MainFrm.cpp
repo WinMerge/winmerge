@@ -1576,8 +1576,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 
 	m_bFirstTime = false;
 
-	WINDOWPLACEMENT wp = {};
-	wp.length = sizeof(WINDOWPLACEMENT);
+	WINDOWPLACEMENT wp = { sizeof(WINDOWPLACEMENT) };
 	GetWindowPlacement(&wp);
 	wp.rcNormalPosition.left=theApp.GetProfileInt(_T("Settings"), _T("MainLeft"),0);
 	wp.rcNormalPosition.top=theApp.GetProfileInt(_T("Settings"), _T("MainTop"),0);
@@ -1630,8 +1629,7 @@ void CMainFrame::OnClose()
 	}
 
 	// save main window position
-	WINDOWPLACEMENT wp = {};
-	wp.length = sizeof(WINDOWPLACEMENT);
+	WINDOWPLACEMENT wp = { sizeof(WINDOWPLACEMENT) };
 	GetWindowPlacement(&wp);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainLeft"),wp.rcNormalPosition.left);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainTop"),wp.rcNormalPosition.top);

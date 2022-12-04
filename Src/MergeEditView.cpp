@@ -3405,8 +3405,7 @@ void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		return;
 
 	// Note we cannot use nPos because of its 16-bit nature
-	SCROLLINFO si = {0};
-	si.cbSize = sizeof (si);
+	SCROLLINFO si{ sizeof(si) };
 	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
 	VERIFY (GetScrollInfo (SB_VERT, &si));
 

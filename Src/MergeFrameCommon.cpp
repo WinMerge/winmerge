@@ -65,8 +65,7 @@ void CMergeFrameCommon::SaveWindowState()
 	// If we are not, do nothing and let the active frame do the job.
  	if (GetParentFrame()->GetActiveFrame() == this)
 	{
-		WINDOWPLACEMENT wp = {};
-		wp.length = sizeof(WINDOWPLACEMENT);
+		WINDOWPLACEMENT wp = { sizeof(WINDOWPLACEMENT) };
 		GetWindowPlacement(&wp);
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_FRAME_MAX, (wp.showCmd == SW_MAXIMIZE));
 	}

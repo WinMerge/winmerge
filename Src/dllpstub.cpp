@@ -83,8 +83,7 @@ HMODULE DLLPSTUB::Load()
 				if (dwMajorVersion || dwMinorVersion || dwBuildNumber)
 				{
 					// Is the DLL up to date?
-					DLLVERSIONINFO dvi;
-					dvi.cbSize = sizeof dvi;
+					DLLVERSIONINFO dvi{ sizeof dvi };
 					dvi.dwMajorVersion = 0;
 					dvi.dwMinorVersion = 0;
 					dvi.dwBuildNumber = 0;
