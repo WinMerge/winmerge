@@ -262,6 +262,23 @@ static COLORREF GetDarkenColor(COLORREF a, double r)
 	return RGB(R, G, B);
 }
 
+static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
+{
+  float ratio = 0.5;
+  const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
+  const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
+  const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
+  return RGB(R, G, B);
+}
+
+static COLORREF MakeBackColor(bool bActive, bool bInEditing)
+{
+	if (bActive)
+		return GetIntermediateColor(::GetSysColor(bInEditing ? COLOR_WINDOW : COLOR_ACTIVECAPTION), ::GetSysColor(COLOR_3DFACE));
+	else
+		return GetIntermediateColor(::GetSysColor(bInEditing ? COLOR_WINDOW : COLOR_INACTIVECAPTION), ::GetSysColor(COLOR_3DFACE));
+}
+
 void CFilepathEdit::OnNcPaint()
 {
 	COLORREF crBackGnd = m_bInEditing ? ::GetSysColor(COLOR_ACTIVEBORDER) : m_crBackGnd;
@@ -300,7 +317,7 @@ void CFilepathEdit::OnKillFocus(CWnd* pNewWnd)
 	{
 		m_bInEditing = false;
 		SetTextColor(::GetSysColor(COLOR_WINDOWTEXT));
-		SetBackColor(::GetSysColor(COLOR_INACTIVECAPTION));
+		SetBackColor(MakeBackColor(false, false));
 		RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 		SetReadOnly(true);
 		SetWindowText(m_sOriginalText.c_str());
@@ -426,7 +443,7 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 		{
 			m_bInEditing = false;
 			SetTextColor(::GetSysColor(COLOR_CAPTIONTEXT));
-			SetBackColor(::GetSysColor(COLOR_ACTIVECAPTION));
+			SetBackColor(MakeBackColor(true, false));
 			RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 			SetReadOnly();
 			CString sText;
@@ -470,13 +487,12 @@ void CFilepathEdit::SetActive(bool bActive)
 	if (bActive)
 	{
 		SetTextColor(::GetSysColor(m_bInEditing ? COLOR_WINDOWTEXT : COLOR_CAPTIONTEXT));
-		SetBackColor(::GetSysColor(m_bInEditing ? COLOR_WINDOW : COLOR_ACTIVECAPTION));
 	}
 	else
 	{
 		SetTextColor(::GetSysColor(m_bInEditing ? COLOR_WINDOWTEXT : COLOR_INACTIVECAPTIONTEXT));
-		SetBackColor(::GetSysColor(m_bInEditing ? COLOR_WINDOW : COLOR_INACTIVECAPTION));
 	}
+	SetBackColor(MakeBackColor(bActive, m_bInEditing));
 	RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 }
 
