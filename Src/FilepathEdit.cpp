@@ -284,7 +284,10 @@ void CFilepathEdit::OnNcPaint()
 	COLORREF crBackGnd = m_bInEditing ? ::GetSysColor(COLOR_ACTIVEBORDER) : m_crBackGnd;
 	CWindowDC dc(this);
 	CRect rect;
-	const int margin = 4;
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int margin = pointToPixel(3);
+
 	GetWindowRect(rect);
 	rect.OffsetRect(-rect.TopLeft());
 	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + margin, rect.bottom), GetDarkenColor(crBackGnd, 0.98));
@@ -304,7 +307,10 @@ void CFilepathEdit::OnPaint()
 		CFont *pFontOld = dc.SelectObject(GetFont());	
 		int oldBkMode = dc.SetBkMode(TRANSPARENT);
 		CRect rc = GetMenuCharRect(&dc);
-		dc.TextOutW(rc.left + 4, 0, IsWin7_OrGreater() ? _T("\u2261") : _T("="));
+		const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+		auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+		const int margin = pointToPixel(3);
+		dc.TextOutW(rc.left + margin, 0, IsWin7_OrGreater() ? _T("\u2261") : _T("="));
 		dc.SetBkMode(oldBkMode);
 		dc.SelectObject(pFontOld);
 	}
@@ -330,7 +336,9 @@ CRect CFilepathEdit::GetMenuCharRect(CDC* pDC)
 	GetClientRect(rc);
 	int charWidth;
 	pDC->GetCharWidth('=', '=', &charWidth);
-	rc.left = rc.right - charWidth - 4 * 2;
+	const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	rc.left = rc.right - charWidth - pointToPixel(3 * 2);
 	return rc;
 }
 
