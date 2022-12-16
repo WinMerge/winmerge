@@ -21,7 +21,6 @@ struct DirWatchee
 {
 	String path;
 	HANDLE hDir = nullptr;
-	DWORD dwInfoSize = 0;
 	bool watchSubtree = false;
 	std::unique_ptr<OVERLAPPED> pOverlapped;
 	std::vector<BYTE> info;

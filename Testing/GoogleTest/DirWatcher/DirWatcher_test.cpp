@@ -54,7 +54,7 @@ namespace
 		auto func = [&](const String& path, DirWatcher::ACTION action) {
 			wprintf(L"path=%s action=%d\n", path.c_str(), action);
 			counter++;
-			if (counter >= 6)
+			if (counter >= 10)
 				completed = true;
 		};
 		EXPECT_TRUE(watcher.Add(1, true,  L"..\\TestData\\DirWatcher\\", func));
@@ -64,6 +64,8 @@ namespace
 
 		SetFileAttributes(L"..\\TestData\\DirWatcher\\test2.txt", FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY);
 		SetFileAttributes(L"..\\TestData\\DirWatcher\\test2.txt", FILE_ATTRIBUTE_NORMAL);
+		SetFileAttributes(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt", FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY);
+		SetFileAttributes(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt", FILE_ATTRIBUTE_NORMAL);
 
 		while (!completed)
 			Sleep(1);
