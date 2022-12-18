@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-10-17 13:00+0200\n"
+"PO-Revision-Date: 2022-12-18 19:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgid "With &Registered Application"
 msgstr "Mit &registrierter Anwendung"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "Mit &externem Editor\tStrg+Alt+E"
+msgstr "Mit e&xternem Editor\tStrg+Alt+E"
 
 msgid "&With..."
 msgstr "&Mit..."
@@ -1009,11 +1009,11 @@ msgid "Compare in new &window"
 msgstr "In neuem Fenster vergleichen"
 
 msgid "Compare Non-hor&izontally..."
-msgstr "Nicht-hor&izontal vergleichen..."
+msgstr "Nicht hor&izontal vergleichen..."
 
 #, c-format
 msgid "Compare Non-hor&izontally"
-msgstr "Nicht-hor&izontal vergleichen"
+msgstr "Nicht hor&izontal vergleichen"
 
 #, c-format
 msgid "First &left item with second left item"
@@ -1033,7 +1033,7 @@ msgstr "Zweites Objekt links mit erstem Objekt rechts"
 
 #, c-format
 msgid "Co&mpare As"
-msgstr "Vergleichen als"
+msgstr "Vergleichen al&s"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
@@ -1073,7 +1073,7 @@ msgstr "Rechts nach... (%1 von %2)"
 
 #, c-format
 msgid "&Delete"
-msgstr "&Löschen"
+msgstr "L&öschen"
 
 #, c-format
 msgid "&Both"
@@ -1093,7 +1093,7 @@ msgstr "Objekte v&erstecken"
 
 #, c-format
 msgid "&Open Left"
-msgstr "Links ö&ffnen"
+msgstr "&Links öffnen"
 
 #, c-format
 msgid "Open Midd&le"
@@ -1101,7 +1101,7 @@ msgstr "&Mitte öffnen"
 
 #, c-format
 msgid "O&pen Right"
-msgstr "Rechts öff&nen"
+msgstr "&Rechts öffnen"
 
 #, c-format
 msgid "Cop&y Pathnames"
@@ -1136,7 +1136,7 @@ msgid "Copy Items To Clip&board"
 msgstr "Objekte in die &Zwischenablage kopieren"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Alle angezeig&ten Spalten kopieren"
 
 #, c-format
 msgid "&Zip"
