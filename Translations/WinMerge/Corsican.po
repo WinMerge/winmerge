@@ -935,6 +935,9 @@ msgstr "Cupià i nomi di &schedariu"
 msgid "Copy Items To Clip&board"
 msgstr "Cupià l’&elementi in u preme’papei"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Cumpri&me"
 

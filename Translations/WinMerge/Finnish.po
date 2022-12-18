@@ -933,6 +933,9 @@ msgstr "Kopioi tiedostonimet"
 msgid "Copy Items To Clip&board"
 msgstr "Kopioi kohteet leike&pöydälle"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Pakkaa"
 

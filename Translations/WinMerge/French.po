@@ -1139,6 +1139,9 @@ msgstr "Copier les noms de &fichiers"
 msgid "Copy Items To Clip&board"
 msgstr "Copier éléments dans le presse-papier"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "Co&mpresser"

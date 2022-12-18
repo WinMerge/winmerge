@@ -917,6 +917,7 @@ BEGIN
             MENUITEM "Both (%1 of %2)",             ID_DIR_COPY_BOTH_TO_CLIPBOARD
             MENUITEM "All (%1 of %2)",              ID_DIR_COPY_ALL_TO_CLIPBOARD
         END
+        MENUITEM "Copy All Di&splayed Columns"       ID_DIR_COPY_ALL_DISP_COLUMNS
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN

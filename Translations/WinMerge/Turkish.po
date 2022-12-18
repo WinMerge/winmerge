@@ -933,6 +933,9 @@ msgstr "&Dosya adlarını kopyala"
 msgid "Copy Items To Clip&board"
 msgstr "Ö&geleri panoya kopyala"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Sıkıştır"
 

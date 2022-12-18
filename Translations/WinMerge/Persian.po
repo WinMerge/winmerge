@@ -1133,6 +1133,9 @@ msgstr "&F رونوشت برداري از نام پرونده ها "
 msgid "Copy Items To Clip&board"
 msgstr ""
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "&Z فشرده سازي "
