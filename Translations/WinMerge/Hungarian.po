@@ -1134,6 +1134,9 @@ msgstr "&Fájlnevek másolása"
 msgid "Copy Items To Clip&board"
 msgstr "Elemek másolása a vágólapra"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "&Zip"

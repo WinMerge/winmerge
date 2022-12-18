@@ -934,6 +934,9 @@ msgstr "Co&piar nomes de ficheiro"
 msgid "Copy Items To Clip&board"
 msgstr "Copiar itens para a área de transferência"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip"
 

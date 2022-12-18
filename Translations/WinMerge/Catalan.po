@@ -1132,6 +1132,9 @@ msgstr "Co&pia els noms de fitxer"
 msgid "Copy Items To Clip&board"
 msgstr "Copia els elements al porta-re&talls"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "Co&mprimeix"

@@ -1139,6 +1139,9 @@ msgstr "複製檔名 (&F)"
 msgid "Copy Items To Clip&board"
 msgstr "複製項目到剪貼簿 (&B)"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "Zip (&Z)"
