@@ -659,11 +659,12 @@
 #define ID_DIR_COPY_RIGHT_TO_CLIPBOARD  17611
 #define ID_DIR_COPY_BOTH_TO_CLIPBOARD   17612
 #define ID_DIR_COPY_ALL_TO_CLIPBOARD    17613
-#define ID_DIR_DEL_LEFT                 17614
-#define ID_DIR_DEL_MIDDLE               17615
-#define ID_DIR_DEL_RIGHT                17616
-#define ID_DIR_DEL_BOTH                 17617
-#define ID_DIR_DEL_ALL                  17618
+#define ID_DIR_COPY_ALL_DISP_COLUMNS    17614
+#define ID_DIR_DEL_LEFT                 17615
+#define ID_DIR_DEL_MIDDLE               17616
+#define ID_DIR_DEL_RIGHT                17617
+#define ID_DIR_DEL_BOTH                 17618
+#define ID_DIR_DEL_ALL                  17619
 #define ID_DIR_OPEN_LEFT                17701
 #define ID_DIR_OPEN_LEFT_WITHEDITOR     17702
 #define ID_DIR_OPEN_LEFT_WITH           17703

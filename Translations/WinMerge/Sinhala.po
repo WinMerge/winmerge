@@ -1132,6 +1132,9 @@ msgstr "ගොනු නම් පිටපත් කිරීම"
 msgid "Copy Items To Clip&board"
 msgstr ""
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "&Zip"
 msgstr "&Zip"

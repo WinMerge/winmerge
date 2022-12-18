@@ -1129,6 +1129,9 @@ msgstr "Умножи називе датотека"
 msgid "Copy Items To Clip&board"
 msgstr ""
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "&Зип"

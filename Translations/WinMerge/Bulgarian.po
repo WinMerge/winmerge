@@ -930,6 +930,9 @@ msgstr "Копиране на &файловите имена"
 msgid "Copy Items To Clip&board"
 msgstr "&Копиране елементите в системния буфер"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip"
 

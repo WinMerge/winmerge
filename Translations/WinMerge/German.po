@@ -1135,6 +1135,9 @@ msgstr "&Dateinamen kopieren"
 msgid "Copy Items To Clip&board"
 msgstr "Objekte in die &Zwischenablage kopieren"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "P&acken"

@@ -934,6 +934,9 @@ msgstr "Kopiuj nazwy plików"
 msgid "Copy Items To Clip&board"
 msgstr "Kopiuj elementy do schowka"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Spakuj"
 

@@ -933,6 +933,9 @@ msgstr "Kopiraj &imena datotek"
 msgid "Copy Items To Clip&board"
 msgstr "Kopiraj vnose v o&dložišče"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip arhiv"
 

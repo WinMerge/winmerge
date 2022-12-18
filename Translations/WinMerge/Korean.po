@@ -1140,6 +1140,9 @@ msgstr "파일 이름들 복사(&F)"
 msgid "Copy Items To Clip&board"
 msgstr "항목을 클립보드로 복사(&B)"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "Zip 압축(&Z)"

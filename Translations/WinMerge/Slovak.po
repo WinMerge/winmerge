@@ -933,6 +933,9 @@ msgstr "Kopírovať názvy &súborov"
 msgid "Copy Items To Clip&board"
 msgstr "Kopírovať položky do &schránky"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zbaliť ZIP"
 

@@ -358,6 +358,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
+	// Context menu -> Copy All Displayed Columns
+	ON_COMMAND(ID_DIR_COPY_ALL_DISP_COLUMNS, OnCopyAllDisplayedColumns)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_DISP_COLUMNS, OnUpdateCopyAllDisplayedColumns)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
@@ -3256,6 +3259,41 @@ void CDirView::OnCopyBothToClipboard()
 	std::list<String> list;
 	CopyBothPathnames(SelBegin(), SelEnd(), std::back_inserter(list), GetDiffContext());
 	PutFilesToClipboard(list, GetMainFrame()->GetSafeHwnd());
+}
+
+/**
+ * @brief Copy all displayed columns of selected items to clipboard.
+ */
+void CDirView::OnCopyAllDisplayedColumns()
+{
+	int ncols = m_pColItems->GetDispColCount();
+	String text;
+
+	int row = -1;
+	while (true)
+	{
+		row = m_pList->GetNextItem(row, LVNI_SELECTED);
+		if (row == -1)
+			break;
+		for (int col = 0; col < ncols; col++)
+		{
+			text += m_pList->GetItemText(row, col);
+			if (col < ncols - 1)
+				text += _T("\t");
+		}
+		text += _T("\r\n");
+	}
+
+	PutToClipboard(text, GetMainFrame()->GetSafeHwnd());
+}
+
+/**
+ * @brief Enable/Disable dirview Copy All Displayed Columns context menu item.
+ * @param[in] pCmdUI UI component to update.
+ */
+void CDirView::OnUpdateCopyAllDisplayedColumns(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pList->GetSelectedCount() != 0);
 }
 
 /**

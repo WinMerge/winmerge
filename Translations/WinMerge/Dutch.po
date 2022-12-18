@@ -933,6 +933,9 @@ msgstr "Bestandsnamen kopiëren"
 msgid "Copy Items To Clip&board"
 msgstr "Items naar klembord kopiëren"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Zippen"
 

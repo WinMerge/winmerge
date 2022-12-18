@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-16 00:15+0000\n"
+"POT-Creation-Date: 2022-12-18 17:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -925,6 +925,9 @@ msgid "Copy &Filenames"
 msgstr ""
 
 msgid "Copy Items To Clip&board"
+msgstr ""
+
+msgid "Copy All Di&splayed Columns"
 msgstr ""
 
 msgid "&Zip"

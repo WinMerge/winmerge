@@ -932,6 +932,9 @@ msgstr "ファイル名をコピー(&F)"
 msgid "Copy Items To Clip&board"
 msgstr "項目をクリップボードにコピー(&B)"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "すべての表示列をコピー(&S)"
+
 msgid "&Zip"
 msgstr "圧縮(&Z)"
 

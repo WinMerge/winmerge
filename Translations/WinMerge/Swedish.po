@@ -934,6 +934,9 @@ msgstr "Kopiera filnamn"
 msgid "Copy Items To Clip&board"
 msgstr "Kopiera objekt till urklipp"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Zip"
 

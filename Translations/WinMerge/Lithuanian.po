@@ -933,6 +933,9 @@ msgstr "Kopijuoti &failų vardus"
 msgid "Copy Items To Clip&board"
 msgstr "Kopijuoti elementus į iš&karpinę"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip"
 

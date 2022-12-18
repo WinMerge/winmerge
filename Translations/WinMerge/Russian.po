@@ -935,6 +935,9 @@ msgstr "Копировать &имена файлов"
 msgid "Copy Items To Clip&board"
 msgstr "Копировать в буфер"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Заархивировать"
 
