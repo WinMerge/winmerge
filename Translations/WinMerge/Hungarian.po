@@ -1135,7 +1135,7 @@ msgid "Copy Items To Clip&board"
 msgstr "Elemek másolása a vágólapra"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Minden látható oszlop másolása"
 
 #, c-format
 msgid "&Zip"
