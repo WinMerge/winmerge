@@ -166,6 +166,8 @@ CWebPageDiffFrame::CWebPageDiffFrame()
 
 CWebPageDiffFrame::~CWebPageDiffFrame()
 {
+	GetMainFrame()->UnwatchDocuments(this);
+
 	if (m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->MergeDocClosing(this);
@@ -226,6 +228,8 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 	BringToTop(nCmdShow);
 
 	GetParent()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_DRAWFRAME);
+
+	GetMainFrame()->WatchDocuments(this);
 
 	return true;
 }

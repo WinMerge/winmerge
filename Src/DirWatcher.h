@@ -23,8 +23,8 @@ public:
 	bool Remove(uintptr_t id);
 	void Clear();
 private:
-	void startThread();
-	void exitThread();
+	bool startThread();
+	bool exitThread();
 	unsigned DirWatcherThreadProc();
 	static unsigned __stdcall DirWatcherThreadProcStatic(void* pParam);
 	HANDLE m_hThread;

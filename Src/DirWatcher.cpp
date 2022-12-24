@@ -94,34 +94,38 @@ bool DirWatcher::Remove(uintptr_t id)
 {
 	EnterCriticalSection(&m_cs);
 
-	if (!m_hThread)
-		startThread();
+	bool result = false;
+	if (m_hThread)
+	{
+		m_pReq->type = DirRequest::DEL;
+		m_pReq->listener.id = id;
+		SetEvent(m_hEventReq);
 
-	m_pReq->type = DirRequest::DEL;
-	m_pReq->listener.id = id;
-	SetEvent(m_hEventReq);
-
-	WaitForSingleObject(m_hEventResp, INFINITE);
-	ResetEvent(m_hEventResp);
-	bool result = SUCCEEDED(m_resp);
+		WaitForSingleObject(m_hEventResp, INFINITE);
+		ResetEvent(m_hEventResp);
+		result = SUCCEEDED(m_resp);
+	}
 
 	LeaveCriticalSection(&m_cs);
 	return result;
 }
 
-void DirWatcher::startThread()
+bool DirWatcher::startThread()
 {
 	if (m_hThread)
-		return;
+		return false;
 
 	unsigned dwThreadId = 0;
 	m_hThread = reinterpret_cast<HANDLE>(
 		_beginthreadex(nullptr, 0, DirWatcherThreadProcStatic,
 			this, 0, &dwThreadId));
+	return m_hThread != nullptr;
 }
 
-void DirWatcher::exitThread()
+bool DirWatcher::exitThread()
 {
+	bool result = false;
+
 	EnterCriticalSection(&m_cs);
 
 	if (m_hThread)
@@ -131,7 +135,7 @@ void DirWatcher::exitThread()
 
 		WaitForSingleObject(m_hEventResp, INFINITE);
 		ResetEvent(m_hEventResp);
-		bool result = SUCCEEDED(m_resp);
+		result = SUCCEEDED(m_resp);
 
 		CloseHandle(m_hThread);
 		m_hThread = nullptr;
@@ -139,6 +143,7 @@ void DirWatcher::exitThread()
 
 	LeaveCriticalSection(&m_cs);
 
+	return result;
 }
 
 void DirWatcher::Clear()

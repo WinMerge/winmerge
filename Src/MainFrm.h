@@ -34,6 +34,7 @@ class DropHandler;
 class CMainFrame;
 class CImgMergeFrame;
 class CWebPageDiffFrame;
+class DirWatcher;
 
 typedef std::shared_ptr<TempFile> TempFilePtr;
 
@@ -203,6 +204,9 @@ public:
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
 	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
 	IMergeDoc* GetActiveIMergeDoc();
+	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
+	void WatchDocuments(IMergeDoc* pMergeDoc);
+	void UnwatchDocuments(IMergeDoc* pMergeDoc);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -305,6 +309,7 @@ protected:
 	std::unique_ptr<BCMenu> m_pWebPageMenu;
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
+	std::unique_ptr<DirWatcher> m_pDirWatcher;
 
 // Generated message map functions
 protected:
