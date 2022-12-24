@@ -45,6 +45,7 @@
   - Galician (#1581)
   - German (PR #1616)
   - Hungarian (PR #1618)
+  - Lithuanian (PR #1621)
   - Japanese
   - Polish (PR #1566)
   - Russian (PR #1553,#1554,#1555)
