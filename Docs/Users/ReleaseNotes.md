@@ -55,6 +55,7 @@ Please submit bug reports to our bug-tracker.
 - Translation updates:
   - Brazilian (PR #1617)
   - Chinese Simplified (PR #1614)
+  - Corsican (PR #1628)
   - Galician (#1581)
   - German (PR #1616)
   - Hungarian (PR #1618)
