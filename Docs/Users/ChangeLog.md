@@ -36,6 +36,10 @@
     folder comparison. (PR #1545)
 - Add "Copy All Displayed Columns" to the context menu of the folder compare
     window. (PR #1615)
+    
+### Options dialog
+
+- Added Auto-reload modified files option (PR #1611)
 
 ### Translations
 

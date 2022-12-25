@@ -49,6 +49,10 @@ Please submit bug reports to our bug-tracker.
     folder comparison. (PR #1545)
 - Add "Copy All Displayed Columns" to the context menu of the folder compare
     window. (PR #1615)
+    
+### Options dialog
+
+- Added Auto-reload modified files option (PR #1611)
 
 ### Translations
 
@@ -84,6 +88,7 @@ Please submit bug reports to our bug-tracker.
 
 ## Known issues
 
+ - Shell integration does not open winmerge when selecting two folders (#1619)
  - Suggestion to make the result of image comparison more reliable (#1391)
  - Crashes when comparing large files (#325)
  - Very slow to compare significantly different directories (#322)
