@@ -1427,6 +1427,9 @@ msgstr "비교 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 �
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "열기 대화 상자 자동 완성(&E):"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr "언어:"
@@ -4647,6 +4650,12 @@ msgstr "중복 실행 금지하기"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "중복 실행 금지 및 기존 실행 종료 대기"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "전체(&L)"

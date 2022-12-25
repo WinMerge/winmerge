@@ -1419,6 +1419,9 @@ msgstr "Tanca el diàlec \"Selecciona fitxers o directoris\" al fer clic en comp
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Autocompletar al diàleg d'obrir:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr "Idioma:"
@@ -4659,6 +4662,12 @@ msgstr "Permet d'executar només una instància"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permet d'executar només una instància i espera que la instància acabi"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Tot"

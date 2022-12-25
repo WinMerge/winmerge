@@ -1419,6 +1419,9 @@ msgstr ""
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatické &dokončování:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr ""
@@ -4435,6 +4438,12 @@ msgid "Allow only one instance to run"
 msgstr "Povolit pouze jedno hlavní okno aplikace"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

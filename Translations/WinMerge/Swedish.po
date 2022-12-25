@@ -1162,6 +1162,9 @@ msgstr "Stäng \"Välj filer eller mapp\" dialogen då ''Jämför'' klickas"
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatisk komplettering för Öppna-dialog:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Språk:"
 
@@ -3962,6 +3965,12 @@ msgstr "Tillåt endast att en instans körs"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Tillåt endast att en instans körs och vänta på den att avsluta"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "AI&I"

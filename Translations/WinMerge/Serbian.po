@@ -1406,6 +1406,9 @@ msgstr ""
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Отвори дијалог самодовршења:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr ""
@@ -4474,6 +4477,12 @@ msgid "Allow only one instance to run"
 msgstr "Дозволи само једну покренуту надлежност"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

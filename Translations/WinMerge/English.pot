@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-12-18 17:41+0000\n"
+"POT-Creation-Date: 2022-12-25 15:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1153,6 +1153,9 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
+msgstr ""
+
+msgid "Auto-&reload modified files:"
 msgstr ""
 
 msgid "Language:"
@@ -3572,6 +3575,12 @@ msgid "Allow only one instance to run"
 msgstr ""
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

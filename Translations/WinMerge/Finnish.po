@@ -1161,6 +1161,9 @@ msgstr ""
 msgid "Op&en-dialog Auto-Completion:"
 msgstr ""
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Kieli:"
 
@@ -3993,6 +3996,12 @@ msgid ""
 msgstr ""
 "Salli vain yhden instanssin suorittaminen ja odota, että instanssi "
 "lopetetaan"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "K&aikki"

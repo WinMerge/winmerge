@@ -1159,6 +1159,9 @@ msgstr "Visualizza la finestra “Seleziona file o cartelle” quando si fa clic
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Com&pletamento automatico selezione file:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Lingua:"
 
@@ -3938,6 +3941,12 @@ msgstr "Permetti l'esecuzione di un'unica istanza del programma"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permetti l'esecuzione di un'unica istanza del programma e attendi che termini"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr ""

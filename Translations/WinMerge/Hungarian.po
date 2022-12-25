@@ -1421,6 +1421,9 @@ msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehas
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr "Nyelv:"
@@ -4642,6 +4645,12 @@ msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Összes"

@@ -1163,6 +1163,9 @@ msgstr "Закрывать диалог \"Выбрать файлы или па�
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Язык:"
 
@@ -3581,6 +3584,12 @@ msgstr "Разрешить запуск только одной копии"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Все"

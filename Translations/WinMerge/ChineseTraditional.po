@@ -1428,6 +1428,9 @@ msgstr ""
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "「開啟」對話方塊之自動完成 (&E)："
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr "語言："
@@ -4657,6 +4660,12 @@ msgid "Allow only one instance to run"
 msgstr "不能同時執行一個以上本程式"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

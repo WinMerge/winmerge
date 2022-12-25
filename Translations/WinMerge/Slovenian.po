@@ -1161,6 +1161,9 @@ msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Jezik:"
 
@@ -3962,6 +3965,12 @@ msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "V&se"

@@ -1418,6 +1418,9 @@ msgstr ""
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Αυτόματη συμπλήρωση διαλόγου αν&οίγματος"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr ""
@@ -4480,6 +4483,12 @@ msgid "Allow only one instance to run"
 msgstr "Επιτρέπεται μόνο μία υπόσταση του WinMerge ανοικτή"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

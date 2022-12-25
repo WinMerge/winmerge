@@ -88,6 +88,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_SPLIT_HORIZONTALLY, false);
 	pOptions->InitOption(OPT_RENDERING_MODE, -1, 0, 6);
 	pOptions->InitOption(OPT_FILE_SIZE_THRESHOLD, 64*1024*1024);
+	pOptions->InitOption(OPT_AUTO_RELOAD_MODIFIED_FILES, 1);
 
 	pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
 	pOptions->InitOption(OPT_BREAK_SEPARATORS, _T(".,:;?[](){}<=>`'!\"#$%&^~\\|@+-*/"));
