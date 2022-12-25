@@ -1162,6 +1162,9 @@ msgstr "Zamknij okno \"wybierz pliki lub foldery\" przyciskiem Porównaj"
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Otwórz okno automatycznego uzu&pełniania:"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Język:"
 
@@ -3580,6 +3583,12 @@ msgstr "Zezwól na uruchomienie tylko jednej instancji programu"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Zezwól na uruchomienie tylko jednej instancji i poczekaj, aż zakończy pracę"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Wszystkie"

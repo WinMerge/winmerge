@@ -1163,6 +1163,9 @@ msgstr "Chjode a finestra « Selezziunà schedarii o cartulari » cù u button
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "&Empiimentu autumaticu di a finestra d’apertura :"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "Lingua :"
 
@@ -3972,6 +3975,12 @@ msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma è aspettà ch’ella si compii"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "T&utti"

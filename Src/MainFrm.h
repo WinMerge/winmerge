@@ -291,6 +291,12 @@ protected:
 		MENU_FOLDERCMP = 0x000004,
 		MENU_ALL = MENU_MAINFRM | MENU_FILECMP | MENU_FOLDERCMP
 	};
+	enum
+	{
+		AUTO_RELOAD_MODIFIED_FILES_DISABLED,
+		AUTO_RELOAD_MODIFIED_FILES_ONWINDOWACTIVATED,
+		AUTO_RELOAD_MODIFIED_FILES_IMMEDIATELY
+	};
 
 	/**
 	 * A structure attaching a menu item, icon and menu types to apply to.

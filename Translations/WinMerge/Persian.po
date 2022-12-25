@@ -1422,6 +1422,9 @@ msgstr ""
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "&p بازکردن پنجره محاوره اتمام خودکار "
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 #, c-format
 msgid "Language:"
 msgstr ""
@@ -4549,6 +4552,12 @@ msgid "Allow only one instance to run"
 msgstr "اجازه اجراي همزمان تنها يک نسخه از نرم افزار  "
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

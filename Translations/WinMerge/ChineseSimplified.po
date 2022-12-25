@@ -1162,6 +1162,9 @@ msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "“打开”对话框的自动完成(&E):"
 
+msgid "Auto-&reload modified files:"
+msgstr ""
+
 msgid "Language:"
 msgstr "语言:"
 
@@ -4001,6 +4004,12 @@ msgstr "只允许运行一个实例"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "只允许运行一个实例并等待该实例结束"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "全部(&L)"

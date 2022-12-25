@@ -38,6 +38,7 @@ PropGeneral::PropGeneral(COptionsMgr *optionsMgr)
 	, m_bPreserveFiletime(false)
 	, m_bShowSelectFolderOnStartup(false)
 	, m_bCloseWithOK(true)
+	, m_nFileReloadMode(0)
 {
 }
 
@@ -77,6 +78,15 @@ BOOL PropGeneral::OnInitDialog()
 
 	pWnd->SetCurSel(m_nSingleInstance);
 
+	pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_RELOAD_MODIFIED_FILES);
+	ASSERT(pWnd != nullptr);
+
+	pWnd->AddString(_("Disabled").c_str());
+	pWnd->AddString(_("Only on window activated").c_str());
+	pWnd->AddString(_("Immediately").c_str());
+
+	pWnd->SetCurSel(m_nFileReloadMode);
+
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);
 	m_asyncLanguagesLoader = Concurrent::CreateTask([hwnd = m_hWnd] {
@@ -101,6 +111,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
 	DDX_Check(pDX, IDC_STARTUP_FOLDER_SELECT, m_bShowSelectFolderOnStartup);
 	DDX_Check(pDX, IDC_CLOSE_WITH_OK, m_bCloseWithOK);
+	DDX_CBIndex(pDX, IDC_AUTO_RELOAD_MODIFIED_FILES, m_nFileReloadMode);
 	DDX_Control(pDX, IDC_LANGUAGE_LIST, m_ctlLangList);
 	//}}AFX_DATA_MAP
 }
@@ -127,6 +138,7 @@ void PropGeneral::ReadOptions()
 	m_bPreserveFiletime = GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES);
 	m_bShowSelectFolderOnStartup = GetOptionsMgr()->GetBool(OPT_SHOW_SELECT_FILES_AT_STARTUP);
 	m_bCloseWithOK = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_OK);
+	m_nFileReloadMode = GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES);
 }
 
 /** 
@@ -144,6 +156,7 @@ void PropGeneral::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, m_bShowSelectFolderOnStartup);
 	GetOptionsMgr()->SaveOption(OPT_CLOSE_WITH_OK, m_bCloseWithOK);
+	GetOptionsMgr()->SaveOption(OPT_AUTO_RELOAD_MODIFIED_FILES, m_nFileReloadMode);
 	int index = m_ctlLangList.GetCurSel();
 	if (index >= 0)
 	{

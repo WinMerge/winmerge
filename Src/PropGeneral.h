@@ -30,6 +30,7 @@ public:
 	bool  m_bScroll;
 	bool  m_bScrollToFirstInlineDiff;
 	int   m_nSingleInstance;
+	int   m_nFileReloadMode;
 	bool  m_bVerifyPaths;
 	int   m_nCloseWindowWithEsc;
 	bool  m_bAskMultiWindowClose;

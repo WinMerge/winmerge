@@ -2442,8 +2442,11 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	__super::OnActivateApp(bActive, hTask);
 #endif
 
-	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
-		PostMessage(WM_USER+1, reinterpret_cast<WPARAM>(pMergeDoc));
+	if (GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES) == AUTO_RELOAD_MODIFIED_FILES_ONWINDOWACTIVATED)
+	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+			PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
+	}
 }
 
 BOOL CMainFrame::CreateToolbar()
@@ -3393,19 +3396,27 @@ IMergeDoc* CMainFrame::GetActiveIMergeDoc()
 
 void CMainFrame::WatchDocuments(IMergeDoc* pMergeDoc)
 {
+	const int reloadType = GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES);
 	const int nFiles = pMergeDoc->GetFileCount();
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
 		const String path = pMergeDoc->GetPath(pane);
 		if (!path.empty())
 		{
-			m_pDirWatcher->Add(reinterpret_cast<uintptr_t>(pMergeDoc) + pane,
-			false,
-			pMergeDoc->GetPath(pane),
-			[this, pMergeDoc](const String& path, DirWatcher::ACTION action)
-				{
-					PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
-				});
+			if (reloadType == AUTO_RELOAD_MODIFIED_FILES_IMMEDIATELY)
+			{
+				m_pDirWatcher->Add(reinterpret_cast<uintptr_t>(pMergeDoc) + pane,
+					false,
+					pMergeDoc->GetPath(pane),
+					[this, pMergeDoc](const String& path, DirWatcher::ACTION action)
+					{
+						PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
+					});
+			}
+			else
+			{
+				m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
+			}
 		}
 	}
 }
