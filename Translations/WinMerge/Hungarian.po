@@ -1422,7 +1422,7 @@ msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatikus kiegészítés fájl megnyitásánál:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Módosított fájlok automatikus újratöltése:"
 
 #, c-format
 msgid "Language:"
@@ -4647,10 +4647,10 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Csak ablakon aktivált"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Azonnal"
 
 msgid "Al&l"
 msgstr "Összes"
