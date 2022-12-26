@@ -48,9 +48,9 @@
   - Chinese Simplified (PR #1614)
   - Corsican (PR #1628,#1629)
   - Galician (#1581)
-  - German (PR #1616)
-  - Hungarian (PR #1618)
-  - Lithuanian (PR #1621)
+  - German (PR #1616,#1633)
+  - Hungarian (PR #1618,#1631)
+  - Lithuanian (PR #1621,#1632)
   - Japanese
   - Polish (PR #1566)
   - Russian (PR #1553,#1554,#1555)
