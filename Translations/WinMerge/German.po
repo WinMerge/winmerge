@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-18 19:00+0200\n"
+"PO-Revision-Date: 2022-12-26 17:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1424,7 +1424,7 @@ msgid "Op&en-dialog Auto-Completion:"
 msgstr "Öffnen-Dialog Auto&vervollständigung:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "&Geänderte Dateien automatisch neu laden:"
 
 #, c-format
 msgid "Language:"
@@ -4304,10 +4304,10 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Nur eine Instanz zulassen und warten, bis die Instanz beendet ist"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Nur bei aktiviertem Fenster"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Sofort"
 
 msgid "Al&l"
 msgstr "A&lle"
