@@ -1,6 +1,28 @@
 ---
 title: 変更履歴
 ---
+
+### 2022/12/29 2.16.24-jp-3
+
+#### ファイル比較
+
+- SQL のシンタックスハイライトを改善。 [(PR #1591, #1583)](https://github.com/WinMerge/winmerge/pull/1591)(PRいただきました。ありがとうございます。)
+- Ctrl+Nキーで空のファイル比較ウインドウを表示した時、左側のペインにフォーカスが当たるようにした。 [(#1598)](https://github.com/WinMerge/winmerge/issues/1598)
+
+#### フォルダ比較
+
+- 不具合修正: 何も選択されていない状態でShift+F10キーを押下するとクラッシュする問題を修正。
+- 不具合修正: WinMergeから作成したZIPファイルに同じファイルがc重複して含まれることがあった問題を修正。[(#1588)](https://github.com/WinMerge/winmerge/issues/1588)
+- コンテキストメニューに "すべての表示列をコピー" を追加 [(PR #1615)](https://github.com/WinMerge/winmerge/issues/1615)(PRいただきました。ありがとうございます。)
+
+#### オプションダイアログ
+
+- 変更されたファイルの自動再読み込みオプションを追加 [(PR #1611)](https://github.com/WinMerge/winmerge/pull/1611)
+
+#### その他
+
+- デバッグ用の機能を追加 [(PR #1595)](https://github.com/WinMerge/winmerge/pull/1595)(PRいただきました。ありがとうございます。)
+
 ### 2022/11/29 2.16.24-jp-2
 
 #### ファイル比較

@@ -23,8 +23,28 @@
 <header id="title-block-header">
 <h1 class="title">変更履歴</h1>
 </header>
-<h3 id="20221129-21624-jp-2">2022/11/29 2.16.24-jp-2</h3>
+<h3 id="20221229-21624-jp-3">2022/12/29 2.16.24-jp-3</h3>
 <h4 id="ファイル比較">ファイル比較</h4>
+<ul>
+<li>SQL のシンタックスハイライトを改善。 <a href="https://github.com/WinMerge/winmerge/pull/1591">(PR #1591, #1583)</a>(PRいただきました。ありがとうございます。)</li>
+<li>Ctrl+Nキーで空のファイル比較ウインドウを表示した時、左側のペインにフォーカスが当たるようにした。 <a href="https://github.com/WinMerge/winmerge/issues/1598">(#1598)</a></li>
+</ul>
+<h4 id="フォルダ比較">フォルダ比較</h4>
+<ul>
+<li>不具合修正: 何も選択されていない状態でShift+F10キーを押下するとクラッシュする問題を修正。</li>
+<li>不具合修正: WinMergeから作成したZIPファイルに同じファイルがc重複して含まれることがあった問題を修正。<a href="https://github.com/WinMerge/winmerge/issues/1588">(#1588)</a></li>
+<li>コンテキストメニューに &quot;すべての表示列をコピー&quot; を追加 <a href="https://github.com/WinMerge/winmerge/issues/1615">(PR #1615)</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h4 id="オプションダイアログ">オプションダイアログ</h4>
+<ul>
+<li>変更されたファイルの自動再読み込みオプションを追加 <a href="https://github.com/WinMerge/winmerge/pull/1611">(PR #1611)</a></li>
+</ul>
+<h4 id="その他">その他</h4>
+<ul>
+<li>デバッグ用の機能を追加 <a href="https://github.com/WinMerge/winmerge/pull/1595">(PR #1595)</a>(PRいただきました。ありがとうございます。)</li>
+</ul>
+<h3 id="20221129-21624-jp-2">2022/11/29 2.16.24-jp-2</h3>
+<h4 id="ファイル比較-1">ファイル比較</h4>
 <ul>
 <li>不具合修正: オプションダイアログの[コードページ]カテゴリで[WinMerge ユーザーインターフェイス言語]を選択した場合、常にデフォルトコードページが1252になってしまう問題を修正。</li>
 <li>不具合修正: 範囲選択して置換するとすべて置換されないことがある問題を修正。<a href="https://github.com/WinMerge/winmerge/issues/1556">(#1556)</a></li>
@@ -34,7 +54,7 @@
 <li>cssファイルのシンタックスハイライトキーワードを最新化。<a href="https://github.com/WinMerge/winmerge/pull/1572">(PR #1572)</a>(PRいただきました。ありがとうございます。)</li>
 <li>サイズが大きいファイルの表示速度を改善。<a href="https://github.com/WinMerge/winmerge/pull/1574">(PR #1574)</a>(PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="フォルダ比較">フォルダ比較</h4>
+<h4 id="フォルダ比較-1">フォルダ比較</h4>
 <ul>
 <li>不具合修正: ファイルやフォルダをコピーするときクラッシュすることがあるのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1558">(#1558)</a></li>
 <li>不具合修正: ツリーモードでフォルダを展開したとき、想定外の位置にスクロールすることがあるのを修正。<a href="https://osdn.net/projects/winmerge-jp/ticket/46061">(osdn.net #46061)</a></li>
@@ -52,7 +72,7 @@
 <ul>
 <li>シェルエクステンションの登録等で powershell を起動する際にプルパスで起動するように変更。</li>
 </ul>
-<h4 id="その他">その他</h4>
+<h4 id="その他-1">その他</h4>
 <ul>
 <li>pngファイルのサイズを縮小。<a href="https://github.com/WinMerge/winmerge/pull/1541">(PR #1541)</a>(PRいただきました。ありがとうございます。)</li>
 <li>サイズ最適化のためフィールドを再配置。<a href="https://github.com/WinMerge/winmerge/pull/1546">(PR #1546)</a>(PRいただきました。ありがとうございます。)</li>
@@ -68,7 +88,7 @@
 <ul>
 <li>不具合修正: ジャンプリストに不正なタイトルが含まれる場合、ファイルメニュー表示でクラッシュする問題を修正。 <a href="https://osdn.net/projects/winmerge-jp/ticket/45916">(osdn.net #45916)</a></li>
 </ul>
-<h4 id="ファイル比較-1">ファイル比較</h4>
+<h4 id="ファイル比較-2">ファイル比較</h4>
 <ul>
 <li>ステータスバーからエンコーディングダイアログやメニュー表示する操作をダブルクリックからシングルクリックに変更。</li>
 </ul>
@@ -76,11 +96,11 @@
 <ul>
 <li>不具合修正: TSV ファイルがワードラップを有効にしてテーブル表示されている場合、文字をクリックしてもカレットがその文字の位置に移動しないことがあるのを修正。</li>
 </ul>
-<h4 id="フォルダ比較-1">フォルダ比較</h4>
+<h4 id="フォルダ比較-2">フォルダ比較</h4>
 <ul>
 <li>不具合修正: PDFファイルが画像比較の対象となった場合、フォルダー比較でメモリリークするのを修正。</li>
 </ul>
-<h4 id="オプションダイアログ">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-1">オプションダイアログ</h4>
 <ul>
 <li>CPUコアに関する翻訳の改善。<a href="https://github.com/WinMerge/winmerge/pull/1513">(PR #1513)</a></li>
 </ul>
@@ -110,7 +130,7 @@
 <ul>
 <li>不具合修正: 3つのフォルダー比較で、2つのファイルが同一である場合に表示されるメッセージが翻訳されない問題を修正。 <a href="https://github.com/WinMerge/winmerge/pull/1535">(PR #1535)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="その他-1">その他</h4>
+<h4 id="その他-2">その他</h4>
 <ul>
 <li>不具合修正: 英語の言い回しを修正。 <a href="https://github.com/WinMerge/winmerge/pull/1499">(PR #1499)</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: README.md のタイポ修正。<a href="https://github.com/WinMerge/winmerge/pull/1504">(PR #1504)</a> (PRいただきました。ありがとうございます。)</li>
@@ -127,7 +147,7 @@
 <ul>
 <li>Midnight カラースキーマの追加 <a href="https://github.com/WinMerge/winmerge/pull/1430">(PR #1430)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="ファイル比較-2">ファイル比較</h4>
+<h4 id="ファイル比較-3">ファイル比較</h4>
 <ul>
 <li>不具合修正: バックアップ用ディレクトリが自動的に作成されないのを修正。 <a href="https://github.com/WinMerge/winmerge/issues/1438">(#1438)</a></li>
 <li>不具合修正: テキストを選択した状態では右側へコピー等のアイコンがクリックできないのを修正 <a href="https://github.com/WinMerge/winmerge/issues/1507">(#1507)</a></li>
@@ -143,7 +163,7 @@
 <ul>
 <li>[実験的] テキストの差異を色付け表示する機能を追加 <a href="https://github.com/WinMerge/winmerge/pull/1357">(PR #1357)</a></li>
 </ul>
-<h4 id="フォルダ比較-2">フォルダ比較</h4>
+<h4 id="フォルダ比較-3">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダー比較ウィンドウで読み取り専用になっているにもかかわらず、ファイル名が変更できてしまっていたのを修正。<a href="https://github.com/WinMerge/winmerge/pull/1434">(PR #1434)</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: 「\」または「/」を含むファイル名またはディレクトリ名への名前変更が正しく行われない問題を修正。<a href="https://github.com/WinMerge/winmerge/pull/1451">(PR #1451)</a> (PRいただきました。ありがとうございます。)</li>
@@ -159,20 +179,20 @@
 <ul>
 <li>ヘッダーバーのキャプションを変更できるようにした。<a href="https://github.com/WinMerge/winmerge/issues/1395">(#1395)</a></li>
 </ul>
-<h4 id="ファイル比較-3">ファイル比較</h4>
+<h4 id="ファイル比較-4">ファイル比較</h4>
 <ul>
 <li>不具合修正: 検索ダイアログで「大文字と小文字を区別する」のチェックを外しているにもかかわらず、キリル文字等の大文字小文字を無視して検索できない問題を修正。 <a href="https://github.com/WinMerge/winmerge/issues/1380">(#1380)</a></li>
 <li>不具合修正: 1行が長い場合、矩形選択に時間がかかりすぎる。 <a href="https://github.com/WinMerge/winmerge/issues/1386">(#1386)</a></li>
 <li>不具合修正: 同じ行に複数置換対象がある場合、正規表現による文字列置換が正常に行われない。(<a href="https://github.com/WinMerge/winmerge/issues/1387">#1387</a>, <a href="https://github.com/WinMerge/winmerge/pull/1388">PR #1388</a>)</li>
 <li>行内差異処理の高速化 <a href="https://github.com/WinMerge/winmerge/pull/1411">(PR #1411)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="フォルダ比較-3">フォルダ比較</h4>
+<h4 id="フォルダ比較-4">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 片側にしか存在しないファイルまたはフォルダーを、同名のファイルまたはフォルダが存在する名前にリネームした場合、比較結果が正しく表示されない問題を修正。<a href="https://github.com/WinMerge/winmerge/pull/1392">(PR #1392)</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: フォルダ比較完了後ステータスバーに「経過時間」が表示されなくなっていたのを修正。</li>
 <li>不具合修正: フォルダ比較ウィンドウでフォルダの名前を変更した後、フォルダ内の項目のフォルダ列が更新されない問題を修正。<a href="https://github.com/WinMerge/winmerge/pull/1408">(PR #1408)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="オプションダイアログ-1">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-2">オプションダイアログ</h4>
 <ul>
 <li>プロジェクトカテゴリに非表示の項目を追加。<a href="https://github.com/WinMerge/winmerge/pull/1377">(PR #1377)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
@@ -185,7 +205,7 @@
 <li>プロジェクトファイルに非表示項目を保存できるようにした。<a href="https://github.com/WinMerge/winmerge/pull/1377">(PR #1377)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
 <h3 id="20220629-21620-jp-4">2022/06/29 2.16.20-jp-4</h3>
-<h4 id="ファイル比較-4">ファイル比較</h4>
+<h4 id="ファイル比較-5">ファイル比較</h4>
 <ul>
 <li>不具合修正: .sql ファイル内のコメント(--)がコメントの色にならないのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1354">(#1354)</a></li>
 <li>不具合修正: オプションダイアログで[行内差異の色付け]で[単語単位]を選んでいるにもかかわらず、キリル文字を含む行の行内差異が単語単位でハイライトされないのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1362">(#1362)</a></li>
@@ -203,7 +223,7 @@
 <ul>
 <li>[表示]→[垂直分割]メニューのチェックを外して上下分割表示にしたにもかかわらず、次回比較時元に戻ってしまうのを修正。</li>
 </ul>
-<h4 id="フォルダ比較-4">フォルダ比較</h4>
+<h4 id="フォルダ比較-5">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダ比較後、外部アプリケーションでファイル名を大文字↔︎小文字に変更した後、[選択項目を最新に更新]メニューで該当ファイルを更新してもファイル名の変更が反映されないのを修正。<a href="https://github.com/WinMerge/winmerge/pull/1358">(#1358)</a>(PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: 3フォルダ比較時、ファイル名が大文字/小文字のみ異なる場合に正しく表示されないのを修正。<a href="https://github.com/WinMerge/winmerge/pull/1372">(#1372)</a>(PRいただきました。ありがとうございます。)</li>
@@ -225,7 +245,7 @@
 <ul>
 <li>不具合修正: ファイルを3つ指定しないと機能しないコマンドラインオプション(<code>/al</code>, <code>/am</code>, <code>/ar</code>)を2つのファイル指定と共に使用するとクラッシュするのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1363">(#1363)</a></li>
 </ul>
-<h4 id="その他-2">その他</h4>
+<h4 id="その他-3">その他</h4>
 <ul>
 <li>diffutils で islower()+toupper() の代わりに isupper()+tolower() を使用。 <a href="https://github.com/WinMerge/winmerge/pull/1351">(PR #1351)</a> (PRいただきました。ありがとうございます。)</li>
 <li>diff.h で定義されている変数の初期化を追加。<a href="https://github.com/WinMerge/winmerge/pull/1360">(PR #1360)</a> (PRいただきました。ありがとうございます。)</li>
@@ -236,7 +256,7 @@
 <ul>
 <li>不具合修正: Event ID 78 のサイドバイサイドエラーが発生する可能性があるのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1312">(#1312)</a></li>
 </ul>
-<h4 id="ファイル比較-5">ファイル比較</h4>
+<h4 id="ファイル比較-6">ファイル比較</h4>
 <ul>
 <li>不具合修正: 行内差異単位の[左側/右側にコピー]が想定通りに動作しないのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1334">(#1334)</a></li>
 <li>ロケーションペインでマウスホイール操作したとき、エディタウインドウをスクロールするようにした。</li>
@@ -253,7 +273,7 @@
 <li>不具合修正: アドレスバーでKキーを押すとテキストが消えてしまうのを修正</li>
 <li>リソースツリー比較で展開した各ファイルの更新日時を展開した日時ではなく、そのリソースの日時になるようにした。</li>
 </ul>
-<h4 id="フォルダ比較-5">フォルダ比較</h4>
+<h4 id="フォルダ比較-6">フォルダ比較</h4>
 <ul>
 <li>不具合修正: Alt+↓キーで差異のある項目に移動後、Shift+矢印キーで選択範囲を広げようとすると、想定外の範囲となってしまうのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1335">(#1335)</a></li>
 <li>不具合修正: フォルダ比較を比較途中で停止した後、[選択項目を最新に更新]メニューで選択項目を更新すると、比較結果が確定していないフォルダのアイコンが同一または差異のアイコンになってしまうのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1349">(#1349)</a></li>
@@ -285,7 +305,7 @@
 <ul>
 <li>UI、Readme、マニュアルの日本語の修正。<a href="https://github.com/sdottaka/winmerge-v2-jp/pull/11">(PR #11)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="その他-3">その他</h4>
+<h4 id="その他-4">その他</h4>
 <ul>
 <li>タイポ修正。<a href="https://github.com/WinMerge/winmerge/pull/1313">(PR #1313)</a> (PRいただきました。ありがとうございます。)</li>
 <li>ソースコード内のコメントで「GNU General Public License」 が 「GNU DIFF General Public License」になっていたのを修正。<a href="https://github.com/WinMerge/winmerge/pull/1342">(PR #1342)</a> (PRいただきました。ありがとうございます。)</li>
@@ -295,7 +315,7 @@
 <ul>
 <li>ファイル名が長いとタブの右側に表示される「(U)」、「(F)」が表示されなくなってしまうため、左側に表示するようにした。<a href="https://github.com/WinMerge/winmerge/issues/1281">(#1281 a))</a></li>
 </ul>
-<h4 id="ファイル比較-6">ファイル比較</h4>
+<h4 id="ファイル比較-7">ファイル比較</h4>
 <ul>
 <li>不具合修正: 使用しているフォントによっては、タブを含む行でカレットが正しい位置に表示されないことがあるのを修正。 <a href="https://osdn.net/projects/winmerge-jp/ticket/44417">(osdn.net #44417)</a></li>
 </ul>
@@ -314,11 +334,11 @@
 </ul></li>
 </ul></li>
 </ul>
-<h4 id="フォルダ比較-6">フォルダ比較</h4>
+<h4 id="フォルダ比較-7">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 3つのディレクトリを比較する場合にフォルダ比較ウィンドウで大文字と小文字が異なる項目が正しく表示されない不具合を修正。 <a href="https://github.com/WinMerge/winmerge/pull/1299">(PR #1299)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="オプションダイアログ-2">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-3">オプションダイアログ</h4>
 <ul>
 <li>オプションダイアログを縦方向にも広げられるようにした。<a href="https://github.com/WinMerge/winmerge/issues/1265">(#1265)</a></li>
 </ul>
@@ -336,7 +356,7 @@
 <ul>
 <li>不具合修正: SelectLines プラグインのオプションに記載されている <code>-g</code> オプションは指定しても意味はないので削除した。<a href="https://github.com/WinMerge/winmerge/issues/1309">(#1309)</a></li>
 </ul>
-<h4 id="その他-4">その他</h4>
+<h4 id="その他-5">その他</h4>
 <ul>
 <li>最適化、リファクタリング。<a href="https://github.com/WinMerge/winmerge/pull/1304">(PR #1304)</a>(PRいただきました。ありがとうございます。)</li>
 <li>Windows 10 SDK version 10.0.19041.0 以下でビルドするとリンクエラーが発生するのを修正。</li>
@@ -346,7 +366,7 @@
 <ul>
 <li>タイポ修正、一部ショートカットキーの表示がないメニュー等の修正。<a href="https://github.com/WinMerge/winmerge/pull/1219">(PR #1219)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="ファイル比較-7">ファイル比較</h4>
+<h4 id="ファイル比較-8">ファイル比較</h4>
 <ul>
 <li>不具合修正: <code>/x</code> や <code>/xq</code> 等のコマンドラインオプションを指定しているにもかかわらず、サイズが大きいファイルを比較する場合にファイルが一致していてもWinMergeが終了する動作になっていなかったのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1218">(#1218)</a></li>
 <li>不具合修正: [移動ブロック検出を有効にする]オプションを有効にしている場合、[右側/左側にコピーして次に進む]メニューまたはツールバーのアイコンをクリックすると差異が一つスキップされてしまうことがあるのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1235">(#1235)</a></li>
@@ -357,7 +377,7 @@
 <li>ヘッダー部を右クリックしたときにコンテキストメニューが表示されるようにし、[最初の行をヘッダーとして使用する]メニューを選択した場合、ヘッダー部に最初の行を列名とみなして表示するようにした。<a href="https://github.com/WinMerge/winmerge/issues/999">(#999)</a></li>
 <li>[ファイル]→[形式を指定して再比較]→[テーブル]メニューで区切り文字を再指定できるようにした。</li>
 </ul>
-<h4 id="フォルダ比較-7">フォルダ比較</h4>
+<h4 id="フォルダ比較-8">フォルダ比較</h4>
 <ul>
 <li>ファイルを他方にしか存在しないフォルダと同じ名前に変更した場合に結果が正しく表示されない問題を修正。(逆も同様)<a href="https://github.com/WinMerge/winmerge/pull/1246">(PR #1246)</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
@@ -373,11 +393,11 @@
 <li>HandleSchemeReg プラグイン (<code>reg:HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge</code> の様に指定すると<code>reg:</code>の後をレジストリーキーとみなしてレジストリデータを表示します。)</li>
 </ul></li>
 </ul>
-<h4 id="オプションダイアログ-3">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-4">オプションダイアログ</h4>
 <ul>
 <li>不具合修正: 文字が欠けて表示される箇所を修正。<a href="https://github.com/WinMerge/winmerge/issues/1212">(#1212)</a></li>
 </ul>
-<h4 id="その他-5">その他</h4>
+<h4 id="その他-6">その他</h4>
 <ul>
 <li>ソースコードのコメント内のタイポ修正。<a href="https://github.com/WinMerge/winmerge/pull/1256">(PR #1256)</a> (PRいただきました。ありがとうございます。)</li>
 <li>最適化、リファクタリング。<a href="https://github.com/WinMerge/winmerge/pull/1258">(PR #1258)</a> (PRいただきました。ありがとうございます。)</li>
@@ -388,12 +408,12 @@
 <li>不具合修正: [オプション]ウインドウの[メッセージボックス]カテゴリや[プラグイン]ウインドウのリストビューのツールチップが途中で切れることがあるのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1210">(#1210)</a></li>
 <li>「すべてを右側にコピー」、「すべてを左側にコピー」メニューに対応するツールバーのアイコンのツールチップが「右側すべて」、「左側すべて」となっていたのをメニューと同じになるように修正。</li>
 </ul>
-<h4 id="ファイル比較-8">ファイル比較</h4>
+<h4 id="ファイル比較-9">ファイル比較</h4>
 <ul>
 <li>不具合修正: [類似行をマッチさせる]オプションを有効にしたとき、空白の無視設定によっては期待通り動作しないことがあるのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1209">(#1209)</a></li>
 <li>不具合修正: F4キーによる行内差異選択が正しく動作しないことがあるのを修正。</li>
 </ul>
-<h4 id="フォルダ比較-8">フォルダ比較</h4>
+<h4 id="フォルダ比較-9">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダ比較レポートにリンクしているファイル比較レポートがファイル名によっては別のものに置き換わってしまう可能性があるのを修正。 <a href="https://github.com/WinMerge/winmerge/pull/1171">(PR #1171)</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: 同じ名前のフォルダとファイルを選択して「選択項目を最新に更新」メニューをクリックすると、比較結果が正しく表示されない問題を修正。 <a href="https://github.com/WinMerge/winmerge/pull/1189">(PR #1189)</a> (PRいただきました。ありがとうございます。)</li>
@@ -418,7 +438,7 @@
 <li>Contributors.txt に漏れていた人の名前を追加 <a href="https://github.com/WinMerge/winmerge/pull/1094">(PR #1094)</a></li>
 <li>View→Select Fontメニュー項目から表示されるフォント選択ダイアログを表示している間は、親ウィンドウを操作できないようにしました。</li>
 </ul>
-<h4 id="ファイル比較-9">ファイル比較</h4>
+<h4 id="ファイル比較-10">ファイル比較</h4>
 <ul>
 <li>不具合修正: オプションダイアログの[色/差異]カテゴリで単語の差異のテキストの色を指定しても反映されなかった。 <a href="https://github.com/WinMerge/winmerge/issues/1116">(#1116)</a></li>
 <li>[行を右端で折り返す]を有効にしている場合、非常に長い行があるとハングアップしているように見えるほど遅くなることがあるのを少し改善した。 <a href="https://github.com/WinMerge/winmerge/issues/1111">(#1111)</a></li>
@@ -433,7 +453,7 @@
 <li>この機能は、Windows 10 version 1809 以降と WinMerge 64bit版でのみ有効です。</li>
 </ul></li>
 </ul>
-<h4 id="フォルダ比較-9">フォルダ比較</h4>
+<h4 id="フォルダ比較-10">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 3フォルダ比較時、比較結果列のソート順が2フォルダ比較と異なっていた。 <a href="https://github.com/WinMerge/winmerge/issues/483">(#483)</a></li>
 <li>不具合修正: フォルダー比較ウィンドウで &quot;選択された項目を更新 &quot;を実行すると WinMerge がクラッシュする場合があった。 <a href="https://github.com/WinMerge/winmerge/pull/1120">(PR #1120)</a> (PRいただきました。ありがとうございます。)</li>
@@ -473,7 +493,7 @@
 <ul>
 <li>INIファイル(WinMergeU.exeと同じ場所のwinmerge.ini)に[Defaults]セクションとキー=値を記載した場合、WinMerge終了前に設定変更していても次回起動時記載した設定値で上書きするようにした。<a href="https://github.com/WinMerge/winmerge/pull/1071">GitHub PR #1038</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="ファイル比較-10">ファイル比較</h4>
+<h4 id="ファイル比較-11">ファイル比較</h4>
 <ul>
 <li>不具合修正: ファイルサイズによってはクラッシュすることがあった。<a href="https://github.com/winmerge/winmerge/issues/1101">GitHub #1101</a></li>
 <li>不具合修正: [ウインドウ]→[分割]メニューでウインドウを分割した後、ペインの高さをドラッグ操作で０にしたとき、エラーが発生する。</li>
@@ -489,7 +509,7 @@
 <ul>
 <li>不具合修正: [ツール]→[レポートの生成]メニューのアイコンが表示されないのを修正。</li>
 </ul>
-<h4 id="フォルダ比較-10">フォルダ比較</h4>
+<h4 id="フォルダ比較-11">フォルダ比較</h4>
 <ul>
 <li>ツリーモードが無効の時に大量のファイルを比較すると結果が表示されるまでかなり時間がかかるのを改善した。<a href="https://github.com/WinMerge/winmerge/pull/1069">GitHub PR #1069</a></li>
 </ul>
@@ -519,7 +539,7 @@
 <li>64bit版をVisualStudio2022でビルドするようにした。</li>
 <li>タブバーのタブにタイトルが長すぎて表示しきれない場合、ツールチップで表示するようにした。<a href="https://github.com/WinMerge/winmerge/pull/1038">GitHub PR #1038</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="ファイル比較-11">ファイル比較</h4>
+<h4 id="ファイル比較-12">ファイル比較</h4>
 <ul>
 <li>不具合修正: 64MBを超えるファイルを開くと表示されるウインドウで[はい]を選択するとクラッシュする。<a href="https://github.com/winmerge/winmerge/issues/1036">GitHub #1036</a></li>
 <li>不具合修正: C#(Java, JavaScript)のキーワードハイライトを修正。<a href="https://github.com/WinMerge/winmerge/pull/1040">GitHub PR #1040</a> (PRいただきました。ありがとうございます。)</li>
@@ -540,7 +560,7 @@
 <ul>
 <li>[クリップボードにコピー]チェックボックスを追加。 <a href="https://github.com/winmerge/winmerge/issues/923">GitHub #923</a></li>
 </ul>
-<h4 id="フォルダ比較-11">フォルダ比較</h4>
+<h4 id="フォルダ比較-12">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 追加プロパティがある場合に3フォルダ比較でクラッシュする</li>
 </ul>
@@ -561,7 +581,7 @@
 <ul>
 <li>不具合修正: 画像比較ウインドウへのファイルのドラッグ＆ドロップが2回目以降 受け付けられない。</li>
 </ul>
-<h4 id="フォルダ比較-12">フォルダ比較</h4>
+<h4 id="フォルダ比較-13">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 1つのプロジェクトファイルに複数の比較設定がされ、それぞれ異なる ファイルフィルタが指定された場合、ファイルフィルタが正しく適用されない。<a href="https://github.com/WinMerge/winmerge/pull/995">GitHub PR #995</a> (PRいただきました。ありがとうございます。)</li>
 <li>画像サイズとファイルサイズの差異を列に表示できるようにした。 <a href="https://github.com/WinMerge/winmerge/issues/131">GitHub #131</a>(以下のPRで実現)</li>
@@ -590,14 +610,14 @@
 <li>不具合修正: WinMergeを閉じたのにプロセスが残ったままになるもう一つの問題を修正<a href="https://github.com/winmerge/winmerge/issues/903">GitHub #903</a></li>
 <li>Windows11用のShellExtensionに必要なためコード署名をするようした</li>
 </ul>
-<h4 id="ファイル比較-12">ファイル比較</h4>
+<h4 id="ファイル比較-13">ファイル比較</h4>
 <ul>
 <li>不具合修正: 左側ペインをクリック後Shiftキーを押しながらロケーションペインの左側バーをクリックしたとき、右側ペインも選択されてしまう<a href="https://github.com/winmerge/winmerge/issues/970">GitHub #970</a></li>
 <li>不具合修正: Diffペインを再表示したときのスクロール位置が正しくない<a href="https://osdn.net/projects/winmerge-jp/ticket/42862">osdn.net #42862</a></li>
 <li>不具合修正: ファイル保存に失敗したときのエラーメッセージが適切ではなかった</li>
 <li>検索ダイアログの[このダイアログボックスを閉じない]の初期値をチェックありにしてほしい<a href="https://github.com/winmerge/winmerge/issues/970">GitHub #970</a></li>
 </ul>
-<h4 id="フォルダ比較-13">フォルダ比較</h4>
+<h4 id="フォルダ比較-14">フォルダ比較</h4>
 <ul>
 <li>不具合修正: ファイルを大量にコピー後、操作できなくなる時間が長い</li>
 </ul>
@@ -640,7 +660,7 @@
 <li>不具合修正: 特定の環境でWinMergeが起動してすぐにクラッシュする。<a href="https://github.com/winmerge/winmerge/issues/808">GitHub #808</a>, <a href="https://github.com/winmerge/winmerge/issues/905">GitHub #905</a>, <a href="https://github.com/winmerge/winmerge/issues/908">GitHub #908</a></li>
 <li>不具合修正: プラグインメニューの表示等で時間がかかっている場合にマウスカーソルが砂時計になっていなかった。</li>
 </ul>
-<h4 id="ファイル比較-13">ファイル比較</h4>
+<h4 id="ファイル比較-14">ファイル比較</h4>
 <ul>
 <li>不具合修正: 3ペイン表示時、Diffペインの高さの計算が間違っていた。</li>
 <li>不具合修正: 一部のUnicode文字を含む文字列を正規表現で検索するとハイライトが正しく行われない。<a href="https://github.com/winmerge/winmerge/issues/914">GitHub #914</a></li>
@@ -687,11 +707,11 @@
 <ul>
 <li>WinMergeのウインドウを閉じたにもかかわらず、WinMergeのプロセスが終了しないことがある問題の対策。</li>
 </ul>
-<h4 id="ファイル比較-14">ファイル比較</h4>
+<h4 id="ファイル比較-15">ファイル比較</h4>
 <ul>
 <li>不具合修正: 置換フィルタ:「検索する文字列」を空にしたとき、ファイル比較時ハングする。</li>
 </ul>
-<h4 id="フォルダ比較-14">フォルダ比較</h4>
+<h4 id="フォルダ比較-15">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダ比較ウィンドウでファイルをダブルクリックしてファイル比較ウィンドウを開いた後、フォルダ比較ウィンドウに戻るとファイルの選択が解除される。 <a href="https://github.com/winmerge/winmerge/pull/857">GitHub PR #857</a> (PRいただきました。ありがとうございます。)</li>
 <li>コンテキストメニューに「新しいウインドウで比較」メニューを追加。 <a href="https://github.com/winmerge/winmerge/issues/232">GitHub #232</a>, <a href="https://github.com/winmerge/winmerge/issues/277">#277</a></li>
@@ -711,7 +731,7 @@
 <li>左右反転</li>
 </ul></li>
 </ul>
-<h4 id="オプションダイアログ-4">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-5">オプションダイアログ</h4>
 <ul>
 <li>「メッセージボックス」カテゴリを追加し、メッセージボックスの「再びこの質問をしない」チェックボックスにチェックして表示されなくなったメッセージボックスを再表示できるようにした。 <a href="https://github.com/winmerge/winmerge/issues/772">GitHub #772</a>, <a href="https://github.com/winmerge/winmerge/issues/859">GitHub PR #859</a></li>
 </ul>
@@ -758,7 +778,7 @@
 <li>WinMergeU.exe と同じフォルダに winmerge.ini を置いた場合、設定情報の読み込みと書き込みをそのファイルに対して行うようにした<a href="https://github.com/winmerge/winmerge/pull/750">GitHub PR #750</a> (PRいただきました。ありがとうございます。)</li>
 <li>ツールバーの設定アイコンのドロップダウンメニューに「空行を無視する」「コメントの違いを無視する」を追加<a href="https://github.com/winmerge/winmerge/issues/804">GitHub #804</a></li>
 </ul>
-<h4 id="ファイル比較-15">ファイル比較</h4>
+<h4 id="ファイル比較-16">ファイル比較</h4>
 <ul>
 <li>不具合修正: PHPファイルのシンタックスハイライトが正常に行われない<a href="https://github.com/winmerge/winmerge/pull/782">GitHub PR #782</a><a href="https://github.com/winmerge/winmerge/pull/802">GitHub PR #802</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: 設定ダイアログを閉じた後などに行頭でBSキーを押しても何も起こらなくなる</li>
@@ -767,7 +787,7 @@
 <li>Smarty シンタックスハイライトを追加<a href="https://github.com/winmerge/winmerge/pull/821">GitHub PR #821</a> (PRいただきました。ありがとうございます。)</li>
 <li>上書きモードでカレットの幅を太くするようにした<a href="https://osdn.net/projects/winmerge-jp/ticket/42179">osdn.net #42179</a></li>
 </ul>
-<h4 id="フォルダ比較-15">フォルダ比較</h4>
+<h4 id="フォルダ比較-16">フォルダ比較</h4>
 <ul>
 <li>不具合修正: BOMのみで中身がないファイルを比較すると比較結果が不安定になる<a href="https://github.com/winmerge/winmerge/issues/768">GitHub #768</a></li>
 <li>不具合修正: フォルダの再比較でクラッシュすることがある<a href="https://osdn.net/projects/winmerge-jp/ticket/42219">osdn.net #42219</a></li>
@@ -839,7 +859,7 @@
 <ul>
 <li>ARM64版を追加</li>
 </ul>
-<h4 id="ファイル比較-16">ファイル比較</h4>
+<h4 id="ファイル比較-17">ファイル比較</h4>
 <ul>
 <li>不具合修正: PHPファイルのシンタックスハイライトが正常に行われない<a href="https://github.com/winmerge/winmerge/pull/751">GitHub PR #751</a><a href="https://github.com/winmerge/winmerge/pull/724">GitHub PR #724</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: 1つのDiffブロックに複数行ある場合、&quot;^&quot;を含む正規表現の置換フィルタが機能しない</li>
@@ -857,7 +877,7 @@
 <li>[表示]→[空白を表示]メニューを選択したときに、表示されるタブやスペースを表す文字の色薄くした</li>
 <li>コンテキストメニューに[開く]→[親フォルダーを開く]メニューを追加</li>
 </ul>
-<h4 id="フォルダ比較-16">フォルダ比較</h4>
+<h4 id="フォルダ比較-17">フォルダ比較</h4>
 <ul>
 <li>不具合修正: コピーの確認ダイアログウインドウの「はい」「いいえ」ボタンが重なっていることがある<a href="https://github.com/winmerge/winmerge/issues/739">GitHub #739</a></li>
 <li>不具合修正: 3フォルダ比較時、[表示]→[ペインの交換]メニューを選択したとき比較結果が更新されない<a href="https://osdn.net/projects/winmerge-jp/ticket/41901">osdn.net #41901</a></li>
@@ -893,12 +913,12 @@
 <li>ツールバー: 保存アイコンにドロップダウンメニューを追加</li>
 <li>なぜか2.16.10+-jp-5からFirefoxやChromeで64bit版zipをダウンロードすると、「このファイルを開くのは危険です」といわれるようになってしまったため、 いろいろ試行錯誤すると、日本語以外の翻訳ファイル(.po)を削除するとなぜか不平をいわれなくなったので、問題が解消するまで 日本語以外の翻訳ファイルを含めないようにした</li>
 </ul>
-<h4 id="ファイル比較-17">ファイル比較</h4>
+<h4 id="ファイル比較-18">ファイル比較</h4>
 <ul>
 <li>不具合修正: ファイルの文字コードがUTF-8以外で、コメントに日本語等のASCII以外の文字が含まれている場合、コメントフィルタが正しく動作しないことがあった</li>
 <li>コードページダイアログに「BOM」チェックボックスを追加</li>
 </ul>
-<h4 id="フォルダ比較-17">フォルダ比較</h4>
+<h4 id="フォルダ比較-18">フォルダ比較</h4>
 <ul>
 <li>不具合修正: コードページダイアログでコードページを変更しても、開くファイルに反映されなかった</li>
 </ul>
@@ -915,7 +935,7 @@
 <li>不具合修正: 上書きインストールでMerge7z.dllが更新されない <a href="https://osdn.net/projects/winmerge-jp/ticket/41682">osdn.net #41682</a></li>
 </ul>
 <h3 id="20210302-21610-jp-4">2021/03/02 2.16.10-jp-4</h3>
-<h4 id="ファイル比較-18">ファイル比較</h4>
+<h4 id="ファイル比較-19">ファイル比較</h4>
 <ul>
 <li>不具合修正: 空白比較オプションで「変更を無視」または「すべて無視」が選択され、かつ、「空行を無視する」が有効の場合、空行ではない行が無視されることがある。(バージョン 2.16.10+-jp-3 で発生)<a href="https://osdn.net/projects/winmerge-jp/ticket/41668">osdn.net #41668</a></li>
 </ul>
@@ -925,7 +945,7 @@
 <li>不具合修正: フォルダ比較ウインドウからファイル比較ウインドウを開いた後、ファイル比較ウインドウを閉じずにフォルダ比較ウインドウを閉じるとクラッシュする。<a href="https://github.com/WinMerge/winmerge/issues/645">GitHub #645</a></li>
 <li>ツールバーの開くアイコンの右から最近開いたファイルやフォルダを選択できるようにした。</li>
 </ul>
-<h4 id="ファイル比較-19">ファイル比較</h4>
+<h4 id="ファイル比較-20">ファイル比較</h4>
 <ul>
 <li>不具合修正: VBのシンタックスハイライトで、一部のキーワードが着色しない。<a href="https://osdn.net/projects/winmerge-jp/ticket/41440">osdn.net #41440</a></li>
 <li>不具合修正: Zipファイルの中身を比較しているときに、[表示]→[ペインの交換]でファイルを入れ替えてもタイトルが入れ替わらない。</li>
@@ -943,7 +963,7 @@
 <li>不具合修正: このウインドウでは保存ボタンが押せるが、押しても空のファイルしか保存できなかったため、現在の指定内容をプロジェクトファイルとして保存するようにした。</li>
 <li>ファイルを1つだけ指定して比較ボタンを押した場合に、そのファイルのコピーと比較するようにした。</li>
 </ul>
-<h4 id="オプションダイアログ-5">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-6">オプションダイアログ</h4>
 <ul>
 <li>不具合修正: 色の設定ダイアログの「色の作成」で作成した色が保存されないことがある。<a href="https://github.com/winmerge/winmerge/pull/624">GitHub PR #624</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
@@ -962,7 +982,7 @@
 <li>不具合修正: [最近使用したファイルやフォルダー]メニューになにも表示されなくなった。</li>
 <li>3ファイル/フォルダ比較時でも任意のペインの入れ替えができるようにした。<a href="https://github.com/winmerge/winmerge/pull/533">GitHub PR #533</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="ファイル比較-20">ファイル比較</h4>
+<h4 id="ファイル比較-21">ファイル比較</h4>
 <ul>
 <li>不具合修正: ステータスバーの右側をダブルクリックするとクラッシュする。<a href="https://github.com/WinMerge/winmerge/issues/531">GitHub #531</a></li>
 <li>Java と JavaScript のシンタックスハイライトのルールを分離<a href="https://osdn.net/projects/winmerge-jp/ticket/41083">osdn.net #41083</a>(JavaScriptのキーワード一覧をいただきました。ありがとうございます。)</li>
@@ -972,7 +992,7 @@
 <li>置換フィルター機能を追加<a href="https://github.com/winmerge/winmerge/pull/544">GitHub PR #544</a> (PRいただきました。ありがとうございます。)</li>
 <li>ツールバーに次のファイル、前のファイル、最後のファイル、最初のファイルアイコンを追加<a href="https://github.com/winmerge/winmerge/pull/561">GitHub PR #561</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="フォルダ比較-18">フォルダ比較</h4>
+<h4 id="フォルダ比較-19">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダを選択してコピーするとフォルダ内のファイルの状態が更新されない。<a href="https://github.com/WinMerge/winmerge/issues/537">GitHub #537</a></li>
 </ul>
@@ -996,7 +1016,7 @@
 <li>不具合修正: 言語を変更してもタブバーのコンテキストメニューに反映されない。<a href="https://github.com/winmerge/winmerge/pull/528">GitHub PR #528</a> (PRいただきました。ありがとうございます。)</li>
 <li>メニューなどの翻訳の改善<a href="https://github.com/sdottaka/winmerge-v2-jp/pull/8">GitHub-jp PR #8</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="ファイル比較-21">ファイル比較</h4>
+<h4 id="ファイル比較-22">ファイル比較</h4>
 <ul>
 <li>不具合修正: 直前にControlキーやShiftキーを押して戻しただけにもかかわらず、ドラッグなどの操作が、ControlキーやShiftキーを押しながらの操作とみなされてしまう。<a href="https://github.com/WinMerge/winmerge/pull/505">GitHub PR #505</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: HTMLレポートの作成に失敗したときも「レポートの生成に成功しました」と表示されてしまう。</li>
@@ -1017,7 +1037,7 @@
 <li>/s- コマンドラインオプションの追加: このオプションを指定すると、「複数のインスタンスを起動しない」の設定を無視して、別プロセスのWinMergeを起動します。</li>
 </ul>
 <h3 id="20201129-2168-jp-8">2020/11/29 2.16.8-jp-8</h3>
-<h4 id="ファイル比較-22">ファイル比較</h4>
+<h4 id="ファイル比較-23">ファイル比較</h4>
 <ul>
 <li>不具合修正: コメントの違いを無視するオプションを有効したとき、コメント以外も無視してしまうことがある。(シンタックスハイライトベースのコメントフィルタ実装に変更)<a href="https://osdn.net/projects/winmerge-jp/ticket/40488">osdn.net #40488</a></li>
 <li>不具合修正: ペイン幅変更後、別タブに切り替えて再度ペイン幅を変更したタブに戻るとペイン幅が元に戻ってしまう。<a href="https://github.com/WinMerge/winmerge/issues/403">GitHub #403</a></li>
@@ -1031,7 +1051,7 @@
 <ul>
 <li>不具合修正: フォーカスがあたっていないとマウスホイールでスクロールしない。<a href="https://github.com/WinMerge/winmerge/issues/456">GitHub #456</a></li>
 </ul>
-<h4 id="フォルダ比較-19">フォルダ比較</h4>
+<h4 id="フォルダ比較-20">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 大きなサイズのファイルを比較している時に[一時停止]や[停止]ボタンを押してもすぐに停止しない。<a href="https://github.com/WinMerge/winmerge/issues/342">GitHub #342</a></li>
 <li>比較結果列でソートしたとき、左のみまたは右のみのファイルとフォルダが連続で表示されるようにした。<a href="https://github.com/WinMerge/winmerge/issues/483">GitHub #483</a></li>
@@ -1042,7 +1062,7 @@
 <li>不具合修正: メニューのアイコンが別のアイコンで表示されてしまう問題を修正</li>
 <li>起動速度の高速化</li>
 </ul>
-<h4 id="ファイル比較-23">ファイル比較</h4>
+<h4 id="ファイル比較-24">ファイル比較</h4>
 <ul>
 <li>不具合修正: 3ファイル比較で行フィルタ、コメントフィルタ、[空行を無視する]オプションが機能しない問題を修正<a href="https://github.com/WinMerge/winmerge/issues/395">GitHub #395</a> <a href="https://github.com/WinMerge/winmerge/issues/450">GitHub #450</a></li>
 <li>ファイルの最終行が削除ブロックの場合、そのブロックに同期ポイントは設定できないため、エラーを表示するようにした<a href="https://github.com/WinMerge/winmerge/pull/457">GitHub PR #457</a> (PRいただきました。ありがとうございます。)</li>
@@ -1050,7 +1070,7 @@
 <li>ステータスバーダブルクリックで関連するダイアログ・メニューを表示するようにした</li>
 <li>Alt+Down/Upキーやツールバーアイコン等で次/前の差異に移動時、行内差異が横にスクロールせずに見えるようするため、最初の行内差異にカーソルを移動するようにした<a href="https://github.com/WinMerge/winmerge/issues/452">GitHub #452</a></li>
 </ul>
-<h4 id="フォルダ比較-20">フォルダ比較</h4>
+<h4 id="フォルダ比較-21">フォルダ比較</h4>
 <ul>
 <li>コピーの確認ダイアログで「再びこの質問をしない」チェックボックスを追加<a href="https://github.com/WinMerge/winmerge/pull/445">GitHub PR #445</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
@@ -1060,12 +1080,12 @@
 <li>メモリリークの修正<a href="https://github.com/WinMerge/winmerge/pull/432">GitHub PR #432</a> (PRいただきました。ありがとうございます。)</li>
 <li>ツールバーのアイコンとファイル比較ウインドウのブックマークアイコン等をDPIに応じて拡大表示するようにした</li>
 </ul>
-<h4 id="ファイル比較-24">ファイル比較</h4>
+<h4 id="ファイル比較-25">ファイル比較</h4>
 <ul>
 <li>1行目を選択した状態で同期ポイントを追加した場合、ファイル比較ウィンドウで比較結果が1行ずれて表示される問題を修正<a href="https://github.com/WinMerge/winmerge/pull/435">GitHub PR #435</a> (PRいただきました。ありがとうございます。)</li>
 <li>[表示]メニュー→[空白を表示]を選択すると行末の改行文字まで表示するようになっていたが、タブまたは空白文字のみの表示とし、改行の表示/非表示は新たに追加した[改行を表示]メニューで行うようにした</li>
 </ul>
-<h4 id="フォルダ比較-21">フォルダ比較</h4>
+<h4 id="フォルダ比較-22">フォルダ比較</h4>
 <ul>
 <li><p>コマンドライン引数でフォルダ比較ウインドウに表示する列を指定できるようにした。 ただし、わかりやすくはなく、バージョン列を表示するには、以下のように指定します。</p>
 <pre><code>-cfg &quot;DirView/ColumnOrders=0 1 2 3 4 -1 -1 5 -1 -1 -1 -1 -1 6 7 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1&quot;</code></pre>
@@ -1076,7 +1096,7 @@
 <li>複数のファイルを選択してパッチの生成ダイアログを開いたときに、ダイアログのFile1またはFile2のコンボボックスへの入力が適用されない問題を修正<a href="https://github.com/WinMerge/winmerge/pull/421">GitHub PR #421</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
 <h3 id="2020829-2168-jp-1">2020/8/29 2.16.8-jp-1</h3>
-<h4 id="ファイル比較-25">ファイル比較</h4>
+<h4 id="ファイル比較-26">ファイル比較</h4>
 <ul>
 <li>不具合修正: Diffアルゴリズムがdefault以外の場合、[大文字と小文字の違いを区別しない]が機能しない</li>
 <li>不具合修正: Diffアルゴリズムがdefault以外の場合、WindowsXP上で差異が表示されない<a href="https://github.com/WinMerge/winmerge/issues/420">GitHub #420</a></li>
@@ -1091,7 +1111,7 @@
 <li>不具合修正: [右端で行を折り返す]が有効の時、一行目のダブルクォーテーションで括られた範囲でEnterキーを押下すると異常終了する</li>
 <li>不具合修正: [右端で行を折り返す]が有効の時、行内差異が適切に表示されないことがあった</li>
 </ul>
-<h4 id="フォルダ比較-22">フォルダ比較</h4>
+<h4 id="フォルダ比較-23">フォルダ比較</h4>
 <ul>
 <li>不具合修正: 削除しようとしたファイルが存在しなかった場合のエラーメッセージが適切でなかった</li>
 <li>不具合修正: 3-wayフォルダー比較で、[中央/右のみ存在する項目を表示]メニューが正しく動作しない<a href="https://osdn.net/projects/winmerge-jp/ticket/40672">osdn.net #40672</a></li>
@@ -1102,7 +1122,7 @@
 <li>不具合修正: スクロールするとき、ウインドウ枠にゴミが残る<a href="https://github.com/WinMerge/winimerge/pull/8">GitHub winimerge PR #8</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: リサイズするときのちらつきを低減<a href="https://github.com/WinMerge/winimerge/pull/9">GitHub winimerge PR #9</a> (PRいただきました。ありがとうございます。)</li>
 </ul>
-<h4 id="オプションダイアログ-6">オプションダイアログ</h4>
+<h4 id="オプションダイアログ-7">オプションダイアログ</h4>
 <ul>
 <li><p>[一般/画像]カテゴリの[画像ファイルとして扱うファイルパターン]等でドロップダウンメニューでパターンの有効・無効を選択できるようにした<a href="https://github.com/WinMerge/winmerge/pull/391">GitHub PR #391</a><a href="https://github.com/WinMerge/winmerge/pull/397">GitHub PR #397</a> (PRいただきました。ありがとうございます。)</p></li>
 <li><p>ウインドウサイズを変更できるようにした</p></li>
@@ -1123,12 +1143,12 @@
 <li>ユーザ毎インストール用インストーラ(管理者権限不要)を追加(WinMerge-2.16.8-jp-1-PerUser-Setup.exe)</li>
 </ul>
 <h3 id="2020729-2166-jp-11">2020/7/29 2.16.6-jp-11</h3>
-<h4 id="ファイル比較-26">ファイル比較</h4>
+<h4 id="ファイル比較-27">ファイル比較</h4>
 <ul>
 <li>不具合修正: 過去に検索した文字列(例:abcd)を含む文字列(例:ab)を選択して検索ダイアログを表示すると過去に検索した文字列のほうが検索文字列になってしまう<a href="https://github.com/WinMerge/winmerge/issues/368">GitHub #368</a></li>
 <li>不具合修正: 選択範囲の置換が機能していない</li>
 </ul>
-<h4 id="フォルダ比較-23">フォルダ比較</h4>
+<h4 id="フォルダ比較-24">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダが選択されている状態で、フォルダに対して実行できないメニュー項目がある場合に、そのメニュー項目を無効にするように変更<a href="https://github.com/WinMerge/winmerge/pull/366">GitHub PR #366</a> (PRいただきました。ありがとうございます。)</li>
 <li>不具合修正: パスワード付きの7zファイルを比較するとフリーズする<a href="https://github.com/WinMerge/winmerge/issues/367">GitHub #367</a></li>
@@ -1152,7 +1172,7 @@
 <li>不具合修正: 秀丸ファイラーClassic等からファイルをドラッグ＆ドロップすると元のファイルが比較されるのではなく、Tempフォルダにコピーされたファイルフォルダが比較されてしまう。(以前WinSCPからのドラッグ＆ドロップに対応した修正に問題があったため元に戻しています)</li>
 </ul>
 <h3 id="2020629-2166-jp-10">2020/6/29 2.16.6-jp-10</h3>
-<h4 id="ファイル比較-27">ファイル比較</h4>
+<h4 id="ファイル比較-28">ファイル比較</h4>
 <ul>
 <li>不具合修正: CompareMSExcelFilesプラグインの画像比較時にエラーが発生<a href="https://osdn.net/projects/winmerge-jp/ticket/40472">osdn.net #40472</a></li>
 <li>不具合修正: ファイル選択ダイアログを閉じた後、MDI親Windowの内側が再描画されない<a href="https://osdn.net/projects/winmerge-jp/ticket/40487">osdn.net #40487</a></li>
@@ -1172,7 +1192,7 @@
 <li>Visual C# loose フィルタの無視するフォルダに bin と obj フォルダを追加<a href="https://github.com/WinMerge/winmerge/issues/356">GitHub PR #356</a></li>
 </ul>
 <h3 id="2020529-2166-jp-6">2020/5/29 2.16.6-jp-6</h3>
-<h4 id="ファイル比較-28">ファイル比較</h4>
+<h4 id="ファイル比較-29">ファイル比較</h4>
 <ul>
 <li>不具合修正: Diffペインで通常編集できないにもかかわらず、D&amp;D、BSキー、Delキーで編集できてしまう<a href="https://osdn.net/projects/winmerge-jp/ticket/40390">osdn.net #40390</a></li>
 <li>不具合修正: 現在の差異ではない箇所に、検索マーカやユーザ定義マーカがあると、 Diffペインに検索マーカやユーザ定義マーカが表示される<a href="https://osdn.net/projects/winmerge-jp/ticket/40407">osdn.net #40407</a></li>
@@ -1183,7 +1203,7 @@
 <li>不具合修正: 矩形選択の範囲外にマウスポインタを移動したときにマウスポインタのアイコンが変わらないことがある</li>
 <li>非常に大きなファイルを比較するとメモリ使用量を著しく消費したり、比較時間が長くなるため、64MBを超えるファイルを比較する場合、ファイルの内容は表示せず比較結果だけ表示するか問うようにした</li>
 </ul>
-<h4 id="フォルダ比較-24">フォルダ比較</h4>
+<h4 id="フォルダ比較-25">フォルダ比較</h4>
 <ul>
 <li>不具合修正: フォルダウインドウからファイル名に大文字小文字のみの違いがあるファイルを開き、編集した結果、ファイル比較結果が変わったにもかかわらず、フォルダウインドウに反映されない<a href="https://github.com/WinMerge/winmerge/issues/332">GitHub #332</a></li>
 <li>不具合修正: 非常に長いファイル名のファイルの削除操作を行っても削除されないことがある<a href="https://github.com/WinMerge/winmerge/issues/339">GitHub #339</a></li>
@@ -1194,13 +1214,13 @@
 <ul>
 <li>ファイルまたはフォルダのパス入力テキストボックスに存在しないパスが指定されている状態で参照ボタンを押すと、まったく関係ないフォルダを初期表示してしまうのを、親フォルダが存在していれば、親フォルダを初期表示にするようにした<a href="https://github.com/WinMerge/winmerge/issues/346">GitHub #346</a></li>
 </ul>
-<h4 id="その他-6">その他</h4>
+<h4 id="その他-7">その他</h4>
 <ul>
 <li>64bit版のみASLR(アドレス空間配置のランダム化)、CFG(制御フローガード)を有効にした<a href="https://github.com/WinMerge/winmerge/issues/315">GitHub #315</a></li>
 <li>コマンド引数で展開プラグインを指定できるようにした。(例. WinMergeU.exe file1.xlsx file2.xlsx /unpacker CompareMSExcelFiles.sct)</li>
 </ul>
 <h3 id="2020429-2166-jp-4">2020/4/29 2.16.6-jp-4</h3>
-<h4 id="ファイル比較-29">ファイル比較</h4>
+<h4 id="ファイル比較-30">ファイル比較</h4>
 <ul>
 <li>不具合修正: バージョン2.16.4より文字幅が広くなっている</li>
 <li>不具合修正: editor addin.sct プラグイン: SortAscending, SortDescending での改行の扱いを修正<a href="https://osdn.net/projects/winmerge-jp/ticket/40266">osdn.net #40266</a></li>
@@ -1211,7 +1231,7 @@
 <li>ロケーションペインで、移動ブロックどうしを結ぶ斜め線の表示を改善 <a href="https://osdn.net/projects/winmerge-jp/ticket/39913">osdn.net #39913</a></li>
 <li>単語区切りとみなす記号の初期値に「=」もほしい <a href="https://osdn.net/projects/winmerge-jp/ticket/40224">osdn.net #40224</a></li>
 </ul>
-<h4 id="フォルダ比較-25">フォルダ比較</h4>
+<h4 id="フォルダ比較-26">フォルダ比較</h4>
 <ul>
 <li>不具合修正: ファイル名変更中にファイルを削除するとWinMergeが異常終了し、親フォルダが消えてしまう(親フォルダが別名に変更される)。<a href="https://twitter.com/yamato_kakeru_/status/1253924284503691264">Twitter</a></li>
 <li>不具合修正: テキストファイルがバイナリファイルとみなされてしまう <a href="https://osdn.net/projects/winmerge-jp/ticket/40296">osdn.net #40296</a></li>
@@ -1236,7 +1256,7 @@
 <li>Solarized Light/Dark カラースキームを追加</li>
 </ul>
 <h3 id="202031-2166-jp-1">2020/3/1 2.16.6-jp-1</h3>
-<h4 id="ファイル比較-30">ファイル比較</h4>
+<h4 id="ファイル比較-31">ファイル比較</h4>
 <ul>
 <li>ロケーションペインの背景色を現在のエディタウインドウの背景色に近い色になるようにした</li>
 </ul>
@@ -1255,7 +1275,7 @@
 <li>「オプションとコンフィグレーション」の修正<a href="https://github.com/WinMerge/winmerge/pull/262">GitHub PR #262</a></li>
 </ul>
 <h3 id="2020129-2164-jp-13">2020/1/29 2.16.4-jp-13</h3>
-<h4 id="ファイル比較-31">ファイル比較</h4>
+<h4 id="ファイル比較-32">ファイル比較</h4>
 <ul>
 <li>不具合修正: Diffペインで Enter キーを押すとエラーダイアログが表示される<a href="https://osdn.net/projects/winmerge-jp/ticket/39924">osdn.net #39924</a></li>
 <li>不具合修正: ファイルサイズが 4294967296 またはその倍数のファイルを比較するとWinMergeが終了してしまう<a href="https://github.com/WinMerge/winmerge/pull/257">GitHub PR #257</a></li>
@@ -1279,7 +1299,7 @@
 <ul>
 <li>不具合修正: スペルミス修正(TortoiseGIT→TortoiseGit)<a href="https://github.com/WinMerge/winmerge/pull/246">GitHub PR #246</a></li>
 </ul>
-<h4 id="その他-7">その他</h4>
+<h4 id="その他-8">その他</h4>
 <ul>
 <li>Ctrl+Tabキーでウインドウを切り替える際に切り替え先がリストから選べるようになった<a href="https://github.com/WinMerge/winmerge/pull/247">GitHub PR #247</a></li>
 </ul>
