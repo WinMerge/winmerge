@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2022-10-17 11:33+0200\n"
+"POT-Creation-Date: 2022-12-25 15:41+0000\n"
+"PO-Revision-Date: 2022-12-26 15:21+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -936,6 +936,9 @@ msgstr "Kopijuoti &failų vardus"
 msgid "Copy Items To Clip&board"
 msgstr "Kopijuoti elementus į iš&karpinę"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "Kopijuoti visus rodomu&s stulpelius"
+
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -1160,6 +1163,9 @@ msgstr "Užverti „Parinkite failus ar katalogus“ po „Lyginti“ paspaudimo
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Lango „Atv&erti“ automatinis užpildymas:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Automatiškais &įkelti iš naujo pakeistus failus:"
 
 msgid "Language:"
 msgstr "Kalba:"
@@ -3579,6 +3585,12 @@ msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
+
+msgid "Only on window activated"
+msgstr "Tik suaktyvinus langą"
+
+msgid "Immediately"
+msgstr "Nedelsiant"
 
 msgid "Al&l"
 msgstr "Visi"

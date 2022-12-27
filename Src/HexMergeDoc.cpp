@@ -146,6 +146,8 @@ CHexMergeDoc::CHexMergeDoc()
  */
 CHexMergeDoc::~CHexMergeDoc()
 {	
+	GetMainFrame()->UnwatchDocuments(this);
+
 	if (m_pDirDoc != nullptr)
 		m_pDirDoc->MergeDocClosing(this);
 }
@@ -551,6 +553,9 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 		// Use verify macro to trap possible error in debug.
 		VERIFY(pf->DestroyWindow());
 	}
+
+	GetMainFrame()->WatchDocuments(this);
+
 	return bSucceeded;
 }
 
@@ -558,7 +563,7 @@ void CHexMergeDoc::MoveOnLoad(int nPane, int)
 {
 	if (nPane < 0)
 	{
-		nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
+		nPane = (m_nBufferType[0] != BUFFERTYPE::UNNAMED) ? GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE) : 0;
 		if (nPane < 0 || nPane >= m_nBuffers)
 			nPane = 0;
 	}

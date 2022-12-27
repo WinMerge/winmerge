@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2022-10-09 20:32+0200\n"
+"PO-Revision-Date: 2022-12-20 06:42+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -936,6 +936,9 @@ msgstr "Kopiraj &imena datotek"
 msgid "Copy Items To Clip&board"
 msgstr "Kopiraj vnose v o&dložišče"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "Kopiraj vse &prikazane stolpce"
+
 msgid "&Zip"
 msgstr "&Zip arhiv"
 
@@ -1111,7 +1114,7 @@ msgid " Folder: Filter"
 msgstr " Mapa: Filter"
 
 msgid " File: Prediffer Plugin"
-msgstr "Datoteka: Prediffer vtičnik"
+msgstr " Datoteka: Prediffer vtičnik"
 
 msgid " File: Unpacker Plugin"
 msgstr " Datoteka: Vtičnik razpakovalca"
@@ -1160,6 +1163,9 @@ msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Odpri pogovorno okno &Samodejno dokončanje:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Jezik:"
@@ -1978,7 +1984,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "Š&tevilo jeder procesorja za uporabo:"
 
 msgid "&CSV File Patterns:"
 msgstr "Vzorci datotek &CSV:"
@@ -3962,6 +3968,12 @@ msgstr "Dovoli zagon samo enega primerka programa"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Dovoli zagon le enega primerka, in počakaj, da se primerek dokonča"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "V&se"

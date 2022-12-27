@@ -394,8 +394,7 @@ LoadSettings ()
   if (!bFontLoaded)
     {
       CWindowDC dc (CWnd::GetDesktopWindow ());
-      NONCLIENTMETRICS info;
-      info.cbSize = sizeof(info);
+      NONCLIENTMETRICS info{ sizeof(info) };
       SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
       memcpy (&m_LogFont, &info.lfMessageFont, sizeof (LOGFONT));
       m_LogFont.lfHeight = -MulDiv (11, dc.GetDeviceCaps (LOGPIXELSY), 72);
@@ -4093,8 +4092,7 @@ OnUpdateSibling (CCrystalTextView * pUpdateSource, bool bHorz)
 void CCrystalTextView::
 RecalcVertScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
 {
-  SCROLLINFO si = {0};
-  si.cbSize = sizeof (si);
+  SCROLLINFO si{ sizeof (si) };
   if (bPositionOnly)
     {
       si.fMask = SIF_POS;
@@ -4124,8 +4122,7 @@ OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
   CView::OnVScroll (nSBCode, nPos, pScrollBar);
 
   // Note we cannot use nPos because of its 16-bit nature
-  SCROLLINFO si = {0};
-  si.cbSize = sizeof (si);
+  SCROLLINFO si{ sizeof(si) };
   si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
   VERIFY (GetScrollInfo (SB_VERT, &si));
 
@@ -4184,8 +4181,7 @@ OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 void CCrystalTextView::
 RecalcHorzScrollBar (bool bPositionOnly /*= false*/, bool bRedraw /*= true */)
 {
-  SCROLLINFO si = {0};
-  si.cbSize = sizeof (si);
+  SCROLLINFO si{ sizeof(si) };
 
   const int nScreenChars = GetScreenChars();
   const TextLayoutMode layoutMode = GetTextLayoutMode ();
@@ -4243,8 +4239,7 @@ OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
   //CView::OnHScroll (nSBCode, nPos, pScrollBar);
 
   //  Again, we cannot use nPos because it's 16-bit
-  SCROLLINFO si = {0};
-  si.cbSize = sizeof (si);
+  SCROLLINFO si { sizeof(si) };
   si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
   VERIFY (GetScrollInfo (SB_HORZ, &si));
 
@@ -6390,8 +6385,7 @@ void CCrystalTextView::CopyProperties (CCrystalTextView *pSource)
 BOOL CCrystalTextView::
 OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 {
-  SCROLLINFO si = {0};
-  si.cbSize = sizeof (si);
+  SCROLLINFO si{ sizeof(si) };
   si.fMask = SIF_PAGE | SIF_RANGE;
   VERIFY (GetScrollInfo (SB_VERT, &si));
 

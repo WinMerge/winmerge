@@ -95,8 +95,7 @@ LRESULT WildcardDropList::LbWndProc(HWND hwnd, UINT message, WPARAM wParam, LPAR
  */
 void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, bool allowUserAddedPatterns)
 {
-	COMBOBOXINFO info;
-	info.cbSize = sizeof info;
+	COMBOBOXINFO info{ sizeof info };
 	if (!::GetComboBoxInfo(hCb, &info))
 		return;
 	RECT rc, rcCombo;
@@ -172,8 +171,7 @@ void WildcardDropList::OnDropDown(HWND hCb, int columns, LPCTSTR fixedPatterns, 
  */
 bool WildcardDropList::OnCloseUp(HWND hCb)
 {
-	COMBOBOXINFO info;
-	info.cbSize = sizeof info;
+	COMBOBOXINFO info{ sizeof info };
 	if (!::GetComboBoxInfo(hCb, &info))
 		return false;
 	::UnregisterHotKey(info.hwndList, IDCANCEL);

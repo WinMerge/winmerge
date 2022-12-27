@@ -1138,6 +1138,9 @@ msgstr "Kopiatu &Agirizenak"
 msgid "Copy Items To Clip&board"
 msgstr ""
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "&Zipa"
@@ -1421,6 +1424,9 @@ msgstr ""
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Ireki-elkarrizketa Berez-&Osaketa:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 #, c-format
 msgid "Language:"
@@ -4503,6 +4509,12 @@ msgid "Allow only one instance to run"
 msgstr "Ahalbidetu ekinbide bat bakarrik "
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

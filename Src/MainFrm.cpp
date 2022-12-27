@@ -70,6 +70,7 @@
 #include "WindowsManagerDialog.h"
 #include "ClipboardHistory.h"
 #include "locality.h"
+#include "DirWatcher.h"
 
 using std::vector;
 using boost::begin;
@@ -355,6 +356,7 @@ CMainFrame::CMainFrame()
 , m_bShowErrors(false)
 , m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
 , m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
+, m_pDirWatcher(new DirWatcher())
 {
 }
 
@@ -375,7 +377,7 @@ const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	WNDCLASS wndcls;
-	BOOL bRes = CMDIFrameWnd::PreCreateWindow(cs);
+	BOOL bRes = __super::PreCreateWindow(cs);
 	HINSTANCE hInst = AfxGetInstanceHandle();
 	// see if the class already exists
 	if (!::GetClassInfo(hInst, szClassName, &wndcls))
@@ -393,7 +395,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
-	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
+	if (__super::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
@@ -412,7 +414,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
-		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
+		__super::ShowControlBar(&m_wndTabBar, false, 0);
 
 	if (!m_wndStatusBar.Create(this))
 	{
@@ -430,7 +432,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneInfo(3, ID_STATUS_DIFFNUM, 0, pointToPixel(112)); 
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
-		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
+		__super::ShowControlBar(&m_wndStatusBar, false, 0);
 
 	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
 	RegisterDragDrop(m_hWnd, m_pDropHandler);
@@ -442,7 +444,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
-	CMDIFrameWnd::OnTimer(nIDEvent);
+	__super::OnTimer(nIDEvent);
 
 	if (nIDEvent == IDT_UPDATEMAINMENU)
 	{
@@ -654,7 +656,7 @@ void CMainFrame::OnMeasureItem(int nIDCtl,
 	}
 
 	if (!setflag)
-		CMDIFrameWnd::OnMeasureItem(nIDCtl, lpMeasureItemStruct);
+		__super::OnMeasureItem(nIDCtl, lpMeasureItemStruct);
 }
 
 /**
@@ -667,7 +669,7 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
 	if(m_pMenus[MENU_DEFAULT]->IsMenu(pMenu))
 		lresult=BCMenu::FindKeyboardShortcut(nChar, nFlags, pMenu);
 	else
-		lresult=CMDIFrameWnd::OnMenuChar(nChar, nFlags, pMenu);
+		lresult=__super::OnMenuChar(nChar, nFlags, pMenu);
 	return lresult;
 }
 
@@ -1572,14 +1574,13 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 {
 	if (!m_bFirstTime)
 	{
-		CMDIFrameWnd::ActivateFrame(nCmdShow);
+		__super::ActivateFrame(nCmdShow);
 		return;
 	}
 
 	m_bFirstTime = false;
 
-	WINDOWPLACEMENT wp = {};
-	wp.length = sizeof(WINDOWPLACEMENT);
+	WINDOWPLACEMENT wp = { sizeof(WINDOWPLACEMENT) };
 	GetWindowPlacement(&wp);
 	wp.rcNormalPosition.left=theApp.GetProfileInt(_T("Settings"), _T("MainLeft"),0);
 	wp.rcNormalPosition.top=theApp.GetProfileInt(_T("Settings"), _T("MainTop"),0);
@@ -1606,10 +1607,10 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 		if (dsk_rc.PtInRect(ptTopLeft))
 			SetWindowPlacement(&wp);
 		else
-			CMDIFrameWnd::ActivateFrame(nCmdShow);
+			__super::ActivateFrame(nCmdShow);
 	}
 	else
-		CMDIFrameWnd::ActivateFrame(nCmdShow);
+		__super::ActivateFrame(nCmdShow);
 }
 
 /**
@@ -1632,8 +1633,7 @@ void CMainFrame::OnClose()
 	}
 
 	// save main window position
-	WINDOWPLACEMENT wp = {};
-	wp.length = sizeof(WINDOWPLACEMENT);
+	WINDOWPLACEMENT wp = { sizeof(WINDOWPLACEMENT) };
 	GetWindowPlacement(&wp);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainLeft"),wp.rcNormalPosition.left);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainTop"),wp.rcNormalPosition.top);
@@ -1652,7 +1652,7 @@ void CMainFrame::OnClose()
 			return;
 	}
 
-	CMDIFrameWnd::OnClose();
+	__super::OnClose();
 }
 
 /**
@@ -1685,6 +1685,7 @@ void CMainFrame::ApplyDiffOptions()
 		// and rescan using new options
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
+		GetMainFrame()->WatchDocuments(pMergeDoc);
 	}
 	for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
 		pWebPageDiffFrame->RefreshOptions();
@@ -2166,7 +2167,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		return TRUE;
 	}
 
-	return CMDIFrameWnd::PreTranslateMessage(pMsg);
+	return __super::PreTranslateMessage(pMsg);
 }
 
 /**
@@ -2177,7 +2178,7 @@ void CMainFrame::OnViewStatusBar()
 	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_STATUSBAR, bShow);
 
-	CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, bShow, 0);
+	__super::ShowControlBar(&m_wndStatusBar, bShow, 0);
 }
 
 /**
@@ -2196,7 +2197,7 @@ void CMainFrame::OnViewTabBar()
 	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR);
 	GetOptionsMgr()->SaveOption(OPT_SHOW_TABBAR, bShow);
 
-	CMDIFrameWnd::ShowControlBar(&m_wndTabBar, bShow, 0);
+	__super::ShowControlBar(&m_wndTabBar, bShow, 0);
 }
 
 /**
@@ -2275,7 +2276,8 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
-	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
+	IMergeDoc* pMergeDoc = (wParam == 0) ? GetActiveIMergeDoc() : reinterpret_cast<IMergeDoc*>(wParam);
+	if (pMergeDoc)
 		pMergeDoc->CheckFileChanged();
 	return 0;
 }
@@ -2437,13 +2439,16 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 #endif
 {
 #if _MFC_VER > 0x0600
-	CMDIFrameWnd::OnActivateApp(bActive, dwThreadID);
+	__super::OnActivateApp(bActive, dwThreadID);
 #else
-	CMDIFrameWnd::OnActivateApp(bActive, hTask);
+	__super::OnActivateApp(bActive, hTask);
 #endif
 
-	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
-		PostMessage(WM_USER+1);
+	if (GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES) == AUTO_RELOAD_MODIFIED_FILES_ONWINDOWACTIVATED)
+	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+			PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
+	}
 }
 
 BOOL CMainFrame::CreateToolbar()
@@ -2483,7 +2488,7 @@ BOOL CMainFrame::CreateToolbar()
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR))
 	{
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
+		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 
 	return TRUE;
@@ -2565,7 +2570,7 @@ void CMainFrame::OnToolbarSize(UINT id)
 	if (id == ID_TOOLBAR_NONE)
 	{
 		GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, false);
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
+		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 	else
 	{
@@ -2574,7 +2579,7 @@ void CMainFrame::OnToolbarSize(UINT id)
 
 		LoadToolbarImages();
 
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, true, 0);
+		__super::ShowControlBar(&m_wndToolBar, true, 0);
 	}
 }
 
@@ -3449,6 +3454,40 @@ IMergeDoc* CMainFrame::GetActiveIMergeDoc()
 	if (!pMergeDoc)
 		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 	return pMergeDoc;
+}
+
+void CMainFrame::WatchDocuments(IMergeDoc* pMergeDoc)
+{
+	const int reloadType = GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES);
+	const int nFiles = pMergeDoc->GetFileCount();
+	for (int pane = 0; pane < nFiles; ++pane)
+	{
+		const String path = pMergeDoc->GetPath(pane);
+		if (!path.empty())
+		{
+			if (reloadType == AUTO_RELOAD_MODIFIED_FILES_IMMEDIATELY)
+			{
+				m_pDirWatcher->Add(reinterpret_cast<uintptr_t>(pMergeDoc) + pane,
+					false,
+					pMergeDoc->GetPath(pane),
+					[this, pMergeDoc](const String& path, DirWatcher::ACTION action)
+					{
+						PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
+					});
+			}
+			else
+			{
+				m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
+			}
+		}
+	}
+}
+
+void CMainFrame::UnwatchDocuments(IMergeDoc* pMergeDoc)
+{
+	const int nFiles = pMergeDoc->GetFileCount();
+	for (int pane = 0; pane < nFiles; ++pane)
+		m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
 }
 
 void CMainFrame::UpdateDocTitle()

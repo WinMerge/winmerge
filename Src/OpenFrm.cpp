@@ -39,7 +39,7 @@ COpenFrame::~COpenFrame()
 BOOL COpenFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying the CREATESTRUCT cs
-	if( !CMDIChildWnd::PreCreateWindow(cs) )
+	if( !__super::PreCreateWindow(cs) )
 		return FALSE;
 	cs.style |= WS_CLIPCHILDREN;
 	return TRUE;
@@ -89,11 +89,10 @@ void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
-	CMergeFrameCommon::ActivateFrame(nCmdShow);
+	__super::ActivateFrame(nCmdShow);
 	if (CView *const pView = GetActiveView())
 	{
-		WINDOWPLACEMENT wp = {};
-		wp.length = sizeof wp;
+		WINDOWPLACEMENT wp = { sizeof wp };
 		GetWindowPlacement(&wp);
 		CRect rc;
 		pView->GetWindowRect(&rc);
@@ -118,7 +117,7 @@ void COpenFrame::UpdateResources()
 BOOL COpenFrame::DestroyWindow() 
 {
 	SaveWindowState();
-	return CMDIChildWnd::DestroyWindow();
+	return __super::DestroyWindow();
 }
 
 // COpenFrame message handlers

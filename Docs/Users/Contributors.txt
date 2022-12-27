@@ -49,6 +49,7 @@ Localization:
   MaysWind <i at mayswind.net>
   YFdyh000 <yfdyh000 at gmail.com>
   CharlesMengCA <CharlesMeng at outlook.com>
+  Yin Gang <zenith.yin at gmail.com>
 
 * Traditional Chinese:
   Koko <kokokoko@giga.net.tw>

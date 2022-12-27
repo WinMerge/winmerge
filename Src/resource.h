@@ -592,6 +592,7 @@
 #define IDC_PATH0_READONLY              1606
 #define IDC_PATH1_READONLY              1607
 #define IDC_PATH2_READONLY              1608
+#define IDC_AUTO_RELOAD_MODIFIED_FILES            1609
 #define IDC_MARKER0_COLOR_LABEL         1611
 #define IDC_MARKER1_COLOR_LABEL         1612
 #define IDC_MARKER2_COLOR_LABEL         1613
@@ -659,11 +660,12 @@
 #define ID_DIR_COPY_RIGHT_TO_CLIPBOARD  17611
 #define ID_DIR_COPY_BOTH_TO_CLIPBOARD   17612
 #define ID_DIR_COPY_ALL_TO_CLIPBOARD    17613
-#define ID_DIR_DEL_LEFT                 17614
-#define ID_DIR_DEL_MIDDLE               17615
-#define ID_DIR_DEL_RIGHT                17616
-#define ID_DIR_DEL_BOTH                 17617
-#define ID_DIR_DEL_ALL                  17618
+#define ID_DIR_COPY_ALL_DISP_COLUMNS    17614
+#define ID_DIR_DEL_LEFT                 17615
+#define ID_DIR_DEL_MIDDLE               17616
+#define ID_DIR_DEL_RIGHT                17617
+#define ID_DIR_DEL_BOTH                 17618
+#define ID_DIR_DEL_ALL                  17619
 #define ID_DIR_OPEN_LEFT                17701
 #define ID_DIR_OPEN_LEFT_WITHEDITOR     17702
 #define ID_DIR_OPEN_LEFT_WITH           17703
@@ -1585,6 +1587,8 @@
 #define IDS_IGNSUB_STR5                 44178
 #define IDS_SINGLEINSTANCE_STR1         44179
 #define IDS_SINGLEINSTANCE_STR2         44180
+#define IDS_AUTO_RELOAD_MODIFIED_FILES_STR1 44181
+#define IDS_AUTO_RELOAD_MODIFIED_FILES_STR2 44182
 #define IDS_PLUGIN_ALL                  44200
 #define IDS_PLUGIN_PROCESS_TYPE1        44201
 #define IDS_PLUGIN_PROCESS_TYPE2        44202

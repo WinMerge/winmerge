@@ -711,6 +711,9 @@
     <ClCompile Include="WebPageDiffBar.cpp">
       <Filter>MFCGui\MDIChild\WebPageCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DirWatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1345,6 +1348,9 @@
     </ClInclude>
     <ClInclude Include="WebPageDiffBar.h">
       <Filter>MFCGui\MDIChild\WebPageCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirWatcher.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -351,6 +351,36 @@
     </section>
 
     <section>
+      <title>変更されたファイルの自動再読み込み<indexterm>
+          <primary>自動再読み込み</primary>
+        </indexterm></title>
+
+      <para>次の中から一つ選択してください:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>無効</guilabel> (default): 自動再読み込みを無効にします。
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>ウインドウがアクティブになった時のみ</guilabel>: WinMergeのウインドウがアクティブになった時、
+          もしファイルが変更されていれば、ファイルを再読み込みします。
+          ただし、この時ファイルを開きなおすか問い合わせるメッセージボックスが表示されます。
+          このメッセージボックスを表示したくない場合は、「再びこの質問をしない」をチェックし、
+          はいボタンを押下してください。</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>即時</guilabel>: ファイルが変更されたとき再読み込みを即時に行います。
+          ただし、この時ファイルを開きなおすか問い合わせるメッセージボックスが表示されます。
+          このメッセージボックスを表示したくない場合は、「再びこの質問をしない」をチェックし、
+          はいボタンを押下してください。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>言語<indexterm>
           <primary>Language</primary>
         </indexterm></title>

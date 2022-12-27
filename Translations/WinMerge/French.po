@@ -1142,6 +1142,9 @@ msgstr "Copier les noms de &fichiers"
 msgid "Copy Items To Clip&board"
 msgstr "Copier éléments dans le presse-papier"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "Co&mpresser"
@@ -1425,6 +1428,9 @@ msgstr "Fermez la boîte de dialogue \"sélectionner les fichiers ou dossiers\" 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Remplissage de la boîte de dialogue d'ouverture :"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 #, c-format
 msgid "Language:"
@@ -4686,6 +4692,12 @@ msgstr "Permettre une seule instance en exécution"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Autoriser une seule instance à s'exécuter et attendre que l'instance se termine"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Al&l"

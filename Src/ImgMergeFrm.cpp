@@ -194,6 +194,8 @@ CImgMergeFrame::CImgMergeFrame()
 
 CImgMergeFrame::~CImgMergeFrame()
 {
+	GetMainFrame()->UnwatchDocuments(this);
+
 	if (m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->MergeDocClosing(this);
@@ -260,6 +262,8 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 		m_pImgMergeWindow->FirstDiff();
 
+	GetMainFrame()->WatchDocuments(this);
+
 	return true;
 }
 
@@ -267,7 +271,7 @@ void CImgMergeFrame::MoveOnLoad(int nPane, int)
 {
 	if (nPane < 0)
 	{
-		nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
+		nPane = (m_nBufferType[0] != BUFFERTYPE::UNNAMED) ? GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE) : 0;
 		if (nPane < 0 || nPane >= m_pImgMergeWindow->GetPaneCount())
 			nPane = 0;
 	}

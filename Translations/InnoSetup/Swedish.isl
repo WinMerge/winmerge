@@ -61,11 +61,11 @@ TurkishLanguage=Turkiska menyer och dialoger
 UkrainianLanguage=Ukrainska menyer och dialoger
 
 ;Tasks
-ExplorerContextMenu=&Möjliggör samordning med Explorers menyer
-IntegrateTortoiseCVS=Integrera med &TortoiseCVS
-IntegrateTortoiseGit=Integrera med To&rtoiseGit
-IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
-AddToPath=&Lägg till WinMerge-katalogen till Er systemsökväg
+ExplorerContextMenu=Möjliggör samordning med Explorers menyer
+IntegrateTortoiseCVS=Integrera med TortoiseCVS
+IntegrateTortoiseGit=Integrera med TortoiseGit
+IntegrateTortoiseSVN=Integrera med TortoiseSVN
+AddToPath=Lägg till WinMerge-katalogen till Er systemsökväg
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Vägs Enande

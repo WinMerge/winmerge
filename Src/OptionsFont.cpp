@@ -68,8 +68,7 @@ void Init(COptionsMgr *pOptionsMgr)
 	// that cannot be determined (why?), 9-point "Segoe UI" is used (typical since Win7).
 	LOGFONT fontDir = {0};
 	const int pointsDir = 9;
-	NONCLIENTMETRICS ncm = { 0 };
-	ncm.cbSize = sizeof(NONCLIENTMETRICS);
+	NONCLIENTMETRICS ncm{ sizeof(NONCLIENTMETRICS) };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &ncm, 0))
 	{
 		const int lfHeight = -::MulDiv(pointsDir, logPixelsY, 72);

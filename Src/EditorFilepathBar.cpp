@@ -49,7 +49,7 @@ CEditorFilePathBar::~CEditorFilePathBar()
  */
 BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 {
-	if (! CDialogBar::Create(pParentWnd, CEditorFilePathBar::IDD, 
+	if (! __super::Create(pParentWnd, CEditorFilePathBar::IDD, 
 			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
 		return FALSE;
 
@@ -58,13 +58,15 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 		m_font.CreateFontIndirect(&ncm.lfStatusFont);
 
 	// subclass the two custom edit boxes
-	const int nLogPixelsY = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
-	int cx = -MulDiv(ncm.lfStatusFont.lfHeight, nLogPixelsY, 72);
+	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	int cx = -pointToPixel(ncm.lfStatusFont.lfHeight);
+	int m = pointToPixel(3);
 	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
 	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 		m_Edit[pane].SetFont(&m_font);
-		m_Edit[pane].SetMargins(4, 4 + cx);
+		m_Edit[pane].SetMargins(m, m + cx);
 	}
 	return TRUE;
 };
@@ -76,7 +78,10 @@ CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	CFont *pOldFont = dc.SelectObject(&m_font);
 	dc.GetTextMetrics(&tm);
 	dc.SelectObject(pOldFont);
-	return CSize(SHRT_MAX, tm.tmHeight + 6);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	int cy = pointToPixel(4);
+	return CSize(SHRT_MAX, 1 + tm.tmHeight + cy);
 }
 
 /** 

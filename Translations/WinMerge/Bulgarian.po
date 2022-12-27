@@ -933,6 +933,9 @@ msgstr "Копиране на &файловите имена"
 msgid "Copy Items To Clip&board"
 msgstr "&Копиране елементите в системния буфер"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -1157,6 +1160,9 @@ msgstr "Затваряне „Избиране на файлове или пап
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Език:"
@@ -3980,6 +3986,12 @@ msgid "Allow only one instance to run"
 msgstr "Позволи само едно стартирано копие"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

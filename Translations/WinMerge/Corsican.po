@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2022-10-17 00:12+0200\n"
+"POT-Creation-Date: 2022-12-25 15:41+0000\n"
+"PO-Revision-Date: 2022-12-25 19:08+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -427,7 +427,7 @@ msgid "Ri&ght Read-only"
 msgstr "Schedariu à &diritta in lettura sola"
 
 msgid "&File Encoding..."
-msgstr "Cudifica&zione di schedariu…"
+msgstr "Cudi&ficazione di schedariu…"
 
 msgid "Select &All\tCtrl+A"
 msgstr "T&uttu selezziunà\tCtrl+A"
@@ -511,7 +511,7 @@ msgid "Refresh\tF5"
 msgstr "&Attualizà\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Attualizà a &selezzione\tCtrl+F5"
+msgstr "Attuali&zà a selezzione\tCtrl+F5"
 
 msgid "&Merge"
 msgstr "&Fusione"
@@ -829,7 +829,7 @@ msgid "Compare in new &window"
 msgstr "Paragunà in una nova &finestra"
 
 msgid "Compare Non-hor&izontally..."
-msgstr "Paragunà micca or&izuntalmente…"
+msgstr "Paragunà micca &orizuntalmente…"
 
 msgid "Compare Non-hor&izontally"
 msgstr "Paragunà micca or&izuntalmente"
@@ -847,7 +847,7 @@ msgid "&Second left item with first right item"
 msgstr "&Secondu elementu à manca cù primu elementu à diritta"
 
 msgid "Co&mpare As"
-msgstr "Para&gunà cum’è"
+msgstr "Paragunà cum’&è"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
@@ -898,19 +898,19 @@ msgid "Re&name"
 msgstr "Ri&numinà"
 
 msgid "&Hide Items"
-msgstr "&Piattà l’elementi"
+msgstr "Piattà &l’elementi"
 
 msgid "&Open Left"
 msgstr "&Apre à manca"
 
 msgid "Open Midd&le"
-msgstr "Ap&re à u centru"
+msgstr "Apre à u c&entru"
 
 msgid "O&pen Right"
-msgstr "A&pre à diritta"
+msgstr "Apre à d&iritta"
 
 msgid "Cop&y Pathnames"
-msgstr "&Cupià i nomi di chjassu"
+msgstr "Cupià i nomi di c&hjassu"
 
 #, c-format
 msgid "Left (%1 of %2)"
@@ -933,13 +933,16 @@ msgid "All (%1 of %2)"
 msgstr "Tutti (%1 nant’à %2)"
 
 msgid "Copy &Filenames"
-msgstr "Cupià i nomi di &schedariu"
+msgstr "Cupià i nomi di scheda&riu"
 
 msgid "Copy Items To Clip&board"
-msgstr "Cupià l’&elementi in u preme’papei"
+msgstr "Cupià l’ele&menti in u preme’papei"
+
+msgid "Copy All Di&splayed Columns"
+msgstr "Cupià &tutte e culonne affissate"
 
 msgid "&Zip"
-msgstr "Cumpri&me"
+msgstr "C&umprime"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
@@ -1162,6 +1165,9 @@ msgstr "Chjode a finestra « Selezziunà schedarii o cartulari » cù u button
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "&Empiimentu autumaticu di a finestra d’apertura :"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Ricaricà autumaticamente i schedarii mudificati :"
 
 msgid "Language:"
 msgstr "Lingua :"
@@ -3972,6 +3978,12 @@ msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma è aspettà ch’ella si compii"
+
+msgid "Only on window activated"
+msgstr "Solu quandu a finestra hè attivata"
+
+msgid "Immediately"
+msgstr "Subitu subitu"
 
 msgid "Al&l"
 msgstr "T&utti"

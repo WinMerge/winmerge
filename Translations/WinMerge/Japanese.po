@@ -935,6 +935,9 @@ msgstr "ファイル名をコピー(&F)"
 msgid "Copy Items To Clip&board"
 msgstr "項目をクリップボードにコピー(&B)"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "すべての表示列をコピー(&S)"
+
 msgid "&Zip"
 msgstr "圧縮(&Z)"
 
@@ -1159,6 +1162,9 @@ msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] �
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "[開く] ダイアログのオートコンプリート(&E):"
+
+msgid "Auto-&reload modified files:"
+msgstr "変更されたファイルの自動再読み込み(&R):"
 
 msgid "Language:"
 msgstr "言語:"
@@ -3963,6 +3969,12 @@ msgstr "1 つのみインスタンスを起動する"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "1 つのみインスタンスを起動し、既起動インスタンスの終了を待つ"
+
+msgid "Only on window activated"
+msgstr "ウインドウがアクティブになった時のみ"
+
+msgid "Immediately"
+msgstr "即時"
 
 msgid "Al&l"
 msgstr "すべて(&L)"

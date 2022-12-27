@@ -166,6 +166,8 @@ CWebPageDiffFrame::CWebPageDiffFrame()
 
 CWebPageDiffFrame::~CWebPageDiffFrame()
 {
+	GetMainFrame()->UnwatchDocuments(this);
+
 	if (m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->MergeDocClosing(this);
@@ -227,6 +229,8 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 
 	GetParent()->ModifyStyleEx(WS_EX_CLIENTEDGE, 0, SWP_DRAWFRAME);
 
+	GetMainFrame()->WatchDocuments(this);
+
 	return true;
 }
 
@@ -234,7 +238,7 @@ void CWebPageDiffFrame::MoveOnLoad(int nPane, int)
 {
 	if (nPane < 0)
 	{
-		nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
+		nPane = (m_nBufferType[0] != BUFFERTYPE::UNNAMED) ? GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE) : 0;
 		if (nPane < 0 || nPane >= m_pWebDiffWindow->GetPaneCount())
 			nPane = 0;
 	}

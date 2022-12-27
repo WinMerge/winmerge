@@ -358,6 +358,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_CLIPBOARD, OnUpdateCtxtDirCopy2<SIDE_RIGHT>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_BOTH_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_TO_CLIPBOARD, OnUpdateCtxtDirCopyBoth2)
+	// Context menu -> Copy All Displayed Columns
+	ON_COMMAND(ID_DIR_COPY_ALL_DISP_COLUMNS, OnCopyAllDisplayedColumns)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_DISP_COLUMNS, OnUpdateCopyAllDisplayedColumns)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
@@ -394,7 +397,7 @@ void CDirView::OnInitialUpdate()
 		return 48;
 	}();
 	const int iconCY = iconCX;
-	CListView::OnInitialUpdate();
+	__super::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	m_pIList.reset(new IListCtrlImpl(m_pList->m_hWnd, m_listViewItems));
 	CDirDoc* pDoc = GetDocument();
@@ -464,7 +467,7 @@ void CDirView::OnInitialUpdate()
 
 BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	CListView::PreCreateWindow(cs);
+	__super::PreCreateWindow(cs);
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 	return TRUE;
 }
@@ -505,7 +508,7 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 		}
 	}
 	if (GetFocus() == this)
-		CListView::OnLButtonDblClk(nFlags, point);
+		__super::OnLButtonDblClk(nFlags, point);
 }
 
 /**
@@ -555,7 +558,7 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 			}
 			else
 			{
-				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || !di.diffcode.existAll())
+				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || (!di.diffcode.existAll() && !di.HasChildren()))
 				{
 					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
 					index++;
@@ -703,6 +706,10 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	ASSERT(pPopup != nullptr);
 
 	int sel = GetFocusedItem();
+	if (sel == -1)
+		sel = GetFirstSelectedInd();
+	if (sel == -1)
+		return;
 	const DIFFITEM& di = GetDiffItem(sel);
 	if (GetDiffContext().m_bRecursive && di.diffcode.isDirectory())
 		pPopup->RemoveMenu(ID_MERGE_COMPARE, MF_BYCOMMAND);
@@ -1150,7 +1157,7 @@ void CDirView::OnDestroy()
 			m_pColItems->SaveColumnWidths(std::bind(&CListCtrl::GetColumnWidth, m_pList, _1)));
 	}
 
-	CListView::OnDestroy();
+	__super::OnDestroy();
 }
 
 /**
@@ -1177,7 +1184,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 			}
 		}
 	}
-	CListView::OnChar(nChar, nRepCnt, nFlags);
+	__super::OnChar(nChar, nRepCnt, nFlags);
 }
 
 /**
@@ -2359,7 +2366,7 @@ CDirFrame * CDirView::GetParentFrame()
 {
 	// can't verify cast without introducing more coupling
 	// (CDirView doesn't include DirFrame.h)
-	return static_cast<CDirFrame *>(CListView::GetParentFrame());
+	return static_cast<CDirFrame *>(__super::GetParentFrame());
 }
 
 void CDirView::OnRefresh()
@@ -2470,7 +2477,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			}
 		}
 	}
-	return CListView::PreTranslateMessage(pMsg);
+	return __super::PreTranslateMessage(pMsg);
 }
 
 void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
@@ -2562,7 +2569,7 @@ BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 	if (hdr->code == HDN_BEGINDRAG)
 		return OnHeaderBeginDrag((LPNMHEADER)hdr, pResult);
 
-	return CListView::OnNotify(wParam, lParam, pResult);
+	return __super::OnNotify(wParam, lParam, pResult);
 }
 
 BOOL CDirView::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
@@ -2580,7 +2587,7 @@ BOOL CDirView::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* p
 			return TRUE;
 		}
 	}
-	return CListView::OnChildNotify(uMsg, wParam, lParam, pResult);
+	return __super::OnChildNotify(uMsg, wParam, lParam, pResult);
 }
 
 /**
@@ -2702,7 +2709,7 @@ void CDirView::OnTimer(UINT_PTR nIDEvent)
 		GetParentFrame()->SetStatus(msg.c_str());
 	}
 	
-	CListView::OnTimer(nIDEvent);
+	__super::OnTimer(nIDEvent);
 }
 
 /**
@@ -3255,6 +3262,41 @@ void CDirView::OnCopyBothToClipboard()
 }
 
 /**
+ * @brief Copy all displayed columns of selected items to clipboard.
+ */
+void CDirView::OnCopyAllDisplayedColumns()
+{
+	int ncols = m_pColItems->GetDispColCount();
+	String text;
+
+	int row = -1;
+	while (true)
+	{
+		row = m_pList->GetNextItem(row, LVNI_SELECTED);
+		if (row == -1)
+			break;
+		for (int col = 0; col < ncols; col++)
+		{
+			text += m_pList->GetItemText(row, col);
+			if (col < ncols - 1)
+				text += _T("\t");
+		}
+		text += _T("\r\n");
+	}
+
+	PutToClipboard(text, GetMainFrame()->GetSafeHwnd());
+}
+
+/**
+ * @brief Enable/Disable dirview Copy All Displayed Columns context menu item.
+ * @param[in] pCmdUI UI component to update.
+ */
+void CDirView::OnUpdateCopyAllDisplayedColumns(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_pList->GetSelectedCount() != 0);
+}
+
+/**
  * @brief Rename a selected item on both sides.
  *
  */
@@ -3378,7 +3420,7 @@ void CDirView::OnUpdateCtxtDirMoveTo(CCmdUI* pCmdUI)
  */
 void CDirView::OnSize(UINT nType, int cx, int cy)
 {
-	CListView::OnSize(nType, cx, cy);
+	__super::OnSize(nType, cx, cy);
 	GetDocument()->SetTitle(nullptr);
 }
 
@@ -4179,7 +4221,7 @@ LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 		pMenu->HandleMenuMessage(message, wParam, lParam, res);
 	}
 
-	return CListView::WindowProc(message, wParam, lParam);
+	return __super::WindowProc(message, wParam, lParam);
 }
 
 /**

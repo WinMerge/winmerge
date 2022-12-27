@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.22\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-07-30 21:57+0000\n"
-"PO-Revision-Date: 2022-10-09 20:16-0300\n"
+"PO-Revision-Date: 2022-12-25 21:30-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -936,6 +936,9 @@ msgstr "Copiar &os Nomes dos Arquivos"
 msgid "Copy Items To Clip&board"
 msgstr "Copiar Itens Pra Área de Tran&sferência"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "Copiar Todas as Colunas Exibidas"
+
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -1160,6 +1163,9 @@ msgstr "Fechar o Diálogo \"Selecionar Arquivos ou Pastas\" ao clicar no botão 
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Au&to-Conclusão do Diálogo-Abrir:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Auto-&recarregar arquivos modificados:"
 
 msgid "Language:"
 msgstr "Idioma:"
@@ -3579,6 +3585,12 @@ msgstr "Permitir só uma instância a ser executada"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só uma instância a ser executada e esperar a instância encerrar"
+
+msgid "Only on window activated"
+msgstr "Apenas na janela ativada"
+
+msgid "Immediately"
+msgstr "Imediatamente"
 
 msgid "Al&l"
 msgstr "Tu&do"

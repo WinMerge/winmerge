@@ -936,6 +936,9 @@ msgstr "Kopírovať názvy &súborov"
 msgid "Copy Items To Clip&board"
 msgstr "Kopírovať položky do &schránky"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zbaliť ZIP"
 
@@ -1160,6 +1163,9 @@ msgstr "Kliknutím na tlačidlo Porovnať zatvoriť dialógové okno „Vybrať 
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatické dopĺňanie v dialógu &Otvoriť:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Jazyk:"
@@ -3937,6 +3943,12 @@ msgstr "Povoliť spustenie iba jednej inštancie"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Povolí spustenie iba jednej inštancie a počká, kým sa inštancia ukončí"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Al&l"

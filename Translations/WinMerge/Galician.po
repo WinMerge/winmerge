@@ -1139,6 +1139,9 @@ msgstr "Copiar nomes dos &ficheiros"
 msgid "Copy Items To Clip&board"
 msgstr "Copiar elementos ao &portapapeis"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 #, c-format
 msgid "&Zip"
 msgstr "&Zip"
@@ -1422,6 +1425,9 @@ msgstr "Pechar o diálogo \"Selecciona ficheiros ou carpetas\" ao premer o botó
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&utocompletar diálogo de apertura:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 #, c-format
 msgid "Language:"
@@ -4681,6 +4687,12 @@ msgstr "Permitir executar só unha instancia"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir só a execución dunha instancia e esperar a que a instancia remate"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Todo&s"
