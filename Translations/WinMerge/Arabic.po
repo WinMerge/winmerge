@@ -934,6 +934,9 @@ msgstr "نسخ أ&سماء الملفات"
 msgid "Copy Items To Clip&board"
 msgstr "نسخ ال&عناصر إلى الحافظة"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Zip"
 
@@ -1160,6 +1163,9 @@ msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "فتح نافذة الإكمال التلقائي:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "اللغة:"
@@ -3893,6 +3899,12 @@ msgid "Allow only one instance to run"
 msgstr "السماح بتشغيل عنصر واحد فقط"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
+msgstr ""
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
 msgstr ""
 
 msgid "Al&l"

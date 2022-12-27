@@ -936,6 +936,9 @@ msgstr "Copiar nombres de &archivos"
 msgid "Copy Items To Clip&board"
 msgstr "Copiar Elementos al Portapapeles"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -1160,6 +1163,9 @@ msgstr "Cerrar \"Seleccione Archivos o Carpetas\" al hacer clic en Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "A&uto-completar en diálogos de apertura:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Idioma:"
@@ -3961,6 +3967,12 @@ msgstr "Permitir solo una instancia en ejecución"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permitir únicamente una instancia en ejecución y esperar a que termine ejecución"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr ""

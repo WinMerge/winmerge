@@ -933,6 +933,9 @@ msgstr "Bestandsnamen kopiëren"
 msgid "Copy Items To Clip&board"
 msgstr "Items naar klembord kopiëren"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Zippen"
 
@@ -1157,6 +1160,9 @@ msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op Vergelijken"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Auto-aanvullen openen-venster:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Language:"
@@ -3978,6 +3984,12 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Slechts één draaiende instantie toestaan en wachten totdat de instantie "
 "beëindigd is"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Alles"

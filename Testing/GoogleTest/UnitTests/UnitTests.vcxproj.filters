@@ -276,6 +276,12 @@
     <ClCompile Include="..\..\..\Src\diffutils\src\context.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DirWatcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h">
@@ -414,6 +420,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\PropertySystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\DirWatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

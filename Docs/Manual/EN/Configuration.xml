@@ -351,6 +351,36 @@
     </section>
 
     <section>
+      <title>Auto-reload modified files<indexterm>
+          <primary>Auto-reload</primary>
+        </indexterm></title>
+
+      <para>Choose one of these options:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><guilabel>Disabled</guilabel> (default): Disables automatic reloading.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Only on window activated</guilabel>: When the WinMerge window is activated,
+          if the file has been modified, it will reload the file. 
+          However, a message box asking if you want to reload the file will be displayed at this time.
+          If you do not want to see this message box,
+          check "Don't ask this question again" and press the Yes button.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Immediately</guilabel>: Reloads the file immediately when it has been modified.
+          However, a message box asking if you want to reload the file will be displayed at this time.
+          If you do not want to see this message box,
+          check "Don't ask this question again" and press the Yes button.</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
       <title>Language<indexterm>
           <primary>Language</primary>
         </indexterm></title>

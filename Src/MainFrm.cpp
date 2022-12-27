@@ -70,6 +70,7 @@
 #include "WindowsManagerDialog.h"
 #include "ClipboardHistory.h"
 #include "locality.h"
+#include "DirWatcher.h"
 
 using std::vector;
 using boost::begin;
@@ -353,6 +354,7 @@ CMainFrame::CMainFrame()
 , m_bShowErrors(false)
 , m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
 , m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
+, m_pDirWatcher(new DirWatcher())
 {
 }
 
@@ -1681,6 +1683,7 @@ void CMainFrame::ApplyDiffOptions()
 		// and rescan using new options
 		pMergeDoc->RefreshOptions();
 		pMergeDoc->FlushAndRescan(true);
+		GetMainFrame()->WatchDocuments(pMergeDoc);
 	}
 	for (auto pWebPageDiffFrame : GetAllWebPageDiffFrames())
 		pWebPageDiffFrame->RefreshOptions();
@@ -2271,7 +2274,8 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser1(WPARAM wParam, LPARAM lParam)
 {
-	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
+	IMergeDoc* pMergeDoc = (wParam == 0) ? GetActiveIMergeDoc() : reinterpret_cast<IMergeDoc*>(wParam);
+	if (pMergeDoc)
 		pMergeDoc->CheckFileChanged();
 	return 0;
 }
@@ -2438,8 +2442,11 @@ void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
 	__super::OnActivateApp(bActive, hTask);
 #endif
 
-	if (IMergeDoc *pMergeDoc = GetActiveIMergeDoc())
-		PostMessage(WM_USER+1);
+	if (GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES) == AUTO_RELOAD_MODIFIED_FILES_ONWINDOWACTIVATED)
+	{
+		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
+			PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
+	}
 }
 
 BOOL CMainFrame::CreateToolbar()
@@ -3385,6 +3392,40 @@ IMergeDoc* CMainFrame::GetActiveIMergeDoc()
 	if (!pMergeDoc)
 		pMergeDoc = dynamic_cast<IMergeDoc *>(pFrame);
 	return pMergeDoc;
+}
+
+void CMainFrame::WatchDocuments(IMergeDoc* pMergeDoc)
+{
+	const int reloadType = GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES);
+	const int nFiles = pMergeDoc->GetFileCount();
+	for (int pane = 0; pane < nFiles; ++pane)
+	{
+		const String path = pMergeDoc->GetPath(pane);
+		if (!path.empty())
+		{
+			if (reloadType == AUTO_RELOAD_MODIFIED_FILES_IMMEDIATELY)
+			{
+				m_pDirWatcher->Add(reinterpret_cast<uintptr_t>(pMergeDoc) + pane,
+					false,
+					pMergeDoc->GetPath(pane),
+					[this, pMergeDoc](const String& path, DirWatcher::ACTION action)
+					{
+						PostMessage(WM_USER + 1, reinterpret_cast<WPARAM>(pMergeDoc));
+					});
+			}
+			else
+			{
+				m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
+			}
+		}
+	}
+}
+
+void CMainFrame::UnwatchDocuments(IMergeDoc* pMergeDoc)
+{
+	const int nFiles = pMergeDoc->GetFileCount();
+	for (int pane = 0; pane < nFiles; ++pane)
+		m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
 }
 
 void CMainFrame::UpdateDocTitle()

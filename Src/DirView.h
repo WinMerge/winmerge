@@ -312,6 +312,8 @@ protected:
 	template<SIDE_TYPE side>
 	afx_msg void OnCopyToClipboard();
 	afx_msg void OnCopyBothToClipboard();
+	afx_msg void OnCopyAllDisplayedColumns();
+	afx_msg void OnUpdateCopyAllDisplayedColumns(CCmdUI* pCmdUI);
 	afx_msg void OnItemRename();
 	afx_msg void OnUpdateItemRename(CCmdUI* pCmdUI);
 	afx_msg void OnHideFilenames();

@@ -933,6 +933,9 @@ msgstr "&Dosya adlarını kopyala"
 msgid "Copy Items To Clip&board"
 msgstr "Ö&geleri panoya kopyala"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Sıkıştır"
 
@@ -1158,6 +1161,9 @@ msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Aç &penceresi otomatik olarak doldurulsun:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Dil:"
@@ -4029,6 +4035,12 @@ msgstr "Yalnız bir kopya çalışsın"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Yalnız bir kopyanın çalışsın ve kopyanın sonlandırılması beklensin"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "&Tümü"

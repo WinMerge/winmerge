@@ -1134,6 +1134,9 @@ msgstr "&Fájlnevek másolása"
 msgid "Copy Items To Clip&board"
 msgstr "Elemek másolása a vágólapra"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "Minden látható oszlop másolása"
+
 #, c-format
 msgid "&Zip"
 msgstr "&Zip"
@@ -1417,6 +1420,9 @@ msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehas
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatikus kiegészítés fájl megnyitásánál:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Módosított fájlok automatikus újratöltése:"
 
 #, c-format
 msgid "Language:"
@@ -4639,6 +4645,12 @@ msgstr "Csak egy példány futhat egyszerre"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
+
+msgid "Only on window activated"
+msgstr "Csak ablakon aktivált"
+
+msgid "Immediately"
+msgstr "Azonnal"
 
 msgid "Al&l"
 msgstr "Összes"

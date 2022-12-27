@@ -933,6 +933,9 @@ msgstr "Kopioi tiedostonimet"
 msgid "Copy Items To Clip&board"
 msgstr "Kopioi kohteet leike&pöydälle"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "Pakkaa"
 
@@ -1156,6 +1159,9 @@ msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
+msgstr ""
+
+msgid "Auto-&reload modified files:"
 msgstr ""
 
 msgid "Language:"
@@ -3990,6 +3996,12 @@ msgid ""
 msgstr ""
 "Salli vain yhden instanssin suorittaminen ja odota, että instanssi "
 "lopetetaan"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "K&aikki"

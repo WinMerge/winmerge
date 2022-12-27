@@ -934,6 +934,9 @@ msgstr "Co&piar nomes de ficheiro"
 msgid "Copy Items To Clip&board"
 msgstr "Copiar itens para a área de transferência"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -1160,6 +1163,9 @@ msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Abrir janela de auto-conclusão:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "Idioma:"
@@ -4046,6 +4052,12 @@ msgstr "Permitir apenas uma execução"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Permitir apenas executar uma instância e esperar que a instância termine"
+
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
 
 msgid "Al&l"
 msgstr "Tu&do"

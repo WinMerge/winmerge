@@ -114,6 +114,8 @@ inline const String OPT_CUSTOM_TEMP_PATH {_T("Settings/CustomTempPath"s)};
 inline const String OPT_SPLIT_HORIZONTALLY {_T("Settings/SplitHorizontally"s)};
 inline const String OPT_FILE_SIZE_THRESHOLD {_T("Settings/OPT_FILE_SIZE_THRESHOLD"s)};
 
+inline const String OPT_AUTO_RELOAD_MODIFIED_FILES {_T("Settings/AutoReloadModifiedFiles"s)};
+
 // Color options
 // The difference color
 inline const String OPT_CLR_DIFF {_T("Settings/DifferenceColor"s)};

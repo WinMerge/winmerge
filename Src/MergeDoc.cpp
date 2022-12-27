@@ -187,6 +187,8 @@ CMergeDoc::CMergeDoc()
  */
 CMergeDoc::~CMergeDoc()
 {	
+	GetMainFrame()->UnwatchDocuments(this);
+
 	if (m_pDirDoc != nullptr)
 	{
 		m_pDirDoc->MergeDocClosing(this);
@@ -3332,6 +3334,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// dialog visible and it got painted before files were loaded
 	if (m_pView[0][0] != nullptr)
 		m_pView[0][0]->RepaintLocationPane();
+
+	GetMainFrame()->WatchDocuments(this);
 
 	return true;
 }

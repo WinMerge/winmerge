@@ -20,141 +20,82 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21624-release-notes">WinMerge 2.16.24 Release Notes</h1>
+<h1 id="winmerge-21625-release-notes">WinMerge 2.16.25 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21624">What Is New in 2.16.24?</a></li>
-<li><a href="#what-is-new-in-21623-beta">What Is New in 2.16.23 beta?</a></li>
+<li><a href="#what-is-new-in-21625-beta">What Is New in 2.16.25 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>October 2022</p>
+<p>December 2022</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.24 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21624">What Is New in 2.16.24</h2>
-<h3 id="general">General</h3>
-<ul>
-<li>BugFix: Fixed crash when displaying file menu if jump list contains invalid title (osdn.net #45916)</li>
-</ul>
+<h2 id="what-is-new-in-21625-beta">What Is New in 2.16.25 Beta</h2>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li>Changed operation of displaying dialogs and context menus from status bar from double-click to single-click.</li>
+<li>BugFix: Selection in &quot;Replace&quot; by regular expression doesn&#39;t work with <code>\n</code> (#1556)</li>
+<li>BugFix: WinMerge hangs for a certain regex search &amp; replace action for clearing all lines not containing &#39;%&#39; (#1575)</li>
+<li>Add html5 keywords to crystaledit (PR #1565)</li>
+<li>Add css keywords to crystaledit (PR #1572)</li>
+<li>Preliminary exit (performance optimization) for Scrollbars calculation (PR #1574, #1573)</li>
+<li>Fix issue #1583 Syntax highlighting for SQL leaves many things out. (PR #1591, #1583)</li>
+<li>Starting Pane Consistency (#1598)</li>
 </ul>
-<h3 id="table-compare">Table compare</h3>
+<h3 id="binary-compare">Binary compare</h3>
 <ul>
-<li>BugFix: when TSV files were displayed in table mode with word wrap enabled, clicking on a character would not move the caret to that character&#39;s position</li>
+<li>BugFix: Crash 0xc0000409 (#1544)</li>
+<li>Binary compare: Allow 64bit versions to open files larger than 2GB (PR #1549)</li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>Fixed memory leak in folder comparison when PDF files were targeted for image comparison.</li>
+<li>BugFix: Fix the problem that WinMerge crashes when pressing the &quot;OK&quot; button in the &quot;Display Columns&quot; dialog in the debug version. (PR #1568)</li>
+<li>BugFix: Crash when copying files/folders (#1558)</li>
+<li>BugFix: File Duplication Bug In Outputted Zips (#1588)</li>
+<li>BugFix: Fixed problem with scrolling to unexpected position when expanding folders (osdn.net #46061)</li>
+<li>BugFix: Fixed incorrect links to files with # in filename in folder comparison report (osdn.net #46082)</li>
+<li>Changes the display processing of the &quot;Comparison result&quot; column for a 3-way folder comparison. (PR #1545)</li>
+<li>Add &quot;Copy All Displayed Columns&quot; to the context menu of the folder compare window. (PR #1615)</li>
 </ul>
 <h3 id="options-dialog">Options dialog</h3>
 <ul>
-<li>Improved translation regarding CPU cores (PR #1513)</li>
-</ul>
-<h3 id="select-files-or-folders-dialog">Select Files or Folders dialog</h3>
-<ul>
-<li>Made it possible to specify Prediffer plugin</li>
-</ul>
-<h3 id="plugins">Plugins</h3>
-<ul>
-<li>BugFix: Select Plugin dialog: Fixed that &quot;Display all plugins&quot; checkbox did not work</li>
-</ul>
-<h3 id="project-file">Project file</h3>
-<ul>
-<li>BugFix: Fixed comparison failure when left file path and right file path in project file are URLs.</li>
-<li>Allow saving following in project file.
-<ul>
-<li>Description</li>
-<li>Window type</li>
-<li>Table delimiter</li>
-</ul></li>
-</ul>
-<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
-<ul>
-<li>BugFix: The command line section in the generated patch file was garbled (osdn.net #45935)</li>
+<li>Added Auto-reload modified files option (PR #1611)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
-<li>BugFix: Fix an issue where the following message displayed when two files are identical in a 3-way folder comparison is not translated. (PR #1535)</li>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #1511,#1523)</li>
-<li>Corsican (PR #1510,#1527)</li>
-<li>French (PR #1538)</li>
-<li>German (PR #1498,#1509,#1528)</li>
-<li>Hungarian (PR #1508,#1524)</li>
+<li>Brazilian (PR #1617,#1630)</li>
+<li>Chinese Simplified (PR #1614)</li>
+<li>Corsican (PR #1628,#1629)</li>
+<li>Galician (#1581)</li>
+<li>German (PR #1616,#1633)</li>
+<li>Hungarian (PR #1618,#1631)</li>
+<li>Lithuanian (PR #1621,#1632)</li>
 <li>Japanese</li>
-<li>Lithuanian (PR #1514,#1526)</li>
-<li>Polish (PR #1525)</li>
-<li>Portuguese (PR #1529)</li>
+<li>Polish (PR #1566)</li>
+<li>Russian (PR #1553,#1554,#1555)</li>
 <li>Slovenian</li>
+<li>Swedish (PR #1594)</li>
+<li>Turkish (PR #1563)</li>
 </ul></li>
 </ul>
 <h3 id="others">Others</h3>
 <ul>
-<li>BugFix: Fixed English verbiage (PR #1499)</li>
-<li>BugFix: typo fixed in README.md (PR #1504)</li>
-<li>BugFix: Fix typo in lwdisp.c (PR #1515)</li>
-</ul>
-<h2 id="what-is-new-in-21623-beta">What Is New in 2.16.23 Beta</h2>
-<h3 id="general-1">General</h3>
-<ul>
-<li>BugFix: Fix an issue where filenames containing &quot;&amp;&quot; are not displayed properly in the MDI tab bar and its tooltips. (PR #1466)</li>
-</ul>
-<h3 id="color-schemes">Color schemes</h3>
-<ul>
-<li>Create Midnight.ini (PR #1430)</li>
-</ul>
-<h3 id="file-compare-1">File compare</h3>
-<ul>
-<li>BugFix: Non existing backup directory should be automatically created (#1438)</li>
-<li>BugFix: Bug: Can&#39;t copy selected text, if it has non-changed lines (#1507)</li>
-<li>Remember zoom level for all files (#1433)</li>
-<li>The feature will allow the user to right-click the selected lines and… add them to Line Filter so that those lines added to the Line Filter will be ignored if found in any file. (PR #1481)</li>
-<li>CrystalEdit/parsers/SQL: Added more keywords (PR #1493)</li>
-</ul>
-<h3 id="table-compare-1">Table compare</h3>
-<ul>
-<li>Bugfix: Inline differences ware not displayed even if the caret is moved to the position of an inline difference that is hidden due to the narrow column width.</li>
-</ul>
-<h3 id="webpage-compare">Webpage compare</h3>
-<ul>
-<li>[EXPERIMENTAL] Webpage Compare: Highlight differences (PR #1357)</li>
-</ul>
-<h3 id="folder-compare-1">Folder compare</h3>
-<ul>
-<li>BugFix: Disable rename operations when in read-only mode in the folder compare window. (PR #1434)</li>
-<li>BugFix: Fix an issue where renaming to a file name or directory name containing &quot;&quot; or &quot;/&quot; is not done properly. (PR #1451)</li>
-<li>BugFix: Fix &quot;Left to Right&quot; and &quot;Right to Left&quot; copying in 2-way folder comparison. (PR #1495)</li>
-<li>BugFix: Folder compare with jpg images crashes (#1176) (Previous versions were linked with unfixed freeimage.)</li>
-</ul>
-<h3 id="archive-support">Archive support</h3>
-<ul>
-<li>Update 7-Zip to 22.01 (#1425)</li>
-</ul>
-<h3 id="translations-1">Translations</h3>
-<ul>
-<li>Translation updates:
-<ul>
-<li>Brazilian (PR #1436,#1437,#1441,#1459,#1463)</li>
-<li>Corsican (PR #1443,#1480,#1486)</li>
-<li>Dutch (PR #1474)</li>
-<li>Finnish (PR #1460)</li>
-<li>French (PR #1491)</li>
-<li>German (PR #1455,#1484)</li>
-<li>Hungarian (PR #1431,#1454)</li>
-<li>Japanese</li>
-<li>Lithuanian (PR #1457,#1485)</li>
-<li>Polish (PR #1427,#1456)</li>
-<li>Portuguese (PR #1453,#1490)</li>
-<li>Russian (PR #1426)</li>
-<li>Slovenian (#1424,PR #1461)</li>
-<li>Spanish (PR #1406)</li>
-</ul></li>
+<li>png optimization(loss less) (PR #1541)</li>
+<li>Fields rearranged for size optimization (PR #1576)</li>
+<li>refactoring Diff3.h (PR #1577)</li>
+<li>Fix: Mismatch between keyword list and comments (PR #1578)</li>
+<li>DiffFileData optimization for same-files (PR #1579)</li>
+<li>Fixed potentially wrong SubEditList ReadOnly attribute storage; refactoring (PR #1580)</li>
+<li>CheckForInvalidUtf8 performance improvement; code cleanup (PR #1582)</li>
+<li>Update unicoder.cpp (PR #1584)</li>
+<li>unicoder.cpp light performance improvements (PR #1586)</li>
+<li>Update markdown.cpp (PR #1590)</li>
+<li>Add a feature for debugging. (PR #1595)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>
+<li>Shell integration does not open winmerge when selecting two folders (#1619)</li>
 <li>Suggestion to make the result of image comparison more reliable (#1391)</li>
 <li>Crashes when comparing large files (#325)</li>
 <li>Very slow to compare significantly different directories (#322)</li>
