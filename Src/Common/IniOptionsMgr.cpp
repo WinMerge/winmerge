@@ -27,6 +27,7 @@ CIniOptionsMgr::CIniOptionsMgr(const String& filePath)
 	, m_dwThreadId(0)
 	, m_hThread(nullptr)
 	, m_hEvent(nullptr)
+	, m_dwQueueCount(0)
 {
 	m_iniFileKeyValues = Load(m_filePath);
 	m_hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
@@ -62,6 +63,7 @@ unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 		{
 			pThis->SaveValueToFile(pParam->name, pParam->value);
 			delete pParam;
+			InterlockedDecrement(&pThis->m_dwQueueCount);
 		}
 	}
 	return 0;
@@ -273,7 +275,9 @@ int CIniOptionsMgr::SaveOption(const String& name)
 	if (retVal == COption::OPT_OK)
 	{
 		auto* pParam = new AsyncWriterThreadParams(name, value);
-		PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
+		InterlockedIncrement(&m_dwQueueCount);
+		if (!PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0))
+			InterlockedDecrement(&m_dwQueueCount);
 	}
 	return retVal;
 }
@@ -356,7 +360,20 @@ int CIniOptionsMgr::RemoveOption(const String& name)
 	}
 
 	auto* pParam = new AsyncWriterThreadParams(name, varprop::VariantValue());
-	PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0);
+	InterlockedIncrement(&m_dwQueueCount);
+	if (!PostThreadMessage(m_dwThreadId, WM_USER, (WPARAM)pParam, 0))
+		InterlockedDecrement(&m_dwQueueCount);
 
 	return retVal;
 }
+
+int CIniOptionsMgr::FlushOptions()
+{
+	int retVal = COption::OPT_OK;
+
+	while (InterlockedCompareExchange(&m_dwQueueCount, 0, 0) != 0)
+		Sleep(0);
+
+	return retVal;
+}
+

@@ -19,6 +19,8 @@
 #include "paths.h"
 #include "FileOrFolderSelect.h"
 #include "OptionsSyntaxColors.h"
+#include "LineFiltersList.h"
+#include "SubstitutionFiltersList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -370,6 +372,9 @@ void CPreferencesDlg::OnImportButton()
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
 			Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
+			theApp.m_pLineFilters->Initialize(GetOptionsMgr());
+			theApp.m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
+
 			ReadOptions(true);
 			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
 		}

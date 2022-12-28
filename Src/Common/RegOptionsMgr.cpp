@@ -32,12 +32,15 @@ CRegOptionsMgr::CRegOptionsMgr()
 {
 	InitializeCriticalSection(&m_cs);
 	m_hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
-	m_hThread = reinterpret_cast<HANDLE>(
-		_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
-			reinterpret_cast<unsigned *>(&m_dwThreadId)));
-	WaitForSingleObject(m_hEvent, INFINITE);
-	CloseHandle(m_hEvent);
-	m_hEvent = nullptr;
+	if (m_hEvent)
+	{
+		m_hThread = reinterpret_cast<HANDLE>(
+			_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
+				reinterpret_cast<unsigned*>(&m_dwThreadId)));
+		WaitForSingleObject(m_hEvent, INFINITE);
+		CloseHandle(m_hEvent);
+		m_hEvent = nullptr;
+	}
 }
 
 CRegOptionsMgr::~CRegOptionsMgr()
@@ -504,6 +507,16 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 
 	return retVal;
 
+}
+
+int CRegOptionsMgr::FlushOptions()
+{
+	int retVal = COption::OPT_OK;
+
+	while (InterlockedCompareExchange(&m_dwQueueCount, 0, 0) != 0)
+		Sleep(0);
+
+	return retVal;
 }
 
 /**

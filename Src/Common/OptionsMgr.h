@@ -147,6 +147,8 @@ public:
 
 	virtual int RemoveOption(const String& name);
 
+	virtual int FlushOptions() = 0;
+
 	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const;
 	virtual int ImportOptions(const String& filename);
 	
