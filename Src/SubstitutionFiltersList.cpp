@@ -125,10 +125,11 @@ void SubstitutionFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	m_enabled = m_pOptionsMgr->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
 
-	size_t count = m_items.size();
+	Empty();
+
 	valuename += _T("/Values");
-	m_pOptionsMgr->InitOption(valuename, static_cast<int>(count));
-	count = m_pOptionsMgr->GetInt(valuename);
+	m_pOptionsMgr->InitOption(valuename, 0);
+	size_t count = m_pOptionsMgr->GetInt(valuename);
 
 	for (unsigned i = 0; i < count; i++)
 	{

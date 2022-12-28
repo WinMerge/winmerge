@@ -37,6 +37,8 @@ public:
 
 	virtual int RemoveOption(const String& name) override;
 
+	virtual int FlushOptions() override;
+
 	virtual void SetSerializing(bool serializing = true) override { m_serializing = serializing; }
 
 protected:
@@ -54,4 +56,5 @@ private:
 	DWORD m_dwThreadId;
 	HANDLE m_hThread;
 	HANDLE m_hEvent;
+	DWORD m_dwQueueCount;
 };

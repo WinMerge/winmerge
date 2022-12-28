@@ -3960,7 +3960,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	{
 		String data = strutils::format(
 			_T("<col style=\"width: %.1fem;\" />\n")
-			_T("<col style=\"width: calc(100%% / %d - %.1fem);\" />\n"),
+			_T("<col style=\"width: calc(100vw / %d - %.1fem);\" />\n"),
 				marginWidth, m_nBuffers, marginWidth);
 		file.WriteString(data);
 	}
@@ -3976,7 +3976,12 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	if (m_pDirDoc != nullptr && m_pDirDoc->IsArchiveFolders())
 	{
 		for (int i = 0; i < paths.GetSize(); i++)
-			m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
+		{
+			if (!m_strDesc[i].empty())
+				paths[i] = m_strDesc[i];
+			else
+				m_pDirDoc->ApplyDisplayRoot(i, paths[i]);
+		}
 	}
 	else
 	{
