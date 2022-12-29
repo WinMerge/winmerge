@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-10-26 16:01+0200\n"
+"PO-Revision-Date: 2022-12-29 12:05+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -1140,7 +1140,7 @@ msgid "Copy Items To Clip&board"
 msgstr "Copier éléments dans le presse-papier"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Copier toute&s les colonnes affichées"
 
 #, c-format
 msgid "&Zip"
@@ -1427,7 +1427,7 @@ msgid "Op&en-dialog Auto-Completion:"
 msgstr "Remplissage de la boîte de dialogue d'ouverture :"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Auto-&rechargement des fichiers modifiés :"
 
 #, c-format
 msgid "Language:"
@@ -4691,10 +4691,10 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Autoriser une seule instance à s'exécuter et attendre que l'instance se termine"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Seulement sur la fenêtre activée"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Immédiatement"
 
 msgid "Al&l"
 msgstr "Al&l"
