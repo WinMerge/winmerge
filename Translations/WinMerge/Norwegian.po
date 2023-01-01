@@ -4304,6 +4304,9 @@ msgstr ""
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr ""
 

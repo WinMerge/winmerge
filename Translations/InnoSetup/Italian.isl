@@ -20,7 +20,7 @@ WinIMerge=WinIMerge (differenza/unione immagini)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Supporto archivi
 ShellExtension32bit=Estensione shell 32bit WinMerge
-Commands=Patch per Windows GnuWin32/HTML Tidy/jq
+Commands=Patch per Windows GnuWin32/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Lingue

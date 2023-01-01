@@ -121,8 +121,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	// [Tools] menu
 //	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
-//	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
-//	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
 	// [Help] menu
@@ -863,13 +863,11 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		/*
 		if (!m_infoUnpacker.GetPluginPipeline().empty() && m_infoUnpacker.GetPluginPipeline() != _T("<Automatic>") &&
 		    !m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
 		{
-			//return false;
+			return false;
 		}
-		*/
 	}
 	if (m_infoUnpacker.GetPluginPipeline() == _T("<Automatic>"))
 		m_infoUnpacker.ClearPluginPipeline();

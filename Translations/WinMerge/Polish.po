@@ -3854,6 +3854,9 @@ msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje linii poleceń p
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia reg.exe."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Zastosowano filtr"
 

@@ -3853,6 +3853,9 @@ msgstr "Manipulador de esquema de URL HTTP com curl. \r\nArgumentos: Opções de
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Manipulador de esquema de URL de Registro do Windows. \r\nArgumentos: Opções de linha de comando passadas ao comando reg.exe."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro aplicado"
 

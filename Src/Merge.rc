@@ -4218,6 +4218,8 @@ BEGIN
                             "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
     IDS_PLUGIN_DESCRIPTION49 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+    IDS_PLUGIN_DESCRIPTION50 
+                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 END
 
 STRINGTABLE

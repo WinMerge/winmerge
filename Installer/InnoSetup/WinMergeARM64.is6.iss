@@ -608,6 +608,9 @@ Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app
 ; jq
 Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Commands
 Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Commands
+; md4c
+Source: ..\..\Build\md4c\mingw32\bin\*.exe; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
 ; Apache Tika
 Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
 Source: ..\..\Plugins\Commands\Apache-Tika\*.txt; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands

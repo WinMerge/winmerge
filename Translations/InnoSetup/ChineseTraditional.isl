@@ -19,7 +19,7 @@ WinIMerge=WinIMerge (偵測圖片差異/合併)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archive Support
 ShellExtension32bit=32 位元 WinMerge ShellExtension
-Commands=Windows/HTML Tidy/jq 的 GnuWin32 修補程式
+Commands=Windows/HTML Tidy/jq/md4c 的 GnuWin32 修補程式
 
 ;Localization Components
 Languages=語言

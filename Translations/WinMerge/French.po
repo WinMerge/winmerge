@@ -5082,6 +5082,9 @@ msgstr ""
 "Gestionnaire de schéma d'URL de registre Windows.\r\n"
 "Arguments : options de ligne de commande transmises à la commande reg.exe."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtre appliqué"
 

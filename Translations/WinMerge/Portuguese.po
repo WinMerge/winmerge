@@ -4465,6 +4465,9 @@ msgstr ""
 "Gestão do esquema URL do registo do Windows.\n"
 "Argumentos: opções de linha de comandos passadas para o comando reg.exe."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro aplicado"
 

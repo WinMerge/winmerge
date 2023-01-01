@@ -5077,6 +5077,9 @@ msgstr ""
 "Manexador de esquemas de URL do Rexisto de Windows. \r\n"
 "Argumentos: opcións de liña de comandos que se pasan ao comando reg.exe."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro aplicado"
 

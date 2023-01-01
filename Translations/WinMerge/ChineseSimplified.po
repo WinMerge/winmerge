@@ -4406,6 +4406,9 @@ msgstr ""
 "Windows 注册表 URL 方案处理程序。\r\n"
 "参数：传递给 reg.exe 的命令行选项。"
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "过滤器已应用"
 

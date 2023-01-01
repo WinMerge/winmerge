@@ -4408,6 +4408,9 @@ msgstr ""
 "Windowsin rekisterin URL-suunnitelman käsittelijä\r\n"
 "Argumentit: Komentorivin asetukset, jotka välitetään reg.exe-komentoon."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Sovellettu suodatin"
 

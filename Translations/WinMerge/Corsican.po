@@ -4368,6 +4368,9 @@ msgstr ""
 "Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
 

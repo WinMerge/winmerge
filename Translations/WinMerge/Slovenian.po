@@ -4358,6 +4358,9 @@ msgstr ""
 "Upravljavec sheme URL registra Windows.\n"
 "Argumenti: možnosti ukazne vrstice, posredovane ukazu reg.exe."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filter je uporabljen"
 

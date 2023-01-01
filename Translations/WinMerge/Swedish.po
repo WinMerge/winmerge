@@ -4357,6 +4357,9 @@ msgstr ""
 "Windows register URL schemahanterare.\r\n"
 "Argument: Kommandoradsmöjligheter skickade till reg.exe kommandot."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filter tillämpat"
 

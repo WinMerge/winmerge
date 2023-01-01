@@ -4447,6 +4447,9 @@ msgstr ""
 "Windows kayıt defteri adresi şema işleyici. \r\n"
 "Parametreler: reg.exe komutuna aktarılacak komut satırı parametreleri."
 
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
 
