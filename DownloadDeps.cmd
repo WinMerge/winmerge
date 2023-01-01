@@ -82,7 +82,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\
     copy Build\md4c\mingw32\bin\*.exe Build\%%i\%%j\Commands\md4c\
     copy Build\md4c\mingw32\bin\*.dll Build\%%i\%%j\Commands\md4c\
-    copy Build\md4c\ingw32\share\licenses\md4c\LICENSE.md Build\%%i\%%j\Commands\md4c\
+    copy Build\md4c\mingw32\share\licenses\md4c\LICENSE.md Build\%%i\%%j\Commands\md4c\
     xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
     xcopy /s/y Filters Build\%%i\%%j\Filters\
     xcopy /s/y ColorSchemes Build\%%i\%%j\ColorSchemes\
