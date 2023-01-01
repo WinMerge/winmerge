@@ -450,7 +450,9 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		else if (ptStart != ptEnd)
 		{
 			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
+			constexpr int LineLimit = 256;
+			if ((lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0))) ||
+			    (di.dend - di.dbegin > LineLimit))
 			{
 				firstWordDiff = -1;
 				return;
