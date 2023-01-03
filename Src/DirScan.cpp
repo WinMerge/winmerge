@@ -844,9 +844,15 @@ static void CompareDiffItem(FolderCmp &fc, DIFFITEM &di)
 	{
 		// 1. Test against filters
 		if (pCtxt->m_piFilterGlobal==nullptr ||
-			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename)) ||
-			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(di.diffFileInfo[0].filename, di.diffFileInfo[1].filename, di.diffFileInfo[2].filename))
-			)
+			(nDirs == 2 && pCtxt->m_piFilterGlobal->includeFile(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename), 
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename)
+			)) ||
+			(nDirs == 3 && pCtxt->m_piFilterGlobal->includeFile(
+				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename),
+				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename),
+				paths::ConcatPath(di.diffFileInfo[2].path, di.diffFileInfo[2].filename)
+			)))
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 			di.diffcode.diffcode |= fc.prepAndCompareFiles(di);
