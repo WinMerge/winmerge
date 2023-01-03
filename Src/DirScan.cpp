@@ -291,6 +291,7 @@ int DirScan_GetItems(const PathContext &paths, const String subdir[],
 		else
 		{
 			// Recursive compare
+			assert(pCtxt->m_bRecursive);
 			if (nDirs < 3)
 			{
 				DIFFITEM *me = AddToList(subdir[0], subdir[1], 
