@@ -137,7 +137,7 @@
     <file-filters value="\.gv;$\.dot$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".png" />
-    <extended-properties value="ProcessType=Preview;MenuCaption=Preview Graphviz" />
+    <extended-properties value="ProcessType=Preview;MenuCaption=Preview Graphviz;PreferredWindowType=Image" />
     <arguments value="-Tpng" />
     <unpack-file>
       <command>dot.exe ${*} -o"${DST_FILE}" "${SRC_FILE}"</command>
@@ -149,7 +149,7 @@
     <file-filters value="\.md$;\.markdown$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".html" />
-    <extended-properties value="ProcessType=Preview;MenuCaption=Preview Markdown" />
+    <extended-properties value="ProcessType=Preview;MenuCaption=Preview Markdown;PreferredWindowType=Webpage" />
     <arguments value="" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Commands\md4c\md2html.bat" "${SRC_FILE}" ${*} > "${DST_FILE}"</command>

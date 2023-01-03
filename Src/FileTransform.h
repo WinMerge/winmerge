@@ -123,7 +123,7 @@ public:
 
 	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
-	String GetUnpackedFileExtension(const String& filteredFilenames) const;
+	String GetUnpackedFileExtension(const String& filteredFilenames, int& preferredWindowType) const;
 private:
 	String m_URLHandler;
 };

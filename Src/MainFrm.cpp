@@ -778,7 +778,10 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 		std::transform(ifileloc, ifileloc + nFiles, filepaths.begin(),
 			[](auto& file) { return file.filepath; });
 		String filteredFilenames = strutils::join(filepaths.begin(), filepaths.end(), _T("|"));
-		unpackedFileExtension = infoUnpacker->GetUnpackedFileExtension(filteredFilenames);
+		int preferredWindowType = -1;
+		unpackedFileExtension = infoUnpacker->GetUnpackedFileExtension(filteredFilenames, preferredWindowType);
+		if (nID == 0 && preferredWindowType >= 0)
+			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}
 	FileFilterHelper filterImg, filterBin;
 	filterImg.UseMask(true);
