@@ -2173,9 +2173,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,279,10
+    CONTROL         "&Include Subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,279,10
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,279,10
     CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
