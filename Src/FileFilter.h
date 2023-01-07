@@ -31,7 +31,7 @@ struct FileFilterElement
 	int _reOpts; /**< Options to set to Poco::RegularExpression */
 	bool _fileNameOnly; /**< If true, indicates that the filter matches only filenames */
 	FileFilterElement(const std::string& regex, int reOpts, bool fileFilter) :
-		regexp(regex, reOpts), _regex(regex), _reOpts(reOpts), _fileNameOnly(fileFilter && regex.find("\\\\", 0) == String::npos)
+		regexp(regex, reOpts), _regex(regex), _reOpts(reOpts), _fileNameOnly(fileFilter && regex.find("\\\\", 0) == String::npos && regex.find_first_of(":/") == String::npos)
 	{
 	}
 	FileFilterElement(const FileFilterElement* element) :
