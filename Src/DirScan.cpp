@@ -54,6 +54,7 @@ static DIFFITEM *AddToList(const String &sDir1, const String &sDir2, const Strin
 	unsigned code, DiffFuncStruct *myStruct, DIFFITEM *parent, int nItems = 3);
 static void UpdateDiffItem(DIFFITEM &di, bool &bExists, CDiffContext *pCtxt);
 static int CompareItems(NotificationQueue &queue, DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos);
+static unsigned GetDirCompareFlags3Way(const DIFFITEM& di);
 
 class WorkNotification: public Poco::Notification
 {
@@ -515,6 +516,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 	if (parentdiffpos == nullptr)
 		myStruct->pSemaphore->wait();
 	stopwatch.start();
+	int nDirs = pCtxt->GetCompareDirs();
 	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos != nullptr)
 	{
@@ -541,7 +543,7 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 			// Propagate sub-directory status to this directory
 			if (ndiff > 0)
 			{	// There were differences in the sub-directories
-				if (existsalldirs)
+				if (existsalldirs || pCtxt->m_bWalkUniques)
 					di.diffcode.diffcode |= DIFFCODE::DIFF;
 				res += ndiff;
 			}
@@ -550,12 +552,20 @@ static int CompareItems(NotificationQueue& queue, DiffFuncStruct *myStruct, DIFF
 			{	// Sub-directories were identical
 				if (existsalldirs)
 					di.diffcode.diffcode |= DIFFCODE::SAME;
+				else if (pCtxt->m_bWalkUniques && !di.diffcode.isResultFiltered())
+					di.diffcode.diffcode |= DIFFCODE::DIFF;
 			}
 			else
 			if (ndiff == -1)
 			{	// There were file IO-errors during sub-directory comparison.
 				di.diffcode.diffcode |= DIFFCODE::CMPERR;
 				bCompareFailure = true;
+			}
+
+			if (nDirs == 3 && (di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF && !di.diffcode.isResultFiltered())
+			{
+				di.diffcode.diffcode &= ~DIFFCODE::COMPAREFLAGS3WAY;
+				di.diffcode.diffcode |= GetDirCompareFlags3Way(di);
 			}
 		}
 		if (existsalldirs)
@@ -617,6 +627,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 	// to avoid accessing  the deleted DiffItems.
 	assert(myStruct->nCollectThreadState == CDiffThread::THREAD_COMPLETED);
 
+	int nDirs = pCtxt->GetCompareDirs();
 	DIFFITEM *pos = pCtxt->GetFirstChildDiffPosition(parentdiffpos);
 	while (pos != nullptr)
 	{
@@ -637,7 +648,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 				int ndiff = CompareRequestedItems(myStruct, curpos);
 				if (ndiff > 0)
 				{
-					if (existsalldirs)
+					if (existsalldirs || pCtxt->m_bWalkUniques)
 						di.diffcode.diffcode |= DIFFCODE::DIFF;
 					res += ndiff;
 				}
@@ -646,6 +657,8 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 				{
 					if (existsalldirs)
 						di.diffcode.diffcode |= DIFFCODE::SAME;
+					else if (pCtxt->m_bWalkUniques && !di.diffcode.isResultFiltered())
+						di.diffcode.diffcode |= DIFFCODE::DIFF;
 				} 
 				else
 				if (ndiff == -1)
@@ -657,6 +670,12 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 				if (ndiff == -2)
 				{	// There were files that have not been compared
 					bCompareIndeterminate = true;
+				}
+
+				if (nDirs == 3 && (di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF && !di.diffcode.isResultFiltered())
+				{
+					di.diffcode.diffcode &= ~DIFFCODE::COMPAREFLAGS3WAY;
+					di.diffcode.diffcode |= GetDirCompareFlags3Way(di);
 				}
 			}
 		}
@@ -971,4 +990,71 @@ static DIFFITEM *AddToList(const String& sDir1, const String& sDir2, const Strin
 		myStruct->pSemaphore->set();
 	}
 	return di;
+}
+
+/**
+ * @brief Get the 3-way compare flag of the specified directory item.
+ * @param [in] di Directory Item to get the 3-way compare flag.
+ * @return 3-way compare flag of the specified directory item.
+ */
+static unsigned GetDirCompareFlags3Way(const DIFFITEM& di)
+{
+	assert(di.diffcode.isDirectory());
+	assert((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF && !di.diffcode.isResultFiltered());
+
+	bool bSet = false;
+	unsigned code = DIFFCODE::DIFFALL;
+
+	if (di.diffcode.isSideFirstOnly() || di.diffcode.isMissingFirstOnly())
+	{
+		code = DIFFCODE::DIFF1STONLY;
+		bSet = true;
+	}
+	else if (di.diffcode.isSideSecondOnly() || di.diffcode.isMissingSecondOnly())
+	{
+		code = DIFFCODE::DIFF2NDONLY;
+		bSet = true;
+	}
+	else if (di.diffcode.isSideThirdOnly() || di.diffcode.isMissingThirdOnly())
+	{
+		code = DIFFCODE::DIFF3RDONLY;
+		bSet = true;
+	}
+
+	if (di.HasChildren())
+	{
+		for (DIFFITEM* pdi = di.GetFirstChild(); pdi != nullptr; pdi = pdi->GetFwdSiblingLink())
+		{
+			if ((pdi->diffcode.diffcode & DIFFCODE::COMPAREFLAGS) == DIFFCODE::DIFF && !pdi->diffcode.isResultFiltered())
+			{
+				if (!bSet)
+				{
+					code = (pdi->diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY);
+					bSet = true;
+				}
+				else
+				{
+					switch (code)
+					{
+					case DIFFCODE::DIFF1STONLY:
+						if ((pdi->diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) != DIFFCODE::DIFF1STONLY)
+							code = DIFFCODE::DIFFALL;
+						break;
+					case DIFFCODE::DIFF2NDONLY:
+						if ((pdi->diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) != DIFFCODE::DIFF2NDONLY)
+							code = DIFFCODE::DIFFALL;
+						break;
+					case DIFFCODE::DIFF3RDONLY:
+						if ((pdi->diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) != DIFFCODE::DIFF3RDONLY)
+							code = DIFFCODE::DIFFALL;
+						break;
+					default:
+						code = DIFFCODE::DIFFALL;
+					}
+				}
+			}
+		}
+	}
+
+	return code;
 }
