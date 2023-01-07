@@ -67,7 +67,7 @@ namespace
 		SetFileAttributes(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt", FILE_ATTRIBUTE_NORMAL | FILE_ATTRIBUTE_READONLY);
 		SetFileAttributes(L"..\\TestData\\DirWatcher\\Subdir1\\test.txt", FILE_ATTRIBUTE_NORMAL);
 
-		while (!completed)
-			Sleep(1);
+//		while (!completed)
+//			Sleep(1);
 	}
 }

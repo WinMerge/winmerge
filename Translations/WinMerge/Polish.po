@@ -405,7 +405,7 @@ msgid "C&onfiguration"
 msgstr "Konfiguracja"
 
 msgid "&GNU General Public License"
-msgstr "GNU Powszechna Licencja Publiczna"
+msgstr "Powszechna Licencja Publiczna GNU"
 
 msgid "&About WinMerge..."
 msgstr "O WinMerge..."
@@ -935,7 +935,7 @@ msgid "Copy Items To Clip&board"
 msgstr "Kopiuj elementy do schowka"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Kopiuj wszystkie wyświetlone kolumny"
 
 msgid "&Zip"
 msgstr "Spakuj"
@@ -1148,7 +1148,7 @@ msgid "Single instance mode:"
 msgstr "Tryb pojedynczej instancji:"
 
 msgid "As&k when closing multiple windows"
-msgstr "Zapytaj przed zamykaniem wielu o&kien"
+msgstr "Zapytaj przed zamknięciem wielu o&kien"
 
 msgid "&Preserve file time in file compare"
 msgstr "Zachowaj czas &pliku w porównanym pliku"
@@ -1157,13 +1157,13 @@ msgid "Show \"Select Files or Folders\" Dialog on Startup"
 msgstr "Po uruchomieniu pokaż okno \"wybierz pliki lub foldery\""
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Zamknij okno \"wybierz pliki lub foldery\" przyciskiem Porównaj"
+msgstr "Zamknij okno \"wybierz pliki lub foldery\" po kliknięciu \"porównaj\""
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Otwórz okno automatycznego uzu&pełniania:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Automatycznie przeładuj zmodyfikowane pliki:"
 
 msgid "Language:"
 msgstr "Język:"
@@ -1274,7 +1274,7 @@ msgid "Colors"
 msgstr "Kolory"
 
 msgid "Color Scheme:"
-msgstr "Schemat koloru:"
+msgstr "Schemat kolorów:"
 
 msgid "Background"
 msgstr "Tło"
@@ -3365,7 +3365,7 @@ msgid "No Highlighting"
 msgstr "Bez podświetlenia"
 
 msgid "Batch"
-msgstr ""
+msgstr "Program wsadowy"
 
 msgid "Portable Object"
 msgstr "Obiekt przenośny"
@@ -3585,10 +3585,10 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Zezwól na uruchomienie tylko jednej instancji i poczekaj, aż zakończy pracę"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Tylko w aktywnym oknie"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Natychmiast"
 
 msgid "Al&l"
 msgstr "Wszystkie"
