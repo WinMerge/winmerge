@@ -308,6 +308,9 @@ bool PackingInfo::pack(String & filepath, const String& dstFilepath, const std::
 		return false;
 	}
 
+	if (m_bWebBrowser && m_PluginPipeline.empty())
+		return true;
+
 	auto itSubcode = handlerSubcodes.rbegin();
 	for (auto& [plugin, args, bWithFile] : plugins)
 	{
@@ -410,6 +413,9 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
+
+	if (m_bWebBrowser && m_PluginPipeline.empty())
+		return true;
 
 	for (auto& [plugin, args, bWithFile] : plugins)
 	{

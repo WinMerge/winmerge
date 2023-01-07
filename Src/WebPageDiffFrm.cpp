@@ -860,17 +860,15 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
+	m_infoUnpacker.EnableWebBrowserMode();
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		if (!m_infoUnpacker.GetPluginPipeline().empty() && m_infoUnpacker.GetPluginPipeline() != _T("<Automatic>") &&
-		    !m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
+		if (!m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
 		{
 			return false;
 		}
 	}
-	if (m_infoUnpacker.GetPluginPipeline() == _T("<Automatic>"))
-		m_infoUnpacker.ClearPluginPipeline();
 	if (m_filePaths.GetSize() == 2)
 		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), callback));
 	else
