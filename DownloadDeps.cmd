@@ -71,6 +71,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\Commands\jq 2> NUL
     mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
     mkdir Build\%%i\%%j\Commands\GnuWin32 2> NUL
+    mkdir Build\%%i\%%j\Commands\md4c 2> NUL
     xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
     xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
     copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
