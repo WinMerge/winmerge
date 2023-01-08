@@ -34,6 +34,10 @@ BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_KILLFOCUS()
 	ON_WM_LBUTTONDOWN()
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
+	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
 	ON_COMMAND_RANGE(ID_EDITOR_COPY_PATH, ID_EDITOR_SELECT_FILE, OnContextMenuSelected)
 END_MESSAGE_MAP()
 
@@ -217,8 +221,13 @@ void CFilepathEdit::CustomCopy(size_t iBegin, size_t iEnd /*=-1*/)
 /**
  * @brief Format the context menu.
  */
-void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
+void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 {
+	if (m_bInEditing)
+	{
+		__super::OnContextMenu(pWnd, point);
+	}
+	else
 	{
 		if (!m_bActive)
 			SetFocus();
@@ -381,6 +390,26 @@ void CFilepathEdit::OnEditCopy()
 	Copy();
 	if (nStartChar == nEndChar)
 		SetSel(nStartChar, nEndChar);
+}
+
+void CFilepathEdit::OnEditPaste()
+{
+	Paste();
+}
+
+void CFilepathEdit::OnEditCut()
+{
+	Cut();
+}
+
+void CFilepathEdit::OnEditUndo()
+{
+	Undo();
+}
+
+void CFilepathEdit::OnEditSelectAll()
+{
+	SetSel(0, -1);
 }
 
 void CFilepathEdit::OnContextMenuSelected(UINT nID)
