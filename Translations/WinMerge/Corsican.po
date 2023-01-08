@@ -3991,8 +3991,8 @@ msgstr "Imbellimentu"
 msgid "Content Extraction"
 msgstr "Estrazzione di cuntenutu"
 
-msgid "Visualization"
-msgstr "Visualisazione"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "Interrugazione di dati"
@@ -4087,8 +4087,11 @@ msgstr "Imbellisce XML"
 msgid "Prettify YAML"
 msgstr "Imbellisce YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualisazione Graphviz"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "Interrugazione di dati CSV…"
@@ -4254,12 +4257,11 @@ msgstr ""
 "Imbellimentu YAML cù a cumanda yq. \\r\n"
 "Parametri : Filtru o ozzioni di linea di cumanda passati à a cumanda « yq »."
 
-msgid ""
-"Graphviz Visualizer. \r\n"
-"Arguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr ""
-"Visualisazione Graphviz. \\r\n"
-"Parametri : Ozzioni di linea di cumanda passate à a cumanda « dot »."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"

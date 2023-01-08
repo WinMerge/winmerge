@@ -3600,8 +3600,8 @@ msgstr "Приукрашивание"
 msgid "Content Extraction"
 msgstr "Извлечение контента"
 
-msgid "Visualization"
-msgstr "Визуализация"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "Запрос данных"
@@ -3696,8 +3696,11 @@ msgstr "Приукрасить XML"
 msgid "Prettify YAML"
 msgstr "Приукрасить YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Визуализация Graphviz"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "Запрос данных CSV..."
@@ -3789,8 +3792,11 @@ msgstr "XML Prettier с tidy-html5. \r\nАргументы: Параметры �
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr "YAML Prettier с yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr "Визуализатор Graphviz. \r\nАргументы: Параметры командной строки, передаваемые команде dot."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV Querier с q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."

@@ -25,3 +25,6 @@
 [submodule "Externals/winwebdiff"]
 	path = Externals/winwebdiff
 	url = https://github.com/WinMerge/winwebdiff
+[submodule "Externals/md4c"]
+	path = Externals/md4c
+	url = https://github.com/mity/md4c

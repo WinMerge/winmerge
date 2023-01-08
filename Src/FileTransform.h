@@ -78,12 +78,12 @@ class PackingInfo : public PluginForFile
 {
 public:
 	explicit PackingInfo(bool automatic = FileTransform::AutoUnpacking)
-	: PluginForFile(automatic)
+	: PluginForFile(automatic), m_bWebBrowser(false)
 	{
 	}
 
 	explicit PackingInfo(const String& pluginPipeline)
-	: PluginForFile(pluginPipeline)
+	: PluginForFile(pluginPipeline), m_bWebBrowser(false)
 	{
 	}
 
@@ -123,9 +123,12 @@ public:
 
 	bool Packing(const String& srcFilepath, const String& dstFilepath, const std::vector<int>& handlerSubcodes, const std::vector<StringView>& variables) const;
 
-	String GetUnpackedFileExtension(const String& filteredFilenames) const;
+	String GetUnpackedFileExtension(const String& filteredFilenames, int& preferredWindowType) const;
+
+	void EnableWebBrowserMode() { m_bWebBrowser = true; }
 private:
 	String m_URLHandler;
+	bool m_bWebBrowser;
 };
 
 /**

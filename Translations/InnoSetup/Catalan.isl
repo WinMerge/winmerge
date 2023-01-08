@@ -20,7 +20,7 @@ WinIMerge=WinIMerge(Comparador d'imatges)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Suport de fitxers comprimits
 ShellExtension32bit=Extensió de Shell de 32 bits del WinMerge
-Commands=GnuWin32 Patch per a Windows/HTML Tidy/jq
+Commands=GnuWin32 Patch per a Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Idiomes

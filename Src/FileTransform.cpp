@@ -308,6 +308,9 @@ bool PackingInfo::pack(String & filepath, const String& dstFilepath, const std::
 		return false;
 	}
 
+	if (m_bWebBrowser && m_PluginPipeline.empty())
+		return true;
+
 	auto itSubcode = handlerSubcodes.rbegin();
 	for (auto& [plugin, args, bWithFile] : plugins)
 	{
@@ -411,6 +414,9 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		return false;
 	}
 
+	if (m_bWebBrowser && m_PluginPipeline.empty())
+		return true;
+
 	for (auto& [plugin, args, bWithFile] : plugins)
 	{
 		bool bHandled = false;
@@ -475,15 +481,32 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 	return true;
 }
 
-String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) const
+String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames, int& preferredWindowType) const
 {
+	preferredWindowType = -1;
 	String ext;
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, nullptr, errorMessage))
 	{
 		for (auto& [plugin, args, bWithFile] : plugins)
+		{
 			ext += plugin->m_ext;
+			auto preferredWindowTypeStr = plugin->GetExtendedPropertyValue(_T("PreferredWindowType"));
+			if (preferredWindowTypeStr.has_value())
+			{
+				if (preferredWindowTypeStr == L"Text")
+					preferredWindowType = 0;
+				else if (preferredWindowTypeStr == L"Table")
+					preferredWindowType = 1;
+				else if (preferredWindowTypeStr == L"Binary")
+					preferredWindowType = 2;
+				else if (preferredWindowTypeStr == L"Image")
+					preferredWindowType = 3;
+				else if (preferredWindowTypeStr == L"Webpage")
+					preferredWindowType = 4;
+			}
+		}
 	}
 	return ext;
 }

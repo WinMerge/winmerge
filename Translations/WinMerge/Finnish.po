@@ -4012,8 +4012,8 @@ msgstr "Kaunistelu"
 msgid "Content Extraction"
 msgstr "Sisällön purkaminen"
 
-msgid "Visualization"
-msgstr "Visualisointi"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "Tietojen kysely"
@@ -4108,8 +4108,11 @@ msgstr "Kaunistele XML"
 msgid "Prettify YAML"
 msgstr "Kaunistele YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualisoi Graphviz"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "CSV-tietojen kysely..."
@@ -4278,12 +4281,11 @@ msgstr ""
 "Argumentit: Suodattimen tai komentorivin vaihtoehdot, jotka välitetään yq-"
 "komennolle."
 
-msgid ""
-"Graphviz Visualizer. \r\n"
-"Arguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz Visualizer\r\n"
-"Argumentit: Komentorivin vaihtoehdot, jotka välitetään dot-komentoon."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"

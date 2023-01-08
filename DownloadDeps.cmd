@@ -32,6 +32,8 @@ https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/stedolan/jq/releases/download/jq-1.4/jq-win32.exe!Build\jq ^
 https://github.com/stedolan/jq/archive/refs/tags/jq-1.4.zip!Build\jq ^
+https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
+https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.4.8-2-any.pkg.tar.zst!Build\md4c ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
@@ -46,7 +48,11 @@ for %%p in (%urls_destdirs%) do (
       7z x %downloadsdir%\%%~nxu -aoa -o%%v
     ) else (
       mkdir %%v > NUL
-      copy %downloadsdir%\%%~nxu %%v
+      if "%%~xu" == ".zst" (
+        Build\zstd\zstd-v1.5.2-win64\zstd.exe -dc %downloadsdir%\%%~nxu | tar xf - -C %%v
+      ) else (
+        copy %downloadsdir%\%%~nxu %%v
+      )
     )
   )
 )
@@ -65,6 +71,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\Commands\jq 2> NUL
     mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
     mkdir Build\%%i\%%j\Commands\GnuWin32 2> NUL
+    mkdir Build\%%i\%%j\Commands\md4c 2> NUL
     xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
     xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
     copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
@@ -74,6 +81,9 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Build\jq\jq-jq-1.4\COPYING Build\%%i\%%j\Commands\jq\
     copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
     copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\
+    copy Build\md4c\mingw32\bin\*.exe Build\%%i\%%j\Commands\md4c\
+    copy Build\md4c\mingw32\bin\*.dll Build\%%i\%%j\Commands\md4c\
+    copy Build\md4c\mingw32\share\licenses\md4c\LICENSE.md Build\%%i\%%j\Commands\md4c\
     xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
     xcopy /s/y Filters Build\%%i\%%j\Filters\
     xcopy /s/y ColorSchemes Build\%%i\%%j\ColorSchemes\
