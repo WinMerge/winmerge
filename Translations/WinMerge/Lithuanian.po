@@ -3598,8 +3598,8 @@ msgstr "Sutvarkymas"
 msgid "Content Extraction"
 msgstr "Turinio ištraukimas"
 
-msgid "Visualization"
-msgstr "Vizualizavimas"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "Duomenų užklausa"
@@ -3694,8 +3694,11 @@ msgstr "Sutvarkyti XML"
 msgid "Prettify YAML"
 msgstr "Sutvarkyti YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Vizualizuoti „Graphviz“"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "Pateikti CSV duomenų užklausą..."
@@ -3787,7 +3790,10 @@ msgstr ""
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr ""
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
@@ -3851,9 +3857,6 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 msgstr ""
 
 msgid "Filter applied"

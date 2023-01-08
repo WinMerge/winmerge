@@ -301,20 +301,34 @@ void CWebPageDiffFrame::CreateWebWndStatusBar(CStatusBar &wndStatusBar, CWnd *pw
 	wndStatusBar.SetWindowPos(&wndBottom, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }
 
+static bool isTempFile(const String& path)
+{
+	String tmpDir = env::GetTemporaryPath();
+	strutils::replace(tmpDir, _T("\\"), _T("/"));
+	tmpDir = _T("file:///") + tmpDir;
+	return (path.find(tmpDir) == 0);
+}
+
 void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
 	switch (event.type)
 	{
 	case WebDiffEvent::SourceChanged:
 	case WebDiffEvent::TabChanged:
+	{
 		if (m_nBufferType[event.pane] == BUFFERTYPE::UNNAMED)
 		{
 			m_nBufferType[event.pane] = BUFFERTYPE::NORMAL;
 			m_strDesc[event.pane].clear();
 		}
-		m_filePaths[event.pane] = m_pWebDiffWindow->GetCurrentUrl(event.pane);
-		UpdateHeaderPath(event.pane);
+		String curUrl = m_pWebDiffWindow->GetCurrentUrl(event.pane);
+		if (!isTempFile(curUrl) && curUrl != _T("about:blank"))
+		{
+			m_filePaths[event.pane] = curUrl;
+			UpdateHeaderPath(event.pane);
+		}
 		break;
+	}
 	case WebDiffEvent::ZoomFactorChanged:
 		UpdateWebPageDiffBar();
 		break;

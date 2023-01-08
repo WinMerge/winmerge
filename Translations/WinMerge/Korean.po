@@ -4666,8 +4666,8 @@ msgstr "꾸미기"
 msgid "Content Extraction"
 msgstr "내용 추출"
 
-msgid "Visualization"
-msgstr "시각화"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "데이터 쿼리"
@@ -4762,8 +4762,11 @@ msgstr "XML 꾸미기"
 msgid "Prettify YAML"
 msgstr "YAML 꾸미기"
 
-msgid "Visualize Graphviz"
-msgstr "Graphviz 시각화"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "CSV 데이터 쿼리..."
@@ -4892,10 +4895,11 @@ msgstr ""
 "'yq command'를 사용하여 YAML 꾸미기. \r\n"
 "인수: yq command에 전달할 필터 또는 명령줄 옵션."
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz 시각화 도우미. \r\n"
-"인수: dot command에 전달할 명령줄 옵션."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr ""
@@ -4976,9 +4980,6 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 msgstr ""
 
 msgid "Filter applied"

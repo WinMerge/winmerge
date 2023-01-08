@@ -4678,8 +4678,8 @@ msgstr "Embellir"
 msgid "Content Extraction"
 msgstr "Extracció del contingut"
 
-msgid "Visualization"
-msgstr "Visualització"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "Consulta de dades"
@@ -4774,8 +4774,11 @@ msgstr "Embelleix XML"
 msgid "Prettify YAML"
 msgstr "Embelleix YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualitza al Graphviz"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "Consulta dades en CSV..."
@@ -4941,12 +4944,11 @@ msgstr ""
 "Embellidor de format YAML amb la comanda yq.\n"
 "Arguments: Filtre o línia de comandes a utilitzar amb la comanda yq."
 
-msgid ""
-"Graphviz Visualizer. \r\n"
-"Arguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr ""
-"Visualitzador Graphviz.\r\n"
-"Arguments: Línia de comandes a utilitzar amb la comanda dot."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"
@@ -5045,9 +5047,6 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 msgstr ""
 
 msgid "Filter applied"

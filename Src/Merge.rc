@@ -4104,7 +4104,7 @@ BEGIN
     IDS_PLUGIN_ALL          "Al&l"
     IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
     IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
-    IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
+    IDS_PLUGIN_PROCESS_TYPE3 "Preview"
     IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
     IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
     IDS_PLUGIN_PROCESS_TYPE6 "Validation"
@@ -4137,15 +4137,16 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION24 "Prettify JSON"
     IDS_PLUGIN_MENU_CAPTION25 "Prettify XML"
     IDS_PLUGIN_MENU_CAPTION26 "Prettify YAML"
-    IDS_PLUGIN_MENU_CAPTION27 "Visualize Graphviz"
-    IDS_PLUGIN_MENU_CAPTION28 "Query CSV Data..."
-    IDS_PLUGIN_MENU_CAPTION29 "Query TSV Data..."
-    IDS_PLUGIN_MENU_CAPTION30 "Query JSON Data..."
-    IDS_PLUGIN_MENU_CAPTION31 "Query YAML Data..."
-    IDS_PLUGIN_MENU_CAPTION32 "Validate HTML"
-    IDS_PLUGIN_MENU_CAPTION33 "Disassemble JVM Bytecode"
-    IDS_PLUGIN_MENU_CAPTION34 "Disassemble IL Code"
-    IDS_PLUGIN_MENU_CAPTION35 "Disassemble Native Code"
+    IDS_PLUGIN_MENU_CAPTION27 "Preview Graphviz"
+    IDS_PLUGIN_MENU_CAPTION28 "Preview Markdown"
+    IDS_PLUGIN_MENU_CAPTION29 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION30 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION31 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION32 "Query YAML Data..."
+    IDS_PLUGIN_MENU_CAPTION33 "Validate HTML"
+    IDS_PLUGIN_MENU_CAPTION34 "Disassemble JVM Bytecode"
+    IDS_PLUGIN_MENU_CAPTION35 "Disassemble IL Code"
+    IDS_PLUGIN_MENU_CAPTION36 "Disassemble Native Code"
     IDS_PLUGIN_MISSING_PLUGIN_NAME 
                             "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
@@ -4182,22 +4183,24 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION26 
                             "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
     IDS_PLUGIN_DESCRIPTION27 
-                            "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+                            "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
     IDS_PLUGIN_DESCRIPTION28 
-                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
     IDS_PLUGIN_DESCRIPTION29 
+                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION30
                             "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-    IDS_PLUGIN_DESCRIPTION30 
-                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
     IDS_PLUGIN_DESCRIPTION31 
-                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
     IDS_PLUGIN_DESCRIPTION32 
-                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
     IDS_PLUGIN_DESCRIPTION33 
-                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
     IDS_PLUGIN_DESCRIPTION34 
-                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
     IDS_PLUGIN_DESCRIPTION35 
+                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+    IDS_PLUGIN_DESCRIPTION36 
                             "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
     IDS_PLUGIN_DESCRIPTION37 
                             "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
@@ -4218,8 +4221,6 @@ BEGIN
                             "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
     IDS_PLUGIN_DESCRIPTION49 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-    IDS_PLUGIN_DESCRIPTION50 
-                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 END
 
 STRINGTABLE
