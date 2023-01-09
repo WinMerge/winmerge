@@ -772,14 +772,16 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 		return false;
 
 	String unpackedFileExtension;
-	if (infoUnpacker && GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+	if ((infoUnpacker || FileTransform::AutoUnpacking) && GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 	{
 		std::vector<String> filepaths(nFiles);
 		std::transform(ifileloc, ifileloc + nFiles, filepaths.begin(),
 			[](auto& file) { return file.filepath; });
 		String filteredFilenames = strutils::join(filepaths.begin(), filepaths.end(), _T("|"));
 		int preferredWindowType = -1;
-		unpackedFileExtension = infoUnpacker->GetUnpackedFileExtension(filteredFilenames, preferredWindowType);
+		PackingInfo infoUnpacker2;
+		unpackedFileExtension = (infoUnpacker ? infoUnpacker : &infoUnpacker2)
+			->GetUnpackedFileExtension(filteredFilenames, preferredWindowType);
 		if (static_cast<int>(nID) <= 0 && preferredWindowType >= 0)
 			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}
