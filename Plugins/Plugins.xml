@@ -150,7 +150,7 @@
     <is-automatic value="false" />
     <unpacked-file-extension value=".html" />
     <extended-properties value="ProcessType=Preview;MenuCaption=Preview Markdown;PreferredWindowType=Webpage" />
-    <arguments value="" />
+    <arguments value="--ftables --ftasklists" />
     <unpack-file>
       <command>"${WINMERGE_HOME}\Commands\md4c\md2html.bat" "${SRC_FILE}" ${*} > "${DST_FILE}"</command>
     </unpack-file>
