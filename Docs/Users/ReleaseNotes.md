@@ -1,17 +1,53 @@
-# WinMerge 2.16.25 Release Notes
+# WinMerge 2.16.26 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.26?](#what-is-new-in-21626)
 - [What Is New in 2.16.25 beta?](#what-is-new-in-21625-beta)
 - [Known issues](#known-issues)
 
-December 2022
+January 2023
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.26 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.26
+
+### General
+
+### File compare
+
+- Feature request: Allow pasting when editing caption of pages (PR #1651)
+
+### Folder compare
+
+- BugFix: Filters aren't saved anywhere (#1638)
+- Add processing to indicate that two directories are identical in the
+    "Comparison result" column when they are identical in a 3-way folder
+    comparison. (PR #1649)
+
+### Options dialog
+
+- Modify the "Options (Compare > Folder)" dialog. (PR #1645)
+
+### Plugins
+
+- Add PreviewMarkdown plugin (PR #1641)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #1656)
+  - Chinese Simplified (PR #1635)
+  - French (PR #1640)
+  - Japanese
+  - Lithuanian (PR #1657)
+  - Polish (PR #1648)
+  - Slovenian
+  - Swedish (PR #1655)
 
 ## What Is New in 2.16.25 Beta
 

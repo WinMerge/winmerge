@@ -1,5 +1,41 @@
 # Change log
 
+## WinMerge 2.16.26 - 2023-01-27
+
+
+### General
+
+### File compare
+
+- Feature request: Allow pasting when editing caption of pages (PR #1651)
+
+### Folder compare
+
+- BugFix: Filters aren't saved anywhere (#1638)
+- Add processing to indicate that two directories are identical in the
+    "Comparison result" column when they are identical in a 3-way folder
+    comparison. (PR #1649)
+
+### Options dialog
+
+- Modify the "Options (Compare > Folder)" dialog. (PR #1645)
+
+### Plugins
+
+- Add PreviewMarkdown plugin (PR #1641)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #1656)
+  - Chinese Simplified (PR #1635)
+  - French (PR #1640)
+  - Japanese
+  - Lithuanian (PR #1657)
+  - Polish (PR #1648)
+  - Slovenian
+  - Swedish (PR #1655)
+
 ## WinMerge 2.16.25 - 2022-12-27
 
 ### File compare
