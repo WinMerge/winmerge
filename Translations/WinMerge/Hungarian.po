@@ -4662,7 +4662,7 @@ msgid "Content Extraction"
 msgstr "Tartalom kibontás"
 
 msgid "Preview"
-msgstr ""
+msgstr "Előnézet"
 
 msgid "Data Query"
 msgstr "Adatlekérdezés"
@@ -4758,10 +4758,10 @@ msgid "Prettify YAML"
 msgstr "YAML formázása"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Graphviz előnézet"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Jelölés előnézet"
 
 msgid "Query CSV Data..."
 msgstr "CSV adatok lekérdezése..."
@@ -4854,10 +4854,10 @@ msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line opti
 msgstr "YAML formázás yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
 msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Graphviz előnézeti program. \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
-msgstr ""
+msgstr "Jelölés előnézeti program. \r\nArgumentumok: Az md2html parancsnak megfelelő parancssori opciók."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
