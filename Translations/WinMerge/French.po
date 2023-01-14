@@ -4807,6 +4807,9 @@ msgstr ""
 msgid "Preview Markdown"
 msgstr ""
 
+msgid "Preview PlantUML"
+msgstr ""
+
 msgid "Query CSV Data..."
 msgstr "Interroger les données CSV..."
 
@@ -4975,6 +4978,9 @@ msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot
 msgstr ""
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
 msgstr ""
 
 msgid ""

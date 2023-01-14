@@ -4083,6 +4083,9 @@ msgstr "Förhandsvisa Graphviz"
 msgid "Preview Markdown"
 msgstr "Förhandsvisa Markdown"
 
+msgid "Preview PlantUML"
+msgstr ""
+
 msgid "Query CSV Data..."
 msgstr "Frågar CSV data..."
 
@@ -4259,6 +4262,9 @@ msgid ""
 msgstr ""
 "Markdown Förhandsvisare. \r\n"
 "Argument: Kommandoradsinställningar skickade till md2html kommandot."
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"

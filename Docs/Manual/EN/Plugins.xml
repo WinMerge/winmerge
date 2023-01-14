@@ -1152,6 +1152,60 @@
         </segmentedlist></para>
     </section>
 
+    <section id="Plugins_PreviewPlantUML">
+      <title><filename>PreviewPlantUML<indexterm>
+          <primary>PreviewPlantUML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>PlantUML Previewer</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PreviewPlantUML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the plantuml.jar command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.pu</filename>,
+              <filename class="extension">,*.puml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>, <ulink url="https://plantuml.com/">PlantUML</ulink>, <ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="Plugins_ApacheTika">
       <title><filename>ApacheTika<indexterm>
           <primary>ApacheTika plugin file</primary>

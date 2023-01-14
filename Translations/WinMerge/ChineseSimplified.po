@@ -4122,6 +4122,9 @@ msgstr "预览 Graphviz"
 msgid "Preview Markdown"
 msgstr "预览 Markdown"
 
+msgid "Preview PlantUML"
+msgstr ""
+
 msgid "Query CSV Data..."
 msgstr "查询 CSV 数据..."
 
@@ -4300,6 +4303,9 @@ msgid ""
 msgstr ""
 "Markdown预览器。\r\n"
 "参数：传递给 md2html 命令的命令行选项。"
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"
