@@ -152,7 +152,19 @@
     <extended-properties value="ProcessType=Preview;MenuCaption=Preview Markdown;PreferredWindowType=Webpage" />
     <arguments value="--ftables --ftasklists" />
     <unpack-file>
-      <command>"${WINMERGE_HOME}\Commands\md4c\md2html.bat" "${SRC_FILE}" ${*} > "${DST_FILE}"</command>
+      <command>"${WINMERGE_HOME}\Commands\md4c\md2html.bat" "${SRC_FILE}" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="PreviewPlantUML">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="PlantUML Previewer. &#xD;&#xA;Arguments: Command line options passed to the plantuml.jar command." />
+    <file-filters value="\.pu$;\.puml$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".png" />
+    <extended-properties value="ProcessType=Preview;MenuCaption=Preview PlantUML;PreferredWindowType=Image" />
+    <arguments value="-tpng" />
+    <unpack-file>
+      <command>"${WINMERGE_HOME}\Commands\PlantUML\plantuml.bat" "${SRC_FILE}" "${DST_FILE}" ${*}</command>
     </unpack-file>
   </plugin>
   <plugin name="ApacheTika">

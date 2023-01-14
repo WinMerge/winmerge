@@ -4420,6 +4420,9 @@ msgstr "Graphviz-Vorschau"
 msgid "Preview Markdown"
 msgstr "Markdown-Vorschau"
 
+msgid "Preview PlantUML"
+msgstr ""
+
 msgid "Query CSV Data..."
 msgstr "CSV-Daten abfragen..."
 
@@ -4515,6 +4518,9 @@ msgstr "Graphviz-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befe
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
 msgstr "Markdown-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl md2html übergeben werden."
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
