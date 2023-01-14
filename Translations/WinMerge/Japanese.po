@@ -4084,6 +4084,9 @@ msgstr "Graphvizプレビュー"
 msgid "Preview Markdown"
 msgstr "Markdownプレビュー"
 
+msgid "Preview PlantUML"
+msgstr "PlantUMLプレビュー"
+
 msgid "Query CSV Data..."
 msgstr "CSV データの問い合わせ..."
 
@@ -4261,6 +4264,11 @@ msgid ""
 msgstr ""
 "Markdown ファイルをHTMLに変換して表示します。\r\n"
 "引数: md2html コマンドに渡すコマンドラインオプション。"
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"PlantUML ファイルを画像に変換して表示します。\r\n"
+"引数: plantuml.jar コマンドに渡すコマンドラインオプション。"
 
 msgid ""
 "CSV Querier with q command. \r\n"
