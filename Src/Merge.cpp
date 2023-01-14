@@ -63,9 +63,6 @@
 #define new DEBUG_NEW
 #endif
 
-/** @brief Location for command line help to open. */
-static const TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
-
 /** @brief Backup file extension. */
 static const TCHAR BACKUP_FILE_EXT[] = _T("bak");
 

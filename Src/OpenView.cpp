@@ -49,9 +49,6 @@ const UINT IDT_RETRY = 2;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 const int RETRY_MAX = 3;
 
-/** @brief Location for Open-dialog specific help to open. */
-static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
-
 // COpenView
 
 IMPLEMENT_DYNCREATE(COpenView, CFormView)

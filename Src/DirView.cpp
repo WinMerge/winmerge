@@ -60,11 +60,6 @@ using std::swap;
 using namespace std::placeholders;
 
 /**
- * @brief Location for folder compare specific help to open.
- */
-static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/Compare_dirs.html");
-
-/**
  * @brief Limit (in seconds) to signal compare is ready for user.
  * If compare takes longer than this value (in seconds) we inform
  * user about it. Current implementation uses MessageBeep(IDOK).

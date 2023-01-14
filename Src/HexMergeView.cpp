@@ -20,13 +20,11 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "Environment.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-/** @brief Location for hex compare specific help to open. */
-static TCHAR HexMergeViewHelpLocation[] = _T("::/htmlhelp/Compare_bin.html");
 
 /**
  * @brief Turn bool api result into success/error code

@@ -21,15 +21,11 @@
 #include "OptionsSyntaxColors.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-/**
- * @brief Location for file compare specific help to open.
- */
-static TCHAR OptionsHelpLocation[] = _T("::/htmlhelp/Configuration.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CPreferencesDlg dialog

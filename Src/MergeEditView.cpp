@@ -32,6 +32,7 @@
 #include "editcmd.h"
 #include "Shell.h"
 #include "SelectPluginDlg.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,9 +49,6 @@ using CrystalLineParser::TEXTBLOCK;
 const UINT IDT_RESCAN = 2;
 /** @brief Timer timeout for delayed rescan. */
 const UINT RESCAN_TIMEOUT = 1000;
-
-/** @brief Location for file compare specific help to open. */
-static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/Compare_files.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView

@@ -53,9 +53,6 @@ CComPtr<T> Callback(Func&& callback)
 	return CComPtr<T>(new CallbackImpl<T, Func>(std::move(callback)));
 }
  
-/** @brief Location for Webpage compare specific help to open. */
-static const TCHAR WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
-
 /////////////////////////////////////////////////////////////////////////////
 // CWebPageDiffFrame
 
