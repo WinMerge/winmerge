@@ -2004,22 +2004,6 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes, const String strDesc[],
 }
 
 /**
- * @brief Open two new empty docs, 'Scratchpads'
- * 
- * Allows user to open two empty docs, to paste text to
- * compare from clipboard.
- * @note File filenames are set emptys and filedescriptors
- * are loaded from resource.
- * @sa CMergeDoc::OpenDocs()
- * @sa CMergeDoc::TrySaveAs()
- */
-template <int nFiles, unsigned nID>
-void CMainFrame::OnFileNew() 
-{
-	DoFileNew(nID, nFiles);
-}
-
-/**
  * @brief Open Filters dialog
  */
 void CMainFrame::OnToolsFilters()

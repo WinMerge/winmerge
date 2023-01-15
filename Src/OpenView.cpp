@@ -1624,12 +1624,6 @@ void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
 		pCtl->PostMessage(msg, wParam, lParam);
 }
 
-template <int MSG, int WPARAM, int LPARAM>
-void COpenView::OnEditAction()
-{
-	OnEditAction(MSG, WPARAM, LPARAM);
-}
-
 /**
  * @brief Open help from mainframe when user presses F1.
  */

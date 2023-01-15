@@ -108,8 +108,9 @@ protected:
 	afx_msg void OnSelWordDiffColor();
 	afx_msg void OnSelWordDiffDeletedColor();
 	afx_msg void OnSelWordDiffTextColor();
+	afx_msg void OnUseTextColor(int checkbox_id, int colorbutton_id);
 	template<int checkbox_id, int colorbutton_id>
-	afx_msg void OnUseTextColor();
+	afx_msg void OnUseTextColor() { OnUseTextColor(checkbox_id, colorbutton_id); }
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

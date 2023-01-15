@@ -341,7 +341,7 @@ protected:
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
 	template <int nFiles, unsigned nID>
-	afx_msg void OnFileNew();
+	afx_msg void OnFileNew() { DoFileNew(nID, nFiles); }
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
