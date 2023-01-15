@@ -566,7 +566,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		}
 	}
 
-	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME);
+	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME, &m_wndToolBar);
 
 	theApp.TranslateMenu(m_pMenus[view]->m_hMenu);
 

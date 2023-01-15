@@ -207,6 +207,7 @@ public:
 	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
 	void WatchDocuments(IMergeDoc* pMergeDoc);
 	void UnwatchDocuments(IMergeDoc* pMergeDoc);
+	CToolBar* GetToolbar() { return &m_wndToolBar; }
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;

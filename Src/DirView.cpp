@@ -693,7 +693,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	CDirDoc* pDoc = GetDocument();
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
@@ -773,7 +773,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 {
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 	theApp.TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));

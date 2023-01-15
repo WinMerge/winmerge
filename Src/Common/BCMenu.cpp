@@ -908,15 +908,19 @@ BCMenuData *BCMenu::NewODMenu(UINT pos,UINT nFlags,UINT_PTR nID,CString string)
 	return mdata;
 };
 
-bool BCMenu::LoadToolbar(UINT nToolBar)
+bool BCMenu::LoadToolbar(UINT nToolBar, CToolBar* pBar)
 {
 	bool returnflag=false;
-	CToolBar bar;
+	CToolBar barIns;
+	CToolBar& bar = pBar ? *pBar : barIns;
 	
-	CWnd* pWnd = AfxGetMainWnd();
-	if (pWnd == nullptr)pWnd = CWnd::GetDesktopWindow();
-	bar.Create(pWnd);
-	if(bar.LoadToolBar(nToolBar)){
+	if (!pBar)
+	{
+		CWnd* pWnd = AfxGetMainWnd();
+		if (pWnd == nullptr)pWnd = CWnd::GetDesktopWindow();
+		bar.Create(pWnd);
+	}
+	if(pBar || bar.LoadToolBar(nToolBar)){
 		returnflag=true;
 		for(int i=0;i<bar.GetCount();++i){
 			UINT nID = bar.GetItemID(i); 

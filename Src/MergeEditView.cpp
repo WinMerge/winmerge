@@ -2824,7 +2824,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	else if (nBuffers == 3 && m_nThisPane == 2)
 		menu.RemoveMenu(ID_GOTO_MOVED_LINE_LM, MF_BYCOMMAND);
 
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));
