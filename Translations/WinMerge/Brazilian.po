@@ -3701,7 +3701,7 @@ msgid "Preview Markdown"
 msgstr "Pré-visualização Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Pré-visualização PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Consultar Dados do CSV..."
@@ -3797,10 +3797,10 @@ msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot
 msgstr "Pré-visualização Graphviz. \r\nArgumentos: Opções de linha de comando passadas ao comando dot."
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
-msgstr "Visualização Markdown. \r\nArgumentos: Opções de linha de comando passadas ao comando dot."
+msgstr "Visualização Markdown. \r\nArgumentos: Opções de linha de comando passadas ao comando md2html."
 
 msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-msgstr ""
+msgstr "Visualização PlantUML. \r\nArgumentos: Opções de linha de comando passadas ao comando plantuml.jar."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "Examinador CSV com comando q. \r\nArgumentos: Comando SQL ou opções de linha de comando passados ao comando q."
