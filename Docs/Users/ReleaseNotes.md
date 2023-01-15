@@ -18,6 +18,9 @@ Please submit bug reports to our bug-tracker.
 
 ### General
 
+- Fixed issue where the program would crash when certain path names were set
+    in the file path bar.
+
 ### File compare
 
 - Feature request: Allow pasting when editing caption of pages (PR #1651)
@@ -29,6 +32,11 @@ Please submit bug reports to our bug-tracker.
     "Comparison result" column when they are identical in a 3-way folder
     comparison. (PR #1649)
 
+### Binary compare
+
+- Fixed issue where open menu in file path bar of binary comparison window was
+    disabled.
+
 ### Options dialog
 
 - Modify the "Options (Compare > Folder)" dialog. (PR #1645)
@@ -36,18 +44,23 @@ Please submit bug reports to our bug-tracker.
 ### Plugins
 
 - Add PreviewMarkdown plugin (PR #1641)
+- Add PreviewPlantUML plugin (PR #1666)
+- CompareMSExcelFiles: Added "Compare worksheets as HTML" in CompareMSExcelFiles
+    plugin options window
 
 ### Translations
 
 - Translation updates:
   - Brazilian (PR #1656)
-  - Chinese Simplified (PR #1635)
+  - Chinese Simplified (PR #1635,#1665,#1667)
   - French (PR #1640)
+  - German (PR #1660)
+  - Hungarian (PR #1664)
   - Japanese
   - Lithuanian (PR #1657)
   - Polish (PR #1648)
   - Slovenian
-  - Swedish (PR #1655)
+  - Swedish (PR #1655,#1663)
 
 ## What Is New in 2.16.25 Beta
 
