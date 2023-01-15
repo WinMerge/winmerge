@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-01-09 18:00+0200\n"
+"PO-Revision-Date: 2023-01-15 16:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -4421,7 +4421,7 @@ msgid "Preview Markdown"
 msgstr "Markdown-Vorschau"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "PlantUML-Vorschau"
 
 msgid "Query CSV Data..."
 msgstr "CSV-Daten abfragen..."
@@ -4520,7 +4520,7 @@ msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2
 msgstr "Markdown-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl md2html übergeben werden."
 
 msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-msgstr ""
+msgstr "PlantUML-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl plantuml.jar übergeben werden."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."
