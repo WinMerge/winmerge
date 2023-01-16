@@ -5,13 +5,13 @@
 # * Patriccollu di Santa Maria è Sichè <patriccollu at gmail.com>
 #
 # Translators:
-# * Patriccollu di Santa Maria è Sichè, 2021-2022
+# * Patriccollu di Santa Maria è Sichè, 2021-2023
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-12-25 15:41+0000\n"
-"PO-Revision-Date: 2022-12-25 19:08+0100\n"
+"PO-Revision-Date: 2023-01-16 17:47+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -3992,7 +3992,7 @@ msgid "Content Extraction"
 msgstr "Estrazzione di cuntenutu"
 
 msgid "Preview"
-msgstr ""
+msgstr "Fighjulata"
 
 msgid "Data Query"
 msgstr "Interrugazione di dati"
@@ -4088,13 +4088,13 @@ msgid "Prettify YAML"
 msgstr "Imbellisce YAML"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Fighjulata Graphviz"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Fighjulata Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Fighjulata PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Interrugazione di dati CSV…"
@@ -4260,14 +4260,26 @@ msgstr ""
 "Imbellimentu YAML cù a cumanda yq. \\r\n"
 "Parametri : Filtru o ozzioni di linea di cumanda passati à a cumanda « yq »."
 
-msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgid ""
+"Graphviz Previewer. \r\n"
+"Arguments: Command line options passed to the dot command."
 msgstr ""
+"Previsualizatore Graphviz.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « dot »."
 
-msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
 msgstr ""
+"Previsualizatore Markdown.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « md2html »"
 
-msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
 msgstr ""
+"Previsualizatore PlantUML.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « plantuml.jar »"
 
 msgid ""
 "CSV Querier with q command. \r\n"
