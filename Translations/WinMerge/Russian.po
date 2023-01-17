@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-07-10 10:12+0000\n"
-"PO-Revision-Date: 2022-07-27 00:00+0000\n"
+"PO-Revision-Date: 2023-01-17 00:00+0000\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -238,7 +238,7 @@ msgid "&Texts"
 msgstr "&Тексты"
 
 msgid "&Resource Trees"
-msgstr "&Древа ресурсов"
+msgstr "&Деревья ресурсов"
 
 msgid "&Size"
 msgstr "&Размер"
@@ -936,7 +936,7 @@ msgid "Copy Items To Clip&board"
 msgstr "Копировать в буфер"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Копировать все от&ображаемые столбцы"
 
 msgid "&Zip"
 msgstr "&Заархивировать"
@@ -1164,7 +1164,7 @@ msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Авто&перезагрузка измененных файлов:"
 
 msgid "Language:"
 msgstr "Язык:"
@@ -2629,7 +2629,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Вы собираетесь закрыть окно сравнения. Действительно закрыть окно?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Неверное имя файла или папки."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3524,11 +3524,11 @@ msgstr "Чс: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr "Расп: %g  "
+msgstr "Путь: %g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr "Расп: %g, %g  "
+msgstr "Путь: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
@@ -3586,10 +3586,10 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Разрешить запуск только одной копии и дожидаться ее завершения"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Активно только в окне"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Незамедлительно"
 
 msgid "Al&l"
 msgstr "Все"
@@ -3600,8 +3600,8 @@ msgstr "Приукрашивание"
 msgid "Content Extraction"
 msgstr "Извлечение контента"
 
-msgid "Preview"
-msgstr ""
+msgid "Visualization"
+msgstr "Визуализация"
 
 msgid "Data Query"
 msgstr "Запрос данных"
@@ -3697,13 +3697,13 @@ msgid "Prettify YAML"
 msgstr "Приукрасить YAML"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Предпросмотр Graphviz"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Предпросмотр Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Предпросмотр PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Запрос данных CSV..."
@@ -3759,10 +3759,10 @@ msgid "Sort lines descending"
 msgstr "Сортировать строки по убыванию"
 
 msgid "Reverse columns"
-msgstr "Обратить столбцы"
+msgstr "Реверс столбцов"
 
 msgid "Reverse lines"
-msgstr "Обратить строки"
+msgstr "Реверс строк"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
 msgstr "Заменить текст.\r\n• : Replace [-i] [-e] FIND REPLACE\r\n FIND - текст для поиска\r\n REPLACE - текст для замены\r\n -i - игнорировать регистр (только с -e)\r\n -e - рассматривать как регулярное выражение"
@@ -3796,13 +3796,13 @@ msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line opti
 msgstr "YAML Prettier с yq. \r\nАргументы: Фильтр или параметры командной строки, передаваемые команде yq."
 
 msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Предпросмотр Graphviz. \r\nАргументы: Параметры командной строки, передаваемые команде dot."
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
-msgstr ""
+msgstr "Предпросмотр Markdown. \r\nАргументы: Параметры командной строки, передаваемые команде md2html"
 
 msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-msgstr ""
+msgstr "Предпросмотр PlantUML. \r\nАргументы: Параметры командной строки, передаваемые команде plantuml.jar."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV Querier с q. \r\nАргументы: Оператор SQL или параметры командной строки, передаваемые команде q."
