@@ -3952,11 +3952,11 @@ msgstr "色距: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp  "
+msgstr "页: %d/%d  缩放: %d%%  %dx%d像素  %d比特/像素  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "选中: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
