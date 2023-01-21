@@ -3600,7 +3600,7 @@ msgstr "Приукрашивание"
 msgid "Content Extraction"
 msgstr "Извлечение контента"
 
-msgid "Visualization"
+msgid "Preview"
 msgstr "Визуализация"
 
 msgid "Data Query"
