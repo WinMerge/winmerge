@@ -6,6 +6,8 @@
 # * xmpdhml <xmpdhml at users.sourceforge.net>
 # * MaysWind <i at mayswind.net>
 # * CharlesMengCA <CharlesMeng at outlook.com>
+# * YFdyh000 <yfdyh000 at gmail.com>
+# * Yin Gang <zenith.yin at gmail.com>
 #
 msgid ""
 msgstr ""
