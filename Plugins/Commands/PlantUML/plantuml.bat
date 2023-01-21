@@ -41,4 +41,4 @@ if not exist %PlantUML_PATH% (
     (if "%~x1" == ".yml" echo @endyaml)
     (if "%~x1" == ".yaml" echo @endyaml)
   )
-) | java -jar %PlantUML_PATH% -pipe %3 %4 %5 %6 %7 %8 %9 > "%~2"
+) | "%~dp0..\Java\java.bat" -jar "%CD%\%PlantUML_PATH%" -pipe %3 %4 %5 %6 %7 %8 %9 > "%~2"
