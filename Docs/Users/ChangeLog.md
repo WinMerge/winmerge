@@ -21,8 +21,13 @@
 
 ### Binary compare
 
-- Fixed issue where open menu in file path bar of binary comparison window was
-    disabled.
+- Fixed issue where the Open menu item in file path bar of binary comparison
+    window was disabled.
+
+### Webpage compare
+
+- BugFix: Deleted color of Word Difference in Options dialog was not used.
+- Implemented Ignore numbers comparison option.
 
 ### Options dialog
 
@@ -38,14 +43,17 @@
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #1656)
-  - Chinese Simplified (PR #1635,#1665,#1667)
-  - French (PR #1640)
-  - German (PR #1660)
+  - Brazilian (PR #1656,#1670)
+  - Chinese Simplified (PR #1635,#1665,#1667,#1677,#1681)
+  - Corsican (PR #1674)
+  - French (PR #1640,#1679)
+  - German (PR #1660,#1671)
   - Hungarian (PR #1664)
   - Japanese
-  - Lithuanian (PR #1657)
+  - Lithuanian (PR #1657,#1673)
   - Polish (PR #1648)
+  - Portuguese (PR #1669)
+  - Russian (PR #1676)
   - Slovenian
   - Swedish (PR #1655,#1663)
 
