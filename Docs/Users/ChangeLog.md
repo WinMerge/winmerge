@@ -39,6 +39,9 @@
 - Add PreviewPlantUML plugin (PR #1666)
 - CompareMSExcelFiles: Added "Compare worksheets as HTML" in CompareMSExcelFiles
     plugin options window
+- ApacheTika: Updated Apache Tika to version 2.6.0
+- ApacheTika: If Java is not installed, OpenJDK 19.0.2 will now be downloaded
+    and used.
 
 ### Translations
 
@@ -55,7 +58,7 @@
   - Portuguese (PR #1669)
   - Russian (PR #1676)
   - Slovenian
-  - Swedish (PR #1655,#1663)
+  - Swedish (PR #1655,#1663,#1682)
 
 ## WinMerge 2.16.25 - 2022-12-27
 
