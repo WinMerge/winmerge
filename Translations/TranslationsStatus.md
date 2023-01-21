@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-01-15**:
+Status from **2023-01-22**:
 
 ## WinMerge
 
@@ -8,39 +8,39 @@ Status from **2023-01-15**:
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
 | Arabic               |  1244 |        897 |     0 |          347 |     72 % |  2019-12-30 |
 | Basque               |  1244 |        639 |     0 |          605 |     51 % |  2013-02-03 |
-| Brazilian            |  1244 |       1242 |     0 |            2 |     99 % |             |
+| Brazilian            |  1244 |       1244 |     0 |            0 |    100 % |             |
 | Bulgarian            |  1244 |       1021 |     0 |          223 |     82 % |  2021-06-28 |
 | Catalan              |  1244 |       1184 |     0 |           60 |     95 % |             |
-| ChineseSimplified    |  1244 |       1243 |     0 |            1 |     99 % |             |
+| ChineseSimplified    |  1244 |       1244 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1244 |       1123 |     0 |          121 |     90 % |  2022-02-19 |
-| Corsican             |  1244 |       1237 |     0 |            7 |     99 % |  2022-12-25 |
+| Corsican             |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-16 |
 | Croatian             |  1244 |        631 |     1 |          612 |     50 % |  2009-02-13 |
 | Czech                |  1244 |        606 |     0 |          638 |     48 % |             |
 | Danish               |  1244 |        640 |     0 |          604 |     51 % |  2013-01-13 |
 | Dutch                |  1244 |       1194 |     0 |           50 |     95 % |  2018-09-06 |
 | English              |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-14 |
 | Finnish              |  1244 |       1195 |     0 |           49 |     96 % |             |
-| French               |  1244 |       1237 |     0 |            7 |     99 % |  2022-12-29 |
+| French               |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-20 |
 | Galician             |  1244 |       1233 |     0 |           11 |     99 % |  2022-11-20 |
-| German               |  1244 |       1242 |     0 |            2 |     99 % |  2023-01-09 |
+| German               |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-15 |
 | Greek                |  1244 |        605 |     0 |          639 |     48 % |             |
 | Hungarian            |  1244 |       1241 |     0 |            3 |     99 % |  2021-03-15 |
 | Italian              |  1244 |       1105 |     0 |          139 |     88 % |  2022-06-01 |
 | Japanese             |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-08 |
 | Korean               |  1244 |       1194 |     0 |           50 |     95 % |  2022-02-02 |
-| Lithuanian           |  1244 |       1198 |     0 |           46 |     96 % |  2023-01-09 |
+| Lithuanian           |  1244 |       1199 |     0 |           45 |     96 % |  2023-01-16 |
 | Norwegian            |  1244 |        731 |     0 |          513 |     58 % |             |
 | Persian              |  1244 |        642 |     0 |          602 |     51 % |  2013-08-15 |
 | Polish               |  1244 |       1219 |     0 |           25 |     97 % |  2022-11-10 |
 | Portuguese           |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-15 |
 | Romanian             |  1244 |        561 |    44 |          639 |     48 % |             |
-| Russian              |  1244 |       1232 |     0 |           12 |     99 % |  2022-07-27 |
+| Russian              |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-17 |
 | Serbian              |  1244 |        633 |     0 |          611 |     50 % |             |
 | Sinhala              |  1244 |        564 |    58 |          622 |     50 % |  2010-12-12 |
 | Slovak               |  1244 |       1194 |     0 |           50 |     95 % |  2022-02-17 |
 | Slovenian            |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-14 |
 | Spanish              |  1244 |       1172 |     1 |           71 |     94 % |  2022-07-30 |
-| Swedish              |  1244 |       1242 |     0 |            2 |     99 % |  2023-01-11 |
+| Swedish              |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-21 |
 | Turkish              |  1244 |       1233 |     0 |           11 |     99 % |  2022-11-10 |
 | Ukrainian            |  1244 |        637 |     0 |          607 |     51 % |  2009-06-13 |
 
@@ -198,6 +198,8 @@ Status from **2023-01-15**:
    - [xmpdhml](mailto:xmpdhml%20at%20users.sourceforge.net)
    - [MaysWind](mailto:i%20at%20mayswind.net)
    - [CharlesMengCA](mailto:CharlesMeng%20at%20outlook.com)
+   - [YFdyh000](mailto:yfdyh000%20at%20gmail.com)
+   - [Yin Gang](mailto:zenith.yin%20at%20gmail.com)
 
  * ChineseTraditional
    - [Koko](mailto:kokokoko%20at%20giga.net.tw)
@@ -207,7 +209,7 @@ Status from **2023-01-15**:
 
  * Corsican
    - [Patriccollu di Santa Maria è Sichè](mailto:patriccollu%20at%20gmail.com) *Maintainer*
-   - Patriccollu di Santa Maria è Sichè, 2021-2022
+   - Patriccollu di Santa Maria è Sichè, 2021-2023
 
  * Croatian
    - [Hasan Osmanagić](mailto:hasan.osmanagic%20at%20public.carnet.hr)
