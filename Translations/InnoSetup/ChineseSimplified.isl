@@ -12,7 +12,7 @@ CustomInstallation=自定义安装
 
 ;Components
 AppCoreFiles=WinMerge 核心文件
-Filters=滤镜
+Filters=过滤器
 Plugins=插件
 Frhed=Frhed(十六进制编辑器)
 WinIMerge=WinIMerge(图像差异/合并)
