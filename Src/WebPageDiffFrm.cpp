@@ -321,7 +321,7 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 		String curUrl = m_pWebDiffWindow->GetCurrentUrl(event.pane);
 		if (!isTempFile(curUrl) && curUrl != _T("about:blank"))
 		{
-			m_filePaths[event.pane] = curUrl;
+			m_filePaths[event.pane] = paths::isFileURL(curUrl) ? paths::FromURL(curUrl) : curUrl;
 			UpdateHeaderPath(event.pane);
 		}
 		break;
