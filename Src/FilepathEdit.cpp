@@ -111,6 +111,7 @@ CFilepathEdit::CFilepathEdit()
  , m_bActive(false)
  , m_bInEditing(false)
  , m_bEnabledFileSelection(false)
+ , m_bEnabledFolderSelection(false)
 {
 }
 
@@ -254,7 +255,7 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 		if (paths::EndsWithSlash(m_sOriginalText))
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
-		if (!m_bEnabledFileSelection)
+		if (!m_bEnabledFileSelection && !m_bEnabledFolderSelection)
 			pPopup->EnableMenuItem(ID_EDITOR_SELECT_FILE, MF_GRAYED);
 
 		// invoke context menu
@@ -455,7 +456,12 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		if (!text.IsEmpty() && text[0] == '*')
 			text = text.Right(text.GetLength() - 2);
 		String dir = paths::GetParentPath(static_cast<const TCHAR*>(text));
-		if (SelectFile(m_hWnd, m_sFilepath, true, dir.c_str()))
+		bool selected = false;
+		if (m_bEnabledFileSelection)
+			selected = SelectFile(m_hWnd, m_sFilepath, true, dir.c_str());
+		else
+			selected = SelectFolder(m_sFilepath, dir.c_str(), _T(""), GetSafeHwnd());
+		if (selected)
 			GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
 		return;
 	}

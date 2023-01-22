@@ -28,13 +28,14 @@ public :
 	bool SubClassEdit(UINT nID, CWnd* pParent);
 	void RefreshDisplayText();
 	const String& GetUpdatedTipText(CDC * pDC, int maxWidth);
-	const String& GetSelectedFile() const { return m_sFilepath; };
+	const String& GetSelectedPath() const { return m_sFilepath; };
 
 	void SetActive(bool bActive);
 	void SetOriginalText(const String& sString );
 	void SetBackColor(COLORREF rgb);
 	void SetTextColor(COLORREF rgb);
 	void EnableFileSelection(bool enabled) { m_bEnabledFileSelection = enabled; }
+	void EnableFolderSelection(bool enabled) { m_bEnabledFolderSelection = enabled; }
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG *pMsg);
@@ -68,6 +69,7 @@ private:
 	CBrush m_brBackGnd; /**< Background brush for the control. */
 	bool m_bInEditing;
 	bool m_bEnabledFileSelection;
+	bool m_bEnabledFolderSelection;
 };
 
 /**
