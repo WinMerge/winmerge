@@ -178,6 +178,7 @@ copy Build\%PLATFORM%\Release\WinWebDiff\WinWebDiffLib.dll "%DISTDIR%\%PLATFORMH
 rem Commands
 echo Copy Commands...
 xcopy /s/y Plugins\Commands "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands"
+copy Plugins\Commands\DownloadFiles.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands"
 
 rem Patch
 echo Copy Patch...
