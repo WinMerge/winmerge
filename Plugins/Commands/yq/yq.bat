@@ -17,7 +17,7 @@ if not exist %YQ_PATH% (
     if errorlevel 1 (
       echo "download is canceled" 1>&2
     ) else (
-      start "Downloading..." /WAIT powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest %DOWNLOAD_URL% -Outfile %YQ_PATH%"
+      start "Downloading..." /WAIT powershell -command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; Invoke-WebRequest -Uri %DOWNLOAD_URL% -UseBasicParsing -Outfile %YQ_PATH%"
       powershell -command "$(CertUtil -hashfile %YQ_PATH% SHA256)[1] -replace ' ','' -eq '%SHA256%'" | findstr True > NUL
       if errorlevel 1 (
         echo %YQ_PATH%: download failed 1>&2
