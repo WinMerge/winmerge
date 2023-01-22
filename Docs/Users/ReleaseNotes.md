@@ -28,14 +28,18 @@ Please submit bug reports to our bug-tracker.
 ### Folder compare
 
 - BugFix: Filters aren't saved anywhere (#1638)
+- BugFix: Fixed issue where the Open menu item in file path bar of folder
+    comparison window was disabled.
 - Add processing to indicate that two directories are identical in the
     "Comparison result" column when they are identical in a 3-way folder
     comparison. (PR #1649)
+- Request: highlight the file after opening its parent folder (#1662)
+- Show/hide directories in 3-way comparison (PR #1683)
 
 ### Binary compare
 
-- Fixed issue where the Open menu item in file path bar of binary comparison
-    window was disabled.
+- BugFix: Fixed issue where the Open menu item in file path bar of binary
+    comparison window was disabled.
 
 ### Webpage compare
 
