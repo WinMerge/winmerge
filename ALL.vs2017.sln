@@ -230,10 +230,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{5D37AB3C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{2313487A-3891-4F6E-A4F4-13E8DE53D7AC}"
 	ProjectSection(SolutionItems) = preProject
-		Docs\Manual\build_htmlhelp_en.bat = Docs\Manual\build_htmlhelp_en.bat
-		Docs\Manual\build_htmlhelp_jp.bat = Docs\Manual\build_htmlhelp_jp.bat
 		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
 		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
+		Docs\Manual\build_htmlhelp_en.bat = Docs\Manual\build_htmlhelp_en.bat
+		Docs\Manual\build_htmlhelp_jp.bat = Docs\Manual\build_htmlhelp_jp.bat
 		Docs\Manual\configuration.bat = Docs\Manual\configuration.bat
 		Docs\Manual\README.md = Docs\Manual\README.md
 	EndProjectSection
@@ -270,6 +270,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ColorSchemes", "ColorSchemes", "{92E79FEF-3EDE-4F79-97BA-CD6F3E1BE58B}"
 	ProjectSection(SolutionItems) = preProject
 		ColorSchemes\Default.ini = ColorSchemes\Default.ini
+		ColorSchemes\Midnight.ini = ColorSchemes\Midnight.ini
 		ColorSchemes\Modern.ini = ColorSchemes\Modern.ini
 		ColorSchemes\Solarized Dark.ini = ColorSchemes\Solarized Dark.ini
 		ColorSchemes\Solarized Light.ini = ColorSchemes\Solarized Light.ini
@@ -405,6 +406,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{14C9
 		ShellExtension\UnRegister.bat = ShellExtension\UnRegister.bat
 		ShellExtension\UnRegisterPerUser.bat = ShellExtension\UnRegisterPerUser.bat
 		ShellExtension\UnregisterWinMergeContextMenuPackage.bat = ShellExtension\UnregisterWinMergeContextMenuPackage.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Java", "Java", "{235DAFAF-0236-4F18-B864-FEE6510B489D}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\Java\java.bat = Plugins\Commands\Java\java.bat
+		Plugins\Commands\Java\LICENSE.txt = Plugins\Commands\Java\LICENSE.txt
+		Plugins\Commands\Java\URL.txt = Plugins\Commands\Java\URL.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "md4c", "md4c", "{CC5DD45F-61D5-4A43-BBF5-E84509F3F3B6}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\md4c\md2html.bat = Plugins\Commands\md4c\md2html.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PlantUML", "PlantUML", "{460A3D0C-F937-4E82-9F70-C79E158809B4}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\PlantUML\license.txt = Plugins\Commands\PlantUML\license.txt
+		Plugins\Commands\PlantUML\plantuml.bat = Plugins\Commands\PlantUML\plantuml.bat
+		Plugins\Commands\PlantUML\URL.txt = Plugins\Commands\PlantUML\URL.txt
 	EndProjectSection
 EndProject
 Global
@@ -1332,7 +1352,6 @@ Global
 		{5360DC20-6552-4F74-8D4D-BF88B23E0B3A} = {C15D3EBB-A0A6-47AF-93FF-0FB3B477B96B}
 		{66765216-61B6-4D38-934B-6E92056A97DC} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
 		{A348FF0E-3DD2-4F8B-BF10-B4092A0B8FDB} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
-		{4D6CA805-D847-462E-B176-AE8571D586AB} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{88571237-56AD-421A-8F88-26983BDD8D6C} = {4407E7D0-41F5-4FC4-ADB9-948C09966721}
 		{91ED0FD4-86C9-4D7C-87C1-1B12F04DCAD0} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
 		{7515AC3C-389A-44CD-B940-A59DDE5B8AE3} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
@@ -1351,6 +1370,9 @@ Global
 		{16746B0C-5840-4ED4-AEDF-1ABB617827FD} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
 		{F4ED7659-7C4E-4962-B83A-A1F3E1F7B8DE} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
 		{14C9D43A-1727-4BEE-B2A2-A6BAED7E7154} = {578C2837-33B3-4F33-ABDC-CA588BE05983}
+		{235DAFAF-0236-4F18-B864-FEE6510B489D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{CC5DD45F-61D5-4A43-BBF5-E84509F3F3B6} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{460A3D0C-F937-4E82-9F70-C79E158809B4} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
