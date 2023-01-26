@@ -32,6 +32,7 @@
 #include "editcmd.h"
 #include "Shell.h"
 #include "SelectPluginDlg.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,9 +49,6 @@ using CrystalLineParser::TEXTBLOCK;
 const UINT IDT_RESCAN = 2;
 /** @brief Timer timeout for delayed rescan. */
 const UINT RESCAN_TIMEOUT = 1000;
-
-/** @brief Location for file compare specific help to open. */
-static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/Compare_files.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
@@ -450,7 +448,9 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		else if (ptStart != ptEnd)
 		{
 			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
+			constexpr int LineLimit = 256;
+			if ((lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0))) ||
+			    (di.dend - di.dbegin > LineLimit))
 			{
 				firstWordDiff = -1;
 				return;
@@ -2824,7 +2824,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	else if (nBuffers == 3 && m_nThisPane == 2)
 		menu.RemoveMenu(ID_GOTO_MOVED_LINE_LM, MF_BYCOMMAND);
 
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));

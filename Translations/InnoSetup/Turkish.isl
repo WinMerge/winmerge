@@ -19,7 +19,7 @@ WinIMerge=WinIMerge(Görsel Fark/Birleþtirme)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Arþiv Desteði
 ShellExtension32bit=32-bit WinMerge Kabuk Eklentisi
-Commands=GnuWin32 Windows Yamasý/HTML Tidy/jq
+Commands=GnuWin32 Windows Yamasý/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Diller

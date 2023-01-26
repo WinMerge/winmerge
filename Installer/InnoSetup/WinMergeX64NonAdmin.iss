@@ -600,6 +600,13 @@ Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app
 ; jq
 Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Commands
 Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Commands
+; md4c
+Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\md4c\*.bat; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
+; PlantUML
+Source: ..\..\Plugins\Commands\PlantUML\*.bat; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\PlantUML\*.txt; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Commands
 ; Apache Tika
 Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
 Source: ..\..\Plugins\Commands\Apache-Tika\*.txt; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
@@ -613,6 +620,11 @@ Source: ..\..\Plugins\Commands\yq\*.txt; DestDir: {app}\Commands\yq; Flags: recu
 Source: ..\..\Plugins\Commands\dumpbin\*.bat; DestDir: {app}\Commands\dumpbin; Flags: recursesubdirs; Components: Commands
 ; ildasm
 Source: ..\..\Plugins\Commands\ildasm\*.bat; DestDir: {app}\Commands\ildasm; Flags: recursesubdirs; Components: Commands
+; Java
+Source: ..\..\Plugins\Commands\Java\*.bat; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\Java\*.txt; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Commands
+; DownloadFiles.bat
+Source: ..\..\Plugins\Commands\DownloadFiles.bat; DestDir: {app}\Commands\; Flags: recursesubdirs; Components: Commands
 
 [Dirs]
 Name: "{app}\MergePlugins"

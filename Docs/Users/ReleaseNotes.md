@@ -1,17 +1,81 @@
-# WinMerge 2.16.25 Release Notes
+# WinMerge 2.16.26 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.26?](#what-is-new-in-21626)
 - [What Is New in 2.16.25 beta?](#what-is-new-in-21625-beta)
 - [Known issues](#known-issues)
 
-December 2022
+January 2023
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.26 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.26
+
+### General
+
+- Fixed issue where the program would crash when certain path names were set
+    in the file path bar.
+
+### File compare
+
+- Feature request: Allow pasting when editing caption of pages (PR #1651)
+
+### Folder compare
+
+- BugFix: Filters aren't saved anywhere (#1638)
+- BugFix: Fixed issue where the Open menu item in file path bar of folder
+    comparison window was disabled.
+- Add processing to indicate that two directories are identical in the
+    "Comparison result" column when they are identical in a 3-way folder
+    comparison. (PR #1649)
+- Request: highlight the file after opening its parent folder (#1662)
+- Show/hide directories in 3-way comparison (PR #1683)
+
+### Binary compare
+
+- BugFix: Fixed issue where the Open menu item in file path bar of binary
+    comparison window was disabled.
+
+### Webpage compare
+
+- BugFix: Deleted color of Word Difference in Options dialog was not used.
+- Implemented Ignore numbers comparison option.
+
+### Options dialog
+
+- Modify the "Options (Compare > Folder)" dialog. (PR #1645)
+
+### Plugins
+
+- Add PreviewMarkdown plugin (PR #1641)
+- Add PreviewPlantUML plugin (PR #1666)
+- CompareMSExcelFiles: Added "Compare worksheets as HTML" in CompareMSExcelFiles
+    plugin options window
+- ApacheTika: Updated Apache Tika to version 2.6.0
+- ApacheTika: If Java is not installed, OpenJDK 19.0.2 will now be downloaded
+    and used.
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #1656,#1670)
+  - Chinese Simplified (PR #1635,#1665,#1667,#1677,#1681)
+  - Corsican (PR #1674)
+  - French (PR #1640,#1679)
+  - German (PR #1660,#1671)
+  - Hungarian (PR #1664)
+  - Japanese
+  - Lithuanian (PR #1657,#1673)
+  - Polish (PR #1648)
+  - Portuguese (PR #1669)
+  - Russian (PR #1676)
+  - Slovenian
+  - Swedish (PR #1655,#1663,#1682)
 
 ## What Is New in 2.16.25 Beta
 

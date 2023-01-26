@@ -19,7 +19,7 @@ WinIMerge=WinIMerge(Kép Eltérés/Egyesítés)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archivum támogatása
 ShellExtension32bit=32-bit WinMerge helyi menü kiterjesztés
-Commands=GnuWin32 Patch a Windowshoz/HTML Tidy/jq
+Commands=GnuWin32 Patch a Windowshoz/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Nyelvek

@@ -574,6 +574,16 @@ void CHexMergeDoc::MoveOnLoad(int nPane, int)
 		m_pView[0]->SendMessage(WM_COMMAND, ID_FIRSTDIFF);
 }
 
+void CHexMergeDoc::ChangeFile(int nBuffer, const String& path, int nLineIndex)
+{
+	if (!PromptAndSaveIfNeeded(true))
+		return;
+	m_nBufferType[nBuffer] = BUFFERTYPE::NORMAL;
+	m_strDesc[nBuffer].clear();
+	m_pView[nBuffer]->ClearUndoRecords();
+	LoadOneFile(nBuffer, path.c_str(), m_pView[nBuffer]->GetReadOnly(), _T(""));
+}
+
 void CHexMergeDoc::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_nBuffers; ++pane)

@@ -307,14 +307,22 @@ void CDirDoc::Rescan()
 
 	InitDiffContext(m_pCtxt.get());
 
-	pf->GetHeaderInterface()->SetPaneCount(m_nDirs);
-	pf->GetHeaderInterface()->SetOnSetFocusCallback([&](int pane) {
+	auto* pHeaderBar = pf->GetHeaderInterface();
+	pHeaderBar->SetPaneCount(m_nDirs);
+	pHeaderBar->SetOnSetFocusCallback([&](int pane) {
 		m_pDirView->SetActivePane(pane);
 		GetOptionsMgr()->SaveOption(OPT_ACTIVE_PANE, pane);
 	});
-	pf->GetHeaderInterface()->SetOnCaptionChangedCallback([&](int pane, const String& sText) {
+	pHeaderBar->SetOnCaptionChangedCallback([&](int pane, const String& sText) {
 		m_strDesc[pane] = sText;
 		UpdateHeaderPath(pane);
+	});
+	pHeaderBar->SetOnFolderSelectedCallback([&](int pane, const String& sFolderpath) {
+		PathContext paths = m_pCtxt->GetNormalizedPaths();
+		paths.SetPath(pane, sFolderpath);
+		m_strDesc[pane].clear();
+		InitCompare(paths, m_pCtxt->m_bRecursive, nullptr);
+		Rescan();
 	});
 	for (int nIndex = 0; nIndex < m_nDirs; nIndex++)
 	{

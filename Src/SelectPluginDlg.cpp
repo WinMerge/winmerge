@@ -164,11 +164,17 @@ void CSelectPluginDlg::prepareListbox()
 	String errorMessage;
 	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errorMessage);
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
+	INT_PTR nameCount = 0;
 
 	if (m_pluginType != PluginType::EditorScript)
 	{
-		m_cboPluginName.AddString(noPlugin->m_name.c_str());
-		m_cboPluginName.AddString(automaticPlugin->m_name.c_str());
+		COMBOBOXEXITEM item{CBEIF_TEXT};
+		item.iItem = nameCount++;
+		item.pszText = const_cast<LPTSTR>(noPlugin->m_name.c_str());
+		m_cboPluginName.InsertItem(&item);
+		item.iItem = nameCount++;
+		item.pszText = const_cast<LPTSTR>(automaticPlugin->m_name.c_str());
+		m_cboPluginName.InsertItem(&item);
 	}
 
 	std::list<String> processTypes;
@@ -187,7 +193,13 @@ void CSelectPluginDlg::prepareListbox()
 		const auto& pluginList = m_Plugins[processType];
 		String processType2 = strutils::strip_hot_key(processType);
 		if (!processType2.empty())
-			m_cboPluginName.AddString((_T("[") + processType2 + _T("]")).c_str());
+		{
+			String text = (_T("[") + processType2 + _T("]"));
+			COMBOBOXEXITEM item{CBEIF_TEXT};
+			item.iItem = nameCount++;
+			item.pszText = const_cast<LPTSTR>(text.c_str());
+			m_cboPluginName.InsertItem(&item);
+		}
 		for (const auto& [caption, name, id, plugin] : pluginList)
 		{
 			if (!name.empty() && name != _T("<Automatic>"))
@@ -195,7 +207,11 @@ void CSelectPluginDlg::prepareListbox()
 				bool match = plugin->TestAgainstRegList(m_filteredFilenames);
 				if (m_bNoExtensionCheck || match || lastPluginName == name)
 				{
-					m_cboPluginName.AddString(name.c_str());
+					COMBOBOXEXITEM item{CBEIF_TEXT|CBEIF_INDENT};
+					item.iItem = nameCount++;
+					item.iIndent = 1;
+					item.pszText = const_cast<LPTSTR>(name.c_str());
+					m_cboPluginName.InsertItem(&item);
 					if (lastPluginName.empty() && match)
 					{
 						if (sel == -1 || (!pSelPlugin->m_bAutomatic && plugin->m_bAutomatic))
@@ -217,7 +233,9 @@ void CSelectPluginDlg::prepareListbox()
 		sel = 1;
 	if (sel == -1)
 	{
-		m_cboPluginName.SelectString(-1, noPlugin->m_name.c_str());
+		sel = m_cboPluginName.FindStringExact(0, noPlugin->m_name.c_str());
+		if (sel >= 0)
+			m_cboPluginName.SetCurSel(sel);
 	}
 	else
 	{
@@ -267,8 +285,13 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	else
 	{
 		// initialize with the default unpacker
-		CString cstrPluginName;
-		m_cboPluginName.GetWindowText(cstrPluginName);
+		TCHAR szBuf[256]{};
+		COMBOBOXEXITEM item{CBEIF_TEXT};
+		item.iItem = i;
+		item.pszText = szBuf;
+		item.cchTextMax = sizeof(szBuf) / sizeof(szBuf[0]);
+		m_cboPluginName.GetItem(&item);
+		CString cstrPluginName = item.pszText;
 		pluginName = cstrPluginName.Trim();
 		for (const auto& [processType, pluginList] : m_Plugins)
 		{

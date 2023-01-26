@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-26 17:00+0200\n"
+"PO-Revision-Date: 2023-01-15 16:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -4310,7 +4310,7 @@ msgid "Only on window activated"
 msgstr "Nur bei aktiviertem Fenster"
 
 msgid "Immediately"
-msgstr "Sofort"
+msgstr "Sofort, wenn eine externe Anwendung die angezeigte Datei ändert"
 
 msgid "Al&l"
 msgstr "A&lle"
@@ -4321,8 +4321,8 @@ msgstr "Verschönerung"
 msgid "Content Extraction"
 msgstr "Extraktion des Inhalts"
 
-msgid "Visualization"
-msgstr "Visualisierung"
+msgid "Preview"
+msgstr "Vorschau"
 
 msgid "Data Query"
 msgstr "Datenabfrage"
@@ -4417,8 +4417,14 @@ msgstr "XML verschönern"
 msgid "Prettify YAML"
 msgstr "YAML verschönern"
 
-msgid "Visualize Graphviz"
-msgstr "Graphviz visualisieren"
+msgid "Preview Graphviz"
+msgstr "Graphviz-Vorschau"
+
+msgid "Preview Markdown"
+msgstr "Markdown-Vorschau"
+
+msgid "Preview PlantUML"
+msgstr "PlantUML-Vorschau"
 
 msgid "Query CSV Data..."
 msgstr "CSV-Daten abfragen..."
@@ -4508,10 +4514,16 @@ msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed 
 msgstr "XML-Prettier mit Tidy-HTML5. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl tidy übergeben werden."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "YAML-Prettier mit yq-Befehl. \r\nArgumente: Filter- oder Kommandozeilenoptionen, die an den Befehl yq übergeben werden."
+msgstr "YAML-Prettier mit yq-Befehl. \r\nArgumente: Filter- oder Befehlszeilenoptionen, die an den Befehl yq übergeben werden."
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr "Graphviz Visualizer. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl dot übergeben werden."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr "Graphviz-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl dot übergeben werden."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr "Markdown-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl md2html übergeben werden."
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr "PlantUML-Vorschau. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl plantuml.jar übergeben werden."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV-Querier mit q-Befehl. \r\nArgumente: SQL-Anweisung oder Befehlszeilenoptionen, die an den Befehl q übergeben werden."

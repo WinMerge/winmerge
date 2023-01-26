@@ -6,14 +6,16 @@
 # * xmpdhml <xmpdhml at users.sourceforge.net>
 # * MaysWind <i at mayswind.net>
 # * CharlesMengCA <CharlesMeng at outlook.com>
+# * YFdyh000 <yfdyh000 at gmail.com>
+# * Yin Gang <zenith.yin at gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-12-25 15:41+0000\n"
+"POT-Creation-Date: 2023-01-14 12:20+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Yin Gang <zenith.yin@gmail.com>\n"
+"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -351,7 +353,7 @@ msgid "&Plugins"
 msgstr "插件(&P)"
 
 msgid "P&lugin Settings..."
-msgstr "插件设置(&L)"
+msgstr "插件设置(&L)..."
 
 msgid "Ma&nual Prediffer"
 msgstr "手动预比较(&N)"
@@ -570,13 +572,13 @@ msgid "Save &As"
 msgstr "另存为(&A)"
 
 msgid "Save &Left As..."
-msgstr "另存为左侧(&L)"
+msgstr "另存为左侧(&L)..."
 
 msgid "Save &Middle As..."
-msgstr "另存为中间(&L)"
+msgstr "另存为中间(&L)..."
 
 msgid "Save &Right As..."
-msgstr "另存为右侧(&R)"
+msgstr "另存为右侧(&R)..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "打印(&P)...\tCtrl+P"
@@ -813,10 +815,10 @@ msgid "&Prediffer"
 msgstr "预比较插件(&P)"
 
 msgid "Apply Pre&differ..."
-msgstr "使用预比较插件(&D)"
+msgstr "使用预比较插件(&D)..."
 
 msgid "&Transform with editor script..."
-msgstr "用编辑器脚本转换(&T)"
+msgstr "用编辑器脚本转换(&T)..."
 
 msgid "Sp&lit"
 msgstr "分隔(&L)"
@@ -1058,7 +1060,7 @@ msgid "Size"
 msgstr "文件大小"
 
 msgid "&Load Project..."
-msgstr "加载工程(&L)"
+msgstr "加载工程(&L)..."
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -1121,7 +1123,7 @@ msgid " File: Unpacker Plugin"
 msgstr " 文件: 解包插件"
 
 msgid "Se&lect..."
-msgstr "选择(&L)"
+msgstr "选择(&L)..."
 
 msgid "Cancel"
 msgstr "取消"
@@ -1264,9 +1266,7 @@ msgstr "置换过滤器"
 msgid ""
 "The changes that appear on the panels as the listed pairs below will be "
 "ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
-"那些出现在面板（panels）上的更改，做为以下列出的配对（pairs），将被忽略或标记"
-"为不重要。补丁不受影响。"
+msgstr "面板中出现的下列变更组合将被忽略或视作无关紧要。补丁不受影响。"
 
 msgid "Enable"
 msgstr "启用"
@@ -2017,13 +2017,13 @@ msgid "Frhed settings"
 msgstr "Frhed 设置"
 
 msgid "View &Settings..."
-msgstr "查看设置(&S)"
+msgstr "查看设置(&S)..."
 
 msgid "&Binary Mode..."
-msgstr "二进制模式(&B)"
+msgstr "二进制模式(&B)..."
 
 msgid "&Character Set..."
-msgstr "字符集(&C)"
+msgstr "字符集(&C)..."
 
 msgid "Image"
 msgstr "图像"
@@ -3955,11 +3955,11 @@ msgstr "色距: %g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp  "
+msgstr "页: %d/%d  缩放: %d%%  %dx%d像素  %d比特/像素  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "选中: (%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
@@ -4023,8 +4023,8 @@ msgstr "格式美化"
 msgid "Content Extraction"
 msgstr "内容提取"
 
-msgid "Visualization"
-msgstr "可视化"
+msgid "Preview"
+msgstr "预览"
 
 msgid "Data Query"
 msgstr "数据查询"
@@ -4119,8 +4119,14 @@ msgstr "格式化 XML"
 msgid "Prettify YAML"
 msgstr "格式化 YAML"
 
-msgid "Visualize Graphviz"
-msgstr "可视化 Graphviz"
+msgid "Preview Graphviz"
+msgstr "预览 Graphviz"
+
+msgid "Preview Markdown"
+msgstr "预览 Markdown"
+
+msgid "Preview PlantUML"
+msgstr "预览 PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "查询 CSV 数据..."
@@ -4203,7 +4209,7 @@ msgid ""
 "  COMMAND - command to execute. %1 in the command is replaced with the "
 "filename."
 msgstr ""
-"应用过滤器命令. \r\n"
+"应用过滤器命令。\r\n"
 "用法: ExecFilterCommand COMMAND\r\n"
 "  COMMAND - 要执行的命令。 命令中的 %1 将替换为文件名。"
 
@@ -4250,7 +4256,7 @@ msgid ""
 "  -i - ignore case\r\n"
 "  -e - use PATTERNS for matching"
 msgstr ""
-"选择一些行.\r\n"
+"选择一些行。\r\n"
 "用法： SelectLines RANGES\r\n"
 "   或： SelectLines [-v] [-i] -e PATTERNS\r\n"
 "  RANGES   - 要选择的行范围列表。 （例如 -3,5-10,30-）\r\n"
@@ -4288,11 +4294,25 @@ msgstr ""
 "参数： 发送给 jq 的过滤器或命令选项。"
 
 msgid ""
-"Graphviz Visualizer. \r\n"
+"Graphviz Previewer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz 可视化。 \r\n"
-"参数： 发送给 dot 的命令选项。"
+"Graphviz 预览器。\r\n"
+"参数：传递给 dot 命令的命令行选项。"
+
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+"Markdown 预览器。\r\n"
+"参数：传递给 md2html 命令的命令行选项。"
+
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"PlantUML 预览器。\r\n"
+"参数：传递给 plantuml.jar 命令的命令行选项。"
 
 msgid ""
 "CSV Querier with q command. \r\n"

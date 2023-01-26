@@ -131,16 +131,40 @@
       <command>cmd /c type "${SRC_FILE}" | "${WINMERGE_HOME}\Commands\tidy-html5\tidy.exe" ${*} 2> "${DST_FILE}" | exit 0</command>
     </unpack-file>
   </plugin>
-  <plugin name="VisualizeGraphviz">
+  <plugin name="PreviewGraphviz">
     <event value="FILE_PACK_UNPACK" />
-    <description value="Graphviz Visualizer. &#xD;&#xA;Arguments: Command line options passed to the dot command." />
+    <description value="Graphviz Previewer. &#xD;&#xA;Arguments: Command line options passed to the dot command." />
     <file-filters value="\.gv;$\.dot$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".png" />
-    <extended-properties value="ProcessType=Visualization;MenuCaption=Visualize Graphviz" />
+    <extended-properties value="ProcessType=Preview;MenuCaption=Preview Graphviz;PreferredWindowType=Image" />
     <arguments value="-Tpng" />
     <unpack-file>
       <command>dot.exe ${*} -o"${DST_FILE}" "${SRC_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="PreviewMarkdown">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="Markdown Previewer. &#xD;&#xA;Arguments: Command line options passed to the md2html command." />
+    <file-filters value="\.md$;\.markdown$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".html" />
+    <extended-properties value="ProcessType=Preview;MenuCaption=Preview Markdown;PreferredWindowType=Webpage" />
+    <arguments value="--ftables --ftasklists" />
+    <unpack-file>
+      <command>"${WINMERGE_HOME}\Commands\md4c\md2html.bat" "${SRC_FILE}" ${*} &gt; "${DST_FILE}"</command>
+    </unpack-file>
+  </plugin>
+  <plugin name="PreviewPlantUML">
+    <event value="FILE_PACK_UNPACK" />
+    <description value="PlantUML Previewer. &#xD;&#xA;Arguments: Command line options passed to the plantuml.jar command." />
+    <file-filters value="\.pu$;\.puml$" />
+    <is-automatic value="false" />
+    <unpacked-file-extension value=".png" />
+    <extended-properties value="ProcessType=Preview;MenuCaption=Preview PlantUML;PreferredWindowType=Image" />
+    <arguments value="-tpng" />
+    <unpack-file>
+      <command>"${WINMERGE_HOME}\Commands\PlantUML\plantuml.bat" "${SRC_FILE}" "${DST_FILE}" ${*}</command>
     </unpack-file>
   </plugin>
   <plugin name="ApacheTika">

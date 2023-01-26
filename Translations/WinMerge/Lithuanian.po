@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-12-25 15:41+0000\n"
-"PO-Revision-Date: 2022-12-26 15:21+0200\n"
+"POT-Creation-Date: 2023-01-14 12:20+0000\n"
+"PO-Revision-Date: 2023-01-16 06:26+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -3601,8 +3601,8 @@ msgstr "Sutvarkymas"
 msgid "Content Extraction"
 msgstr "Turinio ištraukimas"
 
-msgid "Visualization"
-msgstr "Vizualizavimas"
+msgid "Preview"
+msgstr "Peržiūra"
 
 msgid "Data Query"
 msgstr "Duomenų užklausa"
@@ -3697,8 +3697,14 @@ msgstr "Sutvarkyti XML"
 msgid "Prettify YAML"
 msgstr "Sutvarkyti YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Vizualizuoti „Graphviz“"
+msgid "Preview Graphviz"
+msgstr "„Graphviz“ peržiūra"
+
+msgid "Preview Markdown"
+msgstr "„Markdown“ peržiūra"
+
+msgid "Preview PlantUML"
+msgstr "„PlantUML“ peržiūra"
 
 msgid "Query CSV Data..."
 msgstr "Pateikti CSV duomenų užklausą..."
@@ -3790,7 +3796,13 @@ msgstr ""
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr ""
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
 msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."

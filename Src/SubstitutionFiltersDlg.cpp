@@ -8,14 +8,12 @@
 #include "SubstitutionFiltersList.h"
 #include "Merge.h"
 #include "SubstitutionFiltersDlg.h"
+#include "Constants.h"
 #include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-/** @brief Location for file compare specific help to open. */
-static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter property page

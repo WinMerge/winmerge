@@ -12,14 +12,14 @@ CustomInstallation=自定义安装
 
 ;Components
 AppCoreFiles=WinMerge 核心文件
-Filters=滤镜
+Filters=过滤器
 Plugins=插件
 Frhed=Frhed(十六进制编辑器)
 WinIMerge=WinIMerge(图像差异/合并)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=压缩文件支持
 ShellExtension32bit=32 位 WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq
+Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=语言包（菜单和对话框）

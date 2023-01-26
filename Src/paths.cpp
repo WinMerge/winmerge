@@ -752,6 +752,19 @@ bool IsURLorCLSID(const String& path)
 	return IsURL(path) || path.find(_T("::{")) != String::npos;
 }
 
+bool isFileURL(const String& path)
+{
+	return UrlIsFileUrl(path.c_str());
+}
+
+String FromURL(const String& url)
+{
+	std::vector<TCHAR> path((std::max)(size_t(MAX_PATH), url.length() + 1));
+	DWORD size = sizeof(path) / sizeof(path[0]);
+	PathCreateFromUrl(url.c_str(), path.data(), &size, 0);
+	return path.data();
+}
+
 bool IsDecendant(const String& path, const String& ancestor)
 {
 	return path.length() > ancestor.length() && 

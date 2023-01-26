@@ -49,9 +49,6 @@ const UINT IDT_RETRY = 2;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 const int RETRY_MAX = 3;
 
-/** @brief Location for Open-dialog specific help to open. */
-static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
-
 // COpenView
 
 IMPLEMENT_DYNCREATE(COpenView, CFormView)
@@ -1625,12 +1622,6 @@ void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
 	CWnd *pCtl = GetFocus();
 	if (pCtl != nullptr)
 		pCtl->PostMessage(msg, wParam, lParam);
-}
-
-template <int MSG, int WPARAM, int LPARAM>
-void COpenView::OnEditAction()
-{
-	OnEditAction(MSG, WPARAM, LPARAM);
 }
 
 /**

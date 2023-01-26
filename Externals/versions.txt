@@ -9,7 +9,7 @@ This file lists versions of the external components we are using.
 - WinIMerge: 1.0.37.0
   - freeimage: 3.18.0
   - LibXDiff: 611e42a on Nov 2, 2018 (https://github.com/git/git/tree/master/xdiff)
-- WinWebDiff: 1.0.4.0
+- WinWebDiff: 1.0.5.0
   - WebView2: 1.0.1189-release
   - wil: 1.0.191107.2
   - rapidjson: 1.1.1
@@ -20,3 +20,4 @@ This file lists versions of the external components we are using.
 - html-tidy5: 5.4.0
 - jq: 1.4
 - wil: 209ff9c7e30e71bf6d1405557bf78544920f8157 on Sep 9, 2021
+- md4c: 0.4.8

@@ -4054,8 +4054,8 @@ msgstr "Sadeleştirme"
 msgid "Content Extraction"
 msgstr "İçerik ayıklama"
 
-msgid "Visualization"
-msgstr "Görselleştirme"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "Veri sorgusu"
@@ -4150,8 +4150,14 @@ msgstr "XML sadeleştirme"
 msgid "Prettify YAML"
 msgstr "YAML sadeleştirme"
 
-msgid "Visualize Graphviz"
-msgstr "Graphviz görselleştirme"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
+
+msgid "Preview PlantUML"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "CSV verilerini sorgula..."
@@ -4320,12 +4326,14 @@ msgstr ""
 "Parametreler: yq komutuna aktarılacak süzgeç ya da komut satırı "
 "parametreleri."
 
-msgid ""
-"Graphviz Visualizer. \r\n"
-"Arguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz görselleştirici. \r\n"
-"Parametreler: Dot komutuna aktarılacak komut satırı parametreleri."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"

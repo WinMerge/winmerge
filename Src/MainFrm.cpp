@@ -568,7 +568,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 		}
 	}
 
-	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME);
+	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME, &m_wndToolBar);
 
 	theApp.TranslateMenu(m_pMenus[view]->m_hMenu);
 
@@ -774,13 +774,18 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 		return false;
 
 	String unpackedFileExtension;
-	if (infoUnpacker && GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
+	if ((infoUnpacker || FileTransform::AutoUnpacking) && GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED))
 	{
 		std::vector<String> filepaths(nFiles);
 		std::transform(ifileloc, ifileloc + nFiles, filepaths.begin(),
 			[](auto& file) { return file.filepath; });
 		String filteredFilenames = strutils::join(filepaths.begin(), filepaths.end(), _T("|"));
-		unpackedFileExtension = infoUnpacker->GetUnpackedFileExtension(filteredFilenames);
+		int preferredWindowType = -1;
+		PackingInfo infoUnpacker2;
+		unpackedFileExtension = (infoUnpacker ? infoUnpacker : &infoUnpacker2)
+			->GetUnpackedFileExtension(filteredFilenames, preferredWindowType);
+		if (static_cast<int>(nID) <= 0 && preferredWindowType >= 0)
+			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}
 	FileFilterHelper filterImg, filterBin;
 	filterImg.UseMask(true);
@@ -797,7 +802,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
 			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
 	}
-	switch (nID)
+	switch (std::abs(static_cast<int>(nID)))
 	{
 	case ID_MERGE_COMPARE_TEXT:
 		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
@@ -842,7 +847,7 @@ bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
 		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	default:
-		return ShowAutoMergeDoc(std::abs(static_cast<int>(nID)), pDirDoc, nFiles, ifileloc, dwFlags,
+		return ShowAutoMergeDoc(nID, pDirDoc, nFiles, ifileloc, dwFlags,
 			strDesc, sReportFile, infoUnpacker, pOpenParams);
 	}
 }
@@ -1998,22 +2003,6 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes, const String strDesc[],
 	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
 		pDirDoc->GetPluginManager().SetPrediffer(_T("|"), infoPrediffer->GetPluginPipeline());
 	return ShowMergeDoc(nID, pDirDoc, nPanes, fileloc, dwFlags, strDesc2, _T(""), nullptr, pOpenParams);
-}
-
-/**
- * @brief Open two new empty docs, 'Scratchpads'
- * 
- * Allows user to open two empty docs, to paste text to
- * compare from clipboard.
- * @note File filenames are set emptys and filedescriptors
- * are loaded from resource.
- * @sa CMergeDoc::OpenDocs()
- * @sa CMergeDoc::TrySaveAs()
- */
-template <int nFiles, unsigned nID>
-void CMainFrame::OnFileNew() 
-{
-	DoFileNew(nID, nFiles);
 }
 
 /**

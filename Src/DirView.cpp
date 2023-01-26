@@ -60,11 +60,6 @@ using std::swap;
 using namespace std::placeholders;
 
 /**
- * @brief Location for folder compare specific help to open.
- */
-static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/Compare_dirs.html");
-
-/**
  * @brief Limit (in seconds) to signal compare is ready for user.
  * If compare takes longer than this value (in seconds) we inform
  * user about it. Current implementation uses MessageBeep(IDOK).
@@ -698,7 +693,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	CDirDoc* pDoc = GetDocument();
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 	theApp.TranslateMenu(menu.m_hMenu);
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
@@ -778,7 +773,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 {
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 	theApp.TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = static_cast<BCMenu *>(menu.GetSubMenu(1));
@@ -1885,34 +1880,6 @@ void CDirView::DoOpenParentFolder(SIDE_TYPE stype)
 	shell::OpenParentFolder(file.c_str());
 }
 
-/// User chose (context menu) open left
-template<SIDE_TYPE stype>
-void CDirView::OnCtxtDirOpen()
-{
-	DoOpen(stype);
-}
-
-/// User chose (context menu) open left with
-template<SIDE_TYPE stype>
-void CDirView::OnCtxtDirOpenWith()
-{
-	DoOpenWith(stype);
-}
-
-/// User chose (context menu) open left with editor
-template<SIDE_TYPE stype>
-void CDirView::OnCtxtDirOpenWithEditor()
-{
-	DoOpenWithEditor(stype);
-}
-
-/// User chose (context menu) open left parent folder
-template<SIDE_TYPE stype>
-void CDirView::OnCtxtDirOpenParentFolder()
-{
-	DoOpenParentFolder(stype);
-}
-
 /// Update context menuitem "Open left | with editor"
 template<SIDE_TYPE stype>
 void CDirView::OnUpdateCtxtDirOpenWithEditor(CCmdUI* pCmdUI)
@@ -2726,8 +2693,7 @@ void CDirView::OnReadOnly()
 /**
  * @brief Update left-readonly menu item
  */
-template<SIDE_TYPE stype>
-void CDirView::OnUpdateReadOnly(CCmdUI* pCmdUI)
+void CDirView::OnUpdateReadOnly(CCmdUI* pCmdUI, SIDE_TYPE stype)
 {
 	const int index = SideToIndex(GetDiffContext(), stype);
 	bool bReadOnly = GetDocument()->GetReadOnly(index);
@@ -3035,8 +3001,7 @@ void CDirView::AddParentFolderItem(bool bEnable)
 	AddNewItem(0, (DIFFITEM *)SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE, 0);
 }
 
-template <int flag>
-void CDirView::OnCtxtDirZip()
+void CDirView::OnCtxtDirZip(int flag)
 {
 	if (!HasZipSupport())
 	{
@@ -3086,12 +3051,6 @@ void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
 		pContextMenu->ReleaseShellContextMenu();
 		pFrame->m_bAutoMenuEnable = bAutoMenuEnableOld;
 	}
-}
-
-template <SIDE_TYPE stype>
-void CDirView::OnCtxtDirShellContextMenu()
-{
-	ShowShellContextMenu(stype);
 }
 
 /**
@@ -3207,8 +3166,7 @@ void CDirView::RefreshOptions()
 /**
  * @brief Copy selected item left side paths (containing filenames) to clipboard.
  */
-template<SIDE_TYPE stype>
-void CDirView::OnCopyPathnames()
+void CDirView::OnCopyPathnames(SIDE_TYPE stype)
 {
 	std::list<String> list;
 	CopyPathnames(SelBegin(), SelEnd(), std::back_inserter(list), stype, GetDiffContext());
@@ -3243,8 +3201,7 @@ void CDirView::OnUpdateCopyFilenames(CCmdUI* pCmdUI)
 /**
  * @brief Copy selected item left side to clipboard.
  */
-template<SIDE_TYPE stype>
-void CDirView::OnCopyToClipboard()
+void CDirView::OnCopyToClipboard(SIDE_TYPE stype)
 {
 	std::list<String> list;
 	CopyPathnames(SelBegin(), SelEnd(), std::back_inserter(list), stype, GetDiffContext());
@@ -3724,15 +3681,13 @@ void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
 	pCmdUI->Enable(m_bTreeMode && GetDiffContext().m_bRecursive);
 }
 
-template <int pane1, int pane2>
-void CDirView::OnViewSwapPanes()
+void CDirView::OnViewSwapPanes(int pane1, int pane2)
 {
 	GetDocument()->Swap(pane1, pane2);
 	Redisplay();
 }
 
-template <int pane1, int pane2>
-void CDirView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
+void CDirView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI, int pane1, int pane2)
 {
 	pCmdUI->Enable(pane2 < GetDocument()->m_nDirs &&
 		GetDocument()->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED);
@@ -3945,12 +3900,6 @@ void CDirView::OnMergeCompare(UINT nID)
 	OpenSelection(nID == ID_MERGE_COMPARE ? GetDocument() : nullptr);
 }
 
-template<SELECTIONTYPE seltype>
-void CDirView::OnMergeCompare2()
-{
-	OpenSelection(seltype);
-}
-
 void CDirView::OnMergeCompareNonHorizontally()
 {
 	int sel1, sel2, sel3;
@@ -3996,12 +3945,6 @@ void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 		(pCmdUI->m_nID >= ID_UNPACKERS_FIRST && pCmdUI->m_nID <= ID_UNPACKERS_LAST));
 
 	DoUpdateOpen(SELECTIONTYPE_NORMAL, pCmdUI, openableForDir);
-}
-
-template<SELECTIONTYPE seltype>
-void CDirView::OnUpdateMergeCompare2(CCmdUI *pCmdUI)
-{
-	DoUpdateOpen(seltype, pCmdUI);
 }
 
 void CDirView::OnUpdateNoUnpacker(CCmdUI *pCmdUI)

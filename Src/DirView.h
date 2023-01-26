@@ -240,19 +240,19 @@ protected:
 	afx_msg void OnCtxtDirDelBoth();
 	afx_msg void OnUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpen();
+	afx_msg void OnCtxtDirOpen() { DoOpen(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpen(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpenWith();
+	afx_msg void OnCtxtDirOpenWith() { DoOpenWith(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenWith(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpenWithEditor();
+	afx_msg void OnCtxtDirOpenWithEditor() { DoOpenWithEditor(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenWithEditor(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpenParentFolder();
+	afx_msg void OnCtxtDirOpenParentFolder() { DoOpenParentFolder(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
@@ -285,8 +285,9 @@ protected:
 	afx_msg void OnEditColumns();
 	template<SIDE_TYPE stype>
 	afx_msg void OnReadOnly();
+	afx_msg void OnUpdateReadOnly(CCmdUI* pCmdUI, SIDE_TYPE stype);
 	template<SIDE_TYPE stype>
-	afx_msg void OnUpdateReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateReadOnly(CCmdUI* pCmdUI) { OnUpdateReadOnly(pCmdUI, stype); }
 	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusMiddleRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
@@ -296,21 +297,24 @@ protected:
 	afx_msg void OnToolsGenerateReport();
 	afx_msg LRESULT OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnToolsGeneratePatch();
+	afx_msg void OnCtxtDirZip(int flag);
 	template<int flag>
-	afx_msg void OnCtxtDirZip();
+	afx_msg void OnCtxtDirZip() { OnCtxtDirZip(flag); }
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirShellContextMenu();
+	afx_msg void OnCtxtDirShellContextMenu() { ShowShellContextMenu(stype); }
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginSettings(UINT nID);
 	afx_msg void OnUpdatePluginMode(CCmdUI* pCmdUI);
+	afx_msg void OnCopyPathnames(SIDE_TYPE side);
 	template<SIDE_TYPE side>
-	afx_msg void OnCopyPathnames();
+	afx_msg void OnCopyPathnames() { OnCopyPathnames(side); }
 	afx_msg void OnCopyBothPathnames();
 	afx_msg void OnCopyFilenames();
 	afx_msg void OnUpdateCopyFilenames(CCmdUI* pCmdUI);
+	afx_msg void OnCopyToClipboard(SIDE_TYPE side);
 	template<SIDE_TYPE side>
-	afx_msg void OnCopyToClipboard();
+	afx_msg void OnCopyToClipboard() { OnCopyToClipboard(side); }
 	afx_msg void OnCopyBothToClipboard();
 	afx_msg void OnCopyAllDisplayedColumns();
 	afx_msg void OnUpdateCopyAllDisplayedColumns(CCmdUI* pCmdUI);
@@ -335,10 +339,12 @@ protected:
 	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnViewCollapseAllSubdirs();
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
+	afx_msg void OnViewSwapPanes(int pane1, int pane2);
 	template <int pane1, int pane2>
-	afx_msg void OnViewSwapPanes();
+	afx_msg void OnViewSwapPanes() { OnViewSwapPanes(pane1, pane2); }
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI, int pane1, int pane2);
 	template <int pane1, int pane2>
-	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI) { OnUpdateViewSwapPanes(pCmdUI, pane1, pane2); }
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();
@@ -367,12 +373,12 @@ protected:
 	afx_msg void OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare(UINT nID);
 	template<SELECTIONTYPE seltype>
-	afx_msg void OnMergeCompare2();
+	afx_msg void OnMergeCompare2() { OpenSelection(seltype); }
 	afx_msg void OnMergeCompareNonHorizontally();
 	afx_msg void OnMergeCompareAs(UINT nID);
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	template<SELECTIONTYPE seltype>
-	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateMergeCompare2(CCmdUI* pCmdUI) { DoUpdateOpen(seltype, pCmdUI); }
 	afx_msg void OnUpdateNoUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();

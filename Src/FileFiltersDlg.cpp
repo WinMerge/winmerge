@@ -19,6 +19,7 @@
 #include "TestFilterDlg.h"
 #include "FileOrFolderSelect.h"
 #include "UniFile.h"
+#include "Constants.h"
 
 using std::vector;
 
@@ -28,9 +29,6 @@ using std::vector;
 
 /** @brief Template file used when creating new filefilter. */
 static const TCHAR FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
-
-/** @brief Location for filters specific help to open. */
-static const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog

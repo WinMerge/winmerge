@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2022-10-26 16:01+0200\n"
+"PO-Revision-Date: 2023-01-20 14:23+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -1143,7 +1143,7 @@ msgid "Copy Items To Clip&board"
 msgstr "Copier éléments dans le presse-papier"
 
 msgid "Copy All Di&splayed Columns"
-msgstr ""
+msgstr "Copier toute&s les colonnes affichées"
 
 #, c-format
 msgid "&Zip"
@@ -1430,7 +1430,7 @@ msgid "Op&en-dialog Auto-Completion:"
 msgstr "Remplissage de la boîte de dialogue d'ouverture :"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Auto-&rechargement des fichiers modifiés :"
 
 #, c-format
 msgid "Language:"
@@ -4694,10 +4694,10 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Autoriser une seule instance à s'exécuter et attendre que l'instance se termine"
 
 msgid "Only on window activated"
-msgstr ""
+msgstr "Seulement sur la fenêtre activée"
 
 msgid "Immediately"
-msgstr ""
+msgstr "Immédiatement"
 
 msgid "Al&l"
 msgstr "Al&l"
@@ -4708,8 +4708,8 @@ msgstr "Embellissement"
 msgid "Content Extraction"
 msgstr "Contenu de l'extraction"
 
-msgid "Visualization"
-msgstr "Visualisation"
+msgid "Preview"
+msgstr "Aperçu"
 
 msgid "Data Query"
 msgstr "Requête de données"
@@ -4804,8 +4804,14 @@ msgstr "Embellir XML"
 msgid "Prettify YAML"
 msgstr "Embellir YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualiseur Graphviz"
+msgid "Preview Graphviz"
+msgstr "Aperçu Graphviz"
+
+msgid "Preview Markdown"
+msgstr "Aperçu Markdown"
+
+msgid "Preview PlantUML"
+msgstr "Aperçu PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Interroger les données CSV..."
@@ -4972,11 +4978,25 @@ msgstr ""
 "Arguments : options de filtre ou de ligne de commande transmises à la commande yq."
 
 msgid ""
-"Graphviz Visualizer. \r\n"
+"Graphviz Previewer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Visualiseur Graphviz.\r\n"
-"Arguments : options de ligne de commande transmises à la commande dot."
+"Prévisualisateur Graphviz.\r\n"
+"Arguments : Options de ligne de commande passées à la commande dot."
+
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+"Prévisualisateur Markdown.\r\n"
+"Arguments : Options de ligne de commande passées à la commande md2html."
+
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"Prévisualisateur PlantUML.\r\n"
+"Arguments : Options de ligne de commande passées à la commande plantuml.jar."
 
 msgid ""
 "CSV Querier with q command. \r\n"

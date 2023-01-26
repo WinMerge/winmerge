@@ -18,7 +18,7 @@ struct FileFilter;
 /**
  * @brief File extension of file filter files.
  */
-const TCHAR FileFilterExt[] = _T(".flt");
+inline const TCHAR FileFilterExt[] = _T(".flt");
 
 /**
  * @brief Helper structure for UI and management of filters.

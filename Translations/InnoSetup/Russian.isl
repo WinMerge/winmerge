@@ -19,7 +19,7 @@ WinIMerge=WinIMerge(Image Diff/Merge)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=ѕоддержка архивов
 ShellExtension32bit=32-битное расширение оболочки WinMerge
-Commands=GnuWin32 патч дл€ Windows/HTML Tidy/jq
+Commands=GnuWin32 патч дл€ Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=языки интерфейса (меню и диалоги)

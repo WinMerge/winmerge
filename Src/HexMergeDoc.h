@@ -82,6 +82,7 @@ public:
 	void RefreshOptions();
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[]);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
+	void ChangeFile(int nBuffer, const String& path, int nLineIndex = -1);
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const override { return m_strDesc[pane]; };
 	void SetDescription(int pane, const String& strDesc) {  m_strDesc[pane] = strDesc; };

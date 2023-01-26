@@ -3960,8 +3960,8 @@ msgstr ""
 msgid "Content Extraction"
 msgstr "Estrazione dei contenuti"
 
-msgid "Visualization"
-msgstr "Visualizzazione"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr ""
@@ -4056,7 +4056,13 @@ msgstr ""
 msgid "Prettify YAML"
 msgstr ""
 
-msgid "Visualize Graphviz"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
+
+msgid "Preview PlantUML"
 msgstr ""
 
 msgid "Query CSV Data..."
@@ -4149,7 +4155,13 @@ msgstr ""
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr ""
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
 msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."

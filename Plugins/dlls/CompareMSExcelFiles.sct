@@ -357,6 +357,13 @@ Function saveSheetAsImage(sht, basefilename)
 	Loop While column < rngUsed.column + rngUsed.Columns.Count - 1 
 End Function
 
+Function saveSheetAsHTML(sht, filename)
+    Dim pobj
+    Set pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", "") ' 1 = xlSourceSheet, 0 = xlHtmlStatic
+    pobj.Publish True
+    pobj.AutoRepublish = False
+End Function
+
 Function escape(sheetName)
     escape = Replace(sheetName, "%", "%25")
     escape = Replace(escape, "<", "%3C")
@@ -573,6 +580,10 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
 			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name))
 		End If
+
+		If regRead(RegKeyPath & "CompareWorksheetsAsHTML", False) Then
+			saveSheetAsHTML sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".html")
+		End If
 		No = CInt(No) + 1
 	Next
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
@@ -662,6 +673,7 @@ End Sub
             chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
             chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
             chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
+            chkCompareWorksheetsAsHTML.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsHTML", false);
             txtImageWidth.value = regRead(REGKEY_PATH + "ImageWidth", 1000);
             txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
             chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
@@ -670,6 +682,7 @@ End Sub
             chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
             chkUnpackToFolder_onclick();
             chkCompareWorksheetsAsImage_onclick();
+            chkCompareWorksheetsAsHTML_onclick();
         }
 
         function setLanguage(lang) {
@@ -691,12 +704,19 @@ End Sub
         }
 
         function chkUnpackToFolder_onclick() {
-            if (!chkUnpackToFolder.checked)
+            if (!chkUnpackToFolder.checked) {
                 chkCompareWorksheetsAsImage.checked = false;
+                chkCompareWorksheetsAsHTML.checked = false;
+            }
         }
 
         function chkCompareWorksheetsAsImage_onclick() {
             if (chkCompareWorksheetsAsImage.checked)
+                chkUnpackToFolder.checked = true;
+        }
+
+        function chkCompareWorksheetsAsHTML_onclick() {
+            if (chkCompareWorksheetsAsHTML.checked)
                 chkUnpackToFolder.checked = true;
         }
 
@@ -707,6 +727,7 @@ End Sub
             regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
             regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
             regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
+            regWrite(REGKEY_PATH + "CompareWorksheetsAsHTML", chkCompareWorksheetsAsHTML.checked, "REG_DWORD");
             regWrite(REGKEY_PATH + "ImageWidth", Number(txtImageWidth.value), "REG_DWORD");
             regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
             regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
@@ -801,6 +822,11 @@ End Sub
           <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
           <span> x </span>
           <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
+        </li>
+        <li>
+          <input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
+          <label class="en">Compare worksheets as HTML</label>
+          <label class="ja">ワークシートをHTMLとして保存して比較する</label>
         </li>
         <li>
           <input id="chkCompareFormulas" type="checkbox" />

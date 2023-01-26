@@ -1617,7 +1617,7 @@ CAPTION "Select Plugin"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Plugin &Name:",IDC_STATIC,7,9,83,10
-    COMBOBOX        IDC_PLUGIN_NAME,92,7,220,54,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "",IDC_PLUGIN_NAME,"ComboBoxEx32",CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP,92,7,220,200
     LTEXT           "Extensions list:",IDC_STATIC,7,26,83,10
     EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Description:",IDC_STATIC,7,43,83,10
@@ -2176,9 +2176,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,279,10
+    CONTROL         "&Include Subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,60,279,10
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,279,10
     CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
@@ -4107,7 +4107,7 @@ BEGIN
     IDS_PLUGIN_ALL          "Al&l"
     IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
     IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
-    IDS_PLUGIN_PROCESS_TYPE3 "Visualization"
+    IDS_PLUGIN_PROCESS_TYPE3 "Preview"
     IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
     IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
     IDS_PLUGIN_PROCESS_TYPE6 "Validation"
@@ -4140,15 +4140,17 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION24 "Prettify JSON"
     IDS_PLUGIN_MENU_CAPTION25 "Prettify XML"
     IDS_PLUGIN_MENU_CAPTION26 "Prettify YAML"
-    IDS_PLUGIN_MENU_CAPTION27 "Visualize Graphviz"
-    IDS_PLUGIN_MENU_CAPTION28 "Query CSV Data..."
-    IDS_PLUGIN_MENU_CAPTION29 "Query TSV Data..."
-    IDS_PLUGIN_MENU_CAPTION30 "Query JSON Data..."
-    IDS_PLUGIN_MENU_CAPTION31 "Query YAML Data..."
-    IDS_PLUGIN_MENU_CAPTION32 "Validate HTML"
-    IDS_PLUGIN_MENU_CAPTION33 "Disassemble JVM Bytecode"
-    IDS_PLUGIN_MENU_CAPTION34 "Disassemble IL Code"
-    IDS_PLUGIN_MENU_CAPTION35 "Disassemble Native Code"
+    IDS_PLUGIN_MENU_CAPTION27 "Preview Graphviz"
+    IDS_PLUGIN_MENU_CAPTION28 "Preview Markdown"
+    IDS_PLUGIN_MENU_CAPTION29 "Preview PlantUML"
+    IDS_PLUGIN_MENU_CAPTION30 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION31 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION32 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION33 "Query YAML Data..."
+    IDS_PLUGIN_MENU_CAPTION34 "Validate HTML"
+    IDS_PLUGIN_MENU_CAPTION35 "Disassemble JVM Bytecode"
+    IDS_PLUGIN_MENU_CAPTION36 "Disassemble IL Code"
+    IDS_PLUGIN_MENU_CAPTION37 "Disassemble Native Code"
     IDS_PLUGIN_MISSING_PLUGIN_NAME 
                             "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
@@ -4185,41 +4187,45 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION26 
                             "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
     IDS_PLUGIN_DESCRIPTION27 
-                            "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+                            "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
     IDS_PLUGIN_DESCRIPTION28 
-                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
     IDS_PLUGIN_DESCRIPTION29 
+                            "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+    IDS_PLUGIN_DESCRIPTION30
+                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION31
                             "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-    IDS_PLUGIN_DESCRIPTION30 
-                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-    IDS_PLUGIN_DESCRIPTION31 
-                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
     IDS_PLUGIN_DESCRIPTION32 
-                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
     IDS_PLUGIN_DESCRIPTION33 
-                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
     IDS_PLUGIN_DESCRIPTION34 
-                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
     IDS_PLUGIN_DESCRIPTION35 
-                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+    IDS_PLUGIN_DESCRIPTION36 
+                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
     IDS_PLUGIN_DESCRIPTION37 
+                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+    IDS_PLUGIN_DESCRIPTION38 
                             "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-    IDS_PLUGIN_DESCRIPTION38 "Apply patch using GnuWin32 Patch for Windows"
-    IDS_PLUGIN_DESCRIPTION39 "Display the text content of MS Excel files"
-    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS PowerPoint files"
-    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS Visio files"
-    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Word files"
-    IDS_PLUGIN_DESCRIPTION43 
-                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION39 "Apply patch using GnuWin32 Patch for Windows"
+    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS Excel files"
+    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS PowerPoint files"
+    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Visio files"
+    IDS_PLUGIN_DESCRIPTION43 "Display the text content of MS Word files"
     IDS_PLUGIN_DESCRIPTION44 
-                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
     IDS_PLUGIN_DESCRIPTION45 
+                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+    IDS_PLUGIN_DESCRIPTION46 
                             "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-    IDS_PLUGIN_DESCRIPTION46 "Prediff Line Filter"
-    IDS_PLUGIN_DESCRIPTION47 "Basic text functions for the context menu"
-    IDS_PLUGIN_DESCRIPTION48 
-                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+    IDS_PLUGIN_DESCRIPTION47 "Prediff Line Filter"
+    IDS_PLUGIN_DESCRIPTION48 "Basic text functions for the context menu"
     IDS_PLUGIN_DESCRIPTION49 
+                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+    IDS_PLUGIN_DESCRIPTION50 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 END
 

@@ -26,7 +26,7 @@ WinIMerge=WinIMerge (Sfarenza o fusione di fiura)
 WinWebDiff=WinWebDiff (Sfarenza di pagina Web)
 ArchiveSupport=Permette l’archiviera
 ShellExtension32bit=Listinu cuntestuale WinMerge 32-bit
-Commands=Patch GnuWin32 per Windows/HTML Tidy/jq
+Commands=Patch GnuWin32 per Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Lingue

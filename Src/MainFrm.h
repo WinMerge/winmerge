@@ -207,6 +207,7 @@ public:
 	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
 	void WatchDocuments(IMergeDoc* pMergeDoc);
 	void UnwatchDocuments(IMergeDoc* pMergeDoc);
+	CToolBar* GetToolbar() { return &m_wndToolBar; }
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -341,7 +342,7 @@ protected:
 	afx_msg void OnReloadPlugins();
 	afx_msg void OnSaveConfigData();
 	template <int nFiles, unsigned nID>
-	afx_msg void OnFileNew();
+	afx_msg void OnFileNew() { DoFileNew(nID, nFiles); }
 	afx_msg void OnToolsFilters();
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);

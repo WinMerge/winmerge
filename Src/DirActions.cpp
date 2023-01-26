@@ -613,7 +613,33 @@ bool IsShowable(const CDiffContext& ctxt, const DIFFITEM &di, const DirViewFilte
 				// result filters
 				if (di.diffcode.isResultSame() && !filter.show_identical)
 					return false;
-				if (di.diffcode.isResultDiff() && !filter.show_different)
+				bool bShowable = true;
+				if (ctxt.GetCompareDirs() < 3)
+				{
+					if (di.diffcode.isResultDiff() && !filter.show_different)
+						bShowable = false;
+				}
+				else
+				{
+					if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) == DIFFCODE::DIFF1STONLY)
+					{
+						if (!filter.show_different_left_only)
+							bShowable = false;
+					}
+					else if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) == DIFFCODE::DIFF2NDONLY)
+					{
+						if (!filter.show_different_middle_only)
+							bShowable = false;
+					}
+					else if ((di.diffcode.diffcode & DIFFCODE::COMPAREFLAGS3WAY) == DIFFCODE::DIFF3RDONLY)
+					{
+						if (!filter.show_different_right_only)
+							bShowable = false;
+					}
+					else if (di.diffcode.isResultDiff() && !filter.show_different)
+						bShowable = false;
+				}
+				if (!bShowable)
 				{
 					DIFFITEM *diffpos = ctxt.GetFirstChildDiffPosition(&di);
 					while (diffpos != nullptr)

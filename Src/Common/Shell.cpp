@@ -45,7 +45,8 @@ void OpenFileOrUrl(const TCHAR * szFile, const TCHAR * szUrl)
  */
 void OpenParentFolder(const TCHAR * szFile)
 {
-	Open(paths::GetParentPath(szFile).c_str());
+	String param = _T("/select,\"") + String(szFile) + _T("\"");
+	ShellExecute(nullptr, _T("open"), _T("explorer.exe"), param.c_str(), nullptr, SW_SHOWNORMAL);
 }
 
 }

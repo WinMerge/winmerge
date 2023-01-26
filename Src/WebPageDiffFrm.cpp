@@ -53,9 +53,6 @@ CComPtr<T> Callback(Func&& callback)
 	return CComPtr<T>(new CallbackImpl<T, Func>(std::move(callback)));
 }
  
-/** @brief Location for Webpage compare specific help to open. */
-static const TCHAR WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
-
 /////////////////////////////////////////////////////////////////////////////
 // CWebPageDiffFrame
 
@@ -121,8 +118,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	// [Tools] menu
 //	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
-//	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
-//	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
+	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
+	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnWindowChangePane)
 	// [Help] menu
@@ -301,20 +298,34 @@ void CWebPageDiffFrame::CreateWebWndStatusBar(CStatusBar &wndStatusBar, CWnd *pw
 	wndStatusBar.SetWindowPos(&wndBottom, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
 }
 
+static bool isTempFile(const String& path)
+{
+	String tmpDir = env::GetTemporaryPath();
+	strutils::replace(tmpDir, _T("\\"), _T("/"));
+	tmpDir = _T("file:///") + tmpDir;
+	return (path.find(tmpDir) == 0);
+}
+
 void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
 	switch (event.type)
 	{
 	case WebDiffEvent::SourceChanged:
 	case WebDiffEvent::TabChanged:
+	{
 		if (m_nBufferType[event.pane] == BUFFERTYPE::UNNAMED)
 		{
 			m_nBufferType[event.pane] = BUFFERTYPE::NORMAL;
 			m_strDesc[event.pane].clear();
 		}
-		m_filePaths[event.pane] = m_pWebDiffWindow->GetCurrentUrl(event.pane);
-		UpdateHeaderPath(event.pane);
+		String curUrl = m_pWebDiffWindow->GetCurrentUrl(event.pane);
+		if (!isTempFile(curUrl) && curUrl != _T("about:blank"))
+		{
+			m_filePaths[event.pane] = paths::isFileURL(curUrl) ? paths::FromURL(curUrl) : curUrl;
+			UpdateHeaderPath(event.pane);
+		}
 		break;
+	}
 	case WebDiffEvent::ZoomFactorChanged:
 		UpdateWebPageDiffBar();
 		break;
@@ -860,19 +871,15 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 	bool bResult;
 	String filteredFilenames = strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|"));
 	String strTempFileName[3];
+	m_infoUnpacker.EnableWebBrowserMode();
 	for (int pane = 0; pane < m_filePaths.GetSize(); ++pane)
 	{
 		strTempFileName[pane] = m_filePaths[pane];
-		/*
-		if (!m_infoUnpacker.GetPluginPipeline().empty() && m_infoUnpacker.GetPluginPipeline() != _T("<Automatic>") &&
-		    !m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
+		if (!m_infoUnpacker.Unpacking(&m_unpackerSubcodes[pane], strTempFileName[pane], filteredFilenames, {strTempFileName[pane]}))
 		{
-			//return false;
+//			return false;
 		}
-		*/
 	}
-	if (m_infoUnpacker.GetPluginPipeline() == _T("<Automatic>"))
-		m_infoUnpacker.ClearPluginPipeline();
 	if (m_filePaths.GetSize() == 2)
 		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), callback));
 	else

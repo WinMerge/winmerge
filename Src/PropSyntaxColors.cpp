@@ -128,8 +128,7 @@ void PropSyntaxColors::OnBnClickedEcolor()
 	BrowseColorAndSave(colorIndex);
 }
 
-template <unsigned ctlId, unsigned colorIndex>
-void PropSyntaxColors::OnBnClickedBoldButton()
+void PropSyntaxColors::OnBnClickedBoldButton(unsigned ctlId, unsigned colorIndex)
 {
 	m_pTempColors->SetBold(colorIndex, IsDlgButtonChecked(ctlId) == BST_CHECKED);
 }

@@ -4664,8 +4664,8 @@ msgstr "Megjelenés optimalizálás"
 msgid "Content Extraction"
 msgstr "Tartalom kibontás"
 
-msgid "Visualization"
-msgstr "Megjelenítés"
+msgid "Preview"
+msgstr "Előnézet"
 
 msgid "Data Query"
 msgstr "Adatlekérdezés"
@@ -4760,8 +4760,14 @@ msgstr "XML formázása"
 msgid "Prettify YAML"
 msgstr "YAML formázása"
 
-msgid "Visualize Graphviz"
-msgstr "Graphviz vizualizálás"
+msgid "Preview Graphviz"
+msgstr "Graphviz előnézet"
+
+msgid "Preview Markdown"
+msgstr "Jelölés előnézet"
+
+msgid "Preview PlantUML"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "CSV adatok lekérdezése..."
@@ -4853,8 +4859,14 @@ msgstr "XML formázás tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfe
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr "YAML formázás yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr "Graphviz Vizualizátor.  \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr "Graphviz előnézeti program. \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr "Jelölés előnézeti program. \r\nArgumentumok: Az md2html parancsnak megfelelő parancssori opciók."
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."

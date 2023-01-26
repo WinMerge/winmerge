@@ -34,6 +34,10 @@ BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_KILLFOCUS()
 	ON_WM_LBUTTONDOWN()
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
+	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
 	ON_COMMAND_RANGE(ID_EDITOR_COPY_PATH, ID_EDITOR_SELECT_FILE, OnContextMenuSelected)
 END_MESSAGE_MAP()
 
@@ -107,6 +111,7 @@ CFilepathEdit::CFilepathEdit()
  , m_bActive(false)
  , m_bInEditing(false)
  , m_bEnabledFileSelection(false)
+ , m_bEnabledFolderSelection(false)
 {
 }
 
@@ -167,8 +172,7 @@ void CFilepathEdit::RefreshDisplayText()
 	// compact the path
 	CRect rect;
 	GetRect(rect);
-	// take GetBuffer (lenght +3) to count for ellipsis
-	std::vector<TCHAR> tmp(line.length() + 4);
+	std::vector<TCHAR> tmp((std::max)(MAX_PATH, line.length() + 1));
 	std::copy(line.begin(), line.end(), tmp.begin());
 	PathCompactPath(lDC.GetSafeHdc(), &tmp[0],	rect.Width());
 	line = &tmp[0];
@@ -217,8 +221,13 @@ void CFilepathEdit::CustomCopy(size_t iBegin, size_t iEnd /*=-1*/)
 /**
  * @brief Format the context menu.
  */
-void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
+void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 {
+	if (m_bInEditing)
+	{
+		__super::OnContextMenu(pWnd, point);
+	}
+	else
 	{
 		if (!m_bActive)
 			SetFocus();
@@ -246,7 +255,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		if (paths::EndsWithSlash(m_sOriginalText))
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
-		if (!m_bEnabledFileSelection)
+		if (!m_bEnabledFileSelection && !m_bEnabledFolderSelection)
 			pPopup->EnableMenuItem(ID_EDITOR_SELECT_FILE, MF_GRAYED);
 
 		// invoke context menu
@@ -383,6 +392,26 @@ void CFilepathEdit::OnEditCopy()
 		SetSel(nStartChar, nEndChar);
 }
 
+void CFilepathEdit::OnEditPaste()
+{
+	Paste();
+}
+
+void CFilepathEdit::OnEditCut()
+{
+	Cut();
+}
+
+void CFilepathEdit::OnEditUndo()
+{
+	Undo();
+}
+
+void CFilepathEdit::OnEditSelectAll()
+{
+	SetSel(0, -1);
+}
+
 void CFilepathEdit::OnContextMenuSelected(UINT nID)
 {
 	// compute the beginning of the text to copy (in OriginalText)
@@ -427,7 +456,12 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		if (!text.IsEmpty() && text[0] == '*')
 			text = text.Right(text.GetLength() - 2);
 		String dir = paths::GetParentPath(static_cast<const TCHAR*>(text));
-		if (SelectFile(m_hWnd, m_sFilepath, true, dir.c_str()))
+		bool selected = false;
+		if (m_bEnabledFileSelection)
+			selected = SelectFile(m_hWnd, m_sFilepath, true, dir.c_str());
+		else
+			selected = SelectFolder(m_sFilepath, dir.c_str(), _T(""), GetSafeHwnd());
+		if (selected)
 			GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_FILE_SELECTED), (LPARAM)m_hWnd);
 		return;
 	}

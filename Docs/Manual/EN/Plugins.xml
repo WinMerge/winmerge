@@ -1044,15 +1044,15 @@
         </segmentedlist></para>
     </section>
 
-    <section id="Plugins_VisualizeGraphviz">
-      <title><filename>VisualizeGraphviz<indexterm>
-          <primary>VisualizeGraphviz plugin file</primary>
+    <section id="Plugins_PreviewGraphviz">
+      <title><filename>PreviewGraphviz<indexterm>
+          <primary>PreviewGraphviz plugin file</primary>
         </indexterm></filename></title>
 
-      <para>Graphviz Visualizer</para>
+      <para>Graphviz Previewer</para>
 
       <cmdsynopsis sepchar=" ">
-        <command>VisualizeGraphviz</command>
+        <command>PreviewGraphviz</command>
 
         <arg choice="opt"
          rep="repeat"><replaceable>arguments</replaceable></arg>
@@ -1094,6 +1094,114 @@
             <seg>No</seg>
 
             <seg><ulink url="https://graphviz.org/">Graphviz</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewMarkdown">
+      <title><filename>PreviewMarkdown<indexterm>
+          <primary>PreviewMarkdown plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>Markdown Previewer</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PreviewMarkdown</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the md2html command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.md</filename>,
+              <filename class="extension">,*.markdown</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://github.com/mity/md4c">md4c</ulink></seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
+    <section id="Plugins_PreviewPlantUML">
+      <title><filename>PreviewPlantUML<indexterm>
+          <primary>PreviewPlantUML plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>PlantUML Previewer</para>
+
+      <cmdsynopsis sepchar=" ">
+        <command>PreviewPlantUML</command>
+
+        <arg choice="opt"
+         rep="repeat"><replaceable>arguments</replaceable></arg>
+      </cmdsynopsis>
+
+      <variablelist>
+        <varlistentry>
+          <term><option><replaceable>arguments</replaceable></option></term>
+          <listitem>
+            <para>Command line options passed to the plantuml.jar command</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para><segmentedlist>
+          <segtitle>Category</segtitle>
+
+          <segtitle>File filter</segtitle>
+
+          <segtitle>Plugin arguments</segtitle>
+
+          <segtitle>Packing</segtitle>
+
+          <segtitle>Settings dialog support</segtitle>
+
+          <segtitle>Dependency</segtitle>
+
+          <seglistitem>
+            <seg>Unpacker</seg>
+
+            <seg><filename class="extension">*.pu</filename>,
+              <filename class="extension">,*.puml</filename>
+            </seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+
+            <seg>No</seg>
+
+            <seg><ulink url="https://www.java.com/ja/download/ie_manual.jsp">Java</ulink>, <ulink url="https://plantuml.com/">PlantUML</ulink>, <ulink url="https://graphviz.org/">Graphviz</ulink></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>

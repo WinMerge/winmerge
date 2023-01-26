@@ -329,8 +329,7 @@ void PropMergeColors::OnSelWordDiffTextColor()
 	BrowseColor(m_cSelWordDiffText);
 }
 
-template<int checkbox_id, int colorbutton_id>
-void PropMergeColors::OnUseTextColor()
+void PropMergeColors::OnUseTextColor(int checkbox_id, int colorbutton_id)
 {
 	CColorButton *cButton = dynamic_cast<CColorButton *>(GetDlgItem(colorbutton_id));
 	if (IsDlgButtonChecked(checkbox_id) != 0)

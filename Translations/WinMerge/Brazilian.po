@@ -9,10 +9,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge 2.16.22\n"
+"Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-07-30 21:57+0000\n"
-"PO-Revision-Date: 2022-12-25 21:30-0300\n"
+"POT-Creation-Date: 2023-01-08 19:20-0300\n"
+"PO-Revision-Date: \n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -3601,8 +3601,8 @@ msgstr "Embelezamento"
 msgid "Content Extraction"
 msgstr "Extração do Conteúdo"
 
-msgid "Visualization"
-msgstr "Visualização"
+msgid "Preview"
+msgstr "Pré-visualização"
 
 msgid "Data Query"
 msgstr "Consulta dos Dados"
@@ -3697,8 +3697,14 @@ msgstr "Embelezar XML"
 msgid "Prettify YAML"
 msgstr "Embelezar YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualizar Graphviz"
+msgid "Preview Graphviz"
+msgstr "Pré-visualização Graphviz"
+
+msgid "Preview Markdown"
+msgstr "Pré-visualização Markdown"
+
+msgid "Preview PlantUML"
+msgstr "Pré-visualização PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Consultar Dados do CSV..."
@@ -3790,8 +3796,14 @@ msgstr "Embelezador XML com limpeza de html5. \r\nArgumentos: Opções de linha 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr "Embelezador YAML com comando yq. \r\nArgumentos: Filtro ou opções de linha de comando passadas ao comando yq."
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr "Visualizador Graphviz. \r\nArgumentos: Opções de linha de comando passadas ao comando dot."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr "Pré-visualização Graphviz. \r\nArgumentos: Opções de linha de comando passadas ao comando dot."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr "Visualização Markdown. \r\nArgumentos: Opções de linha de comando passadas ao comando md2html."
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr "Visualização PlantUML. \r\nArgumentos: Opções de linha de comando passadas ao comando plantuml.jar."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "Examinador CSV com comando q. \r\nArgumentos: Comando SQL ou opções de linha de comando passados ao comando q."

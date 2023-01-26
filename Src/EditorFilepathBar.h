@@ -28,6 +28,7 @@ public:
 	virtual void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) = 0;
 	virtual void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) = 0;
 	virtual void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) = 0;
+	virtual void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) = 0;
 };
 
 
@@ -54,6 +55,7 @@ public :
 	void SetOnSetFocusCallback(const std::function<void(int)> callbackfunc) override;
 	void SetOnCaptionChangedCallback(const std::function<void(int, const String& sText)> callbackfunc) override;
 	void SetOnFileSelectedCallback(const std::function<void(int, const String& sFilepath)> callbackfunc) override;
+	void SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc) override;
 
 	// Implement IFilepathHeaders
 	void SetText(int pane, const String& sString) override;
@@ -78,6 +80,7 @@ private:
 	std::function<void(int)> m_setFocusCallbackfunc;
 	std::function<void(int, const String& sText)> m_captionChangedCallbackfunc;
 	std::function<void(int, const String& sFilepath)> m_fileSelectedCallbackfunc;
+	std::function<void(int, const String& sFolderpath)> m_folderSelectedCallbackfunc;
 };
 
 inline void CEditorFilePathBar::SetPaneCount(int nPanes)
@@ -103,5 +106,12 @@ inline void CEditorFilePathBar::SetOnFileSelectedCallback(const std::function<vo
 	m_fileSelectedCallbackfunc = callbackfunc;
 	for (int pane = 0; pane < m_nPanes; ++pane)
 		m_Edit[pane].EnableFileSelection(true);
+}
+
+inline void CEditorFilePathBar::SetOnFolderSelectedCallback(const std::function<void(int, const String& sFolderpath)> callbackfunc)
+{
+	m_folderSelectedCallbackfunc = callbackfunc;
+	for (int pane = 0; pane < m_nPanes; ++pane)
+		m_Edit[pane].EnableFolderSelection(true);
 }
 

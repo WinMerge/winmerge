@@ -13,9 +13,7 @@
 #include "OptionsMgr.h"
 #include "unicoder.h"
 #include "Merge.h"
-
-/** @brief Location for plugins specific help to open. */
-static TCHAR PluginsHelpLocation[] = _T("::/htmlhelp/Plugins.html");
+#include "Constants.h"
 
 IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 

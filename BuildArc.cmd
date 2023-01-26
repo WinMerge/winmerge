@@ -73,7 +73,7 @@ if "%1" == "x64" (
 )
 
 rem Create folder structure
-for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff Merge7z\Lang Commands\Apache-Tika Commands\tidy-html5 Commands\jq Commands\q Commands\GnuWin32) do (
+for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff Merge7z\Lang Commands\Apache-Tika Commands\tidy-html5 Commands\jq Commands\q Commands\GnuWin32 Commands\md4c) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )
 
@@ -178,6 +178,7 @@ copy Build\%PLATFORM%\Release\WinWebDiff\WinWebDiffLib.dll "%DISTDIR%\%PLATFORMH
 rem Commands
 echo Copy Commands...
 xcopy /s/y Plugins\Commands "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands"
+copy Plugins\Commands\DownloadFiles.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands"
 
 rem Patch
 echo Copy Patch...
@@ -192,6 +193,11 @@ rem Copy tidy-html5...
 echo Copy tidy-html5...
 copy Build\tidy-html5\bin\tidy.* "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\tidy-html5\" > NUL
 copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\tidy-html5\" > NUL
+
+rem Copy md4c...
+echo Copy md4c...
+copy Build\md4c\mingw32\bin\*.* "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\md4c\" > NUL
+copy Build\md4c\mingw32\share\licenses\md4c\LICENSE.md "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\md4c\" > NUL
 
 rem Plugin.xml
 copy Plugins\Plugins.xml "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\MergePlugins\" > NUL

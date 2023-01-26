@@ -19,7 +19,7 @@ WinIMerge=„WinIMerge“ (vaizdø Diff/Merge)
 WinWebDiff=WinWebDiff(Web Page Diff)
 ArchiveSupport=Archyvø palaikymas
 ShellExtension32bit=32-bitø „WinMerge ShellExtension“
-Commands=GnuWin32 pataisa „Windows“/HTML Tidy/jq
+Commands=GnuWin32 pataisa „Windows“/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Kalbos

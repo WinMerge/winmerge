@@ -8,13 +8,11 @@
 #include "LineFiltersList.h"
 #include "Merge.h"
 #include "LineFiltersDlg.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-/** @brief Location for file compare specific help to open. */
-static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter property page

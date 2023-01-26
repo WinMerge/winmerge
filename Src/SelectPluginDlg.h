@@ -41,7 +41,7 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CSelectPluginDlg)
 	enum { IDD = IDD_PLUGINS_SELECTPLUGIN };
-	CComboBox	m_cboPluginName;
+	CComboBoxEx	m_cboPluginName;
 	bool	m_bNoExtensionCheck;
 	bool	m_bOpenInSameFrameType;
 	String	m_strDescription;

@@ -38,9 +38,6 @@
 #define new DEBUG_NEW
 #endif
 
-/** @brief Location for image compare specific help to open. */
-static const TCHAR ImgMergeFrameHelpLocation[] = _T("::/htmlhelp/Compare_images.html");
-
 /////////////////////////////////////////////////////////////////////////////
 // CImgMergeFrame
 

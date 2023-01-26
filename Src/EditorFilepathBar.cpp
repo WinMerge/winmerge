@@ -200,11 +200,8 @@ void CEditorFilePathBar::OnChangeEdit(UINT id)
 void CEditorFilePathBar::OnSelectEdit(UINT id)
 {
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
-	if (m_fileSelectedCallbackfunc)
-	{
-		String filename = m_Edit[pane].GetSelectedFile();
-		m_fileSelectedCallbackfunc(pane, filename);
-	}
+	(m_fileSelectedCallbackfunc ? m_fileSelectedCallbackfunc : m_folderSelectedCallbackfunc)
+		(pane, m_Edit[pane].GetSelectedPath());
 }
 
 /** 
