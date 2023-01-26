@@ -128,6 +128,7 @@ Localization:
   BrainS <29201475+BraINstinct0 at users.noreply.github.com>
   cynilyn <cynilyn at gmail.com>
   gro00 <gheong.ro at gmail.com>
+  VenusGirl <venusgirl at gmail.com>
 
 * Lithuanian:
   Dalius Guzauskas (aka Tichij) <tichij AT mail DOT com>
