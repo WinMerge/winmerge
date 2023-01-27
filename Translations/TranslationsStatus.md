@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-01-22**:
+Status from **2023-01-27**:
 
 ## WinMerge
 
@@ -27,7 +27,7 @@ Status from **2023-01-22**:
 | Hungarian            |  1244 |       1241 |     0 |            3 |     99 % |  2021-03-15 |
 | Italian              |  1244 |       1105 |     0 |          139 |     88 % |  2022-06-01 |
 | Japanese             |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-08 |
-| Korean               |  1244 |       1194 |     0 |           50 |     95 % |  2022-02-02 |
+| Korean               |  1244 |       1244 |     0 |            0 |    100 % |  2023-01-27 |
 | Lithuanian           |  1244 |       1199 |     0 |           45 |     96 % |  2023-01-16 |
 | Norwegian            |  1244 |        731 |     0 |          513 |     58 % |             |
 | Persian              |  1244 |        642 |     0 |          602 |     51 % |  2013-08-15 |
@@ -69,7 +69,7 @@ Status from **2023-01-22**:
 | Hungarian            |    10 |         10 |     0 |            0 |    100 % |             |
 | Italian              |    10 |          4 |     0 |            6 |     40 % |             |
 | Japanese             |    10 |         10 |     0 |            0 |    100 % |             |
-| Korean               |    10 |          3 |     0 |            7 |     30 % |             |
+| Korean               |    10 |         10 |     0 |            0 |    100 % |             |
 | Lithuanian           |    10 |         10 |     0 |            0 |    100 % |  2021-12-17 |
 | Norwegian            |    10 |          3 |     0 |            7 |     30 % |             |
 | Persian              |    10 |          4 |     0 |            6 |     40 % |             |
@@ -265,6 +265,7 @@ Status from **2023-01-22**:
    - [Rukoto Luther](mailto:rukotolucies%20at%20hotmail.com)
 
  * Korean
+   - [VenusGirl](mailto:venusgirl%20at%20gmail.com)
    - [Hwang Sukjoon](mailto:bbcool%20at%20gmail.com)
    - [Lee Jae-Hong](mailto:pyrasis%20at%20users.sourceforge.net)
    - [Sushizang](mailto:sushizang%20at%20empal.com)
