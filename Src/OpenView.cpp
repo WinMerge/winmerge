@@ -619,7 +619,10 @@ void COpenView::OnCompare(UINT nID)
 		{
 			PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
 			if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+			{
 				tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				nID = 0;
+			}
 			PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr, &tmpPackingInfo, &tmpPrediffingInfo);
 		}
