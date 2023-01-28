@@ -2,6 +2,46 @@
 title: 変更履歴
 ---
 
+### 2023/01/29 2.16.26-jp-1
+
+### 一般
+
+- ヘッダーバーに特定のパス名が設定されるとクラッシュすることがある問題を修正。
+
+#### ファイル比較
+
+- 不具合修正: ほとんどの行に違いがあると、テキストの選択が非常に遅くなるのを改善。[(osdn.net #46407)](https://osdn.net/projects/winmerge-jp/ticket/46407)
+- ファイルパスバーで編集する時、Ctr+Vキーでテキストを貼り付けられるようにした。[(#1651)](https://github.com/WinMerge/winmerge/issues/1651)
+
+#### フォルダ比較
+
+- ファイルフィルタで `f: dir\file` のようにディレクトリとファイルの組み合わせを指定できるようにした。 [(#1646, #1644)](https://github.com/WinMerge/winmerge/issues/1644)
+- 不具合修正: フィルヘッダーバーのメニューの[開く]が無効化されていたのを修正。
+- 3フォルダ比較時、差異があるが2つのフォルダは一致していた場合、比較結果列に2つが一致していることを表示するようにした。[(PR #1649)](https://github.com/WinMerge/winmerge/pull/1649)(PRいただきました。ありがとうございます。)
+- コンテキストメニュー→[左/右側を開く]→[親フォルダを開く]を選択したとき、WinMergeで選択していたファイルがExplorerでも選択されるようにした。[(#1662)](https://github.com/WinMerge/winmerge/issues/1662)
+- 3フォルダ比較で[表示]→[3方向比較]メニューがフォルダに対してできるようにした。[(PR #1683)](https://github.com/WinMerge/winmerge/pull/1683)(PRいただきました。ありがとうございます。)
+
+#### バイナリ比較
+
+- 不具合修正: フィルヘッダーバーのメニューの[開く]が無効化されていたのを修正。
+
+#### Webページ比較
+
+- 不具合修正: オプションダイアログの単語の差異の削除の色が使われていなかったのを修正。
+- [数字を無視する]オプションが機能するようにした。
+
+#### オプションダイアログ
+
+- オプションダイアログの[比較>フォルダ]カテゴリの改善。[(PR #1645)](https://github.com/WinMerge/winmerge/pull/1645)(PRいただきました。ありがとうございます。)
+
+#### プラグイン
+
+- MarkdownファイルをHTMLに変換するプラグイン(PreviewMarkdown)を追加。[(PR #1641)](https://github.com/WinMerge/winmerge/pull/1641)
+- PlantUMLのファイルを画像に変換するプラグイン(PreviewPlantUML)を追加。[(PR #1666)](https://github.com/WinMerge/winmerge/pull/1666)
+- CompareMSExcelFiles: プラグインオプションウインドウに"ワークシートをHTMLとして保存して比較する"を追加。
+- ApacheTika: Apache Tika のバージョンを 2.6.0 に更新。
+- ApacheTika: もし、Java がインストールされていない場合、OpenJDK 19.0.2 をダウンロードして使用するようにした。
+
 ### 2022/12/29 2.16.24-jp-3
 
 #### ファイル比較
@@ -12,7 +52,7 @@ title: 変更履歴
 #### フォルダ比較
 
 - 不具合修正: 何も選択されていない状態でShift+F10キーを押下するとクラッシュする問題を修正。
-- 不具合修正: WinMergeから作成したZIPファイルに同じファイルがc重複して含まれることがあった問題を修正。[(#1588)](https://github.com/WinMerge/winmerge/issues/1588)
+- 不具合修正: WinMergeから作成したZIPファイルに同じファイルが重複して含まれることがあった問題を修正。[(#1588)](https://github.com/WinMerge/winmerge/issues/1588)
 - コンテキストメニューに "すべての表示列をコピー" を追加 [(PR #1615)](https://github.com/WinMerge/winmerge/issues/1615)(PRいただきました。ありがとうございます。)
 
 #### HTMLレポート
@@ -48,7 +88,7 @@ title: 変更履歴
 - 不具合修正: [列の表示]ダイアログでOKボタンを押すとクラッシュすることがある問題を修正。[(PR #1568)](https://github.com/WinMerge/winmerge/pull/1568)(PRいただきました。ありがとうございます。)
 - 不具合修正: フォルダ比較レポート内の#や%を含むファイル名のファイル比較レポートへのリンクが正しくない問題を修正。[(osdn.net #46082)](https://osdn.net/projects/winmerge-jp/ticket/46082)
 - 不具合修正: フォルダとフォルダ内のファイルを選択して圧縮ファイルを作成すると、圧縮ファイルに同じファイルが含まれてしまう問題を修正。[(#1588)](https://github.com/WinMerge/winmerge/issues/1588)
-- 3フォルダー比較で3つ存在しないファイルの「比較結果」列の表示を改善。[(PR #1513)](https://github.com/WinMerge/winmerge/pull/1513)(PRいただきました。ありがとうございます。)
+- 3フォルダー比較で3つ存在しないファイルの「比較結果」列の表示を改善。[(PR #1545)](https://github.com/WinMerge/winmerge/pull/1545)(PRいただきました。ありがとうございます。)
 
 #### バイナリ比較
 
