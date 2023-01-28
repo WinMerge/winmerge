@@ -373,7 +373,7 @@ ShutdownBlockReasonUninstallingApp=%1을(를) 제거하는 중입니다.
 [CustomMessages]
 
 NameAndVersion=%1 버전 %2
-AdditionalIcons=추가 바로 가기:
+AdditionalIcons=추가 바로가기:
 CreateDesktopIcon=바탕 화면에 바로가기 만들기(&D)
 CreateQuickLaunchIcon=빠른 실행 아이콘 만들기(&Q)
 ProgramOnTheWeb=%1 웹페이지
