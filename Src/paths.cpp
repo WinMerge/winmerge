@@ -760,7 +760,7 @@ bool isFileURL(const String& path)
 String FromURL(const String& url)
 {
 	std::vector<TCHAR> path((std::max)(size_t(MAX_PATH), url.length() + 1));
-	DWORD size = sizeof(path) / sizeof(path[0]);
+	DWORD size = static_cast<DWORD>(path.size());
 	PathCreateFromUrl(url.c_str(), path.data(), &size, 0);
 	return path.data();
 }
