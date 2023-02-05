@@ -14,12 +14,7 @@ CustomInstallation=Namestitev po meri
 AppCoreFiles=Datoteke jedra WinMerge
 Filters=Filtri
 Plugins=Vtièniki
-Frhed=Frhed(Brezplaèni 16-tiški urejevalnik)
-WinIMerge=WinIMerge (Slika razlik/združitev)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Podpora arhivov
 ShellExtension32bit=32-bitna razširitev lupine WinMerge
-Commands=GnuWin32 popravek za Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Jeziki

@@ -189,11 +189,6 @@ Name: ShellExtension32bit; Description: {cm:ShellExtension32bit}; Types: full ty
 
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
-Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
-Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
-Name: WinWebDiff; Description: {cm:WinWebDiff}; Flags: disablenouninstallwarning; Types: full typical
-Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
-Name: Commands; Description: {cm:Commands}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -436,10 +431,10 @@ Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {ap
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: Core
 
 ; Language files
 Source: ..\..\Translations\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
@@ -574,65 +569,65 @@ Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsComma.dll; DestDir: {app}\MergePl
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
-;Source: ..\..\Build\{#ARCH}\Release\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Core
+;Source: ..\..\Build\{#ARCH}\Release\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Core
 
 ;WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-;Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: WinIMerge
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: Core
+;Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: Core
 
 ;WinWebDiff
-Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: WinWebDiff
-Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: WinWebDiff
+Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: Core
 
 ;GnuWin32 Patch for Windows
-Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Plugins
 ; HTML Tidy
-Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 ; jq
-Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
 ; md4c
-Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\md4c\*.bat; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\md4c\*.bat; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
 ; PlantUML
-Source: ..\..\Plugins\Commands\PlantUML\*.bat; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\PlantUML\*.txt; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\PlantUML\*.bat; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\PlantUML\*.txt; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Plugins
 ; Apache Tika
-Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\Apache-Tika\*.txt; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\Apache-Tika\*.txt; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Plugins
 ; q
-Source: ..\..\Plugins\Commands\q\*.bat; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\q\*.txt; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\q\*.bat; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\q\*.txt; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Plugins
 ; yq
-Source: ..\..\Plugins\Commands\yq\*.bat; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\yq\*.txt; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\yq\*.bat; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\yq\*.txt; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Plugins
 ; dumpbin
-Source: ..\..\Plugins\Commands\dumpbin\*.bat; DestDir: {app}\Commands\dumpbin; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\dumpbin\*.bat; DestDir: {app}\Commands\dumpbin; Flags: recursesubdirs; Components: Plugins
 ; ildasm
-Source: ..\..\Plugins\Commands\ildasm\*.bat; DestDir: {app}\Commands\ildasm; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\ildasm\*.bat; DestDir: {app}\Commands\ildasm; Flags: recursesubdirs; Components: Plugins
 ; Java
-Source: ..\..\Plugins\Commands\Java\*.bat; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\Java\*.txt; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\Java\*.bat; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\Java\*.txt; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Plugins
 ; DownloadFiles.bat
-Source: ..\..\Plugins\Commands\DownloadFiles.bat; DestDir: {app}\Commands\; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\DownloadFiles.bat; DestDir: {app}\Commands\; Flags: recursesubdirs; Components: Plugins
 
 [Dirs]
 Name: "{app}\MergePlugins"

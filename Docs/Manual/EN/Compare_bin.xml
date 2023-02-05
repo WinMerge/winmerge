@@ -10,7 +10,7 @@
     <secondary>binary</secondary>
   </indexterm>
 
-  <para>If you had selected Frhed on Select Component page of the installer, WinMerge can view and edit your files in hexadecimal format.
+  <para>WinMerge can view and edit your files in hexadecimal format.
   </para>
   
   <mediaobject>

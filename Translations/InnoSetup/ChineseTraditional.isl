@@ -14,12 +14,7 @@ CustomInstallation=自訂安裝
 AppCoreFiles=WinMerge 核心檔案
 Filters=篩選器
 Plugins=擴充功能
-Frhed=Frhed (免費的十六進位編輯器)
-WinIMerge=WinIMerge (偵測圖片差異/合併)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32 位元 WinMerge ShellExtension
-Commands=Windows/HTML Tidy/jq/md4c 的 GnuWin32 修補程式
 
 ;Localization Components
 Languages=語言

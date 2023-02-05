@@ -14,12 +14,7 @@ CustomInstallation=사용자 지정 설치
 AppCoreFiles=WinMerge 코어 파일
 Filters=필터
 Plugins=플러그인
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(이미지 차이/병합)
-WinWebDiff=WinWebDiff(웹 페이지 차이)
-ArchiveSupport=압축보관 지원
 ShellExtension32bit=32비트 WinMerge 쉘확장
-Commands=Windows/HTML Tidy/jq/md4c용 GnuWin32 패치
 
 ;현지화 구성 요소
 Languages=언어

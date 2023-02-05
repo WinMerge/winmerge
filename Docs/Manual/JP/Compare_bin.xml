@@ -10,7 +10,7 @@
     <secondary>バイナリ</secondary>
   </indexterm>
 
-  <para>インストールオプションとしてFrhedを選択していたならば、WinMergeは、ファイルをHex形式で表示・編集することができます。
+  <para>WinMergeは、ファイルをHex形式で表示・編集することができます。
   </para>
   
   <mediaobject>

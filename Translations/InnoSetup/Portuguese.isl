@@ -14,12 +14,7 @@ CustomInstallation=Instalação personalizada
 AppCoreFiles=Ficheiros principais do WinMerge
 Filters=Filtros
 Plugins=Plugins
-Frhed=Frhed(Editor hex gratuito)
-WinIMerge=WinIMerge (Dividir/Juntar Imagens)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Suporte de ficheiros
 ShellExtension32bit=Extensão Shell WinMerge 32 bits
-Commands=Pacote GnuWin32 para Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Idiomas
