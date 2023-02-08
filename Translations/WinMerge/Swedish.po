@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-01-14 12:20+0000\n"
-"PO-Revision-Date: 2023-02-08 10:35+0100\n"
+"PO-Revision-Date: 2023-02-08 16:24+0100\n"
 "Last-Translator: Timmy Almroth <timmy.almroth at tim-international.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sv\n"
@@ -71,7 +71,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "Lägg till denna ändring bland ersättningsfilter"
 
 msgid "Add to &Line Filters"
-msgstr "Lägg till radfilter"
+msgstr "Lägg till bland radfilter"
 
 msgid "&Undo"
 msgstr "Ångra"
@@ -211,7 +211,7 @@ msgid "&Horizontal Wipe"
 msgstr "Horisontell rensning"
 
 msgid "Rectangle &Select"
-msgstr "Väljrektangel"
+msgstr "Rektangulärt val"
 
 msgid "&Set Background Color"
 msgstr "Sätt bakgrundsfärg"
@@ -390,7 +390,7 @@ msgid "Tile &Vertically"
 msgstr "Ordna vertikalt"
 
 msgid "&Cascade"
-msgstr "Ordna uppradade"
+msgstr "Ordna överlappande"
 
 msgid "&Help"
 msgstr "Hjälp"
@@ -432,7 +432,7 @@ msgid "Select &All\tCtrl+A"
 msgstr "Markera allt\tCtrl+A"
 
 msgid "Show &Identical Items"
-msgstr "Visa likalydande"
+msgstr "Visa identiska objekt"
 
 msgid "Show &Different Items"
 msgstr "Visa skillnader"
@@ -453,7 +453,7 @@ msgid "S&how Binary Files"
 msgstr "Visa binära filer"
 
 msgid "&3-way Compare"
-msgstr "3-vägs jämförelse"
+msgstr "3-vägsjämförelse"
 
 msgid "Show &Left Only Different Items"
 msgstr "Visa skillnader endast i vänster"
@@ -1522,13 +1522,13 @@ msgid "Enable indent &heuristic"
 msgstr "Aktivera indragsstöd"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr "Avmarkera de ignorerade skillnaderna"
+msgstr "Framhäv inte ignorerade skillnader"
 
 msgid "Editor"
 msgstr "Redigerare"
 
 msgid "&Highlight syntax"
-msgstr "Markera syntax"
+msgstr "Framhäv syntax"
 
 msgid "&Automatic rescan"
 msgstr "Automatisk omskanning"
@@ -1634,7 +1634,7 @@ msgid "Default Codepage"
 msgstr "Förvald teckentabell"
 
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Välj förvald teckentabell att använda när icke-Unicode filer öppnas:"
+msgstr "Ange förvald teckentabell att använda när icke-Unicode filer öppnas:"
 
 msgid "System codepage"
 msgstr "Systemets teckentabell"
@@ -1747,7 +1747,7 @@ msgid "&Detect archive type from file signature"
 msgstr "Detektera filtyp från filsignatur"
 
 msgid "Items saved to or restored from the project file:"
-msgstr "Skillnader sparade till eller återskapade från projektfil:"
+msgstr "Objekt sparade till eller återskapade från projektfilen:"
 
 msgid "Compare Statistics"
 msgstr "Jämför statistik"
@@ -1810,7 +1810,7 @@ msgid "File &Saving:"
 msgstr "Fil sparas:"
 
 msgid "&Use same codepage for both"
-msgstr "Använd samma teckenuppsättning för båda"
+msgstr "Använd samma teckentabell för båda"
 
 msgid "&Cancel"
 msgstr "Avbryt"
@@ -1849,7 +1849,7 @@ msgid "&TSV"
 msgstr "TSV"
 
 msgid "Custom &Delimiter-Separated Values"
-msgstr "Skräddarsyddavgränsade värden"
+msgstr "Egenavgränsade värden"
 
 msgid "D&elimiter character:"
 msgstr "Tecken för avgränsning:"
@@ -1876,7 +1876,7 @@ msgid "Backup Files"
 msgstr "Säkerhetskopierade filer"
 
 msgid "Create backup files in:"
-msgstr "Skapa säkerhetskopior vid:"
+msgstr "Skapa säkerhetskopior i:"
 
 msgid "&Folder compare"
 msgstr "Katalogjämförelse"
@@ -2256,7 +2256,7 @@ msgstr "X64"
 
 #, c-format
 msgid "Options (%1)"
-msgstr "Egenskaper (%1)"
+msgstr "Alternativ (%1)"
 
 msgid "All message boxes are now displayed again."
 msgstr "Alla dialogmeddelanden visas nu igen."
@@ -2318,7 +2318,7 @@ msgid "Load"
 msgstr "Ladda"
 
 msgid "Save"
-msgstr "Spara som"
+msgstr "Spara"
 
 msgid "Include Subfolders"
 msgstr "Inkludera undermappar"
@@ -2681,7 +2681,7 @@ msgid ""
 msgstr ""
 "Ett annat program har ändrat i filen\n"
 "%1\n"
-"sedan WinMerge har öppnat den.\n"
+"sedan WinMerge öppnade den.\n"
 "\n"
 "Vill du skriva över den ändrade filen ändå?"
 
@@ -2703,7 +2703,7 @@ msgid ""
 msgstr ""
 "Ett annat program har ändrat i filen\n"
 "%1\n"
-"sedan WinMerge sökte igenom den förra gången.\n"
+"sedan WinMerge sökte igenom den senast.\n"
 "\n"
 "Vill du läsa in den på nytt?"
 
@@ -2954,10 +2954,10 @@ msgid "Middle Size (Short)"
 msgstr "Storlek mitten (kort)"
 
 msgid "Left Creation Time"
-msgstr "Skapelsedatum vänster"
+msgstr "Tid skapad vänster"
 
 msgid "Right Creation Time"
-msgstr "Skapelsedatum höger"
+msgstr "Tid skapad höger"
 
 msgid "Middle Creation Time"
 msgstr "Skapelsedatum mitten"
@@ -3189,7 +3189,7 @@ msgstr "Grupp%d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "Förlopp: %ld ms"
+msgstr "Tidsförlopp: %ld ms"
 
 msgid "1 item selected"
 msgstr "1 objekt valt"
@@ -3322,7 +3322,7 @@ msgid "Comma-separated list"
 msgstr "Kommaseparerad lista"
 
 msgid "Tab-separated list"
-msgstr "Tab-avgränsad lista"
+msgstr "Tabbavgränsad lista"
 
 msgid "Simple HTML"
 msgstr "Enkel HTML"
@@ -3530,7 +3530,7 @@ msgid "The specified output path is not an absolute path: %1"
 msgstr "Den specificerade resultatsökvägen är inte en absolut sökväg: %1"
 
 msgid "Specify an output file."
-msgstr "Välj ett filnamn för resultatet."
+msgstr "Ange ett filnamn för resultatet."
 
 msgid "Cannot create a patch file from binary files."
 msgstr "Kan inte skapa en patchfil från binära filer."
@@ -3561,10 +3561,10 @@ msgstr ""
 "komprimerade mappar."
 
 msgid "Select file for export"
-msgstr "Välj fil för export"
+msgstr "Ange fil att exportera"
 
 msgid "Select file for import"
-msgstr "Välj fil för import"
+msgstr "Ange fil att importera"
 
 msgid "Options imported from the file."
 msgstr "Inställningar importerades från filen."
@@ -3778,7 +3778,7 @@ msgid "Private Build: %1"
 msgstr "Privat kompilering: %1"
 
 msgid "Your software is up to date."
-msgstr "Ditt program är aktuellt."
+msgstr "Din mjukvara är aktuell."
 
 #, c-format
 msgid ""
@@ -3815,7 +3815,7 @@ msgid "From Most Recently Used list"
 msgstr "Från listan Senast använda filer"
 
 msgid "No Highlighting"
-msgstr "Ingen markering"
+msgstr "Ingen framhävning"
 
 msgid "Batch"
 msgstr "Sats"
@@ -3906,7 +3906,7 @@ msgid "MDI child window only"
 msgstr "MDI nedärvda endast"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr "Stäng huvudfönstret om det bara finns ett efterföljande MDI fönster"
+msgstr "Stäng huvudfönstret om det bara finns ett nedärvt MDI fönster"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3914,7 +3914,7 @@ msgstr "Skillnad"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
-msgstr "Markera"
+msgstr "Framhäv"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Blink"
@@ -4062,7 +4062,7 @@ msgid "Preview"
 msgstr "Förhandsgranska"
 
 msgid "Data Query"
-msgstr "Datafråga"
+msgstr "Dataförfrågan"
 
 msgid "Validation"
 msgstr "Validering"
@@ -4071,7 +4071,7 @@ msgid "Decompilation"
 msgstr "Dekompilering"
 
 msgid "&Others"
-msgstr "Andra"
+msgstr "Övriga"
 
 msgid "URL Handling"
 msgstr "URL-hantering"
@@ -4086,7 +4086,7 @@ msgid "Remove Duplicate Lines"
 msgstr "Ta bort duplicerade rader"
 
 msgid "Count Duplicate Lines"
-msgstr "Rökna duplicerade rader"
+msgstr "Räkna duplicerade rader"
 
 msgid "Sort Lines Ascending"
 msgstr "Sortera rader lexikografiskt stigande"
@@ -4104,7 +4104,7 @@ msgid "Replace..."
 msgstr "Ersätt..."
 
 msgid "Apply Filter Command..."
-msgstr "Verkställ filter kommando..."
+msgstr "Applicera filterkommando..."
 
 msgid "Tokenize..."
 msgstr "Tokenisera..."
@@ -4164,16 +4164,16 @@ msgid "Preview PlantUML"
 msgstr "Förhandsgranska PlantUML"
 
 msgid "Query CSV Data..."
-msgstr "Frågar CSV data..."
+msgstr "Förfråga CSV data..."
 
 msgid "Query TSV Data..."
-msgstr "Frågar TSV data..."
+msgstr "Förfråga TSV data..."
 
 msgid "Query JSON Data..."
-msgstr "Frågar JSON data..."
+msgstr "Förfråga JSON data..."
 
 msgid "Query YAML Data..."
-msgstr "Frågar YAML data..."
+msgstr "Förfråga YAML data..."
 
 msgid "Validate HTML"
 msgstr "Validera HTML"
@@ -4244,7 +4244,7 @@ msgid ""
 "  COMMAND - command to execute. %1 in the command is replaced with the "
 "filename."
 msgstr ""
-"Verkställ filterkommando.\r\n"
+"Applicera filterkommando.\r\n"
 "Användning: ExecFilterCommand KOMMANDO\n"
 "  KOMMANDO - kommando att exekvera. %1 i kommandot ersätts med filnamnet."
 
@@ -4455,7 +4455,7 @@ msgid "Prediff Line Filter"
 msgstr "PreDiff radfilter"
 
 msgid "Basic text functions for the context menu"
-msgstr "Grundläggande textfunktioner för snabbmenyn"
+msgstr "Grundläggande textfunktioner för innehållsmenyn"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
