@@ -23,7 +23,7 @@ namespace paths
 {
 
 static bool IsSlash(const String& pszStart, size_t nPos);
-static bool GetDirName(const String& sDir, String& sName);
+static bool IsDirName(const String& sDir);
 
 /** 
  * @brief Checks if char in string is slash.
@@ -154,29 +154,29 @@ void normalize(String & sPath)
 }
 
 /**
- * @brief Get canonical name of folder.
+ * @brief Returns whether the given path is a directory name
  * @param [in] sDir Folder to handle.
- * @param [out] sName Canonicalized folder name.
- * @return true if canonical name exists.
- * @todo Should we return empty string as sName when returning false?
+ * @return true the given path is a directory name
  */
-static bool GetDirName(const String& sDir, String& sName)
+static bool IsDirName(const String& sDir)
 {
 	// FindFirstFile doesn't work for root:
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
 	// You cannot use root directories as the lpFileName input string for FindFirstFile - with or without a trailing backslash.
-	if (sDir[0] && sDir[1] == ':' && sDir[2] == '\0')
+	size_t count = 0;
+	if ((sDir[0] && sDir[1] == ':' && sDir[2] == '\0') ||
+	    // \\host\share or \\host\share\ 
+	    (sDir[0] == '\\' && sDir[1] == '\\' && 
+	     (count = std::count(sDir.begin(), sDir.end(), ('\\'))) <= 4 &&
+	     (count == 3 || (count == 4 && sDir.back() == '\\'))))
 	{
 		// I don't know if this work for empty root directories
 		// because my first return value is not a dot directory, as I would have expected
 		WIN32_FIND_DATA ffd;
-		TCHAR sPath[8];
-		StringCchPrintf(sPath, sizeof(sPath)/sizeof(sPath[0]), _T("%s\\*"), sDir.c_str());
-		HANDLE h = FindFirstFile(sPath, &ffd);
+		HANDLE h = FindFirstFile((sDir + (sDir.back() == '\\' ? _T("*") : _T("\\*"))).c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 			return false;
 		FindClose(h);
-		sName = sDir;
 		return true;
 	}
 	// (Couldn't get info for just the directory from CFindFile)
@@ -185,7 +185,6 @@ static bool GetDirName(const String& sDir, String& sName)
 	HANDLE h = FindFirstFile(TFile(sDir).wpath().c_str(), &ffd);
 	if (h == INVALID_HANDLE_VALUE)
 		return false;
-	sName = ffd.cFileName;
 	FindClose(h);
 	return true;
 }
@@ -315,8 +314,7 @@ bool CreateIfNeeded(const String& szPath)
 	if (szPath.empty())
 		return false;
 
-	String sTemp;
-	if (GetDirName(szPath, sTemp))
+	if (IsDirName(szPath))
 		return true;
 
 	if (szPath.length() >= MAX_PATH_FULL)
@@ -350,7 +348,7 @@ bool CreateIfNeeded(const String& szPath)
 
 	// check that first component exists
 	*end = 0;
-	if (!GetDirName(fullPath, sTemp))
+	if (!IsDirName(fullPath))
 		return false;
 	*end = '\\';
 
@@ -367,12 +365,11 @@ bool CreateIfNeeded(const String& szPath)
 		// advance to next component (or set ptr=`nullptr` to flag end)
 		ptr = (end != nullptr ? end+1 : nullptr);
 
-		String sNextName;
-		if (!GetDirName(fullPath, sNextName))
+		if (!IsDirName(fullPath))
 		{
 			// try to create directory, and then double-check its existence
 			if (!CreateDirectory(fullPath, 0) ||
-				!GetDirName(fullPath, sNextName))
+				!IsDirName(fullPath))
 			{
 				return false;
 			}
