@@ -108,38 +108,38 @@ public:
 protected:
 
     // code from https://github.com/microsoft/terminal/blob/main/src/cascadia/ShellExtension/OpenTerminalHere.cpp
-	HRESULT GetBestLocationFromSelectionOrSite(IShellItemArray* psiArray, IShellItem** location) const noexcept
-	{
-		ComPtr<IShellItem> psi;
-		if (psiArray)
-		{
-			DWORD count{};
-			RETURN_IF_FAILED(psiArray->GetCount(&count));
-			if (count) // Sometimes we get an array with a count of 0. Fall back to the site chain.
-			{
-				RETURN_IF_FAILED(psiArray->GetItemAt(0, &psi));
-			}
-		}
+    HRESULT GetBestLocationFromSelectionOrSite(IShellItemArray* psiArray, IShellItem** location) const noexcept
+    {
+        ComPtr<IShellItem> psi;
+        if (psiArray)
+        {
+            DWORD count{};
+            RETURN_IF_FAILED(psiArray->GetCount(&count));
+            if (count) // Sometimes we get an array with a count of 0. Fall back to the site chain.
+            {
+                RETURN_IF_FAILED(psiArray->GetItemAt(0, &psi));
+            }
+        }
 
-		if (!psi)
-		{
-			RETURN_IF_FAILED(GetLocationFromSite(&psi));
-		}
+        if (!psi)
+        {
+            RETURN_IF_FAILED(GetLocationFromSite(&psi));
+        }
 
-		RETURN_HR_IF(S_FALSE, !psi);
-		RETURN_IF_FAILED(psi.CopyTo(location));
-		return S_OK;
-	}
+        RETURN_HR_IF(S_FALSE, !psi);
+        RETURN_IF_FAILED(psi.CopyTo(location));
+        return S_OK;
+    }
 
-	HRESULT GetLocationFromSite(IShellItem** location) const noexcept
-	{
-		ComPtr<IServiceProvider> serviceProvider;
-		RETURN_IF_FAILED(m_site.As<IServiceProvider>(&serviceProvider));
-		ComPtr<IFolderView> folderView;
-		RETURN_IF_FAILED(serviceProvider->QueryService<IFolderView>(SID_SFolderView, &folderView));
-		RETURN_IF_FAILED(folderView->GetFolder(IID_PPV_ARGS(location)));
-		return S_OK;
-	}
+    HRESULT GetLocationFromSite(IShellItem** location) const noexcept
+    {
+        ComPtr<IServiceProvider> serviceProvider;
+        RETURN_IF_FAILED(m_site.As<IServiceProvider>(&serviceProvider));
+        ComPtr<IFolderView> folderView;
+        RETURN_IF_FAILED(serviceProvider->QueryService<IFolderView>(SID_SFolderView, &folderView));
+        RETURN_IF_FAILED(folderView->GetFolder(IID_PPV_ARGS(location)));
+        return S_OK;
+    }
 
     std::vector<std::wstring> GetPaths(_In_opt_ IShellItemArray* selection)
     {
@@ -147,17 +147,17 @@ protected:
         DWORD dwNumItems = 0;
         if (!selection)
         {
-			ComPtr<IShellItem> psi;
-			if (SUCCEEDED(GetBestLocationFromSelectionOrSite(selection, &psi)))
-			{
-				wil::unique_cotaskmem_string pszFilePath;
-				if (SUCCEEDED(psi->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath)))
-				{
-					std::wstring path = pszFilePath.get();
-					if (!path.empty())
-						paths.push_back(path);
-				}
-			}
+            ComPtr<IShellItem> psi;
+            if (SUCCEEDED(GetBestLocationFromSelectionOrSite(selection, &psi)))
+            {
+                wil::unique_cotaskmem_string pszFilePath;
+                if (SUCCEEDED(psi->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath)))
+                {
+                    std::wstring path = pszFilePath.get();
+                    if (!path.empty())
+                        paths.push_back(path);
+                }
+            }
         }
         else
         {
