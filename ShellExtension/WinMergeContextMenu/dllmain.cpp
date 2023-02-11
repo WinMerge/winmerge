@@ -133,6 +133,9 @@ protected:
 
     HRESULT GetLocationFromSite(IShellItem** location) const noexcept
     {
+        wil::assign_null_to_opt_param(location);
+        if (!m_site)
+            return S_FALSE;
         ComPtr<IServiceProvider> serviceProvider;
         RETURN_IF_FAILED(m_site.As<IServiceProvider>(&serviceProvider));
         ComPtr<IFolderView> folderView;
