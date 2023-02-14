@@ -4,8 +4,8 @@
 
 ### Folder compare
 
-BugFix: Fixed an issue where files with no extension were not compared if they
-  were in a folder with a '.' in the folder name.
+- BugFix: Fixed an issue where files with no extension were not compared if they
+    were in a folder with a '.' in the folder name.
 
 ## WinMerge 2.16.26 - 2023-01-27
 
