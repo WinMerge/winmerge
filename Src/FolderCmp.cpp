@@ -78,12 +78,9 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			nCompMethod = CMP_BINARY_CONTENT;
 		}
 		else if (m_pCtxt->m_bEnableImageCompare && (
-			di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(
-				paths::ConcatPath(di.diffFileInfo[0].path, di.diffFileInfo[0].filename)) ||
-			di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(
-				paths::ConcatPath(di.diffFileInfo[1].path, di.diffFileInfo[1].filename)) ||
-			nDirs > 2 && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(
-				paths::ConcatPath(di.diffFileInfo[2].path, di.diffFileInfo[2].filename))))
+			di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(di.diffFileInfo[0].filename) ||
+			di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(di.diffFileInfo[1].filename) ||
+			nDirs > 2 && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE && m_pCtxt->m_pImgfileFilter->includeFile(di.diffFileInfo[2].filename)))
 		{
 			nCompMethod = CMP_IMAGE_CONTENT;
 		}
