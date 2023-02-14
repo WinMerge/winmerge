@@ -1,6 +1,7 @@
-# WinMerge 2.16.26 Release Notes
+# WinMerge 2.16.28 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.28?](#what-is-new-in-21628)
 - [What Is New in 2.16.26?](#what-is-new-in-21626)
 - [What Is New in 2.16.25 beta?](#what-is-new-in-21625-beta)
 - [Known issues](#known-issues)
@@ -9,10 +10,17 @@ January 2023
 
 ## About This Release
 
-This is a WinMerge 2.16.26 stable release.
+This is a WinMerge 2.16.28 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.28
+
+### Folder compare
+
+BugFix: Fixed an issue where files with no extension were not compared if they
+  were in a folder with a '.' in the folder name.
 
 ## What Is New in 2.16.26
 
