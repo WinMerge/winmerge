@@ -1,6 +1,7 @@
 # WinMerge 2.16.26 リリースノート
 
 - [このリリースについて](#about-this-release)
+- [2.16.28の新機能](#what-is-new-in-21628)
 - [2.16.26の新機能](#what-is-new-in-21626)
 - [2.16.25 beta の新機能](#what-is-new-in-21625-beta)
 - [既知の問題](#known-issues)
@@ -9,11 +10,17 @@
 
 ## このリリースについて
 
-WinMerge の 2.16.26 安定版リリースです。
+WinMerge の 2.16.28 安定版リリースです。
 このリリースは、以前の WinMerge 安定版リリースに代わる推奨リリースです。
 
 不具合は <a href="http://github.com/WinMerge/winmerge/issues">bug-tracker</a> で報告してください。
 日本語での報告は、<a href="https://osdn.net/projects/winmerge-jp/ticket/">こちら</a>でお願いします。
+
+## 2.16.28 の新機能
+
+### フォルダ比較
+
+- 不具合修正: 拡張子のないファイルがフォルダ名に「.」を含むフォルダに存在する場合、そのファイルが比較されない問題を修正した。
 
 ## 2.16.26 の新機能
 

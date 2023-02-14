@@ -23,14 +23,20 @@
 <h1 id="winmerge-21626-リリースノート">WinMerge 2.16.26 リリースノート</h1>
 <ul>
 <li><a href="#about-this-release">このリリースについて</a></li>
+<li><a href="#what-is-new-in-21628">2.16.28の新機能</a></li>
 <li><a href="#what-is-new-in-21626">2.16.26の新機能</a></li>
 <li><a href="#what-is-new-in-21625-beta">2.16.25 beta の新機能</a></li>
 <li><a href="#known-issues">既知の問題</a></li>
 </ul>
 <p>2023年1月</p>
 <h2 id="このリリースについて">このリリースについて</h2>
-<p>WinMerge の 2.16.26 安定版リリースです。 このリリースは、以前の WinMerge 安定版リリースに代わる推奨リリースです。</p>
+<p>WinMerge の 2.16.28 安定版リリースです。 このリリースは、以前の WinMerge 安定版リリースに代わる推奨リリースです。</p>
 <p>不具合は <a href="http://github.com/WinMerge/winmerge/issues">bug-tracker</a> で報告してください。 日本語での報告は、<a href="https://osdn.net/projects/winmerge-jp/ticket/">こちら</a>でお願いします。</p>
+<h2 id="21628-の新機能">2.16.28 の新機能</h2>
+<h3 id="フォルダ比較">フォルダ比較</h3>
+<ul>
+<li>不具合修正: 拡張子のないファイルがフォルダ名に「.」を含むフォルダに存在する場合、そのファイルが比較されない問題を修正した。</li>
+</ul>
 <h2 id="21626-の新機能">2.16.26 の新機能</h2>
 <h3 id="全般">全般</h3>
 <ul>
@@ -40,7 +46,7 @@
 <ul>
 <li>ファイルパスバーで編集する時、Ctr+Vキーでテキストを貼り付けられるようにした。<a href="https://github.com/WinMerge/winmerge/issues/1651">(#1651)</a></li>
 </ul>
-<h3 id="フォルダ比較">フォルダ比較</h3>
+<h3 id="フォルダ比較-1">フォルダ比較</h3>
 <ul>
 <li>不具合修正: エクスポートされた.iniファイルをインポートしても行フィルタや置換フィルタが復元されない問題を修正。(正常に行フィルタや置換フィルタを復元するには、最新バージョンでエクスポートした.iniファイルを使用する必要があります) <a href="https://github.com/WinMerge/winmerge/issues/1638">(#1638)</a></li>
 <li>不具合修正: フィルヘッダーバーのメニューの[開く]が無効化されていたのを修正。</li>
@@ -103,7 +109,7 @@
 <ul>
 <li>64bit版ではファイルサイズが2GB以上のファイルも開けるようにした。<a href="https://github.com/WinMerge/winmerge/pull/1549">(PR #1549)</a></li>
 </ul>
-<h3 id="フォルダ比較-1">フォルダ比較</h3>
+<h3 id="フォルダ比較-2">フォルダ比較</h3>
 <ul>
 <li>不具合修正: [列の表示]ダイアログでOKボタンを押すとクラッシュすることがある問題を修正。<a href="https://github.com/WinMerge/winmerge/pull/1568">(PR #1568)</a></li>
 <li>不具合修正: ファイルやフォルダをコピーするときクラッシュすることがあるのを修正。<a href="https://github.com/WinMerge/winmerge/issues/1558">(#1558)</a></li>
