@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Wyœwietl folder menu Start WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalator wykry³, ¿e zmieni³eœ lokalizacjê menu startowego z "%s" na "%s". Czy usun¹æ poprzedni folder menu startowego?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Plik projektu WinMerge

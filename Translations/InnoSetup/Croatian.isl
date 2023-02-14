@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Pregled WinMerge poèetne mape
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instaler je otkrio promjenu lokacije Poèetnog izbornika od "%s" u "%s". Obrisati stari Poèetni izbornik?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Usporedbe

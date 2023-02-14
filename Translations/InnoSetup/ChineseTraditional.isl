@@ -78,6 +78,7 @@ ViewStartMenuFolder=檢視 WinMerge 開始選單資料夾 (&V)
 
 ;Code Dialogs
 DeletePreviousStartMenu=安裝程式偵測到您將開始選單的位置從 "%s" 改為 "%s"。您要刪除舊的開始選單資料夾嗎？
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge 專案檔

@@ -414,11 +414,20 @@ Source: ..\..\Build\{#ARCH}\Release\LogoImages\*.png; DestDir: {app}\LogoImages;
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension32bit}')) and KillProcesses_ExplorerSeparateProcess
+Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; \
+  MinVersion: 0, 4; Components: ShellExtension32bit; \
+  Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension32bit}')) and \
+    RenameShellExtensionDLLIfExists(ExpandConstant('{app}\{#ShellExtension32bit}'))
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}')) and KillProcesses_ExplorerSeparateProcess
-Source: ..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage and KillProcesses_DllHostWinMergeContextMenu
-Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
+Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; \
+  MinVersion: 0,5.01.2600; \
+  Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}')) and \
+    RenameShellExtensionDLLIfExists(ExpandConstant('{app}\{#ShellExtension64bit}'))
+Source: ..\..\Build\ShellExtension\{#ARCH}\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; \
+  Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and \
+    UnregisterWinMergeContextMenuPackage and RenameShellExtensionDLLIfExists(ExpandConstant('{app}\WinMergeContextMenu.dll'))
+Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; \
+  Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
@@ -769,6 +778,7 @@ Name: {app}; Type: dirifempty
 [Code]
 Var
     g_CheckListBox: TNewCheckListBox;
+    g_IsExplorerRestartRequired: boolean;
 
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
@@ -870,6 +880,65 @@ Begin;
   Result := true;
 End;
 
+function GetCurrentProcessId: DWORD;
+  external 'GetCurrentProcessId@kernel32.dll stdcall';
+
+function RenameShellExtensionDLLIfExists(Filename: String) : Boolean;
+var
+  dest: String;
+begin
+  if FileExists(Filename) then begin
+    dest := Filename + '.' + IntToStr(GetCurrentProcessId()) + '.old';
+    RenameFile(Filename, dest);
+  end;
+  Result := true;
+end;
+
+function DeleteRenamedShellExtensionDLL(Filename: String; fRestartReplace: Boolean; fRetry: Boolean) : Boolean;
+var
+  dest: String;
+  i: Integer;
+begin
+  dest := Filename + '.' + IntToStr(GetCurrentProcessId()) + '.old';
+  if FileExists(dest) then begin
+    for i := 0 to 40 do begin
+      Result := DeleteFile(dest);
+      if not fRetry or Result = true then break;
+      Sleep(100);
+    end;
+    if Result = false then begin
+      if fRestartReplace then begin
+        RestartReplace(dest, '');
+      end;
+      g_IsExplorerRestartRequired := true;
+    end;
+  end;
+  Result := true;
+end;
+
+procedure RestartExplorer;
+var
+  ResultCode: Integer;
+begin
+  Exec(ExpandConstant('{sys}\taskkill.exe'), '/f /im explorer.exe', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  Exec(ExpandConstant('{win}\explorer.exe'), '', '', SW_SHOW, ewNoWait, ResultCode);
+end;
+
+procedure DeleteRenamedFiles();
+begin
+  DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension32bit}'), false, false);
+  DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension64bit}'), false, false);
+  DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\WinMergeContextMenu.dll'), false, false);
+  if g_IsExplorerRestartRequired then begin
+    if SuppressibleMsgBox(ExpandConstant('{cm:ExplorerNeedsRestart}'), mbConfirmation, MB_YESNO or MB_DEFBUTTON2, IDNO) = IDYES then begin
+      RestartExplorer();
+      DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension32bit}'), true, true);
+      DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension64bit}'), true, true);
+      DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\WinMergeContextMenu.dll'), true, true);
+    end;
+  end;
+end;
+
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
@@ -877,6 +946,8 @@ Begin
     If CurPage = wpInstalling Then
             {Delete the previous start menu group if the location has changed since the last install}
             DeletePreviousStartMenu;
+    If CurPage = wpFinished Then
+      DeleteRenamedFiles;
 End;
 
 // Checks if context menu is already enabled for shell extension
@@ -1005,75 +1076,6 @@ begin
     Result := false;
 end;
 
-function GetCurrentProcessId:DWORD;
-external 'GetCurrentProcessId@kernel32.dll stdcall';
-
-function GetCurrentSessionId() : Integer;
-var
-  locator: Variant;
-  services: Variant;
-  process: Variant;
-  processes: Variant;
-  i: Integer;
-  ResultCode: Integer;
-begin
-  Result := -1
-  locator := CreateOleObject('WbemScripting.SWbemLocator');
-  services := locator.ConnectServer('', 'root\CIMV2');
-  processes := services.ExecQuery('SELECT ProcessId, SessionId FROM Win32_Process WHERE ProcessId = ' + IntToStr(GetCurrentProcessId()));
-  if not VarIsNull(processes) then begin
-    for i := 0 to processes.Count - 1 do begin
-      process := processes.ItemIndex(i);
-      if not VarIsNull(process) then begin
-        Result := process.SessionId
-      end;
-    end;
-  end;
-end;
-
-procedure KillProcesses(filter: String);
-var
-  locator: Variant;
-  services: Variant;
-  process: Variant;
-  processes: Variant;
-  i: Integer;
-  ResultCode: Integer;
-begin
-  locator := CreateOleObject('WbemScripting.SWbemLocator');
-  services := locator.ConnectServer('', 'root\CIMV2');
-  processes := services.ExecQuery('SELECT ProcessId FROM Win32_Process WHERE ' + filter);
-  if not VarIsNull(processes) then begin
-    for i := 0 to processes.Count - 1 do begin
-      process := processes.ItemIndex(i);
-      if not VarIsNull(process) then begin
-        if GetUserNameString() = process.ExecMethod_('GetOwner').User then begin
-          process.Terminate();
-        end;
-      end;
-    end;
-  end;
-end;
-
-{ To avoid ShellExtension installation failures, terminate Explorer running as a separate process if it is not in the middle of a file operation. }
-function KillProcesses_ExplorerSeparateProcess() : Boolean;
-begin
-  (*
-  if FindWindowByClassName('OperationStatusWindow') = 0 then begin
-    KillProcesses('Name = "explorer.exe" AND CommandLine LIKE "%/factory,{%" AND SessionId = ' + IntToStr(GetCurrentSessionId()));
-  end;
-  *)
-  Result := true;
-end;
-
-function KillProcesses_DllHostWinMergeContextMenu() : Boolean;
-begin
-  (*
-  KillProcesses('Name = "dllhost.exe" AND CommandLine LIKE "%/Processid:{90340779-F37E-468E-9728-A2593498ED32}%"');
-  *)
-  Result := true;
-end;
-
 procedure RegisterPreviousData(PreviousDataKey: Integer);
 begin
   SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
@@ -1105,6 +1107,7 @@ begin
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtCenterPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtCenterPane', 'false')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
   g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
+  g_IsExplorerRestartRequired := false;
 end;
 
 procedure DeinitializeSetup();

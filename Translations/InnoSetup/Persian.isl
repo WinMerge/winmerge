@@ -78,6 +78,7 @@ ViewStartMenuFolder=&V ãÔÇåÏå æÔå İåÑÓÊ ÔÑæÚ æíäãÑÌ
 
 ;Code Dialogs
 DeletePreviousStartMenu= äÕÇÈ äÑã ÇİÒÇÑ ãÊæÌå ÔÏå ÇÓÊ ˜å ÔãÇ ãÍá İåÑÓÊ ÔÑæÚ ÑÇ ÊÛííÑ ÏÇÏå ÇíÏ ("%s" Èå"%s"). ÂíÇ ãÇíá åÓÊíÏ ˜å æÔå İåÑÓÊ ŞÈáí ÍĞİ ÔæÏ¿ 
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc= ÑæäÏå Ñæå / ØÑÍ æíäãÑÌ 

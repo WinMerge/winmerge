@@ -78,6 +78,7 @@ ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
 
 ;Code Dialogs
 DeletePreviousStartMenu=A Telepítõ észlelte, hogy megváltoztattad a Start Menü helyét erröl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Projekt fájl

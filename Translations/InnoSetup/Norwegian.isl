@@ -82,6 +82,7 @@ ViewStartMenuFolder=&Vis WinMerge sin startmeny-mappe
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installasjonsprogrammet har oppdaget at du har endret plasseringen av startmenyen fra "%s" til "%s". Vil du slette den forrige startmeny-mappen?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Project file

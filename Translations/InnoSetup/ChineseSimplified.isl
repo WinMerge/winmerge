@@ -78,6 +78,7 @@ ViewStartMenuFolder=查看 WinMerge 的开始菜单文件夹(&V)
 
 ;Code Dialogs
 DeletePreviousStartMenu=安装程序检测到您修改了开始菜单的位置（从 %s 到 %s），是否要删除之前的开始菜单文件夹？
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge 工程文件

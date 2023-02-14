@@ -85,6 +85,7 @@ ViewStartMenuFolder=&Fighjà u cartulare di u listinu « Démarrer » di WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=U stalladore hà vistu chì u listinu « Démarrer » hè statu dispiazzatu da « %s » versu « %s ». Vulete squassà u cartulare precedente di u listinu « Démarrer » ?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Schedariu di prughjettu WinMerge

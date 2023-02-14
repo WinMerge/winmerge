@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Відкрити папку WinMerge в стартовому меню
 
 ;Code Dialogs
 DeletePreviousStartMenu=Програма встановлення виявила, що ви змінили розташування вашого стартового меню з  "%s" до "%s". Ви хотіли б вилучити попередню папку стартового меню?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Файл проекту WinMerge

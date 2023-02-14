@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Ver a carpeta de WinMerge do Menú de Inicio
 
 ;Code Dialogs
 DeletePreviousStartMenu=O Instalador detectou que cambiaches a ubicación do Menú de Inicio de "%s" a "%s". Queres eliminar a anterior carpeta do Menú de Inicio?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Ficheiro de Proxecto de WinMerge

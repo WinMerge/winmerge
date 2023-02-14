@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Zobrazi adresár WinMerge z ponuky Štart
 
 ;Code Dialogs
 DeletePreviousStartMenu=Inštalátor zistil, e ste zmenili umiestnenie vášej ponuky Štart z "%s" na "%s". eláte si zmaza predchádzajúci adresár ponuky Štart?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=súbor projektu WinMerge

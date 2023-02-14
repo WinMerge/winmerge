@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Vizualizeaza directorul WinMerge din Start Menu
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalatorul a detectat ca ati schimbat locatia meniului dumneavoastra de start de la "%s" la "%s". Doriti sa stergeti directorul din meniul de start anterior?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Fisier de proiect WinMerge

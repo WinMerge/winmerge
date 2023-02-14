@@ -78,6 +78,7 @@ ViewStartMenuFolder=Εμφάνιση του Φακέλου του WinMerge στην Έναρξη
 
 ;Code Dialogs
 DeletePreviousStartMenu=Η εφαρμογή εγκαταστάσεως ανίχνευσε ότι αλλάξατε την τοποθεσία του φακέλου στην Έναρξη από "%s" σε "%s". Επιθυμείτε να διαγράψετε τον προηγούμενο φάκελο από την Έναρξη;
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Αρχείο Έργου του WinMerge

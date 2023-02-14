@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Ikusi WinMerge Hasiera Menua Agiritegia
 
 ;Code Dialogs
 DeletePreviousStartMenu=Ezartzaileak nabaritu du zure hasiera menuaren kokalekua "%s"-tik "%s"-ra aldatu duzula. Lehengo hasiera menuko agiritegia ezabatzea nahi duzu?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Egitasmo agiria

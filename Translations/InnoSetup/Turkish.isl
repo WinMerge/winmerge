@@ -78,6 +78,7 @@ ViewStartMenuFolder=&WinMerge Baþlangýç Menüsü Klasöründe Görüntülensin
 
 ;Code Dialogs
 DeletePreviousStartMenu=Kurucu baþlangýç menüsünün konumunun "%s" yerine "%s" konumunda bulunduðunu algýladý. Önceki baþlangýç menüsü klasörünü silmek ister misiniz?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Proje dosyasý

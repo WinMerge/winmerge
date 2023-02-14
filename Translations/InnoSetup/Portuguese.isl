@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Ver a pasta do WinMerge do Menu Iniciar
 
 ;Code Dialogs
 DeletePreviousStartMenu=O Assistente de Instalação detetou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Ficheiro do projeto WinMerge

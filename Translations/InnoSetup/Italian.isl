@@ -79,6 +79,7 @@ ViewStartMenuFolder=&Visualizza cartella menu Start di WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'installer ha rilevato che il menu Start è stato spostato da "%s" a "%s".%n%nVuoi eliminare la precedente cartella del menu Start?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=File progetto di WinMerge

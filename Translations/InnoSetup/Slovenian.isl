@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Ogled mape zaèetnega menija WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Namestitveni program je zaznal, da ste spremenili mesto svojega zaèetnega menija iz "%s" v "%s".  Ali želite izbrisati prejšnjo mapo zaèetnega menija?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Projektna datoteka WinMerge

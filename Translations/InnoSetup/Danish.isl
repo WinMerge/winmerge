@@ -78,6 +78,7 @@ ViewStartMenuFolder=&Se WinMerge Start Menu folderen
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har detekteret at du har ændret folderen for din start menu fra "%s" til "%s". Vil du slette den tidligere start menu folder?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge projektfil

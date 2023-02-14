@@ -78,6 +78,7 @@ ViewStartMenuFolder=Visa WinMerges startkatalog
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att Ni har ändrat sökvägen till Er startmeny från "%s" till "%s". Vill Ni ta bort den tidigare startmenykatalogen?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Projektfil
