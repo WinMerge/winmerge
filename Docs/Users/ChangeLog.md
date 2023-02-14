@@ -1,5 +1,12 @@
 # Change log
 
+## WinMerge 2.16.28 - 2023-02-15
+
+### Folder compare
+
+BugFix: Fixed an issue where files with no extension were not compared if they
+  were in a folder with a '.' in the folder name.
+
 ## WinMerge 2.16.26 - 2023-01-27
 
 

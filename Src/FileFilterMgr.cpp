@@ -23,7 +23,7 @@ using Poco::Glob;
 using Poco::icompare;
 using Poco::RegularExpression;
 
-static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter);
+static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str);
 
 /**
  * @brief Destructor, frees all filters.
@@ -119,7 +119,7 @@ void FileFilterMgr::DeleteAllFilters()
  * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
  */
-static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter)
+static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str)
 {
 	const String& commentLeader = _T("##"); // Starts comment
 	str = strutils::trim_ws_begin(str);
@@ -145,7 +145,7 @@ static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & 
 	re_opts |= RegularExpression::RE_UTF8;
 	try
 	{
-		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts, fileFilter)));
+		filterList->push_back(FileFilterElementPtr(new FileFilterElement(regexString, re_opts)));
 	}
 	catch (...)
 	{
@@ -218,25 +218,25 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 		{
 			// file filter
 			String str = sLine.substr(2);
-			AddFilterPattern(&pfilter->filefilters, str, true);
+			AddFilterPattern(&pfilter->filefilters, str);
 		}
 		else if (0 == sLine.compare(0, 2, _T("d:"), 2))
 		{
 			// directory filter
 			String str = sLine.substr(2);
-			AddFilterPattern(&pfilter->dirfilters, str, false);
+			AddFilterPattern(&pfilter->dirfilters, str);
 		}
 		else if (0 == sLine.compare(0, 3, _T("f!:"), 3))
 		{
 			// file filter
 			String str = sLine.substr(3);
-			AddFilterPattern(&pfilter->filefiltersExclude, str, true);
+			AddFilterPattern(&pfilter->filefiltersExclude, str);
 		}
 		else if (0 == sLine.compare(0, 3, _T("d!:"), 3))
 		{
 			// directory filter
 			String str = sLine.substr(3);
-			AddFilterPattern(&pfilter->dirfiltersExclude, str, false);
+			AddFilterPattern(&pfilter->dirfiltersExclude, str);
 		}
 	} while (bLinesLeft);
 
@@ -289,7 +289,7 @@ bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const St
 	if (filterList->size() == 0)
 		return false;
 
-	std::string compString, compStringFileName;
+	std::string compString;
 	ucr::toUTF8(szTest, compString);
 	vector<FileFilterElementPtr>::const_iterator iter = filterList->begin();
 	while (iter != filterList->end())
@@ -297,9 +297,7 @@ bool TestAgainstRegList(const vector<FileFilterElementPtr> *filterList, const St
 		RegularExpression::Match match;
 		try
 		{
-			if ((*iter)->_fileNameOnly && compStringFileName.empty())
-				ucr::toUTF8(paths::FindFileName(szTest), compStringFileName);
-			if ((*iter)->regexp.match((*iter)->_fileNameOnly ? compStringFileName : compString, 0, match) > 0)
+			if ((*iter)->regexp.match(compString, 0, match) > 0)
 				return true;
 		}
 		catch (...)
