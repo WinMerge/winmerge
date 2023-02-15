@@ -14,7 +14,7 @@ CustomInstallation=自定义安装
 AppCoreFiles=WinMerge 核心文件
 Filters=过滤器
 Plugins=插件
-ShellExtension32bit=32 位 WinMerge ShellExtension
+ShellExtension32bit=32 位 WinMerge 外壳扩展
 
 ;Localization Components
 Languages=语言包（菜单和对话框）
@@ -24,7 +24,7 @@ BulgarianLanguage=保加利亚语
 CatalanLanguage=加泰罗尼亚语
 ChineseSimplifiedLanguage=简体中文
 ChineseTraditionalLanguage=繁体中文
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=科西嘉语
 CroatianLanguage=克罗地亚语
 CzechLanguage=捷克语
 DanishLanguage=丹麦语
@@ -42,7 +42,7 @@ LithuanianLanguage=立陶宛语
 NorwegianLanguage=挪威语
 PersianLanguage=波斯语
 PolishLanguage=波兰语
-PortugueseBrazilLanguage=葡萄牙语 (巴西)
+PortugueseBrazilLanguage=葡萄牙语（巴西）
 PortugueseLanguage=葡萄牙语
 RomanianLanguage=罗马尼亚语
 RussianLanguage=俄语
@@ -78,7 +78,7 @@ ViewStartMenuFolder=查看 WinMerge 的开始菜单文件夹(&V)
 
 ;Code Dialogs
 DeletePreviousStartMenu=安装程序检测到您修改了开始菜单的位置（从 %s 到 %s），是否要删除之前的开始菜单文件夹？
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=WinMerge 外壳扩展需要对 Explorer 进行重启以完成更新，您希望现在就重启 Explorer 吗？
 
 ; Project file description
 ProjectFileDesc=WinMerge 工程文件
