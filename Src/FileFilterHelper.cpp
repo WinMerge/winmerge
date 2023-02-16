@@ -194,6 +194,37 @@ void FileFilterHelper::SetMask(const String& strMask)
 		m_pMaskDirFilter->AddRegExp(regexp_str_dir_excluded, true);
 }
 
+static String addPeriodIfNoExtension(const String& path)
+{
+	String ret, elm;
+	bool period = false;
+	for (auto ch : path)
+	{
+		if (ch == '.')
+		{
+			elm += ch;
+			period = true;
+		}
+		else if (ch == '\\')
+		{
+			if (!period && !elm.empty() && elm.back() != '*')
+				elm += '.';
+			elm += ch;
+			ret += elm;
+			elm.clear();
+			period = false;
+		}
+		else
+		{
+			elm += ch;
+		}
+	}
+	if (!period && !elm.empty())
+		elm += '.';
+	ret += elm;
+	return ret;
+}
+
 /**
  * @brief Check if any of filefilter rules match to filename.
  *
@@ -214,8 +245,7 @@ bool FileFilterHelper::includeFile(const String& szFileName) const
 		if (strFileName.empty() || strFileName[0] != '\\')
 			strFileName = _T("\\") + strFileName;
 		// append a point if there is no extension
-		if (strFileName.find('.') == String::npos)
-			strFileName = strFileName + _T(".");
+		strFileName = addPeriodIfNoExtension(strFileName);
 
 		return m_pMaskFileFilter->Match(ucr::toUTF8(strFileName));
 	}
@@ -247,8 +277,7 @@ bool FileFilterHelper::includeDir(const String& szDirName) const
 		if (strDirName.empty() || strDirName[0] != '\\')
 			strDirName = _T("\\") + strDirName;
 		// append a point if there is no extension
-		if (strDirName.find('.') == String::npos)
-			strDirName = strDirName + _T(".");
+		strDirName = addPeriodIfNoExtension(strDirName);
 
 		return m_pMaskDirFilter->Match(ucr::toUTF8(strDirName));
 	}
@@ -334,8 +363,7 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 			bool isdir = token.back() == '\\';
 			if (isdir)
 				token = token.substr(0, token.size() - 1);
-			if (token.find('.') == String::npos && !token.empty() && token.back() != '*')
-				token += _T(".");
+			token = addPeriodIfNoExtension(token);
 			String strRegex = strutils::makelower(ConvertWildcardPatternToRegexp(token));
 			if (exclude)
 			{

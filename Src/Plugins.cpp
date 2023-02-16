@@ -246,7 +246,7 @@ void PluginInfo::LoadFilterString()
 		re_opts |= RegularExpression::RE_UTF8;
 		try
 		{
-			m_filters.emplace_back(std::make_shared<FileFilterElement>(regexString, re_opts));
+			m_filters.emplace_back(std::make_shared<FileFilterElement>(regexString, re_opts, true));
 		}
 		catch (...)
 		{
