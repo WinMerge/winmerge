@@ -271,7 +271,6 @@
 #define IDC_PLUGIN_SUPPORTED_EXTENSIONS 1090
 #define IDC_PLUGIN_DESCRIPTION          1091
 #define IDC_PLUGIN_ARGUMENTS            1092
-#define IDC_PLUGIN_COMBO                1093
 #define IDC_PLUGIN_PIPELINE             1094
 #define IDC_PLUGIN_ADDPIPE              1095
 #define IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE 1096
@@ -532,7 +531,6 @@
 #define IDC_RENDERING_MODE              1368
 #define IDC_REGISTER_WINMERGECONTEXTMENU 1369
 #define IDC_UNREGISTER_WINMERGECONTEXTMENU 1370
-#define IDC_DIFF_IGNORECP               1377
 #define IDC_RESET                       1378
 #define IDC_LEFT1                       1379
 #define IDC_MIDDLE1                     1380
@@ -611,7 +609,6 @@
 #define IDC_HEIGHT                      1626
 #define IDC_ZOOM                        1627
 #define IDC_USERAGENT                   1628
-#define IDC_CHECK1                      1629
 #define IDC_COMPARE                     1630
 #define IDC_SHOWDIFFERENCES             1631
 #define IDC_EDIT_WHOLE_WORD             8603
@@ -791,8 +788,6 @@
 #define ID_APPLY_PREDIFFER              32888
 #define ID_TRANSFORM_WITH_SCRIPT        32889
 #define ID_WINDOW_CLOSEALL              32897
-#define ID_SELECT_PREDIFFER             32898
-#define ID_SELECT_UNPACKER              32899
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914
@@ -803,7 +798,6 @@
 #define ID_UNPACKER_SETTINGS_AUTO       32924
 #define ID_UNPACKER_SETTINGS_SELECT     32925
 #define ID_NO_EDIT_SCRIPTS              32931
-#define ID_NO_SCT_SCRIPTS               32932
 #define ID_FILE_OPEN_REGISTERED         32944
 #define ID_FILE_OPEN_WITHEDITOR         32945
 #define ID_FILE_OPEN_WITH               32946
