@@ -30,17 +30,16 @@ https://manual.winmerge.org/ からでも HTML版の WinMerge ヘルプを閲覧することがで
 
 サポート
 ================
-WinMerge に関する質問や提案はありませんか? https://forums.winmerge.org/
+WinMerge に関する質問や提案はありませんか? 
+https://github.com/WinMerge/winmerge/discussions
 の掲示板が始めるのによい場所です。
 開発者は両方のフォーラムで頻繁に読み、応答をしています。
-使い方に関する質問のような一般的な質問ならば Open Discussion forum を使用し、
-開発に関することであれば、Develpers forum を使用してください。
 
 バグ報告と機能追加要求:
 =========================
 もし、WinMerge のフォーラムで問題が解決しない場合、プロジェクトのトラッカーを
-チェックしてください。https://project.winmerge.org/ に行き、Bugs や Feature Requests
-のような Tracker メニューのリンクをクリックしてください。そこで、閲覧と報告ができます。
+チェックしてください。https://github.com/WinMerge/winmerge/issues 
+で、閲覧と報告ができます。
 
 バグを報告するとき、WinMerge のバージョン番号を教えてください。
 WinMerge の [ヘルプ] メニューの [設定] から '設定ログ' を出力することができます。
