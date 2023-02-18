@@ -121,6 +121,8 @@ protected:
 	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);
 	void UpdateCodepageModule();
 	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);
+	void ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo);
+	void ShowDialog(MergeCmdLineInfo::DialogType type);
 
 	// End MergeArgs.cpp
 
