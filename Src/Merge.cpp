@@ -667,14 +667,14 @@ void CMergeApp::ApplyCommandLineConfigOptions(MergeCmdLineInfo& cmdInfo)
 	}
 }
 
-void CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
+bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 {
 	CMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_COMPARE));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
 	if (!pPopup)
-		return;
+		return false;
 	String filteredFilenames = strutils::join(cmdInfo.m_Files.begin(), cmdInfo.m_Files.end(), _T("|"));
 	CMainFrame::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
 
@@ -716,8 +716,13 @@ void CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 		{
 			cmdInfo.m_sUnpacker = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
 		}
+		else
+		{
+			return false;
+		}
 		break;
 	}
+	return true;
 }
 
 void CMergeApp::ShowDialog(MergeCmdLineInfo::DialogType type)
@@ -753,7 +758,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 {
 	if (cmdInfo.m_bShowCompareAsMenu)
 	{
-		ShowCompareAsMenu(cmdInfo);
+		if (!ShowCompareAsMenu(cmdInfo))
+			return false;
 		AfxGetMainWnd()->ShowWindow(cmdInfo.m_nCmdShow);
 	}
 
