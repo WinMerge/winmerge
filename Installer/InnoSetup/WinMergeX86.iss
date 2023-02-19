@@ -402,6 +402,7 @@ Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: not IsComponentSe
 Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: not IsComponentSelected('Plugins')
 Name: {app}\MergePlugins\CompareMSExcelFiles.dll; Type: Files; Check: IsComponentSelected('Plugins')
 Name: {app}\MergePlugins\CompareMSWordFiles.dll; Type: Files; Check: IsComponentSelected('Plugins')
+Name: {app}\MergePlugins\IgnoreLeadingLineNumbers.dll; Type: Files; Check: IsComponentSelected('Plugins')
 Name: {app}\MergePlugins; Type: DirIfEmpty; Check: not IsComponentSelected('Plugins')
 
 Name: {app}\Filters\ADAMulti.flt; Type: Files; Check: not IsComponentSelected('Filters')
@@ -588,7 +589,7 @@ Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreColumns.dll; DestDir: {app}\MergePlugin
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
-Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreLeadingLineNumbers.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.sct; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
 Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Core

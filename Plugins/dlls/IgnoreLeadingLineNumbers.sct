@@ -1,0 +1,125 @@
+<scriptlet>
+<implements type="Automation" id="dispatcher">
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginIsAutomatic">
+    <get/>
+  </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
+  <method name="PrediffBufferW"/>
+  <method name="ShowSettingsDialog"/>
+</implements>
+
+<script language="VBS">
+
+'+----------------------------------------------------------------------+
+'| This is a plugin for WinMerge <www.winmerge.org>.                    |
+'| It will ignores leading line numbers in text files.                  |
+'| Copyright (C) 2007 by Tim Gerundt                                    |
+'+----------------------------------------------------------------------+
+'| This program is free software; you can redistribute it and/or modify |
+'| it under the terms of the GNU General Public License as published by |
+'| the Free Software Foundation; either version 2 of the License, or    |
+'| (at your option) any later version.                                  |
+'|                                                                      |
+'| This program is distributed in the hope that it will be useful,      |
+'| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+'| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
+'| GNU General Public License for more details.                         |
+'|                                                                      |
+'| You should have received a copy of the GNU General Public License    |
+'| along with this program; if not, write to the Free Software          |
+'| Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.            |
+'+----------------------------------------------------------------------+
+Option Explicit
+
+Function get_PluginEvent()
+  get_PluginEvent = "BUFFER_PREDIFF"
+End Function
+
+Function get_PluginDescription()
+  get_PluginDescription = "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+End Function
+
+Function get_PluginFileFilters()
+  get_PluginFileFilters = "\.nc$"
+End Function
+
+Function get_PluginIsAutomatic()
+  get_PluginIsAutomatic = True
+End Function
+
+Function get_PluginExtendedProperties()
+  get_PluginExtendedProperties = "MenuCaption=Ignore Leading Line Numbers"
+End Function
+
+Function SafeUBound(ary)
+  On Error Resume Next
+  SafeUBound = -1
+  SafeUBound = UBound(ary)
+End Function
+
+Function SplitLines(text, eol)
+	Dim re, matches
+	Set re = New RegExp
+	re.Global = False
+	re.IgnoreCase = False
+	re.Pattern = "\r\n|\n|\r"
+	Set matches = re.Execute(text)
+	If matches.Count > 0 Then
+		eol = matches(0).Value
+	End If
+	SplitLines = Split(text, eol)
+End Function
+
+Function PrediffBufferW(text, size, bChanged)
+  Dim sTemp, bLineHasStarted
+  Dim i, l, sChar, lines, eol, line
+  
+  bChanged = False
+
+  lines = SplitLines(text, eol)
+  For l = 0 To SafeUBound(lines)
+    bLineHasStarted = True
+    sTemp = ""
+    line = lines(l)
+    For i = 0 To Len(line) - 1 'For all chars...
+      sChar = Mid(line, i + 1, 1)
+      Select Case sChar
+        Case "N", "n", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" 'N or number...
+          If (bLineHasStarted = True) Then 'If line has started...
+            sChar = ""
+            bChanged = True
+          End If
+        Case Else
+          bLineHasStarted = False
+      End Select
+      sTemp = sTemp & sChar
+    Next
+    lines(l) = sTemp
+  Next
+  
+  If (bChanged = True) Then 'If text has changed...
+    text = Join(lines, eol)
+    size = Len(text)
+  End If
+  PrediffBufferW = True
+End Function
+
+Function ShowSettingsDialog()
+    ShowSettingsDialog = False
+    Err.Raise 30001, , "Not Implemented"
+End Function
+
+
+</script>
+</scriptlet>
