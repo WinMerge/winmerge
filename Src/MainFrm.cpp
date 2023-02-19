@@ -2525,7 +2525,7 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nN
 	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
 
 	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
-	ASSERT(-1 != ImgList.Add(&bm, nullptr));
+	VERIFY(-1 != ImgList.Add(&bm, nullptr));
 }
 
 /**
