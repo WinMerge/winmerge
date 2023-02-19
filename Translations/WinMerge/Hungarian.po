@@ -71,7 +71,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "Adja hozzá ezt a változást a Helyettesítő szűrőkhöz"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "&Hozzáadás a sorszűrőkhöz"
 
 #, c-format
 msgid "&Undo"
@@ -2393,14 +2393,14 @@ msgstr "Intéző"
 
 #, c-format
 msgid "&Add to context menu"
-msgstr "Hozzáadás a Windows helyi menühöz"
+msgstr "Hozzáadás a helyi menühöz"
 
 #, c-format
 msgid "E&nable advanced menu"
 msgstr "&Bővített menü engedélyezése"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Az Összehasonlítás mint menü engedélyezése"
 
 #, c-format
 msgid "&Register shell extension"
@@ -4767,7 +4767,7 @@ msgid "Preview Markdown"
 msgstr "Jelölés előnézet"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "PlantUML előnézet"
 
 msgid "Query CSV Data..."
 msgstr "CSV adatok lekérdezése..."
@@ -4866,7 +4866,7 @@ msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2
 msgstr "Jelölés előnézeti program. \r\nArgumentumok: Az md2html parancsnak megfelelő parancssori opciók."
 
 msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-msgstr ""
+msgstr "PlantUML előnézeti program. \r\nArgumentumok: A plantuml.jar parancsnak megfelelő parancssori opciók."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
