@@ -121,18 +121,8 @@ BOOL PropCompareFolder::OnInitDialog()
 	OptionsPanel::OnInitDialog();
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 
-	String item = _("Full Contents");
-	combo->AddString(item.c_str());
-	item = _("Quick Contents");
-	combo->AddString(item.c_str());
-	item = _("Binary Contents");
-	combo->AddString(item.c_str());
-	item = _("Modified Date");
-	combo->AddString(item.c_str());
-	item = _("Modified Date and Size");
-	combo->AddString(item.c_str());
-	item = _("Size");
-	combo->AddString(item.c_str());
+	for (const auto& item : { _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size") })
+		combo->AddString(item.c_str());
 	combo->SetCurSel(m_compareMethod);
 	UpdateControls();
 

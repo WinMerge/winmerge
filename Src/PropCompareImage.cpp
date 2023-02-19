@@ -77,10 +77,8 @@ void PropCompareImage::WriteOptions()
 BOOL PropCompareImage::OnInitDialog()
 {
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREIMAGE_OCR_RESULT_TYPE);
-
-	combo->AddString(_("Text only").c_str());
-	combo->AddString(_("Line-by-line position and text").c_str());
-	combo->AddString(_("Word-by-word position and text").c_str());
+	for (const auto& item : { _("Text only"), _("Line-by-line position and text"), _("Word-by-word position and text") })
+		combo->AddString(item.c_str());
 	combo->SetCurSel(m_nOcrResultType);
 
 	OptionsPanel::OnInitDialog();
