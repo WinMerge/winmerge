@@ -457,7 +457,7 @@ BOOL CMergeApp::InitInstance()
 	pMainFrame->MDISetMenu(pNewMenu, nullptr);
 
 	// The main window has been initialized, so activate it.
-	pMainFrame->ActivateFrame(cmdInfo.m_bShowCompareAsMenu ? SW_HIDE : cmdInfo.m_nCmdShow);
+	pMainFrame->ActivateFrame(cmdInfo.m_nCmdShow);
 
 	// Since this function actually opens paths for compare it must be
 	// called after initializing CMainFrame!
@@ -760,7 +760,6 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	{
 		if (!ShowCompareAsMenu(cmdInfo))
 			return false;
-		AfxGetMainWnd()->ShowWindow(cmdInfo.m_nCmdShow);
 	}
 
 	bool bCompared = false;
