@@ -399,6 +399,11 @@ BOOL CMergeApp::InitInstance()
 		ShowDialog(cmdInfo.m_nDialogType);
 		return FALSE;
 	}
+	if (cmdInfo.m_bShowCompareAsMenu)
+	{
+		if (!ShowCompareAsMenu(cmdInfo))
+			return FALSE;
+	}
 
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
@@ -756,12 +761,6 @@ void CMergeApp::ShowDialog(MergeCmdLineInfo::DialogType type)
  */
 bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
 {
-	if (cmdInfo.m_bShowCompareAsMenu)
-	{
-		if (!ShowCompareAsMenu(cmdInfo))
-			return false;
-	}
-
 	bool bCompared = false;
 	String strDesc[3];
 	std::unique_ptr<PackingInfo> infoUnpacker;
