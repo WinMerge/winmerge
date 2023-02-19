@@ -1934,11 +1934,14 @@ msgstr "シェル統合"
 msgid "Explorer"
 msgstr "エクスプローラー"
 
+msgid "&Add to context menu"
+msgstr "コンテキストメニューに追加する(&A)"
+
 msgid "E&nable advanced menu"
 msgstr "拡張メニューを有効にする(&N)"
 
-msgid "&Add to context menu"
-msgstr "コンテキストメニューに追加する(&A)"
+msgid "Enable &Compare As menu"
+msgstr "「形式を指定して比較」メニューを有効にする(&C)"
 
 msgid "&Register shell extension"
 msgstr "シェル拡張を登録(&R)"

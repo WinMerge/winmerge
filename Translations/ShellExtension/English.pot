@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-08 23:40+0000\n"
+"POT-Creation-Date: 2023-02-19 00:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -41,30 +41,35 @@ msgstr ""
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
+msgid "Win&Merge"
 msgstr ""
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "&Compare"
+msgid "Compare &As"
 msgstr ""
 
 #: ShellExtension.rc:114
 #, c-format
-msgid "Compare&..."
+msgid "&Compare"
 msgstr ""
 
 #: ShellExtension.rc:115
 #, c-format
-msgid "Select &Left"
+msgid "Compare&..."
 msgstr ""
 
 #: ShellExtension.rc:116
 #, c-format
-msgid "Select &Middle"
+msgid "Select &Left"
 msgstr ""
 
 #: ShellExtension.rc:117
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
 msgstr ""

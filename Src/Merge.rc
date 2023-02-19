@@ -2151,15 +2151,16 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Shell Integration"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Explorer",IDC_STATIC,7,6,270,144
-    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,30,240,10
+    GROUPBOX        "Explorer",IDC_STATIC,7,6,270,156
     CONTROL         "&Add to context menu",IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,18,250,10
-    PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,48,250,14
-    PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,64,250,14
-    PUSHBUTTON      "Register shell extension for current user &only",IDC_REGISTER_SHELLEXTENSION_PERUSER,17,80,250,14
-    PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,96,250,14
-    PUSHBUTTON      "Register shell extension for &Windows 11 or later",IDC_REGISTER_WINMERGECONTEXTMENU,17,112,250,14
-    PUSHBUTTON      "Unregister shell extension for W&indows 11 or later",IDC_UNREGISTER_WINMERGECONTEXTMENU,17,128,250,14
+    CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,30,240,10
+    CONTROL         "Enable &Compare As menu",IDC_EXPLORER_COMPARE_AS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,42,240,10
+    PUSHBUTTON      "&Register shell extension",IDC_REGISTER_SHELLEXTENSION,17,60,250,14
+    PUSHBUTTON      "&Unregister shell extension",IDC_UNREGISTER_SHELLEXTENSION,17,76,250,14
+    PUSHBUTTON      "Register shell extension for current user &only",IDC_REGISTER_SHELLEXTENSION_PERUSER,17,92,250,14
+    PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,108,250,14
+    PUSHBUTTON      "Register shell extension for &Windows 11 or later",IDC_REGISTER_WINMERGECONTEXTMENU,17,124,250,14
+    PUSHBUTTON      "Unregister shell extension for W&indows 11 or later",IDC_UNREGISTER_WINMERGECONTEXTMENU,17,140,250,14
 END
 
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 285, 242

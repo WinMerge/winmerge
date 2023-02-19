@@ -2367,12 +2367,15 @@ msgid "Explorer"
 msgstr "Истраживач"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "Додај у 'изборни оквир'"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "Омогући &напредни избор"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "Додај у 'изборни оквир'"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

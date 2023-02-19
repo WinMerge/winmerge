@@ -1935,11 +1935,14 @@ msgstr "Skall-integrasjon"
 msgid "Explorer"
 msgstr "Utforsker"
 
+msgid "&Add to context menu"
+msgstr "Le&gg til i høyreklikkmeny"
+
 msgid "E&nable advanced menu"
 msgstr "&Aktiver avansert meny"
 
-msgid "&Add to context menu"
-msgstr "Le&gg til i høyreklikkmeny"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr ""

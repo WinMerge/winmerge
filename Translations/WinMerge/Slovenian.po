@@ -1931,11 +1931,14 @@ msgstr "Integracija v lupino"
 msgid "Explorer"
 msgstr "Raziskovalec"
 
+msgid "&Add to context menu"
+msgstr "&Dodaj v priročni meni"
+
 msgid "E&nable advanced menu"
 msgstr "Omogoči &napredni meni"
 
-msgid "&Add to context menu"
-msgstr "&Dodaj v priročni meni"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "&Registriraj končnico lupine"

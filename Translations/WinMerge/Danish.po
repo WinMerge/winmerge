@@ -2389,12 +2389,15 @@ msgid "Explorer"
 msgstr "Explorer"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "&Tilføj til kontekstmenu"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "&Aktiver den avancerede menu"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "&Tilføj til kontekstmenu"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

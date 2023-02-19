@@ -1944,11 +1944,14 @@ msgstr "Skalintegration"
 msgid "Explorer"
 msgstr "Utforskaren"
 
+msgid "&Add to context menu"
+msgstr "Lägg till i innehållsmeny"
+
 msgid "E&nable advanced menu"
 msgstr "Visa avancerad meny"
 
-msgid "&Add to context menu"
-msgstr "Lägg till i innehållsmeny"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "Registrera filändelse"

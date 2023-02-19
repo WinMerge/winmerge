@@ -1939,11 +1939,14 @@ msgstr "系统集成"
 msgid "Explorer"
 msgstr "资源管理器"
 
+msgid "&Add to context menu"
+msgstr "添加到上下文菜单(&A)"
+
 msgid "E&nable advanced menu"
 msgstr "启用高级菜单(&N)"
 
-msgid "&Add to context menu"
-msgstr "添加到上下文菜单(&A)"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "注册系统扩展(&R)"

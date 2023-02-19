@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-01-14 12:20+0000\n"
+"POT-Creation-Date: 2023-02-19 08:57+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1917,10 +1917,13 @@ msgstr ""
 msgid "Explorer"
 msgstr ""
 
+msgid "&Add to context menu"
+msgstr ""
+
 msgid "E&nable advanced menu"
 msgstr ""
 
-msgid "&Add to context menu"
+msgid "Enable &Compare As menu"
 msgstr ""
 
 msgid "&Register shell extension"

@@ -1923,11 +1923,14 @@ msgstr "Integr. Windows aplinkoje"
 msgid "Explorer"
 msgstr "„Explorer“'is"
 
+msgid "&Add to context menu"
+msgstr "&Pridėti į kontekstinį meniu"
+
 msgid "E&nable advanced menu"
 msgstr "Įju&ngti išplėstinį meniu"
 
-msgid "&Add to context menu"
-msgstr "&Pridėti į kontekstinį meniu"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "&Registruoti aplinkos plėtinį"

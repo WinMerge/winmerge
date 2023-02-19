@@ -258,7 +258,7 @@ public:
         , WinMergeExplorerCommandBase(&m_contextMenu)
     {
     }
-    const wchar_t* Title() override { return L"&WinMerge"; }
+    const wchar_t* Title() override { return L"Win&Merge"; }
     const int IconId(_In_opt_ IShellItemArray* selection) override
     {
         auto paths = GetPaths(selection);

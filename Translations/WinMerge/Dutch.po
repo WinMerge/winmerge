@@ -1943,11 +1943,14 @@ msgstr "Shell-integratie"
 msgid "Explorer"
 msgstr "Verkenner"
 
+msgid "&Add to context menu"
+msgstr "Aan contextmenu toevoegen"
+
 msgid "E&nable advanced menu"
 msgstr "Geavanceerd menu inschakelen"
 
-msgid "&Add to context menu"
-msgstr "Aan contextmenu toevoegen"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "Shell-extensie registreren"

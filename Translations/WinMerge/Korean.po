@@ -2399,12 +2399,15 @@ msgid "Explorer"
 msgstr "탐색기"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "상황에 맞는 메뉴에 추가(&A)"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "계단식 메뉴 사용(&N)"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "상황에 맞는 메뉴에 추가(&A)"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

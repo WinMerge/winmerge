@@ -1934,11 +1934,14 @@ msgstr "Shell integraatio"
 msgid "Explorer"
 msgstr "Resurssienhallinta"
 
+msgid "&Add to context menu"
+msgstr "Lisää pikavalikkoon"
+
 msgid "E&nable advanced menu"
 msgstr "Ota käyttöön Lisäasetukset-valikko"
 
-msgid "&Add to context menu"
-msgstr "Lisää pikavalikkoon"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "&Rekisteröi liittymälaajennus"

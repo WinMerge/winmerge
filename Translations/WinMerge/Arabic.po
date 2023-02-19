@@ -1932,11 +1932,14 @@ msgstr "دمج الطرفية"
 msgid "Explorer"
 msgstr "المستكشف"
 
+msgid "&Add to context menu"
+msgstr "الإ&ضافة للقائمة المنزلقة"
+
 msgid "E&nable advanced menu"
 msgstr "تفعيل القائمة المتقدمة"
 
-msgid "&Add to context menu"
-msgstr "الإ&ضافة للقائمة المنزلقة"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "ت&سجيل امتداد الطرفية"

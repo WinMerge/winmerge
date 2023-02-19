@@ -2392,12 +2392,15 @@ msgid "Explorer"
 msgstr "Intéző"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "Hozzáadás a Windows helyi menühöz"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "&Bővített menü engedélyezése"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "Hozzáadás a Windows helyi menühöz"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"
