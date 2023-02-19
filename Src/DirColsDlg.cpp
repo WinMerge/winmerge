@@ -255,8 +255,8 @@ void CDirColsDlg::OnOK()
 	{
 		bool checked = !!m_listColumns.GetCheck(i);
 		DWORD_PTR data = m_listColumns.GetItemData(i);
-		assert(data >= 0 && data < colssize);
-		if (data >= 0 && data < colssize)
+		assert(data < colssize);
+		if (data < colssize)
 		{
 			column& col1 = m_cols[data];
 			if (checked)
