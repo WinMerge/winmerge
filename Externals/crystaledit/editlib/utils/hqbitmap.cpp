@@ -118,7 +118,8 @@ HBITMAP LoadBitmapAndConvertTo32bit(HINSTANCE hInstance, int nIDResource, int nN
 	img.Attach((HBITMAP)LoadImage(hInstance, MAKEINTRESOURCE(nIDResource), IMAGE_BITMAP, 0, 0, LR_CREATEDIBSECTION), ATL::CImage::DIBOR_TOPDOWN);
 	const int nWidth = img.GetWidth();
 	const int nHeight= img.GetHeight();
-	const int stride = (nWidth * 4 * 4 + 3) / 4; std::vector<BYTE> buf(stride * nHeight);
+	const int stride = (nWidth * 4 * 4 + 3) / 4;
+	std::vector<BYTE> buf(static_cast<size_t>(stride) * nHeight);
 	switch (img.GetBPP())
 	{
 	case 24:
