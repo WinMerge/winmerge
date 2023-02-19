@@ -2179,7 +2179,7 @@ void CMergeEditView::OnAllLeft()
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
-	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
+	[[maybe_unused]] auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (!IsReadOnly(dstPane))
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
@@ -2209,7 +2209,7 @@ void CMergeEditView::OnAllRight()
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
-	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
+	[[maybe_unused]] auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (!IsReadOnly(dstPane))
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
@@ -4318,7 +4318,6 @@ void CMergeEditView::OnWindowSplit()
 
 	auto& wndSplitter = dynamic_cast<CMergeEditFrame *>(GetParentFrame())->GetSplitter();
 	CMergeDoc *pDoc = GetDocument();
-	CMergeEditView *pView = pDoc->GetView(0, m_nThisPane);
 	int nBuffer = m_nThisPane;
 	if (pDoc->m_nGroups <= 2)
 	{

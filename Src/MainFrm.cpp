@@ -2525,8 +2525,7 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nN
 	bm.Attach(LoadBitmapAndConvertTo32bit(AfxGetInstanceHandle(), nIDResource, nNewWidth * nCount, nNewHeight, bGrayscale, RGB(0xff, 0, 0xff)));
 
 	VERIFY(ImgList.Create(nNewWidth, nNewHeight, ILC_COLOR32, nCount, 0));
-	int nIndex = ImgList.Add(&bm, nullptr);
-	ASSERT(-1 != nIndex);
+	ASSERT(-1 != ImgList.Add(&bm, nullptr));
 }
 
 /**
@@ -3343,7 +3342,7 @@ String CMainFrame::GetPluginPipelineByMenuId(unsigned idSearch, const std::vecto
 {
 	PluginInfo* pluginFound = nullptr;
 	String pluginName;
-	auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
+	[[maybe_unused]] auto [suggestedPlugins, allPlugins] = FileTransform::CreatePluginMenuInfos(_T(""), events, baseId);
 	for (const auto& [processType, pluginList] : allPlugins)
 	{
 		for (const auto& [caption, name, id, plugin] : pluginList)

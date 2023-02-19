@@ -488,8 +488,7 @@ void CDirDoc::SetDirView(CDirView * newView)
 	m_pDirView = newView;
 	// MFC has a view list for us, so lets check against it
 	POSITION pos = GetFirstViewPosition();
-	CDirView * temp = static_cast<CDirView *>(GetNextView(pos));
-	ASSERT(temp == m_pDirView); // verify that our stashed pointer is the same as MFC's
+	ASSERT(m_pDirView == static_cast<CDirView *>(GetNextView(pos))); // verify that our stashed pointer is the same as MFC's
 }
 
 /**
