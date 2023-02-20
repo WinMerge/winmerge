@@ -48,7 +48,7 @@ msgstr "Win&Merge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "Compar&ar Como"
 
 #: ShellExtension.rc:114
 #, c-format
