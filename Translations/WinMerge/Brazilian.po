@@ -1930,7 +1930,7 @@ msgid "E&nable advanced menu"
 msgstr "A&tivar o menu avançado"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Ativar menu &Comparar Como"
 
 msgid "&Register shell extension"
 msgstr "&Registrar a extensão do shell"
