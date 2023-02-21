@@ -688,7 +688,7 @@ bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
 
 	CWnd wnd;
 	RECT rc{point.x, point.y, point.x, point.y};
-	wnd.CreateEx(0, _T("static"), _T(""), WS_POPUP, rc, AfxGetMainWnd(), 0);
+	wnd.CreateEx(0, _T("static"), _T(""), WS_POPUP, rc, nullptr, 0);
 	wnd.ShowWindow(SW_SHOW);
 
 	int nID = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, &wnd);
