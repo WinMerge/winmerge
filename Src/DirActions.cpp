@@ -1076,6 +1076,9 @@ void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst)
 void UnsetDiffSide(DIFFITEM& di, int index)
 {
 	di.diffcode.diffcode &= ~(DIFFCODE::FIRST << index);
+	di.diffFileInfo[index].ClearPartial();
+	di.nidiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
+	di.nsdiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 	if (di.HasChildren())
 	{
 		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())
