@@ -257,6 +257,18 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_MIDDLE_TO_BROWSE, OnUpdateCtxtDirCopyTo<SIDE_MIDDLE>)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_BROWSE, OnUpdateCtxtDirCopyTo<SIDE_RIGHT>)
 	// Context menu -> Move
+	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_RIGHT, (OnCtxtDirMove<SIDE_LEFT, SIDE_RIGHT>))
+	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_MIDDLE, (OnCtxtDirMove<SIDE_LEFT, SIDE_MIDDLE>))
+	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_LEFT, (OnCtxtDirMove<SIDE_RIGHT, SIDE_LEFT>))
+	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_MIDDLE, (OnCtxtDirMove<SIDE_RIGHT, SIDE_MIDDLE>))
+	ON_COMMAND(ID_DIR_MOVE_MIDDLE_TO_LEFT, (OnCtxtDirMove<SIDE_MIDDLE, SIDE_LEFT>))
+	ON_COMMAND(ID_DIR_MOVE_MIDDLE_TO_RIGHT, (OnCtxtDirMove<SIDE_MIDDLE, SIDE_RIGHT>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_RIGHT, (OnUpdateCtxtDirMove<SIDE_LEFT, SIDE_RIGHT>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_MIDDLE, (OnUpdateCtxtDirMove<SIDE_LEFT, SIDE_MIDDLE>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_LEFT, (OnUpdateCtxtDirMove<SIDE_RIGHT, SIDE_LEFT>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_MIDDLE, (OnUpdateCtxtDirMove<SIDE_RIGHT, SIDE_MIDDLE>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_MIDDLE_TO_LEFT, (OnUpdateCtxtDirMove<SIDE_MIDDLE, SIDE_LEFT>))
+	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_MIDDLE_TO_RIGHT, (OnUpdateCtxtDirMove<SIDE_MIDDLE, SIDE_RIGHT>))
 	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveTo<SIDE_LEFT>)
 	ON_COMMAND(ID_DIR_MOVE_MIDDLE_TO_BROWSE, OnCtxtDirMoveTo<SIDE_MIDDLE>)
 	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveTo<SIDE_RIGHT>)
@@ -717,7 +729,11 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		pPopup->RemoveMenu(ID_DIR_COPY_MIDDLE_TO_RIGHT, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_COPY_MIDDLE_TO_BROWSE, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_COPY_RIGHT_TO_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_MOVE_LEFT_TO_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_MOVE_MIDDLE_TO_LEFT, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_MOVE_MIDDLE_TO_RIGHT, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_MOVE_MIDDLE_TO_BROWSE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_MOVE_RIGHT_TO_MIDDLE, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_DEL_MIDDLE, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_DEL_ALL, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_OPEN_MIDDLE, MF_BYCOMMAND);
@@ -1077,6 +1093,16 @@ template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 void CDirView::DoUpdateDirCopy(CCmdUI* pCmdUI, eMenuType menuType)
 {
 	Counts counts = Count(&DirActions::IsItemCopyableOnTo<srctype, dsttype>);
+	pCmdUI->Enable(counts.count > 0);
+	if (menuType == eContext)
+		pCmdUI->SetText(FormatMenuItemString(srctype, dsttype, counts.count, counts.total).c_str());
+}
+
+/// Should Move to Left be enabled or disabled ? (both main menu & context menu use this)
+template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+void CDirView::DoUpdateDirMove(CCmdUI* pCmdUI, eMenuType menuType)
+{
+	Counts counts = Count(&DirActions::IsItemMovableOnTo<srctype, dsttype>);
 	pCmdUI->Enable(counts.count > 0);
 	if (menuType == eContext)
 		pCmdUI->SetText(FormatMenuItemString(srctype, dsttype, counts.count, counts.total).c_str());
@@ -3354,11 +3380,25 @@ void CDirView::OnUpdateHideFilenames(CCmdUI* pCmdUI)
 	pCmdUI->Enable(m_pList->GetSelectedCount() != 0);
 }
 
+/// User chose (context men) Move from right to left
+template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+void CDirView::OnCtxtDirMove()
+{
+	DoDirAction(&DirActions::Move<srctype, dsttype>, _("Moveing files..."));
+}
+
 /// User chose (context menu) Move left to...
 template<SIDE_TYPE stype>
 void CDirView::OnCtxtDirMoveTo()
 {
 	DoDirActionTo(stype, &DirActions::MoveTo<stype>, _("Moving files..."));
+}
+
+/// Update context menu Move Right to Left item
+template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+void CDirView::OnUpdateCtxtDirMove(CCmdUI* pCmdUI)
+{
+	DoUpdateDirMove<srctype, dsttype>(pCmdUI, eContext);
 }
 
 /**

@@ -233,6 +233,11 @@ protected:
 	afx_msg void OnUpdateDirCopy(CCmdUI* pCmdUI);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnUpdateCtxtDirCopy(CCmdUI* pCmdUI);
+	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+	afx_msg void OnCtxtDirMove();
+	afx_msg void OnUpdateDirMove(CCmdUI* pCmdUI);
+	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+	afx_msg void OnUpdateCtxtDirMove(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
 	afx_msg void OnCtxtDirDel();
 	template<SIDE_TYPE stype>
@@ -411,6 +416,8 @@ private:
 	void OpenParentDirectory(CDirDoc *pDocOpen);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	void DoUpdateDirCopy(CCmdUI* pCmdUI, eMenuType menuType);
+	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+	void DoUpdateDirMove(CCmdUI* pCmdUI, eMenuType menuType);
 	const DIFFITEM &GetDiffItem(int sel) const;
 	DIFFITEM &GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
