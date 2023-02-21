@@ -1514,11 +1514,12 @@ bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID)
 	}
 	else{ // a hicolor bitmap
 		CBitmap mybmp;
-		if(mybmp.LoadBitmap(nResourceID)){
-			hicolor_bitmaps=true;
-			GetTransparentBitmap(mybmp);
-			if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
-		}
+		VERIFY(mybmp.LoadBitmap(nResourceID));
+		if (!mybmp.m_hObject)
+			mybmp.CreateBitmap(16, 15, 1, 32, nullptr);
+		hicolor_bitmaps=true;
+		GetTransparentBitmap(mybmp);
+		if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
 	}
 	return bReturn;
 }
