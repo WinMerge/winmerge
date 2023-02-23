@@ -24,7 +24,7 @@ jobs:
     - name: Build
       run: |
         .\DownloadDeps.cmd
-        .\BuildAll.vs2019.cmd x64 -ci
+        .\BuildAll.vs2022.cmd x64 -ci
 
     - name: Upload zip
       uses: actions/upload-artifact@v2-preview

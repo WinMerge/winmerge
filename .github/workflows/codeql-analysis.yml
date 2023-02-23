@@ -17,7 +17,7 @@ jobs:
 
       - name: Initialize CodeQL
         id: init_codeql
-        uses: github/codeql-action/init@v1
+        uses: github/codeql-action/init@v2
         with:
           queries: security-and-quality
 
@@ -26,7 +26,7 @@ jobs:
         shell: pwsh
         run: |
           .\DownloadDeps.cmd
-          .\BuildAll.vs2019.cmd x64 -ci
+          .\BuildAll.vs2022.cmd x64 -ci
 
       - name: Perform CodeQL Analysis
         id: analyze_codeql
