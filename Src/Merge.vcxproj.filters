@@ -1390,10 +1390,10 @@
     <None Include="res\left.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\left_to_browse.bmp">
+    <None Include="res\copy_left_to_browse.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\left_to_right.bmp">
+    <None Include="res\copy_left_to_right.bmp">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\lfile.ico">
@@ -1438,10 +1438,10 @@
     <None Include="res\right.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\right_to_browse.bmp">
+    <None Include="res\copy_right_to_browse.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="res\right_to_left.bmp">
+    <None Include="res\copy_right_to_left.bmp">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\sigma.ico">
@@ -1571,7 +1571,7 @@
     <Image Include="res\horizontally.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\left_to_middle.bmp">
+    <Image Include="res\copy_left_to_middle.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\LineFilter.ico">
@@ -1604,13 +1604,13 @@
     <Image Include="res\middle.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\middle_to_browse.bmp">
+    <Image Include="res\copy_middle_to_browse.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\middle_to_left.bmp">
+    <Image Include="res\copy_middle_to_left.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\middle_to_right.bmp">
+    <Image Include="res\copy_middle_to_right.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\mmissing.ico">
@@ -1697,7 +1697,7 @@
     <Image Include="res\report.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\right_to_middle.bmp">
+    <Image Include="res\copy_right_to_middle.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\rmissing.ico">
