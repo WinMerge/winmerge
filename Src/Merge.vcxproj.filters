@@ -1775,6 +1775,24 @@
     <Image Include="res\zoom_out.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\move_left_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\move_left_to_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\move_middle_to_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\move_middle_to_right.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\move_right_to_left.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\move_right_to_middle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="res\WinMerge.exe.manifest">

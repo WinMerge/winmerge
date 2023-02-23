@@ -1724,7 +1724,13 @@
     <Image Include="res\middle_to_right.bmp" />
     <Image Include="res\mmissing.ico" />
     <Image Include="res\mmissingfolder.ico" />
+    <Image Include="res\move_left_to_middle.bmp" />
+    <Image Include="res\move_left_to_right.bmp" />
     <Image Include="res\move_middle_to_browse.bmp" />
+    <Image Include="res\move_middle_to_left.bmp" />
+    <Image Include="res\move_middle_to_right.bmp" />
+    <Image Include="res\move_right_to_left.bmp" />
+    <Image Include="res\move_right_to_middle.bmp" />
     <Image Include="res\new3.bmp" />
     <Image Include="res\new3_hex.bmp" />
     <Image Include="res\new3_image.bmp" />
