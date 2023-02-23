@@ -203,7 +203,8 @@ void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & action
 		break;
 
 	case FileAction::ACT_MOVE:
-		bDestIsSide = false;
+		if (item.UIResult == FileActionItem::UI_DEL)
+			bDestIsSide = false;
 		if (actionList.GetActionItemCount() == 1)
 		{
 			ThrowConfirmMove(ctxt, item.UIOrigin, item.UIDestination,
