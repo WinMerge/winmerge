@@ -567,13 +567,7 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	for (auto& menu_icon: m_MenuIcons)
 	{
 		if (menu_view == (menu_icon.menusToApply & menu_view))
-		{
-			if (menu_icon.menuitemID == ID_DIR_MOVE_LEFT_TO_RIGHT)
-			{
-				int a = 0;
-			}
 			m_pMenus[view]->ModifyODMenu(nullptr, menu_icon.menuitemID, menu_icon.iconResID);
-		}
 	}
 
 	m_pMenus[view]->LoadToolbar(IDR_MAINFRAME, &m_wndToolBar);

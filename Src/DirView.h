@@ -235,7 +235,6 @@ protected:
 	afx_msg void OnUpdateCtxtDirCopy(CCmdUI* pCmdUI);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnCtxtDirMove();
-	afx_msg void OnUpdateDirMove(CCmdUI* pCmdUI);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnUpdateCtxtDirMove(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
