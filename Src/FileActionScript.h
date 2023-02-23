@@ -64,7 +64,7 @@ struct FileActionItem : public FileAction
 	enum UI_RESULT
 	{
 		UI_SYNC = 1,   /**< Make items identical (synchronized). */
-		UI_DESYNC,     /**< Make items different. */
+		UI_MOVE,       /**< Move items. */
 		UI_DEL,        /**< Remove left item. */
 		UI_DONT_CARE,  /**< Ignore the GUI change. */
 		UI_RENAME      /**< Rename item. */

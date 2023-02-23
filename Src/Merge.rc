@@ -863,8 +863,14 @@ BEGIN
         END
         POPUP "&Move"
         BEGIN
+            MENUITEM "Left to Middle (%1 of %2)",   ID_DIR_MOVE_LEFT_TO_MIDDLE
+            MENUITEM "Left to Right (%1 of %2)",    ID_DIR_MOVE_LEFT_TO_RIGHT
             MENUITEM "Left to... (%1 of %2)",       ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "Middle to Left (%1 of %2)",   ID_DIR_MOVE_MIDDLE_TO_LEFT
+            MENUITEM "Middle to Right (%1 of %2)",  ID_DIR_MOVE_MIDDLE_TO_RIGHT
             MENUITEM "Middle to... (%1 of %2)",     ID_DIR_MOVE_MIDDLE_TO_BROWSE
+            MENUITEM "Right to Middle (%1 of %2)",  ID_DIR_MOVE_RIGHT_TO_MIDDLE
+            MENUITEM "Right to Left (%1 of %2)",    ID_DIR_MOVE_RIGHT_TO_LEFT
             MENUITEM "Right to... (%1 of %2)",      ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
         POPUP "&Delete"
