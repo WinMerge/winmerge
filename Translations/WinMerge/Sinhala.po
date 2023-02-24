@@ -2385,12 +2385,15 @@ msgid "Explorer"
 msgstr "ගවේශනය"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "& පද සම්බන්ධයට එකතු වීම "
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "& උසස් ලේඛනයට බලය පැවරීම"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "& පද සම්බන්ධයට එකතු වීම "
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

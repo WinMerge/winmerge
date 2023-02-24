@@ -14,12 +14,7 @@ CustomInstallation=Norbere Ezarpena
 AppCoreFiles=WinMerge Core Agiriak
 Filters=Iragazkiak
 Plugins=Pluginak
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Hizkuntzak
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Ikusi WinMerge Hasiera Menua Agiritegia
 
 ;Code Dialogs
 DeletePreviousStartMenu=Ezartzaileak nabaritu du zure hasiera menuaren kokalekua "%s"-tik "%s"-ra aldatu duzula. Lehengo hasiera menuko agiritegia ezabatzea nahi duzu?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Egitasmo agiria

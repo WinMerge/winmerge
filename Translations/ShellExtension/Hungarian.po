@@ -42,30 +42,35 @@ msgstr "ShellExtension"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
+msgid "Win&Merge"
 msgstr "WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
+msgid "Compare &As"
+msgstr "Összehasonlítás mint"
+
+#: ShellExtension.rc:114
+#, c-format
 msgid "&Compare"
 msgstr "Összehasonlítás"
 
-#: ShellExtension.rc:114
+#: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
 msgstr "Összehasonlítás..."
 
-#: ShellExtension.rc:115
+#: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
 msgstr "Bal választása"
 
-#: ShellExtension.rc:116
+#: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
 msgstr "Középső választása"
 
-#: ShellExtension.rc:117
+#: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr "Bal újra választása"
+msgstr "Bal újraválasztása"

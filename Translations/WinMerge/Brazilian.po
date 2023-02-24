@@ -1926,11 +1926,14 @@ msgstr "Integração com o Shell"
 msgid "Explorer"
 msgstr "Explorer"
 
+msgid "&Add to context menu"
+msgstr "&Adicionar ao menu de contexto"
+
 msgid "E&nable advanced menu"
 msgstr "A&tivar o menu avançado"
 
-msgid "&Add to context menu"
-msgstr "&Adicionar ao menu de contexto"
+msgid "Enable &Compare As menu"
+msgstr "Ativar menu &Comparar Como"
 
 msgid "&Register shell extension"
 msgstr "&Registrar a extensão do shell"

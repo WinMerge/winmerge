@@ -14,12 +14,7 @@ CustomInstallation=사용자 지정 설치
 AppCoreFiles=WinMerge 코어 파일
 Filters=필터
 Plugins=플러그인
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(이미지 차이/병합)
-WinWebDiff=WinWebDiff(웹 페이지 차이)
-ArchiveSupport=압축보관 지원
 ShellExtension32bit=32비트 WinMerge 쉘확장
-Commands=Windows/HTML Tidy/jq/md4c용 GnuWin32 패치
 
 ;현지화 구성 요소
 Languages=언어
@@ -83,6 +78,7 @@ ViewStartMenuFolder=WinMerge 시작 메뉴 폴더 보기(&V)
 
 ;코드 대화 상자
 DeletePreviousStartMenu=시작 메뉴의 위치가 "%s"에서 "%s"로 변경되었음을 설치 관리자가 감지했습니다. 이전 시작 메뉴 폴더를 삭제하시겠습니까?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; 프로젝트 파일 설명
 ProjectFileDesc=WinMerge 프로젝트 파일

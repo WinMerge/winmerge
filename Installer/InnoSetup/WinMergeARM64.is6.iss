@@ -189,11 +189,6 @@ Name: ShellExtension32bit; Description: {cm:ShellExtension32bit}; Types: full ty
 
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
-Name: Frhed; Description: {cm:Frhed}; Flags: disablenouninstallwarning; Types: full typical
-Name: WinIMerge; Description: {cm:WinIMerge}; Flags: disablenouninstallwarning; Types: full typical
-Name: WinWebDiff; Description: {cm:WinWebDiff}; Flags: disablenouninstallwarning; Types: full typical
-Name: ArchiveSupport; Description: {cm:ArchiveSupport}; Flags: disablenouninstallwarning; Types: full typical
-Name: Commands; Description: {cm:Commands}; Flags: disablenouninstallwarning; Types: full typical
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
@@ -428,18 +423,27 @@ Source: ..\..\Build\{#ARCH}\Release\LogoImages\*.png; DestDir: {app}\LogoImages;
 Source: ..\..\Plugins\WinMerge32BitPluginProxy\Release\WinMerge32BitPluginProxy.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; Shell extension
-Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Components: ShellExtension32bit; Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension32bit}'))
+Source: ..\..\Build\ShellExtension\{#ShellExtension32bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder; \
+  MinVersion: 0, 4; Components: ShellExtension32bit; \
+  Check: not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension32bit}')) and \
+    RenameShellExtensionDLLIfExists(ExpandConstant('{app}\{#ShellExtension32bit}'))
 ; 64-bit version of ShellExtension
-Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}')) and KillProcesses_ExplorerSeparateProcess
-Source: ..\..\Build\ShellExtension\{#ARCH}\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and UnregisterWinMergeContextMenuPackage and KillProcesses_DllHostWinMergeContextMenu
-Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
+Source: ..\..\Build\ShellExtension\{#ShellExtension64bit}; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; \
+  MinVersion: 0,5.01.2600; \
+  Check: IsWin64 and not AreSourceAndDestinationOfShellExtensionSame(ExpandConstant('{app}\{#ShellExtension64bit}')) and \
+    RenameShellExtensionDLLIfExists(ExpandConstant('{app}\{#ShellExtension64bit}'))
+Source: ..\..\Build\ShellExtension\{#ARCH}\WinMergeContextMenu.dll; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; \
+  Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenu.dll')) and \
+    UnregisterWinMergeContextMenuPackage and RenameShellExtensionDLLIfExists(ExpandConstant('{app}\WinMergeContextMenu.dll'))
+Source: ..\..\Build\ShellExtension\WinMergeContextMenuPackage.msix; DestDir: {app}; Flags: uninsrestartdelete restartreplace promptifolder 64bit; \
+  Check: IsWin64 and not AreSourceAndDestinationOfWinMergeContextMenuSame(ExpandConstant('{app}\WinMergeContextMenuPackage.msix'))
 
 ; ArchiveSupport
 ;Please do not reorder the 7z Dlls by version they compress better ordered by platform and then by version
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
-Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: ArchiveSupport
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\Merge7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\7z.dll; DestDir: {app}\Merge7z; Flags: promptifolder replacesameversion; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\*.txt; DestDir: {app}\Merge7z; Flags: promptifolder; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Merge7z\Lang\*.txt; DestDir: {app}\Merge7z\Lang; Flags: promptifolder; MinVersion: 0, 4; Components: Core
 
 ; Language files
 Source: ..\..\Translations\WinMerge\Arabic.po; DestDir: {app}\Languages; Components: Languages\Arabic; Flags: ignoreversion comparetimestamp
@@ -576,65 +580,65 @@ Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsComma.dll; DestDir: {app}\MergePl
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Frhed
-;Source: ..\..\Build\{#ARCH}\Release\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Frhed
-Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Frhed
+Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Core
+;Source: ..\..\Build\{#ARCH}\Release\Frhed\frhed.exe; DestDir: {app}\Frhed; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\hekseditU.dll; DestDir: {app}\Frhed; Flags: ignoreversion replacesameversion; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\ChangeLog.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Contributors.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\History.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Links.txt; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Docs\Sample.tpl  ; DestDir: {app}\Frhed\Docs; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\de.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\fr.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\ja.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\nl.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\sl.po; DestDir: {app}\Frhed\Languages; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\Frhed\Languages\heksedit.lng; DestDir: {app}\Frhed\Languages; Components: Core
 
 ;WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: WinIMerge
-;Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: WinIMerge
-Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: WinIMerge
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\GPL.txt; DestDir: {app}\WinIMerge; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\freeimage-license-gplv2.txt; DestDir: {app}\WinIMerge; Components: Core
+;Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMerge.exe; DestDir: {app}\WinIMerge; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\WinIMergeLib.dll; DestDir: {app}\WinIMerge; Flags: ignoreversion replacesameversion; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinIMerge\vcomp140.dll; DestDir: {app}; Components: Core
 
 ;WinWebDiff
-Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: WinWebDiff
-Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: WinWebDiff
+Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\LICENSE*.txt; DestDir: {app}\WinWebDiff; Components: Core
+Source: ..\..\Build\{#ARCH}\Release\WinWebDiff\WinWebDiffLib.dll; DestDir: {app}\WinWebDiff; Flags: ignoreversion replacesameversion; Components: Core
 
 ;GnuWin32 Patch for Windows
-Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\GnuWin32\*.*; DestDir: {app}\Commands\GnuWin32; Flags: recursesubdirs; Components: Plugins
 ; HTML Tidy
-Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 ; jq
-Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
 ; md4c
-Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\md4c\*.bat; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\md4c\*.bat; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
 ; PlantUML
-Source: ..\..\Plugins\Commands\PlantUML\*.bat; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\PlantUML\*.txt; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\PlantUML\*.bat; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\PlantUML\*.txt; DestDir: {app}\Commands\PlantUML; Flags: recursesubdirs; Components: Plugins
 ; Apache Tika
-Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\Apache-Tika\*.txt; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\Apache-Tika\*.bat; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\Apache-Tika\*.txt; DestDir: {app}\Commands\Apache-Tika; Flags: recursesubdirs; Components: Plugins
 ; q
-Source: ..\..\Plugins\Commands\q\*.bat; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\q\*.txt; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\q\*.bat; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\q\*.txt; DestDir: {app}\Commands\q; Flags: recursesubdirs; Components: Plugins
 ; yq
-Source: ..\..\Plugins\Commands\yq\*.bat; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\yq\*.txt; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\yq\*.bat; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\yq\*.txt; DestDir: {app}\Commands\yq; Flags: recursesubdirs; Components: Plugins
 ; dumpbin
-Source: ..\..\Plugins\Commands\dumpbin\*.bat; DestDir: {app}\Commands\dumpbin; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\dumpbin\*.bat; DestDir: {app}\Commands\dumpbin; Flags: recursesubdirs; Components: Plugins
 ; ildasm
-Source: ..\..\Plugins\Commands\ildasm\*.bat; DestDir: {app}\Commands\ildasm; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\ildasm\*.bat; DestDir: {app}\Commands\ildasm; Flags: recursesubdirs; Components: Plugins
 ; Java
-Source: ..\..\Plugins\Commands\Java\*.bat; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Commands
-Source: ..\..\Plugins\Commands\Java\*.txt; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\Java\*.bat; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Plugins\Commands\Java\*.txt; DestDir: {app}\Commands\Java; Flags: recursesubdirs; Components: Plugins
 ; DownloadFiles.bat
-Source: ..\..\Plugins\Commands\DownloadFiles.bat; DestDir: {app}\Commands\; Flags: recursesubdirs; Components: Commands
+Source: ..\..\Plugins\Commands\DownloadFiles.bat; DestDir: {app}\Commands\; Flags: recursesubdirs; Components: Plugins
 
 [Dirs]
 Name: "{app}\MergePlugins"
@@ -796,6 +800,7 @@ Name: {app}; Type: dirifempty
 [Code]
 Var
     g_CheckListBox: TNewCheckListBox;
+    g_IsExplorerRestartRequired: boolean;
 
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
@@ -897,6 +902,65 @@ Begin;
   Result := true;
 End;
 
+function GetCurrentProcessId: DWORD;
+  external 'GetCurrentProcessId@kernel32.dll stdcall';
+
+function RenameShellExtensionDLLIfExists(Filename: String) : Boolean;
+var
+  dest: String;
+begin
+  if FileExists(Filename) then begin
+    dest := Filename + '.' + IntToStr(GetCurrentProcessId()) + '.old';
+    RenameFile(Filename, dest);
+  end;
+  Result := true;
+end;
+
+function DeleteRenamedShellExtensionDLL(Filename: String; fRestartReplace: Boolean; fRetry: Boolean) : Boolean;
+var
+  dest: String;
+  i: Integer;
+begin
+  dest := Filename + '.' + IntToStr(GetCurrentProcessId()) + '.old';
+  if FileExists(dest) then begin
+    for i := 0 to 40 do begin
+      Result := DeleteFile(dest);
+      if not fRetry or Result = true then break;
+      Sleep(100);
+    end;
+    if Result = false then begin
+      if fRestartReplace then begin
+        RestartReplace(dest, '');
+      end;
+      g_IsExplorerRestartRequired := true;
+    end;
+  end;
+  Result := true;
+end;
+
+procedure RestartExplorer;
+var
+  ResultCode: Integer;
+begin
+  Exec(ExpandConstant('{sys}\taskkill.exe'), '/f /im explorer.exe', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  Exec(ExpandConstant('{win}\explorer.exe'), '', '', SW_SHOW, ewNoWait, ResultCode);
+end;
+
+procedure DeleteRenamedFiles();
+begin
+  DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension32bit}'), false, false);
+  DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension64bit}'), false, false);
+  DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\WinMergeContextMenu.dll'), false, false);
+  if g_IsExplorerRestartRequired then begin
+    if SuppressibleMsgBox(ExpandConstant('{cm:ExplorerNeedsRestart}'), mbConfirmation, MB_YESNO or MB_DEFBUTTON2, IDNO) = IDYES then begin
+      RestartExplorer();
+      DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension32bit}'), true, true);
+      DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\{#ShellExtension64bit}'), true, true);
+      DeleteRenamedShellExtensionDLL(ExpandConstant('{app}\WinMergeContextMenu.dll'), true, true);
+    end;
+  end;
+end;
+
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
@@ -904,6 +968,8 @@ Begin
     If CurPage = wpInstalling Then
             {Delete the previous start menu group if the location has changed since the last install}
             DeletePreviousStartMenu;
+    If CurPage = wpFinished Then
+      DeleteRenamedFiles;
 End;
 
 // Checks if context menu is already enabled for shell extension
@@ -1032,75 +1098,6 @@ begin
     Result := false;
 end;
 
-function GetCurrentProcessId:DWORD;
-external 'GetCurrentProcessId@kernel32.dll stdcall';
-
-function GetCurrentSessionId() : Integer;
-var
-  locator: Variant;
-  services: Variant;
-  process: Variant;
-  processes: Variant;
-  i: Integer;
-  ResultCode: Integer;
-begin
-  Result := -1
-  locator := CreateOleObject('WbemScripting.SWbemLocator');
-  services := locator.ConnectServer('', 'root\CIMV2');
-  processes := services.ExecQuery('SELECT ProcessId, SessionId FROM Win32_Process WHERE ProcessId = ' + IntToStr(GetCurrentProcessId()));
-  if not VarIsNull(processes) then begin
-    for i := 0 to processes.Count - 1 do begin
-      process := processes.ItemIndex(i);
-      if not VarIsNull(process) then begin
-        Result := process.SessionId
-      end;
-    end;
-  end;
-end;
-
-procedure KillProcesses(filter: String);
-var
-  locator: Variant;
-  services: Variant;
-  process: Variant;
-  processes: Variant;
-  i: Integer;
-  ResultCode: Integer;
-begin
-  locator := CreateOleObject('WbemScripting.SWbemLocator');
-  services := locator.ConnectServer('', 'root\CIMV2');
-  processes := services.ExecQuery('SELECT ProcessId FROM Win32_Process WHERE ' + filter);
-  if not VarIsNull(processes) then begin
-    for i := 0 to processes.Count - 1 do begin
-      process := processes.ItemIndex(i);
-      if not VarIsNull(process) then begin
-        if GetUserNameString() = process.ExecMethod_('GetOwner').User then begin
-          process.Terminate();
-        end;
-      end;
-    end;
-  end;
-end;
-
-{ To avoid ShellExtension installation failures, terminate Explorer running as a separate process if it is not in the middle of a file operation. }
-function KillProcesses_ExplorerSeparateProcess() : Boolean;
-begin
-  (*
-  if FindWindowByClassName('OperationStatusWindow') = 0 then begin
-    KillProcesses('Name = "explorer.exe" AND CommandLine LIKE "%/factory,{%" AND SessionId = ' + IntToStr(GetCurrentSessionId()));
-  end;
-  *)
-  Result := true;
-end;
-
-function KillProcesses_DllHostWinMergeContextMenu() : Boolean;
-begin
-  (*
-  KillProcesses('Name = "dllhost.exe" AND CommandLine LIKE "%/Processid:{90340779-F37E-468E-9728-A2593498ED32}%"');
-  *)
-  Result := true;
-end;
-
 procedure RegisterPreviousData(PreviousDataKey: Integer);
 begin
   SetPreviousData(PreviousDataKey, 'UseAs3WayMergeTool', BooleanToString(g_CheckListBox.Checked[0]));
@@ -1129,6 +1126,7 @@ begin
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtCenterPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtCenterPane', 'false')), True, nil);
   g_CheckListBox.AddRadioButton(ExpandConstant('{cm:MergeAtLeftPane}'), '', 1, StringToBoolean(GetPreviousData('MergeAtLeftPane', 'false')), True, nil);
   g_CheckListBox.AddCheckBox(ExpandConstant('{cm:AutoMergeAtStartup}'), '', 1, StringToBoolean(GetPreviousData('AutoMergeAtStartup', 'true')), True, False, True, nil);
+  g_IsExplorerRestartRequired := false;
 end;
 
 procedure DeinitializeSetup();

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2021-09-25 20:43+0200\n"
+"PO-Revision-Date: 2023-02-20 15:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
 "Language: de\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -45,30 +45,35 @@ msgstr "ShellExtension"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
-msgstr "&WinMerge"
+msgid "Win&Merge"
+msgstr "Win&Merge"
 
 #: ShellExtension.rc:113
+#, c-format
+msgid "Compare &As"
+msgstr "Vergleichen &als"
+
+#: ShellExtension.rc:114
 #, c-format
 msgid "&Compare"
 msgstr "Vergleichen"
 
-#: ShellExtension.rc:114
+#: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
 msgstr "Vergleichen..."
 
-#: ShellExtension.rc:115
+#: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
 msgstr "Links auswählen"
 
-#: ShellExtension.rc:116
+#: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
 msgstr "Mitte auswählen"
 
-#: ShellExtension.rc:117
+#: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
 msgstr "Links erneut auswählen"

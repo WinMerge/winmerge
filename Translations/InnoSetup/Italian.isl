@@ -15,12 +15,7 @@ CustomInstallation=Installazione personalizzata
 AppCoreFiles=File base di WinMerge
 Filters=Filtri
 Plugins=Plugin
-Frhed=Frhed (editor hex gratuito)
-WinIMerge=WinIMerge (differenza/unione immagini)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Supporto archivi
 ShellExtension32bit=Estensione shell 32bit WinMerge
-Commands=Patch per Windows GnuWin32/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Lingue
@@ -84,6 +79,7 @@ ViewStartMenuFolder=&Visualizza cartella menu Start di WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'installer ha rilevato che il menu Start è stato spostato da "%s" a "%s".%n%nVuoi eliminare la precedente cartella del menu Start?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=File progetto di WinMerge

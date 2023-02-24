@@ -83,6 +83,7 @@ protected:
 	afx_msg void OnEditPaste();
 	afx_msg void OnEditClear();
 	afx_msg void OnEditSelectAll();
+	afx_msg void OnEditGoto();
 	afx_msg void OnFirstdiff();
 	afx_msg void OnLastdiff();
 	afx_msg void OnNextdiff();

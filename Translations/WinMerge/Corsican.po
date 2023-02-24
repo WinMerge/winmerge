@@ -1938,11 +1938,14 @@ msgstr "Integrazione à u listinu cuntestuale"
 msgid "Explorer"
 msgstr "Espluratore"
 
+msgid "&Add to context menu"
+msgstr "&Aghjunghje à u listinu cuntestuale"
+
 msgid "E&nable advanced menu"
 msgstr "Attivà u listinu &espertu"
 
-msgid "&Add to context menu"
-msgstr "&Aghjunghje à u listinu cuntestuale"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "A&rregistramentu di l’estensione Shell"

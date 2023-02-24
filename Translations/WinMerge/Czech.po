@@ -2387,12 +2387,15 @@ msgid "Explorer"
 msgstr "Průzkumník"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "Přidat do &systémové místní nabídky"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "Povolit &rozšířenou nabídku"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "Přidat do &systémové místní nabídky"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

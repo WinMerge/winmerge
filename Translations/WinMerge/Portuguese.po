@@ -1943,11 +1943,14 @@ msgstr "Integração do contexto"
 msgid "Explorer"
 msgstr "Explorador"
 
+msgid "&Add to context menu"
+msgstr "&Adicionar ao menu de contexto"
+
 msgid "E&nable advanced menu"
 msgstr "Ativar menu avançado"
 
-msgid "&Add to context menu"
-msgstr "&Adicionar ao menu de contexto"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "&Registar a extensão do contexto"

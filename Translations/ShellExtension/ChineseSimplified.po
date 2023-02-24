@@ -7,16 +7,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2011-10-11 01:08+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"Last-Translator: Yin Gang <zenith.yin@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -43,30 +43,35 @@ msgstr "ShellExtension"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
-msgstr "&WinMerge"
+msgid "Win&Merge"
+msgstr "Win&Merge"
 
 #: ShellExtension.rc:113
+#, c-format
+msgid "Compare &As"
+msgstr "比较方式(&A)"
+
+#: ShellExtension.rc:114
 #, c-format
 msgid "&Compare"
 msgstr "比较(&C)"
 
-#: ShellExtension.rc:114
+#: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
 msgstr "比较(&.)..."
 
-#: ShellExtension.rc:115
+#: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
 msgstr "选择左侧(&L)"
 
-#: ShellExtension.rc:116
+#: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
 msgstr "选择中间(&M)"
 
-#: ShellExtension.rc:117
+#: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr "再选择左侧(&L)"
+msgstr "重选择左侧(&L)"

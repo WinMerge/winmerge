@@ -14,12 +14,7 @@ CustomInstallation=Tilpasset installation
 AppCoreFiles=WinMerge basis filer
 Filters=Filtre
 Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Sprog
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Se WinMerge Start Menu folderen
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har detekteret at du har ændret folderen for din start menu fra "%s" til "%s". Vil du slette den tidligere start menu folder?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge projektfil

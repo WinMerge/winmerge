@@ -2394,12 +2394,15 @@ msgid "Explorer"
 msgstr " جستجوگر "
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "&A افزودن به گزينگان / فهرست متن"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "&n فعال کردن گزينگان / فهرست پيشرفته "
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "&A افزودن به گزينگان / فهرست متن"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

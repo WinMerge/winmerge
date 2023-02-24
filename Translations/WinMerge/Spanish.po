@@ -1937,11 +1937,14 @@ msgstr "Integración"
 msgid "Explorer"
 msgstr "Explorador"
 
+msgid "&Add to context menu"
+msgstr "&Agregar al menú contextual"
+
 msgid "E&nable advanced menu"
 msgstr "Habilitar menú ava&nzado"
 
-msgid "&Add to context menu"
-msgstr "&Agregar al menú contextual"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "&Registrar extensión de shell"

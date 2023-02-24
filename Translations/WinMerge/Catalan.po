@@ -2393,12 +2393,15 @@ msgid "Explorer"
 msgstr "Explorador de fitxers"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "Afegeix al menú contextual"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "Habilita el &menú avançat"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "Afegeix al menú contextual"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

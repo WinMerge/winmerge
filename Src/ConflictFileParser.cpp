@@ -98,11 +98,19 @@ bool ParseConflictFile(const String& conflictFileName,
 
 	// open input file
 	bool success = conflictFile.OpenReadOnly(conflictFileName);
+	if (!success)
+		return false;
 
 	// Create output files
 	bool success2 = workingCopy.Open(workingCopyFileName, _T("wb"));
+	if (!success2)
+		return false;
 	bool success3 = newRevision.Open(newRevisionFileName, _T("wb"));
+	if (!success3)
+		return false;
 	bool success4 = baseRevision.Open(baseRevisionFileName, _T("wb"));
+	if (!success4)
+		return false;
 
 	// detect codepage of conflict file
 	FileTextEncoding encoding = codepage_detect::Guess(conflictFileName, iGuessEncodingType);

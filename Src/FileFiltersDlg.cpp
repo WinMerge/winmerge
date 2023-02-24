@@ -406,7 +406,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	if (paths::DoesPathExist(templatePath) != paths::IS_EXISTING_FILE)
 	{
 		String msg = strutils::format_string2(
-			_("Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."),
+			_("Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."),
 			FILE_FILTER_TEMPLATE, templatePath);
 		AfxMessageBox(msg.c_str(), MB_ICONERROR);
 		return;

@@ -28,6 +28,8 @@
 #include "HexMergeFrm.h"
 #include "HexMergeView.h"
 #include "AboutDlg.h"
+#include "PreferencesDlg.h"
+#include "SelectPluginDlg.h"
 #include "MainFrm.h"
 #include "MergeEditFrm.h"
 #include "DirFrame.h"
@@ -392,6 +394,17 @@ BOOL CMergeApp::InitInstance()
 
 	m_mainThreadScripts = new CAssureScriptsForThread;
 
+	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
+	{
+		ShowDialog(cmdInfo.m_nDialogType);
+		return FALSE;
+	}
+	if (cmdInfo.m_bShowCompareAsMenu)
+	{
+		if (!ShowCompareAsMenu(cmdInfo))
+			return FALSE;
+	}
+
 	// Register the application's document templates.  Document templates
 	//  serve as the connection between documents, frame windows and views.
 
@@ -656,6 +669,84 @@ void CMergeApp::ApplyCommandLineConfigOptions(MergeCmdLineInfo& cmdInfo)
 				cmdInfo.m_sErrorMessages.push_back(strutils::format_string1(_T("Invalid key '%1' specified in /config option"), it.first));
 			}
 		}
+	}
+}
+
+bool CMergeApp::ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo)
+{
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_COMPARE));
+	theApp.TranslateMenu(menu.m_hMenu);
+	CMenu* pPopup = menu.GetSubMenu(0);
+	if (!pPopup)
+		return false;
+	String filteredFilenames = strutils::join(cmdInfo.m_Files.begin(), cmdInfo.m_Files.end(), _T("|"));
+	CMainFrame::AppendPluginMenus(pPopup, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
+
+	CPoint point;
+	GetCursorPos(&point);
+
+	CWnd wnd;
+	RECT rc{point.x, point.y, point.x, point.y};
+	wnd.CreateEx(0, _T("static"), _T(""), WS_POPUP, rc, nullptr, 0);
+	wnd.ShowWindow(SW_SHOW);
+
+	int nID = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, &wnd);
+	switch (nID)
+	{
+	case ID_MERGE_COMPARE_TEXT:
+		cmdInfo.m_nWindowType = MergeCmdLineInfo::TEXT;
+		break;
+	case ID_MERGE_COMPARE_TABLE:
+		cmdInfo.m_nWindowType = MergeCmdLineInfo::TABLE;
+		break;
+	case ID_MERGE_COMPARE_HEX:
+		cmdInfo.m_nWindowType = MergeCmdLineInfo::BINARY;
+		break;
+	case ID_MERGE_COMPARE_IMAGE:
+		cmdInfo.m_nWindowType = MergeCmdLineInfo::IMAGE;
+		break;
+	case ID_MERGE_COMPARE_WEBPAGE:
+		cmdInfo.m_nWindowType = MergeCmdLineInfo::WEBPAGE;
+		break;
+	default:
+		if (nID == ID_OPEN_WITH_UNPACKER)
+		{
+			CSelectPluginDlg dlg(cmdInfo.m_sUnpacker, cmdInfo.m_Files.GetSize() > 0 ? cmdInfo.m_Files[0] : _T(""),
+				CSelectPluginDlg::PluginType::Unpacker, false, AfxGetMainWnd());
+			if (dlg.DoModal() == IDOK)
+				cmdInfo.m_sUnpacker = dlg.GetPluginPipeline();
+		}
+		else if(nID >= ID_UNPACKERS_FIRST && nID <= ID_UNPACKERS_LAST)
+		{
+			cmdInfo.m_sUnpacker = CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST);
+		}
+		else
+		{
+			return false;
+		}
+		break;
+	}
+	return true;
+}
+
+void CMergeApp::ShowDialog(MergeCmdLineInfo::DialogType type)
+{
+	switch (type)
+	{
+	case MergeCmdLineInfo::OPTIONS_DIALOG:
+	{
+		CPreferencesDlg dlg(GetOptionsMgr(), GetMainSyntaxColors());
+		dlg.DoModal();
+		break;
+	}
+	case MergeCmdLineInfo::ABOUT_DIALOG:
+	{
+		OnAppAbout();
+		break;
+	}
+	default:
+		break;
 	}
 }
 

@@ -62,9 +62,17 @@ public:
 		WEBPAGE,
 	};
 
+	enum DialogType
+	{
+		NO_DIALOG = -1,
+		OPTIONS_DIALOG,
+		ABOUT_DIALOG,
+	};
+
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
 	WindowType m_nWindowType; /**< The type of window that displays the files to compare. */
-
+	DialogType m_nDialogType; /**< The type of dialog window to display */
+	bool m_bShowCompareAsMenu; /**< Show Compare As menu. */
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
 	bool m_bRecurse; /**< Include sub folder in directories compare. */

@@ -203,7 +203,8 @@ void ConfirmActionList(const CDiffContext& ctxt, const FileActionScript & action
 		break;
 
 	case FileAction::ACT_MOVE:
-		bDestIsSide = false;
+		if (item.UIResult == FileActionItem::UI_DEL)
+			bDestIsSide = false;
 		if (actionList.GetActionItemCount() == 1)
 		{
 			ThrowConfirmMove(ctxt, item.UIOrigin, item.UIDestination,
@@ -260,6 +261,14 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 		else
 			UpdateCompareFlagsAfterSync(di, ctxt.m_bRecursive);
 		SetDiffCounts(di, 0, 0);
+		break;
+
+	case FileActionItem::UI_MOVE:
+		bUpdateSrc = true;
+		bUpdateDest = true;
+		CopyDiffSideAndProperties(di, act.UIOrigin, act.UIDestination);
+		UnsetDiffSide(di, act.UIOrigin);
+		SetDiffCompare(di, DIFFCODE::NOCMP);
 		break;
 
 	case FileActionItem::UI_DEL:
@@ -354,6 +363,17 @@ bool IsItemCopyable(const DIFFITEM &di, int index)
 	if (di.diffcode.isResultError()) return false;
 	// can't copy same items
 	if (di.diffcode.isResultSame()) return false;
+	// impossible if not existing
+	if (!di.diffcode.exists(index)) return false;
+	// everything else can be copied to other side
+	return true;
+}
+
+/// is it possible to move item to left ?
+bool IsItemMovable(const DIFFITEM &di, int index)
+{
+	// don't let them mess with error items
+	if (di.diffcode.isResultError()) return false;
 	// impossible if not existing
 	if (!di.diffcode.exists(index)) return false;
 	// everything else can be copied to other side
@@ -1076,6 +1096,9 @@ void CopyDiffSideAndProperties(DIFFITEM& di, int src, int dst)
 void UnsetDiffSide(DIFFITEM& di, int index)
 {
 	di.diffcode.diffcode &= ~(DIFFCODE::FIRST << index);
+	di.diffFileInfo[index].ClearPartial();
+	di.nidiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
+	di.nsdiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 	if (di.HasChildren())
 	{
 		for (DIFFITEM* pdic = di.GetFirstChild(); pdic; pdic = pdic->GetFwdSiblingLink())

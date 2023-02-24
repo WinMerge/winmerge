@@ -63,7 +63,7 @@ using std::swap;
 
 int CMergeDoc::m_nBuffersTemp = 2;
 
-static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
+static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine = 0, int nLines = -1);
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -290,14 +290,14 @@ void CMergeDoc::Serialize(CArchive& ar)
  * (the plugins are optional, not the conversion)
  * @todo Show SaveToFile() errors?
  */
-static void SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine, int nLines)
+static int SaveBuffForDiff(CDiffTextBuffer & buf, const String& filepath, int nStartLine, int nLines)
 {
 	// and we don't repack the file
 	PackingInfo tempPacker(false);
 
 	// write buffer out to temporary file
 	String sError;
-	int retVal = buf.SaveToFile(filepath, true, sError, tempPacker,
+	return buf.SaveToFile(filepath, true, sError, tempPacker,
 		CRLFSTYLE::AUTOMATIC, false, nStartLine, nLines);
 }
 
@@ -3878,7 +3878,6 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	DWORD dwFlags[3] = { 0 };
 	PathContext paths = m_filePaths;
 	String strDesc[3];
-	int nBuffers = m_nBuffers;
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
 
 	for (int pane = 0; pane < m_nBuffers; pane++)

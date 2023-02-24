@@ -75,9 +75,8 @@ void PropCompareWebPage::WriteOptions()
 BOOL PropCompareWebPage::OnInitDialog()
 {
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREWEBPAGE_USERDATAFOLDER_TYPE);
-
-	combo->AddString(_("AppData folder").c_str());
-	combo->AddString(_("Install folder").c_str());
+	for (const auto& item : { _("AppData folder"), _("Install folder") })
+		combo->AddString(item.c_str());
 	combo->SetCurSel(m_nUserDataFolderType);
 
 	OptionsPanel::OnInitDialog();

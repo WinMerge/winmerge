@@ -14,12 +14,7 @@ CustomInstallation=Vlastn· inötal·cia
 AppCoreFiles=Z·kladnÈ s˙bory WinMerge
 Filters=Filtre
 Plugins=Z·suvnÈ moduly
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Jazyky
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Zobraziù adres·r WinMerge z ponuky ätart
 
 ;Code Dialogs
 DeletePreviousStartMenu=Inötal·tor zistil, ûe ste zmenili umiestnenie v·öej ponuky ätart z "%s" na "%s". éel·te si zmazaù predch·dzaj˙ci adres·r ponuky ätart?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=s˙bor projektu WinMerge

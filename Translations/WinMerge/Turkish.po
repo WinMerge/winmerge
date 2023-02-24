@@ -1943,11 +1943,14 @@ msgstr "Sağ tık menüsü"
 msgid "Explorer"
 msgstr "WinMerge sağ tık menüsünde görüntülensin"
 
+msgid "&Add to context menu"
+msgstr "S&ağ tık menüsüne eklensin"
+
 msgid "E&nable advanced menu"
 msgstr "Gelişmiş me&nü kullanılsın"
 
-msgid "&Add to context menu"
-msgstr "S&ağ tık menüsüne eklensin"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "Kabuk &eklentisi kaydını ekle"

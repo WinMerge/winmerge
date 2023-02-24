@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-01-15 16:00+0200\n"
+"PO-Revision-Date: 2023-02-20 15:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1417,10 +1417,10 @@ msgstr "Datei&zeit beim Dateivergleich bewahren"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" Dialog on Startup"
-msgstr "Öffnen-&Dialog beim Programmstart anzeigen"
+msgstr "&Dialog \"Dateien oder Ordner auswählen\" beim Programmstart anzeigen"
 
 msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
-msgstr "Öffnen-Dialog beim &Klick auf 'Vergleichen' schließen"
+msgstr "Dialog \"Dateien oder Ordner auswählen\" mit 'Vergleichen' schließen"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -2389,12 +2389,15 @@ msgid "Explorer"
 msgstr "Explorer"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "&Zum Kontextmenü hinzufügen"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "&Erweitertes Menü verwenden"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "&Zum Kontextmenü hinzufügen"
+msgid "Enable &Compare As menu"
+msgstr "Menü \"Vergleichen als\" verwenden"
 
 #, c-format
 msgid "&Register shell extension"
@@ -3055,10 +3058,10 @@ msgid "Cannot merge differences when documents are not in synch.\n\nRefresh docu
 msgstr "Kann Unterschiede nicht vermischen, wenn die Dokumente nicht synchron sind.\n\nAktualisieren Sie die Dokumente, bevor Sie fortfahren."
 
 msgid "Break at whitespace"
-msgstr "An Leerzeichen abbrechen"
+msgstr "An Leerzeichen unterbrechen"
 
 msgid "Break at whitespace or punctuation"
-msgstr "An Leerzeichen oder Interpunktion abbrechen"
+msgstr "An Leerzeichen oder Interpunktion unterbrechen"
 
 msgid "Copy to &Middle\tAlt+Right"
 msgstr "Zur &Mitte kopieren\tAlt+Rechts"

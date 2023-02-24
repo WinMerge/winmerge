@@ -14,12 +14,7 @@ CustomInstallation=Вибіркове встановлення
 AppCoreFiles=Файли ядра WinMerge
 Filters=Фільтри
 Plugins=Плагіни
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Languages
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Відкрити папку WinMerge в стартовому меню
 
 ;Code Dialogs
 DeletePreviousStartMenu=Програма встановлення виявила, що ви змінили розташування вашого стартового меню з  "%s" до "%s". Ви хотіли б вилучити попередню папку стартового меню?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Файл проекту WinMerge

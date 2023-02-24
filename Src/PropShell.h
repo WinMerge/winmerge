@@ -25,6 +25,7 @@ public:
 	enum { IDD = IDD_PROPPAGE_SHELL };
 	bool m_bContextAdded;
 	bool m_bContextAdvanced;
+	bool m_bContextCompareAs;
 
 // Overrides
 	protected:
@@ -34,6 +35,7 @@ public:
 protected:
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnAddToExplorer();
+	afx_msg void OnAddToExplorerAdvanced();
 	afx_msg void OnRegisterShellExtension();
 	afx_msg void OnUnregisterShellExtension();
 	afx_msg void OnRegisterShellExtensionPerUser();
@@ -44,6 +46,7 @@ protected:
 
 	void GetContextRegValues();
 	void AdvancedContextMenuCheck();
+	void CompareAsContextMenuCheck();
 	void UpdateButtons();
 
 	DECLARE_MESSAGE_MAP()

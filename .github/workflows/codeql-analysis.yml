@@ -9,15 +9,15 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: windows-2019
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         id: checkout_repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Initialize CodeQL
         id: init_codeql
-        uses: github/codeql-action/init@v1
+        uses: github/codeql-action/init@v2
         with:
           queries: security-and-quality
 
@@ -26,10 +26,10 @@ jobs:
         shell: pwsh
         run: |
           .\DownloadDeps.cmd
-          .\BuildAll.vs2019.cmd x64 -ci
+          .\BuildAll.vs2022.cmd x64 -ci
 
       - name: Perform CodeQL Analysis
         id: analyze_codeql
-        uses: github/codeql-action/analyze@v1
+        uses: github/codeql-action/analyze@v2
 
 # Built with ❤ by [Pipeline Foundation](https://pipeline.foundation)

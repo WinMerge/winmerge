@@ -186,7 +186,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	DWORD type = 0;
 	DWORD size = 0;
 	int retVal = COption::OPT_OK;
-	auto [strPath, strValueName] = SplitName(strName);
+	[[maybe_unused]] auto [strPath, strValueName] = SplitName(strName);
 
 	// Get type and size of value in registry
 	retValReg = RegQueryValueEx(hKey, strValueName.c_str(), 0, &type,

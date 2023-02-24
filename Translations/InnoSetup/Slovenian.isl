@@ -14,12 +14,7 @@ CustomInstallation=Namestitev po meri
 AppCoreFiles=Datoteke jedra WinMerge
 Filters=Filtri
 Plugins=Vtièniki
-Frhed=Frhed(Brezplaèni 16-tiški urejevalnik)
-WinIMerge=WinIMerge (Slika razlik/združitev)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Podpora arhivov
 ShellExtension32bit=32-bitna razširitev lupine WinMerge
-Commands=GnuWin32 popravek za Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Jeziki
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Ogled mape zaèetnega menija WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Namestitveni program je zaznal, da ste spremenili mesto svojega zaèetnega menija iz "%s" v "%s".  Ali želite izbrisati prejšnjo mapo zaèetnega menija?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Projektna datoteka WinMerge

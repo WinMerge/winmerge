@@ -2389,12 +2389,15 @@ msgid "Explorer"
 msgstr "Bilaketa"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "Gehitu &hitzinguru menura"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "Gaitu &menu aurreratua"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "Gehitu &hitzinguru menura"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"

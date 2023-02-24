@@ -14,12 +14,7 @@ CustomInstallation= äÕÈ ÓİÇÑÔí
 AppCoreFiles= ÑæäÏå åÇí åÓÊå æíäãÑÌ 
 Filters= ÕÇİíåÇ 
 Plugins= æÕá ÔÏäíåÇ 
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages= ÒÈÇäåÇ 
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&V ãÔÇåÏå æÔå İåÑÓÊ ÔÑæÚ æíäãÑÌ
 
 ;Code Dialogs
 DeletePreviousStartMenu= äÕÇÈ äÑã ÇİÒÇÑ ãÊæÌå ÔÏå ÇÓÊ ˜å ÔãÇ ãÍá İåÑÓÊ ÔÑæÚ ÑÇ ÊÛííÑ ÏÇÏå ÇíÏ ("%s" Èå"%s"). ÂíÇ ãÇíá åÓÊíÏ ˜å æÔå İåÑÓÊ ŞÈáí ÍĞİ ÔæÏ¿ 
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc= ÑæäÏå Ñæå / ØÑÍ æíäãÑÌ 

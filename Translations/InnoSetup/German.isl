@@ -14,12 +14,7 @@ CustomInstallation=Benutzerdefinierte Installation
 AppCoreFiles=WinMerge-Hauptdateien
 Filters=Filter
 Plugins=Plugins
-Frhed=Frhed (Freier Hex-Editor)
-WinIMerge=WinIMerge (Bildvergleich)
-WinWebDiff=WinWebDiff (Webseitenvergleich)
-ArchiveSupport=Archivsupport
 ShellExtension32bit=32-Bit-WinMerge-Shellintegration
-Commands=GnuWin32-Patch für Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Sprachen
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Startmenü-Ordner anzeigen
 
 ;Code Dialogs
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge-Projektdatei

@@ -42,30 +42,35 @@ msgstr "Επέκταση Περιβάλλοντος"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
+msgid "Win&Merge"
 msgstr ""
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "&Compare"
+msgid "Compare &As"
 msgstr ""
 
 #: ShellExtension.rc:114
 #, c-format
-msgid "Compare&..."
+msgid "&Compare"
 msgstr ""
 
 #: ShellExtension.rc:115
 #, c-format
-msgid "Select &Left"
+msgid "Compare&..."
 msgstr ""
 
 #: ShellExtension.rc:116
 #, c-format
-msgid "Select &Middle"
+msgid "Select &Left"
 msgstr ""
 
 #: ShellExtension.rc:117
+#, c-format
+msgid "Select &Middle"
+msgstr ""
+
+#: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
 msgstr ""

@@ -118,6 +118,8 @@ const TCHAR *MergeCmdLineInfo::SetConfig(const TCHAR *q)
 MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR* q)
 	: m_nCmdShow(SHOWNORMAL)
 	, m_nWindowType(AUTOMATIC)
+	, m_nDialogType(NO_DIALOG)
+	, m_bShowCompareAsMenu(false)
 	, m_bEscShutdown(false)
 	, m_bExitIfNoDiff(Disabled)
 	, m_bRecurse(false)
@@ -253,6 +255,22 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const TCHAR *q)
 				m_nWindowType = WindowType::WEBPAGE;
 			else
 				m_sErrorMessages.emplace_back(_T("Unknown window type '") + param + _T("' specified"));
+		}
+		else if (param == _T("show-dialog"))
+		{
+			// -show-dialog "type" - dialog type
+			q = EatParam(q, param);
+			param = strutils::makelower(param);
+			if (param == _T("options"))
+				m_nDialogType = DialogType::OPTIONS_DIALOG;
+			else if (param == _T("about"))
+				m_nDialogType = DialogType::ABOUT_DIALOG;
+			else
+				m_sErrorMessages.emplace_back(_T("Unknown dialog type '") + param + _T("' specified"));
+		}
+		else if (param == _T("show-compare-as-menu"))
+		{
+			m_bShowCompareAsMenu = true;
 		}
 		else if (param == _T("m"))
 		{

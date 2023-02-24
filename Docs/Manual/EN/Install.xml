@@ -132,38 +132,6 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Frhed (Free hex editor)</term>
-
-            <listitem>
-              <para>Frhed enable you to show files in hex format.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>WinIMerge (Image Diff/Merge)</term>
-
-            <listitem>
-              <para>WinIMerge enables you to show the differences between image files.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Archive Support</term>
-
-            <listitem>
-              <para>Install it if you want to compare the files contained in a compressed file without having to decompress them manually.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>GnuWin32 Patch for Windows/HTML Tidy/jq</term>
-
-            <listitem>
-              <para>Install commands used by plugins.</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
             <term>Languages</term>
 
             <listitem>

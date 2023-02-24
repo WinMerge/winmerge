@@ -14,12 +14,7 @@ CustomInstallation=Izborna instalacija
 AppCoreFiles=WinMerge temeljne datoteke
 Filters=Filtri
 Plugins=Dodaci
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Jezici
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Pregled WinMerge poèetne mape
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instaler je otkrio promjenu lokacije Poèetnog izbornika od "%s" u "%s". Obrisati stari Poèetni izbornik?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Usporedbe

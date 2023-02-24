@@ -109,7 +109,7 @@ static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
 	bi.bmiHeader.biClrUsed = 0;
 	bi.bmiHeader.biClrImportant = 0;
 	
-	buf = (pBGR) malloc(nx * 4 * ny);
+	buf = (pBGR) malloc(static_cast<size_t>(nx) * 4 * ny);
 	nRes = GetDIBits(hdcSrc, hBmpSrc, 0, ny, buf, &bi, DIB_RGB_COLORS);
 	if (nRes == 0) {
 		free(buf);
@@ -622,7 +622,7 @@ bool BCMenu::GetBitmapFromImageList(CDC* pDC,int nIndex,CImage &bmp)
 	CDC dc;
 	dc.CreateCompatibleDC(pDC);
 	bmp.Create(m_iconX, -m_iconY, 32, CImage::createAlphaChannel);
-	memset(bmp.GetBits(), 0xff, abs(bmp.GetPitch()) * m_iconY);
+	memset(bmp.GetBits(), 0xff, static_cast<size_t>(abs(bmp.GetPitch())) * m_iconY);
 	HGDIOBJ pOldBmp = dc.SelectObject(bmp.operator HBITMAP());
 	POINT pt = {0};
 	SIZE  sz = {m_iconX, m_iconY};
@@ -1514,11 +1514,12 @@ bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID)
 	}
 	else{ // a hicolor bitmap
 		CBitmap mybmp;
-		if(mybmp.LoadBitmap(nResourceID)){
-			hicolor_bitmaps=true;
-			GetTransparentBitmap(mybmp);
-			if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
-		}
+		VERIFY(mybmp.LoadBitmap(nResourceID));
+		if (!mybmp.m_hObject)
+			mybmp.CreateBitmap(16, 15, 1, 32, nullptr);
+		hicolor_bitmaps=true;
+		GetTransparentBitmap(mybmp);
+		if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
 	}
 	return bReturn;
 }

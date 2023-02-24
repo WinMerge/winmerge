@@ -1927,11 +1927,14 @@ msgstr "Integracja z powłoką"
 msgid "Explorer"
 msgstr "Eksplorator"
 
+msgid "&Add to context menu"
+msgstr "Dodaj do menu kontekstowego"
+
 msgid "E&nable advanced menu"
 msgstr "Włącz menu zaawansowane"
 
-msgid "&Add to context menu"
-msgstr "Dodaj do menu kontekstowego"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "Zarejestruj rozszerzenie powłoki"

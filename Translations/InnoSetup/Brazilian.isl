@@ -14,12 +14,7 @@ CustomInstallation=Instalação Personalizada
 AppCoreFiles=Arquivos do Núcleo do WinMerge
 Filters=Filtros
 Plugins=Plugins
-Frhed=Frhed (editor hex Grátis)
-WinIMerge=WinIMerge (Diferenciar/Unir Imagens)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Suporte pra Arquivos Compactados
 ShellExtension32bit=Extensão do Shell de 32 bits do WinMerge
-Commands=Patch do GnuWin32 pra Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Idiomas
@@ -29,7 +24,7 @@ BulgarianLanguage=Menus e diálogos búlgaros
 CatalanLanguage=Menus e diálogos catalãos
 ChineseSimplifiedLanguage=Menus e diálogos chineses	(simplificados)
 ChineseTraditionalLanguage=Menus e diálogos chineses (tradicionais)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Menus e diálogos corsos
 CroatianLanguage=Menus e diálogos croatas
 CzechLanguage=Menus e diálogos tchecos
 DanishLanguage=Menus e diálogos dinamarqueses
@@ -82,7 +77,8 @@ UsersGuide=Guia do Usuário
 ViewStartMenuFolder=&Visualizar a Pasta do Menu Iniciar do WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=O instalador detectou que você mudou o local do seu menu iniciar de "s" para "s". Você gostaria de apagar a pasta anterior do menu iniciar?
+DeletePreviousStartMenu=O instalador detectou que você mudou o local do seu menu iniciar de "%s" para "%s". Você gostaria de apagar a pasta anterior do menu iniciar?
+ExplorerNeedsRestart=O ShellExtension do WinMerge precisa que o Explorer seja reiniciado para a atualização. Deseja reiniciar o Explorer?
 
 ; Project file description
 ProjectFileDesc=Arquivo do Projeto do WinMerge

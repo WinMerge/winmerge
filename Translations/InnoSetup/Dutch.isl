@@ -14,12 +14,7 @@ CustomInstallation=Aangepaste Installatie
 AppCoreFiles=WinMerge-basisbestanden
 Filters=Filters
 Plugins=Plugins
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Afbeeldingsvergelijker/-samenvoeger)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archiefondersteuning
 ShellExtension32bit=32-bit WinMerge-contextmenu
-Commands=GnuWin32-patch voor Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Talen
@@ -83,6 +78,7 @@ ViewStartMenuFolder=De WinMerge startmenu-map weergeven
 
 ;Code Dialogs
 DeletePreviousStartMenu=De installer heeft ontdekt dat u de locatie van uw startmenu veranderd heeft van "%s" naar "%s". Wilt u de vorige startmenu-map wissen?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge-projectbestand

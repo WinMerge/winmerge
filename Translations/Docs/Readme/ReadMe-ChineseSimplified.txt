@@ -1,39 +1,43 @@
 WINMERGE
 
-WinMerge 是一款用以对文件进行对比以及合并，可以运行在所有流行的
-Windows平台上的开源软件。有些功能需要额外安装组件。
+WinMerge 是一款开源的运行于 Windows 平台的比较和合并工具。WinMerge 能够对文件夹
+和文件进行比较，并以一种容易理解和处理的方式将差异进行呈现。WinMerge 既可以用做
+外部的比较/合并工具，也可以单独使用。
+
+WinMerge 有很多可以让比较、同步和合并尽可能简单易用的功能。也支持对多种编程语言
+和文件格式进行语法高亮显示。
 
 最新的 WinMerge 版本以及其它相关信息可以从 https://winmerge.org 得到。
 
-WinMerge 快速入门：
-请阅读在线手册的“Quick-start”章节来了解并开始即用 WinMerge ：
+WinMerge 快速入门
+=================
+要了解 WinMerge 安装好之后的基本操作，请点击菜单中的“帮助->WinMerge 帮助”并跳转
+到 Quick start 章节。或者，也可以直接访问其在线版本：
 https://manual.winmerge.org/Quick_start.html
 
-HTML 手册：
-用户手册可以从 https://manual.winmerge.org/ 得到，也可以在安装时选择
-安装到本地，或者也可以单独从 https://winmerge.org/ 下载。(参见文档)
 
-脚本支持：
-如果您想使用脚本，您需要安装 Windows Script Host。如果您遇到任何关于脚本的
-问题，请访问
-https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-以确定您的 Windows Script Host 已经启动并且运行正常。
+WinMerge 手册
+=============
+WinMerge 的手册会以微软的 HTML 帮助文件的格式安装到本地，文件名为 WinMerge.chm。
+可以点击菜单中的“帮助->WinMerge 帮助”或者在 WinMerge 窗口中按 F1 来打开手册。
+如果是命令行，可以在运行 WinMerge 的可执行文件时加上“/?”参数来打开。
 
-支持：
-开发人员会在 Sourceforge.net 的 WinMerge 版面回答问题，地址如下：
-https://sourceforge.net/forum/?group_id=13216
+您也可以直接访问其在线版本：https://manual.winmerge.org/
 
-Bug 和功能需求：
-Bug 和对新功能的建议应当提交到 sourceforge.net 的 bug 和 RFE trackers 上。
+WinMerge 支持
+=============
+如果您有 WinMerge 相关的问题或建议，请访问 WinMerge 的社区论坛：
+https://github.com/WinMerge/winmerge/discussions
+开发人员将阅读并回复论坛里的问题。
 
-Bug tracker:
-https://sourceforge.net/tracker/?group_id=13216&atid=113216
-当您提交 bug 时，请告诉我们 WinMerge 的版本号！
-WinMerge 2.2.0 及以上版本可以选择菜单“帮助/配置”来输出配置信息。请把这个
-文件以附件的方式加到 bug 报告中，它包括许多对于开发人员非常有用的信息。
+问题和功能需求
+==============
+如果问题没有在 WinMerge 论坛得到解决，可以在这里浏览和提交问题：
+https://github.com/WinMerge/winmerge/issues
 
-RFE (功能) tracker:
-https://sourceforge.net/tracker/?group_id=13216&atid=363216
+提交问题时，请在问题报告中包含 WinMerge 的版本号。你还可以通过点击菜单中的“帮助
+->配置”来生成一份配置日志并将其以附件形式添加到问题报告中，其中包含了许多对开发
+人员有用的信息。
 
 
 - WinMerge 开发人员

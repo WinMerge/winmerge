@@ -34,25 +34,25 @@ Pudete dinù sfuglià a versione HTML di l’aiutu di WinMerge à l’indirizzu :
 Assistenza WinMerge
 ===================
 Dumande o sugestioni apprupositu di WinMerge ? Un bellu locu per principià
-sò i fori di a cumunità WinMerge chì si trovanu à l’indirizzu
-https://forums.winmerge.org/. Di manera regulare, i sviluppatori leghjenu è
-rispondenu à e dumande nant’à sti dui fori. Impiegate i fori di chjachjarata
-generale per i penseri nant’à WinMerge, cum’è e dumande apprupositu di u so
-impiegu. Impiegate u foru di i sviluppatori per i penseri nant’à u sviluppu
-di WinMerge.
+hè u foru di chjachjerata di a cumunità WinMerge chì si trova à l’indirizzu
+https://github.com/WinMerge/winmerge/discussions. Di manera regulare,
+i sviluppatori leghjenu è rispondenu à e dumande nant’à stu foru.
+Impiegate i fori di chjachjarata generale per i penseri nant’à WinMerge,
+cum’è e dumande apprupositu di u so adopru. Impiegate u foru di
+i sviluppatori per i penseri nant’à u sviluppu di WinMerge.
 
 Riferimentu di prublemi è dumande di funzioni
 =============================================
-S’è un penseru ùn hè micca currettu in i fori di WinMerge, verificate u
-ghjestiunariu di prughjettu à l’indirizzu https://project.winmerge.org/
-induve si pò cunsultà l’articuli dighjà creati o mandà e vostre dumande,
-secondu à l’unghjette cum’è « Bugs » o « Feature Requests ».
+S’è un penseru ùn hè micca scioltu via u foru di chjachjerata di WinMerge,
+verificate u ghjestiunariu di penseri di u prughjettu à l’indirizzu
+https://github.com/WinMerge/winmerge/issues induve si pò cunsultà
+l’articuli dighjà creati o mandà e vostre dumande.
 
-S’è vo mandate un raportu di prublema, ci vole à indicà u numeru di versione
-di WinMerge in u vostru raportu. Pudete ingenerà un ghjurnale di
-cunfigurazione grazia à l’azzione Aiutu > Cunfigurazione. Ci vole à
-aghjunghje stu ghjurnale à u vostru raportu di prublema perchè ellu
-cuntene parechje infurmazioni ghjuvevule per i sviluppatori.
+S’è vo mandate un raportu di prublema, ci vole à indicà u numeru di
+versione di WinMerge in u vostru raportu. Pudete ingenerà un ghjurnale
+di cunfigurazione grazia à l’azzione Aiutu > Cunfigurazione. Ci vole à
+aghjunghje stu ghjurnale à u vostru raportu di prublema perchè ci hè
+parechje infurmazioni ghjuvevule per i sviluppatori.
 
 
 - I sviluppatori di WinMerge

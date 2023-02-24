@@ -130,38 +130,6 @@
           </varlistentry>
 
           <varlistentry>
-            <term>Frhed (Free hex editor)</term>
-
-            <listitem>
-              <para>Frhedを使用すると、ファイルをHEX形式で表示できます。</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>WinIMerge (Image Diff/Merge)</term>
-
-            <listitem>
-              <para>WinIMergeを使用すると、イメージファイル間の違いを表示できます。</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>Archive Support</term>
-
-            <listitem>
-              <para>圧縮ファイルを手動で解凍せずに比較したい場合はインストールしてください。</para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term>GnuWin32 Patch for Windows/HTML Tidy/jq</term>
-
-            <listitem>
-              <para>プラグインで使用されるコマンドをインストールします。 </para>
-            </listitem>
-          </varlistentry>
-
-          <varlistentry>
             <term>言語</term>
 
             <listitem>

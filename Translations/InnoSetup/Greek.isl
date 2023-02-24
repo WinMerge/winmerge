@@ -14,12 +14,7 @@ CustomInstallation=Προσαρμοσμένη Εγκατάσταση
 AppCoreFiles=Απαιτούμενα Αρχεία του WinMerge
 Filters=Φίλτρα
 Plugins=Αρθρώματα
-Frhed=Frhed(Free hex editor)
-WinIMerge=WinIMerge(Image Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archive Support
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Γλώσσες
@@ -83,6 +78,7 @@ ViewStartMenuFolder=Εμφάνιση του Φακέλου του WinMerge στην Έναρξη
 
 ;Code Dialogs
 DeletePreviousStartMenu=Η εφαρμογή εγκαταστάσεως ανίχνευσε ότι αλλάξατε την τοποθεσία του φακέλου στην Έναρξη από "%s" σε "%s". Επιθυμείτε να διαγράψετε τον προηγούμενο φάκελο από την Έναρξη;
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Αρχείο Έργου του WinMerge

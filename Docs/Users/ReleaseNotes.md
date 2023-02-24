@@ -6,7 +6,7 @@
 - [What Is New in 2.16.25 beta?](#what-is-new-in-21625-beta)
 - [Known issues](#known-issues)
 
-January 2023
+February 2023
 
 ## About This Release
 
@@ -19,8 +19,8 @@ Please submit bug reports to our bug-tracker.
 
 ### Folder compare
 
-BugFix: Fixed an issue where files with no extension were not compared if they
-  were in a folder with a '.' in the folder name.
+- BugFix: Fixed an issue where files with no extension were not compared if they
+    were in a folder with a '.' in the folder name.
 
 ## What Is New in 2.16.26
 

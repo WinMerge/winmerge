@@ -14,12 +14,7 @@ CustomInstallation=Özel Kurulum
 AppCoreFiles=WinMerge Çekirdek Dosyalarý
 Filters=Süzgeçler
 Plugins=Uygulama Ekleri
-Frhed=Frhed(Özgür onaltýlýk düzenleyici)
-WinIMerge=WinIMerge(Görsel Fark/Birleþtirme)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Arþiv Desteði
 ShellExtension32bit=32-bit WinMerge Kabuk Eklentisi
-Commands=GnuWin32 Windows Yamasý/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Diller
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&WinMerge Baþlangýç Menüsü Klasöründe Görüntülensin
 
 ;Code Dialogs
 DeletePreviousStartMenu=Kurucu baþlangýç menüsünün konumunun "%s" yerine "%s" konumunda bulunduðunu algýladý. Önceki baþlangýç menüsü klasörünü silmek ister misiniz?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Proje dosyasý

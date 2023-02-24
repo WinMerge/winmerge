@@ -14,12 +14,7 @@ CustomInstallation=Pasirinktinis diegimas
 AppCoreFiles=„WinMerge“ pagrindiniai failai
 Filters=Filtrai
 Plugins=Papildiniai
-Frhed=„Frhed“ (nemokamas ðeðioliktainis redaktorius)
-WinIMerge=„WinIMerge“ (vaizdø Diff/Merge)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Archyvø palaikymas
 ShellExtension32bit=32-bitø „WinMerge ShellExtension“
-Commands=GnuWin32 pataisa „Windows“/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Kalbos
@@ -83,6 +78,7 @@ ViewStartMenuFolder=&Rodyti „WinMerge“ paleidimo meniu
 
 ;Code Dialogs
 DeletePreviousStartMenu=Diegimo programa nustatë, kad pakeitëte paleidimo meniu vietà ið „%s“ á „%s“. Gal norite paðalinti ankstesná paleidimo meniu?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=„WinMerge“ projekto failas

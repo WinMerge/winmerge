@@ -132,6 +132,7 @@ private:
 	virtual void STDMETHODCALLTYPE CMD_binarymode() = 0;
 	virtual void STDMETHODCALLTYPE CMD_character_set() = 0;
 	virtual void STDMETHODCALLTYPE read_ini_data(TCHAR *key = 0) = 0;
+	virtual void STDMETHODCALLTYPE CMD_goto() = 0;
 };
 
 #undef const

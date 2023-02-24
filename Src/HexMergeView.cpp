@@ -77,6 +77,7 @@ BEGIN_MESSAGE_MAP(CHexMergeView, CView)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_CLEAR, OnEditClear)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnEditSelectAll)
+	ON_COMMAND(ID_EDIT_WMGOTO, OnEditGoto)
 	// [Merge] menu
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -531,6 +532,11 @@ void CHexMergeView::OnEditPaste()
 void CHexMergeView::OnEditSelectAll()
 {
 	m_pif->CMD_select_all();
+}
+
+void CHexMergeView::OnEditGoto()
+{
+	m_pif->CMD_goto();
 }
 
 /**

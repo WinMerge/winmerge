@@ -21,8 +21,8 @@ goto :eof
 
 :BuildBin
 set PLATFORM=%1
-if "%1" == "" (
-  set PLATFORM_VS=Win32
+if "%1" == "x86" (
+  set PLATFORM_VS=x86
   set DLLFILENAME=ShellExtensionU.dll
 ) else (
   set PLATFORM_VS=%1
@@ -33,7 +33,7 @@ endlocal
 
 if exist "%SIGNBAT_PATH%" (
   call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\%DLLFILENAME%"
-  call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\WinMergeContextMenu.dll
+  call "%SIGNBAT_PATH%" "..\Build\%PLATFORM%\Release\WinMergeContextMenu.dll"
 )
 
 goto :eof

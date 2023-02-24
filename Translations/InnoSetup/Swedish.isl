@@ -14,12 +14,7 @@ CustomInstallation=Anpassad Installation
 AppCoreFiles=WinMerge Kärnfiler
 Filters=Filter
 Plugins=Insticksprogram
-Frhed=Frhed(Fri hex redigerare)
-WinIMerge=WinIMerge(Avbilds Skillnads/Enande)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Arkiv Stöd
 ShellExtension32bit=32-bit WinMerge ShellExtension
-Commands=GnuWin32 Patch for Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Språk
@@ -83,6 +78,7 @@ ViewStartMenuFolder=Visa WinMerges startkatalog
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att Ni har ändrat sökvägen till Er startmeny från "%s" till "%s". Vill Ni ta bort den tidigare startmenykatalogen?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=WinMerge Projektfil

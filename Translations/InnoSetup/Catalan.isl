@@ -15,12 +15,7 @@ CustomInstallation=Instal·lació personalitzada
 AppCoreFiles=Fitxers centrals del WinMerge
 Filters=Filtres
 Plugins=Connectors
-Frhed=Frhed(Editor hexadecimal)
-WinIMerge=WinIMerge(Comparador d'imatges)
-WinWebDiff=WinWebDiff(Web Page Diff)
-ArchiveSupport=Suport de fitxers comprimits
 ShellExtension32bit=Extensió de Shell de 32 bits del WinMerge
-Commands=GnuWin32 Patch per a Windows/HTML Tidy/jq/md4c
 
 ;Localization Components
 Languages=Idiomes
@@ -84,6 +79,7 @@ ViewStartMenuFolder=&Veure la carpera del menú Inicia del WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'instal·lador ha detectat que heu canviat la ubicació del vostre menú d'inici de "%s" a "%s". Voleu esborrar la carpeta del menú d'inici anterior?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
 
 ; Project file description
 ProjectFileDesc=Fitxer de projecte del WinMerge

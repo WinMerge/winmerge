@@ -1643,8 +1643,8 @@
     <None Include="res\folderup_disable.ico" />
     <None Include="res\hand.cur" />
     <None Include="res\left.bmp" />
-    <None Include="res\left_to_browse.bmp" />
-    <None Include="res\left_to_right.bmp" />
+    <None Include="res\copy_left_to_browse.bmp" />
+    <None Include="res\copy_left_to_right.bmp" />
     <None Include="res\lfile.ico" />
     <None Include="res\lfolder.ico" />
     <None Include="res\Merge.ico" />
@@ -1659,8 +1659,8 @@
     <None Include="res\rfile.ico" />
     <None Include="res\rfolder.ico" />
     <None Include="res\right.bmp" />
-    <None Include="res\right_to_browse.bmp" />
-    <None Include="res\right_to_left.bmp" />
+    <None Include="res\copy_right_to_browse.bmp" />
+    <None Include="res\copy_right_to_left.bmp" />
     <None Include="res\sigma.ico" />
     <None Include="..\Docs\Users\ChangeLog.md" />
   </ItemGroup>
@@ -1708,7 +1708,7 @@
     <Image Include="res\go_to.bmp" />
     <Image Include="res\help_contents.bmp" />
     <Image Include="res\horizontally.bmp" />
-    <Image Include="res\left_to_middle.bmp" />
+    <Image Include="res\copy_left_to_middle.bmp" />
     <Image Include="res\LineFilter.ico" />
     <Image Include="res\lmissing.ico" />
     <Image Include="res\lmissingfolder.ico" />
@@ -1719,12 +1719,18 @@
     <Image Include="res\mg_icons.bmp" />
     <Image Include="res\mg_icons.png" />
     <Image Include="res\middle.bmp" />
-    <Image Include="res\middle_to_browse.bmp" />
-    <Image Include="res\middle_to_left.bmp" />
-    <Image Include="res\middle_to_right.bmp" />
+    <Image Include="res\copy_middle_to_browse.bmp" />
+    <Image Include="res\copy_middle_to_left.bmp" />
+    <Image Include="res\copy_middle_to_right.bmp" />
     <Image Include="res\mmissing.ico" />
     <Image Include="res\mmissingfolder.ico" />
+    <Image Include="res\move_left_to_middle.bmp" />
+    <Image Include="res\move_left_to_right.bmp" />
     <Image Include="res\move_middle_to_browse.bmp" />
+    <Image Include="res\move_middle_to_left.bmp" />
+    <Image Include="res\move_middle_to_right.bmp" />
+    <Image Include="res\move_right_to_left.bmp" />
+    <Image Include="res\move_right_to_middle.bmp" />
     <Image Include="res\new3.bmp" />
     <Image Include="res\new3_hex.bmp" />
     <Image Include="res\new3_image.bmp" />
@@ -1750,7 +1756,7 @@
     <Image Include="res\print.bmp" />
     <Image Include="res\replace.bmp" />
     <Image Include="res\report.bmp" />
-    <Image Include="res\right_to_middle.bmp" />
+    <Image Include="res\copy_right_to_middle.bmp" />
     <Image Include="res\rmissing.ico" />
     <Image Include="res\rmissingfolder.ico" />
     <Image Include="res\rotate2.ico" />

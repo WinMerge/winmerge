@@ -2403,12 +2403,15 @@ msgid "Explorer"
 msgstr "檔案總管"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "加到右鍵選單 (&A)"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "啟用進階選單 (&N)"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "加到右鍵選單 (&A)"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 #, c-format
 msgid "&Register shell extension"
