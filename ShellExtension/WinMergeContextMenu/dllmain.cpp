@@ -38,7 +38,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IExplorerCommand, IObjectWithSite>
+class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<WinRtClassicComMix>, IExplorerCommand, IObjectWithSite>
 {
 public:
     WinMergeExplorerCommandBase(WinMergeContextMenu* pContextMenu) : m_pContextMenu(pContextMenu) {}
@@ -210,7 +210,7 @@ private:
     MenuItem m_menuItem;
 };
 
-class EnumCommands : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IEnumExplorerCommand>
+class EnumCommands : public RuntimeClass<RuntimeClassFlags<WinRtClassicComMix>, IEnumExplorerCommand>
 {
 public:
     explicit EnumCommands(WinMergeContextMenu* pContextMenu)

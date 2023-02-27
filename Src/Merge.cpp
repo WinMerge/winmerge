@@ -352,15 +352,6 @@ BOOL CMergeApp::InitInstance()
 	if (m_pLineFilters != nullptr)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 
-	// If there are no filters loaded, and there is filter string in previous
-	// option string, import old filters to new place.
-	if (m_pLineFilters->GetCount() == 0)
-	{
-		String oldFilter = theApp.GetProfileString(_T("Settings"), _T("RegExps"));
-		if (!oldFilter.empty())
-			m_pLineFilters->Import(oldFilter);
-	}
-
 	if (m_pSubstitutionFiltersList != nullptr)
 		m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
 

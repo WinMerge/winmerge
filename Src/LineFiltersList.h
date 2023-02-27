@@ -43,8 +43,6 @@ public:
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
 
-	void Import(const String& filters);
-
 private:
 	std::vector<LineFilterItemPtr> m_items; /**< List for linefilter items */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
