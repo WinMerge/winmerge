@@ -1,4 +1,4 @@
-# WinMerge 2.16.26 リリースノート
+# WinMerge 2.16.28 リリースノート
 
 - [このリリースについて](#about-this-release)
 - [2.16.28の新機能](#what-is-new-in-21628)
