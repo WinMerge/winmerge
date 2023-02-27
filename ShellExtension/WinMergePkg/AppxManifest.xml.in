@@ -12,7 +12,7 @@
   xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
   xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
   IgnorableNamespaces="uap uap2 uap3 rescap desktop desktop4 desktop5 desktop6 uap10 com">
-  <Identity Name="WinMerge" ProcessorArchitecture="neutral" Publisher="${Publisher}" Version="1.0.6.0" />
+  <Identity Name="WinMerge" ProcessorArchitecture="neutral" Publisher="${Publisher}" Version="1.0.7.0" />
   <Properties>
     <DisplayName>WinMerge</DisplayName>
     <PublisherDisplayName>winmerge.org</PublisherDisplayName>
