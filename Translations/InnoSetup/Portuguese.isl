@@ -66,9 +66,9 @@ AddToPath=&Criar pasta do WinMerge no caminho do sistema
 ThreeWayMergeWizardPageCaption=3-Combinação de modos
 ThreeWayMergeWizardPageDescription=Utilizar o WinMerge como ferramenta de três vias para TortoiseSVN/Git?
 RegisterWinMergeAs3WayMergeTool=Registar o WinMerge como ferramenta de combinação de três vias
-MergeAtRightPane=Combinar na janela direita
+MergeAtRightPane=Combinar na janela da direita
 MergeAtCenterPane=Combinar na janela do meio
-MergeAtLeftPane=Combinar na janela esquerda
+MergeAtLeftPane=Combinar na janela da esquerda
 AutoMergeAtStartup=Combinar automaticamente no arranque
 
 ;Icon Labels
@@ -78,7 +78,7 @@ ViewStartMenuFolder=&Ver a pasta do WinMerge do Menu Iniciar
 
 ;Code Dialogs
 DeletePreviousStartMenu=O Assistente de Instalação detetou que alterou a localização de "%s" para "%s". Deseja eliminar a pasta anterior do Menu Iniciar?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=É necessário reiniciar o Explorador para atualizar a extensão do contexto do WinMerge. Deseja reiniciar o Explorador?
 
 ; Project file description
 ProjectFileDesc=Ficheiro do projeto WinMerge
