@@ -2833,7 +2833,15 @@ bool CMainFrame::DoSelfCompare(UINT nID, const String& file, const String strDes
 	else
 	{
 		copiedFile = wTemp->Create(_T("self-compare_"), ext);
-		TFile(file).copyTo(copiedFile);
+		try
+		{
+			TFile(file).copyTo(copiedFile);
+		}
+		catch (Poco::FileException& e)
+		{
+			
+			LogErrorStringUTF8(e.displayText());
+		}
 	}
 	m_tempFiles.push_back(wTemp);
 

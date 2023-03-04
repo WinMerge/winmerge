@@ -298,7 +298,22 @@ void FileImpl::copyToImpl(const std::string& path, int options) const
 	std::wstring upath;
 	convertPath(path, upath);
 	if (CopyFileW(_upath.c_str(), upath.c_str(), (options & OPT_FAIL_ON_OVERWRITE_IMPL) != 0) == 0)
-		handleLastErrorImpl(_path);
+	{
+		// CopyFileW() function cannot copy Alternate Data Streams
+		FileHandle fhIn(_path, _upath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, OPEN_EXISTING);
+		FileHandle fhOut(path, upath, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, 
+			((options & OPT_FAIL_ON_OVERWRITE_IMPL) != 0) ? CREATE_NEW : OPEN_ALWAYS);
+		char buf[65536];
+		DWORD dwRead = sizeof(buf), dwWritten = 0;
+		while (dwRead == sizeof(buf))
+		{
+			if (!ReadFile(fhIn.get(), buf, sizeof(buf), &dwRead, nullptr))
+				handleLastErrorImpl(_path);
+			if (!WriteFile(fhOut.get(), buf, dwRead, &dwWritten, nullptr))
+				handleLastErrorImpl(_path);
+		}
+		SetEndOfFile(fhOut.get());
+	}
 }
 
 

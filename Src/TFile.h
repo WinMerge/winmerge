@@ -2,6 +2,7 @@
 
 #define POCO_NO_UNWINDOWS 1
 #include <Poco/File.h>
+#include <Poco/Exception.h>
 #include "UnicodeString.h"
 #include "unicoder.h"
 
