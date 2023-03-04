@@ -892,7 +892,7 @@ OnEditTab ()
   else //...otherwise, built whitespace depending on the location and tab stops
     {
       int nTabSize = GetTabSize ();
-      int nChars = nTabSize - ptCursorPos.x % nTabSize;
+      int nChars = nTabSize - (IsSelection() ? 0 : ptCursorPos.x) % nTabSize;
       for (int i = 0; i < nChars; i++)
         pszText[i] = ' ';
       pszText[nChars] = '\0';
