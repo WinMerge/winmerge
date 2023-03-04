@@ -13,7 +13,6 @@
 
 #include "StdAfx.h"
 #include "MergeDoc.h"
-#include <io.h>
 #include <Poco/Timestamp.h>
 #include "UnicodeString.h"
 #include "Merge.h"

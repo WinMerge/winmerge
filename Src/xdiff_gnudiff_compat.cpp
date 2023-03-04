@@ -1,6 +1,5 @@
 #include "pch.h"
-#include <io.h>
-#include <sys/stat.h>
+#include "cio.h"
 #include "CompareOptions.h"
 extern "C" {
 #include "../Externals/xdiff/xinclude.h"
@@ -8,14 +7,14 @@ extern "C" {
 
 static bool read_mmfile(int fd, mmfile_t& mmfile)
 {
-	struct _stat64 st;
-	if (myfstat(fd, &st) == -1)
+	cio::stat st;
+	if (cio::fstat(fd, &st) == -1)
 		return false;
 	if (st.st_size < 0 || st.st_size > INT32_MAX)
 		return false;
 	size_t sz = static_cast<size_t>(st.st_size);
 	mmfile.ptr = static_cast<char *>(malloc(sz ? sz : 1));
-	if (sz && _read(fd, mmfile.ptr, static_cast<unsigned>(sz)) == -1) {
+	if (sz && cio::read(fd, mmfile.ptr, sz) == -1) {
 		return false;
 	}
 	mmfile.size = static_cast<long>(sz);

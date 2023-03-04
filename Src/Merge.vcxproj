@@ -903,6 +903,10 @@
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
     <ClCompile Include="ClipboardHistory.cpp" />
+    <ClCompile Include="Common\cio.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Common\IniOptionsMgr.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1427,6 +1431,7 @@
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="Common\cio.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\Shell.h" />

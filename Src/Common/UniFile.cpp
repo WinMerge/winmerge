@@ -39,6 +39,7 @@ THE SOFTWARE.
 #include "unicoder.h"
 #include "paths.h" // paths::GetLongbPath()
 #include "TFile.h"
+#include "cio.h"
 #include <windows.h>
 
 using Poco::SharedMemory;
@@ -733,7 +734,7 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 	// But we don't care since size is set to 0 anyway.
 	GetFileStatus();
 
-	if (_tfopen_s(&m_fp, m_filepath.c_str(), mode.c_str()) != 0)
+	if (cio::tfopen_s(&m_fp, m_filepath, mode.c_str()) != 0)
 		return false;
 
 #ifndef _WIN64

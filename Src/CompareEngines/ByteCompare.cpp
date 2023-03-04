@@ -7,7 +7,7 @@
 #include "pch.h"
 #include "ByteCompare.h"
 #include <cassert>
-#include <io.h>
+#include "cio.h"
 #include "FileLocation.h"
 #include "UnicodeString.h"
 #include "IAbortable.h"
@@ -137,7 +137,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 			{
 				// Assume our blocks are in range of int
 				int space = sizeof(buff[i])/sizeof(buff[i][0]) - (int) bfend[i];
-				int rtn = _read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned)space);
+				int rtn = cio::read_i(m_inf[i].desc, &buff[i][bfend[i]], space);
 				if (rtn == -1)
 					return DIFFCODE::CMPERR;
 				if (rtn < space)

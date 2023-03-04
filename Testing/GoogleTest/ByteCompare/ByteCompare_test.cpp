@@ -5,9 +5,8 @@
 #include "CompareOptions.h"
 #include "FileLocation.h"
 #include "DiffItem.h"
-#include <io.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include "cio.h"
+#include "unicoder.h"
 #include <fstream>
 
 namespace
@@ -32,14 +31,14 @@ namespace
 	{
 		FilePair(const std::string& left, const std::string& right)
 		{
-			_sopen_s(&filedata[0].desc, left.c_str(),  O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
-			_sopen_s(&filedata[1].desc, right.c_str(), O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
+			cio::tsopen_s(&filedata[0].desc, ucr::toTString(left),  O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
+			cio::tsopen_s(&filedata[1].desc, ucr::toTString(right), O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
 		}
 
 		~FilePair()
 		{
-			_close(filedata[0].desc);
-			_close(filedata[1].desc);
+			cio::close(filedata[0].desc);
+			cio::close(filedata[1].desc);
 		}
 
 		FileLocation location[2];

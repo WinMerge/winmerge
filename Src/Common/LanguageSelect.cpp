@@ -10,6 +10,7 @@
 #include "Environment.h"
 #include "paths.h"
 #include "unicoder.h"
+#include "cio.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -415,7 +416,7 @@ LangFileInfo::LangFileInfo(LPCTSTR path)
 : id(0)
 {
 	FILE *f;
-	if (_tfopen_s(&f, path, _T("r,ccs=utf-8")) == 0 && f)
+	if (cio::tfopen_s(&f, path, _T("r,ccs=utf-8")) == 0 && f)
 	{
 		wchar_t buf[1024 + 1];
 		while (fgetws(buf, static_cast<int>(std::size(buf)) - 1, f) != nullptr)
@@ -580,7 +581,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	std::wstring msgctxt;
 	std::wstring msgid;
 	FILE *f;
-	if (_tfopen_s(&f, strPath.c_str(), _T("r,ccs=UTF-8")) != 0)
+	if (cio::tfopen_s(&f, strPath, _T("r,ccs=UTF-8")) != 0)
 	{
 		if (bShowError)
 		{

@@ -10,8 +10,6 @@
 #include "pch.h"
 #define NOMINMAX
 #include "DiffWrapper.h"
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <algorithm>
 #include <string>
 #include <cctype>
@@ -49,6 +47,7 @@
 #include "MergeApp.h"
 #include "SubstitutionList.h"
 #include "codepage_detect.h"
+#include "cio.h"
 
 using Poco::Debugger;
 using Poco::format;
@@ -536,7 +535,7 @@ bool CDiffWrapper::RunFileDiff()
 		String sTempPath = env::GetTemporaryPath(); // get path to Temp folder
 		String path = paths::ConcatPath(sTempPath, _T("Diff.txt"));
 
-		if (_tfopen_s(&outfile, path.c_str(), _T("w+")) == 0)
+		if (cio::tfopen_s(&outfile, path, _T("w+")) == 0)
 		{
 			print_normal_script(script);
 			fclose(outfile);
@@ -1231,7 +1230,7 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bA
 	if (!m_sPatchFile.empty())
 	{
 		const TCHAR *mode = (bAppendFiles ? _T("a+") : _T("w+"));
-		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), mode) != 0)
+		if (cio::tfopen_s(&outfile, m_sPatchFile, mode) != 0)
 			outfile = nullptr;
 	}
 
@@ -1269,7 +1268,7 @@ void CDiffWrapper::WritePatchFileTerminator(enum output_style tOutput_style)
 	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
-		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), _T("a+")) != 0)
+		if (cio::tfopen_s(&outfile, m_sPatchFile, _T("a+")) != 0)
 			outfile = nullptr;
 	}
 
@@ -1353,7 +1352,7 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	if (!m_sPatchFile.empty())
 	{
 		const TCHAR *mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
-		if (_tfopen_s(&outfile, m_sPatchFile.c_str(), mode) != 0)
+		if (cio::tfopen_s(&outfile, m_sPatchFile, mode) != 0)
 			outfile = nullptr;
 	}
 
