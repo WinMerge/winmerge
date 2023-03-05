@@ -372,7 +372,7 @@ CMainFrame::~CMainFrame()
 	m_arrChild.RemoveAll();
 }
 
-const TCHAR CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
+const tchar_t CMainFrame::szClassName[] = _T("WinMergeWindowClassW");
 
 /**
  * @brief Change MainFrame window class name
@@ -553,14 +553,14 @@ HMENU CMainFrame::NewMenu(int view, int ID)
 	{
 		m_pImageMenu.reset(new BCMenu);
 		m_pImageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_IMGMERGEVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pImageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(LoadResString(IDS_IMAGE_MENU).c_str())); 
 	}
 
 	if (view == MENU_WEBPAGEDIFFVIEW)
 	{
 		m_pWebPageMenu.reset(new BCMenu);
 		m_pWebPageMenu->LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGEDIFFVIEW));
-		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<TCHAR *>(LoadResString(IDS_WEBPAGE_MENU).c_str())); 
+		m_pMenus[view]->InsertMenu(4, MF_BYPOSITION | MF_POPUP, (UINT_PTR)m_pWebPageMenu->GetSubMenu(0)->m_hMenu, const_cast<tchar_t *>(LoadResString(IDS_WEBPAGE_MENU).c_str())); 
 	}
 
 	// Load bitmaps to menuitems
@@ -1168,7 +1168,7 @@ static bool AddToRecentDocs(const PathContext& paths,
 	UINT nID, const CMainFrame::OpenFileParams *pOpenParams)
 {
 	ASSERT(paths.GetSize() <= 3);
-	const TCHAR *lmr= (paths.GetSize() == 2) ? _T("lr") : _T("lmr");
+	const tchar_t *lmr= (paths.GetSize() == 2) ? _T("lr") : _T("lmr");
 	String params, title;
 	for (int nIndex = 0; nIndex < paths.GetSize(); ++nIndex)
 	{
@@ -1665,7 +1665,7 @@ void CMainFrame::OnClose()
 /**
  * @brief Utility function to update CSuperComboBox format MRU
  */
-void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
+void CMainFrame::addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems)
 {
 	std::vector<CString> list;
 	CString s;
@@ -2253,9 +2253,9 @@ void CMainFrame::OnFileOpenProject()
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
-	LPCTSTR pchData = (LPCTSTR)pCopyData->lpData;
+	const tchar_t* pchData = (const tchar_t*)pCopyData->lpData;
 	// Bail out if data isn't zero-terminated
-	DWORD cchData = pCopyData->cbData / sizeof(TCHAR);
+	DWORD cchData = pCopyData->cbData / sizeof(tchar_t);
 	if (cchData == 0 || pchData[cchData - 1] != _T('\0'))
 		return FALSE;
 	ReplyMessage(TRUE);

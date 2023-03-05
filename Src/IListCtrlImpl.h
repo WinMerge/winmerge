@@ -35,17 +35,17 @@ public:
 	String GetColumnName(int col) const override
 	{
 		LVCOLUMN lvc;
-		TCHAR columnName[256]; // Assuming max col header will never be > 256
+		tchar_t columnName[256]; // Assuming max col header will never be > 256
 		lvc.mask = LVCF_TEXT;
 		lvc.pszText = &columnName[0];
-		lvc.cchTextMax = sizeof(columnName) / sizeof(TCHAR);
+		lvc.cchTextMax = sizeof(columnName) / sizeof(tchar_t);
 		ListView_GetColumn(m_hwndListCtrl, col, &lvc);
 		return lvc.pszText;
 	}
 
 	String GetItemText(int row, int col) const override
 	{
-		TCHAR text[512]; // Assuming max col header will never be > 512
+		tchar_t text[512]; // Assuming max col header will never be > 512
 		text[0] = '\0';
 		ListView_GetItemText(m_hwndListCtrl, row, col, text, sizeof(text)/sizeof(text[0]));
 		return text;

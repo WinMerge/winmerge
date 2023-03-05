@@ -76,9 +76,9 @@ void ShellFileOperations::SetDestination(const String &destination)
  *   paths.
  * @param [out] string of the paths.
  */
-vector<TCHAR> ShellFileOperations::GetPathList(bool source) const
+vector<tchar_t> ShellFileOperations::GetPathList(bool source) const
 {
-	vector<TCHAR> paths;
+	vector<tchar_t> paths;
 	const size_t len = CountStringSize(source);
 	paths.resize(len, 0);
 
@@ -99,7 +99,7 @@ vector<TCHAR> ShellFileOperations::GetPathList(bool source) const
 	while (iter != end)
 	{
 		const size_t slen = (*iter).length();
-		memcpy(&paths[ind], (*iter).c_str(), slen * sizeof(TCHAR));
+		memcpy(&paths[ind], (*iter).c_str(), slen * sizeof(tchar_t));
 		ind += slen;
 		ind++; // NUL between strings
 		++iter;
@@ -131,8 +131,8 @@ size_t ShellFileOperations::CountStringSize(bool source) const
 	size_t size = 0;
 	while (iter != end)
 	{
-		size += (*iter).length() * sizeof(TCHAR);
-		size += sizeof(TCHAR); // NUL between strings
+		size += (*iter).length() * sizeof(tchar_t);
+		size += sizeof(tchar_t); // NUL between strings
 		++iter;
 	}
 	size += 2; // Two zeros at end of the string
@@ -167,8 +167,8 @@ bool ShellFileOperations::Run()
 	IFileOperationPtr pFileOperation;
 	if (FAILED(hr = pFileOperation.CreateInstance(CLSID_FileOperation, nullptr, CLSCTX_ALL)))
 	{
-		vector<TCHAR> destStr;
-		vector<TCHAR> sourceStr = GetPathList(true);
+		vector<tchar_t> destStr;
+		vector<tchar_t> sourceStr = GetPathList(true);
 		if (m_function != FO_DELETE)
 			destStr = GetPathList(false);
 
@@ -193,7 +193,7 @@ bool ShellFileOperations::Run()
 		PIDLIST_ABSOLUTE pidl;
 		if (FAILED(hr = SHParseDisplayName(path.c_str(), nullptr, &pidl, 0, nullptr)))
 		{
-			TCHAR szShortPath[32768] = {};
+			tchar_t szShortPath[32768] = {};
 			if (GetShortPathName(TFile(path).wpath().c_str(), szShortPath, sizeof(szShortPath) / sizeof(szShortPath[0])) == 0)
 			{
 				hr = E_FAIL;

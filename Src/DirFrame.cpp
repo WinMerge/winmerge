@@ -135,7 +135,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /**
  * @brief Set statusbar text
  */
-void CDirFrame::SetStatus(LPCTSTR szStatus)
+void CDirFrame::SetStatus(const tchar_t* szStatus)
 {
 	m_wndStatusBar.SetPaneText(0, szStatus);
 }
@@ -153,7 +153,7 @@ void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
  * @brief Set active filter name to statusbar
  * @param [in] szFilter Filtername to show
  */
-void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
+void CDirFrame::SetFilterStatusDisplay(const tchar_t* szFilter)
 {
 	m_wndStatusBar.SetPaneText(PANE_FILTER, szFilter);
 }

@@ -38,12 +38,12 @@ public:
  */
 class SingleItemEnumerator : public Merge7z::DirItemEnumerator
 {
-	LPCTSTR FullPath;
-	LPCTSTR Name;
+	const tchar_t* FullPath;
+	const tchar_t* Name;
 public:
 	virtual UINT Open();
 	virtual Merge7z::Envelope *Enum(Item &);
-	SingleItemEnumerator(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name = _T(""));
+	SingleItemEnumerator(const tchar_t* path, const tchar_t* FullPath, const tchar_t* Name = _T(""));
 };
 
 /**
@@ -72,7 +72,7 @@ private:
 	std::map<String, void *> m_rgImpliedFolders[3];
 //	helper methods
 	const DIFFITEM &Next();
-	bool MultiStepCompressArchive(LPCTSTR);
+	bool MultiStepCompressArchive(const tchar_t*);
 public:
 	enum
 	{
@@ -87,7 +87,7 @@ public:
 	DirItemEnumerator(CDirView *, int);
 	virtual UINT Open();
 	virtual Merge7z::Envelope *Enum(Item &);
-	void CompressArchive(LPCTSTR = 0);
+	void CompressArchive(const tchar_t* = 0);
 };
 
 int NTAPI HasZipSupport();

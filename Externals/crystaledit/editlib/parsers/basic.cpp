@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  (Visual) Basic keywords
-static const TCHAR * s_apszBasicKeywordList[] =
+static const tchar_t * s_apszBasicKeywordList[] =
   {
     _T ("Abs"),
     _T ("AddHandler"),
@@ -308,13 +308,13 @@ static const TCHAR * s_apszBasicKeywordList[] =
   };
 
 static bool
-IsBasicKeyword (const TCHAR *pszChars, int nLength)
+IsBasicKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszBasicKeywordList, pszChars, nLength);
 }
 
 static inline void
-DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
 {
   if (IsBasicKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -347,7 +347,7 @@ DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXT
 }
 
 unsigned
-CrystalLineParser::ParseLineBasic (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineBasic (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -357,7 +357,7 @@ CrystalLineParser::ParseLineBasic (unsigned dwCookie, const TCHAR *pszChars, int
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -381,7 +381,7 @@ CrystalLineParser::ParseLineBasic (unsigned dwCookie, const TCHAR *pszChars, int
             }
           else
             {
-              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*::CharPrev(pszChars, pszChars + nPos)) && !xisalpha (*::CharNext(pszChars + nPos))))
+              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha (*tc::tcharnext(pszChars + nPos))))
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
                 }

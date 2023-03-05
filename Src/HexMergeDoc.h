@@ -90,7 +90,7 @@ public:
 private:
 	bool DoFileSave(int nBuffer);
 	bool DoFileSaveAs(int nBuffer, bool packing = true);
-	HRESULT LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc);
+	HRESULT LoadOneFile(int index, const tchar_t* filename, bool readOnly, const String& strDesc);
 	void RecompareAs(UINT id);
 // Implementation data
 protected:

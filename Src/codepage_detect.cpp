@@ -37,7 +37,7 @@ static const char *EatPrefix(const char *text, const char *prefix)
 {
 	size_t len = strlen(prefix);
 	if (len)
-		if (_strnicmp(text, prefix, len) == 0)
+		if (strncasecmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -86,7 +86,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 		if (charset.empty())
 		{
 			std::string http_equiv(markdown.GetAttribute("http-equiv"));
-			if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
+			if (!http_equiv.empty() && strcasecmp(http_equiv.c_str(), "content-type") == 0)
 			{
 				std::string content(markdown.GetAttribute("content"));
 				if (!content.empty())
@@ -96,7 +96,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 					{
 						char *pchValue = pchKey + cchKey;
 						size_t cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-						if (cchKey >= 7 && _strnicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+						if (cchKey >= 7 && strncasecmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 						{
 							pchValue[cchValue] = '\0';
 							charset = pchValue;

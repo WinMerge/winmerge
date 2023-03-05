@@ -64,7 +64,7 @@ private :
     // Construction
 public :
     explicit CFindTextDlg (CCrystalTextView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection);
+    void SetLastSearch (const tchar_t* sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
 

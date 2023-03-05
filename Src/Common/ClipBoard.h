@@ -8,7 +8,7 @@
 #include <windows.h>
 #include "UnicodeString.h"
 
-inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT); }
+inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(tchar_t) == 1 ? CF_TEXT : CF_UNICODETEXT); }
 
 bool PutToClipboard(const String & text, HWND currentWindowHandle);
 bool GetFromClipboard(String & text, HWND currentWindowHandle);
@@ -36,16 +36,16 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 	strPathsSepSpc = strutils::trim_ws_end(strPathsSepSpc);
 
 	// CF_HDROP
-	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.length());
+	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(tchar_t) * strPaths.length());
 	if (hDrop == nullptr)
 		return;
-	if (TCHAR *pDrop = static_cast<TCHAR *>(GlobalLock(hDrop)))
+	if (tchar_t *pDrop = static_cast<tchar_t *>(GlobalLock(hDrop)))
 	{
 		DROPFILES df = {0};
 		df.pFiles = sizeof(DROPFILES);
-		df.fWide = (sizeof(TCHAR) > 1);
+		df.fWide = (sizeof(tchar_t) > 1);
 		memcpy(pDrop, &df, sizeof(DROPFILES));
-		memcpy((BYTE *)pDrop + sizeof(DROPFILES), (LPCTSTR)strPaths.c_str(), sizeof(TCHAR) * strPaths.length());
+		memcpy((BYTE *)pDrop + sizeof(DROPFILES), (const tchar_t*)strPaths.c_str(), sizeof(tchar_t) * strPaths.length());
 		GlobalUnlock(hDrop);
 	}
 
@@ -63,7 +63,7 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 	}
 
 	// CF_UNICODETEXT
-	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(TCHAR) * (strPathsSepSpc.length() + 1));
+	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(tchar_t) * (strPathsSepSpc.length() + 1));
 	if (hPathnames == nullptr)
 	{
 		GlobalFree(hDrop);
@@ -72,8 +72,8 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 	}
 	if (void *pPathnames = GlobalLock(hPathnames))
 	{
-		memcpy((BYTE *)pPathnames, (LPCTSTR)strPathsSepSpc.c_str(), sizeof(TCHAR) * strPathsSepSpc.length());
-		((TCHAR *)pPathnames)[strPathsSepSpc.length()] = 0;
+		memcpy((BYTE *)pPathnames, (const tchar_t*)strPathsSepSpc.c_str(), sizeof(tchar_t) * strPathsSepSpc.length());
+		((tchar_t *)pPathnames)[strPathsSepSpc.length()] = 0;
 		GlobalUnlock(hPathnames);
 	}
 

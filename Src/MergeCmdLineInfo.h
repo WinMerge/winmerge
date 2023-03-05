@@ -24,7 +24,7 @@
 class MergeCmdLineInfo
 {
 public:
-	explicit MergeCmdLineInfo(const TCHAR *);
+	explicit MergeCmdLineInfo(const tchar_t *);
 
 public:
 
@@ -88,8 +88,8 @@ public:
 	bool m_bEnableExitCode; /**< Returns the comparison result as a process exit code */
 	int m_nLineIndex; /**< Line number to jump after loading files */
 	int m_nCharIndex; /**< Character position to jump after loading files */
-	std::optional<TCHAR> m_cTableDelimiter; /**< Delimiter character for table editing*/
-	std::optional<TCHAR> m_cTableQuote; /* Quote character for table editing *< */
+	std::optional<tchar_t> m_cTableDelimiter; /**< Delimiter character for table editing*/
+	std::optional<tchar_t> m_cTableQuote; /* Quote character for table editing *< */
 	std::optional<bool> m_bTableAllowNewlinesInQuotes; /**< Allow newlines in quotes */
 
 	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
@@ -118,10 +118,10 @@ public:
 
 private:
 
-	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = nullptr);
-	const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
-	const TCHAR *SetConfig(const TCHAR *);
-	void ParseWinMergeCmdLine(const TCHAR *);
+	static const tchar_t *EatParam(const tchar_t *, String &, bool *flag = nullptr);
+	const tchar_t *SetOption(const tchar_t *, const String& key, const tchar_t *value = _T("1"));
+	const tchar_t *SetConfig(const tchar_t *);
+	void ParseWinMergeCmdLine(const tchar_t *);
 	void AddPath(const String &path);
 
 	/** Operator= is not implemented. */

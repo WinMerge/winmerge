@@ -23,12 +23,12 @@ bool PutToClipboard(const String & text, HWND currentWindowHandle)
 	{
 		EmptyClipboard();
 		const size_t dataSiz = text.length() + 1;
-		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, dataSiz * sizeof(TCHAR));
+		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, dataSiz * sizeof(tchar_t));
 		if (hData != nullptr)
 		{
-			if (LPTSTR pszData = static_cast<LPTSTR>(::GlobalLock(hData)))
+			if (tchar_t* pszData = static_cast<tchar_t*>(::GlobalLock(hData)))
 			{
-				_tcscpy_s(pszData, dataSiz, text.c_str());
+				tc::tcslcpy(pszData, dataSiz, text.c_str());
 				GlobalUnlock(hData);
 			}
 			CLIPFORMAT fmt = GetClipTcharTextFormat();
@@ -54,7 +54,7 @@ bool GetFromClipboard(String & text, HWND currentWindowHandle)
 		HGLOBAL hData = GetClipboardData(fmt);
 		if (hData != nullptr)
 		{
-			LPTSTR pszData = (LPTSTR) GlobalLock(hData);
+			tchar_t* pszData = (tchar_t*) GlobalLock(hData);
 			if (pszData != nullptr)
 			{
 				text = pszData;

@@ -102,7 +102,7 @@ void CMergeFrameCommon::SetLastCompareResult(int nResult)
 	theApp.SetLastCompareResult(nResult);
 }
 
-void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int(LPCTSTR, unsigned, unsigned)> fnMessageBox)
+void CMergeFrameCommon::ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int(const tchar_t*, unsigned, unsigned)> fnMessageBox)
 {
 	String s;
 	if (theApp.m_bExitIfNoDiff != MergeCmdLineInfo::ExitQuiet)

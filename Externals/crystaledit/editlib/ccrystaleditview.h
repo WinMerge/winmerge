@@ -47,10 +47,10 @@ class EDITPADC_CLASS CCrystalEditView : public CCrystalTextView
 
 public :
     int m_nLastReplaceLen;
-    CMap<CString, LPCTSTR, CString, LPCTSTR> *m_mapExpand;
+    CMap<CString, const tchar_t*, CString, const tchar_t*> *m_mapExpand;
 
     static HMODULE hSpellDll;
-    static TCHAR szWIspellPath[_MAX_PATH];
+    static tchar_t szWIspellPath[_MAX_PATH];
     static SpellData spellData;
     static int (*SpellInit) (SpellData*);
     static int (*SpellCheck) (SpellData*);
@@ -92,7 +92,7 @@ protected :
     bool DeleteCurrentSelection ();
     bool DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup = true, bool bUpdateCursorPosition = true);
     bool DeleteCurrentColumnSelection2 (int nStartLine, int nEndLine, int nAction);
-    bool InsertColumnText (int nLine, int nPos, LPCTSTR pszText, int cchText, int nAction, bool bFlushUndoGroup = true);
+    bool InsertColumnText (int nLine, int nPos, const tchar_t* pszText, int cchText, int nAction, bool bFlushUndoGroup = true);
 
     // Attributes
 public :
@@ -127,9 +127,9 @@ public :
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1) override;
 
     void SaveLastSearch(LastSearchInfos *lastSearch);
-    bool ReplaceSelection (LPCTSTR pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious = false);
+    bool ReplaceSelection (const tchar_t* pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious = false);
 
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText) override;
+    virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText) override;
 
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def) override;
 

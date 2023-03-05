@@ -75,19 +75,19 @@ public:
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
 	bool TranslateString(const std::string&, String&) const;
-	std::wstring LoadDialogCaption(LPCTSTR) const;
+	std::wstring LoadDialogCaption(const tchar_t*) const;
 
 	CMergeApp();
 	~CMergeApp();
 
 public:
-	void AddToRecentProjectsMRU(LPCTSTR sPathName);
+	void AddToRecentProjectsMRU(const tchar_t* sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
-	void ShowHelp(LPCTSTR helpLocation = nullptr);
+	void ShowHelp(const tchar_t* helpLocation = nullptr);
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
@@ -97,10 +97,10 @@ public:
 	static void SetupTempPath();
 	bool IsReallyIdle() const;
 
-	virtual UINT GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault) override;
-	virtual BOOL WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue) override;
-	virtual CString GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault = NULL) override;
-	virtual BOOL WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue) override;
+	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
+	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;
+	virtual CString GetProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszDefault = NULL) override;
+	virtual BOOL WriteProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszValue) override;
 	virtual HINSTANCE LoadAppLangResourceDLL() override { return nullptr; }; // Disable loading lang resource dll
 
 // Implementation
@@ -112,7 +112,7 @@ protected:
 	public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
-	virtual int DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt);
+	virtual int DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt);
 	virtual BOOL OnIdle(LONG lCount);
 	//}}AFX_VIRTUAL
 

@@ -1086,7 +1086,7 @@ void CWebPageDiffFrame::OnEnChangeWidth()
 		return;
 	String text;
 	m_wndWebPageDiffBar.GetDlgItemText(IDC_WIDTH, text);
-	int v = _ttoi(text.c_str());
+	int v = tc::ttoi(text.c_str());
 	if (v > 0 && v < 32678)
 	{
 		SIZE size = m_pWebDiffWindow->GetSize();
@@ -1101,7 +1101,7 @@ void CWebPageDiffFrame::OnEnChangeHeight()
 		return;
 	String text;
 	m_wndWebPageDiffBar.GetDlgItemText(IDC_HEIGHT, text);
-	int v = _ttoi(text.c_str());
+	int v = tc::ttoi(text.c_str());
 	if (v > 0 && v < 32678)
 	{
 		SIZE size = m_pWebDiffWindow->GetSize();
@@ -1116,8 +1116,8 @@ void CWebPageDiffFrame::OnEnChangeZoom()
 		return;
 	String text;
 	m_wndWebPageDiffBar.GetDlgItemText(IDC_ZOOM, text);
-	TCHAR* endptr = nullptr;
-	double v = _tcstod(text.c_str(), &endptr);
+	tchar_t* endptr = nullptr;
+	double v = tc::tcstod(text.c_str(), &endptr);
 	if ((* endptr == '\0' || *endptr == '%') && v >= 25.0 && v <= 500.0)
 		m_pWebDiffWindow->SetZoom(v / 100.0);
 }
@@ -1141,8 +1141,8 @@ void CWebPageDiffFrame::OnKillFocusBarControls()
 
 void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sIdx[32] = { 0 };
-	TCHAR sCnt[32] = { 0 };
+	tchar_t sIdx[32] = { 0 };
+	tchar_t sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_pWebDiffWindow->GetDiffCount();
 	
@@ -1629,7 +1629,7 @@ void CWebPageDiffFrame::OnRefresh()
 				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
 				{
 					CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-						[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+						[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
 				}
 				return S_OK;
 			})

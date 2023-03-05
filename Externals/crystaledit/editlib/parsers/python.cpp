@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  Python 2.6 keywords
-static const TCHAR * s_apszPythonKeywordList[] =
+static const tchar_t * s_apszPythonKeywordList[] =
   {
     _T ("and"),
     _T ("as"),
@@ -59,7 +59,7 @@ static const TCHAR * s_apszPythonKeywordList[] =
     _T ("yield"),
   };
 
-static const TCHAR * s_apszUser1KeywordList[] =
+static const tchar_t * s_apszUser1KeywordList[] =
   {
     _T ("AttributeError"),
     _T ("EOFError"),
@@ -106,7 +106,7 @@ static const TCHAR * s_apszUser1KeywordList[] =
     _T ("tracebacklimit"),
   };
 
-static const TCHAR * s_apszUser2KeywordList[] =
+static const tchar_t * s_apszUser2KeywordList[] =
   {
     _T ("__abs__"),
     _T ("__add__"),
@@ -164,25 +164,25 @@ static const TCHAR * s_apszUser2KeywordList[] =
   };
 
 static bool
-IsPythonKeyword (const TCHAR *pszChars, int nLength)
+IsPythonKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszPythonKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (const TCHAR *pszChars, int nLength)
+IsUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (const TCHAR *pszChars, int nLength)
+IsUser2Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLinePython (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLinePython (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -192,7 +192,7 @@ CrystalLineParser::ParseLinePython (unsigned dwCookie, const TCHAR *pszChars, in
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -216,7 +216,7 @@ CrystalLineParser::ParseLinePython (unsigned dwCookie, const TCHAR *pszChars, in
             }
           else
             {
-              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*::CharPrev(pszChars, pszChars + nPos)) && !xisalpha (*::CharNext(pszChars + nPos))))
+              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha (*tc::tcharnext(pszChars + nPos))))
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
                 }
@@ -248,7 +248,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -259,7 +259,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;

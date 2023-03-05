@@ -131,7 +131,7 @@ void CPatchDlg::OnOK()
 	{
 		if (m_fileResult.length() == 0)
 		{
-			TCHAR szTempFile[MAX_PATH];
+			tchar_t szTempFile[MAX_PATH];
 			::GetTempFileName(env::GetTemporaryPath().c_str(), _T("pat"), 0, szTempFile);
 			m_fileResult = szTempFile;
 			m_ctlResult.SetWindowText(m_fileResult.c_str());

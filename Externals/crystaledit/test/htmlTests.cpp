@@ -15,7 +15,7 @@ namespace test
 			std::unique_ptr<CrystalLineParser::TEXTBLOCK[]> pblocks(new CrystalLineParser::TEXTBLOCK[256]);
 			struct TestData {
 				unsigned dwCookie;
-				TCHAR *pszChars;
+				tchar_t *pszChars;
 			} data[] = {
 				//                                             1         2         3         4         5
 				//                                   012345678901234567890123456789012345678901234657890123456

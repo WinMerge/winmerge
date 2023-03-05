@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -23,7 +23,7 @@
 #define new DEBUG_NEW
 #endif
 
-static const TCHAR * s_apszCssKeywordList[] =
+static const tchar_t * s_apszCssKeywordList[] =
   {
     // CSS 1, CSS 2.1, CSS 3
 
@@ -454,7 +454,7 @@ static const TCHAR * s_apszCssKeywordList[] =
     nullptr
   };
 
-static const TCHAR * s_apszCssExKeywordList[] =
+static const tchar_t * s_apszCssExKeywordList[] =
   {
     // experimental or deprecated keywords
 
@@ -510,11 +510,11 @@ static const TCHAR * s_apszCssExKeywordList[] =
   };
 
 static bool
-IsXKeyword (const TCHAR *apszKeywords[], const TCHAR *pszChars, int nLength)
+IsXKeyword (const tchar_t *apszKeywords[], const tchar_t *pszChars, int nLength)
 {
   for (int L = 0; apszKeywords[L] != nullptr; L++)
     {
-      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
+      if (tc::tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
             && apszKeywords[L][nLength] == 0)
         return true;
     }
@@ -522,32 +522,32 @@ IsXKeyword (const TCHAR *apszKeywords[], const TCHAR *pszChars, int nLength)
 }
 
 static bool
-IsCssKeyword(const TCHAR *pszChars, int nLength)
+IsCssKeyword(const tchar_t *pszChars, int nLength)
 {
   return IsXKeyword (s_apszCssKeywordList, pszChars, nLength);
 }
 
 static bool
-IsCssExKeyword(const TCHAR *pszChars, int nLength)
+IsCssExKeyword(const tchar_t *pszChars, int nLength)
 {
   return IsXKeyword (s_apszCssExKeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineCss (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineCss (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE);
 
   bool bFirstChar = (dwCookie & ~(COOKIE_EXT_COMMENT|COOKIE_EXT_DEFINITION|COOKIE_EXT_VALUE)) == 0;
-  const TCHAR *pszCommentBegin = nullptr;
-  const TCHAR *pszCommentEnd = nullptr;
+  const tchar_t *pszCommentBegin = nullptr;
+  const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {

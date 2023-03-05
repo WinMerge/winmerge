@@ -15,7 +15,7 @@
 using std::vector;
 
 /** @brief Setting name for default colors. */
-static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
+static const tchar_t DefColorsPath[] =_T("DefaultSyntaxColors");
 
 namespace Options { namespace SyntaxColors {
 

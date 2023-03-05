@@ -136,7 +136,7 @@ int CRegOptionsMgr::LoadValueFromBuf(const String& strName, DWORD type, const BY
 	int valType = value.GetType();
 	if (type == REG_SZ && valType == varprop::VT_STRING )
 	{
-		value.SetString((TCHAR *)&data[0]);
+		value.SetString((tchar_t *)&data[0]);
 		retVal = Set(strName, value);
 	}
 	else if (type == REG_DWORD)
@@ -194,7 +194,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
-		data.resize(size + sizeof(TCHAR), 0);
+		data.resize(size + sizeof(tchar_t), 0);
 
 		// Get data
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
@@ -232,13 +232,13 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, const String& strValueName,
 		if (strVal.length() > 0)
 		{
 			retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_SZ,
-					(LPBYTE)strVal.c_str(), (DWORD)(strVal.length() + 1) * sizeof(TCHAR));
+					(LPBYTE)strVal.c_str(), (DWORD)(strVal.length() + 1) * sizeof(tchar_t));
 		}
 		else
 		{
-			TCHAR str[1] = {0};
+			tchar_t str[1] = {0};
 			retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_SZ,
-					(LPBYTE)&str, 1 * sizeof(TCHAR));
+					(LPBYTE)&str, 1 * sizeof(tchar_t));
 		}
 	}
 	else if (valType == varprop::VT_INT)
@@ -346,7 +346,7 @@ int CRegOptionsMgr::InitOption(const String& name, const String& defaultValue)
 	return InitOption(name, defValue);
 }
 
-int CRegOptionsMgr::InitOption(const String& name, const TCHAR *defaultValue)
+int CRegOptionsMgr::InitOption(const String& name, const tchar_t *defaultValue)
 {
 	return InitOption(name, String(defaultValue));
 }
@@ -436,7 +436,7 @@ int CRegOptionsMgr::SaveOption(const String& name, const String& value)
 /**
  * @brief Set new string value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(const String& name, const TCHAR *value)
+int CRegOptionsMgr::SaveOption(const String& name, const tchar_t *value)
 {
 	return SaveOption(name, String(value));
 }

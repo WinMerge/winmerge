@@ -39,15 +39,15 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 {
 	std::vector<PluginForFile::PipelineItem> result;
 	bool inQuotes = false;
-	TCHAR quoteChar = 0;
+	tchar_t quoteChar = 0;
 	std::vector<String> args;
 	String token, name;
 	errorMessage.clear();
-	const TCHAR* p = pluginPipeline.c_str();
-	while (_istspace(*p)) p++;
+	const tchar_t* p = pluginPipeline.c_str();
+	while (tc::istspace(*p)) p++;
 	while (*p)
 	{
-		TCHAR sep = 0;
+		tchar_t sep = 0;
 		while (*p)
 		{
 			if (!inQuotes)
@@ -57,7 +57,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 					inQuotes = true;
 					quoteChar = *p;
 				}
-				else if (_istspace(*p))
+				else if (tc::istspace(*p))
 				{
 					sep = *p;
 					break;
@@ -99,7 +99,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		{
 			args.push_back(token);
 		}
-		while (_istspace(*p)) p++;
+		while (tc::istspace(*p)) p++;
 		if (*p == '|')
 			sep = *p;
 		if (sep == '|')
@@ -169,12 +169,12 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	for (const auto& arg : args)
 	{
 		String newarg;
-		for (const TCHAR* p = arg.c_str(); *p; ++p)
+		for (const tchar_t* p = arg.c_str(); *p; ++p)
 		{
 			if (*p == '%' && *(p + 1) != 0)
 			{
 				++p;
-				TCHAR c = *p;
+				tchar_t c = *p;
 				if (c == '%')
 				{
 					newarg += '%';

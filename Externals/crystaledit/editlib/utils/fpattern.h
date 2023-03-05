@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include "ctchar.h"
+
 /******************************************************************************
  * fpattern.h
  *  Functions for matching filename patterns to filenames.
@@ -140,7 +142,7 @@
 #define FPAT_SET_NOT    _T('!') /* Set exclusion        */
 #define FPAT_SET_THRU   _T('-') /* Set range of chars       */
 
-int EDITPADC_CLASS fpattern_isvalid (LPCTSTR pat);
-int EDITPADC_CLASS fpattern_match (LPCTSTR pat, LPCTSTR fname);
-int EDITPADC_CLASS fpattern_matchn (LPCTSTR pat, LPCTSTR fname);
+int EDITPADC_CLASS fpattern_isvalid (const tchar_t* pat);
+int EDITPADC_CLASS fpattern_match (const tchar_t* pat, const tchar_t* fname);
+int EDITPADC_CLASS fpattern_matchn (const tchar_t* pat, const tchar_t* fname);
 

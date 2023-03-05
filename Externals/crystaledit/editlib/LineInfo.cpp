@@ -63,7 +63,7 @@ void LineInfo::FreeBuffer()
  * @param [in] pszLine Line data.
  * @param [in] nLength Line length.
  */
-void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
+void LineInfo::Create(const tchar_t* pszLine, size_t nLength)
 {
   if (nLength == 0)
     {
@@ -78,9 +78,9 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
   ASSERT (m_nMax >= m_nLength + 1);
   if (m_pcLine != nullptr)
     delete[] m_pcLine;
-  m_pcLine = new TCHAR[m_nMax];
-  ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
-  const size_t dwLen = sizeof (TCHAR) * m_nLength;
+  m_pcLine = new tchar_t[m_nMax];
+  ZeroMemory(m_pcLine, m_nMax * sizeof(tchar_t));
+  const size_t dwLen = sizeof (tchar_t) * m_nLength;
   CopyMemory (m_pcLine, pszLine, dwLen);
   m_pcLine[m_nLength] = '\0';
 
@@ -103,8 +103,8 @@ void LineInfo::CreateEmpty()
   m_nEolChars = 0;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
   delete [] m_pcLine;
-  m_pcLine = new TCHAR[m_nMax];
-  ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
+  m_pcLine = new tchar_t[m_nMax];
+  ZeroMemory(m_pcLine, m_nMax * sizeof(tchar_t));
 }
 
 /**
@@ -112,7 +112,7 @@ void LineInfo::CreateEmpty()
  * @param [in] pszChars String to append to the line.
  * @param [in] nLength Length of the string to append.
  */
-void LineInfo::Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol)
+void LineInfo::Append(const tchar_t* pszChars, size_t nLength, bool bDetectEol)
 {
   ASSERT (nLength <= INT_MAX);		// assert "positive int"
   size_t nBufNeeded = m_nLength + m_nEolChars + nLength + 1;
@@ -121,14 +121,14 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol)
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
       ASSERT (m_nMax < INT_MAX);
       ASSERT (m_nMax >= m_nLength + nLength);
-      TCHAR *pcNewBuf = new TCHAR[m_nMax];
+      tchar_t *pcNewBuf = new tchar_t[m_nMax];
       if (FullLength() > 0)
-        memcpy (pcNewBuf, m_pcLine, sizeof (TCHAR) * (FullLength() + 1));
+        memcpy (pcNewBuf, m_pcLine, sizeof (tchar_t) * (FullLength() + 1));
       delete[] m_pcLine;
       m_pcLine = pcNewBuf;
     }
 
-  memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (TCHAR) * nLength);
+  memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (tchar_t) * nLength);
   m_nLength += nLength + m_nEolChars;
   m_pcLine[m_nLength] = '\0';
 
@@ -165,7 +165,7 @@ bool LineInfo::HasEol() const
  * @brief Get line's EOL bytes.
  * @return EOL bytes, or `nullptr` if no EOL bytes.
  */
-LPCTSTR LineInfo::GetEol() const
+const tchar_t* LineInfo::GetEol() const
 {
   if (HasEol())
     return &m_pcLine[Length()];
@@ -178,13 +178,13 @@ LPCTSTR LineInfo::GetEol() const
  * @param [in] lpEOL New EOL bytes.
  * @return true if succeeded, false if failed (nothing to change).
  */
-bool LineInfo::ChangeEol(LPCTSTR lpEOL)
+bool LineInfo::ChangeEol(const tchar_t* lpEOL)
 {
-  const int nNewEolChars = (int) _tcslen(lpEOL);
+  const int nNewEolChars = (int) tc::tcslen(lpEOL);
 
   // Check if we really are changing EOL.
   if (nNewEolChars == m_nEolChars)
-    if (_tcscmp(m_pcLine + Length(), lpEOL) == 0)
+    if (tc::tcscmp(m_pcLine + Length(), lpEOL) == 0)
       return false;
 
   size_t nBufNeeded = m_nLength + nNewEolChars+1;
@@ -193,15 +193,15 @@ bool LineInfo::ChangeEol(LPCTSTR lpEOL)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
       ASSERT (m_nMax >= nBufNeeded);
-      TCHAR *pcNewBuf = new TCHAR[m_nMax];
+      tchar_t *pcNewBuf = new tchar_t[m_nMax];
       if (FullLength() > 0)
-        memcpy (pcNewBuf, m_pcLine, sizeof (TCHAR) * (FullLength() + 1));
+        memcpy (pcNewBuf, m_pcLine, sizeof (tchar_t) * (FullLength() + 1));
       delete[] m_pcLine;
       m_pcLine = pcNewBuf;
     }
   
   // copy also the 0 to zero-terminate the line
-  memcpy (m_pcLine + m_nLength, lpEOL, sizeof (TCHAR) * (nNewEolChars + 1));
+  memcpy (m_pcLine + m_nLength, lpEOL, sizeof (tchar_t) * (nNewEolChars + 1));
   m_nEolChars = nNewEolChars;
   return true;
 }
@@ -217,7 +217,7 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
     {
       // preserve characters after deleted range by shifting up
       memcpy (m_pcLine + nStartChar, m_pcLine + nEndChar,
-              sizeof (TCHAR) * (FullLength() - nEndChar));
+              sizeof (tchar_t) * (FullLength() - nEndChar));
     }
   size_t nDelete = (nEndChar - nStartChar);
   if (nDelete <= m_nLength)
@@ -256,8 +256,8 @@ void LineInfo::DeleteEnd(size_t nStartChar)
 void LineInfo::CopyFrom(const LineInfo &li)
 {
   delete [] m_pcLine;
-  m_pcLine = new TCHAR[li.m_nMax];
-  memcpy(m_pcLine, li.m_pcLine, li.m_nMax * sizeof(TCHAR));
+  m_pcLine = new tchar_t[li.m_nMax];
+  memcpy(m_pcLine, li.m_pcLine, li.m_nMax * sizeof(tchar_t));
 }
 
 /**
@@ -277,7 +277,7 @@ void LineInfo::RemoveEol()
  * @param [in] index Index of first character to get.
  * @note Make a copy from returned string, as it can get reallocated.
  */
-LPCTSTR LineInfo::GetLine(size_t index) const
+const tchar_t* LineInfo::GetLine(size_t index) const
 {
   return &m_pcLine[index];
 }

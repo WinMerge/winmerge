@@ -229,7 +229,7 @@ void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool
 	int nBufSize = 1;
 	for (int L = m_ptDrawSelStart.y; L <= m_ptDrawSelEnd.y; L++)
 		nBufSize += GetLineLength (L) + sEol.GetLength ();
-	LPTSTR pszBuf = text.GetBuffer (nBufSize);
+	tchar_t* pszBuf = text.GetBuffer (nBufSize);
 
 	for (int I = m_ptDrawSelStart.y; I <= m_ptDrawSelEnd.y; I++)
 	{
@@ -239,9 +239,9 @@ void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool
 
 		int nSelLeft, nSelRight;
 		GetColumnSelection (I, nSelLeft, nSelRight);
-		memcpy (pszBuf, GetLineChars (I) + nSelLeft, sizeof (TCHAR) * (nSelRight - nSelLeft));
+		memcpy (pszBuf, GetLineChars (I) + nSelLeft, sizeof (tchar_t) * (nSelRight - nSelLeft));
 		pszBuf += (nSelRight - nSelLeft);
-		memcpy (pszBuf, sEol, sizeof (TCHAR) * sEol.GetLength ());
+		memcpy (pszBuf, sEol, sizeof (tchar_t) * sEol.GetLength ());
 		pszBuf += sEol.GetLength ();
 	}
 	pszBuf[0] = 0;
@@ -258,12 +258,12 @@ HGLOBAL CGhostTextView::PrepareDragData ()
 	CString text;
 	GetTextWithoutEmptys (m_ptDrawSelStart.y, m_ptDrawSelStart.x, m_ptDrawSelEnd.y, m_ptDrawSelEnd.x, text);
 	int cchText = text.GetLength();
-	SIZE_T cbData = (cchText + 1) * sizeof(TCHAR);
+	SIZE_T cbData = (cchText + 1) * sizeof(tchar_t);
 	HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
 	if (hData == nullptr)
 		return nullptr;
 
-	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
+	tchar_t* pszData = (tchar_t*)::GlobalLock (hData);
 	if (pszData != nullptr)
 		memcpy (pszData, text, cbData);
 	::GlobalUnlock (hData);

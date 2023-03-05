@@ -2274,7 +2274,7 @@ void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
  * @sa CCrystalEditView::OnEditOperation()
  * @todo More edit-events for rescan delaying?
  */
-void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText)
+void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t cchText)
 {
 	if (!QueryEditable())
 	{
@@ -3444,7 +3444,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		CString sSpaces(' ', static_cast<int>(nNumWidth - strutils::to_str(line + 1).length()));
 		
 		strText += sSpaces;
-		strNumLine.Format(_T("%d: %s"), line + 1, (LPCTSTR)strLine);
+		strNumLine.Format(_T("%d: %s"), line + 1, (const tchar_t*)strLine);
 		strText += strNumLine;
  	}
 	PutToClipboard(strText, strText.GetLength(), m_bRectangularSelection);
@@ -3775,7 +3775,7 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 				return 0;
 			pView->WrapLineCached( nLineIndex, pView->GetScreenChars(), nullptr, nBreaks[nPane] );
 		}
-		nMaxBreaks = max(nMaxBreaks, nBreaks[nPane]);
+		nMaxBreaks = (std::max)(nMaxBreaks, nBreaks[nPane]);
 	}
 
 	if (nBreaks[m_nThisPane] < nMaxBreaks)

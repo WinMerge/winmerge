@@ -45,11 +45,11 @@ private:
 public:
 	explicit CVersionInfo(bool bVersionOnly);
 	explicit CVersionInfo(WORD wLanguage);
-	CVersionInfo(LPCTSTR szFileToVersion,
+	CVersionInfo(const tchar_t* szFileToVersion,
 				   bool bDllVersion);
-	CVersionInfo(LPCTSTR szFileToVersion = nullptr,
-				   LPCTSTR szLanguage = nullptr,
-				   LPCTSTR szCodepage = nullptr);
+	CVersionInfo(const tchar_t* szFileToVersion = nullptr,
+				   const tchar_t* szLanguage = nullptr,
+				   const tchar_t* szCodepage = nullptr);
 	explicit CVersionInfo(HINSTANCE hModule);
 	String GetFileVersion() const;
 	String GetCompanyName() const;
@@ -71,7 +71,7 @@ protected:
 	void GetVersionInfo();
 	void GetFixedVersionInfo();
 	void QueryStrings();
-	void QueryValue(LPCTSTR szId, String& s);
+	void QueryValue(const tchar_t* szId, String& s);
 	bool GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
 };
 

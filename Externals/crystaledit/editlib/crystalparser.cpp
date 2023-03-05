@@ -53,7 +53,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 	int			nTabWidth = m_pTextView->GetTabSize();
 	int			nLineCharCount = 0;
 	int			nCharCount = 0;
-	LPCTSTR	szLine = m_pTextView->GetLineChars( nLineIndex );
+	const tchar_t*	szLine = m_pTextView->GetLineChars( nLineIndex );
 	int			nLastBreakPos = 0;
 	int			nLastCharBreakPos = 0;
 	bool		bBreakable = false;
@@ -72,7 +72,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 		const int quote = m_pTextView->m_pTextBuffer->GetFieldEnclosure ();
 		for (int i = 0; i < nLineLength; )
 		{
-			TCHAR ch = szLine[i];
+			tchar_t ch = szLine[i];
 			int previ = i;
 			int nCharCountPrev = nCharCount;
 
@@ -234,7 +234,7 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, std::vector<in
 		//    for( int i = 0; i < nLineLength; i = m_iterChar.next())
 		for( int i = 0; i < nLineLength; i += U16_IS_SURROGATE(szLine[i]) ? 2 : 1)
 		{
-			TCHAR ch = szLine[i];
+			tchar_t ch = szLine[i];
 			// remember position of whitespace for wrap
 			if( bBreakable )
 			{

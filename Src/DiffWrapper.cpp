@@ -811,11 +811,7 @@ String CDiffWrapper::FormatSwitchString() const
 
 	if ((m_options.m_outputStyle == DIFF_OUTPUT_CONTEXT || m_options.m_outputStyle == DIFF_OUTPUT_UNIFIED) &&
 		m_options.m_contextLines > 0)
-	{
-		TCHAR tmpNum[5] = {0};
-		_itot_s(m_options.m_contextLines, tmpNum, 10);
-		switches += tmpNum;
-	}
+		switches += strutils::to_str(m_options.m_contextLines);
 
 	if (ignore_all_space_flag > 0)
 		switches += _T(" -w");
@@ -1229,7 +1225,7 @@ void CDiffWrapper::WritePatchFileHeader(enum output_style tOutput_style, bool bA
 	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
-		const TCHAR *mode = (bAppendFiles ? _T("a+") : _T("w+"));
+		const tchar_t *mode = (bAppendFiles ? _T("a+") : _T("w+"));
 		if (cio::tfopen_s(&outfile, m_sPatchFile, mode) != 0)
 			outfile = nullptr;
 	}
@@ -1328,8 +1324,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		if (encoding.m_unicoding != ucr::NONE)
 			encoding.SetUnicoding(ucr::UTF8);
 		ucr::buffer buf(256);
-		ucr::convert(ucr::CP_TCHAR, reinterpret_cast<const unsigned char *>(path.c_str()), static_cast<int>(path.size() * sizeof(TCHAR)), encoding.m_codepage, &buf);
-		return _strdup(reinterpret_cast<const char *>(buf.ptr));
+		ucr::convert(ucr::CP_TCHAR, reinterpret_cast<const unsigned char *>(path.c_str()), static_cast<int>(path.size() * sizeof(tchar_t)), encoding.m_codepage, &buf);
+		return strdup(reinterpret_cast<const char *>(buf.ptr));
 	};
 	inf_patch[0].name = strdupPath(path1, inf_patch[0].buffer, inf_patch[0].buffered_chars);
 	inf_patch[1].name = strdupPath(path2, inf_patch[1].buffer, inf_patch[1].buffered_chars);
@@ -1351,7 +1347,7 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	outfile = nullptr;
 	if (!m_sPatchFile.empty())
 	{
-		const TCHAR *mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
+		const tchar_t *mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
 		if (cio::tfopen_s(&outfile, m_sPatchFile, mode) != 0)
 			outfile = nullptr;
 	}
@@ -1365,12 +1361,12 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	if (strcmp(inf[0].name, "NUL") == 0)
 	{
 		free((void *)inf_patch[0].name);
-		inf_patch[0].name = _strdup("/dev/null");
+		inf_patch[0].name = strdup("/dev/null");
 	}
 	if (strcmp(inf[1].name, "NUL") == 0)
 	{
 		free((void *)inf_patch[1].name);
-		inf_patch[1].name = _strdup("/dev/null");
+		inf_patch[1].name = strdup("/dev/null");
 	}
 
 	// Print "command line"

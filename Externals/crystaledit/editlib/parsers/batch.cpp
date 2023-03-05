@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  Batch keywords
-static const TCHAR * s_apszBatKeywordList[] =
+static const tchar_t * s_apszBatKeywordList[] =
   {
     _T (".AND."),
     _T (".OR."),
@@ -221,7 +221,7 @@ static const TCHAR * s_apszBatKeywordList[] =
     _T ("Y"),
   };
 
-static const TCHAR * s_apszUser1KeywordList[] =
+static const tchar_t * s_apszUser1KeywordList[] =
   {
     _T ("APPEND"),
     _T ("ATTRIB"),
@@ -291,7 +291,7 @@ static const TCHAR * s_apszUser1KeywordList[] =
     _T ("XCOPY"),
   };
 
-static const TCHAR * s_apszUser2KeywordList[] =
+static const tchar_t * s_apszUser2KeywordList[] =
   {
     _T ("@ABS"),
     _T ("@AFSCELL"),
@@ -646,13 +646,13 @@ static const TCHAR * s_apszUser2KeywordList[] =
   };
 
 static bool
-IsBatKeyword (const TCHAR *pszChars, int nLength)
+IsBatKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszBatKeywordList, pszChars, (size_t)nLength);
 }
 
 static bool
-IsUser1Keyword (const TCHAR *pszChars, int nLength)
+IsUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   if (nLength < 4 || pszChars[nLength - 4] != '.')
     {
@@ -661,17 +661,17 @@ IsUser1Keyword (const TCHAR *pszChars, int nLength)
   else
     {
       const int bufsiz = 13;
-      TCHAR buffer[bufsiz];
-      for (int L = 0; L < sizeof(s_apszUser1KeywordList)/sizeof(TCHAR *); L++)
+      tchar_t buffer[bufsiz];
+      for (int L = 0; L < sizeof(s_apszUser1KeywordList)/sizeof(tchar_t *); L++)
         {
-          _tcscpy_s (buffer, bufsiz, s_apszUser1KeywordList[L]);
-          _tcscat_s (buffer, bufsiz, _T (".COM"));
-          if (_tcsnicmp (buffer, pszChars, nLength) == 0
+          tc::tcslcpy (buffer, bufsiz, s_apszUser1KeywordList[L]);
+          tc::tcslcat (buffer, bufsiz, _T (".COM"));
+          if (tc::tcsnicmp (buffer, pszChars, nLength) == 0
                 && buffer[nLength] == 0)
             return true;
-          _tcscpy_s (buffer, bufsiz, s_apszUser1KeywordList[L]);
-          _tcscat_s (buffer ,bufsiz, _T (".EXE"));
-          if (_tcsnicmp (buffer, pszChars, nLength) == 0
+          tc::tcslcpy (buffer, bufsiz, s_apszUser1KeywordList[L]);
+          tc::tcslcat (buffer ,bufsiz, _T (".EXE"));
+          if (tc::tcsnicmp (buffer, pszChars, nLength) == 0
                 && buffer[nLength] == 0)
             return true;
         }
@@ -681,13 +681,13 @@ IsUser1Keyword (const TCHAR *pszChars, int nLength)
 
 
 static bool
-IsUser2Keyword (const TCHAR *pszChars, int nLength)
+IsUser2Keyword (const tchar_t *pszChars, int nLength)
 {
     return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineBatch (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineBatch (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie;
@@ -698,7 +698,7 @@ CrystalLineParser::ParseLineBatch (unsigned dwCookie, const TCHAR *pszChars, int
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -758,7 +758,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -769,7 +769,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;
@@ -804,7 +804,7 @@ out:
 
       if (bFirstChar)
         {
-          if (nLength >= I + 3 && !_tcsnicmp (pszChars + I, _T ("REM"), 3) && (xisspace (pszChars[I + 3]) || nLength == I + 3))
+          if (nLength >= I + 3 && !tc::tcsnicmp (pszChars + I, _T ("REM"), 3) && (xisspace (pszChars[I + 3]) || nLength == I + 3))
             {
               DEFINE_BLOCK (I, COLORINDEX_COMMENT);
               dwCookie |= COOKIE_COMMENT;
@@ -849,8 +849,8 @@ out:
                   if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
                     {
                       DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                      if ((I - nIdentBegin ==4 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
-                          (I - nIdentBegin ==5 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
+                      if ((I - nIdentBegin ==4 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
+                          (I - nIdentBegin ==5 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
                           )
                         {
                           dwCookie=COOKIE_PREPROCESSOR;
@@ -881,8 +881,8 @@ out:
       if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
           DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-          if ((I - nIdentBegin ==4 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
-                (I - nIdentBegin ==5 && !_tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
+          if ((I - nIdentBegin ==4 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
+                (I - nIdentBegin ==5 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
                 )
             {
               dwCookie=COOKIE_PREPROCESSOR;

@@ -45,14 +45,14 @@ public :
 	void SetTempPath(const String &path);
 	String GetTempFileName() const { return m_strTempFileName; }
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
+		const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
 		CDWordArray *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
-	int LoadFromFile(LPCTSTR pszFileName, PackingInfo& infoUnpacker,
-		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
+	int LoadFromFile(const tchar_t* pszFileName, PackingInfo& infoUnpacker,
+		const tchar_t* filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
 		PackingInfo& infoUnpacker, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC,

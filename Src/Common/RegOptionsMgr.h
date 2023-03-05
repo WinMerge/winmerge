@@ -27,14 +27,14 @@ public:
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) override;
 	virtual int InitOption(const String& name, const String& defaultValue) override;
-	virtual int InitOption(const String& name, const TCHAR *defaultValue) override;
+	virtual int InitOption(const String& name, const tchar_t *defaultValue) override;
 	virtual int InitOption(const String& name, int defaultValue, bool serializable=true) override;
 	virtual int InitOption(const String& name, bool defaultValue) override;
 
 	virtual int SaveOption(const String& name) override;
 	virtual int SaveOption(const String& name, const varprop::VariantValue& value) override;
 	virtual int SaveOption(const String& name, const String& value) override;
-	virtual int SaveOption(const String& name, const TCHAR *value) override;
+	virtual int SaveOption(const String& name, const tchar_t *value) override;
 	virtual int SaveOption(const String& name, int value) override;
 	virtual int SaveOption(const String& name, bool value) override;
 

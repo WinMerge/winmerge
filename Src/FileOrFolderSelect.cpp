@@ -24,7 +24,7 @@
 
 static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 		LPARAM lpData);
-static void ConvertFilter(LPTSTR filterStr);
+static void ConvertFilter(tchar_t* filterStr);
 
 /** @brief Last selected folder for folder selection dialog. */
 static String LastSelectedFolder;
@@ -48,14 +48,14 @@ static String LastSelectedFolder;
  * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
 bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
-		LPCTSTR initialPath /*= nullptr*/, const String& stitle /*=_T("")*/,
-		const String& sfilter /*=_T("")*/, LPCTSTR defaultExtension /*= nullptr*/)
+		const tchar_t* initialPath /*= nullptr*/, const String& stitle /*=_T("")*/,
+		const String& sfilter /*=_T("")*/, const tchar_t* defaultExtension /*= nullptr*/)
 {
 	path.clear(); // Clear output param
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	TCHAR sSelectedFile[MAX_PATH_FULL] = {0};
+	tchar_t sSelectedFile[MAX_PATH_FULL] = {0};
 	String sInitialDir;
 
 	// check if specified path is a file
@@ -87,7 +87,7 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
-	LPTSTR filtersStr = &*filters.begin();
+	tchar_t* filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
 	OPENFILENAME_NT4 ofn = { sizeof OPENFILENAME_NT4 };
@@ -125,13 +125,13 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
  * @param [in] hwndOwner Handle to owner window or `nullptr`
  * @return `true` if valid folder selected (not cancelled)
  */
-bool SelectFolder(String& path, LPCTSTR root_path /*= nullptr*/, 
+bool SelectFolder(String& path, const tchar_t* root_path /*= nullptr*/, 
 			const String& stitle /*=_T("")*/, 
 			HWND hwndOwner /*= nullptr*/) 
 {
 	BROWSEINFO bi;
 	LPITEMIDLIST pidl;
-	TCHAR szPath[MAX_PATH_FULL] = {0};
+	tchar_t szPath[MAX_PATH_FULL] = {0};
 	bool bRet = false;
 	String title = stitle;
 	if (root_path == nullptr)
@@ -177,11 +177,11 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
 	else if (uMsg == BFFM_VALIDATEFAILED)
 	{
 		String strMessage = 
-			strutils::format_string1(_("%1 does not exist. Do you want to create it?"), (TCHAR *)lParam);
+			strutils::format_string1(_("%1 does not exist. Do you want to create it?"), (tchar_t *)lParam);
 		int answer = MessageBox(hwnd, strMessage.c_str(), nullptr, MB_YESNO);
 		if (answer == IDYES)
 		{
-			if (!paths::CreateIfNeeded((TCHAR*)lParam))
+			if (!paths::CreateIfNeeded((tchar_t*)lParam))
 			{
 				MessageBox(hwnd, _("Failed to create folder.").c_str(), nullptr, MB_OK | MB_ICONWARNING);
 			}
@@ -205,13 +205,13 @@ static int CALLBACK BrowseCallbackProc(HWND hwnd, UINT uMsg, LPARAM lParam,
  * @param [in] initialPath Initial file or folder shown/selected.
  * @return `true` if user choosed a file/folder, `false` if user canceled dialog.
  */
-bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*= nullptr*/)
+bool SelectFileOrFolder(HWND parent, String& path, const tchar_t* initialPath /*= nullptr*/)
 {
 	String title = _("Open");
 
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
-	TCHAR sSelectedFile[MAX_PATH_FULL];
+	tchar_t sSelectedFile[MAX_PATH_FULL];
 
 	// check if specified path is a file
 	if (initialPath!=nullptr && initialPath[0] != '\0')
@@ -231,7 +231,7 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*= nullp
 
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
-	LPTSTR filtersStr = &*filters.begin();
+	tchar_t* filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
 	String dirSelTag = _("Folder Selection");
@@ -280,10 +280,10 @@ bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR initialPath /*= nullp
  * - in Mask string to convert
  * - out Converted string
  */
-static void ConvertFilter(LPTSTR filterStr)
+static void ConvertFilter(tchar_t* filterStr)
 {
-	TCHAR *ch;
-	while ( (ch = _tcschr(filterStr, '|')) != nullptr)
+	tchar_t *ch;
+	while ( (ch = tc::tcschr(filterStr, '|')) != nullptr)
 	{
 		filterStr = ch + 1;
 		*ch = '\0';

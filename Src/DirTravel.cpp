@@ -88,7 +88,7 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 		do
 		{
 			bool bIsDirectory = (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) > 0;
-			if (bIsDirectory && _tcsstr(_T(".."), ff.cFileName))
+			if (bIsDirectory && tc::tcsstr(_T(".."), ff.cFileName))
 				continue;
 
 			DirItem ent;
@@ -125,16 +125,16 @@ static void LoadFiles(const String& sDir, DirItemArray * dirs, DirItemArray * fi
 
 static inline int collate(const String &str1, const String &str2)
 {
-	return _tcscoll(str1.c_str(), str2.c_str());
+	return tc::tcscoll(str1.c_str(), str2.c_str());
 }
 
 static inline int collate_ignore_case(const String &str1, const String &str2)
 {
-	return _tcsicoll(str1.c_str(), str2.c_str());
+	return tc::tcsicoll(str1.c_str(), str2.c_str());
 }
 
 
-template<int (*compfunc)(const TCHAR *, const TCHAR *)>
+template<int (*compfunc)(const tchar_t *, const tchar_t *)>
 struct StringComparer
 {
 	bool operator()(const DirItem &elem1, const DirItem &elem2)
@@ -149,9 +149,9 @@ struct StringComparer
 static void Sort(DirItemArray * dirs, bool casesensitive)
 {
 	if (casesensitive)
-        std::sort(dirs->begin(), dirs->end(), StringComparer<_tcscoll>());
+		std::sort(dirs->begin(), dirs->end(), StringComparer<tc::tcscoll>());
 	else
-		std::sort(dirs->begin(), dirs->end(), StringComparer<_tcsicoll>());
+		std::sort(dirs->begin(), dirs->end(), StringComparer<tc::tcsicoll>());
 }
 
 /**

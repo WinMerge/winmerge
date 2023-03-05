@@ -12,7 +12,7 @@ void StaticDlgUtils::WildcardRemoveDuplicatePatterns(String& patterns)
 	while ((j = patterns.find_first_of(L"; ", i)) != String::npos &&
 		(k = patterns.find_last_of(L"; ", j) + 1) != patterns.length())
 	{
-		TCHAR const sep = patterns[j];
+		tchar_t const sep = patterns[j];
 		patterns[j] = L'\0';
 		if (PathMatchSpec(patterns.c_str() + i, patterns.c_str() + k))
 		{

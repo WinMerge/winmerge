@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "utils/ctchar.h"
+
 //  Line allocation granularity
 #define     CHAR_ALIGN                  16
 #define     ALIGN_BUF_SIZE(size)        ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN;
@@ -24,17 +26,17 @@ public:
     LineInfo();
     void Clear();
     void FreeBuffer();
-    void Create(LPCTSTR pszLine, size_t nLength);
+    void Create(const tchar_t* pszLine, size_t nLength);
     void CreateEmpty();
-    void Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol = true);
+    void Append(const tchar_t* pszChars, size_t nLength, bool bDetectEol = true);
     void Delete(size_t nStartChar, size_t nEndChar);
     void DeleteEnd(size_t nStartChar);
     void CopyFrom(const LineInfo &li);
     bool HasEol() const;
-    LPCTSTR GetEol() const;
-    bool ChangeEol(LPCTSTR lpEOL);
+    const tchar_t* GetEol() const;
+    bool ChangeEol(const tchar_t* lpEOL);
     void RemoveEol();
-    LPCTSTR GetLine(size_t index = 0) const;
+    const tchar_t* GetLine(size_t index = 0) const;
 
     /** @brief Return full line length (including EOL bytes). */
     size_t FullLength() const { return m_nLength + m_nEolChars; }
@@ -42,19 +44,19 @@ public:
     size_t Length() const { return m_nLength; }
 
     /** @brief Is the char an EOL char? */
-    static bool IsEol(TCHAR ch)
+    static bool IsEol(tchar_t ch)
     {
       return ch=='\r' || ch=='\n';
     };
 
     /** @brief Are the characters DOS EOL bytes? */
-    static bool IsDosEol(LPCTSTR sz)
+    static bool IsDosEol(const tchar_t* sz)
     {
       return sz[0]=='\r' && sz[1]=='\n';
     };
 
 private:
-    TCHAR *m_pcLine; /**< Line data. */
+    tchar_t *m_pcLine; /**< Line data. */
     size_t m_nMax; /**< Allocated space for line data. */
     size_t m_nLength; /**< Line length (without EOL bytes). */
     int m_nEolChars; /**< # of EOL bytes. */

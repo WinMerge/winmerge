@@ -6,80 +6,80 @@
  */
 #pragma once
 
-#include <tchar.h>
+#include "utils/ctchar.h"
 
 /** @brief URL for hyperlink in About-dialog. */
-inline const TCHAR WinMergeURL[] = _T("https://winmerge.org/");
+inline const tchar_t WinMergeURL[] = _T("https://winmerge.org/");
 
 /**
  * @brief URL to help index in internet.
  * We use internet help when local help file is not found (not installed).
  */
-inline const TCHAR DocsURL[] = _T("https://manual.winmerge.org/index.html");
+inline const tchar_t DocsURL[] = _T("https://manual.winmerge.org/index.html");
 
 /** @brief URL to translations page in internet. */
-inline const TCHAR TranslationsUrl[] = _T("https://winmerge.org/translations/");
+inline const tchar_t TranslationsUrl[] = _T("https://winmerge.org/translations/");
 
 /** @brief URL of the GPL license. */
-inline const TCHAR LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
+inline const tchar_t LicenceUrl[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
 
 /** @brief Relative (to WinMerge executable ) path to local help file. */
-inline const TCHAR DocsPath[] = _T("Docs/WinMerge%s.chm");
+inline const tchar_t DocsPath[] = _T("Docs/WinMerge%s.chm");
 
 /** @brief Contributors list. */
-inline const TCHAR ContributorsPath[] = _T("contributors.txt");
+inline const tchar_t ContributorsPath[] = _T("contributors.txt");
 
 /** @brief Release notes in HTML format. */
-inline const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes%s.html");
+inline const tchar_t RelNotes[] = _T("\\Docs\\ReleaseNotes%s.html");
 
 /** @brief GPL Licence local file name. */
-inline const TCHAR LicenseFile[] = _T("Copying");
+inline const tchar_t LicenseFile[] = _T("Copying");
 
 /** @brief WinMerge folder in My Folders-folder. */
-inline const TCHAR WinMergeDocumentsFolder[] = _T("WinMerge");
+inline const tchar_t WinMergeDocumentsFolder[] = _T("WinMerge");
 
 /**
  * @brief Default relative path to "My Documents" for private filters.
  * We want to use WinMerge folder as general user-file folder in future.
  * So it makes sense to have own subfolder for filters.
  */
-inline const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge/Filters");
+inline const tchar_t DefaultRelativeFilterPath[] = _T("WinMerge/Filters");
 
 /** @brief Temp folder name prefix for WinMerge temp folders. */
-inline const TCHAR TempFolderPrefix[] = _T("WinMerge_TEMP_");
+inline const tchar_t TempFolderPrefix[] = _T("WinMerge_TEMP_");
 
 /** @brief registry dir to WinMerge */
-inline const TCHAR RegDir[] = _T("Software\\Thingamahoochie\\WinMerge");
+inline const tchar_t RegDir[] = _T("Software\\Thingamahoochie\\WinMerge");
 
 /** @brief Location for file compare specific help to open. */
-inline const TCHAR OptionsHelpLocation[] = _T("::/htmlhelp/Configuration.html");
+inline const tchar_t OptionsHelpLocation[] = _T("::/htmlhelp/Configuration.html");
 
 /** @brief Location for folder compare specific help to open. */
-inline const TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/Compare_dirs.html");
+inline const tchar_t DirViewHelpLocation[] = _T("::/htmlhelp/Compare_dirs.html");
 
 /** @brief Location for Open-dialog specific help to open. */
-inline const TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
+inline const tchar_t OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
 
 /** @brief Location for plugins specific help to open. */
-inline const TCHAR PluginsHelpLocation[] = _T("::/htmlhelp/Plugins.html");
+inline const tchar_t PluginsHelpLocation[] = _T("::/htmlhelp/Plugins.html");
 
 /** @brief Location for file compare specific help to open. */
-inline const TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/Compare_files.html");
+inline const tchar_t MergeViewHelpLocation[] = _T("::/htmlhelp/Compare_files.html");
 
 /** @brief Location for hex compare specific help to open. */
-inline const TCHAR HexMergeViewHelpLocation[] = _T("::/htmlhelp/Compare_bin.html");
+inline const tchar_t HexMergeViewHelpLocation[] = _T("::/htmlhelp/Compare_bin.html");
 
 /** @brief Location for image compare specific help to open. */
-inline const TCHAR ImgMergeFrameHelpLocation[] = _T("::/htmlhelp/Compare_images.html");
+inline const tchar_t ImgMergeFrameHelpLocation[] = _T("::/htmlhelp/Compare_images.html");
 
 /** @brief Location for Webpage compare specific help to open. */
-inline const TCHAR WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
+inline const tchar_t WebPageDiffFrameHelpLocation[] = _T("::/htmlhelp/Compare_webpages.html");
 
 /** @brief Location for command line help to open. */
-inline const TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
+inline const tchar_t CommandLineHelpLocation[] = _T("::/htmlhelp/Command_line.html");
 
 /** @brief Location for filters specific help to open. */
-inline const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
+inline const tchar_t FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /**
  * @brief Flags used when opening files

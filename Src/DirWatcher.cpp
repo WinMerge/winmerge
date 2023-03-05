@@ -182,7 +182,7 @@ unsigned DirWatcher::DirWatcherThreadProc()
 			HANDLE hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
 			if (hEvent)
 			{
-				watchedDir.info.resize(sizeof(FILE_NOTIFY_INFORMATION) + MAX_PATH * sizeof(TCHAR));
+				watchedDir.info.resize(sizeof(FILE_NOTIFY_INFORMATION) + MAX_PATH * sizeof(tchar_t));
 				watchedDir.hDir = hDir;
 				watchedDir.path = path2;
 				watchedDir.watchSubtree = dir;
@@ -258,7 +258,7 @@ unsigned DirWatcher::DirWatcherThreadProc()
 			ReadDirAsync(watchedDir);
 
 			auto* pNotifyInfo = reinterpret_cast<FILE_NOTIFY_INFORMATION*>(watchedDir.info.data());
-			String relpath(pNotifyInfo->FileName, pNotifyInfo->FileNameLength/sizeof(TCHAR));
+			String relpath(pNotifyInfo->FileName, pNotifyInfo->FileNameLength/sizeof(tchar_t));
 			String path = paths::ConcatPath(watchedDir.path, relpath);
 			for (auto& listener : watchedDir.listeners)
 			{

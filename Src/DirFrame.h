@@ -33,9 +33,9 @@ private:
 
 // Operations
 public:
-	void SetStatus(LPCTSTR szStatus);
+	void SetStatus(const tchar_t* szStatus);
 	void SetCompareMethodStatusDisplay(int nCompMethod);
-	void SetFilterStatusDisplay(LPCTSTR szFilter);
+	void SetFilterStatusDisplay(const tchar_t* szFilter);
 	CStatusBar  m_wndStatusBar;
 	IHeaderBar * GetHeaderInterface();
 	void UpdateResources();

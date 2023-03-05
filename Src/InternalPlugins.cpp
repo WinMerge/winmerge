@@ -168,7 +168,7 @@ public:
 						plugin.m_fileFilters = value;
 					else if (localName == IsAutomaticElement)
 					{
-						TCHAR ch = value.c_str()[0];
+						tchar_t ch = value.c_str()[0];
 						plugin.m_isAutomatic = (ch == 't' || ch == 'T');
 					}
 					else if (localName == UnpackedFileExtensionElement)
@@ -504,7 +504,7 @@ protected:
 		stInfo.hStdOutput = stInfo.hStdError;
 		stInfo.dwFlags |= STARTF_USESTDHANDLES;
 		PROCESS_INFORMATION processInfo;
-		bool retVal = !!CreateProcess(nullptr, (LPTSTR)command.c_str(),
+		bool retVal = !!CreateProcess(nullptr, (tchar_t*)command.c_str(),
 			nullptr, nullptr, TRUE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 			&stInfo, &processInfo);
 		if (!retVal)

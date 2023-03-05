@@ -135,14 +135,14 @@ bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 		strLine.Empty();
 		return false;
 	}
-	LPTSTR pchText = strLine.GetBufferSetLength(cchText);
-	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(TCHAR));
+	tchar_t* pchText = strLine.GetBufferSetLength(cchText);
+	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(tchar_t));
 	return true;
 }
 
 void CDiffTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
+		const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
 		CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
 {
@@ -220,8 +220,8 @@ OnNotifyLineHasBeenEdited(int nLine)
  * - FRESULT_BINARY : file is binary file
  * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
-int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
-		PackingInfo& infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
+int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
+		PackingInfo& infoUnpacker, const tchar_t* sToFindUnpacker, bool & readOnly,
 		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
@@ -236,7 +236,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 
 	// we will load the transformed file
-	LPCTSTR pszFileName = m_strTempFileName.c_str();
+	const tchar_t* pszFileName = m_strTempFileName.c_str();
 
 	String sExt;
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
@@ -383,7 +383,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	delete pufile;
 
 	// delete the file that unpacking may have created
-	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
+	if (tc::tcscmp(pszFileNameInit, pszFileName) != 0)
 	{
 		try
 		{

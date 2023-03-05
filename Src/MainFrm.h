@@ -88,8 +88,8 @@ public:
 	struct OpenTableFileParams : public OpenTextFileParams
 	{
 		virtual ~OpenTableFileParams() {}
-		std::optional<TCHAR> m_tableDelimiter;
-		std::optional<TCHAR> m_tableQuote;
+		std::optional<tchar_t> m_tableDelimiter;
+		std::optional<tchar_t> m_tableQuote;
 		std::optional<bool> m_tableAllowNewlinesInQuotes;
 	};
 
@@ -129,7 +129,7 @@ public:
 	bool m_bShowErrors; /**< Show folder compare error items? */
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
-	static const TCHAR szClassName[];
+	static const tchar_t szClassName[];
 
 // Operations
 public:
@@ -410,7 +410,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
+	void addToMru(const tchar_t* szItem, const tchar_t* szRegSubKey, UINT nMaxItems = 20);
 	OpenDocList &GetAllOpenDocs();
 	MergeDocList &GetAllMergeDocs();
 	DirDocList &GetAllDirDocs();

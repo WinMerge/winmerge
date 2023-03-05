@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include "utils/ctchar.h"
+
 /**
  * @brief Structure containing characters for viewable whitespace chars.
  *
@@ -15,11 +17,11 @@
 struct ViewableWhitespaceChars
 {
 	int c_codepage; /**< Used codepage, unused in UNICODE. */
-	TCHAR c_tab[3]; /**< Visible character for tabs. */
-	TCHAR c_space[3]; /**< Visible character for spaces. */
-	TCHAR c_cr[3]; /**< Visible character for CR EOL chars. */
-	TCHAR c_lf[3]; /**< Visible character for LF EOL chars. */
-	TCHAR c_eol[3]; /**< Visible character for general or CRLF EOL chars. */
+	tchar_t c_tab[3]; /**< Visible character for tabs. */
+	tchar_t c_space[3]; /**< Visible character for spaces. */
+	tchar_t c_cr[3]; /**< Visible character for CR EOL chars. */
+	tchar_t c_lf[3]; /**< Visible character for LF EOL chars. */
+	tchar_t c_eol[3]; /**< Visible character for general or CRLF EOL chars. */
 };
 
 const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage, bool directwrite);

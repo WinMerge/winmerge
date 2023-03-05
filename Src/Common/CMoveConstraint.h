@@ -147,8 +147,8 @@ public:
 
 	// call after all constraints established
 	// always loads size, may also set position
-	void LoadPosition(LPCTSTR szKeyName, LPCTSTR szValueName, bool position);
-	void LoadPosition(LPCTSTR szValueName, bool position);
+	void LoadPosition(const tchar_t* szKeyName, const tchar_t* szValueName, bool position);
+	void LoadPosition(const tchar_t* szValueName, bool position);
 	void Persist(bool saving, bool position);
 
 	// for use when children hadn't been created yet at initialization time
@@ -161,7 +161,7 @@ public:
 	bool WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam, LRESULT * plresult);
 
 // ToolTips
-	void SetTip(int id, LPCTSTR szTip);
+	void SetTip(int id, const tchar_t* szTip);
 	void SetTip(int id, int nResourceId);
 
 // Implementation methods

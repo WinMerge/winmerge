@@ -95,7 +95,7 @@ protected:
     //  Search parameters
     bool m_bLastSearch;
     DWORD m_dwLastSearchFlags;
-    LPTSTR m_pszLastFindWhat;
+    tchar_t* m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
     CFindTextDlg *m_pFindTextDlg;
     bool m_bCursorHidden;
@@ -225,7 +225,7 @@ public :
     void SetColorContext(SyntaxColors * pColors) { m_pColors = pColors; }
     CCrystalTextMarkers * GetMarkers() const { return m_pMarkers; }
     void SetMarkersContext(CCrystalTextMarkers * pMarkers);
-    static CLIPFORMAT GetClipTcharTextFormat() { return sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT; }
+    static CLIPFORMAT GetClipTcharTextFormat() { return sizeof(tchar_t) == 1 ? CF_TEXT : CF_UNICODETEXT; }
 
 protected :
     CPoint WordToRight (CPoint pt);
@@ -467,7 +467,7 @@ public:
     virtual int GetFullLineLength (int nLineIndex) const;
     virtual int GetViewableLineLength(int nLineIndex) const;
     virtual int GetLineActualLength (int nLineIndex);
-    virtual LPCTSTR GetLineChars (int nLineIndex) const;
+    virtual const tchar_t* GetLineChars (int nLineIndex) const;
 protected:
     virtual DWORD GetLineFlags (int nLineIndex) const;
     virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines = true);
@@ -475,7 +475,7 @@ protected:
 
     //  Clipboard overridable
     virtual bool TextInClipboard ();
-    virtual bool PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection = false);
+    virtual bool PutToClipboard (const tchar_t* pszText, int cchText, bool bColumnSelection = false);
     virtual bool GetFromClipboard (CString & text, bool & bColumnSelection);
 
     //  Drag-n-drop overrideable
@@ -500,9 +500,9 @@ protected:
     virtual void DrawTopMargin (const CRect & rect);
     virtual void DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber);
 
-    inline int GetCharCellCountFromChar(const TCHAR *pch)
+    inline int GetCharCellCountFromChar(const tchar_t *pch)
     {
-        TCHAR ch = *pch;
+        tchar_t ch = *pch;
         if (ch >= _T('\x00') && ch <= _T('\x7F'))
           {
             if (ch <= _T('\x1F') && ch != '\t')
@@ -634,7 +634,7 @@ protected:
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
-    virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
+    virtual CString GetHTMLLine (int nLineIndex, const tchar_t* pszTag);
     virtual CString GetHTMLStyles ();
     std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);
 protected:
@@ -697,7 +697,7 @@ private:
 
 public :
     void GoToLine (int nLine, bool bRelative);
-    unsigned ParseLine (unsigned dwCookie, const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
+    unsigned ParseLine (unsigned dwCookie, const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems);
 
     // Attributes
 public :
@@ -758,7 +758,7 @@ public :
     int m_nLastFindWhatLen;
     RxNode *m_rxnode;
     RxMatchRes m_rxmatch;
-    LPTSTR m_pszMatched;
+    tchar_t* m_pszMatched;
     static LOGFONT m_LogFont;
     static RENDERING_MODE s_nRenderingModeDefault;
     RENDERING_MODE m_nRenderingMode;
@@ -770,10 +770,10 @@ public :
     CrystalLineParser::TextDefinition *m_CurSourceDef;
     bool m_bRememberLastPos;
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
-    virtual bool SetTextType (LPCTSTR pszExt);
+    virtual bool SetTextType (const tchar_t* pszExt);
     virtual bool SetTextType (CrystalLineParser::TextType enuType);
     virtual bool SetTextType (CrystalLineParser::TextDefinition *def);
-    virtual bool SetTextTypeByContent (LPCTSTR pszContent);
+    virtual bool SetTextTypeByContent (const tchar_t* pszContent);
     static void LoadSettings ();
     static void SaveSettings ();
 
@@ -802,8 +802,8 @@ public :
 
     //  Text search helpers
     CPoint GetSearchPos (DWORD dwSearchFlags);
-    bool FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
-    bool FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
+    bool FindText (const tchar_t* pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
+    bool FindTextInBlock (const tchar_t* pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
                           DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
     bool FindText (const LastSearchInfos * lastSearch);
     bool HighlightText (const CPoint & ptStartPos, int nLength,
@@ -814,7 +814,7 @@ public :
     void UpdateCompositionWindowFont();
 
     //  Overridable: an opportunity for Auto-Indent, Smart-Indent etc.
-    virtual void OnEditOperation (int nAction, LPCTSTR pszText, size_t cchText);
+    virtual void OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText);
 
     // Overrides
     // ClassWizard generated virtual function overrides

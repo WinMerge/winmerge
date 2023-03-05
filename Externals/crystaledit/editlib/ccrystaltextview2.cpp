@@ -151,7 +151,7 @@ MoveWordLeft (bool bSelect)
 
   if (m_ptCursorPos.x > 0)
     {
-      const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
+      const tchar_t *pszChars = GetLineChars(m_ptCursorPos.y);
       auto pIterWord = ICUBreakIterator::getWordBreakIterator(reinterpret_cast<const UChar *>(pszChars), GetLineLength(m_ptCursorPos.y));
       int nPos = pIterWord->preceding(m_ptCursorPos.x);
       if (xisspace(pszChars[nPos]))
@@ -184,7 +184,7 @@ MoveWordRight (bool bSelect)
       return;
     }
 
-  const TCHAR *pszChars = GetLineChars(m_ptCursorPos.y);
+  const tchar_t *pszChars = GetLineChars(m_ptCursorPos.y);
   auto pIterWord = ICUBreakIterator::getWordBreakIterator(reinterpret_cast<const UChar *>(pszChars), nLength);
   int nPos = pIterWord->following(m_ptCursorPos.x);
   while (nPos < nLength && xisspace(pszChars[nPos]))
@@ -288,7 +288,7 @@ void CCrystalTextView::
 MoveHome (bool bSelect)
 {
   int nLength = GetLineLength (m_ptCursorPos.y);
-  LPCTSTR pszChars = GetLineChars (m_ptCursorPos.y);
+  const tchar_t* pszChars = GetLineChars (m_ptCursorPos.y);
   //BEGIN SW
   CPoint	pos;
   CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, pos );
@@ -1108,7 +1108,7 @@ TextInClipboard ()
 }
 
 bool CCrystalTextView::
-PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
+PutToClipboard (const tchar_t* pszText, int cchText, bool bColumnSelection)
 {
   if (pszText == nullptr || cchText == 0)
     return false;
@@ -1118,12 +1118,12 @@ PutToClipboard (LPCTSTR pszText, int cchText, bool bColumnSelection)
   if (OpenClipboard ())
     {
       EmptyClipboard ();
-      SIZE_T cbData = (cchText + 1) * sizeof(TCHAR);
+      SIZE_T cbData = (cchText + 1) * sizeof(tchar_t);
       HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
       if (hData != nullptr)
         {
           SIZE_T dwSize = GlobalSize(hData);
-          LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
+          tchar_t* pszData = (tchar_t*)::GlobalLock (hData);
           if (pszData != nullptr)
             {
               memcpy (pszData, pszText, cbData);
@@ -1157,12 +1157,12 @@ GetFromClipboard (CString & text, bool & bColumnSelection)
       HGLOBAL hData = GetClipboardData (fmt);
       if (hData != nullptr)
         {
-          LPTSTR pszData = (LPTSTR) GlobalLock (hData);
+          tchar_t* pszData = (tchar_t*) GlobalLock (hData);
           if (pszData != nullptr)
             {
               UINT cbData = (UINT) GlobalSize (hData);
               // in case we get an odd length for unicodes
-              int cchText = ((cbData + sizeof(TCHAR)/sizeof(wchar_t)) / sizeof(TCHAR)) - 1;
+              int cchText = ((cbData + sizeof(tchar_t)/sizeof(wchar_t)) / sizeof(tchar_t)) - 1;
               if (cchText >= 0)
                 memcpy(text.GetBufferSetLength(cchText), pszData, cbData);
               GlobalUnlock (hData);

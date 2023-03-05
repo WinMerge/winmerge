@@ -237,7 +237,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	}
 	SetTitle(nullptr);
 
-	LPCTSTR lpszWndClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW,
+	const tchar_t* lpszWndClass = AfxRegisterWndClass(CS_HREDRAW | CS_VREDRAW,
 			::LoadCursor(nullptr, IDC_ARROW), (HBRUSH)(COLOR_WINDOW+1), nullptr);
 
 	if (!CMergeFrameCommon::Create(lpszWndClass, GetTitle(), WS_OVERLAPPEDWINDOW | WS_CHILD, rectDefault, pParent))
@@ -1492,7 +1492,7 @@ LRESULT CImgMergeFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
 
 void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sCnt[32] = { 0 };
+	tchar_t sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_pImgMergeWindow->GetDiffCount();
 	
@@ -1513,7 +1513,7 @@ void CImgMergeFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	// - show diff number and amount of diffs
 	else
 	{
-		TCHAR sIdx[32] = { 0 };
+		tchar_t sIdx[32] = { 0 };
 		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
 		const int signInd = m_pImgMergeWindow->GetCurrentDiffIndex();
 		_itot_s(signInd + 1, sIdx, 10);
@@ -2359,7 +2359,7 @@ void CImgMergeFrame::OnRefresh()
 	if (UpdateDiffItem(m_pDirDoc) == 0)
 	{
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+			[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
 	}
 }
 

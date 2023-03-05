@@ -168,7 +168,7 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 	POSITION pos = m_list.GetFirstSelectedItemPosition();
 	if (pos != nullptr)
 	{
-		String pluginName = static_cast<const TCHAR *>(m_list.GetItemText(m_list.GetNextSelectedItem(pos), 0));
+		String pluginName = static_cast<const tchar_t *>(m_list.GetItemText(m_list.GetNextSelectedItem(pos), 0));
 		for (int i = 0; TransformationCategories[i] != nullptr; ++i)
 		{
 			PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(TransformationCategories[i], pluginName);

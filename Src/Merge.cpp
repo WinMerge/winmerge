@@ -66,7 +66,7 @@
 #endif
 
 /** @brief Backup file extension. */
-static const TCHAR BACKUP_FILE_EXT[] = _T("bak");
+static const tchar_t BACKUP_FILE_EXT[] = _T("bak");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
@@ -140,11 +140,11 @@ static COptionsMgr *CreateOptionManager(const MergeCmdLineInfo& cmdInfo)
 static HANDLE CreateMutexHandle()
 {
 	// Create exclusion mutex name
-	TCHAR szDesktopName[MAX_PATH] = _T("Win9xDesktop");
+	tchar_t szDesktopName[MAX_PATH] = _T("Win9xDesktop");
 	DWORD dwLengthNeeded;
 	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME,
 		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
-	TCHAR szMutexName[MAX_PATH + 40];
+	tchar_t szMutexName[MAX_PATH + 40];
 	// Combine window class name and desktop name to form a unique mutex name.
 	// As the window class name is decorated to distinguish between ANSI and
 	// UNICODE build, so will be the mutex name.
@@ -152,7 +152,7 @@ static HANDLE CreateMutexHandle()
 	return CreateMutex(nullptr, FALSE, szMutexName);
 }
 
-static HWND ActivatePreviousInstanceAndSendCommandline(LPTSTR cmdLine)
+static HWND ActivatePreviousInstanceAndSendCommandline(tchar_t* cmdLine)
 {
 	HWND hWnd = FindWindow(CMainFrame::szClassName, nullptr);
 	if (hWnd == nullptr)
@@ -160,7 +160,7 @@ static HWND ActivatePreviousInstanceAndSendCommandline(LPTSTR cmdLine)
 	if (IsIconic(hWnd))
 		ShowWindow(hWnd, SW_RESTORE);
 	SetForegroundWindow(GetLastActivePopup(hWnd));
-	COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(TCHAR), cmdLine };
+	COPYDATASTRUCT data = { 0, (lstrlen(cmdLine) + 1) * sizeof(tchar_t), cmdLine };
 	if (!SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data))
 		return nullptr;
 	return hWnd;
@@ -541,7 +541,7 @@ int CMergeApp::ExitInstance()
 	return m_bEnableExitCode ? ConvertLastCompareResultToExitCode(m_nLastCompareResult) : 0;
 }
 
-int CMergeApp::DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt)
+int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt)
 {
 	// This is a convenient point for breakpointing !!!
 
@@ -908,10 +908,10 @@ void CMergeApp::UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage)
 			ucr::setDefaultCodepage(GetACP());
 			break;
 		case 1:
-			TCHAR buff[32];
+			tchar_t buff[32];
 			wLangId = GetLangId();
 			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
-				ucr::setDefaultCodepage(_ttol(buff));
+				ucr::setDefaultCodepage(tc::ttol(buff));
 			else
 				ucr::setDefaultCodepage(GetACP());
 			break;
@@ -980,7 +980,7 @@ void CMergeApp::OpenFileToExternalEditor(const String& file, int nLineNumber/* =
 	STARTUPINFO stInfo = { sizeof STARTUPINFO };
 	PROCESS_INFORMATION processInfo;
 
-	retVal = !!CreateProcess(nullptr, (LPTSTR)sCmd.c_str(),
+	retVal = !!CreateProcess(nullptr, (tchar_t*)sCmd.c_str(),
 		nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 		&stInfo, &processInfo);
 
@@ -1024,7 +1024,7 @@ FileFilterHelper* CMergeApp::GetGlobalFileFilter()
  * @brief Show Help - this is for opening help from outside mainframe.
  * @param [in] helpLocation Location inside help, if `nullptr` main help is opened.
  */
-void CMergeApp::ShowHelp(LPCTSTR helpLocation /*= nullptr*/)
+void CMergeApp::ShowHelp(const tchar_t* helpLocation /*= nullptr*/)
 {
 	String sPath = paths::ConcatPath(env::GetProgPath(), strutils::format(DocsPath, GetLangName()));
 	if (paths::DoesPathExist(sPath) != paths::IS_EXISTING_FILE)
@@ -1517,7 +1517,7 @@ bool CMergeApp::TranslateString(const std::string& str, String& translated_str) 
 /**
  * @brief Load dialog caption and translate to current WinMerge GUI language
  */
-std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
+std::wstring CMergeApp::LoadDialogCaption(const tchar_t* lpDialogTemplateID) const
 {
 	return m_pLangDlg->LoadDialogCaption(lpDialogTemplateID);
 }
@@ -1526,7 +1526,7 @@ std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
  * @brief Adds specified file to the recent projects list.
  * @param [in] sPathName Path to project file
  */
-void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
+void CMergeApp::AddToRecentProjectsMRU(const tchar_t* sPathName)
 {
 	// sPathName will be added to the top of the MRU list.
 	// If sPathName already exists in the MRU list, it will be moved to the top
@@ -1551,7 +1551,7 @@ void CMergeApp::SetupTempPath()
  */
 BOOL CMergeApp::OnOpenRecentFile(UINT nID)
 {
-	return LoadAndOpenProjectFile(static_cast<const TCHAR *>(m_pRecentFileList->m_arrNames[nID-ID_FILE_PROJECT_MRU_FIRST]));
+	return LoadAndOpenProjectFile(static_cast<const tchar_t *>(m_pRecentFileList->m_arrNames[nID-ID_FILE_PROJECT_MRU_FIRST]));
 }
 
 /**
@@ -1603,7 +1603,7 @@ void CMergeApp::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 	pCmdUI->Enable(GetMergingMode());
 }
 
-UINT CMergeApp::GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault)
+UINT CMergeApp::GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault)
 {
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
@@ -1612,7 +1612,7 @@ UINT CMergeApp::GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefau
 	return pOptions->GetInt(name);
 }
 
-BOOL CMergeApp::WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue)
+BOOL CMergeApp::WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue)
 {
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
@@ -1621,7 +1621,7 @@ BOOL CMergeApp::WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nVal
 	return pOptions->SaveOption(name, nValue) == COption::OPT_OK;
 }
 
-CString CMergeApp::GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault)
+CString CMergeApp::GetProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszDefault)
 {
 	COptionsMgr *pOptions = GetOptionsMgr();
 	String name = strutils::format(_T("%s/%s"), lpszSection, lpszEntry);
@@ -1630,7 +1630,7 @@ CString CMergeApp::GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCT
 	return pOptions->GetString(name).c_str();
 }
 
-BOOL CMergeApp::WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue)
+BOOL CMergeApp::WriteProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszValue)
 {
 	COptionsMgr *pOptions = GetOptionsMgr();
 	if (lpszEntry != nullptr)

@@ -8,7 +8,12 @@
 #include "UnicodeString.h"
 #include <vector>
 #include <memory>
+#if __has_include(<PropIdl.h>)
 #include <PropIdl.h>
+#else
+typedef int PROPVARIANT;
+typedef int PROPERTYKEY;
+#endif
 
 class PropertyValues
 {

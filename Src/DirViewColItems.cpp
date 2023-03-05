@@ -162,7 +162,7 @@ static int cmpdiffcode(unsigned diffcode1, unsigned diffcode2)
  */
 static String MakeShortSize(int64_t size)
 {
-	TCHAR buffer[48];
+	tchar_t buffer[48];
 	if (size < 1024)
 		return strutils::format(_T("%d B"), static_cast<int>(size));
 	else
@@ -247,7 +247,7 @@ static String ColExtGet(const CDiffContext *, const void *p, int) //sfilename
 		return _T("");
 	const String &r = di.diffFileInfo[0].filename;
 	String s = paths::FindExtension(r);
-	return s.c_str() + _tcsspn(s.c_str(), _T("."));
+	return s.c_str() + tc::tcsspn(s.c_str(), _T("."));
 }
 
 /**
@@ -281,8 +281,8 @@ static String ColPathGet(const CDiffContext * pCtxt, const void *p, int)
 		size_t i = 0, j = 0;
 		do
 		{
-			const TCHAR* pi = _tcschr(s.c_str() + i, '\\');
-			const TCHAR* pj = _tcschr(t.c_str() + j, '\\');
+			const tchar_t* pi = tc::tcschr(s.c_str() + i, '\\');
+			const tchar_t* pj = tc::tcschr(t.c_str() + j, '\\');
 			size_t i_ahead = (pi != nullptr ? pi - s.c_str() : std::string::npos);
 			size_t j_ahead = (pj != nullptr ? pj - t.c_str() : std::string::npos);
 			size_t length_s = ((i_ahead != std::string::npos ? i_ahead : s.length()) - i);
@@ -2066,7 +2066,7 @@ void DirViewColItems::LoadColumnOrders(const String& colOrders)
 {
 	ClearColumnOrders();
 	m_dispcols = 0;
-	std::basic_istringstream<TCHAR> ss(colOrders);
+	std::basic_istringstream<tchar_t> ss(colOrders);
 
 	// Load column orders
 	// Break out if one is missing

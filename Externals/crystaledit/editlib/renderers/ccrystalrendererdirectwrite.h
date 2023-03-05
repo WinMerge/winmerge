@@ -32,7 +32,7 @@ public:
 	virtual bool GetCharWidth(unsigned start, unsigned end, int *nWidthArray) override;
 	virtual void SetTextColor(COLORREF clr) override;
 	virtual void SetBkColor(COLORREF clr) override;
-	virtual void DrawText(int x, int y, const CRect &rc, const TCHAR *text, size_t len, const int nWidths[]) override;
+	virtual void DrawText(int x, int y, const CRect &rc, const tchar_t* text, size_t len, const int nWidths[]) override;
 	virtual void FillRectangle(const CRect &rc) override;
 	virtual void FillSolidRectangle(const CRect &rc, COLORREF color) override;
 	virtual void DrawRoundRectangle(int left, int top , int right, int bottom, int width, int height) override;

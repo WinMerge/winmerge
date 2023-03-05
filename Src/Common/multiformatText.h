@@ -54,11 +54,11 @@ public:
 	/// Get data as ansi buffer (safearray of unsigned char)
 	VARIANT * GetDataBufferAnsi();
 	/// Get data as file (saved as UCS-2 with BOM)
-	const TCHAR *GetDataFileUnicode();
+	const tchar_t *GetDataFileUnicode();
 	/// Get data as file (saved as Ansi)
-	const TCHAR *GetDataFileAnsi();
+	const tchar_t *GetDataFileAnsi();
 	/// Get a temporary filename, to be used to save the transformed data 
-	const TCHAR *GetDestFileName();
+	const tchar_t *GetDestFileName();
 	/// validation for data retrieved by GetDataFileAnsi/GetDataFileUnicode
 	void ValidateNewFile();
 	/// validation for data retrieved by GetDataBufferAnsi/GetDataBufferUnicode
@@ -75,7 +75,7 @@ public:
 	/// Final save, same format as the original file
 	bool SaveAsFile(String & filename)
 	{
-		const TCHAR *newFilename;
+		const tchar_t *newFilename;
 		if (m_bOriginalIsUnicode)
 			newFilename = GetDataFileUnicode();
 		else

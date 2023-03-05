@@ -44,7 +44,7 @@ private :
     bool m_bFound;
     CPoint m_ptFoundAt;
     bool DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView = true );
-    bool DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
+    bool DoReplaceText (const tchar_t* pszNewText, DWORD dwSearchFlags);
     void UpdateControls();
     void FindNextPrev (bool bNext);
     bool AdjustSearchPos (CPoint& ptFoundAt) const;
@@ -52,7 +52,7 @@ private :
     // Construction
 public :
     explicit CEditReplaceDlg (CCrystalEditView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection);
+    void SetLastSearch (const tchar_t* sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
     void SetScope(bool bWithSelection);

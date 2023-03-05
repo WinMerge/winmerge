@@ -97,13 +97,13 @@ RegValGetNewBinary (const RegVal *pValData, LPBYTE *pbyteData, DWORD *pdwSize)
 
 /* get a new string */
 bool
-RegValGetNewString (const RegVal *pValData, LPTSTR *pszString, DWORD *pdwLength)
+RegValGetNewString (const RegVal *pValData, tchar_t* *pszString, DWORD *pdwLength)
 {
   ASSERT (pValData != nullptr && pszString != nullptr);
   if (pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
         || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ)
     {
-      LPTSTR pszNewString = (LPTSTR) malloc (pValData->dwLength + 1);
+      tchar_t* pszNewString = (tchar_t*) malloc (pValData->dwLength + 1);
       if (pszNewString != nullptr)
         {
           *pszString = pszNewString;
@@ -121,7 +121,7 @@ RegValGetNewString (const RegVal *pValData, LPTSTR *pszString, DWORD *pdwLength)
 
 /* get a string */
 bool
-RegValGetString (const RegVal *pValData, LPTSTR pszString, DWORD dwLength)
+RegValGetString (const RegVal *pValData, tchar_t* pszString, DWORD dwLength)
 {
   ASSERT (pValData != nullptr && pszString != nullptr);
   if ((pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
@@ -137,25 +137,25 @@ RegValGetString (const RegVal *pValData, LPTSTR pszString, DWORD dwLength)
 
 /* get an array of strings */
 bool
-RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
+RegValGetStringArr (const RegVal *pValData, tchar_t* pszStrings[], DWORD dwCount)
 {
   ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_MULTI_SZ)
     {
-      LPCTSTR pszString0;
+      const tchar_t* pszString0;
       DWORD dwRealCount = 0, dwLength;
       for (pszString0 = pValData->pszString; *pszString0; pszString0 += dwLength)
         {
-          dwLength = (DWORD) _tcslen (pszString0) + 1;
+          dwLength = (DWORD) tc::tcslen (pszString0) + 1;
           dwRealCount++;
         }
       if (dwCount >= dwRealCount)
         {
-          LPTSTR *pszDstString = pszStrings;
-          for (LPCTSTR pszString1 = pValData->pszString; *pszString1; pszString1 += dwLength, pszDstString++)
+          tchar_t* *pszDstString = pszStrings;
+          for (const tchar_t* pszString1 = pValData->pszString; *pszString1; pszString1 += dwLength, pszDstString++)
             {
-              dwLength = (DWORD) _tcslen (pszString1) + 1;
-              LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
+              dwLength = (DWORD) tc::tcslen (pszString1) + 1;
+              tchar_t* pszNewString = (tchar_t*) malloc (dwLength);
               *pszDstString = pszNewString;
               if (pszNewString != nullptr)
                 {
@@ -181,27 +181,27 @@ RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount)
 
 /* get a new array of strings */
 bool
-RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCount)
+RegValGetNewStringArr (const RegVal *pValData, tchar_t* **pszStrings, DWORD *pdwCount)
 {
   ASSERT (pValData != nullptr);
   if (pValData->dwType == REG_MULTI_SZ)
     {
-      LPTSTR pszString;
+      tchar_t* pszString;
       DWORD dwRealCount = 0, dwLength;
       for (pszString = pValData->pszString; *pszString; pszString += dwLength)
         {
-          dwLength = (DWORD) _tcslen (pszString) + 1;
+          dwLength = (DWORD) tc::tcslen (pszString) + 1;
           dwRealCount++;
         }
-      LPTSTR *pszNewStrings = (LPTSTR *) malloc (dwRealCount *sizeof (LPTSTR));
+      tchar_t* *pszNewStrings = (tchar_t* *) malloc (dwRealCount *sizeof (tchar_t*));
       if (pszNewStrings != nullptr)
         {
           *pszStrings = pszNewStrings;
           *pdwCount = dwRealCount;
           for (pszString = pValData->pszString; *pszString; pszString += dwLength, pszNewStrings++)
             {
-              dwLength = (DWORD) _tcslen (pszString) + 1;
-              LPTSTR pszNewString = (LPTSTR) malloc (dwLength);
+              dwLength = (DWORD) tc::tcslen (pszString) + 1;
+              tchar_t* pszNewString = (tchar_t*) malloc (dwLength);
               *pszNewStrings = pszNewString;
               if (pszNewString != nullptr)
                 {
@@ -235,7 +235,7 @@ RegValGetString (const RegVal *pValData, CString &sString)
   if (pValData->dwType == REG_SZ || pValData->dwType == REG_EXPAND_SZ
         || pValData->dwType == REG_LINK || pValData->dwType == REG_MULTI_SZ)
     {
-      LPTSTR pszString = sString.GetBuffer (pValData->dwLength + 1);
+      tchar_t* pszString = sString.GetBuffer (pValData->dwLength + 1);
       CopyMemory (pszString, pValData->pszString, pValData->dwLength);
       sString.ReleaseBuffer (pValData->dwLength);
       return true;
@@ -251,7 +251,7 @@ RegValGetStringArr (const RegVal *pValData, CStringArray &arrString)
   if (pValData->dwType == REG_MULTI_SZ)
     {
       arrString.RemoveAll ();
-      for (LPCTSTR pszString = pValData->pszString; *pszString; pszString += _tcslen (pszString) + 1)
+      for (const tchar_t* pszString = pValData->pszString; *pszString; pszString += tc::tcslen (pszString) + 1)
         {
           arrString.Add (pszString);
         }
@@ -290,11 +290,11 @@ RegValSetBinary (RegVal *pValData, const LPBYTE pbyteData, DWORD dwSize)
 
 /* set a string */
 bool
-RegValSetString (RegVal *pValData, LPCTSTR pszString)
+RegValSetString (RegVal *pValData, const tchar_t* pszString)
 {
   ASSERT (pValData != nullptr && pszString != nullptr);
-  DWORD dwLength = (DWORD) _tcslen (pszString) + 1;
-  pValData->pszString = (LPTSTR) malloc (dwLength);
+  DWORD dwLength = (DWORD) tc::tcslen (pszString) + 1;
+  pValData->pszString = (tchar_t*) malloc (dwLength);
   if (pValData->pszString != nullptr)
     {
       pValData->dwLength = dwLength;
@@ -307,7 +307,7 @@ RegValSetString (RegVal *pValData, LPCTSTR pszString)
 }
 
 bool
-RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
+RegValSetStringArr (RegVal *pValData, const tchar_t* pszStrings[], DWORD dwCount)
 {
   ASSERT (pValData != nullptr && pszStrings != nullptr);
   DWORD i, dwSize = 1;
@@ -315,7 +315,7 @@ RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
     {
       for (i = 0; i < dwCount; i++)
         {
-          dwSize += (DWORD) _tcslen (pszStrings[i]) + 1;
+          dwSize += (DWORD) tc::tcslen (pszStrings[i]) + 1;
         }
     }
   else
@@ -332,7 +332,7 @@ RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount)
         {
           for (i = 0; i < dwCount; i++)
             {
-              LPCTSTR pszString = pszStrings[i];
+              const tchar_t* pszString = pszStrings[i];
               while ((*pbyteData++ = (BYTE) *pszString) != _T ('\0'))
                 {
                   pszString++;
@@ -379,7 +379,7 @@ RegValSetStringArr (RegVal *pValData, const CStringArray &arrString)
         {
           for (i = 0; i < dwCount; i++)
             {
-              LPCTSTR pszString = arrString[i];
+              const tchar_t* pszString = arrString[i];
               while ((*pbyteData++ = (BYTE) *pszString) != _T ('\0'))
                 {
                   pszString++;
@@ -401,7 +401,7 @@ RegValSetStringArr (RegVal *pValData, const CStringArray &arrString)
 
 /* connect to remote computer registry */
 HKEY
-RegConnect (HKEY hKey, LPCTSTR pszRemote)
+RegConnect (HKEY hKey, const tchar_t* pszRemote)
 {
   HKEY hSubKey;
   if (RegConnectRegistry (pszRemote, hKey, &hSubKey) == ERROR_SUCCESS)
@@ -413,7 +413,7 @@ RegConnect (HKEY hKey, LPCTSTR pszRemote)
 
 /* open computer registry */
 HKEY
-RegOpen (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights)
+RegOpen (HKEY hKey, const tchar_t* pszSubKey, DWORD dwRights)
 {
   HKEY hSubKey;
   if (RegOpenKeyEx (hKey, pszSubKey, 0, dwRights, &hSubKey) == ERROR_SUCCESS)
@@ -425,7 +425,7 @@ RegOpen (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights)
 
 /* create computer registry */
 HKEY
-RegCreate (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights)
+RegCreate (HKEY hKey, const tchar_t* pszSubKey, DWORD dwRights)
 {
   HKEY hSubKey;
   DWORD dwDisposition;
@@ -447,7 +447,7 @@ RegClose (HKEY hKey)
 
 /* load data of any type */
 bool
-RegLoadVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
+RegLoadVal (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, RegVal *pValData)
 {
   ASSERT (pValData != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
@@ -499,7 +499,7 @@ RegLoadVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
 
 /* load a number */
 bool
-RegLoadNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumber)
+RegLoadNumber (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD *pdwNumber)
 {
   ASSERT (pdwNumber != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
@@ -528,7 +528,7 @@ RegLoadNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumbe
 
 /* load binary data */
 bool
-RegLoadBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize)
+RegLoadBinary (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE pbyteData, DWORD dwSize)
 {
   ASSERT (pbyteData != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
@@ -555,7 +555,7 @@ RegLoadBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteDat
 
 /* load new binary data */
 bool
-RegLoadNewBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
+RegLoadNewBinary (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
 {
   ASSERT (pbyteData != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
@@ -589,7 +589,7 @@ RegLoadNewBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyt
 
 /* load a string */
 bool
-RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength)
+RegLoadString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszString, DWORD dwLength)
 {
   ASSERT (pszString != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
@@ -617,7 +617,7 @@ RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrin
 
 /* load a new string */
 bool
-RegLoadNewString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength)
+RegLoadNewString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* *pszString, DWORD *pdwLength)
 {
   ASSERT (pszString != nullptr);
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
@@ -629,7 +629,7 @@ RegLoadNewString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszS
           if (dwType == REG_SZ || dwType == REG_EXPAND_SZ || dwType == REG_LINK
                 || dwType == REG_MULTI_SZ)
             {
-              LPTSTR pszNewString = (LPTSTR) malloc (dwRealLength);
+              tchar_t* pszNewString = (tchar_t*) malloc (dwRealLength);
               if (pszNewString != nullptr)
                 {
                   if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) pszNewString, &dwRealLength) == ERROR_SUCCESS)
@@ -655,7 +655,7 @@ RegLoadNewString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszS
 
 /* load an array of strings */
 bool
-RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount)
+RegLoadStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszStrings[], DWORD dwCount)
 {
   RegVal Value;
   if (RegLoadVal (hKey, pszSubKey, pszValName, &Value))
@@ -672,7 +672,7 @@ RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszSt
 
 /* load a new array of strings */
 bool
-RegLoadNewStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount)
+RegLoadNewStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* **pszStrings, DWORD *pdwCount)
 {
   RegVal Value;
   if (RegLoadVal (hKey, pszSubKey, pszValName, &Value))
@@ -691,7 +691,7 @@ RegLoadNewStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **
 
 /* load a string */
 bool
-RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString)
+RegLoadString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, CString &sString)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
   if (hSubKey != nullptr)
@@ -702,7 +702,7 @@ RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sStrin
           if (dwType == REG_SZ || dwType == REG_EXPAND_SZ || dwType == REG_LINK
                 || dwType == REG_MULTI_SZ)
             {
-              LPTSTR pszString = sString.GetBuffer (dwRealLength);
+              tchar_t* pszString = sString.GetBuffer (dwRealLength);
               if (RegQueryValueEx (hSubKey, pszValName, 0, nullptr, (LPBYTE) pszString, &dwRealLength) == ERROR_SUCCESS)
                 {
                   sString.ReleaseBuffer (dwRealLength);
@@ -721,7 +721,7 @@ RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sStrin
 
 /* load an array of strings */
 bool
-RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray &arrString)
+RegLoadStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, CStringArray &arrString)
 {
   RegVal Value;
   if (RegLoadVal (hKey, pszSubKey, pszValName, &Value))
@@ -740,7 +740,7 @@ RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray
 
 /* store data of any type */
 bool
-RegSaveVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pValData)
+RegSaveVal (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const RegVal *pValData)
 {
   ASSERT (pValData != nullptr);
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
@@ -775,7 +775,7 @@ RegSaveVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pVal
 
 /* store a number */
 bool
-RegSaveNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber)
+RegSaveNumber (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD dwNumber)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
   if (hSubKey != nullptr)
@@ -794,7 +794,7 @@ RegSaveNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber)
 
 /* store binary data */
 bool
-RegSaveBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize)
+RegSaveBinary (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const LPBYTE pbyteData, DWORD dwSize)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
   if (hSubKey != nullptr)
@@ -813,12 +813,12 @@ RegSaveBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pb
 
 /* store a string */
 bool
-RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString)
+RegSaveString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszString)
 {
   HKEY hSubKey = pszSubKey ? RegCreate (hKey, pszSubKey, KEY_WRITE) : hKey;
   if (hSubKey != nullptr)
     {
-      if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)(_tcslen (pszString) + 1) * sizeof(TCHAR)) == ERROR_SUCCESS)
+      if (RegSetValueEx (hSubKey, pszValName, 0, REG_SZ, (LPBYTE) pszString, (DWORD)(tc::tcslen (pszString) + 1) * sizeof(tchar_t)) == ERROR_SUCCESS)
         {
           if (hSubKey != hKey)
             RegClose (hSubKey);
@@ -832,7 +832,7 @@ RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszStri
 
 /* store an array of strings */
 bool
-RegSaveStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount)
+RegSaveStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszStrings[], DWORD dwCount)
 {
   RegVal Value;
   if (RegValSetStringArr (&Value, pszStrings, dwCount))
@@ -851,7 +851,7 @@ RegSaveStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTST
 
 /* store an array of strings */
 bool
-RegSaveStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const CStringArray &arrString)
+RegSaveStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const CStringArray &arrString)
 {
   RegVal Value;
   if (RegValSetStringArr (&Value, arrString))
@@ -878,7 +878,7 @@ RegDeleteSubKeys (HKEY hKey)
     {
       if (dwSubKeyCnt)
         {
-          LPTSTR pszKeyName = (LPTSTR) malloc (dwMaxSubKey += 1);
+          tchar_t* pszKeyName = (tchar_t*) malloc (dwMaxSubKey += 1);
           if (pszKeyName != nullptr)
             {
               do
@@ -931,7 +931,7 @@ RegDeleteSubKeys (HKEY hKey)
 
 /* delete the given value or key in the registry with all of its subkeys */
 bool
-RegDeleteKey (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName)
+RegDeleteKey (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ | KEY_WRITE) : hKey;
   if (hSubKey != nullptr)
@@ -962,7 +962,7 @@ RegDeleteKey (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName)
 
 /* check wether the given key has other subkeys and/or values */
 bool
-RegHasEntries (HKEY hKey, LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
+RegHasEntries (HKEY hKey, const tchar_t* pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
 {
   HKEY hSubKey = pszSubKey ? RegOpen (hKey, pszSubKey, KEY_READ) : hKey;
   if (hSubKey != nullptr)
@@ -980,14 +980,14 @@ RegHasEntries (HKEY hKey, LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwVa
   return false;
 }
 
-static LPTSTR g_pszValue = nullptr;
+static tchar_t* g_pszValue = nullptr;
 static DWORD g_dwValueCnt, g_dwValue, g_dwValueMax;
 
-bool RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData);
+bool RegFindFirstValue (HKEY hKey, const tchar_t* *ppszValue, RegVal *pValData);
 
 /* walks to the first value */
 bool
-RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
+RegFindFirstValue (HKEY hKey, const tchar_t* *ppszValue, RegVal *pValData)
 {
   if (RegQueryInfoKey (hKey, nullptr, nullptr, 0, nullptr, nullptr, nullptr,
     &g_dwValueCnt, &g_dwValueMax, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
@@ -999,7 +999,7 @@ RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
               free (g_pszValue);
               g_pszValue = nullptr;
             }
-          g_pszValue = (LPTSTR) malloc (g_dwValueMax += 1);
+          g_pszValue = (tchar_t*) malloc (g_dwValueMax += 1);
           if (g_pszValue)
             {
               DWORD dwMaxValue = g_dwValueMax;
@@ -1016,7 +1016,7 @@ RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
 }
 
 /* walks to the next value */
-bool RegFindNextValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData)
+bool RegFindNextValue (HKEY hKey, const tchar_t* *ppszValue, RegVal *pValData)
 {
   DWORD dwMaxValue = g_dwValueMax;
   if (g_dwValue < g_dwValueCnt && RegEnumValue (hKey, g_dwValue++, g_pszValue, &dwMaxValue, 0, nullptr, nullptr, nullptr) == ERROR_SUCCESS)
@@ -1084,25 +1084,25 @@ bool CRegVal::GetNewBinary (LPBYTE *_pbyteData, DWORD *_pdwSize) const
 }
 
 /* get a string */
-bool CRegVal::GetString (LPTSTR _pszString, DWORD _dwLength) const
+bool CRegVal::GetString (tchar_t* _pszString, DWORD _dwLength) const
 {
   return RegValGetString (this, _pszString, _dwLength);
 }
 
 /* get a new string */
-bool CRegVal::GetNewString (LPTSTR *_pszString, DWORD *_pdwLength) const
+bool CRegVal::GetNewString (tchar_t* *_pszString, DWORD *_pdwLength) const
 {
   return RegValGetNewString (this, _pszString, _pdwLength);
 }
 
 /* get an array of strings */
-bool CRegVal::GetStringArr (LPTSTR pszStrings[], DWORD dwCount) const
+bool CRegVal::GetStringArr (tchar_t* pszStrings[], DWORD dwCount) const
 {
   return RegValGetStringArr (this, pszStrings, dwCount);
 }
 
 /* get a new array of strings */
-bool CRegVal::GetNewStringArr (LPTSTR **pszStrings, DWORD *pdwCount) const
+bool CRegVal::GetNewStringArr (tchar_t* **pszStrings, DWORD *pdwCount) const
 {
   return RegValGetNewStringArr (this, pszStrings, pdwCount);
 }
@@ -1136,13 +1136,13 @@ bool CRegVal::SetBinary (const LPBYTE _pbyteData, DWORD _dwSize)
 }
 
 /* set a string */
-bool CRegVal::SetString (LPCTSTR _pszString)
+bool CRegVal::SetString (const tchar_t* _pszString)
 {
   return RegValSetString (this, _pszString);
 }
 
 /* set an array of strings */
-bool CRegVal::SetStringArr (const LPCTSTR pszStrings[], DWORD dwCount)
+bool CRegVal::SetStringArr (const tchar_t* pszStrings[], DWORD dwCount)
 {
   return RegValSetStringArr (this, pszStrings, dwCount);
 }
@@ -1170,7 +1170,7 @@ CReg::~CReg ()
 }
 
 /* connect to remote computer registry */
-HKEY CReg::Connect (HKEY hNewKey, LPCTSTR pszRemote)
+HKEY CReg::Connect (HKEY hNewKey, const tchar_t* pszRemote)
 {
   return hKey = RegConnect (hNewKey, pszRemote);
 }
@@ -1182,7 +1182,7 @@ HKEY CReg::Open (HKEY hNewKey /*= nullptr*/)
 }
 
 /* open computer registry */
-HKEY CReg::Open (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights)
+HKEY CReg::Open (HKEY hNewKey, const tchar_t* pszSubKey, DWORD dwRights)
 {
   return hKey = RegOpen (hNewKey, pszSubKey, dwRights);
 }
@@ -1200,103 +1200,103 @@ void CReg::Close ()
 }
 
 /* create computer registry */
-HKEY CReg::Create (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights)
+HKEY CReg::Create (HKEY hNewKey, const tchar_t* pszSubKey, DWORD dwRights)
 {
   return hKey = RegCreate (hNewKey, pszSubKey, dwRights);
 }
 
 /* load data of any type */
-bool CReg::LoadVal (LPCTSTR pszValName, RegVal *pValData)
+bool CReg::LoadVal (const tchar_t* pszValName, RegVal *pValData)
 {
   return RegLoadVal (hKey, nullptr, pszValName, pValData);
 }
 
 /* load data of any type from subkey */
-bool CReg::LoadVal (LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData)
+bool CReg::LoadVal (const tchar_t* pszSubKey, const tchar_t* pszValName, RegVal *pValData)
 {
   return RegLoadVal (hKey, pszSubKey, pszValName, pValData);
 }
 
 /* load a number */
-bool CReg::LoadNumber (LPCTSTR pszValName, DWORD *pdwNumber)
+bool CReg::LoadNumber (const tchar_t* pszValName, DWORD *pdwNumber)
 {
   return RegLoadNumber (hKey, nullptr, pszValName, pdwNumber);
 }
 
 /* load a number from subkey */
-bool CReg::LoadNumber (LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumber)
+bool CReg::LoadNumber (const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD *pdwNumber)
 {
   return RegLoadNumber (hKey, pszSubKey, pszValName, pdwNumber);
 }
 
 /* load binary data */
-bool CReg::LoadBinary (LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize)
+bool CReg::LoadBinary (const tchar_t* pszValName, LPBYTE pbyteData, DWORD dwSize)
 {
   return RegLoadBinary (hKey, nullptr, pszValName, pbyteData, dwSize);
 }
 
 /* load binary data from subkey */
-bool CReg::LoadBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize)
+bool CReg::LoadBinary (const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE pbyteData, DWORD dwSize)
 {
   return RegLoadBinary (hKey, pszSubKey, pszValName, pbyteData, dwSize);
 }
 
 /* load new binary data */
-bool CReg::LoadNewBinary (LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
+bool CReg::LoadNewBinary (const tchar_t* pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
 {
   return RegLoadNewBinary (hKey, nullptr, pszValName, pbyteData, pdwSize);
 }
 
 /* load new binary data from subkey */
-bool CReg::LoadNewBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
+bool CReg::LoadNewBinary (const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE *pbyteData, DWORD *pdwSize)
 {
   return RegLoadNewBinary (hKey, pszSubKey, pszValName, pbyteData, pdwSize);
 }
 
 /* load a string */
-bool CReg::LoadString (LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength)
+bool CReg::LoadString (const tchar_t* pszValName, tchar_t* pszString, DWORD dwLength)
 {
   return RegLoadString (hKey, nullptr, pszValName, pszString, dwLength);
 }
 
 /* load a string from subkey */
-bool CReg::LoadString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength)
+bool CReg::LoadString (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszString, DWORD dwLength)
 {
   return RegLoadString (hKey, pszSubKey, pszValName, pszString, dwLength);
 }
 
 /* load a new string */
-bool CReg::LoadNewString (LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength)
+bool CReg::LoadNewString (const tchar_t* pszValName, tchar_t* *pszString, DWORD *pdwLength)
 {
   return RegLoadNewString (hKey, nullptr, pszValName, pszString, pdwLength);
 }
 
 /* load a new string from subkey */
-bool CReg::LoadNewString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength)
+bool CReg::LoadNewString (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* *pszString, DWORD *pdwLength)
 {
   return RegLoadNewString (hKey, pszSubKey, pszValName, pszString, pdwLength);
 }
 
 /* load an array of strings */
-bool CReg::LoadStringArr (LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount)
+bool CReg::LoadStringArr (const tchar_t* pszValName, tchar_t* pszStrings[], DWORD dwCount)
 {
   return RegLoadStringArr (hKey, nullptr, pszValName, pszStrings, dwCount);
 }
 
 /* load an array of strings from subkey */
-bool CReg::LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount)
+bool CReg::LoadStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszStrings[], DWORD dwCount)
 {
   return RegLoadStringArr (hKey, pszSubKey, pszValName, pszStrings, dwCount);
 }
 
 /* load a new array of strings */
-bool CReg::LoadNewStringArr (LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount)
+bool CReg::LoadNewStringArr (const tchar_t* pszValName, tchar_t* **pszStrings, DWORD *pdwCount)
 {
   return RegLoadNewStringArr (hKey, nullptr, pszValName, pszStrings, pdwCount);
 }
 
 /* load a new array of strings from subkey */
-bool CReg::LoadNewStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount)
+bool CReg::LoadNewStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* **pszStrings, DWORD *pdwCount)
 {
   return RegLoadNewStringArr (hKey, pszSubKey, pszValName, pszStrings, pdwCount);
 }
@@ -1304,25 +1304,25 @@ bool CReg::LoadNewStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **psz
 #ifdef REG_WITH_MFC
 
 /* load a string */
-bool CReg::LoadString (LPCTSTR pszValName, CString &sString)
+bool CReg::LoadString (const tchar_t* pszValName, CString &sString)
 {
   return RegLoadString (hKey, nullptr, pszValName, sString);
 }
 
 /* load a string from subkey */
-bool CReg::LoadString (LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString)
+bool CReg::LoadString (const tchar_t* pszSubKey, const tchar_t* pszValName, CString &sString)
 {
   return RegLoadString (hKey, pszSubKey, pszValName, sString);
 }
 
 /* load an array of strings */
-bool CReg::LoadStringArr (LPCTSTR pszValName, CStringArray &arrString)
+bool CReg::LoadStringArr (const tchar_t* pszValName, CStringArray &arrString)
 {
   return RegLoadStringArr (hKey, nullptr, pszValName, arrString);
 }
 
 /* load an array of strings from subkey */
-bool CReg::LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray &arrString)
+bool CReg::LoadStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, CStringArray &arrString)
 {
   return RegLoadStringArr (hKey, pszSubKey, pszValName, arrString);
 }
@@ -1330,61 +1330,61 @@ bool CReg::LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray &a
 #endif /* REG_WITH_MFC */
 
 /* store data of any type */
-bool CReg::SaveVal (LPCTSTR pszValName, const RegVal *pValData)
+bool CReg::SaveVal (const tchar_t* pszValName, const RegVal *pValData)
 {
   return RegSaveVal (hKey, nullptr, pszValName, pValData);
 }
 
 /* store data of any type to subkey */
-bool CReg::SaveVal (LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pValData)
+bool CReg::SaveVal (const tchar_t* pszSubKey, const tchar_t* pszValName, const RegVal *pValData)
 {
   return RegSaveVal (hKey, pszSubKey, pszValName, pValData);
 }
 
 /* store a number */
-bool CReg::SaveNumber (LPCTSTR pszValName, DWORD dwNumber)
+bool CReg::SaveNumber (const tchar_t* pszValName, DWORD dwNumber)
 {
   return RegSaveNumber (hKey, nullptr, pszValName, dwNumber);
 }
 
 /* store a number to subkey */
-bool CReg::SaveNumber (LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber)
+bool CReg::SaveNumber (const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD dwNumber)
 {
   return RegSaveNumber (hKey, pszSubKey, pszValName, dwNumber);
 }
 
 /* store binary data */
-bool CReg::SaveBinary (LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize)
+bool CReg::SaveBinary (const tchar_t* pszValName, const LPBYTE pbyteData, DWORD dwSize)
 {
   return RegSaveBinary (hKey, nullptr, pszValName, pbyteData, dwSize);
 }
 
 /* store binary data to subkey */
-bool CReg::SaveBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize)
+bool CReg::SaveBinary (const tchar_t* pszSubKey, const tchar_t* pszValName, const LPBYTE pbyteData, DWORD dwSize)
 {
   return RegSaveBinary (hKey, pszSubKey, pszValName, pbyteData, dwSize);
 }
 
 /* store a string */
-bool CReg::SaveString (LPCTSTR pszValName, LPCTSTR pszString)
+bool CReg::SaveString (const tchar_t* pszValName, const tchar_t* pszString)
 {
   return RegSaveString (hKey, nullptr, pszValName, pszString);
 }
 
 /* store a string to subkey */
-bool CReg::SaveString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString)
+bool CReg::SaveString (const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszString)
 {
   return RegSaveString (hKey, pszSubKey, pszValName, pszString);
 }
 
 /* store an array of strings */
-bool CReg::SaveStringArr (LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount)
+bool CReg::SaveStringArr (const tchar_t* pszValName, const tchar_t* pszStrings[], DWORD dwCount)
 {
   return RegSaveStringArr (hKey, nullptr, pszValName, pszStrings, dwCount);
 }
 
 /* store an array of strings to subkey */
-bool CReg::SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount)
+bool CReg::SaveStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszStrings[], DWORD dwCount)
 {
   return RegSaveStringArr (hKey, pszSubKey, pszValName, pszStrings, dwCount);
 }
@@ -1392,13 +1392,13 @@ bool CReg::SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTSTR p
 #ifdef REG_WITH_MFC
 
 /* store an array of strings */
-bool CReg::SaveStringArr (LPCTSTR pszValName, const CStringArray &arrString)
+bool CReg::SaveStringArr (const tchar_t* pszValName, const CStringArray &arrString)
 {
   return RegSaveStringArr (hKey, nullptr, pszValName, arrString);
 }
 
 /* store an array of strings to subkey */
-bool CReg::SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const CStringArray &arrString)
+bool CReg::SaveStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, const CStringArray &arrString)
 {
   return RegSaveStringArr (hKey, pszSubKey, pszValName, arrString);
 }
@@ -1406,13 +1406,13 @@ bool CReg::SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const CStringAr
 #endif /* REG_WITH_MFC */
 
 /* delete the given value or key in the registry with all of its subkeys */
-bool CReg::DeleteKey (LPCTSTR pszValName)
+bool CReg::DeleteKey (const tchar_t* pszValName)
 {
   return RegDeleteKey (hKey, nullptr, pszValName);
 }
 
 /* delete the given value or key in the registry with all of its subkeys in subkey */
-bool CReg::DeleteKey (LPCTSTR pszSubKey, LPCTSTR pszValName)
+bool CReg::DeleteKey (const tchar_t* pszSubKey, const tchar_t* pszValName)
 {
   return RegDeleteKey (hKey, pszSubKey, pszValName);
 }
@@ -1430,19 +1430,19 @@ bool CReg::HasEntries (DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
 }
 
 /* check wether the given key has other subkeys and/or values in subkey */
-bool CReg::HasEntries (LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
+bool CReg::HasEntries (const tchar_t* pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount)
 {
   return RegHasEntries (hKey, pszSubKey, pdwSubKeyCount, pdwValueCount);
 }
 
 /* walks to the first value */
-bool CReg::FindFirstValue (LPCTSTR &ppszValue, RegVal *pValData)
+bool CReg::FindFirstValue (const tchar_t* &ppszValue, RegVal *pValData)
 {
   return RegFindFirstValue (hKey, &ppszValue, pValData);
 }
 
 /* walks to the next value */
-bool CReg::FindNextValue (LPCTSTR &ppszValue, RegVal *pValData)
+bool CReg::FindNextValue (const tchar_t* &ppszValue, RegVal *pValData)
 {
   return RegFindNextValue (hKey, &ppszValue, pValData);
 }

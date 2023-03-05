@@ -95,7 +95,7 @@ public:
 	void RefreshOptions();
 	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
-	virtual void OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText) override;
+	virtual void OnEditOperation(int nAction, const tchar_t* pszText, size_t cchText) override;
 	bool IsLineInCurrentDiff(int nLine) const;
 	void SelectNone();
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);

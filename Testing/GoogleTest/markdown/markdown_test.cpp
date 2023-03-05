@@ -53,7 +53,7 @@ namespace
             _T("</body>\r\n")
             _T("</html>\r\n");
 
-		CMarkdown::File fi(html.c_str(), html.length() * sizeof(TCHAR), CMarkdown::Html|CMarkdown::FileImage::Mapping|CMarkdown::FileImage::Octets);
+		CMarkdown::File fi(html.c_str(), html.length() * sizeof(tchar_t), CMarkdown::Html|CMarkdown::FileImage::Mapping|CMarkdown::FileImage::Octets);
 		fi.Move("meta");
 		EXPECT_EQ("meta", fi.GetTagName());
 		std::string content = fi.GetAttribute("context");

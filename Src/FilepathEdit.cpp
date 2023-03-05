@@ -172,7 +172,7 @@ void CFilepathEdit::RefreshDisplayText()
 	// compact the path
 	CRect rect;
 	GetRect(rect);
-	std::vector<TCHAR> tmp((std::max)(MAX_PATH, line.length() + 1));
+	std::vector<tchar_t> tmp((std::max)(MAX_PATH, line.length() + 1));
 	std::copy(line.begin(), line.end(), tmp.begin());
 	PathCompactPath(lDC.GetSafeHdc(), &tmp[0],	rect.Width());
 	line = &tmp[0];
@@ -455,7 +455,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		GetWindowText(text);
 		if (!text.IsEmpty() && text[0] == '*')
 			text = text.Right(text.GetLength() - 2);
-		String dir = paths::GetParentPath(static_cast<const TCHAR*>(text));
+		String dir = paths::GetParentPath(static_cast<const tchar_t*>(text));
 		bool selected = false;
 		if (m_bEnabledFileSelection)
 			selected = SelectFile(m_hWnd, m_sFilepath, true, dir.c_str());

@@ -81,7 +81,7 @@ public :
 
 	// Text modification functions
 	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,
-		LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar,
+		const tchar_t* pszText, size_t cchText, int &nEndLine, int &nEndChar,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
@@ -91,7 +91,7 @@ public :
 #endif
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr) override;
+	                            const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
 	virtual bool UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos,
 							const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur) override;
@@ -126,7 +126,7 @@ public:
 
 private:
 	void RecomputeRealityMapping();
-	void CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int& nLastLineLength, int& nEol);
+	void CountEolAndLastLineLength(const CPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int& nLastLineLength, int& nEol);
 	/** For debugging purpose */
 	void checkFlagsFromReality() const;
 

@@ -103,7 +103,7 @@ void CSelectPluginDlg::OnOK()
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION, m_bNoExtensionCheck);
 	GetOptionsMgr()->SaveOption(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE, m_bOpenInSameFrameType);
 	m_ctlPluginPipeline.SaveState(
-		std::vector<const TCHAR *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
+		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
 			[static_cast<int>(m_pluginType)]);
 
 	CTrDialog::OnOK();
@@ -127,7 +127,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
-		std::vector<const TCHAR *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
+		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
 			[static_cast<int>(m_pluginType)]);
 
 	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_pluginType == PluginType::Unpacker);
@@ -170,10 +170,10 @@ void CSelectPluginDlg::prepareListbox()
 	{
 		COMBOBOXEXITEM item{CBEIF_TEXT};
 		item.iItem = nameCount++;
-		item.pszText = const_cast<LPTSTR>(noPlugin->m_name.c_str());
+		item.pszText = const_cast<tchar_t*>(noPlugin->m_name.c_str());
 		m_cboPluginName.InsertItem(&item);
 		item.iItem = nameCount++;
-		item.pszText = const_cast<LPTSTR>(automaticPlugin->m_name.c_str());
+		item.pszText = const_cast<tchar_t*>(automaticPlugin->m_name.c_str());
 		m_cboPluginName.InsertItem(&item);
 	}
 
@@ -197,7 +197,7 @@ void CSelectPluginDlg::prepareListbox()
 			String text = (_T("[") + processType2 + _T("]"));
 			COMBOBOXEXITEM item{CBEIF_TEXT};
 			item.iItem = nameCount++;
-			item.pszText = const_cast<LPTSTR>(text.c_str());
+			item.pszText = const_cast<tchar_t*>(text.c_str());
 			m_cboPluginName.InsertItem(&item);
 		}
 		for (const auto& [caption, name, id, plugin] : pluginList)
@@ -210,7 +210,7 @@ void CSelectPluginDlg::prepareListbox()
 					COMBOBOXEXITEM item{CBEIF_TEXT|CBEIF_INDENT};
 					item.iItem = nameCount++;
 					item.iIndent = 1;
-					item.pszText = const_cast<LPTSTR>(name.c_str());
+					item.pszText = const_cast<tchar_t*>(name.c_str());
 					m_cboPluginName.InsertItem(&item);
 					if (lastPluginName.empty() && match)
 					{
@@ -285,7 +285,7 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	else
 	{
 		// initialize with the default unpacker
-		TCHAR szBuf[256]{};
+		tchar_t szBuf[256]{};
 		COMBOBOXEXITEM item{CBEIF_TEXT};
 		item.iItem = i;
 		item.pszText = szBuf;

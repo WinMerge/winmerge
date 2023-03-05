@@ -489,7 +489,7 @@ CString CHexMergeDoc::GetTooltipString() const
 /**
 * @brief Load one file
 */
-HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc)
+HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readOnly, const String& strDesc)
 {
 	if (filename[0])
 	{
@@ -940,7 +940,7 @@ void CHexMergeDoc::OnRefresh()
 	if (UpdateDiffItem(m_pDirDoc) == 0)
 	{
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+			[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
 	}
 }
 

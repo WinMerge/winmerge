@@ -108,7 +108,7 @@ protected:
 
 protected:
 	void AddPage(CPropertyPage* pPage, UINT nResourceID);
-	void AddPage(CPropertyPage* pPage, LPCTSTR szPath);
+	void AddPage(CPropertyPage* pPage, const tchar_t* szPath);
 	void AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubHeading);
 	void SetActivePage(int nPage);
 	CString GetItemPath(HTREEITEM hti);

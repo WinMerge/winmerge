@@ -265,7 +265,7 @@ int to_utf8_advance(unsigned u, unsigned char * &lpd)
 # pragma warning(pop)           // Restores the warning state.
 
 /**
- * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
+ * @brief convert character passed (Unicode codepoint) to a tchar_t (set lossy flag if imperfect conversion)
  */
 void maketchar(String & ch, unsigned unich, bool & lossy)
 {
@@ -275,20 +275,20 @@ void maketchar(String & ch, unsigned unich, bool & lossy)
 }
 
 /**
- * @brief convert character passed (Unicode codepoint) to a TCHAR (set lossy flag if imperfect conversion)
+ * @brief convert character passed (Unicode codepoint) to a tchar_t (set lossy flag if imperfect conversion)
  */
 void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 {
 #ifdef _UNICODE
 	if (unich < 0x10000)
 	{
-		ch = static_cast<TCHAR>(unich);
+		ch = static_cast<tchar_t>(unich);
 		return;
 	}
 	else if (unich < 0x110000)
 	{
-		ch = static_cast<TCHAR>(((unich - 0x10000)/0x400 + 0xd800));
-		ch += static_cast<TCHAR>(((unich % 0x400) + 0xdc00));
+		ch = static_cast<tchar_t>(((unich - 0x10000)/0x400 + 0xd800));
+		ch += static_cast<tchar_t>(((unich % 0x400) + 0xdc00));
 		return;
 	}
 	lossy = true;
@@ -297,7 +297,7 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 #else
 	if (unich < 0x80)
 	{
-		ch = (TCHAR)unich;
+		ch = (tchar_t)unich;
 		return;
 	}
 	wchar_t wch = (wchar_t)unich;
@@ -316,8 +316,8 @@ void maketchar(String & ch, unsigned unich, bool & lossy, unsigned codepage)
 		lossy = true;
 	}
 	// already lossy, so make our best shot
-	DWORD flags = WC_COMPOSITECHECK + WC_DISCARDNS + WC_SEPCHARS + WC_DEFAULTCHAR;
-	TCHAR outbuff[16];
+	DWORD flags = WC_COMPOSITECHECK + WC_DISCARDNS + WC_SEPCHARS + WC_DEFAULtchar_t;
+	tchar_t outbuff[16];
 	int n = WideCharToMultiByte(codepage, flags, &wch, 1, outbuff, sizeof(outbuff) - 1, nullptr, nullptr);
 	if (n > 0)
 	{
@@ -357,7 +357,7 @@ unsigned byteToUnicode(unsigned char ch, unsigned codepage)
 }
 
 /**
- * @brief Return encoding used for TCHAR & String
+ * @brief Return encoding used for tchar_t & String
  */
 void getInternalEncoding(UNICODESET * unicoding, int * codepage)
 {
@@ -437,7 +437,7 @@ unsigned get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
 }
 
 /**
- * @brief Convert series of bytes (8-bit chars) to TCHARs.
+ * @brief Convert series of bytes (8-bit chars) to tchar_ts.
  *
  * @param [out] str String returned.
  * @param [in] lpd Original byte array to convert.
@@ -465,7 +465,7 @@ bool maketstring(String & str, const char* lpd, size_t len, int codepage, bool *
 
 #ifdef UNICODE
 	// Convert input to Unicode, using specified codepage
-	// TCHAR is wchar_t, so convert into String (str)
+	// tchar_t is wchar_t, so convert into String (str)
 	DWORD flags = MB_ERR_INVALID_CHARS;
 	size_t wlen = len * 2 + 6;
 	assert(wlen < INT_MAX);
@@ -723,7 +723,7 @@ int CrossConvert(const char* src, unsigned srclen, char* dest, unsigned destsize
 		--n;
 	wbuff[n] = 0; // zero-terminate string
 
-	// Now convert to TCHAR (which means defcodepage)
+	// Now convert to tchar_t (which means defcodepage)
 	flags = WC_NO_BEST_FIT_CHARS; // TODO: Think about this
 	BOOL defaulted = FALSE;
 	BOOL * pdefaulted = &defaulted;
@@ -797,7 +797,7 @@ void buffer::resize(size_t newSize)
 	}
 }
 
-unsigned char *convertTtoUTF8(buffer * buf, const TCHAR *src, int srcbytes/* = -1*/)
+unsigned char *convertTtoUTF8(buffer * buf, const tchar_t *src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
@@ -814,14 +814,14 @@ unsigned char *convertTtoUTF8(buffer * buf, const TCHAR *src, int srcbytes/* = -
 	return buf->ptr;
 }
 
-unsigned char *convertTtoUTF8(const TCHAR *src, int srcbytes/* = -1*/)
+unsigned char *convertTtoUTF8(const tchar_t *src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertTtoUTF8(&buf, src, srcbytes);
 	return (unsigned char *)_strdup((const char *)buf.ptr);
 }
 
-TCHAR *convertUTF8toT(buffer * buf, const char *src, int srcbytes/* = -1*/)
+tchar_t *convertUTF8toT(buffer * buf, const char *src, int srcbytes/* = -1*/)
 {
 	bool bSucceeded;
 #ifdef _UNICODE
@@ -834,15 +834,15 @@ TCHAR *convertUTF8toT(buffer * buf, const char *src, int srcbytes/* = -1*/)
 		GetACP(), buf);
 #endif
 	if (!bSucceeded)
-		*((TCHAR *)buf->ptr) = 0;
-	return (TCHAR *)buf->ptr;
+		*((tchar_t *)buf->ptr) = 0;
+	return (tchar_t *)buf->ptr;
 }
 
-TCHAR *convertUTF8toT(const char *src, int srcbytes/* = -1*/)
+tchar_t *convertUTF8toT(const char *src, int srcbytes/* = -1*/)
 {
 	buffer buf(256);
 	convertUTF8toT(&buf, src, srcbytes);
-	return (TCHAR *)_tcsdup((LPCTSTR)buf.ptr);
+	return (tchar_t *)tc::tcsdup((const tchar_t*)buf.ptr);
 }
 
 void dealloc(void *ptr)
@@ -1234,9 +1234,9 @@ static int NormalizeCodepage(int cp)
 {
 	if (cp == CP_THREAD_ACP) // should only happen on Win2000+
 	{
-		TCHAR buff[32];
+		tchar_t buff[32];
 		if (GetLocaleInfo(GetThreadLocale(), LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff) / sizeof(buff[0])))
-			cp = _ttol(buff);
+			cp = tc::ttol(buff);
 		else
 			// a valid codepage is better than no codepage
 			cp = GetACP();

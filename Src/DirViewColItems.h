@@ -30,7 +30,7 @@ struct DirColInfo
 		ALIGN_RIGHT = 1,  // LVCFMT_RIGHT
 		ALIGN_CENTER = 2  // LVCFMT_CENTER
 	};
-	const TCHAR *regName; /**< Internal name used for registry entries etc */
+	const tchar_t *regName; /**< Internal name used for registry entries etc */
 	// localized string resources
 	const char *idNameContext; 
 	const char *idName; /**< Displayed name, ID of string resource */
@@ -88,7 +88,7 @@ public:
 	template<class SetColumnWidthFunc>
 	void LoadColumnWidths(String colwidths, SetColumnWidthFunc setcolwidth, int defcolwidth)
 	{
-		std::basic_istringstream<TCHAR> ss(colwidths);
+		std::basic_istringstream<tchar_t> ss(colwidths);
 		for (int i = 0; i < m_numcols; ++i)
 		{
 			int phy = ColLogToPhys(i);
@@ -96,7 +96,7 @@ public:
 			{
 				int w = defcolwidth;
 				ss >> w;
-				setcolwidth(phy, max(w, 10));
+				setcolwidth(phy, (std::max)(w, 10));
 			}
 		}
 	}

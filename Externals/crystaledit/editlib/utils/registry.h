@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include "ctchar.h"
+
 /*////////////////////////////////////////////////////////////////////////////*/
 
 #if (defined (__AFXWIN_H__) || defined (ARX_WITH_MFC)) && !defined (REG_WITH_MFC)
@@ -30,7 +32,7 @@ struct RegVal
       {
         DWORD dwNumber;
         LPBYTE pbyteData;
-        LPTSTR pszString;
+        tchar_t* pszString;
       };
     union
       {
@@ -55,16 +57,16 @@ bool EDITPADC_CLASS RegValGetBinary (const RegVal *pValData, LPBYTE pbyteData, D
 bool EDITPADC_CLASS RegValGetNewBinary (const RegVal *pValData, LPBYTE *pbyteData, DWORD *pdwSize);
 
 /* get a string */
-bool EDITPADC_CLASS RegValGetString (const RegVal *pValData, LPTSTR pszString, DWORD dwLength);
+bool EDITPADC_CLASS RegValGetString (const RegVal *pValData, tchar_t* pszString, DWORD dwLength);
 
 /* get a new string */
-bool EDITPADC_CLASS RegValGetNewString (const RegVal *pValData, LPTSTR *pszString, DWORD *pdwLength);
+bool EDITPADC_CLASS RegValGetNewString (const RegVal *pValData, tchar_t* *pszString, DWORD *pdwLength);
 
 /* get an array of strings */
-bool EDITPADC_CLASS RegValGetStringArr (const RegVal *pValData, LPTSTR pszStrings[], DWORD dwCount);
+bool EDITPADC_CLASS RegValGetStringArr (const RegVal *pValData, tchar_t* pszStrings[], DWORD dwCount);
 
 /* get a new array of strings */
-bool EDITPADC_CLASS RegValGetNewStringArr (const RegVal *pValData, LPTSTR **pszStrings, DWORD *pdwCount);
+bool EDITPADC_CLASS RegValGetNewStringArr (const RegVal *pValData, tchar_t* **pszStrings, DWORD *pdwCount);
 
 #ifdef REG_WITH_MFC
 
@@ -83,10 +85,10 @@ void EDITPADC_CLASS RegValSetNumber (RegVal *pValData, DWORD dwNumber);
 bool EDITPADC_CLASS RegValSetBinary (RegVal *pValData, const LPBYTE pbyteData, DWORD dwSize);
 
 /* set a string */
-bool EDITPADC_CLASS RegValSetString (RegVal *pValData, LPCTSTR pszString);
+bool EDITPADC_CLASS RegValSetString (RegVal *pValData, const tchar_t* pszString);
 
 /* set an array of strings */
-bool EDITPADC_CLASS RegValSetStringArr (RegVal *pValData, const LPCTSTR pszStrings[], DWORD dwCount);
+bool EDITPADC_CLASS RegValSetStringArr (RegVal *pValData, const tchar_t* pszStrings[], DWORD dwCount);
 
 #ifdef REG_WITH_MFC
 
@@ -96,84 +98,84 @@ bool EDITPADC_CLASS RegValSetStringArr (RegVal *pValData, const CStringArray &ar
 #endif /* REG_WITH_MFC */
 
 /* connect to remote computer registry */
-HKEY EDITPADC_CLASS RegConnect (HKEY hKey, LPCTSTR pszRemote);
+HKEY EDITPADC_CLASS RegConnect (HKEY hKey, const tchar_t* pszRemote);
 
 /* open computer registry */
-HKEY EDITPADC_CLASS RegOpen (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights);
+HKEY EDITPADC_CLASS RegOpen (HKEY hKey, const tchar_t* pszSubKey, DWORD dwRights);
 
 /* close computer registry */
 void EDITPADC_CLASS RegClose (HKEY hKey);
 
 /* create computer registry */
-HKEY EDITPADC_CLASS RegCreate (HKEY hKey, LPCTSTR pszSubKey, DWORD dwRights);
+HKEY EDITPADC_CLASS RegCreate (HKEY hKey, const tchar_t* pszSubKey, DWORD dwRights);
 
 /* load data of any type */
-bool EDITPADC_CLASS RegLoadVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData);
+bool EDITPADC_CLASS RegLoadVal (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, RegVal *pValData);
 
 /* load a number */
-bool EDITPADC_CLASS RegLoadNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumber);
+bool EDITPADC_CLASS RegLoadNumber (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD *pdwNumber);
 
 /* load binary data */
-bool EDITPADC_CLASS RegLoadBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize);
+bool EDITPADC_CLASS RegLoadBinary (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE pbyteData, DWORD dwSize);
 
 /* load new binary data */
-bool EDITPADC_CLASS RegLoadNewBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize);
+bool EDITPADC_CLASS RegLoadNewBinary (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE *pbyteData, DWORD *pdwSize);
 
 /* load a string */
-bool EDITPADC_CLASS RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength);
+bool EDITPADC_CLASS RegLoadString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszString, DWORD dwLength);
 
 /* load a new string */
-bool EDITPADC_CLASS RegLoadNewString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength);
+bool EDITPADC_CLASS RegLoadNewString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* *pszString, DWORD *pdwLength);
 
 /* load an array of strings */
-bool EDITPADC_CLASS RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount);
+bool EDITPADC_CLASS RegLoadStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszStrings[], DWORD dwCount);
 
 /* load a new array of strings */
-bool EDITPADC_CLASS RegLoadNewStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount);
+bool EDITPADC_CLASS RegLoadNewStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* **pszStrings, DWORD *pdwCount);
 
 #ifdef REG_WITH_MFC
 
 /* load a string */
-bool EDITPADC_CLASS RegLoadString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString);
+bool EDITPADC_CLASS RegLoadString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, CString &sString);
 
 /* load an array of strings */
-bool EDITPADC_CLASS RegLoadStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray &arrString);
+bool EDITPADC_CLASS RegLoadStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, CStringArray &arrString);
 
 #endif /* REG_WITH_MFC */
 
 /* store data of any type */
-bool EDITPADC_CLASS RegSaveVal (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pValData);
+bool EDITPADC_CLASS RegSaveVal (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const RegVal *pValData);
 
 /* store a number */
-bool EDITPADC_CLASS RegSaveNumber (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber);
+bool EDITPADC_CLASS RegSaveNumber (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD dwNumber);
 
 /* store binary data */
-bool EDITPADC_CLASS RegSaveBinary (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize);
+bool EDITPADC_CLASS RegSaveBinary (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const LPBYTE pbyteData, DWORD dwSize);
 
 /* store a string */
-bool EDITPADC_CLASS RegSaveString (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString);
+bool EDITPADC_CLASS RegSaveString (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszString);
 
 /* store an array of strings */
-bool EDITPADC_CLASS RegSaveStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount);
+bool EDITPADC_CLASS RegSaveStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszStrings[], DWORD dwCount);
 
 #ifdef REG_WITH_MFC
 
 /* store an array of strings */
-bool EDITPADC_CLASS RegSaveStringArr (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName, const CStringArray &arrString);
+bool EDITPADC_CLASS RegSaveStringArr (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName, const CStringArray &arrString);
 
 #endif /* REG_WITH_MFC */
 
 /* delete the given value or key in the registry with all of its subkeys */
-bool EDITPADC_CLASS RegDeleteKey (HKEY hKey, LPCTSTR pszSubKey, LPCTSTR pszValName);
+bool EDITPADC_CLASS RegDeleteKey (HKEY hKey, const tchar_t* pszSubKey, const tchar_t* pszValName);
 
 /* check wether the given key has other subkeys and/or values */
-bool EDITPADC_CLASS RegHasEntries (HKEY hKey, LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount);
+bool EDITPADC_CLASS RegHasEntries (HKEY hKey, const tchar_t* pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount);
 
 /* walks to the first value */
-bool RegFindFirstValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData);
+bool RegFindFirstValue (HKEY hKey, const tchar_t* *ppszValue, RegVal *pValData);
 
 /* walks to the next value */
-bool RegFindNextValue (HKEY hKey, LPCTSTR *ppszValue, RegVal *pValData);
+bool RegFindNextValue (HKEY hKey, const tchar_t* *ppszValue, RegVal *pValData);
 
 /* closes registry walking */
 void RegFindClose ();
@@ -206,16 +208,16 @@ struct EDITPADC_CLASS CRegVal : public RegVal
     bool GetNewBinary (LPBYTE *pbyteData, DWORD *pdwSize) const;
     
     /* get a string */
-    bool GetString (LPTSTR pszString, DWORD dwLength) const;
+    bool GetString (tchar_t* pszString, DWORD dwLength) const;
     
     /* get a new string */
-    bool GetNewString (LPTSTR *pszString, DWORD *pdwLength) const;
+    bool GetNewString (tchar_t* *pszString, DWORD *pdwLength) const;
     
     /* get an array of strings */
-    bool GetStringArr (LPTSTR pszStrings[], DWORD dwCount) const;
+    bool GetStringArr (tchar_t* pszStrings[], DWORD dwCount) const;
     
     /* get a new array of strings */
-    bool GetNewStringArr (LPTSTR **pszStrings, DWORD *pdwCount) const;
+    bool GetNewStringArr (tchar_t* **pszStrings, DWORD *pdwCount) const;
     
     #ifdef REG_WITH_MFC
     
@@ -234,10 +236,10 @@ struct EDITPADC_CLASS CRegVal : public RegVal
     bool SetBinary (const LPBYTE pbyteData, DWORD dwSize);
     
     /* set a string */
-    bool SetString (LPCTSTR pszString);
+    bool SetString (const tchar_t* pszString);
     
     /* set an array of strings */
-    bool SetStringArr (const LPCTSTR pszStrings[], DWORD dwCount);
+    bool SetStringArr (const tchar_t* pszStrings[], DWORD dwCount);
     
     #ifdef REG_WITH_MFC
     
@@ -258,129 +260,129 @@ struct EDITPADC_CLASS CReg
     ~CReg ();
     
     /* connect to remote computer registry */
-    HKEY Connect (HKEY hNewKey, LPCTSTR pszRemote);
+    HKEY Connect (HKEY hNewKey, const tchar_t* pszRemote);
     
     /* connect to registry key */
     HKEY Open (HKEY hNewKey = nullptr);
     
     /* open computer registry */
-    HKEY Open (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights);
+    HKEY Open (HKEY hNewKey, const tchar_t* pszSubKey, DWORD dwRights);
     
     /* close computer registry */
     void Close ();
     
     /* create computer registry */
-    HKEY Create (HKEY hNewKey, LPCTSTR pszSubKey, DWORD dwRights);
+    HKEY Create (HKEY hNewKey, const tchar_t* pszSubKey, DWORD dwRights);
     
     /* load data of any type */
-    bool LoadVal (LPCTSTR pszValName, RegVal *pValData);
+    bool LoadVal (const tchar_t* pszValName, RegVal *pValData);
     
     /* load data of any type from subkey */
-    bool LoadVal (LPCTSTR pszSubKey, LPCTSTR pszValName, RegVal *pValData);
+    bool LoadVal (const tchar_t* pszSubKey, const tchar_t* pszValName, RegVal *pValData);
     
     /* load a number */
-    bool LoadNumber (LPCTSTR pszValName, DWORD *pdwNumber);
+    bool LoadNumber (const tchar_t* pszValName, DWORD *pdwNumber);
     
     /* load a number from subkey */
-    bool LoadNumber (LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD *pdwNumber);
+    bool LoadNumber (const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD *pdwNumber);
     
     /* load binary data */
-    bool LoadBinary (LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize);
+    bool LoadBinary (const tchar_t* pszValName, LPBYTE pbyteData, DWORD dwSize);
     
     /* load binary data from subkey */
-    bool LoadBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE pbyteData, DWORD dwSize);
+    bool LoadBinary (const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE pbyteData, DWORD dwSize);
     
     /* load new binary data */
-    bool LoadNewBinary (LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize);
+    bool LoadNewBinary (const tchar_t* pszValName, LPBYTE *pbyteData, DWORD *pdwSize);
     
     /* load new binary data from subkey */
-    bool LoadNewBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, LPBYTE *pbyteData, DWORD *pdwSize);
+    bool LoadNewBinary (const tchar_t* pszSubKey, const tchar_t* pszValName, LPBYTE *pbyteData, DWORD *pdwSize);
     
     /* load a string */
-    bool LoadString (LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength);
+    bool LoadString (const tchar_t* pszValName, tchar_t* pszString, DWORD dwLength);
     
     /* load a string from subkey */
-    bool LoadString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszString, DWORD dwLength);
+    bool LoadString (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszString, DWORD dwLength);
     
     /* load a new string */
-    bool LoadNewString (LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength);
+    bool LoadNewString (const tchar_t* pszValName, tchar_t* *pszString, DWORD *pdwLength);
     
     /* load a new string from subkey */
-    bool LoadNewString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR *pszString, DWORD *pdwLength);
+    bool LoadNewString (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* *pszString, DWORD *pdwLength);
     
     /* load an array of strings */
-    bool LoadStringArr (LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount);
+    bool LoadStringArr (const tchar_t* pszValName, tchar_t* pszStrings[], DWORD dwCount);
     
     /* load an array of strings from subkey */
-    bool LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR pszStrings[], DWORD dwCount);
+    bool LoadStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* pszStrings[], DWORD dwCount);
     
     /* load a new array of strings */
-    bool LoadNewStringArr (LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount);
+    bool LoadNewStringArr (const tchar_t* pszValName, tchar_t* **pszStrings, DWORD *pdwCount);
     
     /* load a new array of strings from subkey */
-    bool LoadNewStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, LPTSTR **pszStrings, DWORD *pdwCount);
+    bool LoadNewStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, tchar_t* **pszStrings, DWORD *pdwCount);
     
     #ifdef REG_WITH_MFC
     
     /* load a string */
-    bool LoadString (LPCTSTR pszValName, CString &sString);
+    bool LoadString (const tchar_t* pszValName, CString &sString);
     
     /* load a string from subkey */
-    bool LoadString (LPCTSTR pszSubKey, LPCTSTR pszValName, CString &sString);
+    bool LoadString (const tchar_t* pszSubKey, const tchar_t* pszValName, CString &sString);
     
     /* load an array of strings */
-    bool LoadStringArr (LPCTSTR pszValName, CStringArray &arrString);
+    bool LoadStringArr (const tchar_t* pszValName, CStringArray &arrString);
     
     /* load an array of strings from subkey */
-    bool LoadStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, CStringArray &arrString);
+    bool LoadStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, CStringArray &arrString);
     
     #endif /* REG_WITH_MFC */
     
     /* store data of any type */
-    bool SaveVal (LPCTSTR pszValName, const RegVal *pValData);
+    bool SaveVal (const tchar_t* pszValName, const RegVal *pValData);
     
     /* store data of any type to subkey */
-    bool SaveVal (LPCTSTR pszSubKey, LPCTSTR pszValName, const RegVal *pValData);
+    bool SaveVal (const tchar_t* pszSubKey, const tchar_t* pszValName, const RegVal *pValData);
     
     /* store a number */
-    bool SaveNumber (LPCTSTR pszValName, DWORD dwNumber);
+    bool SaveNumber (const tchar_t* pszValName, DWORD dwNumber);
     
     /* store a number to subkey */
-    bool SaveNumber (LPCTSTR pszSubKey, LPCTSTR pszValName, DWORD dwNumber);
+    bool SaveNumber (const tchar_t* pszSubKey, const tchar_t* pszValName, DWORD dwNumber);
     
     /* store binary data */
-    bool SaveBinary (LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize);
+    bool SaveBinary (const tchar_t* pszValName, const LPBYTE pbyteData, DWORD dwSize);
     
     /* store binary data to subkey */
-    bool SaveBinary (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPBYTE pbyteData, DWORD dwSize);
+    bool SaveBinary (const tchar_t* pszSubKey, const tchar_t* pszValName, const LPBYTE pbyteData, DWORD dwSize);
     
     /* store a string */
-    bool SaveString (LPCTSTR pszValName, LPCTSTR pszString);
+    bool SaveString (const tchar_t* pszValName, const tchar_t* pszString);
     
     /* store a string to subkey */
-    bool SaveString (LPCTSTR pszSubKey, LPCTSTR pszValName, LPCTSTR pszString);
+    bool SaveString (const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszString);
     
     /* store an array of strings */
-    bool SaveStringArr (LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount);
+    bool SaveStringArr (const tchar_t* pszValName, const tchar_t* pszStrings[], DWORD dwCount);
     
     /* store an array of strings to subkey */
-    bool SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const LPCTSTR pszStrings[], DWORD dwCount);
+    bool SaveStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, const tchar_t* pszStrings[], DWORD dwCount);
     
     #ifdef REG_WITH_MFC
     
     /* store an array of strings */
-    bool SaveStringArr (LPCTSTR pszValName, const CStringArray &arrString);
+    bool SaveStringArr (const tchar_t* pszValName, const CStringArray &arrString);
     
     /* store an array of strings to subkey */
-    bool SaveStringArr (LPCTSTR pszSubKey, LPCTSTR pszValName, const CStringArray &arrString);
+    bool SaveStringArr (const tchar_t* pszSubKey, const tchar_t* pszValName, const CStringArray &arrString);
     
     #endif /* REG_WITH_MFC */
     
     /* delete the given value or key in the registry with all of its subkeys */
-    bool DeleteKey (LPCTSTR pszValName);
+    bool DeleteKey (const tchar_t* pszValName);
     
     /* delete the given value or key in the registry with all of its subkeys in subkey */
-    bool DeleteKey (LPCTSTR pszSubKey, LPCTSTR pszValName);
+    bool DeleteKey (const tchar_t* pszSubKey, const tchar_t* pszValName);
     
     /* delete all of subkeys in the key */
     bool DeleteSubKeys ();
@@ -389,13 +391,13 @@ struct EDITPADC_CLASS CReg
     bool HasEntries (DWORD *pdwSubKeyCount, DWORD *pdwValueCount);
     
     /* check wether the given key has other subkeys and/or values in subkey */
-    bool HasEntries (LPCTSTR pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount);
+    bool HasEntries (const tchar_t* pszSubKey, DWORD *pdwSubKeyCount, DWORD *pdwValueCount);
     
     /* walks to the first value */
-    bool FindFirstValue (LPCTSTR &ppszValue, RegVal *pValData);
+    bool FindFirstValue (const tchar_t* &ppszValue, RegVal *pValData);
     
     /* walks to the next value */
-    bool FindNextValue (LPCTSTR &ppszValue, RegVal *pValData);
+    bool FindNextValue (const tchar_t* &ppszValue, RegVal *pValData);
     
     /* closes registry walking */
     void FindClose ();

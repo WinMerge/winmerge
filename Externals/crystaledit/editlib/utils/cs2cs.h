@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include "ctchar.h"
+
 #define FD_CODE_ASCII      0
 #define FD_CODE_CP1250     1
 #define FD_CODE_CP1252     2
@@ -26,16 +28,6 @@
 #define NULL 0
 #endif /* NULL */
 
-#ifndef _T
-typedef char TCHAR;
-typedef const char *LPCTSTR;
-typedef char *LPTSTR;
-#define _T(x) x
-#define _tcscpy strcpy
-#define _tcslen strlen
-#define _tcsnicmp strnicmp
-#endif /* _T */
-
 #ifndef __cplusplus
 #define false 0
 #define true 1
@@ -44,14 +36,14 @@ typedef int bool;
 
 typedef struct type_codes_t
   {
-    LPCTSTR name, codes;
+    const tchar_t* name, *codes;
   }
 type_codes;
 
 extern type_codes source_codes[];
 extern type_codes destination_codes[];
 
-TCHAR EDITPADC_CLASS iconvert_char (TCHAR ch, int source_coding, int destination_coding, bool alphabet_only);
-int EDITPADC_CLASS iconvert (LPTSTR string, int source_coding, int destination_coding, bool alphabet_only);
-int EDITPADC_CLASS iconvert_new (LPCTSTR source, LPTSTR *destination, int source_coding, int destination_coding, bool alphabet_only);
+tchar_t EDITPADC_CLASS iconvert_char (tchar_t ch, int source_coding, int destination_coding, bool alphabet_only);
+int EDITPADC_CLASS iconvert (tchar_t* string, int source_coding, int destination_coding, bool alphabet_only);
+int EDITPADC_CLASS iconvert_new (const tchar_t* source, tchar_t* *destination, int source_coding, int destination_coding, bool alphabet_only);
 

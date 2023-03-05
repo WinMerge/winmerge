@@ -212,7 +212,7 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
       if ( bNotifyIfNotFound ) 
       {
         CString prompt, text(m_sText);
-        prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)text);
+        prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (const tchar_t*)text);
         AfxMessageBox (prompt, MB_ICONINFORMATION);
       }
       if (m_nScope == 0)
@@ -226,7 +226,7 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
 }
 
 bool CEditReplaceDlg::
-DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
+DoReplaceText (const tchar_t* /*pszNewText*/, DWORD dwSearchFlags)
 {
   ASSERT (m_pBuddy != nullptr);
   // m_pBuddy->m_nLastFindWhatLen
@@ -246,7 +246,7 @@ DoReplaceText (LPCTSTR /*pszNewText*/, DWORD dwSearchFlags)
   if (!bFound)
     {
       CString prompt, text(m_sText);
-      prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)text);
+      prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (const tchar_t*)text);
       AfxMessageBox (prompt, MB_ICONINFORMATION);
       if (m_nScope == 0)
         m_ptCurrentPos = m_ptBlockBegin;
@@ -516,7 +516,7 @@ OnEditReplaceAll ()
   CString strMessage;
   CString strNumber;
   strNumber.Format ( _T("%d"), nNumReplaced );
-  LPCTSTR lpsz = static_cast<LPCTSTR>(strNumber);
+  const tchar_t* lpsz = static_cast<const tchar_t*>(strNumber);
   AfxFormatStrings (strMessage, LoadResString(IDS_NUM_REPLACED).c_str(), &lpsz, 1);
 
   AfxMessageBox( strMessage, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN, IDS_NUM_REPLACED);
@@ -548,7 +548,7 @@ UpdateControls()
 // Last search functions
 //
 void CEditReplaceDlg::
-SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection)
+SetLastSearch (const tchar_t* sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection)
 {
   lastSearch.m_bMatchCase = bMatchCase;
   lastSearch.m_bWholeWord = bWholeWord;
