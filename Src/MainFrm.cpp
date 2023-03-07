@@ -1297,8 +1297,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
 	bool allowFolderCompare = (static_cast<int>(nID) <= 0);
-	if (allowFolderCompare && pathsType == paths::DOES_NOT_EXIST &&
-	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return paths::IsURL(path); }))
+	if (tFiles.GetSize() < 2 || pathsType == paths::DOES_NOT_EXIST &&
+	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return path.empty() || paths::IsURL(path); }))
 	{
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
 			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
