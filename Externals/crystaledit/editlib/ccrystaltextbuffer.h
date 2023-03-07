@@ -110,8 +110,8 @@ public:
 
     int m_nSourceEncoding;
     static int m_nDefaultEncoding;
-    DWORD m_dwCurrentRevisionNumber;
-    DWORD m_dwRevisionNumberOnSave;
+    uint32_t m_dwCurrentRevisionNumber;
+    uint32_t m_dwRevisionNumberOnSave;
     bool IsTextBufferInitialized () const { return m_bInit; }
 
 protected :
@@ -123,7 +123,7 @@ protected :
     bool m_bCreateBackupFile;
     bool m_bInsertTabs;
     int  m_nTabSize;
-    int FindLineWithFlag (DWORD dwFlag) const;
+    int FindLineWithFlag (lineflags_t dwFlag) const;
 
 protected :
     enum : unsigned
@@ -188,11 +188,11 @@ public :
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                                const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr);
+                                const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, std::vector<uint32_t> *paSavedRevisionNumbers = nullptr);
     virtual UndoRecord GetUndoRecord (int nUndoPos) const { return m_aUndoBuf[nUndoPos]; }
 
-    virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
-    virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *psaSavedRevisionNumbers);
+    virtual std::vector<uint32_t> *CopyRevisionNumbers(int nStartLine, int nEndLine) const;
+    virtual void RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *psaSavedRevisionNumbers);
 
     //  Overridable: provide action description
     virtual bool GetActionDescription (int nAction, CString & desc) const;
@@ -234,10 +234,10 @@ public :
     const tchar_t* GetLineEol (int nLine) const;
     bool ChangeLineEol (int nLine, const tchar_t* lpEOL);
     const tchar_t* GetLineChars (int nLine) const;
-    DWORD GetLineFlags (int nLine) const;
-    DWORD GetLineRevisionNumber (int nLine) const;
-    int GetLineWithFlag (DWORD dwFlag) const;
-    void SetLineFlag (int nLine, DWORD dwFlag, bool bSet,
+    lineflags_t GetLineFlags (int nLine) const;
+    uint32_t GetLineRevisionNumber (int nLine) const;
+    int GetLineWithFlag (lineflags_t dwFlag) const;
+    void SetLineFlag (int nLine, lineflags_t dwFlag, bool bSet,
             bool bRemoveFromPreviousLine = true, bool bUpdate=true);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
             CString & text, const tchar_t* pszCRLF = nullptr, bool bExcludeInvisibleLines = true) const;

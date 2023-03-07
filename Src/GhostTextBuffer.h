@@ -91,13 +91,13 @@ public :
 #endif
 
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-	                            const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr) override;
+	                            const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
 	virtual bool UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos,
 							const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur) override;
 
-	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
-	virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers) override;
+	virtual std::vector<uint32_t> *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
+	virtual void RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *paSavedRevisionNumbers) override;
 
 public:
 	//@{

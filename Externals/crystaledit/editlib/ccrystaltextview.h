@@ -32,6 +32,7 @@
 #pragma once
 
 #include <vector>
+#include "LineInfo.h"
 #include "crystalparser.h"
 #include "parsers/crystallineparser.h"
 #include "renderers/ccrystalrenderer.h"
@@ -133,8 +134,8 @@ private :
     Must create pointer, because contructor uses AFX_ZERO_INIT_OBJECT to
     initialize the member objects. This would destroy a CArray object.
     */
-    CArray<int, int> *m_panSubLines;
-    CArray<int, int> *m_panSubLineIndexCache;
+    std::vector<int> *m_panSubLines;
+    std::vector<int> *m_panSubLineIndexCache;
     int m_nLastLineIndexCalculatedSubLineIndex;
     //END SW
 
@@ -161,7 +162,7 @@ private:
     It would be a loss of time to recompute all these values after each action.
     So we just set all these values to invalid code (DWORD) - 1.
     */
-    std::vector<DWORD> *m_ParseCookies;
+    std::vector<uint32_t> *m_ParseCookies;
     DWORD GetParseCookie (int nLineIndex);
 
     /**
@@ -469,7 +470,7 @@ public:
     virtual int GetLineActualLength (int nLineIndex);
     virtual const tchar_t* GetLineChars (int nLineIndex) const;
 protected:
-    virtual DWORD GetLineFlags (int nLineIndex) const;
+    virtual lineflags_t GetLineFlags (int nLineIndex) const;
     virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines = true);
     virtual void GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines = true);
 

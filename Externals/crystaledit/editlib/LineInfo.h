@@ -13,6 +13,8 @@
 #define     CHAR_ALIGN                  16
 #define     ALIGN_BUF_SIZE(size)        ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN;
 
+typedef unsigned long lineflags_t;
+
 /**
  * @brief Line information.
  * This class presents one line in the editor.
@@ -20,8 +22,8 @@
 class LineInfo
   {
 public:
-    DWORD m_dwFlags; /**< Line flags. */
-    DWORD m_dwRevisionNumber; /**< Edit revision (for edit tracking). */
+    lineflags_t m_dwFlags; /**< Line flags. */
+    uint32_t m_dwRevisionNumber; /**< Edit revision (for edit tracking). */
 
     LineInfo();
     void Clear();

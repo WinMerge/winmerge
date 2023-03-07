@@ -372,21 +372,21 @@ InsertText (CCrystalTextView * pSource, int nLine,
 	return true;
 }
 
-CDWordArray *CGhostTextBuffer::			/* virtual override */
+std::vector<uint32_t> *CGhostTextBuffer::			/* virtual override */
 CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
-	CDWordArray *paSavedRevisionNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
+	std::vector<uint32_t> *paSavedRevisionNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
 	for (int nLine = nEndLine; nLine >= nStartLine; --nLine)
 	{
 		if ((GetLineFlags(nLine) & LF_GHOST) != 0)
-			paSavedRevisionNumbers->RemoveAt(nLine - nStartLine);
+			paSavedRevisionNumbers->erase(paSavedRevisionNumbers->begin() + (nLine - nStartLine));
 	}
 	if ((GetLineFlags(nEndLine) & LF_GHOST) != 0)
 	{
 		for (int nLine = nEndLine + 1; nLine < GetLineCount(); ++nLine)
 			if ((GetLineFlags(nLine) & LF_GHOST) == 0)
 			{
-				paSavedRevisionNumbers->Add(GetLineFlags(nLine));
+				paSavedRevisionNumbers->push_back(GetLineFlags(nLine));
 				break;
 			}
 	}
@@ -394,9 +394,9 @@ CopyRevisionNumbers(int nStartLine, int nEndLine) const
 }
 
 void CGhostTextBuffer::			/* virtual override */
-RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
+RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *paSavedRevisionNumbers)
 {
-	for (int i = 0, j = 0; i < paSavedRevisionNumbers->GetSize(); j++)
+	for (int i = 0, j = 0; i < static_cast<int>(paSavedRevisionNumbers->size()); j++)
 	{
 		if ((GetLineFlags(nStartLine + j) & LF_GHOST) == 0)
 		{
@@ -831,7 +831,7 @@ void CGhostTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 	const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
-	CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
+	std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	int nLastLineLength, nEol;

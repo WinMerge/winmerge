@@ -468,11 +468,11 @@ CCrystalTextView::CCrystalTextView ()
 , m_dwFlags(0)
 , m_nScreenLines(0)
 , m_pMarkers(nullptr)
-, m_panSubLines(new CArray<int, int>())
-, m_panSubLineIndexCache(new CArray<int, int>())
+, m_panSubLines(new std::vector<int>())
+, m_panSubLineIndexCache(new std::vector<int>())
 , m_pstrIncrementalSearchString(new CString)
 , m_pstrIncrementalSearchStringOld(new CString)
-, m_ParseCookies(new vector<DWORD>)
+, m_ParseCookies(new vector<uint32_t>)
 , m_pnActualLineLength(new vector<int>)
 , m_nIdealCharPos(0)
 , m_bFocused(false)
@@ -525,8 +525,10 @@ CCrystalTextView::CCrystalTextView ()
   m_pCrystalRenderer.reset(new CCrystalRendererGDI());
 #endif
 
-  m_panSubLines->SetSize( 0, 4096 );
-  m_panSubLineIndexCache->SetSize( 0, 4096 );
+  m_panSubLines->reserve(4096);
+  m_panSubLines->resize(0);
+  m_panSubLineIndexCache->reserve (4096);
+  m_panSubLineIndexCache->resize ( 0);
 
   //END SW
   CCrystalTextView::ResetView ();
@@ -1501,7 +1503,7 @@ void CCrystalTextView::
 GetLineColors (int nLineIndex, COLORREF & crBkgnd,
                COLORREF & crText, bool & bDrawWhitespace)
 {
-  DWORD dwLineFlags = GetLineFlags (nLineIndex);
+  lineflags_t dwLineFlags = GetLineFlags (nLineIndex);
   bDrawWhitespace = true;
   crText = RGB (255, 255, 255);
   if (dwLineFlags & LF_EXECUTION)
@@ -1531,7 +1533,7 @@ GetParseCookie (int nLineIndex)
   if (m_ParseCookies->size() == 0)
     {
       // must be initialized to invalid value (DWORD) -1
-      m_ParseCookies->assign(nLineCount, static_cast<DWORD>(-1));
+      m_ParseCookies->assign(nLineCount, static_cast<uint32_t>(-1));
     }
 
   if (nLineIndex < 0)
@@ -1593,7 +1595,7 @@ void CCrystalTextView::WrapLineCached(
     }
 
   // word wrap is active
-  if( nLineIndex < m_panSubLines->GetSize() && !anBreaks && (*m_panSubLines)[nLineIndex] > -1 )
+  if( nLineIndex < m_panSubLines->size () && !anBreaks && (*m_panSubLines)[nLineIndex] > -1 )
     // return cached data
     nBreaks = (*m_panSubLines)[nLineIndex] - 1;
   else
@@ -1604,7 +1606,9 @@ void CCrystalTextView::WrapLineCached(
 
       // cache data
       ASSERT( nBreaks > -1 );
-      m_panSubLines->SetAtGrow( nLineIndex, nBreaks + 1 );
+      if (nLineIndex >= m_panSubLines->size())
+          m_panSubLines->resize(nLineIndex + 1);
+      (*m_panSubLines)[nLineIndex] = nBreaks + 1;
 
       // RecalcVertScrollBar();
     }
@@ -1618,8 +1622,8 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
 
   // invalidate cached sub line count
 
-  if( nLineIndex2 == -1 && nLineIndex1 < m_panSubLines->GetSize() )
-    for( int i = nLineIndex1; i < m_panSubLines->GetSize(); i++ )
+  if( nLineIndex2 == -1 && nLineIndex1 < m_panSubLines->size () )
+    for( int i = nLineIndex1; i < m_panSubLines->size (); i++ )
       (*m_panSubLines)[i] = -1;
   else
     {
@@ -1630,14 +1634,14 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
           nLineIndex2 = nStorage;
         }
 
-      if( nLineIndex1 >= m_panSubLines->GetSize() )
+      if( nLineIndex1 >= m_panSubLines->size () )
         return;
 
-      if( nLineIndex2 >= m_panSubLines->GetSize() )
-        nLineIndex2 = (int) m_panSubLines->GetUpperBound();
+      if( nLineIndex2 >= m_panSubLines->size () )
+        nLineIndex2 = (int) m_panSubLines->size () - 1;
 
       for( int i = nLineIndex1; i <= nLineIndex2; i++ )
-        if( i >= 0 && i < m_panSubLines->GetSize() )
+        if( i >= 0 && i < m_panSubLines->size () )
           (*m_panSubLines)[i] = -1;
     }
 }
@@ -1843,12 +1847,6 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
   ptOrigin.y+= nLineHeight;
 }
 //END SW
-
-class IntArray : public CArray<int, int>
-{
-public:
-  explicit IntArray(int len) { SetSize(len); }
-};
 
 std::vector<TEXTBLOCK> CCrystalTextView::
 MergeTextBlocks (const std::vector<TEXTBLOCK>& blocks1, const std::vector<TEXTBLOCK>& blocks2) const
@@ -2441,7 +2439,7 @@ GetColor (int nColorIndex) const
     return RGB(0, 0, 0);
 }
 
-DWORD CCrystalTextView::
+lineflags_t CCrystalTextView::
 GetLineFlags (int nLineIndex) const
 {
   if (m_pTextBuffer == nullptr)
@@ -2565,7 +2563,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
   if (nLineIndex >= 0 && m_pTextBuffer != nullptr)
     {
       // get line revision marks color
-      DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
+      uint32_t dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
       if (dwRevisionNumber > 0)
         {
           if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
@@ -2585,8 +2583,8 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
   int nImageIndex = -1;
   if (nLineIndex >= 0)
     {
-      DWORD dwLineFlags = GetLineFlags (nLineIndex);
-      static const DWORD adwFlags[] =
+      lineflags_t dwLineFlags = GetLineFlags (nLineIndex);
+      static const lineflags_t adwFlags[] =
         {
           LF_EXECUTION,
           LF_BREAKPOINT,
@@ -3750,16 +3748,22 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
   else
     {
       m_nLastLineIndexCalculatedSubLineIndex = 0;
-      m_panSubLineIndexCache->SetAtGrow( 0, 0 );
+      if (m_panSubLineIndexCache->size () >= 0)
+        m_panSubLineIndexCache->resize (1);
+      (*m_panSubLineIndexCache)[0] = 0;
     }
 
 // TODO: Rethink this, it is very time consuming
   for( int i = m_nLastLineIndexCalculatedSubLineIndex; i < nLineIndex; i++ )
     {
-      m_panSubLineIndexCache->SetAtGrow( i, nSubLineCount);
+      if (m_panSubLineIndexCache->size () >= i)
+        m_panSubLineIndexCache->resize (i + 1);
+      (*m_panSubLineIndexCache)[i] = nSubLineCount;
       nSubLineCount+= GetSubLines( i );
     }
-  m_panSubLineIndexCache->SetAtGrow( nLineIndex, nSubLineCount);
+  if (m_panSubLineIndexCache->size () >= nLineIndex)
+    m_panSubLineIndexCache->resize (nLineIndex + 1);
+  (*m_panSubLineIndexCache)[nLineIndex] = nSubLineCount;
   m_nLastLineIndexCalculatedSubLineIndex = nLineIndex;
 
   return nSubLineCount;
@@ -5070,7 +5074,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
           ASSERT (cookiesSize == nLineCount);
           // must be reinitialized to invalid value (DWORD) - 1
           for (int i = nLineIndex; i < cookiesSize; ++i)
-            (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
+            (*m_ParseCookies)[i] = static_cast<uint32_t>(-1);
         }
       //  This line'th actual length must be recalculated
       if (m_pnActualLineLength->size())
@@ -5105,10 +5109,10 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
               arrSize = nLineCount;
               // must be initialized to invalid value (DWORD) - 1
               for (size_t i = oldsize; i < arrSize; ++i)
-                (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
+                (*m_ParseCookies)[i] = static_cast<uint32_t>(-1);
             }
           for (size_t i = nLineIndex; i < arrSize; ++i)
-            (*m_ParseCookies)[i] = static_cast<DWORD>(-1);
+            (*m_ParseCookies)[i] = static_cast<uint32_t>(-1);
         }
 
       //  Recalculate actual length for all lines below this
@@ -5409,8 +5413,8 @@ OnToggleBookmark (UINT nCmdID)
   ASSERT (nBookmarkID >= 0 && nBookmarkID <= 9);
   if (m_pTextBuffer != nullptr)
     {
-      DWORD dwFlags = GetLineFlags (m_ptCursorPos.y);
-      DWORD dwMask = LF_BOOKMARK (nBookmarkID);
+      lineflags_t dwFlags = GetLineFlags (m_ptCursorPos.y);
+      lineflags_t dwMask = LF_BOOKMARK (nBookmarkID);
       m_pTextBuffer->SetLineFlag (m_ptCursorPos.y, dwMask, (dwFlags & dwMask) == 0);
     }
 }
@@ -6188,8 +6192,8 @@ void CCrystalTextView::ToggleBookmark(int nLine)
   ASSERT(nLine >= 0 && nLine < GetLineCount());
   if (m_pTextBuffer != nullptr)
     {
-      DWORD dwFlags = GetLineFlags (nLine);
-      DWORD dwMask = LF_BOOKMARKS;
+      lineflags_t dwFlags = GetLineFlags (nLine);
+      lineflags_t dwMask = LF_BOOKMARKS;
       m_pTextBuffer->SetLineFlag (nLine, dwMask, (dwFlags & dwMask) == 0, false);
       const int nBookmarkLine = m_pTextBuffer->GetLineWithFlag (LF_BOOKMARKS);
       if (nBookmarkLine >= 0)

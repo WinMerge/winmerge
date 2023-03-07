@@ -19,12 +19,11 @@ Clone(const UndoRecord &src)
     m_ptEndPos = src.m_ptEndPos;
     m_nAction = src.m_nAction;
     SetText(src.GetText(), src.GetTextLength());
-    intptr_t size = src.m_paSavedRevisionNumbers->GetSize();
+    size_t size = src.m_paSavedRevisionNumbers->size();
     if (m_paSavedRevisionNumbers == nullptr)
-      m_paSavedRevisionNumbers = new CDWordArray();
-    m_paSavedRevisionNumbers->SetSize(size);
-    intptr_t i;
-    for (i = 0; i < size; i++)
+      m_paSavedRevisionNumbers = new std::vector<uint32_t>();
+    m_paSavedRevisionNumbers->resize(size);
+    for (size_t i = 0; i < size; i++)
       (*m_paSavedRevisionNumbers)[i] = (*src.m_paSavedRevisionNumbers)[i];
   }
 

@@ -47,7 +47,7 @@ public :
 	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
-		CDWordArray *paSavedRevisionNumbers = nullptr) override;
+		std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 

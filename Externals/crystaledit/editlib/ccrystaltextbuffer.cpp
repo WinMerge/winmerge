@@ -756,7 +756,7 @@ GetLineChars (int nLine) const
   return m_aLines[nLine].GetLine();
 }
 
-DWORD CCrystalTextBuffer::
+lineflags_t CCrystalTextBuffer::
 GetLineFlags (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
@@ -776,7 +776,7 @@ GetLineFlags (int nLine) const
  *
  * @param nLine Index of the line to get the revision number.
  */
-DWORD CCrystalTextBuffer::
+uint32_t CCrystalTextBuffer::
 GetLineRevisionNumber (int nLine) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
@@ -786,7 +786,7 @@ GetLineRevisionNumber (int nLine) const
 }
 
 static int
-FlagToIndex (DWORD dwFlag)
+FlagToIndex (lineflags_t dwFlag)
 {
   int nIndex = 0;
   while ((dwFlag & 1) == 0)
@@ -804,7 +804,7 @@ FlagToIndex (DWORD dwFlag)
 }
 
 int CCrystalTextBuffer::
-FindLineWithFlag (DWORD dwFlag) const
+FindLineWithFlag (lineflags_t dwFlag) const
 {
   const size_t nSize = m_aLines.size();
   for (size_t L = 0; L < nSize; L++)
@@ -816,7 +816,7 @@ FindLineWithFlag (DWORD dwFlag) const
 }
 
 int CCrystalTextBuffer::
-GetLineWithFlag (DWORD dwFlag) const
+GetLineWithFlag (lineflags_t dwFlag) const
 {
   int nFlagIndex =::FlagToIndex (dwFlag);
   if (nFlagIndex < 0)
@@ -829,7 +829,7 @@ GetLineWithFlag (DWORD dwFlag) const
 }
 
 void CCrystalTextBuffer::
-SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/, bool bUpdate /*= true*/)
+SetLineFlag (int nLine, lineflags_t dwFlag, bool bSet, bool bRemoveFromPreviousLine /*= true*/, bool bUpdate /*= true*/)
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -857,7 +857,7 @@ SetLineFlag (int nLine, DWORD dwFlag, bool bSet, bool bRemoveFromPreviousLine /*
       return;
     }
 
-  DWORD dwNewFlags = m_aLines[nLine].m_dwFlags;
+  lineflags_t dwNewFlags = m_aLines[nLine].m_dwFlags;
   if (bSet)
     {
       if (dwFlag==0)
@@ -1086,7 +1086,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       // delete multiple lines
       const ptrdiff_t nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
       CString sTail(m_aLines[nEndLine].GetLine(nEndChar), static_cast<int>(nRestCount));
-      DWORD dwFlags = GetLineFlags (nEndLine);
+      lineflags_t dwFlags = GetLineFlags (nEndLine);
 
       const int nDelCount = nEndLine - nStartLine;
       for (int L = nStartLine + 1; L <= nEndLine; L++)
@@ -1588,7 +1588,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 void CCrystalTextBuffer::			/* virtual base */
 AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
     const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType /*= CE_ACTION_UNKNOWN*/,
-    CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
+    std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);
@@ -1674,8 +1674,8 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, const tchar_t* pszT
     bool bHistory /*= true*/)
 {
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisionNumbers = new CDWordArray;
-  paSavedRevisionNumbers->SetSize(1);
+  std::vector<uint32_t> *paSavedRevisionNumbers = new std::vector<uint32_t>;
+  paSavedRevisionNumbers->resize(1);
   (*paSavedRevisionNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
 
   if (!InternalInsertText (pSource, nLine, nPos, pszText, cchText, nEndLine, nEndChar))
@@ -1781,21 +1781,21 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   return true;
 }
 
-CDWordArray *CCrystalTextBuffer::
+std::vector<uint32_t> *CCrystalTextBuffer::
 CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisionNumbers = new CDWordArray;
-  paSavedRevisionNumbers->SetSize(nEndLine - nStartLine + 1);
+  std::vector<uint32_t> *paSavedRevisionNumbers = new std::vector<uint32_t>;
+  paSavedRevisionNumbers->resize(nEndLine - nStartLine + 1);
   for (int i = 0; i < nEndLine - nStartLine + 1; i++)
     (*paSavedRevisionNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
   return paSavedRevisionNumbers;
 }
 
 void CCrystalTextBuffer::
-RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
+RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *paSavedRevisionNumbers)
 {
-  for (int i = 0; i < paSavedRevisionNumbers->GetSize(); i++)
+  for (size_t i = 0; i < paSavedRevisionNumbers->size(); i++)
     m_aLines[nStartLine + i].m_dwRevisionNumber = (*paSavedRevisionNumbers)[i];
 }
 
@@ -1807,7 +1807,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 
   // save line revision numbers for undo
-  CDWordArray *paSavedRevisionNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
+  std::vector<uint32_t> *paSavedRevisionNumbers = CopyRevisionNumbers(nStartLine, nEndLine);
 
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
     {
@@ -1941,7 +1941,7 @@ int CCrystalTextBuffer::
 FindNextBookmarkLine (int nCurrentLine) const
 {
   bool bWrapIt = true;
-  DWORD dwFlags = GetLineFlags (nCurrentLine);
+  lineflags_t dwFlags = GetLineFlags (nCurrentLine);
   if ((dwFlags & LF_BOOKMARKS) != 0)
     nCurrentLine++;
 
@@ -1970,7 +1970,7 @@ int CCrystalTextBuffer::
 FindPrevBookmarkLine (int nCurrentLine) const
 {
   bool bWrapIt = true;
-  DWORD dwFlags = GetLineFlags (nCurrentLine);
+  lineflags_t dwFlags = GetLineFlags (nCurrentLine);
   if ((dwFlags & LF_BOOKMARKS) != 0)
     nCurrentLine--;
 

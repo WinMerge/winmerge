@@ -422,13 +422,13 @@ InsertColumnText (int nLine, int nPos, const tchar_t* pszText, int cchText, int 
   if (pszText == nullptr || cchText == 0)
     return false;
 
-  CTypedPtrArray<CPtrArray, tchar_t*> aLines;
-  CDWordArray aLineLengths;
+  std::vector<tchar_t*> aLines;
+  std::vector<uint32_t> aLineLengths;
   int nLineBegin = 0;
   for (int nTextPos = 0; nTextPos < cchText; )
     {
       tchar_t ch = 0;
-      aLines.Add ((tchar_t*)&pszText[nTextPos]);
+      aLines.push_back ((tchar_t*)&pszText[nTextPos]);
 
       for (; nTextPos < cchText; nTextPos++)
         {
@@ -437,7 +437,7 @@ InsertColumnText (int nLine, int nPos, const tchar_t* pszText, int cchText, int 
             break;
         }
 
-      aLineLengths.Add (nTextPos - nLineBegin);
+      aLineLengths.push_back (nTextPos - nLineBegin);
 
       // advance after EOL of line
       if (ch=='\r' && pszText[nTextPos + 1]=='\n'/*isdoseol(&pszText[nTextPos])*/)
@@ -450,8 +450,8 @@ InsertColumnText (int nLine, int nPos, const tchar_t* pszText, int cchText, int 
   int L;
   int nBufSize = 1;
   int nLineCount = GetLineCount ();
-  ASSERT(aLineLengths.GetSize() < INT_MAX);
-  int nPasteTextLineCount = static_cast<int>(aLineLengths.GetSize ());
+  ASSERT(aLineLengths.size() < INT_MAX);
+  int nPasteTextLineCount = static_cast<int>(aLineLengths.size ());
   for (L = 0; L < nPasteTextLineCount; L++)
     {
       if (nLine + L < nLineCount)

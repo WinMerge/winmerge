@@ -144,7 +144,7 @@ void CDiffTextBuffer::			/* virtual override */
 AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
 		const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
-		CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
+		std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText,
 		cchText, nActionType, paSavedRevisionNumbers);

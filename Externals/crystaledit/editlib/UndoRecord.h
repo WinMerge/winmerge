@@ -8,6 +8,7 @@
 #pragma once
 
 #include "utils/ctchar.h"
+#include <vector>
 
 class UndoRecord
 {
@@ -15,7 +16,7 @@ public:
   DWORD m_dwFlags;
   CPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
   int m_nAction;            //  For information only: action type
-  CDWordArray *m_paSavedRevisionNumbers;
+  std::vector<uint32_t> *m_paSavedRevisionNumbers;
 
 private:
   //  tchar_t   *m_pcText;

@@ -115,13 +115,13 @@ bool CCrystalTextMarkers::Deserialize(const CString& value)
 		CString key = value.Mid(pos, pos_delim - pos);
 		pos = pos_delim + 1;
 
-		CStringArray ary;
+		std::vector<CString> ary;
 		for (int i = 0; i < 4; ++i)
 		{
 			pos_delim = value.Find(_T("\t"), pos);
 			if (pos_delim == -1)
 				return false;
-			ary.Add(value.Mid(pos, pos_delim - pos));
+			ary.push_back (value.Mid(pos, pos_delim - pos));
 			pos = pos_delim + 1;
 		}
 
