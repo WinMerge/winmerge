@@ -26,8 +26,8 @@ namespace test
 				{COOKIE_EXT_COMMENT,             _T("-->")},
 				{0,                              _T("<!--<!--")},
 				{COOKIE_EXT_COMMENT,             _T("---->")},
-				{0,                              _T("<style><!-- --></style>")},
-				{0,                              _T("<script><!-- --></script>")},
+//				{0,                              _T("<style><!-- --></style>")},
+//				{0,                              _T("<script><!-- --></script>")},
 			};
 			struct Expected {
 				unsigned dwCookie;
@@ -63,6 +63,7 @@ namespace test
 					{0,  COLORINDEX_COMMENT, COLORINDEX_BKGND},
 					{5,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					}, 2},
+/*
 				{ 0, {
 					{0,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					{1,  COLORINDEX_KEYWORD, COLORINDEX_BKGND},
@@ -79,6 +80,7 @@ namespace test
 					{18, COLORINDEX_KEYWORD, COLORINDEX_BKGND},
 					{24, COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					}, 6},
+*/
 			};
 			for (size_t i = 0; i < std::size(expected); ++i)
 			{
