@@ -31,15 +31,18 @@
 
 #pragma once
 
-#include <vector>
+#include "parsers/crystallineparser.h"
 #include "LineInfo.h"
 #include "UndoRecord.h"
-#include "ccrystaltextview.h"
+#include <memory>
+#include <vector>
 
 #ifndef __AFXTEMPL_H__
 #pragma message("Include <afxtempl.h> in your stdafx.h to avoid this message")
 #include <afxtempl.h>
 #endif
+
+class CCrystalTextView;
 
 enum LINEFLAGS: unsigned long
 {

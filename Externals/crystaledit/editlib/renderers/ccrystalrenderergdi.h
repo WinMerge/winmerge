@@ -7,6 +7,7 @@
 #include "utils/ctchar.h"
 #include <memory>
 #include <array>
+#include <map>
 
 #pragma once
 

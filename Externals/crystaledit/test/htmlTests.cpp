@@ -26,16 +26,16 @@ namespace test
 				{COOKIE_EXT_COMMENT,             _T("-->")},
 				{0,                              _T("<!--<!--")},
 				{COOKIE_EXT_COMMENT,             _T("---->")},
-//				{0,                              _T("<style><!-- --></style>")},
-//				{0,                              _T("<script><!-- --></script>")},
+				{0,                              _T("<style><!-- --></style>")},
+				{0,                              _T("<script><!-- --></script>")},
 			};
 			struct Expected {
 				unsigned dwCookie;
-				CrystalLineParser::TEXTBLOCK pblocks[10];
+				CrystalLineParser::TEXTBLOCK pblocks[12];
 				size_t nblocks;
 			} expected[] = {
 				{ 0, {
-					{0,  COLORINDEX_COMMENT, COLORINDEX_BKGND},
+					{0,  COLORINDEX_COMMENT, COLORINDEX_BKGND}, // 
 					{7,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					}, 2},
 				{ 0, {
@@ -63,32 +63,37 @@ namespace test
 					{0,  COLORINDEX_COMMENT, COLORINDEX_BKGND},
 					{5,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					}, 2},
-/*
 				{ 0, {
 					{0,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					{1,  COLORINDEX_KEYWORD, COLORINDEX_BKGND},
 					{6,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
+					{7,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
+					{9,  COLORINDEX_NORMALTEXT, COLORINDEX_BKGND},
+					{11,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
+					{12,  COLORINDEX_NORMALTEXT, COLORINDEX_BKGND},
+					{14,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					{16, COLORINDEX_PREPROCESSOR, COLORINDEX_BKGND},
 					{17, COLORINDEX_KEYWORD, COLORINDEX_BKGND},
 					{22, COLORINDEX_OPERATOR, COLORINDEX_BKGND},
-					}, 6},
+					}, 11},
 				{ 0, {
 					{0,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					{1,  COLORINDEX_KEYWORD, COLORINDEX_BKGND},
 					{7,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
+					{8,  COLORINDEX_OPERATOR, COLORINDEX_BKGND},
 					{17, COLORINDEX_PREPROCESSOR, COLORINDEX_BKGND},
 					{18, COLORINDEX_KEYWORD, COLORINDEX_BKGND},
 					{24, COLORINDEX_OPERATOR, COLORINDEX_BKGND},
-					}, 6},
-*/
+					}, 7},
 			};
 			for (size_t i = 0; i < std::size(expected); ++i)
 			{
 				int nActualItems = 0;
-				std::wstring msg = L"index: " + std::to_wstring(i);
+				std::wstring msg = L"index: " + std::to_wstring(i) + L" dwCookie";
 				Assert::AreEqual(
 					static_cast<unsigned>(expected[i].dwCookie),
 					CrystalLineParser::ParseLineHtml(data[i].dwCookie, data[i].pszChars, static_cast<int>(tc::tcslen(data[i].pszChars)), pblocks.get(), nActualItems), msg.c_str());
+				msg = L"index: " + std::to_wstring(i) + L" nblocks";
 				Assert::AreEqual(static_cast<int>(expected[i].nblocks), nActualItems, msg.c_str());
 				for (int j = 0; j < nActualItems; ++j)
 				{

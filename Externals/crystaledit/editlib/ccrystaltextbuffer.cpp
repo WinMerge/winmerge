@@ -61,15 +61,15 @@
  */
 
 #include "StdAfx.h"
-#include <vector>
-#include <malloc.h>
+#include "ccrystaltextbuffer.h"
+#include "ccrystaltextview.h"
 #include "editcmd.h"
 #include "LineInfo.h"
 #include "UndoRecord.h"
-#include "ccrystaltextbuffer.h"
-#include "ccrystaltextview.h"
 #include "utils/filesup.h"
 #include "utils/cs2cs.h"
+#include <vector>
+#include <malloc.h>
 
 #ifndef __AFXPRIV_H__
 #pragma message("Include <afxpriv.h> in your stdafx.h to avoid this message")

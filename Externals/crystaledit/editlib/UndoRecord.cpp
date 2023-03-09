@@ -19,7 +19,7 @@ Clone(const UndoRecord &src)
     m_ptEndPos = src.m_ptEndPos;
     m_nAction = src.m_nAction;
     SetText(src.GetText(), src.GetTextLength());
-    size_t size = src.m_paSavedRevisionNumbers->size();
+    size_t size = src.m_paSavedRevisionNumbers ? src.m_paSavedRevisionNumbers->size() : 0;
     if (m_paSavedRevisionNumbers == nullptr)
       m_paSavedRevisionNumbers = new std::vector<uint32_t>();
     m_paSavedRevisionNumbers->resize(size);

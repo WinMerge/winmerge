@@ -43,11 +43,11 @@
  */
 
 #include "StdAfx.h"
-#include "editcmd.h"
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
-#include "SyntaxColors.h"
 #include "ccrystaltextmarkers.h"
+#include "editcmd.h"
+#include "SyntaxColors.h"
 #include <malloc.h>
 #include "utils/string_util.h"
 #include "utils/icu.hpp"

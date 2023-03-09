@@ -16,6 +16,8 @@
 
 #include "StdAfx.h"
 #if __has_include(<Poco/RegularExpression.h>)
+#include "cregexp.h"
+#include "unicoder.h"
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
@@ -24,9 +26,6 @@
 #include <memory>
 #include <Poco/RegularExpression.h>
 #include <Poco/UnicodeConverter.h>
-#include "cregexp.h"
-#include "ctchar.h"
-#include "unicoder.h"
 
 using Poco::RegularExpression;
 using Poco::UnicodeConverter;

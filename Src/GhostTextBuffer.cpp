@@ -17,6 +17,7 @@
 
 #include "StdAfx.h"
 #include "GhostTextBuffer.h"
+#include "ccrystaltextview.h"
 #include "MergeLineFlags.h"
 
 #ifdef _DEBUG

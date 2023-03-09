@@ -14,8 +14,8 @@
 ////////////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "parsers/crystallineparser.h"
 #include "crystaltextblock.h"
+#include "parsers/crystallineparser.h"
 
 using CrystalLineParser::TEXTBLOCK;
 

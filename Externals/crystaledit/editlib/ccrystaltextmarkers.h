@@ -5,10 +5,10 @@
  */
 #pragma once
 
-#include <vector>
-#include <map>
 #include "SyntaxColors.h"
 #include "utils/ctchar.h"
+#include <vector>
+#include <map>
 
 class CCrystalTextView;
 

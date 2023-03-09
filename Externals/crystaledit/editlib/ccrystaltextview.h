@@ -31,13 +31,13 @@
 
 #pragma once
 
-#include <vector>
-#include "LineInfo.h"
 #include "crystalparser.h"
+#include "LineInfo.h"
 #include "parsers/crystallineparser.h"
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
 #include "utils/icu.hpp"
+#include <vector>
 
 ////////////////////////////////////////////////////////////////////////////
 // Forward class declarations

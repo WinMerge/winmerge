@@ -16,13 +16,12 @@
 
 #include "StdAfx.h"
 #if !__has_include(<Poco/RegularExpression.h>)
+#include "cregexp.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "cregexp.h"
-#include "ctchar.h"
 
 //#define DEBUG
 

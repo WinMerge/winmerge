@@ -5,7 +5,6 @@
  */
 
 #include "StdAfx.h"
-#include <vector>
 #include "SyntaxColors.h"
 
 /**

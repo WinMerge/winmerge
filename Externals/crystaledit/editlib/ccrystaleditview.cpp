@@ -65,10 +65,10 @@
  */
 
 #include "StdAfx.h"
-#include "editcmd.h"
-#include "editreg.h"
 #include "ccrystaleditview.h"
 #include "ccrystaltextbuffer.h"
+#include "editcmd.h"
+#include "editreg.h"
 #include "dialogs/ceditreplacedlg.h"
 #include "dialogs/chcondlg.h"
 #include "utils/registry.h"

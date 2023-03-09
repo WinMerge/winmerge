@@ -86,14 +86,9 @@
  */
 
 #include "StdAfx.h"
-#include <vector>
-#include <algorithm>
-#include <numeric>
-#include <malloc.h>
-#include <imm.h> /* IME */
+#include "ccrystaltextview.h"
 #include "editcmd.h"
 #include "editreg.h"
-#include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 #include "ccrystaltextmarkers.h"
 #include "ViewableWhitespace.h"
@@ -109,6 +104,11 @@
 #include "utils/string_util.h"
 #include "utils/wcwidth.h"
 #include "utils/icu.hpp"
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <malloc.h>
+#include <imm.h> /* IME */
 
 using std::vector;
 using CrystalLineParser::TEXTBLOCK;

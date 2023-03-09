@@ -7,7 +7,7 @@
 
 #include "StdAfx.h"
 #include "DiffTextBuffer.h"
-#include <Poco/Exception.h>
+#include "ccrystaltextview.h"
 #include "UniFile.h"
 #include "files.h"
 #include "locality.h"
@@ -21,6 +21,7 @@
 #include "FileTextEncoding.h"
 #include "codepage_detect.h"
 #include "TFile.h"
+#include <Poco/Exception.h>
 
 using Poco::Exception;
 
