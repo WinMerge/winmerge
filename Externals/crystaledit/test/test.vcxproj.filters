@@ -185,5 +185,11 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="undoRecordTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\UndoRecord.cpp">
+      <Filter>Source Files\editlib</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
