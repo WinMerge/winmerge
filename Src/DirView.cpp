@@ -1255,6 +1255,7 @@ void CDirView::CollapseSubdir(int sel)
 	}
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
+	m_pList->Invalidate();
 }
 
 /**
