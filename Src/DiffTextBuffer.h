@@ -44,8 +44,8 @@ public :
 
 	void SetTempPath(const String &path);
 	String GetTempFileName() const { return m_strTempFileName; }
-	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
+	virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos,
+		const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
 		std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();

@@ -603,7 +603,7 @@ PreCreateWindow (CREATESTRUCT & cs)
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView drawing
 
-std::pair<CPoint, CPoint> CCrystalTextView::
+std::pair<CEPoint, CEPoint> CCrystalTextView::
 GetSelection ()
 {
   PrepareSelBounds ();
@@ -1458,7 +1458,7 @@ GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight)
 void CCrystalTextView::
 DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex, 
                 COLORREF crText, COLORREF crBkgnd,
-                int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos,
+                int nLineIndex, int nOffset, int nCount, int &nActualOffset, CEPoint ptTextPos,
                 int nSelLeft, int nSelRight)
 {
   if (nCount > 0)
@@ -1682,7 +1682,7 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
 void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
          const std::vector<TEXTBLOCK>& blocks, int &nActualItem, 
          COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
-         int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos )
+         int nLineIndex, int nOffset, int nCount, int &nActualOffset, CEPoint ptTextPos )
 {
   CPoint	originalOrigin = ptOrigin;
   CPoint	ptOriginZeroWidthBlock;
@@ -1724,14 +1724,14 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
               DrawLineHelper(ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex, crText, crBkgnd, nLineIndex,
                 (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                 blocks[I + 1].m_nCharPos - nOffsetToUse,
-                nActualOffset, CPoint( nOffsetToUse, ptTextPos.y ), nSelLeft, nSelRight);
+                nActualOffset, CEPoint( nOffsetToUse, ptTextPos.y ), nSelLeft, nSelRight);
               if (bPrevZeroWidthBlock)
                 {
                   CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
                   DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock, crText, crBkgnd, nLineIndex,
                       (nOffset > blk.m_nCharPos)? nOffset : blk.m_nCharPos, 
                       blocks[I + 1].m_nCharPos - nOffsetToUse,
-                      nOldActualOffset, CPoint( nOffsetToUse, ptTextPos.y ), nSelLeft, nSelRight);
+                      nOldActualOffset, CEPoint( nOffsetToUse, ptTextPos.y ), nSelLeft, nSelRight);
                   bPrevZeroWidthBlock = false;
                 }
             }
@@ -1741,7 +1741,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
                   COLORREF clrBkColor;
-                  if (IsInsideSelBlock (CPoint{nOffsetToUse, ptTextPos.y}))
+                  if (IsInsideSelBlock (CEPoint{nOffsetToUse, ptTextPos.y}))
                     clrBkColor = GetColor(COLORINDEX_SELBKGND);
                   else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                     clrBkColor = GetColor(nBgColorIndex);
@@ -1778,14 +1778,14 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
           DrawLineHelper(ptOrigin, rcClip, blk.m_nColorIndex, blk.m_nBgColorIndex,
                   crText, crBkgnd, nLineIndex, blk.m_nCharPos,
                   nOffset + nCount - blk.m_nCharPos,
-                  nActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y), nSelLeft, nSelRight);
+                  nActualOffset, CEPoint(blk.m_nCharPos, ptTextPos.y), nSelLeft, nSelRight);
           if (bPrevZeroWidthBlock)
             {
               CRect rcClipZeroWidthBlock(ptOriginZeroWidthBlock.x, rcClip.top, ptOriginZeroWidthBlock.x + ZEROWIDTHBLOCK_WIDTH, rcClip.bottom);
               DrawLineHelper(ptOriginZeroWidthBlock, rcClipZeroWidthBlock, blk.m_nColorIndex, nBgColorIndexZeorWidthBlock,
                   crText, crBkgnd, nLineIndex, blk.m_nCharPos,
                   nOffset + nCount - blk.m_nCharPos,
-                  nOldActualOffset, CPoint(blk.m_nCharPos, ptTextPos.y), nSelLeft, nSelRight);
+                  nOldActualOffset, CEPoint(blk.m_nCharPos, ptTextPos.y), nSelLeft, nSelRight);
               bPrevZeroWidthBlock = false;
             }
         }
@@ -1795,7 +1795,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
             {
               int nBgColorIndex = blk.m_nBgColorIndex;
               COLORREF clrBkColor;
-              if (IsInsideSelBlock (CPoint{blk.m_nCharPos, ptTextPos.y}))
+              if (IsInsideSelBlock (CEPoint{blk.m_nCharPos, ptTextPos.y}))
                 clrBkColor = GetColor(COLORINDEX_SELBKGND);
               else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                 clrBkColor = GetColor(nBgColorIndex);
@@ -1821,7 +1821,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
 
   if ((m_bFocused || m_bShowInactiveSelection) 
     && !m_bRectangularSelection
-    && IsInsideSelBlock(CPoint(nLineLength, ptTextPos.y)) 
+    && IsInsideSelBlock(CEPoint(nLineLength, ptTextPos.y)) 
     && (nOffset + nCount) == nLineLength )
     {
       if (frect.left >= rcClip.left)
@@ -2096,7 +2096,7 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
         blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         nLineIndex, 0, abs(anBreaks[0]),
-        nActualOffset, CPoint( 0, nLineIndex ) );
+        nActualOffset, CEPoint( 0, nLineIndex ) );
       int nColumn = 0;
       for( int i = 0, j = 0; i < static_cast<int> (anBreaks.size ()) - 1; i++, j++ )
         {
@@ -2120,7 +2120,7 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
             blocks, nActualItem,
             crText, crBkgnd, bDrawWhitespace,
             nLineIndex, abs(anBreaks[i]), abs(anBreaks[i + 1]) - abs(anBreaks[i]),
-            nActualOffset, CPoint( abs(anBreaks[i]), nLineIndex ) );
+            nActualOffset, CEPoint( abs(anBreaks[i]), nLineIndex ) );
         }
     }
   else if (layoutMode == TEXTLAYOUT_WORDWRAP && nBreaks > 0)
@@ -2133,7 +2133,7 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
         origin, rc,
         blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
-        nLineIndex, 0, anBreaks[0], nActualOffset, CPoint( 0, nLineIndex ) );
+        nLineIndex, 0, anBreaks[0], nActualOffset, CEPoint( 0, nLineIndex ) );
 
       // draw from first break to last break
       int i=0;
@@ -2145,7 +2145,7 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
             blocks, nActualItem,
             crText, crBkgnd, bDrawWhitespace,
             nLineIndex, anBreaks[i], anBreaks[i + 1] - anBreaks[i],
-            nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
+            nActualOffset, CEPoint( anBreaks[i], nLineIndex ) );
         }
 
       // draw from last break till end of line
@@ -2154,14 +2154,14 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
         blocks, nActualItem,
         crText, crBkgnd, bDrawWhitespace,
         nLineIndex, anBreaks[i], nLength - anBreaks[i],
-        nActualOffset, CPoint( anBreaks[i], nLineIndex ) );
+        nActualOffset, CEPoint( anBreaks[i], nLineIndex ) );
     }
   else
     DrawScreenLine(
       origin, rc,
       blocks, nActualItem,
       crText, crBkgnd, bDrawWhitespace,
-      nLineIndex, 0, nLength, nActualOffset, CPoint(0, nLineIndex));
+      nLineIndex, 0, nLength, nActualOffset, CEPoint(0, nLineIndex));
 
   // Draw empty sublines
   int nEmptySubLines = GetEmptySubLines(nLineIndex);
@@ -2634,7 +2634,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
 }
 
 bool CCrystalTextView::
-IsInsideSelBlock (CPoint ptTextPos)
+IsInsideSelBlock (CEPoint ptTextPos)
 {
   PrepareSelBounds();
   ASSERT_VALIDTEXTPOS (ptTextPos);
@@ -2658,7 +2658,7 @@ IsInsideSelBlock (CPoint ptTextPos)
 }
 
 bool CCrystalTextView::
-IsInsideSelection (const CPoint & ptTextPos)
+IsInsideSelection (const CEPoint & ptTextPos)
 {
   PrepareSelBounds ();
   return IsInsideSelBlock (ptTextPos);
@@ -2968,7 +2968,7 @@ bool CCrystalTextView::IsEmptySubLineIndex( int nSubLineIndex )
     return false;
 }
 
-int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint, int* pnColumn )
+int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CEPoint &charPoint, int* pnColumn )
 {
   // if we do not wrap lines, y is allways 0 and x is equl to nCharPos
   if (!m_bWordWrap)
@@ -3030,7 +3030,7 @@ static inline bool IsLeadByte(tchar_t ch)
 #endif
 }
 
-int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoint )
+int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CEPoint &curPoint )
 {
   // calculate char pos out of point
   const int nLength = GetLineLength( nLineIndex );
@@ -3177,7 +3177,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CPoint &curPoi
   return nIndex;
 }
 
-void CCrystalTextView::SubLineCursorPosToTextPos( const CPoint &subLineCurPos, CPoint &textPos )
+void CCrystalTextView::SubLineCursorPosToTextPos( const CEPoint &subLineCurPos, CEPoint &textPos )
 {
   // Get line breaks
   int	nSubLineOffset, nLine;
@@ -3185,7 +3185,7 @@ void CCrystalTextView::SubLineCursorPosToTextPos( const CPoint &subLineCurPos, C
   GetLineBySubLine( subLineCurPos.y, nLine, nSubLineOffset );
 
   // compute cursor-position
-  textPos.x = CursorPointToCharPos( nLine, CPoint( subLineCurPos.x, nSubLineOffset ) );
+  textPos.x = CursorPointToCharPos( nLine, CEPoint( subLineCurPos.x, nSubLineOffset ) );
   textPos.y = nLine;
 }
 
@@ -3336,7 +3336,7 @@ void CCrystalTextView::
 GoToLine (int nLine, bool bRelative)
 {
   int nLines = m_pTextBuffer->GetLineCount () - 1;
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   if (bRelative)
     {
       nLine += ptCursorPos.y;
@@ -3420,7 +3420,7 @@ OnInitialUpdate ()
       if (reg.Open (HKEY_CURRENT_USER, sKey, KEY_READ) &&
         reg.LoadBinary (sDoc, (LPBYTE) dwLastPos, sizeof (dwLastPos)))
         {
-          CPoint ptCursorPos;
+          CEPoint ptCursorPos;
           ptCursorPos.x = dwLastPos[1];
           ptCursorPos.y = dwLastPos[2];
           if (IsValidTextPosY (ptCursorPos))
@@ -3999,8 +3999,8 @@ OnSize (UINT nType, int cx, int cy)
 
   //BEGIN SW
   // get char position of top left visible character with old cached word wrap
-  CPoint	topPos;
-  SubLineCursorPosToTextPos( CPoint( 0, m_nTopSubLine ), topPos );
+  CEPoint	topPos;
+  SubLineCursorPosToTextPos( CEPoint( 0, m_nTopSubLine ), topPos );
   //END SW
 
   //BEGIN SW
@@ -4008,7 +4008,7 @@ OnSize (UINT nType, int cx, int cy)
   InvalidateScreenRect(false);
 
   // compute new top sub line
-  CPoint	topSubLine;
+  CEPoint	topSubLine;
   CharPosToPoint( topPos.y, topPos.x, topSubLine );
   m_nTopSubLine = GetSubLineIndex(topPos.y) + topSubLine.y;
 
@@ -4326,7 +4326,7 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
         }
       else
         {
-          CPoint ptText = ClientToText (pt);
+          CEPoint ptText = ClientToText (pt);
           PrepareSelBounds ();
           if (IsInsideSelBlock (ptText))
             {
@@ -4361,14 +4361,14 @@ ClientToIdealTextPos (int x)
  * @return Text position (line index, char index in line).
  * @note For gray selection area char index is 0.
  */
-CPoint CCrystalTextView::
+CEPoint CCrystalTextView::
 ClientToText (const CPoint & point)
 {
   //BEGIN SW
   const int nSubLineCount = GetSubLineCount();
   const int nLineCount = GetLineCount();
 
-  CPoint pt;
+  CEPoint pt;
   pt.y = m_nTopSubLine + (point.y - GetTopMarginHeight ()) / GetLineHeight();
   if (pt.y >= nSubLineCount)
     pt.y = nSubLineCount - 1;
@@ -4560,7 +4560,7 @@ ClientToColumnResizing (int x)
 }
 #ifdef _DEBUG
 void CCrystalTextView::
-AssertValidTextPos (const CPoint & point)
+AssertValidTextPos (const CEPoint & point)
 {
   if (GetLineCount () > 0)
     {
@@ -4572,28 +4572,28 @@ AssertValidTextPos (const CPoint & point)
 #endif
 
 bool CCrystalTextView::
-IsValidTextPos (const CPoint &point)
+IsValidTextPos (const CEPoint &point)
 {
   return GetLineCount () > 0 && m_nTopLine >= 0 && m_nOffsetChar >= 0 &&
     point.y >= 0 && point.y < GetLineCount () && point.x >= 0 && point.x <= GetLineLength (point.y);
 }
 
 bool CCrystalTextView::
-IsValidTextPosX (const CPoint &point)
+IsValidTextPosX (const CEPoint &point)
 {
   return GetLineCount () > 0 && m_nTopLine >= 0 && m_nOffsetChar >= 0 &&
     point.y >= 0 && point.y < GetLineCount () && point.x >= 0 && point.x <= GetLineLength (point.y);
 }
 
 bool CCrystalTextView::
-IsValidTextPosY (const CPoint &point)
+IsValidTextPosY (const CEPoint &point)
 {
   return GetLineCount () > 0 && m_nTopLine >= 0 && m_nOffsetChar >= 0 &&
     point.y >= 0 && point.y < GetLineCount ();
 }
 
 CPoint CCrystalTextView::
-TextToClient (const CPoint & point)
+TextToClient (const CEPoint & point)
 {
   ASSERT_VALIDTEXTPOS (point);
   const tchar_t* pszLine = GetLineChars (point.y);
@@ -4601,7 +4601,7 @@ TextToClient (const CPoint & point)
   int nColumnIndex = 0;
   CPoint pt;
   //BEGIN SW
-  CPoint	charPoint;
+  CEPoint	charPoint;
   int nSubLineStart = CharPosToPoint( point.y, point.x, charPoint, &nColumnIndex );
   charPoint.y+= GetSubLineIndex( point.y );
 
@@ -4757,7 +4757,7 @@ InvalidateLines (int nLine1, int nLine2, bool bInvalidateMargin /*= false*/ )
 }
 
 void CCrystalTextView::
-SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView /* = true */)
+SetSelection (const CEPoint & ptStart, const CEPoint & ptEnd, bool bUpdateView /* = true */)
 {
   ASSERT_VALIDTEXTPOS (ptStart);
   ASSERT_VALIDTEXTPOS (ptEnd);
@@ -4844,7 +4844,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
       case TEXTLAYOUT_TABLE_WORDWRAP:
         {
           int nColumnIndex = 0;
-          CPoint charPoint;
+          CEPoint charPoint;
           int nSubLineStart = CharPosToPoint( nLineIndex, nCharIndex, charPoint, &nColumnIndex );
           for (int i = 0; i < nColumnIndex; ++i)
               nOffset += m_pTextBuffer->GetColumnWidth (i);
@@ -4976,7 +4976,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
 }
 
 void CCrystalTextView::
-EnsureVisible (CPoint pt)
+EnsureVisible (CEPoint pt)
 {
   EnsureVisible(pt, pt);
 }
@@ -5006,7 +5006,7 @@ OnSysColorChange ()
 }
 
 void CCrystalTextView::
-GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines /*= true*/)
+GetText (const CEPoint & ptStart, const CEPoint & ptEnd, CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pTextBuffer != nullptr)
     m_pTextBuffer->GetText (ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, text);
@@ -5157,7 +5157,7 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
           ASSERT_VALIDTEXTPOS (m_ptDraggedTextBegin);
           ASSERT_VALIDTEXTPOS (m_ptDraggedTextEnd);
         }
-      CPoint ptTopLine (0, m_nTopLine);
+      CEPoint ptTopLine (0, m_nTopLine);
       pContext->RecalcPoint (ptTopLine);
       ASSERT_VALIDTEXTPOS (ptTopLine);
       m_nTopLine = ptTopLine.y;
@@ -5218,7 +5218,7 @@ OnCreate (LPCREATESTRUCT lpCreateStruct)
 }
 
 void CCrystalTextView::
-SetAnchor (const CPoint & ptNewAnchor)
+SetAnchor (const CEPoint & ptNewAnchor)
 {
   ASSERT_VALIDTEXTPOS (ptNewAnchor);
   m_ptAnchor = ptNewAnchor;
@@ -5252,7 +5252,7 @@ PreTranslateMessage (MSG * pMsg)
 }
 
 void CCrystalTextView::
-SetCursorPos (const CPoint & ptCursorPos)
+SetCursorPos (const CEPoint & ptCursorPos)
 {
   ASSERT_VALIDTEXTPOS (ptCursorPos);
   m_ptCursorPos = ptCursorPos;
@@ -5429,7 +5429,7 @@ OnGoBookmark (UINT nCmdID)
       int nLine = m_pTextBuffer->GetLineWithFlag (LF_BOOKMARK (nBookmarkID));
       if (nLine >= 0)
         {
-          CPoint pt (0, nLine);
+          CEPoint pt (0, nLine);
           ASSERT_VALIDTEXTPOS (pt);
           SetCursorPos (pt);
           SetSelection (pt, pt);
@@ -5610,11 +5610,11 @@ FindStringHelper (const tchar_t* pszLineBegin, size_t nLineLength, const tchar_t
  *  selection, if false cursor is positioned to right-end.
  */
 bool CCrystalTextView::
-HighlightText (const CPoint & ptStartPos, int nLength,
+HighlightText (const CEPoint & ptStartPos, int nLength,
     bool bCursorToLeft /*= false*/, bool bUpdateView /*= true*/)
 {
   ASSERT_VALIDTEXTPOS (ptStartPos);
-  CPoint ptEndPos = ptStartPos;
+  CEPoint ptEndPos = ptStartPos;
   int nCount = GetLineLength (ptEndPos.y) - ptEndPos.x;
   if (nLength <= nCount)
     {
@@ -5655,8 +5655,8 @@ HighlightText (const CPoint & ptStartPos, int nLength,
 }
 
 bool CCrystalTextView::
-FindText (const tchar_t* pszText, const CPoint & ptStartPos, DWORD dwFlags,
-          bool bWrapSearch, CPoint * pptFoundPos)
+FindText (const tchar_t* pszText, const CEPoint & ptStartPos, DWORD dwFlags,
+          bool bWrapSearch, CEPoint * pptFoundPos)
 {
   if (m_pMarkers != nullptr)
     {
@@ -5665,8 +5665,8 @@ FindText (const tchar_t* pszText, const CPoint & ptStartPos, DWORD dwFlags,
         m_pMarkers->UpdateViews();
     }
   int nLineCount = GetLineCount ();
-  return FindTextInBlock (pszText, ptStartPos, CPoint (0, 0),
-                          CPoint (GetLineLength (nLineCount - 1), nLineCount - 1),
+  return FindTextInBlock (pszText, ptStartPos, CEPoint (0, 0),
+                          CEPoint (GetLineLength (nLineCount - 1), nLineCount - 1),
                           dwFlags, bWrapSearch, pptFoundPos);
 }
 
@@ -5696,11 +5696,11 @@ int HowManyStr (const tchar_t* s, tchar_t c)
 }
 
 bool CCrystalTextView::
-FindTextInBlock (const tchar_t* pszText, const CPoint & ptStartPosition,
-                 const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
-                 DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos)
+FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
+                 const CEPoint & ptBlockBegin, const CEPoint & ptBlockEnd,
+                 DWORD dwFlags, bool bWrapSearch, CEPoint * pptFoundPos)
 {
-  CPoint ptCurrentPos = ptStartPosition;
+  CEPoint ptCurrentPos = ptStartPosition;
 
   ASSERT (pszText != nullptr && tc::tcslen (pszText) > 0);
   ASSERT_VALIDTEXTPOS (ptCurrentPos);
@@ -5813,7 +5813,7 @@ FindTextInBlock (const tchar_t* pszText, const CPoint & ptStartPosition,
 
           //  Start again from the end of text
           bWrapSearch = false;
-          ptCurrentPos = CPoint (GetLineLength (GetLineCount () - 1), GetLineCount () - 1);
+          ptCurrentPos = CEPoint (GetLineLength (GetLineCount () - 1), GetLineCount () - 1);
         }
     }
   else
@@ -5948,10 +5948,10 @@ static void ConvertSearchFlagsToLastSearchInfos(LastSearchInfos *lastSearch, DWO
   lastSearch->m_bNoClose = (dwFlags & FIND_NO_CLOSE) != 0;
 }
 
-CPoint CCrystalTextView::
+CEPoint CCrystalTextView::
 GetSearchPos(DWORD dwSearchFlags)
 {
-  CPoint ptSearchPos;
+  CEPoint ptSearchPos;
   if (IsSelection())
     {
       auto [ptStart, ptEnd] = GetSelection ();
@@ -5968,7 +5968,7 @@ GetSearchPos(DWORD dwSearchFlags)
 bool CCrystalTextView::
 FindText (const LastSearchInfos * lastSearch)
 {
-  CPoint ptTextPos;
+  CEPoint ptTextPos;
   DWORD dwSearchFlags = ConvertSearchInfosToSearchFlags(lastSearch);
   if (!FindText (lastSearch->m_sText, GetSearchPos(dwSearchFlags), dwSearchFlags, !lastSearch->m_bNoWrap,
       &ptTextPos))
@@ -6023,9 +6023,9 @@ OnEditFind ()
     }
   else
     {
-      CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptStart = WordToLeft (ptCursorPos);
-      CPoint ptEnd = WordToRight (ptCursorPos);
+      CEPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptStart = WordToLeft (ptCursorPos);
+      CEPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
         GetText (ptStart, ptEnd, m_pFindTextDlg->m_sText);
     }
@@ -6074,9 +6074,9 @@ OnEditRepeat ()
         }
       else
         {
-          CPoint ptCursorPos = GetCursorPos ();
-          CPoint ptStart = WordToLeft (ptCursorPos);
-          CPoint ptEnd = WordToRight (ptCursorPos);
+          CEPoint ptCursorPos = GetCursorPos ();
+          CEPoint ptStart = WordToLeft (ptCursorPos);
+          CEPoint ptEnd = WordToRight (ptCursorPos);
           if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
             GetText (ptStart, ptEnd, sText);
         }
@@ -6094,7 +6094,7 @@ OnEditRepeat ()
     m_dwLastSearchFlags &= ~FIND_DIRECTION_UP;
   if (bEnable)
     {
-      CPoint ptFoundPos;
+      CEPoint ptFoundPos;
       //BEGIN SW
       // for correct backward search we need some changes:
       if (! FindText(sText, GetSearchPos(m_dwLastSearchFlags), m_dwLastSearchFlags,
@@ -6133,9 +6133,9 @@ OnEditMark ()
     }
   else
     {
-      CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptStart = WordToLeft (ptCursorPos);
-      CPoint ptEnd = WordToRight (ptCursorPos);
+      CEPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptStart = WordToLeft (ptCursorPos);
+      CEPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
         GetText (ptStart, ptEnd, sText);
     }
@@ -6219,7 +6219,7 @@ OnNextBookmark ()
       int nLine = m_pTextBuffer->FindNextBookmarkLine (m_ptCursorPos.y);
       if (nLine >= 0)
         {
-          CPoint pt (0, nLine);
+          CEPoint pt (0, nLine);
           ASSERT_VALIDTEXTPOS (pt);
           SetCursorPos (pt);
           SetSelection (pt, pt);
@@ -6237,7 +6237,7 @@ OnPrevBookmark ()
       int nLine = m_pTextBuffer->FindPrevBookmarkLine (m_ptCursorPos.y);
       if (nLine >= 0)
         {
-          CPoint pt (0, nLine);
+          CEPoint pt (0, nLine);
           ASSERT_VALIDTEXTPOS (pt);
           SetCursorPos (pt);
           SetSelection (pt, pt);
@@ -6459,7 +6459,7 @@ bracetype (const tchar_t* s)
 void CCrystalTextView::
 OnMatchBrace ()
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), *pszEnd = pszText + ptCursorPos.x;
   bool bAfter = false;
@@ -6641,7 +6641,7 @@ OnMatchBrace ()
 void CCrystalTextView::
 OnUpdateMatchBrace (CCmdUI * pCmdUI)
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y) + ptCursorPos.x;
   pCmdUI->Enable (ptCursorPos.x < nLength && (bracetype (*pszText) || ptCursorPos.x > 0 && bracetype (pszText[-1])) || ptCursorPos.x > 0 && bracetype (pszText[-1]));
@@ -6721,7 +6721,7 @@ OnToggleSourceHeader ()
                 {
                   m_ptCursorLast.x = m_ptCursorLast.y = 0;
                   ASSERT_VALIDTEXTPOS (m_ptCursorLast);
-                  CPoint ptCursorPos = m_ptCursorLast;
+                  CEPoint ptCursorPos = m_ptCursorLast;
                   SetCursorPos (ptCursorPos);
                   SetSelection (ptCursorPos, ptCursorPos);
                   SetAnchor (ptCursorPos);
@@ -6956,7 +6956,7 @@ void CCrystalTextView::OnEditFindIncremental( bool bFindNextOccurence /*= false*
 
   // otherwise search next occurence of search string, 
   // starting at current cursor position
-  CPoint	matchStart, matchEnd;
+  CEPoint	matchStart, matchEnd;
 
   // calculate start point for search
   if( bFindNextOccurence )
@@ -7175,13 +7175,13 @@ void CCrystalTextView::ResetCharWidths ()
 }
 
 // This function assumes selection is in one line
-void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
+void CCrystalTextView::EnsureVisible (CEPoint ptStart, CEPoint ptEnd)
 {
   //  Scroll vertically
   //BEGIN SW
   int nSubLineCount = GetSubLineCount();
   int nNewTopSubLine = m_nTopSubLine;
-  CPoint subLinePos;
+  CEPoint subLinePos;
 
   CharPosToPoint( ptStart.y, ptStart.x, subLinePos );
   subLinePos.y += GetSubLineIndex( ptStart.y );

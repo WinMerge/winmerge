@@ -101,8 +101,8 @@ struct CurrentWordDiff
 	int nDiff;
 	size_t nWordDiff;
 	int nPane;
-	CPoint ptStart;
-	CPoint ptEnd;
+	CEPoint ptStart;
+	CEPoint ptEnd;
 };
 
 struct DiffFileInfo;
@@ -268,7 +268,7 @@ public:
 	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1 = -1, int pane2 = -1);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
-	void Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed);
+	void Computelinediff(CMergeEditView *pView, std::pair<CEPoint, CEPoint> rc[], bool bReversed);
 	std::map<int, std::vector<WordDiff> > m_cacheWordDiffs;
 // End MergeDocLineDiffs.cpp
 
@@ -288,7 +288,7 @@ public:
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }
 	const CurrentWordDiff& GetCurrentWordDiff() const { return m_CurWordDiff; }
-	bool EqualCurrentWordDiff(int nBuffer, const CPoint& ptStart, const CPoint& ptEnd) const
+	bool EqualCurrentWordDiff(int nBuffer, const CEPoint& ptStart, const CEPoint& ptEnd) const
 	{
 		return (m_CurWordDiff.nPane == nBuffer && m_CurWordDiff.ptStart == ptStart && m_CurWordDiff.ptEnd == ptEnd);
 	}

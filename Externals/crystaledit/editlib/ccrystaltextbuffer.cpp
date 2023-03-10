@@ -89,7 +89,7 @@ int CCrystalTextBuffer::m_nDefaultEncoding = -1;
 // CCrystalTextBuffer::CUpdateContext
 
 void CCrystalTextBuffer::CInsertContext::
-RecalcPoint (CPoint & ptPoint)
+RecalcPoint (CEPoint & ptPoint)
 {
   ASSERT (m_ptEnd.y > m_ptStart.y ||
           m_ptEnd.y == m_ptStart.y && m_ptEnd.x >= m_ptStart.x);
@@ -107,7 +107,7 @@ RecalcPoint (CPoint & ptPoint)
 }
 
 void CCrystalTextBuffer::CDeleteContext::
-RecalcPoint (CPoint & ptPoint)
+RecalcPoint (CEPoint & ptPoint)
 {
   ASSERT (m_ptEnd.y > m_ptStart.y ||
           m_ptEnd.y == m_ptStart.y && m_ptEnd.x >= m_ptStart.x);
@@ -1430,7 +1430,7 @@ GetRedoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
 
 
 bool CCrystalTextBuffer::		/* virtual base */		
-UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur)
+UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur)
 {
   if (DeleteText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false))
     {
@@ -1442,7 +1442,7 @@ UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint appare
 }
 
 bool CCrystalTextBuffer::		/* virtual base */
-Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
+Undo (CCrystalTextView * pSource, CEPoint & ptCursorPos)
 {
   ASSERT (CanUndo ());
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
@@ -1463,8 +1463,8 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
       const UndoRecord ur = GetUndoRecord(tmpPos);
       // Undo records are stored in file line numbers
       // and must be converted to apparent (screen) line numbers for use
-      CPoint apparent_ptStartPos = ur.m_ptStartPos;
-      CPoint apparent_ptEndPos = ur.m_ptEndPos;
+      CEPoint apparent_ptStartPos = ur.m_ptStartPos;
+      CEPoint apparent_ptEndPos = ur.m_ptEndPos;
 
       if (ur.m_dwFlags & UNDO_INSERT)
         {
@@ -1520,7 +1520,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 }
 
 bool CCrystalTextBuffer::		/* virtual base */
-Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
+Redo (CCrystalTextView * pSource, CEPoint & ptCursorPos)
 {
   ASSERT (CanRedo ());
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
@@ -1537,8 +1537,8 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   for (;;)
     {
       const UndoRecord ur = GetUndoRecord(m_nUndoPosition);
-      CPoint apparent_ptStartPos = ur.m_ptStartPos;
-      CPoint apparent_ptEndPos = ur.m_ptEndPos;
+      CEPoint apparent_ptStartPos = ur.m_ptStartPos;
+      CEPoint apparent_ptEndPos = ur.m_ptEndPos;
 
       // now we can use normal insertTxt or deleteText
       if (ur.m_dwFlags & UNDO_INSERT)
@@ -1583,11 +1583,11 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
   return true;
 }
 
-// the CPoint parameters are apparent (on screen) line numbers
+// the CEPoint parameters are apparent (on screen) line numbers
 
 void CCrystalTextBuffer::			/* virtual base */
-AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-    const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType /*= CE_ACTION_UNKNOWN*/,
+AddUndoRecord (bool bInsert, const CEPoint & ptStartPos,
+    const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText, int nActionType /*= CE_ACTION_UNKNOWN*/,
     std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
   //  Forgot to call BeginUndoGroup()?
@@ -1704,7 +1704,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, const tchar_t* pszT
       bGroupFlag = true;
     }
 
-  AddUndoRecord (true, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine),
+  AddUndoRecord (true, CEPoint (nPos, nLine), CEPoint (nEndChar, nEndLine),
                  pszText, cchText, nAction, paSavedRevisionNumbers);
 
   if (bGroupFlag)
@@ -1825,7 +1825,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       return true;
     }
 
-  AddUndoRecord (false, CPoint (nStartChar, nStartLine), CPoint (nEndChar, nEndLine),
+  AddUndoRecord (false, CEPoint (nStartChar, nStartLine), CEPoint (nEndChar, nEndLine),
                  sTextToDelete, sTextToDelete.GetLength(), nAction, paSavedRevisionNumbers);
 
   return true;
@@ -1996,12 +1996,12 @@ FindPrevBookmarkLine (int nCurrentLine) const
 }
 
 //BEGIN SW
-CPoint CCrystalTextBuffer::GetLastChangePos() const
+CEPoint CCrystalTextBuffer::GetLastChangePos() const
 {
   return m_ptLastChange;
 }
 //END SW
-void CCrystalTextBuffer::RestoreLastChangePos(CPoint pt)
+void CCrystalTextBuffer::RestoreLastChangePos(CEPoint pt)
 {
   m_ptLastChange = pt;
 }

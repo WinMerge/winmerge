@@ -142,8 +142,8 @@ bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
 }
 
 void CDiffTextBuffer::			/* virtual override */
-AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
+AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
+		const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
 		std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {

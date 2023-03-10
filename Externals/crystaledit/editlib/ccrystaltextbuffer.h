@@ -34,6 +34,7 @@
 #include "parsers/crystallineparser.h"
 #include "LineInfo.h"
 #include "UndoRecord.h"
+#include "cepoint.h"
 #include <memory>
 #include <vector>
 
@@ -99,7 +100,7 @@ enum
 class EDITPADC_CLASS CUpdateContext
   {
 public :
-    virtual void RecalcPoint (CPoint & ptPoint) = 0;
+    virtual void RecalcPoint (CEPoint & ptPoint) = 0;
   };
 
 
@@ -138,15 +139,15 @@ protected :
 class EDITPADC_CLASS CInsertContext : public CUpdateContext
       {
 public :
-        CPoint m_ptStart, m_ptEnd;
-        virtual void RecalcPoint (CPoint & ptPoint);
+        CEPoint m_ptStart, m_ptEnd;
+        virtual void RecalcPoint (CEPoint & ptPoint);
       };
 
 class EDITPADC_CLASS CDeleteContext : public CUpdateContext
       {
 public :
-        CPoint m_ptStart, m_ptEnd;
-        virtual void RecalcPoint (CPoint & ptPoint);
+        CEPoint m_ptStart, m_ptEnd;
+        virtual void RecalcPoint (CEPoint & ptPoint);
       };
 
     //  Lines of text
@@ -160,7 +161,7 @@ public :
 
     //BEGIN SW
     /** Position where the last change was made. */
-    CPoint m_ptLastChange;
+    CEPoint m_ptLastChange;
     //END SW
 
     //  Connected views
@@ -190,7 +191,7 @@ public :
     CString StripTail (int i, size_t bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
-    virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+    virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos,
                                 const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, std::vector<uint32_t> *paSavedRevisionNumbers = nullptr);
     virtual UndoRecord GetUndoRecord (int nUndoPos) const { return m_aUndoBuf[nUndoPos]; }
 
@@ -269,9 +270,9 @@ public :
     //  Undo/Redo
     bool CanUndo () const;
     bool CanRedo () const;
-    virtual bool Undo (CCrystalTextView * pSource, CPoint & ptCursorPos);
-    virtual bool UndoInsert (CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur);
-    virtual bool Redo (CCrystalTextView * pSource, CPoint & ptCursorPos);
+    virtual bool Undo (CCrystalTextView * pSource, CEPoint & ptCursorPos);
+    virtual bool UndoInsert (CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur);
+    virtual bool Redo (CCrystalTextView * pSource, CEPoint & ptCursorPos);
 
     //  Undo grouping
     virtual void BeginUndoGroup (bool bMergeWithPrevious = false);
@@ -281,9 +282,9 @@ public :
     /**
     Returns the position where the last changes where made.
     */
-    CPoint GetLastChangePos() const;
+    CEPoint GetLastChangePos() const;
     //END SW
-    void RestoreLastChangePos(CPoint pt);
+    void RestoreLastChangePos(CEPoint pt);
     void DeleteLine(int line, int nCount = 1);
 
 

@@ -303,7 +303,7 @@ DeleteCurrentSelection ()
     {
       auto [ptSelStart, ptSelEnd] = GetSelection ();
 
-      CPoint ptCursorPos = ptSelStart;
+      CEPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
       SetSelection (ptCursorPos, ptCursorPos);
@@ -329,7 +329,7 @@ DeleteCurrentColumnSelection (int nAction, bool bFlushUndoGroup /*= true*/, bool
 
       int nSelLeft, nSelRight;
       GetColumnSelection (m_ptDrawSelStart.y, nSelLeft, nSelRight);
-      CPoint ptCursorPos(nSelLeft, m_ptDrawSelStart.y);
+      CEPoint ptCursorPos(nSelLeft, m_ptDrawSelStart.y);
       int nStartLine = m_ptDrawSelStart.y;
       int nEndLine = m_ptDrawSelEnd.y;
 
@@ -525,7 +525,7 @@ Paste ()
     {
       m_pTextBuffer->BeginUndoGroup ();
     
-      CPoint ptCursorPos;
+      CEPoint ptCursorPos;
       if (IsSelection ())
         {
           auto [ptSelStart, ptSelEnd] = GetSelection ();
@@ -588,7 +588,7 @@ Cut ()
 
   if (!m_bRectangularSelection)
     {
-      CPoint ptCursorPos = ptSelStart;
+      CEPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
       SetSelection (ptCursorPos, ptCursorPos);
@@ -626,7 +626,7 @@ OnEditDelete ()
 
   if (!m_bRectangularSelection)
     {
-      CPoint ptCursorPos = ptSelStart;
+      CEPoint ptCursorPos = ptSelStart;
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
       SetSelection (ptCursorPos, ptCursorPos);
@@ -667,7 +667,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
     {
       if (m_bOvrMode)
         {
-          CPoint ptCursorPos = GetCursorPos ();
+          CEPoint ptCursorPos = GetCursorPos ();
           ASSERT_VALIDTEXTPOS (ptCursorPos);
           if (ptCursorPos.y < GetLineCount () - 1)
             {
@@ -688,7 +688,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
 
       if (QueryEditable () && m_pTextBuffer != nullptr)
         {
-          CPoint ptCursorPos;
+          CEPoint ptCursorPos;
           if (IsSelection ())
             {
               auto [ptSelStart, ptSelEnd] = GetSelection ();
@@ -735,7 +735,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
           m_bMergeUndo = true;
 
           auto [ptSelStart, ptSelEnd] = GetSelection ();
-          CPoint ptCursorPos;
+          CEPoint ptCursorPos;
           if (ptSelStart != ptSelEnd)
             {
               ptCursorPos = ptSelStart;
@@ -805,8 +805,8 @@ OnEditDeleteBack ()
   if (!QueryEditable () || m_pTextBuffer == nullptr)
     return;
 
-  CPoint ptCursorPos = GetCursorPos ();
-  CPoint ptCurrentCursorPos = ptCursorPos;
+  CEPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCurrentCursorPos = ptCursorPos;
   bool bDeleted = false;
 
   if (!(ptCursorPos.x))         // If At Start Of Line
@@ -867,7 +867,7 @@ OnEditTab ()
     return;
 
   bool bTabify = false;
-  CPoint ptSelStart, ptSelEnd;
+  CEPoint ptSelStart, ptSelEnd;
   if (IsSelection ())
     {
       GetSelection (ptSelStart, ptSelEnd);
@@ -879,7 +879,7 @@ OnEditTab ()
         }
     }
 
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   ASSERT_VALIDTEXTPOS (ptCursorPos);
 
   tchar_t pszText[MAX_TAB_LEN + 1] = {0};
@@ -942,7 +942,7 @@ OnEditTab ()
   // Overwrite mode, replace next char with tab/spaces
   if (m_bOvrMode)
     {
-      CPoint ptCursorPos1 = GetCursorPos ();
+      CEPoint ptCursorPos1 = GetCursorPos ();
       ASSERT_VALIDTEXTPOS (ptCursorPos1);
 
       int nLineLength = GetLineLength (ptCursorPos1.y);
@@ -1090,7 +1090,7 @@ OnEditUntab ()
     }
   else
     {
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       if (ptCursorPos.x > 0)
         {
@@ -1360,7 +1360,7 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
   if (hData == nullptr)
     return false;
 
-  CPoint ptDropPos = ClientToText (ptClient);
+  CEPoint ptDropPos = ClientToText (ptClient);
   if (IsDraggingText () && IsInsideSelection (ptDropPos))
     {
       SetAnchor (ptDropPos);
@@ -1389,7 +1389,7 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
   int x, y;
   m_pTextBuffer->InsertText (this, ptDropPos.y, ptDropPos.x, pszText, cchText, y, x, CE_ACTION_DRAGDROP);  //   [JRT]
 
-  CPoint ptCurPos (x, y);
+  CEPoint ptCurPos (x, y);
   ASSERT_VALIDTEXTPOS (ptCurPos);
   SetAnchor (ptDropPos);
   SetSelection (ptDropPos, ptCurPos);
@@ -1569,9 +1569,9 @@ OnEditReplace ()
       m_pEditReplaceDlg->m_ptCurrentPos = GetCursorPos ();
       m_pEditReplaceDlg->m_bEnableScopeSelection = false;
 
-      CPoint ptCursorPos = GetCursorPos ();
-      CPoint ptStart = WordToLeft (ptCursorPos);
-      CPoint ptEnd = WordToRight (ptCursorPos);
+      CEPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptStart = WordToLeft (ptCursorPos);
+      CEPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
         GetText (ptStart, ptEnd, m_pEditReplaceDlg->m_sText);
     }
@@ -1628,7 +1628,7 @@ ReplaceSelection (const tchar_t* pszNewText, size_t cchNewText, DWORD dwFlags, b
 
   m_pTextBuffer->BeginUndoGroup(bGroupWithPrevious);
 
-  CPoint ptCursorPos;
+  CEPoint ptCursorPos;
   if (IsSelection ())
     {
       auto [ptSelStart, ptSelEnd] = GetSelection ();
@@ -1669,7 +1669,7 @@ ReplaceSelection (const tchar_t* pszNewText, size_t cchNewText, DWORD dwFlags, b
       m_nLastReplaceLen = static_cast<int>(cchNewText);
     }
 
-  CPoint ptEndOfBlock = CPoint (x, y);
+  CEPoint ptEndOfBlock = CEPoint (x, y);
   if (ptEndOfBlock.x == m_pTextBuffer->GetLineLength (ptEndOfBlock.y))
     {
       if (ptEndOfBlock.y < m_pTextBuffer->GetLineCount() - 1)
@@ -1735,7 +1735,7 @@ DoEditUndo ()
 {
   if (m_pTextBuffer != nullptr && m_pTextBuffer->CanUndo ())
     {
-      CPoint ptCursorPos;
+      CEPoint ptCursorPos;
       if (m_pTextBuffer->Undo (this, ptCursorPos))
         {
           ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -1779,7 +1779,7 @@ DoEditRedo ()
 {
   if (m_pTextBuffer != nullptr && m_pTextBuffer->CanRedo ())
     {
-      CPoint ptCursorPos;
+      CEPoint ptCursorPos;
       if (m_pTextBuffer->Redo (this, ptCursorPos))
         {
           ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -1867,7 +1867,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
           && !m_bOvrMode && !m_pTextBuffer->GetTableEditing())
         {
           //  Enter stroke!
-          CPoint ptCursorPos = GetCursorPos ();
+          CEPoint ptCursorPos = GetCursorPos ();
           ASSERT (ptCursorPos.y > 0);
 
           //  Take indentation from the previous line
@@ -1936,7 +1936,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
               int x, y;
               m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x,
                                          pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
-              CPoint pt (x, y);
+              CEPoint pt (x, y);
               SetSelection (pt, pt);
               SetAnchor (pt);
               SetCursorPos (pt);
@@ -1970,7 +1970,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
                   int x, y;
                   m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x,
                                              pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
-                  CPoint pt (x, y);
+                  CEPoint pt (x, y);
                   SetSelection (pt, pt);
                   SetAnchor (pt);
                   SetCursorPos (pt);
@@ -1982,7 +1982,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
       else if (nAction == CE_ACTION_TYPING && (GetFlags () & SRCOPT_FNBRACE) && bracetype (pszText) == 3)
         {
           //  Enter stroke!
-          CPoint ptCursorPos = GetCursorPos ();
+          CEPoint ptCursorPos = GetCursorPos ();
           const tchar_t* pszChars = m_pTextBuffer->GetLineChars (ptCursorPos.y);
           if (ptCursorPos.x > 1 && xisalnum (pszChars[ptCursorPos.x - 2]))
             {
@@ -2005,7 +2005,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
       else if (nAction == CE_ACTION_TYPING && (GetFlags () & SRCOPT_BRACEGNU) && isopenbrace (pszText))
         {
           //  Enter stroke!
-          CPoint ptCursorPos = GetCursorPos ();
+          CEPoint ptCursorPos = GetCursorPos ();
 
           //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
@@ -2039,7 +2039,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
               int x, y;
               m_pTextBuffer->InsertText (nullptr, ptCursorPos.y, ptCursorPos.x - 1,
                                          pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
-              CPoint pt (x + 1, y);
+              CEPoint pt (x + 1, y);
               SetSelection (pt, pt);
               SetAnchor (pt);
               SetCursorPos (pt);
@@ -2050,7 +2050,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
       else if (nAction == CE_ACTION_TYPING && (GetFlags () & (SRCOPT_BRACEGNU|SRCOPT_BRACEANSI)) && isclosebrace (pszText))
         {
           //  Enter stroke!
-          CPoint ptCursorPos = GetCursorPos ();
+          CEPoint ptCursorPos = GetCursorPos ();
 
           //  Take indentation from the previous line
           int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
@@ -2094,7 +2094,7 @@ OnEditOperation (int nAction, const tchar_t* pszText, size_t cchText)
 void CCrystalEditView::
 OnEditAutoComplete ()
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), *pszEnd = pszText + ptCursorPos.x;
   if (ptCursorPos.x > 0 && ptCursorPos.y > 0 && (nLength == ptCursorPos.x || !xisalnum (*pszEnd)) && xisalnum (pszEnd[-1]))
@@ -2110,7 +2110,7 @@ OnEditAutoComplete ()
       *pszBuffer = _T('<');
       _tcsncpy_s (pszBuffer + 1, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength + 1);
-      CPoint ptTextPos;
+      CEPoint ptTextPos;
       ptCursorPos.x -= nLength;
       bool bFound = FindText (sText, ptCursorPos, FIND_MATCH_CASE|FIND_REGEXP|FIND_DIRECTION_UP, true, &ptTextPos);
       if (!bFound)
@@ -2149,7 +2149,7 @@ OnEditAutoComplete ()
 void CCrystalEditView::
 OnUpdateEditAutoComplete (CCmdUI * pCmdUI)
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y) + ptCursorPos.x;
   pCmdUI->Enable (ptCursorPos.x > 0 && ptCursorPos.y > 0 && (nLength == ptCursorPos.x || !xisalnum (*pszText)) && xisalnum (pszText[-1]));
@@ -2158,7 +2158,7 @@ OnUpdateEditAutoComplete (CCmdUI * pCmdUI)
 void CCrystalEditView::
 OnEditAutoExpand ()
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), *pszEnd = pszText + ptCursorPos.x;
   if (ptCursorPos.x > 0 && ptCursorPos.y > 0 && (nLength == ptCursorPos.x || !xisalnum (*pszEnd)) && xisalnum (pszEnd[-1]))
@@ -2173,7 +2173,7 @@ OnEditAutoExpand ()
       tchar_t* pszBuffer = sText.GetBuffer (nLength + 1);
       _tcsncpy_s (pszBuffer, nLength + 1, pszBegin, nLength);
       sText.ReleaseBuffer (nLength);
-      CPoint ptTextPos;
+      CEPoint ptTextPos;
       ptCursorPos.x -= nLength;
       bool bFound = !!m_mapExpand->Lookup (sText, sExpand);
       if (bFound && !sExpand.IsEmpty ())
@@ -2244,7 +2244,7 @@ OnEditAutoExpand ()
                         break;
                       case _T ('b'):
                         {
-                          CPoint ptSelStart = ptCursorPos;
+                          CEPoint ptSelStart = ptCursorPos;
                           bool bDeleted = false;
                           if (!(ptCursorPos.x))         // If At Start Of Line
 
@@ -2284,7 +2284,7 @@ OnEditAutoExpand ()
                         break;
                       case _T ('e'):
                         {
-                          CPoint ptSelEnd = ptCursorPos;
+                          CEPoint ptSelEnd = ptCursorPos;
                           if (ptSelEnd.x == GetLineLength (ptSelEnd.y))
                             {
                               if (ptSelEnd.y == GetLineCount () - 1)
@@ -2356,7 +2356,7 @@ OnEditLowerCase ()
 {
   if (IsSelection ())
     {
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
@@ -2402,7 +2402,7 @@ OnEditUpperCase ()
 {
   if (IsSelection ())
     {
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
@@ -2448,7 +2448,7 @@ OnEditSwapCase ()
 {
   if (IsSelection ())
     {
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
@@ -2498,7 +2498,7 @@ OnEditCapitalize ()
 {
   if (IsSelection ())
     {
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
@@ -2561,7 +2561,7 @@ OnEditSentence ()
 {
   if (IsSelection ())
     {
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString text;
       GetText (ptSelStart, ptSelEnd, text);
@@ -2620,13 +2620,13 @@ OnEditSentence ()
 //BEGIN SW
 void CCrystalEditView::OnUpdateEditGotoLastChange( CCmdUI *pCmdUI )
 {
-  CPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
+  CEPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
   pCmdUI->Enable( ptLastChange.x > 0 && ptLastChange.y > -1 );
 }
 
 void CCrystalEditView::OnEditGotoLastChange()
 {
-  CPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
+  CEPoint	ptLastChange = m_pTextBuffer->GetLastChangePos();
   if( ptLastChange.x < 0 || ptLastChange.y < 0 )
     return;
 
@@ -2667,7 +2667,7 @@ int CCrystalEditView::SpellGetLine (struct SpellData_t *pdata)
 int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
 {
   CCrystalEditView *pView = static_cast<CCrystalEditView*>(pdata->pUserData);
-  CPoint ptStartPos, ptEndPos;
+  CEPoint ptStartPos, ptEndPos;
 
   switch (nEvent)
     {
@@ -2755,7 +2755,7 @@ bool CCrystalEditView::LoadSpellDll (bool bAlert /*= true*/)
 void CCrystalEditView::
 OnUpdateToolsSpelling (CCmdUI * pCmdUI)
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   int nLines = GetLineCount () - 1;
   pCmdUI->Enable (LoadSpellDll (false) && ptCursorPos.y < nLines);
 }
@@ -2763,7 +2763,7 @@ OnUpdateToolsSpelling (CCmdUI * pCmdUI)
 void CCrystalEditView::
 OnToolsSpelling ()
 {
-  CPoint ptCursorPos = GetCursorPos ();
+  CEPoint ptCursorPos = GetCursorPos ();
   if (LoadSpellDll () && ptCursorPos.y < GetLineCount ())
     {
       spellData.hParent = GetSafeHwnd ();
@@ -2795,7 +2795,7 @@ OnToolsCharCoding ()
   if (IsSelection ())
     {
       CWaitCursor wait;
-      CPoint ptCursorPos = GetCursorPos ();
+      CEPoint ptCursorPos = GetCursorPos ();
       auto [ptSelStart, ptSelEnd] = GetSelection ();
       CString sText;
       GetText (ptSelStart, ptSelEnd, sText);

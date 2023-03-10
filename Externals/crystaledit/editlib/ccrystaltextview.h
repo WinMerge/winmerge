@@ -33,6 +33,7 @@
 
 #include "crystalparser.h"
 #include "LineInfo.h"
+#include "cepoint.h"
 #include "parsers/crystallineparser.h"
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
@@ -143,7 +144,7 @@ private :
 
     bool m_bFocused;
 protected:
-    CPoint m_ptAnchor;
+    CEPoint m_ptAnchor;
 private:
     LOGFONT m_lfBaseFont;
     LOGFONT m_lfSavedBaseFont;
@@ -181,10 +182,10 @@ protected:
     UINT_PTR m_nDragSelTimer;
     DWORD m_dwLastDblClickTime;
 
-    CPoint m_ptDrawSelStart, m_ptDrawSelEnd;
+    CEPoint m_ptDrawSelStart, m_ptDrawSelEnd;
 
-    CPoint m_ptCursorPos, m_ptCursorLast;
-    CPoint m_ptSelStart, m_ptSelEnd;
+    CEPoint m_ptCursorPos, m_ptCursorLast;
+    CEPoint m_ptSelStart, m_ptSelEnd;
     void PrepareSelBounds ();
 
     //  Helper functions
@@ -199,7 +200,7 @@ protected:
     void DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
  int nColorIndex,
                              int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset);
-    bool IsInsideSelBlock (CPoint ptTextPos);
+    bool IsInsideSelBlock (CEPoint ptTextPos);
 
     bool m_bBookmarkExist;        // More bookmarks
     void ToggleBookmark(int nLine);
@@ -229,22 +230,22 @@ public :
     static CLIPFORMAT GetClipTcharTextFormat() { return sizeof(tchar_t) == 1 ? CF_TEXT : CF_UNICODETEXT; }
 
 protected :
-    CPoint WordToRight (CPoint pt);
-    CPoint WordToLeft (CPoint pt);
+    CEPoint WordToRight (CEPoint pt);
+    CEPoint WordToLeft (CEPoint pt);
     bool m_bOvrMode;
 
     bool m_bSingle;
     CCrystalTextBuffer *m_pTextBuffer;
     HACCEL m_hAccel;
     bool m_bVertScrollBarLocked, m_bHorzScrollBarLocked;
-    CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
+    CEPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
-    void SetAnchor (const CPoint & ptNewAnchor);
+    void SetAnchor (const CEPoint & ptNewAnchor);
     int GetTopMarginHeight ();
     int GetMarginWidth (CDC *pdc = nullptr);
-    bool IsValidTextPos (const CPoint &point);
-    bool IsValidTextPosX (const CPoint &point);
-    bool IsValidTextPosY (const CPoint &point);
+    bool IsValidTextPos (const CEPoint &point);
+    bool IsValidTextPosX (const CEPoint &point);
+    bool IsValidTextPosY (const CEPoint &point);
 
     bool m_bShowInactiveSelection;
     //  [JRT]
@@ -257,10 +258,10 @@ protected :
     //END SW
 
     int ClientToIdealTextPos (int x);
-    CPoint ClientToText (const CPoint & point);
+    CEPoint ClientToText (const CPoint & point);
     int ClientToColumn (int x);
     int ClientToColumnResizing (int x);
-    CPoint TextToClient (const CPoint & point);
+    CPoint TextToClient (const CEPoint & point);
     int ColumnToClient (int nColumn);
     void InvalidateLines (int nLine1, int nLine2, bool bInvalidateMargin = false);
     int CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate = false);
@@ -297,13 +298,13 @@ protected :
     void Copy ();
 
     bool IsSelection () const;
-    bool IsInsideSelection (const CPoint & ptTextPos);
+    bool IsInsideSelection (const CEPoint & ptTextPos);
     bool GetColumnSelection (int nLine, int & nLeftTextPos, int & nRightTextPos);
-    std::pair<CPoint, CPoint> GetSelection ();
-    void GetSelection (CPoint & ptStart, CPoint & ptEnd)
+    std::pair<CEPoint, CEPoint> GetSelection ();
+    void GetSelection (CEPoint & ptStart, CEPoint & ptEnd)
       { std::tie(ptStart, ptEnd) = GetSelection(); }
     void GetFullySelectedLines(int & firstLine, int & lastLine);
-    virtual void SetSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true);
+    virtual void SetSelection (const CEPoint & ptStart, const CEPoint & ptEnd, bool bUpdateView = true);
 
     int m_nTopLine, m_nOffsetChar;
     //BEGIN SW
@@ -343,7 +344,7 @@ protected :
 
     @return The character position of the beginning of the subline charPoint.y.
     */
-    int CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint, int* pnColumn = nullptr );
+    int CharPosToPoint( int nLineIndex, int nCharPos, CEPoint &charPoint, int* pnColumn = nullptr );
 
     /**
     Converts the given cursor point for the given line to the character position
@@ -359,7 +360,7 @@ protected :
 
     @return The character position the best matches the cursor position.
     */
-    int CursorPointToCharPos( int nLineIndex, const CPoint &curPoint );
+    int CursorPointToCharPos( int nLineIndex, const CEPoint &curPoint );
 
     /**
     Converts the given cursor position to a text position.
@@ -379,7 +380,7 @@ protected :
     @param textPos The calculated line and character position that best matches
         the cursor position (see text above for detailed descritpion).
     */
-    void SubLineCursorPosToTextPos( const CPoint &subLinePos, CPoint &textPos );
+    void SubLineCursorPosToTextPos( const CEPoint &subLinePos, CEPoint &textPos );
 
     /**
     Returns the character position relative to the given line, that matches
@@ -471,7 +472,7 @@ public:
     virtual const tchar_t* GetLineChars (int nLineIndex) const;
 protected:
     virtual lineflags_t GetLineFlags (int nLineIndex) const;
-    virtual void GetText (const CPoint & ptStart, const CPoint & ptEnd, CString & text, bool bExcludeInvisibleLines = true);
+    virtual void GetText (const CEPoint & ptStart, const CEPoint & ptEnd, CString & text, bool bExcludeInvisibleLines = true);
     virtual void GetTextInColumnSelection (CString & text, bool bExcludeInvisibleLines = true);
 
     //  Clipboard overridable
@@ -494,7 +495,7 @@ protected:
     bool GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight);
     void DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
                          COLORREF crText, COLORREF crBkgnd,
-                         int nLineIndex, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos,
+                         int nLineIndex, int nOffset, int nCount, int &nActualOffset, CEPoint ptTextPos,
                          int nSelLeft, int nSelRight);
     virtual void DrawSingleLine (const CRect & rect, int nLineIndex);
     virtual void GetTopMarginText (const CRect& rect, CString& columnnames, std::vector<int>& nWidths);
@@ -626,7 +627,7 @@ protected:
         int &nActualItem, COLORREF crText,
         COLORREF crBkgnd, bool bDrawWhitespace,
         int nLineIndex, int nOffset,
-        int nCount, int &nActualOffset, CPoint ptTextPos );
+        int nCount, int &nActualOffset, CEPoint ptTextPos );
     //END SW
 
     std::vector<CrystalLineParser::TEXTBLOCK> MergeTextBlocks(const std::vector<CrystalLineParser::TEXTBLOCK>& blocks1, const std::vector<CrystalLineParser::TEXTBLOCK>& blocks2) const;
@@ -683,16 +684,16 @@ private:
     CString *m_pstrIncrementalSearchStringOld;
 
     /** Start of selection at the time the incremental search started */
-    CPoint m_selStartBeforeIncrementalSearch;
+    CEPoint m_selStartBeforeIncrementalSearch;
 
     /** Start of selection at the time the incremental search started */
-    CPoint m_selEndBeforeIncrementalSearch;
+    CEPoint m_selEndBeforeIncrementalSearch;
 
     /** Cursor position at the time the incremental search started */
-    CPoint m_cursorPosBeforeIncrementalSearch;
+    CEPoint m_cursorPosBeforeIncrementalSearch;
 
     /** position to start the incremental search at */
-    CPoint m_incrementalSearchStartPos;
+    CEPoint m_incrementalSearchStartPos;
 
     //END SW
 
@@ -789,25 +790,25 @@ public :
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
     //  Attributes
-    CPoint GetCursorPos () const { return m_ptCursorPos; }
-    virtual void SetCursorPos (const CPoint & ptCursorPos);
+    CEPoint GetCursorPos () const { return m_ptCursorPos; }
+    virtual void SetCursorPos (const CEPoint & ptCursorPos);
     void ShowCursor ();
     void HideCursor ();
-    CPoint GetAnchor() const { return m_ptAnchor; }
-    void SetNewAnchor (const CPoint & ptNewAnchor) { SetAnchor(ptNewAnchor); }
-    void SetNewSelection (const CPoint & ptStart, const CPoint & ptEnd, bool bUpdateView = true) { SetSelection(ptStart, ptEnd, bUpdateView); }
+    CEPoint GetAnchor() const { return m_ptAnchor; }
+    void SetNewAnchor (const CEPoint & ptNewAnchor) { SetAnchor(ptNewAnchor); }
+    void SetNewSelection (const CEPoint & ptStart, const CEPoint & ptEnd, bool bUpdateView = true) { SetSelection(ptStart, ptEnd, bUpdateView); }
 
     //  Operations
-    virtual void EnsureVisible (CPoint pt);
-    virtual void EnsureVisible (CPoint ptStart, CPoint ptEnd);
+    virtual void EnsureVisible (CEPoint pt);
+    virtual void EnsureVisible (CEPoint ptStart, CEPoint ptEnd);
 
     //  Text search helpers
-    CPoint GetSearchPos (DWORD dwSearchFlags);
-    bool FindText (const tchar_t* pszText, const CPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
-    bool FindTextInBlock (const tchar_t* pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
-                          DWORD dwFlags, bool bWrapSearch, CPoint * pptFoundPos);
+    CEPoint GetSearchPos (DWORD dwSearchFlags);
+    bool FindText (const tchar_t* pszText, const CEPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CEPoint * pptFoundPos);
+    bool FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPos, const CEPoint & ptBlockBegin, const CEPoint & ptBlockEnd,
+                          DWORD dwFlags, bool bWrapSearch, CEPoint * pptFoundPos);
     bool FindText (const LastSearchInfos * lastSearch);
-    bool HighlightText (const CPoint & ptStartPos, int nLength,
+    bool HighlightText (const CEPoint & ptStartPos, int nLength,
       bool bCursorToLeft = false, bool bUpdateView = true);
 
     // IME (input method editor)
@@ -846,7 +847,7 @@ protected :
     // Generated message map functions
 protected :
 #ifdef _DEBUG
-    void AssertValidTextPos (const CPoint & pt);
+    void AssertValidTextPos (const CEPoint & pt);
 #endif
 
     //{{AFX_MSG(CCrystalTextView)

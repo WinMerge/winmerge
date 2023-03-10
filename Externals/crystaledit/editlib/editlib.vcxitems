@@ -244,6 +244,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)editreg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)edtlib.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LineInfo.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrendererdirectwrite.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderergdi.h" />

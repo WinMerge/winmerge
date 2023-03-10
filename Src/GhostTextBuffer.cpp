@@ -783,7 +783,7 @@ OnNotifyLineHasBeenEdited(int nLine)
 }
 
 void CGhostTextBuffer::
-CountEolAndLastLineLength(const CPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int &nLastLineLength, int &nEol)
+CountEolAndLastLineLength(const CEPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int &nLastLineLength, int &nEol)
 {
 	nLastLineLength = 0;
 	nEol = 0;
@@ -829,15 +829,15 @@ CountEolAndLastLineLength(const CPoint& ptStartPos, const tchar_t* pszText, size
 }
 
 void CGhostTextBuffer::			/* virtual override */
-AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-	const CPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
+AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
+	const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
 	std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
-	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
+	CEPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	int nLastLineLength, nEol;
 	CountEolAndLastLineLength(ptStartPos, pszText, cchText, nLastLineLength, nEol);
-	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
+	CEPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
 	if (ptEndPos.x == 0 && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
 		real_ptEndPos.x = nLastLineLength;
 	CCrystalTextBuffer::AddUndoRecord(bInsert, real_ptStartPos, real_ptEndPos, pszText,
@@ -854,7 +854,7 @@ GetUndoRecord(int nUndoPos) const
 }
 
 bool CGhostTextBuffer::		/* virtual override */
-UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur)
+UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur)
 {    
     // Check that text in the undo buffer matches text in file buffer.  
 	// If not, then rescan() has moved lines and undo fails.
@@ -884,7 +884,7 @@ UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint appare
 		//	that situation before we fail entirely...
 		if (apparent_ptEndPos.y + 1 == static_cast<LONG>(size) && apparent_ptEndPos.x == 0)
 		{
-			CPoint apparentEnd2 = apparent_ptEndPos;
+			CEPoint apparentEnd2 = apparent_ptEndPos;
 			apparentEnd2.x = static_cast<LONG>(m_aLines[apparentEnd2.y].FullLength());
 			text.Empty();
 			GetTextWithoutEmptys(apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparentEnd2.x, text, CRLFSTYLE::AUTOMATIC, false);

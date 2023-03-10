@@ -103,7 +103,7 @@ public:
 	virtual CCrystalTextBuffer *LocateTextBuffer () override;
 	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
-	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CPoint *pptStart = nullptr, const CPoint *ppEnd = nullptr);
+	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CEPoint *pptStart = nullptr, const CEPoint *ppEnd = nullptr);
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
 	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
 	CString GetSelectedText();
@@ -115,7 +115,7 @@ public:
 	bool IsModified() { return (LocateTextBuffer()->IsModified()); }
 	void PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
-	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
+	void SelectArea(const CEPoint & ptStart, const CEPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	using CGhostTextView::GetSelection;
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
@@ -154,10 +154,10 @@ public:
 	bool IsDiffVisible(int nDiff);
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
-	virtual void EnsureVisible(CPoint pt) override;
-	virtual void EnsureVisible(CPoint ptStart, CPoint ptEnd) override;
-	bool EnsureInDiff(CPoint& pt);
-	void SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView = true) override;
+	virtual void EnsureVisible(CEPoint pt) override;
+	virtual void EnsureVisible(CEPoint ptStart, CEPoint ptEnd) override;
+	bool EnsureInDiff(CEPoint& pt);
+	void SetSelection(const CEPoint& ptStart, const CEPoint& ptEnd, bool bUpdateView = true) override;
 	void ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true) override;
 	void SetActivePane();
 

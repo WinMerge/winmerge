@@ -353,5 +353,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\memcombo.h">
       <Filter>Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

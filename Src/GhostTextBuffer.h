@@ -90,11 +90,11 @@ public :
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
 #endif
 
-	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
+	virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos,
 	                            const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
-	virtual bool UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos,
-							const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur) override;
+	virtual bool UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos,
+							const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur) override;
 
 	virtual std::vector<uint32_t> *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
 	virtual void RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *paSavedRevisionNumbers) override;
@@ -126,7 +126,7 @@ public:
 
 private:
 	void RecomputeRealityMapping();
-	void CountEolAndLastLineLength(const CPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int& nLastLineLength, int& nEol);
+	void CountEolAndLastLineLength(const CEPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int& nLastLineLength, int& nEol);
 	/** For debugging purpose */
 	void checkFlagsFromReality() const;
 

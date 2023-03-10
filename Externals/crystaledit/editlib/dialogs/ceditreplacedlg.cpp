@@ -258,7 +258,7 @@ DoReplaceText (const tchar_t* /*pszNewText*/, DWORD dwSearchFlags)
 }
 
 bool CEditReplaceDlg::
-AdjustSearchPos (CPoint& ptFoundAt) const
+AdjustSearchPos (CEPoint& ptFoundAt) const
 {
   if (m_nScope != 0)
     ptFoundAt = m_pBuddy->GetSearchPos (m_nDirection == 0 ? FIND_DIRECTION_UP : 0);
@@ -443,7 +443,7 @@ OnEditReplaceAll ()
       m_bFound = DoHighlightText ( false, false );
     }
 
-  CPoint m_ptFirstFound = m_ptFoundAt;
+  CEPoint m_ptFirstFound = m_ptFoundAt;
   bool bGroupWithPrevious = false;
 
   while (m_bFound)
@@ -478,7 +478,7 @@ OnEditReplaceAll ()
         }
 
       // calculate the end of the current replacement
-      CPoint m_ptCurrentReplacedEnd = m_pBuddy->GetCursorPos ();
+      CEPoint m_ptCurrentReplacedEnd = m_pBuddy->GetCursorPos ();
 
       // m_ptFoundAt.x has two meanings:
       // (1) One is the position of the word that was found.

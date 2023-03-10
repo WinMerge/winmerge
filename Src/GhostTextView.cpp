@@ -73,7 +73,7 @@ DetachFromBuffer ()
 	CCrystalEditViewEx::DetachFromBuffer();
 }
 
-void CGhostTextView::popPosition(SCursorPushed Ssrc, CPoint & pt)
+void CGhostTextView::popPosition(SCursorPushed Ssrc, CEPoint & pt)
 {
 	pt.x = Ssrc.x;
 	pt.y = m_pGhostTextBuffer->ComputeApparentLine(Ssrc.y, Ssrc.nToFirstReal);
@@ -88,7 +88,7 @@ void CGhostTextView::popPosition(SCursorPushed Ssrc, CPoint & pt)
 		pt.y = 0;
 }
 
-void CGhostTextView::pushPosition(SCursorPushed & Sdest, CPoint pt)
+void CGhostTextView::pushPosition(SCursorPushed & Sdest, CEPoint pt)
 {
 	Sdest.x = pt.x;
 	if (m_pGhostTextBuffer)
@@ -99,7 +99,7 @@ void CGhostTextView::pushPosition(SCursorPushed & Sdest, CPoint pt)
 
 void CGhostTextView::PopCursors ()
 {
-	CPoint ptCursorLast = m_ptCursorLast;
+	CEPoint ptCursorLast = m_ptCursorLast;
 	popPosition(m_ptCursorPosPushed, ptCursorLast);
 
 	ASSERT_VALIDTEXTPOS (ptCursorLast);
@@ -136,9 +136,9 @@ void CGhostTextView::PopCursors ()
 		ASSERT_VALIDTEXTPOS(m_ptSavedSelEnd);
 	}
 
-	CPoint ptLastChange;
+	CEPoint ptLastChange;
 	if (m_ptLastChangePushed.y == 0 && m_ptLastChangePushed.nToFirstReal > 0)
-		ptLastChange = CPoint(-1,-1);
+		ptLastChange = CEPoint(-1,-1);
 	else 
 	{
 		popPosition(m_ptLastChangePushed, ptLastChange);
@@ -181,7 +181,7 @@ void CGhostTextView::PushCursors ()
 		pushPosition(m_ptSavedSelEndPushed, m_ptSavedSelEnd);
 	}
 
-	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer ? m_pGhostTextBuffer->GetLastChangePos() : CPoint{0, 0});
+	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer ? m_pGhostTextBuffer->GetLastChangePos() : CEPoint{0, 0});
 
 	// and top line positions
 	m_nTopSubLinePushed = m_nTopSubLine;

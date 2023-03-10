@@ -625,7 +625,7 @@ void CMergeDoc::CheckFileChanged(void)
 		{
 			if (FileChange[nBuffer] == FileChange::Changed)
 			{
-				CPoint pt = GetView(0, nBuffer)->GetCursorPos();
+				CEPoint pt = GetView(0, nBuffer)->GetCursorPos();
 				ChangeFile(nBuffer, m_filePaths[nBuffer], pt.y);
 			}
 		}
@@ -925,12 +925,12 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
-	CPoint currentPosSrc = pViewSrc->GetCursorPos();
+	CEPoint currentPosSrc = pViewSrc->GetCursorPos();
 	currentPosSrc.x = 0;
-	CPoint currentPosDst = pViewDst->GetCursorPos();
+	CEPoint currentPosDst = pViewDst->GetCursorPos();
 	currentPosDst.x = 0;
 
-	CPoint pt(0, 0);
+	CEPoint pt(0, 0);
 	pViewDst->SetCursorPos(pt);
 	pViewDst->SetNewSelection(pt, pt, false);
 	pViewDst->SetNewAnchor(pt);
@@ -1003,12 +1003,12 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewSrc = m_pView[nGroup][srcPane];
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
-	CPoint currentPosSrc = pViewSrc->GetCursorPos();
+	CEPoint currentPosSrc = pViewSrc->GetCursorPos();
 	currentPosSrc.x = 0;
-	CPoint currentPosDst = pViewDst->GetCursorPos();
+	CEPoint currentPosDst = pViewDst->GetCursorPos();
 	currentPosDst.x = 0;
 
-	CPoint pt(0, 0);
+	CEPoint pt(0, 0);
 	pViewDst->SetCursorPos(pt);
 	pViewDst->SetNewSelection(pt, pt, false);
 	pViewDst->SetNewAnchor(pt);
@@ -1128,10 +1128,10 @@ void CMergeDoc::DoAutoMerge(int dstPane)
 
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
-	CPoint currentPosDst = pViewDst->GetCursorPos();
+	CEPoint currentPosDst = pViewDst->GetCursorPos();
 	currentPosDst.x = 0;
 
-	CPoint pt(0, 0);
+	CEPoint pt(0, 0);
 	pViewDst->SetCursorPos(pt);
 	pViewDst->SetNewSelection(pt, pt, false);
 	pViewDst->SetNewAnchor(pt);
@@ -1260,7 +1260,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 			pViewDst->IsCursorInDiff()))
 		{
 			// Find out diff under cursor
-			CPoint ptCursor = GetActiveMergeView()->GetCursorPos();
+			CEPoint ptCursor = GetActiveMergeView()->GetCursorPos();
 			nDiff = m_diffList.LineToDiff(ptCursor.y);
 		}
 	}
@@ -1288,7 +1288,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		// but we want to move to begin of that line for usability.
 		if (bUpdateView)
 		{
-			CPoint currentPos = pViewDst->GetCursorPos();
+			CEPoint currentPos = pViewDst->GetCursorPos();
 			currentPos.x = 0;
 			if (currentPos.y > cd_dend)
 			{
@@ -1382,7 +1382,7 @@ bool CMergeDoc::PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLi
 	// but we want to move to begin of that line for usability.
 	if (bUpdateView)
 	{
-		CPoint currentPos = pViewDst->GetCursorPos();
+		CEPoint currentPos = pViewDst->GetCursorPos();
 		currentPos.x = 0;
 		if (currentPos.y > cd_dend)
 		{
@@ -1487,7 +1487,7 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 	// but we want to move to begin of that line for usability.
 	if (bUpdateView)
 	{
-		CPoint currentPos = pViewDst->GetCursorPos();
+		CEPoint currentPos = pViewDst->GetCursorPos();
 		currentPos.x = 0;
 		if (currentPos.y > cd_dend)
 		{
@@ -1503,8 +1503,8 @@ bool CMergeDoc::WordListCopy(int srcPane, int dstPane, int nDiff, int firstWordD
 	dbuf.BeginUndoGroup(bGroupWithPrevious);
 
 	CString srcText, dstText;
-	CPoint ptDstStart, ptDstEnd;
-	CPoint ptSrcStart, ptSrcEnd;
+	CEPoint ptDstStart, ptDstEnd;
+	CEPoint ptSrcStart, ptSrcEnd;
 
 	ptDstStart.x = worddiffs[firstWordDiff].begin[dstPane];
 	ptDstStart.y = worddiffs[firstWordDiff].beginline[dstPane];
@@ -3623,7 +3623,7 @@ void CMergeDoc::OnFileReload()
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
-	CPoint pt = GetActiveMergeView()->GetCursorPos();
+	CEPoint pt = GetActiveMergeView()->GetCursorPos();
 	auto columnWidths = m_ptBuf[0]->GetColumnWidths();
 	if (OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc))
 	{

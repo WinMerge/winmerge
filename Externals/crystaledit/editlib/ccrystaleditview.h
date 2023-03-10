@@ -29,6 +29,7 @@
 #include "ccrystaltextview.h"
 #include "ccrystaltextbuffer.h"
 #include "wispelld.h"
+#include "cepoint.h"
 
 /////////////////////////////////////////////////////////////////////////////
 //  Forward class declarations
@@ -66,11 +67,11 @@ protected:
 
 protected:
     bool m_bDropPosVisible;
-    CPoint m_ptSavedCaretPos;
+    CEPoint m_ptSavedCaretPos;
     bool m_bSelectionPushed;
-    CPoint m_ptSavedSelStart, m_ptSavedSelEnd;
+    CEPoint m_ptSavedSelStart, m_ptSavedSelEnd;
 private :
-    CPoint m_ptDropPos;
+    CEPoint m_ptDropPos;
     bool m_bAutoIndent;
 
     //  [JRT]
