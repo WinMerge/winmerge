@@ -120,11 +120,11 @@ public:
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
 	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
-	virtual COLORREF GetColor(int nColorIndex) const override;
-	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-			COLORREF & crText, bool & bDrawWhitespace) override;
+	virtual CEColor GetColor(int nColorIndex) const override;
+	virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,
+			CEColor & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
-		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
+		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }

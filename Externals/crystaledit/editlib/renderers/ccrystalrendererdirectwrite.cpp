@@ -353,12 +353,12 @@ bool CCrystalRendererDirectWrite::GetCharWidth(unsigned start, unsigned end, int
 	return succeeded;
 }
 
-void CCrystalRendererDirectWrite::SetTextColor(COLORREF clr)
+void CCrystalRendererDirectWrite::SetTextColor(CEColor clr)
 {
 	m_pTextBrush->SetColor(ColorRefToColorF(clr));
 }
 
-void CCrystalRendererDirectWrite::SetBkColor(COLORREF clr)
+void CCrystalRendererDirectWrite::SetBkColor(CEColor clr)
 {
 	m_pBackgroundBrush->SetColor(ColorRefToColorF(clr));
 }
@@ -368,7 +368,7 @@ void CCrystalRendererDirectWrite::FillRectangle(const CRect &rc)
 	m_renderTarget.FillRectangle(CD2DRectF(rc), m_pBackgroundBrush.get());
 }
 
-void CCrystalRendererDirectWrite::FillSolidRectangle(const CRect &rc, COLORREF color)
+void CCrystalRendererDirectWrite::FillSolidRectangle(const CRect &rc, CEColor color)
 {
 	m_pTempBrush->SetColor(ColorRefToColorF(color));
 	m_renderTarget.FillRectangle(CD2DRectF(rc), m_pTempBrush.get());

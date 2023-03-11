@@ -95,12 +95,12 @@ bool CCrystalRendererGDI::GetCharWidth(unsigned start, unsigned end, int * nWidt
 	return succeeded;
 }
 
-void CCrystalRendererGDI::SetTextColor(COLORREF clr)
+void CCrystalRendererGDI::SetTextColor(CEColor clr)
 {
 	m_pDC->SetTextColor(clr);
 }
 
-void CCrystalRendererGDI::SetBkColor(COLORREF clr)
+void CCrystalRendererGDI::SetBkColor(CEColor clr)
 {
 	m_pDC->SetBkColor(clr);
 }
@@ -110,7 +110,7 @@ void CCrystalRendererGDI::FillRectangle(const CRect &rc)
 	m_pDC->FillSolidRect(&rc, m_pDC->GetBkColor());
 }
 
-void CCrystalRendererGDI::FillSolidRectangle(const CRect &rc, COLORREF color)
+void CCrystalRendererGDI::FillSolidRectangle(const CRect &rc, CEColor color)
 {
 	m_pDC->FillSolidRect(&rc, color);
 }

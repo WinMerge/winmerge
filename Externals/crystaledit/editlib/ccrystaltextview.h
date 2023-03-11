@@ -34,6 +34,7 @@
 #include "crystalparser.h"
 #include "LineInfo.h"
 #include "cepoint.h"
+#include "cecolor.h"
 #include "parsers/crystallineparser.h"
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
@@ -199,7 +200,7 @@ protected:
     void AdjustTextPoint (CPoint & point);
     void DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip,
  int nColorIndex,
-                             int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset);
+                             int nBgColorIndex, CEColor crText, CEColor crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset);
     bool IsInsideSelBlock (CEPoint ptTextPos);
 
     bool m_bBookmarkExist;        // More bookmarks
@@ -486,15 +487,15 @@ protected:
     virtual void OnDropSource (DROPEFFECT de);
     bool IsDraggingText () const;
 
-    virtual COLORREF GetColor (int nColorIndex) const;
-    virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-                                COLORREF & crText, bool & bDrawWhitespace);
+    virtual CEColor GetColor (int nColorIndex) const;
+    virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,
+                                CEColor & crText, bool & bDrawWhitespace);
     virtual bool GetItalic (int nColorIndex);
     virtual bool GetBold (int nColorIndex);
 
     bool GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight);
     void DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
-                         COLORREF crText, COLORREF crBkgnd,
+                         CEColor crText, CEColor crBkgnd,
                          int nLineIndex, int nOffset, int nCount, int &nActualOffset, CEPoint ptTextPos,
                          int nSelLeft, int nSelRight);
     virtual void DrawSingleLine (const CRect & rect, int nLineIndex);
@@ -624,8 +625,8 @@ protected:
     // (a wrapped line can consist of many screen lines
     virtual void DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
          const std::vector<CrystalLineParser::TEXTBLOCK>& blocks,
-        int &nActualItem, COLORREF crText,
-        COLORREF crBkgnd, bool bDrawWhitespace,
+        int &nActualItem, CEColor crText,
+        CEColor crBkgnd, bool bDrawWhitespace,
         int nLineIndex, int nOffset,
         int nCount, int &nActualOffset, CEPoint ptTextPos );
     //END SW
@@ -640,7 +641,7 @@ public:
     virtual CString GetHTMLStyles ();
     std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);
 protected:
-    virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd);
+    virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, CEColor crText, CEColor crBkgnd);
 
     //BEGIN SW
     // helpers for incremental search

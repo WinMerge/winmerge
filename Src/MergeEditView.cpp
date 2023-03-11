@@ -719,7 +719,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 	return blocks;
 }
 
-COLORREF CMergeEditView::GetColor(int nColorIndex) const
+CEColor CMergeEditView::GetColor(int nColorIndex) const
 {
 	switch (nColorIndex & ~COLORINDEX_MASK)
 	{
@@ -747,8 +747,8 @@ COLORREF CMergeEditView::GetColor(int nColorIndex) const
  * @param [out] crBkgnd Backround color for line
  * @param [out] crText Text color for line
  */
-void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
-                                COLORREF & crText, bool & bDrawWhitespace)
+void CMergeEditView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
+                                CEColor & crText, bool & bDrawWhitespace)
 {
 	DWORD ignoreFlags = 0;
 	GetLineColors2(nLineIndex, ignoreFlags, crBkgnd, crText, bDrawWhitespace);
@@ -763,8 +763,8 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
  *
  * This version allows caller to suppress particular flags
  */
-void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF & crBkgnd,
-                                COLORREF & crText, bool & bDrawWhitespace)
+void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor & crBkgnd,
+                                CEColor & crText, bool & bDrawWhitespace)
 {
 	if (GetLineCount() <= nLineIndex)
 		return;

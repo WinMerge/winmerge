@@ -359,5 +359,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\ctchar.h">
       <Filter>Utils</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cecolor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

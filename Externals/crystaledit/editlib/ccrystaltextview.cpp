@@ -148,9 +148,9 @@ using CrystalLineParser::TEXTBLOCK;
 const UINT MARGIN_REV_WIDTH = 3;
 
 /** @brief Color of unsaved line revision mark (dark yellow). */
-const COLORREF UNSAVED_REVMARK_CLR = RGB(0xD7, 0xD7, 0x00);
+const CEColor UNSAVED_REVMARK_CLR{ 0xD7, 0xD7, 0x00 };
 /** @brief Color of saved line revision mark (green). */
-const COLORREF SAVED_REVMARK_CLR = RGB(0x00, 0xFF, 0x00);
+const CEColor SAVED_REVMARK_CLR{ 0x00, 0xFF, 0x00 };
 
 #define SMOOTH_SCROLL_FACTOR        6
 
@@ -910,15 +910,6 @@ static void AppendEscapeAdv(CString & str, int & curpos, tchar_t c)
   curpos += wsprintf(szadd, _T("\t%02X"), static_cast<int>(c));
 }
 
-static COLORREF GetIntermediateColor (COLORREF a, COLORREF b)
-{
-  float ratio = 0.333f;
-  const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
-  const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
-  const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
-  return RGB(R, G, B);
-}
-
 int CCrystalTextView::
 ExpandChars (int nLineIndex, int nOffset, int nCount, CString & line, int nActualOffset)
 {
@@ -1286,7 +1277,7 @@ ExpandCharsTableEditingNoWrap(int nLineIndex, int nOffset, int nCount, CString& 
  */
 void CCrystalTextView::
 DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
-                    int nBgColorIndex, COLORREF crText, COLORREF crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset)
+                    int nBgColorIndex, CEColor crText, CEColor crBkgnd, int nLineIndex, int nOffset, int nCount, int &nActualOffset)
 {
   ASSERT (nCount >= 0);
   if (nCount > 0)
@@ -1383,14 +1374,14 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
                 {
-                  COLORREF crText2 = crText;
-                  COLORREF crBkgnd2 = crBkgnd;
+                  CEColor crText2 = crText;
+                  CEColor crBkgnd2 = crBkgnd;
                   if (crText == CLR_NONE || nColorIndex & COLORINDEX_APPLYFORCE)
                     crText2 = GetColor(nColorIndex);
                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
                     crBkgnd2 = GetColor(nBgColorIndex);
                   if (nColorIndex & COLORINDEX_INTERMEDIATECOLOR)
-                    crText2 = GetIntermediateColor(crText2, crBkgnd2);
+                    crText2 = CEColor::GetIntermediateColor(crText2, crBkgnd2, 0.333f);
                   m_pCrystalRenderer->SetTextColor(crText2);
                   m_pCrystalRenderer->SetBkColor(crBkgnd2);
 
@@ -1457,7 +1448,7 @@ GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight)
 
 void CCrystalTextView::
 DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex, 
-                COLORREF crText, COLORREF crBkgnd,
+                CEColor crText, CEColor crBkgnd,
                 int nLineIndex, int nOffset, int nCount, int &nActualOffset, CEPoint ptTextPos,
                 int nSelLeft, int nSelRight)
 {
@@ -1500,25 +1491,25 @@ DrawLineHelper (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nB
 }
 
 void CCrystalTextView::
-GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-               COLORREF & crText, bool & bDrawWhitespace)
+GetLineColors (int nLineIndex, CEColor & crBkgnd,
+               CEColor & crText, bool & bDrawWhitespace)
 {
   lineflags_t dwLineFlags = GetLineFlags (nLineIndex);
   bDrawWhitespace = true;
-  crText = RGB (255, 255, 255);
+  crText = { 255, 255, 255 };
   if (dwLineFlags & LF_EXECUTION)
     {
-      crBkgnd = RGB (0, 128, 0);
+      crBkgnd = { 0, 128, 0 };
       return;
     }
   if (dwLineFlags & LF_BREAKPOINT)
     {
-      crBkgnd = RGB (255, 0, 0);
+      crBkgnd = { 255, 0, 0 };
       return;
     }
   if (dwLineFlags & LF_INVALID_BREAKPOINT)
     {
-      crBkgnd = RGB (128, 128, 0);
+      crBkgnd = { 128, 128, 0 };
       return;
     }
   crBkgnd = CLR_NONE;
@@ -1681,7 +1672,7 @@ void CCrystalTextView::InvalidateScreenRect(bool bInvalidateView)
 
 void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
          const std::vector<TEXTBLOCK>& blocks, int &nActualItem, 
-         COLORREF crText, COLORREF crBkgnd, bool bDrawWhitespace,
+         CEColor crText, CEColor crBkgnd, bool bDrawWhitespace,
          int nLineIndex, int nOffset, int nCount, int &nActualOffset, CEPoint ptTextPos )
 {
   CPoint	originalOrigin = ptOrigin;
@@ -1740,7 +1731,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
               if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
                 {
                   int nBgColorIndex = blk.m_nBgColorIndex;
-                  COLORREF clrBkColor;
+                  CEColor clrBkColor;
                   if (IsInsideSelBlock (CEPoint{nOffsetToUse, ptTextPos.y}))
                     clrBkColor = GetColor(COLORINDEX_SELBKGND);
                   else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
@@ -1794,7 +1785,7 @@ void CCrystalTextView::DrawScreenLine( CPoint &ptOrigin, const CRect &rcClip,
           if (!bPrevZeroWidthBlock && (blk.m_nCharPos < nOffset + nCount || nOffset + nCount == nLineLength))
             {
               int nBgColorIndex = blk.m_nBgColorIndex;
-              COLORREF clrBkColor;
+              CEColor clrBkColor;
               if (IsInsideSelBlock (CEPoint{blk.m_nCharPos, ptTextPos.y}))
                 clrBkColor = GetColor(COLORINDEX_SELBKGND);
               else if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
@@ -2064,7 +2055,7 @@ DrawSingleLine (const CRect & rc, int nLineIndex)
 
   //  Acquire the background color for the current line
   bool bDrawWhitespace = false;
-  COLORREF crBkgnd, crText;
+  CEColor crBkgnd, crText;
   GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
 
   int nLength = GetViewableLineLength (nLineIndex);
@@ -2296,12 +2287,12 @@ GetHTMLStyles ()
           for (int b = 0; b < sizeof(arBgColorIndices) / sizeof(int); b++)
             {
               int nBgColorIndex = arBgColorIndices[b];
-              COLORREF clr;
+              CEColor clr;
 
               strStyles += Fmt(_T(".sf%db%d%s {"), nColorIndex, nBgColorIndex, i == 0 ? _T("") : _T("i"));
               clr = GetColor(nColorIndex);
               if (i == 1)
-                clr = GetIntermediateColor(clr, GetColor(nBgColorIndex));
+                clr = CEColor::GetIntermediateColor(clr, GetColor(nBgColorIndex), 0.333f);
               strStyles += Fmt(_T("color: #%02x%02x%02x; "), GetRValue(clr), GetGValue(clr), GetBValue(clr));
               clr = GetColor(nBgColorIndex);
               strStyles += Fmt(_T("background-color: #%02x%02x%02x; "), GetRValue(clr), GetGValue(clr), GetBValue(clr));
@@ -2313,8 +2304,8 @@ GetHTMLStyles ()
             }
         }
     }
-  COLORREF clrSelMargin = GetColor(COLORINDEX_SELMARGIN);
-  COLORREF clrNormalText = GetColor(COLORINDEX_NORMALTEXT);
+  CEColor clrSelMargin = GetColor(COLORINDEX_SELMARGIN);
+  CEColor clrNormalText = GetColor(COLORINDEX_NORMALTEXT);
   strStyles += Fmt(_T(".ln {text-align: right; word-break: normal; color: #%02x%02x%02x; background-color: #%02x%02x%02x;}\n"),
     GetRValue(clrNormalText), GetGValue(clrNormalText), GetBValue(clrNormalText),
     GetRValue(clrSelMargin), GetGValue(clrSelMargin), GetBValue(clrSelMargin));
@@ -2330,10 +2321,10 @@ GetHTMLStyles ()
  * @return The HTML attribute
  */
 CString CCrystalTextView::
-GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd)
+GetHTMLAttribute (int nColorIndex, int nBgColorIndex, CEColor crText, CEColor crBkgnd)
 {
   CString strAttr;
-  COLORREF clr, clrBk;
+  CEColor clr, clrBk;
 
   if ((crText == CLR_NONE || (nColorIndex & COLORINDEX_APPLYFORCE)) && 
       (crBkgnd == CLR_NONE || (nBgColorIndex & COLORINDEX_APPLYFORCE)))
@@ -2349,7 +2340,7 @@ GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF 
   else
     clrBk = crBkgnd;
   if (nColorIndex & COLORINDEX_INTERMEDIATECOLOR)
-    clr = GetIntermediateColor(clr, clrBk);
+    clr = CEColor::GetIntermediateColor(clr, clrBk, 0.333f);
   strAttr += Fmt (_T("style=\"color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
   strAttr += Fmt (_T("background-color: #%02x%02x%02x; "), GetRValue (clrBk), GetGValue (clrBk), GetBValue (clrBk));
 
@@ -2378,7 +2369,7 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
 
   //  Acquire the background color for the current line
   bool bDrawWhitespace = false;
-  COLORREF crBkgnd, crText;
+  CEColor crBkgnd, crText;
   GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
 
   std::vector<TEXTBLOCK> blocks = GetTextBlocks(nLineIndex);
@@ -2427,7 +2418,7 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
   return strHTML;
 }
 
-COLORREF CCrystalTextView::
+CEColor CCrystalTextView::
 GetColor (int nColorIndex) const
 {
   if (m_pColors != nullptr)
@@ -2436,7 +2427,7 @@ GetColor (int nColorIndex) const
       return m_pColors->GetColor(nColorIndex);
     }
   else
-    return RGB(0, 0, 0);
+    return { 0, 0, 0 };
 }
 
 lineflags_t CCrystalTextView::
@@ -2559,7 +2550,7 @@ DrawMargin (const CRect & rect, int nLineIndex, int nLineNumber)
     }
 
   // Draw line revision mark (or background) whenever we have valid lineindex
-  COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
+  CEColor clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
   if (nLineIndex >= 0 && m_pTextBuffer != nullptr)
     {
       // get line revision marks color
@@ -3598,8 +3589,8 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
 {
   pdc->SelectObject (m_pPrintFont);
 
-  const COLORREF defaultLineColor = RGB(0,0,0);
-  const COLORREF defaultBgColor = RGB(255,255,255);
+  const CEColor defaultLineColor{ 0,0,0 };
+  const CEColor defaultBgColor{ 255,255,255 };
 
   RecalcPageLayouts (pdc, pInfo);
 

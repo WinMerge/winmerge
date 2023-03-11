@@ -230,6 +230,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextbuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextmarkers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaltextview.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)cecolor.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystaleditviewex.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystallineparser.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)crystalparser.h" />

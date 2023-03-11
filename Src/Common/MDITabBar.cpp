@@ -7,6 +7,7 @@
 #include "StdAfx.h"
 #include "MDITabBar.h"
 #include "IMDITab.h"
+#include "cecolor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -94,14 +95,6 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	return CSize(SHRT_MAX, tm.tmHeight + 10);
 }
 
-static COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio)
-{
-	const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
-	const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
-	const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
-	return RGB(R, G, B);
-}
-
 void CMDITabBar::OnPaint() 
 {
 	CPaintDC dc(this);
@@ -136,7 +129,7 @@ void CMDITabBar::OnPaint()
 		{
 			for (int x = 0; x < 6; x++)
 			{
-				COLORREF clr = GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
+				COLORREF clr = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
 					1.0f - sqrtf(1.0f - powf(x / 6.0f - 1.0f, 2.0f)));
 				dc.FillSolidRect(CRect(rcItem.right - 1 + x, rcItem.top - 2, rcItem.right + x, rcItem.bottom + 4),
 					clr);
@@ -146,7 +139,7 @@ void CMDITabBar::OnPaint()
 		{
 			for (int x = 0; x < 4; x++)
 			{
-				COLORREF clr = GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
+				COLORREF clr = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
 					1.0f - sqrtf(1.0f - powf(x / 4.0f - 1.0f, 2.0f)));
 				dc.FillSolidRect(CRect(rcItem.right - 1 - x, rcItem.top - 2, rcItem.right - x, rcItem.bottom + 4),
 					clr);
