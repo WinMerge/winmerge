@@ -1,3 +1,5 @@
+// Copyright (c) 2019 Takashi Sawanaka
+// SPDX-License-Identifier: BSL-1.0
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../editlib/parsers/crystallineparser.h"

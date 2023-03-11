@@ -252,6 +252,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)UndoRecord.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\cregexp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\cs2cs.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\ctchar.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\filesup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\fpattern.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\hqbitmap.h" />

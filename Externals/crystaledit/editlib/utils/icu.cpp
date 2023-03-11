@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: BSL-1.0
+// Copyright (c) 2019 Takashi Sawanaka
 #include "StdAfx.h"
 #define ICU_EXTERN
 #include "icu.hpp"

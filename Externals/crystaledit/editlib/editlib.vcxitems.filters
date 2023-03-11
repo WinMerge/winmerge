@@ -356,5 +356,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\ctchar.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
