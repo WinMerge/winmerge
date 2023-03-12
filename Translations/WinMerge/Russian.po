@@ -1896,7 +1896,7 @@ msgid "To right"
 msgstr "Направо"
 
 msgid "Don't ask this &question again."
-msgstr "Не справшивать &больше."
+msgstr "Не спрашивать &больше."
 
 msgid "Yes"
 msgstr "Да"
