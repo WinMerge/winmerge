@@ -3393,6 +3393,9 @@ msgstr "Įjungti &Automatinį maks. plotį"
 msgid "We&bpage"
 msgstr "Ti&nklapiai"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "„Frhed“ neįdiegtas."
 

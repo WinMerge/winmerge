@@ -3393,6 +3393,9 @@ msgstr "Ativar o &Máximo de Largura Automática"
 msgid "We&bpage"
 msgstr "Página Web"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "O Frhed não está instalado."
 

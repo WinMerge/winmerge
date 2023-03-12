@@ -4486,6 +4486,9 @@ msgstr "Activar &anchura máxima automática"
 msgid "We&bpage"
 msgstr "Páxina we&b"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed non está instalado."
 

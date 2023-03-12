@@ -4491,6 +4491,9 @@ msgstr "Activer largeur &auto max"
 msgid "We&bpage"
 msgstr "Page &web"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
 

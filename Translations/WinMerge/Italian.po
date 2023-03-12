@@ -3744,6 +3744,9 @@ msgstr "Abilita altezza massima &automatica"
 msgid "We&bpage"
 msgstr "Pagina we&b"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed non è installato."
 

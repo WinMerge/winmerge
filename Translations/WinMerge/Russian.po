@@ -3395,6 +3395,9 @@ msgstr "Включить максимальную авто ширину"
 msgid "We&bpage"
 msgstr "Веб-страница"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed не установлен."
 

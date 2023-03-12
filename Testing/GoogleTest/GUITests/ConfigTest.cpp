@@ -162,6 +162,7 @@ namespace
 		{ OPT_TAB_SIZE, varprop::VT_INT, {1, 2, 4, 8, 128}, {} },
 		{ OPT_TAB_TYPE, varprop::VT_INT, {0, 1}, {} },
 		{ OPT_WORDWRAP, varprop::VT_BOOL, {}, {} },
+		{ OPT_WORDWRAP_TABLE, varprop::VT_BOOL, {}, {} },
 		{ OPT_VIEW_LINENUMBERS, varprop::VT_BOOL, {}, {} },
 		{ OPT_VIEW_FILEMARGIN, varprop::VT_BOOL, {}, {} },
 		{ OPT_DIFF_CONTEXT, varprop::VT_INT, {0, 1, 3, 5, 7, 9}, {} },

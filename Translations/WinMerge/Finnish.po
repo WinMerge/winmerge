@@ -3798,6 +3798,9 @@ msgstr "Käytä &automaattista maksimi leveyttä"
 msgid "We&bpage"
 msgstr "Ver&kkosivu"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ei ole asennettu."
 

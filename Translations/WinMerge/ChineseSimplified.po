@@ -3809,6 +3809,9 @@ msgstr "启用自动最大宽度(&A)"
 msgid "We&bpage"
 msgstr "网页(&B)"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安装。"
 

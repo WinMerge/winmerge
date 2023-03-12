@@ -3840,6 +3840,9 @@ msgstr "Otom&atik en fazla genişlik"
 msgid "We&bpage"
 msgstr "We&b sayfası"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed kurulmamış."
 

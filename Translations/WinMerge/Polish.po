@@ -3394,6 +3394,9 @@ msgstr "Włącz automatycznie maksymalną szerokość"
 msgid "We&bpage"
 msgstr "Strona internetowa"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Free Hex Editor nie został zainstalowany."
 

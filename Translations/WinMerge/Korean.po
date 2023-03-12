@@ -4489,6 +4489,9 @@ msgstr "자동 최대 너비 사용(&A)"
 msgid "We&bpage"
 msgstr "웹페이지(&B)"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed가 설치되지 않았습니다."
 

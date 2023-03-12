@@ -4361,6 +4361,9 @@ msgstr ""
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr ""
 

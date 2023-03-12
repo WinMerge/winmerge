@@ -3770,6 +3770,9 @@ msgstr "Omogoči sa&modejno največjo širino"
 msgid "We&bpage"
 msgstr "&Spletna stran"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
 

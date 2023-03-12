@@ -4110,6 +4110,9 @@ msgstr "Automatisch maximale Breite aktivieren"
 msgid "We&bpage"
 msgstr "We&bseite"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ist nicht installiert."
 

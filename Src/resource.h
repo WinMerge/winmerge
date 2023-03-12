@@ -1485,6 +1485,7 @@
 #define IDS_EOL_CONFLICT                43247
 #define IDS_IMAGE_MENU                  43352
 #define IDS_WEBPAGE_MENU                43353
+#define IDS_VIEW_WRAP_TEXT              43354
 #define IDS_EOL_DOS                     43400
 #define IDS_EOL_MAC                     43401
 #define IDS_EOL_UNIX                    43402

@@ -3772,6 +3772,9 @@ msgstr "Habilitar Ancho Máximo &Automático"
 msgid "We&bpage"
 msgstr "We&bpage"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed no está instalado."
 

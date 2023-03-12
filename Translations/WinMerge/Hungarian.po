@@ -4448,6 +4448,9 @@ msgstr "Auto oszlopszélesség be"
 msgid "We&bpage"
 msgstr "Weboldal"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Az Frhed hexa szerkesztő nincs telepítve."
 

@@ -4002,6 +4002,11 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_VIEW_WRAP_TEXT      "W&rap Text"
+END
+
+STRINGTABLE
+BEGIN
     IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
 END
 

@@ -3705,6 +3705,9 @@ msgstr "&تفعيل النطاق الأقصى التلقائي"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "المحرر Frhed غير مثبت."
 

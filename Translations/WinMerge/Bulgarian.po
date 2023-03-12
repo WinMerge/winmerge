@@ -3789,6 +3789,9 @@ msgstr "Автоматична &максимална ширина"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed не е инсталиран."
 

@@ -71,6 +71,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	pOptions->InitOption(OPT_WORDWRAP, false);
+	pOptions->InitOption(OPT_WORDWRAP_TABLE, false);
 	pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
 	pOptions->InitOption(OPT_VIEW_WHITESPACE, false);
 	pOptions->InitOption(OPT_VIEW_EOL, false);

@@ -3572,7 +3572,9 @@ void CMergeEditView::OnUpdateViewLineNumbers(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnViewWordWrap()
 {
-	GetOptionsMgr()->SaveOption(OPT_WORDWRAP, !m_bWordWrap);
+	GetOptionsMgr()->SaveOption(
+		GetDocument()->m_ptBuf[0]->GetTableEditing() ?  OPT_WORDWRAP_TABLE : OPT_WORDWRAP,
+		!m_bWordWrap);
 
 	// Call CMergeDoc RefreshOptions() to refresh *both* views
 	CMergeDoc *pDoc = GetDocument();
@@ -3586,6 +3588,8 @@ void CMergeEditView::OnUpdateViewWordWrap(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
 	pCmdUI->SetCheck(m_bWordWrap);
+	pCmdUI->SetText((GetDocument()->m_ptBuf[0]->GetTableEditing() ?
+		_("W&rap Text") : _("W&rap Lines")).c_str());
 }
 
 void CMergeEditView::OnViewWhitespace() 
@@ -3883,7 +3887,8 @@ void CMergeEditView::DocumentsLoaded()
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL), mixedEOLs);
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetWordWrapping(GetOptionsMgr()->GetBool(GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing() ?
+		OPT_WORDWRAP_TABLE : OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 

@@ -4463,6 +4463,9 @@ msgstr "開啟自動最大寬度 (&A)"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安裝。"
 

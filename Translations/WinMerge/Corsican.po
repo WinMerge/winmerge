@@ -3780,6 +3780,9 @@ msgstr "&Attivà a larghezza massima autumatica"
 msgid "We&bpage"
 msgstr "Pagina we&b"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ùn hè micca installatu."
 

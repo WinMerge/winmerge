@@ -3787,6 +3787,9 @@ msgstr "Automatische maximale breedte inschakelen"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Fhred is niet geïnstalleerd"
 

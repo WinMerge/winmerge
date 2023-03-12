@@ -3847,6 +3847,9 @@ msgstr "Aktivera automatisk högsta bredd"
 msgid "We&bpage"
 msgstr "Websida"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed är inte installerad."
 
