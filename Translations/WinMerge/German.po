@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-02-20 15:00+0200\n"
+"PO-Revision-Date: 2023-03-12 18:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3835,10 +3835,10 @@ msgid "Patch file successfully written."
 msgstr "Die Patchdatei wurde erfolgreich geschrieben."
 
 msgid "1. item is not found!"
-msgstr "1. Objekt ist nicht vorhanden oder ein Ordner!"
+msgstr "1. Objekt ist nicht vorhanden!"
 
 msgid "2. item is not found!"
-msgstr "2. Objekt ist nicht vorhanden oder ein Ordner!"
+msgstr "2. Objekt ist nicht vorhanden!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -4111,7 +4111,7 @@ msgid "We&bpage"
 msgstr "We&bseite"
 
 msgid "W&rap Text"
-msgstr ""
+msgstr "Text umbrechen"
 
 msgid "Frhed is not installed."
 msgstr "Frhed ist nicht installiert."
@@ -4406,7 +4406,7 @@ msgid "Ignore TSV Fields"
 msgstr "TSV-Felder ignorieren"
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Führende Zeilennummern ignorieren"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "Prediff-Substitutionsfilter anwenden"
