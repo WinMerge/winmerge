@@ -58,6 +58,7 @@ LineInfo::~LineInfo()
 
 LineInfo& LineInfo::operator=(const LineInfo& li)
 {
+  delete m_pcLine;
   m_pcLine = new tchar_t[li.m_nMax];
   m_nLength = li.m_nLength;
   m_nMax = li.m_nMax;

@@ -85,6 +85,27 @@ namespace test
 			Assert::AreEqual(static_cast<size_t>(3), li.Length());
 			Assert::AreEqual(_T("\r"), li.GetEol());
 			Assert::IsTrue( li.HasEol());
+
+			LineInfo li2(li);
+			Assert::AreEqual(_T("ABC\r"), li2.GetLine());
+			Assert::AreEqual(static_cast<size_t>(3), li2.Length());
+			Assert::AreEqual(_T("\r"), li2.GetEol());
+			Assert::IsTrue( li2.HasEol());
+
+			LineInfo li3{ _T("CC"), 2 };
+			li3 = li2;
+			Assert::AreEqual(_T("ABC\r"), li3.GetLine());
+			Assert::AreEqual(static_cast<size_t>(3), li3.Length());
+			Assert::AreEqual(_T("\r"), li3.GetEol());
+			Assert::IsTrue( li3.HasEol());
+
+			LineInfo li4{ _T("CC"), 2 };
+			li4 = std::move(li2);
+			Assert::AreEqual(_T("ABC\r"), li4.GetLine());
+			Assert::AreEqual(static_cast<size_t>(3), li4.Length());
+			Assert::AreEqual(_T("\r"), li4.GetEol());
+			Assert::IsTrue( li4.HasEol());
+
 		}
 	};
 }
