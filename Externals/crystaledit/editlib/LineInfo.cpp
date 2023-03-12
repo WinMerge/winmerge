@@ -70,6 +70,7 @@ LineInfo& LineInfo::operator=(const LineInfo& li)
 
 LineInfo& LineInfo::operator=(LineInfo&& li) noexcept
 {
+  delete m_pcLine;
   m_pcLine = li.m_pcLine;
   m_nLength = li.m_nLength;
   m_nMax = li.m_nMax;
