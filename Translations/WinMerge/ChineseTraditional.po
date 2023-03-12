@@ -4764,6 +4764,9 @@ msgstr "忽略 CSV 欄位"
 msgid "Ignore TSV Fields"
 msgstr "忽略 TSV 欄位"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 

@@ -3685,6 +3685,9 @@ msgstr "Ignorar os Campos do CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignorar os Campos do TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Aplicar os Filtros da Substituição da Pré-Diferenciação"
 

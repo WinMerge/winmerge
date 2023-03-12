@@ -4542,6 +4542,9 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 

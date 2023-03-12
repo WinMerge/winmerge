@@ -4043,6 +4043,9 @@ msgstr "Ignorovanie polí CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignorovanie polí TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Použitie filtrov nahradenia predbežného spracovania rozdielov"
 

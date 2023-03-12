@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-03-12 11:58+0000\n"
+"POT-Creation-Date: 2023-03-12 19:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3677,6 +3677,9 @@ msgid "Ignore CSV Fields"
 msgstr ""
 
 msgid "Ignore TSV Fields"
+msgstr ""
+
+msgid "Ignore Leading Line Numbers"
 msgstr ""
 
 msgid "Apply Prediff Substitution Filters"

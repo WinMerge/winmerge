@@ -4099,6 +4099,9 @@ msgstr "Jätä CSV-kentät huomiotta"
 msgid "Ignore TSV Fields"
 msgstr "Jätä TSV-kentät huomiotta"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Käytä Prediff-korvaussuodattimia"
 

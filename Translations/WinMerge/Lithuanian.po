@@ -3685,6 +3685,9 @@ msgstr "Ignoruoti CSV laukus"
 msgid "Ignore TSV Fields"
 msgstr "Ignoruoti TSV laukus"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Taikyti parengėjo keitinių filtrus"
 

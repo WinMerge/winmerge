@@ -4068,6 +4068,9 @@ msgstr "Prezri polja CSV"
 msgid "Ignore TSV Fields"
 msgstr "Prezri polja TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Uporabite nadomestne filtre Prediff"
 

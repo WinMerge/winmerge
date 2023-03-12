@@ -4069,6 +4069,9 @@ msgstr "CSV の指定列を無視"
 msgid "Ignore TSV Fields"
 msgstr "TSV の指定列を無視"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "先頭の行番号を無視"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "比較前処理置換フィルター"
 

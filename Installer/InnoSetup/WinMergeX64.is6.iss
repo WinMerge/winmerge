@@ -575,6 +575,7 @@ Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreColumns.dll; DestDir: {app}\MergePlugin
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreCommentsC.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsComma.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 Source: ..\..\Plugins\dlls\{#ARCH}\IgnoreFieldsTab.dll; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
+Source: ..\..\Plugins\dlls\IgnoreLeadingLineNumbers.sct; DestDir: {app}\MergePlugins; Flags: ignoreversion replacesameversion; Components: Plugins
 
 ;Frhed
 Source: ..\..\Build\{#ARCH}\Release\Frhed\GPL.txt; DestDir: {app}\Frhed; Components: Core

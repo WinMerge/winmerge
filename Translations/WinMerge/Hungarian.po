@@ -4748,6 +4748,9 @@ msgstr "CSV mezők mellőzése"
 msgid "Ignore TSV Fields"
 msgstr "TSV mezők mellőzése"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
