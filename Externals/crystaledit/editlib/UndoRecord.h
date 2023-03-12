@@ -11,10 +11,12 @@
 #include "cepoint.h"
 #include <vector>
 
+typedef uint32_t undoflags_t;
+
 class UndoRecord
 {
 public:
-  DWORD m_dwFlags;
+  undoflags_t m_dwFlags;
   CEPoint m_ptStartPos, m_ptEndPos;  //  Block of text participating
   int m_nAction;            //  For information only: action type
   std::vector<uint32_t> *m_paSavedRevisionNumbers;

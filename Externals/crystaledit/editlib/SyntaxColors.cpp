@@ -4,8 +4,9 @@
  * @brief Implementation for SyntaxColors class.
  */
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "SyntaxColors.h"
+#include <Windows.h>
 
 /**
  * @brief Constructor, initialise with default colors.

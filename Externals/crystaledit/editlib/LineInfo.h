@@ -8,6 +8,7 @@
 #pragma once
 
 #include "utils/ctchar.h"
+#include <cstdint>
 
 //  Line allocation granularity
 #define     CHAR_ALIGN                  16
@@ -26,6 +27,12 @@ public:
     uint32_t m_dwRevisionNumber; /**< Edit revision (for edit tracking). */
 
     LineInfo();
+    LineInfo(const tchar_t* pszLine, size_t nLength);
+    LineInfo(const LineInfo& li);
+    LineInfo(LineInfo&& li) noexcept;
+    LineInfo& operator=(const LineInfo& li);
+    LineInfo& operator=(LineInfo&& li) noexcept;
+    ~LineInfo();
     void Clear();
     void FreeBuffer();
     void Create(const tchar_t* pszLine, size_t nLength);
@@ -33,7 +40,6 @@ public:
     void Append(const tchar_t* pszChars, size_t nLength, bool bDetectEol = true);
     void Delete(size_t nStartChar, size_t nEndChar);
     void DeleteEnd(size_t nStartChar);
-    void CopyFrom(const LineInfo &li);
     bool HasEol() const;
     const tchar_t* GetEol() const;
     bool ChangeEol(const tchar_t* lpEOL);
@@ -63,3 +69,17 @@ private:
     size_t m_nLength; /**< Line length (without EOL bytes). */
     int m_nEolChars; /**< # of EOL bytes. */
   };
+
+/**
+ * @brief Has the line EOL?
+ * @return true if the line has EOL bytes.
+ */
+inline bool LineInfo::HasEol() const { return (m_nEolChars != 0); }
+
+
+/**
+ * @brief Get line contents.
+ * @param [in] index Index of first character to get.
+ * @note Make a copy from returned string, as it can get reallocated.
+ */
+inline const tchar_t* LineInfo::GetLine(size_t index) const { return &m_pcLine[index]; }

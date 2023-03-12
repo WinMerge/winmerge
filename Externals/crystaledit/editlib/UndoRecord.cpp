@@ -4,12 +4,9 @@
  * @brief Implementation of UndoRecord struct.
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "UndoRecord.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include <cassert>
 
 void UndoRecord::
 Clone(const UndoRecord &src)
@@ -33,7 +30,7 @@ SetText (const tchar_t* pszText, size_t nLength)
   FreeText();
   if (nLength != 1)
     {
-      ASSERT (nLength < INT_MAX);
+      assert (nLength < INT_MAX);
       m_pszText = reinterpret_cast<TextBuffer *>(malloc(sizeof(TextBuffer) + (nLength+2) * sizeof(tchar_t)));
       if (m_pszText != nullptr)
         {

@@ -192,8 +192,7 @@ void CCrystalTextBuffer::InsertLine (const tchar_t* pszLine, size_t nLength,
 {
   ASSERT(nLength != -1);
 
-  LineInfo line;
-  line.Create(pszLine, nLength);
+  LineInfo line{ pszLine, nLength };
 
   // nPosition not defined ? Insert at end of array
   if (nPosition == -1)
@@ -206,9 +205,7 @@ void CCrystalTextBuffer::InsertLine (const tchar_t* pszLine, size_t nLength,
   // create text data for lines after the first one
   for (int ic = 1; ic < nCount; ic++)
     {
-      LineInfo li ;
-      li.Create(pszLine, nLength);
-      m_aLines[nPosition + ic] = li;
+      m_aLines[nPosition + ic] = std::move(LineInfo{ pszLine, nLength });
     }
 
 #ifdef _DEBUG
@@ -278,9 +275,7 @@ void CCrystalTextBuffer::SetEmptyLine (int nPosition, int nCount /*= 1*/ )
 {
   for (int i = 0; i < nCount; i++) 
     {
-      LineInfo li;
-      li.CreateEmpty();
-      m_aLines[nPosition + i] = li;
+      m_aLines[nPosition + i] = std::move(LineInfo{ nullptr, 0 });
     }
 }
 
@@ -2145,9 +2140,7 @@ void CCrystalTextBuffer::SplitLinesForTableEditingMode ()
             eols = 1;
           if (eols > 0)
             {
-              LineInfo lineInfo;
-              lineInfo.Create (pszChars + j + eols, nLineLength - (j + eols));
-              m_aLines.insert (m_aLines.begin () + i + 1, lineInfo);
+              m_aLines.emplace (m_aLines.begin () + i + 1, pszChars + j + eols, nLineLength - (j + eols));
               m_aLines[i].DeleteEnd (j + eols);
               m_aLines[i].m_dwRevisionNumber = 0;
             }

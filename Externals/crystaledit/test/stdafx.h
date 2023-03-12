@@ -13,4 +13,3 @@
 // TODO: reference additional headers your program requires here
 #define _AFXDLL
 #include <afxwin.h>         // MFC core and standard components
-#define ASSERT(x)

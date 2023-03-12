@@ -1,6 +1,6 @@
 // Copyright (c) 2023 Takashi Sawanaka
 // SPDX-License-Identifier: BSL-1.0
-#include "stdafx.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../editlib/UndoRecord.h"
 

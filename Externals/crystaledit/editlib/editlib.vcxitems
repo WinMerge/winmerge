@@ -28,7 +28,10 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\ctextmarkerdlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\gotodlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\memcombo.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)LineInfo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LineInfo.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -209,8 +212,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderergdi.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)SyntaxColors.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)UndoRecord.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)SyntaxColors.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)UndoRecord.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp_poco.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cs2cs.cpp" />
@@ -220,10 +229,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\icu.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\registry.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\string_util.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\wcwidth.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)ViewableWhitespace.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)ViewableWhitespace.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h" />

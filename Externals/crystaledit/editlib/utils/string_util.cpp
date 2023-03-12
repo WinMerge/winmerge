@@ -4,6 +4,7 @@
  * @brief Char classification routines implementations.
  */
 
+#include "pch.h"
 #include "string_util.h"
 
 static wint_t normch(wint_t c);
