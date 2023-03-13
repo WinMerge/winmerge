@@ -771,14 +771,11 @@ public :
 
     //  Source type
     CrystalLineParser::TextDefinition *m_CurSourceDef;
-    bool m_bRememberLastPos;
     virtual bool DoSetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextType (const tchar_t* pszExt);
     virtual bool SetTextType (CrystalLineParser::TextType enuType);
     virtual bool SetTextType (CrystalLineParser::TextDefinition *def);
     virtual bool SetTextTypeByContent (const tchar_t* pszContent);
-    static void LoadSettings ();
-    static void SaveSettings ();
 
     // Operations
 public :

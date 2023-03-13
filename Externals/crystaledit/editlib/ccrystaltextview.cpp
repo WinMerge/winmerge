@@ -100,7 +100,6 @@
 #include "dialogs/gotodlg.h"
 #include "utils/fpattern.h"
 #include "utils/filesup.h"
-#include "utils/registry.h"
 #include "utils/string_util.h"
 #include "utils/wcwidth.h"
 #include "utils/icu.hpp"
@@ -362,79 +361,6 @@ SetTextType (CrystalLineParser::TextDefinition *def)
   return false;
 }
 
-void CCrystalTextView::
-LoadSettings ()
-{
-  CrystalLineParser::TextDefinition *def = CrystalLineParser::m_SourceDefs;
-  bool bFontLoaded;
-  CReg reg;
-  CString key = AfxGetApp ()->m_pszRegistryKey;
-  key += _T("\\") EDITPAD_SECTION;
-  if (reg.Open (HKEY_CURRENT_USER, key, KEY_READ))
-    {
-      reg.LoadNumber (_T ("DefaultEncoding"), (DWORD*) &CCrystalTextBuffer::m_nDefaultEncoding);
-      for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
-        {
-          CReg reg1;
-          if (reg1.Open (reg.hKey, def->name, KEY_READ))
-            {
-              reg1.LoadString (_T ("Extensions"), def->exts, _countof (def->exts));
-              reg1.LoadNumber (_T ("Flags"), reinterpret_cast<DWORD *>(&def->flags));
-//              reg1.LoadNumber (_T ("TabSize"), &def->tabsize);
-              reg1.LoadString (_T ("OpenComment"), def->opencomment, _countof (def->opencomment));
-              reg1.LoadString (_T ("CloseComment"), def->closecomment, _countof (def->closecomment));
-              reg1.LoadString (_T ("CommentLine"), def->commentline, _countof (def->commentline));
-              reg1.LoadNumber (_T ("DefaultEncoding"), reinterpret_cast<DWORD *>(&def->encoding));
-            }
-        }
-      bFontLoaded = reg.LoadBinary (_T ("LogFont"), (LPBYTE) &m_LogFont, sizeof (m_LogFont));
-    }
-  else
-    bFontLoaded = false;
-  if (!bFontLoaded)
-    {
-      CWindowDC dc (CWnd::GetDesktopWindow ());
-      NONCLIENTMETRICS info{ sizeof(info) };
-      SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(info), &info, 0);
-      memcpy (&m_LogFont, &info.lfMessageFont, sizeof (LOGFONT));
-      m_LogFont.lfHeight = -MulDiv (11, dc.GetDeviceCaps (LOGPIXELSY), 72);
-      m_LogFont.lfWeight = FW_NORMAL;
-      m_LogFont.lfOutPrecision = OUT_DEFAULT_PRECIS;
-      m_LogFont.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-      m_LogFont.lfQuality = DEFAULT_QUALITY;
-      m_LogFont.lfPitchAndFamily = DEFAULT_PITCH | FF_DONTCARE;
-      tc::tcslcpy (m_LogFont.lfFaceName, _T ("Courier New"));
-    }
-}
-
-void CCrystalTextView::
-SaveSettings ()
-{
-  CrystalLineParser::TextDefinition *def = CrystalLineParser::m_SourceDefs;
-  CReg reg;
-  CString key = AfxGetApp ()->m_pszRegistryKey;
-  key += _T("\\") EDITPAD_SECTION;
-  if (reg.Create (HKEY_CURRENT_USER, key, KEY_WRITE))
-    {
-      VERIFY (reg.SaveNumber (_T ("DefaultEncoding"), (DWORD) CCrystalTextBuffer::m_nDefaultEncoding));
-      for (int i = 0; i < _countof (CrystalLineParser::m_SourceDefs); i++, def++)
-        {
-          CReg reg1;
-          if (reg1.Create (reg.hKey, def->name, KEY_WRITE))
-            {
-              VERIFY (reg1.SaveString (_T ("Extensions"), def->exts));
-              VERIFY (reg1.SaveNumber (_T ("Flags"), def->flags));
-//              VERIFY (reg1.SaveNumber (_T ("TabSize"), def->tabsize));
-              VERIFY (reg1.SaveString (_T ("OpenComment"), def->opencomment));
-              VERIFY (reg1.SaveString (_T ("CloseComment"), def->closecomment));
-              VERIFY (reg1.SaveString (_T ("CommentLine"), def->commentline));
-              VERIFY (reg1.SaveNumber (_T ("DefaultEncoding"), def->encoding));
-            }
-        }
-      VERIFY (reg.SaveBinary (_T ("LogFont"), (LPBYTE) &m_LogFont, sizeof (m_LogFont)));
-    }
-}
-
 CCrystalTextView::CCrystalTextView ()
 : m_nScreenChars(-1)
 , m_pFindTextDlg(nullptr)
@@ -450,7 +376,6 @@ CCrystalTextView::CCrystalTextView ()
 , m_bLastSearch(false)
 , m_bBookmarkExist(false)
 , m_bSingle(false) // needed to be set in descendat classes
-, m_bRememberLastPos(false)
 , m_pColors(nullptr)
 , m_nLastLineIndexCalculatedSubLineIndex(-1)
 , m_hAccel(nullptr)
@@ -3402,30 +3327,6 @@ OnInitialUpdate ()
         }
     }
   SetFont (m_LogFont);
-  if (m_bRememberLastPos && !sDoc.IsEmpty ())
-    {
-      DWORD dwLastPos[3];
-      CString sKey = AfxGetApp ()->m_pszRegistryKey;
-      sKey += _T ("\\") EDITPAD_SECTION _T ("\\Remembered");
-      CReg reg;
-      if (reg.Open (HKEY_CURRENT_USER, sKey, KEY_READ) &&
-        reg.LoadBinary (sDoc, (LPBYTE) dwLastPos, sizeof (dwLastPos)))
-        {
-          CEPoint ptCursorPos;
-          ptCursorPos.x = dwLastPos[1];
-          ptCursorPos.y = dwLastPos[2];
-          if (IsValidTextPosY (ptCursorPos))
-            {
-              if (!IsValidTextPosX (ptCursorPos))
-                ptCursorPos.x = 0;
-              ASSERT_VALIDTEXTPOS (ptCursorPos);
-              SetCursorPos (ptCursorPos);
-              SetSelection (ptCursorPos, ptCursorPos);
-              SetAnchor (ptCursorPos);
-              EnsureVisible (ptCursorPos);
-            }
-        }
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////////

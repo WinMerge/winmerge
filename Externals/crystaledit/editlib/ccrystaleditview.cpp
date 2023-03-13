@@ -71,7 +71,6 @@
 #include "editreg.h"
 #include "dialogs/ceditreplacedlg.h"
 #include "dialogs/chcondlg.h"
-#include "utils/registry.h"
 #include "utils/cs2cs.h"
 #include "utils/string_util.h"
 #include "utils/icu.hpp"
@@ -124,7 +123,6 @@ IMPLEMENT_DYNCREATE (CCrystalEditView, CCrystalTextView)
 
 CCrystalEditView::CCrystalEditView ()
 : m_nLastReplaceLen(0)
-, m_mapExpand(new CMap<CString, const tchar_t*, CString, const tchar_t*> (10))
 , m_bLastReplace(false)
 , m_dwLastReplaceFlags(0)
 , m_pEditReplaceDlg(nullptr)
@@ -139,7 +137,6 @@ CCrystalEditView::CCrystalEditView ()
 
 CCrystalEditView:: ~CCrystalEditView ()
 {
-  delete m_mapExpand;
   delete m_pEditReplaceDlg;
 }
 
@@ -149,26 +146,6 @@ DoSetTextType (CrystalLineParser::TextDefinition *def)
   m_CurSourceDef = def;
   SetAutoIndent ((def->flags & SRCOPT_AUTOINDENT) != 0);
   SetDisableBSAtSOL ((def->flags & SRCOPT_BSATBOL) == 0);
-  m_mapExpand->RemoveAll ();
-  CReg reg;
-  CString sKey = AfxGetApp ()->m_pszRegistryKey;
-  sKey += _T("\\") EDITPAD_SECTION _T("\\");
-  sKey += def->name;
-  sKey += _T ("\\Expand");
-  if (reg.Open (HKEY_CURRENT_USER, sKey, KEY_READ))
-    {
-      const tchar_t* pszValue;
-      RegVal regVal;
-      if (reg.FindFirstValue (pszValue, &regVal))
-        {
-          CString sData;
-          do
-            if (RegValGetString (&regVal, sData))
-              m_mapExpand->SetAt (pszValue, sData);
-          while (reg.FindNextValue (pszValue, &regVal));
-        }
-      reg.FindClose ();
-    }
   return CCrystalTextView::DoSetTextType (def);
 }
 
@@ -194,8 +171,6 @@ ON_UPDATE_COMMAND_UI (ID_EDIT_REDO, OnUpdateEditRedo)
 ON_COMMAND (ID_EDIT_REDO, OnEditRedo)
 ON_UPDATE_COMMAND_UI (ID_EDIT_AUTOCOMPLETE, OnUpdateEditAutoComplete)
 ON_COMMAND (ID_EDIT_AUTOCOMPLETE, OnEditAutoComplete)
-ON_UPDATE_COMMAND_UI (ID_EDIT_AUTOEXPAND, OnUpdateEditAutoExpand)
-ON_COMMAND (ID_EDIT_AUTOEXPAND, OnEditAutoExpand)
 ON_UPDATE_COMMAND_UI (ID_EDIT_LOWERCASE, OnUpdateEditLowerCase)
 ON_COMMAND (ID_EDIT_LOWERCASE, OnEditLowerCase)
 ON_UPDATE_COMMAND_UI (ID_EDIT_UPPERCASE, OnUpdateEditUpperCase)
@@ -2153,196 +2128,6 @@ OnUpdateEditAutoComplete (CCmdUI * pCmdUI)
   int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
   const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y) + ptCursorPos.x;
   pCmdUI->Enable (ptCursorPos.x > 0 && ptCursorPos.y > 0 && (nLength == ptCursorPos.x || !xisalnum (*pszText)) && xisalnum (pszText[-1]));
-}
-
-void CCrystalEditView::
-OnEditAutoExpand ()
-{
-  CEPoint ptCursorPos = GetCursorPos ();
-  int nLength = m_pTextBuffer->GetLineLength (ptCursorPos.y);
-  const tchar_t* pszText = m_pTextBuffer->GetLineChars (ptCursorPos.y), *pszEnd = pszText + ptCursorPos.x;
-  if (ptCursorPos.x > 0 && ptCursorPos.y > 0 && (nLength == ptCursorPos.x || !xisalnum (*pszEnd)) && xisalnum (pszEnd[-1]))
-    {
-      const tchar_t* pszBegin = pszEnd - 1;
-      while (pszBegin > pszText && xisalnum (*pszBegin))
-        pszBegin--;
-      if (!xisalnum (*pszBegin))
-        pszBegin++;
-      nLength = static_cast<int>(pszEnd - pszBegin);
-      CString sText, sExpand;
-      tchar_t* pszBuffer = sText.GetBuffer (nLength + 1);
-      _tcsncpy_s (pszBuffer, nLength + 1, pszBegin, nLength);
-      sText.ReleaseBuffer (nLength);
-      CEPoint ptTextPos;
-      ptCursorPos.x -= nLength;
-      bool bFound = !!m_mapExpand->Lookup (sText, sExpand);
-      if (bFound && !sExpand.IsEmpty ())
-        {
-          m_pTextBuffer->BeginUndoGroup ();
-          int x, y;
-          m_pTextBuffer->DeleteText (this, ptCursorPos.y, ptCursorPos.x, ptCursorPos.y, ptCursorPos.x + nLength, CE_ACTION_AUTOEXPAND);
-          tchar_t* pszExpand = sExpand.GetBuffer (sExpand.GetLength () + 1);
-          tchar_t* pszSlash = tc::tcschr (pszExpand, _T ('\\'));
-          if (pszSlash == nullptr)
-            {
-              m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszExpand, tc::tcslen(pszExpand), y, x, CE_ACTION_AUTOEXPAND);
-              ptCursorPos.x = x;
-              ptCursorPos.y = y;
-              ASSERT_VALIDTEXTPOS (ptCursorPos);
-              SetCursorPos (ptCursorPos);
-              SetSelection (ptCursorPos, ptCursorPos);
-              SetAnchor (ptCursorPos);
-            }
-          else
-            {
-              *pszSlash++ = _T ('\0');
-              for(;;)
-                {
-                  m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszExpand, tc::tcslen(pszExpand), y, x, CE_ACTION_AUTOEXPAND);
-                  ptCursorPos.x = x;
-                  ptCursorPos.y = y;
-                  ASSERT_VALIDTEXTPOS (ptCursorPos);
-                  SetSelection (ptCursorPos, ptCursorPos);
-                  SetAnchor (ptCursorPos);
-                  SetCursorPos (ptCursorPos);
-                  OnEditOperation (CE_ACTION_TYPING, pszExpand, tc::tcslen(pszExpand));
-                  ptCursorPos = GetCursorPos ();
-                  if (pszSlash == nullptr)
-                    break;
-                  switch (*pszSlash)
-                    {
-                      case _T ('n'):
-                        {
-                          const static tchar_t szText[3] = _T ("\r\n");
-                          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, tc::tcslen(szText), y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
-                          ptCursorPos.x = x;
-                          ptCursorPos.y = y;
-                          ASSERT_VALIDTEXTPOS (ptCursorPos);
-                          SetSelection (ptCursorPos, ptCursorPos);
-                          SetAnchor (ptCursorPos);
-                          SetCursorPos (ptCursorPos);
-                          OnEditOperation (CE_ACTION_TYPING, szText, tc::tcslen(pszExpand));
-                        }
-                        break;
-                      case _T ('u'):
-                        MoveUp (false);
-                        break;
-                      case _T ('d'):
-                        MoveDown (false);
-                        break;
-                      case _T ('l'):
-                        MoveLeft (false);
-                        break;
-                      case _T ('r'):
-                        MoveRight (false);
-                        break;
-                      case _T ('h'):
-                        MoveHome (false);
-                        break;
-                      case _T ('f'):
-                        MoveEnd (false);
-                        break;
-                      case _T ('b'):
-                        {
-                          CEPoint ptSelStart = ptCursorPos;
-                          bool bDeleted = false;
-                          if (!(ptCursorPos.x))         // If At Start Of Line
-
-                            {
-                              if (!m_bDisableBSAtSOL)   // If DBSASOL Is Disabled
-
-                                {
-                                  if (ptCursorPos.y > 0)    // If Previous Lines Available
-
-                                    {
-                                      ptCursorPos.y--;  // Decrement To Previous Line
-
-                                      ptCursorPos.x = GetLineLength (
-                                                        ptCursorPos.y);   // Set Cursor To End Of Previous Line
-
-                                      bDeleted = true;  // Set Deleted Flag
-
-                                    }
-                                }
-                            }
-                          else                          // If Caret Not At SOL
-
-                            {
-                              ptCursorPos.x--;          // Decrement Position
-
-                              bDeleted = true;          // Set Deleted Flag
-
-                            }
-                          ASSERT_VALIDTEXTPOS (ptCursorPos);
-                          SetAnchor (ptCursorPos);
-                          SetSelection (ptCursorPos, ptCursorPos);
-                          SetCursorPos (ptCursorPos);
-
-                          if (bDeleted)
-                              m_pTextBuffer->DeleteText (this, ptCursorPos.y, ptCursorPos.x, ptSelStart.y, ptSelStart.x, CE_ACTION_AUTOEXPAND);  // [JRT]
-                        }
-                        break;
-                      case _T ('e'):
-                        {
-                          CEPoint ptSelEnd = ptCursorPos;
-                          if (ptSelEnd.x == GetLineLength (ptSelEnd.y))
-                            {
-                              if (ptSelEnd.y == GetLineCount () - 1)
-                                break;
-                              ptSelEnd.y++;
-                              ptSelEnd.x = 0;
-                            }
-                          else
-                            ptSelEnd.x++;
-                          m_pTextBuffer->DeleteText (this, ptCursorPos.y, ptCursorPos.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_AUTOEXPAND);   // [JRT]
-                        }
-                        break;
-                      case _T ('t'):
-                        {
-                          static tchar_t szText[32];
-                          if (m_pTextBuffer->GetInsertTabs())
-                            {
-                              *szText = '\t';
-                              szText[1] = '\0';
-                            }
-                          else
-                            {
-                              int nTabSize = GetTabSize ();
-                              int nChars = nTabSize - ptCursorPos.x % nTabSize;
-                              for (int i = 0; i < nChars; i++)
-                                szText[i] = ' ';
-                              szText[nChars] = '\0';
-                            }
-                          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, tc::tcslen(szText), y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
-                          ptCursorPos.x = x;
-                          ptCursorPos.y = y;
-                          ASSERT_VALIDTEXTPOS (ptCursorPos);
-                          SetSelection (ptCursorPos, ptCursorPos);
-                          SetAnchor (ptCursorPos);
-                          SetCursorPos (ptCursorPos);
-                        }
-                    }
-                  ptCursorPos = GetCursorPos ();
-                  pszExpand = pszSlash + 1;
-                  pszSlash = tc::tcschr (pszExpand, '\\');
-                  if (pszSlash != nullptr)
-                    *pszSlash++ = '\0';
-                }
-            }
-          sExpand.ReleaseBuffer ();
-          EnsureVisible (ptCursorPos);
-          m_pTextBuffer->FlushUndoGroup (this);
-        }
-    }
-}
-
-void CCrystalEditView::
-OnUpdateEditAutoExpand (CCmdUI * pCmdUI)
-{
-  if (m_mapExpand->IsEmpty ())
-    pCmdUI->Enable (false);
-  else
-    OnUpdateEditAutoComplete (pCmdUI);
 }
 
 void CCrystalEditView::

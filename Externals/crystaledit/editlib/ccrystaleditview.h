@@ -48,7 +48,6 @@ class EDITPADC_CLASS CCrystalEditView : public CCrystalTextView
 
 public :
     int m_nLastReplaceLen;
-    CMap<CString, const tchar_t*, CString, const tchar_t*> *m_mapExpand;
 
     static HMODULE hSpellDll;
     static tchar_t szWIspellPath[_MAX_PATH];
@@ -166,8 +165,6 @@ protected :
     afx_msg void OnEditRedo ();
     afx_msg void OnUpdateEditAutoComplete (CCmdUI * pCmdUI);
     afx_msg void OnEditAutoComplete ();
-    afx_msg void OnUpdateEditAutoExpand (CCmdUI * pCmdUI);
-    afx_msg void OnEditAutoExpand ();
     afx_msg void OnUpdateEditLowerCase (CCmdUI * pCmdUI);
     afx_msg void OnEditLowerCase ();
     afx_msg void OnUpdateEditUpperCase (CCmdUI * pCmdUI);
