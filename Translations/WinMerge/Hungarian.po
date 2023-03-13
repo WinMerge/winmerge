@@ -4448,8 +4448,8 @@ msgstr "Auto oszlopszélesség be"
 msgid "We&bpage"
 msgstr "Weboldal"
 
-msgid "W&rap Text"
-msgstr ""
+msgid "W&rap text"
+msgstr "Szöveg tördelése"
 
 msgid "Frhed is not installed."
 msgstr "Az Frhed hexa szerkesztő nincs telepítve."
@@ -4749,7 +4749,7 @@ msgid "Ignore TSV Fields"
 msgstr "TSV mezők mellőzése"
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Bevezető sorszámok figyelmen kívül hagyása"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
