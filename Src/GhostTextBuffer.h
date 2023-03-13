@@ -39,9 +39,6 @@ enum GHOST_LINEFLAGS
  */
 class EDITPADC_CLASS CGhostTextBuffer : public CCrystalTextBuffer
 {
-public:
-	DECLARE_DYNCREATE (CGhostTextBuffer)
-
 private:
 	/**
 	 * @brief A struct mapping real lines and apparent (screen) lines.
@@ -139,10 +136,4 @@ protected:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CCrystalTextBuffer)
 	//}}AFX_VIRTUAL
-
-	// Generated message map functions
-	//{{AFX_MSG(CCrystalTextBuffer)
-	//}}AFX_MSG
-
-	DECLARE_MESSAGE_MAP ()
 };

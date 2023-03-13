@@ -108,11 +108,9 @@ public :
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer command target
 
-class EDITPADC_CLASS CCrystalTextBuffer : public CCmdTarget
+class EDITPADC_CLASS CCrystalTextBuffer
   {
 public:
-    DECLARE_DYNCREATE (CCrystalTextBuffer)
-
     int m_nSourceEncoding;
     static int m_nDefaultEncoding;
     uint32_t m_dwCurrentRevisionNumber;
@@ -344,13 +342,6 @@ public :
     // ClassWizard generated virtual function overrides
     //{{AFX_VIRTUAL(CCrystalTextBuffer)
     //}}AFX_VIRTUAL
-
-
-    // Generated message map functions
-    //{{AFX_MSG(CCrystalTextBuffer)
-    //}}AFX_MSG
-
-    DECLARE_MESSAGE_MAP ()
   };
 
 

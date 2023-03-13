@@ -137,8 +137,6 @@ RecalcPoint (CEPoint & ptPoint)
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer
 
-IMPLEMENT_DYNCREATE (CCrystalTextBuffer, CCmdTarget)
-
 CCrystalTextBuffer::CCrystalTextBuffer ()
 {
   m_bInit = false;
@@ -171,13 +169,6 @@ CCrystalTextBuffer:: ~ CCrystalTextBuffer ()
 {
   ASSERT (!m_bInit);            //  You must call FreeAll() before deleting the object
 }
-
-
-BEGIN_MESSAGE_MAP (CCrystalTextBuffer, CCmdTarget)
-//{{AFX_MSG_MAP(CCrystalTextBuffer)
-//}}AFX_MSG_MAP
-END_MESSAGE_MAP ()
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer message handlers

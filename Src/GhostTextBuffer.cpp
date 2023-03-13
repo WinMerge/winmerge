@@ -26,13 +26,6 @@
 
 using std::vector;
 
-BEGIN_MESSAGE_MAP (CGhostTextBuffer, CCrystalTextBuffer)
-//{{AFX_MSG_MAP(CGhostTextBuffer)
-//}}AFX_MSG_MAP
-END_MESSAGE_MAP ()
-
-IMPLEMENT_DYNCREATE (CGhostTextBuffer, CCrystalTextBuffer)
-
 /**
  * @brief Constructor.
  */
