@@ -4448,7 +4448,7 @@ msgstr "Auto oszlopszélesség be"
 msgid "We&bpage"
 msgstr "Weboldal"
 
-msgid "W&rap text"
+msgid "W&rap Text"
 msgstr "Szöveg tördelése"
 
 msgid "Frhed is not installed."
