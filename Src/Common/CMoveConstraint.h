@@ -206,7 +206,7 @@ protected:
 		void Init();
 	};
 
-	typedef CList<Constraint, Constraint &> ConstraintList;
+	typedef std::list<Constraint> ConstraintList;
 
 
 // Implementation data

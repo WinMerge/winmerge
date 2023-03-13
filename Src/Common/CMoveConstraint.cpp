@@ -254,7 +254,7 @@ CMoveConstraint::ClearMostData()
 	m_fShrinkHeight=0;
 	m_bPropertyPage=false;
 	m_bPropertySheet=false;
-	m_ConstraintList.RemoveAll();
+	m_ConstraintList.clear();
 	m_bPersistent=false;
 	m_bConstrainNonChildren = false;
 }
@@ -305,8 +305,7 @@ DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double 
 		m_nDelayed++;
 	}
 
-	ConstraintList & constraintList = m_ConstraintList;
-	constraintList.AddTail(constraint);
+	m_ConstraintList.push_back(constraint);
 	return true;
 }
 
@@ -389,10 +388,8 @@ CMoveConstraint::CheckDeferredChildren()
 {
 	if (m_nDelayed == 0)
 		return;
-	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
+	for (auto& constraint : m_ConstraintList)
 	{
-		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild  != nullptr)
 			continue;
 		ASSERT(constraint.m_pWnd != nullptr);
@@ -436,10 +433,8 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 	int nDeltaWidth = (rectParentCurrent.right - m_rectDlgOriginal.right);
 	int nDeltaHeight = (rectParentCurrent.bottom - m_rectDlgOriginal.bottom);
 
-	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
+	for (auto& constraint : m_ConstraintList)
 	{
-		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild == nullptr)
 			continue;
 

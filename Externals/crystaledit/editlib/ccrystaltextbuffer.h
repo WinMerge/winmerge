@@ -37,6 +37,7 @@
 #include "cepoint.h"
 #include <memory>
 #include <vector>
+#include <list>
 
 #ifndef __AFXTEMPL_H__
 #pragma message("Include <afxtempl.h> in your stdafx.h to avoid this message")
@@ -165,7 +166,7 @@ public :
     //END SW
 
     //  Connected views
-    CList < CCrystalTextView *, CCrystalTextView * >m_lpViews;
+    std::list < CCrystalTextView * > m_lpViews;
 
     // Table Editing
     bool m_bTableEditing;

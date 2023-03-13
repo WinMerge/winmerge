@@ -987,49 +987,32 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
 void CCrystalTextBuffer::
 AddView (CCrystalTextView * pView)
 {
-  m_lpViews.AddTail (pView);
+  m_lpViews.push_back (pView);
 }
 
 void CCrystalTextBuffer::
 RemoveView (CCrystalTextView * pView)
 {
-  POSITION pos = m_lpViews.GetHeadPosition ();
-  while (pos != nullptr)
-    {
-      POSITION thispos = pos;
-      CCrystalTextView *pvw = m_lpViews.GetNext (pos);
-      if (pvw == pView)
-        {
-          m_lpViews.RemoveAt (thispos);
-          return;
-        }
-    }
-  ASSERT (false);
+  auto it = std::find(m_lpViews.begin(), m_lpViews.end(), pView);
+  if (it != m_lpViews.end())
+      m_lpViews.erase(it);
 }
 
 CrystalLineParser::TextDefinition *CCrystalTextBuffer::
 RetypeViews (const tchar_t* lpszFileName)
 {
-  POSITION pos = m_lpViews.GetHeadPosition ();
   CString sNew = GetExt (lpszFileName);
   CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (sNew);
-  while (pos != nullptr)
-    {
-      CCrystalTextView *pView = m_lpViews.GetNext (pos);
-      pView->SetTextType (def);
-    }
+  for (auto* pView : m_lpViews)
+    pView->SetTextType (def);
   return def;
 }
 
 void CCrystalTextBuffer::
 UpdateViews (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwUpdateFlags, int nLineIndex /*= -1*/ )
 {
-  POSITION pos = m_lpViews.GetHeadPosition ();
-  while (pos != nullptr)
-    {
-      CCrystalTextView *pView = m_lpViews.GetNext (pos);
-      pView->UpdateView (pSource, pContext, dwUpdateFlags, nLineIndex);
-    }
+  for (auto* pView : m_lpViews)
+    pView->UpdateView (pSource, pContext, dwUpdateFlags, nLineIndex);
 }
 
 /**
@@ -2156,10 +2139,8 @@ InvalidateColumns ()
 {
   for (auto& buf : m_pSharedTableProps->m_textBufferList)
     {
-      POSITION pos = buf->m_lpViews.GetHeadPosition ();
-      while (pos != nullptr)
+      for (auto* pView : buf->m_lpViews)
         {
-          CCrystalTextView* pView = buf->m_lpViews.GetNext (pos);
           pView->InvalidateScreenRect ();
           pView->UpdateView (nullptr, nullptr, UPDATE_HORZRANGE | UPDATE_VERTRANGE, -1);
         }
