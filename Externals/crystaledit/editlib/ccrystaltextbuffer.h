@@ -198,7 +198,7 @@ public :
     virtual void RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *psaSavedRevisionNumbers);
 
     //  Overridable: provide action description
-    virtual bool GetActionDescription (int nAction, CString & desc) const;
+    virtual bool GetActionDescription (int nAction, std::basic_string<tchar_t>& desc) const;
 
     // Operations
 public :
@@ -288,10 +288,10 @@ public :
 
 
     //  Browse undo sequence
-    POSITION GetUndoActionCode (int & nAction, POSITION pos = nullptr) const;
-    POSITION GetRedoActionCode (int & nAction, POSITION pos = nullptr) const;
-    POSITION GetUndoDescription (CString & desc, POSITION pos = nullptr) const;
-    POSITION GetRedoDescription (CString & desc, POSITION pos = nullptr) const;
+    size_t GetUndoActionCode (int & nAction, size_t pos = 0) const;
+    size_t GetRedoActionCode (int & nAction, size_t pos = 0) const;
+    size_t GetUndoDescription (std::basic_string<tchar_t>& desc, size_t pos = 0) const;
+    size_t GetRedoDescription (std::basic_string<tchar_t>& desc, size_t pos = 0) const;
 
     //  Notify all connected views about changes in name of file
     CrystalLineParser::TextDefinition *RetypeViews (const tchar_t* lpszFileName);

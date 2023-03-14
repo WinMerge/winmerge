@@ -1293,22 +1293,22 @@ CanRedo () const
   return m_nUndoPosition < static_cast<int>(m_aUndoBuf.size ());
 }
 
-POSITION CCrystalTextBuffer::
-GetUndoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
+size_t CCrystalTextBuffer::
+GetUndoActionCode (int & nAction, size_t pos /*= 0*/ ) const
 {
   ASSERT (CanUndo ());          //  Please call CanUndo() first
 
   ASSERT ((m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
   intptr_t nPosition;
-  if (pos == nullptr)
+  if (pos == 0)
     {
       //  Start from beginning
       nPosition = m_nUndoPosition;
     }
   else
     {
-      nPosition = reinterpret_cast<intptr_t>(pos);
+      nPosition = static_cast<intptr_t>(pos);
       ASSERT (nPosition > 0 && nPosition < m_nUndoPosition);
       ASSERT ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
     }
@@ -1326,12 +1326,12 @@ GetUndoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
   nAction = (*iter).m_nAction;
 
   //  Now, if we stop at zero position, this will be the last action,
-  //  since we return (POSITION) nPosition
-  return (POSITION) nPosition;
+  //  since we return (size_t) nPosition
+  return (size_t) nPosition;
 }
 
-POSITION CCrystalTextBuffer::
-GetRedoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
+size_t CCrystalTextBuffer::
+GetRedoActionCode (int & nAction, size_t pos /*= 0*/ ) const
 {
   ASSERT (CanRedo ());          //  Please call CanRedo() before!
 
@@ -1339,14 +1339,14 @@ GetRedoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
   ASSERT ((m_aUndoBuf[m_nUndoPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
   intptr_t nPosition;
-  if (pos == nullptr)
+  if (pos == 0)
     {
       //  Start from beginning
       nPosition = m_nUndoPosition;
     }
   else
     {
-      nPosition = reinterpret_cast<intptr_t>(pos);
+      nPosition = static_cast<intptr_t>(pos);
       ASSERT (nPosition > m_nUndoPosition);
       ASSERT ((m_aUndoBuf[nPosition].m_dwFlags & UNDO_BEGINGROUP) != 0);
     }
@@ -1366,33 +1366,33 @@ GetRedoActionCode (int & nAction, POSITION pos /*= nullptr*/ ) const
         }
     }
   if (nPosition >= static_cast<intptr_t>(m_aUndoBuf.size ()))
-    return nullptr;                //  No more redo actions!
+    return 0;                //  No more redo actions!
 
-  return (POSITION) nPosition;
+  return (size_t) nPosition;
 }
 
-POSITION CCrystalTextBuffer::
-GetUndoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
+size_t CCrystalTextBuffer::
+GetUndoDescription (std::basic_string<tchar_t>& desc, size_t pos /*= 0*/ ) const
 {
   int nAction;
-  POSITION retValue = GetUndoActionCode(nAction, pos);
+  size_t retValue = GetUndoActionCode(nAction, pos);
 
   //  Read description
   if (!GetActionDescription (nAction, desc))
-    desc.Empty ();              //  Use empty string as description
+    desc.clear ();              //  Use empty string as description
 
   return retValue;
 }
 
-POSITION CCrystalTextBuffer::
-GetRedoDescription (CString & desc, POSITION pos /*= nullptr*/ ) const
+size_t CCrystalTextBuffer::
+GetRedoDescription (std::basic_string<tchar_t>& desc, size_t pos /*= 0*/ ) const
 {
   int nAction;
-  POSITION retValue = GetRedoActionCode(nAction, pos);
+  size_t retValue = GetRedoActionCode(nAction, pos);
 
   //  Read description
   if (!GetActionDescription (nAction, desc))
-    desc.Empty ();              //  Use empty string as description
+    desc.clear ();              //  Use empty string as description
 
   return retValue;
 }
@@ -1801,80 +1801,71 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 }
 
 bool CCrystalTextBuffer::
-GetActionDescription (int nAction, CString & desc) const
+GetActionDescription (int nAction, std::basic_string<tchar_t>& desc) const
 {
-  HINSTANCE hOldResHandle = AfxGetResourceHandle ();
-#ifdef CRYSEDIT_RES_HANDLE
-  AfxSetResourceHandle (CRYSEDIT_RES_HANDLE);
-#else
-  if (CCrystalTextView::s_hResourceInst != nullptr)
-    AfxSetResourceHandle (CCrystalTextView::s_hResourceInst);
-#endif
-  bool bSuccess = false;
   switch (nAction)
     {
     case CE_ACTION_PASTE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_PASTE);
+      desc = _T ("Paste");
       break;
     case CE_ACTION_DELSEL:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_DELSELECTION);
+      desc = _T ("Delete Selection");
       break;
     case CE_ACTION_CUT:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_CUT);
+      desc = _T ("Cut");
       break;
     case CE_ACTION_TYPING:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_TYPING);
+      desc = _T ("Typing");
       break;
     case CE_ACTION_BACKSPACE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_BACKSPACE);
+      desc = _T ("Backspace");
       break;
     case CE_ACTION_INDENT:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_INDENT);
+      desc = _T ("Indent");
       break;
     case CE_ACTION_DRAGDROP:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_DRAGDROP);
+      desc = _T ("Drag And Drop");
       break;
     case CE_ACTION_REPLACE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_REPLACE);
+      desc = _T ("Replace");
       break;
     case CE_ACTION_DELETE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_DELETE);
+      desc = _T ("Delete");
       break;
     case CE_ACTION_AUTOINDENT:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_AUTOINDENT);
+      desc = _T ("Auto Indent");
       break;
     case CE_ACTION_AUTOCOMPLETE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_AUTOCOMPLETE);
+      desc = _T ("Auto Complete");
       break;
     case CE_ACTION_AUTOEXPAND:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_AUTOEXPAND);
+      desc = _T ("Auto Expand");
       break;
     case CE_ACTION_LOWERCASE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_LOWERCASE);
+      desc = _T ("Lower Case");
       break;
     case CE_ACTION_UPPERCASE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_UPPERCASE);
+      desc = _T ("Upper Case");
       break;
     case CE_ACTION_SWAPCASE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_SWAPCASE);
+      desc = _T ("Swap Case");
       break;
     case CE_ACTION_CAPITALIZE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_CAPITALIZE);
+      desc = _T ("Capitalize");
       break;
     case CE_ACTION_SENTENCIZE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_SENTENCIZE);
+      desc = _T ("Sentencize");
       break;
     case CE_ACTION_RECODE:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_RECODE);
+      desc = _T ("Recode");
       break;
     case CE_ACTION_SPELL:
-      bSuccess = !!desc.LoadString (IDS_EDITOP_SPELL);
+      desc = _T ("Spell");
       break;
     default: /* case CE_ACTION_UNKNOWN: */
-      bSuccess = !!desc.LoadString (IDS_EDITOP_UNKNOWN);
+      desc = _T ("Unknown");
     }
-  AfxSetResourceHandle (hOldResHandle);
-  return bSuccess;
+  return true;
 }
 
 void CCrystalTextBuffer::			/* virtual base */

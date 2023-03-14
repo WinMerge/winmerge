@@ -1681,9 +1681,9 @@ OnUpdateEditUndo (CCmdUI * pCmdUI)
       if (bCanUndo)
         {
           //  Format menu item text using the provided item description
-          CString desc;
+          std::basic_string<tchar_t> desc;
           m_pTextBuffer->GetUndoDescription (desc);
-          menu.Format (IDS_MENU_UNDO_FORMAT, (const tchar_t*)desc);
+          menu.Format (IDS_MENU_UNDO_FORMAT, desc.c_str());
         }
       else
         {
@@ -1785,9 +1785,9 @@ OnUpdateEditRedo (CCmdUI * pCmdUI)
       if (bCanRedo)
         {
           //  Format menu item text using the provided item description
-          CString desc;
+          std::basic_string<tchar_t> desc;
           m_pTextBuffer->GetRedoDescription (desc);
-          menu.Format (IDS_MENU_REDO_FORMAT, (const tchar_t*)desc);
+          menu.Format (IDS_MENU_REDO_FORMAT, desc.c_str());
         }
       else
         {
