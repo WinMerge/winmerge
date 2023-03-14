@@ -253,12 +253,12 @@ void CCrystalTextBuffer::MoveLine(int line1, int line2, int newline1)
   if (ldiff > 0)
     {
       for (int l = line2; l >= line1; l--)
-        m_aLines[l+ldiff] = m_aLines[l];
+        m_aLines[l+ldiff] = std::move(m_aLines[l]);
     }
   else if (ldiff < 0)
     {
       for (int l = line1; l <= line2; l++)
-        m_aLines[l+ldiff] = m_aLines[l];
+        m_aLines[l+ldiff] = std::move(m_aLines[l]);
     }
 }
 
