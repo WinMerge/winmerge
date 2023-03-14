@@ -126,7 +126,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 void CGhostTextBuffer::			/* virtual override */
 GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
+                 String &text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
                  bool bExcludeInvisibleLines /*= true*/) const
 {
 	const size_t lines = m_aLines.size();
@@ -140,11 +140,12 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 //	ASSERT(nStartLine != nEndLine || nStartChar != nEndChar);
 
 	// estimate size (upper bound)
-	int nBufSize = 0;
+	size_t nBufSize = 0;
 	int i = 0;
 	for (i = nStartLine; i <= nEndLine; ++i)
 		nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
-	tchar_t* pszBuf = text.GetBuffer(nBufSize);
+	text.resize(nBufSize);
+	tchar_t* pszBuf = text.data();
 
 	if (nCrlfStyle != CRLFSTYLE::AUTOMATIC)
 	{
@@ -201,8 +202,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			}
 		}
 	}
-	text.ReleaseBuffer(static_cast<int>(pszBuf - text));
-	text.FreeExtra();
+	text.resize(pszBuf - text.data());
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -853,7 +853,7 @@ UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint appa
 	// If not, then rescan() has moved lines and undo fails.
 
     // we need to put the cursor before the deleted section
-    CString text;
+    String text;
     const size_t size = m_aLines.size();
     if ((apparent_ptStartPos.y < static_cast<LONG>(size)) &&
         (apparent_ptStartPos.x <= static_cast<LONG>(m_aLines[apparent_ptStartPos.y].Length())) &&
@@ -863,7 +863,7 @@ UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint appa
 		//  Try to ensure that we are undoing correctly...
 		//  Just compare the text as it was before Undo operation
         GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLFSTYLE::AUTOMATIC, false);
-        if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(tchar_t)) == 0)
+        if (text.length() == ur.GetTextLength() && memcmp(text.c_str(), ur.GetText(), text.length() * sizeof(tchar_t)) == 0)
         {
 			if (CCrystalTextBuffer::UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparent_ptEndPos, ur))
 			{
@@ -879,9 +879,9 @@ UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint appa
 		{
 			CEPoint apparentEnd2 = apparent_ptEndPos;
 			apparentEnd2.x = static_cast<LONG>(m_aLines[apparentEnd2.y].FullLength());
-			text.Empty();
+			text.clear();
 			GetTextWithoutEmptys(apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparentEnd2.x, text, CRLFSTYLE::AUTOMATIC, false);
-			if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(tchar_t)) == 0)
+			if (text.length() == ur.GetTextLength() && memcmp(text.c_str(), ur.GetText(), text.length() * sizeof(tchar_t)) == 0)
 			{
 				if (CCrystalTextBuffer::UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparentEnd2, ur))
 				{

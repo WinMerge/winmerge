@@ -39,11 +39,6 @@
 #include <vector>
 #include <list>
 
-#ifndef __AFXTEMPL_H__
-#pragma message("Include <afxtempl.h> in your stdafx.h to avoid this message")
-#include <afxtempl.h>
-#endif
-
 class CCrystalTextView;
 
 enum LINEFLAGS: unsigned long
@@ -187,7 +182,7 @@ public :
     //  Implementation
     bool InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos, const tchar_t* pszText, size_t cchText, int &nEndLine, int &nEndChar);
     bool InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos);
-    CString StripTail (int i, size_t bytes);
+    std::basic_string<tchar_t> StripTail (int i, size_t bytes);
 
     //  [JRT] Support For Descriptions On Undo/Redo Actions
     virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos,
@@ -243,9 +238,9 @@ public :
     void SetLineFlag (int nLine, lineflags_t dwFlag, bool bSet,
             bool bRemoveFromPreviousLine = true, bool bUpdate=true);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-            CString & text, const tchar_t* pszCRLF = nullptr, bool bExcludeInvisibleLines = true) const;
+            std::basic_string<tchar_t>& text, const tchar_t* pszCRLF = nullptr, bool bExcludeInvisibleLines = true) const;
     virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
-            int nEndLine, int nEndChar, CString &text,
+            int nEndLine, int nEndChar, std::basic_string<tchar_t>& text,
             CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC, bool bExcludeInvisibleLines = true) const;
     virtual bool IsIndentableLine(int nLine) const { return true; }
 
@@ -320,7 +315,7 @@ public :
     const std::vector<int>& GetColumnWidths () const { return m_pSharedTableProps->m_aColumnWidths; }
     void SetColumnWidths (const std::vector<int>& columnWidths);
     int  GetColumnCount (int nLineIndex) const;
-    CString GetCellText (int nLineIndex, int nColumnIndex) const;
+    std::basic_string<tchar_t> GetCellText (int nLineIndex, int nColumnIndex) const;
     void SetAllowNewlinesInQuotes (bool bAllowNewlinesInQuotes) { m_bAllowNewlinesInQuotes = bAllowNewlinesInQuotes; }
     tchar_t GetAllowNewlinesInQuotes () const { return m_bAllowNewlinesInQuotes; }
     void SetFieldDelimiter (tchar_t cFieldDelimiter) { m_cFieldDelimiter = cFieldDelimiter; }

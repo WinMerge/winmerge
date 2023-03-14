@@ -1166,8 +1166,10 @@ void CMergeEditView::OnEditCopy()
 	{
 		CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
+		String sText;
 		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text);
+			ptSelEnd.y, ptSelEnd.x, sText);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
 	}
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
@@ -1200,8 +1202,12 @@ void CMergeEditView::OnEditCut()
 
 	CString text;
 	if (!m_bRectangularSelection)
+	{
+		String sText;
 		pDoc->m_ptBuf[m_nThisPane]->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text);
+			ptSelEnd.y, ptSelEnd.x, sText);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
+	}
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
@@ -2720,8 +2726,10 @@ void CMergeEditView::OnAddToLineFilters()
 	{
 		CDiffTextBuffer* buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
+		String sText;
 		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text);
+			ptSelEnd.y, ptSelEnd.x, sText);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
 	}
 	else
 		GetTextWithoutEmptysInColumnSelection(text);

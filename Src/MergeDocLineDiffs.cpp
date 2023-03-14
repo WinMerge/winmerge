@@ -352,7 +352,7 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], int pan
 		if (nLineEnd >= m_ptBuf[file]->GetLineCount())
 			return worddiffs;
 		nOffsets[file].reset(new int[nLineEnd - nLineBegin + 1]);
-		CString strText;
+		String strText;
 		if (nLineBegin <= nLineEnd)
 		{
 			if (nLineBegin != nLineEnd || m_ptBuf[file]->GetLineLength(nLineEnd) > 0)
@@ -360,7 +360,7 @@ CMergeDoc::GetWordDiffArrayInRange(const int begin[3], const int end[3], int pan
 			strText += m_ptBuf[file]->GetLineEol(nLineEnd);
 			nOffsets[file][0] = 0;
 		}
-		str[i].assign(strText, strText.GetLength());
+		str[i] = std::move(strText);
 		for (int nLine = nLineBegin; nLine < nLineEnd; nLine++)
 			nOffsets[file][nLine-nLineBegin+1] = nOffsets[file][nLine-nLineBegin] + m_ptBuf[file]->GetFullLineLength(nLine);
 	}

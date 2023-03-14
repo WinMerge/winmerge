@@ -888,7 +888,7 @@ SetLineFlag (int nLine, lineflags_t dwFlag, bool bSet, bool bRemoveFromPreviousL
 void CCrystalTextBuffer::			/* virtual base */
 GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
+                 std::basic_string<tchar_t>& text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
                  bool bExcludeInvisibleLines/*= true*/) const
 {
   GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, (nCrlfStyle == CRLFSTYLE::AUTOMATIC) ? nullptr : GetStringEol (nCrlfStyle), bExcludeInvisibleLines);
@@ -897,7 +897,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 void CCrystalTextBuffer::
 GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
-         CString & text, const tchar_t* pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
+         std::basic_string<tchar_t>& text, const tchar_t* pszCRLF /*= nullptr*/, bool bExcludeInvisibleLines/*= true*/) const
 {
   ASSERT (m_bInit);             //  Text buffer not yet initialized.
   //  You must call InitNew() or LoadFromFile() first!
@@ -926,7 +926,8 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
       nBufSize += nCRLFLength;
     }
 
-  tchar_t* pszBuf = text.GetBuffer (static_cast<int>(nBufSize));
+  text.resize (nBufSize);
+  tchar_t* pszBuf = text.data ();
 
   const LineInfo &startLine = m_aLines[nStartLine];
   if (nStartLine < nEndLine)
@@ -971,8 +972,7 @@ GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar,
       memcpy (pszBuf, startLine.GetLine(nStartChar), sizeof (tchar_t) * nCount);
       pszBuf += nCount;
     }
-  text.ReleaseBuffer ((int) (pszBuf - text));
-  text.FreeExtra ();
+  text.resize (pszBuf - text.data ());
 }
 
 void CCrystalTextBuffer::
@@ -984,16 +984,16 @@ AddView (CCrystalTextView * pView)
 void CCrystalTextBuffer::
 RemoveView (CCrystalTextView * pView)
 {
-  auto it = std::find(m_lpViews.begin(), m_lpViews.end(), pView);
-  if (it != m_lpViews.end())
-      m_lpViews.erase(it);
+  auto it = std::find (m_lpViews.begin (), m_lpViews.end (), pView);
+  if (it != m_lpViews.end ())
+      m_lpViews.erase (it);
 }
 
 CrystalLineParser::TextDefinition *CCrystalTextBuffer::
 RetypeViews (const tchar_t* lpszFileName)
 {
-  CString sNew = GetExt (lpszFileName);
-  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (sNew);
+  std::basic_string<tchar_t> sNew = GetExt (lpszFileName);
+  CrystalLineParser::TextDefinition *def = CrystalLineParser::GetTextType (sNew.c_str ());
   for (auto* pView : m_lpViews)
     pView->SetTextType (def);
   return def;
@@ -1054,7 +1054,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
     {
       // delete multiple lines
       const ptrdiff_t nRestCount = m_aLines[nEndLine].FullLength() - nEndChar;
-      CString sTail(m_aLines[nEndLine].GetLine(nEndChar), static_cast<int>(nRestCount));
+      std::basic_string<tchar_t> sTail(m_aLines[nEndLine].GetLine(nEndChar), static_cast<int>(nRestCount));
       lineflags_t dwFlags = GetLineFlags (nEndLine);
 
       const int nDelCount = nEndLine - nStartLine;
@@ -1068,7 +1068,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       m_aLines[nStartLine].DeleteEnd(nStartChar);
       if (nRestCount > 0)
         {
-          AppendLine (nStartLine, sTail, sTail.GetLength());
+          AppendLine (nStartLine, sTail.c_str (), sTail.length ());
         }
       if (nStartChar == 0)
         m_aLines[nStartLine].m_dwFlags = dwFlags;
@@ -1089,7 +1089,7 @@ InternalDeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 
 // Remove the last [bytes] characters from specified line, and return them
 // (EOL characters are included)
-CString CCrystalTextBuffer::
+std::basic_string<tchar_t> CCrystalTextBuffer::
 StripTail (int i, size_t bytes)
 {
   LineInfo & li = m_aLines[i];
@@ -1100,7 +1100,7 @@ StripTail (int i, size_t bytes)
   // Must not take off more than exist
   ASSERT(offset >= 0);
 
-  CString ret(li.GetLine(offset), static_cast<int>(bytes));
+  std::basic_string<tchar_t> ret(li.GetLine(offset), static_cast<int>(bytes));
   li.DeleteEnd(offset);
   return ret;
 }
@@ -1141,7 +1141,7 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
   nEndChar = 0;
 
   int nRestCount = GetFullLineLength(nLine) - nPos;
-  CString sTail;
+  std::basic_string<tchar_t> sTail;
   if (nRestCount > 0)
     {
       // remove end of line (we'll put it back on afterwards)
@@ -1217,15 +1217,15 @@ InternalInsertText (CCrystalTextView * pSource, int nLine, int nPos,
               nEndLine = nCurrentLine;
               nEndChar = GetFullLineLength(nEndLine);
             }
-          if (!sTail.IsEmpty())
+          if (!sTail.empty())
             {
               if (haseol)
                 {
-                  InsertLine(sTail, sTail.GetLength(), nEndLine);
+                  InsertLine(sTail.c_str (), sTail.length (), nEndLine);
                   nInsertedLines ++;
                 }
               else
-                AppendLine (nEndLine, sTail, nRestCount);
+                AppendLine (nEndLine, sTail.c_str (), nRestCount);
             }
           if (nEndLine == GetLineCount())
             {
@@ -1522,9 +1522,9 @@ Redo (CCrystalTextView * pSource, CEPoint & ptCursorPos)
           if (apparent_ptStartPos != apparent_ptEndPos)
             {
 #ifdef _DEBUG
-              CString text;
+              std::basic_string<tchar_t> text;
               GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLFSTYLE::AUTOMATIC, false);
-              ASSERT (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(tchar_t)) == 0);
+              ASSERT (text.length () == ur.GetTextLength() && memcmp(text.c_str (), ur.GetText(), text.length () * sizeof(tchar_t)) == 0);
 #endif
               VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
                 apparent_ptEndPos.y, apparent_ptEndPos.x, 0, false, false));
@@ -1772,7 +1772,7 @@ bool CCrystalTextBuffer::			/* virtual base */
 DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
             int nEndLine, int nEndChar, int nAction /* = CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
-  CString sTextToDelete;
+  std::basic_string<tchar_t> sTextToDelete;
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 
   // save line revision numbers for undo
@@ -1795,7 +1795,7 @@ DeleteText2 (CCrystalTextView * pSource, int nStartLine, int nStartChar,
     }
 
   AddUndoRecord (false, CEPoint (nStartChar, nStartLine), CEPoint (nEndChar, nEndLine),
-                 sTextToDelete, sTextToDelete.GetLength(), nAction, paSavedRevisionNumbers);
+                 sTextToDelete.c_str (), sTextToDelete.length (), nAction, paSavedRevisionNumbers);
 
   return true;
 }
@@ -2032,10 +2032,10 @@ int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
   return nColumnCount;
 }
 
-CString CCrystalTextBuffer::GetCellText (int nLineIndex, int nColumnIndex) const
+std::basic_string<tchar_t> CCrystalTextBuffer::GetCellText (int nLineIndex, int nColumnIndex) const
 {
   ASSERT( nLineIndex >= 0 && nColumnIndex >= 0 && GetTableEditing() );
-  CString sText;
+  std::basic_string<tchar_t> sText;
   int nColumnCount = 0;
   const tchar_t* pszLine = GetLineChars (nLineIndex);
   int nLength = GetLineLength (nLineIndex);

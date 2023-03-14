@@ -2403,7 +2403,7 @@ GetTopMarginText (const CRect& rect, CString& text, std::vector<int>& nWidths)
       int nColumnWidth = m_pTextBuffer->GetColumnWidth (nColumn);
       CString columnName;
       if (m_nTopSubLine > 0 && m_nLineNumberUsedAsHeaders >= 0 && m_nLineNumberUsedAsHeaders < m_pTextBuffer->GetLineCount())
-        columnName = replaceControlChars (m_pTextBuffer->GetCellText (m_nLineNumberUsedAsHeaders, nColumn));
+        columnName = replaceControlChars (m_pTextBuffer->GetCellText (m_nLineNumberUsedAsHeaders, nColumn).c_str ()); // Use std::basic_string<tchar_t> instead of CString
       if (columnName.IsEmpty())
         columnName = getColumnName (nColumn);
       int columnNameLen = 0;
@@ -4901,7 +4901,11 @@ void CCrystalTextView::
 GetText (const CEPoint & ptStart, const CEPoint & ptEnd, CString & text, bool bExcludeInvisibleLines /*= true*/)
 {
   if (m_pTextBuffer != nullptr)
-    m_pTextBuffer->GetText (ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, text);
+    {
+      std::basic_string<tchar_t> sText;
+      m_pTextBuffer->GetText (ptStart.y, ptStart.x, ptEnd.y, ptEnd.x, sText);
+      text.SetString(sText.c_str (), static_cast<int> (sText.length ())); // TODO: Use std::basic_string<tchar_t> instead of CString
+    }
   else
     text = _T ("");
 }

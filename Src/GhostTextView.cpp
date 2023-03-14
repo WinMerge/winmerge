@@ -208,10 +208,14 @@ void CGhostTextView::GetTextWithoutEmptys (int nStartLine, int nStartChar,
 		CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC*/,
 		bool bExcludeInvisibleLines /*= true*/)
 {
-  if (m_pGhostTextBuffer != nullptr)
-    m_pGhostTextBuffer->GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, text, nCrlfStyle, bExcludeInvisibleLines);
-  else
-    text.Empty();
+	if (m_pGhostTextBuffer != nullptr)
+	{
+		String sText;
+		m_pGhostTextBuffer->GetTextWithoutEmptys(nStartLine, nStartChar, nEndLine, nEndChar, sText, nCrlfStyle, bExcludeInvisibleLines);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
+	}
+	else
+		text.Empty();
 }
 
 void CGhostTextView::GetTextWithoutEmptysInColumnSelection (CString & text, bool bExcludeInvisibleLines /*= true*/)

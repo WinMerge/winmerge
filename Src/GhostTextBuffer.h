@@ -70,7 +70,7 @@ public :
 	or if it adds the default EOL)
 	*/
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
-			int nEndLine, int nEndChar, CString &text,
+			int nEndLine, int nEndChar, String &text,
 			CRLFSTYLE nCrlfStyle =CRLFSTYLE::AUTOMATIC,
 			bool bExcludeInvisibleLines = true) const override;
 

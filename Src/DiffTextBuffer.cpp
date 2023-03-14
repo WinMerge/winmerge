@@ -588,7 +588,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 /// Replace line (removing any eol, and only including one if in strText)
 void CDiffTextBuffer::ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
-	CString strText;
+	String strText;
 	if (nLineBegin != nLineEnd || sbuf.GetLineLength(nLineEnd) > 0)
 		sbuf.GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, sbuf.GetLineLength(nLineEnd), strText);
 	strText += sbuf.GetLineEol(nLineEnd);
@@ -602,10 +602,10 @@ void CDiffTextBuffer::ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& s
 			dbuf.DeleteText(pSource, nLineBegin, 0, nLineEndSource, dbuf.GetLineLength(nLineEndSource), nAction); 
 	}
 
-	if (int cchText = strText.GetLength())
+	if (size_t cchText = strText.length())
 	{
 		int endl,endc;
-		dbuf.InsertText(pSource, nLineBegin, 0, strText, cchText, endl,endc, nAction);
+		dbuf.InsertText(pSource, nLineBegin, 0, strText.c_str(), cchText, endl, endc, nAction);
 	}
 }
 
