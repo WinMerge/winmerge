@@ -3492,6 +3492,13 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		CEdit *pEdit = m_pList->GetEditControl();
 		ASSERT(pEdit != nullptr);
 		pEdit->SetWindowText(sText);
+		// Select file name without file extension
+		if (!GetDiffItem(pdi->item.iItem).diffcode.isDirectory())
+		{
+			int nPosExt = sText.ReverseFind('.');
+			if (nPosExt >= 1)
+				pEdit->SetSel(0, nPosExt);
+		}
 
 		m_bUserCancelEdit = false;
 	}
