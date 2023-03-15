@@ -753,6 +753,13 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 	return true;
 }
 
+bool UniStdioFile::SetVBuf(int mode, size_t size)
+{
+	if (!IsOpen())
+		return false;
+	return setvbuf(m_fp, NULL, mode, size) == 0;
+}
+
 /** @brief Record a custom error */
 void UniStdioFile::LastErrorCustom(const String& desc)
 {

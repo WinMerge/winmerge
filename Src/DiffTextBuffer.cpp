@@ -471,6 +471,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		return SAVE_FAILED;
 	}
 
+	const size_t StdioBufSize = (std::min)(512 * 1024, BUFSIZ + nLines * 32);
+	file.SetVBuf(_IOFBF, StdioBufSize);
 	file.WriteBom();
 
 	// line loop : get each real line and write it in the file
