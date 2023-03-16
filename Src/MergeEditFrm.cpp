@@ -52,7 +52,7 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-#define IDT_SAVEPOSITION 2
+constexpr UINT_PTR IDT_SAVEPOSITION = 2;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditFrame construction/destruction

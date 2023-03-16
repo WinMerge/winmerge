@@ -48,7 +48,7 @@ struct IListCtrl;
 const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
 
 /** Default column width in directory compare */
-const UINT DefColumnWidth = 111;
+constexpr int DefColumnWidth = 111;
 
 /**
  * @brief Directory compare results view.

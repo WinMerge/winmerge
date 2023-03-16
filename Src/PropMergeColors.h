@@ -12,7 +12,7 @@
 
 class COptionsMgr;
 
-const int CustomColorsAmount = 16;
+constexpr int CustomColorsAmount = 16;
 
 /** @brief Property page for colors options; used in options property sheet */
 class PropMergeColors : public OptionsPanel

@@ -13,7 +13,7 @@
 #include "varprop.h"
 #include "OptionsMgr.h"
 
-#define MAX_PATH_FULL 32767
+constexpr size_t MAX_PATH_FULL = 32767;
 
 struct AsyncWriterThreadParams
 {

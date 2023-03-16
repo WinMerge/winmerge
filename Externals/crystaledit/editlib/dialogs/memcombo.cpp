@@ -22,7 +22,7 @@
 #define new DEBUG_NEW
 #endif
 
-#define REMEMBER_COUNT  64
+constexpr int REMEMBER_COUNT = 64;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMemComboBox

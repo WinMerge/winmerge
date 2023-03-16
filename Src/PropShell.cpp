@@ -20,9 +20,12 @@
 #endif
 
 /// Flags for enabling and mode of extension
-#define CONTEXT_F_ENABLED 0x01
-#define CONTEXT_F_ADVANCED 0x02
-#define CONTEXT_F_COMPARE_AS 0x04
+enum
+{
+	CONTEXT_F_ENABLED = 0x0a,
+	CONTEXT_F_ADVANCED = 0x0a,
+	CONTEXT_F_COMPARE_AS = 0x04
+};
 
 // registry values
 static const tchar_t* f_RegValueEnabled = _T("ContextMenuEnabled");

@@ -11,8 +11,8 @@
 #include <cstdint>
 
 //  Line allocation granularity
-#define     CHAR_ALIGN                  16
-#define     ALIGN_BUF_SIZE(size)        ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN;
+constexpr size_t CHAR_ALIGN = 16;
+constexpr size_t ALIGN_BUF_SIZE(size_t size) { return ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN; }
 
 typedef unsigned long lineflags_t;
 

@@ -56,7 +56,7 @@ enum COLORINDEX
     COLORINDEX_MASK = 0xC0000000,
 };
 
-const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
+constexpr int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
 
 /** 
  * @brief Wrapper for Syntax coloring colors.

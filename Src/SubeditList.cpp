@@ -12,7 +12,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-#define IDC_IPEDIT 1000
+constexpr UINT IDC_IPEDIT = 1000;
 
 /// Some stuff is from https://www.codeguru.com/cpp/controls/listview/editingitemsandsubitem/article.php/c923/Editable-subitems.htm
 
