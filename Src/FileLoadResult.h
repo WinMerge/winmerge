@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 /** 
- * @file  files.h
+ * @file  FileLoadResult.h
  *
  * @brief Declaration file for file routines
  */

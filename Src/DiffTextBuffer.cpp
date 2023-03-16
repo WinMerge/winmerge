@@ -9,7 +9,7 @@
 #include "DiffTextBuffer.h"
 #include "ccrystaltextview.h"
 #include "UniFile.h"
-#include "files.h"
+#include "FileLoadResult.h"
 #include "locality.h"
 #include "paths.h"
 #include "OptionsDef.h"

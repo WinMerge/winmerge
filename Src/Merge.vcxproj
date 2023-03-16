@@ -1513,7 +1513,7 @@
     <ClInclude Include="FileLocation.h" />
     <ClInclude Include="FileOrFolderSelect.h" />
     <ClInclude Include="FilepathEdit.h" />
-    <ClInclude Include="files.h" />
+    <ClInclude Include="FileLoadResult.h" />
     <ClInclude Include="FileTextEncoding.h" />
     <ClInclude Include="FileTextStats.h" />
     <ClInclude Include="FileTransform.h" />

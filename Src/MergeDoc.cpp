@@ -23,7 +23,7 @@
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
 #include "DirDoc.h"
-#include "files.h"
+#include "FileLoadResult.h"
 #include "FileTransform.h"
 #include "Plugins.h"
 #include "unicoder.h"
