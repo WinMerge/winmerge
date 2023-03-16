@@ -13,6 +13,7 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
+#include "FileOpenFlags.h"
 #include <map>
 #include <optional>
 
@@ -92,9 +93,9 @@ public:
 	std::optional<tchar_t> m_cTableQuote; /* Quote character for table editing *< */
 	std::optional<bool> m_bTableAllowNewlinesInQuotes; /**< Allow newlines in quotes */
 
-	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
-	unsigned m_dwMiddleFlags; /**< Middle side file's behavior options. */
-	unsigned m_dwRightFlags; /**< Right side file's behavior options. */
+	fileopenflags_t m_dwLeftFlags; /**< Left side file's behavior options. */
+	fileopenflags_t m_dwMiddleFlags; /**< Middle side file's behavior options. */
+	fileopenflags_t m_dwRightFlags; /**< Right side file's behavior options. */
 
 	String m_sLeftDesc; /**< Left side file's description. */
 	String m_sMiddleDesc; /**< Middle side file's description. */

@@ -1358,6 +1358,9 @@
     <ClInclude Include="Common\cio.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FileOpenFlags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

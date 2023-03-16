@@ -635,7 +635,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 			return emptyBlocks;
 	}
 
-	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	lineflags_t dwLineFlags = GetLineFlags(nLineIndex);
 	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
 		return emptyBlocks;
 
@@ -769,7 +769,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor &
 	if (GetLineCount() <= nLineIndex)
 		return;
 
-	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	lineflags_t dwLineFlags = GetLineFlags(nLineIndex);
 
 	if (dwLineFlags & ignoreFlags)
 		dwLineFlags &= (~ignoreFlags);
@@ -2639,7 +2639,7 @@ void CMergeEditView::OnUpdateCaret()
 	int columns = -1;
 	int curChar = -1;
 	auto [selectedLines, selectedChars] = GetSelectedLineAndCharacterCount();
-	DWORD dwLineFlags = 0;
+	lineflags_t dwLineFlags = 0;
 
 	dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
 	// Is this a ghost line ?

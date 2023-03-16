@@ -1443,6 +1443,7 @@
     <ClInclude Include="DirWatcher.h" />
     <ClInclude Include="DirItemIterator.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="FileOpenFlags.h" />
     <ClInclude Include="HashCalc.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropertySystem.h" />

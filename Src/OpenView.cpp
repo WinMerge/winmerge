@@ -715,7 +715,7 @@ void COpenView::OnCompare(UINT nID)
 	PackingInfo tmpPackingInfo(pDoc->m_strUnpackerPipeline);
 	PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 	PathContext tmpPathContext(pDoc->m_files);
-	std::array<DWORD, 3> dwFlags = pDoc->m_dwFlags;
+	std::array<fileopenflags_t, 3> dwFlags = pDoc->m_dwFlags;
 	bool recurse = pDoc->m_bRecurse;
 	std::unique_ptr<CMainFrame::OpenFolderParams> pOpenFolderParams;
 	if (!pDoc->m_hiddenItems.empty())

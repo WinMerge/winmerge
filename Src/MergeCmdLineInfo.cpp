@@ -13,7 +13,6 @@
 
 #include "pch.h"
 #include "MergeCmdLineInfo.h"
-#include "Constants.h"
 #include "Paths.h"
 #include "OptionsDef.h"
 #include "unicoder.h"

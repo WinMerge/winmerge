@@ -715,7 +715,7 @@ void CWebPageDiffFrame::OnFileClose()
 void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 {
 	PathContext paths = m_filePaths;
-	DWORD dwFlags[3];
+	fileopenflags_t dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_filePaths.GetSize();
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
@@ -750,7 +750,7 @@ void CWebPageDiffFrame::OnOpenWithUnpacker()
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
 		PathContext paths = m_filePaths;
-		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
 		GetMainFrame()->DoFileOpen(
@@ -1496,7 +1496,7 @@ void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
 		spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data());
 				return S_OK;
 			}));
@@ -1522,7 +1522,7 @@ void CWebPageDiffFrame::OnWebCompareHTMLs()
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				PackingInfo infoUnpacker(String(_T("PrettifyHTML")));
-				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""), &infoUnpacker);
 				return S_OK;
 			}));
@@ -1547,7 +1547,7 @@ void CWebPageDiffFrame::OnWebCompareTexts()
 	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::TEXT, spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""));
 				return S_OK;
 			}));
@@ -1572,7 +1572,7 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::RESOURCETREE, spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				DWORD dwFlags[3]{};
+				fileopenflags_t dwFlags[3]{};
 				for (int pane = 0; pane < paths.GetSize(); ++pane)
 					dwFlags[pane] = FFILEOPEN_NOMRU;
 				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), true);

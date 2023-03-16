@@ -2,6 +2,7 @@
 
 #include "PathContext.h"
 #include "FileTransform.h"
+#include "FileOpenFlags.h"
 #include <array>
 
 class ProjectFile;
@@ -18,7 +19,7 @@ public:
 	void RefreshOptions();
 	void UpdateResources();
 
-	std::array<DWORD, 3> m_dwFlags;
+	std::array<fileopenflags_t, 3> m_dwFlags;
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;

@@ -46,7 +46,6 @@
 #include "EncodingErrorBar.h"
 #include "MergeCmdLineInfo.h"
 #include "TFile.h"
-#include "Constants.h"
 #include "Merge7zFormatMergePluginImpl.h"
 #include "7zCommon.h"
 #include "PatchTool.h"
@@ -1211,7 +1210,7 @@ bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 
 		// Optimization - check last line first so we don't need to
 		// check whole diff for obvious cases
-		DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
+		lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
 		if (!(dwFlags & LF_WINMERGE_FLAGS))
 			return false;
 	}
@@ -1220,7 +1219,7 @@ bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 	{
 		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
+			lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(cd_dend);
 			if (!(dwFlags & LF_WINMERGE_FLAGS))
 				return false;
 		}
@@ -3654,7 +3653,7 @@ void CMergeDoc::OnOpenWithUnpacker()
 
 	PackingInfo infoUnpacker(dlg.GetPluginPipeline());
 	PathContext paths = m_filePaths;
-	DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+	fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 	String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 	int nID = m_ptBuf[0]->GetTableEditing() ? ID_MERGE_COMPARE_TABLE : ID_MERGE_COMPARE_TEXT;
 	nID = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE) ? nID : -nID;
@@ -3874,7 +3873,7 @@ void CMergeDoc::OnFileRecompareAs(UINT nID)
 	if (!PromptAndSaveIfNeeded(true))
 		return;
 	
-	DWORD dwFlags[3] = { 0 };
+	fileopenflags_t dwFlags[3] = { 0 };
 	PathContext paths = m_filePaths;
 	String strDesc[3];
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
@@ -4027,7 +4026,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				// line number
 				int iVisibleLineNumber = 0;
 				String tdtag = _T("<td class=\"ln\">");
-				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
+				lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
 				if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
 				{
 					iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
