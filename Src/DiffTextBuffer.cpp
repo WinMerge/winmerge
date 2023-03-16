@@ -163,7 +163,7 @@ AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
  * @param [in] flag Flag to check.
  * @return true if flag is set, false otherwise.
  */
-bool CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag) const
+bool CDiffTextBuffer::FlagIsSet(int line, lineflags_t flag) const
 {
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }

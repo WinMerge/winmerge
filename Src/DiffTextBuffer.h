@@ -37,7 +37,7 @@ private :
 	 */
 	FileTextEncoding m_encoding;
 
-	bool FlagIsSet(UINT line, DWORD flag) const;
+	bool FlagIsSet(int line, lineflags_t flag) const;
 
 public :
 	CDiffTextBuffer(CMergeDoc * pDoc, int pane);
