@@ -22,8 +22,8 @@ public:
 	int m_nFile;         /**< Target file number. */
 	int m_nGotoWhat;     /**< Goto line or difference? */
 private:
-	WMGotoDlg(const WMGotoDlg &);
-	WMGotoDlg & operator=(const WMGotoDlg &);
+	WMGotoDlg(const WMGotoDlg &) = delete;
+	WMGotoDlg & operator=(const WMGotoDlg &) = delete;
 
 	class Impl;
 	std::unique_ptr<Impl> m_pimpl;

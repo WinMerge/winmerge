@@ -40,6 +40,9 @@ public:
 		if (m_hLibrary)
 			FreeLibrary(m_hLibrary);
 	}
+	ICULoaderImpl(const ICULoaderImpl &) = delete;
+	ICULoaderImpl & operator=(const ICULoaderImpl &) = delete;
+
 	bool IsLoaded() { return m_hLibrary != nullptr && ubrk_open != nullptr; }
 private:
 	HMODULE m_hLibrary = nullptr;
