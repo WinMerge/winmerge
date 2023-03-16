@@ -582,7 +582,7 @@ void CInPlaceEdit::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if( nChar == VK_ESCAPE || nChar == VK_RETURN)
 	{
 		if( nChar == VK_ESCAPE )
-			m_bESC = TRUE;
+			m_bESC = true;
 		GetParent()->SetFocus();
 		return;
 	}
@@ -710,7 +710,7 @@ void CInPlaceComboBox::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 	if (nChar == VK_ESCAPE || nChar == VK_RETURN)
 	{
 		if (nChar == VK_ESCAPE)
-			m_bESC = TRUE;
+			m_bESC = true;
 		GetParent()->SetFocus();
 		return;
 	}
