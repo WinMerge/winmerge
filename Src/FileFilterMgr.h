@@ -43,8 +43,6 @@ public:
 	// Reload an edited filter
 	int ReloadFilterFromDisk(FileFilter * pfilter);
 	int ReloadFilterFromDisk(const String& szFullPath);
-	// Load a filter from a string
-	void LoadFilterString(const String& szFilterString);
 	int AddFilter(const String& szFilterFile);
 	void RemoveFilter(const String& szFilterFile);
 
@@ -79,7 +77,6 @@ private:
 
 
 bool TestAgainstRegList(const std::vector<FileFilterElementPtr> *filterList, const String& szTest);
-void EmptyFilterList(std::vector<FileFilterElementPtr> *filterList);
 
 /**
  * @brief Return name of filter.

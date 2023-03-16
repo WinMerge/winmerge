@@ -126,6 +126,6 @@ private:
 	void AddPath(const String &path);
 
 	/** Operator= is not implemented. */
-	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs);
+	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs) = delete;
 };
 
