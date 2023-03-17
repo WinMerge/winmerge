@@ -50,7 +50,7 @@ namespace ClipboardHistory
 		String GetClipboardText()
 		{
 			String text;
-			GetFromClipboard(text, nullptr);
+			GetFromClipboard(text);
 			return text;
 		}
 
