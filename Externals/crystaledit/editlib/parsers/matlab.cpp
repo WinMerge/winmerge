@@ -59,10 +59,10 @@ static const tchar_t * s_apszMatlabKeywordList[] =
     _T("function_handle"),
     _T("global"),
     _T("if"),
-    _T("int8"),
     _T("int16"),
     _T("int32"),
     _T("int64"),
+    _T("int8"),
     _T("logical"),
     _T("methods"),
     _T("otherwise"),
@@ -78,10 +78,10 @@ static const tchar_t * s_apszMatlabKeywordList[] =
     _T("throw"),
     _T("timetable"),
     _T("try"),
-    _T("uint8"),
     _T("uint16"),
     _T("uint32"),
     _T("uint64"),
+    _T("uint8"),
     _T("while"),
   };
 
