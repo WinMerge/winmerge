@@ -98,6 +98,7 @@ typedef enum
 	SRC_JSON,
 	SRC_LISP,
 	SRC_LUA,
+	SRC_MATLAB,
 	SRC_NSIS,
 	SRC_PASCAL,
 	SRC_PERL,
@@ -175,6 +176,7 @@ unsigned ParseLineJava(unsigned dwCookie, const tchar_t *pszChars, int nLength, 
 unsigned ParseLineJavaScript(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineLisp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineLua(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineMatlab(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineNsis(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePascal(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLinePerl(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

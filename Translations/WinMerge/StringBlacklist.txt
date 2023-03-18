@@ -33,6 +33,7 @@ JavaScript
 JSON
 Lua
 AutoLISP
+MATLAB
 NSIS
 Pascal
 Perl

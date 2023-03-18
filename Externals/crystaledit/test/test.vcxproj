@@ -357,6 +357,7 @@
     <ClCompile Include="..\editlib\parsers\javascript.cpp" />
     <ClCompile Include="..\editlib\parsers\lisp.cpp" />
     <ClCompile Include="..\editlib\parsers\lua.cpp" />
+    <ClCompile Include="..\editlib\parsers\matlab.cpp" />
     <ClCompile Include="..\editlib\parsers\nsis.cpp" />
     <ClCompile Include="..\editlib\parsers\pascal.cpp" />
     <ClCompile Include="..\editlib\parsers\perl.cpp" />
