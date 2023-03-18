@@ -20,6 +20,7 @@ Please submit bug reports to our bug-tracker.
 - BugFix: 3-way compare does not properly align identical lines when resolving
   conflicts, and show false highlights (#1696)
 - BugFix: Failure to indent lines properly (#1740)
+- Add MATLAB syntax highlighting. (PR #1766)
 
 ### Table compare
 
