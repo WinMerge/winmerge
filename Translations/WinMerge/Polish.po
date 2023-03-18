@@ -1931,7 +1931,7 @@ msgid "E&nable advanced menu"
 msgstr "Włącz menu zaawansowane"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Włącz menu \"porównaj jako\""
 
 msgid "&Register shell extension"
 msgstr "Zarejestruj rozszerzenie powłoki"
@@ -3395,7 +3395,7 @@ msgid "We&bpage"
 msgstr "Strona internetowa"
 
 msgid "W&rap Text"
-msgstr ""
+msgstr "Zawijaj tekst"
 
 msgid "Frhed is not installed."
 msgstr "Free Hex Editor nie został zainstalowany."
@@ -3606,7 +3606,7 @@ msgid "Content Extraction"
 msgstr "Wydobywanie zawartości"
 
 msgid "Preview"
-msgstr ""
+msgstr "Podgląd"
 
 msgid "Data Query"
 msgstr "Kwerenda danych"
@@ -3705,13 +3705,13 @@ msgid "Prettify YAML"
 msgstr "Upiększ kod YAML"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Podgląd Graphviz"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Podgląd Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Podgląd PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Kwerenda danych CSV..."
@@ -3773,14 +3773,14 @@ msgid "Reverse lines"
 msgstr "Odwróć wiersze"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZASTĄP\r\n  ZNAJDŹ    - tekst do znalezienia\r\n  ZASTĄP - tekst do zastąpienia\r\n  -i - ignoruj wielkość liter (tylko dla -e)\r\n  -e - traktuj określony tekst jako wyrażenie regularne"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
 msgstr ""
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie:: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
+msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "Usuń spacje"
