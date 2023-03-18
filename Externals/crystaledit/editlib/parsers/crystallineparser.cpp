@@ -34,6 +34,7 @@ TextDefinition m_SourceDefs[] =
 	SRC_JSON, _T ("JSON"), _T ("json"), &ParseLineJavaScript, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_LISP, _T ("AutoLISP"), _T ("lsp;dsl"), &ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (unsigned)-1,
 	SRC_LUA, _T ("Lua"), _T ("lua"), &ParseLineLua, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("--[["), _T ("]]"), _T ("--"), (unsigned)-1,
+	SRC_MATLAB, _T ("MATLAB"), _T ("m"), &ParseLineMatlab, SRCOPT_AUTOINDENT | SRCOPT_BRACEANSI, /*2,*/ _T ("%{"), _T ("%}"), _T ("%"), (unsigned)-1,
 	SRC_NSIS, _T ("NSIS"), _T ("nsi;nsh"), &ParseLineNsis, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T (";"), (unsigned)-1,
 	SRC_PASCAL, _T ("Pascal"), _T ("pas"), &ParseLinePascal, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (""), (unsigned)-1,
 	SRC_PERL, _T ("Perl"), _T ("pl;pm;plx"), &ParseLinePerl, SRCOPT_AUTOINDENT|SRCOPT_EOLNUNIX, /*4,*/ _T (""), _T (""), _T ("#"), (unsigned)-1,
