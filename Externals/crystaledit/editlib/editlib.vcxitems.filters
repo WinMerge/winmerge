@@ -126,6 +126,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\lua.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\matlab.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\nsis.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
