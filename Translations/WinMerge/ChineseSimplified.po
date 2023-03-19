@@ -1994,17 +1994,11 @@ msgstr "切换到二进制比较的最小值(&B) (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "可以使用的处理器核心数(&N):"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV 文件模式:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV 文件模式:"
+msgid "File Patterns:"
+msgstr "文件模式:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "自定义分隔符的数值集"
-
-msgid "File Patterns:"
-msgstr "文件模式:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

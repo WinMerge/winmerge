@@ -2453,17 +2453,11 @@ msgstr "Llindar per realitzar una comparació binària (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr "Patrons del fitxer &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Patrons del fitxer &TSV:"
+msgid "File Patterns:"
+msgstr "Patrons de fitxer:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Delimitador de valors personalitzat"
-
-msgid "File Patterns:"
-msgstr "Patrons de fitxer:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

@@ -1989,17 +1989,11 @@ msgstr "バイナリ比較切替閾値 (MB)(&B):"
 msgid "&Number of CPU cores to use:"
 msgstr "使用するCPUコアの数(&N):"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV ファイルとして扱うパターン:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV ファイルとして扱うパターン:"
+msgid "File Patterns:"
+msgstr "ファイル パターン:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "ユーザー指定文字区切り値"
-
-msgid "File Patterns:"
-msgstr "ファイル パターン:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

@@ -1978,17 +1978,11 @@ msgstr "Persijungimo į &binarinį palyginimą riba (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Naudojamas procesoriaus branduolių skaičius:"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV failų šablonai:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV failų šablonai:"
+msgid "File Patterns:"
+msgstr "Failų šablonai:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Pasirinkt. skirtukais atskirtos reikšmės"
-
-msgid "File Patterns:"
-msgstr "Failų šablonai:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

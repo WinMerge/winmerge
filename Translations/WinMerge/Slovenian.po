@@ -1986,17 +1986,11 @@ msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Š&tevilo jeder procesorja za uporabo:"
 
-msgid "&CSV File Patterns:"
-msgstr "Vzorci datotek &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Vzorci datotek &TSV:"
+msgid "File Patterns:"
+msgstr "Vzorci datotek:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Ločilo po meri-Ločene vrednosti"
-
-msgid "File Patterns:"
-msgstr "Vzorci datotek:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

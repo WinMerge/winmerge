@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-03-12 19:56+0000\n"
+"POT-Creation-Date: 2023-03-19 15:31+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1972,16 +1972,10 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr ""
-
-msgid "&TSV File Patterns:"
+msgid "File Patterns:"
 msgstr ""
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
-
-msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"

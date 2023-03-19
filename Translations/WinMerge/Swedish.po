@@ -1999,17 +1999,11 @@ msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Antal CPU-kärnor att använda:"
 
-msgid "&CSV File Patterns:"
-msgstr "CSV filnamn:"
-
-msgid "&TSV File Patterns:"
-msgstr "TSV filnamn:"
+msgid "File Patterns:"
+msgstr "Filnamnsmönster:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Användaravgränsade värden"
-
-msgid "File Patterns:"
-msgstr "Filnamnsmönster:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

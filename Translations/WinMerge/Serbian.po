@@ -2430,16 +2430,10 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr ""
-
-msgid "&TSV File Patterns:"
+msgid "File Patterns:"
 msgstr ""
 
 msgid "Custom Delimiter-Separated Values"
-msgstr ""
-
-msgid "File Patterns:"
 msgstr ""
 
 msgctxt "Options dialog|Categories"

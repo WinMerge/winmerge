@@ -1990,17 +1990,11 @@ msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 msgid "&Number of CPU cores to use:"
 msgstr "&Numeru di cori CPU à impiegà :"
 
-msgid "&CSV File Patterns:"
-msgstr "Mudelli di schedariu &CSV :"
-
-msgid "&TSV File Patterns:"
-msgstr "Mudelli di schedariu &TSV :"
+msgid "File Patterns:"
+msgstr "Mudelli di schedariu :"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Persunalizà delimitatore è &staccamentu"
-
-msgid "File Patterns:"
-msgstr "Mudelli di schedariu :"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

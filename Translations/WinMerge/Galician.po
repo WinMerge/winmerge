@@ -2457,17 +2457,11 @@ msgstr "Limiar para cambiar a com&paración binaria (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Número de núcleos de CPU a utilizar:"
 
-msgid "&CSV File Patterns:"
-msgstr "Padróns de ficheiro &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Padróns de ficheiro &TSV:"
+msgid "File Patterns:"
+msgstr "Padróns de ficheiro:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Delimitador personalizado - Valores separados"
-
-msgid "File Patterns:"
-msgstr "Padróns de ficheiro:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

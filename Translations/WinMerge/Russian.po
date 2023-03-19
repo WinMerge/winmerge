@@ -1980,17 +1980,11 @@ msgstr "Порог для перехода к двоичному сравнен�
 msgid "&Number of CPU cores to use:"
 msgstr "&Число доступных для использования ядер ЦП:"
 
-msgid "&CSV File Patterns:"
-msgstr "Шаблоны CSV-файлов:"
-
-msgid "&TSV File Patterns:"
-msgstr "Шаблоны TSV-файлов:"
+msgid "File Patterns:"
+msgstr "Шаблоны файлов:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Свои значения разделителей"
-
-msgid "File Patterns:"
-msgstr "Шаблоны файлов:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

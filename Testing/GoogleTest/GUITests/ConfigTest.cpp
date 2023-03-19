@@ -242,6 +242,7 @@ namespace
 		{ OPT_CMP_BIN_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.bin;*.frx"}},
 		// Table options
 		{ OPT_CMP_CSV_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.csv"}},
+		{ OPT_CMP_CSV_DELIM_CHAR, varprop::VT_STRING, {}, {L"", L","}},
 		{ OPT_CMP_TSV_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.tsv"}},
 		{ OPT_CMP_DSV_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.ssv"}},
 		{ OPT_CMP_DSV_DELIM_CHAR, varprop::VT_STRING, {}, {L"", L";"}},

@@ -2462,17 +2462,11 @@ msgstr "이진 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "&Number of CPU cores to use:"
 msgstr "사용할 CPU 코어 수(&N):"
 
-msgid "&CSV File Patterns:"
-msgstr "CSV 파일 패턴(&C)"
-
-msgid "&TSV File Patterns:"
-msgstr "TSV 파일 패턴(&T)"
+msgid "File Patterns:"
+msgstr "파일 패턴:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "사용자 설정 구분 기호"
-
-msgid "File Patterns:"
-msgstr "파일 패턴:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

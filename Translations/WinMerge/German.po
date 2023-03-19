@@ -2449,17 +2449,11 @@ msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Anzahl der zu verwendenden &CPU-Kerne:"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV-Dateimuster:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV-Dateimuster:"
+msgid "File Patterns:"
+msgstr "&Dateimuster:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Benutzerdefinierte, durch Trennzeichen getrennte Werte"
-
-msgid "File Patterns:"
-msgstr "&Dateimuster:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

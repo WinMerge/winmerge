@@ -255,6 +255,7 @@ inline const String OPT_CMP_BIN_FILEPATTERNS {_T("Settings/BinaryFilePatterns"s)
 
 // Table options
 inline const String OPT_CMP_CSV_FILEPATTERNS {_T("Settings/CSVFilePatterns"s)};
+inline const String OPT_CMP_CSV_DELIM_CHAR   {_T("Settings/CSVDelimiterCharacter"s)};
 inline const String OPT_CMP_TSV_FILEPATTERNS {_T("Settings/TSVFilePatterns"s)};
 inline const String OPT_CMP_DSV_FILEPATTERNS {_T("Settings/DSVFilePatterns"s)};
 inline const String OPT_CMP_DSV_DELIM_CHAR   {_T("Settings/DSVDelimiterCharacter"s)};

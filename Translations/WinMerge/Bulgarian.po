@@ -1989,17 +1989,11 @@ msgstr "Ограничение за превключване към &двоич�
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr "Шаблони за име на файл на &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Шаблони за име на файл на &TSV:"
+msgid "File Patterns:"
+msgstr "Шаблони за име на файл:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Стойности с разделител по желание"
-
-msgid "File Patterns:"
-msgstr "Шаблони за име на файл:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

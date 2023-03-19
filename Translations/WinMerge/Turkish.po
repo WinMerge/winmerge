@@ -1995,17 +1995,11 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV dosya örnekleri:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV dosya örnekleri:"
+msgid "File Patterns:"
+msgstr "Dosya örnekleri:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Özel sınırlama-ayırma karakterleri"
-
-msgid "File Patterns:"
-msgstr "Dosya örnekleri:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"

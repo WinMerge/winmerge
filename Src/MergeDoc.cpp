@@ -2979,7 +2979,7 @@ CMergeDoc::TableProps CMergeDoc::MakeTablePropertiesByFileName(const String& pat
 		filterCSV.UseMask(true);
 		filterCSV.SetMask(csvFilePattern);
 		if (filterCSV.includeFile(path))
-			return { true, ',', quote, allowNewlineIQuotes };
+			return { true, strutils::from_charstr(GetOptionsMgr()->GetString(OPT_CMP_CSV_DELIM_CHAR)), quote, allowNewlineIQuotes };
 	}
 	const String& tsvFilePattern = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
 	if (!tsvFilePattern.empty())

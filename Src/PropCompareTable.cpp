@@ -22,6 +22,7 @@
 PropCompareTable::PropCompareTable(COptionsMgr *optionsMgr) 
  : OptionsPanel(optionsMgr, PropCompareTable::IDD)
 , m_bAllowNewlinesInQuotes(true)
+, m_sCSVDelimiterChar(_T(","))
 , m_sDSVDelimiterChar(_T(";"))
 , m_sQuoteChar(_T("\""))
 {
@@ -33,6 +34,7 @@ void PropCompareTable::DoDataExchange(CDataExchange* pDX)
 	//{{AFX_DATA_MAP(PropCompareTable)
 	DDX_Control(pDX, IDC_COMPARETABLE_CSV_PATTERNS, m_comboCSVPatterns);
 	DDX_Text(pDX, IDC_COMPARETABLE_CSV_PATTERNS, m_sCSVFilePatterns);
+	DDX_Text(pDX, IDC_COMPARETABLE_CSV_DELIM_CHAR, m_sCSVDelimiterChar);
 	DDX_Control(pDX, IDC_COMPARETABLE_TSV_PATTERNS, m_comboTSVPatterns);
 	DDX_Text(pDX, IDC_COMPARETABLE_TSV_PATTERNS, m_sTSVFilePatterns);
 	DDX_Control(pDX, IDC_COMPARETABLE_DSV_PATTERNS, m_comboDSVPatterns);
@@ -64,6 +66,7 @@ END_MESSAGE_MAP()
 void PropCompareTable::ReadOptions()
 {
 	m_sCSVFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_CSV_FILEPATTERNS);
+	m_sCSVDelimiterChar = GetOptionsMgr()->GetString(OPT_CMP_CSV_DELIM_CHAR);
 	m_sTSVFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_TSV_FILEPATTERNS);
 	m_sDSVFilePatterns = GetOptionsMgr()->GetString(OPT_CMP_DSV_FILEPATTERNS);
 	m_sDSVDelimiterChar = GetOptionsMgr()->GetString(OPT_CMP_DSV_DELIM_CHAR);
@@ -80,6 +83,7 @@ void PropCompareTable::WriteOptions()
 {
 	WildcardRemoveDuplicatePatterns(m_sCSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_CSV_FILEPATTERNS, m_sCSVFilePatterns);
+	GetOptionsMgr()->SaveOption(OPT_CMP_CSV_DELIM_CHAR, m_sCSVDelimiterChar);
 	WildcardRemoveDuplicatePatterns(m_sTSVFilePatterns);
 	GetOptionsMgr()->SaveOption(OPT_CMP_TSV_FILEPATTERNS, m_sTSVFilePatterns);
 	WildcardRemoveDuplicatePatterns(m_sDSVFilePatterns);
@@ -95,6 +99,7 @@ void PropCompareTable::WriteOptions()
 void PropCompareTable::OnDefaults()
 {
 	m_sCSVFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_CSV_FILEPATTERNS);
+	m_sCSVDelimiterChar = GetOptionsMgr()->GetDefault<String>(OPT_CMP_CSV_DELIM_CHAR);
 	m_sTSVFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_TSV_FILEPATTERNS);
 	m_sDSVFilePatterns = GetOptionsMgr()->GetDefault<String>(OPT_CMP_DSV_FILEPATTERNS);
 	m_sDSVDelimiterChar = GetOptionsMgr()->GetDefault<String>(OPT_CMP_DSV_DELIM_CHAR);
