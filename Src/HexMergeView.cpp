@@ -296,6 +296,8 @@ HRESULT CHexMergeView::LoadFile(const tchar_t* path)
 				hr = SE(ReadFile(h, reinterpret_cast<BYTE *>(buffer) + pos, 
 					(length - pos) < 0x10000000 ?  static_cast<DWORD>(length - pos) : 0x10000000,
 					&cb, 0));
+				if (cb == 0)
+					break;
 				pos += cb;
 			}
 			if (hr != S_OK)
