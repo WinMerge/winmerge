@@ -20,6 +20,14 @@ Please submit bug reports to our bug-tracker.
 - BugFix: 3-way compare does not properly align identical lines when resolving
   conflicts, and show false highlights (#1696)
 - BugFix: Failure to indent lines properly (#1740)
+- BugFix: Fixed problems with non-default Diff algorithm:
+  - Even though the Ignore carriage return differences option was disabled,
+      EOL differences were ignored when the option to ignore whitespace
+      differences was enabled.
+  - Differences between CR and CR+LF were not ignored even though Ignore
+      carriage return differences option was enabled.
+- BugFix: Fixed a bug with Match whole word only options of Substitution
+    filters
 - Add MATLAB syntax highlighting. (PR #1766)
 
 ### Table compare
@@ -27,11 +35,15 @@ Please submit bug reports to our bug-tracker.
 - The "View > Wrap Lines" menu item in the Table Compare window is now
   "Wrap Text" and its check status is saved separately from the same menu item
   in the Text Compare window. (osdn #47553)
+- Added an option to change the CSV file separator from comma to semicolon or
+    another character.
 
 ### Binary compare
 
 - BugFix: Resizing WinMerge Window looses the correct scroll position for the
     memory address your cursor is at (WinMerge/frhed #13)
+- BugFix: Fixed an issue where an infinite loop occurred when the file size was
+    truncated during file loading.
 
 ### Image compare
 
