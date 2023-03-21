@@ -22,8 +22,8 @@
 /// Flags for enabling and mode of extension
 enum
 {
-	CONTEXT_F_ENABLED = 0x0a,
-	CONTEXT_F_ADVANCED = 0x0a,
+	CONTEXT_F_ENABLED = 0x01,
+	CONTEXT_F_ADVANCED = 0x02,
 	CONTEXT_F_COMPARE_AS = 0x04
 };
 
