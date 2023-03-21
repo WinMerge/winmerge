@@ -1007,7 +1007,7 @@ BEGIN
         MENUITEM "Ignore num&bers",             IDC_DIFF_IGNORENUMBERS
         MENUITEM "Ignore c&omment differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
-        MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
+        MENUITEM "&Include subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
         BEGIN
             MENUITEM "Full Contents",               ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
@@ -1288,7 +1288,7 @@ BEGIN
     LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
+    CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
     LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,10,198,120,11,NOT WS_VISIBLE
     CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,10,209,140,95
     PUSHBUTTON      "&Select...",IDC_SELECT_PREDIFFER,153,209,73,14,NOT WS_VISIBLE
@@ -1323,9 +1323,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,95,270,10
     CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,107,270,10
-    CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
+    CONTROL         "Show ""Select Files or Folders"" dialog on startup",IDC_STARTUP_FOLDER_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,270,10
-    CONTROL         "Close ""Select Files or Folders"" Dialog on clicking Compare button",IDC_CLOSE_WITH_OK,
+    CONTROL         "Close ""Select Files or Folders"" dialog on clicking Compare button",IDC_CLOSE_WITH_OK,
                     "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,270,10
     LTEXT           "Op&en-dialog Auto-Completion:",IDC_STATIC,7,141,270,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,152,270,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -2182,12 +2182,12 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,279,10
-    CONTROL         "&Include Subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
+    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,279,10
-    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
+    CONTROL         "Ignore &reparse points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
     LTEXT           "Threshold for switching to &quick compare (MB):",IDC_STATIC,6,108,279,10
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
     LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,279,10
@@ -2203,15 +2203,15 @@ CAPTION "Table"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "CSV",IDC_STATIC,6,6,270,72
-    LTEXT           "File Patterns:",IDC_STATIC,12,16,248,10
+    LTEXT           "File patterns:",IDC_STATIC,12,16,248,10
     COMBOBOX        IDC_COMPARETABLE_CSV_PATTERNS,12,28,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "D&elimiter character:",IDC_STATIC,12,46,258,10
     EDITTEXT        IDC_COMPARETABLE_CSV_DELIM_CHAR,12,58,30,14,ES_AUTOHSCROLL
     GROUPBOX        "TSV",IDC_STATIC,6,80,270,42
-    LTEXT           "File Patterns:",IDC_STATIC,12,90,258,10
+    LTEXT           "File patterns:",IDC_STATIC,12,90,258,10
     COMBOBOX        IDC_COMPARETABLE_TSV_PATTERNS,12,102,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,124,270,72
-    LTEXT           "File Patterns:",IDC_STATIC,12,136,258,10
+    LTEXT           "File patterns:",IDC_STATIC,12,136,258,10
     COMBOBOX        IDC_COMPARETABLE_DSV_PATTERNS,12,148,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "D&elimiter character:",IDC_STATIC,12,166,258,10
     EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,12,178,30,14,ES_AUTOHSCROLL
@@ -2227,7 +2227,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION NC_("Options dialog|Categories", "Binary")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,269,10
+    LTEXT           "Binary file &patterns:",IDC_STATIC,7,6,269,10
     COMBOBOX        IDC_COMPAREBINARY_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Frhed settings",IDC_STATIC,7,40,271,88
     PUSHBUTTON      "View &Settings...",IDC_COMPAREBINARY_VIEWSETTINGS,17,58,252,14
@@ -2241,7 +2241,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Image"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,269,10
+    LTEXT           "Image file &patterns:",IDC_STATIC,7,6,269,10
     COMBOBOX        IDC_COMPAREIMAGE_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,269,10

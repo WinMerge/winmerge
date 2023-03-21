@@ -1032,7 +1032,7 @@ msgstr "忽略数字(&B)"
 msgid "Ignore c&omment differences"
 msgstr "忽略注释行差异(&O)"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "包含子目录(&I)"
 
 msgid "&Compare method:"
@@ -1155,10 +1155,10 @@ msgstr "关闭多个窗口时询问我(&K)"
 msgid "&Preserve file time in file compare"
 msgstr "比较时保持文件时间不变(&P)"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "启动时显示“选择文件或文件夹”对话框"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1982,7 +1982,7 @@ msgstr "包含仅在单侧的子文件夹内容(&U)"
 msgid "&Automatically expand all subfolders"
 msgstr "自动展开所有子文件夹(&A)"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "忽略重新解析点(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1994,7 +1994,7 @@ msgstr "切换到二进制比较的最小值(&B) (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "可以使用的处理器核心数(&N):"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "文件模式:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2004,7 +2004,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "二进制"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "二进制文件扩展名 (&P):"
 
 msgid "Frhed settings"
@@ -2022,7 +2022,7 @@ msgstr "字符集(&C)..."
 msgid "Image"
 msgstr "图像"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "图像文件扩展名 (&P):"
 
 msgid "&Enable image compare in folder compare"

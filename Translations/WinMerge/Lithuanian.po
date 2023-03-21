@@ -1029,7 +1029,7 @@ msgstr "Ignoruoti skai&čius"
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti skirtumų k&omentaruose"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "&Klausti patvirtinimo, kai uždaromi keli langai"
 msgid "&Preserve file time in file compare"
 msgstr "Lyginant failus ne&pakeisti failo keitimo laiko"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Rodyti „Parinkite failus ar katalogus“ startuojant"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Užverti „Parinkite failus ar katalogus“ po „Lyginti“ paspaudimo"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1966,7 +1966,7 @@ msgstr "Įtraukti &unikalų pakatalogių turinį"
 msgid "&Automatically expand all subfolders"
 msgstr "&Automatiškai išskleisti visus pakatalogius"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1978,7 +1978,7 @@ msgstr "Persijungimo į &binarinį palyginimą riba (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Naudojamas procesoriaus branduolių skaičius:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Failų šablonai:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1988,7 +1988,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binarinių"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binarinių failų š&ablonai:"
 
 msgid "Frhed settings"
@@ -2006,7 +2006,7 @@ msgstr "&Simbolių rinkinys..."
 msgid "Image"
 msgstr "Paveikslėlių"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Paveikslėlių failų šablonai:"
 
 msgid "&Enable image compare in folder compare"

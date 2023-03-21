@@ -1259,7 +1259,7 @@ msgid "Ignore c&omment differences"
 msgstr "주석 차이 무시(&O)"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "하위 폴더 포함(&I)"
 
 #, c-format
@@ -1418,10 +1418,10 @@ msgid "&Preserve file time in file compare"
 msgstr "파일 비교시 파일 시간 보존(&P)"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "시작시 \"파일 또는 폴더 선택\" 대화 상자 보이기"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "비교 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
 
 #, c-format
@@ -2450,7 +2450,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "전체 하위 폴더 자동 확장(&A)"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "재분석 지점 무시(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2462,7 +2462,7 @@ msgstr "이진 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "&Number of CPU cores to use:"
 msgstr "사용할 CPU 코어 수(&N):"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "파일 패턴:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2473,7 +2473,7 @@ msgid "Binary"
 msgstr "바이너리"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "바이너리 파일 패턴(&P):"
 
 #, c-format
@@ -2496,7 +2496,7 @@ msgid "Image"
 msgstr "이미지"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "이미지 파일 패턴(&P):"
 
 msgid "&Enable image compare in folder compare"

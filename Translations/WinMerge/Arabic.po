@@ -1032,7 +1032,7 @@ msgstr ""
 msgid "Ignore c&omment differences"
 msgstr ""
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "تضمين المجلدات الفرعية"
 
 msgid "&Compare method:"
@@ -1155,10 +1155,10 @@ msgstr "ال&سؤال قبل إغلاق نوافذ متعددة"
 msgid "&Preserve file time in file compare"
 msgstr "الحفاظ على وقت الملف في مقارنة الملفات"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "عرض نافذة \"اختيار الملفات أو المجلدات\" عند بدء التشغيل"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1975,7 +1975,7 @@ msgstr "إ&دراج محتويات المجلدات الفرعية الفريد�
 msgid "&Automatically expand all subfolders"
 msgstr "&فتح المجلدات الفرعية تلقائيا"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "تجا&هل إعادة توزيع النقاط"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1987,7 +1987,7 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr ""
 
 msgid "Custom Delimiter-Separated Values"
@@ -1997,7 +1997,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "ثنائي"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "أنماط الملف الثنائي:"
 
 msgid "Frhed settings"
@@ -2015,7 +2015,7 @@ msgstr "&مجموعة الرموز..."
 msgid "Image"
 msgstr "صورة"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "أ&نماط ملف الصور:"
 
 msgid "&Enable image compare in folder compare"

@@ -1031,7 +1031,7 @@ msgstr "Ignurà i &numeri"
 msgid "Ignore c&omment differences"
 msgstr "Ignurà e sfarenze di c&ummentu"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Include i sottucartulari"
 
 msgid "&Compare method:"
@@ -1154,10 +1154,10 @@ msgstr "Cun&firmà a chjusura di parechje finestre"
 msgid "&Preserve file time in file compare"
 msgstr "Cunservà &data è ora durante u paragone di schedariu"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Affissà a finestra « Selezziunà schedarii o cartulari » à l’avviu"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Chjode a finestra « Selezziunà schedarii o cartulari » cù u buttone « Paragunà »"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1978,7 +1978,7 @@ msgstr "Include u cuntenutu &unicu di i sottucartulari"
 msgid "&Automatically expand all subfolders"
 msgstr "&Allargà autumaticamente tutti i sottucartulari"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignurà i punti di &ri-analisa"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1990,7 +1990,7 @@ msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 msgid "&Number of CPU cores to use:"
 msgstr "&Numeru di cori CPU à impiegà :"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2000,7 +2000,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binariu"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Mudelli di schedariu &binarii :"
 
 msgid "Frhed settings"
@@ -2018,7 +2018,7 @@ msgstr "Inseme di &caratteri…"
 msgid "Image"
 msgstr "Fiura"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Mudelli di schedariu di &fiura :"
 
 msgid "&Enable image compare in folder compare"

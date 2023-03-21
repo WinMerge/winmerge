@@ -1029,7 +1029,7 @@ msgstr "Ignorovať čí&sla"
 msgid "Ignore c&omment differences"
 msgstr "Ignorovať rozdielne &komentáre"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Zahrnúť podpriečinky"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "&Pýtať sa pred zatvorením viacerých okien"
 msgid "&Preserve file time in file compare"
 msgstr "&Zachovávať čas súboru pri porovnaní"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Zobraziť pri spustení dialóg „Vybrať súbory alebo priečinky“"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Kliknutím na tlačidlo Porovnať zatvoriť dialógové okno „Vybrať súbory alebo priečinky“"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1974,7 +1974,7 @@ msgstr "&Zahrnúť jedinečný obsah podpriečinkov"
 msgid "&Automatically expand all subfolders"
 msgstr "&Automaticky rozbaliť všetky podpriečinky"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignorovať &opravné body"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1986,7 +1986,7 @@ msgstr "Prahová hodnota pre prepnutie na &binárne porovnanie (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Vzory súborov:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1996,7 +1996,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binárny"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Vzory &binárnych súborov:"
 
 msgid "Frhed settings"
@@ -2014,7 +2014,7 @@ msgstr "&Znaková sústava..."
 msgid "Image"
 msgstr "Obrázok"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Vzory súborov &obrázkov:"
 
 msgid "&Enable image compare in folder compare"

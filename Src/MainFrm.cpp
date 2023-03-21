@@ -1791,7 +1791,7 @@ void CMainFrame::OnDropFiles(const std::vector<String>& dropped_files)
 	const size_t fileCount = tFiles.GetSize();
 
 	bool recurse = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-	// Do a reverse comparison with the current 'Include Subfolders' settings when pressing Control key
+	// Do a reverse comparison with the current 'Include subfolders' settings when pressing Control key
 	if (::GetAsyncKeyState(VK_CONTROL) & 0x8000)
 		recurse = !recurse;
 

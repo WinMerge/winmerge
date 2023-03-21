@@ -1254,7 +1254,7 @@ msgid "Ignore c&omment differences"
 msgstr "&Kommentarunterschiede ignorieren"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Unterordner einbeziehen"
 
 #, c-format
@@ -1413,10 +1413,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Datei&zeit beim Dateivergleich bewahren"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "&Dialog \"Dateien oder Ordner auswählen\" beim Programmstart anzeigen"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Dialog \"Dateien oder Ordner auswählen\" mit 'Vergleichen' schließen"
 
 #, c-format
@@ -2437,7 +2437,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "&Automatisch alle Unterordner aufklappen"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Anal&ysepunkte ignorieren"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2449,7 +2449,7 @@ msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Anzahl der zu verwendenden &CPU-Kerne:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "&Dateimuster:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2460,7 +2460,7 @@ msgid "Binary"
 msgstr "Binär"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binärdatei&muster:"
 
 #, c-format
@@ -2483,7 +2483,7 @@ msgid "Image"
 msgstr "Bild"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Bilddateimuster:"
 
 msgid "&Enable image compare in folder compare"

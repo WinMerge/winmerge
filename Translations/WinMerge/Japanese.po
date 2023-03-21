@@ -1028,7 +1028,7 @@ msgstr "数字を無視する(&B)"
 msgid "Ignore c&omment differences"
 msgstr "コメントの違いを無視する(&O)"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "サブフォルダーを含める(&I)"
 
 msgid "&Compare method:"
@@ -1151,10 +1151,10 @@ msgstr "複数のウィンドウを閉じるときに尋ねる(&K)"
 msgid "&Preserve file time in file compare"
 msgstr "ファイル比較時のファイル時刻を保つ(&P)"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "起動時に [ファイルまたはフォルダーの選択] ダイアログを表示する"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "[比較] 押下時に [ファイルまたはフォルダーの選択] ダイアログを閉じる"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1977,7 +1977,7 @@ msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
 msgid "&Automatically expand all subfolders"
 msgstr "自動的にサブフォルダーを展開する(&A)"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "再解析ポイントを無視する(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1989,7 +1989,7 @@ msgstr "バイナリ比較切替閾値 (MB)(&B):"
 msgid "&Number of CPU cores to use:"
 msgstr "使用するCPUコアの数(&N):"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "ファイル パターン:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1999,7 +1999,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "バイナリ"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "バイナリ ファイルとして扱うパターン(&P):"
 
 msgid "Frhed settings"
@@ -2017,7 +2017,7 @@ msgstr "文字セット(&C)..."
 msgid "Image"
 msgstr "画像"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "画像ファイルとして扱うパターン(&P):"
 
 msgid "&Enable image compare in folder compare"

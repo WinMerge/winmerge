@@ -1031,7 +1031,7 @@ msgstr "Игнорировать числа"
 msgid "Ignore c&omment differences"
 msgstr "Игнорировать отличия в комментариях"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Включая подпапки"
 
 msgid "&Compare method:"
@@ -1154,10 +1154,10 @@ msgstr "Подтверждать закрытие окон"
 msgid "&Preserve file time in file compare"
 msgstr "Сохранять время файла при сравнении"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Закрывать диалог \"Выбрать файлы или папки\" по ОК"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1968,7 +1968,7 @@ msgstr "Включая уникальное содержимое подпапо�
 msgid "&Automatically expand all subfolders"
 msgstr "Автоматически развернуть все подпапки"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Игнорировать точки повторной обработки"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1980,7 +1980,7 @@ msgstr "Порог для перехода к двоичному сравнен�
 msgid "&Number of CPU cores to use:"
 msgstr "&Число доступных для использования ядер ЦП:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Шаблоны файлов:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1990,7 +1990,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Двоичный"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Шаблоны двоичных файлов:"
 
 msgid "Frhed settings"
@@ -2008,7 +2008,7 @@ msgstr "Набор символов..."
 msgid "Image"
 msgstr "Изображение"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Шаблоны изображений:"
 
 msgid "&Enable image compare in folder compare"

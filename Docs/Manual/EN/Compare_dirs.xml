@@ -223,7 +223,7 @@ I get the partial list, but no Abort indicator.--></para>
     </variablelist>
 
     <para>During a recursive compare (that is, if you enabled the
-    <option>Include Subfolders</option> option in the Select Files or Folders
+    <option>Include subfolders</option> option in the Select Files or Folders
     dialog when you launched the compare), you can click <menuchoice>
         <guimenu>View</guimenu>
 

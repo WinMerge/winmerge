@@ -1029,7 +1029,7 @@ msgstr "Prezri š&tevilke"
 msgid "Ignore c&omment differences"
 msgstr "Prezri razlike v k&omentarjih"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Vključi podmape"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "&Vprašaj pred zapiranjem več oken"
 msgid "&Preserve file time in file compare"
 msgstr "O&hrani čas datoteke v primerjavi datoteke"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Ob zagonu prikaži okno 'Izberi datoteke ali mape'"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1974,7 +1974,7 @@ msgstr "&Vključi unikatne vsebine podmap"
 msgid "&Automatically expand all subfolders"
 msgstr "S&amodejno razširi vse podmape"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "P&rezri točke ponovne razčlenitve"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1986,7 +1986,7 @@ msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Š&tevilo jeder procesorja za uporabo:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Vzorci datotek:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1996,7 +1996,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Dvojiško"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Vzorci &dvojiških datotek:"
 
 msgid "Frhed settings"
@@ -2014,7 +2014,7 @@ msgstr "Nabor z&nakov..."
 msgid "Image"
 msgstr "Slika"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "V&zorci slikovnih datotek:"
 
 msgid "&Enable image compare in folder compare"

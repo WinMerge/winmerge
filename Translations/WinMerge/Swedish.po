@@ -1033,7 +1033,7 @@ msgstr "Ignorera nummer"
 msgid "Ignore c&omment differences"
 msgstr "Ignorera kommentarskillnader"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Inkludera undermappar"
 
 msgid "&Compare method:"
@@ -1156,10 +1156,10 @@ msgstr "Fråga när flera fönster stängs"
 msgid "&Preserve file time in file compare"
 msgstr "Bevara ändringsdatum i filjämförelse"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 "Stäng dialogrutan \"Välj filer eller kataloger\" när ''OK''-knappen klickas"
 
@@ -1987,7 +1987,7 @@ msgstr "Inkludera unikt innehåll i underkataloger"
 msgid "&Automatically expand all subfolders"
 msgstr "Öppna automatiskt alla undermappar"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignorera återtolkningsmarkörer"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1999,7 +1999,7 @@ msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Antal CPU-kärnor att använda:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Filnamnsmönster:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2009,7 +2009,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binär"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binärt filnamnsmönster:"
 
 msgid "Frhed settings"
@@ -2027,7 +2027,7 @@ msgstr "Teckenuppsättning..."
 msgid "Image"
 msgstr "Bild"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Filnamnsmönster för bilder:"
 
 msgid "&Enable image compare in folder compare"

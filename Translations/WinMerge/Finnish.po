@@ -1029,7 +1029,7 @@ msgstr "Jätä nume&rot huomiotta"
 msgid "Ignore c&omment differences"
 msgstr "Jätä k&ommenttien erot huomiotta"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Sisällytä alihakemistot"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "Kysy monikerta-ikkunoita suljettaessa"
 msgid "&Preserve file time in file compare"
 msgstr "Säilytä tiedostoaika tiedostovertailussa"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1981,7 +1981,7 @@ msgstr ""
 msgid "&Automatically expand all subfolders"
 msgstr "L&aajenna kaikki alikansiot automaattisesti"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ohita &uudelleenjäsennyskohdat"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1993,7 +1993,7 @@ msgstr "Kynnysarvo, jossa siirrytään &binaariseen vertailuun (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Tiedostomallit:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2003,7 +2003,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binääri"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binaaritiedosto&malli:"
 
 msgid "Frhed settings"
@@ -2021,7 +2021,7 @@ msgstr "&Merkistö..."
 msgid "Image"
 msgstr "Kuva"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Kuvatiedosto&mallit:"
 
 msgid "&Enable image compare in folder compare"

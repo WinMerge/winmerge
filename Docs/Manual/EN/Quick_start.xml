@@ -183,7 +183,7 @@
         <para>See <xref linkend="Filters" /> for full details about file masks
         and filter files.</para>
 
-        <para>The <guilabel>Include Subfolders</guilabel> check box provides
+        <para>The <guilabel>Include subfolders</guilabel> check box provides
         another way to control the scope of folder comparisons. If you check
         this option, WinMerge recursively compares subfolders, and shows all the
         files and folders it finds in one view. If you disable the option, only

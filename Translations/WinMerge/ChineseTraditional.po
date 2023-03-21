@@ -1257,7 +1257,7 @@ msgid "Ignore c&omment differences"
 msgstr "忽略註解差異 (&O)"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "包括子資料夾 (&I)"
 
 #, c-format
@@ -1418,10 +1418,10 @@ msgid "&Preserve file time in file compare"
 msgstr "比較檔案時保留檔案時間 (&P)"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -2451,7 +2451,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "自動擴展到所有子資料夾 (&A)"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "忽略重新分析點 (&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2463,7 +2463,7 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "檔案模式："
 
 msgid "Custom Delimiter-Separated Values"
@@ -2474,7 +2474,7 @@ msgid "Binary"
 msgstr "二進制"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "二進制檔案副檔名 (&P)"
 
 #, c-format
@@ -2497,7 +2497,7 @@ msgid "Image"
 msgstr "圖片"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "圖片檔案副檔名 (&P)"
 
 msgid "&Enable image compare in folder compare"

@@ -1029,7 +1029,7 @@ msgstr "Nummers negeren"
 msgid "Ignore c&omment differences"
 msgstr "Opmerkingsverschillen negeren"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Submappen bijvoegen"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "Vragen bij sluiten van meerdere vensters"
 msgid "&Preserve file time in file compare"
 msgstr "Bestandstijd behouden bij bestandsvergelijking"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"Bestanden of mappen selecteren\" weergeven bij opstarten"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "\"Bestanden of mappen selecteren\" sluiten bij klikken op vergelijken"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1974,7 +1974,7 @@ msgstr "Inhoud van unieke submappen bijvoegen"
 msgid "&Automatically expand all subfolders"
 msgstr "Alle submappen automatisch uitklappen"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Punten voor opnieuw verwerken negeren"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1986,7 +1986,7 @@ msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Aantal CPU-kernen te gebruiken:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Bestandspatronen:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1996,7 +1996,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binair"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binaire bestandspatronen:"
 
 msgid "Frhed settings"
@@ -2014,7 +2014,7 @@ msgstr "Tekenset..."
 msgid "Image"
 msgstr "Afbeelding"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Afbeeldingsbestand-patronen:"
 
 msgid "&Enable image compare in folder compare"

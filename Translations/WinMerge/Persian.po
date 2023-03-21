@@ -1251,7 +1251,7 @@ msgid "Ignore c&omment differences"
 msgstr ""
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&I شامل زيرپوشه ها "
 
 #, c-format
@@ -1410,12 +1410,12 @@ msgid "&Preserve file time in file compare"
 msgstr "&P  در مقايسه پرونده ها زمان پرونده را حفظ کن "
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr ""
 " پنجره محاوره \"انتخاب پرونده ها يا پوشه ها\" به هنگام شروع کار نرم افزار "
 "نمايش داده شود "
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -2442,7 +2442,7 @@ msgid "&Automatically expand all subfolders"
 msgstr ""
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr ""
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2454,7 +2454,7 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr ""
 
 msgid "Custom Delimiter-Separated Values"
@@ -2465,7 +2465,7 @@ msgid "Binary"
 msgstr " دودويي "
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr ""
 
 #, c-format
@@ -2488,7 +2488,7 @@ msgid "Image"
 msgstr ""
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr ""
 
 msgid "&Enable image compare in folder compare"

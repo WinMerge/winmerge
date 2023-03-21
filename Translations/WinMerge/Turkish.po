@@ -1029,7 +1029,7 @@ msgstr "&Sayıları yok say"
 msgid "Ignore c&omment differences"
 msgstr "Yo&rum farklılıkları yok sayılsın"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "A&lt klasörler katılsın"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "&Birden fazla pencere kapatılıyorsa onay istensin"
 msgid "&Preserve file time in file compare"
 msgstr "Karşılaştırmada &dosya zamanı korunsun"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"Dosya ya da klasör seçin\" &penceresi açılışta görüntülensin"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 "\"Dosya ya da klasör seçin\" penceresi Karşılaştır düğmesi ile kapatılsın"
 
@@ -1983,7 +1983,7 @@ msgstr "Eşsiz a&lt klasör içerikleri katılsın"
 msgid "&Automatically expand all subfolders"
 msgstr "Tüm alt klasörler genişletilsin"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Yeniden işleme noktala&rı yok sayılsın"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1995,7 +1995,7 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Dosya örnekleri:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2005,7 +2005,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binary"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binary dosya &uzantıları:"
 
 msgid "Frhed settings"
@@ -2023,7 +2023,7 @@ msgstr "&Karakter kümesi..."
 msgid "Image"
 msgstr "Görsel"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Görsel dosya &uzantıları:"
 
 msgid "&Enable image compare in folder compare"

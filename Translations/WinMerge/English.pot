@@ -1023,7 +1023,7 @@ msgstr ""
 msgid "Ignore c&omment differences"
 msgstr ""
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr ""
 
 msgid "&Compare method:"
@@ -1146,10 +1146,10 @@ msgstr ""
 msgid "&Preserve file time in file compare"
 msgstr ""
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr ""
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1960,7 +1960,7 @@ msgstr ""
 msgid "&Automatically expand all subfolders"
 msgstr ""
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr ""
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1972,7 +1972,7 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr ""
 
 msgid "Custom Delimiter-Separated Values"
@@ -1982,7 +1982,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr ""
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr ""
 
 msgid "Frhed settings"
@@ -2000,7 +2000,7 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr ""
 
 msgid "&Enable image compare in folder compare"

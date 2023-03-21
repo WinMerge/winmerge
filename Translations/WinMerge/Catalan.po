@@ -1250,7 +1250,7 @@ msgid "Ignore c&omment differences"
 msgstr "Ingora les diferències en els comentaris"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Inclou-hi les subcarpetes"
 
 #, c-format
@@ -1409,10 +1409,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Preserva la data en les comparacions de fitxers"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Mostra el diàlec \"Selecciona fitxers o directoris\" a l'iniciar"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Tanca el diàlec \"Selecciona fitxers o directoris\" al fer clic en comparar"
 
 #, c-format
@@ -2441,7 +2441,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "Obre automàticament l'abre de les subcarpetes"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignora els punts de &reparseig"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2453,7 +2453,7 @@ msgstr "Llindar per realitzar una comparació binària (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Patrons de fitxer:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2464,7 +2464,7 @@ msgid "Binary"
 msgstr "Binari"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Patrons de fitxer binari:"
 
 #, c-format
@@ -2487,7 +2487,7 @@ msgid "Image"
 msgstr "Imatge"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Patrons de fitxer d'imatge:"
 
 msgid "&Enable image compare in folder compare"

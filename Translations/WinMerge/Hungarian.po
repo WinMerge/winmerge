@@ -1252,7 +1252,7 @@ msgid "Ignore c&omment differences"
 msgstr "Megjegyzés különbségek mellőzése"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Alkönyvtárakkal együtt"
 
 #, c-format
@@ -1411,10 +1411,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Fájl idők megőrzése összehasonlításkor"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehasonlít gombbal"
 
 #, c-format
@@ -2443,7 +2443,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "Minden alkönyvtár automatikus kibontása"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Elemzési pontok mellőzése"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2455,7 +2455,7 @@ msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Használandó CPU magok száma:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Fájlfajták:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -2466,7 +2466,7 @@ msgid "Binary"
 msgstr "Bináris"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Bináris fájltípusok:"
 
 #, c-format
@@ -2489,7 +2489,7 @@ msgid "Image"
 msgstr "Kép"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Képfájl típusok:"
 
 msgid "&Enable image compare in folder compare"
