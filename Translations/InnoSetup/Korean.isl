@@ -1,84 +1,84 @@
 [CustomMessages]
 
-;ÇöÁöÈ­ÇÒ ¼ö ÀÖ´Â ±â´É
-OptionalFeatures=¼±ÅÃÀû ±â´É:
-CompanyName=Thingamahoochie ¼ÒÇÁÆ®¿ş¾î
+;í˜„ì§€í™”í•  ìˆ˜ ìˆëŠ” ê¸°ëŠ¥
+OptionalFeatures=ì„ íƒì  ê¸°ëŠ¥:
+CompanyName=Thingamahoochie ì†Œí”„íŠ¸ì›¨ì–´
 
-;À¯Çü
-TypicalInstallation=ÀÏ¹İ ¼³Ä¡
-FullInstallation=ÀüÃ¼ ¼³Ä¡
-CompactInstallation=ÃÖ¼Ò ¼³Ä¡
-CustomInstallation=»ç¿ëÀÚ ÁöÁ¤ ¼³Ä¡
+;ìœ í˜•
+TypicalInstallation=ì¼ë°˜ ì„¤ì¹˜
+FullInstallation=ì „ì²´ ì„¤ì¹˜
+CompactInstallation=ìµœì†Œ ì„¤ì¹˜
+CustomInstallation=ì‚¬ìš©ì ì§€ì • ì„¤ì¹˜
 
-;±¸¼º ¿ä¼Ò
-AppCoreFiles=WinMerge ÄÚ¾î ÆÄÀÏ
-Filters=ÇÊÅÍ
-Plugins=ÇÃ·¯±×ÀÎ
-ShellExtension32bit=32ºñÆ® WinMerge ½©È®Àå
+;êµ¬ì„± ìš”ì†Œ
+AppCoreFiles=WinMerge ì½”ì–´ íŒŒì¼
+Filters=í•„í„°
+Plugins=í”ŒëŸ¬ê·¸ì¸
+ShellExtension32bit=32ë¹„íŠ¸ WinMerge ì‰˜ í™•ì¥
 
-;ÇöÁöÈ­ ±¸¼º ¿ä¼Ò
-Languages=¾ğ¾î
-ArabicLanguage=¾Æ¶ø¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-BasqueLanguage=¹Ù½ºÅ© ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-BulgarianLanguage=ºÒ°¡¸®¾Æ¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-CatalanLanguage=Ä«Å»·ç³Ä¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-ChineseSimplifiedLanguage=Áß±¹¾î (°£Ã¼) ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-ChineseTraditionalLanguage=Áß±¹¾î (¹øÃ¼) ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-CorsicanLanguage=ÄÚ¸£½ÃÄ« ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-CroatianLanguage=Å©·Î¾ÆÆ¼¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-CzechLanguage=Ã¼ÄÚ¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-DanishLanguage=µ§¸¶Å©¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-DutchLanguage=³×´ú¶õµå¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-FinnishLanguage=ÇÉ¶õµå¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-FrenchLanguage=ÇÁ¶û½º¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-GalicianLanguage=°¥¸®½Ã¾Æ ¸Ş´º ¹× ´ëÈ­»óÀÚ
-GermanLanguage=µ¶ÀÏ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-GreekLanguage=±×¸®½º¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-HungarianLanguage=Çë°¡¸®¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-ItalianLanguage=ÀÌÅ»¸®¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-JapaneseLanguage=ÀÏº»¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-KoreanLanguage=ÇÑ±¹¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-LithuanianLanguage=¸®Åõ¾Æ´Ï¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-NorwegianLanguage=³ë¸£¿şÀÌ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-PersianLanguage=Æä¸£½Ã¾Æ¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-PolishLanguage=Æú¶õµå¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ ÆíÁı
-PortugueseBrazilLanguage=Æ÷¸£Åõ°¥¾î (ºê¶óÁú) ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-PortugueseLanguage=Æ÷¸£Åõ°¥¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-RomanianLanguage=·ç¸¶´Ï¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-RussianLanguage=·¯½Ã¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-SerbianLanguage=¼¼¸£ºñ¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-SinhalaLanguage=½ÌÇÒ¶ó¾î  ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-SlovakLanguage=½½·Î¹ÙÅ°¾Æ¾î ¸Ş´º ¹× ´ëÈ­»óÀÚ
-SlovenianLanguage=½½·Îº£´Ï¾Æ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-SpanishLanguage=½ºÆäÀÎ¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-SwedishLanguage=½º¿şµ§¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-TurkishLanguage=ÅÍÅ°¾î ¸Ş´º ¹× ´ëÈ­ »óÀÚ
-UkrainianLanguage=¿ìÅ©¶óÀÌ³ª ¸Ş´º ¹× ´ëÈ­ »óÀÚ
+;í˜„ì§€í™” êµ¬ì„± ìš”ì†Œ
+Languages=ì–¸ì–´
+ArabicLanguage=ì•„ëì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+BasqueLanguage=ë°”ìŠ¤í¬ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+BulgarianLanguage=ë¶ˆê°€ë¦¬ì•„ì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+CatalanLanguage=ì¹´íƒˆë£¨ëƒì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+ChineseSimplifiedLanguage=ì¤‘êµ­ì–´ (ê°„ì²´) ë©”ë‰´ ë° ëŒ€í™” ìƒì
+ChineseTraditionalLanguage=ì¤‘êµ­ì–´ (ë²ˆì²´) ë©”ë‰´ ë° ëŒ€í™” ìƒì
+CorsicanLanguage=ì½”ë¥´ì‹œì¹´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+CroatianLanguage=í¬ë¡œì•„í‹°ì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+CzechLanguage=ì²´ì½”ì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+DanishLanguage=ë´ë§ˆí¬ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+DutchLanguage=ë„¤ëœë€ë“œì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+FinnishLanguage=í•€ë€ë“œì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+FrenchLanguage=í”„ë‘ìŠ¤ì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+GalicianLanguage=ê°ˆë¦¬ì‹œì•„ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+GermanLanguage=ë…ì¼ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+GreekLanguage=ê·¸ë¦¬ìŠ¤ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+HungarianLanguage=í—ê°€ë¦¬ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+ItalianLanguage=ì´íƒˆë¦¬ì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+JapaneseLanguage=ì¼ë³¸ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+KoreanLanguage=í•œêµ­ì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+LithuanianLanguage=ë¦¬íˆ¬ì•„ë‹ˆì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+NorwegianLanguage=ë…¸ë¥´ì›¨ì´ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+PersianLanguage=í˜ë¥´ì‹œì•„ì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+PolishLanguage=í´ë€ë“œì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì í¸ì§‘
+PortugueseBrazilLanguage=í¬ë¥´íˆ¬ê°ˆì–´ (ë¸Œë¼ì§ˆ) ë©”ë‰´ ë° ëŒ€í™” ìƒì
+PortugueseLanguage=í¬ë¥´íˆ¬ê°ˆì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+RomanianLanguage=ë£¨ë§ˆë‹ˆì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+RussianLanguage=ëŸ¬ì‹œì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+SerbianLanguage=ì„¸ë¥´ë¹„ì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+SinhalaLanguage=ì‹±í• ë¼ì–´  ë©”ë‰´ ë° ëŒ€í™” ìƒì
+SlovakLanguage=ìŠ¬ë¡œë°”í‚¤ì•„ì–´ ë©”ë‰´ ë° ëŒ€í™”ìƒì
+SlovenianLanguage=ìŠ¬ë¡œë² ë‹ˆì•„ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+SpanishLanguage=ìŠ¤í˜ì¸ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+SwedishLanguage=ìŠ¤ì›¨ë´ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+TurkishLanguage=í„°í‚¤ì–´ ë©”ë‰´ ë° ëŒ€í™” ìƒì
+UkrainianLanguage=ìš°í¬ë¼ì´ë‚˜ ë©”ë‰´ ë° ëŒ€í™” ìƒì
 
-;ÀÛ¾÷
-ExplorerContextMenu=Å½»ö±â »óÈ²¿¡ ¸Â´Â ¸Ş´º ÅëÇÕ »ç¿ë(&E)
-IntegrateTortoiseCVS=TortoiseCVS¿Í ÅëÇÕ(&T)
-IntegrateTortoiseGit=TortoiseGit¿Í ÅëÇÕ(&R)
-IntegrateTortoiseSVN=TortoiseSVN¿Í ÅëÇÕ(&O)
-AddToPath=½Ã½ºÅÛ °æ·Î¿¡ WinMerge Æú´õ Ãß°¡(&A)
+;ì‘ì—…
+ExplorerContextMenu=íƒìƒ‰ê¸° ìƒí™©ì— ë§ëŠ” ë©”ë‰´ í†µí•© ì‚¬ìš©(&E)
+IntegrateTortoiseCVS=TortoiseCVSì™€ í†µí•©(&T)
+IntegrateTortoiseGit=TortoiseGitì™€ í†µí•©(&R)
+IntegrateTortoiseSVN=TortoiseSVNì™€ í†µí•©(&O)
+AddToPath=ì‹œìŠ¤í…œ ê²½ë¡œì— WinMerge í´ë” ì¶”ê°€(&A)
 
-; 3 ¹æÇâ º´ÇÕ ¸¶¹ı»ç ÆäÀÌÁö
-ThreeWayMergeWizardPageCaption=3 ¹æÇâ º´ÇÕ
-ThreeWayMergeWizardPageDescription=Winmerge¸¦ TortoisesVN/GitÀÇ 3 ¹æÇâ º´ÇÕ µµ±¸·Î »ç¿ëÇÏ½Ê´Ï±î?
-RegisterWinMergeAs3WayMergeTool=WinMerge¸¦ 3 ¹æÇâ º´ÇÕ µµ±¸·Î µî·Ï
-MergeAtRightPane=¿À¸¥ÂÊ Ã¢¿¡¼­ º´ÇÕ
-MergeAtCenterPane=°¡¿îµ¥ Ã¢¿¡¼­ º´ÇÕ
-MergeAtLeftPane=¿ŞÂÊ Ã¢¿¡¼­ º´ÇÕ
-AutoMergeAtStartup=½ÃÀÛ ½Ã ÀÚµ¿ º´ÇÕ
+; 3 ë°©í–¥ ë³‘í•© ë§ˆë²•ì‚¬ í˜ì´ì§€
+ThreeWayMergeWizardPageCaption=3 ë°©í–¥ ë³‘í•©
+ThreeWayMergeWizardPageDescription=Winmergeë¥¼ TortoisesVN/Gitì˜ 3 ë°©í–¥ ë³‘í•© ë„êµ¬ë¡œ ì‚¬ìš©í•˜ì‹­ë‹ˆê¹Œ?
+RegisterWinMergeAs3WayMergeTool=WinMergeë¥¼ 3 ë°©í–¥ ë³‘í•© ë„êµ¬ë¡œ ë“±ë¡
+MergeAtRightPane=ì˜¤ë¥¸ìª½ ì°½ì—ì„œ ë³‘í•©
+MergeAtCenterPane=ê°€ìš´ë° ì°½ì—ì„œ ë³‘í•©
+MergeAtLeftPane=ì™¼ìª½ ì°½ì—ì„œ ë³‘í•©
+AutoMergeAtStartup=ì‹œì‘ ì‹œ ìë™ ë³‘í•©
 
-;¾ÆÀÌÄÜ ·¹ÀÌºí
-ReadMe=ÀĞ¾î º¸±â
-UsersGuide=»ç¿ë ¼³¸í¼­
-ViewStartMenuFolder=WinMerge ½ÃÀÛ ¸Ş´º Æú´õ º¸±â(&V)
+;ì•„ì´ì½˜ ë ˆì´ë¸”
+ReadMe=ì½ì–´ ë³´ê¸°
+UsersGuide=ì‚¬ìš© ì„¤ëª…ì„œ
+ViewStartMenuFolder=WinMerge ì‹œì‘ ë©”ë‰´ í´ë” ë³´ê¸°(&V)
 
-;ÄÚµå ´ëÈ­ »óÀÚ
-DeletePreviousStartMenu=½ÃÀÛ ¸Ş´ºÀÇ À§Ä¡°¡ "%s"¿¡¼­ "%s"·Î º¯°æµÇ¾úÀ½À» ¼³Ä¡ °ü¸®ÀÚ°¡ °¨ÁöÇß½À´Ï´Ù. ÀÌÀü ½ÃÀÛ ¸Ş´º Æú´õ¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+;ì½”ë“œ ëŒ€í™” ìƒì
+DeletePreviousStartMenu=ì‹œì‘ ë©”ë‰´ì˜ ìœ„ì¹˜ê°€ "%s"ì—ì„œ "%s"ë¡œ ë³€ê²½ë˜ì—ˆìŒì„ ì„¤ì¹˜ ê´€ë¦¬ìê°€ ê°ì§€í–ˆìŠµë‹ˆë‹¤. ì´ì „ ì‹œì‘ ë©”ë‰´ í´ë”ë¥¼ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?
+ExplorerNeedsRestart=WinMerge ì‰˜ í™•ì¥ì„ ì—…ë°ì´íŠ¸í•˜ë ¤ë©´ íƒìƒ‰ê¸°ë¥¼ ë‹¤ì‹œ ì‹œì‘í•´ì•¼ í•©ë‹ˆë‹¤. íƒìƒ‰ê¸°ë¥¼ ë‹¤ì‹œ ì‹œì‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ?
 
-; ÇÁ·ÎÁ§Æ® ÆÄÀÏ ¼³¸í
-ProjectFileDesc=WinMerge ÇÁ·ÎÁ§Æ® ÆÄÀÏ
+; í”„ë¡œì íŠ¸ íŒŒì¼ ì„¤ëª…
+ProjectFileDesc=WinMerge í”„ë¡œì íŠ¸ íŒŒì¼
