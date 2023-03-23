@@ -28,6 +28,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\ctextmarkerdlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\gotodlg.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)dialogs\memcombo.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)FindTextHelper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)LineInfo.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -260,6 +261,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)editcmd.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)editreg.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)edtlib.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)FindTextHelper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LineInfo.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)renderers\ccrystalrenderer.h" />

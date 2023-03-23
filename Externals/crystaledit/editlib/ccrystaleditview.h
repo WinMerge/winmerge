@@ -61,7 +61,7 @@ public :
 
 protected:
     bool m_bLastReplace;
-    DWORD m_dwLastReplaceFlags;
+    findtext_flags_t m_dwLastReplaceFlags;
     CEditReplaceDlg *m_pEditReplaceDlg;
 
 protected:
@@ -124,7 +124,7 @@ public :
     void DoDragScroll (const CPoint & point);
 
     virtual bool QueryEditable ();
-    virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1) override;
+    virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, updateview_flags_t dwFlags, int nLineIndex = -1) override;
 
     void SaveLastSearch(LastSearchInfos *lastSearch);
     bool ReplaceSelection (const tchar_t* pszNewText, size_t cchNewText, DWORD dwFlags, bool bGroupWithPrevious = false);

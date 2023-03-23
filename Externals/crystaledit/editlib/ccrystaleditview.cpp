@@ -1470,7 +1470,7 @@ OnDropSource (DROPEFFECT de)
 }
 
 void CCrystalEditView::
-UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex /*= -1*/ )
+UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, updateview_flags_t dwFlags, int nLineIndex /*= -1*/ )
 {
   CCrystalTextView::UpdateView (pSource, pContext, dwFlags, nLineIndex);
 

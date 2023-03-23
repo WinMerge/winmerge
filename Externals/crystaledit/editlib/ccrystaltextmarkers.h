@@ -7,6 +7,7 @@
 
 #include "SyntaxColors.h"
 #include "utils/ctchar.h"
+#include "FindTextHelper.h"
 #include <vector>
 #include <map>
 
@@ -18,7 +19,7 @@ public:
 	struct Marker
 	{
 		CString sFindWhat;
-		DWORD dwFlags;
+		findtext_flags_t dwFlags;
 		enum COLORINDEX nBgColorIndex;
 		bool bUserDefined;
 		bool bVisible;
@@ -29,7 +30,7 @@ public:
 
 	void SetGroupName(const tchar_t *name) { m_sGroupName = name; }
 	CString GetGroupName() const { return m_sGroupName; }
-	bool SetMarker(const tchar_t *pKey, const CString& sFindWhat, DWORD dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined = true, bool bVisible = true);
+	bool SetMarker(const tchar_t *pKey, const CString& sFindWhat, findtext_flags_t dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined = true, bool bVisible = true);
 	void DeleteMarker(const tchar_t *pKey);
 	void DeleteAllMarker();
 	void AddView(CCrystalTextView *pView);

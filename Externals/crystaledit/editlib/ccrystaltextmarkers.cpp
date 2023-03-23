@@ -20,7 +20,7 @@ CCrystalTextMarkers::~CCrystalTextMarkers()
 {
 }
 
-bool CCrystalTextMarkers::SetMarker(const tchar_t *pKey, const CString& sFindWhat, DWORD dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined, bool bVisible)
+bool CCrystalTextMarkers::SetMarker(const tchar_t *pKey, const CString& sFindWhat, findtext_flags_t dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined, bool bVisible)
 {
 	Marker marker = { sFindWhat, dwFlags, nBgColorIndex, bUserDefined, bVisible };
 	m_markers.insert_or_assign(pKey, marker);

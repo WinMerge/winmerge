@@ -41,7 +41,7 @@
 
 class CCrystalTextView;
 
-enum LINEFLAGS: unsigned long
+enum LINEFLAGS: lineflags_t
 {
   LF_BOOKMARK_FIRST = 0x00000001UL,
   LF_EXECUTION = 0x00010000UL,

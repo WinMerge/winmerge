@@ -31,6 +31,7 @@
 #include "resource.h"
 #include "memcombo.h"
 #include "cfindtextdlg.h" // for structure LastSearchInfos
+#include "FindTextHelper.h"
 #include "cepoint.h"
 
 class CCrystalEditView;
@@ -45,7 +46,7 @@ private :
     bool m_bFound;
     CEPoint m_ptFoundAt;
     bool DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView = true );
-    bool DoReplaceText (const tchar_t* pszNewText, DWORD dwSearchFlags);
+    bool DoReplaceText (const tchar_t* pszNewText, findtext_flags_t dwSearchFlags);
     void UpdateControls();
     void FindNextPrev (bool bNext);
     bool AdjustSearchPos (CEPoint& ptFoundAt) const;

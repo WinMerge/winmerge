@@ -33,6 +33,7 @@
 
 #include "crystalparser.h"
 #include "LineInfo.h"
+#include "FindTextHelper.h"
 #include "cepoint.h"
 #include "cecolor.h"
 #include "parsers/crystallineparser.h"
@@ -56,20 +57,10 @@ class CEditReplaceDlg;
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView class declaration
 
-//  CCrystalTextView::FindText() flags
-enum : unsigned
-{
-  FIND_MATCH_CASE = 0x0001U,
-  FIND_WHOLE_WORD = 0x0002U,
-  FIND_REGEXP = 0x0004U,
-  FIND_DIRECTION_UP = 0x0010U,
-  REPLACE_SELECTION = 0x0100U, 
-  FIND_NO_WRAP = 0x200U,
-  FIND_NO_CLOSE = 0x400U
-};
-
 //  CCrystalTextView::UpdateView() flags
-enum : unsigned
+typedef unsigned updateview_flags_t;
+
+enum : updateview_flags_t
 {
   UPDATE_HORZRANGE = 0x0001U,  //  update horz scrollbar
   UPDATE_VERTRANGE = 0x0002U, //  update vert scrollbar
@@ -97,7 +88,7 @@ class EDITPADC_CLASS CCrystalTextView : public CView
 protected:
     //  Search parameters
     bool m_bLastSearch;
-    DWORD m_dwLastSearchFlags;
+    findtext_flags_t m_dwLastSearchFlags;
     tchar_t* m_pszLastFindWhat;
     bool m_bMultipleSearch;       // More search
     CFindTextDlg *m_pFindTextDlg;
@@ -785,7 +776,7 @@ public :
 
     //  Buffer-view interaction, multiple views
     virtual CCrystalTextBuffer *LocateTextBuffer ();
-    virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
+    virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, updateview_flags_t dwFlags, int nLineIndex = -1);
 
     //  Attributes
     CEPoint GetCursorPos () const { return m_ptCursorPos; }
@@ -801,10 +792,10 @@ public :
     virtual void EnsureVisible (CEPoint ptStart, CEPoint ptEnd);
 
     //  Text search helpers
-    CEPoint GetSearchPos (DWORD dwSearchFlags);
+    CEPoint GetSearchPos (findtext_flags_t dwSearchFlags);
     bool FindText (const tchar_t* pszText, const CEPoint & ptStartPos, DWORD dwFlags, bool bWrapSearch, CEPoint * pptFoundPos);
     bool FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPos, const CEPoint & ptBlockBegin, const CEPoint & ptBlockEnd,
-                          DWORD dwFlags, bool bWrapSearch, CEPoint * pptFoundPos);
+                          findtext_flags_t dwFlags, bool bWrapSearch, CEPoint * pptFoundPos);
     bool FindText (const LastSearchInfos * lastSearch);
     bool HighlightText (const CEPoint & ptStartPos, int nLength,
       bool bCursorToLeft = false, bool bUpdateView = true);

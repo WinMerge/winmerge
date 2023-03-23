@@ -20,7 +20,7 @@
 // CTextMarkerDlg dialog
 
 
-CTextMarkerDlg::CTextMarkerDlg (CCrystalTextMarkers & markers, const CString& sText, DWORD dwFlags)
+CTextMarkerDlg::CTextMarkerDlg (CCrystalTextMarkers & markers, const CString& sText, findtext_flags_t dwFlags)
 : CDialog (CTextMarkerDlg::IDD, nullptr)
 , m_markers(markers)
 , m_nCurItemIndex(0)
@@ -164,7 +164,7 @@ void CTextMarkerDlg::UpdateDataListView(bool bSaveAndValidate)
 	}
 }
 
-DWORD CTextMarkerDlg::GetLastSearchFlags() const
+findtext_flags_t CTextMarkerDlg::GetLastSearchFlags() const
 {
 	return
 		(m_bMatchCase ? FIND_MATCH_CASE : 0) |

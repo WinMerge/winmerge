@@ -185,7 +185,7 @@ bool CEditReplaceDlg::
 DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
 {
   ASSERT (m_pBuddy != nullptr);
-  DWORD dwSearchFlags = 0;
+  findtext_flags_t dwSearchFlags = 0;
   if (m_bMatchCase)
     dwSearchFlags |= FIND_MATCH_CASE;
   if (m_bWholeWord)
@@ -226,7 +226,7 @@ DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView/*=true*/)
 }
 
 bool CEditReplaceDlg::
-DoReplaceText (const tchar_t* /*pszNewText*/, DWORD dwSearchFlags)
+DoReplaceText (const tchar_t* /*pszNewText*/, findtext_flags_t dwSearchFlags)
 {
   ASSERT (m_pBuddy != nullptr);
   // m_pBuddy->m_nLastFindWhatLen
@@ -391,7 +391,7 @@ OnEditReplace ()
         }
       return;
     }
-  DWORD dwSearchFlags = 0;
+  findtext_flags_t dwSearchFlags = 0;
   if (m_bMatchCase)
     dwSearchFlags |= FIND_MATCH_CASE;
   if (m_bWholeWord)
@@ -448,7 +448,7 @@ OnEditReplaceAll ()
 
   while (m_bFound)
     {
-      DWORD dwSearchFlags = 0;
+      findtext_flags_t dwSearchFlags = 0;
       if (m_bMatchCase)
         dwSearchFlags |= FIND_MATCH_CASE;
       if (m_bWholeWord)
