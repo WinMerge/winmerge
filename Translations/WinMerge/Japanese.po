@@ -3976,6 +3976,43 @@ msgstr "即時"
 msgid "Al&l"
 msgstr "すべて(&L)"
 
+msgid "&Others"
+msgstr "その他(&O)"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "プラグイン パイプラインにプラグイン名が指定されていません: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
+
+msgid "Specify plugin arguments"
+msgstr "プラグイン引数を指定してください"
+
+msgid "Filter applied"
+msgstr "フィルター適用"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "クリップボード %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"クリップボード履歴が無効になっています。\r\n"
+"クリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
+
+msgid "This system does not support clipboard history."
+msgstr "このシステムではクリップボード履歴はサポートされていません。"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"
+
 msgid "Prettification"
 msgstr "整形"
 
@@ -3993,9 +4030,6 @@ msgstr "検証"
 
 msgid "Decompilation"
 msgstr "逆コンパイル"
-
-msgid "&Others"
-msgstr "その他(&O)"
 
 msgid "URL Handling"
 msgstr "URL 処理"
@@ -4113,17 +4147,6 @@ msgstr "IL コード逆アセンブル"
 
 msgid "Disassemble Native Code"
 msgstr "ネイティブ コード逆アセンブル"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "プラグイン パイプラインにプラグイン名が指定されていません: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
-
-msgid "Specify plugin arguments"
-msgstr "プラグイン引数を指定してください"
 
 msgid "Make characters uppercase"
 msgstr "テキストを大文字に変換します"
@@ -4379,26 +4402,3 @@ msgid ""
 msgstr ""
 "Windows レジストリ URL スキーマを処理します。\r\n"
 "引数: reg.exe コマンドに渡すコマンドライン オプション"
-
-msgid "Filter applied"
-msgstr "フィルター適用"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "クリップボード %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"クリップボード履歴が無効になっています。\r\n"
-"クリップボード履歴を有効にするには、Windows キー + V を押下後、[有効にする] ボタンをクリックしてください。"
-
-msgid "This system does not support clipboard history."
-msgstr "このシステムではクリップボード履歴はサポートされていません。"
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32bit版 WinMerge ではクリップボード比較はサポートされていません。"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2 ランタイムがインストールされていません。ダウンロードしますか?"

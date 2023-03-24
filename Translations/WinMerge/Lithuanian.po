@@ -3592,6 +3592,39 @@ msgstr "Nedelsiant"
 msgid "Al&l"
 msgstr "Visi"
 
+msgid "&Others"
+msgstr "Kiti"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Trūksta papildinio pavadinimo papildinio komandų grandinėje: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Nurodykite papildinio argumentus"
+
+msgid "Filter applied"
+msgstr "Pritaikytas filtras"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Mainų sritis %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Mainų srities istorijos funkcionalumas išjungtas.\r\nNorėdami įjungti, paspauskite Win+V klavišus ir tada „Įjungti“ mygtuką."
+
+msgid "This system does not support clipboard history."
+msgstr "Ši sistema nepalaiko mainų srities istorijos."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"
+
 msgid "Prettification"
 msgstr "Sutvarkymas"
 
@@ -3609,9 +3642,6 @@ msgstr "Patikra"
 
 msgid "Decompilation"
 msgstr "Dekompiliavimas"
-
-msgid "&Others"
-msgstr "Kiti"
 
 msgid "URL Handling"
 msgstr "URL apdorojimas"
@@ -3729,17 +3759,6 @@ msgstr "Deaseblinti IL kodą"
 
 msgid "Disassemble Native Code"
 msgstr "Deaseblinti savajį kodą"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Trūksta papildinio pavadinimo papildinio komandų grandinėje: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Nurodykite papildinio argumentus"
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"
@@ -3867,22 +3886,3 @@ msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
-
-msgid "Filter applied"
-msgstr "Pritaikytas filtras"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Mainų sritis %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Mainų srities istorijos funkcionalumas išjungtas.\r\nNorėdami įjungti, paspauskite Win+V klavišus ir tada „Įjungti“ mygtuką."
-
-msgid "This system does not support clipboard history."
-msgstr "Ši sistema nepalaiko mainų srities istorijos."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"

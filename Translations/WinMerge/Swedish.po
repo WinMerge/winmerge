@@ -4052,6 +4052,46 @@ msgstr "Omgående"
 msgid "Al&l"
 msgstr "AI&I"
 
+msgid "&Others"
+msgstr "Övriga"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Saknar programtilläggets namn i kommandoslinga: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Saknar citationstecken i programtilläggets kommandoslinga: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Ange programtilläggets kommandoalternativ"
+
+msgid "Filter applied"
+msgstr "Filter verkställt"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Urklipp vid %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+"Urklippshistorik är inaktiverat.\r\n"
+"För att aktivera urklippshistorik, tryck på Windows-tangenten + V och klicka "
+"sedan på knappen Aktivera."
+
+msgid "This system does not support clipboard history."
+msgstr "Det här systemet stöder inte urklippshistorik."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitarsversionen av WinMerge stöder inte Clipboard Compare"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+"Körbara filer för WebView2 är inte installerade. Vill du ladda ned det?"
+
 msgid "Prettification"
 msgstr "Finputsning"
 
@@ -4069,9 +4109,6 @@ msgstr "Validering"
 
 msgid "Decompilation"
 msgstr "Dekompilering"
-
-msgid "&Others"
-msgstr "Övriga"
 
 msgid "URL Handling"
 msgstr "URL-hantering"
@@ -4189,17 +4226,6 @@ msgstr "Nedmontera IL kod"
 
 msgid "Disassemble Native Code"
 msgstr "Nedmontera ursprunglig kod"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Saknar programtilläggets namn i kommandoslinga: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Saknar citationstecken i programtilläggets kommandoslinga: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Ange programtilläggets kommandoalternativ"
 
 msgid "Make characters uppercase"
 msgstr "Konvertera tecken till VERSALER"
@@ -4473,29 +4499,3 @@ msgid ""
 msgstr ""
 "Windows registret schemahanteriare.\n"
 "Argument: Kommandoradsalternativ som passeras till reg.exe-kommandot."
-
-msgid "Filter applied"
-msgstr "Filter verkställt"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Urklipp vid %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the "
-"Turn on button."
-msgstr ""
-"Urklippshistorik är inaktiverat.\r\n"
-"För att aktivera urklippshistorik, tryck på Windows-tangenten + V och klicka "
-"sedan på knappen Aktivera."
-
-msgid "This system does not support clipboard history."
-msgstr "Det här systemet stöder inte urklippshistorik."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitarsversionen av WinMerge stöder inte Clipboard Compare"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
-"Körbara filer för WebView2 är inte installerade. Vill du ladda ned det?"

@@ -58,6 +58,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C
 		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
 		Plugins\README.md = Plugins\README.md
+		Plugins\Strings.rc = Plugins\Strings.rc
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayBinaryFiles", "Plugins\src_VCPP\DisplayBinaryFiles\DisplayBinaryFiles.vcxproj", "{6877DE2D-4ABA-49B0-858D-7D9A9F92945C}"

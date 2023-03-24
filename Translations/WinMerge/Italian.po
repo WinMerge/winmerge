@@ -3951,6 +3951,39 @@ msgstr ""
 msgid "Al&l"
 msgstr ""
 
+msgid "&Others"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nome plugin mancante nella pipeline dei plugin: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Virgoletta mancante nella pipeline dei plugin: %1"
+
+msgid "Specify plugin arguments"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
 msgid "Prettification"
 msgstr ""
 
@@ -3967,9 +4000,6 @@ msgid "Validation"
 msgstr "Validazione"
 
 msgid "Decompilation"
-msgstr ""
-
-msgid "&Others"
 msgstr ""
 
 msgid "URL Handling"
@@ -4087,17 +4117,6 @@ msgid "Disassemble IL Code"
 msgstr ""
 
 msgid "Disassemble Native Code"
-msgstr ""
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome plugin mancante nella pipeline dei plugin: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Virgoletta mancante nella pipeline dei plugin: %1"
-
-msgid "Specify plugin arguments"
 msgstr ""
 
 msgid "Make characters uppercase"
@@ -4225,23 +4244,4 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Filter applied"
-msgstr ""
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr ""
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-
-msgid "This system does not support clipboard history."
-msgstr ""
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

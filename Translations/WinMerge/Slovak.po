@@ -3950,6 +3950,43 @@ msgstr ""
 msgid "Al&l"
 msgstr "Al&l"
 
+msgid "&Others"
+msgstr "&Ostatné"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Chýbajúci názov rozšírenia v potrubí rozšírení: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Chýbajúca úvodzovka v rozšírení: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Určenie argumentov rozšírenia"
+
+msgid "Filter applied"
+msgstr "Použitý filter"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Schránka na %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"História schránky je vypnutá.\r\n"
+"Ak chcete zapnúť históriu schránky, stlačte kláves s logom Windows + V a potom kliknite na tlačidlo Zapnúť."
+
+msgid "This system does not support clipboard history."
+msgstr "Tento systém nepodporuje históriu schránky."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitová verzia WinMerge nepodporuje porovnávanie schránky"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Prikrášlenie"
 
@@ -3967,9 +4004,6 @@ msgstr "Overenie"
 
 msgid "Decompilation"
 msgstr "Dekompilácia"
-
-msgid "&Others"
-msgstr "&Ostatné"
 
 msgid "URL Handling"
 msgstr ""
@@ -4087,17 +4121,6 @@ msgstr "Rozloženie IL kódu"
 
 msgid "Disassemble Native Code"
 msgstr "Rozloženie pôvodného kódu"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Chýbajúci názov rozšírenia v potrubí rozšírení: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Chýbajúca úvodzovka v rozšírení: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Určenie argumentov rozšírenia"
 
 msgid "Make characters uppercase"
 msgstr "Vytvoriť znaky veľkými písmenami"
@@ -4334,27 +4357,4 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Filter applied"
-msgstr "Použitý filter"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Schránka na %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"História schránky je vypnutá.\r\n"
-"Ak chcete zapnúť históriu schránky, stlačte kláves s logom Windows + V a potom kliknite na tlačidlo Zapnúť."
-
-msgid "This system does not support clipboard history."
-msgstr "Tento systém nepodporuje históriu schránky."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitová verzia WinMerge nepodporuje porovnávanie schránky"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

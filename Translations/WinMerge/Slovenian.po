@@ -3975,6 +3975,43 @@ msgstr "Takoj"
 msgid "Al&l"
 msgstr "V&se"
 
+msgid "&Others"
+msgstr "&Drugo"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Manjkajoče ime vtičnika v cevovodu vtičnika:%1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Manjka narekovaj v cevovodu vtičnika: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Določi argumente vtičnika"
+
+msgid "Filter applied"
+msgstr "Filter je uporabljen"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Odložišče na %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"Zgodovina odložišča je onemogočena.\r\n"
+"Za omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
+
+msgid "This system does not support clipboard history."
+msgstr "Ta sistem ne podpira zgodovine odložišča."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"
+
 msgid "Prettification"
 msgstr "Polepšanje"
 
@@ -3992,9 +4029,6 @@ msgstr "Preverjanje veljavnosti"
 
 msgid "Decompilation"
 msgstr "Decompilation"
-
-msgid "&Others"
-msgstr "&Drugo"
 
 msgid "URL Handling"
 msgstr "Upravljanje URL-jev"
@@ -4112,17 +4146,6 @@ msgstr "Razstavi kodo IL"
 
 msgid "Disassemble Native Code"
 msgstr "Razstavi naravno kodo"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Manjkajoče ime vtičnika v cevovodu vtičnika:%1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Manjka narekovaj v cevovodu vtičnika: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Določi argumente vtičnika"
 
 msgid "Make characters uppercase"
 msgstr "Naredi znake z velikimi črkami"
@@ -4380,26 +4403,3 @@ msgid ""
 msgstr ""
 "Upravljavec sheme URL registra Windows.\n"
 "Argumenti: možnosti ukazne vrstice, posredovane ukazu reg.exe."
-
-msgid "Filter applied"
-msgstr "Filter je uporabljen"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Odložišče na %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"Zgodovina odložišča je onemogočena.\r\n"
-"Za omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
-
-msgid "This system does not support clipboard history."
-msgstr "Ta sistem ne podpira zgodovine odložišča."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"

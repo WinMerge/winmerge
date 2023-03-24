@@ -3985,6 +3985,43 @@ msgstr "Subitu subitu"
 msgid "Al&l"
 msgstr "T&utti"
 
+msgid "&Others"
+msgstr "&L’altri moduli"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
+
+msgid "Specify plugin arguments"
+msgstr "Indicate i parametri di u modulu d’estensione"
+
+msgid "Filter applied"
+msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Preme’papei di u %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"A cronolugia di u preme’papei hè disattivata.\r\n"
+"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
+
+msgid "This system does not support clipboard history."
+msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
+
 msgid "Prettification"
 msgstr "Imbellimentu"
 
@@ -4002,9 +4039,6 @@ msgstr "Cunvalidazione"
 
 msgid "Decompilation"
 msgstr "Decumpilazione"
-
-msgid "&Others"
-msgstr "&L’altri moduli"
 
 msgid "URL Handling"
 msgstr "Ghjestione d’indirizzu web"
@@ -4122,17 +4156,6 @@ msgstr "Disassemblà IL Code"
 
 msgid "Disassemble Native Code"
 msgstr "Disassemblà Native Code"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
-
-msgid "Specify plugin arguments"
-msgstr "Indicate i parametri di u modulu d’estensione"
 
 msgid "Make characters uppercase"
 msgstr "Mette i caratteri in maiuscula"
@@ -4390,26 +4413,3 @@ msgid ""
 msgstr ""
 "Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
-
-msgid "Filter applied"
-msgstr "Filtru appiecatu"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Preme’papei di u %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"A cronolugia di u preme’papei hè disattivata.\r\n"
-"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
-
-msgid "This system does not support clipboard history."
-msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"

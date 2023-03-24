@@ -4655,6 +4655,39 @@ msgstr "Azonnal"
 msgid "Al&l"
 msgstr "Összes"
 
+msgid "&Others"
+msgstr "Egyéb"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Bővítmény argumentumok megadása"
+
+msgid "Filter applied"
+msgstr "Szűrő alkalmazva"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Vágólap itt: %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
+
+msgid "This system does not support clipboard history."
+msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
+
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
 
@@ -4672,9 +4705,6 @@ msgstr "Érvényesítés"
 
 msgid "Decompilation"
 msgstr "Visszafejtés"
-
-msgid "&Others"
-msgstr "Egyéb"
 
 msgid "URL Handling"
 msgstr "URL-kezelés"
@@ -4792,17 +4822,6 @@ msgstr "IL kód kibontása"
 
 msgid "Disassemble Native Code"
 msgstr "Natív kód kibontása"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Bővítmény argumentumok megadása"
 
 msgid "Make characters uppercase"
 msgstr "Nagybetűsítés"
@@ -4930,22 +4949,3 @@ msgstr "HTTP URL-sémakezelő curl-lel. \r\nArgumentumok: A curl parancsnak áta
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Windows rendszerleíró adatbázis URL-séma kezelő. \r\nArgumentumok: A reg.exe parancsnak átadott parancssori beállítások."
-
-msgid "Filter applied"
-msgstr "Szűrő alkalmazva"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Vágólap itt: %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
-
-msgid "This system does not support clipboard history."
-msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"

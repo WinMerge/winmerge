@@ -3592,6 +3592,39 @@ msgstr "Imediatamente"
 msgid "Al&l"
 msgstr "Tu&do"
 
+msgid "&Others"
+msgstr "&Outros"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nome do plugin ausente na tubulação do plugin: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Marca das aspas ausentes na tubulação do plugin: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Especificar os argumentos do plugin"
+
+msgid "Filter applied"
+msgstr "Filtro aplicado"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Área de transferência em %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "O histórico de Área de transferência está desabilitado.\r\nPara habilitar histórico de Área de transferência, pressione as teclas Windows + V e depois clique no botão ligar."
+
+msgid "This system does not support clipboard history."
+msgstr "Este sistema não suporta histórico de Área de transferência."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A versão 32-bits do WinMerge não suporta Comparação de Área de transferência"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "O runtime do WebView2 não está instalado. Deseja baixá-lo?"
+
 msgid "Prettification"
 msgstr "Embelezamento"
 
@@ -3609,9 +3642,6 @@ msgstr "Validação"
 
 msgid "Decompilation"
 msgstr "Descompilação"
-
-msgid "&Others"
-msgstr "&Outros"
 
 msgid "URL Handling"
 msgstr "Manipulaçãode URL"
@@ -3729,17 +3759,6 @@ msgstr "Desmontar Código IL"
 
 msgid "Disassemble Native Code"
 msgstr "Desmontar Código Nativo"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome do plugin ausente na tubulação do plugin: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Marca das aspas ausentes na tubulação do plugin: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Especificar os argumentos do plugin"
 
 msgid "Make characters uppercase"
 msgstr "Converter caracteres para maiúsculos"
@@ -3867,22 +3886,3 @@ msgstr "Manipulador de esquema de URL HTTP com curl. \r\nArgumentos: Opções de
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Manipulador de esquema de URL de Registro do Windows. \r\nArgumentos: Opções de linha de comando passadas ao comando reg.exe."
-
-msgid "Filter applied"
-msgstr "Filtro aplicado"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Área de transferência em %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "O histórico de Área de transferência está desabilitado.\r\nPara habilitar histórico de Área de transferência, pressione as teclas Windows + V e depois clique no botão ligar."
-
-msgid "This system does not support clipboard history."
-msgstr "Este sistema não suporta histórico de Área de transferência."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A versão 32-bits do WinMerge não suporta Comparação de Área de transferência"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "O runtime do WebView2 não está instalado. Deseja baixá-lo?"

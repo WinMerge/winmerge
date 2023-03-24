@@ -4671,6 +4671,41 @@ msgstr ""
 msgid "Al&l"
 msgstr "全部 (&L)"
 
+msgid "&Others"
+msgstr "其他 (&O)"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "外掛程式管線缺少外掛程式名稱：%1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "外掛程式管線缺少引號：%1"
+
+msgid "Specify plugin arguments"
+msgstr "指定外掛程式參數"
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "於 %s 的剪貼簿"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr "此系統不支援剪貼簿歷史紀錄。"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
 msgid "Prettification"
 msgstr "美化"
 
@@ -4688,9 +4723,6 @@ msgstr "驗證"
 
 msgid "Decompilation"
 msgstr "反編譯"
-
-msgid "&Others"
-msgstr "其他 (&O)"
 
 msgid "URL Handling"
 msgstr ""
@@ -4808,17 +4840,6 @@ msgstr "反組譯中間語言"
 
 msgid "Disassemble Native Code"
 msgstr "反組譯機器碼"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "外掛程式管線缺少外掛程式名稱：%1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "外掛程式管線缺少引號：%1"
-
-msgid "Specify plugin arguments"
-msgstr "指定外掛程式參數"
 
 msgid "Make characters uppercase"
 msgstr "字元轉換成大寫"
@@ -5000,25 +5021,4 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Filter applied"
-msgstr ""
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "於 %s 的剪貼簿"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-
-msgid "This system does not support clipboard history."
-msgstr "此系統不支援剪貼簿歷史紀錄。"
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

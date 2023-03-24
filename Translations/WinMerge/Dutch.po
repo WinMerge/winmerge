@@ -3971,6 +3971,43 @@ msgstr "Onmiddellijk"
 msgid "Al&l"
 msgstr "Alles"
 
+msgid "&Others"
+msgstr "Andere"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Ontbrekende pluginnaam of plugin-pipeline: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Ontbrekend aanhalingsteken in plugin-pipeline: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Plugin-argumenten opgeven"
+
+msgid "Filter applied"
+msgstr "Filter toegepast"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Klembord op %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"De klembordgeschiedenis is uitgeschakeld.\n"
+"Om de klembordgeschiedenis in te schakelen, drukt u op de Windows-logotoets + V en klikt u vervolgens op de knop Inschakelen."
+
+msgid "This system does not support clipboard history."
+msgstr "Dit systeem ondersteunt geen klembordgeschiedenis."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "De 32-bit-versie van WinMerge ondersteunt geen klembordvergelijking"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2-runtime is niet geïnstalleerd. Wilt u het downloaden?"
+
 msgid "Prettification"
 msgstr "Mooi maken"
 
@@ -3988,9 +4025,6 @@ msgstr "Validatie"
 
 msgid "Decompilation"
 msgstr "Decompilatie"
-
-msgid "&Others"
-msgstr "Andere"
 
 msgid "URL Handling"
 msgstr "URL-behandeling"
@@ -4108,17 +4142,6 @@ msgstr "IL-code ontleden"
 
 msgid "Disassemble Native Code"
 msgstr "Native code ontleden"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Ontbrekende pluginnaam of plugin-pipeline: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Ontbrekend aanhalingsteken in plugin-pipeline: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Plugin-argumenten opgeven"
 
 msgid "Make characters uppercase"
 msgstr "Tekens hoofdletters maken"
@@ -4376,26 +4399,3 @@ msgid ""
 msgstr ""
 "Windows register URL-schema-handler.\r\n"
 "Argumenten: opdrachtregelopties doorgegeven aan de reg.exe-opdracht."
-
-msgid "Filter applied"
-msgstr "Filter toegepast"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Klembord op %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"De klembordgeschiedenis is uitgeschakeld.\n"
-"Om de klembordgeschiedenis in te schakelen, drukt u op de Windows-logotoets + V en klikt u vervolgens op de knop Inschakelen."
-
-msgid "This system does not support clipboard history."
-msgstr "Dit systeem ondersteunt geen klembordgeschiedenis."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "De 32-bit-versie van WinMerge ondersteunt geen klembordvergelijking"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2-runtime is niet geïnstalleerd. Wilt u het downloaden?"

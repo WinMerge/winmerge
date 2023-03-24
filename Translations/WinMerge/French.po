@@ -4699,6 +4699,43 @@ msgstr "Immédiatement"
 msgid "Al&l"
 msgstr "Al&l"
 
+msgid "&Others"
+msgstr "&Autres"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nom de plug-in manquant dans le plug-in de chaîne de traitement : %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Guillemet manquant dans la chaîne de traitement du plug-in : %1"
+
+msgid "Specify plugin arguments"
+msgstr "Spécifier les arguments du plug-in"
+
+msgid "Filter applied"
+msgstr "Filtre appliqué"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Presse-papiers à %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"L'historique du presse-papiers est désactivé.\r\n"
+"Pour activer l'historique du presse-papiers, appuyez sur la touche de logo Windows + V, puis cliquez sur le bouton Activer."
+
+msgid "This system does not support clipboard history."
+msgstr "Ce système ne prend pas en charge l'historique du presse-papiers."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "La version 32 bits de WinMerge ne prend pas en charge la comparaison du presse-papiers"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "Le runtime WebView2 n'est pas installé. Voulez-vous le télécharger ?"
+
 msgid "Prettification"
 msgstr "Embellissement"
 
@@ -4716,9 +4753,6 @@ msgstr "Validation"
 
 msgid "Decompilation"
 msgstr "Décompilation"
-
-msgid "&Others"
-msgstr "&Autres"
 
 msgid "URL Handling"
 msgstr "Gestion des URL"
@@ -4836,17 +4870,6 @@ msgstr "Démonter le code IL"
 
 msgid "Disassemble Native Code"
 msgstr "Désassembler le code natif"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nom de plug-in manquant dans le plug-in de chaîne de traitement : %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Guillemet manquant dans la chaîne de traitement du plug-in : %1"
-
-msgid "Specify plugin arguments"
-msgstr "Spécifier les arguments du plug-in"
 
 msgid "Make characters uppercase"
 msgstr "Mettre les caractères en majuscule"
@@ -5104,26 +5127,3 @@ msgid ""
 msgstr ""
 "Gestionnaire de schéma d'URL de registre Windows.\r\n"
 "Arguments : options de ligne de commande transmises à la commande reg.exe."
-
-msgid "Filter applied"
-msgstr "Filtre appliqué"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Presse-papiers à %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"L'historique du presse-papiers est désactivé.\r\n"
-"Pour activer l'historique du presse-papiers, appuyez sur la touche de logo Windows + V, puis cliquez sur le bouton Activer."
-
-msgid "This system does not support clipboard history."
-msgstr "Ce système ne prend pas en charge l'historique du presse-papiers."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "La version 32 bits de WinMerge ne prend pas en charge la comparaison du presse-papiers"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "Le runtime WebView2 n'est pas installé. Voulez-vous le télécharger ?"

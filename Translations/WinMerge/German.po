@@ -4312,6 +4312,39 @@ msgstr "Sofort, wenn eine externe Anwendung die angezeigte Datei ändert"
 msgid "Al&l"
 msgstr "A&lle"
 
+msgid "&Others"
+msgstr "Andere"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Plugin-Argumente angeben"
+
+msgid "Filter applied"
+msgstr "Angewandter Filter"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Zwischenablage am %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
+
+msgid "This system does not support clipboard history."
+msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
+
 msgid "Prettification"
 msgstr "Verschönerung"
 
@@ -4329,9 +4362,6 @@ msgstr "Überprüfung"
 
 msgid "Decompilation"
 msgstr "Dekompilierung"
-
-msgid "&Others"
-msgstr "Andere"
 
 msgid "URL Handling"
 msgstr "URL-Handling"
@@ -4449,17 +4479,6 @@ msgstr "IL-Code disassemblieren"
 
 msgid "Disassemble Native Code"
 msgstr "Nativen Code disassemblieren"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Plugin-Argumente angeben"
 
 msgid "Make characters uppercase"
 msgstr "Großbuchstaben erzeugen"
@@ -4587,22 +4606,3 @@ msgstr "HTTP-URL-Scheme-Handler mit curl. \r\nArgumente: Befehlszeilenoptionen, 
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Windows-Registry-URL-Scheme-Handler. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl reg.exe übergeben werden."
-
-msgid "Filter applied"
-msgstr "Angewandter Filter"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Zwischenablage am %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
-
-msgid "This system does not support clipboard history."
-msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"

@@ -3593,6 +3593,39 @@ msgstr "Natychmiast"
 msgid "Al&l"
 msgstr "Wszystkie"
 
+msgid "&Others"
+msgstr "Pozostałe"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Brakująca nazwa wtyczki we wtyczce pipeline: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Brakujący cudzysłów we wtyczce pipeline: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Określ argumenty wtyczki"
+
+msgid "Filter applied"
+msgstr "Zastosowano filtr"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
+
+msgid "This system does not support clipboard history."
+msgstr "Ten system nie obsługuje historii schowka."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"
+
 msgid "Prettification"
 msgstr "Upiększanie"
 
@@ -3610,9 +3643,6 @@ msgstr "Walidacja"
 
 msgid "Decompilation"
 msgstr "Dekompilacja"
-
-msgid "&Others"
-msgstr "Pozostałe"
 
 msgid "URL Handling"
 msgstr "Obsługa adresów URL"
@@ -3730,17 +3760,6 @@ msgstr "Dezasembluj kod IL"
 
 msgid "Disassemble Native Code"
 msgstr "Dezasembluj kod natywny"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Brakująca nazwa wtyczki we wtyczce pipeline: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Brakujący cudzysłów we wtyczce pipeline: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Określ argumenty wtyczki"
 
 msgid "Make characters uppercase"
 msgstr "Zrób duże litery"
@@ -3868,22 +3887,3 @@ msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje linii poleceń p
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia reg.exe."
-
-msgid "Filter applied"
-msgstr "Zastosowano filtr"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr ""
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
-
-msgid "This system does not support clipboard history."
-msgstr "Ten system nie obsługuje historii schowka."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"

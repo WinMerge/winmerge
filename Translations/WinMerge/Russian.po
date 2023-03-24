@@ -3594,6 +3594,39 @@ msgstr "Незамедлительно"
 msgid "Al&l"
 msgstr "Все"
 
+msgid "&Others"
+msgstr "Другое"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Отсутствует плагин в конвейере: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Отсутствует кавычка в конвейере плагинов: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Укажите аргументы плагина"
+
+msgid "Filter applied"
+msgstr "Фильтр применен"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Буфер обмена на %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "История буфера обмена отключена.\r\nЧтобы включить историю буфера обмена, нажмите Win+V, а затем кнопку 'включить'."
+
+msgid "This system does not support clipboard history."
+msgstr "Эта система не поддерживает историю буфера обмена."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-битная версия WinMerge не поддерживает буфера обмена"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "Не установлена среда выполнения WebView2. Хотите скачать его?"
+
 msgid "Prettification"
 msgstr "Приукрашивание"
 
@@ -3611,9 +3644,6 @@ msgstr "Валидация"
 
 msgid "Decompilation"
 msgstr "Декомпиляция"
-
-msgid "&Others"
-msgstr "Другое"
 
 msgid "URL Handling"
 msgstr "Обработка URL"
@@ -3731,17 +3761,6 @@ msgstr "Разбор IL-кода"
 
 msgid "Disassemble Native Code"
 msgstr "Разбор нативного кода"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Отсутствует плагин в конвейере: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Отсутствует кавычка в конвейере плагинов: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Укажите аргументы плагина"
 
 msgid "Make characters uppercase"
 msgstr "В верхний регистр"
@@ -3869,22 +3888,3 @@ msgstr "Обработчик схемы URL HTTP с помощью curl. \r\nА�
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Обработчик схемы URL реестра Windows. \r\nАргументы: Параметры командной строки, передаваемые программе reg.exe."
-
-msgid "Filter applied"
-msgstr "Фильтр применен"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Буфер обмена на %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "История буфера обмена отключена.\r\nЧтобы включить историю буфера обмена, нажмите Win+V, а затем кнопку 'включить'."
-
-msgid "This system does not support clipboard history."
-msgstr "Эта система не поддерживает историю буфера обмена."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-битная версия WinMerge не поддерживает буфера обмена"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "Не установлена среда выполнения WebView2. Хотите скачать его?"
