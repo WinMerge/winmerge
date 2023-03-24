@@ -249,6 +249,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FindTextHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h">
@@ -359,5 +360,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)cecolor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FindTextHelper.h" />
   </ItemGroup>
 </Project>
