@@ -53,7 +53,7 @@ public :
 
 	int LoadFromFile(const tchar_t* pszFileName, PackingInfo& infoUnpacker,
 		const tchar_t* filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
-		const FileTextEncoding & encoding, CString &sError);
+		const FileTextEncoding & encoding, String &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
 		PackingInfo& infoUnpacker, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC,
 		bool bClearModifiedFlag = true, int nStartLine = 0, int nLines = -1);
@@ -69,10 +69,7 @@ public :
 	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }
 
 	// If line has text (excluding eol), set strLine to text (excluding eol)
-	bool GetLine(int nLineIndex, CString &strLine) const;
-
-	// if line has any text (including eol), set strLine to text (including eol)
-	bool GetFullLine(int nLineIndex, CString &strLine) const;
+	bool GetLine(int nLineIndex, String &strLine) const;
 
 	virtual void SetModified (bool bModified = true) override;
 	void prepareForRescan();

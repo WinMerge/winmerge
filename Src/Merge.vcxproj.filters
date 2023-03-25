@@ -800,9 +800,6 @@
     <ClInclude Include="FileLocation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="files.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FileTextEncoding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1359,6 +1356,9 @@
       <Filter>Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileOpenFlags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLoadResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2847,7 +2847,7 @@ CString CMergeDoc::GetTooltipString() const
  * @return Tells if files were loaded successfully
  * @sa CMergeDoc::OpenDocs()
  **/
-int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding)
+int CMergeDoc::LoadFile(const String& sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding)
 {
 	String sError;
 	DWORD retVal = FileLoadResult::FRESULT_ERROR;
@@ -2856,8 +2856,8 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 	m_filePaths[nBuffer] = sFileName;
 
 	CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC;
-	CString sOpenError;
-	retVal = pBuf->LoadFromFile(sFileName, m_infoUnpacker,
+	String sOpenError;
+	retVal = pBuf->LoadFromFile(sFileName.c_str(), m_infoUnpacker,
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
@@ -2878,15 +2878,15 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, bool & readOnly, const F
 	if (FileLoadResult::IsError(retVal))
 	{
 		// Error from Unifile/system
-		if (!sOpenError.IsEmpty())
-			sError = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), (const tchar_t*)sFileName, (const tchar_t*)sOpenError);
+		if (!sOpenError.empty())
+			sError = strutils::format_string2(_("Cannot open file\n%1\n\n%2"), sFileName, sOpenError);
 		else
-			sError = strutils::format_string1(_("File not found: %1"), (const tchar_t*)sFileName);
+			sError = strutils::format_string1(_("File not found: %1"), sFileName);
 		ShowMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	else if (FileLoadResult::IsErrorUnpack(retVal))
 	{
-		sError = strutils::format_string1(_("File not unpacked: %1"), (const tchar_t*)sFileName);
+		sError = strutils::format_string1(_("File not unpacked: %1"), sFileName);
 		ShowMessageBox(sError, MB_OK | MB_ICONSTOP | MB_MODELESS);
 	}
 	return retVal;
@@ -3272,11 +3272,11 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		{
 			if (std::count(bTyped, bTyped + m_nBuffers, false) == m_nBuffers)
 			{
-				CString sFirstLine;
+				String sFirstLine;
 				m_ptBuf[0]->GetLine(0, sFirstLine);
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				{
-					bTyped[nBuffer] = GetView(0, nBuffer)->SetTextTypeByContent(sFirstLine);
+					bTyped[nBuffer] = GetView(0, nBuffer)->SetTextTypeByContent(sFirstLine.c_str());
 				}
 			}
 		}
@@ -3927,7 +3927,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	}
 
 	file.SetCodepage(ucr::CP_UTF_8);
-	CString headerText =
+	String headerText =
 		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
 		_T("<html>\n")
@@ -3947,7 +3947,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<body>\n")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n");
 	String header = 
-		strutils::format((const tchar_t*)headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
+		strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
 	file.WriteString(header);
 
 	file.WriteString(_T("<colgroup>\n"));
@@ -4099,12 +4099,11 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 void CMergeDoc::OnToolsGenerateReport()
 {
 	String s;
-	CString folder;
 
-	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, nullptr, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
 		return;
 
-	if (GenerateReport(s.c_str()))
+	if (GenerateReport(s))
 		LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
 

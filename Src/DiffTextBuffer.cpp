@@ -92,19 +92,15 @@ CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
  * @param [in] nLineIndex Index of the line to get.
  * @param [out] strLine Returns line text in the index.
  */
-bool CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
+bool CDiffTextBuffer::GetLine(int nLineIndex, String &strLine) const
 {
 	int nLineLength = CCrystalTextBuffer::GetLineLength(nLineIndex);
 	if (nLineLength < 0)
 		return false;
 	else if (nLineLength == 0)
-		strLine.Empty();
+		strLine.clear();
 	else
-	{
-		_tcsncpy_s(strLine.GetBuffer(nLineLength + 1), nLineLength + 1,
-			CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
-		strLine.ReleaseBuffer(nLineLength);
-	}
+		strLine.assign(CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
 	return true;
 }
 
@@ -118,27 +114,6 @@ SetModified(bool bModified /*= true*/)
 {
 	CCrystalTextBuffer::SetModified (bModified);
 	m_pOwnerDoc->SetModifiedFlag (bModified);
-}
-
-/**
- * @brief Get a line (with EOL bytes) from the buffer.
- * This function is like GetLine() but it also includes line's EOL to the
- * returned string.
- * @param [in] nLineIndex Index of the line to get.
- * @param [out] strLine Returns line text in the index. Existing content
- * of this string is overwritten.
- */
-bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
-{
-	int cchText = GetFullLineLength(nLineIndex);
-	if (cchText == 0)
-	{
-		strLine.Empty();
-		return false;
-	}
-	tchar_t* pchText = strLine.GetBufferSetLength(cchText);
-	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(tchar_t));
-	return true;
 }
 
 void CDiffTextBuffer::			/* virtual override */
@@ -223,7 +198,7 @@ OnNotifyLineHasBeenEdited(int nLine)
  */
 int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 		PackingInfo& infoUnpacker, const tchar_t* sToFindUnpacker, bool & readOnly,
-		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
+		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, String &sError)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.size() == 0);
@@ -260,7 +235,7 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 		UniFile::UniError uniErr = pufile->GetLastUniError();
 		if (uniErr.HasError())
 		{
-			sError = uniErr.GetError().c_str();
+			sError = uniErr.GetError();
 		}
 		InitNew(); // leave crystal editor in valid, empty state
 	}
