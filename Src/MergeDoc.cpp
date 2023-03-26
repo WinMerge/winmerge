@@ -3242,52 +3242,43 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK)
 	{
-		// set the document types
-		// Warning : it is the first thing to do (must be done before UpdateView,
-		// or any function that calls UpdateView, like SelectDiff)
-		// Note: If option enabled, and another side type is not recognized,
-		// we use recognized type for unrecognized side too.
-		String sext[3];
-		bool bTyped[3]{};
-		int paneTyped = 0;
-
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		if (GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
-			sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
-			ForEachView(nBuffer, [&](auto& pView) {
-				bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
-				if (bTyped[nBuffer])
-					paneTyped = nBuffer;
-			});
-		}
+			// set the document types
+			// Warning : it is the first thing to do (must be done before UpdateView,
+			// or any function that calls UpdateView, like SelectDiff)
+			// Note: If option enabled, and another side type is not recognized,
+			// we use recognized type for unrecognized side too.
+			String sext[3];
+			bool bTyped[3]{};
+			int paneTyped = -1;
 
-		for (nBuffer = 1; nBuffer < m_nBuffers; nBuffer++)
-		{
-			if (bTyped[0] != bTyped[nBuffer])
-				break;
-		}
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				sext[nBuffer] = GetFileExt(m_ptBuf[nBuffer]->GetTempFileName().c_str(), m_strDesc[nBuffer].c_str());
+				ForEachView(nBuffer, [&](auto& pView) {
+					bTyped[nBuffer] = pView->SetTextType(sext[nBuffer].c_str());
+					if (bTyped[nBuffer])
+						paneTyped = nBuffer;
+				});
+			}
 
-		bool syntaxHLEnabled = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-		if (syntaxHLEnabled && nBuffer < m_nBuffers)
-		{
-			if (std::count(bTyped, bTyped + m_nBuffers, false) == m_nBuffers)
+			if (paneTyped == -1)
 			{
 				String sFirstLine;
 				m_ptBuf[0]->GetLine(0, sFirstLine);
-				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-				{
-					bTyped[nBuffer] = GetView(0, nBuffer)->SetTextTypeByContent(sFirstLine.c_str());
-				}
+				ForEachView([&bTyped, &sFirstLine](auto& pView) {
+					bTyped[pView->m_nThisPane] = pView->SetTextTypeByContent(sFirstLine.c_str());
+				});
 			}
-		}
-
-		if (syntaxHLEnabled)
-		{
-			CrystalLineParser::TextDefinition *enuType = CrystalLineParser::GetTextType(sext[paneTyped].c_str());
-			ForEachView([&bTyped, enuType](auto& pView) {
-				if (!bTyped[pView->m_nThisPane])
-					pView->SetTextType(enuType);
-			});
+			else
+			{
+				CrystalLineParser::TextDefinition *enuType = CrystalLineParser::GetTextType(sext[paneTyped].c_str());
+				ForEachView([&bTyped, enuType](auto& pView) {
+					if (!bTyped[pView->m_nThisPane])
+						pView->SetTextType(enuType);
+				});
+			}
 		}
 
 		int nNormalBuffer = 0;
