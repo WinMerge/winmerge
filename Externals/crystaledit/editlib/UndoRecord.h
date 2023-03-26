@@ -12,6 +12,11 @@
 #include <vector>
 
 typedef uint32_t undoflags_t;
+enum : undoflags_t
+{
+    UNDO_INSERT = 0x0001U,
+    UNDO_BEGINGROUP = 0x0100U
+};
 
 class UndoRecord
 {

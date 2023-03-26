@@ -19,7 +19,7 @@
  *
  * GetLineColors (in MergeEditView) reads it to choose the line color.
  */
-enum GHOST_LINEFLAGS
+enum GHOST_LINEFLAGS : lineflags_t
 {
 	LF_GHOST = 0x00400000UL, /**< Ghost line. */
 };

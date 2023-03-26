@@ -41,19 +41,6 @@
 
 class CCrystalTextView;
 
-enum LINEFLAGS: lineflags_t
-{
-  LF_BOOKMARK_FIRST = 0x00000001UL,
-  LF_EXECUTION = 0x00010000UL,
-  LF_BREAKPOINT = 0x00020000UL,
-  LF_COMPILATION_ERROR = 0x00040000UL,
-  LF_BOOKMARKS = 0x00080000UL,
-  LF_INVALID_BREAKPOINT = 0x00100000UL,
-  LF_INVISIBLE = 0x80000000UL
-};
-
-#define LF_BOOKMARK(id)     (LF_BOOKMARK_FIRST << id)
-
 enum class CRLFSTYLE
 {
   AUTOMATIC = -1,
@@ -124,11 +111,6 @@ protected :
     int FindLineWithFlag (lineflags_t dwFlag) const;
 
 protected :
-    enum : unsigned
-    {
-      UNDO_INSERT = 0x0001U,
-      UNDO_BEGINGROUP = 0x0100U
-    };
 
 class EDITPADC_CLASS CInsertContext : public CUpdateContext
       {

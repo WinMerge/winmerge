@@ -5,7 +5,8 @@
 /**
  * @brief Flags used when opening files
  */
-enum
+typedef uint32_t fileopenflags_t;
+enum : fileopenflags_t
 {
 	FFILEOPEN_NONE = 0x0000,
 	FFILEOPEN_NOMRU = 0x0001, /**< Do not add this path to MRU list */
@@ -16,5 +17,3 @@ enum
 	FFILEOPEN_SETFOCUS = 0x0040, /**< Set focus to this pane */
 	FFILEOPEN_AUTOMERGE = 0x0080, /**< auto-merge at this pane */
 };
-
-typedef uint32_t fileopenflags_t;

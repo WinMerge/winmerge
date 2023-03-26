@@ -15,6 +15,18 @@ constexpr size_t CHAR_ALIGN = 16;
 constexpr size_t ALIGN_BUF_SIZE(size_t size) { return ((size) / CHAR_ALIGN) * CHAR_ALIGN + CHAR_ALIGN; }
 
 typedef unsigned long lineflags_t;
+enum LINEFLAGS: lineflags_t
+{
+  LF_BOOKMARK_FIRST = 0x00000001UL,
+  LF_EXECUTION = 0x00010000UL,
+  LF_BREAKPOINT = 0x00020000UL,
+  LF_COMPILATION_ERROR = 0x00040000UL,
+  LF_BOOKMARKS = 0x00080000UL,
+  LF_INVALID_BREAKPOINT = 0x00100000UL,
+  LF_INVISIBLE = 0x80000000UL
+};
+
+#define LF_BOOKMARK(id)     (LF_BOOKMARK_FIRST << id)
 
 /**
  * @brief Line information.
