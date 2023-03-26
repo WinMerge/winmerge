@@ -35,6 +35,7 @@ public:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(WMGotoDlg)
 	protected:
+	virtual BOOL OnInitDialog() override;
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
@@ -62,6 +63,21 @@ WMGotoDlg::Impl::Impl(WMGotoDlg *p, CWnd* pParent /*= nullptr*/)
 {
 }
 
+/**
+ * @brief Initialize the dialog.
+ * @return Always TRUE.
+ */
+BOOL WMGotoDlg::Impl::OnInitDialog()
+{
+	LangTranslateDialog(m_hWnd);
+	CDialog::OnInitDialog();
+
+	if (m_p->m_nFiles < 3)
+		EnableDlgItem(IDC_WMGOTO_FILEMIDDLE, false);
+
+	return TRUE;
+}
+
 void WMGotoDlg::Impl::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
@@ -85,7 +101,7 @@ END_MESSAGE_MAP()
 
 
 WMGotoDlg::WMGotoDlg()
-	: m_pimpl(new WMGotoDlg::Impl(this)), m_nFile(-1), m_nGotoWhat(-1) {}
+	: m_pimpl(new WMGotoDlg::Impl(this)), m_nFile(-1), m_nGotoWhat(-1), m_nFiles(-1) {}
 WMGotoDlg::~WMGotoDlg() = default;
 int WMGotoDlg::DoModal() { return static_cast<int>(m_pimpl->DoModal()); }
 

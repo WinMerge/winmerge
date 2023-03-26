@@ -21,6 +21,7 @@ public:
 	String m_strParam;   /**< Line/difference number. */
 	int m_nFile;         /**< Target file number. */
 	int m_nGotoWhat;     /**< Goto line or difference? */
+	int m_nFiles;        /**< Number of files being compared. */
 private:
 	WMGotoDlg(const WMGotoDlg &) = delete;
 	WMGotoDlg & operator=(const WMGotoDlg &) = delete;

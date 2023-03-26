@@ -3029,6 +3029,7 @@ void CMergeEditView::OnWMGoto()
 	dlg.m_strParam = strutils::to_str(nRealLine + 1);
 	dlg.m_nFile = (pDoc->m_nBuffers < 3) ? (m_nThisPane == 1 ? 2 : 0) : m_nThisPane;
 	dlg.m_nGotoWhat = 0;
+	dlg.m_nFiles = pDoc->m_nBuffers;
 
 	if (dlg.DoModal() == IDOK)
 	{
