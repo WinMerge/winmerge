@@ -10,16 +10,17 @@
  */
 #pragma once
 
+#include "IMergeDoc.h"
 #include "DiffTextBuffer.h"
-#include <vector>
-#include <map>
-#include <memory>
-#include <optional>
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "TempFile.h"
 #include "PathContext.h"
-#include "IMergeDoc.h"
+#include "FileLoadResult.h"
+#include <vector>
+#include <map>
+#include <memory>
+#include <optional>
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -332,7 +333,7 @@ private:
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
-	DWORD LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
+	FileLoadResult::flags_t LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
 	void SetTableProperties();
 
 // Implementation data

@@ -604,7 +604,7 @@ void CMergeDoc::CheckFileChanged(void)
 		FileChange[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(), fileInfo,
 			false, nBuffer);
 
-		m_pRescanFileInfo[nBuffer]->Update((const tchar_t*)m_filePaths[nBuffer].c_str());
+		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
 	}
 
 	bool bDoReload = false;
@@ -2426,7 +2426,7 @@ void CMergeDoc::PrimeTextBuffers()
 
 		for (file = 0; file < m_nBuffers; file++)
 		{
-			DWORD dflag = LF_GHOST;
+			lineflags_t dflag = LF_GHOST;
 			if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
 				dflag |= LF_SNP;
 			m_ptBuf[file]->MoveLine(curDiff.begin[file], curDiff.end[file], lcountnew[file]-nmaxline);
@@ -2479,7 +2479,7 @@ void CMergeDoc::PrimeTextBuffers()
 						if (curDiff.blank[file] == -1 || (int)i < curDiff.blank[file])
 						{
 							// set diff or trivial flag
-							DWORD dflag = (curDiff.op == OP_TRIVIAL) ? LF_TRIVIAL : LF_DIFF;
+							lineflags_t dflag = (curDiff.op == OP_TRIVIAL) ? LF_TRIVIAL : LF_DIFF;
 							if ((file == 0 && curDiff.op == OP_3RDONLY) || (file == 2 && curDiff.op == OP_1STONLY))
 								dflag |= LF_SNP;
 							m_ptBuf[file]->SetLineFlag(i, dflag, true, false, false);
@@ -2850,7 +2850,7 @@ CString CMergeDoc::GetTooltipString() const
 int CMergeDoc::LoadFile(const String& sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding)
 {
 	String sError;
-	DWORD retVal = FileLoadResult::FRESULT_ERROR;
+	FileLoadResult::flags_t retVal = FileLoadResult::FRESULT_ERROR;
 
 	CDiffTextBuffer *pBuf = m_ptBuf[nBuffer].get();
 	m_filePaths[nBuffer] = sFileName;
@@ -2930,10 +2930,10 @@ void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
  * @param [in] encoding File's encoding.
  * @return One of FileLoadResult values.
  */
-DWORD CMergeDoc::LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, 
+FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc,
 		const FileTextEncoding & encoding)
 {
-	DWORD loadSuccess = FileLoadResult::FRESULT_ERROR;;
+	FileLoadResult::flags_t loadSuccess = FileLoadResult::FRESULT_ERROR;;
 	
 	m_strDesc[index] = strDesc;
 	if (!filename.empty())
@@ -2945,7 +2945,7 @@ DWORD CMergeDoc::LoadOneFile(int index, const String& filename, bool readOnly, c
 		m_pSaveFileInfo[index]->Update(filename);
 		m_pRescanFileInfo[index]->Update(filename);
 
-		loadSuccess = LoadFile(filename.c_str(), index, readOnly, encoding);
+		loadSuccess = LoadFile(filename, index, readOnly, encoding);
 		if (FileLoadResult::IsLossy(loadSuccess))
 		{
 			// Determine the file encoding by looking at all the contents of the file, not just part of it
@@ -2953,7 +2953,7 @@ DWORD CMergeDoc::LoadOneFile(int index, const String& filename, bool readOnly, c
 			if (encoding != encodingNew)
 			{
 				m_ptBuf[index]->FreeAll();
-				loadSuccess = LoadFile(filename.c_str(), index, readOnly, encodingNew);
+				loadSuccess = LoadFile(filename, index, readOnly, encodingNew);
 			}
 		}
 	}
@@ -3121,7 +3121,7 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	m_strBothFilenames.erase(m_strBothFilenames.length() - 1);
 
 	// Load files
-	DWORD nSuccess[3] = { FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR };
+	FileLoadResult::flags_t nSuccess[3] = { FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR,  FileLoadResult::FRESULT_ERROR };
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
 		nSuccess[nBuffer] = LoadOneFile(nBuffer, fileloc[nBuffer].filepath, bRO[nBuffer], strDesc ? strDesc[nBuffer] : _T(""),

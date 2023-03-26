@@ -215,7 +215,7 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 	const tchar_t* pszFileName = m_strTempFileName.c_str();
 
 	String sExt;
-	DWORD nRetVal = FileLoadResult::FRESULT_OK;
+	FileLoadResult::flags_t nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
 	paths::SplitFilename(pszFileName, nullptr, nullptr, &sExt);
@@ -260,14 +260,13 @@ int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
 			if (encoding.m_unicoding == ucr::NONE  || !pufile->IsUnicode())
 				pufile->SetCodepage(encoding.m_codepage);
 		}
-		UINT lineno = 0;
+		unsigned lineno = 0;
 		String eol, preveol;
 		String sline;
 		bool done = false;
-		COleDateTime start = COleDateTime::GetCurrentTime(); // for trace messages
 
 		// Manually grow line array exponentially
-		UINT arraysize = 500;
+		size_t arraysize = 500;
 		m_aLines.resize(arraysize);
 		
 		// preveol must be initialized for empty files
