@@ -36,11 +36,17 @@
     <ClInclude Include="..\editlib\parsers\crystallineparser.h">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\UndoRecord.h">
+      <Filter>Source Files\editlib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\editlib\LineInfo.h">
+      <Filter>Source Files\editlib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="luaTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,6 +111,9 @@
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>
     <ClCompile Include="..\editlib\parsers\lua.cpp">
+      <Filter>Source Files\editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\parsers\matlab.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>
     <ClCompile Include="..\editlib\parsers\nsis.cpp">
@@ -178,6 +187,24 @@
     </ClCompile>
     <ClCompile Include="..\editlib\parsers\smarty.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="UndoRecordTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\UndoRecord.cpp">
+      <Filter>Source Files\editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\editlib\LineInfo.cpp">
+      <Filter>Source Files\editlib</Filter>
+    </ClCompile>
+    <ClCompile Include="LineInfoTests.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

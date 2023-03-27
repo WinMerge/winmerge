@@ -20,7 +20,7 @@
 // CTextMarkerDlg dialog
 
 
-CTextMarkerDlg::CTextMarkerDlg (CCrystalTextMarkers & markers, const CString& sText, DWORD dwFlags)
+CTextMarkerDlg::CTextMarkerDlg (CCrystalTextMarkers & markers, const CString& sText, findtext_flags_t dwFlags)
 : CDialog (CTextMarkerDlg::IDD, nullptr)
 , m_markers(markers)
 , m_nCurItemIndex(0)
@@ -103,7 +103,7 @@ BOOL CTextMarkerDlg::OnInitDialog ()
 			m_listMarkers.InsertItem(LVIF_TEXT | LVIF_PARAM,
 				m_listMarkers.GetItemCount(), 
 				marker.sFindWhat, 0, 0, 0,
-				reinterpret_cast<LPARAM>((const TCHAR *)(m_tempMarkers.GetMarkers().find(key)->first)));
+				reinterpret_cast<LPARAM>((const tchar_t *)(m_tempMarkers.GetMarkers().find(key)->first)));
 			m_listMarkers.SetCheck(i, marker.bVisible);
 			++i;
 		}
@@ -132,7 +132,7 @@ void CTextMarkerDlg::UpdateDataListView(bool bSaveAndValidate)
 	{
 		for (int i = 0; i < m_listMarkers.GetItemCount(); ++i)
 		{
-			const TCHAR *pKey = reinterpret_cast<TCHAR *>(m_listMarkers.GetItemData(i));
+			const tchar_t *pKey = reinterpret_cast<tchar_t *>(m_listMarkers.GetItemData(i));
 			CCrystalTextMarkers::Marker& marker = m_tempMarkers.GetMarkers().at(pKey);
 			if (m_listMarkers.GetItemState(i, LVIS_SELECTED))
 			{
@@ -152,7 +152,7 @@ void CTextMarkerDlg::UpdateDataListView(bool bSaveAndValidate)
 	{
 		for (int i = 0; i < m_listMarkers.GetItemCount(); ++i)
 		{
-			const TCHAR *pKey = reinterpret_cast<TCHAR *>(m_listMarkers.GetItemData(i));
+			const tchar_t *pKey = reinterpret_cast<tchar_t *>(m_listMarkers.GetItemData(i));
 			CCrystalTextMarkers::Marker& marker = m_tempMarkers.GetMarkers().at(pKey);
 			if (m_listMarkers.GetItemState(i, LVIS_SELECTED))
 			{
@@ -164,7 +164,7 @@ void CTextMarkerDlg::UpdateDataListView(bool bSaveAndValidate)
 	}
 }
 
-DWORD CTextMarkerDlg::GetLastSearchFlags() const
+findtext_flags_t CTextMarkerDlg::GetLastSearchFlags() const
 {
 	return
 		(m_bMatchCase ? FIND_MATCH_CASE : 0) |
@@ -188,7 +188,7 @@ void CTextMarkerDlg::OnBnClickedEditMarkerNew()
 		m_listMarkers.SetItemState(i, 0, LVIS_SELECTED);
 	m_listMarkers.InsertItem(LVIF_TEXT | LVIF_STATE | LVIF_PARAM,
 		m_listMarkers.GetItemCount(), sFindWhat, LVIS_SELECTED, LVIS_SELECTED, 0,
-		reinterpret_cast<LPARAM>((const TCHAR *)(m_tempMarkers.GetMarkers().find(name)->first)));
+		reinterpret_cast<LPARAM>((const tchar_t *)(m_tempMarkers.GetMarkers().find(name)->first)));
 	m_listMarkers.SetCheck(m_listMarkers.GetItemCount() - 1, 1);
 }
 
@@ -197,7 +197,7 @@ void CTextMarkerDlg::OnBnClickedEditMarkerDelete()
 	int i = GetSelectedItemIndex();
 	if (i < 0)
 		return;
-	const TCHAR *pKey = reinterpret_cast<TCHAR *>(m_listMarkers.GetItemData(i));
+	const tchar_t *pKey = reinterpret_cast<tchar_t *>(m_listMarkers.GetItemData(i));
 	m_listMarkers.DeleteItem(i);
 	m_tempMarkers.GetMarkers().erase(pKey);
 	if (i >= m_listMarkers.GetItemCount() - 1)
@@ -211,7 +211,7 @@ void CTextMarkerDlg::OnBnClickedApplyNow()
 	UpdateData(TRUE);
 	for (int i = 0; i < m_listMarkers.GetItemCount(); ++i)
 	{
-		const TCHAR *pKey = reinterpret_cast<TCHAR *>(m_listMarkers.GetItemData(i));
+		const tchar_t *pKey = reinterpret_cast<tchar_t *>(m_listMarkers.GetItemData(i));
 		m_tempMarkers.GetMarkers()[pKey].bVisible = !!m_listMarkers.GetCheck(i);
 	}
 	m_tempMarkers.SetEnabled(m_bMarkersEnabled);

@@ -19,19 +19,19 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool FileExist(LPCTSTR lpszPath)
+bool FileExist(const tchar_t* lpszPath)
 {
   CFileStatus status;
   return CFile::GetStatus(lpszPath, status) != 0;
 }
 
-int GetExtPosition (LPCTSTR pszString)
+int GetExtPosition (const tchar_t* pszString)
 {
   if (pszString == nullptr || !*pszString)
     return 0;
   const CString sString = pszString;
   int len = sString.GetLength (), posit = len;
-  TCHAR test;
+  tchar_t test;
   do
     if ((test = sString.GetAt (--posit)) == _T ('.'))
       return posit;
@@ -68,7 +68,7 @@ CString GetNameExt (const CString & sString)
   return sString.IsEmpty ()? sString : sString.Mid (GetNamePosition (sString));
 }
 
-int GetNamePosition (LPCTSTR pszString)
+int GetNamePosition (const tchar_t* pszString)
 {
   if (pszString == nullptr || !*pszString)
     return 0;
@@ -76,7 +76,7 @@ int GetNamePosition (LPCTSTR pszString)
   int posit = sString.GetLength ();
   do
   {
-    TCHAR test;
+    tchar_t test;
 #ifdef _UNICODE
     if ((test = sString.GetAt (--posit)) == _T ('\\') || test == _T (':'))
 #else
@@ -96,12 +96,12 @@ CString GetPath (const CString & sString, bool bClose /*= false*/ )
   if (posit == 0)
     return bClose ? _T (".\\") : _T (".");
 
-  TCHAR test = sString.GetAt (posit - 1);
+  tchar_t test = sString.GetAt (posit - 1);
 
 #ifdef _UNICODE
   if (test == _T (':') || test == _T ('\\') && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
 #else
-  if (test == _T (':') || (test == _T ('\\') && !_ismbstrail((unsigned char *)(LPCTSTR)sString, (unsigned char *)(LPCTSTR)sString + posit)) && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
+  if (test == _T (':') || (test == _T ('\\') && !_ismbstrail((unsigned char *)(const tchar_t*)sString, (unsigned char *)(const tchar_t*)sString + posit)) && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
 #endif
     return sString.Left (posit);
   return sString.Left (bClose ? posit : test == _T (':') ? posit : posit - 1);

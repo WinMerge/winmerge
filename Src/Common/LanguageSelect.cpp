@@ -10,6 +10,7 @@
 #include "Environment.h"
 #include "paths.h"
 #include "unicoder.h"
+#include "cio.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -20,11 +21,11 @@
 #endif
 
 /** @brief Relative path to WinMerge executable for lang files. */
-static const TCHAR szRelativePath[] = _T("Languages");
+static const tchar_t szRelativePath[] = _T("Languages");
 
 static wchar_t *EatPrefix(wchar_t *text, const wchar_t *prefix);
 static void unslash(std::wstring &s);
-static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd);
+static HANDLE NTAPI FindFile(HANDLE h, const tchar_t* path, WIN32_FIND_DATA *fd);
 
 /**
  * @brief A class holding information about language file.
@@ -42,7 +43,7 @@ public:
 	 */
 	explicit LangFileInfo(LANGID id): id(id) { };
 	
-	explicit LangFileInfo(LPCTSTR path);
+	explicit LangFileInfo(const tchar_t* path);
 	String GetString(LCTYPE type) const;
 
 private:
@@ -411,11 +412,11 @@ LANGID LangFileInfo::LangId(const char *lang, const char *sublang)
  * @brief A constructor taking a path to language file as parameter.
  * @param [in] path Full path to the language file.
  */
-LangFileInfo::LangFileInfo(LPCTSTR path)
+LangFileInfo::LangFileInfo(const tchar_t* path)
 : id(0)
 {
 	FILE *f;
-	if (_tfopen_s(&f, path, _T("r,ccs=utf-8")) == 0 && f)
+	if (cio::tfopen_s(&f, path, _T("r,ccs=utf-8")) == 0 && f)
 	{
 		wchar_t buf[1024 + 1];
 		while (fgetws(buf, static_cast<int>(std::size(buf)) - 1, f) != nullptr)
@@ -465,7 +466,7 @@ String LangFileInfo::GetString(LCTYPE type) const
 	return s;
 }
 
-static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd)
+static HANDLE NTAPI FindFile(HANDLE h, const tchar_t* path, WIN32_FIND_DATA *fd)
 {
 	if (h == INVALID_HANDLE_VALUE)
 	{
@@ -580,7 +581,7 @@ bool CLanguageSelect::LoadLanguageFile(LANGID wLangId, bool bShowError /*= false
 	std::wstring msgctxt;
 	std::wstring msgid;
 	FILE *f;
-	if (_tfopen_s(&f, strPath.c_str(), _T("r,ccs=UTF-8")) != 0)
+	if (cio::tfopen_s(&f, strPath, _T("r,ccs=UTF-8")) != 0)
 	{
 		if (bShowError)
 		{
@@ -828,7 +829,7 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 	} while (h != nullptr);
 }
 
-void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
+void CLanguageSelect::RetranslateDialog(HWND h, const tchar_t *name) const
 {
 	typedef struct
 	{
@@ -856,7 +857,7 @@ void CLanguageSelect::RetranslateDialog(HWND h, const TCHAR *name) const
 		DWORD id;
 	} DLGITEMTEMPLATEEX;
 
-	auto loadDialogResource = [](HMODULE hModule, const TCHAR *name) -> DLGTEMPLATEEX *
+	auto loadDialogResource = [](HMODULE hModule, const tchar_t *name) -> DLGTEMPLATEEX *
 	{
 		if (HRSRC hFindRes = FindResource(hModule, name, RT_DIALOG))
 		{
@@ -945,7 +946,7 @@ String CLanguageSelect::LoadString(UINT id) const
 	return s;
 }
 
-std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
+std::wstring CLanguageSelect::LoadDialogCaption(const tchar_t* lpDialogTemplateID) const
 {
 	std::wstring s;
 	if (HINSTANCE hInst = AfxFindResourceHandle(lpDialogTemplateID, RT_DIALOG))
@@ -1012,7 +1013,7 @@ std::vector<std::pair<LANGID, String> > CLanguageSelect::GetAvailableLanguages()
  */
 static WORD GetLangFromLocale(LCID lcid)
 {
-	TCHAR buff[8] = {0};
+	tchar_t buff[8] = {0};
 	WORD langID = 0;
 	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, static_cast<int>(std::size(buff))))
 		_stscanf_s(buff, _T("%4hx"), &langID);

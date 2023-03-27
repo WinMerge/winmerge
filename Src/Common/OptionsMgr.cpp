@@ -493,7 +493,7 @@ int COptionsMgr::Set(const String& name, const String& value)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
-int COptionsMgr::Set(const String& name, const TCHAR *value)
+int COptionsMgr::Set(const String& name, const tchar_t *value)
 {
 	return Set(name, String(value));
 }
@@ -713,7 +713,7 @@ int COptionsMgr::ImportOptions(const String& filename)
 {
 	int retVal = COption::OPT_OK;
 	const int BufSize = 40960; // This should be enough for a long time..
-	std::vector<TCHAR> buf(BufSize);
+	std::vector<tchar_t> buf(BufSize);
 	auto oleTranslateColor = [](unsigned color) -> unsigned { return ((color & 0xffffff00) == 0x80000000) ? GetSysColor(color & 0x000000ff) : color; };
 
 	// Query keys - returns NUL separated strings
@@ -722,20 +722,20 @@ int COptionsMgr::ImportOptions(const String& filename)
 		return COption::OPT_NOTFOUND;
 
 	bool init = false;
-	TCHAR *pKey = buf.data();
+	tchar_t *pKey = buf.data();
 	while (*pKey != '\0')
 	{
 		varprop::VariantValue value = Get(pKey);
 		if (value.GetType() == varprop::VT_NULL)
 		{
 			init = true;
-			TCHAR strType[MAX_PATH_FULL] = {0};
+			tchar_t strType[MAX_PATH_FULL] = {0};
 			GetPrivateProfileString(_T("WinMerge.TypeInfo"), pKey, _T(""), strType, MAX_PATH_FULL, filename.c_str());
-			if (_tcsicmp(strType, _T("bool")) == 0)
+			if (tc::tcsicmp(strType, _T("bool")) == 0)
 				value.SetBool(false);
-			else if (_tcsicmp(strType, _T("int")) == 0)
+			else if (tc::tcsicmp(strType, _T("int")) == 0)
 				value.SetInt(0);
-			else if (_tcsicmp(strType, _T("string")) == 0)
+			else if (tc::tcsicmp(strType, _T("string")) == 0)
 				value.SetString(_T(""));
 		}
 
@@ -753,7 +753,7 @@ int COptionsMgr::ImportOptions(const String& filename)
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
-			TCHAR strVal[MAX_PATH_FULL] = {0};
+			tchar_t strVal[MAX_PATH_FULL] = {0};
 			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH_FULL, filename.c_str());
 			String sVal = UnescapeValue(strVal);
 			value.SetString(sVal);
@@ -766,7 +766,7 @@ int COptionsMgr::ImportOptions(const String& filename)
 			SaveOption(pKey, value);
 		}
 
-		pKey += _tcslen(pKey);
+		pKey += tc::tcslen(pKey);
 
 		// Check: pointer is not past string end, and next char is not null
 		// double NUL char ends the keynames string
@@ -782,7 +782,7 @@ String COptionsMgr::EscapeValue(const String& text)
 	String text2;
 	for (size_t i = 0; i < text.length(); ++i)
 	{
-		TCHAR ch = text[i];
+		tchar_t ch = text[i];
 		if (ch == '\0' || ch == '\x1b' || ch == '\r' || ch == '\n')
 		{
 			text2 += '\x1b';

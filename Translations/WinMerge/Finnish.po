@@ -1032,7 +1032,7 @@ msgstr "Jätä nume&rot huomiotta"
 msgid "Ignore c&omment differences"
 msgstr "Jätä k&ommenttien erot huomiotta"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Sisällytä alihakemistot"
 
 msgid "&Compare method:"
@@ -1155,10 +1155,10 @@ msgstr "Kysy monikerta-ikkunoita suljettaessa"
 msgid "&Preserve file time in file compare"
 msgstr "Säilytä tiedostoaika tiedostovertailussa"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Näytä \"Valitse tiedostot tai kansiot\"-valintaikkuna käynnistyksessä"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1984,7 +1984,7 @@ msgstr ""
 msgid "&Automatically expand all subfolders"
 msgstr "L&aajenna kaikki alikansiot automaattisesti"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ohita &uudelleenjäsennyskohdat"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1996,23 +1996,17 @@ msgstr "Kynnysarvo, jossa siirrytään &binaariseen vertailuun (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV-tiedostomallit:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV-tiedostomallit:"
+msgid "File patterns:"
+msgstr "Tiedostomallit:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Mukautetulla erottimella erotetut arvot"
-
-msgid "File Patterns:"
-msgstr "Tiedostomallit:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binääri"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binaaritiedosto&malli:"
 
 msgid "Frhed settings"
@@ -2030,7 +2024,7 @@ msgstr "&Merkistö..."
 msgid "Image"
 msgstr "Kuva"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Kuvatiedosto&mallit:"
 
 msgid "&Enable image compare in folder compare"
@@ -3801,6 +3795,9 @@ msgstr "Käytä &automaattista maksimi leveyttä"
 msgid "We&bpage"
 msgstr "Ver&kkosivu"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed ei ole asennettu."
 
@@ -4012,6 +4009,45 @@ msgstr ""
 msgid "Al&l"
 msgstr "K&aikki"
 
+msgid "&Others"
+msgstr "&Muut"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Puuttuva lisäosan nimi laajennusputkessa: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Puuttuva lainausmerkki laajennusputkessa: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Määritä laajennuksen argumentit"
+
+msgid "Filter applied"
+msgstr "Sovellettu suodatin"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Leikepöytä %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click "
+"the Turn on button."
+msgstr ""
+"Leikepöydän historia on poistettu käytöstä.\r\n"
+"Voit ottaa leikepöydän historian käyttöön painamalla Windows-"
+"logonäppäintä + V ja napsauttamalla sitten Ota käyttöön."
+
+msgid "This system does not support clipboard history."
+msgstr "Tämä järjestelmä ei tue leikepöydän historiaa."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "WinMergen 32-bittinen versio ei tue leikepöytävertailua"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2-runtimea ei ole asennettu. Haluatko ladata sen?"
+
 msgid "Prettification"
 msgstr "Kaunistelu"
 
@@ -4029,9 +4065,6 @@ msgstr "Todentaminen"
 
 msgid "Decompilation"
 msgstr "Purkaminen"
-
-msgid "&Others"
-msgstr "&Muut"
 
 msgid "URL Handling"
 msgstr "URL käsittely"
@@ -4099,6 +4132,9 @@ msgstr "Jätä CSV-kentät huomiotta"
 msgid "Ignore TSV Fields"
 msgstr "Jätä TSV-kentät huomiotta"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Käytä Prediff-korvaussuodattimia"
 
@@ -4146,17 +4182,6 @@ msgstr "Pura IL-koodi"
 
 msgid "Disassemble Native Code"
 msgstr "Pura natiivikoodi"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Puuttuva lisäosan nimi laajennusputkessa: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Puuttuva lainausmerkki laajennusputkessa: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Määritä laajennuksen argumentit"
 
 msgid "Make characters uppercase"
 msgstr "Isot kirjaimet"
@@ -4421,28 +4446,3 @@ msgid ""
 msgstr ""
 "Windowsin rekisterin URL-suunnitelman käsittelijä\r\n"
 "Argumentit: Komentorivin asetukset, jotka välitetään reg.exe-komentoon."
-
-msgid "Filter applied"
-msgstr "Sovellettu suodatin"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Leikepöytä %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click "
-"the Turn on button."
-msgstr ""
-"Leikepöydän historia on poistettu käytöstä.\r\n"
-"Voit ottaa leikepöydän historian käyttöön painamalla Windows-"
-"logonäppäintä + V ja napsauttamalla sitten Ota käyttöön."
-
-msgid "This system does not support clipboard history."
-msgstr "Tämä järjestelmä ei tue leikepöydän historiaa."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "WinMergen 32-bittinen versio ei tue leikepöytävertailua"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2-runtimea ei ole asennettu. Haluatko ladata sen?"

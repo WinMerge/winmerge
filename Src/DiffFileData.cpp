@@ -8,7 +8,7 @@
 
 #include "pch.h"
 #include "DiffFileData.h"
-#include <io.h>
+#include "cio.h"
 #include <memory>
 #include "DiffItem.h"
 #include "FileLocation.h"
@@ -67,7 +67,7 @@ bool DiffFileData::DoOpenFiles()
 		// Actual paths are m_FileLocation[i].filepath
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
-		m_inf[i].name = _strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
+		m_inf[i].name = strdup(ucr::toSystemCP(m_sDisplayFilepath[i]).c_str());
 		if (m_inf[i].name == nullptr)
 			return false;
 
@@ -76,14 +76,12 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
-			_tsopen_s(&m_inf[i].desc, TFile(m_FileLocation[i].filepath).wpath().c_str(),
-					O_RDONLY | O_BINARY, _SH_DENYNO, _S_IREAD);
-
+			cio::tsopen_s(&m_inf[i].desc, m_FileLocation[i].filepath, O_RDONLY | O_BINARY, _SH_DENYNO, _S_IREAD);
 			if (m_inf[i].desc < 0)
 				return false;
 
 			// Get file stats (diffutils uses these)
-			if (myfstat(m_inf[i].desc, &m_inf[i].stat) != 0)
+			if (cio::fstat(m_inf[i].desc, &m_inf[i].stat) != 0)
 				return false;
 		}
 		
@@ -120,7 +118,7 @@ void DiffFileData::Reset()
 
 		if (m_inf[i].desc > 0)
 		{
-			_close(m_inf[i].desc);
+			cio::close(m_inf[i].desc);
 		}
 		m_inf[i] = {};
 	}

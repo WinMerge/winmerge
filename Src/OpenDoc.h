@@ -2,6 +2,7 @@
 
 #include "PathContext.h"
 #include "FileTransform.h"
+#include "FileOpenFlags.h"
 #include <array>
 
 class ProjectFile;
@@ -18,7 +19,7 @@ public:
 	void RefreshOptions();
 	void UpdateResources();
 
-	std::array<DWORD, 3> m_dwFlags;
+	std::array<fileopenflags_t, 3> m_dwFlags;
 	PathContext m_files;
 	bool	m_bRecurse;
 	String	m_strExt;
@@ -26,8 +27,8 @@ public:
 	String	m_strPredifferPipeline;
 	String	m_strDesc[3];
 	int		m_nWindowType;
-	TCHAR	m_cTableDelimiter;
-	TCHAR	m_cTableQuote;
+	tchar_t	m_cTableDelimiter;
+	tchar_t	m_cTableQuote;
 	bool	m_bTableAllowNewLinesInQuotes;
 	std::vector<String> m_hiddenItems;
 

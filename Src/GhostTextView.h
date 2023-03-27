@@ -62,13 +62,13 @@ private:
 	 * @note We can only push/pop valid positions
 	 * For positions which are sometimes invalid, use a flag
 	 */
-	void pushPosition(SCursorPushed & Sdest, CPoint pt);
+	void pushPosition(SCursorPushed & Sdest, CEPoint pt);
 	/** 
 	 * @brief Restore cursors after Rescan.
 	 *
 	 * @note : also scroll to the old top line
 	 */
-	void popPosition(SCursorPushed Ssrc, CPoint & pt);
+	void popPosition(SCursorPushed Ssrc, CEPoint & pt);
 
 	/// basic cursor
 	SCursorPushed m_ptCursorPosPushed;
@@ -90,7 +90,7 @@ private:
 	 * initialized with (-1,-1), so don't assert for this invalid value
 	 */
 	SCursorPushed m_ptLastChangePushed;
-	// Other CPoint used but not preserved :
+	// Other CEPoint used but not preserved :
 	//   m_ptDrawSelStart, m_ptDrawSelEnd : built from m_ptSelStart and m_ptSelEnd
 	//   m_ptDropPos : only used inside one function which does not change the buffer
 

@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -27,7 +27,7 @@
 
 // Chapter7
 // Built-in Functions
-static const TCHAR * s_apszBuiltInFunctionList[] =
+static const tchar_t * s_apszBuiltInFunctionList[] =
   {
     _T ("append"),
     _T ("as"),            // This is used with "foreach".
@@ -66,7 +66,7 @@ static const TCHAR * s_apszBuiltInFunctionList[] =
   };
 
 // Operators
-static const TCHAR * s_apszOperatorList[] =
+static const tchar_t * s_apszOperatorList[] =
   {
     _T ("by"),
     _T ("div"),
@@ -88,7 +88,7 @@ static const TCHAR * s_apszOperatorList[] =
 
 // Chapter8
 // Custom Functions
-static const TCHAR * s_apszCustomFunctionList[] =
+static const tchar_t * s_apszCustomFunctionList[] =
   {
     _T ("counter"),
     _T ("cycle"),
@@ -108,7 +108,7 @@ static const TCHAR * s_apszCustomFunctionList[] =
 
 // Chapter5
 // Variable Modifiers
-static const TCHAR * s_apszVariableModifierList[] =
+static const tchar_t * s_apszVariableModifierList[] =
   {
     _T ("capitalize"),
     _T ("cat"),
@@ -138,49 +138,49 @@ static const TCHAR * s_apszVariableModifierList[] =
 
 
 static bool
-IsSmartyKeyword (const TCHAR *pszChars, int nLength)
+IsSmartyKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszBuiltInFunctionList, pszChars, nLength);
 }
 
 static bool
-IsOperatorKeyword(const TCHAR* pszChars, int nLength)
+IsOperatorKeyword(const tchar_t* pszChars, int nLength)
 {
     return ISXKEYWORDI(s_apszOperatorList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (const TCHAR *pszChars, int nLength)
+IsUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszCustomFunctionList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (const TCHAR *pszChars, int nLength)
+IsUser2Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszVariableModifierList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineSmarty(unsigned dwCookie, const TCHAR* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
+CrystalLineParser::ParseLineSmarty(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
 {
   return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_SMARTY);
 }
 
 unsigned
-CrystalLineParser::ParseLineSmartyLanguage (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineSmartyLanguage (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);
 
-  const TCHAR *pszCommentBegin = nullptr;
-  const TCHAR *pszCommentEnd = nullptr;
+  const tchar_t *pszCommentBegin = nullptr;
+  const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -244,7 +244,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -255,7 +255,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;
@@ -266,7 +266,7 @@ out:
       //  Variables loaded from config files #....#
       if (dwCookie & COOKIE_USER1)
         {
-          if (pszChars[I] == '#' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '#' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_USER1;
               bRedefineBlock = true;

@@ -11,7 +11,7 @@ namespace locality {
 
 String NumToLocaleStr(int n);
 String NumToLocaleStr(int64_t n);
-String GetLocaleStr(const TCHAR *str, int decimalDigits = 0);
+String GetLocaleStr(const tchar_t *str, int decimalDigits = 0);
 String TimeString(const int64_t * tim);
 
 };

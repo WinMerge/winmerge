@@ -16,6 +16,7 @@ Const ACCELERATORS_BLOCK = 5
 
 Const PATH_ENGLISH_POT = "English.pot"
 Const PATH_MERGE_RC = "../../Src/Merge.rc"
+Const PATH_PLUGIN_STRINGS_RC = "../../Plugins/Strings.rc"
 
 Dim oFSO, bRunFromCmd, bInsertLineNumbers
 
@@ -49,9 +50,12 @@ Sub Main
   End If
   
   If (bNecessary = True) Then 'If update necessary...
-    Set oStrings = GetStringsFromRcFile(PATH_MERGE_RC)
+    Set oStrings = MergeDictionaries( _
+      GetStringsFromRcFile(PATH_MERGE_RC), _
+      GetStringsFromRcFile(PATH_PLUGIN_STRINGS_RC))
     CreateMasterPotFile PATH_ENGLISH_POT, oStrings
     SetArchiveBit PATH_MERGE_RC, False
+    SetArchiveBit PATH_PLUGIN_STRINGS_RC, False
     SetArchiveBit PATH_ENGLISH_POT, False
     For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
       If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
@@ -73,6 +77,27 @@ End Sub
 Class CString
   Dim Comment, References, Context, Id, Str
 End Class
+
+
+''
+' ...
+Function MergeDictionaries(dict1, dict2)
+    Dim mergedDict
+    Set mergedDict = CreateObject("Scripting.Dictionary")
+    
+    Dim key
+    For Each key In dict1.Keys
+        mergedDict.Add key, dict1.Item(key)
+    Next
+    
+    For Each key In dict2.Keys
+        If Not mergedDict.Exists(key) Then
+            mergedDict.Add key, dict2.Item(key)
+        End If
+    Next
+    
+    Set MergeDictionaries = mergedDict
+End Function
 
 ''
 ' ...

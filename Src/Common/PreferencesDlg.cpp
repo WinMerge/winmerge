@@ -30,7 +30,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CPreferencesDlg dialog
 
-const TCHAR PATHDELIM = '>';
+const tchar_t PATHDELIM = '>';
 
 CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 		UINT nMenuID /*= 0*/, CWnd* pParent /*= nullptr*/)   // standard constructor
@@ -182,7 +182,7 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubH
 	AddPage(pPage, sPath.c_str());
 }
 
-void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
+void CPreferencesDlg::AddPage(CPropertyPage* pPage, const tchar_t* szPath)
 {
 	if (m_pphost.AddPage(pPage))
 	{
@@ -238,7 +238,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 		m_pphost.SetActivePage(pPage, false);
 
 		// update caption
-		String sCaption = strutils::format_string1(_("Options (%1)"), (LPCTSTR)GetItemPath(htiSel));
+		String sCaption = strutils::format_string1(_("Options (%1)"), (const tchar_t*)GetItemPath(htiSel));
 		SetWindowText(sCaption.c_str());
 	}
 

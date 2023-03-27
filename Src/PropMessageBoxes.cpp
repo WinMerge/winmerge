@@ -17,7 +17,7 @@ static struct MessageBox
 {
 	int nID;
 	int nHelpID;
-	const TCHAR* key;
+	const tchar_t* key;
 	int type;
 } MessageBoxes[] =
 {

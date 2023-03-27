@@ -714,6 +714,9 @@
     <ClCompile Include="DirWatcher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\cio.cpp">
+      <Filter>Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -795,9 +798,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileLocation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="files.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileTextEncoding.h">
@@ -1350,6 +1350,15 @@
       <Filter>MFCGui\MDIChild\WebPageCompare\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DirWatcher.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\cio.h">
+      <Filter>Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileOpenFlags.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FileLoadResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

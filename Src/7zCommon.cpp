@@ -151,17 +151,17 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 		return nullptr;
 	String path2(path);
 	// Map extensions through ExternalArchiveFormat.ini
-	static TCHAR null[] = _T("");
-	static const TCHAR section[] = _T("extensions");
+	static tchar_t null[] = _T("");
+	static const tchar_t section[] = _T("extensions");
 	String entry = paths::FindExtension(path);
-	TCHAR value[20];
-	static LPCTSTR filename = nullptr;
+	tchar_t value[20];
+	static const tchar_t* filename = nullptr;
 	if (filename == nullptr)
 	{
-		TCHAR cPath[INTERNET_MAX_PATH_LENGTH];
+		tchar_t cPath[INTERNET_MAX_PATH_LENGTH];
 		DWORD cchPath = SearchPath(nullptr, _T("ExternalArchiveFormat.ini"), nullptr,
 			INTERNET_MAX_PATH_LENGTH, cPath, nullptr);
-		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? _tcsdup(cPath) : null;
+		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? tc::tcsdup(cPath) : null;
 	}
 	if (*filename &&
 		GetPrivateProfileString(section, entry.c_str(), null, value, 20, filename) &&
@@ -169,7 +169,7 @@ Merge7z::Format *ArchiveGuessFormat(const String& path)
 	{
 		// Remove end-of-line comments (in string returned from GetPrivateProfileString)
 		// that is, remove semicolon & whatever follows it
-		if (LPTSTR p = StrChr(value, ';'))
+		if (tchar_t* p = StrChr(value, ';'))
 		{
 			*p = '\0';
 			StrTrim(value, _T(" \t"));
@@ -318,7 +318,7 @@ Merge7z::Envelope *SingleItemEnumerator::Enum(Item &item)
 /**
  * @brief SingleFileEnumerator constructor.
  */
-SingleItemEnumerator::SingleItemEnumerator(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name)
+SingleItemEnumerator::SingleItemEnumerator(const tchar_t* path, const tchar_t* FullPath, const tchar_t* Name)
 : FullPath(FullPath)
 , Name(Name)
 {
@@ -505,7 +505,7 @@ Merge7z::Envelope *DirItemEnumerator::Enum(Item &item)
 /**
  * @brief Apply appropriate handlers from left to right.
  */
-bool DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
+bool DirItemEnumerator::MultiStepCompressArchive(const tchar_t* path)
 {
 	DeleteFile(path);
 	Merge7z::Format *piHandler = ArchiveGuessFormat(path);
@@ -536,14 +536,14 @@ bool DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
 /**
  * @brief Generate archive from DirView items.
  */
-void DirItemEnumerator::CompressArchive(LPCTSTR path)
+void DirItemEnumerator::CompressArchive(const tchar_t* path)
 {
 	String strPath;
 	if (path == nullptr)
 	{
 		// 7z311 can only write 7z, zip, and tar(.gz|.bz2) archives, so don't
 		// offer other formats here!
-		static const TCHAR _T_Filter[]
+		static const tchar_t _T_Filter[]
 		(
 			_T("7z|*.7z|")
 			//_T("z|*.z|")

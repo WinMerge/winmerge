@@ -1253,7 +1253,7 @@ msgid "Ignore c&omment differences"
 msgstr "Ingora les diferències en els comentaris"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Inclou-hi les subcarpetes"
 
 #, c-format
@@ -1412,10 +1412,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Preserva la data en les comparacions de fitxers"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Mostra el diàlec \"Selecciona fitxers o directoris\" a l'iniciar"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Tanca el diàlec \"Selecciona fitxers o directoris\" al fer clic en comparar"
 
 #, c-format
@@ -2444,7 +2444,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "Obre automàticament l'abre de les subcarpetes"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignora els punts de &reparseig"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2456,24 +2456,18 @@ msgstr "Llindar per realitzar una comparació binària (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr "Patrons del fitxer &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Patrons del fitxer &TSV:"
+msgid "File patterns:"
+msgstr "Patrons de fitxer:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Delimitador de valors personalitzat"
-
-msgid "File Patterns:"
-msgstr "Patrons de fitxer:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binari"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Patrons de fitxer binari:"
 
 #, c-format
@@ -2496,7 +2490,7 @@ msgid "Image"
 msgstr "Imatge"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Patrons de fitxer d'imatge:"
 
 msgid "&Enable image compare in folder compare"
@@ -4467,6 +4461,9 @@ msgstr "Activa l'amplada màxima automàtica"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "L'aplicació Frhed no està instal·lada."
 
@@ -4678,6 +4675,43 @@ msgstr ""
 msgid "Al&l"
 msgstr "Tot"
 
+msgid "&Others"
+msgstr "Altres"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Manca el nom del connector a la seqüencia: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Manca les cometes a la seqüència: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Especifiqueu els paràmetres del connector"
+
+msgid "Filter applied"
+msgstr "Filtre aplicat"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Porta-retalls a %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"L'historial del porta-retalls està desactivat.\r\n"
+"Per activar l'historial del porta-retalls, premeu la tecla del logotip de Windows + V i aleshores feu clic al botó Activa."
+
+msgid "This system does not support clipboard history."
+msgstr "Aquest sistema no té suport per a l'historial del porta-retalls."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "La versió de 32 bits del WinMerge no suporta comparar via porta-retalls"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Embellir"
 
@@ -4695,9 +4729,6 @@ msgstr "Validació"
 
 msgid "Decompilation"
 msgstr "Decompilació"
-
-msgid "&Others"
-msgstr "Altres"
 
 msgid "URL Handling"
 msgstr ""
@@ -4765,6 +4796,9 @@ msgstr "Ignora els camps CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignora els camps TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Aplíca els filtres de substitució de la prediferenciació"
 
@@ -4812,17 +4846,6 @@ msgstr "Desensambla Codi IL"
 
 msgid "Disassemble Native Code"
 msgstr "Desensambla Codi Nadiu"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Manca el nom del connector a la seqüencia: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Manca les cometes a la seqüència: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Especifiqueu els paràmetres del connector"
 
 msgid "Make characters uppercase"
 msgstr "Converteix els caràcters a majúscules"
@@ -5059,27 +5082,4 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Filter applied"
-msgstr "Filtre aplicat"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Porta-retalls a %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"L'historial del porta-retalls està desactivat.\r\n"
-"Per activar l'historial del porta-retalls, premeu la tecla del logotip de Windows + V i aleshores feu clic al botó Activa."
-
-msgid "This system does not support clipboard history."
-msgstr "Aquest sistema no té suport per a l'historial del porta-retalls."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "La versió de 32 bits del WinMerge no suporta comparar via porta-retalls"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

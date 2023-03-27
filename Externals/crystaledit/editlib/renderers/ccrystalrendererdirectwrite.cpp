@@ -9,6 +9,7 @@
 #define WINVER 0x0a00
 #include <afxwin.h>
 #include "ccrystalrendererdirectwrite.h"
+#include "utils/ctchar.h"
 #include "resource.h"
 #include <d2d1_3.h>
 #include <dwrite_3.h>
@@ -352,12 +353,12 @@ bool CCrystalRendererDirectWrite::GetCharWidth(unsigned start, unsigned end, int
 	return succeeded;
 }
 
-void CCrystalRendererDirectWrite::SetTextColor(COLORREF clr)
+void CCrystalRendererDirectWrite::SetTextColor(CEColor clr)
 {
 	m_pTextBrush->SetColor(ColorRefToColorF(clr));
 }
 
-void CCrystalRendererDirectWrite::SetBkColor(COLORREF clr)
+void CCrystalRendererDirectWrite::SetBkColor(CEColor clr)
 {
 	m_pBackgroundBrush->SetColor(ColorRefToColorF(clr));
 }
@@ -367,7 +368,7 @@ void CCrystalRendererDirectWrite::FillRectangle(const CRect &rc)
 	m_renderTarget.FillRectangle(CD2DRectF(rc), m_pBackgroundBrush.get());
 }
 
-void CCrystalRendererDirectWrite::FillSolidRectangle(const CRect &rc, COLORREF color)
+void CCrystalRendererDirectWrite::FillSolidRectangle(const CRect &rc, CEColor color)
 {
 	m_pTempBrush->SetColor(ColorRefToColorF(color));
 	m_renderTarget.FillRectangle(CD2DRectF(rc), m_pTempBrush.get());
@@ -407,7 +408,7 @@ void CCrystalRendererDirectWrite::DrawMarginIcon(int x, int y, int iconIndex, in
 
 void CCrystalRendererDirectWrite::DrawMarginLineNumber(int x, int y, int number)
 {
-	TCHAR szNumbers[32];
+	tchar_t szNumbers[32];
 	int len = wsprintf(szNumbers, _T("%d"), number);
 	m_renderTarget.DrawText(szNumbers,
 		{ static_cast<float>(x) - m_charSize.width * len - 4, static_cast<float>(y),
@@ -442,7 +443,7 @@ void CCrystalRendererDirectWrite::DrawLineCursor(int left, int right, int y, int
 	m_pTempBrush->SetOpacity(1.0f);
 }
 
-void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const TCHAR *text, size_t len, const int nWidths[])
+void CCrystalRendererDirectWrite::DrawText(int x, int y, const CRect &rc, const tchar_t *text, size_t len, const int nWidths[])
 {
 	CD2DRectF rcF(rc);
 
@@ -620,7 +621,7 @@ void CCrystalRendererDirectWrite::DrawRuler(int left, int top, int width, int he
 	m_pTempBrush->SetColor(ColorRefToColorF(0));
 	float bottom = static_cast<float>(top + height) - 0.5f;
 	int prev10 = (offset / 10) * 10;
-	TCHAR szNumbers[32];
+	tchar_t szNumbers[32];
 	int len = wsprintf(szNumbers, _T("%d"), prev10);
 	if ((offset % 10) != 0 && offset - prev10 < len)
 	{

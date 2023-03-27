@@ -1,39 +1,39 @@
 #pragma once
 
-#include <windows.h>
+#include "cecolor.h"
 
 /** 
  * @brief Color settings.
  */
 struct COLORSETTINGS
 {
-	COLORREF	clrDiff;			/**< Difference color */
-	COLORREF	clrDiffDeleted;		/**< Difference deleted color */
-	COLORREF	clrDiffText;		/**< Difference text color */
-	COLORREF	clrSelDiff;			/**< Selected difference color */
-	COLORREF	clrSelDiffDeleted;	/**< Selected difference deleted color */
-	COLORREF	clrSelDiffText;		/**< Selected difference text color */
-	COLORREF	clrTrivial;			/**< Ignored difference color */
-	COLORREF	clrTrivialDeleted;	/**< Ignored difference deleted color */
-	COLORREF	clrTrivialText;		/**< Ignored difference text color */
-	COLORREF	clrMoved;			/**< Moved block color */
-	COLORREF	clrMovedDeleted;	/**< Moved block deleted color */
-	COLORREF	clrMovedText;		/**< Moved block text color */
-	COLORREF	clrSelMoved;		/**< Selected moved block color */
-	COLORREF	clrSelMovedDeleted;	/**< Selected moved block deleted color */
-	COLORREF	clrSelMovedText;	/**< Selected moved block text color */
-	COLORREF	clrSNP;				/**< SNP block color */
-	COLORREF	clrSNPDeleted;		/**< SNP block deleted color */
-	COLORREF	clrSNPText;			/**< SNP block text color */
-	COLORREF	clrSelSNP;			/**< Selected SNP block color */
-	COLORREF	clrSelSNPDeleted;	/**< Selected SNP block deleted color */
-	COLORREF	clrSelSNPText;		/**< Selected SNP block text color */
-	COLORREF	clrWordDiff;		/**< Word difference color */
-	COLORREF	clrWordDiffDeleted;	/**< Word differenceDeleted color */
-	COLORREF	clrWordDiffText;	/**< Word difference text color */
-	COLORREF	clrSelWordDiff;		/**< Selected word difference color */
-	COLORREF	clrSelWordDiffDeleted;	/**< Selected word difference deleted color */
-	COLORREF	clrSelWordDiffText;	/**< Selected word difference text color */
+	CEColor	clrDiff;			/**< Difference color */
+	CEColor	clrDiffDeleted;		/**< Difference deleted color */
+	CEColor	clrDiffText;		/**< Difference text color */
+	CEColor	clrSelDiff;			/**< Selected difference color */
+	CEColor	clrSelDiffDeleted;	/**< Selected difference deleted color */
+	CEColor	clrSelDiffText;		/**< Selected difference text color */
+	CEColor	clrTrivial;			/**< Ignored difference color */
+	CEColor	clrTrivialDeleted;	/**< Ignored difference deleted color */
+	CEColor	clrTrivialText;		/**< Ignored difference text color */
+	CEColor	clrMoved;			/**< Moved block color */
+	CEColor	clrMovedDeleted;	/**< Moved block deleted color */
+	CEColor	clrMovedText;		/**< Moved block text color */
+	CEColor	clrSelMoved;		/**< Selected moved block color */
+	CEColor	clrSelMovedDeleted;	/**< Selected moved block deleted color */
+	CEColor	clrSelMovedText;	/**< Selected moved block text color */
+	CEColor	clrSNP;				/**< SNP block color */
+	CEColor	clrSNPDeleted;		/**< SNP block deleted color */
+	CEColor	clrSNPText;			/**< SNP block text color */
+	CEColor	clrSelSNP;			/**< Selected SNP block color */
+	CEColor	clrSelSNPDeleted;	/**< Selected SNP block deleted color */
+	CEColor	clrSelSNPText;		/**< Selected SNP block text color */
+	CEColor	clrWordDiff;		/**< Word difference color */
+	CEColor	clrWordDiffDeleted;	/**< Word differenceDeleted color */
+	CEColor	clrWordDiffText;	/**< Word difference text color */
+	CEColor	clrSelWordDiff;		/**< Selected word difference color */
+	CEColor	clrSelWordDiffDeleted;	/**< Selected word difference deleted color */
+	CEColor	clrSelWordDiffText;	/**< Selected word difference text color */
 };
 
 class COptionsMgr;

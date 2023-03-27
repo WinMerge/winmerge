@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-02-19 08:57+0000\n"
+"POT-Creation-Date: 2023-03-12 19:56+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yin Gang <zenith.yin@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
@@ -1035,7 +1035,7 @@ msgstr "忽略数字(&B)"
 msgid "Ignore c&omment differences"
 msgstr "忽略注释行差异(&O)"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "包含子目录(&I)"
 
 msgid "&Compare method:"
@@ -1158,10 +1158,10 @@ msgstr "关闭多个窗口时询问我(&K)"
 msgid "&Preserve file time in file compare"
 msgstr "比较时保持文件时间不变(&P)"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "启动时显示“选择文件或文件夹”对话框"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1985,7 +1985,7 @@ msgstr "包含仅在单侧的子文件夹内容(&U)"
 msgid "&Automatically expand all subfolders"
 msgstr "自动展开所有子文件夹(&A)"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "忽略重新解析点(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1997,23 +1997,17 @@ msgstr "切换到二进制比较的最小值(&B) (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "可以使用的处理器核心数(&N):"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV 文件模式:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV 文件模式:"
+msgid "File patterns:"
+msgstr "文件模式:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "自定义分隔符的数值集"
-
-msgid "File Patterns:"
-msgstr "文件模式:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "二进制"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "二进制文件扩展名 (&P):"
 
 msgid "Frhed settings"
@@ -2031,7 +2025,7 @@ msgstr "字符集(&C)..."
 msgid "Image"
 msgstr "图像"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "图像文件扩展名 (&P):"
 
 msgid "&Enable image compare in folder compare"
@@ -3812,6 +3806,9 @@ msgstr "启用自动最大宽度(&A)"
 msgid "We&bpage"
 msgstr "网页(&B)"
 
+msgid "W&rap Text"
+msgstr "自动换行(&R)"
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安装。"
 
@@ -4020,6 +4017,44 @@ msgstr "立即"
 msgid "Al&l"
 msgstr "全部(&L)"
 
+msgid "&Others"
+msgstr "其它(&O)"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "插件流程（pipeline）中缺少插件名称: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "插件流程（pipeline）中缺少引号: %1"
+
+msgid "Specify plugin arguments"
+msgstr "指定插件参数"
+
+msgid "Filter applied"
+msgstr "过滤器已应用"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "剪贴板位于 %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+"剪贴板历史记录被禁用了。\r\n"
+"要启用剪贴板历史记录， 请按 Windows 徽标键 + V，然后单击“打开”按钮。"
+
+msgid "This system does not support clipboard history."
+msgstr "当前系统不支持剪贴板历史记录。"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32 位的 WinMerge 不支持剪贴板比较"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "未安装 WebView2 运行库。你想下载吗？"
+
 msgid "Prettification"
 msgstr "格式美化"
 
@@ -4037,9 +4072,6 @@ msgstr "验证"
 
 msgid "Decompilation"
 msgstr "反编译"
-
-msgid "&Others"
-msgstr "其它(&O)"
 
 msgid "URL Handling"
 msgstr "网址处理"
@@ -4107,6 +4139,9 @@ msgstr "忽略 CSV 字段"
 msgid "Ignore TSV Fields"
 msgstr "忽略 TSV 字段"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "忽略行首的行号"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "使用预比较置换过滤器"
 
@@ -4154,17 +4189,6 @@ msgstr "反汇编 IL 代码"
 
 msgid "Disassemble Native Code"
 msgstr "反汇编本地代码"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "插件流程（pipeline）中缺少插件名称: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "插件流程（pipeline）中缺少引号: %1"
-
-msgid "Specify plugin arguments"
-msgstr "指定插件参数"
 
 msgid "Make characters uppercase"
 msgstr "变大写"
@@ -4431,27 +4455,3 @@ msgid ""
 msgstr ""
 "Windows 注册表 URL 方案处理程序。\r\n"
 "参数：传递给 reg.exe 的命令行选项。"
-
-msgid "Filter applied"
-msgstr "过滤器已应用"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "剪贴板位于 %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the "
-"Turn on button."
-msgstr ""
-"剪贴板历史记录被禁用了。\r\n"
-"要启用剪贴板历史记录， 请按 Windows 徽标键 + V，然后单击“打开”按钮。"
-
-msgid "This system does not support clipboard history."
-msgstr "当前系统不支持剪贴板历史记录。"
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32 位的 WinMerge 不支持剪贴板比较"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "未安装 WebView2 运行库。你想下载吗？"

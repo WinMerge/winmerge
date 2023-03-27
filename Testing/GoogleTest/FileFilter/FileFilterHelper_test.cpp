@@ -31,9 +31,7 @@ namespace
 		{
 			// Code	here will be called	immediately	after the constructor (right
 			// before each test).
-			TCHAR temp[MAX_PATH] = {0};
-			GetModuleFileName(NULL, temp, MAX_PATH);
-			env::SetProgPath(paths::GetPathOnly(temp) + _T("/../FileFilter"));
+			env::SetProgPath(env::GetProgPath() + _T("/../FileFilter"));
 			m_fileFilterHelper.LoadAllFileFilters();
 		}
 

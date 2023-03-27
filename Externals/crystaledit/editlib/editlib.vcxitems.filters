@@ -126,6 +126,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\lua.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\matlab.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\nsis.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
@@ -210,9 +213,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\icu.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)utils\registry.cpp">
-      <Filter>Utils</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\string_util.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
@@ -249,6 +249,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)FindTextHelper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)ccrystaleditview.h">
@@ -317,9 +318,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\icu.hpp">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)utils\registry.h">
-      <Filter>Utils</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\string_util.h">
       <Filter>Utils</Filter>
     </ClInclude>
@@ -353,5 +351,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)dialogs\memcombo.h">
       <Filter>Dialogs</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cepoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\ctchar.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)cecolor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)FindTextHelper.h" />
   </ItemGroup>
 </Project>

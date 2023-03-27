@@ -254,7 +254,7 @@ CMoveConstraint::ClearMostData()
 	m_fShrinkHeight=0;
 	m_bPropertyPage=false;
 	m_bPropertySheet=false;
-	m_ConstraintList.RemoveAll();
+	m_ConstraintList.clear();
 	m_bPersistent=false;
 	m_bConstrainNonChildren = false;
 }
@@ -305,8 +305,7 @@ DoConstrain(CWnd * pWnd, HWND hwndChild, double fLeftX, double fExpandX, double 
 		m_nDelayed++;
 	}
 
-	ConstraintList & constraintList = m_ConstraintList;
-	constraintList.AddTail(constraint);
+	m_ConstraintList.push_back(constraint);
 	return true;
 }
 
@@ -389,10 +388,8 @@ CMoveConstraint::CheckDeferredChildren()
 {
 	if (m_nDelayed == 0)
 		return;
-	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
+	for (auto& constraint : m_ConstraintList)
 	{
-		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild  != nullptr)
 			continue;
 		ASSERT(constraint.m_pWnd != nullptr);
@@ -436,10 +433,8 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
 	int nDeltaWidth = (rectParentCurrent.right - m_rectDlgOriginal.right);
 	int nDeltaHeight = (rectParentCurrent.bottom - m_rectDlgOriginal.bottom);
 
-	ConstraintList & constraintList = m_ConstraintList;
-	for (POSITION pos=constraintList.GetHeadPosition(); pos != nullptr; constraintList.GetNext(pos))
+	for (auto& constraint : m_ConstraintList)
 	{
-		Constraint & constraint = constraintList.GetAt(pos);
 		if (constraint.m_hwndChild == nullptr)
 			continue;
 
@@ -613,7 +608,7 @@ CMoveConstraint::OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult)
 		}
 		else
 		{
-			pTTT->lpszText = (LPTSTR)(LPCTSTR)ti.m_sText;
+			pTTT->lpszText = (tchar_t*)(const tchar_t*)ti.m_sText;
 		}
 		*plresult = true; // return `true` from original window proc
 		return true; // stop processing this message
@@ -671,7 +666,7 @@ CMoveConstraint::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam, L
  * Save size (& optionally position) in registry
  */
 void
-CMoveConstraint::LoadPosition(LPCTSTR szKeyName, LPCTSTR szValueName, bool position)
+CMoveConstraint::LoadPosition(const tchar_t* szKeyName, const tchar_t* szValueName, bool position)
 {
 	m_sRegistrySubkey = szKeyName;
 	LoadPosition(szValueName, position);
@@ -681,7 +676,7 @@ CMoveConstraint::LoadPosition(LPCTSTR szKeyName, LPCTSTR szValueName, bool posit
  * Save size (& optionally position) in registry
  */
 void
-CMoveConstraint::LoadPosition(LPCTSTR szValueName, bool position)
+CMoveConstraint::LoadPosition(const tchar_t* szValueName, bool position)
 {
 	m_sRegistryValueName = szValueName;
 	m_bPersistent=true;
@@ -691,7 +686,7 @@ CMoveConstraint::LoadPosition(LPCTSTR szValueName, bool position)
 void
 CMoveConstraint::Persist(bool saving, bool position)
 {
-	LPCTSTR szSection = m_sRegistrySubkey;
+	const tchar_t* szSection = m_sRegistrySubkey;
 	if (saving)
 	{
 		CString str;
@@ -733,7 +728,7 @@ CMoveConstraint::Persist(bool saving, bool position)
 
 
 void
-CMoveConstraint::SetTip(int id, LPCTSTR szTip)
+CMoveConstraint::SetTip(int id, const tchar_t* szTip)
 {
 	tip ti;
 	ti.m_sText = szTip;

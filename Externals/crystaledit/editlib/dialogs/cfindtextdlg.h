@@ -33,24 +33,9 @@
 
 #include "resource.h"
 #include "memcombo.h"
+#include "FindTextHelper.h"
 
 class CCrystalTextView;
-
-/**
- * @brief Infos about the last search settings (saved in registry)
- *
- * @note Is also used in the replace dialog
- */
-struct LastSearchInfos
-  {
-    int m_nDirection;       // only for search
-    bool m_bNoWrap;
-    bool m_bMatchCase;
-    CString m_sText;
-    bool m_bWholeWord;
-    bool m_bRegExp;
-    bool m_bNoClose;
-  };
 
 /////////////////////////////////////////////////////////////////////////////
 // CFindTextDlg dialog
@@ -64,7 +49,7 @@ private :
     // Construction
 public :
     explicit CFindTextDlg (CCrystalTextView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection);
+    void SetLastSearch (const tchar_t* sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
 

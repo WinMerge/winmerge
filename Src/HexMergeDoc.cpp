@@ -33,7 +33,6 @@
 #include "DiffWrapper.h"
 #include "SyntaxColors.h"
 #include "Merge.h"
-#include "Constants.h"
 #include "MainFrm.h"
 
 #ifdef _DEBUG
@@ -489,7 +488,7 @@ CString CHexMergeDoc::GetTooltipString() const
 /**
 * @brief Load one file
 */
-HRESULT CHexMergeDoc::LoadOneFile(int index, LPCTSTR filename, bool readOnly, const String& strDesc)
+HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readOnly, const String& strDesc)
 {
 	if (filename[0])
 	{
@@ -940,14 +939,14 @@ void CHexMergeDoc::OnRefresh()
 	if (UpdateDiffItem(m_pDirDoc) == 0)
 	{
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-			[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+			[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
 	}
 }
 
 void CHexMergeDoc::OnFileRecompareAs(UINT nID)
 {
 	PathContext paths = m_filePaths;
-	DWORD dwFlags[3];
+	fileopenflags_t dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_nBuffers;
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
@@ -976,7 +975,7 @@ void CHexMergeDoc::OnOpenWithUnpacker()
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
 		PathContext paths = m_filePaths;
-		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),

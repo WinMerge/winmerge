@@ -162,6 +162,7 @@ namespace
 		{ OPT_TAB_SIZE, varprop::VT_INT, {1, 2, 4, 8, 128}, {} },
 		{ OPT_TAB_TYPE, varprop::VT_INT, {0, 1}, {} },
 		{ OPT_WORDWRAP, varprop::VT_BOOL, {}, {} },
+		{ OPT_WORDWRAP_TABLE, varprop::VT_BOOL, {}, {} },
 		{ OPT_VIEW_LINENUMBERS, varprop::VT_BOOL, {}, {} },
 		{ OPT_VIEW_FILEMARGIN, varprop::VT_BOOL, {}, {} },
 		{ OPT_DIFF_CONTEXT, varprop::VT_INT, {0, 1, 3, 5, 7, 9}, {} },
@@ -241,6 +242,7 @@ namespace
 		{ OPT_CMP_BIN_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.bin;*.frx"}},
 		// Table options
 		{ OPT_CMP_CSV_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.csv"}},
+		{ OPT_CMP_CSV_DELIM_CHAR, varprop::VT_STRING, {}, {L"", L","}},
 		{ OPT_CMP_TSV_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.tsv"}},
 		{ OPT_CMP_DSV_FILEPATTERNS, varprop::VT_STRING, {}, {L"", L"*.ssv"}},
 		{ OPT_CMP_DSV_DELIM_CHAR, varprop::VT_STRING, {}, {L"", L";"}},

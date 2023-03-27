@@ -89,7 +89,7 @@ void VariantValue::SetFloat(double v)
  * @brief Set string value.
  * @param [in] sz String value to set. Can be a `nullptr`.
  */
-void VariantValue::SetString(const TCHAR *sz)
+void VariantValue::SetString(const tchar_t *sz)
 {
 	Clear();
 	m_vtype = VT_STRING;

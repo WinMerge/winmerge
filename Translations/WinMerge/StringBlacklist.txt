@@ -33,6 +33,7 @@ JavaScript
 JSON
 Lua
 AutoLISP
+MATLAB
 NSIS
 Pascal
 Perl
@@ -51,6 +52,8 @@ TEX
 Verilog
 VHDL
 XML
+CSV
+TSV
 Visual SourceSafe
 Rational ClearCase
 GitHub/Bitbucket

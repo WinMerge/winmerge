@@ -23,8 +23,8 @@ private :
 
     // Construction
 public :
-    explicit CTextMarkerDlg (CCrystalTextMarkers& markers, const CString& sPattern = _T(""), DWORD dwFlags = 0);
-    DWORD GetLastSearchFlags() const;
+    explicit CTextMarkerDlg (CCrystalTextMarkers& markers, const CString& sPattern = _T(""), findtext_flags_t dwFlags = 0);
+    findtext_flags_t GetLastSearchFlags() const;
 
     // Dialog Data
     //{{AFX_DATA(CTextMarkerDlg)

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-12-25 15:41+0000\n"
-"PO-Revision-Date: 2023-01-16 17:47+0100\n"
+"POT-Creation-Date: 2023-03-12 19:56+0000\n"
+"PO-Revision-Date: 2023-03-12 14:36+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -1034,7 +1034,7 @@ msgstr "Ignurà i &numeri"
 msgid "Ignore c&omment differences"
 msgstr "Ignurà e sfarenze di c&ummentu"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Include i sottucartulari"
 
 msgid "&Compare method:"
@@ -1157,10 +1157,10 @@ msgstr "Cun&firmà a chjusura di parechje finestre"
 msgid "&Preserve file time in file compare"
 msgstr "Cunservà &data è ora durante u paragone di schedariu"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Affissà a finestra « Selezziunà schedarii o cartulari » à l’avviu"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Chjode a finestra « Selezziunà schedarii o cartulari » cù u buttone « Paragunà »"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1945,7 +1945,7 @@ msgid "E&nable advanced menu"
 msgstr "Attivà u listinu &espertu"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Attivà l’ozzione Paragunà &cum’è"
 
 msgid "&Register shell extension"
 msgstr "A&rregistramentu di l’estensione Shell"
@@ -1981,7 +1981,7 @@ msgstr "Include u cuntenutu &unicu di i sottucartulari"
 msgid "&Automatically expand all subfolders"
 msgstr "&Allargà autumaticamente tutti i sottucartulari"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignurà i punti di &ri-analisa"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1993,23 +1993,17 @@ msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 msgid "&Number of CPU cores to use:"
 msgstr "&Numeru di cori CPU à impiegà :"
 
-msgid "&CSV File Patterns:"
-msgstr "Mudelli di schedariu &CSV :"
-
-msgid "&TSV File Patterns:"
-msgstr "Mudelli di schedariu &TSV :"
+msgid "File patterns:"
+msgstr "Mudelli di schedariu :"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Persunalizà delimitatore è &staccamentu"
-
-msgid "File Patterns:"
-msgstr "Mudelli di schedariu :"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binariu"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Mudelli di schedariu &binarii :"
 
 msgid "Frhed settings"
@@ -2027,7 +2021,7 @@ msgstr "Inseme di &caratteri…"
 msgid "Image"
 msgstr "Fiura"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Mudelli di schedariu di &fiura :"
 
 msgid "&Enable image compare in folder compare"
@@ -3783,6 +3777,9 @@ msgstr "&Attivà a larghezza massima autumatica"
 msgid "We&bpage"
 msgstr "Pagina we&b"
 
+msgid "W&rap Text"
+msgstr "&Ritornu autumaticu à a linea"
+
 msgid "Frhed is not installed."
 msgstr "Frhed ùn hè micca installatu."
 
@@ -3991,6 +3988,43 @@ msgstr "Subitu subitu"
 msgid "Al&l"
 msgstr "T&utti"
 
+msgid "&Others"
+msgstr "&L’altri moduli"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
+
+msgid "Specify plugin arguments"
+msgstr "Indicate i parametri di u modulu d’estensione"
+
+msgid "Filter applied"
+msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Preme’papei di u %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"A cronolugia di u preme’papei hè disattivata.\r\n"
+"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
+
+msgid "This system does not support clipboard history."
+msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
+
 msgid "Prettification"
 msgstr "Imbellimentu"
 
@@ -4008,9 +4042,6 @@ msgstr "Cunvalidazione"
 
 msgid "Decompilation"
 msgstr "Decumpilazione"
-
-msgid "&Others"
-msgstr "&L’altri moduli"
 
 msgid "URL Handling"
 msgstr "Ghjestione d’indirizzu web"
@@ -4078,6 +4109,9 @@ msgstr "Ignurà i campi CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignurà i campi TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Ignurà i numeri di principiu di linea"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Appiecà i filtri di sustituzione di preparagone"
 
@@ -4125,17 +4159,6 @@ msgstr "Disassemblà IL Code"
 
 msgid "Disassemble Native Code"
 msgstr "Disassemblà Native Code"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
-
-msgid "Specify plugin arguments"
-msgstr "Indicate i parametri di u modulu d’estensione"
 
 msgid "Make characters uppercase"
 msgstr "Mette i caratteri in maiuscula"
@@ -4278,14 +4301,14 @@ msgid ""
 "Arguments: Command line options passed to the md2html command."
 msgstr ""
 "Previsualizatore Markdown.\r\n"
-"Parametri : Ozzioni di linea di cumanda passate à a cumanda « md2html »"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « md2html »."
 
 msgid ""
 "PlantUML Previewer. \r\n"
 "Arguments: Command line options passed to the plantuml.jar command."
 msgstr ""
 "Previsualizatore PlantUML.\r\n"
-"Parametri : Ozzioni di linea di cumanda passate à a cumanda « plantuml.jar »"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « plantuml.jar »."
 
 msgid ""
 "CSV Querier with q command. \r\n"
@@ -4393,26 +4416,3 @@ msgid ""
 msgstr ""
 "Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
-
-msgid "Filter applied"
-msgstr "Filtru appiecatu"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Preme’papei di u %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"A cronolugia di u preme’papei hè disattivata.\r\n"
-"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
-
-msgid "This system does not support clipboard history."
-msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"

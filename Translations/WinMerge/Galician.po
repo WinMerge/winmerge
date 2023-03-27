@@ -1257,7 +1257,7 @@ msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Incluír subcarpetas"
 
 #, c-format
@@ -1416,10 +1416,10 @@ msgid "&Preserve file time in file compare"
 msgstr "&Preservar hora do ficheiro nas comparacións de ficheiros"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Mostrar o diálogo \"Selecciona ficheiros ou carpetas\" ao inicio"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Pechar o diálogo \"Selecciona ficheiros ou carpetas\" ao premer o botón Comparar"
 
 #, c-format
@@ -2448,7 +2448,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "Expandir &automaticamente tódalas subcarpetas"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignorar os puntos de &reparación"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2460,24 +2460,18 @@ msgstr "Limiar para cambiar a com&paración binaria (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Número de núcleos de CPU a utilizar:"
 
-msgid "&CSV File Patterns:"
-msgstr "Padróns de ficheiro &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Padróns de ficheiro &TSV:"
+msgid "File patterns:"
+msgstr "Padróns de ficheiro:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Delimitador personalizado - Valores separados"
-
-msgid "File Patterns:"
-msgstr "Padróns de ficheiro:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binario"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "&Padróns de ficheiros binario:"
 
 #, c-format
@@ -2500,7 +2494,7 @@ msgid "Image"
 msgstr "Imaxen"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Padróns de ficheiros de imaxe:"
 
 msgid "&Enable image compare in folder compare"
@@ -4489,6 +4483,9 @@ msgstr "Activar &anchura máxima automática"
 msgid "We&bpage"
 msgstr "Páxina we&b"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed non está instalado."
 
@@ -4700,6 +4697,43 @@ msgstr ""
 msgid "Al&l"
 msgstr "Todo&s"
 
+msgid "&Others"
+msgstr "&Outros"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Falta o nome do complemento na canalización de complementos %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Faltan comiñas na canalización de complementos %1"
+
+msgid "Specify plugin arguments"
+msgstr "Especificar os argumentos do complemento"
+
+msgid "Filter applied"
+msgstr "Filtro aplicado"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Portapapeis en %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"O historial do portapapeis está desactivado.\r\n"
+"Para habilitar o historial do portapapeis, prema na tecla do logo de Windows + V e logo no botón Activar."
+
+msgid "This system does not support clipboard history."
+msgstr "Este sistema non soporta o historial do portapapeis."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A versión de 32 bit de WinMerge non soporta a comparación de portapapeis"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "O runtime WebView2 non está instalado. ¿Quere descargalo?"
+
 msgid "Prettification"
 msgstr "Embelecemento"
 
@@ -4717,9 +4751,6 @@ msgstr "Validación"
 
 msgid "Decompilation"
 msgstr "Descompilación"
-
-msgid "&Others"
-msgstr "&Outros"
 
 msgid "URL Handling"
 msgstr "Manexo de URL"
@@ -4787,6 +4818,9 @@ msgstr "Ignorar campos CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignorar campos TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Aplicar filtros de substitución de prediferenciación"
 
@@ -4834,17 +4868,6 @@ msgstr "Desensamblar Código IL"
 
 msgid "Disassemble Native Code"
 msgstr "Desensamblar código nativo"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Falta o nome do complemento na canalización de complementos %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Faltan comiñas na canalización de complementos %1"
-
-msgid "Specify plugin arguments"
-msgstr "Especificar os argumentos do complemento"
 
 msgid "Make characters uppercase"
 msgstr "Converter os caracteres a maiúsculas"
@@ -5090,26 +5113,3 @@ msgid ""
 msgstr ""
 "Manexador de esquemas de URL do Rexisto de Windows. \r\n"
 "Argumentos: opcións de liña de comandos que se pasan ao comando reg.exe."
-
-msgid "Filter applied"
-msgstr "Filtro aplicado"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Portapapeis en %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"O historial do portapapeis está desactivado.\r\n"
-"Para habilitar o historial do portapapeis, prema na tecla do logo de Windows + V e logo no botón Activar."
-
-msgid "This system does not support clipboard history."
-msgstr "Este sistema non soporta o historial do portapapeis."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A versión de 32 bit de WinMerge non soporta a comparación de portapapeis"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "O runtime WebView2 non está instalado. ¿Quere descargalo?"

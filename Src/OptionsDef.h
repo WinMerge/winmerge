@@ -82,6 +82,7 @@ inline const String OPT_COPY_FULL_LINE {_T("Settings/CopyFullLine"s)};
 inline const String OPT_TAB_SIZE {_T("Settings/TabSize"s)};
 inline const String OPT_TAB_TYPE {_T("Settings/TabType"s)};
 inline const String OPT_WORDWRAP {_T("Settings/WordWrap"s)};
+inline const String OPT_WORDWRAP_TABLE {_T("Settings/WordWrapTable"s)};
 inline const String OPT_VIEW_LINENUMBERS {_T("Settings/ViewLineNumbers"s)};
 inline const String OPT_VIEW_FILEMARGIN {_T("Settings/ViewFileMargin"s)};
 inline const String OPT_VIEW_TOPMARGIN {_T("Settings/ViewTopMargin"s)};
@@ -254,6 +255,7 @@ inline const String OPT_CMP_BIN_FILEPATTERNS {_T("Settings/BinaryFilePatterns"s)
 
 // Table options
 inline const String OPT_CMP_CSV_FILEPATTERNS {_T("Settings/CSVFilePatterns"s)};
+inline const String OPT_CMP_CSV_DELIM_CHAR   {_T("Settings/CSVDelimiterCharacter"s)};
 inline const String OPT_CMP_TSV_FILEPATTERNS {_T("Settings/TSVFilePatterns"s)};
 inline const String OPT_CMP_DSV_FILEPATTERNS {_T("Settings/DSVFilePatterns"s)};
 inline const String OPT_CMP_DSV_DELIM_CHAR   {_T("Settings/DSVDelimiterCharacter"s)};

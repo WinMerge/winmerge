@@ -22,7 +22,7 @@
 #define new DEBUG_NEW
 #endif
 
-#define REMEMBER_COUNT  64
+constexpr int REMEMBER_COUNT = 64;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMemComboBox
@@ -47,7 +47,7 @@ CMemComboBox::~CMemComboBox ()
 /////////////////////////////////////////////////////////////////////////////
 // CMemComboBox message handlers
 
-CMap < CString, LPCTSTR, CString, LPCTSTR > CMemComboBox::groups;
+CMap < CString, const tchar_t*, CString, const tchar_t* > CMemComboBox::groups;
 
 void SetComboBoxHeight(CComboBox &Control)
 {
@@ -62,7 +62,7 @@ void SetComboBoxHeight(CComboBox &Control)
   Control.SetWindowPos(nullptr, 0, 0, rc.Width(), nHeight, SWP_NOMOVE|SWP_NOZORDER|SWP_NOACTIVATE|SWP_NOREDRAW);
 }
 
-void SetComboBoxWidth(CComboBox &Control, LPCTSTR lpszText = nullptr)
+void SetComboBoxWidth(CComboBox &Control, const tchar_t* lpszText = nullptr)
 {
   int          cnt = Control.GetCount();
 
@@ -106,7 +106,7 @@ void CMemComboBox::FillCurrent ()
 }
 
 void CMemComboBox::
-Fill (LPCTSTR text)
+Fill (const tchar_t* text)
 {
   if (text && *text)
     {
@@ -138,7 +138,7 @@ Fill (LPCTSTR text)
 void CMemComboBox::
 LoadSettings ()
 {
-  static LPCTSTR name[] = { _T("FindText"), _T("ReplaceText") };
+  static const tchar_t* name[] = { _T("FindText"), _T("ReplaceText") };
 
   for (int i = 0; i < sizeof (name) / sizeof (name[0]); i++)
     {

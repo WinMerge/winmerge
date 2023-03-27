@@ -54,7 +54,7 @@ void SubstitutionList::Add(
 		rePattern.push_back(c);
 	}
 	if (matchWholeWordOnly)
-		rePattern = "\b" + rePattern + "\b";
+		rePattern = "\\b" + rePattern + "\\b";
 	m_list.emplace_back(rePattern, replacement, regexpCompileOptions);
 }
 

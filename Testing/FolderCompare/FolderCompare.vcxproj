@@ -520,6 +520,10 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\Src\Common\cio.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="..\..\Src\Common\ExConverter.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -803,6 +807,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\Src\charsets.h" />
     <ClInclude Include="..\..\Src\codepage_detect.h" />
+    <ClInclude Include="..\..\Src\Common\cio.h" />
     <ClInclude Include="..\..\Src\Common\ExConverter.h" />
     <ClInclude Include="..\..\Src\Common\OptionsMgr.h" />
     <ClInclude Include="..\..\Src\Common\RegOptionsMgr.h" />

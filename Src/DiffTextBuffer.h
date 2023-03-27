@@ -37,23 +37,23 @@ private :
 	 */
 	FileTextEncoding m_encoding;
 
-	bool FlagIsSet(UINT line, DWORD flag) const;
+	bool FlagIsSet(int line, lineflags_t flag) const;
 
 public :
 	CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 
 	void SetTempPath(const String &path);
 	String GetTempFileName() const { return m_strTempFileName; }
-	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
+	virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos,
+		const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType = CE_ACTION_UNKNOWN,
-		CDWordArray *paSavedRevisionNumbers = nullptr) override;
+		std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();
 	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
-	int LoadFromFile(LPCTSTR pszFileName, PackingInfo& infoUnpacker,
-		LPCTSTR filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
-		const FileTextEncoding & encoding, CString &sError);
+	int LoadFromFile(const tchar_t* pszFileName, PackingInfo& infoUnpacker,
+		const tchar_t* filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,
+		const FileTextEncoding & encoding, String &sError);
 	int SaveToFile (const String& pszFileName, bool bTempFile, String & sError,
 		PackingInfo& infoUnpacker, CRLFSTYLE nCrlfStyle = CRLFSTYLE::AUTOMATIC,
 		bool bClearModifiedFlag = true, int nStartLine = 0, int nLines = -1);
@@ -69,10 +69,7 @@ public :
 	void SetMixedEOL(bool bMixed) { m_bMixedEOL = bMixed; }
 
 	// If line has text (excluding eol), set strLine to text (excluding eol)
-	bool GetLine(int nLineIndex, CString &strLine) const;
-
-	// if line has any text (including eol), set strLine to text (including eol)
-	bool GetFullLine(int nLineIndex, CString &strLine) const;
+	bool GetLine(int nLineIndex, String &strLine) const;
 
 	virtual void SetModified (bool bModified = true) override;
 	void prepareForRescan();

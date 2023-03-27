@@ -300,7 +300,7 @@ std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& nam
  * @brief Log technical explanation, in English, of script error
  */
 static void
-ScriptletError(const String & scriptletFilepath, const TCHAR *szError)
+ScriptletError(const String & scriptletFilepath, const tchar_t *szError)
 {
 	String msg = _T("Plugin scriptlet error <")
 		+ scriptletFilepath
@@ -405,7 +405,7 @@ struct ScriptInfo
 		: m_scriptletFilepath(scriptletFilepath)
 	{
 	}
-	void Log(const TCHAR *szError)
+	void Log(const tchar_t *szError)
 	{
 		ScriptletError(m_scriptletFilepath, szError);
 	}
@@ -432,9 +432,9 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	const int nMethodFnc = plugin::GetMethodsFromScript(lpDispatch, methodNamesArray, IdArray);
 	propNamesArray.resize(nPropFnc);
 	methodNamesArray.resize(nMethodFnc);
-	auto SearchScriptForDefinedProperties = [&propNamesArray](const TCHAR* name) -> bool
+	auto SearchScriptForDefinedProperties = [&propNamesArray](const tchar_t* name) -> bool
 	{ return std::find(propNamesArray.begin(), propNamesArray.end(), name) != propNamesArray.end(); };
-	auto SearchScriptForMethodName = [&methodNamesArray](const TCHAR* name) -> bool
+	auto SearchScriptForMethodName = [&methodNamesArray](const tchar_t* name) -> bool
 	{ return std::find(methodNamesArray.begin(), methodNamesArray.end(), name) != methodNamesArray.end(); };
 
 	// Is this plugin for this transformationEvent ?
@@ -1145,7 +1145,7 @@ CAssureScriptsForThread::~CAssureScriptsForThread()
  * VB/VBS plugins has an internal error handler, and a message box with caption,
  * and we try to reproduce it for other plugins.
  */
-static void ShowPluginErrorMessage(IDispatch *piScript, LPTSTR description)
+static void ShowPluginErrorMessage(IDispatch *piScript, tchar_t* description)
 {
 	PluginInfo * pInfo = CAllThreadsScripts::GetActiveSet()->GetPluginInfo(piScript);
 	assert(pInfo != nullptr);
@@ -1162,7 +1162,7 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 {
 	HRESULT h = E_FAIL;
 	SE_Handler seh;
-	TCHAR errorText[500];
+	tchar_t errorText[500];
 	bool bExceptionCatched = false;	
 #ifdef WIN64
 	int nargs = LOBYTE((UINT_PTR)op);
@@ -1187,13 +1187,13 @@ static HRESULT safeInvokeA(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, ...
 		// structured exception are catched here thanks to class SE_Exception
 		if (!(e.GetErrorMessage(errorText, 500, nullptr)))
 			// don't localize this as we do not localize the known exceptions
-			_tcscpy_safe(errorText, _T("Unknown CException"));
+			tc::tcslcpy(errorText, _T("Unknown CException"));
 		bExceptionCatched = true;
 	}
 	catch(...) 
 	{
 		// don't localize this as we do not localize the known exceptions
-		_tcscpy_safe(errorText, _T("Unknown C++ exception"));
+		tc::tcslcpy(errorText, _T("Unknown C++ exception"));
 		bExceptionCatched = true;
 	}
 
@@ -1215,7 +1215,7 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH 
 {
 	HRESULT h = E_FAIL;
 	SE_Handler seh;
-	TCHAR errorText[500];
+	tchar_t errorText[500];
 	bool bExceptionCatched = false;
 #ifdef WIN64
 	int nargs = LOBYTE((UINT_PTR)op);
@@ -1240,13 +1240,13 @@ static HRESULT safeInvokeW(LPDISPATCH pi, VARIANT *ret, LPCOLESTR silent, LPCCH 
 		// structured exception are catched here thanks to class SE_Exception
 		if (!(e.GetErrorMessage(errorText, 500, nullptr)))
 			// don't localize this as we do not localize the known exceptions
-			_tcscpy_safe(errorText, _T("Unknown CException"));
+			tc::tcslcpy(errorText, _T("Unknown CException"));
 		bExceptionCatched = true;
 	}
 	catch(...) 
 	{
 		// don't localize this as we do not localize the known exceptions
-		_tcscpy_safe(errorText, _T("Unknown C++ exception"));
+		tc::tcslcpy(errorText, _T("Unknown C++ exception"));
 		bExceptionCatched = true;
 	}
 

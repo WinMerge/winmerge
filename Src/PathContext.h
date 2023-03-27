@@ -24,7 +24,7 @@ public:
 
 	String GetPath(bool bNormalized = true) const;
 	String& GetRef() { return m_sPath; }
-	void SetPath(const TCHAR *path);
+	void SetPath(const tchar_t *path);
 	void SetPath(const String & path);
 	void NormalizePath();
 
@@ -36,7 +36,7 @@ private:
  * @brief Set path.
  * @param [in] sPath New path for item.
  */
-inline void PathInfo::SetPath(const TCHAR *sPath)
+inline void PathInfo::SetPath(const tchar_t *sPath)
 {
 	m_sPath = sPath;
 }

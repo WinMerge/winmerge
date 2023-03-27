@@ -31,6 +31,8 @@
 #include "resource.h"
 #include "memcombo.h"
 #include "cfindtextdlg.h" // for structure LastSearchInfos
+#include "FindTextHelper.h"
+#include "cepoint.h"
 
 class CCrystalEditView;
 
@@ -42,25 +44,25 @@ class EDITPADC_CLASS CEditReplaceDlg : public CDialog
 private :
     CCrystalEditView * m_pBuddy;
     bool m_bFound;
-    CPoint m_ptFoundAt;
+    CEPoint m_ptFoundAt;
     bool DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView = true );
-    bool DoReplaceText (LPCTSTR pszNewText, DWORD dwSearchFlags);
+    bool DoReplaceText (const tchar_t* pszNewText, findtext_flags_t dwSearchFlags);
     void UpdateControls();
     void FindNextPrev (bool bNext);
-    bool AdjustSearchPos (CPoint& ptFoundAt) const;
+    bool AdjustSearchPos (CEPoint& ptFoundAt) const;
 
     // Construction
 public :
     explicit CEditReplaceDlg (CCrystalEditView * pBuddy);
-    void SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection);
+    void SetLastSearch (const tchar_t* sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nScope, int nDirection);
     void UseLastSearch ();
     LastSearchInfos * GetLastSearchInfos (); 
     void SetScope(bool bWithSelection);
 
 
     bool m_bEnableScopeSelection;
-    CPoint m_ptCurrentPos;
-    CPoint m_ptBlockBegin, m_ptBlockEnd;
+    CEPoint m_ptCurrentPos;
+    CEPoint m_ptBlockBegin, m_ptBlockEnd;
     LastSearchInfos lastSearch;
 
     // Dialog Data

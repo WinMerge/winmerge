@@ -22,11 +22,10 @@ namespace locality {
  */
 static unsigned getLocaleUint(int lctype, int defval)
 {
-	TCHAR buff[64];
+	tchar_t buff[64];
 	if (!GetLocaleInfo(LOCALE_USER_DEFAULT, lctype, buff, sizeof(buff)/sizeof(buff[0])))
 		return defval;
-	return _ttol(buff);
-	
+	return tc::ttol(buff);
 }
 
 /**
@@ -34,13 +33,13 @@ static unsigned getLocaleUint(int lctype, int defval)
  */
 static unsigned GetLocaleGrouping(int defval)
 {
-	TCHAR buff[64];
+	tchar_t buff[64];
 	if (!GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SGROUPING, buff, sizeof(buff)/sizeof(buff[0])))
 		return defval;
 	// handling for Indic 3;2
-	if (!_tcscmp(buff, _T("3;2;0")))
+	if (!tc::tcscmp(buff, _T("3;2;0")))
 		return 32;
-	return _ttol(buff);
+	return tc::ttol(buff);
 }
 
 /**
@@ -54,9 +53,7 @@ static unsigned GetLocaleGrouping(int defval)
  */
 String NumToLocaleStr(int n)
 {
-	TCHAR numbuff[34];
-	_ltot_s(n, numbuff, 10);
-	return GetLocaleStr(numbuff);
+	return GetLocaleStr(strutils::to_str(n).c_str());
 }
 
 /**
@@ -70,9 +67,7 @@ String NumToLocaleStr(int n)
  */
 String NumToLocaleStr(int64_t n)
 {
-	TCHAR numbuff[34];
-	_i64tot_s(n, numbuff, sizeof(numbuff)/sizeof(TCHAR), 10);
-	return GetLocaleStr(numbuff);
+	return GetLocaleStr(strutils::to_str(n).c_str());
 }
 
 /**
@@ -81,13 +76,13 @@ String NumToLocaleStr(int64_t n)
  * NB: We are not converting digits from ASCII via LOCALE_SNATIVEDIGITS
  *   So we always use ASCII digits, instead of, eg, the Chinese digits
  */
-String GetLocaleStr(const TCHAR *str, int decimalDigits)
+String GetLocaleStr(const tchar_t *str, int decimalDigits)
 {
 	// Fill in currency format with locale info
 	// except we hardcode for no decimal
-	TCHAR DecimalSep[8];
-	TCHAR SepDefault[] = _T(".");
-	TCHAR ThousandSep[8];
+	tchar_t DecimalSep[8];
+	tchar_t SepDefault[] = _T(".");
+	tchar_t ThousandSep[8];
 	NUMBERFMT NumFormat = { 0 };
 	NumFormat.NumDigits = decimalDigits; // LOCALE_IDIGITS
 	NumFormat.LeadingZero = getLocaleUint(LOCALE_ILZERO, 0);
@@ -97,7 +92,7 @@ String GetLocaleStr(const TCHAR *str, int decimalDigits)
 	NumFormat.NegativeOrder = getLocaleUint(LOCALE_INEGNUMBER , 0);
 	String out;
 	out.resize(48);
-	LPTSTR outbuff = &*out.begin(); //GetBuffer(48);
+	tchar_t* outbuff = &*out.begin(); //GetBuffer(48);
 	int rt = GetNumberFormat(LOCALE_USER_DEFAULT // a predefined value for user locale
 		, 0                // operation option (allow overrides)
 		, str              // input number (see MSDN for legal chars)
@@ -138,7 +133,7 @@ String TimeString(const int64_t * tim)
 	    !SystemTimeToTzSpecificLocalTime(nullptr, &sysTimeGlobal, &sysTime))
 		return _T("---");
 
-	TCHAR buff[128];
+	tchar_t buff[128];
 	int len = GetDateFormat(LOCALE_USER_DEFAULT, 0, &sysTime, nullptr, buff, sizeof(buff)/sizeof(buff[0]));
 	buff[len - 1] = ' ';
 	GetTimeFormat(LOCALE_USER_DEFAULT, 0, &sysTime, nullptr, buff + len, sizeof(buff)/sizeof(buff[0]) - len - 1);

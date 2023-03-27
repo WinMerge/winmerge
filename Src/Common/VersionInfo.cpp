@@ -57,7 +57,7 @@ CVersionInfo::CVersionInfo(WORD wLanguage)
  * @param [in] szFileToVersion Filename to read version from.
  * @param [in] bDllVersion If `true` queries DLL version.
  */
-CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion, 
+CVersionInfo::CVersionInfo(const tchar_t* szFileToVersion, 
 						   bool bDllVersion)
 : m_wLanguage(0)
 , m_bVersionOnly(false)
@@ -74,9 +74,9 @@ CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion,
  * @param [in] szLanguage Language for version.
  * @param [in] szCodePage Codepage for version.
  */
-CVersionInfo::CVersionInfo(LPCTSTR szFileToVersion /* = nullptr*/, 
-						   LPCTSTR szLanguage /* = nullptr*/,
-						   LPCTSTR szCodepage /* = nullptr*/)
+CVersionInfo::CVersionInfo(const tchar_t* szFileToVersion /* = nullptr*/, 
+						   const tchar_t* szLanguage /* = nullptr*/,
+						   const tchar_t* szCodepage /* = nullptr*/)
 : m_wLanguage(0)
 , m_bVersionOnly(false)
 , m_bDllVersion(false)
@@ -99,7 +99,7 @@ CVersionInfo::CVersionInfo(HINSTANCE hModule)
 , m_bVersionOnly(false)
 , m_bDllVersion(false)
 {
-	TCHAR szFileName[MAX_PATH];
+	tchar_t szFileName[MAX_PATH];
 	GetModuleFileName(hModule, szFileName, MAX_PATH);
 	m_strFileName = szFileName;
 	GetVersionInfo();
@@ -116,7 +116,7 @@ CVersionInfo::CVersionInfo(HINSTANCE hModule)
  */
 static String MakeVersionString(DWORD hi, DWORD lo)
 {
-	TCHAR ver[50];
+	tchar_t ver[50];
 	if (LOWORD(lo) == 0)
 	{
 		StringCchPrintf(ver, std::size(ver) - 1, _T("%d.%d.%d"), HIWORD(hi),
@@ -186,7 +186,7 @@ void CVersionInfo::GetVersionInfo()
 	ZeroMemory(&m_dvi, sizeof(m_dvi));
 
 	DWORD dwVerHnd = 0;			// An 'ignored' parameter, always '0'
-	TCHAR szFileName[MAX_PATH];
+	tchar_t szFileName[MAX_PATH];
 
 	if (m_strFileName.empty())
 	{
@@ -237,7 +237,7 @@ void CVersionInfo::QueryStrings()
 	{
 		WORD codepage;
 		GetCodepageForLanguage(m_wLanguage, codepage);
-		TCHAR temp[20];
+		tchar_t temp[20];
 		StringCchPrintf(temp, std::size(temp) - 1, _T("%04x"), m_wLanguage);
 		m_strLanguage = temp;
 		StringCchPrintf(temp, std::size(temp) - 1, _T("%04x"), codepage);
@@ -252,7 +252,7 @@ void CVersionInfo::QueryStrings()
 				_T("\\VarFileInfo\\Translation"),
 				(LPVOID *)&lpTranslate, (UINT *)&langLen))
 		{
-			TCHAR temp[20];
+			tchar_t temp[20];
 			StringCchPrintf(temp, std::size(temp) - 1, _T("%4.4X"),
 					lpTranslate[0].wLanguage);
 			m_strLanguage = temp;
@@ -279,14 +279,14 @@ void CVersionInfo::QueryStrings()
  * @param [in] szId Name of value/string to read.
  * @param [out] Value read.
  */
-void CVersionInfo::QueryValue(LPCTSTR szId, String& s)
+void CVersionInfo::QueryValue(const tchar_t* szId, String& s)
 {
 	assert(m_pVffInfo != nullptr);
-	LPTSTR   lpVersion;			// String pointer to 'version' text
+	tchar_t* lpVersion;			// String pointer to 'version' text
 	UINT    uVersionLen;
 	bool    bRetCode;
 
-	TCHAR szSelector[256];
+	tchar_t szSelector[256];
 	StringCchPrintf(szSelector, std::size(szSelector) - 1,
 			_T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage.c_str(), m_strCodepage.c_str(), szId);

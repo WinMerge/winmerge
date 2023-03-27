@@ -1,21 +1,21 @@
 #pragma once
 
-#include <windows.h>
+#include "cecolor.h"
 
 /** 
  * @brief Dir color settings.
  */
 struct DIRCOLORSETTINGS
 {
-	COLORREF	clrDirItemEqual;			/**< Item equal background color */
-	COLORREF	clrDirItemEqualText;		/**< Item equal text color */
-	COLORREF	clrDirItemDiff;				/**< Item diff background color */
-	COLORREF	clrDirItemDiffText;			/**< Item diff text color */
-	COLORREF	clrDirItemNotExistAll;		/**< Item not-exist-all background color */
-	COLORREF	clrDirItemNotExistAllText;	/**< Item not-exist-all text color */
-	COLORREF	clrDirItemFiltered;			/**< Item filtered background color */
-	COLORREF	clrDirItemFilteredText;		/**< Item filtered text color */
-	COLORREF	clrDirMargin;			/**< Background color */
+	CEColor	clrDirItemEqual;			/**< Item equal background color */
+	CEColor	clrDirItemEqualText;		/**< Item equal text color */
+	CEColor	clrDirItemDiff;				/**< Item diff background color */
+	CEColor	clrDirItemDiffText;			/**< Item diff text color */
+	CEColor	clrDirItemNotExistAll;		/**< Item not-exist-all background color */
+	CEColor	clrDirItemNotExistAllText;	/**< Item not-exist-all text color */
+	CEColor	clrDirItemFiltered;			/**< Item filtered background color */
+	CEColor	clrDirItemFilteredText;		/**< Item filtered text color */
+	CEColor	clrDirMargin;				/**< Background color */
 };
 
 class COptionsMgr;

@@ -23,10 +23,10 @@ namespace
 
 	bool CopyFileOrFolder(const String& src, const String& dst)
 	{
-		std::vector<TCHAR> srcpath(src.length() + 2, 0);
-		std::vector<TCHAR> dstpath(dst.length() + 2, 0);
-		memcpy(&srcpath[0], src.c_str(), src.length() * sizeof(TCHAR));
-		memcpy(&dstpath[0], dst.c_str(), dst.length() * sizeof(TCHAR));
+		std::vector<tchar_t> srcpath(src.length() + 2, 0);
+		std::vector<tchar_t> dstpath(dst.length() + 2, 0);
+		memcpy(&srcpath[0], src.c_str(), src.length() * sizeof(tchar_t));
+		memcpy(&dstpath[0], dst.c_str(), dst.length() * sizeof(tchar_t));
 		SHFILEOPSTRUCT fileop = { 0, FO_COPY, &srcpath[0], &dstpath[0], FOF_NOCONFIRMATION, 0, 0, 0 };
 		return SHFileOperation(&fileop) == 0;
 	}
@@ -53,7 +53,7 @@ namespace
 
 			// Allocate memory to contain full pathname & zero byte
 			wPathnameSize += 1;
-			auto npszFile = std::make_unique<TCHAR[]>(wPathnameSize);
+			auto npszFile = std::make_unique<tchar_t[]>(wPathnameSize);
 
 			// Copy the pathname into the buffer
 			DragQueryFile(dropInfo, x, npszFile.get(), wPathnameSize);
@@ -66,8 +66,8 @@ namespace
 	std::vector<String> FilterFiles(const std::vector<String>& files_src)
 	{
 		std::vector<String> files(files_src);
-		TCHAR szTempPath[MAX_PATH];
-		TCHAR szTempPathShort[MAX_PATH];
+		tchar_t szTempPath[MAX_PATH];
+		tchar_t szTempPathShort[MAX_PATH];
 		GetTempPath(sizeof(szTempPath) / sizeof(szTempPath[0]), szTempPath);
 		GetShortPathName(szTempPath, szTempPathShort, sizeof(szTempPathShort) / sizeof(szTempPathShort[0]));
 

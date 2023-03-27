@@ -32,8 +32,8 @@ protected: // create from serialization only
 	DECLARE_DYNCREATE(CHexMergeView)
 	std::vector<int> m_unpackerSubcodes;
 public:
-	HRESULT LoadFile(LPCTSTR);
-	HRESULT SaveFile(LPCTSTR, bool packing = true);
+	HRESULT LoadFile(const tchar_t*);
+	HRESULT SaveFile(const tchar_t*, bool packing = true);
 	IHexEditorWindow *GetInterface() const { return m_pif; }
 	BYTE *GetBuffer(size_t);
 	size_t GetLength();
@@ -43,7 +43,7 @@ public:
 	bool GetReadOnly();
 	void SetReadOnly(bool);
 	void ResizeWindow();
-	IMergeDoc::FileChange IsFileChangedOnDisk(LPCTSTR);
+	IMergeDoc::FileChange IsFileChangedOnDisk(const tchar_t*);
 	void ZoomText(int amount);
 	static void CopySel(const CHexMergeView *src, CHexMergeView *dst);
 	static void CopyAll(const CHexMergeView *src, CHexMergeView *dst);

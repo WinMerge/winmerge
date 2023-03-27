@@ -250,7 +250,7 @@ size_t CHexMergeView::GetLength()
  * @param [in] path File to check
  * @return `true` if file is changed.
  */
-IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
+IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(const tchar_t* path)
 {
 	DiffFileInfo dfi;
 	if (!dfi.Update(path))
@@ -268,7 +268,7 @@ IMergeDoc::FileChange CHexMergeView::IsFileChangedOnDisk(LPCTSTR path)
 /**
  * @brief Load file
  */
-HRESULT CHexMergeView::LoadFile(LPCTSTR path)
+HRESULT CHexMergeView::LoadFile(const tchar_t* path)
 {
 	CHexMergeDoc *pDoc = static_cast<CHexMergeDoc *>(GetDocument());
 	String strTempFileName = path;
@@ -296,6 +296,8 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 				hr = SE(ReadFile(h, reinterpret_cast<BYTE *>(buffer) + pos, 
 					(length - pos) < 0x10000000 ?  static_cast<DWORD>(length - pos) : 0x10000000,
 					&cb, 0));
+				if (cb == 0)
+					break;
 				pos += cb;
 			}
 			if (hr != S_OK)
@@ -314,7 +316,7 @@ HRESULT CHexMergeView::LoadFile(LPCTSTR path)
 /**
  * @brief Save file
  */
-HRESULT CHexMergeView::SaveFile(LPCTSTR path, bool packing)
+HRESULT CHexMergeView::SaveFile(const tchar_t* path, bool packing)
 {
 	// Warn user in case file has been changed by someone else
 	if (IsFileChangedOnDisk(path) == IMergeDoc::FileChange::Changed)

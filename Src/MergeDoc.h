@@ -10,16 +10,17 @@
  */
 #pragma once
 
+#include "IMergeDoc.h"
 #include "DiffTextBuffer.h"
-#include <vector>
-#include <map>
-#include <memory>
-#include <optional>
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "TempFile.h"
 #include "PathContext.h"
-#include "IMergeDoc.h"
+#include "FileLoadResult.h"
+#include <vector>
+#include <map>
+#include <memory>
+#include <optional>
 
 /**
  * @brief Additional action codes for WinMerge.
@@ -101,8 +102,8 @@ struct CurrentWordDiff
 	int nDiff;
 	size_t nWordDiff;
 	int nPane;
-	CPoint ptStart;
-	CPoint ptEnd;
+	CEPoint ptStart;
+	CEPoint ptEnd;
 };
 
 struct DiffFileInfo;
@@ -121,7 +122,7 @@ class CMergeEditSplitterView;
 class CMergeDoc : public CDocument, public IMergeDoc
 {
 public:
-	struct TableProps { bool istable; TCHAR delimiter; TCHAR quote; bool allowNewlinesInQuotes; };
+	struct TableProps { bool istable; tchar_t delimiter; tchar_t quote; bool allowNewlinesInQuotes; };
 // Attributes
 public:
 	static int m_nBuffersTemp;
@@ -154,7 +155,7 @@ public:
 	void UpdateResources();
 	bool OpenDocs(int nFiles, const FileLocation fileloc[],
 		const bool bRO[], const String strDesc[]);
-	int LoadFile(CString sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
+	int LoadFile(const String& sFileName, int nBuffer, bool & readOnly, const FileTextEncoding & encoding);
 	void MoveOnLoad(int nPane = -1, int nLinIndex = -1, bool bRealLine = false, int nCharIndex = -1);
 	void ChangeFile(int nBuffer, const String& path, int nLineIndex = -1);
 	void RescanIfNeeded(float timeOutInSecond);
@@ -173,8 +174,8 @@ public:
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo& infoTempUnpacker);
-	bool DoSave(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
-	bool DoSaveAs(LPCTSTR szPath, bool &bSaveSuccess, int nBuffer);
+	bool DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer);
+	bool DoSaveAs(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int pane, int line);
 	int LeftLineInMovedBlock(int pane, int line);
 	void SetEditedAfterRescan(int nBuffer);
@@ -268,7 +269,7 @@ public:
 	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1 = -1, int pane2 = -1);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
-	void Computelinediff(CMergeEditView *pView, CRect rc[], bool bReversed);
+	void Computelinediff(CMergeEditView *pView, std::pair<CEPoint, CEPoint> rc[], bool bReversed);
 	std::map<int, std::vector<WordDiff> > m_cacheWordDiffs;
 // End MergeDocLineDiffs.cpp
 
@@ -279,7 +280,7 @@ public:
 
 // Implementation
 public:
-	FileChange IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
+	FileChange IsFileChangedOnDisk(const tchar_t* szPath, DiffFileInfo &dfi,
 		bool bSave, int nBuffer);
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	std::vector<int> undoTgt;
@@ -288,7 +289,7 @@ public:
 	void SetCurrentDiff(int nDiff);
 	int GetCurrentDiff() const { return m_nCurDiff; }
 	const CurrentWordDiff& GetCurrentWordDiff() const { return m_CurWordDiff; }
-	bool EqualCurrentWordDiff(int nBuffer, const CPoint& ptStart, const CPoint& ptEnd) const
+	bool EqualCurrentWordDiff(int nBuffer, const CEPoint& ptStart, const CEPoint& ptEnd) const
 	{
 		return (m_CurWordDiff.nPane == nBuffer && m_CurWordDiff.ptStart == ptStart && m_CurWordDiff.ptEnd == ptEnd);
 	}
@@ -332,7 +333,7 @@ private:
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
-	DWORD LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
+	FileLoadResult::flags_t LoadOneFile(int index, const String& filename, bool readOnly, const String& strDesc, const FileTextEncoding & encoding);
 	void SetTableProperties();
 
 // Implementation data
@@ -437,7 +438,7 @@ private:
 		const DIFFRANGE& diffrange, const DIFFOPTIONS& diffOptions);
 	void FlagTrivialLines();
 	void FlagMovedLines();
-	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription) const;
+	String GetFileExt(const tchar_t* sFileName, const tchar_t* sDescription) const;
 	void DoFileSave(int pane);
 	void SetPredifferByMenu(UINT nID);
 };

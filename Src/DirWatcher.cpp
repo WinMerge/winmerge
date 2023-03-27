@@ -6,8 +6,10 @@
 
 #include "pch.h"
 #include "DirWatcher.h"
-#include <process.h>
 #include "paths.h"
+#include <vector>
+#include <process.h>
+#include <Windows.h>
 
 struct DirEventListener
 {
@@ -34,7 +36,28 @@ struct DirRequest
 	DirEventListener listener;
 };
 
-DirWatcher::DirWatcher()
+class DirWatcher::Impl
+{
+public:
+	Impl();
+	~Impl();
+	bool Add(uintptr_t id, bool dir, const String& path, std::function<void(const String&, ACTION)> callback);
+	bool Remove(uintptr_t id);
+	void Clear();
+private:
+	bool startThread();
+	bool exitThread();
+	unsigned DirWatcherThreadProc();
+	static unsigned __stdcall DirWatcherThreadProcStatic(void* pParam);
+	HANDLE m_hThread;
+	HANDLE m_hEventReq;
+	HANDLE m_hEventResp;
+	HRESULT m_resp;
+	std::unique_ptr<DirRequest> m_pReq;
+	CRITICAL_SECTION m_cs;
+};
+
+DirWatcher::Impl::Impl()
 	: m_hEventReq(nullptr)
 	, m_hEventResp(nullptr)
 	, m_hThread(nullptr)
@@ -54,7 +77,7 @@ DirWatcher::DirWatcher()
 	}
 }
 
-DirWatcher::~DirWatcher()
+DirWatcher::Impl::~Impl()
 {
 	Clear();
 	if (m_hThread)
@@ -71,7 +94,7 @@ DirWatcher::~DirWatcher()
 	DeleteCriticalSection(&m_cs);
 }
 
-bool DirWatcher::Add(uintptr_t id, bool dir, const String& path, std::function<void(const String&, ACTION)> callback)
+bool DirWatcher::Impl::Add(uintptr_t id, bool dir, const String& path, std::function<void(const String&, ACTION)> callback)
 {
 	EnterCriticalSection(&m_cs);
 
@@ -90,7 +113,7 @@ bool DirWatcher::Add(uintptr_t id, bool dir, const String& path, std::function<v
 	return result;
 }
 
-bool DirWatcher::Remove(uintptr_t id)
+bool DirWatcher::Impl::Remove(uintptr_t id)
 {
 	EnterCriticalSection(&m_cs);
 
@@ -110,7 +133,7 @@ bool DirWatcher::Remove(uintptr_t id)
 	return result;
 }
 
-bool DirWatcher::startThread()
+bool DirWatcher::Impl::startThread()
 {
 	if (m_hThread)
 		return false;
@@ -122,7 +145,7 @@ bool DirWatcher::startThread()
 	return m_hThread != nullptr;
 }
 
-bool DirWatcher::exitThread()
+bool DirWatcher::Impl::exitThread()
 {
 	bool result = false;
 
@@ -146,12 +169,12 @@ bool DirWatcher::exitThread()
 	return result;
 }
 
-void DirWatcher::Clear()
+void DirWatcher::Impl::Clear()
 {
 	Remove(static_cast<uintptr_t>(-1));
 }
 
-unsigned DirWatcher::DirWatcherThreadProc()
+unsigned DirWatcher::Impl::DirWatcherThreadProc()
 {
 	std::vector<DirWatchee> watchedDirs;
 
@@ -182,7 +205,7 @@ unsigned DirWatcher::DirWatcherThreadProc()
 			HANDLE hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
 			if (hEvent)
 			{
-				watchedDir.info.resize(sizeof(FILE_NOTIFY_INFORMATION) + MAX_PATH * sizeof(TCHAR));
+				watchedDir.info.resize(sizeof(FILE_NOTIFY_INFORMATION) + MAX_PATH * sizeof(tchar_t));
 				watchedDir.hDir = hDir;
 				watchedDir.path = path2;
 				watchedDir.watchSubtree = dir;
@@ -258,7 +281,7 @@ unsigned DirWatcher::DirWatcherThreadProc()
 			ReadDirAsync(watchedDir);
 
 			auto* pNotifyInfo = reinterpret_cast<FILE_NOTIFY_INFORMATION*>(watchedDir.info.data());
-			String relpath(pNotifyInfo->FileName, pNotifyInfo->FileNameLength/sizeof(TCHAR));
+			String relpath(pNotifyInfo->FileName, pNotifyInfo->FileNameLength/sizeof(tchar_t));
 			String path = paths::ConcatPath(watchedDir.path, relpath);
 			for (auto& listener : watchedDir.listeners)
 			{
@@ -316,7 +339,25 @@ unsigned DirWatcher::DirWatcherThreadProc()
 	return 0;
 }
 
-unsigned __stdcall DirWatcher::DirWatcherThreadProcStatic(void *pvThis)
+unsigned __stdcall DirWatcher::Impl::DirWatcherThreadProcStatic(void *pvThis)
 {
-	return reinterpret_cast<DirWatcher *>(pvThis)->DirWatcherThreadProc();
+	return reinterpret_cast<DirWatcher::Impl *>(pvThis)->DirWatcherThreadProc();
 }
+
+DirWatcher::DirWatcher() : m_pimpl(new DirWatcher::Impl()) {}
+DirWatcher::~DirWatcher() = default;
+
+bool DirWatcher::Add(uintptr_t id, bool dir, const String& path, std::function<void(const String&, ACTION)> callback)
+{
+	return m_pimpl->Add(id, dir, path, callback); 
+}
+
+bool DirWatcher::Remove(uintptr_t id)
+{
+	return m_pimpl->Remove(id); 
+}
+void DirWatcher::Clear()
+{
+	m_pimpl->Clear(); 
+}
+

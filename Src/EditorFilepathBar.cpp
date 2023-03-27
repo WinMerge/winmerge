@@ -164,7 +164,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 			// fill in the returned structure
 			CFilepathEdit * pItem = static_cast<CFilepathEdit*>(GetDlgItem(nID));
-			pTTT->lpszText = const_cast<TCHAR *>(pItem->GetUpdatedTipText(&tempDC, maxWidth).c_str());
+			pTTT->lpszText = const_cast<tchar_t *>(pItem->GetUpdatedTipText(&tempDC, maxWidth).c_str());
 
 			// set old font back
 			if (hOldFont != nullptr)
@@ -193,7 +193,7 @@ void CEditorFilePathBar::OnChangeEdit(UINT id)
 	{
 		CString text;
 		m_Edit[pane].GetWindowText(text);
-		m_captionChangedCallbackfunc(pane, (LPCTSTR)text);
+		m_captionChangedCallbackfunc(pane, (const tchar_t*)text);
 	}
 }
 

@@ -66,7 +66,7 @@ String GetTemporaryPath()
  */
 String GetTemporaryFileName(const String& lpPathName, const String& lpPrefixString, int * pnerr /*= nullptr*/)
 {
-	TCHAR buffer[MAX_PATH] = {0};
+	tchar_t buffer[MAX_PATH] = {0};
 	if (lpPathName.length() > MAX_PATH-14)
 		return _T(""); // failure
 	int rtn = ::GetTempFileName(lpPathName.c_str(), lpPrefixString.c_str(), 0, buffer);
@@ -104,7 +104,7 @@ String GetProgPath()
 {
 	if (strProgPath.empty())
 	{
-		TCHAR temp[MAX_PATH] = {0};
+		tchar_t temp[MAX_PATH] = {0};
 		GetModuleFileName(nullptr, temp, MAX_PATH);
 		strProgPath = paths::GetPathOnly(temp);
 	}
@@ -117,7 +117,7 @@ String GetProgPath()
  */
 String GetWindowsDirectory()
 {
-	TCHAR path[MAX_PATH];
+	tchar_t path[MAX_PATH];
 	path[0] = _T('\0');
 	::GetWindowsDirectory(path, MAX_PATH);
 	return path;
@@ -130,7 +130,7 @@ String GetWindowsDirectory()
  */
 String GetMyDocuments()
 {
-	TCHAR path[MAX_PATH];
+	tchar_t path[MAX_PATH];
 	path[0] = _T('\0');
 	SHGetFolderPath(nullptr, CSIDL_PERSONAL, nullptr, 0, path);
 	return path;
@@ -145,7 +145,7 @@ String GetMyDocuments()
  */
 String GetPerInstanceString(const String& name)
 {
-	std::basic_stringstream<TCHAR> stream;
+	std::basic_stringstream<tchar_t> stream;
 	stream << name << Process::id();
 	return stream.str();
 }
@@ -172,7 +172,7 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
 	stInfo.dwFlags = STARTF_USESHOWWINDOW;
 	stInfo.wShowWindow = wShowWindow;
 	PROCESS_INFORMATION processInfo;
-	bool retVal = !!CreateProcess(nullptr, (LPTSTR)sCmd.c_str(),
+	bool retVal = !!CreateProcess(nullptr, (tchar_t*)sCmd.c_str(),
 		nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 		&stInfo, &processInfo);
 	if (!retVal)
@@ -184,13 +184,13 @@ static bool launchProgram(const String& sCmd, WORD wShowWindow)
 
 String ExpandEnvironmentVariables(const String& text)
 {
-	TCHAR buf[512];
+	tchar_t buf[512];
 	buf[0] = 0;
 	const unsigned size = sizeof(buf) / sizeof(buf[0]);
 	const unsigned expandedSize = ::ExpandEnvironmentStrings(text.c_str(), buf, size);
 	if (expandedSize <= size)
 		return buf;
-	std::vector<TCHAR> newbuf(expandedSize);
+	std::vector<tchar_t> newbuf(expandedSize);
 	::ExpandEnvironmentStrings(text.c_str(), newbuf.data(), expandedSize);
 	return newbuf.data();
 }

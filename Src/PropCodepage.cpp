@@ -169,7 +169,7 @@ void PropCodepage::OnCpUi()
 
 void PropCodepage::GetEncodingCodePageFromNameString()
 {
-	int nCustomCodepageValue = _ttol(m_cCustomCodepageValue.c_str());
+	int nCustomCodepageValue = tc::ttol(m_cCustomCodepageValue.c_str());
 	if (nCustomCodepageValue == 0)
 		nCustomCodepageValue = GetEncodingCodePageFromName(ucr::toSystemCP(m_cCustomCodepageValue).c_str());
 	//if found a new codepage valid

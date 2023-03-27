@@ -21,6 +21,7 @@
 #include "DirItemIterator.h"
 #include "DirActions.h"
 #include "IListCtrlImpl.h"
+#include "FileOpenFlags.h"
 
 class FileActionScript;
 
@@ -47,7 +48,7 @@ struct IListCtrl;
 const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
 
 /** Default column width in directory compare */
-const UINT DefColumnWidth = 111;
+constexpr int DefColumnWidth = 111;
 
 /**
  * @brief Directory compare results view.
@@ -407,7 +408,7 @@ protected:
 	bool IsItemToHide(const String& currentItem, const std::vector<String>& ItemsToHide) const;
 
 private:
-	void Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
+	void Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
 	void OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);

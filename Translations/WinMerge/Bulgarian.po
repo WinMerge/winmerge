@@ -1029,7 +1029,7 @@ msgstr "Пренебрегване на &числа"
 msgid "Ignore c&omment differences"
 msgstr "Пренебрегване на различията в &коментари"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Включително подпапки"
 
 msgid "&Compare method:"
@@ -1152,10 +1152,10 @@ msgstr "Потвърждение при &затваряне на няколко 
 msgid "&Preserve file time in file compare"
 msgstr "Запазване &времето на файла при сравняване"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Показване „Избиране на файлове или папки“ при стартиране"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Затваряне „Избиране на файлове или папки“ при натискане на Сравняване"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1980,7 +1980,7 @@ msgstr "&Включи съдържанието на уникални подпа�
 msgid "&Automatically expand all subfolders"
 msgstr "&Автоматично разтвори всички подпапки"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr ""
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1992,23 +1992,17 @@ msgstr "Ограничение за превключване към &двоич�
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr "Шаблони за име на файл на &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Шаблони за име на файл на &TSV:"
+msgid "File patterns:"
+msgstr "Шаблони за име на файл:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Стойности с разделител по желание"
-
-msgid "File Patterns:"
-msgstr "Шаблони за име на файл:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Двоични"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "&Шаблони за двоични файлове:"
 
 msgid "Frhed settings"
@@ -2026,7 +2020,7 @@ msgstr "Набор от &символи…"
 msgid "Image"
 msgstr "Изображения"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Файлови &разширения на изображения:"
 
 msgid "&Enable image compare in folder compare"
@@ -3792,6 +3786,9 @@ msgstr "Автоматична &максимална ширина"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed не е инсталиран."
 
@@ -4000,6 +3997,39 @@ msgstr ""
 msgid "Al&l"
 msgstr ""
 
+msgid "&Others"
+msgstr ""
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+msgid "Specify plugin arguments"
+msgstr ""
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr ""
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
 msgid "Prettification"
 msgstr ""
 
@@ -4016,9 +4046,6 @@ msgid "Validation"
 msgstr ""
 
 msgid "Decompilation"
-msgstr ""
-
-msgid "&Others"
 msgstr ""
 
 msgid "URL Handling"
@@ -4087,6 +4114,9 @@ msgstr ""
 msgid "Ignore TSV Fields"
 msgstr ""
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
 
@@ -4133,17 +4163,6 @@ msgid "Disassemble IL Code"
 msgstr ""
 
 msgid "Disassemble Native Code"
-msgstr ""
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr ""
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr ""
-
-msgid "Specify plugin arguments"
 msgstr ""
 
 msgid "Make characters uppercase"
@@ -4271,23 +4290,4 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Filter applied"
-msgstr ""
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr ""
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-
-msgid "This system does not support clipboard history."
-msgstr ""
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr ""
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

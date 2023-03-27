@@ -283,7 +283,7 @@
     </section>
 
     <section>
-      <title>Show "Select Files or Folders" Dialog on Startup<indexterm>
+      <title>Show "Select Files or Folders" dialog on startup<indexterm>
           <primary>Select Files or Folders dialog</primary>
 
           <secondary>opening automatically</secondary>
@@ -307,7 +307,7 @@
     </section>
 
     <section>
-      <title>Close "Select Files or Folders" Dialog on clicking Compare button<indexterm>
+      <title>Close "Select Files or Folders" dialog on clicking Compare button<indexterm>
           <primary>Select Files or Folders dialog</primary>
         </indexterm></title>
 
@@ -954,7 +954,7 @@
     </section>
 	
     <section>
-      <title>Include Subfolders<indexterm>
+      <title>Include subfolders<indexterm>
           <primary>include subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
@@ -990,7 +990,7 @@
     </section>
 	
     <section>
-      <title>Ignore Reparse Points<indexterm>
+      <title>Ignore reparse points<indexterm>
           <primary>reparse points</primary>
 
           <secondary>detecting and ignoring differences</secondary>

@@ -8,10 +8,8 @@
 #include "BinaryCompare.h"
 #include "DiffItem.h"
 #include "PathContext.h"
-#include "TFile.h"
 #include "IAbortable.h"
-#include <io.h>
-#include <fcntl.h>
+#include "cio.h"
 
 namespace CompareEngines
 {
@@ -37,8 +35,8 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
 	int code;
 	int fd1 = -1, fd2 = -1;
 	
-	_tsopen_s(&fd1, TFile(file1).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYNO, _S_IREAD);
-	_tsopen_s(&fd2, TFile(file2).wpath().c_str(), O_BINARY | O_RDONLY, _SH_DENYNO, _S_IREAD);
+	cio::tsopen_s(&fd1, file1, O_BINARY | O_RDONLY, _SH_DENYNO, _S_IREAD);
+	cio::tsopen_s(&fd2, file2, O_BINARY | O_RDONLY, _SH_DENYNO, _S_IREAD);
 	if (fd1 != -1 && fd2 != -1)
 	{
 		for (;;)
@@ -50,8 +48,8 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
 			}
 			char buf1[bufsize];
 			char buf2[bufsize];
-			int size1 = _read(fd1, buf1, sizeof(buf1));
-			int size2 = _read(fd2, buf2, sizeof(buf2));
+			int size1 = cio::read_i(fd1, buf1, sizeof(buf1));
+			int size2 = cio::read_i(fd2, buf2, sizeof(buf2));
 			if (size1 <= 0 || size2 <= 0)
 			{
 				if (size1 < 0 || size2 < 0)
@@ -72,9 +70,9 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
 		code = DIFFCODE::CMPERR;
 	}
 	if (fd1 != -1)
-		_close(fd1);
+		cio::close(fd1);
 	if (fd2 != -1)
-		_close(fd2);
+		cio::close(fd2);
 
 	return code;
 }

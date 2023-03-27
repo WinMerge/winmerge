@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-02-20 15:00+0200\n"
+"PO-Revision-Date: 2023-03-12 18:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1257,7 +1257,7 @@ msgid "Ignore c&omment differences"
 msgstr "&Kommentarunterschiede ignorieren"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Unterordner einbeziehen"
 
 #, c-format
@@ -1416,10 +1416,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Datei&zeit beim Dateivergleich bewahren"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "&Dialog \"Dateien oder Ordner auswählen\" beim Programmstart anzeigen"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Dialog \"Dateien oder Ordner auswählen\" mit 'Vergleichen' schließen"
 
 #, c-format
@@ -2440,7 +2440,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "&Automatisch alle Unterordner aufklappen"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Anal&ysepunkte ignorieren"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2452,24 +2452,18 @@ msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Anzahl der zu verwendenden &CPU-Kerne:"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV-Dateimuster:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV-Dateimuster:"
+msgid "File patterns:"
+msgstr "&Dateimuster:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Benutzerdefinierte, durch Trennzeichen getrennte Werte"
-
-msgid "File Patterns:"
-msgstr "&Dateimuster:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binär"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binärdatei&muster:"
 
 #, c-format
@@ -2492,7 +2486,7 @@ msgid "Image"
 msgstr "Bild"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Bilddateimuster:"
 
 msgid "&Enable image compare in folder compare"
@@ -3838,10 +3832,10 @@ msgid "Patch file successfully written."
 msgstr "Die Patchdatei wurde erfolgreich geschrieben."
 
 msgid "1. item is not found!"
-msgstr "1. Objekt ist nicht vorhanden oder ein Ordner!"
+msgstr "1. Objekt ist nicht vorhanden!"
 
 msgid "2. item is not found!"
-msgstr "2. Objekt ist nicht vorhanden oder ein Ordner!"
+msgstr "2. Objekt ist nicht vorhanden!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -4113,6 +4107,9 @@ msgstr "Automatisch maximale Breite aktivieren"
 msgid "We&bpage"
 msgstr "We&bseite"
 
+msgid "W&rap Text"
+msgstr "Text umbrechen"
+
 msgid "Frhed is not installed."
 msgstr "Frhed ist nicht installiert."
 
@@ -4318,6 +4315,39 @@ msgstr "Sofort, wenn eine externe Anwendung die angezeigte Datei ändert"
 msgid "Al&l"
 msgstr "A&lle"
 
+msgid "&Others"
+msgstr "Andere"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Plugin-Argumente angeben"
+
+msgid "Filter applied"
+msgstr "Angewandter Filter"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Zwischenablage am %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
+
+msgid "This system does not support clipboard history."
+msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
+
 msgid "Prettification"
 msgstr "Verschönerung"
 
@@ -4335,9 +4365,6 @@ msgstr "Überprüfung"
 
 msgid "Decompilation"
 msgstr "Dekompilierung"
-
-msgid "&Others"
-msgstr "Andere"
 
 msgid "URL Handling"
 msgstr "URL-Handling"
@@ -4405,6 +4432,9 @@ msgstr "CSV-Felder ignorieren"
 msgid "Ignore TSV Fields"
 msgstr "TSV-Felder ignorieren"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Führende Zeilennummern ignorieren"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Prediff-Substitutionsfilter anwenden"
 
@@ -4452,17 +4482,6 @@ msgstr "IL-Code disassemblieren"
 
 msgid "Disassemble Native Code"
 msgstr "Nativen Code disassemblieren"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Plugin-Argumente angeben"
 
 msgid "Make characters uppercase"
 msgstr "Großbuchstaben erzeugen"
@@ -4590,22 +4609,3 @@ msgstr "HTTP-URL-Scheme-Handler mit curl. \r\nArgumente: Befehlszeilenoptionen, 
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Windows-Registry-URL-Scheme-Handler. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl reg.exe übergeben werden."
-
-msgid "Filter applied"
-msgstr "Angewandter Filter"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Zwischenablage am %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
-
-msgid "This system does not support clipboard history."
-msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"

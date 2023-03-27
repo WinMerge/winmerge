@@ -68,10 +68,10 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	const TCHAR *lpcszPath = szPath.c_str();
-	TCHAR expandedPath[MAX_PATH_FULL];
+	const tchar_t *lpcszPath = szPath.c_str();
+	tchar_t expandedPath[MAX_PATH_FULL];
 
-	if (_tcschr(lpcszPath, '%') != nullptr)
+	if (tc::tcschr(lpcszPath, '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
@@ -103,8 +103,8 @@ PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const S
  */
 String FindFileName(const String& path)
 {
-	const TCHAR *filename = path.c_str();
-	while (const TCHAR *slash = _tcspbrk(filename, _T("\\/")))
+	const tchar_t *filename = path.c_str();
+	while (const tchar_t *slash = tc::tcspbrk(filename, _T("\\/")))
 	{
 		if (*(slash + 1) == '\0')
 			break;
@@ -207,9 +207,9 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	if (len < 1)
 		return sPath;
 
-	TCHAR fullPath[MAX_PATH_FULL] = {0};
-	TCHAR *pFullPath = &fullPath[0];
-	TCHAR *lpPart;
+	tchar_t fullPath[MAX_PATH_FULL] = {0};
+	tchar_t *pFullPath = &fullPath[0];
+	tchar_t *lpPart;
 
 	//                                         GetFullPathName  GetLongPathName
 	// Convert to fully qualified form              Yes               No
@@ -223,9 +223,9 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	TCHAR expandedPath[MAX_PATH_FULL];
-	const TCHAR *lpcszPath = sPath.c_str();
-	if (bExpandEnvs && _tcschr(lpcszPath, '%') != nullptr)
+	tchar_t expandedPath[MAX_PATH_FULL];
+	const tchar_t *lpcszPath = sPath.c_str();
+	if (bExpandEnvs && tc::tcschr(lpcszPath, '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(lpcszPath, expandedPath, MAX_PATH_FULL);
 		if (dwLen > 0 && dwLen < MAX_PATH_FULL)
@@ -235,10 +235,10 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	String tPath = TFile(String(lpcszPath)).wpath();
 	DWORD dwLen = GetFullPathName(tPath.c_str(), MAX_PATH_FULL, pFullPath, &lpPart);
 	if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
-		_tcscpy_s(pFullPath, MAX_PATH_FULL, tPath.c_str());
+		tc::tcslcpy(pFullPath, MAX_PATH_FULL, tPath.c_str());
 
 	// We are done if this is not a short name.
-	if (_tcschr(pFullPath, _T('~')) == nullptr)
+	if (tc::tcschr(pFullPath, _T('~')) == nullptr)
 		return pFullPath;
 
 	// We have to do it the hard way because GetLongPathName is not
@@ -247,15 +247,15 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// The file/directory does not exist, use as much long name as we can
 	// and leave the invalid stuff at the end.
 	String sLong;
-	TCHAR *ptr = pFullPath;
-	TCHAR *end = nullptr;
+	tchar_t *ptr = pFullPath;
+	tchar_t *end = nullptr;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
-	if (_tcslen(ptr) > 2)
-		end = _tcschr(pFullPath+2, _T('\\'));
-	if (end != nullptr && !_tcsncmp(pFullPath, _T("\\\\"),2))
-		end = _tcschr(end+1, _T('\\'));
+	if (tc::tcslen(ptr) > 2)
+		end = tc::tcschr(pFullPath+2, _T('\\'));
+	if (end != nullptr && !tc::tcsncmp(pFullPath, _T("\\\\"),2))
+		end = tc::tcschr(end+1, _T('\\'));
 
 	if (end == nullptr)
 		return pFullPath;
@@ -267,7 +267,7 @@ String GetLongPath(const String& szPath, bool bExpandEnvs)
 	// now walk down each directory and do short to long name conversion
 	while (ptr != nullptr)
 	{
-		end = _tcschr(ptr, '\\');
+		end = tc::tcschr(ptr, '\\');
 		// zero-terminate current component
 		// (if we're at end, its already zero-terminated)
 		if (end != nullptr)
@@ -322,27 +322,27 @@ bool CreateIfNeeded(const String& szPath)
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
-	TCHAR fullPath[MAX_PATH_FULL];
+	tchar_t fullPath[MAX_PATH_FULL];
 	fullPath[0] = '\0';
-	if (_tcschr(szPath.c_str(), '%') != nullptr)
+	if (tc::tcschr(szPath.c_str(), '%') != nullptr)
 	{
 		DWORD dwLen = ExpandEnvironmentStrings(szPath.c_str(), fullPath, MAX_PATH_FULL);
 		if (dwLen == 0 || dwLen >= MAX_PATH_FULL)
-			_tcscpy_safe(fullPath, szPath.c_str());
+			tc::tcslcpy(fullPath, szPath.c_str());
 	}
 	else
-		_tcscpy_safe(fullPath, szPath.c_str());
+		tc::tcslcpy(fullPath, szPath.c_str());
 	// Now fullPath holds our desired path
 
-	TCHAR *ptr = fullPath;
-	TCHAR *end = nullptr;
+	tchar_t *ptr = fullPath;
+	tchar_t *end = nullptr;
 
 	// Skip to \ position     d:\abcd or \\host\share\abcd
 	// indicated by ^           ^                    ^
-	if (_tcslen(ptr) > 2)
-		end = _tcschr(fullPath+2, _T('\\'));
-	if (end != nullptr && !_tcsncmp(fullPath, _T("\\\\"),2))
-		end = _tcschr(end+1, _T('\\'));
+	if (tc::tcslen(ptr) > 2)
+		end = tc::tcschr(fullPath+2, _T('\\'));
+	if (end != nullptr && !tc::tcsncmp(fullPath, _T("\\\\"),2))
+		end = tc::tcschr(end+1, _T('\\'));
 
 	if (end == nullptr) return false;
 
@@ -356,7 +356,7 @@ bool CreateIfNeeded(const String& szPath)
 
 	while (ptr != nullptr)
 	{
-		end = _tcschr(ptr, '\\');
+		end = tc::tcschr(ptr, '\\');
 		// zero-terminate current component
 		// (if we're at end, its already zero-terminated)
 		if (end != nullptr)
@@ -431,10 +431,10 @@ PATH_EXISTENCE GetPairComparability(const PathContext & paths, bool (*IsArchiveF
  */
 bool IsShortcut(const String& inPath)
 {
-	const TCHAR ShortcutExt[] = _T(".lnk");
-	TCHAR ext[_MAX_EXT] = {0};
-	_tsplitpath_s(inPath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, ext, _MAX_EXT);
-	if (_tcsicmp(ext, ShortcutExt) == 0)
+	const tchar_t ShortcutExt[] = _T(".lnk");
+	tchar_t ext[_MAX_EXT] = {0};
+	_wsplitpath_s(inPath.c_str(), nullptr, 0, nullptr, 0, nullptr, 0, ext, _MAX_EXT);
+	if (tc::tcsicmp(ext, ShortcutExt) == 0)
 		return true;
 	else
 		return false;
@@ -482,7 +482,7 @@ String ExpandShortcut(const String &inFile)
 		if (SUCCEEDED(hres))
 		{
 			WCHAR wsz[MAX_PATH_FULL];
-			_tcscpy_safe(wsz, inFile.c_str());
+			tc::tcslcpy(wsz, inFile.c_str());
 
 			// Load shortcut
 			hres = ppf->Load(wsz, STGM_READ);
@@ -490,7 +490,7 @@ String ExpandShortcut(const String &inFile)
 			if (SUCCEEDED(hres))
 			{
 				// find the path from that
-				TCHAR buf[MAX_PATH_FULL] = {0};
+				tchar_t buf[MAX_PATH_FULL] = {0};
 				psl->GetPath(buf, MAX_PATH_FULL, nullptr, SLGP_UNCPRIORITY);
 				outFile = buf;
 			}
@@ -650,7 +650,7 @@ String EnsurePathExist(const String & sPath)
  *
  * begin points to start of string, in case multibyte trail test is needed
  */
-bool IsSlashOrColon(const TCHAR *pszChar, const TCHAR *begin)
+bool IsSlashOrColon(const tchar_t *pszChar, const tchar_t *begin)
 {
 		return (*pszChar == '/' || *pszChar == ':' || *pszChar == '\\');
 }
@@ -665,9 +665,9 @@ bool IsSlashOrColon(const TCHAR *pszChar, const TCHAR *begin)
  */
 void SplitFilename(const String& pathLeft, String* pPath, String* pFile, String* pExt)
 {
-	const TCHAR *pszChar = pathLeft.c_str() + pathLeft.length();
-	const TCHAR *pend = pszChar;
-	const TCHAR *extptr = 0;
+	const tchar_t *pszChar = pathLeft.c_str() + pathLeft.length();
+	const tchar_t *pend = pszChar;
+	const tchar_t *extptr = 0;
 	bool ext = false;
 
 	while (pathLeft.c_str() < --pszChar)
@@ -756,7 +756,7 @@ bool isFileURL(const String& path)
 
 String FromURL(const String& url)
 {
-	std::vector<TCHAR> path((std::max)(size_t(MAX_PATH), url.length() + 1));
+	std::vector<tchar_t> path((std::max)(size_t(MAX_PATH), url.length() + 1));
 	DWORD size = static_cast<DWORD>(path.size());
 	PathCreateFromUrl(url.c_str(), path.data(), &size, 0);
 	return path.data();
@@ -768,12 +768,12 @@ bool IsDecendant(const String& path, const String& ancestor)
 		   strutils::compare_nocase(String(path.c_str(), path.c_str() + ancestor.length()), ancestor) == 0;
 }
 
-static void replace_char(TCHAR *s, int target, int repl)
+static void replace_char(tchar_t *s, int target, int repl)
 {
-	TCHAR *p;
-	for (p=s; *p != _T('\0'); p = _tcsinc(p))
+	tchar_t *p;
+	for (p=s; *p != _T('\0'); p = tc::tcsinc(p))
 		if (*p == target)
-			*p = (TCHAR)repl;
+			*p = (tchar_t)repl;
 }
 
 String ToWindowsPath(const String& path)

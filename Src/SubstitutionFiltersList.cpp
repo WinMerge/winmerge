@@ -15,7 +15,7 @@
 #include "UnicodeString.h"
 
 /** @brief Registry key for saving Substitution filters. */
-static const TCHAR SubstitutionFiltersRegPath[] = _T("SubstitutionFilters");
+static const tchar_t SubstitutionFiltersRegPath[] = _T("SubstitutionFilters");
 
 /**
  * @brief Default constructor.
@@ -275,9 +275,8 @@ std::shared_ptr<SubstitutionList> SubstitutionFiltersList::MakeSubstitutionList(
 				if (throwIfInvalid)
 				{
 					plist.reset();
-					char msg[512];
-					_snprintf_s(msg, _TRUNCATE, "#%d: %s", i + 1, e.message().c_str());
-					throw Poco::RegularExpressionException(msg, e.code());
+					const String msg = strutils::format(_T("#%d: %s"), i + 1, e.message().c_str());
+					throw Poco::RegularExpressionException(ucr::toUTF8(msg).c_str(), e.code());
 				}
 			}
 		}

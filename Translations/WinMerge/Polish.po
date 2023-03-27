@@ -1033,7 +1033,7 @@ msgstr "Ignoruj liczby"
 msgid "Ignore c&omment differences"
 msgstr "Ignoruj różnice w komentarzach"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Uwzględn&ij podfoldery"
 
 msgid "&Compare method:"
@@ -1156,10 +1156,10 @@ msgstr "Zapytaj przed zamknięciem wielu o&kien"
 msgid "&Preserve file time in file compare"
 msgstr "Zachowaj czas &pliku w porównanym pliku"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Po uruchomieniu pokaż okno \"wybierz pliki lub foldery\""
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Zamknij okno \"wybierz pliki lub foldery\" po kliknięciu \"porównaj\""
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1934,7 +1934,7 @@ msgid "E&nable advanced menu"
 msgstr "Włącz menu zaawansowane"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Włącz menu \"porównaj jako\""
 
 msgid "&Register shell extension"
 msgstr "Zarejestruj rozszerzenie powłoki"
@@ -1970,7 +1970,7 @@ msgstr "Uwzględnij unikalną zawartość podfolderów"
 msgid "&Automatically expand all subfolders"
 msgstr "Automatycznie rozwiń wszystkie podfoldery"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignoruj punkty ponownej analizy składniowej"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1982,23 +1982,17 @@ msgstr "Próg przejścia na binarne porównywanie (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Liczba rdzeni CPU do wykorzystania:"
 
-msgid "&CSV File Patterns:"
-msgstr "Szablony pliku &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Szablony pliku &TSV:"
+msgid "File patterns:"
+msgstr "Szablony pliku:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Niestandardowe wartości rozdzielone separatorem"
-
-msgid "File Patterns:"
-msgstr "Szablony pliku:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binarny"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Szablony pliku binarnego:"
 
 msgid "Frhed settings"
@@ -2016,7 +2010,7 @@ msgstr "Zestaw znaków..."
 msgid "Image"
 msgstr "Obraz"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Szablony pliku obrazu:"
 
 msgid "&Enable image compare in folder compare"
@@ -3397,6 +3391,9 @@ msgstr "Włącz automatycznie maksymalną szerokość"
 msgid "We&bpage"
 msgstr "Strona internetowa"
 
+msgid "W&rap Text"
+msgstr "Zawijaj tekst"
+
 msgid "Frhed is not installed."
 msgstr "Free Hex Editor nie został zainstalowany."
 
@@ -3599,6 +3596,39 @@ msgstr "Natychmiast"
 msgid "Al&l"
 msgstr "Wszystkie"
 
+msgid "&Others"
+msgstr "Pozostałe"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Brakująca nazwa wtyczki we wtyczce pipeline: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Brakujący cudzysłów we wtyczce pipeline: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Określ argumenty wtyczki"
+
+msgid "Filter applied"
+msgstr "Zastosowano filtr"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr ""
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
+
+msgid "This system does not support clipboard history."
+msgstr "Ten system nie obsługuje historii schowka."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"
+
 msgid "Prettification"
 msgstr "Upiększanie"
 
@@ -3606,7 +3636,7 @@ msgid "Content Extraction"
 msgstr "Wydobywanie zawartości"
 
 msgid "Preview"
-msgstr ""
+msgstr "Podgląd"
 
 msgid "Data Query"
 msgstr "Kwerenda danych"
@@ -3616,9 +3646,6 @@ msgstr "Walidacja"
 
 msgid "Decompilation"
 msgstr "Dekompilacja"
-
-msgid "&Others"
-msgstr "Pozostałe"
 
 msgid "URL Handling"
 msgstr "Obsługa adresów URL"
@@ -3686,6 +3713,9 @@ msgstr "Ignoruj pola CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignoruj pola TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Zastosuj filtry zamiany przed porównaniem"
 
@@ -3702,13 +3732,13 @@ msgid "Prettify YAML"
 msgstr "Upiększ kod YAML"
 
 msgid "Preview Graphviz"
-msgstr ""
+msgstr "Podgląd Graphviz"
 
 msgid "Preview Markdown"
-msgstr ""
+msgstr "Podgląd Markdown"
 
 msgid "Preview PlantUML"
-msgstr ""
+msgstr "Podgląd PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Kwerenda danych CSV..."
@@ -3733,17 +3763,6 @@ msgstr "Dezasembluj kod IL"
 
 msgid "Disassemble Native Code"
 msgstr "Dezasembluj kod natywny"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Brakująca nazwa wtyczki we wtyczce pipeline: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Brakujący cudzysłów we wtyczce pipeline: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Określ argumenty wtyczki"
 
 msgid "Make characters uppercase"
 msgstr "Zrób duże litery"
@@ -3770,14 +3789,14 @@ msgid "Reverse lines"
 msgstr "Odwróć wiersze"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr ""
+msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZASTĄP\r\n  ZNAJDŹ    - tekst do znalezienia\r\n  ZASTĄP - tekst do zastąpienia\r\n  -i - ignoruj wielkość liter (tylko dla -e)\r\n  -e - traktuj określony tekst jako wyrażenie regularne"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
 msgstr ""
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie:: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
+msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "Usuń spacje"
@@ -3871,22 +3890,3 @@ msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje linii poleceń p
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia reg.exe."
-
-msgid "Filter applied"
-msgstr "Zastosowano filtr"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr ""
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
-
-msgid "This system does not support clipboard history."
-msgstr "Ten system nie obsługuje historii schowka."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania schowka"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"

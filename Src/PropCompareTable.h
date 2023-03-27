@@ -30,6 +30,7 @@ public:
 	CComboBox m_comboTSVPatterns;
 	CComboBox m_comboDSVPatterns;
 	String m_sCSVFilePatterns;
+	String m_sCSVDelimiterChar;
 	String m_sTSVFilePatterns;
 	String m_sDSVFilePatterns;
 	String m_sDSVDelimiterChar;

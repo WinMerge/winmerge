@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2023-01-14 10:24+0100\n"
+"PO-Revision-Date: 2023-03-21 10:57+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -1032,7 +1032,7 @@ msgstr "Prezri š&tevilke"
 msgid "Ignore c&omment differences"
 msgstr "Prezri razlike v k&omentarjih"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Vključi podmape"
 
 msgid "&Compare method:"
@@ -1155,10 +1155,10 @@ msgstr "&Vprašaj pred zapiranjem več oken"
 msgid "&Preserve file time in file compare"
 msgstr "O&hrani čas datoteke v primerjavi datoteke"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Ob zagonu prikaži okno 'Izberi datoteke ali mape'"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Zapri okno 'Izberi datoteke ali mape' s klikom na gumb 'Primerjaj'"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1941,7 +1941,7 @@ msgid "E&nable advanced menu"
 msgstr "Omogoči &napredni meni"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Omogoči 'P&rimerjaj' kot meni"
 
 msgid "&Register shell extension"
 msgstr "&Registriraj končnico lupine"
@@ -1977,7 +1977,7 @@ msgstr "&Vključi unikatne vsebine podmap"
 msgid "&Automatically expand all subfolders"
 msgstr "S&amodejno razširi vse podmape"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "P&rezri točke ponovne razčlenitve"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1989,23 +1989,17 @@ msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Š&tevilo jeder procesorja za uporabo:"
 
-msgid "&CSV File Patterns:"
-msgstr "Vzorci datotek &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Vzorci datotek &TSV:"
+msgid "File patterns:"
+msgstr "Vzorci datotek:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Ločilo po meri-Ločene vrednosti"
-
-msgid "File Patterns:"
-msgstr "Vzorci datotek:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Dvojiško"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Vzorci &dvojiških datotek:"
 
 msgid "Frhed settings"
@@ -2023,7 +2017,7 @@ msgstr "Nabor z&nakov..."
 msgid "Image"
 msgstr "Slika"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "V&zorci slikovnih datotek:"
 
 msgid "&Enable image compare in folder compare"
@@ -3773,6 +3767,9 @@ msgstr "Omogoči sa&modejno največjo širino"
 msgid "We&bpage"
 msgstr "&Spletna stran"
 
+msgid "W&rap Text"
+msgstr "*re&lom besedila"
+
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
 
@@ -3981,6 +3978,43 @@ msgstr "Takoj"
 msgid "Al&l"
 msgstr "V&se"
 
+msgid "&Others"
+msgstr "&Drugo"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Manjkajoče ime vtičnika v cevovodu vtičnika:%1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Manjka narekovaj v cevovodu vtičnika: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Določi argumente vtičnika"
+
+msgid "Filter applied"
+msgstr "Filter je uporabljen"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Odložišče na %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"Zgodovina odložišča je onemogočena.\r\n"
+"Za omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
+
+msgid "This system does not support clipboard history."
+msgstr "Ta sistem ne podpira zgodovine odložišča."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"
+
 msgid "Prettification"
 msgstr "Polepšanje"
 
@@ -3998,9 +4032,6 @@ msgstr "Preverjanje veljavnosti"
 
 msgid "Decompilation"
 msgstr "Decompilation"
-
-msgid "&Others"
-msgstr "&Drugo"
 
 msgid "URL Handling"
 msgstr "Upravljanje URL-jev"
@@ -4068,6 +4099,9 @@ msgstr "Prezri polja CSV"
 msgid "Ignore TSV Fields"
 msgstr "Prezri polja TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Prezri začetne številke vrstic"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Uporabite nadomestne filtre Prediff"
 
@@ -4115,17 +4149,6 @@ msgstr "Razstavi kodo IL"
 
 msgid "Disassemble Native Code"
 msgstr "Razstavi naravno kodo"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Manjkajoče ime vtičnika v cevovodu vtičnika:%1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Manjka narekovaj v cevovodu vtičnika: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Določi argumente vtičnika"
 
 msgid "Make characters uppercase"
 msgstr "Naredi znake z velikimi črkami"
@@ -4383,26 +4406,3 @@ msgid ""
 msgstr ""
 "Upravljavec sheme URL registra Windows.\n"
 "Argumenti: možnosti ukazne vrstice, posredovane ukazu reg.exe."
-
-msgid "Filter applied"
-msgstr "Filter je uporabljen"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Odložišče na %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"Zgodovina odložišča je onemogočena.\r\n"
-"Za omogočanje zgodovine odložišča, pritisnite tipko z logotipom Windows + V in nato kliknite gumb Vklopi."
-
-msgid "This system does not support clipboard history."
-msgstr "Ta sistem ne podpira zgodovine odložišča."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitna različica WinMerge ne podpira primerjave odložišča"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"

@@ -72,17 +72,17 @@ unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 {
 	std::map<String, String> iniFileKeyValues;
-	std::vector<TCHAR> str(32768);
+	std::vector<tchar_t> str(32768);
 	if (GetPrivateProfileSection(lpAppName, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
 	{
-		TCHAR* p = str.data();
+		const tchar_t* p = str.data();
 		while (*p)
 		{
-			TCHAR* v = _tcschr(p, '=');
+			const tchar_t* v = tc::tcschr(p, '=');
 			if (!v)
 				break;
 			++v;
-			size_t vlen = _tcslen(v);
+			size_t vlen = tc::tcslen(v);
 			String value{ v, v + vlen };
 			String key{ p, v - 1 };
 			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
@@ -93,14 +93,14 @@ std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 	// after reading the "WinMerge" section try to read the "Defaults" section; overwrite existing entries in "iniFileKeyValues" with the ones from the "Defaults" section
 	if (GetPrivateProfileSection(lpDefaultSection, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
 	{
-		TCHAR* p = str.data();
+		const tchar_t* p = str.data();
 		while (*p)
 		{
-			TCHAR* v = _tcschr(p, '=');
+			const tchar_t* v = tc::tcschr(p, '=');
 			if (!v)
 				break;
 			++v;
-			size_t vlen = _tcslen(v);
+			size_t vlen = tc::tcslen(v);
 			String value{ v, v + vlen };
 			String key{ p, v - 1 };
 			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
@@ -235,7 +235,7 @@ int CIniOptionsMgr::InitOption(const String& name, const String& defaultValue)
 	return InitOption(name, defValue);
 }
 
-int CIniOptionsMgr::InitOption(const String& name, const TCHAR* defaultValue)
+int CIniOptionsMgr::InitOption(const String& name, const tchar_t* defaultValue)
 {
 	return InitOption(name, String(defaultValue));
 }
@@ -309,7 +309,7 @@ int CIniOptionsMgr::SaveOption(const String& name, const String& value)
 /**
  * @brief Set new string value for option and save option to file
  */
-int CIniOptionsMgr::SaveOption(const String& name, const TCHAR* value)
+int CIniOptionsMgr::SaveOption(const String& name, const tchar_t* value)
 {
 	return SaveOption(name, String(value));
 }

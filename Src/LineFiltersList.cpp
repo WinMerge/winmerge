@@ -14,7 +14,7 @@
 using std::vector;
 
 /** @brief Registry key for saving linefilters. */
-static const TCHAR LineFiltersRegPath[] = _T("LineFilters");
+static const tchar_t LineFiltersRegPath[] = _T("LineFilters");
 
 /**
  * @brief Default constructor.

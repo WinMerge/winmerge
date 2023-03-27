@@ -18,6 +18,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // Includes
+#include "utils/ctchar.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 // All Classes and Class Templates
@@ -38,14 +39,14 @@ public :
 
     // Attributes
 public :
-    static CMap < CString, LPCTSTR, CString, LPCTSTR > groups;
+    static CMap < CString, const tchar_t*, CString, const tchar_t* > groups;
     bool m_bFirstFocus;
     CString m_sGroup;
 
     // Operations
 public :
     void FillCurrent ();
-    void Fill (LPCTSTR text);
+    void Fill (const tchar_t* text);
     static void LoadSettings ();
     static void SaveSettings ();
 

@@ -16,7 +16,7 @@
  * @param [in] ch Char to test.
  * @return true if char is EOL byte, false otherwise.
  */
-static inline bool iseolch(TCHAR ch)
+static inline bool iseolch(tchar_t ch)
 {
 	return ch == '\n' || ch == '\r';
 }
@@ -27,7 +27,7 @@ static inline bool iseolch(TCHAR ch)
  * @return true if char is whitespace char, false otherwise.
  * @todo What about nbsp or various Unicode spacing codes?
  */
-static inline bool iswsch(TCHAR ch)
+static inline bool iswsch(tchar_t ch)
 {
 	return ch == ' ' || ch == '\t';
 }
@@ -393,11 +393,11 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			}
 		}
 
-		TCHAR c0 = *ptr0, c1 = *ptr1;
+		tchar_t c0 = *ptr0, c1 = *ptr1;
 		if (m_ignore_case)
 		{
-			c0 = _istupper(c0) ? _totlower(c0) : c0;
-			c1 = _istupper(c1) ? _totlower(c1) : c1;
+			c0 = tc::istupper(c0) ? tc::totlower(c0) : c0;
+			c1 = tc::istupper(c1) ? tc::totlower(c1) : c1;
 		}
 		if (c0 != c1)
 			return RESULT_DIFF; // buffers are different

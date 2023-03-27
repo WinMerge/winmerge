@@ -36,7 +36,7 @@
 #else
 #define DEL2            FPAT_DEL2
 #define QUOTE           FPAT_QUOTE2
-#define lowercase( c )  _totlower( c )
+#define lowercase( c )  tc::totlower( c )
 #endif
 
 /*-----------------------------------------------------------------------------
@@ -55,7 +55,7 @@
  */
 
 int
-fpattern_isvalid (LPCTSTR pat)
+fpattern_isvalid (const tchar_t* pat)
 {
   int len;
 
@@ -139,17 +139,17 @@ fpattern_isvalid (LPCTSTR pat)
  */
 
 static int
-fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
+fpattern_submatch (const tchar_t* pat, const tchar_t* fname)
 {
   int i;
   bool yes, match;
-  TCHAR lo, hi;
+  tchar_t lo, hi;
 
   /* Attempt to match subpattern against subfilename */
   while (*pat != _T('\0'))
     {
-      TCHAR fch = *fname;
-      TCHAR pch = *pat;
+      tchar_t fch = *fname;
+      tchar_t pch = *pat;
       pat++;
 
       switch (pch)
@@ -327,7 +327,7 @@ fpattern_submatch (LPCTSTR pat, LPCTSTR fname)
  */
 
 int
-fpattern_match (LPCTSTR pat, LPCTSTR fname)
+fpattern_match (const tchar_t* pat, const tchar_t* fname)
 {
   int rc;
 
@@ -380,7 +380,7 @@ fpattern_match (LPCTSTR pat, LPCTSTR fname)
  */
 
 int
-fpattern_matchn (LPCTSTR pat, LPCTSTR fname)
+fpattern_matchn (const tchar_t* pat, const tchar_t* fname)
 {
   int rc;
 

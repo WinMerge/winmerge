@@ -4,7 +4,7 @@
  * @brief Repository of character tables used to display whitespace (when View/Whitespace enabled)
  */
 
-#include "StdAfx.h" 
+#include "pch.h" 
 #include "ViewableWhitespace.h"
 
 /** @brief Is structure initialized? */
@@ -60,8 +60,9 @@ static void initialize()
 }
 
 #else
+#include <map>
 // For ANSI build, there are various sets for different codepages
-static CMap<int, int, int, int> f_offset; // map codepage to offset
+static std::map<int, int> f_offset; // map codepage to offset
 
 // tab, space, cr, lf, eol
 /** @brief Structure for whitespace characters.
@@ -110,7 +111,7 @@ static void initialize()
 	for (int i=0; i<sizeof(f_specialChars)/sizeof(f_specialChars[0]); ++i)
 	{
 		int codepage = f_specialChars[i].c_codepage;
-		f_offset[codepage] = i;
+		f_offset.insert(codepage, i);
 	}
 
 	f_initialized = true;
@@ -131,8 +132,7 @@ const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage, bool di
 	return &f_specialChars[directwrite ? 1 : 0];
 #else
 	// Use the [0] version by default, if lookup fails to find a better one
-	int offset = 0;
-	f_offset.Lookup(codepage, offset);
+	int offset = f_offset[codepage];
 	return &f_specialChars[offset];
 #endif
 }

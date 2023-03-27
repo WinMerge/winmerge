@@ -14,21 +14,24 @@ inline void DDX_Radio(CDataExchange* pDX, int nIDC, bool& value)
 	value = !!BOOL_value;
 }
 
-inline void DDX_Text(CDataExchange* pDX, int nIDC, std::basic_string<TCHAR>& value)
+template<typename T>
+inline void DDX_Text(CDataExchange* pDX, int nIDC, std::basic_string<T>& value)
 {
 	CString cstrValue = value.c_str();
 	DDX_Text(pDX, nIDC, cstrValue);
 	value = cstrValue;
 }
 
-inline void DDX_CBString(CDataExchange* pDX, int nIDC, std::basic_string<TCHAR>& value)
+template<typename T>
+inline void DDX_CBString(CDataExchange* pDX, int nIDC, std::basic_string<T>& value)
 {
 	CString cstrValue = value.c_str();
 	DDX_CBString(pDX, nIDC, cstrValue);
 	value = cstrValue;
 }
 
-inline void DDX_CBStringExact(CDataExchange* pDX, int nIDC, std::basic_string<TCHAR>& value)
+template<typename T>
+inline void DDX_CBStringExact(CDataExchange* pDX, int nIDC, std::basic_string<T>& value)
 {
 	CString cstrValue = value.c_str();
 	DDX_CBStringExact(pDX, nIDC, cstrValue);

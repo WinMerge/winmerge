@@ -22,8 +22,8 @@ public:
 	PathContext m_selectedFiles;
 	std::vector<int> m_selectedButtons;
 private:
-	DirSelectFilesDlg(const DirSelectFilesDlg &);
-	DirSelectFilesDlg & operator=(const DirSelectFilesDlg &);
+	DirSelectFilesDlg(const DirSelectFilesDlg &) = delete;
+	DirSelectFilesDlg & operator=(const DirSelectFilesDlg &) = delete;
 
 	class Impl;
 	std::unique_ptr<Impl> m_pimpl;

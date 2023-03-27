@@ -4,9 +4,9 @@
  * @brief Implementation for SyntaxColors class.
  */
 
-#include "StdAfx.h"
-#include <vector>
+#include "pch.h"
 #include "SyntaxColors.h"
+#include <Windows.h>
 
 /**
  * @brief Constructor, initialise with default colors.
@@ -86,7 +86,7 @@ void SyntaxColors::SetDefaults()
 {
 	for (int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
-		COLORREF color;
+		CEColor color;
 
 		int nSysIndex = 0;
 		if (GetSystemColorIndex(i, &nSysIndex))
@@ -105,65 +105,65 @@ void SyntaxColors::SetDefaults()
 
 			// Hardcoded defaults
 		case COLORINDEX_PREPROCESSOR:
-			color = RGB (0, 128, 192);
+			color = { 0, 128, 192 };
 			break;
 		case COLORINDEX_COMMENT:
-		//      return RGB(128, 128, 128);
-			color = RGB (0, 128, 0);
+		//      return { 128, 128, 128 };
+			color = { 0, 128, 0 };
 			break;
 		case COLORINDEX_NUMBER:
-		//      return RGB(0x80, 0x00, 0x00);
-			color = RGB (0xff, 0x00, 0x00);
+		//      return { 0x80, 0x00, 0x00 };
+			color = { 0xff, 0x00, 0x00 };
 			break;
 		case COLORINDEX_OPERATOR:
-		//      return RGB(0x00, 0x00, 0x00);
-			color = RGB (96, 96, 96);
+		//      return { 0x00, 0x00, 0x00 };
+			color = { 96, 96, 96 };
 			break;
 		case COLORINDEX_KEYWORD:
-			color = RGB (0, 0, 255);
+			color = { 0, 0, 255 };
 			break;
 		case COLORINDEX_FUNCNAME:
-			color = RGB (128, 0, 128);
+			color = { 128, 0, 128 };
 			break;
 		case COLORINDEX_USER1:
-			color = RGB (0, 0, 128);
+			color = { 0, 0, 128 };
 			break;
 		case COLORINDEX_USER2:
-			color = RGB (0, 128, 192);
+			color = { 0, 128, 192 };
 			break;
 		case COLORINDEX_SELBKGND:
-			color = RGB (0, 0, 0);
+			color = { 0, 0, 0 };
 			break;
 		case COLORINDEX_SELTEXT:
-			color = RGB (255, 255, 255);
+			color = { 255, 255, 255 };
 			break;
 		case COLORINDEX_HIGHLIGHTBKGND1:
-			color = RGB (255, 160, 160);
+			color = { 255, 160, 160 };
 			break;
 		case COLORINDEX_HIGHLIGHTTEXT1:
-			color = RGB (0, 0, 0);
+			color = { 0, 0, 0 };
 			break;
 		case COLORINDEX_HIGHLIGHTBKGND2:
-			color = RGB (255, 255, 0);
+			color = { 255, 255, 0 };
 			break;
 		case COLORINDEX_HIGHLIGHTTEXT2:
-			color = RGB (0, 0, 0);
+			color = { 0, 0, 0 };
 			break;
 		case COLORINDEX_MARKERBKGND0:
-			color = RGB (255, 255, 127);
+			color = { 255, 255, 127 };
 			break;
 		case COLORINDEX_MARKERBKGND1:
-			color = RGB (127, 255, 127);
+			color = { 127, 255, 127 };
 			break;
 		case COLORINDEX_MARKERBKGND2:
-			color = RGB (255, 127, 127);
+			color = { 255, 127, 127 };
 			break;
 		case COLORINDEX_MARKERBKGND3:
-			color = RGB (127, 127, 255);
+			color = { 127, 127, 255 };
 			break;
 		default:
-		//  return RGB(255, 0, 0);
-			color = RGB (128, 0, 0);
+		//  return { 255, 0, 0 };
+			color = { 128, 0, 0 };
 			break;
 		}
 		m_colors[i] = color;
@@ -180,7 +180,7 @@ void SyntaxColors::SetDefaults()
  * @param [in] Index index of color to set (COLORINDEX).
  * @param [in] color New color value.
  */
-void SyntaxColors::SetColor(unsigned index, COLORREF color)
+void SyntaxColors::SetColor(unsigned index, CEColor color)
 {
 	m_colors[index] = color;
 }

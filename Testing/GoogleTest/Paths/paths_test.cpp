@@ -1,6 +1,7 @@
 #include "pch.h"
 #include <gtest/gtest.h>
 #include <filesystem>
+#include <tchar.h>
 #include "Environment.h"
 #include "paths.h"
 
@@ -58,24 +59,24 @@ namespace
 
 	TEST_F(PathTest, EndsWithSlash_rootfolders)
 	{
-		const TCHAR path[] = _T("c:");
-		const TCHAR path2[] = _T("c:\\");
+		const tchar_t path[] = _T("c:");
+		const tchar_t path2[] = _T("c:\\");
 		EXPECT_FALSE(paths::EndsWithSlash(path));
 		EXPECT_TRUE(paths::EndsWithSlash(path2));
 	}
 
 	TEST_F(PathTest, EndsWithSlash_shortfolders)
 	{
-		const TCHAR path[] = _T("c:\\path");
-		const TCHAR path2[] = _T("c:\\path\\");
+		const tchar_t path[] = _T("c:\\path");
+		const tchar_t path2[] = _T("c:\\path\\");
 		EXPECT_FALSE(paths::EndsWithSlash(path));
 		EXPECT_TRUE(paths::EndsWithSlash(path2));
 	}
 
 	TEST_F(PathTest, EndsWithSlash_relfolders)
 	{
-		const TCHAR path[] = _T("\\path");
-		const TCHAR path2[] = _T("\\path\\");
+		const tchar_t path[] = _T("\\path");
+		const tchar_t path2[] = _T("\\path\\");
 		EXPECT_FALSE(paths::EndsWithSlash(path));
 		EXPECT_TRUE(paths::EndsWithSlash(path2));
 	}
@@ -86,45 +87,45 @@ namespace
 
 	TEST_F(PathTest, Exists_specialfolders)
 	{
-		const TCHAR path[] = _T(".");
-		const TCHAR path2[] = _T("..");
+		const tchar_t path[] = _T(".");
+		const tchar_t path2[] = _T("..");
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path2));
 	}
 	TEST_F(PathTest, Exists_files)
 	{
-		const TCHAR path2[] = _T("notfound.txt");
+		const tchar_t path2[] = _T("notfound.txt");
 		String path = env::GetProgPath() + _T("../README.md");
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::DOES_NOT_EXIST, paths::DoesPathExist(path2));
 	}
 	TEST_F(PathTest, Exists_relfolder)
 	{
-		const TCHAR path[] = _T("..\\");
-		const TCHAR path2[] = _T("..\\Paths");
+		const tchar_t path[] = _T("..\\");
+		const tchar_t path2[] = _T("..\\Paths");
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path2));
 	}
 	TEST_F(PathTest, Exists_relfiles)
 	{
-		const TCHAR path[] = _T(".\\..\\Paths\\paths_test.cpp");
-		const TCHAR path2[] = _T("..\\Paths\\paths_test.cpp");
+		const tchar_t path[] = _T(".\\..\\Paths\\paths_test.cpp");
+		const tchar_t path2[] = _T("..\\Paths\\paths_test.cpp");
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path2));
 	}
 	TEST_F(PathTest, Exists_absfolders)
 	{
-		const TCHAR path[] = _T("C:");
-		const TCHAR path2[] = _T("C:\\");
+		const tchar_t path[] = _T("C:");
+		const tchar_t path2[] = _T("C:\\");
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path2));
 	}
 	TEST_F(PathTest, Exists_absfolders2)
 	{
-		const TCHAR path[] = _T("C:\\windows");
-		const TCHAR path2[] = _T("C:\\windows\\");
-		const TCHAR path3[] = _T("C:\\gack");
-		const TCHAR path4[] = _T("C:\\gack\\");
+		const tchar_t path[] = _T("C:\\windows");
+		const tchar_t path2[] = _T("C:\\windows\\");
+		const tchar_t path3[] = _T("C:\\gack");
+		const tchar_t path4[] = _T("C:\\gack\\");
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path));
 		EXPECT_EQ(paths::IS_EXISTING_DIR, paths::DoesPathExist(path2));
 		EXPECT_EQ(paths::DOES_NOT_EXIST, paths::DoesPathExist(path3));
@@ -132,8 +133,8 @@ namespace
 	}
 	TEST_F(PathTest, Exists_absfiles)
 	{
-		const TCHAR path1[] = _T("C:\\windows\\notepad.exe");
-		const TCHAR path2[] = _T("C:\\windows\\gack.txt");
+		const tchar_t path1[] = _T("C:\\windows\\notepad.exe");
+		const tchar_t path2[] = _T("C:\\windows\\gack.txt");
 		EXPECT_EQ(paths::IS_EXISTING_FILE, paths::DoesPathExist(path1));
 		EXPECT_EQ(paths::DOES_NOT_EXIST, paths::DoesPathExist(path2));
 	}
@@ -144,13 +145,13 @@ namespace
 
 	TEST_F(PathTest, FindName_absfiles)
 	{
-		TCHAR path[] = _T("c:\\abc.txt");
+		tchar_t path[] = _T("c:\\abc.txt");
 		EXPECT_EQ(path + 3, paths::FindFileName(path));
 	}
 
 	TEST_F(PathTest, FindName_absfiles2)
 	{
-		TCHAR path[] = _T("c:\\temp\\abc.txt");
+		tchar_t path[] = _T("c:\\temp\\abc.txt");
 		EXPECT_EQ(path + 8, paths::FindFileName(path));
 	}
 

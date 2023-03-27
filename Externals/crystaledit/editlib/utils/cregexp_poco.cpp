@@ -16,6 +16,8 @@
 
 #include "StdAfx.h"
 #if __has_include(<Poco/RegularExpression.h>)
+#include "cregexp.h"
+#include "unicoder.h"
 #include <cassert>
 #include <cstdio>
 #include <cstdlib>
@@ -24,8 +26,6 @@
 #include <memory>
 #include <Poco/RegularExpression.h>
 #include <Poco/UnicodeConverter.h>
-#include "cregexp.h"
-#include "unicoder.h"
 
 using Poco::RegularExpression;
 using Poco::UnicodeConverter;
@@ -34,7 +34,7 @@ struct _RxNode {
 	std::unique_ptr<RegularExpression> regexp;
 };
 
-RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
+RxNode *RxCompile(const tchar_t* Regexp, unsigned int RxOpt) {
     RxNode *n = nullptr;
     if (Regexp == nullptr) return nullptr;
     n = new(std::nothrow) RxNode();
@@ -74,7 +74,7 @@ void RxFree(RxNode *n) {
 	}
 }
 
-int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match) {
+int RxExec(RxNode *Regexp, const tchar_t* Data, size_t Len, const tchar_t* Start, RxMatchRes *Match) {
     if (Regexp == nullptr) return 0;
 
 	int i;
@@ -129,7 +129,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *
 #define FLAG_UP_NEXT     4
 #define FLAG_DOWN_NEXT   8
 
-static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
+static int add(size_t *len, tchar_t* *s, const tchar_t* a, size_t alen, int &flag) {
     size_t NewLen = *len + alen;
     size_t i;
 
@@ -139,52 +139,52 @@ static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
         return 0;
 
     if (*s) {
-        LPTSTR p = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
+        tchar_t* p = (tchar_t*) realloc(*s, NewLen * sizeof(tchar_t));
         if (p == nullptr)
             return 0;
         *s = p;
         assert(*s != 0);
-        memcpy(*s + *len, a, alen * sizeof(TCHAR));
+        memcpy(*s + *len, a, alen * sizeof(tchar_t));
     } else {
-        *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
+        *s = (tchar_t*) malloc(NewLen * sizeof(tchar_t));
         assert(*s != 0);
-        memcpy(*s, a, alen * sizeof(TCHAR));
+        memcpy(*s, a, alen * sizeof(tchar_t));
         *len = 0;
     }
     if (flag & FLAG_UP_CASE) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
         for (i = 0; i < alen; i++) {
-            *p = (TCHAR)_totupper(*p);
+            *p = (tchar_t)tc::totupper(*p);
             p++;
         }
     } else if (flag & FLAG_DOWN_CASE) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
         for (i = 0; i < alen; i++) {
-            *p = (TCHAR)_totlower(*p);
+            *p = (tchar_t)tc::totlower(*p);
             p++;
         }
     }
     if (flag & FLAG_UP_NEXT) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
-        *p = (TCHAR)_totupper(*p);
+        *p = (tchar_t)tc::totupper(*p);
         flag &= ~FLAG_UP_NEXT;
     } else if (flag & FLAG_DOWN_NEXT) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
-        *p = (TCHAR)_totlower(*p);
+        *p = (tchar_t)tc::totlower(*p);
         flag &= ~FLAG_DOWN_NEXT;
     }
     *len += alen;
     return 0;
 }
 
-int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *Dest, int *Dlen) {
+int RxReplace(const tchar_t* rep, const tchar_t* Src, int /*len*/, RxMatchRes match, tchar_t* *Dest, int *Dlen) {
     size_t dlen = 0;
-    LPTSTR dest = 0;
-    TCHAR Ch;
+    tchar_t* dest = 0;
+    tchar_t Ch;
     int n;
     int flag = 0;
 
@@ -228,14 +228,14 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
                     int A = 0;
 
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     rep++;
                     A = N << 4;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     rep++;
                     A += N;
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
                 break;
@@ -245,18 +245,18 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
                     int A = 0;
 
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
                     A = N * 100;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
                     A += N * 10;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
                     A += N;
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
                 break;
@@ -266,18 +266,18 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes match, LPTSTR *D
                     int A = 0;
 
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 7) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
                     A = N * 64;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 7) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
                     A += N * 8;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 7) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
                     A += N;
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
                 break;

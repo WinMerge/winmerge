@@ -138,7 +138,7 @@ void CleanupWMtemp()
 		if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 		{
 			// Remove leading "WM_" from filename to get the ProcessID
-			tempfolderPID = foldername.substr(_tcslen(TempFolderPrefix));
+			tempfolderPID = foldername.substr(tc::tcslen(TempFolderPrefix));
 
 			// Check if this instance of WM is still running
 			try

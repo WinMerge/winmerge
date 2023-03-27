@@ -20,12 +20,12 @@ String GetSysError(int nerr /* =-1 */)
 		nullptr,
 		nerr,
 		0, // Default language
-		(LPTSTR) &lpMsgBuf,
+		(tchar_t*) &lpMsgBuf,
 		0,
 		nullptr 
 		))
 	{
-		str = (LPCTSTR)lpMsgBuf;
+		str = (const tchar_t*)lpMsgBuf;
 		// Free the buffer.
 		LocalFree( lpMsgBuf );
 	}
@@ -47,7 +47,7 @@ void LogErrorString(const String& sz)
 {
 	if (sz.empty()) return;
 	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (LPCTSTR)now, sz.c_str());
+	TRACE(_T("%s: %s\n"), (const tchar_t*)now, sz.c_str());
 }
 
 // Send message to log and debug window
@@ -56,7 +56,7 @@ void LogErrorStringUTF8(const std::string& sz)
 	if (sz.empty()) return;
 	String str = ucr::toTString(sz);
 	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (LPCTSTR)now, str.c_str());
+	TRACE(_T("%s: %s\n"), (const tchar_t*)now, str.c_str());
 }
 
 /**

@@ -308,7 +308,7 @@ void FileFilterHelper::LoadFileFilterDirPattern(const String& dir, const String&
 static String ConvertWildcardPatternToRegexp(const String& pattern)
 {
 	String strRegex;
-	for (const TCHAR *p = pattern.c_str(); *p; ++p)
+	for (const tchar_t *p = pattern.c_str(); *p; ++p)
 	{
 		switch (*p)
 		{
@@ -344,7 +344,7 @@ std::tuple<String, String, String, String> FileFilterHelper::ParseExtensions(con
 	std::vector<String> dirPatterns;
 	std::vector<String> dirPatternsExclude;
 	String ext(extensions);
-	static const TCHAR pszSeps[] = _T(" ;|,:");
+	static const tchar_t pszSeps[] = _T(" ;|,:");
 
 	ext += _T(";"); // Add one separator char to end
 	size_t pos = ext.find_first_of(pszSeps);

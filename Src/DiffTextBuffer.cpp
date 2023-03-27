@@ -7,9 +7,9 @@
 
 #include "StdAfx.h"
 #include "DiffTextBuffer.h"
-#include <Poco/Exception.h>
+#include "ccrystaltextview.h"
 #include "UniFile.h"
-#include "files.h"
+#include "FileLoadResult.h"
 #include "locality.h"
 #include "paths.h"
 #include "OptionsDef.h"
@@ -21,6 +21,7 @@
 #include "FileTextEncoding.h"
 #include "codepage_detect.h"
 #include "TFile.h"
+#include <Poco/Exception.h>
 
 using Poco::Exception;
 
@@ -91,19 +92,15 @@ CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
  * @param [in] nLineIndex Index of the line to get.
  * @param [out] strLine Returns line text in the index.
  */
-bool CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine) const
+bool CDiffTextBuffer::GetLine(int nLineIndex, String &strLine) const
 {
 	int nLineLength = CCrystalTextBuffer::GetLineLength(nLineIndex);
 	if (nLineLength < 0)
 		return false;
 	else if (nLineLength == 0)
-		strLine.Empty();
+		strLine.clear();
 	else
-	{
-		_tcsncpy_s(strLine.GetBuffer(nLineLength + 1), nLineLength + 1,
-			CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
-		strLine.ReleaseBuffer(nLineLength);
-	}
+		strLine.assign(CCrystalTextBuffer::GetLineChars(nLineIndex), nLineLength);
 	return true;
 }
 
@@ -119,32 +116,11 @@ SetModified(bool bModified /*= true*/)
 	m_pOwnerDoc->SetModifiedFlag (bModified);
 }
 
-/**
- * @brief Get a line (with EOL bytes) from the buffer.
- * This function is like GetLine() but it also includes line's EOL to the
- * returned string.
- * @param [in] nLineIndex Index of the line to get.
- * @param [out] strLine Returns line text in the index. Existing content
- * of this string is overwritten.
- */
-bool CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine) const
-{
-	int cchText = GetFullLineLength(nLineIndex);
-	if (cchText == 0)
-	{
-		strLine.Empty();
-		return false;
-	}
-	LPTSTR pchText = strLine.GetBufferSetLength(cchText);
-	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(TCHAR));
-	return true;
-}
-
 void CDiffTextBuffer::			/* virtual override */
-AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-		const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
+AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
+		const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 		int nActionType /*= CE_ACTION_UNKNOWN*/,
-		CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
+		std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
 	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText,
 		cchText, nActionType, paSavedRevisionNumbers);
@@ -162,7 +138,7 @@ AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
  * @param [in] flag Flag to check.
  * @return true if flag is set, false otherwise.
  */
-bool CDiffTextBuffer::FlagIsSet(UINT line, DWORD flag) const
+bool CDiffTextBuffer::FlagIsSet(int line, lineflags_t flag) const
 {
 	return ((m_aLines[line].m_dwFlags & flag) == flag);
 }
@@ -220,9 +196,9 @@ OnNotifyLineHasBeenEdited(int nLine)
  * - FRESULT_BINARY : file is binary file
  * @note If this method fails, it calls InitNew so the CDiffTextBuffer is in a valid state
  */
-int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
-		PackingInfo& infoUnpacker, LPCTSTR sToFindUnpacker, bool & readOnly,
-		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
+int CDiffTextBuffer::LoadFromFile(const tchar_t* pszFileNameInit,
+		PackingInfo& infoUnpacker, const tchar_t* sToFindUnpacker, bool & readOnly,
+		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, String &sError)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.size() == 0);
@@ -236,10 +212,10 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 
 	// we will load the transformed file
-	LPCTSTR pszFileName = m_strTempFileName.c_str();
+	const tchar_t* pszFileName = m_strTempFileName.c_str();
 
 	String sExt;
-	DWORD nRetVal = FileLoadResult::FRESULT_OK;
+	FileLoadResult::flags_t nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
 	paths::SplitFilename(pszFileName, nullptr, nullptr, &sExt);
@@ -259,7 +235,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		UniFile::UniError uniErr = pufile->GetLastUniError();
 		if (uniErr.HasError())
 		{
-			sError = uniErr.GetError().c_str();
+			sError = uniErr.GetError();
 		}
 		InitNew(); // leave crystal editor in valid, empty state
 	}
@@ -284,14 +260,13 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			if (encoding.m_unicoding == ucr::NONE  || !pufile->IsUnicode())
 				pufile->SetCodepage(encoding.m_codepage);
 		}
-		UINT lineno = 0;
+		unsigned lineno = 0;
 		String eol, preveol;
 		String sline;
 		bool done = false;
-		COleDateTime start = COleDateTime::GetCurrentTime(); // for trace messages
 
 		// Manually grow line array exponentially
-		UINT arraysize = 500;
+		size_t arraysize = 500;
 		m_aLines.resize(arraysize);
 		
 		// preveol must be initialized for empty files
@@ -383,7 +358,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	delete pufile;
 
 	// delete the file that unpacking may have created
-	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
+	if (tc::tcscmp(pszFileNameInit, pszFileName) != 0)
 	{
 		try
 		{
@@ -470,6 +445,8 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 		return SAVE_FAILED;
 	}
 
+	const size_t StdioBufSize = (std::min)(512 * 1024, BUFSIZ + nLines * 32);
+	file.SetVBuf(_IOFBF, StdioBufSize);
 	file.WriteBom();
 
 	// line loop : get each real line and write it in the file
@@ -587,7 +564,7 @@ int CDiffTextBuffer::SaveToFile (const String& pszFileName,
 /// Replace line (removing any eol, and only including one if in strText)
 void CDiffTextBuffer::ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
-	CString strText;
+	String strText;
 	if (nLineBegin != nLineEnd || sbuf.GetLineLength(nLineEnd) > 0)
 		sbuf.GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, sbuf.GetLineLength(nLineEnd), strText);
 	strText += sbuf.GetLineEol(nLineEnd);
@@ -601,10 +578,10 @@ void CDiffTextBuffer::ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& s
 			dbuf.DeleteText(pSource, nLineBegin, 0, nLineEndSource, dbuf.GetLineLength(nLineEndSource), nAction); 
 	}
 
-	if (int cchText = strText.GetLength())
+	if (size_t cchText = strText.length())
 	{
 		int endl,endc;
-		dbuf.InsertText(pSource, nLineBegin, 0, strText, cchText, endl,endc, nAction);
+		dbuf.InsertText(pSource, nLineBegin, 0, strText.c_str(), cchText, endl, endc, nAction);
 	}
 }
 

@@ -14,7 +14,7 @@ CustomInstallation=사용자 지정 설치
 AppCoreFiles=WinMerge 코어 파일
 Filters=필터
 Plugins=플러그인
-ShellExtension32bit=32비트 WinMerge 쉘확장
+ShellExtension32bit=32비트 WinMerge 쉘 확장
 
 ;현지화 구성 요소
 Languages=언어
@@ -78,7 +78,7 @@ ViewStartMenuFolder=WinMerge 시작 메뉴 폴더 보기(&V)
 
 ;코드 대화 상자
 DeletePreviousStartMenu=시작 메뉴의 위치가 "%s"에서 "%s"로 변경되었음을 설치 관리자가 감지했습니다. 이전 시작 메뉴 폴더를 삭제하시겠습니까?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=WinMerge 쉘 확장을 업데이트하려면 탐색기를 다시 시작해야 합니다. 탐색기를 다시 시작하시겠습니까?
 
 ; 프로젝트 파일 설명
 ProjectFileDesc=WinMerge 프로젝트 파일

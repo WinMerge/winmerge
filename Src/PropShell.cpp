@@ -20,13 +20,16 @@
 #endif
 
 /// Flags for enabling and mode of extension
-#define CONTEXT_F_ENABLED 0x01
-#define CONTEXT_F_ADVANCED 0x02
-#define CONTEXT_F_COMPARE_AS 0x04
+enum
+{
+	CONTEXT_F_ENABLED = 0x01,
+	CONTEXT_F_ADVANCED = 0x02,
+	CONTEXT_F_COMPARE_AS = 0x04
+};
 
 // registry values
-static LPCTSTR f_RegValueEnabled = _T("ContextMenuEnabled");
-static LPCTSTR f_RegValuePath = _T("Executable");
+static const tchar_t* f_RegValueEnabled = _T("ContextMenuEnabled");
+static const tchar_t* f_RegValuePath = _T("Executable");
 
 static bool IsShellExtensionRegistered(bool peruser)
 {
@@ -64,8 +67,8 @@ static bool IsWinMergeContextMenuRegistered()
 
 static bool RegisterShellExtension(bool unregister, bool peruser)
 {
-	TCHAR szSystem32[260] = { 0 };
-	TCHAR szSysWow64[260] = { 0 };
+	tchar_t szSystem32[260] = { 0 };
+	tchar_t szSysWow64[260] = { 0 };
 	GetSystemDirectory(szSystem32, sizeof(szSystem32) / sizeof(szSystem32[0]));
 	GetSystemWow64Directory(szSysWow64, sizeof(szSysWow64) / sizeof(szSysWow64[0]));
 
@@ -126,7 +129,7 @@ static bool RegisterWinMergeContextMenu(bool unregister)
 	stInfo.dwFlags = STARTF_USESHOWWINDOW;
 	stInfo.wShowWindow = SW_SHOW;
 	PROCESS_INFORMATION processInfo;
-	bool retVal = !!CreateProcess(nullptr, (LPTSTR)cmd.c_str(),
+	bool retVal = !!CreateProcess(nullptr, (tchar_t*)cmd.c_str(),
 		nullptr, nullptr, FALSE, CREATE_DEFAULT_ERROR_MODE, nullptr, nullptr,
 		&stInfo, &processInfo);
 	if (!retVal)
@@ -253,7 +256,7 @@ void PropShell::OnAddToExplorerAdvanced()
 /// Saves given path to registry for ShellExtension, and Context Menu settings
 void PropShell::SaveMergePath()
 {
-	TCHAR temp[MAX_PATH] = {0};
+	tchar_t temp[MAX_PATH] = {0};
 	LONG retVal = 0;
 	GetModuleFileName(AfxGetInstanceHandle(), temp, MAX_PATH);
 

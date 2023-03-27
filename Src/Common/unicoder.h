@@ -89,10 +89,10 @@ void getInternalEncoding(UNICODESET * unicoding, int * codepage);
 bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, size_t srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest);
 bool convert(int codepage1, const unsigned char * src, int srcbytes, int codepage2, buffer * dest);
 
-unsigned char *convertTtoUTF8(buffer * dest, const TCHAR *src, int srcbytes = -1);
-unsigned char *convertTtoUTF8(const TCHAR *src, int srcbytes = -1);
-TCHAR *convertUTF8toT(buffer * dest, const char* src, int srcbytes = -1);
-TCHAR *convertUTF8toT(const char* src, int srcbytes = -1);
+unsigned char *convertTtoUTF8(buffer * dest, const tchar_t *src, int srcbytes = -1);
+unsigned char *convertTtoUTF8(const tchar_t *src, int srcbytes = -1);
+tchar_t *convertUTF8toT(buffer * dest, const char* src, int srcbytes = -1);
+tchar_t *convertUTF8toT(const char* src, int srcbytes = -1);
 void dealloc(void *ptr);
 
 String toTString(const std::wstring& str);

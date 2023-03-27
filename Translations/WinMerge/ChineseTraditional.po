@@ -1260,7 +1260,7 @@ msgid "Ignore c&omment differences"
 msgstr "忽略註解差異 (&O)"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "包括子資料夾 (&I)"
 
 #, c-format
@@ -1421,10 +1421,10 @@ msgid "&Preserve file time in file compare"
 msgstr "比較檔案時保留檔案時間 (&P)"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "啟動時顯示「選擇檔案或資料夾」對話方塊"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 
 #, c-format
@@ -2454,7 +2454,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "自動擴展到所有子資料夾 (&A)"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "忽略重新分析點 (&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2466,24 +2466,18 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV 檔案模式："
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV 檔案模式："
+msgid "File patterns:"
+msgstr "檔案模式："
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "被分隔符號分隔的自訂數值"
-
-msgid "File Patterns:"
-msgstr "檔案模式："
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "二進制"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "二進制檔案副檔名 (&P)"
 
 #, c-format
@@ -2506,7 +2500,7 @@ msgid "Image"
 msgstr "圖片"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "圖片檔案副檔名 (&P)"
 
 msgid "&Enable image compare in folder compare"
@@ -4466,6 +4460,9 @@ msgstr "開啟自動最大寬度 (&A)"
 msgid "We&bpage"
 msgstr ""
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed 未安裝。"
 
@@ -4677,6 +4674,41 @@ msgstr ""
 msgid "Al&l"
 msgstr "全部 (&L)"
 
+msgid "&Others"
+msgstr "其他 (&O)"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "外掛程式管線缺少外掛程式名稱：%1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "外掛程式管線缺少引號：%1"
+
+msgid "Specify plugin arguments"
+msgstr "指定外掛程式參數"
+
+msgid "Filter applied"
+msgstr ""
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "於 %s 的剪貼簿"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+
+msgid "This system does not support clipboard history."
+msgstr "此系統不支援剪貼簿歷史紀錄。"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
 msgid "Prettification"
 msgstr "美化"
 
@@ -4694,9 +4726,6 @@ msgstr "驗證"
 
 msgid "Decompilation"
 msgstr "反編譯"
-
-msgid "&Others"
-msgstr "其他 (&O)"
 
 msgid "URL Handling"
 msgstr ""
@@ -4763,6 +4792,9 @@ msgstr "忽略 CSV 欄位"
 
 msgid "Ignore TSV Fields"
 msgstr "忽略 TSV 欄位"
+
+msgid "Ignore Leading Line Numbers"
+msgstr ""
 
 msgid "Apply Prediff Substitution Filters"
 msgstr ""
@@ -5003,25 +5035,4 @@ msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options pa
 msgstr ""
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr ""
-
-msgid "Filter applied"
-msgstr ""
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "於 %s 的剪貼簿"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-
-msgid "This system does not support clipboard history."
-msgstr "此系統不支援剪貼簿歷史紀錄。"
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""

@@ -90,8 +90,8 @@ public:
 	int         m_nFreeFunctions;
 
 private:
-	PluginInfo( const PluginInfo& other ); // non construction-copyable
-	PluginInfo& operator=( const PluginInfo& ); // non copyable
+	PluginInfo( const PluginInfo& other ) = delete; // non construction-copyable
+	PluginInfo& operator=( const PluginInfo& ) = delete; // non copyable
 };
 
 typedef std::shared_ptr<PluginInfo> PluginInfoPtr;

@@ -25,12 +25,12 @@ String GetSysError(int nerr /* =-1 */)
 		NULL,
 		nerr,
 		0, // Default language
-		(LPTSTR) &lpMsgBuf,
+		(tchar_t*) &lpMsgBuf,
 		0,
 		NULL 
 		))
 	{
-		str = (LPCTSTR)lpMsgBuf;
+		str = (const tchar_t*)lpMsgBuf;
 	}
 	// Free the buffer.
 	LocalFree( lpMsgBuf );

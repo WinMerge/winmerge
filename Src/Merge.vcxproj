@@ -903,6 +903,10 @@
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
     <ClCompile Include="ClipboardHistory.cpp" />
+    <ClCompile Include="Common\cio.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Common\IniOptionsMgr.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1427,6 +1431,7 @@
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="Common\cio.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\Shell.h" />
@@ -1438,6 +1443,7 @@
     <ClInclude Include="DirWatcher.h" />
     <ClInclude Include="DirItemIterator.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="FileOpenFlags.h" />
     <ClInclude Include="HashCalc.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropertySystem.h" />
@@ -1507,7 +1513,7 @@
     <ClInclude Include="FileLocation.h" />
     <ClInclude Include="FileOrFolderSelect.h" />
     <ClInclude Include="FilepathEdit.h" />
-    <ClInclude Include="files.h" />
+    <ClInclude Include="FileLoadResult.h" />
     <ClInclude Include="FileTextEncoding.h" />
     <ClInclude Include="FileTextStats.h" />
     <ClInclude Include="FileTransform.h" />

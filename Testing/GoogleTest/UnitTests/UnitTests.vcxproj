@@ -426,6 +426,7 @@
     <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\Common\cio.cpp" />
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -812,6 +813,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp" />
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.h" />
+    <ClInclude Include="..\..\..\Src\Common\cio.h" />
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\BinaryCompare.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h" />

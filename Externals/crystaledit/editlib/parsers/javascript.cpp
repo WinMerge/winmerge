@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  JavaScript keywords
-static const TCHAR * s_apszJavaScriptKeywordList[] =
+static const tchar_t * s_apszJavaScriptKeywordList[] =
   {
     _T ("async"),
     _T ("await"),
@@ -81,13 +81,13 @@ static const TCHAR * s_apszJavaScriptKeywordList[] =
   };
 
 static bool
-IsJavaScriptKeyword (const TCHAR *pszChars, int nLength)
+IsJavaScriptKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszJavaScriptKeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineJavaScript (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineJavaScript (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsJavaScriptKeyword, nullptr);
 }

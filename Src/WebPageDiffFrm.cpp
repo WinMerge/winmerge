@@ -715,7 +715,7 @@ void CWebPageDiffFrame::OnFileClose()
 void CWebPageDiffFrame::OnFileRecompareAs(UINT nID)
 {
 	PathContext paths = m_filePaths;
-	DWORD dwFlags[3];
+	fileopenflags_t dwFlags[3];
 	String strDesc[3];
 	int nBuffers = m_filePaths.GetSize();
 	PackingInfo infoUnpacker(m_infoUnpacker.GetPluginPipeline());
@@ -750,7 +750,7 @@ void CWebPageDiffFrame::OnOpenWithUnpacker()
 	{
 		PackingInfo infoUnpacker(dlg.GetPluginPipeline());
 		PathContext paths = m_filePaths;
-		DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+		fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 		String strDesc[3] = { m_strDesc[0], m_strDesc[1], m_strDesc[2] };
 		CloseNow();
 		GetMainFrame()->DoFileOpen(
@@ -1086,7 +1086,7 @@ void CWebPageDiffFrame::OnEnChangeWidth()
 		return;
 	String text;
 	m_wndWebPageDiffBar.GetDlgItemText(IDC_WIDTH, text);
-	int v = _ttoi(text.c_str());
+	int v = tc::ttoi(text.c_str());
 	if (v > 0 && v < 32678)
 	{
 		SIZE size = m_pWebDiffWindow->GetSize();
@@ -1101,7 +1101,7 @@ void CWebPageDiffFrame::OnEnChangeHeight()
 		return;
 	String text;
 	m_wndWebPageDiffBar.GetDlgItemText(IDC_HEIGHT, text);
-	int v = _ttoi(text.c_str());
+	int v = tc::ttoi(text.c_str());
 	if (v > 0 && v < 32678)
 	{
 		SIZE size = m_pWebDiffWindow->GetSize();
@@ -1116,8 +1116,8 @@ void CWebPageDiffFrame::OnEnChangeZoom()
 		return;
 	String text;
 	m_wndWebPageDiffBar.GetDlgItemText(IDC_ZOOM, text);
-	TCHAR* endptr = nullptr;
-	double v = _tcstod(text.c_str(), &endptr);
+	tchar_t* endptr = nullptr;
+	double v = tc::tcstod(text.c_str(), &endptr);
 	if ((* endptr == '\0' || *endptr == '%') && v >= 25.0 && v <= 500.0)
 		m_pWebDiffWindow->SetZoom(v / 100.0);
 }
@@ -1141,8 +1141,8 @@ void CWebPageDiffFrame::OnKillFocusBarControls()
 
 void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	TCHAR sIdx[32] = { 0 };
-	TCHAR sCnt[32] = { 0 };
+	tchar_t sIdx[32] = { 0 };
+	tchar_t sCnt[32] = { 0 };
 	String s;
 	const int nDiffs = m_pWebDiffWindow->GetDiffCount();
 	
@@ -1496,7 +1496,7 @@ void CWebPageDiffFrame::OnWebCompareScreenshots(UINT nID)
 		spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data());
 				return S_OK;
 			}));
@@ -1522,7 +1522,7 @@ void CWebPageDiffFrame::OnWebCompareHTMLs()
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				PackingInfo infoUnpacker(String(_T("PrettifyHTML")));
-				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""), &infoUnpacker);
 				return S_OK;
 			}));
@@ -1547,7 +1547,7 @@ void CWebPageDiffFrame::OnWebCompareTexts()
 	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::TEXT, spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				DWORD dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
+				fileopenflags_t dwFlags[3] = { FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU };
 				GetMainFrame()->DoFileOpen(0, &paths, dwFlags, descs.data(), _T(""));
 				return S_OK;
 			}));
@@ -1572,7 +1572,7 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 	m_pWebDiffWindow->SaveFiles(IWebDiffWindow::RESOURCETREE, spaths,
 		Callback<IWebDiffCallback>([paths, descs, pWaitStatus](const WebDiffCallbackResult& result) -> HRESULT
 			{
-				DWORD dwFlags[3]{};
+				fileopenflags_t dwFlags[3]{};
 				for (int pane = 0; pane < paths.GetSize(); ++pane)
 					dwFlags[pane] = FFILEOPEN_NOMRU;
 				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), true);
@@ -1629,7 +1629,7 @@ void CWebPageDiffFrame::OnRefresh()
 				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
 				{
 					CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
-						[](LPCTSTR msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
+						[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });
 				}
 				return S_OK;
 			})

@@ -1255,6 +1255,7 @@ void CDirView::CollapseSubdir(int sel)
 	}
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
+	m_pList->Invalidate();
 }
 
 /**
@@ -1306,7 +1307,7 @@ void CDirView::OpenParentDirectory(CDirDoc *pDocOpen)
 		pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
 		[[fallthrough]];
 	case AllowUpwardDirectory::ParentIsRegularPath: 
-		DWORD dwFlags[3];
+		fileopenflags_t dwFlags[3];
 		for (int nIndex = 0; nIndex < pathsParent.GetSize(); ++nIndex)
 			dwFlags[nIndex] = FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nIndex) ? FFILEOPEN_READONLY : 0);
 		GetMainFrame()->DoFileOrFolderOpen(&pathsParent, dwFlags, nullptr, _T(""), GetDiffContext().m_bRecursive, (GetAsyncKeyState(VK_CONTROL) & 0x8000) ? nullptr : pDocOpen);
@@ -1390,7 +1391,7 @@ static bool CreateFoldersPair(const PathContext& paths)
 	return created;
 }
 
-void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker)
+void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker)
 {
 	bool isdir = false;
 	for (auto path : paths)
@@ -1526,7 +1527,7 @@ void CDirView::OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType /*= SELE
 	// Now pathLeft, pathRight, di1, di2, and isdir are all set
 	// We have two items to compare, no matter whether same or different underlying DirView item
 
-	DWORD dwFlags[3];
+	fileopenflags_t dwFlags[3];
 	for (int nIndex = 0; nIndex < paths.GetSize(); nIndex++)
 		dwFlags[nIndex] = FFILEOPEN_NOMRU | (GetDocument()->GetReadOnly(nPane[nIndex]) ? FFILEOPEN_READONLY : 0);
 
@@ -1600,7 +1601,7 @@ void CDirView::OpenSelectionAs(UINT id)
 
 	// Open identical and different files
 	const String sUntitled[] = { _("Untitled left"), paths.GetSize() < 3 ? _("Untitled right") : _("Untitled middle"), _("Untitled right") };
-	DWORD dwFlags[3] = { 0 };
+	fileopenflags_t dwFlags[3] = { 0 };
 	String strDesc[3];
 	PathContext filteredPaths;
 	FileLocation fileloc[3];
@@ -2887,7 +2888,7 @@ LRESULT CDirView::OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam)
 {
 	OpenSelection();
 
-	auto *pReportFileName = reinterpret_cast<const TCHAR *>(wParam);
+	auto *pReportFileName = reinterpret_cast<const tchar_t *>(wParam);
 	bool *pCompleted = reinterpret_cast<bool *>(lParam);
 	if (IMergeDoc * pMergeDoc = GetMainFrame()->GetActiveIMergeDoc())
 	{
@@ -3491,6 +3492,13 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 		CEdit *pEdit = m_pList->GetEditControl();
 		ASSERT(pEdit != nullptr);
 		pEdit->SetWindowText(sText);
+		// Select file name without file extension
+		if (!GetDiffItem(pdi->item.iItem).diffcode.isDirectory())
+		{
+			int nPosExt = sText.ReverseFind('.');
+			if (nPosExt >= 1)
+				pEdit->SetSel(0, nPosExt);
+		}
 
 		m_bUserCancelEdit = false;
 	}
@@ -3578,7 +3586,7 @@ void CDirView::OnODFindItem(NMHDR* pNMHDR, LRESULT* pResult)
 		{
 			DIFFITEM *di = GetItemKey(static_cast<int>(i));
 			String filename = strutils::makelower(di->diffFileInfo[0].filename);
-			if (di && _tcsncmp(text.c_str(), filename.c_str(), text.length()) == 0)
+			if (di && tc::tcsncmp(text.c_str(), filename.c_str(), text.length()) == 0)
 			{
 				*pResult = i;
 				return;
@@ -3956,7 +3964,7 @@ void CDirView::OnMergeCompareNonHorizontally()
 	{
 		CDirDoc *pDoc = GetDocument();
 		FileTextEncoding encoding[3];
-		DWORD dwFlags[3] = {};
+		fileopenflags_t dwFlags[3] = {};
 		PathContext paths;
 		for (int nIndex = 0; nIndex < static_cast<int>(dlg.m_selectedButtons.size()); ++nIndex)
 		{
@@ -4320,7 +4328,7 @@ void CDirView::OnSearch()
 					if (!ufile.ReadString(line, &lossy))
 						break;
 					
-					if (_tcsstr(line.c_str(), _T("DirView")))
+					if (tc::tcsstr(line.c_str(), _T("DirView")))
 					{
 						bFound = true;
 						break;
@@ -4353,9 +4361,9 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	String filesForDroping = strutils::join(list.begin(), list.end(), _T("\n")) + _T("\n");
 
 	CSharedFile file(GMEM_DDESHARE | GMEM_MOVEABLE | GMEM_ZEROINIT);
-	file.Write(filesForDroping.data(), static_cast<unsigned>((filesForDroping.length() + 1) * sizeof(TCHAR)));
+	file.Write(filesForDroping.data(), static_cast<unsigned>((filesForDroping.length() + 1) * sizeof(tchar_t)));
 	
-	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(TCHAR), 0);
+	HGLOBAL hMem = GlobalReAlloc(file.Detach(), (filesForDroping.length() + 1) * sizeof(tchar_t), 0);
 	if (hMem != nullptr) 
 	{
 		COleDataSource* DropData = new COleDataSource();
@@ -4375,7 +4383,7 @@ void CDirView::NameColumn(const DirColInfo *col, int subitem)
 		String s = col->GetDisplayName();
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
-		lvc.pszText = const_cast<LPTSTR>(s.c_str());
+		lvc.pszText = const_cast<tchar_t*>(s.c_str());
 		m_pList->SetColumn(phys, &lvc);
 	}
 }
@@ -4491,12 +4499,12 @@ static String rgDispinfoText[2]; // used in function below
  *	latter case, you must not change or delete the string until the corresponding
  *	item text is deleted or two additional LVN_GETDISPINFO messages have been sent.
  */
-static LPTSTR NTAPI AllocDispinfoText(const String &s)
+static tchar_t* NTAPI AllocDispinfoText(const String &s)
 {
 	static int i = 0;
-	LPCTSTR pszText = (rgDispinfoText[i] = s).c_str();
+	const tchar_t* pszText = (rgDispinfoText[i] = s).c_str();
 	i ^= 1;
-	return (LPTSTR)pszText;
+	return (tchar_t*)pszText;
 }
 
 /**

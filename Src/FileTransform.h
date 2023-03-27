@@ -34,7 +34,7 @@ public:
 	{
 		String name;
 		std::vector<String> args;
-		TCHAR quoteChar;
+		tchar_t quoteChar;
 	};
 
 	void Initialize(bool automatic)
@@ -207,8 +207,8 @@ std::pair<
 >
 CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::wstring>& events, unsigned baseId);
 
-inline const std::vector<String> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" };
-inline const std::vector<String> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF" };
-inline const std::vector<String> EditorScriptEventNames = { L"EDITOR_SCRIPT" };
+inline const std::vector<std::wstring> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK" };
+inline const std::vector<std::wstring> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF" };
+inline const std::vector<std::wstring> EditorScriptEventNames = { L"EDITOR_SCRIPT" };
 
 }

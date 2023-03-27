@@ -1010,7 +1010,7 @@ BEGIN
         MENUITEM "Ignore num&bers",             IDC_DIFF_IGNORENUMBERS
         MENUITEM "Ignore c&omment differences", ID_DIFF_OPTIONS_IGNORE_COMMENTS
         MENUITEM SEPARATOR
-        MENUITEM "&Include Subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
+        MENUITEM "&Include subfolders",         ID_DIFF_OPTIONS_INCLUDE_SUBFOLDERS
         POPUP "&Compare method:"
         BEGIN
             MENUITEM "Full Contents",               ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
@@ -1291,7 +1291,7 @@ BEGIN
     LTEXT           " Folder: Filter",IDC_FILES_DIRS_GROUP3,10,198,86,11
     COMBOBOX        IDC_EXT_COMBO,10,209,140,95,CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Select...",IDC_SELECT_FILTER,153,209,73,14
-    CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
+    CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,16,227,143,10
     LTEXT           " File: Prediffer Plugin",IDC_FILES_DIRS_GROUP5,10,198,120,11,NOT WS_VISIBLE
     CONTROL         "",IDC_PREDIFFER_COMBO,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | NOT WS_VISIBLE | WS_VSCROLL | WS_TABSTOP,10,209,140,95
     PUSHBUTTON      "&Select...",IDC_SELECT_PREDIFFER,153,209,73,14,NOT WS_VISIBLE
@@ -1326,9 +1326,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,95,270,10
     CONTROL         "&Preserve file time in file compare",IDC_PRESERVE_FILETIME,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,107,270,10
-    CONTROL         "Show ""Select Files or Folders"" Dialog on Startup",IDC_STARTUP_FOLDER_SELECT,
+    CONTROL         "Show ""Select Files or Folders"" dialog on startup",IDC_STARTUP_FOLDER_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,119,270,10
-    CONTROL         "Close ""Select Files or Folders"" Dialog on clicking Compare button",IDC_CLOSE_WITH_OK,
+    CONTROL         "Close ""Select Files or Folders"" dialog on clicking Compare button",IDC_CLOSE_WITH_OK,
                     "Button",BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,131,270,10
     LTEXT           "Op&en-dialog Auto-Completion:",IDC_STATIC,7,141,270,10
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,7,152,270,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -2059,24 +2059,26 @@ BEGIN
     PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
 END
 
-IDD_OPEN_TABLE DIALOGEX 0, 0, 239, 151
+IDD_OPEN_TABLE DIALOGEX 0, 0, 239, 181
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Table"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "File type",IDC_STATIC,6,6,222,78
+    GROUPBOX        "File type",IDC_STATIC,6,6,222,108
     CONTROL         "&CSV",IDC_COMPARETABLE_CSV,"Button",BS_AUTORADIOBUTTON | WS_GROUP,12,18,210,10
-    CONTROL         "&TSV",IDC_COMPARETABLE_TSV,"Button",BS_AUTORADIOBUTTON,12,30,210,10
+    CONTROL         "&TSV",IDC_COMPARETABLE_TSV,"Button",BS_AUTORADIOBUTTON,12,58,210,10
     CONTROL         "Custom &Delimiter-Separated Values",IDC_COMPARETABLE_DSV,
-                    "Button",BS_AUTORADIOBUTTON,12,42,210,10
-    LTEXT           "D&elimiter character:",IDC_STATIC,24,54,198,10
-    EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,24,66,30,14,ES_AUTOHSCROLL | WS_DISABLED
+                    "Button",BS_AUTORADIOBUTTON,12,70,210,10
+    LTEXT           "D&elimiter character:",IDC_STATIC,24,30,198,10
+    EDITTEXT        IDC_COMPARETABLE_CSV_DELIM_CHAR,24,42,30,14,ES_AUTOHSCROLL
+    LTEXT           "D&elimiter character:",IDC_STATIC,24,82,198,10
+    EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,24,94,30,14,ES_AUTOHSCROLL | WS_DISABLED
     CONTROL         "&Allow newlines in quotes",IDC_COMPARETABLE_ALLOWNEWLINE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,90,222,10
-    LTEXT           "&Quote character:",IDC_STATIC,6,102,222,10
-    EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,114,30,14,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,93,126,66,18
-    PUSHBUTTON      "Cancel",IDCANCEL,165,126,66,18
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,118,222,10
+    LTEXT           "&Quote character:",IDC_STATIC,6,130,222,10
+    EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,142,30,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,93,154,66,18
+    PUSHBUTTON      "Cancel",IDCANCEL,165,154,66,18
 END
 
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 285, 242
@@ -2183,12 +2185,12 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,279,10
-    CONTROL         "&Include Subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
+    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
     CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,279,10
-    CONTROL         "Ignore &Reparse Points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
+    CONTROL         "Ignore &reparse points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
     LTEXT           "Threshold for switching to &quick compare (MB):",IDC_STATIC,6,108,279,10
     EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
     LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,279,10
@@ -2203,20 +2205,24 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Table"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&CSV File Patterns:",IDC_STATIC,6,6,270,10
-    COMBOBOX        IDC_COMPARETABLE_CSV_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "&TSV File Patterns:",IDC_STATIC,7,36,270,10
-    COMBOBOX        IDC_COMPARETABLE_TSV_PATTERNS,7,48,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,66,270,72
-    LTEXT           "File Patterns:",IDC_STATIC,12,78,258,10
-    COMBOBOX        IDC_COMPARETABLE_DSV_PATTERNS,12,90,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "D&elimiter character:",IDC_STATIC,12,108,258,10
-    EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,12,120,30,14,ES_AUTOHSCROLL
+    GROUPBOX        "CSV",IDC_STATIC,6,6,270,72
+    LTEXT           "File patterns:",IDC_STATIC,12,16,248,10
+    COMBOBOX        IDC_COMPARETABLE_CSV_PATTERNS,12,28,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "D&elimiter character:",IDC_STATIC,12,46,258,10
+    EDITTEXT        IDC_COMPARETABLE_CSV_DELIM_CHAR,12,58,30,14,ES_AUTOHSCROLL
+    GROUPBOX        "TSV",IDC_STATIC,6,80,270,42
+    LTEXT           "File patterns:",IDC_STATIC,12,90,258,10
+    COMBOBOX        IDC_COMPARETABLE_TSV_PATTERNS,12,102,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Custom Delimiter-Separated Values",IDC_STATIC,6,124,270,72
+    LTEXT           "File patterns:",IDC_STATIC,12,136,258,10
+    COMBOBOX        IDC_COMPARETABLE_DSV_PATTERNS,12,148,258,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "D&elimiter character:",IDC_STATIC,12,166,258,10
+    EDITTEXT        IDC_COMPARETABLE_DSV_DELIM_CHAR,12,178,30,14,ES_AUTOHSCROLL
     CONTROL         "&Allow newlines in quotes",IDC_COMPARETABLE_ALLOWNEWLINE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,144,270,10
-    LTEXT           "&Quote character:",IDC_STATIC,6,156,270,10
-    EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,168,30,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,202,270,10
+    LTEXT           "&Quote character:",IDC_STATIC,6,214,270,10
+    EDITTEXT        IDC_COMPARETABLE_QUOTE_CHAR,6,226,30,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,226,88,14
 END
 
 IDD_PROPPAGE_COMPARE_BINARY DIALOGEX 0, 0, 285, 242
@@ -2224,7 +2230,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION NC_("Options dialog|Categories", "Binary")
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Binary File &Patterns:",IDC_STATIC,7,6,269,10
+    LTEXT           "Binary file &patterns:",IDC_STATIC,7,6,269,10
     COMBOBOX        IDC_COMPAREBINARY_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Frhed settings",IDC_STATIC,7,40,271,88
     PUSHBUTTON      "View &Settings...",IDC_COMPAREBINARY_VIEWSETTINGS,17,58,252,14
@@ -2238,7 +2244,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Image"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Image File &Patterns:",IDC_STATIC,7,6,269,10
+    LTEXT           "Image file &patterns:",IDC_STATIC,7,6,269,10
     COMBOBOX        IDC_COMPAREIMAGE_PATTERNS,7,18,270,14,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Enable image compare in folder compare",IDC_ENABLE_IMGCMP_IN_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,34,269,10
@@ -2871,6 +2877,10 @@ IDD_PROPPAGE_COMPARE_TABLE AFX_DIALOG_LAYOUT
 BEGIN
     0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
@@ -3958,6 +3968,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_COLORSCHEME_MATLAB  "MATLAB"
     IDS_COLORSCHEME_NSIS    "NSIS"
     IDS_COLORSCHEME_PASCAL  "Pascal"
     IDS_COLORSCHEME_PERL    "Perl"
@@ -4001,6 +4012,11 @@ END
 STRINGTABLE
 BEGIN
     IDS_WEBPAGE_MENU        "We&bpage"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_VIEW_WRAP_TEXT      "W&rap Text"
 END
 
 STRINGTABLE
@@ -4113,128 +4129,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_ALL          "Al&l"
-    IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
-    IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
-    IDS_PLUGIN_PROCESS_TYPE3 "Preview"
-    IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
-    IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
-    IDS_PLUGIN_PROCESS_TYPE6 "Validation"
-    IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
-    IDS_PLUGIN_PROCESS_TYPE8 "&Others"
-    IDS_PLUGIN_PROCESS_TYPE9 "URL Handling"
-    IDS_PLUGIN_MENU_CAPTION1 "Make Uppercase"
-    IDS_PLUGIN_MENU_CAPTION2 "Make Lowercase"
-    IDS_PLUGIN_MENU_CAPTION3 "Remove Duplicate Lines"
-    IDS_PLUGIN_MENU_CAPTION4 "Count Duplicate Lines"
-    IDS_PLUGIN_MENU_CAPTION5 "Sort Lines Ascending"
-    IDS_PLUGIN_MENU_CAPTION6 "Sort Lines Descending"
-    IDS_PLUGIN_MENU_CAPTION7 "Reverse Columns"
-    IDS_PLUGIN_MENU_CAPTION8 "Reverse Lines"
-    IDS_PLUGIN_MENU_CAPTION9 "Replace..."
-    IDS_PLUGIN_MENU_CAPTION10 "Apply Filter Command..."
-    IDS_PLUGIN_MENU_CAPTION11 "Tokenize..."
-    IDS_PLUGIN_MENU_CAPTION12 "Trim Spaces"
-    IDS_PLUGIN_MENU_CAPTION13 "Select Columns..."
-    IDS_PLUGIN_MENU_CAPTION14 "Select Lines..."
-    IDS_PLUGIN_MENU_CAPTION15 "Insert Date"
-    IDS_PLUGIN_MENU_CAPTION16 "Insert Time"
-    IDS_PLUGIN_MENU_CAPTION17 "Apply Patch..."
-    IDS_PLUGIN_MENU_CAPTION18 "Ignore Columns"
-    IDS_PLUGIN_MENU_CAPTION19 "Ignore Comments (C-Family Languages)"
-    IDS_PLUGIN_MENU_CAPTION20 "Ignore CSV Fields"
-    IDS_PLUGIN_MENU_CAPTION21 "Ignore TSV Fields"
-    IDS_PLUGIN_MENU_CAPTION22 "Apply Prediff Substitution Filters"
-    IDS_PLUGIN_MENU_CAPTION23 "Prettify HTML"
-    IDS_PLUGIN_MENU_CAPTION24 "Prettify JSON"
-    IDS_PLUGIN_MENU_CAPTION25 "Prettify XML"
-    IDS_PLUGIN_MENU_CAPTION26 "Prettify YAML"
-    IDS_PLUGIN_MENU_CAPTION27 "Preview Graphviz"
-    IDS_PLUGIN_MENU_CAPTION28 "Preview Markdown"
-    IDS_PLUGIN_MENU_CAPTION29 "Preview PlantUML"
-    IDS_PLUGIN_MENU_CAPTION30 "Query CSV Data..."
-    IDS_PLUGIN_MENU_CAPTION31 "Query TSV Data..."
-    IDS_PLUGIN_MENU_CAPTION32 "Query JSON Data..."
-    IDS_PLUGIN_MENU_CAPTION33 "Query YAML Data..."
-    IDS_PLUGIN_MENU_CAPTION34 "Validate HTML"
-    IDS_PLUGIN_MENU_CAPTION35 "Disassemble JVM Bytecode"
-    IDS_PLUGIN_MENU_CAPTION36 "Disassemble IL Code"
-    IDS_PLUGIN_MENU_CAPTION37 "Disassemble Native Code"
+    IDS_PLUGIN_OTHERS       "&Others"
     IDS_PLUGIN_MISSING_PLUGIN_NAME 
                             "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
                             "Missing quotation mark in plugin pipeline: %1"
     IDS_PLUGIN_TITLE1       "Specify plugin arguments"
-END
-
-STRINGTABLE
-BEGIN
-    IDS_PLUGIN_DESCRIPTION1 "Make characters uppercase"
-    IDS_PLUGIN_DESCRIPTION2 "Make characters lowercase"
-    IDS_PLUGIN_DESCRIPTION3 "Remove duplicate lines"
-    IDS_PLUGIN_DESCRIPTION4 "Count duplicate lines"
-    IDS_PLUGIN_DESCRIPTION5 "Sort lines ascending"
-    IDS_PLUGIN_DESCRIPTION6 "Sort lines descending"
-    IDS_PLUGIN_DESCRIPTION7 "Reverse columns"
-    IDS_PLUGIN_DESCRIPTION8 "Reverse lines"
-    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-    IDS_PLUGIN_DESCRIPTION10 
-                            "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-    IDS_PLUGIN_DESCRIPTION11 
-                            "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-    IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
-    IDS_PLUGIN_DESCRIPTION13 
-                            "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-    IDS_PLUGIN_DESCRIPTION14 
-                            "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-    IDS_PLUGIN_DESCRIPTION23 
-                            "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-    IDS_PLUGIN_DESCRIPTION24 
-                            "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-    IDS_PLUGIN_DESCRIPTION25 
-                            "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-    IDS_PLUGIN_DESCRIPTION26 
-                            "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-    IDS_PLUGIN_DESCRIPTION27 
-                            "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
-    IDS_PLUGIN_DESCRIPTION28 
-                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
-    IDS_PLUGIN_DESCRIPTION29 
-                            "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-    IDS_PLUGIN_DESCRIPTION30
-                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-    IDS_PLUGIN_DESCRIPTION31
-                            "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-    IDS_PLUGIN_DESCRIPTION32 
-                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-    IDS_PLUGIN_DESCRIPTION33 
-                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-    IDS_PLUGIN_DESCRIPTION34 
-                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-    IDS_PLUGIN_DESCRIPTION35 
-                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-    IDS_PLUGIN_DESCRIPTION36 
-                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-    IDS_PLUGIN_DESCRIPTION37 
-                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-    IDS_PLUGIN_DESCRIPTION38 
-                            "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-    IDS_PLUGIN_DESCRIPTION39 "Apply patch using GnuWin32 Patch for Windows"
-    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS Excel files"
-    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS PowerPoint files"
-    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Visio files"
-    IDS_PLUGIN_DESCRIPTION43 "Display the text content of MS Word files"
-    IDS_PLUGIN_DESCRIPTION44 
-                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-    IDS_PLUGIN_DESCRIPTION45 
-                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-    IDS_PLUGIN_DESCRIPTION46 
-                            "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-    IDS_PLUGIN_DESCRIPTION47 "Prediff Line Filter"
-    IDS_PLUGIN_DESCRIPTION48 "Basic text functions for the context menu"
-    IDS_PLUGIN_DESCRIPTION49 
-                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
-    IDS_PLUGIN_DESCRIPTION50 
-                            "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 END
 
 STRINGTABLE

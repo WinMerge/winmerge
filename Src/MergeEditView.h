@@ -14,15 +14,15 @@
 /** 
  * @brief Non-diff lines shown above diff when scrolling to it
  */
-const UINT CONTEXT_LINES_ABOVE = 5;
+constexpr int CONTEXT_LINES_ABOVE = 5;
 
 /** 
  * @brief Non-diff lines shown below diff when scrolling to it
  */
-const UINT CONTEXT_LINES_BELOW = 3;
+constexpr int CONTEXT_LINES_BELOW = 3;
 
 
-#define FLAG_RESCAN_WAITS_FOR_IDLE   1
+constexpr unsigned FLAG_RESCAN_WAITS_FOR_IDLE = 1;
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,7 @@ public:
 	void RefreshOptions();
 	bool IsReadOnly(int pane) const;
 	void ShowDiff(bool bScroll, bool bSelectText);
-	virtual void OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText) override;
+	virtual void OnEditOperation(int nAction, const tchar_t* pszText, size_t cchText) override;
 	bool IsLineInCurrentDiff(int nLine) const;
 	void SelectNone();
 	void SelectDiff(int nDiff, bool bScroll = true, bool bSelectText = true);
@@ -103,7 +103,7 @@ public:
 	virtual CCrystalTextBuffer *LocateTextBuffer () override;
 	const CCrystalTextBuffer *LocateTextBuffer () const { return const_cast<CMergeEditView *>(this)->LocateTextBuffer(); };
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
-	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CPoint *pptStart = nullptr, const CPoint *ppEnd = nullptr);
+	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff,  int & lastWordDiff, const CEPoint *pptStart = nullptr, const CEPoint *ppEnd = nullptr);
 	void GetSelectedDiffs(int & firstDiff, int & lastDiff);
 	std::map<int, std::vector<int>> GetColumnSelectedWordDiffIndice();
 	CString GetSelectedText();
@@ -115,16 +115,16 @@ public:
 	bool IsModified() { return (LocateTextBuffer()->IsModified()); }
 	void PrimeListWithFile();
 	void SetStatusInterface(IMergeEditStatus * piMergeEditStatus);
-	void SelectArea(const CPoint & ptStart, const CPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
+	void SelectArea(const CEPoint & ptStart, const CEPoint & ptEnd) { SetSelection(ptStart, ptEnd); } // make public
 	using CGhostTextView::GetSelection;
 	virtual void UpdateSiblingScrollPos (bool bHorz) override;
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetMarkerTextBlocks(int nLineIndex) const override;
 	virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex) override;
-	virtual COLORREF GetColor(int nColorIndex) const override;
-	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
-			COLORREF & crText, bool & bDrawWhitespace) override;
+	virtual CEColor GetColor(int nColorIndex) const override;
+	virtual void GetLineColors (int nLineIndex, CEColor & crBkgnd,
+			CEColor & crText, bool & bDrawWhitespace) override;
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
-		, COLORREF & crBkgnd, COLORREF & crText, bool & bDrawWhitespace);
+		, CEColor & crBkgnd, CEColor & crText, bool & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAnchor = true, int nChar = -1);
 	int GetTopLine() const { return m_nTopLine; }
@@ -154,10 +154,10 @@ public:
 	bool IsDiffVisible(int nDiff);
 	void ZoomText(short amount);
 	virtual bool QueryEditable() override;
-	virtual void EnsureVisible(CPoint pt) override;
-	virtual void EnsureVisible(CPoint ptStart, CPoint ptEnd) override;
-	bool EnsureInDiff(CPoint& pt);
-	void SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView = true) override;
+	virtual void EnsureVisible(CEPoint pt) override;
+	virtual void EnsureVisible(CEPoint ptStart, CEPoint ptEnd) override;
+	bool EnsureInDiff(CEPoint& pt);
+	void SetSelection(const CEPoint& ptStart, const CEPoint& ptEnd, bool bUpdateView = true) override;
 	void ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll = false, bool bTrackScrollBar = true) override;
 	void SetActivePane();
 

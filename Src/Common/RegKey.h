@@ -22,27 +22,27 @@ public:
 // Operations
 public:
 	void Close();
-	LONG Open(HKEY hKeyRoot, LPCTSTR pszPath);
-	LONG OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam);
-	LONG OpenNoCreateWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam);
-	bool QueryRegMachine(LPCTSTR key);
-	bool QueryRegUser(LPCTSTR key);
+	LONG Open(HKEY hKeyRoot, const tchar_t* pszPath);
+	LONG OpenWithAccess(HKEY hKeyRoot, const tchar_t* pszPath, REGSAM regsam);
+	LONG OpenNoCreateWithAccess(HKEY hKeyRoot, const tchar_t* pszPath, REGSAM regsam);
+	bool QueryRegMachine(const tchar_t* key);
+	bool QueryRegUser(const tchar_t* key);
 
-	LONG WriteDword (LPCTSTR pszKey, DWORD dwVal);
-	LONG WriteString (LPCTSTR pszKey, LPCTSTR pszVal);
-	LONG WriteBool (LPCTSTR pszKey, bool bVal);
-	LONG WriteFloat (LPCTSTR pszKey, float fVal);
+	LONG WriteDword (const tchar_t* pszKey, DWORD dwVal);
+	LONG WriteString (const tchar_t* pszKey, const tchar_t* pszVal);
+	LONG WriteBool (const tchar_t* pszKey, bool bVal);
+	LONG WriteFloat (const tchar_t* pszKey, float fVal);
 
-	DWORD ReadDword (LPCTSTR pszKey, DWORD defval);
-	float ReadFloat (LPCTSTR pszKey, float defval);
-	bool ReadBool(LPCTSTR pszKey, bool defval);
-	LONG ReadLong (LPCTSTR pszKey, LONG defval);
-	UINT ReadUint (LPCTSTR pszKey, UINT defval);
-	UINT ReadInt (LPCTSTR pszKey, int defval);
-	short int ReadShort (LPCTSTR pszKey, short int defval);
-	BYTE ReadByte (LPCTSTR pszKey, BYTE defval);
-	String ReadString (LPCTSTR pszKey, LPCTSTR defval);
-	void ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLength, LPCTSTR defval);
+	DWORD ReadDword (const tchar_t* pszKey, DWORD defval);
+	float ReadFloat (const tchar_t* pszKey, float defval);
+	bool ReadBool(const tchar_t* pszKey, bool defval);
+	LONG ReadLong (const tchar_t* pszKey, LONG defval);
+	UINT ReadUint (const tchar_t* pszKey, UINT defval);
+	UINT ReadInt (const tchar_t* pszKey, int defval);
+	short int ReadShort (const tchar_t* pszKey, short int defval);
+	BYTE ReadByte (const tchar_t* pszKey, BYTE defval);
+	String ReadString (const tchar_t* pszKey, const tchar_t* defval);
+	void ReadChars (const tchar_t* pszKey, tchar_t* pData, DWORD dwLength, const tchar_t* defval);
 
 protected:
 	HKEY m_hKey; /**< Open key (HKLM, HKCU, etc). */

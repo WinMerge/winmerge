@@ -1,8 +1,8 @@
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 
 //  HTML keywords
-static const TCHAR * s_apszHtmlKeywordList[] =
+static const tchar_t * s_apszHtmlKeywordList[] =
 {
   _T("A"),
   _T("ABBR"),
@@ -127,7 +127,7 @@ static const TCHAR * s_apszHtmlKeywordList[] =
   _T("VIDEO"),
   _T("WBR"),
 };
-static const TCHAR * s_apszUser1KeywordList[] =
+static const tchar_t * s_apszUser1KeywordList[] =
 {
   _T("ABBR"),
   _T("ACCEPT"),
@@ -350,7 +350,7 @@ static const TCHAR * s_apszUser1KeywordList[] =
   _T("WRAP"),
 };
 
-static const TCHAR * s_apszUser2KeywordList[] =
+static const tchar_t * s_apszUser2KeywordList[] =
 {
   _T("aacute"),
   _T("Aacute"),
@@ -455,38 +455,38 @@ static const TCHAR * s_apszUser2KeywordList[] =
 };
 
 bool
-CrystalLineParser::IsHtmlKeyword(const TCHAR *pszChars, int nLength)
+CrystalLineParser::IsHtmlKeyword(const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI(s_apszHtmlKeywordList, pszChars, nLength);
 }
 
 bool
-CrystalLineParser::IsHtmlUser1Keyword (const TCHAR *pszChars, int nLength)
+CrystalLineParser::IsHtmlUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 bool
-CrystalLineParser::IsHtmlUser2Keyword (const TCHAR *pszChars, int nLength)
+CrystalLineParser::IsHtmlUser2Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 bool
-CrystalLineParser::IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const TCHAR *, const TCHAR *, size_t))
+CrystalLineParser::IsXKeyword(const tchar_t *pszKey, size_t nKeyLen, const tchar_t *pszKeywordList[], size_t nKeywordListCount, int(*compare)(const tchar_t *, const tchar_t *, size_t))
 {
-  TCHAR **base = (TCHAR **)pszKeywordList;
+  tchar_t **base = (tchar_t **)pszKeywordList;
   size_t lim;
 
   for (lim = nKeywordListCount; lim != 0; lim >>= 1)
     {
-      TCHAR **p = base + (lim >> 1);
+      tchar_t **p = base + (lim >> 1);
       int cmp = (*compare)(pszKey, *p, nKeyLen);
       if (cmp == 0 && (*p)[nKeyLen] == 0)
         return true;
       if (cmp > 0)
         { /* key > p: move right */
-          base = (TCHAR **)p + 1;
+          base = (tchar_t **)p + 1;
           lim--;
         } /* else move left */
     }
@@ -494,10 +494,10 @@ CrystalLineParser::IsXKeyword(const TCHAR *pszKey, size_t nKeyLen, const TCHAR *
 }
 
 bool
-CrystalLineParser::IsXNumber(const TCHAR *pszChars, int nLength)
+CrystalLineParser::IsXNumber(const tchar_t *pszChars, int nLength)
 {
-  if ((nLength > 0 && _istdigit(pszChars[0])) ||
-      (nLength > 1 && pszChars[0] == '.' && _istdigit(pszChars[1])))
+  if ((nLength > 0 && tc::istdigit(pszChars[0])) ||
+      (nLength > 1 && pszChars[0] == '.' && tc::istdigit(pszChars[1])))
     return true;
   return false;
 }

@@ -18,6 +18,7 @@
 #include "FileOrFolderSelect.h"
 #include "Win_VersionHelper.h"
 #include "paths.h"
+#include "cecolor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -172,7 +173,7 @@ void CFilepathEdit::RefreshDisplayText()
 	// compact the path
 	CRect rect;
 	GetRect(rect);
-	std::vector<TCHAR> tmp((std::max)(MAX_PATH, line.length() + 1));
+	std::vector<tchar_t> tmp((std::max)(MAX_PATH, line.length() + 1));
 	std::copy(line.begin(), line.end(), tmp.begin());
 	PathCompactPath(lDC.GetSafeHdc(), &tmp[0],	rect.Width());
 	line = &tmp[0];
@@ -263,29 +264,12 @@ void CFilepathEdit::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 }
 
-static COLORREF GetDarkenColor(COLORREF a, double r)
-{
-	const int R = static_cast<int>(GetRValue(a) * r);
-	const int G = static_cast<int>(GetGValue(a) * r);
-	const int B = static_cast<int>(GetBValue(a) * r);
-	return RGB(R, G, B);
-}
-
-static COLORREF GetIntermediateColor(COLORREF a, COLORREF b)
-{
-  float ratio = 0.5;
-  const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
-  const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
-  const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
-  return RGB(R, G, B);
-}
-
 static COLORREF MakeBackColor(bool bActive, bool bInEditing)
 {
 	if (bActive)
-		return GetIntermediateColor(::GetSysColor(bInEditing ? COLOR_WINDOW : COLOR_ACTIVECAPTION), ::GetSysColor(COLOR_3DFACE));
+		return CEColor::GetIntermediateColor(::GetSysColor(bInEditing ? COLOR_WINDOW : COLOR_ACTIVECAPTION), ::GetSysColor(COLOR_3DFACE), 0.5f);
 	else
-		return GetIntermediateColor(::GetSysColor(bInEditing ? COLOR_WINDOW : COLOR_INACTIVECAPTION), ::GetSysColor(COLOR_3DFACE));
+		return CEColor::GetIntermediateColor(::GetSysColor(bInEditing ? COLOR_WINDOW : COLOR_INACTIVECAPTION), ::GetSysColor(COLOR_3DFACE), 0.5f);
 }
 
 void CFilepathEdit::OnNcPaint()
@@ -299,11 +283,11 @@ void CFilepathEdit::OnNcPaint()
 
 	GetWindowRect(rect);
 	rect.OffsetRect(-rect.TopLeft());
-	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + margin, rect.bottom), GetDarkenColor(crBackGnd, 0.98));
-	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + 1, rect.bottom), GetDarkenColor(crBackGnd, 0.96));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + margin, rect.bottom), CEColor::GetDarkenColor(crBackGnd, 0.98f));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.left + 1, rect.bottom), CEColor::GetDarkenColor(crBackGnd, 0.96f));
 	dc.FillSolidRect(CRect(rect.right - margin, rect.top, rect.right, rect.bottom), crBackGnd);
-	dc.FillSolidRect(CRect(rect.left + 1, rect.top, rect.right, rect.top + margin), GetDarkenColor(crBackGnd, 0.98));
-	dc.FillSolidRect(CRect(rect.left, rect.top, rect.right, rect.top + 1), GetDarkenColor(crBackGnd, 0.96));
+	dc.FillSolidRect(CRect(rect.left + 1, rect.top, rect.right, rect.top + margin), CEColor::GetDarkenColor(crBackGnd, 0.98f));
+	dc.FillSolidRect(CRect(rect.left, rect.top, rect.right, rect.top + 1), CEColor::GetDarkenColor(crBackGnd, 0.96f));
 	dc.FillSolidRect(CRect(rect.left + margin, rect.bottom - margin, rect.right, rect.bottom), crBackGnd);
 }
 
@@ -455,7 +439,7 @@ void CFilepathEdit::OnContextMenuSelected(UINT nID)
 		GetWindowText(text);
 		if (!text.IsEmpty() && text[0] == '*')
 			text = text.Right(text.GetLength() - 2);
-		String dir = paths::GetParentPath(static_cast<const TCHAR*>(text));
+		String dir = paths::GetParentPath(static_cast<const tchar_t*>(text));
 		bool selected = false;
 		if (m_bEnabledFileSelection)
 			selected = SelectFile(m_hWnd, m_sFilepath, true, dir.c_str());

@@ -956,7 +956,7 @@
     </section>
 	
     <section>
-      <title>Include Subfolders<indexterm>
+      <title>Include subfolders<indexterm>
           <primary>include subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>

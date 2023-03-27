@@ -1262,7 +1262,7 @@ msgid "Ignore c&omment differences"
 msgstr "주석 차이 무시(&O)"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "하위 폴더 포함(&I)"
 
 #, c-format
@@ -1421,10 +1421,10 @@ msgid "&Preserve file time in file compare"
 msgstr "파일 비교시 파일 시간 보존(&P)"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "시작시 \"파일 또는 폴더 선택\" 대화 상자 보이기"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "비교 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
 
 #, c-format
@@ -2453,7 +2453,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "전체 하위 폴더 자동 확장(&A)"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "재분석 지점 무시(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2465,24 +2465,18 @@ msgstr "이진 비교로 전환하기 위한 임계값 (MB)(&B):"
 msgid "&Number of CPU cores to use:"
 msgstr "사용할 CPU 코어 수(&N):"
 
-msgid "&CSV File Patterns:"
-msgstr "CSV 파일 패턴(&C)"
-
-msgid "&TSV File Patterns:"
-msgstr "TSV 파일 패턴(&T)"
+msgid "File patterns:"
+msgstr "파일 패턴:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "사용자 설정 구분 기호"
-
-msgid "File Patterns:"
-msgstr "파일 패턴:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "바이너리"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "바이너리 파일 패턴(&P):"
 
 #, c-format
@@ -2505,7 +2499,7 @@ msgid "Image"
 msgstr "이미지"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "이미지 파일 패턴(&P):"
 
 msgid "&Enable image compare in folder compare"
@@ -4492,6 +4486,9 @@ msgstr "자동 최대 너비 사용(&A)"
 msgid "We&bpage"
 msgstr "웹페이지(&B)"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed가 설치되지 않았습니다."
 
@@ -4703,6 +4700,43 @@ msgstr "즉시"
 msgid "Al&l"
 msgstr "전체(&L)"
 
+msgid "&Others"
+msgstr "기타(&O)"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "플러그인 파이프라인에 누락된 플러그인 이름: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "플러그인 파이프라인에 따옴표가 없습니다: %1"
+
+msgid "Specify plugin arguments"
+msgstr "플러그인 인수 지정"
+
+msgid "Filter applied"
+msgstr "Filter 적용됨"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "%s의 클립보드"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"클립보드 히스토리를 사용할 수 없습니다.\r\n"
+"클립보드 히스토리를 활성화하려면 Windows 로고 키 + V를 누른 다음 켜기 버튼을 클릭하세요."
+
+msgid "This system does not support clipboard history."
+msgstr "이 시스템은 클립보드 히스토리를 지원하지 않습니다."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32비트 버전의 WinMerge는 클립보드 비교를 지원하지 않습니다"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 런타임이 설치되지 않았습니다. 다운로드하시겠습니까?"
+
 msgid "Prettification"
 msgstr "꾸미기"
 
@@ -4720,9 +4754,6 @@ msgstr "검증"
 
 msgid "Decompilation"
 msgstr "디컴파일"
-
-msgid "&Others"
-msgstr "기타(&O)"
 
 msgid "URL Handling"
 msgstr "URL 처리"
@@ -4790,6 +4821,9 @@ msgstr "CSV 입력란 무시"
 msgid "Ignore TSV Fields"
 msgstr "TSV 입력란 무시"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Prediff 치환 필터 적용"
 
@@ -4837,17 +4871,6 @@ msgstr "IL 코드 분해"
 
 msgid "Disassemble Native Code"
 msgstr "네이티브 코드 분해"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "플러그인 파이프라인에 누락된 플러그인 이름: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "플러그인 파이프라인에 따옴표가 없습니다: %1"
-
-msgid "Specify plugin arguments"
-msgstr "플러그인 인수 지정"
 
 msgid "Make characters uppercase"
 msgstr "문자를 대문자로 만들기"
@@ -5105,26 +5128,3 @@ msgid ""
 msgstr ""
 "Windows 레지스트리 URL 구성표 처리기입니다.\n"
 "인수: reg.exe 명령에 전달된 명령줄 옵션입니다."
-
-msgid "Filter applied"
-msgstr "Filter 적용됨"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "%s의 클립보드"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr ""
-"클립보드 히스토리를 사용할 수 없습니다.\r\n"
-"클립보드 히스토리를 활성화하려면 Windows 로고 키 + V를 누른 다음 켜기 버튼을 클릭하세요."
-
-msgid "This system does not support clipboard history."
-msgstr "이 시스템은 클립보드 히스토리를 지원하지 않습니다."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32비트 버전의 WinMerge는 클립보드 비교를 지원하지 않습니다"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2 런타임이 설치되지 않았습니다. 다운로드하시겠습니까?"

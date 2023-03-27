@@ -1032,7 +1032,7 @@ msgstr "&Sayıları yok say"
 msgid "Ignore c&omment differences"
 msgstr "Yo&rum farklılıkları yok sayılsın"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "A&lt klasörler katılsın"
 
 msgid "&Compare method:"
@@ -1155,10 +1155,10 @@ msgstr "&Birden fazla pencere kapatılıyorsa onay istensin"
 msgid "&Preserve file time in file compare"
 msgstr "Karşılaştırmada &dosya zamanı korunsun"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"Dosya ya da klasör seçin\" &penceresi açılışta görüntülensin"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 "\"Dosya ya da klasör seçin\" penceresi Karşılaştır düğmesi ile kapatılsın"
 
@@ -1986,7 +1986,7 @@ msgstr "Eşsiz a&lt klasör içerikleri katılsın"
 msgid "&Automatically expand all subfolders"
 msgstr "Tüm alt klasörler genişletilsin"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Yeniden işleme noktala&rı yok sayılsın"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1998,23 +1998,17 @@ msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV dosya örnekleri:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV dosya örnekleri:"
+msgid "File patterns:"
+msgstr "Dosya örnekleri:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Özel sınırlama-ayırma karakterleri"
-
-msgid "File Patterns:"
-msgstr "Dosya örnekleri:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binary"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binary dosya &uzantıları:"
 
 msgid "Frhed settings"
@@ -2032,7 +2026,7 @@ msgstr "&Karakter kümesi..."
 msgid "Image"
 msgstr "Görsel"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Görsel dosya &uzantıları:"
 
 msgid "&Enable image compare in folder compare"
@@ -3843,6 +3837,9 @@ msgstr "Otom&atik en fazla genişlik"
 msgid "We&bpage"
 msgstr "We&b sayfası"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed kurulmamış."
 
@@ -4051,6 +4048,45 @@ msgstr ""
 msgid "Al&l"
 msgstr "&Tümü"
 
+msgid "&Others"
+msgstr "&Diğerleri"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Eklenti bağlantı yolunda eklenti adı eksik: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Eklenti değişkenlerini belirtin"
+
+msgid "Filter applied"
+msgstr "Süzgeç uygulandı"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "%s zamanındaki pano"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+"Pano geçmişi devre dışı bırakılmış.\r\n"
+"Pano geçmişini etkinleştirmek için, Windows + V tuşlarına basıp açılan "
+"pencerede Aç üzerine tıklayın."
+
+msgid "This system does not support clipboard history."
+msgstr "Bu sistemde pano geçmişi özelliği yok."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "WebView2 çalıştırıcı bulunamadı. İndirmek ister misiniz?"
+
 msgid "Prettification"
 msgstr "Sadeleştirme"
 
@@ -4068,9 +4104,6 @@ msgstr "Doğrulama"
 
 msgid "Decompilation"
 msgstr "Kod çözme"
-
-msgid "&Others"
-msgstr "&Diğerleri"
 
 msgid "URL Handling"
 msgstr "Adres işleme"
@@ -4138,6 +4171,9 @@ msgstr "CSV alanları yok sayılsın"
 msgid "Ignore TSV Fields"
 msgstr "TSV alanları yok sayılsın"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Ön farklılaştırıcı değiştirme süzgeçlerini uygula"
 
@@ -4185,17 +4221,6 @@ msgstr "IL kodunu çözümle"
 
 msgid "Disassemble Native Code"
 msgstr "Doğal kodu çözümle"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Eklenti bağlantı yolunda eklenti adı eksik: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Eklenti değişkenlerini belirtin"
 
 msgid "Make characters uppercase"
 msgstr "Büyük harflere dönüştür"
@@ -4460,28 +4485,3 @@ msgid ""
 msgstr ""
 "Windows kayıt defteri adresi şema işleyici. \r\n"
 "Parametreler: reg.exe komutuna aktarılacak komut satırı parametreleri."
-
-msgid "Filter applied"
-msgstr "Süzgeç uygulandı"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "%s zamanındaki pano"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the "
-"Turn on button."
-msgstr ""
-"Pano geçmişi devre dışı bırakılmış.\r\n"
-"Pano geçmişini etkinleştirmek için, Windows + V tuşlarına basıp açılan "
-"pencerede Aç üzerine tıklayın."
-
-msgid "This system does not support clipboard history."
-msgstr "Bu sistemde pano geçmişi özelliği yok."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "WebView2 çalıştırıcı bulunamadı. İndirmek ister misiniz?"

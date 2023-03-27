@@ -31,6 +31,22 @@ static inline int is_eol(char const* ptr, char const* top)
 	return (*ptr == '\n' || (*ptr == '\r' && (ptr == top - 1 || *(ptr + 1) != '\n')));
 }
 
+enum EOL_TYPE {  EOL_NONE, EOL_LF, EOL_CR, EOL_CRLF };
+
+static enum EOL_TYPE eol_type (const char *l, long s)
+{
+	if (s <= 0)
+		return EOL_NONE;
+	else if (l[s - 1] == '\n') {
+		if (s > 1 && l[s - 2] == '\r')
+			return EOL_CRLF;
+		return EOL_LF;
+	}
+	else if (l[s - 1] == '\r')
+		return EOL_CR;
+	return EOL_NONE;
+}
+
 long xdl_bogosqrt(long n) {
 	long i;
 
@@ -166,14 +182,11 @@ int xdl_blankline(const char *line, long size, long flags)
  */
 static int ends_with_optional_cr(const char *l, long s, long i)
 {
-	int complete = s && is_eol(l + s - 1, l + s);
-
-	if (complete)
-		s--;
-	if (s == i)
-		return 1;
-	/* do not ignore CR at the end of an incomplete line */
-	if (complete && s == i + 1 && l[i] == '\r')
+	const enum EOL_TYPE eol = eol_type(l, s);
+	if ((eol == EOL_NONE && i >= s) ||
+	    (eol == EOL_LF   && i >= s - 1) ||
+	    (eol == EOL_CR   && i >= s - 1) ||
+	    (eol == EOL_CRLF && i >= s - 2))
 		return 1;
 	return 0;
 }
@@ -309,15 +322,33 @@ int xdl_recmatch(const char *l1, long s1, const char *l2, long s2, long flags)
 	if (!((has_eol1 && has_eol2) || (!has_eol1 && !has_eol2)))
 		return 0;
 	if (i1 < s1) {
-		while (i1 < s1 && XDL_ISSPACE(l1[i1]))
-			i1++;
+		if (flags & XDF_IGNORE_NUMBERS) {
+			while (i1 < s1 && (XDL_ISSPACE(l1[i1]) || XDL_ISDIGIT(l1[i1])))
+				i1++;
+		}
+		else {
+			while (i1 < s1 && XDL_ISSPACE(l1[i1]))
+				i1++;
+		}
 		if (s1 != i1)
 			return 0;
 	}
 	if (i2 < s2) {
-		while (i2 < s2 && XDL_ISSPACE(l2[i2]))
-			i2++;
-		return (s2 == i2);
+		if (flags & XDF_IGNORE_NUMBERS) {
+			while (i2 < s2 && (XDL_ISSPACE(l2[i2]) || XDL_ISDIGIT(l2[i2])))
+				i2++;
+		}
+		else {
+			while (i2 < s2 && XDL_ISSPACE(l2[i2]))
+				i2++;
+		}
+		if (s2 != i2)
+			return 0;
+	}
+	if (!(flags & XDF_IGNORE_CR_AT_EOL))
+	{
+		if (eol_type(l1, s1) != eol_type(l2, s2))
+			return 0;
 	}
 	return 1;
 }
@@ -334,22 +365,19 @@ static unsigned long xdl_hash_record_with_whitespace(char const **data,
 		char const *top, long flags) {
 	unsigned long ha = 5381;
 	char const *ptr = *data;
-	int cr_at_eol_only = (flags & XDF_WHITESPACE_FLAGS) == XDF_IGNORE_CR_AT_EOL;
 
 	for (; ptr < top && !is_eol(ptr, top); ptr++) {
-		if (cr_at_eol_only) {
-			/* do not ignore CR at the end of an incomplete line */
-			if (*ptr == '\r' &&
-			    (ptr + 1 < top && ptr[1] == '\n'))
+		if (*ptr == '\r') {
+			if (flags & XDF_IGNORE_CR_AT_EOL)
 				continue;
 		}
 		else if (XDL_ISSPACE(*ptr)) {
 			const char *ptr2 = ptr;
 			int at_eol;
 			while (ptr + 1 < top && XDL_ISSPACE(ptr[1])
-					&& !is_eol(ptr + 1, top))
+				&& !(ptr[1] == '\r' || ptr[1] == '\n'))
 				ptr++;
-			at_eol = (top <= ptr + 1 || is_eol(ptr + 1, top));
+			at_eol = (top <= ptr + 1 || (ptr[1] == '\r' || ptr[1] == '\n'));
 			if (flags & XDF_IGNORE_WHITESPACE)
 				; /* already handled */
 			else if (flags & XDF_IGNORE_WHITESPACE_CHANGE
@@ -372,7 +400,12 @@ static unsigned long xdl_hash_record_with_whitespace(char const **data,
 		ha += (ha << 5);
 		ha ^= hash_a_byte(*ptr, flags);
 	}
-	*data = ptr < top ? ptr + 1: ptr;
+	if (ptr < top) {
+		ha += (ha << 5);
+		ha ^= hash_a_byte((flags & XDF_IGNORE_CR_AT_EOL) ? '\n' : *ptr, flags);
+		ptr++;
+	}
+	*data = ptr;
 
 	return ha;
 }
@@ -388,7 +421,12 @@ unsigned long xdl_hash_record(char const **data, char const *top, long flags) {
 		ha += (ha << 5);
 		ha ^= hash_a_byte(*ptr, flags);
 	}
-	*data = ptr < top ? ptr + 1: ptr;
+	if (ptr < top) {
+		ha += (ha << 5);
+		ha ^= hash_a_byte(*ptr, flags);
+		ptr++;
+	}
+	*data = ptr;
 
 	return ha;
 }

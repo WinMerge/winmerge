@@ -88,17 +88,17 @@ int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 #ifdef _MAX_PATH
 #  undef _MAX_PATH
 #endif
-#define _MAX_PATH (260 * sizeof(wchar_t) / sizeof(TCHAR))
+#define _MAX_PATH (260 * sizeof(wchar_t) / sizeof(tchar_t))
 
 #ifdef MAX_PATH
 #  undef MAX_PATH
 #endif
-#define MAX_PATH (260 * sizeof(wchar_t) / sizeof(TCHAR))
+#define MAX_PATH (260 * sizeof(wchar_t) / sizeof(tchar_t))
 
 #ifdef MAX_PATH_FULL
 #  undef MAX_PATH_FULL
 #endif
-#define MAX_PATH_FULL (32767 * sizeof(wchar_t) / sizeof(TCHAR))
+#define MAX_PATH_FULL (32767 * sizeof(wchar_t) / sizeof(tchar_t))
 
 #define WMPROFILE(x) CWinMergeProfile __wmtl__(x)
 
@@ -110,10 +110,10 @@ private:
 	static LARGE_INTEGER origin;
 	LARGE_INTEGER li[2];
 	LARGE_INTEGER freq;
-	TCHAR funcname[256];
+	tchar_t funcname[256];
 public:
-	explicit CWinMergeProfile(LPCTSTR pFuncName) {
-		TCHAR buf[256];
+	explicit CWinMergeProfile(const tchar_t* pFuncName) {
+		tchar_t buf[256];
 		_stprintf_s(buf, _T("%-*s funcname=%s Start\n"), level, L"", pFuncName);
 		OutputDebugString(buf);
 		lstrcpy(funcname, pFuncName);
@@ -125,7 +125,7 @@ public:
 	}
 	~CWinMergeProfile() {
 		QueryPerformanceCounter(&li[1]);
-		TCHAR buf[256];
+		tchar_t buf[256];
 		level--;
 		int elapsed = (int)((double)(li[1].QuadPart - li[0].QuadPart) / freq.QuadPart*1000.0*1000.0);
 		int tim = (int)((double)(li[1].QuadPart - origin.QuadPart) / freq.QuadPart*1000.0*1000.0);

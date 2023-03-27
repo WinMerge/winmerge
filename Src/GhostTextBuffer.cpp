@@ -17,6 +17,7 @@
 
 #include "StdAfx.h"
 #include "GhostTextBuffer.h"
+#include "ccrystaltextview.h"
 #include "MergeLineFlags.h"
 
 #ifdef _DEBUG
@@ -24,13 +25,6 @@
 #endif
 
 using std::vector;
-
-BEGIN_MESSAGE_MAP (CGhostTextBuffer, CCrystalTextBuffer)
-//{{AFX_MSG_MAP(CGhostTextBuffer)
-//}}AFX_MSG_MAP
-END_MESSAGE_MAP ()
-
-IMPLEMENT_DYNCREATE (CGhostTextBuffer, CCrystalTextBuffer)
 
 /**
  * @brief Constructor.
@@ -132,7 +126,7 @@ bool CGhostTextBuffer::InternalDeleteGhostLine (CCrystalTextView * pSource,
 void CGhostTextBuffer::			/* virtual override */
 GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
+                 String &text, CRLFSTYLE nCrlfStyle /*= CRLFSTYLE::AUTOMATIC */,
                  bool bExcludeInvisibleLines /*= true*/) const
 {
 	const size_t lines = m_aLines.size();
@@ -146,11 +140,12 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 //	ASSERT(nStartLine != nEndLine || nStartChar != nEndChar);
 
 	// estimate size (upper bound)
-	int nBufSize = 0;
+	size_t nBufSize = 0;
 	int i = 0;
 	for (i = nStartLine; i <= nEndLine; ++i)
 		nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
-	LPTSTR pszBuf = text.GetBuffer(nBufSize);
+	text.resize(nBufSize);
+	tchar_t* pszBuf = text.data();
 
 	if (nCrlfStyle != CRLFSTYLE::AUTOMATIC)
 	{
@@ -167,14 +162,14 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			int soffset = (i == nStartLine ? nStartChar : 0);
 			int eoffset = (i == nEndLine ? nEndChar : GetLineLength(i));
 			int chars = eoffset - soffset;
-			LPCTSTR szLine = m_aLines[i].GetLine(soffset);
-			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
+			const tchar_t* szLine = m_aLines[i].GetLine(soffset);
+			CopyMemory(pszBuf, szLine, chars * sizeof(tchar_t));
 			pszBuf += chars;
 
 			// copy the EOL of the requested type
 			if (i != ApparentLastRealLine())
 			{
-				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(TCHAR));
+				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(tchar_t));
 				pszBuf += sEol.GetLength();
 			}
 		}
@@ -191,8 +186,8 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			int soffset = (i == nStartLine ? nStartChar : 0);
 			int eoffset = (i == nEndLine ? nEndChar : GetFullLineLength(i));
 			int chars = eoffset - soffset;
-			LPCTSTR szLine = m_aLines[i].GetLine(soffset);
-			CopyMemory(pszBuf, szLine, chars * sizeof(TCHAR));
+			const tchar_t* szLine = m_aLines[i].GetLine(soffset);
+			CopyMemory(pszBuf, szLine, chars * sizeof(tchar_t));
 			pszBuf += chars;
 
 			// check that we really have an EOL
@@ -202,13 +197,12 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
 				// (If this happens, editor probably has bug)
 				ASSERT(false);
 				CString sEol = GetStringEol (nCrlfStyle);
-				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(TCHAR));
+				CopyMemory(pszBuf, sEol, sEol.GetLength() * sizeof(tchar_t));
 				pszBuf += sEol.GetLength();
 			}
 		}
 	}
-	text.ReleaseBuffer(static_cast<int>(pszBuf - text));
-	text.FreeExtra();
+	text.resize(pszBuf - text.data());
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -236,7 +230,7 @@ GetTextWithoutEmptys(int nStartLine, int nStartChar,
  */
 bool CGhostTextBuffer::			/* virtual override */
 InsertText (CCrystalTextView * pSource, int nLine,
-		int nPos, LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar,
+		int nPos, const tchar_t* pszText, size_t cchText, int &nEndLine, int &nEndChar,
 		int nAction /*= CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
 	bool bGroupFlag = false;
@@ -372,21 +366,21 @@ InsertText (CCrystalTextView * pSource, int nLine,
 	return true;
 }
 
-CDWordArray *CGhostTextBuffer::			/* virtual override */
+std::vector<uint32_t> *CGhostTextBuffer::			/* virtual override */
 CopyRevisionNumbers(int nStartLine, int nEndLine) const
 {
-	CDWordArray *paSavedRevisionNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
+	std::vector<uint32_t> *paSavedRevisionNumbers = CCrystalTextBuffer::CopyRevisionNumbers(nStartLine, nEndLine);
 	for (int nLine = nEndLine; nLine >= nStartLine; --nLine)
 	{
 		if ((GetLineFlags(nLine) & LF_GHOST) != 0)
-			paSavedRevisionNumbers->RemoveAt(nLine - nStartLine);
+			paSavedRevisionNumbers->erase(paSavedRevisionNumbers->begin() + (nLine - nStartLine));
 	}
 	if ((GetLineFlags(nEndLine) & LF_GHOST) != 0)
 	{
 		for (int nLine = nEndLine + 1; nLine < GetLineCount(); ++nLine)
 			if ((GetLineFlags(nLine) & LF_GHOST) == 0)
 			{
-				paSavedRevisionNumbers->Add(GetLineFlags(nLine));
+				paSavedRevisionNumbers->push_back(GetLineFlags(nLine));
 				break;
 			}
 	}
@@ -394,9 +388,9 @@ CopyRevisionNumbers(int nStartLine, int nEndLine) const
 }
 
 void CGhostTextBuffer::			/* virtual override */
-RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers)
+RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *paSavedRevisionNumbers)
 {
-	for (int i = 0, j = 0; i < paSavedRevisionNumbers->GetSize(); j++)
+	for (int i = 0, j = 0; i < static_cast<int>(paSavedRevisionNumbers->size()); j++)
 	{
 		if ((GetLineFlags(nStartLine + j) & LF_GHOST) == 0)
 		{
@@ -782,14 +776,14 @@ OnNotifyLineHasBeenEdited(int nLine)
 }
 
 void CGhostTextBuffer::
-CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int &nLastLineLength, int &nEol)
+CountEolAndLastLineLength(const CEPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int &nLastLineLength, int &nEol)
 {
 	nLastLineLength = 0;
 	nEol = 0;
 	if (m_bTableEditing && m_bAllowNewlinesInQuotes)
 	{
 		bool bInQuote = false;
-		const TCHAR* pszLine = m_aLines[ptStartPos.y].GetLine();
+		const tchar_t* pszLine = m_aLines[ptStartPos.y].GetLine();
 		for (int j = 0; j < ptStartPos.x; ++j)
 		{
 			if (pszLine[j] == m_cFieldEnclosure)
@@ -828,15 +822,15 @@ CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchT
 }
 
 void CGhostTextBuffer::			/* virtual override */
-AddUndoRecord(bool bInsert, const CPoint & ptStartPos,
-	const CPoint & ptEndPos, LPCTSTR pszText, size_t cchText,
+AddUndoRecord(bool bInsert, const CEPoint & ptStartPos,
+	const CEPoint & ptEndPos, const tchar_t* pszText, size_t cchText,
 	int nActionType /*= CE_ACTION_UNKNOWN*/,
-	CDWordArray *paSavedRevisionNumbers /*= nullptr*/)
+	std::vector<uint32_t> *paSavedRevisionNumbers /*= nullptr*/)
 {
-	CPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
+	CEPoint real_ptStartPos(ptStartPos.x, ComputeRealLine(ptStartPos.y));
 	int nLastLineLength, nEol;
 	CountEolAndLastLineLength(ptStartPos, pszText, cchText, nLastLineLength, nEol);
-	CPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
+	CEPoint real_ptEndPos(ptEndPos.x, real_ptStartPos.y + nEol);
 	if (ptEndPos.x == 0 && cchText > 0 && !LineInfo::IsEol(pszText[cchText - 1]))
 		real_ptEndPos.x = nLastLineLength;
 	CCrystalTextBuffer::AddUndoRecord(bInsert, real_ptStartPos, real_ptEndPos, pszText,
@@ -853,13 +847,13 @@ GetUndoRecord(int nUndoPos) const
 }
 
 bool CGhostTextBuffer::		/* virtual override */
-UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur)
+UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos, const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur)
 {    
     // Check that text in the undo buffer matches text in file buffer.  
 	// If not, then rescan() has moved lines and undo fails.
 
     // we need to put the cursor before the deleted section
-    CString text;
+    String text;
     const size_t size = m_aLines.size();
     if ((apparent_ptStartPos.y < static_cast<LONG>(size)) &&
         (apparent_ptStartPos.x <= static_cast<LONG>(m_aLines[apparent_ptStartPos.y].Length())) &&
@@ -869,7 +863,7 @@ UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint appare
 		//  Try to ensure that we are undoing correctly...
 		//  Just compare the text as it was before Undo operation
         GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text, CRLFSTYLE::AUTOMATIC, false);
-        if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
+        if (text.length() == ur.GetTextLength() && memcmp(text.c_str(), ur.GetText(), text.length() * sizeof(tchar_t)) == 0)
         {
 			if (CCrystalTextBuffer::UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparent_ptEndPos, ur))
 			{
@@ -883,11 +877,11 @@ UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos, const CPoint appare
 		//	that situation before we fail entirely...
 		if (apparent_ptEndPos.y + 1 == static_cast<LONG>(size) && apparent_ptEndPos.x == 0)
 		{
-			CPoint apparentEnd2 = apparent_ptEndPos;
+			CEPoint apparentEnd2 = apparent_ptEndPos;
 			apparentEnd2.x = static_cast<LONG>(m_aLines[apparentEnd2.y].FullLength());
-			text.Empty();
+			text.clear();
 			GetTextWithoutEmptys(apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparentEnd2.x, text, CRLFSTYLE::AUTOMATIC, false);
-			if (static_cast<size_t>(text.GetLength()) == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
+			if (text.length() == ur.GetTextLength() && memcmp(text.c_str(), ur.GetText(), text.length() * sizeof(tchar_t)) == 0)
 			{
 				if (CCrystalTextBuffer::UndoInsert(pSource, ptCursorPos, apparent_ptStartPos, apparentEnd2, ur))
 				{

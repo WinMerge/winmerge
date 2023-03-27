@@ -1255,7 +1255,7 @@ msgid "Ignore c&omment differences"
 msgstr "Megjegyzés különbségek mellőzése"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Alkönyvtárakkal együtt"
 
 #, c-format
@@ -1414,10 +1414,10 @@ msgid "&Preserve file time in file compare"
 msgstr "Fájl idők megőrzése összehasonlításkor"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehasonlít gombbal"
 
 #, c-format
@@ -2446,7 +2446,7 @@ msgid "&Automatically expand all subfolders"
 msgstr "Minden alkönyvtár automatikus kibontása"
 
 #, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Elemzési pontok mellőzése"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2458,24 +2458,18 @@ msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Használandó CPU magok száma:"
 
-msgid "&CSV File Patterns:"
-msgstr "CSV típusú fájlok kiterjesztése:"
-
-msgid "&TSV File Patterns:"
-msgstr "TSV típusú fájlok kiterjesztése:"
+msgid "File patterns:"
+msgstr "Fájlfajták:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Egyéni elválasztójelek"
-
-msgid "File Patterns:"
-msgstr "Fájlfajták:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Bináris"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Bináris fájltípusok:"
 
 #, c-format
@@ -2498,7 +2492,7 @@ msgid "Image"
 msgstr "Kép"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Képfájl típusok:"
 
 msgid "&Enable image compare in folder compare"
@@ -4451,6 +4445,9 @@ msgstr "Auto oszlopszélesség be"
 msgid "We&bpage"
 msgstr "Weboldal"
 
+msgid "W&rap Text"
+msgstr "Szöveg tördelése"
+
 msgid "Frhed is not installed."
 msgstr "Az Frhed hexa szerkesztő nincs telepítve."
 
@@ -4661,6 +4658,39 @@ msgstr "Azonnal"
 msgid "Al&l"
 msgstr "Összes"
 
+msgid "&Others"
+msgstr "Egyéb"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Bővítmény argumentumok megadása"
+
+msgid "Filter applied"
+msgstr "Szűrő alkalmazva"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Vágólap itt: %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
+
+msgid "This system does not support clipboard history."
+msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
+
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
 
@@ -4678,9 +4708,6 @@ msgstr "Érvényesítés"
 
 msgid "Decompilation"
 msgstr "Visszafejtés"
-
-msgid "&Others"
-msgstr "Egyéb"
 
 msgid "URL Handling"
 msgstr "URL-kezelés"
@@ -4748,6 +4775,9 @@ msgstr "CSV mezők mellőzése"
 msgid "Ignore TSV Fields"
 msgstr "TSV mezők mellőzése"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Bevezető sorszámok figyelmen kívül hagyása"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
@@ -4795,17 +4825,6 @@ msgstr "IL kód kibontása"
 
 msgid "Disassemble Native Code"
 msgstr "Natív kód kibontása"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Bővítmény argumentumok megadása"
 
 msgid "Make characters uppercase"
 msgstr "Nagybetűsítés"
@@ -4933,22 +4952,3 @@ msgstr "HTTP URL-sémakezelő curl-lel. \r\nArgumentumok: A curl parancsnak áta
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Windows rendszerleíró adatbázis URL-séma kezelő. \r\nArgumentumok: A reg.exe parancsnak átadott parancssori beállítások."
-
-msgid "Filter applied"
-msgstr "Szűrő alkalmazva"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Vágólap itt: %s"
-
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
-
-msgid "This system does not support clipboard history."
-msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"

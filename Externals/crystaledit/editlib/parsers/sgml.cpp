@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  SGML keywords
-static const TCHAR * s_apszSgmlKeywordList[] =
+static const tchar_t * s_apszSgmlKeywordList[] =
   {
     _T ("ABSTRACT"),
     _T ("ARTICLE"),
@@ -83,7 +83,7 @@ static const TCHAR * s_apszSgmlKeywordList[] =
     _T ("VERSION"),
   };
 
-static const TCHAR * s_apszUser1KeywordList[] =
+static const tchar_t * s_apszUser1KeywordList[] =
   {
     _T ("COMPACT"),
     _T ("ID"),
@@ -92,19 +92,19 @@ static const TCHAR * s_apszUser1KeywordList[] =
   };
 
 static bool
-IsSgmlKeyword (const TCHAR *pszChars, int nLength)
+IsSgmlKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszSgmlKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (const TCHAR *pszChars, int nLength)
+IsUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineSgml (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineSgml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -114,7 +114,7 @@ CrystalLineParser::ParseLineSgml (unsigned dwCookie, const TCHAR *pszChars, int 
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -174,7 +174,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -185,7 +185,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;
@@ -196,7 +196,7 @@ out:
       //  Extended comment <!--....-->
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          if (I > 1 && pszChars[I] == '>' && pszChars[nPrevI] == '-' && *::CharPrev(pszChars, pszChars + nPrevI) == '-')
+          if (I > 1 && pszChars[I] == '>' && pszChars[nPrevI] == '-' && *tc::tcharprev(pszChars, pszChars + nPrevI) == '-')
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;

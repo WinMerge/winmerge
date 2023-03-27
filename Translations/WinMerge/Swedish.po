@@ -1036,7 +1036,7 @@ msgstr "Ignorera nummer"
 msgid "Ignore c&omment differences"
 msgstr "Ignorera kommentarskillnader"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Inkludera undermappar"
 
 msgid "&Compare method:"
@@ -1159,10 +1159,10 @@ msgstr "Fråga när flera fönster stängs"
 msgid "&Preserve file time in file compare"
 msgstr "Bevara ändringsdatum i filjämförelse"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Visa \"Välj filer eller kataloger\" dialogen vid uppstart"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 "Stäng dialogrutan \"Välj filer eller kataloger\" när ''OK''-knappen klickas"
 
@@ -1990,7 +1990,7 @@ msgstr "Inkludera unikt innehåll i underkataloger"
 msgid "&Automatically expand all subfolders"
 msgstr "Öppna automatiskt alla undermappar"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignorera återtolkningsmarkörer"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2002,23 +2002,17 @@ msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "Antal CPU-kärnor att använda:"
 
-msgid "&CSV File Patterns:"
-msgstr "CSV filnamn:"
-
-msgid "&TSV File Patterns:"
-msgstr "TSV filnamn:"
+msgid "File patterns:"
+msgstr "Filnamnsmönster:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Användaravgränsade värden"
-
-msgid "File Patterns:"
-msgstr "Filnamnsmönster:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binär"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binärt filnamnsmönster:"
 
 msgid "Frhed settings"
@@ -2036,7 +2030,7 @@ msgstr "Teckenuppsättning..."
 msgid "Image"
 msgstr "Bild"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Filnamnsmönster för bilder:"
 
 msgid "&Enable image compare in folder compare"
@@ -3850,6 +3844,9 @@ msgstr "Aktivera automatisk högsta bredd"
 msgid "We&bpage"
 msgstr "Websida"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed är inte installerad."
 
@@ -4058,6 +4055,46 @@ msgstr "Omgående"
 msgid "Al&l"
 msgstr "AI&I"
 
+msgid "&Others"
+msgstr "Övriga"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Saknar programtilläggets namn i kommandoslinga: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Saknar citationstecken i programtilläggets kommandoslinga: %1"
+
+msgid "Specify plugin arguments"
+msgstr "Ange programtilläggets kommandoalternativ"
+
+msgid "Filter applied"
+msgstr "Filter verkställt"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Urklipp vid %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+"Urklippshistorik är inaktiverat.\r\n"
+"För att aktivera urklippshistorik, tryck på Windows-tangenten + V och klicka "
+"sedan på knappen Aktivera."
+
+msgid "This system does not support clipboard history."
+msgstr "Det här systemet stöder inte urklippshistorik."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32-bitarsversionen av WinMerge stöder inte Clipboard Compare"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+"Körbara filer för WebView2 är inte installerade. Vill du ladda ned det?"
+
 msgid "Prettification"
 msgstr "Finputsning"
 
@@ -4075,9 +4112,6 @@ msgstr "Validering"
 
 msgid "Decompilation"
 msgstr "Dekompilering"
-
-msgid "&Others"
-msgstr "Övriga"
 
 msgid "URL Handling"
 msgstr "URL-hantering"
@@ -4145,6 +4179,9 @@ msgstr "Ignorera CSV fält"
 msgid "Ignore TSV Fields"
 msgstr "Ignorera TSV fält"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Applicera utbytesfilter för förjämförelse/Prediffer"
 
@@ -4192,17 +4229,6 @@ msgstr "Nedmontera IL kod"
 
 msgid "Disassemble Native Code"
 msgstr "Nedmontera ursprunglig kod"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Saknar programtilläggets namn i kommandoslinga: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Saknar citationstecken i programtilläggets kommandoslinga: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Ange programtilläggets kommandoalternativ"
 
 msgid "Make characters uppercase"
 msgstr "Konvertera tecken till VERSALER"
@@ -4476,29 +4502,3 @@ msgid ""
 msgstr ""
 "Windows registret schemahanteriare.\n"
 "Argument: Kommandoradsalternativ som passeras till reg.exe-kommandot."
-
-msgid "Filter applied"
-msgstr "Filter verkställt"
-
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Urklipp vid %s"
-
-msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the "
-"Turn on button."
-msgstr ""
-"Urklippshistorik är inaktiverat.\r\n"
-"För att aktivera urklippshistorik, tryck på Windows-tangenten + V och klicka "
-"sedan på knappen Aktivera."
-
-msgid "This system does not support clipboard history."
-msgstr "Det här systemet stöder inte urklippshistorik."
-
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-bitarsversionen av WinMerge stöder inte Clipboard Compare"
-
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr ""
-"Körbara filer för WebView2 är inte installerade. Vill du ladda ned det?"

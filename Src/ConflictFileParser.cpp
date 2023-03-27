@@ -20,13 +20,13 @@
 
 // Note: keep these strings in "wrong" order so we can resolve this file :)
 /** @brief String separating Mine and Theirs blocks. */
-static const TCHAR Separator[] = _T("=======");
+static const tchar_t Separator[] = _T("=======");
 /** @brief String ending Theirs block (and conflict). */
-static const TCHAR TheirsEnd[] = _T(">>>>>>> ");
+static const tchar_t TheirsEnd[] = _T(">>>>>>> ");
 /** @brief String starting Mine block (and conflict). */
-static const TCHAR MineBegin[] = _T("<<<<<<< ");
+static const tchar_t MineBegin[] = _T("<<<<<<< ");
 /** @brief String starting Base block (and conflict). */
-static const TCHAR BaseBegin[] = _T("||||||| ");
+static const tchar_t BaseBegin[] = _T("||||||| ");
 
 namespace ConflictFileParser
 {

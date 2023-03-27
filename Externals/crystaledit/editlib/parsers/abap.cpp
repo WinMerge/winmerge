@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  ABAP Keyword(The Language version:754)
-static const TCHAR* s_apszAbapKeywordList[] =
+static const tchar_t* s_apszAbapKeywordList[] =
 {
 	_T("*-INPUT"),
 	_T("?TO"),
@@ -1021,38 +1021,38 @@ static const TCHAR* s_apszAbapKeywordList[] =
 };
 
 static bool
-IsAbapKeyword(const TCHAR* pszChars, int nLength)
+IsAbapKeyword(const tchar_t* pszChars, int nLength)
 {
 	return ISXKEYWORDI(s_apszAbapKeywordList, pszChars, nLength);
 }
 
-static CString specialAbapSymbol = _T("+*/=()|@:<>&#{}~");
+static const tchar_t* specialAbapSymbol = _T("+*/=()|@:<>&#{}~");
 
 static bool
-IsAbapSingleOperator(TCHAR symbol)
+IsAbapSingleOperator(tchar_t symbol)
 {
-	return specialAbapSymbol.Find(symbol) >= 0;
+	return tc::tcschr(specialAbapSymbol, symbol) != nullptr;
 }
 
-static CString whiteSpaces = _T(" \f\n\r\t\v");
+static const tchar_t* whiteSpaces = _T(" \f\n\r\t\v");
 static bool
-IsAsciiWhiteSpace(TCHAR ch)
+IsAsciiWhiteSpace(tchar_t ch)
 {
-   return whiteSpaces.Find(ch) >= 0;
+   return tc::tcschr(whiteSpaces, ch) != nullptr;
 }
 
-static bool IsNumber(const TCHAR* pszChars, int nLength)
+static bool IsNumber(const tchar_t* pszChars, int nLength)
 {
 	bool result = true;
 
 	for (int i = 0; i < nLength; i++)
-		result = result && _istdigit(pszChars[i]);
+		result = result && tc::istdigit(pszChars[i]);
 
 	return result;
 }
 
 unsigned
-CrystalLineParser::ParseLineAbap(unsigned dwCookie, const TCHAR* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
+CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
 {
 	if (nLength == 0)
 		return dwCookie & COOKIE_EXT_COMMENT;
@@ -1062,7 +1062,7 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const TCHAR* pszChars, int n
 	int nIdentBegin = -1;
 	int nPrevI = -1;
 	int I = 0;
-	for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars + I) - pszChars))
+	for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars + I) - pszChars))
 	{
 		if (I == nPrevI)
 		{
@@ -1085,7 +1085,7 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const TCHAR* pszChars, int n
 			}
 			else
 			{
-				if (xisalnum(pszChars[nPos]) && nPos > 0 && (!xisalpha(*::CharPrev(pszChars, pszChars + nPos)) && !xisalpha(*::CharNext(pszChars + nPos))))
+				if (xisalnum(pszChars[nPos]) && nPos > 0 && (!xisalpha(*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha(*tc::tcharnext(pszChars + nPos))))
 				{
 					DEFINE_BLOCK(nPos, COLORINDEX_NORMALTEXT);
 				}
@@ -1126,12 +1126,12 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const TCHAR* pszChars, int n
 		//  String constant "...."
 		if (dwCookie & COOKIE_STRING)
 		{
-			if (pszChars[I] == '\'' && !(dwCookie & COOKIE_SECTION) && (I == 0 || I == 1 && pszChars[nPrevI] != '*' || I >= 2 && (pszChars[nPrevI] != '*' || *::CharPrev(pszChars, pszChars + nPrevI) == '*')))
+			if (pszChars[I] == '\'' && !(dwCookie & COOKIE_SECTION) && (I == 0 || I == 1 && pszChars[nPrevI] != '*' || I >= 2 && (pszChars[nPrevI] != '*' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '*')))
 			{
 				dwCookie &= ~COOKIE_STRING;
 				bRedefineBlock = true;
 			}
-			else if (pszChars[I] == '\'' && !(dwCookie & COOKIE_SECTION) && (I == 0 || I == 1 && pszChars[nPrevI] != '"' || I >= 2 && (pszChars[nPrevI] != '"' || *::CharPrev(pszChars, pszChars + nPrevI) == '"')))
+			else if (pszChars[I] == '\'' && !(dwCookie & COOKIE_SECTION) && (I == 0 || I == 1 && pszChars[nPrevI] != '"' || I >= 2 && (pszChars[nPrevI] != '"' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '"')))
 			{
 				dwCookie &= ~COOKIE_STRING;
 				bRedefineBlock = true;

@@ -20,7 +20,7 @@ public:
 	bool IsActivated() const { return m_bActivated; }
 	void ActivateFrame(int nCmdShow);
 	void SetLastCompareResult(int nResult);
-	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (LPCTSTR, UINT, UINT)> funcMessageBox);
+	static void ShowIdenticalMessage(const PathContext& paths, bool bIdenticalAll, std::function<int (const tchar_t*, UINT, UINT)> funcMessageBox);
 	static String GetTitleString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	static String GetTooltipString(const PathContext& paths, const String desc[], const PackingInfo *pInfoUnpacker, const PrediffingInfo *pInfoPrediffer, bool hasTrivialDiffs = false);
 	static void ChangeMergeMenuText(int srcPane, int dstPane, CCmdUI* pCmdUI);

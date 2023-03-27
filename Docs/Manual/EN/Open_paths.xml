@@ -302,7 +302,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
 
       <itemizedlist>
         <listitem>
-          <para>Disable <guilabel>Include Subfolders</guilabel> in the
+          <para>Disable <guilabel>Include subfolders</guilabel> in the
           Folder page of the WinMerge Options dialog.</para>
         </listitem>
       </itemizedlist>
@@ -311,7 +311,7 @@ to compare one file/folder against several files/folders.</para> </tip> -->
         <para>Press <keycap>Ctrl</keycap> while selecting the
         <guimenuitem>WinMerge</guimenuitem> or
         <guimenuitem>Compare</guimenuitem> shortcut in the Windows Explorer
-        context menu to force a reverse comparison with the current 'Include Subfolders' settings.</para>
+        context menu to force a reverse comparison with the current 'Include subfolders' settings.</para>
       </tip>
     </section>
   </section>

@@ -3,6 +3,7 @@
 #include <vector>
 #include "UnicodeString.h"
 #include "DirWatcher.h"
+#include <Windows.h>
 
 using std::vector;
 

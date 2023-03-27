@@ -19,7 +19,7 @@
  *
  * GetLineColors (in MergeEditView) reads it to choose the line color.
  */
-enum GHOST_LINEFLAGS
+enum GHOST_LINEFLAGS : lineflags_t
 {
 	LF_GHOST = 0x00400000UL, /**< Ghost line. */
 };
@@ -39,9 +39,6 @@ enum GHOST_LINEFLAGS
  */
 class EDITPADC_CLASS CGhostTextBuffer : public CCrystalTextBuffer
 {
-public:
-	DECLARE_DYNCREATE (CGhostTextBuffer)
-
 private:
 	/**
 	 * @brief A struct mapping real lines and apparent (screen) lines.
@@ -73,7 +70,7 @@ public :
 	or if it adds the default EOL)
 	*/
 	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
-			int nEndLine, int nEndChar, CString &text,
+			int nEndLine, int nEndChar, String &text,
 			CRLFSTYLE nCrlfStyle =CRLFSTYLE::AUTOMATIC,
 			bool bExcludeInvisibleLines = true) const override;
 
@@ -81,7 +78,7 @@ public :
 
 	// Text modification functions
 	virtual bool InsertText (CCrystalTextView * pSource, int nLine, int nPos,
-		LPCTSTR pszText, size_t cchText, int &nEndLine, int &nEndChar,
+		const tchar_t* pszText, size_t cchText, int &nEndLine, int &nEndChar,
 		int nAction = CE_ACTION_UNKNOWN, bool bHistory =true) override;
 	virtual bool DeleteText2 (CCrystalTextView * pSource, int nStartLine,
 		int nStartPos, int nEndLine, int nEndPos,
@@ -90,14 +87,14 @@ public :
 	bool InsertGhostLine (CCrystalTextView * pSource, int nLine);
 #endif
 
-	virtual void AddUndoRecord (bool bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-	                            LPCTSTR pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisionNumbers = nullptr) override;
+	virtual void AddUndoRecord (bool bInsert, const CEPoint & ptStartPos, const CEPoint & ptEndPos,
+	                            const tchar_t* pszText, size_t cchText, int nActionType = CE_ACTION_UNKNOWN, std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	virtual UndoRecord GetUndoRecord(int nUndoPos) const override;
-	virtual bool UndoInsert(CCrystalTextView * pSource, CPoint & ptCursorPos,
-							const CPoint apparent_ptStartPos, CPoint const apparent_ptEndPos, const UndoRecord & ur) override;
+	virtual bool UndoInsert(CCrystalTextView * pSource, CEPoint & ptCursorPos,
+							const CEPoint apparent_ptStartPos, CEPoint const apparent_ptEndPos, const UndoRecord & ur) override;
 
-	virtual CDWordArray *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
-	virtual void RestoreRevisionNumbers(int nStartLine, CDWordArray *paSavedRevisionNumbers) override;
+	virtual std::vector<uint32_t> *CopyRevisionNumbers(int nStartLine, int nEndLine) const override;
+	virtual void RestoreRevisionNumbers(int nStartLine, std::vector<uint32_t> *paSavedRevisionNumbers) override;
 
 public:
 	//@{
@@ -126,7 +123,7 @@ public:
 
 private:
 	void RecomputeRealityMapping();
-	void CountEolAndLastLineLength(const CPoint& ptStartPos, LPCTSTR pszText, size_t cchText, int& nLastLineLength, int& nEol);
+	void CountEolAndLastLineLength(const CEPoint& ptStartPos, const tchar_t* pszText, size_t cchText, int& nLastLineLength, int& nEol);
 	/** For debugging purpose */
 	void checkFlagsFromReality() const;
 
@@ -139,10 +136,4 @@ protected:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CCrystalTextBuffer)
 	//}}AFX_VIRTUAL
-
-	// Generated message map functions
-	//{{AFX_MSG(CCrystalTextBuffer)
-	//}}AFX_MSG
-
-	DECLARE_MESSAGE_MAP ()
 };
