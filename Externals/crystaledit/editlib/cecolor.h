@@ -23,9 +23,9 @@ public:
 	}
 	static CEColor GetIntermediateColor(CEColor a, CEColor b, float ratio)
 	{
-		const uint8_t R = static_cast<uint8_t>((a.GetRVal() - b.GetRVal()) * ratio) + b.GetRVal();
-		const uint8_t G = static_cast<uint8_t>((a.GetGVal() - b.GetGVal()) * ratio) + b.GetGVal();
-		const uint8_t B = static_cast<uint8_t>((a.GetBVal() - b.GetBVal()) * ratio) + b.GetBVal();
+		const uint8_t R = static_cast<int8_t>((a.GetRVal() - b.GetRVal()) * ratio) + b.GetRVal();
+		const uint8_t G = static_cast<int8_t>((a.GetGVal() - b.GetGVal()) * ratio) + b.GetGVal();
+		const uint8_t B = static_cast<int8_t>((a.GetBVal() - b.GetBVal()) * ratio) + b.GetBVal();
 		return { R, G, B };
 	}
 private:
