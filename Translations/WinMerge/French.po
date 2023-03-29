@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-01-20 14:23+0100\n"
+"PO-Revision-Date: 2023-03-29 09:35+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -2405,7 +2405,7 @@ msgid "E&nable advanced menu"
 msgstr "&Activer le menu avancé"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Activer le menu &Comparer Comme"
 
 #, c-format
 msgid "&Register shell extension"
@@ -4486,7 +4486,7 @@ msgid "We&bpage"
 msgstr "Page &web"
 
 msgid "W&rap Text"
-msgstr ""
+msgstr "&Retour à la ligne automatique"
 
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
@@ -4821,7 +4821,7 @@ msgid "Ignore TSV Fields"
 msgstr "Ignorer les champs TSV"
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Ignorer les numéros de ligne de début"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "Appliquer les filtres de substitution pour la pré-comparaison"
