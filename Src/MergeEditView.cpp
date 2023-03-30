@@ -3261,7 +3261,8 @@ void CMergeEditView::RefreshOptions()
 		SetDisableBSAtSOL(false);
 	}
 
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetWordWrapping(GetOptionsMgr()->GetBool(
+		GetDocument()->m_ptBuf[0]->GetTableEditing() ?  OPT_WORDWRAP_TABLE : OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
