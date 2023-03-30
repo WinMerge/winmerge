@@ -1639,10 +1639,11 @@ bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
 
 bool InvokeOnEvent(int eventType, LPDISPATCH wmobj, LPDISPATCH piScript)
 {
-	// argument text  
+	// argument wmobj
 	VARIANT vdispWinMerge{ VT_DISPATCH };
 	vdispWinMerge.pdispVal = wmobj;
 	vdispWinMerge.pdispVal->AddRef();
+	// argument eventType
 	VARIANT viEventType{ VT_I4 };
 	viEventType.intVal = eventType;
 

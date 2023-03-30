@@ -18,6 +18,7 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
+	<method name="OnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -59,6 +60,7 @@ MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
 
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
+Dim winmergeObj
 
 Function isAccessibleVBAProject(wbk)
 	Dim count
@@ -405,6 +407,10 @@ Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
 End Function
 
+Sub OnEvent(eventType, wmobj)
+	Set winmergeObj = wmobj
+End Sub
+
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim xl
@@ -615,11 +621,29 @@ Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	PackFolder = False
 End Function
 
+Function Translate(text)
+	Dim re: Set re = CreateObject("VBScript.RegExp")
+	re.Pattern = "\${([^}]+)}"
+	re.Global = True
+	Translate = text
+	Dim match
+	Dim matches:Set matches = re.Execute(text)
+	if IsEmpty(winmergeObj) Then
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, match.Submatches(0))
+		Next
+	Else
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, winmergeObj.Translate(match.Submatches(0)))
+		Next
+	End If
+End Function
+
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname)
 	Dim mshta
-	tfile.Write getResource("dialog1")
+	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
 	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
 	If Not fso.FileExists(mshta) Then
@@ -665,8 +689,6 @@ End Sub
             window.resizeTo(w, h);
             window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-            cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-            setLanguage(navigator.browserLanguage);
             chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
             chkUpdateLinks.checked = (regRead(REGKEY_PATH + "UpdateLinks", 0) == 3);
             chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
@@ -683,24 +705,6 @@ End Sub
             chkUnpackToFolder_onclick();
             chkCompareWorksheetsAsImage_onclick();
             chkCompareWorksheetsAsHTML_onclick();
-        }
-
-        function setLanguage(lang) {
-            var div = document.getElementById("language") || document.createElement('div')
-            div.id = "language";
-            var html = '&shy;<style>';
-            if (lang.substr(0, 2).toLowerCase() === 'ja') {
-                html += '.en { display: none } .ja { display: inline }';
-            } else {
-                html += '.ja { display: none } .en { display: inline }';
-            }
-            div.innerHTML = html;
-            if (!document.getElementById("language"))
-                document.body.appendChild(div);
-        }
-
-        function cboLanguage_onclick() {
-            setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
         }
 
         function chkUnpackToFolder_onclick() {
@@ -779,82 +783,58 @@ End Sub
     <div>
       <ul>
         <li>
-          <label class="en">Language: </label>
-          <label class="ja">言語: </label>
-          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
-            <option value="English">English</option>
-            <option value="Japanese">Japanese</option>
-          </select>
-        </li>
-      </ul>
-      <ul>
-        <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label class="en">Extract workbook data to multiple files</label>
-          <label class="ja">ワークブックの情報を複数ファイルに展開する</label>
+          <label class="en">${Extract workbook data to multiple files}</label>
         </li>
         <li>
           <input id="chkUpdateLinks" type="checkbox" />
-          <label class="en">Update external references(links)</label>
-          <label class="ja">比較時、外部参照(リンク)を更新する</label>
+          <label class="en">${Update external references(links)}</label>
         </li>
         <li>
           <input id="chkCompareDocumentProperties" type="checkbox" />
-          <label class="en">Compare document properties</label>
-          <label class="ja">ドキュメントプロパティを比較する</label>
+          <label class="en">${Compare document properties}</label>
         </li>
         <li>
           <input id="chkCompareNames" type="checkbox" />
-          <label class="en">Compare names</label>
-          <label class="ja">名前の定義を比較する</label>
+          <label class="en">${Compare names}</label>
         </li>
         <li>
           <input id="chkCompareCellValues" type="checkbox" />
-          <label class="en">Compare cell values</label>
-          <label class="ja">各セルの値を比較する</label>
+          <label class="en">${Compare cell values}</label>
         </li>
         <li>
           <input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
-          <label class="en">Compare worksheets as image (very slow)</label>
-          <label class="ja">ワークシートを画像化して比較する (処理時間増大)</label>
-          <span class="en"> - Image split size: </span>
-          <span class="ja"> - 画像分割サイズ: </span>
+          <label class="en">${Compare worksheets as image (very slow)}</label>
+          <span class="en">${ - Image split size: }</span>
           <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
           <span> x </span>
           <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
         </li>
         <li>
           <input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
-          <label class="en">Compare worksheets as HTML</label>
-          <label class="ja">ワークシートをHTMLとして保存して比較する</label>
+          <label class="en">${Compare worksheets as HTML}</label>
         </li>
         <li>
           <input id="chkCompareFormulas" type="checkbox" />
-          <label class="en">Compare formulas</label>
-          <label class="ja">数式を比較する</label>
+          <label class="en">${Compare formulas}</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label class="en">Compare texts in shapes</label>
-          <label class="ja">図形内のテキストを比較する</label>
+          <label class="en">${Compare texts in shapes}</label>
         </li>
         <li>
           <input id="chkCompareHeadersAndFooters" type="checkbox" />
-          <label class="en">Compare headers and footers</label>
-          <label class="ja">ヘッダーとフッターを比較する</label>
+          <label class="en">${Compare headers and footers}</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label class="en">Compare VBA macros</label>
-          <label class="ja">VBA マクロを比較する</label>
+          <label class="en">${Compare VBA macros}</label>
         </li>
       </ul>
       <ul>
         <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
+          <input class="en" type="button" onclick="btnOk_onclick();" value="${OK}" />
+          <input class="en" type="button" onclick="btnCancel_onclick();" value="${Cancel}" />
         </li>
       </ul>
     </div>
