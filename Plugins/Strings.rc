@@ -187,6 +187,24 @@ BEGIN
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR1 
+                            "Extract workbook data to multiple files"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 "Update external references(links)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR4 "Compare names"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR5 "Compare cell values"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR6 
+                            "Compare worksheets as image (very slow)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR7 " - Image split size: "
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR8 "Compare worksheets as HTML"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR9 "Compare formulas"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare headers and footers"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare VBA macros"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

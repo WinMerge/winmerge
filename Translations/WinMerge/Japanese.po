@@ -4402,3 +4402,39 @@ msgid ""
 msgstr ""
 "Windows レジストリ URL スキーマを処理します。\r\n"
 "引数: reg.exe コマンドに渡すコマンドライン オプション"
+
+msgid "Extract workbook data to multiple files"
+msgstr "ワークブックの情報を複数ファイルに展開する"
+
+msgid "Update external references(links)"
+msgstr "比較時、外部参照(リンク)を更新する"
+
+msgid "Compare document properties"
+msgstr "ドキュメントプロパティを比較する"
+
+msgid "Compare names"
+msgstr "名前の定義を比較する"
+
+msgid "Compare cell values"
+msgstr "各セルの値を比較する"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "ワークシートを画像化して比較する (処理時間増大)"
+
+msgid " - Image split size: "
+msgstr " - 画像分割サイズ: "
+
+msgid "Compare worksheets as HTML"
+msgstr "ワークシートをHTMLとして保存して比較する"
+
+msgid "Compare formulas"
+msgstr "数式を比較する"
+
+msgid "Compare texts in shapes"
+msgstr "図形内のテキストを比較する"
+
+msgid "Compare headers and footers"
+msgstr "ヘッダーとフッターを比較する"
+
+msgid "Compare VBA macros"
+msgstr "VBA マクロを比較する"

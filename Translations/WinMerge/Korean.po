@@ -5125,3 +5125,39 @@ msgid ""
 msgstr ""
 "Windows 레지스트리 URL 구성표 처리기입니다.\n"
 "인수: reg.exe 명령에 전달된 명령줄 옵션입니다."
+
+msgid "Extract workbook data to multiple files"
+msgstr ""
+
+msgid "Update external references(links)"
+msgstr ""
+
+msgid "Compare document properties"
+msgstr ""
+
+msgid "Compare names"
+msgstr ""
+
+msgid "Compare cell values"
+msgstr ""
+
+msgid "Compare worksheets as image (very slow)"
+msgstr ""
+
+msgid " - Image split size: "
+msgstr ""
+
+msgid "Compare worksheets as HTML"
+msgstr ""
+
+msgid "Compare formulas"
+msgstr ""
+
+msgid "Compare texts in shapes"
+msgstr ""
+
+msgid "Compare headers and footers"
+msgstr ""
+
+msgid "Compare VBA macros"
+msgstr ""

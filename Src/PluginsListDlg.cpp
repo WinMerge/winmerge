@@ -13,6 +13,7 @@
 #include "OptionsMgr.h"
 #include "unicoder.h"
 #include "Merge.h"
+#include "WinMergeComObject.h"
 #include "Constants.h"
 
 IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
@@ -175,6 +176,8 @@ void PluginsListDlg::OnBnClickedPluginSettings()
 			if (plugin != nullptr)
 			{
 				EnableWindow(false);
+				if (plugin->m_hasOnEventMethod)
+					plugin::InvokeOnEvent(1, theApp.m_pWinMergeComObject.get(), plugin->m_lpDispatch);
 				plugin::InvokeShowSettingsDialog(plugin->m_lpDispatch);
 				EnableWindow(true);
 				SetForegroundWindow();

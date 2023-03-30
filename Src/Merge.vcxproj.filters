@@ -717,6 +717,9 @@
     <ClCompile Include="Common\cio.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WinMergeComObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1359,6 +1362,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FileLoadResult.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WinMergeComObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

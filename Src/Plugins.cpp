@@ -622,6 +622,9 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// get optional property PluginVariables
 	m_hasVariablesProperty = SearchScriptForDefinedProperties(L"PluginVariables");
 
+	// get optional method OnEvent
+	m_hasOnEventMethod = SearchScriptForMethodName(L"OnEvent");
+
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
 
@@ -1631,6 +1634,19 @@ bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
 	vbstrVars.bstrVal = SysAllocStringLen(wvars.data(), static_cast<unsigned>(wvars.size()));
 
 	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginVariables", opPut[1], vbstrVars);
+	return SUCCEEDED(h);
+}
+
+bool InvokeOnEvent(int eventType, LPDISPATCH wmobj, LPDISPATCH piScript)
+{
+	// argument text  
+	VARIANT vdispWinMerge{ VT_DISPATCH };
+	vdispWinMerge.pdispVal = wmobj;
+	vdispWinMerge.pdispVal->AddRef();
+	VARIANT viEventType{ VT_I4 };
+	viEventType.intVal = eventType;
+
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"OnEvent", opFxn[2], vdispWinMerge, viEventType);
 	return SUCCEEDED(h);
 }
 

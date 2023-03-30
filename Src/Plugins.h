@@ -44,6 +44,7 @@ public:
 		, m_disabled(false)
 		, m_hasArgumentsProperty(false)
 		, m_hasVariablesProperty(false)
+		, m_hasOnEventMethod(false)
 		, m_bAutomaticDefault(false)
 	{	
 	}
@@ -85,6 +86,7 @@ public:
 	bool        m_disabled;
 	bool        m_hasArgumentsProperty;
 	bool        m_hasVariablesProperty;
+	bool        m_hasOnEventMethod;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -269,4 +271,9 @@ bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript);
  * @brief Set value to the plugin "PluginVariables" property 
  */
 bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
+
+/**
+ * @brief call the plugin "OnEvent" method 
+ */
+bool InvokeOnEvent(int eventType, LPDISPATCH wmobj, LPDISPATCH piScript);
 }

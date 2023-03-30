@@ -4413,3 +4413,39 @@ msgid ""
 msgstr ""
 "Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
+
+msgid "Extract workbook data to multiple files"
+msgstr ""
+
+msgid "Update external references(links)"
+msgstr ""
+
+msgid "Compare document properties"
+msgstr ""
+
+msgid "Compare names"
+msgstr ""
+
+msgid "Compare cell values"
+msgstr ""
+
+msgid "Compare worksheets as image (very slow)"
+msgstr ""
+
+msgid " - Image split size: "
+msgstr ""
+
+msgid "Compare worksheets as HTML"
+msgstr ""
+
+msgid "Compare formulas"
+msgstr ""
+
+msgid "Compare texts in shapes"
+msgstr ""
+
+msgid "Compare headers and footers"
+msgstr ""
+
+msgid "Compare VBA macros"
+msgstr ""
