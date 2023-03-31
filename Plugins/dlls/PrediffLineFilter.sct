@@ -15,6 +15,7 @@
   <property name="PluginExtendedProperties">
     <get/>
   </property>
+  <method name="OnEvent"/>
   <method name="PrediffBufferW"/>
   <method name="ShowSettingsDialog"/>
 </implements>
@@ -46,6 +47,7 @@ Option Explicit
 Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\PrediffLineFilter.sct\"
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
+Dim winmergeObj
 
 Function regRead(Key, DefaultValue)
   regRead = DefaultValue
@@ -72,6 +74,10 @@ End Function
 Function get_PluginExtendedProperties()
   get_PluginExtendedProperties = "MenuCaption=Apply Prediff Substitution Filters"
 End Function
+
+Sub OnEvent(eventType, wmobj)
+  Set winmergeObj = wmobj
+End Sub
 
 Function SafeUBound(ary)
   On Error Resume Next
@@ -122,11 +128,29 @@ Function PrediffBufferW(pText, pSize, pbChanged)
   PrediffBufferW = True
 End Function
 
+Function Translate(text)
+  Dim re: Set re = CreateObject("VBScript.RegExp")
+  re.Pattern = "\${([^}]+)}"
+  re.Global = True
+  Translate = text
+  Dim match
+  Dim matches:Set matches = re.Execute(text)
+  if IsEmpty(winmergeObj) Then
+    For Each match in matches
+      Translate = Replace(Translate, match.Value, match.Submatches(0))
+    Next
+  Else
+    For Each match in matches
+      Translate = Replace(Translate, match.Value, winmergeObj.Translate(match.Submatches(0)))
+    Next
+  End If
+End Function
+
 Function ShowSettingsDialog()
   Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
   Dim tfile: Set tfile = fso.CreateTextFile(tname)
   Dim mshta
-  tfile.Write getResource("dialog1")
+  tfile.Write Translate(getResource("dialog1"))
   tfile.Close
   mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
   If Not fso.FileExists(mshta) Then
@@ -146,7 +170,7 @@ End Sub
 <![CDATA[
 <html>
   <head>
-    <title>PrediffLineFilter.sct WinMerge Plugin Options</title>
+    <title>${PrediffLineFilter.sct WinMerge Plugin Options}</title>
     <meta content="text/html" charset="Shift_JIS">
     <style>
       body { background-color: lightgray; }
@@ -191,35 +215,14 @@ End Sub
       }
 
       function onload() {
-
         var w = 800, h = 600;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-        setLanguage(navigator.browserLanguage);
         var count = regRead(REGKEY_PATH + "Count", 1);
         for (var i = 0; i < count; i++) {
           insertRow(-1);
         }
-      }
-
-      function setLanguage(lang) {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline } .textbox { font-family: "MS Gothic" }';    
-        } else {
-          html += '.ja { display: none } .en { display: inline } .textbox { font-family: "Courier New" }';
-        }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
-      }
-
-      function cboLanguage_onclick() {
-        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
       }
 
       function btnOk_onclick() {
@@ -244,20 +247,8 @@ End Sub
     <div>
       <ul>
         <li>
-          <label class="en">Language: </label>
-          <label class="ja">言語: </label>
-          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
-            <option value="English">English</option>
-            <option value="Japanese">Japanese</option>
-          </select>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <input class="en" type="button" value="Add" onclick="insertRow(-1)" />
-          <input class="ja" type="button" value="追加" onclick="insertRow(-1)" />
-          <input class="en" type="button" value="Delete" onclick="deleteRow(-1)" />
-          <input class="ja" type="button" value="削除" onclick="deleteRow(-1)" />
+          <input type="button" value="${Add}" onclick="insertRow(-1)" />
+          <input type="button" value="${Delete}" onclick="deleteRow(-1)" />
         </li>
       </ul>
       <ul>
@@ -265,24 +256,19 @@ End Sub
           <table id="table1">
             <tr>
               <th>
-                <label class="en">Enabled</label>
-                <label class="ja">有効</label>
+                <label>${Enabled}</label>
               </th>
               <th>
-                <label class="en">Ignore Case</label>
-                <label class="ja">大文字小文字の違いを無視</label>
+                <label>${Ignore Case}</label>
               </th>
               <th>
-                <label class="en">Use RegExp</label>
-                <label class="ja">正規表現を使用</label>
+                <label>${Use RegExp}</label>
               </th>
               <th>
-                <label class="en">Find what</label>
-                <label class="ja">検索文字列</label>
+                <label>${Find what}</label>
               </th>
               <th>
-                <label class="en">Replace with</label>
-                <label class="ja">置換後の文字列</label>
+                <label>${Replace with}</label>
               </th>
             </tr>
           </table>
@@ -290,10 +276,8 @@ End Sub
       </ul>
       <ul>
         <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
+          <input type="button" onclick="btnOk_onclick();" value="${OK}" />
+          <input type="button" onclick="btnCancel_onclick();" value="${Cancel}" />
         </li>
       </ul>
     </div>

@@ -189,20 +189,75 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR1 
+	IDS_PLUGIN_COMPAREMSEXCELFILES_STR1
+	                        "CompareMSExcelFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 
                             "Extract workbook data to multiple files"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 "Update external references(links)"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Compare document properties"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR4 "Compare names"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR5 "Compare cell values"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR6 
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Update external references(links)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR4 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR5 "Compare names"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR6 "Compare cell values"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR7 
                             "Compare worksheets as image (very slow)"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR7 " - Image split size: "
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR8 "Compare worksheets as HTML"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR9 "Compare formulas"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare texts in shapes"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare headers and footers"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR8 " - Image split size: "
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR9 "Compare worksheets as HTML"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare formulas"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare headers and footers"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 "Compare VBA macros"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR1 
+                            "CompareMSWordFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR2 
+                            "Extract document data to multiple files"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR4 "Compare bookmarks"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR5 "Compare text contents of documents"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR6 
+                            "Compare documents as HTML file (very slow)"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR7 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR8 "Compare VBA macros"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR1 
+                            "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR2 
+                            "Extract slide data to multiple files"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR4 "Compare slides as image (very slow)"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR5 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6 "Compare texts in notes page"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR7 "Compare VBA macros"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR1 
+                            "CompareMSVisioFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR2 
+                            "Extract page data to multiple files"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR3 "Compare pages as image (very slow)"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR4 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR5 "Compare VBA macros"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR1 
+                            "PrediffLineFilter.sct WinMerge Plugin Options"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR2 
+                            "Add"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR3 "Delete"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR4 "Enabled"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR5 "Ignore Case"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR6 "Use RegExp"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR7 "Find what"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR8 "Replace with"
 END
 
 #endif    // English (United States) resources

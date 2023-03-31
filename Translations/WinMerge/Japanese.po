@@ -4403,6 +4403,9 @@ msgstr ""
 "Windows レジストリ URL スキーマを処理します。\r\n"
 "引数: reg.exe コマンドに渡すコマンドライン オプション"
 
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"
+
 msgid "Extract workbook data to multiple files"
 msgstr "ワークブックの情報を複数ファイルに展開する"
 
@@ -4438,3 +4441,60 @@ msgstr "ヘッダーとフッターを比較する"
 
 msgid "Compare VBA macros"
 msgstr "VBA マクロを比較する"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSWordFiles.sct WinMerge プラグインオプション"
+
+msgid "Extract document data to multiple files"
+msgstr "ドキュメントの情報を複数ファイルに展開する"
+
+msgid "Compare bookmarks"
+msgstr "ブックマークの定義を比較する"
+
+msgid "Compare text contents of documents"
+msgstr "ドキュメント内のテキスト部を比較する"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "ドキュメントをHTMLファイル化して比較する (処理時間増大)"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSPowerPointFiles.sct WinMerge プラグインオプション"
+
+msgid "Extract slide data to multiple files"
+msgstr "スライドの情報を複数ファイルに展開する"
+
+msgid "Compare slides as image (very slow)"
+msgstr "スライドを画像化して比較する (処理時間増大)"
+
+msgid "Compare texts in notes page"
+msgstr "ノート内のテキストを比較する"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSVisioFiles.sct WinMerge プラグインオプション"
+
+msgid "Extract page data to multiple files"
+msgstr "ページの情報を複数ファイルに展開する"
+
+msgid "Compare pages as image (very slow)"
+msgstr "ページを画像化して比較する (処理時間増大)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "PrediffLineFilter.sct WinMerge プラグインオプション"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Enabled"
+msgstr "有効"
+
+msgid "Ignore Case"
+msgstr "大文字小文字の違いを無視"
+
+msgid "Use RegExp"
+msgstr "正規表現を使用"
+
+msgid "Find what"
+msgstr "検索文字列"
+
+msgid "Replace with"
+msgstr "置換後の文字列"
