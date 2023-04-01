@@ -148,7 +148,7 @@ End Function
 
 Function ShowSettingsDialog()
   Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-  Dim tfile: Set tfile = fso.CreateTextFile(tname)
+  Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
   Dim mshta
   tfile.Write Translate(getResource("dialog1"))
   tfile.Close
@@ -171,7 +171,7 @@ End Sub
 <html>
   <head>
     <title>${PrediffLineFilter.sct WinMerge Plugin Options}</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <meta content="text/html" charset="UTF-16">
     <style>
       body { background-color: lightgray; }
       ul { list-style:none; }

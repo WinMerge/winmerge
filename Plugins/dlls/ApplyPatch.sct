@@ -15,6 +15,7 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
+	<method name="OnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -28,7 +29,7 @@
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
 '    It will apply selected patch to specified file or folder using GnuWin32 Patch For Windows.
-'    Copyright (C) 2015 Takashi Sawanaka
+'    Copyright (C) 2015-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -53,6 +54,7 @@ Const PLUGIN_NAME = "ApplyPatch.sct WinMerge Plugin"
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
 Dim PrevFileName: PrevFileName = ""
+Dim winmergeObj
 
 Function get_PluginEvent()
     get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
@@ -73,6 +75,10 @@ End Function
 Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "MenuCaption=Apply Patch..."
 End Function
+
+Sub OnEvent(eventType, wmobj)
+	Set winmergeObj = wmobj
+End Sub
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
     Dim filePatched, cmdLine, msg
@@ -222,11 +228,29 @@ Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
     PackFolder = False
 End Function
 
+Function Translate(text)
+	Dim re: Set re = CreateObject("VBScript.RegExp")
+	re.Pattern = "\${([^}]+)}"
+	re.Global = True
+	Translate = text
+	Dim match
+	Dim matches:Set matches = re.Execute(text)
+	if IsEmpty(winmergeObj) Then
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, match.Submatches(0))
+		Next
+	Else
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, winmergeObj.Translate(match.Submatches(0)))
+		Next
+	End If
+End Function
+
 Function ShowSettingsDialog()
     Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-    Dim tfile: Set tfile = fso.CreateTextFile(tname)
+    Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
     Dim mshta
-    tfile.Write getResource("dialog1")
+    tfile.Write Translate(getResource("dialog1"))
     tfile.Close
     mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
     If Not fso.FileExists(mshta) Then
@@ -469,13 +493,22 @@ End Function
 
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
-    <title>ApplyPatch.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <title>${ApplyPatch.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
       var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\ApplyPatch.sct\\";
@@ -492,32 +525,11 @@ End Function
         (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
       }
 
-      function isLangJapanese() {
-        var languageId = regRead(REGKEY_PATH & "\Locale\LanguageId", 1033);
-        return (languageId = 1041);
-      }
-
       function onload() {
-
-        var w = 600, h = 400;
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 400 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
-
-        setLanguage();
-      }
-
-      function setLanguage() {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (isLangJapanese()) {
-          html += '.en { display: none } .ja { display: inline }';
-        } else {
-          html += '.ja { display: none } .en { display: inline }';
-        }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
       }
 
       function btnOk_onclick() {
@@ -530,15 +542,11 @@ End Function
     </script>
   </head>
   <body onload="onload();">
-    <div>
-      <ul>
-        <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="ƒLƒƒƒ“ƒZƒ‹" />
-        </li>
-      </ul>
+    <div class="container">
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>

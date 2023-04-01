@@ -32,7 +32,7 @@
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
 '    It will display the text content of MS Excel files.
-'    Copyright (C) 2005-2014 Takashi Sawanaka
+'    Copyright (C) 2005-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -641,7 +641,7 @@ End Function
 
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
 	Dim mshta
 	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
@@ -661,13 +661,22 @@ End Sub
 
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
     <title>${CompareMSExcelFiles.sct WinMerge Plugin Options}</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
         var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSExcelFiles.sct\\";
@@ -685,7 +694,8 @@ End Sub
         }
 
         function onload() {
-            var w = 800, h = 600;
+            var dpi = window.screen.deviceXDPI;
+            var w = 600 * dpi / 96, h = 500 * dpi / 96;
             window.resizeTo(w, h);
             window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
@@ -780,64 +790,66 @@ End Sub
     </script>
   </head>
   <body onload="onload();">
-    <div>
-      <ul>
-        <li>
-          <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label>${Extract workbook data to multiple files}</label>
-        </li>
-        <li>
-          <input id="chkUpdateLinks" type="checkbox" />
-          <label>${Update external references(links)}</label>
-        </li>
-        <li>
-          <input id="chkCompareDocumentProperties" type="checkbox" />
-          <label>${Compare document properties}</label>
-        </li>
-        <li>
-          <input id="chkCompareNames" type="checkbox" />
-          <label>${Compare names}</label>
-        </li>
-        <li>
-          <input id="chkCompareCellValues" type="checkbox" />
-          <label>${Compare cell values}</label>
-        </li>
-        <li>
-          <input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
-          <label>${Compare worksheets as image (very slow)}</label>
-          <span>${ - Image split size: }</span>
-          <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
-          <span> x </span>
-          <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
-        </li>
-        <li>
-          <input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
-          <label>${Compare worksheets as HTML}</label>
-        </li>
-        <li>
-          <input id="chkCompareFormulas" type="checkbox" />
-          <label>${Compare formulas}</label>
-        </li>
-        <li>
-          <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label>${Compare texts in shapes}</label>
-        </li>
-        <li>
-          <input id="chkCompareHeadersAndFooters" type="checkbox" />
-          <label>${Compare headers and footers}</label>
-        </li>
-        <li>
-          <input id="chkCompareVBAMacros" type="checkbox" />
-          <label>${Compare VBA macros}</label>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <input type="button" onclick="btnOk_onclick();" value="${OK}" />
-          <input type="button" onclick="btnCancel_onclick();" value="${Cancel}" />
-        </li>
-      </ul>
-    </div>
+		<div class="container">
+			<ul>
+				<li>
+					<input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
+					<label>${Extract workbook data to multiple files}</label>
+				</li>
+				<li>
+					<input id="chkUpdateLinks" type="checkbox" />
+					<label>${Update external references(links)}</label>
+				</li>
+				<li>
+					<input id="chkCompareDocumentProperties" type="checkbox" />
+					<label>${Compare document properties}</label>
+				</li>
+				<li>
+					<input id="chkCompareNames" type="checkbox" />
+					<label>${Compare names}</label>
+				</li>
+				<li>
+					<input id="chkCompareCellValues" type="checkbox" />
+					<label>${Compare cell values}</label>
+				</li>
+				<li>
+					<input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
+					<label>${Compare worksheets as image (very slow)}</label>
+					<ul>
+						<li>
+							<label>${ - Image split size: }</label>
+							<input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
+							<span> x </span>
+							<input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
+						</li>
+					</ul>
+				</li>
+				<li>
+					<input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
+					<label>${Compare worksheets as HTML}</label>
+				</li>
+				<li>
+					<input id="chkCompareFormulas" type="checkbox" />
+					<label>${Compare formulas}</label>
+				</li>
+				<li>
+					<input id="chkCompareTextsInShapes" type="checkbox" />
+					<label>${Compare texts in shapes}</label>
+				</li>
+				<li>
+					<input id="chkCompareHeadersAndFooters" type="checkbox" />
+					<label>${Compare headers and footers}</label>
+				</li>
+				<li>
+					<input id="chkCompareVBAMacros" type="checkbox" />
+					<label>${Compare VBA macros}</label>
+				</li>
+			</ul>
+			<div class="btn-container">
+				<input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+				<input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+			</div>
+		</div>
   </body>
 </html>
 ]]>

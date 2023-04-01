@@ -29,7 +29,7 @@
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
 '    It will display the text content of MS PowerPoint files.
-'    Copyright (C) 2016 Takashi Sawanaka
+'    Copyright (C) 2016-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -327,7 +327,7 @@ End Function
 
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
 	Dim mshta
 	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
@@ -347,13 +347,22 @@ End Sub
 
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
     <title>${CompareMSPowerPointFiles.sct WinMerge Plugin Options}</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
       var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSPowerPointFiles.sct\\";
@@ -371,7 +380,8 @@ End Sub
       }
 
       function onload() {
-        var w = 600, h = 400;
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 400 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
@@ -411,7 +421,7 @@ End Sub
     </script>
   </head>
   <body onload="onload();">
-    <div>
+    <div class="container">
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
@@ -438,12 +448,10 @@ End Sub
           <label>${Compare VBA macros}</label>
         </li>
       </ul>
-      <ul>
-        <li>
-          <input type="button" onclick="btnOk_onclick();" value="${OK}" />
-          <input type="button" onclick="btnCancel_onclick();" value="${Cancel}" />
-        </li>
-      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>
