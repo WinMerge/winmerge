@@ -4906,3 +4906,9 @@ msgstr ""
 
 msgid "Replace with"
 msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgstr ""

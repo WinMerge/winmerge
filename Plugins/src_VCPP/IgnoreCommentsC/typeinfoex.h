@@ -154,7 +154,7 @@ inline HRESULT CComTypeInfoHolderModule<nObtainMethod>::GetTI(LCID lcid)
     USES_CONVERSION;
 	//If this assert occurs then most likely didn't initialize properly
 	ATLASSERT(m_plibid != NULL && m_pguid != NULL);
-	// ATLASSERT(!::InlineIsEqualGUID(*m_plibid, GUID_NULL) && "Did you forget to pass the LIBID to CComModule::Init?");
+	ATLASSERT(!::InlineIsEqualGUID(*m_plibid, GUID_NULL) && "Did you forget to pass the LIBID to CComModule::Init?");
 
 	if (m_pInfo != NULL)
 		return S_OK;
@@ -162,7 +162,7 @@ inline HRESULT CComTypeInfoHolderModule<nObtainMethod>::GetTI(LCID lcid)
 	EnterCriticalSection(&_Module.m_csTypeInfoHolder);
 	if (m_pInfo == NULL)
 	{
-		ITypeLib* pTypeLib;
+		ITypeLib* pTypeLib = nullptr;
         hRes = E_FAIL;
         TCHAR szModule[_MAX_PATH+10];
         LPOLESTR lpszModule;

@@ -260,6 +260,13 @@ BEGIN
     IDS_PLUGIN_PREDIFFLINEFILTER_STR8 "Replace with"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_IGNORE_STR1 "Settings"
+    IDS_PLUGIN_IGNORE_STR2 "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+END
+
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

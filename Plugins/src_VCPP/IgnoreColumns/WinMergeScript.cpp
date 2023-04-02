@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "IgnoreColumns.h"
 #include "WinMergeScript.h"
+#include "Common.h"
 #include "resource.h"
 #include <atlstr.h>
 
@@ -322,10 +323,11 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	return S_OK;
 }
 
-INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK CWinMergeScript::DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch(uiMsg) {
 	case WM_INITDIALOG:
+		TranslateDialog(hWnd, reinterpret_cast<CWinMergeScript*>(lParam)->m_pWinMergeObj);
 		SetDlgItemText(hWnd, IDC_EDIT1, GetColumnRangeString());
 		return TRUE;
 
@@ -355,6 +357,14 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 
 STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
 {
-	*pbHandled = (DialogBox(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDD_DIALOG1), NULL, DlgProc) == IDOK);
+	*pbHandled = 
+		(DialogBoxParam(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDD_DIALOG1), NULL, DlgProc,
+			reinterpret_cast<LPARAM>(this)) == IDOK);
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::OnEvent(int iEventType, IDispatch* pDispatch)
+{
+	m_pWinMergeObj = pDispatch;
 	return S_OK;
 }

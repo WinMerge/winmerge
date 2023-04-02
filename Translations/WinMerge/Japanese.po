@@ -4498,3 +4498,9 @@ msgstr "検索文字列"
 
 msgid "Replace with"
 msgstr "置換後の文字列"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgstr "無視する列番号\n例)  3,10-20,32-33\n"

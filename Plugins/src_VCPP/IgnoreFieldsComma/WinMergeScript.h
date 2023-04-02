@@ -39,6 +39,7 @@ END_COM_MAP()
 public:
 	STDMETHOD(PrediffBufferW)(/*[in]*/ BSTR * pText, /*[in]*/ INT * pSize, /*[in]*/ VARIANT_BOOL * pbChanged, /*[out, retval]*/ VARIANT_BOOL * pbHandled);
 	STDMETHOD(ShowSettingsDialog)(/*[out, retval]*/ VARIANT_BOOL * pbHandled);
+	STDMETHOD(OnEvent)(/*[in]*/int iEventType, /*[in]*/IDispatch* pDispatch);
 	STDMETHOD(get_PluginExtendedProperties)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(get_PluginArguments)(/*[out, retval]*/ BSTR *pVal);
 	STDMETHOD(put_PluginArguments)(/*[in]*/ BSTR val);
@@ -48,6 +49,8 @@ public:
 	STDMETHOD(get_PluginEvent)(/*[out, retval]*/ BSTR *pVal);
 
 protected:
+	static INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+	CComPtr<IDispatch> m_pWinMergeObj;
 	CComBSTR m_bstrArguments;
 };
 
