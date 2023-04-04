@@ -275,5 +275,8 @@ bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
 /**
  * @brief call the plugin "OnEvent" method 
  */
-bool InvokeOnEvent(int eventType, LPDISPATCH wmobj, LPDISPATCH piScript);
+bool InvokeOnEvent(int eventType, LPDISPATCH piScript);
+
+void SetHostObject(LPDISPATCH pHostObject);
+
 }

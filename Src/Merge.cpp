@@ -60,7 +60,7 @@
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
 #include "OptionsProject.h"
-#include "WinMergeComObject.h"
+#include "MergeAppCOMClass.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -113,11 +113,12 @@ CMergeApp::CMergeApp() :
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
 , m_bEnableExitCode(false)
-, m_pWinMergeComObject(new WinMergeComObject())
+, m_pMergeAppCOMObject(new MergeAppCOMClass())
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
-	m_pWinMergeComObject->AddRef();
+	m_pMergeAppCOMObject->AddRef();
+	plugin::SetHostObject(m_pMergeAppCOMObject.get());
 }
 
 /**

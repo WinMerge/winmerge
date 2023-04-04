@@ -717,7 +717,7 @@
     <ClCompile Include="Common\cio.cpp">
       <Filter>Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WinMergeComObject.cpp">
+    <ClCompile Include="MergeAppCOMClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1364,7 +1364,7 @@
     <ClInclude Include="FileLoadResult.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="WinMergeComObject.h">
+    <ClInclude Include="MergeAppCOMClass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

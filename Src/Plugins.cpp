@@ -69,6 +69,7 @@ static vector<HANDLE> theScriptletHandleList;
 static bool scriptletsLoaded=false;
 static FastMutex scriptletsSem;
 static std::unordered_map<String, std::unordered_map<String, String>> customSettingsMap;
+static IDispatch* hostObject;
 
 template<class T> struct AutoReleaser
 {
@@ -624,6 +625,15 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 
 	// get optional method OnEvent
 	m_hasOnEventMethod = SearchScriptForMethodName(L"OnEvent");
+	if (m_hasOnEventMethod)
+	{
+		h = plugin::InvokeOnEvent(0, lpDispatch);
+		if (FAILED(h))
+		{
+			scinfo.Log(_T("Plugin had OnEvent method, but an error occurred while calling the method"));
+			return -130; // error (Plugin had OnEvent method, but an error occurred while calling the method)
+		}
+	}
 
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);
@@ -1637,18 +1647,23 @@ bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
 	return SUCCEEDED(h);
 }
 
-bool InvokeOnEvent(int eventType, LPDISPATCH wmobj, LPDISPATCH piScript)
+bool InvokeOnEvent(int eventType, LPDISPATCH piScript)
 {
 	// argument wmobj
-	VARIANT vdispWinMerge{ VT_DISPATCH };
-	vdispWinMerge.pdispVal = wmobj;
-	vdispWinMerge.pdispVal->AddRef();
+	VARIANT vdispHostObject{ VT_DISPATCH };
+	vdispHostObject.pdispVal = hostObject;
+	hostObject->AddRef();
 	// argument eventType
 	VARIANT viEventType{ VT_I4 };
 	viEventType.intVal = eventType;
 
-	HRESULT h = ::safeInvokeW(piScript, nullptr, L"OnEvent", opFxn[2], vdispWinMerge, viEventType);
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"OnEvent", opFxn[2], vdispHostObject, viEventType);
 	return SUCCEEDED(h);
+}
+
+void SetHostObject(LPDISPATCH pHostObject)
+{
+	hostObject = pHostObject;
 }
 
 }

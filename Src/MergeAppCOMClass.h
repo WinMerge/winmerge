@@ -5,17 +5,19 @@
 #include <vector>
 #include <map>
 
-class WinMergeComObject: public IDispatch, public ITypeInfo
+class MergeAppCOMClass: public IDispatch, public ITypeInfo
 {
 public:
 	enum
 	{
 		DISPID_Translate = 1,
+		DISPID_GetOption = 2,
+		DISPID_SaveOption = 3,
 	};
 
-	WinMergeComObject();
-	WinMergeComObject(const WinMergeComObject&) = delete;
-	WinMergeComObject& operator=(const WinMergeComObject&) = delete;
+	MergeAppCOMClass();
+	MergeAppCOMClass(const MergeAppCOMClass&) = delete;
+	MergeAppCOMClass& operator=(const MergeAppCOMClass&) = delete;
 
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override;
 	ULONG STDMETHODCALLTYPE AddRef(void) override;
@@ -44,6 +46,8 @@ public:
 	void STDMETHODCALLTYPE ReleaseFuncDesc(FUNCDESC* pFuncDesc) override;
 	void STDMETHODCALLTYPE ReleaseVarDesc(VARDESC* pVarDesc) override;
 	HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pbstrResult);
+	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault, VARIANT* pvarResult);
+	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue);
 
 protected:
 	int m_nRef;

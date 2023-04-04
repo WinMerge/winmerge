@@ -38,7 +38,7 @@ class SubstitutionFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
 class PackingInfo;
-class WinMergeComObject;
+class MergeAppCOMClass;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -68,7 +68,7 @@ public:
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
-	std::unique_ptr<WinMergeComObject> m_pWinMergeComObject;
+	std::unique_ptr<MergeAppCOMClass> m_pMergeAppCOMObject;
 
 	WORD GetLangId() const;
 	String GetLangName() const;

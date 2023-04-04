@@ -51,7 +51,7 @@
 
 Option Explicit
 
-Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSExcelFiles.sct\"
+Const RegKeyPath = "Plugins\\CompareMSExcelFiles.sct/"
 Const pbGroup = 6
 Dim MsgCannotGetMacros
 MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
@@ -60,7 +60,7 @@ MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
 
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
-Dim winmergeObj
+Dim mergeApp
 
 Function isAccessibleVBAProject(wbk)
 	Dim count
@@ -73,8 +73,21 @@ End Function
 Function regRead(Key, DefaultValue)
 	regRead = DefaultValue
 	On Error Resume Next
-	regRead = wsh.RegRead(Key)
+	If IsEmpty(mergeApp) Then
+		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
+	Else
+		regRead = mergeApp.GetOption(Key, DefaultValue)
+	End If
 End Function
+
+Sub regWrite(Key, Value)
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value
+	Else
+		mergeApp.SaveOption Key, Value
+	End If
+End Sub
 
 Function writeObjectProperties(fo, items)
 	On Error Resume Next
@@ -407,8 +420,8 @@ Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
 End Function
 
-Sub OnEvent(eventType, wmobj)
-	Set winmergeObj = wmobj
+Sub OnEvent(eventType, obj)
+	Set mergeApp = obj
 End Sub
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
@@ -628,29 +641,33 @@ Function Translate(text)
 	Translate = text
 	Dim match
 	Dim matches:Set matches = re.Execute(text)
-	if IsEmpty(winmergeObj) Then
+	if IsEmpty(mergeApp) Then
 		For Each match in matches
 			Translate = Replace(Translate, match.Value, match.Submatches(0))
 		Next
 	Else
 		For Each match in matches
-			Translate = Replace(Translate, match.Value, winmergeObj.Translate(match.Submatches(0)))
+			Translate = Replace(Translate, match.Value, mergeApp.Translate(match.Submatches(0)))
 		Next
 	End If
 End Function
 
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
+	Dim jsonfile: jsonfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".json")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
 	Dim mshta
 	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
+	exportSettingsToJSONFile jsonfile
 	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
 	If Not fso.FileExists(mshta) Then
 		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
 	End If
-	Run wsh, """" & mshta & """ """ & tname & """"
+	Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
+	importSettingsFromJSONFile jsonfile
 	fso.DeleteFile tname 
+	fso.DeleteFile jsonfile     
 End Function
 
 Sub Run(sh, cmd)
@@ -659,11 +676,58 @@ End Sub
 
 </script>
 
+<script language="JScript">
+
+ var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+
+function exportSettingsToJSONFile(filepath)
+{
+	var key_defvalues = {
+		"UnpackToFolder" : false,
+		"UpdateLinks" : false,
+		"CompareDocumentProperties" : false,
+		"CompareNames" : true,
+		"CompareCellValues" : true,
+		"CompareWorksheetsAsImage" : true,
+		"CompareWorksheetsAsHTML" : false,
+		"ImageWidth" : 1000,
+		"ImageHeight" : 3000,
+		"CompareFormulas" : false,
+		"CompareTextsInShapes" : true,
+		"CompareHeadersAndFooters" : true,
+		"CompareVBAMacros" : true
+	};
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 2, true, -1);
+	var json = "{";
+	for (var key in key_defvalues) {
+		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + regRead(REGKEY_PATH + key, key_defvalues[key]) + ',';
+	}
+	json = json.substr(0, json.length - 1) + "}";
+	ts.WriteLine(json);
+	ts.Close();
+}
+
+function importSettingsFromJSONFile(filepath)
+{
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 1, true, -1);
+        var json = ts.ReadAll();
+	var settings = eval("(" + json + ")");
+	ts.Close();
+	for (var key in settings) {
+		regWrite(key, settings[key]);
+	}
+}
+
+</script>
+
 <resource id="dialog1">
 <![CDATA[
 <!DOCTYPE html>
 <html>
   <head>
+    <HTA:APPLICATION ID="objHTA">
     <title>${CompareMSExcelFiles.sct WinMerge Plugin Options}</title>
     <meta content="text/html" charset="UTF-16">
     <style>
@@ -679,21 +743,66 @@ End Sub
     .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
-        var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSExcelFiles.sct\\";
+        var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+        var jsonFilePath;
+        var settings;
+
+        function jsonStringify(obj) {
+          if (obj === null) {
+            return "null";
+          }
+          if (typeof obj === "undefined") {
+            return undefined;
+          }
+          if (typeof obj === "number" || typeof obj === "boolean") {
+            return obj.toString();
+          }
+          if (typeof obj === "string") {
+            return '"' + escapeString(obj) + '"';
+          }
+          if (typeof obj === "object") {
+            var pairs = [];
+            for (var key in obj) {
+              if (obj.hasOwnProperty(key)) {
+                pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
+              }
+            }
+            return "{" + pairs.join(",") + "}";
+          }
+        }
+
+	function escapeString(str) {
+	  return str.replace(/[\\"']/g, '\\$&');
+	}
 
         function regRead(key, defaultValue) {
-            try {
-                return (new ActiveXObject("WScript.Shell")).RegRead(key);
-            } catch (e) {
-                return defaultValue;
-            }
+            return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
         }
 
         function regWrite(key, value, type) {
-            (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+            settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+        }
+
+        function loadSettingsFromJSONFile(filepath) {
+            var fso = new ActiveXObject("Scripting.FileSystemObject");
+            var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
+            var json = ts.ReadAll();
+            var settings = eval("(" + json + ")");
+            ts.Close();
+            return settings;
+        }
+
+        function saveSettingsToJSONFile(filepath, settings) {
+            var fso = new ActiveXObject("Scripting.FileSystemObject");
+            var ts = fso.OpenTextFile(filepath, 2, true, -1);
+            ts.WriteLine(jsonStringify(settings));
+            ts.Close();
         }
 
         function onload() {
+            jsonFilePath = objHTA.commandLine.split('"')[3];
+            settings = loadSettingsFromJSONFile(jsonFilePath);
+
             var dpi = window.screen.deviceXDPI;
             var w = 600 * dpi / 96, h = 500 * dpi / 96;
             window.resizeTo(w, h);
@@ -747,10 +856,16 @@ End Sub
             regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
             regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
             regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+            regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD");
+
+            saveSettingsToJSONFile(jsonFilePath, settings);
+
+            window.close();
         }
 
         function btnCancel_onclick() {
+            saveSettingsToJSONFile(jsonFilePath, "{}");
+
             window.close();
         }
 
