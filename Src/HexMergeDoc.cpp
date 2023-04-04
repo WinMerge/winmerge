@@ -587,7 +587,7 @@ void CHexMergeDoc::CheckFileChanged(void)
 {
 	for (int pane = 0; pane < m_nBuffers; ++pane)
 	{
-		if (m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()) == FileChange::Changed)
+		if (m_pView[pane] && m_pView[pane]->IsFileChangedOnDisk(m_filePaths[pane].c_str()) == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[pane]);
 			if (AfxMessageBox(msg.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
