@@ -42,7 +42,7 @@ msgstr "쉘확장"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "Win&Merge"
+msgid "WinMerge(&M)"
 msgstr "WinMerge(&W)"
 
 #: ShellExtension.rc:113
