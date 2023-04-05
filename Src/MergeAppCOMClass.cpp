@@ -5,7 +5,7 @@
 #include "Merge.h"
 
 MergeAppCOMClass::MergeAppCOMClass()
-	: m_nRef(0)
+	: m_cRef(0)
 {
 	static PARAMDATA paramData_Translate[] =
 	{ {L"text", VT_BSTR}, };
@@ -37,17 +37,19 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::MergeAppCOMClass::QueryInterface(REF
 
 ULONG STDMETHODCALLTYPE MergeAppCOMClass::AddRef(void)
 {
-	return ++m_nRef;
+	InterlockedIncrement(&m_cRef);
+	return m_cRef;
 }
 
 ULONG STDMETHODCALLTYPE MergeAppCOMClass::Release(void)
 {
-	if (--m_nRef == 0)
+	ULONG ulRefCount = InterlockedDecrement(&m_cRef);
+	if (m_cRef == 0)
 	{
 		delete this;
 		return 0;
 	}
-	return m_nRef;
+	return ulRefCount;
 }
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetTypeInfoCount(UINT* pctinfo)

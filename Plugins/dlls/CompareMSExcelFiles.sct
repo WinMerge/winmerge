@@ -51,7 +51,7 @@
 
 Option Explicit
 
-Const RegKeyPath = "Plugins\\CompareMSExcelFiles.sct/"
+Const RegKeyPath = "Plugins\CompareMSExcelFiles.sct/"
 Const pbGroup = 6
 Dim MsgCannotGetMacros
 MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
@@ -678,7 +678,7 @@ End Sub
 
 <script language="JScript">
 
- var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
 
 function exportSettingsToJSONFile(filepath)
 {
@@ -701,7 +701,7 @@ function exportSettingsToJSONFile(filepath)
 	var ts = fso.OpenTextFile(filepath, 2, true, -1);
 	var json = "{";
 	for (var key in key_defvalues) {
-		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + regRead(REGKEY_PATH + key, key_defvalues[key]) + ',';
+		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val == "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
 	}
 	json = json.substr(0, json.length - 1) + "}";
 	ts.WriteLine(json);
@@ -712,7 +712,7 @@ function importSettingsFromJSONFile(filepath)
 {
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var ts = fso.OpenTextFile(filepath, 1, true, -1);
-        var json = ts.ReadAll();
+	var json = ts.ReadAll();
 	var settings = eval("(" + json + ")");
 	ts.Close();
 	for (var key in settings) {
@@ -743,165 +743,165 @@ function importSettingsFromJSONFile(filepath)
     .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
-        var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
-        var jsonFilePath;
-        var settings;
+      var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+      var jsonFilePath;
+      var settings;
 
-        function jsonStringify(obj) {
-          if (obj === null) {
-            return "null";
-          }
-          if (typeof obj === "undefined") {
-            return undefined;
-          }
-          if (typeof obj === "number" || typeof obj === "boolean") {
-            return obj.toString();
-          }
-          if (typeof obj === "string") {
-            return '"' + escapeString(obj) + '"';
-          }
-          if (typeof obj === "object") {
-            var pairs = [];
-            for (var key in obj) {
-              if (obj.hasOwnProperty(key)) {
-                pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
-              }
+      function jsonStringify(obj) {
+        if (obj === null) {
+          return "null";
+        }
+        if (typeof obj === "undefined") {
+          return undefined;
+        }
+        if (typeof obj === "number" || typeof obj === "boolean") {
+          return obj.toString();
+        }
+        if (typeof obj === "string") {
+          return '"' + escapeString(obj) + '"';
+        }
+        if (typeof obj === "object") {
+          var pairs = [];
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
             }
-            return "{" + pairs.join(",") + "}";
           }
+          return "{" + pairs.join(",") + "}";
+        }
+      }
+
+      function escapeString(str) {
+        return str.replace(/[\\"']/g, '\\$&');
+      }
+
+      function regRead(key, defaultValue) {
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
+      }
+
+      function regWrite(key, value, type) {
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+      }
+
+      function loadSettingsFromJSONFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
+        var json = ts.ReadAll();
+        var settings = eval("(" + json + ")");
+        ts.Close();
+        return settings;
+      }
+
+      function saveSettingsToJSONFile(filepath, settings) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        ts.WriteLine(jsonStringify(settings));
+        ts.Close();
+      }
+
+      function onload() {
+        jsonFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromJSONFile(jsonFilePath);
+
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 500 * dpi / 96;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
+        chkUpdateLinks.checked = (regRead(REGKEY_PATH + "UpdateLinks", 0) == 3);
+        chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
+        chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
+        chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
+        chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
+        chkCompareWorksheetsAsHTML.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsHTML", false);
+        txtImageWidth.value = regRead(REGKEY_PATH + "ImageWidth", 1000);
+        txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
+        chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
+        chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
+        chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
+        chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
+        chkUnpackToFolder_onclick();
+        chkCompareWorksheetsAsImage_onclick();
+        chkCompareWorksheetsAsHTML_onclick();
+      }
+
+      function chkUnpackToFolder_onclick() {
+        if (!chkUnpackToFolder.checked) {
+          chkCompareWorksheetsAsImage.checked = false;
+          chkCompareWorksheetsAsHTML.checked = false;
+        }
+      }
+
+      function chkCompareWorksheetsAsImage_onclick() {
+        if (chkCompareWorksheetsAsImage.checked)
+          chkUnpackToFolder.checked = true;
+      }
+
+      function chkCompareWorksheetsAsHTML_onclick() {
+        if (chkCompareWorksheetsAsHTML.checked)
+          chkUnpackToFolder.checked = true;
+      }
+
+      function btnOk_onclick() {
+        regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "UpdateLinks", chkUpdateLinks.checked ? 3 : 0, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareWorksheetsAsHTML", chkCompareWorksheetsAsHTML.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "ImageWidth", Number(txtImageWidth.value), "REG_DWORD");
+        regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
+        regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD");
+
+        saveSettingsToJSONFile(jsonFilePath, settings);
+
+        window.close();
+      }
+
+      function btnCancel_onclick() {
+        saveSettingsToJSONFile(jsonFilePath, "{}");
+
+        window.close();
+      }
+
+      function onlyNumeric() {
+        var k = event.keyCode;
+
+        if (event.shiftKey) {
+          if (k == 37 || k == 39) {
+            return true;
+          }
+        } else if (event.altKey) {
+          return true;
+        } else if (event.ctrlKey) {
+          return true;
+        } else if (k == 8 || k == 9 || k == 37 || k == 39 || k == 46 /* || k == 144 */
+            || (48 <= k && k <= 57) || (96 <= k && k <= 105)) {
+          return true;
         }
 
-	function escapeString(str) {
-	  return str.replace(/[\\"']/g, '\\$&');
-	}
+        event.returnValue = false;
+        return false;
+      }
 
-        function regRead(key, defaultValue) {
-            return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
+      function onPaste() {
+        var paste = (event.clipboardData || window.clipboardData).getData("text");
+        if (!paste.match(/^[0-9]{0,4}$/)) {
+          paste = "";
+          if (event.preventDefault) {
+              event.preventDefault();
+          }
+          event.returnValue = false;
+          return false;
+        } else {
+          return true;
         }
-
-        function regWrite(key, value, type) {
-            settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
-        }
-
-        function loadSettingsFromJSONFile(filepath) {
-            var fso = new ActiveXObject("Scripting.FileSystemObject");
-            var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
-            var json = ts.ReadAll();
-            var settings = eval("(" + json + ")");
-            ts.Close();
-            return settings;
-        }
-
-        function saveSettingsToJSONFile(filepath, settings) {
-            var fso = new ActiveXObject("Scripting.FileSystemObject");
-            var ts = fso.OpenTextFile(filepath, 2, true, -1);
-            ts.WriteLine(jsonStringify(settings));
-            ts.Close();
-        }
-
-        function onload() {
-            jsonFilePath = objHTA.commandLine.split('"')[3];
-            settings = loadSettingsFromJSONFile(jsonFilePath);
-
-            var dpi = window.screen.deviceXDPI;
-            var w = 600 * dpi / 96, h = 500 * dpi / 96;
-            window.resizeTo(w, h);
-            window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
-
-            chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
-            chkUpdateLinks.checked = (regRead(REGKEY_PATH + "UpdateLinks", 0) == 3);
-            chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
-            chkCompareNames.checked = regRead(REGKEY_PATH + "CompareNames", true);
-            chkCompareCellValues.checked = regRead(REGKEY_PATH + "CompareCellValues", true);
-            chkCompareWorksheetsAsImage.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true);
-            chkCompareWorksheetsAsHTML.checked = regRead(REGKEY_PATH + "CompareWorksheetsAsHTML", false);
-            txtImageWidth.value = regRead(REGKEY_PATH + "ImageWidth", 1000);
-            txtImageHeight.value = regRead(REGKEY_PATH + "ImageHeight", 3000);
-            chkCompareFormulas.checked = regRead(REGKEY_PATH + "CompareFormulas", false);
-            chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
-            chkCompareHeadersAndFooters.checked = regRead(REGKEY_PATH + "CompareHeadersAndFooters", true);
-            chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
-            chkUnpackToFolder_onclick();
-            chkCompareWorksheetsAsImage_onclick();
-            chkCompareWorksheetsAsHTML_onclick();
-        }
-
-        function chkUnpackToFolder_onclick() {
-            if (!chkUnpackToFolder.checked) {
-                chkCompareWorksheetsAsImage.checked = false;
-                chkCompareWorksheetsAsHTML.checked = false;
-            }
-        }
-
-        function chkCompareWorksheetsAsImage_onclick() {
-            if (chkCompareWorksheetsAsImage.checked)
-                chkUnpackToFolder.checked = true;
-        }
-
-        function chkCompareWorksheetsAsHTML_onclick() {
-            if (chkCompareWorksheetsAsHTML.checked)
-                chkUnpackToFolder.checked = true;
-        }
-
-        function btnOk_onclick() {
-            regWrite(REGKEY_PATH + "UnpackToFolder", chkUnpackToFolder.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "UpdateLinks", chkUpdateLinks.checked ? 3 : 0, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareDocumentProperties", chkCompareDocumentProperties.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareNames", chkCompareNames.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareCellValues", chkCompareCellValues.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareWorksheetsAsImage", chkCompareWorksheetsAsImage.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareWorksheetsAsHTML", chkCompareWorksheetsAsHTML.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "ImageWidth", Number(txtImageWidth.value), "REG_DWORD");
-            regWrite(REGKEY_PATH + "ImageHeight", Number(txtImageHeight.value), "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareFormulas", chkCompareFormulas.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareHeadersAndFooters", chkCompareHeadersAndFooters.checked, "REG_DWORD");
-            regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD");
-
-            saveSettingsToJSONFile(jsonFilePath, settings);
-
-            window.close();
-        }
-
-        function btnCancel_onclick() {
-            saveSettingsToJSONFile(jsonFilePath, "{}");
-
-            window.close();
-        }
-
-        function onlyNumeric() {
-            var k = event.keyCode;
-
-            if (event.shiftKey) {
-                if (k == 37 || k == 39) {
-                    return true;
-                }
-            } else if (event.altKey) {
-                return true;
-            } else if (event.ctrlKey) {
-                return true;
-            } else if (k == 8 || k == 9 || k == 37 || k == 39 || k == 46 /* || k == 144 */
-                || (48 <= k && k <= 57) || (96 <= k && k <= 105)) {
-                return true;
-            }
-
-            event.returnValue = false;
-            return false;
-        }
-
-        function onPaste() {
-            var paste = (event.clipboardData || window.clipboardData).getData("text");
-            if (!paste.match(/^[0-9]{0,4}$/)) {
-                paste = "";
-                if (event.preventDefault) {
-                    event.preventDefault();
-                }
-                event.returnValue = false;
-                return false;
-            } else {
-                return true;
-            }
-        }
+      }
     </script>
   </head>
   <body onload="onload();">

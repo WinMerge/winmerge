@@ -50,7 +50,7 @@ public:
 	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue);
 
 protected:
-	int m_nRef;
+	ULONG m_cRef;
 	std::map<std::wstring, int> m_mapNameToIndex;
 	std::map<DISPID, int> m_mapDispIdToIndex;
 	std::vector<METHODDATA> m_methodData;
