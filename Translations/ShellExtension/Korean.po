@@ -43,12 +43,12 @@ msgstr "쉘확장"
 #: ShellExtension.rc:112
 #, c-format
 msgid "Win&Merge"
-msgstr "WinMerge(&W)"
+msgstr "WinMerge(&M)"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "다른 이름으로 비교(&A)"
 
 #: ShellExtension.rc:114
 #, c-format
