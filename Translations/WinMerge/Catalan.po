@@ -5182,3 +5182,21 @@ msgstr ""
 
 msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
 msgstr ""
+
+msgid "Enter the name of the file to which the patch '{0}' is applied"
+msgstr ""
+
+msgid "file '{0}' does not exist"
+msgstr ""
+
+msgid "Enter the command line arguments for patch command"
+msgstr ""
+
+msgid "Enter the name of the folder to which the patch '{0}' is applied"
+msgstr ""
+
+msgid "folder '{0}' does not exist"
+msgstr ""
+
+msgid "Should not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgstr ""

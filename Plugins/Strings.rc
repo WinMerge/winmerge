@@ -189,8 +189,8 @@ END
 
 STRINGTABLE
 BEGIN
-	IDS_PLUGIN_COMPAREMSEXCELFILES_STR1
-	                        "CompareMSExcelFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR1 
+                            "CompareMSExcelFiles.sct WinMerge Plugin Options"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 
                             "Extract workbook data to multiple files"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Update external references(links)"
@@ -204,11 +204,11 @@ BEGIN
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare formulas"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare headers and footers"
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 "Compare VBA macros"
 END
 
 STRINGTABLE
 BEGIN
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 "Compare VBA macros"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR1 
                             "CompareMSWordFiles.sct WinMerge Plugin Options"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR2 
@@ -229,7 +229,12 @@ BEGIN
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR2 
                             "Extract slide data to multiple files"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3 "Compare document properties"
-    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR4 "Compare slides as image (very slow)"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR4 
+                            "Compare slides as image (very slow)"
+END
+
+STRINGTABLE
+BEGIN
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR5 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6 "Compare texts in notes page"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR7 "Compare VBA macros"
@@ -239,8 +244,7 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR1 
                             "CompareMSVisioFiles.sct WinMerge Plugin Options"
-    IDS_PLUGIN_COMPAREMSVISIOFILES_STR2 
-                            "Extract page data to multiple files"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR2 "Extract page data to multiple files"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR3 "Compare pages as image (very slow)"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR4 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR5 "Compare VBA macros"
@@ -250,8 +254,7 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_PREDIFFLINEFILTER_STR1 
                             "PrediffLineFilter.sct WinMerge Plugin Options"
-    IDS_PLUGIN_PREDIFFLINEFILTER_STR2 
-                            "Add"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR2 "Add"
     IDS_PLUGIN_PREDIFFLINEFILTER_STR3 "Delete"
     IDS_PLUGIN_PREDIFFLINEFILTER_STR4 "Enabled"
     IDS_PLUGIN_PREDIFFLINEFILTER_STR5 "Ignore Case"
@@ -262,10 +265,29 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_IGNORE_STR1 "Settings"
-    IDS_PLUGIN_IGNORE_STR2 "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+    IDS_PLUGIN_IGNORE_STR1  "Settings"
+    IDS_PLUGIN_IGNORE_STR2  "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_APPLYPATCH_STR1 
+                            "Enter the name of the file to which the patch '{0}' is applied"
+    IDS_PLUGIN_APPLYPATCH_STR2 "file '{0}' does not exist"
+    IDS_PLUGIN_APPLYPATCH_STR3 
+                            "Enter the command line arguments for patch command"
+    IDS_PLUGIN_APPLYPATCH_STR4 
+                            "Enter the name of the folder to which the patch '{0}' is applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_APPLYPATCH_STR5 "folder '{0}' does not exist"
+    IDS_PLUGIN_APPLYPATCH_STR6 
+                            "Enter the command line arguments for patch command"
+    IDS_PLUGIN_APPLYPATCH_STR7 
+                            "Should not specify the '-p0' command line option for the patch file which includes absolute paths"
+END
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

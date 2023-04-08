@@ -7,6 +7,8 @@
 
 // change 1 : add this include
 #include "typeinfoex.h"
+#include <atlstr.h>
+#include <atlbase.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
@@ -49,8 +51,9 @@ public:
 	STDMETHOD(get_PluginEvent)(/*[out, retval]*/ BSTR *pVal);
 
 protected:
+	CString GetColumnRangeString();
 	static INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
-	CComPtr<IDispatch> m_pWinMergeObj;
+	CComPtr<IDispatch> m_pMergeApp;
 	CComBSTR m_bstrArguments;
 };
 

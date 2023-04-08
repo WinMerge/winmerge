@@ -269,13 +269,13 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pbstrResu
 	return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefault, VARIANT* pvarResult)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& varDefault, VARIANT* pvarResult)
 {
 	VariantClear(pvarResult);
 	auto value = GetOptionsMgr()->Get(name);
 	if (value.GetType() == varprop::VT_NULL)
 	{
-		VARIANT* pvar = ((varDefault.vt & VT_BYREF) != 0) ? varDefault.pvarVal : &varDefault;
+		const VARIANT* pvar = ((varDefault.vt & VT_BYREF) != 0) ? varDefault.pvarVal : &varDefault;
 		switch (pvar->vt)
 		{
 		case VT_BOOL:
@@ -319,10 +319,10 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefa
 	return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, const VARIANT& varValue)
 {
 	auto value = GetOptionsMgr()->Get(name);
-	VARIANT* pvar = ((varValue.vt & VT_BYREF) != 0) ? varValue.pvarVal : &varValue;
+	const VARIANT* pvar = ((varValue.vt & VT_BYREF) != 0) ? varValue.pvarVal : &varValue;
 	if (value.GetType() == varprop::VT_NULL)
 	{
 		switch (varValue.vt)

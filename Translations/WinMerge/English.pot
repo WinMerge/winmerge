@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-04-02 17:15+0000\n"
+"POT-Creation-Date: 2023-04-08 14:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3981,5 +3981,23 @@ msgid "Settings"
 msgstr ""
 
 msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgstr ""
+
+msgid "Enter the name of the file to which the patch '{0}' is applied"
+msgstr ""
+
+msgid "file '{0}' does not exist"
+msgstr ""
+
+msgid "Enter the command line arguments for patch command"
+msgstr ""
+
+msgid "Enter the name of the folder to which the patch '{0}' is applied"
+msgstr ""
+
+msgid "folder '{0}' does not exist"
+msgstr ""
+
+msgid "Should not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr ""
 

@@ -46,8 +46,8 @@ public:
 	void STDMETHODCALLTYPE ReleaseFuncDesc(FUNCDESC* pFuncDesc) override;
 	void STDMETHODCALLTYPE ReleaseVarDesc(VARDESC* pVarDesc) override;
 	HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pbstrResult);
-	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault, VARIANT* pvarResult);
-	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue);
+	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, const VARIANT& varDefault, VARIANT* pvarResult);
+	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, const VARIANT& varValue);
 
 protected:
 	ULONG m_cRef;

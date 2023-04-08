@@ -58,6 +58,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C
 		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
 		Plugins\README.md = Plugins\README.md
+		Plugins\resource.h = Plugins\resource.h
 		Plugins\Strings.rc = Plugins\Strings.rc
 	EndProjectSection
 EndProject
