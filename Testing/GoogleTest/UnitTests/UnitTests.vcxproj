@@ -569,7 +569,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\HashCalc.cpp" />
     <ClCompile Include="..\..\..\Src\PropertySystem.cpp" />
-    <ClCompile Include="..\..\..\Src\TypeInfo.cpp" />
     <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -860,7 +859,6 @@
     <ClInclude Include="..\..\..\Src\Common\unicoder.h" />
     <ClInclude Include="..\..\..\Src\Common\UnicodeString.h" />
     <ClInclude Include="..\..\..\Src\Common\varprop.h" />
-    <ClInclude Include="..\..\..\Src\TypeInfo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

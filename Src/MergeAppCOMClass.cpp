@@ -2,7 +2,6 @@
 #include "MergeAppCOMClass.h"
 #include "LanguageSelect.h"
 #include "OptionsMgr.h"
-#include "TypeInfo.h"
 #include "MergeApp.h"
 
 static PARAMDATA paramData_Translate[] =
@@ -18,11 +17,12 @@ static METHODDATA methodData_MergeApp[] =
 	{ L"SaveOption", paramData_SaveOption, DISPID_SaveOption, 2, CC_STDCALL, 2, DISPATCH_METHOD, VT_VOID },
 };
 
-MyDispatch::MyDispatch(METHODDATA* pMethodData, size_t methodDataCount)
-	: m_cRef(0)
-	, m_pTypeInfo(new MyTypeInfo(pMethodData, methodDataCount))
+static INTERFACEDATA idata_MergeApp = { methodData_MergeApp, static_cast<UINT>(std::size(methodData_MergeApp)) }; 
+
+MyDispatch::MyDispatch(INTERFACEDATA *idata)
+	: m_cRef(0), m_pTypeInfo(nullptr)
 {
-	m_pTypeInfo->AddRef();
+	CreateDispTypeInfo(idata, LOCALE_SYSTEM_DEFAULT, &m_pTypeInfo);
 }
 
 MyDispatch::~MyDispatch()
@@ -72,7 +72,7 @@ HRESULT STDMETHODCALLTYPE MyDispatch::GetIDsOfNames(REFIID riid, LPOLESTR* rgszN
 }
 
 MergeAppCOMClass::MergeAppCOMClass()
-	: MyDispatch(methodData_MergeApp, std::size(methodData_MergeApp))
+	: MyDispatch(&idata_MergeApp)
 {
 }
 

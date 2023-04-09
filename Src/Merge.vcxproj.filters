@@ -720,9 +720,6 @@
     <ClCompile Include="MergeAppCOMClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TypeInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1368,9 +1365,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MergeAppCOMClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TypeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

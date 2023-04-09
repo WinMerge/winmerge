@@ -2,8 +2,6 @@
 
 #include <oleauto.h>
 
-class MyTypeInfo;
-
 enum
 {
 	DISPID_Translate = 1,
@@ -14,7 +12,7 @@ enum
 class MyDispatch : public IDispatch
 {
 public:
-	MyDispatch(METHODDATA* pMethodData, size_t methodDataCount);
+	MyDispatch(INTERFACEDATA* idata);
 	MyDispatch(const MyDispatch&) = delete;
 	virtual ~MyDispatch();
 	MyDispatch& operator=(const MyDispatch&) = delete;
@@ -28,10 +26,17 @@ public:
 	HRESULT STDMETHODCALLTYPE Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr) = 0;
 protected:
 	ULONG m_cRef;
-	MyTypeInfo* m_pTypeInfo;
+	ITypeInfo* m_pTypeInfo;
 };
 
-class MergeAppCOMClass : public MyDispatch
+struct IMergeApp
+{
+	virtual HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pbstrResult) = 0;
+	virtual HRESULT STDMETHODCALLTYPE GetOption(BSTR name, const VARIANT& varDefault, VARIANT* pvarResult) = 0;
+	virtual HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, const VARIANT& varValue) = 0;
+};
+
+class MergeAppCOMClass : public IMergeApp, public MyDispatch
 {
 public:
 	MergeAppCOMClass();
@@ -40,8 +45,8 @@ public:
 	MergeAppCOMClass& operator=(const MergeAppCOMClass&) = delete;
 
 	HRESULT STDMETHODCALLTYPE Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr) override;
-	HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pbstrResult);
-	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, const VARIANT& varDefault, VARIANT* pvarResult);
-	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, const VARIANT& varValue);
+	HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pbstrResult) override;
+	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, const VARIANT& varDefault, VARIANT* pvarResult) override;
+	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, const VARIANT& varValue) override;
 };
 
