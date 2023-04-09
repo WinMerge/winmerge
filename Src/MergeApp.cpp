@@ -76,6 +76,13 @@ String tr(const std::string &str)
 	return translated_str;
 }
 
+String tr(const std::wstring &str)
+{
+	String translated_str;
+	theApp.TranslateString(str, translated_str);
+	return translated_str;
+}
+
 String tr(const char *msgctxt, const std::string &str)
 {
 	String translated_str;

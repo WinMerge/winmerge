@@ -113,12 +113,9 @@ CMergeApp::CMergeApp() :
 , m_pMarkers(new CCrystalTextMarkers())
 , m_bMergingMode(false)
 , m_bEnableExitCode(false)
-, m_pMergeAppCOMObject(new MergeAppCOMClass())
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
-	m_pMergeAppCOMObject->AddRef();
-	plugin::SetHostObject(m_pMergeAppCOMObject.get());
 }
 
 /**
@@ -387,7 +384,7 @@ BOOL CMergeApp::InitInstance()
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 
-	m_mainThreadScripts = new CAssureScriptsForThread;
+	m_mainThreadScripts = new CAssureScriptsForThread(new MergeAppCOMClass());
 
 	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
 	{
@@ -1515,6 +1512,11 @@ String CMergeApp::LoadString(UINT id) const
 }
 
 bool CMergeApp::TranslateString(const std::string& str, String& translated_str) const
+{
+	return m_pLangDlg->TranslateString(str, translated_str);
+}
+
+bool CMergeApp::TranslateString(const std::wstring& str, String& translated_str) const
 {
 	return m_pLangDlg->TranslateString(str, translated_str);
 }

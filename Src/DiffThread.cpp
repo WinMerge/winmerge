@@ -15,6 +15,7 @@
 #include "CompareStats.h"
 #include "IAbortable.h"
 #include "Plugins.h"
+#include "MergeAppCOMClass.h"
 #include "DebugNew.h"
 
 using Poco::Thread;
@@ -132,7 +133,7 @@ static void DiffThreadCollect(void *pParam)
 static void DiffThreadCompare(void *pParam)
 {
 	DiffFuncStruct *myStruct = static_cast<DiffFuncStruct *>(pParam);
-	CAssureScriptsForThread scriptsForRescan;
+	CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);

@@ -68,7 +68,6 @@ public:
 	MergeCmdLineInfo::ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical? */
 	std::unique_ptr<LineFiltersList> m_pLineFilters; /**< List of linefilters */
 	std::unique_ptr<SubstitutionFiltersList> m_pSubstitutionFiltersList;
-	std::unique_ptr<MergeAppCOMClass> m_pMergeAppCOMObject;
 
 	WORD GetLangId() const;
 	String GetLangName() const;
@@ -77,6 +76,7 @@ public:
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
 	bool TranslateString(const std::string&, String&) const;
+	bool TranslateString(const std::wstring&, String&) const;
 	std::wstring LoadDialogCaption(const tchar_t*) const;
 
 	CMergeApp();

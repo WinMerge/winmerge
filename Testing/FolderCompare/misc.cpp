@@ -62,6 +62,11 @@ String tr(const std::string& str)
 	return ucr::toTString(str);
 }
 
+String tr(const std::wstring& str)
+{
+	return ucr::toTString(str);
+}
+
 void NTAPI LangTranslateDialog(HWND h)
 {
 }

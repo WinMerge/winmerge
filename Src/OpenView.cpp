@@ -30,6 +30,7 @@
 #include "DropHandler.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
+#include "MergeAppCOMClass.h"
 #include "BCMenu.h"
 #include "LanguageSelect.h"
 #include "Win_VersionHelper.h"
@@ -1084,7 +1085,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	BOOL bRet;
 
 	CoInitialize(nullptr);
-	CAssureScriptsForThread scriptsForRescan;
+	CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 
 	while( (bRet = GetMessage( &msg, nullptr, 0, 0 )) != 0)
 	{ 

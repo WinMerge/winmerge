@@ -2,7 +2,7 @@
 #include "MergeAppCOMClass.h"
 #include "LanguageSelect.h"
 #include "OptionsMgr.h"
-#include "Merge.h"
+#include "MergeApp.h"
 
 MergeAppCOMClass::MergeAppCOMClass()
 	: m_cRef(0)
@@ -263,9 +263,7 @@ void STDMETHODCALLTYPE MergeAppCOMClass::ReleaseVarDesc(VARDESC* pVarDesc)
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pbstrResult)
 {
-	std::wstring translated_str;
-	theApp.m_pLangDlg->TranslateString(text, translated_str);
-	*pbstrResult = SysAllocString(translated_str.c_str());
+	*pbstrResult = SysAllocString(tr(text).c_str());
 	return S_OK;
 }
 

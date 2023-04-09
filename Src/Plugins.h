@@ -30,30 +30,16 @@ typedef std::shared_ptr<FileFilterElement> FileFilterElementPtr;
  */
 extern const wchar_t *TransformationCategories[];
 
+enum { EVENTID_INITIALIZE, EVENTID_TERMINATE };
+
 /** 
  * @brief Information structure for a plugin
  */
 class PluginInfo
 {
 public:
-	PluginInfo()
-		: m_lpDispatch(nullptr)
-		, m_filters(NULL)
-		, m_bAutomatic(false)
-		, m_nFreeFunctions(0)
-		, m_disabled(false)
-		, m_hasArgumentsProperty(false)
-		, m_hasVariablesProperty(false)
-		, m_hasOnEventMethod(false)
-		, m_bAutomaticDefault(false)
-	{	
-	}
-
-	~PluginInfo()
-	{
-		if (m_lpDispatch!=nullptr)
-			m_lpDispatch->Release();
-	}
+	PluginInfo();
+	~PluginInfo();
 
 	int LoadPlugin(const String & scriptletFilepath);
 	int MakeInfo(const String & scriptletFilepath, IDispatch *pDispatch);
@@ -113,6 +99,8 @@ class CScriptsOfThread
 friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
+	IDispatch* GetHostObject() const { return m_pHostObject; };
+	void SetHostObject(IDispatch* pHostObject);
 	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
 	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
@@ -137,6 +125,7 @@ private:
 	HRESULT hrInitialize;
 	int nTransformationEvents;
 	std::map<String, PluginArrayPtr> m_aPluginsByEvent;
+	IDispatch* m_pHostObject;
 };
 
 
@@ -175,7 +164,7 @@ private:
 class CAssureScriptsForThread
 {
 public:
-	CAssureScriptsForThread();
+	CAssureScriptsForThread(IDispatch* pHostObject);
 	~CAssureScriptsForThread();
 };
 
@@ -276,7 +265,5 @@ bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
  * @brief call the plugin "OnEvent" method 
  */
 bool InvokeOnEvent(int eventType, LPDISPATCH piScript);
-
-void SetHostObject(LPDISPATCH pHostObject);
 
 }

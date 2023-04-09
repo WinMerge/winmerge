@@ -46,4 +46,5 @@ namespace AppMsgBox
 String LoadResString(unsigned id);
 
 String tr(const std::string &str);
+String tr(const std::wstring &str);
 String tr(const char *msgctxt, const std::string &str);
