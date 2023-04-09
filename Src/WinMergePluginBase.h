@@ -172,7 +172,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT* pctinfo) override
 	{
-		*pctinfo = static_cast<UINT>(m_methodData.size());
+		*pctinfo = 1;
 		return S_OK;
 	}
 

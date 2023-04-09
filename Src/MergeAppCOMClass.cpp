@@ -2,46 +2,47 @@
 #include "MergeAppCOMClass.h"
 #include "LanguageSelect.h"
 #include "OptionsMgr.h"
+#include "TypeInfo.h"
 #include "MergeApp.h"
 
-MergeAppCOMClass::MergeAppCOMClass()
-	: m_cRef(0)
+static PARAMDATA paramData_Translate[] =
+{ {L"text", VT_BSTR}, };
+static PARAMDATA paramData_GetOption[] =
+{ {L"name", VT_BSTR}, {L"defaultValue", VT_VARIANT}, };
+static PARAMDATA paramData_SaveOption[] =
+{ {L"name", VT_BSTR}, {L"value", VT_VARIANT}, };
+static METHODDATA methodData_MergeApp[] =
 {
-	static PARAMDATA paramData_Translate[] =
-	{ {L"text", VT_BSTR}, };
-	static PARAMDATA paramData_GetOption[] =
-	{ {L"name", VT_BSTR}, {L"defaultValue", VT_VARIANT}, };
-	static PARAMDATA paramData_SaveOption[] =
-	{ {L"name", VT_BSTR}, {L"value", VT_VARIANT}, };
-	static METHODDATA methodData_WinMergeObject[] =
-	{
-		{ L"Translate",                   paramData_Translate,    DISPID_Translate,                   0, CC_STDCALL, 1, DISPATCH_METHOD,      VT_BSTR },
-		{ L"GetOption",                   paramData_GetOption,    DISPID_GetOption,                   1, CC_STDCALL, 2, DISPATCH_METHOD,      VT_VARIANT },
-		{ L"SaveOption",                  paramData_SaveOption,   DISPID_SaveOption,                  2, CC_STDCALL, 2, DISPATCH_METHOD,      VT_VOID },
-	};
-	size_t methodDataCount = std::size(methodData_WinMergeObject);
-	METHODDATA* pMethodData = methodData_WinMergeObject;
-	for (size_t i = 0; i < methodDataCount; ++i)
-	{
-		auto& methodData = pMethodData[i];
-		m_mapNameToIndex.insert_or_assign(methodData.szName, static_cast<int>(m_methodData.size()));
-		m_mapDispIdToIndex.insert_or_assign(methodData.dispid, static_cast<int>(m_methodData.size()));
-		m_methodData.push_back(methodData);
-	}
+	{ L"Translate",  paramData_Translate,  DISPID_Translate,  0, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR },
+	{ L"GetOption",  paramData_GetOption,  DISPID_GetOption,  1, CC_STDCALL, 2, DISPATCH_METHOD, VT_VARIANT },
+	{ L"SaveOption", paramData_SaveOption, DISPID_SaveOption, 2, CC_STDCALL, 2, DISPATCH_METHOD, VT_VOID },
+};
+
+MyDispatch::MyDispatch(METHODDATA* pMethodData, size_t methodDataCount)
+	: m_cRef(0)
+	, m_pTypeInfo(new MyTypeInfo(pMethodData, methodDataCount))
+{
+	m_pTypeInfo->AddRef();
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::MergeAppCOMClass::QueryInterface(REFIID riid, void** ppvObject)
+MyDispatch::~MyDispatch()
+{
+	if (m_pTypeInfo)
+		m_pTypeInfo->Release();
+}
+
+HRESULT STDMETHODCALLTYPE MyDispatch::QueryInterface(REFIID riid, void** ppvObject)
 {
 	return E_NOTIMPL;
 }
 
-ULONG STDMETHODCALLTYPE MergeAppCOMClass::AddRef(void)
+ULONG STDMETHODCALLTYPE MyDispatch::AddRef(void)
 {
 	InterlockedIncrement(&m_cRef);
 	return m_cRef;
 }
 
-ULONG STDMETHODCALLTYPE MergeAppCOMClass::Release(void)
+ULONG STDMETHODCALLTYPE MyDispatch::Release(void)
 {
 	ULONG ulRefCount = InterlockedDecrement(&m_cRef);
 	if (m_cRef == 0)
@@ -52,29 +53,31 @@ ULONG STDMETHODCALLTYPE MergeAppCOMClass::Release(void)
 	return ulRefCount;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetTypeInfoCount(UINT* pctinfo)
+HRESULT STDMETHODCALLTYPE MyDispatch::GetTypeInfoCount(UINT* pctinfo)
 {
-	*pctinfo = static_cast<UINT>(m_methodData.size());
+	*pctinfo = 1;
 	return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
+HRESULT STDMETHODCALLTYPE MyDispatch::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
 {
-	*ppTInfo = this;
+	*ppTInfo = m_pTypeInfo;
 	(*ppTInfo)->AddRef();
 	return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
+HRESULT STDMETHODCALLTYPE MyDispatch::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
 {
-	for (unsigned i = 0; i < cNames; ++i)
-	{
-		auto it = m_mapNameToIndex.find(rgszNames[i]);
-		if (it == m_mapNameToIndex.end())
-			return DISP_E_UNKNOWNNAME;
-		rgDispId[i] = m_methodData[it->second].dispid;
-	}
-	return S_OK;
+	return m_pTypeInfo->GetIDsOfNames(rgszNames, cNames, rgDispId);
+}
+
+MergeAppCOMClass::MergeAppCOMClass()
+	: MyDispatch(methodData_MergeApp, std::size(methodData_MergeApp))
+{
+}
+
+MergeAppCOMClass::~MergeAppCOMClass()
+{
 }
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr)
@@ -130,135 +133,6 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Invoke(DISPID dispIdMember, REFIID r
 		pErrorInfo->GetSource(&pExcepInfo->bstrSource);
 	}
 	return hr;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetTypeAttr(TYPEATTR** ppTypeAttr)
-{
-	auto* pTypeAttr = new TYPEATTR();
-	pTypeAttr->cFuncs = static_cast<WORD>(m_methodData.size());
-	pTypeAttr->typekind = TKIND_DISPATCH;
-	pTypeAttr->cbAlignment = 8;
-	*ppTypeAttr = pTypeAttr;
-	return S_OK;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetTypeComp(ITypeComp** ppTComp)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetFuncDesc(UINT index, FUNCDESC** ppFuncDesc)
-{
-	if (index >= m_methodData.size())
-		return E_INVALIDARG;
-	auto* pFuncDesc = new FUNCDESC();
-	const METHODDATA& methodData = m_methodData[index];
-	pFuncDesc->funckind = FUNC_DISPATCH;
-	pFuncDesc->invkind = static_cast<INVOKEKIND>(methodData.wFlags);
-	pFuncDesc->wFuncFlags = 0;
-	pFuncDesc->cParams = static_cast<short>(methodData.cArgs);
-	pFuncDesc->memid = methodData.dispid;
-	pFuncDesc->callconv = methodData.cc;
-	if (methodData.cArgs > 0)
-	{
-		pFuncDesc->lprgelemdescParam = new ELEMDESC[methodData.cArgs];
-		for (unsigned i = 0; i < methodData.cArgs; ++i)
-			pFuncDesc->lprgelemdescParam[i].tdesc.vt = methodData.ppdata[i].vt;
-	}
-	pFuncDesc->elemdescFunc.tdesc.vt = methodData.vtReturn;
-	*ppFuncDesc = pFuncDesc;
-	return S_OK;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetVarDesc(UINT index, VARDESC** ppVarDesc)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetNames(MEMBERID memid, BSTR* rgBstrNames, UINT cMaxNames, UINT* pcNames)
-{
-	if (m_mapDispIdToIndex.find(memid) == m_mapDispIdToIndex.end())
-		return E_INVALIDARG;
-	const METHODDATA& methodData = m_methodData[m_mapDispIdToIndex[memid]];
-	for (unsigned i = 0; i < cMaxNames && i < methodData.cArgs + 1; i++)
-	{
-		if (i == 0)
-			rgBstrNames[i] = SysAllocString(methodData.szName);
-		else
-			rgBstrNames[i] = SysAllocString(methodData.ppdata[i - 1].szName);
-		*pcNames = i + 1;
-	}
-	return S_OK;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetRefTypeOfImplType(UINT index, HREFTYPE* pRefType)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetImplTypeFlags(UINT index, INT* pImplTypeFlags)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetIDsOfNames(LPOLESTR* rgszNames, UINT cNames, MEMBERID* pMemId)
-{
-	return GetIDsOfNames(IID_NULL, rgszNames, cNames, 0, pMemId);
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Invoke(PVOID pvInstance, MEMBERID memid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr)
-{
-	return reinterpret_cast<IDispatch*>(pvInstance)->Invoke(memid, IID_NULL, 0, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetDocumentation(MEMBERID memid, BSTR* pBstrName, BSTR* pBstrDocString, DWORD* pdwHelpContext, BSTR* pBstrHelpFile)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetDllEntry(MEMBERID memid, INVOKEKIND invKind, BSTR* pBstrDllName, BSTR* pBstrName, WORD* pwOrdinal)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetRefTypeInfo(HREFTYPE hRefType, ITypeInfo** ppTInfo)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::AddressOfMember(MEMBERID memid, INVOKEKIND invKind, PVOID* ppv)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::CreateInstance(IUnknown* pUnkOuter, REFIID riid, PVOID* ppvObj)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetMops(MEMBERID memid, BSTR* pBstrMops)
-{
-	return E_NOTIMPL;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetContainingTypeLib(ITypeLib** ppTLib, UINT* pIndex)
-{
-	return E_NOTIMPL;
-}
-
-void STDMETHODCALLTYPE MergeAppCOMClass::ReleaseTypeAttr(TYPEATTR* pTypeAttr)
-{
-	delete pTypeAttr;
-}
-
-void STDMETHODCALLTYPE MergeAppCOMClass::ReleaseFuncDesc(FUNCDESC* pFuncDesc)
-{
-	delete[] pFuncDesc->lprgelemdescParam;
-	delete pFuncDesc;
-}
-
-void STDMETHODCALLTYPE MergeAppCOMClass::ReleaseVarDesc(VARDESC* pVarDesc)
-{
 }
 
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pbstrResult)
