@@ -380,6 +380,7 @@ function exportSettingsToJSONFile(filepath)
 	var ts = fso.OpenTextFile(filepath, 2, true, -1);
 	var json = "{";
 	for (var key in key_defvalues) {
+		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
 		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val == "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
 	}
 	json = json.substr(0, json.length - 1) + "}";
