@@ -5,74 +5,22 @@
 #include "MergeApp.h"
 
 static PARAMDATA paramData_Translate[] =
-{ {L"text", VT_BSTR}, };
+{ { L"text", VT_BSTR, }, };
 static PARAMDATA paramData_GetOption[] =
-{ {L"name", VT_BSTR}, {L"defaultValue", VT_VARIANT}, };
+{ { L"name", VT_BSTR }, { L"defaultValue", VT_VARIANT|VT_BYREF }, };
 static PARAMDATA paramData_SaveOption[] =
-{ {L"name", VT_BSTR}, {L"value", VT_VARIANT}, };
+{ { L"name", VT_BSTR }, { L"value", VT_VARIANT|VT_BYREF }, };
 static METHODDATA methodData_MergeApp[] =
 {
-	{ L"Translate",  paramData_Translate,  DISPID_Translate,  0, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR },
-	{ L"GetOption",  paramData_GetOption,  DISPID_GetOption,  1, CC_STDCALL, 2, DISPATCH_METHOD, VT_VARIANT },
-	{ L"SaveOption", paramData_SaveOption, DISPID_SaveOption, 2, CC_STDCALL, 2, DISPATCH_METHOD, VT_VOID },
+	{ L"Translate",  paramData_Translate,  DISPID_Translate,  3, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR },
+	{ L"GetOption",  paramData_GetOption,  DISPID_GetOption,  4, CC_STDCALL, 2, DISPATCH_METHOD, VT_VARIANT },
+	{ L"SaveOption", paramData_SaveOption, DISPID_SaveOption, 5, CC_STDCALL, 2, DISPATCH_METHOD, VT_NULL },
 };
 
 static INTERFACEDATA idata_MergeApp = { methodData_MergeApp, static_cast<UINT>(std::size(methodData_MergeApp)) }; 
 
-MyDispatch::MyDispatch(INTERFACEDATA *idata)
-	: m_cRef(0), m_pTypeInfo(nullptr)
-{
-	CreateDispTypeInfo(idata, LOCALE_SYSTEM_DEFAULT, &m_pTypeInfo);
-}
-
-MyDispatch::~MyDispatch()
-{
-	if (m_pTypeInfo)
-		m_pTypeInfo->Release();
-}
-
-HRESULT STDMETHODCALLTYPE MyDispatch::QueryInterface(REFIID riid, void** ppvObject)
-{
-	return E_NOTIMPL;
-}
-
-ULONG STDMETHODCALLTYPE MyDispatch::AddRef(void)
-{
-	InterlockedIncrement(&m_cRef);
-	return m_cRef;
-}
-
-ULONG STDMETHODCALLTYPE MyDispatch::Release(void)
-{
-	ULONG ulRefCount = InterlockedDecrement(&m_cRef);
-	if (m_cRef == 0)
-	{
-		delete this;
-		return 0;
-	}
-	return ulRefCount;
-}
-
-HRESULT STDMETHODCALLTYPE MyDispatch::GetTypeInfoCount(UINT* pctinfo)
-{
-	*pctinfo = 1;
-	return S_OK;
-}
-
-HRESULT STDMETHODCALLTYPE MyDispatch::GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo)
-{
-	*ppTInfo = m_pTypeInfo;
-	(*ppTInfo)->AddRef();
-	return S_OK;
-}
-
-HRESULT STDMETHODCALLTYPE MyDispatch::GetIDsOfNames(REFIID riid, LPOLESTR* rgszNames, UINT cNames, LCID lcid, DISPID* rgDispId)
-{
-	return m_pTypeInfo->GetIDsOfNames(rgszNames, cNames, rgDispId);
-}
-
 MergeAppCOMClass::MergeAppCOMClass()
-	: MyDispatch(&idata_MergeApp)
+	: MyDispatch(&idata_MergeApp, static_cast<IMergeApp*>(this))
 {
 }
 
@@ -80,70 +28,15 @@ MergeAppCOMClass::~MergeAppCOMClass()
 {
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr)
+BSTR STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text)
 {
-	if (!pDispParams)
-		return DISP_E_BADVARTYPE;
-	HRESULT hr = E_NOTIMPL;
-	if (wFlags & DISPATCH_METHOD)
-	{
-		switch (dispIdMember)
-		{
-		case DISPID_Translate:
-		{
-			if (pDispParams->rgvarg[0].vt != VT_BSTR)
-				return E_INVALIDARG;
-			BSTR text = pDispParams->rgvarg[0].bstrVal;
-			BSTR* pbstrResult = &pVarResult->bstrVal;
-			hr = Translate(text, pbstrResult);
-			pVarResult->vt = VT_BSTR;
-			break;
-		}
-		case DISPID_GetOption:
-		{
-			if (pDispParams->rgvarg[1].vt != VT_BSTR && pDispParams->rgvarg[1].vt != (VT_BYREF | VT_VARIANT) && pDispParams->rgvarg[1].pvarVal->vt != VT_BSTR)
-				return E_INVALIDARG;
-			BSTR name = (pDispParams->rgvarg[1].vt & VT_BYREF) ? pDispParams->rgvarg[1].pvarVal->bstrVal : pDispParams->rgvarg[1].bstrVal;
-			hr = GetOption(name, pDispParams->rgvarg[0], pVarResult);
-			break;
-		}
-		case DISPID_SaveOption:
-		{
-			if (pDispParams->rgvarg[1].vt != VT_BSTR && pDispParams->rgvarg[1].vt != (VT_BYREF | VT_VARIANT) && pDispParams->rgvarg[1].pvarVal->vt != VT_BSTR)
-				return E_INVALIDARG;
-			BSTR name = (pDispParams->rgvarg[1].vt & VT_BYREF) ? pDispParams->rgvarg[1].pvarVal->bstrVal : pDispParams->rgvarg[1].bstrVal;
-			hr = SaveOption(name, pDispParams->rgvarg[0]);
-			break;
-		}
-		default:
-			break;
-		}
-	}
-	else if (wFlags & DISPATCH_PROPERTYGET)
-	{
-	}
-	else if (wFlags & DISPATCH_PROPERTYPUT)
-	{
-	}
-	if (hr == DISP_E_EXCEPTION && pExcepInfo)
-	{
-		IErrorInfo* pErrorInfo = nullptr;
-		GetErrorInfo(0, &pErrorInfo);
-		pErrorInfo->GetDescription(&pExcepInfo->bstrDescription);
-		pErrorInfo->GetSource(&pExcepInfo->bstrSource);
-	}
-	return hr;
+	return SysAllocString(tr(text).c_str());
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pbstrResult)
+VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& varDefault)
 {
-	*pbstrResult = SysAllocString(tr(text).c_str());
-	return S_OK;
-}
-
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& varDefault, VARIANT* pvarResult)
-{
-	VariantClear(pvarResult);
+	VARIANT varResult;
+	VariantInit(&varResult);
 	auto value = GetOptionsMgr()->Get(name);
 	if (value.GetType() == varprop::VT_NULL)
 	{
@@ -163,35 +56,35 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& 
 			GetOptionsMgr()->InitOption(name, pvar->bstrVal);
 			break;
 		default:
-			return E_INVALIDARG;
+			return varResult;
 		}
 		value = GetOptionsMgr()->Get(name);
 	}
 	switch (value.GetType())
 	{
 	case varprop::VT_BOOL:
-		pvarResult->vt = VT_BOOL;
-		pvarResult->boolVal = value.GetBool();
+		varResult.vt = VT_BOOL;
+		varResult.boolVal = value.GetBool();
 		break;
 	case varprop::VT_INT:
-		pvarResult->vt = VT_INT;
-		pvarResult->intVal = value.GetInt();
+		varResult.vt = VT_INT;
+		varResult.intVal = value.GetInt();
 		break;
 	case varprop::VT_STRING:
-		pvarResult->vt = VT_BSTR;
-		pvarResult->bstrVal = SysAllocString(value.GetString().c_str());
+		varResult.vt = VT_BSTR;
+		varResult.bstrVal = SysAllocString(value.GetString().c_str());
 		break;
 	case varprop::VT_NULL:
-		pvarResult->vt = VT_NULL;
+		varResult.vt = VT_NULL;
 		break;
 	default:
-		pvarResult->vt = VT_EMPTY;
+		varResult.vt = VT_EMPTY;
 		break;
 	}
-	return S_OK;
+	return varResult;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, const VARIANT& varValue)
+void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, const VARIANT& varValue)
 {
 	auto value = GetOptionsMgr()->Get(name);
 	const VARIANT* pvar = ((varValue.vt & VT_BYREF) != 0) ? varValue.pvarVal : &varValue;
@@ -212,7 +105,7 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, const VARIANT&
 			GetOptionsMgr()->InitOption(name, pvar->bstrVal);
 			break;
 		default:
-			return E_INVALIDARG;
+			return;
 		}
 		value = GetOptionsMgr()->Get(name);
 	}
@@ -221,26 +114,26 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, const VARIANT&
 	case varprop::VT_BOOL:
 		if (pvar->vt == VT_BOOL)
 			GetOptionsMgr()->SaveOption(name, pvar->boolVal);
-		return E_INVALIDARG;
+		return;
 	case varprop::VT_INT:
 		if (pvar->vt == VT_I2)
 		{
 			GetOptionsMgr()->SaveOption(name, pvar->iVal);
-			return S_OK;
+			return;
 		}
 		if (pvar->vt == VT_I4)
 		{
 			GetOptionsMgr()->SaveOption(name, pvar->intVal);
-			return S_OK;
+			return;
 		}
-		return E_INVALIDARG;
+		return;
 	case varprop::VT_STRING:
 		if (pvar->vt == VT_BSTR)
 		{
 			GetOptionsMgr()->SaveOption(name, pvar->bstrVal);
-			return S_OK;
+			return;
 		}
-		return E_INVALIDARG;
+		return;
 	}
-	return E_INVALIDARG;
+	return;
 }
