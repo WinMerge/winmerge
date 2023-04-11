@@ -33,7 +33,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override
 	{
-		return m_pTypeInfo->QueryInterface(riid, ppvObject);
+		return E_NOTIMPL;
 	}
 
 	ULONG STDMETHODCALLTYPE AddRef(void) override

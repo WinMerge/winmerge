@@ -50,9 +50,9 @@ Option Explicit
 
 Const RegKeyPath = "Plugins\CompareMSWordFiles.sct/"
 Dim MsgCannotGetMacros
-MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
+MsgCannotGetMacros = "${Cannot get Macros." & vbCrLf & _
 	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
-	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf & "}"
 
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
@@ -205,7 +205,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(doc) Then
-			fo.WriteLine MsgCannotGetMacros
+			fo.WriteLine Translate(MsgCannotGetMacros)
 		End If
 		For Each cmp In doc.VBProject.VBComponents
 			fo.WriteLine "[CodeModule." & cmp.Name & "]"
@@ -293,7 +293,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(doc) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
-			fo.WriteLine MsgCannotGetMacros
+			fo.WriteLine Translate(MsgCannotGetMacros)
 			fo.Close
 		End If
 		
@@ -350,7 +350,7 @@ Function ShowSettingsDialog()
 	Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
 	importSettingsFromJSONFile jsonfile
 	fso.DeleteFile tname 
-	fso.DeleteFile jsonfile     
+	fso.DeleteFile jsonfile
 End Function
 
 Sub Run(sh, cmd)

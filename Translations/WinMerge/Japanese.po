@@ -4441,6 +4441,9 @@ msgstr "図形内のテキストを比較する"
 msgid "Compare headers and footers"
 msgstr "ヘッダーとフッターを比較する"
 
+msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgstr "マクロを取得できません。\r\nWinMergeでマクロを比較するには、MS Officeを使用して、現在のアプリケーションのマクロセキュリティの設定を変更してください。\r\nWinMergeでこの機能を使用するには、「VBA プロジェクトへのアクセスを信頼する」をオンにする必要があります。\r\n"
+
 msgid "Compare VBA macros"
 msgstr "VBA マクロを比較する"
 

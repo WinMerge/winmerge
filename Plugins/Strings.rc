@@ -204,6 +204,8 @@ BEGIN
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare formulas"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare headers and footers"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 END
 
 STRINGTABLE
@@ -220,6 +222,8 @@ BEGIN
                             "Compare documents as HTML file (very slow)"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR7 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR8 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR9
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 END
 
 STRINGTABLE
@@ -238,6 +242,8 @@ BEGIN
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR5 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6 "Compare texts in notes page"
     IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR7 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR8
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 END
 
 STRINGTABLE
@@ -248,6 +254,8 @@ BEGIN
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR3 "Compare pages as image (very slow)"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR4 "Compare texts in shapes"
     IDS_PLUGIN_COMPAREMSVISIOFILES_STR5 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR6
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 END
 
 STRINGTABLE

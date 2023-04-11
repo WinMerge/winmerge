@@ -4643,6 +4643,9 @@ msgstr ""
 msgid "Compare headers and footers"
 msgstr ""
 
+msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgstr ""
+
 msgid "Compare VBA macros"
 msgstr ""
 

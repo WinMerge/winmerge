@@ -54,9 +54,9 @@ Option Explicit
 Const RegKeyPath = "Plugins\CompareMSExcelFiles.sct/"
 Const pbGroup = 6
 Dim MsgCannotGetMacros
-MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
+MsgCannotGetMacros = "${Cannot get Macros." & vbCrLf & _
 	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
-	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf & "}"
 
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
@@ -487,7 +487,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(wbk) Then
-			fo.WriteLine MsgCannotGetMacros
+			fo.WriteLine Translate(MsgCannotGetMacros)
 		End If
 		For Each cmp In wbk.VBProject.VBComponents
 			fo.WriteLine "[CodeModule." & cmp.Name & "]"
@@ -608,7 +608,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(wbk) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
-			fo.WriteLine MsgCannotGetMacros
+			fo.WriteLine Translate(MsgCannotGetMacros)
 			fo.Close
 		End If
 

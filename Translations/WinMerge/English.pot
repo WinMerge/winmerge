@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-04-09 09:22+0000\n"
+"POT-Creation-Date: 2023-04-11 23:59+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3915,6 +3915,9 @@ msgid "Compare texts in shapes"
 msgstr ""
 
 msgid "Compare headers and footers"
+msgstr ""
+
+msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
 
 msgid "Compare VBA macros"
