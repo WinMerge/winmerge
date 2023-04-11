@@ -122,16 +122,10 @@ int CIniOptionsMgr::LoadValueFromBuf(const String& strName, const String& textVa
 	}
 	else if (valType == varprop::VT_INT)
 	{
-		try
-		{
-			value.SetInt(static_cast<int>(std::stoul(textValue)));
-		}
-		catch (std::invalid_argument&)
-		{
-		}
-		catch (std::out_of_range&)
-		{
-		}
+		tchar_t* endptr = nullptr;
+		DWORD val = static_cast<DWORD>(tc::tcstoll(textValue.c_str(), &endptr, 
+			(textValue.length() >= 2 && textValue[1] == 'x') ? 16 : 10));
+		value.SetInt(static_cast<int>(val));
 		retVal = Set(strName, value);
 	}
 	else if (valType == varprop::VT_BOOL)
@@ -155,14 +149,14 @@ int CIniOptionsMgr::SaveValueToFile(const String& name, const varprop::VariantVa
 	{
 		String strVal = EscapeValue(value.GetString());
 		LPCWSTR text = strVal.c_str();
-		retValReg =WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+		retValReg = WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
 	}
 	else if (valType == varprop::VT_INT)
 	{
 		DWORD dwordVal = value.GetInt();
 		String strVal = strutils::to_str(dwordVal);
 		LPCWSTR text = strVal.c_str();
-		retValReg =WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+		retValReg = WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
 	}
 	else if (valType == varprop::VT_BOOL)
 	{

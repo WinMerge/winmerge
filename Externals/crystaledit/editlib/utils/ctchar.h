@@ -93,6 +93,7 @@ namespace tc
 	inline int ttoi(const tchar_t* str) { return static_cast<int>(wcstol(str, 0, 10)); }
 	inline long ttol(const tchar_t* str) { return wcstol(str, 0, 10); }
 	constexpr auto tcstol = wcstol;
+	constexpr auto tcstoll = wcstoll;
 	constexpr auto tcstod = wcstod;
 	inline int vsntprintf_s(wchar_t* const _Buffer, size_t const _BufferCount, size_t const _MaxCount, wchar_t const* const _Format, va_list _ArgList) { return ::_vsnwprintf_s(_Buffer, _BufferCount, _MaxCount, _Format, _ArgList); }
 	constexpr auto tcharnext = ::wcharnext;
@@ -126,6 +127,7 @@ namespace tc
 	constexpr auto ttoi = ::atoi;
 	constexpr auto ttol = ::atol;
 	constexpr auto tcstol = strtol;
+	constexpr auto tcstoll = strtoll;
 	constexpr auto tcstod = strtod;
 	inline int vsntprintf_s(char* const _Buffer, size_t const _BufferCount, size_t const _MaxCount, char const* const _Format, va_list _ArgList) { return ::_vsnprintf_s(_Buffer, _BufferCount, _MaxCount, _Format, _ArgList); }
 	constexpr auto tcharnext = ::charnext;
