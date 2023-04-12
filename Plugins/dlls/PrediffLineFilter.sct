@@ -237,6 +237,7 @@ function importSettingsFromJSONFile(filepath)
     .container { margin: 2em; }
     ul { list-style-type: none; margin: 0; padding: 0; }
     li ul li { padding-left: 2em }
+    .btn-container-top { margin-bottom: 0.5em; text-align: left; }
     .btn-container { margin-top: 1.5em; text-align: right; }
     input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
     .btn { color: #fff; background-color: #0c5; }
@@ -364,12 +365,14 @@ function importSettingsFromJSONFile(filepath)
   </head>
   <body onload="onload();">
     <div class="container">
-      <ul>
-        <li>
-          <input type="button" class="btn" value="${Add}" onclick="insertRow(-1)" />
-          <input type="button" class="btn" value="${Delete}" onclick="deleteRow(-1)" />
-        </li>
-      </ul>
+      <div class="btn-container-top">
+        <ul>
+          <li>
+            <input type="button" class="btn" value="${Add}" onclick="insertRow(-1)" />
+            <input type="button" class="btn" value="${Delete}" onclick="deleteRow(-1)" />
+          </li>
+        </ul>
+      </div>
       <ul>
         <li>
           <table id="table1" border="1">
