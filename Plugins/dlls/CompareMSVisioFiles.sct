@@ -76,10 +76,10 @@ Function regRead(Key, DefaultValue)
 	End If
 End Function
 
-Sub regWrite(Key, Value)
+Sub regWrite(Key, Value, TypeNm)
 	On Error Resume Next
 	If IsEmpty(mergeApp) Then
-		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
 	Else
 		mergeApp.SaveOption Key, Value
 	End If
@@ -352,7 +352,7 @@ function importSettingsFromJSONFile(filepath)
 	var settings = eval("(" + json + ")");
 	ts.Close();
 	for (var key in settings) {
-		regWrite(key, settings[key]);
+		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
 	}
 }
 

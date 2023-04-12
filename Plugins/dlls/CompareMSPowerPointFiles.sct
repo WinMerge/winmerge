@@ -76,10 +76,10 @@ Function regRead(Key, DefaultValue)
 	End If
 End Function
 
-Sub regWrite(Key, Value)
+Sub regWrite(Key, Value, TypeNm)
 	On Error Resume Next
 	If IsEmpty(mergeApp) Then
-		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
 	Else
 		mergeApp.SaveOption Key, Value
 	End If
@@ -352,7 +352,7 @@ Function ShowSettingsDialog()
 	End If
 	Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
 	importSettingsFromJSONFile jsonfile
-	fso.DeleteFile tname 
+	fso.DeleteFile tname
 	fso.DeleteFile jsonfile
 End Function
 
@@ -381,7 +381,7 @@ function exportSettingsToJSONFile(filepath)
 	var json = "{";
 	for (var key in key_defvalues) {
 		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
-		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val == "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
+		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val === "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
 	}
 	json = json.substr(0, json.length - 1) + "}";
 	ts.WriteLine(json);
@@ -396,7 +396,7 @@ function importSettingsFromJSONFile(filepath)
 	var settings = eval("(" + json + ")");
 	ts.Close();
 	for (var key in settings) {
-		regWrite(key, settings[key]);
+		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
 	}
 }
 
