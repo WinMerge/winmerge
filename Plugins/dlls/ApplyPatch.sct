@@ -78,7 +78,7 @@ End Sub
 Function Fmt(formatString, args)
     Dim i
     For i = 0 To UBound(args)
-        formatString = Replace(formatString, "{" & i & "}", args(i))
+        formatString = Replace(formatString, "%" & (i + 1), args(i))
     Next
     Fmt = formatString
 End Function
@@ -131,14 +131,14 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
         filePatched = regRead("Files\Right/Item_0", "")
     End If
 
-    msg = Fmt(Translate("${Enter the name of the file to which the patch '{0}' will be applied}"), Array(fso.GetFileName(fileSrc)))
+    msg = Fmt(Translate("${Enter the name of the file to which the patch '%1' will be applied}"), Array(fso.GetFileName(fileSrc)))
     Do While True
         filePatched = InputBox(msg, PLUGIN_NAME, filePatched)
         If filePatched = "" Then
             Exit Function
         End If
         If fso.FileExists(filePatched) Then Exit Do
-        MsgBox Fmt(Translate("${File '{0}' does not exist}"), Array(filePatched)), vbExclamation
+        MsgBox Fmt(Translate("${File '%1' does not exist}"), Array(filePatched)), vbExclamation
     Loop
 
     cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary ") & "$FILE"
@@ -183,7 +183,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
         dirPatched = regRead("Files\Right/Item_0", "")
     End If
 
-    msg = Fmt(Translate("${Enter the name of the folder to which the patch '{0}' will be applied}"), Array(fso.GetFileName(fileSrc)))
+    msg = Fmt(Translate("${Enter the name of the folder to which the patch '%1' will be applied}"), Array(fso.GetFileName(fileSrc)))
     Do While True
         dirPatched = InputBox(msg, PLUGIN_NAME, dirPatched)
         If dirPatched = "" Then
@@ -191,7 +191,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
             Exit Function
         End If
         If fso.FolderExists(dirPatched) Then Exit Do
-        MsgBox Fmt(Translate("${Folder '{0}' does not exist}"), dirPatched), vbExclamation
+        MsgBox Fmt(Translate("${Folder '%1' does not exist}"), dirPatched), vbExclamation
     Loop
 
     files = GetFileNamesInPatch(fileSrc)
