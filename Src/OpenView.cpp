@@ -35,6 +35,7 @@
 #include "LanguageSelect.h"
 #include "Win_VersionHelper.h"
 #include "OptionsProject.h"
+#include "Merge7zFormatMergePluginImpl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -630,13 +631,19 @@ void COpenView::OnCompare(UINT nID)
 		return;
 	}
 
-	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
-
-	if (pathsType == paths::DOES_NOT_EXIST &&
-		!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); }))
+	PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
+	PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 	{
-		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
-		return;
+		Merge7zFormatMergePluginScope scope(&tmpPackingInfo);
+
+		pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
+
+		if (pathsType == paths::DOES_NOT_EXIST &&
+			!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); }))
+		{
+			LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+			return;
+		}
 	}
 
 	for (int index = 0; index < nFiles; index++)
@@ -713,8 +720,6 @@ void COpenView::OnCompare(UINT nID)
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
 	// Copy the values in pDoc as it will be invalid when COpenFrame is closed. 
-	PackingInfo tmpPackingInfo(pDoc->m_strUnpackerPipeline);
-	PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 	PathContext tmpPathContext(pDoc->m_files);
 	std::array<fileopenflags_t, 3> dwFlags = pDoc->m_dwFlags;
 	bool recurse = pDoc->m_bRecurse;

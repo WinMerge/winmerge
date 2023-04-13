@@ -168,7 +168,7 @@ Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
 End Function
 
 Function IsFolder(file)
-    IsFolder = True
+    IsFolder = IsPatchFile(file)
 End Function
 
 Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
