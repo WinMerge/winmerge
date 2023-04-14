@@ -4480,6 +4480,9 @@ msgstr ""
 "Ignorera vissa fält - lista med ignorerade fält från programtilläggets namn "
 "eller kommandoalternativ"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "PreDiff radfilter"
 

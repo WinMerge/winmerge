@@ -3876,6 +3876,9 @@ msgstr "Wtyczka ignorująca komentarze (//... i /* ... */) w plikach C, C++, PHP
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignoruj niektóre pola - lista ignorowanych pól z nazwy wtyczki lub argumentu wtyczki"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr ""
 

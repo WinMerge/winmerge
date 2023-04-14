@@ -4463,6 +4463,9 @@ msgstr ""
 "Bazı alanlar yok sayılsın. Eklenti adı ya da eklenti parametresi ile yok "
 "sayılan alan listesi"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Ön farklılaştırıcı satır süzgeci"
 

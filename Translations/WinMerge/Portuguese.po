@@ -4431,6 +4431,9 @@ msgid "Ignore some fields - ignored fields list from the plugin name or the plug
 msgstr ""
 "Ignorar alguns campos - lista de campos ignorados do nome do plugin ou do argumento do plugin"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Filtro de linha de pré-diferenciação"
 

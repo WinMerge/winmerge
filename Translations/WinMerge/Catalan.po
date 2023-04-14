@@ -5069,6 +5069,9 @@ msgstr "El connector ignora els comentaris (//... i /* ... */) en fitxers de C, 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignora alguns camps - la llista de columnes ignorades del nom del connector o dels paràmetres del connector"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Filtre de línia per prediferenciació"
 

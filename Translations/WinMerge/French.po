@@ -5108,6 +5108,9 @@ msgstr "Le plugin ignore les commentaires (//... et /* ... */) dans les fichiers
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignorer certains champs - liste des champs ignorés depuis le nom ou argument du plugin"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Filtre de pré-comparaison de ligne"
 

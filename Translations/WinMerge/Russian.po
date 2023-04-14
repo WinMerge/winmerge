@@ -3877,6 +3877,9 @@ msgstr "Плагин игнорирует комментарии (//... и /* ..
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Игнорировать некоторые поля - список игнорируемых полей по названию или аргументу плагина"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Фильтр предсравнения строк"
 

@@ -4385,6 +4385,9 @@ msgstr "C、C++、PHP または JavaScript ファイルのコメント (//... �
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "フィールドを無視します。無視されるフィールドのリストはプラグイン ファイル名またはプラグイン引数で指定します。"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr "このプラグインは、テキストファイル（例：NCファイルやBASICファイル）の先頭にある行番号を無視します。"
+
 msgid "Prediff Line Filter"
 msgstr "比較前処理置換フィルター"
 

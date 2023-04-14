@@ -4347,6 +4347,9 @@ msgstr "Rozšírenie ignoruje komentáre (//... a /* ... */) v súboroch C, C++,
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignorovať niektoré polia - zoznam ignorovaných polí z názvu rozšírenia alebo argumentu rozšírenia"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Filter predbežného spracovania rozdielov riadku"
 

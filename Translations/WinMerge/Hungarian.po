@@ -4938,6 +4938,9 @@ msgstr "A beépülő figyelmen kívül hagyja a megjegyzéseket (//... and /* ..
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Mezők figyelmen kívül hagyása – a figyelmen kívül hagyott mezők listája a beépülő modul nevéből vagy a beépülő modul argumentumából"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Elővizsgáló Sorszűrő"
 

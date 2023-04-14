@@ -4394,6 +4394,9 @@ msgstr "U modulu d’estensione ignureghja i cummenti (//... and /* ... */) in i
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignurà certi campi - lista di i campi ignurati da u nome di u modulu d’estensione o da i parametri di u modulu d’estensione"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Filtru di linea di preparagone"
 

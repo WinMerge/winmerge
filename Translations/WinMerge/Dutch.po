@@ -4380,6 +4380,9 @@ msgstr "De plugin negeert commentaar (//... en /* ... */) in C, C++, PHP en Java
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Sommige velden negeren - lijst met genegeerde velden uit de plugin-naam of het plugin-argument"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "Voorvergelijking-regelfilter"
 

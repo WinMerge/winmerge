@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-04-12 22:25+0000\n"
+"POT-Creation-Date: 2023-04-15 08:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3867,6 +3867,9 @@ msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and Java
 msgstr ""
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgstr ""
+
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
 msgstr ""
 
 msgid "Prediff Line Filter"

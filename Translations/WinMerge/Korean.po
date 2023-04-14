@@ -5106,6 +5106,9 @@ msgstr "플러그인은 C, C++, PHP 및 JavaScript 파일의 주석(//... 및 /*
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "일부 필드 무시 - 플러그인 이름 또는 플러그인 인수에서 무시된 필드 목록"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "사전 차이 필터"
 

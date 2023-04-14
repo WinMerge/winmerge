@@ -4327,6 +4327,9 @@ msgid ""
 "argument"
 msgstr ""
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr ""
 

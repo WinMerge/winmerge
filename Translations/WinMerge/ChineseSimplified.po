@@ -4433,6 +4433,9 @@ msgid ""
 "argument"
 msgstr "忽略一些字段 - 忽略名称为插件名称或参数的字段"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "预比较行过滤器"
 
