@@ -382,19 +382,19 @@ Name: {app}\Languages\MergeTurkish.lang; Type: files
 Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('Plugins')
 
 ;Removes the user's guide icon if the user deselects the user's guide component.
-Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: not IsComponentSelected('Docs')
-Name: {group}\{cm:ReadMe}.lnk; Type: files
+Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: not IsComponentSelected('Docs') and not WizardNoIcons
+Name: {group}\{cm:ReadMe}.lnk; Type: files; Check: not WizardNoIcons
 
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
 Name: {commondesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 
 ;Removes the Uninstall icon from the start menu...
-Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files;
-Name: {group}\{cm:UninstallProgram,WinMerge}; Type: files;
+Name: {group}\{cm:UninstallProgram,WinMerge}.lnk; Type: files; Check: not WizardNoIcons
+Name: {group}\{cm:UninstallProgram,WinMerge}; Type: files; Check: not WizardNoIcons
 
 ;Remove ANSI executable link from start menu for NT-based Windows versions
 ;This was installed earlier, but not anymore.
-Name: {group}\WinMerge (ANSI).lnk; Type: files; MinVersion: 0,4
+Name: {group}\WinMerge (ANSI).lnk; Type: files; MinVersion: 0,4; Check: not WizardNoIcons
 
 Name: {app}\Docs; Type: filesandordirs
 
@@ -657,8 +657,8 @@ Name: "{app}\MergePlugins"
 
 [Icons]
 ;Start Menu Icons
-Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"
-Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
+Name: {group}\WinMerge; Filename: {app}\WinMergeU.exe; AppUserModelID: "Thingamahoochie.WinMerge"; Check: not WizardNoIcons
+Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm; Check: not WizardNoIcons
 
 ;Desktop Icon
 Name: {commondesktop}\WinMerge; Filename: {app}\WinMergeU.exe; Tasks: desktopicon
@@ -792,7 +792,7 @@ Name: {app}\Codecs; Type: filesandordirs
 Name: {app}\Formats; Type: filesandordirs
 Name: {app}\Lang; Type: filesandordirs
 
-Name: {group}; Type: dirifempty
+Name: {group}; Type: dirifempty; Check: not WizardNoIcons
 Name: {app}; Type: dirifempty
 
 
@@ -808,7 +808,7 @@ Var
     strGroup_Path: string;
 Begin
     {Saves the path that Inno Setup intended to create the start menu group at}
-    strGroup_Path := ExpandConstant('{group}');
+    if not WizardNoIcons Then strGroup_Path := ExpandConstant('{group}');
 
     {If the start menu path isn't blank then..}
     if strGroup_Path <> '' Then
@@ -866,7 +866,7 @@ Begin
     strOld := OldGroup();
 
     {Detects the current start menu group's path, if any (not creating a group is a valid option)}
-    strNew := ExpandConstant('{group}');
+    If not WizardNoIcons Then strNew := ExpandConstant('{group}');
 
     {removes the start menu portion of the path from the group path making it match the format of strOld}
     StringChange(strNew, ExpandConstant('{commonprograms}\'), '')
