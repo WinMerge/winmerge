@@ -364,7 +364,7 @@ STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
 	return S_OK;
 }
 
-STDMETHODIMP CWinMergeScript::OnEvent(int iEventType, IDispatch* pDispatch)
+STDMETHODIMP CWinMergeScript::PluginOnEvent(int iEventType, IDispatch* pDispatch)
 {
 	m_pMergeApp = pDispatch;
 	return S_OK;

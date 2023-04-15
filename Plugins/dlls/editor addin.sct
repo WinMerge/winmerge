@@ -20,7 +20,7 @@
 		<get/>
 		<put/>
 	</property>
-	<method name="OnEvent"/>
+	<method name="PluginOnEvent"/>
 	<method name="ExecFilterCommand"/>
 	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
@@ -417,7 +417,7 @@ Function SplitLines(text, eol)
 	SplitLines = Split(text, eol)
 End Function
 
-Sub OnEvent(eventType, obj)
+Sub PluginOnEvent(eventType, obj)
 	Set mergeApp = obj
 End Sub
 

@@ -72,7 +72,7 @@ public:
 	bool        m_disabled;
 	bool        m_hasArgumentsProperty;
 	bool        m_hasVariablesProperty;
-	bool        m_hasOnEventMethod;
+	bool        m_hasPluginOnEventMethod;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
@@ -101,9 +101,9 @@ friend class CAllThreadsScripts;
 public:
 	IDispatch* GetHostObject() const { return m_pHostObject; };
 	void SetHostObject(IDispatch* pHostObject);
-	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
-	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
-	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
+	PluginArray * GetAvailableScripts(const wchar_t *transformatiPluginOnEvent);
+	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformatiPluginOnEvent, const String& filteredText);
+	PluginInfo * GetPluginByName(const wchar_t *transformatiPluginOnEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
 	void SaveSettings();
 
@@ -123,7 +123,7 @@ private:
 	unsigned long m_nThreadId;
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
-	int nTransformationEvents;
+	int nTransformatiPluginOnEvents;
 	std::map<String, PluginArrayPtr> m_aPluginsByEvent;
 	IDispatch* m_pHostObject;
 };
@@ -262,8 +262,8 @@ bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript);
 bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
 
 /**
- * @brief call the plugin "OnEvent" method 
+ * @brief call the plugin "PluginOnEvent" method 
  */
-bool InvokeOnEvent(int eventType, LPDISPATCH piScript);
+bool InvokePluginOnEvent(int eventType, LPDISPATCH piScript);
 
 }

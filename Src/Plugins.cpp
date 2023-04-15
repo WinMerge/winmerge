@@ -230,7 +230,7 @@ PluginInfo::PluginInfo()
 	, m_disabled(false)
 	, m_hasArgumentsProperty(false)
 	, m_hasVariablesProperty(false)
-	, m_hasOnEventMethod(false)
+	, m_hasPluginOnEventMethod(false)
 	, m_bAutomaticDefault(false)
 {	
 }
@@ -239,8 +239,8 @@ PluginInfo::~PluginInfo()
 {
 	if (m_lpDispatch != nullptr)
 	{
-		if (m_hasOnEventMethod)
-			plugin::InvokeOnEvent(EVENTID_TERMINATE, m_lpDispatch);
+		if (m_hasPluginOnEventMethod)
+			plugin::InvokePluginOnEvent(EVENTID_TERMINATE, m_lpDispatch);
 		m_lpDispatch->Release();
 	}
 }
@@ -460,7 +460,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	auto SearchScriptForMethodName = [&methodNamesArray](const tchar_t* name) -> bool
 	{ return std::find(methodNamesArray.begin(), methodNamesArray.end(), name) != methodNamesArray.end(); };
 
-	// Is this plugin for this transformationEvent ?
+	// Is this plugin for this transformatiPluginOnEvent ?
 	VARIANT ret;
 	// invoke mandatory method get PluginEvent
 	VariantInit(&ret);
@@ -645,15 +645,15 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// get optional property PluginVariables
 	m_hasVariablesProperty = SearchScriptForDefinedProperties(L"PluginVariables");
 
-	// get optional method OnEvent
-	m_hasOnEventMethod = SearchScriptForMethodName(L"OnEvent");
-	if (m_hasOnEventMethod)
+	// get optional method PluginOnEvent
+	m_hasPluginOnEventMethod = SearchScriptForMethodName(L"PluginOnEvent");
+	if (m_hasPluginOnEventMethod)
 	{
-		h = plugin::InvokeOnEvent(EVENTID_INITIALIZE, lpDispatch);
+		h = plugin::InvokePluginOnEvent(EVENTID_INITIALIZE, lpDispatch);
 		if (FAILED(h))
 		{
-			scinfo.Log(_T("Plugin had OnEvent method, but an error occurred while calling the method"));
-			return -130; // error (Plugin had OnEvent method, but an error occurred while calling the method)
+			scinfo.Log(_T("Plugin had PluginOnEvent method, but an error occurred while calling the method"));
+			return -130; // error (Plugin had PluginOnEvent method, but an error occurred while calling the method)
 		}
 	}
 
@@ -946,7 +946,7 @@ CScriptsOfThread::CScriptsOfThread()
 	for (i = 0 ;  ; i ++)
 		if (TransformationCategories[i] == nullptr)
 			break;
-	nTransformationEvents = i;
+	nTransformatiPluginOnEvents = i;
 
 	// initialize the thread data
 	m_nThreadId = GetCurrentThreadId();
@@ -983,11 +983,11 @@ void CScriptsOfThread::SetHostObject(IDispatch* pHostObject)
 		m_pHostObject->AddRef();
 }
 
-PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformationEvent)
+PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatiPluginOnEvent)
 {
 	if (m_aPluginsByEvent.empty())
 		m_aPluginsByEvent = ::GetAvailableScripts();
-	if (auto it = m_aPluginsByEvent.find(transformationEvent); it != m_aPluginsByEvent.end())
+	if (auto it = m_aPluginsByEvent.find(transformatiPluginOnEvent); it != m_aPluginsByEvent.end())
 		return it->second.get();
 	// return a pointer to an empty list
 	static PluginArray noPlugin;
@@ -1037,9 +1037,9 @@ void CScriptsOfThread::ReloadAllScripts()
 	m_aPluginsByEvent = ::GetAvailableScripts();
 }
 
-PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
+PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformatiPluginOnEvent, const String& filteredText)
 {
-	PluginArray * piFileScriptArray = GetAvailableScripts(transformationEvent);
+	PluginArray * piFileScriptArray = GetAvailableScripts(transformatiPluginOnEvent);
 	for (size_t step = 0 ; step < piFileScriptArray->size() ; step ++)
 	{
 		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
@@ -1052,13 +1052,13 @@ PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transfor
 	return nullptr;
 }
 
-PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEvent, const String& name)
+PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformatiPluginOnEvent, const String& name)
 {
 	if (m_aPluginsByEvent.empty())
 		m_aPluginsByEvent = ::GetAvailableScripts();
 	for (auto [key, pArray] : m_aPluginsByEvent)
 	{
-		if (!transformationEvent || key == transformationEvent)
+		if (!transformatiPluginOnEvent || key == transformatiPluginOnEvent)
 		{
 			for (size_t j = 0; j < pArray->size(); j++)
 				if (pArray->at(j)->m_name == name)
@@ -1683,7 +1683,7 @@ bool InvokePutPluginVariables(const String& vars, LPDISPATCH piScript)
 	return SUCCEEDED(h);
 }
 
-bool InvokeOnEvent(int eventType, LPDISPATCH piScript)
+bool InvokePluginOnEvent(int eventType, LPDISPATCH piScript)
 {
 	// argument wmobj
 	VARIANT vdispHostObject{ VT_DISPATCH };
@@ -1693,7 +1693,7 @@ bool InvokeOnEvent(int eventType, LPDISPATCH piScript)
 	VARIANT viEventType{ VT_I4 };
 	viEventType.intVal = eventType;
 
-	HRESULT h = ::safeInvokeW(piScript, nullptr, L"OnEvent", opFxn[2], vdispHostObject, viEventType);
+	HRESULT h = ::safeInvokeW(piScript, nullptr, L"PluginOnEvent", opFxn[2], vdispHostObject, viEventType);
 	return SUCCEEDED(h);
 }
 

@@ -643,7 +643,7 @@ struct Loader
 					int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
 					for (int i = 0; i < validFuncs; ++i)
 					{
-						if (namesArray[i] == L"OnEvent")
+						if (namesArray[i] == L"PluginOnEvent")
 							continue;
 						if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
 							plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);

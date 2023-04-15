@@ -15,7 +15,7 @@
   <property name="PluginExtendedProperties">
     <get/>
   </property>
-  <method name="OnEvent"/>
+  <method name="PluginOnEvent"/>
   <method name="PrediffBufferW"/>
   <method name="ShowSettingsDialog"/>
 </implements>
@@ -88,7 +88,7 @@ Function get_PluginExtendedProperties()
   get_PluginExtendedProperties = "MenuCaption=Apply Prediff Substitution Filters"
 End Function
 
-Sub OnEvent(eventType, obj)
+Sub PluginOnEvent(eventType, obj)
   Set mergeApp = obj
 End Sub
 

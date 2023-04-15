@@ -18,7 +18,7 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
-	<method name="OnEvent"/>
+	<method name="PluginOnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -420,7 +420,7 @@ Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
 End Function
 
-Sub OnEvent(eventType, obj)
+Sub PluginOnEvent(eventType, obj)
 	Set mergeApp = obj
 End Sub
 
