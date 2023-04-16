@@ -86,6 +86,7 @@ protected:
 	afx_msg void OnSelchangeUnpackerName();
 	afx_msg void OnClickedAddPipe();
 	afx_msg void OnChangePipeline();
+	afx_msg void OnClickedSettings();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
