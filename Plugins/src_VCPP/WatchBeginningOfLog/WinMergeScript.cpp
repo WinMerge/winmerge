@@ -55,7 +55,7 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	ofstream output(W2T(fileDst), ios::out | ios::binary);
 
 	input.seekg(0L, ios::end);
-	int len = input.tellg();
+	intptr_t len = input.tellg();
 	input.seekg(0L, ios::beg);
 
 	char buffer[65536];

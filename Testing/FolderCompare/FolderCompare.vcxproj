@@ -667,6 +667,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\Src\MergeAppCOMClass.cpp" />
     <ClCompile Include="..\..\Src\MovedBlocks.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -840,6 +841,7 @@
     <ClInclude Include="..\..\Src\Common\lwdisp.h" />
     <ClInclude Include="..\..\Src\markdown.h" />
     <ClInclude Include="..\..\Src\MergeApp.h" />
+    <ClInclude Include="..\..\Src\MergeAppCOMClass.h" />
     <ClInclude Include="..\..\Src\MovedLines.h" />
     <ClInclude Include="..\..\Src\Common\multiformatText.h" />
     <ClInclude Include="..\..\Src\OptionsDef.h" />

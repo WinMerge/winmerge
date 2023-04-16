@@ -31,6 +31,7 @@
 #include "DirTravel.h"
 #include "paths.h"
 #include "Plugins.h"
+#include "MergeAppCOMClass.h"
 #include "MergeApp.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -87,7 +88,7 @@ public:
 		FolderCmp fc(m_pCtxt);
 		// keep the scripts alive during the Rescan
 		// when we exit the thread, we delete this and release the scripts
-		CAssureScriptsForThread scriptsForRescan;
+		CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 
 		AutoPtr<Notification> pNf(m_queue.waitDequeueNotification());
 		while (pNf.get() != nullptr)

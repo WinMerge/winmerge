@@ -506,7 +506,6 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	LeaveCriticalSection(&m_cs);
 
 	return retVal;
-
 }
 
 int CRegOptionsMgr::FlushOptions()

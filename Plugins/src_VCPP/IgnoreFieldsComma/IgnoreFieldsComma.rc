@@ -13,53 +13,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 (日本) resources
-
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
-LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
-#pragma code_page(932)
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Dialog
-//
-
-IDD_DIALOG1 DIALOGEX 0, 0, 240, 68
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "設定"
-FONT 8, "MS Shell Dlg", 400, 0, 0x80
-BEGIN
-    LTEXT           "無視する列番号\n例)  3,10-20,32-33\n",IDC_STATIC,6,6,228,18
-    EDITTEXT        IDC_EDIT1,6,30,228,14,ES_AUTOHSCROLL
-    DEFPUSHBUTTON   "OK",IDOK,132,48,50,14
-    PUSHBUTTON      "キャンセル",IDCANCEL,186,48,50,14
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO
-BEGIN
-    IDD_DIALOG1, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 233
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 61
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-#endif    // 日本語 (日本) resources
-/////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////////////////////////////////////////////////////////////
-// 英語 (米国) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -107,8 +61,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,1,5
- PRODUCTVERSION 1,0,1,5
+ FILEVERSION 1,0,1,6
+ PRODUCTVERSION 1,0,1,6
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -124,12 +78,12 @@ BEGIN
         BLOCK "040904b0"
         BEGIN
             VALUE "FileDescription", "IgnoreFieldsComma Module"
-            VALUE "FileVersion", "1.0.1.5"
+            VALUE "FileVersion", "1.0.1.6"
             VALUE "InternalName", "IgnoreFieldsComma"
-            VALUE "LegalCopyright", "Copyright 2003-2021"
+            VALUE "LegalCopyright", "Copyright 2003-2023"
             VALUE "OriginalFilename", "IgnoreFieldsComma.DLL"
             VALUE "ProductName", "IgnoreFieldsComma Module"
-            VALUE "ProductVersion", "1.0.1.5"
+            VALUE "ProductVersion", "1.0.1.6"
         END
     END
     BLOCK "VarFileInfo"
@@ -175,7 +129,7 @@ BEGIN
     IDS_PROJNAME            "IgnoreFieldsComma"
 END
 
-#endif    // 英語 (米国) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

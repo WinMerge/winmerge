@@ -60,6 +60,7 @@
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
 #include "OptionsProject.h"
+#include "MergeAppCOMClass.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -383,7 +384,7 @@ BOOL CMergeApp::InitInstance()
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 
-	m_mainThreadScripts = new CAssureScriptsForThread;
+	m_mainThreadScripts = new CAssureScriptsForThread(new MergeAppCOMClass());
 
 	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
 	{
@@ -1511,6 +1512,11 @@ String CMergeApp::LoadString(UINT id) const
 }
 
 bool CMergeApp::TranslateString(const std::string& str, String& translated_str) const
+{
+	return m_pLangDlg->TranslateString(str, translated_str);
+}
+
+bool CMergeApp::TranslateString(const std::wstring& str, String& translated_str) const
 {
 	return m_pLangDlg->TranslateString(str, translated_str);
 }

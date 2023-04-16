@@ -840,6 +840,8 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					bool matched = plugin->TestAgainstRegList(filteredFilenames);
 					for (int i = 0; i < nScriptFnc; ++i, ++id)
 					{
+						if (scriptNamesArray[i] == L"PluginOnEvent")
+							continue;
 						const auto menuCaption = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".MenuCaption"));
 						auto processType = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".ProcessType"));
 						if (!processType.has_value())

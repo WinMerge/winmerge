@@ -1,5 +1,4 @@
 <scriptlet>
-
 <implements type="Automation" id="dispatcher">
 	<property name="PluginEvent">
 		<get/>
@@ -21,6 +20,7 @@
 		<get/>
 		<put/>
 	</property>
+	<method name="PluginOnEvent"/>
 	<method name="ExecFilterCommand"/>
 	<method name="MakeUpper"/>
 	<method name="MakeLower"/>
@@ -40,12 +40,12 @@
 <script language="VBS">
 Option Explicit
 
-Const WinMergeRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\"
-Const PluginRegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\editor addin.sct\"
+Const PluginRegKeyPath = "Plugins\editor addin.sct/"
 
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
 Dim arguments: arguments = ""
 Dim variables: variables = Array()
+Dim mergeApp
 
 Function get_PluginEvent()
 	get_PluginEvent = "EDITOR_SCRIPT"
@@ -141,8 +141,21 @@ End Sub
 Function regRead(Key, DefaultValue)
 	regRead = DefaultValue
 	On Error Resume Next
-	regRead = wsh.RegRead(Key)
+	If IsEmpty(mergeApp) Then
+		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
+	Else
+		regRead = mergeApp.GetOption(Key, DefaultValue)
+	End If
 End Function
+
+Sub regWrite(Key, Value)
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value
+	Else
+		mergeApp.SaveOption Key, Value
+	End If
+End Sub
 
 Function ReplaceVariables(str)
 	Dim newstr
@@ -404,6 +417,10 @@ Function SplitLines(text, eol)
 	SplitLines = Split(text, eol)
 End Function
 
+Sub PluginOnEvent(eventType, obj)
+	Set mergeApp = obj
+End Sub
+
 ' transformation functions
 Function MakeUpper(Text)
 	MakeUpper = UCase(Text)
@@ -419,7 +436,7 @@ Function ExecFilterCommand(Text)
 		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
 		cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
 		If cmd <> "" Then
-			wsh.RegWrite PluginRegKeyPath & "ExecFilterCommand", cmd
+			regWrite PluginRegKeyPath & "ExecFilterCommand", cmd
 		End If
 		cmd = ReplaceVariables(cmd)
 	Else
@@ -473,7 +490,7 @@ Function SelectColumns(Text)
 		args = regRead(PluginRegKeyPath & "SelectColumns", "")
 		args = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectColumns", args)
 		If args <> "" Then
-			wsh.RegWrite PluginRegKeyPath & "SelectColumns", args
+			regWrite PluginRegKeyPath & "SelectColumns", args
 		End If
 	Else
 		args = arguments
@@ -521,7 +538,7 @@ Function SelectLines(Text)
 		args = regRead(PluginRegKeyPath & "SelectLines", "")
 		args = InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectLines", args)
 		If args <> "" Then
-			wsh.RegWrite PluginRegKeyPath & "SelectLines", args
+			regWrite PluginRegKeyPath & "SelectLines", args
 		End If
 	Else
 		args = arguments
@@ -582,7 +599,7 @@ Function ReplaceText(Text)
 		args = regRead(PluginRegKeyPath & "Replace", "")
 		args = InputBox("Enter the search text and replacement text:", "Replace", args)
 		If args <> "" Then
-			wsh.RegWrite PluginRegKeyPath & "Replace", args
+			regWrite PluginRegKeyPath & "Replace", args
 		End If
 	Else
 		args = arguments
@@ -623,7 +640,7 @@ Function Tokenize(Text)
 		pattern = regRead(PluginRegKeyPath & "Tokenize", "")
 		pattern = InputBox("Enter regex to tokenize (e.g. [^\w]+):", "Tokenize", pattern)
 		If pattern <> "" Then
-			wsh.RegWrite PluginRegKeyPath & "Tokenize", pattern
+			regWrite PluginRegKeyPath & "Tokenize", pattern
 		End If
 	Else
 		pattern = arguments

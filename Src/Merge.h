@@ -38,6 +38,7 @@ class SubstitutionFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
 class PackingInfo;
+class MergeAppCOMClass;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -75,6 +76,7 @@ public:
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
 	bool TranslateString(const std::string&, String&) const;
+	bool TranslateString(const std::wstring&, String&) const;
 	std::wstring LoadDialogCaption(const tchar_t*) const;
 
 	CMergeApp();
