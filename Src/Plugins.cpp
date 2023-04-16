@@ -649,8 +649,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	m_hasPluginOnEventMethod = SearchScriptForMethodName(L"PluginOnEvent");
 	if (m_hasPluginOnEventMethod)
 	{
-		h = plugin::InvokePluginOnEvent(EVENTID_INITIALIZE, lpDispatch);
-		if (FAILED(h))
+		if (!plugin::InvokePluginOnEvent(EVENTID_INITIALIZE, lpDispatch))
 		{
 			scinfo.Log(_T("Plugin had PluginOnEvent method, but an error occurred while calling the method"));
 			return -130; // error (Plugin had PluginOnEvent method, but an error occurred while calling the method)

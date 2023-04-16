@@ -312,7 +312,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	delete [] aExcludedRanges;
 
 	// set the new size
-	*pSize = pDst - pBeginText;
+	*pSize = static_cast<int>(pDst - pBeginText);
 
 	if (*pSize == nSize)
 		*pbChanged = VARIANT_FALSE;
