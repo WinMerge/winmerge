@@ -460,7 +460,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	auto SearchScriptForMethodName = [&methodNamesArray](const tchar_t* name) -> bool
 	{ return std::find(methodNamesArray.begin(), methodNamesArray.end(), name) != methodNamesArray.end(); };
 
-	// Is this plugin for this transformatiPluginOnEvent ?
+	// Is this plugin for this transformationEvent ?
 	VARIANT ret;
 	// invoke mandatory method get PluginEvent
 	VariantInit(&ret);
@@ -945,7 +945,7 @@ CScriptsOfThread::CScriptsOfThread()
 	for (i = 0 ;  ; i ++)
 		if (TransformationCategories[i] == nullptr)
 			break;
-	nTransformatiPluginOnEvents = i;
+	nTransformationEvents = i;
 
 	// initialize the thread data
 	m_nThreadId = GetCurrentThreadId();
@@ -982,11 +982,11 @@ void CScriptsOfThread::SetHostObject(IDispatch* pHostObject)
 		m_pHostObject->AddRef();
 }
 
-PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformatiPluginOnEvent)
+PluginArray * CScriptsOfThread::GetAvailableScripts(const wchar_t *transformationEvent)
 {
 	if (m_aPluginsByEvent.empty())
 		m_aPluginsByEvent = ::GetAvailableScripts();
-	if (auto it = m_aPluginsByEvent.find(transformatiPluginOnEvent); it != m_aPluginsByEvent.end())
+	if (auto it = m_aPluginsByEvent.find(transformationEvent); it != m_aPluginsByEvent.end())
 		return it->second.get();
 	// return a pointer to an empty list
 	static PluginArray noPlugin;
@@ -1036,9 +1036,9 @@ void CScriptsOfThread::ReloadAllScripts()
 	m_aPluginsByEvent = ::GetAvailableScripts();
 }
 
-PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformatiPluginOnEvent, const String& filteredText)
+PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText)
 {
-	PluginArray * piFileScriptArray = GetAvailableScripts(transformatiPluginOnEvent);
+	PluginArray * piFileScriptArray = GetAvailableScripts(transformationEvent);
 	for (size_t step = 0 ; step < piFileScriptArray->size() ; step ++)
 	{
 		const PluginInfoPtr & plugin = piFileScriptArray->at(step);
@@ -1051,13 +1051,13 @@ PluginInfo *CScriptsOfThread::GetAutomaticPluginByFilter(const wchar_t *transfor
 	return nullptr;
 }
 
-PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformatiPluginOnEvent, const String& name)
+PluginInfo * CScriptsOfThread::GetPluginByName(const wchar_t *transformationEvent, const String& name)
 {
 	if (m_aPluginsByEvent.empty())
 		m_aPluginsByEvent = ::GetAvailableScripts();
 	for (auto [key, pArray] : m_aPluginsByEvent)
 	{
-		if (!transformatiPluginOnEvent || key == transformatiPluginOnEvent)
+		if (!transformationEvent || key == transformationEvent)
 		{
 			for (size_t j = 0; j < pArray->size(); j++)
 				if (pArray->at(j)->m_name == name)

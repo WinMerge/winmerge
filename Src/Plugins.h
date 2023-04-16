@@ -101,9 +101,9 @@ friend class CAllThreadsScripts;
 public:
 	IDispatch* GetHostObject() const { return m_pHostObject; };
 	void SetHostObject(IDispatch* pHostObject);
-	PluginArray * GetAvailableScripts(const wchar_t *transformatiPluginOnEvent);
-	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformatiPluginOnEvent, const String& filteredText);
-	PluginInfo * GetPluginByName(const wchar_t *transformatiPluginOnEvent, const String& name);
+	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
+	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
+	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
 	PluginInfo * GetPluginInfo(LPDISPATCH piScript);
 	void SaveSettings();
 
@@ -123,7 +123,7 @@ private:
 	unsigned long m_nThreadId;
 	/// Result of CoInitialize
 	HRESULT hrInitialize;
-	int nTransformatiPluginOnEvents;
+	int nTransformationEvents;
 	std::map<String, PluginArrayPtr> m_aPluginsByEvent;
 	IDispatch* m_pHostObject;
 };
