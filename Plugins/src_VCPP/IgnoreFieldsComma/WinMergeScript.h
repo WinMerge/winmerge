@@ -8,7 +8,6 @@
 // change 1 : add this include
 #include "typeinfoex.h"
 #include <atlstr.h>
-#include <atlbase.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript

@@ -15,7 +15,7 @@ static std::pair<CString, CString> SplitKeyValueName(BSTR bstrName)
 	{
 		if (*p == '/')
 		{
-			key += CString(bstrName, p - bstrName);
+			key += CString(bstrName, static_cast<int>(p - bstrName));
 			valueName = p + 1;
 			break;
 		}
@@ -35,7 +35,7 @@ HRESULT MergeApp_GetOption(IDispatch* pDispatch, BSTR bstrName, VARIANT& varDefa
 		CRegKey reg;
 		if (reg.Open(HKEY_CURRENT_USER, key.first, KEY_READ) != ERROR_SUCCESS)
 			return S_OK;
-		DWORD dwType;
+		DWORD dwType = 0;
 		ULONG nBytes = 0;
 		if (reg.QueryValue(key.second, &dwType, nullptr, &nBytes) != ERROR_SUCCESS)
 			return S_OK;
@@ -57,8 +57,11 @@ HRESULT MergeApp_GetOption(IDispatch* pDispatch, BSTR bstrName, VARIANT& varDefa
 	}
 	VARIANT varName{ VT_BSTR };
 	varName.bstrVal = bstrName;
+	VARIANT varDefaultRef;
+	varDefaultRef.vt = VT_VARIANT | VT_BYREF;
+	varDefaultRef.pvarVal = &varDefault;
 	CComDispatchDriver drv(pDispatch);
-	return drv.Invoke2(DISPID_GetOption, &varName, &varDefault, pvarResult);
+	return drv.Invoke2(DISPID_GetOption, &varName, &varDefaultRef, pvarResult);
 }
 
 CString MergeApp_GetOptionString(IDispatch* pDispatch, const CString& sName, const CString& sDefault)
@@ -79,7 +82,6 @@ HRESULT MergeApp_SaveOption(IDispatch* pDispatch, BSTR bstrName, VARIANT& varVal
 		CRegKey reg;
 		if (reg.Create(HKEY_CURRENT_USER, key.first, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE) != ERROR_SUCCESS)
 			return E_INVALIDARG;
-		DWORD dwType;
 		ULONG nBytes = 0;
 		const VARIANT* pvar = ((varValue.vt & VT_BYREF) != 0) ? varValue.pvarVal : &varValue;
 		switch (pvar->vt)
@@ -100,9 +102,11 @@ HRESULT MergeApp_SaveOption(IDispatch* pDispatch, BSTR bstrName, VARIANT& varVal
 		return S_OK;
 	}
 	VARIANT varName{ VT_BSTR };
+	VARIANT varValueRef{ VT_VARIANT | VT_BYREF };
 	varName.bstrVal = bstrName;
+	varValueRef.pvarVal = &varValue;
 	CComDispatchDriver drv(pDispatch);
-	return drv.Invoke2(DISPID_SaveOption, &varName, &varValue);
+	return drv.Invoke2(DISPID_SaveOption, &varName, &varValueRef);
 }
 
 BSTR MergeApp_Translate(IDispatch* pDispatch, BSTR bstrText)
