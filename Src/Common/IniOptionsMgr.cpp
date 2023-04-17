@@ -371,3 +371,32 @@ int CIniOptionsMgr::FlushOptions()
 	return retVal;
 }
 
+int CIniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
+{
+	for (auto& [key, value] : m_iniFileKeyValues)
+	{
+		if (m_optionsMap.find(key) == m_optionsMap.end())
+		{
+			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
+				EscapeValue(value).c_str(), filename.c_str());
+		}
+	}
+	return COptionsMgr::ExportOptions(filename, bHexColor);
+}
+
+int CIniOptionsMgr::ImportOptions(const String& filename)
+{
+	int retVal = COptionsMgr::ImportOptions(filename);
+	auto iniFileMap = Load(filename);
+	for (auto& [key, value] : iniFileMap)
+	{
+		if (m_optionsMap.find(key) == m_optionsMap.end())
+		{
+			m_iniFileKeyValues.insert_or_assign(key, value);
+			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
+				EscapeValue(value).c_str(), GetFilePath());
+		}
+	}
+	return retVal;
+}
+
