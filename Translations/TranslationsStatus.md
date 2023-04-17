@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-04-17**:
+Status from **2023-04-18**:
 
 ## WinMerge
 
@@ -11,7 +11,7 @@ Status from **2023-04-17**:
 | Brazilian            |  1287 |       1287 |     0 |            0 |    100 % |   2023-04-1 |
 | Bulgarian            |  1287 |       1019 |     0 |          268 |     79 % |  2021-06-28 |
 | Catalan              |  1287 |       1182 |     0 |          105 |     91 % |             |
-| ChineseSimplified    |  1287 |       1245 |     0 |           42 |     96 % |             |
+| ChineseSimplified    |  1287 |       1287 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1287 |       1121 |     0 |          166 |     87 % |  2022-02-19 |
 | Corsican             |  1287 |       1245 |     0 |           42 |     96 % |  2023-03-12 |
 | Croatian             |  1287 |        631 |     1 |          655 |     49 % |  2009-02-13 |
