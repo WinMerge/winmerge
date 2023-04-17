@@ -4506,7 +4506,7 @@ msgid "Compare VBA macros"
 msgstr "比较 VBA 宏"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr "CompareMSWordFiles.sct 插件选项"
+msgstr "CompareMSWordFiles 插件选项"
 
 msgid "Extract document data to multiple files"
 msgstr "提取文档数据到多个文件"
@@ -4521,7 +4521,7 @@ msgid "Compare documents as HTML file (very slow)"
 msgstr "以 HTML 文件形式比较文档（非常慢）"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr "CompareMSPowerPointFiles.sct 插件选项"
+msgstr "CompareMSPowerPointFiles 插件选项"
 
 msgid "Extract slide data to multiple files"
 msgstr "提取幻灯片数据到多个文件"
@@ -4533,7 +4533,7 @@ msgid "Compare texts in notes page"
 msgstr "比较备注页的文本"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr "CompareMSVisioFiles.sct 插件选项"
+msgstr "CompareMSVisioFiles 插件选项"
 
 msgid "Extract page data to multiple files"
 msgstr "提取页面数据到多个文件"
@@ -4542,7 +4542,7 @@ msgid "Compare pages as image (very slow)"
 msgstr "以图像形式比较页面（非常慢）"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr "PrediffLineFilter.sct 插件选项"
+msgstr "PrediffLineFilter 插件选项"
 
 msgid "Delete"
 msgstr "删除"
