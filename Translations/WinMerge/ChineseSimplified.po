@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-03-12 19:56+0000\n"
+"POT-Creation-Date: 2023-04-15 08:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Yin Gang <zenith.yin@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
@@ -4433,8 +4433,10 @@ msgid ""
 "argument"
 msgstr "忽略一些字段 - 忽略名称为插件名称或参数的字段"
 
-msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr ""
+msgid ""
+"This plugin ignores the leading line numbers in text files (e.g. NC and "
+"BASIC files)."
+msgstr "这个插件忽略在文本文件中行首的行号（比如 NC 和 BASIC 的文件）。"
 
 msgid "Prediff Line Filter"
 msgstr "预比较行过滤器"
@@ -4457,128 +4459,139 @@ msgstr ""
 "参数：传递给 reg.exe 的命令行选项。"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSExcelFiles 插件选项"
 
 msgid "Extract workbook data to multiple files"
-msgstr ""
+msgstr "提取工作簿数据到多个文件"
 
 msgid "Update external references(links)"
-msgstr ""
+msgstr "更新外部引用（链接）"
 
 msgid "Compare document properties"
-msgstr ""
+msgstr "比较文件属性"
 
 msgid "Compare names"
-msgstr ""
+msgstr "比较名称"
 
 msgid "Compare cell values"
-msgstr ""
+msgstr "比较单元格值"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr ""
+msgstr "以图像形式比较工作表（非常慢）"
 
 msgid " - Image split size: "
-msgstr ""
+msgstr " - 图像分割尺寸： "
 
 msgid "Compare worksheets as HTML"
-msgstr ""
+msgstr "以 HTML 形式比较工作表"
 
 msgid "Compare formulas"
-msgstr ""
+msgstr "比较公式"
 
 msgid "Compare texts in shapes"
-msgstr ""
+msgstr "比较图形里的文本"
 
 msgid "Compare headers and footers"
-msgstr ""
+msgstr "比较页眉和页脚"
 
-msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
-msgstr ""
+msgid ""
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings "
+"in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to "
+"use this feature in WinMerge.\r\n"
+msgstr "无法获取宏。\n"
 
 msgid "Compare VBA macros"
-msgstr ""
+msgstr "比较 VBA 宏"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSWordFiles 插件选项"
 
 msgid "Extract document data to multiple files"
-msgstr ""
+msgstr "提取文档数据到多个文件"
 
 msgid "Compare bookmarks"
-msgstr ""
+msgstr "比较书签"
 
 msgid "Compare text contents of documents"
-msgstr ""
+msgstr "比较文档的文本内容"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr ""
+msgstr "以 HTML 文件形式比较文档（非常慢）"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSPowerPointFiles 插件选项"
 
 msgid "Extract slide data to multiple files"
-msgstr ""
+msgstr "提取幻灯片数据到多个文件"
 
 msgid "Compare slides as image (very slow)"
-msgstr ""
+msgstr "以图像形式比较幻灯片（非常慢）"
 
 msgid "Compare texts in notes page"
-msgstr ""
+msgstr "比较备注页的文本"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSVisioFiles 插件选项"
 
 msgid "Extract page data to multiple files"
-msgstr ""
+msgstr "提取页面数据到多个文件"
 
 msgid "Compare pages as image (very slow)"
-msgstr ""
+msgstr "以图像形式比较页面（非常慢）"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "PrediffLineFilter 插件选项"
 
 msgid "Delete"
-msgstr ""
+msgstr "删除"
 
 msgid "Enabled"
-msgstr ""
+msgstr "启用"
 
 msgid "Ignore Case"
-msgstr ""
+msgstr "忽略大小写"
 
 msgid "Use RegExp"
-msgstr ""
+msgstr "使用正则表达式"
 
 msgid "Find what"
-msgstr ""
+msgstr "查找内容"
 
 msgid "Replace with"
-msgstr ""
+msgstr "替换为"
 
 msgid "Settings"
-msgstr ""
+msgstr "设置"
 
-msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
 msgstr ""
+"忽略的列范围：\n"
+"例如：3, 10-20, 32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr ""
+msgstr "输入想要应用补丁 '%1' 的文件名称"
 
 #, c-format
 msgid "File '%1' does not exist"
-msgstr ""
+msgstr "文件 '%1' 不存在"
 
 msgid "Enter the command line arguments for patch command"
-msgstr ""
+msgstr "输入补丁命令的命令行参数"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr ""
+msgstr "输入想要应用补丁 '%1' 的文件夹名称"
 
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr ""
+msgstr "文件夹 '%1' 不存在"
 
-msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr ""
+msgid ""
+"Do not specify the '-p0' command line option for the patch file which "
+"includes absolute paths"
+msgstr "不需要为包含了绝对路径的 补丁文件指定 '-p0' 命令行选项"
