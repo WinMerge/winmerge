@@ -530,6 +530,14 @@ int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /
 	return retVal;
 }
 
+int CRegOptionsMgr::ImportOptions(const String& filename)
+{
+	int retVal = ImportAllUnloadedValues(filename);
+	if (retVal == COption::OPT_OK)
+		retVal = COptionsMgr::ImportOptions(filename);
+	return retVal;
+}
+
 int CRegOptionsMgr::ExportAllUnloadedValues(HKEY hKey, const String& strPath, const String& filename) const
 {
 	DWORD dwIndex = 0;
@@ -610,6 +618,38 @@ int CRegOptionsMgr::ExportAllUnloadedValues(HKEY hKey, const String& strPath, co
 		else
 		{
 			return COption::OPT_ERR;
+		}
+	}
+	return COption::OPT_OK;
+}
+
+int CRegOptionsMgr::ImportAllUnloadedValues(const String& filename)
+{
+	auto iniFileKeyValues = ReadIniFile(filename, _T("WinMerge"));
+	auto iniFileKeyTypes = ReadIniFile(filename, _T("WinMerge.TypeInfo"));
+	for (const auto& [key, strValue] : iniFileKeyValues)
+	{
+		if (m_optionsMap.find(key) == m_optionsMap.end() &&
+		    iniFileKeyTypes.find(key) != iniFileKeyTypes.end())
+		{
+			auto [strPath, strValueName] = SplitName(key);
+			HKEY hKey = OpenKey(strPath, true);
+			if (hKey)
+			{
+				varprop::VariantValue value;
+				String strType = iniFileKeyTypes[key];
+				if (tc::tcsicmp(strType.c_str(), _T("bool")) == 0)
+					value.SetBool(tc::ttoi(strValue.c_str()) != 0);
+				else if (tc::tcsicmp(strType.c_str(), _T("int")) == 0)
+				{
+					auto lval = tc::tcstoll(strValue.c_str(), nullptr, 10);
+					value.SetInt(static_cast<int>(lval));
+				}
+				else if (tc::tcsicmp(strType.c_str(), _T("string")) == 0)
+					value.SetString(UnescapeValue(strValue));
+				SaveValueToReg(hKey, strValueName, value);
+				CloseKey(hKey, strPath);
+			}
 		}
 	}
 	return COption::OPT_OK;

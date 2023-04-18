@@ -158,6 +158,7 @@ protected:
 	static String EscapeValue(const String& text);
 	static String UnescapeValue(const String& text);
 	static std::pair<String, String> SplitName(const String& strName);
+	static std::map<String, String> ReadIniFile(const String& filename, const String& section);
 
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
 

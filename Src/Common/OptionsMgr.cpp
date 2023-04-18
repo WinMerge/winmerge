@@ -712,7 +712,7 @@ int COptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= 
 int COptionsMgr::ImportOptions(const String& filename)
 {
 	int retVal = COption::OPT_OK;
-	const int BufSize = 40960; // This should be enough for a long time..
+	const int BufSize = 65536; // This should be enough for a long time..
 	std::vector<tchar_t> buf(BufSize);
 	auto oleTranslateColor = [](unsigned color) -> unsigned { return ((color & 0xffffff00) == 0x80000000) ? GetSysColor(color & 0x000000ff) : color; };
 
@@ -721,23 +721,10 @@ int COptionsMgr::ImportOptions(const String& filename)
 	if (len == 0)
 		return COption::OPT_NOTFOUND;
 
-	bool init = false;
 	tchar_t *pKey = buf.data();
 	while (*pKey != '\0')
 	{
 		varprop::VariantValue value = Get(pKey);
-		if (value.GetType() == varprop::VT_NULL)
-		{
-			init = true;
-			tchar_t strType[MAX_PATH_FULL] = {0};
-			GetPrivateProfileString(_T("WinMerge.TypeInfo"), pKey, _T(""), strType, MAX_PATH_FULL, filename.c_str());
-			if (tc::tcsicmp(strType, _T("bool")) == 0)
-				value.SetBool(false);
-			else if (tc::tcsicmp(strType, _T("int")) == 0)
-				value.SetInt(0);
-			else if (tc::tcsicmp(strType, _T("string")) == 0)
-				value.SetString(_T(""));
-		}
 
 		if (value.GetType() == varprop::VT_BOOL)
 		{
@@ -760,11 +747,7 @@ int COptionsMgr::ImportOptions(const String& filename)
 		}
 
 		if (value.GetType() != varprop::VT_NULL)
-		{
-			if (init)
-				InitOption(pKey, value);
 			SaveOption(pKey, value);
-		}
 
 		pKey += tc::tcslen(pKey);
 
@@ -839,5 +822,28 @@ std::pair<String, String> COptionsMgr::SplitName(const String& strName)
 		strPath.erase();
 	}
 	return { strPath, strValue };
+}
+
+std::map<String, String> COptionsMgr::ReadIniFile(const String& filename, const String& section)
+{
+	std::map<String, String> iniFileKeyValues;
+	std::vector<tchar_t> str(65536);
+	if (GetPrivateProfileSection(section.c_str(), str.data(), static_cast<DWORD>(str.size()), filename.c_str()) > 0)
+	{
+		const tchar_t* p = str.data();
+		while (*p)
+		{
+			const tchar_t* v = tc::tcschr(p, '=');
+			if (!v)
+				break;
+			++v;
+			size_t vlen = tc::tcslen(v);
+			String value{ v, v + vlen };
+			String key{ p, v - 1 };
+			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
+			p = v + vlen + 1;
+		}
+	}
+	return iniFileKeyValues;
 }
 
