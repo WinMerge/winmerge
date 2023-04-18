@@ -72,26 +72,11 @@ unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 {
 	std::map<String, String> iniFileKeyValues = ReadIniFile(iniFilePath, lpAppName);
-	std::vector<tchar_t> str(65536);
-	
-	// after reading the "WinMerge" section try to read the "Defaults" section; overwrite existing entries in "iniFileKeyValues" with the ones from the "Defaults" section
-	if (GetPrivateProfileSection(lpDefaultSection, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
-	{
-		const tchar_t* p = str.data();
-		while (*p)
-		{
-			const tchar_t* v = tc::tcschr(p, '=');
-			if (!v)
-				break;
-			++v;
-			size_t vlen = tc::tcslen(v);
-			String value{ v, v + vlen };
-			String key{ p, v - 1 };
-			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
-			p = v + vlen + 1;
-		}
-	}
 
+	// after reading the "WinMerge" section try to read the "Defaults" section; overwrite existing entries in "iniFileKeyValues" with the ones from the "Defaults" section
+	std::map<String, String> iniFileKeyDefaultValues = ReadIniFile(iniFilePath, lpDefaultSection);
+	for (auto& [key, strValue] : iniFileKeyDefaultValues)
+		iniFileKeyValues.insert_or_assign(key, strValue);
 	return iniFileKeyValues;
 }
 

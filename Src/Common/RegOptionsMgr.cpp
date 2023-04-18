@@ -642,11 +642,13 @@ int CRegOptionsMgr::ImportAllUnloadedValues(const String& filename)
 					value.SetBool(tc::ttoi(strValue.c_str()) != 0);
 				else if (tc::tcsicmp(strType.c_str(), _T("int")) == 0)
 				{
-					auto lval = tc::tcstoll(strValue.c_str(), nullptr, 10);
-					value.SetInt(static_cast<int>(lval));
+					tchar_t* endptr = nullptr;
+					unsigned uval = static_cast<unsigned>(tc::tcstoll(strValue.c_str(), &endptr,
+						(strValue.length() >= 2 && strValue[1] == 'x') ? 16 : 10));
+					value.SetInt(static_cast<int>(uval));
 				}
 				else if (tc::tcsicmp(strType.c_str(), _T("string")) == 0)
-					value.SetString(UnescapeValue(strValue));
+					value.SetString(strValue);
 				SaveValueToReg(hKey, strValueName, value);
 				CloseKey(hKey, strPath);
 			}
