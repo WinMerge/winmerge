@@ -67,7 +67,7 @@ VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& 
 		varResult.boolVal = value.GetBool();
 		break;
 	case varprop::VT_INT:
-		varResult.vt = VT_INT;
+		varResult.vt = VT_I4;
 		varResult.intVal = value.GetInt();
 		break;
 	case varprop::VT_STRING:
