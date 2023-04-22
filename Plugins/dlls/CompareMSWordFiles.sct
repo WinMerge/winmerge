@@ -343,7 +343,7 @@ Function ShowSettingsDialog()
 	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
 	exportSettingsToJSONFile jsonfile
-	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
 	If Not fso.FileExists(mshta) Then
 		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
 	End If
