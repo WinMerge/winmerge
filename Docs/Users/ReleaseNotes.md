@@ -1,17 +1,82 @@
-# WinMerge 2.16.29 Release Notes
+# WinMerge 2.16.30 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.30?](#what-is-new-in-21630)
 - [What Is New in 2.16.29 beta?](#what-is-new-in-21629-beta)
 - [Known issues](#known-issues)
 
-March 2023
+April 2023
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.30 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.30
+
+### General
+
+- BugFix: When using an ini file all differences are displayed as black
+    sections (#1799)
+
+### File compare
+
+- BugFix: Fixed an issue where XML format files, such as vcxproj, were not
+    being syntax highlighted.
+- BugFix: Fixed an issue where the EOL character was not being displayed in
+    the ARM64 version.
+- Modify the "Go to" dialog. (PR #1779)
+
+### Image compare
+
+- BugFix: Middle Click to close image tab crash (#1785)
+- BugFix: Fixed an issue where the changed Color distance threshold value
+    would revert back to 0 the next time WinMerge was started.
+- Image compare: Increase color distance threshold (CD Threshold)
+    (winmerge/winimerge #29)
+
+### Filters
+
+- Updated file filters to allow UTF-8 without BOM.
+
+### Options dialog
+
+- BugFix: Fixed an issue where the shell integration category page in the
+    Options dialog was not displaying correctly in version 2.16.29.
+- BugFix: Fixed an issue where plugin settings were not exported when
+    exporting from the Options dialog.
+
+### Plugins
+
+- BugFix: Fixed an issue where the ApplyPatch plugin was not functioning
+    correctly when the 'Plugins -> Manual Unpacking' menu item was checked.
+- Added a "Plugin Settings" button to the "Select Plugin" window.
+- Make the plugin settings dialog translatable and enable saving settings to
+    an INI file (PR #1783)
+
+### Project file
+
+- BugFix: Opening a project fails when a path has environmental variables in
+    it. (#1793)
+
+### Installer
+
+- BugFix: Unsuccessful installation, Portable Win32 version (#1802) 
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #1806)
+  - Chinese Simplified (PR #1808)
+  - German (PR #1807)
+  - Hungarian (PR #1809)
+  - Japanese
+  - Korean (PR #1774,#1788,#1790,#1791)
+  - Portuguese (PR #1787)
+  - Russian (PR )
+  - Slovenian (#1812)
 
 ## What Is New in 2.16.29 Beta
 
