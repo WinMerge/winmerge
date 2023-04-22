@@ -881,7 +881,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		{
 			if (cmdInfo.m_bNewCompare)
 			{
-				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), pOpenParams.get());
+				fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
+				bCompared = pMainFrame->DoFileNew(nID, 2, dwFlags, strDesc, infoPrediffer.get(), pOpenParams.get());
 			}
 			else if (cmdInfo.m_bClipboardCompare)
 			{

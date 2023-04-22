@@ -1974,7 +1974,8 @@ void CMainFrame::OnSaveConfigData()
  * @sa CMergeDoc::OpenDocs()
  * @sa CMergeDoc::TrySaveAs()
  */
-bool CMainFrame::DoFileNew(UINT nID, int nPanes, const String strDesc[],
+bool CMainFrame::DoFileNew(UINT nID, int nPanes,
+	const fileopenflags_t dwFlags[], const String strDesc[],
 	const PrediffingInfo *infoPrediffer /*= nullptr*/,
 	const OpenFileParams *pOpenParams)
 {
@@ -1982,7 +1983,6 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes, const String strDesc[],
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
-	fileopenflags_t dwFlags[3] = {0, 0, 0};
 	FileLocation fileloc[3];
 	String strDesc2[3];
 	if (nPanes == 2)
