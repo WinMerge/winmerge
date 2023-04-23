@@ -119,7 +119,7 @@ IDR_MARGIN_ICONS_PNG    IMAGE                   "res\\mg_icons.png"
 // Bitmap
 //
 
-IDB_TOOLBAR_ENABLED8BIT BITMAP                  "res\\ToolbarEnabled8bit.bmp"
+IDB_TOOLBAR_DUMMY       BITMAP                  "res\\ToolbarDummy.bmp"
 IDB_TOOLBAR_ENABLED     BITMAP                  "res\\ToolbarEnabled.bmp"
 IDB_TOOLBAR_ENABLED32   BITMAP                  "res\\ToolbarEnabled32.bmp"
 IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
