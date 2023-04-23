@@ -22,6 +22,7 @@ constexpr UINT_PTR IDT_UPDATEMAINMENU = 1;
 #endif
 
 #include <memory>
+#include <list>
 #include "MergeCmdLineInfo.h"
 #include "resource.h"       // main symbols
 
@@ -98,6 +99,7 @@ public:
 	void SetMergingMode(bool bMergingMode);
 	static void SetupTempPath();
 	bool IsReallyIdle() const;
+	void RegisterIdleFunc(std::function<void()> func) { m_idleFuncs.push_back(func); };
 
 	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
 	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;
@@ -178,6 +180,7 @@ private:
 	bool m_bEnableExitCode;
 	CFont m_fontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
+	std::list<std::function<void()>> m_idleFuncs;
 };
 
 extern CMergeApp theApp;

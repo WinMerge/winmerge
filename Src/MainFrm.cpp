@@ -438,8 +438,10 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR))
 		__super::ShowControlBar(&m_wndStatusBar, false, 0);
 
-	m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
-	RegisterDragDrop(m_hWnd, m_pDropHandler);
+	theApp.RegisterIdleFunc([this]() {
+		m_pDropHandler = new DropHandler(std::bind(&CMainFrame::OnDropFiles, this, std::placeholders::_1));
+		RegisterDragDrop(m_hWnd, m_pDropHandler);
+	});
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 

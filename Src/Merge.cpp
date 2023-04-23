@@ -621,6 +621,17 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 		static_cast<CRegOptionsMgr*>(GetOptionsMgr())->CloseKeys();
 	}
 
+	static int count = 0;
+	if (++count > 1)
+	{
+		count = 0;
+		while (!m_idleFuncs.empty())
+		{
+			m_idleFuncs.front()();
+			m_idleFuncs.pop_front();
+		}
+	}
+
 	return FALSE;
 }
 
