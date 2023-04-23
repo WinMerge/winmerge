@@ -299,6 +299,7 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -359,6 +360,7 @@
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
       <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -415,6 +417,7 @@
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
       <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -470,6 +473,7 @@
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
       <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
