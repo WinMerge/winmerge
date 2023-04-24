@@ -35,6 +35,7 @@
 <h3 id="general">General</h3>
 <ul>
 <li>BugFix: When using an ini file all differences are displayed as black sections (#1799)</li>
+<li>Reduced file size of WinMergeU.exe for 32-bit version</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
@@ -60,8 +61,14 @@
 <h3 id="plugins">Plugins</h3>
 <ul>
 <li>BugFix: Fixed an issue where the ApplyPatch plugin was not functioning correctly when the &#39;Plugins -&gt; Manual Unpacking&#39; menu item was checked.</li>
+<li>BugFix: Fixed the problem that the plug-in setting window cannot be opened on 32-bit OS</li>
 <li>Added a &quot;Plugin Settings&quot; button to the &quot;Select Plugin&quot; window.</li>
 <li>Make the plugin settings dialog translatable and enable saving settings to an INI file (PR #1783)</li>
+</ul>
+<h3 id="command-line">Command line</h3>
+<ul>
+<li>BugFix: Fixed the problem that the /fr option is ignored when specifying the command line option /new</li>
+<li>BugFix: Fixed the problem of not moving to the conflicted line after auto-merge.</li>
 </ul>
 <h3 id="project-file">Project file</h3>
 <ul>
@@ -81,6 +88,8 @@
 <li>Hungarian (PR #1809)</li>
 <li>Japanese</li>
 <li>Korean (PR #1774,#1788,#1790,#1791)</li>
+<li>Lithuanian (PR #1817)</li>
+<li>Polish (PR #1815)</li>
 <li>Portuguese (PR #1787)</li>
 <li>Russian (PR )</li>
 <li>Slovenian (#1812)</li>
@@ -132,7 +141,7 @@
 <ul>
 <li>BugFix: Plugin IgnoreLeadingLineNumbers hangs (#1715)</li>
 </ul>
-<h3 id="command-line">Command line</h3>
+<h3 id="command-line-1">Command line</h3>
 <ul>
 <li>BugFix: Fixed a crash that occurred when comparing alternate data streams, such as file.zip:Zone.Identifier:$DATA, using the /self-compare command line option.</li>
 <li>BugFix: Fixed a crash that occurred when the /t command line option was specified with only one path provided</li>

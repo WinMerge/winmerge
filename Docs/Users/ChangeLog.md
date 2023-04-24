@@ -6,6 +6,7 @@
 
 - BugFix: When using an ini file all differences are displayed as black
     sections (#1799)
+- Reduced file size of WinMergeU.exe for 32-bit version
 
 ### File compare
 
@@ -38,9 +39,18 @@
 
 - BugFix: Fixed an issue where the ApplyPatch plugin was not functioning
     correctly when the 'Plugins -> Manual Unpacking' menu item was checked.
+- BugFix: Fixed the problem that the plug-in setting window cannot be opened
+    on 32-bit OS
 - Added a "Plugin Settings" button to the "Select Plugin" window.
 - Make the plugin settings dialog translatable and enable saving settings to
     an INI file (PR #1783)
+
+### Command line
+
+- BugFix: Fixed the problem that the /fr option is ignored when specifying the
+    command line option /new
+- BugFix: Fixed the problem of not moving to the conflicted line after
+    auto-merge.
 
 ### Project file
 
@@ -60,6 +70,8 @@
   - Hungarian (PR #1809)
   - Japanese
   - Korean (PR #1774,#1788,#1790,#1791)
+  - Lithuanian (PR #1817)
+  - Polish (PR #1815)
   - Portuguese (PR #1787)
   - Russian (PR )
   - Slovenian (#1812)
