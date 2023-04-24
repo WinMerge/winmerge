@@ -73,7 +73,6 @@
   - Lithuanian (PR #1817)
   - Polish (PR #1815)
   - Portuguese (PR #1787)
-  - Russian (PR )
   - Slovenian (#1812)
 
 ## WinMerge 2.16.29 - 2023-03-21

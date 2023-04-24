@@ -87,7 +87,6 @@ Please submit bug reports to our bug-tracker.
   - Lithuanian (PR #1817)
   - Polish (PR #1815)
   - Portuguese (PR #1787)
-  - Russian (PR )
   - Slovenian (#1812)
 
 ## What Is New in 2.16.29 Beta
