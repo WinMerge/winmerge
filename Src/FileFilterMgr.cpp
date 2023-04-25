@@ -170,6 +170,8 @@ FileFilter * FileFilterMgr::LoadFilterFile(const String& szFilepath, int & error
 	}
 
 	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
+	if (!file.IsUnicode() && !ucr::CheckForInvalidUtf8(reinterpret_cast<const char*>(file.GetBase()), file.GetFileSize()))
+		file.SetUnicoding(ucr::UTF8);
 
 	String fileName;
 	paths::SplitFilename(szFilepath, nullptr, &fileName, nullptr);

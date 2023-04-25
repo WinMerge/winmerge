@@ -175,9 +175,11 @@ BEGIN
                             "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
     IDS_PLUGIN_DESCRIPTION46 
                             "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-    IDS_PLUGIN_DESCRIPTION47 "Prediff Line Filter"
-    IDS_PLUGIN_DESCRIPTION48 "Basic text functions for the context menu"
-    IDS_PLUGIN_DESCRIPTION49 
+    IDS_PLUGIN_DESCRIPTION47 
+			    "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+    IDS_PLUGIN_DESCRIPTION48 "Prediff Line Filter"
+    IDS_PLUGIN_DESCRIPTION49 "Basic text functions for the context menu"
+    IDS_PLUGIN_DESCRIPTION50
                             "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 END
 
@@ -185,6 +187,114 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION50 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR1 
+                            "CompareMSExcelFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 
+                            "Extract workbook data to multiple files"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Update external references(links)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR4 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR5 "Compare names"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR6 "Compare cell values"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR7 
+                            "Compare worksheets as image (very slow)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR8 " - Image split size: "
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR9 "Compare worksheets as HTML"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare formulas"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare headers and footers"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR1 
+                            "CompareMSWordFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR2 
+                            "Extract document data to multiple files"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR4 "Compare bookmarks"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR5 "Compare text contents of documents"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR6 
+                            "Compare documents as HTML file (very slow)"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR7 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR8 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR9
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR1 
+                            "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR2 
+                            "Extract slide data to multiple files"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR4 
+                            "Compare slides as image (very slow)"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR5 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6 "Compare texts in notes page"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR7 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR8
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR1 
+                            "CompareMSVisioFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR2 "Extract page data to multiple files"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR3 "Compare pages as image (very slow)"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR4 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR5 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR6
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR1 
+                            "PrediffLineFilter.sct WinMerge Plugin Options"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR2 "Add"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR3 "Delete"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR4 "Enabled"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR5 "Ignore Case"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR6 "Use RegExp"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR7 "Find what"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR8 "Replace with"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_IGNORE_STR1  "Settings"
+    IDS_PLUGIN_IGNORE_STR2  "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_APPLYPATCH_STR1 
+                            "Enter the name of the file to which the patch '%1' will be applied"
+    IDS_PLUGIN_APPLYPATCH_STR2 "File '%1' does not exist"
+    IDS_PLUGIN_APPLYPATCH_STR3 
+                            "Enter the command line arguments for patch command"
+    IDS_PLUGIN_APPLYPATCH_STR4 
+                            "Enter the name of the folder to which the patch '%1' will be applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_APPLYPATCH_STR5 "Folder '%1' does not exist"
+    IDS_PLUGIN_APPLYPATCH_STR6 
+                            "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 END
 
 #endif    // English (United States) resources

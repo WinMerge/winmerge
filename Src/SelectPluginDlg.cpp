@@ -90,6 +90,7 @@ BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
 	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
 	ON_EN_CHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
+	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnClickedSettings)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -207,10 +208,11 @@ void CSelectPluginDlg::prepareListbox()
 				bool match = plugin->TestAgainstRegList(m_filteredFilenames);
 				if (m_bNoExtensionCheck || match || lastPluginName == name)
 				{
-					COMBOBOXEXITEM item{CBEIF_TEXT|CBEIF_INDENT};
+					COMBOBOXEXITEM item{CBEIF_TEXT|CBEIF_INDENT|CBEIF_LPARAM};
 					item.iItem = nameCount++;
 					item.iIndent = 1;
 					item.pszText = const_cast<tchar_t*>(name.c_str());
+					item.lParam = reinterpret_cast<LPARAM>(plugin);
 					m_cboPluginName.InsertItem(&item);
 					if (lastPluginName.empty() && match)
 					{
@@ -331,4 +333,14 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	m_bOpenInSameFrameType = IsDlgButtonChecked(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE);
 
 	UpdateData (FALSE);
+}
+
+void CSelectPluginDlg::OnClickedSettings() 
+{
+	COMBOBOXEXITEM item{CBEIF_LPARAM};
+	item.iItem = m_cboPluginName.GetCurSel();
+	m_cboPluginName.GetItem(&item);
+	auto* plugin = reinterpret_cast<PluginInfo*>(item.lParam);
+	if (plugin)
+		plugin::InvokeShowSettingsDialog(plugin->m_lpDispatch);
 }

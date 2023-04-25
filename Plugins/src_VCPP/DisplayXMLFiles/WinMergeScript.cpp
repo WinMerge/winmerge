@@ -112,7 +112,7 @@ static void XMLCALL StartElementHandler(void *userData, const char *name, const 
 	fprintf(pData->pOutput,"<%s",name);
 	
 	// Process all attributes
-	int iLen = 0;
+	size_t iLen = 0;
 	int iCount = 0;
 	for (i = 0; atts[i]; i += 2)
 	{
@@ -309,7 +309,7 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	XML_SetUnknownEncodingHandler(parser, WinMerge_Plug_UnknownEncodingHandler, this);
 	size_t len = fread(buf, 1, size, pInput);
 	// Parse
-	if (XML_Parse(parser, buf, len, true) == XML_STATUS_ERROR)
+	if (XML_Parse(parser, buf, static_cast<int>(len), true) == XML_STATUS_ERROR)
 	{
 		// There was an error
 		// Give a warning and return without converting anything

@@ -712,66 +712,38 @@ int COptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= 
 int COptionsMgr::ImportOptions(const String& filename)
 {
 	int retVal = COption::OPT_OK;
-	const int BufSize = 40960; // This should be enough for a long time..
-	std::vector<tchar_t> buf(BufSize);
 	auto oleTranslateColor = [](unsigned color) -> unsigned { return ((color & 0xffffff00) == 0x80000000) ? GetSysColor(color & 0x000000ff) : color; };
 
 	// Query keys - returns NUL separated strings
-	DWORD len = GetPrivateProfileString(_T("WinMerge"), nullptr, _T(""), buf.data(), BufSize, filename.c_str());
-	if (len == 0)
+	auto iniFileKeyValues = ReadIniFile(filename, _T("WinMerge"));
+	if (iniFileKeyValues.empty())
 		return COption::OPT_NOTFOUND;
 
-	bool init = false;
-	tchar_t *pKey = buf.data();
-	while (*pKey != '\0')
+	for (auto& [key, strValue] : iniFileKeyValues)
 	{
-		varprop::VariantValue value = Get(pKey);
-		if (value.GetType() == varprop::VT_NULL)
-		{
-			init = true;
-			tchar_t strType[MAX_PATH_FULL] = {0};
-			GetPrivateProfileString(_T("WinMerge.TypeInfo"), pKey, _T(""), strType, MAX_PATH_FULL, filename.c_str());
-			if (tc::tcsicmp(strType, _T("bool")) == 0)
-				value.SetBool(false);
-			else if (tc::tcsicmp(strType, _T("int")) == 0)
-				value.SetInt(0);
-			else if (tc::tcsicmp(strType, _T("string")) == 0)
-				value.SetString(_T(""));
-		}
+		varprop::VariantValue value = Get(key);
 
 		if (value.GetType() == varprop::VT_BOOL)
 		{
-			bool boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str()) == 1;
-			value.SetBool(boolVal);
+			value.SetBool(tc::ttoi(strValue.c_str()) != 0);
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
-			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename.c_str());
-			if (strutils::makelower(pKey).find(String(_T("color"))) != std::string::npos)
+			tchar_t* endptr = nullptr;
+			unsigned uval = static_cast<unsigned>(tc::tcstoll(strValue.c_str(), &endptr,
+				(strValue.length() >= 2 && strValue[1] == 'x') ? 16 : 10));
+			int intVal = static_cast<int>(uval);
+			if (strutils::makelower(key).find(String(_T("color"))) != std::string::npos)
 				intVal = static_cast<int>(oleTranslateColor(static_cast<unsigned>(intVal)));
 			value.SetInt(intVal);
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
-			tchar_t strVal[MAX_PATH_FULL] = {0};
-			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH_FULL, filename.c_str());
-			String sVal = UnescapeValue(strVal);
-			value.SetString(sVal);
+			value.SetString(strValue);
 		}
 
 		if (value.GetType() != varprop::VT_NULL)
-		{
-			if (init)
-				InitOption(pKey, value);
-			SaveOption(pKey, value);
-		}
-
-		pKey += tc::tcslen(pKey);
-
-		// Check: pointer is not past string end, and next char is not null
-		// double NUL char ends the keynames string
-		if ((pKey < buf.data() + len) && (*(pKey + 1) != '\0'))
-			pKey++;
+			SaveOption(key, value);
 	}
 	FlushOptions();
 	return retVal;
@@ -839,5 +811,28 @@ std::pair<String, String> COptionsMgr::SplitName(const String& strName)
 		strPath.erase();
 	}
 	return { strPath, strValue };
+}
+
+std::map<String, String> COptionsMgr::ReadIniFile(const String& filename, const String& section)
+{
+	std::map<String, String> iniFileKeyValues;
+	std::vector<tchar_t> str(65536);
+	if (GetPrivateProfileSection(section.c_str(), str.data(), static_cast<DWORD>(str.size()), filename.c_str()) > 0)
+	{
+		const tchar_t* p = str.data();
+		while (*p)
+		{
+			const tchar_t* v = tc::tcschr(p, '=');
+			if (!v)
+				break;
+			++v;
+			size_t vlen = tc::tcslen(v);
+			String value{ v, v + vlen };
+			String key{ p, v - 1 };
+			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
+			p = v + vlen + 1;
+		}
+	}
+	return iniFileKeyValues;
 }
 

@@ -39,6 +39,9 @@ public:
 
 	virtual int FlushOptions() override;
 
+	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const override;
+	virtual int ImportOptions(const String& filename) override;
+
 	virtual void SetSerializing(bool serializing = true) override { m_serializing = serializing; }
 
 protected:

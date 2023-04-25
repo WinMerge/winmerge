@@ -15,6 +15,7 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
+	<method name="PluginOnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -28,7 +29,7 @@
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
 '    It will apply selected patch to specified file or folder using GnuWin32 Patch For Windows.
-'    Copyright (C) 2015 Takashi Sawanaka
+'    Copyright (C) 2015-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -53,6 +54,34 @@ Const PLUGIN_NAME = "ApplyPatch.sct WinMerge Plugin"
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
 Dim PrevFileName: PrevFileName = ""
+Dim mergeApp
+
+Function regRead(Key, DefaultValue)
+	regRead = DefaultValue
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
+	Else
+		regRead = mergeApp.GetOption(Key, DefaultValue)
+	End If
+End Function
+
+Sub regWrite(Key, Value, TypeNm)
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
+	Else
+		mergeApp.SaveOption Key, Value
+	End If
+End Sub
+
+Function Fmt(formatString, args)
+    Dim i
+    For i = 0 To UBound(args)
+        formatString = Replace(formatString, "%" & (i + 1), args(i))
+    Next
+    Fmt = formatString
+End Function
 
 Function get_PluginEvent()
     get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
@@ -71,8 +100,12 @@ Function get_PluginIsAutomatic()
 End Function
 
 Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "MenuCaption=Apply Patch..."
+    get_PluginExtendedProperties = "MenuCaption=Apply Patch..."
 End Function
+
+Sub PluginOnEvent(eventType, obj)
+    Set mergeApp = obj
+End Sub
 
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
     Dim filePatched, cmdLine, msg
@@ -92,36 +125,24 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
     If PrevFileName <> "" Then
         filePatched = PrevFileName
     Else
-        filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Left\Item_0")
+        filePatched = regRead("Files\Left/Item_0", "")
     End If
     If IsPatchFile(filePatched) Then
-        filePatched = wsh.RegRead(REGKEY_PATH & "\Files\Right\Item_0")
+        filePatched = regRead("Files\Right/Item_0", "")
     End If
 
-    If IsLangJapanese() Then
-        msg = "パッチ '" & fso.GetFileName(fileSrc) & "' を適用するファイルを指定してください" & vbCrLf & "(※ 指定したファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
-    Else
-        msg = "Enter the name of the file to which the patch '" & fso.GetFileName(fileSrc) & "' is applied"
-    End If
+    msg = Fmt(Translate("${Enter the name of the file to which the patch '%1' will be applied}"), Array(fso.GetFileName(fileSrc)))
     Do While True
         filePatched = InputBox(msg, PLUGIN_NAME, filePatched)
         If filePatched = "" Then
             Exit Function
         End If
         If fso.FileExists(filePatched) Then Exit Do
-        If IsLangJapanese() Then
-            MsgBox "ファイル '" & filePatched & "' は存在しません", vbExclamation
-        Else
-            MsgBox "file '" & filePatched & "' does not exist", vbExclamation
-        End If
+        MsgBox Fmt(Translate("${File '%1' does not exist}"), Array(filePatched)), vbExclamation
     Loop
 
     cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary ") & "$FILE"
-    If IsLangJapanese() Then
-        msg = "patch コマンドへ渡す引数を指定してください"
-    Else
-        msg = "Enter the command line arguments for patch command"
-    End If
+    msg = Translate("${Enter the command line arguments for patch command}")
     cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
     If cmdLine = "" Then Exit Function
     cmdLine = Replace(cmdLine, "$FILE", fileDst)
@@ -147,7 +168,7 @@ Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
 End Function
 
 Function IsFolder(file)
-    IsFolder = True
+    IsFolder = IsPatchFile(file)
 End Function
 
 Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
@@ -157,16 +178,12 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 
     If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
 
-    dirPatched = wsh.RegRead(REGKEY_PATH & "\Files\Left\Item_0")
+    dirPatched = regRead("Files\Left/Item_0", "")
     If Not fso.FolderExists(dirPatched) Then
-        dirPatched = wsh.RegRead(REGKEY_PATH & "\Files\Right\Item_0")
+        dirPatched = regRead("Files\Right/Item_0", "")
     End If
 
-    If IsLangJapanese() Then
-        msg = "パッチ '" & fso.GetFileName(fileSrc) & "'を適用するフォルダを指定してください" & vbCrLf & "(※ 指定したフォルダ内のファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
-    Else
-        msg = "Enter the name of the folder to which the patch '" & fso.GetFileName(fileSrc) & "' is applied"
-    End If
+    msg = Fmt(Translate("${Enter the name of the folder to which the patch '%1' will be applied}"), Array(fso.GetFileName(fileSrc)))
     Do While True
         dirPatched = InputBox(msg, PLUGIN_NAME, dirPatched)
         If dirPatched = "" Then
@@ -174,22 +191,14 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
             Exit Function
         End If
         If fso.FolderExists(dirPatched) Then Exit Do
-        If IsLangJapanese() Then
-            MsgBox "フォルダ '" & dirPatched & "' は存在しません", vbExclamation
-        Else
-            MsgBox "folder '" & dirPatched & "' does not exist", vbExclamation
-        End If
+        MsgBox Fmt(Translate("${Folder '%1' does not exist}"), dirPatched), vbExclamation
     Loop
 
     files = GetFileNamesInPatch(fileSrc)
     stripCount = GuessStripCount(files, dirPatched)
 
     cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary") & " -p" & stripCount
-    If IsLangJapanese() Then
-        msg = "patch コマンドへ渡す引数を指定してください"
-    Else
-        msg = "Enter the command line arguments for patch command"
-    End If
+    msg = Translate("${Enter the command line arguments for patch command}")
     cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
     If cmdLine = "" Then
         fso.CopyFile fileSrc, fso.BuildPath(folderDst, fso.GetFileName(fileSrc)) & ".txt"
@@ -199,11 +208,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
     stripCount = GetStripCountFromCmdLine(cmdLine)
     If stripCount = 0 Then
         If HasAbsolutePathInList(files) Then
-            If IsLangJapanese() Then
-               msg = "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"
-            Else
-               msg = "Should not specify the '-p0' command line option for the patch file which includes absolute paths"
-            End If
+            msg = Translate("${Should not specify the '-p0' command line option for the patch file which includes absolute paths}")
             MsgBox msg, vbExclamation
             Exit Function
         End If
@@ -222,18 +227,40 @@ Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
     PackFolder = False
 End Function
 
+Function Translate(text)
+	Dim re: Set re = CreateObject("VBScript.RegExp")
+	re.Pattern = "\${([^}]+)}"
+	re.Global = True
+	Translate = text
+	Dim match
+	Dim matches:Set matches = re.Execute(text)
+	if IsEmpty(mergeApp) Then
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, match.Submatches(0))
+		Next
+	Else
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, mergeApp.Translate(match.Submatches(0)))
+		Next
+	End If
+End Function
+
 Function ShowSettingsDialog()
     Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-    Dim tfile: Set tfile = fso.CreateTextFile(tname)
+    Dim jsonfile: jsonfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".json")
+    Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
     Dim mshta
-    tfile.Write getResource("dialog1")
+    tfile.Write Translate(getResource("dialog1"))
     tfile.Close
-    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+    exportSettingsToJSONFile jsonfile
+    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
     If Not fso.FileExists(mshta) Then
         mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
     End If
-    Run wsh, """" & mshta & """ """ & tname & """"
-    fso.DeleteFile tname 
+    Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
+    importSettingsFromJSONFile jsonfile
+    fso.DeleteFile tname
+    fso.DeleteFile jsonfile
 End Function
 
 Sub Run(sh, cmd)
@@ -441,14 +468,6 @@ Function GetFileNamesInPatch(fileName)
     GetFileNamesInPatch = ary
 End Function
 
-Function IsLangJapanese()
-    Dim languageId
-    languageId = 1033
-    On Error Resume Next
-    languageId = CLng(wsh.RegRead(REGKEY_PATH & "\Locale\LanguageId"))
-    IsLangJapanese = (languageId = 1041)
-End Function
-
 Function GetStripCountFromCmdLine(cmdLine)
     Dim re, m
     Set re = CreateObject("VBScript.RegExp")
@@ -467,78 +486,147 @@ End Function
 
 </script>
 
+<script language="JScript">
+
+var REGKEY_PATH = "Plugins\\ApplyPatch.sct/";
+
+function exportSettingsToJSONFile(filepath)
+{
+	var key_defvalues = {
+		"Dummy" : true
+	};
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 2, true, -1);
+	var json = "{";
+	for (var key in key_defvalues) {
+		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + regRead(REGKEY_PATH + key, key_defvalues[key]) + ',';
+	}
+	json = json.substr(0, json.length - 1) + "}";
+	ts.WriteLine(json);
+	ts.Close();
+}
+
+function importSettingsFromJSONFile(filepath)
+{
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 1, true, -1);
+	var json = ts.ReadAll();
+	var settings = eval("(" + json + ")");
+	ts.Close();
+	for (var key in settings) {
+		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
+	}
+}
+
+</script>
+
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
-    <title>ApplyPatch.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <HTA:APPLICATION ID="objHTA">
+    <title>${ApplyPatch.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
-      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\ApplyPatch.sct\\";
+      var REGKEY_PATH = "Plugins\\ApplyPatch.sct/";
+      var jsonFilePath;
+      var settings;
+
+      function jsonStringify(obj) {
+        if (obj === null) {
+          return "null";
+        }
+        if (typeof obj === "undefined") {
+          return undefined;
+        }
+        if (typeof obj === "number" || typeof obj === "boolean") {
+          return obj.toString();
+        }
+        if (typeof obj === "string") {
+          return '"' + escapeString(obj) + '"';
+        }
+        if (typeof obj === "object") {
+          var pairs = [];
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
+            }
+          }
+          return "{" + pairs.join(",") + "}";
+        }
+      }
+
+      function escapeString(str) {
+        return str.replace(/[\\"']/g, '\\$&');
+      }
 
       function regRead(key, defaultValue) {
-        try {
-          return (new ActiveXObject("WScript.Shell")).RegRead(key);
-        } catch (e) {
-          return defaultValue;
-        }
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
       }
 
       function regWrite(key, value, type) {
-        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
       }
 
-      function isLangJapanese() {
-        var languageId = regRead(REGKEY_PATH & "\Locale\LanguageId", 1033);
-        return (languageId = 1041);
+      function loadSettingsFromJSONFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
+        var json = ts.ReadAll();
+        var settings = eval("(" + json + ")");
+        ts.Close();
+        return settings;
+      }
+
+      function saveSettingsToJSONFile(filepath, settings) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        ts.WriteLine(jsonStringify(settings));
+        ts.Close();
       }
 
       function onload() {
+        jsonFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromJSONFile(jsonFilePath);
 
-        var w = 600, h = 400;
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 400 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
-
-        setLanguage();
-      }
-
-      function setLanguage() {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (isLangJapanese()) {
-          html += '.en { display: none } .ja { display: inline }';
-        } else {
-          html += '.ja { display: none } .en { display: inline }';
-        }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
       }
 
       function btnOk_onclick() {
+        saveSettingsToJSONFile(jsonFilePath, settings);
+
+        window.close();
       }
 
       function btnCancel_onclick() {
+        saveSettingsToJSONFile(jsonFilePath, "{}");
+
         window.close();
       }
 
     </script>
   </head>
   <body onload="onload();">
-    <div>
-      <ul>
-        <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
-        </li>
-      </ul>
+    <div class="container">
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>

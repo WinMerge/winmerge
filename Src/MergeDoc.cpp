@@ -3339,15 +3339,24 @@ void CMergeDoc::MoveOnLoad(int nPane, int nLineIndex, bool bRealLine, int nCharI
 	}
 	if (nLineIndex == -1)
 	{
-		// scroll to first diff
-		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
-			m_diffList.HasSignificantDiffs())
+		if (this->GetCurrentDiff() != -1)
 		{
-			int nDiff = m_diffList.FirstSignificantDiff();
-			if (nDiff != -1)
-				m_pView[0][nPane]->SelectDiff(nDiff, true, false);
-			m_pView[0][nPane]->SetActivePane();
-			return;
+			DIFFRANGE di;
+			m_diffList.GetDiff(this->GetCurrentDiff(), di);
+			nLineIndex = bRealLine ? di.begin[nPane] : di.dbegin;
+		}
+		else
+		{
+			// scroll to first diff
+			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
+				m_diffList.HasSignificantDiffs())
+			{
+				int nDiff = m_diffList.FirstSignificantDiff();
+				if (nDiff != -1)
+					m_pView[0][nPane]->SelectDiff(nDiff, true, false);
+				m_pView[0][nPane]->SetActivePane();
+				return;
+			}
 		}
 	}
 	m_pView[0][nPane]->GotoLine(nLineIndex < 0 ? 0 : nLineIndex, bRealLine, nPane, true, nCharIndex);

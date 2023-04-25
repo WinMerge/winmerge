@@ -42,6 +42,9 @@ public:
 
 	virtual int FlushOptions() override;
 
+	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const override;
+	virtual int ImportOptions(const String& filename) override;
+
 	virtual void SetSerializing(bool serializing=true) override { m_serializing = serializing; }
 
 protected:
@@ -53,6 +56,8 @@ protected:
 	static int SaveValueToReg(HKEY hKey, const String& strValueName,
 		const varprop::VariantValue& value);
 	static unsigned __stdcall AsyncWriterThreadProc(void *pParam);
+	int ExportAllUnloadedValues(HKEY hKey, const String& strPath, const String& filename) const;
+	int ImportAllUnloadedValues(const String& filename);
 
 private:
 	String m_registryRoot; /**< Registry path where to store options. */

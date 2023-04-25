@@ -428,7 +428,7 @@
     <ClInclude Include="..\..\..\Src\DirWatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Externals\crystaledit\editlib\utils\cstrutils.h">
+    <ClInclude Include="..\..\..\Src\Common\cio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

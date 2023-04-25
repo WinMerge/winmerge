@@ -50,7 +50,7 @@ namespace
 	{
 		String oldModulePath = env::GetProgPath();
 		env::SetProgPath(_T("c:/Program Files/WinMerge"));
-		CAssureScriptsForThread asft;
+		CAssureScriptsForThread asft(nullptr);
 		PackingInfo *iu = nullptr;
 		PrediffingInfo *ip = nullptr;
 		PluginManager pm;

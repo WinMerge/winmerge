@@ -15,6 +15,7 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
+	<method name="PluginOnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 	<method name="IsFolder"/>
@@ -28,7 +29,7 @@
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
 '    It will display the text content of MS Word files.
-'    Copyright (C) 2008-2014 Takashi Sawanaka
+'    Copyright (C) 2008-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -47,14 +48,15 @@
 
 Option Explicit
 
-Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSWordFiles.sct\"
+Const RegKeyPath = "Plugins\CompareMSWordFiles.sct/"
 Dim MsgCannotGetMacros
-MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
+MsgCannotGetMacros = "${Cannot get Macros." & vbCrLf & _
 	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
-	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf & "}"
 
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
+Dim mergeApp
 
 Function isAccessibleVBAProject(doc)
 	Dim count
@@ -67,8 +69,21 @@ End Function
 Function regRead(Key, DefaultValue)
 	regRead = DefaultValue
 	On Error Resume Next
-	regRead = wsh.RegRead(Key)
+	If IsEmpty(mergeApp) Then
+		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
+	Else
+		regRead = mergeApp.GetOption(Key, DefaultValue)
+	End If
 End Function
+
+Sub regWrite(Key, Value, TypeNm)
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
+	Else
+		mergeApp.SaveOption Key, Value
+	End If
+End Sub
 
 Function writeObjectProperties(fo, items)
 	On Error Resume Next
@@ -136,6 +151,10 @@ Function get_PluginExtendedProperties()
 	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Word;MenuCaption=MS-Word"
 End Function
 
+Sub PluginOnEvent(eventType, obj)
+	Set mergeApp = obj
+End Sub
+
 Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 	Dim fo
 	Dim wd 
@@ -186,7 +205,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
 
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(doc) Then
-			fo.WriteLine MsgCannotGetMacros
+			fo.WriteLine Translate(MsgCannotGetMacros)
 		End If
 		For Each cmp In doc.VBProject.VBComponents
 			fo.WriteLine "[CodeModule." & cmp.Name & "]"
@@ -274,7 +293,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
 		If Not isAccessibleVBAProject(doc) Then
 			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
-			fo.WriteLine MsgCannotGetMacros
+			fo.WriteLine Translate(MsgCannotGetMacros)
 			fo.Close
 		End If
 		
@@ -298,18 +317,40 @@ Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
 	PackFolder = False
 End Function
 
+Function Translate(text)
+	Dim re: Set re = CreateObject("VBScript.RegExp")
+	re.Pattern = "\${([^}]+)}"
+	re.Global = True
+	Translate = text
+	Dim match
+	Dim matches:Set matches = re.Execute(text)
+	if IsEmpty(mergeApp) Then
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, match.Submatches(0))
+		Next
+	Else
+		For Each match in matches
+			Translate = Replace(Translate, match.Value, mergeApp.Translate(match.Submatches(0)))
+		Next
+	End If
+End Function
+
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim tfile: Set tfile = fso.CreateTextFile(tname)
+	Dim jsonfile: jsonfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".json")
+	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
 	Dim mshta
-	tfile.Write getResource("dialog1")
+	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
-	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+	exportSettingsToJSONFile jsonfile
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
 	If Not fso.FileExists(mshta) Then
 		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
 	End If
-	Run wsh, """" & mshta & """ """ & tname & """"
+	Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
+	importSettingsFromJSONFile jsonfile
 	fso.DeleteFile tname 
+	fso.DeleteFile jsonfile
 End Function
 
 Sub Run(sh, cmd)
@@ -318,39 +359,133 @@ End Sub
 
 </script>
 
+<script language="JScript">
+
+var REGKEY_PATH = "Plugins\\CompareMSWordFiles.sct/";
+
+function exportSettingsToJSONFile(filepath)
+{
+	var key_defvalues = {
+		"UnpackToFolder" : false,
+		"CompareDocumentProperties" : false,
+		"CompareBookmarks" : true,
+		"CompareTextContents" : true,
+		"CompareDocumentsAsHTML" : true,
+		"CompareTextsInShapes" : true,
+		"CompareVBAMacros" : true
+	};
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 2, true, -1);
+	var json = "{";
+	for (var key in key_defvalues) {
+		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val == "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
+	}
+	json = json.substr(0, json.length - 1) + "}";
+	ts.WriteLine(json);
+	ts.Close();
+}
+
+function importSettingsFromJSONFile(filepath)
+{
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 1, true, -1);
+	var json = ts.ReadAll();
+	var settings = eval("(" + json + ")");
+	ts.Close();
+	for (var key in settings) {
+		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
+	}
+}
+
+</script>
+
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
-    <title>CompareMSWordFiles.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <HTA:APPLICATION ID="objHTA">
+    <title>${CompareMSWordFiles.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
-      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSWordFiles.sct\\";
+      var REGKEY_PATH = "Plugins\\CompareMSWordFiles.sct/";
+      var jsonFilePath;
+      var settings;
 
-      function regRead(key, defaultValue) {
-        try {
-          return (new ActiveXObject("WScript.Shell")).RegRead(key);
-        } catch (e) {
-          return defaultValue;
+      function jsonStringify(obj) {
+        if (obj === null) {
+          return "null";
+        }
+        if (typeof obj === "undefined") {
+          return undefined;
+        }
+        if (typeof obj === "number" || typeof obj === "boolean") {
+          return obj.toString();
+        }
+        if (typeof obj === "string") {
+          return '"' + escapeString(obj) + '"';
+        }
+        if (typeof obj === "object") {
+          var pairs = [];
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
+            }
+          }
+          return "{" + pairs.join(",") + "}";
         }
       }
 
+      function escapeString(str) {
+        return str.replace(/[\\"']/g, '\\$&');
+      }
+
+      function regRead(key, defaultValue) {
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
+      }
+
       function regWrite(key, value, type) {
-        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+      }
+
+      function loadSettingsFromJSONFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
+        var json = ts.ReadAll();
+        var settings = eval("(" + json + ")");
+        ts.Close();
+        return settings;
+      }
+
+      function saveSettingsToJSONFile(filepath, settings) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        ts.WriteLine(jsonStringify(settings));
+        ts.Close();
       }
 
       function onload() {
+        jsonFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromJSONFile(jsonFilePath);
 
-        var w = 600, h = 400;
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 400 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-        setLanguage(navigator.browserLanguage);
         chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
         chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
         chkCompareBookmarks.checked = regRead(REGKEY_PATH + "CompareBookmarks", true);
@@ -360,24 +495,6 @@ End Sub
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkCompareDocumentsAsHTML_onclick();
-      }
-
-      function setLanguage(lang) {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline }';
-        } else {
-          html += '.ja { display: none } .en { display: inline }';
-        }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
-      }
-
-      function cboLanguage_onclick() {
-        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
       }
 
       function chkUnpackToFolder_onclick() {
@@ -398,71 +515,56 @@ End Sub
         regWrite(REGKEY_PATH + "CompareDocumentsAsHTML", chkCompareDocumentsAsHTML.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+
+        saveSettingsToJSONFile(jsonFilePath, settings);
+
+        window.close();
       }
 
       function btnCancel_onclick() {
+        saveSettingsToJSONFile(jsonFilePath, "{}");
+
         window.close();
       }
 
     </script>
   </head>
   <body onload="onload();">
-    <div>
-      <ul>
-        <li>
-          <label class="en">Language: </label>
-          <label class="ja">言語: </label>
-          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
-            <option value="English">English</option>
-            <option value="Japanese">Japanese</option>
-          </select>
-        </li>
-      </ul>
+    <div class="container">
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label class="en">Extract document data to multiple files </label>
-          <label class="ja">ドキュメントの情報を複数ファイルに展開する </label>
+          <label>${Extract document data to multiple files}</label>
         </li>
         <li>
           <input id="chkCompareDocumentProperties" type="checkbox" />
-          <label class="en">Compare document properties </label>
-          <label class="ja">ドキュメントプロパティを比較する </label>
+          <label>${Compare document properties}</label>
         </li>
         <li>
           <input id="chkCompareBookmarks" type="checkbox" />
-          <label class="en">Compare bookmarks </label>
-          <label class="ja">ブックマークの定義を比較する </label>
+          <label>${Compare bookmarks}</label>
         </li>
         <li>
           <input id="chkCompareTextContents" type="checkbox" />
-          <label class="en">Compare text contents of documents </label>
-          <label class="ja">ドキュメント内のテキスト部を比較する </label>
+          <label>${Compare text contents of documents}</label>
         </li>
         <li>
           <input id="chkCompareDocumentsAsHTML" type="checkbox" onclick="chkCompareDocumentsAsHTML_onclick();"/>
-          <label class="en">Compare documents as HTML file (very slow)</label>
-          <label class="ja">ドキュメントをHTMLファイル化して比較する (処理時間増大)</label>
+          <label>${Compare documents as HTML file (very slow)}</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label class="en">Compare texts in shapes </label>
-          <label class="ja">図形内のテキストを比較する </label>
+          <label>${Compare texts in shapes}</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label class="en">Compare VBA macros </label>
-          <label class="ja">VBA マクロを比較する </label>
+          <label>${Compare VBA macros}</label>
         </li>
       </ul>
-      <ul>
-        <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
-        </li>
-      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>

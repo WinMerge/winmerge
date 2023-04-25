@@ -60,6 +60,7 @@
 #include "TestMain.h"
 #include "charsets.h" // For shutdown cleanup
 #include "OptionsProject.h"
+#include "MergeAppCOMClass.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -383,7 +384,7 @@ BOOL CMergeApp::InitInstance()
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 
-	m_mainThreadScripts = new CAssureScriptsForThread;
+	m_mainThreadScripts = new CAssureScriptsForThread(new MergeAppCOMClass());
 
 	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
 	{
@@ -618,6 +619,17 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	if (typeid(*GetOptionsMgr()) == typeid(CRegOptionsMgr))
 	{
 		static_cast<CRegOptionsMgr*>(GetOptionsMgr())->CloseKeys();
+	}
+
+	static int count = 0;
+	if (++count > 1)
+	{
+		count = 0;
+		while (!m_idleFuncs.empty())
+		{
+			m_idleFuncs.front()();
+			m_idleFuncs.pop_front();
+		}
 	}
 
 	return FALSE;
@@ -880,7 +892,8 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		{
 			if (cmdInfo.m_bNewCompare)
 			{
-				bCompared = pMainFrame->DoFileNew(nID, 2, strDesc, infoPrediffer.get(), pOpenParams.get());
+				fileopenflags_t dwFlags[3] = {cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, FFILEOPEN_NONE};
+				bCompared = pMainFrame->DoFileNew(nID, 2, dwFlags, strDesc, infoPrediffer.get(), pOpenParams.get());
 			}
 			else if (cmdInfo.m_bClipboardCompare)
 			{
@@ -1346,6 +1359,7 @@ bool CMergeApp::LoadAndOpenProjectFile(const String& sProject, const String& sRe
 		projItem.GetPaths(tFiles, bDummy);
 		for (int i = 0; i < tFiles.GetSize(); ++i)
 		{
+			tFiles[i] = env::ExpandEnvironmentVariables(tFiles[i]);
 			if (!paths::IsPathAbsolute(tFiles[i]) && !paths::IsURL(tFiles[i]))
 			{
 				String sProjectDir = paths::GetParentPath(sProject);
@@ -1510,6 +1524,11 @@ String CMergeApp::LoadString(UINT id) const
 }
 
 bool CMergeApp::TranslateString(const std::string& str, String& translated_str) const
+{
+	return m_pLangDlg->TranslateString(str, translated_str);
+}
+
+bool CMergeApp::TranslateString(const std::wstring& str, String& translated_str) const
 {
 	return m_pLangDlg->TranslateString(str, translated_str);
 }

@@ -15,6 +15,7 @@
   <property name="PluginExtendedProperties">
     <get/>
   </property>
+  <method name="PluginOnEvent"/>
   <method name="PrediffBufferW"/>
   <method name="ShowSettingsDialog"/>
 </implements>
@@ -23,8 +24,8 @@
 
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
-'    It will display the text content of MS Excel files.
-'    Copyright (C) 2018 Takashi Sawanaka
+'    It does almost the same thing as Substitution filters.
+'    Copyright (C) 2018-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -43,15 +44,29 @@
 
 Option Explicit
 
-Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\PrediffLineFilter.sct\"
+Const RegKeyPath = "Plugins\PrediffLineFilter.sct/"
 Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
 Dim wsh: Set wsh = CreateObject("WScript.Shell")
+Dim mergeApp
 
 Function regRead(Key, DefaultValue)
-  regRead = DefaultValue
-  On Error Resume Next
-  regRead = wsh.RegRead(Key)
+	regRead = DefaultValue
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
+	Else
+		regRead = mergeApp.GetOption(Key, DefaultValue)
+	End If
 End Function
+
+Sub regWrite(Key, Value, TypeNm)
+	On Error Resume Next
+	If IsEmpty(mergeApp) Then
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
+	Else
+		mergeApp.SaveOption Key, Value
+	End If
+End Sub
 
 Function get_PluginEvent()
   get_PluginEvent = "BUFFER_PREDIFF"
@@ -72,6 +87,10 @@ End Function
 Function get_PluginExtendedProperties()
   get_PluginExtendedProperties = "MenuCaption=Apply Prediff Substitution Filters"
 End Function
+
+Sub PluginOnEvent(eventType, obj)
+  Set mergeApp = obj
+End Sub
 
 Function SafeUBound(ary)
   On Error Resume Next
@@ -122,18 +141,40 @@ Function PrediffBufferW(pText, pSize, pbChanged)
   PrediffBufferW = True
 End Function
 
+Function Translate(text)
+  Dim re: Set re = CreateObject("VBScript.RegExp")
+  re.Pattern = "\${([^}]+)}"
+  re.Global = True
+  Translate = text
+  Dim match
+  Dim matches:Set matches = re.Execute(text)
+  if IsEmpty(mergeApp) Then
+    For Each match in matches
+      Translate = Replace(Translate, match.Value, match.Submatches(0))
+    Next
+  Else
+    For Each match in matches
+      Translate = Replace(Translate, match.Value, mergeApp.Translate(match.Submatches(0)))
+    Next
+  End If
+End Function
+
 Function ShowSettingsDialog()
   Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-  Dim tfile: Set tfile = fso.CreateTextFile(tname)
+  Dim jsonfile: jsonfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".json")
+  Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
   Dim mshta
-  tfile.Write getResource("dialog1")
+  tfile.Write Translate(getResource("dialog1"))
   tfile.Close
-  mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
+  exportSettingsToJSONFile jsonfile
+  mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
   If Not fso.FileExists(mshta) Then
     mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
   End If
-  Run wsh, """" & mshta & """ """ & tname & """"
-  fso.DeleteFile tname 
+  Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
+  importSettingsFromJSONFile jsonfile
+  fso.DeleteFile tname
+  fso.DeleteFile jsonfile
 End Function
 
 Sub Run(sh, cmd)
@@ -142,32 +183,126 @@ End Sub
 
 </script>
 
+<script language="JScript">
+
+var REGKEY_PATH = "Plugins\\PrediffLineFilter.sct/";
+
+function exportSettingsToJSONFile(filepath)
+{
+	var key_defvalues = {"Count" : 0};
+	var count = regRead(REGKEY_PATH + "Count", 0);
+	for (var i = 1; i < count + 1; i++) {
+        	key_defvalues["Enabled" + i] = true;
+		key_defvalues["IgnoreCase" + i] = false;
+		key_defvalues["UseRegExp" + i] = false;
+		key_defvalues["Pattern" + i] = "";
+		key_defvalues["ReplaceText" + i] = "";
+	}
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 2, true, -1);
+	var json = "{";
+	for (var key in key_defvalues) {
+		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val == "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
+	}
+	json = json.substr(0, json.length - 1) + "}";
+	ts.WriteLine(json);
+	ts.Close();
+}
+
+function importSettingsFromJSONFile(filepath)
+{
+	var fso = new ActiveXObject("Scripting.FileSystemObject");
+	var ts = fso.OpenTextFile(filepath, 1, true, -1);
+	var json = ts.ReadAll();
+	var settings = eval("(" + json + ")");
+	ts.Close();
+	for (var key in settings) {
+		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
+	}
+}
+
+</script>
+
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
-    <title>PrediffLineFilter.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <HTA:APPLICATION ID="objHTA">
+    <title>${PrediffLineFilter.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
-      table { border-collapse: collapse; }
-      table, td, th { border: 1px #000000 solid; }
-      td { background-color: #FFFFFF; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container-top { margin-bottom: 0.5em; text-align: left; }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn { color: #fff; background-color: #0c5; }
+    .btn:hover { background-color: #0b4; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
+    #table1 { border-collapse: collapse; border: 1px solid #ccc; }
     </style>
     <script type="text/javascript">
-      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\PrediffLineFilter.sct\\";
+      var REGKEY_PATH = "Plugins\\PrediffLineFilter.sct/";
+      var jsonFilePath;
+      var settings;
 
-      function regRead(key, defaultValue) {
-        try {
-          return (new ActiveXObject("WScript.Shell")).RegRead(key);
-        } catch (e) {
-          return defaultValue;
+      function jsonStringify(obj) {
+        if (obj === null) {
+          return "null";
+        }
+        if (typeof obj === "undefined") {
+          return undefined;
+        }
+        if (typeof obj === "number" || typeof obj === "boolean") {
+          return obj.toString();
+        }
+        if (typeof obj === "string") {
+          return '"' + escapeString(obj) + '"';
+        }
+        if (typeof obj === "object") {
+          var pairs = [];
+          for (var key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
+            }
+          }
+          return "{" + pairs.join(",") + "}";
         }
       }
 
+      function escapeString(str) {
+        return str.replace(/[\\"']/g, '\\$&');
+      }
+
+      function regRead(key, defaultValue) {
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
+      }
+
       function regWrite(key, value, type) {
-        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+      }
+
+      function loadSettingsFromJSONFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
+        var json = ts.ReadAll();
+        var settings = eval("(" + json + ")");
+        ts.Close();
+        return settings;
+      }
+
+      function saveSettingsToJSONFile(filepath, settings) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        ts.WriteLine(jsonStringify(settings));
+        ts.Close();
       }
 
       function insertRow(r) {
@@ -191,35 +326,18 @@ End Sub
       }
 
       function onload() {
+        jsonFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromJSONFile(jsonFilePath);
 
-        var w = 800, h = 600;
+        var dpi = window.screen.deviceXDPI;
+        var w = 800 * dpi / 96, h = 600 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-        setLanguage(navigator.browserLanguage);
         var count = regRead(REGKEY_PATH + "Count", 1);
         for (var i = 0; i < count; i++) {
           insertRow(-1);
         }
-      }
-
-      function setLanguage(lang) {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline } .textbox { font-family: "MS Gothic" }';    
-        } else {
-          html += '.ja { display: none } .en { display: inline } .textbox { font-family: "Courier New" }';
-        }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
-      }
-
-      function cboLanguage_onclick() {
-        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
       }
 
       function btnOk_onclick() {
@@ -231,71 +349,57 @@ End Sub
           regWrite(REGKEY_PATH + "Pattern" + (i + 1), document.getElementsByName("txtPattern")[i].value, "REG_SZ");
           regWrite(REGKEY_PATH + "ReplaceText" + (i + 1), document.getElementsByName("txtReplaceText")[i].value, "REG_SZ");
         }
+
+        saveSettingsToJSONFile(jsonFilePath, settings);
+
         window.close();
       }
 
       function btnCancel_onclick() {
+        saveSettingsToJSONFile(jsonFilePath, "{}");
+
         window.close();
       }
 
     </script>
   </head>
   <body onload="onload();">
-    <div>
+    <div class="container">
+      <div class="btn-container-top">
+        <ul>
+          <li>
+            <input type="button" class="btn" value="${Add}" onclick="insertRow(-1)" />
+            <input type="button" class="btn" value="${Delete}" onclick="deleteRow(-1)" />
+          </li>
+        </ul>
+      </div>
       <ul>
         <li>
-          <label class="en">Language: </label>
-          <label class="ja">言語: </label>
-          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
-            <option value="English">English</option>
-            <option value="Japanese">Japanese</option>
-          </select>
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <input class="en" type="button" value="Add" onclick="insertRow(-1)" />
-          <input class="ja" type="button" value="追加" onclick="insertRow(-1)" />
-          <input class="en" type="button" value="Delete" onclick="deleteRow(-1)" />
-          <input class="ja" type="button" value="削除" onclick="deleteRow(-1)" />
-        </li>
-      </ul>
-      <ul>
-        <li>
-          <table id="table1">
+          <table id="table1" border="1">
             <tr>
               <th>
-                <label class="en">Enabled</label>
-                <label class="ja">有効</label>
+                <label>${Enabled}</label>
               </th>
               <th>
-                <label class="en">Ignore Case</label>
-                <label class="ja">大文字小文字の違いを無視</label>
+                <label>${Ignore Case}</label>
               </th>
               <th>
-                <label class="en">Use RegExp</label>
-                <label class="ja">正規表現を使用</label>
+                <label>${Use RegExp}</label>
               </th>
               <th>
-                <label class="en">Find what</label>
-                <label class="ja">検索文字列</label>
+                <label>${Find what}</label>
               </th>
               <th>
-                <label class="en">Replace with</label>
-                <label class="ja">置換後の文字列</label>
+                <label>${Replace with}</label>
               </th>
             </tr>
           </table>
         </li>
       </ul>
-      <ul>
-        <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
-        </li>
-      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>

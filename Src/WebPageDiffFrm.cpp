@@ -272,6 +272,8 @@ IMergeDoc::FileChange CWebPageDiffFrame::IsFileChangedOnDisk(int pane) const
 
 void CWebPageDiffFrame::CheckFileChanged(void)
 {
+	if (!m_pWebDiffWindow)
+		return;
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
 		if (IsFileChangedOnDisk(pane) == FileChange::Changed)

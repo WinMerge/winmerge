@@ -1,5 +1,8 @@
+#pragma once
+
 #include <oleauto.h>
 #include <string>
+#include <vector>
 #include <map>
 
 class WinMergePluginBase : public IDispatch, public ITypeInfo
@@ -169,7 +172,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT* pctinfo) override
 	{
-		*pctinfo = static_cast<UINT>(m_methodData.size());
+		*pctinfo = 1;
 		return S_OK;
 	}
 
@@ -197,7 +200,7 @@ public:
 		if (!pDispParams)
 			return DISP_E_BADVARTYPE;
 		HRESULT hr = E_NOTIMPL;
-		if (wFlags == DISPATCH_METHOD)
+		if (wFlags & DISPATCH_METHOD)
 		{
 			switch (dispIdMember)
 			{
@@ -271,7 +274,7 @@ public:
 				break;
 			}
 		}
-		else if (wFlags == DISPATCH_PROPERTYGET)
+		else if (wFlags & DISPATCH_PROPERTYGET)
 		{
 			switch (dispIdMember)
 			{
@@ -309,7 +312,7 @@ public:
 				break;
 			}
 		}
-		else if (wFlags == DISPATCH_PROPERTYPUT)
+		else if (wFlags & DISPATCH_PROPERTYPUT)
 		{
 			switch (dispIdMember)
 			{

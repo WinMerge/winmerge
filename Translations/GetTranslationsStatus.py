@@ -504,14 +504,14 @@ class PoStatus(Status):
                       tmp = rePoRevisionDate.findall(sMsgStr)
                       if tmp: #If "PO-Revision-Date"...
                           #TODO: Convert to date!
-                          self._porevisiondate = tmp[0]
+                          self._porevisiondate = tmp[0].strip()
                       tmp = rePotCreationDate.findall(sMsgStr)
                       if tmp: #If "POT-Creation-Date"...
                           #TODO: Convert to date!
-                          self._potcreationdate = tmp[0]
+                          self._potcreationdate = tmp[0].strip()
                       tmp = rePoeditLanguage.findall(sMsgStr)
                       if tmp: #If "X-Poedit-Language"...
-                          self._poeditlanguage = tmp[0]
+                          self._poeditlanguage = tmp[0].strip()
                   sMsgId = ''
                   sMsgStr = ''
                   bIsFuzzy = False

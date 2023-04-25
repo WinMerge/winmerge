@@ -10,6 +10,9 @@
 	<property name="PluginExtendedProperties">
 		<get/>
 	</property>
+	<property name="PluginFileFilters">
+		<get/>
+	</property>
 	<method name="InsertDate"/>
 	<method name="InsertTime"/>
 </implements>

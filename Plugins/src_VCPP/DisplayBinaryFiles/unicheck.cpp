@@ -5,7 +5,7 @@
 /**
  * @brief Check buffer for Unicode byte order mark, and fill in uinfo as appropriate
  */
-bool CheckForBom(char * buffer, int len, unicodingInfo * uinfo)
+bool CheckForBom(char * buffer, size_t len, unicodingInfo * uinfo)
 {
 	// Need to use unsigned char arithmetic to avoid sign extension
 	unsigned char * buffptr = (unsigned char *)buffer;

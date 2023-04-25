@@ -71,43 +71,12 @@ unsigned __stdcall CIniOptionsMgr::AsyncWriterThreadProc(void *pvThis)
 
 std::map<String, String> CIniOptionsMgr::Load(const String& iniFilePath)
 {
-	std::map<String, String> iniFileKeyValues;
-	std::vector<tchar_t> str(32768);
-	if (GetPrivateProfileSection(lpAppName, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
-	{
-		const tchar_t* p = str.data();
-		while (*p)
-		{
-			const tchar_t* v = tc::tcschr(p, '=');
-			if (!v)
-				break;
-			++v;
-			size_t vlen = tc::tcslen(v);
-			String value{ v, v + vlen };
-			String key{ p, v - 1 };
-			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
-			p = v + vlen + 1;
-		}
-	}
-	
-	// after reading the "WinMerge" section try to read the "Defaults" section; overwrite existing entries in "iniFileKeyValues" with the ones from the "Defaults" section
-	if (GetPrivateProfileSection(lpDefaultSection, str.data(), static_cast<DWORD>(str.size()), iniFilePath.c_str()) > 0)
-	{
-		const tchar_t* p = str.data();
-		while (*p)
-		{
-			const tchar_t* v = tc::tcschr(p, '=');
-			if (!v)
-				break;
-			++v;
-			size_t vlen = tc::tcslen(v);
-			String value{ v, v + vlen };
-			String key{ p, v - 1 };
-			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
-			p = v + vlen + 1;
-		}
-	}
+	std::map<String, String> iniFileKeyValues = ReadIniFile(iniFilePath, lpAppName);
 
+	// after reading the "WinMerge" section try to read the "Defaults" section; overwrite existing entries in "iniFileKeyValues" with the ones from the "Defaults" section
+	std::map<String, String> iniFileKeyDefaultValues = ReadIniFile(iniFilePath, lpDefaultSection);
+	for (auto& [key, strValue] : iniFileKeyDefaultValues)
+		iniFileKeyValues.insert_or_assign(key, strValue);
 	return iniFileKeyValues;
 }
 
@@ -122,16 +91,10 @@ int CIniOptionsMgr::LoadValueFromBuf(const String& strName, const String& textVa
 	}
 	else if (valType == varprop::VT_INT)
 	{
-		try
-		{
-			value.SetInt(static_cast<int>(std::stoul(textValue)));
-		}
-		catch (std::invalid_argument&)
-		{
-		}
-		catch (std::out_of_range&)
-		{
-		}
+		tchar_t* endptr = nullptr;
+		DWORD val = static_cast<DWORD>(tc::tcstoll(textValue.c_str(), &endptr, 
+			(textValue.length() >= 2 && textValue[1] == 'x') ? 16 : 10));
+		value.SetInt(static_cast<int>(val));
 		retVal = Set(strName, value);
 	}
 	else if (valType == varprop::VT_BOOL)
@@ -155,14 +118,14 @@ int CIniOptionsMgr::SaveValueToFile(const String& name, const varprop::VariantVa
 	{
 		String strVal = EscapeValue(value.GetString());
 		LPCWSTR text = strVal.c_str();
-		retValReg =WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+		retValReg = WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
 	}
 	else if (valType == varprop::VT_INT)
 	{
 		DWORD dwordVal = value.GetInt();
 		String strVal = strutils::to_str(dwordVal);
 		LPCWSTR text = strVal.c_str();
-		retValReg =WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
+		retValReg = WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
 	}
 	else if (valType == varprop::VT_BOOL)
 	{
@@ -374,6 +337,35 @@ int CIniOptionsMgr::FlushOptions()
 	while (InterlockedCompareExchange(&m_dwQueueCount, 0, 0) != 0)
 		Sleep(0);
 
+	return retVal;
+}
+
+int CIniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
+{
+	for (auto& [key, value] : m_iniFileKeyValues)
+	{
+		if (m_optionsMap.find(key) == m_optionsMap.end())
+		{
+			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
+				EscapeValue(value).c_str(), filename.c_str());
+		}
+	}
+	return COptionsMgr::ExportOptions(filename, bHexColor);
+}
+
+int CIniOptionsMgr::ImportOptions(const String& filename)
+{
+	int retVal = COptionsMgr::ImportOptions(filename);
+	auto iniFileMap = Load(filename);
+	for (auto& [key, value] : iniFileMap)
+	{
+		if (m_optionsMap.find(key) == m_optionsMap.end())
+		{
+			m_iniFileKeyValues.insert_or_assign(key, value);
+			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
+				EscapeValue(value).c_str(), GetFilePath());
+		}
+	}
 	return retVal;
 }
 

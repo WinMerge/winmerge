@@ -171,7 +171,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_BACKCOLOR, 0xFFFFFF);
 	pOptions->InitOption(OPT_CMP_IMG_DIFFBLOCKSIZE, 8, 0, 64);
 	pOptions->InitOption(OPT_CMP_IMG_DIFFCOLORALPHA, 70, 0, 100);
-	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0, 0, 442);
+	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0, 0, 442 * 1000);
 	pOptions->InitOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, 0, 0, 2);
 	pOptions->InitOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, 1000, 1, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0, 0, 2);
