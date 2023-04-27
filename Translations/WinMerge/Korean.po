@@ -5107,7 +5107,7 @@ msgid "Ignore some fields - ignored fields list from the plugin name or the plug
 msgstr "일부 필드 무시 - 플러그인 이름 또는 플러그인 인수에서 무시된 필드 목록"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr ""
+msgstr "이 플러그인은 텍스트 파일 (예: NC 및 BASIC 파일)의 선행 라인 번호를 무시합니다."
 
 msgid "Prediff Line Filter"
 msgstr "사전 차이 필터"
