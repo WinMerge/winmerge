@@ -1,145 +1,165 @@
-# WinMerge 2.16.28 リリースノート
+# WinMerge 2.16.30 リリースノート
 
 - [このリリースについて](#about-this-release)
-- [2.16.28の新機能](#what-is-new-in-21628)
-- [2.16.26の新機能](#what-is-new-in-21626)
-- [2.16.25 beta の新機能](#what-is-new-in-21625-beta)
+- [2.16.30の新機能](#what-is-new-in-21630)
+- [2.16.29 beta の新機能](#what-is-new-in-21629-beta)
 - [既知の問題](#known-issues)
 
-2023年1月
+2023年4月
 
 ## このリリースについて
 
-WinMerge の 2.16.28 安定版リリースです。
+WinMerge の 2.16.30 安定版リリースです。
 このリリースは、以前の WinMerge 安定版リリースに代わる推奨リリースです。
 
 不具合は <a href="http://github.com/WinMerge/winmerge/issues">bug-tracker</a> で報告してください。
 日本語での報告は、<a href="https://osdn.net/projects/winmerge-jp/ticket/">こちら</a>でお願いします。
 
-## 2.16.28 の新機能
-
-### フォルダ比較
-
-- 不具合修正: 拡張子のないファイルがフォルダ名に「.」を含むフォルダに存在する場合、そのファイルが比較されない問題を修正した。
-
-## 2.16.26 の新機能
+## 2.16.30 の新機能
 
 ### 全般
 
-- ヘッダーバーに特定のパス名が設定されるとクラッシュすることがある問題を修正。
+- 不具合修正: エクスポートされた ini ファイルを /inifile コマンドラインオプション等で使用する場合、差異等の色が黒になってしまう問題を修正した。[(#1799)](https://github.com/WinMerge/winmerge/issues/1799)
+- 32ビット版のWinMergeU.exeのファイルサイズを削減した。
 
 ### ファイル比較
 
-- ファイルパスバーで編集する時、Ctr+Vキーでテキストを貼り付けられるようにした。[(#1651)](https://github.com/WinMerge/winmerge/issues/1651)
+- 不具合修正: vcxprojなどのXML形式のファイルがシンタックスハイライトされない問題を修正した。
+- 不具合修正: ARM64版でEOL文字が表示されない問題を修正した。
+- 2つのファイルを比較する場合、移動ダイアログの[中央]ラジオボタンを無効にするようにした。[(PR #1779)](https://github.com/WinMerge/winmerge/pull/1779)(PRいただきました。ありがとうございます。)
 
-### フォルダ比較
+### 画像比較
 
-- 不具合修正: エクスポートされた.iniファイルをインポートしても行フィルタや置換フィルタが復元されない問題を修正。(正常に行フィルタや置換フィルタを復元するには、最新バージョンでエクスポートした.iniファイルを使用する必要があります) [(#1638)](https://github.com/WinMerge/winmerge/issues/1638)
-- 不具合修正: フィルヘッダーバーのメニューの[開く]が無効化されていたのを修正。
-- 3フォルダ比較時、差異があるが2つのフォルダは一致していた場合、比較結果列に2つが一致していることを表示するようにした。[(PR #1649)](https://github.com/WinMerge/winmerge/pull/1649)
-- コンテキストメニュー→[左/右側を開く]→[親フォルダを開く]を選択したとき、WinMergeで選択していたファイルがExplorerでも選択されるようにした。[(#1662)](https://github.com/WinMerge/winmerge/issues/1662)
-- 3フォルダ比較で[表示]→[3方向比較]メニューがフォルダに対してできるようにした。[(PR #1683)](https://github.com/WinMerge/winmerge/pull/1683)
+- 不具合修正: タブを中ボタンでクリックするとクラッシュすることがある問題を修正した。[(#1785)](https://github.com/WinMerge/winmerge/issues/1785)
+- 不具合修正: 変更した色距離閾値が次回WinMerge起動で0に戻ってしまう問題を修正した。
+- 色距離閾値を442まで変更できるように修正した。[(winmerge/winimerge #29)](https://github.com/WinMerge/winimerge/issues/29)
 
-### バイナリ比較
+### ファイルフィルタ
 
-- 不具合修正: フィルヘッダーバーのメニューの[開く]が無効化されていたのを修正。
-
-### Webページ比較
-
-- 不具合修正: オプションダイアログの単語の差異の削除の色が使われていなかったのを修正。
-- [数字を無視する]オプションが機能するようにした。
+- UTF-8で保存されているファイルフィルタでも機能するようにした。
 
 ### オプションダイアログ
 
-- オプションダイアログの[比較>フォルダ]カテゴリの改善。[(PR #1645)](https://github.com/WinMerge/winmerge/pull/1645)
+- 不具合修正: バージョン2.16.29で、オプションダイアログのシェル統合カテゴリページが正しく表示されない問題を修正した。
+- 不具合修正: エクスポートした設定情報にプラグインの設定も含められるようにした。
 
 ### プラグイン
 
-- MarkdownファイルをHTMLに変換するプラグイン(PreviewMarkdown)を追加。[(PR #1641)](https://github.com/WinMerge/winmerge/pull/1641)
-- PlantUMLのファイルを画像に変換するプラグイン(PreviewPlantUML)を追加。[(PR #1666)](https://github.com/WinMerge/winmerge/pull/1666)
-- CompareMSExcelFiles: プラグインオプションウインドウに"ワークシートをHTMLとして保存して比較する"を追加。
-- ApacheTika: Apache Tika のバージョンを 2.6.0 に更新。
-- ApacheTika: もし、Java がインストールされていない場合、OpenJDK 19.0.2 をダウンロードして使用するようにした。
+- 不具合修正: プラグイン -> 手動展開メニューがチェックされている場合でもApplyPatchプラグインが機能するようにした。
+- 不具合修正: 32ビットOSでCompareMSExcelFilesプラグイン等の設定ウィンドウが開けない問題を修正した。
+- [プラグインの設定]ボタンを[プラグインの選択]ウィンドウに追加した。
+- プラグインの設定ダイアログを翻訳可能にし、INIファイルにプラグインの設定を保存できるようにした。[(PR #1783)](https://github.com/WinMerge/winmerge/pull/1783)
+
+### コマンドライン
+
+- 不具合修正: `/new` コマンドラインオプションを指定した場合、`/fr` オプションが無視される問題を修正した。
+- 不具合修正: 自動マージ後に競合する行に移動しない問題を修正した。
+
+### プロジェクトファイル
+
+- 不具合修正: プロジェクトファイル内のパスに環境変数が含まれるとプロジェクトファイルが開けない問題を修正した。[(#1793)](https://github.com/WinMerge/winmerge/issues/1793)
+
+### インストーラ
+
+- 不具合修正: インストーラの「プログラムグループの指定」ページで、プログラムグループの名前を空にし、[プログラムグループを作成しない]のチェックを外すと、インストールに失敗する問題を修正した。[(#1802)](https://github.com/WinMerge/winmerge/issues/1802)
 
 ### 翻訳
 
 - 翻訳の更新:
-  - Brazilian (PR #1656,#1670)
-  - Chinese Simplified (PR #1635,#1665,#1667,#1677,#1681)
-  - Corsican (PR #1674)
-  - French (PR #1640,#1679)
-  - German (PR #1660,#1671)
-  - Hungarian (PR #1664)
+  - Brazilian (PR #1806)
+  - Chinese Simplified (PR #1808)
+  - German (PR #1807)
+  - Hungarian (PR #1809)
   - Japanese
-  - Lithuanian (PR #1657,#1673)
-  - Polish (PR #1648)
-  - Portuguese (PR #1669)
-  - Russian (PR #1676)
-  - Slovenian
-  - Swedish (PR #1655,#1663,#1682)
+  - Korean (PR #1774,#1788,#1790,#1791)
+  - Lithuanian (PR #1817)
+  - Polish (PR #1815)
+  - Portuguese (PR #1787)
+  - Slovenian (#1812)
 
-## 2.16.25 Beta の新機能
+## 2.16.29 Beta の新機能
 
 ### ファイル比較
 
-- 不具合修正: 範囲選択して置換するとすべて置換されないことがある問題を修正。[(#1556)](https://github.com/WinMerge/winmerge/issues/1556)
-- 不具合修正: 正規表現を使用した置換でハングすることがある問題を修正。[(#1575)](https://github.com/WinMerge/winmerge/issues/1575)
-- SQLファイルのシンタックスハイライトのキーワード追加。[(PR #1493)](https://github.com/WinMerge/winmerge/pull/1493)
-- htmlファイルのシンタックスハイライトキーワードを最新化。[(PR #1565)](https://github.com/WinMerge/winmerge/pull/1565)
-- cssファイルのシンタックスハイライトキーワードを最新化。[(PR #1572)](https://github.com/WinMerge/winmerge/pull/1572)
-- サイズが大きいファイルの表示速度を改善。[(PR #1574)](https://github.com/WinMerge/winmerge/pull/1574)
-- Ctrl+Nキーで空のファイル比較ウインドウを表示した時、左側のペインにフォーカスが当たるようにした。 [(#1598)](https://github.com/WinMerge/winmerge/issues/1598)
+- 不具合修正: 3方向比較で[類似行をマッチさせる]の動作を改善した。[(#1696)](https://github.com/WinMerge/winmerge/issues/1696)
+- 不具合修正: 選択範囲の終点の位置よっては正しくインデントされないことがあるのを修正。[(#1740)](https://github.com/WinMerge/winmerge/issues/1740)
+- デフォルト以外のDiffアルゴリズムの選択時の以下の問題を修正:
+  - [改行文字の違いを無視する]が無効でも、空白の差分を無視するオプションが有効な場合、改行文字の差分が無視される。
+  - [改行文字の違いを無視する]が有効でも、CRとCR+LFの差異が無視されない。
+- 正規表現のチェックを外し、[単語単位で探す]にチェックを入れた場合、正しく動作しないのを修正。
+- MATLAB のシンタックスハイライトを追加。[(PR #1766)](https://github.com/WinMerge/winmerge/pull/1766)(PRいただきました。ありがとうございます。)
+
+### テーブル比較
+
+- テーブル比較ウィンドウの[表示]→[行を右端で折り返す]メニューを[折り返して全体を表示]に変更し、そのチェック状態がテキスト比較ウィンドウの同じメニュー項目とは別に保存されるようにした。[(osdn.net #47553)](https://osdn.net/projects/winmerge-jp/ticket/47553)
+- CSVファイルのセパレーターをカンマからセミコロン等他の文字に変更できるようにした。
 
 ### バイナリ比較
 
-- 64bit版ではファイルサイズが2GB以上のファイルも開けるようにした。[(PR #1549)](https://github.com/WinMerge/winmerge/pull/1549)
+- 不具合修正: ウインドウサイズを変更すると、スクロール位置が適切な位置にならない問題を修正した。[(WinMerge/frhed #13)](https://github.com/WinMerge/frhed/issues/13)
+- 不具合修正: ファイル読み込み時にファイルサイズが切り捨てられると、無限ループが発生する問題を修正した。
+
+### 画像比較
+
+- 不具合修正: 画像比較レポートを共有フォルダに保存できない問題を修正した。
+
+### Webページ比較
+
+- 不具合修正: ヘッダーバーにファイルパスが表示されない問題を修正した。
 
 ### フォルダ比較
 
-- 不具合修正: [列の表示]ダイアログでOKボタンを押すとクラッシュすることがある問題を修正。[(PR #1568)](https://github.com/WinMerge/winmerge/pull/1568)
-- 不具合修正: ファイルやフォルダをコピーするときクラッシュすることがあるのを修正。[(#1558)](https://github.com/WinMerge/winmerge/issues/1558)
-- 不具合修正: フォルダとフォルダ内のファイルを選択して圧縮ファイルを作成すると、圧縮ファイルに同じファイルが含まれてしまう問題を修正。[(#1588)](https://github.com/WinMerge/winmerge/issues/1588)
-- 不具合修正: ツリーモードでフォルダを展開したとき、想定外の位置にスクロールすることがあるのを修正。[(osdn.net #46061)](https://osdn.net/projects/winmerge-jp/ticket/46061)
-- 不具合修正: フォルダ比較レポート内の#や%を含むファイル名のファイル比較レポートへのリンクが正しくない問題を修正。[(osdn.net #46082)](https://osdn.net/projects/winmerge-jp/ticket/46082)
-- 3フォルダー比較で3つ存在しないファイルの「比較結果」列の表示を改善。[(PR #1545)](https://github.com/WinMerge/winmerge/pull/1545)
-- コンテキストメニューに "すべての表示列をコピー" を追加 [(PR #1615)](https://github.com/WinMerge/winmerge/issues/1615)
-    
+- 不具合修正: ツリーモードでフォルダを折りたたんだ後、その横のアイコンが下向きのママになる問題を修正した。[(#1747)](https://github.com/WinMerge/winmerge/issues/1747)
+- 不具合修正: 片方のファイルを削除しても日付やサイズ等の列が更新されないのを修正した。
+- コンテキストメニューの[移動]に[左側から右側]、または[右側から左側]を追加した。[(PR #1732)](https://github.com/WinMerge/winmerge/pull/1732)
+- F2キーまたは[名前の変更]メニュー選択時、拡張子部分が選択されないようにした。
+
 ### オプションダイアログ
 
-- 変更されたファイルの自動再読み込みオプションを追加 [(PR #1611)](https://github.com/WinMerge/winmerge/pull/1611)
+- 「形式を指定して比較」メニューをオプションダイアログの[シェル統合]カテゴリから追加できるようにした。
+
+### プラグイン
+
+- IgnoreLeadingLineNumbers プラグインの処理速度改善。[(#1715)](https://github.com/WinMerge/winmerge/issues/1715)
+   (IgnoreLeadingLineNumbers.dll から IgnoreLeadingLineNumbers.sct にファイル名を変更しました。)
+
+### コマンドライン
+
+- 不具合修正: コマンドラインオプション /self-compare を使用して file.zip:Zone.Identifier:$DATA などの代替データストリームを比較した場合、クラッシュするのを修正。
+- 不具合修正: パスを1つだけ指定して/tコマンドラインオプションを指定した場合にクラッシュする問題を修正。
+
+### シェルエクステンション
+
+- 不具合修正: Windows 11 エクスプローラーの2つ目以降のタブでファイルやフォルダを選択して比較しても、選択したファイルやフォルダが比較されない問題を修正した。[(#1733)](https://github.com/WinMerge/winmerge/issues/1733)
+- 不具合修正: Windows 11 エクスプローラーでファイル以外の領域を右クリックすると、WinMerge メニューが表示されない問題を修正した。
+- 「形式を指定して比較」メニューをオプションダイアログの[シェル統合]カテゴリから追加できるようにした。
+
+### インストーラ
+
+- Frhed/WinIMerge/Merge7z/WinWebDiffが常にインストールするようにした。また、[コンポーネントの選択]ページでプラグインを選択した場合、GnuWin32 Patch for Windows/HTML Tidy/jq/md4c もインストールされるようにした。
+- ExplorerがシェルエクステンションのDLLを使用中の時、インストーラからExplorerを再起動してもインストールに成功しないことがある問題を修正した。
+- 64ビット版インストーラーにIgnoreLeadingLineNumbers.sctプラグインを追加。
 
 ### 翻訳
 
+- 不具合修正: 一部のメッセージが翻訳されないのを修正した。[(PR #1712)](https://github.com/WinMerge/winmerge/pull/1712)(PRいただきました。ありがとうございます。)
 - 翻訳の更新:
-  - Brazilian (PR #1617,#1630)
-  - Chinese Simplified (PR #1614)
-  - Corsican (PR #1628,#1629)
-  - Galician (#1581)
-  - German (PR #1616,#1633)
-  - Hungarian (PR #1618,#1631)
-  - Lithuanian (PR #1621,#1632)
+  - Brazilian (PR #1711,#1713,#1727,#1728,#1756)
+  - Chinese Simplified (PR #1714,#1719,#1722,#1731,#1765)
+  - Corsican (PR #1717,#1723,#1752)
+  - Dutch (PR #1757)
+  - German (PR #1730,#1754)
+  - Hungarian (PR #1725,#1726,#1758)
   - Japanese
-  - Polish (PR #1566)
-  - Russian (PR #1553,#1554,#1555)
-  - Slovenian
-  - Swedish (PR #1594)
-  - Turkish (PR #1563)
-
-### その他
-
-- pngファイルのサイズを縮小。[(PR #1541)](https://github.com/WinMerge/winmerge/pull/1541)
-- サイズ最適化のためフィールドを再配置。[(PR #1546)](https://github.com/WinMerge/winmerge/pull/1546)
-- Diff3.h のリファクタリング。[(PR #1577)](https://github.com/WinMerge/winmerge/pull/1577)
-- コメントの誤りの修正。[(PR #1578)](https://github.com/WinMerge/winmerge/pull/1578)
-- 同じファイルを開く場合の処理の最適化。[(PR #1579)](https://github.com/WinMerge/winmerge/pull/1579)
-- SubeditList.cpp のリファクタリング。[(PR #1580)](https://github.com/WinMerge/winmerge/pull/1580)
-- unicoder.cpp のリファクタリング。[(PR #1582)](https://github.com/WinMerge/winmerge/pull/1582), [(PR #1584)](https://github.com/WinMerge/winmerge/pull/1584), [(PR #1586)](https://github.com/WinMerge/winmerge/pull/1586)
-- markdown.cpp のリファクタリング。[(PR #1590)](https://github.com/WinMerge/winmerge/pull/1590)
-- デバッグ用の機能を追加 [(PR #1595)](https://github.com/WinMerge/winmerge/pull/1595)
+  - Korean (PR #1689,#1690,#1692,#1693,#1694,#1718)
+  - Lithuanian (PR #1729,#1755)
+  - Polish (PR #1763,#1764)
+  - Portuguese (PR #1737)
+  - Russian (PR #1710,#1751)
+  - Swedish (#1706,PR #1707)
 
 ## 既知の問題
 
- - Windows11でExplorerの右クリックメニューのWinMergeのメニューが機能しないことがある。[(#1619)](https://github.com/WinMerge/winmerge/issues/1619)
  - フォルダ比較で画像比較を有効にした場合、比較結果が安定しない。 [(#1391)](https://github.com/WinMerge/winmerge/issues/1391)
  - 巨大ファイルの比較でクラッシュすることがある。[(#325)](https://github.com/WinMerge/winmerge/issues/325)
  - 大幅に異なるフォルダの比較が非常に時間がかかる。 [(#322)](https://github.com/WinMerge/winmerge/issues/322)
