@@ -1961,6 +1961,28 @@ or is this understood?--></para>
         </varlistentry>
       </variablelist>
 
+      <variablelist>
+        <varlistentry>
+          <term>「形式を指定して比較」メニューを有効にする</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>無効</option> (デフォルト):
+                <guimenuitem>形式を指定して比較</guimenuitem>
+                メニューをエクスプローラーのコンテキストメニューから削除します。</para>
+              </listitem>
+
+              <listitem>
+                <para><option>有効</option>:
+                <guimenuitem>形式を指定して比較</guimenuitem>
+                メニューをエクスプローラーのコンテキストメニューに追加します。</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
       <para><xref linkend="OpenPaths_shell-integ" />では、WinMerge と 比較ショートカットの使用方法について説明しています。
       </para>
     </section>

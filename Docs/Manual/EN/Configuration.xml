@@ -1954,6 +1954,28 @@ or is this understood?--></para>
         </varlistentry>
       </variablelist>
 
+      <variablelist>
+        <varlistentry>
+          <term>Enable Compare As menu</term>
+
+          <listitem>
+            <itemizedlist>
+              <listitem>
+                <para><option>Disabled</option> (default): Removes 
+                <guimenuitem>Compare As</guimenuitem> menu item
+                from Explorer context menu.</para>
+              </listitem>
+
+              <listitem>
+                <para><option>Enabled</option>: Adds 
+                <guimenuitem>Compare As</guimenuitem> menu item
+                to Explorer context menu.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
       <para><xref linkend="OpenPaths_shell-integ" /> describes how to use the
       WinMerge and Compare shortcuts.</para>
     </section>

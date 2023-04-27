@@ -1,5 +1,5 @@
-#define FILEVER        2,16,28,5
-#define PRODUCTVER     2,16,28,5
-#define STRFILEVER     "2.16.28.5"
-#define STRPRODUCTVER  "2.16.28.5"
-#define STRPRIVATEBUILD "jp-5"
+#define FILEVER        2,16,30,1
+#define PRODUCTVER     2,16,30,1
+#define STRFILEVER     "2.16.30.1"
+#define STRPRODUCTVER  "2.16.30.1"
+#define STRPRIVATEBUILD "jp-1"
