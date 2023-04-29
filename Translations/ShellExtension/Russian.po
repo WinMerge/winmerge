@@ -43,7 +43,7 @@ msgstr "Расширение проводника"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
+msgid "Win&Merge"
 msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
@@ -75,4 +75,3 @@ msgstr "Выбрать &средний"
 #, c-format
 msgid "Re-select &Left"
 msgstr "Перевыбрать &левый"
-
