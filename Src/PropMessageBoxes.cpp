@@ -111,7 +111,7 @@ void PropMessageBoxes::DoDataExchange(CDataExchange* pDX)
 			{
 				int ans = m_answers[i];
 				m_list.SetCheck(i, ans != -1);
-				m_list.SetItemText(i, 1, (ans < 0 || ans >= Answers.size()) ? _T("") : Answers[ans].c_str());
+				m_list.SetItemText(i, 1, (ans < 0 || ans >= static_cast<int>(Answers.size())) ? _T("") : Answers[ans].c_str());
 			}
 		}
 		else
