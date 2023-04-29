@@ -1977,7 +1977,7 @@ msgstr "Включване на &уникално съдържание от по
 msgid "&Automatically expand all subfolders"
 msgstr "&Автоматично разтваряне на подпапките"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr ""
 
 msgid "Threshold for switching to &quick compare (MB):"
