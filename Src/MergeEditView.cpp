@@ -3019,11 +3019,14 @@ void CMergeEditView::OnWMGoto()
 	CMergeDoc *pDoc = GetDocument();
 	CEPoint pos = GetCursorPos();
 	int nRealLine = 0;
-	int nLastLine = 0;
+	int nLastLine[3] = {};
 
 	nRealLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(pos.y);
-	int nLineCount = pDoc->m_ptBuf[m_nThisPane]->GetLineCount();
-	nLastLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(nLineCount - 1);
+	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
+	{
+		int nLineCount = pDoc->m_ptBuf[nPane]->GetLineCount();
+		nLastLine[nPane] = pDoc->m_ptBuf[nPane]->ComputeRealLine(nLineCount - 1);
+	}
 
 	// Set active file and current line selected in dialog
 	dlg.m_strParam = strutils::to_str(nRealLine + 1);
@@ -3043,14 +3046,17 @@ void CMergeEditView::OnWMGoto()
 
 		if (dlg.m_nGotoWhat == 0)
 		{
+			int nPane = (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile;
+			assert(nPane >= 0 && ((pDoc1->m_nBuffers < 3 && nPane < 2) || (pDoc1->m_nBuffers == 3 && nPane < 3)));
+
 			int nRealLine1 = num;
 			if (nRealLine1 < 0)
 				nRealLine1 = 0;
-			if (nRealLine1 > nLastLine)
-				nRealLine1 = nLastLine;
+			if (nRealLine1 > nLastLine[nPane])
+				nRealLine1 = nLastLine[nPane];
 
 			bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
-			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile, !bShift);
+			GotoLine(nRealLine1, true, nPane, !bShift);
 		}
 		else
 		{
@@ -3058,9 +3064,9 @@ void CMergeEditView::OnWMGoto()
 			if (diff < 0)
 				diff = 0;
 			if (diff >= pDoc1->m_diffList.GetSize())
-				diff = pDoc1->m_diffList.GetSize();
+				diff = pDoc1->m_diffList.GetSize() - 1;
 
-			if (pCurrentView)
+			if (pCurrentView && diff >= 0)
 				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
