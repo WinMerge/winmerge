@@ -3344,6 +3344,9 @@ msgstr ""
 "%1\n"
 "al otro lado y abrir éstas carpetas?"
 
+msgid "Are you sure you want top copy ALL diffs to other file?"
+msgstr "¿Está seguro que quiere copiar todas las differencias al otro archivo?"
+
 msgid "Do you want to move to the next file?"
 msgstr "¿Quieres pasar al siguiente archivo?"
 

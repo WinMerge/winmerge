@@ -872,6 +872,12 @@ void CHexMergeDoc::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
  */
 void CHexMergeDoc::OnAllRight()
 {
+	UINT userChoice = 0;
+	userChoice = AfxMessageBox(IDS_CONFIRM_COPY_ALL_DIFFS, MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_RIGHT, GetActiveMergeView()->m_nThisPane, m_nBuffers);
 	CHexMergeView::CopyAll(m_pView[srcPane], m_pView[dstPane]);
 }
@@ -892,6 +898,12 @@ void CHexMergeDoc::OnUpdateAllRight(CCmdUI* pCmdUI)
  */
 void CHexMergeDoc::OnAllLeft()
 {
+	UINT userChoice = 0;
+	userChoice = AfxMessageBox(IDS_CONFIRM_COPY_ALL_DIFFS, MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_LEFT, GetActiveMergeView()->m_nThisPane, m_nBuffers);
 	CHexMergeView::CopyAll(m_pView[srcPane], m_pView[dstPane]);
 }
