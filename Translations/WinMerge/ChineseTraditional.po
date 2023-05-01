@@ -2430,6 +2430,12 @@ msgstr "為 &Windows 11 及以上版本註冊殼層延伸"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "為 &Windows 11 及以上版本取消註冊殼層延伸"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "資料夾"
@@ -4707,6 +4713,24 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "32 位元版本的 WinMerge 不支援剪貼簿比較"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
 msgstr ""
 
 msgid "Prettification"

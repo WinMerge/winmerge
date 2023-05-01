@@ -2420,6 +2420,12 @@ msgstr "Registra la extensió del sistema per a Windows 11 o posterior"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Desinstal·la la extensió del sistema per a Windows 11 o posterior"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Directori"
@@ -4710,6 +4716,24 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr "La versió de 32 bits del WinMerge no suporta comparar via porta-retalls"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
 msgstr ""
 
 msgid "Prettification"

@@ -26,6 +26,7 @@ public:
 	bool m_bContextAdded;
 	bool m_bContextAdvanced;
 	bool m_bContextCompareAs;
+	CListCtrl m_list;
 
 // Overrides
 	protected:
@@ -42,6 +43,7 @@ protected:
 	afx_msg void OnUnregisterShellExtensionPerUser();
 	afx_msg void OnRegisterWinMergeContextMenu();
 	afx_msg void OnUnregisterWinMergeContextMenu();
+	afx_msg void OnClearAllRecentItems();
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 	void GetContextRegValues();

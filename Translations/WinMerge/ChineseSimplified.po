@@ -1966,6 +1966,12 @@ msgstr "注册系统扩展（Windows 11 或更新的系统）(&W)"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "注销系统扩展（Windows 11 或更新的系统）(&I)"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "文件夹"
@@ -4054,6 +4060,24 @@ msgstr "32 位的 WinMerge 不支持剪贴板比较"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "未安装 WebView2 运行库。你想下载吗？"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "格式美化"

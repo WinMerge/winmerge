@@ -1961,6 +1961,12 @@ msgstr "Vincular extensiones shell para &Windows 11 o mas reciente"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Desvincular extensiones shell para &Windows 11 o mas reciente"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Carpeta"
@@ -4016,6 +4022,24 @@ msgstr "La version de 32-bits de WinMerge no soporta Comparación de Portapapele
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2 no esta instalado, Desea descargarlo ?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr ""

@@ -2170,6 +2170,9 @@ BEGIN
     PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,108,250,14
     PUSHBUTTON      "Register shell extension for &Windows 11 or later",IDC_REGISTER_WINMERGECONTEXTMENU,17,124,250,14
     PUSHBUTTON      "Unregister shell extension for W&indows 11 or later",IDC_UNREGISTER_WINMERGECONTEXTMENU,17,140,250,14
+    GROUPBOX        "Jump List",IDC_STATIC,7,164,270,78
+    CONTROL         "",IDC_JUMP_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,17,176,250,40
+    PUSHBUTTON      "Clear all recent items",IDC_CLEAR_ALL_RECENT_ITEMS,17,220,250,14
 END
 
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 285, 242
@@ -2979,7 +2982,10 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0
+    0, 0, 100, 0,
+    0, 0, 100, 100,
+    0, 0, 100, 100,
+    0, 100, 100, 0
 END
 
 IDD_FILTERS_FILEFILTERS AFX_DIALOG_LAYOUT
@@ -4157,6 +4163,15 @@ BEGIN
     IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED "WebView2 runtime is not installed. Do you want to download it?"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_JUMPLIST_NEW_TEXT_COMPARE "New Text Compare"
+    IDS_JUMPLIST_NEW_TABLE_COMPARE "New Table Compare"
+    IDS_JUMPLIST_NEW_BINARY_COMPARE "New Binary Compare"
+    IDS_JUMPLIST_NEW_IMAGE_COMPARE "New Image Compare"
+    IDS_JUMPLIST_NEW_WEBPAGE_COMPARE "New Webpage Compare"
+    IDS_JUMPLIST_CLIPBOARD_COMPARE "Clipboard Compare"
+END
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

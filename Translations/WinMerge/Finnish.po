@@ -1965,6 +1965,12 @@ msgstr ""
 "Poista komentotulkin laajennuksen rekisteröinti  &Windows 11:lle tai "
 "uudemmalle versiolle"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Kansio"
@@ -4047,6 +4053,24 @@ msgstr "WinMergen 32-bittinen versio ei tue leikepöytävertailua"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2-runtimea ei ole asennettu. Haluatko ladata sen?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Kaunistelu"

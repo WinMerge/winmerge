@@ -2424,6 +2424,12 @@ msgstr "Rexistrar a extensión de escritorio para &Windows 11 ou posterior"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Anular a extensión de escritorio para W&indows 11 ou posterior"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Carpeta"
@@ -4733,6 +4739,24 @@ msgstr "A versión de 32 bit de WinMerge non soporta a comparación de portapape
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "O runtime WebView2 non está instalado. ¿Quere descargalo?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelecemento"

@@ -1962,6 +1962,12 @@ msgstr "Arregistramentu di l’estensione Shell per &Windows 11 o una versione p
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Disarregistramentu di l’estensione Shell per W&indows 11 o una versione più recente"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Cartulare"
@@ -4024,6 +4030,24 @@ msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’pa
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Imbellimentu"

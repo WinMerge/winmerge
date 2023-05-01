@@ -1952,6 +1952,12 @@ msgstr "Зарегистрировать shell для Windows 11"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Удалить shell для &Windows 11"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Папка"
@@ -3629,6 +3635,24 @@ msgstr "32-битная версия WinMerge не поддерживает бу
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "Не установлена среда выполнения WebView2. Хотите скачать его?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Приукрашивание"
