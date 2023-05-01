@@ -4002,6 +4002,9 @@ msgstr ""
 "%1\n"
 "를 다른 쪽에 만들고 이 폴더를 열까요?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "다음 파일로 이동할까요?"

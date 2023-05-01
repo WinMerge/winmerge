@@ -3375,6 +3375,9 @@ msgstr ""
 "%1\n"
 "并且打开这两个文件夹？"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "您是否要跳转到下一个文件？"
 

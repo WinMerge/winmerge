@@ -3991,6 +3991,9 @@ msgstr ""
 "%1\n"
 "到另一邊，然後開啟兩夾嗎？"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "您要移動到下一個檔案嗎？"

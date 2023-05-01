@@ -3341,6 +3341,9 @@ msgstr ""
 "他方にマッチする以下のフォルダーを作成し、フォルダーを開きますか?:\n"
 "%1"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "本当にすべての差異を他のファイルにコピーしますか?"
+
 msgid "Do you want to move to the next file?"
 msgstr "次のファイルに移動しますか?"
 

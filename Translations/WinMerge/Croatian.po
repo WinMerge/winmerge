@@ -3925,6 +3925,9 @@ msgstr ""
 "%1\n"
 "na drugoj strani i otvoriti je?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""

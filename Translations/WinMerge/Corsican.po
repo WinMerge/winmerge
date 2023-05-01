@@ -3352,6 +3352,9 @@ msgstr ""
 "%1\n"
 "di l’altru latu è apre sti cartulari ?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "Vulete passà à u schedariu seguente ?"
 

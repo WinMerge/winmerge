@@ -3726,7 +3726,7 @@ BEGIN
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
     IDS_CANNOT_OPEN_BINARYFILE "Cannot open a binary file to editor."
     IDS_CREATE_PAIR_FOLDER  "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-    IDS_CONFIRM_COPY_ALL_DIFFS "Are you sure you want top copy ALL diffs to other file?"
+    IDS_CONFIRM_COPY_ALL_DIFFS "Are you sure you want to copy all differences to the other file?"
 END
 
 STRINGTABLE

@@ -3908,6 +3908,9 @@ msgstr ""
 "%1\n"
 "în partea cealaltă şi să deschideţi ambele directoare?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""

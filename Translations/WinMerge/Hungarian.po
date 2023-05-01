@@ -3985,6 +3985,9 @@ msgstr ""
 "%1\n"
 "a másik oldalhoz és megnyitod ezeket a mappákat?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "Továbblépsz a következő fájlra?"

@@ -3966,6 +3966,9 @@ msgstr ""
 "%1\n"
 "به سمت ديگر و بازشدن اين پوشه ها ؟ "
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""

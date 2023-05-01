@@ -3381,6 +3381,9 @@ msgstr ""
 "%1\n"
 "para o outro lado e abrir essas pastas?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "Deseja seguir para o próximo ficheiro?"
 

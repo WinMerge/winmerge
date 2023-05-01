@@ -3083,6 +3083,9 @@ msgstr "Не удается открыть двоичный файл в реда
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 msgstr "Папка существует только на одной стороне и не может быть открыта.\n\nСоздать подходящую папку:\n%1\nна другой стороне и открыть эти папки?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "Перейти к следующему файлу?"
 

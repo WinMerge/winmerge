@@ -3957,6 +3957,9 @@ msgstr ""
 "%1\n"
 "til den anden side og åbne disse mapper?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""

@@ -3342,6 +3342,9 @@ msgstr ""
 "%1\n"
 "na drugi strani in jo odpreti?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "Ali se želite premakniti na naslednjo datoteko?"
 

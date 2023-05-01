@@ -873,7 +873,7 @@ void CHexMergeDoc::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
 void CHexMergeDoc::OnAllRight()
 {
 	UINT userChoice = 0;
-	String msg = _("Are you sure you want top copy ALL diffs to other file?");
+	String msg = _("Are you sure you want to copy all differences to the other file?");
 	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)
@@ -900,7 +900,7 @@ void CHexMergeDoc::OnUpdateAllRight(CCmdUI* pCmdUI)
 void CHexMergeDoc::OnAllLeft()
 {
 	UINT userChoice = 0;
-	String msg = _("Are you sure you want top copy ALL diffs to other file?");
+	String msg = _("Are you sure you want to copy all differences to the other file?");
 	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)

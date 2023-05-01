@@ -3739,7 +3739,7 @@ msgstr "Kann keine Binärdatei im Editor öffnen."
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 msgstr "Der Ordner existiert nur auf der anderen Seite und kann nicht geöffnet werden. \n\nMöchten Sie einen passenden Ordner: \n%1 \nauf der anderen Seite erzeugen und die Ordner öffnen?"
 
-msgid "Are you sure you want top copy ALL diffs to other file?"
+msgid "Are you sure you want to copy all differences to the other file?"
 msgstr "Wollen Sie wirklich ALLE Unterschiede herüberkopieren?"
 
 #, c-format

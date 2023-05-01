@@ -4004,6 +4004,9 @@ msgstr ""
 "%1\n"
 "de l'autre côté et ouvrir ces dossiers ?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "Voulez-vous passer au fichier suivant ?"
