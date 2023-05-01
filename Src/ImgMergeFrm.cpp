@@ -1925,7 +1925,8 @@ void CImgMergeFrame::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnAllLeft()
 {
 	UINT userChoice = 0;
-	userChoice = AfxMessageBox(IDS_CONFIRM_COPY_ALL_DIFFS, MB_YESNO |
+	String msg = _("Are you sure you want top copy ALL diffs to other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)
 		return;
@@ -1956,7 +1957,8 @@ void CImgMergeFrame::OnUpdateAllLeft(CCmdUI* pCmdUI)
 void CImgMergeFrame::OnAllRight()
 {
 	UINT userChoice = 0;
-	userChoice = AfxMessageBox(IDS_CONFIRM_COPY_ALL_DIFFS, MB_YESNO |
+	String msg = _("Are you sure you want top copy ALL diffs to other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
 		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
 	if (userChoice == IDNO)
 		return;
