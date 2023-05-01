@@ -1924,6 +1924,13 @@ void CImgMergeFrame::OnUpdateCopyFromRight(CCmdUI* pCmdUI)
  */
 void CImgMergeFrame::OnAllLeft()
 {
+	UINT userChoice = 0;
+	String msg = _("Are you sure you want top copy ALL diffs to other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_LEFT, m_pImgMergeWindow->GetActivePane(), m_pImgMergeWindow->GetPaneCount());
 
 	CWaitCursor waitstatus;
@@ -1949,6 +1956,13 @@ void CImgMergeFrame::OnUpdateAllLeft(CCmdUI* pCmdUI)
  */
 void CImgMergeFrame::OnAllRight()
 {
+	UINT userChoice = 0;
+	String msg = _("Are you sure you want top copy ALL diffs to other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_RIGHT, m_pImgMergeWindow->GetActivePane(), m_pImgMergeWindow->GetPaneCount());
 
 	CWaitCursor waitstatus;
