@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date:  2023-04-16 15:20-0300\n"
+"PO-Revision-Date: 2023-05-01 12:00-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -3082,7 +3082,7 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr "A pasta existe apenas no outro lado e não pode ser aberta.\n\nVocê quer criar uma pasta que combine:\n%1\nno outro lado e abrir estas pastas?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr "Você tem certeza que quer copiar todas as diferenças para o outro arquivo?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Você quer mover para o próximo arquivo?"
