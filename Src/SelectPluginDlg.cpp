@@ -167,6 +167,8 @@ void CSelectPluginDlg::prepareListbox()
 	String lastPluginName = parseResult.empty() ? _T("") : parseResult.back().name;
 	INT_PTR nameCount = 0;
 
+	m_cboPluginName.SetRedraw(false);
+
 	if (m_pluginType != PluginType::EditorScript)
 	{
 		COMBOBOXEXITEM item{CBEIF_TEXT};
@@ -244,6 +246,8 @@ void CSelectPluginDlg::prepareListbox()
 		m_cboPluginName.SetCurSel(sel);
 		OnSelchangeUnpackerName();
 	}
+	
+	m_cboPluginName.SetRedraw(true);
 }
 
 void CSelectPluginDlg::OnUnpackerAllowAll() 
