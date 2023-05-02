@@ -780,6 +780,19 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	if (!cmdInfo.m_sPreDiffer.empty())
 		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
 
+	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
+	{
+		ShowDialog(cmdInfo.m_nDialogType);
+		return false;
+	}
+
+	if (cmdInfo.m_bShowCompareAsMenu)
+	{
+		cmdInfo.m_bShowCompareAsMenu = false;
+		if (!ShowCompareAsMenu(cmdInfo))
+			return false;
+	}
+
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())
 	{
