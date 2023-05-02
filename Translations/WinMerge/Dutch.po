@@ -2,8 +2,8 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# Ronald Schaap
-# Thomas De Rocker, 2023
+# * Ronald Schaap
+# * Thomas De Rocker, 2023
 #
 msgid ""
 msgstr ""
