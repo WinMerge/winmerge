@@ -116,6 +116,7 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 	PluginArray * piPluginArray = 
 		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(pluginEvent);
 
+	m_list.SetRedraw(false);
 	for (size_t iPlugin = 0 ; iPlugin < piPluginArray->size() ; iPlugin++)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
@@ -131,6 +132,7 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		m_list.SetCheck(ind, !plugin->m_disabled);
 		m_list.SetItemData(ind, reinterpret_cast<DWORD_PTR>(plugin.get()));
 	}
+	m_list.SetRedraw(true);
 }
 
 PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const

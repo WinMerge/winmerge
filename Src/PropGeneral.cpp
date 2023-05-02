@@ -162,6 +162,7 @@ void PropGeneral::WriteOptions()
 
 LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)
 {
+	m_ctlLangList.SetRedraw(false);
 	for (auto&& i : m_asyncLanguagesLoader.Get())
 	{
 		m_ctlLangList.AddString(i.second.c_str());
@@ -170,5 +171,6 @@ LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)
 			m_ctlLangList.SetCurSel(m_ctlLangList.GetCount() - 1);
 	}
 	m_ctlLangList.EnableWindow(TRUE);
+	m_ctlLangList.SetRedraw(true);
 	return 0;
 }
