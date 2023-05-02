@@ -383,6 +383,7 @@ void PropShell::UpdateButtons()
 	bool registeredPerUser = IsShellExtensionRegistered(true);
 	bool registerdWinMergeContextMenu = IsWinMergeContextMenuRegistered();
 	bool win11 = IsWin11_OrGreater();
+	bool win7 = IsWin7_OrGreater();
 	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered || registeredPerUser || registerdWinMergeContextMenu);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION, !registered);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION, registered);
@@ -394,6 +395,8 @@ void PropShell::UpdateButtons()
 		(registered || registeredPerUser || registerdWinMergeContextMenu) && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 	EnableDlgItem(IDC_EXPLORER_COMPARE_AS,
 		(registered || registeredPerUser || registerdWinMergeContextMenu) && IsDlgButtonChecked(IDC_EXPLORER_ADVANCED));
+	EnableDlgItem(IDC_JUMP_LIST, win7);
+	EnableDlgItem(IDC_CLEAR_ALL_RECENT_ITEMS, win7);
 }
 
 void PropShell::OnRegisterShellExtension()
