@@ -3992,7 +3992,7 @@ msgstr ""
 "a másik oldalhoz és megnyitod ezeket a mappákat?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr "Biztos, hogy minden eltérést át akarsz másolni a másik fájlba?"
 
 #, c-format
 msgid "Do you want to move to the next file?"
