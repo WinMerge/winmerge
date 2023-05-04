@@ -4,6 +4,7 @@
 # Translators:
 # * Medulio <medulio at ciberirmandade.org>
 # * qosobrin (LMS)
+# * P0rsche911
 #
 msgid ""
 msgstr ""
@@ -1029,7 +1030,7 @@ msgstr "Ignorar nú&meros"
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenzas nos c&omentarios"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Incluír subcarpetas"
 
 msgid "&Compare method:"
@@ -1152,10 +1153,10 @@ msgstr "Pre&guntar antes de pechar varias ventás"
 msgid "&Preserve file time in file compare"
 msgstr "Manter a hora do ficheiro na com&paración de ficheiros"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Mostrar \"Seleccione ficheiros ou carpetas' ao inicio"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Pechar 'Seleccione ficheiros ou carpetas' ao premer o botón Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1974,7 +1975,7 @@ msgstr "Incl&uír contidos únicos das subcarpetas"
 msgid "&Automatically expand all subfolders"
 msgstr "Expandir &automaticamente tódalas subcarpetas"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Igno&rar os puntos de reparación"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1986,8 +1987,8 @@ msgstr "Limiar para cambiar a comparación &binaria (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Número de núcleos de CPU a utilizar:"
 
-msgid "&CSV File Patterns:"
-msgstr "Padróns de ficheiro &CSV:"
+msgid "File patterns:"
+msgstr "Padróns de ficheiro:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Separador personalizado de valores"
@@ -1996,7 +1997,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binario"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "&Padróns de ficheiros binario:"
 
 msgid "Frhed settings"
@@ -2014,7 +2015,7 @@ msgstr "&Conxunto de caracteres..."
 msgid "Image"
 msgstr "Imaxe"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Padróns de ficheiros de imaxe:"
 
 msgid "&Enable image compare in folder compare"
@@ -3341,6 +3342,9 @@ msgstr ""
 "%1\n"
 "coa anterior e abrir ámbalas dúas?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "¿Quere ir ao seguinte ficheiro?"
 
@@ -4442,10 +4446,7 @@ msgstr "Comparar textos con formas"
 msgid "Compare headers and footers"
 msgstr "Comparar encabezamentos e pés de páxina"
 
-msgid ""
-"Cannot get Macros.\r\n"
-"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
-"\"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
 "Non se poden obter macros.\r\n"
 "Para permitir que WinMerge compare macros, use MS Office para alterar a configuración na seguridade de macros para a aplicación actual.\r\n"

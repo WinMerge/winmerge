@@ -192,6 +192,7 @@ Localization:
   Nelson Ariza <njarizas@hotmail.com>
   borjafg
   Mauricio Gracia Gutierrez
+  P0rsche-911
 
 * Swedish:
   Hans Eriksson <hans.ericson@bredband.net>

@@ -6,6 +6,7 @@
 # * Jesús M. Delgado 'MacK' <nncsoft at yahoo.com>
 # * Mario Angel <marioangel70 at gmail.com>
 # * Nelson Ariza <njarizas at hotmail.com>
+# * P0rsche-911
 #
 msgid ""
 msgstr ""
@@ -1031,7 +1032,7 @@ msgstr "Ignorar nú&meros"
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferencias en c&omentarios"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Incluir subcarpetas"
 
 msgid "&Compare method:"
@@ -1154,10 +1155,10 @@ msgstr "Pre&guntar antes de cerrar múltiples ventanas"
 msgid "&Preserve file time in file compare"
 msgstr "Mantener la hora del archivo en la com&paración de archivos"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Mostrar \"Seleccione archivos o carpetas\" al iniciar"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Cerrar \"Seleccione archivos o carpetas\" al hacer clic en Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
@@ -1976,7 +1977,7 @@ msgstr "Incl&uir contenidos únicos de subcarpetas"
 msgid "&Automatically expand all subfolders"
 msgstr "Expandir &automáticamente todas las subcarpetas"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Igno&rar los puntos de reparación"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1988,7 +1989,7 @@ msgstr "Límite para cambiar a comparación &binaria (MB):"
 msgid "&Number of CPU cores to use:"
 msgstr "&Número de núcleos de CPU a utilizar:"
 
-msgid "File Patterns:"
+msgid "File patterns:"
 msgstr "Patrones de archivo:"
 
 msgid "Custom Delimiter-Separated Values"
@@ -1998,7 +1999,7 @@ msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binario"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "&Patrones de archivos binarios:"
 
 msgid "Frhed settings"
@@ -2016,7 +2017,7 @@ msgstr "&Conjunto de caracteres..."
 msgid "Image"
 msgstr "Imagen"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Patrones de archivo de imagen:"
 
 msgid "&Enable image compare in folder compare"
@@ -3342,6 +3343,9 @@ msgstr ""
 "¿Quiere crear una carpeta que coincida\n"
 "%1\n"
 "con la anterior y abrir ambas carpetas?"
+
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
 
 msgid "Do you want to move to the next file?"
 msgstr "¿Quiere ir al siguiente archivo?"
