@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-05-02**:
+Status from **2023-05-04**:
 
 ## WinMerge
 
@@ -11,7 +11,7 @@ Status from **2023-05-02**:
 | Brazilian            |  1288 |       1288 |     0 |            0 |    100 % |  2023-05-01 |
 | Bulgarian            |  1288 |       1040 |     0 |          248 |     80 % |  2021-06-28 |
 | Catalan              |  1288 |       1182 |     0 |          106 |     91 % |             |
-| ChineseSimplified    |  1288 |       1287 |     0 |            1 |     99 % |             |
+| ChineseSimplified    |  1288 |       1288 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1288 |       1121 |     0 |          167 |     87 % |  2022-02-19 |
 | Corsican             |  1288 |       1245 |     0 |           43 |     96 % |  2023-03-12 |
 | Croatian             |  1288 |        631 |     1 |          656 |     49 % |  2009-02-13 |
@@ -21,10 +21,10 @@ Status from **2023-05-02**:
 | English              |  1288 |       1288 |     0 |            0 |    100 % |  2023-05-01 |
 | Finnish              |  1288 |       1193 |     0 |           95 |     92 % |             |
 | French               |  1288 |       1242 |     0 |           46 |     96 % |  2023-01-20 |
-| Galician             |  1288 |       1231 |     0 |           57 |     95 % |  2022-11-20 |
+| Galician             |  1288 |       1287 |     0 |            1 |     99 % |  2023-05-01 |
 | German               |  1288 |       1288 |     0 |            0 |    100 % |  2023-04-16 |
 | Greek                |  1288 |        605 |     0 |          683 |     46 % |             |
-| Hungarian            |  1288 |       1287 |     0 |            1 |     99 % |  2021-03-15 |
+| Hungarian            |  1288 |       1288 |     0 |            0 |    100 % |  2021-03-15 |
 | Italian              |  1288 |       1103 |     0 |          185 |     85 % |  2022-06-01 |
 | Japanese             |  1288 |       1288 |     0 |            0 |    100 % |  2023-04-09 |
 | Korean               |  1288 |       1284 |     0 |            4 |     99 % |  2023-01-27 |
@@ -39,7 +39,7 @@ Status from **2023-05-02**:
 | Sinhala              |  1288 |        564 |    58 |          666 |     48 % |  2010-12-12 |
 | Slovak               |  1288 |       1192 |     0 |           96 |     92 % |  2022-02-17 |
 | Slovenian            |  1288 |       1287 |     0 |            1 |     99 % |  2023-04-20 |
-| Spanish              |  1288 |       1171 |     1 |          116 |     90 % |  2022-07-30 |
+| Spanish              |  1288 |       1287 |     0 |            1 |     99 % |  2023-05-02 |
 | Swedish              |  1288 |       1240 |     2 |           46 |     96 % |  2023-02-08 |
 | Turkish              |  1288 |       1231 |     0 |           57 |     95 % |  2022-11-10 |
 | Ukrainian            |  1288 |        637 |     0 |          651 |     49 % |  2009-06-13 |
@@ -240,6 +240,7 @@ Status from **2023-05-02**:
  * Galician
    - [Medulio](mailto:medulio%20at%20ciberirmandade.org)
    - qosobrin (LMS)
+   - P0rsche911
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
@@ -328,6 +329,7 @@ Status from **2023-05-02**:
    - [Jesús M. Delgado 'MacK'](mailto:nncsoft%20at%20yahoo.com)
    - [Mario Angel](mailto:marioangel70%20at%20gmail.com)
    - [Nelson Ariza](mailto:njarizas%20at%20hotmail.com)
+   - P0rsche-911
 
  * Swedish
    - [Göran Håkansson](mailto:goran.x.hakansson%20at%20telia.com)
