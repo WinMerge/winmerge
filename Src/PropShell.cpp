@@ -262,7 +262,8 @@ void PropShell::WriteOptions()
 	bool registeredWinMergeContextMenu = IsWinMergeContextMenuRegistered();
 	if (registered || registeredPerUser || registeredWinMergeContextMenu)
 		SaveMergePath(); // saves context menu settings as well
-	SaveListView(m_list);
+	if (m_list.m_hWnd)
+		SaveListView(m_list);
 }
 
 /// Get registry values for ShellExtension
