@@ -1950,6 +1950,12 @@ msgstr "Registrar a extensão do shell para o &Windows 11 ou superior"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Remover o registro da extensão do shell para o &Windows 11 ou superior"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Pasta"
@@ -3627,6 +3633,24 @@ msgstr "A versão 32-bits do WinMerge não suporta Comparação de Área de tran
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "O runtime do WebView2 não está instalado. Deseja baixá-lo?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

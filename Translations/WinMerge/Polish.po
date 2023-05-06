@@ -1951,6 +1951,12 @@ msgstr "Zarejestruj rozszerzenie powłoki dla Windows 11 lub nowszego"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Wyrejestruj rozszerzenie powłoki z Windows 11 lub nowszego"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Folder"
@@ -3628,6 +3634,24 @@ msgstr "32-bitowa wersja programu WinMerge nie obsługuje funkcji porównywania 
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Upiększanie"

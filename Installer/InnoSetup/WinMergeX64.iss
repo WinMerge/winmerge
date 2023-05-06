@@ -940,6 +940,18 @@ begin
   end;
 end;
 
+procedure RegisterUserTasks();
+var
+  params: string;
+  UserTasksFlags: DWORD;
+  ResultCode: Integer;
+Begin
+  UserTasksFlags := 4097; { 4096(Clipboard Compare)+1(New Text Compare) }
+  RegQueryDWORDValue(HKCU, 'Software\Thingamahoochie\WinMerge', 'UserTasksFlags', UserTasksFlags);
+  params := '/s- /minimize /noninteractive /set-usertasks-to-jumplist ' + IntToStr(UserTasksFlags);
+  Exec(ExpandConstant('{app}\WinMergeU.exe'), params, '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+end;
+
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
@@ -947,8 +959,10 @@ Begin
     If CurPage = wpInstalling Then
             {Delete the previous start menu group if the location has changed since the last install}
             DeletePreviousStartMenu;
-    If CurPage = wpFinished Then
+    If CurPage = wpFinished Then Begin
       DeleteRenamedFiles;
+      RegisterUserTasks;
+    End;
 End;
 
 // Checks if context menu is already enabled for shell extension

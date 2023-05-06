@@ -1967,6 +1967,12 @@ msgstr "&Windows 11 için kabuk eklentisi kaydını ekle"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Windows 11 için kabuk ek&lentisi kaydını sil"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Klasör"
@@ -4086,6 +4092,24 @@ msgstr "32-bit WinMerge sürümünde pano karşılaştırma özelliği yok"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2 çalıştırıcı bulunamadı. İndirmek ister misiniz?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sadeleştirme"

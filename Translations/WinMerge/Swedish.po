@@ -1971,6 +1971,12 @@ msgstr "Registrera filändelse för &Windows 11 eller senare"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Avregistrera filändelse för W&indows 11 eller senare"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Katalog"
@@ -4094,6 +4100,24 @@ msgstr "32-bitarsversionen av WinMerge stöder inte Clipboard Compare"
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""
 "Körbara filer för WebView2 är inte installerade. Vill du ladda ned det?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Finputsning"

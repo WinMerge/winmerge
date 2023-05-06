@@ -14,6 +14,9 @@
 #include "Environment.h"
 #include "paths.h"
 #include "Win_VersionHelper.h"
+#include "MergeCmdLineInfo.h"
+#include "JumpList.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,6 +33,7 @@ enum
 // registry values
 static const tchar_t* f_RegValueEnabled = _T("ContextMenuEnabled");
 static const tchar_t* f_RegValuePath = _T("Executable");
+static const tchar_t* f_RegValueUserTasksFlags = _T("UserTasksFlags");
 
 static bool IsShellExtensionRegistered(bool peruser)
 {
@@ -139,6 +143,49 @@ static bool RegisterWinMergeContextMenu(bool unregister)
 	return true;
 }
 
+static void LoadListView(CListCtrl& list)
+{
+	CRect rc;
+	list.DeleteAllItems();
+	list.SetExtendedStyle(LVS_EX_CHECKBOXES | LVS_EX_FULLROWSELECT);
+	list.GetClientRect(&rc);
+	list.InsertColumn(0, _T(""), LVCFMT_LEFT, rc.Width() - GetSystemMetrics(SM_CXVSCROLL));
+	CRegKeyEx reg;
+	reg.Open(HKEY_CURRENT_USER, RegDir);
+	DWORD dwFlags = reg.ReadDword(f_RegValueUserTasksFlags, 0);
+	int i = 0;
+	for (auto [mask, text] : std::vector<std::pair<MergeCmdLineInfo::usertasksflags_t, String>>(
+		{
+			{ MergeCmdLineInfo::NEW_TEXT_COMPARE,   _("New Text Compare") },
+			{ MergeCmdLineInfo::NEW_TABLE_COMPARE,  _("New Table Compare") },
+			{ MergeCmdLineInfo::NEW_BINARY_COMPARE, _("New Binary Compare") },
+			{ MergeCmdLineInfo::NEW_IMAGE_COMPARE,  _("New Image Compare") },
+			{ MergeCmdLineInfo::NEW_WEBPAGE_COMPARE,  _("New Webpage Compare") },
+			{ MergeCmdLineInfo::CLIPBOARD_COMPARE,  _("Clipboard Compare") },
+			{ MergeCmdLineInfo::SHOW_OPTIONS_DIALOG,  _("Options") },
+		}))
+	{
+		list.InsertItem(LVIF_TEXT | LVIF_PARAM, i, text.c_str(), 0, 0, 0, mask);
+		list.SetCheck(i, dwFlags & mask);
+		++i;
+	}
+}
+
+static void SaveListView(CListCtrl& list)
+{
+	CRegKeyEx reg;
+	MergeCmdLineInfo::usertasksflags_t dwFlags = 0;
+	reg.Open(HKEY_CURRENT_USER, RegDir);
+	int itemCount = list.GetItemCount();
+	for (int i = 0; i < itemCount; ++i)
+		dwFlags |= list.GetCheck(i) ? list.GetItemData(i) : 0;
+	if (dwFlags != reg.ReadDword(f_RegValueUserTasksFlags, 0))
+	{
+		reg.WriteDword(f_RegValueUserTasksFlags, dwFlags);
+		JumpList::AddUserTasks(CMergeApp::CreateUserTasks(dwFlags));
+	}
+}
+
 PropShell::PropShell(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropShell::IDD)
 , m_bContextAdded(false)
@@ -158,6 +205,8 @@ BOOL PropShell::OnInitDialog()
 	SendDlgItemMessage(IDC_REGISTER_SHELLEXTENSION, BCM_SETSHIELD, 0, TRUE);
 	SendDlgItemMessage(IDC_UNREGISTER_SHELLEXTENSION, BCM_SETSHIELD, 0, TRUE);
 
+	LoadListView(m_list);
+
 	// Update shell extension checkboxes
 	UpdateButtons();
 	GetContextRegValues();
@@ -176,6 +225,7 @@ void PropShell::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EXPLORER_CONTEXT, m_bContextAdded);
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
 	DDX_Check(pDX, IDC_EXPLORER_COMPARE_AS, m_bContextCompareAs);
+	DDX_Control(pDX, IDC_JUMP_LIST, m_list);
 	//}}AFX_DATA_MAP
 }
 
@@ -189,6 +239,7 @@ BEGIN_MESSAGE_MAP(PropShell, OptionsPanel)
 	ON_BN_CLICKED(IDC_UNREGISTER_SHELLEXTENSION_PERUSER, OnUnregisterShellExtensionPerUser)
 	ON_BN_CLICKED(IDC_REGISTER_WINMERGECONTEXTMENU, OnRegisterWinMergeContextMenu)
 	ON_BN_CLICKED(IDC_UNREGISTER_WINMERGECONTEXTMENU, OnUnregisterWinMergeContextMenu)
+	ON_BN_CLICKED(IDC_CLEAR_ALL_RECENT_ITEMS, OnClearAllRecentItems)
 	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -211,6 +262,7 @@ void PropShell::WriteOptions()
 	bool registeredWinMergeContextMenu = IsWinMergeContextMenuRegistered();
 	if (registered || registeredPerUser || registeredWinMergeContextMenu)
 		SaveMergePath(); // saves context menu settings as well
+	SaveListView(m_list);
 }
 
 /// Get registry values for ShellExtension
@@ -331,6 +383,7 @@ void PropShell::UpdateButtons()
 	bool registeredPerUser = IsShellExtensionRegistered(true);
 	bool registerdWinMergeContextMenu = IsWinMergeContextMenuRegistered();
 	bool win11 = IsWin11_OrGreater();
+	bool win7 = IsWin7_OrGreater();
 	EnableDlgItem(IDC_EXPLORER_CONTEXT, registered || registeredPerUser || registerdWinMergeContextMenu);
 	EnableDlgItem(IDC_REGISTER_SHELLEXTENSION, !registered);
 	EnableDlgItem(IDC_UNREGISTER_SHELLEXTENSION, registered);
@@ -342,6 +395,8 @@ void PropShell::UpdateButtons()
 		(registered || registeredPerUser || registerdWinMergeContextMenu) && IsDlgButtonChecked(IDC_EXPLORER_CONTEXT));
 	EnableDlgItem(IDC_EXPLORER_COMPARE_AS,
 		(registered || registeredPerUser || registerdWinMergeContextMenu) && IsDlgButtonChecked(IDC_EXPLORER_ADVANCED));
+	EnableDlgItem(IDC_JUMP_LIST, win7);
+	EnableDlgItem(IDC_CLEAR_ALL_RECENT_ITEMS, win7);
 }
 
 void PropShell::OnRegisterShellExtension()
@@ -372,6 +427,11 @@ void PropShell::OnRegisterWinMergeContextMenu()
 void PropShell::OnUnregisterWinMergeContextMenu()
 {
 	RegisterWinMergeContextMenu(true);
+}
+
+void PropShell::OnClearAllRecentItems()
+{
+	JumpList::RemoveRecentDocs();
 }
 
 void PropShell::OnTimer(UINT_PTR nIDEvent)

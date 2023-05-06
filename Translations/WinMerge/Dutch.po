@@ -1958,6 +1958,12 @@ msgstr "Shell-extensie registreren voor Windows 11 of later"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shell-extensie voor Windows 11 of later de-registreren"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Map"
@@ -4010,6 +4016,24 @@ msgstr "De 32-bit-versie van WinMerge ondersteunt geen klembordvergelijking"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2-runtime is niet geïnstalleerd. Wilt u het downloaden?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Mooi maken"

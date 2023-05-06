@@ -2416,6 +2416,12 @@ msgstr "Shell-Erweiterung für Windows 11 und höher registrieren"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shell-Erweiterung für Windows 11 und höher nicht registrieren"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Ordner"
@@ -4347,6 +4353,24 @@ msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Verschönerung"

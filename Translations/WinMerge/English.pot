@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-05-01 22:46+0000\n"
+"POT-Creation-Date: 2023-05-01 23:13+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1944,6 +1944,12 @@ msgstr ""
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr ""
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr ""
@@ -3620,6 +3626,24 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
 msgstr ""
 
 msgid "Prettification"

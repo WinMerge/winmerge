@@ -1950,6 +1950,12 @@ msgstr "Registruoti aplinkos plėtinį &Windows 11 ar vėlesnei"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Išregistruoti aplinkos plėtinį W&indows 11 ar vėlesnei"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Katalogų"
@@ -3627,6 +3633,24 @@ msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
