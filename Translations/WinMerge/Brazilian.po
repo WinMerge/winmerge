@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2023-05-01 12:00-0300\n"
+"PO-Revision-Date: 2023-05-05 23:20-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1951,10 +1951,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Remover o registro da extensão do shell para o &Windows 11 ou superior"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Lista de Atalhos"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Limpar todos os itens recentes"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2640,7 +2640,7 @@ msgid "Unknown archive format"
 msgstr "Formato do arquivo desconhecido"
 
 msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr "Não foi possível extrair arquivos compactados.\nDeseja compararos arquivos compactados como arquivos de texto?"
+msgstr "Não foi possível extrair arquivos compactados.\nDeseja comparar os arquivos compactados como arquivos de texto?"
 
 msgid "Filename"
 msgstr "Nome do Arquivo"
@@ -3635,22 +3635,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "O runtime do WebView2 não está instalado. Deseja baixá-lo?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nova Comparação de Texto"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nova Comparação de Tabela"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nova Comparação Binária"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nova comparação de Imagem"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nova Comparação de Página Web"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Comparação da Área de Transferência"
 
 msgid "Prettification"
 msgstr "Embelezamento"
