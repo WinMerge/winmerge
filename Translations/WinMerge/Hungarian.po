@@ -2423,10 +2423,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shellbővítmény regisztrálás törlése Windows 11-hez"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Ugráslista"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Az összes legutóbbi elem törlése"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -4698,22 +4698,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Új szöveg összehasonlítás"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Új táblázat összehasonlítás"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Új bináris összehasonlítás"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Új kép összehasonlítás"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Új weboldal összehasonlítás"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Vágólap összehasonlítás"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
