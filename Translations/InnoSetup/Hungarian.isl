@@ -1,84 +1,84 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Opcionális lehetõségek:
+OptionalFeatures=OpcionÃ¡lis lehetÅ‘sÃ©gek:
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Szokásos Telepítés
-FullInstallation=Teljes Telepítés
-CompactInstallation=Kompakt Telepítés
-CustomInstallation=Egyedi Telepítés
+TypicalInstallation=SzokÃ¡sos TelepÃ­tÃ©s
+FullInstallation=Teljes TelepÃ­tÃ©s
+CompactInstallation=Kompakt TelepÃ­tÃ©s
+CustomInstallation=Egyedi TelepÃ­tÃ©s
 
 ;Components
-AppCoreFiles=A WinMerge törzsfájljok
-Filters=Szûrõk
-Plugins=Bõvítmények
-ShellExtension32bit=32-bit WinMerge helyi menü kiterjesztés
+AppCoreFiles=A WinMerge tÃ¶rzsfÃ¡jlok
+Filters=SzÅ±rÅ‘k
+Plugins=BÅ‘vÃ­tmÃ©nyek
+ShellExtension32bit=32-bit WinMerge helyi menÃ¼ kiterjesztÃ©s
 
 ;Localization Components
 Languages=Nyelvek
-ArabicLanguage=Arab menük és párbeszédablakok
-BasqueLanguage=Baszk menük és párbeszédablakok
-BulgarianLanguage=Bolgár menük és párbeszédablakok
-CatalanLanguage=Katalán menük és párbeszédablakok
-ChineseSimplifiedLanguage=Kínai (Egyszerûsítés) menük és párbeszédablakok
-ChineseTraditionalLanguage=Kynai (Hagyományos) menük és párbeszédablakok
-CorsicanLanguage=Corsican menus and dialogs
-CroatianLanguage=Horvát menük és párbeszédablakok
-CzechLanguage=Cseh menük és párbeszédablakok
-DanishLanguage=Dán menük és párbeszédablakok
-DutchLanguage=Holland menük és párbeszédablakok
-FinnishLanguage=Finn menük és párbeszédablakok
-FrenchLanguage=Francia menük és párbeszédablakok
-GalicianLanguage=Galiciai menük és párbeszédablakok
-GermanLanguage=Német menük és párbeszédablakok
-GreekLanguage=Görög menük és párbeszédablakok
-HungarianLanguage=Magyar menük és párbeszédablakok
-ItalianLanguage=Olasz menük és párbeszédablakok
-JapaneseLanguage=Japán menük és párbeszédablakok
-KoreanLanguage=Koreai menük és párbeszédablakok
-LithuanianLanguage=Litván menük és párbeszédablakok
-NorwegianLanguage=Norvég menük és párbeszédablakok
-PersianLanguage=Perzsa mmenük és párbeszédablakok
-PolishLanguage=Lengyel menük és párbeszédablakok
-PortugueseBrazilLanguage=Portugál (Brazíliai) menük és párbeszédablakok
-PortugueseLanguage=Portugál menük és párbeszédablakok
-RomanianLanguage=Román menük és párbeszédablakok
-RussianLanguage=Orosz menük és párbeszédablakok
-SerbianLanguage=Szerb menük és párbeszédablakok
-SinhalaLanguage=Sinhala menük és párbeszédablakok
-SlovakLanguage=Szlovák menük és párbeszédablakok
-SlovenianLanguage=Szlovén menük és párbeszédablakok
-SpanishLanguage=Spanyol menük és párbeszédablakok
-SwedishLanguage=Svéd menük és párbeszédablakok
-TurkishLanguage=Török menük és párbeszédablakok
-UkrainianLanguage=Ukrán menük és párbeszédablakok
+ArabicLanguage=Arab menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+BasqueLanguage=Baszk menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+BulgarianLanguage=BolgÃ¡r menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+CatalanLanguage=KatalÃ¡n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+ChineseSimplifiedLanguage=KÃ­nai (EgyszerÅ±sÃ­tett) menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+ChineseTraditionalLanguage=KÃ­nai (HagyomÃ¡nyos) menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+CorsicanLanguage=Korzikai menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+CroatianLanguage=HorvÃ¡t menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+CzechLanguage=Cseh menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+DanishLanguage=DÃ¡n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+DutchLanguage=Holland menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+FinnishLanguage=Finn menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+FrenchLanguage=Francia menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+GalicianLanguage=Galiciai menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+GermanLanguage=NÃ©met menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+GreekLanguage=GÃ¶rÃ¶g menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+HungarianLanguage=Magyar menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+ItalianLanguage=Olasz menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+JapaneseLanguage=JapÃ¡n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+KoreanLanguage=Koreai menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+LithuanianLanguage=LitvÃ¡n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+NorwegianLanguage=NorvÃ©g menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+PersianLanguage=Perzsa mmenÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+PolishLanguage=Lengyel menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+PortugueseBrazilLanguage=PortugÃ¡l (BrazÃ­liai) menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+PortugueseLanguage=PortugÃ¡l menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+RomanianLanguage=RomÃ¡n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+RussianLanguage=Orosz menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+SerbianLanguage=Szerb menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+SinhalaLanguage=Sinhala menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+SlovakLanguage=SzlovÃ¡k menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+SlovenianLanguage=SzlovÃ©n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+SpanishLanguage=Spanyol menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+SwedishLanguage=SvÃ©d menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+TurkishLanguage=TÃ¶rÃ¶k menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
+UkrainianLanguage=UkrÃ¡n menÃ¼k Ã©s pÃ¡rbeszÃ©dablakok
 
 ;Tasks
-ExplorerContextMenu=Integrálás az Intézö &helyi-menüjébe
-IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
-IntegrateTortoiseGit=Integrálás a To&rtoiseGit programmal
-IntegrateTortoiseSVN=Integrálás a T&ortoiseSVN programmal
-AddToPath=&Adja hozzá a WinMerge mappát a rendszer elérési útjához
+ExplorerContextMenu=IntegrÃ¡lÃ¡s az IntÃ©zÃ¶ &helyi-menÃ¼jÃ©be
+IntegrateTortoiseCVS=IntegrÃ¡lÃ¡s a &TortoiseCVS programmal
+IntegrateTortoiseGit=IntegrÃ¡lÃ¡s a To&rtoiseGit programmal
+IntegrateTortoiseSVN=IntegrÃ¡lÃ¡s a T&ortoiseSVN programmal
+AddToPath=&Adja hozzÃ¡ a WinMerge mappÃ¡t a rendszer elÃ©rÃ©si ÃºtjÃ¡hoz
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=3-paneles összehasonlítás
-ThreeWayMergeWizardPageDescription=A WinMerge-t három paneles egyesítési eszközként használod a TortoiseSVN/Git programmal?
-RegisterWinMergeAs3WayMergeTool=Regisztráld a WinMerge programot háromirányú egyesítési eszközként
-MergeAtRightPane=Egyesítés a jobb panelen
-MergeAtCenterPane=Egyesítés a középsõ panelen
-MergeAtLeftPane=Egyesítés a bal panelen
-AutoMergeAtStartup=Automatikus egyesítés indításkor
+ThreeWayMergeWizardPageCaption=3-paneles Ã¶sszehasonlÃ­tÃ¡s
+ThreeWayMergeWizardPageDescription=A WinMerge-t hÃ¡rom paneles egyesÃ­tÃ©si eszkÃ¶zkÃ©nt hasznÃ¡lod a TortoiseSVN/Git programmal?
+RegisterWinMergeAs3WayMergeTool=RegisztrÃ¡ld a WinMerge programot hÃ¡romirÃ¡nyÃº egyesÃ­tÃ©si eszkÃ¶zkÃ©nt
+MergeAtRightPane=EgyesÃ­tÃ©s a jobb panelen
+MergeAtCenterPane=EgyesÃ­tÃ©s a kÃ¶zÃ©psÅ‘ panelen
+MergeAtLeftPane=EgyesÃ­tÃ©s a bal panelen
+AutoMergeAtStartup=Automatikus egyesÃ­tÃ©s indÃ­tÃ¡skor
 
 ;Icon Labels
 ReadMe=Olvass el
-UsersGuide=Felhasználói kézikönyv
-ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
+UsersGuide=FelhasznÃ¡lÃ³i kÃ©zikÃ¶nyv
+ViewStartMenuFolder=A WinMerge Start MenÃ¼ mappÃ¡jÃ¡nak &megtekintÃ©se
 
 ;Code Dialogs
-DeletePreviousStartMenu=A Telepítõ észlelte, hogy megváltoztattad a Start Menü helyét erröl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+DeletePreviousStartMenu=A TelepÃ­tÅ‘ Ã©szlelte, hogy megvÃ¡ltoztattad a Start MenÃ¼ helyÃ©t errÃ¶l: "%s" erre: "%s". SzeretnÃ©d eltÃ¡volÃ­tani a korÃ¡bbi Start MenÃ¼ mappÃ¡t?
+ExplorerNeedsRestart=ÃšjraindÃ­tÃ¡s szÃ¼ksÃ©ges a WinMerge-hez. SzeretnÃ© most ÃºjraindÃ­tani?
 
 ; Project file description
-ProjectFileDesc=WinMerge Projekt fájl
+ProjectFileDesc=WinMerge Projekt fÃ¡jl
