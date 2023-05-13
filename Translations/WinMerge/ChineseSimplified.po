@@ -1967,10 +1967,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "注销系统扩展（Windows 11 或更新的系统）(&I)"
 
 msgid "Jump List"
-msgstr ""
+msgstr "跳转列表"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "清除所有最近的项目"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -4062,22 +4062,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "未安装 WebView2 运行库。你想下载吗？"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "新的文本比较"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "新的表格比较"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "新的二进制比较"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "新的图像比较"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "新的网页比较"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "剪贴板比较"
 
 msgid "Prettification"
 msgstr "格式美化"
