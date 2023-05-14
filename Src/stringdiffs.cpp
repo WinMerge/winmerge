@@ -306,6 +306,11 @@ stringdiffs::BuildWordDiffList_DP()
 					continue;
 				}
 			}
+			if (m_ignore_numbers && IsNumber(m_words1[i]))
+			{
+				i++;
+				continue;
+			}
 
 			s1 = m_words1[i].start;
 			e1 = m_words1[i].end;
@@ -325,6 +330,12 @@ stringdiffs::BuildWordDiffList_DP()
 				}
 			}
 
+			if (m_ignore_numbers && IsNumber(m_words2[j]))
+			{
+				j++;
+				continue;
+			}
+
 			s1 = m_words1[i-1].end+1;
 			e1 = s1-1;
 			s2 = m_words2[j].start;
@@ -341,6 +352,11 @@ stringdiffs::BuildWordDiffList_DP()
 					i++; j++;
 					continue;
 				}
+			}
+			if (m_ignore_numbers && IsNumber(m_words1[i]) && IsNumber(m_words2[j]))
+			{
+				i++; j++;
+				continue;
 			}
 
 			s1 =  m_words1[i].start;
@@ -426,6 +442,10 @@ stringdiffs::BuildWordsArray(const String & str) const
 		{
 			break_type = dlbreak;
 		}
+		else if (m_ignore_numbers && tc::istdigit(ch))
+		{
+			break_type = dlnumber;
+		}
 		if (i > 0 && (break_type != prev_break_type || break_type == dlbreak || (prev_break_type == dleol && !(str[i - 1] == '\r' && ch == '\n'))))
 		{
 			words.push_back(word(begin, i - 1, prev_break_type, Hash(str, begin, i - 1, 0)));
@@ -449,9 +469,9 @@ stringdiffs::PopulateDiffs()
 	for (int i=0; i< (int)m_wdiffs.size(); ++i)
 	{
 		bool skipIt = false;
+		// combine it with next ?
 		if (i+1< (int)m_wdiffs.size())
 		{
-			// combine it with next ?
 			if (m_wdiffs[i].end[0] + 1 == m_wdiffs[i+1].begin[0]
 				&& m_wdiffs[i].end[1] + 1 == m_wdiffs[i+1].begin[1])
 			{
@@ -516,83 +536,41 @@ stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 		if (IsSpace(word1) && IsSpace(word2))
 			return true;
 	}
+	if (m_ignore_numbers)
+	{
+		if (tc::istdigit(m_str1[word1.start]) && tc::istdigit(m_str2[word2.start]))
+			return true;
+	}
 	if (!this->m_eol_sensitive)
 	{
 		if (IsEOL(word1) && IsEOL(word2))
 			return true;
 	}
 
-	if (word1.hash == word2.hash)
-		return true;
+	if (word1.hash != word2.hash)
+		return false;
 	
-	if (m_ignore_numbers)
+	int length = word1.length();
+	if (length != word2.length())
+		return false;
+	
+	if (m_case_sensitive)
 	{
-		int i = 0, j = 0;
-		int length1 = word1.length();
-		int length2 = word2.length();
-		if (m_case_sensitive)
+		for (int i = 0; i < length; ++i)
 		{
-			while (i < length1 && j < length2)
-			{
-				while (i < length1 && tc::istdigit(m_str1[word1.start + i]))
-					++i;
-				while (j < length2 && tc::istdigit(m_str2[word2.start + j]))
-					++j;
-				if (i >= length1 || j >= length2)
-					continue;
-				if (m_str1[word1.start + i] != m_str2[word2.start + j])
-					return false;
-				++i;
-				++j;
-			}
-			if (i != length1 || j != length2)
-				return false;
-		}
-		else
-		{
-			while (i < length1 && j < length2)
-			{
-				while (i < length1 && tc::istdigit(m_str1[word1.start + i]))
-					++i;
-				while (j < length2 && tc::istdigit(m_str2[word2.start + j]))
-					++j;
-				if (i >= length1 || j >= length2)
-					continue;
-				tchar_t ch1 = m_str1[word1.start + i];
-				tchar_t ch2 = m_str2[word2.start + j];
-				if (tc::totlower(ch1) != tc::totlower(ch2))
-					return false;
-				++i;
-				++j;
-			}
-			if (i != length1 || j != length2)
+			if (m_str1[word1.start + i] != m_str2[word2.start + i])
 				return false;
 		}
 	}
 	else
 	{
-		int length = word1.length();
-		if (length != word2.length())
-			return false;
-		
-		if (m_case_sensitive)
+		for (int i = 0; i < length; ++i)
 		{
-			for (int i = 0; i < length; ++i)
-			{
-				if (m_str1[word1.start + i] != m_str2[word2.start + i])
-					return false;
-			}
-		}
-		else
-		{
-			for (int i = 0; i < length; ++i)
-			{
-				tchar_t ch1 = m_str1[word1.start + i];
-				tchar_t ch2 = m_str2[word2.start + i];
+			tchar_t ch1 = m_str1[word1.start + i];
+			tchar_t ch2 = m_str2[word2.start + i];
 
-				if (tc::totlower(ch1) != tc::totlower(ch2))
-					return false;
-			}
+			if (tc::totlower(ch1) != tc::totlower(ch2))
+				return false;
 		}
 	}
 	return true;

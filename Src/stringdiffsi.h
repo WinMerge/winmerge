@@ -25,6 +25,7 @@ enum
 	dlspace,
 	dleol,
 	dlbreak, 
+	dlnumber,
 };
 /**
  * @brief kind of synchronaction
@@ -84,18 +85,18 @@ private:
 		return (word1.bBreak == dlspace);
 	}
 	/**
+	 * @brief Is this block a number one?
+	 */
+	inline bool IsNumber(const word& word1) const
+	{
+		return (word1.bBreak == dlnumber);
+	}
+	/**
 	 * @brief Is this block an EOL?
 	 */
 	inline bool IsEOL(const word & word1) const
 	{
 		return (word1.bBreak == dleol);
-	}
-	/**
-	 * @brief Is this block a break?
-	 */
-	inline bool IsBreak(const word & word1) const
-	{
-		return (word1.bBreak == dlbreak || word1.bBreak == dlspace || word1.bBreak == dleol);
 	}
 	bool BuildWordDiffList_DP();
 	int dp(std::vector<char> & edscript);

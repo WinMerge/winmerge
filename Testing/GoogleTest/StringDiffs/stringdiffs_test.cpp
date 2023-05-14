@@ -720,7 +720,7 @@ namespace
 		if (diffs.size() == 1)
 		{
 			EXPECT_EQ(5, pDiff->begin[0]);
-			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(5, pDiff->end[0]);
 			EXPECT_EQ(4, pDiff->begin[1]);
 			EXPECT_EQ(3, pDiff->end[1]); // at line end the end is always (begin - 1)
 		}
