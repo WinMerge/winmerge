@@ -881,7 +881,7 @@ Begin
 
                     {Display a dialog asking the user if they'd like to delete the previous start menu group}
                     {If they'd like to delete the previous start menu group then...}
-                    If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
+                    If SuppressibleMsgbox(strMessage, mbConfirmation, mb_YesNo, mrYes) = mrYes Then
                         Begin
                             strOld := ExpandConstant('{commonprograms}\') + strOld;
                             {Remove old start menu}
