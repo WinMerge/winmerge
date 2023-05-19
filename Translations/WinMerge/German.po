@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-04-16 19:00+0200\n"
+"PO-Revision-Date: 2023-05-14 11:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1232,7 +1232,7 @@ msgstr "&Alle ignorieren"
 
 #, c-format
 msgid "Ignore blan&k lines"
-msgstr "&Leerzeilen ignorieren"
+msgstr "Leerzeilen &ignorieren"
 
 #, c-format
 msgid "Ignore &case"
@@ -1999,7 +1999,7 @@ msgstr "Standard-Codeseite"
 
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Wählen Sie die Standard-Codeseite aus, die beim Laden von Nicht-Unicode-Dateien verwendet wird:"
+msgstr "Standard-Codeseite auswählen, die beim Laden von Nicht-Unicode-Dateien verwendet wird:"
 
 #, c-format
 msgid "System codepage"
@@ -2417,10 +2417,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shell-Erweiterung für Windows 11 und höher nicht registrieren"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Sprungliste"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Alle kürzlichen Objekte löschen"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -3746,7 +3746,7 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr "Der Ordner existiert nur auf der anderen Seite und kann nicht geöffnet werden. \n\nMöchten Sie einen passenden Ordner: \n%1 \nauf der anderen Seite erzeugen und die Ordner öffnen?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr "Wollen Sie wirklich ALLE Unterschiede herüberkopieren?"
+msgstr "Wollen Sie wirklich alle Unterschiede in die andere Datei kopieren?"
 
 #, c-format
 msgid "Do you want to move to the next file?"
@@ -4355,22 +4355,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Neuer Textvergleich"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Neuer Tabellenvergleich"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Neuer Binärvergleich"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Neuer Bildvergleich"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Neuer Webseitenvergleich"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Zwischenablage vergleichen"
 
 msgid "Prettification"
 msgstr "Verschönerung"
