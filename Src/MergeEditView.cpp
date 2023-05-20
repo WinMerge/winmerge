@@ -687,7 +687,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
 			begin[pane] = (worddiffs[i].beginline[pane] < nLineIndex) ? 0 : worddiffs[i].begin[pane];
-			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetLineLength(nLineIndex) : worddiffs[i].end[pane];
+			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetViewableLineLength(nLineIndex) : worddiffs[i].end[pane];
 			if (worddiffs[i].beginline[pane] == worddiffs[i].endline[pane] &&
 				worddiffs[i].begin[pane] == worddiffs[i].end[pane])
 				deleted = true;

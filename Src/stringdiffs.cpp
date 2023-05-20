@@ -25,7 +25,7 @@ static tchar_t BreakCharDefaults[] = _T(",.;:");
 static const int TimeoutMilliSeconds = 500;
 
 static bool isSafeWhitespace(tchar_t ch);
-static bool isWordBreak(int breakType, const tchar_t *str, int index, bool ignore_numbers);
+static bool isWordBreak(int breakType, const tchar_t *str, int index);
 
 void Init()
 {
@@ -419,67 +419,43 @@ stringdiffs::BuildWordsArray(const String & str) const
 
 	size_t sLen = str.length();
 	assert(sLen < INT_MAX);
-	int iLen = static_cast<int>(sLen);
 
-	// state when we are looking for next word
-inspace:
-	if (isSafeWhitespace(str[i])) 
-	{
-		i = pIterChar->next();
-		goto inspace;
-	}
-	if (begin < i)
-	{
-		// just finished a word
-		// e is first word character (space or at end)
-		int e = i - 1;
-
-		words.push_back(word(begin, e, dlspace, Hash(str, begin, e, 0)));
-	}
-	if (i == iLen)
+	if (str.empty())
 		return words;
-	begin = i;
-	goto inword;
 
-	// state when we are inside a word
-inword:
-	bool atspace=false;
-	if (i == iLen || ((atspace = isSafeWhitespace(str[i])) != 0) || isWordBreak(m_breakType, str.c_str(), i, m_ignore_numbers))
+	int break_type = 0;
+	int prev_break_type = 0;
+	int iLen = static_cast<int>(sLen);
+	for (; i < iLen;)
 	{
-		if (begin<i)
+		break_type = dlword;
+		tchar_t ch = str[i];
+		if (ch == '\r' || ch == '\n')
 		{
-			// just finished a word
-			// e is first non-word character (space or at end)
-			int e = i-1;
-			
-			words.push_back(word(begin, e, dlword, Hash(str, begin, e, 0)));
+			break_type = dleol;
 		}
-		if (i == iLen)
+		else if (isSafeWhitespace(ch))
 		{
-			return words;
+			break_type = dlspace;
 		}
-		else if (atspace)
+		else if (isWordBreak(m_breakType, str.c_str(), i))
 		{
+			break_type = dlbreak;
+		}
+		else if (m_ignore_numbers && tc::istdigit(ch))
+		{
+			break_type = dlnumber;
+		}
+		if (i > 0 && (break_type != prev_break_type || break_type == dlbreak || (prev_break_type == dleol && !(str[i - 1] == '\r' && ch == '\n'))))
+		{
+			words.push_back(word(begin, i - 1, prev_break_type, Hash(str, begin, i - 1, 0)));
 			begin = i;
-			goto inspace;
 		}
-		else
-		{
-			// start a new word because we hit a non-whitespace word break (eg, a comma)
-			// but, we have to put each word break character into its own word
-			int break_type = (m_ignore_numbers && tc::istdigit(str[i]))
-				? dlnumber
-				: dlbreak;
-
-			int inext = pIterChar->next();
-			words.push_back(word(i, inext - 1, break_type, Hash(str, i, inext - 1, 0)));
-			i = inext;
-			begin = i;
-			goto inword;
-		}
+		i = pIterChar->next();
+		prev_break_type = break_type;
 	}
-	i = pIterChar->next();
-	goto inword; // safe even if we're at the end or no longer in a word
+	words.push_back(word(begin, i - 1, break_type, Hash(str, begin, i - 1, 0)));
+	return words;
 }
 
 /**
@@ -490,13 +466,6 @@ inword:
 void
 stringdiffs::PopulateDiffs()
 {
-	auto IsEOLorEmpty = [](const String& text, size_t begin, size_t end) -> bool {
-		if (end - begin + 1 > 2)
-			return false;
-		String str = text.substr(begin, end - begin + 1);
-		return (str.empty() || str == _T("\r\n") || str == _T("\n") || str == _T("\r"));
-	};
-	
 	for (int i=0; i< (int)m_wdiffs.size(); ++i)
 	{
 		bool skipIt = false;
@@ -512,13 +481,6 @@ stringdiffs::PopulateDiffs()
 				m_wdiffs[i+1].begin[1] = m_wdiffs[i].begin[1];
 				skipIt = true;
 			}
-		}
-		else
-		{
-			if (!m_eol_sensitive &&
-				IsEOLorEmpty(m_str1, m_wdiffs[i].begin[0], m_wdiffs[i].end[0]) &&
-				IsEOLorEmpty(m_str2, m_wdiffs[i].begin[1], m_wdiffs[i].end[1]))
-				skipIt = true;
 		}
 		if (!skipIt)
 		{
@@ -577,6 +539,11 @@ stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 	if (m_ignore_numbers)
 	{
 		if (tc::istdigit(m_str1[word1.start]) && tc::istdigit(m_str2[word2.start]))
+			return true;
+	}
+	if (!this->m_eol_sensitive)
+	{
+		if (IsEOL(word1) && IsEOL(word2))
 			return true;
 	}
 
@@ -780,18 +747,16 @@ static inline bool IsLeadByte(tchar_t ch)
 static inline bool
 isSafeWhitespace(tchar_t ch)
 {
-	return tc::istspace((unsigned)ch) && !IsLeadByte(ch);
+	return tc::istspace((unsigned)ch) && !IsLeadByte(ch) && (ch != '\r' && ch != '\n');
 }
 
 /**
  * @brief Is it a non-whitespace wordbreak character (ie, punctuation)?
  */
 static bool
-isWordBreak(int breakType, const tchar_t *str, int index, bool ignore_numbers)
+isWordBreak(int breakType, const tchar_t *str, int index)
 {
 	tchar_t ch = str[index];
-	if (ignore_numbers && tc::istdigit(ch))
-		return true;
 	// breakType==1 means break also on punctuation
 	if ((ch & 0xff00) == 0)
 	{

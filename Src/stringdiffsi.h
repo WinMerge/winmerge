@@ -23,8 +23,8 @@ enum
 {
 	dlword = 0,
 	dlspace,
+	dleol,
 	dlbreak, 
-	dlinsert,
 	dlnumber,
 };
 /**
@@ -92,18 +92,11 @@ private:
 		return (word1.bBreak == dlnumber);
 	}
 	/**
-	 * @brief Is this block a break?
+	 * @brief Is this block an EOL?
 	 */
-	inline bool IsBreak(const word & word1) const
+	inline bool IsEOL(const word & word1) const
 	{
-		return (word1.bBreak == dlbreak || word1.bBreak == dlspace);
-	}
-	/**
-	 * @brief Is this block an empty (insert) one?
-	 */
-	inline bool IsInsert(const word & word1) const
-	{
-		return (word1.bBreak == dlinsert);
+		return (word1.bBreak == dleol);
 	}
 	bool BuildWordDiffList_DP();
 	int dp(std::vector<char> & edscript);
