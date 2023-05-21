@@ -1206,7 +1206,7 @@ msgid "Re&place with:"
 msgstr "За&менить на:"
 
 msgid "&Don't wrap end of file"
-msgstr "Не останавливаться в конце файла"
+msgstr "Останавливаться в конце файла"
 
 msgid "Replace in"
 msgstr "Заменить в"
