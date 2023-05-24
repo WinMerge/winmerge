@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-04-15 08:40+0000\n"
-"PO-Revision-Date: 2023-04-23 00:00+0000\n"
+"POT-Creation-Date: 2023-05-01 23:13+0000\n"
+"PO-Revision-Date: 2023-05-24 00:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -1952,10 +1952,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Wyrejestruj rozszerzenie powłoki z Windows 11 lub nowszego"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Lista szybkiego dostępu"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Wyczyść wszystkie ostatnie elementy"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -3089,7 +3089,7 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr "Folder istnieje tylko na jednej ze stron i nie może zostać otwarty.\n\nCzy chcesz utworzyć odpowiedni folder:\n%1\npo drugiej stronie i otworzyć te foldery?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr "Czy na pewno chcesz skopiować wszystkie różnice do innego pliku?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Czy chcesz przejść do następnego pliku?"
@@ -3636,22 +3636,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2 Runtime nie został zainstalowany. Czy chcesz go pobrać?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Porównaj nowy tekst"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Porównaj nową tabelę"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Porównaj nowe pliki binarne"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Porównaj nowy obraz"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Porównaj nową stronę internetową"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Porównaj schowek"
 
 msgid "Prettification"
 msgstr "Upiększanie"
@@ -3738,7 +3738,7 @@ msgid "Ignore TSV Fields"
 msgstr "Ignoruj pola TSV"
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Ignoruj wiodące numery linii"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "Zastosuj filtry zamiany przed porównaniem"
@@ -3904,7 +3904,7 @@ msgid "Ignore some fields - ignored fields list from the plugin name or the plug
 msgstr "Ignoruj niektóre pola - lista ignorowanych pól z nazwy wtyczki lub argumentu wtyczki"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr ""
+msgstr "Ta wtyczka ignoruje wiodące numery linii w plikach tekstowych (np. plikach NC i BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr ""
