@@ -594,7 +594,7 @@ msgid "Reloa&d\tCtrl+F5"
 msgstr "Odśwież\tCtrl+F5"
 
 msgid "Reco&mpare As"
-msgstr "Ponownie porównaj jako"
+msgstr "Porównaj ponownie jako"
 
 msgid "&Undo\tCtrl+Z"
 msgstr "Cofnij\tCtrl+Z"
@@ -2092,7 +2092,7 @@ msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr "\nPorównywanieFolderów\n\n\n\nWinMerge.PorównywanieFolderów\nWinMerge Porównywanie Folderów"
 
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge został wydawany BEZ ABSOLUTNIE ŻADNEJ GWARANCJI. Jest to wolne oprogramowanie więc mile widziane jest jego dalsze rozpowszechnianie na określonych warunkach. W celu uzyskania dalszych informacji odwiedź zakładkę \"GNU Powszechna Licencja Publiczna\" w menu Pomoc."
+msgstr "WinMerge nie jest objęty ABSOLUTNIE ŻADNĄ GWARANCJĄ. Jest darmowym oprogramowaniem i mile widziane jest jego dalsze rozpowszechnianie na określonych warunkach. W celu uzyskania dalszych informacji odwiedź w menu Pomoc zakładkę \"Powszechna Licencja Publiczna GNU\"."
 
 msgid "&Abort"
 msgstr "Przerwij"
