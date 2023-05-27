@@ -1606,6 +1606,10 @@
 #define IDS_PLUGIN_MISSING_PLUGIN_NAME  44490
 #define IDS_PLUGIN_MISSING_QUOTATION_MARK 44491
 #define IDS_PLUGIN_TITLE1               44492
+#define IDS_PLUGIN_NOTFOUND_INVALID     44493
+#define IDS_PLUGIN_NOT_UNPACK           44494
+#define IDS_PLUGIN_NOT_PREDIFF          44495
+#define IDS_PLUGIN_PREDIFF_ERROR        44496
 #define IDS_L2M                         44500
 #define IDS_R2M                         44501
 #define IDS_COPY_FROM_MIDDLE_R          44502

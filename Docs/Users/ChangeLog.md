@@ -20,6 +20,7 @@
 ### Plugins
 
 - PrettifyJSON: Update jq to version 1.6 (#1871)
+- Translate some plugin error messages (#1873)
 
 ### Installer
 

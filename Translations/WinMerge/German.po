@@ -4338,6 +4338,22 @@ msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
 msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"
 
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr ""
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr ""
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr ""
+
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Angewandter Filter"
 
