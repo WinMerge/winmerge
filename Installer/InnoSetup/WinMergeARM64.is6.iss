@@ -612,7 +612,7 @@ Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flag
 Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 ; jq
 Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Plugins
-Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\jq\jq-jq-1.6\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
 ; md4c
 Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
