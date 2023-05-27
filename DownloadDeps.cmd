@@ -20,18 +20,18 @@ https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.12-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.12-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/frhed/releases/download/0.10904.2017/frhed-0.10904.2017.12-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.38/winimerge-1.0.38.0-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.38/winimerge-1.0.38.0-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.38/winimerge-1.0.38.0-ARM.zip!Build\ARM\Release ^
-https://github.com/WinMerge/winimerge/releases/download/v1.0.38/winimerge-1.0.38.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.39/winimerge-1.0.39.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.39/winimerge-1.0.39.0-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.39/winimerge-1.0.39.0-ARM.zip!Build\ARM\Release ^
+https://github.com/WinMerge/winimerge/releases/download/v1.0.39/winimerge-1.0.39.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
-https://github.com/stedolan/jq/releases/download/jq-1.4/jq-win32.exe!Build\jq ^
-https://github.com/stedolan/jq/archive/refs/tags/jq-1.4.zip!Build\jq ^
+https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win32.exe!Build\jq ^
+https://github.com/stedolan/jq/archive/refs/tags/jq-1.6.zip!Build\jq ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
 https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.4.8-2-any.pkg.tar.zst!Build\md4c ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
@@ -78,7 +78,7 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Build\%%i\Release\WinWebDiff\WinWebDiffLib.dll Build\%%i\%%j\WinWebDiff\ 2> NUL
     xcopy /s/y Build\GnuWin32 Build\%%i\%%j\Commands\GnuWin32\
     copy Build\jq\jq-win32.exe Build\%%i\%%j\Commands\jq\jq.exe
-    copy Build\jq\jq-jq-1.4\COPYING Build\%%i\%%j\Commands\jq\
+    copy Build\jq\jq-jq-1.6\COPYING Build\%%i\%%j\Commands\jq\
     copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
     copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\
     copy Build\md4c\mingw32\bin\*.exe Build\%%i\%%j\Commands\md4c\

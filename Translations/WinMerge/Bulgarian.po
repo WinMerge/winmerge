@@ -4,7 +4,7 @@
 # Translators:
 # * sld <sld at mail.bg>
 # * tigertron <ivg_18 at yahoo.com>
-# * Стоян <stoyan от гмаил>
+# * Стоян <stoyanster от гмаил>
 #
 msgid ""
 msgstr ""
@@ -533,7 +533,7 @@ msgid "Copy to &Right\tAlt+Right"
 msgstr "Копиране в &дясно\tAlt+Right"
 
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Копиране в л&яво\tAlt+Left"
+msgstr "Копиране в &ляво\tAlt+Left"
 
 msgid "&Delete\tDel"
 msgstr "&Изтриване\tDel"
@@ -731,22 +731,22 @@ msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
 msgstr "Предишно различие между среден и десен\tAlt+Shift+3"
 
 msgid "Next Left Only Difference\tAlt+7"
-msgstr "Следващо различие само от Ляво\tAlt+7"
+msgstr "Следващо различие само от ляво\tAlt+7"
 
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr "Предишно различие само от Ляво\tAlt+Shift+7"
+msgstr "Предишно различие само от ляво\tAlt+Shift+7"
 
 msgid "Next Middle Only Difference\tAlt+8"
-msgstr "Следващо различие само в Средата\tAlt+8"
+msgstr "Следващо различие само в средата\tAlt+8"
 
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr "Предишно различие само в Средата\tAlt+Shift+8"
+msgstr "Предишно различие само в средата\tAlt+Shift+8"
 
 msgid "Next Right Only Difference\tAlt+9"
-msgstr "Следващо различие само от Дясно\tAlt+9"
+msgstr "Следващо различие само от дясно\tAlt+9"
 
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr "Предишно различие само от Дясно\tAlt+Shift+9"
+msgstr "Предишно различие само от дясно\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
 msgstr "Копиране от &ляво в"
@@ -767,31 +767,31 @@ msgid "Copy from &Right to"
 msgstr "Копиране от &дясно в"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr "Копиране на избраните редове от &ляво в"
+msgstr "Копиране на избраните &редове от ляво в"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr ""
+msgstr "Копиране на избраните редове от ср&едата в"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr ""
+msgstr "Копиране на избраните редове от дясн&о в"
 
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Корирай от ляво\tAlt+Shift+Right"
+msgstr "Копиране от ляво\tAlt+Shift+Right"
 
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Корирай от дясно\tAlt+Shift+Left"
+msgstr "Копиране от дясно\tAlt+Shift+Left"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "К&опирай в дясно и се премести\tCtrl+Alt+Right"
+msgstr "К&опиране в дясно и продължаване\tCtrl+Alt+Right"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Копирай &в ляво и се премести\tCtrl+Alt+Left"
+msgstr "Копиране в ляво и &продължаване\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
-msgstr "Копирай &всичко в дясно"
+msgstr "Копиране &всичко в дясно"
 
 msgid "Cop&y All to Left"
-msgstr "Копира&й всичко в ляво"
+msgstr "Копира&не всичко в ляво"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
 msgstr "А&втоматично сливане\tCtrl+Alt+M"
@@ -970,10 +970,10 @@ msgid "Copy &Filename"
 msgstr "Копиране на &името"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "Промяна на &заглавието"
 
 msgid "&Open..."
-msgstr ""
+msgstr "&Отваряне…"
 
 msgid "Unpacker Settings"
 msgstr "Настройки на разопаковчик"
@@ -1111,7 +1111,7 @@ msgid " Folder: Filter"
 msgstr " Папка: Филтър"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " Файл: добавка за обработка преди намиране на различия
 
 msgid " File: Unpacker Plugin"
 msgstr " Файл: добавка разопаковчик"
@@ -1162,7 +1162,7 @@ msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автоматично &довършване в „Избиране на файлове или папки“:"
 
 msgid "Auto-&reload modified files:"
-msgstr ""
+msgstr "Автоматично &презареждане на променени файлове:"
 
 msgid "Language:"
 msgstr "Език:"
@@ -1926,7 +1926,7 @@ msgid "File filters:"
 msgstr "Филтри за файлове:"
 
 msgid "&Plugin arguments:"
-msgstr ""
+msgstr "&Аргументи за добавките:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr ""
@@ -1944,7 +1944,7 @@ msgid "E&nable advanced menu"
 msgstr "Включване на &разширено меню"
 
 msgid "Enable &Compare As menu"
-msgstr ""
+msgstr "Включване на меню &Сравняване като"
 
 msgid "&Register shell extension"
 msgstr "&Регистриране на разширение на обвивката"
@@ -1964,6 +1964,12 @@ msgstr ""
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr ""
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Папки"
@@ -1975,10 +1981,10 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Пропускане на &различия във времето по-малки от 3 секунди"
 
 msgid "Include &unique subfolders contents"
-msgstr "&Включи съдържанието на уникални подпапки"
+msgstr "Включване на &уникално съдържание от подпапки"
 
 msgid "&Automatically expand all subfolders"
-msgstr "&Автоматично разтвори всички подпапки"
+msgstr "&Автоматично разтваряне на подпапките"
 
 msgid "Ignore &reparse points"
 msgstr ""
@@ -1990,7 +1996,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Ограничение за превключване към &двоично сравняване (МБ):"
 
 msgid "&Number of CPU cores to use:"
-msgstr ""
+msgstr "Използа&не на брой процесорни ядра:"
 
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
@@ -2030,7 +2036,7 @@ msgid "OCR result:"
 msgstr "Резултат от OCR:"
 
 msgid "Webpage"
-msgstr ""
+msgstr "Страница от интернет"
 
 msgid "URL pattern to &include (Regular expression):"
 msgstr ""
@@ -2313,7 +2319,7 @@ msgid "Compare Options"
 msgstr ""
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "Скрити елементи"
 
 msgid "Name"
 msgstr "Име"
@@ -2383,7 +2389,7 @@ msgid ""
 msgstr ""
 "Грешка при инсталирането на филтъра.\n"
 "\n"
-"Не може да се копира новият файл в папката с филтри."
+"Новият файл не може да бъде копиран в папката с филтри."
 
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr ""
@@ -2878,7 +2884,7 @@ msgstr ""
 "искате да затворите този прозорец?"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "Името на файла или папката е недействително."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3374,6 +3380,9 @@ msgstr ""
 "%1\n"
 "в другата страна и да ги отворите?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 msgid "Do you want to move to the next file?"
 msgstr "Искате ли да преминете към следващия файл?"
 
@@ -3784,10 +3793,10 @@ msgid "Enable &Auto Max Width"
 msgstr "Автоматична &максимална ширина"
 
 msgid "We&bpage"
-msgstr ""
+msgstr "Страница от &интернет"
 
 msgid "W&rap Text"
-msgstr ""
+msgstr "П&ренасяне на текста"
 
 msgid "Frhed is not installed."
 msgstr "Frhed не е инсталиран."
@@ -3851,7 +3860,7 @@ msgid "MDI child window only"
 msgstr "Само дъщерен прозорец (MDI)"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr ""
+msgstr "Затваряне на основния прозорец ако има само един дъщерен (MDI)"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -3956,10 +3965,10 @@ msgid "<Edit here>"
 msgstr "<въведете>"
 
 msgid "No differences to select found"
-msgstr ""
+msgstr "Липсват различия, които да бъдат избрани"
 
 msgid "No differences found to add as substitution filter"
-msgstr ""
+msgstr "Липсват различия, които да бъдат добавени като заместващ филтър"
 
 msgid "The pair is already present in the list of Substitution Filters"
 msgstr "Двойката вече съществува в заместващите филтри"
@@ -3992,13 +4001,13 @@ msgid "Only on window activated"
 msgstr ""
 
 msgid "Immediately"
-msgstr ""
+msgstr "Незабавно"
 
 msgid "Al&l"
-msgstr ""
+msgstr "В&сички"
 
 msgid "&Others"
-msgstr ""
+msgstr "&Други"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
@@ -4030,6 +4039,24 @@ msgstr ""
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr ""
 
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
+
 msgid "Prettification"
 msgstr ""
 
@@ -4037,7 +4064,7 @@ msgid "Content Extraction"
 msgstr "Извличане на съдържание"
 
 msgid "Preview"
-msgstr ""
+msgstr "Преглед"
 
 msgid "Data Query"
 msgstr ""
@@ -4115,7 +4142,7 @@ msgid "Ignore TSV Fields"
 msgstr ""
 
 msgid "Ignore Leading Line Numbers"
-msgstr ""
+msgstr "Пренебрегване на водещи номера на редове"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr ""

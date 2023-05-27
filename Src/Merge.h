@@ -40,6 +40,7 @@ class SyntaxColors;
 class CCrystalTextMarkers;
 class PackingInfo;
 class MergeAppCOMClass;
+namespace JumpList { struct Item; }
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -95,6 +96,7 @@ public:
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
 	static String GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin);
+	static std::vector<JumpList::Item> CreateUserTasks(MergeCmdLineInfo::usertasksflags_t flags);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	static void SetupTempPath();

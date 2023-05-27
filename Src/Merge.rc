@@ -1650,12 +1650,12 @@ BEGIN
     PUSHBUTTON      "Pause",IDC_COMPARISON_PAUSE,113,9,65,14
     PUSHBUTTON      "Continue",IDC_COMPARISON_CONTINUE,113,9,65,14,NOT WS_VISIBLE
     CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,7,44,241,10
-    RTEXT           "0",IDC_ITEMSCOMPARED,95,29,30,10
-    RTEXT           "0",IDC_ITEMSTOTAL,95,19,30,10
+    RTEXT           "0",IDC_ITEMSCOMPARED,95,29,60,10
+    RTEXT           "0",IDC_ITEMSTOTAL,95,19,60,10
     LTEXT           "Comparing items...",IDC_STATIC,7,7,98,10
     LTEXT           "Items compared:",IDC_STATIC,7,29,85,10
     LTEXT           "Items total:",IDC_STATIC,7,19,85,10
-    LTEXT           "",IDC_PATH_COMPARING,137,29,111,10
+    LTEXT           "",IDC_PATH_COMPARING,167,29,111,10
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 218, 80
@@ -2173,6 +2173,9 @@ BEGIN
     PUSHBUTTON      "Unregister shell extension for current user on&ly",IDC_UNREGISTER_SHELLEXTENSION_PERUSER,17,108,250,14
     PUSHBUTTON      "Register shell extension for &Windows 11 or later",IDC_REGISTER_WINMERGECONTEXTMENU,17,124,250,14
     PUSHBUTTON      "Unregister shell extension for W&indows 11 or later",IDC_UNREGISTER_WINMERGECONTEXTMENU,17,140,250,14
+    GROUPBOX        "Jump List",IDC_STATIC,7,164,270,78
+    CONTROL         "",IDC_JUMP_LIST,"SysListView32",LVS_REPORT | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,17,176,250,40
+    PUSHBUTTON      "Clear all recent items",IDC_CLEAR_ALL_RECENT_ITEMS,17,220,250,14
 END
 
 IDD_PROPPAGE_COMPARE_FOLDER DIALOGEX 0, 0, 285, 242
@@ -2982,7 +2985,10 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0
+    0, 0, 100, 0,
+    0, 0, 100, 100,
+    0, 0, 100, 100,
+    0, 100, 100, 0
 END
 
 IDD_FILTERS_FILEFILTERS AFX_DIALOG_LAYOUT
@@ -3729,11 +3735,12 @@ BEGIN
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
     IDS_CANNOT_OPEN_BINARYFILE "Cannot open a binary file to editor."
     IDS_CREATE_PAIR_FOLDER  "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-    IDS_MOVE_TO_NEXTFILE    "Do you want to move to the next file?"
+    IDS_CONFIRM_COPY_ALL_DIFFS "Are you sure you want to copy all differences to the other file?"
 END
 
 STRINGTABLE
 BEGIN
+    IDS_MOVE_TO_NEXTFILE    "Do you want to move to the next file?"
     IDS_MOVE_TO_PREVFILE    "Do you want to move to the previous file?"
     IDS_MOVE_TO_NEXTPAGE    "Do you want to move to the next page?"
     IDS_MOVE_TO_PREVPAGE    "Do you want to move to the previous page?"
@@ -4159,6 +4166,15 @@ BEGIN
     IDS_WEBVIEW2_RUNTIME_NOT_INSTALLED "WebView2 runtime is not installed. Do you want to download it?"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_JUMPLIST_NEW_TEXT_COMPARE "New Text Compare"
+    IDS_JUMPLIST_NEW_TABLE_COMPARE "New Table Compare"
+    IDS_JUMPLIST_NEW_BINARY_COMPARE "New Binary Compare"
+    IDS_JUMPLIST_NEW_IMAGE_COMPARE "New Image Compare"
+    IDS_JUMPLIST_NEW_WEBPAGE_COMPARE "New Webpage Compare"
+    IDS_JUMPLIST_CLIPBOARD_COMPARE "Clipboard Compare"
+END
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

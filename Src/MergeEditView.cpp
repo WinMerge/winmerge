@@ -687,7 +687,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
 			begin[pane] = (worddiffs[i].beginline[pane] < nLineIndex) ? 0 : worddiffs[i].begin[pane];
-			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetLineLength(nLineIndex) : worddiffs[i].end[pane];
+			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetViewableLineLength(nLineIndex) : worddiffs[i].end[pane];
 			if (worddiffs[i].beginline[pane] == worddiffs[i].endline[pane] &&
 				worddiffs[i].begin[pane] == worddiffs[i].end[pane])
 				deleted = true;
@@ -2170,6 +2170,13 @@ void CMergeEditView::OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnAllLeft()
 {
+	UINT userChoice = 0;
+	String msg = _("Are you sure you want to copy all differences to the other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	// Check that left side is not readonly
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_LEFT, m_nThisPane, GetDocument()->m_nBuffers);
 	if (IsReadOnly(dstPane))
@@ -2199,6 +2206,13 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnAllRight()
 {
+	UINT userChoice = 0;
+	String msg = _("Are you sure you want to copy all differences to the other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	// Check that right side is not readonly
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_RIGHT, m_nThisPane, GetDocument()->m_nBuffers);
 	if (IsReadOnly(dstPane))
@@ -3019,11 +3033,14 @@ void CMergeEditView::OnWMGoto()
 	CMergeDoc *pDoc = GetDocument();
 	CEPoint pos = GetCursorPos();
 	int nRealLine = 0;
-	int nLastLine = 0;
+	int nLastLine[3] = {};
 
 	nRealLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(pos.y);
-	int nLineCount = pDoc->m_ptBuf[m_nThisPane]->GetLineCount();
-	nLastLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(nLineCount - 1);
+	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
+	{
+		int nLineCount = pDoc->m_ptBuf[nPane]->GetLineCount();
+		nLastLine[nPane] = pDoc->m_ptBuf[nPane]->ComputeRealLine(nLineCount - 1);
+	}
 
 	// Set active file and current line selected in dialog
 	dlg.m_strParam = strutils::to_str(nRealLine + 1);
@@ -3043,14 +3060,17 @@ void CMergeEditView::OnWMGoto()
 
 		if (dlg.m_nGotoWhat == 0)
 		{
+			int nPane = (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile;
+			assert(nPane >= 0 && ((pDoc1->m_nBuffers < 3 && nPane < 2) || (pDoc1->m_nBuffers == 3 && nPane < 3)));
+
 			int nRealLine1 = num;
 			if (nRealLine1 < 0)
 				nRealLine1 = 0;
-			if (nRealLine1 > nLastLine)
-				nRealLine1 = nLastLine;
+			if (nRealLine1 > nLastLine[nPane])
+				nRealLine1 = nLastLine[nPane];
 
 			bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
-			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile, !bShift);
+			GotoLine(nRealLine1, true, nPane, !bShift);
 		}
 		else
 		{
@@ -3058,9 +3078,9 @@ void CMergeEditView::OnWMGoto()
 			if (diff < 0)
 				diff = 0;
 			if (diff >= pDoc1->m_diffList.GetSize())
-				diff = pDoc1->m_diffList.GetSize();
+				diff = pDoc1->m_diffList.GetSize() - 1;
 
-			if (pCurrentView)
+			if (pCurrentView && diff >= 0)
 				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}

@@ -1350,7 +1350,7 @@ DrawLineHelperImpl (CPoint & ptOrigin, const CRect & rcClip, int nColorIndex,
 bool CCrystalTextView::
 GetSelectionLeftRight(int nLineIndex, int& nSelLeft, int& nSelRight)
 {
-    int nLineLength = GetLineLength (nLineIndex);
+    int nLineLength = GetViewableLineLength (nLineIndex);
     nSelLeft = 0;
     nSelRight = 0;
     if ( !m_bRectangularSelection )

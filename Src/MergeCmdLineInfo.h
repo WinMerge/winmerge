@@ -70,6 +70,19 @@ public:
 		ABOUT_DIALOG,
 	};
 
+	using usertasksflags_t = uint32_t;
+	enum UserTaskFlags : usertasksflags_t
+	{
+		NONE                = 0x0000,
+		NEW_TEXT_COMPARE    = 0x0001,
+		NEW_TABLE_COMPARE   = 0x0002,
+		NEW_BINARY_COMPARE  = 0x0004,
+		NEW_IMAGE_COMPARE   = 0x0008,
+		NEW_WEBPAGE_COMPARE = 0x0010,
+		CLIPBOARD_COMPARE   = 0x1000,
+		SHOW_OPTIONS_DIALOG = 0x8000,
+	};
+
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
 	WindowType m_nWindowType; /**< The type of window that displays the files to compare. */
 	DialogType m_nDialogType; /**< The type of dialog window to display */
@@ -110,6 +123,8 @@ public:
 	String m_sReportFile;
 
 	String m_sIniFilepath;
+
+	std::optional<usertasksflags_t> m_dwUserTasksFlags;
 
 	PathContext m_Files; /**< Files (or directories) to compare. */
 

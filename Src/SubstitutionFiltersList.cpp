@@ -21,7 +21,8 @@ static const tchar_t SubstitutionFiltersRegPath[] = _T("SubstitutionFilters");
  * @brief Default constructor.
  */
 SubstitutionFiltersList::SubstitutionFiltersList()
-: m_pOptionsMgr(nullptr)
+: m_enabled(false)
+, m_pOptionsMgr(nullptr)
 {
 }
 

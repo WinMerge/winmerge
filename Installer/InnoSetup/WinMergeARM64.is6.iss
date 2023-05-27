@@ -614,7 +614,7 @@ Source: ..\..\Build\tidy-html5\bin\*.*; DestDir: {app}\Commands\tidy-html5; Flag
 Source: ..\..\Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md; DestDir: {app}\Commands\tidy-html5; Flags: recursesubdirs; Components: Plugins
 ; jq
 Source: ..\..\Build\jq\jq-win32.exe; DestDir: {app}\Commands\jq; DestName: jq.exe; Flags: recursesubdirs; Components: Plugins
-Source: ..\..\Build\jq\jq-jq-1.4\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
+Source: ..\..\Build\jq\jq-jq-1.6\COPYING; DestDir: {app}\Commands\jq; Flags: recursesubdirs; Components: Plugins
 ; md4c
 Source: ..\..\Build\md4c\mingw32\bin\*.*; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
 Source: ..\..\Build\md4c\mingw32\share\licenses\md4c\LICENSE.md; DestDir: {app}\Commands\md4c; Flags: recursesubdirs; Components: Plugins
@@ -884,7 +884,7 @@ Begin
 
                     {Display a dialog asking the user if they'd like to delete the previous start menu group}
                     {If they'd like to delete the previous start menu group then...}
-                    If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
+                    If SuppressibleMsgbox(strMessage, mbConfirmation, mb_YesNo, mrYes) = mrYes Then
                         Begin
                             strOld := ExpandConstant('{commonprograms}\') + strOld;
                             {Remove old start menu}
@@ -962,6 +962,18 @@ begin
   end;
 end;
 
+procedure RegisterUserTasks();
+var
+  params: string;
+  UserTasksFlags: DWORD;
+  ResultCode: Integer;
+Begin
+  UserTasksFlags := 4097; { 4096(Clipboard Compare)+1(New Text Compare) }
+  RegQueryDWORDValue(HKCU, 'Software\Thingamahoochie\WinMerge', 'UserTasksFlags', UserTasksFlags);
+  params := '/s- /minimize /noninteractive /set-usertasks-to-jumplist ' + IntToStr(UserTasksFlags);
+  Exec(ExpandConstant('{app}\WinMergeU.exe'), params, '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+end;
+
 {This event procedure is queed each time the user changes pages within the installer}
 Procedure CurPageChanged(CurPage: integer);
 Begin
@@ -969,8 +981,10 @@ Begin
     If CurPage = wpInstalling Then
             {Delete the previous start menu group if the location has changed since the last install}
             DeletePreviousStartMenu;
-    If CurPage = wpFinished Then
+    If CurPage = wpFinished Then Begin
       DeleteRenamedFiles;
+      RegisterUserTasks;
+    End;
 End;
 
 // Checks if context menu is already enabled for shell extension

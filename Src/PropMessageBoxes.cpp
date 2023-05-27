@@ -35,6 +35,7 @@ static struct MessageBox
 	{ IDS_FILECHANGED_RESCAN, IDS_FILECHANGED_RESCAN, nullptr, MB_YESNO | MB_ICONWARNING },
 	{ IDS_BACKUP_FAILED_PROMPT, IDS_BACKUP_FAILED_PROMPT,  nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	{ IDS_SUGGEST_IGNOREEOL, IDS_SUGGEST_IGNOREEOL, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
+	{ IDS_CONFIRM_COPY_ALL_DIFFS, IDS_CONFIRM_COPY_ALL_DIFFS, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	{ IDS_MOVE_TO_NEXTFILE, IDS_MOVE_TO_NEXTFILE, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN },
 	{ IDS_MOVE_TO_PREVFILE, IDS_MOVE_TO_PREVFILE, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN },
 	{ IDS_MOVE_TO_FIRSTFILE, IDS_MOVE_TO_FIRSTFILE, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN },
@@ -111,7 +112,7 @@ void PropMessageBoxes::DoDataExchange(CDataExchange* pDX)
 			{
 				int ans = m_answers[i];
 				m_list.SetCheck(i, ans != -1);
-				m_list.SetItemText(i, 1, (ans < 0 || ans >= Answers.size()) ? _T("") : Answers[ans].c_str());
+				m_list.SetItemText(i, 1, (ans < 0 || ans >= static_cast<int>(Answers.size())) ? _T("") : Answers[ans].c_str());
 			}
 		}
 		else

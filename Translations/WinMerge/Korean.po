@@ -2432,6 +2432,12 @@ msgstr "Windows 11 이상용 셸 확장 등록(&W)"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Windows 11 이상용 셸 확장 등록 해제(&I)"
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "폴더"
@@ -4005,6 +4011,9 @@ msgstr ""
 "%1\n"
 "를 다른 쪽에 만들고 이 폴더를 열까요?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "다음 파일로 이동할까요?"
@@ -4737,6 +4746,24 @@ msgstr "32비트 버전의 WinMerge는 클립보드 비교를 지원하지 않�
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2 런타임이 설치되지 않았습니다. 다운로드하시겠습니까?"
 
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
+
 msgid "Prettification"
 msgstr "꾸미기"
 
@@ -5110,7 +5137,7 @@ msgid "Ignore some fields - ignored fields list from the plugin name or the plug
 msgstr "일부 필드 무시 - 플러그인 이름 또는 플러그인 인수에서 무시된 필드 목록"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr ""
+msgstr "이 플러그인은 텍스트 파일 (예: NC 및 BASIC 파일)의 선행 라인 번호를 무시합니다."
 
 msgid "Prediff Line Filter"
 msgstr "사전 차이 필터"
@@ -5133,128 +5160,128 @@ msgstr ""
 "인수: reg.exe 명령에 전달된 명령줄 옵션입니다."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSExcelFiles.sct WinMerge 플러그인 옵션"
 
 msgid "Extract workbook data to multiple files"
-msgstr ""
+msgstr "워크북 데이터를 여러 파일로 추출"
 
 msgid "Update external references(links)"
-msgstr ""
+msgstr "외부 참조 (링크) 업데이트"
 
 msgid "Compare document properties"
-msgstr ""
+msgstr "문서 속성 비교"
 
 msgid "Compare names"
-msgstr ""
+msgstr "이름 비교"
 
 msgid "Compare cell values"
-msgstr ""
+msgstr "셀 값 비교"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr ""
+msgstr "워크시트를 이미지로 비교 (매우 느림)"
 
 msgid " - Image split size: "
-msgstr ""
+msgstr " - 이미지 분할 크기: "
 
 msgid "Compare worksheets as HTML"
-msgstr ""
+msgstr "워크시트를 HTML로 비교"
 
 msgid "Compare formulas"
-msgstr ""
+msgstr "공식 비교"
 
 msgid "Compare texts in shapes"
-msgstr ""
+msgstr "도형의 텍스트 비교"
 
 msgid "Compare headers and footers"
-msgstr ""
+msgstr "머리글과 바닥글 비교"
 
 msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
-msgstr ""
+msgstr "매크로를 가져올 수 없습니다.\r\n WinMerge가 매크로를 비교할 수 있도록 하려면 MS Office를 사용하여 현재 응용 프로그램의 매크로 보안 설정을 변경합니다.\r\n WinMerge에서 이 기능을 사용하려면 Visual Basic Project 기능에 대한 신뢰 액세스를 설정해야 합니다.\r\n"
 
 msgid "Compare VBA macros"
-msgstr ""
+msgstr "VBA 매크로 비교"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSWordFiles.sct WinMerge 플러그인 옵션"
 
 msgid "Extract document data to multiple files"
-msgstr ""
+msgstr "문서 데이터를 여러 파일로 추출"
 
 msgid "Compare bookmarks"
-msgstr ""
+msgstr "북마크 비교"
 
 msgid "Compare text contents of documents"
-msgstr ""
+msgstr "문서의 텍스트 내용 비교"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr ""
+msgstr "문서를 HTML 파일로 비교 (매우 느림)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "CompareMSPowerPointFiles.sct WinMerge 플러그인 옵션"
 
 msgid "Extract slide data to multiple files"
-msgstr ""
+msgstr "슬라이드 데이터를 여러 파일로 추출"
 
 msgid "Compare slides as image (very slow)"
-msgstr ""
+msgstr "슬라이드를 이미지로 비교 (매우 느림)"
 
 msgid "Compare texts in notes page"
-msgstr ""
+msgstr "노트 페이지의 텍스트 비교"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "MSVisioFiles.sct WinMerge 플러그인 옵션 비교"
 
 msgid "Extract page data to multiple files"
-msgstr ""
+msgstr "페이지 데이터를 여러 파일로 추출"
 
 msgid "Compare pages as image (very slow)"
-msgstr ""
+msgstr "페이지를 이미지로 비교 (매우 느림)"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "PrediffLineFilter.sct WinMerge 플러그인 옵션"
 
 msgid "Delete"
-msgstr ""
+msgstr "삭제"
 
 msgid "Enabled"
-msgstr ""
+msgstr "사용함"
 
 msgid "Ignore Case"
-msgstr ""
+msgstr "대소문자 무시"
 
 msgid "Use RegExp"
-msgstr ""
+msgstr "표현식 사용"
 
 msgid "Find what"
-msgstr ""
+msgstr "찾을 내용"
 
 msgid "Replace with"
-msgstr ""
+msgstr "교체 대상"
 
 msgid "Settings"
-msgstr ""
+msgstr "설정"
 
 msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
-msgstr ""
+msgstr "무시할 열 범위:\ne.g.)  3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr ""
+msgstr "'%1' 패치가 적용될 파일의 이름을 입력하십시오"
 
 #, c-format
 msgid "File '%1' does not exist"
-msgstr ""
+msgstr "파일 '%1'이(가) 존재하지 않습니다"
 
 msgid "Enter the command line arguments for patch command"
-msgstr ""
+msgstr "패치 명령에 대한 명령줄 인수 입력"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr ""
+msgstr "'%1' 패치가 적용될 폴더의 이름 입력"
 
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr ""
+msgstr "'%1' 폴더가 없습니다"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr ""
+msgstr "절대 경로가 포함된 패치 파일에 대해 '-p0' 명령줄 옵션을 지정하지 않음"

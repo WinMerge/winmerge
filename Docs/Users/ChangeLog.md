@@ -1,5 +1,49 @@
 # Change log
 
+## WinMerge 2.16.31 - 2023-06-20
+
+### General
+
+- BugFix: Some Substitution filter doesn't work (#1861)
+- Add tasks to Jump List (PR #1828)
+
+### File compare
+
+- BugFix: Fix input range check processing in "Go to" dialog. (PR #1826)
+- BugFix: End of line diff is a bit wanky (#1838, PR #1849)
+- Confirm copy all in file merge (PR #1827)
+
+### Folder compare
+
+- BugFix: Display problem with Item totals : (#1840)
+
+### Plugins
+
+- PrettifyJSON: Update jq to version 1.6 (#1871)
+
+### Installer
+
+- Silent install blocked (#1852)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #1829,#1837)
+  - Bulgarian (PR #1822)
+  - Chinese Simplified (PR #1835,#1846)
+  - Dutch (PR #1831)
+  - French (PR #1841,#1842)
+  - Galician (PR #1833)
+  - German (PR #1850)
+  - Hungarian (PR #1832,#1839,#1845)
+  - Japanese
+  - Korean (PR #1820,#1821)
+  - Lithuanian (PR #1847)
+  - Polish (PR #1869,#1870)
+  - Portuguese (PR #1843)
+  - Spanish (PR #1834)
+  - Russian (PR #1824,#1825,#1862)
+
 ## WinMerge 2.16.30 - 2023-04-27
 
 ### General

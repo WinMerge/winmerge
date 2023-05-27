@@ -61,6 +61,7 @@
 #include "charsets.h" // For shutdown cleanup
 #include "OptionsProject.h"
 #include "MergeAppCOMClass.h"
+#include "RegKey.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -183,6 +184,26 @@ static int ConvertLastCompareResultToExitCode(int nLastCompareResult)
 	else if (nLastCompareResult > 0)
 		return 1;
 	return 2;
+}
+
+std::vector<JumpList::Item> CMergeApp::CreateUserTasks(MergeCmdLineInfo::usertasksflags_t flags)
+{
+	std::vector<JumpList::Item> items;
+	if (flags & MergeCmdLineInfo::NEW_TEXT_COMPARE)
+		items.emplace_back(_(""), _T("/new /t text"), _("New Text Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::NEW_TABLE_COMPARE)
+		items.emplace_back(_(""), _T("/new /t table"), _("New Table Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::NEW_BINARY_COMPARE)
+		items.emplace_back(_(""), _T("/new /t binary"), _("New Binary Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::NEW_IMAGE_COMPARE)
+		items.emplace_back(_(""), _T("/new /t image"), _("New Image Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::NEW_WEBPAGE_COMPARE)
+		items.emplace_back(_(""), _T("/new /t webpage"), _("New Webpage Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::CLIPBOARD_COMPARE)
+		items.emplace_back(_(""), _T("/clipboard-compare"), _("Clipboard Compare"), _T(""), _T(""), 0);
+	if (flags & MergeCmdLineInfo::SHOW_OPTIONS_DIALOG)
+		items.emplace_back(_(""), _T("/show-dialog options"), _("Options"), _T(""), _T(""), 0);
+	return items;
 }
 
 CMergeApp::~CMergeApp()
@@ -779,6 +800,27 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 	if (!cmdInfo.m_sPreDiffer.empty())
 		infoPrediffer.reset(new PrediffingInfo(cmdInfo.m_sPreDiffer));
+
+	if (cmdInfo.m_nDialogType != MergeCmdLineInfo::NO_DIALOG)
+	{
+		ShowDialog(cmdInfo.m_nDialogType);
+		return false;
+	}
+
+	if (cmdInfo.m_bShowCompareAsMenu)
+	{
+		cmdInfo.m_bShowCompareAsMenu = false;
+		if (!ShowCompareAsMenu(cmdInfo))
+			return false;
+	}
+
+	if (cmdInfo.m_dwUserTasksFlags.has_value())
+	{
+		JumpList::AddUserTasks(CreateUserTasks(*cmdInfo.m_dwUserTasksFlags));
+		CRegKeyEx reg;
+		if (ERROR_SUCCESS == reg.Open(HKEY_CURRENT_USER, RegDir))
+			reg.WriteDword(_T("UserTasksFlags"), *cmdInfo.m_dwUserTasksFlags);
+	}
 
 	// Set the global file filter.
 	if (!cmdInfo.m_sFileFilter.empty())

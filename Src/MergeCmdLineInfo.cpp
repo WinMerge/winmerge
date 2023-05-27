@@ -271,6 +271,11 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 		{
 			m_bShowCompareAsMenu = true;
 		}
+		else if (param == _T("set-usertasks-to-jumplist"))
+		{
+			q = EatParam(q, param);
+			m_dwUserTasksFlags = tc::ttoi(param.c_str());
+		}
 		else if (param == _T("m"))
 		{
 			// -m "method" - compare method

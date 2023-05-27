@@ -1969,6 +1969,12 @@ msgstr "注册系统扩展（Windows 11 或更新的系统）(&W)"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "注销系统扩展（Windows 11 或更新的系统）(&I)"
 
+msgid "Jump List"
+msgstr "跳转列表"
+
+msgid "Clear all recent items"
+msgstr "清除所有最近的项目"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "文件夹"
@@ -3378,6 +3384,9 @@ msgstr ""
 "%1\n"
 "并且打开这两个文件夹？"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "你确定要把所有的差异复制到另一个文件吗？"
+
 msgid "Do you want to move to the next file?"
 msgstr "您是否要跳转到下一个文件？"
 
@@ -4054,6 +4063,24 @@ msgstr "32 位的 WinMerge 不支持剪贴板比较"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "未安装 WebView2 运行库。你想下载吗？"
+
+msgid "New Text Compare"
+msgstr "新的文本比较"
+
+msgid "New Table Compare"
+msgstr "新的表格比较"
+
+msgid "New Binary Compare"
+msgstr "新的二进制比较"
+
+msgid "New Image Compare"
+msgstr "新的图像比较"
+
+msgid "New Webpage Compare"
+msgstr "新的网页比较"
+
+msgid "Clipboard Compare"
+msgstr "剪贴板比较"
 
 msgid "Prettification"
 msgstr "格式美化"

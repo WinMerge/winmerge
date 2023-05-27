@@ -11,7 +11,7 @@ CompactInstallation=Kompakt Telepítés
 CustomInstallation=Egyedi Telepítés
 
 ;Components
-AppCoreFiles=A WinMerge törzsfájljok
+AppCoreFiles=A WinMerge törzsfájlok
 Filters=Szûrõk
 Plugins=Bõvítmények
 ShellExtension32bit=32-bit WinMerge helyi menü kiterjesztés
@@ -22,9 +22,9 @@ ArabicLanguage=Arab menük és párbeszédablakok
 BasqueLanguage=Baszk menük és párbeszédablakok
 BulgarianLanguage=Bolgár menük és párbeszédablakok
 CatalanLanguage=Katalán menük és párbeszédablakok
-ChineseSimplifiedLanguage=Kínai (Egyszerûsítés) menük és párbeszédablakok
-ChineseTraditionalLanguage=Kynai (Hagyományos) menük és párbeszédablakok
-CorsicanLanguage=Corsican menus and dialogs
+ChineseSimplifiedLanguage=Kínai (Egyszerûsített) menük és párbeszédablakok
+ChineseTraditionalLanguage=Kínai (Hagyományos) menük és párbeszédablakok
+CorsicanLanguage=Korzikai menük és párbeszédablakok
 CroatianLanguage=Horvát menük és párbeszédablakok
 CzechLanguage=Cseh menük és párbeszédablakok
 DanishLanguage=Dán menük és párbeszédablakok
@@ -78,7 +78,7 @@ ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
 
 ;Code Dialogs
 DeletePreviousStartMenu=A Telepítõ észlelte, hogy megváltoztattad a Start Menü helyét erröl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+ExplorerNeedsRestart=Újraindítás szükséges a WinMerge-hez. Szeretné most újraindítani?
 
 ; Project file description
 ProjectFileDesc=WinMerge Projekt fájl

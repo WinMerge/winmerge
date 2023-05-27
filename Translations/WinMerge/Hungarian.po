@@ -2425,6 +2425,12 @@ msgstr "Shellbővítmény regisztrálása Windows 11-hez"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shellbővítmény regisztrálás törlése Windows 11-hez"
 
+msgid "Jump List"
+msgstr "Ugráslista"
+
+msgid "Clear all recent items"
+msgstr "Az összes legutóbbi elem törlése"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Könyvtár"
@@ -3988,6 +3994,9 @@ msgstr ""
 "%1\n"
 "a másik oldalhoz és megnyitod ezeket a mappákat?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "Biztos, hogy minden eltérést át akarsz másolni a másik fájlba?"
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "Továbblépsz a következő fájlra?"
@@ -4690,6 +4699,24 @@ msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlít
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
+
+msgid "New Text Compare"
+msgstr "Új szöveg összehasonlítás"
+
+msgid "New Table Compare"
+msgstr "Új táblázat összehasonlítás"
+
+msgid "New Binary Compare"
+msgstr "Új bináris összehasonlítás"
+
+msgid "New Image Compare"
+msgstr "Új kép összehasonlítás"
+
+msgid "New Webpage Compare"
+msgstr "Új weboldal összehasonlítás"
+
+msgid "Clipboard Compare"
+msgstr "Vágólap összehasonlítás"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

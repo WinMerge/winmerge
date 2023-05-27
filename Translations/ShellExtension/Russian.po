@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2020-02-25\n"
+"POT-Creation-Date: 2023-02-19 00:07+0000\n"
+"PO-Revision-Date: 2023-04-27\n"
 "Last-Translator: wvxwxvw\n"
 "Language-Team: Russian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -44,12 +44,12 @@ msgstr "Расширение проводника"
 #: ShellExtension.rc:112
 #, c-format
 msgid "Win&Merge"
-msgstr "Win&Merge"
+msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "Сравнить &как"
 
 #: ShellExtension.rc:114
 #, c-format

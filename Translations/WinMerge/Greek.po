@@ -2414,6 +2414,12 @@ msgstr ""
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr ""
 
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Φάκελος"
@@ -3906,6 +3912,9 @@ msgstr ""
 "%1\n"
 "στην άλλη πλευρά και να ανοίξετε αυτούς τους φακέλους;"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr ""
@@ -4528,6 +4537,24 @@ msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
 msgstr ""
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr ""
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
 msgstr ""
 
 msgid "Prettification"
