@@ -269,7 +269,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 						else
 						{
 							plugin = nullptr;
-							errorMessage = strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName);
+							errorMessage = strutils::format_string1(_("'%1' is not unpacker plugin"), pluginName);
 						}
 						return false;
 					}
@@ -553,7 +553,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 					}
 					else
 					{
-						errorMessage = strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName);
+						errorMessage = strutils::format_string1(_("'%1' is not prediffer plugin"), pluginName);
 					}
 					return false;
 				}

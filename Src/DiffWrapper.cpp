@@ -494,8 +494,8 @@ bool CDiffWrapper::RunFileDiff()
 			if (m_infoPrediffer && !m_infoPrediffer->Prediffing(strFileTemp[file], m_sToFindPrediffer, m_bPathsAreTemp, { strFileTemp[file] }))
 			{
 				// display a message box
-				String sError = strutils::format(
-					_T("An error occurred while prediffing the file '%s' with the plugin '%s'. The prediffing is not applied any more."),
+				String sError = strutils::format_string2(
+					_("An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."),
 					strFileTemp[file].c_str(),
 					m_infoPrediffer->GetPluginPipeline().c_str());
 				AppErrorMessageBox(sError);

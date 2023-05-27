@@ -4141,6 +4141,12 @@ BEGIN
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
                             "Missing quotation mark in plugin pipeline: %1"
     IDS_PLUGIN_TITLE1       "Specify plugin arguments"
+    IDS_PLUGIN_NOTFOUND_INVALID
+                            "Plugin not found or invalid: %1"
+    IDS_PLUGIN_NOT_UNPACK   "'%1' is not unpacker plugin"
+    IDS_PLUGIN_NOT_PREDIFF  "'%1' is not prediffer plugin"
+    IDS_PLUGIN_PREDIFF_ERROR
+                            "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 END
 
 STRINGTABLE
