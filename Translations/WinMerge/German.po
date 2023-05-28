@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-05-14 11:00+0200\n"
+"PO-Revision-Date: 2023-05-28 12:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -4337,19 +4337,19 @@ msgstr "Plugin-Argumente angeben"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Plugin nicht gefunden oder ungültig: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' ist kein Entpacker-Plugin"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' ist kein Prediffer-Plugin"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Beim Prediffing der Datei '%1' mit dem Plugin '%2' ist ein Fehler aufgetreten. Das Prediffing wird nicht mehr angewendet."
 
 msgid "Filter applied"
 msgstr "Angewandter Filter"
