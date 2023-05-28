@@ -414,6 +414,7 @@ BOOL CMergeApp::InitInstance()
 	}
 	if (cmdInfo.m_bShowCompareAsMenu)
 	{
+		cmdInfo.m_bShowCompareAsMenu = false;
 		if (!ShowCompareAsMenu(cmdInfo))
 			return FALSE;
 	}
