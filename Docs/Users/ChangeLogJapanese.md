@@ -2,6 +2,33 @@
 title: 変更履歴
 ---
 
+### 2023/05/29 2.16.30-jp-2
+
+#### 全般
+
+- 不具合修正: 置換フィルタの[置換後の文字列]に\rや\nを指定しても改行文字に置換されなかった。[(#1861)](https://github.com/WinMerge/winmerge/issues/1861)
+- タスクバーのWinMergeアイコンのジャンプリストに[クリップボード比較]等のメニューを追加した。[(PR #1828)](https://github.com/WinMerge/winmerge/pull/1828)
+
+#### ファイル比較
+
+- 不具合修正: 移動ダイアログで行数を超える行番号を指定した場合、意図しない行に移動することがある問題を修正した。[(PR #1826)](https://github.com/WinMerge/winmerge/pull/1826)(PRいただきました。ありがとうございます。)
+- 不具合修正: [改行文字の違いを無視する]を指定しているにもかかわらず、改行文字が異なる行の行末がハイライトされるのを修正した。[(#1838, PR #1849)](https://github.com/WinMerge/winmerge/pull/1849)
+- [すべてを右側/左側にコピー]でメッセージボックスを表示するようにした。[(PR #1827)](https://github.com/WinMerge/winmerge/pull/1827)(PRいただきました。ありがとうございます。)
+
+#### フォルダ比較
+
+- 不具合修正: 下に表示される比較状況表示ウインドウの全項目数が、全桁表示されないことがあるのを修正した。 [(#1840)](https://github.com/WinMerge/winmerge/issues/1840)
+
+#### プラグイン
+
+- PrettifyJSON: jq のバージョンを 1.6 に更新。[(#1871)](https://github.com/WinMerge/winmerge/issues/1871)
+- プラグイン関連のエラーメッセージを翻訳可能にした。[(#1873)](https://github.com/WinMerge/winmerge/issues/1873)(PRいただきました。ありがとうございます。)
+
+#### インストーラ
+
+- /noicons コマンドラインオプションを指定すると表示されることがあるメッセージボックスを抑制可能なメッセージボックスに変更した。[(#1852)](https://github.com/WinMerge/winmerge/issues/1852)
+
+
 ### 2023/04/29 2.16.30-jp-1
 
 #### 全般
