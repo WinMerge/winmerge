@@ -27,7 +27,7 @@ Status from **2023-05-29**:
 | Hungarian            |  1300 |       1296 |     0 |            4 |     99 % |  2021-03-15 |
 | Italian              |  1300 |       1103 |     0 |          197 |     84 % |  2022-06-01 |
 | Japanese             |  1300 |       1300 |     0 |            0 |    100 % |  2023-05-01 |
-| Korean               |  1300 |       1284 |     0 |           16 |     98 % |  2023-01-27 |
+| Korean               |  1300 |       1300 |     0 |            0 |    100 % |  2023-05-29 |
 | Lithuanian           |  1300 |       1251 |     0 |           49 |     96 % |  2023-05-13 |
 | Norwegian            |  1300 |        731 |     0 |          569 |     56 % |             |
 | Persian              |  1300 |        642 |     0 |          658 |     49 % |  2013-08-15 |
@@ -266,7 +266,7 @@ Status from **2023-05-29**:
    - [Rukoto Luther](mailto:rukotolucies%20at%20hotmail.com)
 
  * Korean
-   - [VenusGirl](mailto:venusgirl%20at%20gmail.com)
+   - [VenusGirl](mailto:venusgirl%20at%20https://github.com/VenusGirl)
    - [Hwang Sukjoon](mailto:bbcool%20at%20gmail.com)
    - [Lee Jae-Hong](mailto:pyrasis%20at%20users.sourceforge.net)
    - [Sushizang](mailto:sushizang%20at%20empal.com)
