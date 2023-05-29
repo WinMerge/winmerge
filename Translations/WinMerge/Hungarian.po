@@ -4680,19 +4680,19 @@ msgstr "Bővítmény argumentumok megadása"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "A bővítmény nem található vagy érvénytelen: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "A(z) '%1' nem kitömörítő bővítmény"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "A(z) '%1' nem elővizsgáló bővítmény""
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Hiba történt a(z) „%1” fájl „%2” bővítménnyel történő elővizsgálatakor. Az elővizsgálat többé nem kerül alkalmazásra."
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
