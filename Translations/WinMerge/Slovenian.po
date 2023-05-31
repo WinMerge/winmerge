@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2023-04-20 12:10+0200\n"
+"PO-Revision-Date: 2023-05-31 09:36+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1959,10 +1959,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Odstrani razširitev lupine za W&indows 11 ali novejši"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Seznam skokov"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Počisti vse nedavne vnose"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -3349,7 +3349,7 @@ msgstr ""
 "na drugi strani in jo odpreti?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr "Ali ste prepričani, da želite kopirati vse razlike v drugo datoteko?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Ali se želite premakniti na naslednjo datoteko?"
@@ -4000,19 +4000,19 @@ msgstr "Določi argumente vtičnika"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Vtičnika ni bilo mogoče najti ali je neveljaven: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' ni vtičnik razpakirnika"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' ni vtičnik preddifereja"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Med preddifiranjem datoteke '%1' z vtičnikom '%2' je prišlo do napake. Prednastavitev se ne uporablja več."
 
 msgid "Filter applied"
 msgstr "Filter je uporabljen"
@@ -4038,22 +4038,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "Izvajalski čas WebView2 ni nameščen. Ali ga želite prenesti?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Primerjava novega besedila"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Primerjava nove tabele"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Primerjava nove dvojiške"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Primerjava nove slike"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Primerjava nove spletne strani"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Primerjava odložišča"
 
 msgid "Prettification"
 msgstr "Polepšanje"
