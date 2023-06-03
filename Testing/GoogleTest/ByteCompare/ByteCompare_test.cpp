@@ -462,6 +462,91 @@ namespace
 		}
 	}
 
+	TEST_F(ByteCompareTest, IgnoreBlankLines)
+	{
+		CompareEngines::ByteCompare bc;
+		QuickCompareOptions option;
+		std::string filename_left  = "_tmp_.txt";
+		std::string filename_right = "_tmp_2.txt";
+		char buf_left [WMCMPBUFF * 2];
+		char buf_right[WMCMPBUFF * 2];
+
+		option.m_ignoreWhitespace = WHITESPACE_COMPARE_ALL;
+		option.m_bIgnoreBlankLines = true;
+		bc.SetCompareOptions(option);
+
+		{// same
+			strcpy(buf_left, 
+"\r\n/* abc */\r\nabc(aaa);\r\n\r\n");
+			strcpy(buf_right, 
+"  \r\n/* abc */\r\nabc(aaa);\r\n  \r\n");
+			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
+			TempFile file_right(filename_right, buf_right, strlen(buf_right));
+
+			FilePair pair(filename_left, filename_right);
+			bc.SetFileData(2, pair.filedata);
+
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+		}
+
+		{// diff 
+			strcpy(buf_left, 
+"\r\n /* abc */\r\nabc(aaa);\r\n\r\n");
+			strcpy(buf_right, 
+"  \r\n  /* abc */\r\nabc(aaa);\r\n  \r\n");
+			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
+			TempFile file_right(filename_right, buf_right, strlen(buf_right));
+
+			FilePair pair(filename_left, filename_right);
+			bc.SetFileData(2, pair.filedata);
+
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+		}
+	}
+
+	TEST_F(ByteCompareTest, IgnoreBlankLinesAndIgnoreEOLDifference)
+	{
+		CompareEngines::ByteCompare bc;
+		QuickCompareOptions option;
+		std::string filename_left  = "_tmp_.txt";
+		std::string filename_right = "_tmp_2.txt";
+		char buf_left [WMCMPBUFF * 2];
+		char buf_right[WMCMPBUFF * 2];
+
+		option.m_ignoreWhitespace = WHITESPACE_COMPARE_ALL;
+		option.m_bIgnoreEOLDifference = true;
+		option.m_bIgnoreBlankLines = true;
+		bc.SetCompareOptions(option);
+
+		{// same
+			strcpy(buf_left, 
+"\n/* abc */\nabc(aaa);\n\n");
+			strcpy(buf_right, 
+"  \r\n/* abc */\r\nabc(aaa);\r\n  \r\n");
+			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
+			TempFile file_right(filename_right, buf_right, strlen(buf_right));
+
+			FilePair pair(filename_left, filename_right);
+			bc.SetFileData(2, pair.filedata);
+
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+		}
+
+		{// diff 
+			strcpy(buf_left, 
+"\n/* abc */ \nabc(aaa);\n\n");
+			strcpy(buf_right, 
+"  \r\n/* abc */\r\nabc(aaa);\r\n  \r\n");
+			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
+			TempFile file_right(filename_right, buf_right, strlen(buf_right));
+
+			FilePair pair(filename_left, filename_right);
+			bc.SetFileData(2, pair.filedata);
+
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+		}
+	}
+
 	TEST_F(ByteCompareTest, CompareAppendedFile)
 	{
 		CompareEngines::ByteCompare bc;
