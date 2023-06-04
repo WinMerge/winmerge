@@ -222,10 +222,8 @@ BOOL CPatchDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
-	m_comboStyle.AddString(_("Normal").c_str());
-	m_comboStyle.AddString(_("Context").c_str());
-	m_comboStyle.AddString(_("Unified").c_str());
-	m_comboStyle.AddString(_("HTML").c_str());
+	SetDlgItemComboBoxList(IDC_DIFF_STYLE,
+		{ _("Normal"), _("Context"), _("Unified"), _("HTML") });
 
 	m_outputStyle = OUTPUT_NORMAL;
 	m_comboStyle.SetCurSel(0);
@@ -233,11 +231,8 @@ BOOL CPatchDlg::OnInitDialog()
 	// Add default context line counts to combobox if its empty
 	if (m_comboContext.GetCount() == 0)
 	{
-		m_comboContext.AddString(_T("0"));
-		m_comboContext.AddString(_T("1"));
-		m_comboContext.AddString(_T("3"));
-		m_comboContext.AddString(_T("5"));
-		m_comboContext.AddString(_T("7"));
+		SetDlgItemComboBoxList(IDC_DIFF_CONTEXT,
+			{ _T("0"), _T("1"), _T("3"), _T("5"), _T("7") });
 	}
 	
 	LoadSettings();
@@ -367,10 +362,8 @@ void CPatchDlg::UpdateSettings()
 
 	m_comboContext.SelectString(-1, strutils::to_str(m_contextLines).c_str());
 
-	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED || m_outputStyle == OUTPUT_HTML)
-		m_comboContext.EnableWindow(TRUE);
-	else
-		m_comboContext.EnableWindow(FALSE);
+	bool enabled = (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED || m_outputStyle == OUTPUT_HTML);
+	m_comboContext.EnableWindow(enabled);
 }
 
 /** 

@@ -118,12 +118,11 @@ void PropCompareFolder::WriteOptions()
  */
 BOOL PropCompareFolder::OnInitDialog() 
 {
-	OptionsPanel::OnInitDialog();
-	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
+	SetDlgItemComboBoxList(IDC_COMPAREMETHODCOMBO,
+		{ _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size") });
 
-	for (const auto& item : { _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size") })
-		combo->AddString(item.c_str());
-	combo->SetCurSel(m_compareMethod);
+	OptionsPanel::OnInitDialog();
+	
 	UpdateControls();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
