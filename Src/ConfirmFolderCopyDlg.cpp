@@ -109,8 +109,6 @@ void ConfirmFolderCopyDlg::OnBnClickedYes()
 void ConfirmFolderCopyDlg::OnBnClickedDontAskAgain()
 {
 	UpdateData();
-	if (m_dontAskAgain)
-		AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_MESSAGEBOX, _T("FolderCopyConfirmDlgDontAskAgain"), IDYES);
-	else
-		AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_MESSAGEBOX, _T("FolderCopyConfirmDlgDontAskAgain"), IDNO);
+	AfxGetApp()->WriteProfileInt(REGISTRY_SECTION_MESSAGEBOX, _T("FolderCopyConfirmDlgDontAskAgain"),
+		m_dontAskAgain ? IDYES : IDNO);
 }
