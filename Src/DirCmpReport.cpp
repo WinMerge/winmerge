@@ -376,6 +376,9 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteStringEntityAware(m_sTitle);
 	WriteString(_T("</title>\n"));
 	WriteString(_T("\t<style type=\"text/css\">\n\t<!--\n"));
+	WriteString(_T("\t\tth {\n"));
+	WriteString(_T("\t\t\tposition: sticky; top: 0;\n"));
+	WriteString(_T("\t\t}\n"));
 	WriteString(_T("\t\tbody {\n"));
 	WriteString(_T("\t\t\tfont-family: sans-serif;\n"));
 	WriteString(_T("\t\t\tfont-size: smaller;\n"));
