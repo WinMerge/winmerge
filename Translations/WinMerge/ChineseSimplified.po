@@ -4413,8 +4413,8 @@ msgstr ""
 "用 Apache Tika 解包常规文件内容。 \r\n"
 "参数： 发送给 tika-app.jar 的命令选项。"
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "用 GnuWin32 Patch for Windows 打补丁"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "显示 MS Excel 文件的文本内容"

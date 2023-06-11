@@ -3895,8 +3895,8 @@ msgstr "Natywny kod disassemblera z dumpbin. \r\nArgumenty: Opcje wiersza polece
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr "Ogólny ekstraktor zawartości z Apache Tika. \r\nArgumenty: Opcje wiersza poleceń przekazywane do tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Zastosuj łatkę używając GnuWin32 Patch dla Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Wyświetl zawartość tekstową plików MS Excel"

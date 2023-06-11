@@ -4404,8 +4404,8 @@ msgstr ""
 "Apache Tika を使用してファイルからテキストを抽出します。\r\n"
 "引数: tika-app.jar に渡すコマンドライン オプション。"
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "GnuWin32 Patch for Windows を使用してパッチを適用します。"
+msgid "Apply patch using GNU patch"
+msgstr "GNU patch を使用してパッチを適用します。"
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel ファイルの内容を表示します。"

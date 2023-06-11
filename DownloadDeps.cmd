@@ -27,13 +27,15 @@ https://github.com/WinMerge/winimerge/releases/download/v1.0.39/winimerge-1.0.39
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-x86.zip!Build\x86\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/patch/releases/download/v2.5.9-7/patch-2.5.9-7-bin.zip!Build\GnuWin32 ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win32.exe!Build\jq ^
 https://github.com/stedolan/jq/archive/refs/tags/jq-1.6.zip!Build\jq ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
 https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.4.8-2-any.pkg.tar.zst!Build\md4c ^
+https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2 ^
+https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2 ^
+https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2 ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
@@ -47,11 +49,15 @@ for %%p in (%urls_destdirs%) do (
     if "%%~xu" == ".zip" (
       7z x %downloadsdir%\%%~nxu -aoa -o%%v
     ) else (
-      mkdir %%v > NUL
-      if "%%~xu" == ".zst" (
-        Build\zstd\zstd-v1.5.2-win64\zstd.exe -dc %downloadsdir%\%%~nxu | tar xf - -C %%v
+      if "%%~xu" == ".xz" (
+        7z x %downloadsdir%\%%~nxu -so | 7z x -aoa -si -ttar -o%%v
       ) else (
-        copy %downloadsdir%\%%~nxu %%v
+        mkdir %%v > NUL
+        if "%%~xu" == ".zst" (
+          Build\zstd\zstd-v1.5.2-win64\zstd.exe -dc %downloadsdir%\%%~nxu | tar xf - -C %%v
+        ) else (
+          copy %downloadsdir%\%%~nxu %%v
+        )
       )
     )
   )
@@ -70,13 +76,12 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\MergePlugins 2> NUL
     mkdir Build\%%i\%%j\Commands\jq 2> NUL
     mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
-    mkdir Build\%%i\%%j\Commands\GnuWin32 2> NUL
+    mkdir Build\%%i\%%j\Commands\msys2\usr\bin 2> NUL
     mkdir Build\%%i\%%j\Commands\md4c 2> NUL
     xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
     xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
     copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
     copy Build\%%i\Release\WinWebDiff\WinWebDiffLib.dll Build\%%i\%%j\WinWebDiff\ 2> NUL
-    xcopy /s/y Build\GnuWin32 Build\%%i\%%j\Commands\GnuWin32\
     copy Build\jq\jq-win32.exe Build\%%i\%%j\Commands\jq\jq.exe
     copy Build\jq\jq-jq-1.6\COPYING Build\%%i\%%j\Commands\jq\
     copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
@@ -84,6 +89,9 @@ for %%i in (x86 x64 ARM ARM64) do (
     copy Build\md4c\mingw32\bin\*.exe Build\%%i\%%j\Commands\md4c\
     copy Build\md4c\mingw32\bin\*.dll Build\%%i\%%j\Commands\md4c\
     copy Build\md4c\mingw32\share\licenses\md4c\LICENSE.md Build\%%i\%%j\Commands\md4c\
+    copy Build\msys2\usr\bin\patch.exe Build\%%i\%%j\Commands\msys2\usr\bin\
+    copy Build\msys2\usr\bin\msys-2.0.dll Build\%%i\%%j\Commands\msys2\usr\bin\
+    copy Build\msys2\usr\bin\msys-gcc_s-1.dll Build\%%i\%%j\Commands\msys2\usr\bin\
     xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
     xcopy /s/y Filters Build\%%i\%%j\Filters\
     xcopy /s/y ColorSchemes Build\%%i\%%j\ColorSchemes\
