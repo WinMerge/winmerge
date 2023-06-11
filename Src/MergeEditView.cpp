@@ -3047,6 +3047,10 @@ void CMergeEditView::OnWMGoto()
 	dlg.m_nFile = (pDoc->m_nBuffers < 3) ? (m_nThisPane == 1 ? 2 : 0) : m_nThisPane;
 	dlg.m_nGotoWhat = 0;
 	dlg.m_nFiles = pDoc->m_nBuffers;
+	dlg.m_nLastLine[0] = nLastLine[0] + 1;
+	dlg.m_nLastLine[1] = (pDoc->m_nBuffers < 3) ? -1 : nLastLine[1] + 1;
+	dlg.m_nLastLine[2] = (pDoc->m_nBuffers < 3) ? nLastLine[1] + 1: nLastLine[2] + 1;
+	dlg.m_nLastDiff = pDoc->m_diffList.GetSize();
 
 	if (dlg.DoModal() == IDOK)
 	{
