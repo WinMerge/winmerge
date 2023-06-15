@@ -33,9 +33,9 @@ https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win32.exe!Build\jq ^
 https://github.com/stedolan/jq/archive/refs/tags/jq-1.6.zip!Build\jq ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
 https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.4.8-2-any.pkg.tar.zst!Build\md4c ^
-https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2 ^
-https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2 ^
-https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2 ^
+https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2_tmp ^
+https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2_tmp ^
 http://www.magicnotes.com/steelbytes/SBAppLocale_ENG.zip!Docs\Manual\Tools
 
 pushd "%~dp0"
@@ -64,6 +64,14 @@ for %%p in (%urls_destdirs%) do (
 )
 
 for /d %%i in (build\tidy-html5\tidy-5.4.0-w32-mt-XP\*) do move %%i build\tidy-html5\
+
+mkdir Build\msys2\usr\bin
+mkdir Build\msys2\usr\share
+copy Build\msys2_tmp\usr\bin\patch.exe Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\msys-2.0.dll Build\msys2\usr\bin\
+copy Build\msys2_tmp\usr\bin\msys-gcc_s-1.dll Build\msys2\usr\bin\
+xcopy /s /y Build\msys2_tmp\usr\share\*.* Build\msys2\usr\share\
+del /s /q Build\msys2_tmp\
 
 for %%i in (x86 x64 ARM ARM64) do (
   for %%j in (Release Debug Test) do (
