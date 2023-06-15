@@ -376,9 +376,6 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteStringEntityAware(m_sTitle);
 	WriteString(_T("</title>\n"));
 	WriteString(_T("\t<style type=\"text/css\">\n\t<!--\n"));
-	WriteString(_T("\t\tth {\n"));
-	WriteString(_T("\t\t\tposition: sticky; top: 0;\n"));
-	WriteString(_T("\t\t}\n"));
 	WriteString(_T("\t\tbody {\n"));
 	WriteString(_T("\t\t\tfont-family: sans-serif;\n"));
 	WriteString(_T("\t\t\tfont-size: smaller;\n"));
@@ -398,6 +395,7 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteString(_T("\t\t\tbackground: blue;\n"));
 	WriteString(_T("\t\t\tpadding: 4px 4px;\n"));
 	WriteString(_T("\t\t\tbackground: linear-gradient(mediumblue, darkblue);\n"));
+	WriteString(_T("\t\t\tposition: sticky; top: 0;\n"));
 	WriteString(_T("\t\t}\n"));
 
 	std::vector<bool> usedIcon(m_pList->GetIconCount());
