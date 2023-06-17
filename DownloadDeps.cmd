@@ -65,16 +65,18 @@ for %%p in (%urls_destdirs%) do (
 
 for /d %%i in (build\tidy-html5\tidy-5.4.0-w32-mt-XP\*) do move %%i build\tidy-html5\
 
-mkdir Build\msys2\usr\bin
-mkdir Build\msys2\usr\share
+echo Copy msys2 files
+mkdir Build\msys2\usr\bin 2> NUL
+mkdir Build\msys2\usr\share 2> NUL
 copy Build\msys2_tmp\usr\bin\patch.exe Build\msys2\usr\bin\
 copy Build\msys2_tmp\usr\bin\msys-2.0.dll Build\msys2\usr\bin\
 copy Build\msys2_tmp\usr\bin\msys-gcc_s-1.dll Build\msys2\usr\bin\
 xcopy /s /y Build\msys2_tmp\usr\share\*.* Build\msys2\usr\share\
-del /s /q Build\msys2_tmp\
+rmdir /q /s Build\msys2_tmp\ > NUL 2> NUL
 
 for %%i in (x86 x64 ARM ARM64) do (
   for %%j in (Release Debug Test) do (
+    echo **** %%i %%j ****
     mkdir Build\%%i\%%j\Merge7z 2> NUL
     mkdir Build\%%i\%%j\WinIMerge 2> NUL
     mkdir Build\%%i\%%j\WinWebDiff 2> NUL
@@ -86,27 +88,41 @@ for %%i in (x86 x64 ARM ARM64) do (
     mkdir Build\%%i\%%j\Commands\tidy-html5 2> NUL
     mkdir Build\%%i\%%j\Commands\msys2\usr\bin 2> NUL
     mkdir Build\%%i\%%j\Commands\md4c 2> NUL
-    xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
-    xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
-    copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
-    copy Build\%%i\Release\WinWebDiff\WinWebDiffLib.dll Build\%%i\%%j\WinWebDiff\ 2> NUL
+    if not "Build\%%i\Release" == "Build\%%i\%%j" (
+      echo ** Merge7z
+      xcopy /s/y Build\%%i\Release\Merge7z Build\%%i\%%j\Merge7z\
+      echo ** Frhed
+      xcopy /s/y Build\%%i\Release\Frhed Build\%%i\%%j\Frhed\
+      echo ** WinIMerge
+      copy Build\%%i\Release\WinIMerge\WinIMergeLib.dll Build\%%i\%%j\WinIMerge\
+      copy Build\%%i\Release\WinWebDiff\WinWebDiffLib.dll Build\%%i\%%j\WinWebDiff\ 2> NUL
+    )
+    echo ** jq
     copy Build\jq\jq-win32.exe Build\%%i\%%j\Commands\jq\jq.exe
     copy Build\jq\jq-jq-1.6\COPYING Build\%%i\%%j\Commands\jq\
+    echo ** tidy-html5
     copy Build\tidy-html5\bin\tidy.* Build\%%i\%%j\Commands\tidy-html5\
     copy Build\tidy-html5\tidy-html5-5.4.0\README\LICENSE.md Build\%%i\%%j\Commands\tidy-html5\
+    echo ** md4c
     copy Build\md4c\mingw32\bin\*.exe Build\%%i\%%j\Commands\md4c\
     copy Build\md4c\mingw32\bin\*.dll Build\%%i\%%j\Commands\md4c\
     copy Build\md4c\mingw32\share\licenses\md4c\LICENSE.md Build\%%i\%%j\Commands\md4c\
+    echo ** msys2
     copy Build\msys2\usr\bin\patch.exe Build\%%i\%%j\Commands\msys2\usr\bin\
     copy Build\msys2\usr\bin\msys-2.0.dll Build\%%i\%%j\Commands\msys2\usr\bin\
     copy Build\msys2\usr\bin\msys-gcc_s-1.dll Build\%%i\%%j\Commands\msys2\usr\bin\
+    echo ** Commands
     xcopy /s/y Plugins\Commands Build\%%i\%%j\Commands
+    echo ** Filters
     xcopy /s/y Filters Build\%%i\%%j\Filters\
+    echo ** ColorSchemes
     xcopy /s/y ColorSchemes Build\%%i\%%j\ColorSchemes\
+    echo ** Plugins
     xcopy /s/y Plugins\dlls\*.sct Build\%%i\%%j\MergePlugins\
     xcopy /s/y Plugins\Plugins.xml Build\%%i\%%j\MergePlugins\
-    xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix Build\%%i\%%j
     copy Plugins\dlls\%%i\*.dll Build\%%i\%%j\MergePlugins\
+    echo ** ShellExtension
+    xcopy /s/y Build\ShellExtension\WinMergeContextMenuPackage.msix Build\%%i\%%j
   )
 )
 
