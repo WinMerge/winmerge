@@ -148,12 +148,18 @@ Function regRead(Key, DefaultValue)
 	End If
 End Function
 
-Sub regWrite(Key, Value)
+Sub regWrite(Key, Value, TypeNm)
+	Dim tmp
 	On Error Resume Next
 	If IsEmpty(mergeApp) Then
-		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value
+		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
 	Else
-		mergeApp.SaveOption Key, Value
+		If TypeNm = "REG_DWORD" Then
+			tmp = CLng(Value)
+		Else
+			tmp = CStr(Value)
+		End If
+		mergeApp.SaveOption Key, tmp
 	End If
 End Sub
 
@@ -436,7 +442,7 @@ Function ExecFilterCommand(Text)
 		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
 		cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
 		If cmd <> "" Then
-			regWrite PluginRegKeyPath & "ExecFilterCommand", cmd
+			regWrite PluginRegKeyPath & "ExecFilterCommand", cmd, "REG_SZ"
 		End If
 		cmd = ReplaceVariables(cmd)
 	Else
@@ -490,7 +496,7 @@ Function SelectColumns(Text)
 		args = regRead(PluginRegKeyPath & "SelectColumns", "")
 		args = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectColumns", args)
 		If args <> "" Then
-			regWrite PluginRegKeyPath & "SelectColumns", args
+			regWrite PluginRegKeyPath & "SelectColumns", args, "REG_SZ"
 		End If
 	Else
 		args = arguments
@@ -538,7 +544,7 @@ Function SelectLines(Text)
 		args = regRead(PluginRegKeyPath & "SelectLines", "")
 		args = InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectLines", args)
 		If args <> "" Then
-			regWrite PluginRegKeyPath & "SelectLines", args
+			regWrite PluginRegKeyPath & "SelectLines", args, "REG_SZ"
 		End If
 	Else
 		args = arguments
@@ -599,7 +605,7 @@ Function ReplaceText(Text)
 		args = regRead(PluginRegKeyPath & "Replace", "")
 		args = InputBox("Enter the search text and replacement text:", "Replace", args)
 		If args <> "" Then
-			regWrite PluginRegKeyPath & "Replace", args
+			regWrite PluginRegKeyPath & "Replace", args, "REG_SZ"
 		End If
 	Else
 		args = arguments
@@ -640,7 +646,7 @@ Function Tokenize(Text)
 		pattern = regRead(PluginRegKeyPath & "Tokenize", "")
 		pattern = InputBox("Enter regex to tokenize (e.g. [^\w]+):", "Tokenize", pattern)
 		If pattern <> "" Then
-			regWrite PluginRegKeyPath & "Tokenize", pattern
+			regWrite PluginRegKeyPath & "Tokenize", pattern, "REG_SZ"
 		End If
 	Else
 		pattern = arguments
