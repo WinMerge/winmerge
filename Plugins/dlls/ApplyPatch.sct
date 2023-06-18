@@ -28,7 +28,7 @@
 
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
-'    It will apply selected patch to specified file or folder using GnuWin32 Patch For Windows.
+'    It will apply selected patch to specified file or folder using GNU patch.
 '    Copyright (C) 2015-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
@@ -94,7 +94,7 @@ Function get_PluginEvent()
 End Function
 
 Function get_PluginDescription()
-    get_PluginDescription = "Apply patch using GnuWin32 Patch for Windows"
+    get_PluginDescription = "Apply patch using GNU patch"
 End Function
 
 Function get_PluginFileFilters()
@@ -147,7 +147,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
         MsgBox Fmt(Translate("${File '%1' does not exist}"), Array(filePatched)), vbExclamation
     Loop
 
-    cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary ") & "$FILE"
+    cmdLine = "type """ & fileSrc & """ | patch --binary $FILE"
     msg = Translate("${Enter the command line arguments for patch command}")
     cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
     If cmdLine = "" Then Exit Function
@@ -203,7 +203,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
     files = GetFileNamesInPatch(fileSrc)
     stripCount = GuessStripCount(files, dirPatched)
 
-    cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary") & " -p" & stripCount
+    cmdLine = "type """ & fileSrc & """ | patch --binary -p" & stripCount
     msg = Translate("${Enter the command line arguments for patch command}")
     cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
     If cmdLine = "" Then
@@ -278,7 +278,7 @@ Function GetPatchExeFolder()
     On Error Resume Next
     winMergeExePath = "C:\Program Files\WinMerge\WinMergeU.exe"
     winMergeExePath = wsh.RegRead(REGKEY_PATH & "\Executable")
-    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "Commands\GnuWin32\bin")
+    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "Commands\msys2\usr\bin")
 End Function
 
 Function SafeUBound(ary)

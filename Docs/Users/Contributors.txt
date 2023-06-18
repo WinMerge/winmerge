@@ -309,7 +309,7 @@ External components used by WinMerge
   * rapidjson (MIT) (https://rapidjson.org/)
   * LibXDiff (LGPL-2.1) (https://github.com/git/git/tree/master/xdiff)
 * Google C++ Testing Framework (BSD-3-Clause) (http://google.github.io/googletest/)
-* GnuWin32 Patch for Windows (GPL-2.0) (https://gnuwin32.sourceforge.net/packages/patch.htm)
+* GNU patch (msys2 package) (GPL-3.0) (https://savannah.gnu.org/projects/patch/, https://github.com/msys2/MSYS2-packages/tree/master/patch)
 * 7-zip (LGPL) (https://www.7-zip.org/)
 * LibXDiff (LGPL-2.1) (https://github.com/git/git/tree/master/xdiff)
 * html-tidy5 (https://github.com/htacg/tidy-html5/blob/next/README/LICENSE.md) (http://www.html-tidy.org/)

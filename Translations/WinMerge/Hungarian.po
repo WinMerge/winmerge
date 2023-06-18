@@ -4957,8 +4957,8 @@ msgstr "Natív kód disassembler dumpbin-nel. \r\nArgumentumok: A dumpbin paranc
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr "Általános tartalom kitömörítő Apach Tika-val  \r\nArgumentumok: A tika-app.jar-nak megfelelő parancssori opciók."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Patchelés alkalmazása a GnuWin32 Patch for Windows segítségével"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel fájlok szöveges tartalmának megjelenítése"

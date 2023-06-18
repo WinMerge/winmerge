@@ -5125,8 +5125,8 @@ msgstr ""
 "Apache Tika를 사용하는 일반 콘텐츠 추출기. \r\n"
 "인수: tika-app.jar에 전달할 명령줄 옵션."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Windows용 GnuWin32 Patch를 사용하여 패치 적용"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel 파일의 텍스트 내용 표시"

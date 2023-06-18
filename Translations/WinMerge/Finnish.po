@@ -4431,8 +4431,8 @@ msgstr ""
 "Yleinen sisällön poiminta Apache Tikan avulla\r\n"
 "Argumentit: Komentorivin vaihtoehdot, jotka välitetään tika-app.jarille."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Paikkaa GnuWin32 Patch for Windows -ohjelmalla"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Näytä MS Excel-tiedostojen tekstisisältö"

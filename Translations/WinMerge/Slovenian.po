@@ -4403,8 +4403,8 @@ msgstr ""
 "Razširjevalec splošne vsebine z Apache Tika. \r\n"
 "Argumenti: možnosti ukazne vrstice so s prehodom, posredovane v tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Uporabi popravek z uporabo popravka GnuWin32 za Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Prikaži besedilno vsebino datotek MS Excel"

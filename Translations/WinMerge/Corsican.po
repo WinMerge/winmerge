@@ -4413,8 +4413,8 @@ msgstr ""
 "Estrattore di cuntenutu generale cù Apache Tika. \\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à « tika-app.jar »."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Appiecà a currezzione impieghendu GnuWin32 Patch per Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Affissà u cuntenutu di u testu in i schedarii MS Excel"
