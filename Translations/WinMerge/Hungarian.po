@@ -4958,7 +4958,7 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr "Általános tartalom kitömörítő Apach Tika-val  \r\nArgumentumok: A tika-app.jar-nak megfelelő parancssori opciók."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "GNU patch alkalmazása"
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel fájlok szöveges tartalmának megjelenítése"
