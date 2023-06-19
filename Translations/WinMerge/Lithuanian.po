@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-05-27 17:24+0000\n"
-"PO-Revision-Date: 2023-06-02 08:28+0200\n"
+"POT-Creation-Date: 2023-06-12 00:06+0000\n"
+"PO-Revision-Date: 2023-06-19 08:45+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.3.0\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -3895,7 +3895,7 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr ""
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Taikyti pataisą naudojant „GNU patch“"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Rodyti „MS Excel“ failų teksto turinį"
