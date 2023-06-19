@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2023-05-05 23:20-0300\n"
+"PO-Revision-Date: 2023-06-18 21:30-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -3895,7 +3895,7 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr "Extrator de conteúdo geral com Apache Tika. \r\nArgumentos: Opções de linha de comando passadas ao comando ildasm."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Aplicar correção usando o Patch do GNU"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Mostrar o conteúdo em texto de arquivos MS Excel"
