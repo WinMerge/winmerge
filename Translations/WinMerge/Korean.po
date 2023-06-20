@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.14.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-05-29 17:03+0900\n"
+"PO-Revision-Date: 2023-06-21 04:23+0900\n"
 "Last-Translator: gro00 <gheong.ro at gmail.com>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ko\n"
@@ -59,16 +59,16 @@ msgid "Copy Selected Line(s) to Right"
 msgstr "선택한 줄을 오른쪽으로 복사"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr "가운데에서 선택한 줄을 복사"
+msgstr "가운데에서 선택한 줄 복사"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr "오른쪽에서 선택한 줄을 복사"
+msgstr "오른쪽에서 선택한 줄 복사"
 
 msgid "Copy Selected Line(s) to Left"
 msgstr "선택한 줄을 왼쪽으로 복사"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr "왼쪽에서 선택한 줄을 복사"
+msgstr "왼쪽에서 선택한 줄 복사"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -234,13 +234,13 @@ msgstr "이동(&M)"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr "오프셋 맞추기(&A)"
+msgstr "오프셋 조정(&A)"
 
 msgid "&Vertical Wipe"
-msgstr "수직 끌기(&V)"
+msgstr "수직 지우기(&V)"
 
 msgid "&Horizontal Wipe"
-msgstr "수평 끌기(&H)"
+msgstr "수평 지우기(&H)"
 
 msgid "Rectangle &Select"
 msgstr "직사각형 영역 선택(&S)"
@@ -283,7 +283,7 @@ msgid "Clear &Browsing Data"
 msgstr "검색 데이터 지우기(&B)"
 
 msgid "&Disk Cache"
-msgstr "디스트 캐시(&D)"
+msgstr "디스크 캐시(&D)"
 
 msgid "&Cookies"
 msgstr "쿠키(&C)"
@@ -322,7 +322,7 @@ msgstr "웹페이지(&W)"
 
 #, c-format
 msgid "New (&3 panes)"
-msgstr "새로 만들기 (&3개 패널)"
+msgstr "새로 만들기 (3개 패널)(&3)"
 
 #, c-format
 msgid "&Open...\tCtrl+O"
@@ -5126,7 +5126,7 @@ msgstr ""
 "인수: tika-app.jar에 전달할 명령줄 옵션."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "GNU 패치를 사용하여 패치 적용"
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel 파일의 텍스트 내용 표시"
