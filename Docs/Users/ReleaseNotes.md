@@ -48,11 +48,11 @@ Please submit bug reports to our bug-tracker.
 - Translation updates:
   - Brazilian (PR #1829,#1837,#1876,#1903)
   - Bulgarian (PR #1822)
-  - Chinese Simplified (PR #1835,#1846,#1885)
+  - Chinese Simplified (PR #1835,#1846,#1885,#1906)
   - Dutch (PR #1831)
   - French (PR #1841,#1842,#1894)
   - Galician (PR #1833)
-  - German (PR #1850,#1875)
+  - German (PR #1850,#1875,#1907)
   - Hungarian (PR #1832,#1839,#1845,#1878,#1905)
   - Japanese
   - Korean (PR #1820,#1821,#1877)
