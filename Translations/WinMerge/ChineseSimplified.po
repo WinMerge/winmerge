@@ -4414,7 +4414,7 @@ msgstr ""
 "参数： 发送给 tika-app.jar 的命令选项。"
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "使用 GNU patch 应用补丁"
 
 msgid "Display the text content of MS Excel files"
 msgstr "显示 MS Excel 文件的文本内容"
