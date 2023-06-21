@@ -21,9 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"X-Generator: Poedit 3.0.1\n"
-"X-Poedit-Language: Tamil\n"
-"X-Poedit-Country: INDIA\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -66,7 +64,7 @@ msgstr "ஒப்பிடு&..."
 #: ShellExtension.rc:115
 #, c-format
 msgid "Select &Left"
-msgstr "&இடது தேர்ந்தெடு "
+msgstr "&இடது தேர்ந்தெடு"
 
 #: ShellExtension.rc:116
 #, c-format
@@ -77,4 +75,3 @@ msgstr "&நடுவை தேர்ந்தெடு"
 #, c-format
 msgid "Re-select &Left"
 msgstr "&இடது மறு-தேர்வு"
-
