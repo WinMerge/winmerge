@@ -34,6 +34,7 @@ DATE:		BY:					DESCRIPTION:
 #include "7zip/UI/FileManager/OpenCallback.h"
 #include "7zip/UI/FileManager/ExtractCallback.h"
 #include "7zip/UI/FileManager/resourceGui.h"
+#include "7zip/UI/FileManager/LangUtils.h"
 
 #include "7zip/UI/Common/ArchiveExtractCallback.h"
 #include "7zip/UI/GUI/UpdateCallbackGUI.h"
@@ -92,12 +93,13 @@ struct CThreadArchiveOpen
 	NFile::NFind::CFileInfo* FileInfo;
 	IInArchive* Archive;
 	CMyComPtr<IProgress> OpenCallback;
-	COpenArchiveCallback* OpenCallbackSpec;
+	COpenCallbackImp* OpenCallbackSpec;
+	COpenArchiveCallback OpenArchiveCallbackSpec;
 	HRESULT Result;
 
 	void Process()
 	{
-		CProgressCloser closer(OpenCallbackSpec->ProgressDialog);
+		CProgressCloser closer(OpenArchiveCallbackSpec.ProgressDialog);
 
 		if COMPLAIN(!NFile::NFind::CFindFile().FindFirst(Path, *FileInfo))
 		{
@@ -141,34 +143,34 @@ void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 	format->GetDefaultName(hwndParent, ustrDefaultName);
 
 	CThreadArchiveOpen t;
-	t.OpenCallbackSpec = new COpenArchiveCallback;
+	t.OpenCallbackSpec = new COpenCallbackImp;
 	t.OpenCallback = t.OpenCallbackSpec;
-	t.OpenCallbackSpec->PasswordIsDefined = false;
-	t.OpenCallbackSpec->ParentWindow = hwndParent;
+	t.OpenArchiveCallbackSpec.PasswordIsDefined = false;
+	t.OpenArchiveCallbackSpec.ParentWindow = hwndParent;
 
 	(archive = format->GetInArchive())->AddRef();
-	(file = new CInFileStream)->AddRef();
+	static_cast<IInStream*>(file = new CInFileStream)->AddRef();
 	t.File = file;
 	t.Path = path;
 	t.FileInfo = &fileInfo;
 	t.Archive = archive;
 
 	UString progressTitle = LangString(IDS_OPENNING);
-	t.OpenCallbackSpec->ProgressDialog.MainWindow = hwndParent;
-	t.OpenCallbackSpec->ProgressDialog.MainTitle = "7-Zip"; // LangString(IDS_APP_TITLE);
-	t.OpenCallbackSpec->ProgressDialog.MainAddTitle = progressTitle + L' ';
-	t.OpenCallbackSpec->ProgressDialog.WaitMode = true;
+	t.OpenArchiveCallbackSpec.ProgressDialog.MainWindow = hwndParent;
+	t.OpenArchiveCallbackSpec.ProgressDialog.MainTitle = "7-Zip"; // LangString(IDS_APP_TITLE);
+	t.OpenArchiveCallbackSpec.ProgressDialog.MainAddTitle = progressTitle + L' ';
+	t.OpenArchiveCallbackSpec.ProgressDialog.WaitMode = true;
 
 	{
 		NWindows::CThread thread;
 		thread.Create(CThreadArchiveOpen::MyThreadFunction, &t);
-		t.OpenCallbackSpec->StartProgressDialog(progressTitle, thread);
+		t.OpenArchiveCallbackSpec.StartProgressDialog(progressTitle, thread);
 	}
 	if (t.Result != ERROR_SUCCESS)
 		Complain(t.Result, path);
 
-	passwordIsDefined = t.OpenCallbackSpec->PasswordIsDefined;
-	password = t.OpenCallbackSpec->Password;
+	passwordIsDefined = t.OpenArchiveCallbackSpec.PasswordIsDefined;
+	password = t.OpenArchiveCallbackSpec.Password;
 }
 
 /**
@@ -189,7 +191,7 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 			}
 		}
 
-		(extractCallbackSpec2 = new CExtractCallbackImp) -> AddRef();
+		static_cast<IFolderArchiveExtractCallback*>(extractCallbackSpec2 = new CExtractCallbackImp) -> AddRef();
 
 		extractCallbackSpec2->Init();
 
@@ -197,7 +199,7 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 		extractCallbackSpec2->PasswordIsDefined = passwordIsDefined;
 		extractCallbackSpec2->Password = password;
 
-		(extractCallbackSpec = new CArchiveExtractCallback) -> AddRef();
+		static_cast<IArchiveExtractCallback*>(extractCallbackSpec = new CArchiveExtractCallback) -> AddRef();
 
 		extractCallbackSpec->InitForMulti
 		(
@@ -319,7 +321,7 @@ Format7zDLL::Interface::Updater::Updater(Format7zDLL::Interface *format, LPCTSTR
 void Format7zDLL::Interface::Updater::Init(HWND hwndParent)
 {
 	(outArchive = format->GetOutArchive()) -> AddRef();
-	(file = new COutFileStream) -> AddRef();
+	static_cast<IOutStream*>(file = new COutFileStream) -> AddRef();
 	if COMPLAIN(!file->Create(path, true))
 	{
 		Complain(ERROR_CANNOT_MAKE, path);
@@ -339,7 +341,7 @@ HRESULT Format7zDLL::Interface::Updater::Commit(HWND hwndParent)
 		//	Ref counts are not always accurate with 7-Zip.
 		//	An extra AddRef() ensures that interfaces remain valid until they
 		//	are explicitly released at the end of this function.
-		(updateCallbackSpec = new CArchiveUpdateCallback) -> AddRef();
+		static_cast<IArchiveUpdateCallback2*>((updateCallbackSpec = new CArchiveUpdateCallback)) -> AddRef();
 		(updateCallbackGUI = new CUpdateCallbackGUI);// -> AddRef();
 
 		updateCallbackGUI->Init();
