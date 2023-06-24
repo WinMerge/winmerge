@@ -121,7 +121,6 @@ MergeCmdLineInfo::MergeCmdLineInfo(const tchar_t* q)
 	, m_bShowCompareAsMenu(false)
 	, m_bEscShutdown(false)
 	, m_bExitIfNoDiff(Disabled)
-	, m_bRecurse(false)
 	, m_bNonInteractive(false)
 	, m_nSingleInstance()
 	, m_bShowUsage(false)
@@ -303,7 +302,18 @@ void MergeCmdLineInfo::ParseWinMergeCmdLine(const tchar_t *q)
 		else if (param == _T("r"))
 		{
 			// -r to compare recursively
-			m_bRecurse = true;
+			if (*q == ':')
+			{
+				q = EatParam(q + 1, param);
+				m_bRecurse = (tc::ttoi(param.c_str()) != 0);
+			}
+			else
+				m_bRecurse = true;
+		}
+		else if (param == _T("r-"))
+		{
+			// -r to compare non-recursively
+			m_bRecurse = false;
 		}
 		else if (param == _T("s-"))
 		{
