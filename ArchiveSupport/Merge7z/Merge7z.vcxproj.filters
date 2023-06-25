@@ -242,7 +242,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Merge7z907.cpp">
+    <ClCompile Include="Merge7z.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
     <ClCompile Include="Merge7zCommon.cpp">
