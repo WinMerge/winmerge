@@ -237,9 +237,12 @@
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\System.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Merge7z907.cpp">
+    <ClCompile Include="Merge7z.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
     <ClCompile Include="Merge7zCommon.cpp">
@@ -445,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.cpp">
       <Filter>7zip Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\System.cpp">
+      <Filter>Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
