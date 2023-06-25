@@ -3937,6 +3937,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
 		_T("table {margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}\n")
+		_T("th {position: sticky; top: 0;}\n")
 		_T("td,th {word-break: break-all; font-size: %dpt;padding: 0 3px;}\n")
 		_T("tr { vertical-align: top; }\n")
 		_T(".title {color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")

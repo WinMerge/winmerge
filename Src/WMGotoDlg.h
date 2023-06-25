@@ -22,6 +22,8 @@ public:
 	int m_nFile;         /**< Target file number. */
 	int m_nGotoWhat;     /**< Goto line or difference? */
 	int m_nFiles;        /**< Number of files being compared. */
+	int m_nLastLine[3];  /**< Last line in each pane. */
+	int m_nLastDiff;     /**< Last diff. */
 private:
 	WMGotoDlg(const WMGotoDlg &) = delete;
 	WMGotoDlg & operator=(const WMGotoDlg &) = delete;

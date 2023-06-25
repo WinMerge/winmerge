@@ -4473,8 +4473,8 @@ msgstr ""
 "Genel içerik ayıklayıcı: Apache Tika. \r\n"
 "Parametreler: javap komutuna aktarılacak komut satırı parametreleri."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Yamayı Windows için GnuWin32Patch ile uygula"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel dosyalarının içeriği görüntülensin"

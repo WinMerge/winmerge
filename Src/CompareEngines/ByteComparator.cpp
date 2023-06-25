@@ -131,6 +131,22 @@ ByteComparator::ByteComparator(const QuickCompareOptions * options)
 		m_ignore_all_space = false;
 }
 
+static const char* SkipBlankLines(const char* p, const char* end)
+{
+	for (;;)
+	{
+		const char* tmp = p;
+		while (tmp < end && iswsch(*tmp))
+			++tmp;
+		while (tmp < end && iseolch(*tmp))
+			++tmp;
+		if (tmp == p || !iseolch(*(tmp - 1)))
+			break;
+		p = tmp;
+	}
+	return p;
+};
+
 /**
  * @brief Compare two buffers byte per byte.
  *
@@ -310,15 +326,13 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			{
 				// skip over any line delimiters on either side
 				while (ptr0 < end0 && iseolch(*ptr0))
-				{
-					// m_bol0 not used because m_ignore_eol_diff
-					++ptr0;
-				}
+					m_bol0 = true, ++ptr0;
 				while (ptr1 < end1 && iseolch(*ptr1))
-				{
-					// m_bol1 not used because m_ignore_eol_diff
-					++ptr1;
-				}
+					m_bol1 = true, ++ptr1;
+				if (m_bol0)
+					ptr0 = SkipBlankLines(ptr0, end0);
+				if (m_bol1)
+					ptr1 = SkipBlankLines(ptr1, end1);
 				if ((ptr0 == end0 && !eof0) || (ptr1 == end1 && !eof1))
 				{
 					goto need_more;
@@ -352,19 +366,9 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			if (m_ignore_blank_lines)
 			{
 				if (m_bol0)
-				{
-					while (ptr0 < end0 && iseolch(*ptr0))
-					{
-						++ptr0;
-					}
-				}
+					ptr0 = SkipBlankLines(ptr0, end0);
 				if (m_bol1)
-				{
-					while (ptr1 < end1 && iseolch(*ptr1))
-					{
-						++ptr1;
-					}
-				}
+					ptr1 = SkipBlankLines(ptr1, end1);
 				if ((ptr0 == end0 && !eof0) || (ptr1 == end1 && !eof1))
 				{
 					goto need_more;
@@ -452,7 +456,7 @@ inline void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof
 		// finish split CR/LF pair on 0-side
 		if (pbuf < end && *pbuf == '\n')
 		{
-			// m_bol0 not used because m_ignore_eol_diff
+			// m_bol0 not used because m_ignore_eol_diff and m_ignore_blank_lines
 			++pbuf;
 		}
 		m_eol0 = true;
@@ -462,13 +466,13 @@ inline void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof
 	{
 		if (*pbuf == '\n')
 		{
-			// m_bol0 not used because m_ignore_eol_diff
+			// m_bol0 not used because m_ignore_eol_diff and m_ignore_blank_lines
 			++pbuf;
 			m_eol0 = true;
 		}
 		else if (*pbuf == '\r')
 		{
-			// m_bol0 not used because m_ignore_eol_diff
+			// m_bol0 not used because m_ignore_eol_diff and m_ignore_blank_lines
 			++pbuf;
 			m_eol0 = true;
 			if (pbuf == end && !eof)

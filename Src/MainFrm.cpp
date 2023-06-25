@@ -1167,7 +1167,7 @@ void CMainFrame::OnOptions()
 
 static bool AddToRecentDocs(const PathContext& paths,
 	const unsigned flags[], const String desc[],
-	bool recurse, const String& filter,
+	std::optional<bool> recurse, const String& filter,
 	const PackingInfo *infoUnpacker, const PrediffingInfo *infoPrediffer,
 	UINT nID, const CMainFrame::OpenFileParams *pOpenParams)
 {
@@ -1195,8 +1195,8 @@ static bool AddToRecentDocs(const PathContext& paths,
 		if (nIndex < paths.GetSize() - 1)
 			title += _T(" - ");
 	}
-	if (recurse)
-		params += _T("/r ");
+	if (recurse.has_value())
+		params += *recurse ? _T("/r ") : _T("/r- ");
 	if (!filter.empty())
 		params += _T("/f \"") + filter + _T("\" ");
 	switch (nID)
@@ -1276,7 +1276,7 @@ static bool AddToRecentDocs(const PathContext& paths,
  */
 bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	const fileopenflags_t dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/,
-	bool bRecurse /*= false*/, CDirDoc* pDirDoc/*= nullptr*/,
+	std::optional<bool> bRecurse /*= false*/, CDirDoc* pDirDoc/*= nullptr*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
 	UINT nID /*= 0*/, const OpenFileParams *pOpenParams /*= nullptr*/)
 {
@@ -1299,6 +1299,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		bRO[2] = (dwFlags[2] & FFILEOPEN_READONLY) != 0;
 	};
 
+	bool bRecurse2 = bRecurse.has_value() ? *bRecurse : GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
+
 	// pop up dialog unless arguments exist (and are compatible)
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
 	bool allowFolderCompare = (static_cast<int>(nID) <= 0);
@@ -1315,7 +1317,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 			pOpenDoc->m_dwFlags[2] = dwFlags[2];
 		}
 		pOpenDoc->m_files = tFiles;
-		pOpenDoc->m_bRecurse = bRecurse;
+		pOpenDoc->m_bRecurse = bRecurse2;
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
 		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
@@ -1391,7 +1393,7 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		{
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(tFiles, bRecurse, pTempPathContext);
+			pDirDoc->InitCompare(tFiles, bRecurse2, pTempPathContext);
 
 			const auto* pOpenFolderParams = dynamic_cast<const OpenFolderParams*>(pOpenParams);
 			if (pOpenFolderParams)

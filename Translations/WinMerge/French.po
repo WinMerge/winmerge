@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-05-10 16:08+0200\n"
+"PO-Revision-Date: 2023-06-08 15:10+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -405,11 +405,11 @@ msgstr "&Générer des retouches..."
 
 #, c-format
 msgid "&Plugins"
-msgstr "&Plugins"
+msgstr "&Plug-ins"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Paramètres P&lugin..."
+msgstr "Paramètres P&lug-in..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
@@ -429,7 +429,7 @@ msgstr "Décompression &automatique"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Recharger les plugins"
+msgstr "&Recharger les plug-ins"
 
 #, c-format
 msgid "&Window"
@@ -1367,11 +1367,11 @@ msgid " Folder: Filter"
 msgstr " Dossier : filtre"
 
 msgid " File: Prediffer Plugin"
-msgstr " Fichier : Plugin Prediffer"
+msgstr " Fichier : Plug-in Prediffer"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr " Fichier : Plugin décompresseur"
+msgstr " Fichier : Plug-in décompresseur"
 
 #, c-format
 msgid "Se&lect..."
@@ -1755,7 +1755,7 @@ msgid "<<"
 msgstr "<<"
 
 msgid "Select Plugin"
-msgstr "Sélectionner le plugin"
+msgstr "Sélectionner le plug-in"
 
 msgid "Plugin &Name:"
 msgstr "&Nom du plug-in :"
@@ -1772,7 +1772,7 @@ msgid "Default arguments:"
 msgstr "Arguments par défaut :"
 
 msgid "Display all plugins, don't check the extension"
-msgstr "Afficher tous les plugins, sans vérification de l'extension"
+msgstr "Afficher tous les plug-ins, sans vérification de l'extension"
 
 msgid "&Open files in the same window type after unpacking"
 msgstr "&Ouvrir les fichiers dans le même type de fenêtre après décompression"
@@ -2376,11 +2376,11 @@ msgstr "Non"
 
 #, c-format
 msgid "Plugins"
-msgstr "Plugins"
+msgstr "Plug-ins"
 
 #, c-format
 msgid "&Enable plugins"
-msgstr "&Activer les plugins"
+msgstr "&Activer les plug-ins"
 
 msgid "File filters:"
 msgstr "Filtres de fichier :"
@@ -2389,7 +2389,7 @@ msgid "&Plugin arguments:"
 msgstr "&Arguments du plug-in :"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "Activer la décompression/pré-comparaison automatique pour le plugin"
+msgstr "Activer la décompression/pré-comparaison automatique pour le plug-in"
 
 #, c-format
 msgid "Shell Integration"
@@ -3032,19 +3032,19 @@ msgstr "Sélectionnez deux (ou trois) dossiers ou deux (ou trois) fichiers à co
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr "Gauche (1er) chemin est invalide !"
+msgstr "Le chemin de Gauche (1er) est invalide !"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr "Milieu (2ème) chemin est invalide !"
+msgstr "Le chemin du Milieu (2ème) est invalide !"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr "Droite (2ème) chemin est invalide !"
+msgstr "Le chemin de Droite (2ème) est invalide !"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr "Droite (3ème) chemin est invalide !"
+msgstr "Le chemin de Droite (3ème) est invalide !"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -3052,15 +3052,15 @@ msgstr "Les deux chemins sont invalides !"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr "Gauche (1er) et Milieu (2ème) chemins sont invalides !"
+msgstr "Les chemins de Gauche (1er) et du Milieu (2ème) sont invalides !"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr "Gauche (1er) et Droite (3ème) chemins sont invalides !"
+msgstr "Les chemins de Gauche (1er) et de Droite (3ème) sont invalides !"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "Milieu (2ème) et Droite (3ème) chemins sont invalides !"
+msgstr "Le chemin du Milieu (2ème) et de Droite (3ème) sont invalides !"
 
 #, c-format
 msgid "All paths are invalid!"
@@ -3172,7 +3172,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Le plugin '%2' ne peut compresser le fichier modifié de Gauche dans '%1'.\n"
+"Le plug-in '%2' ne peut compresser le fichier modifié de Gauche dans '%1'.\n"
 "\n"
 "Le fichier d'origine ne sera pas modifié.\n"
 "\n"
@@ -3186,7 +3186,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Le plugin '%2' ne peut compresser le fichier modifié du Milieu dans '%1'.\n"
+"Le plug-in '%2' ne peut compresser le fichier modifié du Milieu dans '%1'.\n"
 "\n"
 "Le fichier d'origine ne sera pas modifié.\n"
 "\n"
@@ -3200,7 +3200,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Le plugin '%2' ne peut compresser le fichier modifié de Droite dans '%1'.\n"
+"Le plug-in '%2' ne peut compresser le fichier modifié de Droite dans '%1'.\n"
 "\n"
 "Le fichier d'origine ne sera pas modifié.\n"
 "\n"
@@ -4407,10 +4407,10 @@ msgstr "Pas de pré-comparaison (normal)"
 
 #, c-format
 msgid "Suggested plugins"
-msgstr "Plugins suggérés"
+msgstr "Plug-ins suggérés"
 
 msgid "All plugins"
-msgstr "Tous les plugins"
+msgstr "Tous les plug-ins"
 
 #, c-format
 msgid "Private Build: %1"
@@ -4433,7 +4433,7 @@ msgstr "Impossible de télécharger les dernières informations de version"
 
 #, c-format
 msgid "Plugin Settings"
-msgstr "Paramètres des plugins"
+msgstr "Paramètres des plug-ins"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
@@ -4727,19 +4727,19 @@ msgstr "Spécifier les arguments du plug-in"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Plug-in introuvable ou non valide : %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' n'est pas un plug-in de décompression"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' n'est pas le plug-in préféré"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Une erreur s'est produite lors de la prédifférence du fichier '%1' avec le plug-in '%2'. La prédifférence n'est plus appliquée."
 
 msgid "Filter applied"
 msgstr "Filtre appliqué"
@@ -5130,8 +5130,8 @@ msgstr ""
 "Extracteur de contenu général avec Apache Tika.\r\n"
 "Arguments : options de ligne de commande transmises à tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Appliquer le correctif à l'aide de GnuWin32 Patch pour Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Afficher le contenu textuel des fichiers MS Excel"
@@ -5146,16 +5146,16 @@ msgid "Display the text content of MS Word files"
 msgstr "Afficher le contenu textuel des fichiers MS Word"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr "Ignorer certaines colonnes - liste des colonnes ignorées depuis le nom ou argument du plugin"
+msgstr "Ignorer certaines colonnes - liste des colonnes ignorées depuis le nom ou argument du plug-in"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "Le plugin ignore les commentaires (//... et /* ... */) dans les fichiers C, C++, PHP et JavaScript."
+msgstr "Le plug-in ignore les commentaires (//... et /* ... */) dans les fichiers C, C++, PHP et JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr "Ignorer certains champs - liste des champs ignorés depuis le nom ou argument du plugin"
+msgstr "Ignorer certains champs - liste des champs ignorés depuis le nom ou argument du plug-in"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr "Ce plugin ignore les premiers numéros de ligne dans les fichiers texte (par exemple, les fichiers NC et BASIC)."
+msgstr "Ce plug-in ignore les premiers numéros de ligne dans les fichiers texte (par exemple, les fichiers NC et BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr "Filtre de pré-comparaison de ligne"

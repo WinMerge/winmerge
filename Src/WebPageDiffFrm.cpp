@@ -1041,8 +1041,8 @@ void CWebPageDiffFrame::UpdateWebPageDiffBar()
 	bool fitToWindow = m_pWebDiffWindow->GetFitToWindow();
 	m_wndWebPageDiffBar.CheckDlgButton(IDC_FITTOWINDOW, fitToWindow);
 	m_wndWebPageDiffBar.CheckDlgButton(IDC_SHOWDIFFERENCES, m_pWebDiffWindow->GetShowDifferences());
-	m_wndWebPageDiffBar.GetDlgItem(IDC_WIDTH)->EnableWindow(!fitToWindow);
-	m_wndWebPageDiffBar.GetDlgItem(IDC_HEIGHT)->EnableWindow(!fitToWindow);
+	m_wndWebPageDiffBar.EnableDlgItem(IDC_WIDTH, !fitToWindow);
+	m_wndWebPageDiffBar.EnableDlgItem(IDC_HEIGHT, !fitToWindow);
 	SIZE size = m_pWebDiffWindow->GetSize();
 	m_wndWebPageDiffBar.SetDlgItemText(IDC_WIDTH, strutils::format(_T("%d"), size.cx));
 	m_wndWebPageDiffBar.SetDlgItemText(IDC_HEIGHT, strutils::format(_T("%d"), size.cy));

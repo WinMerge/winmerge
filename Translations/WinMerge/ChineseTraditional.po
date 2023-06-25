@@ -5044,7 +5044,7 @@ msgid ""
 "Arguments: Command line options passed to the tika-app.jar."
 msgstr ""
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
+msgid "Apply patch using GNU patch"
 msgstr ""
 
 msgid "Display the text content of MS Excel files"

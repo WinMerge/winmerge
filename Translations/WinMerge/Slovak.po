@@ -4369,8 +4369,8 @@ msgstr ""
 "Všeobecný rozbaľovač obsahu pomocou Apache Tika\r\n"
 "Argumenty: Príkazového riadku odovzdané tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Použitie záplaty použitím GnuWin32 Patch for Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Zobrazenie textového obsahu súborov MS Excel"

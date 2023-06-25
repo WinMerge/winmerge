@@ -133,12 +133,10 @@ BOOL PropEditor::OnInitDialog()
  */
 void PropEditor::LoadComboBoxStrings()
 {
-	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
-	for (const auto& item : { _("Break at whitespace"), _("Break at whitespace or punctuation") })
-		cbo->AddString(item.c_str());
-	cbo = (CComboBox *)GetDlgItem(IDC_RENDERING_MODE);
-	for (const auto& item : { _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") })
-		cbo->AddString(item.c_str());
+	SetDlgItemComboBoxList(IDC_BREAK_TYPE,
+		{ _("Break at whitespace"), _("Break at whitespace or punctuation") });
+	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
+		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
 }
 
 /**

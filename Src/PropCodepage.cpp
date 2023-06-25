@@ -90,10 +90,9 @@ BOOL PropCodepage::OnInitDialog()
 	
 	// Enable/disable "Custom codepage" edit field
 	EnableDlgItem(IDC_CUSTOM_CP_NUMBER, IsDlgButtonChecked(IDC_CP_CUSTOM) == 1);
-	m_comboAutodetectType.EnableWindow(
-		IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
+	EnableDlgItem(IDC_DETECT_AUTODETECTTYPE, IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
 
-	m_comboCustomCodepageValue.SetWindowText(strutils::to_str(m_nCustomCodepageValue).c_str());
+	SetDlgItemInt(IDC_CUSTOM_CP_NUMBER, m_nCustomCodepageValue);
 
 	IExconverter *pexconv = Exconverter::getInstance();
 	if (pexconv != nullptr)
@@ -153,8 +152,7 @@ void PropCodepage::OnCpCustom()
 
 void PropCodepage::OnDetectCodepage2() 
 {
-	m_comboAutodetectType.EnableWindow(
-		IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
+	EnableDlgItem(IDC_DETECT_AUTODETECTTYPE, IsDlgButtonChecked(IDC_DETECT_CODEPAGE2) == 1);
 }
 
 void PropCodepage::OnDetectAutodetecttype()

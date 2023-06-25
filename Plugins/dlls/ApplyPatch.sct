@@ -28,7 +28,7 @@
 
 '/////////////////////////////////////////////////////////////////////////////
 '    This is a plugin for WinMerge.
-'    It will apply selected patch to specified file or folder using GnuWin32 Patch For Windows.
+'    It will apply selected patch to specified file or folder using GNU patch.
 '    Copyright (C) 2015-2023 Takashi Sawanaka
 '
 '    This program is free software; you can redistribute it and/or modify
@@ -67,11 +67,17 @@ Function regRead(Key, DefaultValue)
 End Function
 
 Sub regWrite(Key, Value, TypeNm)
+	Dim tmp
 	On Error Resume Next
 	If IsEmpty(mergeApp) Then
 		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
 	Else
-		mergeApp.SaveOption Key, Value
+		If TypeNm = "REG_DWORD" Then
+			tmp = CLng(Value)
+		Else
+			tmp = CStr(Value)
+		End If
+		mergeApp.SaveOption Key, tmp
 	End If
 End Sub
 
@@ -88,7 +94,7 @@ Function get_PluginEvent()
 End Function
 
 Function get_PluginDescription()
-    get_PluginDescription = "Apply patch using GnuWin32 Patch for Windows"
+    get_PluginDescription = "Apply patch using GNU patch"
 End Function
 
 Function get_PluginFileFilters()
@@ -141,7 +147,7 @@ Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
         MsgBox Fmt(Translate("${File '%1' does not exist}"), Array(filePatched)), vbExclamation
     Loop
 
-    cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary ") & "$FILE"
+    cmdLine = "type """ & fileSrc & """ | patch --binary $FILE"
     msg = Translate("${Enter the command line arguments for patch command}")
     cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
     If cmdLine = "" Then Exit Function
@@ -197,7 +203,7 @@ Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
     files = GetFileNamesInPatch(fileSrc)
     stripCount = GuessStripCount(files, dirPatched)
 
-    cmdLine = "type """ & fileSrc & """ | patch " & IIf(IsWindowsTextFormat(fileSrc), "", "--binary") & " -p" & stripCount
+    cmdLine = "type """ & fileSrc & """ | patch --binary -p" & stripCount
     msg = Translate("${Enter the command line arguments for patch command}")
     cmdLine = InputBox(msg, PLUGIN_NAME, cmdLine)
     If cmdLine = "" Then
@@ -246,21 +252,21 @@ Function Translate(text)
 End Function
 
 Function ShowSettingsDialog()
-    Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-    Dim jsonfile: jsonfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".json")
-    Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
-    Dim mshta
-    tfile.Write Translate(getResource("dialog1"))
-    tfile.Close
-    exportSettingsToJSONFile jsonfile
-    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
-    If Not fso.FileExists(mshta) Then
-        mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
-    End If
-    Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
-    importSettingsFromJSONFile jsonfile
-    fso.DeleteFile tname
-    fso.DeleteFile jsonfile
+	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
+	Dim xmlfile: xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".xml")
+	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
+	Dim mshta
+	tfile.Write Translate(getResource("dialog1"))
+	tfile.Close
+	exportSettingsToXMLFile xmlfile
+	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
+	If Not fso.FileExists(mshta) Then
+		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
+	End If
+	Run wsh, """" & mshta & """ """ & tname & """  """ & xmlfile  & """"
+	importSettingsFromXMLFile xmlfile
+	fso.DeleteFile tname
+	fso.DeleteFile xmlfile
 End Function
 
 Sub Run(sh, cmd)
@@ -272,7 +278,7 @@ Function GetPatchExeFolder()
     On Error Resume Next
     winMergeExePath = "C:\Program Files\WinMerge\WinMergeU.exe"
     winMergeExePath = wsh.RegRead(REGKEY_PATH & "\Executable")
-    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "Commands\GnuWin32\bin")
+    GetPatchExeFolder = fso.BuildPath(fso.GetParentFolderName(winMergeExePath), "Commands\msys2\usr\bin")
 End Function
 
 Function SafeUBound(ary)
@@ -490,31 +496,41 @@ End Function
 
 var REGKEY_PATH = "Plugins\\ApplyPatch.sct/";
 
-function exportSettingsToJSONFile(filepath)
+function exportSettingsToXMLFile(filepath)
 {
 	var key_defvalues = {
 		"Dummy" : true
 	};
+	var doc = new ActiveXObject("MSXML2.DOMDocument");
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var ts = fso.OpenTextFile(filepath, 2, true, -1);
-	var json = "{";
+	var root = doc.createElement("properties");
 	for (var key in key_defvalues) {
-		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + regRead(REGKEY_PATH + key, key_defvalues[key]) + ',';
+		var el = doc.createElement("property");
+		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+		var cdata = doc.createCDATASection(val);
+		el.appendChild(cdata);
+		el.setAttribute("name", REGKEY_PATH + key);
+		el.setAttribute("type", typeof val);
+		root.appendChild(el);
 	}
-	json = json.substr(0, json.length - 1) + "}";
-	ts.WriteLine(json);
+	doc.appendChild(root);
+	ts.Write(doc.xml);
 	ts.Close();
 }
 
-function importSettingsFromJSONFile(filepath)
+function importSettingsFromXMLFile(filepath)
 {
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var ts = fso.OpenTextFile(filepath, 1, true, -1);
-	var json = ts.ReadAll();
-	var settings = eval("(" + json + ")");
+	var xml = ts.ReadAll();
+	var doc = new ActiveXObject("MSXML2.DOMDocument");
+	doc.async = false
+	doc.loadXML(xml);
 	ts.Close();
-	for (var key in settings) {
-		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
+	var nodes = doc.documentElement.childNodes;
+	for (var i = 0; i < nodes.length; i++) {
+		regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
 	}
 }
 
@@ -542,36 +558,8 @@ function importSettingsFromJSONFile(filepath)
     </style>
     <script type="text/javascript">
       var REGKEY_PATH = "Plugins\\ApplyPatch.sct/";
-      var jsonFilePath;
-      var settings;
-
-      function jsonStringify(obj) {
-        if (obj === null) {
-          return "null";
-        }
-        if (typeof obj === "undefined") {
-          return undefined;
-        }
-        if (typeof obj === "number" || typeof obj === "boolean") {
-          return obj.toString();
-        }
-        if (typeof obj === "string") {
-          return '"' + escapeString(obj) + '"';
-        }
-        if (typeof obj === "object") {
-          var pairs = [];
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
-            }
-          }
-          return "{" + pairs.join(",") + "}";
-        }
-      }
-
-      function escapeString(str) {
-        return str.replace(/[\\"']/g, '\\$&');
-      }
+      var xmlFilePath;
+      var settings = {};
 
       function regRead(key, defaultValue) {
         return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
@@ -581,25 +569,45 @@ function importSettingsFromJSONFile(filepath)
         settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
       }
 
-      function loadSettingsFromJSONFile(filepath) {
+      function loadSettingsFromXMLFile(filepath) {
         var fso = new ActiveXObject("Scripting.FileSystemObject");
-        var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
-        var json = ts.ReadAll();
-        var settings = eval("(" + json + ")");
+        var ts = fso.OpenTextFile(filepath, 1, true, -1);
+        var xml = ts.ReadAll();
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        doc.async = false
+        doc.loadXML(xml);
         ts.Close();
+        var nodes = doc.documentElement.childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+          regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+        }
         return settings;
       }
 
-      function saveSettingsToJSONFile(filepath, settings) {
+      function saveSettingsToXMLFile(filepath, settings) {
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
         var fso = new ActiveXObject("Scripting.FileSystemObject");
         var ts = fso.OpenTextFile(filepath, 2, true, -1);
-        ts.WriteLine(jsonStringify(settings));
+        var root = doc.createElement("properties");
+        for (var key in settings) {
+          if (settings.hasOwnProperty(key)) {
+            var el = doc.createElement("property");
+            var val = settings[key];
+            var cdata = doc.createCDATASection(val);
+            el.appendChild(cdata);
+            el.setAttribute("name", key);
+            el.setAttribute("type", typeof val);
+            root.appendChild(el);
+          }
+        }
+        doc.appendChild(root);
+        ts.Write(doc.xml);
         ts.Close();
       }
 
       function onload() {
-        jsonFilePath = objHTA.commandLine.split('"')[3];
-        settings = loadSettingsFromJSONFile(jsonFilePath);
+        xmlFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromXMLFile(xmlFilePath);
 
         var dpi = window.screen.deviceXDPI;
         var w = 600 * dpi / 96, h = 400 * dpi / 96;
@@ -608,13 +616,13 @@ function importSettingsFromJSONFile(filepath)
       }
 
       function btnOk_onclick() {
-        saveSettingsToJSONFile(jsonFilePath, settings);
+        saveSettingsToXMLFile(xmlFilePath, settings);
 
         window.close();
       }
 
       function btnCancel_onclick() {
-        saveSettingsToJSONFile(jsonFilePath, "{}");
+        saveSettingsToXMLFile(xmlFilePath, {});
 
         window.close();
       }

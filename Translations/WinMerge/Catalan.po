@@ -5091,8 +5091,8 @@ msgstr ""
 "Extractor de contingut genèric amb Apache Tika.\r\n"
 "Arguments: La línia de comandes a utilitzar amb el tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Aplica el pegat fent servir el GnuWin32 Patch per a Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Mostra el contingut de text dels fitxers de MS Excel"

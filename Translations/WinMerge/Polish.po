@@ -3621,15 +3621,15 @@ msgstr "Określ argumenty wtyczki"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Nie znaleziono wtyczki lub jest ona nieprawidłowa: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' nie jest wtyczką rozpakowującą"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' nie jest wtyczką porównującą"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
@@ -3845,61 +3845,61 @@ msgid "Trim spaces"
 msgstr "Usuń spacje"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n  ZAKRESY   - listę zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące kolumny\r\n  -i - ignoruj wielkość liter\r\n  -g - włącz flagę globalną\r\n  -e - użyj SZABLONÓW do dopasowywania"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
 msgstr ""
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "HTML Prettier z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON Prettier z poleceniem jq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia jq."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "XML Prettier z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML Prettier z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
 
 msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
-msgstr ""
+msgstr "Przeglądarka Graphviz. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia dot."
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
-msgstr ""
+msgstr "Przeglądarka Markdown. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia md2html."
 
 msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
-msgstr ""
+msgstr "Przeglądarka PlantUML. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia plantuml.jar."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "CSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr ""
+msgstr "TSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr ""
+msgstr "JSON Querier z poleceniem jq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia jq."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr ""
+msgstr "YAML Querier z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr ""
+msgstr "Walidator HTML z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
 
 msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr ""
+msgstr "Disassembler kodu bajtowego JVM z javap. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia javap."
 
 msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr ""
+msgstr "IL disassembler z ildasm. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia ildasm."
 
 msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr "Natywny kod disassemblera z dumpbin. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia dumpbin."
+msgstr "Natywny kod disassemblera z dumpbin. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia dumpbin."
 
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr "Ogólny ekstraktor zawartości z Apache Tika. \r\nArgumenty: Opcje linii poleceń przekazywane do tika-app.jar."
+msgstr "Ogólny ekstraktor zawartości z Apache Tika. \r\nArgumenty: Opcje wiersza poleceń przekazywane do tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Zastosuj łatkę używając GnuWin32 Patch dla Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Wyświetl zawartość tekstową plików MS Excel"
@@ -3926,16 +3926,16 @@ msgid "This plugin ignores the leading line numbers in text files (e.g. NC and B
 msgstr "Ta wtyczka ignoruje wiodące numery linii w plikach tekstowych (np. plikach NC i BASIC)."
 
 msgid "Prediff Line Filter"
-msgstr ""
+msgstr "Filtr porównywania wiersza"
 
 msgid "Basic text functions for the context menu"
 msgstr "Podstawowe funkcje tekstowe dla menu kontekstowego"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
-msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia curl."
+msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia curl."
 
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje linii poleceń przekazywane do polecenia reg.exe."
+msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia reg.exe."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opcje wtyczki WinMerge CompareMSExcelFiles.sct"
@@ -4062,4 +4062,4 @@ msgid "Folder '%1' does not exist"
 msgstr "Folder '%1' nie istnieje"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr "Nie określaj opcji linii poleceń '-p0' dla pliku łatki, która zawiera ścieżki bezwzględne"
+msgstr "Nie określaj opcji wiersza poleceń '-p0' dla pliku łatki, która zawiera ścieżki bezwzględne"

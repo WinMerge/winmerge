@@ -4402,8 +4402,8 @@ msgstr ""
 "Algemene inhoud-extractor met Apache Tika. \r\n"
 "Argumenten: opdrachtregelopties doorgegeven aan de tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Patch toepassen met de GnuWin32 Patch voor Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "De tekstinhoud van MS Excel-bestanden weergeven"

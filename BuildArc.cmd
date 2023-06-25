@@ -73,7 +73,7 @@ if "%1" == "x64" (
 )
 
 rem Create folder structure
-for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff Merge7z\Lang Commands\Apache-Tika Commands\tidy-html5 Commands\jq Commands\q Commands\GnuWin32 Commands\md4c) do (
+for %%i in (ColorSchemes Languages\ShellExtension Filters MergePlugins Docs Frhed\Docs Frhed\Languages WinIMerge WinWebDiff Merge7z\Lang Commands\Apache-Tika Commands\tidy-html5 Commands\jq Commands\q Commands\msys2 Commands\md4c) do (
   mkdir "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\%%i" 2> NUL
 )
 
@@ -182,7 +182,7 @@ copy Plugins\Commands\DownloadFiles.bat "%DISTDIR%\%PLATFORMH%zip-version\WinMer
 
 rem Patch
 echo Copy Patch...
-xcopy /s/y Build\GnuWin32 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\GnuWin32\" > NUL
+xcopy /s/y Build\msys2 "%DISTDIR%\%PLATFORMH%zip-version\WinMerge\Commands\msys2\" > NUL
 
 rem Copy jq...
 echo Copy jq...

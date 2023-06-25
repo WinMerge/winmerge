@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-05-01 23:13+0000\n"
-"PO-Revision-Date: 2023-05-13 09:28+0200\n"
+"POT-Creation-Date: 2023-06-12 00:06+0000\n"
+"PO-Revision-Date: 2023-06-19 08:45+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.3.0\n"
+"X-Generator: Poedit 3.3.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -3030,7 +3030,7 @@ msgid "Unpacker plugin name or pipeline."
 msgstr "Išpakuotojo papildinio pavadinimas arba komandų grandinė."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Paruošėjo papildinio pavadinimas arba komandų grandinė."
+msgstr "Parengėjo papildinio pavadinimas arba komandų grandinė."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3620,19 +3620,19 @@ msgstr "Nurodykite papildinio argumentus"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Nerastas arba netinkamas papildinys: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' nėra išpakuotojas"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' nėra parengėjas"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Parengimo papildiniui '%2' apdorojant failą '%1' įvyko klaida. Parengimas daugiau nebetaikomas."
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
@@ -3897,8 +3897,8 @@ msgstr ""
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr ""
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Taikyti pataisą naudojant „GnuWin32 Patch for Windows“"
+msgid "Apply patch using GNU patch"
+msgstr "Taikyti pataisą naudojant „GNU patch“"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Rodyti „MS Excel“ failų teksto turinį"

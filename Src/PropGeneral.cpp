@@ -48,39 +48,16 @@ PropGeneral::~PropGeneral()
 
 BOOL PropGeneral::OnInitDialog()
 {
+	SetDlgItemComboBoxList(IDC_AUTO_COMPLETE_SOURCE,
+		{ _("Disabled"), _("From file system"), _("From Most Recently Used list") });
+	SetDlgItemComboBoxList(IDC_ESC_CLOSES_WINDOW,
+		{ _("Disabled"), _("MDI child window or main window"), _("MDI child window only"), _("Close main window if there is only one MDI child window") });
+	SetDlgItemComboBoxList(IDC_SINGLE_INSTANCE,
+		{ _("Disabled"), _("Allow only one instance to run"), _("Allow only one instance to run and wait for the instance to terminate") });
+	SetDlgItemComboBoxList(IDC_AUTO_RELOAD_MODIFIED_FILES,
+		{ _("Disabled"), _("Only on window activated"), _("Immediately") });
+
 	OptionsPanel::OnInitDialog();
-
-	CComboBox *pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_COMPLETE_SOURCE);
-	ASSERT(pWnd != nullptr);
-
-	for (const auto& item : { _("Disabled"), _("From file system"), _("From Most Recently Used list") })
-		pWnd->AddString(item.c_str());
-
-	pWnd->SetCurSel(m_nAutoCompleteSource);
-
-	pWnd = (CComboBox*)GetDlgItem(IDC_ESC_CLOSES_WINDOW);
-	ASSERT(pWnd != nullptr);
-
-	for (const auto& item : { _("Disabled"), _("MDI child window or main window"), _("MDI child window only"), _("Close main window if there is only one MDI child window") })
-		pWnd->AddString(item.c_str());
-
-	pWnd->SetCurSel(m_nCloseWindowWithEsc);
-
-	pWnd = (CComboBox*)GetDlgItem(IDC_SINGLE_INSTANCE);
-	ASSERT(pWnd != nullptr);
-
-	for (const auto& item : { _("Disabled"), _("Allow only one instance to run"), _("Allow only one instance to run and wait for the instance to terminate") })
-		pWnd->AddString(item.c_str());
-
-	pWnd->SetCurSel(m_nSingleInstance);
-
-	pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_RELOAD_MODIFIED_FILES);
-	ASSERT(pWnd != nullptr);
-
-	for (const auto& item : { _("Disabled"), _("Only on window activated"), _("Immediately") })
-		pWnd->AddString(item.c_str());
-
-	pWnd->SetCurSel(m_nFileReloadMode);
 
 	m_ctlLangList.SetDroppedWidth(600);
 	m_ctlLangList.EnableWindow(FALSE);

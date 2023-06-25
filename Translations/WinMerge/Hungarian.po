@@ -4683,19 +4683,19 @@ msgstr "Bővítmény argumentumok megadása"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "A bővítmény nem található vagy érvénytelen: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "A(z) '%1' nem kitömörítő bővítmény"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "A(z) '%1' nem elővizsgáló bővítmény""
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Hiba történt a(z) „%1” fájl „%2” bővítménnyel történő elővizsgálatakor. Az elővizsgálat többé nem kerül alkalmazásra."
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
@@ -4960,8 +4960,8 @@ msgstr "Natív kód disassembler dumpbin-nel. \r\nArgumentumok: A dumpbin paranc
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr "Általános tartalom kitömörítő Apach Tika-val  \r\nArgumentumok: A tika-app.jar-nak megfelelő parancssori opciók."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Patchelés alkalmazása a GnuWin32 Patch for Windows segítségével"
+msgid "Apply patch using GNU patch"
+msgstr "GNU patch alkalmazása"
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel fájlok szöveges tartalmának megjelenítése"

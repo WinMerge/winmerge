@@ -395,6 +395,7 @@ void DirCmpReport::GenerateHTMLHeader()
 	WriteString(_T("\t\t\tbackground: blue;\n"));
 	WriteString(_T("\t\t\tpadding: 4px 4px;\n"));
 	WriteString(_T("\t\t\tbackground: linear-gradient(mediumblue, darkblue);\n"));
+	WriteString(_T("\t\t\tposition: sticky; top: 0;\n"));
 	WriteString(_T("\t\t}\n"));
 
 	std::vector<bool> usedIcon(m_pList->GetIconCount());

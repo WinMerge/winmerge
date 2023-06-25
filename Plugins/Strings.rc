@@ -164,7 +164,7 @@ BEGIN
                             "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
     IDS_PLUGIN_DESCRIPTION38 
                             "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-    IDS_PLUGIN_DESCRIPTION39 "Apply patch using GnuWin32 Patch for Windows"
+    IDS_PLUGIN_DESCRIPTION39 "Apply patch using GNU patch"
     IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS Excel files"
     IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS PowerPoint files"
     IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Visio files"

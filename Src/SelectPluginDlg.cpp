@@ -140,19 +140,17 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	if (m_bArgumentsRequired)
 	{
-		SetWindowText((_("Specify plugin arguments") + _T(" [") + pluginTypeStr + _T("]")).c_str());
+		SetTitleText(_("Specify plugin arguments") + _T(" [") + pluginTypeStr + _T("]"));
 		String args;
-		CString pipeline;
+		String pipeline;
 		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, args);
-		m_ctlPluginPipeline.GetWindowText(pipeline);
-		m_strPluginPipeline = pipeline + _T(" ") + args.c_str();
-		m_ctlPluginPipeline.SetWindowText(m_strPluginPipeline.c_str());
-		m_ctlPluginPipeline.SetFocus();
+		GetDlgItemText(IDC_PLUGIN_PIPELINE, pipeline);
+		m_strPluginPipeline = pipeline + _T(" ") + args;
+		SetDlgItemText(IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
+		SetDlgItemFocus(IDC_PLUGIN_PIPELINE);
 		return FALSE;
 	}
-	CString title;
-	GetWindowText(title);
-	SetWindowText(title + _T(" [") + pluginTypeStr.c_str() + _T("]"));
+	SetTitleText(GetTitleText() + _T(" [") + pluginTypeStr + _T("]"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

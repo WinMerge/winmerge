@@ -77,11 +77,17 @@ Function regRead(Key, DefaultValue)
 End Function
 
 Sub regWrite(Key, Value, TypeNm)
+	Dim tmp
 	On Error Resume Next
 	If IsEmpty(mergeApp) Then
 		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
 	Else
-		mergeApp.SaveOption Key, Value
+		If TypeNm = "REG_DWORD" Then
+			tmp = CLng(Value)
+		Else
+			tmp = CStr(Value)
+		End If
+		mergeApp.SaveOption Key, tmp
 	End If
 End Sub
 
@@ -340,20 +346,20 @@ End Function
 
 Function ShowSettingsDialog()
 	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim jsonfile: jsonfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".json")
+	Dim xmlfile: xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".xml")
 	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
 	Dim mshta
 	tfile.Write Translate(getResource("dialog1"))
 	tfile.Close
-	exportSettingsToJSONFile jsonfile
+	exportSettingsToXMLFile xmlfile
 	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
 	If Not fso.FileExists(mshta) Then
 		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
 	End If
-	Run wsh, """" & mshta & """ """ & tname & """  """ & jsonfile  & """"
-	importSettingsFromJSONFile jsonfile
+	Run wsh, """" & mshta & """ """ & tname & """  """ & xmlfile  & """"
+	importSettingsFromXMLFile xmlfile
 	fso.DeleteFile tname
-	fso.DeleteFile jsonfile
+	fso.DeleteFile xmlfile
 End Function
 
 Sub Run(sh, cmd)
@@ -366,7 +372,7 @@ End Sub
 
 var REGKEY_PATH = "Plugins\\CompareMSPowerPointFiles.sct/";
 
-function exportSettingsToJSONFile(filepath)
+function exportSettingsToXMLFile(filepath)
 {
 	var key_defvalues = {
 		"UnpackToFolder" : false,
@@ -376,27 +382,36 @@ function exportSettingsToJSONFile(filepath)
 		"CompareTextsInNotesPage" : true,
 		"CompareVBAMacros" : true
 	};
+	var doc = new ActiveXObject("MSXML2.DOMDocument");
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var ts = fso.OpenTextFile(filepath, 2, true, -1);
-	var json = "{";
+	var root = doc.createElement("properties");
 	for (var key in key_defvalues) {
+		var el = doc.createElement("property");
 		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
-		json += '"' + (REGKEY_PATH + key).replace(/\\/g, "\\\\") + '" : ' + ((typeof val === "string") ? ('"' + val.replace(/[\\"']/g, '\\$&') + '"') : val) + ',';
+		var cdata = doc.createCDATASection(val);
+		el.appendChild(cdata);
+		el.setAttribute("name", REGKEY_PATH + key);
+		el.setAttribute("type", typeof val);
+		root.appendChild(el);
 	}
-	json = json.substr(0, json.length - 1) + "}";
-	ts.WriteLine(json);
+	doc.appendChild(root);
+	ts.Write(doc.xml);
 	ts.Close();
 }
 
-function importSettingsFromJSONFile(filepath)
+function importSettingsFromXMLFile(filepath)
 {
 	var fso = new ActiveXObject("Scripting.FileSystemObject");
 	var ts = fso.OpenTextFile(filepath, 1, true, -1);
-	var json = ts.ReadAll();
-	var settings = eval("(" + json + ")");
+	var xml = ts.ReadAll();
+	var doc = new ActiveXObject("MSXML2.DOMDocument");
+	doc.async = false
+	doc.loadXML(xml);
 	ts.Close();
-	for (var key in settings) {
-		regWrite(key, settings[key], (typeof settings[key] === "string") ? "REG_SZ" : "REG_DWORD");
+	var nodes = doc.documentElement.childNodes;
+	for (var i = 0; i < nodes.length; i++) {
+		regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
 	}
 }
 
@@ -424,36 +439,8 @@ function importSettingsFromJSONFile(filepath)
     </style>
     <script type="text/javascript">
       var REGKEY_PATH = "Plugins\\CompareMSPowerPointFiles.sct/";
-      var jsonFilePath;
-      var settings;
-
-      function jsonStringify(obj) {
-        if (obj === null) {
-          return "null";
-        }
-        if (typeof obj === "undefined") {
-          return undefined;
-        }
-        if (typeof obj === "number" || typeof obj === "boolean") {
-          return obj.toString();
-        }
-        if (typeof obj === "string") {
-          return '"' + escapeString(obj) + '"';
-        }
-        if (typeof obj === "object") {
-          var pairs = [];
-          for (var key in obj) {
-            if (obj.hasOwnProperty(key)) {
-              pairs.push('"' + escapeString(key) + '":' + jsonStringify(obj[key]));
-            }
-          }
-          return "{" + pairs.join(",") + "}";
-        }
-      }
-
-      function escapeString(str) {
-        return str.replace(/[\\"']/g, '\\$&');
-      }
+      var xmlFilePath;
+      var settings = {};
 
       function regRead(key, defaultValue) {
         return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
@@ -463,25 +450,45 @@ function importSettingsFromJSONFile(filepath)
         settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
       }
 
-      function loadSettingsFromJSONFile(filepath) {
+      function loadSettingsFromXMLFile(filepath) {
         var fso = new ActiveXObject("Scripting.FileSystemObject");
-        var ts = fso.OpenTextFile(jsonFilePath, 1, true, -1);
-        var json = ts.ReadAll();
-        var settings = eval("(" + json + ")");
+        var ts = fso.OpenTextFile(filepath, 1, true, -1);
+        var xml = ts.ReadAll();
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        doc.async = false
+        doc.loadXML(xml);
         ts.Close();
+        var nodes = doc.documentElement.childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+          regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+        }
         return settings;
       }
 
-      function saveSettingsToJSONFile(filepath, settings) {
+      function saveSettingsToXMLFile(filepath, settings) {
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
         var fso = new ActiveXObject("Scripting.FileSystemObject");
         var ts = fso.OpenTextFile(filepath, 2, true, -1);
-        ts.WriteLine(jsonStringify(settings));
+        var root = doc.createElement("properties");
+        for (var key in settings) {
+          if (settings.hasOwnProperty(key)) {
+            var el = doc.createElement("property");
+            var val = settings[key];
+            var cdata = doc.createCDATASection(val);
+            el.appendChild(cdata);
+            el.setAttribute("name", key);
+            el.setAttribute("type", typeof val);
+            root.appendChild(el);
+          }
+        }
+        doc.appendChild(root);
+        ts.Write(doc.xml);
         ts.Close();
       }
 
       function onload() {
-        jsonFilePath = objHTA.commandLine.split('"')[3];
-        settings = loadSettingsFromJSONFile(jsonFilePath);
+        xmlFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromXMLFile(xmlFilePath);
 
         var dpi = window.screen.deviceXDPI;
         var w = 600 * dpi / 96, h = 400 * dpi / 96;
@@ -516,13 +523,13 @@ function importSettingsFromJSONFile(filepath)
         regWrite(REGKEY_PATH + "CompareTextsInNotesPage", chkCompareTextsInNotesPage.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
 
-        saveSettingsToJSONFile(jsonFilePath, settings);
+        saveSettingsToXMLFile(xmlFilePath, settings);
 
         window.close();
       }
 
       function btnCancel_onclick() {
-        saveSettingsToJSONFile(jsonFilePath, "{}");
+        saveSettingsToXMLFile(xmlFilePath, {});
 
         window.close();
       }

@@ -37,7 +37,28 @@ public:
 
 	void SetDlgItemText(unsigned id, const String& text)
 	{
-		return dlg()->SetDlgItemTextW(id, text.c_str());
+		dlg()->SetDlgItemTextW(id, text.c_str());
+	}
+
+	void SetDlgItemComboBoxList(unsigned id, const std::initializer_list<String>& list)
+	{
+		CComboBox * cbo = (CComboBox *)dlg()->GetDlgItem(id);
+		if (!cbo)
+			return;
+		for (const auto& item : list)
+			cbo->AddString(item.c_str());
+	}
+
+	String GetTitleText()
+	{
+		CString title;
+		dlg()->GetWindowText(title);
+		return title.GetString();
+	}
+
+	void SetTitleText(const String& text)
+	{
+		dlg()->SetWindowText(text.c_str());
 	}
 };
 

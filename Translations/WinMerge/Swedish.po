@@ -4490,8 +4490,8 @@ msgstr ""
 "Innehållsextrahering med Apache Tika.\r\n"
 "Argument: Kommandoradsalternativ som passeras till tika-app.jar-kommandot."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Applicera patch med GnuWin32 för Windows"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Visa textinnehållet i MS Excel-filer"
