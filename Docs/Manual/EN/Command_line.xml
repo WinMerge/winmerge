@@ -26,6 +26,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/r</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/r-</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/e</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/f</option>
@@ -188,6 +190,18 @@
         increase compare time significantly. Without this parameter, WinMerge
         lists only files and subfolders at the top level of the two target
         folders. It does not compare the subfolders.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>non-recursive folder compare</primary>
+      </indexterm>
+      <term><option>/r-</option></term>
+      <listitem>
+        <para>Compares all files within the specified folders
+        but excludes the files and subfolders within its subfolders.
+        This allows for a shorter comparison time.</para>
       </listitem>
     </varlistentry>
 
