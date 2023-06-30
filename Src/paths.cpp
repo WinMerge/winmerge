@@ -738,10 +738,20 @@ String GetPathOnly(const String& fullpath)
 	return spath;
 }
 
-bool IsURL(const String& path)
+bool IsURL(const String& abspath)
 {
-	size_t pos = path.find(':');
-	return (pos != String::npos && pos > 1);
+	for (size_t i = 0; i < abspath.length(); ++i)
+	{
+		const auto c = abspath[i];
+		if (c == '\\' || c == '/')
+		{
+			// If there is a \ or / before the : character, consider it not a URL.
+			return false;
+		}
+		else if (c == ':')
+			return (i != 1);
+	}
+	return false;
 }
 
 bool IsURLorCLSID(const String& path)
