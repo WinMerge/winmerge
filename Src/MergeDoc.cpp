@@ -595,38 +595,18 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 void CMergeDoc::CheckFileChanged(void)
 {
-	int nBuffer;
-	DiffFileInfo fileInfo;
-	FileChange FileChange[3]{};
-
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 	{
-		FileChange[nBuffer] = IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(), fileInfo,
-			false, nBuffer);
-
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths[nBuffer]);
-	}
-
-	bool bDoReload = false;
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		if (FileChange[nBuffer] == FileChange::Changed)
+		DiffFileInfo fileInfo;
+		if (IsFileChangedOnDisk(m_filePaths[nBuffer].c_str(), fileInfo, false, nBuffer)
+			 == FileChange::Changed)
 		{
 			String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge scanned it last time.\n\nDo you want to reload the file?"), m_filePaths[nBuffer]);
 			if (ShowMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_FILECHANGED_RESCAN) == IDYES)
-				bDoReload = true;
-			break;
-		}
-	}
-	if (bDoReload)
-	{
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		{
-			if (FileChange[nBuffer] == FileChange::Changed)
 			{
-				CEPoint pt = GetView(0, nBuffer)->GetCursorPos();
-				ChangeFile(nBuffer, m_filePaths[nBuffer], pt.y);
+				OnFileReload();
 			}
+			break;
 		}
 	}
 }
@@ -3616,9 +3596,18 @@ void CMergeDoc::OnFileReload()
 	bool bRO[3]{};
 	for (int pane = 0; pane < m_nBuffers; pane++)
 	{
+		DiffFileInfo fileInfo;
 		bRO[pane] = m_ptBuf[pane]->GetReadOnly();
-		fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
-		fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
+		if (IsFileChangedOnDisk(m_filePaths[pane].c_str(), fileInfo, false, pane)
+			== FileChange::Changed)
+		{
+			fileloc[pane].encoding = codepage_detect::Guess(m_filePaths[pane], GetOptionsMgr()->GetInt(OPT_CP_DETECT));
+		}
+		else
+		{
+			fileloc[pane].encoding.m_unicoding = m_ptBuf[pane]->getUnicoding();
+			fileloc[pane].encoding.m_codepage = m_ptBuf[pane]->getCodepage();
+		}
 		fileloc[pane].setPath(m_filePaths[pane]);
 	}
 	int nActivePane = GetActiveMergeView()->m_nThisPane;
