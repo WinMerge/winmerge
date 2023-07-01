@@ -1270,9 +1270,6 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
-	const int top = m_pList->GetTopIndex();
-	const size_t num = m_listViewItems.size();
-
 	CDiffContext &ctxt = GetDiffContext();
 	dip.customFlags |= ViewCustomFlags::EXPANDED;
 	if (bRecursive)
@@ -1283,14 +1280,10 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 	int alldiffs;
 	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
 
-	for (size_t i = 0; i < m_listViewItems.size() - num; ++i)
-		m_pList->InsertItem(sel + 1, nullptr);
-
 	SortColumnsAppropriately();
 
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
-	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
-	m_pList->EnsureVisible(top, TRUE);
+	m_pList->SetItemCountEx(static_cast<int>(m_listViewItems.size()), LVSICF_NOSCROLL);
 	m_pList->Invalidate();
 }
 
