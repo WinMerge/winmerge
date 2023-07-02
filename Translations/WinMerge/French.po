@@ -10,6 +10,7 @@
 # * Dominique Saussereau <redguff at users.sourceforge.net>
 # * Jean-F Jolin <jean-f-j at users.sourceforge.net>
 # * Lolo S. <slolo2000 at hotmail.com>
+# * Need74 <need74 at free.fr>
 #
 msgid ""
 msgstr ""
@@ -926,34 +927,34 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Différence précédente Droite seulement\tAlt+Maj+9"
 
 msgid "Copy from &Left to"
-msgstr "Copier depuis la &Gauche vers"
+msgstr "Copier depuis la &Gauche vers le(la)"
 
 #, c-format
 msgid "&Middle"
-msgstr "le &Milieu"
+msgstr "&Milieu"
 
 #, c-format
 msgid "&Right"
-msgstr "la &Droite"
+msgstr "&Droite"
 
 msgid "Copy from &Middle to"
-msgstr "Copier depuis le &Milieu vers"
+msgstr "Copier depuis le &Milieu vers la"
 
 #, c-format
 msgid "&Left"
-msgstr "la &Gauche"
+msgstr "&Gauche"
 
 msgid "Copy from &Right to"
-msgstr "Copier depuis la &Droite vers"
+msgstr "Copier depuis la &Droite vers le(la)"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr "Copier les lignes sélectionnées de la Ga&uche vers"
+msgstr "Copier les lignes sélectionnées de la Ga&uche vers le(la)"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr "Copier les lignes sélectionnées du Mi&lieu vers"
+msgstr "Copier les lignes sélectionnées du Mi&lieu vers la"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr "Copier les lignes sélectionnées de la Dr&oite vers"
+msgstr "Copier les lignes sélectionnées de la Dr&oite vers le(la)"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -1297,7 +1298,7 @@ msgid "About WinMerge"
 msgstr "À propos de WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr "Découvrez la page d'accueil de WinMerge !"
+msgstr "Découvrir la page d'accueil de WinMerge !"
 
 #, c-format
 msgid "OK"
@@ -1313,7 +1314,7 @@ msgstr "Sélectionner des fichiers ou des dossiers"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr "&1er Fichier ou Dossier"
+msgstr "&1er Fichier ou 1er Dossier"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1329,7 +1330,7 @@ msgstr "P&arcourir..."
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr "&2ème Fichier ou Dossier"
+msgstr "&2ème Fichier ou 2ème Dossier"
 
 #, c-format
 msgid "Rea&d-only"
@@ -1345,7 +1346,7 @@ msgstr "Parc&ourir..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr "&3ème Fichier ou Dossier (Facultatif)"
+msgstr "&3ème Fichier ou 3ème Dossier (Facultatif)"
 
 #, c-format
 msgid "Read-o&nly"
@@ -1376,7 +1377,7 @@ msgstr "Sé&lectionner..."
 
 #, c-format
 msgid "Cancel"
-msgstr "Ann&uler"
+msgstr "Annuler"
 
 #, c-format
 msgid "Status:"
@@ -1413,7 +1414,7 @@ msgstr "&Confirmer la fermeture de plusieurs fenêtres"
 
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "Préserver l'horodatage lors de la comparaison de fichier"
+msgstr "Préserver l'horodatage dans la comparaison de fichier"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" dialog on startup"
@@ -1483,7 +1484,7 @@ msgstr "Rem&placer par :"
 
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "&Ne pas boucler à la fin du fichier"
+msgstr "&Ne pas boucler en fin du fichier"
 
 #, c-format
 msgid "Replace in"
@@ -2510,7 +2511,7 @@ msgid "OCR result:"
 msgstr "Résultat OCR :"
 
 msgid "Webpage"
-msgstr "Page web"
+msgstr "Page Web"
 
 msgid "URL pattern to &include (Regular expression):"
 msgstr "Modèle d'URL à &inclure (Expression régulière) :"
@@ -2695,7 +2696,7 @@ msgid "Don't display this &message again."
 msgstr "Ne plus afficher ce &message."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr "Pour rendre cette boîte de message à nouveau visible, appuyez sur le bouton Réinitialiser sur la page Boîtes de message de la boîte de dialogue Options."
+msgstr "Pour rendre cette boîte de message à nouveau visible, appuyer sur le bouton Réinitialiser sur la page Boîtes de message de la boîte de dialogue Options."
 
 #, c-format
 msgid "Syntax"
@@ -2879,7 +2880,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Ne peut copier le fichier modèle de filtre au dossier de filtre:\n"
+"Copie du fichier modèle de filtre dans le dossier de filtre impossible :\n"
 "%1\n"
 "\n"
 "Veuillez vous assurer de l'existence du dossier et des droits d'écriture."
@@ -2890,7 +2891,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"Le dossier de filtre de l'utilisateur est indéfini!\n"
+"Le dossier de filtre de l'utilisateur est indéfini !\n"
 "\n"
 "Veuillez le définir sous Préférences/Système."
 
@@ -2935,7 +2936,7 @@ msgid ""
 msgstr ""
 "Les filtres ont été mis à jour. Voulez-vous actualiser la comparaison de tous les dossiers ?\n"
 "\n"
-"Si vous ne voulez pas actualiser la comparaison, sélectionnez 'Non' et actualiser plus tard."
+"Pour ne pas actualiser la comparaison, sélectionner 'Non' et actualiser plus tard."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -3017,7 +3018,7 @@ msgid "Items: %1"
 msgstr "Élément: %1"
 
 msgid "Select two existing folders or files to compare."
-msgstr "Sélectionner deux dossiers ou fichiers existants à comparer."
+msgstr "Sélectionner : 2 Fichiers - ou : 2 Dossiers - existants à comparer."
 
 #, c-format
 msgid "Folder Selection"
@@ -3025,23 +3026,23 @@ msgstr "Sélection de dossier"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr "Sélectionnez deux (ou trois) dossiers ou deux (ou trois) fichiers à comparer."
+msgstr "Sélectionner : 2 (ou 3) Fichiers - ou : 2 (ou 3) Dossiers - à comparer."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr "Gauche (1er) chemin est invalide !"
+msgstr "Le chemin Gauche (1er) est invalide !"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr "Milieu (2ème) chemin est invalide !"
+msgstr "Le chemin Milieu (2ème) est invalide !"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr "Droite (2ème) chemin est invalide !"
+msgstr "Le chemin Droite (2ème) est invalide !"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr "Droite (3ème) chemin est invalide !"
+msgstr "Le chemin Droite (3ème) est invalide !"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -3430,7 +3431,7 @@ msgstr "Êtes-vous sûr de vouloir déplacer %d éléments ?"
 
 #, c-format
 msgid "Confirm Move"
-msgstr "Confirmez le déplacement"
+msgstr "Confirmer le déplacement"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
@@ -3986,7 +3987,7 @@ msgstr ""
 "\n"
 "Voulez-vous considérer l'égalité des caractères de fin de ligne pour cette comparaison ?\n"
 "\n"
-"Notez bien: Si vous voulez toujours considérer une telle égalité, définissez l'option 'Ignorer les différences de fin de ligne (Windows/Unix/Mac)' dans la fenêtre des Préférences sous l'onglet Comparaison (accessible avec le menu Edition/Préférences)."
+"Note : Pour considérer de façon permanente une telle égalité, définir l'option 'Ignorer les différences de fin de ligne (Windows/Unix/Mac)' dans la fenêtre des Préférences sous l'onglet Comparaison (accessible avec le menu Edition/Préférences)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -4078,7 +4079,7 @@ msgid "Cannot find string \"%s\"."
 msgstr "Texte non trouvé \"%s\"."
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
-msgstr "Vous entrez maintenant en mode fusion. Si vous souhaitez désactiver le mode fusion, appuyez sur la touche F9."
+msgstr "Le mode fusion est maintenant actif. Pour le désactiver, appuyer sur la touche F9."
 
 #, c-format
 msgid ""
@@ -4147,7 +4148,7 @@ msgid "The specified output path is not an absolute path: %1"
 msgstr "Le chemin spécifié n'est pas un chemin absolu : %1"
 
 msgid "Specify an output file."
-msgstr "Indiquez un fichier de sortie."
+msgstr "Indiquer un fichier de sortie."
 
 #, c-format
 msgid "Cannot create a patch file from binary files."
@@ -4495,7 +4496,7 @@ msgid "We&bpage"
 msgstr "Page &Web"
 
 msgid "W&rap Text"
-msgstr "&Retour à la ligne"
+msgstr "Habillage de texte"
 
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
@@ -4514,7 +4515,7 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
-"Vous pouvez spécifier les paramètres suivants dans le chemin:\n"
+"Vous pouvez spécifier les paramètres suivants dans le chemin :\n"
 "$file : Nom du chemin du fichier actuel\n"
 "$linenum : Numéro de ligne de la position actuelle du curseur"
 
@@ -4750,7 +4751,7 @@ msgid ""
 "To enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr ""
 "L'historique du presse-papiers est désactivé.\r\n"
-"Pour activer l'historique du presse-papiers, appuyez sur la touche de logo Windows + V, puis cliquez sur le bouton Activer."
+"Pour activer l'historique du presse-papiers, appuyer sur la touche de logo Windows + V, puis cliquer sur le bouton Activer."
 
 msgid "This system does not support clipboard history."
 msgstr "Ce système ne prend pas en charge l'historique du presse-papiers."
@@ -4774,10 +4775,10 @@ msgid "New Image Compare"
 msgstr "Nouvelle comparaison d'images"
 
 msgid "New Webpage Compare"
-msgstr "Comparaison de nouvelles pages Web"
+msgstr "Nouvelle comparaison de pages Web"
 
 msgid "Clipboard Compare"
-msgstr "Comparer Presse-papiers"
+msgstr "Comparer le presse-papiers"
 
 msgid "Prettification"
 msgstr "Embellissement"
@@ -5216,7 +5217,7 @@ msgid ""
 "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
 "Impossible d'obtenir les macros.\r\n"
-"    Pour autoriser WinMerge à comparer les macros, utilisez MS Office pour modifier les paramètres de la sécurité des macros pour l'application actuelle.\r\n"
+"    Pour autoriser WinMerge à comparer les macros, utiliser MS Office pour modifier les paramètres de la sécurité des macros pour l'application actuelle.\r\n"
 "    La fonction d'accès au projet Visual Basic doit être activée pour utiliser cette fonctionnalité dans WinMerge.\r\n"
 
 msgid "Compare VBA macros"
