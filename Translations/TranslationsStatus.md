@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-06-20**:
+Status from **2023-07-04**:
 
 ## WinMerge
 
@@ -20,14 +20,14 @@ Status from **2023-06-20**:
 | Dutch                |  1300 |       1287 |     0 |           13 |     99 % |  2023-05-02 |
 | English              |  1300 |       1300 |     0 |            0 |    100 % |  2023-06-12 |
 | Finnish              |  1300 |       1192 |     0 |          108 |     91 % |             |
-| French               |  1300 |       1299 |     0 |            1 |     99 % |  2023-06-08 |
+| French               |  1300 |       1300 |     0 |            0 |    100 % |  2023-07-02 |
 | Galician             |  1300 |       1286 |     0 |           14 |     98 % |  2023-05-01 |
 | German               |  1300 |       1300 |     0 |            0 |    100 % |  2023-06-20 |
 | Greek                |  1300 |        605 |     0 |          695 |     46 % |             |
 | Hungarian            |  1300 |       1300 |     0 |            0 |    100 % |  2021-03-15 |
 | Italian              |  1300 |       1103 |     0 |          197 |     84 % |  2022-06-01 |
 | Japanese             |  1300 |       1300 |     0 |            0 |    100 % |  2023-05-01 |
-| Korean               |  1300 |       1299 |     0 |            1 |     99 % |  2023-05-29 |
+| Korean               |  1300 |       1300 |     0 |            0 |    100 % |  2023-06-21 |
 | Lithuanian           |  1300 |       1255 |     0 |           45 |     96 % |  2023-06-19 |
 | Norwegian            |  1300 |        731 |     0 |          569 |     56 % |             |
 | Persian              |  1300 |        642 |     0 |          658 |     49 % |  2013-08-15 |
@@ -38,7 +38,7 @@ Status from **2023-06-20**:
 | Serbian              |  1300 |        633 |     0 |          667 |     48 % |             |
 | Sinhala              |  1300 |        564 |    58 |          678 |     47 % |  2010-12-12 |
 | Slovak               |  1300 |       1191 |     0 |          109 |     91 % |  2022-02-17 |
-| Slovenian            |  1300 |       1299 |     0 |            1 |     99 % |  2023-05-31 |
+| Slovenian            |  1300 |       1300 |     0 |            0 |    100 % |  2023-07-03 |
 | Spanish              |  1300 |       1286 |     0 |           14 |     98 % |  2023-05-02 |
 | Swedish              |  1300 |       1239 |     2 |           59 |     95 % |  2023-02-08 |
 | Turkish              |  1300 |       1230 |     0 |           70 |     94 % |  2022-11-10 |
@@ -236,6 +236,7 @@ Status from **2023-06-20**:
    - [Dominique Saussereau](mailto:redguff%20at%20users.sourceforge.net)
    - [Jean-F Jolin](mailto:jean-f-j%20at%20users.sourceforge.net)
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
+   - [Need74](mailto:need74%20at%20free.fr)
 
  * Galician
    - [Medulio](mailto:medulio%20at%20ciberirmandade.org)
