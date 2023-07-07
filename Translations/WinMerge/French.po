@@ -5128,8 +5128,8 @@ msgstr ""
 "Extracteur de contenu général avec Apache Tika.\r\n"
 "Arguments : options de ligne de commande transmises à tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Appliquer le correctif à l'aide de GnuWin32 Patch pour Windows"
+msgid "Apply patch using GNU patch"
+msgstr "Appliquer le correctif à l'aide de GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Afficher le contenu textuel des fichiers MS Excel"
