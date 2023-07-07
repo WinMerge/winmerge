@@ -1,11 +1,8 @@
-# This file is part from WinMerge <http://winmerge.org/>
+# This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
 # * Afyonlu <afyonlu@users.sourceforge.net>
-#
-# ID line follows -- this is updated by SVN
-# $Id$
 #
 msgid ""
 msgstr ""
@@ -39,7 +36,7 @@ msgstr "LANG_TURKISH, SUBLANG_DEFAULT"
 #: ShellExtension.rc:21
 #, c-format
 msgid "1252"
-msgstr "1254"
+msgstr "65001"
 
 #: ShellExtension.rc:111
 #, c-format
@@ -80,19 +77,3 @@ msgstr "&Ortayı seç"
 #, c-format
 msgid "Re-select &Left"
 msgstr "So&lu yeniden seç"
-
-#, c-format
-#~ msgid "Open with WinMerge"
-#~ msgstr "WinMerge ile Aç"
-
-#, c-format
-#~ msgid "Please select no more than 2 items"
-#~ msgstr "Lütfen 2 ögeden fazlasını seçmeyin"
-
-#, c-format
-#~ msgid "Save this path. Select another path to compare with this path."
-#~ msgstr "Bu yolu kaydet. Ardından bu yol ile karşılaştırılacak başka bir yol seçebilirsiniz."
-
-#, c-format
-#~ msgid "Compare to saved path (%1)"
-#~ msgstr "Kaydedilen yol ile karşılaştır (%1)"
