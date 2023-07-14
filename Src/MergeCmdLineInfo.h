@@ -89,7 +89,7 @@ public:
 	bool m_bShowCompareAsMenu; /**< Show Compare As menu. */
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
-	bool m_bRecurse; /**< Include sub folder in directories compare. */
+	std::optional<bool> m_bRecurse; /**< Include sub folder in directories compare. */
 	std::optional<CompareMethodType> m_nCompMethod; /**< Compare method */
 	bool m_bNonInteractive; /**< Suppress user's notifications. */
 	std::optional<int> m_nSingleInstance; /**< Allow only one instance of WinMerge executable. */

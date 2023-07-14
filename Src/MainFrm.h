@@ -146,7 +146,7 @@ public:
 
 	bool DoFileOrFolderOpen(const PathContext *pFiles = nullptr,
 		const fileopenflags_t dwFlags[] = nullptr, const String strDesc[] = nullptr,
-		const String& sReportFile = _T(""), bool bRecurse = false, CDirDoc *pDirDoc = nullptr,
+		const String& sReportFile = _T(""), std::optional<bool> bRecurse = false, CDirDoc *pDirDoc = nullptr,
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		UINT nID = 0, const OpenFileParams *pOpenParams = nullptr);
 	bool DoFileOpen(UINT nID, const PathContext* pFiles,

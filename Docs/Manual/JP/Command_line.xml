@@ -26,6 +26,8 @@
 
       <arg choice="opt" rep="norepeat"><option>/r</option></arg>
 
+      <arg choice="opt" rep="norepeat"><option>/r-</option></arg>
+
       <arg choice="opt" rep="norepeat"><option>/e</option></arg>
 
       <arg choice="opt" rep="norepeat"><option>/f</option>
@@ -187,6 +189,18 @@
         サブフォルダーまで含めるとかなり比較時間が増大してしまうことに注意してください。
         このパラメーターを指定しなかった場合、WinMergeは比較するフォルダー内のファイルとトップレベルのサブフォルダーのみリストします。
         サブフォルダーの中までは比較しません。</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <indexterm>
+        <primary>非再帰フォルダー比較</primary>
+      </indexterm>
+      <term><option>/r-</option></term>
+      <listitem>
+        <para>指定されたフォルダー内のすべてのファイルを比較しますが、
+        そのサブフォルダー内のファイルとサブフォルダーは除外します。
+        これにより、比較時間を短縮することができます。</para>
       </listitem>
     </varlistentry>
 
