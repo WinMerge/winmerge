@@ -24,9 +24,9 @@ https://github.com/WinMerge/winimerge/releases/download/v1.0.40/winimerge-1.0.40
 https://github.com/WinMerge/winimerge/releases/download/v1.0.40/winimerge-1.0.40.0-x64.zip!Build\x64\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.40/winimerge-1.0.40.0-ARM.zip!Build\ARM\Release ^
 https://github.com/WinMerge/winimerge/releases/download/v1.0.40/winimerge-1.0.40.0-ARM64.zip!Build\ARM64\Release ^
-https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-x86.zip!Build\x86\Release ^
-https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-x64.zip!Build\x64\Release ^
-https://github.com/WinMerge/winwebdiff/releases/download/v1.0.6/winwebdiff-1.0.6.0-ARM64.zip!Build\ARM64\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.7/winwebdiff-1.0.7.0-x86.zip!Build\x86\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.7/winwebdiff-1.0.7.0-x64.zip!Build\x64\Release ^
+https://github.com/WinMerge/winwebdiff/releases/download/v1.0.7/winwebdiff-1.0.7.0-ARM64.zip!Build\ARM64\Release ^
 https://github.com/htacg/tidy-html5/releases/download/5.4.0/tidy-5.4.0-w32-mt-XP.zip!Build\tidy-html5 ^
 https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5 ^
 https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win32.exe!Build\jq ^

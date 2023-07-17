@@ -24,6 +24,7 @@
 #include "FileLocation.h"
 #include "Constants.h"
 #include "Environment.h"
+#include "UniFile.h"
 #include <Poco/RegularExpression.h>
 
 #ifdef _DEBUG
@@ -116,7 +117,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
 	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
 	// [Tools] menu
-//	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
+	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnFileRecompareAs)
 	ON_COMMAND(ID_OPEN_WITH_UNPACKER, OnOpenWithUnpacker)
@@ -1599,24 +1600,109 @@ void CWebPageDiffFrame::OnWebClear(UINT nID)
 
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 {
-	//return GenerateReport(sFileName, true);
-	return false;
+	bool completed = false;
+	bool succeeded = GenerateReport(sFileName,
+		Callback<IWebDiffCallback>([&](const WebDiffCallbackResult& result) -> HRESULT
+			{
+				completed = true;
+				return S_OK;
+			})
+	);
+	while (!completed)
+	{
+		MSG msg;
+		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+		{
+			if (!AfxGetApp()->PumpMessage())
+				break;
+		}
+		Sleep(100);
+	}
+	return succeeded;
 }
-//
-///**
-// * @brief Generate report from file compare results.
-// */
-//bool CWebPageDiffFrame::GenerateReport(const String& sFileName, bool allPages) const
-//{
-//	return false;
-//}
-//
-///**
-// * @brief Generate report from file compare results.
-// */
-//void CWebPageDiffFrame::OnToolsGenerateReport()
-//{
-//}
+
+bool CWebPageDiffFrame::GenerateReport(const String& sFileName, IWebDiffCallback* callback) const
+{
+	String rptdir_full, rptdir, path, name, ext;
+	String url[3];
+	String diffrpt_filename[3];
+	String diffrpt_filename_full[3];
+	const wchar_t* pfilenames[3]{};
+	paths::SplitFilename(sFileName, &path, &name, &ext);
+	rptdir_full = paths::ConcatPath(path, name) + _T(".files");
+	rptdir = paths::FindFileName(rptdir_full);
+	paths::CreateIfNeeded(rptdir_full);
+
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+	{
+		url[pane] = ucr::toTString(m_pWebDiffWindow->GetCurrentUrl(pane));
+		diffrpt_filename[pane] = strutils::format(_T("%s/%d.pdf"), rptdir, pane + 1);
+		diffrpt_filename_full[pane] = strutils::format(_T("%s/%d.pdf"), rptdir_full, pane + 1);
+		pfilenames[pane] = diffrpt_filename_full[pane].c_str();
+	}
+
+	UniStdioFile file;
+	if (!file.Open(sFileName, _T("wt")))
+	{
+		String errMsg = GetSysError(GetLastError());
+		String msg = strutils::format_string1(
+			_("Error creating the report:\n%1"), errMsg);
+		AfxMessageBox(msg.c_str(), MB_OK | MB_ICONSTOP);
+		return false;
+	}
+
+	file.SetCodepage(ucr::CP_UTF_8);
+
+	file.WriteString(
+		_T("<!DOCTYPE html>\n")
+		_T("<html>\n")
+		_T("<head>\n")
+		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+		_T("<title>WinMerge Webpage Compare Report</title>\n")
+		_T("<style type=\"text/css\">\n")
+		_T("table { table-layout: fixed; width: 100%; border-collapse: collapse; }\n")
+		_T("th {position: sticky; top: 0;}\n")
+		_T("td,th { border: solid 1px black; }\n")
+		_T("embed { width: 100%; height: calc(100vh - 56px) }\n")
+		_T(".title { color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
+		_T("</style>\n")
+		_T("</head>\n")
+		_T("<body>\n")
+		_T("<table>\n")
+		_T("<tr>\n"));
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), url[pane]));
+	file.WriteString(_T("</tr>\n"));
+	file.WriteString(
+		_T("<tr>\n"));
+	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
+		file.WriteString(
+			strutils::format(_T("<td><embed type=\"application/pdf\" src=\"%s\" title=\"%s\"></td>\n"),
+				diffrpt_filename[pane], diffrpt_filename[pane]));
+	file.WriteString(
+		_T("</tr>\n"));
+	file.WriteString(
+		_T("</table>\n")
+		_T("</body>\n")
+		_T("</html>\n"));
+
+	return SUCCEEDED(m_pWebDiffWindow->SaveDiffFiles(IWebDiffWindow::PDF, pfilenames, callback));
+}
+
+/**
+ * @brief Generate report from file compare results.
+ */
+void CWebPageDiffFrame::OnToolsGenerateReport()
+{
+	String s;
+	CString folder;
+	if (!SelectFile(AfxGetMainWnd()->GetSafeHwnd(), s, false, folder, _T(""), _("HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"), _T("htm")))
+		return;
+
+	CWaitCursor waitstatus;
+	if (GenerateReport(s))
+		LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION | MB_MODELESS);
+}
 
 void CWebPageDiffFrame::OnRefresh()
 {
