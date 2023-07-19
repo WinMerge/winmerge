@@ -1062,17 +1062,31 @@ bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	pWebPageMergeFrame->SetDirDoc(pDirDoc);
 	pDirDoc->AddMergeDoc(pWebPageMergeFrame);
 		
+	bool completed = false, result = false;
 	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this, 
-		[this, pWebPageMergeFrame, nFiles, dwFlags, sReportFile]()
+		[this, pWebPageMergeFrame, nFiles, dwFlags, sReportFile, &completed, &result]()
 		{
 			pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 
 			if (!sReportFile.empty())
-				pWebPageMergeFrame->GenerateReport(sReportFile);
+				pWebPageMergeFrame->GenerateReport(sReportFile, [&result, &completed](bool res) { result = res; completed = true; });
 
 		}))
 		return false;
 
+	if (!sReportFile.empty())
+	{
+		while (!completed)
+		{
+			MSG msg;
+			while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+			{
+				if (!AfxGetApp()->PumpMessage())
+					break;
+			}
+			Sleep(0);
+		}
+	}
 	return true;
 }
 

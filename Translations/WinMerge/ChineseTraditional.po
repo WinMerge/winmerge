@@ -1405,8 +1405,8 @@ msgid "&Automatically verify paths in Open-dialog"
 msgstr "於「開啟」對話方塊自動檢驗路徑 (&A)"
 
 msgid "Single instance mode:"
-msgstr "
-單一實例模式："
+msgstr ""
+"單一實例模式："
 
 #, c-format
 msgid "As&k when closing multiple windows"
@@ -4861,7 +4861,7 @@ msgid "Preview Markdown"
 msgstr "預覽 Markdown"
 
 msgid "Preview PlantUML"
-msgstr 預覽 PlantUML""
+msgstr "預覽 PlantUML""
 
 msgid "Query CSV Data..."
 msgstr "查詢 CSV 資料..."
@@ -5091,7 +5091,6 @@ msgstr ""
 msgid "Apply patch using GNU patch"
 msgstr "使用 GNU patch 套用補丁。"
 
-
 msgid "Display the text content of MS Excel files"
 msgstr "顯示 MS Excel 檔案的文字內容"
 
@@ -5230,7 +5229,7 @@ msgstr "取代為"
 msgid "Settings"
 msgstr "設定"
 
-msgid "Column Ranges To Ignore:\ne.g.) 3,10-20,32-33\n"
+msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
 msgstr "要忽略的欄位範圍：\n 例如) 3,10-20,32-33\n"
 
 #, c-format

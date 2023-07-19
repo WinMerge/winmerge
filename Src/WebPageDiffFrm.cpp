@@ -1600,14 +1600,10 @@ void CWebPageDiffFrame::OnWebClear(UINT nID)
 
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 {
+	bool result = false;
 	bool completed = false;
-	bool succeeded = GenerateReport(sFileName,
-		Callback<IWebDiffCallback>([&](const WebDiffCallbackResult& result) -> HRESULT
-			{
-				completed = true;
-				return S_OK;
-			})
-	);
+	if (!GenerateReport(sFileName, [&completed, &result](bool res) { result = res; completed = true; }))
+		return false;
 	while (!completed)
 	{
 		MSG msg;
@@ -1616,12 +1612,12 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 			if (!AfxGetApp()->PumpMessage())
 				break;
 		}
-		Sleep(100);
+		Sleep(0);
 	}
-	return succeeded;
+	return result;
 }
 
-bool CWebPageDiffFrame::GenerateReport(const String& sFileName, IWebDiffCallback* callback) const
+bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<void(bool)> callback) const
 {
 	String rptdir_full, rptdir, path, name, ext;
 	String url[3];
@@ -1686,7 +1682,12 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, IWebDiffCallback
 		_T("</body>\n")
 		_T("</html>\n"));
 
-	return SUCCEEDED(m_pWebDiffWindow->SaveDiffFiles(IWebDiffWindow::PDF, pfilenames, callback));
+	return SUCCEEDED(m_pWebDiffWindow->SaveDiffFiles(IWebDiffWindow::PDF, pfilenames, 
+		Callback<IWebDiffCallback>([this, callback](const WebDiffCallbackResult& result) -> HRESULT
+			{
+				callback(SUCCEEDED(result.errorCode));
+				return S_OK;
+			})));
 }
 
 /**
