@@ -1,17 +1,56 @@
-# WinMerge 2.16.31 Beta Release Notes
+# WinMerge 2.16.32 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.32?](#what-is-new-in-21632)
 - [What Is New in 2.16.31 beta?](#what-is-new-in-21631-beta)
 - [Known issues](#known-issues)
 
-June 2023
+July 2023
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.32 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.32
+
+### General
+
+- BugFix: Export/Import settings bug with Substitution Filters (#1925)
+
+### File compare
+
+- BugFix: Save function doesn't work if the path length exceeds 248
+    characters (#1923)
+- BugFix: Redundant confirmation "The selected files are identical" (#1902)
+- Update Python syntax highlighting keyword list. (PR #1938)
+
+### Folder compare
+
+- BugFix: Treeview scrolls to the wrong position. (#1915)
+
+### Command line
+
+- Compare folders recursively if "Include subfolders" is checked in the
+    Options dialog even if the /r command line option is not specified.
+    (PR #1914)
+
+### Archive support
+
+- Update 7-Zip to 23.01 (PR #1913)
+
+### Translations
+
+- Translation updates:
+  - Chinese Traditional (PR #1940)
+  - Corsican (PR #1933)
+  - French (PR #1927,#1928)
+  - Korean (PR #1908)
+  - Portuguese (PR #1930)
+  - Slovenian
+  - Turkish (#1931)
 
 ## What Is New in 2.16.31 Beta
 
