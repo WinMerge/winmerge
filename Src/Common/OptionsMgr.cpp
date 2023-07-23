@@ -832,7 +832,7 @@ std::map<String, String> COptionsMgr::ReadIniFile(const String& filename, const 
 	while (file.ReadString(line, eol, &lossy))
 	{
 		auto itBegin = std::find_if(line.begin(), line.end(), [](int ch) {
-			return !std::isspace(ch); });
+			return !tc::istspace(static_cast<wint_t>(ch)); });
 
 		// Skip empty lines or lines starting with a comment
 		if (itBegin == line.end() || *itBegin == ';')
