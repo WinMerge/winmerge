@@ -56,8 +56,8 @@ public:
 	void UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-	bool GenerateReport(const String& sFileName) const override;
-	bool GenerateReport(const String& sFileName, bool allPages) const;
+	bool GenerateReport(const String& sFileName) const;
+	bool GenerateReport(const String& sFileName, std::function<void (bool)> callback) const;
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
 	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
@@ -192,7 +192,7 @@ protected:
 	afx_msg void OnWebCompareTexts();
 	afx_msg void OnWebCompareResourceTrees();
 	afx_msg void OnWebClear(UINT nID);
-	//afx_msg void OnToolsGenerateReport();
+	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();

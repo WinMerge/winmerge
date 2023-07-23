@@ -3917,15 +3917,14 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 	file.SetCodepage(ucr::CP_UTF_8);
 	String headerText =
-		_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
-		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
+		_T("<!DOCTYPE html>\n")
 		_T("<html>\n")
 		_T("<head>\n")
 		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
 		_T("<title>WinMerge File Compare Report</title>\n")
 		_T("<style type=\"text/css\">\n")
 		_T("<!--\n")
-		_T("table {margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}\n")
+		_T("table {table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}\n")
 		_T("th {position: sticky; top: 0;}\n")
 		_T("td,th {word-break: break-all; font-size: %dpt;padding: 0 3px;}\n")
 		_T("tr { vertical-align: top; }\n")
@@ -3947,7 +3946,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	{
 		String data = strutils::format(
 			_T("<col style=\"width: %.1fem;\" />\n")
-			_T("<col style=\"width: calc(100vw / %d - %.1fem);\" />\n"),
+			_T("<col style=\"width: calc(100%% / %d - %.1fem);\" />\n"),
 				marginWidth, m_nBuffers, marginWidth);
 		file.WriteString(data);
 	}
