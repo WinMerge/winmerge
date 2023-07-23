@@ -2967,6 +2967,10 @@ msgstr "අයිතම : %1"
 msgid "Comparing items..."
 msgstr "අයිතම සැසඳීම..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "සංසන්දනය කිරීම සඳහා පවතින ෆෝල්ඩර හෝ ලිපිගොනු දෙකක් තෝරන්න !"
 

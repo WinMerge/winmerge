@@ -2363,6 +2363,10 @@ msgstr "Elementų: %1"
 msgid "Comparing items..."
 msgstr "Lygina elementus..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Nurodykite lyginimui du egzistuojančius katalogus ar failus."
 

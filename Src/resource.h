@@ -593,6 +593,7 @@
 #define IDC_COMPAREWEBPAGE_URLPATTERNTOEXCLUDE 1428
 #define IDC_JUMP_LIST                   1429
 #define IDC_CLEAR_ALL_RECENT_ITEMS      1430
+#define IDC_ITEMS_PER_SEC               1431
 #define IDC_EXPAND_SUBDIRS              1600
 #define IDC_FILEENCODING                1601
 #define IDC_PLUGIN                      1602
@@ -1634,6 +1635,7 @@
 #define IDS_JUMPLIST_NEW_IMAGE_COMPARE  44523
 #define IDS_JUMPLIST_NEW_WEBPAGE_COMPARE 44524
 #define IDS_JUMPLIST_CLIPBOARD_COMPARE  44525
+#define IDS_ITEMS_PER_SEC               44526
 
 // Next default values for new objects
 // 

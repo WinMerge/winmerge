@@ -2494,6 +2494,10 @@ msgstr "Ögeler: %1"
 msgid "Comparing items..."
 msgstr "Ögeler karşılaştırılıyor..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Karşılaştırmak için var olan iki klasör ya da dosya seçin."
 

@@ -3018,6 +3018,10 @@ msgstr "항목: %1"
 msgid "Comparing items..."
 msgstr "항목 비교 중..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "비교할 기존의 폴더나 파일 두 개를 선택하세요."
 

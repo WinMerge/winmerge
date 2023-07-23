@@ -2482,6 +2482,10 @@ msgstr "Kohdat: %1"
 msgid "Comparing items..."
 msgstr "Verrataan kohteita..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Valitse vertailuun kaksi olemassa olevaa kansioita tai tiedostoa."
 

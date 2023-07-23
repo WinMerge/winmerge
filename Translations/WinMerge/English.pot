@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-07-23 10:34+0000\n"
+"POT-Creation-Date: 2023-07-23 23:54+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2355,6 +2355,10 @@ msgid "Items: %1"
 msgstr ""
 
 msgid "Comparing items..."
+msgstr ""
+
+#, c-format
+msgid "%.1f[items/sec]"
 msgstr ""
 
 msgid "Select two existing folders or files to compare."

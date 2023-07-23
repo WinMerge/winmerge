@@ -2467,6 +2467,10 @@ msgstr "Vnosov: %1"
 msgid "Comparing items..."
 msgstr "Primerjava vnosov..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Za primerjavo izberite dve obstoječi mapi ali datoteki."
 

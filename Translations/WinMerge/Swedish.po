@@ -2496,6 +2496,10 @@ msgstr "Förekomster: %1"
 msgid "Comparing items..."
 msgstr "Jämför objekt..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Välj två befintliga mappar eller filer att jämföra."
 

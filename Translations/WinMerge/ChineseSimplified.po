@@ -2477,6 +2477,10 @@ msgstr "项目: %1"
 msgid "Comparing items..."
 msgstr "正在比较条目..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "选择两个现有的文件或文件夹来进行比较。"
 

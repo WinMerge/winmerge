@@ -2476,6 +2476,10 @@ msgstr "Elementi : %1"
 msgid "Comparing items..."
 msgstr "Paragone di l’elementi…"
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Selezziunà dui cartulari o schedarii esistente à paragunà."
 

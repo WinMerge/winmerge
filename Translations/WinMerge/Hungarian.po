@@ -3003,6 +3003,10 @@ msgstr "%1 elem"
 msgid "Comparing items..."
 msgstr "Elemek összehasonlítása..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Válassz ki két összehasonlítandó fájlt vagy könyvtárat."
 

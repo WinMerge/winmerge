@@ -2995,6 +2995,10 @@ msgstr " موارد : %1"
 msgid "Comparing items..."
 msgstr " همسنجي موارد  ... "
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr " انتخاب دو پوشه يا پرونده موجود براي مقايسه؟ "
 

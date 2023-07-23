@@ -2463,6 +2463,10 @@ msgstr "Položky: %1"
 msgid "Comparing items..."
 msgstr "Porovnávanie položiek..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Vyberte dva existujúce priečinky alebo súbory na porovnanie."
 

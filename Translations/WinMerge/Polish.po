@@ -2364,6 +2364,10 @@ msgstr "Elementy: %1"
 msgid "Comparing items..."
 msgstr "Porównywanie elementów..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Wybierz dwa istniejące foldery lub pliki do porównania."
 

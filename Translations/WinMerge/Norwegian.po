@@ -2478,6 +2478,10 @@ msgstr "Objekter: %1"
 msgid "Comparing items..."
 msgstr "Sammenligner objekter..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Velg to eksisterende mapper eller filer for å sammenligne."
 

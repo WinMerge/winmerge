@@ -2977,6 +2977,10 @@ msgstr "Елементів: %1"
 msgid "Comparing items..."
 msgstr "Триває порівняння..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Виберіть дві ІСНУЮЧІ теки або файли для порівняння."
 

@@ -2972,6 +2972,10 @@ msgstr "Stavke: %1"
 msgid "Comparing items..."
 msgstr "Usporedba stavki..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "Odaberite dvije datoteke ili mape za usporedbu."
 

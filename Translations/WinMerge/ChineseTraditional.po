@@ -3013,6 +3013,10 @@ msgstr "項目：%1"
 msgid "Comparing items..."
 msgstr "比較項目中..."
 
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
 msgstr "選取兩個現存資料夾或檔案做比對。"
 
