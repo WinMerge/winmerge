@@ -101,6 +101,31 @@ void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 #endif
 }
 
+void DirCompProgressBar::SetNumberOfCPUCoresToUseMax(int max)
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_COMPARISON_CPUCORES);
+	if (!cbo)
+		return;
+	cbo->ResetContent();
+	for (int i = 1; i <= max; ++i)
+		cbo->AddString(strutils::format(_T("%3d"), i).c_str());
+}
+
+int DirCompProgressBar::GetNumberOfCPUCoresToUse() const
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_COMPARISON_CPUCORES);
+	if (!cbo)
+		return 0;
+	return cbo->GetCurSel() + 1;
+}
+
+void DirCompProgressBar::SetNumberOfCPUCoresToUse(int num)
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_COMPARISON_CPUCORES);
+	if (cbo)
+		cbo->SetCurSel(num - 1);
+}
+
 /**
  * @brief Timer message received.
  * Handle timer messages. When timer fires, update the dialog.
@@ -131,6 +156,8 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 		{
 			// Start comparing, init progressDlg
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
+			SetNumberOfCPUCoresToUseMax(m_pCompareStats->GetCompareThreadCount());
+			SetNumberOfCPUCoresToUse(m_pCompareStats->GetCompareThreadCount());
 			m_prevState = CompareStats::STATE_COMPARE;
 		}
 		// Comparing items

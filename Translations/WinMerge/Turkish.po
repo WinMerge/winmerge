@@ -1460,8 +1460,8 @@ msgstr "Duraklat"
 msgid "Continue"
 msgstr "Sürdür"
 
-msgid "Comparing items..."
-msgstr "Ögeler karşılaştırılıyor..."
+msgid "&Number of CPU cores to use:"
+msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
 
 msgid "Items compared:"
 msgstr "Karşılaştırılan öge:"
@@ -1998,9 +1998,6 @@ msgstr "&Hızlı karşılaştırmaya geçilecek eşik değeri (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "&Binary karşılaştırmaya geçilecek eşik değeri (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
-
 msgid "File patterns:"
 msgstr "Dosya modelleri:"
 
@@ -2493,6 +2490,9 @@ msgstr "Öge %1 / %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Ögeler: %1"
+
+msgid "Comparing items..."
+msgstr "Ögeler karşılaştırılıyor..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "Karşılaştırmak için var olan iki klasör ya da dosya seçin."

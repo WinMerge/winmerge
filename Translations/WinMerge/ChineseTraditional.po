@@ -1795,9 +1795,8 @@ msgstr "暫停"
 msgid "Continue"
 msgstr "繼續"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "比較項目中..."
+msgid "&Number of CPU cores to use:"
+msgstr "使用的 CPU 核心數量(&N)："
 
 #, c-format
 msgid "Items compared:"
@@ -2467,9 +2466,6 @@ msgstr "切換至快速比較的閾值 (MB)(&Q)："
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "切換至二進制比較的閾值 (MB)(&B)："
 
-msgid "&Number of CPU cores to use:"
-msgstr "使用的 CPU 核心數量(&N)："
-
 msgid "File patterns:"
 msgstr "檔案模式："
 
@@ -3012,6 +3008,10 @@ msgstr "%2 個項目之第 %1"
 #, c-format
 msgid "Items: %1"
 msgstr "項目：%1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "比較項目中..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "選取兩個現存資料夾或檔案做比對。"

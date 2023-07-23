@@ -1458,8 +1458,8 @@ msgstr "Pausar"
 msgid "Continue"
 msgstr "Reanudar"
 
-msgid "Comparing items..."
-msgstr "Comparando elementos..."
+msgid "&Number of CPU cores to use:"
+msgstr "&Número de núcleos de CPU a utilizar:"
 
 msgid "Items compared:"
 msgstr "Elementos comparados:"
@@ -1992,9 +1992,6 @@ msgstr "Lí&mite para cambiar a comparación rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Límite para cambiar a comparación &binaria (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Número de núcleos de CPU a utilizar:"
-
 msgid "File patterns:"
 msgstr "Patrones de archivo:"
 
@@ -2469,6 +2466,9 @@ msgstr "Elemento %1 de %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementos: %1"
+
+msgid "Comparing items..."
+msgstr "Comparando elementos..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "Seleccione dos carpetas o archivos para comparar."

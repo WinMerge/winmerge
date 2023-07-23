@@ -1794,9 +1794,8 @@ msgstr "일시 중지"
 msgid "Continue"
 msgstr "계속"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "항목 비교 중..."
+msgid "&Number of CPU cores to use:"
+msgstr "사용할 CPU 코어 수(&N):"
 
 #, c-format
 msgid "Items compared:"
@@ -2465,9 +2464,6 @@ msgstr "빠른 비교로 전환하기 위한 임계값 (MB)(&Q):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "바이너리 비교로 전환하기 위한 임계값 (MB)(&B):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "사용할 CPU 코어 수(&N):"
-
 msgid "File patterns:"
 msgstr "파일 패턴:"
 
@@ -3017,6 +3013,10 @@ msgstr "항목 %1 / %2"
 #, c-format
 msgid "Items: %1"
 msgstr "항목: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "항목 비교 중..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "비교할 기존의 폴더나 파일 두 개를 선택하세요."

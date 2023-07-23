@@ -1455,8 +1455,8 @@ msgstr "Pristabdyti"
 msgid "Continue"
 msgstr "Tęsti"
 
-msgid "Comparing items..."
-msgstr "Lygina elementus..."
+msgid "&Number of CPU cores to use:"
+msgstr "&Naudojamas procesoriaus branduolių skaičius:"
 
 msgid "Items compared:"
 msgstr "Elementų palyginta:"
@@ -1981,9 +1981,6 @@ msgstr "Persijungimo į &spartųjį palyginimą riba (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Persijungimo į &binarinį palyginimą riba (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Naudojamas procesoriaus branduolių skaičius:"
-
 msgid "File patterns:"
 msgstr "Failų šablonai:"
 
@@ -2362,6 +2359,9 @@ msgstr "Elementas %1 iš %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementų: %1"
+
+msgid "Comparing items..."
+msgstr "Lygina elementus..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "Nurodykite lyginimui du egzistuojančius katalogus ar failus."

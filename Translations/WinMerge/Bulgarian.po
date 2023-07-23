@@ -1454,8 +1454,8 @@ msgstr "Пауза"
 msgid "Continue"
 msgstr "Продължаване"
 
-msgid "Comparing items..."
-msgstr "Сравняване на…"
+msgid "&Number of CPU cores to use:"
+msgstr "Използа&не на брой процесорни ядра:"
 
 msgid "Items compared:"
 msgstr "Сравнени:"
@@ -1992,9 +1992,6 @@ msgstr "Ограничение за превключване към &бързо 
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Ограничение за превключване към &двоично сравняване (МБ):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Използа&не на брой процесорни ядра:"
-
 msgid "File patterns:"
 msgstr "Шаблони за име на файл:"
 
@@ -2474,6 +2471,9 @@ msgstr "Елемент %1 от %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Общо: %1"
+
+msgid "Comparing items..."
+msgstr "Сравняване на…"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Изберете две съществуващи папки или файла за сравняване."

@@ -1785,9 +1785,8 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Comparare elemente..."
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items compared:"
@@ -2448,9 +2447,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2970,6 +2966,10 @@ msgstr "Element %1 din %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elemente: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Comparare elemente..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selectaţi două directoare sau fişiere existente pentru comparare."

@@ -1460,8 +1460,8 @@ msgstr "Tauko"
 msgid "Continue"
 msgstr "Jatka"
 
-msgid "Comparing items..."
-msgstr "Verrataan kohteita..."
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "Items compared:"
 msgstr "Verratut kohteet:"
@@ -1996,9 +1996,6 @@ msgstr "Kynnysarvo, jossa siirrytään &nopeaan vertailuun (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Kynnysarvo, jossa siirrytään &binaariseen vertailuun (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr "Tiedostomallit:"
 
@@ -2481,6 +2478,9 @@ msgstr "Kohta %1 / %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Kohdat: %1"
+
+msgid "Comparing items..."
+msgstr "Verrataan kohteita..."
 
 msgid "Select two existing folders or files to compare."
 msgstr "Valitse vertailuun kaksi olemassa olevaa kansioita tai tiedostoa."

@@ -1459,8 +1459,8 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Cuntinuà"
 
-msgid "Comparing items..."
-msgstr "Paragone di l’elementi…"
+msgid "&Number of CPU cores to use:"
+msgstr "&Numeru di cori CPU à impiegà :"
 
 msgid "Items compared:"
 msgstr "Elementi paragunati :"
@@ -1993,9 +1993,6 @@ msgstr "Sogliu per passà à u paragone &rapidu (Mo) :"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Numeru di cori CPU à impiegà :"
-
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
 
@@ -2475,6 +2472,9 @@ msgstr "Elementu %1 nant’à %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementi : %1"
+
+msgid "Comparing items..."
+msgstr "Paragone di l’elementi…"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selezziunà dui cartulari o schedarii esistente à paragunà."

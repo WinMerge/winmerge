@@ -42,6 +42,8 @@ public:
 	void StartUpdating();
 	void EndUpdating();
 	void SetPaused(bool paused);
+	int GetNumberOfCPUCoresToUse() const;
+	void SetNumberOfCPUCoresToUse(int num);
 
 // Dialog Data
 	//{{AFX_DATA(DirCompProgressBar)
@@ -52,6 +54,7 @@ public:
 protected:
 	void ClearStat();
 	void SetProgressState(int comparedItems, int totalItems);
+	void SetNumberOfCPUCoresToUseMax(int max);
 
 	// Generated message map functions
 	//{{AFX_MSG(DirCompProgressBar)
