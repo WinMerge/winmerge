@@ -1604,16 +1604,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 	bool completed = false;
 	if (!GenerateReport(sFileName, [&completed, &result](bool res) { result = res; completed = true; }))
 		return false;
-	while (!completed)
-	{
-		MSG msg;
-		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
-		{
-			if (!AfxGetApp()->PumpMessage())
-				break;
-		}
-		Sleep(0);
-	}
+	CMainFrame::WaitAndDoMessageLoop(completed, 0);
 	return result;
 }
 

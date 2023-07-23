@@ -1075,18 +1075,7 @@ bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 		return false;
 
 	if (!sReportFile.empty())
-	{
-		while (!completed)
-		{
-			MSG msg;
-			while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
-			{
-				if (!AfxGetApp()->PumpMessage())
-					break;
-			}
-			Sleep(0);
-		}
-	}
+		WaitAndDoMessageLoop(completed, 0);
 	return true;
 }
 
@@ -3445,6 +3434,20 @@ void CMainFrame::UnwatchDocuments(IMergeDoc* pMergeDoc)
 	const int nFiles = pMergeDoc->GetFileCount();
 	for (int pane = 0; pane < nFiles; ++pane)
 		m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
+}
+
+void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
+{
+	while (!completed)
+	{
+		MSG msg;
+		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+		{
+			if (!AfxGetApp()->PumpMessage())
+				break;
+		}
+		Sleep(ms);
+	}
 }
 
 void CMainFrame::UpdateDocTitle()
