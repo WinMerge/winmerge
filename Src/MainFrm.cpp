@@ -1062,17 +1062,20 @@ bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	pWebPageMergeFrame->SetDirDoc(pDirDoc);
 	pDirDoc->AddMergeDoc(pWebPageMergeFrame);
 		
+	bool completed = false, result = false;
 	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this, 
-		[this, pWebPageMergeFrame, nFiles, dwFlags, sReportFile]()
+		[this, pWebPageMergeFrame, nFiles, dwFlags, sReportFile, &completed, &result]()
 		{
 			pWebPageMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 
 			if (!sReportFile.empty())
-				pWebPageMergeFrame->GenerateReport(sReportFile);
+				pWebPageMergeFrame->GenerateReport(sReportFile, [&result, &completed](bool res) { result = res; completed = true; });
 
 		}))
 		return false;
 
+	if (!sReportFile.empty())
+		WaitAndDoMessageLoop(completed, 0);
 	return true;
 }
 
@@ -3431,6 +3434,20 @@ void CMainFrame::UnwatchDocuments(IMergeDoc* pMergeDoc)
 	const int nFiles = pMergeDoc->GetFileCount();
 	for (int pane = 0; pane < nFiles; ++pane)
 		m_pDirWatcher->Remove(reinterpret_cast<uintptr_t>(pMergeDoc) + pane);
+}
+
+void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
+{
+	while (!completed)
+	{
+		MSG msg;
+		while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
+		{
+			if (!AfxGetApp()->PumpMessage())
+				break;
+		}
+		Sleep(ms);
+	}
 }
 
 void CMainFrame::UpdateDocTitle()

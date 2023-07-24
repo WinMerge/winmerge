@@ -571,6 +571,9 @@ int CRegOptionsMgr::ExportAllUnloadedValues(HKEY hKey, const String& strPath, co
 							_T("int"), filename.c_str());
 					break;
 				case REG_SZ:
+					// https://learn.microsoft.com/en-us/answers/questions/578134/error-in-writeprivateprofilestring-function-when-j
+					WritePrivateProfileString(_T("WinMerge"), strName.c_str(),
+						nullptr, filename.c_str());
 					WritePrivateProfileString(_T("WinMerge"), strName.c_str(),
 						EscapeValue(reinterpret_cast<tchar_t*>(data.data())).c_str(), filename.c_str());
 					WritePrivateProfileString(_T("WinMerge.TypeInfo"), strName.c_str(),

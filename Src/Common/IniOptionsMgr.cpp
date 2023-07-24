@@ -118,6 +118,8 @@ int CIniOptionsMgr::SaveValueToFile(const String& name, const varprop::VariantVa
 	{
 		String strVal = EscapeValue(value.GetString());
 		LPCWSTR text = strVal.c_str();
+		// https://learn.microsoft.com/en-us/answers/questions/578134/error-in-writeprivateprofilestring-function-when-j
+		WritePrivateProfileString(lpAppName, name.c_str(), nullptr, GetFilePath());
 		retValReg = WritePrivateProfileString(lpAppName, name.c_str(), text, GetFilePath());
 	}
 	else if (valType == varprop::VT_INT)
@@ -346,6 +348,9 @@ int CIniOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /
 	{
 		if (m_optionsMap.find(key) == m_optionsMap.end())
 		{
+			// https://learn.microsoft.com/en-us/answers/questions/578134/error-in-writeprivateprofilestring-function-when-j
+			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
+				nullptr, filename.c_str());
 			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
 				EscapeValue(value).c_str(), filename.c_str());
 		}
@@ -362,6 +367,9 @@ int CIniOptionsMgr::ImportOptions(const String& filename)
 		if (m_optionsMap.find(key) == m_optionsMap.end())
 		{
 			m_iniFileKeyValues.insert_or_assign(key, value);
+			// https://learn.microsoft.com/en-us/answers/questions/578134/error-in-writeprivateprofilestring-function-when-j
+			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
+				nullptr, GetFilePath());
 			WritePrivateProfileString(_T("WinMerge"), key.c_str(),
 				EscapeValue(value).c_str(), GetFilePath());
 		}

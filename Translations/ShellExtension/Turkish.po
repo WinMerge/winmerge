@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-09-08 23:40+0000\n"
-"PO-Revision-Date: 2021-09-21 19:06+0300\n"
+"POT-Creation-Date: 2023-02-19 00:07+0000\n"
+"PO-Revision-Date: 2023-07-06 08:38+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -43,16 +43,15 @@ msgstr "65001"
 msgid "ShellExtension"
 msgstr "KabukEklentisi"
 
-#| msgid "WinMerge"
 #: ShellExtension.rc:112
 #, c-format
 msgid "Win&Merge"
-msgstr "Win&Merge"
+msgstr "&WinMerge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "Şu &olarak karşılaştır"
 
 #: ShellExtension.rc:114
 #, c-format
