@@ -106,6 +106,9 @@
     <None Include="..\Translations\WinMerge\Swedish.po">
       <Filter>Translations\WinMerge</Filter>
     </None>
+    <None Include="..\Translations\WinMerge\Tamil.po">
+      <Filter>Translations\WinMerge</Filter>
+    </None>
     <None Include="..\Translations\WinMerge\Turkish.po">
       <Filter>Translations\WinMerge</Filter>
     </None>

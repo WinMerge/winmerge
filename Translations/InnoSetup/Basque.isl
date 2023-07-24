@@ -52,6 +52,7 @@ SlovakLanguage=Eslovakiera menuak eta elkarrizketak
 SlovenianLanguage=Esloveniera menuak eta elkarrizketak
 SpanishLanguage=Espainiera menuak eta elkarrizketak
 SwedishLanguage=Suediera menuak eta elkarrizketak
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Turkieramenuak eta elkarrizketak
 UkrainianLanguage=Ukrainiera menuak eta elkarrizketak
 
