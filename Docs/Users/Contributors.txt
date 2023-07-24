@@ -202,6 +202,9 @@ Localization:
   pgert <pgert at yahoo.se>
   Timmy Almroth <timmy.almroth at tim-international.net>
 
+* Tamil:
+  தமிழ்நேரம் <https://TamilNeram.github.io>
+
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>
   Ozkan UNVER <turquaz37915@users.sourceforge.net>
