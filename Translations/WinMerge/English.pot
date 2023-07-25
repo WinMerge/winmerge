@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-06-12 00:06+0000\n"
+"POT-Creation-Date: 2023-07-26 07:00+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1449,13 +1449,13 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-msgid "Comparing items..."
-msgstr ""
-
-msgid "Items compared:"
+msgid "&Number of CPU cores to use:"
 msgstr ""
 
 msgid "Items total:"
+msgstr ""
+
+msgid "Items compared:"
 msgstr ""
 
 msgid "Go to"
@@ -1975,9 +1975,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2355,6 +2352,13 @@ msgstr ""
 
 #, c-format
 msgid "Items: %1"
+msgstr ""
+
+msgid "Comparing items..."
+msgstr ""
+
+#, c-format
+msgid "%.1f[items/sec]"
 msgstr ""
 
 msgid "Select two existing folders or files to compare."

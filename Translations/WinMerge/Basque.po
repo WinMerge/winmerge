@@ -1788,17 +1788,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Gaiak alderatzen..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Alderatutako gaiak:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Gaiak guztira:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Alderatutako gaiak:"
 
 msgid "Go to"
 msgstr "Joan Hona"
@@ -2452,9 +2451,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2973,6 +2969,14 @@ msgstr "Gaiak %1 %2-tik"
 #, c-format
 msgid "Items: %1"
 msgstr "Gaiak:%1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Gaiak alderatzen..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Hautatu badauden bi agiritegi edo agiri alderatzeko."

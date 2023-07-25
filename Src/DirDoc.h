@@ -137,6 +137,7 @@ protected:
 	afx_msg void OnBnClickedComparisonStop();
 	afx_msg void OnBnClickedComparisonPause();
 	afx_msg void OnBnClickedComparisonContinue();
+	afx_msg void OnCbnSelChangeCPUCores();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

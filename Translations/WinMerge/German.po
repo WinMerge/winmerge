@@ -1789,17 +1789,16 @@ msgstr "Pause"
 msgid "Continue"
 msgstr "Fortsetzen"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Objekte vergleichen..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Objekte verglichen:"
+msgid "&Number of CPU cores to use:"
+msgstr "Anzahl der zu verwendenden &CPU-Kerne:"
 
 #, c-format
 msgid "Items total:"
 msgstr "Objekte gesamt:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Objekte verglichen:"
 
 msgid "Go to"
 msgstr "Gehe zu"
@@ -2452,9 +2451,6 @@ msgstr "Schwellenwert für den Wechsel zum &Schnellvergleich (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Schwellenwert für den Wechsel zum &Binärvergleich (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Anzahl der zu verwendenden &CPU-Kerne:"
-
 msgid "File patterns:"
 msgstr "&Dateimuster:"
 
@@ -2908,6 +2904,14 @@ msgstr "Objekt %1 von %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Objekte: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Objekte vergleichen..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Wählen Sie zwei Dateien oder Ordner zum Vergleichen aus."

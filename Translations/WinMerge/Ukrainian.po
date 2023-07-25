@@ -1786,17 +1786,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Триває порівняння..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Опрацьованих:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Всього:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Опрацьованих:"
 
 msgid "Go to"
 msgstr "Перейти"
@@ -2451,9 +2450,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2976,6 +2972,14 @@ msgstr "Елемент %1 з %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Елементів: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Триває порівняння..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Виберіть дві ІСНУЮЧІ теки або файли для порівняння."

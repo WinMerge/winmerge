@@ -1458,14 +1458,14 @@ msgstr "一時停止"
 msgid "Continue"
 msgstr "再開"
 
-msgid "Comparing items..."
-msgstr "項目を比較しています..."
-
-msgid "Items compared:"
-msgstr "比較した項目:"
+msgid "&Number of CPU cores to use:"
+msgstr "使用するCPUコアの数(&N):"
 
 msgid "Items total:"
 msgstr "全項目数:"
+
+msgid "Items compared:"
+msgstr "比較した項目:"
 
 msgid "Go to"
 msgstr "移動"
@@ -1992,9 +1992,6 @@ msgstr "クイック比較切替閾値 (MB)(&Q):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "バイナリ比較切替閾値 (MB)(&B):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "使用するCPUコアの数(&N):"
-
 msgid "File patterns:"
 msgstr "ファイル パターン:"
 
@@ -2467,6 +2464,13 @@ msgstr "項目 %1 / %2"
 #, c-format
 msgid "Items: %1"
 msgstr "項目: %1"
+
+msgid "Comparing items..."
+msgstr "項目を比較しています..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[項目/秒]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "存在するフォルダーまたはファイルを選択してください。"

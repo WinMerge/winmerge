@@ -1457,14 +1457,14 @@ msgstr "Пауза"
 msgid "Continue"
 msgstr "Продолжить"
 
-msgid "Comparing items..."
-msgstr "Идет сравнение..."
-
-msgid "Items compared:"
-msgstr "Обработано:"
+msgid "&Number of CPU cores to use:"
+msgstr "&Число доступных для использования ядер ЦП:"
 
 msgid "Items total:"
 msgstr "Всего:"
+
+msgid "Items compared:"
+msgstr "Обработано:"
 
 msgid "Go to"
 msgstr "Перейти"
@@ -1983,9 +1983,6 @@ msgstr "Порог для перехода к быстрому сравнени�
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Порог для перехода к двоичному сравнению (MB)"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Число доступных для использования ядер ЦП:"
-
 msgid "File patterns:"
 msgstr "Шаблоны файлов:"
 
@@ -2364,6 +2361,13 @@ msgstr "Элемент %1 из %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Элементов: %1"
+
+msgid "Comparing items..."
+msgstr "Идет сравнение..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Выберите для сравнения 2 существующих папки или файла."

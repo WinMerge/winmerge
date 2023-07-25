@@ -1453,14 +1453,14 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Continua"
 
-msgid "Comparing items..."
-msgstr "Confronto elementi..."
-
-msgid "Items compared:"
-msgstr "Elementi confrontati:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "Items total:"
 msgstr "Totale elementi:"
+
+msgid "Items compared:"
+msgstr "Elementi confrontati:"
 
 msgid "Go to"
 msgstr "Vai a"
@@ -1987,9 +1987,6 @@ msgstr "Soglia per passare al confronto &rapido (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Soglia per passare al confronto &binario (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr "Pattern di file:"
 
@@ -2459,6 +2456,13 @@ msgstr "Elemento %1 di %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementi: %1"
+
+msgid "Comparing items..."
+msgstr "Confronto elementi..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Seleziona due cartelle o file esistenti da confrontare."

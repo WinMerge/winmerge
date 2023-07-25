@@ -100,6 +100,13 @@ public:
 					CompareDiffItem(fc, pWorkNf->data());
 				pWorkNf->queueResult().enqueueNotification(new WorkCompletedNotification(pWorkNf->data()));
 			}
+			if (m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
+			{
+				m_pCtxt->m_pCompareStats->BeginCompare(nullptr, m_id);
+				while (!m_pCtxt->ShouldAbort() && m_pCtxt->m_pCompareStats->IsIdleCompareThread(m_id))
+					Poco::Thread::sleep(10);
+			}
+
 			pNf = m_queue.waitDequeueNotification();
 		}
 	}
@@ -499,6 +506,7 @@ int DirScan_CompareItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 
 	int res = CompareItems(queue, myStruct, parentdiffpos);
 
+	myStruct->context->m_pCompareStats->SetIdleCompareThreadCount(0);
 	Thread::sleep(100);
 	queue.wakeUpAll();
 	threadPool.joinAll();

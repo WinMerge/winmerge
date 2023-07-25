@@ -1455,14 +1455,14 @@ msgstr "Pavza"
 msgid "Continue"
 msgstr "Nadaljuj"
 
-msgid "Comparing items..."
-msgstr "Primerjava vnosov..."
-
-msgid "Items compared:"
-msgstr "Primerjanih vnosov:"
+msgid "&Number of CPU cores to use:"
+msgstr "Š&tevilo jeder procesorja za uporabo:"
 
 msgid "Items total:"
 msgstr "Skupaj vnosov:"
+
+msgid "Items compared:"
+msgstr "Primerjanih vnosov:"
 
 msgid "Go to"
 msgstr "Pojdi na"
@@ -1989,9 +1989,6 @@ msgstr "Prag za preklop na &hitro primerjavo (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prag za preklop na &dvojiško primerjavo (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Š&tevilo jeder procesorja za uporabo:"
-
 msgid "File patterns:"
 msgstr "Vzorci datotek:"
 
@@ -2466,6 +2463,13 @@ msgstr "Vnos %1 od %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Vnosov: %1"
+
+msgid "Comparing items..."
+msgstr "Primerjava vnosov..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Za primerjavo izberite dve obstoječi mapi ali datoteki."
