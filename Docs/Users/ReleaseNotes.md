@@ -43,6 +43,7 @@ Please submit bug reports to our bug-tracker.
 
 ### Translations
 
+- New translation: Tamil (PR #1946)
 - Translation updates:
   - Chinese Traditional (PR #1940)
   - Corsican (PR #1933)

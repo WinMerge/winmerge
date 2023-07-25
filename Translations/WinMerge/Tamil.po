@@ -1,14 +1,14 @@
-# இந்த கோப்பு WinMerge <https://winmerge.org/> இலிருந்து ஒரு பகுதியாகும்
-# "குனு பொது பொது உரிமத்தின்" கீழ் வெளியிடப்பட்டது
+# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
 #
-# மொழிபெயர்ப்பாளர்கள்:
+# Translators:
 # * தமிழ்நேரம் <https://TamilNeram.github.io>
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2023-07-07 21:19+0530\n"
+"PO-Revision-Date: 2023-07-24 20:50+0900\n"
 "Last-Translator: தமிழ் நேரம்\n"
 "Language-Team: தமிழ்நேரக்குழு <https://TamilNeram.github.io>\n"
 "Language: ta_449\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr "LANG_TAMIL, SUBLANG_TAMIL_IN"
+msgstr "LANG_TAMIL, SUBLANG_TAMIL_INDIA"
 
 msgid "Copy to Middle"
 msgstr "நடுவில் நகலெடுக்கவும்"
@@ -931,6 +931,9 @@ msgstr "&கோப்புப் பெயர்களை நகலெடு"
 msgid "Copy Items To Clip&board"
 msgstr "கிளிப்&போர்டுக்கு பொருட்களை நகலெடுக்கவும்"
 
+msgid "Copy All Di&splayed Columns"
+msgstr ""
+
 msgid "&Zip"
 msgstr "&ஜிப்"
 
@@ -1024,7 +1027,7 @@ msgstr "எண்&பெர்களை புறக்கணிக்கவு�
 msgid "Ignore c&omment differences"
 msgstr "க&கருத்து வேறுபாடுகளை புறக்கணிக்கவும்"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&உள்கோப்புகளை சேர்"
 
 msgid "&Compare method:"
@@ -1147,14 +1150,17 @@ msgstr "பல சாளரங்களை மூடும்போது As&k"
 msgid "&Preserve file time in file compare"
 msgstr "கோப்பு ஒப்பீட்டில் கோப்பு நேரத்தைப் பாதுகாக்கவும்"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"கோப்புகள் அல்லது கோப்புறைகளைத் தேர்ந்தெடு\" உரையாடலை தொடக்கத்தில் காட்டு"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "\"கோப்புகள் அல்லது கோப்புறைகளைத் தேர்ந்தெடு\" உரையாடலை ஒப்பிடு பொத்தானைக் சொடுக்குவதன் மூலம் மூடவும்"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Op&en-dialog தானியங்கு நிறைவு:"
+
+msgid "Auto-&reload modified files:"
+msgstr ""
 
 msgid "Language:"
 msgstr "மொழி:"
@@ -1923,11 +1929,14 @@ msgstr "ஷெல் ஒருங்கிணைப்பு"
 msgid "Explorer"
 msgstr "எக்ஸ்ப்ளோரர்"
 
+msgid "&Add to context menu"
+msgstr "சூழ்நிலை மெனுவில்&சேர்"
+
 msgid "E&nable advanced menu"
 msgstr "மேம்பட்ட மெனுவை மின்&இயக்க"
 
-msgid "&Add to context menu"
-msgstr "சூழ்நிலை மெனுவில்&சேர்"
+msgid "Enable &Compare As menu"
+msgstr ""
 
 msgid "&Register shell extension"
 msgstr "&பதிவு ஷெல் நீட்டிப்பு"
@@ -1947,7 +1956,16 @@ msgstr "&Windows 11 அல்லது அதற்குப் பிறகு 
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "W&indows 11 அல்லது அதற்குப் பிந்தையவற்றுக்கான ஷெல் நீட்டிப்பைப் பதிவுநீக்கவும்"
 
-msgctxt "விருப்பங்கள் உரையாடல்|வகைகள்"
+msgid "Jump List"
+msgstr ""
+
+msgid "Clear all recent items"
+msgstr ""
+
+msgctxt "Options dialog|Categories"
+msgid "Folder"
+msgstr ""
+
 msgid "S&top after first difference"
 msgstr "முதல் வேறுபாட்டிற்கு பிறகு &நிறுத்து"
 
@@ -1960,7 +1978,7 @@ msgstr "தனிப்பட்ட துணைக் கோப்புறை 
 msgid "&Automatically expand all subfolders"
 msgstr "&தானாக அனைத்து துணை கோப்புறைகளை விரிவாக்கு"
 
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "புள்ளிகளை புறக்கணிக்கவும் &மறுபதிவு செய்யவும்"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1972,20 +1990,17 @@ msgstr "&பைனரி ஒப்பீடு (MB) க்கு மாறுவ
 msgid "&Number of CPU cores to use:"
 msgstr "&பயன்படுத்த வேண்டிய CPU கோர்களின் எண்ணிக்கை:"
 
-msgid "&CSV File Patterns:"
-msgstr "&CSV கோப்பு வடிவங்கள்:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV கோப்பு வடிவங்கள்:"
+msgid "File patterns:"
+msgstr "கோப்பு வடிவங்கள்:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "தனிப்பயன் டிலிமிட்டர்-பிரிக்கப்பட்ட மதிப்புகள்"
 
-msgid "File Patterns:"
-msgstr "கோப்பு வடிவங்கள்:"
+msgctxt "Options dialog|Categories"
+msgid "Binary"
+msgstr ""
 
-msgctxt "விருப்பங்கள் உரையாடல்|வகைகள்"
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "இருமம் கோப்பு &வடிவங்கள்:"
 
 msgid "Frhed settings"
@@ -2003,7 +2018,7 @@ msgstr "&எழுத்து தொகுப்பு..."
 msgid "Image"
 msgstr "படம்"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "பட கோப்பு & வடிவங்கள்:"
 
 msgid "&Enable image compare in folder compare"
@@ -2865,6 +2880,9 @@ msgid "Filename"
 msgstr "கோப்பு பெயர்"
 
 msgctxt "DirView|ColumnHeader"
+msgid "Folder"
+msgstr ""
+
 msgid "Comparison result"
 msgstr "ஒப்பீடு முடிவு"
 
@@ -2873,6 +2891,9 @@ msgstr "இடது தேதி"
 
 msgid "Right Date"
 msgstr "சரியான தேதி"
+
+msgid "Middle Date"
+msgstr ""
 
 msgid "Left Size"
 msgstr "இடது அளவு"
@@ -2947,6 +2968,9 @@ msgid "Ignored Diff"
 msgstr "புறக்கணிக்கப்பட்ட வேறுபாடு"
 
 msgctxt "DirView|ColumnHeader"
+msgid "Binary"
+msgstr ""
+
 msgid "Unpacker"
 msgstr "அன்பேக்கர்"
 
@@ -3320,6 +3344,9 @@ msgstr ""
 "பொருந்தும் கோப்புறையை உருவாக்க விரும்புகிறீர்களா:\n"
 "% 1\n"
 "மறுபுறம் சென்று இந்தக் கோப்புறைகளைத் திறக்கவா?"
+
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr ""
 
 msgid "Do you want to move to the next file?"
 msgstr "அடுத்த கோப்புக்கு செல்ல வேண்டுமா?"
@@ -3743,6 +3770,9 @@ msgstr "தானியங்கு &அதிகபட்ச அகலத்த
 msgid "We&bpage"
 msgstr "வலைப்பக்கம்"
 
+msgid "W&rap Text"
+msgstr ""
+
 msgid "Frhed is not installed."
 msgstr "Frhed நிறுவப்படவில்லை."
 
@@ -3942,8 +3972,85 @@ msgstr "ஒரே ஒரு நிகழ்வை இயக்க அனும�
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "ஒரே ஒரு நிகழ்வை இயக்க அனுமதிக்கவும் மற்றும் நிகழ்வு முடிவடையும் வரை காத்திருக்கவும்"
 
+msgid "Only on window activated"
+msgstr ""
+
+msgid "Immediately"
+msgstr ""
+
 msgid "Al&l"
 msgstr "அல்&எல்"
+
+msgid "&Others"
+msgstr "&மற்றவை"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "சொருகி பைப்லைனில் சொருகி பெயர் காணவில்லை: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "சொருகி பைப்லைனில் மேற்கோள் குறி காணவில்லை: %1"
+
+msgid "Specify plugin arguments"
+msgstr "சொருகி வாதங்களைக் குறிப்பிடவும்"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr ""
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr ""
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr ""
+
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr ""
+
+msgid "Filter applied"
+msgstr "வடிகட்டி பயன்படுத்தப்பட்டது"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "%s இல் இடைநிலைப்பலகை"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"இடைநிலைப்பலகை வரலாறு முடக்கப்பட்டுள்ளது.\r\n"
+"இடைநிலைப்பலகை வரலாற்றை இயக்க, சாளரங்கள் சின்னம் + V ஐ அழுத்தி, பின்னர் இயக்கு பொத்தானைக் சொடுக்கவும்."
+
+msgid "This system does not support clipboard history."
+msgstr "இந்த அமைப்பு இடைநிலைப்பலகை வரலாற்றை ஆதரிக்காது."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "சாளரொன்றிணையின் 32-இரும பதிப்பு இடைநிலைப்பலகை ஒப்பீட்டை ஆதரிக்கவில்லை"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "வலைக்காட்சி2 இயக்கநேரம் நிறுவப்படவில்லை. நீங்கள் அதைப் பதிவிறக்க விரும்புகிறீர்களா?"
+
+msgid "New Text Compare"
+msgstr ""
+
+msgid "New Table Compare"
+msgstr ""
+
+msgid "New Binary Compare"
+msgstr ""
+
+msgid "New Image Compare"
+msgstr ""
+
+msgid "New Webpage Compare"
+msgstr ""
+
+msgid "Clipboard Compare"
+msgstr ""
 
 msgid "Prettification"
 msgstr "அழகானமாக்கல்"
@@ -3951,8 +4058,8 @@ msgstr "அழகானமாக்கல்"
 msgid "Content Extraction"
 msgstr "உள்ளடக்கம் பிரித்தெடுத்தல்"
 
-msgid "Visualization"
-msgstr "காட்சிப்படுத்தல்"
+msgid "Preview"
+msgstr ""
 
 msgid "Data Query"
 msgstr "தரவு வினவல்"
@@ -3962,9 +4069,6 @@ msgstr "சரிபார்ப்பு"
 
 msgid "Decompilation"
 msgstr "தொகுப்பு"
-
-msgid "&Others"
-msgstr "&மற்றவை"
 
 msgid "URL Handling"
 msgstr "URL கையாளுதல்"
@@ -4032,6 +4136,9 @@ msgstr "CSV புலங்களை புறக்கணிக்கவும�
 msgid "Ignore TSV Fields"
 msgstr "TSV புலங்களை புறக்கணிக்கவும்"
 
+msgid "Ignore Leading Line Numbers"
+msgstr ""
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "ப்ரீடிஃப் மாற்று வடிப்பான்களைப் பயன்படுத்து"
 
@@ -4047,8 +4154,14 @@ msgstr "வடிவமைப்பு XML"
 msgid "Prettify YAML"
 msgstr "வடிவமைப்பு YAML"
 
-msgid "Visualize Graphviz"
-msgstr "கிராப்விஸை காட்சிப்படுத்து"
+msgid "Preview Graphviz"
+msgstr ""
+
+msgid "Preview Markdown"
+msgstr ""
+
+msgid "Preview PlantUML"
+msgstr ""
 
 msgid "Query CSV Data..."
 msgstr "CSV தரவை வினவல்..."
@@ -4073,17 +4186,6 @@ msgstr "ஐஎல் குறியீட்டை பிரிக்கவு�
 
 msgid "Disassemble Native Code"
 msgstr "நேட்டிவ் குறியீட்டை பிரிக்கவும்"
-
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "சொருகி பைப்லைனில் சொருகி பெயர் காணவில்லை: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "சொருகி பைப்லைனில் மேற்கோள் குறி காணவில்லை: %1"
-
-msgid "Specify plugin arguments"
-msgstr "சொருகி வாதங்களைக் குறிப்பிடவும்"
 
 msgid "Make characters uppercase"
 msgstr "எழுத்துகளை பெரிய எழுத்தாக உருவாக்கு"
@@ -4215,11 +4317,19 @@ msgstr ""
 "வாதங்கள்: வடிகட்டி அல்லது கட்டளை வரி விருப்பங்கள் yq கட்டளைக்கு அனுப்பப்பட்டன."
 
 msgid ""
-"Graphviz Visualizer. \r\n"
+"Graphviz Previewer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz Visualizer. \r\n"
-"வாதங்கள்: டாட் கட்டளைக்கு அனுப்பப்பட்ட கட்டளை வரி விருப்பங்கள்."
+
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
 
 msgid ""
 "CSV Querier with q command. \r\n"
@@ -4284,8 +4394,8 @@ msgstr ""
 "அப்பாச்சி டிகாவுடன் பொது உள்ளடக்கத்தை பிரித்தெடுக்கும் கருவி. \r\n"
 "வாதங்கள்: கட்டளை வரி விருப்பங்கள் tika-app.jar க்கு அனுப்பப்பட்டன."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "விண்டோஸிற்கான GnuWin32 Patch ஐ பயன்படுத்தி பேட்சை பயன்படுத்தவும்"
+msgid "Apply patch using GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel கோப்புகளின் உரை உள்ளடக்கத்தைக் காண்பி"
@@ -4308,6 +4418,9 @@ msgstr "சொருகி C, C++, PHP மற்றும் JavaScript கோ�
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "சில புலங்களை புறக்கணிக்கவும் - சொருகி பெயர் அல்லது சொருகி வாதத்திலிருந்து புறக்கணிக்கப்பட்ட புலங்களின் பட்டியல்"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr ""
+
 msgid "Prediff Line Filter"
 msgstr "பிரிடிஃப் வரி வடிகட்டி"
 
@@ -4328,25 +4441,134 @@ msgstr ""
 "Windows Registry URL Scheme Handler. \r\n"
 "வாதங்கள்: கட்டளை வரி விருப்பங்கள் reg.exe கட்டளைக்கு அனுப்பப்பட்டன."
 
-msgid "Filter applied"
-msgstr "வடிகட்டி பயன்படுத்தப்பட்டது"
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr ""
 
-#, c-format
-msgid "Clipboard at %s"
-msgstr "%s இல் இடைநிலைப்பலகை"
+msgid "Extract workbook data to multiple files"
+msgstr ""
+
+msgid "Update external references(links)"
+msgstr ""
+
+msgid "Compare document properties"
+msgstr ""
+
+msgid "Compare names"
+msgstr ""
+
+msgid "Compare cell values"
+msgstr ""
+
+msgid "Compare worksheets as image (very slow)"
+msgstr ""
+
+msgid " - Image split size: "
+msgstr ""
+
+msgid "Compare worksheets as HTML"
+msgstr ""
+
+msgid "Compare formulas"
+msgstr ""
+
+msgid "Compare texts in shapes"
+msgstr ""
+
+msgid "Compare headers and footers"
+msgstr ""
 
 msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
-"இடைநிலைப்பலகை வரலாறு முடக்கப்பட்டுள்ளது.\r\n"
-"இடைநிலைப்பலகை வரலாற்றை இயக்க, சாளரங்கள் சின்னம் + V ஐ அழுத்தி, பின்னர் இயக்கு பொத்தானைக் சொடுக்கவும்."
 
-msgid "This system does not support clipboard history."
-msgstr "இந்த அமைப்பு இடைநிலைப்பலகை வரலாற்றை ஆதரிக்காது."
+msgid "Compare VBA macros"
+msgstr ""
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "சாளரொன்றிணையின் 32-இரும பதிப்பு இடைநிலைப்பலகை ஒப்பீட்டை ஆதரிக்கவில்லை"
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr ""
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "வலைக்காட்சி2 இயக்கநேரம் நிறுவப்படவில்லை. நீங்கள் அதைப் பதிவிறக்க விரும்புகிறீர்களா?"
+msgid "Extract document data to multiple files"
+msgstr ""
+
+msgid "Compare bookmarks"
+msgstr ""
+
+msgid "Compare text contents of documents"
+msgstr ""
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr ""
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr ""
+
+msgid "Extract slide data to multiple files"
+msgstr ""
+
+msgid "Compare slides as image (very slow)"
+msgstr ""
+
+msgid "Compare texts in notes page"
+msgstr ""
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr ""
+
+msgid "Extract page data to multiple files"
+msgstr ""
+
+msgid "Compare pages as image (very slow)"
+msgstr ""
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Enabled"
+msgstr ""
+
+msgid "Ignore Case"
+msgstr ""
+
+msgid "Use RegExp"
+msgstr ""
+
+msgid "Find what"
+msgstr ""
+
+msgid "Replace with"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
+msgstr ""
+
+#, c-format
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr ""
+
+#, c-format
+msgid "File '%1' does not exist"
+msgstr ""
+
+msgid "Enter the command line arguments for patch command"
+msgstr ""
+
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr ""
+
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr ""
+
+msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgstr ""

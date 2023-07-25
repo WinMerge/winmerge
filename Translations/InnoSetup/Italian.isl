@@ -53,6 +53,7 @@ SlovakLanguage=Menu e finestre di dialogo in slovacco
 SlovenianLanguage=Menu e finestre di dialogo in sloveno
 SpanishLanguage=Menu e finestre di dialogo in spagnolo
 SwedishLanguage=Menu e finestre di dialogo in svedese
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Menu e finestre di dialogo in turco
 UkrainianLanguage=Menu e finestre di dialogo in ucraino
 

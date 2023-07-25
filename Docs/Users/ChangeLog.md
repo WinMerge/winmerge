@@ -29,6 +29,7 @@
 
 ### Translations
 
+- New translation: Tamil (PR #1946)
 - Translation updates:
   - Chinese Traditional (PR #1940)
   - Corsican (PR #1933)

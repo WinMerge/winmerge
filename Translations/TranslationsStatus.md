@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-07-17**:
+Status from **2023-07-25**:
 
 ## WinMerge
 
@@ -12,7 +12,7 @@ Status from **2023-07-17**:
 | Bulgarian            |  1300 |       1040 |     0 |          260 |     80 % |  2021-06-28 |
 | Catalan              |  1300 |       1181 |     0 |          119 |     90 % |             |
 | ChineseSimplified    |  1300 |       1300 |     0 |            0 |    100 % |             |
-| ChineseTraditional   |  1300 |       1298 |     0 |            2 |     99 % |  2022-02-19 |
+| ChineseTraditional   |  1300 |       1300 |     0 |            0 |    100 % |  2022-02-19 |
 | Corsican             |  1300 |       1300 |     0 |            0 |    100 % |  2023-07-06 |
 | Croatian             |  1300 |        631 |     1 |          668 |     48 % |  2009-02-13 |
 | Czech                |  1300 |        606 |     0 |          694 |     46 % |             |
@@ -41,6 +41,7 @@ Status from **2023-07-17**:
 | Slovenian            |  1300 |       1300 |     0 |            0 |    100 % |  2023-07-03 |
 | Spanish              |  1300 |       1286 |     0 |           14 |     98 % |  2023-05-02 |
 | Swedish              |  1300 |       1239 |     2 |           59 |     95 % |  2023-02-08 |
+| Tamil                |  1300 |       1225 |     0 |           75 |     94 % |  2023-07-24 |
 | Turkish              |  1300 |       1300 |     0 |            0 |    100 % |  2023-07-06 |
 | Ukrainian            |  1300 |        637 |     0 |          663 |     49 % |  2009-06-13 |
 
@@ -83,6 +84,7 @@ Status from **2023-07-17**:
 | Slovenian            |    11 |         10 |     0 |            1 |     90 % |  2021-12-16 |
 | Spanish              |    11 |          4 |     0 |            7 |     36 % |             |
 | Swedish              |    11 |         10 |     0 |            1 |     90 % |             |
+| Tamil                |    11 |         10 |     0 |            1 |     90 % |             |
 | Turkish              |    11 |         11 |     0 |            0 |    100 % |  2023-07-06 |
 | Ukrainian            |    11 |         10 |     0 |            1 |     90 % |             |
 
@@ -166,6 +168,7 @@ Status from **2023-07-17**:
 | Slovenian            |     - |          - |     - |            - |        - |             |
 | Spanish              |     - |          - |     - |            - |        - |             |
 | Swedish              |     - |          - |     - |            - |        - |             |
+| Tamil                |     - |          - |     - |            - |        - |             |
 | Turkish              |     - |          - |     - |            - |        - |             |
 | Ukrainian            |     - |          - |     - |            - |        - |             |
 
@@ -338,6 +341,9 @@ Status from **2023-07-17**:
    - [pgert](mailto:pgert%20at%20yahoo.se)
    - [Timmy Almroth](mailto:timmy.almroth%20at%20tim-international.net)
 
+ * Tamil
+   - [தமிழ்நேரம்](mailto:https://TamilNeram.github.io)
+
  * Turkish
    - [Afyonlu](mailto:afyonlu@users.sourceforge.net)
    - [Ozkan UNVER](mailto:turquaz37915%20at%20users.sourceforge.net)
@@ -372,6 +378,9 @@ Status from **2023-07-17**:
  * Slovenian
    - [Filip Komar](mailto:filip.komar%20at%20gmail.com)
    - [Jadran Rudec](mailto:jrudec%20at%20gmail.com)
+
+ * Tamil
+   - [தமிழ்நேரம்](mailto:https://TamilNeram.github.io) *Maintainer*
 
  * Turkish
    - [Afyonlu](mailto:afyonlu@users.sourceforge.net)

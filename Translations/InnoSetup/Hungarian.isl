@@ -52,6 +52,7 @@ SlovakLanguage=Szlovák menük és párbeszédablakok
 SlovenianLanguage=Szlovén menük és párbeszédablakok
 SpanishLanguage=Spanyol menük és párbeszédablakok
 SwedishLanguage=Svéd menük és párbeszédablakok
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Török menük és párbeszédablakok
 UkrainianLanguage=Ukrán menük és párbeszédablakok
 
