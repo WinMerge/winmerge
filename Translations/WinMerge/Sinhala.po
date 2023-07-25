@@ -1789,12 +1789,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "සැසඳූ අයිතම:"
-
-#, c-format
 msgid "Items total:"
 msgstr "අයිතම එකතුව:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "සැසඳූ අයිතම:"
 
 msgid "Go to"
 msgstr "වෙත යන්න"

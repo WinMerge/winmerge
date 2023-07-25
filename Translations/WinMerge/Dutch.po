@@ -1458,11 +1458,11 @@ msgstr "Doorgaan"
 msgid "&Number of CPU cores to use:"
 msgstr "Aantal CPU-kernen te gebruiken:"
 
-msgid "Items compared:"
-msgstr "Items vergeleken:"
-
 msgid "Items total:"
 msgstr "Totaal aantal items:"
+
+msgid "Items compared:"
+msgstr "Items vergeleken:"
 
 msgid "Go to"
 msgstr "Gaan naar"

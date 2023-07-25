@@ -1458,11 +1458,11 @@ msgstr "Tęsti"
 msgid "&Number of CPU cores to use:"
 msgstr "&Naudojamas procesoriaus branduolių skaičius:"
 
-msgid "Items compared:"
-msgstr "Elementų palyginta:"
-
 msgid "Items total:"
 msgstr "Iš viso elementų:"
+
+msgid "Items compared:"
+msgstr "Elementų palyginta:"
 
 msgid "Go to"
 msgstr "Pereiti į"

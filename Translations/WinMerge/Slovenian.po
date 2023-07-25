@@ -1458,11 +1458,11 @@ msgstr "Nadaljuj"
 msgid "&Number of CPU cores to use:"
 msgstr "Š&tevilo jeder procesorja za uporabo:"
 
-msgid "Items compared:"
-msgstr "Primerjanih vnosov:"
-
 msgid "Items total:"
 msgstr "Skupaj vnosov:"
+
+msgid "Items compared:"
+msgstr "Primerjanih vnosov:"
 
 msgid "Go to"
 msgstr "Pojdi na"

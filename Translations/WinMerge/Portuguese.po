@@ -1463,11 +1463,11 @@ msgstr "Continuar"
 msgid "&Number of CPU cores to use:"
 msgstr "&Número de núcleos de CPU a utilizar:"
 
-msgid "Items compared:"
-msgstr "Itens comparados:"
-
 msgid "Items total:"
 msgstr "Total de itens:"
+
+msgid "Items compared:"
+msgstr "Itens comparados:"
 
 msgid "Go to"
 msgstr "Ir para"

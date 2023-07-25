@@ -1459,11 +1459,11 @@ msgstr ""
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "Items compared:"
-msgstr "Objekter sammenlignet:"
-
 msgid "Items total:"
 msgstr "Objekter totalt:"
+
+msgid "Items compared:"
+msgstr "Objekter sammenlignet:"
 
 msgid "Go to"
 msgstr "Gå til"

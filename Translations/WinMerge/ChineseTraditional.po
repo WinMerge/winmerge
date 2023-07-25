@@ -1799,12 +1799,12 @@ msgid "&Number of CPU cores to use:"
 msgstr "使用的 CPU 核心數量(&N)："
 
 #, c-format
-msgid "Items compared:"
-msgstr "比較過的項目："
-
-#, c-format
 msgid "Items total:"
 msgstr "項目總數："
+
+#, c-format
+msgid "Items compared:"
+msgstr "比較過的項目："
 
 msgid "Go to"
 msgstr "移至"

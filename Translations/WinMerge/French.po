@@ -1797,12 +1797,12 @@ msgid "&Number of CPU cores to use:"
 msgstr "&Nombre de cœurs de processeur à utiliser :"
 
 #, c-format
-msgid "Items compared:"
-msgstr "Éléments comparés :"
-
-#, c-format
 msgid "Items total:"
 msgstr "Éléments au total :"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Éléments comparés :"
 
 msgid "Go to"
 msgstr "Atteindre"

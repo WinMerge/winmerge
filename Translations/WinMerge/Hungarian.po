@@ -1791,12 +1791,12 @@ msgid "&Number of CPU cores to use:"
 msgstr "Használandó CPU magok száma:"
 
 #, c-format
-msgid "Items compared:"
-msgstr "Összehasonlított elemek:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Összes elem:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Összehasonlított elemek:"
 
 msgid "Go to"
 msgstr "Ugrás"

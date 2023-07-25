@@ -1790,12 +1790,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "Опрацьованих:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Всього:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Опрацьованих:"
 
 msgid "Go to"
 msgstr "Перейти"

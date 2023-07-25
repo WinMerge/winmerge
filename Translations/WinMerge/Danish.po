@@ -1790,12 +1790,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "Emner sammenlignet:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Emner ialt:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Emner sammenlignet:"
 
 msgid "Go to"
 msgstr "Gå til"

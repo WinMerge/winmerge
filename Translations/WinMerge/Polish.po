@@ -1459,11 +1459,11 @@ msgstr "kontynuuj"
 msgid "&Number of CPU cores to use:"
 msgstr "Liczba rdzeni CPU do wykorzystania:"
 
-msgid "Items compared:"
-msgstr "Porównano elementów:"
-
 msgid "Items total:"
 msgstr "Łącznie elementów:"
+
+msgid "Items compared:"
+msgstr "Porównano elementów:"
 
 msgid "Go to"
 msgstr "Idź do"

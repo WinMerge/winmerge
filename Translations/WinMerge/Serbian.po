@@ -1772,12 +1772,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "Поређење ставки:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Укупно ставки:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Поређење ставки:"
 
 msgid "Go to"
 msgstr "Иди на"

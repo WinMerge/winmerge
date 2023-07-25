@@ -1460,11 +1460,11 @@ msgstr "Продолжить"
 msgid "&Number of CPU cores to use:"
 msgstr "&Число доступных для использования ядер ЦП:"
 
-msgid "Items compared:"
-msgstr "Обработано:"
-
 msgid "Items total:"
 msgstr "Всего:"
+
+msgid "Items compared:"
+msgstr "Обработано:"
 
 msgid "Go to"
 msgstr "Перейти"

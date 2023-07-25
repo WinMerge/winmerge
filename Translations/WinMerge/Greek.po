@@ -1788,12 +1788,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "Συγκριθέντα αντικείμενα:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Σύνολο αντικειμένων:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Συγκριθέντα αντικείμενα:"
 
 msgid "Go to"
 msgstr "Μετάβαση"

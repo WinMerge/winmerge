@@ -1789,12 +1789,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "Elements comparats:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Elements totals:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Elements comparats:"
 
 msgid "Go to"
 msgstr "Anar"

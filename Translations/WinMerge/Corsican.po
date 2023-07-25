@@ -1462,11 +1462,11 @@ msgstr "Cuntinuà"
 msgid "&Number of CPU cores to use:"
 msgstr "&Numeru di cori CPU à impiegà :"
 
-msgid "Items compared:"
-msgstr "Elementi paragunati :"
-
 msgid "Items total:"
 msgstr "Tutale di l’elementi :"
+
+msgid "Items compared:"
+msgstr "Elementi paragunati :"
 
 msgid "Go to"
 msgstr "Andà à"

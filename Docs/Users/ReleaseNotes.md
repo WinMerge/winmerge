@@ -30,6 +30,12 @@ Please submit bug reports to our bug-tracker.
 ### Folder compare
 
 - BugFix: Treeview scrolls to the wrong position. (#1915)
+- Allow changing the number of CPU cores to use while doing folder comparison
+    (PR #1945)
+
+### Webpage compare
+
+- Add support for generating report files (PR #1941)
 
 ### Command line
 

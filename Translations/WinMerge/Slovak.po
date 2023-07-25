@@ -1458,11 +1458,11 @@ msgstr "Pokračovať"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "Items compared:"
-msgstr "Porovnané položky:"
-
 msgid "Items total:"
 msgstr "Položky celkom:"
+
+msgid "Items compared:"
+msgstr "Porovnané položky:"
 
 msgid "Go to"
 msgstr "Prejsť na"

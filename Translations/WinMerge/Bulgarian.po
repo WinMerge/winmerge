@@ -1457,11 +1457,11 @@ msgstr "Продължаване"
 msgid "&Number of CPU cores to use:"
 msgstr "Използа&не на брой процесорни ядра:"
 
-msgid "Items compared:"
-msgstr "Сравнени:"
-
 msgid "Items total:"
 msgstr "Всичко:"
+
+msgid "Items compared:"
+msgstr "Сравнени:"
 
 msgid "Go to"
 msgstr "Отиване към"

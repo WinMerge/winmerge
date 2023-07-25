@@ -1461,11 +1461,11 @@ msgstr "再開"
 msgid "&Number of CPU cores to use:"
 msgstr "使用するCPUコアの数(&N):"
 
-msgid "Items compared:"
-msgstr "比較した項目:"
-
 msgid "Items total:"
 msgstr "全項目数:"
+
+msgid "Items compared:"
+msgstr "比較した項目:"
 
 msgid "Go to"
 msgstr "移動"

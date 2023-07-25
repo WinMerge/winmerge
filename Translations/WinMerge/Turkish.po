@@ -1463,11 +1463,11 @@ msgstr "Sürdür"
 msgid "&Number of CPU cores to use:"
 msgstr "&Kullanılacak işlemci çekirdeği sayısı:"
 
-msgid "Items compared:"
-msgstr "Karşılaştırılan öge:"
-
 msgid "Items total:"
 msgstr "Toplam öge:"
+
+msgid "Items compared:"
+msgstr "Karşılaştırılan öge:"
 
 msgid "Go to"
 msgstr "Git"

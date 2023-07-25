@@ -1792,12 +1792,12 @@ msgid "&Number of CPU cores to use:"
 msgstr ""
 
 #, c-format
-msgid "Items compared:"
-msgstr "Alderatutako gaiak:"
-
-#, c-format
 msgid "Items total:"
 msgstr "Gaiak guztira:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Alderatutako gaiak:"
 
 msgid "Go to"
 msgstr "Joan Hona"

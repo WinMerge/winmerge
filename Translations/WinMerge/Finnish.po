@@ -1463,11 +1463,11 @@ msgstr "Jatka"
 msgid "&Number of CPU cores to use:"
 msgstr ""
 
-msgid "Items compared:"
-msgstr "Verratut kohteet:"
-
 msgid "Items total:"
 msgstr "Kohteita yhteensä:"
+
+msgid "Items compared:"
+msgstr "Verratut kohteet:"
 
 msgid "Go to"
 msgstr "Siirry >"

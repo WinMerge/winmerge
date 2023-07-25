@@ -1453,14 +1453,14 @@ msgstr "இடைநிறுத்தம்"
 msgid "Continue"
 msgstr "தொடரவும்"
 
-msgid "Comparing items..."
-msgstr "உருப்படிகளை ஒப்பிடுகிறது..."
-
-msgid "Items compared:"
-msgstr "ஒப்பிடப்பட்ட உருப்படிகள்:"
+msgid "&Number of CPU cores to use:"
+msgstr "&பயன்படுத்த வேண்டிய CPU கோர்களின் எண்ணிக்கை:"
 
 msgid "Items total:"
 msgstr "உருப்படிகள் மொத்தம்:"
+
+msgid "Items compared:"
+msgstr "ஒப்பிடப்பட்ட உருப்படிகள்:"
 
 msgid "Go to"
 msgstr "செல்"
@@ -1987,9 +1987,6 @@ msgstr "&விரைவு ஒப்பீடு (MB) க்கு மாறு
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "&பைனரி ஒப்பீடு (MB) க்கு மாறுவதற்கான நுழைவாயில்:"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&பயன்படுத்த வேண்டிய CPU கோர்களின் எண்ணிக்கை:"
-
 msgid "File patterns:"
 msgstr "கோப்பு வடிவங்கள்:"
 
@@ -2464,6 +2461,13 @@ msgstr "%2 இல் உருப்படி %1"
 #, c-format
 msgid "Items: %1"
 msgstr "உருப்படிகள்: %1"
+
+msgid "Comparing items..."
+msgstr "உருப்படிகளை ஒப்பிடுகிறது..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "ஒப்பிடுவதற்கு ஏற்கனவே உள்ள இரண்டு கோப்புறைகள் அல்லது கோப்புகளைத் தேர்ந்தெடுக்கவும்."
