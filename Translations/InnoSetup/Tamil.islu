@@ -1,4 +1,4 @@
-[CustomMessages]
+﻿[CustomMessages]
 
 ;Things we can also localize
 OptionalFeatures=Optional Features:
@@ -83,4 +83,3 @@ ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to u
 
 ; Project file description
 ProjectFileDesc=WinMerge Project file
-

@@ -52,6 +52,7 @@ SlovakLanguage=Slovaakse menu’s en vensters
 SlovenianLanguage=Sloveense menu’s en vensters
 SpanishLanguage=Spaanse menu’s en vensters
 SwedishLanguage=Zweedse menu’s en vensters
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Turkse menu’s en vensters
 UkrainianLanguage=Oekraïense menu’s en vensters
 

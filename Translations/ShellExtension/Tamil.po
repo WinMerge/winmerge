@@ -1,0 +1,82 @@
+# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Maintainer:
+# * தமிழ்நேரம் <https://TamilNeram.github.io>
+#
+# Translators:
+#  * தமிழ்நேரம் <https://TamilNeram.github.io>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: தமிழ்நேரம் <https://TamilNeram.github.io>\n"
+"Language-Team: தமிழ்நேரம் <https://TamilNeram.github.io>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#. AFX_TARG_*
+#: ShellExtension.rc:19
+#, c-format
+msgid "AFX_TARG_ENU"
+msgstr "AFX_TARG_TAM"
+
+#. LANGUAGE, SUBLANGUAGE
+#: ShellExtension.rc:20
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_TAMIL, SUBLANG_TAMIL"
+
+#. Codepage
+#: ShellExtension.rc:21
+#, c-format
+msgid "1252"
+msgstr "65001"
+
+#: ShellExtension.rc:111
+#, c-format
+msgid "ShellExtension"
+msgstr "ஒடுநீட்டிப்பு"
+
+#: ShellExtension.rc:112
+#, c-format
+msgid "Win&Merge"
+msgstr "&சாளரஒன்றிணை"
+
+#: ShellExtension.rc:113
+#, c-format
+msgid "Compare &As"
+msgstr ""
+
+#: ShellExtension.rc:114
+#, c-format
+msgid "&Compare"
+msgstr "&ஒப்பிடு"
+
+#: ShellExtension.rc:115
+#, c-format
+msgid "Compare&..."
+msgstr "ஒப்பிடு&..."
+
+#: ShellExtension.rc:116
+#, c-format
+msgid "Select &Left"
+msgstr "&இடது தேர்ந்தெடு"
+
+#: ShellExtension.rc:117
+#, c-format
+msgid "Select &Middle"
+msgstr "&நடுவை தேர்ந்தெடு"
+
+#: ShellExtension.rc:118
+#, c-format
+msgid "Re-select &Left"
+msgstr "&இடது மறு-தேர்வு"

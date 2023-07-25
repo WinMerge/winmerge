@@ -52,6 +52,7 @@ SlovakLanguage=Slovaški meniji in pogovorna okna
 SlovenianLanguage=Slovenski meniji in pogovorna okna
 SpanishLanguage=Španski meniji in pogovorna okna
 SwedishLanguage=Švedski meniji in pogovorna okna
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Turški meniji in pogovorna okna
 UkrainianLanguage=Ukrajinski meniji in pogovorna okna
 

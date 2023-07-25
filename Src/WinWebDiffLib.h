@@ -35,7 +35,7 @@ struct IWebDiffWindow
 	};
 	enum FormatType
 	{
-		SCREENSHOT, FULLSIZE_SCREENSHOT, HTML, TEXT, RESOURCETREE
+		SCREENSHOT, FULLSIZE_SCREENSHOT, HTML, TEXT, RESOURCETREE, PDF
 	};
 	enum BrowsingDataType
 	{
@@ -116,6 +116,7 @@ struct IWebDiffWindow
 	virtual HRESULT Recompare(IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveFile(int pane, FormatType kind, const wchar_t* filename, IWebDiffCallback* callback) = 0;
 	virtual HRESULT SaveFiles(FormatType kind, const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
+	virtual HRESULT SaveDiffFiles(FormatType kind, const wchar_t* filenames[], IWebDiffCallback* callback) = 0;
 	virtual HRESULT ClearBrowsingData(int pane, BrowsingDataType datakinds) = 0;
 	virtual const wchar_t *GetCurrentUrl(int pane) = 0;
 	virtual int  GetPaneCount() const = 0;

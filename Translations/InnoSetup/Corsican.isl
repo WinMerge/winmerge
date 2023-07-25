@@ -60,6 +60,7 @@ SlovakLanguage=Listini è dialoghi sluvacchi
 SlovenianLanguage=Listini è dialoghi sluveni
 SpanishLanguage=Listini è dialoghi spagnoli
 SwedishLanguage=Listini è dialoghi svedesi
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Listini è dialoghi turchi
 UkrainianLanguage=Listini è dialoghi ucraniani
 

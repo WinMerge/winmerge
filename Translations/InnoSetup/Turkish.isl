@@ -52,6 +52,7 @@ SlovakLanguage=Slovakça menü ve pencereler
 SlovenianLanguage=Slovence menü ve pencereler
 SpanishLanguage=Ýspanyolca menü ve pencereler
 SwedishLanguage=Ýsveçce menü ve pencereler
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Türkçe menü ve pencereler
 UkrainianLanguage=Ukraynaca menü ve pencereler
 

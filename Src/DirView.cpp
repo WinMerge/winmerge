@@ -2859,16 +2859,7 @@ struct FileCmpReport: public IFileCmpReport
 			reinterpret_cast<WPARAM>(sReportPath.c_str()), 
 			reinterpret_cast<LPARAM>(&completed));
 
-		while (!completed)
-		{
-			MSG msg;
-			while (::PeekMessage(&msg, nullptr, NULL, NULL, PM_NOREMOVE))
-			{
-				if (!AfxGetApp()->PumpMessage())
-					break;
-			}
-			Sleep(5);
-		}
+		CMainFrame::WaitAndDoMessageLoop(completed, 5);
 
 		return true;
 	}

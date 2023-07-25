@@ -52,6 +52,7 @@ SlovakLanguage=Slovakø meniu ir dialogai
 SlovenianLanguage=Slovënø meniu ir dialogai
 SpanishLanguage=Ispanø meniu ir dialogai
 SwedishLanguage=Ðvedø meniu ir dialogai
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Turkø meniu ir dialogai
 UkrainianLanguage=Ukrainieèiø meniu ir dialogai
 
