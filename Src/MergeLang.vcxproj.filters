@@ -223,6 +223,9 @@
     <None Include="..\Translations\ShellExtension\Swedish.po">
       <Filter>Translations\ShellExtension</Filter>
     </None>
+    <None Include="..\Translations\ShellExtension\Tamil.po">
+      <Filter>Translations\ShellExtension</Filter>
+    </None>
     <None Include="..\Translations\ShellExtension\Turkish.po">
       <Filter>Translations\ShellExtension</Filter>
     </None>

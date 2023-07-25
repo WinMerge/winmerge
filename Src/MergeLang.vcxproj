@@ -247,6 +247,7 @@ popd
     <None Include="..\Translations\ShellExtension\Slovenian.po" />
     <None Include="..\Translations\ShellExtension\Spanish.po" />
     <None Include="..\Translations\ShellExtension\Swedish.po" />
+    <None Include="..\Translations\ShellExtension\Tamil.po" />
     <None Include="..\Translations\ShellExtension\Turkish.po" />
     <None Include="..\Translations\ShellExtension\Ukrainian.po" />
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1" />
@@ -286,6 +287,7 @@ popd
     <None Include="..\Translations\WinMerge\Slovenian.po" />
     <None Include="..\Translations\WinMerge\Spanish.po" />
     <None Include="..\Translations\WinMerge\Swedish.po" />
+    <None Include="..\Translations\WinMerge\Tamil.po" />
     <None Include="..\Translations\WinMerge\Turkish.po" />
     <None Include="..\Translations\WinMerge\Ukrainian.po" />
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
