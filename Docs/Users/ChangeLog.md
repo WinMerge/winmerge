@@ -37,10 +37,12 @@
 
 - New translation: Tamil (PR #1946)
 - Translation updates:
+  - Brazilian (PR #1948)
   - Chinese Traditional (PR #1940)
   - Corsican (PR #1933)
   - French (PR #1927,#1928)
   - Korean (PR #1908)
+  - Lithuanian (PR #1949)
   - Portuguese (PR #1930)
   - Slovenian
   - Turkish (#1931)
