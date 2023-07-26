@@ -1458,14 +1458,14 @@ msgstr "Pauzeren"
 msgid "Continue"
 msgstr "Doorgaan"
 
-msgid "Comparing items..."
-msgstr "Items vergelijken..."
-
-msgid "Items compared:"
-msgstr "Items vergeleken:"
+msgid "&Number of CPU cores to use:"
+msgstr "Aantal CPU-kernen te gebruiken:"
 
 msgid "Items total:"
 msgstr "Totaal aantal items:"
+
+msgid "Items compared:"
+msgstr "Items vergeleken:"
 
 msgid "Go to"
 msgstr "Gaan naar"
@@ -1992,9 +1992,6 @@ msgstr "Drempel voor overschakelen naar snel vergelijken (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Drempel voor overschakelen naar binair vergelijken (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Aantal CPU-kernen te gebruiken:"
-
 msgid "File patterns:"
 msgstr "Bestandspatronen:"
 
@@ -2469,6 +2466,13 @@ msgstr "Item %1 van %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Items: %1"
+
+msgid "Comparing items..."
+msgstr "Items vergelijken..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Twee bestaande mappen of bestanden selecteren om te vergelijken."

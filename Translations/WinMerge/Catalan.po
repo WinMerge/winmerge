@@ -1788,17 +1788,16 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Continua"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Comparant elements..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Elements comparats:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Elements totals:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Elements comparats:"
 
 msgid "Go to"
 msgstr "Anar"
@@ -2459,9 +2458,6 @@ msgstr "Llindar per realitzar una comparació ràpida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Llindar per realitzar una comparació binària (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr "Patrons de fitxer:"
 
@@ -2997,6 +2993,14 @@ msgstr "Element %1 de %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elements: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Comparant elements..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecciona dos directoris o fitxers existents per a comparar."

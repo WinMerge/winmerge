@@ -1788,17 +1788,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Porovnávají se položky..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Porovnáno:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Celkem:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Porovnáno:"
 
 msgid "Go to"
 msgstr "Přejít"
@@ -2453,9 +2452,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2943,6 +2939,14 @@ msgstr "Položka %1 z %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Položek: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Porovnávají se položky..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Vyberte dvě existující složky nebo soubory k porovnání."

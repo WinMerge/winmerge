@@ -69,10 +69,26 @@ public:
 
 	explicit CompareStats(int nDirs);
 	~CompareStats();
+	int GetCompareThreadCount()
+	{
+		return static_cast<int>(m_rgThreadState.size());
+	}
 	void SetCompareThreadCount(int nCompareThreads)
 	{
 		m_rgThreadState.clear();
 		m_rgThreadState.resize(nCompareThreads);
+	}
+	int GetIdleCompareThreadCount() const
+	{
+		return m_nIdleCompareThreadCount;
+	}
+	void SetIdleCompareThreadCount(int nIdleCompareThreadCount)
+	{
+		m_nIdleCompareThreadCount = nIdleCompareThreadCount;
+	}
+	bool IsIdleCompareThread(int iCompareThread) const
+	{
+		return iCompareThread >= (m_rgThreadState.size() - m_nIdleCompareThreadCount);
 	}
 	void BeginCompare(const DIFFITEM *di, int iCompareThread)
 	{
@@ -109,7 +125,7 @@ private:
 		const DIFFITEM *m_pDiffItem;
 	};
 	std::vector<ThreadState> m_rgThreadState;
-
+	int m_nIdleCompareThreadCount;
 };
 
 /** 

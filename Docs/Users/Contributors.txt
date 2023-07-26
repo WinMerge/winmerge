@@ -55,6 +55,7 @@ Localization:
   Koko <kokokoko@giga.net.tw>
   Calvin Lin <ylin77 at gmail.com>
   SiderealArt <admin at siderealart.me>
+  abc0922001
 
 * Corsican:
   Patriccollu di Santa Maria è Sichè
@@ -200,6 +201,9 @@ Localization:
   Göran Håkansson <goran.x.hakansson@telia.com>
   pgert <pgert at yahoo.se>
   Timmy Almroth <timmy.almroth at tim-international.net>
+
+* Tamil:
+  தமிழ்நேரம் <https://TamilNeram.github.io>
 
 * Turkish:
   Afyonlu <afyonlu@users.sourceforge.net>

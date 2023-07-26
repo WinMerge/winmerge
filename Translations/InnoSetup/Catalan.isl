@@ -53,6 +53,7 @@ SlovakLanguage=Menús i diàlegs en Eslovac
 SlovenianLanguage=Menús i diàlegs en Eslovè
 SpanishLanguage=Menús i diàlegs en Castellà
 SwedishLanguage=Menús i diàlegs en Suec
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Menús i diàlegs en Turc
 UkrainianLanguage=Menús i diàlegs en Ucrainès
 

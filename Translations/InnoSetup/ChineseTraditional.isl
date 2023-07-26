@@ -52,6 +52,7 @@ SlovakLanguage=´µ¬¥¥ï§J»y
 SlovenianLanguage=´µ¬¥ºû¥§¨È»y
 SpanishLanguage=¦è¯Z¤ú»y
 SwedishLanguage=·ç¨å»y
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=¤g¦Õ¨ä»y
 UkrainianLanguage=¯Q§JÄõ»y
 

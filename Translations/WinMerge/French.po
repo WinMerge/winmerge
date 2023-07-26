@@ -10,13 +10,14 @@
 # * Dominique Saussereau <redguff at users.sourceforge.net>
 # * Jean-F Jolin <jean-f-j at users.sourceforge.net>
 # * Lolo S. <slolo2000 at hotmail.com>
+# * Need74 <need74 at free.fr>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-06-08 15:10+0200\n"
+"PO-Revision-Date: 2023-07-02 10:18+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -25,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -110,10 +111,10 @@ msgid "&Go to...\tCtrl+G"
 msgstr "&Atteindre...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "Aller à la ligne déplacée entre la gauche et le milieu\tCtrl+Maj+G"
+msgstr "Aller à la ligne déplacée entre la Gauche et le Milieu\tCtrl+Maj+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "Aller à la ligne déplacée entre le milieu et la droite\tCtrl+Alt+G"
+msgstr "Aller à la ligne déplacée entre le Milieu et la Droite\tCtrl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -178,10 +179,10 @@ msgid "&Active Pane"
 msgstr "Volet &actif"
 
 msgid "Rotate &Right 90deg"
-msgstr "Rotation &Droite 90deg"
+msgstr "Rotation à &droite 90deg"
 
 msgid "Rotate &Left 90deg"
-msgstr "Rotation &Gauche 90deg"
+msgstr "Rotation à &gauche 90deg"
 
 msgid "Flip V&ertically"
 msgstr "Retourner V&erticalement"
@@ -232,7 +233,7 @@ msgstr "Dé&placer"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr "&Ajuster Décalage"
+msgstr "&Ajuster le Décalage"
 
 msgid "&Vertical Wipe"
 msgstr "Effacement &Vertical"
@@ -298,7 +299,7 @@ msgstr "&Fichier"
 
 #, c-format
 msgid "&New"
-msgstr "&Nouveau"
+msgstr "&Nouveau (2 p)\tCtrl+N"
 
 #, c-format
 msgid "&Text"
@@ -338,7 +339,7 @@ msgstr "Ouvrir un &projet...\tCtrl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "Enregistrer un Pro&jet..."
+msgstr "Enregistrer le Pro&jet..."
 
 #, c-format
 msgid "Recent Projects"
@@ -405,11 +406,11 @@ msgstr "&Générer des retouches..."
 
 #, c-format
 msgid "&Plugins"
-msgstr "&Plug-ins"
+msgstr "&Plugins"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr "Paramètres P&lug-in..."
+msgstr "Paramètres de P&lugin..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
@@ -429,7 +430,7 @@ msgstr "Décompression &automatique"
 
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Recharger les plug-ins"
+msgstr "&Recharger les plugins"
 
 #, c-format
 msgid "&Window"
@@ -448,11 +449,11 @@ msgstr "Chan&ger de volet\tF6"
 
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "Mosaïque &horizontale"
+msgstr "Mosaïque &Horizontale"
 
 #, c-format
 msgid "Tile &Vertically"
-msgstr "Mosaïque &verticale"
+msgstr "Mosaïque &Verticale"
 
 #, c-format
 msgid "&Cascade"
@@ -487,7 +488,7 @@ msgstr "&Licence publique générale GNU"
 
 #, c-format
 msgid "&About WinMerge..."
-msgstr "&A propos de WinMerge..."
+msgstr "&À propos de WinMerge..."
 
 #, c-format
 msgid "&Read-only"
@@ -495,15 +496,15 @@ msgstr "Lectu&re seule"
 
 #, c-format
 msgid "L&eft Read-only"
-msgstr "Côté gauc&he lecture seule"
+msgstr "Panneau Gauc&he en lecture seule"
 
 #, c-format
 msgid "M&iddle Read-only"
-msgstr "M&ilieu lecture seule"
+msgstr "Panneau M&ilieu en lecture seule"
 
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Côté droi&t lecture seule"
+msgstr "Panneau Droi&te en lecture seule"
 
 #, c-format
 msgid "&File Encoding..."
@@ -645,11 +646,11 @@ msgstr "&Dernière différence\tAlt+Fin"
 
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "Copier vers la dr&oite\tAlt+Droite"
+msgstr "Copier vers la Dr&oite\tAlt+Droite"
 
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Copier vers la ga&uche\tAlt+Gauche"
+msgstr "Copier vers la Ga&uche\tAlt+Gauche"
 
 #, c-format
 msgid "&Delete\tDel"
@@ -673,7 +674,7 @@ msgstr "&Enregistrer\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr "&Enregistrer"
+msgstr "&Enregistrer\t>     "
 
 #, c-format
 msgid "Save &Left"
@@ -689,11 +690,11 @@ msgstr "Enregistrer &Droite"
 
 #, c-format
 msgid "Save &As"
-msgstr "Enregistrer sous"
+msgstr "Enregistrer sous\t>     "
 
 #, c-format
 msgid "Save &Left As..."
-msgstr "Enregistrer Gauche sous..."
+msgstr "Enregistrer &Gauche sous..."
 
 #, c-format
 msgid "Save &Middle As..."
@@ -701,7 +702,7 @@ msgstr "Enregistrer &Milieu sous..."
 
 #, c-format
 msgid "Save &Right As..."
-msgstr "Enregistrer D&roite sous..."
+msgstr "Enregistrer &Droite sous..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "&Imprimer...\tCtrl+P"
@@ -721,7 +722,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "Mode &Fusion\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "RechargerCtrl+F5"
+msgstr "Recharger\tCtrl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -929,7 +930,7 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Différence précédente Droite seulement\tAlt+Maj+9"
 
 msgid "Copy from &Left to"
-msgstr "Copier depuis la &Gauche vers"
+msgstr "Copier depuis la &Gauche vers le(la)"
 
 #, c-format
 msgid "&Middle"
@@ -940,23 +941,23 @@ msgid "&Right"
 msgstr "&Droite"
 
 msgid "Copy from &Middle to"
-msgstr "Copier depuis le &Milieu vers"
+msgstr "Copier depuis le &Milieu vers la"
 
 #, c-format
 msgid "&Left"
 msgstr "&Gauche"
 
 msgid "Copy from &Right to"
-msgstr "Copier depuis la &Droite vers"
+msgstr "Copier depuis la &Droite vers le(la)"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr "Copier les lignes sélectionnées de Ga&uche vers"
+msgstr "Copier les lignes sélectionnées de la Ga&uche vers le(la)"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr "Copier les lignes sélectionnées de Mi&lieu vers"
+msgstr "Copier les lignes sélectionnées du Mi&lieu vers la"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr "Copier les lignes sélectionnées de la Droite vers"
+msgstr "Copier les lignes sélectionnées de la Dr&oite vers le(la)"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
@@ -964,7 +965,7 @@ msgstr "Copier depuis la Gauche\tAlt+Maj+Droite"
 
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Copie depuis la Droite\tAlt+Maj+Gauche"
+msgstr "Copier depuis la Droite\tAlt+Maj+Gauche"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
 msgstr "Copier vers la Droite et A&vancer\tCtrl+Alt+Droite"
@@ -981,7 +982,7 @@ msgid "Cop&y All to Left"
 msgstr "Tout copi&er vers la Gauche"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "A&uto merge\tCtrl+Alt+M"
+msgstr "Fusion A&utomatique\tCtrl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -1297,10 +1298,10 @@ msgstr "Charger projet..."
 
 #, c-format
 msgid "About WinMerge"
-msgstr "A propos de WinMerge"
+msgstr "À propos de WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr "Découvrez la page d'accueil de WinMerge !"
+msgstr "Découvrir la page d'accueil de WinMerge !"
 
 #, c-format
 msgid "OK"
@@ -1316,7 +1317,7 @@ msgstr "Sélectionner des fichiers ou des dossiers"
 
 #, c-format
 msgid "&1st File or Folder"
-msgstr "&1er Fichier ou Dossier"
+msgstr "&1er Fichier ou 1er Dossier"
 
 #, c-format
 msgid "Re&ad-only"
@@ -1332,7 +1333,7 @@ msgstr "P&arcourir..."
 
 #, c-format
 msgid "&2nd File or Folder"
-msgstr "&2ème Fichier ou Dossier"
+msgstr "&2ème Fichier ou 2ème Dossier"
 
 #, c-format
 msgid "Rea&d-only"
@@ -1348,7 +1349,7 @@ msgstr "Parc&ourir..."
 
 #, c-format
 msgid "&3rd File or Folder (Optional)"
-msgstr "&3ème Fichier ou Dossier (Facultatif)"
+msgstr "&3ème Fichier ou 3ème Dossier (Facultatif)"
 
 #, c-format
 msgid "Read-o&nly"
@@ -1367,11 +1368,11 @@ msgid " Folder: Filter"
 msgstr " Dossier : filtre"
 
 msgid " File: Prediffer Plugin"
-msgstr " Fichier : Plug-in Prediffer"
+msgstr " Fichier : Plugin Pré-différence"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr " Fichier : Plug-in décompresseur"
+msgstr " Fichier : Plugin Décompresseur"
 
 #, c-format
 msgid "Se&lect..."
@@ -1379,7 +1380,7 @@ msgstr "Sé&lectionner..."
 
 #, c-format
 msgid "Cancel"
-msgstr "Ann&uler"
+msgstr "Annuler"
 
 #, c-format
 msgid "Status:"
@@ -1416,14 +1417,14 @@ msgstr "&Confirmer la fermeture de plusieurs fenêtres"
 
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "Préserver l'horodatage lors de comparaison de fichier"
+msgstr "Préserver l'horodatage dans la comparaison de fichier"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Afficher la boîte de dialogue \"sélectionner les fichiers ou dossiers\" au démarrage"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Fermez la boîte de dialogue \"sélectionner les fichiers ou dossiers\" en cliquant sur le bouton Comparer"
+msgstr "Fermer la boîte de dialogue \"sélectionner les fichiers ou dossiers\" en cliquant sur le bouton Comparer"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
@@ -1434,7 +1435,7 @@ msgstr "Auto-&rechargement des fichiers modifiés :"
 
 #, c-format
 msgid "Language:"
-msgstr "Langage :"
+msgstr "Langue :"
 
 #, c-format
 msgid "Find"
@@ -1442,7 +1443,7 @@ msgstr "Rechercher"
 
 #, c-format
 msgid "Fi&nd what:"
-msgstr "&Rechercher :"
+msgstr "&Que chercher :"
 
 #, c-format
 msgid "Match &whole word only"
@@ -1458,7 +1459,7 @@ msgstr "E&xpressions régulières"
 
 #, c-format
 msgid "D&on't wrap end of file"
-msgstr "&Ne pas boucler à la fin du fichier"
+msgstr "Ne pas boucler à la fin du fichier"
 
 #, c-format
 msgid "&Don't close this dialog box"
@@ -1486,7 +1487,7 @@ msgstr "Rem&placer par :"
 
 #, c-format
 msgid "&Don't wrap end of file"
-msgstr "&Ne pas boucler à la fin du fichier"
+msgstr "&Ne pas boucler en fin du fichier"
 
 #, c-format
 msgid "Replace in"
@@ -1517,7 +1518,7 @@ msgstr "Marqueurs"
 
 #, c-format
 msgid "Enable &Markers"
-msgstr "Activer &Marqueurs"
+msgstr "Activer les &Marqueurs"
 
 #, c-format
 msgid "New"
@@ -1574,7 +1575,7 @@ msgstr "Schéma de couleur :"
 
 #, c-format
 msgid "Background"
-msgstr "Fond"
+msgstr "Arrière plan"
 
 #, c-format
 msgid "Deleted"
@@ -1755,10 +1756,10 @@ msgid "<<"
 msgstr "<<"
 
 msgid "Select Plugin"
-msgstr "Sélectionner le plug-in"
+msgstr "Sélectionner le plugin"
 
 msgid "Plugin &Name:"
-msgstr "&Nom du plug-in :"
+msgstr "&Nom du plugin :"
 
 #, c-format
 msgid "Extensions list:"
@@ -1772,13 +1773,13 @@ msgid "Default arguments:"
 msgstr "Arguments par défaut :"
 
 msgid "Display all plugins, don't check the extension"
-msgstr "Afficher tous les plug-ins, sans vérification de l'extension"
+msgstr "Afficher tous les plugins, sans vérification de l'extension"
 
 msgid "&Open files in the same window type after unpacking"
 msgstr "&Ouvrir les fichiers dans le même type de fenêtre après décompression"
 
 msgid "&Plugin Pipeline:"
-msgstr "&Plug-in Chaîne de traitement :"
+msgstr "&Plugin Chaîne de traitement :"
 
 msgid "&Add pipe"
 msgstr "&Ajouter un traitement"
@@ -1795,17 +1796,16 @@ msgstr "Pause"
 msgid "Continue"
 msgstr "Continuer"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Comparaison des éléments..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Éléments comparés :"
+msgid "&Number of CPU cores to use:"
+msgstr "&Nombre de cœurs de processeur à utiliser :"
 
 #, c-format
 msgid "Items total:"
 msgstr "Éléments au total :"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Éléments comparés :"
 
 msgid "Go to"
 msgstr "Atteindre"
@@ -1859,7 +1859,7 @@ msgid "Align &similar lines"
 msgstr "Aligner les lignes &similaires"
 
 msgid "Diff &algorithm (Experimental):"
-msgstr "Diff &algorithme (expérimental) :"
+msgstr "&Algorithme Différentiel (expérimental) :"
 
 msgid "Enable indent &heuristic"
 msgstr "Activer l'indentation &heuristique"
@@ -1957,7 +1957,7 @@ msgstr "Enregister les fichiers modifiés ?"
 
 #, c-format
 msgid "Left side file"
-msgstr "Fichier du côté Gauche"
+msgstr "Fichier du panneau Gauche"
 
 #, c-format
 msgid "&Save changes"
@@ -1969,7 +1969,7 @@ msgstr "&Ignorer les changements"
 
 #, c-format
 msgid "Middle side file"
-msgstr "Fichier du Milieu"
+msgstr "Fichier du panneau Milieu"
 
 #, c-format
 msgid "Sa&ve changes"
@@ -1981,7 +1981,7 @@ msgstr "Annule&r les modifications"
 
 #, c-format
 msgid "Right side file"
-msgstr "Fichier du côté Droit"
+msgstr "Fichier du panneau Droite"
 
 #, c-format
 msgid "S&ave changes"
@@ -2071,7 +2071,7 @@ msgstr "Opérateurs :"
 
 #, c-format
 msgid "Strings:"
-msgstr "Chaines :"
+msgstr "Chaînes :"
 
 #, c-format
 msgid "Preprocessor:"
@@ -2340,7 +2340,7 @@ msgid "Backup filename:"
 msgstr "&Nom du fichier d'archive :"
 
 msgid "&Append .bak extension"
-msgstr "Ajouter une &extension .bak"
+msgstr "Ajouter une &extension '.bak'"
 
 #, c-format
 msgid "A&ppend timestamp"
@@ -2376,20 +2376,20 @@ msgstr "Non"
 
 #, c-format
 msgid "Plugins"
-msgstr "Plug-ins"
+msgstr "Plugins"
 
 #, c-format
 msgid "&Enable plugins"
-msgstr "&Activer les plug-ins"
+msgstr "&Activer les plugins"
 
 msgid "File filters:"
 msgstr "Filtres de fichier :"
 
 msgid "&Plugin arguments:"
-msgstr "&Arguments du plug-in :"
+msgstr "&Arguments du plugin :"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "Activer la décompression/pré-comparaison automatique pour le plug-in"
+msgstr "Activer la décompression/pré-comparaison automatique pour le plugin"
 
 #, c-format
 msgid "Shell Integration"
@@ -2408,7 +2408,7 @@ msgid "E&nable advanced menu"
 msgstr "&Activer le menu avancé"
 
 msgid "Enable &Compare As menu"
-msgstr "Activer le menu &Comparer comme"
+msgstr "Afficher '&Comparer' comme un menu"
 
 #, c-format
 msgid "&Register shell extension"
@@ -2466,9 +2466,6 @@ msgstr "Seuil de passage en comparaison &rapide (Mo) :"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Seuil de passage à la comparaison &binaire (Mo) :"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Nombre de cœurs de processeur à utiliser :"
-
 msgid "File patterns:"
 msgstr "Modèles de fichiers :"
 
@@ -2513,7 +2510,7 @@ msgid "OCR result:"
 msgstr "Résultat OCR :"
 
 msgid "Webpage"
-msgstr "Page web"
+msgstr "Page Web"
 
 msgid "URL pattern to &include (Regular expression):"
 msgstr "Modèle d'URL à &inclure (Expression régulière) :"
@@ -2625,7 +2622,7 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FileCompare\n"
-"WinMerge File Compare"
+"Comparaison de Fichier WinMerge"
 
 #, c-format
 msgid ""
@@ -2643,7 +2640,7 @@ msgstr ""
 "\n"
 "\n"
 "WinMerge.FolderCompare\n"
-"WinMerge Folder Compare"
+"Comparaison de Dossier WinMerge"
 
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
@@ -2698,7 +2695,7 @@ msgid "Don't display this &message again."
 msgstr "Ne plus afficher ce &message."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr "Pour rendre cette boîte de message à nouveau visible, appuyez sur le bouton Réinitialiser sur la page Boîtes de message de la boîte de dialogue Options."
+msgstr "Pour rendre cette boîte de message à nouveau visible, appuyer sur le bouton Réinitialiser sur la page Boîtes de message de la boîte de dialogue Options."
 
 #, c-format
 msgid "Syntax"
@@ -2882,7 +2879,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Ne peut copier le fichier modèle de filtre au dossier de filtre:\n"
+"Copie du fichier modèle de filtre dans le dossier de filtre impossible :\n"
 "%1\n"
 "\n"
 "Veuillez vous assurer de l'existence du dossier et des droits d'écriture."
@@ -2893,7 +2890,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"Le dossier de filtre de l'utilisateur est indéfini!\n"
+"Le dossier de filtre de l'utilisateur est indéfini !\n"
 "\n"
 "Veuillez le définir sous Préférences/Système."
 
@@ -2938,7 +2935,7 @@ msgid ""
 msgstr ""
 "Les filtres ont été mis à jour. Voulez-vous actualiser la comparaison de tous les dossiers ?\n"
 "\n"
-"Si vous ne voulez pas actualiser la comparaison, sélectionnez 'Non' et actualiser plus tard."
+"Pour ne pas actualiser la comparaison, sélectionner 'Non' et actualiser plus tard."
 
 #, c-format
 msgid "Folder Comparison Results"
@@ -3019,8 +3016,16 @@ msgstr "Élément %1 de %2"
 msgid "Items: %1"
 msgstr "Élément: %1"
 
+#, c-format
+msgid "Comparing items..."
+msgstr "Comparaison des éléments..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
+
 msgid "Select two existing folders or files to compare."
-msgstr "Sélectionner deux dossiers ou fichiers existants à comparer."
+msgstr "Sélectionner : 2 Fichiers - ou : 2 Dossiers - existants à comparer."
 
 #, c-format
 msgid "Folder Selection"
@@ -3028,23 +3033,23 @@ msgstr "Sélection de dossier"
 
 #, c-format
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr "Sélectionnez deux (ou trois) dossiers ou deux (ou trois) fichiers à comparer."
+msgstr "Sélectionner : 2 (ou 3) Fichiers - ou : 2 (ou 3) Dossiers - à comparer."
 
 #, c-format
 msgid "Left (1st) path is invalid!"
-msgstr "Le chemin de Gauche (1er) est invalide !"
+msgstr "Le chemin Gauche (1er) est invalide !"
 
 #, c-format
 msgid "Middle (2nd) path is invalid!"
-msgstr "Le chemin du Milieu (2ème) est invalide !"
+msgstr "Le chemin Milieu (2ème) est invalide !"
 
 #, c-format
 msgid "Right (2nd) path is invalid!"
-msgstr "Le chemin de Droite (2ème) est invalide !"
+msgstr "Le chemin Droite (2ème) est invalide !"
 
 #, c-format
 msgid "Right (3rd) path is invalid!"
-msgstr "Le chemin de Droite (3ème) est invalide !"
+msgstr "Le chemin Droite (3ème) est invalide !"
 
 #, c-format
 msgid "Both paths are invalid!"
@@ -3052,15 +3057,15 @@ msgstr "Les deux chemins sont invalides !"
 
 #, c-format
 msgid "Left (1st) and Middle (2nd) paths are invalid!"
-msgstr "Les chemins de Gauche (1er) et du Milieu (2ème) sont invalides !"
+msgstr "Les chemins Gauche (1er) et Milieu (2ème) sont invalides !"
 
 #, c-format
 msgid "Left (1st) and Right (3rd) paths are invalid!"
-msgstr "Les chemins de Gauche (1er) et de Droite (3ème) sont invalides !"
+msgstr "Les chemins Gauche (1er) et Droite (3ème) sont invalides !"
 
 #, c-format
 msgid "Middle (2nd) and Right (3rd) paths are invalid!"
-msgstr "Le chemin du Milieu (2ème) et de Droite (3ème) sont invalides !"
+msgstr "Les chemins Milieu (2ème) et Droite (3ème) sont invalides !"
 
 #, c-format
 msgid "All paths are invalid!"
@@ -3172,7 +3177,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Le plug-in '%2' ne peut compresser le fichier modifié de Gauche dans '%1'.\n"
+"Le plugin '%2' ne peut compresser le fichier modifié de Gauche dans '%1'.\n"
 "\n"
 "Le fichier d'origine ne sera pas modifié.\n"
 "\n"
@@ -3186,7 +3191,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Le plug-in '%2' ne peut compresser le fichier modifié du Milieu dans '%1'.\n"
+"Le plugin '%2' ne peut compresser le fichier modifié du Milieu dans '%1'.\n"
 "\n"
 "Le fichier d'origine ne sera pas modifié.\n"
 "\n"
@@ -3200,7 +3205,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Le plug-in '%2' ne peut compresser le fichier modifié de Droite dans '%1'.\n"
+"Le plugin '%2' ne peut compresser le fichier modifié de Droite dans '%1'.\n"
 "\n"
 "Le fichier d'origine ne sera pas modifié.\n"
 "\n"
@@ -3299,7 +3304,7 @@ msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
 msgstr "Copier vers le Milieu et Avancer\tCtrl+Alt+Gauche"
 
 msgid "Copy All to Middle"
-msgstr "Tout copier au Milieu"
+msgstr "Tout copier vers le Milieu"
 
 #, c-format
 msgid "Right to Left (%1)"
@@ -3371,15 +3376,15 @@ msgstr "Tout (%1)"
 
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Côté Gauche - choisir dossier de destination :"
+msgstr "Panneau de Gauche - choisir dossier de destination :"
 
 #, c-format
 msgid "Middle side - select destination folder:"
-msgstr "Milieu - choisir le dossier de destination :"
+msgstr "Panneau du Milieu - choisir le dossier de destination :"
 
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Côté Droite - choisir dossier de destination :"
+msgstr "Panneau de Droite - choisir dossier de destination :"
 
 #, c-format
 msgid "(%1 Files Affected)"
@@ -3433,7 +3438,7 @@ msgstr "Êtes-vous sûr de vouloir déplacer %d éléments ?"
 
 #, c-format
 msgid "Confirm Move"
-msgstr "Confirmez le déplacement"
+msgstr "Confirmer le déplacement"
 
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
@@ -3574,7 +3579,7 @@ msgid "Middle Encoding"
 msgstr "Encodage Milieu"
 
 msgid "Ignored Diff"
-msgstr "Diff ignorées"
+msgstr "Différences ignorées"
 
 msgctxt "DirView|ColumnHeader"
 msgid "Binary"
@@ -3722,15 +3727,15 @@ msgstr "Les dossiers sont différents"
 
 #, c-format
 msgid "Left Only"
-msgstr "Juste à Gauche"
+msgstr "À Gauche uniquement"
 
 #, c-format
 msgid "Right Only"
-msgstr "Juste à Droite"
+msgstr "À Droite uniquement"
 
 #, c-format
 msgid "Middle Only"
-msgstr "Seulement Milieu"
+msgstr "Au Milieu uniquement"
 
 #, c-format
 msgid "No item in left"
@@ -3914,10 +3919,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Indique un astérisque (*) si le fichier est binaire."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "Nom de plug-in de décompression ou chaîne de traitement."
+msgstr "Nom de plugin de décompression ou chaîne de traitement."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Nom de plug-in de pré-comparaison ou chaîne de traitement."
+msgstr "Nom de plugin de pré-comparaison ou chaîne de traitement."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3989,7 +3994,7 @@ msgstr ""
 "\n"
 "Voulez-vous considérer l'égalité des caractères de fin de ligne pour cette comparaison ?\n"
 "\n"
-"Notez bien: Si vous voulez toujours considérer une telle égalité, définissez l'option 'Ignorer les différences de fin de ligne (Windows/Unix/Mac)' dans la fenêtre des Préférences sous l'onglet Comparaison (accessible avec le menu Edition/Préférences)."
+"Note : Pour considérer de façon permanente une telle égalité, définir l'option 'Ignorer les différences de fin de ligne (Windows/Unix/Mac)' dans la fenêtre des Préférences sous l'onglet Comparaison (accessible avec le menu Edition/Préférences)."
 
 #, c-format
 msgid "The selected folder is invalid."
@@ -4081,7 +4086,7 @@ msgid "Cannot find string \"%s\"."
 msgstr "Texte non trouvé \"%s\"."
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
-msgstr "Vous entrez maintenant en mode fusion. Si vous souhaitez désactiver le mode fusion, appuyez sur la touche F9."
+msgstr "Le mode fusion est maintenant actif. Pour le désactiver, appuyer sur la touche F9."
 
 #, c-format
 msgid ""
@@ -4150,7 +4155,7 @@ msgid "The specified output path is not an absolute path: %1"
 msgstr "Le chemin spécifié n'est pas un chemin absolu : %1"
 
 msgid "Specify an output file."
-msgstr "Indiquez un fichier de sortie."
+msgstr "Indiquer un fichier de sortie."
 
 #, c-format
 msgid "Cannot create a patch file from binary files."
@@ -4270,7 +4275,7 @@ msgid ""
 "Previous Difference (Alt+Up)"
 msgstr ""
 "\n"
-"Différence précédente (Alt+Haut)"
+"Différence Précédente (Alt+Haut)"
 
 #, c-format
 msgid ""
@@ -4278,7 +4283,7 @@ msgid ""
 "Next Difference (Alt+Down)"
 msgstr ""
 "\n"
-"Différence suivante (Alt+Bas)"
+"Différence Suivante (Alt+Bas)"
 
 #, c-format
 msgid ""
@@ -4286,7 +4291,7 @@ msgid ""
 "Previous Conflict (Alt+Shift+Up)"
 msgstr ""
 "\n"
-"Conflit précédent (Alt+Maj+Haut)"
+"Conflit Précédent (Alt+Maj+Haut)"
 
 #, c-format
 msgid ""
@@ -4294,7 +4299,7 @@ msgid ""
 "Next Conflict (Alt+Shift+Down)"
 msgstr ""
 "\n"
-"Prochain conflit (Alt+Maj+Bas)"
+"Conflit Suivant (Alt+Maj+Bas)"
 
 #, c-format
 msgid ""
@@ -4302,7 +4307,7 @@ msgid ""
 "First Difference (Alt+Home)"
 msgstr ""
 "\n"
-"Première différence (Alt+Début)"
+"Première Différence (Alt+Début)"
 
 #, c-format
 msgid ""
@@ -4310,7 +4315,7 @@ msgid ""
 "Current Difference (Alt+Enter)"
 msgstr ""
 "\n"
-"Différence actuelle (Alt+Entrée)"
+"Différence Actuelle (Alt+Entrée)"
 
 #, c-format
 msgid ""
@@ -4318,7 +4323,7 @@ msgid ""
 "Last Difference (Alt+End)"
 msgstr ""
 "\n"
-"Dernière différence (Alt+Fin)"
+"Dernière Différence (Alt+Fin)"
 
 msgid ""
 "\n"
@@ -4339,14 +4344,14 @@ msgid ""
 "Copy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"Copier à Droite et avancer (Ctrl+Alt+Droite)"
+"Copier à Droite et Avancer (Ctrl+Alt+Droite)"
 
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"Copier à Gauche et avancer (Ctrl+Alt+Gauche)"
+"Copier à Gauche et Avancer (Ctrl+Alt+Gauche)"
 
 msgid ""
 "\n"
@@ -4368,7 +4373,7 @@ msgid ""
 "Auto Merge (Ctrl+Alt+M)"
 msgstr ""
 "\n"
-"Merge automatique (Ctrl+Alt+M)"
+"Fusion automatique (Ctrl+Alt+M)"
 
 msgid ""
 "\n"
@@ -4407,10 +4412,10 @@ msgstr "Pas de pré-comparaison (normal)"
 
 #, c-format
 msgid "Suggested plugins"
-msgstr "Plug-ins suggérés"
+msgstr "Plugins suggérés"
 
 msgid "All plugins"
-msgstr "Tous les plug-ins"
+msgstr "Tous les plugins"
 
 #, c-format
 msgid "Private Build: %1"
@@ -4433,11 +4438,11 @@ msgstr "Impossible de télécharger les dernières informations de version"
 
 #, c-format
 msgid "Plugin Settings"
-msgstr "Paramètres des plug-ins"
+msgstr "Paramètres des plugins"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH non trouvé - les scripts .sct sont désactivés"
+msgstr "WSH non trouvé - les scripts '.sct' sont désactivés"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4480,11 +4485,11 @@ msgstr "Shell"
 
 #, c-format
 msgid "Close &Left Tabs"
-msgstr "Fermer ong&let Gauche"
+msgstr "Fermer l'ong&let de Gauche"
 
 #, c-format
 msgid "Close R&ight Tabs"
-msgstr "Fermer onglet Dro&ite"
+msgstr "Fermer l'onglet de Dro&ite"
 
 #, c-format
 msgid "Close &Other Tabs"
@@ -4495,10 +4500,10 @@ msgid "Enable &Auto Max Width"
 msgstr "Activer largeur &auto max"
 
 msgid "We&bpage"
-msgstr "Page &web"
+msgstr "Page &Web"
 
 msgid "W&rap Text"
-msgstr "&Retour à la ligne"
+msgstr "Habillage de texte"
 
 msgid "Frhed is not installed."
 msgstr "Frhed n'est pas installé."
@@ -4517,30 +4522,30 @@ msgid ""
 "$file: Path name of the current file\n"
 "$linenum: Line number of the current cursor position"
 msgstr ""
-"Vous pouvez spécifier les paramètres suivants dans le chemin:\n"
+"Vous pouvez spécifier les paramètres suivants dans le chemin :\n"
 "$file : Nom du chemin du fichier actuel\n"
 "$linenum : Numéro de ligne de la position actuelle du curseur"
 
 msgid "default"
-msgstr "défaut"
+msgstr "Par défaut"
 
 msgid "minimal"
-msgstr "minimal"
+msgstr "Minimal"
 
 msgid "patience"
-msgstr "patience"
+msgstr "Patience"
 
 msgid "histogram"
-msgstr "histograme"
+msgstr "Histogramme"
 
 msgid "none"
-msgstr "aucun"
+msgstr "Aucun"
 
 msgid "GDI"
 msgstr "GDI"
 
 msgid "DirectWrite Default"
-msgstr "DirectWrite Défaut"
+msgstr "DirectWrite Par défaut"
 
 msgid "DirectWrite Aliased"
 msgstr "DirectWrite Aliasé"
@@ -4568,7 +4573,7 @@ msgstr "Fermer la fenêtre principale s'il n'y a qu'une seule fenêtre enfant MD
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
-msgstr "Diff"
+msgstr "Différence"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Highlight"
@@ -4669,7 +4674,7 @@ msgid "<Edit here>"
 msgstr "<Modifier ici>"
 
 msgid "No differences to select found"
-msgstr "Aucune différence à sélectionner trouvée"
+msgstr "Aucune 'différence trouvée' à sélectionner"
 
 msgid "No differences found to add as substitution filter"
 msgstr "Aucune différence trouvée à ajouter comme filtre de substitution"
@@ -4716,30 +4721,30 @@ msgstr "&Autres"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nom de plug-in manquant dans le plug-in de chaîne de traitement : %1"
+msgstr "Nom de plugin manquant dans le plugin de chaîne de traitement : %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Guillemet manquant dans la chaîne de traitement du plug-in : %1"
+msgstr "Guillemet manquant dans la chaîne de traitement du plugin : %1"
 
 msgid "Specify plugin arguments"
-msgstr "Spécifier les arguments du plug-in"
+msgstr "Spécifier les arguments du plugin"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr "Plug-in introuvable ou non valide : %1"
+msgstr "Plugin introuvable ou non valide : %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr "'%1' n'est pas un plug-in de décompression"
+msgstr "'%1' n'est pas un plugin de décompression"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr "'%1' n'est pas le plug-in préféré"
+msgstr "'%1' n'est pas le plugin préféré"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr "Une erreur s'est produite lors de la prédifférence du fichier '%1' avec le plug-in '%2'. La prédifférence n'est plus appliquée."
+msgstr "Une erreur s'est produite lors de la prédifférence du fichier '%1' avec le plugin '%2'. La prédifférence n'est plus appliquée."
 
 msgid "Filter applied"
 msgstr "Filtre appliqué"
@@ -4753,7 +4758,7 @@ msgid ""
 "To enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr ""
 "L'historique du presse-papiers est désactivé.\r\n"
-"Pour activer l'historique du presse-papiers, appuyez sur la touche de logo Windows + V, puis cliquez sur le bouton Activer."
+"Pour activer l'historique du presse-papiers, appuyer sur la touche de logo Windows + V, puis cliquer sur le bouton Activer."
 
 msgid "This system does not support clipboard history."
 msgstr "Ce système ne prend pas en charge l'historique du presse-papiers."
@@ -4777,10 +4782,10 @@ msgid "New Image Compare"
 msgstr "Nouvelle comparaison d'images"
 
 msgid "New Webpage Compare"
-msgstr "Comparaison de nouvelles pages Web"
+msgstr "Nouvelle comparaison de pages Web"
 
 msgid "Clipboard Compare"
-msgstr "Comparer Presse-papiers"
+msgstr "Comparer le presse-papiers"
 
 msgid "Prettification"
 msgstr "Embellissement"
@@ -4867,7 +4872,7 @@ msgid "Ignore TSV Fields"
 msgstr "Ignorer les champs TSV"
 
 msgid "Ignore Leading Line Numbers"
-msgstr "Ignorer les numéros en début de ligne"
+msgstr "Ignorer la numérotation en début de ligne"
 
 msgid "Apply Prediff Substitution Filters"
 msgstr "Appliquer les filtres de substitution pour la pré-comparaison"
@@ -4924,7 +4929,7 @@ msgid "Make characters lowercase"
 msgstr "Mettre les caractères en minuscules"
 
 msgid "Remove duplicate lines"
-msgstr "Remove Duplicate Lines"
+msgstr "Supprimer les lignes en double"
 
 msgid "Count duplicate lines"
 msgstr "Compter les lignes en double"
@@ -5131,7 +5136,7 @@ msgstr ""
 "Arguments : options de ligne de commande transmises à tika-app.jar."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Appliquer le correctif à l'aide de GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Afficher le contenu textuel des fichiers MS Excel"
@@ -5146,16 +5151,16 @@ msgid "Display the text content of MS Word files"
 msgstr "Afficher le contenu textuel des fichiers MS Word"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr "Ignorer certaines colonnes - liste des colonnes ignorées depuis le nom ou argument du plug-in"
+msgstr "Ignorer certaines colonnes - liste des colonnes ignorées depuis le nom ou l'argument du plugin"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "Le plug-in ignore les commentaires (//... et /* ... */) dans les fichiers C, C++, PHP et JavaScript."
+msgstr "Le plugin ignore les commentaires (//... et /* ... */) dans les fichiers C, C++, PHP et JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr "Ignorer certains champs - liste des champs ignorés depuis le nom ou argument du plug-in"
+msgstr "Ignorer certains champs - liste des champs ignorés depuis le nom ou l'argument du plugin"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr "Ce plug-in ignore les premiers numéros de ligne dans les fichiers texte (par exemple, les fichiers NC et BASIC)."
+msgstr "Ce plugin ignore la numérotation en début de ligne dans les fichiers texte (par exemple, les fichiers NC et BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr "Filtre de pré-comparaison de ligne"
@@ -5178,13 +5183,13 @@ msgstr ""
 "Arguments : options de ligne de commande transmises à la commande reg.exe."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr "Options du plug-in CompareMSExcelFiles.sct WinMerge"
+msgstr "Options du plugin WinMerge CompareMSExcelFiles.sct"
 
 msgid "Extract workbook data to multiple files"
-msgstr "Extraire les données du classeur dans plusieurs fichiers"
+msgstr "Extraire les données du classeur vers plusieurs fichiers"
 
 msgid "Update external references(links)"
-msgstr "Mettre à jour les références externes (liens)"
+msgstr "Mise à jour des références externes (liens)"
 
 msgid "Compare document properties"
 msgstr "Comparer les propriétés du document"
@@ -5193,43 +5198,43 @@ msgid "Compare names"
 msgstr "Comparer les noms"
 
 msgid "Compare cell values"
-msgstr "Comparer les valeurs des cellules"
+msgstr "Comparer les valeurs de cellule"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr "Comparer les feuilles de calcul en tant qu'image (très lent)"
+msgstr "Comparer les feuilles de calcul comme des images (très lent)"
 
 msgid " - Image split size: "
-msgstr " - Taille de fractionnement d'image : "
+msgstr "- Taille de fractionnement de l'image : "
 
 msgid "Compare worksheets as HTML"
-msgstr "Comparer des feuilles de calcul au format HTML"
+msgstr "Comparer les feuilles de calcul en HTML"
 
 msgid "Compare formulas"
 msgstr "Comparer les formules"
 
 msgid "Compare texts in shapes"
-msgstr "Comparer des textes dans des formes"
+msgstr "Comparer les textes inclus dans les formes"
 
 msgid "Compare headers and footers"
-msgstr "Comparer les en-têtes et pieds de page"
+msgstr "Comparer les en-têtes et les pieds de page"
 
 msgid ""
 "Cannot get Macros.\r\n"
 "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
 "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
-"Impossible d'obtenir des macros.\r\n"
-"    Pour permettre à WinMerge de comparer les macros, utilisez MS Office pour modifier les paramètres de la sécurité des macros pour l'application en cours.\r\n"
-"    La fonctionnalité d'accès de confiance au projet Visual Basic doit être activée pour utiliser cette fonctionnalité dans WinMerge.\r\n"
+"Impossible d'obtenir les macros.\r\n"
+"    Pour autoriser WinMerge à comparer les macros, utiliser MS Office pour modifier les paramètres de la sécurité des macros pour l'application actuelle.\r\n"
+"    La fonction d'accès au projet Visual Basic doit être activée pour utiliser cette fonctionnalité dans WinMerge.\r\n"
 
 msgid "Compare VBA macros"
 msgstr "Comparer les macros VBA"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr "CompareMSWordFiles.sct Options du plug-in WinMerge"
+msgstr "Options du plugin WinMerge de CompareMSWordFiles.sct"
 
 msgid "Extract document data to multiple files"
-msgstr "Extraire les données du document dans plusieurs fichiers"
+msgstr "Extraire les données du document vers plusieurs fichiers"
 
 msgid "Compare bookmarks"
 msgstr "Comparer les signets"
@@ -5238,31 +5243,31 @@ msgid "Compare text contents of documents"
 msgstr "Comparer le contenu textuel des documents"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr "Comparer les documents en tant que fichier HTML (très lent)"
+msgstr "Comparer les documents comme des fichiers HTML (très lent)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr "Options du plug-in CompareMSPowerPointFiles.sct WinMerge"
+msgstr "Options du plugin WinMerge de CompareMSPowerPointFiles.sct"
 
 msgid "Extract slide data to multiple files"
-msgstr "Extraire les données de la diapositive dans plusieurs fichiers"
+msgstr "Extraire les données de diapositive dans plusieurs fichiers"
 
 msgid "Compare slides as image (very slow)"
-msgstr "Comparer les diapositives en tant qu'image (très lent)"
+msgstr "Comparer les diapositives comme des image (très lent)"
 
 msgid "Compare texts in notes page"
-msgstr "Comparer les textes dans la page des notes"
+msgstr "Comparer des textes dans la page de notes"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr "Options du plug-in CompareMSVisioFiles.sct WinMerge"
+msgstr "Options du plugin WinMerge de CompareMSVisioFiles.sct"
 
 msgid "Extract page data to multiple files"
-msgstr "Extraire les données de la page dans plusieurs fichiers"
+msgstr "Extraire les données de la page vers plusieurs fichiers"
 
 msgid "Compare pages as image (very slow)"
-msgstr "Comparer les pages en tant qu'image (très lent)"
+msgstr "Comparer les pages comme des images (très lent)"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr "Options du plug-in PrediffLineFilter.sct WinMerge"
+msgstr "Options du plugin WinMerge PrediffLineFilter.sct"
 
 msgid "Delete"
 msgstr "Supprimer"
@@ -5277,7 +5282,7 @@ msgid "Use RegExp"
 msgstr "Utiliser RegExp"
 
 msgid "Find what"
-msgstr "Trouver quoi"
+msgstr "Que chercher"
 
 msgid "Replace with"
 msgstr "Remplacer par"
@@ -5289,27 +5294,27 @@ msgid ""
 "Column Ranges To Ignore:\n"
 "e.g.)  3,10-20,32-33\n"
 msgstr ""
-"Plages de colonnes à ignorer :\n"
-"ex.)  3,10-20,32-33\n"
+"Plages de colonnes à ignorer :\n"
+"e.g.) 3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr "Entrez le nom du fichier auquel le correctif '%1' sera appliqué"
+msgstr "Entrer le nom du fichier auquel le correctif '%1' sera appliqué"
 
 #, c-format
 msgid "File '%1' does not exist"
 msgstr "Le fichier '%1' n'existe pas"
 
 msgid "Enter the command line arguments for patch command"
-msgstr "Saisir les arguments de la ligne de commande pour la commande de patch"
+msgstr "Entrer les arguments de la ligne de commande pour le correctif"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr "Entrez le nom du dossier auquel le correctif '%1' sera appliqué"
+msgstr "Entrer le nom du dossier auquel le correctif '%1' sera appliqué"
 
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr "Le dossier '%1' n'existe pas"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr "Ne spécifiez pas l'option de ligne de commande '-p0' pour le fichier de correctif qui inclut des chemins absolus"
+msgstr "Ne pas spécifier l'option de ligne de commande '-p0' pour le fichier de correctif qui inclut des chemins absolus\""

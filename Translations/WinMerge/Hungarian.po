@@ -1790,17 +1790,16 @@ msgstr "Szünet"
 msgid "Continue"
 msgstr "Folytatás"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Elemek összehasonlítása..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Összehasonlított elemek:"
+msgid "&Number of CPU cores to use:"
+msgstr "Használandó CPU magok száma:"
 
 #, c-format
 msgid "Items total:"
 msgstr "Összes elem:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Összehasonlított elemek:"
 
 msgid "Go to"
 msgstr "Ugrás"
@@ -2461,9 +2460,6 @@ msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Használandó CPU magok száma:"
-
 msgid "File patterns:"
 msgstr "Fájlfajták:"
 
@@ -3005,6 +3001,14 @@ msgstr "elem: %1 / %2"
 #, c-format
 msgid "Items: %1"
 msgstr "%1 elem"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Elemek összehasonlítása..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Válassz ki két összehasonlítandó fájlt vagy könyvtárat."

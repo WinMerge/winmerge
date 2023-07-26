@@ -52,6 +52,7 @@ SlovakLanguage=斯洛伐克语
 SlovenianLanguage=斯洛文尼亚语
 SpanishLanguage=西班牙语
 SwedishLanguage=瑞典语
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=土耳其语
 UkrainianLanguage=乌克兰语
 

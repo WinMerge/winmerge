@@ -1771,17 +1771,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Упоређивање ставки..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Поређење ставки:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Укупно ставки:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Поређење ставки:"
 
 msgid "Go to"
 msgstr "Иди на"
@@ -2436,9 +2435,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2957,6 +2953,14 @@ msgstr "Ставке %1 од %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Ставке: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Упоређивање ставки..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Одабери две постојеће датотеке или фасцикле за поређење."

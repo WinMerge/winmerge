@@ -52,6 +52,7 @@ SlovakLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓáæÇ˜í
 SlovenianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓáÇæí  
 SpanishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÇÓÇäíÇíí  
 SwedishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÓæÆÏí  
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå ÊÑ˜í  
 UkrainianLanguage= İåÑÓÊåÇí ÇäÊÎÇÈ æ ÌÚÈå åÇí ãÍÇæÑå Ç˜ÑÇíäí  
 

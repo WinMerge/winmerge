@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2023-06-09 21:31+0100\n"
+"PO-Revision-Date: 2023-07-04 11:00+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1463,14 +1463,14 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Continuar"
 
-msgid "Comparing items..."
-msgstr "A comparar itens..."
-
-msgid "Items compared:"
-msgstr "Itens comparados:"
+msgid "&Number of CPU cores to use:"
+msgstr "&Número de núcleos de CPU a utilizar:"
 
 msgid "Items total:"
 msgstr "Total de itens:"
+
+msgid "Items compared:"
+msgstr "Itens comparados:"
 
 msgid "Go to"
 msgstr "Ir para"
@@ -1999,9 +1999,6 @@ msgstr "Limite para trocar para comparação &rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Número de núcleos de CPU a utilizar:"
-
 msgid "File patterns:"
 msgstr "Padrões de ficheiros:"
 
@@ -2483,6 +2480,13 @@ msgstr "Item %1 de %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Itens: %1"
+
+msgid "Comparing items..."
+msgstr "A comparar itens..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecione duas pastas existentes ou ficheiros para comparar."
@@ -4425,7 +4429,7 @@ msgstr ""
 "Argumentos: as opções de linha de comandos passadas para o tika-app.jar."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Aplicar correção usando o GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Mostra o conteúdo de texto dos ficheiros MS Excel"

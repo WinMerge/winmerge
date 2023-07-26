@@ -1467,14 +1467,14 @@ msgstr "Paus"
 msgid "Continue"
 msgstr "Fortsätt"
 
-msgid "Comparing items..."
-msgstr "Jämför objekt..."
-
-msgid "Items compared:"
-msgstr "Jämförda objekt:"
+msgid "&Number of CPU cores to use:"
+msgstr "Antal CPU-kärnor att använda:"
 
 msgid "Items total:"
 msgstr "Objekt totalt:"
+
+msgid "Items compared:"
+msgstr "Jämförda objekt:"
 
 msgid "Go to"
 msgstr "Gå till"
@@ -2005,9 +2005,6 @@ msgstr "Tröskelvärde för växling till snabbjämförelse (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Tröskelvärde för växling till binär jämförelse (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Antal CPU-kärnor att använda:"
-
 msgid "File patterns:"
 msgstr "Filnamnsmönster:"
 
@@ -2498,6 +2495,13 @@ msgstr "Förekomst %1 av %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Förekomster: %1"
+
+msgid "Comparing items..."
+msgstr "Jämför objekt..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Välj två befintliga mappar eller filer att jämföra."

@@ -1461,14 +1461,14 @@ msgstr "إيقاف مؤقت"
 msgid "Continue"
 msgstr "استمرار"
 
-msgid "Comparing items..."
-msgstr "يتم مقارنة العناصر..."
-
-msgid "Items compared:"
-msgstr "العناصر التي تمت مقارنتها:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "Items total:"
 msgstr "كل العناصر:"
+
+msgid "Items compared:"
+msgstr "العناصر التي تمت مقارنتها:"
 
 msgid "Go to"
 msgstr "الذهاب إلى"
@@ -1993,9 +1993,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2469,6 +2466,13 @@ msgstr "العنصر %1 من %2"
 #, c-format
 msgid "Items: %1"
 msgstr "العناصر: %1"
+
+msgid "Comparing items..."
+msgstr "يتم مقارنة العناصر..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "اختر ملفين أو مجلدين للمقارنة."

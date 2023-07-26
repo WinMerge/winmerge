@@ -210,6 +210,7 @@ public:
 	void WatchDocuments(IMergeDoc* pMergeDoc);
 	void UnwatchDocuments(IMergeDoc* pMergeDoc);
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
+	static void WaitAndDoMessageLoop(bool& completed, int ms);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;

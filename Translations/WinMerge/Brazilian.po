@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2023-06-18 21:30-0300\n"
+"PO-Revision-Date: 2023-07-25 22:20-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1458,14 +1458,14 @@ msgstr "Pausar"
 msgid "Continue"
 msgstr "Continuar"
 
-msgid "Comparing items..."
-msgstr "Comparando os itens..."
-
-msgid "Items compared:"
-msgstr "Itens comparados:"
+msgid "&Number of CPU cores to use:"
+msgstr "&Número de núcleos de CPU a serem utilizados:"
 
 msgid "Items total:"
 msgstr "Total de itens:"
+
+msgid "Items compared:"
+msgstr "Itens comparados:"
 
 msgid "Go to"
 msgstr "Ir para"
@@ -1984,9 +1984,6 @@ msgstr "Limite para alternar para comparação rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para alternar para comparação binária (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Número de núcleos de CPU a serem utilizados:"
-
 msgid "File patterns:"
 msgstr "Modelos de Arquivos:"
 
@@ -2365,6 +2362,13 @@ msgstr "Item %1 de %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Itens: %1"
+
+msgid "Comparing items..."
+msgstr "Comparando os itens..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[itens/seg]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecione duas pastas ou arquivos existentes pra comparar."

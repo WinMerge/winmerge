@@ -1458,14 +1458,14 @@ msgstr "Pozastaviť"
 msgid "Continue"
 msgstr "Pokračovať"
 
-msgid "Comparing items..."
-msgstr "Porovnávanie položiek..."
-
-msgid "Items compared:"
-msgstr "Porovnané položky:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 msgid "Items total:"
 msgstr "Položky celkom:"
+
+msgid "Items compared:"
+msgstr "Porovnané položky:"
 
 msgid "Go to"
 msgstr "Prejsť na"
@@ -1992,9 +1992,6 @@ msgstr "Prahová hodnota pre prepnutie pre &rýchle porovnanie (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Prahová hodnota pre prepnutie na &binárne porovnanie (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr "Vzory súborov:"
 
@@ -2465,6 +2462,13 @@ msgstr "Položka %1 of %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Položky: %1"
+
+msgid "Comparing items..."
+msgstr "Porovnávanie položiek..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Vyberte dva existujúce priečinky alebo súbory na porovnanie."

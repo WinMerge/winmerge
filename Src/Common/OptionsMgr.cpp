@@ -28,6 +28,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "pch.h"
 #include "OptionsMgr.h"
+#include "UniFile.h"
 #include <algorithm>
 #include <cassert>
 #include <Windows.h>
@@ -684,7 +685,12 @@ int COptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= 
 			strVal = EscapeValue(value.GetString());
 		}
 
+		// https://learn.microsoft.com/en-us/answers/questions/578134/error-in-writeprivateprofilestring-function-when-j
 		bool bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
+				nullptr, filename.c_str());
+		if (!bRet)
+			retVal = COption::OPT_ERR;
+		bRet = !!WritePrivateProfileString(_T("WinMerge"), name.c_str(),
 				strVal.c_str(), filename.c_str());
 		if (!bRet)
 			retVal = COption::OPT_ERR;
@@ -816,23 +822,42 @@ std::pair<String, String> COptionsMgr::SplitName(const String& strName)
 std::map<String, String> COptionsMgr::ReadIniFile(const String& filename, const String& section)
 {
 	std::map<String, String> iniFileKeyValues;
-	std::vector<tchar_t> str(65536);
-	if (GetPrivateProfileSection(section.c_str(), str.data(), static_cast<DWORD>(str.size()), filename.c_str()) > 0)
+	UniMemFile file;
+	if (!file.OpenReadOnly(filename))
+		return {};
+	file.ReadBom();
+	String line, eol;
+	bool lossy = false;
+	bool inTargetSection = false;
+	while (file.ReadString(line, eol, &lossy))
 	{
-		const tchar_t* p = str.data();
-		while (*p)
+		auto itBegin = std::find_if(line.begin(), line.end(), [](int ch) {
+			return !tc::istspace(static_cast<wint_t>(ch)); });
+
+		// Skip empty lines or lines starting with a comment
+		if (itBegin == line.end() || *itBegin == ';')
+			continue;
+
+		if (*itBegin == '[' && line.back() == ']')
 		{
-			const tchar_t* v = tc::tcschr(p, '=');
-			if (!v)
-				break;
-			++v;
-			size_t vlen = tc::tcslen(v);
-			String value{ v, v + vlen };
-			String key{ p, v - 1 };
-			iniFileKeyValues.insert_or_assign(key, UnescapeValue(value));
-			p = v + vlen + 1;
+			// section
+			String currentSection = line.substr(itBegin - line.begin() + 1, line.end() - itBegin - 2);
+			inTargetSection = (currentSection == section);
+			continue;
 		}
+
+		if (!inTargetSection)
+			continue;
+		
+		std::size_t equalsPos = line.find('=');
+		if (equalsPos == String::npos)
+			continue;
+		
+		iniFileKeyValues.insert_or_assign(
+			/* key */line.substr(itBegin - line.begin(), equalsPos - (itBegin - line.begin())),
+			/* value */ UnescapeValue(line.substr(equalsPos + 1)));
 	}
+	file.Close();
 	return iniFileKeyValues;
 }
 

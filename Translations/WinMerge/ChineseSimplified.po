@@ -1463,14 +1463,14 @@ msgstr "暂停"
 msgid "Continue"
 msgstr "继续"
 
-msgid "Comparing items..."
-msgstr "正在比较条目..."
-
-msgid "Items compared:"
-msgstr "已比较条目:"
+msgid "&Number of CPU cores to use:"
+msgstr "可以使用的处理器核心数(&N):"
 
 msgid "Items total:"
 msgstr "条目总计:"
+
+msgid "Items compared:"
+msgstr "已比较条目:"
 
 msgid "Go to"
 msgstr "转到"
@@ -1998,9 +1998,6 @@ msgstr "切换到快速比较的最小值(&Q) (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "切换到二进制比较的最小值(&B) (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "可以使用的处理器核心数(&N):"
-
 msgid "File patterns:"
 msgstr "文件模式:"
 
@@ -2479,6 +2476,13 @@ msgstr "第 %1 项，共 %2 项"
 #, c-format
 msgid "Items: %1"
 msgstr "项目: %1"
+
+msgid "Comparing items..."
+msgstr "正在比较条目..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "选择两个现有的文件或文件夹来进行比较。"

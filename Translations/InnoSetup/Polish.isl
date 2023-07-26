@@ -52,6 +52,7 @@ SlovakLanguage=S³owacki
 SlovenianLanguage=S³oweñski
 SpanishLanguage=Hiszpañski
 SwedishLanguage=Szwedzki
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Turecki
 UkrainianLanguage=Ukraiñski
 

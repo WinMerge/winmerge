@@ -335,7 +335,8 @@ const struct LangFileInfo::rg LangFileInfo::rg[] =
 		LANG_SYRIAC,		"SYRIAC\0"
 	},
 	{
-		LANG_TAMIL,			"TAMIL\0"
+		LANG_TAMIL,			"TAMIL\0"						"INDIA\0"
+															"SRI_LANKA\0"
 	},
 	{
 		LANG_TATAR,			"TATAR\0"

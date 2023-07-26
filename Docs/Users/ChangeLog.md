@@ -1,5 +1,52 @@
 # Change log
 
+## WinMerge 2.16.32 - 2023-07-27
+
+### General
+
+- BugFix: Export/Import settings bug with Substitution Filters (#1925)
+
+### File compare
+
+- BugFix: Save function doesn't work if the path length exceeds 248
+    characters (#1923)
+- BugFix: Redundant confirmation "The selected files are identical" (#1902)
+- Update Python syntax highlighting keyword list. (PR #1938)
+
+### Folder compare
+
+- BugFix: Treeview scrolls to the wrong position. (#1915)
+- Allow changing the number of CPU cores to use while doing folder comparison
+    (PR #1945)
+
+### Webpage compare
+
+- Add support for generating report files (PR #1941)
+
+### Command line
+
+- Compare folders recursively if "Include subfolders" is checked in the
+    Options dialog even if the /r command line option is not specified.
+    (PR #1914)
+
+### Archive support
+
+- Update 7-Zip to 23.01 (PR #1913)
+
+### Translations
+
+- New translation: Tamil (PR #1946)
+- Translation updates:
+  - Brazilian (PR #1948)
+  - Chinese Traditional (PR #1940)
+  - Corsican (PR #1933)
+  - French (PR #1927,#1928)
+  - Korean (PR #1908)
+  - Lithuanian (PR #1949)
+  - Portuguese (PR #1930)
+  - Slovenian
+  - Turkish (#1931)
+
 ## WinMerge 2.16.31 - 2023-06-20
 
 ### General

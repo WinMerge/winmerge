@@ -56,6 +56,7 @@ SlovakLanguage=Slovakiske menyer og dialoger
 SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Spanske menyer og dialoger
 SwedishLanguage=Svenske menyer og dialoger
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Türkçe menyer og dialoger
 UkrainianLanguage=Ukrainian menus and dialogs
 

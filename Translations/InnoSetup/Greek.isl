@@ -52,6 +52,7 @@ SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
 SlovenianLanguage=Σλοβενικά επιλογές και διάλογοι
 SpanishLanguage=Ισπανικά επιλογές και διάλογοι
 SwedishLanguage=Σουηδικά επιλογές και διάλογοι
+TamilLanguage=Tamil menus and dialogs
 TurkishLanguage=Τουρκικά επιλογές και διάλογοι
 UkrainianLanguage=Ουκρανικά επιλογές και διάλογοι
 

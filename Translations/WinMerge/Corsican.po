@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-03-12 19:56+0000\n"
-"PO-Revision-Date: 2023-03-12 14:36+0100\n"
+"POT-Creation-Date: 2023-06-12 00:06+0000\n"
+"PO-Revision-Date: 2023-07-06 17:40+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -1462,14 +1462,14 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Cuntinuà"
 
-msgid "Comparing items..."
-msgstr "Paragone di l’elementi…"
-
-msgid "Items compared:"
-msgstr "Elementi paragunati :"
+msgid "&Number of CPU cores to use:"
+msgstr "&Numeru di cori CPU à impiegà :"
 
 msgid "Items total:"
 msgstr "Tutale di l’elementi :"
+
+msgid "Items compared:"
+msgstr "Elementi paragunati :"
 
 msgid "Go to"
 msgstr "Andà à"
@@ -1795,7 +1795,7 @@ msgid "(Affects)"
 msgstr "(Tocchi)"
 
 msgid "Select Codepage for"
-msgstr "Selezziunà a pagina di codice per l’azzione à fà nant’à u schedariu"
+msgstr "Selezziunà a pagina di codice per l’azzione à effettuà nant’à u schedariu"
 
 msgid "&File Loading:"
 msgstr "Ca&ricamentu :"
@@ -1966,10 +1966,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Disarregistramentu di l’estensione Shell per W&indows 11 o una versione più recente"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Lista d’accurtatoghji"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Squassà tutti l’elementi recenti"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -1995,9 +1995,6 @@ msgstr "Sogliu per passà à u paragone &rapidu (Mo) :"
 
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
-
-msgid "&Number of CPU cores to use:"
-msgstr "&Numeru di cori CPU à impiegà :"
 
 msgid "File patterns:"
 msgstr "Mudelli di schedariu :"
@@ -2478,6 +2475,13 @@ msgstr "Elementu %1 nant’à %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementi : %1"
+
+msgid "Comparing items..."
+msgstr "Paragone di l’elementi…"
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selezziunà dui cartulari o schedarii esistente à paragunà."
@@ -3362,7 +3366,7 @@ msgstr ""
 "di l’altru latu è apre sti cartulari ?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr "Da veru, vulete cupià tutte e sfarenze versu l’altru schedariu ?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Vulete passà à u schedariu seguente ?"
@@ -4013,19 +4017,19 @@ msgstr "Indicate i parametri di u modulu d’estensione"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "U modulu d’estensione ùn si trova micca o hè inaccettevule : %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "« %1 » ùn hè micca un modulu d’estensione di u spacchittadore"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "« %1 » ùn hè micca un modulu d’estensione di u preparagone"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Un sbagliu hè accadutu durante u preparagone di u schedariu « %1 » cù u modulu d’estensione « %2 ». Avà u preparagone ùn hè più appiecatu."
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
@@ -4051,22 +4055,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Paragone novu di testu"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Paragone novu di tavulone"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Paragone binariu novu"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Paragone novu di fiura"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Paragone novu di pagina web"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Paragone di preme’papei"
 
 msgid "Prettification"
 msgstr "Imbellimentu"
@@ -4417,7 +4421,7 @@ msgstr ""
 "Parametri : Ozzioni di linea di cumanda passate à « tika-app.jar »."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Appiecà a currezzione impieghendu GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Affissà u cuntenutu di u testu in i schedarii MS Excel"
@@ -4441,7 +4445,7 @@ msgid "Ignore some fields - ignored fields list from the plugin name or the plug
 msgstr "Ignurà certi campi - lista di i campi ignurati da u nome di u modulu d’estensione o da i parametri di u modulu d’estensione"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr ""
+msgstr "Stu modulu d’estensione ignureghja i numeri di principiu di linea in i schedarii di testu (p.i. : i schedarii NC è BASIC)."
 
 msgid "Prediff Line Filter"
 msgstr "Filtru di linea di preparagone"
@@ -4464,128 +4468,139 @@ msgstr ""
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSExcelFiles.sct"
 
 msgid "Extract workbook data to multiple files"
-msgstr ""
+msgstr "Estrae i dati di u sfugliaghju ver di parechji schedarii"
 
 msgid "Update external references(links)"
-msgstr ""
+msgstr "Rinnovà e referenze esterne (liami)"
 
 msgid "Compare document properties"
-msgstr ""
+msgstr "Paragunà i pruprietà di u ducumentu"
 
 msgid "Compare names"
-msgstr ""
+msgstr "Paragunà i nomi"
 
 msgid "Compare cell values"
-msgstr ""
+msgstr "Paragunà i valori di cellula"
 
 msgid "Compare worksheets as image (very slow)"
-msgstr ""
+msgstr "Paragunà i foglii di calculu tale fiure (pianu pianu)"
 
 msgid " - Image split size: "
-msgstr ""
+msgstr " - Dimensione di spartera di a fiura :"
 
 msgid "Compare worksheets as HTML"
-msgstr ""
+msgstr "Paragunà i foglii di calculu tale HTML"
 
 msgid "Compare formulas"
-msgstr ""
+msgstr "Paragunà e formule"
 
 msgid "Compare texts in shapes"
-msgstr ""
+msgstr "Paragunà i testi in e forme"
 
 msgid "Compare headers and footers"
-msgstr ""
+msgstr "Paragunà intestature è bassi di pagina"
 
-msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgid ""
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
+"Ùn si pò micca ottene e prucedure Macros.\r\n"
+"   Per permette à WinMerge di paragunà e prucedure macro, impiegate MS Office per mudificà e preferenze di sicurità di e macro per l’appiecazione "
+"currente.\r\n"
+"   L’ozzione di permessu d’accede à u prughjettu Visual Basic deve esse attivata per impiegà sta funzione in WinMerge.\r\n"
 
 msgid "Compare VBA macros"
-msgstr ""
+msgstr "Paragunà e prucedure VBA"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSWordFiles.sct"
 
 msgid "Extract document data to multiple files"
-msgstr ""
+msgstr "Estrae i dati di u ducumentu ver di parechji schedarii"
 
 msgid "Compare bookmarks"
-msgstr ""
+msgstr "Paragunà l’indette"
 
 msgid "Compare text contents of documents"
-msgstr ""
+msgstr "Paragunà i cuntenuti testuali di i ducumenti"
 
 msgid "Compare documents as HTML file (very slow)"
-msgstr ""
+msgstr "Paragunà i ducumenti tale HTML (pianu pianu)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSPowerPointFiles.sct"
 
 msgid "Extract slide data to multiple files"
-msgstr ""
+msgstr "Estrae i dati di e diapusitive ver di parechji schedarii"
 
 msgid "Compare slides as image (very slow)"
-msgstr ""
+msgstr "Paragunà e diapusitive tale fiure (pianu pianu)"
 
 msgid "Compare texts in notes page"
-msgstr ""
+msgstr "Paragunà i testi in e pagine di note"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSVisioFiles.sct"
 
 msgid "Extract page data to multiple files"
-msgstr ""
+msgstr "Estrae i dati di e pagine ver di parechji schedarii"
 
 msgid "Compare pages as image (very slow)"
-msgstr ""
+msgstr "Paragunà e pagine tale fiure (pianu pianu)"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Ozzioni WinMerge di u modulu d’estensione PrediffLineFilter.sct"
 
 msgid "Delete"
-msgstr ""
+msgstr "Squassà"
 
 msgid "Enabled"
-msgstr ""
+msgstr "Attivatu"
 
 msgid "Ignore Case"
-msgstr ""
+msgstr "Ignurà a cassa"
 
 msgid "Use RegExp"
-msgstr ""
+msgstr "Impiegà RegExp"
 
 msgid "Find what"
-msgstr ""
+msgstr "Cosa circà"
 
 msgid "Replace with"
-msgstr ""
+msgstr "Rimpiazzà cù "
 
 msgid "Settings"
-msgstr ""
+msgstr "Preferenze"
 
-msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
 msgstr ""
+"Serie di culonne à ignurà :\n"
+"p.i.)  3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr ""
+msgstr "Stampittà u nome di u schedariu per quellu u currettivu « %1 » serà appiecatu"
 
 #, c-format
 msgid "File '%1' does not exist"
-msgstr ""
+msgstr "U schedariu « %1 » ùn esiste micca"
 
 msgid "Enter the command line arguments for patch command"
-msgstr ""
+msgstr "Stampittà l’argumenti di linea di cumanda per a cumanda di currezzione"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr ""
+msgstr "Stampittà u nome di u cartulare per quellu u currettivu « %1 » serà appiecatu"
 
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr ""
+msgstr "U cartulare « %1 » ùn esiste micca"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr ""
+msgstr "Ùn specificate micca l’ozzione di linea di cumanda « -p0 » per u schedariu di currezzione chì cuntene chjassi assuluti"

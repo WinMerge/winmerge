@@ -1788,17 +1788,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "අයිතම සැසඳීම..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "සැසඳූ අයිතම:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "අයිතම එකතුව:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "සැසඳූ අයිතම:"
 
 msgid "Go to"
 msgstr "වෙත යන්න"
@@ -2451,9 +2450,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2969,6 +2965,14 @@ msgstr "අයිතමය %1 ගෙන් %2"
 #, c-format
 msgid "Items: %1"
 msgstr "අයිතම : %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "අයිතම සැසඳීම..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "සංසන්දනය කිරීම සඳහා පවතින ෆෝල්ඩර හෝ ලිපිගොනු දෙකක් තෝරන්න !"

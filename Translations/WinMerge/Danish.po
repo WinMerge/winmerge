@@ -1789,17 +1789,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Sammenligner emner..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Emner sammenlignet:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Emner ialt:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Emner sammenlignet:"
 
 msgid "Go to"
 msgstr "Gå til"
@@ -2458,9 +2457,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2989,6 +2985,14 @@ msgstr "Emne %1 of %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Emner: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Sammenligner emner..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Vælg to eksisterende mapper eller filer at sammenligne."

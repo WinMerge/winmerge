@@ -1787,17 +1787,16 @@ msgstr ""
 msgid "Continue"
 msgstr ""
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Σύγκριση αντικειμένων..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Συγκριθέντα αντικείμενα:"
+msgid "&Number of CPU cores to use:"
+msgstr ""
 
 #, c-format
 msgid "Items total:"
 msgstr "Σύνολο αντικειμένων:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Συγκριθέντα αντικείμενα:"
 
 msgid "Go to"
 msgstr "Μετάβαση"
@@ -2450,9 +2449,6 @@ msgstr ""
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr ""
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
 msgid "File patterns:"
 msgstr ""
 
@@ -2968,6 +2964,14 @@ msgstr "Αντικείμενο %1 από %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Αντικείμενα: %1"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Σύγκριση αντικειμένων..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr ""
 
 msgid "Select two existing folders or files to compare."
 msgstr "Επιλέξατε δύο υπάρχοντες φακέλους ή αρχεία προς σύγκριση."

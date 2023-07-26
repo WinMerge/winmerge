@@ -113,6 +113,7 @@ BEGIN_MESSAGE_MAP(CDirDoc, CDocument)
 	ON_BN_CLICKED(IDC_COMPARISON_STOP, OnBnClickedComparisonStop)
 	ON_BN_CLICKED(IDC_COMPARISON_PAUSE, OnBnClickedComparisonPause)
 	ON_BN_CLICKED(IDC_COMPARISON_CONTINUE, OnBnClickedComparisonContinue)
+	ON_CBN_SELCHANGE(IDC_COMPARISON_CPUCORES, OnCbnSelChangeCPUCores)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -333,6 +334,7 @@ void CDirDoc::Rescan()
 	pf->GetHeaderInterface()->Resize();
 	int nPane = GetOptionsMgr()->GetInt(OPT_ACTIVE_PANE);
 	m_pDirView->SetActivePane((nPane >= 0 && nPane < m_nDirs) ? nPane : 0);
+	m_pDirView->GetParentFrame()->SetStatus(_("Comparing items...").c_str());
 
 	// Show current compare method name and active filter name in statusbar
 	pf->SetFilterStatusDisplay(theApp.GetGlobalFileFilter()->GetFilterNameOrMask().c_str());
@@ -1026,3 +1028,11 @@ void CDirDoc::OnBnClickedComparisonContinue()
 	ContinueCurrentScan();
 }
 
+void CDirDoc::OnCbnSelChangeCPUCores()
+{
+	if (!m_pCmpProgressBar)
+		return;
+	m_pCtxt->m_pCompareStats->SetIdleCompareThreadCount(
+		m_pCtxt->m_pCompareStats->GetCompareThreadCount() - m_pCmpProgressBar->GetNumberOfCPUCoresToUse()
+	);
+}
