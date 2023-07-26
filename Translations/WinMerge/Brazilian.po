@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2023-06-18 21:30-0300\n"
+"PO-Revision-Date: 2023-07-25 22:20-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -2365,7 +2365,7 @@ msgstr "Comparando os itens..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[itens/seg]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecione duas pastas ou arquivos existentes pra comparar."
