@@ -54,7 +54,7 @@ Please submit bug reports to our bug-tracker.
   - Brazilian (PR #1948)
   - Chinese Traditional (PR #1940)
   - Corsican (PR #1933)
-  - French (PR #1927,#1928)
+  - French (PR #1927,#1928,#1951)
   - Korean (PR #1908)
   - Lithuanian (PR #1949)
   - Portuguese (PR #1930)
