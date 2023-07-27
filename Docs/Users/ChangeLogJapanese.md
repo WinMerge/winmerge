@@ -2,6 +2,27 @@
 title: 変更履歴
 ---
 
+### 2023/07/29 2.16.32-jp-1
+
+#### 全般
+
+- 不具合修正: INIファイルをインポートしたとき置換フィルタなどが正しく復元されないことがある問題を修正した。[(#1925)](https://github.com/WinMerge/winmerge/issues/1925)
+
+#### ファイル比較
+
+- 不具合修正: 比較するファイルのパスが長すぎると保存できない問題を修正した。[(#1923)](https://github.com/WinMerge/winmerge/issues/1923)
+- 不具合修正: 外部のアプリで比較中の2つのファイルを一致させた後WinMergeに戻った時、「選択されたファイルは同一です。」が二度表示されるのを修正した。[(#1902)](https://github.com/WinMerge/winmerge/issues/1902)
+- Pythonの最近のバージョンのキーワードがシンタックスハイライトされるようにした。[(PR #1938)](https://github.com/WinMerge/winmerge/pull/1938)(PRいただきました。ありがとうございます。)
+
+#### フォルダ比較
+
+- 不具合修正: フォルダアイコンの左の ＜ をクリックすると不必要なスクロールが発生することがある問題を修正した。 [(#1915)](https://github.com/WinMerge/winmerge/issues/1915)
+- フォルダ比較中に使用するCPUコアの数を変更できるようにした。[(#1945)](https://github.com/WinMerge/winmerge/pull/1945)
+
+#### Webページ比較
+
+- 比較結果をレポートに出力できるようにした。[(#1941)](https://github.com/WinMerge/winmerge/pull/1941)
+
 ### 2023/06/29 2.16.30-jp-4
 
 #### 全般
