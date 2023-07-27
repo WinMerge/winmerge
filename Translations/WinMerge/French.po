@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-07-02 10:18+0200\n"
+"PO-Revision-Date: 2023-07-27 11:23+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -671,7 +671,7 @@ msgstr "&Enregistrer\tCtrl+S"
 
 #, c-format
 msgid "Sav&e"
-msgstr "&Enregistrer\t>     "
+msgstr "&Enregistrer"
 
 #, c-format
 msgid "Save &Left"
@@ -687,7 +687,7 @@ msgstr "Enregistrer &Droite"
 
 #, c-format
 msgid "Save &As"
-msgstr "Enregistrer sous\t>     "
+msgstr "Enregistrer &sous"
 
 #, c-format
 msgid "Save &Left As..."
@@ -3019,7 +3019,7 @@ msgstr "Comparaison des éléments..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[éléments/sec]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Sélectionner : 2 Fichiers - ou : 2 Dossiers - existants à comparer."
@@ -4524,19 +4524,19 @@ msgstr ""
 "$linenum : Numéro de ligne de la position actuelle du curseur"
 
 msgid "default"
-msgstr "Par défaut"
+msgstr "par défaut"
 
 msgid "minimal"
-msgstr "Minimal"
+msgstr "minimal"
 
 msgid "patience"
-msgstr "Patience"
+msgstr "patience"
 
 msgid "histogram"
-msgstr "Histogramme"
+msgstr "histogramme"
 
 msgid "none"
-msgstr "Aucun"
+msgstr "aucun"
 
 msgid "GDI"
 msgstr "GDI"
@@ -5201,7 +5201,7 @@ msgid "Compare worksheets as image (very slow)"
 msgstr "Comparer les feuilles de calcul comme des images (très lent)"
 
 msgid " - Image split size: "
-msgstr "- Taille de fractionnement de l'image : "
+msgstr " - Taille de fractionnement de l'image : "
 
 msgid "Compare worksheets as HTML"
 msgstr "Comparer les feuilles de calcul en HTML"
