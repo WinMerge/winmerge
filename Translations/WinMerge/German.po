@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-06-20 08:00+0200\n"
+"PO-Revision-Date: 2023-07-27 20:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -2911,7 +2911,7 @@ msgstr "Objekte vergleichen..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[Objekte/s]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Wählen Sie zwei Dateien oder Ordner zum Vergleichen aus."
