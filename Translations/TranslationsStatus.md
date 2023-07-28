@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-07-27**:
+Status from **2023-07-28**:
 
 ## WinMerge
 
@@ -11,7 +11,7 @@ Status from **2023-07-27**:
 | Brazilian            |  1301 |       1301 |     0 |            0 |    100 % |  2023-07-25 |
 | Bulgarian            |  1301 |       1040 |     0 |          261 |     79 % |  2021-06-28 |
 | Catalan              |  1301 |       1181 |     0 |          120 |     90 % |             |
-| ChineseSimplified    |  1301 |       1300 |     0 |            1 |     99 % |             |
+| ChineseSimplified    |  1301 |       1301 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1301 |       1300 |     0 |            1 |     99 % |  2022-02-19 |
 | Corsican             |  1301 |       1300 |     0 |            1 |     99 % |  2023-07-06 |
 | Croatian             |  1301 |        631 |     1 |          669 |     48 % |  2009-02-13 |
@@ -22,7 +22,7 @@ Status from **2023-07-27**:
 | Finnish              |  1301 |       1192 |     0 |          109 |     91 % |             |
 | French               |  1301 |       1301 |     0 |            0 |    100 % |  2023-07-27 |
 | Galician             |  1301 |       1286 |     0 |           15 |     98 % |  2023-05-01 |
-| German               |  1301 |       1300 |     0 |            1 |     99 % |  2023-06-20 |
+| German               |  1301 |       1301 |     0 |            0 |    100 % |  2023-07-27 |
 | Greek                |  1301 |        605 |     0 |          696 |     46 % |             |
 | Hungarian            |  1301 |       1300 |     0 |            1 |     99 % |  2021-03-15 |
 | Italian              |  1301 |       1103 |     0 |          198 |     84 % |  2022-06-01 |
@@ -43,7 +43,7 @@ Status from **2023-07-27**:
 | Swedish              |  1301 |       1239 |     2 |           60 |     95 % |  2023-02-08 |
 | Tamil                |  1301 |       1225 |     0 |           76 |     94 % |  2023-07-24 |
 | Turkish              |  1301 |       1300 |     0 |            1 |     99 % |  2023-07-06 |
-| Ukrainian            |  1301 |        637 |     0 |          664 |     48 % |  2009-06-13 |
+| Ukrainian            |  1301 |        709 |     0 |          592 |     54 % |  2009-06-13 |
 
 ## ShellExtension
 
@@ -352,6 +352,7 @@ Status from **2023-07-27**:
  * Ukrainian
    - [Warrior](mailto:warr11r%20at%20rambler.ru)
    - [Vitaliy Stopchans'kyy](mailto:stopcha%20at%20gmail.com)
+   - Serhii Romashko
 
 ### ShellExtension
 

@@ -214,6 +214,7 @@ Localization:
   Vitaliy Stopchans'kyy <stopcha@gmail.com>
   Warrior <warr11r@rambler.ru>
   Vlad
+  Serhii Romashko
 
 Other Contributors (code, ideas, testing..):
 * James Abbatiello <abbeyj@users.sourceforge.net>
