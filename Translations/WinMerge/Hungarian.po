@@ -566,9 +566,17 @@ msgstr "&Rejtett elemek mutatása"
 msgid "Tree &Mode"
 msgstr "Fa &mód"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Minden alkönyvtár kibontása"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2439,13 +2447,12 @@ msgstr "Megállás az &első különbségnél"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 másodperc alatti időkülönbségek mellőzése"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "Egyedi almappák tartalmai is"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "Minden alkönyvtár automatikus kibontása"
 
 #, c-format
 msgid "Ignore &reparse points"

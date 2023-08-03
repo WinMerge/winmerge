@@ -475,8 +475,17 @@ msgstr "Zobraziť &skryté položky"
 msgid "Tree &Mode"
 msgstr "Režim &stromu"
 
-msgid "E&xpand All Subfolders"
-msgstr "&Rozvinúť všetky podpriečinky"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "&Zvinúť všetky podpriečinky"
@@ -1974,11 +1983,11 @@ msgstr "&Zastaviť po prvom rozdiele"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orovať časové rozdiely menšie ako 3 sekundy"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "&Zahrnúť jedinečný obsah podpriečinkov"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&Automaticky rozbaliť všetky podpriečinky"
 
 msgid "Ignore &reparse points"
 msgstr "Ignorovať &opravné body"

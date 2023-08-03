@@ -748,6 +748,8 @@
 #define ID_VIEW_TREEMODE                32827
 #define ID_VIEW_EXPAND_ALLSUBDIRS       32828
 #define ID_VIEW_COLLAPSE_ALLSUBDIRS     32829
+#define ID_VIEW_EXPAND_DIFFERENT_SUBDIRS 32830
+#define ID_VIEW_EXPAND_IDENTICAL_SUBDIRS 32831
 #define ID_PREVDIFF                     32832
 #define ID_NEXTDIFF                     32833
 #define ID_PREVCONFLICT                 32834

@@ -476,8 +476,17 @@ msgstr "Mostrar itens ocultados"
 msgid "Tree &Mode"
 msgstr "&Modo árvore"
 
-msgid "E&xpand All Subfolders"
-msgstr "E&xpandir todas as subpastas"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "&Fechar todas as subpastas"
@@ -1981,11 +1990,11 @@ msgstr "Parar após primeira diferença"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "&Incluir conteúdos exclusivos da subpastas"
-
-msgid "&Automatically expand all subfolders"
-msgstr "Expandir &automaticamente todas as subpastas"
 
 msgid "Ignore &reparse points"
 msgstr "Ignorar pontos de &análise"

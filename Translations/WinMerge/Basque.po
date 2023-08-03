@@ -567,9 +567,17 @@ msgstr "Erakutsi E&zkutatutako Gaiak"
 msgid "Tree &Mode"
 msgstr "Zuhaitz &Modua"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "H&edatu Azpiagiritegi Guztiak"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2433,12 +2441,11 @@ msgstr "&Gelditu lehen ezberdintasunaren ondoren"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ezikusi 3 segundu baino gut&xiagoko ezberdintasunak"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

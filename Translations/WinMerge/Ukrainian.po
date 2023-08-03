@@ -548,9 +548,17 @@ msgstr "С&ховані"
 msgid "Tree &Mode"
 msgstr "Режим &дерева"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "&Розгорнути всі підтки"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2415,12 +2423,11 @@ msgstr "&Зупинятися після першої відмінності"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Нехтувати різницею часу, меншою 3 секунд"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

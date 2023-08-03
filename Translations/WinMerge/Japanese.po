@@ -474,8 +474,17 @@ msgstr "非表示の項目を表示(&E)"
 msgid "Tree &Mode"
 msgstr "ツリー表示(&M)"
 
-msgid "E&xpand All Subfolders"
-msgstr "すべてのサブフォルダーを展開する(&X)"
+msgid "E&xpand Subfolders"
+msgstr "サブフォルダーの展開(&X)"
+
+msgid "&All Subfolders"
+msgstr "すべてのサブフォルダー(&A)"
+
+msgid "&Different Subfolders"
+msgstr "差異があるサブフォルダー(&A)"
+
+msgid "&Identical Subfolders"
+msgstr "同一のサブフォルダー(&I)"
 
 msgid "&Collapse All Subfolders"
 msgstr "すべてのサブフォルダーを折りたたむ(&C)"
@@ -1977,11 +1986,11 @@ msgstr "最初の差異で比較を終了する(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
-
-msgid "&Automatically expand all subfolders"
-msgstr "自動的にサブフォルダーを展開する(&A)"
 
 msgid "Ignore &reparse points"
 msgstr "再解析ポイントを無視する(&R)"

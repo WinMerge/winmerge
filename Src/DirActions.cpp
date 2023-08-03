@@ -1454,7 +1454,30 @@ void ExpandAllSubdirs(CDiffContext& ctxt)
 	while (diffpos != nullptr)
 	{
 		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
-		di.customFlags |= ViewCustomFlags::EXPANDED;
+		if (di.diffcode.isDirectory())
+			di.customFlags |= ViewCustomFlags::EXPANDED;
+	}
+}
+
+void ExpandDifferentSubdirs(CDiffContext& ctxt)
+{
+	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos != nullptr)
+	{
+		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
+		if (di.diffcode.isDirectory() && (di.diffcode.isResultDiff() || !di.diffcode.existAll()))
+			di.customFlags |= ViewCustomFlags::EXPANDED;
+	}
+}
+
+void ExpandIdenticalSubdirs(CDiffContext& ctxt)
+{
+	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos != nullptr)
+	{
+		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
+		if (di.diffcode.isDirectory() && di.diffcode.isResultSame())
+			di.customFlags |= ViewCustomFlags::EXPANDED;
 	}
 }
 

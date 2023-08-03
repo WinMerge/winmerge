@@ -563,8 +563,16 @@ msgstr "Εμφάνιση Κρυ&φών Στοιχείων"
 msgid "Tree &Mode"
 msgstr ""
 
-#, c-format
-msgid "E&xpand All Subfolders"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
 msgstr ""
 
 #, c-format
@@ -2428,12 +2436,11 @@ msgstr "&Τερματισμός μετά την πρώτη διαφορά"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Διαφορές ώρας μικρότερες των &3 δευτερολέπτων να αγνοούνται"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

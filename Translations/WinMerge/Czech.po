@@ -564,9 +564,17 @@ msgstr "Ukázat s&kryté položky"
 msgid "Tree &Mode"
 msgstr "Stro&mová struktura"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Rozbal&it všechny podsložky"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2431,13 +2439,12 @@ msgstr "Zastavit po prvním &rozdílu"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Ignorovat časové rozdíly menší než 3 sekundy"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "Zahrnout obsah jedinečných podsložek"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr ""
 
 #, c-format
 msgid "Ignore &reparse points"

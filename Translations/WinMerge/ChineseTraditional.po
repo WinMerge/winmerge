@@ -567,9 +567,17 @@ msgstr "顯示隱藏項目 (&E)"
 msgid "Tree &Mode"
 msgstr "樹狀模式 (&M)"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "展開所有子資料夾 (&X)"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2448,13 +2456,12 @@ msgstr "在首個差異停止 (&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "如兩檔案之修改時間間隔少於三秒，則忽略此差異 (&O)"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "包括獨一子資料夾 (&U)"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "自動擴展到所有子資料夾 (&A)"
 
 #, c-format
 msgid "Ignore &reparse points"

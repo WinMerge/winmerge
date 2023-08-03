@@ -105,7 +105,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN3, (int)-1, -1, 128);
 	pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);
 	pOptions->InitOption(OPT_SHOW_SELECT_FILES_AT_STARTUP, false);
-	pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, false);
+	pOptions->InitOption(OPT_DIRVIEW_EXPAND_SUBDIRS, 0);
 	pOptions->InitOption(OPT_DIRVIEW_COLUMN_ORDERS, _T(""));
 	pOptions->InitOption(OPT_DIRVIEW_COLUMN_WIDTHS, _T(""));
 	pOptions->InitOption(OPT_DIRVIEW3_COLUMN_ORDERS, _T(""));

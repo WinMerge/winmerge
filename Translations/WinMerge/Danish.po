@@ -565,9 +565,17 @@ msgstr "V&is skjulte"
 msgid "Tree &Mode"
 msgstr "Vis i et &træ"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "&Udvid alle undermapper"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2436,12 +2444,11 @@ msgstr "S&top efter første forskel"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskelle under 3 sekunder"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format

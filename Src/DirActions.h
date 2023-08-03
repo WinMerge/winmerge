@@ -180,6 +180,8 @@ bool RenameOnSameDir(const String& szOldFileName, const String& szNewFileName);
 
 void ExpandSubdirs(CDiffContext& ctxt, DIFFITEM& dip);
 void ExpandAllSubdirs(CDiffContext &ctxt);
+void ExpandDifferentSubdirs(CDiffContext &ctxt);
+void ExpandIdenticalSubdirs(CDiffContext &ctxt);
 void CollapseAllSubdirs(CDiffContext &ctxt);
 DirViewTreeState *SaveTreeState(const CDiffContext& ctxt);
 void RestoreTreeState(CDiffContext &ctxt, DirViewTreeState *pTreeState);

@@ -474,8 +474,17 @@ msgstr "Vis sk&julte objekter"
 msgid "Tree &Mode"
 msgstr "Tre&modus"
 
-msgid "E&xpand All Subfolders"
-msgstr "&Utvid alle undermapper"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "Sammen&trekk alle undermapper"
@@ -1978,10 +1987,10 @@ msgstr "S&topp etter første forskjell"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orer tidsforskjeller mindre enn 3 sekunder"
 
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 msgid "Ignore &reparse points"

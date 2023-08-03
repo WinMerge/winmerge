@@ -40,10 +40,10 @@ public:
 	bool    m_bIgnoreSmallTimeDiff;
 	bool    m_bIncludeUniqFolders;
 	bool    m_bIncludeSubdirs;
-	bool    m_bExpandSubdirs;
 	bool    m_bIgnoreReparsePoints;
 	unsigned m_nQuickCompareLimit;
 	unsigned m_nBinaryCompareLimit;
+	int     m_nExpandSubdirs;
 	int     m_nCompareThreads;
 	int     m_nCompareThreadsPrev;
 	//}}AFX_DATA

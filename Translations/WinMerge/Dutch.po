@@ -475,8 +475,17 @@ msgstr "Verborgen items weergeven"
 msgid "Tree &Mode"
 msgstr "Boom-modus"
 
-msgid "E&xpand All Subfolders"
-msgstr "Alle submappen uitklappen"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "Alle submappen inklappen"
@@ -1974,11 +1983,11 @@ msgstr "Stoppen na eerste verschil"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Tijdsverschillen kleiner dan 3 seconden negeren"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "Inhoud van unieke submappen bijvoegen"
-
-msgid "&Automatically expand all subfolders"
-msgstr "Alle submappen automatisch uitklappen"
 
 msgid "Ignore &reparse points"
 msgstr "Punten voor opnieuw verwerken negeren"
