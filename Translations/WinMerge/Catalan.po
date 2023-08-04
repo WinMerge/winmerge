@@ -2783,6 +2783,18 @@ msgstr "Fitxers HTML (*.htm,*.html)|*.htm;*.html|Tots els fitxers (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fitxers XML (*.xml)|*.xml|Tots els fitxers (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr "Tipus de fitxer"
 

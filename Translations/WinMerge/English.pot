@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-08-03 08:52+0000\n"
+"POT-Creation-Date: 2023-08-04 22:06+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2211,6 +2211,18 @@ msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr ""
+
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
 msgstr ""
 
 msgid "File Type"

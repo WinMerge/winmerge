@@ -2284,6 +2284,18 @@ msgstr "HTML ファイル (*.htm,*.html)|*.htm;*.html|すべてのファイル (
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr "展開しない"
+
+msgid "Expand All Subfolders"
+msgstr "すべてのサブフォルダを展開"
+
+msgid "Expand Different Subfolders"
+msgstr "差異のあるサブフォルダを展開"
+
+msgid "Expand Identical Subfolders"
+msgstr "同一のサブフォルダを展開"
+
 msgid "File Type"
 msgstr "ファイル タイプ"
 

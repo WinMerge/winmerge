@@ -2799,6 +2799,18 @@ msgstr "HTML fájlok (*.htm,*.html)|*.htm;*.html|Minden fájl (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML fájlok (*.xml)|*.xml|Minden fájl (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr "Fájltípus"
 

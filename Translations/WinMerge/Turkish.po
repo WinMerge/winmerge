@@ -2305,6 +2305,18 @@ msgstr "HTML dosyaları (*.htm,*.html)|*.htm;*.html|Tüm dosyalar (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML dosyaları (*.xml)|*.xml|Tüm dosyalar (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr "Dosya türü"
 

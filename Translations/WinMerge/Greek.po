@@ -2768,6 +2768,18 @@ msgstr "Αρχεία HTML (*.htm,*.html)|*.htm;*.html|Όλα τα Αρχεία (
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Αρχεία XML (*.xml)|*.xml|All Files (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr ""
 

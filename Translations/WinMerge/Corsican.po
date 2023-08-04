@@ -2290,6 +2290,18 @@ msgstr "Schedarii HTML (*.htm,*.html)|*.htm;*.html|Tutti i schedarii (*.*)|*.*||
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Schedarii XML (*.xml)|*.xml|Tutti i schedarii (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr "Tipu di schedariu"
 

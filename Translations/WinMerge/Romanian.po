@@ -2769,6 +2769,18 @@ msgstr "Fişiere HTML (*.htm,*.html)|*.htm;*.html|Toate fişierele (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fişiere XML (*.xml)|*.xml|Toate fişierele (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr ""
 

@@ -2806,6 +2806,18 @@ msgstr "HTML 파일 (*.htm,*.html)|*.htm;*.html|모든 파일 (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 파일 (*.xml)|*.xml|모든 파일 (*.*)|*.*||"
 
+msgid "Do Not Expand"
+msgstr ""
+
+msgid "Expand All Subfolders"
+msgstr ""
+
+msgid "Expand Different Subfolders"
+msgstr ""
+
+msgid "Expand Identical Subfolders"
+msgstr ""
+
 msgid "File Type"
 msgstr "파일 유형"
 
