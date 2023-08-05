@@ -3229,10 +3229,10 @@ END
 // EXPAND SUBFOLDERS OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_EXPANDSUBDIRS_DONOTEXPAND "Do Not Expand"
-    IDS_EXPANDSUBDIRS_ALL "Expand All Subfolders"
-    IDS_EXPANDSUBDIRS_DIFFERENT "Expand Different Subfolders"
-    IDS_EXPANDSUBDIRS_IDENTICAL "Expand Identical Subfolders"
+    IDS_EXPANDSUBDIRS_DONOTEXPAND "Do not expand"
+    IDS_EXPANDSUBDIRS_ALL "Expand all subfolders"
+    IDS_EXPANDSUBDIRS_DIFFERENT "Expand different subfolders"
+    IDS_EXPANDSUBDIRS_IDENTICAL "Expand identical subfolders"
 END
 
 // EDITOR OPTIONS

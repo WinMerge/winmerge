@@ -2292,16 +2292,16 @@ msgstr "ملفات HTML (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "ملفات XML (*.xml)|*.xml|All Files (*.*)|*.*||"
 
-msgid "Do Not Expand"
+msgid "Do not expand"
 msgstr ""
 
-msgid "Expand All Subfolders"
+msgid "Expand all subfolders"
 msgstr ""
 
-msgid "Expand Different Subfolders"
+msgid "Expand different subfolders"
 msgstr ""
 
-msgid "Expand Identical Subfolders"
+msgid "Expand identical subfolders"
 msgstr ""
 
 msgid "File Type"

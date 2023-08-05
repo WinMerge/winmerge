@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2023-05-01 23:19+0900\n"
+"PO-Revision-Date: 2023-08-05 10:36+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -1987,7 +1987,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 秒以下の時間差を無視する(&O)"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "比較後自動的にサブフォルダーを展開する(&A):"
 
 msgid "Include &unique subfolders contents"
 msgstr "片方にしか存在しないサブフォルダー内も含める(&U)"
@@ -2284,16 +2284,16 @@ msgstr "HTML ファイル (*.htm,*.html)|*.htm;*.html|すべてのファイル (
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML ファイル (*.xml)|*.xml|すべてのファイル (*.*)|*.*||"
 
-msgid "Do Not Expand"
+msgid "Do not expand"
 msgstr "展開しない"
 
-msgid "Expand All Subfolders"
+msgid "Expand all subfolders"
 msgstr "すべてのサブフォルダを展開"
 
-msgid "Expand Different Subfolders"
+msgid "Expand different subfolders"
 msgstr "差異のあるサブフォルダを展開"
 
-msgid "Expand Identical Subfolders"
+msgid "Expand identical subfolders"
 msgstr "同一のサブフォルダを展開"
 
 msgid "File Type"

@@ -121,7 +121,7 @@ BOOL PropCompareFolder::OnInitDialog()
 	SetDlgItemComboBoxList(IDC_COMPAREMETHODCOMBO,
 		{ _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size") });
 	SetDlgItemComboBoxList(IDC_EXPAND_SUBDIRS,
-		{ _("Do Not Expand"), _("Expand All Subfolders"), _("Expand Different Subfolders"), _("Expand Identical Subfolders") });
+		{ _("Do not expand"), _("Expand all subfolders"), _("Expand different subfolders"), _("Expand identical subfolders") });
 
 	OptionsPanel::OnInitDialog();
 	

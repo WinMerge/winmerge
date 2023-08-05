@@ -2789,16 +2789,16 @@ msgstr ""
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML  پرونده هاي  (*.xml)|*.xml|همه پرونده ها  (*.*)|*.*||"
 
-msgid "Do Not Expand"
+msgid "Do not expand"
 msgstr ""
 
-msgid "Expand All Subfolders"
+msgid "Expand all subfolders"
 msgstr ""
 
-msgid "Expand Different Subfolders"
+msgid "Expand different subfolders"
 msgstr ""
 
-msgid "Expand Identical Subfolders"
+msgid "Expand identical subfolders"
 msgstr ""
 
 msgid "File Type"

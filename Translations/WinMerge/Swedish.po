@@ -2308,16 +2308,16 @@ msgstr "HyperText-filer (*.htm,*.html)|*.htm;*.html|Alla filer (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-filer (*.xml)|*.xml|Alla filer (*.*)|*.*||"
 
-msgid "Do Not Expand"
+msgid "Do not expand"
 msgstr ""
 
-msgid "Expand All Subfolders"
+msgid "Expand all subfolders"
 msgstr ""
 
-msgid "Expand Different Subfolders"
+msgid "Expand different subfolders"
 msgstr ""
 
-msgid "Expand Identical Subfolders"
+msgid "Expand identical subfolders"
 msgstr ""
 
 msgid "File Type"
