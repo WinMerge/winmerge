@@ -475,8 +475,17 @@ msgstr "Rodyti sl&epiamus elementus"
 msgid "Tree &Mode"
 msgstr "&Medžio režimas"
 
-msgid "E&xpand All Subfolders"
-msgstr "Iš&skleisti visus pakatalogius"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "Sus&kleisti visus pakatalogius"
@@ -1966,11 +1975,11 @@ msgstr "Sus&toti radus pirmą skirtumą"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "Įtraukti &unikalų pakatalogių turinį"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&Automatiškai išskleisti visus pakatalogius"
 
 msgid "Ignore &reparse points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
@@ -2209,6 +2218,18 @@ msgstr "HTML failai (*.htm,*.html)|*.htm;*.html|Visi failai (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML failai (*.xml)|*.xml|Visi failai (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Failo tipas"

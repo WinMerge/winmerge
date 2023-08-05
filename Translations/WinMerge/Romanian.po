@@ -564,8 +564,16 @@ msgstr "Arată elementele ascunse"
 msgid "Tree &Mode"
 msgstr ""
 
-#, c-format
-msgid "E&xpand All Subfolders"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
 msgstr ""
 
 #, c-format
@@ -2429,12 +2437,11 @@ msgstr "Opreş&te după prima diferenţă"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oră diferenţe de timp mai mici de 3 secunde"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2761,6 +2768,18 @@ msgstr "Fişiere HTML (*.htm,*.html)|*.htm;*.html|Toate fişierele (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fişiere XML (*.xml)|*.xml|Toate fişierele (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr ""

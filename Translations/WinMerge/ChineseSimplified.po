@@ -478,8 +478,17 @@ msgstr "显示隐藏的项(&E)"
 msgid "Tree &Mode"
 msgstr "树状模式(&M)"
 
-msgid "E&xpand All Subfolders"
-msgstr "展开所有子目录(&X)"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "折叠所有子目录(&C)"
@@ -1980,11 +1989,11 @@ msgstr "遇到第一个差异后停止(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "忽略小于3秒的时间差异(&O)"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "包含仅在单侧的子文件夹内容(&U)"
-
-msgid "&Automatically expand all subfolders"
-msgstr "自动展开所有子文件夹(&A)"
 
 msgid "Ignore &reparse points"
 msgstr "忽略重新解析点(&R)"
@@ -2282,6 +2291,18 @@ msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "文件类型"

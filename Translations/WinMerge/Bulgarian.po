@@ -472,8 +472,17 @@ msgstr "Показване на &скрити елементи"
 msgid "Tree &Mode"
 msgstr "&Дървовиден режим"
 
-msgid "E&xpand All Subfolders"
-msgstr "&Разтваряне на всички възли"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "&Свиване на всички възли"
@@ -1977,11 +1986,11 @@ msgstr "&Спиране след първото различие"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Пропускане на &различия във времето по-малки от 3 секунди"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "Включване на &уникално съдържание от подпапки"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&Автоматично разтваряне на подпапките"
 
 msgid "Ignore &reparse points"
 msgstr ""
@@ -2284,6 +2293,18 @@ msgstr "HTML файлове (*.htm,*.html)|*.htm;*.html|Всички файло�
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML файлове (*.xml)|*.xml|Всички файлове (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Вид на файл"

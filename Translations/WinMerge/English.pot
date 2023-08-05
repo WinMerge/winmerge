@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-07-26 07:00+0000\n"
+"POT-Creation-Date: 2023-08-05 10:45+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -469,7 +469,16 @@ msgstr ""
 msgid "Tree &Mode"
 msgstr ""
 
-msgid "E&xpand All Subfolders"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
 msgstr ""
 
 msgid "&Collapse All Subfolders"
@@ -1960,10 +1969,10 @@ msgstr ""
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr ""
 
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 msgid "Ignore &reparse points"
@@ -2202,6 +2211,18 @@ msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr ""
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
 msgstr ""
 
 msgid "File Type"

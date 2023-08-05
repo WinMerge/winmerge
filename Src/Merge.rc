@@ -417,7 +417,12 @@ BEGIN
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "Tree &Mode",                  ID_VIEW_TREEMODE
-        MENUITEM "E&xpand All Subfolders",      ID_VIEW_EXPAND_ALLSUBDIRS
+        POPUP "E&xpand Subfolders"
+        BEGIN
+            MENUITEM "&All Subfolders",             ID_VIEW_EXPAND_ALLSUBDIRS
+            MENUITEM "&Different Subfolders",       ID_VIEW_EXPAND_DIFFERENT_SUBDIRS
+            MENUITEM "&Identical Subfolders",       ID_VIEW_EXPAND_IDENTICAL_SUBDIRS
+        END
         MENUITEM "&Collapse All Subfolders",    ID_VIEW_COLLAPSE_ALLSUBDIRS
         MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
@@ -2186,21 +2191,21 @@ BEGIN
     LTEXT           "&Compare method:",IDC_STATIC,7,6,269,10
     COMBOBOX        IDC_COMPAREMETHODCOMBO,6,18,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,36,279,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,34,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,48,279,10
-    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 60, 279, 10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,46,279,10
+    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 58, 279, 10
+    LTEXT           "&Automatically expand subfolders after comparison:",IDC_STATIC,7,70,269,10
+    COMBOBOX        IDC_EXPAND_SUBDIRS,6,82,270,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,72,279,10
-    CONTROL         "&Automatically expand all subfolders",IDC_EXPAND_SUBDIRS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,84,279,10
-    CONTROL         "Ignore &reparse points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,96,279,10
-    LTEXT           "Threshold for switching to &quick compare (MB):",IDC_STATIC,6,108,279,10
-    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,120,30,14,ES_AUTOHSCROLL
-    LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,138,279,10
-    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,150,30,14,ES_AUTOHSCROLL
-    LTEXT           "&Number of CPU cores to use:",IDC_STATIC,6,166,239,30
-    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,178,30,14,ES_AUTOHSCROLL
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,98,279,10
+    CONTROL         "Ignore &reparse points",IDC_IGNORE_REPARSEPOINTS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,110,279,10
+    LTEXT           "Threshold for switching to &quick compare (MB):",IDC_STATIC,6,122,279,10
+    EDITTEXT        IDC_COMPARE_QUICKC_LIMIT,6,134,30,14,ES_AUTOHSCROLL
+    LTEXT           "Threshold for switching to &binary compare (MB):",IDC_STATIC,6,148,279,10
+    EDITTEXT        IDC_COMPARE_BINARYC_LIMIT,6,160,30,14,ES_AUTOHSCROLL
+    LTEXT           "&Number of CPU cores to use:",IDC_STATIC,6,174,239,10
+    EDITTEXT        IDC_COMPARE_THREAD_COUNT,6,186,30,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,191,228,88,14
 END
 
@@ -2860,6 +2865,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 0,
     0, 0, 0, 0,
@@ -3218,6 +3224,15 @@ BEGIN
     IDS_COMPMETHOD_MODDATE  "Modified Date"
     IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
     IDS_COMPMETHOD_SIZE     "Size"
+END
+
+// EXPAND SUBFOLDERS OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_EXPANDSUBDIRS_DONOTEXPAND "Do not expand"
+    IDS_EXPANDSUBDIRS_ALL "Expand all subfolders"
+    IDS_EXPANDSUBDIRS_DIFFERENT "Expand different subfolders"
+    IDS_EXPANDSUBDIRS_IDENTICAL "Expand identical subfolders"
 END
 
 // EDITOR OPTIONS

@@ -97,6 +97,7 @@ CDirView::CDirView()
 		, m_pSavedTreeState(nullptr)
 		, m_pColItems(nullptr)
 		, m_nActivePane(-1)
+		, m_nExpandSubdirs(DO_NOT_EXPAND)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -104,7 +105,7 @@ CDirView::CDirView()
 	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS | LVS_OWNERDATA;
 
 	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
-	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
+	m_nExpandSubdirs = static_cast<eExpandSubfoldersType>(GetOptionsMgr()->GetInt(OPT_DIRVIEW_EXPAND_SUBDIRS));
 	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
@@ -180,9 +181,13 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
 	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
 	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
+	ON_COMMAND(ID_VIEW_EXPAND_DIFFERENT_SUBDIRS, OnViewExpandDifferentSubdirs)
+	ON_COMMAND(ID_VIEW_EXPAND_IDENTICAL_SUBDIRS, OnViewExpandIdenticalSubdirs)
 	ON_COMMAND(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnViewCollapseAllSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TREEMODE, OnUpdateViewTreeMode)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_ALLSUBDIRS, OnUpdateViewExpandAllSubdirs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_ALLSUBDIRS, OnUpdateViewExpandSubdirs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_DIFFERENT_SUBDIRS, OnUpdateViewExpandSubdirs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_IDENTICAL_SUBDIRS, OnUpdateViewExpandSubdirs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnUpdateViewCollapseAllSubdirs)
 	ON_COMMAND(ID_SWAPPANES_SWAP12, (OnViewSwapPanes<0, 1>))
 	ON_COMMAND(ID_SWAPPANES_SWAP23, (OnViewSwapPanes<1, 2>))
@@ -2496,6 +2501,14 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 	if (wParam == CDiffThread::EVENT_COMPARE_COMPLETED)
 	{
+		if (!m_pSavedTreeState)
+		{
+			if (m_nExpandSubdirs == EXPAND_DIFFERENT)
+				OnViewExpandDifferentSubdirs();
+			if (m_nExpandSubdirs == EXPAND_IDENTICAL)
+				OnViewExpandIdenticalSubdirs();
+		}
+
 		if (pDoc->GetDiffContext().m_pPropertySystem && pDoc->GetDiffContext().m_pPropertySystem->HasHashProperties())
 			pDoc->GetDiffContext().CreateDuplicateValueMap();
 
@@ -2536,7 +2549,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		}
 		else
 		{
-			if (m_bExpandSubdirs)
+			if (m_nExpandSubdirs == EXPAND_ALL)
 				OnViewExpandAllSubdirs();
 			else
 				Redisplay();
@@ -3167,7 +3180,7 @@ void CDirView::OnUpdatePluginMode(CCmdUI* pCmdUI)
 void CDirView::RefreshOptions()
 {
 	m_nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
-	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
+	m_nExpandSubdirs = static_cast<eExpandSubfoldersType>(GetOptionsMgr()->GetInt(OPT_DIRVIEW_EXPAND_SUBDIRS));
 	Options::DirColors::Load(GetOptionsMgr(), m_cachedColors);
 	m_bUseColors = GetOptionsMgr()->GetBool(OPT_DIRCLR_USE_COLORS);
 	m_pList->SetBkColor(m_bUseColors ? m_cachedColors.clrDirMargin : GetSysColor(COLOR_WINDOW));
@@ -3689,9 +3702,27 @@ void CDirView::OnViewExpandAllSubdirs()
 }
 
 /**
+ * @brief Expand different subfolders
+ */
+void CDirView::OnViewExpandDifferentSubdirs()
+{
+	ExpandDifferentSubdirs(GetDiffContext());
+	Redisplay();
+}
+
+/**
+ * @brief Expand identical subfolders
+ */
+void CDirView::OnViewExpandIdenticalSubdirs()
+{
+	ExpandIdenticalSubdirs(GetDiffContext());
+	Redisplay();
+}
+
+/**
  * @brief Update "Expand All Subfolders" item
  */
-void CDirView::OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI)
+void CDirView::OnUpdateViewExpandSubdirs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_bTreeMode && GetDiffContext().m_bRecursive);
 }

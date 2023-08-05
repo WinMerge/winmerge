@@ -572,9 +572,17 @@ msgstr "A&fficher les éléments cachés"
 msgid "Tree &Mode"
 msgstr "&Mode Arborescence"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Dé&velopper tous les sous-dossiers"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2445,13 +2453,12 @@ msgstr "&Arrêter à la première différence"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "I&gnorer les différences de temps de moins de 3 secondes"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "&Inclure le contenu des sous-dossiers uniques"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "Développer &automatiquement tous les sous-dossiers"
 
 #, c-format
 msgid "Ignore &reparse points"
@@ -2797,6 +2804,18 @@ msgstr "Fichiers HTML (*.htm,*.html)|*.htm;*.html|Tous les fichiers(*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fichiers XML (*.xml)|*.xml|All Files (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Type de fichier"

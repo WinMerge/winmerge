@@ -475,8 +475,17 @@ msgstr "Gizli ög&eleri görüntüle"
 msgid "Tree &Mode"
 msgstr "Ağaç görünü&mü"
 
-msgid "E&xpand All Subfolders"
-msgstr "Tüm alt klasörleri &genişlet"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "Tüm alt klasörleri &daralt"
@@ -1983,11 +1992,11 @@ msgstr "İlk fark&tan sonra durulsun"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 saniyeden az zaman farkları y&ok sayılsın"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "Eşsiz a&lt klasör içerikleri katılsın"
-
-msgid "&Automatically expand all subfolders"
-msgstr "Tüm alt klasörler genişletilsin"
 
 msgid "Ignore &reparse points"
 msgstr "Yeniden işleme noktala&rı yok sayılsın"
@@ -2295,6 +2304,18 @@ msgstr "HTML dosyaları (*.htm,*.html)|*.htm;*.html|Tüm dosyalar (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML dosyaları (*.xml)|*.xml|Tüm dosyalar (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Dosya türü"

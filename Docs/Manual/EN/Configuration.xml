@@ -972,23 +972,51 @@
     </section>
 	
     <section>
-      <title>Automatically expand all subfolders<indexterm>
+      <title>Automatically expand subfolders after comparison<indexterm>
           <primary>expand subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
 
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default): WinMerge don't expand all subfolders after a folder compare.</para>
-        </listitem>
+      <variablelist>
+        <varlistentry>
+          <term>Do not expand</term>
 
-        <listitem>
-          <para><option>Enabled</option>: WinMerge automatically expand all subfolders after finishing a folder compare.</para>
-        </listitem>
-      </itemizedlist>
+          <listitem>
+            <para>(default): WinMerge will not automatically expand subfolders after comparing folders.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Expand all subfolders</term>
+
+          <listitem>
+            <para> WinMerge will automatically expand all subfolders after comparing folders.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Expand different subfolders</term>
+
+          <listitem>
+            <para> WinMerge will automatically expand different subfolders after comparing folders.
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Expand identical subfolders</term>
+
+          <listitem>
+            <para> WinMerge will automatically expand identical subfolders after comparing folders.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </section>
-	
+
     <section>
       <title>Ignore reparse points<indexterm>
           <primary>reparse points</primary>

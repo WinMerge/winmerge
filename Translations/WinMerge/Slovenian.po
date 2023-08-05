@@ -475,8 +475,17 @@ msgstr "Prikaži skri&te vnose"
 msgid "Tree &Mode"
 msgstr "&Drevesni način"
 
-msgid "E&xpand All Subfolders"
-msgstr "Ra&zširi vse podmape"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "S&trni vse podmape"
@@ -1974,11 +1983,11 @@ msgstr "&Ustavi po prvi razliki"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Prezri razlike manjše od 3 sekund"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "&Vključi unikatne vsebine podmap"
-
-msgid "&Automatically expand all subfolders"
-msgstr "S&amodejno razširi vse podmape"
 
 msgid "Ignore &reparse points"
 msgstr "P&rezri točke ponovne razčlenitve"
@@ -2271,6 +2280,18 @@ msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Vse datoteke (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Datoteke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Vrsta datoteke"

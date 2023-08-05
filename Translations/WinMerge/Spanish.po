@@ -478,8 +478,17 @@ msgstr "Mostrar elementos &ocultos"
 msgid "Tree &Mode"
 msgstr "&Modo árbol"
 
-msgid "E&xpand All Subfolders"
-msgstr "E&xpandir todas las subcarpetas"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "&Contraer todas las subcarpetas"
@@ -1977,11 +1986,11 @@ msgstr "De&tener después de la primera diferencia"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orar diferencias de tiempo menores de 3 segundos"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "Incl&uir contenidos únicos de subcarpetas"
-
-msgid "&Automatically expand all subfolders"
-msgstr "Expandir &automáticamente todas las subcarpetas"
 
 msgid "Ignore &reparse points"
 msgstr "Igno&rar los puntos de reparación"
@@ -2274,6 +2283,18 @@ msgstr "Archivos HTML (*.htm, *.html) | *.htm;* .html | Todos los archivos (*.*)
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Archivos XML (*.xml) |*.xml | Todos los archivos (*.*) |*.*| |"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Tipo de archivo"

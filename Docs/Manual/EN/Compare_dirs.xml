@@ -210,7 +210,8 @@ I get the partial list, but no Abort indicator.--></para>
               <menuchoice>
                   <guimenu>View</guimenu>
 
-                  <guimenuitem>Expand All Subfolders</guimenuitem>
+                  <guimenuitem>Expand Subfolders</guimenuitem>
+                  <guimenuitem>All Subfolders</guimenuitem>
                 </menuchoice> or <menuchoice>
                   <guimenu>View</guimenu>
 
