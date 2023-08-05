@@ -26,6 +26,7 @@
 class FileActionScript;
 
 typedef enum { eMain, eContext } eMenuType;
+typedef enum { DO_NOT_EXPAND, EXPAND_ALL, EXPAND_DIFFERENT, EXPAND_IDENTICAL } eExpandSubfoldersType;
 
 class CDirDoc;
 class CDirFrame;
@@ -200,7 +201,7 @@ protected:
 	CListCtrl* m_pList;
 	std::unique_ptr<IListCtrl> m_pIList;
 	int m_nEscCloses; /**< Cached value for option for ESC closing window */
-	int m_nExpandSubdirs;
+	eExpandSubfoldersType m_nExpandSubdirs;
 	CFont m_font; /**< User-selected font */
 	bool m_bTreeMode; /**< `true` if tree mode is on*/
 	DirViewFilterSettings m_dirfilter;
