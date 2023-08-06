@@ -333,9 +333,11 @@ public:
 		if (hr == DISP_E_EXCEPTION && pExcepInfo)
 		{
 			IErrorInfo* pErrorInfo = nullptr;
-			GetErrorInfo(0, &pErrorInfo);
-			pErrorInfo->GetDescription(&pExcepInfo->bstrDescription);
-			pErrorInfo->GetSource(&pExcepInfo->bstrSource);
+			if (SUCCEEDED(GetErrorInfo(0, &pErrorInfo)))
+			{
+				pErrorInfo->GetDescription(&pExcepInfo->bstrDescription);
+				pErrorInfo->GetSource(&pExcepInfo->bstrSource);
+			}
 		}
 		return hr;
 	}

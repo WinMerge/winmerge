@@ -1086,12 +1086,12 @@ struct UpdateButtonStatesThreadParams
 
 static UINT UpdateButtonStatesThread(LPVOID lpParam)
 {
+	if (FAILED(CoInitialize(nullptr)))
+		return 0;
+
+	CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 	MSG msg;
 	BOOL bRet;
-
-	CoInitialize(nullptr);
-	CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
-
 	while( (bRet = GetMessage( &msg, nullptr, 0, 0 )) != 0)
 	{ 
 		if (bRet == -1)

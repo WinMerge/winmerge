@@ -22,9 +22,9 @@
 #include "FileFilterHelper.h"
 #include "DebugNew.h"
 
-static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, int count,
+static void ThrowConfirmCopy(const CDiffContext& ctxt, int origin, int destination, size_t count,
 		const String& src, const String& dest, bool destIsSide);
-static void ThrowConfirmMove(const CDiffContext& ctxt, int origin, int destination, int count,
+static void ThrowConfirmMove(const CDiffContext& ctxt, int origin, int destination, size_t count,
 		const String& src, const String& dest, bool destIsSide);
 static void ThrowConfirmationNeededException(const CDiffContext& ctxt, const String &caption, const String &question,
 		int origin, int destination, size_t count,
@@ -287,7 +287,7 @@ UPDATEITEM_TYPE UpdateDiffAfterOperation(const FileActionItem & act, CDiffContex
 
 	if (bRemoveItem)
 		return UPDATEITEM_REMOVE;
-	if (bUpdateSrc | bUpdateDest)
+	if (bUpdateSrc || bUpdateDest)
 		return UPDATEITEM_UPDATE;
 	return UPDATEITEM_NONE;
 }

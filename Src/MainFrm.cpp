@@ -1257,9 +1257,11 @@ static bool AddToRecentDocs(const PathContext& paths,
 	}
 
 	Concurrent::CreateTask([params, title](){
-			CoInitialize(nullptr);
-			JumpList::AddToRecentDocs(_T(""), params, title, params, _T(""), 0);
-			CoUninitialize();
+			if (SUCCEEDED(CoInitialize(nullptr)))
+			{
+				JumpList::AddToRecentDocs(_T(""), params, title, params, _T(""), 0);
+				CoUninitialize();
+			}
 			return 0;
 		});
 	return true;

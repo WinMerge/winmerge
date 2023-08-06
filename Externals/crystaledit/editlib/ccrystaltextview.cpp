@@ -3638,8 +3638,7 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
   else
     {
       m_nLastLineIndexCalculatedSubLineIndex = 0;
-      if (m_panSubLineIndexCache->size () >= 0)
-        m_panSubLineIndexCache->resize (1);
+      m_panSubLineIndexCache->resize (1);
       (*m_panSubLineIndexCache)[0] = 0;
     }
 
