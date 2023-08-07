@@ -323,6 +323,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
       <Profile>true</Profile>
+      <DelayLoadDLLs>wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -380,7 +381,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -436,7 +437,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -492,7 +493,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -546,6 +547,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
+      <DelayLoadDLLs>wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -598,6 +600,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
+      <DelayLoadDLLs>wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -648,7 +651,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -697,7 +700,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -746,7 +749,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -796,7 +799,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -844,7 +847,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -892,7 +895,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
