@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-07-27 20:00+0200\n"
+"PO-Revision-Date: 2023-08-08 17:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -551,13 +551,13 @@ msgid "Show &Right Only Different Items"
 msgstr "Unterschiedliche Objekte &rechts anzeigen"
 
 msgid "Show L&eft Only Missing Items"
-msgstr "Fehlende Objekte &links anzeigen"
+msgstr "&Fehlende Objekte links anzeigen"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "Fehlende Objekte &Mitte anzeigen"
+msgstr "F&ehlende Objekte Mitte anzeigen"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr "Fehlende Objekte &rechts anzeigen"
+msgstr "Fe&hlende Objekte rechts anzeigen"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -565,35 +565,35 @@ msgstr "Verstec&kte Objekte anzeigen"
 
 #, c-format
 msgid "Tree &Mode"
-msgstr "Baum&modus"
+msgstr "Baumm&odus"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Unterordner aufkla&ppen"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "&Alle Unterordner"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "&Unterschiedliche Unterordner"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "&Identische Unterordner"
 
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "Alle Unterordner redu&zieren"
+msgstr "Alle Unterordner &einklappen"
 
 #, c-format
 msgid "Select &Font..."
-msgstr "Schrift &auswählen..."
+msgstr "Schrift ausw&ählen..."
 
 #, c-format
 msgid "Use Default Font"
-msgstr "Standardschr&ift verwenden"
+msgstr "Standardschri&ft verwenden"
 
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Ausschnitte v&ertauschen"
+msgstr "&Ausschnitte vertauschen"
 
 msgid "Swap &1st | 2nd"
 msgstr "&1. | 2. vertauschen"
@@ -606,7 +606,7 @@ msgstr "1. | &3. vertauschen"
 
 #, c-format
 msgid "Com&pare Statistics..."
-msgstr "V&ergleichsstatistik..."
+msgstr "&Vergleichsstatistik..."
 
 #, c-format
 msgid "Refresh\tF5"
@@ -2442,7 +2442,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Zeitunterschiede kleiner als 3 Sekunden ignorieren"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "Unterordner nach dem Vergleich &automatisch aufklappen:"
 
 #, c-format
 msgid "Include &unique subfolders contents"
@@ -2557,10 +2557,10 @@ msgid "\nSave (Ctrl+S)"
 msgstr "\nSpeichern (Strg+S)"
 
 msgid "Unknown error attempting to open project file."
-msgstr "Unbekannter Fehler beim Versuch, die Projektdatei zu öffnen."
+msgstr "Unbekannter Fehler beim Versuch, die Projektdatei zu öffnen.\n\n"
 
 msgid "Unknown error attempting to save project file."
-msgstr "Unbekannter Fehler beim Versuch, die Projektdatei zu speichern."
+msgstr "Unbekannter Fehler beim Versuch, die Projektdatei zu speichern.\n\n"
 
 #, c-format
 msgid "Project file successfully loaded."
@@ -2740,16 +2740,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Nicht aufklappen"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Alle Unterordner aufklappen"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Unterschiedliche Unterordner aufklappen"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Identische Unterordner aufklappen"
 
 msgid "File Type"
 msgstr "Dateityp"
