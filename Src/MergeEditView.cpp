@@ -1336,7 +1336,7 @@ void CMergeEditView::OnFirstdiff()
  */
 void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 {
-	OnUpdatePrevdiff(pCmdUI);
+	pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 }
 
 /**
@@ -1357,7 +1357,7 @@ void CMergeEditView::OnLastdiff()
  */
 void CMergeEditView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
-	OnUpdateNextdiff(pCmdUI);
+	pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 }
 
 /**
@@ -1442,7 +1442,8 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 	else
 	{
 		// Enable if the beginning of the last significant difference is after caret
-		enabled = (GetCursorPos().y < (long)dfi->dbegin);
+		enabled = (pd->GetCurrentDiff() < 0 && GetCursorPos().y <= (long)dfi->dbegin)
+			|| (GetCursorPos().y < (long)dfi->dbegin);
 	}
 
 	if (!enabled && pd->GetDirDoc())
@@ -1533,7 +1534,8 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	else
 	{
 		// Enable if the end of the first significant difference is before caret
-		enabled = (GetCursorPos().y > (long)dfi->dend);
+		enabled = (pd->GetCurrentDiff() < 0 && GetCursorPos().y >= (long)dfi->dbegin)
+			|| (GetCursorPos().y > (long)dfi->dend);
 	}
 
 	if (!enabled && pd->GetDirDoc())
@@ -1645,7 +1647,8 @@ void CMergeEditView::OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	{
 		// Enable if the beginning of the last significant difference is after caret
 		CEPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y < (long)dfi->dbegin);
+		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y <= (long)dfi->dbegin)
+			|| (pos.y < (long)dfi->dbegin));
 	}
 }
 
@@ -1727,7 +1730,8 @@ void CMergeEditView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	{
 		// Enable if the end of the first significant difference is before caret
 		CEPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y > (long)dfi->dend);
+		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y >= (long)dfi->dend)
+			|| (pos.y > (long)dfi->dend));
 	}
 }
 
