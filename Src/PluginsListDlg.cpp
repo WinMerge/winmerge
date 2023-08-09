@@ -155,7 +155,7 @@ void PluginsListDlg::OnBnClickedOk()
 
 	for (int i = 0; i < m_list.GetItemCount(); ++i)
 	{
-		PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(nullptr, String(m_list.GetItemText(i, 0)));
+		PluginInfo * plugin = reinterpret_cast<PluginInfo *>(m_list.GetItemData(i));
 		if (plugin)
 			plugin->m_disabled = !m_list.GetCheck(i);
 	}
