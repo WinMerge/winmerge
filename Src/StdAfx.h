@@ -47,6 +47,7 @@
 #include <functional>
 #include <cassert>
 #include <ctime>
+#include <boost/flyweight.hpp>
 
 /**
  * @name User-defined Windows-messages
