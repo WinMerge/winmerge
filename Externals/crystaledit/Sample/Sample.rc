@@ -114,6 +114,7 @@ BEGIN
         MENUITEM "Print Preview",               ID_FILE_PRINT_PREVIEW
         MENUITEM "Pa&ge Setup...",              ID_FILE_PAGE_SETUP
         MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP
+        MENUITEM "Convert to &HTML...",         ID_FILE_CONVERT_TO_HTML
         MENUITEM SEPARATOR
         MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
         MENUITEM SEPARATOR
@@ -189,6 +190,7 @@ BEGIN
         MENUITEM "View T&op Margins",           ID_VIEW_TOPMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
+        MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
         MENUITEM "Select &Font...",             ID_VIEW_SELECT_FONT
         MENUITEM SEPARATOR
         MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
