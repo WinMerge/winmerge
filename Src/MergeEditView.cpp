@@ -464,7 +464,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 					int worddiffLen = worddiffs[i].end[m_nThisPane] - worddiffs[i].begin[m_nThisPane];
 					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
 						(firstLine == worddiffs[i].endline[m_nThisPane] && 
-						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) > ptStart.x))
+						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) >= ptStart.x))
 					{
 						firstWordDiff = static_cast<int>(i);
 						break;
@@ -1898,11 +1898,13 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CMergeDoc *pd = GetDocument();
 	CEPoint pos = GetCursorPos();
 
+	int nCurrentDiff = pd->GetCurrentDiff();
 	int diff = pd->m_diffList.LineToDiff(pos.y);
 	if (diff != -1 && pd->m_diffList.IsDiffSignificant(diff))
 		SelectDiff(diff, false, false);
 
-	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
+	if (nCurrentDiff != -1 || nCurrentDiff == diff)
+		CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
 }
 
 /**
