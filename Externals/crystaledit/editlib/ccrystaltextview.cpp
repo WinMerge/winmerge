@@ -2303,7 +2303,48 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
   bool bLastCharSpace = false;
   const int nScreenChars = 40; //  GetScreenChars();
 
-  if (m_pTextBuffer->GetTableEditing ())
+  const TextLayoutMode layoutMode = GetTextLayoutMode ();
+  if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP)
+    {
+      const tchar_t* pszChars = GetLineChars(nLineIndex);
+      const ViewableWhitespaceChars* lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE::GDI);
+
+      int nColumnBegin = 0;
+      const int sep = m_pTextBuffer->GetFieldDelimiter();
+      const int quote = m_pTextBuffer->GetFieldEnclosure();
+      bool bInQuote = false;
+
+      strHTML += _T("<");
+      strHTML += pszTag;
+      strHTML += _T("><code>");
+      for (int i = 0; i < nLength; i++)
+      {
+          tchar_t c = pszChars[i];
+          if (!bInQuote && c == sep)
+          {
+              ExpandChars(nLineIndex, nColumnBegin, i + 1 - nColumnBegin, strExpanded, 0);
+              strHTML += EscapeHTML(strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+              nColumnBegin = i + 1;
+              bLastCharSpace = false;
+              nNonbreakChars = 0;
+              strHTML += _T("</code></");
+              strHTML += pszTag;
+              strHTML += _T("><");
+              strHTML += pszTag;
+              strHTML += _T("><code>");
+          }
+          else if (c == quote)
+          {
+              bInQuote = !bInQuote;
+          }
+      }
+      ExpandChars(nLineIndex, nColumnBegin, nLength - nColumnBegin, strExpanded, 0);
+      strHTML += EscapeHTML(strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+      strHTML += _T("</");
+      strHTML += pszTag;
+      strHTML += _T(">");
+    }
+  else if (layoutMode == TEXTLAYOUT_TABLE_WORDWRAP)
     {
       vector<int> anBreaks(GetLineLength (nLineIndex) + 1);
       int nBreaks = 0;
@@ -2337,15 +2378,15 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
       strHTML += _T("<");
       strHTML += pszTag;
       strHTML += _T(" ");
-      strHTML += GetHTMLAttribute(COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
+      strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
       strHTML += _T("><code>");
 
       auto MakeSpan = [&](const TEXTBLOCK& block, const CString& strExpanded) {
           CString strHTML;
           strHTML += _T("<span ");
-          strHTML += GetHTMLAttribute(block.m_nColorIndex, block.m_nBgColorIndex, crText, crBkgnd);
+          strHTML += GetHTMLAttribute (block.m_nColorIndex, block.m_nBgColorIndex, crText, crBkgnd);
           strHTML += _T(">");
-          strHTML += EscapeHTML(strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+          strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
           strHTML += _T("</span>");
           return strHTML;
           };
@@ -2353,16 +2394,16 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
       size_t i;
       for (i = 0; i < blocks.size() - 1; i++)
       {
-          ExpandChars(nLineIndex, blocks[i].m_nCharPos, blocks[i + 1].m_nCharPos - blocks[i].m_nCharPos, strExpanded, 0);
+          ExpandChars (nLineIndex, blocks[i].m_nCharPos, blocks[i + 1].m_nCharPos - blocks[i].m_nCharPos, strExpanded, 0);
           if (!strExpanded.IsEmpty())
               strHTML += MakeSpan(blocks[i], strExpanded);
       }
       if (blocks.size() > 0)
       {
-          ExpandChars(nLineIndex, blocks[i].m_nCharPos, nLength - blocks[i].m_nCharPos, strExpanded, 0);
+          ExpandChars (nLineIndex, blocks[i].m_nCharPos, nLength - blocks[i].m_nCharPos, strExpanded, 0);
           if (!strExpanded.IsEmpty())
               strHTML += MakeSpan(blocks[i], strExpanded);
-          if (strExpanded.Compare(CString(' ', strExpanded.GetLength())) == 0)
+          if (strExpanded.Compare (CString (' ', strExpanded.GetLength())) == 0)
               strHTML += _T("&nbsp;");
       }
       strHTML += _T("</code></");

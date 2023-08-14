@@ -176,8 +176,18 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 	linemax.Format(_T("%d"),  GetLineCount());
 	double marginWidth = GetViewLineNumbers() ? linemax.GetLength() / 1.5 + 0.5 : 0.5;
 	CString tableStyle;
-	tableStyle.Format(
-		_T("table { table-layout: fixed; width: 100%%; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+	switch (GetTextLayoutMode())
+	{
+	case TEXTLAYOUT_TABLE_NOWORDWRAP:
+	case TEXTLAYOUT_TABLE_WORDWRAP:
+		tableStyle.Format(
+			_T("table { table-layout: fixed; width: max-content; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+		break;
+	default:
+		tableStyle.Format(
+			_T("table { table-layout: fixed; width: 100%%; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+		break;
+	}
 	CString colgroup;
 	colgroup.Format(
 		_T("<colgroup>\n")
