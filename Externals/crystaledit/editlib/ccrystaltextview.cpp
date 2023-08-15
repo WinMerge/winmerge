@@ -2284,7 +2284,7 @@ GetHTMLAttribute (int nColorIndex, int nBgColorIndex, CEColor crText, CEColor cr
  * @return The html version of the line
  */
 CString CCrystalTextView::
-GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
+GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax)
 {
   ASSERT (nLineIndex >= -1 && nLineIndex < GetLineCount ());
 
@@ -2296,82 +2296,98 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
   GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
 
   std::vector<TEXTBLOCK> blocks = GetTextBlocks(nLineIndex);
-
+  int nColumn = 0;
+  const int nColumnCount = m_pTextBuffer->GetColumnCount (nLineIndex);
   CString strHTML;
   CString strExpanded;
   int nNonbreakChars = 0;
   bool bLastCharSpace = false;
   const int nScreenChars = 40; //  GetScreenChars();
 
-  const TextLayoutMode layoutMode = GetTextLayoutMode ();
-  if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP)
-    {
-      const tchar_t* pszChars = GetLineChars(nLineIndex);
-      const ViewableWhitespaceChars* lpspc = GetViewableWhitespaceChars(GetACP(), m_nRenderingMode != RENDERING_MODE::GDI);
-
-      int nColumnBegin = 0;
-      const int sep = m_pTextBuffer->GetFieldDelimiter();
-      const int quote = m_pTextBuffer->GetFieldEnclosure();
-      bool bInQuote = false;
-
-      strHTML += _T("<");
-      strHTML += pszTag;
-      strHTML += _T("><code>");
-      for (int i = 0; i < nLength; i++)
-      {
-          tchar_t c = pszChars[i];
-          if (!bInQuote && c == sep)
-          {
-              ExpandChars(nLineIndex, nColumnBegin, i + 1 - nColumnBegin, strExpanded, 0);
-              strHTML += EscapeHTML(strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
-              nColumnBegin = i + 1;
-              bLastCharSpace = false;
-              nNonbreakChars = 0;
-              strHTML += _T("</code></");
-              strHTML += pszTag;
-              strHTML += _T("><");
-              strHTML += pszTag;
-              strHTML += _T("><code>");
-          }
-          else if (c == quote)
-          {
-              bInQuote = !bInQuote;
-          }
-      }
-      ExpandChars(nLineIndex, nColumnBegin, nLength - nColumnBegin, strExpanded, 0);
-      strHTML += EscapeHTML(strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
-      strHTML += _T("</");
-      strHTML += pszTag;
+  auto MakeSpan = [&](const TEXTBLOCK& block, const CString& strExpanded) {
+      CString strHTML;
+      strHTML += _T("<span ");
+      strHTML += GetHTMLAttribute (block.m_nColorIndex, block.m_nBgColorIndex, crText, crBkgnd);
       strHTML += _T(">");
-    }
-  else if (layoutMode == TEXTLAYOUT_TABLE_WORDWRAP)
+      strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+      strHTML += _T("</span>");
+      return strHTML;
+      };
+
+  const TextLayoutMode layoutMode = GetTextLayoutMode ();
+  if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP ||
+      layoutMode == TEXTLAYOUT_TABLE_WORDWRAP)
     {
-      vector<int> anBreaks(GetLineLength (nLineIndex) + 1);
+      std::vector<int> anBreaks(GetLineLength (nLineIndex) + 1);
       int nBreaks = 0;
-      WrapLineCached( nLineIndex, nScreenChars, &anBreaks, nBreaks );
+      if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP)
+        anBreaks.clear();
+      else
+        WrapLineCached ( nLineIndex, nScreenChars, &anBreaks, nBreaks );
       anBreaks.push_back (-nLength);
 
-      for (size_t i = 0; i < anBreaks.size(); i++)
+      const tchar_t* pszChars = GetLineChars (nLineIndex);
+      const ViewableWhitespaceChars* lpspc = GetViewableWhitespaceChars (GetACP (), m_nRenderingMode != RENDERING_MODE::GDI);
+
+      const int sep = m_pTextBuffer->GetFieldDelimiter ();
+      const int quote = m_pTextBuffer->GetFieldEnclosure ();
+      bool bInQuote = false;
+
+      strHTML += _T("<td ");
+      if (nColumn + 1 == nColumnCount && (nColumnCountMax - nColumn) > 1)
         {
-          if (i == 0 || anBreaks[i - 1] < 0)
-            {
-              strHTML += _T("<");
-              strHTML += pszTag;
-              strHTML += _T("><code>");
-            }
-          ExpandChars(nLineIndex, i == 0 ? 0 : abs(anBreaks[i - 1]), abs(anBreaks[i]) - (i == 0 ? 0 : abs(anBreaks[i - 1])), strExpanded, 0);
-          strHTML += EscapeHTML(strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
-          bLastCharSpace = false;
-          nNonbreakChars = 0;
-          if (anBreaks[i] < 0)
-            {
-              strHTML += _T("</code></");
-              strHTML += pszTag;
-              strHTML += _T(">");
-            }
-          else
-            strHTML += _T("<br />");
+          CString colspan;
+          colspan.Format (_T("colspan=\"%d\" "), nColumnCountMax - nColumn);
+          strHTML += colspan;
         }
+      strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
+      strHTML += _T("><code>");
+      int k = 0;
+      for (size_t j = 0; j < blocks.size(); j++)
+        {
+          int blockBegin = blocks[j].m_nCharPos;
+          int blockEnd = (j + 1 < blocks.size()) ? blocks[j + 1].m_nCharPos : nLength;
+          for (int i = blockBegin; i < blockEnd; i++)
+            {
+              tchar_t c = pszChars[i];
+              if (abs(anBreaks[k]) == i)
+                {
+                  if (anBreaks[k] >= 0)
+                    {
+                      ExpandChars (nLineIndex, blockBegin, i - blockBegin, strExpanded, 0);
+                      strHTML += MakeSpan (blocks[j], strExpanded);
+                      strHTML += _T("<br />");
+                      blockBegin = i;
+                    }
+                  k++;
+                }
+              if (!bInQuote && c == sep)
+                {
+                  ExpandChars (nLineIndex, blockBegin, i + 1 - blockBegin, strExpanded, 0);
+                  strHTML += MakeSpan (blocks[j], strExpanded);
+                  blockBegin = i + 1;
+                  bLastCharSpace = false;
+                  nNonbreakChars = 0;
+                  nColumn++;
+                  strHTML += _T("</code></td><td ");
+                  if (nColumn + 1 == nColumnCount && (nColumnCountMax - nColumn) > 1)
+                    {
+                      CString colspan;
+                      colspan.Format (_T("colspan=\"%d\" "), nColumnCountMax - nColumn);
+                      strHTML += colspan;
+                    }
+                  strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
+                  strHTML += _T("><code>");
+                }
+              else if (c == quote)
+                {
+                  bInQuote = !bInQuote;
+                }
+            }
+          ExpandChars (nLineIndex, blockBegin, blockEnd - blockBegin, strExpanded, 0);
+          strHTML += MakeSpan (blocks[j], strExpanded);
+        }
+      strHTML += _T("</code></td>");
     }
   else
     {
@@ -2380,16 +2396,6 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag)
       strHTML += _T(" ");
       strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
       strHTML += _T("><code>");
-
-      auto MakeSpan = [&](const TEXTBLOCK& block, const CString& strExpanded) {
-          CString strHTML;
-          strHTML += _T("<span ");
-          strHTML += GetHTMLAttribute (block.m_nColorIndex, block.m_nBgColorIndex, crText, crBkgnd);
-          strHTML += _T(">");
-          strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
-          strHTML += _T("</span>");
-          return strHTML;
-          };
 
       size_t i;
       for (i = 0; i < blocks.size() - 1; i++)

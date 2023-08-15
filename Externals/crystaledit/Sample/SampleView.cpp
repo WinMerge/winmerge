@@ -175,6 +175,7 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 	CString linemax;
 	linemax.Format(_T("%d"),  GetLineCount());
 	double marginWidth = GetViewLineNumbers() ? linemax.GetLength() / 1.5 + 0.5 : 0.5;
+	const int nColumnCountMax = m_pTextBuffer->GetColumnCountMax();
 	CString tableStyle;
 	switch (GetTextLayoutMode())
 	{
@@ -225,7 +226,7 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 				ln.Format(_T("<td class=\"ln\"></td>"));
 			file.WriteString(_T("<tr>"));
 			file.WriteString(ln);
-			file.WriteString(GetHTMLLine(line, _T("td")));
+			file.WriteString(GetHTMLLine(line, _T("td"), nColumnCountMax));
 			file.WriteString(_T("</tr>\n"));
 		}
 		file.WriteString(

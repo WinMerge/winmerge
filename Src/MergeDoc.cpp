@@ -3993,11 +3993,15 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		_T("<tbody>\n"));
 
 	// write the body of the report
-	int idx[3] = {0};
-	int nLineCount[3] = {0};
+	int nColumnCountMax[3]{};
+	int idx[3]{};
+	int nLineCount[3] = {};
 	int nDiff = 0;
 	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	{
 		nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
+		nColumnCountMax[nBuffer] = m_ptBuf[nBuffer]->GetColumnCountMax();
+	}
 
 	for (;;)
 	{
@@ -4039,7 +4043,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					tdtag += _T("</td>");
 				file.WriteString(tdtag);
 				// line content
-				file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
+				file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td"), nColumnCountMax[nBuffer]));
 				idx[nBuffer]++;
 			}
 			else
