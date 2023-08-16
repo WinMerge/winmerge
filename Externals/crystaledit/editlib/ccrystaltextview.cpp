@@ -2318,22 +2318,23 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax)
   if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP ||
       layoutMode == TEXTLAYOUT_TABLE_WORDWRAP)
     {
-      std::vector<int> anBreaks(GetLineLength (nLineIndex) + 1);
-      int nBreaks = 0;
-      if (layoutMode == TEXTLAYOUT_TABLE_NOWORDWRAP)
-        anBreaks.clear();
-      else
-        WrapLineCached ( nLineIndex, nScreenChars, &anBreaks, nBreaks );
+      std::vector<int> anBreaks;
+      if (layoutMode == TEXTLAYOUT_TABLE_WORDWRAP)
+        {
+          int nBreaks = 0;
+          anBreaks.resize (GetLineLength(nLineIndex) + 1);
+          WrapLineCached ( nLineIndex, nScreenChars, &anBreaks, nBreaks );
+        }
       anBreaks.push_back (-nLength);
 
       const tchar_t* pszChars = GetLineChars (nLineIndex);
-      const ViewableWhitespaceChars* lpspc = GetViewableWhitespaceChars (GetACP (), m_nRenderingMode != RENDERING_MODE::GDI);
-
       const int sep = m_pTextBuffer->GetFieldDelimiter ();
       const int quote = m_pTextBuffer->GetFieldEnclosure ();
       bool bInQuote = false;
 
-      strHTML += _T("<td ");
+      strHTML += _T("<");
+      strHTML += pszTag;
+      strHTML += _T(" ");
       if (nColumn + 1 == nColumnCount && (nColumnCountMax - nColumn) > 1)
         {
           CString colspan;
@@ -2369,7 +2370,11 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax)
                   bLastCharSpace = false;
                   nNonbreakChars = 0;
                   nColumn++;
-                  strHTML += _T("</code></td><td ");
+                  strHTML += _T("</code></");
+                  strHTML += pszTag;
+                  strHTML += _T("><");
+                  strHTML += pszTag;
+                  strHTML += _T(" ");
                   if (nColumn + 1 == nColumnCount && (nColumnCountMax - nColumn) > 1)
                     {
                       CString colspan;
@@ -2387,7 +2392,9 @@ GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax)
           ExpandChars (nLineIndex, blockBegin, blockEnd - blockBegin, strExpanded, 0);
           strHTML += MakeSpan (blocks[j], strExpanded);
         }
-      strHTML += _T("</code></td>");
+      strHTML += _T("</code></");
+      strHTML += pszTag;
+      strHTML += _T(">");
     }
   else
     {
