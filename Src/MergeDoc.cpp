@@ -3987,7 +3987,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				_T("<div style=\"overflow-x: auto;\">\n")
 				_T("<table style=\"width: max-content; border-collapse: collapse;\">\n"));
 			file.WriteString(_T("<tr>"));
-			String columnHeader = _T("<th class=\"cn\"></td>");
+			String columnHeader = _T("<th class=\"cn\"></th>");
 			for (int nColumn = 0; nColumn < nColumnCountMax; nColumn++)
 				columnHeader += _T("<th class=\"cn\">") + m_pView[0][nBuffer]->GetColumnName(nColumn) + _T("</th>");
 			file.WriteString(columnHeader.c_str());
@@ -4041,10 +4041,10 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					file.WriteString(_T("</tr>\n"));
 				}
 			}
-			file.WriteString(_T("</table></div>"));
+			file.WriteString(_T("</table></div>\n"));
 		}
 		file.WriteString(
-			_T("</body>\n"));
+			_T("</div>\n</body>\n"));
 	}
 	else
 	{
