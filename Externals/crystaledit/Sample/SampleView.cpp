@@ -177,6 +177,7 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 	double marginWidth = GetViewLineNumbers() ? linemax.GetLength() / 1.5 + 0.5 : 0.5;
 	const int nColumnCountMax = m_pTextBuffer->GetColumnCountMax();
 	CString tableStyle;
+	CString colgroup;
 	switch (GetTextLayoutMode())
 	{
 	case TEXTLAYOUT_TABLE_NOWORDWRAP:
@@ -187,14 +188,13 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 	default:
 		tableStyle.Format(
 			_T("table { table-layout: fixed; width: 100%%; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+		colgroup.Format(
+			_T("<colgroup>\n")
+			_T("<col style=\"width: %.1fem;\" />\n")
+			_T("<col style=\"width: calc(100%% - %.1fem);\" />\n")
+			_T("</colgroup>\n"), marginWidth, marginWidth);
 		break;
 	}
-	CString colgroup;
-	colgroup.Format(
-		_T("<colgroup>\n")
-		_T("<col style=\"width: %.1fem;\" />\n")
-		_T("<col style=\"width: calc(100%% - %.1fem);\" />\n")
-		_T("</colgroup>\n"), marginWidth, marginWidth);
 
 #pragma warning(disable: 4996)
 	try

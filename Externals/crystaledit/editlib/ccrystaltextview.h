@@ -628,6 +628,7 @@ protected:
     virtual std::vector<CrystalLineParser::TEXTBLOCK> GetAdditionalTextBlocks (int nLineIndex);
 
 public:
+    virtual CString GetColumnName(int nColumn);
     virtual CString GetHTMLLine (int nLineIndex, const tchar_t* pszTag, int nColumnCountMax);
     virtual CString GetHTMLStyles ();
     std::vector<CrystalLineParser::TEXTBLOCK> GetTextBlocks(int nLineIndex);

@@ -2277,10 +2277,26 @@ GetHTMLAttribute (int nColorIndex, int nBgColorIndex, CEColor crText, CEColor cr
   return strAttr;
 }
 
+CString CCrystalTextView::
+GetColumnName(int nColumn)
+{
+  CString columnName;
+  for (int i = 0; ; ++i)
+    {
+      tchar_t c = 'A' + (nColumn % 26) - (i == 0 ? 0 : 1);
+      columnName.Insert (0, c);
+      nColumn /= 26;
+      if (nColumn == 0)
+        break;
+    }
+  return columnName;
+};
+
 /**
  * @brief Retrieve the html version of the line
  * @param [in] nLineIndex  Index of line in view
  * @param [in] pszTag      The HTML tag to enclose the line
+ * @param [in] nColumnCountMax Maximum number of columns
  * @return The html version of the line
  */
 CString CCrystalTextView::
@@ -2450,20 +2466,6 @@ GetLineFlags (int nLineIndex) const
 void CCrystalTextView::
 GetTopMarginText (const CRect& rect, CString& text, std::vector<int>& nWidths)
 {
-  auto getColumnName = [](int nColumn) -> CString
-    {
-      CString columnName;
-      for (int i = 0; ; ++i)
-        {
-          tchar_t c = 'A' + (nColumn % 26) - (i == 0 ? 0 : 1);
-          columnName.Insert (0, c);
-          nColumn /= 26;
-          if (nColumn == 0)
-            break;
-        }
-      return columnName;
-    };
-
   auto replaceControlChars = [](const CString& text) -> CString
     {
       CString result;
@@ -2489,7 +2491,7 @@ GetTopMarginText (const CRect& rect, CString& text, std::vector<int>& nWidths)
       if (m_nTopSubLine > 0 && m_nLineNumberUsedAsHeaders >= 0 && m_nLineNumberUsedAsHeaders < m_pTextBuffer->GetLineCount())
         columnName = replaceControlChars (m_pTextBuffer->GetCellText (m_nLineNumberUsedAsHeaders, nColumn).c_str ()); // Use std::basic_string<tchar_t> instead of CString
       if (columnName.IsEmpty())
-        columnName = getColumnName (nColumn);
+        columnName = GetColumnName (nColumn);
       int columnNameLen = 0;
       std::vector<int> nCharWidths;
       for (int i = 0; i < columnName.GetLength(); ++i)

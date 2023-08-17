@@ -4003,77 +4003,160 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		nColumnCountMax[nBuffer] = m_ptBuf[nBuffer]->GetColumnCountMax();
 	}
 
-	for (;;)
+	if (m_ptBuf[0]->GetTableEditing())
 	{
 		file.WriteString(_T("<tr>\n"));
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
+			file.WriteString(_T("<td><table>"));
+			for (;;)
 			{
-				if (m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+				file.WriteString(_T("<tr>"));
+				for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
+				{
+					if (m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+						break;
+				}
+
+				if (idx[nBuffer] < nLineCount[nBuffer])
+				{
+					// line number
+					int iVisibleLineNumber = 0;
+					String tdtag = _T("<td class=\"ln\">");
+					lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
+					if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
+					{
+						iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
+					}
+					if (nBuffer == 0 &&
+						(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
+							(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
+					{
+						++nDiff;
+						if (iVisibleLineNumber > 0)
+						{
+							tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+							iVisibleLineNumber = 0;
+						}
+						else
+							tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+					}
+					if (iVisibleLineNumber > 0)
+						tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
+					else
+						tdtag += _T("</td>");
+					file.WriteString(tdtag);
+					// line content
+					file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td"), nColumnCountMax[nBuffer]));
+					idx[nBuffer]++;
+				}
+				else
+					file.WriteString(_T("<td class=\"ln\"></td><td></td>"));
+				file.WriteString(_T("\n"));
+
+				file.WriteString(_T("</tr>\n"));
+
+				bool bBorderLine = false;
+				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				{
+					if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+						bBorderLine = true;
+				}
+
+				if (bBorderLine)
+				{
+					file.WriteString(_T("<tr height=1>"));
+					for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+					{
+						if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+							file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
+						else
+							file.WriteString(_T("<td></td><td></td>"));
+					}
+					file.WriteString(_T("</tr>\n"));
+				}
+
+				if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1] && (m_nBuffers < 3 || idx[2] >= nLineCount[2]))
 					break;
 			}
-				
-			if (idx[nBuffer] < nLineCount[nBuffer])
-			{
-				// line number
-				int iVisibleLineNumber = 0;
-				String tdtag = _T("<td class=\"ln\">");
-				lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
-				if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
-				{
-					iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
-				}
-				if (nBuffer == 0 &&
-					(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
-					(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
-				{
-					++nDiff;
-					if (iVisibleLineNumber > 0)
-					{
-						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
-						iVisibleLineNumber = 0;
-					}
-					else
-						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
-				}
-				if (iVisibleLineNumber > 0)
-					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
-				else
-					tdtag += _T("</td>");
-				file.WriteString(tdtag);
-				// line content
-				file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td"), nColumnCountMax[nBuffer]));
-				idx[nBuffer]++;
-			}
-			else
-				file.WriteString(_T("<td class=\"ln\"></td><td></td>"));
-			file.WriteString(_T("\n"));
+			file.WriteString(_T("</table></td>"));
 		}
 		file.WriteString(_T("</tr>\n"));
-
-		bool bBorderLine = false;
-		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	}
+	else
+	{
+		for (;;)
 		{
-			if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-				bBorderLine = true;
-		}
+			file.WriteString(_T("<tr>\n"));
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
+				{
+					if (m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+						break;
+				}
 
-		if (bBorderLine)
-		{
-			file.WriteString(_T("<tr height=1>"));
+				if (idx[nBuffer] < nLineCount[nBuffer])
+				{
+					// line number
+					int iVisibleLineNumber = 0;
+					String tdtag = _T("<td class=\"ln\">");
+					lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
+					if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
+					{
+						iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
+					}
+					if (nBuffer == 0 &&
+						(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
+							(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
+					{
+						++nDiff;
+						if (iVisibleLineNumber > 0)
+						{
+							tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+							iVisibleLineNumber = 0;
+						}
+						else
+							tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+					}
+					if (iVisibleLineNumber > 0)
+						tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
+					else
+						tdtag += _T("</td>");
+					file.WriteString(tdtag);
+					// line content
+					file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td"), nColumnCountMax[nBuffer]));
+					idx[nBuffer]++;
+				}
+				else
+					file.WriteString(_T("<td class=\"ln\"></td><td></td>"));
+				file.WriteString(_T("\n"));
+			}
+			file.WriteString(_T("</tr>\n"));
+
+			bool bBorderLine = false;
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
 				if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-					file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
-				else
-					file.WriteString(_T("<td></td><td></td>"));
+					bBorderLine = true;
 			}
-			file.WriteString(_T("</tr>\n"));
-		}
 
-		if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1] && (m_nBuffers < 3 || idx[2] >= nLineCount[2]))
-			break;
+			if (bBorderLine)
+			{
+				file.WriteString(_T("<tr height=1>"));
+				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				{
+					if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+						file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
+					else
+						file.WriteString(_T("<td></td><td></td>"));
+				}
+				file.WriteString(_T("</tr>\n"));
+			}
+
+			if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1] && (m_nBuffers < 3 || idx[2] >= nLineCount[2]))
+				break;
+		}
 	}
 	file.WriteString(
 		_T("</tbody>\n")
