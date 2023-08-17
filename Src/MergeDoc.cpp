@@ -3940,7 +3940,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	}
 
 	// write the body of the report
-	int nDiff = 0;
 	if (m_ptBuf[0]->GetTableEditing())
 	{
 		String headerText =
@@ -3951,10 +3950,10 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("<title>WinMerge File Compare Report</title>\n")
 			_T("<style type=\"text/css\">\n")
 			_T("<!--\n")
-			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); }\n")
+			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); font-size: %dpt;  }\n")
 			_T("th { position: sticky; top: 0; }\n")
-			_T("td,th { word-break: break-all; font-size: %dpt; padding: 0 3px; border: 1px solid #a0a0a0; }\n")
-			_T("tr { vertical-align: top; }\n")
+			_T("td,th { word-break: break-all; padding: 0 3px; border: 1px solid #a0a0a0; }\n")
+			_T("tr { vertical-align: top; line-height: 1.2 }\n")
 			_T(".title { font-weight: bold; color: white; background-color: blue; vertical-align: top; text-align: center; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 			_T("%s")
 			_T("-->\n")
@@ -3981,6 +3980,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
+			int nDiff = 0;
 			int nLineCount = m_ptBuf[nBuffer]->GetLineCount();
 			int nColumnCountMax = m_ptBuf[nBuffer]->GetColumnCountMax();
 			file.WriteString(
@@ -3997,7 +3997,11 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				if (!m_pView[0][nBuffer]->GetLineVisible(nLineIndex))
 						continue;
 
-				file.WriteString(_T("<tr>"));
+				const int nSubLineCount = m_pView[0][nBuffer]->GetSubLines(nLineIndex);
+				if (nSubLineCount == 1)
+					file.WriteString(_T("<tr>"));
+				else
+					file.WriteString(strutils::format(_T("<tr style=\"height: %.1fem\">"), (nSubLineCount * 1.2 + 0.1)));
 
 				// line number
 				int iVisibleLineNumber = 0;
@@ -4104,9 +4108,10 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("<tbody>\n"));
 
 		// write the body of the report
-		int nColumnCountMax[3]{};
 		int idx[3]{};
 		int nLineCount[3] = {};
+		int nDiff = 0;
+		int nColumnCountMax[3]{};
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
