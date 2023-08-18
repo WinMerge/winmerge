@@ -2309,7 +2309,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 		_T("<!DOCTYPE html>\n")
 		_T("<html>\n")
 		_T("<head>\n")
-		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+		_T("<meta charset=\"UTF-8\">\n")
 		_T("<title>WinMerge Image Compare Report</title>\n")
 		_T("<style type=\"text/css\">\n")
 		_T("table { table-layout: fixed; width: 100%; height: 100%; border-collapse: collapse; }\n")

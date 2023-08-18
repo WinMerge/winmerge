@@ -175,15 +175,29 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 	CString linemax;
 	linemax.Format(_T("%d"),  GetLineCount());
 	double marginWidth = GetViewLineNumbers() ? linemax.GetLength() / 1.5 + 0.5 : 0.5;
+	const int nColumnCountMax = m_pTextBuffer->GetColumnCountMax();
 	CString tableStyle;
-	tableStyle.Format(
-		_T("table { table-layout: fixed; width: 100%%; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+	CString tdthStyle;
 	CString colgroup;
-	colgroup.Format(
-		_T("<colgroup>\n")
-		_T("<col style=\"width: %.1fem;\" />\n")
-		_T("<col style=\"width: calc(100%% - %.1fem);\" />\n")
-		_T("</colgroup>\n"), marginWidth, marginWidth);
+	switch (GetTextLayoutMode())
+	{
+	case TEXTLAYOUT_TABLE_NOWORDWRAP:
+	case TEXTLAYOUT_TABLE_WORDWRAP:
+		tableStyle.Format(
+			_T("table { table-layout: fixed; width: max-content; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+		tdthStyle = _T("td,th {word-break: break-all; padding: 0 3px; border: 1px solid #a0a0a0; }\n");
+		break;
+	default:
+		tableStyle.Format(
+			_T("table { table-layout: fixed; width: 100%%; height: 100%%; border-collapse: collapse; font-size: %dpt;}\n"), nFontSize);
+		tdthStyle = _T("td,th {word-break: break-all; padding: 0 3px; }\n");
+		colgroup.Format(
+			_T("<colgroup>\n")
+			_T("<col style=\"width: %.1fem;\" />\n")
+			_T("<col style=\"width: calc(100%% - %.1fem);\" />\n")
+			_T("</colgroup>\n"), marginWidth, marginWidth);
+		break;
+	}
 
 #pragma warning(disable: 4996)
 	try
@@ -195,10 +209,9 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 			_T("<head>\n")
 			_T("<meta charset=\"UTF-8\">\n")
 			_T("<title>") + GetDocument()->GetPathName() + _T("</title>\n")
-			_T("<style type=\"text/css\">\n")
-			+ tableStyle +
-			_T("td,th {word-break: break-all; padding: 0 3px;}\n")
-			_T(".ln { text - align: right; word - break: normal; color: #000000; background - color: #f0f0f0; }\n")
+			_T("<style>\n")
+			+ tableStyle + tdthStyle +
+			_T(".ln { text-align: right; word-break: normal; color: #000000; background-color: #f0f0f0; }\n")
 			+ GetHTMLStyles() +
 			_T("</style>\n")
 			_T("</head>\n")
@@ -206,6 +219,14 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 			_T("<table>\n")
 			+ colgroup
 		);
+		if (m_pTextBuffer->GetTableEditing())
+		{
+			CString columnHeader = _T("<th class=\"cn\"></th>");
+			for (int nColumn = 0; nColumn < nColumnCountMax; nColumn++)
+				columnHeader += _T("<th class=\"cn\">") + GetColumnName(nColumn) + _T("</th>");
+			file.WriteString(columnHeader);
+			file.WriteString(_T("</tr>"));
+		}
 		for (int line = 0; line < GetLineCount(); ++line)
 		{
 			CString ln;
@@ -215,7 +236,7 @@ bool CSampleView::ConvertToHTML(const CString& filename)
 				ln.Format(_T("<td class=\"ln\"></td>"));
 			file.WriteString(_T("<tr>"));
 			file.WriteString(ln);
-			file.WriteString(GetHTMLLine(line, _T("td")));
+			file.WriteString(GetHTMLLine(line, _T("td"), nColumnCountMax));
 			file.WriteString(_T("</tr>\n"));
 		}
 		file.WriteString(
