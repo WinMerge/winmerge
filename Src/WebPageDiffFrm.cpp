@@ -1646,7 +1646,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<vo
 		_T("<head>\n")
 		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
 		_T("<title>WinMerge Webpage Compare Report</title>\n")
-		_T("<style type=\"text/css\">\n")
+		_T("<style>\n")
 		_T("table { table-layout: fixed; width: 100%; border-collapse: collapse; }\n")
 		_T("th {position: sticky; top: 0;}\n")
 		_T("td,th { border: solid 1px black; }\n")

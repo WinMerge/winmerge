@@ -3947,7 +3947,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("<head>\n")
 			_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
 			_T("<title>WinMerge File Compare Report</title>\n")
-			_T("<style type=\"text/css\">\n")
+			_T("<style>\n")
 			_T("<!--\n")
 			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); font-size: %dpt;  }\n")
 			_T("tr { vertical-align: top; line-height: 1.2 }\n")
@@ -3958,7 +3958,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("%s")
 			_T("-->\n")
 			_T("</style>\n")
-			_T("<script type=\"text/javascript\">\n")
+			_T("<script>\n")
 			_T("<!--\n");
 		if (m_nBuffers < 3)
 			headerText +=
@@ -4040,11 +4040,11 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					++nDiff;
 					if (iVisibleLineNumber > 0)
 					{
-						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+						tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
 						iVisibleLineNumber = 0;
 					}
 					else
-						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+						tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
 				if (iVisibleLineNumber > 0)
 					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
@@ -4060,9 +4060,9 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 				bool bBorderLine = nLineIndex + 1 < nLineCount && !m_pView[0][nBuffer]->GetLineVisible(nLineIndex + 1);
 				if (bBorderLine)
 				{
-					file.WriteString(_T("<tr height=1>"));
+					file.WriteString(_T("<tr style=\"height: 1px\">"));
 					file.WriteString(
-						strutils::format(_T("<td colspan=\"%d\" style=\"background-color: black\"></td><td style=\"background-color: black\"></td>")
+						strutils::format(_T("<td colspan=\"%d\" style=\"background-color: black\"></td>")
 							, nColumnCountMax + 1));
 					file.WriteString(_T("</tr>\n"));
 				}
@@ -4080,7 +4080,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("<head>\n")
 			_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
 			_T("<title>WinMerge File Compare Report</title>\n")
-			_T("<style type=\"text/css\">\n")
+			_T("<style>\n")
 			_T("<!--\n")
 			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); }\n")
 			_T("th { position: sticky; top: 0; }\n")
@@ -4097,7 +4097,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 		file.WriteString(
 			_T("<body>\n")
-			_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n")
+			_T("<table style=\"width: 100%%; border-collapse: collapse;\">\n")
 			_T("<colgroup>\n"));
 		double marginWidth = m_pView[0][0]->GetViewLineNumbers() ?
 			strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
@@ -4167,11 +4167,11 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 						++nDiff;
 						if (iVisibleLineNumber > 0)
 						{
-							tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+							tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
 							iVisibleLineNumber = 0;
 						}
 						else
-							tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+							tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 					}
 					if (iVisibleLineNumber > 0)
 						tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
@@ -4197,13 +4197,13 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 			if (bBorderLine)
 			{
-				file.WriteString(_T("<tr height=1>"));
+				file.WriteString(_T("<tr style=\"height: 1px\">"));
 				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 				{
 					if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-						file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
+						file.WriteString(_T("<td colspan=\"2\" style=\"background-color: black\"></td>"));
 					else
-						file.WriteString(_T("<td></td><td></td>"));
+						file.WriteString(_T("<td colspan=\"2\"></td>"));
 				}
 				file.WriteString(_T("</tr>\n"));
 			}
