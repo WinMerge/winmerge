@@ -3945,7 +3945,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("<!DOCTYPE html>\n")
 			_T("<html>\n")
 			_T("<head>\n")
-			_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+			_T("<meta charset=\"UTF-8\">\n")
 			_T("<title>WinMerge File Compare Report</title>\n")
 			_T("<style>\n")
 			_T("<!--\n")
