@@ -326,6 +326,8 @@ public:
 	bool GetAutomaticRescan() const { return m_bAutomaticRescan; }
 	// to customize the mergeview menu
 	HMENU createPrediffersSubmenu(HMENU hMenu);
+	String GetSaveAsPath() const { return m_strSaveAsPath; }
+	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
 
 // implementation methods
 private:
@@ -353,6 +355,7 @@ protected:
 	BUFFERTYPE m_nBufferType[3];
 	bool m_bEditAfterRescan[3]; /**< Left/middle/right doc edited after rescanning */
 	TempFile m_tempFiles[3]; /**< Temp files for compared files */
+	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	int m_nDiffContext;
 	bool m_bInvertDiffContext;
 	bool m_bMixedEol; /**< Does this document have mixed EOL style? */

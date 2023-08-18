@@ -852,8 +852,6 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
 		m_bEscShutdown = cmdInfo.m_bEscShutdown;
 
-		m_strSaveAsPath = cmdInfo.m_sOutputpath;
-
 		strDesc[0] = cmdInfo.m_sLeftDesc;
 		if (cmdInfo.m_Files.GetSize() < 3)
 		{
@@ -877,12 +875,15 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			pOpenTextFileParams->m_line = cmdInfo.m_nLineIndex;
 			pOpenTextFileParams->m_char = cmdInfo.m_nCharIndex;
 			pOpenTextFileParams->m_fileExt = cmdInfo.m_sFileExt;
+			pOpenTextFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
+
 		}
 		if (auto* pOpenTableFileParams = dynamic_cast<CMainFrame::OpenTableFileParams*>(pOpenParams.get()))
 		{
 			pOpenTableFileParams->m_tableDelimiter = cmdInfo.m_cTableDelimiter;
 			pOpenTableFileParams->m_tableQuote = cmdInfo.m_cTableQuote;
 			pOpenTableFileParams->m_tableAllowNewlinesInQuotes = cmdInfo.m_bTableAllowNewlinesInQuotes;
+			pOpenTableFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
 		}
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{

@@ -1215,10 +1215,10 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!m_filePaths.GetLeft().empty())
 	{
-		if (theApp.m_strSaveAsPath.empty())
+		if (m_strSaveAsPath.empty())
 			dlg.m_sLeftFile = m_filePaths.GetLeft();
 		else
-			dlg.m_sLeftFile = theApp.m_strSaveAsPath;
+			dlg.m_sLeftFile = m_strSaveAsPath;
 	}
 	else
 		dlg.m_sLeftFile = m_strDesc[0];
@@ -1226,20 +1226,20 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	{
 		if (!m_filePaths.GetMiddle().empty())
 		{
-			if (theApp.m_strSaveAsPath.empty())
+			if (m_strSaveAsPath.empty())
 				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
 			else
-				dlg.m_sMiddleFile = theApp.m_strSaveAsPath;
+				dlg.m_sMiddleFile = m_strSaveAsPath;
 		}
 		else
 			dlg.m_sMiddleFile = m_strDesc[1];
 	}
 	if (!m_filePaths.GetRight().empty())
 	{
-		if (theApp.m_strSaveAsPath.empty())
+		if (m_strSaveAsPath.empty())
 			dlg.m_sRightFile = m_filePaths.GetRight();
 		else
-			dlg.m_sRightFile = theApp.m_strSaveAsPath;
+			dlg.m_sRightFile = m_strSaveAsPath;
 	}
 	else
 		dlg.m_sRightFile = m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1];
