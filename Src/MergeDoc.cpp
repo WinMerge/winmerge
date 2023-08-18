@@ -3939,7 +3939,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		}
 	}
 
-	// write the body of the report
 	if (m_ptBuf[0]->GetTableEditing())
 	{
 		String headerText =
@@ -3958,6 +3957,29 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			_T("%s")
 			_T("-->\n")
 			_T("</style>\n")
+			_T("<script type=\"text/javascript\">\n")
+			_T("<!--\n");
+		if (m_nBuffers < 3)
+			headerText +=
+				_T("window.addEventListener('load', (event) => {\n")
+				_T("  const div1 = document.getElementById(\"div1\");\n")
+				_T("  const div2 = document.getElementById(\"div2\");\n")
+				_T("  div1.addEventListener(\"scroll\", function() { div2.scrollTop = div1.scrollTop; div2.scrollLeft = div1.scrollLeft; });\n")
+				_T("  div2.addEventListener(\"scroll\", function() { div1.scrollTop = div2.scrollTop; div1.scrollLeft = div2.scrollLeft; });\n")
+				_T("});\n");
+		else
+			headerText +=
+				_T("window.addEventListener('load', (event) => {\n")
+				_T("  const div1 = document.getElementById(\"div1\");\n")
+				_T("  const div2 = document.getElementById(\"div2\");\n")
+				_T("  const div3 = document.getElementById(\"div3\");\n")
+				_T("  div1.addEventListener(\"scroll\", function() { div2.scrollTop = div3.scrollTop = div1.scrollTop; div2.scrollLeft = div3.scrollLeft = div1.scrollLeft; });\n")
+				_T("  div2.addEventListener(\"scroll\", function() { div1.scrollTop = div3.scrollTop = div2.scrollTop; div1.scrollLeft = div3.scrollLeft = div2.scrollLeft; });\n")
+				_T("  div3.addEventListener(\"scroll\", function() { div1.scrollTop = div2.scrollTop = div3.scrollTop; div1.scrollLeft = div2.scrollLeft = div3.scrollLeft; });\n")
+				_T("});\n");
+		headerText +=
+			_T("-->\n")
+			_T("</script>\n")
 			_T("</head>\n");
 		String header = 
 			strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
@@ -3978,14 +4000,16 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 			file.WriteString(_T("</div>\n"));
 		}
 
+		// write the body of the report
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
 			int nDiff = 0;
 			int nLineCount = m_ptBuf[nBuffer]->GetLineCount();
 			int nColumnCountMax = m_ptBuf[nBuffer]->GetColumnCountMax();
 			file.WriteString(
-				_T("<div style=\"overflow-x: auto;\">\n")
-				_T("<table style=\"width: max-content; border-collapse: collapse;\">\n"));
+				strutils::format(
+				_T("<div id=\"div%d\" style=\"overflow-x: auto;\">\n")
+				_T("<table style=\"width: max-content; border-collapse: collapse;\">\n"), nBuffer + 1));
 			file.WriteString(_T("<tr>"));
 			String columnHeader = _T("<th class=\"cn\"></th>");
 			for (int nColumn = 0; nColumn < nColumnCountMax; nColumn++)
@@ -3998,10 +4022,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 						continue;
 
 				const int nSubLineCount = m_pView[0][nBuffer]->GetSubLines(nLineIndex);
-				if (nSubLineCount == 1)
-					file.WriteString(_T("<tr>"));
-				else
-					file.WriteString(strutils::format(_T("<tr style=\"height: %.1fem\">"), (nSubLineCount * 1.2 + 0.1)));
+				file.WriteString(strutils::format(_T("<tr style=\"height: %.1fem\">"), (nSubLineCount * 1.2 + 0.1)));
 
 				// line number
 				int iVisibleLineNumber = 0;
