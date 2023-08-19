@@ -722,7 +722,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				return false;
 			CMergeApp::CreateBackup(false, m_filePaths[pane]);
 			int savepoint = m_pImgMergeWindow->GetSavePoint(pane);
-			if (!m_pImgMergeWindow->SaveImage(pane))
+			bool result = m_strSaveAsPath.empty() ? m_pImgMergeWindow->SaveImage(pane) : m_pImgMergeWindow->SaveImageAs(pane, m_strSaveAsPath.c_str());
+			if (!result)
 			{
 				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), filename, GetSysError());
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
@@ -730,6 +731,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 					return DoFileSaveAs(pane);
 				return false;
 			}
+			if (!m_strSaveAsPath.empty())
+				m_filePaths[pane] = m_strSaveAsPath;
 			if (filename != m_filePaths[pane])
 			{
 				if (!m_infoUnpacker.Packing(filename, m_filePaths[pane], m_unpackerSubcodes[pane], { m_filePaths[pane] }))
@@ -1214,35 +1217,20 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!m_filePaths.GetLeft().empty())
-	{
-		if (theApp.m_strSaveAsPath.empty())
-			dlg.m_sLeftFile = m_filePaths.GetLeft();
-		else
-			dlg.m_sLeftFile = theApp.m_strSaveAsPath;
-	}
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_filePaths.GetLeft() : m_strSaveAsPath;
 	else
-		dlg.m_sLeftFile = m_strDesc[0];
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ?m_strDesc[0] : m_strSaveAsPath;
 	if (m_pImgMergeWindow->GetPaneCount() == 3)
 	{
 		if (!m_filePaths.GetMiddle().empty())
-		{
-			if (theApp.m_strSaveAsPath.empty())
-				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
-			else
-				dlg.m_sMiddleFile = theApp.m_strSaveAsPath;
-		}
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_filePaths.GetMiddle() : m_strSaveAsPath;
 		else
-			dlg.m_sMiddleFile = m_strDesc[1];
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
 	}
 	if (!m_filePaths.GetRight().empty())
-	{
-		if (theApp.m_strSaveAsPath.empty())
-			dlg.m_sRightFile = m_filePaths.GetRight();
-		else
-			dlg.m_sRightFile = theApp.m_strSaveAsPath;
-	}
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_filePaths.GetRight() : m_strSaveAsPath;
 	else
-		dlg.m_sRightFile = m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1];
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1] : m_strSaveAsPath;
 
 	if (dlg.DoModal() == IDOK)
 	{

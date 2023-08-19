@@ -976,6 +976,9 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
 
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+
 	if (!sReportFile.empty())
 		pMergeDoc->GenerateReport(sReportFile);
 
@@ -1015,6 +1018,9 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 
 	pHexMergeDoc->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 	
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+		pHexMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+
 	if (!sReportFile.empty())
 		pHexMergeDoc->GenerateReport(sReportFile);
 
@@ -1043,6 +1049,9 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	}
 
 	pImgMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+		pImgMergeFrame->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
 		pImgMergeFrame->GenerateReport(sReportFile);
@@ -2794,7 +2803,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	{
 		// Open two parsed files to WinMerge, telling WinMerge to
 		// save over original file (given as third filename).
-		theApp.m_strSaveAsPath = conflictFile;
+		OpenTextFileParams openParams;
+		openParams.m_strSaveAsPath = conflictFile;
 		if (!threeWay)
 		{
 			String strDesc2[2] = { 
@@ -2802,7 +2812,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
-			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", false, nullptr, nullptr, nullptr, 0, &openParams);
 		}
 		else
 		{
@@ -2812,7 +2822,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
 			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", false, nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}
 	else

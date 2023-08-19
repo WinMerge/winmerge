@@ -84,6 +84,7 @@ public:
 		int m_line = -1;
 		int m_char = -1;
 		String m_fileExt;
+		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
 	struct OpenTableFileParams : public OpenTextFileParams
@@ -98,6 +99,7 @@ public:
 	{
 		virtual ~OpenBinaryFileParams() {}
 		int m_address = -1;
+		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
 	struct OpenImageFileParams : public OpenFileParams
@@ -105,6 +107,7 @@ public:
 		virtual ~OpenImageFileParams() {}
 		int m_x = -1;
 		int m_y = -1;
+		String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	};
 
 	struct OpenWebPageParams : public OpenFileParams
