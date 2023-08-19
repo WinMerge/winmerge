@@ -1610,7 +1610,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 			if (nSaveResult == SAVE_DONE)
 			{
 				// We are saving scratchpad (unnamed file)
-				if (strPath.empty())
+				if (m_nBufferType[nBuffer] == BUFFERTYPE::UNNAMED)
 				{
 					m_nBufferType[nBuffer] = BUFFERTYPE::UNNAMED_SAVED;
 					m_strDesc[nBuffer].erase();

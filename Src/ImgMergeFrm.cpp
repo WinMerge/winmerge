@@ -1217,35 +1217,20 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!m_filePaths.GetLeft().empty())
-	{
-		if (m_strSaveAsPath.empty())
-			dlg.m_sLeftFile = m_filePaths.GetLeft();
-		else
-			dlg.m_sLeftFile = m_strSaveAsPath;
-	}
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_filePaths.GetLeft() : m_strSaveAsPath;
 	else
-		dlg.m_sLeftFile = m_strDesc[0];
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ?m_strDesc[0] : m_strSaveAsPath;
 	if (m_pImgMergeWindow->GetPaneCount() == 3)
 	{
 		if (!m_filePaths.GetMiddle().empty())
-		{
-			if (m_strSaveAsPath.empty())
-				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
-			else
-				dlg.m_sMiddleFile = m_strSaveAsPath;
-		}
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_filePaths.GetMiddle() : m_strSaveAsPath;
 		else
-			dlg.m_sMiddleFile = m_strDesc[1];
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
 	}
 	if (!m_filePaths.GetRight().empty())
-	{
-		if (m_strSaveAsPath.empty())
-			dlg.m_sRightFile = m_filePaths.GetRight();
-		else
-			dlg.m_sRightFile = m_strSaveAsPath;
-	}
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_filePaths.GetRight() : m_strSaveAsPath;
 	else
-		dlg.m_sRightFile = m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1];
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[m_pImgMergeWindow->GetPaneCount() - 1] : m_strSaveAsPath;
 
 	if (dlg.DoModal() == IDOK)
 	{
