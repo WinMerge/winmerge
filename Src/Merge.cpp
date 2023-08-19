@@ -419,41 +419,6 @@ BOOL CMergeApp::InitInstance()
 			return FALSE;
 	}
 
-	// Register the application's document templates.  Document templates
-	//  serve as the connection between documents, frame windows and views.
-
-	// Open view
-	m_pOpenTemplate = new CMultiDocTemplate(
-		IDR_MAINFRAME,
-		RUNTIME_CLASS(COpenDoc),
-		RUNTIME_CLASS(COpenFrame), // custom MDI child frame
-		RUNTIME_CLASS(COpenView));
-	AddDocTemplate(m_pOpenTemplate);
-
-	// Merge Edit view
-	m_pDiffTemplate = new CMultiDocTemplate(
-		IDR_MERGEDOCTYPE,
-		RUNTIME_CLASS(CMergeDoc),
-		RUNTIME_CLASS(CMergeEditFrame), // custom MDI child frame
-		RUNTIME_CLASS(CMergeEditSplitterView));
-	AddDocTemplate(m_pDiffTemplate);
-
-	// Merge Edit view
-	m_pHexMergeTemplate = new CMultiDocTemplate(
-		IDR_MERGEDOCTYPE,
-		RUNTIME_CLASS(CHexMergeDoc),
-		RUNTIME_CLASS(CHexMergeFrame), // custom MDI child frame
-		RUNTIME_CLASS(CHexMergeView));
-	AddDocTemplate(m_pHexMergeTemplate);
-
-	// Directory view
-	m_pDirTemplate = new CMultiDocTemplate(
-		IDR_DIRDOCTYPE,
-		RUNTIME_CLASS(CDirDoc),
-		RUNTIME_CLASS(CDirFrame), // custom MDI child frame
-		RUNTIME_CLASS(CDirView));
-	AddDocTemplate(m_pDirTemplate);
-
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
@@ -498,6 +463,66 @@ BOOL CMergeApp::InitInstance()
 #endif
 
 	return bContinue;
+}
+
+CMultiDocTemplate* CMergeApp::GetOpenTemplate()
+{
+	// Open view
+	if (!m_pOpenTemplate)
+	{
+		m_pOpenTemplate = new CMultiDocTemplate(
+			IDR_MAINFRAME,
+			RUNTIME_CLASS(COpenDoc),
+			RUNTIME_CLASS(COpenFrame), // custom MDI child frame
+			RUNTIME_CLASS(COpenView));
+		AddDocTemplate(m_pOpenTemplate);
+	}
+	return m_pOpenTemplate;
+}
+
+CMultiDocTemplate* CMergeApp::GetDiffTemplate()
+{
+	// Merge Edit view
+	if (!m_pDiffTemplate)
+	{
+		m_pDiffTemplate = new CMultiDocTemplate(
+			IDR_MERGEDOCTYPE,
+			RUNTIME_CLASS(CMergeDoc),
+			RUNTIME_CLASS(CMergeEditFrame), // custom MDI child frame
+			RUNTIME_CLASS(CMergeEditSplitterView));
+		AddDocTemplate(m_pDiffTemplate);
+	}
+	return m_pDiffTemplate;
+}
+
+CMultiDocTemplate* CMergeApp::GetHexMergeTemplate()
+{
+	if (!m_pHexMergeTemplate)
+	{
+		// Hex Merge view
+		m_pHexMergeTemplate = new CMultiDocTemplate(
+			IDR_MERGEDOCTYPE,
+			RUNTIME_CLASS(CHexMergeDoc),
+			RUNTIME_CLASS(CHexMergeFrame), // custom MDI child frame
+			RUNTIME_CLASS(CHexMergeView));
+		AddDocTemplate(m_pHexMergeTemplate);
+	}
+	return m_pHexMergeTemplate;
+}
+
+CMultiDocTemplate* CMergeApp::GetDirTemplate()
+{
+	if (!m_pDirTemplate)
+	{
+		// Directory view
+		m_pDirTemplate = new CMultiDocTemplate(
+			IDR_DIRDOCTYPE,
+			RUNTIME_CLASS(CDirDoc),
+			RUNTIME_CLASS(CDirFrame), // custom MDI child frame
+			RUNTIME_CLASS(CDirView));
+		AddDocTemplate(m_pDirTemplate);
+	}
+	return m_pDirTemplate;
 }
 
 static void OpenContributersFile(int&)
@@ -609,6 +634,8 @@ int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPromp
 
 bool CMergeApp::IsReallyIdle() const
 {
+	if (!m_pDirTemplate)
+		return true;
 	bool idle = true;
 	POSITION pos = m_pDirTemplate->GetFirstDocPosition();
 	while (pos != nullptr)

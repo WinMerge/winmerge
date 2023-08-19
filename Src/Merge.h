@@ -101,6 +101,10 @@ public:
 	static void SetupTempPath();
 	bool IsReallyIdle() const;
 	void RegisterIdleFunc(std::function<void()> func) { m_idleFuncs.push_back(func); };
+	CMultiDocTemplate* GetOpenTemplate();
+	CMultiDocTemplate* GetDiffTemplate();
+	CMultiDocTemplate* GetHexMergeTemplate();
+	CMultiDocTemplate* GetDirTemplate();
 
 	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
 	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;
