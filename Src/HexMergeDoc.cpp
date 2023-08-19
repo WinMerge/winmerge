@@ -231,20 +231,20 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!pathLeft.empty())
-		dlg.m_sLeftFile = pathLeft;
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? pathLeft : m_strSaveAsPath;
 	else
-		dlg.m_sLeftFile = m_strDesc[0];
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_strDesc[0] : m_strSaveAsPath;
 	if (m_nBuffers == 3)
 	{
 		if (!pathMiddle.empty())
-			dlg.m_sMiddleFile = pathMiddle;
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? pathMiddle : m_strSaveAsPath;
 		else
-			dlg.m_sMiddleFile = m_strDesc[1];
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
 	}
 	if (!pathRight.empty())
-		dlg.m_sRightFile = pathRight;
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? pathRight : m_strSaveAsPath;
 	else
-		dlg.m_sRightFile = m_strDesc[1];
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -329,15 +329,35 @@ bool CHexMergeDoc::DoFileSave(int nBuffer)
 			result = DoFileSaveAs(nBuffer);
 		else
 		{
-			const String &path = m_filePaths.GetPath(nBuffer);
-			HRESULT hr = m_pView[nBuffer]->SaveFile(path.c_str());
+			String strSavePath = m_strSaveAsPath.empty() ? m_filePaths.GetPath(nBuffer) : m_strSaveAsPath;
+			// Warn user in case file has been changed by someone else
+			if (m_pView[nBuffer]->IsFileChangedOnDisk(m_filePaths.GetPath(nBuffer).c_str()) == IMergeDoc::FileChange::Changed)
+			{
+				String msg = strutils::format_string1(_("Another application has updated file\n%1\nsince WinMerge loaded it.\n\nOverwrite changed file?"), m_filePaths.GetPath(nBuffer));
+				if (AfxMessageBox(msg.c_str(), MB_ICONWARNING | MB_YESNO) == IDNO)
+					return false;
+			}
+			// Ask user what to do about FILE_ATTRIBUTE_READONLY
+			String strPath = strSavePath;
+			bool bApplyToAll = false;
+			if (CMergeApp::HandleReadonlySave(strPath, false, bApplyToAll) == IDCANCEL)
+				return false;
+			strSavePath = strPath.c_str();
+			// Take a chance to create a backup
+			if (!CMergeApp::CreateBackup(false, strSavePath))
+				return false;
+			HRESULT hr = m_pView[nBuffer]->SaveFile(strSavePath.c_str());
 			if (Try(hr) == IDCANCEL)
 				return false;
 			if (FAILED(hr))
 				return DoFileSaveAs(nBuffer);
 			result = true;
 			if (result)
+			{
+				m_filePaths[nBuffer] = strSavePath;
+				UpdateHeaderPath(nBuffer);
 				UpdateDiffItem(m_pDirDoc);
+			}
 		}
 	}
 	return result;

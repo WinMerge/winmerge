@@ -883,7 +883,14 @@ bool CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			pOpenTableFileParams->m_tableDelimiter = cmdInfo.m_cTableDelimiter;
 			pOpenTableFileParams->m_tableQuote = cmdInfo.m_cTableQuote;
 			pOpenTableFileParams->m_tableAllowNewlinesInQuotes = cmdInfo.m_bTableAllowNewlinesInQuotes;
-			pOpenTableFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
+		}
+		if (auto* pOpenBinaryFileParams = dynamic_cast<CMainFrame::OpenBinaryFileParams*>(pOpenParams.get()))
+		{
+			pOpenBinaryFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
+		}
+		if (auto* pOpenImageFileParams = dynamic_cast<CMainFrame::OpenImageFileParams*>(pOpenParams.get()))
+		{
+			pOpenImageFileParams->m_strSaveAsPath = cmdInfo.m_sOutputpath;
 		}
 		if (cmdInfo.m_Files.GetSize() > 2)
 		{

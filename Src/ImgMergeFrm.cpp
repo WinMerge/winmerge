@@ -722,7 +722,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				return false;
 			CMergeApp::CreateBackup(false, m_filePaths[pane]);
 			int savepoint = m_pImgMergeWindow->GetSavePoint(pane);
-			if (!m_pImgMergeWindow->SaveImage(pane))
+			bool result = m_strSaveAsPath.empty() ? m_pImgMergeWindow->SaveImage(pane) : m_pImgMergeWindow->SaveImageAs(pane, m_strSaveAsPath.c_str());
+			if (!result)
 			{
 				String str = strutils::format_string2(_("Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"), filename, GetSysError());
 				int answer = AfxMessageBox(str.c_str(), MB_OKCANCEL | MB_ICONWARNING);
@@ -730,6 +731,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 					return DoFileSaveAs(pane);
 				return false;
 			}
+			if (!m_strSaveAsPath.empty())
+				m_filePaths[pane] = m_strSaveAsPath;
 			if (filename != m_filePaths[pane])
 			{
 				if (!m_infoUnpacker.Packing(filename, m_filePaths[pane], m_unpackerSubcodes[pane], { m_filePaths[pane] }))

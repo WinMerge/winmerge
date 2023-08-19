@@ -1657,7 +1657,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 bool CMergeDoc::DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 {
 	DiffFileInfo fileInfo;
-	String strSavePath(szPath);
+	String strSavePath(m_strSaveAsPath.empty() ? szPath : m_strSaveAsPath);
 	FileChange fileChanged;
 	bool bApplyToAll = false;	
 	int nRetVal = -1;
@@ -1680,21 +1680,6 @@ bool CMergeDoc::DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 
 	bSaveSuccess = false;
 	
-	// Check third arg possibly given from command-line
-	if (!m_strSaveAsPath.empty())
-	{
-		if (paths::DoesPathExist(m_strSaveAsPath) == paths::IS_EXISTING_DIR)
-		{
-			// third arg was a directory, so get append the filename
-			String sname;
-			paths::SplitFilename(szPath, 0, &sname, 0);
-			strSavePath = m_strSaveAsPath;
-			strSavePath = paths::ConcatPath(strSavePath, sname);
-		}
-		else
-			strSavePath = m_strSaveAsPath;	
-	}
-
 	nRetVal = CMergeApp::HandleReadonlySave(strSavePath, false, bApplyToAll);
 	if (nRetVal == IDCANCEL)
 		return false;
@@ -2644,35 +2629,20 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!m_filePaths.GetLeft().empty())
-	{
-		if (m_strSaveAsPath.empty())
-			dlg.m_sLeftFile = m_filePaths.GetLeft();
-		else
-			dlg.m_sLeftFile = m_strSaveAsPath;
-	}
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_filePaths.GetLeft() : m_strSaveAsPath;
 	else
-		dlg.m_sLeftFile = m_strDesc[0];
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_strDesc[0] : m_strSaveAsPath;
 	if (m_nBuffers == 3)
 	{
 		if (!m_filePaths.GetMiddle().empty())
-		{
-			if (m_strSaveAsPath.empty())
-				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
-			else
-				dlg.m_sMiddleFile = m_strSaveAsPath;
-		}
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_filePaths.GetMiddle() : m_strSaveAsPath;
 		else
-			dlg.m_sMiddleFile = m_strDesc[1];
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
 	}
 	if (!m_filePaths.GetRight().empty())
-	{
-		if (m_strSaveAsPath.empty())
-			dlg.m_sRightFile = m_filePaths.GetRight();
-		else
-			dlg.m_sRightFile = m_strSaveAsPath;
-	}
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ?m_filePaths.GetRight() : m_strSaveAsPath;
 	else
-		dlg.m_sRightFile = m_strDesc[m_nBuffers - 1];
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[m_nBuffers - 1] : m_strSaveAsPath;
 
 	if (dlg.DoModal() == IDOK)
 	{
