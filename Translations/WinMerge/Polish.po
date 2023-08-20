@@ -477,16 +477,16 @@ msgid "Tree &Mode"
 msgstr "Tryb drzewa"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Rozwiń podfoldery"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "Wszystkie podfoldery"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "Różniące się podfoldery"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "Identyczne podfoldery"
 
 msgid "&Collapse All Subfolders"
 msgstr "Zwiń wszystkie podfoldery"
@@ -1977,7 +1977,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignoruj różnice czasu mniejsze niż 3 sekundy"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "Automatycznie rozwiń podfoldery po porównaniu:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Uwzględnij unikalną zawartość podfolderów"
@@ -2221,16 +2221,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Pliki XML (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Nie rozwijaj"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Rozwiń wszystkie podfoldery"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Rozwiń różniące się podfoldery"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Rozwiń identyczne podfoldery"
 
 msgid "File Type"
 msgstr "Typ pliku"
@@ -2387,7 +2387,7 @@ msgstr "Porównywanie elementów..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[elementów/sek]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Wybierz dwa istniejące foldery lub pliki do porównania."
@@ -3662,7 +3662,7 @@ msgstr "Zastosowano filtr"
 
 #, c-format
 msgid "Clipboard at %s"
-msgstr ""
+msgstr "Schowek w %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
 msgstr "Historia schowka jest wyłączona.\r\nAby włączyć historię schowka, naciśnij klawisz logo Windows + V, a następnie kliknij przycisk Włącz."
