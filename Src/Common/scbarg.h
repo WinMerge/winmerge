@@ -27,15 +27,6 @@
 /////////////////////////////////////////////////////////////////////////
 #pragma once
 
-// MFC 8/VS.NET 2005 has breaking change in OnNcHitTest return value
-#ifndef NCHITTEST_RESULT
-#if _MFC_VER >= 0x0800
-#define NCHITTEST_RESULT LRESULT
-#else
-#define NCHITTEST_RESULT UINT
-#endif
-#endif
-
 /////////////////////////////////////////////////////////////////////////
 // CSCBButton (button info) helper class
 
@@ -101,7 +92,7 @@ protected:
 // Generated message map functions
 protected:
     //{{AFX_MSG(CSizingControlBarG)
-    afx_msg NCHITTEST_RESULT OnNcHitTest(CPoint point);
+    afx_msg LRESULT OnNcHitTest(CPoint point);
     afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
     //}}AFX_MSG
 

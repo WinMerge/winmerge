@@ -480,7 +480,7 @@ CMoveConstraint::Resize(HWND hWnd, UINT nType)
  * Enforce any resizing limitations.
  */
 void
-CMoveConstraint::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
+CMoveConstraint::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
 	// views don't get WM_GETMINMAXINFO, but dialogs & frames do
 	if (m_hwndDlg == nullptr)

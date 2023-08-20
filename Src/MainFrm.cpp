@@ -2449,17 +2449,9 @@ void CMainFrame::StartFlashing()
 		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 3, 0);
 }
 
-#if _MFC_VER > 0x0600
 void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
-#else
-void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
-#endif
 {
-#if _MFC_VER > 0x0600
 	__super::OnActivateApp(bActive, dwThreadID);
-#else
-	__super::OnActivateApp(bActive, hTask);
-#endif
 
 	if (GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES) == AUTO_RELOAD_MODIFIED_FILES_ONWINDOWACTIVATED)
 	{

@@ -361,11 +361,7 @@ protected:
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
-#if _MFC_VER > 0x0600
 	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
-#else
-	afx_msg void OnActivateApp(BOOL bActive, HTASK hTask);
-#endif
 	afx_msg void OnToolbarSize(UINT id);
 	afx_msg void OnUpdateToolbarSize(CCmdUI* pCmdUI);
 	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
