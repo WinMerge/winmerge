@@ -79,6 +79,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pSubstitutionList{nullptr}
 , m_bPluginsEnabled(false)
 , m_status()
+, m_codepage(ucr::CP_UTF_8)
 {
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
@@ -365,6 +366,22 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 {
 	if (Op == OP_TRIVIAL)
 		return;
+
+	if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
+	{
+		// Match lines against regular expression filters
+		// Our strategy is that every line in both sides must
+		// match regexp before we mark difference as ignored.
+		bool match2 = false;
+		bool match1 = RegExpFilter(LineNumberLeft + file_data_ary[0].linbuf_base, LineNumberLeft + file_data_ary[0].linbuf_base + QtyLinesLeft - 1, &file_data_ary[0]);
+		if (match1)
+			match2 = RegExpFilter(LineNumberRight + file_data_ary[1].linbuf_base, LineNumberRight + file_data_ary[1].linbuf_base + QtyLinesRight - 1, &file_data_ary[1]);
+		if (match1 && match2)
+		{
+			Op = OP_TRIVIAL;
+			return;
+		}
+	}
 
 	std::string LineDataLeft, LineDataRight;
 
@@ -929,8 +946,7 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf)
 		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
 		const char *string = pinf->linbuf[line];
 		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(std::string(string, stringlen)))
-
+		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
 		{
 			linesMatch = false;
 		}
@@ -949,6 +965,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	PostFilterContext ctxt;
 
 	struct change *next = script;
+
+	const bool usefilters = m_options.m_filterCommentsLines ||
+		(m_pFilterList && m_pFilterList->HasRegExps()) ||
+		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
 	
 	while (next != nullptr)
 	{
@@ -1009,25 +1029,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						}
 					}
 				}
-				int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-				int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-
-				if (m_options.m_filterCommentsLines ||
-					(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
+				const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+				const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+				if (usefilters)
 					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
-
-				if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
-				{
-					// Match lines against regular expression filters
-					// Our strategy is that every line in both sides must
-					// match regexp before we mark difference as ignored.
-					bool match2 = false;
-					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &file_data_ary[0]);
-					if (match1)
-						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &file_data_ary[1]);
-					if (match1 && match2)
-						op = OP_TRIVIAL;
-				}
 
 				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
 				{
@@ -1099,6 +1104,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 	diff10.Clear();
 	diff12.Clear();
 
+	const bool usefilters = m_options.m_filterCommentsLines ||
+		(m_pFilterList && m_pFilterList->HasRegExps()) ||
+		(m_pSubstitutionList && m_pSubstitutionList->HasRegExps());
+	
 	for (int file = 0; file < 2; file++)
 	{
 		struct change *next = nullptr;
@@ -1186,25 +1195,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						}
 					}
 
-					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-
-					if (m_options.m_filterCommentsLines ||
-						(m_pSubstitutionList && m_pSubstitutionList->HasRegExps()))
+					const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+					const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+					if (usefilters)
 						PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, pinf);
-
-					if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
-					{
-						// Match lines against regular expression filters
-						// Our strategy is that every line in both sides must
-						// match regexp before we mark difference as ignored.
-						bool match2 = false;
-						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &pinf[0]);
-						if (match1)
-							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &pinf[1]);
-						if (match1 && match2)
-							op = OP_TRIVIAL;
-					}
 
 					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 				}
@@ -1450,15 +1444,14 @@ void CDiffWrapper::SetFilterList(const String& filterStr)
 		m_pFilterList->AddRegExp(*it);
 }
 
-void CDiffWrapper::SetFilterList(const FilterList* pFilterList)
+const FilterList* CDiffWrapper::GetFilterList() const
 {
-	if (!pFilterList)
-		m_pFilterList.reset();
-	else
-	{
-		m_pFilterList.reset(new FilterList());
-		*m_pFilterList = *pFilterList;
-	}
+	return m_pFilterList.get();
+}
+
+void CDiffWrapper::SetFilterList(std::shared_ptr<FilterList> pFilterList)
+{
+	m_pFilterList = std::move(pFilterList);
 }
 
 const SubstitutionList* CDiffWrapper::GetSubstitutionList() const

@@ -30,12 +30,10 @@ static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
  */
 DiffUtils::DiffUtils()
 		: m_pOptions(nullptr)
-		, m_pFilterList(nullptr)
 		, m_inf(nullptr)
 		, m_pDiffWrapper(new ::CDiffWrapper)
 		, m_ndiffs(0)
 		, m_ntrivialdiffs(0)
-		, m_codepage(0)
 {
 }
 
@@ -44,7 +42,6 @@ DiffUtils::DiffUtils()
  */
 DiffUtils::~DiffUtils()
 {
-	ClearFilterList();
 }
 
 /**
@@ -63,16 +60,16 @@ void DiffUtils::SetCompareOptions(const CompareOptions & options)
  */
 void DiffUtils::ClearFilterList()
 {
-	m_pFilterList = nullptr;
+	m_pDiffWrapper->SetFilterList(static_cast<std::shared_ptr<FilterList>>(nullptr));
 }
 
 /**
  * @brief Set line filters list to use.
  * @param [in] list List of line filters.
  */
-void DiffUtils::SetFilterList(FilterList * list)
+void DiffUtils::SetFilterList(std::shared_ptr<FilterList> list)
 {
-	m_pFilterList = list;
+	m_pDiffWrapper->SetFilterList(list);
 }
 
 void DiffUtils::SetSubstitutionList(std::shared_ptr<SubstitutionList> list)
@@ -83,6 +80,11 @@ void DiffUtils::SetSubstitutionList(std::shared_ptr<SubstitutionList> list)
 void DiffUtils::ClearSubstitutionList()
 {
 	m_pDiffWrapper->SetSubstitutionList(nullptr);
+}
+
+void DiffUtils::SetCodepage(int codepage)
+{
+	m_pDiffWrapper->SetCodepage(codepage);
 }
 
 /**
@@ -122,6 +124,10 @@ int DiffUtils::diffutils_compare_files()
 
 	if (script != nullptr)
 	{
+		const bool usefilters = m_pOptions->m_filterCommentsLines ||
+			(m_pDiffWrapper->GetFilterList() && m_pDiffWrapper->GetFilterList()->HasRegExps()) ||
+			(m_pDiffWrapper->GetSubstitutionList() && m_pDiffWrapper->GetSubstitutionList()->HasRegExps());
+	
 		PostFilterContext ctxt{};
 		String Ext = ucr::toTString(m_inf[0].name);
 		size_t PosOfDot = Ext.rfind('.');
@@ -163,10 +169,7 @@ int DiffUtils::diffutils_compare_files()
 					//Determine quantity of lines in this block for both sides
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;
-	
-					if(m_pOptions->m_filterCommentsLines ||
-						(m_pDiffWrapper->GetSubstitutionList() &&
-						 m_pDiffWrapper->GetSubstitutionList()->HasRegExps()))
+					if (usefilters)
 					{
 						OP_TYPE op = OP_NONE;
 						if (deletes == 0 && inserts == 0)
@@ -179,20 +182,6 @@ int DiffUtils::diffutils_compare_files()
 							thisob->trivial = 1;
 						}
 					}
-	
-					// Match lines against regular expression filters
-					// Our strategy is that every line in both sides must
-					// match regexp before we mark difference as ignored.
-					if(m_pFilterList != nullptr && m_pFilterList->HasRegExps())
-					{
-						bool match2 = false;
-						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &m_inf[0]);
-						if (match1)
-							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &m_inf[1]);
-						if (match1 && match2)
-							thisob->trivial = 1;
-					}
-
 				}
 				/* Reconnect the script so it will all be freed properly.  */
 				end->link = next;
@@ -253,41 +242,6 @@ int DiffUtils::diffutils_compare_files()
 	}
 
 	return code;
-}
-
-/**
- * @brief Match regular expression list against given difference.
- * This function matches the regular expression list against the difference
- * (given as start line and end line). Matching the diff requires that all
- * lines in difference match.
- * @param [in] StartPos First line of the difference.
- * @param [in] endPos Last line of the difference.
- * @param [in] FileNo File to match.
- * return true if any of the expressions matches.
- */
-bool DiffUtils::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const
-{
-	if (m_pFilterList == nullptr)
-	{
-		throw "DiffUtils::RegExpFilter() called when "
-				"filterlist doesn't exist (=`nullptr`)";
-	}
-
-	bool linesMatch = true; // set to false when non-matching line is found.
-	int line = StartPos;
-
-	while (line <= EndPos && linesMatch)
-	{
-		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
-		const char *string = pinf->linbuf[line];
-		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
-		{
-			linesMatch = false;
-		}
-		++line;
-	}
-	return linesMatch;
 }
 
 /**
