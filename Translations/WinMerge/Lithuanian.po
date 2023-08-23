@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-07-26 07:00+0000\n"
-"PO-Revision-Date: 2023-07-26 08:08+0200\n"
+"POT-Creation-Date: 2023-08-05 10:45+0000\n"
+"PO-Revision-Date: 2023-08-08 08:08+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -478,8 +478,17 @@ msgstr "Rodyti sl&epiamus elementus"
 msgid "Tree &Mode"
 msgstr "&Medžio režimas"
 
-msgid "E&xpand All Subfolders"
-msgstr "Iš&skleisti visus pakatalogius"
+msgid "E&xpand Subfolders"
+msgstr "Išs&kleisti pakatalogius"
+
+msgid "&All Subfolders"
+msgstr "&Visus pakatalogius"
+
+msgid "&Different Subfolders"
+msgstr "&Skirtingus pakatalogius"
+
+msgid "&Identical Subfolders"
+msgstr "&Identiškus pakatalogius"
 
 msgid "&Collapse All Subfolders"
 msgstr "Sus&kleisti visus pakatalogius"
@@ -1969,11 +1978,11 @@ msgstr "Sus&toti radus pirmą skirtumą"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "&Automatiškai išskleisti pakatalogius po lyginimo:"
+
 msgid "Include &unique subfolders contents"
 msgstr "Įtraukti &unikalų pakatalogių turinį"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&Automatiškai išskleisti visus pakatalogius"
 
 msgid "Ignore &reparse points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
@@ -2212,6 +2221,18 @@ msgstr "HTML failai (*.htm,*.html)|*.htm;*.html|Visi failai (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML failai (*.xml)|*.xml|Visi failai (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Neišskleisti"
+
+msgid "Expand all subfolders"
+msgstr "Išskleisti visus pakatalogius"
+
+msgid "Expand different subfolders"
+msgstr "Išskleisti skirtingus pakatalogius"
+
+msgid "Expand identical subfolders"
+msgstr "Išskleisti identiškus pakatalogius"
 
 msgid "File Type"
 msgstr "Failo tipas"

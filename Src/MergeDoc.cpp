@@ -1610,7 +1610,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 			if (nSaveResult == SAVE_DONE)
 			{
 				// We are saving scratchpad (unnamed file)
-				if (strPath.empty())
+				if (m_nBufferType[nBuffer] == BUFFERTYPE::UNNAMED)
 				{
 					m_nBufferType[nBuffer] = BUFFERTYPE::UNNAMED_SAVED;
 					m_strDesc[nBuffer].erase();
@@ -1657,7 +1657,7 @@ bool CMergeDoc::TrySaveAs(String &strPath, int &nSaveResult, String & sError,
 bool CMergeDoc::DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 {
 	DiffFileInfo fileInfo;
-	String strSavePath(szPath);
+	String strSavePath(m_strSaveAsPath.empty() ? szPath : m_strSaveAsPath);
 	FileChange fileChanged;
 	bool bApplyToAll = false;	
 	int nRetVal = -1;
@@ -1680,21 +1680,6 @@ bool CMergeDoc::DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer)
 
 	bSaveSuccess = false;
 	
-	// Check third arg possibly given from command-line
-	if (!theApp.m_strSaveAsPath.empty())
-	{
-		if (paths::DoesPathExist(theApp.m_strSaveAsPath) == paths::IS_EXISTING_DIR)
-		{
-			// third arg was a directory, so get append the filename
-			String sname;
-			paths::SplitFilename(szPath, 0, &sname, 0);
-			strSavePath = theApp.m_strSaveAsPath;
-			strSavePath = paths::ConcatPath(strSavePath, sname);
-		}
-		else
-			strSavePath = theApp.m_strSaveAsPath;	
-	}
-
 	nRetVal = CMergeApp::HandleReadonlySave(strSavePath, false, bApplyToAll);
 	if (nRetVal == IDCANCEL)
 		return false;
@@ -2644,35 +2629,20 @@ bool CMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	if (!bAllowCancel)
 		dlg.m_bDisableCancel = true;
 	if (!m_filePaths.GetLeft().empty())
-	{
-		if (theApp.m_strSaveAsPath.empty())
-			dlg.m_sLeftFile = m_filePaths.GetLeft();
-		else
-			dlg.m_sLeftFile = theApp.m_strSaveAsPath;
-	}
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_filePaths.GetLeft() : m_strSaveAsPath;
 	else
-		dlg.m_sLeftFile = m_strDesc[0];
+		dlg.m_sLeftFile = m_strSaveAsPath.empty() ? m_strDesc[0] : m_strSaveAsPath;
 	if (m_nBuffers == 3)
 	{
 		if (!m_filePaths.GetMiddle().empty())
-		{
-			if (theApp.m_strSaveAsPath.empty())
-				dlg.m_sMiddleFile = m_filePaths.GetMiddle();
-			else
-				dlg.m_sMiddleFile = theApp.m_strSaveAsPath;
-		}
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_filePaths.GetMiddle() : m_strSaveAsPath;
 		else
-			dlg.m_sMiddleFile = m_strDesc[1];
+			dlg.m_sMiddleFile = m_strSaveAsPath.empty() ? m_strDesc[1] : m_strSaveAsPath;
 	}
 	if (!m_filePaths.GetRight().empty())
-	{
-		if (theApp.m_strSaveAsPath.empty())
-			dlg.m_sRightFile = m_filePaths.GetRight();
-		else
-			dlg.m_sRightFile = theApp.m_strSaveAsPath;
-	}
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ?m_filePaths.GetRight() : m_strSaveAsPath;
 	else
-		dlg.m_sRightFile = m_strDesc[m_nBuffers - 1];
+		dlg.m_sRightFile = m_strSaveAsPath.empty() ? m_strDesc[m_nBuffers - 1] : m_strSaveAsPath;
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -3916,45 +3886,6 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 	}
 
 	file.SetCodepage(ucr::CP_UTF_8);
-	String headerText =
-		_T("<!DOCTYPE html>\n")
-		_T("<html>\n")
-		_T("<head>\n")
-		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
-		_T("<title>WinMerge File Compare Report</title>\n")
-		_T("<style type=\"text/css\">\n")
-		_T("<!--\n")
-		_T("table {table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);}\n")
-		_T("th {position: sticky; top: 0;}\n")
-		_T("td,th {word-break: break-all; font-size: %dpt;padding: 0 3px;}\n")
-		_T("tr { vertical-align: top; }\n")
-		_T(".title {color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
-		_T("%s")
-		_T("-->\n")
-		_T("</style>\n")
-		_T("</head>\n")
-		_T("<body>\n")
-		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width:100%%;\">\n");
-	String header = 
-		strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
-	file.WriteString(header);
-
-	file.WriteString(_T("<colgroup>\n"));
-	double marginWidth = m_pView[0][0]->GetViewLineNumbers() ? 
-		strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-	{
-		String data = strutils::format(
-			_T("<col style=\"width: %.1fem;\" />\n")
-			_T("<col style=\"width: calc(100%% / %d - %.1fem);\" />\n"),
-				marginWidth, m_nBuffers, marginWidth);
-		file.WriteString(data);
-	}
-	file.WriteString(
-		_T("</colgroup>\n")
-		_T("<thead>\n")
-		_T("<tr>\n"));
-	
 	// Get paths
 	// If archive, use archive path + folder + filename inside archive
 	// If desc text given, use it
@@ -3978,60 +3909,112 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 		}
 	}
 
-	// titles
-	int nBuffer;
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+	if (m_ptBuf[0]->GetTableEditing())
 	{
-		String data = _T("<th colspan=\"2\" class=\"title\">");
-		file.WriteString(data);
-		file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
-		file.WriteString(_T("</th>\n"));
-	}
-	file.WriteString(
-		_T("</tr>\n")
-		_T("</thead>\n")
-		_T("<tbody>\n"));
+		String headerText =
+			_T("<!DOCTYPE html>\n")
+			_T("<html>\n")
+			_T("<head>\n")
+			_T("<meta charset=\"UTF-8\">\n")
+			_T("<title>WinMerge File Compare Report</title>\n")
+			_T("<style>\n")
+			_T("<!--\n")
+			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); font-size: %dpt;  }\n")
+			_T("tr { vertical-align: top; line-height: 1.2 }\n")
+			_T("tr:first-child { position: sticky; top: 0; z-index: 99; }\n")
+			_T("td,th { word-break: break-all; padding: 0 3px; border: 1px solid #a0a0a0; }\n")
+			_T(".ln { position: sticky; left: 0; }\n")
+			_T(".title { font-weight: bold; color: white; background-color: blue; vertical-align: top; text-align: center; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
+			_T("%s")
+			_T("-->\n")
+			_T("</style>\n")
+			_T("<script>\n")
+			_T("<!--\n");
+		if (m_nBuffers < 3)
+			headerText +=
+				_T("window.addEventListener('load', (event) => {\n")
+				_T("  const div1 = document.getElementById(\"div1\");\n")
+				_T("  const div2 = document.getElementById(\"div2\");\n")
+				_T("  div1.addEventListener(\"scroll\", function() { div2.scrollTop = div1.scrollTop; div2.scrollLeft = div1.scrollLeft; });\n")
+				_T("  div2.addEventListener(\"scroll\", function() { div1.scrollTop = div2.scrollTop; div1.scrollLeft = div2.scrollLeft; });\n")
+				_T("});\n");
+		else
+			headerText +=
+				_T("window.addEventListener('load', (event) => {\n")
+				_T("  const div1 = document.getElementById(\"div1\");\n")
+				_T("  const div2 = document.getElementById(\"div2\");\n")
+				_T("  const div3 = document.getElementById(\"div3\");\n")
+				_T("  div1.addEventListener(\"scroll\", function() { div2.scrollTop = div3.scrollTop = div1.scrollTop; div2.scrollLeft = div3.scrollLeft = div1.scrollLeft; });\n")
+				_T("  div2.addEventListener(\"scroll\", function() { div1.scrollTop = div3.scrollTop = div2.scrollTop; div1.scrollLeft = div3.scrollLeft = div2.scrollLeft; });\n")
+				_T("  div3.addEventListener(\"scroll\", function() { div1.scrollTop = div2.scrollTop = div3.scrollTop; div1.scrollLeft = div2.scrollLeft = div3.scrollLeft; });\n")
+				_T("});\n");
+		headerText +=
+			_T("-->\n")
+			_T("</script>\n")
+			_T("</head>\n");
+		String header = 
+			strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
+		file.WriteString(header);
 
-	// write the body of the report
-	int idx[3] = {0};
-	int nLineCount[3] = {0};
-	int nDiff = 0;
-	for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
+		file.WriteString(
+			strutils::format(_T("<body>\n")
+			_T("<div style=\"display: grid; grid-template-columns: %s; grid-template-rows: max-content; height: calc(100vh - 16px);\">\n"), 
+				m_nBuffers < 3 ? _T("50% 50%") : _T("33.33% 33.33% 33.33%")));
 
-	for (;;)
-	{
-		file.WriteString(_T("<tr>\n"));
+		// titles
+		int nBuffer;
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
+			String data = _T("<div class=\"title\">");
+			file.WriteString(data);
+			file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
+			file.WriteString(_T("</div>\n"));
+		}
+
+		// write the body of the report
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			int nDiff = 0;
+			int nLineCount = m_ptBuf[nBuffer]->GetLineCount();
+			int nColumnCountMax = m_ptBuf[nBuffer]->GetColumnCountMax();
+			file.WriteString(
+				strutils::format(
+				_T("<div id=\"div%d\" style=\"overflow-x: auto;\">\n")
+				_T("<table style=\"width: max-content; border-collapse: collapse;\">\n"), nBuffer + 1));
+			file.WriteString(_T("<tr>"));
+			String columnHeader = _T("<th class=\"cn\"></th>");
+			for (int nColumn = 0; nColumn < nColumnCountMax; nColumn++)
+				columnHeader += _T("<th class=\"cn\">") + m_pView[0][nBuffer]->GetColumnName(nColumn) + _T("</th>");
+			file.WriteString(columnHeader.c_str());
+			file.WriteString(_T("</tr>"));
+			for (int nLineIndex = 0; nLineIndex < nLineCount; nLineIndex++)
 			{
-				if (m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-					break;
-			}
-				
-			if (idx[nBuffer] < nLineCount[nBuffer])
-			{
+				if (!m_pView[0][nBuffer]->GetLineVisible(nLineIndex))
+						continue;
+
+				const int nSubLineCount = m_pView[0][nBuffer]->GetSubLines(nLineIndex);
+				file.WriteString(strutils::format(_T("<tr style=\"height: %.1fem\">"), (nSubLineCount * 1.2 + 0.1)));
+
 				// line number
 				int iVisibleLineNumber = 0;
 				String tdtag = _T("<td class=\"ln\">");
-				lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
+				lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(nLineIndex);
 				if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
 				{
-					iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
+					iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(nLineIndex) + 1;
 				}
 				if (nBuffer == 0 &&
-					(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
-					(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
+					(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (nLineIndex == 0 ||
+						(m_ptBuf[nBuffer]->GetLineFlags(nLineIndex - 1) & (LF_DIFF | LF_GHOST)) == 0))
 				{
 					++nDiff;
 					if (iVisibleLineNumber > 0)
 					{
-						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+						tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
 						iVisibleLineNumber = 0;
 					}
 					else
-						tdtag += strutils::format(_T("<a name=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+						tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
 				}
 				if (iVisibleLineNumber > 0)
 					tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
@@ -4039,42 +4022,171 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 					tdtag += _T("</td>");
 				file.WriteString(tdtag);
 				// line content
-				file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
-				idx[nBuffer]++;
-			}
-			else
-				file.WriteString(_T("<td class=\"ln\"></td><td></td>"));
-			file.WriteString(_T("\n"));
-		}
-		file.WriteString(_T("</tr>\n"));
+				file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(nLineIndex, _T("td"), nColumnCountMax));
 
-		bool bBorderLine = false;
+				file.WriteString(_T("\n"));
+				file.WriteString(_T("</tr>\n"));
+
+				bool bBorderLine = nLineIndex + 1 < nLineCount && !m_pView[0][nBuffer]->GetLineVisible(nLineIndex + 1);
+				if (bBorderLine)
+				{
+					file.WriteString(_T("<tr style=\"height: 1px\">"));
+					file.WriteString(
+						strutils::format(_T("<td colspan=\"%d\" style=\"background-color: black\"></td>")
+							, nColumnCountMax + 1));
+					file.WriteString(_T("</tr>\n"));
+				}
+			}
+			file.WriteString(_T("</table></div>\n"));
+		}
+		file.WriteString(
+			_T("</div>\n</body>\n"));
+	}
+	else
+	{
+		String headerText =
+			_T("<!DOCTYPE html>\n")
+			_T("<html>\n")
+			_T("<head>\n")
+			_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+			_T("<title>WinMerge File Compare Report</title>\n")
+			_T("<style>\n")
+			_T("<!--\n")
+			_T("table { table-layout: fixed; margin: 0; border: 1px solid #a0a0a0; box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15); }\n")
+			_T("th { position: sticky; top: 0; }\n")
+			_T("td,th { word-break: break-all; font-size: %dpt; padding: 0 3px; }\n")
+			_T("tr { vertical-align: top; }\n")
+			_T(".title { font-weight: bold; color: white; background-color: blue; vertical-align: top; text-align: center; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
+			_T("%s")
+			_T("-->\n")
+			_T("</style>\n")
+			_T("</head>\n");
+		String header = 
+			strutils::format(headerText, nFontSize, (const tchar_t*)m_pView[0][0]->GetHTMLStyles());
+		file.WriteString(header);
+
+		file.WriteString(
+			_T("<body>\n")
+			_T("<table style=\"width: 100%%; border-collapse: collapse;\">\n")
+			_T("<colgroup>\n"));
+		double marginWidth = m_pView[0][0]->GetViewLineNumbers() ?
+			strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
+		for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+		{
+			String data = strutils::format(
+				_T("<col style=\"width: %.1fem;\" />\n")
+				_T("<col style=\"width: calc(100%% / %d - %.1fem);\" />\n"),
+				marginWidth, m_nBuffers, marginWidth);
+			file.WriteString(data);
+		}
+		file.WriteString(_T("</colgroup>\n"));
+
+		file.WriteString(
+			_T("<thead>\n")
+			_T("<tr>\n"));
+	
+		// titles
+		int nBuffer;
 		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-				bBorderLine = true;
+			String data = _T("<th colspan=\"2\" class=\"title\">");
+			file.WriteString(data);
+			file.WriteString(ucr::toTString(CMarkdown::Entities(ucr::toUTF8(paths[nBuffer]))));
+			file.WriteString(_T("</th>\n"));
 		}
+		file.WriteString(
+			_T("</tr>\n")
+			_T("</thead>\n")
+			_T("<tbody>\n"));
 
-		if (bBorderLine)
+		// write the body of the report
+		int idx[3]{};
+		int nLineCount[3] = {};
+		int nDiff = 0;
+		int nColumnCountMax[3]{};
+		for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 		{
-			file.WriteString(_T("<tr height=1>"));
+			nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
+			nColumnCountMax[nBuffer] = m_ptBuf[nBuffer]->GetColumnCountMax();
+		}
+		for (;;)
+		{
+			file.WriteString(_T("<tr>\n"));
+			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+			{
+				for (; idx[nBuffer] < nLineCount[nBuffer]; idx[nBuffer]++)
+				{
+					if (m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+						break;
+				}
+
+				if (idx[nBuffer] < nLineCount[nBuffer])
+				{
+					// line number
+					int iVisibleLineNumber = 0;
+					String tdtag = _T("<td class=\"ln\">");
+					lineflags_t dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
+					if ((dwFlags & LF_GHOST) == 0 && m_pView[0][nBuffer]->GetViewLineNumbers())
+					{
+						iVisibleLineNumber = m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1;
+					}
+					if (nBuffer == 0 &&
+						(dwFlags & (LF_DIFF | LF_GHOST)) != 0 && (idx[nBuffer] == 0 ||
+							(m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer] - 1) & (LF_DIFF | LF_GHOST)) == 0))
+					{
+						++nDiff;
+						if (iVisibleLineNumber > 0)
+						{
+							tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">%d</a>"), nDiff, nDiff, iVisibleLineNumber);
+							iVisibleLineNumber = 0;
+						}
+						else
+							tdtag += strutils::format(_T("<a id=\"d%d\" href=\"#d%d\">.</a>"), nDiff, nDiff);
+					}
+					if (iVisibleLineNumber > 0)
+						tdtag += strutils::format(_T("%d</td>"), iVisibleLineNumber);
+					else
+						tdtag += _T("</td>");
+					file.WriteString(tdtag);
+					// line content
+					file.WriteString((const tchar_t*)m_pView[0][nBuffer]->GetHTMLLine(idx[nBuffer], _T("td"), nColumnCountMax[nBuffer]));
+					idx[nBuffer]++;
+				}
+				else
+					file.WriteString(_T("<td class=\"ln\"></td><td></td>"));
+				file.WriteString(_T("\n"));
+			}
+			file.WriteString(_T("</tr>\n"));
+
+			bool bBorderLine = false;
 			for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
 			{
 				if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
-					file.WriteString(_T("<td style=\"background-color: black\"></td><td style=\"background-color: black\"></td>"));
-				else
-					file.WriteString(_T("<td></td><td></td>"));
+					bBorderLine = true;
 			}
-			file.WriteString(_T("</tr>\n"));
-		}
 
-		if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1] && (m_nBuffers < 3 || idx[2] >= nLineCount[2]))
-			break;
+			if (bBorderLine)
+			{
+				file.WriteString(_T("<tr style=\"height: 1px\">"));
+				for (nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
+				{
+					if (idx[nBuffer] < nLineCount[nBuffer] && !m_pView[0][nBuffer]->GetLineVisible(idx[nBuffer]))
+						file.WriteString(_T("<td colspan=\"2\" style=\"background-color: black\"></td>"));
+					else
+						file.WriteString(_T("<td colspan=\"2\"></td>"));
+				}
+				file.WriteString(_T("</tr>\n"));
+			}
+
+			if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1] && (m_nBuffers < 3 || idx[2] >= nLineCount[2]))
+				break;
+		}
+		file.WriteString(
+			_T("</tbody>\n")
+			_T("</table>\n")
+			_T("</body>\n"));
 	}
 	file.WriteString(
-		_T("</tbody>\n")
-		_T("</table>\n")
-		_T("</body>\n")
 		_T("</html>\n"));
 
 	file.Close();

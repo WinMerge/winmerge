@@ -481,8 +481,17 @@ msgstr "显示隐藏的项(&E)"
 msgid "Tree &Mode"
 msgstr "树状模式(&M)"
 
-msgid "E&xpand All Subfolders"
-msgstr "展开所有子目录(&X)"
+msgid "E&xpand Subfolders"
+msgstr "展开子文件夹(&X)"
+
+msgid "&All Subfolders"
+msgstr "所有子文件夹(&A)"
+
+msgid "&Different Subfolders"
+msgstr "不同的子文件夹(&D)"
+
+msgid "&Identical Subfolders"
+msgstr "相同的子文件夹(&I)"
 
 msgid "&Collapse All Subfolders"
 msgstr "折叠所有子目录(&C)"
@@ -1983,11 +1992,11 @@ msgstr "遇到第一个差异后停止(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "忽略小于3秒的时间差异(&O)"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "在比较后自动展开子文件夹(&A)"
+
 msgid "Include &unique subfolders contents"
 msgstr "包含仅在单侧的子文件夹内容(&U)"
-
-msgid "&Automatically expand all subfolders"
-msgstr "自动展开所有子文件夹(&A)"
 
 msgid "Ignore &reparse points"
 msgstr "忽略重新解析点(&R)"
@@ -2286,6 +2295,18 @@ msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
 
+msgid "Do not expand"
+msgstr "不展开"
+
+msgid "Expand all subfolders"
+msgstr "展开所有子文件夹"
+
+msgid "Expand different subfolders"
+msgstr "展开不同的子文件夹"
+
+msgid "Expand identical subfolders"
+msgstr "展开相同的子文件夹"
+
 msgid "File Type"
 msgstr "文件类型"
 
@@ -2482,7 +2503,7 @@ msgstr "正在比较条目..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f [条目/秒]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "选择两个现有的文件或文件夹来进行比较。"

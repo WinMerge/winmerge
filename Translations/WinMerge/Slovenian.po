@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2021-12-14 22:23+0000\n"
-"PO-Revision-Date: 2023-07-03 22:12+0200\n"
+"POT-Creation-Date: 2023-08-05 10:45+0000\n"
+"PO-Revision-Date: 2023-08-11 20:04+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -114,7 +114,7 @@ msgid "&With..."
 msgstr "&Z..."
 
 msgid "Open &Parent Folder..."
-msgstr "Nad&rejena mapa..."
+msgstr "Odpri nad&rejeno mapo..."
 
 msgid "S&hell Menu"
 msgstr "Meni &lupine"
@@ -478,8 +478,17 @@ msgstr "Prikaži skri&te vnose"
 msgid "Tree &Mode"
 msgstr "&Drevesni način"
 
-msgid "E&xpand All Subfolders"
-msgstr "Ra&zširi vse podmape"
+msgid "E&xpand Subfolders"
+msgstr "&Razširi podmape"
+
+msgid "&All Subfolders"
+msgstr "&Vse podmape"
+
+msgid "&Different Subfolders"
+msgstr "Raz&lične podmape"
+
+msgid "&Identical Subfolders"
+msgstr "&Enake podmape"
 
 msgid "&Collapse All Subfolders"
 msgstr "S&trni vse podmape"
@@ -1459,7 +1468,7 @@ msgid "Continue"
 msgstr "Nadaljuj"
 
 msgid "&Number of CPU cores to use:"
-msgstr "Š&tevilo jeder procesorja za uporabo:"
+msgstr "Š&tevilo jeder CPE za uporabo:"
 
 msgid "Items total:"
 msgstr "Skupaj vnosov:"
@@ -1977,11 +1986,11 @@ msgstr "&Ustavi po prvi razliki"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Prezri razlike manjše od 3 sekund"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "S&amodejno razširi podmape po primerjavi:"
+
 msgid "Include &unique subfolders contents"
 msgstr "&Vključi unikatne vsebine podmap"
-
-msgid "&Automatically expand all subfolders"
-msgstr "S&amodejno razširi vse podmape"
 
 msgid "Ignore &reparse points"
 msgstr "P&rezri točke ponovne razčlenitve"
@@ -2070,7 +2079,7 @@ msgid ""
 "New Documents (Ctrl+N)"
 msgstr ""
 "\n"
-"Nov dokumenti (Ctrl+N)"
+"Novi dokumenti (Ctrl+N)"
 
 msgid ""
 "\n"
@@ -2275,6 +2284,18 @@ msgstr "HTML datoteke (*.htm,*.html)|*.htm;*.html|Vse datoteke (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Datoteke XML (*.xml)|*.xml|Vse datoteke (*.*)|*.*||"
 
+msgid "Do not expand"
+msgstr "Ne razširi"
+
+msgid "Expand all subfolders"
+msgstr "Razširi vse podmape"
+
+msgid "Expand different subfolders"
+msgstr "Razširi različne podmape"
+
+msgid "Expand identical subfolders"
+msgstr "Razširi enake podmape"
+
 msgid "File Type"
 msgstr "Vrsta datoteke"
 
@@ -2300,7 +2321,7 @@ msgid "Include Subfolders"
 msgstr "Vključi podmape"
 
 msgid "Compare Options"
-msgstr "Primerjaj možnosti"
+msgstr "Možnosti primerjave"
 
 msgid "Hidden Items"
 msgstr "Skriti vnosi"
@@ -2348,7 +2369,7 @@ msgstr ""
 "V mapo filtrov ni mogoče kopirati datoteke predloge filtra:\n"
 "%1\n"
 "\n"
-"Prosim preverite, če mapa obstaja in je zapisljiva."
+"Prosimo, preverite, če mapa obstaja in je zapisljiva."
 
 msgid ""
 "User's filter file folder is not defined!\n"
@@ -2395,7 +2416,6 @@ msgid ""
 "If you do not want to refresh all compares now you can select 'No' and refresh compares later."
 msgstr ""
 "Filtri so bili posodobljeni. Ali želite osvežiti vse odprte mape za primerjavo?\n"
-"\n"
 "Če jih ne želite osvežiti sedaj, lahko izberete 'Ne' in osvežite primerjave kasneje."
 
 msgid "Folder Comparison Results"
@@ -2472,7 +2492,7 @@ msgstr "Primerjava vnosov..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[vnosov/sek.]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Za primerjavo izberite dve obstoječi mapi ali datoteki."
@@ -2565,7 +2585,7 @@ msgstr "Shrani kot"
 
 #, c-format
 msgid "Save changes to %1?"
-msgstr "Shrani spremembe v %1?"
+msgstr "Želite shraniti spremembe v %1?"
 
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
@@ -2584,7 +2604,7 @@ msgstr ""
 "Izvirne datoteke ni mogoče varnostno kopirati:\n"
 "%1\n"
 "\n"
-"Vseeno nadaljujem?"
+"Želite vseeno nadaljevati?"
 
 #, c-format
 msgid ""
@@ -2599,8 +2619,8 @@ msgstr ""
 "%1\n"
 "%2\n"
 "Ali želite:\n"
-"\t- uporabiti drugačno ime datoteke (Pritisnite Vredu)\n"
-"\t- prekiniti trenutno operacijo (Pritisnite Prekliči)?"
+"\t- uporabiti drugačno ime datoteke (Pritisnite 'Vredu')\n"
+"\t- prekiniti trenutno operacijo (Pritisnite 'Prekliči')?"
 
 #, c-format
 msgid ""
@@ -2656,7 +2676,7 @@ msgstr ""
 "%1\n"
 "od nalaganja WinMerge.\n"
 "\n"
-"Prepišem spremenjeno datoteko?"
+"Želite prepisati spremenjeno datoteko?"
 
 #, c-format
 msgid ""
@@ -2677,7 +2697,6 @@ msgstr ""
 "Druga aplikacija je posodobila datoteko\n"
 "%1\n"
 "odkar jo je WinMerge zadnjič pregledal.\n"
-"\n"
 "Ali želite znova naložiti datoteko?"
 
 msgid "Save Left File As"
@@ -2697,7 +2716,7 @@ msgid ""
 msgstr ""
 "Datoteka\n"
 "%1\n"
-"je izginila. Če želite nadaljevati, shranite kopijo datoteke."
+"je izginila. Za nadaljevanje shranite kopijo datoteke."
 
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
@@ -2821,10 +2840,7 @@ msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 od %2 vpletenih datotek)"
 
 #, c-format
-msgid ""
-"Are you sure you want to delete\n"
-"\n"
-"%1 ?"
+msgid "Are you sure you want to delete\n\n%1 ?"
 msgstr ""
 "Ali ste prepričani, da želite izbrisati\n"
 "\n"
@@ -4292,7 +4308,7 @@ msgstr ""
 "Izberite nekaj vrstic.\r\n"
 "Uporaba: SelectLines RANGES\r\n"
 " ali: SelectLines [-v] [-i] -e VZORCI\r\n"
-"  RAZPONI - seznam obsegov vrstic za izbiro. (npr. -3,5-10,30-)\r\n"
+"  RAZPONI - seznam razponov vrstic za izbiro. (npr. -3,5-10,30-)\r\n"
 "  VZORCI - regularni izraz\r\n"
 "  -v - izberi neujemajoče se vrstice\r\n"
 "  -i - prezri velike in male črke\r\n"

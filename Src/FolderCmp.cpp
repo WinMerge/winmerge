@@ -206,7 +206,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				m_pDiffUtilsEngine->SetCodepage(codepage);
 				m_pDiffUtilsEngine->SetCompareOptions(*m_pCtxt->GetCompareOptions(CMP_CONTENT));
 				if (m_pCtxt->m_pFilterList != nullptr)
-					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList.get());
+					m_pDiffUtilsEngine->SetFilterList(m_pCtxt->m_pFilterList);
 				else
 					m_pDiffUtilsEngine->ClearFilterList();
 				if (m_pCtxt->m_pSubstitutionList != nullptr)
@@ -264,7 +264,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				diffList.Clear();
 				dw.SetCompareFiles(tFiles);
 				dw.SetOptions(m_pCtxt->GetOptions());
-				dw.SetFilterList(m_pCtxt->m_pFilterList.get());
+				dw.SetFilterList(m_pCtxt->m_pFilterList);
 				dw.SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
 				dw.SetFilterCommentsSourceDef(Ext);
 				dw.SetCreateDiffList(&diffList);

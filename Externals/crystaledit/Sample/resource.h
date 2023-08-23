@@ -52,6 +52,8 @@
 #define ID_EDIT_FIND_PREVIOUS           32799
 #define ID_VIEW_WHITESPACE              32800
 #define ID_VIEW_SELECT_FONT             32801
+#define ID_VIEW_LINENUMBERS             32802
+#define ID_FILE_CONVERT_TO_HTML         32803
 #define ID_EDIT_INDICATOR_COL           37900
 #define ID_READ_ONLY                    37901
 #define ID_INDICATOR_ENCODING           37905

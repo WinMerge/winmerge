@@ -370,10 +370,8 @@ void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 	__super::OnGetMinMaxInfo(lpMMI);
 	// [Fix for MFC 8.0 MDI Maximizing Child Window bug on Vista]
 	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
-#if _MFC_VER >= 0x0800
 	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
 	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
-#endif
 }
 
 void CMergeFrameCommon::OnDestroy()

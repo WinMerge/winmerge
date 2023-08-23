@@ -567,9 +567,17 @@ msgstr "Mostra els elements ama&gats"
 msgid "Tree &Mode"
 msgstr "&Mode d'arbre"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "E&xpandeixles subcarpetes"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2440,13 +2448,12 @@ msgstr "&Atura després de la primera diferència"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignora diferències en l'&hora inferiors a 3 segons"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "Inclou el contingut de les carpetes que no estan a ambós costats"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "Obre automàticament l'abre de les subcarpetes"
 
 #, c-format
 msgid "Ignore &reparse points"
@@ -2778,6 +2785,18 @@ msgstr "Fitxers HTML (*.htm,*.html)|*.htm;*.html|Tots els fitxers (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fitxers XML (*.xml)|*.xml|Tots els fitxers (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Tipus de fitxer"

@@ -123,7 +123,7 @@ String TimeString(const int64_t * tim)
 	if (tim == nullptr) return _T("---");
 	
 	SYSTEMTIME sysTimeGlobal, sysTime;
-	FILETIME ft;
+	FILETIME ft{};
 	Timestamp t(*tim * Timestamp::resolution());
 
 	if (t == 0)

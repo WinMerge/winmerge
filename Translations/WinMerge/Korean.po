@@ -14,11 +14,11 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge 2.16.14.0\n"
+"Project-Id-Version: WinMerge 2.16.32.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-06-21 04:23+0900\n"
-"Last-Translator: gro00 <gheong.ro at gmail.com>\n"
+"PO-Revision-Date: 2023-08-12 03:52+0900\n"
+"Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -576,9 +576,17 @@ msgstr "숨김 파일 보기(&E)"
 msgid "Tree &Mode"
 msgstr "트리 모드(&M)"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "모든 하위 폴더 확장(&X)"
+msgid "E&xpand Subfolders"
+msgstr "하위 폴더 확장(&X)"
+
+msgid "&All Subfolders"
+msgstr "모든 하위 폴더(&A)"
+
+msgid "&Different Subfolders"
+msgstr "다른 하위 폴더(&D)"
+
+msgid "&Identical Subfolders"
+msgstr "같은 하위 폴더(&I)"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -1878,11 +1886,11 @@ msgstr "구문 강조 표시(&H)"
 
 #, c-format
 msgid "&Automatic rescan"
-msgstr "자동으로 다시 스캔(&A)"
+msgstr "자동으로 다시 검색(&A)"
 
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "원본 줄 끝 문자 보존(&P)"
+msgstr "원래 EOL 문자 유지(&P)"
 
 #, c-format
 msgid "Tabs"
@@ -2449,13 +2457,12 @@ msgstr "첫 차이점 이후 중지(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3초 이내의 시간 차이 무시(&O)"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "비교 후 하위 폴더 자동 확장(&A):"
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "이름이 같은 하위 폴더 내용 포함(&U)"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "전체 하위 폴더 자동 확장(&A)"
 
 #, c-format
 msgid "Ignore &reparse points"
@@ -2802,6 +2809,18 @@ msgstr "HTML 파일 (*.htm,*.html)|*.htm;*.html|모든 파일 (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 파일 (*.xml)|*.xml|모든 파일 (*.*)|*.*||"
 
+msgid "Do not expand"
+msgstr "확장 안 함"
+
+msgid "Expand all subfolders"
+msgstr "모든 하위 폴더 확장"
+
+msgid "Expand different subfolders"
+msgstr "다른 하위 폴더 확장"
+
+msgid "Expand identical subfolders"
+msgstr "같은 하위 폴더 확장"
+
 msgid "File Type"
 msgstr "파일 유형"
 
@@ -3023,7 +3042,7 @@ msgstr "항목 비교 중..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[항목/초]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "비교할 기존의 폴더나 파일 두 개를 선택하세요."

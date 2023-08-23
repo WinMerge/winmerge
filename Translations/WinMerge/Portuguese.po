@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2023-07-04 11:00+0100\n"
+"PO-Revision-Date: 2023-08-07 12:43+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -479,8 +479,17 @@ msgstr "Mostrar itens ocultados"
 msgid "Tree &Mode"
 msgstr "&Modo árvore"
 
-msgid "E&xpand All Subfolders"
-msgstr "E&xpandir todas as subpastas"
+msgid "E&xpand Subfolders"
+msgstr "E&xpandir subpastas"
+
+msgid "&All Subfolders"
+msgstr "&Todas as subpastas"
+
+msgid "&Different Subfolders"
+msgstr "Subpastas &diferentes"
+
+msgid "&Identical Subfolders"
+msgstr "Subpastas &idênticas"
 
 msgid "&Collapse All Subfolders"
 msgstr "&Fechar todas as subpastas"
@@ -1984,11 +1993,11 @@ msgstr "Parar após primeira diferença"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "Expandir &automaticamente as subpastas após a comparação:"
+
 msgid "Include &unique subfolders contents"
 msgstr "&Incluir conteúdos exclusivos da subpastas"
-
-msgid "&Automatically expand all subfolders"
-msgstr "Expandir &automaticamente todas as subpastas"
 
 msgid "Ignore &reparse points"
 msgstr "Ignorar pontos de &análise"
@@ -2289,6 +2298,18 @@ msgstr "Ficheiros HTML (*.htm,*.html)|*.htm;*.html|Todos os ficheiros (*.*)|*.*|
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Ficheiros XML (*.xml)|*.xml|Todos os ficheiros (*.*)|*.*||"
 
+msgid "Do not expand"
+msgstr "Não expandir"
+
+msgid "Expand all subfolders"
+msgstr "Expandir todas as subpastas"
+
+msgid "Expand different subfolders"
+msgstr "Expandir subpastas diferentes"
+
+msgid "Expand identical subfolders"
+msgstr "Expandir subpastas idênticas"
+
 msgid "File Type"
 msgstr "Tipo de ficheiro"
 
@@ -2486,7 +2507,7 @@ msgstr "A comparar itens..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[itens/seg]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecione duas pastas existentes ou ficheiros para comparar."

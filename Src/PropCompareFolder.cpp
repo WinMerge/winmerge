@@ -28,7 +28,7 @@ PropCompareFolder::PropCompareFolder(COptionsMgr *optionsMgr)
  , m_bIgnoreSmallTimeDiff(false)
  , m_bIncludeUniqFolders(false)
  , m_bIncludeSubdirs(false)
- , m_bExpandSubdirs(false)
+ , m_nExpandSubdirs(0)
  , m_bIgnoreReparsePoints(false)
  , m_nQuickCompareLimit(4 * Mega)
  , m_nBinaryCompareLimit(64 * Mega)
@@ -42,11 +42,11 @@ void PropCompareFolder::DoDataExchange(CDataExchange* pDX)
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropCompareFolder)
 	DDX_CBIndex(pDX, IDC_COMPAREMETHODCOMBO, m_compareMethod);
+	DDX_CBIndex(pDX, IDC_EXPAND_SUBDIRS, m_nExpandSubdirs);
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	DDX_Check(pDX, IDC_COMPARE_WALKSUBDIRS, m_bIncludeUniqFolders);
 	DDX_Check(pDX, IDC_RECURS_CHECK, m_bIncludeSubdirs);
-	DDX_Check(pDX, IDC_EXPAND_SUBDIRS, m_bExpandSubdirs);
 	DDX_Check(pDX, IDC_IGNORE_REPARSEPOINTS, m_bIgnoreReparsePoints);
 	DDX_Text(pDX, IDC_COMPARE_QUICKC_LIMIT, m_nQuickCompareLimit);
 	DDX_Text(pDX, IDC_COMPARE_BINARYC_LIMIT, m_nBinaryCompareLimit);
@@ -76,7 +76,7 @@ void PropCompareFolder::ReadOptions()
 	m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_bIncludeUniqFolders = GetOptionsMgr()->GetBool(OPT_CMP_WALK_UNIQUE_DIRS);
 	m_bIncludeSubdirs = GetOptionsMgr()->GetBool(OPT_CMP_INCLUDE_SUBDIRS);
-	m_bExpandSubdirs = GetOptionsMgr()->GetBool(OPT_DIRVIEW_EXPAND_SUBDIRS);
+	m_nExpandSubdirs = GetOptionsMgr()->GetInt(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT) / Mega ;
 	m_nBinaryCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_BINARY_LIMIT) / Mega ;
@@ -99,7 +99,7 @@ void PropCompareFolder::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff);
 	GetOptionsMgr()->SaveOption(OPT_CMP_WALK_UNIQUE_DIRS, m_bIncludeUniqFolders);
 	GetOptionsMgr()->SaveOption(OPT_CMP_INCLUDE_SUBDIRS, m_bIncludeSubdirs);
-	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_bExpandSubdirs);
+	GetOptionsMgr()->SaveOption(OPT_DIRVIEW_EXPAND_SUBDIRS, m_nExpandSubdirs);
 	GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_REPARSE_POINTS, m_bIgnoreReparsePoints);
 
 	if (m_nQuickCompareLimit > 2000)
@@ -120,6 +120,8 @@ BOOL PropCompareFolder::OnInitDialog()
 {
 	SetDlgItemComboBoxList(IDC_COMPAREMETHODCOMBO,
 		{ _("Full Contents"), _("Quick Contents"), _("Binary Contents"), _("Modified Date"), _("Modified Date and Size"), _("Size") });
+	SetDlgItemComboBoxList(IDC_EXPAND_SUBDIRS,
+		{ _("Do not expand"), _("Expand all subfolders"), _("Expand different subfolders"), _("Expand identical subfolders") });
 
 	OptionsPanel::OnInitDialog();
 	
@@ -138,7 +140,7 @@ void PropCompareFolder::OnDefaults()
 	m_bStopAfterFirst = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_STOP_AFTER_FIRST);
 	m_bIncludeUniqFolders = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_WALK_UNIQUE_DIRS);
 	m_bIncludeSubdirs = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_INCLUDE_SUBDIRS);
-	m_bExpandSubdirs = GetOptionsMgr()->GetDefault<bool>(OPT_DIRVIEW_EXPAND_SUBDIRS);
+	m_nExpandSubdirs = GetOptionsMgr()->GetDefault<unsigned>(OPT_DIRVIEW_EXPAND_SUBDIRS);
 	m_bIgnoreReparsePoints = GetOptionsMgr()->GetDefault<bool>(OPT_CMP_IGNORE_REPARSE_POINTS);
 	m_nQuickCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_QUICK_LIMIT) / Mega;
 	m_nBinaryCompareLimit = GetOptionsMgr()->GetDefault<unsigned>(OPT_CMP_BINARY_LIMIT) / Mega;

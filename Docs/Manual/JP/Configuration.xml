@@ -974,23 +974,51 @@
     </section>
 	
     <section>
-      <title>自動的にサブフォルダーを展開する<indexterm>
+      <title>比較後自動的にサブフォルダーを展開する<indexterm>
           <primary>expand subfolders</primary>
 
           <secondary>detecting and ignoring differences</secondary>
         </indexterm></title>
 
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default): TBD</para>
-        </listitem>
+      <variablelist>
+        <varlistentry>
+          <term>展開しない</term>
 
-        <listitem>
-          <para><option>Enabled</option>: TBD</para>
-        </listitem>
-      </itemizedlist>
+          <listitem>
+            <para>(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>すべてのサブフォルダーを展開</term>
+
+          <listitem>
+            <para>フォルダ比較後、自動的にすべてのサブフォルダを展開します。
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>差異のあるサブフォルダーを展開</term>
+
+          <listitem>
+            <para>フォルダ比較後、自動的に差異のあるサブフォルダを展開します。
+            </para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>同一のサブフォルダーを展開</term>
+
+          <listitem>
+            <para>フォルダ比較後、自動的に同一のサブフォルダを展開します。
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
     </section>
-	
+
     <section>
       <title>再解析ポイントを無視する<indexterm>
           <primary>reparse points</primary>

@@ -478,8 +478,17 @@ msgstr "Näytä piilotetut kohteet"
 msgid "Tree &Mode"
 msgstr "Puunäkymä"
 
-msgid "E&xpand All Subfolders"
-msgstr "Laajenna kaikki alikansiot"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "Tiivistä kaikki alikansiot"
@@ -1984,11 +1993,11 @@ msgstr "Pysäytä ensimmäisen eron jälkeen"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Jätä alle 3 sekunnin aikaerot huomiotta"
 
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
-msgid "&Automatically expand all subfolders"
-msgstr "L&aajenna kaikki alikansiot automaattisesti"
+msgid "Include &unique subfolders contents"
+msgstr ""
 
 msgid "Ignore &reparse points"
 msgstr "Ohita &uudelleenjäsennyskohdat"
@@ -2292,6 +2301,18 @@ msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-tiedostot (*.xml)|*.xml|Kaikki tiedostot (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Tiedostotyyppi"

@@ -63,7 +63,6 @@ public:
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
-	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	bool m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
@@ -102,6 +101,10 @@ public:
 	static void SetupTempPath();
 	bool IsReallyIdle() const;
 	void RegisterIdleFunc(std::function<void()> func) { m_idleFuncs.push_back(func); };
+	CMultiDocTemplate* GetOpenTemplate();
+	CMultiDocTemplate* GetDiffTemplate();
+	CMultiDocTemplate* GetHexMergeTemplate();
+	CMultiDocTemplate* GetDirTemplate();
 
 	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
 	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;

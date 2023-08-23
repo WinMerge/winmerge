@@ -895,9 +895,10 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
+	CMultiDocTemplate* pDiffTemplate = theApp.GetDiffTemplate();
 	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
-		theApp.m_pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
-	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(theApp.m_pDiffTemplate, pDirDoc, nFiles, false);
+		pDiffTemplate->m_hMenuShared = NewMergeViewMenu();
+	CMergeDoc * pMergeDoc = GetMergeDocForDiff<CMergeDoc>(pDiffTemplate, pDirDoc, nFiles, false);
 
 	// Make local copies, so we can change encoding if we guess it below
 	FileLocation fileloc[3];
@@ -978,6 +979,9 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 		true,
 		pOpenParams ? pOpenParams->m_char: -1);
 
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+		pMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+
 	if (!sReportFile.empty())
 		pMergeDoc->GenerateReport(sReportFile);
 
@@ -1004,9 +1008,10 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
 	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenBinaryFileParams* pOpenParams /*= nullptr*/)
 {
+	CMultiDocTemplate* pHexMergeTemplate = theApp.GetHexMergeTemplate();
 	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
-		theApp.m_pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
-	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(theApp.m_pHexMergeTemplate, pDirDoc, nFiles);
+		pHexMergeTemplate->m_hMenuShared = NewHexMergeViewMenu();
+	CHexMergeDoc *pHexMergeDoc = GetMergeDocForDiff<CHexMergeDoc>(pHexMergeTemplate, pDirDoc, nFiles);
 	if (pHexMergeDoc == nullptr)
 		return false;
 
@@ -1017,6 +1022,9 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 
 	pHexMergeDoc->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
 	
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+		pHexMergeDoc->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
+
 	if (!sReportFile.empty())
 		pHexMergeDoc->GenerateReport(sReportFile);
 
@@ -1045,6 +1053,9 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	}
 
 	pImgMergeFrame->MoveOnLoad(GetActivePaneFromFlags(nFiles, dwFlags));
+
+	if (pOpenParams && !pOpenParams->m_strSaveAsPath.empty())
+		pImgMergeFrame->SetSaveAsPath(pOpenParams->m_strSaveAsPath);
 
 	if (!sReportFile.empty())
 		pImgMergeFrame->GenerateReport(sReportFile);
@@ -1089,7 +1100,7 @@ bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String t
 	FileLocation fileloc[3];
 	fileopenflags_t dwFlags[3] = {};
 	CDirDoc* pDirDoc2 = pDirDoc->GetMainView() ? pDirDoc :
-		static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+		static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
 		auto wTemp = std::make_shared<TempFile>(TempFile());
@@ -1259,9 +1270,11 @@ static bool AddToRecentDocs(const PathContext& paths,
 	}
 
 	Concurrent::CreateTask([params, title](){
-			CoInitialize(nullptr);
-			JumpList::AddToRecentDocs(_T(""), params, title, params, _T(""), 0);
-			CoUninitialize();
+			if (SUCCEEDED(CoInitialize(nullptr)))
+			{
+				JumpList::AddToRecentDocs(_T(""), params, title, params, _T(""), 0);
+				CoUninitialize();
+			}
 			return 0;
 		});
 	return true;
@@ -1312,9 +1325,10 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	if (tFiles.GetSize() < 2 || pathsType == paths::DOES_NOT_EXIST &&
 	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return path.empty() || paths::IsURL(path); }))
 	{
+		CMultiDocTemplate* pOpenTemplate = theApp.GetOpenTemplate();
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)
-			theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
-		COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
+			pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
+		COpenDoc *pOpenDoc = static_cast<COpenDoc *>(pOpenTemplate->CreateNewDocument());
 		if (dwFlags)
 		{
 			pOpenDoc->m_dwFlags[0] = dwFlags[0];
@@ -1325,8 +1339,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		pOpenDoc->m_bRecurse = bRecurse2;
 		if (infoUnpacker)
 			pOpenDoc->m_strUnpackerPipeline = infoUnpacker->GetPluginPipeline();
-		CFrameWnd *pFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
-		theApp.m_pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
+		CFrameWnd *pFrame = pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
+		pOpenTemplate->InitialUpdateFrame(pFrame, pOpenDoc);
 		return true;
 	}
 	
@@ -1378,16 +1392,17 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	// an archive. Don't open a new dirview if we are comparing files.
 	if (pDirDoc == nullptr)
 	{
+		CMultiDocTemplate* pDirTemplate = theApp.GetDirTemplate();
 		if (allowFolderCompare && pathsType == paths::IS_EXISTING_DIR)
 		{
 			CDirDoc::m_nDirsTemp = tFiles.GetSize();
 			if (m_pMenus[MENU_DIRVIEW] == nullptr)
-				theApp.m_pDirTemplate->m_hMenuShared = NewDirViewMenu();
-			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->OpenDocumentFile(nullptr));
+				pDirTemplate->m_hMenuShared = NewDirViewMenu();
+			pDirDoc = static_cast<CDirDoc*>(pDirTemplate->OpenDocumentFile(nullptr));
 		}
 		else
 		{
-			pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+			pDirDoc = static_cast<CDirDoc*>(pDirTemplate->CreateNewDocument());
 		}
 	}
 
@@ -1446,7 +1461,7 @@ bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles,
 	const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	ASSERT(pFiles != nullptr);
-	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < pFiles->GetSize(); pane++)
 		fileloc[pane].setPath((*pFiles)[pane]);
@@ -1715,25 +1730,25 @@ void CMainFrame::ApplyDiffOptions()
 /// Get list of OpenDocs (documents underlying edit sessions)
 OpenDocList &CMainFrame::GetAllOpenDocs()
 {
-	return static_cast<OpenDocList &>(GetDocList(theApp.m_pOpenTemplate));
+	return static_cast<OpenDocList &>(GetDocList(theApp.GetOpenTemplate()));
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
 MergeDocList &CMainFrame::GetAllMergeDocs()
 {
-	return static_cast<MergeDocList &>(GetDocList(theApp.m_pDiffTemplate));
+	return static_cast<MergeDocList &>(GetDocList(theApp.GetDiffTemplate()));
 }
 
 /// Get list of DirDocs (documents underlying a scan)
 DirDocList &CMainFrame::GetAllDirDocs()
 {
-	return static_cast<DirDocList &>(GetDocList(theApp.m_pDirTemplate));
+	return static_cast<DirDocList &>(GetDocList(theApp.GetDirTemplate()));
 }
 
 /// Get list of HexMergeDocs (documents underlying edit sessions)
 HexMergeDocList &CMainFrame::GetAllHexMergeDocs()
 {
-	return static_cast<HexMergeDocList &>(GetDocList(theApp.m_pHexMergeTemplate));
+	return static_cast<HexMergeDocList &>(GetDocList(theApp.GetHexMergeTemplate()));
 }
 
 std::vector<CImgMergeFrame *> CMainFrame::GetAllImgMergeFrames()
@@ -1991,7 +2006,7 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 	const PrediffingInfo *infoPrediffer /*= nullptr*/,
 	const OpenFileParams *pOpenParams)
 {
-	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
@@ -2348,9 +2363,10 @@ CMainFrame * GetMainFrame()
  */
 void CMainFrame::OnSaveProject()
 {
+	CMultiDocTemplate* pOpenTemplate = theApp.GetOpenTemplate();
 	if (m_pMenus[MENU_OPENVIEW] == nullptr)
-		theApp.m_pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
-	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(theApp.m_pOpenTemplate->CreateNewDocument());
+		pOpenTemplate->m_hMenuShared = NewOpenViewMenu();
+	COpenDoc *pOpenDoc = static_cast<COpenDoc *>(pOpenTemplate->CreateNewDocument());
 
 	CFrameWnd * pFrame = GetActiveFrame();
 	FRAMETYPE frame = pFrame ? GetFrameType(pFrame) : FRAME_OTHER;
@@ -2421,8 +2437,8 @@ void CMainFrame::OnSaveProject()
 		}
 	}
 
-	CFrameWnd *pOpenFrame = theApp.m_pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
-	theApp.m_pOpenTemplate->InitialUpdateFrame(pOpenFrame, pOpenDoc);
+	CFrameWnd *pOpenFrame = pOpenTemplate->CreateNewFrame(pOpenDoc, nullptr);
+	pOpenTemplate->InitialUpdateFrame(pOpenFrame, pOpenDoc);
 }
 
 /** 
@@ -2435,17 +2451,9 @@ void CMainFrame::StartFlashing()
 		FlashWindowEx(FLASHW_ALL | FLASHW_TIMERNOFG, 3, 0);
 }
 
-#if _MFC_VER > 0x0600
 void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
-#else
-void CMainFrame::OnActivateApp(BOOL bActive, HTASK hTask)
-#endif
 {
-#if _MFC_VER > 0x0600
 	__super::OnActivateApp(bActive, dwThreadID);
-#else
-	__super::OnActivateApp(bActive, hTask);
-#endif
 
 	if (GetOptionsMgr()->GetInt(OPT_AUTO_RELOAD_MODIFIED_FILES) == AUTO_RELOAD_MODIFIED_FILES_ONWINDOWACTIVATED)
 	{
@@ -2854,7 +2862,8 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 	{
 		// Open two parsed files to WinMerge, telling WinMerge to
 		// save over original file (given as third filename).
-		theApp.m_strSaveAsPath = conflictFile;
+		OpenTextFileParams openParams;
+		openParams.m_strSaveAsPath = conflictFile;
 		if (!threeWay)
 		{
 			String strDesc2[2] = { 
@@ -2862,7 +2871,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			fileopenflags_t dwFlags[2] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
 			PathContext tmpPathContext(revFile, workFile);
-			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc2, L"", false, nullptr, nullptr, nullptr, 0, &openParams);
 		}
 		else
 		{
@@ -2872,7 +2881,7 @@ bool CMainFrame::DoOpenConflict(const String& conflictFile, const String strDesc
 				(strDesc && !strDesc[2].empty()) ? strDesc[2] : _("Mine File") };
 			PathContext tmpPathContext(baseFile, revFile, workFile);
 			fileopenflags_t dwFlags[3] = {FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_READONLY | FFILEOPEN_NOMRU, FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED};
-			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3);
+			conflictCompared = DoFileOrFolderOpen(&tmpPathContext, dwFlags, strDesc3, L"", false, nullptr, nullptr, nullptr, 0, &openParams);
 		}
 	}
 	else
@@ -3339,9 +3348,9 @@ void CMainFrame::ReloadMenu()
 		// m_hMenuDefault is used to redraw the main menu when we close a child frame
 		// if this child frame had a different menu
 		pMainFrame->m_hMenuDefault = hNewDefaultMenu;
-		pApp->m_pOpenTemplate->m_hMenuShared = hNewDefaultMenu;
-		pApp->m_pDiffTemplate->m_hMenuShared = hNewMergeMenu;
-		pApp->m_pDirTemplate->m_hMenuShared = hNewDirMenu;
+		pApp->GetOpenTemplate()->m_hMenuShared = hNewDefaultMenu;
+		pApp->GetDiffTemplate()->m_hMenuShared = hNewMergeMenu;
+		pApp->GetDirTemplate()->m_hMenuShared = hNewDirMenu;
 
 		// force redrawing the menu bar
 		pMainFrame->DrawMenuBar();

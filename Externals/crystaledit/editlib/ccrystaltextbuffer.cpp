@@ -2017,8 +2017,10 @@ void CCrystalTextBuffer::SetColumnWidths (const std::vector<int>& columnWidths)
 
 int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
 {
+  if (!GetTableEditing ())
+    return 1;
   ASSERT( nLineIndex >= 0 );
-  int nColumnCount = 0;
+  int nColumnCount = 1;
   const tchar_t* pszLine = GetLineChars (nLineIndex);
   int nLength = GetLineLength (nLineIndex);
   bool bInQuote = false;
@@ -2030,6 +2032,21 @@ int CCrystalTextBuffer::GetColumnCount (int nLineIndex) const
         ++nColumnCount;
     }
   return nColumnCount;
+}
+
+int CCrystalTextBuffer::GetColumnCountMax () const
+{
+  if (!GetTableEditing ())
+    return 1;
+  int nColumnCountMax = 0;
+  const int nLineCount = GetLineCount ();
+  for (int i = 0; i < nLineCount; ++i)
+    {
+      const int nColumnCount = GetColumnCount (i);
+      if (nColumnCountMax < nColumnCount)
+        nColumnCountMax = nColumnCount;
+    }
+  return nColumnCountMax;
 }
 
 std::basic_string<tchar_t> CCrystalTextBuffer::GetCellText (int nLineIndex, int nColumnIndex) const

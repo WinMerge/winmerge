@@ -478,8 +478,17 @@ msgstr "Mostrar Ite&ns Escondidos"
 msgid "Tree &Mode"
 msgstr "Modo &Árvore"
 
-msgid "E&xpand All Subfolders"
-msgstr "E&xpandir Todas as Sub-Pastas"
+msgid "E&xpand Subfolders"
+msgstr "E&xpandir Sub-Pastas"
+
+msgid "&All Subfolders"
+msgstr "Tod&as Sub-Pastas"
+
+msgid "&Different Subfolders"
+msgstr "Sub-Pastas &Diferentes"
+
+msgid "&Identical Subfolders"
+msgstr "Sub-Pastas &Idênticas"
 
 msgid "&Collapse All Subfolders"
 msgstr "&Retrair Todas as Sub-Pastas"
@@ -1969,11 +1978,11 @@ msgstr "P&arar após a primeira diferença"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orar as diferenças de tempo menores do que 3 segundos"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "Expandir &Automaticamente sub-pastas após a comparação:"
+
 msgid "Include &unique subfolders contents"
 msgstr "Incluir &conteúdos únicos das sub-pastas"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&Expandir automaticamente todas as sub-pastas"
 
 msgid "Ignore &reparse points"
 msgstr "Ignorar os &Pontos da Re-análise"
@@ -2212,6 +2221,18 @@ msgstr "Arquivos HTML (*.htm,*.html)|*.htm;*.html|Todos os Arquivos (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Arquivos XML (*.xml)|*.xml|Todos os Arquivos (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Não expandir"
+
+msgid "Expand all subfolders"
+msgstr "Expandir todas sub-pastas"
+
+msgid "Expand different subfolders"
+msgstr "Expandir sub-pastas diferentes"
+
+msgid "Expand identical subfolders"
+msgstr "Expandir sub-pastas idênticas"
 
 msgid "File Type"
 msgstr "Tipo de Arquivo"

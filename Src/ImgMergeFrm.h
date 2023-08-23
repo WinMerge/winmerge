@@ -73,6 +73,8 @@ public:
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const override { return m_strDesc[pane]; }
 	static bool IsLoadable();
+	String GetSaveAsPath() const { return m_strSaveAsPath; }
+	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
 
 // Attributes
 protected:
@@ -121,6 +123,7 @@ private:
 	BUFFERTYPE m_nBufferType[3];
 	DiffFileInfo m_fileInfo[3];
 	bool m_bRO[3];
+	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	bool m_bAutoMerged;
 	CDirDoc *m_pDirDoc;
 	int m_nActivePane;

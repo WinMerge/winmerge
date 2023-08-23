@@ -297,6 +297,7 @@ public :
     const std::vector<int>& GetColumnWidths () const { return m_pSharedTableProps->m_aColumnWidths; }
     void SetColumnWidths (const std::vector<int>& columnWidths);
     int  GetColumnCount (int nLineIndex) const;
+    int  GetColumnCountMax () const;
     std::basic_string<tchar_t> GetCellText (int nLineIndex, int nColumnIndex) const;
     void SetAllowNewlinesInQuotes (bool bAllowNewlinesInQuotes) { m_bAllowNewlinesInQuotes = bAllowNewlinesInQuotes; }
     tchar_t GetAllowNewlinesInQuotes () const { return m_bAllowNewlinesInQuotes; }

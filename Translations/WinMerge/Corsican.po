@@ -480,8 +480,17 @@ msgstr "Affissà l’elementi &piattati"
 msgid "Tree &Mode"
 msgstr "&Modu in arburu"
 
-msgid "E&xpand All Subfolders"
-msgstr "&Allargà tutti i sottucartulari"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "&Ripiegà tutti i sottucartulari"
@@ -1981,11 +1990,11 @@ msgstr "Pian&tà dopu à a prima sfarenza"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignurà e sfarenze di tempu di &menu di 3 seconde"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "Include u cuntenutu &unicu di i sottucartulari"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&Allargà autumaticamente tutti i sottucartulari"
 
 msgid "Ignore &reparse points"
 msgstr "Ignurà i punti di &ri-analisa"
@@ -2283,6 +2292,18 @@ msgstr "Schedarii HTML (*.htm,*.html)|*.htm;*.html|Tutti i schedarii (*.*)|*.*||
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Schedarii XML (*.xml)|*.xml|Tutti i schedarii (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr "Tipu di schedariu"

@@ -87,6 +87,9 @@ public:
 	String GetDescription(int pane) const override { return m_strDesc[pane]; };
 	void SetDescription(int pane, const String& strDesc) {  m_strDesc[pane] = strDesc; };
 	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
+	String GetSaveAsPath() const { return m_strSaveAsPath; }
+	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
+
 private:
 	bool DoFileSave(int nBuffer);
 	bool DoFileSaveAs(int nBuffer, bool packing = true);
@@ -99,6 +102,7 @@ protected:
 	String m_strDesc[3]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	PackingInfo m_infoUnpacker;
+	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 
 // Generated message map functions
 protected:

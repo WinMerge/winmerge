@@ -479,8 +479,17 @@ msgstr "عرض العناصر المخفية"
 msgid "Tree &Mode"
 msgstr "وضع العرض الهرمي"
 
-msgid "E&xpand All Subfolders"
-msgstr "عرض محتويات المجلدات الفرعية"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 msgid "&Collapse All Subfolders"
 msgstr "إخفاء محتويات المجلدات الفرعية"
@@ -1978,11 +1987,11 @@ msgstr "&توقف بعد إيجاد الاختلاف الأول"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "ت&جاهل الاختلاف في الوقت في حال كان أقل من 3 ثواني"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr ""
+
 msgid "Include &unique subfolders contents"
 msgstr "إ&دراج محتويات المجلدات الفرعية الفريدة"
-
-msgid "&Automatically expand all subfolders"
-msgstr "&فتح المجلدات الفرعية تلقائيا"
 
 msgid "Ignore &reparse points"
 msgstr "تجا&هل إعادة توزيع النقاط"
@@ -2285,6 +2294,18 @@ msgstr "ملفات HTML (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "ملفات XML (*.xml)|*.xml|All Files (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr ""

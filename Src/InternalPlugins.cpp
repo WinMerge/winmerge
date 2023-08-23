@@ -461,14 +461,16 @@ protected:
 			PARSEDURL parsedURL{sizeof(PARSEDURL)};
 			ParseURL(fileSrc.c_str(), &parsedURL);
 			strutils::replace(command, _T("${SRC_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
-			strutils::replace(command, _T("${SRC_URL_SUFFIX}"), parsedURL.pszSuffix);
+			strutils::replace(command, _T("${SRC_URL_SUFFIX}"), 
+				parsedURL.pszSuffix ? parsedURL.pszSuffix : _T(""));
 		}
 		if (paths::IsURL(fileDst))
 		{
 			PARSEDURL parsedURL{sizeof(PARSEDURL)};
 			ParseURL(fileDst.c_str(), &parsedURL);
 			strutils::replace(command, _T("${DST_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
-			strutils::replace(command, _T("${DST_URL_SUFFIX}"), parsedURL.pszSuffix);
+			strutils::replace(command, _T("${DST_URL_SUFFIX}"), 
+				parsedURL.pszSuffix ? parsedURL.pszSuffix : _T(""));
 		}
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);

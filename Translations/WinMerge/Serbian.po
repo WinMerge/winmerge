@@ -565,9 +565,17 @@ msgstr "Прикажи скрив&ене ставке"
 msgid "Tree &Mode"
 msgstr "&Модел стабла"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Про&шири све потфасцикле"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2417,12 +2425,11 @@ msgstr "С&тани после прве разлике"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Занемари разлике времена мање &од 3 секунде"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2749,6 +2756,18 @@ msgstr "HTML датотеке (*.htm,*.html)|*.htm;*.html|Све датотек�
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML датотеке (*.xml)|*.xml|Све датотеке (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr ""

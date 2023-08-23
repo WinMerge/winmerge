@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-06-20 08:00+0200\n"
+"PO-Revision-Date: 2023-08-08 17:00+0200\n"
 "Last-Translator: Mr. Update\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -554,13 +554,13 @@ msgid "Show &Right Only Different Items"
 msgstr "Unterschiedliche Objekte &rechts anzeigen"
 
 msgid "Show L&eft Only Missing Items"
-msgstr "Fehlende Objekte &links anzeigen"
+msgstr "&Fehlende Objekte links anzeigen"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "Fehlende Objekte &Mitte anzeigen"
+msgstr "F&ehlende Objekte Mitte anzeigen"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr "Fehlende Objekte &rechts anzeigen"
+msgstr "Fe&hlende Objekte rechts anzeigen"
 
 #, c-format
 msgid "Show Hidd&en Items"
@@ -568,27 +568,35 @@ msgstr "Verstec&kte Objekte anzeigen"
 
 #, c-format
 msgid "Tree &Mode"
-msgstr "Baum&modus"
+msgstr "Baumm&odus"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Alle Unterordner erweiter&n"
+msgid "E&xpand Subfolders"
+msgstr "Unterordner aufkla&ppen"
+
+msgid "&All Subfolders"
+msgstr "&Alle Unterordner"
+
+msgid "&Different Subfolders"
+msgstr "&Unterschiedliche Unterordner"
+
+msgid "&Identical Subfolders"
+msgstr "&Identische Unterordner"
 
 #, c-format
 msgid "&Collapse All Subfolders"
-msgstr "Alle Unterordner redu&zieren"
+msgstr "Alle Unterordner &einklappen"
 
 #, c-format
 msgid "Select &Font..."
-msgstr "Schrift &auswählen..."
+msgstr "Schrift ausw&ählen..."
 
 #, c-format
 msgid "Use Default Font"
-msgstr "Standardschr&ift verwenden"
+msgstr "Standardschri&ft verwenden"
 
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Ausschnitte v&ertauschen"
+msgstr "&Ausschnitte vertauschen"
 
 msgid "Swap &1st | 2nd"
 msgstr "&1. | 2. vertauschen"
@@ -601,7 +609,7 @@ msgstr "1. | &3. vertauschen"
 
 #, c-format
 msgid "Com&pare Statistics..."
-msgstr "V&ergleichsstatistik..."
+msgstr "&Vergleichsstatistik..."
 
 #, c-format
 msgid "Refresh\tF5"
@@ -1919,7 +1927,7 @@ msgid "&Rendering Mode:"
 msgstr "&Darstellungsmodus:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu machen."
+msgstr "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie 'Zurücksetzen', um alle Meldungen wieder sichtbar zu schalten."
 
 #, c-format
 msgid "Reset"
@@ -2301,7 +2309,7 @@ msgstr "Sicherungsdateien"
 
 #, c-format
 msgid "Create backup files in:"
-msgstr "Sicherungsdateien erzeugen beim"
+msgstr "Sicherungsdateien erzeugen beim:"
 
 #, c-format
 msgid "&Folder compare"
@@ -2313,7 +2321,7 @@ msgstr "&Dateivergleich"
 
 #, c-format
 msgid "Create backup files into:"
-msgstr "Sicherungsdateien erzeugen im"
+msgstr "Sicherungsdateien erzeugen im:"
 
 #, c-format
 msgid "&Original file's folder"
@@ -2325,7 +2333,7 @@ msgstr "&Globalen Sicherungsordner:"
 
 #, c-format
 msgid "Backup filename:"
-msgstr "Sicherungsdateiname"
+msgstr "Sicherungsdateiname:"
 
 msgid "&Append .bak extension"
 msgstr "&Erweiterung .bak anhängen"
@@ -2436,13 +2444,12 @@ msgstr "&Nach dem ersten Unterschied stoppen"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "&Zeitunterschiede kleiner als 3 Sekunden ignorieren"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "Unterordner nach dem Vergleich &automatisch aufklappen:"
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "&Eindeutige Unterordner-Inhalte einbeziehen"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "&Automatisch alle Unterordner aufklappen"
 
 #, c-format
 msgid "Ignore &reparse points"
@@ -2635,7 +2642,7 @@ msgid "Don't display this &message again."
 msgstr "Diese &Meldung nicht erneut anzeigen."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr "Um diese Meldung wieder sichtbar zu machen, drücken Sie die Schaltfläche 'Zurücksetzen' unter Einstellungen/Meldungen."
+msgstr "Um diese Meldung wieder sichtbar zu schalten, betätigen Sie die Schaltfläche 'Zurücksetzen' unter Einstellungen/Meldungen."
 
 #, c-format
 msgid "Syntax"
@@ -2734,6 +2741,18 @@ msgstr "HTML-Dateien (*.htm,*.html)|*.htm;*.html|Alle Dateien (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Nicht aufklappen"
+
+msgid "Expand all subfolders"
+msgstr "Alle Unterordner aufklappen"
+
+msgid "Expand different subfolders"
+msgstr "Unterschiedliche Unterordner aufklappen"
+
+msgid "Expand identical subfolders"
+msgstr "Identische Unterordner aufklappen"
 
 msgid "File Type"
 msgstr "Dateityp"
@@ -2914,7 +2933,7 @@ msgstr "Objekte vergleichen..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[Objekte/s]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Wählen Sie zwei Dateien oder Ordner zum Vergleichen aus."
@@ -3011,11 +3030,11 @@ msgstr "Fehler beim Erstellen einer Sicherheitskopie"
 
 #, c-format
 msgid "Unable to backup original file:\n%1\n\nContinue anyway?"
-msgstr "Sicherheitskopie kann nicht erstellt werden:\n%1\n\nTrotzdem fortfahren?"
+msgstr "Sicherheitskopie kann nicht erstellt werden:\n%1\n\nDennoch fortfahren?"
 
 #, c-format
 msgid "Saving file failed.\n%1\n%2\nDo you want to:\n\t- use a different filename (Press OK)\n\t- abort the current operation (Press Cancel)?"
-msgstr "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie:\n\t- einen anderen Dateinamen verwenden? ('OK' drücken)\n\t- die aktuelle Operation abbrechen? ('Abbrechen' drücken)"
+msgstr "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie:\n\t- einen anderen Dateinamen verwenden? ('OK' betätigen)\n\t- die aktuelle Operation abbrechen? ('Abbrechen' betätigen)"
 
 #, c-format
 msgid "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
@@ -3814,7 +3833,7 @@ msgid "Cannot find string \"%s\"."
 msgstr "Kann \"%s\" nicht finden."
 
 msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
-msgstr "Sie wechseln jetzt in den Merge-Modus. Wenn Sie den Merge-Modus deaktivieren möchten, drücken Sie die Taste F9."
+msgstr "Sie wechseln jetzt in den Merge-Modus. Wenn Sie den Merge-Modus deaktivieren möchten, betätigen Sie die Taste F9."
 
 #, c-format
 msgid "The number of automatically merged changes: %1\nThe number of unresolved conflicts: %2"
@@ -3887,7 +3906,7 @@ msgstr "Kann keine Patchdatei von Binärdateien erzeugen."
 
 #, c-format
 msgid "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
-msgstr "Bitte speichern Sie zuerst alle Dateien.\n\nDas Erzeugen eines Patches erfordert, dass es keine ungespeicherten Änderungen in den Dateien gibt."
+msgstr "Bitte speichern Sie zuerst alle Dateien.\n\nDas Erzeugen eines Patches erfordert, dass keine ungespeicherten Änderungen in den Dateien existieren."
 
 #, c-format
 msgid "Folder does not exist."
@@ -4060,7 +4079,7 @@ msgstr "Plugin-Einstellungen"
 
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "WSH nicht gefunden - SCT-Skripte deaktiviert."
+msgstr "WSH nicht gefunden - SCT-Skripte deaktiviert"
 
 #, c-format
 msgid "G&o to Line %1"
@@ -4181,7 +4200,7 @@ msgid "MDI child window only"
 msgstr "Nur MDI-Unterfenster"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr "Hauptfenster schließen, wenn es nur ein MDI-Unterfenster gibt"
+msgstr "Hauptfenster schließen, wenn nur ein MDI-Unterfenster existiert"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4289,10 +4308,10 @@ msgid "No differences to select found"
 msgstr "Keine Unterschiede zur Auswahl gefunden."
 
 msgid "No differences found to add as substitution filter"
-msgstr "Keine Unterschiede zum Hinzufügen als Ersetzungsfilter gefunden."
+msgstr "Keine Unterschiede zum Hinzufügen als Ersetzungsfilter gefunden"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr "Das Paar ist bereits in der Ersetzungsfilterliste vorhanden!"
+msgstr "Das Paar ist bereits in der Ersetzungsfilterliste vorhanden"
 
 msgid "Add this change to Substitution Filters?"
 msgstr "Diese Änderung zu den Ersetzungsfiltern hinzufügen?"
@@ -4366,13 +4385,13 @@ msgid "Clipboard at %s"
 msgstr "Zwischenablage am %s"
 
 msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, drücken Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
+msgstr "Der Zwischenablageverlauf ist deaktiviert.\r\nUm den Zwischenablageverlauf zu aktivieren, betätigen Sie 'Windows+V' und klicken dann auf die Schaltfläche 'Einschalten'."
 
 msgid "This system does not support clipboard history."
 msgstr "Dieses System unterstützt keinen Zwischenablageverlauf."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht."
+msgstr "Die 32-Bit-Version von WinMerge unterstützt den Zwischenablagevergleich nicht"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2-Laufzeitumgebung ist nicht installiert. Möchten Sie sie herunterladen?"
@@ -4625,16 +4644,16 @@ msgid "Apply patch using GNU patch"
 msgstr "Patch mit GNU-Patch anwenden"
 
 msgid "Display the text content of MS Excel files"
-msgstr "Textinhalt von Excel-Dateien anzeigen."
+msgstr "Textinhalt von Excel-Dateien anzeigen"
 
 msgid "Display the text content of MS PowerPoint files"
-msgstr "Textinhalt von PowerPoint-Dateien anzeigen."
+msgstr "Textinhalt von PowerPoint-Dateien anzeigen"
 
 msgid "Display the text content of MS Visio files"
-msgstr "Textinhalt von Visio-Dateien anzeigen."
+msgstr "Textinhalt von Visio-Dateien anzeigen"
 
 msgid "Display the text content of MS Word files"
-msgstr "Textinhalt von Word-Dateien anzeigen."
+msgstr "Textinhalt von Word-Dateien anzeigen"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
 msgstr "Einige Spalten ignorieren - Liste der ignorierten Spalten aus dem Plugin-Namen oder -Argument"
@@ -4767,7 +4786,7 @@ msgstr "Spaltenbereiche ignorieren:\nz. B.  3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr "Geben Sie den Namen der Datei ein, auf die der Patch '%1' angewendet werden soll."
+msgstr "Geben Sie den Namen der Datei ein, auf die der Patch '%1' angewendet werden soll"
 
 #, c-format
 msgid "File '%1' does not exist"
@@ -4778,11 +4797,11 @@ msgstr "Geben Sie die Befehlszeilenargumente für den Patch-Befehl ein."
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr "Geben Sie den Namen des Ordners ein, auf den der Patch '%1' angewendet werden soll."
+msgstr "Geben Sie den Namen des Ordners ein, auf den der Patch '%1' angewendet werden soll"
 
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr "Ordner '%1' existiert nicht."
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr "Geben Sie nicht die Befehlszeilenoption '-p0' für die Patchdatei an, die absolute Pfade enthält."
+msgstr "Geben Sie nicht die Befehlszeilenoption '-p0' für die Patchdatei an, die absolute Pfade enthält"

@@ -4,6 +4,7 @@
 # Translators:
 # * Warrior <warr11r at rambler.ru>
 # * Vitaliy Stopchans'kyy <stopcha at gmail.com>
+# * Serhii Romashko
 #
 msgid ""
 msgstr ""
@@ -27,72 +28,66 @@ msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_UKRAINIAN, SUBLANG_DEFAULT"
 
 msgid "Copy to Middle"
-msgstr ""
+msgstr "Копіювати в центр"
 
 msgid "C&opy to Right\tAlt+Right"
 msgstr "Скопіювати на &праву панель\tAlt+Right"
 
 msgid "Copy from Middle"
-msgstr ""
+msgstr "Копіювати з центру"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr ""
+msgstr "Копіювати п&раворуч\tAlt+Shift+Left"
 
 msgid "Cop&y to Left\tAlt+Left"
-msgstr "Скопіювати на &ліву панель\tAlt+Left"
+msgstr "Копіювати на &ліву панель\tAlt+Left"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr ""
+msgstr "Копіювати з&ліва\tAlt+Shift+Right"
 
 msgid "Copy Selected Line(s) to Middle"
-msgstr ""
+msgstr "Копіювати виділені рядки в центр"
 
 msgid "Copy Selected Line(s) to Right"
-msgstr ""
+msgstr "Копіювати обрані рядки праворуч"
 
 msgid "Copy Selected Line(s) from Middle"
-msgstr ""
+msgstr "Копіювати обрані рядки з цетру"
 
 msgid "Copy Selected Line(s) from Right"
-msgstr ""
+msgstr "Копіювати обрані рядки справа"
 
 msgid "Copy Selected Line(s) to Left"
-msgstr ""
+msgstr "Копіювати обрані рядки ліворуч"
 
 msgid "Copy Selected Line(s) from Left"
-msgstr ""
+msgstr "Копіювати обрані рядки зліва"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "Вибрати від&мінність\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr ""
+msgstr "Додати цю зміну до ф&ільтрів підміни"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "Додати до рядка &фільтрів"
 
-#, c-format
 msgid "&Undo"
 msgstr "&Скасувати"
 
-#, c-format
 msgid "&Redo"
 msgstr "По&ернути"
 
-#, c-format
 msgid "Cu&t"
 msgstr "Ви&різати"
 
-#, c-format
 msgid "&Copy"
 msgstr "&Копіювати"
 
-#, c-format
 msgid "&Paste"
 msgstr "&Вставити"
 
-#, c-format
 msgid "&Scripts"
 msgstr "С&ценарії"
 
@@ -104,12 +99,11 @@ msgid "&Go to...\tCtrl+G"
 msgstr "Перейти до рядка...\tCtrl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr ""
+msgstr "...переміщеного між ліворуч/центр\tCtrl+Shift+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr ""
+msgstr "...переміщеного між праворуч/центр\tCtrl+Alt+G"
 
-#, c-format
 msgid "Op&en"
 msgstr "&Відкрити"
 
@@ -117,85 +111,74 @@ msgid "With &Registered Application"
 msgstr "За&реєстрованим застосунком"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr ""
+msgstr "З&овнішнім редактором\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "&За допомогою..."
 
 msgid "Open &Parent Folder..."
-msgstr ""
+msgstr "Відкрити &батьківську теку"
 
 msgid "S&hell Menu"
-msgstr ""
+msgstr "Меню о&болонки"
 
 msgid "Use First Line as Headers"
-msgstr ""
+msgstr "Використовувати перший рядок як заголовок"
 
 msgid "Auto-Fit All Columns"
-msgstr ""
+msgstr "Автоширина стовпців"
 
-#, c-format
 msgid "View &Differences"
-msgstr ""
+msgstr "Показувати &відмінності"
 
-#, c-format
 msgid "Diff &Block Size"
-msgstr ""
+msgstr "Відмінності розміру &блоку"
 
-#, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr ""
+msgstr "&Ігнорувати різницю кольорів (поріг)"
 
 msgid "Ins&ertion/Deletion Detection"
-msgstr ""
+msgstr "Вия&влення вставки/видалення"
 
-#, c-format
 msgid "&None"
 msgstr "Вим&кнути"
 
 msgid "&Vertical"
-msgstr ""
+msgstr "&Вертикально"
 
 msgid "&Horizontal"
-msgstr ""
+msgstr "&Горизонтально"
 
-#, c-format
 msgid "&Previous Page"
-msgstr ""
+msgstr "&Попередня сторінка"
 
-#, c-format
 msgid "&Next Page"
-msgstr ""
+msgstr "&Наступна сторінка"
 
-#, c-format
 msgid "&Active Pane"
-msgstr ""
+msgstr "&Активна панель"
 
 msgid "Rotate &Right 90deg"
-msgstr ""
+msgstr "Повернути &праворуч на 90°"
 
 msgid "Rotate &Left 90deg"
-msgstr ""
+msgstr "Повернути &ліворуч на 90°"
 
 msgid "Flip V&ertically"
-msgstr ""
+msgstr "Відобразити в&ертикально"
 
 msgid "Flip H&orizontally"
-msgstr ""
+msgstr "Відобразити г&оризонтально"
 
-#, c-format
 msgid "&Zoom"
 msgstr "Ма&сштаб"
 
-#, c-format
 msgid "25%"
-msgstr ""
+msgstr "25%"
 
-#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "На&близити\tCtrl++"
 
-#, c-format
 msgid "Zoom &Out\tCtrl+-"
 msgstr "Від&далити\tCtrl+-"
 
@@ -206,19 +189,19 @@ msgstr "&Звичайний\tCtrl+*"
 
 #, c-format
 msgid "&Overlay"
-msgstr ""
+msgstr "&Оверлей"
 
 #, c-format
 msgid "&Alpha Blend"
-msgstr ""
+msgstr "&Альфа-змішування"
 
 #, c-format
 msgid "Alpha &Blend Animation"
-msgstr ""
+msgstr "Ступінь &прозорості"
 
 #, c-format
 msgid "Dragging &Mode"
-msgstr ""
+msgstr "Режим &перетягування"
 
 #, c-format
 msgid "&Move"
@@ -226,65 +209,65 @@ msgstr "&Перемістити"
 
 #, c-format
 msgid "&Adjust Offset"
-msgstr ""
+msgstr "&Корекція зміщення"
 
 msgid "&Vertical Wipe"
-msgstr ""
+msgstr "&Вертикальне стирання"
 
 msgid "&Horizontal Wipe"
-msgstr ""
+msgstr "&Горизонтальне стирання"
 
 msgid "Rectangle &Select"
-msgstr ""
+msgstr "Прямокутний &вибір"
 
 #, c-format
 msgid "&Set Background Color"
-msgstr ""
+msgstr "&Колір фону"
 
 msgid "&Vector Image Scaling"
-msgstr ""
+msgstr "&Масштаб зображень"
 
 msgid "Compare Extracted &Text From Images"
-msgstr ""
+msgstr "Порівняти витягнутий з зображення &текст"
 
 msgid "Co&mpare"
-msgstr ""
+msgstr "По&рівняти"
 
 msgid "&Screenshots"
-msgstr ""
+msgstr "&Скріншоти"
 
 msgid "&Full Size Screenshots"
-msgstr ""
+msgstr "&Повнорозмірні скріншоти"
 
 msgid "&HTMLs"
-msgstr ""
+msgstr "&Afqkkb HTML"
 
 msgid "&Texts"
-msgstr ""
+msgstr "&Тексти"
 
 msgid "&Resource Trees"
-msgstr ""
+msgstr "&Дерева ресурсів"
 
 msgid "&Size"
-msgstr ""
+msgstr "&Розмір"
 
 msgid "Fit to Window"
-msgstr ""
+msgstr "Припасувати до вікна"
 
 msgid "Clear &Browsing Data"
-msgstr ""
+msgstr "Очистити історію &переглядів"
 
 msgid "&Disk Cache"
-msgstr ""
+msgstr "&Дисковий кеш"
 
 msgid "&Cookies"
-msgstr ""
+msgstr "&Файли cookies"
 
 msgid "&Browsing History"
-msgstr ""
+msgstr "&Історія переглядів"
 
 msgid "&All Profile"
-msgstr ""
+msgstr ""&Усі профілі"
 
 #, c-format
 msgid "&File"
@@ -296,25 +279,25 @@ msgstr "&Створити"
 
 #, c-format
 msgid "&Text"
-msgstr ""
+msgstr "&Текст"
 
 msgid "T&able"
-msgstr ""
+msgstr "Т&аблиця"
 
 #, c-format
 msgid "&Binary"
-msgstr ""
+msgstr "&Двійковий"
 
 #, c-format
 msgid "&Image"
-msgstr ""
+msgstr "&Зображення"
 
 msgid "&Webpage"
-msgstr ""
+msgstr "&Веб-сторінка"
 
 #, c-format
 msgid "New (&3 panes)"
-msgstr ""
+msgstr "Створити (&3 панелі)"
 
 #, c-format
 msgid "&Open...\tCtrl+O"
@@ -324,7 +307,7 @@ msgid "Open Conflic&t File..."
 msgstr "Відкрити файл з кон&фліктами..."
 
 msgid "Open C&lipboard"
-msgstr ""
+msgstr "Відкрити буфер &обміну"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
@@ -340,7 +323,7 @@ msgstr "Нещодавні проекти"
 
 #, c-format
 msgid "Recent F&iles Or Folders"
-msgstr ""
+msgstr "Останні ф&айли та теки"
 
 msgid "E&xit\tCtrl+Q"
 msgstr "В&ихід\tCtrl+Q"
@@ -375,7 +358,7 @@ msgstr "&Великі піктограми"
 
 #, c-format
 msgid "&Huge"
-msgstr ""
+msgstr "&Величезні піктограми"
 
 #, c-format
 msgid "&Status Bar"
@@ -399,11 +382,11 @@ msgstr "&Створити латку..."
 
 #, c-format
 msgid "&Plugins"
-msgstr "До&повнення"
+msgstr "&Плагіни"
 
 #, c-format
 msgid "P&lugin Settings..."
-msgstr ""
+msgstr "Налаштування &плагінів..."
 
 #, c-format
 msgid "Ma&nual Prediffer"
@@ -462,11 +445,11 @@ msgstr "&Довідка WinMerge\tF1"
 
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "&Примітки до випуску"
 
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "&Переклади"
 
 msgid "&Check For Updates"
 msgstr ""
@@ -493,7 +476,7 @@ msgstr "&Файл зліва лише для читання"
 
 #, c-format
 msgid "M&iddle Read-only"
-msgstr ""
+msgstr "&Тільки для читання"
 
 #, c-format
 msgid "Ri&ght Read-only"
@@ -521,11 +504,11 @@ msgstr "Унікальні &ліворуч"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr ""
+msgstr "Унікальні у &центрі"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "Унікальні праворуч"
+msgstr "Унікальні &праворуч"
 
 #, c-format
 msgid "Show S&kipped Items"
@@ -537,7 +520,7 @@ msgstr "&Бінарні файли"
 
 #, c-format
 msgid "&3-way Compare"
-msgstr ""
+msgstr "&3-way порівняння"
 
 #, c-format
 msgid "Show &Left Only Different Items"
@@ -568,9 +551,17 @@ msgstr "С&ховані"
 msgid "Tree &Mode"
 msgstr "Режим &дерева"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "&Розгорнути всі підтки"
+msgid "E&xpand Subfolders"
+msgstr ""
+
+msgid "&All Subfolders"
+msgstr ""
+
+msgid "&Different Subfolders"
+msgstr ""
+
+msgid "&Identical Subfolders"
+msgstr ""
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2435,12 +2426,11 @@ msgstr "&Зупинятися після першої відмінності"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Нехтувати різницею часу, меншою 3 секунд"
 
-#, c-format
-msgid "Include &unique subfolders contents"
+msgid "&Automatically expand subfolders after comparison:"
 msgstr ""
 
 #, c-format
-msgid "&Automatically expand all subfolders"
+msgid "Include &unique subfolders contents"
 msgstr ""
 
 #, c-format
@@ -2767,6 +2757,18 @@ msgstr "Файли HTML (*.htm,*.html)|*.htm;*.html|Всі файли (*.*)|*.*|
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Файли XML (*.xml)|*.xml|Всі файли (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr ""
+
+msgid "Expand all subfolders"
+msgstr ""
+
+msgid "Expand different subfolders"
+msgstr ""
+
+msgid "Expand identical subfolders"
+msgstr ""
 
 msgid "File Type"
 msgstr ""

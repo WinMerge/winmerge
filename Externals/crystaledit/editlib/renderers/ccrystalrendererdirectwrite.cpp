@@ -228,7 +228,7 @@ STDMETHODIMP_(ULONG) CCustomTextRenderer::XCustomTextRenderer::Release()
 	return pThis->ExternalRelease();
 }
 
-STDMETHODIMP CCustomTextRenderer::XCustomTextRenderer::QueryInterface(REFIID iid, LPVOID far* ppvObj)
+STDMETHODIMP CCustomTextRenderer::XCustomTextRenderer::QueryInterface(REFIID iid, LPVOID* ppvObj)
 {
 	METHOD_PROLOGUE(CCustomTextRenderer, CustomTextRenderer);
 	return pThis->ExternalQueryInterface(&iid, ppvObj);

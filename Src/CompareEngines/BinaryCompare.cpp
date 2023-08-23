@@ -54,8 +54,10 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
 			{
 				if (size1 < 0 || size2 < 0)
 					code = DIFFCODE::CMPERR;
-				else
+				else if (size1 == size2)
 					code = DIFFCODE::SAME;
+				else
+					code = DIFFCODE::DIFF;
 				break;
 			}
 			if (size1 != size2 || memcmp(buf1, buf2, size1) != 0)
@@ -87,12 +89,16 @@ int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) co
 	switch (files.GetSize())
 	{
 	case 2:
-		return di.diffFileInfo[0].size != di.diffFileInfo[1].size ? 
+		// If the file size is 0, don't immediately assume that there is a difference even if the files have different sizes, because of possible symlinks.
+		return (di.diffFileInfo[0].size != di.diffFileInfo[1].size && 
+			    di.diffFileInfo[0].size != 0 && di.diffFileInfo[1].size != 0) ? 
 			DIFFCODE::DIFF : compare_files(files[0], files[1], m_piAbortable);
 	case 3:
-		unsigned code10 = (di.diffFileInfo[1].size != di.diffFileInfo[0].size) ?
+		unsigned code10 = (di.diffFileInfo[1].size != di.diffFileInfo[0].size &&
+			               di.diffFileInfo[1].size != 0 && di.diffFileInfo[0].size != 0) ?
 			DIFFCODE::DIFF : compare_files(files[1], files[0], m_piAbortable);
-		unsigned code12 = (di.diffFileInfo[1].size != di.diffFileInfo[2].size) ?
+		unsigned code12 = (di.diffFileInfo[1].size != di.diffFileInfo[2].size &&
+			               di.diffFileInfo[1].size != 0 && di.diffFileInfo[2].size != 0) ?
 			DIFFCODE::DIFF : compare_files(files[1], files[2], m_piAbortable);
 		unsigned code02 = DIFFCODE::SAME;
 		if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
@@ -103,7 +109,8 @@ int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) co
 			return DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY;
 		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
 		{
-			code02 = di.diffFileInfo[0].size != di.diffFileInfo[2].size ?
+			code02 = (di.diffFileInfo[0].size != di.diffFileInfo[2].size && 
+			          di.diffFileInfo[0].size != 0 && di.diffFileInfo[2].size != 0) ?
 				DIFFCODE::DIFF : compare_files(files[0], files[2], m_piAbortable);
 			if (code02 == DIFFCODE::SAME)
 				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;

@@ -569,9 +569,17 @@ msgstr "&Rejtett elemek mutatása"
 msgid "Tree &Mode"
 msgstr "Fa &mód"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Minden alkönyvtár kibontása"
+msgid "E&xpand Subfolders"
+msgstr "Almappák ki&bontása"
+
+msgid "&All Subfolders"
+msgstr "&Összes almappa"
+
+msgid "&Different Subfolders"
+msgstr "&Különböző almappák"
+
+msgid "&Identical Subfolders"
+msgstr "&Azonos almappák"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -2442,13 +2450,12 @@ msgstr "Megállás az &első különbségnél"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 másodperc alatti időkülönbségek mellőzése"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "&Almappák automatikus kibontása összehasonlítás után:"
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "Egyedi almappák tartalmai is"
-
-#, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "Minden alkönyvtár automatikus kibontása"
 
 #, c-format
 msgid "Ignore &reparse points"
@@ -2795,6 +2802,18 @@ msgstr "HTML fájlok (*.htm,*.html)|*.htm;*.html|Minden fájl (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML fájlok (*.xml)|*.xml|Minden fájl (*.*)|*.*||"
 
+msgid "Do not expand"
+msgstr "Ne bontsa ki"
+
+msgid "Expand all subfolders"
+msgstr "Minden almappa kibontása"
+
+msgid "Expand different subfolders"
+msgstr "Különböző almappák kibontása"
+
+msgid "Expand identical subfolders"
+msgstr "Azonos almappák kibontása"
+
 msgid "File Type"
 msgstr "Fájltípus"
 
@@ -3008,7 +3027,7 @@ msgstr "Elemek összehasonlítása..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[elem/smp]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Válassz ki két összehasonlítandó fájlt vagy könyvtárat."

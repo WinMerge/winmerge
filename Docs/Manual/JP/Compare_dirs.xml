@@ -209,7 +209,8 @@ I get the partial list, but no Abort indicator.--></para>
               <menuchoice>
                   <guimenu>表示</guimenu>
 
-                  <guimenuitem>すべてのサブフォルダーを展開する</guimenuitem>
+                  <guimenuitem>サブフォルダーの展開</guimenuitem>
+                  <guimenuitem>すべてのサブフォルダー</guimenuitem>
                 </menuchoice>をクリック、または、<menuchoice>
                   <guimenu>表示</guimenu>
 

@@ -182,12 +182,14 @@ public:
 	void SetCompareFiles(const PathContext &originalFile);
 	void WritePatchFileHeader(enum output_style output_style, bool bAppendFiles);
 	void WritePatchFileTerminator(enum output_style output_style);
+	const FilterList* GetFilterList() const;
 	void SetFilterList(const String& filterStr);
-	void SetFilterList(const FilterList *pFilterList);
+	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
+	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
 	void PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 		int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const;
@@ -208,7 +210,7 @@ public:
 private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
-	std::unique_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
+	std::shared_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList;
 
 	PathContext m_files; /**< Full path to diff'ed file. */
@@ -230,6 +232,7 @@ private:
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
+	int m_codepage; /**< Codepage used in line filter */
 };
 
 /**
