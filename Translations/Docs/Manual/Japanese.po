@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-08-24 22:21+0900\n"
-"PO-Revision-Date: 2023-08-24 22:25+0900\n"
+"PO-Revision-Date: 2023-08-25 07:43+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -572,7 +572,7 @@ msgstr ""
 #: English/Filters.xml:103 English/Filters.xml:333 English/Open_paths.xml:369
 #: English/Quick_start.xml:205
 msgid "command line"
-msgstr ""
+msgstr "コマンドライン"
 
 #. type: Content of: <article><title>
 #: English/Command_line.xml:3
@@ -580,6 +580,8 @@ msgid ""
 "Command line<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
+"コマンドライン<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><para>
 #: English/Command_line.xml:11
@@ -589,11 +591,15 @@ msgid ""
 "as an external compare application or starting a compare operation from a "
 "batch file."
 msgstr ""
+"WinMergeのコマンドラインは、比較するパスに加えいくつかのパラメーターを受け付"
+"けます。これらのパラメーターのほとんどは、外部比較ツールとして使用したり、"
+"バッチファイルから比較操作を開始できるようにすることを目的としています。"
 
 #. type: Content of: <article><para>
 #: English/Command_line.xml:16
 msgid "Use one of these formats for the WinMerge command:"
 msgstr ""
+"WinMergeをコマンドラインから実行するには以下の書式のうちの1つを使用します:"
 
 #. type: Content of: <article><para><cmdsynopsis>
 #: English/Command_line.xml:19
@@ -683,6 +689,10 @@ msgid ""
 "( <literal>/</literal> ) or dash ( <literal>-</literal> ) character. "
 "Pathnames have no prefix character."
 msgstr ""
+"パラメーターなしかパス名を入力すると単にWinMergeウインドウを開きます。パラ"
+"メーターは、スラッシュ( <literal>/</literal> ) か、ダッシュ ( <literal>-</"
+"literal> ) 文字が前に付加されます。パス名にはプリフィックス文字を付加しませ"
+"ん。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:175
@@ -692,14 +702,14 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:177
 msgid "Opens WinMerge Help at this topic."
-msgstr ""
+msgstr "このトピックのWinMergeヘルプを開きます。"
 
 #. type: Content of: <article><section><section><title><indexterm><seealso>
 #: English/Command_line.xml:183 English/Compare_dirs.xml:54
 #: English/Compare_dirs.xml:254 English/Open_paths.xml:288
 #: English/Open_paths.xml:294
 msgid "recursive folder compare"
-msgstr ""
+msgstr "再帰フォルダー比較"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:185
@@ -716,11 +726,17 @@ msgid ""
 "subfolders at the top level of the two target folders. It does not compare "
 "the subfolders."
 msgstr ""
+"すべてのサブフォルダー内のすべてのファイルを比較します(再帰比較)。ユニーク"
+"フォルダー (片方のみ存在するフォルダー)は、分離された項目として比較結果内にリ"
+"ストされます。サブフォルダーまで含めるとかなり比較時間が増大してしまうことに"
+"注意してください。このパラメーターを指定しなかった場合、WinMergeは比較する"
+"フォルダー内のファイルとトップレベルのサブフォルダーのみリストします。サブ"
+"フォルダーの中までは比較しません。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:198
 msgid "non-recursive folder compare"
-msgstr ""
+msgstr "非再帰フォルダー比較"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:200
@@ -733,18 +749,21 @@ msgid ""
 "Compares all files within the specified folders but excludes the files and "
 "subfolders within its subfolders.  This allows for a shorter comparison time."
 msgstr ""
+"指定されたフォルダー内のすべてのファイルを比較しますが、そのサブフォルダー内"
+"のファイルとサブフォルダーは除外します。これにより、比較時間を短縮することが"
+"できます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:210 English/Command_line.xml:294
 #: English/Command_line.xml:417 English/Configuration.xml:212
 #: English/Quick_start.xml:22
 msgid "WinMerge window"
-msgstr ""
+msgstr "WinMergeウインドウ"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:211
 msgid "closing"
-msgstr ""
+msgstr "閉じる"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:214
@@ -759,6 +778,15 @@ msgid ""
 "can close WinMerge quickly, like a dialog. Without this parameter, you might "
 "have to press <keycap>Esc</keycap> multiple times to close all its windows."
 msgstr ""
+"<keycap>Esc</keycap>キーでWinMergeが閉じるようにします。WinMergeを外部比較ア"
+"プリケーションとして使用する場合に便利です。(ダイアログのようにすばやく"
+"WinMergeを閉じることができます) この引数を指定しなかった場合、すべてのウイン"
+"ドウを閉じるのに何回も<keycap>Esc</keycap>キーを押さなければならないことにな"
+"るかもしれません。(2つ以上タブが開かれている場合、一回のESCキーの押下で"
+"WinMergeが終了してしまうのを期待している人はいないような気がしたので、日本語"
+"版ではこのオプションを指定しても2つ以上タブが開かれている場合は1つのタブを閉"
+"じるだけにし、タブが1つの時またはタブが一つもない時にWinMergeを終了するように"
+"しました)"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:226 English/Configuration.xml:633
@@ -768,13 +796,13 @@ msgstr ""
 #: English/Filters.xml:766 English/Filters.xml:770 English/Filters.xml:782
 #: English/Open_paths.xml:91
 msgid "filters"
-msgstr ""
+msgstr "フィルター"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:227 English/Command_line.xml:243
 #: English/Command_line.xml:259
 msgid "applying in command line"
-msgstr ""
+msgstr "コマンドラインでの適用"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:230
@@ -789,11 +817,16 @@ msgid ""
 "name of a file filter like <userinput>XML/HTML Devel</userinput>. Add "
 "quotation marks around a filter mask or name that contains spaces."
 msgstr ""
+"比較を制限するために、指定したフィルターを適用します。フィルターは"
+"<filename><userinput>*.h *.cpp</userinput></filename>のようなファイルマスク"
+"か、<userinput>XML/HTML Devel</userinput>のようなファイルフィルターの名前で"
+"す。スペースを含むフィルターマスクやフィルター名はダブルクォーテーションマー"
+"クで括ってください。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:242
 msgid "compare method"
-msgstr ""
+msgstr "比較方法"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:246
@@ -808,11 +841,15 @@ msgid ""
 "<userinput>Binary</userinput>, <userinput>Date</userinput>, "
 "<userinput>SizeDate</userinput> or <userinput>Size</userinput>."
 msgstr ""
+"フォルダー比較方法を指定します。次のキーワードが指定できます。"
+"<userinput>Full</userinput>, <userinput>Quick</userinput>, "
+"<userinput>Binary</userinput>, <userinput>Date</userinput>, "
+"<userinput>SizeDate</userinput>, <userinput>Size</userinput>"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:258
 msgid "window type"
-msgstr ""
+msgstr "ウインドウタイプ"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:262
@@ -827,6 +864,10 @@ msgid ""
 "<userinput>Binary</userinput>, <userinput>Image</userinput> or "
 "<userinput>Webpage</userinput>."
 msgstr ""
+"ファイルを表示するウインドウの種類を指定します。次のキーワードが指定できま"
+"す。 <userinput>Text</userinput>, <userinput>Table</userinput>, "
+"<userinput>Binary</userinput>, <userinput>Image</userinput>, "
+"<userinput>Webpage</userinput>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:272
@@ -843,6 +884,11 @@ msgid ""
 "compare application, or when you want to eliminate unnecessary steps by "
 "ignoring files that don't have any differences."
 msgstr ""
+"同一ファイルの比較をしたときにWinMergeを閉じます。(情報ダイアログを表示した"
+"後) このパラメーターは比較後に効果がなくなります。例えば、もしファイルがマー"
+"ジか編集の結果として同一となった場合です。このパラメーターは、WinMergeを外部"
+"アプリケーションとして使用したり、差異のないファイルを無視することによって余"
+"分なステップを取り除きたい場合に便利です。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:285
@@ -855,11 +901,13 @@ msgid ""
 "Is similar to <option>/x</option> but does not show the message about "
 "identical files."
 msgstr ""
+"オプション <option>/x</option> に似ていますが、同一ファイルであってもメッセー"
+"ジボックスを表示しません。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Command_line.xml:295 English/Configuration.xml:214
 msgid "limiting instances"
-msgstr ""
+msgstr "インスタンス制限"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:298
@@ -874,6 +922,11 @@ msgid ""
 "parameter, multiple windows are allowed: depending on other settings, a new "
 "compare might open in the existing window or in a new window."
 msgstr ""
+"WinMergeウインドウを1つのインスタンスに制限します。例えば、WinMergeが既に実行"
+"中ならば、新しい比較は同じインスタンス内で実行されます。この引数を指定しな"
+"かった場合、複数のウインドウが開かれる可能性があります: 設定によっては、新し"
+"い比較が既に存在するウインドウで実行されることも新しいウインドウで実行される"
+"こともあります。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:309
@@ -886,6 +939,8 @@ msgid ""
 "Limit the WinMerge window to one instance as well as the option /s.  "
 "However, it waits for the instance displaying the window to terminate."
 msgstr ""
+"/s と同様にWinMergeウインドウを1つのインスタンスに制限します。ただし、ウイン"
+"ドウを表示しているインスタンスが終了するまで待機します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:318
@@ -898,12 +953,14 @@ msgid ""
 "Ensure that another instance is always executed, ignoring the value of the "
 "\"Allow only one instance to run\" option."
 msgstr ""
+"\"複数のインスタンスを起動しない\"の設定値を無視して、常に別のインスタンスが"
+"起動されるようにします。"
 
 #. type: Content of: <article><section><qandaset><qandaentry><question><para><indexterm><primary>
 #: English/Command_line.xml:327 English/Configuration.xml:327
 #: English/Faq.xml:114
 msgid "MRU list"
-msgstr ""
+msgstr "MRU リスト"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:330
@@ -917,6 +974,9 @@ msgid ""
 "list. External applications should not add paths to the MRU list in the "
 "Select Files or Folders dialog."
 msgstr ""
+"左側パスが最近使用した項目(MRU)リストに追加されるのを防ぎます。外部アプリケー"
+"ションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを追加する"
+"べきではありません。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:339
@@ -930,6 +990,9 @@ msgid ""
 "(MRU) list. External applications should not add paths to the MRU list in "
 "the Select Files or Folders dialog."
 msgstr ""
+"中央のパスが最近使用した項目(MRU)リストに追加されるのを防ぎます。外部アプリ"
+"ケーションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを追加"
+"するべきではありません。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:348
@@ -943,6 +1006,9 @@ msgid ""
 "list. External applications should not add paths to the MRU list in the "
 "Select Files or Folders dialog."
 msgstr ""
+"右側パスが最近使用した項目(MRU)リストに追加されるのを防ぎます。外部アプリケー"
+"ションは、ファイルまたはフォルダーの選択ダイアログのMRUリストにパスを追加する"
+"べきではありません。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:357
@@ -956,12 +1022,15 @@ msgid ""
 "Recently Used (MRU) list. External applications should not add paths to the "
 "MRU list in the Select Files or Folders dialog."
 msgstr ""
+"(または<option>/ub</option>) 各々(左、右、中央)のパスが最近使用した項目(MRU)"
+"リストに追加されるのを防ぎます。外部アプリケーションは、ファイルまたはフォル"
+"ダーの選択ダイアログのMRUリストにパスを追加するべきではありません。"
 
 #. type: Content of: <article><section><section><title><indexterm><see>
 #: English/Command_line.xml:368 English/Compare_dirs.xml:741
 #: English/Compare_dirs.xml:745
 msgid "protecting files"
-msgstr ""
+msgstr "ファイルの保護"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:371
@@ -974,6 +1043,8 @@ msgid ""
 "Opens the left side as read-only. Use this when you don't want to change "
 "left side items in the compare."
 msgstr ""
+"読み取り専用として左側を開きます。比較時、左側を変更したくない場合に使用して"
+"ください。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:379
@@ -986,6 +1057,8 @@ msgid ""
 "Opens the middle side as read-only. Use this when you don't want to change "
 "right side items in the compare."
 msgstr ""
+"読み取り専用として中央を開きます。比較時、中央を変更したくない場合に使用して"
+"ください。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:387
@@ -998,6 +1071,8 @@ msgid ""
 "Opens the right side as read-only. Use this when you don't want to change "
 "right side items in the compare."
 msgstr ""
+"読み取り専用として右側を開きます。比較時、右側を変更したくない場合に使用して"
+"ください。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:395
@@ -1007,7 +1082,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:397
 msgid "Opens a new blank window."
-msgstr ""
+msgstr "新規ブランクウインドウを開きます。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:402
@@ -1017,7 +1092,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:404
 msgid "Compares the specified file with a copy of the file."
-msgstr ""
+msgstr "指定された１つのファイルとそのファイルのコピーを比較します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:409
@@ -1027,12 +1102,12 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:411
 msgid "Compares the two most recent contents of the clipboard history."
-msgstr ""
+msgstr "クリップボード履歴の直近2つの内容を比較します。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:418
 msgid "opening minimized or maximized"
-msgstr ""
+msgstr "最小化または最大化で開く"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:421
@@ -1045,6 +1120,8 @@ msgid ""
 "Starts WinMerge as a minimized window.  This option can be useful during "
 "lengthy compares."
 msgstr ""
+"最小化状態でWinMergeを開始します。このオプションは長時間かかる比較を行う場合"
+"に便利です。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:429
@@ -1054,7 +1131,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:431
 msgid "Starts WinMerge as a maximized window."
-msgstr ""
+msgstr "最大化状態でWinMergeを開始します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:437
@@ -1064,7 +1141,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:439
 msgid "Sets focus to the left side at startup."
-msgstr ""
+msgstr "起動時、左側にフォーカスを当てます。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:444
@@ -1074,7 +1151,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:446
 msgid "Sets focus to the middle side at startup."
-msgstr ""
+msgstr "起動時、中央にフォーカスを当てます。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:451
@@ -1084,7 +1161,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:453
 msgid "Sets focus to the right side at startup."
-msgstr ""
+msgstr "起動時、右側にフォーカスを当てます。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:458
@@ -1094,7 +1171,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:460
 msgid "Specifies a line number to jump to after loading the files."
-msgstr ""
+msgstr "ファイルを読み込んだ後にジャンプする行番号を指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:465
@@ -1104,7 +1181,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:467
 msgid "Specifies a character position to jump to after loading the files."
-msgstr ""
+msgstr "ファイルを読み込んだ後にジャンプする文字位置を指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:472
@@ -1117,6 +1194,8 @@ msgid ""
 "Specifies a delimiter character for table editing. To specify a tab "
 "character, specify \"tab\", \"\\t\", or \"\\x09\"."
 msgstr ""
+"テーブル編集用の区切り文字を指定します。タブ文字を指定する場合、「tab」または"
+"「\\t」、「\\x09」を指定してください。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:479
@@ -1131,6 +1210,10 @@ msgid ""
 "userinput>\" or <userinput>/dl WorkingCopy</userinput>. Use quotation marks "
 "around descriptions that contain spaces."
 msgstr ""
+"左側タイトルバーの説明を指定します。デフォルトのフォルダーやファイル名テキス"
+"トに上書きされます。例: <userinput>/dl \"Version 1.0</userinput>\" や "
+"<userinput>/dl WorkingCopy</userinput>. スペースを含む説明はダブルクォーテー"
+"ションマークで括ってください。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:490
@@ -1142,7 +1225,7 @@ msgstr ""
 msgid ""
 "Specifies a description in the middle side title bar, just like <option>/dl</"
 "option>."
-msgstr ""
+msgstr "<option>/dl</option>と同様に中央タイトルバーの説明を指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:498
@@ -1154,7 +1237,7 @@ msgstr ""
 msgid ""
 "Specifies a description in the right side title bar, just like <option>/dl</"
 "option>."
-msgstr ""
+msgstr "<option>/dl</option>と同様に右側タイトルバーの説明を指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:506
@@ -1164,7 +1247,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:508
 msgid "Auto-merges at the left side at startup."
-msgstr ""
+msgstr "起動時、左側で自動マージします。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:513
@@ -1174,7 +1257,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:515
 msgid "Auto-merges at the middle side at startup."
-msgstr ""
+msgstr "起動時、中央で自動マージします。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:520
@@ -1184,7 +1267,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:522
 msgid "Auto-merges at the right side at startup."
-msgstr ""
+msgstr "起動時、右側で自動マージします。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:527
@@ -1227,6 +1310,7 @@ msgid ""
 "Sets the comparison result to the process exit code. 0: identical, 1: "
 "different, 2: error"
 msgstr ""
+"比較結果をプロセス終了コードに設定します。0: 同一, 1: 差異あり, 2: エラー"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:548
@@ -1282,6 +1366,7 @@ msgstr ""
 #: English/Command_line.xml:613
 msgid "Specifies a file extension for determining syntax hightliting."
 msgstr ""
+"シンタックスハイライトの種類を決定するため、ファイル拡張子を指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:618
@@ -1296,7 +1381,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:627
 msgid "Specifies the folder, file or project file to open on the left side."
-msgstr ""
+msgstr "左側で開くフォルダーやファイルを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:632
@@ -1306,7 +1391,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:634
 msgid "Specifies the folder, file or project file to open on the middle side."
-msgstr ""
+msgstr "中央で開くフォルダーやファイルを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:639
@@ -1316,7 +1401,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:641
 msgid "Specifies the folder, file or project file to open on the right side."
-msgstr ""
+msgstr "右側で開くフォルダーやファイルを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:643
@@ -1329,6 +1414,14 @@ msgid ""
 "of the specified paths, it opens the Select Files or Folders dialog, where "
 "you can browse for the correct paths."
 msgstr ""
+"WinMergeは、ファイルとフォルダーを比較できません。そのためパスパラメーター両"
+"方(または3つすべて)(<option><replaceable>leftpath</replaceable></option> と"
+"(<option><replaceable>middlepath</replaceable></option> "
+"と)<option><replaceable>rightpath</replaceable></option>) には、同じ種類(フォ"
+"ルダーかファイルのどちらか)を指し差なければなりません。もし、WinMergeが指定し"
+"たパスのどちらかを見つけることができなければ、ファイルまたはフォルダー選択ダ"
+"イアログを開きます。ファイルまたはフォルダー選択ダイアログでは、正しいパスを"
+"選択できます。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
 #: English/Command_line.xml:652
@@ -1337,11 +1430,13 @@ msgid ""
 "parameters, as long as the folder contains a file with the same name as the "
 "one specified in the other, file path."
 msgstr ""
+"ファイル比較では、パスパラメーターの一つとしてフォルダー名を指定できます。た"
+"だし、フォルダーは他方のファイル名と同じファイルを含んでいる必要があります。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
 #: English/Command_line.xml:656
 msgid "For example, consider this command:"
-msgstr ""
+msgstr "例えば、以下のコマンドを考えます:"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
 #: English/Command_line.xml:658
@@ -1360,17 +1455,22 @@ msgid ""
 "does <emphasis>not</emphasis> contain a file named <filename>File.txt</"
 "filename>."
 msgstr ""
+"もし、<filename class=\"directory\">C:\\Folder2</filename>がファイル名"
+"<filename>File.txt</filename>を含んでいれば、WinMergeは、暗黙的にファイル指定"
+"として第二のパスを解決します。当然ながら、<filename class=\"directory\">C:"
+"\\Folder2</filename>がファイル名<filename>File.txt</filename>を含んでいなけれ"
+"ば、コマンドは不正とみなされます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:674 English/Compare_files.xml:1481
 #: English/Intro_diffs.xml:253 English/Intro_diffs.xml:407
 msgid "merging differences"
-msgstr ""
+msgstr "差異をマージする"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Command_line.xml:675 English/Intro_diffs.xml:409
 msgid "result file"
-msgstr ""
+msgstr "結果ファイル"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:678
@@ -1383,6 +1483,7 @@ msgid ""
 "Specifies an optional output file path where you want merged result files to "
 "be saved."
 msgstr ""
+"マージした結果のファイルを保存するオプションの出力ファイルパスを指定します。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:683
@@ -1394,6 +1495,11 @@ msgid ""
 "in the File Compare window. However, if you save either of these files, it "
 "is written to the output path, leaving the two or three source files intact."
 msgstr ""
+"出力パスはコマンドラインからWinMergeを開始する時まれにしか必要となりません。"
+"それはバージョンコントロールツールとともに使用されることになります。結果ファ"
+"イルとして出力パスを指定する必要があるかもしれません。もし、出力パスを指定し"
+"た場合、あるペインを変更後保存すると、変更は出力パスのファイルに保存され、元"
+"ファイルは前の状態のままになります。"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:691
@@ -1404,6 +1510,11 @@ msgid ""
 "you specify a output path on the WinMerge command line, and are working with "
 "a version control system, you should list the files in that order."
 msgstr ""
+"バージョンコントロールシステムは一般的に<glossterm>theirs</glossterm>や"
+"<glossterm>mine</glossterm>、<glossterm>merged</glossterm>かまたは"
+"<glossterm>resolved</glossterm>のような用語を使用し元と結果ファイルを参照しま"
+"す。もし、WinMergeコマンドラインに出力パスを指定し、バージョンコントロールシ"
+"ステムと連携するならば、この順番でファイルを並べるべきです。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:701
@@ -1413,12 +1524,12 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:709 English/Compare_files.xml:1805
 msgid "conflict files"
-msgstr ""
+msgstr "コンフリクトファイル"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:710 English/Command_line.xml:726
 msgid "specifying on command line"
-msgstr ""
+msgstr "コマンドラインでの指定"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:713
@@ -1433,11 +1544,16 @@ msgid ""
 "resolve conflicts, as described in <xref linkend=\"ResolveConflictFiles\" /"
 ">. Note that no other paths can be used with a conflict file."
 msgstr ""
+"コンフリクトファイルを指定します。コンフリクトファイルは通常バージョンコント"
+"ロールシステムによって生成されます。コンフリクトファイルはファイル比較ウイン"
+"ドウで開かれ、<xref linkend=\"ResolveConflictFiles\" />で説明している様にマー"
+"ジやコンフリクトを解決することができます。コンフリクトファイルと共に他のパス"
+"は使用できないことに注意してください。"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:725
 msgid "ini file"
-msgstr ""
+msgstr "ini ファイル"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:729
@@ -1449,6 +1565,7 @@ msgstr ""
 msgid ""
 "specifies an INI file used to load and save settings instead of the registry."
 msgstr ""
+"レジストリの代わりに設定の読み込みと保存に使用するINIファイルを指定します。"
 
 #. type: Content of: <article><title>
 #: English/Compare_bin.xml:5
