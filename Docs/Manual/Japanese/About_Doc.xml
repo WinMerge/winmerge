@@ -7,9 +7,7 @@
   <section>
     <title>対象読者と範囲</title>
 
-    <para>WinMergeヘルプは、新しいユーザーと経験豊かなユーザー両方を対象としています。
-    WinMergeヘルプは、WinMergeの使い方を説明し、能力と限界を文書化します。
-    </para>
+    <para>WinMergeヘルプは、新しいユーザーと経験豊かなユーザー両方を対象としています。WinMergeヘルプは、WinMergeの使い方を説明し、能力と限界を文書化します。</para>
   </section>
 
   <section>
@@ -20,7 +18,7 @@
     <itemizedlist>
       <listitem>
         <para>Microsoft HTML ヘルプ (<filename>WinMerge.chm</filename>),
-        インストールディレクトリのWinMerge\Docsにあります。</para>
+インストールディレクトリのWinMerge\Docsにあります。</para>
       </listitem>
 
       <listitem>
@@ -35,11 +33,8 @@
         <term>WinMergeヘルプメニュー</term>
 
         <listitem>
-          <para>WinMerge使用中に、<menuchoice>
-              <guimenu>ヘルプ</guimenu>
-
-              <guimenuitem>WinMergeヘルプ</guimenuitem>
-            </menuchoice>をクリックします。 HTMLヘルプの最初(このトピック)が開かれます。</para>
+          <para>WinMerge使用中に、<menuchoice><guimenu>ヘルプ</guimenu><guimenuitem>WinMergeヘルプ</guimenuitem></menuchoice>をクリックします。
+HTMLヘルプの最初(このトピック)が開かれます。</para>
         </listitem>
       </varlistentry>
 
@@ -47,9 +42,8 @@
         <term>状況依存のヘルプ</term>
 
         <listitem>
-          <para>何らかのWinMergeウインドウを使用中に、F1を押してください。
-          現在のウインドウに関するトピックがあれば、そのトピックのヘルプを開きます。 もしなければ、最初のトピックを開きます。
-          </para>
+          <para>何らかのWinMergeウインドウを使用中に、F1を押してください。現在のウインドウに関するトピックがあれば、そのトピックのヘルプを開きます。
+もしなければ、最初のトピックを開きます。</para>
         </listitem>
       </varlistentry>
 
@@ -57,8 +51,7 @@
         <term>WinMergeコマンドライン</term>
 
         <listitem>
-          <para>コマンドラインからWinMergeを実行しているときは、/?か -?スイッチを使用してください。
-          HTMLヘルプが最初のトピックを開きます。</para>
+          <para>コマンドラインからWinMergeを実行しているときは、/?か -?スイッチを使用してください。HTMLヘルプが最初のトピックを開きます。</para>
         </listitem>
       </varlistentry>
 
@@ -66,11 +59,9 @@
         <term>WinMergeウェブサイト</term>
 
         <listitem>
-          <para><ulink
-          url="https://winmerge.org/">winmerge.org</ulink>をブラウザーで開いてください。<ulink 
-          url="https://winmerge.org/docs/">Documentation</ulink>の
-          <ulink url="https://manual.winmerge.org/">Manual</ulink>
-          リンクをたどってください。 最新版のヘルプが開きます。</para>
+          <para><ulink url="https://winmerge.org/">winmerge.org</ulink>をブラウザーで開いてください。<ulink
+url="https://winmerge.org/docs/">Documentation</ulink>の<ulink
+url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってください。最新版のヘルプが開きます。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -79,16 +70,14 @@
   <section>
     <title>ヘルプの使い方</title>
 
-    <para>最も重要なWinMergeの基本を学ぶために、次のトピックを読んでください。
-    </para>
+    <para>最も重要なWinMergeの基本を学ぶために、次のトピックを読んでください。</para>
 
     <variablelist>
       <varlistentry>
         <term><xref linkend="Quick_start" /></term>
 
         <listitem>
-          <para>WinMergeを手早く使い始められるようにし、基本的な使用方法を示します。
-          </para>
+          <para>WinMergeを手早く使い始められるようにし、基本的な使用方法を示します。</para>
         </listitem>
       </varlistentry>
 
@@ -96,8 +85,7 @@
         <term><xref linkend="Compare_dirs" /></term>
 
         <listitem>
-          <para>フォルダー比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。
-          </para>
+          <para>フォルダー比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -105,8 +93,7 @@
         <term><xref linkend="Compare_files" /></term>
 
         <listitem>
-          <para>ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードについて説明します。
-          </para>
+          <para>ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードについて説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -146,8 +133,7 @@
         <term><xref linkend="Configuration" /></term>
 
         <listitem>
-          <para>空白、色、テキストエンコーディングの取り扱いを含めたWinMergeの設定方法について説明します。
-          </para>
+          <para>空白、色、テキストエンコーディングの取り扱いを含めたWinMergeの設定方法について説明します。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -159,9 +145,7 @@
         <term><xref linkend="Open_paths" /></term>
 
         <listitem>
-          <para>WinMergeでファイルとフォルダーを開くいくつかの方法(たくさんあります!)について紹介します。
-          例えば、詳細モードでのシェル拡張コンテキストメニューの使い方を知っていますか?
-          </para>
+          <para>WinMergeでファイルとフォルダーを開くいくつかの方法(たくさんあります!)について紹介します。例えば、詳細モードでのシェル拡張コンテキストメニューの使い方を知っていますか?</para>
         </listitem>
       </varlistentry>
 
@@ -169,8 +153,7 @@
         <term><xref linkend="Plugins" /></term>
 
         <listitem>
-          <para>プラグイン機構を使用してWinMergeに追加できるオプション機能について説明します。
-          </para>
+          <para>プラグイン機構を使用してWinMergeに追加できるオプション機能について説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -178,8 +161,7 @@
         <term><xref linkend="Filters" /></term>
 
         <listitem>
-          <para>フォルダーやファイル比較ウインドウで比較される対象を制御する方法を説明します
-          </para>
+          <para>フォルダーやファイル比較ウインドウで比較される対象を制御する方法を説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -187,8 +169,7 @@
         <term><xref linkend="Command_line" /></term>
 
         <listitem>
-          <para>他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラメーターを記載します。
-          </para>
+          <para>他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラメーターを記載します。</para>
         </listitem>
       </varlistentry>
 
@@ -196,13 +177,11 @@
         <term><xref linkend="Faq" /></term>
 
         <listitem>
-          <para>開発者に尋ねられたたくさんの共通的な質問に対する回答を含んでいます。
-          </para>
+          <para>開発者に尋ねられたたくさんの共通的な質問に対する回答を含んでいます。</para>
 
           <para>質問を<ulink
-          url="https://github.com/WinMerge/winmerge/">GitHub</ulink>,
-          にする前に、<xref linkend="Faq" />トピックで質問が回答されていないか確認してください。
-          </para>
+url="https://github.com/WinMerge/winmerge/">GitHub</ulink>,にする前に、<xref
+linkend="Faq" />トピックで質問が回答されていないか確認してください。</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -225,15 +204,11 @@
 
         <tbody>
           <row>
-            <entry>フィールドに<userinput>UTF-8</userinput>と入力してください。<para>パスを辿るために、
-            <guibutton>参照</guibutton>ボタンをクリックしてください。
-            </para><para>ウィンドウを更新するために、<keycap>F5</keycap>を一回押下してください。
-            </para></entry>
+            <entry>フィールドに<userinput>UTF-8</userinput>と入力してください。<para>パスを辿るために、<guibutton>参照</guibutton>ボタンをクリックしてください。</para><para>ウィンドウを更新するために、<keycap>F5</keycap>を一回押下してください。</para></entry>
 
             <entry>説明文中のボールドフォントは、以下の内容を表します:<itemizedlist>
                 <listitem>
-                  <para>入力を指示された、値、または、
-                  文字列</para>
+                  <para>入力を指示された、値、または、文字列</para>
                 </listitem>
 
                 <listitem>
@@ -243,62 +218,39 @@
           </row>
 
           <row>
-            <entry><keycombo>
-                <keycap>Ctrl</keycap>
+            <entry><keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>を押下してください</entry>
 
-                <keycap>O</keycap>
-              </keycombo>を押下してください</entry>
-
-            <entry><wordasword>押下</wordasword>は、キーボード操作を表します。
-            この例では、<keycap>Ctrl</keycap>と
-            <keycap>O</keycap>キーの組み合わせで押下します。</entry>
+            <entry><wordasword>押下</wordasword>は、キーボード操作を表します。この例では、<keycap>Ctrl</keycap>と<keycap>O</keycap>キーの組み合わせで押下します。</entry>
           </row>
 
           <row>
             <entry><para><guibutton>OK</guibutton>をクリックしてください。</para></entry>
 
-            <entry>クリックは、メニューアイテムやボタンの様な対象の上での、マウスの左クリックを表します。
-            </entry>
+            <entry>クリックは、メニューアイテムやボタンの様な対象の上での、マウスの左クリックを表します。</entry>
           </row>
 
           <row>
-            <entry><menuchoice>
-                <guimenu>ファイル</guimenu>
+            <entry><menuchoice><guimenu>ファイル</guimenu><guimenuitem>開く</guimenuitem></menuchoice>をクリックしてください。</entry>
 
-                <guimenuitem>開く</guimenuitem>
-              </menuchoice>をクリックしてください。</entry>
-
-            <entry>矢印は、メニューを表します。この例では、WinMergeの
-            <guimenu>ファイル</guimenu>メニューの中の
-            <guimenuitem>開く</guimenuitem>を選択してください。</entry>
+            <entry>矢印は、メニューを表します。この例では、WinMergeの<guimenu>ファイル</guimenu>メニューの中の<guimenuitem>開く</guimenuitem>を選択してください。</entry>
           </row>
 
           <row>
-            <entry>行を右クリックして、
-            <guimenuitem>比較</guimenuitem>ショートカットを選択してください。</entry>
+            <entry>行を右クリックして、<guimenuitem>比較</guimenuitem>ショートカットを選択してください。</entry>
 
-            <entry>
-            コンテキストメニューを開くために、対象の上で右クリックしてください。そして、コンテキストメニュー中のアイテムを、左か右クリックしてください。
-            </entry>
+            <entry>コンテキストメニューを開くために、対象の上で右クリックしてください。そして、コンテキストメニュー中のアイテムを、左か右クリックしてください。</entry>
           </row>
 
           <row>
-            <entry><replaceable>options file</replaceable>.iniを入力してください。<para>
-            操作対象からファイルを除外するために<guilabel>フィルター</guilabel>フィールドを使用してください。
-            </para><para>連続した1つかそれ以上の差異行は、一つの差異(または
-            <glossterm>diff差分</glossterm>)を形成します。</para></entry>
+            <entry><replaceable>options file</replaceable>.iniを入力してください。<para>操作対象からファイルを除外するために<guilabel>フィルター</guilabel>フィールドを使用してください。</para><para>連続した1つかそれ以上の差異行は、一つの差異(または<glossterm>diff差分</glossterm>)を形成します。</para></entry>
 
-            <entry>イタリック体のテキストは、次の内容を表します: <itemizedlist>
+            <entry>イタリック体のテキストは、次の内容を表します:<itemizedlist>
                 <listitem>
-                  <para>
-                  置き換え可能な値、または、文字列。
-                  最初の例では、イタリック体の語句の代わりに実際のファイル名を用いるでしょう。
-                  <!-- TODO: 何がいいたい？ enter the <filename>ini</filename> file extension, which is not italicized, as written.--></para>
+                  <para>置き換え可能な値、または、文字列。最初の例では、イタリック体の語句の代わりに実際のファイル名を用いるでしょう。</para>
                 </listitem>
 
                 <listitem>
-                  <para>WinMerge ウィンドウ内のフィールド、メニュー、コントロールの名前です。
-                  </para>
+                  <para>WinMerge ウィンドウ内のフィールド、メニュー、コントロールの名前です。</para>
                 </listitem>
 
                 <listitem>
@@ -308,9 +260,8 @@
           </row>
 
           <row>
-            <entry>パス<envar>%WORKDIR%\project1</envar>は、
-            <filename
-            class="directory">C:\workfiles\project1</filename>に展開されます。<para><screen
+            <entry>パス<envar>%WORKDIR%\project1</envar>は、<filename
+class="directory">C:\workfiles\project1</filename>に展開されます。<para><screen
             format="linespecific">TwoWords</screen></para></entry>
 
             <entry>等幅のテキストは、次の内容を表します:<itemizedlist>
@@ -327,26 +278,18 @@
                 </listitem>
 
                 <listitem>
-                  <para>フォームかコマンドライン上で入力する情報
-                  </para>
+                  <para>フォームかコマンドライン上で入力する情報</para>
                 </listitem>
               </itemizedlist></entry>
           </row>
 
           <row>
             <entry><cmdsynopsis sepchar=" ">
-                <command moreinfo="none">command</command>
+<command moreinfo="none">command</command> <arg choice="plain"
+rep="norepeat"><replaceable>inputpath</replaceable></arg> <arg choice="opt"
+rep="norepeat"><replaceable>outputpath</replaceable></arg></cmdsynopsis></entry>
 
-                <arg choice="plain"
-                rep="norepeat"><replaceable>inputpath</replaceable></arg>
-
-                <arg choice="opt"
-                rep="norepeat"><replaceable>outputpath</replaceable></arg>
-              </cmdsynopsis></entry>
-
-            <entry>シンタックス行では、ブラケット(大括弧)は省略可能な要素を表します。
-              この例では、コマンドと入力パスを入力しなければなりません。
-              出力パスも入力できますが、入力しなくてもコマンドは有効です。</entry>
+            <entry>シンタックス行では、ブラケット(大括弧)は省略可能な要素を表します。この例では、コマンドと入力パスを入力しなければなりません。出力パスも入力できますが、入力しなくてもコマンドは有効です。</entry>
           </row>
         </tbody>
       </tgroup>

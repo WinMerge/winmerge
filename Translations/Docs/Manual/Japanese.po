@@ -1,36 +1,39 @@
-# Japanese translations for PACKAGE package
-# PACKAGE �ѥå��������Ф������
-# Copyright (C) 2023 Free Software Foundation, Inc.
-# This file is distributed under the same license as the PACKAGE package.
-# Automatically generated, 2023.
+# This file is part from WinMerge <https://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# Translators:
+# * Takahiro Yoshihara
+# * Takashi Sawanaka <sawanaka at d1.dion.ne.jp>
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-08-24 21:15+0900\n"
-"PO-Revision-Date: 2023-08-24 21:15+0900\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
+"POT-Creation-Date: 2023-08-24 22:21+0900\n"
+"PO-Revision-Date: 2023-08-24 22:25+0900\n"
+"Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
+"Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. type: Content of: <article><title>
 #: English/About_Doc.xml:3
 msgid "About WinMerge Help"
-msgstr ""
+msgstr "WinMergeヘルプについて"
 
 #. type: Content of: <article><para>
 #: English/About_Doc.xml:5
 msgid "This is Help for WinMerge &WinMergeVersion;."
-msgstr ""
+msgstr "このドキュメントはWinMerge &WinMergeVersion; のヘルプです。"
 
 #. type: Content of: <article><section><title>
 #: English/About_Doc.xml:8
 msgid "Audience and scope"
-msgstr ""
+msgstr "対象読者と範囲"
 
 #. type: Content of: <article><section><para>
 #: English/About_Doc.xml:10
@@ -38,16 +41,18 @@ msgid ""
 "WinMerge Help is intended for both new and experienced users. It explains "
 "how to use WinMerge, and documents its capabilities and limitations."
 msgstr ""
+"WinMergeヘルプは、新しいユーザーと経験豊かなユーザー両方を対象としています。"
+"WinMergeヘルプは、WinMergeの使い方を説明し、能力と限界を文書化します。"
 
 #. type: Content of: <article><section><title>
 #: English/About_Doc.xml:16
 msgid "How to access Help"
-msgstr ""
+msgstr "ヘルプへのアクセス方法"
 
 #. type: Content of: <article><section><para>
 #: English/About_Doc.xml:18
 msgid "WinMerge Help topics are provided in two forms:"
-msgstr ""
+msgstr "WinMergeヘルプトピックは、2つの形式で提供されます:"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/About_Doc.xml:22
@@ -55,21 +60,23 @@ msgid ""
 "Microsoft HTML Help (<filename>WinMerge.chm</filename>), located in your "
 "WinMerge\\Docs installation directory."
 msgstr ""
+"Microsoft HTML ヘルプ (<filename>WinMerge.chm</filename>), インストールディレ"
+"クトリのWinMerge\\Docsにあります。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/About_Doc.xml:27
 msgid "HTML manual on the WinMerge Web site."
-msgstr ""
+msgstr "WinMergeウェブサイトのHTML マニュアル"
 
 #. type: Content of: <article><section><para>
 #: English/About_Doc.xml:31
 msgid "You can access WinMerge Help in several ways:"
-msgstr ""
+msgstr "以下のいくつかの方法でWinMergeヘルプにアクセスできます:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:35
 msgid "WinMerge Help menu"
-msgstr ""
+msgstr "WinMergeヘルプメニュー"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:38
@@ -78,11 +85,14 @@ msgid ""
 "<guimenuitem>WinMerge Help</guimenuitem> </menuchoice>. HTML Help opens at "
 "the beginning (this topic)."
 msgstr ""
+"WinMerge使用中に、<menuchoice><guimenu>ヘルプ</guimenu><guimenuitem>WinMerge"
+"ヘルプ</guimenuitem></menuchoice>をクリックします。 HTMLヘルプの最初(このト"
+"ピック)が開かれます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:47
 msgid "Context-sensitive help"
-msgstr ""
+msgstr "状況依存のヘルプ"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:50
@@ -91,11 +101,14 @@ msgid ""
 "topic is available for your current window, Help opens at that topic. If "
 "not, Help opens at the beginning."
 msgstr ""
+"何らかのWinMergeウインドウを使用中に、F1を押してください。現在のウインドウに"
+"関するトピックがあれば、そのトピックのヘルプを開きます。 もしなければ、最初の"
+"トピックを開きます。"
 
 #. type: Content of: <article><title><indexterm><primary>
 #: English/About_Doc.xml:57 English/Command_line.xml:6
 msgid "WinMerge command line"
-msgstr ""
+msgstr "WinMergeコマンドライン"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:60
@@ -103,11 +116,13 @@ msgid ""
 "Use the /? or -? switch when running WinMerge from the command line. HTML "
 "Help opens at the beginning."
 msgstr ""
+"コマンドラインからWinMergeを実行しているときは、/?か -?スイッチを使用してくだ"
+"さい。HTMLヘルプが最初のトピックを開きます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:66
 msgid "WinMerge Web site"
-msgstr ""
+msgstr "WinMergeウェブサイト"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:69
@@ -117,16 +132,20 @@ msgid ""
 "ulink>, follow the <ulink url=\"https://manual.winmerge.org/\">Manual</"
 "ulink> link to the latest Help version."
 msgstr ""
+"<ulink url=\"https://winmerge.org/\">winmerge.org</ulink>をブラウザーで開いて"
+"ください。<ulink url=\"https://winmerge.org/docs/\">Documentation</ulink>の"
+"<ulink url=\"https://manual.winmerge.org/\">Manual</ulink>リンクをたどってく"
+"ださい。最新版のヘルプが開きます。"
 
 #. type: Content of: <article><section><title>
 #: English/About_Doc.xml:80
 msgid "How to use Help"
-msgstr ""
+msgstr "ヘルプの使い方"
 
 #. type: Content of: <article><section><para>
 #: English/About_Doc.xml:82
 msgid "Please read the following topics to learn essential WinMerge basics,"
-msgstr ""
+msgstr "最も重要なWinMergeの基本を学ぶために、次のトピックを読んでください。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:87
@@ -136,7 +155,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:90
 msgid "Gets you quickly started with WinMerge and shows its basic usage."
-msgstr ""
+msgstr "WinMergeを手早く使い始められるようにし、基本的な使用方法を示します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:96
@@ -149,6 +168,8 @@ msgid ""
 "Explains the folder comparison window, available operations, and customizing "
 "the results display."
 msgstr ""
+"フォルダー比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明し"
+"ます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:105
@@ -161,6 +182,8 @@ msgid ""
 "Explains the file comparison/merge window, available operations, methods of "
 "navigation, and modes."
 msgstr ""
+"ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードに"
+"ついて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:114
@@ -170,7 +193,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:117
 msgid "Explains the image comparison/merge window."
-msgstr ""
+msgstr "画像比較・マージウインドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:122
@@ -180,7 +203,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:125
 msgid "Explains the hex comparison/merge window."
-msgstr ""
+msgstr "HEX比較・マージウインドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:130
@@ -190,7 +213,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:133
 msgid "Explains the table comparison/merge window."
-msgstr ""
+msgstr "テーブル比較・マージウインドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:138
@@ -200,7 +223,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:141
 msgid "Explains the Web page comparison window."
-msgstr ""
+msgstr "Webページ比較ウインドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:146
@@ -213,11 +236,14 @@ msgid ""
 "Explains how to customize WinMerge, including handling whitespace, colours, "
 "and text encoding."
 msgstr ""
+"空白、色、テキストエンコーディングの取り扱いを含めたWinMergeの設定方法につい"
+"て説明します。"
 
 #. type: Content of: <article><section><para>
 #: English/About_Doc.xml:155
 msgid "To learn about WinMerge in more detail, read these topics:"
 msgstr ""
+"もっと詳細にWinMergeについて学習したい場合、次のトピックを読んでください:"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:159
@@ -231,6 +257,9 @@ msgid ""
 "many! For example, do you know how to use the Shell Extension context menu "
 "in advanced mode?"
 msgstr ""
+"WinMergeでファイルとフォルダーを開くいくつかの方法(たくさんあります!)について"
+"紹介します。例えば、詳細モードでのシェル拡張コンテキストメニューの使い方を"
+"知っていますか?"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:169
@@ -243,6 +272,8 @@ msgid ""
 "Describes the optional, extra features that you can add to WinMerge using "
 "its plugin mechanism."
 msgstr ""
+"プラグイン機構を使用してWinMergeに追加できるオプション機能について説明しま"
+"す。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:178
@@ -255,6 +286,8 @@ msgid ""
 "Explains how to control what is compared in the folder or file comparison "
 "window."
 msgstr ""
+"フォルダーやファイル比較ウインドウで比較される対象を制御する方法を説明しま"
+"す。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:187
@@ -267,6 +300,8 @@ msgid ""
 "Lists command-line parameters for using WinMerge with other tools or from a "
 "script."
 msgstr ""
+"他のツールと連携やスクリプトから起動するときに使用できるコマンドラインパラ"
+"メーターを記載します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:196
@@ -276,7 +311,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:199
 msgid "Contains answers to many common questions asked of developers."
-msgstr ""
+msgstr "開発者に尋ねられたたくさんの共通的な質問に対する回答を含んでいます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:202
@@ -285,6 +320,9 @@ msgid ""
 "winmerge/\">GitHub</ulink>, please check the <xref linkend=\"Faq\" /> topic "
 "first to see if your question is answered there."
 msgstr ""
+"質問を<ulink url=\"https://github.com/WinMerge/winmerge/\">GitHub</ulink>,に"
+"する前に、<xref linkend=\"Faq\" />トピックで質問が回答されていないか確認して"
+"ください。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/About_Doc.xml:213
@@ -294,52 +332,56 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/About_Doc.xml:212
 msgid "Documentation conventions<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ドキュメント表記規則<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><informaltable><tgroup><thead><row><entry>
 #: English/About_Doc.xml:220
 msgid "Example"
-msgstr ""
+msgstr "例"
 
 #. type: Content of: <article><section><informaltable><tgroup><thead><row><entry>
 #: English/About_Doc.xml:222
 msgid "Indicates"
-msgstr ""
+msgstr "意味"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:228
 msgid "Enter <userinput>UTF-8</userinput> in the field."
-msgstr ""
+msgstr "フィールドに<userinput>UTF-8</userinput>と入力してください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:228
 msgid "Click the <guibutton>Browse</guibutton> button to navigate to the path."
 msgstr ""
+"パスを辿るために、<guibutton>参照</guibutton>ボタンをクリックしてください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:230
 msgid "Press <keycap>F5</keycap> once to refresh the window."
 msgstr ""
+"ウィンドウを更新するために、<keycap>F5</keycap>を一回押下してください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:233
 msgid "Bold font in descriptive text can indicate:"
-msgstr ""
+msgstr "説明文中のボールドフォントは、以下の内容を表します:"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:235
 msgid "A value or string that you are instructed to enter"
-msgstr ""
+msgstr "入力を指示された、値、または、文字列"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:240
 msgid "The name of a GUI button or keycap"
-msgstr ""
+msgstr "GUIボタンかキーの名前"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:246
 msgid "Press <keycombo> <keycap>Ctrl</keycap> <keycap>O</keycap> </keycombo>"
 msgstr ""
+"<keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>を押下してくださ"
+"い"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:252
@@ -348,11 +390,13 @@ msgid ""
 "example, press the <keycap>Ctrl</keycap> and <keycap>O</keycap> keys in "
 "combination."
 msgstr ""
+"<wordasword>押下</wordasword>は、キーボード操作を表します。この例では、"
+"<keycap>Ctrl</keycap>と<keycap>O</keycap>キーの組み合わせで押下します。"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para>
 #: English/About_Doc.xml:258 English/Compare_dirs.xml:1241
 msgid "Click <guibutton>OK</guibutton>."
-msgstr ""
+msgstr "<guibutton>OK</guibutton>をクリックしてください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:260
@@ -360,6 +404,8 @@ msgid ""
 "Click indicates a left mouse click on an object, such as a menu item or "
 "button."
 msgstr ""
+"クリックは、メニューアイテムやボタンの様な対象の上での、マウスの左クリックを"
+"表します。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:265
@@ -367,6 +413,8 @@ msgid ""
 "Click <menuchoice> <guimenu>File</guimenu> <guimenuitem>Open</guimenuitem> </"
 "menuchoice>."
 msgstr ""
+"<menuchoice><guimenu>ファイル</guimenu><guimenuitem>開く</guimenuitem></"
+"menuchoice>をクリックしてください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:271
@@ -375,6 +423,8 @@ msgid ""
 "<guimenuitem>Open</guimenuitem> item in the WinMerge <guimenu>File</guimenu> "
 "menu ."
 msgstr ""
+"矢印は、メニューを表します。この例では、WinMergeの<guimenu>ファイル</guimenu>"
+"メニューの中の<guimenuitem>開く</guimenuitem>を選択してください。"
 
 #. type: Content of: <article><section><para><itemizedlist><listitem><simpara>
 #: English/About_Doc.xml:277 English/Quick_start.xml:293
@@ -382,6 +432,8 @@ msgid ""
 "Right-click the row and choose the <guimenuitem>Compare</guimenuitem> "
 "shortcut."
 msgstr ""
+"行を右クリックして、<guimenuitem>比較</guimenuitem>ショートカットを選択してく"
+"ださい。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:280
@@ -389,11 +441,13 @@ msgid ""
 "Click the right mouse button on an object to open its context menu, and then "
 "either left-click or right-click the indicated item in the context menu."
 msgstr ""
+"コンテキストメニューを開くために、対象の上で右クリックしてください。そして、"
+"コンテキストメニュー中のアイテムを、左か右クリックしてください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:286
 msgid "Enter <replaceable>options file</replaceable>.ini"
-msgstr ""
+msgstr "<replaceable>options file</replaceable>.iniを入力してください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:286
@@ -401,6 +455,8 @@ msgid ""
 "Use the <guilabel>Filter</guilabel> field to eliminate files from the "
 "operation."
 msgstr ""
+"操作対象からファイルを除外するために<guilabel>フィルター</guilabel>フィールド"
+"を使用してください。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><para>
 #: English/About_Doc.xml:288
@@ -408,11 +464,13 @@ msgid ""
 "One or more consecutive different lines form one difference (or "
 "<glossterm>diff</glossterm>)."
 msgstr ""
+"連続した1つかそれ以上の差異行は、一つの差異(または<glossterm>diff差分</"
+"glossterm>)を形成します。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:291
 msgid "Italicized text can represent:"
-msgstr ""
+msgstr "イタリック体のテキストは、次の内容を表します:"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:293
@@ -421,16 +479,18 @@ msgid ""
 "real file name for the italicized term, but enter the <filename>ini</"
 "filename> file extension, which is not italicized, as written."
 msgstr ""
+"置き換え可能な値、または、文字列。最初の例では、イタリック体の語句の代わりに"
+"実際のファイル名を用いるでしょう。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:300
 msgid "The name of a field, menu, or control in a WinMerge window."
-msgstr ""
+msgstr "WinMerge ウィンドウ内のフィールド、メニュー、コントロールの名前です。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:305
 msgid "A significant word or phrase that is introduced."
-msgstr ""
+msgstr "重要な単語、または、フレーズです。"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:311
@@ -438,12 +498,14 @@ msgid ""
 "The path <envar>%WORKDIR%\\project1</envar> is expanded to <filename "
 "class=\"directory\">C:\\workfiles\\project1</filename>."
 msgstr ""
+"パス<envar>%WORKDIR%\\project1</envar>は、<filename class=\"directory\">C:"
+"\\workfiles\\project1</filename>に展開されます。"
 
 #. type: Content of: <article><section><section><example><para><screen>
 #: English/About_Doc.xml:314 English/Configuration.xml:494
 #, no-wrap
 msgid "TwoWords"
-msgstr ""
+msgstr "TwoWords"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><formalpara><para>
 #: English/About_Doc.xml:313 English/Filters.xml:510 English/Filters.xml:521
@@ -458,27 +520,27 @@ msgstr ""
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:316
 msgid "Monospaced text can indicate:"
-msgstr ""
+msgstr "等幅のテキストは、次の内容を表します:"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:318
 msgid "A path or the name of a file or other system item"
-msgstr ""
+msgstr "パス、ファイル名、または、その他のシステム項目"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:322
 msgid "Sample code fragments"
-msgstr ""
+msgstr "サンプルコードの一部"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:326
 msgid "Sample output"
-msgstr ""
+msgstr "サンプル出力"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><itemizedlist><listitem><para>
 #: English/About_Doc.xml:330
 msgid "Information that you enter in a form or on the command line"
-msgstr ""
+msgstr "フォームかコマンドライン上で入力する情報"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry><cmdsynopsis>
 #: English/About_Doc.xml:338
@@ -501,6 +563,9 @@ msgid ""
 "must enter an input path with the command; you can enter an output path, but "
 "the command is valid without it."
 msgstr ""
+"シンタックス行では、ブラケット(大括弧)は省略可能な要素を表します。この例で"
+"は、コマンドと入力パスを入力しなければなりません。出力パスも入力できますが、"
+"入力しなくてもコマンドは有効です。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:4 English/Command_line.xml:8
