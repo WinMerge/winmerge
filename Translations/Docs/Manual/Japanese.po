@@ -1570,7 +1570,7 @@ msgstr ""
 #. type: Content of: <article><title>
 #: English/Compare_bin.xml:5
 msgid "Comparing in hexadecimal format"
-msgstr ""
+msgstr "Hex形式比較"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_bin.xml:8 English/Compare_files.xml:6
@@ -1579,17 +1579,17 @@ msgstr ""
 #: English/Configuration.xml:872 English/Filters.xml:67
 #: English/Intro_diffs.xml:12 English/Quick_start.xml:325
 msgid "comparing files"
-msgstr ""
+msgstr "ファイルの比較"
 
 #. type: Content of: <article><indexterm><secondary>
 #: English/Compare_bin.xml:10
 msgid "binary"
-msgstr ""
+msgstr "バイナリ"
 
 #. type: Content of: <article><para>
 #: English/Compare_bin.xml:13
 msgid "WinMerge can view and edit your files in hexadecimal format."
-msgstr ""
+msgstr "WinMergeは、ファイルをHex形式で表示・編集することができます。"
 
 #. type: Content of: <article><mediaobject>
 #: English/Compare_bin.xml:17
@@ -1611,6 +1611,10 @@ msgid ""
 "frx, it will be opened in hexadecimal format. If you want to change the "
 "patterns, specify it on the Compare/Binary page in the Options dialog."
 msgstr ""
+"ファイルがHex形式で開かれるかどうかは、ファイル名が定義されたパターンと一致す"
+"るかどうかに依存します。デフォルトでは、ファイル拡張子が.binまたは.frxの場"
+"合、Hex形式で開かれます。パターンを変更したい場合は、オプションダイアログの比"
+"較/バイナリページで指定してください。"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:4 English/Configuration.xml:876
