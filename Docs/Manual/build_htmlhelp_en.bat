@@ -4,8 +4,8 @@ setlocal enabledelayedexpansion
 pushd %~dp0
 call configuration.bat
 
-set docbook_inputfile=EN\Index.xml
-set docbook_use_stylesheet=EN\xsl\htmlhelp.xsl
+set docbook_inputfile=English\Index.xml
+set docbook_use_stylesheet=English\xsl\htmlhelp.xsl
 set docbook_outputdir=htmlhelp
 set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
 
@@ -14,10 +14,10 @@ if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
 if "%1" == "/build" (
   if exist "%docbook_outputdir_final%\WinMerge.chm" (
-    copy "%docbook_outputdir_final%\WinMerge.chm" EN\WinMerge.chm 2> NUL > NUL
+    copy "%docbook_outputdir_final%\WinMerge.chm" English\WinMerge.chm 2> NUL > NUL
   )
-  for /f "tokens=*" %%i in ('dir /a:-d /b /o:d /t:w EN') do set NEWEST=%%~nxi
-  del EN\WinMerge.chm 2> NUL
+  for /f "tokens=*" %%i in ('dir /a:-d /b /o:d /t:w English') do set NEWEST=%%~nxi
+  del English\WinMerge.chm 2> NUL
   if "!NEWEST!" == "WinMerge.chm" goto end
 ) else if "%1" == "/clean" (
   del "%docbook_outputdir_final%\WinMerge.chm"
@@ -31,7 +31,7 @@ copy "Shared\images\*.png" "%docbook_outputdir%\images\."
 
 echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
-copy "EN\screenshots\*.*" "%docbook_outputdir%\screenshots\."
+copy "English\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"

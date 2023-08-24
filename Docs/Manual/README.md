@@ -4,8 +4,8 @@ Our Manuals are written in DocBook and we generate HTML and CHM manuals for dist
 
 We have currently manuals in the following languages:
 
- * [English](EN)
- * [Japanese](JP)
+ * [English](English)
+ * [Japanese](Japanese)
 
 ## Useful DocBook resources
 
