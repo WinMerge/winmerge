@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-08-24 22:21+0900\n"
-"PO-Revision-Date: 2023-08-25 07:43+0900\n"
+"PO-Revision-Date: 2023-08-25 22:36+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1620,12 +1620,12 @@ msgstr ""
 #: English/Compare_dirs.xml:4 English/Configuration.xml:876
 #: English/Filters.xml:43 English/Quick_start.xml:239
 msgid "comparing folders"
-msgstr ""
+msgstr "フォルダーの比較"
 
 #. type: Content of: <article><title>
 #: English/Compare_dirs.xml:3
 msgid "Comparing and merging folders<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "フォルダーの比較とマージ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><para>
 #: English/Compare_dirs.xml:7
@@ -1633,11 +1633,13 @@ msgid ""
 "This topic describes how to compare and merge folders using the Folder "
 "Compare window."
 msgstr ""
+"このトピックは、フォルダー比較ウィンドウを使用して、フォルダーを比較・マージ"
+"する方法を説明しています。"
 
 #. type: Content of: <article><section><title>
 #: English/Compare_dirs.xml:11
 msgid "Starting a folder compare operation"
-msgstr ""
+msgstr "フォルダー比較操作の開始"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:13
@@ -1645,6 +1647,8 @@ msgid ""
 "You can begin a folder compare operation from either the WinMerge window or "
 "a Command Prompt window."
 msgstr ""
+"WinMergeウィンドウ、または、コマンドプロンプトから、フォルダー比較操作を開始"
+"できます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:18 English/Compare_files.xml:23
@@ -1662,6 +1666,12 @@ msgid ""
 "options and for more details about the Select Files or Folder dialog, see "
 "<xref linkend=\"Open_paths\" />."
 msgstr ""
+"<menuchoice><guimenu>ファイル</guimenu><guimenuitem>開く</guimenuitem></"
+"menuchoice>をクリックしてください。ファイルまたはフォルダーの選択ダイアログを"
+"使用して、比較する1と2のフォルダーを指定してください。デフォルトでは、フォル"
+"ダー中のすべてのファイルが比較対象に含まれ、サブフォルダーも比較対象に含まれ"
+"ます。これらのオプションの変更と、ファイルまたはフォルダーの選択ダイアログの"
+"より詳細な情報については、<xref linkend=\"Open_paths\" />を参照してください。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:35 English/Compare_files.xml:38
@@ -1678,6 +1688,11 @@ msgid ""
 "nonrecursive. To change any of these options and for information about other "
 "command options, see <xref linkend=\"Command_line\" />."
 msgstr ""
+"WinMergeインストールディレクトリにある、<command>WinMergeU.exe</command>を起"
+"動してください。コマンド引数には、比較する1と2のフォルダーを含みます。デフォ"
+"ルトでは、フォルダー中のすべてのファイルが比較対象に含まれ、サブフォルダーは"
+"比較対象に含まれません。これらのオプションの変更と、その他のコマンドオプショ"
+"ンの情報については、<xref linkend=\"Command_line\" />を参照してください。"
 
 #. type: Content of: <article><section><tip><title>
 #: English/Compare_dirs.xml:49
@@ -1698,6 +1713,11 @@ msgid ""
 "enabling the <xref linkend=\"Compare_dirs_treeview\" /> for easier "
 "navigation of the Compare window."
 msgstr ""
+"再帰モードは、全体のフォルダー構造の中から、差異ファイルを見つけたり、操作し"
+"たりするのに便利です。しかしながら、多くのサブフォルダーやファイルがある場合"
+"は遅くなります。深くネストしたディレクトリ構造を、比較ウィンドウで操作し易く"
+"するために<xref linkend=\"Compare_dirs_treeview\" />を有効にすることを考えて"
+"ください。"
 
 #. type: Content of: <article><section><tip><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:65
@@ -1706,6 +1726,9 @@ msgid ""
 "that need not be examined. Also, the display can be easier to manage because "
 "it shows items in only selected folders."
 msgstr ""
+"非再帰モードは、多くのサブフォルダーが存在しても、それらを検査する必要がない"
+"ため、速度面で有利です。さらに、表示の管理もより簡単です。なぜなら、選択され"
+"たフォルダーの項目だけを表示すれば良いからです。"
 
 #. type: Content of: <article><section><tip><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:73
@@ -1723,6 +1746,13 @@ msgid ""
 "This should not matter In most cases, because such large files are usually "
 "binary."
 msgstr ""
+"ファイル比較のための<guilabel>クイックコンテンツ</guilabel>方式は、<xref "
+"linkend=\"Configuration\" />で説明されています。これは、 巨大なバイナリファイ"
+"ルを比較する時に便利です。そしてそれは、4MBを超えるファイル比較の場合、自動的"
+"に使用されます。起こりうる不都合としては、ラインフィルターが効かないことと、"
+"フォルダー比較ウィンドウに差異カウントが表示されません。しかし、これは、ほと"
+"んどのケースで取るに足らないことです。なぜなら、そのような巨大なファイルは、"
+"たいていバイナリだからです。"
 
 #. type: Content of: <article><section><tip><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:84
@@ -1732,6 +1762,10 @@ msgid ""
 "method</guilabel> drop-down menu and choose <guimenuitem>Quick Contents</"
 "guimenuitem>."
 msgstr ""
+"この方式を使用するために、比較操作をする前に設定をしてください。WinMergeオプ"
+"ションの比較カテゴリで、<guilabel>ファイル比較方法</guilabel>のドロップダウン"
+"メニューをクリックし、<guimenuitem>クイックコンテンツ</guimenuitem>を選択して"
+"ください。"
 
 #. type: Content of: <article><section><tip><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:92
@@ -1753,17 +1787,22 @@ msgid ""
 "this keyword, and modify its value: <placeholder type=\"screen\" id=\"0\"/"
 ">As usual, be careful when editing the registry!"
 msgstr ""
+"例えば、とても大きなテキストファイルがたくさんある場合など、<guilabel>クイッ"
+"クコンテンツ</guilabel>の境界ファイルサイズを4MBから変更することが可能です。"
+"その方法は、Windowsの<command>regedit</command>コマンドを起動し、"
+"<placeholder type=\"screen\" id=\"0\"/>このキーワードを探し、値を変更してくだ"
+"さい。レジストリの編集は慎重に行ってください。"
 
 #. type: Content of: <article><section><section><mediaobject><textobject><phrase>
 #: English/Compare_dirs.xml:108 English/Compare_dirs.xml:120
 msgid "Folder Compare Progress window"
-msgstr ""
+msgstr "フォルダー比較状況ウインドウ"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:107
 msgid ""
 "Folder Compare Progress window<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "フォルダー比較状況ウインドウ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:111
@@ -1771,6 +1810,8 @@ msgid ""
 "When you start a folder compare operation, WinMerge displays this status "
 "window:"
 msgstr ""
+"フォルダー比較操作を開始すると、WinMergeはこのステータスウィンドウを表示しま"
+"す。"
 
 #. type: Content of: <article><section><section><mediaobject>
 #: English/Compare_dirs.xml:115
@@ -1788,6 +1829,10 @@ msgid ""
 "operation, and the number compared so far. The progress bar graphically "
 "represents the Items compared."
 msgstr ""
+"比較操作が素早い場合、WinMergeはフォルダー比較結果を表示して、直ぐにそれを閉"
+"じるため、プログレスウィンドウに気づかないかもしれません。プログレスウィンド"
+"ウは、その操作対象に含まれるファイルとフォルダーの数と、比較した項目の数を表"
+"示します。プログレスバーは、比較した項目をグラフィカルに表示します。"
 
 #. type: Content of: <article><section><section><note><para>
 #: English/Compare_dirs.xml:131
@@ -1796,6 +1841,9 @@ msgid ""
 "does not indicate the time used or remaining. For example, a 50/100 ratio "
 "does not necessarily mean that half of the compare operation time is expired."
 msgstr ""
+"ファイル比較では大抵サイズが異なるため、ステータスは、経過時間、または、残り"
+"時間を表示しません。例えば、50/100という比率は、必ずしも比較操作の半分の時間"
+"が完了した、ということを表しません。"
 
 #. I'm not able to reproduce the behavior documented in the earlier version of this topic: 
 #. I get the partial list, but no Abort indicator.
@@ -1807,6 +1855,9 @@ msgid ""
 "displayed with the results calculated at that time, omitting any uncompleted "
 "results."
 msgstr ""
+"<guibutton>停止</guibutton>をクリックすると、比較操作が終了する前に、いつでも"
+"操作を中止できます。フォルダー比較ウィンドウは、未完了の結果を省略して、その"
+"時に計算された結果で表示されます。"
 
 #. type: Content of: <article><section><mediaobject><textobject><phrase>
 #: English/Compare_dirs.xml:147 English/Compare_dirs.xml:301
@@ -1814,7 +1865,7 @@ msgstr ""
 #: English/Compare_dirs.xml:1118 English/Compare_dirs.xml:1131
 #: English/Quick_start.xml:243 English/Quick_start.xml:261
 msgid "Folder Compare window"
-msgstr ""
+msgstr "フォルダー比較ウインドウ"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:149 English/Compare_dirs.xml:151
@@ -1853,6 +1904,8 @@ msgid ""
 "The Folder Compare window shows the result of a folder compare. Two "
 "different views are available:"
 msgstr ""
+"フォルダー比較ウィンドウは、フォルダー比較の結果を表示します。二つの異なる"
+"ビューが使用できます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term><indexterm><primary>
 #: English/Compare_dirs.xml:166
@@ -1870,6 +1923,8 @@ msgid ""
 "In tabular view, each file or folder in the result is listed in a row. This "
 "is the default view. Here's an example:"
 msgstr ""
+"テーブルビューでは、ファイルやフォルダーは、それぞれが行に表示されます。これ"
+"は、デフォルトのビューです。ここに例を示します。"
 
 #. type: Content of: <article><section><mediaobject>
 #: English/Compare_dirs.xml:174 English/Quick_start.xml:255
@@ -1900,6 +1955,9 @@ msgid ""
 "and subfolders. The tree view is available only in recursive compares. For "
 "example:"
 msgstr ""
+"ツリービューでは、フォルダーは含んでいるファイルやサブフォルダーを、展開した"
+"り畳んだりできます。ツリービューは、再帰比較(サブフォルダーを含む)モードでの"
+"み有効です。例えば、"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><mediaobject>
 #: English/Compare_dirs.xml:194
@@ -1914,6 +1972,9 @@ msgid ""
 "To expand or collapse a single folder, click the plus or minus control "
 "beside the folder icon, or double-click anywhere in the row."
 msgstr ""
+"単独のフォルダーを展開したり、折り畳んだりするには、フォルダーアイコンの隣に"
+"ある、プラス、または、マイナス記号をクリックするか、行のどこかをダブルクリッ"
+"クしてください。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:209
@@ -1924,6 +1985,11 @@ msgid ""
 "<guimenu>View</guimenu> <guimenuitem>Collapse All Subfolders</guimenuitem> </"
 "menuchoice> in the menu."
 msgstr ""
+"ビュー内のすべてのフォルダーを展開、または、折りたたむには、メニューの"
+"<menuchoice><guimenu>表示</guimenu><guimenuitem>サブフォルダーの展開</"
+"guimenuitem><guimenuitem>すべてのサブフォルダー</guimenuitem></menuchoice>を"
+"クリック、または、<menuchoice><guimenu>表示</guimenu><guimenuitem>すべてのサ"
+"ブフォルダーを折りたたむ</guimenuitem></menuchoice>をクリックしてください。"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:226
@@ -1936,6 +2002,12 @@ msgid ""
 "Mode</guimenuitem> </menuchoice> command is disabled for non-recursive "
 "compares."
 msgstr ""
+"再帰的に比較している間に、(ファイルまたはフォルダーの選択ダイアログで、"
+"<option>サブフォルダーを含む</option>オプションを有効にした場合)、"
+"<menuchoice><guimenu>表示</guimenu><guimenuitem>ツリー表示</guimenuitem></"
+"menuchoice>をクリックして、二つのビューを切り替えることができます。"
+"<menuchoice><guimenu>表示</guimenu><guimenuitem>ツリー表示</guimenuitem></"
+"menuchoice>コマンドは、非再帰比較モードでは無効です。"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:238
@@ -1944,16 +2016,19 @@ msgid ""
 "item. You can control the sorting of items in the view by clicking a column "
 "heading. This changes the sorting in two ways:"
 msgstr ""
+"両方のビューで、列はそれぞれの結果項目に対して、異なるタイプのデータを表示し"
+"ます。ビューで、列ヘッダをクリックすることで、項目のソート順を操作できます。"
+"ソート順を変更するには、二つの方法があります。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:244
 msgid "Toggles (reverses) the sort order of the column."
-msgstr ""
+msgstr "列のソート順をトグル(反対に)する。"
 
 #. type: Content of: <article><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:248
 msgid "Resorts all the rows in the view by the column."
-msgstr ""
+msgstr "その列によって、ビュー中の全行を再ソートする。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_dirs.xml:256 English/Compare_dirs.xml:260
@@ -1971,6 +2046,8 @@ msgid ""
 "Recursive and nonrecursive compare results<placeholder type=\"indexterm\" "
 "id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
+"再帰的と非再帰的比較結果<placeholder type=\"indexterm\" id=\"0\"/"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:263
@@ -1978,6 +2055,8 @@ msgid ""
 "The Folder Compare window looks and behaves slightly differently for "
 "recursive and nonrecursive compares:"
 msgstr ""
+"フォルダー比較ウィンドウは、再帰比較モードと非再帰比較モードで、見た目と挙動"
+"が少しばかり異なります。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:268
@@ -1998,6 +2077,15 @@ msgid ""
 "Unique Files </guimenuitem> or <guimenuitem>Show Right Unique Files</"
 "guimenuitem>, is enabled."
 msgstr ""
+"比較結果は、すべてのサブフォルダーが含まれています。<guimenu>表示</guimenu>メ"
+"ニューのオプションによって、フォルダーに含まれる項目のうち、表示される項目の"
+"タイプをコントロールできます(例えば、<guimenuitem>同一項目の表示</"
+"guimenuitem>)。 フォルダー列は、常に空で、フォルダーの中にあるファイルだけが"
+"表示されています。一つの項目のサブフォルダーを見て、比較結果列の項目のパスを"
+"見てください。<guimenu>表示</guimenu>メニューの、<guimenuitem>左側のみに存在"
+"する項目の表示</guimenuitem>、<guimenuitem>中央のみに存在する項目の表示</"
+"guimenuitem>、または、<guimenuitem>右側のみに存在する項目の表示</guimenuitem>"
+"が有効になっている場合、片方だけに存在するフォルダーが表示されます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:286
@@ -2011,16 +2099,19 @@ msgid ""
 "selected folders. However, you can browse to any subfolder that you want to "
 "compare."
 msgstr ""
+"結果は、選択されたフォルダーのファイルと、最上位のサブフォルダーのみを含んで"
+"います。しかしながら、いくつかのサブフォルダーを比較したいなら、それらをブラ"
+"ウズすることができます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:299
 msgid "icons"
-msgstr ""
+msgstr "アイコン"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:298
 msgid "File and folder icons<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ファイル・フォルダーアイコン<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:304
@@ -2029,6 +2120,9 @@ msgid ""
 "into several categories. In each row, the category is clearly identified in "
 "the left column with one of these icons:"
 msgstr ""
+"フォルダー比較ウィンドウの中で、ファイルとフォルダーは比較され、いくつかのカ"
+"テゴリに分類されます。カテゴリは、各行の左側の列で、これらのアイコンのうちの"
+"一つにより明確に識別されます。"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:310
@@ -2041,6 +2135,7 @@ msgstr ""
 #: English/Compare_dirs.xml:309
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Identical text files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 同一のテキストファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:317
@@ -2054,6 +2149,7 @@ msgstr ""
 msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Identical binary files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 同一のバイナリファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:324
@@ -2068,6 +2164,8 @@ msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Identical files (type "
 "undetermined)"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 同一のファイル(タイプ未確"
+"定)"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:331
@@ -2080,6 +2178,7 @@ msgstr ""
 #: English/Compare_dirs.xml:330
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Different text files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 異なるテキストファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:338
@@ -2093,6 +2192,7 @@ msgstr ""
 msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Different binary files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 異なるバイナリファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:345
@@ -2107,6 +2207,8 @@ msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Different files (type "
 "undetermined)"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 異なるファイル(タイプ未確"
+"定)"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:352
@@ -2121,6 +2223,8 @@ msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Identical folders (in "
 "tree view only)"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 同一のフォルダー(ツリー"
+"ビューのみ)"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:359
@@ -2135,6 +2239,8 @@ msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Different folders (in "
 "tree view only)"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 異なるフォルダー(ツリー"
+"ビューのみ)"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:366
@@ -2147,6 +2253,7 @@ msgstr ""
 #: English/Compare_dirs.xml:365
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Left-only folders"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 左のみに存在するフォルダー"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:373
@@ -2159,6 +2266,8 @@ msgstr ""
 #: English/Compare_dirs.xml:372
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Middle-only folders"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 中央のみに存在するフォル"
+"ダー"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:380
@@ -2171,6 +2280,7 @@ msgstr ""
 #: English/Compare_dirs.xml:379
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Right-only folders"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 右のみに存在するフォルダー"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:387
@@ -2183,6 +2293,7 @@ msgstr ""
 #: English/Compare_dirs.xml:386
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Left-only files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 左のみに存在するファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:394
@@ -2195,6 +2306,7 @@ msgstr ""
 #: English/Compare_dirs.xml:393
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Middle-only files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 中央のみに存在するファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:401
@@ -2207,6 +2319,7 @@ msgstr ""
 #: English/Compare_dirs.xml:400
 msgid "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Right-only files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 右のみに存在するファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:408
@@ -2221,6 +2334,8 @@ msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Skipped (filtered) "
 "directories"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> スキップ(フィルター)された"
+"フォルダー"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:415
@@ -2234,6 +2349,8 @@ msgstr ""
 msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Skipped (filtered) files"
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> スキップ(フィルター)された"
+"ファイル"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:422
@@ -2248,6 +2365,8 @@ msgid ""
 "<placeholder type=\"inlinemediaobject\" id=\"0\"/> Items that can't be "
 "compared; for example when another program has locked the file."
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 比較できなかった項目。例え"
+"ば、ファイルが他のプログラムにロックされていたなど。"
 
 #. type: Content of: <article><section><section><simplelist><member><inlinemediaobject>
 #: English/Compare_dirs.xml:430
@@ -2263,11 +2382,13 @@ msgid ""
 "did not finish comparing this item when the compare was stopped. The result "
 "is unknown."
 msgstr ""
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> 中断された項目。WinMerge"
+"は、比較が中止された時に、この項目の比較を終了していなかった。結果は不明。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:440
 msgid "Navigating the Folder Compare window"
-msgstr ""
+msgstr "フォルダー比較ウインドウの操作"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:443 English/Compare_files.xml:1138
@@ -2302,12 +2423,19 @@ msgid ""
 "type=\"inlinemediaobject\" id=\"0\"/> <guimenuitem>Next Difference</"
 "guimenuitem> button finds the next different file or folder and selects it."
 msgstr ""
+"<link linkend=\"Shortcut_keys\">キーボード</link>と同様にマウスを使用して、"
+"フォルダー比較ウィンドウをコンテキストメニューでナビゲートできます。例えば、"
+"<placeholder type=\"inlinemediaobject\" id=\"0\"/> <guimenuitem>次の差異</"
+"guimenuitem>ボタンは、ファイル、または、フォルダーの次の差異を見つけ、選択し"
+"ます。"
 
 #. type: Content of: <article><section><section><note><para>
 #: English/Compare_dirs.xml:463
 msgid ""
 "Unique files and folders are navigated in the same way as different ones."
 msgstr ""
+"ユニークなファイルやフォルダーは、異なるそれと同様の方法でナビゲートされま"
+"す。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:467
@@ -2315,6 +2443,8 @@ msgid ""
 "You can select multiple files and folders. However, some operations (like "
 "<command>Rename</command>) are not available with multiple selections."
 msgstr ""
+"複数のファイルやフォルダーを選択することができます。しかしながら、いくつかの"
+"操作(<command>リネーム</command>など)は、複数選択時は無効です。"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:471
@@ -2324,6 +2454,10 @@ msgid ""
 "differences in the compared files. Use WinMerge functions to merge contents "
 "by copying, moving, or delete one or more files or subfolders."
 msgstr ""
+"ナビゲーションボタンを使って、比較されたファイル中の差異を(<guibutton>次の差"
+"異</guibutton>, <guibutton>前の差異</guibutton>など)横断してください。"
+"WinMergeの機能を使って、ファイルやサブフォルダーをマージ、コピー、移動、また"
+"は、削除してください。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Compare_dirs.xml:481 English/Compare_dirs.xml:487
@@ -2336,6 +2470,8 @@ msgid ""
 "File operations in Folder Compare<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
+"フォルダー比較のファイル操作<placeholder type=\"indexterm\" id=\"0\"/"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:490
@@ -2346,6 +2482,11 @@ msgid ""
 "special WinMerge functions to merge the contents of folders. You can also "
 "open files using associated programs or external editors."
 msgstr ""
+"フォルダー比較ウィンドウは、編集、コピー、削除、移動やリネームなど、ファイル"
+"に対する一般的な操作をサポートしています (移動は、コピーして削除するのと等価"
+"です)。 これらのファイル操作と、フォルダーコンテンツのマージなど、 幾つかの特"
+"別なWinMergeの機能を使用することができます。 ファイルを、関連付られたプログラ"
+"ム、または、外部エディターで開くこともできます。"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_dirs.xml:496
@@ -2354,16 +2495,18 @@ msgid ""
 "or more items and use the context menu, where all file operations are "
 "available."
 msgstr ""
+"これらのタスクを実行するための最も手近な方法は、一つか複数の項目を右クリック"
+"して、すべてのファイル操作が有効なコンテキストメニューを使うことです。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:502
 msgid "copying files"
-msgstr ""
+msgstr "ファイルのコピー"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:501
 msgid "Copying files<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ファイルのコピー<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:507
@@ -2374,11 +2517,16 @@ msgid ""
 "files is of no use in merging. The copy functions are available in the "
 "context menu, in the WinMerge menu, and in the toolbar:"
 msgstr ""
+"フォルダー比較ウィンドウ中で最も一般的なファイル操作は、左右にファイルをコ"
+"ピーすることです。WinMergeのコピー機能には、幾つかの形があります。同一ファイ"
+"ルのコピーはマージにおいて使用しないので、異なるファイルのみをすべてコピーす"
+"る。このコピー機能は、コンテキストメニュー、WinMergeメニュー、そしてツール"
+"バーで有効です。"
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Compare_dirs.xml:515
 msgid "Context menu Copy shortcuts"
-msgstr ""
+msgstr "コンテキストメニューの[コピー]メニュー項目"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_dirs.xml:517
@@ -2386,6 +2534,8 @@ msgid ""
 "In the Folder Compare window's context menu, the <guimenuitem>Copy</"
 "guimenuitem> item has a submenu with four shortcuts:"
 msgstr ""
+"フォルダー比較ウィンドウのコンテキストメニューで、<guimenuitem>コピー</"
+"guimenuitem>は、4つのショートカットを含んだサブメニュー項目です。"
 
 #. type: Content of: <article><section><section><section><mediaobject>
 #: English/Compare_dirs.xml:522
@@ -2410,6 +2560,12 @@ msgid ""
 "available only if any of the files you select is different: if you select "
 "only identical files, the shortcuts are unavailable."
 msgstr ""
+"<guimenuitem>左から右</guimenuitem>と<guimenuitem>右を左に</guimenuitem>は、"
+"一方から他方へ選択項目をコピーします。例の中で、後ろの<guilabel>(2 of 4)</"
+"guilabel>は、コピーされる項目の内、2ファイルに差異があるということを示してい"
+"ます(同一のファイルはコピーされません)。これらのショートカットは、差異のある"
+"ファイルを選択した場合にのみ有効です。ですので、同一のファイルだけを選択した"
+"場合、このショートカットは無効になっています。"
 
 #. type: Content of: <article><section><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:545
@@ -2420,6 +2576,11 @@ msgid ""
 "navigate to the target directory on your system (or create a new target "
 "folder) and click <guibutton>OK</guibutton>."
 msgstr ""
+"<guimenuitem>左を...</guimenuitem>と<guimenuitem>右を...</guimenuitem>で、比"
+"較フォルダーの代わりに、システム中のコピー先フォルダーを指定することができま"
+"す。フォルダーダイアログが開くので、お使いのシステム中のフォルダーを選択(また"
+"は、フォルダーを新規作成)し、<guibutton>OK</guibutton>をクリックしてくださ"
+"い。"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_dirs.xml:553
@@ -2438,7 +2599,7 @@ msgstr ""
 #. type: Content of: <article><section><section><section><title>
 #: English/Compare_dirs.xml:571
 msgid "Toolbar and menu Copy commands"
-msgstr ""
+msgstr "ツールバーと[コピー]メニューコマンド"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
 #: English/Compare_dirs.xml:574 English/Compare_files.xml:1576
@@ -2452,7 +2613,7 @@ msgstr ""
 #: English/Compare_dirs.xml:580 English/Compare_files.xml:1582
 #: English/Intro_diffs.xml:332
 msgid "Copy Right button"
-msgstr ""
+msgstr "右へコピーボタン"
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject>
 #: English/Compare_dirs.xml:584 English/Compare_files.xml:1608
@@ -2466,7 +2627,7 @@ msgstr ""
 #: English/Compare_dirs.xml:590 English/Compare_files.xml:1614
 #: English/Intro_diffs.xml:366
 msgid "Copy Left button"
-msgstr ""
+msgstr "左へコピーボタン"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_dirs.xml:573
@@ -2481,6 +2642,14 @@ msgid ""
 "display a confirmation dialog where you can check a list of source and "
 "target file paths."
 msgstr ""
+"フォルダー比較ツールバーの、<placeholder type=\"inlinemediaobject\" id=\"0\"/"
+"> <guibutton>右へコピー</guibutton>と<placeholder type=\"inlinemediaobject\" "
+"id=\"1\"/> <guibutton>左へコピー</guibutton>は、コンテキストメニューの"
+"<guimenuitem>左から右</guimenuitem>と<guimenuitem>右を左に</guimenuitem>と同"
+"じ働きをします。これは、they copy from side to side only files that are "
+"valid to copy. しかしながら、これらのコマンドは、コピーされるファイル数を直接"
+"表示しません。その代わり、コピー元とコピー先をチェックできる確認ダイアログを"
+"表示します。"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Compare_dirs.xml:600
@@ -2490,16 +2659,20 @@ msgid ""
 "<guimenu>Merge</guimenu> <guimenuitem>Copy to Left</guimenuitem> </"
 "menuchoice> behave the same way as the toolbar Copy commands."
 msgstr ""
+"WinMergeメニューの、<menuchoice><guimenu>マージ</guimenu><guimenuitem>右にコ"
+"ピー</guimenuitem></menuchoice>と<menuchoice><guimenu>マージ</"
+"guimenu><guimenuitem>左にコピー</guimenuitem></menuchoice>は、ツールバーのコ"
+"ピーコマンドと同じ動作をします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:614 English/Configuration.xml:1650
 msgid "deleting files"
-msgstr ""
+msgstr "ファイルの削除"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:613
 msgid "Deleting files<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ファイルの削除<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:619
@@ -2510,6 +2683,11 @@ msgid ""
 "guimenuitem>, <guimenuitem>Middle</guimenuitem>, <guimenuitem>Right</"
 "guimenuitem>, and <guimenuitem>All</guimenuitem> shortcuts."
 msgstr ""
+"コンテキストメニューの<guimenuitem>削除</guimenuitem>を使って、どちらか一方、"
+"または、両側の選択されたアイテムを削除できます。その他のファイル操作と同様"
+"に、<guimenuitem>削除</guimenuitem>は、<guimenuitem>左側</guimenuitem>、"
+"<guimenuitem>中央</guimenuitem>と<guimenuitem>右</guimenuitem>、そして"
+"<guimenuitem>両側</guimenuitem>というサブメニューを持っています。"
 
 #. type: Content of: <article><section><section><warning><para>
 #: English/Compare_dirs.xml:627
@@ -2522,16 +2700,23 @@ msgid ""
 "deletion unless you use both the WinMerge <guilabel>Send deleted files into "
 "Recycle Bin</guilabel> option and the Windows Recycle Bin!"
 msgstr ""
+"<guilabel>削除されたファイルをゴミ箱に移動する</guilabel>オプションを有効にし"
+"たままにすることをオススメします。 <xref linkend=\"Configuration\" />)を参照"
+"してください。アクシデントが起きた場合、削除をアンドゥすることができます。さ"
+"らに、ゴミ箱は有効にしておくべきです。Windows上で、ゴミ箱を無効にした場合、"
+"WinMergeのオプションは働きません。もう一度。WinMergeの<guilabel>削除された"
+"ファイルをゴミ箱に移動する</guilabel>オプションとWindowsのゴミ箱の両方を使用"
+"しない限り、ファイル、または、フォルダーの削除のアンドゥはできません！"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:640
 msgid "renaming files"
-msgstr ""
+msgstr "ファイル名の変更"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:639
 msgid "Renaming files<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ファイル名の変更<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:645
@@ -2543,16 +2728,23 @@ msgid ""
 "changes items in both or all three sides: it is not currently possible to "
 "rename an item on just one side."
 msgstr ""
+"ファイル、または、フォルダーをリネームするには、コンテキストメニューの"
+"<guimenuitem>名前を変更</guimenuitem>、または、<keycap>F2</keycap>キーを押下"
+"してください。エディットボックス内で<keycap>Return</keycap>キーを押下すると、"
+"名前を変更します。また、<keycap>Esc</keycap>キーを押下するとキャンセルしま"
+"す。一つのファイル、または、フォルダーをリネームできます。リネームは、両側(ま"
+"たは3つすべて)のアイテムを変更することに注意してください。現在、片側のアイテ"
+"ムだけのリネームはできません。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:655
 msgid "opening files"
-msgstr ""
+msgstr "ファイルを開く"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:654
 msgid "Opening files<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ファイルを開く<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:660
@@ -2562,6 +2754,11 @@ msgid ""
 "guimenuitem>, depending on which side you want to operate on. Each "
 "<guimenuitem>Open</guimenuitem> menu item has a submenu with these shortcuts:"
 msgstr ""
+"コンテキストメニューの、<guimenuitem>左側を開く</guimenuitem>、<guimenuitem>"
+"中央を開く</guimenuitem>と<guimenuitem>右側を開く</guimenuitem>のどちらかを使"
+"用して、アイテムを操作することができます。それぞれの<guimenuitem>開く</"
+"guimenuitem>メニューは、いくつかのショートカットを含んだ、サブメニューを持っ"
+"ています。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:668
@@ -2574,11 +2771,15 @@ msgid ""
 "Opens the file with the application (if any) that is registered in Windows "
 "for the file's type."
 msgstr ""
+"Windowsで登録されているファイルタイプに対応したアプリケーションで、ファイルを"
+"開きます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><tip><para>
 #: English/Compare_dirs.xml:675
 msgid "This shortcut usually opens a folder in a new Windows Explorer."
 msgstr ""
+"このショートカットは、いつも新しいWindowsエクスプローラーでフォルダーを開きま"
+"す。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:683
@@ -2591,6 +2792,8 @@ msgid ""
 "Opens the file with an external editor. The default editor is Notepad, but "
 "you can configure a different one in WinMerge options."
 msgstr ""
+"外部エディターでファイルを開くデフォルトエディターはメモ帳ですが、WinMergeの"
+"オプションで、別のエディターを設定することがきます。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:693
@@ -2603,6 +2806,8 @@ msgid ""
 "Opens the <guilabel>Open With</guilabel> dialog, where you can specify an "
 "application to open your file with."
 msgstr ""
+"<guilabel>Open With</guilabel>ダイアログを開き、指定したアプリケーションで"
+"ファイルを開くことができます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:705
@@ -2625,6 +2830,8 @@ msgid ""
 "Copying pathnames or filenames<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/>"
 msgstr ""
+"パス名やファイル名のコピー<placeholder type=\"indexterm\" id=\"0\"/"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:714
@@ -2635,6 +2842,11 @@ msgid ""
 "copied information into a file or application, for example to create a list "
 "of changed files or a change log."
 msgstr ""
+"コンテキストメニュー<guimenuitem>パス名をコピー</guimenuitem>と<guimenuitem>"
+"ファイル名をコピー</guimenuitem>ショートカットは、選択されたアイテムのパス"
+"名、または、ファイル名をWindowsのクリップボードへコピーします。さらに、コピー"
+"された情報を、ファイル、または、アプリケーションへ貼り付けることができます。"
+"例えば、変更されたファイルのリストの作成や、チェンジログなど。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:722
@@ -2643,6 +2855,9 @@ msgid ""
 "similar to other file operations. It copies the full pathnames of one or "
 "more selected items to the clipboard, one per line."
 msgstr ""
+"<guimenuitem>パス名をコピー</guimenuitem>は、他のファイル操作と同じような、3"
+"つのショートカットを持っています。これは、1つ、または、複数の選択されたアイテ"
+"ムのフルパス名を、1アイテム1行として、クリップボードへコピーします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Compare_dirs.xml:729
@@ -2650,6 +2865,8 @@ msgid ""
 "<guimenuitem>Copy Filenames</guimenuitem> copies only filenames without "
 "paths."
 msgstr ""
+"<guimenuitem>ファイル名をコピー</guimenuitem>は、パスを除いたファイル名だけを"
+"コピーします。"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_dirs.xml:739
@@ -2667,6 +2884,8 @@ msgid ""
 "Protecting files<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 msgstr ""
+"ファイルの保護<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:748
