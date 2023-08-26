@@ -89,7 +89,7 @@ rep="norepeat"><option>/or</option>
 <command>WinMergeU</command> <arg choice="plain"
 rep="norepeat"><replaceable>conflictfile</replaceable></arg></cmdsynopsis>
 
-  <para>パラメーターなしかパス名を入力すると単にWinMergeウインドウを開きます。パラメーターは、スラッシュ( <literal>/</literal> )
+  <para>パラメーターなしかパス名を入力すると単にWinMergeウィンドウを開きます。パラメーターは、スラッシュ( <literal>/</literal> )
 か、ダッシュ ( <literal>-</literal> ) 文字が前に付加されます。パス名にはプリフィックス文字を付加しません。</para>
 
   <variablelist>
@@ -123,7 +123,7 @@ rep="norepeat"><replaceable>conflictfile</replaceable></arg></cmdsynopsis>
 
     <varlistentry>
       <indexterm>
-        <primary>WinMergeウインドウ</primary>
+        <primary>WinMergeウィンドウ</primary>
         <secondary>閉じる</secondary>
       </indexterm>
 
@@ -165,13 +165,13 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
 
     <varlistentry>
       <indexterm>
-        <primary>ウインドウタイプ</primary>
+        <primary>ウィンドウタイプ</primary>
         <secondary>コマンドラインでの適用</secondary>
       </indexterm>
 
       <term><option>/t <replaceable>window-type</replaceable></option></term>
       <listitem>
-        <para>ファイルを表示するウインドウの種類を指定します。次のキーワードが指定できます。 <userinput>Text</userinput>,
+        <para>ファイルを表示するウィンドウの種類を指定します。次のキーワードが指定できます。 <userinput>Text</userinput>,
 <userinput>Table</userinput>, <userinput>Binary</userinput>,
 <userinput>Image</userinput>, <userinput>Webpage</userinput></para>
       </listitem>
@@ -194,21 +194,21 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
 
     <varlistentry>
       <indexterm>
-        <primary>WinMergeウインドウ</primary>
+        <primary>WinMergeウィンドウ</primary>
         <secondary>インスタンス制限</secondary>
       </indexterm>
 
       <term><option>/s</option></term>
       <listitem>
-        <para>WinMergeウインドウを1つのインスタンスに制限します。例えば、WinMergeが既に実行中ならば、新しい比較は同じインスタンス内で実行されます。この引数を指定しなかった場合、複数のウインドウが開かれる可能性があります:
-設定によっては、新しい比較が既に存在するウインドウで実行されることも新しいウインドウで実行されることもあります。</para>
+        <para>WinMergeウィンドウを1つのインスタンスに制限します。例えば、WinMergeが既に実行中ならば、新しい比較は同じインスタンス内で実行されます。この引数を指定しなかった場合、複数のウィンドウが開かれる可能性があります:
+設定によっては、新しい比較が既に存在するウィンドウで実行されることも新しいウィンドウで実行されることもあります。</para>
       </listitem>
     </varlistentry>
 
     <varlistentry>
       <term><option>/sw</option></term>
       <listitem>
-        <para>/s と同様にWinMergeウインドウを1つのインスタンスに制限します。ただし、ウインドウを表示しているインスタンスが終了するまで待機します。</para>
+        <para>/s と同様にWinMergeウィンドウを1つのインスタンスに制限します。ただし、ウインドウを表示しているインスタンスが終了するまで待機します。</para>
       </listitem>
     </varlistentry>
 
@@ -280,7 +280,7 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
     <varlistentry>
       <term><option>/new</option></term>
       <listitem>
-        <para>新規ブランクウインドウを開きます。</para>
+        <para>新規ブランクウィンドウを開きます。</para>
       </listitem>
     </varlistentry>
 
@@ -300,7 +300,7 @@ Devel</userinput>のようなファイルフィルターの名前です。スペ
 
     <varlistentry>
       <indexterm>
-        <primary>WinMergeウインドウ</primary>
+        <primary>WinMergeウィンドウ</primary>
         <secondary>最小化または最大化で開く</secondary>
       </indexterm>
 

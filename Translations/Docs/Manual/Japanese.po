@@ -16704,15 +16704,11 @@ msgstr "yq コマンドを使用して YAMLファイルからデータを抽出�
 
 #. type: Content of: <article><section><section><cmdsynopsis>
 #: English/Plugins.xml:947
-#, fuzzy
-#| msgid ""
-#| "<command>QueryJSON</command> <arg choice=\"opt\" "
-#| "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgid ""
 "<command>QueryYAML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
-"<command>QueryJSON</command> <arg choice=\"opt\" "
+"<command>QueryYAML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>

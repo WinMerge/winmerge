@@ -42,7 +42,7 @@ HTMLヘルプの最初(このトピック)が開かれます。</para>
         <term>状況依存のヘルプ</term>
 
         <listitem>
-          <para>何らかのWinMergeウインドウを使用中に、F1を押してください。現在のウインドウに関するトピックがあれば、そのトピックのヘルプを開きます。
+          <para>何らかのWinMergeウィンドウを使用中に、F1を押してください。現在のウィンドウに関するトピックがあれば、そのトピックのヘルプを開きます。
 もしなければ、最初のトピックを開きます。</para>
         </listitem>
       </varlistentry>
@@ -85,7 +85,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Compare_dirs" /></term>
 
         <listitem>
-          <para>フォルダー比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。</para>
+          <para>フォルダー比較ウィンドウでの可能な操作、結果表示のカスタマイズの仕方を説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -93,7 +93,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Compare_files" /></term>
 
         <listitem>
-          <para>ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードについて説明します。</para>
+          <para>ファイル比較・マージウィンドウでの可能な操作、ナビゲーションの方法、モードについて説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -101,7 +101,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Compare_images" /></term>
 
         <listitem>
-          <para>画像比較・マージウインドウについて説明します。</para>
+          <para>画像比較・マージウィンドウについて説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -109,7 +109,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Compare_bin" /></term>
 
         <listitem>
-          <para>HEX比較・マージウインドウについて説明します。</para>
+          <para>HEX比較・マージウィンドウについて説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -117,7 +117,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Compare_table" /></term>
 
         <listitem>
-          <para>テーブル比較・マージウインドウについて説明します。</para>
+          <para>テーブル比較・マージウィンドウについて説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -125,7 +125,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Compare_webpages" /></term>
 
         <listitem>
-          <para>Webページ比較ウインドウについて説明します。</para>
+          <para>Webページ比較ウィンドウについて説明します。</para>
         </listitem>
       </varlistentry>
 
@@ -161,7 +161,7 @@ url="https://manual.winmerge.org/">Manual</ulink>リンクをたどってくだ�
         <term><xref linkend="Filters" /></term>
 
         <listitem>
-          <para>フォルダーやファイル比較ウインドウで比較される対象を制御する方法を説明します。</para>
+          <para>フォルダーやファイル比較ウィンドウで比較される対象を制御する方法を説明します。</para>
         </listitem>
       </varlistentry>
 
