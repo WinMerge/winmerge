@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2023-08-24 22:21+0900\n"
+"POT-Creation-Date: 2023-08-26 14:14+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2120,7 +2120,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
 #: ./English/Compare_dirs.xml:457 ./English/Compare_files.xml:1213
-#: ./English/Intro_diffs.xml:350
+#: ./English/Intro_diffs.xml:231 ./English/Intro_diffs.xml:350
 msgid "Next Difference button"
 msgstr ""
 
@@ -5037,7 +5037,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
 #: ./English/Compare_files.xml:1328 ./English/Intro_diffs.xml:182
-#: ./English/Intro_diffs.xml:231 ./English/Intro_diffs.xml:307
+#: ./English/Intro_diffs.xml:307
 msgid "Current Difference button"
 msgstr ""
 
@@ -14696,7 +14696,7 @@ msgid "JSON Querier with jq command"
 msgstr ""
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: ./English/Plugins.xml:894 ./English/Plugins.xml:947
+#: ./English/Plugins.xml:894
 msgid ""
 "<command>QueryJSON</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -14715,6 +14715,13 @@ msgstr ""
 #. type: Content of: <article><section><section><para>
 #: ./English/Plugins.xml:944
 msgid "YAML Querier with yq command"
+msgstr ""
+
+#. type: Content of: <article><section><section><cmdsynopsis>
+#: ./English/Plugins.xml:947
+msgid ""
+"<command>QueryYAML</command> <arg choice=\"opt\" "
+"rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
@@ -15260,7 +15267,7 @@ msgid "<option>-v</option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Plugins.xml:1821 ./English/Plugins.xml:1921
+#: ./English/Plugins.xml:1821
 msgid "select non-matching columns"
 msgstr ""
 
@@ -15329,6 +15336,11 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: ./English/Plugins.xml:1907
 msgid "list of line ranges to select. (e.g. -3,5-10,30-)"
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: ./English/Plugins.xml:1921
+msgid "select non-matching lines"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>

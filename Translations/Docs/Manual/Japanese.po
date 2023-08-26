@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-08-24 22:21+0900\n"
-"PO-Revision-Date: 2023-08-26 11:34+0900\n"
+"POT-Creation-Date: 2023-08-26 14:14+0900\n"
+"PO-Revision-Date: 2023-08-26 13:02+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -101,7 +101,7 @@ msgid ""
 "topic is available for your current window, Help opens at that topic. If "
 "not, Help opens at the beginning."
 msgstr ""
-"何らかのWinMergeウインドウを使用中に、F1を押してください。現在のウインドウに"
+"何らかのWinMergeウィンドウを使用中に、F1を押してください。現在のウィンドウに"
 "関するトピックがあれば、そのトピックのヘルプを開きます。 もしなければ、最初の"
 "トピックを開きます。"
 
@@ -168,7 +168,7 @@ msgid ""
 "Explains the folder comparison window, available operations, and customizing "
 "the results display."
 msgstr ""
-"フォルダー比較ウインドウでの可能な操作、結果表示のカスタマイズの仕方を説明し"
+"フォルダー比較ウィンドウでの可能な操作、結果表示のカスタマイズの仕方を説明し"
 "ます。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
@@ -182,7 +182,7 @@ msgid ""
 "Explains the file comparison/merge window, available operations, methods of "
 "navigation, and modes."
 msgstr ""
-"ファイル比較・マージウインドウでの可能な操作、ナビゲーションの方法、モードに"
+"ファイル比較・マージウィンドウでの可能な操作、ナビゲーションの方法、モードに"
 "ついて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
@@ -193,7 +193,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:117
 msgid "Explains the image comparison/merge window."
-msgstr "画像比較・マージウインドウについて説明します。"
+msgstr "画像比較・マージウィンドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:122
@@ -203,7 +203,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:125
 msgid "Explains the hex comparison/merge window."
-msgstr "HEX比較・マージウインドウについて説明します。"
+msgstr "HEX比較・マージウィンドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:130
@@ -213,7 +213,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:133
 msgid "Explains the table comparison/merge window."
-msgstr "テーブル比較・マージウインドウについて説明します。"
+msgstr "テーブル比較・マージウィンドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:138
@@ -223,7 +223,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:141
 msgid "Explains the Web page comparison window."
-msgstr "Webページ比較ウインドウについて説明します。"
+msgstr "Webページ比較ウィンドウについて説明します。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:146
@@ -286,7 +286,7 @@ msgid ""
 "Explains how to control what is compared in the folder or file comparison "
 "window."
 msgstr ""
-"フォルダーやファイル比較ウインドウで比較される対象を制御する方法を説明しま"
+"フォルダーやファイル比較ウィンドウで比較される対象を制御する方法を説明しま"
 "す。"
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
@@ -689,7 +689,7 @@ msgid ""
 "( <literal>/</literal> ) or dash ( <literal>-</literal> ) character. "
 "Pathnames have no prefix character."
 msgstr ""
-"パラメーターなしかパス名を入力すると単にWinMergeウインドウを開きます。パラ"
+"パラメーターなしかパス名を入力すると単にWinMergeウィンドウを開きます。パラ"
 "メーターは、スラッシュ( <literal>/</literal> ) か、ダッシュ ( <literal>-</"
 "literal> ) 文字が前に付加されます。パス名にはプリフィックス文字を付加しませ"
 "ん。"
@@ -758,7 +758,7 @@ msgstr ""
 #: English/Command_line.xml:417 English/Configuration.xml:212
 #: English/Quick_start.xml:22
 msgid "WinMerge window"
-msgstr "WinMergeウインドウ"
+msgstr "WinMergeウィンドウ"
 
 #. type: Content of: <article><variablelist><varlistentry><indexterm><secondary>
 #: English/Command_line.xml:211
@@ -849,7 +849,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><indexterm><primary>
 #: English/Command_line.xml:258
 msgid "window type"
-msgstr "ウインドウタイプ"
+msgstr "ウィンドウタイプ"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:262
@@ -864,7 +864,7 @@ msgid ""
 "<userinput>Binary</userinput>, <userinput>Image</userinput> or "
 "<userinput>Webpage</userinput>."
 msgstr ""
-"ファイルを表示するウインドウの種類を指定します。次のキーワードが指定できま"
+"ファイルを表示するウィンドウの種類を指定します。次のキーワードが指定できま"
 "す。 <userinput>Text</userinput>, <userinput>Table</userinput>, "
 "<userinput>Binary</userinput>, <userinput>Image</userinput>, "
 "<userinput>Webpage</userinput>"
@@ -922,10 +922,10 @@ msgid ""
 "parameter, multiple windows are allowed: depending on other settings, a new "
 "compare might open in the existing window or in a new window."
 msgstr ""
-"WinMergeウインドウを1つのインスタンスに制限します。例えば、WinMergeが既に実行"
+"WinMergeウィンドウを1つのインスタンスに制限します。例えば、WinMergeが既に実行"
 "中ならば、新しい比較は同じインスタンス内で実行されます。この引数を指定しな"
-"かった場合、複数のウインドウが開かれる可能性があります: 設定によっては、新し"
-"い比較が既に存在するウインドウで実行されることも新しいウインドウで実行される"
+"かった場合、複数のウィンドウが開かれる可能性があります: 設定によっては、新し"
+"い比較が既に存在するウィンドウで実行されることも新しいウィンドウで実行される"
 "こともあります。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
@@ -939,7 +939,7 @@ msgid ""
 "Limit the WinMerge window to one instance as well as the option /s.  "
 "However, it waits for the instance displaying the window to terminate."
 msgstr ""
-"/s と同様にWinMergeウインドウを1つのインスタンスに制限します。ただし、ウイン"
+"/s と同様にWinMergeウィンドウを1つのインスタンスに制限します。ただし、ウイン"
 "ドウを表示しているインスタンスが終了するまで待機します。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
@@ -1082,7 +1082,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:397
 msgid "Opens a new blank window."
-msgstr "新規ブランクウインドウを開きます。"
+msgstr "新規ブランクウィンドウを開きます。"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:402
@@ -1796,13 +1796,13 @@ msgstr ""
 #. type: Content of: <article><section><section><mediaobject><textobject><phrase>
 #: English/Compare_dirs.xml:108 English/Compare_dirs.xml:120
 msgid "Folder Compare Progress window"
-msgstr "フォルダー比較状況ウインドウ"
+msgstr "フォルダー比較状況ウィンドウ"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:107
 msgid ""
 "Folder Compare Progress window<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "フォルダー比較状況ウインドウ<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "フォルダー比較状況ウィンドウ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:111
@@ -1865,7 +1865,7 @@ msgstr ""
 #: English/Compare_dirs.xml:1118 English/Compare_dirs.xml:1131
 #: English/Quick_start.xml:243 English/Quick_start.xml:261
 msgid "Folder Compare window"
-msgstr "フォルダー比較ウインドウ"
+msgstr "フォルダー比較ウィンドウ"
 
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:149 English/Compare_dirs.xml:151
@@ -1897,7 +1897,7 @@ msgid ""
 "Folder Compare window<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" id=\"2\"/>"
 msgstr ""
-"フォルダー比較ウインドウ<placeholder type=\"indexterm\" id=\"0\"/"
+"フォルダー比較ウィンドウ<placeholder type=\"indexterm\" id=\"0\"/"
 "><placeholder type=\"indexterm\" id=\"1\"/><placeholder type=\"indexterm\" "
 "id=\"2\"/>"
 
@@ -2391,7 +2391,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Compare_dirs.xml:440
 msgid "Navigating the Folder Compare window"
-msgstr "フォルダー比較ウインドウの操作"
+msgstr "フォルダー比較ウィンドウの操作"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_dirs.xml:443 English/Compare_files.xml:1138
@@ -2413,9 +2413,9 @@ msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
 #: English/Compare_dirs.xml:457 English/Compare_files.xml:1213
-#: English/Intro_diffs.xml:350
+#: English/Intro_diffs.xml:231 English/Intro_diffs.xml:350
 msgid "Next Difference button"
-msgstr ""
+msgstr "次の差異ボタン"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:448
@@ -3151,7 +3151,7 @@ msgid ""
 "Browsing folders in the Folder Compare window<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
-"ファイル比較ウインドウでフォルダーをブラウズする<placeholder "
+"ファイル比較ウィンドウでフォルダーをブラウズする<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
@@ -3489,7 +3489,7 @@ msgstr ""
 msgid ""
 "Showing and hiding types of files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"ファイルの種類による表示/非表示<placeholdertype=\"indexterm\"id=\"0\"/>"
+"ファイルの種類による表示/非表示<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Compare_dirs.xml:1134
@@ -3928,6 +3928,7 @@ msgstr ""
 msgid ""
 "Comparing and merging text files<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"テキストファイルの比較とマージ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><para>
 #: English/Compare_files.xml:9
@@ -3941,7 +3942,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Compare_files.xml:16
 msgid "Starting a file compare operation"
-msgstr ""
+msgstr "ファイル比較操作を開始する"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_files.xml:18
@@ -3972,7 +3973,7 @@ msgstr ""
 #: English/Compare_files.xml:52 English/Compare_files.xml:1118
 #: English/Quick_start.xml:329 English/Quick_start.xml:341
 msgid "File Compare window"
-msgstr ""
+msgstr "ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Compare_files.xml:58
@@ -3985,7 +3986,7 @@ msgid ""
 "File Compare window<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
-"ファイル比較ウインドウ<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
+"ファイル比較ウィンドウ<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
@@ -4007,7 +4008,7 @@ msgstr ""
 #. type: Content of: <article><section><mediaobject><textobject><phrase>
 #: English/Compare_files.xml:73
 msgid "File Compare Window"
-msgstr "ファイル比較ウインドウ"
+msgstr "ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:79
@@ -5173,7 +5174,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:984
 msgid "Diff pane, File Compare window"
-msgstr "Diff ペイン, ファイル比較ウインドウ"
+msgstr "Diff ペイン, ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_files.xml:983
@@ -5211,7 +5212,7 @@ msgstr "ステータスバー"
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Compare_files.xml:1005
 msgid "for File Compare window"
-msgstr "ファイル比較ウインドウ"
+msgstr "ファイル比較ウィンドウ"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Compare_files.xml:1007 English/Configuration.xml:1327
@@ -5538,7 +5539,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
 #: English/Compare_files.xml:1247
 msgid "Previous Difference button"
-msgstr ""
+msgstr "前の差異ボタン"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1240
@@ -5580,7 +5581,7 @@ msgstr ""
 #: English/Compare_files.xml:1281 English/Intro_diffs.xml:197
 #: English/Intro_diffs.xml:318
 msgid "First Difference button"
-msgstr ""
+msgstr "最初の差異ボタン"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1274
@@ -5632,9 +5633,9 @@ msgstr ""
 
 #. type: Content of: <article><section><section><orderedlist><listitem><para><inlinemediaobject><textobject><phrase>
 #: English/Compare_files.xml:1328 English/Intro_diffs.xml:182
-#: English/Intro_diffs.xml:231 English/Intro_diffs.xml:307
+#: English/Intro_diffs.xml:307
 msgid "Current Difference button"
-msgstr ""
+msgstr "現在の差異ボタン"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1321
@@ -5670,7 +5671,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para><inlinemediaobject><textobject><phrase>
 #: English/Compare_files.xml:1360
 msgid "Last Difference button"
-msgstr ""
+msgstr "最後の差異ボタン"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1353
@@ -5768,7 +5769,7 @@ msgstr ""
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Compare_files.xml:1462 English/Shortcut_keys.xml:149
 msgid "Refresh"
-msgstr ""
+msgstr "表示を更新"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_files.xml:1465
@@ -5848,7 +5849,7 @@ msgstr ""
 #: English/Compare_files.xml:1523 English/Compare_files.xml:1712
 #: English/Compare_files.xml:1791 English/Quick_start.xml:374
 msgid "Refresh button"
-msgstr ""
+msgstr "表示更新ボタン"
 
 #. type: Content of: <article><section><section><important><para>
 #: English/Compare_files.xml:1510
@@ -6256,7 +6257,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Compare_images.xml:16
 msgid "Starting a image compare operation"
-msgstr ""
+msgstr "画像比較操作を開始する"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_images.xml:18
@@ -6286,7 +6287,7 @@ msgstr ""
 #. type: Content of: <article><section><title>
 #: English/Compare_images.xml:51
 msgid "Image Compare window"
-msgstr "画像比較ウインドウ"
+msgstr "画像比較ウィンドウ"
 
 #. type: Content of: <article><section><para>
 #: English/Compare_images.xml:53
@@ -6455,7 +6456,7 @@ msgstr ""
 #: English/Compare_images.xml:163 English/Compare_images.xml:168
 #: English/Shortcut_keys.xml:893
 msgid "Zoom"
-msgstr ""
+msgstr "拡大/縮小"
 
 #. type: Content of: <article><section><section><title>
 #: English/Compare_images.xml:162
@@ -6484,7 +6485,7 @@ msgstr ""
 #. type: Content of: <article><mediaobject><textobject><phrase>
 #: English/Compare_table.xml:5 English/Compare_table.xml:24
 msgid "Comparing in table format"
-msgstr ""
+msgstr "テーブル形式比較"
 
 #. type: Content of: <article><indexterm><secondary>
 #: English/Compare_table.xml:10
@@ -6501,7 +6502,7 @@ msgid ""
 msgstr ""
 "バージョン2.16.8からCSVやTSVなどの区切り値テキストファイルを表計算ソフトのよ"
 "うにテーブル形式で表示し、編集することができるようになりました。 この形式での"
-"編集操作、差異への移動操作、マージ操作は、通常のテキストファイルウインドウと"
+"編集操作、差異への移動操作、マージ操作は、通常のテキストファイルウィンドウと"
 "同じです。"
 
 #. type: Content of: <article><mediaobject>
@@ -6629,7 +6630,7 @@ msgstr "テーブル形式固有の操作"
 #: English/Compare_table.xml:95
 msgid ""
 "Table format-specific operations<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "テーブル形式固有の操作<placeholdertype=\"indexterm\"id=\"0\"/>"
+msgstr "テーブル形式固有の操作<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para><itemizedlist><listitem><para>
 #: English/Compare_table.xml:102
@@ -6667,7 +6668,7 @@ msgstr ""
 #. type: Content of: <article><title>
 #: English/Compare_webpages.xml:5
 msgid "Comparing Web pages"
-msgstr ""
+msgstr "Webページの比較"
 
 #. type: Content of: <article><indexterm><secondary>
 #: English/Compare_webpages.xml:9
@@ -6718,9 +6719,9 @@ msgid ""
 "in the toolbar."
 msgstr ""
 "メニューの、<menuchoice><guimenu>編集</guimenu><guimenuitem>設定</"
-"guimenuitem></menuchoice>、または、ツールバー"
-"<placeholdertype=\"inlinemediaobject\"id=\"0\"/><guibutton>設定</guibutton>ボ"
-"タンをクリックしてください。"
+"guimenuitem></menuchoice>、または、ツールバー<placeholder "
+"type=\"inlinemediaobject\" id=\"0\"/><guibutton>設定</guibutton>ボタンをク"
+"リックしてください。"
 
 #. type: Content of: <article><orderedlist><listitem><para>
 #: English/Configuration.xml:27
@@ -6929,7 +6930,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:159
 msgid "closing windows using Esc key"
-msgstr "Escでウインドウを閉じる"
+msgstr "Escでウィンドウを閉じる"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:158
@@ -6937,7 +6938,7 @@ msgid ""
 "Close Windows with '<keycap>Esc</keycap>'<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 msgstr ""
-"'<keycap>Esc</keycap>'でウインドウを閉じる<placeholder type=\"indexterm\" "
+"'<keycap>Esc</keycap>'でウィンドウを閉じる<placeholder type=\"indexterm\" "
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -6949,7 +6950,7 @@ msgid ""
 "takes three key presses to close WinMerge: first the File Compare window, "
 "then the Folder Compare window, and finally the WinMerge window."
 msgstr ""
-"<option>MDI子ウインドウまたはメインウインドウ</option>(デフォルト):"
+"<option>MDI子ウィンドウまたはメインウィンドウ</option>(デフォルト):"
 "<keycap>Esc</keycap>キーでWinMergeウィンドウを閉じられるようにします。"
 "<keycap>Esc</keycap>を一度押下すると一つのウィンドウを閉じます。つまり、もう"
 "一つファイル比較ウィンドウが開いていた場合、WinMergeを終了するためには、キー"
@@ -6972,8 +6973,8 @@ msgid ""
 "<option>MDI child window only</option>: Pressing <keycap>Esc</keycap> closes "
 "a child window, but not the last remaining main window."
 msgstr ""
-"<option>MDI子ウインドウのみ</option>: <keycap>Esc</keycap>を押下すると 子ウイ"
-"ンドウは閉じますが、最後に残ったメインウインドウは閉じません。"
+"<option>MDI子ウィンドウのみ</option>: <keycap>Esc</keycap>を押下すると 子ウイ"
+"ンドウは閉じますが、最後に残ったメインウィンドウは閉じません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:182
@@ -7020,7 +7021,8 @@ msgstr ""
 #: English/Configuration.xml:211
 msgid ""
 "Allow only one instance to run<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "複数のインスタンスを起動しない<placeholdertype=\"indexterm\"id=\"0\"/>"
+msgstr ""
+"複数のインスタンスを起動しない<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:219
@@ -7059,7 +7061,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:247
 msgid "Ask when closing multiple windows"
-msgstr "複数のウインドウを閉じるときに尋ねる"
+msgstr "複数のウィンドウを閉じるときに尋ねる"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:251
@@ -7096,7 +7098,7 @@ msgstr ""
 msgid ""
 "Preserve file time in file compare<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"ファイル比較時のファイル時刻を保つ<placeholdertype=\"indexterm\"id=\"0\"/>"
+"ファイル比較時のファイル時刻を保つ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:273
@@ -7120,7 +7122,7 @@ msgstr ""
 #: English/Configuration.xml:287 English/Configuration.xml:311
 #: English/Open_paths.xml:38 English/Quick_start.xml:75
 msgid "Select Files or Folders dialog"
-msgstr ""
+msgstr "ファイルまたはフォルダーの選択ダイアログ"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:289
@@ -7253,7 +7255,7 @@ msgid ""
 "this time.  If you do not want to see this message box, check \"Don't ask "
 "this question again\" and press the Yes button."
 msgstr ""
-"<guilabel>ウインドウがアクティブになった時のみ</guilabel>: WinMergeのウインド"
+"<guilabel>ウィンドウがアクティブになった時のみ</guilabel>: WinMergeのウインド"
 "ウがアクティブになった時、 もしファイルが変更されていれば、ファイルを再読み込"
 "みします。 ただし、この時ファイルを開きなおすか問い合わせるメッセージボックス"
 "が表示されます。 このメッセージボックスを表示したくない場合は、「再びこの質問"
@@ -7458,6 +7460,9 @@ msgid ""
 "<option>View line differences</option> is enabled. This is in contrast to "
 "difference blocks, which are always highlighted."
 msgstr ""
+"行内のホワイトスペースの変更の影響は、<option>行内差異を表示する</option>が有"
+"効にされている時だけ見ることができます。 これは、差異ブロックとは対照的に、常"
+"にハイライトされます。"
 
 #. type: Content of: <article><section><section><example><title>
 #: English/Configuration.xml:486
@@ -7600,8 +7605,8 @@ msgid ""
 "detected and represented in the File Compare window as blank lines with the "
 "Deleted Difference colors."
 msgstr ""
-"<option>無効</option>(デフォルト): ソースファイル中の空行は、 ファイル比較"
-"ウィンドウ中で、 「差異あり: 削除」の色の空行で表されされます。"
+"<option>無効</option>(デフォルト): ソースファイル中の空行は、 ファイル比較ウ"
+"インドウ中で、 「差異あり: 削除」の色の空行で表されされます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:562
@@ -8048,7 +8053,7 @@ msgstr ""
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:856
 msgid "Size<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "サイズ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:863
@@ -8178,8 +8183,8 @@ msgstr ""
 msgid ""
 "Include unique subfolders contents<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"片方にしか存在しないフォルダー内も含める"
-"<placeholdertype=\"indexterm\"id=\"0\"/>"
+"片方にしか存在しないフォルダー内も含める<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:947
@@ -8271,7 +8276,7 @@ msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Configuration.xml:1010
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "同一のサブフォルダーを展開"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
 #: English/Configuration.xml:1013
@@ -8571,7 +8576,7 @@ msgstr "エディターページ<placeholder type=\"indexterm\" id=\"0\"/>"
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Configuration.xml:1230 English/Configuration.xml:1528
 msgid "syntax highlighting"
-msgstr "シンタックスハイライ"
+msgstr "シンタックスハイライト"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Configuration.xml:1232
@@ -9164,7 +9169,8 @@ msgstr "システムページ"
 msgid ""
 "Send deleted files to Recycle Bin<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"削除されたファイルをゴミ箱に移動する<placeholdertype=\"indexterm\"id=\"0\"/>"
+"削除されたファイルをゴミ箱に移動する<placeholder type=\"indexterm\" id=\"0\"/"
+">"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1657
@@ -9303,6 +9309,8 @@ msgid ""
 "Specify the folder where WinMerge stores temporary files. Either one of "
 "these options is available:"
 msgstr ""
+"WinMerge が、一時ファイルを保存するフォルダーを指定してください。次のうち、何"
+"れか1つが有効です:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1735
@@ -9661,7 +9669,7 @@ msgstr "シェル統合ページ"
 #: English/Install.xml:190 English/Install.xml:353
 #: English/Version_control.xml:4
 msgid "integration"
-msgstr ""
+msgstr "統合"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Configuration.xml:1953 English/Install.xml:192
@@ -9725,6 +9733,8 @@ msgid ""
 "<option>Disabled</option> (default): Removes <guimenuitem>Compare As</"
 "guimenuitem> menu item from Explorer context menu."
 msgstr ""
+"<option>無効</option>(デフォルト): <guimenuitem>形式を指定して比較</"
+"guimenuitem>メニューをエクスプローラーのコンテキストメニューから削除します。"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><itemizedlist><listitem><para>
 #: English/Configuration.xml:1998
@@ -9935,7 +9945,7 @@ msgstr "WinMergeでOpenOfficeのファイルを開く"
 msgid ""
 "Can WinMerge open OpenOffice files?<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"OpenOfficeのファイルは比較できる?<placeholdertype=\"indexterm\"id=\"0\"/>"
+"OpenOfficeのファイルは比較できる?<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:133
@@ -10078,7 +10088,7 @@ msgstr ""
 #. type: Content of: <article><section><qandaset><qandaentry><question><para>
 #: English/Faq.xml:251
 msgid "Can I print files from the File panes in the Compare Files window?"
-msgstr "ファイル比較ウインドウのファイルペインからファイルを印刷できる?"
+msgstr "ファイル比較ウィンドウのファイルペインからファイルを印刷できる?"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:256
@@ -10178,13 +10188,13 @@ msgstr "これらのうち、どれか一つを含むバッチファイルを作
 #: English/Faq.xml:333
 #, no-wrap
 msgid "CALL \"<replaceable>&lt;winmerge path&gt;\\WinMerge</replaceable>\" /e /u %1 %2 %3"
-msgstr ""
+msgstr "CALL \"<replaceable>&lt;winmerge path&gt;\\WinMerge</replaceable>\" /e /u %1 %2 %3"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><itemizedlist><listitem><screen>
 #: English/Faq.xml:337
 #, no-wrap
 msgid "start \"WinMerge\" \"<replaceable>&lt;winmerge path&gt;</replaceable>\" /e /u %1 %2 %3"
-msgstr ""
+msgstr "start \"WinMerge\" \"<replaceable>&lt;winmerge path&gt;</replaceable>\" /e /u %1 %2 %3"
 
 #. type: Content of: <article><section><qandaset><qandaentry><answer><para>
 #: English/Faq.xml:341
@@ -10393,7 +10403,7 @@ msgstr ""
 #: English/Filters.xml:219 English/Filters.xml:263 English/Filters.xml:352
 #: English/Filters.xml:843 English/Filters.xml:1042
 msgid "file filters"
-msgstr ""
+msgstr "ファイルフィルター"
 
 #. type: Content of: <article><section><section><title><indexterm><secondary>
 #: English/Filters.xml:8 English/Filters.xml:86 English/Filters.xml:90
@@ -10465,6 +10475,10 @@ msgid ""
 "the type of filter, the item is either included or excluded in the "
 "comparison."
 msgstr ""
+"フィルターの基本機能はシンプルです。 通常比較されるであろう、それぞれのアイテ"
+"ム(フォルダー、ファイル、ファイル中の行)を評価し、 対象のアイテムがフィルター"
+"式にマッチした場合、フィルターを適用します。 フィルタータイプにより、アイテム"
+"は、比較に含められるか、除外されるかのどちらかです。"
 
 #. type: Content of: <article><para>
 #: English/Filters.xml:37
@@ -10543,6 +10557,10 @@ msgid ""
 "them, and ignore the diff block if the replacement results match.  They are "
 "useful for ignoring large numbers of uninteresting changes."
 msgstr ""
+"置換フィルターは、ファイル比較操作のみに適用されます。 置換フィルターは、diff"
+"ブロック内の文字列を指定された文字列に置換して比較し、 結果が一致する場合はそ"
+"のdiffブロックを無視します。 これは、興味のない多数の変更を無視するのに役立ち"
+"ます。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Filters.xml:94 English/Filters.xml:193
@@ -10578,7 +10596,7 @@ msgstr "ファイルマスクの適用"
 #: English/Filters.xml:102
 msgid ""
 "Defining and applying file masks<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "ファイルマスクと定義と適用<placeholdertype=\"indexterm\"id=\"0\"/>"
+msgstr "ファイルマスクと定義と適用<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Filters.xml:108
@@ -10725,6 +10743,8 @@ msgid ""
 "Using file filters<placeholder type=\"indexterm\" id=\"0\"/><placeholder "
 "type=\"indexterm\" id=\"1\"/>"
 msgstr ""
+"ファイルフィルターの使用<placeholder type=\"indexterm\" id=\"0\"/"
+"><placeholder type=\"indexterm\" id=\"1\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Filters.xml:196
@@ -11095,6 +11115,12 @@ msgid ""
 "consists of either an <guilabel>f:</guilabel> or a <guilabel>d:</guilabel> "
 "type designator, followed by a reqular expression, where:"
 msgstr ""
+"次に、フィルターファイルは、1つ以上のフィルタールールを含むべきです。 あなた"
+"は、たくさんのルールを好きなだけ追加できます。 1行には1つのルールがあるべき"
+"で、それぞれのルールは、 それぞれ1行にあるべきです(ルール中での改行は許可され"
+"ません)。 (訳注: 回りくどいですが、「ルールは1行で記述してください」というこ"
+"とです。) それぞれのルールは、タイプデザイナー <guilabel>f:</guilabel>か"
+"<guilabel>d:</guilabel>を含み、その後に、正規表現が続きます:"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Filters.xml:431
@@ -11606,6 +11632,8 @@ msgid ""
 "Filters lines beginning with <literal><constant>/*</constant></literal> and "
 "ending with <literal>*/</literal>"
 msgstr ""
+"<literal><constant>/*</constant></literal>で始まり、<literal>*/</literal>で終"
+"わる行をフィルターします"
 
 #. type: Content of: <article><section><section><example><screen>
 #: English/Filters.xml:732
@@ -12048,7 +12076,6 @@ msgstr ""
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><tip><para>
 #: English/Filters.xml:1000
-#, fuzzy
 msgid ""
 "If you want to quickly test a rule that you are defining, try clicking Test "
 "in the Filters dialog. See <xref linkend=\"Filters_TestingDlg\" /> for "
@@ -12317,7 +12344,7 @@ msgstr ""
 #: English/Filters.xml:1167
 msgid ""
 "Enabling and disabling line filters<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "行フィルターの有効化と無効化<placeholdertype=\"indexterm\"id=\"0\"/>"
+msgstr "行フィルターの有効化と無効化<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><section><orderedlist><listitem><para>
 #: English/Filters.xml:1175
@@ -12453,7 +12480,7 @@ msgstr ""
 #. type: Content of: <book><bookinfo><title>
 #: English/Index.xml:31
 msgid "WinMerge &WinMergeVersion; Help"
-msgstr ""
+msgstr "WinMerge &WinMergeVersion; ヘルプ"
 
 #. type: Content of: <book><bookinfo>
 #: English/Index.xml:33
@@ -12567,7 +12594,8 @@ msgstr "WinMergeのインストール"
 msgid ""
 "Getting and installing WinMerge<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"WinMergeのダウンロードとインストール<placeholdertype=\"indexterm\"id=\"0\"/>"
+"WinMergeのダウンロードとインストール<placeholder type=\"indexterm\" id=\"0\"/"
+">"
 
 #. type: Content of: <article><para>
 #: English/Install.xml:7
@@ -12868,7 +12896,7 @@ msgstr "エクスプローラーのコンテキストメニューに追加(E)"
 #. type: Content of: <article><section><title><indexterm><primary>
 #: English/Install.xml:196 English/Install.xml:357 English/Open_paths.xml:150
 msgid "Windows shell integration"
-msgstr ""
+msgstr "Windowsシェル統合"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><listitem><para>
 #: English/Install.xml:199
@@ -12912,7 +12940,7 @@ msgstr "WinMergeを、TortoiseCVSの差分比較ツールに設定します。"
 #: English/Install.xml:227 English/Version_control.xml:65
 #: English/Version_control.xml:74
 msgid "TortoiseSVN integration"
-msgstr ""
+msgstr "TortoiseSVNとの統合"
 
 #. type: Content of: <article><section><orderedlist><listitem><variablelist><varlistentry><term>
 #: English/Install.xml:226
@@ -13710,9 +13738,9 @@ msgid ""
 "guimenuitem> </menuchoice> or <menuchoice> <guimenu>File</guimenu> "
 "<guimenuitem>Save Right</guimenuitem> </menuchoice> to save only one file."
 msgstr ""
-"マージ結果が保たれるようにコントロールしてください。 WinMergeのファイル比較"
-"ウィンドウには、幾つかのマージツールがそうであるように、 分割された結果ペイン"
-"がありません。 最も単純な方策は、片方、または、両方(または3つすべて)のソース"
+"マージ結果が保たれるようにコントロールしてください。 WinMergeのファイル比較ウ"
+"インドウには、幾つかのマージツールがそうであるように、 分割された結果ペインが"
+"ありません。 最も単純な方策は、片方、または、両方(または3つすべて)のソース"
 "ファイルの変更を保存することです。 <keycombo> <keycap>Ctrl</keycap> "
 "<keycap>S</keycap> </keycombo>を押下して、両方のファイルの変更を何度か保存し"
 "てください。 代わりに、<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>"
@@ -13874,7 +13902,7 @@ msgid ""
 "about what version to use, use the latest stable version. Stable versions "
 "have an even last number, for example, 2.14.0, 2.16.2 and 2.16.4."
 msgstr ""
-"<ulinkurl=\"https://sourceforge.net/projects/winmerge/files/stable/\">安定版"
+"<ulink url=\"https://sourceforge.net/projects/winmerge/files/stable/\">安定版"
 "</ulink>は、ほとんどのユーザーに推奨されます。もし、どのバージョンを使えば良"
 "いかわからない場合は、最新の安定版を使用してください。安定版は、最後の数字が"
 "偶数のバージョンです。例えば、2.14.0、2.16.2や2.16.4などです。"
@@ -13920,7 +13948,7 @@ msgstr "バグの報告"
 #: English/Introduction.xml:79
 msgid ""
 "<placeholder type=\"indexterm\" id=\"0\"/>Getting support and reporting bugs"
-msgstr "<placeholdertype=\"indexterm\"id=\"0\"/>サポートとバグの報告"
+msgstr "<placeholder type=\"indexterm\" id=\"0\"/>サポートとバグの報告"
 
 #. type: Content of: <article><section><para>
 #: English/Introduction.xml:85
@@ -14204,7 +14232,7 @@ msgstr "利用可能な言語"
 #: English/Locales.xml:113
 msgid ""
 "Available WinMerge localizations<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "利用可能なWinMergeの言語<placeholdertype=\"indexterm\"id=\"0\"/>"
+msgstr "利用可能なWinMergeの言語<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Locales.xml:117
@@ -14404,7 +14432,7 @@ msgstr ""
 #: English/Locales.xml:268
 msgid ""
 "Reporting errors in translation<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr "翻訳ミスの報告<placeholdertype=\"indexterm\"id=\"0\"/>"
+msgstr "翻訳ミスの報告<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Locales.xml:272
@@ -14457,7 +14485,7 @@ msgstr ""
 #. type: Content of: <article><title>
 #: English/Open_paths.xml:3
 msgid "Opening files and folders<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
+msgstr "ファイルとフォルダーを開く<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><para><indexterm><primary>
 #: English/Open_paths.xml:13
@@ -14497,7 +14525,7 @@ msgstr ""
 msgid ""
 "Select Files or Folders dialog<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
-"ファイル・フォルダー選択-ダイアログ<placeholdertype=\"indexterm\"id=\"0\"/>"
+"ファイル・フォルダー選択-ダイアログ<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><para>
 #: English/Open_paths.xml:41
@@ -15561,7 +15589,7 @@ msgid ""
 "window."
 msgstr ""
 "展開プラグインは、選択されたテキストやファイル内の差分に対してではなく、ファ"
-"イル全体に対して機能します。 したがって、フォルダー比較ウインドウまたはファイ"
+"イル全体に対して機能します。 したがって、フォルダー比較ウィンドウまたはファイ"
 "ルまたは フォルダーの選択ダイアログからファイル比較を起動するときのみ利用可能"
 "です。 展開プラグインはファイル比較ウィンドウでは利用できません。"
 
@@ -15710,7 +15738,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Plugins.xml:140
 msgid "Applying editor complement plugins in the File Compare window"
-msgstr "ファイル比較ウインドウでのエディタースクリプトプラグイン適用"
+msgstr "ファイル比較ウィンドウでのエディタースクリプトプラグイン適用"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:143
@@ -15819,12 +15847,12 @@ msgstr ""
 msgid ""
 "Editor complement plugins are not available in the Folder Compare window."
 msgstr ""
-"エディター補完プラグインは、フォルダー比較ウインドウでは使用できません。"
+"エディター補完プラグインは、フォルダー比較ウィンドウでは使用できません。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Plugins.xml:228
 msgid "Applying unpacker plugins in the Folder Compare window"
-msgstr "フォルダー比較ウインドウでの展開プラグインの適用"
+msgstr "フォルダー比較ウィンドウでの展開プラグインの適用"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:230
@@ -15973,7 +16001,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Plugins.xml:321
 msgid "Applying prediffer plugins in the Folder Compare window"
-msgstr "フォルダー比較ウインドウでの比較前処理プラグインの適用"
+msgstr "フォルダー比較ウィンドウでの比較前処理プラグインの適用"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:323
@@ -16045,7 +16073,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Plugins.xml:361
 msgid "Applying prediffer plugins in the File Compare window"
-msgstr "ファイル比較ウインドウでの比較前処理プラグインの適用"
+msgstr "ファイル比較ウィンドウでの比較前処理プラグインの適用"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:363
@@ -16641,6 +16669,7 @@ msgstr ""
 msgid ""
 "<filename>QueryJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
+"<filename>QueryJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:891
@@ -16648,11 +16677,13 @@ msgid "JSON Querier with jq command"
 msgstr "jq コマンドを使用して JSONファイルからデータを抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:894 English/Plugins.xml:947
+#: English/Plugins.xml:894
 msgid ""
 "<command>QueryJSON</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
+"<command>QueryJSON</command> <arg choice=\"opt\" "
+"rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
 #: English/Plugins.xml:941
@@ -16664,11 +16695,25 @@ msgstr ""
 msgid ""
 "<filename>QueryYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
+"<filename>QueryYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
 #: English/Plugins.xml:944
 msgid "YAML Querier with yq command"
+msgstr "yq コマンドを使用して YAMLファイルからデータを抽出します。"
+
+#. type: Content of: <article><section><section><cmdsynopsis>
+#: English/Plugins.xml:947
+#, fuzzy
+#| msgid ""
+#| "<command>QueryJSON</command> <arg choice=\"opt\" "
+#| "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
+msgid ""
+"<command>QueryYAML</command> <arg choice=\"opt\" "
+"rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
+"<command>QueryJSON</command> <arg choice=\"opt\" "
+"rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
 #: English/Plugins.xml:988
@@ -17213,9 +17258,9 @@ msgid "<option>-v</option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1821 English/Plugins.xml:1921
+#: English/Plugins.xml:1821
 msgid "select non-matching columns"
-msgstr "マッチしない行を抽出します"
+msgstr "マッチしない列を抽出します"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
 #: English/Plugins.xml:1826 English/Plugins.xml:1926 English/Plugins.xml:2008
@@ -17282,6 +17327,11 @@ msgstr ""
 #: English/Plugins.xml:1907
 msgid "list of line ranges to select. (e.g. -3,5-10,30-)"
 msgstr "抽出する行範囲のリスト (例 -3,5-10,30-)"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Plugins.xml:1921
+msgid "select non-matching lines"
+msgstr "マッチしない行を抽出します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
 #: English/Plugins.xml:1973
@@ -17838,7 +17888,7 @@ msgid ""
 msgstr ""
 "<application>Visual Basic</application> ランタイムライブラリ<placeholder "
 "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
-"><placeholder type=\"indexterm\" id=\"2\"/><placeholder type=\"indexterm\" "
+"><placeholder type=\"indexterm\" id=\"2\"/><placeholder type=\"indexterm\"  "
 "id=\"3\"/>"
 
 #. type: Content of: <article><section><section><para>
@@ -17912,7 +17962,7 @@ msgstr ""
 #. type: Content of: <article><section><section><title>
 #: English/Quick_start.xml:22
 msgid "<placeholder type=\"indexterm\" id=\"0\"/>Open the WinMerge window"
-msgstr "<placeholder type=\"indexterm\" id=\"0\"/>WinMerge ウインドウの起動"
+msgstr "<placeholder type=\"indexterm\" id=\"0\"/>WinMerge ウィンドウの起動"
 
 #. type: Content of: <article><section><section><para>
 #: English/Quick_start.xml:24
@@ -18400,8 +18450,8 @@ msgid ""
 msgstr ""
 "サブフォルダーを比較する場合、新しいフォルダー比較テーブルが、 現在のフォル"
 "ダー比較ウィンドウ内に読み込まれます。 フォルダー比較を完了したら、ファイル名"
-"列の一番上の上矢印ボタン <placeholder type=\"inlinemediaobject\" id=\"0\"/>を"
-"ダブルクリックし、親フォルダーに戻ることができます。"
+"列の一番上の上矢印ボタン <placeholder type=\"inlinemediaobject\"  id=\"0\"/>"
+"をダブルクリックし、親フォルダーに戻ることができます。"
 
 #. type: Content of: <article><section><para>
 #: English/Quick_start.xml:317
@@ -18735,7 +18785,7 @@ msgstr "<keycap>Shift</keycap>+<keycap>F8</keycap>"
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:197 English/Shortcut_keys.xml:444
 msgid "Go to next conflict"
-msgstr ""
+msgstr "次のコンフリクトへ移動"
 
 #. type: Content of: <appendix><table><tgroup><tbody><row><entry>
 #: English/Shortcut_keys.xml:201
@@ -19388,6 +19438,8 @@ msgstr ""
 msgid ""
 "Using WinMerge with other tools<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"ほかのツールと共にWinMergeを使用する<placeholder type=\"indexterm\" id=\"0\"/"
+">"
 
 #. type: Content of: <article><para>
 #: English/Version_control.xml:7

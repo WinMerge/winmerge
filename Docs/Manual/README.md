@@ -31,6 +31,20 @@ See these tutorials for editing DocBook:
  * `{LANG}\_VersionNumbers.xml` *Update WinMerge version number and Manual revision*
  * `{LANG}\xsl\html.xsl` *Update WinMerge version number at parameter `headtitle.suffix`*
 
+## Translating the manual
+
+The translation of the manual is managed using PO files, similar to the WinMerge program.
+We use [po4a](https://po4a.org) for extracting the translatable text from the English XML files and applying the translations back to the translated XML files.
+To update the various translation-related files after editing the English XML files or PO files, please install po4a.
+
+### Installing po4a
+
+Install [MSYS2](https://www.msys2.org/) in `C:\msys64` or `D:\msys64`, and in the launched terminal, install po4a and diffutils as follows:
+
+~~~
+pacman -S po4a diffutils
+~~~
+
 ## Building the manual
 
 Our preferred build system uses the following tools:
@@ -59,20 +73,8 @@ Every language has his one batch files. Paths to the installed tools are written
  * `build_htmlhelp_en.bat`  
    Creates the English CHM file under the folder `Build\Manual\htmlhelp`.
 
+ * `update_translations.bat`  
+   Extract translatable text from English XML files and apply translations back to the translated XML files.
+
 The Japanese batch files ends with `_jp` for example.
-
-## Translating the manual
-
-マニュアルの翻訳はWinMergeのプログラムと同様にPOファイルで管理しています。英語のXMLファイルからPOTファイルやPOファイルの更新とPOファイルから翻訳されたXMLファイルへの反映は、[po4a](https://po4a.org)を使用しています。
-
-### po4a のインストール
-
-[MSYS2](https://www.msys2.org/)を`C:\msys64`または`D:\msys64`にインストールし、起動したターミナルで以下の様に`po4a`と`diffutils`をインストールしてください。
-
-~~~
-pacman -S po4a diffutils
-~~~
-
-### バッチファイル
-
 
