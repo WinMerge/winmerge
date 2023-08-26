@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-08-26 20:09+0900\n"
-"PO-Revision-Date: 2023-08-26 13:02+0900\n"
+"POT-Creation-Date: 2023-08-26 21:19+0900\n"
+"PO-Revision-Date: 2023-08-26 21:16+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -248,7 +248,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:159
 msgid "<xref linkend=\"Open_paths\" />"
-msgstr ""
+msgstr "<xref linkend=\"Open_paths\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:162
@@ -264,7 +264,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:169
 msgid "<xref linkend=\"Plugins\" />"
-msgstr ""
+msgstr "<xref linkend=\"Plugins\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:172
@@ -278,7 +278,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:178
 msgid "<xref linkend=\"Filters\" />"
-msgstr ""
+msgstr "<xref linkend=\"Filters\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:181
@@ -292,7 +292,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:187
 msgid "<xref linkend=\"Command_line\" />"
-msgstr ""
+msgstr "<xref linkend=\"Command_line\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:190
@@ -306,7 +306,7 @@ msgstr ""
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/About_Doc.xml:196
 msgid "<xref linkend=\"Faq\" />"
-msgstr ""
+msgstr "<xref linkend=\"Faq\" />"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/About_Doc.xml:199
@@ -515,7 +515,7 @@ msgstr "TwoWords"
 #: English/Filters.xml:747 English/Filters.xml:755 English/Filters.xml:759
 #: English/Intro_diffs.xml:62 English/Intro_diffs.xml:71
 msgid "<placeholder type=\"screen\" id=\"0\"/>"
-msgstr ""
+msgstr "<placeholder type=\"screen\" id=\"0\"/>"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:316
@@ -554,7 +554,7 @@ msgstr ""
 #: English/About_Doc.xml:337 English/Command_line.xml:18
 #: English/Command_line.xml:24
 msgid "<placeholder type=\"cmdsynopsis\" id=\"0\"/>"
-msgstr ""
+msgstr "<placeholder type=\"cmdsynopsis\" id=\"0\"/>"
 
 #. type: Content of: <article><section><informaltable><tgroup><tbody><row><entry>
 #: English/About_Doc.xml:347
@@ -607,6 +607,8 @@ msgid ""
 "<command>WinMergeU</command> <arg choice=\"opt\" rep=\"norepeat\"><option>/?"
 "</option></arg>"
 msgstr ""
+"<command>WinMergeU</command> <arg choice=\"opt\" rep=\"norepeat\"><option>/?"
+"</option></arg>"
 
 #. type: Content of: <article><para><cmdsynopsis>
 #: English/Command_line.xml:25
@@ -673,6 +675,67 @@ msgid ""
 "rep=\"norepeat\"><option>/or</option> <replaceable>reportpath</replaceable></"
 "arg>"
 msgstr ""
+"<command>WinMergeU</command> <arg choice=\"opt\" rep=\"norepeat\"><option>/"
+"r</option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/r-</option></"
+"arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/e</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/f</option> <replaceable>filter</"
+"replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/m</option> "
+"<replaceable>compare-method</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/t</option> <replaceable>window-type</replaceable></"
+"arg> <arg><option>/x</option></arg> <arg><option>/xq</option></arg> "
+"<arg><option>/s</option></arg> <arg><option>/sw</option></arg> <arg><option>/"
+"s-</option></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/ul</option></"
+"arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/um</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/ur</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/u</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/wl</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/wm</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/wr</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/new</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/self-compare</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/clipboard-compare</option></arg> "
+"<arg><option>/minimize</option></arg> <arg><option>/maximize</option></arg> "
+"<arg choice=\"opt\" rep=\"norepeat\"><option>/fl</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/fm</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/fr</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/l</option> <replaceable>linenumber</"
+"replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/c</option> "
+"<replaceable>charpos</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/table-delimiter</option> <replaceable>delimiter</"
+"replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/dl</option> "
+"<replaceable>leftdesc</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/dm</option> <replaceable>middledesc</replaceable></"
+"arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/dr</option> "
+"<replaceable>rightdesc</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/al</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/am</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/ar</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/noninteractive</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/noprefs</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/enableexitcode</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/ignorews</option></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/ignoreblanklines</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/ignorecase</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/ignoreeol</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/ignorecodepage</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/ignorecomments</option></arg> <arg "
+"choice=\"opt\" rep=\"norepeat\"><option>/unpacker</option> "
+"<replaceable>unpacker-name</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/prediffer</option> <replaceable>prediffer-name</"
+"replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/cp</option> "
+"<replaceable>codepage</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/fileext</option> <replaceable>file-extension</"
+"replaceable></arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/cfg</"
+"option> <replaceable>name=value</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/inifile</option> <replaceable>inifile</"
+"replaceable></arg> <arg choice=\"plain\" "
+"rep=\"norepeat\"><replaceable>leftpath</replaceable></arg> <arg "
+"cchoice=\"opt\" rep=\"norepeat\"><replaceable>middlepath</replaceable></arg> "
+"<arg choice=\"plain\" rep=\"norepeat\"><replaceable>rightpath</replaceable></"
+"arg> <arg choice=\"opt\" rep=\"norepeat\"><option>/o</option> "
+"<replaceable>outputpath</replaceable></arg> <arg choice=\"opt\" "
+"rep=\"norepeat\"><option>/or</option> <replaceable>reportpath</replaceable></"
+"arg>"
 
 #. type: Content of: <article><cmdsynopsis>
 #: English/Command_line.xml:162
@@ -680,6 +743,8 @@ msgid ""
 "<command>WinMergeU</command> <arg choice=\"plain\" "
 "rep=\"norepeat\"><replaceable>conflictfile</replaceable></arg>"
 msgstr ""
+"<command>WinMergeU</command> <arg choice=\"plain\" "
+"rep=\"norepeat\"><replaceable>conflictfile</replaceable></arg>"
 
 #. type: Content of: <article><para>
 #: English/Command_line.xml:168
@@ -697,7 +762,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:175
 msgid "<option>/?</option>"
-msgstr ""
+msgstr "<option>/?</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:177
@@ -714,7 +779,7 @@ msgstr "再帰フォルダー比較"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:185
 msgid "<option>/r</option>"
-msgstr ""
+msgstr "<option>/r</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:187
@@ -741,7 +806,7 @@ msgstr "非再帰フォルダー比較"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:200
 msgid "<option>/r-</option>"
-msgstr ""
+msgstr "<option>/r-</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:202
@@ -768,7 +833,7 @@ msgstr "閉じる"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:214
 msgid "<option>/e</option>"
-msgstr ""
+msgstr "<option>/e</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:216
@@ -807,7 +872,7 @@ msgstr "コマンドラインでの適用"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:230
 msgid "<option>/f</option>"
-msgstr ""
+msgstr "<option>/f</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:232
@@ -872,7 +937,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:272
 msgid "<option>/x</option>"
-msgstr ""
+msgstr "<option>/x</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:274
@@ -893,7 +958,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:285
 msgid "<option>/xq</option>"
-msgstr ""
+msgstr "<option>/xq</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:287
@@ -912,7 +977,7 @@ msgstr "インスタンス制限"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:298
 msgid "<option>/s</option>"
-msgstr ""
+msgstr "<option>/s</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:300
@@ -931,7 +996,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:309
 msgid "<option>/sw</option>"
-msgstr ""
+msgstr "<option>/sw</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:311
@@ -945,7 +1010,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:318
 msgid "<option>/s-</option>"
-msgstr ""
+msgstr "<option>/s-</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:320
@@ -965,7 +1030,7 @@ msgstr "MRU リスト"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:330
 msgid "<option>/ul</option>"
-msgstr ""
+msgstr "<option>/ul</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:332
@@ -981,7 +1046,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:339
 msgid "<option>/um</option>"
-msgstr ""
+msgstr "<option>/um</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:341
@@ -997,7 +1062,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:348
 msgid "<option>/ur</option>"
-msgstr ""
+msgstr "<option>/ur</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:350
@@ -1013,7 +1078,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:357
 msgid "<option>/u</option>"
-msgstr ""
+msgstr "<option>/u</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:359
@@ -1035,7 +1100,7 @@ msgstr "ファイルの保護"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:371
 msgid "<option>/wl</option>"
-msgstr ""
+msgstr "<option>/wl</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:373
@@ -1049,7 +1114,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:379
 msgid "<option>/wm</option>"
-msgstr ""
+msgstr "<option>/wm</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:381
@@ -1063,7 +1128,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:387
 msgid "<option>/wr</option>"
-msgstr ""
+msgstr "<option>/wr</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:389
@@ -1077,7 +1142,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:395
 msgid "<option>/new</option>"
-msgstr ""
+msgstr "<option>/new</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:397
@@ -1087,7 +1152,7 @@ msgstr "新規ブランクウィンドウを開きます。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:402
 msgid "<option>/self-compare</option>"
-msgstr ""
+msgstr "<option>/self-compare</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:404
@@ -1097,7 +1162,7 @@ msgstr "指定された１つのファイルとそのファイルのコピーを
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:409
 msgid "<option>/clipboard-compare</option>"
-msgstr ""
+msgstr "<option>/clipboard-compare</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:411
@@ -1112,7 +1177,7 @@ msgstr "最小化または最大化で開く"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:421
 msgid "<option>/minimize</option>"
-msgstr ""
+msgstr "<option>/minimize</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:423
@@ -1126,7 +1191,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:429
 msgid "<option>/maximize</option>"
-msgstr ""
+msgstr "<option>/maximize</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:431
@@ -1136,7 +1201,7 @@ msgstr "最大化状態でWinMergeを開始します。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:437
 msgid "<option>/fl</option>"
-msgstr ""
+msgstr "<option>/fl</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:439
@@ -1146,7 +1211,7 @@ msgstr "起動時、左側にフォーカスを当てます。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:444
 msgid "<option>/fm</option>"
-msgstr ""
+msgstr "<option>/fm</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:446
@@ -1156,7 +1221,7 @@ msgstr "起動時、中央にフォーカスを当てます。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:451
 msgid "<option>/fr</option>"
-msgstr ""
+msgstr "<option>/fr</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:453
@@ -1166,7 +1231,7 @@ msgstr "起動時、右側にフォーカスを当てます。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:458
 msgid "<option>/l <replaceable>linenumber</replaceable></option>"
-msgstr ""
+msgstr "<option>/l <replaceable>linenumber</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:460
@@ -1176,7 +1241,7 @@ msgstr "ファイルを読み込んだ後にジャンプする行番号を指定
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:465
 msgid "<option>/c <replaceable>charpos</replaceable></option>"
-msgstr ""
+msgstr "<option>/c <replaceable>charpos</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:467
@@ -1186,7 +1251,7 @@ msgstr "ファイルを読み込んだ後にジャンプする文字位置を指
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:472
 msgid "<option>/table-delimiter <replaceable>delimiter</replaceable></option>"
-msgstr ""
+msgstr "<option>/table-delimiter <replaceable>delimiter</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:474
@@ -1200,7 +1265,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:479
 msgid "<option>/dl</option>"
-msgstr ""
+msgstr "<option>/dl</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:481
@@ -1218,7 +1283,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:490
 msgid "<option>/dm</option>"
-msgstr ""
+msgstr "<option>/dm</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:492
@@ -1230,7 +1295,7 @@ msgstr "<option>/dl</option>と同様に中央タイトルバーの説明を指�
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:498
 msgid "<option>/dr</option>"
-msgstr ""
+msgstr "<option>/dr</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:500
@@ -1242,7 +1307,7 @@ msgstr "<option>/dl</option>と同様に右側タイトルバーの説明を指�
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:506
 msgid "<option>/al</option>"
-msgstr ""
+msgstr "<option>/al</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:508
@@ -1252,7 +1317,7 @@ msgstr "起動時、左側で自動マージします。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:513
 msgid "<option>/am</option>"
-msgstr ""
+msgstr "<option>/am</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:515
@@ -1262,7 +1327,7 @@ msgstr "起動時、中央で自動マージします。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:520
 msgid "<option>/ar</option>"
-msgstr ""
+msgstr "<option>/ar</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:522
@@ -1272,7 +1337,7 @@ msgstr "起動時、右側で自動マージします。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:527
 msgid "<option>/noninteractive</option>"
-msgstr ""
+msgstr "<option>/noninteractive</option>"
 
 #. type: Content of: <article><section><section><section><para>
 #: English/Command_line.xml:529 English/Command_line.xml:536
@@ -1297,12 +1362,12 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:534
 msgid "<option>/noprefs</option>"
-msgstr ""
+msgstr "<option>/noprefs</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:541
 msgid "<option>/enableexitcode</option>"
-msgstr ""
+msgstr "<option>/enableexitcode</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:543
@@ -1315,52 +1380,52 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:548
 msgid "<option>/ignorews</option>"
-msgstr ""
+msgstr "<option>/ignorews</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:555
 msgid "<option>/ignoreblanklines</option>"
-msgstr ""
+msgstr "<option>/ignoreblanklines</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:562
 msgid "<option>/ignorecase</option>"
-msgstr ""
+msgstr "<option>/ignorecase</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:569
 msgid "<option>/ignoreeol</option>"
-msgstr ""
+msgstr "<option>/ignoreeol</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:576
 msgid "<option>/ignorecodepage</option>"
-msgstr ""
+msgstr "<option>/ignorecodepage</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:583
 msgid "<option>/ignorecomments</option>"
-msgstr ""
+msgstr "<option>/ignorecomments</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:590
 msgid "<option>/unpacker</option>"
-msgstr ""
+msgstr "<option>/unpacker</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:597
 msgid "<option>/prediffer</option>"
-msgstr ""
+msgstr "<option>/prediffer</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:604
 msgid "<option>/cp</option>"
-msgstr ""
+msgstr "<option>/cp</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:611
 msgid "<option>/fileext <replaceable>file-extension</replaceable></option>"
-msgstr ""
+msgstr "<option>/fileext <replaceable>file-extension</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:613
@@ -1371,12 +1436,12 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:618
 msgid "<option>/cfg</option>"
-msgstr ""
+msgstr "<option>/cfg</option>"
 
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:625
 msgid "<option><replaceable>leftpath</replaceable></option>"
-msgstr ""
+msgstr "<option><replaceable>leftpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:627
@@ -1386,7 +1451,7 @@ msgstr "左側で開くフォルダーやファイルを指定します。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:632
 msgid "<option><replaceable>middlepath</replaceable></option>"
-msgstr ""
+msgstr "<option><replaceable>middlepath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:634
@@ -1396,7 +1461,7 @@ msgstr "中央で開くフォルダーやファイルを指定します。"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:639
 msgid "<option><replaceable>rightpath</replaceable></option>"
-msgstr ""
+msgstr "<option><replaceable>rightpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:641
@@ -1444,6 +1509,8 @@ msgid ""
 "<userinput>WinMergeU <filename>C:\\Folder\\File.txt</filename> <filename "
 "class=\"directory\">C:\\Folder2</filename> </userinput>"
 msgstr ""
+"<userinput>WinMergeU <filename>C:\\Folder\\File.txt</filename> <filename "
+"class=\"directory\">C:\\Folder2</filename> </userinput>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><tip><para>
 #: English/Command_line.xml:661
@@ -1475,7 +1542,7 @@ msgstr "結果ファイル"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:678
 msgid "<option>/o <replaceable>outputpath</replaceable></option>"
-msgstr ""
+msgstr "<option>/o <replaceable>outputpath</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:680
@@ -1519,7 +1586,7 @@ msgstr ""
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:701
 msgid "<option>/or</option>"
-msgstr ""
+msgstr "<option>/or</option>"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Command_line.xml:709 English/Compare_files.xml:1805
@@ -1534,7 +1601,7 @@ msgstr "コマンドラインでの指定"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:713
 msgid "<option><replaceable>conflictfile</replaceable></option>"
-msgstr ""
+msgstr "<option><replaceable>conflictfile</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:715
@@ -1558,7 +1625,7 @@ msgstr "ini ファイル"
 #. type: Content of: <article><variablelist><varlistentry><term>
 #: English/Command_line.xml:729
 msgid "<option>/inifile <replaceable>inifile</replaceable></option>"
-msgstr ""
+msgstr "<option>/inifile <replaceable>inifile</replaceable></option>"
 
 #. type: Content of: <article><variablelist><varlistentry><listitem><para>
 #: English/Command_line.xml:731
@@ -1597,6 +1664,8 @@ msgid ""
 "<imageobject> <imagedata fileref=\"screenshots/hexcmp1.png\" format=\"PNG\" /"
 "> </imageobject>"
 msgstr ""
+"<imageobject> <imagedata fileref=\"screenshots/hexcmp1.png\" format=\"PNG\" /"
+"> </imageobject>"
 
 #. type: Content of: <article><mediaobject><textobject><phrase>
 #: English/Compare_bin.xml:22
