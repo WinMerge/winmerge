@@ -944,7 +944,7 @@
       <para>YAML Querier with yq command</para>
 
       <cmdsynopsis sepchar=" ">
-        <command>QueryJSON</command>
+        <command>QueryYAML</command>
 
         <arg choice="opt"
          rep="repeat"><replaceable>arguments</replaceable></arg>
@@ -1918,7 +1918,7 @@
         <varlistentry>
           <term><option>-v</option></term>
           <listitem>
-            <para>select non-matching columns</para>
+            <para>select non-matching lines</para>
           </listitem>
         </varlistentry>
 
