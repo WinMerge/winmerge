@@ -841,6 +841,21 @@ I get the partial list, but no Abort indicator.--></para>
         </varlistentry>
 
         <varlistentry>
+          <term>All</term>
+
+          <listitem>
+            <para>Adds files and folders recursively from all sides to the
+            archive file. Because the filenames are same, they are added to
+            different subfolders, named <filename
+            class="directory">Original</filename> and <filename
+            class="directory">Altered</filename>, inside the archive: left-side
+            files are put to <filename class="directory">Original</filename>,
+            and right-side files are put into <filename
+            class="directory">Altered</filename>.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
           <term>差異</term>
 
           <listitem>

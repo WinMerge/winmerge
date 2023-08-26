@@ -238,14 +238,6 @@
               <para>デスクトップへ、WinMergeのショートカットを追加します。</para>
             </listitem>
           </varlistentry>
-
-          <varlistentry>
-            <term>クイック起動ショートカットの作成</term>
-
-            <listitem>
-              <para>クイック起動へ、WinMergeのショートカットを追加します。</para>
-            </listitem>
-          </varlistentry>
         </variablelist>
 
         <para><guibutton>次へ</guibutton>をクリックしてください。</para>

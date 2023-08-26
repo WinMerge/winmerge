@@ -60,3 +60,19 @@ Every language has his one batch files. Paths to the installed tools are written
    Creates the English CHM file under the folder `Build\Manual\htmlhelp`.
 
 The Japanese batch files ends with `_jp` for example.
+
+## Translating the manual
+
+マニュアルの翻訳はWinMergeのプログラムと同様にPOファイルで管理しています。英語のXMLファイルからPOTファイルやPOファイルの更新とPOファイルから翻訳されたXMLファイルへの反映は、[po4a](https://po4a.org)を使用しています。
+
+### po4a のインストール
+
+[MSYS2](https://www.msys2.org/)を`C:\msys64`または`D:\msys64`にインストールし、起動したターミナルで以下の様に`po4a`と`diffutils`をインストールしてください。
+
+~~~
+pacman -S po4a diffutils
+~~~
+
+### バッチファイル
+
+

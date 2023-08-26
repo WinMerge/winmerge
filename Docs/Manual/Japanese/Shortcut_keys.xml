@@ -161,6 +161,12 @@
         </row>
 
         <row>
+          <entry><keycap>Shift</keycap>+<keycap>F6</keycap></entry>
+
+          <entry>Change to previous pane (active file)</entry>
+        </row>
+
+        <row>
           <entry><keycap>F7</keycap></entry>
 
           <entry>前の差異へ移動</entry>

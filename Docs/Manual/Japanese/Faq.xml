@@ -209,9 +209,9 @@
         <answer>
           <para>私たちは、これを、<glossterm>非可逆式変換</glossterm>と呼んでいます。</para>
 
-          <para>
+          <!--<para>
             Unicodeのファイル(UCS-2, UTF-8)には、<filename>WinMergeU.exe</filename>を使用してください。
-          </para>
+          </para>-->
 
           <para>
             ANSIのファイルに関しては、多分コードページの問題です。

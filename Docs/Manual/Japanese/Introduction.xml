@@ -23,11 +23,13 @@
   使い易さは、間違いを減らすために重要なことです。
   最新版 &WinMergeVersion; は、
   安定性と信頼性が考慮されています。</para>
+  <para>The latest version &WinMergeVersion; is
+  considered a stable and reliable program to use.</para>
 
   <note>
     <para>WinMergeは、( 多くのWebサイトで言及されているように)フリーウェアでないことに注意してください。
-      それは、<ulink url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>でライセンスされています。
-     私たちは、「使える」ツールを無料で提供します。そのため、使用許諾を尊重し改善提案をしてください。
+      それは、<ulink url="https://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink>でライセンスされています。</para>
+    <para>私たちは、「使える」ツールを無料で提供します。そのため、使用許諾を尊重し改善提案をしてください。
      すべてのユーザーのメリットとなる、WinMergeの改良を手助けしていただき、私たちは嬉しく思います。</para>
   </note>
 
@@ -77,11 +79,18 @@
         <secondary>バグの報告</secondary>
       </indexterm>サポートとバグの報告</title>
 
-    <para><ulink
-    url="https://forums.winmerge.org/viewforum.php?f=4">オープン・ディスカッション・フォーラム
-    </ulink>は、助けを得るための最も速い方法です。
-    誰かが回答するまで辛抱してください。
-    </para>
+    <para>The <emphasis>Discussion forums</emphasis> are the fastest way to get help:</para>
+    <itemizedlist>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winmerge/discussions">WinMerge discussions</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/winimerge/discussions">Image Compare discussions</ulink>
+      </listitem>
+      <listitem>
+        <ulink url="https://github.com/WinMerge/website/discussions">Website discussions</ulink>
+      </listitem>
+    </itemizedlist>
 
     <para>もし、バグを発見したら、<ulink
         url="https://github.com/WinMerge/winmerge/issues">バグレポート</ulink>を通じて
