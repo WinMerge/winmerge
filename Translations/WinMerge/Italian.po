@@ -2879,6 +2879,9 @@ msgstr ""
 "Si sta per chiudere la finestra che sta confrontando le cartelle.\n"
 "Vuoi chiudere la finestra?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr ""
 

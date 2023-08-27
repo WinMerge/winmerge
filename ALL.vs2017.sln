@@ -237,7 +237,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{231348
 		Docs\Manual\build_htmlhelp_en.bat = Docs\Manual\build_htmlhelp_en.bat
 		Docs\Manual\build_htmlhelp_jp.bat = Docs\Manual\build_htmlhelp_jp.bat
 		Docs\Manual\configuration.bat = Docs\Manual\configuration.bat
+		Docs\Manual\Manual.cfg = Docs\Manual\Manual.cfg
 		Docs\Manual\README.md = Docs\Manual\README.md
+		Docs\Manual\update_translations.bat = Docs\Manual\update_translations.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnoSetup", "InnoSetup", "{5360DC20-6552-4F74-8D4D-BF88B23E0B3A}"

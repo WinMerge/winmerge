@@ -2884,6 +2884,9 @@ msgstr "Potrdi premik"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Ime datoteke ali mape ni veljavno."
 

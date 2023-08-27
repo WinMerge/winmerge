@@ -3463,6 +3463,9 @@ msgstr "Confirmer le déplacement"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Vous êtes sur le point de fermer la fenêtre qui compare les dossiers. Êtes-vous sûr de vouloir fermer la fenêtre ?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Le nom du fichier ou du dossier n'est pas valide."
 

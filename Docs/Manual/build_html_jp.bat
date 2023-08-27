@@ -3,8 +3,8 @@
 pushd %~dp0
 call configuration.bat
 
-set docbook_inputfile=JP\Index.xml
-set docbook_use_stylesheet=JP\xsl\html.xsl
+set docbook_inputfile=Japanese\Index.xml
+set docbook_use_stylesheet=Japanese\xsl\html.xsl
 set docbook_outputdir=%docbook_build_path%\html-jp
 set ads=false
 if "%1" == "withads" goto withads
@@ -32,7 +32,7 @@ copy "Shared\images\*.png" "%docbook_outputdir%\images\."
 
 echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
-copy "JP\screenshots\*.*" "%docbook_outputdir%\screenshots\."
+copy "Japanese\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"

@@ -3454,6 +3454,9 @@ msgstr "確認移除"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "您要關閉一個正在比較資料夾的視窗，您確定要關閉視窗嗎？"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "檔案或資料夾名稱無效。"
 

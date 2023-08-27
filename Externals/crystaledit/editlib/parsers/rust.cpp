@@ -24,13 +24,16 @@
 #define new DEBUG_NEW
 #endif
 
-//  Rust keywords
+//  Rust keywords (Version 1.72.0)
+// (See https://doc.rust-lang.org/book/appendix-01-keywords.html and https://doc.rust-lang.org/std/index.html)
 static const tchar_t * s_apszRustKeywordList[] =
   {
     _T ("Self"),
     _T ("abstract"),
     _T ("alignof"),
     _T ("as"),
+    _T ("async"),
+    _T ("await"),
     _T ("become"),
     _T ("box"),
     _T ("break"),
@@ -38,6 +41,7 @@ static const tchar_t * s_apszRustKeywordList[] =
     _T ("continue"),
     _T ("crate"),
     _T ("do"),
+    _T ("dyn"),
     _T ("else"),
     _T ("enum"),
     _T ("extern"),
@@ -70,8 +74,10 @@ static const tchar_t * s_apszRustKeywordList[] =
     _T ("super"),
     _T ("trait"),
     _T ("true"),
+    _T ("try"),
     _T ("type"),
     _T ("typeof"),
+    _T ("union"),
     _T ("unsafe"),
     _T ("unsized"),
     _T ("use"),
@@ -90,12 +96,14 @@ static const tchar_t * s_apszUser1KeywordList[] =
     _T ("char"),
     _T ("f32"),
     _T ("f64"),
+    _T ("i128"),
     _T ("i16"),
     _T ("i32"),
     _T ("i64"),
     _T ("i8"),
     _T ("isize"),
     _T ("str"),
+    _T ("u128"),
     _T ("u16"),
     _T ("u32"),
     _T ("u64"),

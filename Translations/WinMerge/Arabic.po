@@ -2870,6 +2870,9 @@ msgstr ""
 "أنت على وشك إغلاق النافذة التي تقوم بالمقارنة بين المجلدات. هل أنت متأكد "
 "برغبتك في إغلاقها؟"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr ""
 

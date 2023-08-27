@@ -2890,6 +2890,9 @@ msgstr "Confirmar movemento"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Vai pechar a ventá de comparación de carpetas. ¿Seguro que quere cerrala?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "O nome do arquivo ou carpeta non é válido."
 

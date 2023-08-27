@@ -3447,6 +3447,9 @@ msgstr "Áthelyezés megerősítése"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Bezárni készülsz a mappákat összehasonlító ablakot. Biztosan bezárod az ablakot?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "A fájl- vagy a mappanév érvénytelen"
 

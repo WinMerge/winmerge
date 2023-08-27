@@ -2657,6 +2657,9 @@ msgstr "Patvirtinti perkėlimą"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Jūs ketinate užverti langą, kuriame lyginami katalogai. Ar tikrai norite užverti langą?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Netinkamas failo ar katalogo pavadinimas."
 

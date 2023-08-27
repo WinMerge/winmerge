@@ -2884,6 +2884,9 @@ msgstr "நகர்த்தலை உறுதிப்படுத்து"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "கோப்புறைகளை ஒப்பிடும் சாளரத்தை மூட உள்ளீர்கள். நிச்சயமாக நீங்கள் சாளரத்தை மூட விரும்புகிறீர்களா?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "கோப்பு அல்லது கோப்புறையின் பெயர் தவறானது."
 

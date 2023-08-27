@@ -52,6 +52,9 @@ using boost::begin;
 using boost::end;
 
 int CDirDoc::m_nDirsTemp = 2;
+// If a folder comparison takes longer than this threshold,
+// display a confirmation message when closing the folder comparison window.
+static constexpr int COMPARISON_TIME_THRESHOLD_SECONDS = 30;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc
@@ -69,6 +72,8 @@ CDirDoc::CDirDoc()
 , m_pTempPathContext(nullptr)
 , m_bGeneratingReport(false)
 , m_pReport(nullptr)
+, m_compareStart(0)
+, m_elapsed(0)
 {
 	m_nDirs = m_nDirsTemp;
 
@@ -222,6 +227,8 @@ void CDirDoc::LoadSubstitutionFiltersList(CDiffContext* pCtxt)
 
 void CDirDoc::DiffThreadCallback(int& state)
 {
+	if (state == CDiffThread::EVENT_COMPARE_COMPLETED)
+		m_elapsed = clock() - m_compareStart;
 	PostMessage(m_pDirView->GetSafeHwnd(), MSG_UI_UPDATE, state, false);
 }
 
@@ -284,7 +291,8 @@ void CDirDoc::Rescan()
 
 	if (!m_bGeneratingReport)
 		m_pCompareStats->Reset();
-	m_pDirView->StartCompare(m_pCompareStats.get());
+
+	m_compareStart = clock();
 
 	if (m_pCmpProgressBar == nullptr)
 		m_pCmpProgressBar.reset(new DirCompProgressBar());
@@ -645,7 +653,7 @@ BOOL CDirDoc::SaveModified()
 	// Do not allow closing if there is a thread running
 	if (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
 	{
-		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW, MB_YESNO | MB_ICONWARNING);
+		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW_COMPARING, MB_YESNO | MB_ICONWARNING);
 		if (ans == IDNO)
 			return FALSE;
 		m_diffThread.Abort();
@@ -653,7 +661,14 @@ BOOL CDirDoc::SaveModified()
 			Sleep(50);
 		CompareReady();
 	}
-	
+
+	if (m_elapsed >= COMPARISON_TIME_THRESHOLD_SECONDS * 1000)
+	{
+		int ans = LangMessageBox(IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN);
+		if (ans == IDNO)
+			return FALSE;
+	}
+
 	return CDocument::SaveModified();
 }
 

@@ -47,6 +47,7 @@ in a visual format that is easy to understand and manipulate.
  * 7-Zip
  * Python
  * Pandoc
+ * MSYS2 and MSYS2 packages (po4a and diffutils)
 
 ## How to Build
 
