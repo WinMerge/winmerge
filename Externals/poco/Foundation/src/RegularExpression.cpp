@@ -262,7 +262,7 @@ std::string::size_type RegularExpression::substOne(std::string& subject, std::st
 				}
 				else result += *it++;
 			}
-			pos = ovec[1];
+			pos = (ovec[1] > ovec[0]) ? ovec[1] : ovec[1] + 1;
 			rp = result.length();
 		}
 		else result += subject[pos++];
