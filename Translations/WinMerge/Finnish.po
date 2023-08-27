@@ -2912,6 +2912,9 @@ msgid ""
 msgstr ""
 "Olet sulkemassa kansioiden vertailuikkunaa. Haluatko varmasti sulkea ikkunan?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Tiedoston tai kansion nimi on virheellinen."
 

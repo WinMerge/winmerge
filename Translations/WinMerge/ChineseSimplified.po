@@ -2896,6 +2896,9 @@ msgstr "确认移动"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "您即将关闭比较文件夹的窗口。确定关闭该窗口？"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "文件或文件夹的名称不合法。"
 

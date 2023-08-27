@@ -3457,6 +3457,9 @@ msgstr "이동 확인"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "폴더를 비교하는 창을 닫으려고 합니다. 창을 닫으시겠습니까?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "파일 또는 폴더 이름이 잘못되었습니다."
 

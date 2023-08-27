@@ -2895,6 +2895,9 @@ msgstr "Cunfirmà u dispiazzamentu"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "State per chjode a finestra chì paraguneghja i cartulari. Da veru vulete chjode a finestra ?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "U nome di u schedariu o di u cartulare hè inaccettevule."
 

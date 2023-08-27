@@ -2656,6 +2656,9 @@ msgstr "Подтвердите перемещение"
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Вы собираетесь закрыть окно сравнения. Действительно закрыть окно?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Неверное имя файла или папки."
 

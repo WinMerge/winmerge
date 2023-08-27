@@ -86,6 +86,7 @@ public:
 	bool HasDirView() const { return m_pDirView != nullptr; }
 	void RefreshOptions();
 	void CompareReady();
+	clock_t GetElapsedTime() const { return m_elapsed; }
 	void UpdateChangedItem(const PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, bool bIdentical);
 	void UpdateResources();
@@ -157,6 +158,8 @@ private:
 	std::unique_ptr<DirCmpReport> m_pReport;
 	FileFilterHelper m_fileHelper; /**< File filter helper */
 	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
+	clock_t m_compareStart; /**< Starting process time of the compare */
+	clock_t m_elapsed; /**< Elapsed time of the compare */
 };
 
 /**

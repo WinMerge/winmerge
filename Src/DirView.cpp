@@ -86,7 +86,6 @@ IMPLEMENT_DYNCREATE(CDirView, CListView)
 
 CDirView::CDirView()
 		: m_pList(nullptr)
-		, m_compareStart(0)
 		, m_elapsed(0)
 		, m_bTreeMode(false)
 		, m_dirfilter(std::bind(&COptionsMgr::GetBool, GetOptionsMgr(), _1))
@@ -492,7 +491,7 @@ BOOL CDirView::PreCreateWindow(CREATESTRUCT& cs)
  */
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
-	m_compareStart = clock();
+	m_elapsed = 0;
 }
 
 /**
@@ -2529,7 +2528,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 			MoveFocus(0, 0, 0);
 
 		// If compare took more than TimeToSignalCompare seconds, notify user
-		m_elapsed = clock() - m_compareStart;
+		m_elapsed = pDoc->GetElapsedTime();
 		SetTimer(STATUSBAR_UPDATE, 150, nullptr);
 		if (m_elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 			MessageBeep(IDOK);

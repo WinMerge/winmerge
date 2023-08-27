@@ -2905,6 +2905,9 @@ msgstr ""
 "На път сте да затворите прозореца, в който се сравняват папки. Наистина ли "
 "искате да затворите този прозорец?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Името на файла или папката е недействително."
 

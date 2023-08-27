@@ -2927,6 +2927,9 @@ msgstr ""
 "Klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak "
 "istediğinize emin misiniz?"
 
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr ""
+
 msgid "The file or folder name is invalid."
 msgstr "Dosya ya da klasör adı geçersiz."
 
