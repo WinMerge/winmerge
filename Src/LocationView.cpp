@@ -293,6 +293,7 @@ void CLocationView::CalculateBlocks()
 		if (bs[nBlocks] >= nLineCount)
 			bs[nBlocks] = nLineCount - 1;
 
+		m_diffBlocks.reserve(nBlocks);
 		for (i = 0; i < nBlocks; i++)
 		{
 			CalculateBlocksPixel(

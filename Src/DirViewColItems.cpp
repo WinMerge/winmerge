@@ -1560,6 +1560,10 @@ DirViewColItems::AddAdditionalPropertyName(const String& propertyName)
 	String cList = (m_nDirs < 3) ? String(_T("ADLR")) : String(_T("ADLMR"));
 	if (propertyName.substr(0, 5) == _T("Hash."))
 		cList += (m_nDirs < 3) ? String(_T("Nlr")) : String(_T("lmr"));
+	const size_t count = cList.size();
+	m_cols.reserve(count);
+	m_invcolorder.reserve(count);
+	m_colorder.reserve(count);
 	for (auto c : cList)
 	{
 		m_cols.emplace_back(DirColInfo{});
