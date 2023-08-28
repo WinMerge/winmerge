@@ -136,15 +136,19 @@ void FilterList::CloneFrom(const FilterList* filterList)
 		return;
 
 	m_list.clear();
-	m_listExclude.clear();
 
 	size_t count = filterList->m_list.size();
+	m_list.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		m_list.emplace_back(std::make_shared<filter_item>(filterList->m_list[i].get()));
 	}
-	size_t countExclude = filterList->m_listExclude.size();
-	for (size_t i = 0; i < countExclude; i++)
+
+	m_listExclude.clear();
+
+	count = filterList->m_listExclude.size();
+	m_listExclude.reserve(count);
+	for (size_t i = 0; i < count; i++)
 	{
 		m_listExclude.emplace_back(std::make_shared<filter_item>(filterList->m_listExclude[i].get()));
 	}

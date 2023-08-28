@@ -429,6 +429,7 @@ void FileFilterMgr::CloneFrom(const FileFilterMgr* fileFilterMgr)
 	m_filters.clear();
 
 	size_t count = fileFilterMgr->m_filters.size();
+	m_filters.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		auto ptr = std::make_shared<FileFilter>(FileFilter());
