@@ -94,6 +94,7 @@ CreateVirtualLineToRealLineMap(
 	const DiffMap& diffmap, int nlines0, int nlines1)
 {
 	std::vector<std::array<int, 2>> vlines;
+	vlines.reserve((std::max)(nlines0, nlines1) * 3 / 2); // Roughly pre-allocate space for the list.
 	int line0 = 0, line1 = 0;
 	while (line0 < nlines0)
 	{
@@ -104,13 +105,11 @@ CreateVirtualLineToRealLineMap(
 		}
 		else
 		{
-			vlines.reserve(map_line0 - line1 + 1);
 			while (line1 < map_line0)
 				vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, line1++ });
 			vlines.push_back({ line0++, line1++ });
 		}
 	}
-	vlines.reserve(nlines1 - line1);
 	while (line1 < nlines1)
 		vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, line1++ });
 	ValidateVirtualLineToRealLineMap(vlines, std::array<int, 2>{ nlines0, nlines1 });
@@ -132,6 +131,7 @@ CreateVirtualLineToRealLineMap3way(
 	std::vector<std::array<int, 2>> vlines12 = CreateVirtualLineToRealLineMap(diffmap12, nlines1, nlines2);
 	std::vector<std::array<int, 2>> vlines20 = CreateVirtualLineToRealLineMap(diffmap20, nlines2, nlines0);
 	std::vector<std::array<int, 3>> vlines;
+	vlines.reserve((std::max)({ nlines0, nlines1, nlines2 }) * 3 / 2);  // Roughly pre-allocate space for the list.
 	size_t i01 = 0, i12 = 0, i20 = 0;
 	int line0 = 0, line1 = 0, line2 = 0;
 	bool is_vlines20_usable = true;
@@ -165,7 +165,6 @@ CreateVirtualLineToRealLineMap3way(
 				if (i20tmp < vlines20.size())
 				{
 					// 1.2.1.1
-					vlines.reserve(i20tmp - i20);
 					for (; i20 < i20tmp; ++i20)
 						vlines.push_back({ vlines20[i20][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20][0] });
 					++i20;
@@ -192,14 +191,12 @@ CreateVirtualLineToRealLineMap3way(
 			if (i01 - i01b < i12 - i12b)
 			{
 				// 1.3.1
-				vlines.reserve(i12 - i12tmp);
 				for (; i12tmp < i12; ++i12tmp)
 					vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY, vlines12[i12tmp][1] });
 			}
 			else if (i01 - i01b > i12 - i12b)
 			{
 				// 1.3.2
-				vlines.reserve(i01 - i01tmp);
 				for (; i01tmp < i01; ++i01tmp)
 					vlines.push_back({ vlines01[i01tmp][0], DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY });
 			}
@@ -212,7 +209,6 @@ CreateVirtualLineToRealLineMap3way(
 		if (is_vlines20_usable)
 		{
 			// 2.1
-			vlines.reserve(vlines20.size());
 			for (; i20 < vlines20.size(); ++i20)
 				vlines.push_back({ vlines20[i20][1], DiffMap::GHOST_MAP_ENTRY, vlines20[i20][0] });
 		}
@@ -224,14 +220,12 @@ CreateVirtualLineToRealLineMap3way(
 			if (vlines01.size() - i01 < vlines12.size() - i12)
 			{
 				// 2.2.1
-				vlines.reserve(vlines12.size());
 				for (; i12 < vlines12.size(); ++i12)
 					vlines.push_back({ DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY, vlines12[i12][1] });
 			}
 			else if (vlines01.size() - i01 > vlines12.size() - i12)
 			{
 				// 2.2.2
-				vlines.reserve(vlines01.size());
 				for (; i01 < vlines01.size(); ++i01)
 					vlines.push_back({ vlines01[i01][0], DiffMap::GHOST_MAP_ENTRY, DiffMap::GHOST_MAP_ENTRY });
 			}
