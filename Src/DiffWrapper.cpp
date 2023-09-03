@@ -282,6 +282,15 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
 					}
 				}
+
+				if (blocks[nActualItems - 1].m_nColorIndex == COLORINDEX_COMMENT)
+				{
+					// If there is an inline comment, the EOL for that line will be deleted, so add the EOL.
+					size_t fullLen = linbuf[i + 1] - linbuf[i];
+					size_t len = linelen(linbuf[i], fullLen);
+					for (size_t j = len; j < fullLen; ++j)
+						filteredT += linbuf[i][j];
+				}
 			}
 		}
 	}
