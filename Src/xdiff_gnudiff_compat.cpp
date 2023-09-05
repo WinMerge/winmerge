@@ -70,50 +70,6 @@ static int hunk_func(long start_a, long count_a, long start_b, long count_b, voi
 	return 0;
 }
 
-static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::vector<xrecord_t *>& equivs, unsigned xdl_flags)
-{
-	std::unordered_map<unsigned long, std::vector<int>> equivs_map;
-	for (int i = 0; i < static_cast<int>(equivs.size()); ++i)
-	{
-		unsigned long ha = equivs[i]->ha;
-		if (equivs_map.find(ha) != equivs_map.end())
-			equivs_map[ha].push_back(i);
-		else
-			equivs_map.emplace(ha, std::vector<int>{i});
-	}
-
-	for (int i = 0; i < xdf.nrec; ++i)
-	{
-		unsigned long ha = xdf.recs[i]->ha;
-		if (equivs_map.find(ha) != equivs_map.end())
-		{
-			bool found = false;
-			for (auto j: equivs_map[ha])
-			{
-				if (xdl_recmatch(equivs[j]->ptr, equivs[j]->size, xdf.recs[i]->ptr, xdf.recs[i]->size, xdl_flags))
-				{
-					found = true;
-					filevec.equivs[i] = j;
-					equivs_map.emplace(ha, std::vector<int>{j});
-					break;
-				}
-			}
-			if (!found)
-			{
-				filevec.equivs[i] = static_cast<int>(equivs.size());
-				equivs_map[ha].push_back(filevec.equivs[i]);
-				equivs.push_back(xdf.recs[i]);
-			}
-		}
-		else
-		{
-			filevec.equivs[i] = static_cast<int>(equivs.size());
-			equivs_map.emplace(ha, std::vector<int>{filevec.equivs[i]});
-			equivs.push_back(xdf.recs[i]);
-		}
-	}
-}
-
 struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status, int bMoved_blocks_flag, unsigned xdl_flags)
 {
 	mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
@@ -159,12 +115,7 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status,
 		}
 
 		if (bMoved_blocks_flag)
-		{
-			std::vector<xrecord_t *> equivs;
-			append_equivs(xe.xdf1, filevec[0], equivs, xdl_flags);
-			append_equivs(xe.xdf2, filevec[1], equivs, xdl_flags);
 			moved_block_analysis(&script, filevec);
-		}
 
 		xdl_free_script(xscr);
 		xdl_free_env(&xe);
