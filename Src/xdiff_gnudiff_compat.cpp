@@ -121,7 +121,7 @@ static int is_missing_newline(const mmfile_t& mmfile)
 	return 1;
 }
 
-struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_blocks_flag, unsigned xdl_flags)
+struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status, int bMoved_blocks_flag, unsigned xdl_flags)
 {
 	mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
 	change *script = nullptr;
@@ -130,16 +130,27 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 	xpparam_t xpp = { 0 };
 	xdemitconf_t xecfg = { 0 };
 	xdemitcb_t ecb = { 0 };
+	int bin_flag = 0;
 
+	read_files(filevec, no_details_flag & ~ignore_some_changes, &bin_flag);
+
+	mmfile1.ptr = const_cast<char*>(filevec[0].prefix_end);
+	mmfile1.size = static_cast<long>(filevec[0].suffix_begin - filevec[0].prefix_end) - filevec[0].missing_newline;
+	mmfile2.ptr = const_cast<char*>(filevec[1].prefix_end);
+	mmfile2.size = static_cast<long>(filevec[1].suffix_begin - filevec[1].prefix_end) - filevec[1].missing_newline;
+
+	/*
 	if (!read_mmfile(filevec[0].desc, mmfile1))
 		goto abort;
 	if (!read_mmfile(filevec[1].desc, mmfile2))
 		goto abort;
+		*/
 
 	xpp.flags = xdl_flags;
 	xecfg.hunk_func = hunk_func;
 	if (xdl_diff_modified(&mmfile1, &mmfile2, &xpp, &xecfg, &ecb, &xe, &xscr) == 0)
 	{
+		/*
 		filevec[0].buffer = mmfile1.ptr;
 		filevec[1].buffer = mmfile2.ptr;
 		filevec[0].bufsize = mmfile1.size;
@@ -178,6 +189,7 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 			filevec[1].linbuf[xe.xdf2.nrec] = xe.xdf2.recs[xe.xdf2.nrec - 1]->ptr + xe.xdf2.recs[xe.xdf2.nrec - 1]->size;
 		filevec[0].missing_newline = is_missing_newline(mmfile1);
 		filevec[1].missing_newline = is_missing_newline(mmfile2);
+		*/
 
 		change *prev = nullptr;
 		for (xdchange_t* xcur = xscr; xcur; xcur = xcur->next)
@@ -216,7 +228,7 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 	return script;
 
 abort:
-	free(mmfile1.ptr);
-	free(mmfile2.ptr);
+	//free(mmfile1.ptr);
+	//free(mmfile2.ptr);
 	return nullptr;
 }
