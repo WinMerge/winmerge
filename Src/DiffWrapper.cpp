@@ -892,7 +892,8 @@ bool CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		if (m_options.m_diffAlgorithm != DIFF_ALGORITHM_DEFAULT)
 		{
 			const unsigned xdl_flags = make_xdl_flags(m_options);
-			*diffs = diff_2_files_xdiff(diffData->m_inf, bin_status, (m_pMovedLines[0] != nullptr), xdl_flags);
+			*diffs = diff_2_files_xdiff(diffData->m_inf, bin_status,
+				(m_pMovedLines[0] != nullptr), bin_file, xdl_flags);
 			files[0] = diffData->m_inf[0];
 			files[1] = diffData->m_inf[1];
 		}
