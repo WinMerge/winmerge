@@ -114,13 +114,6 @@ static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::v
 	}
 }
 
-static int is_missing_newline(const mmfile_t& mmfile)
-{
-	if (mmfile.size == 0 || mmfile.ptr[mmfile.size - 1] == '\r' || mmfile.ptr[mmfile.size - 1] == '\n')
-		return 0;
-	return 1;
-}
-
 struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status, int bMoved_blocks_flag, unsigned xdl_flags)
 {
 	mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
@@ -139,58 +132,10 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status,
 	mmfile2.ptr = const_cast<char*>(filevec[1].prefix_end);
 	mmfile2.size = static_cast<long>(filevec[1].suffix_begin - filevec[1].prefix_end) - filevec[1].missing_newline;
 
-	/*
-	if (!read_mmfile(filevec[0].desc, mmfile1))
-		goto abort;
-	if (!read_mmfile(filevec[1].desc, mmfile2))
-		goto abort;
-		*/
-
 	xpp.flags = xdl_flags;
 	xecfg.hunk_func = hunk_func;
 	if (xdl_diff_modified(&mmfile1, &mmfile2, &xpp, &xecfg, &ecb, &xe, &xscr) == 0)
 	{
-		/*
-		filevec[0].buffer = mmfile1.ptr;
-		filevec[1].buffer = mmfile2.ptr;
-		filevec[0].bufsize = mmfile1.size;
-		filevec[1].bufsize = mmfile2.size;
-		filevec[0].buffered_chars = mmfile1.size;
-		filevec[1].buffered_chars = mmfile2.size;
-		filevec[0].linbuf_base = 0;
-		filevec[1].linbuf_base = 0;
-		filevec[0].valid_lines = xe.xdf1.nrec;
-		filevec[1].valid_lines = xe.xdf2.nrec;
-		filevec[0].linbuf = static_cast<const char **>(malloc(sizeof(char *) * (xe.xdf1.nrec + 1)));
-		if (!filevec[0].linbuf)
-			goto abort;
-		filevec[1].linbuf = static_cast<const char **>(malloc(sizeof(char *) * (xe.xdf2.nrec + 1)));
-		if (!filevec[1].linbuf)
-			goto abort;
-		filevec[0].equivs = static_cast<int *>(malloc(sizeof(int) * xe.xdf1.nrec));
-		if (!filevec[0].equivs)
-			goto abort;
-		filevec[1].equivs = static_cast<int *>(malloc(sizeof(int) * xe.xdf2.nrec));
-		if (!filevec[1].equivs)
-			goto abort;
-		for (int i = 0; i < xe.xdf1.nrec; ++i)
-		{
-			filevec[0].linbuf[i] = xe.xdf1.recs[i]->ptr;
-			filevec[0].equivs[i] = -1;
-		}
-		if (xe.xdf1.nrec > 0)
-			filevec[0].linbuf[xe.xdf1.nrec] = xe.xdf1.recs[xe.xdf1.nrec - 1]->ptr + xe.xdf1.recs[xe.xdf1.nrec - 1]->size;
-		for (int i = 0; i < xe.xdf2.nrec; ++i)
-		{
-			filevec[1].linbuf[i] = xe.xdf2.recs[i]->ptr;
-			filevec[1].equivs[i] = -1;
-		}
-		if (xe.xdf2.nrec > 0)
-			filevec[1].linbuf[xe.xdf2.nrec] = xe.xdf2.recs[xe.xdf2.nrec - 1]->ptr + xe.xdf2.recs[xe.xdf2.nrec - 1]->size;
-		filevec[0].missing_newline = is_missing_newline(mmfile1);
-		filevec[1].missing_newline = is_missing_newline(mmfile2);
-		*/
-
 		change *prev = nullptr;
 		for (xdchange_t* xcur = xscr; xcur; xcur = xcur->next)
 		{
@@ -228,7 +173,5 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status,
 	return script;
 
 abort:
-	//free(mmfile1.ptr);
-	//free(mmfile2.ptr);
 	return nullptr;
 }

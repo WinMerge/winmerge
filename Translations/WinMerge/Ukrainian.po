@@ -1839,7 +1839,7 @@ msgstr "Виявлення перемі&щених блоків"
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
+msgid "Diff &algorithm:"
 msgstr ""
 
 msgid "Enable indent &heuristic"

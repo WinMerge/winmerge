@@ -1863,8 +1863,8 @@ msgstr "&Activer la détection des blocs déplacés"
 msgid "Align &similar lines"
 msgstr "Aligner les lignes &similaires"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Algorithme Différentiel (expérimental) :"
+msgid "Diff &algorithm:"
+msgstr "&Algorithme Différentiel:"
 
 msgid "Enable indent &heuristic"
 msgstr "Activer l'indentation &heuristique"

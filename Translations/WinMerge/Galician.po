@@ -1516,8 +1516,8 @@ msgstr "Habilitar detecció&n de bloques desprazados"
 msgid "Align &similar lines"
 msgstr "Aliñar liñas &similares"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Algoritmo de comparación (experimental):"
+msgid "Diff &algorithm:"
+msgstr "&Algoritmo de comparación:"
 
 msgid "Enable indent &heuristic"
 msgstr "Habilitar a &heurística do sangrado"

@@ -1519,8 +1519,8 @@ msgstr "Attivà l’avventata di i blocchi &dispiazzati"
 msgid "Align &similar lines"
 msgstr "&Alineà e linee simile"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Cudificazione di sfarenza (esperimentale) :"
+msgid "Diff &algorithm:"
+msgstr "Cudificazione di sfarenza:"
 
 msgid "Enable indent &heuristic"
 msgstr "Attivà l’indentazione &euristica"

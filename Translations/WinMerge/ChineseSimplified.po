@@ -1520,8 +1520,8 @@ msgstr "启用块移动检测(&N)"
 msgid "Align &similar lines"
 msgstr "对齐相似的行(&S)"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "比较算法 (实验性) (&A):"
+msgid "Diff &algorithm:"
+msgstr "比较算法(&A):"
 
 msgid "Enable indent &heuristic"
 msgstr "启用启发式缩进(&H)"

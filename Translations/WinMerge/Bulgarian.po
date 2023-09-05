@@ -1514,8 +1514,8 @@ msgstr "Разпознаване на преместени па&раграфи"
 msgid "Align &similar lines"
 msgstr "Подра&вняване на подобни редове"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Алгоритъм за различия (експериментално):"
+msgid "Diff &algorithm:"
+msgstr "&Алгоритъм за различия:"
 
 msgid "Enable indent &heuristic"
 msgstr "П&редполагане на отстъпа"

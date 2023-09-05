@@ -1513,8 +1513,8 @@ msgstr "Attiva rilevamento blocc&hi spostati"
 msgid "Align &similar lines"
 msgstr "Allinea le righe &simili"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Algoritmo differenze (sperimentale):"
+msgid "Diff &algorithm:"
+msgstr "&Algoritmo differenze:"
 
 msgid "Enable indent &heuristic"
 msgstr "Abilita rientro &euristico"

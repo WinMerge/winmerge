@@ -1520,8 +1520,8 @@ msgstr "Ativar deteção de bloco movido"
 msgid "Align &similar lines"
 msgstr "Alinhar linhas &semelhantes"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Diff &algoritmo (Experimental):"
+msgid "Diff &algorithm:"
+msgstr "Diff &algoritmo:"
 
 msgid "Enable indent &heuristic"
 msgstr "Ativar travessão &heurístico"

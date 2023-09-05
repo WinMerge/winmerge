@@ -1515,8 +1515,8 @@ msgstr "Įju&ngti perkeltų blokų aptikimą"
 msgid "Align &similar lines"
 msgstr "&Sutapdinti panašias eilutes"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Lyginimo &algoritmas (Bandymai):"
+msgid "Diff &algorithm:"
+msgstr "Lyginimo &algoritmas:"
 
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
