@@ -2491,7 +2491,8 @@ GetTopMarginText (const CRect& rect, CString& text, std::vector<int>& nWidths)
     {
       int nColumnWidth = m_pTextBuffer->GetColumnWidth (nColumn);
       CString columnName;
-      if (m_nTopSubLine > 0 && m_nLineNumberUsedAsHeaders >= 0 && m_nLineNumberUsedAsHeaders < m_pTextBuffer->GetLineCount())
+      if (m_nLineNumberUsedAsHeaders >= 0 && m_nLineNumberUsedAsHeaders < m_pTextBuffer->GetLineCount() && 
+          (m_nTopSubLine > 0 || (m_pTextBuffer->GetLineFlags(m_nLineNumberUsedAsHeaders) & LF_INVISIBLE)))
         columnName = replaceControlChars (m_pTextBuffer->GetCellText (m_nLineNumberUsedAsHeaders, nColumn).c_str ()); // Use std::basic_string<tchar_t> instead of CString
       if (columnName.IsEmpty())
         columnName = GetColumnName (nColumn);
