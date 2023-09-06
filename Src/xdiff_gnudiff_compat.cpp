@@ -155,9 +155,9 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status,
 	else
 	{
 		mmfile1.ptr = const_cast<char*>(filevec[0].prefix_end);
-		mmfile1.size = static_cast<long>(filevec[0].suffix_begin - filevec[0].prefix_end) - filevec[0].missing_newline;
+		mmfile1.size = static_cast<long>(filevec[0].suffix_begin - filevec[0].prefix_end);
 		mmfile2.ptr = const_cast<char*>(filevec[1].prefix_end);
-		mmfile2.size = static_cast<long>(filevec[1].suffix_begin - filevec[1].prefix_end) - filevec[1].missing_newline;
+		mmfile2.size = static_cast<long>(filevec[1].suffix_begin - filevec[1].prefix_end);
 
 		xpp.flags = xdl_flags;
 		xecfg.hunk_func = hunk_func;
