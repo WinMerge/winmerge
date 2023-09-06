@@ -71,6 +71,15 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 	if (nCompMethod == CMP_CONTENT || nCompMethod == CMP_QUICK_CONTENT)
 	{
+		// Reset text stats
+		for (nIndex = 0; nIndex < nDirs; nIndex++)
+		{
+			m_diffFileData.m_textStats[nIndex].clear();
+			m_diffFileData.m_FileLocation[nIndex].encoding.Clear();
+		}
+		m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
+		m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
+
 		if ((di.diffFileInfo[0].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[0].size != DirItem::FILE_SIZE_NONE) ||
 			(di.diffFileInfo[1].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[1].size != DirItem::FILE_SIZE_NONE) ||
 			(nDirs > 2 && di.diffFileInfo[2].size > m_pCtxt->m_nBinaryCompareLimit && di.diffFileInfo[2].size != DirItem::FILE_SIZE_NONE))
@@ -92,11 +101,6 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 	if (nCompMethod == CMP_CONTENT ||
 		nCompMethod == CMP_QUICK_CONTENT)
 	{
-
-		// Reset text stats
-		for (nIndex = 0; nIndex < nDirs; nIndex++)
-			m_diffFileData.m_textStats[nIndex].clear();
-
 		PathContext tFiles;
 		m_pCtxt->GetComparePaths(di, tFiles);
 		struct change *script10 = nullptr;
