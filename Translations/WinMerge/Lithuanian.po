@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-08-05 10:45+0000\n"
-"PO-Revision-Date: 2023-08-08 08:08+0200\n"
+"POT-Creation-Date: 2023-08-27 15:32+0000\n"
+"PO-Revision-Date: 2023-09-07 11:11+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.3.1\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -2655,7 +2655,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Jūs ketinate užverti langą, kuriame lyginami katalogai. Ar tikrai norite užverti langą?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Jūs ketinate užverti katalogų palyginimo langą, kurio suformavimas užtruko nemažai laiko. Ar tikrai norite užverti langą?"
 
 msgid "The file or folder name is invalid."
 msgstr "Netinkamas failo ar katalogo pavadinimas."
