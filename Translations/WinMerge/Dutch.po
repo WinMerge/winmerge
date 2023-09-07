@@ -1515,8 +1515,8 @@ msgstr "Detectie verplaatste blokken inschakelen"
 msgid "Align &similar lines"
 msgstr "Gelijkaardige regels uitlijnen"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Vergelijkingsalgoritme (experimenteel):"
+msgid "Diff &algorithm:"
+msgstr "Vergelijkingsalgoritme:"
 
 msgid "Enable indent &heuristic"
 msgstr "Inspringing-heuristiek inschakelen"

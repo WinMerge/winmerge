@@ -19,6 +19,7 @@
 #include "coretools.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
+#include "xdiff_gnudiff_compat.h"
 #include "unicoder.h"
 
 namespace CompareEngines
@@ -267,7 +268,17 @@ bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
 	SE_Handler seh;
 	try
 	{
-		*diffs = diff_2_files(m_inf, depth, bin_status, bMovedBlocks, bin_file);
+		if (m_pOptions->m_diffAlgorithm != DIFF_ALGORITHM_DEFAULT)
+		{
+			const unsigned xdl_flags = make_xdl_flags(*m_pOptions);
+			*diffs = diff_2_files_xdiff(m_inf, bin_status, bMovedBlocks, bin_file, xdl_flags);
+			files[0] = m_inf[0];
+			files[1] = m_inf[1];
+		}
+		else
+		{
+			*diffs = diff_2_files(m_inf, depth, bin_status, bMovedBlocks, bin_file);
+		}
 	}
 	catch (SE_Exception&)
 	{

@@ -1517,8 +1517,8 @@ msgstr "Обнаружение переме&щенных блоков"
 msgid "Align &similar lines"
 msgstr "Выровнять по&хожие строки"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Алгоритм сравнения (эксперимент.):"
+msgid "Diff &algorithm:"
+msgstr "Алгоритм сравнения:"
 
 msgid "Enable indent &heuristic"
 msgstr "Включать эвристику отступов"

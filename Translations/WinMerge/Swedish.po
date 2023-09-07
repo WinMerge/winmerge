@@ -1524,8 +1524,8 @@ msgstr "Aktivera detektering av flyttade block"
 msgid "Align &similar lines"
 msgstr "Injustera likartade rader"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Jämförelsealgoritm (experimentell):"
+msgid "Diff &algorithm:"
+msgstr "Jämförelsealgoritm:"
 
 msgid "Enable indent &heuristic"
 msgstr "Aktivera indragsstöd"

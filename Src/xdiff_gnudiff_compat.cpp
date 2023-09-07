@@ -70,58 +70,7 @@ static int hunk_func(long start_a, long count_a, long start_b, long count_b, voi
 	return 0;
 }
 
-static void append_equivs(const xdfile_t& xdf, struct file_data& filevec, std::vector<xrecord_t *>& equivs, unsigned xdl_flags)
-{
-	std::unordered_map<unsigned long, std::vector<int>> equivs_map;
-	for (int i = 0; i < static_cast<int>(equivs.size()); ++i)
-	{
-		unsigned long ha = equivs[i]->ha;
-		if (equivs_map.find(ha) != equivs_map.end())
-			equivs_map[ha].push_back(i);
-		else
-			equivs_map.emplace(ha, std::vector<int>{i});
-	}
-
-	for (int i = 0; i < xdf.nrec; ++i)
-	{
-		unsigned long ha = xdf.recs[i]->ha;
-		if (equivs_map.find(ha) != equivs_map.end())
-		{
-			bool found = false;
-			for (auto j: equivs_map[ha])
-			{
-				if (xdl_recmatch(equivs[j]->ptr, equivs[j]->size, xdf.recs[i]->ptr, xdf.recs[i]->size, xdl_flags))
-				{
-					found = true;
-					filevec.equivs[i] = j;
-					equivs_map.emplace(ha, std::vector<int>{j});
-					break;
-				}
-			}
-			if (!found)
-			{
-				filevec.equivs[i] = static_cast<int>(equivs.size());
-				equivs_map[ha].push_back(filevec.equivs[i]);
-				equivs.push_back(xdf.recs[i]);
-			}
-		}
-		else
-		{
-			filevec.equivs[i] = static_cast<int>(equivs.size());
-			equivs_map.emplace(ha, std::vector<int>{filevec.equivs[i]});
-			equivs.push_back(xdf.recs[i]);
-		}
-	}
-}
-
-static int is_missing_newline(const mmfile_t& mmfile)
-{
-	if (mmfile.size == 0 || mmfile.ptr[mmfile.size - 1] == '\r' || mmfile.ptr[mmfile.size - 1] == '\n')
-		return 0;
-	return 1;
-}
-
-struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_blocks_flag, unsigned xdl_flags)
+struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status, int bMoved_blocks_flag, int* bin_file, unsigned xdl_flags)
 {
 	mmfile_t mmfile1 = { 0 }, mmfile2 = { 0 };
 	change *script = nullptr;
@@ -131,92 +80,121 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int bMoved_block
 	xdemitconf_t xecfg = { 0 };
 	xdemitcb_t ecb = { 0 };
 
-	if (!read_mmfile(filevec[0].desc, mmfile1))
-		goto abort;
-	if (!read_mmfile(filevec[1].desc, mmfile2))
-		goto abort;
-
-	xpp.flags = xdl_flags;
-	xecfg.hunk_func = hunk_func;
-	if (xdl_diff_modified(&mmfile1, &mmfile2, &xpp, &xecfg, &ecb, &xe, &xscr) == 0)
+	if (read_files(filevec, no_details_flag & ~ignore_some_changes, bin_file))
 	{
-		filevec[0].buffer = mmfile1.ptr;
-		filevec[1].buffer = mmfile2.ptr;
-		filevec[0].bufsize = mmfile1.size;
-		filevec[1].bufsize = mmfile2.size;
-		filevec[0].buffered_chars = mmfile1.size;
-		filevec[1].buffered_chars = mmfile2.size;
-		filevec[0].linbuf_base = 0;
-		filevec[1].linbuf_base = 0;
-		filevec[0].valid_lines = xe.xdf1.nrec;
-		filevec[1].valid_lines = xe.xdf2.nrec;
-		filevec[0].linbuf = static_cast<const char **>(malloc(sizeof(char *) * (xe.xdf1.nrec + 1)));
-		if (!filevec[0].linbuf)
-			goto abort;
-		filevec[1].linbuf = static_cast<const char **>(malloc(sizeof(char *) * (xe.xdf2.nrec + 1)));
-		if (!filevec[1].linbuf)
-			goto abort;
-		filevec[0].equivs = static_cast<int *>(malloc(sizeof(int) * xe.xdf1.nrec));
-		if (!filevec[0].equivs)
-			goto abort;
-		filevec[1].equivs = static_cast<int *>(malloc(sizeof(int) * xe.xdf2.nrec));
-		if (!filevec[1].equivs)
-			goto abort;
-		for (int i = 0; i < xe.xdf1.nrec; ++i)
-		{
-			filevec[0].linbuf[i] = xe.xdf1.recs[i]->ptr;
-			filevec[0].equivs[i] = -1;
-		}
-		if (xe.xdf1.nrec > 0)
-			filevec[0].linbuf[xe.xdf1.nrec] = xe.xdf1.recs[xe.xdf1.nrec - 1]->ptr + xe.xdf1.recs[xe.xdf1.nrec - 1]->size;
-		for (int i = 0; i < xe.xdf2.nrec; ++i)
-		{
-			filevec[1].linbuf[i] = xe.xdf2.recs[i]->ptr;
-			filevec[1].equivs[i] = -1;
-		}
-		if (xe.xdf2.nrec > 0)
-			filevec[1].linbuf[xe.xdf2.nrec] = xe.xdf2.recs[xe.xdf2.nrec - 1]->ptr + xe.xdf2.recs[xe.xdf2.nrec - 1]->size;
-		filevec[0].missing_newline = is_missing_newline(mmfile1);
-		filevec[1].missing_newline = is_missing_newline(mmfile2);
+		int i;
+		int changes;
+		// copy from analyze.c
+		//  We can now safely assume to have a pair of Binary files.
 
-		change *prev = nullptr;
-		for (xdchange_t* xcur = xscr; xcur; xcur = xcur->next)
+		// Are both files Open and Regular (no Pipes, Directories, Devices (e.g. NUL))
+		if (filevec[0].desc < 0 || filevec[1].desc < 0 ||
+			!(S_ISREG (filevec[0].stat.st_mode)) || !(S_ISREG (filevec[1].stat.st_mode))   )
+			changes = 1;
+		else
+		//  Files with different lengths must be different.  
+		if (filevec[0].stat.st_size != filevec[1].stat.st_size)
+			changes = 1;
+		else
+		//  Identical descriptor implies identical files
+		if (filevec[0].desc == filevec[1].desc)
+			changes = 0;
+		//  Scan both files, a buffer at a time, looking for a difference.  
+		else
 		{
-			change* e = static_cast<change*>(malloc(sizeof(change)));
-			if (!e)
-				goto abort;
-			if (!script)
-				script = e;
-			e->line0 = xcur->i1;
-			e->line1 = xcur->i2;
-			e->deleted = xcur->chg1;
-			e->inserted = xcur->chg2;
-			e->match0 = -1;
-			e->match1 = -1;
-			e->trivial = static_cast<char>(xcur->ignore);
-			e->link = nullptr;
-			e->ignore = 0;
-			if (prev)
-				prev->link = e;
-			prev = e;
-		}
+			//  Same-sized buffers for both files were allocated in read_files().  
+			size_t buffer_size = filevec[0].bufsize;
+			
+			for (;;)
+			{
+				//  Read a buffer's worth from both files.  
+				for (i = 0; i < 2; i++)
+					while (filevec[i].buffered_chars < buffer_size)
+					  {
+						int r = _read (filevec[i].desc,
+									   filevec[i].buffer	+ filevec[i].buffered_chars,
+									   (int)(buffer_size - filevec[i].buffered_chars));
+						if (r == 0)
+							break;
+						if (r < 0)
+							pfatal_with_name (filevec[i].name);
+						filevec[i].buffered_chars += r;
+					  }
+						
+				//  If the buffers have different number of chars, the files differ.  
+				if (filevec[0].buffered_chars != filevec[1].buffered_chars)
+				{
+					changes = 1;
+					break;
+				}
 
-		if (bMoved_blocks_flag)
+				//  If we reach end-of-file, the files are the same.  
+				if (filevec[0].buffered_chars==0) // therefore: filevec[1].buffered_chars==0
+				{
+					changes = 0;
+					break;
+				}	
+
+				//	If buffers have different contents, the files are different.
+				if (memcmp (filevec[0].buffer,
+							filevec[1].buffer,
+							filevec[0].buffered_chars) != 0)
+				{
+					changes = 1;
+					break;
+				}
+
+				//	Files appear identical so far...
+				//	Prepare to loop again for the next pair of buffers.
+				filevec[0].buffered_chars = filevec[1].buffered_chars = 0;
+			}
+		}
+		if (bin_status != NULL)
+			*bin_status = (changes != 0 ? -1 : 1);
+	}
+	else
+	{
+		mmfile1.ptr = const_cast<char*>(filevec[0].prefix_end);
+		mmfile1.size = static_cast<long>(filevec[0].suffix_begin - filevec[0].prefix_end);
+		mmfile2.ptr = const_cast<char*>(filevec[1].prefix_end);
+		mmfile2.size = static_cast<long>(filevec[1].suffix_begin - filevec[1].prefix_end);
+
+		xpp.flags = xdl_flags;
+		xecfg.hunk_func = hunk_func;
+		if (xdl_diff_modified(&mmfile1, &mmfile2, &xpp, &xecfg, &ecb, &xe, &xscr) == 0)
 		{
-			std::vector<xrecord_t *> equivs;
-			append_equivs(xe.xdf1, filevec[0], equivs, xdl_flags);
-			append_equivs(xe.xdf2, filevec[1], equivs, xdl_flags);
-			moved_block_analysis(&script, filevec);
-		}
+			change *prev = nullptr;
+			for (xdchange_t* xcur = xscr; xcur; xcur = xcur->next)
+			{
+				change* e = static_cast<change*>(malloc(sizeof(change)));
+				if (!e)
+					goto abort;
+				if (!script)
+					script = e;
+				e->line0 = xcur->i1;
+				e->line1 = xcur->i2;
+				e->deleted = xcur->chg1;
+				e->inserted = xcur->chg2;
+				e->match0 = -1;
+				e->match1 = -1;
+				e->trivial = static_cast<char>(xcur->ignore);
+				e->link = nullptr;
+				e->ignore = 0;
+				if (prev)
+					prev->link = e;
+				prev = e;
+			}
 
-		xdl_free_script(xscr);
-		xdl_free_env(&xe);
+			if (bMoved_blocks_flag)
+				moved_block_analysis(&script, filevec);
+
+			xdl_free_script(xscr);
+			xdl_free_env(&xe);
+		}
 	}
 
 	return script;
 
 abort:
-	free(mmfile1.ptr);
-	free(mmfile2.ptr);
 	return nullptr;
 }

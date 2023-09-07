@@ -1518,8 +1518,8 @@ msgstr "移動ブロック検出を有効にする(&N)"
 msgid "Align &similar lines"
 msgstr "類似行をマッチさせる(&S)"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Diff アルゴリズム (実験的機能)(&A):"
+msgid "Diff &algorithm:"
+msgstr "Diff アルゴリズム(&A):"
 
 msgid "Enable indent &heuristic"
 msgstr "Indent heuristic を有効にする(&H)"

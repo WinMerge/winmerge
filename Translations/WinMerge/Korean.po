@@ -1864,8 +1864,8 @@ msgstr "이동된 블럭 감지 활성화(&N)"
 msgid "Align &similar lines"
 msgstr "유사한 줄 정렬(&S)"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "비교 알고리즘 (실험 기능)(&A)"
+msgid "Diff &algorithm:"
+msgstr "비교 알고리즘(&A)"
 
 msgid "Enable indent &heuristic"
 msgstr "들여쓰기 휴리스틱 활성화(&H)"

@@ -1520,8 +1520,8 @@ msgstr "Taşı&nmış blok algılaması kullanılsın"
 msgid "Align &similar lines"
 msgstr "&Benzer satırlar hizalansın"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Fark algortiması (Deneysel):"
+msgid "Diff &algorithm:"
+msgstr "&Fark algortiması:"
 
 msgid "Enable indent &heuristic"
 msgstr "&Sezgisel girinti kullanılsın"

@@ -1515,8 +1515,8 @@ msgstr "Omogoči zazna&vanje premaknjenih blokov"
 msgid "Align &similar lines"
 msgstr "Poravnaj po&dobne črte"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Al&goritem razlik (poskusno):"
+msgid "Diff &algorithm:"
+msgstr "Al&goritem razlik:"
 
 msgid "Enable indent &heuristic"
 msgstr "Omogoči &hevristični zamik"

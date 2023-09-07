@@ -1520,8 +1520,8 @@ msgstr "Ota siirretyn lohkon tunnistus käyttöön"
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Ero&algoritmi (kokeellinen):"
+msgid "Diff &algorithm:"
+msgstr "Ero&algoritmi:"
 
 msgid "Enable indent &heuristic"
 msgstr "Ota käyttöön &heuristinen sisennys"

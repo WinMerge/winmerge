@@ -1857,8 +1857,8 @@ msgstr "Mozgatott &blokk észlelés bekapcsolása"
 msgid "Align &similar lines"
 msgstr "Hasonló sorok igazítása"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Különbségkereső algoritmus (kísérleti):"
+msgid "Diff &algorithm:"
+msgstr "Különbségkereső algoritmus:"
 
 msgid "Enable indent &heuristic"
 msgstr "Heurisztika engedélyezése"
