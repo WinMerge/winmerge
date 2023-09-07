@@ -126,7 +126,7 @@ bool CShellContextMenu::QueryShellContextMenu()
 
 		String currentDir = file.path;
 
-		if (parentDir.empty()) // first iteration, initialize parentDir and pCurrFolder
+		if (currentDir != parentDir)
 		{
 			parentDir = currentDir;
 
@@ -149,10 +149,6 @@ bool CShellContextMenu::QueryShellContextMenu()
 			{
 				return false;
 			}
-		}
-		else if (currentDir != parentDir) // check whether file belongs to the same parentDir, break otherwise
-		{
-			return false;
 		}
 
 		LPITEMIDLIST pidl;
