@@ -969,6 +969,12 @@ msgstr "Orta pano sağ tık menüsü"
 msgid "Right Shell menu"
 msgstr "Sağ pano sağ tık menüsü"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopyala"
 

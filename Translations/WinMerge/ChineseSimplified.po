@@ -972,6 +972,12 @@ msgstr "中间系统外壳菜单"
 msgid "Right Shell menu"
 msgstr "右侧系统外壳菜单"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "复制"
 

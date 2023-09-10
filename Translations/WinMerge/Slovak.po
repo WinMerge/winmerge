@@ -969,6 +969,12 @@ msgstr "Vzhľad strednej ponuky"
 msgid "Right Shell menu"
 msgstr "Vzhľad pravej ponuky"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopírovať"
 

@@ -1180,6 +1180,12 @@ msgstr "가운데 셸 메뉴"
 msgid "Right Shell menu"
 msgstr "오른쪽 셸 메뉴"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr "복사"

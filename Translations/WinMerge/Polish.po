@@ -970,6 +970,12 @@ msgstr "Środkowe menu powłoki"
 msgid "Right Shell menu"
 msgstr "Prawe menu powłoki"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiuj"
 

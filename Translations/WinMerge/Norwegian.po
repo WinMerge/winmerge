@@ -968,6 +968,12 @@ msgstr ""
 msgid "Right Shell menu"
 msgstr "Høyre skallmeny"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr ""
 

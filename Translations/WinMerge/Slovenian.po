@@ -969,6 +969,12 @@ msgstr "Srednji meni lupine"
 msgid "Right Shell menu"
 msgstr "Meni lupine desne"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiraj"
 

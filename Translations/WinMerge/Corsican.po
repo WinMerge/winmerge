@@ -971,6 +971,12 @@ msgstr "Listinu cuntestuale à u centru"
 msgid "Right Shell menu"
 msgstr "Listinu cuntestuale à diritta"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Cupià"
 

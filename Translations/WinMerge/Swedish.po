@@ -973,6 +973,12 @@ msgstr "Gränssnittsmeny mitten"
 msgid "Right Shell menu"
 msgstr "Gränssnittsmeny höger"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiera"
 

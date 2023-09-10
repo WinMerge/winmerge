@@ -968,6 +968,12 @@ msgstr "中央シェル メニュー"
 msgid "Right Shell menu"
 msgstr "右側シェル メニュー"
 
+msgid "Both Shell menu"
+msgstr "両側シェル メニュー"
+
+msgid "All Shell menu"
+msgstr "全てのシェル メニュー"
+
 msgid "Copy"
 msgstr "コピー"
 

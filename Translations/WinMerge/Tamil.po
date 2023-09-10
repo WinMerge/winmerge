@@ -967,6 +967,12 @@ msgstr "மத்திய ஷெல் மெனு"
 msgid "Right Shell menu"
 msgstr "வலது ஷெல் மெனு"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "நகல்"
 

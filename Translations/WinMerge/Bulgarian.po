@@ -966,6 +966,12 @@ msgstr "Меню на обкръжението на средния"
 msgid "Right Shell menu"
 msgstr "Меню на обкръжението на десния"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Копиране"
 
