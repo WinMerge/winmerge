@@ -64,15 +64,17 @@ using namespace std::placeholders;
  * If compare takes longer than this value (in seconds) we inform
  * user about it. Current implementation uses MessageBeep(IDOK).
  */
-const int TimeToSignalCompare = 3;
+constexpr int TimeToSignalCompare = 3;
 
-// The resource ID constants/limits for the Shell context menu
-const UINT LeftCmdFirst = 0x9000; // this should be greater than any of already defined command IDs
-const UINT RightCmdLast = 0xffff; // maximum available value
-const UINT LeftCmdLast = LeftCmdFirst + (RightCmdLast - LeftCmdFirst) / 3; // divide available range equally between two context menus
-const UINT MiddleCmdFirst = LeftCmdLast + 1;
-const UINT MiddleCmdLast = MiddleCmdFirst + (RightCmdLast - LeftCmdFirst) / 3;
-const UINT RightCmdFirst = MiddleCmdLast + 1;
+// The resource ID constexprants/limits for the Shell context menu
+constexpr UINT LeftCmdFirst = 0x9000; // this should be greater than any of already defined command IDs
+constexpr UINT BothCmdLast = 0xffff; // maximum available value
+constexpr UINT LeftCmdLast = LeftCmdFirst + (BothCmdLast - LeftCmdFirst) / 4; // divide available range equally between two context menus
+constexpr UINT MiddleCmdFirst = LeftCmdLast + 1;
+constexpr UINT MiddleCmdLast = MiddleCmdFirst + (BothCmdLast - LeftCmdFirst) / 4;
+constexpr UINT RightCmdFirst = MiddleCmdLast + 1;
+constexpr UINT RightCmdLast = RightCmdFirst + (BothCmdLast - LeftCmdFirst) / 4;
+constexpr UINT BothCmdFirst = RightCmdLast + 1;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView
@@ -92,6 +94,7 @@ CDirView::CDirView()
 		, m_pShellContextMenuLeft(nullptr)
 		, m_pShellContextMenuMiddle(nullptr)
 		, m_pShellContextMenuRight(nullptr)
+		, m_pShellContextMenuBoth(nullptr)
 		, m_hCurrentMenu(nullptr)
 		, m_pSavedTreeState(nullptr)
 		, m_pColItems(nullptr)
@@ -347,9 +350,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_ALL, OnUpdateCtxtDirCopyBothTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnUpdateCtxtDirCopyBothDiffsOnlyTo)
 	// Context menu -> Left/Middle/Right Shell menu
-	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_LEFT, OnCtxtDirShellContextMenu<SIDE_LEFT>)
-	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, OnCtxtDirShellContextMenu<SIDE_MIDDLE>)
-	ON_COMMAND(ID_DIR_SHELL_CONTEXT_MENU_RIGHT, OnCtxtDirShellContextMenu<SIDE_RIGHT>)
+	ON_COMMAND_RANGE(ID_DIR_SHELL_CONTEXT_MENU_LEFT, ID_DIR_SHELL_CONTEXT_MENU_ALL, OnCtxtDirShellContextMenu)
 	// Context menu -> Plugin settings
 	ON_COMMAND_RANGE(ID_PREDIFFER_SETTINGS_NONE, ID_PREDIFFER_SETTINGS_SELECT, OnPluginSettings)
 	ON_COMMAND_RANGE(ID_UNPACKER_SETTINGS_NONE, ID_UNPACKER_SETTINGS_SELECT, OnPluginSettings)
@@ -757,6 +758,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		pPopup->RemoveMenu(ID_DIR_ZIP_MIDDLE, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_ZIP_ALL, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_SHELL_CONTEXT_MENU_MIDDLE, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_SHELL_CONTEXT_MENU_ALL, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_MERGE_COMPARE_NONHORIZONTALLY, MF_BYCOMMAND);
 	}
 	else
@@ -765,6 +767,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		pPopup->RemoveMenu(ID_DIR_COPY_BOTH_TO_CLIPBOARD, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_ZIP_BOTH, MF_BYCOMMAND);
 		pPopup->RemoveMenu(ID_DIR_DEL_BOTH, MF_BYCOMMAND);
+		pPopup->RemoveMenu(ID_DIR_SHELL_CONTEXT_MENU_BOTH, MF_BYCOMMAND);
 		pPopup->RemoveMenu(2, MF_BYPOSITION); // Compare Non-horizontally
 	}
 
@@ -803,31 +806,6 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	// this will invoke all the OnUpdate methods to enable/disable the individual items
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y,
 			AfxGetMainWnd());
-}
-
-/**
- * @brief Gets Explorer's context menu for a group of selected files.
- *
- * @param [in] Side whether to get context menu for the files from the left or
- *   right side.
- * @retval true menu successfully retrieved.
- * @retval falsea an error occurred while retrieving the menu.
- */
-bool CDirView::ListShellContextMenu(SIDE_TYPE stype)
-{
-	CShellContextMenu* shellContextMenu;
-	switch (stype) {
-	case SIDE_MIDDLE:
-		shellContextMenu = m_pShellContextMenuMiddle.get(); break;
-	case SIDE_RIGHT:
-		shellContextMenu = m_pShellContextMenuRight.get(); break;
-	default:
-		shellContextMenu = m_pShellContextMenuLeft.get(); break;
-	}
-	shellContextMenu->Initialize();
-	ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(),
-		[&](const String& path, const String& filename) { shellContextMenu->AddItem(path, filename); });
-	return shellContextMenu->RequeryShellContextMenu();
 }
 
 /**
@@ -3038,33 +3016,56 @@ void CDirView::OnCtxtDirZip(int flag)
 	).CompressArchive();
 }
 
-void CDirView::ShowShellContextMenu(SIDE_TYPE stype)
+void CDirView::ShowShellContextMenu(UINT id)
 {
+	std::vector<SIDE_TYPE> stypes;
 	CShellContextMenu *pContextMenu = nullptr;
-	switch (stype)
+	switch (id)
 	{
-	case SIDE_LEFT:
+	case ID_DIR_SHELL_CONTEXT_MENU_LEFT:
 		if (m_pShellContextMenuLeft == nullptr)
 			m_pShellContextMenuLeft.reset(new CShellContextMenu(LeftCmdFirst, LeftCmdLast));
 		pContextMenu = m_pShellContextMenuLeft.get();
+		stypes = { SIDE_LEFT };
 		break;
-	case SIDE_MIDDLE:
+	case ID_DIR_SHELL_CONTEXT_MENU_MIDDLE:
 		if (m_pShellContextMenuMiddle == nullptr)
 			m_pShellContextMenuMiddle.reset(new CShellContextMenu(MiddleCmdFirst, MiddleCmdLast));
 		pContextMenu = m_pShellContextMenuMiddle.get();
+		stypes = { SIDE_MIDDLE };
 		break;
-	case SIDE_RIGHT:
+	case ID_DIR_SHELL_CONTEXT_MENU_RIGHT:
 		if (m_pShellContextMenuRight == nullptr)
 			m_pShellContextMenuRight.reset(new CShellContextMenu(RightCmdFirst, RightCmdLast));
 		pContextMenu = m_pShellContextMenuRight.get();
+		stypes = { SIDE_RIGHT };
+		break;
+	default:
+		if (m_pShellContextMenuBoth == nullptr)
+			m_pShellContextMenuBoth.reset(new CShellContextMenu(BothCmdFirst, BothCmdLast));
+		pContextMenu = m_pShellContextMenuBoth.get();
+		if (GetDocument()->m_nDirs < 3)
+			stypes = { SIDE_LEFT, SIDE_RIGHT };
+		else
+			stypes = { SIDE_LEFT, SIDE_MIDDLE, SIDE_RIGHT };
 		break;
 	}
-	if (pContextMenu!=nullptr && ListShellContextMenu(stype))
+
+	if (!pContextMenu)
+		return;
+
+	pContextMenu->Initialize();
+	for (const auto stype : stypes)
+	{
+		ApplyFolderNameAndFileName(SelBegin(), SelEnd(), stype, GetDiffContext(),
+			[&](const String& path, const String& filename) { pContextMenu->AddItem(path, filename); });
+	}
+	if (pContextMenu->RequeryShellContextMenu())
 	{
 		CPoint point;
 		GetCursorPos(&point);
 		HWND hWnd = GetSafeHwnd();
-		CFrameWnd *pFrame = GetTopLevelFrame();
+		CFrameWnd* pFrame = GetTopLevelFrame();
 		ASSERT(pFrame != nullptr);
 		BOOL bAutoMenuEnableOld = pFrame->m_bAutoMenuEnable;
 		pFrame->m_bAutoMenuEnable = FALSE;

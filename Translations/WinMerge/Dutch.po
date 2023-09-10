@@ -969,6 +969,12 @@ msgstr "Middelste shellmenu"
 msgid "Right Shell menu"
 msgstr "Rechter shellmenu"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiëren"
 

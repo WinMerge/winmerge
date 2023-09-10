@@ -972,6 +972,12 @@ msgstr "Menú contextual central"
 msgid "Right Shell menu"
 msgstr "Menú contextual derecho"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Copiar"
 

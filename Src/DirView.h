@@ -218,6 +218,7 @@ protected:
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuBoth; /**< Shell context menu for group of both files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
 	std::unique_ptr<DirViewColItems> m_pColItems;
@@ -305,8 +306,7 @@ protected:
 	afx_msg void OnCtxtDirZip(int flag);
 	template<int flag>
 	afx_msg void OnCtxtDirZip() { OnCtxtDirZip(flag); }
-	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirShellContextMenu() { ShowShellContextMenu(stype); }
+	afx_msg void OnCtxtDirShellContextMenu(UINT id) { ShowShellContextMenu(id); }
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginSettings(UINT nID);
@@ -428,8 +428,7 @@ private:
 	void FixReordering();
 	void HeaderContextMenu(CPoint point, int i);
 	void ListContextMenu(CPoint point, int i);
-	bool ListShellContextMenu(SIDE_TYPE side);
-	void ShowShellContextMenu(SIDE_TYPE side);
+	void ShowShellContextMenu(UINT id);
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
 	bool IsLabelEdit() const;

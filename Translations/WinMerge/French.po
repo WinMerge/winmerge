@@ -1179,6 +1179,12 @@ msgstr "Menu explorateur du Milieu"
 msgid "Right Shell menu"
 msgstr "Menu explorateur Droite"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr "Copier"

@@ -969,6 +969,12 @@ msgstr "Menu do Shell do Meio"
 msgid "Right Shell menu"
 msgstr "Menu do Shell Direito"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Copiar"
 

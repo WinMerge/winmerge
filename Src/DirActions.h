@@ -711,7 +711,8 @@ void ApplyFolderNameAndFileName(const InputIterator& begin, const InputIterator&
 	for (InputIterator it = begin; it != end; ++it)
 	{
 		const DIFFITEM& di = *it;
-		if (di.diffcode.diffcode == 0) // Invalid value, this must be special item
+		if (di.diffcode.diffcode == 0 /* Invalid value, this must be special item */ ||
+		    !di.diffcode.exists(index)) 
 			continue;
 		String filename = di.diffFileInfo[index].filename;
 		String currentDir = di.getFilepath(index, ctxt.GetNormalizedPath(index));

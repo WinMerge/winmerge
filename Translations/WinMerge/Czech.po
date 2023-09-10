@@ -1171,6 +1171,12 @@ msgstr ""
 msgid "Right Shell menu"
 msgstr "Pravá systémová nabídka"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr ""

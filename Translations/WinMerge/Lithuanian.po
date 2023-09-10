@@ -969,6 +969,12 @@ msgstr "Vidurinis sistemos meniu"
 msgid "Right Shell menu"
 msgstr "Dešinysis sistemos meniu"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopijuoti"
 

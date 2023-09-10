@@ -945,6 +945,8 @@ BEGIN
         MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
         MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
         MENUITEM "Right Shell menu",            ID_DIR_SHELL_CONTEXT_MENU_RIGHT
+        MENUITEM "Both Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_BOTH
+        MENUITEM "All Shell menu",              ID_DIR_SHELL_CONTEXT_MENU_ALL
         MENUITEM SEPARATOR
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
     END

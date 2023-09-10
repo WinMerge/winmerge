@@ -3239,7 +3239,7 @@ void CMergeEditView::OnShellMenu()
 	String path = GetDocument()->m_filePaths[m_nThisPane];
 	auto pContextMenu = std::make_unique<CShellContextMenu>(CShellContextMenu(0x9000, 0x9FFF));
 	pContextMenu->Initialize();
-	pContextMenu->AddItem(paths::GetParentPath(path), paths::FindFileName(path));
+	pContextMenu->AddItem(path);
 	pContextMenu->RequeryShellContextMenu();
 	CPoint point;
 	::GetCursorPos(&point);
