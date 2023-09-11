@@ -902,7 +902,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
+    <ClCompile Include="..\Externals\googletest\googletest\src\gtest-all.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="7zCommon.cpp">
@@ -1426,13 +1426,13 @@
     <ClInclude Include="..\Externals\boost\boost\config.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
-    <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
+    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest-printers.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h">
+    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\Externals\gtest\include\gtest\internal\gtest-port.h">
+    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\internal\gtest-port.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\Version.h" />
