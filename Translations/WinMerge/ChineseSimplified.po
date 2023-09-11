@@ -120,7 +120,7 @@ msgid "Open &Parent Folder..."
 msgstr "打开上层文件夹(&P)..."
 
 msgid "S&hell Menu"
-msgstr "外壳菜单(&S)"
+msgstr "系统外壳菜单(&S)"
 
 msgid "Use First Line as Headers"
 msgstr "将第一行做为标题行"
@@ -973,10 +973,10 @@ msgid "Right Shell menu"
 msgstr "右侧系统外壳菜单"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "所有系统外壳菜单"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "所有系统外壳菜单"
 
 msgid "Copy"
 msgstr "复制"
@@ -1949,7 +1949,7 @@ msgid "Enable &automatic unpacking/prediffing for the plugin"
 msgstr "启用自动解包或预比较插件(&A)"
 
 msgid "Shell Integration"
-msgstr "系统集成"
+msgstr "系统外壳集成"
 
 msgid "Explorer"
 msgstr "资源管理器"
@@ -1964,22 +1964,22 @@ msgid "Enable &Compare As menu"
 msgstr "启用比较方式菜单(&C)"
 
 msgid "&Register shell extension"
-msgstr "注册系统扩展(&R)"
+msgstr "注册系统外壳扩展(&R)"
 
 msgid "&Unregister shell extension"
-msgstr "注销系统扩展(&U)"
+msgstr "注销系统外壳扩展(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr "为当前用户注册系统扩展(&O)"
+msgstr "为当前用户注册系统外壳扩展(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "为当前用户注销系统扩展(&L)"
+msgstr "为当前用户注销系统外壳扩展(&L)"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr "注册系统扩展（Windows 11 或更新的系统）(&W)"
+msgstr "注册系统外壳扩展（Windows 11 或更新的系统）(&W)"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr "注销系统扩展（Windows 11 或更新的系统）(&I)"
+msgstr "注销系统外壳扩展（Windows 11 或更新的系统）(&I)"
 
 msgid "Jump List"
 msgstr "跳转列表"
