@@ -1181,10 +1181,10 @@ msgid "Right Shell menu"
 msgstr "오른쪽 셸 메뉴"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "두 셀 메뉴"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "모든 쉘 메뉴"
 
 #, c-format
 msgid "Copy"
