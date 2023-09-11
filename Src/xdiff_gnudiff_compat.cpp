@@ -5,22 +5,6 @@ extern "C" {
 #include "../Externals/xdiff/xinclude.h"
 }
 
-static bool read_mmfile(int fd, mmfile_t& mmfile)
-{
-	cio::stat st;
-	if (cio::fstat(fd, &st) == -1)
-		return false;
-	if (st.st_size < 0 || st.st_size > INT32_MAX)
-		return false;
-	size_t sz = static_cast<size_t>(st.st_size);
-	mmfile.ptr = static_cast<char *>(malloc(sz ? sz : 1));
-	if (sz && cio::read(fd, mmfile.ptr, sz) == -1) {
-		return false;
-	}
-	mmfile.size = static_cast<long>(sz);
-	return true;
-}
-
 unsigned long make_xdl_flags(const DiffutilsOptions& options)
 {
 	unsigned long xdl_flags = 0;
@@ -111,9 +95,9 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status,
 				for (i = 0; i < 2; i++)
 					while (filevec[i].buffered_chars < buffer_size)
 					  {
-						int r = _read (filevec[i].desc,
+						cio::ssize_t r = cio::read (filevec[i].desc,
 									   filevec[i].buffer	+ filevec[i].buffered_chars,
-									   (int)(buffer_size - filevec[i].buffered_chars));
+									   buffer_size - filevec[i].buffered_chars);
 						if (r == 0)
 							break;
 						if (r < 0)
