@@ -373,9 +373,6 @@ void RemoveBlankLines(std::string &str)
 void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
 	int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const
 {
-	if (Op == OP_TRIVIAL)
-		return;
-
 	if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 	{
 		// Match lines against regular expression filters
@@ -1041,7 +1038,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				}
 				const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 				const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-				if (usefilters)
+				if (op != OP_TRIVIAL && usefilters)
 					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
 
 				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)

@@ -167,16 +167,13 @@ int DiffUtils::diffutils_compare_files()
 					translate_range(&m_inf[0], first0, last0, &trans_a0, &trans_b0);
 					translate_range(&m_inf[1], first1, last1, &trans_a1, &trans_b1);
 	
+					OP_TYPE op = (deletes == 0 && inserts == 0) ? OP_TRIVIAL : OP_DIFF;
+
 					//Determine quantity of lines in this block for both sides
-					int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
-					int QtyLinesRight = (trans_b1 - trans_a1) + 1;
-					if (usefilters)
+					if (op != OP_TRIVIAL && usefilters)
 					{
-						OP_TYPE op = OP_NONE;
-						if (deletes == 0 && inserts == 0)
-							op = OP_TRIVIAL;
-						else
-							op = OP_DIFF;
+						int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
+						int QtyLinesRight = (trans_b1 - trans_a1) + 1;
 						m_pDiffWrapper->PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, m_inf);
 						if(op == OP_TRIVIAL)
 						{
