@@ -168,7 +168,6 @@ int DiffUtils::diffutils_compare_files()
 				{
 					OP_TYPE op = (deletes == 0 && inserts == 0) ? OP_TRIVIAL : OP_DIFF;
 
-					//Determine quantity of lines in this block for both sides
 					if (op != OP_TRIVIAL && usefilters)
 					{
 						m_pDiffWrapper->PostFilter(ctxt, thisob, m_inf);
