@@ -191,8 +191,7 @@ public:
 	void SetFilterCommentsSourceDef(const String& ext);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
-	void PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const;
+	bool PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
 
 protected:
 	String FormatSwitchString() const;

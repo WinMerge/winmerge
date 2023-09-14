@@ -160,29 +160,20 @@ int DiffUtils::diffutils_compare_files()
 				/* Determine range of line numbers involved in each file.  */
 				int first0 = 0, last0 = 0, first1 = 0, last1 = 0, deletes = 0, inserts = 0;
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, m_inf);
+
+				/* Reconnect the script so it will all be freed properly.  */
+				end->link = next;
+
 				if (deletes!=0 || inserts!=0 || thisob->trivial!=0)
 				{
-					/* Print the lines that the first file has.  */
-					int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
-					translate_range(&m_inf[0], first0, last0, &trans_a0, &trans_b0);
-					translate_range(&m_inf[1], first1, last1, &trans_a1, &trans_b1);
-	
 					OP_TYPE op = (deletes == 0 && inserts == 0) ? OP_TRIVIAL : OP_DIFF;
 
 					//Determine quantity of lines in this block for both sides
 					if (op != OP_TRIVIAL && usefilters)
 					{
-						int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
-						int QtyLinesRight = (trans_b1 - trans_a1) + 1;
-						m_pDiffWrapper->PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, m_inf);
-						if(op == OP_TRIVIAL)
-						{
-							thisob->trivial = 1;
-						}
+						m_pDiffWrapper->PostFilter(ctxt, thisob, m_inf);
 					}
 				}
-				/* Reconnect the script so it will all be freed properly.  */
-				end->link = next;
 			}
 		}
 	}

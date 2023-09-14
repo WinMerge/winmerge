@@ -364,15 +364,22 @@ void RemoveBlankLines(std::string &str)
 
 /**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
-@param [in]  LineNumberLeft		- First line number to read from left file
-@param [in]  QtyLinesLeft		- Number of lines in the block for left file
-@param [in]  LineNumberRight		- First line number to read from right file
-@param [in]  QtyLinesRight		- Number of lines in the block for right file
-@param [in,out]  Op				- This variable is set to trivial if block should be ignored.
+@brief [in, out]  thisob			- Current change
 */
-void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-	int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const
+bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
 {
+	const int first0 = thisob->line0;
+	const int first1 = thisob->line1;
+	const int last0 = first0 + thisob->deleted - 1;
+	const int last1 = first1 + thisob->inserted - 1;
+	int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
+	translate_range(&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
+	translate_range(&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
+	const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+	const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+	const int LineNumberLeft = trans_a0 - 1;
+	const int LineNumberRight = trans_a1 - 1;
+	
 	if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
 	{
 		// Match lines against regular expression filters
@@ -384,8 +391,8 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 			match2 = RegExpFilter(LineNumberRight + file_data_ary[1].linbuf_base, LineNumberRight + file_data_ary[1].linbuf_base + QtyLinesRight - 1, &file_data_ary[1]);
 		if (match1 && match2)
 		{
-			Op = OP_TRIVIAL;
-			return;
+			thisob->trivial = 1;
+			return true;
 		}
 	}
 
@@ -464,9 +471,10 @@ void CDiffWrapper::PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int Q
 		RemoveBlankLines(LineDataRight);
 	}
 	if (LineDataLeft != LineDataRight)
-		return;
+		return false;
 	//only difference is trival
-	Op = OP_TRIVIAL;
+	thisob->trivial = 1;
+	return true;
 }
 
 /**
@@ -997,6 +1005,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 			/* Determine range of line numbers involved in each file.  */
 			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
 			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, file_data_ary);
+		
+			/* Reconnect the script so it will all be freed properly.  */
+			end->link = next;
+
 			if (deletes || inserts || thisob->trivial)
 			{
 				OP_TYPE op = OP_NONE;
@@ -1036,35 +1048,62 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						}
 					}
 				}
-				const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-				const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+				bool filtered = false;
 				if (op != OP_TRIVIAL && usefilters)
-					PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, file_data_ary);
-
-				if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
+					filtered = PostFilter(ctxt, thisob, file_data_ary);
+				if (filtered)
 				{
-					if (QtyLinesLeft == QtyLinesRight)
+					while (thisob != next)
 					{
-						op = OP_NONE;
-					}
-					else if (QtyLinesLeft < QtyLinesRight)
-					{
-						trans_a0 += QtyLinesLeft;
-						trans_a1 += QtyLinesLeft;
-					}
-					else
-					{
-						trans_a0 += QtyLinesRight;
-						trans_a1 += QtyLinesRight;
+						op = (thisob->trivial) ? OP_TRIVIAL : OP_DIFF;
+						first0 = thisob->line0;
+						first1 = thisob->line1;
+						last0 = first0 + thisob->deleted - 1;
+						last1 = first1 + thisob->inserted - 1;
+						translate_range (&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
+						translate_range (&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
+						const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+						const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+
+						if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
+						{
+							if (QtyLinesLeft == QtyLinesRight)
+							{
+								op = OP_NONE;
+							}
+							else
+							{
+								trans_a0 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
+								trans_a1 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
+							}
+						}
+						if (op != OP_NONE)
+							AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+
+						thisob = thisob->link;
 					}
 				}
-				if (op != OP_NONE)
-					AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				else
+				{
+					const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+					const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+					if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
+					{
+						if (QtyLinesLeft == QtyLinesRight)
+						{
+							op = OP_NONE;
+						}
+						else
+						{
+							trans_a0 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
+							trans_a1 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
+						}
+					}
+					if (op != OP_NONE)
+						AddDiffRange(m_pDiffList, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+				}
 			}
 		}
-		
-		/* Reconnect the script so it will all be freed properly.  */
-		end->link = next;
 	}
 }
 
@@ -1150,6 +1189,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 			{					
 				/* Determine range of line numbers involved in each file.  */
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, pinf);
+			
+				/* Reconnect the script so it will all be freed properly.  */
+				end->link = next;
+
 				if (deletes || inserts || thisob->trivial)
 				{
 					if (deletes && inserts)
@@ -1202,17 +1245,31 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						}
 					}
 
-					const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-					const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					if (usefilters)
-						PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, pinf);
+					bool filtered = false;
+					if (op != OP_TRIVIAL && usefilters)
+						filtered = PostFilter(ctxt, thisob, pinf);
+					if (filtered)
+					{
+						while (thisob != next)
+						{
+							op = (thisob->trivial) ? OP_TRIVIAL : OP_DIFF;
+							first0 = thisob->line0;
+							first1 = thisob->line1;
+							last0 = first0 + thisob->deleted - 1;
+							last1 = first1 + thisob->inserted - 1;
+							translate_range (&pinf[0], first0, last0, &trans_a0, &trans_b0);
+							translate_range (&pinf[1], first1, last1, &trans_a1, &trans_b1);
 
-					AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+							AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+							thisob = thisob->link;
+						}
+					}
+					else
+					{
+						AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+					}
 				}
 			}
-			
-			/* Reconnect the script so it will all be freed properly.  */
-			end->link = next;
 		}
 	}
 
