@@ -163,6 +163,7 @@ public:
 	void SetCreatePatchFile(const String &filename);
 	void SetCreateDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options) const;
+	const DiffutilsOptions& GetOptions() const { return m_options; }
 	void SetOptions(const DIFFOPTIONS *options);
 	void SetTextForAutomaticPrediff(const String &text);
 	void SetPrediffer(const PrediffingInfo * prediffer = nullptr);
@@ -192,11 +193,11 @@ public:
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
 	bool PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
+	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
+		int * bin_status, int * bin_file) const;
 
 protected:
 	String FormatSwitchString() const;
-	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
-		int * bin_status, int * bin_file) const;
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
 	void WritePatchFile(struct change * script, file_data * inf);
 public:
