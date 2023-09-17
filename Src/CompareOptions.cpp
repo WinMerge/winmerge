@@ -186,6 +186,7 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options) const
 	options.bIgnoreCase = m_bIgnoreCase;
 	options.bIgnoreEol = m_bIgnoreEOLDifference;
 	options.bIgnoreNumbers = m_bIgnoreNumbers;
+	options.nDiffAlgorithm = m_diffAlgorithm;
 
 	switch (m_ignoreWhitespace)
 	{

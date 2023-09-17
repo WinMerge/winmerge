@@ -220,11 +220,8 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			}
 			if (tFiles.GetSize() == 2)
 			{
-				m_pDiffUtilsEngine->SetFileData(2, m_diffFileData.m_inf);
-				code = m_pDiffUtilsEngine->diffutils_compare_files();
+				code = m_pDiffUtilsEngine->CompareFiles(&m_diffFileData);
 				m_pDiffUtilsEngine->GetDiffCounts(m_ndiffs, m_ntrivialdiffs);
-				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[1]);
 
 				// If unique item, it was being compared to itself to determine encoding
 				// and the #diffs is invalid
@@ -239,20 +236,12 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 				bool bRet;
 				int bin_flag10 = 0, bin_flag12 = 0, bin_flag02 = 0;
 
-				m_pDiffUtilsEngine->SetFileData(2, diffdata10.m_inf);
-				bRet = m_pDiffUtilsEngine->Diff2Files(&script10, 0, &bin_flag10, false, nullptr);
-				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[0]);
-
-				m_pDiffUtilsEngine->SetFileData(2, diffdata12.m_inf);
-				bRet = m_pDiffUtilsEngine->Diff2Files(&script12, 0, &bin_flag12, false, nullptr);
-				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
-
-				m_pDiffUtilsEngine->SetFileData(2, diffdata02.m_inf);
-				bRet = m_pDiffUtilsEngine->Diff2Files(&script02, 0, &bin_flag02, false, nullptr);
-				m_pDiffUtilsEngine->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-				m_pDiffUtilsEngine->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+				bRet = m_pDiffUtilsEngine->Diff2Files(&script10, &diffdata10, &bin_flag10, nullptr);
+				bRet = m_pDiffUtilsEngine->Diff2Files(&script12, &diffdata12, &bin_flag12, nullptr);
+				bRet = m_pDiffUtilsEngine->Diff2Files(&script02, &diffdata02, &bin_flag02, nullptr);
+				m_diffFileData.m_textStats[0] = diffdata10.m_textStats[1];
+				m_diffFileData.m_textStats[1] = diffdata12.m_textStats[0];
+				m_diffFileData.m_textStats[2] = diffdata02.m_textStats[1];
 
 				code = DIFFCODE::FILE;
 
@@ -336,13 +325,8 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			}
 			if (tFiles.GetSize() == 2)
 			{
-				m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
-
 				// use our own byte-by-byte compare
-				code = m_pByteCompare->CompareFiles(m_diffFileData.m_FileLocation);
-
-				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[1]);
+				code = m_pByteCompare->CompareFiles(&m_diffFileData);
 
 				// Quick contents doesn't know about diff counts
 				// Set to special value to indicate invalid
@@ -351,32 +335,17 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 			}
 			else
 			{
+				// use our own byte-by-byte compare
 				// 10
-				m_pByteCompare->SetFileData(2, diffdata10.m_inf);
-
-				// use our own byte-by-byte compare
-				int code10 = m_pByteCompare->CompareFiles(diffdata10.m_FileLocation);
-
-				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[0]);
-
+				int code10 = m_pByteCompare->CompareFiles(&diffdata10);
 				// 12
-				m_pByteCompare->SetFileData(2, diffdata12.m_inf);
-
-				// use our own byte-by-byte compare
-				int code12 = m_pByteCompare->CompareFiles(diffdata12.m_FileLocation);
-
-				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[1]);
-				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
-
+				int code12 = m_pByteCompare->CompareFiles(&diffdata12);
 				// 02
-				m_pByteCompare->SetFileData(2, diffdata02.m_inf);
+				int code02 = m_pByteCompare->CompareFiles(&diffdata02);
 
-				// use our own byte-by-byte compare
-				int code02 = m_pByteCompare->CompareFiles(diffdata02.m_FileLocation);
-
-				m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats[0]);
-				m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats[2]);
+				m_diffFileData.m_textStats[0] = diffdata10.m_textStats[1];
+				m_diffFileData.m_textStats[1] = diffdata12.m_textStats[0];
+				m_diffFileData.m_textStats[2] = diffdata02.m_textStats[1];
 
 				code = DIFFCODE::FILE;
 				if (DIFFCODE::isResultError(code10) || DIFFCODE::isResultError(code12) || DIFFCODE::isResultError(code02))
