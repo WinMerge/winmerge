@@ -353,7 +353,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
 						// one side had an end-of-line, but the other didn't
-						return RESULT_DIFF;
+						result = RESULT_DIFF;
+						goto exit;
 					}
 					if (ptr0 != end0 && ptr1 != end1)
 						// This continue statement is needed to handle blank lines
@@ -383,7 +384,10 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 				if (!eof0 || !eof1)
 					goto need_more;
 				else
-					return RESULT_SAME;
+				{
+					result = RESULT_SAME;
+					goto exit;
+				}
 			}
 			else
 			{
@@ -393,7 +397,10 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					goto need_more;
 				}
 				else
-					return RESULT_DIFF;
+				{
+					result = RESULT_DIFF;
+					goto exit;
+				}
 			}
 		}
 
@@ -404,7 +411,10 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			c1 = tc::istupper(c1) ? tc::totlower(c1) : c1;
 		}
 		if (c0 != c1)
-			return RESULT_DIFF; // buffers are different
+		{
+			result = RESULT_DIFF; // buffers are different
+			goto exit;
+		}
 		if (ptr0 < end0 && ptr1 < end1)
 		{
 			m_bol0 = iseolch(c0);
@@ -417,14 +427,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	}
 
 need_more:
-	if (ptr0 - 1 >= orig0 && *(ptr0 - 1) == '\r')
-		m_cr0 = true;
-	else
-		m_cr0 = false;
-	if (ptr1 - 1 >= orig1 && *(ptr1 - 1) == '\r')
-		m_cr1 = true;
-	else
-		m_cr1 = false;
+	m_cr0 = (ptr0 - 1 >= orig0 && *(ptr0 - 1) == '\r');
+	m_cr1 = (ptr1 - 1 >= orig1 && *(ptr1 - 1) == '\r');
 	if (ptr0 == end0 && !eof0)
 	{
 		if (ptr1 == end1 && !eof1)
@@ -440,6 +444,11 @@ need_more:
 	{
 		return result;
 	}
+
+exit:
+	m_cr0 = (end0 > orig0) && *(end0 - 1) == '\r';
+	m_cr1 = (end1 > orig1) && *(end1 - 1) == '\r';
+	return result;
 }
 
 /**
