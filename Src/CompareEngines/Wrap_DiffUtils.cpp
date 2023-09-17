@@ -25,7 +25,6 @@
 
 namespace CompareEngines
 {
-static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 
 /**
  * @brief Default constructor.
@@ -237,17 +236,6 @@ bool DiffUtils::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file) const
 {
 	return m_pDiffWrapper->Diff2Files(diffs, diffData, bin_status, bin_file);
-}
-
-/**
- * @brief Copy text stat results from diffutils back into the FileTextStats structure
- */
-static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats)
-{
-	myTextStats->ncrlfs = inf->count_crlfs;
-	myTextStats->ncrs = inf->count_crs;
-	myTextStats->nlfs = inf->count_lfs;
-	myTextStats->nzeros = inf->count_zeros;
 }
 
 /**
