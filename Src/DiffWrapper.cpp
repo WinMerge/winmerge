@@ -61,6 +61,8 @@ extern "C" int is_blank_line(char const* pch, char const* limit);
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
 
+constexpr char* FILTERED_LINE = "!" "c0d5089f" "-" "3d91" "-" "4d69" "-" "b406" "-" "dc5a5b51a4f8";
+
 /**
  * @brief Default constructor.
  * Initializes members.
@@ -380,22 +382,6 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 	const int LineNumberLeft = trans_a0 - 1;
 	const int LineNumberRight = trans_a1 - 1;
 	
-	if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
-	{
-		// Match lines against regular expression filters
-		// Our strategy is that every line in both sides must
-		// match regexp before we mark difference as ignored.
-		bool match2 = false;
-		bool match1 = RegExpFilter(LineNumberLeft + file_data_ary[0].linbuf_base, LineNumberLeft + file_data_ary[0].linbuf_base + QtyLinesLeft - 1, &file_data_ary[0]);
-		if (match1)
-			match2 = RegExpFilter(LineNumberRight + file_data_ary[1].linbuf_base, LineNumberRight + file_data_ary[1].linbuf_base + QtyLinesRight - 1, &file_data_ary[1]);
-		if (match1 && match2)
-		{
-			thisob->trivial = 1;
-			return true;
-		}
-	}
-
 	std::string LineDataLeft, LineDataRight;
 
 	if (m_options.m_filterCommentsLines)
@@ -421,6 +407,22 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
 			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
 			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
+	}
+
+	if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
+	{
+		// Match lines against regular expression filters
+		// Our strategy is that every line in both sides must
+		// match regexp before we mark difference as ignored.
+		bool match2 = false;
+		bool match1 = RegExpFilter(LineDataLeft);
+		if (match1)
+			match2 = RegExpFilter(LineDataRight);
+		if (match1 && match2)
+		{
+			thisob->trivial = 1;
+			return true;
+		}
 	}
 
 	if (m_pSubstitutionList)
@@ -945,7 +947,7 @@ CDiffWrapper::FreeDiffUtilsScript(struct change * & script)
  * @param [in] FileNo File to match.
  * return true if any of the expressions matches.
  */
-bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const
+bool CDiffWrapper::RegExpFilter(std::string& lines) const
 {
 	if (m_pFilterList == nullptr)
 	{	
@@ -954,19 +956,32 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, const file_data *pinf)
 	}
 
 	bool linesMatch = true; // set to false when non-matching line is found.
-	int line = StartPos;
 
-	while (line <= EndPos && linesMatch)
+	std::string replaced;
+	replaced.reserve(lines.length());
+	size_t pos = 0;
+	while (pos < lines.length())
 	{
-		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
-		const char *string = pinf->linbuf[line];
-		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
+		const char* string = lines.c_str() + pos;
+		while (pos < lines.length() && (lines[pos] != '\r' && lines[pos] != '\n'))
+			pos++;
+		size_t stringlen = lines.c_str() + pos - string;
+		std::string line = std::string(string, stringlen);
+		if (!m_pFilterList->Match(line, m_codepage))
 		{
 			linesMatch = false;
+			replaced += line;
 		}
-		++line;
+		else
+		{
+			replaced += FILTERED_LINE;
+		}
+		std::string eol;
+		while (pos < lines.length() && (lines[pos] == '\r' || lines[pos] == '\n'))
+			eol += lines[pos++];
+		replaced += eol;
 	}
+	lines = replaced;
 	return linesMatch;
 }
 

@@ -205,7 +205,7 @@ public:
 		struct change * script10, struct change * script12,
 		const file_data * inf10, const file_data * inf12);
 	static void FreeDiffUtilsScript(struct change * & script);
-	bool RegExpFilter(int StartPos, int EndPos, const file_data * pinf) const;
+	bool RegExpFilter(std::string& lines) const;
 
 private:
 	DiffutilsOptions m_options;
