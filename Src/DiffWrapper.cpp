@@ -525,17 +525,61 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 			int l0 = thisob->line0;
 			int l1 = thisob->line1;
 			int ninserts = 0;
+			change* first = script;
+			change* prev = nullptr;
 			for (; script; script = script->link)
 			{
 				if (l0 < script->line0 || l1 < script->line1)
 				{
+					ninserts++;
+					change *newob = (change *)xmalloc(sizeof (change));
+					newob->line0 = l0;
+					newob->line1 = l1;
+					newob->deleted = script->line0 - l0;
+					newob->inserted = script->line1 - l1;
+					newob->trivial = 1;
+					newob->match0 = -1;
+					newob->match1 = -1;
+					if (script == first)
+					{
+						std::swap(newob->line0, script->line0);
+						std::swap(newob->line1, script->line1);
+						std::swap(newob->deleted, script->deleted);
+						std::swap(newob->inserted, script->inserted);
+						std::swap(newob->trivial, script->trivial);
+						std::swap(newob->match0, script->match0);
+						std::swap(newob->match1, script->match1);
+						newob->link = script->link;
+						script->link = newob;
+					}
+					else
+					{
+						prev->link = newob;
+						newob->link = script;
+					}
 				}
+				l0 = script->line0 + script->deleted;
+				l1 = script->line1 + script->inserted;
+				prev = script;
 			}
-			return 0;
+			return ninserts;
 		};
 
 	auto ReplaceChanges = [](change* thisob, change* script)
 		{
+			change* last = nullptr;
+			for (change* cur = script; cur; cur = cur->link)
+				last = cur;
+			last->link = thisob->link;
+			thisob->link = script->link;
+			thisob->line0 = script->line0;
+			thisob->line1 = script->line1;
+			thisob->deleted = script->deleted;
+			thisob->inserted = script->inserted;
+			thisob->trivial = script->trivial;
+			thisob->match0 = script->match0;
+			thisob->match1 = script->match1;
+			free(script);
 		};
 
 	AdjustChanges(thisob, script);
