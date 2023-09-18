@@ -82,6 +82,7 @@ CDiffWrapper::CDiffWrapper()
 , m_bPluginsEnabled(false)
 , m_status()
 , m_codepage(ucr::CP_UTF_8)
+, m_xdlFlags(0)
 {
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
@@ -158,6 +159,7 @@ void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
 	assert(options != nullptr);
 	m_options.SetFromDiffOptions(*options);
+	m_xdlFlags = make_xdl_flags(m_options);
 }
 
 void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)
@@ -364,6 +366,28 @@ void RemoveBlankLines(std::string &str)
 	}
 }
 
+static int CountLines(const std::string& lines)
+{
+	int neols = 0;
+	for (size_t i = 0; i < lines.length(); ++i)
+	{
+		char c = lines[i];
+		if (c == '\r')
+		{
+			if (i + 1 < lines.length() && lines[i + 1] == '\n')
+			{
+				neols++;
+				i++;
+			}
+			else
+				neols++;
+		}
+		else if (c == '\n')
+			neols++;
+	}
+	return neols + ((lines.empty() || (lines.back() != '\r' && lines.back() != '\n')) ? 1 : 0);
+}
+
 /**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
 @brief [in, out]  thisob			- Current change
@@ -414,10 +438,8 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 		// Match lines against regular expression filters
 		// Our strategy is that every line in both sides must
 		// match regexp before we mark difference as ignored.
-		bool match2 = false;
 		bool match1 = RegExpFilter(LineDataLeft);
-		if (match1)
-			match2 = RegExpFilter(LineDataRight);
+		bool match2 = RegExpFilter(LineDataRight);
 		if (match1 && match2)
 		{
 			thisob->trivial = 1;
@@ -427,8 +449,8 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 
 	if (m_pSubstitutionList)
 	{
-		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft);
-		LineDataRight = m_pSubstitutionList->Subst(LineDataRight);
+		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft, m_codepage);
+		LineDataRight = m_pSubstitutionList->Subst(LineDataRight, m_codepage);
 	}
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
@@ -472,11 +494,54 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 		RemoveBlankLines(LineDataLeft);
 		RemoveBlankLines(LineDataRight);
 	}
-	if (LineDataLeft != LineDataRight)
+	if (LineDataLeft == LineDataRight)
+	{
+		//only difference is trival
+		thisob->trivial = 1;
+		return true;
+	}
+
+	int leftLines = CountLines(LineDataLeft);
+	int rightLines = CountLines(LineDataRight);
+
+	if (QtyLinesLeft != leftLines || QtyLinesRight != rightLines)
 		return false;
-	//only difference is trival
-	thisob->trivial = 1;
-	return true;
+
+	change* script = diff_2_buffers_xdiff(
+		LineDataLeft.c_str(), LineDataLeft.length(),
+		LineDataRight.c_str(), LineDataRight.length(), m_xdlFlags);
+
+	auto AdjustChanges = [](change* thisob, change* script)
+		{
+			for (; script; script = script->link)
+			{
+				script->line0 += thisob->line0;
+				script->line1 += thisob->line1;
+			}
+		};
+
+	auto InsertTrivialChanges = [](change* thisob, change* script) -> int
+		{
+			int l0 = thisob->line0;
+			int l1 = thisob->line1;
+			int ninserts = 0;
+			for (; script; script = script->link)
+			{
+				if (l0 < script->line0 || l1 < script->line1)
+				{
+				}
+			}
+			return 0;
+		};
+
+	auto ReplaceChanges = [](change* thisob, change* script)
+		{
+		};
+
+	AdjustChanges(thisob, script);
+	int ninserts = InsertTrivialChanges(thisob, script);
+	ReplaceChanges(thisob, script);
+	return ninserts > 0;
 }
 
 /**

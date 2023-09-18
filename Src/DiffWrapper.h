@@ -209,6 +209,7 @@ public:
 
 private:
 	DiffutilsOptions m_options;
+	int m_xdlFlags;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	std::shared_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList;
