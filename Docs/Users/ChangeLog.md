@@ -30,16 +30,23 @@
 - BugFix: Fix the problem that when comparing with the BinaryContents compare
     method, the contents of the files are identical, but if one side is a
     symbolic link, it is judged to be different. (#1976)
+- BugFix: Fixed an issue where values in the Left/Right EOL column may not
+    display correctly when using the Quick contents compare method.
 - Add Expand Different Subfolders menu item (#1382) (PR #1964)
 - Allow Diff algorithms (patience, histogram) other than default to be applied
     to folder comparisons (PR #2015) (#2002)
 - Show confirmation message when closing a window that took a long time
     to compare folders
 
+### Line filters
+
+- Improve line filters and substitution filters (PR #2032) (#796) (#1620)
+
 ### Substitution filters
 
 - Avoid infinite loops in the RegularExpression::subst() function when 
     the length of the string matching the pattern is 0
+- Improve line filters and substitution filters (PR #2032) (#796) (#1620)
 
 ### Options dialog
 
