@@ -1479,6 +1479,8 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 					}
 					else
 					{
+						if (thisob->trivial)
+							op = OP_TRIVIAL;
 						AddDiffRange(pdiff, trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
 					}
 				}
