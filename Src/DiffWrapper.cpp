@@ -347,9 +347,10 @@ static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 }
 
 /**
-@brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
-@brief [in, out]  thisob			- Current change
-*/
+ * @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
+ * @param [in, out]  thisob	Current change
+ * @return Number of trivial diffs inserted
+ */
 int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
 {
 	const int first0 = thisob->line0;
@@ -424,7 +425,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		ReplaceChars(lineDataRight, " \t", " ");
 	}
 
-	if (m_options.m_bIgnoreNumbers )
+	if (m_options.m_bIgnoreNumbers)
 	{
 		//Ignore number character case
 		ReplaceChars(lineDataLeft, "0123456789", "");
@@ -433,10 +434,8 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	if (m_options.m_bIgnoreCase)
 	{
 		//ignore case
-		// std::transform(lineDataLeft.begin(),  lineDataLeft.end(),  lineDataLeft.begin(),  ::toupper);
 		for (std::string::iterator pb = lineDataLeft.begin(), pe = lineDataLeft.end(); pb != pe; ++pb) 
 			*pb = static_cast<char>(::toupper(*pb));
-		// std::transform(lineDataRight.begin(), lineDataRight.end(), lineDataRight.begin(), ::toupper);
 		for (std::string::iterator pb = lineDataRight.begin(), pe = lineDataRight.end(); pb != pe; ++pb) 
 			*pb = static_cast<char>(::toupper(*pb));
 	}
@@ -447,6 +446,8 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		Replace(lineDataRight, "\r\n", "\n");
 		Replace(lineDataRight, "\r", "\n");
 	}
+
+	// If both match after filtering, mark this diff hunk as trivial and return.
 	if (lineDataLeft == lineDataRight)
 	{
 		//only difference is trival
@@ -454,7 +455,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		return 0;
 	}
 
-	auto CountLines = [](const std::string& lines) -> std::vector<std::string_view>
+	auto SplitLines = [](const std::string& lines) -> std::vector<std::string_view>
 		{
 			std::vector<std::string_view> result;
 			const char* line = lines.c_str();
@@ -479,17 +480,19 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 			return result; 
 		};
 
-	std::vector<std::string_view> leftLines = CountLines(lineDataLeft);
-	std::vector<std::string_view> rightLines = CountLines(lineDataRight);
+	std::vector<std::string_view> leftLines = SplitLines(lineDataLeft);
+	std::vector<std::string_view> rightLines = SplitLines(lineDataRight);
 
 	if (qtyLinesLeft != leftLines.size() || qtyLinesRight != rightLines.size())
 		return 0;
 
+	// If both do not match as a result of filtering, some lines may match,
+	// so diff calculation is performed again using the filtered lines.
 	change* script = diff_2_buffers_xdiff(
 		lineDataLeft.c_str(), lineDataLeft.length(),
 		lineDataRight.c_str(), lineDataRight.length(), m_xdlFlags);
 
-	auto AdjustChanges = [](change* thisob, change* script)
+	auto TranslateLineNumbers = [](change* thisob, change* script)
 		{
 			assert(thisob && script);
 			for (change* cur = script; cur; cur = cur->link)
@@ -499,6 +502,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 			}
 		};
 
+	// Insert lines with no differences as trivial diffs after filtering
 	auto InsertTrivialChanges = [](change* thisob, change* script) -> int
 		{
 			assert(thisob && script);
@@ -559,6 +563,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 			return nTrivialInserts;
 		};
 
+	// Insert blank lines or filtered lines that are only on one side as trivial diffs. 
 	auto InsertTrivialChanges2 =
 		[](change* thisob, change* script, bool ignoreBlankLines,
 		   const std::vector<std::string_view>& leftLines,
@@ -582,7 +587,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 					bool ignorable = true;
 					if (cur->deleted > cur->inserted)
 					{
-						for (int i = cur->line0 + cur->inserted - thisob->line0; i < cur->deleted; ++i)
+						for (int i = cur->line0 + cur->inserted - thisob->line0; i < cur->line0 + cur->deleted - thisob->line0; ++i)
 						{
 							if (!(ignoreBlankLines && IsBlankLine(leftLines[i])) && leftLines[i] != FILTERED_LINE)
 								ignorable = false;
@@ -612,7 +617,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 					}
 					else
 					{
-						for (int i = cur->line1 + cur->deleted - thisob->line1; i < cur->inserted; ++i)
+						for (int i = cur->line1 + cur->deleted - thisob->line1; i < cur->line1 + cur->inserted - thisob->line1; ++i)
 						{
 							if (!(ignoreBlankLines && IsBlankLine(rightLines[i])) && rightLines[i] != FILTERED_LINE)
 								ignorable = false;
@@ -663,7 +668,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 			free(script);
 		};
 
-	AdjustChanges(thisob, script);
+	TranslateLineNumbers(thisob, script);
 	int nTrivialInserts = InsertTrivialChanges(thisob, script);
 	nTrivialInserts += InsertTrivialChanges2(thisob, script, m_options.m_bIgnoreBlankLines, leftLines, rightLines);
 	ReplaceChanges(thisob, script);
