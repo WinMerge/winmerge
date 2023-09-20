@@ -106,7 +106,7 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 	return false;
 }
 
-static HRESULT dfmCallback(IShellFolder* /*psf*/, HWND /*hwnd*/, IDataObject* /*pdtobj*/, UINT uMsg, WPARAM /*wParam*/, LPARAM /*lParam*/)
+static HRESULT _stdcall dfmCallback(IShellFolder* /*psf*/, HWND /*hwnd*/, IDataObject* /*pdtobj*/, UINT uMsg, WPARAM /*wParam*/, LPARAM /*lParam*/)
 {
 	switch (uMsg)
 	{
