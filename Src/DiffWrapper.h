@@ -192,8 +192,7 @@ public:
 	void SetFilterCommentsSourceDef(const String& ext);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
-	void PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const;
+	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file) const;
 
@@ -206,10 +205,11 @@ public:
 		struct change * script10, struct change * script12,
 		const file_data * inf10, const file_data * inf12);
 	static void FreeDiffUtilsScript(struct change * & script);
-	bool RegExpFilter(int StartPos, int EndPos, const file_data * pinf) const;
+	bool RegExpFilter(std::string& lines) const;
 
 private:
 	DiffutilsOptions m_options;
+	int m_xdlFlags;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	std::shared_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList;
