@@ -192,7 +192,7 @@ public:
 	void SetFilterCommentsSourceDef(const String& ext);
 	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
-	bool PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
+	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
 	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file) const;
 

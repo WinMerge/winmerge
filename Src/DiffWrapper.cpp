@@ -347,52 +347,10 @@ static void ReplaceChars(std::string & str, const char* chars, const char *rep)
 }
 
 /**
- * @brief Remove blank lines
- */
-void RemoveBlankLines(std::string &str)
-{
-	size_t pos = 0;
-	while (pos < str.length())
-	{
-		size_t posend = str.find_first_of("\r\n", pos);
-		if (posend != std::string::npos)
-			posend = str.find_first_not_of("\r\n", posend);
-		if (posend == std::string::npos)
-			posend = str.length();
-		if (is_blank_line(str.data() + pos, str.data() + posend))
-			str.erase(pos, posend - pos);
-		else
-			pos = posend;
-	}
-}
-
-static int CountLines(const std::string& lines)
-{
-	int neols = 0;
-	for (size_t i = 0; i < lines.length(); ++i)
-	{
-		char c = lines[i];
-		if (c == '\r')
-		{
-			if (i + 1 < lines.length() && lines[i + 1] == '\n')
-			{
-				neols++;
-				i++;
-			}
-			else
-				neols++;
-		}
-		else if (c == '\n')
-			neols++;
-	}
-	return neols + ((lines.empty() || (lines.back() != '\r' && lines.back() != '\n')) ? 1 : 0);
-}
-
-/**
 @brief The main entry for post filtering.  Performs post-filtering, by setting comment blocks to trivial
 @brief [in, out]  thisob			- Current change
 */
-bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
+int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file_data *file_data_ary) const
 {
 	const int first0 = thisob->line0;
 	const int first1 = thisob->line1;
@@ -401,36 +359,36 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 	int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
 	translate_range(&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
 	translate_range(&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
-	const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-	const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-	const int LineNumberLeft = trans_a0 - 1;
-	const int LineNumberRight = trans_a1 - 1;
+	const int qtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+	const int qtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+	const int lineNumberLeft = trans_a0 - 1;
+	const int lineNumberRight = trans_a1 - 1;
 	
-	std::string LineDataLeft, LineDataRight;
+	std::string lineDataLeft, lineDataRight;
 
 	if (m_options.m_filterCommentsLines)
 	{
 		ctxt.dwCookieLeft = GetLastLineCookie(ctxt.dwCookieLeft,
-			ctxt.nParsedLineEndLeft + 1, LineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
+			ctxt.nParsedLineEndLeft + 1, lineNumberLeft - 1, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
 		ctxt.dwCookieRight = GetLastLineCookie(ctxt.dwCookieRight,
-			ctxt.nParsedLineEndRight + 1, LineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
+			ctxt.nParsedLineEndRight + 1, lineNumberRight - 1, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
 
-		ctxt.nParsedLineEndLeft = LineNumberLeft + QtyLinesLeft - 1;
-		ctxt.nParsedLineEndRight = LineNumberRight + QtyLinesRight - 1;;
+		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
+		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
 
 		ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-			LineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, LineDataLeft, m_pFilterCommentsDef);
+			lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, lineDataLeft, m_pFilterCommentsDef);
 		ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-			LineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, LineDataRight, m_pFilterCommentsDef);
+			lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, lineDataRight, m_pFilterCommentsDef);
 	}
 	else
 	{
-		LineDataLeft.assign(file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base],
-			file_data_ary[0].linbuf[LineNumberLeft + QtyLinesLeft + file_data_ary[0].linbuf_base]
-			- file_data_ary[0].linbuf[LineNumberLeft + file_data_ary[0].linbuf_base]);
-		LineDataRight.assign(file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base],
-			file_data_ary[1].linbuf[LineNumberRight + QtyLinesRight + file_data_ary[1].linbuf_base]
-			- file_data_ary[1].linbuf[LineNumberRight + file_data_ary[1].linbuf_base]);
+		lineDataLeft.assign(file_data_ary[0].linbuf[lineNumberLeft + file_data_ary[0].linbuf_base],
+			file_data_ary[0].linbuf[lineNumberLeft + qtyLinesLeft + file_data_ary[0].linbuf_base]
+			- file_data_ary[0].linbuf[lineNumberLeft + file_data_ary[0].linbuf_base]);
+		lineDataRight.assign(file_data_ary[1].linbuf[lineNumberRight + file_data_ary[1].linbuf_base],
+			file_data_ary[1].linbuf[lineNumberRight + qtyLinesRight + file_data_ary[1].linbuf_base]
+			- file_data_ary[1].linbuf[lineNumberRight + file_data_ary[1].linbuf_base]);
 	}
 
 	if (m_pFilterList != nullptr && m_pFilterList->HasRegExps())
@@ -438,86 +396,106 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 		// Match lines against regular expression filters
 		// Our strategy is that every line in both sides must
 		// match regexp before we mark difference as ignored.
-		bool match1 = RegExpFilter(LineDataLeft);
-		bool match2 = RegExpFilter(LineDataRight);
+		bool match1 = RegExpFilter(lineDataLeft);
+		bool match2 = RegExpFilter(lineDataRight);
 		if (match1 && match2)
 		{
 			thisob->trivial = 1;
-			return true;
+			return 0;
 		}
 	}
 
 	if (m_pSubstitutionList)
 	{
-		LineDataLeft = m_pSubstitutionList->Subst(LineDataLeft, m_codepage);
-		LineDataRight = m_pSubstitutionList->Subst(LineDataRight, m_codepage);
+		lineDataLeft = m_pSubstitutionList->Subst(lineDataLeft, m_codepage);
+		lineDataRight = m_pSubstitutionList->Subst(lineDataRight, m_codepage);
 	}
 
 	if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
 	{
 		//Ignore character case
-		ReplaceChars(LineDataLeft, " \t", "");
-		ReplaceChars(LineDataRight, " \t", "");
+		ReplaceChars(lineDataLeft, " \t", "");
+		ReplaceChars(lineDataRight, " \t", "");
 	}
 	else if (m_options.m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
 	{
 		//Ignore change in whitespace char count
-		ReplaceChars(LineDataLeft, " \t", " ");
-		ReplaceChars(LineDataRight, " \t", " ");
+		ReplaceChars(lineDataLeft, " \t", " ");
+		ReplaceChars(lineDataRight, " \t", " ");
 	}
 
 	if (m_options.m_bIgnoreNumbers )
 	{
 		//Ignore number character case
-		ReplaceChars(LineDataLeft, "0123456789", "");
-		ReplaceChars(LineDataRight, "0123456789", "");
+		ReplaceChars(lineDataLeft, "0123456789", "");
+		ReplaceChars(lineDataRight, "0123456789", "");
 	}
 	if (m_options.m_bIgnoreCase)
 	{
 		//ignore case
-		// std::transform(LineDataLeft.begin(),  LineDataLeft.end(),  LineDataLeft.begin(),  ::toupper);
-		for (std::string::iterator pb = LineDataLeft.begin(), pe = LineDataLeft.end(); pb != pe; ++pb) 
+		// std::transform(lineDataLeft.begin(),  lineDataLeft.end(),  lineDataLeft.begin(),  ::toupper);
+		for (std::string::iterator pb = lineDataLeft.begin(), pe = lineDataLeft.end(); pb != pe; ++pb) 
 			*pb = static_cast<char>(::toupper(*pb));
-		// std::transform(LineDataRight.begin(), LineDataRight.end(), LineDataRight.begin(), ::toupper);
-		for (std::string::iterator pb = LineDataRight.begin(), pe = LineDataRight.end(); pb != pe; ++pb) 
+		// std::transform(lineDataRight.begin(), lineDataRight.end(), lineDataRight.begin(), ::toupper);
+		for (std::string::iterator pb = lineDataRight.begin(), pe = lineDataRight.end(); pb != pe; ++pb) 
 			*pb = static_cast<char>(::toupper(*pb));
 	}
 	if (m_options.m_bIgnoreEOLDifference)
 	{
-		Replace(LineDataLeft, "\r\n", "\n");
-		Replace(LineDataLeft, "\r", "\n");
-		Replace(LineDataRight, "\r\n", "\n");
-		Replace(LineDataRight, "\r", "\n");
+		Replace(lineDataLeft, "\r\n", "\n");
+		Replace(lineDataLeft, "\r", "\n");
+		Replace(lineDataRight, "\r\n", "\n");
+		Replace(lineDataRight, "\r", "\n");
 	}
-	if (m_options.m_bIgnoreBlankLines)
-	{
-		RemoveBlankLines(LineDataLeft);
-		RemoveBlankLines(LineDataRight);
-	}
-	if (LineDataLeft == LineDataRight)
+	if (lineDataLeft == lineDataRight)
 	{
 		//only difference is trival
 		thisob->trivial = 1;
-		return true;
+		return 0;
 	}
 
-	int leftLines = CountLines(LineDataLeft);
-	int rightLines = CountLines(LineDataRight);
+	auto CountLines = [](const std::string& lines) -> std::vector<std::string_view>
+		{
+			std::vector<std::string_view> result;
+			const char* line = lines.c_str();
+			for (size_t i = 0; i < lines.length(); ++i)
+			{
+				char c = lines[i];
+				if (c == '\r')
+				{
+					if (i + 1 < lines.length() && lines[i + 1] == '\n')
+						i++;
+					result.emplace_back(line, lines.c_str() + i + 1 - line);
+					line = lines.c_str() + i + 1;
+				}
+				else if (c == '\n')
+				{
+					result.emplace_back(line, lines.c_str() + i + 1 - line);
+					line = lines.c_str() + i + 1;
+				}
+			}
+			if (!lines.empty() && (lines.back() != '\r' && lines.back() != '\n'))
+				result.emplace_back(line, lines.c_str() + lines.length() - line);
+			return result; 
+		};
 
-	if (QtyLinesLeft != leftLines || QtyLinesRight != rightLines)
-		return false;
+	std::vector<std::string_view> leftLines = CountLines(lineDataLeft);
+	std::vector<std::string_view> rightLines = CountLines(lineDataRight);
+
+	if (qtyLinesLeft != leftLines.size() || qtyLinesRight != rightLines.size())
+		return 0;
 
 	change* script = diff_2_buffers_xdiff(
-		LineDataLeft.c_str(), LineDataLeft.length(),
-		LineDataRight.c_str(), LineDataRight.length(), m_xdlFlags);
+		lineDataLeft.c_str(), lineDataLeft.length(),
+		lineDataRight.c_str(), lineDataRight.length(), m_xdlFlags);
 
 	auto AdjustChanges = [](change* thisob, change* script)
 		{
 			assert(thisob && script);
-			for (; script; script = script->link)
+			for (change* cur = script; cur; cur = cur->link)
 			{
-				script->line0 += thisob->line0;
-				script->line1 += thisob->line1;
+				cur->line0 += thisob->line0;
+				cur->line1 += thisob->line1;
 			}
 		};
 
@@ -528,12 +506,12 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 			int l1 = thisob->line1;
 			change* first = script;
 			change* prev = nullptr;
-			int ninserts = 0;
+			int nTrivialInserts = 0;
 			for (change* cur = script; cur; cur = cur->link)
 			{
 				if (l0 < cur->line0 || l1 < cur->line1)
 				{
-					ninserts++;
+					nTrivialInserts++;
 					change *newob = (change *)xmalloc(sizeof (change));
 					newob->line0 = l0;
 					newob->line1 = l1;
@@ -566,7 +544,7 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 			}
 			if (l0 < thisob->line0 + thisob->deleted || l1 < thisob->line1 + thisob->inserted)
 			{
-				ninserts++;
+				nTrivialInserts++;
 				change *newob = (change *)xmalloc(sizeof (change));
 				prev->link = newob;
 				newob->line0 = l0;
@@ -578,7 +556,93 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 				newob->match1 = -1;
 				newob->link = nullptr;
 			}
-			return ninserts;
+			return nTrivialInserts;
+		};
+
+	auto InsertTrivialChanges2 =
+		[](change* thisob, change* script, bool ignoreBlankLines,
+		   const std::vector<std::string_view>& leftLines,
+		   const std::vector<std::string_view>& rightLines) -> int
+		{
+			assert(thisob && script);
+			auto IsBlankLine = [](const std::string_view& line)
+				{
+					for (char c : line)
+					{
+						if (!std::isspace(static_cast<unsigned char>(c)))
+							return false;
+					}
+					return true;
+				};
+			int nTrivialInserts = 0;
+			for (change* cur = script; cur; cur = cur->link)
+			{
+				if (!cur->trivial && cur->deleted != cur->inserted)
+				{
+					bool ignorable = true;
+					if (cur->deleted > cur->inserted)
+					{
+						for (int i = cur->line0 + cur->inserted - thisob->line0; i < cur->deleted; ++i)
+						{
+							if (!(ignoreBlankLines && IsBlankLine(leftLines[i])) && leftLines[i] != FILTERED_LINE)
+								ignorable = false;
+						}
+						if (ignorable)
+						{
+							if (cur->inserted == 0)
+							{
+								cur->trivial = 1;
+							}
+							else
+							{
+								nTrivialInserts++;
+								change* newob = (change*)xmalloc(sizeof(change));
+								newob->line0 = cur->line0 + cur->inserted;
+								newob->line1 = cur->line1 + cur->inserted;
+								newob->deleted = cur->deleted - cur->inserted;
+								newob->inserted = 0;
+								newob->trivial = 1;
+								newob->match0 = -1;
+								newob->match1 = -1;
+								newob->link = cur->link;
+								cur->link = newob;
+								cur->deleted = cur->inserted;
+							}
+						}
+					}
+					else
+					{
+						for (int i = cur->line1 + cur->deleted - thisob->line1; i < cur->inserted; ++i)
+						{
+							if (!(ignoreBlankLines && IsBlankLine(rightLines[i])) && rightLines[i] != FILTERED_LINE)
+								ignorable = false;
+						}
+						if (ignorable)
+						{
+							if (cur->deleted == 0)
+							{
+								cur->trivial = 1;
+							}
+							else
+							{
+								nTrivialInserts++;
+								change* newob = (change*)xmalloc(sizeof(change));
+								newob->line0 = cur->line0 + cur->deleted;
+								newob->line1 = cur->line1 + cur->deleted;
+								newob->deleted = 0;
+								newob->inserted = cur->inserted - cur->deleted;
+								newob->trivial = 1;
+								newob->match0 = -1;
+								newob->match1 = -1;
+								newob->link = cur->link;
+								cur->link = newob;
+								cur->inserted = cur->deleted;
+							}
+						}
+					}
+				}
+			}
+			return nTrivialInserts;
 		};
 
 	auto ReplaceChanges = [](change* thisob, change* script)
@@ -600,9 +664,10 @@ bool CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const fil
 		};
 
 	AdjustChanges(thisob, script);
-	int ninserts = InsertTrivialChanges(thisob, script);
+	int nTrivialInserts = InsertTrivialChanges(thisob, script);
+	nTrivialInserts += InsertTrivialChanges2(thisob, script, m_options.m_bIgnoreBlankLines, leftLines, rightLines);
 	ReplaceChanges(thisob, script);
-	return ninserts > 0;
+	return nTrivialInserts;
 }
 
 /**
@@ -1189,10 +1254,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						}
 					}
 				}
-				bool filtered = false;
+				int nTrivialInserts = 0;
 				if (op != OP_TRIVIAL && usefilters)
-					filtered = PostFilter(ctxt, thisob, file_data_ary);
-				if (filtered)
+					nTrivialInserts = PostFilter(ctxt, thisob, file_data_ary);
+				if (nTrivialInserts > 0)
 				{
 					while (thisob != next)
 					{
@@ -1203,19 +1268,19 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 						last1 = first1 + thisob->inserted - 1;
 						translate_range (&file_data_ary[0], first0, last0, &trans_a0, &trans_b0);
 						translate_range (&file_data_ary[1], first1, last1, &trans_a1, &trans_b1);
-						const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-						const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+						const int qtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+						const int qtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 
 						if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
 						{
-							if (QtyLinesLeft == QtyLinesRight)
+							if (qtyLinesLeft == qtyLinesRight)
 							{
 								op = OP_NONE;
 							}
 							else
 							{
-								trans_a0 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
-								trans_a1 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
+								trans_a0 += qtyLinesLeft < qtyLinesRight ? qtyLinesLeft : qtyLinesRight;
+								trans_a1 += qtyLinesLeft < qtyLinesRight ? qtyLinesLeft : qtyLinesRight;
 							}
 						}
 						if (op != OP_NONE)
@@ -1226,18 +1291,20 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				}
 				else
 				{
-					const int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
-					const int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
+					if (thisob->trivial)
+						op = OP_TRIVIAL;
+					const int qtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
+					const int qtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 					if (op == OP_TRIVIAL && m_options.m_bCompletelyBlankOutIgnoredDiffereneces)
 					{
-						if (QtyLinesLeft == QtyLinesRight)
+						if (qtyLinesLeft == qtyLinesRight)
 						{
 							op = OP_NONE;
 						}
 						else
 						{
-							trans_a0 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
-							trans_a1 += QtyLinesLeft < QtyLinesRight ? QtyLinesLeft : QtyLinesRight;
+							trans_a0 += qtyLinesLeft < qtyLinesRight ? qtyLinesLeft : qtyLinesRight;
+							trans_a1 += qtyLinesLeft < qtyLinesRight ? qtyLinesLeft : qtyLinesRight;
 						}
 					}
 					if (op != OP_NONE)
@@ -1386,10 +1453,10 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript3(
 						}
 					}
 
-					bool filtered = false;
+					int nTrivialInserts = 0;
 					if (op != OP_TRIVIAL && usefilters)
-						filtered = PostFilter(ctxt, thisob, pinf);
-					if (filtered)
+						nTrivialInserts = PostFilter(ctxt, thisob, pinf);
+					if (nTrivialInserts)
 					{
 						while (thisob != next)
 						{
