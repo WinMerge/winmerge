@@ -2,6 +2,35 @@
 title: 変更履歴
 ---
 
+### 2023/09/29 2.16.32-jp-3
+
+#### ファイル比較
+
+- 不具合修正: "コメントの違いを無視する" を有効にしても、片側のみ存在するインラインコメントが無視できないことがある。[(#2008)](https://github.com/WinMerge/winmerge/issues/2008)
+
+#### テーブル比較
+
+- ヘッダー部のコンテキストメニューの[最初の行をヘッダーとして使用する] がチェックされている場合、最初の行が非表示の場合でも、ヘッダーは最初の行を表示するようにした。
+
+#### フォルダ比較
+
+- 不具合修正: ファイル比較方法が "フルコンテンツ" または "クイックコンテンツ" でファイルサイズが64MBを超える場合、差異、左/右EOL列などが未定義の値として表示される問題を修正した。
+- 不具合修正: クイックコンテンツ比較方法を使用している場合、左/右EOL列の値が正しく表示されない場合がある問題を修正した。
+- フォルダ比較にデフォルト以外のDiffアルゴリズム(patience、histogramなど)を適用できるようにした。[(PR #2015)](https://github.com/WinMerge/winmerge/pull/2015)[(#2002)](https://github.com/WinMerge/winmerge/issues/2002)
+- コンテキストメニューに[両側シェルメニュー]を追加した。[(#1986)](https://github.com/WinMerge/winmerge/issues/1986)[(PR #2021)](https://github.com/WinMerge/winmerge/pull/2021)
+
+#### 行/置換フィルター
+
+- 行フィルターや置換フィルターでフィルタされるはずの行とフィルタされない行が隣接している場合、フィルタされるはずの行がフィルタされないのを改善した。[(PR #2032)](https://github.com/WinMerge/winmerge/pull/2000)[(#796)](https://github.com/WinMerge/winmerge/issues/796)[(#1620)](https://github.com/WinMerge/winmerge/issues/1620)
+
+#### プラグイン
+
+- jqをバージョン1.7に更新した。
+
+#### 内部処理
+
+- stdコンテナ内の挿入をreserveを使用して最適化した[(PR #2000)](https://github.com/WinMerge/winmerge/pull/2000)(PRをいただきました。ありがとうございます。)
+
 ### 2023/08/29 2.16.32-jp-2
 
 #### 全般
