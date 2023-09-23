@@ -972,6 +972,12 @@ msgstr "Orta pano sağ tık menüsü"
 msgid "Right Shell menu"
 msgstr "Sağ pano sağ tık menüsü"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopyala"
 
@@ -1523,8 +1529,8 @@ msgstr "Taşı&nmış blok algılaması kullanılsın"
 msgid "Align &similar lines"
 msgstr "&Benzer satırlar hizalansın"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Fark algortiması (Deneysel):"
+msgid "Diff &algorithm:"
+msgstr "&Fark algortiması:"
 
 msgid "Enable indent &heuristic"
 msgstr "&Sezgisel girinti kullanılsın"

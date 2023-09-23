@@ -59,6 +59,7 @@ PrintVirtualLineToRealLineMap(
 	{
 		String str = strutils::format(_T("vline%d: "), static_cast<int>(i));
 		std::vector<String> ary;
+		ary.reserve(npanes);
 		for (int j = 0; j < npanes; ++j)
 			ary.push_back(vlines[i][j] == DiffMap::GHOST_MAP_ENTRY ? _T("-----") : strutils::format(_T("%5d"), vlines[i][j]));
 		str += strutils::join(ary.begin(), ary.end(), _T(",")) + _T("\n");
@@ -93,6 +94,7 @@ CreateVirtualLineToRealLineMap(
 	const DiffMap& diffmap, int nlines0, int nlines1)
 {
 	std::vector<std::array<int, 2>> vlines;
+	vlines.reserve((std::max)(nlines0, nlines1) * 3 / 2); // Roughly pre-allocate space for the list.
 	int line0 = 0, line1 = 0;
 	while (line0 < nlines0)
 	{
@@ -129,6 +131,7 @@ CreateVirtualLineToRealLineMap3way(
 	std::vector<std::array<int, 2>> vlines12 = CreateVirtualLineToRealLineMap(diffmap12, nlines1, nlines2);
 	std::vector<std::array<int, 2>> vlines20 = CreateVirtualLineToRealLineMap(diffmap20, nlines2, nlines0);
 	std::vector<std::array<int, 3>> vlines;
+	vlines.reserve((std::max)({ nlines0, nlines1, nlines2 }) * 3 / 2);  // Roughly pre-allocate space for the list.
 	size_t i01 = 0, i12 = 0, i20 = 0;
 	int line0 = 0, line1 = 0, line2 = 0;
 	bool is_vlines20_usable = true;

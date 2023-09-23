@@ -972,6 +972,12 @@ msgstr ""
 msgid "Right Shell menu"
 msgstr "Høyre skallmeny"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr ""
 
@@ -1520,7 +1526,7 @@ msgstr "&Aktiver flyttet blokk-oppdagelse"
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
+msgid "Diff &algorithm:"
 msgstr ""
 
 msgid "Enable indent &heuristic"

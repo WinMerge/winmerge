@@ -252,7 +252,7 @@ void CLocationView::CalculateBlocks()
 	CMergeDoc *pDoc = GetDocument();
 	const int nDiffs = pDoc->m_diffList.GetSize();
 	if (nDiffs > 0)
-		m_diffBlocks.reserve(nDiffs); // Pre-allocate space for the list.
+		m_diffBlocks.reserve(nDiffs * 3 / 2); // Roughly pre-allocate space for the list.
 
 	int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
 	int nLineCount = pDoc->GetView(nGroup, 0)->GetLineCount();

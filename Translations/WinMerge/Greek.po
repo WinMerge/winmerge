@@ -1173,6 +1173,12 @@ msgstr ""
 msgid "Right Shell menu"
 msgstr ""
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr ""
@@ -1857,7 +1863,7 @@ msgstr "Ενεργοποίηση ανι&χνεύσεως μετακινηθέν�
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
+msgid "Diff &algorithm:"
 msgstr ""
 
 msgid "Enable indent &heuristic"

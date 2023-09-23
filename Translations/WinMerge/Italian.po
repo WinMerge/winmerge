@@ -970,6 +970,12 @@ msgstr "Menu shell centrale"
 msgid "Right Shell menu"
 msgstr "Menu shell destra"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Copia"
 
@@ -1516,8 +1522,8 @@ msgstr "Attiva rilevamento blocc&hi spostati"
 msgid "Align &similar lines"
 msgstr "Allinea le righe &simili"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Algoritmo differenze (sperimentale):"
+msgid "Diff &algorithm:"
+msgstr "&Algoritmo differenze:"
 
 msgid "Enable indent &heuristic"
 msgstr "Abilita rientro &euristico"

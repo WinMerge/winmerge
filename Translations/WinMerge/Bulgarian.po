@@ -969,6 +969,12 @@ msgstr "Меню на обкръжението на средния"
 msgid "Right Shell menu"
 msgstr "Меню на обкръжението на десния"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Копиране"
 
@@ -1517,8 +1523,8 @@ msgstr "Разпознаване на преместени па&раграфи"
 msgid "Align &similar lines"
 msgstr "Подра&вняване на подобни редове"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Алгоритъм за различия (експериментално):"
+msgid "Diff &algorithm:"
+msgstr "&Алгоритъм за различия:"
 
 msgid "Enable indent &heuristic"
 msgstr "П&редполагане на отстъпа"

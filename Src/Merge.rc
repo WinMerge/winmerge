@@ -948,6 +948,8 @@ BEGIN
         MENUITEM "Left Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_LEFT
         MENUITEM "Middle Shell menu",           ID_DIR_SHELL_CONTEXT_MENU_MIDDLE
         MENUITEM "Right Shell menu",            ID_DIR_SHELL_CONTEXT_MENU_RIGHT
+        MENUITEM "Both Shell menu",             ID_DIR_SHELL_CONTEXT_MENU_BOTH
+        MENUITEM "All Shell menu",              ID_DIR_SHELL_CONTEXT_MENU_ALL
         MENUITEM SEPARATOR
         MENUITEM "&File Encoding...",           ID_FILE_ENCODING
     END
@@ -1703,7 +1705,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,269,10
     CONTROL         "Align &similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
-    LTEXT           "Diff &algorithm (Experimental):",IDC_STATIC,7,156,269,10
+    LTEXT           "Diff &algorithm:",IDC_STATIC,7,156,269,10
     COMBOBOX        IDC_DIFF_ALGORITHM,6,168,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,269,10
     CONTROL         "Completely unhighlight the ignored differences",IDC_COMPLETELY_BLANK_OUT_IGNORED_DIFFERENCES,

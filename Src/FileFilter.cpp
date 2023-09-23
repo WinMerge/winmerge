@@ -50,6 +50,7 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 
 	filefilters.clear();
 	size_t count = filter->filefilters.size();
+	filefilters.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		filefilters.emplace_back(std::make_shared<FileFilterElement>(filter->filefilters[i].get()));
@@ -57,12 +58,14 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 
 	dirfilters.clear();
 	count = filter->dirfilters.size();
+	dirfilters.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		dirfilters.emplace_back(std::make_shared<FileFilterElement>(filter->dirfilters[i].get()));
 	}
 	filefiltersExclude.clear();
 	count = filter->filefiltersExclude.size();
+	filefiltersExclude.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		filefiltersExclude.emplace_back(std::make_shared<FileFilterElement>(filter->filefiltersExclude[i].get()));
@@ -70,6 +73,7 @@ void FileFilter::CloneFrom(const FileFilter* filter)
 
 	dirfiltersExclude.clear();
 	count = filter->dirfiltersExclude.size();
+	dirfiltersExclude.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		dirfiltersExclude.emplace_back(std::make_shared<FileFilterElement>(filter->dirfiltersExclude[i].get()));

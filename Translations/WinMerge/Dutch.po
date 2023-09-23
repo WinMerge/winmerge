@@ -972,6 +972,12 @@ msgstr "Middelste shellmenu"
 msgid "Right Shell menu"
 msgstr "Rechter shellmenu"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiëren"
 
@@ -1518,8 +1524,8 @@ msgstr "Detectie verplaatste blokken inschakelen"
 msgid "Align &similar lines"
 msgstr "Gelijkaardige regels uitlijnen"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Vergelijkingsalgoritme (experimenteel):"
+msgid "Diff &algorithm:"
+msgstr "Vergelijkingsalgoritme:"
 
 msgid "Enable indent &heuristic"
 msgstr "Inspringing-heuristiek inschakelen"

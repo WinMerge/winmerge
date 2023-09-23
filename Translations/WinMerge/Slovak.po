@@ -972,6 +972,12 @@ msgstr "Vzhľad strednej ponuky"
 msgid "Right Shell menu"
 msgstr "Vzhľad pravej ponuky"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopírovať"
 
@@ -1518,8 +1524,8 @@ msgstr "Povoliť &zisťovanie presunu bloku"
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Algoritmus rozdielov (experimentálne):"
+msgid "Diff &algorithm:"
+msgstr "&Algoritmus rozdielov:"
 
 msgid "Enable indent &heuristic"
 msgstr "Povoliť &heuristické odsadenie"

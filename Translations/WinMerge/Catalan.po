@@ -1174,6 +1174,12 @@ msgstr "Menú de sistema del mig"
 msgid "Right Shell menu"
 msgstr "Menú de sistema de la dreta"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr "Copia"
@@ -1858,8 +1864,8 @@ msgstr "&Habilita detecció de blocs desplaçats"
 msgid "Align &similar lines"
 msgstr "Em&parella les línies similars"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Algoritme de diferenciació (Experimental):"
+msgid "Diff &algorithm:"
+msgstr "Algoritme de diferenciació:"
 
 msgid "Enable indent &heuristic"
 msgstr "Habilita la heurística de sagnat"

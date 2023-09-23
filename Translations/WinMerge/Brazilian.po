@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2023-07-25 22:20-0300\n"
+"PO-Revision-Date: 2023-09-10 18:30-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -972,6 +972,12 @@ msgstr "Menu do Shell do Meio"
 msgid "Right Shell menu"
 msgstr "Menu do Shell Direito"
 
+msgid "Both Shell menu"
+msgstr "Ambos Menus Shell"
+
+msgid "All Shell menu"
+msgstr "Todos Menus Shell"
+
 msgid "Copy"
 msgstr "Copiar"
 
@@ -1518,8 +1524,8 @@ msgstr "A&tivar a detecção dos blocos movidos"
 msgid "Align &similar lines"
 msgstr "Alinhar linhas &semelhantes"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Algoritmo da &diferenciação (Experimental):"
+msgid "Diff &algorithm:"
+msgstr "Algoritmo da &diferenciação:"
 
 msgid "Enable indent &heuristic"
 msgstr "Ativar heurística de &recuo"
@@ -2658,7 +2664,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Você está pra fechar a janela que está comparando as pastas. Você tem certeza que você quer fechar a janela?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Você está prestes a fechar a janela de comparação de pastas que demorou um tempo considerável para ser montada. Tem certea que deseja fechar a janela?"
 
 msgid "The file or folder name is invalid."
 msgstr "Nome de arquivo ou pasta inválido."

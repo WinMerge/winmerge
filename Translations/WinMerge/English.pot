@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-08-27 15:32+0000\n"
+"POT-Creation-Date: 2023-09-08 20:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -966,6 +966,12 @@ msgstr ""
 msgid "Right Shell menu"
 msgstr ""
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr ""
 
@@ -1512,7 +1518,7 @@ msgstr ""
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
+msgid "Diff &algorithm:"
 msgstr ""
 
 msgid "Enable indent &heuristic"

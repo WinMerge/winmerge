@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-06-12 00:06+0000\n"
-"PO-Revision-Date: 2023-07-06 17:40+0200\n"
+"POT-Creation-Date: 2023-09-08 20:55+0000\n"
+"PO-Revision-Date: 2023-09-10 17:36+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -481,16 +481,16 @@ msgid "Tree &Mode"
 msgstr "&Modu in arburu"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "&Allargà i sottucartulari"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "&Tutti i sottucartulari"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "I sottucartulari &sfarenti"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "I sottucartulari &uguali"
 
 msgid "&Collapse All Subfolders"
 msgstr "&Ripiegà tutti i sottucartulari"
@@ -973,6 +973,12 @@ msgstr "Listinu cuntestuale à u centru"
 
 msgid "Right Shell menu"
 msgstr "Listinu cuntestuale à diritta"
+
+msgid "Both Shell menu"
+msgstr "I dui listini cuntestuali"
+
+msgid "All Shell menu"
+msgstr "Tutti i listini cuntestuali"
 
 msgid "Copy"
 msgstr "Cupià"
@@ -1522,8 +1528,8 @@ msgstr "Attivà l’avventata di i blocchi &dispiazzati"
 msgid "Align &similar lines"
 msgstr "&Alineà e linee simile"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Cudificazione di sfarenza (esperimentale) :"
+msgid "Diff &algorithm:"
+msgstr "Cudificazione di sfarenza :"
 
 msgid "Enable indent &heuristic"
 msgstr "Attivà l’indentazione &euristica"
@@ -1991,7 +1997,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignurà e sfarenze di tempu di &menu di 3 seconde"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "&Allargà autumaticamente i sottucartulari dopu à u paragone :"
 
 msgid "Include &unique subfolders contents"
 msgstr "Include u cuntenutu &unicu di i sottucartulari"
@@ -2294,16 +2300,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Schedarii XML (*.xml)|*.xml|Tutti i schedarii (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Ùn allargà micca"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Allargà tutti i sottucartulari"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Allargà i sottucartulari sfarenti"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Allargà i sottucartulari uguali"
 
 msgid "File Type"
 msgstr "Tipu di schedariu"
@@ -2502,7 +2508,7 @@ msgstr "Paragone di l’elementi…"
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[elementi/sec]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selezziunà dui cartulari o schedarii esistente à paragunà."
@@ -2899,7 +2905,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "State per chjode a finestra chì paraguneghja i cartulari. Da veru vulete chjode a finestra ?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "State per chjode a finestra di paragone di cartulare chì hà pigliatu un bellu pezzu. Da veru vulete chjode a finestra ?"
 
 msgid "The file or folder name is invalid."
 msgstr "U nome di u schedariu o di u cartulare hè inaccettevule."
@@ -4513,7 +4519,7 @@ msgid "Compare worksheets as image (very slow)"
 msgstr "Paragunà i foglii di calculu tale fiure (pianu pianu)"
 
 msgid " - Image split size: "
-msgstr " - Dimensione di spartera di a fiura :"
+msgstr " - Dimensione di spartera di a fiura : "
 
 msgid "Compare worksheets as HTML"
 msgstr "Paragunà i foglii di calculu tale HTML"
@@ -4595,7 +4601,7 @@ msgid "Find what"
 msgstr "Cosa circà"
 
 msgid "Replace with"
-msgstr "Rimpiazzà cù "
+msgstr "Rimpiazzà cù"
 
 msgid "Settings"
 msgstr "Preferenze"

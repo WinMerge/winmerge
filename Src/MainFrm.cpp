@@ -1101,6 +1101,7 @@ bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String t
 	fileopenflags_t dwFlags[3] = {};
 	CDirDoc* pDirDoc2 = pDirDoc->GetMainView() ? pDirDoc :
 		static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
+	m_tempFiles.reserve(nBuffers);
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
 		auto wTemp = std::make_shared<TempFile>(TempFile());

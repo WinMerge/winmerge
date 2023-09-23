@@ -1176,6 +1176,12 @@ msgstr "Középső intéző menü"
 msgid "Right Shell menu"
 msgstr "Jobb intéző menü"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr "Másolás"
@@ -1860,8 +1866,8 @@ msgstr "Mozgatott &blokk észlelés bekapcsolása"
 msgid "Align &similar lines"
 msgstr "Hasonló sorok igazítása"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Különbségkereső algoritmus (kísérleti):"
+msgid "Diff &algorithm:"
+msgstr "Különbségkereső algoritmus:"
 
 msgid "Enable indent &heuristic"
 msgstr "Heurisztika engedélyezése"
@@ -3448,7 +3454,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Bezárni készülsz a mappákat összehasonlító ablakot. Biztosan bezárod az ablakot?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Bezárni készülsz a mappa összehasonlító ablakot, ami meglehetősen sok időt vett igénybe. Biztosan bezárod az ablakot?"
 
 msgid "The file or folder name is invalid."
 msgstr "A fájl- vagy a mappanév érvénytelen"

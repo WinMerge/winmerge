@@ -1181,6 +1181,12 @@ msgstr "中間介面選單"
 msgid "Right Shell menu"
 msgstr "右側介面選單"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr "複製"
@@ -1868,8 +1874,8 @@ msgstr "偵測移位的區塊 (&N)"
 msgid "Align &similar lines"
 msgstr "相似行對齊 (&S)"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "實驗性差異演算法 (&A)："
+msgid "Diff &algorithm:"
+msgstr "差異演算法 (&A)："
 
 msgid "Enable indent &heuristic"
 msgstr "啟用縮排啟發式演算法 (&H)"

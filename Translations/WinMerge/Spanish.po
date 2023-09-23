@@ -975,6 +975,12 @@ msgstr "Menú contextual central"
 msgid "Right Shell menu"
 msgstr "Menú contextual derecho"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Copiar"
 
@@ -1521,8 +1527,8 @@ msgstr "Habilitar detecció&n de bloques desplazados"
 msgid "Align &similar lines"
 msgstr "Alinear líneas &simliares"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Algoritmo de comparación (experimental):"
+msgid "Diff &algorithm:"
+msgstr "&Algoritmo de comparación:"
 
 msgid "Enable indent &heuristic"
 msgstr "Habilitar la &heurística de indentación"

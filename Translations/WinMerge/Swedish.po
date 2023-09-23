@@ -976,6 +976,12 @@ msgstr "Gränssnittsmeny mitten"
 msgid "Right Shell menu"
 msgstr "Gränssnittsmeny höger"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopiera"
 
@@ -1527,8 +1533,8 @@ msgstr "Aktivera detektering av flyttade block"
 msgid "Align &similar lines"
 msgstr "Injustera likartade rader"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Jämförelsealgoritm (experimentell):"
+msgid "Diff &algorithm:"
+msgstr "Jämförelsealgoritm:"
 
 msgid "Enable indent &heuristic"
 msgstr "Aktivera indragsstöd"

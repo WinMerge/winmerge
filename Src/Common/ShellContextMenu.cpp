@@ -13,10 +13,7 @@
 #include "pch.h"
 #include "ShellContextMenu.h"
 #include "PidlContainer.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include <Shlwapi.h>
 
 CShellContextMenu::CShellContextMenu(UINT cmdFirst, UINT cmdLast)
 : m_pPreferredMenu(nullptr)
@@ -45,15 +42,15 @@ void CShellContextMenu::Initialize()
 	m_files.clear();
 }
 
-void CShellContextMenu::AddItem(const FileEntry& fileEntry)
+void CShellContextMenu::AddItem(const std::wstring& fullpath)
 {
-	m_files.insert(m_files.end(), fileEntry);
+	m_files.insert(m_files.end(), fullpath);
 }
 
-void CShellContextMenu::AddItem(const String& path,
-								const String& filename)
+void CShellContextMenu::AddItem(const std::wstring& path,
+								const std::wstring& filename)
 {
-	AddItem(FileEntry(path, filename));
+	AddItem(path + L"\\" + filename);
 }
 
 HMENU CShellContextMenu::GetHMENU() const
@@ -109,6 +106,20 @@ bool CShellContextMenu::HandleMenuMessage(UINT message, WPARAM wParam, LPARAM lP
 	return false;
 }
 
+static HRESULT _stdcall dfmCallback(IShellFolder* /*psf*/, HWND /*hwnd*/, IDataObject* /*pdtobj*/, UINT uMsg, WPARAM /*wParam*/, LPARAM /*lParam*/)
+{
+	switch (uMsg)
+	{
+	case DFM_MERGECONTEXTMENU:
+		return S_OK;
+	case DFM_INVOKECOMMAND:
+	case DFM_INVOKECOMMANDEX:
+	case DFM_GETDEFSTATICID: // Required for Windows 7 to pick a default
+		return S_FALSE;
+	}
+	return E_NOTIMPL;
+}
+
 bool CShellContextMenu::QueryShellContextMenu()
 {
 	//HRESULT hr = E_FAIL;
@@ -116,56 +127,22 @@ bool CShellContextMenu::QueryShellContextMenu()
 	if (FAILED(/*hr = */SHGetDesktopFolder(&pDesktop)))
 		return false;
 
-	String parentDir; // use it to track that all selected files are in the same parent directory
-	IShellFolderPtr pCurrFolder;
 	CPidlContainer pidls;
 
 	for (FilenamesContainer::const_iterator iter = m_files.begin(); iter != m_files.end(); ++iter)
 	{
-		const FileEntry& file = *iter;
-
-		String currentDir = file.path;
-
-		if (parentDir.empty()) // first iteration, initialize parentDir and pCurrFolder
-		{
-			parentDir = currentDir;
-
-			LPITEMIDLIST dirPidl;
-			if (FAILED(/*hr = */pDesktop->ParseDisplayName(nullptr,				   // hwnd
-													   nullptr,					   // pbc
-													   const_cast<wchar_t *>(currentDir.c_str()),	// pszDisplayName
-													   nullptr,					   // pchEaten
-													   &dirPidl,				   // ppidl
-													   nullptr					   // pdwAttributes
-													   )))
-			{
-				return false;
-			}
-
-			if (FAILED(/*hr = */pDesktop->BindToObject(dirPidl,			 // pidl
-												   nullptr,				 // pbc
-												   IID_IShellFolder,     // riid
-												   reinterpret_cast<void**>(&pCurrFolder))))
-			{
-				return false;
-			}
-		}
-		else if (currentDir != parentDir) // check whether file belongs to the same parentDir, break otherwise
-		{
-			return false;
-		}
-
+		const std::wstring& path = *iter;
 		LPITEMIDLIST pidl;
-		if (FAILED(/*hr = */pCurrFolder->ParseDisplayName(nullptr,
-													  nullptr,
-													  const_cast<wchar_t *>(file.filename.c_str()), 
-													  nullptr,
-													  &pidl,
-													  nullptr)))
+		if (FAILED(/*hr = */pDesktop->ParseDisplayName(nullptr,				   // hwnd
+												   nullptr,					   // pbc
+												   const_cast<wchar_t *>(path.c_str()),	// pszDisplayName
+												   nullptr,					   // pchEaten
+												   &pidl,					   // ppidl
+												   nullptr					   // pdwAttributes
+												   )))
 		{
 			return false;
 		}
-		
 		pidls.Add(pidl);
 	} // for (FilenamesContainer::const_iterator iter = m_files.begin(); iter != m_files.end(); ++iter)
 	
@@ -174,13 +151,37 @@ bool CShellContextMenu::QueryShellContextMenu()
 		return false;
 	}
 
+	// The following was created with reference to https://github.com/stefankueng/grepWin/blob/main/src/ShellContextMenu.cpp.
+	HKEY ahkeys[16]{};
+	int nKeys = 0;
+	const std::wstring& path = m_files.front();
+	nKeys += RegOpenKey(HKEY_CLASSES_ROOT, L"*", &ahkeys[nKeys]) == ERROR_SUCCESS ? 1 : 0;
+	nKeys += RegOpenKey(HKEY_CLASSES_ROOT, L"AllFileSystemObjects", &ahkeys[nKeys]) == ERROR_SUCCESS ? 1 : 0;
+	if (PathIsDirectory(path.c_str()))
+	{
+		nKeys += RegOpenKey(HKEY_CLASSES_ROOT, L"Folder", &ahkeys[nKeys]) == ERROR_SUCCESS ? 1 : 0;
+		nKeys += RegOpenKey(HKEY_CLASSES_ROOT, L"Directory", &ahkeys[nKeys]) == ERROR_SUCCESS ? 1 : 0;
+	}
+	HKEY hkey;
+	const wchar_t* ext = PathFindExtension(path.c_str());
+	if (ext && *ext == '.' && RegOpenKey(HKEY_CLASSES_ROOT, ext, &hkey) == ERROR_SUCCESS)
+	{
+		wchar_t buf[MAX_PATH] = { 0 };
+		DWORD dwSize = MAX_PATH;
+		if (RegQueryValueEx(hkey, L"", nullptr, nullptr, reinterpret_cast<LPBYTE>(buf), &dwSize) == ERROR_SUCCESS)
+			nKeys += RegOpenKey(HKEY_CLASSES_ROOT, buf, &ahkeys[nKeys]) == ERROR_SUCCESS ? 1 : 0;
+		RegCloseKey(hkey);
+	}
+
 	IContextMenuPtr pCMenu1;
-	if (FAILED(/*hr = */pCurrFolder->GetUIObjectOf(nullptr,
-											   static_cast<unsigned>(pidls.Size()),
-											   pidls.GetList(),
-											   IID_IContextMenu,
-											   0, 
-											   reinterpret_cast<void**>(&pCMenu1))))
+	HRESULT hr = CDefFolderMenu_Create2(nullptr, nullptr,
+		static_cast<unsigned>(pidls.Size()),
+		pidls.GetList(), pDesktop, dfmCallback, nKeys, ahkeys, &pCMenu1);
+
+	for (int i = 0; i < nKeys; ++i)
+		RegCloseKey(ahkeys[i]);
+
+	if (FAILED(hr))
 	{
 		return false;
 	}

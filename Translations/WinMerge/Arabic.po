@@ -973,6 +973,12 @@ msgstr "قائمة البرنامج الوسيطي (الغلاف) في الجز�
 msgid "Right Shell menu"
 msgstr "قائمة البرنامج الوسيطي (الغلاف) في الجزء الأيمن"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "نسخ"
 
@@ -1521,8 +1527,8 @@ msgstr "&تفعيل كشف المجموعات التي نقلها"
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "خوارزمية المقارنة (تجريبي):"
+msgid "Diff &algorithm:"
+msgstr "خوارزمية المقارنة:"
 
 msgid "Enable indent &heuristic"
 msgstr "تفعيل الم&سافة البادئة الإرشادية"

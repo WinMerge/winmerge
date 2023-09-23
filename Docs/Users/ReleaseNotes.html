@@ -20,110 +20,87 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21632-release-notes">WinMerge 2.16.32 Release Notes</h1>
+<h1 id="winmerge-21633-beta-release-notes">WinMerge 2.16.33 Beta Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21632">What Is New in 2.16.32?</a></li>
-<li><a href="#what-is-new-in-21631-beta">What Is New in 2.16.31 beta?</a></li>
+<li><a href="#what-is-new-in-21633-beta">What Is New in 2.16.33 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>July 2023</p>
+<p>September 2023</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.32 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge beta release which is meant for preview the current state of WinMerge development. This release is not recommended for the production.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21632">What Is New in 2.16.32</h2>
+<h2 id="what-is-new-in-21633-beta">What Is New in 2.16.33 Beta</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>BugFix: Export/Import settings bug with Substitution Filters (#1925)</li>
+<li>Reduce startup time and decrease the usage of Win32 user objects.</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li>BugFix: Save function doesn&#39;t work if the path length exceeds 248 characters (#1923)</li>
-<li>BugFix: Redundant confirmation &quot;The selected files are identical&quot; (#1902)</li>
-<li>Update Python syntax highlighting keyword list. (PR #1938)</li>
+<li>BugFix: Cannot compare one-line file (#1972)</li>
+<li>BugFix: &quot;Current Difference&quot; specified by double-clicking cannot merge using the &quot;Copy to Right (or Left)&quot; menu. (#1980)</li>
+<li>BugFix: Wimerge saves changes to the wrong file (#1985) (PR #1988)</li>
+<li>BugFix: &quot;Ignore comment differences&quot; still compares inline comments (#2008)</li>
+<li>Update Rust syntax highlighting keyword list. (PR #1998)</li>
+<li>[Feature Request] Both Shell Menu (#1986) (PR #2021)</li>
+</ul>
+<h3 id="table-compare">Table compare</h3>
+<ul>
+<li>When &quot;Use First Line as Header&quot; is enabled, make the header display the first line regardless of the scroll position when the first line is hidden.</li>
+<li>Generate reports in tabular format for table comparisons. (PR #1983)</li>
 </ul>
 <h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>BugFix: Treeview scrolls to the wrong position. (#1915)</li>
-<li>Allow changing the number of CPU cores to use while doing folder comparison (PR #1945)</li>
+<li>BugFix: Fixed an issue where Differences, Left/Right EOL columns, etc. were displayed as undefined values when the file comparison method was Full Contents or Quick Contents and the file size exceeded 64MB.</li>
+<li>BugFix: Fix the problem that when comparing with the BinaryContents compare method, the contents of the files are identical, but if one side is a symbolic link, it is judged to be different. (#1976)</li>
+<li>BugFix: Fixed an issue where values in the Left/Right EOL column may not display correctly when using the Quick contents compare method.</li>
+<li>Add Expand Different Subfolders menu item (#1382) (PR #1964)</li>
+<li>Allow Diff algorithms (patience, histogram) other than default to be applied to folder comparisons (PR #2015) (#2002)</li>
+<li>Show confirmation message when closing a window that took a long time to compare folders</li>
 </ul>
-<h3 id="webpage-compare">Webpage compare</h3>
+<h3 id="line-filters">Line filters</h3>
 <ul>
-<li>Add support for generating report files (PR #1941)</li>
+<li>Improve line filters and substitution filters (PR #2032) (#796) (#1620)</li>
 </ul>
-<h3 id="command-line">Command line</h3>
+<h3 id="substitution-filters">Substitution filters</h3>
 <ul>
-<li>Compare folders recursively if &quot;Include subfolders&quot; is checked in the Options dialog even if the /r command line option is not specified. (PR #1914)</li>
+<li>Avoid infinite loops in the RegularExpression::subst() function when the length of the string matching the pattern is 0</li>
+<li>Improve line filters and substitution filters (PR #2032) (#796) (#1620)</li>
 </ul>
-<h3 id="archive-support">Archive support</h3>
+<h3 id="options-dialog">Options dialog</h3>
 <ul>
-<li>Update 7-Zip to 23.01 (PR #1913)</li>
-</ul>
-<h3 id="translations">Translations</h3>
-<ul>
-<li>New translation: Tamil (PR #1946)</li>
-<li>Translation updates:
-<ul>
-<li>Brazilian (PR #1948)</li>
-<li>Chinese Traditional (PR #1940)</li>
-<li>Corsican (PR #1933)</li>
-<li>French (PR #1927,#1928,#1951)</li>
-<li>Korean (PR #1908)</li>
-<li>Lithuanian (PR #1949)</li>
-<li>Portuguese (PR #1930)</li>
-<li>Slovenian</li>
-<li>Turkish (#1931)</li>
-</ul></li>
-</ul>
-<h2 id="what-is-new-in-21631-beta">What Is New in 2.16.31 Beta</h2>
-<h3 id="general-1">General</h3>
-<ul>
-<li>BugFix: Some Substitution filter doesn&#39;t work (#1861)</li>
-<li>Add tasks to Jump List (PR #1828)</li>
-<li>Update DirCmpReport.cpp (PR #1892)</li>
-</ul>
-<h3 id="file-compare-1">File compare</h3>
-<ul>
-<li>BugFix: Fix input range check processing in &quot;Go to&quot; dialog. (PR #1826)</li>
-<li>BugFix: End of line diff is a bit wanky (#1838, PR #1849)</li>
-<li>Confirm copy all in file merge (PR #1827)</li>
-<li>Modify the &quot;Go to&quot; dialog. (PR #1896)</li>
-</ul>
-<h3 id="folder-compare-1">Folder compare</h3>
-<ul>
-<li>BugFix: Display problem with Item totals : (#1840)</li>
-<li>BugFix: Bug in ignore whitespace ? (#1882)</li>
+<li>Execute the &quot;pause&quot; command to prevent the error message from disappearing if the registration of the ShellExtension for Windows 11 fails</li>
 </ul>
 <h3 id="plugins">Plugins</h3>
 <ul>
-<li>PrettifyJSON: Update jq to version 1.6 (#1871)</li>
-<li>Translate some plugin error messages (PR #1873)</li>
-<li>ApplyPatch: Update GNU patch to 2.7.6-1 (PR #1897)(#1871)</li>
+<li>BugFix: WinMerge cannot successfully disable some of its Plugins (#2012)</li>
+<li>Update jq to version 1.7</li>
 </ul>
-<h3 id="installer">Installer</h3>
+<h3 id="manual">Manual</h3>
 <ul>
-<li>Silent install blocked (#1852)</li>
+<li>Manual: Use po4a for manual translation (PR #1994) (#499)</li>
 </ul>
-<h3 id="translations-1">Translations</h3>
+<h3 id="translations">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #1829,#1837,#1876,#1903)</li>
-<li>Bulgarian (PR #1822)</li>
-<li>Chinese Simplified (PR #1835,#1846,#1885,#1906)</li>
-<li>Dutch (PR #1831)</li>
-<li>French (PR #1841,#1842,#1894)</li>
-<li>Galician (PR #1833)</li>
-<li>German (PR #1850,#1875,#1907)</li>
-<li>Hungarian (PR #1832,#1839,#1845,#1878,#1905)</li>
+<li>Brazilian (PR #1969,#2001,#2025)</li>
+<li>Chinese Traditional (PR #1953,#1971,#2017,#2026)</li>
+<li>Corsican (PR #2022)</li>
+<li>German (PR #1952,#1977,#1989)</li>
+<li>Hungarian (PR #1968,#1999)</li>
 <li>Japanese</li>
-<li>Korean (PR #1820,#1821,#1877)</li>
-<li>Lithuanian (PR #1847,#1889,#1904)</li>
-<li>Polish (PR #1869,#1870,#1884)</li>
-<li>Portuguese (PR #1843,#1895)</li>
-<li>Spanish (PR #1834)</li>
-<li>Russian (PR #1824,#1825,#1862)</li>
+<li>Korean (PR #1979,#2030)</li>
+<li>Lithuanian (PR #1974,#2018,#2027)</li>
+<li>Polish (PR #1990)</li>
+<li>Portuguese (PR #1973,#2014)</li>
+<li>Slovenian</li>
+<li>Ukrainian (PR #1955)</li>
 </ul></li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Optimize inserts in std containers using reserve (PR #2000)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>

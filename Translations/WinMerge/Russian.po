@@ -974,6 +974,12 @@ msgstr "Меню оболочки в центре"
 msgid "Right Shell menu"
 msgstr "Меню оболочки справа"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Копировать"
 
@@ -1520,8 +1526,8 @@ msgstr "Обнаружение переме&щенных блоков"
 msgid "Align &similar lines"
 msgstr "Выровнять по&хожие строки"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Алгоритм сравнения (эксперимент.):"
+msgid "Diff &algorithm:"
+msgstr "Алгоритм сравнения:"
 
 msgid "Enable indent &heuristic"
 msgstr "Включать эвристику отступов"

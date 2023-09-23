@@ -205,13 +205,20 @@ public:
 	std::vector<CMergeEditView *> GetViewList(int nGroup = -1, int nBuffer = -1) const {
 		std::vector<CMergeEditView *> list;
 		if (nGroup != -1)
+		{
+			list.reserve(m_nBuffers);
 			for (int nBuffer2 = 0; nBuffer2 < m_nBuffers; ++nBuffer2)
 				list.push_back(m_pView[nGroup][nBuffer2]);
+		}
 		else if (nBuffer != -1)
+		{
+			list.reserve(m_nGroups);
 			for (int nGroup2 = 0; nGroup2 < m_nGroups; ++nGroup2)
 				list.push_back(m_pView[nGroup2][nBuffer]);
+		}
 		else
 		{
+			list.reserve(m_nGroups * m_nBuffers);
 			for (int nGroup3 = 0; nGroup3 < m_nGroups; nGroup3++)
 				for (int nBuffer3 = 0; nBuffer3 < m_nBuffers; ++nBuffer3)
 					list.push_back(m_pView[nGroup3][nBuffer3]);

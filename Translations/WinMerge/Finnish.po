@@ -972,6 +972,12 @@ msgstr "Keskimmäinen liittymävalikko"
 msgid "Right Shell menu"
 msgstr "Oikea Shell-valikko"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 msgid "Copy"
 msgstr "Kopioi"
 
@@ -1523,8 +1529,8 @@ msgstr "Ota siirretyn lohkon tunnistus käyttöön"
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Ero&algoritmi (kokeellinen):"
+msgid "Diff &algorithm:"
+msgstr "Ero&algoritmi:"
 
 msgid "Enable indent &heuristic"
 msgstr "Ota käyttöön &heuristinen sisennys"

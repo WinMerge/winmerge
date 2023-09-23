@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2023-08-05 10:36+0900\n"
+"PO-Revision-Date: 2023-09-15 09:18+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -484,7 +484,7 @@ msgid "&All Subfolders"
 msgstr "すべてのサブフォルダー(&A)"
 
 msgid "&Different Subfolders"
-msgstr "差異があるサブフォルダー(&A)"
+msgstr "差異があるサブフォルダー(&D)"
 
 msgid "&Identical Subfolders"
 msgstr "同一のサブフォルダー(&I)"
@@ -970,6 +970,12 @@ msgstr "中央シェル メニュー"
 
 msgid "Right Shell menu"
 msgstr "右側シェル メニュー"
+
+msgid "Both Shell menu"
+msgstr "両側シェル メニュー"
+
+msgid "All Shell menu"
+msgstr "全てのシェル メニュー"
 
 msgid "Copy"
 msgstr "コピー"
@@ -1521,8 +1527,8 @@ msgstr "移動ブロック検出を有効にする(&N)"
 msgid "Align &similar lines"
 msgstr "類似行をマッチさせる(&S)"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Diff アルゴリズム (実験的機能)(&A):"
+msgid "Diff &algorithm:"
+msgstr "Diff アルゴリズム(&A):"
 
 msgid "Enable indent &heuristic"
 msgstr "Indent heuristic を有効にする(&H)"

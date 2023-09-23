@@ -5,6 +5,7 @@
 #include "CompareOptions.h"
 #include "FileLocation.h"
 #include "DiffItem.h"
+#include "DiffFileData.h"
 #include "cio.h"
 #include "unicoder.h"
 #include <fstream>
@@ -31,18 +32,14 @@ namespace
 	{
 		FilePair(const std::string& left, const std::string& right)
 		{
-			cio::tsopen_s(&filedata[0].desc, ucr::toTString(left),  O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
-			cio::tsopen_s(&filedata[1].desc, ucr::toTString(right), O_RDONLY | O_BINARY, _SH_DENYWR, _S_IREAD);
+			diffData.OpenFiles(ucr::toTString(left), ucr::toTString(right));
 		}
 
 		~FilePair()
 		{
-			cio::close(filedata[0].desc);
-			cio::close(filedata[1].desc);
 		}
 
-		FileLocation location[2];
-		file_data filedata[2];
+		DiffFileData diffData;
 	};
 
 	// The fixture for testing paths functions.
@@ -118,13 +115,12 @@ namespace
 		TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 		FilePair pair(filename_left, filename_right);
-		bc.SetFileData(2, pair.filedata);
 
 		bc.SetCompareOptions(option);
-		EXPECT_EQ(DIFFCODE::BIN|DIFFCODE::BINSIDE1|DIFFCODE::BINSIDE2|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+		EXPECT_EQ(DIFFCODE::BIN|DIFFCODE::BINSIDE1|DIFFCODE::BINSIDE2|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		FileTextStats stats[2];
-		bc.GetTextStats(0, &stats[0]);
-		bc.GetTextStats(1, &stats[1]);
+		stats[0] = pair.diffData.m_textStats[0];
+		stats[1] = pair.diffData.m_textStats[1];
 
 //		EXPECT_EQ(3, stats[0].nzeros);
 //		EXPECT_EQ(3, stats[1].nzeros);
@@ -176,9 +172,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff
@@ -188,9 +183,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// all space
@@ -201,9 +195,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// empty right
@@ -213,9 +206,8 @@ namespace
 			TempFile file_right(filename_right, "", 0);
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// empty left
@@ -225,9 +217,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -238,9 +229,8 @@ namespace
 			TempFile file_right(filename_right, "A", 1);
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -251,9 +241,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 	}
@@ -300,9 +289,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff
@@ -313,9 +301,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// same2
@@ -337,9 +324,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// same3
@@ -361,9 +347,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 	}
@@ -391,8 +376,7 @@ namespace
 			}		
 
 			FilePair pair(filename_crlf, filename_lf);
-			bc.SetFileData(2, pair.filedata);
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		// diff
@@ -409,8 +393,7 @@ namespace
 			}
 
 			FilePair pair(filename_crlf, filename_lf);
-			bc.SetFileData(2, pair.filedata);
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		remove(filename_crlf.c_str());
@@ -443,9 +426,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff
@@ -456,9 +438,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 	}
 
@@ -484,9 +465,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff 
@@ -498,9 +478,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 	}
 
@@ -527,9 +506,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::SAME, bc.CompareFiles(&pair.diffData));
 		}
 
 		{// diff 
@@ -541,9 +519,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 	}
 
@@ -566,9 +543,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right) - 1);
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -576,9 +552,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right)    );
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -586,9 +561,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right));
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -596,9 +570,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, WMCMPBUFF);
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -606,9 +579,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, sizeof(buf_right) - 1);
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 		{
@@ -616,9 +588,8 @@ namespace
 			TempFile file_right(filename_right, buf_right, WMCMPBUFF + 1);
 
 			FilePair pair(filename_left, filename_right);
-			bc.SetFileData(2, pair.filedata);
 
-			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(pair.location));
+			EXPECT_EQ(DIFFCODE::TEXT|DIFFCODE::DIFF, bc.CompareFiles(&pair.diffData));
 		}
 
 	}

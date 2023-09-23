@@ -1177,6 +1177,12 @@ msgstr "Mittleres Shell-Menü"
 msgid "Right Shell menu"
 msgstr "Rechtes Shell-Menü"
 
+msgid "Both Shell menu"
+msgstr ""
+
+msgid "All Shell menu"
+msgstr ""
+
 #, c-format
 msgid "Copy"
 msgstr "Kopieren"
@@ -1862,8 +1868,8 @@ msgstr "Verschobene &Blöcke erkennen"
 msgid "Align &similar lines"
 msgstr "&Ähnliche Zeilen ausrichten"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "&Diff-Algorithmus (experimentell):"
+msgid "Diff &algorithm:"
+msgstr "&Diff-Algorithmus:"
 
 msgid "Enable indent &heuristic"
 msgstr "&Heuristischen Einzug aktivieren"
