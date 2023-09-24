@@ -53,7 +53,7 @@ public:
 	void RefreshOptions();
 	bool CloseNow() override;
 	void DirDocClosing(IDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
-	void UpdateLastCompareResult();
+	int UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const;
@@ -99,7 +99,6 @@ private:
 	void CreateWebWndStatusBar(CStatusBar &, CWnd *);
 	void OnWebDiffEvent(const WebDiffEvent& event);
 	bool OpenUrls(IWebDiffCallback* callback);
-	int UpdateDiffItem(IDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);

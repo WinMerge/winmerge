@@ -55,7 +55,7 @@ public:
 	void RefreshOptions();
 	bool CloseNow() override;
 	void DirDocClosing(IDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
-	void UpdateLastCompareResult();
+	int UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const override;
@@ -104,7 +104,6 @@ private:
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 private:
 	bool OpenImages();
-	int UpdateDiffItem(IDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);

@@ -137,9 +137,9 @@ CHexMergeView * CHexMergeDoc::GetActiveMergeView() const
 }
 
 /**
- * @brief Update associated diff item
+ * @brief Update last compare result
  */
-int CHexMergeDoc::UpdateDiffItem(IDirDoc *pDirDoc)
+int CHexMergeDoc::UpdateLastCompareResult()
 {
 	bool bDiff = false;
 	size_t lengthFirst = m_pView[0]->GetLength();
@@ -157,10 +157,6 @@ int CHexMergeDoc::UpdateDiffItem(IDirDoc *pDirDoc)
 		if (bDiff)
 			break;
 	}
-	// If directory compare has results
-	if (pDirDoc != nullptr && pDirDoc->HasDiffs())
-		m_pDirDoc->UpdateChangedItem(m_filePaths,
-			static_cast<unsigned>(-1), static_cast<unsigned>(-1), !bDiff);
 	GetParentFrame()->SetLastCompareResult(bDiff);
 	return bDiff ? 1 : 0;
 }
@@ -264,7 +260,14 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 	// update status on dir view
 	if (bLSaveSuccess || bMSaveSuccess || bRSaveSuccess)
 	{
-		UpdateDiffItem(m_pDirDoc);
+		int compareResult = UpdateLastCompareResult();
+		// If directory compare has results
+		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
+		{
+			m_pDirDoc->UpdateChangedItem(m_filePaths,
+				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
+					compareResult != 0);
+		}
 	}
 
 	return result;
@@ -323,7 +326,7 @@ bool CHexMergeDoc::DoFileSave(int nBuffer)
 			{
 				m_filePaths[nBuffer] = strSavePath;
 				UpdateHeaderPath(nBuffer);
-				UpdateDiffItem(m_pDirDoc);
+				UpdateLastCompareResult();
 			}
 		}
 	}
@@ -356,7 +359,7 @@ bool CHexMergeDoc::DoFileSaveAs(int nBuffer, bool packing)
 		}
 
 		m_filePaths.SetPath(nBuffer, strPath);
-		UpdateDiffItem(m_pDirDoc);
+		UpdateLastCompareResult();
 		UpdateHeaderPath(nBuffer);
 		return true;
 	}
@@ -532,7 +535,7 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 		if (nNormalBuffer > 0)
 			OnRefresh();
 		else
-			UpdateDiffItem(m_pDirDoc);
+			UpdateLastCompareResult();
 	}
 	else
 	{
@@ -938,7 +941,7 @@ void CHexMergeDoc::OnViewZoomNormal()
 
 void CHexMergeDoc::OnRefresh()
 {
-	if (UpdateDiffItem(m_pDirDoc) == 0)
+	if (UpdateLastCompareResult() == 0)
 	{
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
 			[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });

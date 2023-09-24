@@ -254,7 +254,7 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 	if (nNormalBuffer > 0)
 		OnRefresh();
 	else
-		UpdateDiffItem(m_pDirDoc);
+		UpdateLastCompareResult();
 
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 		m_pImgMergeWindow->FirstDiff();
@@ -748,7 +748,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				}
 			}
 		}
-		UpdateDiffItem(m_pDirDoc);
+		UpdateLastCompareResult();
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 	}
 	return true;
@@ -806,7 +806,7 @@ RETRY:
 		}
 
 		m_filePaths.SetPath(pane, strPath);
-		UpdateDiffItem(m_pDirDoc);
+		UpdateLastCompareResult();
 		m_fileInfo[pane].Update(m_filePaths[pane]);
 		UpdateHeaderPath(pane);
 	}
@@ -1120,9 +1120,11 @@ void CImgMergeFrame::SetTitle(LPCTSTR lpszTitle)
 		SetWindowText(sTitle.c_str());
 }
 
-void CImgMergeFrame::UpdateLastCompareResult()
+int CImgMergeFrame::UpdateLastCompareResult()
 {
-	SetLastCompareResult(m_pImgMergeWindow->GetDiffCount() > 0 ? 1 : 0);
+	int result = m_pImgMergeWindow->GetDiffCount() > 0 ? 1 : 0;
+	SetLastCompareResult(result != 0);
+	return result;
 }
 
 void CImgMergeFrame::UpdateAutoPaneResize()
@@ -1151,29 +1153,6 @@ bool CImgMergeFrame::OpenImages()
 	else
 		bResult = m_pImgMergeWindow->OpenImages(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str());
 	return bResult;
-}
-
-/**
- * @brief Update associated diff item
- */
-int CImgMergeFrame::UpdateDiffItem(IDirDoc *pDirDoc)
-{
-	// If directory compare has results
-	if (pDirDoc && pDirDoc->HasDiffs())
-	{
-// FIXME:
-//		const String &pathLeft = m_filePaths.GetLeft();
-//		const String &pathRight = m_filePaths.GetRight();
-//		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
-//		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
-//		{
-//			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
-//			::UpdateDiffItem(m_nBuffers, di, &ctxt);
-//		}
-	}
-	int result = m_pImgMergeWindow->GetDiffCount() > 0 ? 1 : 0;
-	SetLastCompareResult(result != 0);
-	return result;
 }
 
 /**
@@ -1266,12 +1245,13 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	     (bMModified && bMSaveSuccess) ||
 		 (bRModified && bRSaveSuccess))
 	{
+		int compareResult = UpdateLastCompareResult();
 		// If directory compare has results
 		if (m_pDirDoc && m_pDirDoc->HasDiffs())
 		{
 			m_pDirDoc->UpdateChangedItem(m_filePaths,
 				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
-				m_pImgMergeWindow->GetDiffCount() == 0);
+				compareResult != 0);
 		}
 	}
 
@@ -2363,7 +2343,7 @@ void CImgMergeFrame::OnToolsGenerateReport()
 
 void CImgMergeFrame::OnRefresh()
 {
-	if (UpdateDiffItem(m_pDirDoc) == 0)
+	if (UpdateLastCompareResult() == 0)
 	{
 		CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,
 			[](const tchar_t* msg, UINT flags, UINT id) -> int { return AfxMessageBox(msg, flags, id); });

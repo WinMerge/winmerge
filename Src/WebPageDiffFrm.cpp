@@ -431,7 +431,7 @@ BOOL CWebPageDiffFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/,
 					++nNormalBuffer;
 			}
 			if (nNormalBuffer == 0)
-				UpdateDiffItem(m_pDirDoc);
+				UpdateLastCompareResult();
 
 			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 				m_pWebDiffWindow->FirstDiff();
@@ -855,10 +855,15 @@ void CWebPageDiffFrame::SetTitle(LPCTSTR lpszTitle)
 	}
 }
 
-void CWebPageDiffFrame::UpdateLastCompareResult()
+int CWebPageDiffFrame::UpdateLastCompareResult()
 {
+	int result = -1;
 	if (m_bCompareCompleted)
-		SetLastCompareResult(m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0);
+	{
+		result = m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0;
+		SetLastCompareResult(result);
+	}
+	return result;
 }
 
 void CWebPageDiffFrame::UpdateAutoPaneResize()
@@ -888,16 +893,6 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 	else
 		bResult = SUCCEEDED(m_pWebDiffWindow->Open(ucr::toUTF16(strTempFileName[0]).c_str(), ucr::toUTF16(strTempFileName[1]).c_str(), ucr::toUTF16(strTempFileName[2]).c_str(), callback));
 	return bResult;
-}
-
-/**
- * @brief Update associated diff item
- */
-int CWebPageDiffFrame::UpdateDiffItem(IDirDoc *pDirDoc)
-{
-	int result = m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0;
-	SetLastCompareResult(result != 0);
-	return result;
 }
 
 /// Document commanding us to close
@@ -1692,7 +1687,7 @@ void CWebPageDiffFrame::OnRefresh()
 		Callback<IWebDiffCallback>([this](const WebDiffCallbackResult& result) -> HRESULT
 			{
 				m_bCompareCompleted = true;
-				if (UpdateDiffItem(m_pDirDoc) == 0 &&
+				if (UpdateLastCompareResult() == 0 &&
 				    std::count(m_filePaths.begin(), m_filePaths.end(), L"about:blank") != m_filePaths.GetSize())
 				{
 					CMergeFrameCommon::ShowIdenticalMessage(m_filePaths, true,

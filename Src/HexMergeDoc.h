@@ -62,7 +62,7 @@ public:
 // Implementation
 public:
 	~CHexMergeDoc();
-	int UpdateDiffItem(IDirDoc * pDirDoc);
+	int UpdateLastCompareResult();
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
 	IDirDoc* GetDirDoc() const override { return m_pDirDoc; };
 	void SetDirDoc(IDirDoc * pDirDoc) override;
