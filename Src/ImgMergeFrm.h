@@ -21,7 +21,7 @@
 #include "MergeFrameCommon.h"
 #include "FileTransform.h"
 
-class CDirDoc;
+struct IDirDoc;
 
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
@@ -49,12 +49,12 @@ public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
 	void ChangeFile(int pane, const String& path);
-	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
-	void SetDirDoc(CDirDoc * pDirDoc) override;
+	IDirDoc* GetDirDoc() const override { return m_pDirDoc; };
+	void SetDirDoc(IDirDoc * pDirDoc) override;
 	void UpdateResources();
 	void RefreshOptions();
 	bool CloseNow() override;
-	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
+	void DirDocClosing(IDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
 	void UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
@@ -104,7 +104,7 @@ private:
 	void CreateImgWndStatusBar(CStatusBar &, CWnd *);
 private:
 	bool OpenImages();
-	int UpdateDiffItem(CDirDoc * pDirDoc);
+	int UpdateDiffItem(IDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
@@ -125,7 +125,7 @@ private:
 	bool m_bRO[3];
 	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	bool m_bAutoMerged;
-	CDirDoc *m_pDirDoc;
+	IDirDoc *m_pDirDoc;
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
 	std::vector<int> m_unpackerSubcodes[3];

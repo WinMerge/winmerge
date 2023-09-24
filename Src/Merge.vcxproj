@@ -1453,6 +1453,7 @@
     <ClInclude Include="DirSelectFilesDlg.h" />
     <ClInclude Include="FileOpenFlags.h" />
     <ClInclude Include="HashCalc.h" />
+    <ClInclude Include="IDirDoc.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />

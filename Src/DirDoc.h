@@ -18,6 +18,7 @@
 #include "DirCmpReport.h"
 #include "DirCompProgressBar.h"
 #include "IMDITab.h"
+#include "IDirDoc.h"
 
 class CDirView;
 struct IMergeDoc;
@@ -38,7 +39,7 @@ struct FileLocation;
  * This class also has compare statistics which are updated during compare.
  * GUI calls this class to operate with results.
  */
-class CDirDoc : public CDocument, public IMDITab
+class CDirDoc : public CDocument, public IMDITab, public IDirDoc
 {
 protected:
 	CDirDoc();           // protected constructor used by dynamic creation

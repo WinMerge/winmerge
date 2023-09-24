@@ -27,7 +27,7 @@
 #include "MergeLineFlags.h"
 #include "paths.h"
 #include "DropHandler.h"
-#include "DirDoc.h"
+#include "IDirDoc.h"
 #include "ShellContextMenu.h"
 #include "editcmd.h"
 #include "Shell.h"
@@ -1418,7 +1418,7 @@ void CMergeEditView::OnNextdiff()
 	int lastDiff = pd->m_diffList.LastSignificantDiff();
 	if (nextDiff >= 0 && nextDiff <= lastDiff)
 		SelectDiff(nextDiff, true, false);
-	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
+	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
 	{
 		if (pDirDoc->MoveableToNextDiff())
 			pDirDoc->MoveToNextDiff(pd);
@@ -1510,7 +1510,7 @@ void CMergeEditView::OnPrevdiff()
 	int firstDiff = pd->m_diffList.FirstSignificantDiff();
 	if (prevDiff >= 0 && prevDiff >= firstDiff)
 		SelectDiff(prevDiff, true, false);
-	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
+	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
 	{
 		if (pDirDoc->MoveableToPrevDiff())
 			pDirDoc->MoveToPrevDiff(pd);

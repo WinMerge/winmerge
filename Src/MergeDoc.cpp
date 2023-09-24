@@ -22,7 +22,7 @@
 #include "MovedLines.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
-#include "DirDoc.h"
+#include "IDirDoc.h"
 #include "FileLoadResult.h"
 #include "FileTransform.h"
 #include "Plugins.h"
@@ -40,6 +40,7 @@
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
+#include "FileFilterHelper.h"
 #include "TempFile.h"
 #include "codepage_detect.h"
 #include "SelectPluginDlg.h"
@@ -2741,7 +2742,7 @@ void CMergeDoc::RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView)
 /**
  * @brief DirDoc gives us its identity just after it creates us
  */
-void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
+void CMergeDoc::SetDirDoc(IDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
@@ -2758,7 +2759,7 @@ CMergeEditFrame * CMergeDoc::GetParentFrame()
 /**
  * @brief DirDoc is closing
  */
-void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
+void CMergeDoc::DirDocClosing(IDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
 	m_pDirDoc = nullptr;

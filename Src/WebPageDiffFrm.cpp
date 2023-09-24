@@ -10,7 +10,7 @@
 #include "Merge.h"
 #include "MainFrm.h"
 #include "BCMenu.h"
-#include "DirDoc.h"
+#include "IDirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
@@ -250,7 +250,7 @@ void CWebPageDiffFrame::MoveOnLoad(int nPane, int)
 /**
  * @brief DirDoc gives us its identity just after it creates us
  */
-void CWebPageDiffFrame::SetDirDoc(CDirDoc * pDirDoc)
+void CWebPageDiffFrame::SetDirDoc(IDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
@@ -893,21 +893,8 @@ bool CWebPageDiffFrame::OpenUrls(IWebDiffCallback* callback)
 /**
  * @brief Update associated diff item
  */
-int CWebPageDiffFrame::UpdateDiffItem(CDirDoc *pDirDoc)
+int CWebPageDiffFrame::UpdateDiffItem(IDirDoc *pDirDoc)
 {
-	// If directory compare has results
-	if (pDirDoc && pDirDoc->HasDiffs())
-	{
-// FIXME:
-//		const String &pathLeft = m_filePaths.GetLeft();
-//		const String &pathRight = m_filePaths.GetRight();
-//		CDiffContext &ctxt = const_cast<CDiffContext &>(pDirDoc->GetDiffContext());
-//		if (UINT_PTR pos = pDirDoc->FindItemFromPaths(pathLeft, pathRight))
-//		{
-//			DIFFITEM &di = pDirDoc->GetDiffRefByKey(pos);
-//			::UpdateDiffItem(m_nBuffers, di, &ctxt);
-//		}
-	}
 	int result = m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0;
 	SetLastCompareResult(result != 0);
 	return result;

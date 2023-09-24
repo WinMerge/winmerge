@@ -106,12 +106,12 @@ struct CurrentWordDiff
 	CEPoint ptEnd;
 };
 
+struct IDirDoc;
 struct DiffFileInfo;
 class CMergeEditView;
 class PackingInfo;
 class PrediffingInfo;
 class CMergeEditFrame;
-class CDirDoc;
 class CEncodingErrorBar;
 class CLocationView;
 class CMergeEditSplitterView;
@@ -190,9 +190,9 @@ public:
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
 
-	CDirDoc * GetDirDoc() const override { return m_pDirDoc; }
-	void SetDirDoc(CDirDoc * pDirDoc) override;
-	void DirDocClosing(CDirDoc * pDirDoc) override;
+	IDirDoc * GetDirDoc() const override { return m_pDirDoc; }
+	void SetDirDoc(IDirDoc * pDirDoc) override;
+	void DirDocClosing(IDirDoc * pDirDoc) override;
 	bool CloseNow() override;
 	int GetFileCount() const override { return m_filePaths.GetSize(); }
 	String GetPath(int pane) const override { return m_filePaths[pane]; } 
@@ -352,7 +352,7 @@ protected:
 	CMergeEditView * m_pView[3][3]; /**< Pointer to left/middle/right view */
 	CMergeEditSplitterView * m_pMergeEditSplitterView[3];
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
-	CDirDoc * m_pDirDoc;
+	IDirDoc * m_pDirDoc;
 	bool m_bEnableRescan; /**< Automatic rescan enabled/disabled */
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;

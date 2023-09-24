@@ -16,7 +16,7 @@
 #include "Merge.h"
 #include "MainFrm.h"
 #include "BCMenu.h"
-#include "DirDoc.h"
+#include "IDirDoc.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "OptionsDiffColors.h"
@@ -332,7 +332,7 @@ void CImgMergeFrame::DoAutoMerge(int dstPane)
 /**
  * @brief DirDoc gives us its identity just after it creates us
  */
-void CImgMergeFrame::SetDirDoc(CDirDoc * pDirDoc)
+void CImgMergeFrame::SetDirDoc(IDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
@@ -1156,7 +1156,7 @@ bool CImgMergeFrame::OpenImages()
 /**
  * @brief Update associated diff item
  */
-int CImgMergeFrame::UpdateDiffItem(CDirDoc *pDirDoc)
+int CImgMergeFrame::UpdateDiffItem(IDirDoc *pDirDoc)
 {
 	// If directory compare has results
 	if (pDirDoc && pDirDoc->HasDiffs())
@@ -1269,7 +1269,9 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 		// If directory compare has results
 		if (m_pDirDoc && m_pDirDoc->HasDiffs())
 		{
-			// FIXME:
+			m_pDirDoc->UpdateChangedItem(m_filePaths,
+				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
+				m_pImgMergeWindow->GetDiffCount() == 0);
 		}
 	}
 
