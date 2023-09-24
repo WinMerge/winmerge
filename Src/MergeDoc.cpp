@@ -3177,12 +3177,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 
 	// Define the prediffer
-	PackingInfo * infoUnpacker = nullptr;
-	PrediffingInfo * infoPrediffer = nullptr;
-	if (bFiltersEnabled && m_pDirDoc != nullptr)
+	if (bFiltersEnabled)
 	{
-		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
-		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}
 

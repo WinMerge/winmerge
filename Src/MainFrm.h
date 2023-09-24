@@ -170,30 +170,38 @@ public:
 		const OpenFileParams* pOpenParams = nullptr);
 	bool ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenFileParams *pOpenParams = nullptr);
 	bool ShowMergeDoc(UINT nID, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenFileParams *pOpenParams = nullptr);
 	bool ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowTextMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
 		const String strDesc[], const String& strFileExt, const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowTableMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenTextFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenTextFileParams *pOpenParams = nullptr);
 	bool ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenBinaryFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenBinaryFileParams *pOpenParams = nullptr);
 	bool ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenImageFileParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenImageFileParams *pOpenParams = nullptr);
 	bool ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 		const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile = _T(""),
-		const PackingInfo * infoUnpacker = nullptr, const OpenWebPageParams *pOpenParams = nullptr);
+		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
+		const OpenWebPageParams *pOpenParams = nullptr);
 
 	void UpdateResources();
 	void ApplyDiffOptions();

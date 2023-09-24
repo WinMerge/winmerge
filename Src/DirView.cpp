@@ -1415,15 +1415,13 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 			}
 		}
 
-		if (!infoUnpacker)
-		{
-			PrediffingInfo* infoPrediffer = nullptr;
-			String filteredFilenames = CDiffContext::GetFilteredFilenames(filteredPaths);
-			GetDiffContext().FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-		}
+		PackingInfo* tmpInfoUnpacker = nullptr;
+		PrediffingInfo* infoPrediffer = nullptr;
+		String filteredFilenames = CDiffContext::GetFilteredFilenames(filteredPaths);
+		GetDiffContext().FetchPluginInfos(filteredFilenames, !infoUnpacker ? &infoUnpacker : &tmpInfoUnpacker, &infoPrediffer);
 
 		GetMainFrame()->ShowAutoMergeDoc(0, GetDocument(), paths.GetSize(), fileloc,
-			dwFlags, strDesc, _T(""), infoUnpacker);
+			dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer);
 	}
 }
 
@@ -1595,19 +1593,19 @@ void CDirView::OpenSelectionAs(UINT id)
 		}
 		dwFlags[pane] |= FFILEOPEN_NOMRU | (pDoc->GetReadOnly(nPane[pane]) ? FFILEOPEN_READONLY : 0);
 	}
+	PackingInfo* infoUnpacker = nullptr;
+	PrediffingInfo* infoPrediffer = nullptr;
+	GetDiffContext().FetchPluginInfos(CDiffContext::GetFilteredFilenames(filteredPaths), &infoUnpacker, &infoPrediffer);
 	if (ID_UNPACKERS_FIRST <= id && id <= ID_UNPACKERS_LAST)
 	{
-		PackingInfo infoUnpacker(
+		PackingInfo infoUnpackerAlt(
 				CMainFrame::GetPluginPipelineByMenuId(id, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
 		GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, strDesc, _T(""),
-			ctxt.m_bRecursive, nullptr, &infoUnpacker, nullptr, 0);
+			ctxt.m_bRecursive, nullptr, &infoUnpackerAlt, infoPrediffer, 0);
 	}
 	else
 	{
-		PackingInfo* infoUnpacker = nullptr;
-		PrediffingInfo* infoPrediffer = nullptr;
-		GetDiffContext().FetchPluginInfos(CDiffContext::GetFilteredFilenames(filteredPaths), &infoUnpacker, &infoPrediffer);
-		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker);
+		GetMainFrame()->ShowMergeDoc(id, pDoc, paths.GetSize(), fileloc, dwFlags, strDesc, _T(""), infoUnpacker, infoPrediffer);
 	}
 }
 
