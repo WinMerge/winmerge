@@ -207,7 +207,7 @@ public:
 		const std::vector<std::wstring>& events, bool addAllMenu, unsigned baseId);
 	static String GetPluginPipelineByMenuId(unsigned idSearch, const std::vector<std::wstring>& events, unsigned baseId);
 	DropHandler *GetDropHandler() const { return m_pDropHandler; }
-	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* GetChildArray() const { return &m_arrChild; }
+	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>& GetChildArray() const { return m_arrChild; }
 	IMergeDoc* GetActiveIMergeDoc();
 	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
 	void WatchDocuments(IMergeDoc* pMergeDoc);

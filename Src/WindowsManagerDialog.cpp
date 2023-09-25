@@ -112,25 +112,25 @@ void CWindowsManagerDialog::PopulateList()
 	m_List.DeleteAllItems();
 
 	CString sText;
-	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>* pArrChild = m_pFrame->GetChildArray();
-	for (int i = 0; i < pArrChild->GetSize(); ++i)
+	const CTypedPtrArray<CPtrArray, CMDIChildWnd*>& arrChild = m_pFrame->GetChildArray();
+	for (int i = 0; i < arrChild.GetSize(); ++i)
 	{
 		sText.Empty();
-		HICON hIcon = pArrChild->GetAt(i)->GetIcon(FALSE);
+		HICON hIcon = arrChild.GetAt(i)->GetIcon(FALSE);
 		if (NULL == hIcon)
 		{
-			hIcon = pArrChild->GetAt(i)->GetIcon(TRUE);
+			hIcon = arrChild.GetAt(i)->GetIcon(TRUE);
 			if (NULL == hIcon)
 				hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 		}
 		m_pIL->Add(hIcon);
-		const CDocument* pDoc = pArrChild->GetAt(i)->GetActiveDocument();
+		const CDocument* pDoc = arrChild.GetAt(i)->GetActiveDocument();
 		if (nullptr != pDoc)
 			sText = pDoc->GetPathName();
 		if (sText.IsEmpty())
-			pArrChild->GetAt(i)->GetWindowText(sText);
+			arrChild.GetAt(i)->GetWindowText(sText);
 		m_List.InsertItem(i, sText, m_pIL->GetImageCount() - 1);
-		m_List.SetItemData(i, reinterpret_cast<DWORD_PTR>(pArrChild->GetAt(i)));
+		m_List.SetItemData(i, reinterpret_cast<DWORD_PTR>(arrChild.GetAt(i)));
 	}
 }
 // adjust size to listctrl column and dialog

@@ -2163,13 +2163,13 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		int nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
-		if ((theApp.m_bEscShutdown || nEscCloses == 3) && m_wndTabBar.GetItemCount() <= 1)
+		const int nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
+		if ((theApp.m_bEscShutdown || 3 == nEscCloses) && m_wndTabBar.GetItemCount() <= 1)
 		{
 			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
-		else if (nEscCloses == 1 && m_wndTabBar.GetItemCount() == 0)
+		else if (1 == nEscCloses && 0 == m_wndTabBar.GetItemCount())
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return FALSE;
@@ -3499,7 +3499,7 @@ LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
 		}
 	}
 
-	m_arrChild.InsertAt(0, (CMDIChildWnd*)lParam);
+	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
 }
@@ -3546,7 +3546,7 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 		}
 	}
 
-	m_arrChild.InsertAt(0, (CMDIChildWnd*)lParam);
+	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
 }

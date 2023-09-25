@@ -184,7 +184,8 @@ void CMDITabBar::OnContextMenu(CWnd *pWnd, CPoint point)
 	CPoint ptClient = point;
 	ScreenToClient(&ptClient);
 	int index = GetItemIndexFromPoint(ptClient);
-	if (index < 0) return;
+	if (index < 0)
+		return;
 
 	TCITEM tci;
 	tci.mask = TCIF_PARAM;
