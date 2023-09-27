@@ -256,21 +256,18 @@ bool CHexMergeDoc::PromptAndSaveIfNeeded(bool bAllowCancel)
 		result = false;
 	}
 
-	// If file were modified and saving was successfull,
-	// update status on dir view
-	if (bLSaveSuccess || bMSaveSuccess || bRSaveSuccess)
-	{
-		int compareResult = UpdateLastCompareResult();
-		// If directory compare has results
-		if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
-		{
-			m_pDirDoc->UpdateChangedItem(m_filePaths,
-				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
-					compareResult != 0);
-		}
-	}
-
 	return result;
+}
+
+/**
+ * @brief Return true if any of the panes has changed
+ */
+bool CHexMergeDoc::IsModified() const
+{
+	for (int nBuffer = 0; nBuffer < m_nBuffers; ++nBuffer)
+		if (m_pView[nBuffer]->GetModified())
+			return true;
+	return false;
 }
 
 /**
@@ -326,7 +323,14 @@ bool CHexMergeDoc::DoFileSave(int nBuffer)
 			{
 				m_filePaths[nBuffer] = strSavePath;
 				UpdateHeaderPath(nBuffer);
-				UpdateLastCompareResult();
+				int compareResult = UpdateLastCompareResult();
+				// If directory compare has results
+				if (m_pDirDoc != nullptr && m_pDirDoc->HasDiffs())
+				{
+					m_pDirDoc->UpdateChangedItem(m_filePaths,
+						static_cast<unsigned>(-1), static_cast<unsigned>(-1),
+							compareResult == 0);
+				}
 			}
 		}
 	}
@@ -728,10 +732,7 @@ void CHexMergeDoc::OnUpdateFileSaveRight(CCmdUI* pCmdUI)
  */
 void CHexMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	bool bModified = false;
-	for (int nBuffer = 0; nBuffer < m_nBuffers; nBuffer++)
-		bModified |= m_pView[nBuffer]->GetModified();
-	pCmdUI->Enable(bModified);
+	pCmdUI->Enable(IsModified());
 }
 
 /**

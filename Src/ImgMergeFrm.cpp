@@ -712,7 +712,8 @@ bool CImgMergeFrame::DoFileSave(int pane)
 {
 	if (m_pImgMergeWindow->IsModified(pane))
 	{
-		if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED)
+		if (m_nBufferType[pane] == BUFFERTYPE::UNNAMED ||
+		    !m_pImgMergeWindow->IsSaveSupported(pane))
 			DoFileSaveAs(pane);
 		else
 		{
@@ -748,15 +749,23 @@ bool CImgMergeFrame::DoFileSave(int pane)
 				}
 			}
 		}
-		UpdateLastCompareResult();
+		int compareResult = UpdateLastCompareResult();
 		m_fileInfo[pane].Update(m_filePaths[pane]);
+
+		// If directory compare has results
+		if (m_pDirDoc && m_pDirDoc->HasDiffs())
+		{
+			m_pDirDoc->UpdateChangedItem(m_filePaths,
+				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
+				compareResult == 0);
+		}
 	}
 	return true;
 }
 
 bool CImgMergeFrame::DoFileSaveAs(int pane, bool packing)
 {
-	const String &path = m_filePaths.GetPath(pane);
+	const String path = m_filePaths.GetPath(pane) + (m_pImgMergeWindow->IsSaveSupported(pane) ? _T("") : _T(".png"));
 	String strPath;
 	String title;
 	if (pane == 0)
@@ -1237,22 +1246,6 @@ bool CImgMergeFrame::PromptAndSaveIfNeeded(bool bAllowCancel)
 	else
 	{	
 		result = false;
-	}
-
-	// If file were modified and saving was successfull,
-	// update status on dir view
-	if ((bLModified && bLSaveSuccess) || 
-	     (bMModified && bMSaveSuccess) ||
-		 (bRModified && bRSaveSuccess))
-	{
-		int compareResult = UpdateLastCompareResult();
-		// If directory compare has results
-		if (m_pDirDoc && m_pDirDoc->HasDiffs())
-		{
-			m_pDirDoc->UpdateChangedItem(m_filePaths,
-				static_cast<unsigned>(-1), static_cast<unsigned>(-1),
-				compareResult != 0);
-		}
 	}
 
 	return result;

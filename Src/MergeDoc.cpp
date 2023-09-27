@@ -2050,13 +2050,7 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	bool bModified = false;
-	for (int nPane = 0; nPane < m_nBuffers; nPane++)
-	{
-		if (m_ptBuf[nPane]->IsModified())
-			bModified = true;
-	}
-	pCmdUI->Enable(bModified);
+	pCmdUI->Enable(IsModified());
 }
 
 /**
