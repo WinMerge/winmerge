@@ -20,7 +20,7 @@
 #include "SuperComboBox.h"
 #include <memory>
 
-class CDirDoc;
+struct IDirDoc;
 
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
@@ -47,13 +47,13 @@ public:
 public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
-	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
-	void SetDirDoc(CDirDoc * pDirDoc) override;
+	IDirDoc* GetDirDoc() const override { return m_pDirDoc; };
+	void SetDirDoc(IDirDoc * pDirDoc) override;
 	void UpdateResources();
 	void RefreshOptions();
 	bool CloseNow() override;
-	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
-	void UpdateLastCompareResult();
+	void DirDocClosing(IDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
+	int UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
 	bool GenerateReport(const String& sFileName) const;
@@ -99,7 +99,6 @@ private:
 	void CreateWebWndStatusBar(CStatusBar &, CWnd *);
 	void OnWebDiffEvent(const WebDiffEvent& event);
 	bool OpenUrls(IWebDiffCallback* callback);
-	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
@@ -118,7 +117,7 @@ private:
 	DiffFileInfo m_fileInfo[3];
 	bool m_bRO[3];
 	bool m_bAutoMerged;
-	CDirDoc *m_pDirDoc;
+	IDirDoc *m_pDirDoc;
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
 	std::vector<int> m_unpackerSubcodes[3];

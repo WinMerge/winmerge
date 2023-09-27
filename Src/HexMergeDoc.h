@@ -15,7 +15,7 @@
 #include "IMergeDoc.h"
 #include "FileTransform.h"
 
-class CDirDoc;
+struct IDirDoc;
 class CHexMergeFrame;
 class CHexMergeView;
 
@@ -62,11 +62,11 @@ public:
 // Implementation
 public:
 	~CHexMergeDoc();
-	int UpdateDiffItem(CDirDoc * pDirDoc);
+	int UpdateLastCompareResult();
 	bool PromptAndSaveIfNeeded(bool bAllowCancel);
-	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
-	void SetDirDoc(CDirDoc * pDirDoc) override;
-	void DirDocClosing(CDirDoc * pDirDoc) override;
+	IDirDoc* GetDirDoc() const override { return m_pDirDoc; };
+	void SetDirDoc(IDirDoc * pDirDoc) override;
+	void DirDocClosing(IDirDoc * pDirDoc) override;
 	bool CloseNow() override;
 	bool GenerateReport(const String& sFileName) const override { return true; }
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
@@ -89,6 +89,7 @@ public:
 	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
 	String GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
+	bool IsModified() const;
 
 private:
 	bool DoFileSave(int nBuffer);
@@ -98,7 +99,7 @@ private:
 // Implementation data
 protected:
 	CHexMergeView * m_pView[3]; /**< Pointer to left/right view */
-	CDirDoc * m_pDirDoc;
+	IDirDoc * m_pDirDoc;
 	String m_strDesc[3]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[3];
 	PackingInfo m_infoUnpacker;

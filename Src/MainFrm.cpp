@@ -83,7 +83,7 @@ using boost::end;
 static void LoadToolbarImageList(int orgImageWidth, int newImageHeight, UINT nIDResource, bool bGrayscale, CImageList& ImgList);
 static CPtrList &GetDocList(CMultiDocTemplate *pTemplate);
 template<class DocClass>
-DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, bool bMakeVisible = true);
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -769,14 +769,13 @@ FileLocationGuessEncodings(FileLocation & fileloc, int iGuessEncoding)
 	fileloc.encoding = codepage_detect::Guess(fileloc.filepath, iGuessEncoding);
 }
 
-bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
+bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenFileParams* pOpenParams /*= nullptr*/)
 {
-	ASSERT(pDirDoc != nullptr);
-
-	if (sReportFile.empty() && pDirDoc->CompareFilesIfFilesAreLarge(nFiles, ifileloc))
+	if (sReportFile.empty() && CompareFilesIfFilesAreLarge(pDirDoc, nFiles, ifileloc))
 		return false;
 
 	String unpackedFileExtension;
@@ -801,60 +800,74 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, CDirDoc * pDirDoc,
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
 		if (CWebPageDiffFrame::MatchURLPattern(ifileloc[pane].filepath))
-			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
 		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
-			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
+			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
 		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
-			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
+			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
 	}
 	switch (std::abs(static_cast<int>(nID)))
 	{
 	case ID_MERGE_COMPARE_TEXT:
 		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_TABLE:
 		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_HEX:
 		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_IMAGE:
 		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_WEBPAGE:
 		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	default:
-		return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+		return ShowTextOrTableMergeDoc({}, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	}
 }
+bool CMainFrame::CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[])
+{
+	IDirDoc* pDirDoc2 = pDirDoc ? pDirDoc : static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
+	bool result = pDirDoc2->CompareFilesIfFilesAreLarge(nFiles, ifileloc);
+	if (pDirDoc2 != pDirDoc)
+		delete static_cast<CDirDoc*>(pDirDoc2);
+	return result;
+}
 
-bool CMainFrame::ShowMergeDoc(UINT nID, CDirDoc* pDirDoc,
+bool CMainFrame::ShowMergeDoc(UINT nID, IDirDoc* pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenFileParams* pOpenParams /*= nullptr*/)
 {
 	switch (nID)
 	{
 	case ID_MERGE_COMPARE_TEXT:
 		return ShowTextMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer,
+			dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_TABLE:
 		return ShowTableMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenTextFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer,
+			dynamic_cast<const OpenTextFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_HEX:
 		return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer,
+			dynamic_cast<const OpenBinaryFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_IMAGE:
 		return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenImageFileParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer,
+			dynamic_cast<const OpenImageFileParams*>(pOpenParams));
 	case ID_MERGE_COMPARE_WEBPAGE:
 		return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
+			strDesc, sReportFile, infoUnpacker, infoPrediffer,
+			dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 	default:
 		return ShowAutoMergeDoc(nID, pDirDoc, nFiles, ifileloc, dwFlags,
-			strDesc, sReportFile, infoUnpacker, pOpenParams);
+			strDesc, sReportFile, infoUnpacker, infoPrediffer, pOpenParams);
 	}
 }
 
@@ -890,10 +903,11 @@ int GetActivePaneFromFlags(int nFiles, const fileopenflags_t dwFlags[])
  * @param [in] infoUnpacker Plugin info.
  * @return success/failure
  */
-bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pDirDoc,
+bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, IDirDoc * pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
 	CMultiDocTemplate* pDiffTemplate = theApp.GetDiffTemplate();
 	if (m_pMenus[MENU_MERGEVIEW] == nullptr)
@@ -913,6 +927,7 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	// Warning : this unpacker may differ from the pDirDoc one
 	// (through menu : "Plugins"->"Open with unpacker")
 	pMergeDoc->SetUnpacker(infoUnpacker);
+	pMergeDoc->SetPrediffer(infoPrediffer);
 
 	// detect codepage
 	int iGuessEncodingType = GetOptionsMgr()->GetInt(OPT_CP_DETECT);
@@ -988,25 +1003,28 @@ bool CMainFrame::ShowTextOrTableMergeDoc(std::optional<bool> table, CDirDoc * pD
 	return true;
 }
 
-bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc,
+bool CMainFrame::ShowTextMergeDoc(IDirDoc* pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
-	return ShowTextOrTableMergeDoc(false, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams); 
+	return ShowTextOrTableMergeDoc(false, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, pOpenParams); 
 }
 
-bool CMainFrame::ShowTableMergeDoc(CDirDoc* pDirDoc,
+bool CMainFrame::ShowTableMergeDoc(IDirDoc* pDirDoc,
 	int nFiles, const FileLocation ifileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo* infoUnpacker /*= nullptr*/, const OpenTextFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
-	return ShowTextOrTableMergeDoc(true, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams);
+	return ShowTextOrTableMergeDoc(true, pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, pOpenParams);
 }
 
-bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+bool CMainFrame::ShowHexMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenBinaryFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenBinaryFileParams* pOpenParams /*= nullptr*/)
 {
 	CMultiDocTemplate* pHexMergeTemplate = theApp.GetHexMergeTemplate();
 	if (m_pMenus[MENU_HEXMERGEVIEW] == nullptr)
@@ -1031,17 +1049,21 @@ bool CMainFrame::ShowHexMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	return true;
 }
 
-bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+bool CMainFrame::ShowImgMergeDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenImageFileParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenImageFileParams* pOpenParams /*= nullptr*/)
 {
 	CImgMergeFrame *pImgMergeFrame = new CImgMergeFrame();
 	if (!CImgMergeFrame::menu.m_hMenu)
 		CImgMergeFrame::menu.m_hMenu = NewImgMergeViewMenu();
 	pImgMergeFrame->SetSharedMenu(CImgMergeFrame::menu.m_hMenu);
 	pImgMergeFrame->SetUnpacker(infoUnpacker);
-	pImgMergeFrame->SetDirDoc(pDirDoc);
-	pDirDoc->AddMergeDoc(pImgMergeFrame);
+	if (pDirDoc)
+	{
+		pImgMergeFrame->SetDirDoc(pDirDoc);
+		pDirDoc->AddMergeDoc(pImgMergeFrame);
+	}
 		
 	if (!pImgMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this))
 		return false;
@@ -1063,17 +1085,21 @@ bool CMainFrame::ShowImgMergeDoc(CDirDoc * pDirDoc, int nFiles, const FileLocati
 	return true;
 }
 
-bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
+bool CMainFrame::ShowWebDiffDoc(IDirDoc * pDirDoc, int nFiles, const FileLocation fileloc[],
 	const fileopenflags_t dwFlags[], const String strDesc[], const String& sReportFile /*= _T("")*/,
-	const PackingInfo * infoUnpacker /*= nullptr*/, const OpenWebPageParams* pOpenParams /*= nullptr*/)
+	const PackingInfo* infoUnpacker /*= nullptr*/, const PrediffingInfo* infoPrediffer /*= nullptr*/,
+	const OpenWebPageParams* pOpenParams /*= nullptr*/)
 {
 	CWebPageDiffFrame *pWebPageMergeFrame = new CWebPageDiffFrame();
 	if (!CWebPageDiffFrame::menu.m_hMenu)
 		CWebPageDiffFrame::menu.m_hMenu = NewWebPageDiffViewMenu();
 	pWebPageMergeFrame->SetSharedMenu(CWebPageDiffFrame::menu.m_hMenu);
 	pWebPageMergeFrame->SetUnpacker(infoUnpacker);
-	pWebPageMergeFrame->SetDirDoc(pDirDoc);
-	pDirDoc->AddMergeDoc(pWebPageMergeFrame);
+	if (pDirDoc)
+	{
+		pWebPageMergeFrame->SetDirDoc(pDirDoc);
+		pDirDoc->AddMergeDoc(pWebPageMergeFrame);
+	}
 		
 	bool completed = false, result = false;
 	if (!pWebPageMergeFrame->OpenDocs(nFiles, fileloc, GetROFromFlags(nFiles, dwFlags).data(), strDesc, this, 
@@ -1094,13 +1120,11 @@ bool CMainFrame::ShowWebDiffDoc(CDirDoc * pDirDoc, int nFiles, const FileLocatio
 	return true;
 }
 
-bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String text[],
+bool CMainFrame::ShowTextMergeDoc(IDirDoc* pDirDoc, int nBuffers, const String text[],
 		const String strDesc[], const String& strFileExt, const OpenTextFileParams* pOpenParams /*= nullptr*/)
 {
 	FileLocation fileloc[3];
 	fileopenflags_t dwFlags[3] = {};
-	CDirDoc* pDirDoc2 = pDirDoc->GetMainView() ? pDirDoc :
-		static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
 	m_tempFiles.reserve(nBuffers);
 	for (int nBuffer = 0; nBuffer < nBuffers; ++nBuffer)
 	{
@@ -1115,7 +1139,7 @@ bool CMainFrame::ShowTextMergeDoc(CDirDoc* pDirDoc, int nBuffers, const String t
 		}
 		fileloc[nBuffer].setPath(workFile);
 	}
-	return ShowTextMergeDoc(pDirDoc2, nBuffers, fileloc, dwFlags, strDesc, _T(""), nullptr, pOpenParams);
+	return ShowTextMergeDoc(pDirDoc, nBuffers, fileloc, dwFlags, strDesc, _T(""), nullptr, nullptr, pOpenParams);
 }
 
 /**
@@ -1295,7 +1319,7 @@ static bool AddToRecentDocs(const PathContext& paths,
  */
 bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	const fileopenflags_t dwFlags[] /*= nullptr*/, const String strDesc[] /*= nullptr*/, const String& sReportFile /*= T("")*/,
-	std::optional<bool> bRecurse /*= false*/, CDirDoc* pDirDoc/*= nullptr*/,
+	std::optional<bool> bRecurse /*= false*/, IDirDoc* pDirDoc/*= nullptr*/,
 	const PackingInfo *infoUnpacker /*= nullptr*/, const PrediffingInfo *infoPrediffer /*= nullptr*/,
 	UINT nID /*= 0*/, const OpenFileParams *pOpenParams /*= nullptr*/)
 {
@@ -1401,10 +1425,6 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 				pDirTemplate->m_hMenuShared = NewDirViewMenu();
 			pDirDoc = static_cast<CDirDoc*>(pDirTemplate->OpenDocumentFile(nullptr));
 		}
-		else
-		{
-			pDirDoc = static_cast<CDirDoc*>(pDirTemplate->CreateNewDocument());
-		}
 	}
 
 	// open the diff
@@ -1435,14 +1455,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 		for (int nPane = 0; nPane < tFiles.GetSize(); nPane++)
 			fileloc[nPane].setPath(tFiles[nPane]);
 
-		if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
-		{
-			String strBothFilenames = strutils::join(tFiles.begin(), tFiles.end(), _T("|"));
-			pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginPipeline());
-		}
-
 		ShowMergeDoc(nID, pDirDoc, tFiles.GetSize(), fileloc, dwFlags, strDesc, sReportFile,
-				infoUnpacker, pOpenParams);
+				infoUnpacker, infoPrediffer, pOpenParams);
 	}
 
 	if (pFiles != nullptr && (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU)))
@@ -1462,17 +1476,11 @@ bool CMainFrame::DoFileOpen(UINT nID, const PathContext* pFiles,
 	const OpenFileParams *pOpenParams /*= nullptr*/)
 {
 	ASSERT(pFiles != nullptr);
-	CDirDoc* pDirDoc = static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
 	FileLocation fileloc[3];
 	for (int pane = 0; pane < pFiles->GetSize(); pane++)
 		fileloc[pane].setPath((*pFiles)[pane]);
-	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
-	{
-		String strBothFilenames = strutils::join(pFiles->begin(), pFiles->end(), _T("|"));
-		pDirDoc->GetPluginManager().SetPrediffer(strBothFilenames, infoPrediffer->GetPluginPipeline());
-	}
-	bool result = ShowMergeDoc(nID, pDirDoc, pFiles->GetSize(), fileloc,
-		dwFlags, strDesc, sReportFile, infoUnpacker, pOpenParams);
+	bool result = ShowMergeDoc(nID, nullptr, pFiles->GetSize(), fileloc,
+		dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, pOpenParams);
 	if (!dwFlags || !(dwFlags[0] & FFILEOPEN_NOMRU))
 		AddToRecentDocs(*pFiles, (unsigned *)dwFlags, strDesc, false, _T(""), infoUnpacker, infoPrediffer, nID, pOpenParams);
 	return result;
@@ -1787,12 +1795,12 @@ std::vector<CWebPageDiffFrame *> CMainFrame::GetAllWebPageDiffFrames()
  * @return Pointer to CMergeDoc to use. 
  */
 template<class DocClass>
-DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, CDirDoc *pDirDoc, int nFiles, bool bMakeVisible)
+DocClass * GetMergeDocForDiff(CMultiDocTemplate *pTemplate, IDirDoc *pDirDoc, int nFiles, bool bMakeVisible)
 {
 	// Create a new merge doc
 	DocClass::m_nBuffersTemp = nFiles;
 	DocClass *pMergeDoc = static_cast<DocClass*>(pTemplate->OpenDocumentFile(nullptr, bMakeVisible));
-	if (pMergeDoc != nullptr)
+	if (pMergeDoc != nullptr && pDirDoc != nullptr)
 	{
 		pDirDoc->AddMergeDoc(pMergeDoc);
 		pMergeDoc->SetDirDoc(pDirDoc);
@@ -2007,8 +2015,6 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 	const PrediffingInfo *infoPrediffer /*= nullptr*/,
 	const OpenFileParams *pOpenParams)
 {
-	CDirDoc *pDirDoc = static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
-	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
 	FileLocation fileloc[3];
@@ -2030,9 +2036,7 @@ bool CMainFrame::DoFileNew(UINT nID, int nPanes,
 			strDesc2[i] = strDesc[i];
 		fileloc[i].encoding.SetCodepage(ucr::getDefaultCodepage());
 	}
-	if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
-		pDirDoc->GetPluginManager().SetPrediffer(_T("|"), infoPrediffer->GetPluginPipeline());
-	return ShowMergeDoc(nID, pDirDoc, nPanes, fileloc, dwFlags, strDesc2, _T(""), nullptr, pOpenParams);
+	return ShowMergeDoc(nID, nullptr, nPanes, fileloc, dwFlags, strDesc2, _T(""), nullptr, infoPrediffer, pOpenParams);
 }
 
 /**
@@ -2165,13 +2169,13 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
-		int nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
-		if ((theApp.m_bEscShutdown || nEscCloses == 3) && m_wndTabBar.GetItemCount() <= 1)
+		const int nEscCloses = GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC);
+		if ((theApp.m_bEscShutdown || 3 == nEscCloses) && m_wndTabBar.GetItemCount() <= 1)
 		{
 			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
-		else if (nEscCloses == 1 && m_wndTabBar.GetItemCount() == 0)
+		else if (1 == nEscCloses && 0 == m_wndTabBar.GetItemCount())
 		{
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return FALSE;
@@ -2663,7 +2667,7 @@ bool CMainFrame::AskCloseConfirmation()
 		// That happens since we open "hidden" dirdoc for every file compare.
 		if (dirdocs.GetCount() == 1)
 		{
-			CDirDoc *pDoc = dirdocs.GetHead();
+			IDirDoc *pDoc = dirdocs.GetHead();
 			if (!pDoc->HasDiffs())
 				return true;
 		}
@@ -3197,7 +3201,7 @@ void CMainFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 void CMainFrame::OnNextFile()
 {
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			pDirDoc->MoveToNextFile(pMergeDoc);
 }
 
@@ -3208,7 +3212,7 @@ void CMainFrame::OnUpdateNextFile(CCmdUI* pCmdUI)
 {
 	bool enabled = false;
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			enabled = !pDirDoc->IsLastFile();
 	pCmdUI->Enable(enabled);
 }
@@ -3219,7 +3223,7 @@ void CMainFrame::OnUpdateNextFile(CCmdUI* pCmdUI)
 void CMainFrame::OnPrevFile()
 {
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			pDirDoc->MoveToPrevFile(pMergeDoc);
 }
 
@@ -3230,7 +3234,7 @@ void CMainFrame::OnUpdatePrevFile(CCmdUI* pCmdUI)
 {
 	bool enabled = false;
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			enabled = !pDirDoc->IsFirstFile();
 	pCmdUI->Enable(enabled);
 }
@@ -3241,7 +3245,7 @@ void CMainFrame::OnUpdatePrevFile(CCmdUI* pCmdUI)
 void CMainFrame::OnFirstFile()
 {
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			pDirDoc->MoveToFirstFile(pMergeDoc);
 }
 
@@ -3252,7 +3256,7 @@ void CMainFrame::OnUpdateFirstFile(CCmdUI* pCmdUI)
 {
 	bool enabled = false;
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			enabled = !pDirDoc->IsFirstFile();
 	pCmdUI->Enable(enabled);
 }
@@ -3263,7 +3267,7 @@ void CMainFrame::OnUpdateFirstFile(CCmdUI* pCmdUI)
 void CMainFrame::OnLastFile()
 {
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			pDirDoc->MoveToLastFile(pMergeDoc);
 }
 
@@ -3274,7 +3278,7 @@ void CMainFrame::OnUpdateLastFile(CCmdUI* pCmdUI)
 {
 	bool enabled = false;
 	if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
-		if (CDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
+		if (IDirDoc* pDirDoc = pMergeDoc->GetDirDoc())
 			enabled = !pDirDoc->IsLastFile();
 	pCmdUI->Enable(enabled);
 }
@@ -3561,7 +3565,7 @@ LRESULT CMainFrame::OnChildFrameAdded(WPARAM wParam, LPARAM lParam)
 		}
 	}
 
-	m_arrChild.InsertAt(0, (CMDIChildWnd*)lParam);
+	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
 }
@@ -3608,7 +3612,7 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 		}
 	}
 
-	m_arrChild.InsertAt(0, (CMDIChildWnd*)lParam);
+	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
 }

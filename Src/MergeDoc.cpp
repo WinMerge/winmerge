@@ -22,7 +22,7 @@
 #include "MovedLines.h"
 #include "MergeEditView.h"
 #include "MergeEditFrm.h"
-#include "DirDoc.h"
+#include "IDirDoc.h"
 #include "FileLoadResult.h"
 #include "FileTransform.h"
 #include "Plugins.h"
@@ -40,6 +40,7 @@
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
+#include "FileFilterHelper.h"
 #include "TempFile.h"
 #include "codepage_detect.h"
 #include "SelectPluginDlg.h"
@@ -2049,13 +2050,7 @@ void CMergeDoc::OnFileSaveRight()
  */
 void CMergeDoc::OnUpdateFileSave(CCmdUI* pCmdUI)
 {
-	bool bModified = false;
-	for (int nPane = 0; nPane < m_nBuffers; nPane++)
-	{
-		if (m_ptBuf[nPane]->IsModified())
-			bModified = true;
-	}
-	pCmdUI->Enable(bModified);
+	pCmdUI->Enable(IsModified());
 }
 
 /**
@@ -2741,7 +2736,7 @@ void CMergeDoc::RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView)
 /**
  * @brief DirDoc gives us its identity just after it creates us
  */
-void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
+void CMergeDoc::SetDirDoc(IDirDoc * pDirDoc)
 {
 	ASSERT(pDirDoc != nullptr && m_pDirDoc == nullptr);
 	m_pDirDoc = pDirDoc;
@@ -2758,7 +2753,7 @@ CMergeEditFrame * CMergeDoc::GetParentFrame()
 /**
  * @brief DirDoc is closing
  */
-void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
+void CMergeDoc::DirDocClosing(IDirDoc * pDirDoc)
 {
 	ASSERT(m_pDirDoc == pDirDoc);
 	m_pDirDoc = nullptr;
@@ -3177,12 +3172,8 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 	}
 
 	// Define the prediffer
-	PackingInfo * infoUnpacker = nullptr;
-	PrediffingInfo * infoPrediffer = nullptr;
-	if (bFiltersEnabled && m_pDirDoc != nullptr)
+	if (bFiltersEnabled)
 	{
-		m_pDirDoc->GetPluginManager().FetchPluginInfos(m_strBothFilenames, &infoUnpacker, &infoPrediffer);
-		m_diffWrapper.SetPrediffer(infoPrediffer);
 		m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
 	}
 
