@@ -828,7 +828,7 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 }
 bool CMainFrame::CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[])
 {
-	IDirDoc* pDirDoc2 = pDirDoc ? pDirDoc : static_cast<CDirDoc*>(theApp.m_pDirTemplate->CreateNewDocument());
+	IDirDoc* pDirDoc2 = pDirDoc ? pDirDoc : static_cast<CDirDoc*>(theApp.GetDirTemplate()->CreateNewDocument());
 	bool result = pDirDoc2->CompareFilesIfFilesAreLarge(nFiles, ifileloc);
 	if (pDirDoc2 != pDirDoc)
 		delete static_cast<CDirDoc*>(pDirDoc2);
