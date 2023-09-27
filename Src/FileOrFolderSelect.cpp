@@ -64,16 +64,15 @@ bool SelectFile(HWND parent, String& path, bool is_open /*= true*/,
 		// If initial path info includes a file
 		// we put the bare filename into sSelectedFile
 		// so the common file dialog will start up with that file selected
-		if (paths::DoesPathExist(initialPath) == paths::IS_EXISTING_FILE)
+		if (paths::DoesPathExist(initialPath) == paths::IS_EXISTING_DIR)
 		{
-			String temp;
-			paths::SplitFilename(initialPath, 0, &temp, 0);
-			lstrcpy(sSelectedFile, temp.c_str());
-			sInitialDir = paths::GetParentPath(initialPath);
+			sInitialDir = initialPath;
 		}
 		else
 		{
-			sInitialDir = initialPath;
+			String temp;
+			paths::SplitFilename(initialPath, &sInitialDir, &temp, 0);
+			lstrcpy(sSelectedFile, temp.c_str());
 		}
 	}
 
@@ -212,6 +211,7 @@ bool SelectFileOrFolder(HWND parent, String& path, const tchar_t* initialPath /*
 	// This will tell common file dialog what to show
 	// and also this will hold its return value
 	tchar_t sSelectedFile[MAX_PATH_FULL];
+	String sInitialDir;
 
 	// check if specified path is a file
 	if (initialPath!=nullptr && initialPath[0] != '\0')
@@ -219,10 +219,14 @@ bool SelectFileOrFolder(HWND parent, String& path, const tchar_t* initialPath /*
 		// If initial path info includes a file
 		// we put the bare filename into sSelectedFile
 		// so the common file dialog will start up with that file selected
-		if (paths::DoesPathExist(initialPath) == paths::IS_EXISTING_FILE)
+		if (paths::DoesPathExist(initialPath) == paths::IS_EXISTING_DIR)
+		{
+			sInitialDir = initialPath;
+		}
+		else
 		{
 			String temp;
-			paths::SplitFilename(initialPath, 0, &temp, 0);
+			paths::SplitFilename(initialPath, &sInitialDir, &temp, 0);
 			lstrcpy(sSelectedFile, temp.c_str());
 		}
 	}
@@ -247,7 +251,7 @@ bool SelectFileOrFolder(HWND parent, String& path, const tchar_t* initialPath /*
 	ofn.nFilterIndex = 1;
 	ofn.lpstrFile = sSelectedFile;
 	ofn.nMaxFile = MAX_PATH_FULL;
-	ofn.lpstrInitialDir = initialPath;
+	ofn.lpstrInitialDir = sInitialDir.empty() ? nullptr : sInitialDir.c_str();
 	ofn.lpstrTitle = title.c_str();
 	ofn.lpstrFileTitle = nullptr;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE | OFN_NOCHANGEDIR;
