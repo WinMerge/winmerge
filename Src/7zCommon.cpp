@@ -411,17 +411,14 @@ const DIFFITEM &DirItemEnumerator::Next()
 		m_index++;
 	}
 	const auto& di = m_pView->GetDiffItem(m_nIndex);
-	// If the current item is a folder, ignore the current item if the next selected item is a child element of that folder.
-	if (m_index > (((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0) ? 1 : 2) || !di.diffcode.isDirectory())
-		return di;
-	const int nextIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask);
-	if (nextIndex == -1)
-		return di;
-	const auto& diNext = m_pView->GetDiffItem(nextIndex);
-	const String curRelPath = strutils::makelower(di.diffFileInfo[m_index].GetFile());
-	if (strutils::makelower(diNext.diffFileInfo[m_index].GetFile()).find(curRelPath) != 0)
-		return di;
-	return *DIFFITEM::GetEmptyItem();
+	for (const auto* pfdi : m_selectedFolderDiffItems)
+	{
+		if (di.IsAncestor(pfdi))
+			return *DIFFITEM::GetEmptyItem();
+	}
+	if (di.diffcode.isDirectory())
+		m_selectedFolderDiffItems.push_back(&di);
+	return di;
 }
 
 /**

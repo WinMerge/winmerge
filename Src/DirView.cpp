@@ -570,7 +570,7 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 			}
 			else
 			{
-				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || (!di.diffcode.existAll() && !di.HasChildren()))
+				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || !di.diffcode.existAll())
 				{
 					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
 					index++;
