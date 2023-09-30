@@ -1694,35 +1694,6 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	free((void *)inf_patch[1].name);
 }
 
-/**
- * @brief Set line filters, given as one string.
- * @param [in] filterStr Filters.
- */
-void CDiffWrapper::SetFilterList(const String& filterStr)
-{
-	// Remove filterlist if new filter is empty
-	if (filterStr.empty())
-	{
-		m_pFilterList.reset();
-		return;
-	}
-
-	// Adding new filter without previous filter
-	if (m_pFilterList == nullptr)
-	{
-		m_pFilterList.reset(new FilterList);
-	}
-
-	m_pFilterList->RemoveAllFilters();
-
-	std::string regexp_str = ucr::toUTF8(filterStr);
-
-	// Add every "line" of regexps to regexp list
-	StringTokenizer tokens(regexp_str, "\r\n");
-	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
-		m_pFilterList->AddRegExp(*it);
-}
-
 const FilterList* CDiffWrapper::GetFilterList() const
 {
 	return m_pFilterList.get();

@@ -277,7 +277,7 @@ std::shared_ptr<SubstitutionList> SubstitutionFiltersList::MakeSubstitutionList(
 				{
 					plist.reset();
 					const String msg = strutils::format(_T("#%d: %S"), i + 1, e.message().c_str());
-					throw Poco::RegularExpressionException(ucr::toUTF8(msg).c_str(), e.code());
+					throw std::runtime_error(ucr::toUTF8(msg).c_str());
 				}
 			}
 		}

@@ -9,6 +9,7 @@
 #include "Merge.h"
 #include "LineFiltersDlg.h"
 #include "Constants.h"
+#include "unicoder.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -163,7 +164,7 @@ void LineFiltersDlg::OnBnClickedLfilterEditbtn()
 /**
  * @brief Save filters to list when exiting the dialog.
  */
-void LineFiltersDlg::OnOK()
+BOOL LineFiltersDlg::OnApply()
 {
 	m_pList->Empty();
 
@@ -174,10 +175,19 @@ void LineFiltersDlg::OnOK()
 
 		m_pList->AddFilter(text, enabled);
 	}
+	// Test
+	try
+	{
+		m_pList->MakeFilterList(true);
+	}
+	catch (std::runtime_error& e)
+	{
+		AfxMessageBox(ucr::toTString(e.what()).c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return FALSE;
+	}
 
 	AfxGetApp()->WriteProfileInt(_T("Settings"), _T("FilterStartPage"), GetParentSheet()->GetActiveIndex());
-
-	CPropertyPage::OnClose();
+	return TRUE;
 }
 
 /**

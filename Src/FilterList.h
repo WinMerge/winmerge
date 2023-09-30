@@ -39,7 +39,7 @@ public:
 	FilterList();
 	~FilterList();
 	
-	void AddRegExp(const std::string& regularExpression, bool exclude = false);
+	void AddRegExp(const std::string& regularExpression, bool exclude = false, bool throwIfInvalid = false);
 	void RemoveAllFilters();
 	bool HasRegExps() const;
 	bool Match(const std::string& string, int codepage = ucr::CP_UTF_8);

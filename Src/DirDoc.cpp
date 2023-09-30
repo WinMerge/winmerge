@@ -191,24 +191,13 @@ void CDirDoc::LoadLineFilterList(CDiffContext *pCtxt)
 	ASSERT(pCtxt != nullptr);
 	
 	bool bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
-	String filters = theApp.m_pLineFilters->GetAsString();
-	if (!bFilters || filters.empty())
+	auto filters = theApp.m_pLineFilters->MakeFilterList(false);
+	if (!bFilters || !filters->HasRegExps())
 	{
 		pCtxt->m_pFilterList.reset();
 		return;
 	}
-
-	if (pCtxt->m_pFilterList)
-		pCtxt->m_pFilterList->RemoveAllFilters();
-	else
-		pCtxt->m_pFilterList.reset(new FilterList());
-
-	std::string regexp_str = ucr::toUTF8(filters);
-
-	// Add every "line" of regexps to regexp list
-	StringTokenizer tokens(regexp_str, "\r\n");
-	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
-		pCtxt->m_pFilterList->AddRegExp(*it);
+	pCtxt->m_pFilterList = filters;
 }
 
 void CDirDoc::LoadSubstitutionFiltersList(CDiffContext* pCtxt)

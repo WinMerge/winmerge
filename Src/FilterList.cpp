@@ -8,6 +8,7 @@
 #include "FilterList.h"
 #include <vector>
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
 #include "unicoder.h"
 
 using Poco::RegularExpression;
@@ -33,16 +34,17 @@ FilterList::~FilterList()
  * @param [in] encoding Expression encoding.
  * @param [in] excluded 
  */
-void FilterList::AddRegExp(const std::string& regularExpression, bool exclude)
+void FilterList::AddRegExp(const std::string& regularExpression, bool exclude, bool throwIfInvalid)
 {
 	try
 	{
 		auto& list = exclude ? m_listExclude : m_list;
 		list.push_back(filter_item_ptr(new filter_item(regularExpression, RegularExpression::RE_UTF8)));
 	}
-	catch (...)
+	catch (Poco::RegularExpressionException& e)
 	{
-		// TODO:
+		if (throwIfInvalid)
+			throw std::runtime_error(e.message().c_str());
 	}
 }
 

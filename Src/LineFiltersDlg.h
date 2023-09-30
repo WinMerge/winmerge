@@ -45,7 +45,7 @@ protected:
 	//{{AFX_MSG(LineFiltersDlg)
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
-	virtual void OnOK() override;
+	virtual BOOL OnApply() override;
 	afx_msg void OnBnClickedLfilterAddBtn();
 	afx_msg void OnBnClickedLfilterEditbtn();
 	afx_msg void OnBnClickedLfilterRemovebtn();

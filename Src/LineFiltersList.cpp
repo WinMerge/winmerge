@@ -6,6 +6,7 @@
 
 #include "pch.h"
 #include "LineFiltersList.h"
+#include "FilterList.h"
 #include <vector>
 #include <cassert>
 #include "OptionsMgr.h"
@@ -40,31 +41,6 @@ void LineFiltersList::AddFilter(const String& filter, bool enabled)
 	item->enabled = enabled;
 	item->filterStr = filter;
 	m_items.push_back(item);
-}
-
-/**
- * @brief Returns the filter list as one filter string.
- * This function returns the list of filters as one string that can be
- * given to regular expression engine as filter. Filter strings in
- * the list are separated by "|".
- * @return Filter string.
- */
-String LineFiltersList::GetAsString() const
-{
-	String filter;
-	vector<LineFilterItemPtr>::const_iterator iter = m_items.begin();
-
-	while (iter != m_items.end())
-	{
-		if ((*iter)->enabled && !(*iter)->filterStr.empty())
-		{
-			if (!filter.empty())
-				filter += _T("|");
-			filter += (*iter)->filterStr;
-		}
-		++iter;
-	}
-	return filter;	
 }
 
 /**
@@ -196,4 +172,31 @@ void LineFiltersList::SaveFilters()
 		filter = strutils::format(_T("%s/Enabled%02u"), LineFiltersRegPath, count);
 		retval2 = m_pOptionsMgr->RemoveOption(filter);
 	}
+}
+
+std::shared_ptr<FilterList> LineFiltersList::MakeFilterList(bool throwIfInvalid)
+{
+	int i = 0;
+	std::shared_ptr<FilterList> plist(new FilterList);
+	for (auto& item : m_items)
+	{
+		if (item->enabled && !item->filterStr.empty())
+		{
+			try
+			{
+				plist->AddRegExp(ucr::toUTF8(item->filterStr), false, throwIfInvalid);
+			}
+			catch (const std::runtime_error& e)
+			{
+				if (throwIfInvalid)
+				{
+					plist.reset();
+					const String msg = strutils::format(_T("#%d: %S"), i + 1, e.what());
+					throw std::runtime_error(ucr::toUTF8(msg).c_str());
+				}
+			}
+		}
+		i++;
+	}
+	return plist;
 }

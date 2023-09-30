@@ -334,23 +334,12 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	ClearWordDiffCache();
 
-	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
-	{
-		m_diffWrapper.SetFilterList(theApp.m_pLineFilters->GetAsString());
-	}
-	else
-	{
-		m_diffWrapper.SetFilterList(_T(""));
-	}
-
-	if (theApp.m_pSubstitutionFiltersList && theApp.m_pSubstitutionFiltersList->GetEnabled())
-	{
-		m_diffWrapper.SetSubstitutionList(theApp.m_pSubstitutionFiltersList->MakeSubstitutionList());
-	}
-	else
-	{
-		m_diffWrapper.SetSubstitutionList(nullptr);
-	}
+	m_diffWrapper.SetFilterList(
+		GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED) ?
+		theApp.m_pLineFilters->MakeFilterList() : nullptr);
+	m_diffWrapper.SetSubstitutionList(
+		(theApp.m_pSubstitutionFiltersList && theApp.m_pSubstitutionFiltersList->GetEnabled()) ?
+		theApp.m_pSubstitutionFiltersList->MakeSubstitutionList() : nullptr);
 
 	if (GetView(0, 0)->m_CurSourceDef->type != 0)
 		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
