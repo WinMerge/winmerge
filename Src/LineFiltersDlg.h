@@ -52,6 +52,7 @@ protected:
 	afx_msg void OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnLvnKeyDownLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnEndLabelEditLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnLvnItemChangedLfilterList(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -63,4 +64,6 @@ private:
 	CListCtrl m_filtersList; /**< List control having filter strings */
 
 	LineFiltersList * m_pList; /**< Helper list for getting/setting filters. */
+
+	void SetButtonState();
 };

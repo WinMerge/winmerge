@@ -55,6 +55,7 @@ BEGIN_MESSAGE_MAP(LineFiltersDlg, CTrPropertyPage)
 	ON_NOTIFY(LVN_ITEMACTIVATE, IDC_LFILTER_LIST, OnLvnItemActivateLfilterList)
 	ON_NOTIFY(LVN_KEYDOWN, IDC_LFILTER_LIST, OnLvnKeyDownLfilterList)
 	ON_NOTIFY(LVN_ENDLABELEDIT, IDC_LFILTER_LIST, OnEndLabelEditLfilterList)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LFILTER_LIST, OnLvnItemChangedLfilterList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -70,7 +71,8 @@ BOOL LineFiltersDlg::OnInitDialog()
 	CTrPropertyPage::OnInitDialog();
 
 	InitList();
-	
+	SetButtonState();
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -235,4 +237,33 @@ void LineFiltersDlg::OnLvnKeyDownLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
 void LineFiltersDlg::OnEndLabelEditLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	*pResult = 1;
+}
+
+/**
+ * @brief Called when item state is changed.
+ *
+ * Disable "Edit" and "Remove" buttons when no item is selected.
+ * @param [in] pNMHDR Listview item data.
+ * @param [out] pResult Result of the action is returned in here.
+ */
+void LineFiltersDlg::OnLvnItemChangedLfilterList(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	if ((pNMLV->uOldState & LVIS_SELECTED) != (pNMLV->uNewState & LVIS_SELECTED))
+	{
+		SetButtonState();
+	}
+	*pResult = 0;
+}
+
+/**
+ * @brief Disable "Edit" and "Remove" buttons when no item is selected.
+ */
+void LineFiltersDlg::SetButtonState()
+{
+	int sel = -1;
+	sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
+	bool bIsSelected = (sel != -1);
+	EnableDlgItem(IDC_LFILTER_EDITBTN, bIsSelected);
+	EnableDlgItem(IDC_LFILTER_REMOVEBTN, bIsSelected);
 }
