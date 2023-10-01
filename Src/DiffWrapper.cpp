@@ -19,6 +19,7 @@
 #include <exception>
 #include <vector>
 #include <list>
+#include <tuple>
 #include <Poco/Format.h>
 #include <Poco/Debugger.h>
 #include <Poco/StringTokenizer.h>
@@ -254,9 +255,10 @@ static unsigned GetLastLineCookie(unsigned dwCookie, int startLine, int endLine,
 	return dwCookie;
 }
 
-static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, std::string& filtered, CrystalLineParser::TextDefinition* enuType)
+static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredText(unsigned dwCookie, int startLine, int endLine, const char **linbuf, CrystalLineParser::TextDefinition* enuType)
 {
 	String filteredT;
+	std::vector<bool> allTextIsComment(endLine - startLine + 1);
 	for (int i = startLine; i <= endLine; ++i)
 	{
 		String text = convertToTString(linbuf[i], linbuf[i + 1]);
@@ -277,6 +279,7 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 			}
 			else
 			{
+				allTextIsComment[i - startLine] = true;
 				for (int j = 0; j < nActualItems; ++j)
 				{
 					CrystalLineParser::TEXTBLOCK& block = blocks[j];
@@ -284,6 +287,9 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 					{
 						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
 						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
+						tchar_t c = filteredT.empty() ? 0 : filteredT.back();
+						if (c != '\r' && c != '\n')
+							allTextIsComment[i - startLine] = false;
 					}
 				}
 
@@ -299,9 +305,7 @@ static unsigned GetCommentsFilteredText(unsigned dwCookie, int startLine, int en
 		}
 	}
 
-	filtered = ucr::toUTF8(filteredT);
-
-	return dwCookie;
+	return { ucr::toUTF8(filteredT), dwCookie, allTextIsComment };
 }
 
 /**
@@ -366,6 +370,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	const int lineNumberRight = trans_a1 - 1;
 	
 	std::string lineDataLeft, lineDataRight;
+	std::vector<bool> allTextIsCommentLeft(qtyLinesLeft), allTextIsCommentRight(qtyLinesRight);
 
 	if (m_options.m_filterCommentsLines)
 	{
@@ -377,10 +382,17 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		ctxt.nParsedLineEndLeft = lineNumberLeft + qtyLinesLeft - 1;
 		ctxt.nParsedLineEndRight = lineNumberRight + qtyLinesRight - 1;;
 
-		ctxt.dwCookieLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
-			lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, lineDataLeft, m_pFilterCommentsDef);
-		ctxt.dwCookieRight = GetCommentsFilteredText(ctxt.dwCookieRight,
-			lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, lineDataRight, m_pFilterCommentsDef);
+		auto resultLeft = GetCommentsFilteredText(ctxt.dwCookieLeft,
+			lineNumberLeft, ctxt.nParsedLineEndLeft, file_data_ary[0].linbuf + file_data_ary[0].linbuf_base, m_pFilterCommentsDef);
+		lineDataLeft = std::move(std::get<0>(resultLeft));
+		ctxt.dwCookieLeft = std::get<1>(resultLeft);
+		allTextIsCommentLeft = std::move(std::get<2>(resultLeft));
+
+		auto resultRight = GetCommentsFilteredText(ctxt.dwCookieRight,
+			lineNumberRight, ctxt.nParsedLineEndRight, file_data_ary[1].linbuf + file_data_ary[1].linbuf_base, m_pFilterCommentsDef);
+		lineDataRight = std::move(std::get<0>(resultRight));
+		ctxt.dwCookieRight = std::get<1>(resultRight);
+		allTextIsCommentRight = std::move(std::get<2>(resultRight));
 	}
 	else
 	{
@@ -455,7 +467,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 		return 0;
 	}
 
-	auto SplitLines = [](const std::string& lines) -> std::vector<std::string_view>
+	auto SplitLines = [](const std::string& lines, int nlines) -> std::vector<std::string_view>
 		{
 			std::vector<std::string_view> result;
 			const char* line = lines.c_str();
@@ -477,11 +489,13 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 			}
 			if (!lines.empty() && (lines.back() != '\r' && lines.back() != '\n'))
 				result.emplace_back(line, lines.c_str() + lines.length() - line);
+			if (result.size() < nlines)
+				result.emplace_back("", 0);
 			return result; 
 		};
 
-	std::vector<std::string_view> leftLines = SplitLines(lineDataLeft);
-	std::vector<std::string_view> rightLines = SplitLines(lineDataRight);
+	std::vector<std::string_view> leftLines = SplitLines(lineDataLeft, qtyLinesLeft);
+	std::vector<std::string_view> rightLines = SplitLines(lineDataRight, qtyLinesRight);
 
 	if (qtyLinesLeft != leftLines.size() || qtyLinesRight != rightLines.size())
 		return 0;
@@ -567,7 +581,9 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	auto InsertTrivialChanges2 =
 		[](change* thisob, change* script, bool ignoreBlankLines,
 		   const std::vector<std::string_view>& leftLines,
-		   const std::vector<std::string_view>& rightLines) -> int
+		   const std::vector<std::string_view>& rightLines,
+		   const std::vector<bool>& linesFilteredLeft,
+		   const std::vector<bool>& linesFilteredRight) -> int
 		{
 			assert(thisob && script);
 			auto IsBlankLine = [](const std::string_view& line)
@@ -589,7 +605,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 					{
 						for (int i = cur->line0 + cur->inserted - thisob->line0; i < cur->line0 + cur->deleted - thisob->line0; ++i)
 						{
-							if (!(ignoreBlankLines && IsBlankLine(leftLines[i])) && leftLines[i] != FILTERED_LINE)
+							if (!(ignoreBlankLines && IsBlankLine(leftLines[i])) && !linesFilteredLeft[i] && leftLines[i] != FILTERED_LINE)
 								ignorable = false;
 						}
 						if (ignorable)
@@ -619,7 +635,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 					{
 						for (int i = cur->line1 + cur->deleted - thisob->line1; i < cur->line1 + cur->inserted - thisob->line1; ++i)
 						{
-							if (!(ignoreBlankLines && IsBlankLine(rightLines[i])) && rightLines[i] != FILTERED_LINE)
+							if (!(ignoreBlankLines && IsBlankLine(rightLines[i])) && !linesFilteredRight[i] && rightLines[i] != FILTERED_LINE)
 								ignorable = false;
 						}
 						if (ignorable)
@@ -670,7 +686,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 
 	TranslateLineNumbers(thisob, script);
 	int nTrivialInserts = InsertTrivialChanges(thisob, script);
-	nTrivialInserts += InsertTrivialChanges2(thisob, script, m_options.m_bIgnoreBlankLines, leftLines, rightLines);
+	nTrivialInserts += InsertTrivialChanges2(thisob, script, m_options.m_bIgnoreBlankLines, leftLines, rightLines, allTextIsCommentLeft, allTextIsCommentRight);
 	ReplaceChanges(thisob, script);
 	return nTrivialInserts;
 }
