@@ -287,7 +287,7 @@ static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredT
 					{
 						unsigned blocklen = (j < nActualItems - 1) ? (blocks[j + 1].m_nCharPos - block.m_nCharPos) : textlen - block.m_nCharPos;
 						filteredT.append(text.c_str() + block.m_nCharPos, blocklen);
-						tchar_t c = filteredT.empty() ? 0 : filteredT.back();
+						tchar_t c = (blocklen == 0) ? 0 : *(text.c_str() + block.m_nCharPos);
 						if (c != '\r' && c != '\n')
 							allTextIsComment[i - startLine] = false;
 					}
