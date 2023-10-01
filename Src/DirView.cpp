@@ -66,7 +66,7 @@ using namespace std::placeholders;
  */
 constexpr int TimeToSignalCompare = 3;
 
-// The resource ID constexprants/limits for the Shell context menu
+// The resource ID constants/limits for the Shell context menu
 constexpr UINT LeftCmdFirst = 0x9000; // this should be greater than any of already defined command IDs
 constexpr UINT BothCmdLast = 0xffff; // maximum available value
 constexpr UINT LeftCmdLast = LeftCmdFirst + (BothCmdLast - LeftCmdFirst) / 4; // divide available range equally between two context menus
