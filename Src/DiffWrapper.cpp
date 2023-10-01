@@ -279,7 +279,8 @@ static std::tuple<std::string, unsigned, std::vector<bool>> GetCommentsFilteredT
 			}
 			else
 			{
-				allTextIsComment[i - startLine] = true;
+				allTextIsComment[i - startLine] =
+					(nActualItems > 0 && blocks[0].m_nColorIndex == COLORINDEX_COMMENT);
 				for (int j = 0; j < nActualItems; ++j)
 				{
 					CrystalLineParser::TEXTBLOCK& block = blocks[j];
