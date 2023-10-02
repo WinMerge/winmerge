@@ -3628,10 +3628,10 @@ msgstr "Muokkainskripti"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Ero nykyisessä rivissä"
+"Ero nykyisessä rivissä (F4)"
 
 msgid ""
 "\n"

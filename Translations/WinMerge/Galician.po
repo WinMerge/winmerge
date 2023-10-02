@@ -3580,10 +3580,10 @@ msgstr "Editor de script"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Diferenza na liña actual"
+"Diferenza na liña actual (F4)"
 
 msgid ""
 "\n"

@@ -3571,10 +3571,10 @@ msgstr "Skript editora"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Rozdiel v aktuálnom riadku"
+"Rozdiel v aktuálnom riadku (F4)"
 
 msgid ""
 "\n"

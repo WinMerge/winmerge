@@ -4253,10 +4253,10 @@ msgstr "Szkript szerkesztő"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Az eltérés az aktuális sorban"
+"Az eltérés az aktuális sorban (F4)"
 
 #, c-format
 msgid ""

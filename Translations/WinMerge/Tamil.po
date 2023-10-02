@@ -3577,10 +3577,10 @@ msgstr "ஸ்கிரிப்ட் எடிட்டர்"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"தற்போதைய கோட்டில் உள்ள வேறுபாடு"
+"தற்போதைய கோட்டில் உள்ள வேறுபாடு (F4)"
 
 msgid ""
 "\n"

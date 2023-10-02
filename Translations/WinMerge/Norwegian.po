@@ -3609,10 +3609,10 @@ msgstr "Redigeringsskript"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Forskjell i den gjeldende linjen"
+"Forskjell i den gjeldende linjen (F4)"
 
 msgid ""
 "\n"

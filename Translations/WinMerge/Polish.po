@@ -3290,8 +3290,8 @@ msgstr "Typ"
 msgid "Editor script"
 msgstr "Edytor skryptu"
 
-msgid "\nDifference in the Current Line"
-msgstr "\nRóżnica w bieżącym wierszu"
+msgid "\nDifference in the Current Line (F4)"
+msgstr "\nRóżnica w bieżącym wierszu (F4)"
 
 msgid "\nOptions"
 msgstr "\nOpcje"

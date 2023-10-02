@@ -4273,10 +4273,10 @@ msgstr "Éditeur de script"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Différence dans la ligne courante"
+"Différence dans la ligne courante (F4)"
 
 #, c-format
 msgid ""

@@ -3581,10 +3581,10 @@ msgstr "エディター スクリプト"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"現在の行内差異"
+"現在の行内差異 (F4)"
 
 msgid ""
 "\n"

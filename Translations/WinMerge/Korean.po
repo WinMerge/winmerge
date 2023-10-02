@@ -4270,10 +4270,10 @@ msgstr "편집기 스크립트"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"현재 줄의 차이점"
+"현재 줄의 차이점 (F4)"
 
 #, c-format
 msgid ""

@@ -3554,10 +3554,10 @@ msgstr "محرر اللغة النصية (سكريبت)"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"الاختلاف في السطر الحالي"
+"الاختلاف في السطر الحالي (F4)"
 
 msgid ""
 "\n"
