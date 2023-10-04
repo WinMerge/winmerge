@@ -1648,12 +1648,12 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		return;
 	}
 
-	if (strcmp(inf[0].name, "NUL") == 0)
+	if (paths::IsNullDeviceName(ucr::toTString(inf[0].name)))
 	{
 		free((void *)inf_patch[0].name);
 		inf_patch[0].name = strdup("/dev/null");
 	}
-	if (strcmp(inf[1].name, "NUL") == 0)
+	if (paths::IsNullDeviceName(ucr::toTString(inf[1].name)))
 	{
 		free((void *)inf_patch[1].name);
 		inf_patch[1].name = strdup("/dev/null");

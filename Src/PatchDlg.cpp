@@ -103,8 +103,8 @@ void CPatchDlg::OnOK()
 	}
 	if (selectCount == 1)
 	{
-		bool file1Ok = (paths::DoesPathExist(m_file1) != paths::DOES_NOT_EXIST);
-		bool file2Ok = (paths::DoesPathExist(m_file2) != paths::DOES_NOT_EXIST);
+		bool file1Ok = (paths::DoesPathExist(m_file1) != paths::DOES_NOT_EXIST) || paths::IsNullDeviceName(m_file1);
+		bool file2Ok = (paths::DoesPathExist(m_file2) != paths::DOES_NOT_EXIST) || paths::IsNullDeviceName(m_file2);
 
 		if (!file1Ok || !file2Ok)
 		{

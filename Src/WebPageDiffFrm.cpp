@@ -203,8 +203,14 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 		m_filePaths.SetPath(pane, fileloc[pane].filepath, false);
 		m_bRO[pane] = bRO[pane];
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
-		if (fileloc[pane].filepath.empty())
+		if (fileloc[pane].filepath.empty() || paths::IsNullDeviceName(fileloc[pane].filepath))
+		{
 			m_nBufferType[pane] = BUFFERTYPE::UNNAMED;
+			if (m_strDesc[pane].empty())
+				m_strDesc[pane] = (pane == 0) ? _("Untitled left") : ((nFiles < 3 || pane == 2) ? _("Untitled right") : _("Untitled middle"));
+			if (paths::IsNullDeviceName(fileloc[pane].filepath))
+				m_filePaths.SetPath(pane, _T("about:blank"), false);
+		}
 		else
 		{
 			m_nBufferType[pane] = (!strDesc || strDesc[pane].empty()) ? BUFFERTYPE::NORMAL : BUFFERTYPE::NORMAL_NAMED;

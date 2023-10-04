@@ -268,7 +268,7 @@ void CDiffContext::GetComparePaths(const DIFFITEM &di, PathContext & tFiles) con
 		}
 		else
 		{
-			tFiles.SetPath(nIndex, _T("NUL"), false);
+			tFiles.SetPath(nIndex, paths::NATIVE_NULL_DEVICE_NAME, false);
 		}
 	}
 }

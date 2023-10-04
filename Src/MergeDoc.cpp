@@ -2870,7 +2870,7 @@ FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename
 	FileLoadResult::flags_t loadSuccess = FileLoadResult::FRESULT_ERROR;;
 	
 	m_strDesc[index] = strDesc;
-	if (!filename.empty())
+	if (!filename.empty() && !paths::IsNullDeviceName(filename))
 	{
 		if (strDesc.empty())
 			m_nBufferType[index] = BUFFERTYPE::NORMAL;
@@ -2893,6 +2893,8 @@ FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename
 	}
 	else
 	{
+		if (m_strDesc[index].empty())
+			m_strDesc[index] = (index == 0) ? _("Untitled left") : ((m_nBuffers < 3 || index == 2) ? _("Untitled right") : _("Untitled middle"));
 		m_nBufferType[index] = BUFFERTYPE::UNNAMED;
 		m_ptBuf[index]->InitNew();
 		m_ptBuf[index]->m_encoding = encoding;
