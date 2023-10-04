@@ -143,8 +143,8 @@ int CPatchTool::CreatePatch()
 		for (size_t index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& tFiles = fileList[index];
-			String filename1 = tFiles.lfile.length() == 0 ? _T("NUL") : tFiles.lfile;
-			String filename2 = tFiles.rfile.length() == 0 ? _T("NUL") : tFiles.rfile;
+			String filename1 = tFiles.lfile.length() == 0 ? paths::NATIVE_NULL_DEVICE_NAME : tFiles.lfile;
+			String filename2 = tFiles.rfile.length() == 0 ? paths::NATIVE_NULL_DEVICE_NAME : tFiles.rfile;
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);

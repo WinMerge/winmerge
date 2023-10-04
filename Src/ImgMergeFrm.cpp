@@ -227,8 +227,12 @@ bool CImgMergeFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const bo
 		m_filePaths.SetPath(pane, fileloc[pane].filepath, false);
 		m_bRO[pane] = bRO[pane];
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
-		if (fileloc[pane].filepath.empty())
+		if (fileloc[pane].filepath.empty() || paths::IsNullDeviceName(fileloc[pane].filepath))
+		{
 			m_nBufferType[pane] = BUFFERTYPE::UNNAMED;
+			if (m_strDesc[pane].empty())
+				m_strDesc[pane] = (pane == 0) ? _("Untitled left") : ((nFiles < 3 || pane == 2) ? _("Untitled right") : _("Untitled middle"));
+		}
 		else
 		{
 			m_nBufferType[pane] = (!strDesc || strDesc[pane].empty()) ? BUFFERTYPE::NORMAL : BUFFERTYPE::NORMAL_NAMED;

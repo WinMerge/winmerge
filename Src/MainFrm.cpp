@@ -1346,7 +1346,8 @@ bool CMainFrame::DoFileOrFolderOpen(const PathContext * pFiles /*= nullptr*/,
 	paths::PATH_EXISTENCE pathsType = paths::GetPairComparability(tFiles, IsArchiveFile);
 	bool allowFolderCompare = (static_cast<int>(nID) <= 0);
 	if (tFiles.GetSize() < 2 || pathsType == paths::DOES_NOT_EXIST &&
-	    !std::any_of(tFiles.begin(), tFiles.end(), [](const auto& path) { return path.empty() || paths::IsURL(path); }))
+	    !std::any_of(tFiles.begin(), tFiles.end(),
+			[](const auto& path) { return path.empty() || paths::IsNullDeviceName(path) || paths::IsURL(path); }))
 	{
 		CMultiDocTemplate* pOpenTemplate = theApp.GetOpenTemplate();
 		if (m_pMenus[MENU_OPENVIEW] == nullptr)

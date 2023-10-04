@@ -1405,7 +1405,7 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
 			{
 				strDesc[i] = sUntitled[i];
-				filteredPaths.SetPath(i, _T("NUL"), false);
+				filteredPaths.SetPath(i, paths::NATIVE_NULL_DEVICE_NAME, false);
 			}
 			else
 			{
@@ -1583,7 +1583,7 @@ void CDirView::OpenSelectionAs(UINT id)
 		if (paths::DoesPathExist(paths[pane]) == paths::DOES_NOT_EXIST)
 		{
 			strDesc[pane] = sUntitled[pane];
-			filteredPaths.SetPath(pane, _T("NUL"), false);
+			filteredPaths.SetPath(pane, paths::NATIVE_NULL_DEVICE_NAME, false);
 		}
 		else
 		{

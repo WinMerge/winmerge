@@ -942,7 +942,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 
 	PathContext paths;
 	for (int i = 0; i < nFiles; ++i)
-		paths.SetPath(i, ifileloc[i].filepath.empty() ? _T("NUL") : paths::GetParentPath(ifileloc[i].filepath));
+		paths.SetPath(i, ifileloc[i].filepath.empty() ? paths::NATIVE_NULL_DEVICE_NAME : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
 	DirViewColItems ci(nFiles, std::vector<String>{});
 	String msg = LoadResString(IDS_COMPARE_LARGE_FILES);

@@ -815,4 +815,10 @@ bool IsValidName(const String& name)
 	return true;
 }
 
+bool IsNullDeviceName(const String& name)
+{
+	return (tc::tcsicmp(name.c_str(), NATIVE_NULL_DEVICE_NAME) == 0 ||
+			tc::tcsicmp(name.c_str(), NATIVE_NULL_DEVICE_NAME_LONG) == 0);
+}
+
 }
