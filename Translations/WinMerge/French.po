@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-07-27 11:23+0200\n"
+"PO-Revision-Date: 2023-10-04 12:31+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -133,7 +133,7 @@ msgid "Open &Parent Folder..."
 msgstr "Ouvrir dossier& parent..."
 
 msgid "S&hell Menu"
-msgstr "Menu S&hell"
+msgstr "Menu E&xplorateur"
 
 msgid "Use First Line as Headers"
 msgstr "Utiliser la première ligne comme en-tête"
@@ -576,13 +576,13 @@ msgid "E&xpand Subfolders"
 msgstr ""
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "&Tous les sous-dossiers"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "Les sous-dossiers &différents"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "Les sous-dossiers &identiques"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -1180,10 +1180,10 @@ msgid "Right Shell menu"
 msgstr "Menu explorateur Droite"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Les deux menus explorateur"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Tous les menus explorateur"
 
 #, c-format
 msgid "Copy"
@@ -2460,7 +2460,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "I&gnorer les différences de temps de moins de 3 secondes"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "&Développer automatiquement les sous-dossiers après comparaison :"
 
 #, c-format
 msgid "Include &unique subfolders contents"
@@ -2812,16 +2812,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Fichiers XML (*.xml)|*.xml|All Files (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Ne pas développer"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Développer tous les sous-dossiers"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Développer les sous-dossiers différents"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Développer les sous-dossiers identiques"
 
 msgid "File Type"
 msgstr "Type de fichier"
@@ -3467,7 +3467,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Vous êtes sur le point de fermer la fenêtre qui compare les dossiers. Êtes-vous sûr de vouloir fermer la fenêtre ?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Vous êtes sur le point de fermer la fenêtre de comparaison de dossiers, ce qui a pris beaucoup de temps. Êtes-vous sûr de vouloir fermer la fenêtre ?"
 
 msgid "The file or folder name is invalid."
 msgstr "Le nom du fichier ou du dossier n'est pas valide."
