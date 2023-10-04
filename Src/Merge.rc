@@ -3885,7 +3885,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SELECTLINEDIFF       "\nDifference in the Current Line"
+    ID_SELECTLINEDIFF       "\nDifference in the Current Line (F4)"
     ID_OPTIONS              "\nOptions"
     ID_REFRESH              "\nRefresh (F5)"
 END
