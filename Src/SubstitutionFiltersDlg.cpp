@@ -9,7 +9,6 @@
 #include "Merge.h"
 #include "SubstitutionFiltersDlg.h"
 #include "Constants.h"
-#include <Poco/Exception.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -174,9 +173,9 @@ BOOL SubstitutionFiltersDlg::OnApply()
 	{
 		m_pSubstitutionFiltersList->MakeSubstitutionList(true);
 	}
-	catch (Poco::RegularExpressionException& e)
+	catch (std::runtime_error& e)
 	{
-		AfxMessageBox(ucr::toTString(e.message()).c_str(), MB_OK | MB_ICONEXCLAMATION);
+		AfxMessageBox(ucr::toTString(e.what()).c_str(), MB_OK | MB_ICONEXCLAMATION);
 		return FALSE;
 	}
 

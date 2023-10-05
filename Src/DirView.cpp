@@ -66,7 +66,7 @@ using namespace std::placeholders;
  */
 constexpr int TimeToSignalCompare = 3;
 
-// The resource ID constexprants/limits for the Shell context menu
+// The resource ID constants/limits for the Shell context menu
 constexpr UINT LeftCmdFirst = 0x9000; // this should be greater than any of already defined command IDs
 constexpr UINT BothCmdLast = 0xffff; // maximum available value
 constexpr UINT LeftCmdLast = LeftCmdFirst + (BothCmdLast - LeftCmdFirst) / 4; // divide available range equally between two context menus
@@ -570,7 +570,7 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 			}
 			else
 			{
-				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || (!di.diffcode.existAll() && !di.HasChildren()))
+				if (!ctxt.m_bRecursive || !di.diffcode.isDirectory() || !di.diffcode.existAll())
 				{
 					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
 					index++;
@@ -1405,7 +1405,7 @@ void CDirView::Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwF
 			if (paths::DoesPathExist(paths[i]) == paths::DOES_NOT_EXIST)
 			{
 				strDesc[i] = sUntitled[i];
-				filteredPaths.SetPath(i, _T("NUL"), false);
+				filteredPaths.SetPath(i, paths::NATIVE_NULL_DEVICE_NAME, false);
 			}
 			else
 			{
@@ -1583,7 +1583,7 @@ void CDirView::OpenSelectionAs(UINT id)
 		if (paths::DoesPathExist(paths[pane]) == paths::DOES_NOT_EXIST)
 		{
 			strDesc[pane] = sUntitled[pane];
-			filteredPaths.SetPath(pane, _T("NUL"), false);
+			filteredPaths.SetPath(pane, paths::NATIVE_NULL_DEVICE_NAME, false);
 		}
 		else
 		{

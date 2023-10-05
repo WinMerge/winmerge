@@ -3622,10 +3622,10 @@ msgstr ""
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Различия на текущия ред"
+"Различия на текущия ред (F4)"
 
 msgid ""
 "\n"

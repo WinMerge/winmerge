@@ -3593,10 +3593,10 @@ msgstr "Scenariu d’editore"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Sfarenza in a linea attuale"
+"Sfarenza in a linea attuale (F4)"
 
 msgid ""
 "\n"

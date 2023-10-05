@@ -6,6 +6,7 @@
 // Merge7z::Proxy embeds a DLLPSTUB
 #include <list>
 #include <map>
+#include <vector>
 #include <PropIdl.h>
 #include "dllpstub.h"
 #include "../ArchiveSupport/Merge7z/Merge7z.h"
@@ -67,6 +68,7 @@ private:
 	};
 	std::list<String> m_rgFolderPrefix;
 	std::list<String>::iterator m_curFolderPrefix;
+	std::vector<const DIFFITEM*> m_selectedFolderDiffItems;
 	String m_strFolderPrefix;
 	int m_index;
 	std::map<String, void *> m_rgImpliedFolders[3];

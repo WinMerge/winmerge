@@ -4248,10 +4248,10 @@ msgstr "Editor de scripts"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Diferència en la línia actual"
+"Diferència en la línia actual (F4)"
 
 #, c-format
 msgid ""

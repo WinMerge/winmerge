@@ -4268,10 +4268,10 @@ msgstr "編輯器隨譯即行碼"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"選取行內差異"
+"選取行內差異 (F4)"
 
 #, c-format
 msgid ""

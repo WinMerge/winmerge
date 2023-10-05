@@ -3980,7 +3980,7 @@ msgid "Editor script"
 msgstr "Editor-Skript"
 
 #, c-format
-msgid "\nDifference in the Current Line"
+msgid "\nDifference in the Current Line (F4)"
 msgstr "\nZeilenunterschied markieren (F4)"
 
 #, c-format

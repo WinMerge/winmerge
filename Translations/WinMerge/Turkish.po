@@ -3649,10 +3649,10 @@ msgstr "Düzenleyici betiği"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Geçerli satırdaki fark"
+"Geçerli satırdaki fark (F4)"
 
 msgid ""
 "\n"

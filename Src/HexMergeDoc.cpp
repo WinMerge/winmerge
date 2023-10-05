@@ -484,7 +484,7 @@ CString CHexMergeDoc::GetTooltipString() const
 */
 HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readOnly, const String& strDesc)
 {
-	if (filename[0])
+	if (filename[0] && !paths::IsNullDeviceName(filename))
 	{
 		if (Try(m_pView[index]->LoadFile(filename), MB_ICONSTOP) != 0)
 			return E_FAIL;
@@ -501,6 +501,8 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readO
 	{
 		m_nBufferType[index] = BUFFERTYPE::UNNAMED;
 		m_strDesc[index] = strDesc;
+		if (m_strDesc[index].empty())
+			m_strDesc[index] = (index == 0) ? _("Untitled left") : ((m_nBuffers < 3 || index == 2) ? _("Untitled right") : _("Untitled middle"));
 	}
 	UpdateHeaderPath(index);
 	m_pView[index]->ResizeWindow();

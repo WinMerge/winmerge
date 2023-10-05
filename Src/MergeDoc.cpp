@@ -334,23 +334,12 @@ int CMergeDoc::Rescan(bool &bBinary, IDENTLEVEL &identical,
 
 	ClearWordDiffCache();
 
-	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
-	{
-		m_diffWrapper.SetFilterList(theApp.m_pLineFilters->GetAsString());
-	}
-	else
-	{
-		m_diffWrapper.SetFilterList(_T(""));
-	}
-
-	if (theApp.m_pSubstitutionFiltersList && theApp.m_pSubstitutionFiltersList->GetEnabled())
-	{
-		m_diffWrapper.SetSubstitutionList(theApp.m_pSubstitutionFiltersList->MakeSubstitutionList());
-	}
-	else
-	{
-		m_diffWrapper.SetSubstitutionList(nullptr);
-	}
+	m_diffWrapper.SetFilterList(
+		GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED) ?
+		theApp.m_pLineFilters->MakeFilterList() : nullptr);
+	m_diffWrapper.SetSubstitutionList(
+		(theApp.m_pSubstitutionFiltersList && theApp.m_pSubstitutionFiltersList->GetEnabled()) ?
+		theApp.m_pSubstitutionFiltersList->MakeSubstitutionList() : nullptr);
 
 	if (GetView(0, 0)->m_CurSourceDef->type != 0)
 		m_diffWrapper.SetFilterCommentsSourceDef(GetView(0, 0)->m_CurSourceDef);
@@ -2881,7 +2870,7 @@ FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename
 	FileLoadResult::flags_t loadSuccess = FileLoadResult::FRESULT_ERROR;;
 	
 	m_strDesc[index] = strDesc;
-	if (!filename.empty())
+	if (!filename.empty() && !paths::IsNullDeviceName(filename))
 	{
 		if (strDesc.empty())
 			m_nBufferType[index] = BUFFERTYPE::NORMAL;
@@ -2904,6 +2893,8 @@ FileLoadResult::flags_t CMergeDoc::LoadOneFile(int index, const String& filename
 	}
 	else
 	{
+		if (m_strDesc[index].empty())
+			m_strDesc[index] = (index == 0) ? _("Untitled left") : ((m_nBuffers < 3 || index == 2) ? _("Untitled right") : _("Untitled middle"));
 		m_nBufferType[index] = BUFFERTYPE::UNNAMED;
 		m_ptBuf[index]->InitNew();
 		m_ptBuf[index]->m_encoding = encoding;

@@ -3292,8 +3292,8 @@ msgstr "Tipas"
 msgid "Editor script"
 msgstr "Redaktoriaus skriptas"
 
-msgid "\nDifference in the Current Line"
-msgstr "\nSkirtumas dabartinėje eilutėje"
+msgid "\nDifference in the Current Line (F4)"
+msgstr "\nSkirtumas dabartinėje eilutėje (F4)"
 
 msgid "\nOptions"
 msgstr "\nNuostatos"

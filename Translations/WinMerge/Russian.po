@@ -3294,8 +3294,8 @@ msgstr "Тип"
 msgid "Editor script"
 msgstr "Редактор скриптов"
 
-msgid "\nDifference in the Current Line"
-msgstr "\nОтличие в текущей строке"
+msgid "\nDifference in the Current Line (F4)"
+msgstr "\nОтличие в текущей строке (F4)"
 
 msgid "\nOptions"
 msgstr "\nНастройки"

@@ -191,24 +191,13 @@ void CDirDoc::LoadLineFilterList(CDiffContext *pCtxt)
 	ASSERT(pCtxt != nullptr);
 	
 	bool bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
-	String filters = theApp.m_pLineFilters->GetAsString();
-	if (!bFilters || filters.empty())
+	auto filters = theApp.m_pLineFilters->MakeFilterList(false);
+	if (!bFilters || !filters->HasRegExps())
 	{
 		pCtxt->m_pFilterList.reset();
 		return;
 	}
-
-	if (pCtxt->m_pFilterList)
-		pCtxt->m_pFilterList->RemoveAllFilters();
-	else
-		pCtxt->m_pFilterList.reset(new FilterList());
-
-	std::string regexp_str = ucr::toUTF8(filters);
-
-	// Add every "line" of regexps to regexp list
-	StringTokenizer tokens(regexp_str, "\r\n");
-	for (StringTokenizer::Iterator it = tokens.begin(); it != tokens.end(); ++it)
-		pCtxt->m_pFilterList->AddRegExp(*it);
+	pCtxt->m_pFilterList = filters;
 }
 
 void CDirDoc::LoadSubstitutionFiltersList(CDiffContext* pCtxt)
@@ -953,7 +942,7 @@ bool CDirDoc::CompareFilesIfFilesAreLarge(int nFiles, const FileLocation ifilelo
 
 	PathContext paths;
 	for (int i = 0; i < nFiles; ++i)
-		paths.SetPath(i, ifileloc[i].filepath.empty() ? _T("NUL") : paths::GetParentPath(ifileloc[i].filepath));
+		paths.SetPath(i, ifileloc[i].filepath.empty() ? paths::NATIVE_NULL_DEVICE_NAME : paths::GetParentPath(ifileloc[i].filepath));
 	CDiffContext ctxt(paths, CMP_QUICK_CONTENT);
 	DirViewColItems ci(nFiles, std::vector<String>{});
 	String msg = LoadResString(IDS_COMPARE_LARGE_FILES);

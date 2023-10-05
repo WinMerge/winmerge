@@ -3286,7 +3286,7 @@ msgstr ""
 msgid "Editor script"
 msgstr ""
 
-msgid "\nDifference in the Current Line"
+msgid "\nDifference in the Current Line (F4)"
 msgstr ""
 
 msgid "\nOptions"

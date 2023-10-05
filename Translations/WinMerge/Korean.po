@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.32.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-08-12 03:52+0900\n"
+"PO-Revision-Date: 2023-10-05 04:12+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -485,7 +485,7 @@ msgstr "구성(&O)"
 
 #, c-format
 msgid "&GNU General Public License"
-msgstr "GNU 일반 공중 라이선스(&G)"
+msgstr "GNU 일반 공용 라이선스(&G)"
 
 #, c-format
 msgid "&About WinMerge..."
@@ -3467,7 +3467,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "폴더를 비교하는 창을 닫으려고 합니다. 창을 닫으시겠습니까?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "시간이 많이 걸린 폴더 비교 창을 닫으려고 합니다. 창을 닫으시겠습니까?"
 
 msgid "The file or folder name is invalid."
 msgstr "파일 또는 폴더 이름이 잘못되었습니다."
@@ -4273,10 +4273,10 @@ msgstr "편집기 스크립트"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"현재 줄의 차이점"
+"현재 줄의 차이점 (F4)"
 
 #, c-format
 msgid ""

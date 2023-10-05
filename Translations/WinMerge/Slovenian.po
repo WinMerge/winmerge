@@ -3578,10 +3578,10 @@ msgstr "Urejevalnik skriptov"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Razlika v trenutni vrstici"
+"Razlika v trenutni vrstici (F4)"
 
 msgid ""
 "\n"

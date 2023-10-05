@@ -137,7 +137,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 			//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 			// Invoke unpacking plugins
-			if (infoUnpacker && strutils::compare_nocase(filepathUnpacked[nIndex], _T("NUL")) != 0)
+			if (infoUnpacker && !paths::IsNullDeviceName(filepathUnpacked[nIndex]))
 			{
 				if (!infoUnpacker->Unpacking(nullptr, filepathUnpacked[nIndex], filteredFilenames, { tFiles[nIndex] }))
 					goto exitPrepAndCompare;

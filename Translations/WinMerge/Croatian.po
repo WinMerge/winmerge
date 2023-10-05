@@ -4184,7 +4184,7 @@ msgid "Editor script"
 msgstr "Uređivač skripti"
 
 #, c-format
-msgid "\nDifference in the Current Line"
+msgid "\nDifference in the Current Line (F4)"
 msgstr ""
 
 #, c-format

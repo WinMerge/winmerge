@@ -3622,10 +3622,10 @@ msgstr "编辑器脚本"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"当前行中差异"
+"当前行中差异 (F4)"
 
 msgid ""
 "\n"

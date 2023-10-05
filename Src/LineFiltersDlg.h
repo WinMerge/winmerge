@@ -45,13 +45,14 @@ protected:
 	//{{AFX_MSG(LineFiltersDlg)
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnHelp();
-	virtual void OnOK() override;
+	virtual BOOL OnApply() override;
 	afx_msg void OnBnClickedLfilterAddBtn();
 	afx_msg void OnBnClickedLfilterEditbtn();
 	afx_msg void OnBnClickedLfilterRemovebtn();
 	afx_msg void OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnLvnKeyDownLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnEndLabelEditLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnLvnItemChangedLfilterList(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -63,4 +64,6 @@ private:
 	CListCtrl m_filtersList; /**< List control having filter strings */
 
 	LineFiltersList * m_pList; /**< Helper list for getting/setting filters. */
+
+	void SetButtonState();
 };
