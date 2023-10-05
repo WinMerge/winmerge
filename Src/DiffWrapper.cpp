@@ -506,6 +506,8 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	change* script = diff_2_buffers_xdiff(
 		lineDataLeft.c_str(), lineDataLeft.length(),
 		lineDataRight.c_str(), lineDataRight.length(), m_xdlFlags);
+	if (!script)
+		return 0;
 
 	auto TranslateLineNumbers = [](change* thisob, change* script)
 		{
