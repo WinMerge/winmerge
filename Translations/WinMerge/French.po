@@ -841,7 +841,7 @@ msgid "&View Whitespace"
 msgstr "Afficher les &espaces"
 
 msgid "View E&OL"
-msgstr "Afficher les carractères de &fin de ligne (EOL)"
+msgstr "Afficher les caractères de &fin de ligne (EOL)"
 
 #, c-format
 msgid "Vie&w Line Differences"
