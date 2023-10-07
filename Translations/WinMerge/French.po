@@ -572,8 +572,8 @@ msgstr "A&fficher les éléments cachés"
 msgid "Tree &Mode"
 msgstr "&Mode Arborescence"
 
-msgid "E&xpand All Subfolders"
-msgstr "Dé&velopper l'arborescense"
+msgid "E&xpand Subfolders"
+msgstr ""
 
 msgid "&All Subfolders"
 msgstr "&Tous les sous-dossiers"
@@ -1869,7 +1869,7 @@ msgstr "&Activer la détection des blocs déplacés"
 msgid "Align &similar lines"
 msgstr "Aligner les lignes &similaires"
 
-msgid "Diff &algorithm :"
+msgid "Diff &algorithm:"
 msgstr "&Algorithme différentiel :"
 
 msgid "Enable indent &heuristic"
@@ -4273,10 +4273,7 @@ msgstr "Type"
 msgid "Editor script"
 msgstr "Éditeur de script"
 
-#, c-format
-msgid ""
-"\n"
-"Difference in the Current Line"
+msgid "\nDifference in the Current Line (F4)"
 msgstr ""
 "\n"
 "Sélectionner la différence suivante (F4)"
@@ -5162,9 +5159,6 @@ msgid ""
 msgstr ""
 "Extracteur de contenu général avec Apache Tika.\r\n"
 "Arguments : options de ligne de commande transmises à tika-app.jar."
-
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Appliquer le correctif à l'aide de 'GnuWin32 Patch pour Windows'"
 
 msgid "Apply patch using GNU patch"
 msgstr "Appliquer le correctif à l'aide de 'GNU patch'"
