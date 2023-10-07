@@ -573,7 +573,7 @@ msgid "Tree &Mode"
 msgstr "&Mode Arborescence"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Dé&velopper l'arborescense"
 
 msgid "&All Subfolders"
 msgstr "&Tous les sous-dossiers"
