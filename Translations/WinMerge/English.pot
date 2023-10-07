@@ -469,7 +469,7 @@ msgstr ""
 msgid "Tree &Mode"
 msgstr ""
 
-msgid "E&xpand Subfolders"
+msgid "E&xpand All Subfolders"
 msgstr ""
 
 msgid "&All Subfolders"
@@ -1515,7 +1515,7 @@ msgstr ""
 msgid "Align &similar lines"
 msgstr ""
 
-msgid "Diff &algorithm:"
+msgid "Diff &algorithm (Experimental):"
 msgstr ""
 
 msgid "Enable indent &heuristic"
