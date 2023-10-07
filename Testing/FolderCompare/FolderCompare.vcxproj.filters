@@ -159,9 +159,6 @@
     <ClCompile Include="..\..\Src\xdiff_gnudiff_compat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Src\stringdiffs.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Src\SubstitutionList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -324,9 +321,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\xdiff_gnudiff_compat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Src\stringdiffs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Src\SubstitutionList.h">

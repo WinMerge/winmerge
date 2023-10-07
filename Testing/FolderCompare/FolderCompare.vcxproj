@@ -124,8 +124,8 @@
   <ImportGroup Label="Shared">
     <Import Project="..\..\Src\CompareEngines\CompareEngines.vcxitems" Label="Shared" />
     <Import Project="..\..\Src\diffutils\diffutils.vcxitems" Label="Shared" />
-    <Import Project="..\..\Externals\crystaledit\editlib\editlib.vcxitems" Label="Shared" />
     <Import Project="..\..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
+    <Import Project="..\..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -738,11 +738,6 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\Src\stringdiffs.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="..\..\Src\SubstitutionList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -856,7 +851,6 @@
     <ClInclude Include="..\..\Src\Common\UniFile.h" />
     <ClInclude Include="..\..\Src\HashCalc.h" />
     <ClInclude Include="..\..\Src\PropertySystem.h" />
-    <ClInclude Include="..\..\Src\stringdiffs.h" />
     <ClInclude Include="..\..\Src\SubstitutionList.h" />
     <ClInclude Include="..\..\Src\UniMarkdownFile.h" />
     <ClInclude Include="..\..\Src\Common\varprop.h" />
