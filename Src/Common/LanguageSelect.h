@@ -8,9 +8,12 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect class
+
+class CStatusBar;
 
 /**
  * @brief Class for selecting GUI language.

@@ -1417,7 +1417,10 @@
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
-    <ClCompile Include="MergeAppCOMClass.cpp" />
+    <ClCompile Include="MergeAppCOMClass.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="xdiff_gnudiff_compat.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1441,6 +1444,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="ClipboardHistory.h" />
     <ClInclude Include="Common\cio.h" />
+    <ClInclude Include="Common\DebugNew.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\Shell.h" />
