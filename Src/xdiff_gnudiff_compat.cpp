@@ -182,9 +182,13 @@ struct change * diff_2_files_xdiff (struct file_data filevec[], int* bin_status,
 	{
 		script = diff_2_buffers_xdiff(
 			filevec[0].prefix_end,
-			filevec[0].suffix_begin - filevec[0].prefix_end,
+			filevec[0].suffix_begin - filevec[0].prefix_end - 
+				((filevec[0].suffix_begin == filevec[0].buffer + filevec[0].buffered_chars)
+					? filevec[0].missing_newline : 0),
 			filevec[1].prefix_end,
-			filevec[1].suffix_begin - filevec[1].prefix_end,
+			filevec[1].suffix_begin - filevec[1].prefix_end - 
+				((filevec[1].suffix_begin == filevec[1].buffer + filevec[1].buffered_chars)
+					? filevec[1].missing_newline : 0),
 			xdl_flags);
 		if (bMoved_blocks_flag)
 			moved_block_analysis(&script, filevec);
