@@ -114,6 +114,7 @@
     <Import Project="..\..\..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Src\diffutils\diffutils.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
+    <Import Project="..\..\..\Src\CompareEngines\CompareEngines.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -431,28 +432,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\CompareEngines\BinaryCompare.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\CompareEngines\ByteComparator.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\CompareEngines\ByteCompare.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\charsets.c" />
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\CompareEngines\TimeSizeCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -820,15 +801,10 @@
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp" />
     <ClInclude Include="..\..\..\Src\Common\cio.h" />
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
-    <ClInclude Include="..\..\..\Src\CompareEngines\BinaryCompare.h" />
-    <ClInclude Include="..\..\..\Src\CompareEngines\ByteComparator.h" />
-    <ClInclude Include="..\..\..\Src\CompareEngines\ByteCompare.h" />
     <ClInclude Include="..\..\..\Src\charsets.h" />
     <ClInclude Include="..\..\..\Src\codepage_detect.h" />
-    <ClInclude Include="..\..\..\Src\CompareEngines\TimeSizeCompare.h" />
     <ClInclude Include="..\..\..\Src\CompareOptions.h" />
     <ClInclude Include="..\..\..\Src\Common\coretools.h" />
-    <ClInclude Include="..\..\..\Src\CompareEngines\DiffUtils.h" />
     <ClInclude Include="..\..\..\Src\DiffFileData.h" />
     <ClInclude Include="..\..\..\Src\DiffItem.h" />
     <ClInclude Include="..\..\..\Src\DiffItemList.h" />

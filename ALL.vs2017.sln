@@ -1377,6 +1377,7 @@ Global
 		Externals\crystaledit\editlib\editlibparsers.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Plugins\src_VCPP\Common\Common.vcxitems*{7354ba4f-8dab-46ee-a5a2-a148d6ef2443}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
