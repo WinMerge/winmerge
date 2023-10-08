@@ -527,6 +527,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\lwdisp.c" />
+    <ClCompile Include="..\..\..\Src\LineFiltersList.cpp" />
     <ClCompile Include="..\..\..\Src\markdown.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -551,6 +552,7 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Src\HashCalc.cpp" />
     <ClCompile Include="..\..\..\Src\PropertySystem.cpp" />
+    <ClCompile Include="..\..\..\Src\SubstitutionFiltersList.cpp" />
     <ClCompile Include="..\..\..\Src\SubstitutionList.cpp" />
     <ClCompile Include="..\..\..\Src\TempFile.cpp" />
     <ClCompile Include="..\..\..\Src\xdiff_gnudiff_compat.cpp" />
@@ -823,6 +825,7 @@
     <ClInclude Include="..\..\..\Src\FilterList.h" />
     <ClInclude Include="..\..\..\Src\Common\LogFile.h" />
     <ClInclude Include="..\..\..\Src\Common\lwdisp.h" />
+    <ClInclude Include="..\..\..\Src\LineFiltersList.h" />
     <ClInclude Include="..\..\..\Src\markdown.h" />
     <ClInclude Include="..\..\..\Src\MergeCmdLineInfo.h" />
     <ClInclude Include="..\..\..\Src\Common\multiformatText.h" />
@@ -844,6 +847,7 @@
     <ClInclude Include="..\..\..\Src\Common\unicoder.h" />
     <ClInclude Include="..\..\..\Src\Common\UnicodeString.h" />
     <ClInclude Include="..\..\..\Src\Common\varprop.h" />
+    <ClInclude Include="..\..\..\Src\SubstitutionFiltersList.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionList.h" />
     <ClInclude Include="..\..\..\Src\TempFile.h" />
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
