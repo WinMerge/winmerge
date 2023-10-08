@@ -112,6 +112,8 @@
   <ImportGroup Label="Shared">
     <Import Project="..\..\..\Externals\googletest\googletest\googletest.vcxitems" Label="Shared" />
     <Import Project="..\..\..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
+    <Import Project="..\..\..\Src\diffutils\diffutils.vcxitems" Label="Shared" />
+    <Import Project="..\..\..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -193,7 +195,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -224,7 +226,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -253,7 +255,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -282,7 +284,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;_DEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -310,7 +312,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
@@ -340,7 +342,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
@@ -368,7 +370,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
@@ -396,7 +398,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\..\..\Src;..\..\..\Src\Common;..\..\..\Externals\crystaledit\editlib;..\..\..\Externals\boost;..\..\..\Externals\poco\Foundation\include;..\..\..\Externals\poco\XML\include;..\..\..\Externals\googletest\googletest\include;..\..\..\Externals\googletest\googletest;..\..\..\Src\diffutils\src;..\..\..\Src\diffutils\lib;..\..\..\Src\diffutils\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;WIN64;NDEBUG;_CONSOLE;UNICODE;POCO_STATIC;_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS;GTEST_HAS_TR1_TUPLE=0;EDITPADC_CLASS=;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <PrecompiledHeader>
@@ -423,9 +425,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\icu.cpp" />
-    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\cio.cpp" />
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -488,20 +487,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\analyze.c" />
-    <ClCompile Include="..\..\..\Src\diffutils\src\context.c" />
-    <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\io.c" />
-    <ClCompile Include="..\..\..\Src\diffutils\src\mystat.cpp">
-      <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\util.c" />
+    <ClCompile Include="..\..\..\Src\DiffList.cpp" />
+    <ClCompile Include="..\..\..\Src\DiffWrapper.cpp" />
     <ClCompile Include="..\..\..\Src\DirItem.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -574,6 +561,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\..\..\Src\MovedLines.cpp" />
+    <ClCompile Include="..\..\..\Src\PatchHTML.cpp" />
     <ClCompile Include="..\..\..\Src\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -582,6 +571,8 @@
     <ClCompile Include="..\..\..\Src\HashCalc.cpp" />
     <ClCompile Include="..\..\..\Src\PropertySystem.cpp" />
     <ClCompile Include="..\..\..\Src\SubstitutionList.cpp" />
+    <ClCompile Include="..\..\..\Src\TempFile.cpp" />
+    <ClCompile Include="..\..\..\Src\xdiff_gnudiff_compat.cpp" />
     <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -598,6 +589,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\DiffWrapper\DiffWrapper_test.cpp" />
     <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp" />
     <ClCompile Include="..\PropertySystem\PropertySystem_test.cpp" />
     <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp">
@@ -826,7 +818,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp" />
-    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.h" />
     <ClInclude Include="..\..\..\Src\Common\cio.h" />
     <ClInclude Include="..\..\..\Src\Common\ShellFileOperations.h" />
     <ClInclude Include="..\..\..\Src\CompareEngines\BinaryCompare.h" />
@@ -841,6 +832,7 @@
     <ClInclude Include="..\..\..\Src\DiffFileData.h" />
     <ClInclude Include="..\..\..\Src\DiffItem.h" />
     <ClInclude Include="..\..\..\Src\DiffItemList.h" />
+    <ClInclude Include="..\..\..\Src\DiffList.h" />
     <ClInclude Include="..\..\..\Src\DirItem.h" />
     <ClInclude Include="..\..\..\Src\DirTravel.h" />
     <ClInclude Include="..\..\..\Src\DirWatcher.h" />
@@ -859,6 +851,8 @@
     <ClInclude Include="..\..\..\Src\MergeCmdLineInfo.h" />
     <ClInclude Include="..\..\..\Src\Common\multiformatText.h" />
     <ClInclude Include="..\..\..\Src\Common\OptionsMgr.h" />
+    <ClInclude Include="..\..\..\Src\MovedLines.h" />
+    <ClInclude Include="..\..\..\Src\PatchHTML.h" />
     <ClInclude Include="..\..\..\Src\PathContext.h" />
     <ClInclude Include="..\..\..\Src\paths.h" />
     <ClInclude Include="..\..\..\Src\pch.h" />
@@ -875,6 +869,8 @@
     <ClInclude Include="..\..\..\Src\Common\UnicodeString.h" />
     <ClInclude Include="..\..\..\Src\Common\varprop.h" />
     <ClInclude Include="..\..\..\Src\SubstitutionList.h" />
+    <ClInclude Include="..\..\..\Src\TempFile.h" />
+    <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

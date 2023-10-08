@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\..\Src\Common\coretools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\Diff.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\DirItem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -228,9 +225,6 @@
     <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\mystat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\diffutils\mystat_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -238,9 +232,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DirTravel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Externals\crystaledit\editlib\utils\icu.cpp">
@@ -270,12 +261,6 @@
     <ClCompile Include="diffutils\util_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\util.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\context.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -294,13 +279,28 @@
     <ClCompile Include="..\..\..\Src\DiffFileData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\analyze.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Src\diffutils\src\io.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\MovedBlocks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DiffWrapper\DiffWrapper_test.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\DiffList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\MovedLines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\PatchHTML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\xdiff_gnudiff_compat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Src\TempFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -431,9 +431,6 @@
     <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\icu.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Externals\crystaledit\editlib\utils\string_util.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Src\DiffItemList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -453,6 +450,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\DiffFileData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\DiffList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\MovedLines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\PatchHTML.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\TempFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
