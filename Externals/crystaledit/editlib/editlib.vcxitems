@@ -48,10 +48,16 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp_poco.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cs2cs.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)utils\filesup.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\filesup.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\hqbitmap.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\icu.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)utils\wcwidth.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\wcwidth.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ViewableWhitespace.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>

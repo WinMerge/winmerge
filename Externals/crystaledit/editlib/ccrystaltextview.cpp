@@ -3382,9 +3382,9 @@ void CCrystalTextView::
 OnInitialUpdate ()
 {
   CView::OnInitialUpdate ();
-  CString sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
-  if (!sExt.IsEmpty())
-    SetTextType (sExt);
+  std::basic_string<tchar_t> sDoc = GetDocument ()->GetPathName (), sExt = GetExt (sDoc);
+  if (!sExt.empty ())
+    SetTextType (sExt.c_str ());
   AttachToBuffer (nullptr);
 
   CSplitterWnd *pSplitter = GetParentSplitter (this, false);
@@ -6523,6 +6523,11 @@ OnUpdateToggleSourceHeader (CCmdUI * pCmdUI)
 void CCrystalTextView::
 OnToggleSourceHeader ()
 {
+  auto FileExist = [](const tchar_t* lpszPath) -> bool
+    {
+      CFileStatus status;
+      return CFile::GetStatus(lpszPath, status) != 0;
+    };
   if (m_CurSourceDef->type == CrystalLineParser::SRC_C)
     {
       CDocument *pDoc = GetDocument ();
