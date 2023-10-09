@@ -9,7 +9,7 @@
  * https://github.com/termux/wcwidth
  */
 
-#include "StdAfx.h"
+#include "pch.h"
 #include <cstdlib>
 
 struct width_interval {

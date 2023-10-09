@@ -10,21 +10,9 @@
 #include "pch.h"
 #define NOMINMAX
 #include "DiffWrapper.h"
-#include <algorithm>
-#include <string>
-#include <cctype>
-#include <cwctype>
-#include <map>
-#include <cassert>
-#include <exception>
-#include <vector>
-#include <list>
 #include <tuple>
-#include <Poco/Format.h>
-#include <Poco/Debugger.h>
-#include <Poco/StringTokenizer.h>
+#include <exception>
 #include <Poco/Exception.h>
-#include "DiffContext.h"
 #include "coretools.h"
 #include "DiffList.h"
 #include "MovedLines.h"
@@ -36,7 +24,7 @@
 #include "paths.h"
 #include "CompareOptions.h"
 #include "FileTextStats.h"
-#include "FolderCmp.h"
+#include "DiffFileData.h"
 #include "Environment.h"
 #include "PatchHTML.h"
 #include "UnicodeString.h"
@@ -50,9 +38,6 @@
 #include "codepage_detect.h"
 #include "cio.h"
 
-using Poco::Debugger;
-using Poco::format;
-using Poco::StringTokenizer;
 using Poco::Exception;
 
 extern int recursive;

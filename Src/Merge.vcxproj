@@ -180,6 +180,7 @@
     <Import Project="..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
     <Import Project="diffutils\diffutils.vcxitems" Label="Shared" />
     <Import Project="CompareEngines\CompareEngines.vcxitems" Label="Shared" />
+    <Import Project="..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -1416,7 +1417,10 @@
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
-    <ClCompile Include="MergeAppCOMClass.cpp" />
+    <ClCompile Include="MergeAppCOMClass.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="xdiff_gnudiff_compat.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1440,6 +1444,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="ClipboardHistory.h" />
     <ClInclude Include="Common\cio.h" />
+    <ClInclude Include="Common\DebugNew.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\Shell.h" />

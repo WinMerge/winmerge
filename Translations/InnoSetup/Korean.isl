@@ -52,8 +52,8 @@ SlovakLanguage=슬로바키아어 메뉴 및 대화상자
 SlovenianLanguage=슬로베니아어 메뉴 및 대화 상자
 SpanishLanguage=스페인어 메뉴 및 대화 상자
 SwedishLanguage=스웨덴어 메뉴 및 대화 상자
-TamilLanguage=Tamil menus and dialogs
-TurkishLanguage=터키어 메뉴 및 대화 상자
+TamilLanguage=타밀어 메뉴 및 대화상자
+TurkishLanguage=튀르키예어 메뉴 및 대화 상자
 UkrainianLanguage=우크라이나 메뉴 및 대화 상자
 
 ;작업

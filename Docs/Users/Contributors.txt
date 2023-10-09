@@ -87,6 +87,7 @@ Localization:
   Matthieu Pupat
   gandf
   Lolo S. <slolo2000 at hotmail.com>
+  Need74
 
 * Galician:
   Medulio
