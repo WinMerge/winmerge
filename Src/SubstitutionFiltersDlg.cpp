@@ -51,6 +51,7 @@ BEGIN_MESSAGE_MAP(SubstitutionFiltersDlg, CTrPropertyPage)
 	ON_BN_CLICKED(IDC_LFILTER_ADDBTN, OnBnClickedAddBtn)
 	ON_BN_CLICKED(IDC_LFILTER_CLEARBTN, OnBnClickedClearBtn)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedRemovebtn)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_SUBSTITUTION_FILTERS, OnLvnItemChangedSubstitutionFilterList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -68,6 +69,8 @@ BOOL SubstitutionFiltersDlg::OnInitDialog()
 
 	InitList();
 	
+	SetButtonState();
+
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -145,6 +148,8 @@ void SubstitutionFiltersDlg::OnBnClickedAddBtn()
 void SubstitutionFiltersDlg::OnBnClickedClearBtn()
 {
 	m_listFilters.DeleteAllItems();
+
+	SetButtonState();
 }
 
 /**
@@ -211,4 +216,40 @@ void SubstitutionFiltersDlg::OnBnClickedRemovebtn()
 		bool bPartialOk = false;
 		m_listFilters.EnsureVisible(newSel, bPartialOk);
 	}
+
+	SetButtonState();
+}
+
+/**
+ * @brief Called when item state is changed.
+ *
+ * Set the state of the "Remove" and "Clear" buttons.
+ * @param [in] pNMHDR Listview item data.
+ * @param [out] pResult Result of the action is returned in here.
+ */
+void SubstitutionFiltersDlg::OnLvnItemChangedSubstitutionFilterList(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	if ((pNMLV->uOldState & LVIS_SELECTED) != (pNMLV->uNewState & LVIS_SELECTED))
+	{
+		SetButtonState();
+	}
+	*pResult = 0;
+}
+
+/**
+ * @brief Set the state of the "Remove" and "Clear" buttons.
+ * 
+ * Disable the "Remove" button when no item is selected.
+ * Disable the "Clear" button when no item is registered in the list.
+ */
+void SubstitutionFiltersDlg::SetButtonState()
+{
+	int sel = -1;
+	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
+	bool enabled = (sel != -1);
+	EnableDlgItem(IDC_LFILTER_REMOVEBTN, enabled);
+
+	enabled = (m_listFilters.GetItemCount() > 0);
+	EnableDlgItem(IDC_LFILTER_CLEARBTN, enabled);
 }

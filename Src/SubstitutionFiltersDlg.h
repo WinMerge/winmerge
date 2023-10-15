@@ -45,6 +45,7 @@ protected:
 	afx_msg void OnBnClickedAddBtn();
 	afx_msg void OnBnClickedClearBtn();
 	afx_msg void OnBnClickedRemovebtn();
+	afx_msg void OnLvnItemChangedSubstitutionFilterList(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -54,4 +55,6 @@ private:
 	CSubeditList m_listFilters; /**< List control having filter strings */
 
 	SubstitutionFiltersList *m_pSubstitutionFiltersList;
+
+	void SetButtonState();
 };
