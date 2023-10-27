@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-08-05 10:45+0000\n"
-"PO-Revision-Date: 2023-08-11 20:04+0200\n"
+"PO-Revision-Date: 2023-10-27 16:51+0200\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -970,10 +970,10 @@ msgid "Right Shell menu"
 msgstr "Meni lupine desne"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Oba menija Shell"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Celoten meni Shell"
 
 msgid "Copy"
 msgstr "Kopiraj"
@@ -2843,7 +2843,10 @@ msgid "(%1 of %2 Files Affected)"
 msgstr "(%1 od %2 vpletenih datotek)"
 
 #, c-format
-msgid "Are you sure you want to delete\n\n%1 ?"
+msgid ""
+"Are you sure you want to delete\n"
+"\n"
+"%1 ?"
 msgstr ""
 "Ali ste prepričani, da želite izbrisati\n"
 "\n"
@@ -2888,7 +2891,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Zaklenili boste okno za primerjavo map. Ali ste prepričani, da želite zapreti okno?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Zaprli boste primerjalno okno map, ki je vzelo precej časa. Ali ste prepričani, da želite zapreti okno?"
 
 msgid "The file or folder name is invalid."
 msgstr "Ime datoteke ali mape ni veljavno."
