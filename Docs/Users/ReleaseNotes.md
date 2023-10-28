@@ -1,17 +1,56 @@
-# WinMerge 2.16.33 Beta Release Notes
+# WinMerge 2.16.34 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.34?](#what-is-new-in-21634)
 - [What Is New in 2.16.33 beta?](#what-is-new-in-21633-beta)
 - [Known issues](#known-issues)
 
-September 2023
+October 2023
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.34 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.34
+
+### File compare
+
+- Allow NUL and \\.\NUL in paths specified as command line arguments (PR #2056)
+- Added "(F4)" to the description of the toolbar icon "Difference in the Current Line". (#2050)
+- Fix a crash problem when the Diff algorithm is set to something other than
+    default and one file does not have an EOL of the last line and the other
+    file has an EOL of the last line.
+
+### Image compare
+
+- BugFix:  Fixed the issue where .png is added when saving even if the file
+    format does not use a converter such as jpg or png file.
+
+### Folder compare
+
+- BugFix: Folder compare omits unique folders from results if they contain any
+    files and/or subfolders folder compare/merge (#2046)
+
+### Line filters
+
+- Modify the "Line Filters" dialog. (PR #2047)
+
+### Substitution filters
+
+- Modify the "Substitution Filters" dialog. (PR #2068)
+
+### Translations
+
+- Translation updates:
+  - French (PR #2055,#2058)
+  - Korean (PR #2057,#2059,#2060)
+
+### Internals
+
+- Small code changes for CMDIChildWnd handling (#2043)
 
 ## What Is New in 2.16.33 Beta
 
