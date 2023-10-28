@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-06-12 00:06+0000\n"
-"PO-Revision-Date: 2023-07-06 09:22+0300\n"
+"POT-Creation-Date: 2023-09-08 20:55+0000\n"
+"PO-Revision-Date: 2023-10-28 09:38+0300\n"
 "Last-Translator: Kaya Zeren <translator@zeron.net>\n"
 "Language-Team: Turkish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: tr\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -476,16 +476,16 @@ msgid "Tree &Mode"
 msgstr "Ağaç görünü&mü"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Alt klasörleri &genişlet"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "&Tüm alt klasörler"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "&Farklı alt klasörler"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "A&ynı alt klasörler"
 
 msgid "&Collapse All Subfolders"
 msgstr "Tüm alt klasörleri &daralt"
@@ -970,10 +970,10 @@ msgid "Right Shell menu"
 msgstr "Sağ pano sağ tık menüsü"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "İki panonun sağ tık menüsü"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Tüm panoların sağ tık menüsü"
 
 msgid "Copy"
 msgstr "Kopyala"
@@ -1581,7 +1581,7 @@ msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
 "make all message boxes visible again."
 msgstr ""
-"WinMerge sık karşılaşın iletilerin gizlenmesine izin verir. Tüm iletileri "
+"WinMerge sık karşılaşılan iletilerin gizlenmesine izin verir. Tüm iletileri "
 "yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
 
 msgid "Reset"
@@ -1999,7 +1999,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 saniyeden az zaman farkları y&ok sayılsın"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "Karşılaştırma sonrası tüm alt klasörler &otomatik genişletilsin:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Eşsiz a&lt klasör içerikleri katılsın"
@@ -2312,16 +2312,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML dosyaları (*.xml)|*.xml|Tüm dosyalar (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Genişletilmesin"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Tüm alt klasörler genişletilsin"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Farklı alt klasörler genişletilsin"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Aynı alt klasörler genişletilsin"
 
 msgid "File Type"
 msgstr "Dosya türü"
@@ -2523,7 +2523,7 @@ msgstr "Ögeler karşılaştırılıyor..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[öge/sn]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Karşılaştırmak için var olan iki klasör ya da dosya seçin."
@@ -2615,7 +2615,7 @@ msgstr ""
 "\n"
 
 msgid "Save As"
-msgstr "Farklı Kaydet"
+msgstr "Farklı kaydet"
 
 #, c-format
 msgid "Save changes to %1?"
@@ -2935,6 +2935,7 @@ msgstr ""
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
 msgstr ""
+"Önemli bir zaman harcanan klasör karşılaştırma penceresini kapatmak üzeresiniz. Bunu yapmak istediğinize emin misiniz?"
 
 msgid "The file or folder name is invalid."
 msgstr "Dosya ya da klasör adı geçersiz."
