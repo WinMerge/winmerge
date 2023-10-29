@@ -4088,3 +4088,20 @@ msgstr ""
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr ""
 
+msgid "&Print"
+msgstr ""
+
+msgid "&Next Page"
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "Zoom &in"
+msgstr ""
+
+msgid "Zoom &out"
+msgstr ""
+
+msgid "&Close"
+msgstr ""
