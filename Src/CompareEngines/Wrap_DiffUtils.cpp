@@ -51,7 +51,7 @@ void DiffUtils::SetCompareOptions(const CompareOptions& options)
 {
 	DIFFOPTIONS doptions;
 	static_cast<const DiffutilsOptions&>(options).GetAsDiffOptions(doptions);
-	m_pDiffWrapper->SetOptions(&doptions);
+	m_pDiffWrapper->SetOptions(&doptions, true);
 }
 
 /**
