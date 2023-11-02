@@ -2078,22 +2078,25 @@ void CMainFrame::OnToolsFilters()
 	{
 		String strNone = _("<None>");
 		String path = fileFiltersDlg.GetSelected();
-		if (path.find(strNone) != String::npos)
+		if (!path.empty())
 		{
-			// Don't overwrite mask we already have
-			if (!pGlobalFileFilter->IsUsingMask())
+			if (path.find(strNone) != String::npos)
 			{
-				String sFilter(_T("*.*"));
-				pGlobalFileFilter->SetFilter(sFilter);
+				// Don't overwrite mask we already have
+				if (!pGlobalFileFilter->IsUsingMask())
+				{
+					String sFilter(_T("*.*"));
+					pGlobalFileFilter->SetFilter(sFilter);
+					GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+				}
+			}
+			else
+			{
+				pGlobalFileFilter->SetFileFilterPath(path);
+				pGlobalFileFilter->UseMask(false);
+				String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
 				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 			}
-		}
-		else
-		{
-			pGlobalFileFilter->SetFileFilterPath(path);
-			pGlobalFileFilter->UseMask(false);
-			String sFilter = pGlobalFileFilter->GetFilterNameOrMask();
-			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		bool linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled);
