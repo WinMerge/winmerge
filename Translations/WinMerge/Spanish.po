@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2023-05-02 00:00+0200\n"
-"Last-Translator: @P0rsche-911\n"
+"PO-Revision-Date: 2023-11-03 13:58+0100\n"
+"Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -22,8 +22,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-Basepath: ../../Src\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -347,7 +347,7 @@ msgid "&Filters..."
 msgstr "&Filtros..."
 
 msgid "&Generate Patch..."
-msgstr "&Generar corrección..."
+msgstr "&Generar parche..."
 
 msgid "&Plugins"
 msgstr "&Complementos"
@@ -479,16 +479,16 @@ msgid "Tree &Mode"
 msgstr "&Modo árbol"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "E&xpandir subcarpetas"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "Tod&as las subcarpetas"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "Subcarpetas &diferentes"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "Subcarpetas &idénticas"
 
 msgid "&Collapse All Subfolders"
 msgstr "&Contraer todas las subcarpetas"
@@ -973,10 +973,10 @@ msgid "Right Shell menu"
 msgstr "Menú contextual derecho"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Los dos menúes contextuales"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Todos los menúes contextuales"
 
 msgid "Copy"
 msgstr "Copiar"
@@ -1276,7 +1276,7 @@ msgid "Substitution Filters"
 msgstr "Filtros de sustitución"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "Los cambios que aparecen en los paneles, como los pares listados a continuación, serán ignorados o marcados como insignificantes. Las correcciones no se verán afectadas."
+msgstr "Los cambios que aparecen en los paneles, como los pares listados a continuación, serán ignorados o marcados como insignificantes. Los parches no se verán afectados."
 
 msgid "Enable"
 msgstr "Habilitar"
@@ -1372,7 +1372,7 @@ msgid "Br&owse..."
 msgstr "&Examinar..."
 
 msgid "Patch Generator"
-msgstr "Generar corrección"
+msgstr "Generar parche"
 
 msgid "File&1:"
 msgstr "Archivo &1:"
@@ -1977,10 +1977,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Anular registro de extensión shell para &Windows 11 o más reciente"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Lista rápida"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Borrar todos los elementos recientes"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -1993,7 +1993,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&orar diferencias de tiempo menores de 3 segundos"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "Expandir &automáticamente todas las subcarpetas después de la comparación:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Incl&uir contenidos únicos de subcarpetas"
@@ -2291,16 +2291,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Archivos XML (*.xml) |*.xml | Todos los archivos (*.*) |*.*| |"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "No expandir"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Expandir todas las subcarpetas"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Expandir las subcarpetas diferentes"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Expandir las subcarpetas idénticas"
 
 msgid "File Type"
 msgstr "Tipo de archivo"
@@ -2499,7 +2499,7 @@ msgstr "Comparando elementos..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[elementos/seg]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Seleccione dos carpetas o archivos para comparar."
@@ -2896,7 +2896,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Va a cerrar la ventana que está comparando carpetas. ¿Seguro que quiere cerrarla?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Va a cerrar la ventana de comparación de carpetas que necesitó de una gran cantidad de tiempo. ¿Seguro que quiere cerrarla?"
 
 msgid "The file or folder name is invalid."
 msgstr "El nombre del archivo o carpeta no es válido."
@@ -3385,7 +3385,7 @@ msgstr ""
 "con la anterior y abrir ambas carpetas?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr "¿Seguro que quiere copiar todas las diferencias al otro fichero?"
 
 msgid "Do you want to move to the next file?"
 msgstr "¿Quiere ir al siguiente archivo?"
@@ -3471,7 +3471,7 @@ msgid "Diff Pane"
 msgstr "Panel de diferencias"
 
 msgid "Patch file successfully written."
-msgstr "Archivo de corrección escrito correctamente."
+msgstr "Archivo de parche escrito correctamente."
 
 msgid "1. item is not found!"
 msgstr "1 - Fichero no encontrado!"
@@ -3480,7 +3480,7 @@ msgid "2. item is not found!"
 msgstr "2 - Fichero no encontrado!"
 
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "El archivo de corrección ya existe. ¿Desea sobrescribirlo?"
+msgstr "El archivo de parche ya existe. ¿Desea sobrescribirlo?"
 
 #, c-format
 msgid "[%1 files selected]"
@@ -3507,7 +3507,7 @@ msgid "Specify an output file."
 msgstr "Especifique un archivo de salida."
 
 msgid "Cannot create a patch file from binary files."
-msgstr "No se puede crear un archivo de corrección a partir de archivos binarios."
+msgstr "No se puede crear un archivo de parche a partir de archivos binarios."
 
 msgid ""
 "Please save all files first.\n"
@@ -3516,7 +3516,7 @@ msgid ""
 msgstr ""
 "Guarde primero todos los archivos.\n"
 "\n"
-"Para crear una corrección es necesario que no haya cambios sin guardar."
+"Para crear un parche es necesario que no haya cambios sin guardar."
 
 msgid "Folder does not exist."
 msgstr "La carpeta no existe."
@@ -4036,19 +4036,19 @@ msgstr "Especifique argumentos del complemento"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Complemento no encontrado o no válido: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' no es un complemento desempaquetador"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' no es un complemento de precomparación"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Hubo un error al precomparar el fichero '%1' con el complemento '%2'. Ya no se va a realizar ninguna otra precomparación."
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"
@@ -4074,22 +4074,22 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2 Runtime no está instalado. ¿Desea descargarlo?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nueva comparación de texto"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nueva comparación de tabla"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nueva comparación binaria"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nueva comparación de imágen"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nueva comparación de página web"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Nueva comparación de portapapeles"
 
 msgid "Prettification"
 msgstr "Mejoras"
@@ -4161,7 +4161,7 @@ msgid "Insert Time"
 msgstr "Insertar hora"
 
 msgid "Apply Patch..."
-msgstr "Aplicar corrección..."
+msgstr "Aplicar parche..."
 
 msgid "Ignore Columns"
 msgstr "Ignorar columnas"
@@ -4440,7 +4440,7 @@ msgstr ""
 "Argumentos: Opciones de la línea de comandos pasadas al tika-app.jar."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Aplicar el parche usando GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Mostrar el contenido de texto de los archivos Excel"
@@ -4522,8 +4522,14 @@ msgstr "Comparar textos con formas"
 msgid "Compare headers and footers"
 msgstr "Comparar encabezados y pies de página"
 
-msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
-msgstr "No se pueden obtener macros.\r\n   Para permitir que WinMerge compare macros, use MS Office para alterar la configuración en la seguridad de macros para la aplicación actual.\r\n   La función Confiar en el acceso al proyecto de Visual Basic debe estar activada para utilizar esta función en WinMerge.\r\n"
+msgid ""
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgstr ""
+"No se pueden obtener macros.\r\n"
+"   Para permitir que WinMerge compare macros, use MS Office para alterar la configuración en la seguridad de macros para la aplicación actual.\r\n"
+"   La función Confiar en el acceso al proyecto de Visual Basic debe estar activada para utilizar esta función en WinMerge.\r\n"
 
 msgid "Compare VBA macros"
 msgstr "Comparar macros VBA"
@@ -4588,27 +4594,31 @@ msgstr "Sustituir con"
 msgid "Settings"
 msgstr "Configuración"
 
-msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
-msgstr "Rangos de columnas a ignorar:\n Ejemplo 3,10-20,32-33\n"
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
+msgstr ""
+"Rangos de columnas a ignorar:\n"
+" Ejemplo 3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr "Introduzca el nombre del archivo al que se aplicará la corrección '%1'"
+msgstr "Introduzca el nombre del archivo al que se aplicará el parche '%1'"
 
 #, c-format
 msgid "File '%1' does not exist"
 msgstr "El archivo '%1' no existe"
 
 msgid "Enter the command line arguments for patch command"
-msgstr "Introduzca los argumentos de línea de comandos para el comando de corrección"
+msgstr "Introduzca los argumentos de línea de comandos para el comando patch"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr "Introduzca el nombre de la carpeta en la que se aplicará la corrección'%1'"
+msgstr "Introduzca el nombre de la carpeta en la que se aplicará el parche '%1'"
 
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr "La carpeta '%1' no existe"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr "No especifique la opción de línea de comandos '-p0' para el archivo de corrección que incluya rutas absolutas"
+msgstr "No especifique la opción de línea de comandos '-p0' para el archivo de parche que incluya rutas absolutas"
