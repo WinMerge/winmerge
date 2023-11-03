@@ -538,15 +538,13 @@ void CHexMergeView::OnEditClear()
  */
 BOOL CHexMergeView::PreTranslateMessage(MSG* pMsg)
 {
-	if (GetTopLevelFrame()->PreTranslateMessage(pMsg))
-		return TRUE;
 	if (pMsg->message == WM_KEYDOWN)
 	{
 		// Close window in response to VK_ESCAPE if user has allowed it from options
 		if (pMsg->wParam == VK_ESCAPE && GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) != 0)
 		{
 			GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
-			return TRUE;
+			return false;
 		}
 	}
 	return m_pif->translate_accelerator(pMsg);

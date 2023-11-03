@@ -980,7 +980,7 @@ BOOL CWebPageDiffFrame::PreTranslateMessage(MSG* pMsg)
 		if (pMsg->wParam == VK_ESCAPE && GetOptionsMgr()->GetInt(OPT_CLOSE_WITH_ESC) != 0)
 		{
 			PostMessage(WM_CLOSE, 0, 0);
-			return true;
+			return false;
 		}
 	}
 	return CMergeFrameCommon::PreTranslateMessage(pMsg);
