@@ -252,7 +252,14 @@ public:
 	bool HasSyncPoints();
 	std::vector<std::vector<int> > GetSyncPointList();
 	String GetDescription(int pane) const override { return m_strDesc[pane]; }
-	void SetDescription(int pane, const String& sText) { m_strDesc[pane] = sText; }
+	void SetDescription(int pane, const String& sText) {
+		if (m_strDesc[pane] != sText)
+		{
+			m_strDesc[pane] = sText;
+			if (m_nBufferType[pane] == BUFFERTYPE::NORMAL)
+				m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
+		}
+	}
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

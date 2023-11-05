@@ -538,8 +538,13 @@ int CImgMergeFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 			m_pImgMergeWindow->SetActivePane(pane);
 	});
 	m_wndFilePathBar.SetOnCaptionChangedCallback([&](int pane, const String& sText) {
-		m_strDesc[pane] = sText;
-		UpdateHeaderPath(pane);
+		if (m_strDesc[pane] != sText)
+		{
+			m_strDesc[pane] = sText;
+			if (m_nBufferType[pane] == BUFFERTYPE::NORMAL)
+				m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
+			UpdateHeaderPath(pane);
+		}
 	});
 	m_wndFilePathBar.SetOnFileSelectedCallback([&](int pane, const String& sFilepath) {
 		ChangeFile(pane, sFilepath);

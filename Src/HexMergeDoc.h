@@ -85,7 +85,14 @@ public:
 	void ChangeFile(int nBuffer, const String& path, int nLineIndex = -1);
 	void CheckFileChanged(void) override;
 	String GetDescription(int pane) const override { return m_strDesc[pane]; };
-	void SetDescription(int pane, const String& strDesc) {  m_strDesc[pane] = strDesc; };
+	void SetDescription(int pane, const String& strDesc) {
+		if (m_strDesc[pane] != strDesc)
+		{
+			m_strDesc[pane] = strDesc;
+			if (m_nBufferType[pane] == BUFFERTYPE::NORMAL)
+				m_nBufferType[pane] = BUFFERTYPE::NORMAL_NAMED;
+		}
+	}
 	void SaveAs(int nBuffer, bool packing = true) { DoFileSaveAs(nBuffer, packing); }
 	String GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
