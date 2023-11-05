@@ -654,11 +654,11 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 ;Add Project file extension (.WinMerge) to known extensions and
 ;set WinMerge to open those files
 ;set Notepad to edit project files
-Root: HKCU; Subkey: .WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File; ValueType: String; ValueData: {cm:ProjectFileDesc}; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\WinMergeU.exe"" ""%1"""; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\WinMergeU.exe"",1"; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\.WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File; ValueType: String; ValueData: {cm:ProjectFileDesc}; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\WinMergeU.exe"" ""%1"""; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\WinMergeU.exe"",1"; Flags: uninsdeletekey
 
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
@@ -671,8 +671,8 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: none;
 ;because a particular message might be added or removed and a new message might occupy a previous message's ID number
 Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\MessageBoxes; ValueType: none; Flags: deletekey
 
-Root: HKCU; SubKey: Directory\Shell\WinMerge\command; ValueType: none; Flags: deletekey noerror
-Root: HKCU; SubKey: Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
+Root: HKCU; SubKey: Software\Classes\Directory\Shell\WinMerge\command; ValueType: none; Flags: deletekey noerror
+Root: HKCU; SubKey: Software\Classes\Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
 
 ;Adds "Start Menu" --> "Run" Support for WinMerge
 Root: HKCU; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: none; Flags: uninsdeletekey
