@@ -3703,22 +3703,22 @@ msgid "Clipboard Compare"
 msgstr "Comparação da Área de Transferência"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimir"
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Página Anterior"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "Duas Páginas"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Uma Página"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Mais Zoom"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Menos Zoom"
 
 msgid "Prettification"
 msgstr "Embelezamento"
