@@ -4097,6 +4097,24 @@ msgstr "Nova comparação de páginas web"
 msgid "Clipboard Compare"
 msgstr "Comparação da área de transferência"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Embelezamento"
 

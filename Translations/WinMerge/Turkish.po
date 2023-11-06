@@ -4166,6 +4166,24 @@ msgstr "Yeni site sayfası karşılaştırması"
 msgid "Clipboard Compare"
 msgstr "Pano karşılaştırması"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Sadeleştirme"
 

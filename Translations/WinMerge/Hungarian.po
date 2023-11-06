@@ -4763,6 +4763,24 @@ msgstr "Új weboldal összehasonlítás"
 msgid "Clipboard Compare"
 msgstr "Vágólap összehasonlítás"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
 

@@ -4809,6 +4809,24 @@ msgstr "새 웹 페이지 비교"
 msgid "Clipboard Compare"
 msgstr "클립보드 비교"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "꾸미기"
 

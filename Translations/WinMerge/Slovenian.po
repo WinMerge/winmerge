@@ -4087,6 +4087,24 @@ msgstr "Primerjava nove spletne strani"
 msgid "Clipboard Compare"
 msgstr "Primerjava odložišča"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Polepšanje"
 

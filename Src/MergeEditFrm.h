@@ -58,6 +58,7 @@ public:
 	virtual BOOL OnBarCheck(UINT nID);
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL DestroyWindow();
+	virtual void OnSetPreviewMode(BOOL bPreview, CPrintPreviewState* pState) override;
 	protected:
 	//}}AFX_VIRTUAL
 

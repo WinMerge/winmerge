@@ -3702,6 +3702,24 @@ msgstr "Naujas tinklapių palyginimas"
 msgid "Clipboard Compare"
 msgstr "Mainų srities palyginimas"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Sutvarkymas"
 

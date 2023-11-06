@@ -4205,6 +4205,18 @@ BEGIN
     IDS_JUMPLIST_CLIPBOARD_COMPARE "Clipboard Compare"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PREVIEWBAR_PRINT    "&Print..."
+    IDS_PREVIEWBAR_NEXTPAGE "&Next Page"
+    IDS_PREVIEWBAR_PREVPAGE "Pre&v Page"
+    IDS_PREVIEWBAR_TWOPAGE  "&Two Page"
+    IDS_PREVIEWBAR_ONEPAGE  "&One Page"
+    IDS_PREVIEWBAR_ZOOMIN   "Zoom &In"
+    IDS_PREVIEWBAR_ZOOMOUT  "Zoom &Out"
+    IDS_PREVIEWBAR_CLOSE    "&Close"
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

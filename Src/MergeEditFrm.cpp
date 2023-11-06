@@ -53,6 +53,7 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 END_MESSAGE_MAP()
 
 constexpr UINT_PTR IDT_SAVEPOSITION = 2;
+constexpr UINT_PTR IDT_PREVIEWMODE = 3;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditFrame construction/destruction
@@ -317,6 +318,13 @@ void CMergeEditFrame::OnClose()
 	CMergeFrameCommon::OnClose();
 }
 
+void CMergeEditFrame::OnSetPreviewMode(BOOL bPreview, CPrintPreviewState* pState)
+{
+	KillTimer(IDT_PREVIEWMODE);
+	SetTimer(IDT_PREVIEWMODE, 100, nullptr);
+	__super::OnSetPreviewMode(bPreview, pState);
+}
+
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CMergeEditFrame::UpdateHeaderSizes()
 {
@@ -389,6 +397,16 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 	{
 		SavePosition();
 		KillTimer(IDT_SAVEPOSITION);
+	}
+	else if (nIDEvent == IDT_PREVIEWMODE)
+	{
+		KillTimer(IDT_PREVIEWMODE);
+		CWnd* pPreviewBar = GetDlgItem(AFX_IDW_PREVIEW_BAR);
+		if (pPreviewBar)
+		{
+			pPreviewBar->Invalidate();
+			theApp.TranslateDialog(pPreviewBar->GetSafeHwnd());
+		}
 	}
 	else
 	{

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-09-08 20:55+0000\n"
-"PO-Revision-Date: 2023-11-05 00:00+0000\n"
+"POT-Creation-Date: 2023-05-01 23:13+0000\n"
+"PO-Revision-Date: 2023-05-24 00:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -64,7 +64,7 @@ msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiuj zaznaczone wiersze z lewej"
 
 msgid "Select Line &Difference\tF4"
-msgstr "Zaznacz różnicę wiersza\tF4"
+msgstr "Zaznacz różniące się wiersze\tF4"
 
 msgid "Add this change to Substitution &Filters"
 msgstr "Dodaj tę zmianę do filtrów zamiany"
@@ -115,7 +115,7 @@ msgid "&With..."
 msgstr "Za pomocą..."
 
 msgid "Open &Parent Folder..."
-msgstr "Otwórz folder nadrzędny..."
+msgstr "Otwórz nadrzędny katalog..."
 
 msgid "S&hell Menu"
 msgstr "Menu powłoki"
@@ -354,10 +354,10 @@ msgid "P&lugin Settings..."
 msgstr "Ustawienia wtyczki..."
 
 msgid "Ma&nual Prediffer"
-msgstr "Ręczne porównywanie zmian"
+msgstr "Ręczne porównywanie"
 
 msgid "A&utomatic Prediffer"
-msgstr "Automatyczne porównywanie zmian"
+msgstr "Automatyczne porównywanie"
 
 msgid "&Manual Unpacking"
 msgstr "Ręczne rozpakowywanie"
@@ -813,10 +813,10 @@ msgid "Clear Sync&hronization Points"
 msgstr "Wyczyść punkty sync&hronizacji"
 
 msgid "Unpac&ker"
-msgstr "Rozpakuj"
+msgstr "Rozpakowuj"
 
 msgid "&Prediffer"
-msgstr "Porównywanie zmian"
+msgstr "Porównywanie"
 
 msgid "Apply Pre&differ..."
 msgstr "Zastosuj porównane..."
@@ -971,10 +971,10 @@ msgid "Right Shell menu"
 msgstr "Prawe menu powłoki"
 
 msgid "Both Shell menu"
-msgstr "Oba menu powłoki"
+msgstr ""
 
 msgid "All Shell menu"
-msgstr "Wszystkie menu powłoki"
+msgstr ""
 
 msgid "Copy"
 msgstr "Kopiuj"
@@ -1004,7 +1004,7 @@ msgid "&Select..."
 msgstr "Wybierz..."
 
 msgid "Prediffer Settings"
-msgstr "Ustawienia porównywania zmian"
+msgstr "Ustawienia porównywania"
 
 msgid "G&o to Diff"
 msgstr "Idź d&o różnicy"
@@ -1127,7 +1127,7 @@ msgid " Folder: Filter"
 msgstr " Folder: filtr"
 
 msgid " File: Prediffer Plugin"
-msgstr " Plik: wtyczka porównywająca zmiany"
+msgstr " Plik: wtyczka porównywająca"
 
 msgid " File: Unpacker Plugin"
 msgstr " Plik: wtyczka rozpakowująca"
@@ -1931,7 +1931,7 @@ msgid "&Plugin arguments:"
 msgstr "Argumenty wtyczki:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "Włącz automatyczne rozpakowywanie/porównywanie zmian dla wtyczki"
+msgstr "Włącz automatyczne rozpakowywanie/porównywanie dla wtyczki"
 
 msgid "Shell Integration"
 msgstr "Integracja z powłoką"
@@ -2029,7 +2029,7 @@ msgid "Image file &patterns:"
 msgstr "Szablony pliku obrazu:"
 
 msgid "&Enable image compare in folder compare"
-msgstr "Włącz porównywanie obrazów w porównywanym folderze"
+msgstr "Włącz porównywanie obrazów w porównywanym katalogu"
 
 msgid "OCR result:"
 msgstr "Wynik OCR:"
@@ -2627,11 +2627,11 @@ msgstr "Prawa strona - wybierz folder docelowy:"
 
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(dotyczy %1 plików)"
+msgstr "(%1 objętych plików)"
 
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(dotyczy %1 z %2 plików)"
+msgstr "(%1 z %2 objętych plików)"
 
 #, c-format
 msgid "Are you sure you want to delete\n\n%1 ?"
@@ -2656,7 +2656,7 @@ msgid "Are you sure you want to move %d items?"
 msgstr "Czy na pewno chcesz przenieść %d elementów?"
 
 msgid "Confirm Move"
-msgstr "Potwierdź przeniesienie"
+msgstr "Potwierdzenie przenoszenia"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Zamierzasz zamknąć okno porównujące foldery. Czy na pewno chcesz zamknąć okno?"
@@ -2776,7 +2776,7 @@ msgid "Unpacker"
 msgstr "Program rozpakowujący"
 
 msgid "Prediffer"
-msgstr "Porównywanie zmian"
+msgstr "Porównywanie"
 
 msgid "Left"
 msgstr "Lewy"
@@ -3062,7 +3062,7 @@ msgid "Unpacker plugin name or pipeline."
 msgstr "Nazwa pluginu rozpakowującego lub pipeline."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Nazwa wtyczki porównywającej zmiany lub pipeline."
+msgstr "Nazwa wtyczki porównywającej lub pipeline."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3357,7 +3357,7 @@ msgid "The adapted unpacker is applied to both files (one file only needs the ex
 msgstr "Program rozpakowujący zostanie uruchomiony dla obu plików (tylko jeden plik wymaga rozszerzenia)."
 
 msgid "No prediffer (normal)"
-msgstr "Bez porównywania zmian (normalnie)"
+msgstr "Bez porównywania (normalne)"
 
 msgid "Suggested plugins"
 msgstr "Sugerowane wtyczki"
@@ -3472,10 +3472,10 @@ msgid "DirectWrite Aliased"
 msgstr "DirectWrite Aliased"
 
 msgid "DirectWrite GDI Classic"
-msgstr "DirectWrite Klasyczny GDI"
+msgstr "DirectWrite GDI Klasyczny"
 
 msgid "DirectWrite GDI Natural"
-msgstr "DirectWrite Naturalny GDI"
+msgstr "DirectWrite GDI Naturalny"
 
 msgid "DirectWrite Natural"
 msgstr "DirectWrite Naturalny"
@@ -3660,11 +3660,11 @@ msgstr "'%1' nie jest wtyczką rozpakowującą"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr "'%1' nie jest wtyczką porównującą zmiany"
+msgstr "'%1' nie jest wtyczką porównującą"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr "Wystąpił błąd podczas porównywania zmian w pliku '%1' za pomocą wtyczki '%2'. Porównywanie zmian nie jest już stosowane."
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Zastosowano filtr"
@@ -3702,6 +3702,24 @@ msgstr "Porównaj nową stronę internetową"
 
 msgid "Clipboard Compare"
 msgstr "Porównaj schowek"
+
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Upiększanie"
@@ -3791,7 +3809,7 @@ msgid "Ignore Leading Line Numbers"
 msgstr "Ignoruj wiodące numery linii"
 
 msgid "Apply Prediff Substitution Filters"
-msgstr "Zastosuj filtry zamiany przed porównaniem zmian"
+msgstr "Zastosuj filtry zamiany przed porównaniem"
 
 msgid "Prettify HTML"
 msgstr "Upiększ kod HTML"
@@ -3867,7 +3885,7 @@ msgstr "Zastąp tekst innym tekstem.\r\nUżycie: Replace [-i] [-e] ZNAJDŹ ZAST�
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr "Zastosuj filtrowanie. \r\nUżycie: ExecFilterCommand POLECENIE\r\n  POLECENIE - polecenie do wykonania. %1 w poleceniu zostaje zastąpiony nazwą pliku."
+msgstr ""
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
 msgstr "Tokenizacja zaznaczonego tekstu. \r\nUżycie: Tokenize SZABLONY\r\n  SZABLONY - wyrażenie regularne do tokenizacji. (np. [^\\w]+)"
@@ -3876,22 +3894,22 @@ msgid "Trim spaces"
 msgstr "Usuń spacje"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n  ZAKRESY   - lista zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące kolumny\r\n  -i - ignoruj wielkość liter\r\n  -g - włącz flagę globalną\r\n  -e - użyj SZABLONÓW do dopasowywania"
+msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n  ZAKRESY   - listę zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące kolumny\r\n  -i - ignoruj wielkość liter\r\n  -g - włącz flagę globalną\r\n  -e - użyj SZABLONÓW do dopasowywania"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr "Wybierz niektóre wiersze. \r\nUżycie: SelectLines ZAKRESY\r\n   lub: SelectLines [-v] [-i] -e SZABLONY\r\n  ZAKRESY   - lista zakresów wierszy do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące wiersze\r\n  -i - ignoruj wielkość liter\r\n  -e - użyj SZABLONÓW do dopasowywania"
+msgstr ""
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr "Atrakcyjny HTML z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
+msgstr "HTML Prettier z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
 
 msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr "Atrakcyjny JSON z poleceniem jq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia jq."
+msgstr "JSON Prettier z poleceniem jq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia jq."
 
 msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr "Atrakcyjny XML z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
+msgstr "XML Prettier z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
 
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "Atrakcyjny YAML z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
+msgstr "YAML Prettier z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
 
 msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
 msgstr "Przeglądarka Graphviz. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia dot."
@@ -3903,16 +3921,16 @@ msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the pla
 msgstr "Przeglądarka PlantUML. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia plantuml.jar."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr "Kwerenda danych CSV z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
+msgstr "CSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
 msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr "Kwerenda danych TSV z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
+msgstr "TSV Querier z poleceniem q. \r\nArgumenty: Instrukcja SQL lub opcje wiersza poleceń przekazywane do polecenia q."
 
 msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr "Kwerenda danych JSON z poleceniem jq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia jq."
+msgstr "JSON Querier z poleceniem jq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia jq."
 
 msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "Kwerenda danych YAML z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
+msgstr "YAML Querier z poleceniem yq. \r\nArgumenty: Filtr lub opcje wiersza poleceń przekazywane do polecenia yq."
 
 msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
 msgstr "Walidator HTML z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."
@@ -3930,7 +3948,7 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr "Ogólny ekstraktor zawartości z Apache Tika. \r\nArgumenty: Opcje wiersza poleceń przekazywane do tika-app.jar."
 
 msgid "Apply patch using GNU patch"
-msgstr "Zastosuj łatkę używając GNU patch"
+msgstr ""
 
 msgid "Display the text content of MS Excel files"
 msgstr "Wyświetl zawartość tekstową plików MS Excel"
@@ -3957,7 +3975,7 @@ msgid "This plugin ignores the leading line numbers in text files (e.g. NC and B
 msgstr "Ta wtyczka ignoruje wiodące numery linii w plikach tekstowych (np. plikach NC i BASIC)."
 
 msgid "Prediff Line Filter"
-msgstr "Filtr porównywania zmian w wierszu"
+msgstr "Filtr porównywania wiersza"
 
 msgid "Basic text functions for the context menu"
 msgstr "Podstawowe funkcje tekstowe dla menu kontekstowego"
@@ -3990,7 +4008,7 @@ msgid "Compare worksheets as image (very slow)"
 msgstr "Porównaj arkusze jako obraz (bardzo wolno)"
 
 msgid " - Image split size: "
-msgstr " - Rozmiar podzielonego obrazu: "
+msgstr ""
 
 msgid "Compare worksheets as HTML"
 msgstr "Porównaj arkusze jako HTML"
@@ -4071,7 +4089,7 @@ msgid "Settings"
 msgstr "Ustawienia"
 
 msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
-msgstr "Zakresy kolumn do zignorowania:\nnp.  3,10-20,32-33\n"
+msgstr "Zakresy kolumn do zignorowania:\nnp.)  3,10-20,32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
