@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.32.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-10-05 04:12+0900\n"
+"PO-Revision-Date: 2023-11-07 21:38+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -4810,22 +4810,22 @@ msgid "Clipboard Compare"
 msgstr "클립보드 비교"
 
 msgid "&Print..."
-msgstr ""
+msgstr "인쇄(&P)..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "이전 페이지(&V)"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "2 페이지(&T)"
 
 msgid "&One Page"
-msgstr ""
+msgstr "1 페이지(&O)"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "확대(&I)"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "축소(&O)"
 
 msgid "Prettification"
 msgstr "꾸미기"
