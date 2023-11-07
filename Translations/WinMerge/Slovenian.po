@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-08-05 10:45+0000\n"
-"PO-Revision-Date: 2023-10-27 16:51+0200\n"
+"PO-Revision-Date: 2023-11-07 18:13+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -3806,7 +3806,7 @@ msgid "We&bpage"
 msgstr "&Spletna stran"
 
 msgid "W&rap Text"
-msgstr "*re&lom besedila"
+msgstr "Pre&lom besedila"
 
 msgid "Frhed is not installed."
 msgstr "Frhed ni nameščen."
@@ -4088,22 +4088,22 @@ msgid "Clipboard Compare"
 msgstr "Primerjava odložišča"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Na&tisni..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Pre&jšnja stran"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Dve strani"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Ena stran"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Po&večaj"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Pom&njšaj"
 
 msgid "Prettification"
 msgstr "Polepšanje"
