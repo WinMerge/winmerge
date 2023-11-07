@@ -165,6 +165,7 @@ Localization:
 
 * Romanian:
   Cristian Arghiroiu <cristi.arghiroiu@gmail.com>
+  Daniel Dumitriu
 
 * Russian:
   Dmitriy S. Aleshkowskiy <wwarlock@mail.ru>
