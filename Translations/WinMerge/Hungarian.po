@@ -4764,22 +4764,22 @@ msgid "Clipboard Compare"
 msgstr "Vágólap összehasonlítás"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Nyomtatás..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Kö&vetkező oldal"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Két oldal"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Egy oldal"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "&Nagyítás"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "K&icsinyítés"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
