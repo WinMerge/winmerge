@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-09-08 20:55+0000\n"
-"PO-Revision-Date: 2023-09-11 11:11+0200\n"
+"POT-Creation-Date: 2023-11-06 23:04+0000\n"
+"PO-Revision-Date: 2023-11-07 08:14+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -178,7 +178,7 @@ msgid "Zoom &In\tCtrl++"
 msgstr "Did&inti\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Mažint&i\tCtrl+-"
+msgstr "Mažin&ti\tCtrl+-"
 
 #. Zoom to normal
 msgid "&Normal\tCtrl+*"
@@ -3703,22 +3703,22 @@ msgid "Clipboard Compare"
 msgstr "Mainų srities palyginimas"
 
 msgid "&Print..."
-msgstr ""
+msgstr "S&pausdinti..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "P&raeitas psl."
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&2 psl."
 
 msgid "&One Page"
-msgstr ""
+msgstr "&1 psl."
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Did&inti"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Mažin&ti"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
