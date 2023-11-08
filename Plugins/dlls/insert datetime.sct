@@ -17,33 +17,33 @@
 	<method name="InsertTime"/>
 </implements>
 
-<script language="VBS">
-Option Explicit
+<script language="JScript">
 
-Function get_PluginEvent()
-	get_PluginEvent = "EDITOR_SCRIPT"
-End Function
+function get_PluginEvent() {
+	return "EDITOR_SCRIPT";
+}
 
-Function get_PluginDescription()
-	get_PluginDescription = "Basic text functions for the context menu"
-End Function
+function get_PluginDescription() {
+	return "Basic text functions for the context menu";
+}
 
-Function get_PluginFileFilters()
-	get_PluginFileFilters= ".*"
-End Function
+function get_PluginFileFilters() {
+	return ".*";
+}
 
-Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "InsertDate.MenuCaption=Insert Date;InsertTime.MenuCaption=Insert Time"
-End Function
+function get_PluginExtendedProperties() {
+	return "InsertDate.MenuCaption=Insert Date;InsertTime.MenuCaption=Insert Time";
+}
 
-' transformation functions
-Function InsertDate(Text)
-	InsertDate = Text + FormatDateTime(Date, 1)
-End Function
+// transformation functions
+function InsertDate(Text) {
+	return Text + (new Date()).toLocaleString().split(/[ ,]/)[0];
+}
 
-Function InsertTime(Text)
-	InsertTime = Text + FormatDateTime(Time, 4)
-End Function
+function InsertTime(Text) {
+	var ary = (new Date()).toLocaleString().split(/[ ,]/);
+	return Text + ary[ary.length - 1];
+}
 
 </script>
 </scriptlet>
