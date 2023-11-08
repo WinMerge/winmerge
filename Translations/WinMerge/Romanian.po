@@ -4179,6 +4179,24 @@ msgstr "Comparare pagină web nouă"
 msgid "Clipboard Compare"
 msgstr "Comparare clipboard"
 
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Înfrumusețare"
 
