@@ -284,6 +284,7 @@ protected:
 	afx_msg void OnConvertEolTo(UINT nID );
 	afx_msg void OnUpdateConvertEolTo(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusEOL(CCmdUI* pCmdUI);
+	afx_msg void OnX2YNext(int srcPane, int dstPane);
 	afx_msg void OnL2RNext();
 	afx_msg void OnUpdateL2RNext(CCmdUI* pCmdUI);
 	afx_msg void OnR2LNext();

@@ -2952,12 +2952,63 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 /**
  * @brief Copy diff from left to right and advance to next diff
  */
+void CMergeEditView::OnX2YNext(int srcPane, int dstPane)
+{
+	CMergeDoc *pDoc = GetDocument();
+	if (pDoc->m_nBuffers < 3)
+	{
+		OnX2Y(srcPane, dstPane);
+		OnNextdiff();
+	}
+	else
+	{
+		int currentDiff = pDoc->GetCurrentDiff();
+		if (currentDiff == -1 && m_bCurrentLineIsDiff)
+			currentDiff = pDoc->m_diffList.LineToDiff(GetCursorPos().y);
+		if (currentDiff != -1)
+		{
+			int nNextDiff = -1;
+			DIFFRANGE di, diNext;
+			pDoc->m_diffList.GetDiff(currentDiff, di);
+			pDoc->m_diffList.GetNextDiff(di.dend + 1, nNextDiff);
+			if (nNextDiff != -1)
+			{
+				pDoc->m_diffList.GetDiff(nNextDiff, diNext);
+				int nRealLine;
+				int nPane = srcPane;
+				if (diNext.end[nPane] - diNext.begin[nPane] < 0)
+				{
+					for (nPane = 0; nPane < pDoc->m_nBuffers; ++nPane)
+						if (diNext.end[nPane] - diNext.begin[nPane] >= 0)
+							break;
+				}
+				nRealLine = diNext.begin[nPane];
+				if (nPane == dstPane)
+					nRealLine += (di.end[srcPane] - di.begin[srcPane]) - (di.end[dstPane] - di.begin[dstPane]);
+
+				OnX2Y(srcPane, dstPane);
+
+				nNextDiff = pDoc->m_diffList.LineToDiff(pDoc->m_ptBuf[nPane]->ComputeApparentLine(nRealLine));
+				if (nNextDiff != -1)
+					SelectDiff(nNextDiff, true, false);
+				else
+					OnNextdiff();
+			}
+			else
+			{
+				OnX2Y(srcPane, dstPane);
+			}
+		}
+	}
+}
+
+/**
+ * @brief Copy diff from left to right and advance to next diff
+ */
 void CMergeEditView::OnL2RNext()
 {
-	OnL2r();
-	if (GetDocument()->m_nBuffers > 2 && IsCursorInDiff()) // for 3-way file compare
-		OnNextdiff();
-	OnNextdiff();
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_L2R, m_nThisPane, GetDocument()->m_nBuffers);
+	OnX2YNext(srcPane, dstPane);
 }
 
 /**
@@ -2973,10 +3024,8 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnR2LNext()
 {
-	OnR2l();
-	if (GetDocument()->m_nBuffers > 2 && IsCursorInDiff()) // for 3-way file compare
-		OnNextdiff();
-	OnNextdiff();
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_R2L, m_nThisPane, GetDocument()->m_nBuffers);
+	OnX2YNext(srcPane, dstPane);
 }
 
 /**
