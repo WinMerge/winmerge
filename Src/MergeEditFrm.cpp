@@ -391,6 +391,29 @@ void CMergeEditFrame::OnIdleUpdateCmdUI()
 	CMergeFrameCommon::OnIdleUpdateCmdUI();
 }
 
+LRESULT CMergeEditFrame::CPreviewNumPageButton::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_SETTEXT:
+	{
+		// Translate the One Page Button and Two Page Button on the Print Preivew toolbar.
+		String text = reinterpret_cast<TCHAR*>(lParam);
+		String translated = tr(text);
+		if (translated != text)
+		{
+			SetWindowText(translated.c_str());
+			return TRUE;
+		}
+		break;
+	}
+	case WM_DESTROY:
+		UnsubclassWindow();
+		break;
+	}
+	return __super::WindowProc(message, wParam, lParam);
+}
+
 void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent) 
 {
 	if (nIDEvent == IDT_SAVEPOSITION)
@@ -406,6 +429,7 @@ void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent)
 		{
 			pPreviewBar->Invalidate();
 			theApp.TranslateDialog(pPreviewBar->GetSafeHwnd());
+			m_wndPreviewNumPage.SubclassWindow(pPreviewBar->GetDlgItem(AFX_ID_PREVIEW_NUMPAGE)->GetSafeHwnd());
 		}
 	}
 	else
