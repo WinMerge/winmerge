@@ -2,6 +2,14 @@
 
 ## WinMerge 2.16.35 - 2023-11-20
 
+### File compare
+
+- BugFix: Fixed an issue where "Copy to Left/Right and Advance" would
+    sometimes skip differences when comparing 3 files. (#1234)
+- BugFix: Print Preview buttons are not translatable (#2083,#2079)
+- BugFix: Fixed the issue where the caption set in the header bar is restored
+    when the window is resized.
+
 ### Binary compare
 
 - BugFix: V2.16.34 "X86" wired action (#2081)
@@ -20,6 +28,11 @@
 
 - BugFix: Ignoring carriage return differences doesn't work anymore
     (#2080,#2099)
+
+### File filters
+
+- BugFix: Fixed the issue where "[F]" could be set as the file filter if no file
+    filter was selected in the Filters dialog.
 
 ### Installer
 
