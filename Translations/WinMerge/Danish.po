@@ -271,6 +271,24 @@ msgstr ""
 msgid "Fit to Window"
 msgstr ""
 
+msgid "&Syncronize Events"
+msgstr ""
+
+msgid "&Enable All"
+msgstr ""
+
+msgid "&Disable All"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr ""
 

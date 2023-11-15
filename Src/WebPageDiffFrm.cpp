@@ -115,6 +115,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_TEXTS, OnWebCompareTexts)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
+	ON_COMMAND_RANGE(ID_WEB_SYNC_ENABLE_ALL, ID_WEB_SYNC_INPUT, OnWebSyncEvent)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_WEB_SYNC_SCROLL, ID_WEB_SYNC_INPUT, OnUpdateWebSyncEvent)
 	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
@@ -1574,6 +1576,50 @@ void CWebPageDiffFrame::OnWebCompareResourceTrees()
 				GetMainFrame()->DoFileOrFolderOpen(&paths, dwFlags, descs.data(), _T(""), true);
 				return S_OK;
 			}));
+}
+
+void CWebPageDiffFrame::OnWebSyncEvent(UINT nID)
+{
+	switch (nID)
+	{
+	case ID_WEB_SYNC_ENABLE_ALL:
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL, true);
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_CLICK, true);
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_INPUT, true);
+		break;
+	case ID_WEB_SYNC_DISABLE_ALL:
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL, false);
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_CLICK, false);
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_INPUT, false);
+		break;
+	case ID_WEB_SYNC_SCROLL:
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL,
+			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL));
+		break;
+	case ID_WEB_SYNC_CLICK:
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_CLICK,
+			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_CLICK));
+	case ID_WEB_SYNC_INPUT:
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_INPUT,
+			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_INPUT));
+		break;
+	}
+}
+
+void CWebPageDiffFrame::OnUpdateWebSyncEvent(CCmdUI* pCmdUI)
+{
+	switch (pCmdUI->m_nID)
+	{
+	case ID_WEB_SYNC_SCROLL:
+		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL));
+		break;
+	case ID_WEB_SYNC_CLICK:
+		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_CLICK));
+		break;
+	case ID_WEB_SYNC_INPUT:
+		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_INPUT));
+		break;
+	}
 }
 
 void CWebPageDiffFrame::OnWebClear(UINT nID)

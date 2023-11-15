@@ -272,6 +272,24 @@ msgstr "Méret"
 msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
 
+msgid "&Syncronize Events"
+msgstr ""
+
+msgid "&Enable All"
+msgstr ""
+
+msgid "&Disable All"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "Böngészési adatok törlése"
 

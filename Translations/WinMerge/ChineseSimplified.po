@@ -248,6 +248,24 @@ msgstr "大小(&S)"
 msgid "Fit to Window"
 msgstr "窗口内显示"
 
+msgid "&Syncronize Events"
+msgstr ""
+
+msgid "&Enable All"
+msgstr ""
+
+msgid "&Disable All"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "清除浏览数据(&B)"
 

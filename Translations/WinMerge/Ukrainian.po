@@ -254,6 +254,24 @@ msgstr "&Розмір"
 msgid "Fit to Window"
 msgstr "Припасувати до вікна"
 
+msgid "&Syncronize Events"
+msgstr ""
+
+msgid "&Enable All"
+msgstr ""
+
+msgid "&Disable All"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "Очистити історію &переглядів"
 

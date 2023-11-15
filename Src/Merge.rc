@@ -241,6 +241,15 @@ BEGIN
             MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
             MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
         END
+        POPUP "&Syncronize Events"
+        BEGIN
+            MENUITEM "&Enable All",                 ID_WEB_SYNC_ENABLE_ALL
+            MENUITEM "&Disable All",                ID_WEB_SYNC_DISABLE_ALL
+            MENUITEM SEPARATOR
+            MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
+            MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
+            MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+        END
         POPUP "Clear &Browsing Data"
         BEGIN
             MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE

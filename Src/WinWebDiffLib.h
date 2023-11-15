@@ -6,7 +6,7 @@
 
 struct WebDiffEvent
 {
-	enum EVENT_TYPE { ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, WebMessageReceived, TabChanged, HSCROLL, VSCROLL };
+	enum EVENT_TYPE { ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, FrameNavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, FrameNavigationCompleted, WebMessageReceived, TabChanged, HSCROLL, VSCROLL };
 	EVENT_TYPE type;
 	int pane;
 };
@@ -54,6 +54,13 @@ struct IWebDiffWindow
 		BROWSING_HISTORY    = ( 1 << 12 ),
 		SETTINGS            = ( 1 << 13 ),
 		ALL_PROFILE         = ( 1 << 14 ) 
+	};
+	enum EventType
+	{
+		EVENT_NONE          = 0,
+		EVENT_SCROLL        = ( 1 << 0 ),
+		EVENT_CLICK         = ( 1 << 1 ),
+		EVENT_INPUT         = ( 1 << 2 ),
 	};
 	struct DiffOptions
 	{
@@ -170,6 +177,8 @@ struct IWebDiffWindow
 	virtual bool CanRedo() = 0;
 	virtual const DiffOptions& GetDiffOptions() const = 0;
 	virtual void SetDiffOptions(const DiffOptions& diffOptions) = 0;
+	virtual bool GetSyncEventFlag(EventType event) const = 0;
+	virtual void SetSyncEventFlag(EventType event, bool flag) = 0;
 };
 
 extern "C"
