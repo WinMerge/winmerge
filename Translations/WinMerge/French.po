@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-10-05 19:03+0200\n"
+"PO-Revision-Date: 2023-11-15 10:48+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -4273,7 +4273,9 @@ msgstr "Type"
 msgid "Editor script"
 msgstr "Éditeur de script"
 
-msgid "\nDifference in the Current Line (F4)"
+msgid ""
+"\n"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
 "Sélectionner la différence suivante (F4)"
@@ -4813,22 +4815,22 @@ msgid "Clipboard Compare"
 msgstr "Comparer le presse-papiers"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Imprimer..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Page pré&cédente"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Deux pages"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Une page"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Zoom a&vant"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Zoom a&rrière"
 
 msgid "Prettification"
 msgstr "Embellissement"
