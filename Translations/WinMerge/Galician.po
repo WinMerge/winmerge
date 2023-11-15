@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2023-11-03 13:58+0100\n"
+"PO-Revision-Date: 2023-11-15 13:59+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
 "Language: gl\n"
@@ -4090,22 +4090,22 @@ msgid "Clipboard Compare"
 msgstr "Comparar de portapapeis"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Im&primir..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Páxina an&terior"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Dúas páxinas"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Un&ha páxina"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Aumentar &zoom"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Reducir z&oom"
 
 msgid "Prettification"
 msgstr "Melloras"

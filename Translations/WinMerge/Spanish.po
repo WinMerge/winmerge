@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2023-11-03 13:58+0100\n"
+"PO-Revision-Date: 2023-11-15 13:59+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_ES\n"
@@ -4092,22 +4092,22 @@ msgid "Clipboard Compare"
 msgstr "Nueva comparación de portapapeles"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Im&primir..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Página an&terior"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Dos páginas"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Un&a página"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Aumentar &zoom"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Reducir z&oom"
 
 msgid "Prettification"
 msgstr "Mejoras"
