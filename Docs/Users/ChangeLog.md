@@ -1,5 +1,61 @@
 # Change log
 
+## WinMerge 2.16.35 - 2023-11-20
+
+### File compare
+
+- BugFix: Fixed an issue where "Copy to Left/Right and Advance" would
+    sometimes skip differences when comparing 3 files. (#1234)
+- BugFix: Print Preview buttons are not translatable (#2083,#2079)
+- BugFix: Fixed the issue where the caption set in the header bar is restored
+    when the window is resized.
+
+### Binary compare
+
+- BugFix: V2.16.34 "X86" wired action (#2081)
+
+### Image compare
+
+- BugFix: Close main window with 'Esc' if there is only one MDI child window
+    (#2084)
+
+### Webpage compare
+
+- BugFix: Close main window with 'Esc' if there is only one MDI child window
+    (#2084)
+
+### Folder compare
+
+- BugFix: Ignoring carriage return differences doesn't work anymore
+    (#2080,#2099)
+
+### File filters
+
+- BugFix: Fixed the issue where "[F]" could be set as the file filter if no file
+    filter was selected in the Filters dialog.
+
+### Installer
+
+- BugFix: fix bug of Registry path (PR #2086)
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR #2088)
+  - Bulgarian (PR #2105)
+  - Chinese Simplified (PR #2091)
+  - French (PR #2106)
+  - Galician (PR #2085,#2107)
+  - Hungarian (PR #2093)
+  - Japanese
+  - Korean (PR #2092)
+  - Lithuanian (PR #2090)
+  - Polish (PR #2087)
+  - Romanian (PR #2089,#2095)
+  - Slovenian (#2096)
+  - Spanish (PR #2085,#2107)
+  - Turkish (PR #2076)
+
 ## WinMerge 2.16.34 - 2023-10-27
 
 ### File compare
@@ -104,7 +160,7 @@
 
 - Translation updates:
   - Brazilian (PR #1969,#2001,#2025)
-  - Chinese Traditional (PR #1953,#1971,#2017,#2026)
+  - Chinese Simplified (PR #1953,#1971,#2017,#2026)
   - Corsican (PR #2022)
   - German (PR #1952,#1977,#1989)
   - Hungarian (PR #1968,#1999)

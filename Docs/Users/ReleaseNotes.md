@@ -1,139 +1,73 @@
-# WinMerge 2.16.34 Release Notes
+# WinMerge 2.16.35 Beta Release Notes
 
 - [About This Release](#about-this-release)
-- [What Is New in 2.16.34?](#what-is-new-in-21634)
-- [What Is New in 2.16.33 beta?](#what-is-new-in-21633-beta)
+- [What Is New in 2.16.35 beta?](#what-is-new-in-21635-beta)
 - [Known issues](#known-issues)
 
-October 2023
+November 2023
 
 ## About This Release
 
-This is a WinMerge 2.16.34 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.34
+## What Is New in 2.16.35 Beta
 
 ### File compare
 
-- Allow NUL and \\.\NUL in paths specified as command line arguments (PR #2056)
-- Added "(F4)" to the description of the toolbar icon "Difference in the Current Line". (#2050)
-- Fix a crash problem when the Diff algorithm is set to something other than
-    default and one file does not have an EOL of the last line and the other
-    file has an EOL of the last line.
+- BugFix: Fixed an issue where "Copy to Left/Right and Advance" would
+    sometimes skip differences when comparing 3 files. (#1234)
+- BugFix: Print Preview buttons are not translatable (#2083,#2079)
+- BugFix: Fixed the issue where the caption set in the header bar is restored
+    when the window is resized.
+
+### Binary compare
+
+- BugFix: V2.16.34 "X86" wired action (#2081)
 
 ### Image compare
 
-- BugFix:  Fixed the issue where .png is added when saving even if the file
-    format does not use a converter such as jpg or png file.
+- BugFix: Close main window with 'Esc' if there is only one MDI child window
+    (#2084)
+
+### Webpage compare
+
+- BugFix: Close main window with 'Esc' if there is only one MDI child window
+    (#2084)
 
 ### Folder compare
 
-- BugFix: Folder compare omits unique folders from results if they contain any
-    files and/or subfolders folder compare/merge (#2046)
+- BugFix: Ignoring carriage return differences doesn't work anymore
+    (#2080,#2099)
 
-### Line filters
+### File filters
 
-- Modify the "Line Filters" dialog. (PR #2047)
+- BugFix: Fixed the issue where "[F]" could be set as the file filter if no file
+    filter was selected in the Filters dialog.
 
-### Substitution filters
+### Installer
 
-- Modify the "Substitution Filters" dialog. (PR #2068)
+- BugFix: fix bug of Registry path (PR #2086)
 
 ### Translations
 
 - Translation updates:
-  - French (PR #2055,#2058)
-  - Korean (PR #2057,#2059,#2060)
-
-### Internals
-
-- Small code changes for CMDIChildWnd handling (#2043)
-
-## What Is New in 2.16.33 Beta
-
-### General
-
-- Reduce startup time and decrease the usage of Win32 user objects.
-
-### File compare
-
-- BugFix: Cannot compare one-line file (#1972)
-- BugFix:  "Current Difference" specified by double-clicking cannot merge
-    using the "Copy to Right (or Left)" menu. (#1980)
-- BugFix: Wimerge saves changes to the wrong file (#1985) (PR #1988)
-- BugFix: "Ignore comment differences" still compares inline comments (#2008)
-- Update Rust syntax highlighting keyword list. (PR #1998)
-- [Feature Request] Both Shell Menu (#1986) (PR #2021)
-
-### Table compare
-
-- When "Use First Line as Header" is enabled, make the header display the
-    first line regardless of the scroll position when the first line is hidden.
-- Generate reports in tabular format for table comparisons. (PR #1983)
-
-### Folder compare
-
-- BugFix: Fixed an issue where Differences, Left/Right EOL columns, etc. were
-    displayed as undefined values when the file comparison method was
-    Full Contents or Quick Contents and the file size exceeded 64MB.
-- BugFix: Fix the problem that when comparing with the BinaryContents compare
-    method, the contents of the files are identical, but if one side is a
-    symbolic link, it is judged to be different. (#1976)
-- BugFix: Fixed an issue where values in the Left/Right EOL column may not
-    display correctly when using the Quick contents compare method.
-- Add Expand Different Subfolders menu item (#1382) (PR #1964)
-- Allow Diff algorithms (patience, histogram) other than default to be applied
-    to folder comparisons (PR #2015) (#2002)
-- Show confirmation message when closing a window that took a long time
-    to compare folders
-
-### Line filters
-
-- Improve line filters and substitution filters (PR #2032) (#796) (#1620)
-
-### Substitution filters
-
-- Avoid infinite loops in the RegularExpression::subst() function when 
-    the length of the string matching the pattern is 0
-- Improve line filters and substitution filters (PR #2032) (#796) (#1620)
-
-### Options dialog
-
--  Execute the "pause" command to prevent the error message from disappearing
-     if the registration of the ShellExtension for Windows 11 fails
-
-### Plugins
-
-- BugFix: WinMerge cannot successfully disable some of its Plugins (#2012)
-- Update jq to version 1.7
-
-### Manual
-
-- Manual: Use po4a for manual translation (PR #1994) (#499)
-
-### Translations
-
-- Translation updates:
-  - Brazilian (PR #1969,#2001,#2025)
-  - Chinese Traditional (PR #1953,#1971,#2017,#2026)
-  - Corsican (PR #2022)
-  - German (PR #1952,#1977,#1989)
-  - Hungarian (PR #1968,#1999)
+  - Brazilian (PR #2088)
+  - Bulgarian (PR #2105)
+  - Chinese Simplified (PR #2091)
+  - French (PR #2106)
+  - Galician (PR #2085,#2107)
+  - Hungarian (PR #2093)
   - Japanese
-  - Korean (PR #1979,#2030)
-  - Lithuanian (PR #1974,#2018,#2027)
-  - Polish (PR #1990)
-  - Portuguese (PR #1973,#2014)
-  - Slovenian
-  - Ukrainian (PR #1955)
-
-### Internals
-
-- Optimize inserts in std containers using reserve (PR #2000)
-
+  - Korean (PR #2092)
+  - Lithuanian (PR #2090)
+  - Polish (PR #2087)
+  - Romanian (PR #2089,#2095)
+  - Slovenian (#2096)
+  - Spanish (PR #2085,#2107)
+  - Turkish (PR #2076)
 
 ## Known issues
 
