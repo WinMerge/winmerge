@@ -766,7 +766,7 @@ Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: 
 
 Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServer"; Flags: waituntilidle
-Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
+Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage \""{app}\WinMergeContextMenuPackage.msix\"" -ExternalLocation \""{app}\""}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
 Filename: {sys}\regsvr32.exe; Parameters: "/s /u ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated
