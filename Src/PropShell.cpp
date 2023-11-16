@@ -125,7 +125,7 @@ static bool RegisterWinMergeContextMenu(bool unregister)
 	String progpath = env::GetProgPath();
 	String packagepath = paths::ConcatPath(progpath, _T("WinMergeContextMenuPackage.msix"));
 	if (!unregister)
-		cmd = strutils::format(_T("powershell -c \"Add-AppxPackage '%s' -ExternalLocation '%s'; if (!$?) { pause }\""), packagepath, progpath);
+		cmd = strutils::format(_T("powershell -c \"Add-AppxPackage \\\"%s\\\" -ExternalLocation \\\"%s\\\"; if (!$?) { pause }\""), packagepath, progpath);
 	else
 		cmd = _T("powershell -c \"Get-AppxPackage -name WinMerge | Remove-AppxPackage; if (!$?) { pause }\"");
 

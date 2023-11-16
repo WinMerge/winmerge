@@ -37,6 +37,8 @@
 ### Installer
 
 - BugFix: fix bug of Registry path (PR #2086)
+- BugFix: "Register Windows 11 Shell Extension" fails because PowerShell script
+    doesn't escape special chars correctly (#2109)
 
 ### Translations
 

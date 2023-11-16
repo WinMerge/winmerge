@@ -781,7 +781,7 @@ Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\{#ShellExtension64bit}""";
 Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated; Check: not IsAdminInstallMode and not IsWindows11OrLater
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServer"; Flags: waituntilidle; Check: IsAdminInstallMode
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle; Check: not IsAdminInstallMode
-Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
+Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage \""{app}\WinMergeContextMenuPackage.msix\"" -ExternalLocation \""{app}\""}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Check: IsAdminInstallMode; Components: ShellExtension32bit

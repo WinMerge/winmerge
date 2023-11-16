@@ -787,7 +787,7 @@ Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters:
 Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: nowait postinstall skipifsilent runmaximized
 
 Filename: {sys}\regsvr32.exe; Parameters: "/s ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
-Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
+Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage \""{app}\WinMergeContextMenuPackage.msix\"" -ExternalLocation \""{app}\""}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
 Filename: {sys}\regsvr32.exe; Parameters: "/s /u ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated
