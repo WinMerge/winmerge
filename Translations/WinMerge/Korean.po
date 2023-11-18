@@ -279,13 +279,10 @@ msgstr "크기(&S)"
 msgid "Fit to Window"
 msgstr "창에 맞춤"
 
-msgid "&Syncronize Events"
+msgid "&Event Synchronization"
 msgstr ""
 
-msgid "&Enable All"
-msgstr ""
-
-msgid "&Disable All"
+msgid "&Enabled"
 msgstr ""
 
 msgid "&Scroll"

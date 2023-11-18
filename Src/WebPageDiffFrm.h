@@ -200,12 +200,14 @@ protected:
 	afx_msg void OnBnClickedFitToWindow();
 	afx_msg void OnBnClickedShowDifferences();
 	afx_msg void OnBnClickedCompare();
+	afx_msg void OnBnClickedSyncEvents();
 	afx_msg void OnEnChangeWidth();
 	afx_msg void OnEnChangeHeight();
 	afx_msg void OnEnChangeZoom();
 	afx_msg void OnEnChangeUserAgent();
 	afx_msg void OnKillFocusBarControls();
 	afx_msg void OnDropDownCompare(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnDropDownSyncEvents(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

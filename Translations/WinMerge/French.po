@@ -278,13 +278,10 @@ msgstr "&Taille"
 msgid "Fit to Window"
 msgstr "Ajuster à la fenêtre"
 
-msgid "&Syncronize Events"
+msgid "&Event Synchronization"
 msgstr ""
 
-msgid "&Enable All"
-msgstr ""
-
-msgid "&Disable All"
+msgid "&Enabled"
 msgstr ""
 
 msgid "&Scroll"

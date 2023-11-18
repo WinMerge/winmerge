@@ -244,13 +244,10 @@ msgstr "&Velikost"
 msgid "Fit to Window"
 msgstr "Prilagodi oknu"
 
-msgid "&Syncronize Events"
+msgid "&Event Synchronization"
 msgstr ""
 
-msgid "&Enable All"
-msgstr ""
-
-msgid "&Disable All"
+msgid "&Enabled"
 msgstr ""
 
 msgid "&Scroll"

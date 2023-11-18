@@ -272,13 +272,10 @@ msgstr "Méret"
 msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
 
-msgid "&Syncronize Events"
+msgid "&Event Synchronization"
 msgstr ""
 
-msgid "&Enable All"
-msgstr ""
-
-msgid "&Disable All"
+msgid "&Enabled"
 msgstr ""
 
 msgid "&Scroll"

@@ -244,13 +244,10 @@ msgstr "&Boyut"
 msgid "Fit to Window"
 msgstr "&Pencereye sığdır"
 
-msgid "&Syncronize Events"
+msgid "&Event Synchronization"
 msgstr ""
 
-msgid "&Enable All"
-msgstr ""
-
-msgid "&Disable All"
+msgid "&Enabled"
 msgstr ""
 
 msgid "&Scroll"

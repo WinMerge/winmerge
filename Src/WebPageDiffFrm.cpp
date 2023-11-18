@@ -115,8 +115,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_TEXTS, OnWebCompareTexts)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
-	ON_COMMAND_RANGE(ID_WEB_SYNC_ENABLE_ALL, ID_WEB_SYNC_INPUT, OnWebSyncEvent)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_WEB_SYNC_SCROLL, ID_WEB_SYNC_INPUT, OnUpdateWebSyncEvent)
+	ON_COMMAND_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_INPUT, OnWebSyncEvent)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_INPUT, OnUpdateWebSyncEvent)
 	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
@@ -131,6 +131,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_BN_CLICKED(IDC_FITTOWINDOW, OnBnClickedFitToWindow)
 	ON_BN_CLICKED(IDC_SHOWDIFFERENCES, OnBnClickedShowDifferences)
 	ON_BN_CLICKED(IDC_COMPARE, OnBnClickedCompare)
+	ON_BN_CLICKED(IDC_SYNC_EVENTS, OnBnClickedSyncEvents)
 	ON_EN_CHANGE(IDC_WIDTH, OnEnChangeWidth)
 	ON_EN_CHANGE(IDC_HEIGHT, OnEnChangeHeight)
 	ON_EN_CHANGE(IDC_ZOOM, OnEnChangeZoom)
@@ -140,6 +141,7 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_EN_KILLFOCUS(IDC_ZOOM, OnKillFocusBarControls)
 	ON_EN_KILLFOCUS(IDC_USERAGENT, OnKillFocusBarControls)
 	ON_NOTIFY(BCN_DROPDOWN, IDC_COMPARE, OnDropDownCompare)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_SYNC_EVENTS, OnDropDownSyncEvents)
 	// Status bar
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
@@ -616,6 +618,8 @@ void CWebPageDiffFrame::LoadOptions()
 	m_pWebDiffWindow->SetShowDifferences(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SHOWDIFFERENCES));
 	m_pWebDiffWindow->SetShowWordDifferences(GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT));
 	m_pWebDiffWindow->SetUserAgent(GetOptionsMgr()->GetString(OPT_CMP_WEB_USER_AGENT).c_str());
+	m_pWebDiffWindow->SetSyncEvents(GetOptionsMgr()->GetBool(OPT_CMP_WEB_SYNC_EVENTS));
+	m_pWebDiffWindow->SetSyncEventFlags(GetOptionsMgr()->GetInt(OPT_CMP_WEB_SYNC_EVENT_FLAGS));
 	COLORSETTINGS colors;
 	IWebDiffWindow::ColorSettings colorSettings;
 	Options::DiffColors::Load(GetOptionsMgr(), colors);
@@ -1076,6 +1080,24 @@ void CWebPageDiffFrame::OnDropDownCompare(NMHDR *pNMHDR, LRESULT *pResult)
 	BCMenu* pPopup = (BCMenu*)menuPopup.GetSubMenu(0);
 	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
 		point.x, point.y, AfxGetMainWnd());
+}
+
+void CWebPageDiffFrame::OnBnClickedSyncEvents()
+{
+	CRect rc;
+	m_wndWebPageDiffBar.GetDlgItem(IDC_SYNC_EVENTS)->GetWindowRect(&rc);
+	CPoint point { rc.left, rc.bottom };
+	BCMenu menuPopup;
+	menuPopup.LoadMenu(MAKEINTRESOURCE(IDR_POPUP_WEBPAGE_SYNC_EVENTS));
+	theApp.TranslateMenu(menuPopup.m_hMenu);
+	BCMenu* pPopup = (BCMenu*)menuPopup.GetSubMenu(0);
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+		point.x, point.y, AfxGetMainWnd());
+}
+
+void CWebPageDiffFrame::OnDropDownSyncEvents(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	OnBnClickedSyncEvents();
 }
 
 void CWebPageDiffFrame::OnEnChangeWidth()
@@ -1582,26 +1604,24 @@ void CWebPageDiffFrame::OnWebSyncEvent(UINT nID)
 {
 	switch (nID)
 	{
-	case ID_WEB_SYNC_ENABLE_ALL:
-		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL, true);
-		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_CLICK, true);
-		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_INPUT, true);
-		break;
-	case ID_WEB_SYNC_DISABLE_ALL:
-		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL, false);
-		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_CLICK, false);
-		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_INPUT, false);
+	case ID_WEB_SYNC_ENABLED:
+		m_pWebDiffWindow->SetSyncEvents(!m_pWebDiffWindow->GetSyncEvents());
+		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SYNC_EVENTS, m_pWebDiffWindow->GetSyncEvents());
 		break;
 	case ID_WEB_SYNC_SCROLL:
 		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL,
 			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL));
+		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, m_pWebDiffWindow->GetSyncEventFlags());
 		break;
 	case ID_WEB_SYNC_CLICK:
 		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_CLICK,
 			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_CLICK));
+		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, m_pWebDiffWindow->GetSyncEventFlags());
+		break;
 	case ID_WEB_SYNC_INPUT:
 		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_INPUT,
 			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_INPUT));
+		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, m_pWebDiffWindow->GetSyncEventFlags());
 		break;
 	}
 }
@@ -1610,6 +1630,9 @@ void CWebPageDiffFrame::OnUpdateWebSyncEvent(CCmdUI* pCmdUI)
 {
 	switch (pCmdUI->m_nID)
 	{
+	case ID_WEB_SYNC_ENABLED:
+		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEvents());
+		break;
 	case ID_WEB_SYNC_SCROLL:
 		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_SCROLL));
 		break;
