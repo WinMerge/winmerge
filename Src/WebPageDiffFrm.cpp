@@ -323,6 +323,9 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
 	switch (event.type)
 	{
+	case WebDiffEvent::NavigationStarting:
+		UpdateLastCompareResult();
+		break;
 	case WebDiffEvent::SourceChanged:
 	case WebDiffEvent::TabChanged:
 	{
@@ -877,7 +880,7 @@ int CWebPageDiffFrame::UpdateLastCompareResult()
 	int result = -1;
 	if (m_bCompareCompleted)
 	{
-		result = m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0;
+		result = (m_pWebDiffWindow->GetCompareState() == IWebDiffWindow::COMPARED) ? (m_pWebDiffWindow->GetDiffCount() > 0 ? 1 : 0) : -1;
 		SetLastCompareResult(result);
 	}
 	return result;

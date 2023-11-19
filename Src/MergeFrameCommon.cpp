@@ -88,7 +88,7 @@ void CMergeFrameCommon::RemoveBarBorder()
  */
 void CMergeFrameCommon::SetLastCompareResult(int nResult)
 {
-	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
+	HICON hReplace = (nResult == 0) ? m_hIdentical : ((nResult < 0) ? nullptr : m_hDifferent);
 
 	if (m_hCurrent != hReplace)
 	{
