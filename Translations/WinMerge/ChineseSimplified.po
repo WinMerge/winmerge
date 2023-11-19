@@ -263,6 +263,9 @@ msgstr ""
 msgid "&Input"
 msgstr ""
 
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "清除浏览数据(&B)"
 

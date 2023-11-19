@@ -248,6 +248,7 @@ BEGIN
             MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
             MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
             MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+            MENUITEM "&GoBack/Forward",             ID_WEB_SYNC_GOBACKFORWARD
         END
         POPUP "Clear &Browsing Data"
         BEGIN
@@ -1171,6 +1172,7 @@ BEGIN
         MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
         MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
         MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+        MENUITEM "&GoBack/Forward",             ID_WEB_SYNC_GOBACKFORWARD
     END
 END
 

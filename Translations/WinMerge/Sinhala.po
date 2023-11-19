@@ -285,6 +285,9 @@ msgstr ""
 msgid "&Input"
 msgstr ""
 
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr ""
 

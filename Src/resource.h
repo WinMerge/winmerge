@@ -1064,6 +1064,7 @@
 #define ID_WEB_SYNC_SCROLL              33766
 #define ID_WEB_SYNC_CLICK               33767
 #define ID_WEB_SYNC_INPUT               33768
+#define ID_WEB_SYNC_GOBACKFORWARD       33769
 #define ID_WEB_CLEAR_DISK_CACHE         33780
 #define ID_WEB_CLEAR_COOKIES            33781
 #define ID_WEB_CLEAR_BROWSING_HISTORY   33782

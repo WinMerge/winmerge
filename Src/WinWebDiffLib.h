@@ -61,6 +61,7 @@ struct IWebDiffWindow
 		EVENT_SCROLL        = ( 1 << 0 ),
 		EVENT_CLICK         = ( 1 << 1 ),
 		EVENT_INPUT         = ( 1 << 2 ),
+		EVENT_GOBACKFORWARD = ( 1 << 3 ),
 	};
 	enum CompareState
 	{

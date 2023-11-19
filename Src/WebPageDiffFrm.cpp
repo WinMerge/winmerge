@@ -115,8 +115,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_WEB_COMPARE_HTMLS, OnWebCompareHTMLs)
 	ON_COMMAND(ID_WEB_COMPARE_TEXTS, OnWebCompareTexts)
 	ON_COMMAND(ID_WEB_COMPARE_RESOURCETREES, OnWebCompareResourceTrees)
-	ON_COMMAND_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_INPUT, OnWebSyncEvent)
-	ON_UPDATE_COMMAND_UI_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_INPUT, OnUpdateWebSyncEvent)
+	ON_COMMAND_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_GOBACKFORWARD, OnWebSyncEvent)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_WEB_SYNC_ENABLED, ID_WEB_SYNC_GOBACKFORWARD, OnUpdateWebSyncEvent)
 	ON_COMMAND_RANGE(ID_WEB_CLEAR_DISK_CACHE, ID_WEB_CLEAR_ALL_PROFILE, OnWebClear)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
@@ -1626,6 +1626,11 @@ void CWebPageDiffFrame::OnWebSyncEvent(UINT nID)
 			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_INPUT));
 		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, m_pWebDiffWindow->GetSyncEventFlags());
 		break;
+	case ID_WEB_SYNC_GOBACKFORWARD:
+		m_pWebDiffWindow->SetSyncEventFlag(IWebDiffWindow::EVENT_GOBACKFORWARD,
+			!m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_GOBACKFORWARD));
+		GetOptionsMgr()->SaveOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, m_pWebDiffWindow->GetSyncEventFlags());
+		break;
 	}
 }
 
@@ -1644,6 +1649,9 @@ void CWebPageDiffFrame::OnUpdateWebSyncEvent(CCmdUI* pCmdUI)
 		break;
 	case ID_WEB_SYNC_INPUT:
 		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_INPUT));
+		break;
+	case ID_WEB_SYNC_GOBACKFORWARD:
+		pCmdUI->SetCheck(m_pWebDiffWindow->GetSyncEventFlag(IWebDiffWindow::EVENT_GOBACKFORWARD));
 		break;
 	}
 }
