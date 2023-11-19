@@ -245,6 +245,24 @@ msgstr "Rozmiar"
 msgid "Fit to Window"
 msgstr "Dopasuj do okna"
 
+msgid "&Event Synchronization"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "Wyczyść dane przeglądania"
 

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2023-11-06 23:06+0900\n"
+"PO-Revision-Date: 2023-11-19 22:04+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -242,6 +242,24 @@ msgstr "サイズ(&S)"
 
 msgid "Fit to Window"
 msgstr "ウインドウに合わせる"
+
+msgid "&Event Synchronization"
+msgstr "イベント同期(&E)"
+
+msgid "&Enabled"
+msgstr "有効(&E)"
+
+msgid "&Scroll"
+msgstr "スクロール(&S)"
+
+msgid "&Click"
+msgstr "クリック(&C)"
+
+msgid "&Input"
+msgstr "入力(&I)"
+
+msgid "&GoBack/Forward"
+msgstr "戻る/進む(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "閲覧データのクリア(&B)"

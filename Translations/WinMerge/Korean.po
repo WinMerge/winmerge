@@ -279,6 +279,24 @@ msgstr "크기(&S)"
 msgid "Fit to Window"
 msgstr "창에 맞춤"
 
+msgid "&Event Synchronization"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "검색 데이터 지우기(&B)"
 

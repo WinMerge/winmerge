@@ -245,6 +245,24 @@ msgstr "&Tamaño"
 msgid "Fit to Window"
 msgstr "Axustar á ventá"
 
+msgid "&Event Synchronization"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "&Borrar datos de navegación"
 

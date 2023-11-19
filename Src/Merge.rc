@@ -241,6 +241,15 @@ BEGIN
             MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
             MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
         END
+        POPUP "&Event Synchronization"
+        BEGIN
+            MENUITEM "&Enabled",                    ID_WEB_SYNC_ENABLED
+            MENUITEM SEPARATOR
+            MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
+            MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
+            MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+            MENUITEM "&GoBack/Forward",             ID_WEB_SYNC_GOBACKFORWARD
+        END
         POPUP "Clear &Browsing Data"
         BEGIN
             MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
@@ -1151,6 +1160,19 @@ BEGIN
         MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
         MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
         MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+    END
+END
+
+IDR_POPUP_WEBPAGE_SYNC_EVENTS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Enabled",                    ID_WEB_SYNC_ENABLED
+        MENUITEM SEPARATOR
+        MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
+        MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
+        MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+        MENUITEM "&GoBack/Forward",             ID_WEB_SYNC_GOBACKFORWARD
     END
 END
 
@@ -2332,7 +2354,8 @@ BEGIN
     EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
     LTEXT           "UA:",-1,214,4,16,10
     EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
-    CONTROL         "View &Differences",IDC_SHOWDIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,2,96,14
+    CONTROL         "&Event Synchronization",IDC_SYNC_EVENTS,"Button",BS_SPLITBUTTON | WS_TABSTOP,362,2,106,14
+    CONTROL         "View &Differences",IDC_SHOWDIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,472,2,96,14
 END
 
 
