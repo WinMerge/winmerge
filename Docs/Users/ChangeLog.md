@@ -23,6 +23,7 @@
 
 - BugFix: Close main window with 'Esc' if there is only one MDI child window
     (#2084)
+- Webpage Compare: synchronize events (#2111,#2064) 
 
 ### Folder compare
 
