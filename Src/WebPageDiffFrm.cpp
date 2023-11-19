@@ -323,9 +323,6 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 {
 	switch (event.type)
 	{
-	case WebDiffEvent::NavigationStarting:
-		UpdateLastCompareResult();
-		break;
 	case WebDiffEvent::SourceChanged:
 	case WebDiffEvent::TabChanged:
 	{
@@ -344,6 +341,9 @@ void CWebPageDiffFrame::OnWebDiffEvent(const WebDiffEvent& event)
 	}
 	case WebDiffEvent::ZoomFactorChanged:
 		UpdateWebPageDiffBar();
+		break;
+	case WebDiffEvent::CompareStateChanged:
+		UpdateLastCompareResult();
 		break;
 	}
 }
