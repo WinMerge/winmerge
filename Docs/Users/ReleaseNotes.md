@@ -57,9 +57,9 @@ Please submit bug reports to our bug-tracker.
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2088)
+  - Brazilian (PR #2088,#2112)
   - Bulgarian (PR #2105)
-  - Chinese Simplified (PR #2091)
+  - Chinese Simplified (PR #2091,#2113)
   - French (PR #2106)
   - Galician (PR #2085,#2107)
   - Hungarian (PR #2093)
