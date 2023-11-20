@@ -245,22 +245,22 @@ msgid "Fit to Window"
 msgstr "Ajustar à Janela"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "Sincronização de &Eventos"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "Habilitado"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "Rolar"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Clicar"
 
 msgid "&Input"
-msgstr ""
+msgstr "Entrada"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "Voltar/Avançar"
 
 msgid "Clear &Browsing Data"
 msgstr "Limpar Dados de Navegação"
