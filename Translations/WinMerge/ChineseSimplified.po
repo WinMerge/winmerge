@@ -246,25 +246,25 @@ msgid "&Size"
 msgstr "大小(&S)"
 
 msgid "Fit to Window"
-msgstr "窗口内显示"
+msgstr "适应窗口"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "事件同步(&E)"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "已启用(&E)"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "滚动(&S)"
 
 msgid "&Click"
-msgstr ""
+msgstr "点击(&C)"
 
 msgid "&Input"
-msgstr ""
+msgstr "输入(&I)"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "返回/前进(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "清除浏览数据(&B)"
