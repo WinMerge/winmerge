@@ -65,7 +65,7 @@ Please submit bug reports to our bug-tracker.
   - Hungarian (PR #2093)
   - Japanese
   - Korean (PR #2092)
-  - Lithuanian (PR #2090)
+  - Lithuanian (PR #2090,#2114)
   - Polish (PR #2087)
   - Romanian (PR #2089,#2095)
   - Slovenian (#2096)
