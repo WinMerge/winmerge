@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-08-05 10:45+0000\n"
-"PO-Revision-Date: 2023-11-07 18:13+0100\n"
+"PO-Revision-Date: 2023-11-20 20:39+0100\n"
 "Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
 "Language-Team: Slovenian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: sl\n"
@@ -245,22 +245,22 @@ msgid "Fit to Window"
 msgstr "Prilagodi oknu"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "Sinhronizacija do&godkov"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "O&mogočeno"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "&Pomakni"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Klik"
 
 msgid "&Input"
-msgstr ""
+msgstr "&Vnos"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "Po&jdi nazaj/naprej"
 
 msgid "Clear &Browsing Data"
 msgstr "Počis&ti podatke brskanja"

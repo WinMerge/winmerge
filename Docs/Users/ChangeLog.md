@@ -1,5 +1,12 @@
 # Change log
 
+## WinMerge 2.16.36 - 2023-11-27
+
+### Translations
+
+- Translation updates:
+  - Slovenian
+
 ## WinMerge 2.16.35 - 2023-11-20
 
 ### File compare

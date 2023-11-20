@@ -1,6 +1,7 @@
-# WinMerge 2.16.35 Beta Release Notes
+# WinMerge 2.16.34 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.36?](#what-is-new-in-21636)
 - [What Is New in 2.16.35 beta?](#what-is-new-in-21635-beta)
 - [Known issues](#known-issues)
 
@@ -8,10 +9,17 @@ November 2023
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.36 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.36
+
+### Translations
+
+- Translation updates:
+  - Slovenian
 
 ## What Is New in 2.16.35 Beta
 
