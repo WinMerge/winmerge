@@ -20,6 +20,7 @@ Please submit bug reports to our bug-tracker.
 
 - Translation updates:
   - Slovenian
+  - Turkish (PR #2116)
 
 ## What Is New in 2.16.35 Beta
 

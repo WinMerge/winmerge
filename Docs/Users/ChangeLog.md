@@ -6,6 +6,7 @@
 
 - Translation updates:
   - Slovenian
+  - Turkish (PR #2116)
 
 ## WinMerge 2.16.35 - 2023-11-20
 
