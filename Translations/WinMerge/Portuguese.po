@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2023-09-03 16:25+0100\n"
+"PO-Revision-Date: 2023-11-23 13:49+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -246,25 +246,25 @@ msgid "Fit to Window"
 msgstr "Ajustar à janela"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "Sincronização de &eventos"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "&Ativado"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "&Rolar"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Clicar"
 
 msgid "&Input"
-msgstr ""
+msgstr "&Introduzir"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "&Voltar/Avançar"
 
 msgid "Clear &Browsing Data"
-msgstr "Limpar dados de navegação"
+msgstr "Limpar dados de &navegação"
 
 msgid "&Disk Cache"
 msgstr "Cache do &disco"
@@ -989,10 +989,10 @@ msgid "Right Shell menu"
 msgstr "Menu de contexto da direita"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Ambos os menus Shell"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Todos os menus Shell"
 
 msgid "Copy"
 msgstr "Copiar"
@@ -4116,22 +4116,22 @@ msgid "Clipboard Compare"
 msgstr "Comparação da área de transferência"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Imprimir..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Pré-&visualizar página"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Duas páginas"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Uma página"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "&Ampliar"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "&Reduzir"
 
 msgid "Prettification"
 msgstr "Embelezamento"
