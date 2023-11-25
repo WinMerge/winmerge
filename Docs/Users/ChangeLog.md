@@ -4,7 +4,14 @@
 
 ### Translations
 
+### File filter
+
+- Bugfix: Modify the "File Filters" dialog. (#2118) 
+
+### Translations
+
 - Translation updates:
+  - Portuguese (PR #2119)
   - Slovenian
   - Turkish (PR #2116)
 

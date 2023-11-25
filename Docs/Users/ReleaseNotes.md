@@ -1,4 +1,4 @@
-# WinMerge 2.16.34 Release Notes
+# WinMerge 2.16.36 Release Notes
 
 - [About This Release](#about-this-release)
 - [What Is New in 2.16.36?](#what-is-new-in-21636)
@@ -16,9 +16,14 @@ Please submit bug reports to our bug-tracker.
 
 ## What Is New in 2.16.36
 
+### File filter
+
+- Bugfix: Modify the "File Filters" dialog. (#2118) 
+
 ### Translations
 
 - Translation updates:
+  - Portuguese (PR #2119)
   - Slovenian
   - Turkish (PR #2116)
 
