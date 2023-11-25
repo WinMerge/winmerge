@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.30.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-03-28 08:32+0000\n"
-"PO-Revision-Date: 2023-11-15 13:59+0100\n"
+"PO-Revision-Date: 2023-11-24 17:31+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: Spanish <winmerge-translate@lists.sourceforge.net>\n"
 "Language: es_ES\n"
@@ -248,22 +248,22 @@ msgid "Fit to Window"
 msgstr "Ajustar a la ventana"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "Sincronización de &eventos"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "&Habilitado"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "Des&prazar"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Clic"
 
 msgid "&Input"
-msgstr ""
+msgstr "&Entrada"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "&Atrás/Adiante"
 
 msgid "Clear &Browsing Data"
 msgstr "&Borrar datos de navegación"
