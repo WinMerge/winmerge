@@ -273,22 +273,22 @@ msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "&Esemény szinkronizálás"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "&Engedélyezve"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "&Görgetés"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Kattintás"
 
 msgid "&Input"
-msgstr ""
+msgstr "&Bevitel"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "&Ugrás vissza/előre"
 
 msgid "Clear &Browsing Data"
 msgstr "Böngészési adatok törlése"
