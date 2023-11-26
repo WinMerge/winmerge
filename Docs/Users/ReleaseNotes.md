@@ -16,6 +16,16 @@ Please submit bug reports to our bug-tracker.
 
 ## What Is New in 2.16.36
 
+### Image compare
+
+- BugFix: Fix an issue where opening read-only and multi-page image files
+    would cause them to be treated as only one-page images.
+    (winmerge/winimerge#32)
+
+### Webpage compare
+
+- Improved performance when there are many differences
+
 ### File filter
 
 - Bugfix: Modify the "File Filters" dialog. (#2118) 
@@ -23,7 +33,9 @@ Please submit bug reports to our bug-tracker.
 ### Translations
 
 - Translation updates:
+  - Galician (PR #2120)
   - Portuguese (PR #2119)
+  - Spanish (PR #2120)
   - Slovenian
   - Turkish (PR #2116)
 
