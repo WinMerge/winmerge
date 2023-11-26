@@ -33,7 +33,9 @@ Please submit bug reports to our bug-tracker.
 ### Translations
 
 - Translation updates:
+  - Corsican (PR #2123)
   - Galician (PR #2120)
+  - Hungarian (PR #2122)
   - Portuguese (PR #2119)
   - Spanish (PR #2120)
   - Slovenian
