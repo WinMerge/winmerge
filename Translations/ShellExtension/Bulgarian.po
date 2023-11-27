@@ -7,15 +7,14 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Стоян <stoyanster от гмаил>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
+"Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: bg\n"
-"X-Generator: Poedit 2.1.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -43,34 +42,34 @@ msgstr "ShellExtension"
 #: ShellExtension.rc:112
 #, c-format
 msgid "Win&Merge"
-msgstr ""
+msgstr "Win&Merge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "Сравняване &като"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "&Сравняване"
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Сра&вняване…"
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Избиране на &ляв"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Избиране на &среден"
 
 #: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Избиране на &ляв отново"
