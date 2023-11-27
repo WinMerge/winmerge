@@ -242,6 +242,24 @@ msgstr "&அளவு"
 msgid "Fit to Window"
 msgstr "சாளரத்தில் பொருத்து"
 
+msgid "&Event Synchronization"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "&உலாவல் தரவை அழி"
 
@@ -4084,6 +4102,24 @@ msgid "New Webpage Compare"
 msgstr ""
 
 msgid "Clipboard Compare"
+msgstr ""
+
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
 msgstr ""
 
 msgid "Prettification"

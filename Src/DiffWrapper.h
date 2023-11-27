@@ -164,7 +164,7 @@ public:
 	void SetCreateDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options) const;
 	const DiffutilsOptions& GetOptions() const { return m_options; }
-	void SetOptions(const DIFFOPTIONS *options);
+	void SetOptions(const DIFFOPTIONS *options, bool setToDiffutils = false);
 	void SetTextForAutomaticPrediff(const String &text);
 	void SetPrediffer(const PrediffingInfo * prediffer = nullptr);
 	void GetPrediffer(PrediffingInfo * prediffer) const;

@@ -256,7 +256,7 @@ int FolderCmp::prepAndCompareFiles(DIFFITEM &di)
 
 				diffList.Clear();
 				dw.SetCompareFiles(tFiles);
-				dw.SetOptions(m_pCtxt->GetOptions());
+				dw.SetOptions(m_pCtxt->GetOptions(), true);
 				dw.SetFilterList(m_pCtxt->m_pFilterList);
 				dw.SetSubstitutionList(m_pCtxt->m_pSubstitutionList);
 				dw.SetFilterCommentsSourceDef(Ext);

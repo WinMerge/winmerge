@@ -272,6 +272,24 @@ msgstr "Méret"
 msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
 
+msgid "&Event Synchronization"
+msgstr "&Esemény szinkronizálás"
+
+msgid "&Enabled"
+msgstr "&Engedélyezve"
+
+msgid "&Scroll"
+msgstr "&Görgetés"
+
+msgid "&Click"
+msgstr "&Kattintás"
+
+msgid "&Input"
+msgstr "&Bevitel"
+
+msgid "&GoBack/Forward"
+msgstr "&Ugrás vissza/előre"
+
 msgid "Clear &Browsing Data"
 msgstr "Böngészési adatok törlése"
 
@@ -4765,6 +4783,24 @@ msgstr "Új weboldal összehasonlítás"
 
 msgid "Clipboard Compare"
 msgstr "Vágólap összehasonlítás"
+
+msgid "&Print..."
+msgstr "&Nyomtatás..."
+
+msgid "Pre&v Page"
+msgstr "Kö&vetkező oldal"
+
+msgid "&Two Page"
+msgstr "&Két oldal"
+
+msgid "&One Page"
+msgstr "&Egy oldal"
+
+msgid "Zoom &In"
+msgstr "&Nagyítás"
+
+msgid "Zoom &Out"
+msgstr "K&icsinyítés"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

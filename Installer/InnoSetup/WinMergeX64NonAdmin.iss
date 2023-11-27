@@ -151,7 +151,7 @@ Name: Persian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Farsi.is
 Name: Polish; MessagesFile: compiler:Languages\Polish.isl,..\..\Translations\InnoSetup\Polish.isl
 Name: Portuguese; MessagesFile: compiler:Languages\Portuguese.isl,..\..\Translations\InnoSetup\Portuguese.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Portuguese.txt
 Name: PortugueseBrazilian; MessagesFile: compiler:Languages\BrazilianPortuguese.isl,..\..\Translations\InnoSetup\Brazilian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Brazilian.txt
-Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Romanian.isl,..\..\Translations\InnoSetup\Romanian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt
+Name: Romanian; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Romanian.isl,..\..\Translations\InnoSetup\Romanian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Romanian.txt
 Name: Russian; MessagesFile: compiler:Languages\Russian.isl,..\..\Translations\InnoSetup\Russian.isl
 Name: Serbian; MessagesFile: compiler:Languages\SerbianCyrillic.isl,..\..\Translations\InnoSetup\Serbian.isl; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Serbian.txt
 Name: Sinhala; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Sinhala.islu,..\..\Translations\InnoSetup\Sinhala.islu
@@ -656,11 +656,11 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 ;Add Project file extension (.WinMerge) to known extensions and
 ;set WinMerge to open those files
 ;set Notepad to edit project files
-Root: HKCU; Subkey: .WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File; ValueType: String; ValueData: {cm:ProjectFileDesc}; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\WinMergeU.exe"" ""%1"""; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
-Root: HKCU; Subkey: WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\WinMergeU.exe"",1"; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\.WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File; ValueType: String; ValueData: {cm:ProjectFileDesc}; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\WinMergeU.exe"" ""%1"""; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCU; Subkey: Software\Classes\WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\WinMergeU.exe"",1"; Flags: uninsdeletekey
 
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
@@ -673,8 +673,8 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: none;
 ;because a particular message might be added or removed and a new message might occupy a previous message's ID number
 Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\MessageBoxes; ValueType: none; Flags: deletekey
 
-Root: HKCU; SubKey: Directory\Shell\WinMerge\command; ValueType: none; Flags: deletekey noerror
-Root: HKCU; SubKey: Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
+Root: HKCU; SubKey: Software\Classes\Directory\Shell\WinMerge\command; ValueType: none; Flags: deletekey noerror
+Root: HKCU; SubKey: Software\Classes\Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
 
 ;Adds "Start Menu" --> "Run" Support for WinMerge
 Root: HKCU; Subkey: Software\Microsoft\Windows\CurrentVersion\App Paths\WinMerge.exe; ValueType: none; Flags: uninsdeletekey
@@ -765,7 +765,7 @@ Filename: {app}\WinMergeU.exe; Description: {cm:LaunchProgram,WinMerge}; Flags: 
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Components: ShellExtension32bit
 Filename: {sys}\regsvr32.exe; Parameters: "/s /n /i:user ""{app}\{#ShellExtension64bit}"""; Flags: waituntilterminated; Check: not IsWindows11OrLater
 Filename: {app}\WinMerge32BitPluginProxy.exe; Parameters: "/RegServerPerUser"; Flags: waituntilidle
-Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage '{app}\WinMergeContextMenuPackage.msix' -ExternalLocation '{app}'}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
+Filename: {win}\sysnative\WindowsPowerShell\v1.0\PowerShell.exe; Parameters: "-c ""$host.ui.RawUI.WindowTitle = 'Registering WinMergeContextMenu package...'; if ((Get-AppxPackage -name WinMerge) -eq $null) {{ Add-AppxPackage \""{app}\WinMergeContextMenuPackage.msix\"" -ExternalLocation \""{app}\""}"""; Flags: waituntilterminated; Check: IsWindows11OrLater
 
 [UninstallRun]
 Filename: {syswow64}\regsvr32.exe; Parameters: "/s /u /n /i:user ""{app}\{#ShellExtension32bit}"""; Flags: waituntilterminated; Components: ShellExtension32bit

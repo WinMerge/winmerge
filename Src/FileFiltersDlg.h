@@ -71,4 +71,7 @@ protected:
 	afx_msg void OnBnClickedFilterfileInstall();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	void SetButtonState();
 };

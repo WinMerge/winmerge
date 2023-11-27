@@ -245,6 +245,24 @@ msgstr "Rozmiar"
 msgid "Fit to Window"
 msgstr "Dopasuj do okna"
 
+msgid "&Event Synchronization"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "Wyczyść dane przeglądania"
 
@@ -3705,6 +3723,24 @@ msgstr "Porównaj nową stronę internetową"
 
 msgid "Clipboard Compare"
 msgstr "Porównaj schowek"
+
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Upiększanie"

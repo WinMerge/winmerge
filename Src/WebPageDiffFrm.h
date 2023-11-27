@@ -190,6 +190,8 @@ protected:
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareTexts();
 	afx_msg void OnWebCompareResourceTrees();
+	afx_msg void OnWebSyncEvent(UINT nID);
+	afx_msg void OnUpdateWebSyncEvent(CCmdUI* pCmdUI);
 	afx_msg void OnWebClear(UINT nID);
 	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
@@ -198,12 +200,14 @@ protected:
 	afx_msg void OnBnClickedFitToWindow();
 	afx_msg void OnBnClickedShowDifferences();
 	afx_msg void OnBnClickedCompare();
+	afx_msg void OnBnClickedSyncEvents();
 	afx_msg void OnEnChangeWidth();
 	afx_msg void OnEnChangeHeight();
 	afx_msg void OnEnChangeZoom();
 	afx_msg void OnEnChangeUserAgent();
 	afx_msg void OnKillFocusBarControls();
 	afx_msg void OnDropDownCompare(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnDropDownSyncEvents(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

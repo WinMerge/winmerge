@@ -247,6 +247,8 @@ inline const String OPT_CMP_WEB_VIEW_WIDTH {_T("Settings/WebPageViewWidth"s)};
 inline const String OPT_CMP_WEB_VIEW_HEIGHT {_T("Settings/WebPageViewHeight"s)};
 inline const String OPT_CMP_WEB_ZOOM {_T("Settings/WebZoom"s)};
 inline const String OPT_CMP_WEB_USER_AGENT {_T("Settings/WebUserAgent"s)};
+inline const String OPT_CMP_WEB_SYNC_EVENTS {_T("Settings/WebSyncEvents"s)};
+inline const String OPT_CMP_WEB_SYNC_EVENT_FLAGS {_T("Settings/WebSyncEventFlags"s)};
 inline const String OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE {_T("Settings/WebPageURLPatternToInclude"s)};
 inline const String OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE {_T("Settings/WebPageURLPatternToExclude"s)};
 

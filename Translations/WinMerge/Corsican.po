@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-09-08 20:55+0000\n"
-"PO-Revision-Date: 2023-09-10 17:36+0200\n"
+"POT-Creation-Date: 2023-11-19 21:53+0000\n"
+"PO-Revision-Date: 2023-11-26 14:57+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -245,6 +245,24 @@ msgstr "&Dimensione"
 
 msgid "Fit to Window"
 msgstr "Adattà à a finestra"
+
+msgid "&Event Synchronization"
+msgstr "&Sincrunizazione d’evenimentu"
+
+msgid "&Enabled"
+msgstr "&Attivatu"
+
+msgid "&Scroll"
+msgstr "&Sfilà"
+
+msgid "&Click"
+msgstr "&Cliccu"
+
+msgid "&Input"
+msgstr "&Entrata"
+
+msgid "&GoBack/Forward"
+msgstr "&Rivene o in avanti"
 
 msgid "Clear &Browsing Data"
 msgstr "&Viutà i dati di navigazione"
@@ -3596,7 +3614,7 @@ msgid ""
 "Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Sfarenza in a linea attuale (F4)"
+"Sfarenza nant’à a linea attuale (F4)"
 
 msgid ""
 "\n"
@@ -4101,6 +4119,24 @@ msgstr "Paragone novu di pagina web"
 
 msgid "Clipboard Compare"
 msgstr "Paragone di preme’papei"
+
+msgid "&Print..."
+msgstr "&Stampà…"
+
+msgid "Pre&v Page"
+msgstr "&Pagina precedente"
+
+msgid "&Two Page"
+msgstr "&Duie pagine"
+
+msgid "&One Page"
+msgstr "&Una pagina"
+
+msgid "Zoom &In"
+msgstr "Ingrandamentu più &forte"
+
+msgid "Zoom &Out"
+msgstr "Ingrandamentu &menu forte"
 
 msgid "Prettification"
 msgstr "Imbellimentu"

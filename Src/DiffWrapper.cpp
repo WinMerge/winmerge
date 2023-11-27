@@ -141,11 +141,13 @@ void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
  * internally and stores them.
  * @param [in] options Pointer to structure having new options.
  */
-void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
+void CDiffWrapper::SetOptions(const DIFFOPTIONS *options, bool setToDiffutils)
 {
 	assert(options != nullptr);
 	m_options.SetFromDiffOptions(*options);
 	m_xdlFlags = make_xdl_flags(m_options);
+	if (setToDiffutils)
+		m_options.SetToDiffUtils();
 }
 
 void CDiffWrapper::SetPrediffer(const PrediffingInfo * prediffer /*= nullptr*/)

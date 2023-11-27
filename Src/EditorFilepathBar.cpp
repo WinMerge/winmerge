@@ -50,7 +50,7 @@ CEditorFilePathBar::~CEditorFilePathBar()
 BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 {
 	if (! __super::Create(pParentWnd, CEditorFilePathBar::IDD, 
-			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
+			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, AFX_IDW_CONTROLBAR_FIRST+29))
 		return FALSE;
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };

@@ -24,6 +24,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Generator: Poedit 3.2.2\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -245,7 +246,25 @@ msgid "&Size"
 msgstr "大小(&S)"
 
 msgid "Fit to Window"
-msgstr "窗口内显示"
+msgstr "适应窗口"
+
+msgid "&Event Synchronization"
+msgstr "事件同步(&E)"
+
+msgid "&Enabled"
+msgstr "已启用(&E)"
+
+msgid "&Scroll"
+msgstr "滚动(&S)"
+
+msgid "&Click"
+msgstr "点击(&C)"
+
+msgid "&Input"
+msgstr "输入(&I)"
+
+msgid "&GoBack/Forward"
+msgstr "返回/前进(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "清除浏览数据(&B)"
@@ -4136,6 +4155,24 @@ msgstr "新的网页比较"
 
 msgid "Clipboard Compare"
 msgstr "剪贴板比较"
+
+msgid "&Print..."
+msgstr "打印(&P)..."
+
+msgid "Pre&v Page"
+msgstr "上一页(&V)"
+
+msgid "&Two Page"
+msgstr "双页(&T)"
+
+msgid "&One Page"
+msgstr "单页(&O)"
+
+msgid "Zoom &In"
+msgstr "放大(&I)"
+
+msgid "Zoom &Out"
+msgstr "缩小(&O)"
 
 msgid "Prettification"
 msgstr "格式美化"

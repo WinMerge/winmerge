@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-09-08 20:55+0000\n"
-"PO-Revision-Date: 2023-09-11 11:11+0200\n"
+"POT-Creation-Date: 2023-11-19 21:53+0000\n"
+"PO-Revision-Date: 2023-11-20 14:38+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -178,7 +178,7 @@ msgid "Zoom &In\tCtrl++"
 msgstr "Did&inti\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Mažint&i\tCtrl+-"
+msgstr "Mažin&ti\tCtrl+-"
 
 #. Zoom to normal
 msgid "&Normal\tCtrl+*"
@@ -243,6 +243,24 @@ msgstr "Dydi&s"
 
 msgid "Fit to Window"
 msgstr "Talpinti į langą"
+
+msgid "&Event Synchronization"
+msgstr "Įvykių sinchronizavimas"
+
+msgid "&Enabled"
+msgstr "Į&jungta"
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
 
 msgid "Clear &Browsing Data"
 msgstr "Išvalyti &Naršymo duomenis"
@@ -3705,6 +3723,24 @@ msgstr "Naujas tinklapių palyginimas"
 msgid "Clipboard Compare"
 msgstr "Mainų srities palyginimas"
 
+msgid "&Print..."
+msgstr "S&pausdinti..."
+
+msgid "Pre&v Page"
+msgstr "P&raeitas psl."
+
+msgid "&Two Page"
+msgstr "&2 psl."
+
+msgid "&One Page"
+msgstr "&1 psl."
+
+msgid "Zoom &In"
+msgstr "Did&inti"
+
+msgid "Zoom &Out"
+msgstr "Mažin&ti"
+
 msgid "Prettification"
 msgstr "Sutvarkymas"
 
@@ -3832,13 +3868,13 @@ msgid "Validate HTML"
 msgstr "Patikrinti HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr "Deaseblinti JVM baitinį kodą"
+msgstr "Dekompiliuoti JVM baitinį kodą"
 
 msgid "Disassemble IL Code"
-msgstr "Deaseblinti IL kodą"
+msgstr "Dekompiliuoti IL kodą"
 
 msgid "Disassemble Native Code"
-msgstr "Deaseblinti savajį kodą"
+msgstr "Dekompiliuoti savajį kodą"
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"

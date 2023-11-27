@@ -244,6 +244,24 @@ msgstr "&Koko"
 msgid "Fit to Window"
 msgstr "Sovita ikkunaan"
 
+msgid "&Event Synchronization"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "Tyhjennä &selaustiedot"
 
@@ -4123,6 +4141,24 @@ msgid "New Webpage Compare"
 msgstr ""
 
 msgid "Clipboard Compare"
+msgstr ""
+
+msgid "&Print..."
+msgstr ""
+
+msgid "Pre&v Page"
+msgstr ""
+
+msgid "&Two Page"
+msgstr ""
+
+msgid "&One Page"
+msgstr ""
+
+msgid "Zoom &In"
+msgstr ""
+
+msgid "Zoom &Out"
 msgstr ""
 
 msgid "Prettification"

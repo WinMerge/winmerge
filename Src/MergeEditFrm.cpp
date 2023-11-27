@@ -53,6 +53,7 @@ BEGIN_MESSAGE_MAP(CMergeEditFrame, CMergeFrameCommon)
 END_MESSAGE_MAP()
 
 constexpr UINT_PTR IDT_SAVEPOSITION = 2;
+constexpr UINT_PTR IDT_PREVIEWMODE = 3;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditFrame construction/destruction
@@ -317,6 +318,13 @@ void CMergeEditFrame::OnClose()
 	CMergeFrameCommon::OnClose();
 }
 
+void CMergeEditFrame::OnSetPreviewMode(BOOL bPreview, CPrintPreviewState* pState)
+{
+	KillTimer(IDT_PREVIEWMODE);
+	SetTimer(IDT_PREVIEWMODE, 100, nullptr);
+	__super::OnSetPreviewMode(bPreview, pState);
+}
+
 /// update splitting position for panels 1/2 and headerbar and statusbar 
 void CMergeEditFrame::UpdateHeaderSizes()
 {
@@ -383,12 +391,46 @@ void CMergeEditFrame::OnIdleUpdateCmdUI()
 	CMergeFrameCommon::OnIdleUpdateCmdUI();
 }
 
+LRESULT CMergeEditFrame::CPreviewNumPageButton::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_SETTEXT:
+	{
+		// Translate the One Page Button and Two Page Button on the Print Preivew toolbar.
+		String text = reinterpret_cast<TCHAR*>(lParam);
+		String translated = tr(text);
+		if (translated != text)
+		{
+			SetWindowText(translated.c_str());
+			return TRUE;
+		}
+		break;
+	}
+	case WM_DESTROY:
+		UnsubclassWindow();
+		break;
+	}
+	return __super::WindowProc(message, wParam, lParam);
+}
+
 void CMergeEditFrame::OnTimer(UINT_PTR nIDEvent) 
 {
 	if (nIDEvent == IDT_SAVEPOSITION)
 	{
 		SavePosition();
 		KillTimer(IDT_SAVEPOSITION);
+	}
+	else if (nIDEvent == IDT_PREVIEWMODE)
+	{
+		KillTimer(IDT_PREVIEWMODE);
+		CWnd* pPreviewBar = GetDlgItem(AFX_IDW_PREVIEW_BAR);
+		if (pPreviewBar)
+		{
+			pPreviewBar->Invalidate();
+			theApp.TranslateDialog(pPreviewBar->GetSafeHwnd());
+			m_wndPreviewNumPage.SubclassWindow(pPreviewBar->GetDlgItem(AFX_ID_PREVIEW_NUMPAGE)->GetSafeHwnd());
+		}
 	}
 	else
 	{

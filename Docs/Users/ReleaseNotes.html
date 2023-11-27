@@ -20,123 +20,95 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21634-release-notes">WinMerge 2.16.34 Release Notes</h1>
+<h1 id="winmerge-21636-release-notes">WinMerge 2.16.36 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21634">What Is New in 2.16.34?</a></li>
-<li><a href="#what-is-new-in-21633-beta">What Is New in 2.16.33 beta?</a></li>
+<li><a href="#what-is-new-in-21636">What Is New in 2.16.36?</a></li>
+<li><a href="#what-is-new-in-21635-beta">What Is New in 2.16.35 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>October 2023</p>
+<p>November 2023</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.34 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge 2.16.36 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21634">What Is New in 2.16.34</h2>
-<h3 id="file-compare">File compare</h3>
-<ul>
-<li>Allow NUL and \.\NUL in paths specified as command line arguments (PR #2056)</li>
-<li>Added &quot;(F4)&quot; to the description of the toolbar icon &quot;Difference in the Current Line&quot;. (#2050)</li>
-<li>Fix a crash problem when the Diff algorithm is set to something other than default and one file does not have an EOL of the last line and the other file has an EOL of the last line.</li>
-</ul>
+<h2 id="what-is-new-in-21636">What Is New in 2.16.36</h2>
 <h3 id="image-compare">Image compare</h3>
 <ul>
-<li>BugFix: Fixed the issue where .png is added when saving even if the file format does not use a converter such as jpg or png file.</li>
+<li>BugFix: Fix an issue where opening read-only and multi-page image files would cause them to be treated as only one-page images. (winmerge/winimerge#32)</li>
 </ul>
-<h3 id="folder-compare">Folder compare</h3>
+<h3 id="webpage-compare">Webpage compare</h3>
 <ul>
-<li>BugFix: Folder compare omits unique folders from results if they contain any files and/or subfolders folder compare/merge (#2046)</li>
+<li>Improved performance when there are many differences</li>
 </ul>
-<h3 id="line-filters">Line filters</h3>
+<h3 id="file-filter">File filter</h3>
 <ul>
-<li>Modify the &quot;Line Filters&quot; dialog. (PR #2047)</li>
-</ul>
-<h3 id="substitution-filters">Substitution filters</h3>
-<ul>
-<li>Modify the &quot;Substitution Filters&quot; dialog. (PR #2068)</li>
+<li>Bugfix: Modify the &quot;File Filters&quot; dialog. (#2118)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
-<li>French (PR #2055,#2058)</li>
-<li>Korean (PR #2057,#2059,#2060)</li>
+<li>Corsican (PR #2123)</li>
+<li>Galician (PR #2120)</li>
+<li>Hungarian (PR #2122)</li>
+<li>Portuguese (PR #2119)</li>
+<li>Spanish (PR #2120)</li>
+<li>Slovenian</li>
+<li>Turkish (PR #2116)</li>
 </ul></li>
 </ul>
-<h3 id="internals">Internals</h3>
+<h2 id="what-is-new-in-21635-beta">What Is New in 2.16.35 Beta</h2>
+<h3 id="file-compare">File compare</h3>
 <ul>
-<li>Small code changes for CMDIChildWnd handling (#2043)</li>
+<li>BugFix: Fixed an issue where &quot;Copy to Left/Right and Advance&quot; would sometimes skip differences when comparing 3 files. (#1234)</li>
+<li>BugFix: Print Preview buttons are not translatable (#2083,#2079)</li>
+<li>BugFix: Fixed the issue where the caption set in the header bar is restored when the window is resized.</li>
 </ul>
-<h2 id="what-is-new-in-21633-beta">What Is New in 2.16.33 Beta</h2>
-<h3 id="general">General</h3>
+<h3 id="binary-compare">Binary compare</h3>
 <ul>
-<li>Reduce startup time and decrease the usage of Win32 user objects.</li>
+<li>BugFix: V2.16.34 &quot;X86&quot; wired action (#2081)</li>
 </ul>
-<h3 id="file-compare-1">File compare</h3>
+<h3 id="image-compare-1">Image compare</h3>
 <ul>
-<li>BugFix: Cannot compare one-line file (#1972)</li>
-<li>BugFix: &quot;Current Difference&quot; specified by double-clicking cannot merge using the &quot;Copy to Right (or Left)&quot; menu. (#1980)</li>
-<li>BugFix: Wimerge saves changes to the wrong file (#1985) (PR #1988)</li>
-<li>BugFix: &quot;Ignore comment differences&quot; still compares inline comments (#2008)</li>
-<li>Update Rust syntax highlighting keyword list. (PR #1998)</li>
-<li>[Feature Request] Both Shell Menu (#1986) (PR #2021)</li>
+<li>BugFix: Close main window with &#39;Esc&#39; if there is only one MDI child window (#2084)</li>
 </ul>
-<h3 id="table-compare">Table compare</h3>
+<h3 id="webpage-compare-1">Webpage compare</h3>
 <ul>
-<li>When &quot;Use First Line as Header&quot; is enabled, make the header display the first line regardless of the scroll position when the first line is hidden.</li>
-<li>Generate reports in tabular format for table comparisons. (PR #1983)</li>
+<li>BugFix: Close main window with &#39;Esc&#39; if there is only one MDI child window (#2084)</li>
+<li>Webpage Compare: synchronize events (#2111,#2064)</li>
 </ul>
-<h3 id="folder-compare-1">Folder compare</h3>
+<h3 id="folder-compare">Folder compare</h3>
 <ul>
-<li>BugFix: Fixed an issue where Differences, Left/Right EOL columns, etc. were displayed as undefined values when the file comparison method was Full Contents or Quick Contents and the file size exceeded 64MB.</li>
-<li>BugFix: Fix the problem that when comparing with the BinaryContents compare method, the contents of the files are identical, but if one side is a symbolic link, it is judged to be different. (#1976)</li>
-<li>BugFix: Fixed an issue where values in the Left/Right EOL column may not display correctly when using the Quick contents compare method.</li>
-<li>Add Expand Different Subfolders menu item (#1382) (PR #1964)</li>
-<li>Allow Diff algorithms (patience, histogram) other than default to be applied to folder comparisons (PR #2015) (#2002)</li>
-<li>Show confirmation message when closing a window that took a long time to compare folders</li>
+<li>BugFix: Ignoring carriage return differences doesn&#39;t work anymore (#2080,#2099)</li>
 </ul>
-<h3 id="line-filters-1">Line filters</h3>
+<h3 id="file-filters">File filters</h3>
 <ul>
-<li>Improve line filters and substitution filters (PR #2032) (#796) (#1620)</li>
+<li>BugFix: Fixed the issue where &quot;[F]&quot; could be set as the file filter if no file filter was selected in the Filters dialog.</li>
 </ul>
-<h3 id="substitution-filters-1">Substitution filters</h3>
+<h3 id="installer">Installer</h3>
 <ul>
-<li>Avoid infinite loops in the RegularExpression::subst() function when the length of the string matching the pattern is 0</li>
-<li>Improve line filters and substitution filters (PR #2032) (#796) (#1620)</li>
-</ul>
-<h3 id="options-dialog">Options dialog</h3>
-<ul>
-<li>Execute the &quot;pause&quot; command to prevent the error message from disappearing if the registration of the ShellExtension for Windows 11 fails</li>
-</ul>
-<h3 id="plugins">Plugins</h3>
-<ul>
-<li>BugFix: WinMerge cannot successfully disable some of its Plugins (#2012)</li>
-<li>Update jq to version 1.7</li>
-</ul>
-<h3 id="manual">Manual</h3>
-<ul>
-<li>Manual: Use po4a for manual translation (PR #1994) (#499)</li>
+<li>BugFix: fix bug of Registry path (PR #2086)</li>
+<li>BugFix: &quot;Register Windows 11 Shell Extension&quot; fails because PowerShell script doesn&#39;t escape special chars correctly (#2109)</li>
 </ul>
 <h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #1969,#2001,#2025)</li>
-<li>Chinese Traditional (PR #1953,#1971,#2017,#2026)</li>
-<li>Corsican (PR #2022)</li>
-<li>German (PR #1952,#1977,#1989)</li>
-<li>Hungarian (PR #1968,#1999)</li>
+<li>Brazilian (PR #2088,#2112)</li>
+<li>Bulgarian (PR #2105)</li>
+<li>Chinese Simplified (PR #2091,#2113)</li>
+<li>French (PR #2106)</li>
+<li>Galician (PR #2085,#2107)</li>
+<li>Hungarian (PR #2093)</li>
 <li>Japanese</li>
-<li>Korean (PR #1979,#2030)</li>
-<li>Lithuanian (PR #1974,#2018,#2027)</li>
-<li>Polish (PR #1990)</li>
-<li>Portuguese (PR #1973,#2014)</li>
-<li>Slovenian</li>
-<li>Ukrainian (PR #1955)</li>
+<li>Korean (PR #2092)</li>
+<li>Lithuanian (PR #2090,#2114)</li>
+<li>Polish (PR #2087)</li>
+<li>Romanian (PR #2089,#2095)</li>
+<li>Slovenian (#2096)</li>
+<li>Spanish (PR #2085,#2107)</li>
+<li>Turkish (PR #2076)</li>
 </ul></li>
-</ul>
-<h3 id="internals-1">Internals</h3>
-<ul>
-<li>Optimize inserts in std containers using reserve (PR #2000)</li>
 </ul>
 <h2 id="known-issues">Known issues</h2>
 <ul>

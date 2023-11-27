@@ -39,9 +39,9 @@ public:
 	explicit SE_Exception(unsigned long n) : nSE(n) {}
 	~SE_Exception() = default;
 
-	unsigned long getSeNumber() { return nSE; }
+	unsigned long getSeNumber() const { return nSE; }
 #ifdef _MSC_VER
-	const tchar_t *getSeMessage()
+	const tchar_t *getSeMessage() const
 	{
 		// known exceptions (from WINNT.H)
 		#define EXCEPTION( x ) case EXCEPTION_##x: return _T(#x);
@@ -75,13 +75,13 @@ public:
 		// don't localize this as we do not localize the known exceptions
 		return _T("Unknown structured exception");
 	}
-	virtual bool GetErrorMessage(tchar_t *lpszError, unsigned nMaxError, unsigned *pnHelpContext = nullptr)
+	virtual bool GetErrorMessage(tchar_t *lpszError, unsigned nMaxError, unsigned *pnHelpContext = nullptr) const
 	{
 		StringCchPrintf(lpszError, nMaxError, _T("Exception %s (0x%.8x)"), getSeMessage(), static_cast<unsigned>(getSeNumber()));
 		return true;
 	}
 #else
-	virtual bool GetErrorMessage(tchar_t *lpszError, unsigned nMaxError, unsigned *pnHelpContext = nullptr)
+	virtual bool GetErrorMessage(tchar_t *lpszError, unsigned nMaxError, unsigned *pnHelpContext = nullptr) const
 	{
 		return true;
 	}
