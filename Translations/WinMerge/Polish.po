@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-05-01 23:13+0000\n"
-"PO-Revision-Date: 2023-05-24 00:00+0000\n"
+"PO-Revision-Date: 2023-11-28 00:00+0000\n"
 "Last-Translator: Mirosław Żylewicz\n"
 "Language-Team: Polish\n"
 "MIME-Version: 1.0\n"
@@ -246,22 +246,22 @@ msgid "Fit to Window"
 msgstr "Dopasuj do okna"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "Synchronizacja zdarzeń"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "Włączona"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "Przewijanie"
 
 msgid "&Click"
-msgstr ""
+msgstr "Kliknięcie"
 
 msgid "&Input"
-msgstr ""
+msgstr "Wejście"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "Wstecz/Dalej"
 
 msgid "Clear &Browsing Data"
 msgstr "Wyczyść dane przeglądania"
@@ -992,7 +992,7 @@ msgid "Both Shell menu"
 msgstr ""
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Wszystkie menu powłoki"
 
 msgid "Copy"
 msgstr "Kopiuj"
@@ -3722,22 +3722,22 @@ msgid "Clipboard Compare"
 msgstr "Porównaj schowek"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Drukuj..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Poprzednia strona"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "Dwie strony"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Jedną stronę"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Powiększ"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Pomniejsz"
 
 msgid "Prettification"
 msgstr "Upiększanie"
