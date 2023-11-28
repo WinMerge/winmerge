@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.32.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-11-07 21:38+0900\n"
+"PO-Revision-Date: 2023-11-29 00:55+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ko\n"
@@ -280,22 +280,22 @@ msgid "Fit to Window"
 msgstr "창에 맞춤"
 
 msgid "&Event Synchronization"
-msgstr ""
+msgstr "이벤트 동기화(&E)"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "사용함(&E)"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "스크롤(&S)"
 
 msgid "&Click"
-msgstr ""
+msgstr "클릭(&C)"
 
 msgid "&Input"
-msgstr ""
+msgstr "입력(&I)"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "뒤로 이동/앞으로(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "검색 데이터 지우기(&B)"
@@ -739,7 +739,7 @@ msgstr "인쇄 미리보기(&W)..."
 
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "줄끝 변환(&C)"
+msgstr "줄 끝 변환(&C)"
 
 #, c-format
 msgid "Mer&ge Mode\tF9"
