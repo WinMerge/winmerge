@@ -3183,7 +3183,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CEPoint &curPo
   return nIndex;
 }
 
-void CCrystalTextView::SubLineCursorPosToTextPos( const CEPoint &subLineCurPos, CEPoint &textPos )
+CEPoint CCrystalTextView::SubLineCursorPosToTextPos( const CEPoint &subLineCurPos )
 {
   // Get line breaks
   int	nSubLineOffset, nLine;
@@ -3191,8 +3191,7 @@ void CCrystalTextView::SubLineCursorPosToTextPos( const CEPoint &subLineCurPos, 
   GetLineBySubLine( subLineCurPos.y, nLine, nSubLineOffset );
 
   // compute cursor-position
-  textPos.x = CursorPointToCharPos( nLine, CEPoint( subLineCurPos.x, nSubLineOffset ) );
-  textPos.y = nLine;
+  return { CursorPointToCharPos(nLine, CEPoint(subLineCurPos.x, nSubLineOffset)), nLine };
 }
 
 /**
@@ -3980,8 +3979,7 @@ OnSize (UINT nType, int cx, int cy)
 
   //BEGIN SW
   // get char position of top left visible character with old cached word wrap
-  CEPoint	topPos;
-  SubLineCursorPosToTextPos( CEPoint( 0, m_nTopSubLine ), topPos );
+  CEPoint	topPos = SubLineCursorPosToTextPos( CEPoint( 0, m_nTopSubLine ) );
   //END SW
 
   //BEGIN SW
