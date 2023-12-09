@@ -774,7 +774,7 @@ bool CImgMergeFrame::DoFileSave(int pane)
 
 bool CImgMergeFrame::DoFileSaveAs(int pane, bool packing)
 {
-	const String path = m_filePaths.GetPath(pane) + (m_pImgMergeWindow->IsSaveSupported(pane) ? _T("") : _T(".png"));
+	const String path = m_filePaths.GetPath(pane);
 	String strPath;
 	String title;
 	if (pane == 0)
@@ -784,7 +784,8 @@ bool CImgMergeFrame::DoFileSaveAs(int pane, bool packing)
 	else
 		title = _("Save Middle File As");
 RETRY:
-	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, path.c_str(), title))
+	if (SelectFile(AfxGetMainWnd()->GetSafeHwnd(), strPath, false, 
+		(path +(m_pImgMergeWindow->IsSaveSupported(pane) ? _T("") : _T(".png"))).c_str(), title))
 	{
 		std::wstring filename = ucr::toUTF16(strPath);
 		if (packing && !m_infoUnpacker.GetPluginPipeline().empty())
