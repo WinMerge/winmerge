@@ -205,6 +205,8 @@ bool CWebPageDiffFrame::OpenDocs(int nFiles, const FileLocation fileloc[], const
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
 		m_filePaths.SetPath(pane, fileloc[pane].filepath, false);
+		if (paths::isFileURL(m_filePaths[pane]))
+			m_filePaths[pane] = paths::FromURL(m_filePaths[pane]);
 		m_bRO[pane] = bRO[pane];
 		m_strDesc[pane] = strDesc ? strDesc[pane] : _T("");
 		if (fileloc[pane].filepath.empty() || paths::IsNullDeviceName(fileloc[pane].filepath))
