@@ -39,6 +39,8 @@ static const tchar_t * s_apszCppKeywordList[] =
   {
     _T ("abstract"),
     _T ("as"),
+    _T ("async"),
+    _T ("await"),
     _T ("base"),
     _T ("bool"),
     _T ("break"),
@@ -115,11 +117,13 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("unsafe"),
     _T ("ushort"),
     _T ("using"),
+    _T ("var"),
     _T ("virtual"),
     _T ("void"),
     _T ("volatile"),
     _T ("when"),
     _T ("while"),
+    _T ("yield"),
   };
 
 
