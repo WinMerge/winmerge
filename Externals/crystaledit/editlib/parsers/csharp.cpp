@@ -38,6 +38,9 @@
 static const tchar_t * s_apszCppKeywordList[] =
   {
     _T ("abstract"),
+    _T ("as"),
+    _T ("async"),
+    _T ("await"),
     _T ("base"),
     _T ("bool"),
     _T ("break"),
@@ -86,6 +89,7 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("operator"),
     _T ("out"),
     _T ("override"),
+    _T ("params"),
     _T ("private"),
     _T ("protected"),
     _T ("public"),
@@ -97,6 +101,7 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("set"),
     _T ("short"),
     _T ("sizeof"),
+    _T ("stackalloc"),
     _T ("static"),
     _T ("string"),
     _T ("struct"),
@@ -112,10 +117,13 @@ static const tchar_t * s_apszCppKeywordList[] =
     _T ("unsafe"),
     _T ("ushort"),
     _T ("using"),
+    _T ("var"),
     _T ("virtual"),
     _T ("void"),
+    _T ("volatile"),
     _T ("when"),
     _T ("while"),
+    _T ("yield"),
   };
 
 
