@@ -1,85 +1,85 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=CaractÈristiques optionnelles:
+OptionalFeatures=Caract√©ristiques optionnelles :
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Installation Typique
-FullInstallation=Installation ComplËte
-CompactInstallation=Installation Compacte
-CustomInstallation=Installation PersonnalisÈe
+TypicalInstallation=Installation - typique
+FullInstallation=Installation - compl√®te
+CompactInstallation=Installation - compacte
+CustomInstallation=Installation - personnalis√©e
 
 ;Components
-AppCoreFiles=Fichiers Vitaux Winmerge
+AppCoreFiles=Fichiers vitaux - Winmerge
 Filters=Filtres
 Plugins=Plugiciels
-ShellExtension32bit=Menu contextuel WinMerge 32-bit
+ShellExtension32bit=Menu contextuel - WinMerge 32-bit
 
 ;Localization Components
-Languages=Langages
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
+Languages=Langues
+ArabicLanguage=Menus et dialogues Arabe
+BasqueLanguage=Menus et dialogues Basque
 BulgarianLanguage=Menus et dialogues Bulgare
 CatalanLanguage=Menus et dialogues Catalan
-ChineseSimplifiedLanguage=Menus et dialogues Chinois (SimplifiÈ)
+ChineseSimplifiedLanguage=Menus et dialogues Chinois (Simplifi√©)
 ChineseTraditionalLanguage=Menus et dialogues Chinois (Traditionnel)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Menus et dialogues Corse
 CroatianLanguage=Menus et dialogues Croate
-CzechLanguage=Menus et dialogues TchÈcoslovaque
+CzechLanguage=Menus et dialogues Tch√©coslovaque
 DanishLanguage=Menus et dialogues Danois
-DutchLanguage=Menus et dialogues NÈerlandais
+DutchLanguage=Menus et dialogues N√©erlandais
 FinnishLanguage=Menus et dialogues Finlandais
-FrenchLanguage=Menus et dialogues FranÁais
+FrenchLanguage=Menus et dialogues Fran√ßais
 GalicianLanguage=Menus et dialogues Galicien
 GermanLanguage=Menus et dialogues Allemand
 GreekLanguage=Menus et dialogues Grec
 HungarianLanguage=Menus et dialogues Hongrois
 ItalianLanguage=Menus et dialogues Italien
 JapaneseLanguage=Menus et dialogues Japonais
-KoreanLanguage=Menus et dialogues CorÈen
+KoreanLanguage=Menus et dialogues Cor√©en
 LithuanianLanguage=Menus et dialogues Lituanien
-NorwegianLanguage=Menus et dialogues NorvÈgien
+NorwegianLanguage=Menus et dialogues Norv√©gien
 PersianLanguage=Menus et dialogues Perse
 PolishLanguage=Menus et dialogues Polonais
-PortugueseBrazilLanguage=Menus et dialogues Portugais (BrÈsilien)
+PortugueseBrazilLanguage=Menus et dialogues Portugais (Br√©silien)
 PortugueseLanguage=Menus et dialogues Portugais
 RomanianLanguage=Menus et dialogues Roumain
 RussianLanguage=Menus et dialogues Russe
 SerbianLanguage=Menus et dialogues Serbe
 SinhalaLanguage=Menus et dialogues Singhalais
 SlovakLanguage=Menus et dialogues Slovaque
-SlovenianLanguage=Menus et dialogues SlovËne
+SlovenianLanguage=Menus et dialogues Slov√®ne
 SpanishLanguage=Menus et dialogues Espagnol
-SwedishLanguage=Menus et dialogues SuÈdois
-TamilLanguage=Tamil menus and dialogs
+SwedishLanguage=Menus et dialogues Su√©dois
+TamilLanguage=Menus et dialogues Tamil
 TurkishLanguage=Menus et dialogues Turque
 UkrainianLanguage=Menus et dialogues Ukrainien
 
 ;Tasks
-ExplorerContextMenu=&Permetre l'intÈgration au menu contextuel de l'explorateur
+ExplorerContextMenu=&Permetre 
 IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
 IntegrateTortoiseGit=Integrer avec To&rtoiseGit
 IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
-AddToPath=&Ajouter le rÈpertoire WinMerge au chemin du systËme
+AddToPath=&Ajouter le r√©pertoire WinMerge au chemin du Syst√®me
 
 ; 3-way merge wizard page
-ThreeWayMergeWizardPageCaption=Merge ‡ 3-voies
-ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme un outil de merge ‡ 3-voies pour TortoiseSVN/Git ?
-RegisterWinMergeAs3WayMergeTool=Enregistrer WinMerge comme outils de merge ‡ 3-voies
+ThreeWayMergeWizardPageCaption=Merge √† 3-voies
+ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme un outil de merge √† 3-voies pour TortoiseSVN/Git ?
+RegisterWinMergeAs3WayMergeTool=Enregistrer WinMerge comme outils de merge √† 3-voies
 MergeAtRightPane=Merge vers panneau de Droite
 MergeAtCenterPane=Merge vers panneau du Milieu
 MergeAtLeftPane=Merge vers panneau de Gauche
-AutoMergeAtStartup=Merge automatique au dÈmarrage
+AutoMergeAtStartup=Merge automatique au d√©marrage
 
 ;Icon Labels
 ReadMe=Lisez moi
-UsersGuide=Guide de l'usager
-ViewStartMenuFolder=&Voir le rÈpertoire du menu dÈmarrer WinMerge
+UsersGuide=Guide de l'utilisateur
+ViewStartMenuFolder=&Voir le r√©pertoire du Menu_d√©marrer WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=L'installeur a dÈtectÈ que vous avez changÈ l'emplacement du votre menu dÈmarrÈ de "%s" ‡ "%s". DÈsirez-vous retirer l'ancien rÈpertoire du menu dÈmarrer WinMerge?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+DeletePreviousStartMenu=L'installeur a d√©tect√© que vous avez chang√© l'emplacement du votre Menu_d√©marrer de "%s" √† "%s". D√©sirez-vous retirer l'ancien r√©pertoire du Menu_d√©marrer WinMerge ?
+ExplorerNeedsRestart=Le menu contextuel de l'Explorateur n√©cessite un red√©marrage d'explorer.exe pour se mettre √† jour avec l'int√©gration de WinMerge. Souhaitez-vous red√©marrer l'Explorateur Windows¬†?
 
 ; Project file description
 ProjectFileDesc=Fichier de projet WinMerge 
