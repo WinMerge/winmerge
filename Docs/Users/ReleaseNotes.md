@@ -1,104 +1,49 @@
-# WinMerge 2.16.36 Release Notes
+# WinMerge 2.16.37 Beta Release Notes
 
 - [About This Release](#about-this-release)
-- [What Is New in 2.16.36?](#what-is-new-in-21636)
-- [What Is New in 2.16.35 beta?](#what-is-new-in-21635-beta)
+- [What Is New in 2.16.37 beta?](#what-is-new-in-21637-beta)
 - [Known issues](#known-issues)
 
-November 2023
+December 2023
 
 ## About This Release
 
-This is a WinMerge 2.16.36 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.36
-
-### Image compare
-
-- BugFix: Fix an issue where opening read-only and multi-page image files
-    would cause them to be treated as only one-page images.
-    (winmerge/winimerge#32)
-
-### Webpage compare
-
-- Improved performance when there are many differences
-
-### File filter
-
-- Bugfix: Modify the "File Filters" dialog. (#2118) 
-
-### Translations
-
-- Translation updates:
-  - Corsican (PR #2123)
-  - Galician (PR #2120)
-  - Hungarian (PR #2122)
-  - Portuguese (PR #2119)
-  - Spanish (PR #2120)
-  - Slovenian
-  - Turkish (PR #2116)
-
-## What Is New in 2.16.35 Beta
+## What Is New in 2.16.37 Beta
 
 ### File compare
 
-- BugFix: Fixed an issue where "Copy to Left/Right and Advance" would
-    sometimes skip differences when comparing 3 files. (#1234)
-- BugFix: Print Preview buttons are not translatable (#2083,#2079)
-- BugFix: Fixed the issue where the caption set in the header bar is restored
-    when the window is resized.
-
-### Binary compare
-
-- BugFix: V2.16.34 "X86" wired action (#2081)
+- BugFix: Fixed an issue where the scroll position when clicking on Location 
+    View may not be as expected when Wrap Lines is enabled.
+- BugFix: Can't click and change file line endings with the version 2.16.36.
+    (#2129)
+- Added new C# keywords (PR#2136)
 
 ### Image compare
 
-- BugFix: Close main window with 'Esc' if there is only one MDI child window
-    (#2084)
+- BugFix: Fixed an issue where the file name was not displayed in the header
+    even after saving a newly created pane with a name.
 
 ### Webpage compare
 
-- BugFix: Close main window with 'Esc' if there is only one MDI child window
-    (#2084)
-- Webpage Compare: synchronize events (#2111,#2064) 
-
-### Folder compare
-
-- BugFix: Ignoring carriage return differences doesn't work anymore
-    (#2080,#2099)
-
-### File filters
-
-- BugFix: Fixed the issue where "[F]" could be set as the file filter if no file
-    filter was selected in the Filters dialog.
-
-### Installer
-
-- BugFix: fix bug of Registry path (PR #2086)
-- BugFix: "Register Windows 11 Shell Extension" fails because PowerShell script
-    doesn't escape special chars correctly (#2109)
+- BugFix: Fixed an issue where the message box "Another application has updated
+    file ... since WinMerge scanned it last time" is displayed when comparing
+    URLs that are file://.
+- Improved synchronize events (winmerge/winwebdiff#4) 
 
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2088,#2112)
-  - Bulgarian (PR #2105)
-  - Chinese Simplified (PR #2091,#2113)
-  - French (PR #2106)
-  - Galician (PR #2085,#2107)
-  - Hungarian (PR #2093)
-  - Japanese
-  - Korean (PR #2092)
-  - Lithuanian (PR #2090,#2114)
-  - Polish (PR #2087)
-  - Romanian (PR #2089,#2095)
-  - Slovenian (#2096)
-  - Spanish (PR #2085,#2107)
-  - Turkish (PR #2076)
+  - Bulgarian (PR #2124)
+  - French (PR #2135,#2140)
+  - Italian (PR #2130)
+  - Korean (PR #2126,2127)
+  - Polish (PR #2128)
+
 
 ## Known issues
 
