@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2023-11-27**:
+Status from **2023-12-17**:
 
 ## WinMerge
 
@@ -20,18 +20,18 @@ Status from **2023-11-27**:
 | Dutch                |  1323 |       1285 |     0 |           38 |     97 % |  2023-05-02 |
 | English              |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-19 |
 | Finnish              |  1323 |       1190 |     0 |          133 |     89 % |             |
-| French               |  1323 |       1317 |     0 |            6 |     99 % |  2023-11-15 |
+| French               |  1323 |       1323 |     0 |            0 |    100 % |  2023-12-12 |
 | Galician             |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-24 |
 | German               |  1323 |       1308 |     0 |           15 |     98 % |  2023-08-08 |
 | Greek                |  1323 |        605 |     0 |          718 |     45 % |             |
 | Hungarian            |  1323 |       1321 |     0 |            2 |     99 % |  2021-03-15 |
 | Italian              |  1323 |       1101 |     0 |          222 |     83 % |  2022-06-01 |
 | Japanese             |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-19 |
-| Korean               |  1323 |       1317 |     0 |            6 |     99 % |  2023-11-07 |
+| Korean               |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-29 |
 | Lithuanian           |  1323 |       1274 |     0 |           49 |     96 % |  2023-11-20 |
 | Norwegian            |  1323 |        730 |     0 |          593 |     55 % |             |
 | Persian              |  1323 |        641 |     0 |          682 |     48 % |  2013-08-15 |
-| Polish               |  1323 |       1301 |     0 |           22 |     98 % |  2023-05-24 |
+| Polish               |  1323 |       1314 |     0 |            9 |     99 % |  2023-11-28 |
 | Portuguese           |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-23 |
 | Romanian             |  1323 |       1311 |     0 |           12 |     99 % |  2023-11-07 |
 | Russian              |  1323 |       1284 |     0 |           39 |     97 % |  2023-04-27 |
@@ -52,7 +52,7 @@ Status from **2023-11-27**:
 | Arabic               |    11 |          3 |     0 |            8 |     27 % |             |
 | Basque               |    11 |          4 |     0 |            7 |     36 % |             |
 | Brazilian            |    11 |         11 |     0 |            0 |    100 % |             |
-| Bulgarian            |    11 |          4 |     0 |            7 |     36 % |             |
+| Bulgarian            |    11 |         11 |     0 |            0 |    100 % |             |
 | Catalan              |    11 |         10 |     0 |            1 |     90 % |             |
 | ChineseSimplified    |    11 |         11 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |    11 |         10 |     0 |            1 |     90 % |             |
@@ -366,6 +366,9 @@ Status from **2023-11-27**:
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
+
+ * Korean
+   - [VenusGirl](mailto:venusgirl%20at%20https://github.com/VenusGirl)
 
  * Lithuanian
    - [Dalius Guzauskas (aka Tichij)](mailto:tichij%20AT%20mail%20DOT%20com)
