@@ -27,7 +27,7 @@ Status from **2023-12-17**:
 | Hungarian            |  1323 |       1321 |     0 |            2 |     99 % |  2021-03-15 |
 | Italian              |  1323 |       1101 |     0 |          222 |     83 % |  2022-06-01 |
 | Japanese             |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-19 |
-| Korean               |  1323 |       1323 |     0 |            0 |    100 % |  2023-11-29 |
+| Korean               |  1323 |       1323 |     0 |            0 |    100 % |  2023-12-17 |
 | Lithuanian           |  1323 |       1274 |     0 |           49 |     96 % |  2023-11-20 |
 | Norwegian            |  1323 |        730 |     0 |          593 |     55 % |             |
 | Persian              |  1323 |        641 |     0 |          682 |     48 % |  2013-08-15 |
@@ -269,7 +269,7 @@ Status from **2023-12-17**:
    - [Rukoto Luther](mailto:rukotolucies%20at%20hotmail.com)
 
  * Korean
-   - [VenusGirl](mailto:venusgirl%20at%20https://github.com/VenusGirl)
+   - [VenusGirl](mailto:VenusGirl%20at%20https://github.com/VenusGirl)
    - [Hwang Sukjoon](mailto:bbcool%20at%20gmail.com)
    - [Lee Jae-Hong](mailto:pyrasis%20at%20users.sourceforge.net)
    - [Sushizang](mailto:sushizang%20at%20empal.com)
@@ -363,6 +363,7 @@ Status from **2023-12-17**:
  * French
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com) *Maintainer*
    - [Lolo S.](mailto:slolo2000%20at%20hotmail.com)
+   - [Need74](mailto:need74%20at%20free.fr)
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
