@@ -2,7 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
-# * VenusGirl <venusgirl at https://github.com/VenusGirl>
+# * VenusGirl <VenusGirl at https://github.com/VenusGirl>
 # * Hwang Sukjoon <bbcool at gmail.com>
 # * Lee Jae-Hong <pyrasis at users.sourceforge.net>
 # * Sushizang <sushizang at empal.com>
@@ -14,12 +14,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge 2.16.32.0\n"
+"Project-Id-Version: WinMerge 2.16.36.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-11-29 00:55+0900\n"
+"PO-Revision-Date: 2023-12-17 19:43+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
-"Language-Team: Korean <winmerge-translate@lists.sourceforge.net>\n"
+"Language-Team: Korean <https://winmerge.org/?lang=ko>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,10 +122,10 @@ msgid "Op&en"
 msgstr "열기(&E)"
 
 msgid "With &Registered Application"
-msgstr "연결 프로그램으로(&R)"
+msgstr "등록된 응용프로그램 사용(&R)"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "외부 편집기로(&E)\tCtrl+Alt+E"
+msgstr "외부 편집기 사용(&E)\tCtrl+Alt+E"
 
 msgid "&With..."
 msgstr "프로그램 선택(&W)..."
@@ -1629,11 +1629,11 @@ msgstr "무시된 차이점:"
 
 #, c-format
 msgid "Moved:"
-msgstr "이동된 영역:"
+msgstr "이동:"
 
 #, c-format
 msgid "Selected Moved:"
-msgstr "선택된 이동된 영역:"
+msgstr "선택된 이동:"
 
 #, c-format
 msgid "Same As The Next (3 panes):"
@@ -2053,7 +2053,7 @@ msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
-"다음 파일 유형에 대한 코드 페이지 정보 탐지: .html, .rc, .xml\n"
+"다음 파일 유형에 대한 코드페이지 정보 탐지: .html, .rc, .xml\n"
 "세션을 다시 시작해야 합니다."
 
 msgid ""
@@ -2449,16 +2449,16 @@ msgid "&Unregister shell extension"
 msgstr "셸 확장 등록 해제(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr "현재 사용자에 대해서만 셸 확장 등록(&O)"
+msgstr "현재 사용자만 셸 확장 등록(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "현재 사용자에 대해서만 셸 확장 등록 해제(&L)"
+msgstr "현재 사용자만 셸 확장 등록 해제(&L)"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr "Windows 11 이상용 셸 확장 등록(&W)"
+msgstr "Windows 11 이상에서 셸 확장 등록(&W)"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr "Windows 11 이상용 셸 확장 등록 해제(&I)"
+msgstr "Windows 11 이상에서 셸 확장 등록 해제(&I)"
 
 msgid "Jump List"
 msgstr "점프 목록"
@@ -2511,7 +2511,7 @@ msgstr "바이너리 파일 패턴(&P):"
 
 #, c-format
 msgid "Frhed settings"
-msgstr "Fred (FreeHexEditor) 설정"
+msgstr "무료 헥사 편집기 설정"
 
 #, c-format
 msgid "View &Settings..."
@@ -2545,7 +2545,7 @@ msgid "URL pattern to &include (Regular expression):"
 msgstr "포함할 URL 패턴 (정규식)(&I):"
 
 msgid "URL pattern to &exclude (Regular expression):"
-msgstr "제외할 URL 패턴 (정규식):(&E)"
+msgstr "제외할 URL 패턴 (정규식)(&E):"
 
 msgid "&User data folder location:"
 msgstr "사용자 데이터 폴더 위치(&U):"
@@ -2853,7 +2853,7 @@ msgid "Message"
 msgstr "메시지"
 
 msgid "Answer"
-msgstr "대답"
+msgstr "응답"
 
 msgid "Item"
 msgstr "항목"
@@ -3499,8 +3499,8 @@ msgid ""
 "Failed to extract archive files.\n"
 "Do you want to compare the archive files as text files?"
 msgstr ""
-"보관 파일을 추출하지 못했습니다.\n"
-"보관 파일을 텍스트 파일로 비교하시겠습니까?"
+"압축 파일을 추출하지 못했습니다.\n"
+"압축 파일을 텍스트 파일로 비교하시겠습니까?"
 
 #, c-format
 msgid "Filename"
@@ -4056,7 +4056,7 @@ msgstr ""
 "\n"
 "일치하는 폴더:\n"
 "%1\n"
-"을(를) 다른 쪽에 생성하고 이 폴더를 여시겠습니까?"
+"을(를) 다른 쪽에 만들고 이 폴더를 여시겠습니까?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
 msgstr "모든 차이점을 다른 파일에 복사하시겠습니까?"
@@ -4090,8 +4090,8 @@ msgid ""
 "Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "왼쪽 (cp%d) 및 오른쪽 (cp%d) 파일에서 서로 다른 코드페이지가 발견되었습니다.\n"
-"각 파일을 코드 페이지에 표시하면 더 잘 표시되지만 병합/복사는 위험할 수 있습니다.\n"
-"두 파일을 모두 기본 Windows 코드 페이지에 있는 것으로 처리하시겠습니까 (권장)?"
+"각 파일을 코드페이지에 표시하면 더 잘 표시되지만 병합/복사는 위험할 수 있습니다.\n"
+"두 파일을 모두 기본 Windows 코드페이지에 있는 것으로 처리하시겠습니까 (권장)?"
 
 #, c-format
 msgid "Information lost due to encoding errors: both files"
@@ -4168,7 +4168,7 @@ msgstr "2. 항목을 찾을 수 없습니다!"
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "패치 파일이 이미 존재합니다. 덮어쓸까요?"
+msgstr "패치 파일이 이미 존재합니다. 덮어쓰시겠습니까?"
 
 #, c-format
 msgid "[%1 files selected]"
