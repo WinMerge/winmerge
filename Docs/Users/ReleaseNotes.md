@@ -39,9 +39,9 @@ Please submit bug reports to our bug-tracker.
 
 - Translation updates:
   - Bulgarian (PR #2124)
-  - French (PR #2135,#2140)
+  - French (PR #2135,#2140,#2141,#2142)
   - Italian (PR #2130)
-  - Korean (PR #2126,2127)
+  - Korean (PR #2126,#2127,#2143)
   - Polish (PR #2128)
 
 
