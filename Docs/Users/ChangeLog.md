@@ -10,6 +10,10 @@
     (#2129)
 - Added new C# keywords (PR#2136)
 
+### Binary compare
+
+- BugFix: Could not replace data at the end of the file
+
 ### Image compare
 
 - BugFix: Fixed an issue where the file name was not displayed in the header
@@ -26,7 +30,7 @@
 
 - Translation updates:
   - Bulgarian (PR #2124)
-  - French (PR #2135,#2140,#2141,#2142)
+  - French (PR #2135,#2140,#2141,#2142,winmerge/frhed#15)
   - Italian (PR #2130)
   - Korean (PR #2126,#2127,#2143)
   - Polish (PR #2128)
