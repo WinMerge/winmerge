@@ -1,6 +1,6 @@
 # Change log
 
-## WinMerge 2.16.37 - 2023-12-20
+## WinMerge 2.16.37 - 2023-12-24
 
 ### File compare
 
@@ -8,6 +8,7 @@
     View may not be as expected when Wrap Lines is enabled.
 - BugFix: Can't click and change file line endings with the version 2.16.36.
     (#2129)
+- BugFix: Unable to locate CR using \r in regular expression search
 - Added new C# keywords (PR#2136)
 
 ### Binary compare
