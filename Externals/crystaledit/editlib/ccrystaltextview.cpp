@@ -5510,10 +5510,10 @@ HighlightText (const CEPoint & ptStartPos, int nLength,
     {
       while (nLength > nCount)
         {
-          nLength -= nCount + 1;
+          nLength -= nCount + GetTextBufferEol (ptEndPos.y).GetLength ();
           nCount = GetLineLength (++ptEndPos.y);
         }
-      ptEndPos.x = nLength;
+      ptEndPos.x = (nLength < 0) ? 0 : nLength;
     }
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);  //  Probably 'nLength' is bigger than expected...
 
@@ -5556,29 +5556,29 @@ FindText (const tchar_t* pszText, const CEPoint & ptStartPos, DWORD dwFlags,
                           dwFlags, bWrapSearch, pptFoundPos);
 }
 
-int HowManyStr (const tchar_t* s, const tchar_t* m)
+int HowManyEOLs (const tchar_t* s, size_t length)
 {
-  const tchar_t* p = s;
-  int n = 0;
-  const int l = (int) tc::tcslen (m);
-  while ((p = tc::tcsstr (p, m)) != nullptr)
+  int newlineCount = 0;
+  bool wasCR = false;
+  for (size_t i = 0; i < length; ++i)
     {
-      n++;
-      p += l;
-    }
-  return n;
-}
-
-int HowManyStr (const tchar_t* s, tchar_t c)
-{
-  const tchar_t* p = s;
-  int n = 0;
-  while ((p = tc::tcschr (p, c)) != nullptr)
-    {
-      n++;
-      p++;
-    }
-  return n;
+      tchar_t ch = s[i];
+      if (ch == '\n')
+        {
+	      if (wasCR)
+            wasCR = false;
+          else
+            newlineCount++;
+        }
+	  else if (ch == '\r')
+      {
+        newlineCount++;
+        wasCR = true;
+      }
+    else
+      wasCR = false;
+  }
+  return newlineCount;
 }
 
 bool CCrystalTextView::
@@ -5605,7 +5605,10 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
   int nEolns;
   if (dwFlags & FIND_REGEXP)
     {
-      nEolns = HowManyStr (what, _T("\\n"));
+      CString what2 = what;
+      what2.Replace(_T("\\r"), _T("\r"));
+      what2.Replace(_T("\\n"), _T("\n"));
+      nEolns = HowManyEOLs (what2, what2.GetLength ());
     }
   else
     {
@@ -5636,7 +5639,7 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
                         {
                           nLineLength = GetLineLength (ptCurrentPos.y - i);
                           ptCurrentPos.x = 0;
-                          line = _T ('\n') + line;
+                          line = GetTextBufferEol (ptCurrentPos.y - i) + line;
                         }
                       else
                         {
@@ -5684,6 +5687,7 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
               if( nFoundPos != -1 )	// Found text!
                 {
                   ptCurrentPos.x = static_cast<int>(nFoundPos);
+                  ptCurrentPos.y -= nEolns;
                   *pptFoundPos = ptCurrentPos;
                   return true;
                 }
@@ -5719,7 +5723,7 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
                       nLineLength = GetLineLength (ptCurrentPos.y + i);
                       if (i)
                         {
-                          line += _T ('\n');
+                          line += GetTextBufferEol (ptCurrentPos.y + i - 1);
                         }
                       if (nLineLength > 0)
                         {
@@ -5753,11 +5757,13 @@ FindTextInBlock (const tchar_t* pszText, const CEPoint & ptStartPosition,
                     {
                       CString item = line.Left (static_cast<LONG>(nPos));
                       const tchar_t* current = tc::tcsrchr (item, _T('\n'));
+                      if (!current)
+                        current = tc::tcsrchr (item, _T('\r'));
                       if (current)
                         current++;
                       else
                         current = item;
-                      nEolns = HowManyStr (item, _T('\n'));
+                      nEolns = HowManyEOLs (item, item.GetLength ());
                       if (nEolns)
                         {
                           ptCurrentPos.y += nEolns;
