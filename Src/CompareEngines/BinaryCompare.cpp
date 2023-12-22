@@ -86,20 +86,26 @@ static int compare_files(const String& file1, const String& file2, IAbortable *p
  */
 int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) const
 {
+	auto cmp = [&](int p1, int p2) -> unsigned
+	{
+		if (di.diffFileInfo[p1].size == DirItem::FILE_SIZE_NONE &&
+			di.diffFileInfo[p2].size == DirItem::FILE_SIZE_NONE)
+			return DIFFCODE::SAME;
+		// If the file size is 0, don't immediately assume that there is a difference even if the files have different sizes, because of possible symlinks.
+		if (di.diffFileInfo[p1].size == DirItem::FILE_SIZE_NONE ||
+			di.diffFileInfo[p2].size == DirItem::FILE_SIZE_NONE ||
+			(di.diffFileInfo[p1].size != di.diffFileInfo[p2].size &&
+			 di.diffFileInfo[p1].size != 0 && di.diffFileInfo[p2].size != 0))
+			return DIFFCODE::DIFF;
+		return compare_files(files[p1], files[p2], m_piAbortable);
+	};
 	switch (files.GetSize())
 	{
 	case 2:
-		// If the file size is 0, don't immediately assume that there is a difference even if the files have different sizes, because of possible symlinks.
-		return (di.diffFileInfo[0].size != di.diffFileInfo[1].size && 
-			    di.diffFileInfo[0].size != 0 && di.diffFileInfo[1].size != 0) ? 
-			DIFFCODE::DIFF : compare_files(files[0], files[1], m_piAbortable);
+		return cmp(0, 1);
 	case 3:
-		unsigned code10 = (di.diffFileInfo[1].size != di.diffFileInfo[0].size &&
-			               di.diffFileInfo[1].size != 0 && di.diffFileInfo[0].size != 0) ?
-			DIFFCODE::DIFF : compare_files(files[1], files[0], m_piAbortable);
-		unsigned code12 = (di.diffFileInfo[1].size != di.diffFileInfo[2].size &&
-			               di.diffFileInfo[1].size != 0 && di.diffFileInfo[2].size != 0) ?
-			DIFFCODE::DIFF : compare_files(files[1], files[2], m_piAbortable);
+		unsigned code10 = cmp(1, 0);
+		unsigned code12 = cmp(1, 2);
 		unsigned code02 = DIFFCODE::SAME;
 		if (code10 == DIFFCODE::SAME && code12 == DIFFCODE::SAME)
 			return DIFFCODE::SAME;
@@ -109,9 +115,7 @@ int BinaryCompare::CompareFiles(const PathContext& files, const DIFFITEM &di) co
 			return DIFFCODE::DIFF | DIFFCODE::DIFF1STONLY;
 		else if (code10 == DIFFCODE::DIFF && code12 == DIFFCODE::DIFF)
 		{
-			code02 = (di.diffFileInfo[0].size != di.diffFileInfo[2].size && 
-			          di.diffFileInfo[0].size != 0 && di.diffFileInfo[2].size != 0) ?
-				DIFFCODE::DIFF : compare_files(files[0], files[2], m_piAbortable);
+			code02 = cmp(0, 2);
 			if (code02 == DIFFCODE::SAME)
 				return DIFFCODE::DIFF | DIFFCODE::DIFF2NDONLY;
 		}
