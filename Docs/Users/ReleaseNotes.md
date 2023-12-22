@@ -24,6 +24,10 @@ Please submit bug reports to our bug-tracker.
 - BugFix: Unable to locate CR using \r in regular expression search
 - Added new C# keywords (PR#2136)
 
+### Folder compare
+
+- BugFix: Empty files are not copied (#2146)
+
 ### Binary compare
 
 - BugFix: Could not replace data at the end of the file
