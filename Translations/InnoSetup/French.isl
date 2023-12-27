@@ -1,30 +1,30 @@
 [CustomMessages]
 
 ;Things we can also localize
-OptionalFeatures=Caractéristiques optionnelles:
+OptionalFeatures=Caractéristiques optionnelles :
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Installation Typique
-FullInstallation=Installation Complète
-CompactInstallation=Installation Compacte
-CustomInstallation=Installation Personnalisée
+TypicalInstallation=Installation - typique
+FullInstallation=Installation - complète
+CompactInstallation=Installation - compacte
+CustomInstallation=Installation - personnalisée
 
 ;Components
-AppCoreFiles=Fichiers Vitaux Winmerge
+AppCoreFiles=Fichiers vitaux - Winmerge
 Filters=Filtres
 Plugins=Plugiciels
-ShellExtension32bit=Menu contextuel WinMerge 32-bit
+ShellExtension32bit=Menu contextuel - WinMerge 32-bit
 
 ;Localization Components
-Languages=Langages
-ArabicLanguage=Arabic menus and dialogs
-BasqueLanguage=Basque menus and dialogs
+Languages=Langues
+ArabicLanguage=Menus et dialogues Arabe
+BasqueLanguage=Menus et dialogues Basque
 BulgarianLanguage=Menus et dialogues Bulgare
 CatalanLanguage=Menus et dialogues Catalan
 ChineseSimplifiedLanguage=Menus et dialogues Chinois (Simplifié)
 ChineseTraditionalLanguage=Menus et dialogues Chinois (Traditionnel)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Menus et dialogues Corse
 CroatianLanguage=Menus et dialogues Croate
 CzechLanguage=Menus et dialogues Tchécoslovaque
 DanishLanguage=Menus et dialogues Danois
@@ -52,34 +52,34 @@ SlovakLanguage=Menus et dialogues Slovaque
 SlovenianLanguage=Menus et dialogues Slovène
 SpanishLanguage=Menus et dialogues Espagnol
 SwedishLanguage=Menus et dialogues Suédois
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Menus et dialogues Tamil
 TurkishLanguage=Menus et dialogues Turque
 UkrainianLanguage=Menus et dialogues Ukrainien
 
 ;Tasks
-ExplorerContextMenu=&Permetre l'intégration au menu contextuel de l'explorateur
-IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
-IntegrateTortoiseGit=Integrer avec To&rtoiseGit
-IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
-AddToPath=&Ajouter le répertoire WinMerge au chemin du système
+ExplorerContextMenu=&Permettre 
+IntegrateTortoiseCVS=Intégrer avec &TortoiseCVS
+IntegrateTortoiseGit=Intégrer avec To&rtoiseGit
+IntegrateTortoiseSVN=Intégrer avec T&ortoiseSVN
+AddToPath=&Ajouter le répertoire WinMerge au chemin du Système
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=Merge à 3-voies
 ThreeWayMergeWizardPageDescription=Utilisez-vous WinMerge comme un outil de merge à 3-voies pour TortoiseSVN/Git ?
 RegisterWinMergeAs3WayMergeTool=Enregistrer WinMerge comme outils de merge à 3-voies
-MergeAtRightPane=Merge vers panneau de Droite
-MergeAtCenterPane=Merge vers panneau du Milieu
-MergeAtLeftPane=Merge vers panneau de Gauche
+MergeAtRightPane=Merge vers panneau Droit
+MergeAtCenterPane=Merge vers panneau Milieu
+MergeAtLeftPane=Merge vers panneau Gauche
 AutoMergeAtStartup=Merge automatique au démarrage
 
 ;Icon Labels
 ReadMe=Lisez moi
-UsersGuide=Guide de l'usager
-ViewStartMenuFolder=&Voir le répertoire du menu démarrer WinMerge
+UsersGuide=Guide de l'utilisateur
+ViewStartMenuFolder=&Voir le répertoire du Menu_Démarrer WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=L'installeur a détecté que vous avez changé l'emplacement du votre menu démarré de "%s" à "%s". Désirez-vous retirer l'ancien répertoire du menu démarrer WinMerge?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+DeletePreviousStartMenu=L'installeur a détecté que vous avez changé l'emplacement du votre Menu_démarrer de "%s" à "%s". Désirez-vous retirer l'ancien répertoire du Menu_Démarrer WinMerge ?
+ExplorerNeedsRestart=Le menu contextuel de l'Explorateur nécessite un redémarrage d'explorer.exe pour se mettre à jour avec l'intégration de WinMerge. Souhaitez-vous redémarrer l'Explorateur Windows ?
 
 ; Project file description
 ProjectFileDesc=Fichier de projet WinMerge 

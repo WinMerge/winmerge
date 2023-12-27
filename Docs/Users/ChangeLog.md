@@ -1,5 +1,45 @@
 # Change log
 
+## WinMerge 2.16.37 - 2023-12-24
+
+### File compare
+
+- BugFix: Fixed an issue where the scroll position when clicking on Location 
+    View may not be as expected when Wrap Lines is enabled.
+- BugFix: Can't click and change file line endings with the version 2.16.36.
+    (#2129)
+- BugFix: Unable to locate CR using \r in regular expression search
+- Added new C# keywords (PR#2136)
+
+### Folder compare
+
+- BugFix: Empty files are not copied (#2146)
+
+### Binary compare
+
+- BugFix: Could not replace data at the end of the file
+
+### Image compare
+
+- BugFix: Fixed an issue where the file name was not displayed in the header
+    even after saving a newly created pane with a name.
+
+### Webpage compare
+
+- BugFix: Fixed an issue where the message box "Another application has updated
+    file ... since WinMerge scanned it last time" is displayed when comparing
+    URLs that are file://.
+- Improved synchronize events (winmerge/winwebdiff#4) 
+
+### Translations
+
+- Translation updates:
+  - Bulgarian (PR #2124)
+  - French (PR #2135,#2140,#2141,#2142,winmerge/frhed#15)
+  - Italian (PR #2130)
+  - Korean (PR #2126,#2127,#2143)
+  - Polish (PR #2128)
+
 ## WinMerge 2.16.36 - 2023-11-27
 
 ### Image compare

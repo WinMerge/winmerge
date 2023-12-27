@@ -870,7 +870,7 @@ msgid "&Second left item with first right item"
 msgstr "&Secondo elemento di sinistra con primo elemento di destra"
 
 msgid "Co&mpare As"
-msgstr "Co&fronta come"
+msgstr "Con&fronta come"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"

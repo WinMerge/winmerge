@@ -560,6 +560,7 @@ void CLocationView::OnLButtonDown(UINT nFlags, CPoint point)
 	bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
 	if (!GotoLocation(point, false, !bShift))
 		CView::OnLButtonDown(nFlags, point);
+	OnMouseMove(nFlags, point);
 }
 
 /**

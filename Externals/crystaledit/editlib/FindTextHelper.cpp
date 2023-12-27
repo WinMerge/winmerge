@@ -61,6 +61,11 @@ FindStringHelper (const tchar_t* pszLineBegin, size_t nLineLength, const tchar_t
           ASSERT((rxmatch->Close[0] - rxmatch->Open[0]) < INT_MAX);
           nLen = static_cast<int>(rxmatch->Close[0] - rxmatch->Open[0]);
         }
+      if (pos >= 1 && pszLineBegin[pos] == '\n' && pszLineBegin[pos - 1] == '\r')
+        {
+          --pos;
+          ++nLen;
+        }
       return pos;
     }
   else

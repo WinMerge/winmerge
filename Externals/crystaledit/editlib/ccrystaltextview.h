@@ -369,10 +369,10 @@ protected :
 
     @param subLinePos The sublinebased cursor position
         (see text above for detailed description).
-    @param textPos The calculated line and character position that best matches
+    @return The calculated line and character position that best matches
         the cursor position (see text above for detailed descritpion).
     */
-    void SubLineCursorPosToTextPos( const CEPoint &subLinePos, CEPoint &textPos );
+    CEPoint SubLineCursorPosToTextPos( const CEPoint &subLinePos );
 
     /**
     Returns the character position relative to the given line, that matches
