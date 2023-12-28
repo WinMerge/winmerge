@@ -3458,6 +3458,7 @@ void CMainFrame::UnwatchDocuments(IMergeDoc* pMergeDoc)
 
 void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
 {
+	long lIdleCount = 0;
 	while (!completed)
 	{
 		MSG msg;
@@ -3466,6 +3467,8 @@ void CMainFrame::WaitAndDoMessageLoop(bool& completed, int ms)
 			if (!AfxGetApp()->PumpMessage())
 				break;
 		}
+		if (!theApp.OnIdle(lIdleCount++))
+			lIdleCount = 0;
 		Sleep(ms);
 	}
 }

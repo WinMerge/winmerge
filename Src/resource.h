@@ -1660,6 +1660,7 @@
 #define IDS_PREVIEWBAR_ZOOMIN           44536
 #define IDS_PREVIEWBAR_ZOOMOUT          44537
 #define IDS_PREVIEWBAR_CLOSE            44538
+#define IDS_WEBPAGE_COMPARING           44539
 
 
 // Next default values for new objects

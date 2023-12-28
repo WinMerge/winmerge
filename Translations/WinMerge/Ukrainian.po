@@ -4647,6 +4647,9 @@ msgstr ""
 msgid "Zoom &Out"
 msgstr ""
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr ""
 

@@ -4171,6 +4171,9 @@ msgstr "放大(&I)"
 msgid "Zoom &Out"
 msgstr "缩小(&O)"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "格式美化"
 

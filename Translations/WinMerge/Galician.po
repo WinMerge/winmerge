@@ -4125,6 +4125,9 @@ msgstr "Aumentar &zoom"
 msgid "Zoom &Out"
 msgstr "Reducir z&oom"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Melloras"
 

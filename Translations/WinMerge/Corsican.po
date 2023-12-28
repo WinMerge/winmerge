@@ -4135,6 +4135,9 @@ msgstr "Ingrandamentu più &forte"
 msgid "Zoom &Out"
 msgstr "Ingrandamentu &menu forte"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Imbellimentu"
 

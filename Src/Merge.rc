@@ -4240,6 +4240,11 @@ BEGIN
     IDS_PREVIEWBAR_CLOSE    "&Close"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_WEBPAGE_COMPARING   "Comparing..."
+END
+
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 

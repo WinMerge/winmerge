@@ -4799,6 +4799,9 @@ msgstr "&Nagyítás"
 msgid "Zoom &Out"
 msgstr "K&icsinyítés"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
 

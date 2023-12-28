@@ -4122,6 +4122,9 @@ msgstr ""
 msgid "Zoom &Out"
 msgstr ""
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "அழகானமாக்கல்"
 

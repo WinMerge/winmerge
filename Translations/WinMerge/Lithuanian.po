@@ -3738,6 +3738,9 @@ msgstr "Did&inti"
 msgid "Zoom &Out"
 msgstr "Mažin&ti"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Sutvarkymas"
 

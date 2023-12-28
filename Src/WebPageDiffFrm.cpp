@@ -1169,31 +1169,43 @@ void CWebPageDiffFrame::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	tchar_t sIdx[32] = { 0 };
 	tchar_t sCnt[32] = { 0 };
 	String s;
-	const int nDiffs = m_pWebDiffWindow->GetDiffCount();
-	
-	// Files are identical - show text "Identical"
-	if (nDiffs <= 0)
-		s = theApp.LoadString(IDS_IDENTICAL);
-	
-	// There are differences, but no selected diff
-	// - show amount of diffs
-	else if (m_pWebDiffWindow->GetCurrentDiffIndex() < 0)
+	auto compareState = m_pWebDiffWindow->GetCompareState();
+
+	if (compareState == IWebDiffWindow::NOT_COMPARED)
 	{
-		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
-		_itot_s(nDiffs, sCnt, 10);
-		strutils::replace(s, _T("%1"), sCnt);
 	}
-	
-	// There are differences and diff selected
-	// - show diff number and amount of diffs
+	else if (compareState == IWebDiffWindow::COMPARING)
+	{
+		s = theApp.LoadString(IDS_WEBPAGE_COMPARING);
+	}
 	else
 	{
-		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
-		const int signInd = m_pWebDiffWindow->GetCurrentDiffIndex();
-		_itot_s(signInd + 1, sIdx, 10);
-		strutils::replace(s, _T("%1"), sIdx);
-		_itot_s(nDiffs, sCnt, 10);
-		strutils::replace(s, _T("%2"), sCnt);
+		const int nDiffs = m_pWebDiffWindow->GetDiffCount();
+
+		// Files are identical - show text "Identical"
+		if (nDiffs <= 0)
+			s = theApp.LoadString(IDS_IDENTICAL);
+
+		// There are differences, but no selected diff
+		// - show amount of diffs
+		else if (m_pWebDiffWindow->GetCurrentDiffIndex() < 0)
+		{
+			s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
+			_itot_s(nDiffs, sCnt, 10);
+			strutils::replace(s, _T("%1"), sCnt);
+		}
+
+		// There are differences and diff selected
+		// - show diff number and amount of diffs
+		else
+		{
+			s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+			const int signInd = m_pWebDiffWindow->GetCurrentDiffIndex();
+			_itot_s(signInd + 1, sIdx, 10);
+			strutils::replace(s, _T("%1"), sIdx);
+			_itot_s(nDiffs, sCnt, 10);
+			strutils::replace(s, _T("%2"), sCnt);
+		}
 	}
 	pCmdUI->SetText(s.c_str());
 }

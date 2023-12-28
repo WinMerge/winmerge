@@ -4123,6 +4123,9 @@ msgstr "Po&večaj"
 msgid "Zoom &Out"
 msgstr "Pom&njšaj"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Polepšanje"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-11-19 21:53+0000\n"
+"POT-Creation-Date: 2023-12-28 07:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3730,6 +3730,9 @@ msgid "Zoom &In"
 msgstr ""
 
 msgid "Zoom &Out"
+msgstr ""
+
+msgid "Comparing..."
 msgstr ""
 
 msgid "Prettification"

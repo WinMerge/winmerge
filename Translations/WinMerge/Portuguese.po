@@ -4133,6 +4133,9 @@ msgstr "&Ampliar"
 msgid "Zoom &Out"
 msgstr "&Reduzir"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Embelezamento"
 

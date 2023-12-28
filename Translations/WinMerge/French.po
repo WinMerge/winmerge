@@ -4850,6 +4850,9 @@ msgstr "Zoom a&vant"
 msgid "Zoom &Out"
 msgstr "Zoom a&rrière"
 
+msgid "Comparing..."
+msgstr ""
+
 msgid "Prettification"
 msgstr "Embellissement"
 
