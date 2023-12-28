@@ -4846,7 +4846,7 @@ msgid "Zoom &Out"
 msgstr "축소(&O)"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "비교 중..."
 
 msgid "Prettification"
 msgstr "꾸미기"
