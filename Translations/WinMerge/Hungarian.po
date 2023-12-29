@@ -4800,7 +4800,7 @@ msgid "Zoom &Out"
 msgstr "K&icsinyítés"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Összehasonlítás..."
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
