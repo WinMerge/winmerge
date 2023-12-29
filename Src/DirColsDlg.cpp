@@ -277,6 +277,9 @@ void CDirColsDlg::OnDefaults()
 	m_listColumns.DeleteAllItems();
 	m_bReset = true;
 	LoadDefLists();
+
+	// Set first item to selected state
+	SelectItem(0);
 }
 
 /**
@@ -303,6 +306,13 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		EnableDlgItem(IDC_UP, ind != 0);
 		EnableDlgItem(IDC_DOWN,
 			ind != m_listColumns.GetItemCount() - static_cast<int>(m_listColumns.GetSelectedCount()));
+	}
+	else
+	{
+		// Clear the column description and disable "Move Up" and "Move Down" buttons when no item is selected.
+		SetDlgItemText(IDC_COLDLG_DESC, _T(""));
+		EnableDlgItem(IDC_UP, false);
+		EnableDlgItem(IDC_DOWN, false);
 	}
 
 	// Disable the "OK" button when no items are checked.
