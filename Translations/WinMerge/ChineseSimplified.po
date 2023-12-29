@@ -4172,7 +4172,7 @@ msgid "Zoom &Out"
 msgstr "缩小(&O)"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "比较中..."
 
 msgid "Prettification"
 msgstr "格式美化"
