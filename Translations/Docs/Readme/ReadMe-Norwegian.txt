@@ -1,4 +1,4 @@
-WINMERGE
+﻿WINMERGE
 
 WinMerge is an Open Source comparing and merging tool for Windows. WinMerge can
 compare both folders and files, presenting differences in a visual text format

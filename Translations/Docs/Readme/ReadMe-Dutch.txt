@@ -1,4 +1,4 @@
-WINMERGE
+﻿WINMERGE
 
 WinMerge is een Open Source vergelijkings- en samenvoegingstool voor Windows. 
 WinMerge kan mappen en bestanden vergelijken, verschillen voorstellend in een visueel 
@@ -21,7 +21,7 @@ webversie gaan op https://manual.winmerge.org/Quick_start.html.
 
 WinMerge-help
 ============= 
-WinMerge-help wordt lokaal ge�nstalleerd als een HTML helpbestand, WinMerge.chm,
+WinMerge-help wordt lokaal geïnstalleerd als een HTML helpbestand, WinMerge.chm,
 op het moment dat u WinMerge installeert. Om Help te openen klikt u op 
 Help > WinMerge Help of drukt u F1 in het WinMerge-venster. In de opdrachtregel
 start u het uitvoerbestand van WinMerge (WinMerge.exe) met de /? help-switch.

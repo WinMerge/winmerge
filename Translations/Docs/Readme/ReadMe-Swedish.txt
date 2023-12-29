@@ -1,55 +1,55 @@
-WINMERGE
+ï»¿WINMERGE
 
-WinMerge är ett Öppet Källkåds jämför- och sammanslagningsverktyg för Windows. 
-WinMerge kan jämföra både kataloger och filer visande skillnader i ett visuellt 
-textformat,som är enkelt att förstå och hantera. WinMerge kan användas som ett 
-externt skillnads/sammanslagnings-verktyg eller som en självständig tillämpning.
+WinMerge Ã¤r ett Ã–ppet KÃ¤llkÃ¥ds jÃ¤mfÃ¶r- och sammanslagningsverktyg fÃ¶r Windows. 
+WinMerge kan jÃ¤mfÃ¶ra bÃ¥de kataloger och filer visande skillnader i ett visuellt 
+textformat,som Ã¤r enkelt att fÃ¶rstÃ¥ och hantera. WinMerge kan anvÃ¤ndas som ett 
+externt skillnads/sammanslagnings-verktyg eller som en sjÃ¤lvstÃ¤ndig tillÃ¤mpning.
 
-WinMerge har många hjälpsamma stödfunktioner för att göra jämförelser, 
-synkroniseringar och sammanslagningar så lätt och användbart som möjligt. 
-Flera programmeringsspråk och andra filformat är syntax-markerade.
+WinMerge har mÃ¥nga hjÃ¤lpsamma stÃ¶dfunktioner fÃ¶r att gÃ¶ra jÃ¤mfÃ¶relser, 
+synkroniseringar och sammanslagningar sÃ¥ lÃ¤tt och anvÃ¤ndbart som mÃ¶jligt. 
+Flera programmeringssprÃ¥k och andra filformat Ã¤r syntax-markerade.
 
-Den senaste WinMerge-versionen och WinMerge-information finns tillgänglig hoss
+Den senaste WinMerge-versionen och WinMerge-information finns tillgÃ¤nglig hoss
 https://winmerge.org/.
 
 Quick start (Snabbstart)
 ===========
-För att lära sig hur man ska utföra grundläggande uppgifter efter att ha 
-installerat WinMerge, klicka på "Hjälp > WinMerge Hjälp"
-och navigera till "Quick start"-ämnet, eller gå till Internetversionen hoss
+FÃ¶r att lÃ¤ra sig hur man ska utfÃ¶ra grundlÃ¤ggande uppgifter efter att ha 
+installerat WinMerge, klicka pÃ¥ "HjÃ¤lp > WinMerge HjÃ¤lp"
+och navigera till "Quick start"-Ã¤mnet, eller gÃ¥ till Internetversionen hoss
 https://manual.winmerge.org/Quick_start.html.
 
-WinMerge Help (WinMerges Hjälp)
+WinMerge Help (WinMerges HjÃ¤lp)
 ============= 
-WinMerges Hjälp är installerat lokalt som en Microsoft HTML-hjälpfil, 
-WinMerge.chm, när Ni installerar WinMerge. För att öppna Hjälpen, klicka på 
-"Hjälp > WinMerge Hjälp" eller tryck på F1 i WinMerges fönster. På kommandoraden, 
-kör WinMerge-programmet med  /? hjälpparametern.
+WinMerges HjÃ¤lp Ã¤r installerat lokalt som en Microsoft HTML-hjÃ¤lpfil, 
+WinMerge.chm, nÃ¤r Ni installerar WinMerge. FÃ¶r att Ã¶ppna HjÃ¤lpen, klicka pÃ¥ 
+"HjÃ¤lp > WinMerge HjÃ¤lp" eller tryck pÃ¥ F1 i WinMerges fÃ¶nster. PÃ¥ kommandoraden, 
+kÃ¶r WinMerge-programmet med  /? hjÃ¤lpparametern.
 
-Ni kan också bläddra i HTML-versionen av WinMerges Hjälp hoss 
+Ni kan ocksÃ¥ blÃ¤ddra i HTML-versionen av WinMerges HjÃ¤lp hoss 
 https://manual.winmerge.org/.
 
 WinMerge Support (WinMerge-support)
 ================
-Frågor eller synpunkter om WinMerge? Ett bra ställe att börja på är WinMerges
-samhällsbulletinboard hoss https://forums.winmerge.org/. Utvecklare läser ofta
-och svarar på frågor i båda forumen. Använd "Open Discussion forum"
-("Öppet Diskussionsforum") för allmäna WinMerge-ämnen, såsom frågor om 
-användning. Använd "Developers forum" ("Utvecklarforum")
-för WinMerge utvecklingsämnen.
+FrÃ¥gor eller synpunkter om WinMerge? Ett bra stÃ¤lle att bÃ¶rja pÃ¥ Ã¤r WinMerges
+samhÃ¤llsbulletinboard hoss https://forums.winmerge.org/. Utvecklare lÃ¤ser ofta
+och svarar pÃ¥ frÃ¥gor i bÃ¥da forumen. AnvÃ¤nd "Open Discussion forum"
+("Ã–ppet Diskussionsforum") fÃ¶r allmÃ¤na WinMerge-Ã¤mnen, sÃ¥som frÃ¥gor om 
+anvÃ¤ndning. AnvÃ¤nd "Developers forum" ("Utvecklarforum")
+fÃ¶r WinMerge utvecklingsÃ¤mnen.
 
-Bugs and feature requests (Fel och funktionsäskanden)
+Bugs and feature requests (Fel och funktionsÃ¤skanden)
 =========================
-Om ett ämne inte löses i WinMerges forum, kontrollera i "Project trackers" 
-("Projektspårarna"): gå till https://project.winmerge.org/, och klicka på en länk
-i "Tracker menu" ("Spårmenyn"), som "Bugs and Feature Requests" 
-("Fel och funktionsäskanden"), där Ni kan bläddra i eller skicka ämnen.
+Om ett Ã¤mne inte lÃ¶ses i WinMerges forum, kontrollera i "Project trackers" 
+("ProjektspÃ¥rarna"): gÃ¥ till https://project.winmerge.org/, och klicka pÃ¥ en lÃ¤nk
+i "Tracker menu" ("SpÃ¥rmenyn"), som "Bugs and Feature Requests" 
+("Fel och funktionsÃ¤skanden"), dÃ¤r Ni kan blÃ¤ddra i eller skicka Ã¤mnen.
 
 Om Ni skickar en felrapport, var god och inkludera WinMerge-versionsnumret i Er
-felrapport. Ni kan alstra en konfigurationslogg genom att klicka på 
-"Hjälp > Konfiguration".
+felrapport. Ni kan alstra en konfigurationslogg genom att klicka pÃ¥ 
+"HjÃ¤lp > Konfiguration".
 Var god och bifoga konfigurationsloggen med felrapporten; den har mycket 
-användbar information för utvecklare.
+anvÃ¤ndbar information fÃ¶r utvecklare.
 
 
 - WinMerges Utvecklare

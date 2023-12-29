@@ -1,4 +1,4 @@
-WINMERGE
+﻿WINMERGE
 
 WinMerge Windowserako Iturburu Irekiko alderaketa eta batuketa tresna bat da. 
 WinMergek bi agiritegi eta bi agiri alderatu ditzake, ezberdintasunak  ulertzeko 

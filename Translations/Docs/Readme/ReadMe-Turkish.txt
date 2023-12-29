@@ -1,51 +1,51 @@
-WINMERGE
+ï»¿WINMERGE
 
-WinMerge Windows için Açık Kaynaklı bir karşılaştırma ve birleştirme aracıdır. WinMerge 
-klasörleri ve dosyaları karşılaştırabilir, farkları görsel metin biçiminde, kolayca anlaşılıp
-işlenebilecek şekilde sunar. WinMerge bir dış fark/birleştirme aracı olarak kullanılabileceği
-gibi ayrı bir uygulama olarak da kullanılabilir.
+WinMerge Windows iÃ§in AÃ§Ä±k KaynaklÄ± bir karÅŸÄ±laÅŸtÄ±rma ve birleÅŸtirme aracÄ±dÄ±r. WinMerge 
+klasÃ¶rleri ve dosyalarÄ± karÅŸÄ±laÅŸtÄ±rabilir, farklarÄ± gÃ¶rsel metin biÃ§iminde, kolayca anlaÅŸÄ±lÄ±p
+iÅŸlenebilecek ÅŸekilde sunar. WinMerge bir dÄ±ÅŸ fark/birleÅŸtirme aracÄ± olarak kullanÄ±labileceÄŸi
+gibi ayrÄ± bir uygulama olarak da kullanÄ±labilir.
 
-WinMerge karşılaştırma, eşleştirme ve birleştirme işlemlerini olabildiğince kolay ve kullanışlı
-şekilde yapabilmek için pek çok özelliğe sahiptir. Çeşitli programlama dilleri ve bazı dosya türlerini
-tanıyarak buna göre yazım vurgulaması yapabilir.
+WinMerge karÅŸÄ±laÅŸtÄ±rma, eÅŸleÅŸtirme ve birleÅŸtirme iÅŸlemlerini olabildiÄŸince kolay ve kullanÄ±ÅŸlÄ±
+ÅŸekilde yapabilmek iÃ§in pek Ã§ok Ã¶zelliÄŸe sahiptir. Ã‡eÅŸitli programlama dilleri ve bazÄ± dosya tÃ¼rlerini
+tanÄ±yarak buna gÃ¶re yazÄ±m vurgulamasÄ± yapabilir.
 
-Uygulamanın son sürümüne ve gerekli bilgilere 
-https://winmerge.org/ adresinden ulaşabilirsiniz.
+UygulamanÄ±n son sÃ¼rÃ¼mÃ¼ne ve gerekli bilgilere 
+https://winmerge.org/ adresinden ulaÅŸabilirsiniz.
 
-Hızlı Başlangıç
+HÄ±zlÄ± BaÅŸlangÄ±Ã§
 ===============
-WinMerge uygulamasını kurduktan sonra temel işlemleri nasıl yapabileceğinizi öğrenmek için
-Yardım>WinMerge seçeneğine tıklayın ve hızlı başlangıç (quick start) başlığına gidin.
-Aynı bilginin Web sürümüne ulaşmak için https://manual.winmerge.org/Quick_start.html adresine bakabilirsiniz.
+WinMerge uygulamasÄ±nÄ± kurduktan sonra temel iÅŸlemleri nasÄ±l yapabileceÄŸinizi Ã¶ÄŸrenmek iÃ§in
+YardÄ±m>WinMerge seÃ§eneÄŸine tÄ±klayÄ±n ve hÄ±zlÄ± baÅŸlangÄ±Ã§ (quick start) baÅŸlÄ±ÄŸÄ±na gidin.
+AynÄ± bilginin Web sÃ¼rÃ¼mÃ¼ne ulaÅŸmak iÃ§in https://manual.winmerge.org/Quick_start.html adresine bakabilirsiniz.
 
-WinMerge Yardımı
+WinMerge YardÄ±mÄ±
 ================
-WinMerge Yardımı, kurulum sırasında yerel diske kopyalanan bir Microsoft HTML 
-yardım dosyasıdır (WinMerge.chm). Yardım almak
-için, Yardım>WinMerge seçeneğine tıklayın veya WinMerge ekranındayken F1 tuşuna basın. Komut
-satırında ise WinMerge uygulamasını /? yardım anahtarı ile çalıştırın.
+WinMerge YardÄ±mÄ±, kurulum sÄ±rasÄ±nda yerel diske kopyalanan bir Microsoft HTML 
+yardÄ±m dosyasÄ±dÄ±r (WinMerge.chm). YardÄ±m almak
+iÃ§in, YardÄ±m>WinMerge seÃ§eneÄŸine tÄ±klayÄ±n veya WinMerge ekranÄ±ndayken F1 tuÅŸuna basÄ±n. Komut
+satÄ±rÄ±nda ise WinMerge uygulamasÄ±nÄ± /? yardÄ±m anahtarÄ± ile Ã§alÄ±ÅŸtÄ±rÄ±n.
 
-WinMerge yardımının HTML sürümüne 
-https://manual.winmerge.org/ adresinden de ulaşabilirsiniz.
+WinMerge yardÄ±mÄ±nÄ±n HTML sÃ¼rÃ¼mÃ¼ne 
+https://manual.winmerge.org/ adresinden de ulaÅŸabilirsiniz.
 
-WinMerge Desteği
+WinMerge DesteÄŸi
 ================
-WinMerge hakkında sorularınız ve önerileriniz mi var? Bunun için https://forums.winmerge.org/
-adresinden ulaşabileceğiniz WinMerge topluluğu forumunu kullanabilirsiniz. Yazılım geliştiriciler
-forumlardaki soruları sıklıkla okuyup yanıtlıyorlar. Kullanım gibi genel WinMerge
-konuları için Açık Tartışma (Open Discussion) forumunu, yazılım geliştirme ile ilgili konular
-için de Geliştirici (Developers) forumunu kullanabilirsiniz.
+WinMerge hakkÄ±nda sorularÄ±nÄ±z ve Ã¶nerileriniz mi var? Bunun iÃ§in https://forums.winmerge.org/
+adresinden ulaÅŸabileceÄŸiniz WinMerge topluluÄŸu forumunu kullanabilirsiniz. YazÄ±lÄ±m geliÅŸtiriciler
+forumlardaki sorularÄ± sÄ±klÄ±kla okuyup yanÄ±tlÄ±yorlar. KullanÄ±m gibi genel WinMerge
+konularÄ± iÃ§in AÃ§Ä±k TartÄ±ÅŸma (Open Discussion) forumunu, yazÄ±lÄ±m geliÅŸtirme ile ilgili konular
+iÃ§in de GeliÅŸtirici (Developers) forumunu kullanabilirsiniz.
 
-Hatalar ve özellik istekleri
+Hatalar ve Ã¶zellik istekleri
 ===============================
-WinMerge forumlarında çözümü olmayan bir hata ile karşılaşırsanız, https://project.winmerge.org/
-adresine giderek proje izleyicilere bakın. İzleyiciler menüsünden hatalar (bugs) veya özellik
-istekleri (feature requests) gibi bir bağlantıya tıklayarak başlıklara göz atıp yeni bir başlık açabilirsiniz.
+WinMerge forumlarÄ±nda Ã§Ã¶zÃ¼mÃ¼ olmayan bir hata ile karÅŸÄ±laÅŸÄ±rsanÄ±z, https://project.winmerge.org/
+adresine giderek proje izleyicilere bakÄ±n. Ä°zleyiciler menÃ¼sÃ¼nden hatalar (bugs) veya Ã¶zellik
+istekleri (feature requests) gibi bir baÄŸlantÄ±ya tÄ±klayarak baÅŸlÄ±klara gÃ¶z atÄ±p yeni bir baÅŸlÄ±k aÃ§abilirsiniz.
 
-Bir hata bildiriyorsanız, WinMerge sürümünü de belirtin. 
-Yardım>Yapılandırma seçeneğine tıklayarak bir yapılandırma günlüğü oluşturabilirsiniz.
-Bu günlüğü hata raporunuza ekleyin. Günlükte geliştiriciler için yaralrı olabilecek pek çok 
+Bir hata bildiriyorsanÄ±z, WinMerge sÃ¼rÃ¼mÃ¼nÃ¼ de belirtin. 
+YardÄ±m>YapÄ±landÄ±rma seÃ§eneÄŸine tÄ±klayarak bir yapÄ±landÄ±rma gÃ¼nlÃ¼ÄŸÃ¼ oluÅŸturabilirsiniz.
+Bu gÃ¼nlÃ¼ÄŸÃ¼ hata raporunuza ekleyin. GÃ¼nlÃ¼kte geliÅŸtiriciler iÃ§in yaralrÄ± olabilecek pek Ã§ok 
 bilgi bulunur.
 
 
-- WinMerge Geliştiricileri
+- WinMerge GeliÅŸtiricileri
