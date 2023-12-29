@@ -52,7 +52,7 @@ SlovakLanguage=Szlovák menük és párbeszédablakok
 SlovenianLanguage=Szlovén menük és párbeszédablakok
 SpanishLanguage=Spanyol menük és párbeszédablakok
 SwedishLanguage=Svéd menük és párbeszédablakok
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Tamil menük és párbeszédablakok
 TurkishLanguage=Török menük és párbeszédablakok
 UkrainianLanguage=Ukrán menük és párbeszédablakok
 
@@ -79,7 +79,7 @@ ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
 
 ;Code Dialogs
 DeletePreviousStartMenu=A Telepítő észlelte, hogy megváltoztattad a Start Menü helyét erröl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
-ExplorerNeedsRestart=Újraindítás szükséges a WinMerge-hez. Szeretné most újraindítani?
+ExplorerNeedsRestart=Újraindítás szükséges a WinMerge-hez. Szeretnéd most újraindítani?
 
 ; Project file description
 ProjectFileDesc=WinMerge Projekt fájl
