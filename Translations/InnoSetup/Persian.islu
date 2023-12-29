@@ -1,0 +1,85 @@
+﻿[CustomMessages]
+
+;Things we can also localize
+OptionalFeatures= ويژگيهاي اختياري :
+CompanyName= تينگاماهوچي سافتور 
+
+;Types
+TypicalInstallation= نصب معمول 
+FullInstallation= نصب کامل 
+CompactInstallation= نصب فشرده 
+CustomInstallation= نصب سفارشي 
+
+;Components
+AppCoreFiles= پرونده هاي هسته وينمرج 
+Filters= صافيها 
+Plugins= وصل شدنيها 
+ShellExtension32bit=32-bit WinMerge ShellExtension
+
+;Localization Components
+Languages= زبانها 
+ArabicLanguage=Arabic menus and dialogs
+BasqueLanguage=Basque menus and dialogs
+BulgarianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره بلغاري 
+CatalanLanguage= فهرستهاي انتخاب و جعبه هاي محاوره کاتالان 
+ChineseSimplifiedLanguage= فهرستهاي انتخاب و جعبه هاي محاوره چيني ساده شده  
+ChineseTraditionalLanguage= فهرستهاي انتخاب و جعبه هاي محاوره چيني سنتي  
+CorsicanLanguage=Corsican menus and dialogs
+CroatianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره کرواتين  
+CzechLanguage= فهرستهاي انتخاب و جعبه هاي محاوره چکوسلواکي   
+DanishLanguage= فهرستهاي انتخاب و جعبه هاي محاوره دانمارکي  
+DutchLanguage= فهرستهاي انتخاب و جعبه هاي محاوره هلندي  
+FinnishLanguage=Finnish menus and dialogs
+FrenchLanguage= فهرستهاي انتخاب و جعبه هاي محاوره فرانسوي  
+GalicianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره گاليسين  
+GermanLanguage= فهرستهاي انتخاب و جعبه هاي محاوره آلماني  
+GreekLanguage= فهرستهاي انتخاب و جعبه هاي محاوره يوناني  
+HungarianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره مجارستاني  
+ItalianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره ايتاليايي  
+JapaneseLanguage= فهرستهاي انتخاب و جعبه هاي محاوره ژاپني  
+KoreanLanguage= فهرستهاي انتخاب و جعبه هاي محاوره کره اي  
+LithuanianLanguage=Lithuanian menus and dialogs
+NorwegianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره نروژي  
+PersianLanguage=Persian menus and dialogs
+PolishLanguage= فهرستهاي انتخاب و جعبه هاي محاوره لهستاني  
+PortugueseBrazilLanguage= فهرستهاي انتخاب و جعبه هاي محاوره برزيلي / پرتقالي   
+PortugueseLanguage= فهرستهاي انتخاب و جعبه هاي محاوره پرتقالي  
+RomanianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره روماني  
+RussianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره روسي  
+SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
+SlovakLanguage= فهرستهاي انتخاب و جعبه هاي محاوره اسلواکي  
+SlovenianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره اسلاوي  
+SpanishLanguage= فهرستهاي انتخاب و جعبه هاي محاوره اسپانيايي  
+SwedishLanguage= فهرستهاي انتخاب و جعبه هاي محاوره سوئدي  
+TamilLanguage=Tamil menus and dialogs
+TurkishLanguage= فهرستهاي انتخاب و جعبه هاي محاوره ترکي  
+UkrainianLanguage= فهرستهاي انتخاب و جعبه هاي محاوره اکرايني  
+
+;Tasks
+ExplorerContextMenu=&E فعال نمودن يکپارچه سازي فهرست جستجوگر متن 
+IntegrateTortoiseCVS=&T يکپارجه سازي با تورتوئيز سي وي اس 
+IntegrateTortoiseGit=Integrate with To&rtoiseGit
+IntegrateTortoiseSVN=&o يکپارجه سازي با تورتوئيز اس وي ان 
+AddToPath=&A اضافه نمودن پوشه وينمرج به مسيرهاي سيستم 
+
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3-Way Merge
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+MergeAtRightPane=Merge at right pane
+MergeAtCenterPane=Merge at center pane
+MergeAtLeftPane=Merge at left pane
+AutoMergeAtStartup=Auto-merge at startup time
+
+;Icon Labels
+ReadMe= مرا بخوان 
+UsersGuide= راهنماي کاربري 
+ViewStartMenuFolder=&V مشاهده پوشه فهرست شروع وينمرج 
+
+;Code Dialogs
+DeletePreviousStartMenu= نصاب نرم افزار متوجه شده است که شما محل فهرست شروع را تغيير داده ايد ("%s" به"%s"). آيا مايل هستيد که پوشه فهرست قبلي حذف شود؟ 
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+
+; Project file description
+ProjectFileDesc= پرونده پروژه / طرح وينمرج 
