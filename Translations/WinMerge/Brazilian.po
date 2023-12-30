@@ -244,8 +244,8 @@ msgstr "Tamanho"
 msgid "Fit to Window"
 msgstr "Ajustar à Janela"
 
-msgid "&Event Synchronization"
-msgstr "Sincronização de &Eventos"
+msgid "&Event Sync"
+msgstr ""
 
 msgid "&Enabled"
 msgstr "Habilitado"
@@ -3740,6 +3740,9 @@ msgstr "Menos Zoom"
 
 msgid "Comparing..."
 msgstr "Comparando..."
+
+msgid "Zoom:"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"
