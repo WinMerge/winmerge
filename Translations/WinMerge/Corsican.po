@@ -246,8 +246,8 @@ msgstr "&Dimensione"
 msgid "Fit to Window"
 msgstr "Adattà à a finestra"
 
-msgid "&Event Synchronization"
-msgstr "&Sincrunizazione d’evenimentu"
+msgid "&Event Sync"
+msgstr ""
 
 msgid "&Enabled"
 msgstr "&Attivatu"
@@ -4137,6 +4137,9 @@ msgstr "Ingrandamentu &menu forte"
 
 msgid "Comparing..."
 msgstr "Paragone…"
+
+msgid "Zoom:"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Imbellimentu"

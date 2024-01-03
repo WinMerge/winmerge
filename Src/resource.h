@@ -80,7 +80,6 @@
 #define IDD_EDIT_FIND                   282
 #define IDD_EDIT_MARKER                 283
 #define IDD_EDIT_REPLACE                284
-#define IDD_WEBPAGEDIFF_BAR             285
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -1661,6 +1660,7 @@
 #define IDS_PREVIEWBAR_ZOOMOUT          44537
 #define IDS_PREVIEWBAR_CLOSE            44538
 #define IDS_WEBPAGE_COMPARING           44539
+#define IDS_WEBPAGE_ZOOM                44540
 
 
 // Next default values for new objects
