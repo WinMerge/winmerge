@@ -244,8 +244,8 @@ msgstr "&Velikost"
 msgid "Fit to Window"
 msgstr "Prilagodi oknu"
 
-msgid "&Event Sync"
-msgstr ""
+msgid "&Event Synchronization"
+msgstr "Sinhronizacija do&godkov"
 
 msgid "&Enabled"
 msgstr "O&mogočeno"
@@ -4124,9 +4124,6 @@ msgid "Zoom &Out"
 msgstr "Pom&njšaj"
 
 msgid "Comparing..."
-msgstr ""
-
-msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

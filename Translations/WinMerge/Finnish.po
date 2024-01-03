@@ -244,7 +244,7 @@ msgstr "&Koko"
 msgid "Fit to Window"
 msgstr "Sovita ikkunaan"
 
-msgid "&Event Sync"
+msgid "&Event Synchronization"
 msgstr ""
 
 msgid "&Enabled"
@@ -4159,9 +4159,6 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
-msgstr ""
-
-msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

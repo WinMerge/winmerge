@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-12-30 17:35+0000\n"
+"POT-Creation-Date: 2023-12-28 07:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -238,7 +238,7 @@ msgstr ""
 msgid "Fit to Window"
 msgstr ""
 
-msgid "&Event Sync"
+msgid "&Event Synchronization"
 msgstr ""
 
 msgid "&Enabled"
@@ -3733,9 +3733,6 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
-msgstr ""
-
-msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

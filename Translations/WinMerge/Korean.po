@@ -279,8 +279,8 @@ msgstr "크기(&S)"
 msgid "Fit to Window"
 msgstr "창에 맞춤"
 
-msgid "&Event Sync"
-msgstr ""
+msgid "&Event Synchronization"
+msgstr "이벤트 동기화(&E)"
 
 msgid "&Enabled"
 msgstr "사용함(&E)"
@@ -4847,9 +4847,6 @@ msgstr "축소(&O)"
 
 msgid "Comparing..."
 msgstr "비교 중..."
-
-msgid "Zoom:"
-msgstr ""
 
 msgid "Prettification"
 msgstr "꾸미기"

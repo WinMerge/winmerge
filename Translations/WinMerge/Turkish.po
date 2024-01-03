@@ -243,8 +243,8 @@ msgstr "&Boyut"
 msgid "Fit to Window"
 msgstr "&Pencereye sığdır"
 
-msgid "&Event Sync"
-msgstr ""
+msgid "&Event Synchronization"
+msgstr "&Etkinlik eşitleme"
 
 msgid "&Enabled"
 msgstr "&Açık"
@@ -3738,9 +3738,6 @@ msgid "Zoom &Out"
 msgstr "&Uzaklaştır"
 
 msgid "Comparing..."
-msgstr ""
-
-msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

@@ -244,8 +244,8 @@ msgstr "Dydi&s"
 msgid "Fit to Window"
 msgstr "Talpinti į langą"
 
-msgid "&Event Sync"
-msgstr ""
+msgid "&Event Synchronization"
+msgstr "Įvykių sinchronizavimas"
 
 msgid "&Enabled"
 msgstr "Į&jungta"
@@ -3740,9 +3740,6 @@ msgstr "Mažin&ti"
 
 msgid "Comparing..."
 msgstr "Lygina..."
-
-msgid "Zoom:"
-msgstr ""
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
