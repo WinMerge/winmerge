@@ -2050,7 +2050,7 @@ namespace
 	}
 	TEST_F(MergeCmdLineInfoTest, Unpacker2)
 	{
-		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /unpacker \"Replace -e ',\\s*\\n\\s*}' '}' -e ',\\s*\\n\\s*\\]' ']' | QueryJSON '.Parameters^|=sort_by(.HandleId)'\""));
+		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /unpacker \"Replace -e ',\\s*\\n\\s*}' '}' -e ',\\s*\\n\\s*\\]' ']' | QueryJSON '.Parameters|=sort_by(.HandleId)'\""));
 		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
 		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
 		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
@@ -2076,7 +2076,7 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
 		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
-		EXPECT_EQ(_T("Replace -e ',\\s*\\n\\s*}' '}' -e ',\\s*\\n\\s*\\]' ']' | QueryJSON '.Parameters^|=sort_by(.HandleId)'"), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T("Replace -e ',\\s*\\n\\s*}' '}' -e ',\\s*\\n\\s*\\]' ']' | QueryJSON '.Parameters|=sort_by(.HandleId)'"), cmdInfo.m_sUnpacker);
 		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
 		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
 		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
