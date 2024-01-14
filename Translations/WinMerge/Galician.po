@@ -245,8 +245,8 @@ msgstr "&Tamaño"
 msgid "Fit to Window"
 msgstr "Axustar á ventá"
 
-msgid "&Event Synchronization"
-msgstr "Sincronización de &eventos"
+msgid "&Event Sync"
+msgstr ""
 
 msgid "&Enabled"
 msgstr "&Habilitado"
@@ -4126,6 +4126,9 @@ msgid "Zoom &Out"
 msgstr "Reducir z&oom"
 
 msgid "Comparing..."
+msgstr ""
+
+msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

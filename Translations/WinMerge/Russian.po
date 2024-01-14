@@ -246,7 +246,7 @@ msgstr "&Размер"
 msgid "Fit to Window"
 msgstr "Подогнать по окну"
 
-msgid "&Event Synchronization"
+msgid "&Event Sync"
 msgstr ""
 
 msgid "&Enabled"
@@ -3741,6 +3741,9 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
+msgstr ""
+
+msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

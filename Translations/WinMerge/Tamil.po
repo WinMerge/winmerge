@@ -242,7 +242,7 @@ msgstr "&அளவு"
 msgid "Fit to Window"
 msgstr "சாளரத்தில் பொருத்து"
 
-msgid "&Event Synchronization"
+msgid "&Event Sync"
 msgstr ""
 
 msgid "&Enabled"
@@ -4123,6 +4123,9 @@ msgid "Zoom &Out"
 msgstr ""
 
 msgid "Comparing..."
+msgstr ""
+
+msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"
