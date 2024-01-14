@@ -6,7 +6,7 @@
 
 struct WebDiffEvent
 {
-	enum EVENT_TYPE { ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, FrameNavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, FrameNavigationCompleted, WebMessageReceived, FrameWebMessageReceived, GoBacked, GoForwarded, TabChanged, HSCROLL, VSCROLL, CompareStateChanged, CompareScreenshotsSelected, CompareFullsizeScreenshotsSelected, CompareHTMLsSelected, CompareTextsSelected, CompareResourceTreesSelected };
+	enum EVENT_TYPE { ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, FrameNavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, FrameNavigationCompleted, WebMessageReceived, FrameWebMessageReceived, GoBacked, GoForwarded, TabChanged, HSCROLL, VSCROLL, CompareStateChanged, CompareScreenshotsSelected, CompareFullsizeScreenshotsSelected, CompareHTMLsSelected, CompareTextsSelected, CompareResourceTreesSelected, DiffSelected };
 	EVENT_TYPE type;
 	int pane;
 };
