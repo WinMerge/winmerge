@@ -689,9 +689,13 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath)
 	return MakeInfo(scriptletFilepath, lpDispatch);
 }
 
-static void ReportPluginLoadFailure(const String & scriptletFilepath)
+static void ReportPluginLoadFailure(const String & scriptletFilepath, const SE_Exception& se)
 {
-	AppErrorMessageBox(strutils::format(_T("Exception loading plugin\r\n%s"), scriptletFilepath));
+	tchar_t errorText[500];
+	if (!(se.GetErrorMessage(errorText, 500, nullptr)))
+		// don't localize this as we do not localize the known exceptions
+		tc::tcslcpy(errorText, _T("Unknown CException"));
+	AppErrorMessageBox(strutils::format(_T("Exception loading plugin\r\n%s\r\n%s"), scriptletFilepath, errorText));
 }
 
 /**
@@ -706,9 +710,9 @@ static int LoadPluginWrapper(PluginInfo & plugin, const String & scriptletFilepa
 	{
 		return plugin.LoadPlugin(scriptletFilepath);
 	}
-	catch (SE_Exception&)
+	catch (SE_Exception& se)
 	{
-		ReportPluginLoadFailure(scriptletFilepath);
+		ReportPluginLoadFailure(scriptletFilepath, se);
 	}
 	return false;
 }

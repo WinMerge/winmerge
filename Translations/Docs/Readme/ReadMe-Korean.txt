@@ -1,51 +1,51 @@
-WINMERGE
+ï»¿WINMERGE
 
-WinMerge´Â Windows¿ë ¿ÀÇÂ ¼Ò½º ºñ±³ ¹× º´ÇÕ µµ±¸ÀÔ´Ï´Ù. WinMerge´Â
-Æú´õ¿Í ÆÄÀÏÀ» ¸ðµÎ ºñ±³ÇÏ¿© ½Ã°¢Àû ÅØ½ºÆ® Çü½ÄÀÇ Â÷ÀÌ¸¦ ½±°Ô ÀÌÇØÇÏ°í
-Ã³¸®ÇÒ ¼ö ÀÖ½À´Ï´Ù. WinMerge´Â ¿ÜºÎ Â÷ºÐ/º´ÇÕ µµ±¸ ¶Ç´Â µ¶¸³ ½ÇÇàÇü
-ÀÀ¿ë ÇÁ·Î±×·¥À¸·Î »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
+WinMergeëŠ” Windowsìš© ì˜¤í”ˆ ì†ŒìŠ¤ ë¹„êµ ë° ë³‘í•© ë„êµ¬ìž…ë‹ˆë‹¤. WinMergeëŠ”
+í´ë”ì™€ íŒŒì¼ì„ ëª¨ë‘ ë¹„êµí•˜ì—¬ ì‹œê°ì  í…ìŠ¤íŠ¸ í˜•ì‹ì˜ ì°¨ì´ë¥¼ ì‰½ê²Œ ì´í•´í•˜ê³ 
+ì²˜ë¦¬í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. WinMergeëŠ” ì™¸ë¶€ ì°¨ë¶„/ë³‘í•© ë„êµ¬ ë˜ëŠ” ë…ë¦½ ì‹¤í–‰í˜•
+ì‘ìš© í”„ë¡œê·¸ëž¨ìœ¼ë¡œ ì‚¬ìš©í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
-WinMerge¿¡´Â ºñ±³, µ¿±âÈ­ ¹× º´ÇÕÀ» °¡´ÉÇÑ ÇÑ ½±°í À¯¿ëÇÏ°Ô ¸¸µå´Â
-¸¹Àº Áö¿ø ±â´ÉÀÌ ÀÖ½À´Ï´Ù. ¿©·¯ ÇÁ·Î±×·¡¹Ö ¾ð¾î ¹× ±âÅ¸ ÆÄÀÏ Çü½ÄÀÌ
-±¸¹®À¸·Î °­Á¶ Ç¥½ÃµË´Ï´Ù.
+WinMergeì—ëŠ” ë¹„êµ, ë™ê¸°í™” ë° ë³‘í•©ì„ ê°€ëŠ¥í•œ í•œ ì‰½ê³  ìœ ìš©í•˜ê²Œ ë§Œë“œëŠ”
+ë§Žì€ ì§€ì› ê¸°ëŠ¥ì´ ìžˆìŠµë‹ˆë‹¤. ì—¬ëŸ¬ í”„ë¡œê·¸ëž˜ë° ì–¸ì–´ ë° ê¸°íƒ€ íŒŒì¼ í˜•ì‹ì´
+êµ¬ë¬¸ìœ¼ë¡œ ê°•ì¡° í‘œì‹œë©ë‹ˆë‹¤.
 
-ÃÖ½Å WinMerge ¹öÀü ¹× WinMerge Á¤º¸´Â
-https://winmerge.org/¿¡¼­ È®ÀÎÇÒ ¼ö ÀÖ½À´Ï´Ù.
+ìµœì‹  WinMerge ë²„ì „ ë° WinMerge ì •ë³´ëŠ”
+https://winmerge.org/ì—ì„œ í™•ì¸í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
 
-ºü¸¥ ½ÃÀÛ
+ë¹ ë¥¸ ì‹œìž‘
 ===========
-WinMerge¸¦ ¼³Ä¡ÇÑ ÈÄ ±âº» ÀÛ¾÷À» ¼öÇàÇÏ´Â ¹æ¹ý¿¡ ´ëÇØ ¾Ë¾Æº¸·Á¸é
-µµ¿ò¸»>WinMerge µµ¿ò¸»À» Å¬¸¯ÇÏ°í ºü¸¥ ½ÃÀÛ Ç×¸ñÀ¸·Î ÀÌµ¿ÇÏ½Ê½Ã¿À.
-¶Ç´Â https://manual.winmerge.org/Quick_start.htmlÀÇ À¥ ¹öÀüÀ¸·Î ÀÌµ¿ÇÏ½Ê½Ã¿À.
+WinMergeë¥¼ ì„¤ì¹˜í•œ í›„ ê¸°ë³¸ ìž‘ì—…ì„ ìˆ˜í–‰í•˜ëŠ” ë°©ë²•ì— ëŒ€í•´ ì•Œì•„ë³´ë ¤ë©´
+ë„ì›€ë§>WinMerge ë„ì›€ë§ì„ í´ë¦­í•˜ê³  ë¹ ë¥¸ ì‹œìž‘ í•­ëª©ìœ¼ë¡œ ì´ë™í•˜ì‹­ì‹œì˜¤.
+ë˜ëŠ” https://manual.winmerge.org/Quick_start.htmlì˜ ì›¹ ë²„ì „ìœ¼ë¡œ ì´ë™í•˜ì‹­ì‹œì˜¤.
 
-WinMerge µµ¿ò¸»
+WinMerge ë„ì›€ë§
 ============= 
-WinMerge µµ¿ò¸»Àº WinMerge¸¦ ¼³Ä¡ÇÒ ¶§ Microsoft HTML µµ¿ò¸» ÆÄÀÏÀÎ
-WinMerge.chmÀ¸·Î ·ÎÄÃ·Î ¼³Ä¡µË´Ï´Ù. µµ¿ò¸»À» ¿­·Á¸é µµ¿ò¸»>WinMerge
-µµ¿ò¸»À» Å¬¸¯ÇÏ°Å³ª WinMerge Ã¢¿¡¼­ F1À» ´©¸¨´Ï´Ù. ¸í·ÉÁÙ¿¡¼­ /? µµ¿ò¸»
-½ºÀ§Ä¡¸¦ »ç¿ëÇÏ¿© WinMerge ½ÇÇà ÆÄÀÏÀ» ½ÇÇàÇÕ´Ï´Ù.
+WinMerge ë„ì›€ë§ì€ WinMergeë¥¼ ì„¤ì¹˜í•  ë•Œ Microsoft HTML ë„ì›€ë§ íŒŒì¼ì¸
+WinMerge.chmìœ¼ë¡œ ë¡œì»¬ë¡œ ì„¤ì¹˜ë©ë‹ˆë‹¤. ë„ì›€ë§ì„ ì—´ë ¤ë©´ ë„ì›€ë§>WinMerge
+ë„ì›€ë§ì„ í´ë¦­í•˜ê±°ë‚˜ WinMerge ì°½ì—ì„œ F1ì„ ëˆ„ë¦…ë‹ˆë‹¤. ëª…ë ¹ì¤„ì—ì„œ /? ë„ì›€ë§
+ìŠ¤ìœ„ì¹˜ë¥¼ ì‚¬ìš©í•˜ì—¬ WinMerge ì‹¤í–‰ íŒŒì¼ì„ ì‹¤í–‰í•©ë‹ˆë‹¤.
 
-https://manual.winmerge.org/¿¡¼­ WinMerge µµ¿ò¸»ÀÇ
-HTML ¹öÀüÀ» Ã£¾Æº¼ ¼öµµ ÀÖ½À´Ï´Ù.
+https://manual.winmerge.org/ì—ì„œ WinMerge ë„ì›€ë§ì˜
+HTML ë²„ì „ì„ ì°¾ì•„ë³¼ ìˆ˜ë„ ìžˆìŠµë‹ˆë‹¤.
 
-WinMerge Áö¿ø
+WinMerge ì§€ì›
 ================
-WinMerge¿¡ ´ëÇÑ Áú¹®ÀÌ³ª Á¦¾ÈÀÌ ÀÖ½À´Ï±î? ½ÃÀÛÇÏ±â ÁÁÀº °÷Àº
-https://forums.winmerge.org/ÀÇ WinMerge Ä¿¹Â´ÏÆ¼ °Ô½ÃÆÇÀÔ´Ï´Ù.
-°³¹ßÀÚ´Â µÎ Æ÷·³ÀÇ Áú¹®À» ÀÚÁÖ ÀÐ°í ´äº¯ÇÕ´Ï´Ù. »ç¿ë¹ý¿¡ ´ëÇÑ
-Áú¹®°ú °°Àº ÀÏ¹ÝÀûÀÎ WinMerge ¹®Á¦¿¡ ´ëÇØ¼­´Â ¿­¸° Åä·Ð Æ÷·³À»
-»ç¿ëÇÏ½Ê½Ã¿À. WinMerge °³¹ß ¹®Á¦¿¡ ´ëÇÑ °³¹ßÀÚ Æ÷·³À» »ç¿ëÇÏ½Ê½Ã¿À.
+WinMergeì— ëŒ€í•œ ì§ˆë¬¸ì´ë‚˜ ì œì•ˆì´ ìžˆìŠµë‹ˆê¹Œ? ì‹œìž‘í•˜ê¸° ì¢‹ì€ ê³³ì€
+https://forums.winmerge.org/ì˜ WinMerge ì»¤ë®¤ë‹ˆí‹° ê²Œì‹œíŒìž…ë‹ˆë‹¤.
+ê°œë°œìžëŠ” ë‘ í¬ëŸ¼ì˜ ì§ˆë¬¸ì„ ìžì£¼ ì½ê³  ë‹µë³€í•©ë‹ˆë‹¤. ì‚¬ìš©ë²•ì— ëŒ€í•œ
+ì§ˆë¬¸ê³¼ ê°™ì€ ì¼ë°˜ì ì¸ WinMerge ë¬¸ì œì— ëŒ€í•´ì„œëŠ” ì—´ë¦° í† ë¡  í¬ëŸ¼ì„
+ì‚¬ìš©í•˜ì‹­ì‹œì˜¤. WinMerge ê°œë°œ ë¬¸ì œì— ëŒ€í•œ ê°œë°œìž í¬ëŸ¼ì„ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤.
 
-¹ö±× ¹× ±â´É ¿äÃ»
+ë²„ê·¸ ë° ê¸°ëŠ¥ ìš”ì²­
 =========================
-WinMerge Æ÷·³¿¡¼­ ¹®Á¦°¡ ÇØ°áµÇÁö ¾ÊÀ¸¸é ÇÁ·ÎÁ§Æ® ÃßÀû±â¸¦ È®ÀÎÇÏ½Ê½Ã¿À.
-https://project.winmerge.org/,À¸·Î ÀÌµ¿ÇÏ¿© ÃßÀû±â ¸Þ´º¿¡¼­ Ç×¸ñÀ» Ã£°Å³ª
-Á¦ÃâÇÒ ¼ö ÀÖ´Â ¹ö±× ¹× ±â´É ¿äÃ»°ú °°Àº ¸µÅ©¸¦ Å¬¸¯ÇÏ½Ê½Ã¿À.
+WinMerge í¬ëŸ¼ì—ì„œ ë¬¸ì œê°€ í•´ê²°ë˜ì§€ ì•Šìœ¼ë©´ í”„ë¡œì íŠ¸ ì¶”ì ê¸°ë¥¼ í™•ì¸í•˜ì‹­ì‹œì˜¤.
+https://project.winmerge.org/,ìœ¼ë¡œ ì´ë™í•˜ì—¬ ì¶”ì ê¸° ë©”ë‰´ì—ì„œ í•­ëª©ì„ ì°¾ê±°ë‚˜
+ì œì¶œí•  ìˆ˜ ìžˆëŠ” ë²„ê·¸ ë° ê¸°ëŠ¥ ìš”ì²­ê³¼ ê°™ì€ ë§í¬ë¥¼ í´ë¦­í•˜ì‹­ì‹œì˜¤.
 
-¹ö±×¸¦ Á¦ÃâÇÏ´Â °æ¿ì º¸°í¼­¿¡ WinMerge ¹öÀü ¹øÈ£¸¦ Æ÷ÇÔÇÏ½Ê½Ã¿À.
-µµ¿ò¸»>±¸¼ºÀ» Å¬¸¯ÇÏ¿© ±¸¼º ·Î±×¸¦ »ý¼ºÇÒ ¼ö ÀÖ½À´Ï´Ù.
-±¸¼º ·Î±×¸¦ ¹ö±× º¸°í¼­¿¡ Ã·ºÎÇÏ½Ê½Ã¿À. °³¹ßÀÚ¿¡°Ô À¯¿ëÇÑ Á¤º¸°¡
-¸¹ÀÌ ÀÖ½À´Ï´Ù.
+ë²„ê·¸ë¥¼ ì œì¶œí•˜ëŠ” ê²½ìš° ë³´ê³ ì„œì— WinMerge ë²„ì „ ë²ˆí˜¸ë¥¼ í¬í•¨í•˜ì‹­ì‹œì˜¤.
+ë„ì›€ë§>êµ¬ì„±ì„ í´ë¦­í•˜ì—¬ êµ¬ì„± ë¡œê·¸ë¥¼ ìƒì„±í•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤.
+êµ¬ì„± ë¡œê·¸ë¥¼ ë²„ê·¸ ë³´ê³ ì„œì— ì²¨ë¶€í•˜ì‹­ì‹œì˜¤. ê°œë°œìžì—ê²Œ ìœ ìš©í•œ ì •ë³´ê°€
+ë§Žì´ ìžˆìŠµë‹ˆë‹¤.
 
 
-- WinMerge °³¹ßÀÚ
+- WinMerge ê°œë°œìž

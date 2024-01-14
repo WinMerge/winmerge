@@ -94,7 +94,8 @@ bool CMergeDoc::DoFileEncodingDialog(int pane)
 	}
 	OpenDocs(m_nBuffers, fileloc, bRO, m_strDesc);
 	
-	if (dlg.GetSaveCodepage() != dlg.GetLoadCodepage() || m_ptBuf[0]->getHasBom() != dlg.GetSaveCodepageBOM())
+	if (dlg.GetSaveCodepage() != dlg.GetLoadCodepage() ||
+		std::any_of(m_ptBuf, m_ptBuf + m_nBuffers, [&dlg](const auto& buf) { return buf->getHasBom() != dlg.GetSaveCodepageBOM(); }))
 	{
 		int nSaveCodepage = dlg.GetSaveCodepage();
 		for (pane = 0; pane < m_nBuffers; pane++)

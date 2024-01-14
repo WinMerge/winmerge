@@ -225,7 +225,7 @@ MoveUp (bool bSelect)
           nSubLine--;
         }
       while (IsEmptySubLineIndex(nSubLine));
-      SubLineCursorPosToTextPos( CEPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
+      m_ptCursorPos = SubLineCursorPosToTextPos( CEPoint( m_nIdealCharPos, nSubLine ) );
       /*ORIGINAL
       m_ptCursorPos.y --;
       m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
@@ -269,7 +269,7 @@ MoveDown (bool bSelect)
             }
           while (IsEmptySubLineIndex(nSubLine));
         }
-      SubLineCursorPosToTextPos( CEPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
+      m_ptCursorPos = SubLineCursorPosToTextPos( CEPoint( m_nIdealCharPos, nSubLine ) );
       /*ORIGINAL
       m_ptCursorPos.y ++;
       m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
@@ -362,8 +362,7 @@ MovePgUp (bool bSelect)
   if ( nSubLine < 0 )
     nSubLine = 0;
 
-  SubLineCursorPosToTextPos( CEPoint( m_nIdealCharPos, nSubLine ),
-    m_ptCursorPos );
+  m_ptCursorPos = SubLineCursorPosToTextPos( CEPoint( m_nIdealCharPos, nSubLine ) );
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);    //todo: no vertical scroll
@@ -404,8 +403,8 @@ MovePgDn (bool bSelect)
   if( nSubLine > nSubLineCount - 1 )
     nSubLine = nSubLineCount - 1;
 
-  SubLineCursorPosToTextPos( 
-    CEPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
+  m_ptCursorPos = SubLineCursorPosToTextPos( 
+    CEPoint( m_nIdealCharPos, nSubLine ) );
 
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);    //todo: no vertical scroll

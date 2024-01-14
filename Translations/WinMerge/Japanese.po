@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2023-11-06 23:06+0900\n"
+"PO-Revision-Date: 2023-12-30 17:50+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -242,6 +242,24 @@ msgstr "サイズ(&S)"
 
 msgid "Fit to Window"
 msgstr "ウインドウに合わせる"
+
+msgid "&Event Sync"
+msgstr "イベント同期(&E)"
+
+msgid "&Enabled"
+msgstr "有効(&E)"
+
+msgid "&Scroll"
+msgstr "スクロール(&S)"
+
+msgid "&Click"
+msgstr "クリック(&C)"
+
+msgid "&Input"
+msgstr "入力(&I)"
+
+msgid "&GoBack/Forward"
+msgstr "戻る/進む(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "閲覧データのクリア(&B)"
@@ -4107,6 +4125,12 @@ msgstr "拡大(&I)"
 
 msgid "Zoom &Out"
 msgstr "縮小(&O)"
+
+msgid "Comparing..."
+msgstr "比較しています..."
+
+msgid "Zoom:"
+msgstr "拡大率:"
 
 msgid "Prettification"
 msgstr "整形"

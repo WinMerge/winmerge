@@ -1,50 +1,50 @@
-WINMERGE
+ï»¿WINMERGE
 
-WinMerge este un utilitar cu Sursã Deschisã de comparare ºi fuziune 
-de fiºiere care ruleazã pe toate versiunile moderne ale sistemului
-de operare Windows. Unele funcşionalitãşi necesitã instalarea de
-componente adişionale.
+WinMerge este un utilitar cu SursÄƒ DeschisÄƒ de comparare ÅŸi fuziune 
+de fiÅŸiere care ruleazÄƒ pe toate versiunile moderne ale sistemului
+de operare Windows. Unele funcÅ£ionalitÄƒÅ£i necesitÄƒ instalarea de
+componente adiÅ£ionale.
 
-Ultima versiune de WinMerge ºi alte informaşii despre WinMerge sunt
+Ultima versiune de WinMerge ÅŸi alte informaÅ£ii despre WinMerge sunt
 disponibile la
 https://winmerge.org
 
-Start rapid cãtre utilizarea WinMerge:
-Citişi capitolul Quick-start din manualul on-line pentru a vã
+Start rapid cÄƒtre utilizarea WinMerge:
+CitiÅ£i capitolul Quick-start din manualul on-line pentru a vÄƒ
 familiariza cu WinMerge:
 https://manual.winmerge.org/Quick_start.html
 
 Manualul HTML:
 Manualul este disponibil la
 https://manual.winmerge.org/
-este posibil sã-l aveşi instalat (dacã s-a optat pentru aceasta) local,
-dar este ºi copiabil separat de la https://winmerge.org/
-(vezi documentaşia)
+este posibil sÄƒ-l aveÅ£i instalat (dacÄƒ s-a optat pentru aceasta) local,
+dar este ÅŸi copiabil separat de la https://winmerge.org/
+(vezi documentaÅ£ia)
 
 Suportul pentru scripturi:
-Dacã dorişi sã lucraşi cu scripturi aveşi nevoie ca Windows Scripting Host
-sã fie instalat. Dacã observaşi erori care au ca sursã scripturile, vizitaşi
+DacÄƒ doriÅ£i sÄƒ lucraÅ£i cu scripturi aveÅ£i nevoie ca Windows Scripting Host
+sÄƒ fie instalat. DacÄƒ observaÅ£i erori care au ca sursÄƒ scripturile, vizitaÅ£i
 https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-ºi verificaşi daca Windows Scripting Host este la zi ºi funcşionabil.
+ÅŸi verificaÅ£i daca Windows Scripting Host este la zi ÅŸi funcÅ£ionabil.
 
 Suport:
-Dezvoltatorii rãspund la întrebãri pe forumul WinMerge de la Sourceforge.net:
+Dezvoltatorii rÄƒspund la Ã®ntrebÄƒri pe forumul WinMerge de la Sourceforge.net:
 https://sourceforge.net/forum/?group_id=13216
 
-Defecte ºi solicitarea de noi funcşionalitãşi:
-Defectele ºi solicitarea de noi funcşionalitãşi trebuie înregistrate pe
-listele de Defecte (Bugs) ºi Funcşionalitãşi (RFE) de la sourceforge.net.
+Defecte ÅŸi solicitarea de noi funcÅ£ionalitÄƒÅ£i:
+Defectele ÅŸi solicitarea de noi funcÅ£ionalitÄƒÅ£i trebuie Ã®nregistrate pe
+listele de Defecte (Bugs) ÅŸi FuncÅ£ionalitÄƒÅ£i (RFE) de la sourceforge.net.
 
 Lista de defecte:
 https://sourceforge.net/tracker/?group_id=13216&atid=113216
-Atunci când înregistraşi un defect, vã rugãm sã ne spuneşi versiunea de
-WinMerge pe care o folosişi! WinMerge versiunea 2.2.0 sau mai noi pot
-scrie configurarea sub care ruleazã într-un fiºier.
-Aceastã comandã este accesibilã din meniul Ajutor/Configurare.
-Vã rugãm sã ataºaşi ºi aceastã informaşie (ca un ataºament) la raportarea
-dumneavoastrã, conşine informaşii pentru dezvoltatori.
+Atunci cÃ¢nd Ã®nregistraÅ£i un defect, vÄƒ rugÄƒm sÄƒ ne spuneÅ£i versiunea de
+WinMerge pe care o folosiÅ£i! WinMerge versiunea 2.2.0 sau mai noi pot
+scrie configurarea sub care ruleazÄƒ Ã®ntr-un fiÅŸier.
+AceastÄƒ comandÄƒ este accesibilÄƒ din meniul Ajutor/Configurare.
+VÄƒ rugÄƒm sÄƒ ataÅŸaÅ£i ÅŸi aceastÄƒ informaÅ£ie (ca un ataÅŸament) la raportarea
+dumneavoastrÄƒ, conÅ£ine informaÅ£ii pentru dezvoltatori.
 
-Lista pentru înregistratea de solicitãri de noi funcşionalitãşi (RFE):
+Lista pentru Ã®nregistratea de solicitÄƒri de noi funcÅ£ionalitÄƒÅ£i (RFE):
 https://sourceforge.net/tracker/?group_id=13216&atid=363216
 
 

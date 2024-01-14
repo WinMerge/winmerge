@@ -242,6 +242,24 @@ msgstr "&அளவு"
 msgid "Fit to Window"
 msgstr "சாளரத்தில் பொருத்து"
 
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "&உலாவல் தரவை அழி"
 
@@ -4102,6 +4120,12 @@ msgid "Zoom &In"
 msgstr ""
 
 msgid "Zoom &Out"
+msgstr ""
+
+msgid "Comparing..."
+msgstr ""
+
+msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

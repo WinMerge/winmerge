@@ -6,6 +6,7 @@
 #
 # Translators:
 # * Lolo S. <slolo2000 at hotmail.com>
+# * Need74 <need74 at free.fr>
 #
 msgid ""
 msgstr ""
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -54,7 +55,7 @@ msgstr "Win&Merge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr "Comparer C&omme"
+msgstr "Comparer C&omme un(e)"
 
 #: ShellExtension.rc:114
 #, c-format

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2023-09-10 18:30-0300\n"
+"PO-Revision-Date: 2023-12-28 15:37-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -243,6 +243,24 @@ msgstr "Tamanho"
 
 msgid "Fit to Window"
 msgstr "Ajustar à Janela"
+
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr "Habilitado"
+
+msgid "&Scroll"
+msgstr "Rolar"
+
+msgid "&Click"
+msgstr "&Clicar"
+
+msgid "&Input"
+msgstr "Entrada"
+
+msgid "&GoBack/Forward"
+msgstr "Voltar/Avançar"
 
 msgid "Clear &Browsing Data"
 msgstr "Limpar Dados de Navegação"
@@ -3719,6 +3737,12 @@ msgstr "Mais Zoom"
 
 msgid "Zoom &Out"
 msgstr "Menos Zoom"
+
+msgid "Comparing..."
+msgstr "Comparando..."
+
+msgid "Zoom:"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

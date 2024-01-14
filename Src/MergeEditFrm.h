@@ -48,6 +48,10 @@ protected:
 	CMergeEditSplitterView *m_pwndDetailMergeEditSplitterView;
 	CMergeStatusBar m_wndStatusBar;
 	CLocationBar m_wndLocationBar;
+	class CPreviewNumPageButton : public CButton
+	{
+		virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
+	} m_wndPreviewNumPage;
 
 // Overrides
 public:

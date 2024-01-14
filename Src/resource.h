@@ -25,6 +25,7 @@
 #define IDR_POPUP_IMG_CTXT              121
 #define IDR_POPUP_PROJECT_DIFF_OPTIONS  122
 #define IDR_POPUP_WEBPAGE_COMPARE       123
+#define IDR_POPUP_WEBPAGE_SYNC_EVENTS   124
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
@@ -79,7 +80,6 @@
 #define IDD_EDIT_FIND                   282
 #define IDD_EDIT_MARKER                 283
 #define IDD_EDIT_REPLACE                284
-#define IDD_WEBPAGEDIFF_BAR             285
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -624,6 +624,7 @@
 #define IDC_USERAGENT                   1628
 #define IDC_COMPARE                     1630
 #define IDC_SHOWDIFFERENCES             1631
+#define IDC_SYNC_EVENTS                 1632
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1058,10 +1059,15 @@
 #define ID_WEB_COMPARE_HTMLS            33762
 #define ID_WEB_COMPARE_TEXTS            33763
 #define ID_WEB_COMPARE_RESOURCETREES    33764
-#define ID_WEB_CLEAR_DISK_CACHE         33765
-#define ID_WEB_CLEAR_COOKIES            33766
-#define ID_WEB_CLEAR_BROWSING_HISTORY   33767
-#define ID_WEB_CLEAR_ALL_PROFILE        33768
+#define ID_WEB_SYNC_ENABLED             33765
+#define ID_WEB_SYNC_SCROLL              33766
+#define ID_WEB_SYNC_CLICK               33767
+#define ID_WEB_SYNC_INPUT               33768
+#define ID_WEB_SYNC_GOBACKFORWARD       33769
+#define ID_WEB_CLEAR_DISK_CACHE         33780
+#define ID_WEB_CLEAR_COOKIES            33781
+#define ID_WEB_CLEAR_BROWSING_HISTORY   33782
+#define ID_WEB_CLEAR_ALL_PROFILE        33783
 #define ID_FILE_NEW_TABLE               34164
 #define ID_FILE_NEW_HEX                 34165
 #define ID_FILE_NEW_IMAGE               34166
@@ -1653,6 +1659,8 @@
 #define IDS_PREVIEWBAR_ZOOMIN           44536
 #define IDS_PREVIEWBAR_ZOOMOUT          44537
 #define IDS_PREVIEWBAR_CLOSE            44538
+#define IDS_WEBPAGE_COMPARING           44539
+#define IDS_WEBPAGE_ZOOM                44540
 
 
 // Next default values for new objects

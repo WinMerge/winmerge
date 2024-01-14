@@ -2048,6 +2048,74 @@ namespace
 		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
 		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
 	}
+	TEST_F(MergeCmdLineInfoTest, Unpacker2)
+	{
+		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /unpacker \"Replace -e ',\\s*\\n\\s*}' '}' -e ',\\s*\\n\\s*\\]' ']' | QueryJSON '.Parameters|=sort_by(.HandleId)'\""));
+		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
+		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ(_T(""), cmdInfo.m_sLeftDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
+		EXPECT_EQ(_T("Replace -e ',\\s*\\n\\s*}' '}' -e ',\\s*\\n\\s*\\]' ']' | QueryJSON '.Parameters|=sort_by(.HandleId)'"), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
+	}
+	TEST_F(MergeCmdLineInfoTest, Unpacker3)
+	{
+		MergeCmdLineInfo cmdInfo(_T("C:\\WinMerge\\WinMerge.exe /unpacker \"Replace -e \"\",\\s*\\n\\s*}\"\" \"\"}\"\" -e \"\",\\s*\\n\\s*\\]\"\" \"\"]\"\" | QueryJSON \"\".Parameters|=sort_by(.HandleId)\"\"\""));
+		EXPECT_EQ(0, cmdInfo.m_Files.GetSize());
+		EXPECT_EQ(MergeCmdLineInfo::SHOWNORMAL, cmdInfo.m_nCmdShow);
+		EXPECT_FALSE(cmdInfo.m_bEscShutdown);
+		EXPECT_FALSE(cmdInfo.m_bExitIfNoDiff);
+		EXPECT_FALSE(cmdInfo.m_bRecurse);
+		EXPECT_FALSE(cmdInfo.m_bNonInteractive);
+		EXPECT_FALSE(cmdInfo.m_nSingleInstance.has_value());
+		EXPECT_FALSE(cmdInfo.m_bShowUsage);
+		EXPECT_FALSE(cmdInfo.m_bSelfCompare);
+		EXPECT_FALSE(cmdInfo.m_bNewCompare);
+		EXPECT_EQ(MergeCmdLineInfo::AUTOMATIC, cmdInfo.m_nWindowType);
+		EXPECT_FALSE(cmdInfo.m_nCompMethod.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableDelimiter.has_value());
+		EXPECT_FALSE(cmdInfo.m_cTableQuote.has_value());
+		EXPECT_FALSE(cmdInfo.m_bTableAllowNewlinesInQuotes.has_value());
+		EXPECT_EQ(0,cmdInfo.m_nCodepage);
+		EXPECT_EQ(-1, cmdInfo.m_nLineIndex);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwLeftFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwMiddleFlags);
+		EXPECT_EQ(FFILEOPEN_NONE, cmdInfo.m_dwRightFlags);
+		EXPECT_EQ(_T(""), cmdInfo.m_sLeftDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sMiddleDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sRightDesc);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileFilter);
+		EXPECT_EQ(_T(""), cmdInfo.m_sPreDiffer);
+		EXPECT_EQ(_T("Replace -e \",\\s*\\n\\s*}\" \"}\" -e \",\\s*\\n\\s*\\]\" \"]\" | QueryJSON \".Parameters|=sort_by(.HandleId)\""), cmdInfo.m_sUnpacker);
+		EXPECT_EQ(_T(""), cmdInfo.m_sFileExt);
+		EXPECT_EQ(_T(""), cmdInfo.m_sOutputpath);
+		EXPECT_EQ(_T(""), cmdInfo.m_sReportFile);
+		EXPECT_EQ(_T(""), cmdInfo.m_sIniFilepath);
+	}
 
 	// Prediffer
 	TEST_F(MergeCmdLineInfoTest, Prediffer1)

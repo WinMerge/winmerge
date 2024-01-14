@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-11-06 23:04+0000\n"
-"PO-Revision-Date: 2023-11-07 08:14+0200\n"
+"POT-Creation-Date: 2023-12-28 07:26+0000\n"
+"PO-Revision-Date: 2023-12-29 08:15+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -243,6 +243,24 @@ msgstr "Dydi&s"
 
 msgid "Fit to Window"
 msgstr "Talpinti į langą"
+
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr "Į&jungta"
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
 
 msgid "Clear &Browsing Data"
 msgstr "Išvalyti &Naršymo duomenis"
@@ -3720,6 +3738,12 @@ msgstr "Did&inti"
 msgid "Zoom &Out"
 msgstr "Mažin&ti"
 
+msgid "Comparing..."
+msgstr "Lygina..."
+
+msgid "Zoom:"
+msgstr ""
+
 msgid "Prettification"
 msgstr "Sutvarkymas"
 
@@ -3847,13 +3871,13 @@ msgid "Validate HTML"
 msgstr "Patikrinti HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr "Deaseblinti JVM baitinį kodą"
+msgstr "Dekompiliuoti JVM baitinį kodą"
 
 msgid "Disassemble IL Code"
-msgstr "Deaseblinti IL kodą"
+msgstr "Dekompiliuoti IL kodą"
 
 msgid "Disassemble Native Code"
-msgstr "Deaseblinti savajį kodą"
+msgstr "Dekompiliuoti savajį kodą"
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"

@@ -1,0 +1,85 @@
+﻿[CustomMessages]
+
+;Things we can also localize
+OptionalFeatures=Nebūtinos funkcijos:
+CompanyName=Thingamahoochie Software
+
+;Types
+TypicalInstallation=Tipinis diegimas
+FullInstallation=Visų komponentų diegimas
+CompactInstallation=Glaustas diegimas
+CustomInstallation=Pasirinktinis diegimas
+
+;Components
+AppCoreFiles=„WinMerge“ pagrindiniai failai
+Filters=Filtrai
+Plugins=Papildiniai
+ShellExtension32bit=32-bitų „WinMerge ShellExtension“
+
+;Localization Components
+Languages=Kalbos
+ArabicLanguage=Arabų meniu ir dialogai
+BasqueLanguage=Baskų meniu ir dialogai
+BulgarianLanguage=Bulgarų meniu ir dialogai
+CatalanLanguage=Katalonų meniu ir dialogai
+ChineseSimplifiedLanguage=Kinų (supaprastinta) meniu ir dialogai
+ChineseTraditionalLanguage=Kinų (tradicinė) meniu ir dialogai
+CorsicanLanguage=Korsikiečių meniu ir dialogai
+CroatianLanguage=Kroatų meniu ir dialogai
+CzechLanguage=Čekų meniu ir dialogai
+DanishLanguage=Danų meniu ir dialogai
+DutchLanguage=Olandų meniu ir dialogai
+FinnishLanguage=Suomių meniu ir dialogai
+FrenchLanguage=Prancūzų meniu ir dialogai
+GalicianLanguage=Galicijos meniu ir dialogai
+GermanLanguage=Vokiečių meniu ir dialogai
+GreekLanguage=Graikų meniu ir dialogai
+HungarianLanguage=Vengrų meniu ir dialogai
+ItalianLanguage=Italų meniu ir dialogai
+JapaneseLanguage=Japonų meniu ir dialogai
+KoreanLanguage=Korėjiečių meniu ir dialogai
+LithuanianLanguage=Lietuvių meniu ir dialogai
+NorwegianLanguage=Norvegų meniu ir dialogai
+PersianLanguage=Persų meniu ir dialogai
+PolishLanguage=Lenkų meniu ir dialogai
+PortugueseBrazilLanguage=Portugalų (Brazilų) meniu ir dialogai
+PortugueseLanguage=Portugalų meniu ir dialogai
+RomanianLanguage=Rumunų meniu ir dialogai
+RussianLanguage=Rusų meniu ir dialogai
+SerbianLanguage=Serbų meniu ir dialogai
+SinhalaLanguage=Sinhala meniu ir dialogai
+SlovakLanguage=Slovakų meniu ir dialogai
+SlovenianLanguage=Slovėnų meniu ir dialogai
+SpanishLanguage=Ispanų meniu ir dialogai
+SwedishLanguage=Švedų meniu ir dialogai
+TamilLanguage=Tamilų meniu ir dialogai
+TurkishLanguage=Turkų meniu ir dialogai
+UkrainianLanguage=Ukrainiečių meniu ir dialogai
+
+;Tasks
+ExplorerContextMenu=L&eisti „Explorer“ kontekstinio meniu integraciją
+IntegrateTortoiseCVS=Integruoti su „&TortoiseCVS“
+IntegrateTortoiseGit=Integruoti su „To&rtoiseGit“
+IntegrateTortoiseSVN=Integruoti su „T&ortoiseSVN“
+AddToPath=Įtr&aukti „WinMerge“ katalogą į sistemos %PATH% kintamajį
+
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3 krypčių suliejimas
+ThreeWayMergeWizardPageDescription=Gal norite naudoti „WinMerge“ kaip 3 krypčių suliejimo įrankį „TortoiseSVN/Git“ programose?
+RegisterWinMergeAs3WayMergeTool=Registruoti „WinMerge“ kaip 3 krypčių suliejimo įrankį
+MergeAtRightPane=Sulieti dešiniajame polangyje
+MergeAtCenterPane=Sulieti viduriniame polangyje
+MergeAtLeftPane=Sulieti kairiajame polangyje
+AutoMergeAtStartup=Automatiškai sulieti startuojant
+
+;Icon Labels
+ReadMe=Skaityk
+UsersGuide=Naudotojo vadovas
+ViewStartMenuFolder=&Rodyti „WinMerge“ paleidimo meniu
+
+;Code Dialogs
+DeletePreviousStartMenu=Diegimo programa nustatė, kad pakeitėte paleidimo meniu vietą iš „%s“ į „%s“. Gal norite pašalinti ankstesnį paleidimo meniu?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+
+; Project file description
+ProjectFileDesc=„WinMerge“ projekto failas

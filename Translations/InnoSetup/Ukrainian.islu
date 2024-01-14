@@ -1,0 +1,85 @@
+﻿[CustomMessages]
+
+;Things we can also localize
+OptionalFeatures=Додаткові можливості:
+CompanyName=Thingamahoochie Software
+
+;Types
+TypicalInstallation=Звичайне встановлення
+FullInstallation=Повне встановлення
+CompactInstallation=Компактне встановлення
+CustomInstallation=Вибіркове встановлення
+
+;Components
+AppCoreFiles=Файли ядра WinMerge
+Filters=Фільтри
+Plugins=Плагіни
+ShellExtension32bit=32-bit WinMerge ShellExtension
+
+;Localization Components
+Languages=Languages
+ArabicLanguage=Arabic menus and dialogs
+BasqueLanguage=Basque menus and dialogs
+BulgarianLanguage=Меню і діалогові вікна болгарською мовою
+CatalanLanguage=Меню і діалогові вікна каталонською мовою
+ChineseSimplifiedLanguage=Меню і діалогові вікна звичайною китайською мовою
+ChineseTraditionalLanguage=Меню і діалогові вікна традиційною китайською мовою
+CorsicanLanguage=Corsican menus and dialogs
+CroatianLanguage=Меню і діалогові вікна хорватською мовою
+CzechLanguage=Меню і діалогові вікна чеською мовою
+DanishLanguage=Меню і діалогові вікна датською мовою
+DutchLanguage=Меню і діалогові вікна голландською мовою
+FinnishLanguage=Finnish menus and dialogs
+FrenchLanguage=Меню і діалогові вікна французькою мовою
+GalicianLanguage=Galician menus and dialogs
+GermanLanguage=Меню і діалогові вікна німецькою мовою
+GreekLanguage=Greek menus and dialogs
+HungarianLanguage=Меню і діалогові вікна болгарською мовою
+ItalianLanguage=Меню і діалогові вікна італійською мовою
+JapaneseLanguage=Меню і діалогові вікна японською мовою
+KoreanLanguage=Меню і діалогові вікна корейською мовою
+LithuanianLanguage=Lithuanian menus and dialogs
+NorwegianLanguage=Меню і діалогові вікна норвежською мовою
+PersianLanguage=Persian menus and dialogs
+PolishLanguage=Меню і діалогові вікна полською мовою
+PortugueseBrazilLanguage=Меню і діалогові вікна португальською (бразильською) мовою
+PortugueseLanguage=Меню і діалогові вікна португальською мовою
+RomanianLanguage=Меню і діалогові вікна румунською мовою
+RussianLanguage=Меню і діалогові вікна російською мовою
+SerbianLanguage=Serbian menus and dialogs
+SinhalaLanguage=Sinhala menus and dialogs
+SlovakLanguage=Меню і діалогові вікна словацькою мовою
+SlovenianLanguage=Slovenian menus and dialogs
+SpanishLanguage=Меню і діалогові вікна іспанською мовою
+SwedishLanguage=Меню і діалогові вікна шведською мовою
+TamilLanguage=Tamil menus and dialogs
+TurkishLanguage=Меню і діалогові вікна турецькою мовою
+UkrainianLanguage=Меню і діалогові вікна українською мовою
+
+;Tasks
+ExplorerContextMenu=&Інтегруватися в контекстне меню оболонки ОС
+IntegrateTortoiseCVS=Інтегруватися в &TortoiseCVS
+IntegrateTortoiseGit=Інтегруватися в To&rtoiseGit
+IntegrateTortoiseSVN=Інтегруватися в T&ortoiseSVN
+AddToPath=&Add WinMerge folder to your system path
+
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3-Way Merge
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+MergeAtRightPane=Merge at right pane
+MergeAtCenterPane=Merge at center pane
+MergeAtLeftPane=Merge at left pane
+AutoMergeAtStartup=Auto-merge at startup time
+
+;Icon Labels
+ReadMe=Прочитати Read Me
+UsersGuide=Довідка користувача
+ViewStartMenuFolder=&Відкрити папку WinMerge в стартовому меню
+
+;Code Dialogs
+DeletePreviousStartMenu=Програма встановлення виявила, що ви змінили розташування вашого стартового меню з  "%s" до "%s". Ви хотіли б вилучити попередню папку стартового меню?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+
+; Project file description
+ProjectFileDesc=Файл проекту WinMerge

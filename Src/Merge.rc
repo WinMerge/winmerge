@@ -241,6 +241,15 @@ BEGIN
             MENUITEM "1280x800",                    ID_WEB_SIZE_1280x800
             MENUITEM "1440x900",                    ID_WEB_SIZE_1440x900
         END
+        POPUP "&Event Sync"
+        BEGIN
+            MENUITEM "&Enabled",                    ID_WEB_SYNC_ENABLED
+            MENUITEM SEPARATOR
+            MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
+            MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
+            MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+            MENUITEM "&GoBack/Forward",             ID_WEB_SYNC_GOBACKFORWARD
+        END
         POPUP "Clear &Browsing Data"
         BEGIN
             MENUITEM "&Disk Cache",                 ID_WEB_CLEAR_DISK_CACHE
@@ -1151,6 +1160,19 @@ BEGIN
         MENUITEM "&HTMLs",                      ID_WEB_COMPARE_HTMLS
         MENUITEM "&Texts",                      ID_WEB_COMPARE_TEXTS
         MENUITEM "&Resource Trees",             ID_WEB_COMPARE_RESOURCETREES
+    END
+END
+
+IDR_POPUP_WEBPAGE_SYNC_EVENTS MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "&Enabled",                    ID_WEB_SYNC_ENABLED
+        MENUITEM SEPARATOR
+        MENUITEM "&Scroll",                     ID_WEB_SYNC_SCROLL
+        MENUITEM "&Click",                      ID_WEB_SYNC_CLICK
+        MENUITEM "&Input",                      ID_WEB_SYNC_INPUT
+        MENUITEM "&GoBack/Forward",             ID_WEB_SYNC_GOBACKFORWARD
     END
 END
 
@@ -2318,21 +2340,6 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
-END
-
-IDD_WEBPAGEDIFF_BAR DIALOGEX 0, 0, 714, 18
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
-FONT 8, "MS Shell Dlg", 400, 0, 0x1
-BEGIN
-    CONTROL         "Compare",IDC_COMPARE,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,2,72,14
-    CONTROL         "",IDC_FITTOWINDOW,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,84,2,14,14
-    EDITTEXT        IDC_WIDTH,98,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    LTEXT           "x",-1,134,4,8,10
-    EDITTEXT        IDC_HEIGHT,140,2,32,14,ES_AUTOHSCROLL | ES_NUMBER,WS_EX_RIGHT
-    EDITTEXT        IDC_ZOOM,178,2,32,14,ES_AUTOHSCROLL,WS_EX_RIGHT
-    LTEXT           "UA:",-1,214,4,16,10
-    EDITTEXT        IDC_USERAGENT,230,2,128,14,ES_AUTOHSCROLL
-    CONTROL         "View &Differences",IDC_SHOWDIFFERENCES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,362,2,96,14
 END
 
 
@@ -4215,6 +4222,12 @@ BEGIN
     IDS_PREVIEWBAR_ZOOMIN   "Zoom &In"
     IDS_PREVIEWBAR_ZOOMOUT  "Zoom &Out"
     IDS_PREVIEWBAR_CLOSE    "&Close"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_WEBPAGE_COMPARING   "Comparing..."
+    IDS_WEBPAGE_ZOOM        "Zoom:"
 END
 
 #endif    // English (United States) resources

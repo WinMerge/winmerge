@@ -6,7 +6,7 @@
 
 struct WebDiffEvent
 {
-	enum EVENT_TYPE { ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, WebMessageReceived, TabChanged, HSCROLL, VSCROLL };
+	enum EVENT_TYPE { ZoomFactorChanged, NewWindowRequested, WindowCloseRequested, NavigationStarting, FrameNavigationStarting, HistoryChanged, SourceChanged, DocumentTitleChanged, NavigationCompleted, FrameNavigationCompleted, WebMessageReceived, FrameWebMessageReceived, GoBacked, GoForwarded, TabChanged, HSCROLL, VSCROLL, CompareStateChanged, CompareScreenshotsSelected, CompareFullsizeScreenshotsSelected, CompareHTMLsSelected, CompareTextsSelected, CompareResourceTreesSelected, DiffSelected };
 	EVENT_TYPE type;
 	int pane;
 };
@@ -54,6 +54,20 @@ struct IWebDiffWindow
 		BROWSING_HISTORY    = ( 1 << 12 ),
 		SETTINGS            = ( 1 << 13 ),
 		ALL_PROFILE         = ( 1 << 14 ) 
+	};
+	enum EventType
+	{
+		EVENT_NONE          = 0,
+		EVENT_SCROLL        = ( 1 << 0 ),
+		EVENT_CLICK         = ( 1 << 1 ),
+		EVENT_INPUT         = ( 1 << 2 ),
+		EVENT_GOBACKFORWARD = ( 1 << 3 ),
+	};
+	enum CompareState
+	{
+		NOT_COMPARED,
+		COMPARING,
+		COMPARED,
 	};
 	struct DiffOptions
 	{
@@ -170,11 +184,28 @@ struct IWebDiffWindow
 	virtual bool CanRedo() = 0;
 	virtual const DiffOptions& GetDiffOptions() const = 0;
 	virtual void SetDiffOptions(const DiffOptions& diffOptions) = 0;
+	virtual bool GetSyncEvents() const = 0;
+	virtual void SetSyncEvents(bool syncEvents) = 0;
+	virtual unsigned GetSyncEventFlags() const = 0;
+	virtual void SetSyncEventFlags(unsigned flags) = 0;
+	virtual bool GetSyncEventFlag(EventType event) const = 0;
+	virtual void SetSyncEventFlag(EventType event, bool flag) = 0;
+	virtual CompareState GetCompareState() const = 0;
+	virtual void RaiseEvent(const WebDiffEvent& e) = 0;
+};
+
+struct IWebToolWindow
+{
+	using TranslateCallback = void(*)(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
+	virtual HWND GetHWND() const = 0;
+	virtual void Sync() = 0;
+	virtual void Translate(TranslateCallback translateCallback) = 0;
 };
 
 extern "C"
 {
 	IWebDiffWindow* WinWebDiff_CreateWindow(HINSTANCE hInstance, HWND hWndParent, int nID = 0);
 	bool WinWebDiff_DestroyWindow(IWebDiffWindow* pWebDiffWindow);
+	IWebToolWindow * WinWebDiff_CreateToolWindow(HINSTANCE hInstance, HWND hWndParent, IWebDiffWindow *pWebDiffWindow);
+	bool WinWebDiff_DestroyToolWindow(IWebToolWindow *pWebToolWindow);
 };
-

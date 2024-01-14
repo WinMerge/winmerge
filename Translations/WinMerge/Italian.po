@@ -242,6 +242,24 @@ msgstr "&Dimensione"
 msgid "Fit to Window"
 msgstr "Adatta alla finestra"
 
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "Cancella i dati di &navigazione"
 
@@ -849,7 +867,7 @@ msgid "&Second left item with first right item"
 msgstr "&Secondo elemento di sinistra con primo elemento di destra"
 
 msgid "Co&mpare As"
-msgstr "Co&fronta come"
+msgstr "Con&fronta come"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
@@ -4077,6 +4095,12 @@ msgid "Zoom &In"
 msgstr ""
 
 msgid "Zoom &Out"
+msgstr ""
+
+msgid "Comparing..."
+msgstr ""
+
+msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

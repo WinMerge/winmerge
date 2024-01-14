@@ -1,32 +1,32 @@
-WINMERGE
+﻿WINMERGE
 
-WinMerge �O Windows �@�~�t�ΤU���B�}�񷽽X������P�X�֪��u��CWinMerge ������Ƨ��P�ɮסA�H�����ݨ��媺�������B�z���覡�A�e�{����X���t���CWinMerge �i�H�W�߹B�ΡA�]�i�H�����Y�Ӥ���t��/�X�֤u�㪺�~���s�边�C
+WinMerge 是 Windows 作業系統下的、開放源碼的比較與合併的工具。WinMerge 能比較資料夾與檔案，以直接看到原文的易懂易處理的方式，呈現比較出的差異。WinMerge 可以獨立運用，也可以當成某個比較差異/合併工具的外部編輯器。
 
-WinMerge ���\�h���Ϊ��\��ϱo����B�P�ơB�X�֧�[�e���C�\�h�{���y���M�ɮ׮榡���H�y�k���G����ܡC
+WinMerge 有許多有用的功能使得比較、同化、合併更加容易。許多程式語言和檔案格式都以語法高亮度顯示。
 
-WinMerge �̷s���P��T�b�Ghttps://winmerge.org/
+WinMerge 最新版與資訊在：https://winmerge.org/
 
-�ߧY�W��
+立即上手
 ===========
-�w�˫�A�ǲ߰򥻾ާ@�A�� ���� > WinMerge �����C�s�� Quick Start ���C�Φ� https://manual.winmerge.org/Quick_start.html �s����������C
+安裝後，學習基本操作，按 說明 > WinMerge 說明。瀏覽 Quick Start 章。或至 https://manual.winmerge.org/Quick_start.html 瀏覽其網路版。
 
-WinMerge ����
+WinMerge 說明
 ============= 
-�w�� WinMerge �ɡA�仡���ɦb�a�w�˦� Microsoft HTML Help �� ( WinMerge.chm)�C�}�һ����ɡA���GHelp > WinMerge �����C�Ω�WinMerge ���A�� F1�C��R�O�C�A�h�H "/?" �Ѽư��� WinMerge ���i�����ɡC
+安裝 WinMerge 時，其說明檔在地安裝成 Microsoft HTML Help 檔 ( WinMerge.chm)。開啟說明檔，按：Help > WinMerge 說明。或於WinMerge 窗，按 F1。於命令列，則以 "/?" 參數執行 WinMerge 的可執行檔。
 
-�z�]�i�H�� https://manual.winmerge.org/ �s����HTML ���C
+您也可以到 https://manual.winmerge.org/ 瀏覽其HTML 版。
 
-WinMerge �䴩
+WinMerge 支援
 ================
-������ WinMerge �����D�Ϋ�ĳ�ܡH�Ш� https://forums.winmerge.org/ �� WinMerge ���s�Q�װϡC��o�̱`�|�\Ū�P�^����ӰQ�װϤ������D�C�@��ʪ�ĳ�D�A���ϥΤW�����D�A�Ш줽�}�Q�װ� (Open Discussion forum)�C��o�W��ĳ�D�A�Ш��o�Q�װ� (Developers forum)�C
+有關於 WinMerge 的問題或建議嗎？請到 https://forums.winmerge.org/ 的 WinMerge 社群討論區。研發者常會閱讀與回應兩個討論區中的問題。一般性的議題，像使用上的問題，請到公開討論區 (Open Discussion forum)。研發上的議題，請到研發討論區 (Developers forum)。
 
-�{�����~�P�\��W�q
+程式錯誤與功能增益
 =========================
-�Y�@��ĳ�D�b�Q�װϤ�����ѨM�A�i��p�e ( https://project.winmerge.org/) �����l�ܾ� (Tracker) �d�ݡA�ë����檺�s�� (Ĵ�p�ABugs �� Feature Requests)�A�쨺�̴N�i�H�s���δ��X�z���Q�k�C
+若一個議題在討論區中未獲解決，可到計畫 ( https://project.winmerge.org/) 中的追蹤器 (Tracker) 查看，並按其選單的連結 (譬如，Bugs 或 Feature Requests)，到那裡就可以瀏覽或提出您的想法。
 
-�������~�ɽЪ��W�ҥΪ� WinMerge �����s���C�� ���� > �պA�A�i���ͲպA�����ɡC�N���ɪ���z�����~�����F���ɦ��\�h���Ϊ���T����o�̡C
+提報錯誤時請附上所用的 WinMerge 版本編號。按 說明 > 組態，可產生組態紀錄檔。將此檔附於您的錯誤提報；該檔有許多有用的資訊給研發者。
 
 
-WinMerge ��o�ζ�
+WinMerge 研發團隊
 
  	  	 

@@ -1,0 +1,85 @@
+﻿[CustomMessages]
+
+;Things we can also localize
+OptionalFeatures=İsteğe Bağlı Özellikler:
+CompanyName=Thingamahoochie Software
+
+;Types
+TypicalInstallation=Tipik Kurulum
+FullInstallation=Tam Kurulum
+CompactInstallation=Küçük Kurulum
+CustomInstallation=Özel Kurulum
+
+;Components
+AppCoreFiles=WinMerge Çekirdek Dosyaları
+Filters=Süzgeçler
+Plugins=Uygulama Ekleri
+ShellExtension32bit=32-bit WinMerge Kabuk Eklentisi
+
+;Localization Components
+Languages=Diller
+ArabicLanguage=Arapça menü ve pencereler
+BasqueLanguage=Baskça menü ve pencereler
+BulgarianLanguage=Bulgarca menü ve pencereler
+CatalanLanguage=Katalanca menü ve pencereler
+ChineseSimplifiedLanguage=Çince (Basitleştirilmiş) menü ve pencereler
+ChineseTraditionalLanguage=Çince (Geleneksel) menü ve pencereler
+CorsicanLanguage=Corsican menus and dialogs
+CroatianLanguage=Hırvatça menü ve pencereler
+CzechLanguage=Çekce menü ve pencereler
+DanishLanguage=Danimarkaca menü ve pencereler
+DutchLanguage=Hollandaca menü ve pencereler
+FinnishLanguage=Fince menü ve pencereler
+FrenchLanguage=Fransızca menü ve pencereler
+GalicianLanguage=Galiçce menü ve pencereler
+GermanLanguage=Almanca menü ve pencereler
+GreekLanguage=Yunanca menü ve pencereler
+HungarianLanguage=Macarca menü ve pencereler
+ItalianLanguage=Italyanca menü ve pencereler
+JapaneseLanguage=Japonca menü ve pencereler
+KoreanLanguage=Korece menü ve pencereler
+LithuanianLanguage=Litvanca menü ve pencereler
+NorwegianLanguage=Norveçce menü ve pencereler
+PersianLanguage=Farsça menü ve pencereler
+PolishLanguage=Lehçe menü ve pencereler
+PortugueseBrazilLanguage=Portekizce (Brezilya) menü ve pencereler
+PortugueseLanguage=Portekizce menü ve pencereler
+RomanianLanguage=Romence menü ve pencereler
+RussianLanguage=Rusça menü ve pencereler
+SerbianLanguage=Sırpça menü ve pencereler
+SinhalaLanguage=Sinhalaca menü ve pencereler
+SlovakLanguage=Slovakça menü ve pencereler
+SlovenianLanguage=Slovence menü ve pencereler
+SpanishLanguage=İspanyolca menü ve pencereler
+SwedishLanguage=İsveçce menü ve pencereler
+TamilLanguage=Tamil menus and dialogs
+TurkishLanguage=Türkçe menü ve pencereler
+UkrainianLanguage=Ukraynaca menü ve pencereler
+
+;Tasks
+ExplorerContextMenu=&Windows gezgini sağ tık menü bütünleştirmesi kullanılsın
+IntegrateTortoiseCVS=&TortoiseCVS ile bütünleştir
+IntegrateTortoiseGit=To&rtoiseGit ile bütünleştir
+IntegrateTortoiseSVN=T&ortoiseSVN ile bütünleştir
+AddToPath=Win&Merge klasörü sistem yoluna eklensin
+
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3 Yollu Birleştirme
+ThreeWayMergeWizardPageDescription=WinMerge uygulamasını TortoiseSVN/Git için 3 yollu birleştirme aracı olarak kullanıyor musunuz?
+RegisterWinMergeAs3WayMergeTool=WinMerge 3 yollu birleştirme aracı olarak kaydedilsin
+MergeAtRightPane=Sağ panoda birleştirilsin
+MergeAtCenterPane=Orta panoda birleştirilsin
+MergeAtLeftPane=Sol panoda birleştirilsin
+AutoMergeAtStartup=Açılışta otomatik birleştirilsin
+
+;Icon Labels
+ReadMe=Beni Oku
+UsersGuide=Kullanıcı Kitabı
+ViewStartMenuFolder=&WinMerge Başlangıç Menüsü Klasöründe Görüntülensin
+
+;Code Dialogs
+DeletePreviousStartMenu=Kurucu başlangıç menüsünün konumunun "%s" yerine "%s" konumunda bulunduğunu algıladı. Önceki başlangıç menüsü klasörünü silmek ister misiniz?
+ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+
+; Project file description
+ProjectFileDesc=WinMerge Proje dosyası

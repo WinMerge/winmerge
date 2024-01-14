@@ -272,6 +272,24 @@ msgstr "大小(&S)"
 msgid "Fit to Window"
 msgstr "自適應視窗(&F)"
 
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr ""
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
+
 msgid "Clear &Browsing Data"
 msgstr "清除瀏覽資料(&B)"
 
@@ -4800,6 +4818,12 @@ msgid "Zoom &In"
 msgstr ""
 
 msgid "Zoom &Out"
+msgstr ""
+
+msgid "Comparing..."
+msgstr ""
+
+msgid "Zoom:"
 msgstr ""
 
 msgid "Prettification"

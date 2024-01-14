@@ -272,6 +272,24 @@ msgstr "Méret"
 msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
 
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr "&Engedélyezve"
+
+msgid "&Scroll"
+msgstr "&Görgetés"
+
+msgid "&Click"
+msgstr "&Kattintás"
+
+msgid "&Input"
+msgstr "&Bevitel"
+
+msgid "&GoBack/Forward"
+msgstr "&Ugrás vissza/előre"
+
 msgid "Clear &Browsing Data"
 msgstr "Böngészési adatok törlése"
 
@@ -4780,6 +4798,12 @@ msgstr "&Nagyítás"
 
 msgid "Zoom &Out"
 msgstr "K&icsinyítés"
+
+msgid "Comparing..."
+msgstr "Összehasonlítás..."
+
+msgid "Zoom:"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

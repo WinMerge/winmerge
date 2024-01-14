@@ -246,7 +246,25 @@ msgid "&Size"
 msgstr "大小(&S)"
 
 msgid "Fit to Window"
-msgstr "窗口内显示"
+msgstr "适应窗口"
+
+msgid "&Event Sync"
+msgstr ""
+
+msgid "&Enabled"
+msgstr "已启用(&E)"
+
+msgid "&Scroll"
+msgstr "滚动(&S)"
+
+msgid "&Click"
+msgstr "点击(&C)"
+
+msgid "&Input"
+msgstr "输入(&I)"
+
+msgid "&GoBack/Forward"
+msgstr "返回/前进(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "清除浏览数据(&B)"
@@ -4152,6 +4170,12 @@ msgstr "放大(&I)"
 
 msgid "Zoom &Out"
 msgstr "缩小(&O)"
+
+msgid "Comparing..."
+msgstr "比较中..."
+
+msgid "Zoom:"
+msgstr ""
 
 msgid "Prettification"
 msgstr "格式美化"

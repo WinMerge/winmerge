@@ -1,51 +1,49 @@
-WINMERGE
+﻿WINMERGE
 
-WinMerge is an Open Source comparing and merging tool for Windows. WinMerge can
-compare both folders and files, presenting differences in a visual text format
-that is easy to understand and handle. WinMerge can be used as an external
-differencing/merging tool or as a standalone application.
+A WinMerge egy nyílt forráskódú összehasonlító és egyesítő eszköz a Windows számára. A WinMerge képes
+összehasonlítani mind mappákat, mind fájlokat, majd szöveges formátumban, vizuálisan kiemelve bemutatni 
+a különbségeket, ami így könnyen átlátható és kezelhető. A WinMerge hasznáható mint külső
+összehasonlító/egyesítő eszköz vagy önálló alkalmazás.
 
-WinMerge has many helpful supporting features to make comparing, synchronising,
-and merging as easy and useful as possible. Several programming languages and
-other file formats are syntax-highlighted.
+A WinMerge számos hasznos támogató funkcióval rendelkezik, hogy az összehasonlítás, szinkronizálás,
+egyesítés a lehető legegyszerűbb és leghasználhatóbb legyen. Számos programozási nyelv és
+más fájlformátum szintaxis-kiemeltek.
 
-The latest WinMerge version and WinMerge information is available at
+A WinMerge legfrissebb verziója és információ a WinMerge-ről az alábbi címen érhetők el:
 https://winmerge.org/.
 
-Quick start
+Gyors kezdés
 ===========
-To learn how to perform basic operations after installing WinMerge, click
-Help>WinMerge Help and navigate to the Quick start topic.  Or, go to the Web
-version at https://manual.winmerge.org/Quick_start.html.
+A WinMerge telepítése után az alapvető műveletek elvégzésének megismeréséhez kattintson a
+Súgó > WinMerge súgó menüpontra, és navigáljon a Gyors kezdés (Quickstart) témakörhöz (angol nyelvű),  
+vagy keresse fel a webes verziót a https://manual.winmerge.org/Quick_start.html címen.
 
-WinMerge Help
+WinMerge Súgó
 ============= 
-WinMerge Help is installed locally as a Microsoft HTML Help file, WinMerge.chm,
-when you install WinMerge. To open Help, click Help>WinMerge Help or press F1 in
-the WinMerge window. On the command line, run the WinMerge executable with the 
-/? help switch.
+A WinMerge súgó helyi telepítése Microsoft HTML súgófájlként történik, WinMerge.chm néven, a WinMerge telepítésekor. 
+A Súgó megnyitásához kattintson a Súgó > WinMerge Súgó menüpontra, vagy nyomja meg bármikor az F1 billentyűt
+a WinMerge ablakában. Parancssorban a WinMerge futtatható fájlt a /? help kapcsolóval futtassa.
 
-You can also browse the HTML version of WinMerge Help at 
+A WinMerge súgó HTML-verzióját a következő címen is böngészheti: 
 https://manual.winmerge.org/.
 
-WinMerge Support
+WinMerge támogatás
 ================
-Questions or suggestions about WinMerge? A good place to start is the WinMerge
-community bulletin board at https://forums.winmerge.org/. Developers frequently
-read and respond to questions in both forums. Use the Open Discussion forum for
-general WinMerge issues, such as questions about usage. Use the Developers forum
-for WinMerge development issues.
+Kérdés vagy javaslat a WinMerge-rel kapcsolatban? Egy jó kiindulási pont a WinMerge
+közösségi faliújság a https://forums.winmerge.org/ oldalon. A fejlesztők gyakran
+olvassák és válaszolnak a kérdésekre mindkét alábbi fórumon. Használja a nyílt vitafórumot
+általános WinMerge témákhoz, például a használattal kapcsolatos kérdésekhez. Használja a fejlesztői fórumot
+a WinMerge fejlesztésével kapcsolatos kérdésekhez.
 
-Bugs and feature requests
+Hibák és funkciókérések
 =========================
-If an issue is not resolved in the the WinMerge forums, check the project
-trackers: go to https://project.winmerge.org/, and click a link in the Trackers
-menu, like Bugs and Feature Requests, where you can browse or submit items.
+Ha egy probléma nem oldódik meg a WinMerge fórumokon, ellenőrizze a projektkövetést: 
+lépjen a https://project.winmerge.org/ oldalra, és kattintson a Trackers (Nyomon követők) linkre,
+mint például a Bugs and Feature Requests (Hibák és funkciókérések), ahol böngészhet vagy küldhet be elemeket.
 
-If you submit a bug, please include the WinMerge version number in your
-report. You can generate a configuration log by clicking Help>Configuration.
-Please attach the configuration log to the bug report; it has lots of useful
-information for developers.
+Ha hibát küld be, kérjük, adja meg a WinMerge verziószámát a
+jelentésében. Konfigurációs naplót készíthet a Súgó >Konfigurációs fájl menüpontra kattintva.
+Kérjük, csatolja a konfigurációs naplót a hibajelentéséhez; ez sok hasznos információt tartalmaz a fejlesztők számára.
 
 
-- The WinMerge Developers
+- A WinMerge fejlesztői

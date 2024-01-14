@@ -1,50 +1,50 @@
-WINMERGE
+﻿WINMERGE
 
-WinMerge �́A�I�[�v���\�[�X�̔�r�E�}�[�W���[�e�B���e�B�ł��B
-WinMerge �̓t�H���_�[�ƃt�@�C�������̔�r���ł��A�������₷�������₷�����o�I��
-�e�L�X�g�t�H�[�}�b�g�ō��ق�\�����܂��B
-WinMerge �́A�O���̔�r�E�}�[�W�c�[���Ƃ��Ďg�����Ƃ��A�P�̂Ŏg�����Ƃ��ł��܂��B
+WinMerge は、オープンソースの比較・マージユーティリティです。
+WinMerge はフォルダーとファイル両方の比較ができ、理解しやすく扱いやすい視覚的な
+テキストフォーマットで差異を表示します。
+WinMerge は、外部の比較・マージツールとして使うことも、単体で使うこともできます。
 
-WinMerge �́A��r�⓯����}�[�W���ł������ȒP�ɁA�g���₷�����邽������̖𗧂�
-�@�\�������Ă��܂��B�������̃v���O��������Ƃ��̑��t�@�C���t�H�[�}�b�g�́A
-���@�̋����\��������܂��B
+WinMerge は、比較や同期やマージをできる限り簡単に、使いやすくするたくさんの役立つ
+機能を持っています。いくつかのプログラム言語とその他ファイルフォーマットは、
+文法の強調表示がされます。
 
-�ŐV�ł� WinMerge �Ə��ɂ��ẮA�ȉ����Q�Ƃ��Ă��������B
+最新版の WinMerge と情報については、以下を参照してください。
 https://winmerge.org/
 
-�N�B�b�N�X�^�[�g
+クィックスタート
 ===========
-WinMerge ���C���X�g�[��������A��{�I�ȑ���̎d����m�邽�߂ɁA[�w���v] ���j���[��
-[WinMerge �w���v] ���N���b�N���A�N�C�b�N�X�^�[�g�g�s�b�N��\�����Ă��������B
-�܂��́AWeb�o�[�W������ https://manual.winmerge.org/Quick_start.html
-���Q�Ƃ��Ă��������B
+WinMerge をインストールした後、基本的な操作の仕方を知るために、[ヘルプ] メニュー→
+[WinMerge ヘルプ] をクリックし、クイックスタートトピックを表示してください。
+または、Webバージョンの https://manual.winmerge.org/Quick_start.html
+を参照してください。
 
-WinMerge �̃w���v
+WinMerge のヘルプ
 ============= 
-WinMerge �̃w���v�́AMicrosoft HTML �w���v�t�@�C���� WinMerge.chm �Ƃ��ăC���X�g�[������
-���[�J���ɃC���X�g�[������܂��B�w���v���J���ɂ́A[�w���v] ���j���[ ��
-[WinMerge �w���v] ���N���b�N���邩�AWinMerge �E�C���h�E�� F1 �L�[�������Ă��������B
-�R�}���h���C���ł́A/? �w���v�X�C�b�`������ WinMerge �̎��s�t�@�C�������s���܂��B
+WinMerge のヘルプは、Microsoft HTML ヘルプファイルの WinMerge.chm としてインストール時に
+ローカルにインストールされます。ヘルプを開くには、[ヘルプ] メニュー →
+[WinMerge ヘルプ] をクリックするか、WinMerge ウインドウで F1 キーを押してください。
+コマンドラインでは、/? ヘルプスイッチをつけて WinMerge の実行ファイルを実行します。
 
-https://manual.winmerge.org/ ����ł� HTML�ł� WinMerge �w���v���{�����邱�Ƃ��ł��܂��B
+https://manual.winmerge.org/ からでも HTML版の WinMerge ヘルプを閲覧することができます。
 
-�T�|�[�g
+サポート
 ================
-WinMerge �Ɋւ��鎿����Ă͂���܂���? 
+WinMerge に関する質問や提案はありませんか? 
 https://github.com/WinMerge/winmerge/discussions
-�̌f�����n�߂�̂ɂ悢�ꏊ�ł��B
-�J���҂͗����̃t�H�[�����ŕp�ɂɓǂ݁A���������Ă��܂��B
+の掲示板が始めるのによい場所です。
+開発者は両方のフォーラムで頻繁に読み、応答をしています。
 
-�o�O�񍐂Ƌ@�\�ǉ��v��:
+バグ報告と機能追加要求:
 =========================
-�����AWinMerge �̃t�H�[�����Ŗ�肪�������Ȃ��ꍇ�A�v���W�F�N�g�̃g���b�J�[��
-�`�F�b�N���Ă��������Bhttps://github.com/WinMerge/winmerge/issues 
-�ŁA�{���ƕ񍐂��ł��܂��B
+もし、WinMerge のフォーラムで問題が解決しない場合、プロジェクトのトラッカーを
+チェックしてください。https://github.com/WinMerge/winmerge/issues 
+で、閲覧と報告ができます。
 
-�o�O��񍐂���Ƃ��AWinMerge �̃o�[�W�����ԍ��������Ă��������B
-WinMerge �� [�w���v] ���j���[�� [�ݒ�] ���� '�ݒ胍�O' ���o�͂��邱�Ƃ��ł��܂��B
-���̏����t�@�C���Ƃ��ēY�t���āA���|�[�g���������B
-����͊J���҂ɂƂ��Ė��ɗ����ł��B
+バグを報告するとき、WinMerge のバージョン番号を教えてください。
+WinMerge の [ヘルプ] メニューの [設定] から '設定ログ' を出力することができます。
+この情報をファイルとして添付して、レポートください。
+それは開発者にとって役に立つ情報です。
 
 
-- WinMerge �J���`�[��
+- WinMerge 開発チーム

@@ -1,39 +1,39 @@
-WINMERGE
+ÔªøWINMERGE
 
-WinMerge È um utilit·rio de cÛdigo fonte aberto para a comparaÁ„o e uni„o 
-de ficheiros, execut·vel em todas as versıes modernas do windows. Algumas 
-funÁıes requerem instalaÁıes ou componentes adicionais. 
+WinMerge √© um utilit√°rio de c√≥digo fonte aberto para a compara√ß√£o e uni√£o 
+de ficheiros, execut√°vel em todas as vers√µes modernas do windows. Algumas 
+fun√ß√µes requerem instala√ß√µes ou componentes adicionais. 
 
-A ˙ltima vers„o do WinMerge como outras informaÁıes adicionais est„o disponÌveis em 
+A √∫ltima vers√£o do WinMerge como outras informa√ß√µes adicionais est√£o dispon√≠veis em 
 https://winmerge.org
 
-Guia de utilizaÁ„o r·pida do WinMerge: 
-Leia atentamente o guia de utilizaÁ„o r·pida do WinMerge disponÌvel online para iniciar o WinMerge:
+Guia de utiliza√ß√£o r√°pida do WinMerge: 
+Leia atentamente o guia de utiliza√ß√£o r√°pida do WinMerge dispon√≠vel online para iniciar o WinMerge:
 https://manual.winmerge.org/Quick_start.html
 
-Manual em HTML: O manual est· disponÌvel online em: 
+Manual em HTML: O manual est√° dispon√≠vel online em: 
 https://manual.winmerge.org/ 
-Possivelmente tambÈm est· instalado (se escolhido assim) localmente e 
-transferido separadamente de https://winmerge.org/ (veja a documentaÁ„o) 
+Possivelmente tamb√©m est√° instalado (se escolhido assim) localmente e 
+transferido separadamente de https://winmerge.org/ (veja a documenta√ß√£o) 
 
 Suporte de Scripts:
-Se deseja trabalhar com scripts È necess·rio ter o Windows Scripting Host instalado. 
+Se deseja trabalhar com scripts √© necess√°rio ter o Windows Scripting Host instalado. 
 Se tiver ou receber quaisquer erros relacionados com os seus scripts, por favor visite 
 https://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp
-para ter a certeza que o Scripting Host est· atualizado e n„o corrompido. 
+para ter a certeza que o Scripting Host est√° atualizado e n√£o corrompido. 
 
 Suporte:
-Os programadores est„o a responder ‡s questıes nos fÛruns do WinMerge em Sourceforge.net:
+Os programadores est√£o a responder √†s quest√µes nos f√≥runs do WinMerge em Sourceforge.net:
 https://sourceforge.net/forum/?group_id=13216
  
 Erros e pedidos de novos recursos: 
-Erros e pedidos de novos recursos devem ser enviados para a lista de erros e solicitaÁıes (RFE) em sourceforge.net.
+Erros e pedidos de novos recursos devem ser enviados para a lista de erros e solicita√ß√µes (RFE) em sourceforge.net.
  
 Lista de registo de erros (Bug tracker):
 https://sourceforge.net/tracker/?group_id=13216&atid=113216 
-Ao ser reportado um erro, por favor indique-nos a vers„o do WinMerge! 
-As versıes do WinMerge 2.2.0 e posteriores podem criar um registo das configuraÁıes no menu Ajuda/ConfiguraÁıes. 
-Por favor, anexe o registo de configuraÁıes (como anexo de ficheiro) ao relatÛrio de erros.
+Ao ser reportado um erro, por favor indique-nos a vers√£o do WinMerge! 
+As vers√µes do WinMerge 2.2.0 e posteriores podem criar um registo das configura√ß√µes no menu Ajuda/Configura√ß√µes. 
+Por favor, anexe o registo de configura√ß√µes (como anexo de ficheiro) ao relat√≥rio de erros.
 
 Pedidos de novos recursos (RFE tracker):
 https://sourceforge.net/tracker/?group_id=13216&atid=363216
