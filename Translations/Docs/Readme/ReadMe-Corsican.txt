@@ -20,7 +20,7 @@ cliccu nant’à Aiutu > Aiutu WinMerge è navigate à u paragrafu di u lanciu
 rapidu. Osinnò, impiegate a versione web à l’indirizzu :
 	https://manual.winmerge.org/Quick_start.html
 
-Aiutu WInMerge
+Aiutu WinMerge
 ============== 
 L’aiutu di WinMerge hè installatu di lucale cum’è un schedariu d’aiutu HTML
 Microsoft, WinMerge.chm, durante l’installazione de WinMerge. Per apre
@@ -33,11 +33,11 @@ Pudete dinù sfuglià a versione HTML di l’aiutu di WinMerge à l’indirizzu�
 
 Assistenza WinMerge
 ===================
-Dumande o sugestioni apprupositu di WinMerge ? Un bellu locu per principià
+Dumande o suggestioni apprupositu di WinMerge ? Un bellu locu per principià
 hè u foru di chjachjerata di a cumunità WinMerge chì si trova à l’indirizzu
 https://github.com/WinMerge/winmerge/discussions. Di manera regulare,
 i sviluppatori leghjenu è rispondenu à e dumande nant’à stu foru.
-Impiegate i fori di chjachjarata generale per i penseri nant’à WinMerge,
+Impiegate i fori di chjachjerata generale per i penseri nant’à WinMerge,
 cum’è e dumande apprupositu di u so adopru. Impiegate u foru di
 i sviluppatori per i penseri nant’à u sviluppu di WinMerge.
 

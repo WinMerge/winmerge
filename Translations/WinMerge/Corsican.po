@@ -5,13 +5,13 @@
 # * Patriccollu di Santa Maria è Sichè <patriccollu at gmail.com>
 #
 # Translators:
-# * Patriccollu di Santa Maria è Sichè, 2021-2023
+# * Patriccollu di Santa Maria è Sichè, 2021-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-12-28 07:26+0000\n"
-"PO-Revision-Date: 2023-12-29 16:12+0100\n"
+"POT-Creation-Date: 2023-12-30 17:35+0000\n"
+"PO-Revision-Date: 2024-01-15 15:30+0100\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -247,7 +247,7 @@ msgid "Fit to Window"
 msgstr "Adattà à a finestra"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "&Sincrunizazione d’evenimentu"
 
 msgid "&Enabled"
 msgstr "&Attivatu"
@@ -553,7 +553,7 @@ msgid "&First Difference\tAlt+Home"
 msgstr "&Prima sfarenza\tAlt+Accolta"
 
 msgid "&Current Difference\tAlt+Enter"
-msgstr "Sfaren&za currente\tAlt+Entr."
+msgstr "Sfaren&za currente\tAlt+Entre"
 
 msgid "&Last Difference\tAlt+End"
 msgstr "&Ultima sfarenza\tAlt+Fine"
@@ -4139,7 +4139,7 @@ msgid "Comparing..."
 msgstr "Paragone…"
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Ingrandamentu :"
 
 msgid "Prettification"
 msgstr "Imbellimentu"
