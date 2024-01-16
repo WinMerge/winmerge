@@ -1358,29 +1358,7 @@ bool InvokePrediffBuffer(BSTR & bstrBuf, int & nChanged, IDispatch *piScript)
 	// VARIANT_BOOL DiffingPreprocessW(BSTR * buffer, UINT * nSize, VARIANT_BOOL * bChanged)
 	HRESULT h = ::safeInvokeW(piScript,	&vboolHandled, L"PrediffBufferW", opFxn[3], 
                             vpboolChanged, vpiSize, vpbstrBuf);
-	bool bSuccess = !FAILED(h);
-	if (bSuccess)
-	{
-		if (vboolHandled.vt == (VT_ARRAY | VT_VARIANT))
-		{
-			long ubound = 0;
-			SafeArrayGetUBound(vboolHandled.parray, 1, &ubound);
-			VARIANT* p;
-			SafeArrayAccessData(vboolHandled.parray, reinterpret_cast<void**>(&p));
-			if (ubound >= 3)
-			{
-				bSuccess = p[0].boolVal;
-				SysFreeString(bstrBuf);
-				bstrBuf = SysAllocStringLen(p[1].bstrVal, SysStringLen(p[1].bstrVal));
-				nBufSize = p[2].iVal;
-				changed = p[3].boolVal;
-			}
-		}
-		else
-		{
-			bSuccess = vboolHandled.boolVal;
-		}
-	}
+	bool bSuccess = ! FAILED(h) && vboolHandled.boolVal;
 	if (bSuccess && changed)
 	{
 		// remove trailing charracters in the rare case that bstrBuf was not resized 
