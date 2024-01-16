@@ -71,25 +71,11 @@ function PrediffBufferW(text, size, bChanged) {
   var eol = (matches != null) ? matches[0] : "\r\n";
   var lines = text.split(eol);
   for (var l = 0; l < lines.length; l++) {
-    var bLineHasStarted = true;
-    var sTemp = "";
-    var line = lines[l];
-    for (var i = 0; i < line.length; i++) { // For all chars...
-      var sChar = line.substr(i, 1);
-      switch (sChar) {
-        case "N": case "n": case "1": case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9": case "0": // N or number...
-          if (bLineHasStarted) { // if line has started...
-            sChar = "";
-            bChanged = true;
-          }
-          break;
-        default:
-          bLineHasStarted = false;
-          break;
-      }
-      sTemp += sChar;
+    var line = lines[l].replace(/^[Nn0123456789]+/, '');
+    if (line !== lines[l]) {
+      lines[l] = line;
+      bChanged = true;
     }
-    lines[l] = sTemp;
   }
   
   if (bChanged) { // if text has changed...

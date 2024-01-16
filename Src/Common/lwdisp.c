@@ -511,6 +511,7 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 						if (V_ISBYREF(&argv[i]) && j > 0)
 							MoveVariantValue(&argv[i], &p[j--]);
 						VariantClear(&varParams[i]);
+						VariantClear(&varData[i]);
 					}
 					VARIANT_BOOL bResult = V_BOOL(&p[0]);
 					VariantClear(ret);
