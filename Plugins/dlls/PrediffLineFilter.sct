@@ -81,48 +81,51 @@ function PluginOnEvent(eventType, obj) {
 
 function PrediffBufferW(pText, pSize, pbChanged) {
   if (pText == "") {
-    pbChanged = false
     var result = new ActiveXObject("Scripting.Dictionary");
     result.Add(0, true);
-    result.Add(1, pText);
-    result.Add(2, pSize);
-    result.Add(3, pbChanged);
+    result.Add(1, "");
+    result.Add(2, 0);
+    result.Add(3, false);
     return result.Items();
   }
   var pattern, replaceText, ignoreCase;
-  var lines = pText.split(pText, "\n");
-  var count = regRead(REGKEY_PATH & "Count", 0);
+  var lines = pText.split("\n");
+  var count = regRead(REGKEY_PATH + "Count", 0);
   for (var i = 1; i <= count; i++) {
-    if (regRead(REGKEY_PATH & "Enabled" & i, true)) {
-      pattern = regRead(REGKEY_PATH & "Pattern" & i, "");
-      ignoreCase = regRead(REGKEY_PATH & "IgnoreCase" & i, false);
-      replaceText = regRead(REGKEY_PATH & "ReplaceText" & i, "");
-      if (regRead(REGKEY_PATH & "UseRegExp" & i, true)) {
+    if (regRead(REGKEY_PATH + "Enabled" + i, true)) {
+      pattern = regRead(REGKEY_PATH + "Pattern" + i, "");
+      ignoreCase = regRead(REGKEY_PATH + "IgnoreCase" + i, false);
+      replaceText = regRead(REGKEY_PATH + "ReplaceText" + i, "");
+      if (regRead(REGKEY_PATH + "UseRegExp" + i, true)) {
         var re = new RegExp(pattern, ignoreCase ? "gi" : "g");
-        for (var j = 0; j < lines.length; j++)
+        for (var j = 0; j < lines.length; j++) {
           lines[j] = lines[j].replace(re, replaceText);
+        }
       } else {
-        for (var j = 0; j < lines.length; j++)
+        for (var j = 0; j < lines.length; j++) {
           lines[j] = replacei(lines[j], pattern, replaceText, ignoreCase);
+        }
       }
     }
   }
   pbChanged = true;
   var result = new ActiveXObject("Scripting.Dictionary");
+  pText = lines.join("\n");
+  pSize = pText.length;
   result.Add(0, true);
-  result.Add(1, lines.join('\n'));
-  result.Add(2, pText.length);
+  result.Add(1, pText);
+  result.Add(2, pSize);
   result.Add(3, pbChanged);
   return result.Items();
 }
 
 function replacei(text, find, replace, ignorecase) {
   if (!ignorecase)
-    return this.split(str).join(replace);
+    return text.split(find).join(replace);
   var textLower = text.toLowerCase();
   var findLower = find.toLowerCase();
   var pos = textLower.length;
-  while ((pos = textLower.lastIndexOf(findLower, pos)) != -1) {
+  while (pos >= 0 && (pos = textLower.lastIndexOf(findLower, pos)) >= 0) {
     text = text.substr(0, pos) + replace + text.substr(pos + findLower.length);
     pos--;
   }

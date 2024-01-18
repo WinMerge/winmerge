@@ -7,6 +7,7 @@ enum
 	DISPID_Translate = 1,
 	DISPID_GetOption = 2,
 	DISPID_SaveOption = 3,
+	DISPID_Log = 4,
 };
 
 
@@ -87,6 +88,7 @@ struct IMergeApp : public IUnknown
 	virtual BSTR STDMETHODCALLTYPE Translate(BSTR text) = 0;
 	virtual VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) = 0;
 	virtual void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) = 0;
+	virtual void STDMETHODCALLTYPE Log(int level, BSTR text) = 0;
 };
 
 class MergeAppCOMClass : public MyDispatch<IMergeApp>
@@ -100,5 +102,6 @@ public:
 	BSTR STDMETHODCALLTYPE Translate(BSTR text) override;
 	VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) override;
 	void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) override;
+	void STDMETHODCALLTYPE Log(int level, BSTR text) override;
 };
 

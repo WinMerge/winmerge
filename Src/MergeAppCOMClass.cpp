@@ -6,16 +6,19 @@
 #include "MergeApp.h"
 
 static PARAMDATA paramData_Translate[] =
-{ { L"text", VT_BSTR, }, };
+{ { L"text", VT_BSTR }, };
 static PARAMDATA paramData_GetOption[] =
 { { L"name", VT_BSTR }, { L"defaultValue", VT_VARIANT}, };
 static PARAMDATA paramData_SaveOption[] =
 { { L"name", VT_BSTR }, { L"value", VT_VARIANT}, };
+static PARAMDATA paramData_Log[] =
+{ { L"level", VT_I4 }, { L"text", VT_BSTR }, };
 static METHODDATA methodData_MergeApp[] =
 {
 	{ L"Translate",  paramData_Translate,  DISPID_Translate,  3, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR },
 	{ L"GetOption",  paramData_GetOption,  DISPID_GetOption,  4, CC_STDCALL, 2, DISPATCH_METHOD, VT_VARIANT },
 	{ L"SaveOption", paramData_SaveOption, DISPID_SaveOption, 5, CC_STDCALL, 2, DISPATCH_METHOD, VT_NULL },
+	{ L"Log", paramData_Log, DISPID_Log, 6, CC_STDCALL, 2, DISPATCH_METHOD, VT_NULL },
 };
 
 static INTERFACEDATA idata_MergeApp = { methodData_MergeApp, static_cast<UINT>(std::size(methodData_MergeApp)) }; 
@@ -137,4 +140,9 @@ void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
 		return;
 	}
 	return;
+}
+
+void STDMETHODCALLTYPE MergeAppCOMClass::Log(int level, BSTR text)
+{
+	LogErrorString(text);
 }
