@@ -33,7 +33,14 @@ public:
 
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject) override
 	{
-		return E_NOTIMPL;
+		if (riid == IID_IUnknown || riid == IID_IDispatch)
+		{
+			*ppvObject = static_cast<IDispatch*>(this);
+			AddRef();
+			return S_OK;
+		}
+		*ppvObject = nullptr;
+		return E_NOINTERFACE;
 	}
 
 	ULONG STDMETHODCALLTYPE AddRef(void) override
@@ -68,7 +75,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE Invoke(DISPID dispIdMember, REFIID riid, LCID lcid, WORD wFlags, DISPPARAMS* pDispParams, VARIANT* pVarResult, EXCEPINFO* pExcepInfo, UINT* puArgErr) override
 	{
-		return m_pTypeInfo->Invoke(this, dispIdMember, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
+		return m_pTypeInfo->Invoke(static_cast<T*>(this), dispIdMember, wFlags, pDispParams, pVarResult, pExcepInfo, puArgErr);
 	}
 protected:
 	ULONG m_cRef;
@@ -78,8 +85,8 @@ protected:
 struct IMergeApp : public IUnknown
 {
 	virtual BSTR STDMETHODCALLTYPE Translate(BSTR text) = 0;
-	virtual VARIANT STDMETHODCALLTYPE GetOption(BSTR name, const VARIANT& varDefault) = 0;
-	virtual void STDMETHODCALLTYPE SaveOption(BSTR name, const VARIANT& varValue) = 0;
+	virtual VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) = 0;
+	virtual void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) = 0;
 };
 
 class MergeAppCOMClass : public MyDispatch<IMergeApp>
@@ -91,7 +98,7 @@ public:
 	MergeAppCOMClass& operator=(const MergeAppCOMClass&) = delete;
 
 	BSTR STDMETHODCALLTYPE Translate(BSTR text) override;
-	VARIANT STDMETHODCALLTYPE GetOption(BSTR name, const VARIANT& varDefault) override;
-	void STDMETHODCALLTYPE SaveOption(BSTR name, const VARIANT& varValue) override;
+	VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) override;
+	void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) override;
 };
 

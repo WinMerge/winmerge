@@ -52,7 +52,7 @@ function get_PluginDescription() {
 }
 
 function get_PluginFileFilters() {
-  return "\.nc$";
+  return "\\.nc$";
 }
 
 function get_PluginIsAutomatic() {

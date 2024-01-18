@@ -8,9 +8,9 @@
 static PARAMDATA paramData_Translate[] =
 { { L"text", VT_BSTR, }, };
 static PARAMDATA paramData_GetOption[] =
-{ { L"name", VT_BSTR }, { L"defaultValue", VT_VARIANT|VT_BYREF }, };
+{ { L"name", VT_BSTR }, { L"defaultValue", VT_VARIANT}, };
 static PARAMDATA paramData_SaveOption[] =
-{ { L"name", VT_BSTR }, { L"value", VT_VARIANT|VT_BYREF }, };
+{ { L"name", VT_BSTR }, { L"value", VT_VARIANT}, };
 static METHODDATA methodData_MergeApp[] =
 {
 	{ L"Translate",  paramData_Translate,  DISPID_Translate,  3, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR },
@@ -34,7 +34,7 @@ BSTR STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text)
 	return SysAllocString(tr(text).c_str());
 }
 
-VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& varDefault)
+VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefault)
 {
 	VARIANT varResult;
 	VariantInit(&varResult);
@@ -85,7 +85,7 @@ VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, const VARIANT& 
 	return varResult;
 }
 
-void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, const VARIANT& varValue)
+void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
 {
 	auto value = GetOptionsMgr()->Get(name);
 	const VARIANT* pvar = ((varValue.vt & VT_BYREF) != 0) ? varValue.pvarVal : &varValue;
