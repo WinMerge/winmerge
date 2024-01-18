@@ -60,11 +60,11 @@ var wsh = new ActiveXObject("WScript.Shell");
 var mergeApp;
 
 function isAccessibleVBAProject(wbk) {
-  var count = -1;
   try {
-    count = wbk.VBProject.VBComponents.Count;
-  } catch (e) {}
-  return (count > 0);
+    return (wbk.VBProject.VBComponents.Count > 0);
+  } catch (e) {
+    return false;
+  }
 }
 
 function regRead(Key, DefaultValue) {
@@ -87,67 +87,67 @@ function writeObjectProperties(fo, items) {
   } catch (e) {}
 }
 
-/*
-function QuoteIfNeeded(str) {
+function quoteIfNeeded(str) {
   var fQuote;
-  if (InStr(str, vbTab) > 0) {
+  if (str.indexOf("\t") >= 0) {
     fQuote = true;
-  } else if (InStr(str, """") > 0) {
+  } else if (str.indexOf("\"") >= 0) {
     fQuote = true;
-  } else if (InStr(str, vbLf) > 0) {
+  } else if (str.indexOf("\n") >= 0) {
     fQuote = true;
   }
   if (fQuote) {
-    return """" + Replace(str, """", """""") + """";
-  } else { {
+    return "\"" + str.replace(/\"/g, "\"\"") + "\"";
+  } else {
     return str;
   }
 }
 
 function writeCellValues(fo, sht) {
-  var varCells, row, col, ary()
-  varCells = sht.UsedRange.Value
-  if (TypeName(varCells) = "String") {
-    fo.WriteLine QuoteIfNeeded(varCells)
-  } else if ( (Not IsEmpty(varCells)) {
-    Revar ary(UBound(varCells, 2))
+  var varCells = sht.UsedRange.Value;
+  if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
+    fo.WriteLine(quoteIfNeeded(varCells));
+  } else if (varCells !== undefined) {
+    var ary = new Array(varCells.ubound(2));
     try {
-    For row = 1 To UBound(varCells, 1)
-      For col = 1 To UBound(varCells, 2)
-        ary(col - 1) = QuoteIfNeeded(CStr(varCells(row, col)))
-        if (Err.Number <> 0) {
-          ary(col - 1) = "Error" + Err.Number
-          Err.Clear
+      for (var row = 1; row <= varCells.ubound(1); row++) {
+        for (var col = 1; col <= varCells.ubound(2); col++) {
+          try {
+            var val = varCells.getItem(row, col);
+            ary[col - 1] = (val !== undefined) ? quoteIfNeeded(val.toString()) : "";
+          } catch (e) {
+            ary[col - 1] = "Error" + e.number;
+          }
         }
+        fo.WriteLine(ary.join("\t"));
       }
-      fo.WriteLine Join(ary, vbTab)
-    }
+    } catch (e) {}
   }
 }
 
-function GetAddr(row, col) {
-  var c
-  c = col - 1
-  Do
-    GetAddr = Chr(65 + (c Mod 26)) + GetAddr
-    c = (c \ 26) - 1
-  Loop While c >= 0
-  GetAddr = GetAddr + row
+function getAddr(row, col) {
+  var addr = "";
+  var c = col - 1;
+  do {
+    addr = String.fromCharCode(65 + (c % 26)) + addr;
+    c = Math.floor(c / 26) - 1;
+  } while (c >= 0);
+  return addr + row;
 }
 
 function writeFormulas(fo, sht) {
-  var row, col, rowOffset, colOffset, varCells, formula
-  rowOffset = sht.UsedRange.Row
-  colOffset = sht.UsedRange.Column
-  varCells = sht.UsedRange.Formula
-  if (TypeName(varCells) = "String") {
-    fo.WriteLine GetAddr(rowOffset - 1, colOffset - 1) + ": " + varCells
+  var row, col, formula
+  var rowOffset = sht.UsedRange.Row;
+  var colOffset = sht.UsedRange.Column;
+  var varCells = sht.UsedRange.Formula;
+  if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
+    fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + varCells);
   } else {
-    For row = 1 To UBound(varCells, 1)
-      For col = 1 To UBound(varCells, 2)
-        formula = varCells(row, col)
-        if (Left(formula, 1) = "=") { 
-          fo.WriteLine GetAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula
+    for (var row = 1; row <= varCells.ubound(1); row++) {
+      for (var col = 1; col <= varCells.ubound(2); col++) {
+        var formula = varCells.getItem(row, col);
+        if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
+          fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
         }
       }
     }
@@ -155,21 +155,20 @@ function writeFormulas(fo, sht) {
 }
 
 function getUsedRangeIncludingShapes(sht) {
-  var shp, rng
-  var col_max, row_max
-  col_max = 0
-  row_max = 0
-  For Each shp In sht.Shapes
-    rng = shp.BottomRightCell
-    if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1
-    if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1
+  var col_max = 0;
+  var row_max = 0;
+  for (var shp = new Enumerator(sht.Shapes); !shp.atEnd(); shp.moveNext()) {
+    rng = shp.item().BottomRightCell;
+    if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1 }
+    if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1 }
   }
-  rng = sht.UsedRange
-  if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1
-  if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1
-  getUsedRangeIncludingShapes = sht.Range("A1", sht.Cells(row_max, col_max))
+  var rng = sht.UsedRange;
+  if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1; }
+  if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1; }
+  return sht.Range("A1", sht.Cells(row_max, col_max));
 }
 
+/*
 Sub ungroupShapes(sht) {
   try {
   var cnt, shp
@@ -192,12 +191,12 @@ function writeTextsInShapes(fo, sht) {
 
 function writeHeadersAndFooters(fo, sht) {
   try {
-    fo.WriteLine "LeftHeader: " + sht.PageSetup.LeftHeader
-    fo.WriteLine "CenterHeader: " + sht.PageSetup.CenterHeader
-    fo.WriteLine "RightHeader: " + sht.PageSetup.RightHeader
-    fo.WriteLine "LeftFooter: " + sht.PageSetup.LeftFooter
-    fo.WriteLine "CenterFooter: " + sht.PageSetup.CenterFooter
-    fo.WriteLine "RightFooter: " + sht.PageSetup.RightFooter
+    fo.WriteLine("LeftHeader: " + sht.PageSetup.LeftHeader);
+    fo.WriteLine("CenterHeader: " + sht.PageSetup.CenterHeader);
+    fo.WriteLine("RightHeader: " + sht.PageSetup.RightHeader);
+    fo.WriteLine("LeftFooter: " + sht.PageSetup.LeftFooter);
+    fo.WriteLine("CenterFooter: " + sht.PageSetup.CenterFooter);
+    fo.WriteLine("RightFooter: " + sht.PageSetup.RightFooter);
   } catch(e) {}
 }
 
@@ -212,7 +211,7 @@ function getModuleExtension(cmp) {
   }
 }
 
-function Sleep(sec) {
+function sleep(sec) {
   if (sec == 0)
     return;
   wsh.Run("ping.exe localhost -n " + sec, 0, true);
@@ -256,20 +255,20 @@ function saveRangeAsImage(sht, rng, filename) {
     if (sht.Application.Version < 14) {
       rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
       if (Err.Number == 0) {
-        Sleep i
+        sleep i
         obj.Paste
         obj.Export filename, "PNG"
       } else if ( (i == 0) {
-        Sleep 1
+        sleep 1
       }
     } else {
       rng.Copy
       if (Err.Number == 0) {
-        Sleep i
+        sleep i
         shtNew.Pictures.Paste
         obj.Export filename, "PNG"
       } else if ( (i == 0) {
-        Sleep 1
+        sleep 1
       }
     }
 
