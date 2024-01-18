@@ -253,7 +253,7 @@ function importSettingsFromXMLFile(filepath) {
         ts.Close();
         var nodes = doc.documentElement.childNodes;
         for (var i = 0; i < nodes.length; i++) {
-        	regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+          regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
         }
         return settings;
       }
