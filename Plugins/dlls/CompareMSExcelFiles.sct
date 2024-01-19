@@ -32,7 +32,7 @@
 /*
     This is a plugin for WinMerge.
     It will display the text content of MS Excel files.
-    Copyright (C) 2005-2023 Takashi Sawanaka
+    Copyright (C) 2005-2024 Takashi Sawanaka
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -81,8 +81,8 @@ function get_PluginEvent() {
 
 function writeObjectProperties(fo, items) {
   try {
-    for (var o = new Enumerator(items); !o.atEnd(); o.moveNext()) {
-      fo.WriteLine(o.item().Name + ": " + o.item().Value);
+    for (var it = new Enumerator(items), o = it.item(); !it.atEnd(); it.moveNext(), o = it.item()) {
+      fo.WriteLine(o.Name + ": " + o.Value);
     }
   } catch (e) {}
 }
@@ -157,8 +157,8 @@ function writeFormulas(fo, sht) {
 function getUsedRangeIncludingShapes(sht) {
   var col_max = 0;
   var row_max = 0;
-  for (var shp = new Enumerator(sht.Shapes); !shp.atEnd(); shp.moveNext()) {
-    rng = shp.item().BottomRightCell;
+  for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+    rng = shp.BottomRightCell;
     if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1 }
     if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1 }
   }
@@ -168,25 +168,26 @@ function getUsedRangeIncludingShapes(sht) {
   return sht.Range("A1", sht.Cells(row_max, col_max));
 }
 
-/*
-Sub ungroupShapes(sht) {
+function ungroupShapes(sht) {
   try {
-  var cnt, shp
-  Do
-    cnt = sht.Shapes.Count
-    For Each shp In sht.Shapes
-      if (shp.Type == pbGroup) { shp.ungroup
-    }
-  Loop While cnt <> sht.Shapes.Count
+    var cnt;
+    do {
+      cnt = sht.Shapes.Count;
+      for (var it = new Enumerator(sht.Shapes), shp = it.item(); !itShp.atEnd(); itShp.moveNext(), shp = it.item()) {
+        if (shp.Type == pbGroup) {
+          shp.Ungroup();
+        }
+      }
+    } while (cnt != sht.Shapes.Count);
+  } catch (e) {}
 }
 
 function writeTextsInShapes(fo, sht) {
-  var shp
   try {
-  For Each shp In sht.Shapes
-    fo.WriteLine shp.Name + ": " + shp.TextFrame.Characters.Text
-  }
-  On Error GoTo 0
+    for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+      fo.WriteLine(shp.Name + ": " + shp.TextFrame.Characters.Text);
+    }
+  } catch (e) {}
 }
 
 function writeHeadersAndFooters(fo, sht) {
@@ -218,78 +219,73 @@ function sleep(sec) {
 }
 
 function saveRangeAsImage(sht, rng, filename) {
-  var obj
-  var shtNew
-  var wbkNew
-  var oldSheetsInNewWorkbook
-  var i
-
-  saveRangeAsImage = true
-
+  var result = true;
   try {
-  Err.Clear
+    sht.Activate();
+    var win = sht.Parent.Windows(1);
+    win.DisplayGridlines = false;
+    win.View = 1
 
-  sht.Activate
-  With sht.Parent.Windows(1)
-    .DisplayGridlines = false
-    .View = 1
-  End With
-
-  oldSheetsInNewWorkbook = sht.Application.SheetsInNewWorkbook
-  sht.Application.SheetsInNewWorkbook = 1
-  set wbkNew = sht.Application.Workbooks.Add
-  sht.Application.SheetsInNewWorkbook = oldSheetsInNewWorkbook
-  shtNew = wbkNew.Sheets(1)
-  obj = wbkNew.Charts.Add
-  obj = obj.Location(2, shtNew.Name) ' xlLocationAsObject=2
-
-  if (sht.Application.Version <= 11) {
-    obj.Parent.Width = rng.Width + 8
-    obj.Parent.Height = rng.Height + 8
-  } else {
-    obj.Parent.Width = rng.Width
-    obj.Parent.Height = rng.Height
-  }
-
-  For i = 0 to 1
-    if (sht.Application.Version < 14) {
-      rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
-      if (Err.Number == 0) {
-        sleep i
-        obj.Paste
-        obj.Export filename, "PNG"
-      } else if ( (i == 0) {
-        sleep 1
-      }
+    var oldSheetsInNewWorkbook = sht.Application.SheetsInNewWorkbook;
+    sht.Application.SheetsInNewWorkbook = 1;
+    var wbkNew = sht.Application.Workbooks.Add();
+    sht.Application.SheetsInNewWorkbook = oldSheetsInNewWorkbook;
+    var shtNew = wbkNew.Sheets(1);
+    var obj = wbkNew.Charts.Add();
+    obj = obj.Location(2, shtNew.Name); // xlLocationAsObject=2
+ 
+    if (sht.Application.Version <= 11) {
+      obj.Parent.Width = rng.Width + 8;
+      obj.Parent.Height = rng.Height + 8;
     } else {
-      rng.Copy
-      if (Err.Number == 0) {
-        sleep i
-        shtNew.Pictures.Paste
-        obj.Export filename, "PNG"
-      } else if ( (i == 0) {
-        sleep 1
+      obj.Parent.Width = rng.Width;
+      obj.Parent.Height = rng.Height;
+    }
+ 
+    for (var i = 0; i <= 1; i++) {
+      if (sht.Application.Version < 14) {
+        try {
+          rng.CopyPicture(1, 2); // xlScreen=1, xlBitmap=2
+          sleep(i);
+          obj.Paste;
+          obj.Export(filename, "PNG");
+          result = true;
+          break;
+        } catch (e) {
+          result = false;
+          if (i == 0) {
+            sleep(1);
+          }
+        }
+      } else {
+        try {
+          rng.Copy();
+          sleep(i);
+          shtNew.Pictures.Paste();
+          obj.Export(filename, "PNG");
+          result = true;
+          break;
+        } catch (e) {
+          result = false;
+          if (i == 0) {
+            sleep(1);
+          }
+        }
       }
     }
-
-    if (Err.Number == 0) { Exit For
-    if (i == 0) { Err.Clear
+  } catch (e) {
+    result = false;
   }
-
-  wbkNew.Close false
-
-  saveRangeAsImage = (Err.Number = 0)
-
+  wbkNew.Close(false);
+  return result;
 }
 
 function getTimeStamp() {
-    var dt, tm, ms
-    tm = Timer
-    ms = Fix((tm - Fix(tm)) * 1000)
-    tm = Fix(tm)
-    getTimeStamp = (tm \ (60 * 60)) + ":" + ((tm \ 60) Mod 60) + ":" + (tm Mod 60) + "." + ms
+  var dt = new Date();
+  return dt.toLocaleString().split(" ")[1] + "." + ("000" + dt.getMilliseconds()).slice(-3);
 }
 
+/*
 function findRowByPosition(sht, rowBegin, rowEnd, pos) {
     var height, rowPrev, row, rowBeginOrg
     row = rowEnd
@@ -363,31 +359,30 @@ function saveSheetAsImage(sht, basefilename) {
   Loop While column < rngUsed.column + rngUsed.Columns.Count - 1 
 }
 
+*/
+
 function saveSheetAsHTML(sht, filename) {
-    var pobj
-    pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", "") ' 1 = xlSourceSheet, 0 = xlHtmlStatic
-    pobj.Publish true
-    pobj.AutoRepublish = false
+  var pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", ""); // 1 = xlSourceSheet, 0 = xlHtmlStatic
+  pobj.Publish(true);
+  pobj.AutoRepublish = false;
 }
 
 function escape(sheetName) {
-  escape = Replace(sheetName, "%", "%25")
-  escape = Replace(escape, "<", "%3C")
-  escape = Replace(escape, ">", "%3E")
-  escape = Replace(escape, "|", "%7C")
-  Select Case Left(UCase(escape), 3)
-  Case "CON", "AUX", "NUL"
-      if (Len(escape) == 3) {
-          escape = "%" + escape
-      }
-  Case "COM", "LPT"
-      if (Len(escape) == 4 And IsNumeric(Mid(escape, 4, 1))) {
-          escape = "%" + escape
-      }
-  End Select
+  var escape = sheetName.replace(/%/g, "%25").replace(/</g, "%3C").replace(/>/, "%3E").replace(/\|/, "%7C");
+  switch (escape.toLowerCase().substr(0, 3)) {
+  case "CON", "AUX", "NUL":
+    if (escape.length == 3) {
+      escape = "%" + escape;
+    }
+    break;
+  case "COM", "LPT":
+    if (escape.length == 4 && !isNaN(escape.substr(3, 1))) {
+      escape = "%" + escape;
+    }
+    break;
+  }
+  return escape;
 }
-
-*/
 
 function get_PluginEvent() {
   return "FILE_FOLDER_PACK_UNPACK";
@@ -444,66 +439,71 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   try {
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
-    fo.WriteLine "[Document Properties]"
-    writeObjectProperties fo, wbk.BuiltinDocumentProperties
-    fo.WriteLine ""
+    fo.WriteLine("[Document Properties]");
+    writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
+    fo.WriteLine("");
   }
 
   if (regRead(REGKEY_PATH + "CompareNames", true)) {
-    fo.WriteLine "[Names]"
-    writeObjectProperties fo, wbk.Names
-    fo.WriteLine ""
+    fo.WriteLine("[Names]");
+    writeObjectProperties(fo, wbk.Names);
+    fo.WriteLine("");
   }
 
   For Each sht In wbk.Worksheets
     if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
-      fo.WriteLine "[" + sht.Name + "]"
-      writeCellValues fo, sht
-      fo.WriteLine ""
+      fo.WriteLine("[" + sht.Name + "]");
+      writeCellValues(fo, sht);
+      fo.WriteLine("");
     }
     if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
-      fo.WriteLine "[" + sht.Name + ".Formulas]"
-      writeFormulas fo, sht
-      fo.WriteLine ""
+      fo.WriteLine("[" + sht.Name + ".Formulas]");
+      writeFormulas(fo, sht);
+      fo.WriteLine("");
     }
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
-      fo.WriteLine "[" + sht.Name + ".Shapes]"
-      ungroupShapes sht
-      writeTextsInShapes fo, sht
-      fo.WriteLine ""
+      fo.WriteLine("[" + sht.Name + ".Shapes]");
+      ungroupShapes(sht);
+      writeTextsInShapes(fo, sht);
+      fo.WriteLine("");
     }
     if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
-      fo.WriteLine "[" + sht.Name + ".HeadersAndFooters]"
-      writeHeadersAndFooters fo, sht
-      fo.WriteLine ""
+      fo.WriteLine("[" + sht.Name + ".HeadersAndFooters]");
+      writeHeadersAndFooters(fo, sht);
+      fo.WriteLine("");
     }
   }
 
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
-    if (Not isAccessibleVBAProject(wbk)) {
-      fo.WriteLine Translate(MsgCannotGetMacros)
+    if (!isAccessibleVBAProject(wbk)) {
+      fo.WriteLine(Translate(MsgCannotGetMacros));
     }
     For Each cmp In wbk.VBProject.VBComponents
-      fo.WriteLine "[CodeModule." + cmp.Name + "]"
+      fo.WriteLine("[CodeModule." + cmp.Name + "]");
       if (cmp.CodeModule.CountOfLines > 0) {
-        fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
+        fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
       }
-      fo.WriteLine ""
+      fo.WriteLine("");
     }
   }
 
   sht = null;
-  wbk.Close
+  wbk.Close();
   wbk = null;
-  xl.Quit
+  xl.Quit();
   xl = null;
   fo.Close();
   fo = null;
 
-  pbChanged = true
-  pSubcode = 0
-  UnpackFile = true
-*/
+  pbChanged = true;
+  pSubcode = 0;
+  
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+  */
 }
 
 function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
