@@ -49,7 +49,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
-var REGKEY_PATH = "Plugins\CompareMSExcelFiles.sct/";
+var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
 var pbGroup = 6;
 var MsgCannotGetMacros = "${Cannot get Macros.\n" + 
   "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\n" + 
@@ -224,7 +224,7 @@ function saveRangeAsImage(sht, rng, filename) {
     sht.Activate();
     var win = sht.Parent.Windows(1);
     win.DisplayGridlines = false;
-    win.View = 1
+    win.View = 1;
 
     var oldSheetsInNewWorkbook = sht.Application.SheetsInNewWorkbook;
     sht.Application.SheetsInNewWorkbook = 1;
@@ -285,81 +285,74 @@ function getTimeStamp() {
   return dt.toLocaleString().split(" ")[1] + "." + ("000" + dt.getMilliseconds()).slice(-3);
 }
 
-/*
 function findRowByPosition(sht, rowBegin, rowEnd, pos) {
-    var height, rowPrev, row, rowBeginOrg
-    row = rowEnd
-    rowBeginOrg = rowBegin
+  var rowPrev, row, rowBeginOrg;
+  row = rowEnd;
+  rowBeginOrg = rowBegin;
+  rowPrev = row;
+  do {
+    var height = sht.Range("A" + rowBeginOrg + ":A" + row).height;
+    if (height < pos) {
+      rowBegin = row;
+    } else {
+      rowEnd = row;
+    }
+    row = Math.floor((rowEnd - rowBegin) / 2) + rowBegin;
+    if (row == rowPrev) {
+      return row;
+    }
     rowPrev = row
-    Do
-        height = sht.Range("A" + rowBeginOrg + ":A" + row).height
-        if (height < pos) {
-            rowBegin = row
-        } else {
-            rowEnd = row
-        }
-        row = (rowEnd - rowBegin) \ 2 + rowBegin
-        if (row == rowPrev) {
-            findRowByPosition = row
-            Exit Function
-        }
-        rowPrev = row
-    Loop
+  } while (true);
 }
 
 function findColumnByPosition(sht, columnBegin, columnEnd, pos) {
-    var width, columnPrev, column, columnBeginOrg
-    column = columnEnd
-    columnBeginOrg = columnBegin
-    columnPrev = column
-    Do
-        width = sht.Range(sht.Cells(1, columnBeginOrg), sht.Cells(1, column)).width
-        if (width < pos) {
-            columnBegin = column
-        } else {
-            columnEnd = column
-        }
-        column = (columnEnd - columnBegin) \ 2 + columnBegin
-        if (column == columnPrev) {
-            findColumnByPosition = column
-            Exit Function
-        }
-        columnPrev = column
-    Loop
+  var column = columnEnd;
+  var columnBeginOrg = columnBegin;
+  var columnPrev = column;
+  do {
+    var width = sht.Range(sht.Cells(1, columnBeginOrg), sht.Cells(1, column)).width;
+    if (width < pos) {
+      columnBegin = column;
+    } else {
+      columnEnd = column;
+    }
+    column = Math.floor((columnEnd - columnBegin) / 2) + columnBegin;
+    if (column == columnPrev) {
+      return column;
+    }
+    columnPrev = column;
+  } while (true);
 }
+
 
 function saveSheetAsImage(sht, basefilename) {
-  var rngUsed, rngImage, row, rowEnd, column, columnEnd, filename, numX, numY, imageWidth, imageHeight
-  imageWidth = regRead(REGKEY_PATH + "ImageWidth", 1000)
-  imageHeight = regRead(REGKEY_PATH + "ImageHeight", 3000)
-  rngUsed = getUsedRangeIncludingShapes(sht)
-  numX = 1
-  column = rngUsed.Column
-  Do 
-    columnEnd = findColumnByPosition(sht, column, rngUsed.Column + rngUsed.Columns.Count - 1, imageWidth)
-    numY = 1
-    row = rngUsed.Row
-    Do 
-      rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, imageHeight)
-      rngImage = sht.Range(sht.Cells(row, column), sht.Cells(rowEnd, columnEnd))
-      filename = basefilename + "(" + numX + "-" + numY + ").png"
-      if (Not saveRangeAsImage(sht, rngImage, filename)) {
-        var shtNew
-        shtNew = sht.Parent.Sheets.Add
-        shtNew.Range("A1") = getTimeStamp() + ": Error" + Err.Number + ": " + Err.Description
-        shtNew.Columns.AutoFit
-        saveRangeAsImage shtNew, shtNew.Range("A1"), filename
-        shtNew.Delete
+  var imageWidth = regRead(REGKEY_PATH + "ImageWidth", 1000);
+  var imageHeight = regRead(REGKEY_PATH + "ImageHeight", 3000);
+  var rngUsed = getUsedRangeIncludingShapes(sht);
+  var numX = 1;
+  var column = rngUsed.Column;
+  do {
+    var columnEnd = findColumnByPosition(sht, column, rngUsed.Column + rngUsed.Columns.Count - 1, imageWidth);
+    var numY = 1
+    var row = rngUsed.Row;
+    do {
+      var rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, imageHeight);
+      var rngImage = sht.Range(sht.Cells(row, column), sht.Cells(rowEnd, columnEnd));
+      var filename = basefilename + "(" + numX + "-" + numY + ").png";
+      if (!saveRangeAsImage(sht, rngImage, filename)) {
+        var shtNew = sht.Parent.Sheets.Add();
+        shtNew.Range("A1") = getTimeStamp() + ": Error" + Err.Number + ": " + Err.Description;
+        shtNew.Columns.AutoFit();
+        saveRangeAsImage(shtNew, shtNew.Range("A1"), filename);
+        shtNew.Delete();
       }
-      row = rowEnd + 1
-      numY = numY + 1
-    Loop While row < rngUsed.row + rngUsed.Rows.Count - 1 
-    column = columnEnd + 1
-    numX = numX + 1
-  Loop While column < rngUsed.column + rngUsed.Columns.Count - 1 
+      row = rowEnd + 1;
+      numY = numY + 1;
+    } while (row < rngUsed.row + rngUsed.Rows.Count - 1);
+    column = columnEnd + 1;
+    numX = numX + 1;
+  } while (column < rngUsed.column + rngUsed.Columns.Count - 1);
 }
-
-*/
 
 function saveSheetAsHTML(sht, filename) {
   var pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", ""); // 1 = xlSourceSheet, 0 = xlHtmlStatic
@@ -413,81 +406,72 @@ function PluginOnEvent(eventType, obj) {
 }
 
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
-    /*
-  var fo
-  var xl
-  var wbk
-  var sht
-  var cmp
-  var fileSrc2
+  var fo = fso.CreateTextFile(fileDst, true, true);
 
-  fo = fso.CreateTextFile(fileDst, true, true)
+  var xl = new ActiveXObject("Excel.Application");
+  xl.EnableEvents = false;
+  xl.DisplayAlerts = false;
 
-  xl = new ActiveXObject("Excel.Application")
-  xl.EnableEvents = false
-  xl.DisplayAlerts = false
-
-  fileSrc2 = fileSrc
+  var fileSrc2 = fileSrc;
   if (fso.GetExtensionName(fileSrc2) == "lnk") {
-    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-    if (Not fso.FileExists(fileSrc2)) {
-      Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc + ": Target file '" + fileSrc2 + "' not found"
-    } (
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSExcelFiles.sct", fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    }
   }
-  wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0),,,,,,,,,,,,true)
-
+  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null,null, true);
   try {
-
-  if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
-    fo.WriteLine("[Document Properties]");
-    writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
-    fo.WriteLine("");
-  }
-
-  if (regRead(REGKEY_PATH + "CompareNames", true)) {
-    fo.WriteLine("[Names]");
-    writeObjectProperties(fo, wbk.Names);
-    fo.WriteLine("");
-  }
-
-  For Each sht In wbk.Worksheets
-    if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
-      fo.WriteLine("[" + sht.Name + "]");
-      writeCellValues(fo, sht);
+    if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
+      fo.WriteLine("[Document Properties]");
+      writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
       fo.WriteLine("");
     }
-    if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
-      fo.WriteLine("[" + sht.Name + ".Formulas]");
-      writeFormulas(fo, sht);
+ 
+    if (regRead(REGKEY_PATH + "CompareNames", true)) {
+      fo.WriteLine("[Names]");
+      writeObjectProperties(fo, wbk.Names);
       fo.WriteLine("");
     }
-    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
-      fo.WriteLine("[" + sht.Name + ".Shapes]");
-      ungroupShapes(sht);
-      writeTextsInShapes(fo, sht);
-      fo.WriteLine("");
-    }
-    if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
-      fo.WriteLine("[" + sht.Name + ".HeadersAndFooters]");
-      writeHeadersAndFooters(fo, sht);
-      fo.WriteLine("");
-    }
-  }
-
-  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
-    if (!isAccessibleVBAProject(wbk)) {
-      fo.WriteLine(Translate(MsgCannotGetMacros));
-    }
-    For Each cmp In wbk.VBProject.VBComponents
-      fo.WriteLine("[CodeModule." + cmp.Name + "]");
-      if (cmp.CodeModule.CountOfLines > 0) {
-        fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+ 
+    for (var it = new Enumerator(wbk.Worksheets), sht = it.item(); !it.atEnd(); it.moveNext(), sht = it.item()) {
+      if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
+        fo.WriteLine("[" + sht.Name + "]");
+        writeCellValues(fo, sht);
+        fo.WriteLine("");
       }
-      fo.WriteLine("");
+      if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
+        fo.WriteLine("[" + sht.Name + ".Formulas]");
+        writeFormulas(fo, sht);
+        fo.WriteLine("");
+      }
+      if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+        fo.WriteLine("[" + sht.Name + ".Shapes]");
+        ungroupShapes(sht);
+        writeTextsInShapes(fo, sht);
+        fo.WriteLine("");
+      }
+      if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
+        fo.WriteLine("[" + sht.Name + ".HeadersAndFooters]");
+        writeHeadersAndFooters(fo, sht);
+        fo.WriteLine("");
+      }
     }
-  }
+ 
+    if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+      if (!isAccessibleVBAProject(wbk)) {
+        fo.WriteLine(Translate(MsgCannotGetMacros));
+      }
+      for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
+      }
+    }
+    sht = null;
+  } catch (e) { }
 
-  sht = null;
   wbk.Close();
   wbk = null;
   xl.Quit();
@@ -503,7 +487,6 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   result.Add(1, pbChanged);
   result.Add(2, pSubcode);
   return result.Items();
-  */
 }
 
 function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
@@ -515,115 +498,107 @@ function IsFolder(file) {
 }
 
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
-/*
-  var fo
-  var xl
-  var wbk
-  var sht
-  var cmp
-  var digit
-  var zf
-  var No
-  var fileSrc2
+  if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
 
-  if (Not fso.FolderExists(folderDst)) { fso.CreateFolder folderDst
+  var xl = new ActiveXObject("Excel.Application");
+  xl.EnableEvents = false;
+  xl.DisplayAlerts = false;
 
-  xl = new ActiveXObject("Excel.Application")
-  xl.EnableEvents = false
-  xl.DisplayAlerts = false
+  var backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking;
+  xl.ErrorCheckingOptions.BackgroundChecking = false;
 
-  var backgroundChecking
-  backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking
-  xl.ErrorCheckingOptions.BackgroundChecking = false
-
-  fileSrc2 = fileSrc
+  var fileSrc2 = fileSrc;
   if (fso.GetExtensionName(fileSrc2) == "lnk") {
-    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-    if (Not fso.FileExists(fileSrc2)) {
-      Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc + ": Target file '" + fileSrc2 + "' not found"
-    } (
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw Error(30001, "CompareMSExcelFiles.sct", fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    }
   }
-  wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0),,,,,,,,,,,,true)
+  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null, null, true);
 
   try {
-
-  digit = Len(CStr(wbk.Worksheets.Count))
-  if (digit <= 0) { digit = 1
-  zf = String(digit, "0")
-
-  if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
-    fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")DocumentProperties.txt"), true, true)
-    writeObjectProperties fo, wbk.BuiltinDocumentProperties
-    fo.Close();
-  }
-
-  if (regRead(REGKEY_PATH + "CompareNames", true)) {
-    fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")Names.txt"), true, true)
-    writeObjectProperties fo, wbk.Names
-    fo.Close();
-  }
-
-  No = 1
-  For Each sht In wbk.Worksheets
-    No = Right(zf + CInt(No), digit)
-    if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".tsv"), true, true)
-      writeCellValues fo, sht
+    digit = String(wbk.Worksheets.Count).length;
+    if (digit <= 0) { digit = 1; }
+    var zf = Array(digit + 1).join("0");
+ 
+    if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
+      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")DocumentProperties.txt"), true, true);
+      writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
       fo.Close();
     }
-
-    if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Formulas.txt"), true, true)
-      writeFormulas fo, sht
+ 
+    if (regRead(REGKEY_PATH + "CompareNames", true)) {
+      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")Names.txt"), true, true);
+      writeObjectProperties(fo, wbk.Names);
       fo.Close();
     }
-
-    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Shapes.txt"), true, true)
-      ungroupShapes sht
-      writeTextsInShapes fo, sht
-      fo.Close();
+ 
+    var No = 1;
+    for (var it = new Enumerator(wbk.Worksheets), sht = it.item(); !it.atEnd(); it.moveNext(), sht = it.item()) {
+      No = zf + No;
+      No = No.substr(No.length() - digit, digit);
+      if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
+        fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".tsv"), true, true);
+        writeCellValues(fo, sht);
+        fo.Close();
+      }
+ 
+      if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
+        fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Formulas.txt"), true, true);
+        writeCellValues(fo, sht);
+        fo.Close();
+      }
+ 
+      if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+        fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Shapes.txt"), true, true);
+        ungroupShapes(sht);
+        writeTextsInShapes(fo, sht);
+        fo.Close();
+      }
+ 
+      if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
+        fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_HeadersAndFooters.txt"), true, true);
+        writeHeadersAndFooters(fo, sht);
+        fo.Close();
+      }
+ 
+      if (regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true)) {
+        saveSheetAsImage(sht, fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name)));
+      }
+ 
+      if (regRead(REGKEY_PATH + "CompareWorksheetsAsHTML", false)) {
+        saveSheetAsHTML(sht, fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".html"));
+      }
+      No = parseInt(No) + 1;
     }
-
-    if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_HeadersAndFooters.txt"), true, true)
-      writeHeadersAndFooters fo, sht
-      fo.Close();
+    if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+      if (!isAccessibleVBAProject(wbk)) {
+        fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
+        fo.WriteLine(Translate(MsgCannotGetMacros));
+        fo.Close();
+      }
+ 
+      for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+      }
     }
-
-    if (regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true)) {
-      saveSheetAsImage sht, fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name))
-    }
-
-    if (regRead(REGKEY_PATH + "CompareWorksheetsAsHTML", false)) {
-      saveSheetAsHTML sht, fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".html")
-    }
-    No = CInt(No) + 1
-  }
-  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
-    if (Not isAccessibleVBAProject(wbk)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true)
-      fo.WriteLine Translate(MsgCannotGetMacros)
-      fo.Close();
-    }
-
-    For Each cmp In wbk.VBProject.VBComponents
-      cmp.Export fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp))
-    }
-  }
-
-  sht = null;
-  wbk.Close
+    sht = null;
+  } catch (e) { }
+  wbk.Close();
   wbk = null;
-  xl.ErrorCheckingOptions.BackgroundChecking = backgroundChecking
-  xl.Quit
+  xl.ErrorCheckingOptions.BackgroundChecking = backgroundChecking;
+  xl.Quit();
   xl = null;
   fo = null;
 
-  pbChanged = true
-  pSubcode = 0
-  UnpackFolder = true
-  */
+  pbChanged = true;
+  pSubcode = 0;
+  
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
 }
 
 function PackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
