@@ -8,6 +8,8 @@ enum
 	DISPID_GetOption = 2,
 	DISPID_SaveOption = 3,
 	DISPID_Log = 4,
+	DISPID_MsgBox = 5,
+	DISPID_InputBox = 6,
 };
 
 
@@ -89,6 +91,8 @@ struct IMergeApp : public IUnknown
 	virtual VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) = 0;
 	virtual void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) = 0;
 	virtual void STDMETHODCALLTYPE Log(int level, BSTR text) = 0;
+	virtual int STDMETHODCALLTYPE MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle) = 0;
+	virtual BSTR STDMETHODCALLTYPE InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault) = 0;
 };
 
 class MergeAppCOMClass : public MyDispatch<IMergeApp>
@@ -103,5 +107,12 @@ public:
 	VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) override;
 	void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) override;
 	void STDMETHODCALLTYPE Log(int level, BSTR text) override;
+	int STDMETHODCALLTYPE MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle) override;
+	BSTR STDMETHODCALLTYPE InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault) override;
+private:
+	static INT_PTR CALLBACK InputBoxProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
+	std::wstring m_inputBoxTitle;
+	std::wstring m_inputBoxPrompt;
+	std::wstring m_inputBoxText;
 };
 

@@ -98,6 +98,11 @@ void AppErrorMessageBox(const String& msg)
 	AppMsgBox::error(msg);
 }
 
+void* AppGetMainHWND()
+{
+	return AfxGetMainWnd()->m_hWnd;
+}
+
 namespace AppMsgBox
 {
 

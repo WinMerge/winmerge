@@ -70,3 +70,9 @@ String tr(const std::wstring& str)
 void NTAPI LangTranslateDialog(HWND h)
 {
 }
+
+void* AppGetMainHWND()
+{
+	return nullptr;
+}
+
