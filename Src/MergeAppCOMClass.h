@@ -1,6 +1,7 @@
 #pragma once
 
 #include <oleauto.h>
+#include "MergeAppLib.h"
 
 enum
 {
@@ -14,15 +15,21 @@ enum
 
 
 template<class T>
-class MyDispatch : public T, public IDispatch
+class MyDispatch : public T
 {
 public:
-	MyDispatch(INTERFACEDATA* idata, void* pThis)
+	MyDispatch(void* pThis)
 		: m_cRef(0), m_pTypeInfo(nullptr)
 	{
+		tchar_t path[MAX_PATH];
+		ITypeLib* pTypeLib = nullptr;
 		ITypeInfo* pTypeInfo = nullptr;
-		if (SUCCEEDED(CreateDispTypeInfo(idata, LOCALE_SYSTEM_DEFAULT, &pTypeInfo)))
-			m_pTypeInfo = pTypeInfo;
+		GetModuleFileName(nullptr, path, sizeof(path) / sizeof(path[0]));
+		if (SUCCEEDED(LoadTypeLib(path, &pTypeLib)))
+		{
+			pTypeLib->GetTypeInfoOfGuid(__uuidof(T), &m_pTypeInfo);
+			pTypeLib->Release();
+		}
 	}
 
 	virtual ~MyDispatch()
@@ -67,6 +74,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo) override
 	{
+		m_pTypeInfo->AddRef();
 		ppTInfo = &m_pTypeInfo;
 		return S_OK;
 	}
@@ -85,16 +93,6 @@ protected:
 	ITypeInfo* m_pTypeInfo;
 };
 
-struct IMergeApp : public IUnknown
-{
-	virtual BSTR STDMETHODCALLTYPE Translate(BSTR text) = 0;
-	virtual VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) = 0;
-	virtual void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) = 0;
-	virtual void STDMETHODCALLTYPE Log(int level, BSTR text) = 0;
-	virtual int STDMETHODCALLTYPE MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle) = 0;
-	virtual BSTR STDMETHODCALLTYPE InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault) = 0;
-};
-
 class MergeAppCOMClass : public MyDispatch<IMergeApp>
 {
 public:
@@ -103,12 +101,12 @@ public:
 	virtual ~MergeAppCOMClass();
 	MergeAppCOMClass& operator=(const MergeAppCOMClass&) = delete;
 
-	BSTR STDMETHODCALLTYPE Translate(BSTR text) override;
-	VARIANT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault) override;
-	void STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) override;
-	void STDMETHODCALLTYPE Log(int level, BSTR text) override;
-	int STDMETHODCALLTYPE MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle) override;
-	BSTR STDMETHODCALLTYPE InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault) override;
+	HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pRet) override;
+	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault, VARIANT* pRet) override;
+	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) override;
+	HRESULT STDMETHODCALLTYPE Log(int level, BSTR text) override;
+	HRESULT STDMETHODCALLTYPE MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle, int* pRet) override;
+	HRESULT STDMETHODCALLTYPE InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault, BSTR* pRet) override;
 private:
 	static INT_PTR CALLBACK InputBoxProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 	std::wstring m_inputBoxTitle;

@@ -1684,7 +1684,9 @@
     <None Include="..\Docs\Users\ChangeLog.md" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Merge.rc" />
+    <ResourceCompile Include="Merge.rc">
+      <AdditionalIncludeDirectories>$(INTDIR);%(AdditionalIncludeDirectories);$(_ZVcpkgCurrentInstalledDir)include</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <ResourceCompile Include="Merge2.rc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ResourceCompile>
@@ -1807,6 +1809,12 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\WinMergeU.VisualElementsManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="MergeAppLib.idl">
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TypeLibraryName>$(IntDir)$(ProjectName).tlb</TypeLibraryName>
+    </Midl>
   </ItemGroup>
   <Target Name="CopyVisualElements" AfterTargets="Build">
     <ItemGroup>

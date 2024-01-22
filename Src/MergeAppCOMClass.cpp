@@ -6,32 +6,8 @@
 #include "MergeApp.h"
 #include "resource.h"
 
-static PARAMDATA paramData_Translate[] =
-{ { L"text", VT_BSTR }, };
-static PARAMDATA paramData_GetOption[] =
-{ { L"name", VT_BSTR }, { L"defaultValue", VT_VARIANT}, };
-static PARAMDATA paramData_SaveOption[] =
-{ { L"name", VT_BSTR }, { L"value", VT_VARIANT}, };
-static PARAMDATA paramData_Log[] =
-{ { L"level", VT_I4 }, { L"text", VT_BSTR }, };
-static PARAMDATA paramData_MsgBox[] =
-{ { L"prompt", VT_BSTR }, { L"buttons", VT_VARIANT}, { L"title", VT_VARIANT}, };
-static PARAMDATA paramData_InputBox[] =
-{ { L"prompt", VT_BSTR }, { L"title", VT_VARIANT}, { L"default", VT_VARIANT}, };
-static METHODDATA methodData_MergeApp[] =
-{
-	{ L"Translate",  paramData_Translate,  DISPID_Translate,  3, CC_STDCALL, 1, DISPATCH_METHOD, VT_BSTR },
-	{ L"GetOption",  paramData_GetOption,  DISPID_GetOption,  4, CC_STDCALL, 2, DISPATCH_METHOD, VT_VARIANT },
-	{ L"SaveOption", paramData_SaveOption, DISPID_SaveOption, 5, CC_STDCALL, 2, DISPATCH_METHOD, VT_NULL },
-	{ L"Log", paramData_Log, DISPID_Log, 6, CC_STDCALL, 2, DISPATCH_METHOD, VT_NULL },
-	{ L"MsgBox", paramData_MsgBox, DISPID_MsgBox, 7, CC_STDCALL, 3, DISPATCH_METHOD, VT_I4 },
-	{ L"InputBox", paramData_InputBox, DISPID_InputBox, 8, CC_STDCALL, 3, DISPATCH_METHOD, VT_BSTR },
-};
-
-static INTERFACEDATA idata_MergeApp = { methodData_MergeApp, static_cast<UINT>(std::size(methodData_MergeApp)) }; 
-
 MergeAppCOMClass::MergeAppCOMClass()
-	: MyDispatch(&idata_MergeApp, static_cast<IMergeApp*>(this))
+	: MyDispatch(static_cast<IMergeApp*>(this))
 {
 }
 
@@ -39,12 +15,13 @@ MergeAppCOMClass::~MergeAppCOMClass()
 {
 }
 
-BSTR STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Translate(BSTR text, BSTR* pRet)
 {
-	return SysAllocString(tr(text).c_str());
+	*pRet = SysAllocString(tr(text).c_str());
+	return S_OK;
 }
 
-VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefault)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefault, VARIANT* pRet)
 {
 	VARIANT varResult;
 	VariantInit(&varResult);
@@ -67,7 +44,8 @@ VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefa
 			GetOptionsMgr()->InitOption(name, pvar->bstrVal);
 			break;
 		default:
-			return varResult;
+			*pRet = varResult;
+			return S_OK;;
 		}
 		value = GetOptionsMgr()->Get(name);
 	}
@@ -92,10 +70,11 @@ VARIANT STDMETHODCALLTYPE MergeAppCOMClass::GetOption(BSTR name, VARIANT varDefa
 		varResult.vt = VT_EMPTY;
 		break;
 	}
-	return varResult;
+	*pRet = varResult;
+	return S_OK;;
 }
 
-void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
 {
 	auto value = GetOptionsMgr()->Get(name);
 	const VARIANT* pvar = ((varValue.vt & VT_BYREF) != 0) ? varValue.pvarVal : &varValue;
@@ -116,7 +95,7 @@ void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
 			GetOptionsMgr()->InitOption(name, pvar->bstrVal);
 			break;
 		default:
-			return;
+			return S_OK;
 		}
 		value = GetOptionsMgr()->Get(name);
 	}
@@ -125,36 +104,28 @@ void STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varValue)
 	case varprop::VT_BOOL:
 		if (pvar->vt == VT_BOOL)
 			GetOptionsMgr()->SaveOption(name, pvar->boolVal);
-		return;
+		return S_OK;
 	case varprop::VT_INT:
 		if (pvar->vt == VT_I2)
-		{
 			GetOptionsMgr()->SaveOption(name, pvar->iVal);
-			return;
-		}
-		if (pvar->vt == VT_I4)
-		{
+		else if (pvar->vt == VT_I4)
 			GetOptionsMgr()->SaveOption(name, pvar->intVal);
-			return;
-		}
-		return;
+		return S_OK;
 	case varprop::VT_STRING:
 		if (pvar->vt == VT_BSTR)
-		{
 			GetOptionsMgr()->SaveOption(name, pvar->bstrVal);
-			return;
-		}
-		return;
+		return S_OK;
 	}
-	return;
+	return S_OK;
 }
 
-void STDMETHODCALLTYPE MergeAppCOMClass::Log(int level, BSTR text)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Log(int level, BSTR text)
 {
 	LogErrorString(text);
+	return S_OK;
 }
 
-int STDMETHODCALLTYPE MergeAppCOMClass::MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle, int* pRet)
 {
 	VARIANT varButtons2, varTitle2;
 	VariantInit(&varButtons2);
@@ -172,7 +143,8 @@ int STDMETHODCALLTYPE MergeAppCOMClass::MsgBox(BSTR prompt, VARIANT varButtons, 
 	int ans = MessageBox(reinterpret_cast<HWND>(AppGetMainHWND()), prompt, varTitle2.bstrVal, varButtons2.intVal);
 	VariantClear(&varButtons2);
 	VariantClear(&varTitle2);
-	return ans;
+	*pRet = ans;
+	return S_OK;
 }
 
 INT_PTR CALLBACK MergeAppCOMClass::InputBoxProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
@@ -210,7 +182,7 @@ INT_PTR CALLBACK MergeAppCOMClass::InputBoxProc(HWND hWnd, UINT uiMsg, WPARAM wP
 	return FALSE;
 }
 
-BSTR STDMETHODCALLTYPE MergeAppCOMClass::InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault)
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault, BSTR* pRet)
 {
 	VARIANT varTitle2, varDefault2;
 	VariantInit(&varTitle2);
@@ -232,7 +204,11 @@ BSTR STDMETHODCALLTYPE MergeAppCOMClass::InputBox(BSTR prompt, VARIANT varTitle,
 	VariantClear(&varDefault2);
 	INT_PTR ans = DialogBoxParam(nullptr, MAKEINTRESOURCE(IDD_INPUTBOX), reinterpret_cast<HWND>(AppGetMainHWND()), InputBoxProc, reinterpret_cast<LPARAM>(this));
 	if (ans == IDOK)
-		return SysAllocString(m_inputBoxText.c_str());
-	return SysAllocString(L"");
+	{
+		*pRet = SysAllocString(m_inputBoxText.c_str());
+		return S_OK;
+	}
+	*pRet = SysAllocString(L"");
+	return S_OK;
 }
 
