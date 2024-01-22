@@ -124,3 +124,4 @@ Testing/Data/Symlink/Dir2/ss12_same_s00.txt
 Testing/Data/Symlink/Dir2/ss12_same_s11.txt
 Src/MergeAppLib_i.c
 Src/MergeAppLib_p.c
+Src/dlldata.c
