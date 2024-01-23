@@ -122,7 +122,7 @@ SignedUninstaller=yes
 
 [Languages]
 ;Inno Setup's Native Language
-Name: English; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\English.isl
+Name: English; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\English.islu
 
 ;Localizations:
 Name: Arabic; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is5\Arabic.isl,..\..\Translations\InnoSetup\Arabic.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Arabic.txt
