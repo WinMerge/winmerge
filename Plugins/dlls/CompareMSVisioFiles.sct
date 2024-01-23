@@ -457,6 +457,16 @@ function importSettingsFromXMLFile(filepath)
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkComparePageAsImage_onclick();
+        document.onkeydown = onkeydown;
+      }
+
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
+        }
       }
 
       function chkUnpackToFolder_onclick() {
@@ -493,19 +503,19 @@ function importSettingsFromXMLFile(filepath)
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label>${Extract page data to multiple files}</label>
+          <label for="chkUnpackToFolder">${Extract page data to multiple files}</label>
         </li>
         <li>
           <input id="chkComparePageAsImage" type="checkbox" onclick="chkComparePageAsImage_onclick();"/>
-          <label>${Compare pages as image (very slow)}</label>
+          <label for="chkComparePageAsImage">${Compare pages as image (very slow)}</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label>${Compare texts in shapes}</label>
+          <label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label>${Compare VBA macros}</label>
+          <label for="chkCompareVBAMacros">${Compare VBA macros}</label>
         </li>
       </ul>
       <div class="btn-container">

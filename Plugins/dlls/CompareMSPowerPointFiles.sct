@@ -503,7 +503,18 @@ function importSettingsFromXMLFile(filepath)
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkCompareSlideAsImage_onclick();
+        document.onkeydown = onkeydown;
       }
+
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
+        }
+      }
+
 
       function chkUnpackToFolder_onclick() {
         if (!chkUnpackToFolder.checked)
@@ -541,27 +552,27 @@ function importSettingsFromXMLFile(filepath)
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label>${Extract slide data to multiple files}</label>
+          <label for="chkUnpackToFolder">${Extract slide data to multiple files}</label>
         </li>
         <li>
           <input id="chkCompareDocumentProperties" type="checkbox" />
-          <label>${Compare document properties}</label>
+          <label for="chkCompareDocumentProperties">${Compare document properties}</label>
         </li>
         <li>
           <input id="chkCompareSlideAsImage" type="checkbox" onclick="chkCompareSlideAsImage_onclick();"/>
-          <label>${Compare slides as image (very slow)}</label>
+          <label for="chkCompareSlideAsImage">${Compare slides as image (very slow)}</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label>${Compare texts in shapes}</label>
+          <label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
         </li>
         <li>
           <input id="chkCompareTextsInNotesPage" type="checkbox" />
-          <label>${Compare texts in notes page}</label>
+          <label for="chkCompareTextsInNotesPage">${Compare texts in notes page}</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label>${Compare VBA macros}</label>
+          <label for="chkCompareVBAMacros">${Compare VBA macros}</label>
         </li>
       </ul>
       <div class="btn-container">

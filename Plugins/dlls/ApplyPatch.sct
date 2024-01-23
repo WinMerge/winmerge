@@ -613,6 +613,17 @@ function importSettingsFromXMLFile(filepath)
         var w = 600 * dpi / 96, h = 400 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        document.onkeydown = onkeydown;
+      }
+
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
+        }
       }
 
       function btnOk_onclick() {

@@ -832,6 +832,16 @@ function importSettingsFromXMLFile(filepath)
         chkUnpackToFolder_onclick();
         chkCompareWorksheetsAsImage_onclick();
         chkCompareWorksheetsAsHTML_onclick();
+        document.onkeydown = onkeydown;
+      }
+
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
+        }
       }
 
       function chkUnpackToFolder_onclick() {
@@ -917,27 +927,27 @@ function importSettingsFromXMLFile(filepath)
 			<ul>
 				<li>
 					<input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-					<label>${Extract workbook data to multiple files}</label>
+					<label for="chkUnpackToFolder">${Extract workbook data to multiple files}</label>
 				</li>
 				<li>
 					<input id="chkUpdateLinks" type="checkbox" />
-					<label>${Update external references(links)}</label>
+					<label for="chkUpdateLinks">${Update external references(links)}</label>
 				</li>
 				<li>
 					<input id="chkCompareDocumentProperties" type="checkbox" />
-					<label>${Compare document properties}</label>
+					<label for="chkCompareDocumentProperties">${Compare document properties}</label>
 				</li>
 				<li>
 					<input id="chkCompareNames" type="checkbox" />
-					<label>${Compare names}</label>
+					<label for="chkCompareNames">${Compare names}</label>
 				</li>
 				<li>
 					<input id="chkCompareCellValues" type="checkbox" />
-					<label>${Compare cell values}</label>
+					<label for="chkCompareCellValues">${Compare cell values}</label>
 				</li>
 				<li>
 					<input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
-					<label>${Compare worksheets as image (very slow)}</label>
+					<label for="chkCompareWorksheetsAsImage">${Compare worksheets as image (very slow)}</label>
 					<ul>
 						<li>
 							<label>${ - Image split size: }</label>
@@ -949,23 +959,23 @@ function importSettingsFromXMLFile(filepath)
 				</li>
 				<li>
 					<input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
-					<label>${Compare worksheets as HTML}</label>
+					<label for="chkCompareWorksheetsAsHTML">${Compare worksheets as HTML}</label>
 				</li>
 				<li>
 					<input id="chkCompareFormulas" type="checkbox" />
-					<label>${Compare formulas}</label>
+					<label for="chkCompareFormulas">${Compare formulas}</label>
 				</li>
 				<li>
 					<input id="chkCompareTextsInShapes" type="checkbox" />
-					<label>${Compare texts in shapes}</label>
+					<label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
 				</li>
 				<li>
 					<input id="chkCompareHeadersAndFooters" type="checkbox" />
-					<label>${Compare headers and footers}</label>
+					<label for="chkCompareHeadersAndFooters">${Compare headers and footers}</label>
 				</li>
 				<li>
 					<input id="chkCompareVBAMacros" type="checkbox" />
-					<label>${Compare VBA macros}</label>
+					<label for="chkCompareVBAMacros">${Compare VBA macros}</label>
 				</li>
 			</ul>
 			<div class="btn-container">
