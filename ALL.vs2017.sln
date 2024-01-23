@@ -204,6 +204,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{32E7
 		Plugins\dlls\CompareMSVisioFiles.sct = Plugins\dlls\CompareMSVisioFiles.sct
 		Plugins\dlls\CompareMSWordFiles.sct = Plugins\dlls\CompareMSWordFiles.sct
 		Plugins\dlls\editor addin.sct = Plugins\dlls\editor addin.sct
+		Plugins\dlls\IgnoreLeadingLineNumbers.sct = Plugins\dlls\IgnoreLeadingLineNumbers.sct
 		Plugins\dlls\insert datetime.sct = Plugins\dlls\insert datetime.sct
 		Plugins\dlls\PrediffLineFilter.sct = Plugins\dlls\PrediffLineFilter.sct
 	EndProjectSection

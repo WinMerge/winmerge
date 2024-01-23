@@ -1,5 +1,42 @@
 # Change log
 
+## WinMerge 2.16.38 - 2024-01-27
+
+### File compare
+
+- BugFix: Fixed an issue where changing the BOM in the right pane in the
+    Codepage dialog was not reflected.
+- Update C++ syntax highlighting keyword list. (PR #2166)
+
+### Webpage compare
+
+- During comparison, the status bar now displays "Comparing...".
+- Add Location Pane (PR#2160)
+
+### Folder compare
+
+- Modify the "Display Columns" dialog. (PR#2154)
+
+### Plugins
+
+- BugFix: Fixed the issue where the following string containing double
+    quotes is not interpreted correctly when specified to the `/unpacker`
+    command line argument.
+    
+    `/unpacker "Replace ""a"" ""b"""`
+
+### Translations
+
+- Translation updates:
+  - Brazilian (PR#2151,#2178)
+  - Chinese Simplified (PR#2153,#2183)
+  - Corsican (PR#2180)
+  - Hungarian (PR#2156,#2157,#2158)
+  - Japanese
+  - Korean (PR#2152)
+  - Lithuanian (PR#2155,#2177)
+  - Portuguese (PR#2185)
+
 ## WinMerge 2.16.37 - 2023-12-24
 
 ### File compare
