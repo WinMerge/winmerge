@@ -57,6 +57,7 @@ public:
 
 	HRESULT STDMETHODCALLTYPE GetTypeInfo(UINT iTInfo, LCID lcid, ITypeInfo** ppTInfo) override
 	{
+		m_pTypeInfo->AddRef();
 		ppTInfo = &m_pTypeInfo;
 		return S_OK;
 	}
