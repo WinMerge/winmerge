@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-08-26 21:28+0900\n"
-"PO-Revision-Date: 2023-08-26 21:16+0900\n"
+"POT-Creation-Date: 2024-01-27 19:47+0900\n"
+"PO-Revision-Date: 2024-01-27 19:57+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. type: Content of: <article><title>
 #: English/About_Doc.xml:3
@@ -1347,15 +1347,14 @@ msgstr "<option>/noninteractive</option>"
 #: English/Command_line.xml:592 English/Command_line.xml:599
 #: English/Command_line.xml:606 English/Command_line.xml:620
 #: English/Command_line.xml:703 English/Compare_files.xml:1476
-#: English/Compare_images.xml:117 English/Compare_webpages.xml:12
-#: English/Configuration.xml:1166 English/Configuration.xml:1172
-#: English/Configuration.xml:1178 English/Configuration.xml:1186
-#: English/Configuration.xml:1194 English/Configuration.xml:1207
-#: English/Configuration.xml:1212 English/Configuration.xml:1217
-#: English/Configuration.xml:1446 English/Configuration.xml:1523
-#: English/Configuration.xml:1564 English/Configuration.xml:1941
-#: English/Filters.xml:775 English/Filters.xml:1206 English/Filters.xml:1211
-#: English/Filters.xml:1222
+#: English/Compare_images.xml:117 English/Configuration.xml:1166
+#: English/Configuration.xml:1172 English/Configuration.xml:1178
+#: English/Configuration.xml:1186 English/Configuration.xml:1194
+#: English/Configuration.xml:1207 English/Configuration.xml:1212
+#: English/Configuration.xml:1217 English/Configuration.xml:1446
+#: English/Configuration.xml:1523 English/Configuration.xml:1564
+#: English/Configuration.xml:1941 English/Filters.xml:775
+#: English/Filters.xml:1206 English/Filters.xml:1211 English/Filters.xml:1222
 msgid "TBD"
 msgstr ""
 
@@ -1721,9 +1720,9 @@ msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:18 English/Compare_files.xml:23
-#: English/Compare_images.xml:23
+#: English/Compare_images.xml:23 English/Compare_webpages.xml:30
 msgid "From the WinMerge window"
-msgstr ""
+msgstr "WinMergeウインドウから"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:21
@@ -1744,9 +1743,9 @@ msgstr ""
 
 #. type: Content of: <article><section><variablelist><varlistentry><term>
 #: English/Compare_dirs.xml:35 English/Compare_files.xml:38
-#: English/Compare_images.xml:38
+#: English/Compare_images.xml:38 English/Compare_webpages.xml:57
 msgid "From a Command Prompt window"
-msgstr ""
+msgstr "コマンドプロンプトウインドウから"
 
 #. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
 #: English/Compare_dirs.xml:38
@@ -6743,6 +6742,385 @@ msgstr "Webページの比較"
 #: English/Compare_webpages.xml:9
 msgid "Web pages"
 msgstr ""
+
+#. type: Content of: <article><para><note>
+#: English/Compare_webpages.xml:13
+msgid ""
+"This topic describes how to compare webpages using the Webpage Compare "
+"window.  <note>"
+msgstr ""
+"このトピックは、Webページ比較ウインドウを使用して、Webページを比較する方法を"
+"説明しています。<note>"
+
+#. type: Content of: <article><para><note><para>
+#: English/Compare_webpages.xml:17
+msgid "This feature is still experimental and may be unstable and very slow."
+msgstr ""
+"この機能はまだ実験的な機能で動作が不安定かつ非常に動作が遅いことがあります。"
+
+#. type: Content of: <article><section><section><section><para>
+#: English/Compare_webpages.xml:19 English/Quick_start.xml:159
+msgid "</note>"
+msgstr ""
+
+#. type: Content of: <article><section><title>
+#: English/Compare_webpages.xml:23
+msgid "Starting a webpage compare operation"
+msgstr "Webページ比較操作を開始する"
+
+#. type: Content of: <article><section><para>
+#: English/Compare_webpages.xml:25
+msgid ""
+"You can start an webpage compare operation from either the WinMerge window "
+"or a Command Prompt window."
+msgstr ""
+"WinMergeウィンドウ、または、コマンドプロンプトから、Webページ比較操作を開始で"
+"きます。"
+
+#. type: Content of: <article><section><variablelist><varlistentry><listitem><para><mediaobject>
+#: English/Compare_webpages.xml:43
+msgid ""
+"<imageobject> <imagedata fileref=\"screenshots/OpenDlg2.png\" "
+"format=\"PNG\" /> </imageobject>"
+msgstr ""
+"<imageobject> <imagedata fileref=\"screenshots/OpenDlg2.png\" "
+"format=\"PNG\" /> </imageobject>"
+
+#. type: Content of: <article><section><section><para><mediaobject><textobject><phrase>
+#: English/Compare_webpages.xml:48 English/Quick_start.xml:84
+msgid "Select Files or Folders window"
+msgstr "ファイルまたはフォルダー選択画面"
+
+#. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:34
+msgid ""
+"Click <menuchoice> <guimenu>File</guimenu> <guimenuitem>Open</guimenuitem> </"
+"menuchoice>. Specify the two or three URLs you want to compare in the "
+"\"Select File or Folder\" dialog and select the <guimenuitem>Webpage</"
+"guimenuitem> menu item from the <guibutton>Compare</guibutton> button's drop-"
+"down menu.  <placeholder type=\"mediaobject\" id=\"0\"/>"
+msgstr ""
+"<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>開く</guimenuitem> </"
+"menuchoice>をクリックします。\"ファイルまたはフォルダーの選択\"ダイアログで2"
+"つまたは3つの比較するURLを指定し、<guibutton>比較</guibutton>ボタンのドロップ"
+"ダウンメニューの<guimenuitem>Webページ</guimenuitem> メニューを選択します。 "
+"<placeholder type=\"mediaobject\" id=\"0\"/>"
+
+#. type: Content of: <article><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:60
+msgid ""
+"Run <command>WinMergeU.exe</command>, which is in your WinMerge install "
+"directory. In your command arguments, include two or three URLs of the web "
+"pages you want to compare and specify the <option>/t webpage</option> "
+"command line option.  For more information about using the command line, see "
+"<xref linkend=\"Command_line\" />."
+msgstr ""
+"WinMergeインストールディレクトリにある、<command>WinMergeU.exe</command>を起"
+"動してください。コマンド引数には、2つまたは3つの比較するWebページのURLを含"
+"め、<option>/t webpage</option> コマンドラインオプションを指定します。その他"
+"のコマンドオプションの情報については、<xref linkend=\"Command_line\" />を参照"
+"してください。"
+
+#. type: Content of: <article><section><variablelist><varlistentry><listitem><example><title>
+#: English/Compare_webpages.xml:68
+msgid "Command line"
+msgstr "コマンドライン"
+
+#. type: Content of: <article><section><variablelist><varlistentry><listitem><example><para>
+#: English/Compare_webpages.xml:71
+msgid ""
+"<userinput> \"C:\\Program Files\\WinMerge\\WinMergeU.exe\" /t webpage "
+"https://example.net https://example.com </userinput>"
+msgstr ""
+
+#. type: Content of: <article><section><mediaobject><textobject><phrase>
+#: English/Compare_webpages.xml:83 English/Compare_webpages.xml:94
+msgid "Webpage Compare window"
+msgstr "Webページ比較ウィンドウ"
+
+#. type: Content of: <article><section><mediaobject>
+#: English/Compare_webpages.xml:89
+msgid ""
+"<imageobject> <imagedata fileref=\"screenshots/webcmp1.png\" format=\"PNG\" /"
+"> </imageobject>"
+msgstr ""
+"<imageobject> <imagedata fileref=\"screenshots/webcmp1.png\" format=\"PNG\" /"
+"> </imageobject>"
+
+#. type: Content of: <article><section><para>
+#: English/Compare_webpages.xml:99
+msgid ""
+"When the Webpage comparison window is displayed, the Webpage menu will be "
+"added to the menu bar.  The menu items in the Webpage menu are as follows.  "
+"Some of the same functionality as these menu items is available in the "
+"Location Pane."
+msgstr ""
+"Webページ比較ウィンドウが表示されると、メニューバーにWebページメニューが追加"
+"されます。  Webページメニューのメニュー項目は以下の通りです。  これらのメ"
+"ニュー項目と同じ機能の一部は、ロケーションペインでも利用できます。"
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: English/Compare_webpages.xml:109
+msgid "webpage menu"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: English/Compare_webpages.xml:108
+msgid "Webpage menu<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "Webページ<placeholder type=\"indexterm\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:115
+msgid "View Differences"
+msgstr "差異を表示"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:118
+msgid "Enables or disables text difference coloring for webpages."
+msgstr "Webページの差異の色付けを有効または無効にします。"
+
+#. type: Content of: <article><section><section><section><title><indexterm><primary>
+#: English/Compare_webpages.xml:127
+msgid "Compare menu"
+msgstr "比較メニュー"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Compare_webpages.xml:126
+msgid "Compare menu<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "比較メニュー<placeholder type=\"indexterm\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:133
+msgid "Screenshots"
+msgstr "スクリーンショット"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:136
+msgid ""
+"Converts the currently displayed range of web pages into images and compares "
+"them in the image comparison window."
+msgstr "Webページの現在表示範囲を画像化し、画像比較ウインドウで比較します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:145
+msgid "Full Size Screenshots"
+msgstr "フルサイズ スクリーンショット"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:148
+msgid ""
+"Creates images of the entire area of web pages and compares them in the "
+"image comparison window."
+msgstr "Webページの全領域を画像化し、画像比較ウインドウで比較します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:157
+msgid "HTMLs"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:160
+msgid "Compare the HTML contents of web pages in the file comparison window."
+msgstr "WebページのHTMLの内容をファイル比較ウインドウで比較します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:169
+msgid "Texts"
+msgstr "テキスト"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:172
+msgid ""
+"Extracts text parts of web pages and compares them in the file comparison "
+"window."
+msgstr "Webページのテキスト部分を抽出し、ファイル比較ウインドウで比較します。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:181
+msgid "Resource Trees"
+msgstr "リソースツリー"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:184
+msgid "Compare resource trees of web pages in the folder comparison window."
+msgstr "Webページのリソースツリーをフォルダー比較ウインドウで比較します。"
+
+#. type: Content of: <article><section><section><section><title><indexterm><primary>
+#: English/Compare_webpages.xml:196
+msgid "Size menu"
+msgstr "サイズメニュー"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Compare_webpages.xml:195
+msgid "Size menu<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "サイズメニュー<placeholder type=\"indexterm\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:202
+msgid "Fit to Window"
+msgstr "ウィンドウに合わせる"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:205
+msgid "Fits the display size of the web page to the size of each pane."
+msgstr "Webページの表示サイズを各ペインのサイズに合わせます。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:213
+msgid "Width x Height"
+msgstr "幅 x 高さ"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:216
+msgid "Changes the display size of the web page to the specified size."
+msgstr "Webページの表示サイズを指定したサイズに変更します。"
+
+#. type: Content of: <article><section><section><section><title><indexterm><primary>
+#: English/Compare_webpages.xml:227
+msgid "Event Sync menu"
+msgstr ""
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Compare_webpages.xml:226
+msgid "Event Sync menu<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "イベント同期メニュー<placeholder type=\"indexterm\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:233
+msgid "Enabled"
+msgstr "有効"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:236
+msgid ""
+"Enable or disable the synchronization function of events such as Scroll and "
+"Click."
+msgstr "スクロールやクリック等のイベントの同期機能を有効または無効にします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:244
+msgid "Scroll"
+msgstr "スクロール"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:247
+msgid "Enable or disable scroll synchronization."
+msgstr "スクロールの同期を有効または無効にします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:255
+msgid "Click"
+msgstr "クリック"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:258
+msgid "Enable or disable click synchronization."
+msgstr "クリックの同期を有効または無効にします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:266
+msgid "Input"
+msgstr "入力"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:269
+msgid "Enable or disable input synchronization."
+msgstr "入力の同期を有効または無効にします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:277
+msgid "GoBack/GoForward"
+msgstr "戻る/進む"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:280
+msgid ""
+"Enable or disable synchronization of going back to the previous page or "
+"forward to the next page."
+msgstr "前のページに戻るまたは進むの同期を有効または無効にします。"
+
+#. type: Content of: <article><section><section><section><title><indexterm><primary>
+#: English/Compare_webpages.xml:293
+msgid "Clear Browsing Data menu"
+msgstr "閲覧データのクリアメニュー"
+
+#. type: Content of: <article><section><section><section><title>
+#: English/Compare_webpages.xml:292
+msgid "Clear Browsing Data menu<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "閲覧データのクリアメニュー<placeholder type=\"indexterm\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:299
+msgid "Disk Cache"
+msgstr "ディスク キャッシュ"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:302
+msgid "Clears only disk cache in browsing data."
+msgstr "閲覧データの内ディスクキャッシュをクリアします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:310
+msgid "Cookies"
+msgstr "クッキー"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:313
+msgid "Clear only cookies in browsing data."
+msgstr "閲覧データの内クッキーをクリアします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:321
+msgid "Browsing History"
+msgstr "閲覧履歴"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:324
+msgid "Clears only browsing history in browsing data."
+msgstr "閲覧履歴をクリアします。"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><term>
+#: English/Compare_webpages.xml:332
+msgid "All Profile"
+msgstr "すべてのプロファイル"
+
+#. type: Content of: <article><section><section><section><variablelist><varlistentry><listitem><para>
+#: English/Compare_webpages.xml:335
+msgid "Clears all browsing data."
+msgstr "すべての閲覧データをクリアします。"
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: English/Compare_webpages.xml:351
+msgid "webpage compare limitations"
+msgstr "Webページ比較の制限"
+
+#. type: Content of: <article><section><section><title>
+#: English/Compare_webpages.xml:350
+msgid "Current limitations<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr "現在の制限<placeholder type=\"indexterm\" id=\"0\"/>"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Compare_webpages.xml:358
+msgid ""
+"Webpages that use the currently deprecated FRAMESET element cannot be "
+"compared."
+msgstr "現在非推奨のFRAMESET要素を使用したWebページは比較できません。"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Compare_webpages.xml:365
+msgid ""
+"The contents within the IFRAME element may not be compared or events may not "
+"be synchronized."
+msgstr ""
+"IFRAME要素内の内容が比較できなかったり、イベントの同期ができないことがありま"
+"す。"
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Compare_webpages.xml:372
+msgid "Comparing web pages with very different content may take a lot of time."
+msgstr ""
+"内容が異なりすぎるWebページを比較すると比較に非常に時間がかかることがありま"
+"す。"
 
 #. type: Content of: <article><section><title><indexterm><secondary>
 #: English/Configuration.xml:4 English/Configuration.xml:1500
@@ -18128,11 +18506,6 @@ msgid ""
 "format=\"PNG\" /> </imageobject>"
 msgstr ""
 
-#. type: Content of: <article><section><section><para><mediaobject><textobject><phrase>
-#: English/Quick_start.xml:84
-msgid "Select Files or Folders window"
-msgstr "ファイルまたはフォルダー選択画面"
-
 #. type: Content of: <article><section><section><section><title>
 #: English/Quick_start.xml:90
 msgid "Specify the files and folders"
@@ -18259,11 +18632,6 @@ msgid ""
 msgstr ""
 "ダイアログ下部のステータス・メッセージでも、 もし、パスが不正な場合は、通知し"
 "ます。"
-
-#. type: Content of: <article><section><section><section><para>
-#: English/Quick_start.xml:159
-msgid "</note>"
-msgstr ""
 
 #. type: Content of: <article><section><section><section><title>
 #: English/Quick_start.xml:163
@@ -19907,3 +20275,6 @@ msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
+
+#~ msgid "Webpage Compare Window"
+#~ msgstr "Webページ比較ウィンドウ"

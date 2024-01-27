@@ -19,7 +19,7 @@ a Command Prompt window.</para>
 
     <variablelist>
       <varlistentry>
-        <term>From the WinMerge window</term>
+        <term>WinMergeウインドウから</term>
 
         <listitem>
           <para>Click <menuchoice> <guimenu>File</guimenu> <guimenuitem>Open</guimenuitem>
@@ -30,7 +30,7 @@ or Folder dialog, see <xref linkend="Open_paths" />.</para>
       </varlistentry>
 
       <varlistentry>
-        <term>From a Command Prompt window</term>
+        <term>コマンドプロンプトウインドウから</term>
 
         <listitem>
           <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge install

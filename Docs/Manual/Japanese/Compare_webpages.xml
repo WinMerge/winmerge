@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Compare_webpages">
-  <?target dbhh topicname="IDH_Compare_webpages" topicid ="003"?>
+  <?target dbhh topicname="IDH_Compare_webpages" topicid ="005"?>
 
   <title>Webページの比較</title>
 
@@ -9,6 +9,310 @@
     <secondary>Web pages</secondary>
   </indexterm>
 
-  <para>TBD</para>
+  <para>
+このトピックは、Webページ比較ウインドウを使用して、Webページを比較する方法を説明しています。<note><para>
+この機能はまだ実験的な機能で動作が不安定かつ非常に動作が遅いことがあります。</para>
+</note></para>
+
+  <section id="Compare_webpage_starting">
+    <title>Webページ比較操作を開始する</title>
+
+    <para>WinMergeウィンドウ、または、コマンドプロンプトから、Webページ比較操作を開始できます。</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>WinMergeウインドウから</term>
+
+        <listitem>
+          <para>
+<menuchoice> <guimenu>ファイル</guimenu> <guimenuitem>開く</guimenuitem>
+</menuchoice>をクリックします。"ファイルまたはフォルダーの選択"ダイアログで2つまたは3つの比較するURLを指定し、<guibutton>比較</guibutton>ボタンのドロップダウンメニューの<guimenuitem>Webページ</guimenuitem>
+メニューを選択します。 <mediaobject>
+<imageobject> <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
+</imageobject><textobject>
+                <phrase>ファイルまたはフォルダー選択画面</phrase>
+              </textobject>
+            </mediaobject></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>コマンドプロンプトウインドウから</term>
+
+        <listitem>
+          <para>WinMergeインストールディレクトリにある、<command>WinMergeU.exe</command>を起動してください。コマンド引数には、2つまたは3つの比較するWebページのURLを含め、<option>/t
+webpage</option> コマンドラインオプションを指定します。その他のコマンドオプションの情報については、<xref
+linkend="Command_line" />を参照してください。</para>
+
+          <example>
+            <title>コマンドライン</title>
+
+            <para>
+<userinput> "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage
+https://example.net https://example.com </userinput></para>
+          </example>
+
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_webpage_window">
+    <title>Webページ比較ウィンドウ</title>
+
+    <para>
+    </para>
+
+    <mediaobject>
+<imageobject> <imagedata fileref="screenshots/webcmp1.png" format="PNG" />
+</imageobject><textobject>
+        <phrase>Webページ比較ウィンドウ</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>
+Webページ比較ウィンドウが表示されると、メニューバーにWebページメニューが追加されます。  Webページメニューのメニュー項目は以下の通りです。
+これらのメニュー項目と同じ機能の一部は、ロケーションペインでも利用できます。</para>
+
+    <section>
+      <title>
+Webページ<indexterm>
+          <primary>webpage menu</primary>
+        </indexterm></title>
+
+      <variablelist>
+        <varlistentry>
+          <term>差異を表示</term>
+          <listitem>
+            <para>
+Webページの差異の色付けを有効または無効にします。</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <section>
+        <title>
+比較メニュー<indexterm>
+            <primary>比較メニュー</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>スクリーンショット</term>
+            <listitem>
+              <para>
+Webページの現在表示範囲を画像化し、画像比較ウインドウで比較します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>フルサイズ スクリーンショット</term>
+            <listitem>
+              <para>
+Webページの全領域を画像化し、画像比較ウインドウで比較します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>HTMLs</term>
+            <listitem>
+              <para>
+WebページのHTMLの内容をファイル比較ウインドウで比較します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>テキスト</term>
+            <listitem>
+              <para>
+Webページのテキスト部分を抽出し、ファイル比較ウインドウで比較します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>リソースツリー</term>
+            <listitem>
+              <para>
+Webページのリソースツリーをフォルダー比較ウインドウで比較します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+サイズメニュー<indexterm>
+            <primary>サイズメニュー</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>ウィンドウに合わせる</term>
+            <listitem>
+              <para>
+Webページの表示サイズを各ペインのサイズに合わせます。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>幅 x 高さ</term>
+            <listitem>
+              <para>
+Webページの表示サイズを指定したサイズに変更します。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+イベント同期メニュー<indexterm>
+            <primary>Event Sync menu</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>有効</term>
+            <listitem>
+              <para>
+スクロールやクリック等のイベントの同期機能を有効または無効にします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>スクロール</term>
+            <listitem>
+              <para>
+スクロールの同期を有効または無効にします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>クリック</term>
+            <listitem>
+              <para>
+クリックの同期を有効または無効にします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>入力</term>
+            <listitem>
+              <para>
+入力の同期を有効または無効にします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>戻る/進む</term>
+            <listitem>
+              <para>
+前のページに戻るまたは進むの同期を有効または無効にします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+閲覧データのクリアメニュー<indexterm>
+            <primary>閲覧データのクリアメニュー</primary>
+          </indexterm></title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>ディスク キャッシュ</term>
+            <listitem>
+              <para>
+閲覧データの内ディスクキャッシュをクリアします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>クッキー</term>
+            <listitem>
+              <para>
+閲覧データの内クッキーをクリアします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>閲覧履歴</term>
+            <listitem>
+              <para>
+閲覧履歴をクリアします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>すべてのプロファイル</term>
+            <listitem>
+              <para>
+すべての閲覧データをクリアします。</para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <para>
+        </para>
+   
+      </section>
+
+    </section>
+
+    <section>
+      <title>
+現在の制限<indexterm>
+          <primary>Webページ比較の制限</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+現在非推奨のFRAMESET要素を使用したWebページは比較できません。</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+IFRAME要素内の内容が比較できなかったり、イベントの同期ができないことがあります。</para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+内容が異なりすぎるWebページを比較すると比較に非常に時間がかかることがあります。</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+  </section>
 
 </article>
