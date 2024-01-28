@@ -177,131 +177,115 @@ function IsFirstArgumentEmpty() {
 }
 
 function ParseArguments(args) {
-  var ary()
-  var ch
-  var inQuotes
-  var token
-  var argsLen
-  var i, j
-  argsLen = Len(args)
-  For i = 1 To argsLen
-    ch = Mid(args, i, 1)
-    if (Not inQuotes) {
-      if (ch = " " Or ch = vbTab) {
-        if (len(token) > 0) {
-          ReDim Preserve ary(j)
-          ary(j) = token
-          j = j + 1
+  var ary = new Array();
+  var token = "";
+  var argsLen = args.length;
+  var inQuotes = false;
+  for (var i = 0; i < argsLen; i++) {
+    var ch = args.charAt(i);
+    if (!inQuotes) {
+      if (ch === " " || ch === "\t") {
+        if (token.length > 0) {
+          ary.push(token);
           token = ""
         }
-      } else if ( ch = """") {
-        inQuotes = True
+      } else if (ch === "\"") {
+        inQuotes = true;
       } else {
-        token = token + ch
+        token += ch;
       }
     } else {
-      if (ch = """") {
-        if (i + 1 <= argsLen) {
-          if (Mid(args, i + 1, 1) = """") {
-            token = token + ch
-          End if
+      if (ch === "\"") {
+        if (i + 1 < argsLen) {
+          if (args.charAt(i) === "\"") {
+            token += ch;
+          }
         }
-        inQuotes = False 
+        inQuotes = false;
       } else {
-        token = token + ch
+        token += ch;
       }
     }
   }
   if (Len(token) > 0) {
-    ReDim Preserve ary(j)
-    ary(j) = token
-    j = j + 1
+    ary.push(token);
     token = ""
   }
-  ParseArguments = ary 
+  return ary; 
 }
 
 function ParseRanges(rangeText) {
-  var i, j
-  var ary, ary2, aryRanges()
-  var rangeFrom, rangeTo
-  ary = Split(rangeText, ",")
-  j = 0
-  For i = 0 To SafeUBound(ary)
-    ary2 = Split(ary(i), "-")
-    rangeFrom = ""
-    if (SafeUBound(ary2) >= 0) {
-      rangeFrom = Trim(ary2(0))
+  var aryRanges = new Array();
+  var ary = rangeText.split(",");
+  for (var i = 0, j = 0; i < ary.length; i++) {
+    var ary2 = ary[i].split("-");
+    var rangeFrom = ""
+    if (ary2.length > 0) {
+      rangeFrom = ary2[0].replace(/^\s+|\s+$/g, "");
     }
-    rangeTo = rangeFrom
-    if (SafeUBound(ary2) > 0) {
-      rangeTo = Trim(ary2(1))
+    var rangeTo = rangeFrom;
+    if (ary2 > 1) {
+      rangeTo = ary2[1].replace(/^\s+|\s+$/g, "");
     }
-    if (IsNumeric(rangeFrom) Or IsNumeric(rangeTo)) {
-      if (Not IsNumeric(rangeFrom)) { rangeFrom = 1
-      if (Not IsNumeric(rangeTo)  ) { rangeTo   = 1000000000
-      if (CDbl(rangeFrom) < 1 Or CDbl(rangeFrom) > 1000000000) { rangeFrom = 1
-      if (CDbl(rangeTo)   < 1 Or CDbl(rangeTo)   > 1000000000) { rangeTo   = 1
-      if (CDbl(rangeFrom) > CDbl(rangeTo)) { rangeTo = rangeFrom
-      Redim preserve aryRanges(j)
-      aryRanges(j) = Array(CLng(rangeFrom), CLng(rangeTo))
-      j = j + 1
+    if (!isNan(rangeFrom) || !isNan(rangeTo)) {
+      if (isNan(rangeFrom)) { rangeFrom = 1; }
+      if (isNan(rangeTo)) { rangeTo = 1000000000; }
+      if (parseFloat(rangeFrom) < 1 || parseFloat(rangeFrom) > 1000000000) { rangeFrom = 1; }
+      if (parseFloat(rangeTo) < 1 || parseFloat(rangeTo) > 1000000000) { rangeTo = 1; }
+      if (parseFloat(rangeFrom) > parseFloat(rangeTo)) { rangeTo = rangeFrom; }
+      aryRanges.push([parseInt(rangeFrom), parseInt(rangeTo)]);
     }
   }
-  ParseRanges = aryRanges
+  return aryRanges;
 }
 
-function ParseSelectColumnsLinesArguments(args, invert) {
-  var rangesOrRegExps()
-  var argAry
-  var i, j
-  var re
-  var isOption
-  re = Nothing
-  argAry = ParseArguments(args)
-  invert = False
-  For i = 0 To SafeUBound(argAry)
-    isOption = False
-    if (Len(argAry(i)) >= 2) {
-      Select Case Left(argAry(i), 1)
-      Case "-", "/"
-        Select Case Mid(argAry(i), 2, 1)
-        Case "e", "i", "g"
-          isOption = True
-          if (re Is Nothing) {
-            re = New RegExp
-            Redim Preserve rangesOrRegExps(j)
-            rangesOrRegExps(j) = re
-            j = j + 1
+function ParseSelectColumnsLinesArguments(args) {
+  var rangesOrRegExps = new Array();
+  var re;
+  var argAry = ParseArguments(args);
+  var invert = false;
+  var flags = "";
+  for (var i = 0; i < argAry.length; i++) {
+    var isOption = false;
+    if (argAry[i].length >= 2) {
+      switch (argAry[i].charAt[0]) {
+      case "-", "/":
+        switch (argAry[i].charAt[1]) {
+        case "e", "i", "g":
+          isOption = true;
+          if (!re) {
+            re = new RegExp();
+            rangesOrRegExps.push(re)
           }
-          if (InStr(argAry(i), "i") > 0) {
-            re.IgnoreCase = True
+          flags = "";
+          if (argAry[i].indexOf("g") >= 0) {
+            flags += "g";
           }
-          if (InStr(argAry(i), "g") > 0) {
-            re.Global  = True
+          if (argAry[i].indexOf("i") >= 0) {
+            flags += "i";
           }
-        Case "v"
-          isOption = True
-          invert = True
-        End Select
-      End Select
-    }
-    if (Not isOption) {
-      if (Not (re Is Nothing)) {
-        re.Pattern = argAry(i)
-        re = Nothing
-      } else {
-        Redim Preserve rangesOrRegExps(j)
-        rangesOrRegExps(j) = ParseRanges(argAry(i))
-        if (SafeUBound(rangesOrRegExps(j)) < 0) {
-          rangesOrRegExps(j) = New RegExp
-          rangesOrRegExps(j).Pattern = argAry(i)
+          break;
+        case "v":
+          isOption = true;
+          invert = true;
+          break;
         }
-        j = j + 1
+      }
+      break;
+    }
+    if (!isOption) {
+      if (!re) {
+        pattern = argAry(i)
+        re = null;
+      } else {
+        rangesOrRegExps.push(ParseRanges(argAry[i]))
+        if (rangesOrRegExps(j) == 0) {
+          rangesOrRegExps[rangesOrRegExps.length - 1] = new RegExp(argAry[i]);
+        }
       }
     }
   }
-  ParseSelectColumnsLinesArguments = rangesOrRegExps
+  return { "rangesOrRegExps": rangesOrRegExps, "invert": invert };
 }
 
 function ParseReplaceArguments(args, regex, ignoreCase) {
@@ -312,22 +296,24 @@ function ParseReplaceArguments(args, regex, ignoreCase) {
   var isOption
   re = Nothing
   argAry = ParseArguments(args)
-  regex = False
-  ignoreCase = False
+  regex = false;
+  ignoreCase = false;
   For i = 0 To SafeUBound(argAry)
-    isOption = False
+    isOption = false;
     if (Len(argAry(i)) >= 2) {
-      Select Case Left(argAry(i), 1)
-      Case "-", "/"
-        Select Case Mid(argAry(i), 2, 1)
-        Case "e", "i"
-          isOption = True
-          regex = True
+      Select case Left(argAry(i), 1)
+      case "-", "/"
+        Select case Mid(argAry(i), 2, 1)
+        case "e", "i"
+          isOption = true;
+          regex = true;
           if (InStr(argAry(i), "i") > 0) {
-            ignoreCase = True
+            ignoreCase = true;
           }
-        End Select
-      End Select
+          break;
+        }
+        break;
+      }
     }
     if (Not isOption) {
       Redim Preserve patterns(j)
@@ -347,37 +333,37 @@ function Unescape(text) {
   i = 1
   Do While i <= textLen
     ch = Mid(text, i, 1)
-    Select Case ch
-    Case "\\"
+    Select case ch
+    case "\\"
       if (i <= textLen - 1) {
         i = i + 1
         ch = Mid(text, i, 1)
-        Select Case ch
-        Case "a"
+        Select case ch
+        case "a"
           Unescape = Unescape + Chr(+H07)
-        Case "b"
+        case "b"
           Unescape = Unescape + Chr(+H08)
-        Case "t"
+        case "t"
           Unescape = Unescape + Chr(+H09)
-        Case "n"
+        case "n"
           Unescape = Unescape + Chr(+H0A)
-        Case "v"
+        case "v"
           Unescape = Unescape + Chr(+H0B)
-        Case "f"
+        case "f"
           Unescape = Unescape + Chr(+H0C)
-        Case "r"
+        case "r"
           Unescape = Unescape + Chr(+H0D)
-        Case "\\"
+        case "\\"
           Unescape = Unescape + "\\"
-        Case Else
+        default:
           Unescape = Unescape + "\\" + ch
-        End Select
+        }
       } else {
         Unescape = Unescape + ch
       }
-    Case Else
+    default:
       Unescape = Unescape + ch
-    End Select
+    }
     i = i + 1
   Loop
 }
@@ -385,8 +371,8 @@ function Unescape(text) {
 function SplitLines(text, eol) {
   var re, matches
   re = New RegExp
-  re.Global = False
-  re.IgnoreCase = False
+  re.Global = false;
+  re.IgnoreCase = false;
   re.Pattern = "\r\n|\n|\r"
   matches = re.Execute(text)
   if (matches.Count > 0) {
