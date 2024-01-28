@@ -446,6 +446,7 @@
     <Image Include="English\screenshots\notequal.png" />
     <Image Include="English\screenshots\notequaltextfile.png" />
     <Image Include="English\screenshots\OpenDlg1.png" />
+    <Image Include="English\screenshots\OpenDlg2.png" />
     <Image Include="English\screenshots\open_icon.png" />
     <Image Include="English\screenshots\options_btn.png" />
     <Image Include="English\screenshots\prevdiff_btn.png" />
@@ -459,6 +460,7 @@
     <Image Include="English\screenshots\tfs_configure.png" />
     <Image Include="English\screenshots\treeview-01.png" />
     <Image Include="English\screenshots\undo_btn.png" />
+    <Image Include="English\screenshots\webcmp1.png" />
     <Image Include="English\screenshots\wm_icon.png" />
     <Image Include="English\screenshots\word-diff-allwhite.png" />
     <Image Include="English\screenshots\word-diff-nochange.png" />
@@ -522,6 +524,7 @@
     <Image Include="Japanese\screenshots\notequal.png" />
     <Image Include="Japanese\screenshots\notequaltextfile.png" />
     <Image Include="Japanese\screenshots\OpenDlg1.png" />
+    <Image Include="Japanese\screenshots\OpenDlg2.png" />
     <Image Include="Japanese\screenshots\open_icon.png" />
     <Image Include="Japanese\screenshots\options_btn.png" />
     <Image Include="Japanese\screenshots\prevdiff_btn.png" />
@@ -535,6 +538,7 @@
     <Image Include="Japanese\screenshots\tfs_configure.png" />
     <Image Include="Japanese\screenshots\treeview-01.png" />
     <Image Include="Japanese\screenshots\undo_btn.png" />
+    <Image Include="Japanese\screenshots\webcmp1.png" />
     <Image Include="Japanese\screenshots\wm_icon.png" />
     <Image Include="Japanese\screenshots\word-diff-allwhite.png" />
     <Image Include="Japanese\screenshots\word-diff-nochange.png" />

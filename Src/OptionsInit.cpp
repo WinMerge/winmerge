@@ -186,7 +186,7 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_WEB_USER_AGENT, _T(""));
 	pOptions->InitOption(OPT_CMP_WEB_URL_PATTERN_TO_INCLUDE, _T(""));
 	pOptions->InitOption(OPT_CMP_WEB_URL_PATTERN_TO_EXCLUDE, _T(""));
-	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENTS, false);
+	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENTS, true);
 	pOptions->InitOption(OPT_CMP_WEB_SYNC_EVENT_FLAGS, 0xff);
 
 	pOptions->InitOption(OPT_PROJECTS_PATH, _T(""));

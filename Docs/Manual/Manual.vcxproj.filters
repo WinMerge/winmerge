@@ -659,6 +659,18 @@
     <Image Include="Shared\images\head.gif">
       <Filter>Shared\images</Filter>
     </Image>
+    <Image Include="English\screenshots\OpenDlg2.png">
+      <Filter>English\screenshots</Filter>
+    </Image>
+    <Image Include="English\screenshots\webcmp1.png">
+      <Filter>English\screenshots</Filter>
+    </Image>
+    <Image Include="Japanese\screenshots\OpenDlg2.png">
+      <Filter>Japanese\screenshots</Filter>
+    </Image>
+    <Image Include="Japanese\screenshots\webcmp1.png">
+      <Filter>Japanese\screenshots</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shared\css\all.css">

@@ -13,7 +13,7 @@
 
     <variablelist>
       <varlistentry>
-        <term>From the WinMerge window</term>
+        <term>WinMergeウインドウから</term>
 
         <listitem>
           <para><menuchoice><guimenu>ファイル</guimenu><guimenuitem>開く</guimenuitem></menuchoice>をクリックしてください。ファイルまたはフォルダーの選択ダイアログを使用して、比較する1と2のフォルダーを指定してください。デフォルトでは、フォルダー中のすべてのファイルが比較対象に含まれ、サブフォルダーも比較対象に含まれます。これらのオプションの変更と、ファイルまたはフォルダーの選択ダイアログのより詳細な情報については、<xref
@@ -22,7 +22,7 @@ linkend="Open_paths" />を参照してください。</para>
       </varlistentry>
 
       <varlistentry>
-        <term>From a Command Prompt window</term>
+        <term>コマンドプロンプトウインドウから</term>
 
         <listitem>
           <para>WinMergeインストールディレクトリにある、<command>WinMergeU.exe</command>を起動してください。コマンド引数には、比較する1と2のフォルダーを含みます。デフォルトでは、フォルダー中のすべてのファイルが比較対象に含まれ、サブフォルダーは比較対象に含まれません。これらのオプションの変更と、その他のコマンドオプションの情報については、<xref

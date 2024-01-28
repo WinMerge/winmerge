@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="Compare_webpages">
-  <?target dbhh topicname="IDH_Compare_webpages" topicid ="003"?>
+  <?target dbhh topicname="IDH_Compare_webpages" topicid ="005"?>
 
   <title>Comparing Web pages</title>
 
@@ -9,6 +9,372 @@
     <secondary>Web pages</secondary>
   </indexterm>
 
-  <para>TBD</para>
+  <para>
+    This topic describes how to compare webpages using the Webpage
+    Compare window.
+    <note>
+      <para>
+        This feature is still experimental and may be unstable and very slow.
+      </para>
+    </note>
+  </para>
+
+  <section id="Compare_webpage_starting">
+    <title>Starting a webpage compare operation</title>
+
+    <para>You can start an webpage compare operation from either the WinMerge window
+    or a Command Prompt window.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>From the WinMerge window</term>
+
+        <listitem>
+          <para>
+            Click <menuchoice>
+              <guimenu>File</guimenu>
+              <guimenuitem>Open</guimenuitem>
+            </menuchoice>. Specify the two or three URLs you want to
+            compare in the "Select File or Folder" dialog and select
+            the <guimenuitem>Webpage</guimenuitem> menu item from the
+            <guibutton>Compare</guibutton> button's drop-down menu.
+
+            <mediaobject>
+              <imageobject>
+                <imagedata fileref="screenshots/OpenDlg2.png" format="PNG" />
+              </imageobject>
+
+              <textobject>
+                <phrase>Select Files or Folders window</phrase>
+              </textobject>
+            </mediaobject>
+
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>From a Command Prompt window</term>
+
+        <listitem>
+          <para>Run <command>WinMergeU.exe</command>, which is in your WinMerge
+            install directory. In your command arguments, include two or three
+            URLs of the web pages you want to compare and specify the
+            <option>/t webpage</option> command line option.
+            For more information about using the command
+            line, see <xref linkend="Command_line" />.</para>
+
+          <example>
+            <title>Command line</title>
+
+            <para>
+              <userinput>
+                "C:\Program Files\WinMerge\WinMergeU.exe" /t webpage https://example.net https://example.com
+              </userinput>
+            </para>
+          </example>
+
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </section>
+
+  <section id="Compare_webpage_window">
+    <title>Webpage Compare window</title>
+
+    <para>
+    </para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/webcmp1.png" format="PNG" />
+      </imageobject>
+
+      <textobject>
+        <phrase>Webpage Compare window</phrase>
+      </textobject>
+    </mediaobject>
+
+    <para>
+      When the Webpage comparison window is displayed,
+      the Webpage menu will be added to the menu bar.
+      The menu items in the Webpage menu are as follows.
+      Some of the same functionality as these menu items
+      is available in the Location Pane.
+    </para>
+
+    <section>
+      <title>
+        Webpage menu<indexterm>
+          <primary>webpage menu</primary>
+        </indexterm>
+      </title>
+
+      <variablelist>
+        <varlistentry>
+          <term>View Differences</term>
+          <listitem>
+            <para>
+              Enables or disables text difference coloring for webpages.
+            </para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <section>
+        <title>
+          Compare menu<indexterm>
+            <primary>Compare menu</primary>
+          </indexterm>
+        </title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Screenshots</term>
+            <listitem>
+              <para>
+                Converts the currently displayed range of web pages into
+                images and compares them in the image comparison window.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Full Size Screenshots</term>
+            <listitem>
+              <para>
+                Creates images of the entire area of web pages and compares
+                them in the image comparison window.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>HTMLs</term>
+            <listitem>
+              <para>
+                Compare the HTML contents of web pages in the file
+                comparison window.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Texts</term>
+            <listitem>
+              <para>
+                Extracts text parts of web pages and compares them
+                in the file comparison window.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Resource Trees</term>
+            <listitem>
+              <para>
+                Compare resource trees of web pages in the folder
+                comparison window.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+          Size menu<indexterm>
+            <primary>Size menu</primary>
+          </indexterm>
+        </title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Fit to Window</term>
+            <listitem>
+              <para>
+                Fits the display size of the web page to the size of each pane.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Width x Height</term>
+            <listitem>
+              <para>
+                Changes the display size of the web page to the specified size.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+          Event Sync menu<indexterm>
+            <primary>Event Sync menu</primary>
+          </indexterm>
+        </title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Enabled</term>
+            <listitem>
+              <para>
+                Enable or disable the synchronization function of events such as Scroll and Click.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Scroll</term>
+            <listitem>
+              <para>
+                Enable or disable scroll synchronization.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Click</term>
+            <listitem>
+              <para>
+                Enable or disable click synchronization.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Input</term>
+            <listitem>
+              <para>
+                Enable or disable input synchronization.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>GoBack/GoForward</term>
+            <listitem>
+              <para>
+                Enable or disable synchronization of
+                going back to the previous page or
+                forward to the next page.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+      </section>
+   
+      <section>
+        <title>
+          Clear Browsing Data menu<indexterm>
+            <primary>Clear Browsing Data menu</primary>
+          </indexterm>
+        </title>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Disk Cache</term>
+            <listitem>
+              <para>
+                Clears only disk cache in browsing data.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Cookies</term>
+            <listitem>
+              <para>
+                Clear only cookies in browsing data.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>Browsing History</term>
+            <listitem>
+              <para>
+                Clears only browsing history in browsing data.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <variablelist>
+          <varlistentry>
+            <term>All Profile</term>
+            <listitem>
+              <para>
+                Clears all browsing data.
+              </para>
+            </listitem>
+          </varlistentry>
+        </variablelist>
+   
+        <para>
+        </para>
+   
+      </section>
+
+    </section>
+
+    <section>
+      <title>
+        Current limitations<indexterm>
+          <primary>webpage compare limitations</primary>
+        </indexterm>
+      </title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            Webpages that use the currently deprecated FRAMESET element cannot be compared.
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+            The contents within the IFRAME element may not be compared or events may not be synchronized.
+          </para>
+        </listitem>
+      </itemizedlist>
+      <itemizedlist>
+        <listitem>
+          <para>
+            Comparing web pages with very different content may take a lot of time.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+  </section>
 
 </article>

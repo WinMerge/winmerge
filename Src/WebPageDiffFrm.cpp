@@ -108,6 +108,8 @@ BEGIN_MESSAGE_MAP(CWebPageDiffFrame, CMergeFrameCommon)
 	ON_COMMAND(ID_PREVCONFLICT, OnPrevConflict)
 	ON_UPDATE_COMMAND_UI(ID_PREVCONFLICT, OnUpdatePrevConflict)
 	// [Web] menu
+	ON_COMMAND(ID_WEB_VIEWDIFFERENCES, OnWebViewDifferences)
+	ON_UPDATE_COMMAND_UI(ID_WEB_VIEWDIFFERENCES, OnUpdateWebViewDifferences)
 	ON_COMMAND(ID_WEB_SIZE_FIT_TO_WINDOW, OnWebFitToWindow)
 	ON_UPDATE_COMMAND_UI(ID_WEB_SIZE_FIT_TO_WINDOW, OnUpdateWebFitToWindow)
 	ON_COMMAND_RANGE(ID_WEB_SIZE_320x512, ID_WEB_SIZE_1440x900, OnWebSize)
@@ -1325,6 +1327,18 @@ void CWebPageDiffFrame::OnUpdatePrevConflict(CCmdUI* pCmdUI)
 			(m_pWebDiffWindow->GetConflictCount() > 0 && m_pWebDiffWindow->GetCurrentDiffIndex() == -1)
 		)
 	);
+}
+
+void CWebPageDiffFrame::OnWebViewDifferences()
+{
+	m_pWebDiffWindow->SetShowDifferences(!m_pWebDiffWindow->GetShowDifferences());
+	SaveOptions();
+	m_pWebToolWindow->Sync();
+}
+
+void CWebPageDiffFrame::OnUpdateWebViewDifferences(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_pWebDiffWindow->GetShowDifferences());
 }
 
 void CWebPageDiffFrame::OnWebFitToWindow()
