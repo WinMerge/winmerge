@@ -268,7 +268,7 @@ msgid "Clear &Browsing Data"
 msgstr "Очистить &историю просмотров"
 
 msgid "&Disk Cache"
-msgstr "&Дисковый кэш"
+msgstr "&Дисковый кеш"
 
 msgid "&Cookies"
 msgstr "&Файлы куки"
@@ -745,7 +745,7 @@ msgid "Next Difference Between Left and Middle\tAlt+1"
 msgstr "Следующее между левым и средним\tAlt+1"
 
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr "Предыдущеемежду левым и средним\tAlt+Shift+1"
+msgstr "Предыдущее между левым и средним\tAlt+Shift+1"
 
 msgid "Next Difference Between Left and Right\tAlt+2"
 msgstr "Следующее между левым и правым\tAlt+2"
@@ -778,31 +778,31 @@ msgid "Previous Right Only Difference\tAlt+Shift+9"
 msgstr "Предыдущее только справа\tAlt+Shift+9"
 
 msgid "Copy from &Left to"
-msgstr "Копировать слева на"
+msgstr "Копировать слева"
 
 msgid "&Middle"
-msgstr "центр"
+msgstr "в центр"
 
 msgid "&Right"
-msgstr "право"
+msgstr "направо"
 
 msgid "Copy from &Middle to"
-msgstr "Копировать из центра на"
+msgstr "Копировать из центра"
 
 msgid "&Left"
-msgstr "лево"
+msgstr "налево"
 
 msgid "Copy from &Right to"
-msgstr "Копировать справа на"
+msgstr "Копировать справа"
 
 msgid "Copy Selected Line(s) from Le&ft to"
-msgstr "Копировать выбранные строки слева на"
+msgstr "Копировать выбранные строки слева"
 
 msgid "Copy Selected Line(s) from Mi&ddle to"
-msgstr "Копировать выбранные строки из центра на"
+msgstr "Копировать выбранные строки из центра"
 
 msgid "Copy Selected Line(s) from Ri&ght to"
-msgstr "Копировать выбранные строки справа на"
+msgstr "Копировать выбранные строки справа"
 
 msgid "Copy from Left\tAlt+Shift+Right"
 msgstr "Копировать слева\tAlt+Shift+Right"
@@ -883,7 +883,7 @@ msgstr "Слева направо (%1 из %2)"
 
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Слева на... (%1 из %2)"
+msgstr "Слева... (%1 из %2)"
 
 #, c-format
 msgid "Middle to Left (%1 of %2)"
@@ -895,7 +895,7 @@ msgstr "Из центра направо (%1 из %2)"
 
 #, c-format
 msgid "Middle to... (%1 of %2)"
-msgstr "Из центра на... (%1 из %2)"
+msgstr "Из центра... (%1 из %2)"
 
 #, c-format
 msgid "Right to Middle (%1 of %2)"
@@ -907,7 +907,7 @@ msgstr "Справа налево (%1 из %2)"
 
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Справа на... (%1 из %2)"
+msgstr "Справа... (%1 из %2)"
 
 msgid "&Delete"
 msgstr "Удалить"
@@ -1191,7 +1191,7 @@ msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Показывать диалог \"Выбрать файлы или папки\" при запуске"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
-msgstr "Закрывать диалог \"Выбрать файлы или папки\" по ОК"
+msgstr "Закрывать диалог \"Выбрать файлы или папки\" по кнопке Сравнить"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Автозавершение в диалоге открытия:"
@@ -1293,7 +1293,7 @@ msgid "Substitution Filters"
 msgstr "Фильтры подмены"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "Изменения в тексте соответсвующие парам, в списке ниже, будут игнорироваться"
+msgstr "Изменения, отображаемые на панелях в виде перечисленных ниже пар, будут проигнорированы или помечены как незначительные. Патчи не затрагиваются."
 
 msgid "Enable"
 msgstr "Включено"
@@ -1986,10 +1986,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Удалить shell для &Windows 11"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Список переходов"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Очистить все недавние элементы"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2048,7 +2048,7 @@ msgid "Image file &patterns:"
 msgstr "Шаблоны изображений:"
 
 msgid "&Enable image compare in folder compare"
-msgstr "Cравнивать изображения в папках сравнения"
+msgstr "Сравнивать изображения в папках сравнения"
 
 msgid "OCR result:"
 msgstr "Результат OCR"
@@ -2291,7 +2291,7 @@ msgid "Name"
 msgstr "Имя"
 
 msgid "Location"
-msgstr "Расоложение"
+msgstr "Расположение"
 
 msgid "Filters"
 msgstr "Фильтры"
@@ -2593,7 +2593,7 @@ msgstr "Слева в центр (%1)"
 
 #, c-format
 msgid "Left to... (%1)"
-msgstr "Слева на... (%1)"
+msgstr "Слева... (%1)"
 
 #, c-format
 msgid "Middle to... (%1)"
@@ -2601,19 +2601,19 @@ msgstr "Из центра... (%1)"
 
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Справа на... (%1)"
+msgstr "Справа... (%1)"
 
 #, c-format
 msgid "Both to... (%1)"
-msgstr "Оба на... (%1)"
+msgstr "Оба... (%1)"
 
 #, c-format
 msgid "All to... (%1)"
-msgstr "Все на... (%1)"
+msgstr "Все... (%1)"
 
 #, c-format
 msgid "Differences to... (%1)"
-msgstr "Отличия на... (%1)"
+msgstr "Отличия... (%1)"
 
 #, c-format
 msgid "Left (%1)"
@@ -2879,7 +2879,7 @@ msgid "Video"
 msgstr "Видео"
 
 msgid "Hash"
-msgstr "Хэш"
+msgstr "Хеш"
 
 msgid "Unable to compare files"
 msgstr "Не удается сравнить файлы"
@@ -3801,7 +3801,7 @@ msgid "Tokenize..."
 msgstr "Токенизировать..."
 
 msgid "Trim Spaces"
-msgstr "Трим пробелов"
+msgstr "Обрезать пробелы"
 
 msgid "Select Columns..."
 msgstr "Выбрать столбцы..."
