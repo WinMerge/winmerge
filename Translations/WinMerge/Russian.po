@@ -247,13 +247,13 @@ msgid "Fit to Window"
 msgstr "Подогнать по окну"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "Синхронизация событий"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "Включено"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "Прокрутка"
 
 msgid "&Click"
 msgstr ""
@@ -262,7 +262,7 @@ msgid "&Input"
 msgstr ""
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "Назад/Вперед"
 
 msgid "Clear &Browsing Data"
 msgstr "Очистить &историю просмотров"
@@ -448,7 +448,7 @@ msgid "Select &All\tCtrl+A"
 msgstr "В&ыбрать все\tCtrl+A"
 
 msgid "Show &Identical Items"
-msgstr "Одинаковые"
+msgstr "Идентичные"
 
 msgid "Show &Different Items"
 msgstr "Отличающиеся"
@@ -466,7 +466,7 @@ msgid "Show S&kipped Items"
 msgstr "Пропущенные"
 
 msgid "S&how Binary Files"
-msgstr "Бинарные файлы"
+msgstr "Двоичные файлы"
 
 msgid "&3-way Compare"
 msgstr "&3-way сравнение"
@@ -496,16 +496,16 @@ msgid "Tree &Mode"
 msgstr "Режим &дерева"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Развернуть подпапки"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "Все подпапки"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "Отличающиеся подпапки"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "Идентичные подпапки"
 
 msgid "&Collapse All Subfolders"
 msgstr "С&вернуть подпапки"
@@ -990,10 +990,10 @@ msgid "Right Shell menu"
 msgstr "Меню оболочки справа"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Оба меню оболочки"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Все меню оболочки"
 
 msgid "Copy"
 msgstr "Копировать"
@@ -1548,7 +1548,7 @@ msgid "Enable indent &heuristic"
 msgstr "Включать эвристику отступов"
 
 msgid "Completely unhighlight the ignored differences"
-msgstr "Вообще не подсвечивать игнорируемые различия"
+msgstr "Совсем не подсвечивать игнорируемые отличия"
 
 msgid "Editor"
 msgstr "Редактор"
@@ -2002,7 +2002,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Игнорировать разницу времени менее 3 секунд"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "Автоматически разворачивать подпапки после сравнения:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Включая уникальное содержимое подпапок"
@@ -2246,16 +2246,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Файлы XML (*.xml)|*.xml|Все файлы (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Не разворачивать"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Разворачивать все подпапки"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Разворачивать отличающиеся подпапки"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Разворачивать идентичные подпапки"
 
 msgid "File Type"
 msgstr "Тип файла"
@@ -2412,7 +2412,7 @@ msgstr "Идет сравнение..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[элементов/сек]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Выберите для сравнения 2 существующих папки или файла."
@@ -2678,10 +2678,10 @@ msgid "Confirm Move"
 msgstr "Подтвердите перемещение"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "Вы собираетесь закрыть окно сравнения. Действительно закрыть окно?"
+msgstr "Вы собираетесь закрыть окно сравнения папок. Действительно закрыть окно?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Вы собираетесь закрыть окно сравнения папок, занявшее много времени на выполнение. Уверены, что хотите закрыть окно?"
 
 msgid "The file or folder name is invalid."
 msgstr "Неверное имя файла или папки."
@@ -3142,7 +3142,7 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr "Папка существует только на одной стороне и не может быть открыта.\n\nСоздать подходящую папку:\n%1\nна другой стороне и открыть эти папки?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""
+msgstr ""Уверены, что хотите скопировать все отличия в другой файл?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Перейти к следующему файлу?"
@@ -3671,19 +3671,19 @@ msgstr "Укажите аргументы плагина"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Плагин не найден или недействителен: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' не является плагином распаковщика"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' не является плагином предсравнения"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr ""
+msgstr "Произошла ошибка предсравнения файла '%1' с плагином '%2'. Предсравнение больше не применяется."
 
 msgid "Filter applied"
 msgstr "Фильтр применен"
@@ -3699,52 +3699,52 @@ msgid "This system does not support clipboard history."
 msgstr "Эта система не поддерживает историю буфера обмена."
 
 msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32-битная версия WinMerge не поддерживает буфера обмена"
+msgstr "32-битная версия WinMerge не поддерживает Сравнение буфера обмена"
 
 msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "Не установлена среда выполнения WebView2. Хотите скачать его?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Создать сравнение текста"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Создать сравнение таблиц"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Создать двоичное сравнение"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Создать сравнение изображений"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Создать сравнение веб-страниц"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Сравнение буфера обмена"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Печать..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Предыдущая страница"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "Две страницы"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Одна страница"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Увеличить"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Уменьшить"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Сравнение..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Масштаб"
 
 msgid "Prettification"
 msgstr "Приукрашивание"
@@ -3973,7 +3973,7 @@ msgid "General content extractor with Apache Tika. \r\nArguments: Command line o
 msgstr "Экстрактор общего содержания с Apache Tika. \r\nАргументы: Параметры командной строки, передаваемые в tika-app.jar."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Применить патч, используя патч GNU"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Показывать текстовое содержимое файлов MS Excel"
