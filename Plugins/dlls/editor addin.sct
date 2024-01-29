@@ -241,10 +241,10 @@ function ParseRanges(rangeText) {
 
 function ParseSelectColumnsLinesArguments(args) {
   var rangesOrRegExps = new Array();
-  var re;
   var argAry = ParseArguments(args);
   var invert = false;
   var flags = "";
+  var isRegExp = false;
   for (var i = 0; i < argAry.length; i++) {
     var isOption = false;
     if (argAry[i].length >= 2) {
@@ -252,12 +252,8 @@ function ParseSelectColumnsLinesArguments(args) {
       case "-", "/":
         switch (argAry[i].charAt[1]) {
         case "e", "i", "g":
+          isRegExp = true;
           isOption = true;
-          if (!re) {
-            re = new RegExp();
-            rangesOrRegExps.push(re)
-          }
-          flags = "";
           if (argAry[i].indexOf("g") >= 0) {
             flags += "g";
           }
@@ -274,40 +270,33 @@ function ParseSelectColumnsLinesArguments(args) {
       break;
     }
     if (!isOption) {
-      if (!re) {
-        pattern = argAry(i)
-        re = null;
+      if (isRegExp) {
+        rangesOrRegExps.push(new RegExp(argAry(i), flags));
+        isRegExp = false;
       } else {
         rangesOrRegExps.push(ParseRanges(argAry[i]))
-        if (rangesOrRegExps(j) == 0) {
-          rangesOrRegExps[rangesOrRegExps.length - 1] = new RegExp(argAry[i]);
-        }
       }
     }
   }
   return { "rangesOrRegExps": rangesOrRegExps, "invert": invert };
 }
 
-function ParseReplaceArguments(args, regex, ignoreCase) {
-  var patterns()
-  var argAry
-  var i, j
-  var re
-  var isOption
-  re = Nothing
-  argAry = ParseArguments(args)
-  regex = false;
-  ignoreCase = false;
-  For i = 0 To SafeUBound(argAry)
+function ParseReplaceArguments(args) {
+  var patterns = new Array();
+  var isOption = false;
+  var argAry = ParseArguments(args)
+  var regex = false;
+  var ignoreCase = false;
+  for (var i = 0; i < argAry.length; i++) {
     isOption = false;
-    if (Len(argAry(i)) >= 2) {
-      Select case Left(argAry(i), 1)
-      case "-", "/"
-        Select case Mid(argAry(i), 2, 1)
-        case "e", "i"
+    if (argAry[i].length >= 2) {
+      switch (argAry[i].charAt(0)) {
+      case "-", "/":
+        switch (argAry[i].charAt(1)) {
+        case "e", "i":
           isOption = true;
           regex = true;
-          if (InStr(argAry(i), "i") > 0) {
+          if (argAry[i].indexOf("i") >= 0) {
             ignoreCase = true;
           }
           break;
@@ -315,13 +304,11 @@ function ParseReplaceArguments(args, regex, ignoreCase) {
         break;
       }
     }
-    if (Not isOption) {
-      Redim Preserve patterns(j)
-      patterns(j) = argAry(i)
-      j = j + 1
+    if (!isOption) {
+      patterns.push(argAry[i]);
     }
   }
-  ParseReplaceArguments = patterns
+  return { "patterns": pattern, "regex": regex, "ignoreCase": ignoreCase };
 }
 
 function Unescape(text) {
