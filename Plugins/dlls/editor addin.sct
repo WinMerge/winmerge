@@ -248,10 +248,13 @@ function ParseSelectColumnsLinesArguments(args) {
   for (var i = 0; i < argAry.length; i++) {
     var isOption = false;
     if (argAry[i].length >= 2) {
-      switch (argAry[i].charAt[0]) {
-      case "-", "/":
-        switch (argAry[i].charAt[1]) {
-        case "e", "i", "g":
+      switch (argAry[i].charAt(0)) {
+      case "-":
+      case "/":
+        switch (argAry[i].charAt(1)) {
+        case "e":
+        case "i":
+        case "g":
           isRegExp = true;
           isOption = true;
           if (argAry[i].indexOf("g") >= 0) {
@@ -291,9 +294,11 @@ function ParseReplaceArguments(args) {
     isOption = false;
     if (argAry[i].length >= 2) {
       switch (argAry[i].charAt(0)) {
-      case "-", "/":
+      case "-":
+      case "/":
         switch (argAry[i].charAt(1)) {
-        case "e", "i":
+        case "e":
+        case "i":
           isOption = true;
           regex = true;
           if (argAry[i].indexOf("i") >= 0) {
@@ -308,7 +313,7 @@ function ParseReplaceArguments(args) {
       patterns.push(argAry[i]);
     }
   }
-  return { "patterns": pattern, "regex": regex, "ignoreCase": ignoreCase };
+  return { "patterns": patterns, "regex": regex, "ignoreCase": ignoreCase };
 }
 
 function Unescape(text) {
@@ -324,7 +329,7 @@ function Unescape(text) {
         ch = text.charAt(i);
         switch (ch) {
         case "a":
-          result += "\a";
+          result += String.fromCharCode(0x07);
           break;
         case "b":
           result += "\b";
@@ -336,7 +341,7 @@ function Unescape(text) {
           result += "\n";
           break;
         case "v":
-          result += "\v";
+          result += String.fromCharCode(0x0b);
           break;
         case "f":
           result += "\f";
@@ -361,6 +366,7 @@ function Unescape(text) {
     }
     i++;
   }
+  return result;
 }
 
 function PluginOnEvent(eventType, obj) {
@@ -446,11 +452,13 @@ function SelectColumns(Text) {
       } else {
         if (!invert) {
           var matches = lines[i].match(rangesOrRegExps[j]);
-          for (var k = 0; k < matches.length; k++) {
-            line += matches[k];
+          if (matches) {
+            for (var k = 0; k < matches.length; k++) {
+              line += matches[k];
+            }
           }
         } else {
-          line += replacei(rangesOrRegExps[j], lines[i], "", false);
+          line += lines[i].replace(rangesOrRegExps[j], "");
         }
       }
     }
@@ -492,7 +500,7 @@ function SelectLines(Text) {
       }
     } else {
       for (var j = 0; j < lines.length; j++) {
-        var matched = (rangesOrRegExps[i].match(lines[j]) !== null);
+        var matched = (lines[j].match(rangesOrRegExps[i]) !== null);
         if (invert) { matched = !matched; }
         if (matched) {
           newlines.push(lines[j]);
@@ -504,7 +512,7 @@ function SelectLines(Text) {
     if (lines[lines.length - 1] === "") {
       if (newlines.length > 0) {
         if (newlines[newlines.length - 1] !== "") {
-          newlines[l].push("");
+          newlines.push("");
         }
       }
     }
@@ -546,19 +554,19 @@ function ReplaceText(Text) {
   var ignoreCase = parseResult.ignoreCase;
   if (regex) {
     for (var i = 0; i < patterns.length; i += 2) {
-      var re = new RegExp(patterns[i],ignoreCase ?  "gmi" : "gm");
+      var re = new RegExp(patterns[i], ignoreCase ? "gmi" : "gm");
       if (i + 1 < patterns.length) {
-        result = result.replace(re, Unescape(patterns(i + 1)));
+        result = result.replace(re, Unescape(patterns[i + 1]));
       } else {
-        result = result.relace(re, result, "");
+        result = result.replace(re, result, "");
       }
     }
   } else {
     for (var i = 0; i < patterns.length; i += 2) {
       if (i + 1 < patterns.length) {
-        result = replacei(patterns(i), patterns(i + 1));
+        result = replacei(result, patterns[i], patterns[i + 1]);
       } else {
-        result = replacei(patterns(i), "");
+        result = replacei(result, patterns[i], "");
       }
     }
   }
@@ -577,7 +585,7 @@ function Tokenize(Text) {
   } else {
     pattern = pluginArguments;
   }
-  if (args === "") {
+  if (pattern === "") {
     throw new Error(30001, "Canceled");
   }
   var re = new RegExp(pattern, "gi");

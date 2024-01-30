@@ -4,6 +4,9 @@ var g_testname;
 var FileSys = new ActiveXObject("Scripting.FileSystemObject");
 var ScriptFolder = FileSys.GetParentFolderName(WScript.ScriptFullName);
 
+var MergeApp = {
+  "Log": function (level, text) { WScript.Echo(text); }
+};
 function setTestName(testname) {
   g_cnt = 0;
   g_testname = testname;
@@ -21,7 +24,6 @@ function assertTrue(value) {
 }
 
 function assertEquals(expected, actual) {
-  WScript.Echo(": " + g_testname);
   g_cnt++;
   if (expected !== actual) {
     throw new Error(30001, getCurrentTestName() + "\r\nexpected: \"" + expected + "\"\r\nactual: \"" + actual + "\"");
@@ -51,6 +53,8 @@ function EditorAddinTest() {
   for (var i = 0; i < 128; i++) {
     asciiChars += String.fromCharCode(i);
   }
+
+  p.PluginOnEvent(0, MergeApp);
 
   // MakeUpper
   setTestName("MakeUpper");
@@ -130,7 +134,7 @@ function EditorAddinTest() {
   p.PluginArguments = "1-";
   assertEquals("aaa\r\nbbb", p.SelectLines("aaa\r\nbbb"));
   assertEquals("aaa\r\nbbb\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
-  assertEquals("aaa\r\n" + vbCrLf + vbCrLf, p.SelectLines("aaa\r\n" + vbCrLf + vbCrLf));
+  assertEquals("aaa\r\n\r\n\r\n", p.SelectLines("aaa\r\n\r\n\r\n"));
   p.PluginArguments = "-2";
   assertEquals("aaa\r\nbbb", p.SelectLines("aaa\r\nbbb"));
   assertEquals("aaa\r\nbbb\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
@@ -148,13 +152,13 @@ function EditorAddinTest() {
   p.PluginArguments = "-e .*";
   assertEquals("aaa\r\nbbb", p.SelectLines("aaa\r\nbbb"));
   assertEquals("aaa\r\nbbb\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
-  p.PluginArguments = "^a";
+  p.PluginArguments = "-e ^a";
   assertEquals("aaa", p.SelectLines("aaa\r\nbbb"));
   assertEquals("aaa\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
-  p.PluginArguments = "a$";
+  p.PluginArguments = "-e a$";
   assertEquals("aaa", p.SelectLines("aaa\r\nbbb"));
   assertEquals("aaa\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
-  p.PluginArguments = "-v a$";
+  p.PluginArguments = "-v -e a$";
   assertEquals("bbb", p.SelectLines("aaa\r\nbbb"));
   assertEquals("bbb\r\n", p.SelectLines("aaa\r\nbbb\r\n"));
 
@@ -238,6 +242,7 @@ function EditorAddinTest() {
   assertEquals("aaa\r\nbbb", p.Trim(" aaa  \r\n  bbb "));
   assertEquals("aaa\r\nbbb\r\n", p.Trim(" aaa  \r\n  bbb \r\n"));
 
+  p.PluginOnEvent(1, MergeApp);
 }
 
 EditorAddinTest();
