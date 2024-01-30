@@ -42,7 +42,7 @@
 var REGKEY_PATH = "Plugins\\editor addin.sct/";
 
 var wsh = new ActiveXObject("WScript.Shell")
-var arguments = "";
+var pluginArguments = "";
 var variables = new Array();
 var mergeApp;
 
@@ -121,11 +121,11 @@ function get_PluginExtendedProperties() {
 }
 
 function get_PluginArguments() {
-  return arguments;
+  return pluginArguments;
 }
 
 function put_PluginArguments(NewValue) {
-  arguments = NewValue;
+  pluginArguments = NewValue;
 }
 
 function get_PluginVariables() {
@@ -173,7 +173,7 @@ function ReplaceVariables(str) {
 }
 
 function IsFirstArgumentEmpty() {
-  return (arguments.match(/^\s*$/) !== null);
+  return (pluginArguments.match(/^\s*$/) !== null);
 }
 
 function ParseArguments(args) {
@@ -187,7 +187,7 @@ function ParseArguments(args) {
       if (ch === " " || ch === "\t") {
         if (token.length > 0) {
           ary.push(token);
-          token = ""
+          token = "";
         }
       } else if (ch === "\"") {
         inQuotes = true;
@@ -207,9 +207,9 @@ function ParseArguments(args) {
       }
     }
   }
-  if (Len(token) > 0) {
+  if (token.length > 0) {
     ary.push(token);
-    token = ""
+    token = "";
   }
   return ary; 
 }
@@ -219,23 +219,23 @@ function ParseRanges(rangeText) {
   var ary = rangeText.split(",");
   for (var i = 0, j = 0; i < ary.length; i++) {
     var ary2 = ary[i].split("-");
-    var rangeFrom = ""
+    var rangeFrom = "";
     if (ary2.length > 0) {
       rangeFrom = ary2[0].replace(/^\s+|\s+$/g, "");
     }
     var rangeTo = rangeFrom;
-    if (ary2 > 1) {
+    if (ary2.length > 1) {
       rangeTo = ary2[1].replace(/^\s+|\s+$/g, "");
     }
-    if (!isNan(rangeFrom) || !isNan(rangeTo)) {
-      if (isNan(rangeFrom)) { rangeFrom = 1; }
-      if (isNan(rangeTo)) { rangeTo = 1000000000; }
+    if ((rangeFrom !== "" && !isNaN(rangeFrom)) || (rangeTo !== "" && !isNaN(rangeTo))) {
+      if (rangeFrom === "" || isNaN(rangeFrom)) { rangeFrom = 1; }
+      if (rangeTo === "" || isNaN(rangeTo)) { rangeTo = 1000000000; }
       if (parseFloat(rangeFrom) < 1 || parseFloat(rangeFrom) > 1000000000) { rangeFrom = 1; }
       if (parseFloat(rangeTo) < 1 || parseFloat(rangeTo) > 1000000000) { rangeTo = 1; }
       if (parseFloat(rangeFrom) > parseFloat(rangeTo)) { rangeTo = rangeFrom; }
       aryRanges.push([parseInt(rangeFrom), parseInt(rangeTo)]);
     }
-  }
+    }
   return aryRanges;
 }
 
@@ -266,15 +266,15 @@ function ParseSelectColumnsLinesArguments(args) {
           invert = true;
           break;
         }
+        break;
       }
-      break;
     }
     if (!isOption) {
       if (isRegExp) {
-        rangesOrRegExps.push(new RegExp(argAry(i), flags));
+        rangesOrRegExps.push(new RegExp(argAry[i], flags));
         isRegExp = false;
       } else {
-        rangesOrRegExps.push(ParseRanges(argAry[i]))
+        rangesOrRegExps.push(ParseRanges(argAry[i]));
       }
     }
   }
@@ -284,7 +284,7 @@ function ParseSelectColumnsLinesArguments(args) {
 function ParseReplaceArguments(args) {
   var patterns = new Array();
   var isOption = false;
-  var argAry = ParseArguments(args)
+  var argAry = ParseArguments(args);
   var regex = false;
   var ignoreCase = false;
   for (var i = 0; i < argAry.length; i++) {
@@ -312,60 +312,55 @@ function ParseReplaceArguments(args) {
 }
 
 function Unescape(text) {
-  var textLen
-  var i
-  var ch
-
-  textLen = Len(text)
-  i = 1
-  Do While i <= textLen
-    ch = Mid(text, i, 1)
-    Select case ch
-    case "\\"
-      if (i <= textLen - 1) {
-        i = i + 1
-        ch = Mid(text, i, 1)
-        Select case ch
-        case "a"
-          Unescape = Unescape + Chr(+H07)
-        case "b"
-          Unescape = Unescape + Chr(+H08)
-        case "t"
-          Unescape = Unescape + Chr(+H09)
-        case "n"
-          Unescape = Unescape + Chr(+H0A)
-        case "v"
-          Unescape = Unescape + Chr(+H0B)
-        case "f"
-          Unescape = Unescape + Chr(+H0C)
-        case "r"
-          Unescape = Unescape + Chr(+H0D)
-        case "\\"
-          Unescape = Unescape + "\\"
+  var result = "";
+  var textLen = text.length;
+  var i = 0;
+  while (i < textLen) {
+    var ch = text.charAt(i);
+    switch (ch) {
+    case "\\":
+      if (i < textLen - 1) {
+        i++;
+        ch = text.charAt(i);
+        switch (ch) {
+        case "a":
+          result += "\a";
+          break;
+        case "b":
+          result += "\b";
+          break;
+        case "t":
+          result += "\t";
+          break;
+        case "n":
+          result += "\n";
+          break;
+        case "v":
+          result += "\v";
+          break;
+        case "f":
+          result += "\f";
+          break;
+        case "r":
+          result += "\r";
+          break;
+        case "\\":
+          result += "\\";
+          break;
         default:
-          Unescape = Unescape + "\\" + ch
+          result += "\\" + ch;
+          break;
         }
       } else {
-        Unescape = Unescape + ch
+        result += ch;
       }
+      break;
     default:
-      Unescape = Unescape + ch
+      result += ch;
+      break;
     }
-    i = i + 1
-  Loop
-}
-
-function SplitLines(text, eol) {
-  var re, matches
-  re = New RegExp
-  re.Global = false;
-  re.IgnoreCase = false;
-  re.Pattern = "\r\n|\n|\r"
-  matches = re.Execute(text)
-  if (matches.Count > 0) {
-    eol = matches(0).Value
+    i++;
   }
-  SplitLines = Split(text, eol)
 }
 
 function PluginOnEvent(eventType, obj) {
@@ -384,23 +379,23 @@ function MakeLower(Text) {
 function ExecFilterCommand(Text) {
   var cmd;
   if (IsFirstArgumentEmpty()) {
-    cmd = regRead(REGKEY_PATH + "ExecFilterCommand", "")
-    cmd = mergeApp.InputBox("Enter filter command", "ExecFilterCommand", cmd)
+    cmd = regRead(REGKEY_PATH + "ExecFilterCommand", "");
+    cmd = mergeApp.InputBox("Enter filter command", "ExecFilterCommand", cmd);
     if (cmd !== "") {
       regWrite(REGKEY_PATH + "ExecFilterCommand", cmd, "REG_SZ");
     }
-    cmd = ReplaceVariables(cmd)
+    cmd = ReplaceVariables(cmd);
   } else {
-    cmd = arguments
+    cmd = pluginArguments;
   }
   if (cmd === "") {
     throw new Error(30001, "Canceled");
   }
 
   var path = wsh.ExpandEnvironmentStrings("%TEMP%\\_winmerge_addin_temp_.txt");
-  var fso = new ActiveXObject("Scripting.FileSystemObject")
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
   try {
-    var ts = fso.CreateTextFile(path)
+    var ts = fso.CreateTextFile(path);
     ts.Write(Text);
     ts.Close();
   } catch (e) {
@@ -408,9 +403,9 @@ function ExecFilterCommand(Text) {
   }
   var result = "";
   try {
-    var exe = wsh.Exec("cmd /c type \"" + path + "\" | " + cmd + " 2>&1")
+    var exe = wsh.Exec("cmd /c type \"" + path + "\" | " + cmd + " 2>&1");
     while (!exe.StdOut.AtEndOfStream) {
-      result += exe.StdOut.ReadLine + "\r\n";
+      result += exe.StdOut.ReadLine() + "\r\n";
     }
   } catch (e) {
     throw new Error(30001, "Failed to execute the command '" + cmd + "':" + e.message);
@@ -421,12 +416,7 @@ function ExecFilterCommand(Text) {
 }
 
 function SelectColumns(Text) {
-  var args, ranges, regexpStr
-  var matches, m
-  var lines, eol, line
-  var i, j, k
-  var rangesOrRegExps
-  var invert
+  var args;
   if (IsFirstArgumentEmpty()) {
     args = regRead(REGKEY_PATH + "SelectColumns", "");
     args = mergeApp.InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)\r\nor regular expression:", "SelectColumns", args);
@@ -434,98 +424,92 @@ function SelectColumns(Text) {
       regWrite(REGKEY_PATH + "SelectColumns", args, "REG_SZ");
     }
   } else {
-    args = arguments;
+    args = pluginArguments;
   }
   if (args === "") {
     throw new Error(30001, "Canceled");
   }
-  lines = SplitLines(Text, eol)
-  rangesOrRegExps = ParseSelectColumnsLinesArguments(args, invert)
-  For i = 0 To SafeUBound(lines)
-    line = ""
-    For j = 0 To SafeUBound(rangesOrRegExps)
-      if (IsArray(rangesOrRegExps(j))) {
-        For k = 0 To SafeUBound(rangesOrRegExps(j))
-          if (rangesOrRegExps(j)(k)(0) <= Len(lines(i))) {
-            line = line + Mid(lines(i), rangesOrRegExps(j)(k)(0), rangesOrRegExps(j)(k)(1) - rangesOrRegExps(j)(k)(0) + 1)
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var parseResult = ParseSelectColumnsLinesArguments(args);
+  var rangesOrRegExps = parseResult.rangesOrRegExps;
+  var invert = parseResult.invert;
+  for (var i = 0; i < lines.length; i++) {
+    var line = "";
+    for (var j = 0; j < rangesOrRegExps.length; j++) {
+      if (rangesOrRegExps[j] instanceof Array) {
+        for (var k = 0; k < rangesOrRegExps[j].length; k++) {
+          if (rangesOrRegExps[j][k][0] - 1 < lines[i].length) {
+            line += lines[i].substring(rangesOrRegExps[j][k][0] - 1, rangesOrRegExps[j][k][1]);
           }
         }
       } else {
-        if (Not invert) {
-          matches = rangesOrRegExps(j).Execute(lines(i))
-          For Each m In matches
-            line = line + m.Value
+        if (!invert) {
+          var matches = lines[i].match(rangesOrRegExps[j]);
+          for (var k = 0; k < matches.length; k++) {
+            line += matches[k];
           }
         } else {
-          line = line + rangesOrRegExps(j).Replace(lines(i), "")
+          line += replacei(rangesOrRegExps[j], lines[i], "", false);
         }
       }
     }
-    lines(i) = line
+    lines[i] = line;
   }
-  SelectColumns = Join(lines, eol)
+  return lines.join(eol);
 }
 
 function SelectLines(Text) {
-  var args, ranges
-  var matches, rangesOrRegExps
-  var lines, newlines(), eol
-  var i, j, k, l
-  var max
-  var matched
-  var invert
+  var args;
+  var newlines = new Array();
   if (IsFirstArgumentEmpty()) {
-    args = regRead(REGKEY_PATH + "SelectLines", "")
-    args = mergeApp.InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)\r\nor regular expression:", "SelectLines", args)
+    args = regRead(REGKEY_PATH + "SelectLines", "");
+    args = mergeApp.InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)\r\nor regular expression:", "SelectLines", args);
     if (args !== "") {
       regWrite(REGKEY_PATH + "SelectLines", args, "REG_SZ");
     }
   } else {
-    args = arguments
+    args = pluginArguments;
   }
   if (args === "") {
     throw new Error(30001, "Canceled");
   }
-  lines = SplitLines(Text, eol)
-  l = 0
-  rangesOrRegExps = ParseSelectColumnsLinesArguments(args, invert)
-  For i = 0 To SafeUBound(rangesOrRegExps)
-    if (IsArray(rangesOrRegExps(i))) {
-      For j = 0 To SafeUBound(rangesOrRegExps(i))
-        max =rangesOrRegExps(i)(j)(1) - 1 
-        if (max > SafeUBound(lines)) { max = SafeUBound(lines)
-        For k = rangesOrRegExps(i)(j)(0) - 1 To max
-          if (k <= SafeUBound(lines)) {
-            ReDim Preserve newlines(l)
-            newlines(l) = lines(k)
-            l = l + 1
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var parseResult = ParseSelectColumnsLinesArguments(args);
+  var invert = parseResult.invert;
+  var rangesOrRegExps = parseResult.rangesOrRegExps;
+  for (var i = 0; i < rangesOrRegExps.length; i++) {
+    if (rangesOrRegExps[i] instanceof Array) {
+      for (var j = 0; j < rangesOrRegExps[i].length; j++) {
+        var max = rangesOrRegExps[i][j][1];
+        if (max > lines.length) { max = lines.length; }
+        for (var k = rangesOrRegExps[i][j][0] - 1; k < max; k++) {
+          if (k < lines.length) {
+            newlines.push(lines[k]);
           }
         }
       }
     } else {
-      For j = 0 To SafeUBound(lines)
-        matched = rangesOrRegExps(i).Test(lines(j))
-        if (invert) { matched = Not matched
+      for (var j = 0; j < lines.length; j++) {
+        var matched = (rangesOrRegExps[i].match(lines[j]) !== null);
+        if (invert) { matched = !matched; }
         if (matched) {
-          ReDim Preserve newlines(l)
-          newlines(l) = lines(j)
-          l = l + 1
+          newlines.push(lines[j]);
         }
       }
     }
   }
-  if (SafeUBound(lines) >= 0) {
-    if (lines(UBound(lines)) = "") {
-      if (SafeUBound(newlines) >= 0) {
-        if (newlines(UBound(newlines)) !== "") {
-          ReDim Preserve newlines(l)
-          newlines(l) = ""
-          l = l + 1
+  if (lines.length > 0) {
+    if (lines[lines.length - 1] === "") {
+      if (newlines.length > 0) {
+        if (newlines[newlines.length - 1] !== "") {
+          newlines[l].push("");
         }
       }
     }
   }
-  SelectLines = Join(newlines, eol)
+  return newlines.join(eol);
 }
 
 function replacei(text, find, replace, ignorecase) {
@@ -545,13 +529,13 @@ function ReplaceText(Text) {
   var args;
   var result = Text;
   if (IsFirstArgumentEmpty()) {
-    args = regRead(REGKEY_PATH + "Replace", "")
-    args = mergeApp.InputBox("Enter the search text and replacement text:", "Replace", args)
+    args = regRead(REGKEY_PATH + "Replace", "");
+    args = mergeApp.InputBox("Enter the search text and replacement text:", "Replace", args);
     if (args !== "") {
       regWrite(REGKEY_PATH + "Replace", args, "REG_SZ");
     }
   } else {
-    args = arguments
+    args = pluginArguments;
   }
   if (args === "") {
     throw new Error(30001, "Canceled");
@@ -591,7 +575,7 @@ function Tokenize(Text) {
       regWrite(REGKEY_PATH + "Tokenize", pattern, "REG_SZ");
     }
   } else {
-    pattern = arguments;
+    pattern = pluginArguments;
   }
   if (args === "") {
     throw new Error(30001, "Canceled");
@@ -615,8 +599,7 @@ function RemoveDuplicates(Text) {
     var line = lines[i];
     if (typeof dic[line] === 'undefined') {
       dic[line] = 1;
-      newlines[j] = line;
-      j++;
+      newlines.push(line);
     }
   }
   if (lasteol)
@@ -638,8 +621,7 @@ function CountDuplicates(Text) {
     var line = lines[i];
     if (typeof dic[line] === 'undefined') {
       dic[line] = 1;
-      newlines[j] = line;
-      j++;
+      newlines.push(line);
     } else {
       dic[line]++;
     }
@@ -685,7 +667,7 @@ function ReverseLines(Text) {
   var m = parseInt(lines.length / 2);
   for (var i = 0; i < m; i++) {
     var line = lines[i];
-    lines[i] = lines[lines.length - i - 1]
+    lines[i] = lines[lines.length - i - 1];
     lines[lines.length - i - 1] = line;
   }
   if (lasteol)

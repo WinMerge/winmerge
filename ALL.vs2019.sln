@@ -353,7 +353,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "q", "q", "{E4EF583F-653D-44
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginTests", "PluginTests", "{9738877F-0B01-4C37-855E-7465C5AB7B56}"
 	ProjectSection(SolutionItems) = preProject
-		Testing\PluginTests\PluginTests.vbs = Testing\PluginTests\PluginTests.vbs
+		Testing\PluginTests\PluginTests.js = Testing\PluginTests\PluginTests.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yq", "yq", "{9914C8A9-0DEA-4922-9065-57034EE5263D}"
