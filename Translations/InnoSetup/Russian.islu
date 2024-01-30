@@ -24,7 +24,7 @@ BulgarianLanguage=Болгарский
 CatalanLanguage=Каталанский
 ChineseSimplifiedLanguage=Китайский (упрощенный)
 ChineseTraditionalLanguage=Китайский (традиционный)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Корсиканский
 CroatianLanguage=Хорватский
 CzechLanguage=Чешский
 DanishLanguage=Датский
@@ -52,16 +52,16 @@ SlovakLanguage=Словацкий
 SlovenianLanguage=Словенский
 SpanishLanguage=Испанский
 SwedishLanguage=Шведский
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Тамильский
 TurkishLanguage=Турецкий
 UkrainianLanguage=Украинский
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseGit=Integrate with To&rtoiseGit
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-AddToPath=&Add WinMerge folder to your system path
+ExplorerContextMenu=Встроить в контекстное меню Проводника
+IntegrateTortoiseCVS=Интеграция с &TortoiseCVS
+IntegrateTortoiseGit=Интеграция с To&rtoiseGit
+IntegrateTortoiseSVN=Интеграция с T&ortoiseSVN
+AddToPath=Добавить папку WinMerge в системный путь
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=3-Way Merge
@@ -73,13 +73,13 @@ MergeAtLeftPane=Merge at left pane
 AutoMergeAtStartup=Auto-merge at startup time
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+ReadMe=Прочти меня
+UsersGuide=Руководство пользователя
+ViewStartMenuFolder=Показать папку меню Пуск WinMerge 
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+DeletePreviousStartMenu=Установщик обнаружил, что вы изменили расположение папки меню Пуск с "%s" на "%s". Удалить предыдущую папку меню Пуск?
+ExplorerNeedsRestart=Для обновления WinMerge ShellExtension требуется перезапуск Проводника. Хотите перезапустить Проводник?
 
 ; Project file description
 ProjectFileDesc=Файл проекта WinMerge
