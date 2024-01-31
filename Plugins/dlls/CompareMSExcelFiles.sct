@@ -50,10 +50,10 @@
 */
 
 var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+var MsgCannotGetMacros = "${Cannot get Macros.\r\n" + 
+  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + 
+  "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
 var pbGroup = 6;
-var MsgCannotGetMacros = "${Cannot get Macros.\n" + 
-  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\n" + 
-  "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\n}";
 
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
@@ -73,10 +73,6 @@ function regRead(Key, DefaultValue) {
 
 function regWrite(Key, Value, TypeNm) {
   mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
-}
-
-function get_PluginEvent() {
-  return "BUFFER_PREDIFF";
 }
 
 function writeObjectProperties(fo, items) {
@@ -215,7 +211,7 @@ function getModuleExtension(cmp) {
 function sleep(sec) {
   if (sec == 0)
     return;
-  wsh.Run("ping.exe localhost -n " + sec, 0, true);
+  wsh.run("ping.exe localhost -n " + sec, 0, true);
 }
 
 function saveRangeAsImage(sht, rng, filename) {
@@ -416,7 +412,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   if (fso.GetExtensionName(fileSrc2) == "lnk") {
     fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
     if (!fso.FileExists(fileSrc2)) {
-      throw new Error(30001, "CompareMSExcelFiles.sct", fileSrc + ": Target file '" + fileSrc2 + "' not found");
+      throw new Error(30001, "CompareMSExcelFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     }
   }
   var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null,null, true);
@@ -458,7 +454,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
  
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(wbk)) {
-      fo.WriteLine(Translate(MsgCannotGetMacros));
+      fo.WriteLine(translate(MsgCannotGetMacros));
     }
     for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
       fo.WriteLine("[CodeModule." + cmp.Name + "]");
@@ -506,10 +502,10 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   xl.ErrorCheckingOptions.BackgroundChecking = false;
 
   var fileSrc2 = fileSrc;
-  if (fso.GetExtensionName(fileSrc2) == "lnk") {
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
     fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
     if (!fso.FileExists(fileSrc2)) {
-      throw Error(30001, "CompareMSExcelFiles.sct", fileSrc + ": Target file '" + fileSrc2 + "' not found");
+      throw new Error(30001, "CompareMSExcelFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     }
   }
   var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null, null, true);
@@ -571,10 +567,9 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(wbk)) {
       fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
-      fo.WriteLine(Translate(MsgCannotGetMacros));
+      fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     }
- 
     for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
       cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
     }
@@ -599,10 +594,10 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
 }
 
 function PackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
-  return false
+  return false;
 }
 
-function Translate(text) {
+function translate(text) {
   var re = /\${([^}]+)}/g;
   var matches;
   while ((matches = re.exec(text)) != null) {
@@ -615,20 +610,20 @@ function ShowSettingsDialog() {
   var tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".hta");
   var xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".xml");
   var tfile = fso.CreateTextFile(tname, true, true);
-  tfile.Write(Translate(getResource("dialog1")));
+  tfile.Write(translate(getResource("dialog1")));
   tfile.Close();
   exportSettingsToXMLFile(xmlfile);
   var mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\System32\\mshta.exe");
   if (!fso.FileExists(mshta)) {
     mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\SysWOW64\\mshta.exe");
   }
-  Run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
+  run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
   importSettingsFromXMLFile(xmlfile);
   fso.DeleteFile(tname);
   fso.DeleteFile(xmlfile);
 }
 
-function Run(sh, cmd) {
+function run(sh, cmd) {
   sh.Run(cmd, 1, true);
 }
 
