@@ -132,7 +132,7 @@ function replacei(text, find, replace, ignorecase) {
   return text;
 }
 
-function Translate(text) {
+function translate(text) {
   var re = /\${([^}]+)}/g;
   var matches;
   while ((matches = re.exec(text)) != null) {
@@ -145,20 +145,20 @@ function ShowSettingsDialog() {
   var tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".hta");
   var xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".xml");
   var tfile = fso.CreateTextFile(tname, true, true);
-  tfile.Write(Translate(getResource("dialog1")));
+  tfile.Write(translate(getResource("dialog1")));
   tfile.Close();
   exportSettingsToXMLFile(xmlfile);
   var mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\System32\\mshta.exe");
   if (!fso.FileExists(mshta)) {
     mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\SysWOW64\\mshta.exe");
   }
-  Run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
+  run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
   importSettingsFromXMLFile(xmlfile);
   fso.DeleteFile(tname);
   fso.DeleteFile(xmlfile);
 }
 
-function Run(sh, cmd) {
+function run(sh, cmd) {
   sh.Run(cmd, 1, true);
 }
 
