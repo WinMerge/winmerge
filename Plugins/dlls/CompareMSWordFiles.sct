@@ -48,9 +48,10 @@
 
 
 var REGKEY_PATH = "Plugins\\CompareMSWordFiles.sct/";
-var MsgCannotGetMacros = "${Cannot get Macros.\r\n" + _
-  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + _
+var MsgCannotGetMacros = "${Cannot get Macros.\r\n" + 
+  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + 
   "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
+var wdFormatFilteredHTML = 10;
 
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
@@ -149,7 +150,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   var fo = fso.CreateTextFile(fileDst, true, true);
 
   var wd = new ActiveXObject("Word.Application");
-  wd.DisplayAlerts = false
+  wd.DisplayAlerts = false;
 
   fileSrc2 = fileSrc;
   if (fso.GetExtensionName(fileSrc2) = "lnk") {
@@ -201,7 +202,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   wd = null;
 
   fo.Close();
-  fo = null
+  fo = null;
 
   pbChanged = true;
   pSubcode = 0;
@@ -224,7 +225,7 @@ function IsFolder(file) {
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
 
-  var wd = new ActiveXObject("Word.Application")
+  var wd = new ActiveXObject("Word.Application");
   wd.DisplayAlerts = false;
 
   var fileSrc2 = fileSrc;
@@ -255,14 +256,14 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   }
 
   if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
-    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "Shapes.txt"), true, true)
+    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "Shapes.txt"), true, true);
     ungroupShapes(doc);
     writeTextsInShapes(fo, doc);
     fo.Close();
   }
 
   if (regRead(REGKEY_PATH + "CompareDocumentsAsHTML", true)) {
-    doc.SaveAs(fso.BuildPath(folderDst, "Document.htm"), 10/*wdFormatFilteredHTML*/);
+    doc.SaveAs(fso.BuildPath(folderDst, "Document.htm"), wdFormatFilteredHTML);
   }
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(doc)) {
@@ -281,8 +282,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   wd = null;
   fo = null;
 
-  pbChanged = true
-  pSubcode = 0
+  pbChanged = true;
+  pSubcode = 0;
 
   var result = new ActiveXObject("Scripting.Dictionary");
   result.Add(0, true);

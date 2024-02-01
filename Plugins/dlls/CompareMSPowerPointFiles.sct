@@ -46,6 +46,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
+
 var REGKEY_PATH = "Plugins\\CompareMSPowerPointFiles.sct/";
 var MsgCannotGetMacros = "${Cannot get Macros.\r\n" +
   "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" +
@@ -269,7 +270,6 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     }
-    
     for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
       cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
     }
@@ -277,7 +277,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
 
   sld = null;
   prs.Close();
-  prs = null
+  prs = null;
   pp.Quit();
   pp = null;
   fo = null;

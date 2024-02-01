@@ -49,6 +49,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
+
 var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
 var MsgCannotGetMacros = "${Cannot get Macros.\r\n" + 
   "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + 
@@ -515,13 +516,13 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   var zf = Array(digit + 1).join("0");
  
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
-    fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")DocumentProperties.txt"), true, true);
+    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")DocumentProperties.txt"), true, true);
     writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
     fo.Close();
   }
  
   if (regRead(REGKEY_PATH + "CompareNames", true)) {
-    fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")Names.txt"), true, true);
+    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")Names.txt"), true, true);
     writeObjectProperties(fo, wbk.Names);
     fo.Close();
   }
@@ -531,26 +532,26 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     No = zf + No;
     No = No.substr(No.length - digit, digit);
     if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".tsv"), true, true);
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".tsv"), true, true);
       writeCellValues(fo, sht);
       fo.Close();
     }
  
     if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Formulas.txt"), true, true);
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Formulas.txt"), true, true);
       writeFormulas(fo, sht);
       fo.Close();
     }
  
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Shapes.txt"), true, true);
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Shapes.txt"), true, true);
       ungroupShapes(sht);
       writeTextsInShapes(fo, sht);
       fo.Close();
     }
  
     if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_HeadersAndFooters.txt"), true, true);
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_HeadersAndFooters.txt"), true, true);
       writeHeadersAndFooters(fo, sht);
       fo.Close();
     }
@@ -566,7 +567,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   }
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(wbk)) {
-      fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     }
