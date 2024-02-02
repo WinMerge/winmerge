@@ -100,7 +100,7 @@ void AppErrorMessageBox(const String& msg)
 
 void* AppGetMainHWND()
 {
-	return AfxGetMainWnd()->m_hWnd;
+	return AfxGetMainWnd()->GetSafeHwnd();
 }
 
 namespace AppMsgBox
