@@ -195,7 +195,7 @@ function importSettingsFromXMLFile(filepath) {
   var ts = fso.OpenTextFile(filepath, 1, true, -1);
   var xml = ts.ReadAll();
   var doc = new ActiveXObject("MSXML2.DOMDocument");
-  doc.async = false
+  doc.async = false;
   doc.loadXML(xml);
   ts.Close();
   var nodes = doc.documentElement.childNodes;
@@ -248,7 +248,7 @@ function importSettingsFromXMLFile(filepath) {
         var ts = fso.OpenTextFile(filepath, 1, true, -1);
         var xml = ts.ReadAll();
         var doc = new ActiveXObject("MSXML2.DOMDocument");
-        doc.async = false
+        doc.async = false;
         doc.loadXML(xml);
         ts.Close();
         var nodes = doc.documentElement.childNodes;

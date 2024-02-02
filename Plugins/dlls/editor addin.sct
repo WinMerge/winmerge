@@ -41,7 +41,7 @@
 
 var REGKEY_PATH = "Plugins\\editor addin.sct/";
 
-var wsh = new ActiveXObject("WScript.Shell")
+var wsh = new ActiveXObject("WScript.Shell");
 var pluginArguments = "";
 var variables = new Array();
 var mergeApp;

@@ -99,7 +99,7 @@ function ungroupShapes(sht) {
           shp.Ungroup();
         }
       }
-    } while (cnt != doc.Shapes.Count);
+    } while (cnt !== doc.Shapes.Count);
   } catch (e) {}
 }
 
@@ -152,8 +152,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   var wd = new ActiveXObject("Word.Application");
   wd.DisplayAlerts = false;
 
-  fileSrc2 = fileSrc;
-  if (fso.GetExtensionName(fileSrc2) = "lnk") {
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
     fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
     if (!fso.FileExists(fileSrc2)) {
       throw new Error(30001, "CompareMSWordFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
@@ -191,7 +191,11 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       fo.WriteLine(translate(MsgCannotGetMacros));
     }
     for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+      fo.WriteLine("[CodeModule." + cmp.Name + "]");
+      if (cmp.CodeModule.CountOfLines > 0) {
+        fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+      }
+      fo.WriteLine("");
     }
   }
 
@@ -359,7 +363,7 @@ function importSettingsFromXMLFile(filepath) {
   var ts = fso.OpenTextFile(filepath, 1, true, -1);
   var xml = ts.ReadAll();
   var doc = new ActiveXObject("MSXML2.DOMDocument");
-  doc.async = false
+  doc.async = false;
   doc.loadXML(xml);
   ts.Close();
   var nodes = doc.documentElement.childNodes;
@@ -408,7 +412,7 @@ function importSettingsFromXMLFile(filepath) {
         var ts = fso.OpenTextFile(filepath, 1, true, -1);
         var xml = ts.ReadAll();
         var doc = new ActiveXObject("MSXML2.DOMDocument");
-        doc.async = false
+        doc.async = false;
         doc.loadXML(xml);
         ts.Close();
         var nodes = doc.documentElement.childNodes;

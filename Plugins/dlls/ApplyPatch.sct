@@ -47,7 +47,7 @@
 */
 
 
-var REGKEY_PATH = "HKEY_CURRENT_USER\\Software\\Thingamahoochie\\WinMerge";
+var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
 var PLUGIN_NAME = "ApplyPatch.sct WinMerge Plugin";
 
 var fso = new ActiveXObject("Scripting.FileSystemObject");
@@ -109,14 +109,14 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     return result.Items();
   }
 
-  var filePatched = (PrevFileName !== "") ? PrevFileName : regRead("Files\\Left/Item_0", "");
+  var filePatched = (PrevFileName !== "") ? PrevFileName : regRead(REGKEY_PATH + "Files\\Left/Item_0", "");
   if (isPatchFile(filePatched)) {
-    filePatched = regRead("Files\\Right/Item_0", "");
+    filePatched = regRead(REGKEY_PATH + "Files\\Right/Item_0", "");
   }
 
   var msg = fmt(translate("${Enter the name of the file to which the patch '%1' will be applied}"), [ fso.GetFileName(fileSrc) ]);
   while (true) {
-    filePatched = InputBox(msg, PLUGIN_NAME, filePatched)
+    filePatched = mergeApp.InputBox(msg, PLUGIN_NAME, filePatched);
     if (filePatched === "") {
         return false;
     }
@@ -124,15 +124,15 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     mergeApp.MsgBox(fmt(translate("${File '%1' does not exist}"), [ filePatched ]), 48/*vbExclamation*/);
   }
 
-  var cmdLine = "type \"" + fileSrc + "\" | patch --binary $FILE"
-  msg = translate("${Enter the command line arguments for patch command}")
+  var cmdLine = "type \"" + fileSrc + "\" | patch --binary $FILE";
+  msg = translate("${Enter the command line arguments for patch command}");
   cmdLine = mergeApp.InputBox(msg, PLUGIN_NAME, cmdLine);
   if (cmdLine === "") { return false; }
-  cmdLine = Replace(cmdLine, "$FILE", fileDst);
+  cmdLine = cmdLine.replace("$FILE", fileDst);
       
   fso.CopyFile(filePatched, fileDst);
 
-  run(wsh, "cmd.exe /s /c \"set PATH=" + GetPatchExeFolder() + ";%PATH% + " + cmdLine + " + pause\"");
+  run(wsh, "cmd.exe /s /c \"set PATH=" + getPatchExeFolder() + ";%PATH% & " + cmdLine + " & pause\"");
 
   pbChanged = true;
   pSubcode = 0;
@@ -154,7 +154,7 @@ function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     result.Add(2, pSubcode);
     return result.Items();
   }
-  return false
+  return false;
 }
 
 function IsFolder(file) {
@@ -164,9 +164,9 @@ function IsFolder(file) {
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
 
-  var dirPatched = regRead("Files\\Left/Item_0", "")
+  var dirPatched = regRead(REGKEY_PATH + "Files\\Left/Item_0", "");
   if (!fso.FolderExists(dirPatched)) {
-    dirPatched = regRead("Files\\Right/Item_0", "")
+    dirPatched = regRead(REGKEY_PATH + "Files\\Right/Item_0", "");
   }
 
   var msg = fmt(translate("${Enter the name of the folder to which the patch '%1' will be applied}"), [ fso.GetFileName(fileSrc) ]);
@@ -194,7 +194,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   stripCount = getStripCountFromCmdLine(cmdLine);
   if (stripCount === 0) {
     if (hasAbsolutePathInList(files)) {
-      msg = translate("${Should not specify the '-p0' command line option for the patch file which includes absolute paths}")
+      msg = translate("${Should not specify the '-p0' command line option for the patch file which includes absolute paths}");
       mergeApp.MsgBox(msg, 48/*vbExclamation*/);
       return false;
     }
@@ -202,7 +202,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
 
   copyOriginalFiles(dirPatched, folderDst, files, stripCount);
 
-  run(wsh, "cmd.exe /s /c \"set PATH=" + GetPatchExeFolder() + ";%PATH% + cd /d " + folderDst + " + " + cmdLine + " + pause\"");
+  run(wsh, "cmd.exe /s /c \"set PATH=" + getPatchExeFolder() + ";%PATH% & cd /d " + folderDst + " + " + cmdLine + " & pause\"");
 
   pbChanged = true;
   pSubcode = 0;
@@ -247,7 +247,7 @@ function run(sh, cmd) {
   sh.Run(cmd, 1, true);
 }
 
-function GetPatchExeFolder() {
+function getPatchExeFolder() {
   var winMergeExePath = "C:\\Program Files\\WinMerge\\WinMergeU.exe";
   try {
     winMergeExePath = wsh.RegRead(REGKEY_PATH + "\\Executable");
@@ -258,8 +258,8 @@ function GetPatchExeFolder() {
 function isPatchFile(path) {
   var patterns = get_PluginFileFilters().split(";");
   for (var i = 0; i < patterns.length; i++) {
-    var re = new RegExp(pattern, "gi");
-    if (re.match(path)) {
+    var re = new RegExp(patterns[i], "gi");
+    if (re.test(path)) {
       return true;
     }
   }
@@ -290,7 +290,7 @@ function isNullDevice(path) {
 function stripDir(fileName, stripCount) {
   if (stripCount === -1) {
     return fso.GetFileName(fileName);
-  } else if ( stripCount = 0) {
+  } else if ( stripCount === 0) {
     return fileName;
   }
   var pos = 0;
@@ -314,8 +314,8 @@ function stripDir(fileName, stripCount) {
 
 function makePatchedFileName(destDir, fileName, stripCount) {
   if (!isNullDevice(fileName)) {
-    var strippedFileName = stripDir(fileName, stripCount)
-    if (strippedFileName = "") {
+    var strippedFileName = stripDir(fileName, stripCount);
+    if (strippedFileName === "") {
       return "";
     }
     if (!isAbsolutePath(strippedFileName)) {
@@ -332,7 +332,7 @@ function guessStripCount(fileNamesInPatch, destDir) {
   var maxMatchCount = 0;
   if (fileNamesInPatch.length === 0) { return guessedStripCount; }
   while (true) {
-    var matchCount = 0
+    var matchCount = 0;
     for (var i = 0; i < fileNamesInPatch.length; i++) {
       for (var j = 0; j < 2; j++) {
         if (!isNullDevice(fileNamesInPatch[i][j])) {
@@ -367,8 +367,8 @@ function createFolderEx(dirName) {
 function copyOriginalFiles(srcDir, destDir, fileNamesInPatch, stripCount) {
   for (var i = 0; i < fileNamesInPath.length; i++) {
     if (!isNullDevice(fileNamesInPatch(i)(0))) {
-      var fileNameSrc = makePatchedFileName(srcDir, fileNamesInPatch(i)(0), stripCount)
-      var fileNameDest = makePatchedFileName(destDir, fileNamesInPatch(i)(0), stripCount)
+      var fileNameSrc = makePatchedFileName(srcDir, fileNamesInPatch(i)(0), stripCount);
+      var fileNameDest = makePatchedFileName(destDir, fileNamesInPatch(i)(0), stripCount);
       if (fso.FileExists(fileNameSrc)) {
         if (!fso.FolderExists(fso.GetParentFolderName(fileNameDest))) {
           createFolderEx(fso.GetParentFolderName(fileNameDest));
@@ -452,7 +452,7 @@ function importSettingsFromXMLFile(filepath) {
   var ts = fso.OpenTextFile(filepath, 1, true, -1);
   var xml = ts.ReadAll();
   var doc = new ActiveXObject("MSXML2.DOMDocument");
-  doc.async = false
+  doc.async = false;
   doc.loadXML(xml);
   ts.Close();
   var nodes = doc.documentElement.childNodes;
@@ -501,7 +501,7 @@ function importSettingsFromXMLFile(filepath) {
         var ts = fso.OpenTextFile(filepath, 1, true, -1);
         var xml = ts.ReadAll();
         var doc = new ActiveXObject("MSXML2.DOMDocument");
-        doc.async = false
+        doc.async = false;
         doc.loadXML(xml);
         ts.Close();
         var nodes = doc.documentElement.childNodes;

@@ -175,7 +175,7 @@ function ungroupShapes(sht) {
           shp.Ungroup();
         }
       }
-    } while (cnt != sht.Shapes.Count);
+    } while (cnt !== sht.Shapes.Count);
   } catch (e) {}
 }
 
@@ -244,7 +244,7 @@ function saveRangeAsImage(sht, rng, filename) {
         try {
           rng.CopyPicture(1, 2); // xlScreen=1, xlBitmap=2
           sleep(i);
-          obj.Paste;
+          obj.Paste();
           obj.Export(filename, "PNG");
           result = true;
           break;
@@ -298,7 +298,7 @@ function findRowByPosition(sht, rowBegin, rowEnd, pos) {
     if (row == rowPrev) {
       return row;
     }
-    rowPrev = row
+    rowPrev = row;
   } while (true);
 }
 
@@ -330,7 +330,7 @@ function saveSheetAsImage(sht, basefilename) {
   var column = rngUsed.Column;
   do {
     var columnEnd = findColumnByPosition(sht, column, rngUsed.Column + rngUsed.Columns.Count - 1, imageWidth);
-    var numY = 1
+    var numY = 1;
     var row = rngUsed.Row;
     do {
       var rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, imageHeight);
@@ -383,7 +383,7 @@ function get_PluginDescription() {
 }
 
 function get_PluginFileFilters() {
-  return "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$;\.xltx(\..*)?$;\.xltm(\..*)?$";
+  return "\\.xls(\\..*)?$;\\.xlsx(\\..*)?$;\\.xlsm(\\..*)?$;\\.xlsb(\\..*)?;\\.xla(\\..*)?$;\\.xlax(\\..*)?$;\\.xltx(\\..*)?$;\\.xltm(\\..*)?$";
 }
 
 function get_PluginIsAutomatic() {
@@ -667,7 +667,7 @@ function importSettingsFromXMLFile(filepath) {
   var ts = fso.OpenTextFile(filepath, 1, true, -1);
   var xml = ts.ReadAll();
   var doc = new ActiveXObject("MSXML2.DOMDocument");
-  doc.async = false
+  doc.async = false;
   doc.loadXML(xml);
   ts.Close();
   var nodes = doc.documentElement.childNodes;
@@ -716,7 +716,7 @@ function importSettingsFromXMLFile(filepath) {
         var ts = fso.OpenTextFile(filepath, 1, true, -1);
         var xml = ts.ReadAll();
         var doc = new ActiveXObject("MSXML2.DOMDocument");
-        doc.async = false
+        doc.async = false;
         doc.loadXML(xml);
         ts.Close();
         var nodes = doc.documentElement.childNodes;
