@@ -230,7 +230,7 @@ BOOL CMergeDoc::OnNewDocument()
  */
 CMergeEditView * CMergeDoc::GetActiveMergeView()
 {
-	CView * pActiveView = GetParentFrame()->GetActiveView();
+	CView * pActiveView = GetParentFrame() ? GetParentFrame()->GetActiveView() : nullptr;
 	CMergeEditView * pMergeEditView = dynamic_cast<CMergeEditView *>(pActiveView);
 	if (pMergeEditView == nullptr)
 		pMergeEditView = GetView(0, 0); // default to left view (in case some location or detail view active)
@@ -2736,7 +2736,7 @@ void CMergeDoc::SetDirDoc(IDirDoc * pDirDoc)
  */
 CMergeEditFrame * CMergeDoc::GetParentFrame() 
 {
-	return dynamic_cast<CMergeEditFrame *>(m_pView[0][0]->GetParentFrame()); 
+	return dynamic_cast<CMergeEditFrame *>(m_pView[0][0] ? m_pView[0][0]->GetParentFrame() : nullptr); 
 }
 
 /**
@@ -3110,10 +3110,10 @@ bool CMergeDoc::OpenDocs(int nFiles, const FileLocation ifileloc[],
 		if (m_pEncodingErrorBar == nullptr)
 		{
 			m_pEncodingErrorBar.reset(new CEncodingErrorBar());
-			m_pEncodingErrorBar->Create(this->m_pView[0][0]->GetParentFrame());
+			m_pEncodingErrorBar->Create(GetParentFrame());
 		}
 		m_pEncodingErrorBar->SetText(LoadResString(idres));
-		m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
+		GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), TRUE, FALSE);
 	}
 
 	ForEachView([](auto& pView) {
@@ -3754,17 +3754,17 @@ void CMergeDoc::SetPredifferByMenu(UINT nID)
 
 void CMergeDoc::OnBnClickedFileEncoding()
 {
-	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
+	if (m_pEncodingErrorBar == nullptr || GetParentFrame() == nullptr)
 		return;
-	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	DoFileEncodingDialog();
 }
 
 void CMergeDoc::OnBnClickedPlugin()
 {
-	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
+	if (m_pEncodingErrorBar == nullptr || GetParentFrame() == nullptr)
 		return;
-	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 	OnOpenWithUnpacker();
 }
 
@@ -3775,9 +3775,9 @@ void CMergeDoc::OnBnClickedHexView()
 
 void CMergeDoc::OnOK()
 {
-	if (m_pEncodingErrorBar == nullptr || m_pView[0][0] == nullptr)
+	if (m_pEncodingErrorBar == nullptr || GetParentFrame() == nullptr)
 		return;
-	m_pView[0][0]->GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
+	GetParentFrame()->ShowControlBar(m_pEncodingErrorBar.get(), FALSE, FALSE);
 }
 
 void CMergeDoc::OnFileRecompareAsText()

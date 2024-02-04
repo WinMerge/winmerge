@@ -314,7 +314,7 @@ std::pair<int, int> CMergeEditView::GetSelectedLineAndCharacterCount()
 	{
 		if ((GetLineFlags(nLine) & (LF_GHOST | LF_INVISIBLE)) == 0)
 		{
-			int nLineLength = GetLineLength(nLine) + (m_pTextBuffer->GetLineEol(nLine)[0] ? 1 : 0);
+			int nLineLength = GetLineLength(nLine) + ((m_pTextBuffer && m_pTextBuffer->GetLineEol(nLine)[0]) ? 1 : 0);
 			nCharsOrColumns += (nLine == ptEnd.y) ? ptEnd.x : nLineLength;
 			if (nLine == ptStart.y)
 				nCharsOrColumns -= ptStart.x;
@@ -2661,7 +2661,7 @@ void CMergeEditView::OnUpdateCaret()
 	auto [selectedLines, selectedChars] = GetSelectedLineAndCharacterCount();
 	lineflags_t dwLineFlags = 0;
 
-	dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
+	dwLineFlags = GetLineFlags(nScreenLine);
 	// Is this a ghost line ?
 	if (dwLineFlags & LF_GHOST)
 	{

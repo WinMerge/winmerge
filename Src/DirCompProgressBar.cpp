@@ -23,13 +23,14 @@ static const UINT UPDATE_INTERVAL = 600;
 /** @brief Reset all UI fields to zero. */
 void DirCompProgressBar::ClearStat()
 {
+	m_prevState = CompareStats::STATE_IDLE;
+
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
+	if (!pProg) return;
 	pProg->SetPos(0);
 
 	SetDlgItemInt(IDC_ITEMSCOMPARED, 0);
 	SetDlgItemInt(IDC_ITEMSTOTAL, 0);
-
-	m_prevState = CompareStats::STATE_IDLE;
 }
 
 /**
@@ -89,6 +90,7 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 {
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
+	if (!pProg) return;
 	String itemsPerSecond = m_prevComparedItems.empty() ? _T("") : strutils::format(_("%.1f[items/sec]"),
 		(double)(comparedItems - m_prevComparedItems.front()) * 1000.0 / (UPDATE_INTERVAL * m_prevComparedItems.size()));
 	SetDlgItemInt(IDC_ITEMSTOTAL, totalItems);
