@@ -342,7 +342,7 @@ CWnd* CSplitterWndEx::GetActivePane(int* pRow, int* pCol)
 	// attempt to use active view of frame window
 	CWnd* pView = NULL;
 	CFrameWnd* pFrameWnd = EnsureParentFrame();
-	pView = pFrameWnd->GetActiveView();
+	pView = pFrameWnd ? pFrameWnd->GetActiveView() : nullptr;
 
 	// failing that, use the current focus
 	if (pView == NULL)
