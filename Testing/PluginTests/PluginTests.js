@@ -3,9 +3,34 @@ var g_testname;
 
 var FileSys = new ActiveXObject("Scripting.FileSystemObject");
 var ScriptFolder = FileSys.GetParentFolderName(WScript.ScriptFullName);
+var WShell = new ActiveXObject("Wscript.Shell");
+var ScriptFolder = FileSys.GetParentFolderName(WScript.ScriptFullName);
+
+try {
+  FileSys.CreateFolder(ScriptFolder + "\\result");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\excel");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\word");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\powerpnt");
+} catch (e) { }
 
 var MergeApp = {
-  "Log": function (level, text) { WScript.Echo(text); }
+  "GetOption": function (key, defvalue) {
+    try {
+      return WShell.RegRead("HKCU\\Software\\Thingamahoochie\\WinMerge\\" + key);
+    } catch (e) {
+      return defvalue;
+    }
+  },
+  "SaveOption": function (key, value) {
+     var t = typeof value === "string" ? "REG_SZ" : "REG_DWORD";
+     WShell.RegWrite("HKCU\\Software\\Thingamahoochie\\WinMerge\\" + key, value, t);
+  },
+  "Translate": function (text) {
+    return text;
+  },
+  "Log": function (level, text) {
+    WScript.Echo(text);
+  }
 };
 function setTestName(testname) {
   g_cnt = 0;
@@ -26,12 +51,13 @@ function assertTrue(value) {
 function assertEquals(expected, actual) {
   g_cnt++;
   if (expected !== actual) {
-    throw new Error(30001, getCurrentTestName() + "\r\nexpected: \"" + expected + "\"\r\nactual: \"" + actual + "\"");
+    var msg = getCurrentTestName() + "\r\nexpected: \"" + expected + "\"\r\nactual: \"" + actual + "\"";
+    WScript.Echo(msg);
+    throw new Error(30001, msg);
   }
 }
 
-function CompareMSExcelFilesTest() {
-  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSExcelFiles.sct");
+function printPluginInfo(p) {
   WScript.Echo("PluginDescription: " + p.PluginDescription);
   WScript.Echo("PluginEvent      : " + p.PluginEvent);
   WScript.Echo("PluginFileFilters: " + p.PluginFileFilters);
@@ -40,10 +66,39 @@ function CompareMSExcelFilesTest() {
     WScript.Echo("PluginUnpackedFileExtension: " + p.PluginUnpackedFileExtension);
   } catch (e) {
   }
+}
 
+function CompareMSExcelFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSExcelFiles.sct");
+  printPluginInfo(p);
   var changed = false;
   var subcode = 0;
-  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result.txt", changed, subcode);
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel.xls.txt", changed, subcode);
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel\\", changed, subcode);
+  p.PluginOnEvent(1, MergeApp);
+}
+
+function CompareMSWordFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSWordFiles.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word.doc.txt", changed, subcode);
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word\\", changed, subcode);
+  p.PluginOnEvent(1, MergeApp);
+}
+
+function CompareMSPowerPointFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSPowerPointFiles.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt.ppt.txt", changed, subcode);
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt\\", changed, subcode);
+  p.PluginOnEvent(1, MergeApp);
 }
 
 function EditorAddinTest() {
@@ -246,5 +301,7 @@ function EditorAddinTest() {
 }
 
 EditorAddinTest();
-//CompareMSExcelFilesTest
+CompareMSExcelFilesTest();
+CompareMSWordFilesTest();
+CompareMSPowerPointFilesTest();
 

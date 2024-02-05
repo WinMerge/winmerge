@@ -59,7 +59,7 @@ var mergeApp;
 
 function isAccessibleVBAProject(doc) {
   try {
-    return (doc.VBProject.VBComponents.Count > 0);
+    return (doc.VBProject.VBComponents.Count >= 0);
   } catch (e) {
     return false;
   }
@@ -94,10 +94,12 @@ function ungroupShapes(sht) {
     var cnt;
     do {
       cnt = sht.Shapes.Count;
-      for (var it = new Enumerator(doc.Shapes), shp = it.item(); !itShp.atEnd(); itShp.moveNext(), shp = it.item()) {
-        if (shp.Type == pbGroup) {
-          shp.Ungroup();
-        }
+      for (var it = new Enumerator(doc.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+        try {
+          if (shp.Type == pbGroup) {
+            shp.Ungroup();
+          }
+        } catch (e) {}
       }
     } while (cnt !== doc.Shapes.Count);
   } catch (e) {}
@@ -106,7 +108,9 @@ function ungroupShapes(sht) {
 function writeTextsInShapes(fo, doc) {
   try {
     for (var it = new Enumerator(doc.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
-      fo.WriteLine(shp.Name + ": " + shp.TextFrame.TextRange.Text);
+      try {
+        fo.WriteLine(shp.Name + ": " + shp.TextFrame.TextRange.Text);
+      } catch (e) {}
     }
   } catch (e) {}
 }
@@ -159,7 +163,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSWordFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var doc = wd.Documents.Open(fileSrc2);
+  var doc = wd.Documents.Open(fileSrc2, true, true);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     fo.WriteLine("[Document Properties]");
@@ -189,13 +193,14 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(doc)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
-    }
-    for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      fo.WriteLine("[CodeModule." + cmp.Name + "]");
-      if (cmp.CodeModule.CountOfLines > 0) {
-        fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+    } else {
+      for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
       }
-      fo.WriteLine("");
     }
   }
 
@@ -274,9 +279,10 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
-    }
-    for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+    } else {
+      for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+      }
     }
   }
 

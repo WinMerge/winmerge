@@ -1,0 +1,102 @@
+--- c:/dev/winmerge/src/7zCommon.cpp	Mon Mar  6 00:06:40 2023
++++ d:/dev/winmerge/src/7zCommon.cpp	Tue Feb 14 23:00:32 2023
+@@ -151,17 +151,17 @@
+ 		return nullptr;
+ 	String path2(path);
+ 	// Map extensions through ExternalArchiveFormat.ini
+-	static tchar_t null[] = _T("");
+-	static const tchar_t section[] = _T("extensions");
++	static TCHAR null[] = _T("");
++	static const TCHAR section[] = _T("extensions");
+ 	String entry = paths::FindExtension(path);
+-	tchar_t value[20];
+-	static const tchar_t* filename = nullptr;
++	TCHAR value[20];
++	static LPCTSTR filename = nullptr;
+ 	if (filename == nullptr)
+ 	{
+-		tchar_t cPath[INTERNET_MAX_PATH_LENGTH];
++		TCHAR cPath[INTERNET_MAX_PATH_LENGTH];
+ 		DWORD cchPath = SearchPath(nullptr, _T("ExternalArchiveFormat.ini"), nullptr,
+ 			INTERNET_MAX_PATH_LENGTH, cPath, nullptr);
+-		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? tc::tcsdup(cPath) : null;
++		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? _tcsdup(cPath) : null;
+ 	}
+ 	if (*filename &&
+ 		GetPrivateProfileString(section, entry.c_str(), null, value, 20, filename) &&
+@@ -169,7 +169,7 @@
+ 	{
+ 		// Remove end-of-line comments (in string returned from GetPrivateProfileString)
+ 		// that is, remove semicolon & whatever follows it
+-		if (tchar_t* p = StrChr(value, ';'))
++		if (LPTSTR p = StrChr(value, ';'))
+ 		{
+ 			*p = '\0';
+ 			StrTrim(value, _T(" \t"));
+@@ -318,7 +318,7 @@
+ /**
+  * @brief SingleFileEnumerator constructor.
+  */
+-SingleItemEnumerator::SingleItemEnumerator(const tchar_t* path, const tchar_t* FullPath, const tchar_t* Name)
++SingleItemEnumerator::SingleItemEnumerator(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name)
+ : FullPath(FullPath)
+ , Name(Name)
+ {
+@@ -408,20 +408,9 @@
+ 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
+ 	{
+ 		m_strFolderPrefix = *m_curFolderPrefix++;
+-		m_index++;
++		m_index = 1;
+ 	}
+-	const auto& di = m_pView->GetDiffItem(m_nIndex);
+-	// If the current item is a folder, ignore the current item if the next selected item is a child element of that folder.
+-	if (m_index > (((di.diffcode.diffcode & DIFFCODE::THREEWAY) == 0) ? 1 : 2) || !di.diffcode.isDirectory())
+-		return di;
+-	const int nextIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask);
+-	if (nextIndex == -1)
+-		return di;
+-	const auto& diNext = m_pView->GetDiffItem(nextIndex);
+-	const String curRelPath = strutils::makelower(di.diffFileInfo[m_index].GetFile());
+-	if (strutils::makelower(diNext.diffFileInfo[m_index].GetFile()).find(curRelPath) != 0)
+-		return di;
+-	return *DIFFITEM::GetEmptyItem();
++	return m_pView->GetDiffItem(m_nIndex);
+ }
+ 
+ /**
+@@ -443,7 +432,7 @@
+ 	const CDiffContext& ctxt = m_pView->GetDiffContext();
+ 	const DIFFITEM &di = Next();
+ 
+-	if (di.isEmpty() || ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di)))
++	if ((m_nFlags & DiffsOnly) && !IsItemNavigableDiff(ctxt, di))
+ 	{
+ 		return 0;
+ 	}
+@@ -505,7 +494,7 @@
+ /**
+  * @brief Apply appropriate handlers from left to right.
+  */
+-bool DirItemEnumerator::MultiStepCompressArchive(const tchar_t* path)
++bool DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
+ {
+ 	DeleteFile(path);
+ 	Merge7z::Format *piHandler = ArchiveGuessFormat(path);
+@@ -536,14 +525,14 @@
+ /**
+  * @brief Generate archive from DirView items.
+  */
+-void DirItemEnumerator::CompressArchive(const tchar_t* path)
++void DirItemEnumerator::CompressArchive(LPCTSTR path)
+ {
+ 	String strPath;
+ 	if (path == nullptr)
+ 	{
+ 		// 7z311 can only write 7z, zip, and tar(.gz|.bz2) archives, so don't
+ 		// offer other formats here!
+-		static const tchar_t _T_Filter[]
++		static const TCHAR _T_Filter[]
+ 		(
+ 			_T("7z|*.7z|")
+ 			//_T("z|*.z|")

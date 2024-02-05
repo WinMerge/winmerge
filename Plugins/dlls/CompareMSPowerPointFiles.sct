@@ -58,7 +58,7 @@ var mergeApp;
 
 function isAccessibleVBAProject(wbk) {
   try {
-    return (wbk.VBProject.VBComponents.Count > 0);
+    return (wbk.VBProject.VBComponents.Count >= 0);
   } catch (e) {
     return false;
   }
@@ -97,7 +97,7 @@ function writeShape(fo, shp) {
         writeShape(fo, shp2);
       }
     } else if (shp.HasTextFrame) {
-      fo.WriteLine(shp.TextFrame.TextRange.Characters.Text);
+      fo.WriteLine(shp.TextFrame.TextRange.Characters().Text);
     } else {
       fo.WriteLine("");
     }
@@ -189,13 +189,14 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(prs)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
-    }
-    for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      fo.WriteLine("[CodeModule." + cmp.Name + "]");
-      if (cmp.CodeModule.CountOfLines > 0) {
-        fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+    } else {
+      for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
       }
-      fo.WriteLine("");
     }
   }
 
@@ -269,9 +270,10 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
-    }
-    for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+    } else {
+      for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+      }
     }
   }
 
@@ -466,7 +468,6 @@ function importSettingsFromXMLFile(filepath) {
           btnCancel_onclick();
         }
       }
-
 
       function chkUnpackToFolder_onclick() {
         if (!chkUnpackToFolder.checked)

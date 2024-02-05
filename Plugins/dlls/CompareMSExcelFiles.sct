@@ -62,7 +62,7 @@ var mergeApp;
 
 function isAccessibleVBAProject(wbk) {
   try {
-    return (wbk.VBProject.VBComponents.Count > 0);
+    return (wbk.VBProject.VBComponents.Count >= 0);
   } catch (e) {
     return false;
   }
@@ -103,10 +103,10 @@ function quoteIfNeeded(str) {
 function writeCellValues(fo, sht) {
   var varCells = sht.UsedRange.Value;
   if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
-    fo.WriteLine(quoteIfNeeded(varCells));
+    fo.WriteLine(quoteIfNeeded(String(varCells)));
   } else if (varCells !== undefined) {
-    var ary = new Array(varCells.ubound(2));
     try {
+      var ary = new Array(varCells.ubound(2));
       for (var row = 1; row <= varCells.ubound(1); row++) {
         for (var col = 1; col <= varCells.ubound(2); col++) {
           try {
@@ -118,7 +118,9 @@ function writeCellValues(fo, sht) {
         }
         fo.WriteLine(ary.join("\t"));
       }
-    } catch (e) {}
+    } catch (e) {
+      fo.WriteLine("Error" + e.number);
+    }
   }
 }
 
@@ -140,13 +142,21 @@ function writeFormulas(fo, sht) {
   if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
     fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + varCells);
   } else {
-    for (var row = 1; row <= varCells.ubound(1); row++) {
-      for (var col = 1; col <= varCells.ubound(2); col++) {
-        var formula = varCells.getItem(row, col);
-        if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
-          fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
+    try {
+      for (var row = 1; row <= varCells.ubound(1); row++) {
+        for (var col = 1; col <= varCells.ubound(2); col++) {
+          try {
+            var formula = varCells.getItem(row, col);
+            if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
+              fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
+            }
+          } catch (e) {
+            fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + "Error" + e.number);
+          }
         }
       }
+    } catch (e) {
+      fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + "Error" + e.number);
     }
   }
 }
@@ -170,10 +180,12 @@ function ungroupShapes(sht) {
     var cnt;
     do {
       cnt = sht.Shapes.Count;
-      for (var it = new Enumerator(sht.Shapes), shp = it.item(); !itShp.atEnd(); itShp.moveNext(), shp = it.item()) {
-        if (shp.Type == pbGroup) {
-          shp.Ungroup();
-        }
+      for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+        try {
+          if (shp.Type == pbGroup) {
+            shp.Ungroup();
+          }
+        } catch (e) {}
       }
     } while (cnt !== sht.Shapes.Count);
   } catch (e) {}
@@ -182,7 +194,9 @@ function ungroupShapes(sht) {
 function writeTextsInShapes(fo, sht) {
   try {
     for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
-      fo.WriteLine(shp.Name + ": " + shp.TextFrame.Characters.Text);
+      try {
+        fo.WriteLine(shp.Name + ": " + shp.TextFrame.Characters().Text);
+      } catch (e) {}
     }
   } catch (e) {}
 }
@@ -456,13 +470,14 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(wbk)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
-    }
-    for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      fo.WriteLine("[CodeModule." + cmp.Name + "]");
-      if (cmp.CodeModule.CountOfLines > 0) {
-        fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+    } else {
+      for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
       }
-      fo.WriteLine("");
     }
   }
   sht = null;
@@ -570,9 +585,10 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
-    }
-    for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
-      cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+    } else {
+      for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+      }
     }
   }
   sht = null;
@@ -828,33 +844,35 @@ function importSettingsFromXMLFile(filepath) {
       }
 
       function onlyNumeric() {
-        var k = event.keyCode;
+        var ev = event;
+        var k = ev.keyCode;
 
-        if (event.shiftKey) {
+        if (ev.shiftKey) {
           if (k == 37 || k == 39) {
             return true;
           }
-        } else if (event.altKey) {
+        } else if (ev.altKey) {
           return true;
-        } else if (event.ctrlKey) {
+        } else if (ev.ctrlKey) {
           return true;
         } else if (k == 8 || k == 9 || k == 37 || k == 39 || k == 46 /* || k == 144 */
             || (48 <= k && k <= 57) || (96 <= k && k <= 105)) {
           return true;
         }
 
-        event.returnValue = false;
+        ev.returnValue = false;
         return false;
       }
 
       function onPaste() {
-        var paste = (event.clipboardData || window.clipboardData).getData("text");
+        var ev = event;
+        var paste = (ev.clipboardData || window.clipboardData).getData("text");
         if (!paste.match(/^[0-9]{0,4}$/)) {
           paste = "";
-          if (event.preventDefault) {
-              event.preventDefault();
+          if (ev.preventDefault) {
+              ev.preventDefault();
           }
-          event.returnValue = false;
+          ev.returnValue = false;
           return false;
         } else {
           return true;
