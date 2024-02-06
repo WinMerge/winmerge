@@ -182,7 +182,7 @@ function ungroupShapes(sht) {
       cnt = sht.Shapes.Count;
       for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
         try {
-          if (shp.Type == pbGroup) {
+          if (shp.Type === pbGroup) {
             shp.Ungroup();
           }
         } catch (e) {}

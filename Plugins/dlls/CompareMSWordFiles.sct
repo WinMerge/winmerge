@@ -52,6 +52,7 @@ var MsgCannotGetMacros = "${Cannot get Macros.\r\n" +
   "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + 
   "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
 var wdFormatFilteredHTML = 10;
+var pbGroup = 6;
 
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
@@ -89,14 +90,14 @@ function writeBookmarks(fo, items) {
   } catch (e) {}
 }
 
-function ungroupShapes(sht) {
+function ungroupShapes(doc) {
   try {
     var cnt;
     do {
-      cnt = sht.Shapes.Count;
+      cnt = doc.Shapes.Count;
       for (var it = new Enumerator(doc.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
         try {
-          if (shp.Type == pbGroup) {
+          if (shp.Type === pbGroup) {
             shp.Ungroup();
           }
         } catch (e) {}
