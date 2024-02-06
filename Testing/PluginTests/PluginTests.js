@@ -62,10 +62,8 @@ function printPluginInfo(p) {
   WScript.Echo("PluginEvent      : " + p.PluginEvent);
   WScript.Echo("PluginFileFilters: " + p.PluginFileFilters);
   WScript.Echo("PluginIsAutomatic: " + p.PluginIsAutomatic);
-  try {
-    WScript.Echo("PluginUnpackedFileExtension: " + p.PluginUnpackedFileExtension);
-  } catch (e) {
-  }
+  try { WScript.Echo("PluginUnpackedFileExtension: " + p.PluginUnpackedFileExtension); } catch (e) {}
+  try { WScript.Echo("PluginExtendedProperties: " + p.PluginExtendedProperties); } catch (e) {}
 }
 
 function CompareMSExcelFilesTest() {
@@ -74,7 +72,7 @@ function CompareMSExcelFilesTest() {
   var changed = false;
   var subcode = 0;
   p.PluginOnEvent(0, MergeApp);
-  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel.xls.txt", changed, subcode);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel.xls.tsv", changed, subcode);
   p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel\\", changed, subcode);
   p.PluginOnEvent(1, MergeApp);
 }
