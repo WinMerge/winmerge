@@ -78,8 +78,8 @@ function writeObjectProperties(fo, items) {
       try {
         var o = it.item();
         fo.WriteLine(o.Name + ": " + o.Value);
+        o = null;
       } catch (e) {}
-      o = null;
     }
   } catch (e) {}
 }
@@ -109,11 +109,12 @@ function writeShape(fo, shp) {
   } catch (e) {}
 }
 
-function writeTextsInShapes(fo, shps) {
+function writeTextsInShapes(fo, p) {
   try {
-    for (var it = new Enumerator(shps); !it.atEnd(); it.moveNext()) {
+    for (var it = new Enumerator(p.Shapes); !it.atEnd(); it.moveNext()) {
       var shp = it.item();
       writeShape(fo, shp);
+      shp = null;
     }
   } catch (e) {}
 }
@@ -184,12 +185,12 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       var sld = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       fo.WriteLine("[" + sld.Name + "]");
-      writeTextsInShapes(fo, sld.Shapes);
+      writeTextsInShapes(fo, sld);
       fo.WriteLine("");
     }
     if (regRead(REGKEY_PATH + "CompareTextsInNotesPage", true)) {
       fo.WriteLine("[" + sld.Name + ".NotesPage]");
-      writeTextsInShapes(fo, sld.NotesPage.Shapes);
+      writeTextsInShapes(fo, sld.NotesPage);
       fo.WriteLine("");
     }
     sld = null;
@@ -262,13 +263,13 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     var sld = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + ".txt"), true, true);
-      writeTextsInShapes(fo, sld.Shapes);
+      writeTextsInShapes(fo, sld);
       fo.Close();
     }
  
     if (regRead(REGKEY_PATH + "CompareTextsInNotesPage", true)) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + "_NotesPage.txt"), true, true);
-      writeTextsInShapes(fo, sld.NotesPage.Shapes);
+      writeTextsInShapes(fo, sld.NotesPage);
       fo.Close();
     }
  
