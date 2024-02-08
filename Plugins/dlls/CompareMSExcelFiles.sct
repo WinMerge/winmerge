@@ -500,6 +500,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   pbChanged = true;
   pSubcode = 0;
   
+  CollectGarbage();
+
   var result = new ActiveXObject("Scripting.Dictionary");
   result.Add(0, true);
   result.Add(1, pbChanged);
@@ -613,6 +615,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   pbChanged = true;
   pSubcode = 0;
   
+  CollectGarbage();
+
   var result = new ActiveXObject("Scripting.Dictionary");
   result.Add(0, true);
   result.Add(1, pbChanged);

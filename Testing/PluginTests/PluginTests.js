@@ -117,7 +117,9 @@ function CompareMSExcelFilesTest() {
   var subcode = 0;
   p.PluginOnEvent(0, MergeApp);
   p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel.xls.tsv", changed, subcode);
+  CollectGarbage();
   p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel\\", changed, subcode);
+  CollectGarbage();
   p.PluginOnEvent(1, MergeApp);
 }
 
@@ -128,7 +130,9 @@ function CompareMSWordFilesTest() {
   var subcode = 0;
   p.PluginOnEvent(0, MergeApp);
   p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word.doc.txt", changed, subcode);
+  CollectGarbage();
   p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word\\", changed, subcode);
+  CollectGarbage();
   p.PluginOnEvent(1, MergeApp);
 }
 
@@ -139,7 +143,9 @@ function CompareMSPowerPointFilesTest() {
   var subcode = 0;
   p.PluginOnEvent(0, MergeApp);
   p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt.ppt.txt", changed, subcode);
+  CollectGarbage();
   p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt\\", changed, subcode);
+  CollectGarbage();
   p.PluginOnEvent(1, MergeApp);
 }
 
