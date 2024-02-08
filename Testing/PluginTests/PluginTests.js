@@ -13,17 +13,60 @@ try {
   FileSys.CreateFolder(ScriptFolder + "\\result\\powerpnt");
 } catch (e) { }
 
+var PluginSettings = {
+  "Plugins": {
+    "CompareMSExcelFiles.sct": {
+      "UnpackToFolder": 1,
+      "UpdateLinks": 3,
+      "CompareDocumentProperties": 1,
+      "CompareNames": 1,
+      "CompareCellValues": 1,
+      "CompareWorksheetsAsImage": 1,
+      "CompareWorksheetsAsHTML": 1,
+      "ImageWidth": 1000,
+      "ImageHeight": 3000,
+      "CompareFormulas": 1,
+      "CompareTextsInShapes": 1,
+      "CompareHeadersAndFooters": 1,
+      "CompareVBAMacros": 1
+    },
+    "CompareMSPowerPointFiles.sct": {
+      "UnpackToFolder": 1,
+      "CompareDocumentProperties": 1,
+      "CompareSlideAsImage": 1,
+      "CompareTextsInShapes": 1,
+      "CompareTextsInNotesPage": 1,
+      "CompareVBAMacros": 1
+    },
+    "CompareMSVisioFiles.sct": {
+      "UnpackToFolder": 1,
+      "ComparePageAsImage": 1,
+      "CompareTextsInShapes": 1,
+      "CompareVBAMacros": 1
+    },
+    "CompareMSWordFiles.sct": {
+      "UnpackToFolder": 1,
+      "CompareDocumentProperties": 1,
+      "CompareBookmarks": 1,
+      "CompareTextContents": 1,
+      "CompareDocumentsAsHTML": 1,
+      "CompareTextsInShapes": 1,
+      "CompareVBAMacros": 1
+    }
+  }
+};
+
 var MergeApp = {
   "GetOption": function (key, defvalue) {
-    try {
-      return WShell.RegRead("HKCU\\Software\\Thingamahoochie\\WinMerge\\" + key);
-    } catch (e) {
-      return defvalue;
+    var ary1 = key.split("/");
+    var ary2 = ary1[0].split("\\");
+    if (ary2.length > 1) {
+      return PluginSettings[ary2[0]][ary2[1]][ary1[1]];
     }
+    return PluginSettings[ary2[0]][ary1[1]];
   },
   "SaveOption": function (key, value) {
      var t = typeof value === "string" ? "REG_SZ" : "REG_DWORD";
-     WShell.RegWrite("HKCU\\Software\\Thingamahoochie\\WinMerge\\" + key, value, t);
   },
   "Translate": function (text) {
     return text;
@@ -64,6 +107,7 @@ function printPluginInfo(p) {
   WScript.Echo("PluginIsAutomatic: " + p.PluginIsAutomatic);
   try { WScript.Echo("PluginUnpackedFileExtension: " + p.PluginUnpackedFileExtension); } catch (e) {}
   try { WScript.Echo("PluginExtendedProperties: " + p.PluginExtendedProperties); } catch (e) {}
+  WScript.Echo("");
 }
 
 function CompareMSExcelFilesTest() {
@@ -102,6 +146,7 @@ function CompareMSPowerPointFilesTest() {
 function EditorAddinTest() {
   var asciiChars = "";
   var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\editor addin.sct");
+  printPluginInfo(p);
 
   for (var i = 0; i < 128; i++) {
     asciiChars += String.fromCharCode(i);
@@ -298,7 +343,75 @@ function EditorAddinTest() {
   p.PluginOnEvent(1, MergeApp);
 }
 
+function InsertDateTimeTest() {
+  var changed = false;
+  var text = "";
+  var size;
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\insert datetime.sct");
+  printPluginInfo(p);
+
+  WScript.Echo(p.InsertDate("date="));
+  WScript.Echo(p.InsertTime("time="));
+  WScript.Echo();
+
+}
+
+function IgnoreLeadingLineNumbersTest() {
+  var changed = false;
+  var text = "";
+  var size;
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\IgnoreLeadingLineNumbers.sct");
+  printPluginInfo(p);
+
+  //
+  text = "";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  setTestName("IgnoreLeadingLineNumbers1");
+  assertEquals("", text);
+  assertEquals(0, size);
+  assertEquals(false, changed);
+
+  //
+  text = "n1 aaa\r\nN2 bbb\r\n";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  setTestName("IgnoreLeadingLineNumbers2");
+  assertEquals(" aaa\r\n bbb\r\n", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+  //
+  text = "1 aaa\nbbb\n";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  setTestName("IgnoreLeadingLineNumbers3");
+  assertEquals(" aaa\nbbb\n", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+  //
+  text = "aaa\r2 bbb\r";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  setTestName("IgnoreLeadingLineNumbers4");
+  assertEquals("aaa\r bbb\r", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+}
+
 EditorAddinTest();
+InsertDateTimeTest();
+IgnoreLeadingLineNumbersTest();
 CompareMSExcelFilesTest();
 CompareMSWordFilesTest();
 CompareMSPowerPointFilesTest();
