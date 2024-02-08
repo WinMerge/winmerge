@@ -75,8 +75,9 @@ function regWrite(Key, Value, TypeNm) {
 
 function writeObjectProperties(fo, items) {
   try {
-    for (var it = new Enumerator(items), o = it.item(); !it.atEnd(); it.moveNext(), o = it.item()) {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
       try {
+        var o = it.item();
         fo.WriteLine(o.Name + ": " + o.Value);
       } catch (e) {}
     }
@@ -88,8 +89,9 @@ function ungroupShapes(pge) {
     var cnt;
     do {
       cnt = pge.Shapes.Count;
-      for (var it = new Enumerator(pge.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+      for (var it = new Enumerator(pge.Shapes); !it.atEnd(); it.moveNext()) {
         try {
+          var shp = it.item();
           shp.Ungroup();
         } catch (e) {}
       }
@@ -99,8 +101,9 @@ function ungroupShapes(pge) {
 
 function writeTextsInShapes(fo, pge) {
   try {
-    for (var it = new Enumerator(pge.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+    for (var it = new Enumerator(pge.Shapes); !it.atEnd(); it.moveNext()) {
       try {
+        var shp = it.item();
         fo.WriteLine(shp.Name + ": " + shp.Text);
       } catch (e) {}
     }
@@ -162,7 +165,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   }
   var doc = vs.Documents.OpenEx(fileSrc2, 0x80);
 
-  for (var it = new Enumerator(doc.Pages), pge = it.item(); !it.atEnd(); it.moveNext(), pge = it.item()) {
+  for (var it = new Enumerator(doc.Pages); !it.atEnd(); it.moveNext()) {
+    var pge = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       fo.WriteLine("[" + pge.Name + "]");
       ungroupShapes(pge);
@@ -175,7 +179,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     if (!isAccessibleVBAProject(doc)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
     } else {
-      for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         fo.WriteLine("[CodeModule." + cmp.Name + "]");
         if (cmp.CodeModule.CountOfLines > 0) {
           fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
@@ -227,7 +232,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   }
   var doc = vs.Documents.OpenEx(fileSrc2, 0x80);
 
-  for (var it = new Enumerator(doc.Pages), pge = it.item(); !it.atEnd(); it.moveNext(), pge = it.item()) {
+  for (var it = new Enumerator(doc.Pages); !it.atEnd(); it.moveNext()) {
+    var pge = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, pge.Name + ".txt"), true, true);
       ungroupShapes(pge);
@@ -245,7 +251,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     } else {
-      for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
       }
     }

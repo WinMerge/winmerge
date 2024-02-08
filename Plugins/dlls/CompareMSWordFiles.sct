@@ -76,7 +76,8 @@ function regWrite(Key, Value, TypeNm) {
 
 function writeObjectProperties(fo, items) {
   try {
-    for (var it = new Enumerator(items), o = it.item(); !it.atEnd(); it.moveNext(), o = it.item()) {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
+      var o = it.item();
       try {
         fo.WriteLine(o.Name + ": " + o.Value);
       } catch (e) {}
@@ -86,7 +87,8 @@ function writeObjectProperties(fo, items) {
 
 function writeBookmarks(fo, items) {
   try {
-    for (var it = new Enumerator(items), o = it.item(); !it.atEnd(); it.moveNext(), o = it.item()) {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
+      var o = it.item();
       fo.WriteLine(o.Name + ": " + o.Start);
     }
   } catch (e) {}
@@ -97,8 +99,9 @@ function ungroupShapes(doc) {
     var cnt;
     do {
       cnt = doc.Shapes.Count;
-      for (var it = new Enumerator(doc.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+      for (var it = new Enumerator(doc.Shapes); !it.atEnd(); it.moveNext()) {
         try {
+          var shp = it.item();
           if (shp.Type === pbGroup) {
             shp.Ungroup();
           }
@@ -110,8 +113,9 @@ function ungroupShapes(doc) {
 
 function writeTextsInShapes(fo, doc) {
   try {
-    for (var it = new Enumerator(doc.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+    for (var it = new Enumerator(doc.Shapes); !it.atEnd(); it.moveNext()) {
       try {
+        var shp = it.item();
         fo.WriteLine(shp.Name + ": " + shp.TextFrame.TextRange.Text);
       } catch (e) {}
     }
@@ -166,7 +170,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSWordFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var doc = wd.Documents.Open(fileSrc2, true, true);
+  var doc = wd.Documents.Open(fileSrc2, -1, -1);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     fo.WriteLine("[Document Properties]");
@@ -197,7 +201,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     if (!isAccessibleVBAProject(doc)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
     } else {
-      for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         fo.WriteLine("[CodeModule." + cmp.Name + "]");
         if (cmp.CodeModule.CountOfLines > 0) {
           fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
@@ -247,7 +252,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSWordFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var doc = wd.Documents.Open(fileSrc2);
+  var doc = wd.Documents.Open(fileSrc2, -1, -1);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), true, true);
@@ -283,7 +288,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     } else {
-      for (var it = new Enumerator(doc.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
       }
     }

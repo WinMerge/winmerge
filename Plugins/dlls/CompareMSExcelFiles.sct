@@ -78,8 +78,9 @@ function regWrite(Key, Value, TypeNm) {
 
 function writeObjectProperties(fo, items) {
   try {
-    for (var it = new Enumerator(items), o = it.item(); !it.atEnd(); it.moveNext(), o = it.item()) {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
       try {
+        var o = it.item();
         fo.WriteLine(o.Name + ": " + o.Value);
       } catch (e) {}
     }
@@ -166,7 +167,8 @@ function writeFormulas(fo, sht) {
 function getUsedRangeIncludingShapes(sht) {
   var col_max = 0;
   var row_max = 0;
-  for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+  for (var it = new Enumerator(sht.Shapes); !it.atEnd(); it.moveNext()) {
+    var shp = it.item();
     rng = shp.BottomRightCell;
     if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1 }
     if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1 }
@@ -182,8 +184,9 @@ function ungroupShapes(sht) {
     var cnt;
     do {
       cnt = sht.Shapes.Count;
-      for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+      for (var it = new Enumerator(sht.Shapes); !it.atEnd(); it.moveNext()) {
         try {
+          var shp = it.item();
           if (shp.Type === pbGroup) {
             shp.Ungroup();
           }
@@ -195,8 +198,9 @@ function ungroupShapes(sht) {
 
 function writeTextsInShapes(fo, sht) {
   try {
-    for (var it = new Enumerator(sht.Shapes), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+    for (var it = new Enumerator(sht.Shapes); !it.atEnd(); it.moveNext()) {
       try {
+        var shp = it.item();
         fo.WriteLine(shp.Name + ": " + shp.TextFrame.Characters().Text);
       } catch (e) {}
     }
@@ -432,7 +436,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSExcelFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     }
   }
-  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null,null, true);
+  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null,null, -1);
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     fo.WriteLine("[Document Properties]");
     writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
@@ -445,7 +449,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     fo.WriteLine("");
   }
  
-  for (var it = new Enumerator(wbk.Worksheets), sht = it.item(); !it.atEnd(); it.moveNext(), sht = it.item()) {
+  for (var it = new Enumerator(wbk.Worksheets); !it.atEnd(); it.moveNext()) {
+    var sht = it.item();
     if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
       fo.WriteLine("[" + sht.Name + "]");
       writeCellValues(fo, sht);
@@ -473,7 +478,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     if (!isAccessibleVBAProject(wbk)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
     } else {
-      for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(wbk.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         fo.WriteLine("[CodeModule." + cmp.Name + "]");
         if (cmp.CodeModule.CountOfLines > 0) {
           fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
@@ -526,7 +532,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSExcelFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     }
   }
-  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null, null, true);
+  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null, null, -1);
 
   digit = String(wbk.Worksheets.Count).length;
   if (digit <= 0) { digit = 1; }
@@ -545,7 +551,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   }
  
   var No = 1;
-  for (var it = new Enumerator(wbk.Worksheets), sht = it.item(); !it.atEnd(); it.moveNext(), sht = it.item()) {
+  for (var it = new Enumerator(wbk.Worksheets); !it.atEnd(); it.moveNext()) {
+    var sht = it.item();
     No = zf + No;
     No = No.substr(No.length - digit, digit);
     if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
@@ -588,7 +595,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     } else {
-      for (var it = new Enumerator(wbk.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(wbk.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
       }
     }

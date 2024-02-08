@@ -56,9 +56,9 @@ var fso = new ActiveXObject("Scripting.FileSystemObject");
 var wsh = new ActiveXObject("WScript.Shell");
 var mergeApp;
 
-function isAccessibleVBAProject(wbk) {
+function isAccessibleVBAProject(prs) {
   try {
-    return (wbk.VBProject.VBComponents.Count >= 0);
+    return (prs.VBProject.VBComponents.Count >= 0);
   } catch (e) {
     return false;
   }
@@ -74,10 +74,12 @@ function regWrite(Key, Value, TypeNm) {
 
 function writeObjectProperties(fo, items) {
   try {
-    for (var it = new Enumerator(items), o = it.item(); !it.atEnd(); it.moveNext(), o = it.item()) {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
       try {
+        var o = it.item();
         fo.WriteLine(o.Name + ": " + o.Value);
       } catch (e) {}
+      o = null;
     }
   } catch (e) {}
 }
@@ -95,7 +97,8 @@ function writeShape(fo, shp) {
         }
       }
     } else if (shpType === 6) { //msoGroup = 6
-      for (var it = new Enumerator(shp.GroupItems), shp2 = it.item(); !it.atEnd(); it.moveNext(), shp2 = it.item()) {
+      for (var it = new Enumerator(shp.GroupItems); !it.atEnd(); it.moveNext()) {
+        var shp2 = it.item();
         writeShape(fo, shp2);
       }
     } else if (shp.HasTextFrame) {
@@ -108,7 +111,8 @@ function writeShape(fo, shp) {
 
 function writeTextsInShapes(fo, shps) {
   try {
-    for (var it = new Enumerator(shps), shp = it.item(); !it.atEnd(); it.moveNext(), shp = it.item()) {
+    for (var it = new Enumerator(shps); !it.atEnd(); it.moveNext()) {
+      var shp = it.item();
       writeShape(fo, shp);
     }
   } catch (e) {}
@@ -167,7 +171,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSPowerPointFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var prs = pp.Presentations.Open(fileSrc2);
+
+  var prs = pp.Presentations.Open(fileSrc2, -1);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     fo.WriteLine("[Document Properties]");
@@ -175,7 +180,8 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     fo.WriteLine("");
   }
  
-  for (var it = new Enumerator(prs.Slides), sld = it.item(); !it.atEnd(); it.moveNext(), sld = it.item()) {
+  for (var it = new Enumerator(prs.Slides); !it.atEnd(); it.moveNext()) {
+      var sld = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       fo.WriteLine("[" + sld.Name + "]");
       writeTextsInShapes(fo, sld.Shapes);
@@ -186,23 +192,25 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       writeTextsInShapes(fo, sld.NotesPage.Shapes);
       fo.WriteLine("");
     }
+    sld = null;
   }
  
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(prs)) {
       fo.WriteLine(translate(MsgCannotGetMacros));
     } else {
-      for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(prs.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         fo.WriteLine("[CodeModule." + cmp.Name + "]");
         if (cmp.CodeModule.CountOfLines > 0) {
           fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
         }
         fo.WriteLine("");
+        cmp = null;
       }
     }
   }
 
-  sld = null;
   prs.Close();
   prs = null;
   pp.Quit();
@@ -242,7 +250,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       throw new Error(30001, "CompareMSPowerPointFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
     } 
   }
-  var prs = pp.Presentations.Open(fileSrc2);
+  var prs = pp.Presentations.Open(fileSrc2, -1);
 
   if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), true, true);
@@ -250,7 +258,8 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     fo.Close();
   }
  
-  for (var it = new Enumerator(prs.Slides), sld = it.item(); !it.atEnd(); it.moveNext(), sld = it.item()) {
+  for (var it = new Enumerator(prs.Slides); !it.atEnd(); it.moveNext()) {
+    var sld = it.item();
     if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + ".txt"), true, true);
       writeTextsInShapes(fo, sld.Shapes);
@@ -266,6 +275,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     if (regRead(REGKEY_PATH + "CompareSlideAsImage", true)) {
       saveSlideAsImage(sld, fso.BuildPath(folderDst, sld.Name + ".png"));
     }
+    sld = null;
   }
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(prs)) {
@@ -273,13 +283,14 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
     } else {
-      for (var it = new Enumerator(prs.VBProject.VBComponents), cmp = it.item(); !it.atEnd(); it.moveNext(), cmp = it.item()) {
+      for (var it = new Enumerator(prs.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
         cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+        cmp = nul;
       }
     }
   }
 
-  sld = null;
   prs.Close();
   prs = null;
   pp.Quit();
