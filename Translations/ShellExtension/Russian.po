@@ -39,7 +39,7 @@ msgstr "1252"
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
-msgstr "Расширение проводника"
+msgstr "Расширение оболочки"
 
 #: ShellExtension.rc:112
 #, c-format
