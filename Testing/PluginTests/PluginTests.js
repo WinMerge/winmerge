@@ -52,6 +52,34 @@ var PluginSettings = {
       "CompareDocumentsAsHTML": 1,
       "CompareTextsInShapes": 1,
       "CompareVBAMacros": 1
+    },
+    "PrediffLineFilter.sct": {
+      "Count": 5,
+      "Enabled1": 1,
+      "IgnoreCase1": 0,
+      "UseRegExp1": 0,
+      "Pattern1": "abc",
+      "ReplaceText1": "def",
+      "Enabled2": 1,
+      "IgnoreCase2": 1,
+      "UseRegExp2": 0,
+      "Pattern2": "Ghi",
+      "ReplaceText2": "Jkl",
+      "Enabled3": 1,
+      "IgnoreCase3": 0,
+      "UseRegExp3": 1,
+      "Pattern3": "\\d+\\.\\d+",
+      "ReplaceText3": "x.x",
+      "Enabled4": 1,
+      "IgnoreCase4": 1,
+      "UseRegExp4": 1,
+      "Pattern4": "Mno.*Z",
+      "ReplaceText4": "XxxX",
+      "Enabled5": 0,
+      "IgnoreCase5": 0,
+      "UseRegExp5": 0,
+      "Pattern5": "disabled",
+      "ReplaceText5": ""
     }
   }
 };
@@ -415,10 +443,106 @@ function IgnoreLeadingLineNumbersTest() {
 
 }
 
+function PrediffLineFilterTest() {
+  var changed = false;
+  var text = "";
+  var size;
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\PrediffLineFilter.sct");
+  printPluginInfo(p);
+
+  p.PluginOnEvent(0, MergeApp);
+
+  //
+  setTestName("PrediffLineFilter");
+  text = "";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  assertEquals("", text);
+  assertEquals(0, size);
+  assertEquals(false, changed);
+
+  //
+  text = "abc def abc";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  assertEquals("def def def", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+  //
+  text = "gHI def Ghi";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  assertEquals("Jkl def Jkl", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+  //
+  text = "1.2 def 3.4";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  assertEquals("x.x def x.x", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+  //
+  text = "mnopqrstuvwxyz";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  assertEquals("XxxX", text);
+  assertEquals(4, size);
+  assertEquals(true, changed);
+
+  //
+  text = "disabled";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  assertEquals("disabled", text);
+  assertEquals(text.length, size);
+  assertEquals(true, changed);
+
+  //
+  text = "abc def abc\r\n";
+  text += "gHI def GHI\r\n";
+  text += "1.2 def 3.4\r\n";
+  text += "mnopqrstuvwxyz\r\n";
+  text += "disabled";
+  size = text.length;
+  changed = false;
+  var result = p.PrediffBufferW(text, size, changed);
+  if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
+  var expected =
+    "def def def\r\n" +
+    "Jkl def Jkl\r\n" +
+    "x.x def x.x\r\n" +
+    "XxxX\r\n" +
+    "disabled";
+  assertEquals(expected, text);
+  assertEquals(expected.length, size);
+  assertEquals(true, changed);
+
+  p.PluginOnEvent(1, MergeApp);
+}
+
 EditorAddinTest();
 InsertDateTimeTest();
 IgnoreLeadingLineNumbersTest();
+PrediffLineFilterTest();
+/*
 CompareMSExcelFilesTest();
 CompareMSWordFilesTest();
 CompareMSPowerPointFilesTest();
+*/
 
