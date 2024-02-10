@@ -11,9 +11,20 @@ try {
   FileSys.CreateFolder(ScriptFolder + "\\result\\excel");
   FileSys.CreateFolder(ScriptFolder + "\\result\\word");
   FileSys.CreateFolder(ScriptFolder + "\\result\\powerpnt");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\patch");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\patch\\result1");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\patch\\result2");
 } catch (e) { }
 
 var PluginSettings = {
+  "Files": {
+    "Left": {
+      "Item_0": ""
+    },
+    "Right": {
+      "Item_0": ""
+    }
+  },
   "Plugins": {
     "CompareMSExcelFiles.sct": {
       "UnpackToFolder": 1,
@@ -94,13 +105,24 @@ var MergeApp = {
     return PluginSettings[ary2[0]][ary1[1]];
   },
   "SaveOption": function (key, value) {
-     var t = typeof value === "string" ? "REG_SZ" : "REG_DWORD";
+    var t = typeof value === "string" ? "REG_SZ" : "REG_DWORD";
   },
   "Translate": function (text) {
     return text;
   },
   "Log": function (level, text) {
     WScript.Echo(text);
+  },
+  "MsgBox": function (prompt, buttons, title) {
+    WScript.Echo("title: " + title);
+    WScript.Echo("prompt: " + prompt);
+    WScript.Echo("buttons: " + buttons);
+  },
+  "InputBox": function (prompt, title, defaultValue) {
+    WScript.Echo("title: " + title);
+    WScript.Echo("prompt: " + prompt);
+    WScript.Echo("default: " + defaultValue);
+    return defaultValue;
   }
 };
 function setTestName(testname) {
@@ -136,45 +158,6 @@ function printPluginInfo(p) {
   try { WScript.Echo("PluginUnpackedFileExtension: " + p.PluginUnpackedFileExtension); } catch (e) {}
   try { WScript.Echo("PluginExtendedProperties: " + p.PluginExtendedProperties); } catch (e) {}
   WScript.Echo("");
-}
-
-function CompareMSExcelFilesTest() {
-  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSExcelFiles.sct");
-  printPluginInfo(p);
-  var changed = false;
-  var subcode = 0;
-  p.PluginOnEvent(0, MergeApp);
-  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel.xls.tsv", changed, subcode);
-  CollectGarbage();
-  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel\\", changed, subcode);
-  CollectGarbage();
-  p.PluginOnEvent(1, MergeApp);
-}
-
-function CompareMSWordFilesTest() {
-  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSWordFiles.sct");
-  printPluginInfo(p);
-  var changed = false;
-  var subcode = 0;
-  p.PluginOnEvent(0, MergeApp);
-  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word.doc.txt", changed, subcode);
-  CollectGarbage();
-  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word\\", changed, subcode);
-  CollectGarbage();
-  p.PluginOnEvent(1, MergeApp);
-}
-
-function CompareMSPowerPointFilesTest() {
-  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSPowerPointFiles.sct");
-  printPluginInfo(p);
-  var changed = false;
-  var subcode = 0;
-  p.PluginOnEvent(0, MergeApp);
-  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt.ppt.txt", changed, subcode);
-  CollectGarbage();
-  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt\\", changed, subcode);
-  CollectGarbage();
-  p.PluginOnEvent(1, MergeApp);
 }
 
 function EditorAddinTest() {
@@ -536,10 +519,71 @@ function PrediffLineFilterTest() {
   p.PluginOnEvent(1, MergeApp);
 }
 
+function ApplyPatchTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\ApplyPatch.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\file1.txt";
+  PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch.diff";
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Patch\\patch.diff", ScriptFolder + "\\result\\patch\\result1.txt", changed, subcode);
+  PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch.diff";
+  PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\file1.txt";
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Patch\\patch.diff", ScriptFolder + "\\result\\patch\\result2.txt", changed, subcode);
+  PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\dir1\\";
+  PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch3.diff";
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch3.diff", ScriptFolder + "\\result\\patch\\result1\\", changed, subcode);
+  PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch3.diff";
+  PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\dir1\\subdir\\";
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch3.diff", ScriptFolder + "\\result\\patch\\result2\\", changed, subcode);
+  p.PluginOnEvent(1, MergeApp);
+}
+
+function CompareMSExcelFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSExcelFiles.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel.xls.tsv", changed, subcode);
+  CollectGarbage();
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\excel.xls", ScriptFolder + "\\result\\excel\\", changed, subcode);
+  CollectGarbage();
+  p.PluginOnEvent(1, MergeApp);
+}
+
+function CompareMSWordFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSWordFiles.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word.doc.txt", changed, subcode);
+  CollectGarbage();
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\word.doc", ScriptFolder + "\\result\\word\\", changed, subcode);
+  CollectGarbage();
+  p.PluginOnEvent(1, MergeApp);
+}
+
+function CompareMSPowerPointFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareMSPowerPointFiles.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt.ppt.txt", changed, subcode);
+  CollectGarbage();
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Office\\powerpnt.ppt", ScriptFolder + "\\result\\powerpnt\\", changed, subcode);
+  CollectGarbage();
+  p.PluginOnEvent(1, MergeApp);
+}
+
 EditorAddinTest();
 InsertDateTimeTest();
 IgnoreLeadingLineNumbersTest();
 PrediffLineFilterTest();
+ApplyPatchTest();
 /*
 CompareMSExcelFilesTest();
 CompareMSWordFilesTest();
