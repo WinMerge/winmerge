@@ -1,0 +1,11 @@
+--- C:/dev/winmerge/Testing/Data/Patch/file1.txt	Sat Feb 10 11:48:34 2024
++++ C:/dev/winmerge/Testing/Data/Patch/file2.txt	Sat Feb 10 11:48:34 2024
+@@ -1,6 +1,6 @@
++a
+ b
+ c
+-d
+ e
+ f
+-file1
++file2
