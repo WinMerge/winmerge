@@ -1,0 +1,7 @@
+b
+c
+d
+e
+f
+sfile1
+dir1
