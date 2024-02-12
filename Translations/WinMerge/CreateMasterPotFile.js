@@ -2,7 +2,7 @@
 // This script creates the master POT file (English.pot).
 //
 // Copyright (C) 2007-2009 by Tim Gerundt
-// Released under the "GNU General Public License
+// Released under the "GNU General Public License"
 
 var ForReading = 1;
 
