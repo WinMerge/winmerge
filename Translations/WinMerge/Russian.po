@@ -1761,7 +1761,7 @@ msgid "&Detect archive type from file signature"
 msgstr "&Определять тип архива по сигнатуре/заголовку файла"
 
 msgid "Items saved to or restored from the project file:"
-msgstr "Элементы, сохраненные или восстановленые из файла проекта:"
+msgstr "Элементы, сохраненные или восстановленные из файла проекта:"
 
 msgid "Compare Statistics"
 msgstr "Статистика сравнения"
@@ -3142,7 +3142,7 @@ msgid "The folder exists only in other side and cannot be opened.\n\nDo you want
 msgstr "Папка существует только на одной стороне и не может быть открыта.\n\nСоздать подходящую папку:\n%1\nна другой стороне и открыть эти папки?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr ""Уверены, что хотите скопировать все отличия в другой файл?"
+msgstr "Уверены, что хотите скопировать все отличия в другой файл?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Перейти к следующему файлу?"
@@ -4096,7 +4096,7 @@ msgid "Delete"
 msgstr "Удалить"
 
 msgid "Enabled"
-msgstr "Велючен"
+msgstr "Включено"
 
 msgid "Ignore Case"
 msgstr "Не учитывать регистр"

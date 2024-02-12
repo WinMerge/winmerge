@@ -79,7 +79,7 @@ ViewStartMenuFolder=Показать папку меню Пуск WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Установщик обнаружил, что вы изменили расположение папки меню Пуск с "%s" на "%s". Удалить предыдущую папку меню Пуск?
-ExplorerNeedsRestart=Для обновления WinMerge ShellExtension требуется перезапуск Проводника. Хотите перезапустить Проводник?
+ExplorerNeedsRestart=Для обновления расширения оболочки WinMerge требуется перезапуск Проводника. Перезапустить?
 
 ; Project file description
 ProjectFileDesc=Файл проекта WinMerge

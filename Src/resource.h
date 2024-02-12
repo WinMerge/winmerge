@@ -618,14 +618,6 @@
 #define IDC_PROPS_DEL                   1621
 #define IDC_PROPS_DELALL                1622
 #define IDC_PROPS_LISTVIEW              1623
-#define IDC_FITTOWINDOW                 1624
-#define IDC_WIDTH                       1625
-#define IDC_HEIGHT                      1626
-#define IDC_ZOOM                        1627
-#define IDC_USERAGENT                   1628
-#define IDC_COMPARE                     1630
-#define IDC_SHOWDIFFERENCES             1631
-#define IDC_SYNC_EVENTS                 1632
 #define IDC_INPUTBOX_PROMPT             1633
 #define IDC_INPUTBOX_EDIT               1634
 #define IDC_EDIT_WHOLE_WORD             8603

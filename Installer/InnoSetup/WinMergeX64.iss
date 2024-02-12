@@ -839,9 +839,14 @@ Begin
 End;
 
 Function OldGroup(): string;
+Var
+    carNoIcons: Cardinal;
 Begin
     {Stores where in \All Users\Programs\ our start menu used to be located}
-     RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\WinMerge_is1', 'Inno Setup: Icon Group', Result)
+     RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\WinMerge_is1', 'Inno Setup: Icon Group', Result);
+     carNoIcons := 0;
+     RegQueryDWORDValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\WinMerge_is1', 'Inno Setup: No Icons', carNoIcons);
+     if carNoIcons <> 0 Then Result := '';
 End;
 
 Procedure DeletePreviousStartMenu();
