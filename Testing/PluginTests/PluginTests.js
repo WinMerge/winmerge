@@ -14,6 +14,7 @@ try {
   FileSys.CreateFolder(ScriptFolder + "\\result\\patch");
   FileSys.CreateFolder(ScriptFolder + "\\result\\patch\\result1");
   FileSys.CreateFolder(ScriptFolder + "\\result\\patch\\result2");
+  FileSys.CreateFolder(ScriptFolder + "\\result\\patch\\result3");
 } catch (e) { }
 
 var PluginSettings = {
@@ -532,11 +533,14 @@ function ApplyPatchTest() {
   PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\file1.txt";
   p.UnpackFile(ScriptFolder + "\\..\\Data\\Patch\\patch.diff", ScriptFolder + "\\result\\patch\\result2.txt", changed, subcode);
   PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\dir1\\";
+  PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch2.diff";
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch2.diff", ScriptFolder + "\\result\\patch\\result1\\", changed, subcode);
+  PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\dir1\\";
   PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch3.diff";
-  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch3.diff", ScriptFolder + "\\result\\patch\\result1\\", changed, subcode);
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch3.diff", ScriptFolder + "\\result\\patch\\result2\\", changed, subcode);
   PluginSettings.Files.Left.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\patch3.diff";
   PluginSettings.Files.Right.Item_0 = ScriptFolder + "\\..\\Data\\Patch\\dir1\\subdir\\";
-  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch3.diff", ScriptFolder + "\\result\\patch\\result2\\", changed, subcode);
+  p.UnpackFolder(ScriptFolder + "\\..\\Data\\Patch\\patch3.diff", ScriptFolder + "\\result\\patch\\result3\\", changed, subcode);
   p.PluginOnEvent(1, MergeApp);
 }
 
