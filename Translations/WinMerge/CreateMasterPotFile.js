@@ -1,4 +1,4 @@
-﻿////
+////
 // This script creates the master POT file (English.pot).
 //
 // Copyright (C) 2007-2009 by Tim Gerundt
@@ -17,10 +17,10 @@ var PATH_ENGLISH_POT = "English.pot";
 var PATH_MERGE_RC = "../../Src/Merge.rc";
 var PATH_PLUGIN_STRINGS_RC = "../../Plugins/Strings.rc";
 
-var oFSO = new ActiveX("Scripting.FileSystemObject");
+var oFSO = new ActiveXObject("Scripting.FileSystemObject");
 
 var bRunFromCmd = false;
-if (oFSO.GetFileName(Wscript.FullName).toLowerCase() === "cscript.exe") {
+if (oFSO.GetFileName(WScript.FullName).toLowerCase() === "cscript.exe") {
   bRunFromCmd = true;
 }
 var bInsertLineNumbers = false;
@@ -257,7 +257,7 @@ function CreateMasterPotFile(sPotPath, oStrings) {
   oPotFile.Write("\"X-Poedit-Language: English\\n\"\n");
   oPotFile.Write("\"X-Poedit-SourceCharset: UTF-8\\n\"\n");
   oPotFile.Write("\"X-Poedit-Basepath: ../../Src/\\n\"\n");
-  //oPotFile.Write("""X-Generator: CreateMasterPotFile.js\\n""\n"
+  //oPotFile.Write("\"X-Generator: CreateMasterPotFile.js\\n""\n"
   oPotFile.Write("\n");
   for (var sKey in oStrings) { //For all strings...
     var oString = oStrings[sKey];
@@ -288,9 +288,9 @@ function CreateMasterPotFile(sPotPath, oStrings) {
 function GetPotCreationDate() {
   var oNow = new Date();
   var sYear = oNow.getFullYear();
-  var sMonth = oNow.getMonth();
+  var sMonth = oNow.getMonth() + 1;
   if (sMonth < 10) { sMonth = "0" + sMonth; }
-  var sDay = oNow.getDay();
+  var sDay = oNow.getDate();
   if (sDay < 10) { sDay = "0" + sDay; }
   var sHour = oNow.getHours();
   if (sHour < 10) { sHour = "0" + sHour; }
@@ -304,10 +304,10 @@ function GetPotCreationDate() {
 // ...
 function InfoBox(sText, iSecondsToWait) {
   if (!bRunFromCmd) { //If run from command line...
-    var oShell = Wscript.CreateObject("WScript.Shell");
-    return oShell.Popup(sText, iSecondsToWait, Wscript.ScriptName, 64);
+    var oShell = WScript.CreateObject("WScript.Shell");
+    return oShell.Popup(sText, iSecondsToWait, WScript.ScriptName, 64);
   } else { //If NOT run from command line...
-    Wscript.Echo(sText);
+    WScript.Echo(sText);
   }
 }
 

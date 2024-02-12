@@ -1,308 +1,258 @@
-Option Explicit
-''
-' This script creates the master POT file (English.pot) for the shell extension.
-'
-' Copyright (C) 2007-2009 by Tim Gerundt
-' Released under the "GNU General Public License"
+////
+// This script creates the master POT file (English.pot) for the shell extension.
+//
+// Copyright (C) 2007-2009 by Tim Gerundt
+// Released under the "GNU General Public License
 
-Const ForReading = 1
+var ForReading = 1;
 
-Const NO_BLOCK = 0
-Const STRINGTABLE_BLOCK = 1
+var NO_BLOCK = 0;
+var STRINGTABLE_BLOCK = 1;
 
-Const PATH_ENGLISH_POT = "English.pot"
-Const PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/ShellExtension/ShellExtension.rc"
+var PATH_ENGLISH_POT = "English.pot";
+var PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/ShellExtension/ShellExtension.rc";
 
-Dim oFSO, bRunFromCmd
+var bRunFromCmd;
 
-Set oFSO = CreateObject("Scripting.FileSystemObject")
+var oFSO = new ActiveXObject("Scripting.FileSystemObject");
 
-bRunFromCmd = False
-If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
-  bRunFromCmd = True
-End If
+var bRunFromCmd = false;
+if (oFSO.GetFileName(WScript.FullName).toLowerCase() === "cscript.exe") {
+  bRunFromCmd = true;
+}
 
-Call Main
+Main();
 
-''
-' ...
-Sub Main
-  Dim oStrings, sCodePage
-  Dim StartTime, EndTime, Seconds
-  Dim bNecessary, oFile
+////
+// ...
+function Main() {
+  var StartTime = new Date().getTime();
   
-  StartTime = Time
+  InfoBox("Creating POT file from ShellExtension.rc...", 3);
   
-  InfoBox "Creating POT file from ShellExtension.rc...", 3
+  var bNecessary = true;
+  if (oFSO.FileExists(PATH_ENGLISH_POT) && oFSO.FileExists(PATH_SHELLEXTTEMPLATE_RC)) { //if the POT and RC file exists...
+    bNecessary = GetArchiveBit(PATH_SHELLEXTTEMPLATE_RC) || GetArchiveBit(PATH_ENGLISH_POT); //RCs or POT file changed?
+  }
   
-  bNecessary = True
-  If (oFSO.FileExists(PATH_ENGLISH_POT) = True) And (oFSO.FileExists(PATH_SHELLEXTTEMPLATE_RC) = True) Then 'If the POT and RC file exists...
-    bNecessary = GetArchiveBit(PATH_SHELLEXTTEMPLATE_RC) Or GetArchiveBit(PATH_ENGLISH_POT) 'RCs or POT file changed?
-  End If
-  
-  If (bNecessary = True) Then 'If update necessary...
-    Set oStrings = GetStringsFromRcFile(PATH_SHELLEXTTEMPLATE_RC, sCodePage)
-    CreateMasterPotFile PATH_ENGLISH_POT, oStrings, sCodePage
-    SetArchiveBit PATH_SHELLEXTTEMPLATE_RC, False
-    SetArchiveBit PATH_ENGLISH_POT, False
-    For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
-      If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
-        SetArchiveBit oFile.Path, True
-      End If
-    Next
+  if (bNecessary) { //if update necessary...
+    var oStrings = GetStringsFromRcFile(PATH_SHELLEXTTEMPLATE_RC, sCodePage);
+    CreateMasterPotFile(PATH_ENGLISH_POT, oStrings, sCodePage);
+    SetArchiveBit(PATH_SHELLEXTTEMPLATE_RC, false);
+    SetArchiveBit(PATH_ENGLISH_POT, false);
+    for (var it = new Enumerator(oFSO.GetFolder(".").Files); !it.atEnd(); it.moveNext()) { //For all files in the current folder...
+      var oFile = it.item();
+      if (oFSO.GetExtensionName(oFile.Name).toLowerCase() === "po") { //If a PO file...
+        SetArchiveBit(oFile.Path, true);
+      }
+    }
     
-    EndTime = Time
-    Seconds = DateDiff("s", StartTime, EndTime)
+    var EndTime = new Date().getTime();
+    var Seconds = (EndTime - StartTime) / 1000.0;
     
-    InfoBox "POT file created, after " & Seconds & " second(s).", 10
-  Else 'If update NOT necessary...
-    InfoBox "POT file already up-to-date.", 10
-  End If
-End Sub
+    InfoBox("POT file created, after " + Seconds + " second(s).", 10);
+  } else { //if update NOT necessary...
+    InfoBox("POT file already up-to-date.", 10);
+  }
+}
 
-''
-' ...
-Class CString
-  Dim Comment, References, Context, Id, Str
-End Class
-
-''
-' ...
-Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
+////
+// ...
+function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
   Dim oStrings, oString, oRcFile, sLine, iLine
   Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
   
-  Set oStrings = CreateObject("Scripting.Dictionary")
-  
-  If (oFSO.FileExists(sRcFilePath) = True) Then 'If the RC file exists...
-    sRcFileName = oFSO.GetFileName(sRcFilePath)
-    iLine = 0
-    iBlockType = NO_BLOCK
-    sCodePage = ""
-    Set oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading)
-    Do Until oRcFile.AtEndOfStream = True 'For all lines...
-      sLine = Trim(oRcFile.ReadLine)
-      iLine = iLine + 1
+  var oStrings = {};
+  if (oFSO.FileExists(sRcFilePath)) { //if the RC file exists...
+    var sRcFileName = oFSO.GetFileName(sRcFilePath);
+    var iLine = 0;
+    var iBlockType = NO_BLOCK;
+    var sCodePage = "";
+    var oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading);
+    while (!oRcFile.AtEndOfStream) { //For all lines...
+      var sLine = oRcFile.ReadLine().replace(/^\s+|\s+$/g, "");
+      iLine++;
       
-      sReference = sRcFileName & ":" & iLine
-      sString = ""
-      sComment = ""
-      sContext = ""
+      var sReference = sRcFileName + ":" + iLine;
+      var sString = "";
+      var sComment = "";
+      var sContext = "";
       
-      If (sLine = "STRINGTABLE") Then 'STRINGTABLE...
+      if (sLine === "STRINGTABLE") { //STRINGTABLE...
         iBlockType = STRINGTABLE_BLOCK
-      ElseIf (sLine = "BEGIN") Then 'BEGIN...
-        'IGNORE FOR SPEEDUP!
-      ElseIf (sLine = "END") Then 'END...
-        If (iBlockType = STRINGTABLE_BLOCK) Then 'If inside stringtable...
-          iBlockType = NO_BLOCK
-        End If
-      ElseIf (Left(sLine, 2) = "//") Then 'If comment line...
-        sLine = ""
-        'IGNORE FOR SPEEDUP!
-      ElseIf (sLine <> "") Then 'If NOT empty line...
-        Select Case iBlockType
+      } else if (sLine === "BEGIN") { //BEGIN...
+        //IGNORE FOR SPEEDUP!
+      } else if (sLine === "END") { //END...
+        if (iBlockType === STRINGTABLE_BLOCK) { //If inside stringtable...
+          iBlockType = NO_BLOCK;
+        }
+      } else if (sLine.substring(0, 2) === "//") { //If comment line...
+        sLine = "";
+        //IGNORE FOR SPEEDUP!
+      } else if (sLine !== "") { //if NOT empty line...
+        switch (iBlockType) {
           Case NO_BLOCK:
-            If (FoundRegExpMatch(sLine, "defined\((AFX_TARG_\w*)\)", oMatch) = True) Then 'AFX_TARG_*...
+            if (FoundRegExpMatch(sLine, "defined\((AFX_TARG_\w*)\)", oMatch)) { //AFX_TARG_*...
               sString = oMatch.SubMatches(0)
               sComment = "AFX_TARG_*"
-            ElseIf (FoundRegExpMatch(sLine, "LANGUAGE (LANG_\w*, SUBLANG_\w*)", oMatch) = True) Then 'LANGUAGE...
+            } else if (FoundRegExpMatch(sLine, "LANGUAGE (LANG_\w*, function LANG_\w*)", oMatch)) { //LANGUAGE...
               sString = oMatch.SubMatches(0)
-              sComment = "LANGUAGE, SUBLANGUAGE"
-            ElseIf (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch) = True) Then 'code_page...
+              sComment = "LANGUAGE, function LANGUAGE"
+            } else if (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch)) { //code_page...
               sString = oMatch.SubMatches(0)
               sComment = "Codepage"
               sCodePage = oMatch.SubMatches(0)
-            End If
+            }
             
           Case STRINGTABLE_BLOCK:
-            If (InStr(sLine, """") > 0) Then 'If quote found (for speedup)...
-              '--------------------------------------------------------------------------------
-              ' Replace 1st string literal only - 2nd string literal specifies control class!
-              '--------------------------------------------------------------------------------
-              If FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) Then 'String...
+            if (sLine.indexOf("\"") >= 0) { //If quote found (for speedup)...
+              //--------------------------------------------------------------------------------
+              // Replace 1st string literal only - 2nd string literal specifies control class!
+              //--------------------------------------------------------------------------------
+              if FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) { //String...
                 sTemp = oMatch.SubMatches(0)
-                If (sTemp <> "") Then 'If NOT empty...
+                if (sTemp !== "") { //if NOT empty...
                   sString = Replace(sTemp, """""", "\""")
-                  If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
+                  if (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch)) { //if found a comment for the translators...
                     sComment = Trim(oMatch.SubMatches(0))
-                  ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
+                  } else if (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch)) { //if found a context for the translation...
                     sContext = Trim(oMatch.SubMatches(0))
                     sComment = sContext
-                  End If
-                End If
-              End If
-            End If
+                  }
+                }
+              }
+            }
             
-        End Select
-      End If
+        }
+      }
       
-      If (sString <> "") Then
-        sKey = sContext & sString
-        Set oString = New CString
-        If (oStrings.Exists(sKey) = True) Then 'If the key is already used...
-          Set oString = oStrings(sKey)
-        End If
-        If (sComment <> "") Then
-          oString.Comment = sComment
-        End If
-        If (oString.References <> "") Then
-          oString.References = oString.References & vbTab & sReference
-        Else
-          oString.References = sReference
-        End If
-        oString.Context = sContext
-        oString.Id = sString
-        oString.Str = ""
+      if (sString !== "") {
+        var sKey = sContext + sString;
+        var oString = { "Comment": "", "References": "", "Context": "", "Id": "", "Str": "" };
+        if (sKey in oStrings) { //If the key is already used...
+          oString = oStrings[sKey];
+        }
+        if (sComment !== "") {
+          oString.Comment = sComment;
+        }
+        if (oString.References !== "") {
+          oString.References = oString.References + "\t" + sReference
+        } else {
+          oString.References = sReference;
+        }
+        oString.Context = sContext;
+        oString.Id = sString;
+        oString.Str = "";
         
-        If (oStrings.Exists(sKey) = True) Then 'If the key is already used...
-          Set oStrings(sKey) = oString
-        Else 'If the key is NOT already used...
-          oStrings.Add sContext & sString, oString
-        End If
-      End If
-    Loop
-    oRcFile.Close
-  End If
-  Set GetStringsFromRcFile = oStrings
-End Function
+        if (sKey in oStrings) { //If the key is already used...
+          oStrings[sKey] = oString;
+        } else { //if the key is NOT already used...
+          oStrings[sContext + sString] = oString;
+        }
+      }
+    }
+    oRcFile.Close();
+  }
+  return oStrings;
+}
 
-''
-' ...
-Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
-  Dim oPotFile, sKey, oString, aReferences, i
+////
+// ...
+function CreateMasterPotFile(sPotPath, oStrings, sCodePage) {
+  var oPotFile = oFSO.CreateTextFile(sPotPath, true);
   
-  Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
-  
-  oPotFile.WriteLine "# This file is part from WinMerge <https://winmerge.org/>"
-  oPotFile.WriteLine "# Released under the ""GNU General Public License"""
-  oPotFile.WriteLine "#"
-  oPotFile.WriteLine "msgid """""
-  oPotFile.WriteLine "msgstr """""
-  oPotFile.WriteLine """Project-Id-Version: WinMerge Shell Extension\n"""
-  oPotFile.WriteLine """Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"""
-  oPotFile.WriteLine """POT-Creation-Date: " & GetPotCreationDate() & "\n"""
-  oPotFile.WriteLine """PO-Revision-Date: \n"""
-  oPotFile.WriteLine """Last-Translator: \n"""
-  oPotFile.WriteLine """Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"""
-  oPotFile.WriteLine """MIME-Version: 1.0\n"""
-  oPotFile.WriteLine """Content-Type: text/plain; charset=CP" & sCodePage & "\n"""
-  oPotFile.WriteLine """Content-Transfer-Encoding: 8bit\n"""
-  oPotFile.WriteLine """X-Poedit-Language: English\n"""
-  oPotFile.WriteLine """X-Poedit-SourceCharset: CP" & sCodePage & "\n"""
-  oPotFile.WriteLine """X-Poedit-Basepath: ../../ShellExtension/Languages/\n"""
-  'oPotFile.WriteLine """X-Generator: CreateMasterPotFile.vbs\n"""
-  oPotFile.WriteLine
-  For Each sKey In oStrings.Keys 'For all strings...
-    Set oString = oStrings(sKey)
-    If (oString.Comment <> "") Then 'If comment exists...
-      oPotFile.WriteLine "#. " & oString.Comment
-    End If
-    aReferences = SplitByTab(oString.References)
-    For i = LBound(aReferences) To UBound(aReferences) 'For all references...
-      oPotFile.WriteLine "#: " & aReferences(i)
-    Next
-    oPotFile.WriteLine "#, c-format"
-    If (oString.Context <> "") Then 'If context exists...
-      oPotFile.WriteLine "msgctxt """ & oString.Context & """"
-    End If
-    oPotFile.WriteLine "msgid """ & oString.Id & """"
-    oPotFile.WriteLine "msgstr """""
-    oPotFile.WriteLine
-  Next
-  oPotFile.Close
-End Sub
+  oPotFile.WriteLine("# This file is part from WinMerge <https://winmerge.org/>");
+  oPotFile.WriteLine("# Released under the \"GNU General Public License\"");
+  oPotFile.WriteLine("#");
+  oPotFile.WriteLine("msgid \"\"");
+  oPotFile.WriteLine("msgstr \"\"");
+  oPotFile.WriteLine("\"Project-Id-Version: WinMerge Shell Extension\n\"");
+  oPotFile.WriteLine("\"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n\"");
+  oPotFile.WriteLine("\"POT-Creation-Date: " + GetPotCreationDate() + "\n\"");
+  oPotFile.WriteLine("\"PO-Revision-Date: \n\"");
+  oPotFile.WriteLine("\"Last-Translator: \n\"");
+  oPotFile.WriteLine("\"Language-Team: English <winmerge-translate@lists.sourceforge.net>\n\"");
+  oPotFile.WriteLine("\"MIME-Version: 1.0\n\"");
+  oPotFile.WriteLine("\"Content-Type: text/plain; charset=CP" + sCodePage + "\n\"");
+  oPotFile.WriteLine("\"Content-Transfer-Encoding: 8bit\n\"");
+  oPotFile.WriteLine("\"X-Poedit-Language: English\n\"");
+  oPotFile.WriteLine("\"X-Poedit-SourceCharset: CP" + sCodePage + "\n\"");
+  oPotFile.WriteLine("\"X-Poedit-Basepath: ../../ShellExtension/Languages/\n\"");
+  //oPotFile.WriteLine("\"X-Generator: CreateMasterPotFile.js\n\"");
+  oPotFile.WriteLine("");
+  For (var sKey In oStrings) { //For all strings...
+    var oString = oStrings[sKey];
+    if (oString.Comment !== "") { //if comment exists...
+      oPotFile.WriteLine("#. " + oString.Comment);
+    }
+    var aReferences = oString.References.split("\t");
+    for (var i = 0; i < aReferences.length; i++) { //For all references...
+      oPotFile.WriteLine("#: " + aReferences[i]);
+    }
+    oPotFile.WriteLine("#, c-format");
+    if (oString.Context !== "") { //if context exists...
+      oPotFile.WriteLine("msgctxt \"" + oString.Context + "\"");
+    }
+    oPotFile.WriteLine("msgid \"" + oString.Id + "\"");
+    oPotFile.WriteLine("msgstr \"\"");
+    oPotFile.WriteLine("");
+  }
+  oPotFile.Close();
+}
 
-''
-' ...
-Function FoundRegExpMatch(ByVal sString, ByVal sPattern, ByRef oMatchReturn)
-  Dim oRegExp, oMatches
+////
+// ...
+function GetPotCreationDate() {
+  var oNow = new Date();
+  var sYear = oNow.getFullYear();
+  var sMonth = oNow.getMonth() + 1;
+  if (sMonth < 10) { sMonth = "0" + sMonth; }
+  var sDay = oNow.getDate();
+  if (sDay < 10) { sDay = "0" + sDay; }
+  var sHour = oNow.getHours();
+  if (sHour < 10) { sHour = "0" + sHour; }
+  var sMinute = oNow.getMinutes();
+  if (sMinute < 10) { sMinute = "0" + sMinute; }
   
-  Set oRegExp = New RegExp
-  oRegExp.Pattern = sPattern
-  oRegExp.IgnoreCase = True
-  
-  oMatchReturn = Null
-  FoundRegExpMatch = False
-  If (oRegExp.Test(sString) = True) Then
-    Set oMatches = oRegExp.Execute(sString)
-    Set oMatchReturn = oMatches(0)
-    FoundRegExpMatch = True
-  End If
-End Function
+  return sYear + "-" + sMonth + "-" + sDay + " " + sHour + ":" + sMinute + "+0000";
+}
 
-''
-' ...
-Function SplitByTab(ByVal sString)
-  SplitByTab = Array()
-  If (InStr(sString, vbTab) > 0) Then
-    SplitByTab = Split(sString, vbTab, -1)
-  Else
-    SplitByTab = Array(sString)
-  End If
-End Function
+////
+// ...
+function InfoBox(sText, iSecondsToWait) {
+  if (!bRunFromCmd) { //if run from command line...
+    var oShell = WScript.CreateObject("WScript.Shell");
+    return oShell.Popup(sText, iSecondsToWait, WScript.ScriptName, 64);
+  } else { //if NOT run from command line...
+    WScript.Echo(sText);
+  }
+}
 
-''
-' ...
-Function GetPotCreationDate()
-  Dim oNow, sYear, sMonth, sDay, sHour, sMinute
-  
-  oNow = Now()
-  sYear = Year(oNow)
-  sMonth = Month(oNow)
-  If (sMonth < 10) Then sMonth = "0" & sMonth
-  sDay = Day(oNow)
-  If (sDay < 10) Then sDay = "0" & sDay
-  sHour = Hour(oNow)
-  If (sHour < 10) Then sHour = "0" & sHour
-  sMinute = Minute(oNow)
-  If (sMinute < 10) Then sMinute = "0" & sMinute
-  
-  GetPotCreationDate = sYear & "-" & sMonth & "-" & sDay & " " & sHour & ":" & sMinute & "+0000"
-End Function
+////
+// ...
+function GetArchiveBit(sFilePath) {
+  if (oFSO.FileExists(sFilePath)) { //if the file exists...
+    var oFile = oFSO.GetFile(sFilePath);
+    if (oFile.Attributes & 32) { //if archive bit set...
+      return true;
+    }
+  }
+  return false;
+}
 
-''
-' ...
-Function InfoBox(ByVal sText, ByVal iSecondsToWait)
-  Dim oShell
-  
-  If (bRunFromCmd = False) Then 'If run from command line...
-    Set oShell = Wscript.CreateObject("WScript.Shell")
-    InfoBox = oShell.Popup(sText, iSecondsToWait, Wscript.ScriptName, 64)
-  Else 'If NOT run from command line...
-    Wscript.Echo sText
-  End If
-End Function
-
-''
-' ...
-Function GetArchiveBit(ByVal sFilePath)
-  Dim oFile
-  
-  GetArchiveBit = False
-  If (oFSO.FileExists(sFilePath) = True) Then 'If the file exists...
-    Set oFile = oFSO.GetFile(sFilePath)
-    If (oFile.Attributes AND 32) Then 'If archive bit set...
-      GetArchiveBit = True
-    End If
-  End If
-End Function
-
-''
-' ...
-Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
-  Dim oFile
-  
-  If (oFSO.FileExists(sFilePath) = True) Then 'If the file exists...
-    Set oFile = oFSO.GetFile(sFilePath)
-    If (oFile.Attributes AND 32) Then 'If archive bit set...
-      If (bValue = False) Then
-        oFile.Attributes = oFile.Attributes - 32
-      End If
-    Else 'If archive bit NOT set...
-      If (bValue = True) Then
-        oFile.Attributes = oFile.Attributes + 32
-      End If
-    End If
-  End If
-End Sub
+////
+// ...
+function SetArchiveBit(sFilePath, bValue) {
+  if (oFSO.FileExists(sFilePath)) { //if the file exists...
+    var oFile = oFSO.GetFile(sFilePath);
+    if (oFile.Attributes & 32) { //if archive bit set...
+      if (!bValue) {
+        oFile.Attributes -= 32;
+      }
+    } else { //if archive bit NOT set...
+      if (bValue) {
+        oFile.Attributes += 32;
+      }
+    }
+  }
+}
