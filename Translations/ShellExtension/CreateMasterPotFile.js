@@ -12,8 +12,6 @@ var STRINGTABLE_BLOCK = 1;
 var PATH_ENGLISH_POT = "English.pot";
 var PATH_SHELLEXTTEMPLATE_RC = "../../ShellExtension/ShellExtension/ShellExtension.rc";
 
-var bRunFromCmd;
-
 var oFSO = new ActiveXObject("Scripting.FileSystemObject");
 
 var bRunFromCmd = false;

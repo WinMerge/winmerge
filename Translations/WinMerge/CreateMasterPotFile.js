@@ -105,15 +105,15 @@ function GetStringsFromRcFile(sRcFilePath) {
       if (fContinuation) {
         // Nothing to do
       } else if (sLine.indexOf(" MENU") >= 0 && sLine.indexOf("IDR_") >= 0) { //MENU...
-        iBlockType = MENU_BLOCK
+        iBlockType = MENU_BLOCK;
       } else if (sLine.indexOf(" DIALOGEX") >= 0) { //DIALOGEX...
-        iBlockType = DIALOGEX_BLOCK
+        iBlockType = DIALOGEX_BLOCK;
       } else if (sLine === "STRINGTABLE") { //STRINGTABLE...
-        iBlockType = STRINGTABLE_BLOCK
+        iBlockType = STRINGTABLE_BLOCK;
       } else if (sLine.indexOf(" VERSIONINFO") >= 0) { //VERSIONINFO...
-        iBlockType = VERSIONINFO_BLOCK
+        iBlockType = VERSIONINFO_BLOCK;
       } else if (sLine.indexOf(" ACCELERATORS") >= 0) { //ACCELERATORS...
-        iBlockType = ACCELERATORS_BLOCK
+        iBlockType = ACCELERATORS_BLOCK;
       } else if (sLine === "BEGIN") { //BEGIN...
         //IGNORE FOR SPEEDUP!
       } else if (sLine === "END") { //END...
@@ -257,7 +257,7 @@ function CreateMasterPotFile(sPotPath, oStrings) {
   oPotFile.Write("\"X-Poedit-Language: English\\n\"\n");
   oPotFile.Write("\"X-Poedit-SourceCharset: UTF-8\\n\"\n");
   oPotFile.Write("\"X-Poedit-Basepath: ../../Src/\\n\"\n");
-  //oPotFile.Write("\"X-Generator: CreateMasterPotFile.js\\n""\n"
+  //oPotFile.Write("\"X-Generator: CreateMasterPotFile.js\\n\"\n");
   oPotFile.Write("\n");
   for (var sKey in oStrings) { //For all strings...
     var oString = oStrings[sKey];
