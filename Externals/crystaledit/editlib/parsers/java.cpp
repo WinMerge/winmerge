@@ -23,10 +23,12 @@
 #define new DEBUG_NEW
 #endif
 
-//  Java keywords
+//  Java keywords (Java SE 21 Edition)
+// (See https://docs.oracle.com/javase/specs/jls/se21/html/jls-3.html#jls-3.9)
 static const tchar_t * s_apszJavaKeywordList[] =
   {
     _T ("abstract"),
+    _T ("assert"),
     _T ("boolean"),
     _T ("break"),
     _T ("byte"),
@@ -41,6 +43,7 @@ static const tchar_t * s_apszJavaKeywordList[] =
     _T ("do"),
     _T ("double"),
     _T ("else"),
+    _T ("enum"),
     _T ("extends"),
     _T ("false"),
     _T ("final"),
@@ -65,16 +68,19 @@ static const tchar_t * s_apszJavaKeywordList[] =
     _T ("return"),
     _T ("short"),
     _T ("static"),
+    _T ("strictfp"),
     _T ("super"),
     _T ("switch"),
     _T ("synchronized"),
     _T ("this"),
     _T ("threadsafe"),
     _T ("throw"),
+    _T ("throws"),
     _T ("transient"),
     _T ("true"),
     _T ("try"),
     _T ("void"),
+    _T ("volatile"),
     _T ("while"),
   };
 
