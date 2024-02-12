@@ -32,12 +32,6 @@ msgstr "AFX_TARG_FAR"
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_FARSI, SUBLANG_NEUTRAL"
 
-#. Codepage
-#: ShellExtension.rc:21
-#, c-format
-msgid "1252"
-msgstr "65001"
-
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"

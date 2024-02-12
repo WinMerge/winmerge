@@ -31,13 +31,13 @@ function Main() {
   InfoBox("Creating POT file from ShellExtension.rc...", 3);
   
   var bNecessary = true;
-  if (oFSO.FileExists(PATH_ENGLISH_POT) && oFSO.FileExists(PATH_SHELLEXTTEMPLATE_RC)) { //if the POT and RC file exists...
+  if (oFSO.FileExists(PATH_ENGLISH_POT) && oFSO.FileExists(PATH_SHELLEXTTEMPLATE_RC)) { //If the POT and RC file exists...
     bNecessary = GetArchiveBit(PATH_SHELLEXTTEMPLATE_RC) || GetArchiveBit(PATH_ENGLISH_POT); //RCs or POT file changed?
   }
   
-  if (bNecessary) { //if update necessary...
-    var oStrings = GetStringsFromRcFile(PATH_SHELLEXTTEMPLATE_RC, sCodePage);
-    CreateMasterPotFile(PATH_ENGLISH_POT, oStrings, sCodePage);
+  if (bNecessary) { //If update necessary...
+    var oStrings = GetStringsFromRcFile(PATH_SHELLEXTTEMPLATE_RC);
+    CreateMasterPotFile(PATH_ENGLISH_POT, oStrings);
     SetArchiveBit(PATH_SHELLEXTTEMPLATE_RC, false);
     SetArchiveBit(PATH_ENGLISH_POT, false);
     for (var it = new Enumerator(oFSO.GetFolder(".").Files); !it.atEnd(); it.moveNext()) { //For all files in the current folder...
@@ -51,23 +51,19 @@ function Main() {
     var Seconds = (EndTime - StartTime) / 1000.0;
     
     InfoBox("POT file created, after " + Seconds + " second(s).", 10);
-  } else { //if update NOT necessary...
+  } else { //If update NOT necessary...
     InfoBox("POT file already up-to-date.", 10);
   }
 }
 
 ////
 // ...
-function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
-  Dim oStrings, oString, oRcFile, sLine, iLine
-  Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
-  
+function GetStringsFromRcFile(sRcFilePath) {
   var oStrings = {};
-  if (oFSO.FileExists(sRcFilePath)) { //if the RC file exists...
+  if (oFSO.FileExists(sRcFilePath)) { //If the RC file exists...
     var sRcFileName = oFSO.GetFileName(sRcFilePath);
     var iLine = 0;
     var iBlockType = NO_BLOCK;
-    var sCodePage = "";
     var oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading);
     while (!oRcFile.AtEndOfStream) { //For all lines...
       var sLine = oRcFile.ReadLine().replace(/^\s+|\s+$/g, "");
@@ -89,40 +85,42 @@ function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
       } else if (sLine.substring(0, 2) === "//") { //If comment line...
         sLine = "";
         //IGNORE FOR SPEEDUP!
-      } else if (sLine !== "") { //if NOT empty line...
+      } else if (sLine !== "") { //If NOT empty line...
         switch (iBlockType) {
-          Case NO_BLOCK:
-            if (FoundRegExpMatch(sLine, "defined\((AFX_TARG_\w*)\)", oMatch)) { //AFX_TARG_*...
-              sString = oMatch.SubMatches(0)
-              sComment = "AFX_TARG_*"
-            } else if (FoundRegExpMatch(sLine, "LANGUAGE (LANG_\w*, function LANG_\w*)", oMatch)) { //LANGUAGE...
-              sString = oMatch.SubMatches(0)
-              sComment = "LANGUAGE, function LANGUAGE"
-            } else if (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch)) { //code_page...
-              sString = oMatch.SubMatches(0)
-              sComment = "Codepage"
-              sCodePage = oMatch.SubMatches(0)
+          case NO_BLOCK:
+            var oMatch0 = /defined\((AFX_TARG_\w*)\)/.exec(sLine);
+            var oMatch1 = /LANGUAGE (LANG_\w*, SUBLANG_\w*)/.exec(sLine);
+            if (oMatch0) { //AFX_TARG_*...
+              sString = oMatch0[1];
+              sComment = "AFX_TARG_*";
+            } else if (oMatch1) { //LANGUAGE...
+              sString = oMatch1[1];
+              sComment = "LANGUAGE, SUBLANGUAGE";
             }
-            
-          Case STRINGTABLE_BLOCK:
+            break;
+
+          case STRINGTABLE_BLOCK:
             if (sLine.indexOf("\"") >= 0) { //If quote found (for speedup)...
               //--------------------------------------------------------------------------------
               // Replace 1st string literal only - 2nd string literal specifies control class!
               //--------------------------------------------------------------------------------
-              if FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) { //String...
-                sTemp = oMatch.SubMatches(0)
-                if (sTemp !== "") { //if NOT empty...
-                  sString = Replace(sTemp, """""", "\""")
-                  if (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch)) { //if found a comment for the translators...
-                    sComment = Trim(oMatch.SubMatches(0))
-                  } else if (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch)) { //if found a context for the translation...
-                    sContext = Trim(oMatch.SubMatches(0))
+              var oMatch2 = /"((?:""|[^"])*)"/.exec(sLine);
+              if (oMatch2) { //String...
+                var sTemp = oMatch2[1];
+                if (sTemp !== "") { //If NOT empty...
+                  sString = sTemp.replace(/\"\"/g, "\\\"");
+                  var oMatch3 = /\/\/#\. (.*?)$/.exec(sLine);
+                  var oMatch4 = /\/\/msgctxt (.*?)$/.exec(sLine);
+                  if (oMatch3) { //If found a comment for the translators...
+                    sComment = oMatch3[1].replace(/^\s+|\s+$/g, "");
+                  } else if (oMatch4) { //If found a context for the translation...
+                    sContext = oMatch4[1].replace(/^\s+|\s+$/g, "");
                     sComment = sContext
                   }
                 }
               }
             }
-            
+            break;
         }
       }
       
@@ -136,7 +134,7 @@ function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
           oString.Comment = sComment;
         }
         if (oString.References !== "") {
-          oString.References = oString.References + "\t" + sReference
+          oString.References = oString.References + "\t" + sReference;
         } else {
           oString.References = sReference;
         }
@@ -146,7 +144,7 @@ function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
         
         if (sKey in oStrings) { //If the key is already used...
           oStrings[sKey] = oString;
-        } else { //if the key is NOT already used...
+        } else { //If the key is NOT already used...
           oStrings[sContext + sString] = oString;
         }
       }
@@ -158,7 +156,7 @@ function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
 
 ////
 // ...
-function CreateMasterPotFile(sPotPath, oStrings, sCodePage) {
+function CreateMasterPotFile(sPotPath, oStrings) {
   var oPotFile = oFSO.CreateTextFile(sPotPath, true);
   
   oPotFile.WriteLine("# This file is part from WinMerge <https://winmerge.org/>");
@@ -166,23 +164,23 @@ function CreateMasterPotFile(sPotPath, oStrings, sCodePage) {
   oPotFile.WriteLine("#");
   oPotFile.WriteLine("msgid \"\"");
   oPotFile.WriteLine("msgstr \"\"");
-  oPotFile.WriteLine("\"Project-Id-Version: WinMerge Shell Extension\n\"");
-  oPotFile.WriteLine("\"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n\"");
-  oPotFile.WriteLine("\"POT-Creation-Date: " + GetPotCreationDate() + "\n\"");
-  oPotFile.WriteLine("\"PO-Revision-Date: \n\"");
-  oPotFile.WriteLine("\"Last-Translator: \n\"");
-  oPotFile.WriteLine("\"Language-Team: English <winmerge-translate@lists.sourceforge.net>\n\"");
-  oPotFile.WriteLine("\"MIME-Version: 1.0\n\"");
-  oPotFile.WriteLine("\"Content-Type: text/plain; charset=CP" + sCodePage + "\n\"");
-  oPotFile.WriteLine("\"Content-Transfer-Encoding: 8bit\n\"");
-  oPotFile.WriteLine("\"X-Poedit-Language: English\n\"");
-  oPotFile.WriteLine("\"X-Poedit-SourceCharset: CP" + sCodePage + "\n\"");
-  oPotFile.WriteLine("\"X-Poedit-Basepath: ../../ShellExtension/Languages/\n\"");
-  //oPotFile.WriteLine("\"X-Generator: CreateMasterPotFile.js\n\"");
+  oPotFile.WriteLine("\"Project-Id-Version: WinMerge Shell Extension\\n\"");
+  oPotFile.WriteLine("\"Report-Msgid-Bugs-To: https://bugs.winmerge.org/\\n\"");
+  oPotFile.WriteLine("\"POT-Creation-Date: " + GetPotCreationDate() + "\\n\"");
+  oPotFile.WriteLine("\"PO-Revision-Date: \\n\"");
+  oPotFile.WriteLine("\"Last-Translator: \\n\"");
+  oPotFile.WriteLine("\"Language-Team: English <winmerge-translate@lists.sourceforge.net>\\n\"");
+  oPotFile.WriteLine("\"MIME-Version: 1.0\\n\"");
+  oPotFile.WriteLine("\"Content-Type: text/plain; charset=UTF-8\\n\"");
+  oPotFile.WriteLine("\"Content-Transfer-Encoding: 8bit\\n\"");
+  oPotFile.WriteLine("\"X-Poedit-Language: English\\n\"");
+  oPotFile.WriteLine("\"X-Poedit-SourceCharset: UTF-8\\n\"");
+  oPotFile.WriteLine("\"X-Poedit-Basepath: ../../ShellExtension/Languages/\\n\"");
+  //oPotFile.WriteLine("\"X-Generator: CreateMasterPotFile.js\\n\"");
   oPotFile.WriteLine("");
-  For (var sKey In oStrings) { //For all strings...
+  for (var sKey in oStrings) { //For all strings...
     var oString = oStrings[sKey];
-    if (oString.Comment !== "") { //if comment exists...
+    if (oString.Comment !== "") { //If comment exists...
       oPotFile.WriteLine("#. " + oString.Comment);
     }
     var aReferences = oString.References.split("\t");
@@ -190,7 +188,7 @@ function CreateMasterPotFile(sPotPath, oStrings, sCodePage) {
       oPotFile.WriteLine("#: " + aReferences[i]);
     }
     oPotFile.WriteLine("#, c-format");
-    if (oString.Context !== "") { //if context exists...
+    if (oString.Context !== "") { //If context exists...
       oPotFile.WriteLine("msgctxt \"" + oString.Context + "\"");
     }
     oPotFile.WriteLine("msgid \"" + oString.Id + "\"");
@@ -220,10 +218,10 @@ function GetPotCreationDate() {
 ////
 // ...
 function InfoBox(sText, iSecondsToWait) {
-  if (!bRunFromCmd) { //if run from command line...
+  if (!bRunFromCmd) { //If run from command line...
     var oShell = WScript.CreateObject("WScript.Shell");
     return oShell.Popup(sText, iSecondsToWait, WScript.ScriptName, 64);
-  } else { //if NOT run from command line...
+  } else { //If NOT run from command line...
     WScript.Echo(sText);
   }
 }
@@ -231,9 +229,9 @@ function InfoBox(sText, iSecondsToWait) {
 ////
 // ...
 function GetArchiveBit(sFilePath) {
-  if (oFSO.FileExists(sFilePath)) { //if the file exists...
+  if (oFSO.FileExists(sFilePath)) { //If the file exists...
     var oFile = oFSO.GetFile(sFilePath);
-    if (oFile.Attributes & 32) { //if archive bit set...
+    if (oFile.Attributes & 32) { //If archive bit set...
       return true;
     }
   }
@@ -243,13 +241,13 @@ function GetArchiveBit(sFilePath) {
 ////
 // ...
 function SetArchiveBit(sFilePath, bValue) {
-  if (oFSO.FileExists(sFilePath)) { //if the file exists...
+  if (oFSO.FileExists(sFilePath)) { //If the file exists...
     var oFile = oFSO.GetFile(sFilePath);
-    if (oFile.Attributes & 32) { //if archive bit set...
+    if (oFile.Attributes & 32) { //If archive bit set...
       if (!bValue) {
         oFile.Attributes -= 32;
       }
-    } else { //if archive bit NOT set...
+    } else { //If archive bit NOT set...
       if (bValue) {
         oFile.Attributes += 32;
       }
