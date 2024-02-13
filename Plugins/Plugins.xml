@@ -216,24 +216,24 @@
     </unpack-file>
   </plugin>
   <!--
-  <plugin name="VBScript-test">
+  <plugin name="JScript-test">
     <event value="FILE_PACK_UNPACK" />
-    <description value="VBScript test" />
+    <description value="JScript test" />
     <file-filters value="\.nomatch$" />
     <is-automatic value="false" />
     <unpacked-file-extension value=".txt" />
     <unpack-file>
       <command>cmd /c cscript //nologo "${SCRIPT_FILE}" "${SRC_FILE}" > "${DST_FILE}"</command>
-      <script fileExtension=".vbs">
-WScript.StdOut.WriteLine "Hello World!"
-WScript.StdOut.WriteLine WScript.Arguments(0)
+      <script fileExtension=".js">
+WScript.StdOut.WriteLine("Hello World!");
+WScript.StdOut.WriteLine(WScript.Arguments.Item(0));
       </script>
     </unpack-file>
     <pack-file>
       <command>cmd /c cscript //nologo "${SCRIPT_FILE}" "${SRC_FILE}" > "${DST_FILE}"</command>
-      <script fileExtension=".vbs">
-WScript.StdOut.WriteLine "!dlroW olleH"
-WScript.StdOut.WriteLine WScript.Arguments(0)
+      <script fileExtension=".js">
+WScript.StdOut.WriteLine("!dlroW olleH");
+WScript.StdOut.WriteLine(WScript.Arguments.Item(0));
       </script>
     </pack-file>
   </plugin>

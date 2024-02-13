@@ -50,9 +50,9 @@ IF NOT ERRORLEVEL 1 (
   %1 %2 %3 %4
 ) Else (
   rem Windows Vista, Server 200x, Server 201x, Windows 8, Windows 10
-  Echo args="": For Each a in WScript.Arguments: If InStr^(a, " "^) ^> 0 Then args = args ^& """" ^& a ^& """ " Else args = args ^& a ^& " " End If: Next: CreateObject^("Shell.Application"^).ShellExecute "%~1", args, "", "runas" > "%TEMP%\Elevated.vbs"
-  Wscript //nologo "%TEMP%\Elevated.vbs" %2 %3 %4
-  Del "%TEMP%\Elevated.vbs" 2> NUL
+  Echo var args=""; for ^(var i = 1; i ^< WScript.Arguments.Count^(^); i++^) { var a = WScript.Arguments.Item^(i^); if ^(a.indexOf^(" "^) ^>= 0^) { args += "\"" + a + "\" " } else { args += a + " "; } } ^(new ActiveXObject^("Shell.Application"^)^).ShellExecute^(WScript.Arguments.Item^(0^), args, "", "runas"^) > "%TEMP%\Elevated.js"
+  Wscript //nologo "%TEMP%\Elevated.js" %1 %2 %3 %4
+  Del "%TEMP%\Elevated.js" 2> NUL
 )
 Goto :EOF
 

@@ -1,12 +1,12 @@
 Some useful scripts:
 
 
-CheckMenuResources.vbs
+CheckMenuResources.js
 ----------------------
 Script that checking the menu resources for missing mnemonic chars and description texts.
 
 
-CheckUnusedResources.vbs
+CheckUnusedResources.js
 ------------------------
 Script for creating a list of (hopefully) unused resource IDs.
 
