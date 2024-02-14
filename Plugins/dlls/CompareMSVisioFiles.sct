@@ -79,6 +79,7 @@ function writeObjectProperties(fo, items) {
       try {
         var o = it.item();
         fo.WriteLine(o.Name + ": " + o.Value);
+        o = null;
       } catch (e) {}
     }
   } catch (e) {}
@@ -93,6 +94,7 @@ function ungroupShapes(pge) {
         try {
           var shp = it.item();
           shp.Ungroup();
+          shp = null;
         } catch (e) {}
       }
     } while (cnt !== pge.Shapes.Count);
@@ -105,6 +107,7 @@ function writeTextsInShapes(fo, pge) {
       try {
         var shp = it.item();
         fo.WriteLine(shp.Name + ": " + shp.Text);
+        shp = null;
       } catch (e) {}
     }
   } catch (e) {}
@@ -173,6 +176,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
       writeTextsInShapes(fo, pge);
       fo.WriteLine("");
     }
+    pge = null;
   }
 
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
@@ -186,13 +190,13 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
           fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
         }
         fo.WriteLine("");
+        cmp = null;
       }
     }
   }
 
+  doc.Close();
   doc = null;
-  pge.Close();
-  pge = null;
   vs.Quit();
   vs = null;
   fo.Close();
@@ -246,6 +250,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     if (regRead(REGKEY_PATH + "ComparePageAsImage", true)) {
       saveSlideAsImage(pge, fso.BuildPath(folderDst, pge.Name + ".png"));
     }
+    pge = null;
   }
   if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
     if (!isAccessibleVBAProject(doc)) {
@@ -256,11 +261,11 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
         var cmp = it.item();
         cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+        cmp = nul;
       }
     }
   }
 
-  pge = null;
   doc.Close();
   doc = null;
   vs.Quit();
