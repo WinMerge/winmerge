@@ -38,7 +38,7 @@ function Main() {
   InfoBox("Creating POT file from Merge.rc...", 3);
   
   var bNecessary = true;
-  if (oFSO.FileExists(PATH_ENGLISH_POT)) { //if the POT file exists...
+  if (oFSO.FileExists(PATH_ENGLISH_POT)) { //If the POT file exists...
     bNecessary = GetArchiveBit(PATH_MERGE_RC) || GetArchiveBit(PATH_ENGLISH_POT); //RCs or POT file changed?
   }
   
