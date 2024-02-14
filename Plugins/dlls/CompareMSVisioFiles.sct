@@ -245,6 +245,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       ungroupShapes(pge);
       writeTextsInShapes(fo, pge);
       fo.Close();
+      fo = null;
     }
 
     if (regRead(REGKEY_PATH + "ComparePageAsImage", true)) {
@@ -257,6 +258,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
+      fo = null;
     } else {
       for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
         var cmp = it.item();
@@ -270,7 +272,6 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   doc = null;
   vs.Quit();
   vs = null;
-  fo = null;
 
   pbChanged = true;
   pSubcode = 0;

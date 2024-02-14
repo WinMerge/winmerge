@@ -259,6 +259,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), true, true);
     writeObjectProperties(fo, prs.BuiltinDocumentProperties);
     fo.Close();
+    fo = null;
   }
  
   for (var it = new Enumerator(prs.Slides); !it.atEnd(); it.moveNext()) {
@@ -267,12 +268,14 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + ".txt"), true, true);
       writeTextsInShapes(fo, sld);
       fo.Close();
+      fo = null;
     }
  
     if (regRead(REGKEY_PATH + "CompareTextsInNotesPage", true)) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + "_NotesPage.txt"), true, true);
       writeTextsInShapes(fo, sld.NotesPage);
       fo.Close();
+      fo = null;
     }
  
     if (regRead(REGKEY_PATH + "CompareSlideAsImage", true)) {
@@ -285,6 +288,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
+      fo = null;
     } else {
       for (var it = new Enumerator(prs.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
         var cmp = it.item();
@@ -298,7 +302,6 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   prs = null;
   pp.Quit();
   pp = null;
-  fo = null;
 
   pbChanged = true;
   pSubcode = 0;

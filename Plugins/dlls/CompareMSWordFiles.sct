@@ -260,18 +260,21 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), true, true);
     writeObjectProperties(fo, doc.BuiltinDocumentProperties);
     fo.Close();
+    fo = null;
   }
 
   if (regRead(REGKEY_PATH + "CompareBookmarks", true)) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)Bookmarks.txt"), true, true);
     writeBookmarks(fo, doc.Bookmarks);
     fo.Close();
+    fo = null;
   }
 
   if (regRead(REGKEY_PATH + "CompareTextContents", true)) {
     var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "Document.txt"), true, true);
     fo.Write(doc.Content.Text);
     fo.Close();
+    fo = null;
   }
 
   if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
@@ -279,6 +282,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     ungroupShapes(doc);
     writeTextsInShapes(fo, doc);
     fo.Close();
+    fo = null;
   }
 
   if (regRead(REGKEY_PATH + "CompareDocumentsAsHTML", true)) {
@@ -289,10 +293,12 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
       var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
       fo.WriteLine(translate(MsgCannotGetMacros));
       fo.Close();
+      fo = null;
     } else {
       for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
         var cmp = it.item();
         cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+        cmp = null;
       }
     }
   }
@@ -301,7 +307,6 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   doc = null;
   wd.Quit();
   wd = null;
-  fo = null;
 
   pbChanged = true;
   pSubcode = 0;
