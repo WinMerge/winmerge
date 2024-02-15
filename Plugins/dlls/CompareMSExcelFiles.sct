@@ -128,8 +128,8 @@ function writeCellValues(fo, sht) {
     fo.WriteLine(quoteIfNeeded(String(varCells)));
   } else if (varCells !== undefined) {
     try {
-      var ary = new Array(varCells.ubound(2));
       for (var row = 1; row <= varCells.ubound(1); row++) {
+        var ary = new Array(varCells.ubound(2));
         for (var col = 1; col <= varCells.ubound(2); col++) {
           try {
             var val = varCells.getItem(row, col);
@@ -137,6 +137,14 @@ function writeCellValues(fo, sht) {
           } catch (e) {
             ary[col - 1] = "Error" + e.number;
           }
+        }
+        for (var i = ary.length - 1; i >= 0; i--) {
+            if (ary[i] !== "") {
+               if (i < ary.length - 1) {
+                 ary = ary.splice(0, i + 1);
+               }
+               break;
+            }
         }
         fo.WriteLine(ary.join("\t"));
       }
