@@ -76,12 +76,31 @@ function regWrite(Key, Value, TypeNm) {
   mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
 }
 
+function toString(val) {
+  switch (typeof val) {
+  case "string":
+    return val;
+  case "number":
+    return val.toString();
+  case "date":
+    var d = new Date(val);
+    if (d.getHours() == 0 && d.getMinutes() == 0 && d.getSeconds() == 0 && d.getMilliseconds() == 0) {
+        return d.toLocaleDateString();
+    }
+    return d.toLocaleString();
+  case "undefined":
+    return "";
+  default:
+    return String(val);
+  }
+}
+
 function writeObjectProperties(fo, items) {
   try {
     for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
       try {
         var o = it.item();
-        fo.WriteLine(o.Name + ": " + o.Value);
+        fo.WriteLine(o.Name + ": " + toString(o.Value));
       } catch (e) {}
     }
   } catch (e) {}
@@ -114,23 +133,7 @@ function writeCellValues(fo, sht) {
         for (var col = 1; col <= varCells.ubound(2); col++) {
           try {
             var val = varCells.getItem(row, col);
-            switch (typeof val) {
-            case "undefined":
-              ary[col - 1] = "";
-              break;
-            case "string":
-              ary[col - 1] = quoteIfNeeded(val);
-              break;
-            case "number":
-              ary[col - 1] = val.toString();
-              break;
-            case "date":
-              ary[col - 1] = (new Date(val)).toLocaleString();
-              break;
-            default:
-              ary[col - 1] = quoteIfNeeded(String(val));
-              break;
-            }
+            ary[col - 1] = quoteIfNeeded(toString(val));
           } catch (e) {
             ary[col - 1] = "Error" + e.number;
           }

@@ -72,13 +72,31 @@ function regWrite(Key, Value, TypeNm) {
   mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
 }
 
+function toString(val) {
+  switch (typeof val) {
+  case "string":
+    return val;
+  case "number":
+    return val.toString();
+  case "date":
+    var d = new Date(val);
+    if (d.getHours() == 0 && d.getMinutes() == 0 && d.getSeconds() == 0 && d.getMilliseconds() == 0) {
+        return d.toLocaleDateString();
+    }
+    return d.toLocaleString();
+  case "undefined":
+    return "";
+  default:
+    return String(val);
+  }
+}
+
 function writeObjectProperties(fo, items) {
   try {
     for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
       try {
         var o = it.item();
-        fo.WriteLine(o.Name + ": " + o.Value);
-        o = null;
+        fo.WriteLine(o.Name + ": " + toString(o.Value));
       } catch (e) {}
     }
   } catch (e) {}
