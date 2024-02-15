@@ -1221,9 +1221,7 @@ bool CMergeApp::CreateBackup(bool bFolder, const String& pszPath)
 			< MAX_PATH_FULL)
 		{
 			success = true;
-			bakPath = paths::ConcatPath(bakPath, filename);
-			bakPath += _T(".");
-			bakPath += ext;
+			bakPath = paths::ConcatPath(bakPath, filename + _T(".") + ext);
 		}
 
 		if (success)
