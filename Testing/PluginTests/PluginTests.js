@@ -4,7 +4,6 @@ var g_testname;
 var FileSys = new ActiveXObject("Scripting.FileSystemObject");
 var ScriptFolder = FileSys.GetParentFolderName(WScript.ScriptFullName);
 var WShell = new ActiveXObject("Wscript.Shell");
-var ScriptFolder = FileSys.GetParentFolderName(WScript.ScriptFullName);
 
 try {
   FileSys.CreateFolder(ScriptFolder + "\\result");
@@ -192,6 +191,9 @@ function EditorAddinTest() {
   assertEquals("1\r\n2\r\n", p.ExecFilterCommand("2\r\n1\r\n"));
   p.PluginArguments = "echo a";
   assertEquals("a \r\n", p.ExecFilterCommand(""));
+  p.PluginVariables = ScriptFolder;
+  p.PluginArguments = "dir %1";
+  p.ExecFilterCommand("");
 
   // SelectColumns
   setTestName("SelectColumns");

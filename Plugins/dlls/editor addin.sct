@@ -401,7 +401,7 @@ function ExecFilterCommand(Text) {
   var path = wsh.ExpandEnvironmentStrings("%TEMP%\\_winmerge_addin_temp_.txt");
   var fso = new ActiveXObject("Scripting.FileSystemObject");
   try {
-    var ts = fso.CreateTextFile(path);
+    var ts = fso.CreateTextFile(path, true, true);
     ts.Write(Text);
     ts.Close();
   } catch (e) {
