@@ -114,7 +114,23 @@ function writeCellValues(fo, sht) {
         for (var col = 1; col <= varCells.ubound(2); col++) {
           try {
             var val = varCells.getItem(row, col);
-            ary[col - 1] = (val !== undefined) ? quoteIfNeeded(val.toString()) : "";
+            switch (typeof val) {
+            case "undefined":
+              ary[col - 1] = "";
+              break;
+            case "string":
+              ary[col - 1] = quoteIfNeeded(val);
+              break;
+            case "number":
+              ary[col - 1] = val.toString();
+              break;
+            case "date":
+              ary[col - 1] = (new Date(val)).toLocaleString();
+              break;
+            default:
+              ary[col - 1] = quoteIfNeeded(String(val));
+              break;
+            }
           } catch (e) {
             ary[col - 1] = "Error" + e.number;
           }
