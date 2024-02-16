@@ -165,29 +165,33 @@ function getAddr(row, col) {
 }
 
 function writeFormulas(fo, sht) {
-  var row, col, formula
+  var row, col, formula;
   var rowOffset = sht.UsedRange.Row;
   var colOffset = sht.UsedRange.Column;
-  var varCells = sht.UsedRange.Formula;
-  if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
-    fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + varCells);
-  } else {
-    try {
-      for (var row = 1; row <= varCells.ubound(1); row++) {
-        for (var col = 1; col <= varCells.ubound(2); col++) {
-          try {
-            var formula = varCells.getItem(row, col);
-            if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
-              fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
+  try {
+    var varCells = sht.UsedRange.Formula;
+    if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
+      fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + varCells);
+    } else {
+      try {
+        for (var row = 1; row <= varCells.ubound(1); row++) {
+          for (var col = 1; col <= varCells.ubound(2); col++) {
+            try {
+              var formula = varCells.getItem(row, col);
+              if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
+                fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
+              }
+            } catch (e) {
+              fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + "Error" + e.number);
             }
-          } catch (e) {
-            fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + "Error" + e.number);
           }
         }
+      } catch (e) {
+        fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + "Error" + e.number);
       }
-    } catch (e) {
-      fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + "Error" + e.number);
     }
+  } catch (e) {
+    fo.WriteLine(e.message);
   }
 }
 
@@ -242,7 +246,7 @@ function writeHeadersAndFooters(fo, sht) {
     fo.WriteLine("LeftFooter: " + sht.PageSetup.LeftFooter);
     fo.WriteLine("CenterFooter: " + sht.PageSetup.CenterFooter);
     fo.WriteLine("RightFooter: " + sht.PageSetup.RightFooter);
-  } catch(e) {}
+  } catch (e) {}
 }
 
 function getModuleExtension(cmp) {
@@ -399,9 +403,16 @@ function saveSheetAsImage(sht, basefilename) {
 }
 
 function saveSheetAsHTML(sht, filename) {
-  var pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", ""); // 1 = xlSourceSheet, 0 = xlHtmlStatic
-  pobj.Publish(true);
-  pobj.AutoRepublish = false;
+  try {
+    var pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", ""); // 1 = xlSourceSheet, 0 = xlHtmlStatic
+    pobj.Publish(true);
+    pobj.AutoRepublish = false;
+  } catch (e) {
+    var fo = fso.CreateTextFile(filename, true, true);
+    fo.Write(e.message);
+    fo.Close();
+    fo = null;
+  }
 }
 
 function escape(sheetName) {
