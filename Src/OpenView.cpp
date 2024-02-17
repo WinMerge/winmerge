@@ -1103,6 +1103,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		bool bIsaFolderCompare = true;
 		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
+		bool bIsArchiveFile[3] = {false, false, false};
 		paths::PATH_EXISTENCE pathType[3] = {paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST};
 		int iStatusMsgId = IDS_OPEN_FILESDIRS;
 
@@ -1122,13 +1123,19 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		{
 			for (int i = 0; i < paths.GetSize(); ++i)
 			{
-				pathType[i] = paths::DoesPathExist(paths[i], IsArchiveFile);
+				pathType[i] = paths::DoesPathExist(paths[i]);
+				bIsArchiveFile[i] = IsArchiveFile(paths[i]);
 				if (pathType[i] == paths::DOES_NOT_EXIST)
 				{
 					if (paths::IsURL(paths[i]) || paths::IsNullDeviceName(paths[i]))
 						pathType[i] = paths::IS_EXISTING_FILE;
 					else
-						bInvalid[i] = true;
+					{
+						if (bIsArchiveFile[i])
+							pathType[i] = paths::IS_EXISTING_FILE;
+						else
+							bInvalid[i] = true;
+					}
 				}
 			}
 		}
@@ -1154,7 +1161,13 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
 					if (pathType[0] != pathType[1])
-						iStatusMsgId = IDS_OPEN_MISMATCH;
+					{
+						if ((pathType[0] == paths::IS_EXISTING_DIR && bIsArchiveFile[1]) ||
+						    (pathType[1] == paths::IS_EXISTING_DIR && bIsArchiveFile[0]))
+							iStatusMsgId = IDS_OPEN_FILESDIRS;
+						else
+							iStatusMsgId = IDS_OPEN_MISMATCH;
+					}
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
@@ -1178,15 +1191,33 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
 				{
 					if (pathType[0] != pathType[1] || pathType[0] != pathType[2])
-						iStatusMsgId = IDS_OPEN_MISMATCH;
+					{
+						bool bMatch = [&]() {
+							for (int i = 0; i < 3; ++i)
+							{
+								if (pathType[i] != paths::IS_EXISTING_DIR && !bIsArchiveFile[i])
+									return false;
+							}
+							return true;
+						}();
+						if (bMatch)
+							iStatusMsgId = IDS_OPEN_FILESDIRS;
+						else
+							iStatusMsgId = IDS_OPEN_MISMATCH;
+					}
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
 			}
-			if (iStatusMsgId != IDS_OPEN_FILESDIRS)
-				pathsType = paths::DOES_NOT_EXIST;
-			bIsaFileCompare = (pathsType == paths::IS_EXISTING_FILE);
-			bIsaFolderCompare = (pathsType == paths::IS_EXISTING_DIR);
+			bIsaFileCompare = false;
+			bIsaFolderCompare = false;
+			for (int i = 0; i < paths.GetSize(); i++)
+			{
+				if (pathType[i] == paths::IS_EXISTING_FILE)
+					bIsaFileCompare = true;
+				if (pathType[i] == paths::IS_EXISTING_DIR || bIsArchiveFile[i])
+					bIsaFolderCompare = true;
+			}
 			// Both will be `false` if incompatibilities or something is missing
 			// Both will end up `true` if file validity isn't being checked
 		}
@@ -1384,7 +1415,7 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	{
 		for (auto nID : { IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER })
 		{
-			GetDlgItem(nID)->ShowWindow(bIsaFileCompare ? SW_SHOW : SW_HIDE);
+			GetDlgItem(nID)->ShowWindow((bIsaFileCompare && !bIsaFolderCompare) ? SW_SHOW : SW_HIDE);
 			EnableDlgItem(nID, bIsaFileCompare);
 		}
 
