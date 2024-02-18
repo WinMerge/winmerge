@@ -10,7 +10,6 @@
 #include <vector>
 #include <memory>
 #include "MergeEditView.h"
-#include "DiffTextBuffer.h"
 #include "stringdiffs.h"
 #include "UnicodeString.h"
 #include "SubstitutionFiltersList.h"

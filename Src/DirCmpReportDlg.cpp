@@ -7,7 +7,6 @@
 
 #include "stdafx.h"
 #include "DirCmpReportDlg.h"
-#include "Coretools.h"
 #include "DirReportTypes.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"

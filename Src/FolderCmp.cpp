@@ -7,7 +7,6 @@
 #include "pch.h"
 #include "diff.h"
 #include "FolderCmp.h"
-#include <cassert>
 #include "Wrap_DiffUtils.h"
 #include "ByteCompare.h"
 #include "paths.h"

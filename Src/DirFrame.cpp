@@ -13,7 +13,6 @@
 
 #include "stdafx.h"
 #include "DirFrame.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 

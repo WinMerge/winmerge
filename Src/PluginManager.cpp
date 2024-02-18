@@ -7,7 +7,6 @@
 
 #include "pch.h"
 #include "PluginManager.h"
-#include <Poco/ScopedLock.h>
 
 using Poco::FastMutex;
 

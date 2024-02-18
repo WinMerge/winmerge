@@ -11,7 +11,6 @@
 #pragma warning (pop)
 #include <ShObjIdl.h>
 #include <comip.h>
-#include <vector>
 #include "unicoder.h"
 #include "Merge7zFormatRegister.h"
 #include "paths.h"

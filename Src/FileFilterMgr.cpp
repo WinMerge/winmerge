@@ -8,7 +8,6 @@
 #include "pch.h"
 #include "FileFilterMgr.h"
 #include <vector>
-#include <Poco/String.h>
 #include <Poco/Glob.h>
 #include <Poco/RegularExpression.h>
 #include "DirTravel.h"
@@ -20,7 +19,6 @@
 
 using std::vector;
 using Poco::Glob;
-using Poco::icompare;
 using Poco::RegularExpression;
 
 static void AddFilterPattern(vector<FileFilterElementPtr> *filterList, String & str, bool fileFilter);

@@ -2,7 +2,6 @@
 #include "MergeApp.h"
 #include "Merge.h"
 #include "VersionInfo.h"
-#include "paths.h"
 #include "Constants.h"
 #include "unicoder.h"
 

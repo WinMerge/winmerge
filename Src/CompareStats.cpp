@@ -7,8 +7,6 @@
 #include "pch.h"
 #include "CompareStats.h"
 #include <cassert>
-#include <cstring>
-#include <atomic>
 #include "DiffItem.h"
 
 /** 

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "Plugins.h"
 #define POCO_NO_UNWINDOWS 1
-#include <Poco/FileStream.h>
 #include <Poco/SAX/SAXParser.h>
 #include <Poco/SAX/SAXException.h>
 #include <Poco/SAX/ContentHandler.h>
@@ -9,11 +8,6 @@
 #include <Poco/Exception.h>
 #include <vector>
 #include <list>
-#include <unordered_set>
-#include <algorithm>
-#include <cassert>
-#include <iostream>
-#include <sstream>
 #include <windows.h>
 #include <Shlwapi.h>
 #include "MergeApp.h"

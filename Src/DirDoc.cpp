@@ -13,7 +13,6 @@
 
 #include "StdAfx.h"
 #include "DirDoc.h"
-#include <Poco/StringTokenizer.h>
 #include <boost/range/mfc.hpp>
 #include "Merge.h"
 #include "IMergeDoc.h"
@@ -33,7 +32,6 @@
 #include "LineFiltersList.h"
 #include "SubstitutionFiltersList.h"
 #include "FileFilterHelper.h"
-#include "unicoder.h"
 #include "DirActions.h"
 #include "DirScan.h"
 #include "MessageBoxDialog.h"
@@ -47,7 +45,6 @@
 #define new DEBUG_NEW
 #endif
 
-using Poco::StringTokenizer;
 using boost::begin;
 using boost::end;
 

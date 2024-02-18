@@ -1,7 +1,6 @@
 #include "pch.h"
 #include <Windows.h>
 #include "MergeAppCOMClass.h"
-#include "LanguageSelect.h"
 #include "OptionsMgr.h"
 #include "MergeApp.h"
 
