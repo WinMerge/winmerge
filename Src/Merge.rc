@@ -4076,7 +4076,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
+    IDS_NOTINSTALLED  "%1 is not installed."
 END
 
 STRINGTABLE

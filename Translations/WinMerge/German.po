@@ -4166,8 +4166,8 @@ msgstr "We&bseite"
 msgid "W&rap Text"
 msgstr "Text umbrechen"
 
-msgid "Frhed is not installed."
-msgstr "Frhed ist nicht installiert."
+msgid "%1 is not installed."
+msgstr "%1 ist nicht installiert."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

@@ -178,8 +178,13 @@ function PluginOnEvent(eventType, obj) {
 
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   var fo = fso.CreateTextFile(fileDst, true, true);
-
-  var wd = new ActiveXObject("Word.Application");
+  var wd;
+  try {
+    wd = new ActiveXObject("Word.Application");
+  } catch (e) {}
+  if (!wd) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Word"));
+  }
   wd.DisplayAlerts = false;
 
   var fileSrc2 = fileSrc;
@@ -262,8 +267,13 @@ function IsFolder(file) {
 
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
-
-  var wd = new ActiveXObject("Word.Application");
+  var wd;
+  try {
+    wd = new ActiveXObject("Word.Application");
+  } catch (e) {}
+  if (!wd) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Word"));
+  }
   wd.DisplayAlerts = false;
 
   var fileSrc2 = fileSrc;
@@ -322,6 +332,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     }
   }
 
+  doc.Saved = true;
   doc.Close();
   doc = null;
   wd.Quit();

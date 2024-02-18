@@ -3451,8 +3451,8 @@ msgstr "Página Web"
 msgid "W&rap Text"
 msgstr "O&rganizar Texto"
 
-msgid "Frhed is not installed."
-msgstr "O Frhed não está instalado."
+msgid "%1 is not installed."
+msgstr "O %1 não está instalado."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

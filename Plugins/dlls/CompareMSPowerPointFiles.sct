@@ -178,8 +178,13 @@ function PluginOnEvent(eventType, obj) {
 
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   var fo = fso.CreateTextFile(fileDst, true, true);
-
-  var pp = new ActiveXObject("PowerPoint.Application");
+  var pp;
+  try {
+    pp = new ActiveXObject("PowerPoint.Application");
+  } catch (e) {}
+  if (!pp) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "PowerPoint"));
+  }
   pp.Visible = true;
   pp.DisplayAlerts = false;
 
@@ -230,6 +235,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
     }
   }
 
+  prs.Saved = true;
   prs.Close();
   prs = null;
   pp.Quit();
@@ -259,8 +265,13 @@ function IsFolder(file) {
 
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
-
-  var pp = new ActiveXObject("PowerPoint.Application");
+  var pp;
+  try {
+    pp = new ActiveXObject("PowerPoint.Application");
+  } catch (e) {}
+  if (!pp) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "PowerPoint"));
+  }
   pp.Visible = true;
   pp.DisplayAlerts = false;
 
@@ -316,6 +327,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     }
   }
 
+  prs.Saved = true;
   prs.Close();
   prs = null;
   pp.Quit();

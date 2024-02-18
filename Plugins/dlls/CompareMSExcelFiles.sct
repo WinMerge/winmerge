@@ -124,10 +124,10 @@ function quoteIfNeeded(str) {
 
 function writeCellValues(fo, sht) {
   var varCells = sht.UsedRange.Value;
-  if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
-    fo.WriteLine(quoteIfNeeded(String(varCells)));
-  } else if (varCells !== undefined) {
-    try {
+  try {
+    if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
+      fo.WriteLine(quoteIfNeeded(String(varCells)));
+    } else if (varCells !== undefined) {
       for (var row = 1; row <= varCells.ubound(1); row++) {
         var ary = new Array(varCells.ubound(2));
         for (var col = 1; col <= varCells.ubound(2); col++) {
@@ -148,9 +148,9 @@ function writeCellValues(fo, sht) {
         }
         fo.WriteLine(ary.join("\t"));
       }
-    } catch (e) {
-      fo.WriteLine("Error" + e.number);
     }
+  } catch (e) {
+    fo.WriteLine("Error" + e.number + ": " + e.message);
   }
 }
 
@@ -191,7 +191,7 @@ function writeFormulas(fo, sht) {
       }
     }
   } catch (e) {
-    fo.WriteLine(e.message);
+    fo.WriteLine("Error" + e.number + ": " + e.message);
   }
 }
 
@@ -462,8 +462,13 @@ function PluginOnEvent(eventType, obj) {
 
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   var fo = fso.CreateTextFile(fileDst, true, true);
-
-  var xl = new ActiveXObject("Excel.Application");
+  var xl;
+  try {
+    xl = new ActiveXObject("Excel.Application");
+  } catch (e) {}
+  if (!xl) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Excel"));
+  }
   xl.EnableEvents = false;
   xl.DisplayAlerts = false;
 
@@ -528,6 +533,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   }
   sht = null;
 
+  wbk.Saved = true;
   wbk.Close();
   wbk = null;
   xl.Quit();
@@ -557,8 +563,13 @@ function IsFolder(file) {
 
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
-
-  var xl = new ActiveXObject("Excel.Application");
+  var xl;
+  try {
+    xl = new ActiveXObject("Excel.Application");
+  } catch (e) {}
+  if (!xl) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Excel"));
+  }
   xl.EnableEvents = false;
   xl.DisplayAlerts = false;
 
@@ -650,6 +661,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
     }
   }
 
+  wbk.Saved = true;
   wbk.Close();
   wbk = null;
   xl.ErrorCheckingOptions.BackgroundChecking = backgroundChecking;

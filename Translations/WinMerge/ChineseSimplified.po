@@ -3870,8 +3870,8 @@ msgstr "网页(&B)"
 msgid "W&rap Text"
 msgstr "自动换行(&R)"
 
-msgid "Frhed is not installed."
-msgstr "Frhed 未安装。"
+msgid "%1 is not installed."
+msgstr "%1 未安装。"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

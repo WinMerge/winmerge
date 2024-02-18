@@ -172,8 +172,13 @@ function PluginOnEvent(eventType, obj) {
 
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
   var fo = fso.CreateTextFile(fileDst, true, true);
-
-  var vs = new ActiveXObject("Visio.Application");
+  var vs;
+  try {
+    vs = new ActiveXObject("Visio.Application");
+  } catch (e) {}
+  if (!vs) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Visio"));
+  }
   vs.Visible = false;
   vs.AlertResponse = vbNo;
 
@@ -242,8 +247,13 @@ function IsFolder(file) {
 
 function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
-
-  var vs = new ActiveXObject("Visio.Application");
+  var vs;
+  try {
+    vs = new ActiveXObject("Visio.Application");
+  } catch (e) {}
+  if (!vs) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Visio"));
+  }
   vs.Visible = false;
   vs.AlertResponse = vbNo;
 

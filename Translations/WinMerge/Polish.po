@@ -3452,8 +3452,8 @@ msgstr "Strona internetowa"
 msgid "W&rap Text"
 msgstr "Zawijaj tekst"
 
-msgid "Frhed is not installed."
-msgstr "Free Hex Editor nie został zainstalowany."
+msgid "%1 is not installed."
+msgstr "%1 nie został zainstalowany."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

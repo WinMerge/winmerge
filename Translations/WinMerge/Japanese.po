@@ -3829,8 +3829,8 @@ msgstr "Webページ(&B)"
 msgid "W&rap Text"
 msgstr "折り返して全体を表示(&R)"
 
-msgid "Frhed is not installed."
-msgstr "Frhed がインストールされていません。"
+msgid "%1 is not installed."
+msgstr "%1 がインストールされていません。"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

@@ -3451,8 +3451,8 @@ msgstr "Ti&nklapiai"
 msgid "W&rap Text"
 msgstr "S&kaidyti tekstą"
 
-msgid "Frhed is not installed."
-msgstr "„Frhed“ neįdiegtas."
+msgid "%1 is not installed."
+msgstr "„%1“ neįdiegtas."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

@@ -3824,8 +3824,8 @@ msgstr "Webpagina"
 msgid "W&rap Text"
 msgstr "Tekstterugloop"
 
-msgid "Frhed is not installed."
-msgstr "Fhred is niet geïnstalleerd."
+msgid "%1 is not installed."
+msgstr "%1 is niet geïnstalleerd."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

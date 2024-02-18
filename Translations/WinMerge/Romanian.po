@@ -3911,8 +3911,8 @@ msgstr "Pagină &web"
 msgid "W&rap Text"
 msgstr "Înfășoa&ră textul"
 
-msgid "Frhed is not installed."
-msgstr "Frhed nu este instalat."
+msgid "%1 is not installed."
+msgstr "%1 nu este instalat."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

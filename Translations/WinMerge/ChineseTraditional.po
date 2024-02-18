@@ -4520,8 +4520,8 @@ msgstr "網頁(&B)"
 msgid "W&rap Text"
 msgstr "自動換行(&W)"
 
-msgid "Frhed is not installed."
-msgstr "Frhed 未安裝。"
+msgid "%1 is not installed."
+msgstr "Frhed %1。"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

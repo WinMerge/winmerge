@@ -4550,8 +4550,8 @@ msgstr "Page &Web"
 msgid "W&rap Text"
 msgstr "Habillage de texte"
 
-msgid "Frhed is not installed."
-msgstr "Frhed n'est pas installé."
+msgid "%1 is not installed."
+msgstr "%1 n'est pas installé."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

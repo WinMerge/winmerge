@@ -4504,8 +4504,8 @@ msgstr "Weboldal"
 msgid "W&rap Text"
 msgstr "Szöveg tördelése"
 
-msgid "Frhed is not installed."
-msgstr "Az Frhed hexa szerkesztő nincs telepítve."
+msgid "%1 is not installed."
+msgstr "Az %1 hexa szerkesztő nincs telepítve."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

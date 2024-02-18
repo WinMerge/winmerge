@@ -3825,8 +3825,8 @@ msgstr "வலைப்பக்கம்"
 msgid "W&rap Text"
 msgstr ""
 
-msgid "Frhed is not installed."
-msgstr "Frhed நிறுவப்படவில்லை."
+msgid "%1 is not installed."
+msgstr "%1 நிறுவப்படவில்லை."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

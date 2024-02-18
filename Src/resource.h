@@ -1492,7 +1492,7 @@
 #define IDS_AUTOCOMPLETE_DISABLED       43142
 #define IDS_AUTOCOMPLETE_FILE_SYS       43143
 #define IDS_AUTOCOMPLETE_MRU            43144
-#define IDS_FRHED_NOTINSTALLED          43229
+#define IDS_NOTINSTALLED                43229
 #define IDS_AUTO_MERGE                  43241
 #define IDS_CODEPAGE_MERGED             43244
 #define IDS_CODEPAGE_CONFLICT           43245

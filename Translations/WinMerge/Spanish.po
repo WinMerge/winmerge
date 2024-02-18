@@ -3830,8 +3830,8 @@ msgstr "Página We&b"
 msgid "W&rap Text"
 msgstr "Ajusta&r texto"
 
-msgid "Frhed is not installed."
-msgstr "No está instalado Frhed."
+msgid "%1 is not installed."
+msgstr "No está instalado %1."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

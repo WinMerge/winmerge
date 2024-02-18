@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-02-14 07:37+0000\n"
+"POT-Creation-Date: 2024-02-18 21:54+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3445,7 +3445,8 @@ msgstr ""
 msgid "W&rap Text"
 msgstr ""
 
-msgid "Frhed is not installed."
+#, c-format
+msgid "%1 is not installed."
 msgstr ""
 
 #, c-format

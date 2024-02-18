@@ -129,7 +129,7 @@ bool CHexMergeView::IsLoadable()
 BOOL CHexMergeView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if (!IsLoadable())
-		LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
+		AfxMessageBox(strutils::format_string1(_("%1 is not installed."), _T("Frhed")).c_str(), MB_OK);
 	cs.lpszClass = _T("heksedit");
 	cs.style |= WS_HSCROLL | WS_VSCROLL;
 	return TRUE;
