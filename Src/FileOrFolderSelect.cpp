@@ -17,8 +17,6 @@
 #pragma warning (disable:4091)	// VC bug when using XP enabled toolsets.
 #include <shlobj.h>
 #pragma warning (pop)
-#include <sys/stat.h>
-#include "Environment.h"
 #include "paths.h"
 #include "MergeApp.h"
 

@@ -13,7 +13,6 @@
 #include "stdafx.h"
 #include "OpenView.h"
 #include <vector>
-#include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "OpenDoc.h"

@@ -10,7 +10,6 @@
 #include <shobjidl.h>
 #include <propsys.h>
 #include <propvarutil.h>
-#include <propkey.h>
 #include <strsafe.h>
 #endif
 

@@ -14,11 +14,9 @@
 #include "stdafx.h"
 #include "MergeEditFrm.h"
 #include "Merge.h"
-#include "MainFrm.h"
 #include "MergeDoc.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
-#include "DiffViewBar.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 

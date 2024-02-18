@@ -15,11 +15,9 @@
 #define POCO_NO_UNWINDOWS 1
 #include <vector>
 #include <list>
-#include <unordered_set>
+#include <unordered_map>
 #include <algorithm>
 #include <cassert>
-#include <iostream>
-#include <sstream>
 #include <set>
 #include <Poco/Mutex.h>
 #include <Poco/ScopedLock.h>
@@ -29,13 +27,11 @@
 #include "unicoder.h"
 #include "FileFilterMgr.h"
 #include "lwdisp.h"
-#include "resource.h"
 #include "Exceptions.h"
 #include "RegKey.h"
 #include "paths.h"
 #include "Environment.h"
 #include "FileFilter.h"
-#include "coretools.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 

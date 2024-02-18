@@ -15,7 +15,6 @@
 #include "pch.h"
 #define NOMINMAX
 #include "multiformatText.h"
-#include <vector>
 #include <algorithm>
 #include <cstring>
 #include <cassert>

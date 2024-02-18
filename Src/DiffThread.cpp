@@ -11,7 +11,6 @@
 #include <climits>
 #include <Poco/Thread.h>
 #include <Poco/Semaphore.h>
-#include "UnicodeString.h"
 #include "CompareStats.h"
 #include "IAbortable.h"
 #include "Plugins.h"

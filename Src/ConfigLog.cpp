@@ -9,7 +9,6 @@
 #include "ConfigLog.h"
 #include <cassert>
 #include <windows.h>
-#include <memory>
 #include "Constants.h"
 #include "VersionInfo.h"
 #include "UniFile.h"
@@ -17,7 +16,6 @@
 #include "TFile.h"
 #include "paths.h"
 #include "locality.h"
-#include "unicoder.h"
 #include "Environment.h"
 #include "MergeApp.h"
 #include "OptionsMgr.h"

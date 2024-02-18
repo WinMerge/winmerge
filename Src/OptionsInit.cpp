@@ -6,7 +6,6 @@
 
 #include "pch.h"
 #include <vector>
-#include <typeinfo>
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "RegOptionsMgr.h"
@@ -20,7 +19,6 @@
 #include "DiffWrapper.h" // CMP_CONTENT
 #include "paths.h"
 #include "Environment.h"
-#include "FileTransform.h"
 #include "Constants.h"
 
 // Functions to copy values set by installer from HKLM to HKCU.

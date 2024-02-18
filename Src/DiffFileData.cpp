@@ -9,11 +9,8 @@
 #include "pch.h"
 #include "DiffFileData.h"
 #include "cio.h"
-#include <memory>
 #include "DiffItem.h"
-#include "FileLocation.h"
 #include "diff.h"
-#include "TFile.h"
 #include "FileTransform.h"
 #include "unicoder.h"
 #include "DebugNew.h"

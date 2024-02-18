@@ -9,7 +9,6 @@
 #include "codepage_detect.h"
 #include <cstdio>
 #include <cstring>
-#include <algorithm>
 #include <memory>
 #include "unicoder.h"
 #include "ExConverter.h"
