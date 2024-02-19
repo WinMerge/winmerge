@@ -115,13 +115,13 @@
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1">
       <Filter>Scripts\WinMerge</Filter>
     </None>
-    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs">
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.js">
       <Filter>Scripts\WinMerge</Filter>
     </None>
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1">
       <Filter>Scripts\ShellExtension</Filter>
     </None>
-    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.vbs">
+    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.js">
       <Filter>Scripts\ShellExtension</Filter>
     </None>
     <None Include="..\Translations\ShellExtension\Arabic.po">

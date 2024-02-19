@@ -4545,8 +4545,8 @@ msgstr "웹페이지(&B)"
 msgid "W&rap Text"
 msgstr "텍스트 줄 바꿈(&R)"
 
-msgid "Frhed is not installed."
-msgstr "Frhed가 설치되지 않았습니다."
+msgid "%1 is not installed."
+msgstr "%1가 설치되지 않았습니다."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

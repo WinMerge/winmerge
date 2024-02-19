@@ -2343,6 +2343,17 @@ BEGIN
     CONTROL         "",IDC_LIST_FILE,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,0,0,309,176
 END
 
+IDD_INPUTBOX DIALOGEX 0, 0, 234, 68
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "",IDC_INPUTBOX_PROMPT,6,6,162,40
+    EDITTEXT        IDC_INPUTBOX_EDIT,6,50,224,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,170,6,60,14
+    PUSHBUTTON      "Cancel",IDCANCEL,170,22,60,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2480,9 +2491,8 @@ BEGIN
     BEGIN
     END
 
-    IDD_WEBPAGEDIFF_BAR, DIALOG
+    IDD_INPUTBOX, DIALOG
     BEGIN
-        RIGHTMARGIN, 237
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -3050,6 +3060,11 @@ BEGIN
     100, 100, 0, 0
 END
 
+IDD_INPUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3512,7 +3527,7 @@ BEGIN
     IDS_CONFIRM_MOVE_CAPTION "Confirm Move"
     IDS_CONFIRM_CLOSE_WINDOW_COMPARING 
                             "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-    IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON
+    IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON 
                             "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
     IDS_ERROR_INVALID_DIR_FILE_NAME
                             "The file or folder name is invalid."
@@ -4061,7 +4076,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FRHED_NOTINSTALLED  "Frhed is not installed."
+    IDS_NOTINSTALLED  "%1 is not installed."
 END
 
 STRINGTABLE

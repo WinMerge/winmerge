@@ -1817,4 +1817,9 @@
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>
+  <ItemGroup>
+    <Midl Include="MergeAppLib.idl">
+      <Filter>Source Files</Filter>
+    </Midl>
+  </ItemGroup>
 </Project>

@@ -1,739 +1,765 @@
 <scriptlet>
 <implements type="Automation" id="dispatcher">
-	<property name="PluginEvent">
-		<get/>
-	</property>
-	<property name="PluginDescription">
-		<get/>
-	</property>
-	<property name="PluginFileFilters">
-		<get/>
-	</property>
-	<property name="PluginIsAutomatic">
-		<get/>
-	</property>
-	<property name="PluginUnpackedFileExtension">
-		<get/>
-	</property>
-	<property name="PluginExtendedProperties">
-		<get/>
-	</property>
-	<method name="PluginOnEvent"/>
-	<method name="UnpackFile"/>
-	<method name="PackFile"/>
-	<method name="IsFolder"/>
-	<method name="UnpackFolder"/>
-	<method name="PackFolder"/>
-	<method name="ShowSettingsDialog"/>
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginIsAutomatic">
+    <get/>
+  </property>
+  <property name="PluginUnpackedFileExtension">
+    <get/>
+  </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
+  <method name="PluginOnEvent"/>
+  <method name="UnpackFile"/>
+  <method name="PackFile"/>
+  <method name="IsFolder"/>
+  <method name="UnpackFolder"/>
+  <method name="PackFolder"/>
+  <method name="ShowSettingsDialog"/>
 </implements>
-
-<script language="VBS">
-
-'/////////////////////////////////////////////////////////////////////////////
-'    This is a plugin for WinMerge.
-'    It will display the text content of MS Excel files.
-'    Copyright (C) 2005-2023 Takashi Sawanaka
-'
-'    This program is free software; you can redistribute it and/or modify
-'    it under the terms of the GNU General Public License as published by
-'    the Free Software Foundation; either version 2 of the License, or
-'    (at your option) any later version.
-'
-'    This program is distributed in the hope that it will be useful,
-'    but WITHOUT ANY WARRANTY; without even the implied warranty of
-'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-'    GNU General Public License for more details.
-'
-'    You should have received a copy of the GNU General Public License
-'    along with this program; if not, write to the Free Software
-'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-'
-
-Option Explicit
-
-Const RegKeyPath = "Plugins\CompareMSExcelFiles.sct/"
-Const pbGroup = 6
-Dim MsgCannotGetMacros
-MsgCannotGetMacros = "${Cannot get Macros." & vbCrLf & _
-	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
-	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf & "}"
-
-Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
-Dim wsh: Set wsh = CreateObject("WScript.Shell")
-Dim mergeApp
-
-Function isAccessibleVBAProject(wbk)
-	Dim count
-	count = -1
-	On Error Resume Next
-	count = wbk.VBProject.VBComponents.Count
-	isAccessibleVBAProject = (count > 0)
-End Function
-
-Function regRead(Key, DefaultValue)
-	regRead = DefaultValue
-	On Error Resume Next
-	If IsEmpty(mergeApp) Then
-		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
-	Else
-		regRead = mergeApp.GetOption(Key, DefaultValue)
-	End If
-End Function
-
-Sub regWrite(Key, Value, TypeNm)
-	Dim tmp
-	On Error Resume Next
-	If IsEmpty(mergeApp) Then
-		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
-	Else
-		If TypeNm = "REG_DWORD" Then
-			tmp = CLng(Value)
-		Else
-			tmp = CStr(Value)
-		End If
-		mergeApp.SaveOption Key, tmp
-	End If
-End Sub
-
-Function writeObjectProperties(fo, items)
-	On Error Resume Next
-	Dim o
-	For Each o In items
-		fo.WriteLine o.Name & ": " & o.Value
-	Next
-End Function
-
-Function QuoteIfNeeded(str)
-	Dim fQuote
-	If InStr(str, vbTab) > 0 Then
-		fQuote = True
-	ElseIf InStr(str, """") > 0 Then
-		fQuote = True
-	ElseIf InStr(str, vbLf) > 0 Then
-		fQuote = True
-	End If
-	If fQuote Then
-		QuoteIfNeeded = """" & Replace(str, """", """""") & """"
-	Else
-		QuoteIfNeeded = str
-	End If
-End Function
-
-Function writeCellValues(fo, sht)
-	Dim varCells, row, col, ary()
-	varCells = sht.UsedRange.Value
-	If TypeName(varCells) = "String" Then
-		fo.WriteLine QuoteIfNeeded(varCells)
-	ElseIf Not IsEmpty(varCells) Then
-		ReDim ary(UBound(varCells, 2))
-		On Error Resume Next
-		For row = 1 To UBound(varCells, 1)
-			For col = 1 To UBound(varCells, 2)
-				ary(col - 1) = QuoteIfNeeded(CStr(varCells(row, col)))
-				If Err.Number <> 0 Then
-					ary(col - 1) = "Error" & Err.Number
-					Err.Clear
-				End If
-			Next
-			fo.WriteLine Join(ary, vbTab)
-		Next
-	End If
-End Function
-
-Function GetAddr(row, col)
-    Dim c
-    c = col - 1
-    Do
-        GetAddr = Chr(65 + (c Mod 26)) & GetAddr
-        c = (c \ 26) - 1
-    Loop While c >= 0
-    GetAddr = GetAddr & row
-End Function
-
-Function writeFormulas(fo, sht)
-	Dim row, col, rowOffset, colOffset, varCells, formula
-	rowOffset = sht.UsedRange.Row
-	colOffset = sht.UsedRange.Column
-	varCells = sht.UsedRange.Formula
-	If TypeName(varCells) = "String" Then
-		fo.WriteLine GetAddr(rowOffset - 1, colOffset - 1) & ": " & varCells
-	Else
-		For row = 1 To UBound(varCells, 1)
-			For col = 1 To UBound(varCells, 2)
-				formula = varCells(row, col)
-				If Left(formula, 1) = "=" Then 
-					fo.WriteLine GetAddr(row + rowOffset - 1, col + colOffset - 1) & ": " & formula
-				End If
-			Next
-		Next
-	End If
-End Function
-
-Function getUsedRangeIncludingShapes(sht)
-	Dim shp, rng
-	Dim col_max, row_max
-	col_max = 0
-	row_max = 0
-	For Each shp In sht.Shapes
-		Set rng = shp.BottomRightCell
-		If row_max < rng.Row + rng.Rows.Count - 1 Then row_max = rng.Row + rng.Rows.Count - 1
-		If col_max < rng.Column + rng.Columns.Count - 1 Then col_max = rng.Column + rng.Columns.Count - 1
-	Next
-	Set rng = sht.UsedRange
-	If row_max < rng.Row + rng.Rows.Count - 1 Then row_max = rng.Row + rng.Rows.Count - 1
-	If col_max < rng.Column + rng.Columns.Count - 1 Then col_max = rng.Column + rng.Columns.Count - 1
-	Set getUsedRangeIncludingShapes = sht.Range("A1", sht.Cells(row_max, col_max))
-End Function
-
-Sub ungroupShapes(sht)
-    On Error Resume Next
-    Dim cnt, shp
-    Do
-        cnt = sht.Shapes.Count
-        For Each shp In sht.Shapes
-            If shp.Type = pbGroup Then shp.ungroup
-        Next
-    Loop While cnt <> sht.Shapes.Count
-End Sub
-
-Function writeTextsInShapes(fo, sht)
-	Dim shp
-	On Error Resume Next
-	For Each shp In sht.Shapes
-		fo.WriteLine shp.Name & ": " & shp.TextFrame.Characters.Text
-	Next
-	On Error GoTo 0
-End Function
-
-Function writeHeadersAndFooters(fo, sht)
-	On Error Resume Next
-	fo.WriteLine "LeftHeader: " & sht.PageSetup.LeftHeader
-	fo.WriteLine "CenterHeader: " & sht.PageSetup.CenterHeader
-	fo.WriteLine "RightHeader: " & sht.PageSetup.RightHeader
-	fo.WriteLine "LeftFooter: " & sht.PageSetup.LeftFooter
-	fo.WriteLine "CenterFooter: " & sht.PageSetup.CenterFooter
-	fo.WriteLine "RightFooter: " & sht.PageSetup.RightFooter
-	On Error GoTo 0
-End Function
-
-Function getModuleExtension(cmp)
-	Select Case cmp.Type
-	Case 2
-		getModuleExtension = ".cls"
-	Case 3
-		getModuleExtension = ".frm"
-	Case Else
-		getModuleExtension = ".bas"
-	End Select
-End Function
-
-Sub Sleep(sec)
-	if sec = 0 Then Exit Sub
-	wsh.Run "ping.exe localhost -n " & sec, 0, True
-End Sub
-
-Function saveRangeAsImage(sht, rng, filename)
-	Dim obj
-	Dim shtNew
-	Dim wbkNew
-	Dim oldSheetsInNewWorkbook
-	Dim i
-
-	saveRangeAsImage = True
-
-	On Error Resume Next
-	Err.Clear
-
-	sht.Activate
-	With sht.Parent.Windows(1)
-		.DisplayGridlines = False
-		.View = 1
-	End With
-
-	oldSheetsInNewWorkbook = sht.Application.SheetsInNewWorkbook
-	sht.Application.SheetsInNewWorkbook = 1
-	set wbkNew = sht.Application.Workbooks.Add
-	sht.Application.SheetsInNewWorkbook = oldSheetsInNewWorkbook
-	Set shtNew = wbkNew.Sheets(1)
-	Set obj = wbkNew.Charts.Add
-	Set obj = obj.Location(2, shtNew.Name) ' xlLocationAsObject=2
-
-	If sht.Application.Version <= 11 Then
-		obj.Parent.Width = rng.Width + 8
-		obj.Parent.Height = rng.Height + 8
-	Else
-		obj.Parent.Width = rng.Width
-		obj.Parent.Height = rng.Height
-	End If
-
-	For i = 0 to 1
-		If sht.Application.Version < 14 Then
-			rng.CopyPicture 1, 2 ' xlScreen=1, xlBitmap=2
-			If Err.Number = 0 Then
-				Sleep i
-				obj.Paste
-				obj.Export filename, "PNG"
-			ElseIf i = 0 Then
-				Sleep 1
-			End If
-		Else
-			rng.Copy
-			If Err.Number = 0 Then
-				Sleep i
-				shtNew.Pictures.Paste
-				obj.Export filename, "PNG"
-			ElseIf i = 0 Then
-				Sleep 1
-			End If
-		End If
-
-		If Err.Number = 0 Then Exit For
-		If i = 0 Then Err.Clear
-	Next
-
-	wbkNew.Close False
-
-	saveRangeAsImage = (Err.Number = 0)
-
-End Function
-
-Function getTimeStamp()
-    Dim dt, tm, ms
-    tm = Timer
-    ms = Fix((tm - Fix(tm)) * 1000)
-    tm = Fix(tm)
-    getTimeStamp = (tm \ (60 * 60)) & ":" & ((tm \ 60) Mod 60) & ":" & (tm Mod 60) & "." & ms
-End Function
-
-Function findRowByPosition(sht, ByVal rowBegin, ByVal rowEnd, ByVal pos)
-    Dim height, rowPrev, row, rowBeginOrg
-    row = rowEnd
-    rowBeginOrg = rowBegin
-    rowPrev = row
-    Do
-        height = sht.Range("A" & rowBeginOrg & ":A" & row).height
-        If height < pos Then
-            rowBegin = row
-        Else
-            rowEnd = row
-        End If
-        row = (rowEnd - rowBegin) \ 2 + rowBegin
-        If row = rowPrev Then
-            findRowByPosition = row
-            Exit Function
-        End If
-        rowPrev = row
-    Loop
-End Function
-
-Function findColumnByPosition(sht, ByVal columnBegin, ByVal columnEnd, ByVal pos)
-    Dim width, columnPrev, column, columnBeginOrg
-    column = columnEnd
-    columnBeginOrg = columnBegin
-    columnPrev = column
-    Do
-        width = sht.Range(sht.Cells(1, columnBeginOrg), sht.Cells(1, column)).width
-        If width < pos Then
-            columnBegin = column
-        Else
-            columnEnd = column
-        End If
-        column = (columnEnd - columnBegin) \ 2 + columnBegin
-        If column = columnPrev Then
-            findColumnByPosition = column
-            Exit Function
-        End If
-        columnPrev = column
-    Loop
-End Function
-
-Function saveSheetAsImage(sht, basefilename)
-	Dim rngUsed, rngImage, row, rowEnd, column, columnEnd, filename, numX, numY, imageWidth, imageHeight
-	imageWidth = regRead(RegKeyPath & "ImageWidth", 1000)
-	imageHeight = regRead(RegKeyPath & "ImageHeight", 3000)
-	Set rngUsed = getUsedRangeIncludingShapes(sht)
-	numX = 1
-	column = rngUsed.Column
-	Do 
-		columnEnd = findColumnByPosition(sht, column, rngUsed.Column + rngUsed.Columns.Count - 1, imageWidth)
-		numY = 1
-		row = rngUsed.Row
-		Do 
-			rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, imageHeight)
-			Set rngImage = sht.Range(sht.Cells(row, column), sht.Cells(rowEnd, columnEnd))
-			filename = basefilename & "(" & numX & "-" & numY & ").png"
-			If Not saveRangeAsImage(sht, rngImage, filename) Then
-				Dim shtNew
-				Set shtNew = sht.Parent.Sheets.Add
-				shtNew.Range("A1") = getTimeStamp() & ": Error" & Err.Number & ": " & Err.Description
-				shtNew.Columns.AutoFit
-				saveRangeAsImage shtNew, shtNew.Range("A1"), filename
-				shtNew.Delete
-			End If
-			row = rowEnd + 1
-			numY = numY + 1
-		Loop While row < rngUsed.row + rngUsed.Rows.Count - 1 
-		column = columnEnd + 1
-		numX = numX + 1
-	Loop While column < rngUsed.column + rngUsed.Columns.Count - 1 
-End Function
-
-Function saveSheetAsHTML(sht, filename)
-    Dim pobj
-    Set pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", "") ' 1 = xlSourceSheet, 0 = xlHtmlStatic
-    pobj.Publish True
-    pobj.AutoRepublish = False
-End Function
-
-Function escape(sheetName)
-    escape = Replace(sheetName, "%", "%25")
-    escape = Replace(escape, "<", "%3C")
-    escape = Replace(escape, ">", "%3E")
-    escape = Replace(escape, "|", "%7C")
-    Select Case Left(UCase(escape), 3)
-    Case "CON", "AUX", "NUL"
-        If Len(escape) = 3 Then
-            escape = "%" & escape
-        End If
-    Case "COM", "LPT"
-        If Len(escape) = 4 And IsNumeric(Mid(escape, 4, 1)) Then
-            escape = "%" & escape
-        End If
-    End Select
-End Function
-
-Function get_PluginEvent()
-	get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
-End Function
-
-Function get_PluginDescription()
-	get_PluginDescription = "Display the text content of MS Excel files"
-End Function
-
-Function get_PluginFileFilters()
-	get_PluginFileFilters = "\.xls(\..*)?$;\.xlsx(\..*)?$;\.xlsm(\..*)?$;\.xlsb(\..*)?;\.xla(\..*)?$;\.xlax(\..*)?$;\.xltx(\..*)?$;\.xltm(\..*)?$"
-End Function
-
-Function get_PluginIsAutomatic()
-	get_PluginIsAutomatic = True
-End Function
-
-Function get_PluginUnpackedFileExtension()
-	get_PluginUnpackedFileExtension = ".tsv"
-End Function
-
-Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel"
-End Function
-
-Sub PluginOnEvent(eventType, obj)
-	Set mergeApp = obj
-End Sub
-
-Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	Dim fo
-	Dim xl
-	Dim wbk
-	Dim sht
-	Dim cmp
-	Dim fileSrc2
-
-	Set fo = fso.CreateTextFile(fileDst, True, True)
-
-	Set xl = CreateObject("Excel.Application")
-	xl.EnableEvents = False
-	xl.DisplayAlerts = False
-
-	fileSrc2 = fileSrc
-	If fso.GetExtensionName(fileSrc2) = "lnk" Then
-		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-		If Not fso.FileExists(fileSrc2) Then
-			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
-		End If 
-	End If
-	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0),,,,,,,,,,,,True)
-
-	On Error Resume Next
-
-	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
-		fo.WriteLine "[Document Properties]"
-		writeObjectProperties fo, wbk.BuiltinDocumentProperties
-		fo.WriteLine ""
-	End If
-
-	If regRead(RegKeyPath & "CompareNames", True) Then
-		fo.WriteLine "[Names]"
-		writeObjectProperties fo, wbk.Names
-		fo.WriteLine ""
-	End If
-
-	For Each sht In wbk.Worksheets
-		If regRead(RegKeyPath & "CompareCellValues", True) Then
-			fo.WriteLine "[" & sht.Name & "]"
-			writeCellValues fo, sht
-			fo.WriteLine ""
-		End If
-		If regRead(RegKeyPath & "CompareFormulas", False) Then
-			fo.WriteLine "[" & sht.Name & ".Formulas]"
-			writeFormulas fo, sht
-			fo.WriteLine ""
-		End If
-		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			fo.WriteLine "[" & sht.Name & ".Shapes]"
-			ungroupShapes sht
-			writeTextsInShapes fo, sht
-			fo.WriteLine ""
-		End If
-		If regRead(RegKeyPath & "CompareHeadersAndFooters", True) Then
-			fo.WriteLine "[" & sht.Name & ".HeadersAndFooters]"
-			writeHeadersAndFooters fo, sht
-			fo.WriteLine ""
-		End If
-	Next
-
-	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
-		If Not isAccessibleVBAProject(wbk) Then
-			fo.WriteLine Translate(MsgCannotGetMacros)
-		End If
-		For Each cmp In wbk.VBProject.VBComponents
-			fo.WriteLine "[CodeModule." & cmp.Name & "]"
-			If cmp.CodeModule.CountOfLines > 0 Then
-				fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
-			End If
-			fo.WriteLine ""
-		Next
-	End If
-
-	Set sht = Nothing
-	wbk.Close
-	Set wbk = Nothing
-	xl.Quit
-	Set xl = Nothing
-	fo.Close
-	Set fo = Nothing
-
-	pbChanged = True
-	pSubcode = 0
-	UnpackFile = True
-
-End Function
-
-Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	PackFile = False
-End Function
-
-Function IsFolder(file)
-	IsFolder = regRead(RegKeyPath & "UnpackToFolder", False)
-End Function
-
-Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
-	Dim fo
-	Dim xl
-	Dim wbk
-	Dim sht
-	Dim cmp
-	Dim digit
-	Dim zf
-	Dim No
-	Dim fileSrc2
-
-	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
-
-	Set xl = CreateObject("Excel.Application")
-	xl.EnableEvents = False
-	xl.DisplayAlerts = False
-
-	Dim backgroundChecking
-	backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking
-	xl.ErrorCheckingOptions.BackgroundChecking = False
-
-	fileSrc2 = fileSrc
-	If fso.GetExtensionName(fileSrc2) = "lnk" Then
-		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-		If Not fso.FileExists(fileSrc2) Then
-			Err.Raise 30001, "CompareMSExcelFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
-		End If 
-	End If
-	Set wbk = xl.Workbooks.Open(fileSrc2, regRead(RegKeyPath & "UpdateLinks", 0),,,,,,,,,,,,True)
-
-	On Error Resume Next
-
-	digit = Len(CStr(wbk.Worksheets.Count))
-	If digit <= 0 Then digit = 1
-	zf = String(digit, "0")
-
-	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & zf & ")DocumentProperties.txt"), True, True)
-		writeObjectProperties fo, wbk.BuiltinDocumentProperties
-		fo.Close
-	End If
-
-	If regRead(RegKeyPath & "CompareNames", True) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & zf & ")Names.txt"), True, True)
-		writeObjectProperties fo, wbk.Names
-		fo.Close
-	End If
-
-	No = 1
-	For Each sht In wbk.Worksheets
-		No = Right(zf & CInt(No), digit)
-		If regRead(RegKeyPath & "CompareCellValues", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".tsv"), True, True)
-			writeCellValues fo, sht
-			fo.Close
-		End If
-
-		If regRead(RegKeyPath & "CompareFormulas", False) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & "_Formulas.txt"), True, True)
-			writeFormulas fo, sht
-			fo.Close
-		End If
-
-		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & "_Shapes.txt"), True, True)
-			ungroupShapes sht
-			writeTextsInShapes fo, sht
-			fo.Close
-		End If
-
-		If regRead(RegKeyPath & "CompareHeadersAndFooters", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & "_HeadersAndFooters.txt"), True, True)
-			writeHeadersAndFooters fo, sht
-			fo.Close
-		End If
-
-		If regRead(RegKeyPath & "CompareWorksheetsAsImage", True) Then
-			saveSheetAsImage sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name))
-		End If
-
-		If regRead(RegKeyPath & "CompareWorksheetsAsHTML", False) Then
-			saveSheetAsHTML sht, fso.BuildPath(folderDst, "(" & No & ")" & escape(sht.Name) & ".html")
-		End If
-		No = CInt(No) + 1
-	Next
-	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
-		If Not isAccessibleVBAProject(wbk) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
-			fo.WriteLine Translate(MsgCannotGetMacros)
-			fo.Close
-		End If
-
-		For Each cmp In wbk.VBProject.VBComponents
-			cmp.Export fso.BuildPath(folderDst, cmp.Name & getModuleExtension(cmp))
-		Next
-	End If
-
-	Set sht = Nothing
-	wbk.Close
-	Set wbk = Nothing
-	xl.ErrorCheckingOptions.BackgroundChecking = backgroundChecking
-	xl.Quit
-	Set xl = Nothing
-	Set fo = Nothing
-
-	pbChanged = True
-	pSubcode = 0
-	UnpackFolder = True
-End Function
-
-Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
-	PackFolder = False
-End Function
-
-Function Translate(text)
-	Dim re: Set re = CreateObject("VBScript.RegExp")
-	re.Pattern = "\${([^}]+)}"
-	re.Global = True
-	Translate = text
-	Dim match
-	Dim matches:Set matches = re.Execute(text)
-	if IsEmpty(mergeApp) Then
-		For Each match in matches
-			Translate = Replace(Translate, match.Value, match.Submatches(0))
-		Next
-	Else
-		For Each match in matches
-			Translate = Replace(Translate, match.Value, mergeApp.Translate(match.Submatches(0)))
-		Next
-	End If
-End Function
-
-Function ShowSettingsDialog()
-	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim xmlfile: xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".xml")
-	Dim tfile: Set tfile = fso.CreateTextFile(tname, True, True)
-	Dim mshta
-	tfile.Write Translate(getResource("dialog1"))
-	tfile.Close
-	exportSettingsToXMLFile xmlfile
-	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\System32\mshta.exe")
-	If Not fso.FileExists(mshta) Then
-		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
-	End If
-	Run wsh, """" & mshta & """ """ & tname & """  """ & xmlfile  & """"
-	importSettingsFromXMLFile xmlfile
-	fso.DeleteFile tname
-	fso.DeleteFile xmlfile
-End Function
-
-Sub Run(sh, cmd)
-	sh.Run cmd, 1, True
-End Sub
-
-</script>
 
 <script language="JScript">
 
-var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+/*
+    This is a plugin for WinMerge.
+    It will display the text content of MS Excel files.
+    Copyright (C) 2005-2024 Takashi Sawanaka
 
-function exportSettingsToXMLFile(filepath)
-{
-	var key_defvalues = {
-		"UnpackToFolder" : false,
-		"UpdateLinks" : false,
-		"CompareDocumentProperties" : false,
-		"CompareNames" : true,
-		"CompareCellValues" : true,
-		"CompareWorksheetsAsImage" : true,
-		"CompareWorksheetsAsHTML" : false,
-		"ImageWidth" : 1000,
-		"ImageHeight" : 3000,
-		"CompareFormulas" : false,
-		"CompareTextsInShapes" : true,
-		"CompareHeadersAndFooters" : true,
-		"CompareVBAMacros" : true
-	};
-	var doc = new ActiveXObject("MSXML2.DOMDocument");
-	var fso = new ActiveXObject("Scripting.FileSystemObject");
-	var ts = fso.OpenTextFile(filepath, 2, true, -1);
-	var root = doc.createElement("properties");
-	for (var key in key_defvalues) {
-		var el = doc.createElement("property");
-		var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
-		var cdata = doc.createCDATASection(val);
-		el.appendChild(cdata);
-		el.setAttribute("name", REGKEY_PATH + key);
-		el.setAttribute("type", typeof val);
-		root.appendChild(el);
-	}
-	doc.appendChild(root);
-	ts.Write(doc.xml);
-	ts.Close();
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*/
+
+
+var REGKEY_PATH = "Plugins\\CompareMSExcelFiles.sct/";
+var MsgCannotGetMacros = "${Cannot get Macros.\r\n" + 
+  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + 
+  "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
+var pbGroup = 6;
+
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var wsh = new ActiveXObject("WScript.Shell");
+var mergeApp;
+
+function isAccessibleVBAProject(wbk) {
+  try {
+    return (wbk.VBProject.VBComponents.Count >= 0);
+  } catch (e) {
+    return false;
+  }
 }
 
-function importSettingsFromXMLFile(filepath)
-{
-	var fso = new ActiveXObject("Scripting.FileSystemObject");
-	var ts = fso.OpenTextFile(filepath, 1, true, -1);
-	var xml = ts.ReadAll();
-	var doc = new ActiveXObject("MSXML2.DOMDocument");
-	doc.async = false
-	doc.loadXML(xml);
-	ts.Close();
-	var nodes = doc.documentElement.childNodes;
-	for (var i = 0; i < nodes.length; i++) {
-		regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
-	}
+function regRead(Key, DefaultValue) {
+  return mergeApp.GetOption(Key, DefaultValue);
+}
+
+function regWrite(Key, Value, TypeNm) {
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
+}
+
+function toString(val) {
+  switch (typeof val) {
+  case "string":
+    return val;
+  case "number":
+    return val.toString();
+  case "date":
+    var d = new Date(val);
+    if (d.getHours() == 0 && d.getMinutes() == 0 && d.getSeconds() == 0 && d.getMilliseconds() == 0) {
+        return d.toLocaleDateString();
+    }
+    return d.toLocaleString();
+  case "undefined":
+    return "";
+  default:
+    return String(val);
+  }
+}
+
+function writeObjectProperties(fo, items) {
+  try {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
+      try {
+        var o = it.item();
+        fo.WriteLine(o.Name + ": " + toString(o.Value));
+      } catch (e) {}
+    }
+  } catch (e) {}
+}
+
+function quoteIfNeeded(str) {
+  var fQuote;
+  if (str.indexOf("\t") >= 0) {
+    fQuote = true;
+  } else if (str.indexOf("\"") >= 0) {
+    fQuote = true;
+  } else if (str.indexOf("\n") >= 0) {
+    fQuote = true;
+  }
+  if (fQuote) {
+    return "\"" + str.replace(/\"/g, "\"\"") + "\"";
+  } else {
+    return str;
+  }
+}
+
+function writeCellValues(fo, sht) {
+  var varCells = sht.UsedRange.Value;
+  try {
+    if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
+      fo.WriteLine(quoteIfNeeded(String(varCells)));
+    } else if (varCells !== undefined) {
+      for (var row = 1; row <= varCells.ubound(1); row++) {
+        var ary = new Array(varCells.ubound(2));
+        for (var col = 1; col <= varCells.ubound(2); col++) {
+          try {
+            var val = varCells.getItem(row, col);
+            ary[col - 1] = quoteIfNeeded(toString(val));
+          } catch (e) {
+            ary[col - 1] = "Error" + e.number;
+          }
+        }
+        for (var i = ary.length - 1; i >= 0; i--) {
+            if (ary[i] !== "") {
+               if (i < ary.length - 1) {
+                 ary = ary.splice(0, i + 1);
+               }
+               break;
+            }
+        }
+        fo.WriteLine(ary.join("\t"));
+      }
+    }
+  } catch (e) {
+    fo.WriteLine("Error" + e.number + ": " + e.message);
+  }
+}
+
+function getAddr(row, col) {
+  var addr = "";
+  var c = col - 1;
+  do {
+    addr = String.fromCharCode(65 + (c % 26)) + addr;
+    c = Math.floor(c / 26) - 1;
+  } while (c >= 0);
+  return addr + row;
+}
+
+function writeFormulas(fo, sht) {
+  var row, col, formula;
+  var rowOffset = sht.UsedRange.Row;
+  var colOffset = sht.UsedRange.Column;
+  try {
+    var varCells = sht.UsedRange.Formula;
+    if (typeof(varCells) === "string" || typeof(varCells) === "number" || typeof(varCells) === "date") {
+      fo.WriteLine(getAddr(1 + rowOffset - 1, 1 + colOffset - 1) + ": " + varCells);
+    } else {
+      try {
+        for (var row = 1; row <= varCells.ubound(1); row++) {
+          for (var col = 1; col <= varCells.ubound(2); col++) {
+            try {
+              var formula = varCells.getItem(row, col);
+              if (typeof(formula) === "string" && formula.charAt(0) === "=") { 
+                fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + formula);
+              }
+            } catch (e) {
+              fo.WriteLine(getAddr(row + rowOffset - 1, col + colOffset - 1) + ": " + "Error" + e.number);
+            }
+          }
+        }
+      } catch (e) {
+        fo.WriteLine(getAddr(rowOffset - 1, colOffset - 1) + ": " + "Error" + e.number);
+      }
+    }
+  } catch (e) {
+    fo.WriteLine("Error" + e.number + ": " + e.message);
+  }
+}
+
+function getUsedRangeIncludingShapes(sht) {
+  var col_max = 0;
+  var row_max = 0;
+  for (var it = new Enumerator(sht.Shapes); !it.atEnd(); it.moveNext()) {
+    var shp = it.item();
+    rng = shp.BottomRightCell;
+    if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1 }
+    if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1 }
+  }
+  var rng = sht.UsedRange;
+  if (row_max < rng.Row + rng.Rows.Count - 1) { row_max = rng.Row + rng.Rows.Count - 1; }
+  if (col_max < rng.Column + rng.Columns.Count - 1) { col_max = rng.Column + rng.Columns.Count - 1; }
+  return sht.Range("A1", sht.Cells(row_max, col_max));
+}
+
+function ungroupShapes(sht) {
+  try {
+    var cnt;
+    do {
+      cnt = sht.Shapes.Count;
+      for (var it = new Enumerator(sht.Shapes); !it.atEnd(); it.moveNext()) {
+        try {
+          var shp = it.item();
+          if (shp.Type === pbGroup) {
+            shp.Ungroup();
+          }
+        } catch (e) {}
+      }
+    } while (cnt !== sht.Shapes.Count);
+  } catch (e) {}
+}
+
+function writeTextsInShapes(fo, sht) {
+  try {
+    for (var it = new Enumerator(sht.Shapes); !it.atEnd(); it.moveNext()) {
+      try {
+        var shp = it.item();
+        fo.WriteLine(shp.Name + ": " + shp.TextFrame.Characters().Text);
+      } catch (e) {}
+    }
+  } catch (e) {}
+}
+
+function writeHeadersAndFooters(fo, sht) {
+  try {
+    fo.WriteLine("LeftHeader: " + sht.PageSetup.LeftHeader);
+    fo.WriteLine("CenterHeader: " + sht.PageSetup.CenterHeader);
+    fo.WriteLine("RightHeader: " + sht.PageSetup.RightHeader);
+    fo.WriteLine("LeftFooter: " + sht.PageSetup.LeftFooter);
+    fo.WriteLine("CenterFooter: " + sht.PageSetup.CenterFooter);
+    fo.WriteLine("RightFooter: " + sht.PageSetup.RightFooter);
+  } catch (e) {}
+}
+
+function getModuleExtension(cmp) {
+  switch (cmp.Type) {
+  case 2:
+    return ".cls";
+  case 3:
+    return ".frm";
+  default:
+    return ".bas";
+  }
+}
+
+function sleep(sec) {
+  if (sec == 0)
+    return;
+  wsh.run("ping.exe localhost -n " + sec, 0, true);
+}
+
+function saveRangeAsImage(sht, rng, filename) {
+  var result = true;
+  try {
+    sht.Activate();
+    var win = sht.Parent.Windows(1);
+    win.DisplayGridlines = false;
+    win.View = 1;
+
+    var oldSheetsInNewWorkbook = sht.Application.SheetsInNewWorkbook;
+    sht.Application.SheetsInNewWorkbook = 1;
+    var wbkNew = sht.Application.Workbooks.Add();
+    sht.Application.SheetsInNewWorkbook = oldSheetsInNewWorkbook;
+    var shtNew = wbkNew.Sheets(1);
+    var obj = wbkNew.Charts.Add();
+    obj = obj.Location(2, shtNew.Name); // xlLocationAsObject=2
+ 
+    if (sht.Application.Version <= 11) {
+      obj.Parent.Width = rng.Width + 8;
+      obj.Parent.Height = rng.Height + 8;
+    } else {
+      obj.Parent.Width = rng.Width;
+      obj.Parent.Height = rng.Height;
+    }
+ 
+    for (var i = 0; i <= 1; i++) {
+      if (sht.Application.Version < 14) {
+        try {
+          rng.CopyPicture(1, 2); // xlScreen=1, xlBitmap=2
+          sleep(i);
+          obj.Paste();
+          obj.Export(filename, "PNG");
+          result = true;
+          break;
+        } catch (e) {
+          result = false;
+          if (i == 0) {
+            sleep(1);
+          }
+        }
+      } else {
+        try {
+          rng.Copy();
+          sleep(i);
+          shtNew.Pictures.Paste();
+          obj.Export(filename, "PNG");
+          result = true;
+          break;
+        } catch (e) {
+          result = false;
+          if (i == 0) {
+            sleep(1);
+          }
+        }
+      }
+    }
+  } catch (e) {
+    result = false;
+  }
+  wbkNew.Close(false);
+  return result;
+}
+
+function getTimeStamp() {
+  var dt = new Date();
+  return dt.toLocaleString().split(" ")[1] + "." + ("000" + dt.getMilliseconds()).slice(-3);
+}
+
+function findRowByPosition(sht, rowBegin, rowEnd, pos) {
+  var rowPrev, row, rowBeginOrg;
+  row = rowEnd;
+  rowBeginOrg = rowBegin;
+  rowPrev = row;
+  do {
+    var height = sht.Range("A" + rowBeginOrg + ":A" + row).height;
+    if (height < pos) {
+      rowBegin = row;
+    } else {
+      rowEnd = row;
+    }
+    row = Math.floor((rowEnd - rowBegin) / 2) + rowBegin;
+    if (row == rowPrev) {
+      return row;
+    }
+    rowPrev = row;
+  } while (true);
+}
+
+function findColumnByPosition(sht, columnBegin, columnEnd, pos) {
+  var column = columnEnd;
+  var columnBeginOrg = columnBegin;
+  var columnPrev = column;
+  do {
+    var width = sht.Range(sht.Cells(1, columnBeginOrg), sht.Cells(1, column)).width;
+    if (width < pos) {
+      columnBegin = column;
+    } else {
+      columnEnd = column;
+    }
+    column = Math.floor((columnEnd - columnBegin) / 2) + columnBegin;
+    if (column == columnPrev) {
+      return column;
+    }
+    columnPrev = column;
+  } while (true);
+}
+
+
+function saveSheetAsImage(sht, basefilename) {
+  var imageWidth = regRead(REGKEY_PATH + "ImageWidth", 1000);
+  var imageHeight = regRead(REGKEY_PATH + "ImageHeight", 3000);
+  var rngUsed = getUsedRangeIncludingShapes(sht);
+  var numX = 1;
+  var column = rngUsed.Column;
+  do {
+    var columnEnd = findColumnByPosition(sht, column, rngUsed.Column + rngUsed.Columns.Count - 1, imageWidth);
+    var numY = 1;
+    var row = rngUsed.Row;
+    do {
+      var rowEnd = findRowByPosition(sht, row, rngUsed.Row + rngUsed.Rows.Count - 1, imageHeight);
+      var rngImage = sht.Range(sht.Cells(row, column), sht.Cells(rowEnd, columnEnd));
+      var filename = basefilename + "(" + numX + "-" + numY + ").png";
+      if (!saveRangeAsImage(sht, rngImage, filename)) {
+        var shtNew = sht.Parent.Sheets.Add();
+        shtNew.Range("A1") = getTimeStamp() + ": Error" + Err.Number + ": " + Err.Description;
+        shtNew.Columns.AutoFit();
+        saveRangeAsImage(shtNew, shtNew.Range("A1"), filename);
+        shtNew.Delete();
+      }
+      row = rowEnd + 1;
+      numY = numY + 1;
+    } while (row < rngUsed.row + rngUsed.Rows.Count - 1);
+    column = columnEnd + 1;
+    numX = numX + 1;
+  } while (column < rngUsed.column + rngUsed.Columns.Count - 1);
+}
+
+function saveSheetAsHTML(sht, filename) {
+  try {
+    var pobj = sht.Parent.PublishObjects.Add(1, filename, sht.Name, "", 0, "CompareMSExcelFilesPlugin", ""); // 1 = xlSourceSheet, 0 = xlHtmlStatic
+    pobj.Publish(true);
+    pobj.AutoRepublish = false;
+  } catch (e) {
+    var fo = fso.CreateTextFile(filename, true, true);
+    fo.Write(e.message);
+    fo.Close();
+    fo = null;
+  }
+}
+
+function escape(sheetName) {
+  var escape = sheetName.replace(/%/g, "%25").replace(/</g, "%3C").replace(/>/, "%3E").replace(/\|/, "%7C");
+  switch (escape.toLowerCase().substr(0, 3)) {
+  case "CON", "AUX", "NUL":
+    if (escape.length == 3) {
+      escape = "%" + escape;
+    }
+    break;
+  case "COM", "LPT":
+    if (escape.length == 4 && !isNaN(escape.substr(3, 1))) {
+      escape = "%" + escape;
+    }
+    break;
+  }
+  return escape;
+}
+
+function get_PluginEvent() {
+  return "FILE_FOLDER_PACK_UNPACK";
+}
+
+function get_PluginDescription() {
+  return "Display the text content of MS Excel files";
+}
+
+function get_PluginFileFilters() {
+  return "\\.xls(\\..*)?$;\\.xlsx(\\..*)?$;\\.xlsm(\\..*)?$;\\.xlsb(\\..*)?;\\.xla(\\..*)?$;\\.xlax(\\..*)?$;\\.xltx(\\..*)?$;\\.xltm(\\..*)?$";
+}
+
+function get_PluginIsAutomatic() {
+  return true;
+}
+
+function get_PluginUnpackedFileExtension() {
+  return ".tsv";
+}
+
+function get_PluginExtendedProperties() {
+  return "ProcessType=Content Extraction;FileType=MS-Excel;MenuCaption=MS-Excel";
+}
+
+function PluginOnEvent(eventType, obj) {
+  mergeApp = obj;
+}
+
+function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+  var fo = fso.CreateTextFile(fileDst, true, true);
+  var xl;
+  try {
+    xl = new ActiveXObject("Excel.Application");
+  } catch (e) {}
+  if (!xl) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Excel"));
+  }
+  xl.EnableEvents = false;
+  xl.DisplayAlerts = false;
+
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) == "lnk") {
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSExcelFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    }
+  }
+  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null,null, -1);
+  if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
+    fo.WriteLine("[Document Properties]");
+    writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
+    fo.WriteLine("");
+  }
+ 
+  if (regRead(REGKEY_PATH + "CompareNames", true)) {
+    fo.WriteLine("[Names]");
+    writeObjectProperties(fo, wbk.Names);
+    fo.WriteLine("");
+  }
+ 
+  for (var it = new Enumerator(wbk.Worksheets); !it.atEnd(); it.moveNext()) {
+    var sht = it.item();
+    if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
+      fo.WriteLine("[" + sht.Name + "]");
+      writeCellValues(fo, sht);
+      fo.WriteLine("");
+    }
+    if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
+      fo.WriteLine("[" + sht.Name + ".Formulas]");
+      writeFormulas(fo, sht);
+      fo.WriteLine("");
+    }
+    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+      fo.WriteLine("[" + sht.Name + ".Shapes]");
+      ungroupShapes(sht);
+      writeTextsInShapes(fo, sht);
+      fo.WriteLine("");
+    }
+    if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
+      fo.WriteLine("[" + sht.Name + ".HeadersAndFooters]");
+      writeHeadersAndFooters(fo, sht);
+      fo.WriteLine("");
+    }
+  }
+ 
+  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+    if (!isAccessibleVBAProject(wbk)) {
+      fo.WriteLine(translate(MsgCannotGetMacros));
+    } else {
+      for (var it = new Enumerator(wbk.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
+      }
+    }
+  }
+  sht = null;
+
+  wbk.Saved = true;
+  wbk.Close();
+  wbk = null;
+  xl.Quit();
+  xl = null;
+  fo.Close();
+  fo = null;
+
+  pbChanged = true;
+  pSubcode = 0;
+  
+  CollectGarbage();
+
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+}
+
+function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+  return false;
+}
+
+function IsFolder(file) {
+  return regRead(REGKEY_PATH + "UnpackToFolder", false);
+}
+
+function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
+  if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
+  var xl;
+  try {
+    xl = new ActiveXObject("Excel.Application");
+  } catch (e) {}
+  if (!xl) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Excel"));
+  }
+  xl.EnableEvents = false;
+  xl.DisplayAlerts = false;
+
+  var backgroundChecking = xl.ErrorCheckingOptions.BackgroundChecking;
+  xl.ErrorCheckingOptions.BackgroundChecking = false;
+
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSExcelFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    }
+  }
+  var wbk = xl.Workbooks.Open(fileSrc2, regRead(REGKEY_PATH + "UpdateLinks", 0), null, null, null, null, null, null, null, null, null, null, null, -1);
+
+  digit = String(wbk.Worksheets.Count).length;
+  if (digit <= 0) { digit = 1; }
+  var zf = Array(digit + 1).join("0");
+ 
+  if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
+    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")DocumentProperties.txt"), true, true);
+    writeObjectProperties(fo, wbk.BuiltinDocumentProperties);
+    fo.Close();
+    fo = null;
+  }
+ 
+  if (regRead(REGKEY_PATH + "CompareNames", true)) {
+    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + zf + ")Names.txt"), true, true);
+    writeObjectProperties(fo, wbk.Names);
+    fo.Close();
+    fo = null;
+  }
+ 
+  var No = 1;
+  for (var it = new Enumerator(wbk.Worksheets); !it.atEnd(); it.moveNext()) {
+    var sht = it.item();
+    No = zf + No;
+    No = No.substr(No.length - digit, digit);
+    if (regRead(REGKEY_PATH + "CompareCellValues", true)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".tsv"), true, true);
+      writeCellValues(fo, sht);
+      fo.Close();
+      fo = null;
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareFormulas", false)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Formulas.txt"), true, true);
+      writeFormulas(fo, sht);
+      fo.Close();
+      fo = null;
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_Shapes.txt"), true, true);
+      ungroupShapes(sht);
+      writeTextsInShapes(fo, sht);
+      fo.Close();
+      fo = null;
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareHeadersAndFooters", true)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + "_HeadersAndFooters.txt"), true, true);
+      writeHeadersAndFooters(fo, sht);
+      fo.Close();
+      fo = null;
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareWorksheetsAsImage", true)) {
+      saveSheetAsImage(sht, fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name)));
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareWorksheetsAsHTML", false)) {
+      saveSheetAsHTML(sht, fso.BuildPath(folderDst, "(" + No + ")" + escape(sht.Name) + ".html"));
+    }
+    No = parseInt(No) + 1;
+    sht = null;
+  }
+  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+    if (!isAccessibleVBAProject(wbk)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
+      fo.WriteLine(translate(MsgCannotGetMacros));
+      fo.Close();
+      fo = null;
+    } else {
+      for (var it = new Enumerator(wbk.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+      }
+    }
+  }
+
+  wbk.Saved = true;
+  wbk.Close();
+  wbk = null;
+  xl.ErrorCheckingOptions.BackgroundChecking = backgroundChecking;
+  xl.Quit();
+  xl = null;
+
+  pbChanged = true;
+  pSubcode = 0;
+  
+  CollectGarbage();
+
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+}
+
+function PackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
+  return false;
+}
+
+function translate(text) {
+  var re = /\${([^}]+)}/g;
+  var matches;
+  while ((matches = re.exec(text)) != null) {
+    text = text.replace(matches[0], mergeApp.Translate(matches[1]));
+  }
+  return text;
+}
+
+function ShowSettingsDialog() {
+  var tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".hta");
+  var xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".xml");
+  var tfile = fso.CreateTextFile(tname, true, true);
+  tfile.Write(translate(getResource("dialog1")));
+  tfile.Close();
+  exportSettingsToXMLFile(xmlfile);
+  var mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\System32\\mshta.exe");
+  if (!fso.FileExists(mshta)) {
+    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\SysWOW64\\mshta.exe");
+  }
+  run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
+  importSettingsFromXMLFile(xmlfile);
+  fso.DeleteFile(tname);
+  fso.DeleteFile(xmlfile);
+}
+
+function run(sh, cmd) {
+  sh.Run(cmd, 1, true);
+}
+
+function exportSettingsToXMLFile(filepath) {
+  var key_defvalues = {
+    "UnpackToFolder" : false,
+    "UpdateLinks" : false,
+    "CompareDocumentProperties" : false,
+    "CompareNames" : true,
+    "CompareCellValues" : true,
+    "CompareWorksheetsAsImage" : true,
+    "CompareWorksheetsAsHTML" : false,
+    "ImageWidth" : 1000,
+    "ImageHeight" : 3000,
+    "CompareFormulas" : false,
+    "CompareTextsInShapes" : true,
+    "CompareHeadersAndFooters" : true,
+    "CompareVBAMacros" : true
+  };
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 2, true, -1);
+  var root = doc.createElement("properties");
+  for (var key in key_defvalues) {
+    var el = doc.createElement("property");
+    var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+    var cdata = doc.createCDATASection(val);
+    el.appendChild(cdata);
+    el.setAttribute("name", REGKEY_PATH + key);
+    el.setAttribute("type", typeof val);
+    root.appendChild(el);
+  }
+  doc.appendChild(root);
+  ts.Write(doc.xml);
+  ts.Close();
+}
+
+function importSettingsFromXMLFile(filepath) {
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 1, true, -1);
+  var xml = ts.ReadAll();
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  doc.async = false;
+  doc.loadXML(xml);
+  ts.Close();
+  var nodes = doc.documentElement.childNodes;
+  for (var i = 0; i < nodes.length; i++) {
+    regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+  }
 }
 
 </script>
@@ -776,7 +802,7 @@ function importSettingsFromXMLFile(filepath)
         var ts = fso.OpenTextFile(filepath, 1, true, -1);
         var xml = ts.ReadAll();
         var doc = new ActiveXObject("MSXML2.DOMDocument");
-        doc.async = false
+        doc.async = false;
         doc.loadXML(xml);
         ts.Close();
         var nodes = doc.documentElement.childNodes;
@@ -888,33 +914,35 @@ function importSettingsFromXMLFile(filepath)
       }
 
       function onlyNumeric() {
-        var k = event.keyCode;
+        var ev = event;
+        var k = ev.keyCode;
 
-        if (event.shiftKey) {
+        if (ev.shiftKey) {
           if (k == 37 || k == 39) {
             return true;
           }
-        } else if (event.altKey) {
+        } else if (ev.altKey) {
           return true;
-        } else if (event.ctrlKey) {
+        } else if (ev.ctrlKey) {
           return true;
         } else if (k == 8 || k == 9 || k == 37 || k == 39 || k == 46 /* || k == 144 */
             || (48 <= k && k <= 57) || (96 <= k && k <= 105)) {
           return true;
         }
 
-        event.returnValue = false;
+        ev.returnValue = false;
         return false;
       }
 
       function onPaste() {
-        var paste = (event.clipboardData || window.clipboardData).getData("text");
+        var ev = event;
+        var paste = (ev.clipboardData || window.clipboardData).getData("text");
         if (!paste.match(/^[0-9]{0,4}$/)) {
           paste = "";
-          if (event.preventDefault) {
-              event.preventDefault();
+          if (ev.preventDefault) {
+              ev.preventDefault();
           }
-          event.returnValue = false;
+          ev.returnValue = false;
           return false;
         } else {
           return true;
@@ -923,66 +951,66 @@ function importSettingsFromXMLFile(filepath)
     </script>
   </head>
   <body onload="onload();">
-		<div class="container">
-			<ul>
-				<li>
-					<input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-					<label for="chkUnpackToFolder">${Extract workbook data to multiple files}</label>
-				</li>
-				<li>
-					<input id="chkUpdateLinks" type="checkbox" />
-					<label for="chkUpdateLinks">${Update external references(links)}</label>
-				</li>
-				<li>
-					<input id="chkCompareDocumentProperties" type="checkbox" />
-					<label for="chkCompareDocumentProperties">${Compare document properties}</label>
-				</li>
-				<li>
-					<input id="chkCompareNames" type="checkbox" />
-					<label for="chkCompareNames">${Compare names}</label>
-				</li>
-				<li>
-					<input id="chkCompareCellValues" type="checkbox" />
-					<label for="chkCompareCellValues">${Compare cell values}</label>
-				</li>
-				<li>
-					<input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
-					<label for="chkCompareWorksheetsAsImage">${Compare worksheets as image (very slow)}</label>
-					<ul>
-						<li>
-							<label>${ - Image split size: }</label>
-							<input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
-							<span> x </span>
-							<input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
-						</li>
-					</ul>
-				</li>
-				<li>
-					<input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
-					<label for="chkCompareWorksheetsAsHTML">${Compare worksheets as HTML}</label>
-				</li>
-				<li>
-					<input id="chkCompareFormulas" type="checkbox" />
-					<label for="chkCompareFormulas">${Compare formulas}</label>
-				</li>
-				<li>
-					<input id="chkCompareTextsInShapes" type="checkbox" />
-					<label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
-				</li>
-				<li>
-					<input id="chkCompareHeadersAndFooters" type="checkbox" />
-					<label for="chkCompareHeadersAndFooters">${Compare headers and footers}</label>
-				</li>
-				<li>
-					<input id="chkCompareVBAMacros" type="checkbox" />
-					<label for="chkCompareVBAMacros">${Compare VBA macros}</label>
-				</li>
-			</ul>
-			<div class="btn-container">
-				<input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
-				<input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
-			</div>
-		</div>
+    <div class="container">
+      <ul>
+        <li>
+          <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
+          <label for="chkUnpackToFolder">${Extract workbook data to multiple files}</label>
+        </li>
+        <li>
+          <input id="chkUpdateLinks" type="checkbox" />
+          <label for="chkUpdateLinks">${Update external references(links)}</label>
+        </li>
+        <li>
+          <input id="chkCompareDocumentProperties" type="checkbox" />
+          <label for="chkCompareDocumentProperties">${Compare document properties}</label>
+        </li>
+        <li>
+          <input id="chkCompareNames" type="checkbox" />
+          <label for="chkCompareNames">${Compare names}</label>
+        </li>
+        <li>
+          <input id="chkCompareCellValues" type="checkbox" />
+          <label for="chkCompareCellValues">${Compare cell values}</label>
+        </li>
+        <li>
+          <input id="chkCompareWorksheetsAsImage" type="checkbox" onclick="chkCompareWorksheetsAsImage_onclick();"/>
+          <label for="chkCompareWorksheetsAsImage">${Compare worksheets as image (very slow)}</label>
+          <ul>
+            <li>
+              <label>${ - Image split size: }</label>
+              <input id="txtImageWidth"  type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
+              <span> x </span>
+              <input id="txtImageHeight" type="text" size="5" maxlength="4" onkeyDown="return onlyNumeric();" onpaste="return onPaste();" />
+            </li>
+          </ul>
+        </li>
+        <li>
+          <input id="chkCompareWorksheetsAsHTML" type="checkbox" onclick="chkCompareWorksheetsAsHTML_onclick();"/>
+          <label for="chkCompareWorksheetsAsHTML">${Compare worksheets as HTML}</label>
+        </li>
+        <li>
+          <input id="chkCompareFormulas" type="checkbox" />
+          <label for="chkCompareFormulas">${Compare formulas}</label>
+        </li>
+        <li>
+          <input id="chkCompareTextsInShapes" type="checkbox" />
+          <label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
+        </li>
+        <li>
+          <input id="chkCompareHeadersAndFooters" type="checkbox" />
+          <label for="chkCompareHeadersAndFooters">${Compare headers and footers}</label>
+        </li>
+        <li>
+          <input id="chkCompareVBAMacros" type="checkbox" />
+          <label for="chkCompareVBAMacros">${Compare VBA macros}</label>
+        </li>
+      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
+    </div>
   </body>
 </html>
 ]]>

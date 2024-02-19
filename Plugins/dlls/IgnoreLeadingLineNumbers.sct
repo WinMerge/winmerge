@@ -19,107 +19,81 @@
   <method name="ShowSettingsDialog"/>
 </implements>
 
-<script language="VBS">
+<script language="JScript">
 
-'+----------------------------------------------------------------------+
-'| This is a plugin for WinMerge <www.winmerge.org>.                    |
-'| It will ignores leading line numbers in text files.                  |
-'| Copyright (C) 2007 by Tim Gerundt                                    |
-'+----------------------------------------------------------------------+
-'| This program is free software; you can redistribute it and/or modify |
-'| it under the terms of the GNU General Public License as published by |
-'| the Free Software Foundation; either version 2 of the License, or    |
-'| (at your option) any later version.                                  |
-'|                                                                      |
-'| This program is distributed in the hope that it will be useful,      |
-'| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
-'| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
-'| GNU General Public License for more details.                         |
-'|                                                                      |
-'| You should have received a copy of the GNU General Public License    |
-'| along with this program; if not, write to the Free Software          |
-'| Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.            |
-'+----------------------------------------------------------------------+
-Option Explicit
+/*
++----------------------------------------------------------------------+
+| This is a plugin for WinMerge <www.winmerge.org>.                    |
+| It will ignores leading line numbers in text files.                  |
+| Copyright (C) 2007 by Tim Gerundt                                    |
++----------------------------------------------------------------------+
+| This program is free software; you can redistribute it and/or modify |
+| it under the terms of the GNU General Public License as published by |
+| the Free Software Foundation; either version 2 of the License, or    |
+| (at your option) any later version.                                  |
+|                                                                      |
+| This program is distributed in the hope that it will be useful,      |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
+| GNU General Public License for more details.                         |
+|                                                                      |
+| You should have received a copy of the GNU General Public License    |
+| along with this program; if not, write to the Free Software          |
+| Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.            |
++----------------------------------------------------------------------+
+*/
 
-Function get_PluginEvent()
-  get_PluginEvent = "BUFFER_PREDIFF"
-End Function
+function get_PluginEvent() {
+  return "BUFFER_PREDIFF";
+}
 
-Function get_PluginDescription()
-  get_PluginDescription = "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-End Function
+function get_PluginDescription() {
+  return "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files).";
+}
 
-Function get_PluginFileFilters()
-  get_PluginFileFilters = "\.nc$"
-End Function
+function get_PluginFileFilters() {
+  return "\\.nc$";
+}
 
-Function get_PluginIsAutomatic()
-  get_PluginIsAutomatic = True
-End Function
+function get_PluginIsAutomatic() {
+  return true;
+}
 
-Function get_PluginExtendedProperties()
-  get_PluginExtendedProperties = "MenuCaption=Ignore Leading Line Numbers"
-End Function
+function get_PluginExtendedProperties() {
+  return "MenuCaption=Ignore Leading Line Numbers";
+}
 
-Function SafeUBound(ary)
-  On Error Resume Next
-  SafeUBound = -1
-  SafeUBound = UBound(ary)
-End Function
-
-Function SplitLines(text, eol)
-	Dim re, matches
-	Set re = New RegExp
-	re.Global = False
-	re.IgnoreCase = False
-	re.Pattern = "\r\n|\n|\r"
-	Set matches = re.Execute(text)
-	If matches.Count > 0 Then
-		eol = matches(0).Value
-	End If
-	SplitLines = Split(text, eol)
-End Function
-
-Function PrediffBufferW(text, size, bChanged)
-  Dim sTemp, bLineHasStarted
-  Dim i, l, sChar, lines, eol, line
+function PrediffBufferW(text, size, bChanged) {
   
-  bChanged = False
+  bChanged = false;
 
-  lines = SplitLines(text, eol)
-  For l = 0 To SafeUBound(lines)
-    bLineHasStarted = True
-    sTemp = ""
-    line = lines(l)
-    For i = 0 To Len(line) - 1 'For all chars...
-      sChar = Mid(line, i + 1, 1)
-      Select Case sChar
-        Case "N", "n", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" 'N or number...
-          If (bLineHasStarted = True) Then 'If line has started...
-            sChar = ""
-            bChanged = True
-          End If
-        Case Else
-          bLineHasStarted = False
-      End Select
-      sTemp = sTemp & sChar
-    Next
-    lines(l) = sTemp
-  Next
+  var matches = text.match(/\r\n|\n|\r/);
+  var eol = (matches != null) ? matches[0] : "\r\n";
+  var lines = text.split(eol);
+  for (var l = 0; l < lines.length; l++) {
+    var line = lines[l].replace(/^[Nn0123456789]+/, '');
+    if (line !== lines[l]) {
+      lines[l] = line;
+      bChanged = true;
+    }
+  }
   
-  If (bChanged = True) Then 'If text has changed...
-    text = Join(lines, eol)
-    size = Len(text)
-  End If
-  PrediffBufferW = True
-End Function
+  if (bChanged) { // if text has changed...
+    text = lines.join(eol);
+    size = text.length;
+  }
 
-Function ShowSettingsDialog()
-    ShowSettingsDialog = False
-    Err.Raise 30001, , "Not Implemented"
-End Function
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, text);
+  result.Add(2, size);
+  result.Add(3, bChanged);
+  return result.Items();
+}
 
+function ShowSettingsDialog() {
+  throw new Error(30001, "Not Implemented");
+}
 
 </script>
 </scriptlet>

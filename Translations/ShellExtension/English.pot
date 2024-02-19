@@ -5,15 +5,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge Shell Extension\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-02-19 00:07+0000\n"
+"POT-Creation-Date: 2024-02-12 16:24+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1252\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: English\n"
-"X-Poedit-SourceCharset: CP1252\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages/\n"
 
 #. AFX_TARG_*
@@ -26,12 +26,6 @@ msgstr ""
 #: ShellExtension.rc:20
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
-msgstr ""
-
-#. Codepage
-#: ShellExtension.rc:21
-#, c-format
-msgid "1252"
 msgstr ""
 
 #: ShellExtension.rc:111

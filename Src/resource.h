@@ -80,6 +80,7 @@
 #define IDD_EDIT_FIND                   282
 #define IDD_EDIT_MARKER                 283
 #define IDD_EDIT_REPLACE                284
+#define IDD_INPUTBOX                    285
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -282,7 +283,7 @@
 #define IDC_PLUGIN_ADDPIPE              1095
 #define IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE 1096
 #define IDC_UNPACKER_COMBO              1097
-#define IDC_PREDIFFER_COMBO              1098
+#define IDC_PREDIFFER_COMBO             1098
 #define IDC_SELECT_UNPACKER             1099
 #define IDC_SELECT_PREDIFFER            1100
 #define IDC_EXT_EDITOR_BROWSE           1101
@@ -603,7 +604,7 @@
 #define IDC_PATH0_READONLY              1606
 #define IDC_PATH1_READONLY              1607
 #define IDC_PATH2_READONLY              1608
-#define IDC_AUTO_RELOAD_MODIFIED_FILES            1609
+#define IDC_AUTO_RELOAD_MODIFIED_FILES  1609
 #define IDC_MARKER0_COLOR_LABEL         1611
 #define IDC_MARKER1_COLOR_LABEL         1612
 #define IDC_MARKER2_COLOR_LABEL         1613
@@ -617,6 +618,8 @@
 #define IDC_PROPS_DEL                   1621
 #define IDC_PROPS_DELALL                1622
 #define IDC_PROPS_LISTVIEW              1623
+#define IDC_INPUTBOX_PROMPT             1633
+#define IDC_INPUTBOX_EDIT               1634
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1489,7 +1492,7 @@
 #define IDS_AUTOCOMPLETE_DISABLED       43142
 #define IDS_AUTOCOMPLETE_FILE_SYS       43143
 #define IDS_AUTOCOMPLETE_MRU            43144
-#define IDS_FRHED_NOTINSTALLED          43229
+#define IDS_NOTINSTALLED                43229
 #define IDS_AUTO_MERGE                  43241
 #define IDS_CODEPAGE_MERGED             43244
 #define IDS_CODEPAGE_CONFLICT           43245
@@ -1655,15 +1658,14 @@
 #define IDS_WEBPAGE_COMPARING           44539
 #define IDS_WEBPAGE_ZOOM                44540
 
-
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        258
+#define _APS_NEXT_RESOURCE_VALUE        287
 #define _APS_NEXT_COMMAND_VALUE         34194
-#define _APS_NEXT_CONTROL_VALUE         1632
+#define _APS_NEXT_CONTROL_VALUE         1635
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

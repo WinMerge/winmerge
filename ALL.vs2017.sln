@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{DC3B258E-4
 		BuildManual.cmd = BuildManual.cmd
 		CreateRelease.cmd = CreateRelease.cmd
 		DownloadDeps.cmd = DownloadDeps.cmd
-		ExpandEnvironmenStrings.vbs = ExpandEnvironmenStrings.vbs
+		ExpandEnvironmenStrings.js = ExpandEnvironmenStrings.js
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 		runastyle.bat = runastyle.bat
@@ -165,9 +165,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 		Externals\winimerge\SetVersion.cmd = Externals\winimerge\SetVersion.cmd
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBS Scripts", "VBS Scripts", "{0AB212AD-1F11-4BAB-BAD5-8BFC4435F453}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0AB212AD-1F11-4BAB-BAD5-8BFC4435F453}"
 	ProjectSection(SolutionItems) = preProject
-		Externals\winimerge\ExpandEnvironmenStrings.vbs = Externals\winimerge\ExpandEnvironmenStrings.vbs
+		Externals\winimerge\ExpandEnvironmenStrings.js = Externals\winimerge\ExpandEnvironmenStrings.js
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic", "Externals\crystaledit\Sample\SampleStatic.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
@@ -308,10 +308,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4407E7D0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{88571237-56AD-421A-8F88-26983BDD8D6C}"
 	ProjectSection(SolutionItems) = preProject
-		Tools\Scripts\CheckMenuResources.vbs = Tools\Scripts\CheckMenuResources.vbs
+		Tools\Scripts\CheckMenuResources.js = Tools\Scripts\CheckMenuResources.js
 		Tools\Scripts\CheckTranslationStrings.cmd = Tools\Scripts\CheckTranslationStrings.cmd
 		Tools\Scripts\CheckTranslationStrings.ps1 = Tools\Scripts\CheckTranslationStrings.ps1
-		Tools\Scripts\CheckUnusedResources.vbs = Tools\Scripts\CheckUnusedResources.vbs
+		Tools\Scripts\CheckUnusedResources.js = Tools\Scripts\CheckUnusedResources.js
 		Tools\Scripts\README.md = Tools\Scripts\README.md
 		Tools\Scripts\UpdateTranslations.bat = Tools\Scripts\UpdateTranslations.bat
 	EndProjectSection
@@ -353,7 +353,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "q", "q", "{E4EF583F-653D-44
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginTests", "PluginTests", "{9738877F-0B01-4C37-855E-7465C5AB7B56}"
 	ProjectSection(SolutionItems) = preProject
-		Testing\PluginTests\PluginTests.vbs = Testing\PluginTests\PluginTests.vbs
+		Testing\PluginTests\PluginTests.js = Testing\PluginTests\PluginTests.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yq", "yq", "{9914C8A9-0DEA-4922-9065-57034EE5263D}"

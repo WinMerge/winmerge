@@ -1,801 +1,724 @@
 <scriptlet>
 <implements type="Automation" id="dispatcher">
-	<property name="PluginEvent">
-		<get/>
-	</property>
-	<property name="PluginDescription">
-		<get/>
-	</property>
-	<property name="PluginExtendedProperties">
-		<get/>
-	</property>
-	<property name="PluginFileFilters">
-		<get/>
-	</property>
-	<property name="PluginArguments">
-		<get/>
-		<put/>
-	</property>
-	<property name="PluginVariables">
-		<get/>
-		<put/>
-	</property>
-	<method name="PluginOnEvent"/>
-	<method name="ExecFilterCommand"/>
-	<method name="MakeUpper"/>
-	<method name="MakeLower"/>
-	<method name="RemoveDuplicates"/>
-	<method name="CountDuplicates"/>
-	<method name="SortAscending"/>
-	<method name="SortDescending"/>
-	<method name="ReverseColumns"/>
-	<method name="ReverseLines"/>
-	<method name="SelectColumns"/>
-	<method name="SelectLines"/>
-	<method name="Replace" internalName="ReplaceText"/>
-	<method name="Tokenize"/>
-	<method name="Trim"/>
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginArguments">
+    <get/>
+    <put/>
+  </property>
+  <property name="PluginVariables">
+    <get/>
+    <put/>
+  </property>
+  <method name="PluginOnEvent"/>
+  <method name="ExecFilterCommand"/>
+  <method name="MakeUpper"/>
+  <method name="MakeLower"/>
+  <method name="RemoveDuplicates"/>
+  <method name="CountDuplicates"/>
+  <method name="SortAscending"/>
+  <method name="SortDescending"/>
+  <method name="ReverseColumns"/>
+  <method name="ReverseLines"/>
+  <method name="SelectColumns"/>
+  <method name="SelectLines"/>
+  <method name="Replace" internalName="ReplaceText"/>
+  <method name="Tokenize"/>
+  <method name="Trim"/>
 </implements>
-
-<script language="VBS">
-Option Explicit
-
-Const PluginRegKeyPath = "Plugins\editor addin.sct/"
-
-Dim wsh: Set wsh = CreateObject("WScript.Shell")
-Dim arguments: arguments = ""
-Dim variables: variables = Array()
-Dim mergeApp
-
-Function get_PluginEvent()
-	get_PluginEvent = "EDITOR_SCRIPT"
-End Function
-
-Function get_PluginDescription()
-	get_PluginDescription = "Basic text functions for the context menu"
-End Function
-
-Function get_PluginFileFilters()
-	get_PluginFileFilters= ".*"
-End Function
-
-Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = _
-	"GenerateUnpacker;" & _
-	"MakeUpper.MenuCaption=Make Uppercase;" & _
-	"MakeUpper.Description=Make characters uppercase;" & _
-	"MakeLower.MenuCaption=Make Lowercase;" & _
-	"MakeLower.Description=Make characters lowercase;" & _
-	"RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" & _
-	"RemoveDuplicates.Description=Remove duplicate lines;" & _
-	"CountDuplicates.MenuCaption=Count Duplicate Lines;" & _
-	"CountDuplicates.Description=Count duplicate lines;" & _
-	"SortAscending.MenuCaption=Sort Lines Ascending;" & _
-	"SortAscending.Description=Sort lines ascending;" & _
-	"SortDescending.MenuCaption=Sort Lines Descending;" & _
-	"SortDescending.Description=Sort lines descending;" & _
-	"ExecFilterCommand.MenuCaption=Apply Filter Command...;" & _
-	"ExecFilterCommand.Description=Apply filter command. " & vbCrLf & _
-		"Usage: ExecFilterCommand COMMAND" & vbCrLf & _
-		"  COMMAND - command to execute. %1 in the command is replaced with the filename.;" & _
-	"ExecFilterCommand.ArgumentsRequired;" & _
-	"Tokenize.MenuCaption=Tokenize...;" & _
-	"Tokenize.Description=Tokenize selection. " & vbCrLf & _
-		"Usage: Tokenize PATTERNS" & vbCrLf & _
-		"  PATTERNS - regular expression for tokenizing. (e.g. [^\w]+);" & _
-	"Tokenize.ArgumentsRequired;" & _
-	"Tokenize.Arguments=[^\w]+;" & _
-	"Trim.MenuCaption=Trim Spaces;" & _
-	"Trim.Description=Trim spaces;" & _
-	"SelectColumns.MenuCaption=Select Columns...;" & _
-	"SelectColumns.Description=Select some columns." & vbCrLf & _
-		"Usage: SelectColumns RANGES" & vbCrLf & _
-		"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS" & vbCrLf & _
-		"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)" & vbCrLf & _
-		"  PATTERNS - regular expression" & vbCrLf & _
-		"  -v - select non-matching columns" & vbCrLf & _
-		"  -i - ignore case" & vbCrLf & _
-		"  -g - enable global flag" & vbCrLf & _
-		"  -e - use PATTERNS for matching;" & _
-	"SelectColumns.ArgumentsRequired;" & _
-	"SelectLines.MenuCaption=Select Lines...;" & _
-	"SelectLines.Description=Select some lines." & vbCrLf & _
-		"Usage: SelectLines RANGES" & vbCrLf & _
-		"   or: SelectLines [-v] [-i] -e PATTERNS" & vbCrLf & _
-		"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)" & vbCrLf & _
-		"  PATTERNS - regular expression" & vbCrLf & _
-		"  -v - select non-matching lines" & vbCrLf & _
-		"  -i - ignore case" & vbCrLf & _
-		"  -e - use PATTERNS for matching;" & _
-	"SelectLines.ArgumentsRequired;" & _
-	"ReverseColumns.MenuCaption=Reverse Columns;" & _
-	"ReverseColumns.Description=Reverse columns;" & _
-	"ReverseLines.MenuCaption=Reverse Lines;" & _
-	"ReverseLines.Description=Reverse lines;" & _
-	"Replace.MenuCaption=Replace...;" & _
-	"Replace.Description=Replace text with another text." & vbCrLf & _
-		"Usage: Replace [-i] [-e] FIND REPLACE" & vbCrLf & _
-		"  FIND    - text to find" & vbCrLf & _
-		"  REPLACE - text to replace" & vbCrLf & _
-		"  -i - ignore case (only for -e)" & vbCrLf & _
-		"  -e - treat the specified text as a regular expression;" & _
-	"Replace.ArgumentsRequired;"
-End Function
-
-Function get_PluginArguments()
-	get_PluginArguments = arguments
-End Function
-
-Sub put_PluginArguments(NewValue)
-	arguments = NewValue
-End Sub
-
-Function get_PluginVariables()
-	get_PluginVariables = Join(variables, Chr(0))
-End Function
-
-Sub put_PluginVariables(NewValue)
-	variables = Split(NewValue, Chr(0))
-End Sub
-
-Function regRead(Key, DefaultValue)
-	regRead = DefaultValue
-	On Error Resume Next
-	If IsEmpty(mergeApp) Then
-		regRead = wsh.RegRead("HKCU\Software\Thingamahoochie\WinMerge\" & Replace(Key, "/", "\"))
-	Else
-		regRead = mergeApp.GetOption(Key, DefaultValue)
-	End If
-End Function
-
-Sub regWrite(Key, Value, TypeNm)
-	Dim tmp
-	On Error Resume Next
-	If IsEmpty(mergeApp) Then
-		wsh.RegWrite "HKCU\Software\Thingamahoochie\WinMerge\" &  Replace(Key, "/", "\"), Value, TypeNm
-	Else
-		If TypeNm = "REG_DWORD" Then
-			tmp = CLng(Value)
-		Else
-			tmp = CStr(Value)
-		End If
-		mergeApp.SaveOption Key, tmp
-	End If
-End Sub
-
-Function ReplaceVariables(str)
-	Dim newstr
-	Dim pos
-	Dim foundpos
-	Dim ch
-	pos = 1
-	Do While True
-		foundpos = InStr(pos, str, "%")
-		If foundpos > 0 Then
-			ch = Mid(str, foundpos + 1, 1)
-			If ch = "%" Then
-				newstr = newstr & "%"
-				pos = foundpos + 2
-			ElseIf IsNumeric(ch) Then
-				newstr = newstr & Mid(str, pos, foundpos - pos)
-				If CLng(ch) <= SafeUBound(variables) Then
-					newstr = newstr & variables(CLng(ch))
-				End If
-				pos = foundpos + 2
-			Else
-				newstr = newstr & Mid(str, pos, foundpos - pos + 1)
-				pos = foundpos + 1
-			End If
-		Else
-			newstr = newstr & Mid(str, pos)
-			Exit Do
-		End If
-	Loop
-	ReplaceVariables = newstr
-End Function
-
-Function IsFirstArgumentEmpty()
-	IsFirstArgumentEmpty = (Trim(arguments) = "")
-End Function
-
-Function SafeUBound(ary)
-	SafeUBound = -1
-	On Error Resume Next
-	SafeUBound = UBound(ary)
-End Function
-
-Function ParseArguments(args)
-	Dim ary()
-	Dim ch
-	Dim inQuotes
-	Dim token
-	Dim argsLen
-	Dim i, j
-	argsLen = Len(args)
-	For i = 1 To argsLen
-		ch = Mid(args, i, 1)
-		If Not inQuotes Then
-			If ch = " " Or ch = vbTab Then
-				If len(token) > 0 Then
-					ReDim Preserve ary(j)
-					ary(j) = token
-					j = j + 1
-					token = ""
-				End If
-			ElseIf ch = """" Then
-				inQuotes = True
-			Else
-				token = token & ch
-			End If
-		Else
-			If ch = """" Then
-				If i + 1 <= argsLen Then
-					If Mid(args, i + 1, 1) = """" Then
-						token = token & ch
-					End if
-				End If
-				inQuotes = False 
-			Else
-				token = token & ch
-			End If
-		End If
-	Next
-	If Len(token) > 0 Then
-		ReDim Preserve ary(j)
-		ary(j) = token
-		j = j + 1
-		token = ""
-	End If
-	ParseArguments = ary 
-End Function
-
-Function ParseRanges(rangeText)
-	Dim i, j
-	Dim ary, ary2, aryRanges()
-	Dim rangeFrom, rangeTo
-	ary = Split(rangeText, ",")
-	j = 0
-	For i = 0 To SafeUBound(ary)
-		ary2 = Split(ary(i), "-")
-		rangeFrom = ""
-		If SafeUBound(ary2) >= 0 Then
-			rangeFrom = Trim(ary2(0))
-		End If
-		rangeTo = rangeFrom
-		If SafeUBound(ary2) > 0 Then
-			rangeTo = Trim(ary2(1))
-		End If
-		If IsNumeric(rangeFrom) Or IsNumeric(rangeTo) Then
-			If Not IsNumeric(rangeFrom) Then rangeFrom = 1
-			If Not IsNumeric(rangeTo)   Then rangeTo   = 1000000000
-			If CDbl(rangeFrom) < 1 Or CDbl(rangeFrom) > 1000000000 Then rangeFrom = 1
-			If CDbl(rangeTo)   < 1 Or CDbl(rangeTo)   > 1000000000 Then rangeTo   = 1
-			If CDbl(rangeFrom) > CDbl(rangeTo) Then rangeTo = rangeFrom
-			Redim preserve aryRanges(j)
-			aryRanges(j) = Array(CLng(rangeFrom), CLng(rangeTo))
-			j = j + 1
-		End If
-	Next
-	ParseRanges = aryRanges
-End Function
-
-Function ParseSelectColumnsLinesArguments(args, invert)
-	Dim rangesOrRegExps()
-	Dim argAry
-	Dim i, j
-	Dim re
-	Dim isOption
-	Set re = Nothing
-	argAry = ParseArguments(args)
-	invert = False
-	For i = 0 To SafeUBound(argAry)
-		isOption = False
-		If Len(argAry(i)) >= 2 Then
-			Select Case Left(argAry(i), 1)
-			Case "-", "/"
-				Select Case Mid(argAry(i), 2, 1)
-				Case "e", "i", "g"
-					isOption = True
-					If re Is Nothing Then
-						Set re = New RegExp
-						Redim Preserve rangesOrRegExps(j)
-						Set rangesOrRegExps(j) = re
-						j = j + 1
-					End If
-					If InStr(argAry(i), "i") > 0 Then
-						re.IgnoreCase = True
-					End If
-					If InStr(argAry(i), "g") > 0 Then
-						re.Global  = True
-					End If
-				Case "v"
-					isOption = True
-					invert = True
-				End Select
-			End Select
-		End If
-		If Not isOption Then
-			If Not (re Is Nothing) Then
-				re.Pattern = argAry(i)
-				Set re = Nothing
-			Else
-				Redim Preserve rangesOrRegExps(j)
-				rangesOrRegExps(j) = ParseRanges(argAry(i))
-				If SafeUBound(rangesOrRegExps(j)) < 0 Then
-					Set rangesOrRegExps(j) = New RegExp
-					rangesOrRegExps(j).Pattern = argAry(i)
-				End If
-				j = j + 1
-			End If
-		End If
-	Next
-	ParseSelectColumnsLinesArguments = rangesOrRegExps
-End Function
-
-Function ParseReplaceArguments(args, regex, ignoreCase)
-	Dim patterns()
-	Dim argAry
-	Dim i, j
-	Dim re
-	Dim isOption
-	Set re = Nothing
-	argAry = ParseArguments(args)
-	regex = False
-	ignoreCase = False
-	For i = 0 To SafeUBound(argAry)
-		isOption = False
-		If Len(argAry(i)) >= 2 Then
-			Select Case Left(argAry(i), 1)
-			Case "-", "/"
-				Select Case Mid(argAry(i), 2, 1)
-				Case "e", "i"
-					isOption = True
-					regex = True
-					If InStr(argAry(i), "i") > 0 Then
-						ignoreCase = True
-					End If
-				End Select
-			End Select
-		End If
-		If Not isOption Then
-			Redim Preserve patterns(j)
-			patterns(j) = argAry(i)
-			j = j + 1
-		End If
-	Next
-	ParseReplaceArguments = patterns
-End Function
-
-Function Unescape(text)
-	Dim textLen
-	Dim i
-	Dim ch
-
-	textLen = Len(text)
-	i = 1
-	Do While i <= textLen
-		ch = Mid(text, i, 1)
-		Select Case ch
-		Case "\"
-			If i <= textLen - 1 Then
-				i = i + 1
-				ch = Mid(text, i, 1)
-				Select Case ch
-				Case "a"
-					Unescape = Unescape & Chr(&H07)
-				Case "b"
-					Unescape = Unescape & Chr(&H08)
-				Case "t"
-					Unescape = Unescape & Chr(&H09)
-				Case "n"
-					Unescape = Unescape & Chr(&H0A)
-				Case "v"
-					Unescape = Unescape & Chr(&H0B)
-				Case "f"
-					Unescape = Unescape & Chr(&H0C)
-				Case "r"
-					Unescape = Unescape & Chr(&H0D)
-				Case "\"
-					Unescape = Unescape & "\"
-				Case Else
-					Unescape = Unescape & "\" & ch
-				End Select
-			Else
-				Unescape = Unescape & ch
-			End If
-		Case Else
-			Unescape = Unescape & ch
-		End Select
-		i = i + 1
-	Loop
-End Function
-
-Function SplitLines(text, eol)
-	Dim re, matches
-	Set re = New RegExp
-	re.Global = False
-	re.IgnoreCase = False
-	re.Pattern = "\r\n|\n|\r"
-	Set matches = re.Execute(text)
-	If matches.Count > 0 Then
-		eol = matches(0).Value
-	End If
-	SplitLines = Split(text, eol)
-End Function
-
-Sub PluginOnEvent(eventType, obj)
-	Set mergeApp = obj
-End Sub
-
-' transformation functions
-Function MakeUpper(Text)
-	MakeUpper = UCase(Text)
-End Function
-
-Function MakeLower(Text)
-	MakeLower = LCase(Text)
-End Function
-
-Function ExecFilterCommand(Text)
-	Dim cmd
-	If IsFirstArgumentEmpty() Then
-		cmd = regRead(PluginRegKeyPath & "ExecFilterCommand", "")
-		cmd = InputBox("Enter filter command", "ExecFilterCommand", cmd)
-		If cmd <> "" Then
-			regWrite PluginRegKeyPath & "ExecFilterCommand", cmd, "REG_SZ"
-		End If
-		cmd = ReplaceVariables(cmd)
-	Else
-		cmd = arguments
-	End If
-	If cmd = "" Then
-		Err.Raise 30001, , "Canceled"
-		Exit Function
-	End If
-
-	On Error Resume Next
-
-	Dim path
-	path = wsh.ExpandEnvironmentStrings("%TEMP%\_winmerge_addin_temp_.txt")
-
-	Dim fso
-	Dim ts
-	Set fso = CreateObject("Scripting.FileSystemObject")
-	Set ts = fso.CreateTextFile(path)
-	If ts Is Nothing Then
-		Exit Function
-	End If
-	ts.Write Text
-	ts.Close
-
-	Dim exe
-	Set exe = wsh.Exec("cmd /c type """ & path & """ | " & cmd & " 2>&1")
-	If exe Is Nothing Then
-		MsgBox "Failed to execute the command '" & cmd & "':" & Err.Description 
-		fso.DeleteFile path
-		Exit Function
-	End If
-
-	ExecFilterCommand = ""
-	Do Until exe.StdOut.AtEndOfStream
-		ExecFilterCommand = ExecFilterCommand & exe.StdOut.ReadLine & vbCrLf
-	Loop
-
-	fso.DeleteFile path
-
-End Function
-
-Function SelectColumns(Text)
-	Dim args, ranges, regexpStr
-	Dim matches, m
-	Dim lines, eol, line
-	Dim i, j, k
-	Dim rangesOrRegExps
-	Dim invert
-	If IsFirstArgumentEmpty() Then
-		args = regRead(PluginRegKeyPath & "SelectColumns", "")
-		args = InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectColumns", args)
-		If args <> "" Then
-			regWrite PluginRegKeyPath & "SelectColumns", args, "REG_SZ"
-		End If
-	Else
-		args = arguments
-	End If
-	If args = "" Then
-		Err.Raise 30001, , "Canceled"
-		Exit Function
-	End If
-	lines = SplitLines(Text, eol)
-	rangesOrRegExps = ParseSelectColumnsLinesArguments(args, invert)
-	For i = 0 To SafeUBound(lines)
-		line = ""
-		For j = 0 To SafeUBound(rangesOrRegExps)
-			If IsArray(rangesOrRegExps(j)) Then
-				For k = 0 To SafeUBound(rangesOrRegExps(j))
-					If rangesOrRegExps(j)(k)(0) <= Len(lines(i)) Then
-						line = line & Mid(lines(i), rangesOrRegExps(j)(k)(0), rangesOrRegExps(j)(k)(1) - rangesOrRegExps(j)(k)(0) + 1)
-					End If
-				Next
-			Else
-				If Not invert Then
-					Set matches = rangesOrRegExps(j).Execute(lines(i))
-					For Each m In matches
-						line = line & m.Value
-					Next
-				Else
-					line = line & rangesOrRegExps(j).Replace(lines(i), "")
-				End If
-			End If
-		Next
-		lines(i) = line
-	Next
-	SelectColumns = Join(lines, eol)
-End Function
-
-Function SelectLines(Text)
-	Dim args, ranges
-	Dim matches, rangesOrRegExps
-	Dim lines, newlines(), eol
-	Dim i, j, k, l
-	Dim max
-	Dim matched
-	Dim invert
-	If IsFirstArgumentEmpty() Then
-		args = regRead(PluginRegKeyPath & "SelectLines", "")
-		args = InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)" & vbCrLf & "or regular expression:", "SelectLines", args)
-		If args <> "" Then
-			regWrite PluginRegKeyPath & "SelectLines", args, "REG_SZ"
-		End If
-	Else
-		args = arguments
-	End If
-	If args = "" Then
-		Err.Raise 30001, , "Canceled"
-		Exit Function
-	End If
-	lines = SplitLines(Text, eol)
-	l = 0
-	rangesOrRegExps = ParseSelectColumnsLinesArguments(args, invert)
-	For i = 0 To SafeUBound(rangesOrRegExps)
-		If IsArray(rangesOrRegExps(i)) Then
-			For j = 0 To SafeUBound(rangesOrRegExps(i))
-				max =rangesOrRegExps(i)(j)(1) - 1 
-				If max > SafeUBound(lines) Then max = SafeUBound(lines)
-				For k = rangesOrRegExps(i)(j)(0) - 1 To max
-					If k <= SafeUBound(lines) Then
-						ReDim Preserve newlines(l)
-						newlines(l) = lines(k)
-						l = l + 1
-					End If
-				Next
-			Next
-		Else
-			For j = 0 To SafeUBound(lines)
-				matched = rangesOrRegExps(i).Test(lines(j))
-				If invert Then matched = Not matched
-				If matched Then
-					ReDim Preserve newlines(l)
-					newlines(l) = lines(j)
-					l = l + 1
-				End If
-			Next
-		End If
-	Next
-	If SafeUBound(lines) >= 0 Then
-		If lines(UBound(lines)) = "" Then
-			If SafeUBound(newlines) >= 0 Then
-				If newlines(UBound(newlines)) <> "" Then
-					ReDim Preserve newlines(l)
-					newlines(l) = ""
-					l = l + 1
-				End If
-			End If
-		End If
-	End If
-	SelectLines = Join(newlines, eol)
-End Function
-
-Function ReplaceText(Text)
-	Dim args, patterns
-	Dim i
-	Dim re, regex
-	Dim ignoreCase
-	ReplaceText = Text
-	If IsFirstArgumentEmpty() Then
-		args = regRead(PluginRegKeyPath & "Replace", "")
-		args = InputBox("Enter the search text and replacement text:", "Replace", args)
-		If args <> "" Then
-			regWrite PluginRegKeyPath & "Replace", args, "REG_SZ"
-		End If
-	Else
-		args = arguments
-	End If
-	If args = "" Then
-		Err.Raise 30001, , "Canceled"
-		Exit Function
-	End If
-	patterns = ParseReplaceArguments(args, regex, ignoreCase)
-	If regex Then
-		For i = 0 To SafeUBound(patterns) Step 2
-			Set re = New RegExp
-			re.IgnoreCase = ignoreCase
-			re.Global = True
-			re.Multiline = True
-			re.Pattern = patterns(i)
-			If i + 1 <= UBound(patterns) Then
-				ReplaceText = re.Replace(ReplaceText, Unescape(patterns(i + 1)))
-			Else
-				ReplaceText = re.Replace(ReplaceText, "")
-			End If
-		Next
-	Else
-		For i = 0 To SafeUBound(patterns) Step 2
-			If i + 1 <= UBound(patterns) Then
-				ReplaceText = Replace(ReplaceText, patterns(i), patterns(i + 1))
-			Else
-				ReplaceText = Replace(ReplaceText, patterns(i), "")
-			End If
-		Next
-	End If
-End Function
-
-' port from WinMerge2011
-Function Tokenize(Text)
-	Dim pattern
-	If IsFirstArgumentEmpty() Then
-		pattern = regRead(PluginRegKeyPath & "Tokenize", "")
-		pattern = InputBox("Enter regex to tokenize (e.g. [^\w]+):", "Tokenize", pattern)
-		If pattern <> "" Then
-			regWrite PluginRegKeyPath & "Tokenize", pattern, "REG_SZ"
-		End If
-	Else
-		pattern = arguments
-	End If
-	If pattern = "" Then
-		Err.Raise 30001, , "Canceled"
-		Exit Function
-	End If
-	Dim re
-	Set re = New RegExp
-	re.Global = True
-	re.IgnoreCase = True
-	re.Pattern = pattern
-	Tokenize = re.Replace(Text, vbCrLf)
-End Function
-
-</script>
 
 <script language="JScript">
 
-function RemoveDuplicates(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
-	var newlines = new Array();
-	var dic = {};
-	var lasteol = false;
+var REGKEY_PATH = "Plugins\\editor addin.sct/";
 
-	if (!lines[lines.length - 1]) {
-		lines.pop();
-		lasteol = true;
-	}
-	for (var i = 0, j = 0; i < lines.length; i++) {
-		var line = lines[i];
-		if (typeof dic[line] === 'undefined') {
-			dic[line] = 1;
-			newlines[j] = line;
-			j++;
-		}
-	}
-	if (lasteol)
-		newlines.push("");
-	return newlines.join(eol);
+var wsh = new ActiveXObject("WScript.Shell");
+var pluginArguments = "";
+var variables = new Array();
+var mergeApp;
+
+function get_PluginEvent() {
+  return "EDITOR_SCRIPT";
+}
+
+function get_PluginDescription() {
+  return "Basic text functions for the context menu";
+}
+
+function get_PluginFileFilters() {
+  return ".*";
+}
+
+function get_PluginExtendedProperties() {
+  return "GenerateUnpacker;" + 
+  "MakeUpper.MenuCaption=Make Uppercase;" + 
+  "MakeUpper.Description=Make characters uppercase;" + 
+  "MakeLower.MenuCaption=Make Lowercase;" + 
+  "MakeLower.Description=Make characters lowercase;" + 
+  "RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" + 
+  "RemoveDuplicates.Description=Remove duplicate lines;" + 
+  "CountDuplicates.MenuCaption=Count Duplicate Lines;" + 
+  "CountDuplicates.Description=Count duplicate lines;" + 
+  "SortAscending.MenuCaption=Sort Lines Ascending;" + 
+  "SortAscending.Description=Sort lines ascending;" + 
+  "SortDescending.MenuCaption=Sort Lines Descending;" + 
+  "SortDescending.Description=Sort lines descending;" + 
+  "ExecFilterCommand.MenuCaption=Apply Filter Command...;" + 
+  "ExecFilterCommand.Description=Apply filter command. \r\n" + 
+    "Usage: ExecFilterCommand COMMAND\r\n"+ 
+    "  COMMAND - command to execute. %1 in the command is replaced with the filename.;" + 
+  "ExecFilterCommand.ArgumentsRequired;" + 
+  "Tokenize.MenuCaption=Tokenize...;" + 
+  "Tokenize.Description=Tokenize selection. \r\n" + 
+    "Usage: Tokenize PATTERNS\r\n" + 
+    "  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+);" + 
+  "Tokenize.ArgumentsRequired;" + 
+  "Tokenize.Arguments=[^\\w]+;" + 
+  "Trim.MenuCaption=Trim Spaces;" + 
+  "Trim.Description=Trim spaces;" + 
+  "SelectColumns.MenuCaption=Select Columns...;" + 
+  "SelectColumns.Description=Select some columns.\r\n" + 
+    "Usage: SelectColumns RANGES\r\n" + 
+    "   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n" + 
+    "  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n" + 
+    "  PATTERNS - regular expression\r\n" +  
+    "  -v - select non-matching columns\r\n" +  
+    "  -i - ignore case\r\n" +  
+    "  -g - enable global flag\r\n" +  
+    "  -e - use PATTERNS for matching;" + 
+  "SelectColumns.ArgumentsRequired;" + 
+  "SelectLines.MenuCaption=Select Lines...;" + 
+  "SelectLines.Description=Select some lines.\r\n" +  
+    "Usage: SelectLines RANGES\r\n" +  
+    "   or: SelectLines [-v] [-i] -e PATTERNS\r\n" +  
+    "  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n" +  
+    "  PATTERNS - regular expression\r\n" +  
+    "  -v - select non-matching lines\r\n" +  
+    "  -i - ignore case\r\n" +  
+    "  -e - use PATTERNS for matching;" + 
+  "SelectLines.ArgumentsRequired;" + 
+  "ReverseColumns.MenuCaption=Reverse Columns;" + 
+  "ReverseColumns.Description=Reverse columns;" + 
+  "ReverseLines.MenuCaption=Reverse Lines;" + 
+  "ReverseLines.Description=Reverse lines;" + 
+  "Replace.MenuCaption=Replace...;" + 
+  "Replace.Description=Replace text with another text.\r\n" +  
+    "Usage: Replace [-i] [-e] FIND REPLACE\r\n" +  
+    "  FIND    - text to find\r\n" +  
+    "  REPLACE - text to replace\r\n" +  
+    "  -i - ignore case (only for -e)\r\n" +  
+    "  -e - treat the specified text as a regular expression;" + 
+  "Replace.ArgumentsRequired;";
+}
+
+function get_PluginArguments() {
+  return pluginArguments;
+}
+
+function put_PluginArguments(NewValue) {
+  pluginArguments = NewValue;
+}
+
+function get_PluginVariables() {
+  return variables.join("\0");
+}
+
+function put_PluginVariables(NewValue) {
+  variables = NewValue.split("\0");
+}
+
+function regRead(Key, DefaultValue) {
+  return mergeApp.GetOption(Key, DefaultValue);
+}
+
+function regWrite(Key, Value, TypeNm) {
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
+}
+
+function ReplaceVariables(str) {
+  var newstr = "";
+  var pos = 0;
+  while (true) {
+    var foundpos = str.indexOf("%", pos);
+    if (foundpos > 0) {
+      var ch = str.charAt(foundpos + 1);
+      if (ch === "%") {
+        newstr = newstr + "%";
+        pos = foundpos + 2;
+      } else if (!isNaN(ch)) {
+        newstr = newstr + str.substr(pos, foundpos - pos);
+        if (parseInt(ch) < variables.length) {
+          newstr = newstr + variables(parseInt(ch));
+        }
+        pos = foundpos + 2;
+      } else {
+        newstr = newstr + str.substr(pos, foundpos - pos + 1);
+        pos = foundpos + 1;
+      }
+  } else {
+      newstr = newstr + str.substr(pos);
+      break;
+    }
+  }
+  return newstr;
+}
+
+function IsFirstArgumentEmpty() {
+  return (pluginArguments.match(/^\s*$/) !== null);
+}
+
+function ParseArguments(args) {
+  var ary = new Array();
+  var token = "";
+  var argsLen = args.length;
+  var inQuotes = false;
+  for (var i = 0; i < argsLen; i++) {
+    var ch = args.charAt(i);
+    if (!inQuotes) {
+      if (ch === " " || ch === "\t") {
+        if (token.length > 0) {
+          ary.push(token);
+          token = "";
+        }
+      } else if (ch === "\"") {
+        inQuotes = true;
+      } else {
+        token += ch;
+      }
+    } else {
+      if (ch === "\"") {
+        if (i + 1 < argsLen) {
+          if (args.charAt(i) === "\"") {
+            token += ch;
+          }
+        }
+        inQuotes = false;
+      } else {
+        token += ch;
+      }
+    }
+  }
+  if (token.length > 0) {
+    ary.push(token);
+    token = "";
+  }
+  return ary; 
+}
+
+function ParseRanges(rangeText) {
+  var aryRanges = new Array();
+  var ary = rangeText.split(",");
+  for (var i = 0, j = 0; i < ary.length; i++) {
+    var ary2 = ary[i].split("-");
+    var rangeFrom = "";
+    if (ary2.length > 0) {
+      rangeFrom = ary2[0].replace(/^\s+|\s+$/g, "");
+    }
+    var rangeTo = rangeFrom;
+    if (ary2.length > 1) {
+      rangeTo = ary2[1].replace(/^\s+|\s+$/g, "");
+    }
+    if ((rangeFrom !== "" && !isNaN(rangeFrom)) || (rangeTo !== "" && !isNaN(rangeTo))) {
+      if (rangeFrom === "" || isNaN(rangeFrom)) { rangeFrom = 1; }
+      if (rangeTo === "" || isNaN(rangeTo)) { rangeTo = 1000000000; }
+      if (parseFloat(rangeFrom) < 1 || parseFloat(rangeFrom) > 1000000000) { rangeFrom = 1; }
+      if (parseFloat(rangeTo) < 1 || parseFloat(rangeTo) > 1000000000) { rangeTo = 1; }
+      if (parseFloat(rangeFrom) > parseFloat(rangeTo)) { rangeTo = rangeFrom; }
+      aryRanges.push([parseInt(rangeFrom), parseInt(rangeTo)]);
+    }
+    }
+  return aryRanges;
+}
+
+function ParseSelectColumnsLinesArguments(args) {
+  var rangesOrRegExps = new Array();
+  var argAry = ParseArguments(args);
+  var invert = false;
+  var flags = "";
+  var isRegExp = false;
+  for (var i = 0; i < argAry.length; i++) {
+    var isOption = false;
+    if (argAry[i].length >= 2) {
+      switch (argAry[i].charAt(0)) {
+      case "-":
+      case "/":
+        switch (argAry[i].charAt(1)) {
+        case "e":
+        case "i":
+        case "g":
+          isRegExp = true;
+          isOption = true;
+          if (argAry[i].indexOf("g") >= 0) {
+            flags += "g";
+          }
+          if (argAry[i].indexOf("i") >= 0) {
+            flags += "i";
+          }
+          break;
+        case "v":
+          isOption = true;
+          invert = true;
+          break;
+        }
+        break;
+      }
+    }
+    if (!isOption) {
+      if (isRegExp) {
+        rangesOrRegExps.push(new RegExp(argAry[i], flags));
+        isRegExp = false;
+      } else {
+        rangesOrRegExps.push(ParseRanges(argAry[i]));
+      }
+    }
+  }
+  return { "rangesOrRegExps": rangesOrRegExps, "invert": invert };
+}
+
+function ParseReplaceArguments(args) {
+  var patterns = new Array();
+  var isOption = false;
+  var argAry = ParseArguments(args);
+  var regex = false;
+  var ignoreCase = false;
+  for (var i = 0; i < argAry.length; i++) {
+    isOption = false;
+    if (argAry[i].length >= 2) {
+      switch (argAry[i].charAt(0)) {
+      case "-":
+      case "/":
+        switch (argAry[i].charAt(1)) {
+        case "e":
+        case "i":
+          isOption = true;
+          regex = true;
+          if (argAry[i].indexOf("i") >= 0) {
+            ignoreCase = true;
+          }
+          break;
+        }
+        break;
+      }
+    }
+    if (!isOption) {
+      patterns.push(argAry[i]);
+    }
+  }
+  return { "patterns": patterns, "regex": regex, "ignoreCase": ignoreCase };
+}
+
+function Unescape(text) {
+  var result = "";
+  var textLen = text.length;
+  var i = 0;
+  while (i < textLen) {
+    var ch = text.charAt(i);
+    switch (ch) {
+    case "\\":
+      if (i < textLen - 1) {
+        i++;
+        ch = text.charAt(i);
+        switch (ch) {
+        case "a":
+          result += String.fromCharCode(0x07);
+          break;
+        case "b":
+          result += "\b";
+          break;
+        case "t":
+          result += "\t";
+          break;
+        case "n":
+          result += "\n";
+          break;
+        case "v":
+          result += String.fromCharCode(0x0b);
+          break;
+        case "f":
+          result += "\f";
+          break;
+        case "r":
+          result += "\r";
+          break;
+        case "\\":
+          result += "\\";
+          break;
+        default:
+          result += "\\" + ch;
+          break;
+        }
+      } else {
+        result += ch;
+      }
+      break;
+    default:
+      result += ch;
+      break;
+    }
+    i++;
+  }
+  return result;
+}
+
+function PluginOnEvent(eventType, obj) {
+  mergeApp = obj;
+}
+
+// transformation functions
+function MakeUpper(Text) {
+  return Text.toUpperCase();
+}
+
+function MakeLower(Text) {
+  return Text.toLowerCase();
+}
+
+function ExecFilterCommand(Text) {
+  var cmd;
+  if (IsFirstArgumentEmpty()) {
+    cmd = regRead(REGKEY_PATH + "ExecFilterCommand", "");
+    cmd = mergeApp.InputBox("Enter filter command", "ExecFilterCommand", cmd);
+    if (cmd !== "") {
+      regWrite(REGKEY_PATH + "ExecFilterCommand", cmd, "REG_SZ");
+    }
+    cmd = ReplaceVariables(cmd);
+  } else {
+    cmd = pluginArguments;
+  }
+  if (cmd === "") {
+    throw new Error(30001, "Canceled");
+  }
+
+  var path = wsh.ExpandEnvironmentStrings("%TEMP%\\_winmerge_addin_temp_.txt");
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  try {
+    var ts = fso.CreateTextFile(path, true, true);
+    ts.Write(Text);
+    ts.Close();
+  } catch (e) {
+    throw new Error(30001, "Failed to create the file '" + path + "':" + e.message);
+  }
+  var result = "";
+  try {
+    var exe = wsh.Exec("cmd /c type \"" + path + "\" | " + cmd + " 2>&1");
+    while (!exe.StdOut.AtEndOfStream) {
+      result += exe.StdOut.ReadLine() + "\r\n";
+    }
+  } catch (e) {
+    throw new Error(30001, "Failed to execute the command '" + cmd + "':" + e.message);
+  } finally {
+    fso.DeleteFile(path);
+  }
+  return result;
+}
+
+function SelectColumns(Text) {
+  var args;
+  if (IsFirstArgumentEmpty()) {
+    args = regRead(REGKEY_PATH + "SelectColumns", "");
+    args = mergeApp.InputBox("Enter the list of column ranges to select (e.g. -3,5-10,30-)\r\nor regular expression:", "SelectColumns", args);
+    if (args !== "") {
+      regWrite(REGKEY_PATH + "SelectColumns", args, "REG_SZ");
+    }
+  } else {
+    args = pluginArguments;
+  }
+  if (args === "") {
+    throw new Error(30001, "Canceled");
+  }
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var parseResult = ParseSelectColumnsLinesArguments(args);
+  var rangesOrRegExps = parseResult.rangesOrRegExps;
+  var invert = parseResult.invert;
+  for (var i = 0; i < lines.length; i++) {
+    var line = "";
+    for (var j = 0; j < rangesOrRegExps.length; j++) {
+      if (rangesOrRegExps[j] instanceof Array) {
+        for (var k = 0; k < rangesOrRegExps[j].length; k++) {
+          if (rangesOrRegExps[j][k][0] - 1 < lines[i].length) {
+            line += lines[i].substring(rangesOrRegExps[j][k][0] - 1, rangesOrRegExps[j][k][1]);
+          }
+        }
+      } else {
+        if (!invert) {
+          var matches = lines[i].match(rangesOrRegExps[j]);
+          if (matches) {
+            for (var k = 0; k < matches.length; k++) {
+              line += matches[k];
+            }
+          }
+        } else {
+          line += lines[i].replace(rangesOrRegExps[j], "");
+        }
+      }
+    }
+    lines[i] = line;
+  }
+  return lines.join(eol);
+}
+
+function SelectLines(Text) {
+  var args;
+  var newlines = new Array();
+  if (IsFirstArgumentEmpty()) {
+    args = regRead(REGKEY_PATH + "SelectLines", "");
+    args = mergeApp.InputBox("Enter the list of line ranges to select (e.g. -3,5-10,30-)\r\nor regular expression:", "SelectLines", args);
+    if (args !== "") {
+      regWrite(REGKEY_PATH + "SelectLines", args, "REG_SZ");
+    }
+  } else {
+    args = pluginArguments;
+  }
+  if (args === "") {
+    throw new Error(30001, "Canceled");
+  }
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var parseResult = ParseSelectColumnsLinesArguments(args);
+  var invert = parseResult.invert;
+  var rangesOrRegExps = parseResult.rangesOrRegExps;
+  for (var i = 0; i < rangesOrRegExps.length; i++) {
+    if (rangesOrRegExps[i] instanceof Array) {
+      for (var j = 0; j < rangesOrRegExps[i].length; j++) {
+        var max = rangesOrRegExps[i][j][1];
+        if (max > lines.length) { max = lines.length; }
+        for (var k = rangesOrRegExps[i][j][0] - 1; k < max; k++) {
+          if (k < lines.length) {
+            newlines.push(lines[k]);
+          }
+        }
+      }
+    } else {
+      for (var j = 0; j < lines.length; j++) {
+        var matched = (lines[j].match(rangesOrRegExps[i]) !== null);
+        if (invert) { matched = !matched; }
+        if (matched) {
+          newlines.push(lines[j]);
+        }
+      }
+    }
+  }
+  if (lines.length > 0) {
+    if (lines[lines.length - 1] === "") {
+      if (newlines.length > 0) {
+        if (newlines[newlines.length - 1] !== "") {
+          newlines.push("");
+        }
+      }
+    }
+  }
+  return newlines.join(eol);
+}
+
+function replacei(text, find, replace, ignorecase) {
+  if (!ignorecase)
+    return text.split(find).join(replace);
+  var textLower = text.toLowerCase();
+  var findLower = find.toLowerCase();
+  var pos = textLower.length;
+  while (pos >= 0 && (pos = textLower.lastIndexOf(findLower, pos)) >= 0) {
+    text = text.substr(0, pos) + replace + text.substr(pos + findLower.length);
+    pos--;
+  }
+  return text;
+}
+
+function ReplaceText(Text) {
+  var args;
+  var result = Text;
+  if (IsFirstArgumentEmpty()) {
+    args = regRead(REGKEY_PATH + "Replace", "");
+    args = mergeApp.InputBox("Enter the search text and replacement text:", "Replace", args);
+    if (args !== "") {
+      regWrite(REGKEY_PATH + "Replace", args, "REG_SZ");
+    }
+  } else {
+    args = pluginArguments;
+  }
+  if (args === "") {
+    throw new Error(30001, "Canceled");
+  }
+  var parseResult = ParseReplaceArguments(args);
+  var patterns = parseResult.patterns;
+  var regex = parseResult.regex;
+  var ignoreCase = parseResult.ignoreCase;
+  if (regex) {
+    for (var i = 0; i < patterns.length; i += 2) {
+      var re = new RegExp(patterns[i], ignoreCase ? "gmi" : "gm");
+      if (i + 1 < patterns.length) {
+        result = result.replace(re, Unescape(patterns[i + 1]));
+      } else {
+        result = result.replace(re, result, "");
+      }
+    }
+  } else {
+    for (var i = 0; i < patterns.length; i += 2) {
+      if (i + 1 < patterns.length) {
+        result = replacei(result, patterns[i], patterns[i + 1]);
+      } else {
+        result = replacei(result, patterns[i], "");
+      }
+    }
+  }
+  return result;
+}
+
+// port from WinMerge2011
+function Tokenize(Text) {
+  var pattern;
+  if (IsFirstArgumentEmpty()) {
+    pattern = regRead(REGKEY_PATH + "Tokenize", "");
+    pattern = mergeApp.InputBox("Enter regex to tokenize (e.g. [^\\w]+):", "Tokenize", pattern);
+    if (pattern !== "") {
+      regWrite(REGKEY_PATH + "Tokenize", pattern, "REG_SZ");
+    }
+  } else {
+    pattern = pluginArguments;
+  }
+  if (pattern === "") {
+    throw new Error(30001, "Canceled");
+  }
+  var re = new RegExp(pattern, "gi");
+  return Text.replace(re, "\r\n");
+}
+
+function RemoveDuplicates(Text) {
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var newlines = new Array();
+  var dic = {};
+  var lasteol = false;
+
+  if (!lines[lines.length - 1]) {
+    lines.pop();
+    lasteol = true;
+  }
+  for (var i = 0, j = 0; i < lines.length; i++) {
+    var line = lines[i];
+    if (typeof dic[line] === 'undefined') {
+      dic[line] = 1;
+      newlines.push(line);
+    }
+  }
+  if (lasteol)
+    newlines.push("");
+  return newlines.join(eol);
 }
 
 function CountDuplicates(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
-	var newlines = new Array();
-	var dic = {};
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var newlines = new Array();
+  var dic = {};
 
-	if (!lines[lines.length - 1]) {
-		lines.pop();
-	}
-	
-	for (var i = 0; i < lines.length; i++) {
-		var line = lines[i];
-		if (typeof dic[line] === 'undefined') {
-			dic[line] = 1;
-			newlines[j] = line;
-			j++;
-		} else {
-			dic[line]++;
-		}
-	}
-	var j = 0;
-	for (var line in dic) {
-		newlines[j] = line + '\t' + dic[line];
-		j++;
-	}
-	if (eol)
-		newlines[j] = "";
-	return newlines.join(eol);
+  if (!lines[lines.length - 1]) {
+    lines.pop();
+  }
+  
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    if (typeof dic[line] === 'undefined') {
+      dic[line] = 1;
+      newlines.push(line);
+    } else {
+      dic[line]++;
+    }
+  }
+  var j = 0;
+  for (var line in dic) {
+    newlines[j] = line + '\t' + dic[line];
+    j++;
+  }
+  if (eol)
+    newlines[j] = "";
+  return newlines.join(eol);
 }
 
 function ReverseColumns(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
-	var lasteol = false;
-	if (!lines[lines.length - 1]) {
-		lines.pop();
-		lasteol = true;
-	}
-	for (var i = 0; i < lines.length; i++) {
-		var line = lines[i];
-		var newline = "";
-		for (var j = 0; j < line.length; j++)
-			newline += line.substr(line.length - j - 1, 1);
-		lines[i] = newline;
-	}
-	if (lasteol)
-		lines.push("");
-	return lines.join(eol);
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var lasteol = false;
+  if (!lines[lines.length - 1]) {
+    lines.pop();
+    lasteol = true;
+  }
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i];
+    var newline = "";
+    for (var j = 0; j < line.length; j++)
+      newline += line.substr(line.length - j - 1, 1);
+    lines[i] = newline;
+  }
+  if (lasteol)
+    lines.push("");
+  return lines.join(eol);
 }
 
 function ReverseLines(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
-	var lasteol = false;
-	if (!lines[lines.length - 1]) {
-		lines.pop();
-		lasteol = true;
-	}
-	var m = parseInt(lines.length / 2);
-	for (var i = 0; i < m; i++) {
-		var line = lines[i];
-		lines[i] = lines[lines.length - i - 1]
-		lines[lines.length - i - 1] = line;
-	}
-	if (lasteol)
-		lines.push("");
-	return lines.join(eol);
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  var lasteol = false;
+  if (!lines[lines.length - 1]) {
+    lines.pop();
+    lasteol = true;
+  }
+  var m = parseInt(lines.length / 2);
+  for (var i = 0; i < m; i++) {
+    var line = lines[i];
+    lines[i] = lines[lines.length - i - 1];
+    lines[lines.length - i - 1] = line;
+  }
+  if (lasteol)
+    lines.push("");
+  return lines.join(eol);
 }
 
 function SortAscending(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
 
-	if (lines.length == 1) {
-		return Text;
-	} else if (lines[lines.length - 1] == "") {
-		lines.pop();
-		return lines.sort().join(eol) + eol;
-	} else {
-		return lines.sort().join(eol);
-	}
+  if (lines.length == 1) {
+    return Text;
+  } else if (lines[lines.length - 1] == "") {
+    lines.pop();
+    return lines.sort().join(eol) + eol;
+  } else {
+    return lines.sort().join(eol);
+  }
 }
 
 function SortDescending(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
 
-	if (lines.length == 1) {
-		return Text;
-	} else if (lines[lines.length - 1] == "") {
-		lines.pop();
-		lines.sort(function(a, b) { return a < b ? 1 : -1; });
-		return lines.join(eol) + eol;
-	} else {
-		return lines.sort(function(a, b) { return a < b ? 1 : -1; }).join(eol);
-	}
+  if (lines.length == 1) {
+    return Text;
+  } else if (lines[lines.length - 1] == "") {
+    lines.pop();
+    lines.sort(function(a, b) { return a < b ? 1 : -1; });
+    return lines.join(eol) + eol;
+  } else {
+    return lines.sort(function(a, b) { return a < b ? 1 : -1; }).join(eol);
+  }
 }
 
 function Trim(Text) {
-	var eol = Text.match(/\r\n|\n|\r/);
-	var lines = Text.split(eol);
-	for (var i = 0; i < lines.length; i++) {
-		lines[i] = lines[i].replace(/^\s+|\s+$/g, "");
-	}
-	return lines.join(eol);
+  var eol = Text.match(/\r\n|\n|\r/);
+  var lines = Text.split(eol);
+  for (var i = 0; i < lines.length; i++) {
+    lines[i] = lines[i].replace(/^\s+|\s+$/g, "");
+  }
+  return lines.join(eol);
 }
 
 </script>

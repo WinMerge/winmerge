@@ -3838,8 +3838,8 @@ msgstr "Pagina we&b"
 msgid "W&rap Text"
 msgstr "&Ritornu autumaticu à a linea"
 
-msgid "Frhed is not installed."
-msgstr "Frhed ùn hè micca installatu."
+msgid "%1 is not installed."
+msgstr "%1 ùn hè micca installatu."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

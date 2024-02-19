@@ -3450,8 +3450,8 @@ msgstr "İnternet &sayfası"
 msgid "W&rap Text"
 msgstr "&Metin kaydırılsın"
 
-msgid "Frhed is not installed."
-msgstr "Frhed kurulmamış."
+msgid "%1 is not installed."
+msgstr "%1 kurulmamış."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

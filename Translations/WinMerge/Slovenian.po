@@ -3826,8 +3826,8 @@ msgstr "&Spletna stran"
 msgid "W&rap Text"
 msgstr "Pre&lom besedila"
 
-msgid "Frhed is not installed."
-msgstr "Frhed ni nameščen."
+msgid "%1 is not installed."
+msgstr "%1 ni nameščen."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

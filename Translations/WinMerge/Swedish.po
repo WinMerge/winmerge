@@ -3905,8 +3905,8 @@ msgstr "Websida"
 msgid "W&rap Text"
 msgstr ""
 
-msgid "Frhed is not installed."
-msgstr "Frhed är inte installerad."
+msgid "%1 is not installed."
+msgstr "%1 är inte installerad."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

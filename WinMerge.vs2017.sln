@@ -37,9 +37,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 		UploadToVirusTotal.cmd = UploadToVirusTotal.cmd
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBS Scripts", "VBS Scripts", "{8B625EC8-5063-4336-84F9-AA7FD5348525}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{8B625EC8-5063-4336-84F9-AA7FD5348525}"
 	ProjectSection(SolutionItems) = preProject
-		ExpandEnvironmenStrings.vbs = ExpandEnvironmenStrings.vbs
+		ExpandEnvironmenStrings.js = ExpandEnvironmenStrings.js
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUITests", "Testing\GoogleTest\GUITests\GUITests.vcxproj", "{0A3727B1-51E7-4702-AD0C-8AEE317EA510}"

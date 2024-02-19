@@ -4520,8 +4520,8 @@ msgstr ""
 msgid "W&rap Text"
 msgstr ""
 
-msgid "Frhed is not installed."
-msgstr "L'aplicació Frhed no està instal·lada."
+msgid "%1 is not installed."
+msgstr "L'aplicació %1 no està instal·lada."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

@@ -3822,8 +3822,8 @@ msgstr "Страница от &интернет"
 msgid "W&rap Text"
 msgstr "П&ренасяне на текста"
 
-msgid "Frhed is not installed."
-msgstr "Frhed не е инсталиран."
+msgid "%1 is not installed."
+msgstr "%1 не е инсталиран."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

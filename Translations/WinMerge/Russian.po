@@ -3453,8 +3453,8 @@ msgstr "Веб-страница"
 msgid "W&rap Text"
 msgstr "&Перенос строк"
 
-msgid "Frhed is not installed."
-msgstr "Frhed не установлен."
+msgid "%1 is not installed."
+msgstr "%1 не установлен."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"

@@ -1,7 +1,7 @@
 cd /d "%~dp0"
 
 call SetVersion.cmd
-cscript /nologo ExpandEnvironmenStrings.vbs Version.in > Version.h
+cscript /nologo ExpandEnvironmenStrings.js Version.in > Version.h
 
 setlocal
 for /f "usebackq tokens=*" %%i in (`"%programfiles(x86)%\microsoft visual studio\installer\vswhere.exe" -version [16.0^,17.0^) -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (

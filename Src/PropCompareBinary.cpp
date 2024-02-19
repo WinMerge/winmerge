@@ -26,7 +26,7 @@ public:
 			pv = LoadLibrary(_T("Frhed\\hekseditU.dll"));
 		if (pv == nullptr)
 		{
-			LangMessageBox(IDS_FRHED_NOTINSTALLED, MB_OK);
+			AfxMessageBox(strutils::format_string1(_("%1 is not installed."), _T("Frhed")).c_str(), MB_OK);
 			return;
 		}
 		wnd.Create(_T("heksedit"), nullptr, 0, CRect(), pwndParent, 1);

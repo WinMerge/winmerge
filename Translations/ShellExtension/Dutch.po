@@ -32,12 +32,6 @@ msgstr "AFX_TARG_NLB"
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_DUTCH, SUBLANG_DUTCH"
 
-#. Codepage
-#: ShellExtension.rc:21
-#, c-format
-msgid "1252"
-msgstr "1252"
-
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
