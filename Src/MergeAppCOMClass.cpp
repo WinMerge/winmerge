@@ -118,12 +118,6 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::SaveOption(BSTR name, VARIANT varVal
 	return S_OK;
 }
 
-HRESULT STDMETHODCALLTYPE MergeAppCOMClass::Log(int level, BSTR text)
-{
-	LogErrorString(text);
-	return S_OK;
-}
-
 HRESULT STDMETHODCALLTYPE MergeAppCOMClass::MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle, int* pRet)
 {
 	VARIANT varButtons2, varTitle2;
@@ -208,6 +202,12 @@ HRESULT STDMETHODCALLTYPE MergeAppCOMClass::InputBox(BSTR prompt, VARIANT varTit
 		return S_OK;
 	}
 	*pRet = SysAllocString(L"");
+	return S_OK;
+}
+
+HRESULT STDMETHODCALLTYPE MergeAppCOMClass::LogError(BSTR text)
+{
+	LogErrorString(text);
 	return S_OK;
 }
 

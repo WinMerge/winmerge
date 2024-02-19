@@ -15,9 +15,9 @@ interface IMergeApp : IDispatch
 	[id(1), helpstring("method Translate")] HRESULT Translate([in] BSTR text, [out, retval] BSTR* pRet);
 	[id(2), helpstring("method GetOption")] HRESULT GetOption([in] BSTR name, [in] VARIANT varDefault, [out, retval] VARIANT* pRet);
 	[id(3), helpstring("method SaveOption")] HRESULT SaveOption([in] BSTR name, [in] VARIANT varValue);
-	[id(4), helpstring("method Log")] HRESULT Log([in] int level, [in] BSTR text);
-	[id(5), helpstring("method MsgBox")] HRESULT MsgBox([in] BSTR prompt, [in, optional] VARIANT varButtons, [in, optional] VARIANT varTitle, [out, retval] int* pRet);
-	[id(6), helpstring("method InputBox")] HRESULT InputBox([in] BSTR prompt, [in, optional] VARIANT varTitle, [in, optional] VARIANT varDefault, [out, retval] BSTR* pRet);
+	[id(4), helpstring("method MsgBox")] HRESULT MsgBox([in] BSTR prompt, [in, optional] VARIANT varButtons, [in, optional] VARIANT varTitle, [out, retval] int* pRet);
+	[id(5), helpstring("method InputBox")] HRESULT InputBox([in] BSTR prompt, [in, optional] VARIANT varTitle, [in, optional] VARIANT varDefault, [out, retval] BSTR* pRet);
+	[id(6), helpstring("method LogError")] HRESULT LogError([in] BSTR text);
 };
 
 [

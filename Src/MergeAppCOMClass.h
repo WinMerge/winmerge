@@ -8,9 +8,9 @@ enum
 	DISPID_Translate = 1,
 	DISPID_GetOption = 2,
 	DISPID_SaveOption = 3,
-	DISPID_Log = 4,
-	DISPID_MsgBox = 5,
-	DISPID_InputBox = 6,
+	DISPID_MsgBox = 4,
+	DISPID_InputBox = 5,
+	DISPID_LogError = 6,
 };
 
 
@@ -104,9 +104,9 @@ public:
 	HRESULT STDMETHODCALLTYPE Translate(BSTR text, BSTR* pRet) override;
 	HRESULT STDMETHODCALLTYPE GetOption(BSTR name, VARIANT varDefault, VARIANT* pRet) override;
 	HRESULT STDMETHODCALLTYPE SaveOption(BSTR name, VARIANT varValue) override;
-	HRESULT STDMETHODCALLTYPE Log(int level, BSTR text) override;
 	HRESULT STDMETHODCALLTYPE MsgBox(BSTR prompt, VARIANT varButtons, VARIANT varTitle, int* pRet) override;
 	HRESULT STDMETHODCALLTYPE InputBox(BSTR prompt, VARIANT varTitle, VARIANT varDefault, BSTR* pRet) override;
+	HRESULT STDMETHODCALLTYPE LogError(BSTR text) override;
 private:
 	static INT_PTR CALLBACK InputBoxProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam);
 	std::wstring m_inputBoxTitle;

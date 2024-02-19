@@ -103,10 +103,6 @@ EXTERN_C const IID IID_IMergeApp;
             /* [in] */ BSTR name,
             /* [in] */ VARIANT varValue) = 0;
         
-        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE Log( 
-            /* [in] */ int level,
-            /* [in] */ BSTR text) = 0;
-        
         virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE MsgBox( 
             /* [in] */ BSTR prompt,
             /* [optional][in] */ VARIANT varButtons,
@@ -118,6 +114,9 @@ EXTERN_C const IID IID_IMergeApp;
             /* [optional][in] */ VARIANT varTitle,
             /* [optional][in] */ VARIANT varDefault,
             /* [retval][out] */ BSTR *pRet) = 0;
+        
+        virtual /* [helpstring][id] */ HRESULT STDMETHODCALLTYPE LogError( 
+            /* [in] */ BSTR text) = 0;
         
     };
     
@@ -203,12 +202,6 @@ EXTERN_C const IID IID_IMergeApp;
             /* [in] */ BSTR name,
             /* [in] */ VARIANT varValue);
         
-        DECLSPEC_XFGVIRT(IMergeApp, Log)
-        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *Log )( 
-            IMergeApp * This,
-            /* [in] */ int level,
-            /* [in] */ BSTR text);
-        
         DECLSPEC_XFGVIRT(IMergeApp, MsgBox)
         /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *MsgBox )( 
             IMergeApp * This,
@@ -224,6 +217,11 @@ EXTERN_C const IID IID_IMergeApp;
             /* [optional][in] */ VARIANT varTitle,
             /* [optional][in] */ VARIANT varDefault,
             /* [retval][out] */ BSTR *pRet);
+        
+        DECLSPEC_XFGVIRT(IMergeApp, LogError)
+        /* [helpstring][id] */ HRESULT ( STDMETHODCALLTYPE *LogError )( 
+            IMergeApp * This,
+            /* [in] */ BSTR text);
         
         END_INTERFACE
     } IMergeAppVtbl;
@@ -270,14 +268,14 @@ EXTERN_C const IID IID_IMergeApp;
 #define IMergeApp_SaveOption(This,name,varValue)	\
     ( (This)->lpVtbl -> SaveOption(This,name,varValue) ) 
 
-#define IMergeApp_Log(This,level,text)	\
-    ( (This)->lpVtbl -> Log(This,level,text) ) 
-
 #define IMergeApp_MsgBox(This,prompt,varButtons,varTitle,pRet)	\
     ( (This)->lpVtbl -> MsgBox(This,prompt,varButtons,varTitle,pRet) ) 
 
 #define IMergeApp_InputBox(This,prompt,varTitle,varDefault,pRet)	\
     ( (This)->lpVtbl -> InputBox(This,prompt,varTitle,varDefault,pRet) ) 
+
+#define IMergeApp_LogError(This,text)	\
+    ( (This)->lpVtbl -> LogError(This,text) ) 
 
 #endif /* COBJMACROS */
 
