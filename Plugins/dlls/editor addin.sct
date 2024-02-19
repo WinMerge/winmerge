@@ -145,7 +145,7 @@ function regWrite(Key, Value, TypeNm) {
 }
 
 function ReplaceVariables(str) {
-  var newstr;
+  var newstr = "";
   var pos = 0;
   while (true) {
     var foundpos = str.indexOf("%", pos);
