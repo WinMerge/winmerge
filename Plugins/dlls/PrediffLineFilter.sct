@@ -97,9 +97,13 @@ function PrediffBufferW(pText, pSize, pbChanged) {
       ignoreCase = regRead(REGKEY_PATH + "IgnoreCase" + i, false);
       replaceText = regRead(REGKEY_PATH + "ReplaceText" + i, "");
       if (regRead(REGKEY_PATH + "UseRegExp" + i, true)) {
-        var re = new RegExp(pattern, ignoreCase ? "gi" : "g");
-        for (var j = 0; j < lines.length; j++) {
-          lines[j] = lines[j].replace(re, replaceText);
+        try {
+          var re = new RegExp(pattern, ignoreCase ? "gi" : "g");
+          for (var j = 0; j < lines.length; j++) {
+            lines[j] = lines[j].replace(re, replaceText);
+          }
+        } catch (e) {
+          mergeApp.MsgBox("RegExp Pattern" + i + ": " + pattern + " error: " + e.message, 16, "PrediffLineFilter plugin");
         }
       } else {
         for (var j = 0; j < lines.length; j++) {
@@ -299,6 +303,22 @@ function importSettingsFromXMLFile(filepath) {
         }
       }
 
+      function checkRegExp() {
+        var msg = "";
+        for (var i = 0; i < table1.rows.length - 1; i++) {
+          if (document.getElementsByName("chkUseRegExp")[i].checked) {
+            try {
+              var re = new RegExp(document.getElementsByName("txtPattern")[i].value);
+            } catch (e) {
+              msg += "RegExp Pattern" + (i + 1) + ": error: " + e.message + "\r\n"; 
+            }
+          }
+        }
+        if (msg !== "") {
+          throw msg;
+        }
+      }
+
       function onload() {
         xmlFilePath = objHTA.commandLine.split('"')[3];
         settings = loadSettingsFromXMLFile(xmlFilePath);
@@ -315,6 +335,12 @@ function importSettingsFromXMLFile(filepath) {
       }
 
       function btnOk_onclick() {
+        try {
+          checkRegExp();
+        } catch (e) {
+          alert(e);
+          return;
+        }
         regWrite(REGKEY_PATH + "Count", table1.rows.length - 1, "REG_DWORD");
         for (var i = 0; i < table1.rows.length - 1; i++) {
           regWrite(REGKEY_PATH + "Enabled" + (i + 1), document.getElementsByName("chkEnabled")[i].checked, "REG_DWORD");
