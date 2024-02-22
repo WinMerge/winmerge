@@ -1558,9 +1558,6 @@ msgstr "Editore"
 msgid "&Highlight syntax"
 msgstr "&Sopralineà a sintassa"
 
-msgid "&Automatic rescan"
-msgstr "&Rianalisa autumatica"
-
 msgid "&Preserve original EOL chars"
 msgstr "&Cunservà i caratteri d’origine di fine di linea"
 
@@ -1576,6 +1573,12 @@ msgstr "&Framette tabulazioni"
 msgid "Insert &Spaces"
 msgstr "Framette &spazii"
 
+msgid "&Rendering Mode:"
+msgstr "&Modu di trasfurmazione :"
+
+msgid "&Automatic rescan"
+msgstr "&Rianalisa autumatica"
+
 msgid "Line Difference Coloring"
 msgstr "Culurazione di sfarenza di linea"
 
@@ -1590,9 +1593,6 @@ msgstr "À u livellu di a &parolla :"
 
 msgid "W&ord break characters:"
 msgstr "Caratteri di &distinzione di parolla :"
-
-msgid "&Rendering Mode:"
-msgstr "&Modu di trasfurmazione :"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge permette di piattà certe scatule di messaghju. Appughjate nant’à u buttone « Reinizià » per rendele torna videvule."
@@ -2226,6 +2226,9 @@ msgstr "Ùn affissà più stu &messaghju torna."
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr ""
 "Per rende sta scatula di messaghju torna videvule, appughjate nant’à u buttone « Reinizià » di a pagina « Scatule di messaghju » di u dialogu d’ozzioni."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintassa"

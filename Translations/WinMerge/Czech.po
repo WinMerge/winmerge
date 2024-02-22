@@ -1897,10 +1897,6 @@ msgid "&Highlight syntax"
 msgstr "Zvýraznit sy&ntaxi"
 
 #, c-format
-msgid "&Automatic rescan"
-msgstr "Automaticky &opětovně porovnávat"
-
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr "Zachovat původní znaky na &koncích řádků"
 
@@ -1919,6 +1915,13 @@ msgstr "Vkládat &tabelátory"
 #, c-format
 msgid "Insert &Spaces"
 msgstr "Vkládat &mezery"
+
+msgid "&Rendering Mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Automaticky &opětovně porovnávat"
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -1939,9 +1942,6 @@ msgstr "Na úrovni &slov:"
 #, c-format
 msgid "W&ord break characters:"
 msgstr "Zn&aky oddělující slova:"
-
-msgid "&Rendering Mode:"
-msgstr ""
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr ""
@@ -2661,6 +2661,9 @@ msgid "Don't display this &message again."
 msgstr "T&uto zprávu již příště nezobrazovat."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 #, c-format

@@ -1554,9 +1554,6 @@ msgstr "Redaktoriaus"
 msgid "&Highlight syntax"
 msgstr "&Naudoti sintaksės paryškinimą"
 
-msgid "&Automatic rescan"
-msgstr "&Automatiškai perskanuoti"
-
 msgid "&Preserve original EOL chars"
 msgstr "Išsaugoti originalų eil. pabaigos formatą"
 
@@ -1572,6 +1569,12 @@ msgstr "Įterpt&i TAB simbolius"
 msgid "Insert &Spaces"
 msgstr "Įterpti tarpu&s"
 
+msgid "&Rendering Mode:"
+msgstr "Atvaizdavimo &režimas:"
+
+msgid "&Automatic rescan"
+msgstr "&Automatiškai perskanuoti"
+
 msgid "Line Difference Coloring"
 msgstr "Skirtumų eilutėse spalvinimas"
 
@@ -1586,9 +1589,6 @@ msgstr "Žo&džio lygyje:"
 
 msgid "W&ord break characters:"
 msgstr "Ž&odžių skirtukų simboliai:"
-
-msgid "&Rendering Mode:"
-msgstr "Atvaizdavimo &režimas:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
@@ -2161,6 +2161,9 @@ msgstr "Daugiau nerodyti šio praneši&mo."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaksės"

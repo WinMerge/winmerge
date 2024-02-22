@@ -1555,9 +1555,6 @@ msgstr "Editor"
 msgid "&Highlight syntax"
 msgstr "Resaltar a sinta&xe"
 
-msgid "&Automatic rescan"
-msgstr "Reescaneo &automático"
-
 msgid "&Preserve original EOL chars"
 msgstr "&Conservar os caracteres EOL orixinais"
 
@@ -1573,6 +1570,12 @@ msgstr "&Inserir tabulacións"
 msgid "Insert &Spaces"
 msgstr "Inserir &espazos"
 
+msgid "&Rendering Mode:"
+msgstr "Modo de &renderizado:"
+
+msgid "&Automatic rescan"
+msgstr "Reescaneo &automático"
+
 msgid "Line Difference Coloring"
 msgstr "Colorear a diferenza de liñas"
 
@@ -1587,9 +1590,6 @@ msgstr "A nivel da pa&labra:"
 
 msgid "W&ord break characters:"
 msgstr "Caracteres de salt&o de palabra:"
-
-msgid "&Rendering Mode:"
-msgstr "Modo de &renderizado:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge permite ocultar algunhas mensaxes de uso frecuente. Prema o botón 'Restablecer' para facelas visibles de novo."
@@ -2218,6 +2218,9 @@ msgstr "Non mostrar esta &mensaxe de novo."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Para facer visible outra vez este diálogo de mensaxe prema o botón Restablecer na páxina Cadros de mensaxes de Configuración."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaxe"

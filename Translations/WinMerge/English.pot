@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-02-18 21:54+0000\n"
+"POT-Creation-Date: 2024-02-22 08:17+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1548,9 +1548,6 @@ msgstr ""
 msgid "&Highlight syntax"
 msgstr ""
 
-msgid "&Automatic rescan"
-msgstr ""
-
 msgid "&Preserve original EOL chars"
 msgstr ""
 
@@ -1566,6 +1563,12 @@ msgstr ""
 msgid "Insert &Spaces"
 msgstr ""
 
+msgid "&Rendering Mode:"
+msgstr ""
+
+msgid "&Automatic rescan"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr ""
 
@@ -1579,9 +1582,6 @@ msgid "&Word-level:"
 msgstr ""
 
 msgid "W&ord break characters:"
-msgstr ""
-
-msgid "&Rendering Mode:"
 msgstr ""
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
@@ -2154,6 +2154,9 @@ msgid "Don't display this &message again."
 msgstr ""
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 msgid "Syntax"

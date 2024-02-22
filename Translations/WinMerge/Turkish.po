@@ -1553,9 +1553,6 @@ msgstr "Düzenleyici"
 msgid "&Highlight syntax"
 msgstr "Söz dizimi &vurgulansın"
 
-msgid "&Automatic rescan"
-msgstr "Otomatik olarak yeniden t&aransın"
-
 msgid "&Preserve original EOL chars"
 msgstr "Ö&zgün satır sonu karakterleri korunsun"
 
@@ -1571,6 +1568,12 @@ msgstr "Sekme &olarak"
 msgid "Insert &Spaces"
 msgstr "&Boşluk olarak"
 
+msgid "&Rendering Mode:"
+msgstr "Gö&rüntüleme Kipi:"
+
+msgid "&Automatic rescan"
+msgstr "Otomatik olarak yeniden t&aransın"
+
 msgid "Line Difference Coloring"
 msgstr "Satır farklılıkları renklendirilsin"
 
@@ -1585,9 +1588,6 @@ msgstr "&Sözcük düzeyinde:"
 
 msgid "W&ord break characters:"
 msgstr "&Sözcük kesme karakterleri:"
-
-msgid "&Rendering Mode:"
-msgstr "Gö&rüntüleme Kipi:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge sık karşılaşılan iletilerin gizlenmesine izin verir. Tüm iletileri yeniden görünür yapmak için Sıfırla düğmesine tıklayın."
@@ -2160,6 +2160,9 @@ msgstr "Bu ileti &yeniden görüntülenmesin."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Bu ileti kutusunun yeniden görüntülenmesi için Ayarlar bölümünde İleti kutuları grubu altındaki Sıfırla düğmesine tıklayın."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Söz dizimi"

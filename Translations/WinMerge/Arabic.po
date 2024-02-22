@@ -1557,9 +1557,6 @@ msgstr "المحرر"
 msgid "&Highlight syntax"
 msgstr "تضليل النص حسب نوع الملف"
 
-msgid "&Automatic rescan"
-msgstr "إ&عادة الفحص التلقائي"
-
 msgid "&Preserve original EOL chars"
 msgstr "الإحتفا&ظ برمز نهاية الملف (EOL) الأصلي"
 
@@ -1575,6 +1572,12 @@ msgstr "إدرا&ج تبويبات"
 msgid "Insert &Spaces"
 msgstr "إدراج م&ساحات"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
+msgid "&Automatic rescan"
+msgstr "إ&عادة الفحص التلقائي"
+
 msgid "Line Difference Coloring"
 msgstr "تلوين الاختلافات في الأسطر"
 
@@ -1589,9 +1592,6 @@ msgstr "مستوى ال&كلمة:"
 
 msgid "W&ord break characters:"
 msgstr "رمو&ز الفصل للكلمات:"
-
-msgid "&Rendering Mode:"
-msgstr ""
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr ""
@@ -2223,6 +2223,9 @@ msgid "Don't display this &message again."
 msgstr "لا تع&رض هذه الرسالة مجددا."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 msgid "Syntax"

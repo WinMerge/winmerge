@@ -1559,9 +1559,6 @@ msgstr "Editor"
 msgid "&Highlight syntax"
 msgstr "E&vidențiere sintaxă"
 
-msgid "&Automatic rescan"
-msgstr "Rescanare &automată"
-
 msgid "&Preserve original EOL chars"
 msgstr "&Păstrează caracterele EOL originale"
 
@@ -1577,6 +1574,12 @@ msgstr "&Inserează file"
 msgid "Insert &Spaces"
 msgstr "In&serează blancuri"
 
+msgid "&Rendering Mode:"
+msgstr "Mod de &randare:"
+
+msgid "&Automatic rescan"
+msgstr "Rescanare &automată"
+
 msgid "Line Difference Coloring"
 msgstr "Colorarea diferențelor din rând"
 
@@ -1591,9 +1594,6 @@ msgstr "La nivel de cu&vânt:"
 
 msgid "W&ord break characters:"
 msgstr "Caractere de despărțire cuvinte:"
-
-msgid "&Rendering Mode:"
-msgstr "Mod de &randare:"
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -2239,6 +2239,9 @@ msgid ""
 msgstr ""
 "Pentru a face vizibilă din nou această fereastră de dialog, apăsați butonul "
 "Reinițializare din pagina Ferestre mesaj a dialogului Opțiuni."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaxă"

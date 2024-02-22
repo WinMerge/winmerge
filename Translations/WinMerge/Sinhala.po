@@ -1896,10 +1896,6 @@ msgstr "සම්පාදක"
 msgid "&Highlight syntax"
 msgstr "&වාක්‍ය වින්‍යාසය විශේෂිතව දක්වන්න"
 
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&ස්වයංක්‍රීය නැවත පිරික්සුම"
-
 #, fuzzy, c-format
 msgid "&Preserve original EOL chars"
 msgstr "&Preserve original EOL chars"
@@ -1920,6 +1916,13 @@ msgstr "&Insert Tabs"
 msgid "Insert &Spaces"
 msgstr "ඇතුලත් කිරීම සහ හිස්තැන්"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&ස්වයංක්‍රීය නැවත පිරික්සුම"
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "පේළි අතර වෙනස වර්ණ ගැන්වුම"
@@ -1938,9 +1941,6 @@ msgstr "& වචනයෙහි පිහිටුම"
 
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
-
-msgid "&Rendering Mode:"
 msgstr ""
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
@@ -2687,6 +2687,9 @@ msgid "Don't display this &message again."
 msgstr "මෙම පණිවිඩය නැවත දර්ශනය නොකරන්න."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 #, c-format

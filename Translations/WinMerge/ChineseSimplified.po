@@ -1560,9 +1560,6 @@ msgstr "编辑器"
 msgid "&Highlight syntax"
 msgstr "语法高亮(&H)"
 
-msgid "&Automatic rescan"
-msgstr "自动重新扫描(&A)"
-
 msgid "&Preserve original EOL chars"
 msgstr "保持换行符不变(&P)"
 
@@ -1578,6 +1575,12 @@ msgstr "插入制表符(&I)"
 msgid "Insert &Spaces"
 msgstr "插入空格(&S)"
 
+msgid "&Rendering Mode:"
+msgstr "渲染模式(&R)"
+
+msgid "&Automatic rescan"
+msgstr "自动重新扫描(&A)"
+
 msgid "Line Difference Coloring"
 msgstr "行内差异着色"
 
@@ -1592,9 +1595,6 @@ msgstr "单词级别(&W):"
 
 msgid "W&ord break characters:"
 msgstr "单词分隔字符:"
-
-msgid "&Rendering Mode:"
-msgstr "渲染模式(&R)"
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -2233,6 +2233,9 @@ msgid ""
 "To make this message box visible again, press the Reset button on the "
 "Message Boxes page of the Options dialog."
 msgstr "要使此消息框再次可见，请点击“选项”对话框，“消息框”页面上的“重置”按钮。"
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "语法"

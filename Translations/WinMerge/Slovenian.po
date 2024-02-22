@@ -1554,9 +1554,6 @@ msgstr "Urejevalnik"
 msgid "&Highlight syntax"
 msgstr "Ozn&ači sintakso"
 
-msgid "&Automatic rescan"
-msgstr "&Samodejni ponovni pregled"
-
 msgid "&Preserve original EOL chars"
 msgstr "Ohrani izvorne znake za konec vrstice (EOL)"
 
@@ -1572,6 +1569,12 @@ msgstr "&Vstavi tabulatorje"
 msgid "Insert &Spaces"
 msgstr "&Vstavi presledke"
 
+msgid "&Rendering Mode:"
+msgstr "Način upodab&ljanja:"
+
+msgid "&Automatic rescan"
+msgstr "&Samodejni ponovni pregled"
+
 msgid "Line Difference Coloring"
 msgstr "Barvanje razlike v vrstici"
 
@@ -1586,9 +1589,6 @@ msgstr "&Besedilna raven:"
 
 msgid "W&ord break characters:"
 msgstr "&Znaki za prelom besed:"
-
-msgid "&Rendering Mode:"
-msgstr "Način upodab&ljanja:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge omogoča skrivanje nekaterih skupnih sporočilnih oken. Pritisnite 'Ponastavi', da bodo postala vsa sporočilna okna spet vidna."
@@ -2217,6 +2217,9 @@ msgstr "Tega sporočila ne kaži več."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Za ponovno vidnost tega sporočilnega okna pritisnite gumb 'Ponastavi' na strani 'Sporočilna okna' v pogovornem oknu 'Možnosti'."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaksa"

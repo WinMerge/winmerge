@@ -1555,9 +1555,6 @@ msgstr "Edytor"
 msgid "&Highlight syntax"
 msgstr "Podświetlaj składnię"
 
-msgid "&Automatic rescan"
-msgstr "Automatyczne powtórz skanowanie"
-
 msgid "&Preserve original EOL chars"
 msgstr "Zachowaj oryginalne znaki końca linii"
 
@@ -1573,6 +1570,12 @@ msgstr "Wstaw tabulatory"
 msgid "Insert &Spaces"
 msgstr "Wstaw spacje"
 
+msgid "&Rendering Mode:"
+msgstr "&Tryb renderowania:"
+
+msgid "&Automatic rescan"
+msgstr "Automatyczne powtórz skanowanie"
+
 msgid "Line Difference Coloring"
 msgstr "Kolorowanie różniących się wierszy"
 
@@ -1587,9 +1590,6 @@ msgstr "Z poziomu słowa:"
 
 msgid "W&ord break characters:"
 msgstr "Znak dzielenia wyrazów:"
-
-msgid "&Rendering Mode:"
-msgstr "&Tryb renderowania:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge pozwala ukryć niektóre komunikaty. Naciśnij przycisk Resetuj, aby ponownie wyświetlać wszystkie komunikaty."
@@ -2162,6 +2162,9 @@ msgstr "Nie wyświetlaj ponownie tego komunikatu."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Aby ponownie wyświetlić ten komunikat, przejdź do Opcji programu, a następnie w zakładce Komunikaty naciśnij przycisk Resetuj."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Składnia"

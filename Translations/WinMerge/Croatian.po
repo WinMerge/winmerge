@@ -1897,10 +1897,6 @@ msgid "&Highlight syntax"
 msgstr "&Istakni sintaksu"
 
 #, c-format
-msgid "&Automatic rescan"
-msgstr "&Automatski ponovo pretraži"
-
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr "Zadrži izvorni način označavanja kraja redaka"
 
@@ -1920,6 +1916,13 @@ msgstr "&Umetni tabulator"
 msgid "Insert &Spaces"
 msgstr "&Umetni razmak"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Automatski ponovo pretraži"
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Isticanje različitosti"
@@ -1938,9 +1941,6 @@ msgstr "&Rijeć:"
 
 #, c-format
 msgid "W&ord break characters:"
-msgstr ""
-
-msgid "&Rendering Mode:"
 msgstr ""
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
@@ -2689,6 +2689,9 @@ msgid "Don't display this &message again."
 msgstr "Ne prikazuj više ovu poruku."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 #, c-format

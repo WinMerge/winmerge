@@ -1898,13 +1898,11 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CMergeDoc *pd = GetDocument();
 	CEPoint pos = GetCursorPos();
 
-	int nCurrentDiff = pd->GetCurrentDiff();
 	int diff = pd->m_diffList.LineToDiff(pos.y);
 	if (diff != -1 && pd->m_diffList.IsDiffSignificant(diff))
 		SelectDiff(diff, false, false);
 
-	if (nCurrentDiff != -1 || nCurrentDiff == diff)
-		CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
+	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
 }
 
 /**
@@ -1956,7 +1954,18 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 	{
 		if (!m_bRectangularSelection)
 		{
-			if (selectedLineOnly)
+			bool selectedWordOnly = true;
+			if (selectedWordOnly)
+			{
+				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				if (firstDiff != -1 && lastDiff != -1)
+				{
+					CWaitCursor waitstatus;
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				}
+			}
+			else if (selectedLineOnly)
 			{
 				int firstDiff, lastDiff;
 				GetSelectedDiffs(firstDiff, lastDiff);
@@ -1968,24 +1977,12 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 			}
 			else
 			{
-				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
-				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
 				if (firstDiff != -1 && lastDiff != -1)
 				{
 					CWaitCursor waitstatus;
-					
-					// Setting CopyFullLine (OPT_COPY_FULL_LINE)
-					// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
-					if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
-					{
-						// old behaviour: copy full line
-						pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
-					}
-					else
-					{
-						// new behaviour: copy selected text only
-						pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
-					}
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
 				}
 			}
 		}
@@ -2034,10 +2031,19 @@ void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 		auto [ptStart, ptEnd] = GetSelection();
 		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
-			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
-			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
-
-			pCmdUI->Enable((firstDiff != -1 && lastDiff != -1) || (firstWordDiff != -1 && lastWordDiff != -1));
+			bool selectedWordOnly = true;
+			if (selectedWordOnly)
+			{
+				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				pCmdUI->Enable((firstDiff != -1 && lastDiff != -1) || (firstWordDiff != -1 && lastWordDiff != -1));
+			}
+			else
+			{
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
+				pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
+			}
 		}
 		else
 		{
