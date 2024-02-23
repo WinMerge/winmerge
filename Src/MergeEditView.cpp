@@ -1995,7 +1995,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 			auto wordDiffs = GetColumnSelectedWordDiffIndice();
 			int i = 0;
 			std::for_each(wordDiffs.rbegin(), wordDiffs.rend(), [&](auto& it) {
-				pDoc->WordListCopy(srcPane, dstPane, it.first, it.second[0], it.second[it.second.size() - 1], &it.second, i != 0, i == 0);
+				pDoc->InlineDiffListCopy(srcPane, dstPane, it.first, it.second[0], it.second[it.second.size() - 1], &it.second, i != 0, i == 0);
 				++i;
 			});
 		}
@@ -2005,7 +2005,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		if (selectedLineOnly)
 		{
 			CWaitCursor waitstatus;
-			pDoc->PartialListCopy(srcPane, dstPane, currentDiff, ptStart, ptEnd, false, true, true);
+			pDoc->LineListCopy(srcPane, dstPane, currentDiff, ptStart.y, ptStart.y);
 		}
 		else
 		{
