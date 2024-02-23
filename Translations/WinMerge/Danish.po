@@ -1924,6 +1924,9 @@ msgstr ""
 msgid "&Automatic rescan"
 msgstr "Automatisk &opdatering"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Farver for linjeforskelle"
@@ -4705,6 +4708,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

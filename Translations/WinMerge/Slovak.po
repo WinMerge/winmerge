@@ -1575,6 +1575,9 @@ msgstr "&Režim vytvárania prevodu:"
 msgid "&Automatic rescan"
 msgstr "Automatické p&reskenovanie"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Farebné odlíšenie riadkových rozdielov"
 
@@ -4107,6 +4110,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

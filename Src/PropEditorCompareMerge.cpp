@@ -24,7 +24,7 @@ static const int MAX_TABSIZE = 64;
 PropEditorCompareMerge::PropEditorCompareMerge(COptionsMgr *optionsMgr) 
 : OptionsPanel(optionsMgr, PropEditorCompareMerge::IDD)
 , m_bAutomaticRescan(false)
-, m_bCopyFullLine(false)
+, m_nCopyGranularity(0)
 , m_bViewLineDifferences(false)
 , m_bBreakOnWords(false)
 , m_nBreakType(0)
@@ -39,8 +39,7 @@ void PropEditorCompareMerge::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(PropEditorCompareMerge)
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
-	// m_bCopyFullLine currently is only a hidden option
-	//  > it is used here in PropEditorCompareMerge.cpp, because otherwise it doesn't get saved to the registry
+	DDX_CBIndex(pDX, IDC_COPY_GRANULARITY, m_nCopyGranularity);
 	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
 	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
 	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
@@ -63,7 +62,7 @@ END_MESSAGE_MAP()
 void PropEditorCompareMerge::ReadOptions()
 {
 	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
-	m_bCopyFullLine = GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE);
+	m_nCopyGranularity = GetOptionsMgr()->GetInt(OPT_COPY_GRANULARITY);
 	m_bViewLineDifferences = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_bBreakOnWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
 	m_nBreakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
@@ -76,7 +75,7 @@ void PropEditorCompareMerge::ReadOptions()
 void PropEditorCompareMerge::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan);
-	GetOptionsMgr()->SaveOption(OPT_COPY_FULL_LINE, m_bCopyFullLine);
+	GetOptionsMgr()->SaveOption(OPT_COPY_GRANULARITY, m_nCopyGranularity);
 	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, m_bViewLineDifferences);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, m_bBreakOnWords);
 	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
@@ -108,6 +107,8 @@ void PropEditorCompareMerge::LoadComboBoxStrings()
 {
 	SetDlgItemComboBoxList(IDC_BREAK_TYPE,
 		{ _("Break at whitespace"), _("Break at whitespace or punctuation") });
+	SetDlgItemComboBoxList(IDC_COPY_GRANULARITY,
+		{ _("Diff hunk"), _("Inline diff"), _("Line"), _("Character") });
 }
 
 /**

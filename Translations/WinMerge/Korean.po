@@ -1932,6 +1932,9 @@ msgstr "렌더링 모드(&R)"
 msgid "&Automatic rescan"
 msgstr "자동으로 다시 검색(&A)"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "줄 차이점 채색"
@@ -4852,6 +4855,18 @@ msgid "Comparing..."
 msgstr "비교 중..."
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

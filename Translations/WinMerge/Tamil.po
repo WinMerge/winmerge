@@ -1573,6 +1573,9 @@ msgstr "&ரெண்டரிங் பயன்முறை:"
 msgid "&Automatic rescan"
 msgstr "&தானியங்கு மறு ஆய்வு"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "கோடு வேறுபாடு வண்ணம்"
 
@@ -4129,6 +4132,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

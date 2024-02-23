@@ -1580,6 +1580,9 @@ msgstr "Mod de &randare:"
 msgid "&Automatic rescan"
 msgstr "Rescanare &automată"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Colorarea diferențelor din rând"
 
@@ -4222,6 +4225,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

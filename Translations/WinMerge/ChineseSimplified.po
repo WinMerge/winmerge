@@ -1581,6 +1581,9 @@ msgstr "渲染模式(&R)"
 msgid "&Automatic rescan"
 msgstr "自动重新扫描(&A)"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "行内差异着色"
 
@@ -4179,6 +4182,18 @@ msgstr "比较中..."
 
 msgid "Zoom:"
 msgstr "缩放："
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "格式美化"

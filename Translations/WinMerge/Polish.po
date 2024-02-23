@@ -1576,6 +1576,9 @@ msgstr "&Tryb renderowania:"
 msgid "&Automatic rescan"
 msgstr "Automatyczne powtórz skanowanie"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Kolorowanie różniących się wierszy"
 
@@ -3746,6 +3749,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

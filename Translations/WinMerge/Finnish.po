@@ -1580,6 +1580,9 @@ msgstr "&Hahmonnustila:"
 msgid "&Automatic rescan"
 msgstr "Automaattinen uusi haku"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Rivierojen väritys"
 
@@ -4165,6 +4168,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

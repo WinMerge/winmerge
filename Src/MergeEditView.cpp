@@ -50,6 +50,8 @@ const UINT IDT_RESCAN = 2;
 /** @brief Timer timeout for delayed rescan. */
 const UINT RESCAN_TIMEOUT = 1000;
 
+enum CopyGranularity { DiffHunk, InlineDiff, Line, Character };
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
 
@@ -1954,8 +1956,8 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 	{
 		if (!m_bRectangularSelection)
 		{
-			bool selectedWordOnly = true;
-			if (selectedWordOnly)
+			const int nCopyGranularity = GetOptionsMgr()->GetInt(OPT_COPY_GRANULARITY);
+			if (nCopyGranularity == InlineDiff)
 			{
 				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
@@ -1965,14 +1967,15 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
 				}
 			}
-			else if (selectedLineOnly)
+			else if (nCopyGranularity == Line || nCopyGranularity == Character)
 			{
 				int firstDiff, lastDiff;
 				GetSelectedDiffs(firstDiff, lastDiff);
 				if (firstDiff != -1 && lastDiff != -1)
 				{
 					CWaitCursor waitstatus;
-					pDoc->CopyMultiplePartialList(srcPane, dstPane, firstDiff, lastDiff, ptStart.y, ptEnd.y);
+					pDoc->CopyMultiplePartialList(srcPane, dstPane, firstDiff, lastDiff, 
+						ptStart, ptEnd, nCopyGranularity == Character);
 				}
 			}
 			else
@@ -2002,7 +2005,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		if (selectedLineOnly)
 		{
 			CWaitCursor waitstatus;
-			pDoc->PartialListCopy(srcPane, dstPane, currentDiff, ptStart.y, ptEnd.y);
+			pDoc->PartialListCopy(srcPane, dstPane, currentDiff, ptStart, ptEnd, false, true, true);
 		}
 		else
 		{
@@ -2031,8 +2034,8 @@ void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 		auto [ptStart, ptEnd] = GetSelection();
 		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
-			bool selectedWordOnly = true;
-			if (selectedWordOnly)
+			const int nCopyGranularity = GetOptionsMgr()->GetInt(OPT_COPY_GRANULARITY);
+			if (nCopyGranularity == InlineDiff)
 			{
 				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);

@@ -1578,6 +1578,9 @@ msgstr "レンダリングモード(&R):"
 msgid "&Automatic rescan"
 msgstr "自動的に再スキャンする(&A)"
 
+msgid "Copy &granularity for selected differences:"
+msgstr "選択された差異のコピー粒度(&G)"
+
 msgid "Line Difference Coloring"
 msgstr "行内差異の色付け"
 
@@ -4134,6 +4137,18 @@ msgstr "比較しています..."
 
 msgid "Zoom:"
 msgstr "拡大率:"
+
+msgid "Diff hunk"
+msgstr "差異ブロック"
+
+msgid "Inline diff"
+msgstr "行内差異"
+
+msgid "Line"
+msgstr "行"
+
+msgid "Character"
+msgstr "文字"
 
 msgid "Prettification"
 msgstr "整形"

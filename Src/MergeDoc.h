@@ -166,11 +166,12 @@ public:
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstWordDiff = -1, int lastWordDiff = -1);
-	void CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstLineDiff = -1, int lastLineDiff = -1);
+	void CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff,
+		const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter);
 	void DoAutoMerge(int dstPane);
 	bool SanityCheckDiff(const DIFFRANGE& dr) const;
 	bool WordListCopy(int srcPane, int dstPane, int nDiff, int nFirstWordDiff, int nLastWordDiff, const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious = false, bool bUpdateView = true);
-	bool PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	bool PartialListCopy(int srcPane, int dstPane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious, bool bUpdateView, bool bCharacter);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo& infoTempUnpacker);

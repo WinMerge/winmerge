@@ -1575,6 +1575,9 @@ msgstr "Atvaizdavimo &režimas:"
 msgid "&Automatic rescan"
 msgstr "&Automatiškai perskanuoti"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Skirtumų eilutėse spalvinimas"
 
@@ -3746,6 +3749,18 @@ msgstr "Lygina..."
 
 msgid "Zoom:"
 msgstr "Mastelis:"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Sutvarkymas"

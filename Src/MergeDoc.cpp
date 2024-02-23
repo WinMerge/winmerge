@@ -944,12 +944,14 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 }
 
 void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff,
-	int firstLineDiff, int lastLineDiff)
+	const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter)
 {
 	lastDiff = (std::min)(m_diffList.GetSize() - 1, lastDiff);
 	firstDiff = (std::max)(0, firstDiff);
 	if (firstDiff > lastDiff)
 		return;
+	const int firstLineDiff = ptStart.y;
+	const int lastLineDiff = ptEnd.y;
 	
 	RescanSuppress suppressRescan(*this);
 
@@ -962,7 +964,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 	else
 	{
 		if (!PartialListCopy(srcPane, dstPane, lastDiff, 
-			(firstDiff == lastDiff) ? firstLineDiff : 0, lastLineDiff, bGroupWithPrevious, true))
+			(firstDiff == lastDiff) ? ptStart : CEPoint{ 0, 0 }, ptEnd, bGroupWithPrevious, true, bCharacter))
 			return; // sync failure
 	}
 
@@ -1005,7 +1007,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 			}
 			else
 			{
-				if (!PartialListCopy(srcPane, dstPane, firstDiff, firstLineDiff, -1, bGroupWithPrevious, false))
+				if (!PartialListCopy(srcPane, dstPane, firstDiff, ptStart, { -1, -1 }, bGroupWithPrevious, false, bCharacter))
 					break; // sync failure
 			}
 		}
@@ -1318,9 +1320,11 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 	return true;
 }
 
-bool CMergeDoc::PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine /*= -1*/,
-	bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+bool CMergeDoc::PartialListCopy(int srcPane, int dstPane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd,
+	bool bGroupWithPrevious, bool bUpdateView, bool bCharacter)
 {
+	const int firstLine = ptStart.y;
+	const int lastLine = (ptEnd.x == 0 && ptStart.y < ptEnd.y) ? ptEnd.y - 1 : ptEnd.y;
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
 	CCrystalTextView *pSource = bUpdateView ? pViewDst : nullptr;

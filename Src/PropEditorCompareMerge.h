@@ -31,7 +31,7 @@ public:
 	//{{AFX_DATA(PropEditorCompareMerge)
 	enum { IDD = IDD_PROPPAGE_EDITOR_COMPAREMERGE };
 	bool    m_bAutomaticRescan;
-	bool    m_bCopyFullLine;
+	int     m_nCopyGranularity;
 	bool    m_bViewLineDifferences;
 	bool    m_bBreakOnWords;
 	int     m_nBreakType;

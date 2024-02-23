@@ -1575,6 +1575,9 @@ msgstr "Način upodab&ljanja:"
 msgid "&Automatic rescan"
 msgstr "&Samodejni ponovni pregled"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Barvanje razlike v vrstici"
 
@@ -4131,6 +4134,18 @@ msgstr "Primerjanje..."
 
 msgid "Zoom:"
 msgstr "Povečava:"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Polepšanje"

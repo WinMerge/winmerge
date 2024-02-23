@@ -1923,6 +1923,9 @@ msgstr ""
 msgid "&Automatic rescan"
 msgstr "Automaticky &opětovně porovnávat"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Obarvit rozdíly v řádku"
@@ -4600,6 +4603,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

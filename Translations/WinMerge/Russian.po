@@ -1577,6 +1577,9 @@ msgstr "Режим отрисовки:"
 msgid "&Automatic rescan"
 msgstr "Авто&пересканирование"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Подсветка отличий в строке"
 
@@ -3748,6 +3751,18 @@ msgstr "Сравнение..."
 
 msgid "Zoom:"
 msgstr "Масштаб"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Приукрашивание"

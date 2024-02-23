@@ -1579,6 +1579,9 @@ msgstr "&Modu di trasfurmazione :"
 msgid "&Automatic rescan"
 msgstr "&Rianalisa autumatica"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Culurazione di sfarenza di linea"
 
@@ -4143,6 +4146,18 @@ msgstr "Paragone…"
 
 msgid "Zoom:"
 msgstr "Ingrandamentu :"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Imbellimentu"

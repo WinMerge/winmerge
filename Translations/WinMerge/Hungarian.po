@@ -1925,6 +1925,9 @@ msgstr "Renderelési mód:"
 msgid "&Automatic rescan"
 msgstr "&Automatikus újraolvasás"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Eltérő sorok színezése"
@@ -4806,6 +4809,18 @@ msgid "Comparing..."
 msgstr "Összehasonlítás..."
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

@@ -1575,6 +1575,9 @@ msgstr "&Modo de Renderização:"
 msgid "&Automatic rescan"
 msgstr "&Re-escaneamento automático"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Coloração das Diferenças das Linhas"
 
@@ -3746,6 +3749,18 @@ msgstr "Comparando..."
 
 msgid "Zoom:"
 msgstr "Zoom:"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

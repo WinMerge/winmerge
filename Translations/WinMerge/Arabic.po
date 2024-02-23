@@ -1578,6 +1578,9 @@ msgstr ""
 msgid "&Automatic rescan"
 msgstr "إ&عادة الفحص التلقائي"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "تلوين الاختلافات في الأسطر"
 
@@ -4063,6 +4066,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

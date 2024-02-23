@@ -621,6 +621,7 @@
 #define IDC_PROPS_LISTVIEW              1623
 #define IDC_INPUTBOX_PROMPT             1633
 #define IDC_INPUTBOX_EDIT               1634
+#define IDC_COPY_GRANULARITY            1635
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1659,6 +1660,10 @@
 #define IDS_PREVIEWBAR_CLOSE            44538
 #define IDS_WEBPAGE_COMPARING           44539
 #define IDS_WEBPAGE_ZOOM                44540
+#define IDS_COPY_GRANULARITY_DIFFHUNK   44541
+#define IDS_COPY_GRANULARITY_INLINE     44542
+#define IDS_COPY_GRANULARITY_LINE       44543
+#define IDS_COPY_GRANULARITY_Character  44544
 
 // Next default values for new objects
 // 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-02-22 08:17+0000\n"
+"POT-Creation-Date: 2024-02-23 15:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1567,6 +1567,9 @@ msgid "&Rendering Mode:"
 msgstr ""
 
 msgid "&Automatic rescan"
+msgstr ""
+
+msgid "Copy &granularity for selected differences:"
 msgstr ""
 
 msgid "Line Difference Coloring"
@@ -3740,6 +3743,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

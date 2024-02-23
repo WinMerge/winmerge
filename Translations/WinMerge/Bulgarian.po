@@ -1572,6 +1572,9 @@ msgstr "&Режим на изчертаване:"
 msgid "&Automatic rescan"
 msgstr "&Автоматично сканиране"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Оцветяване на редове с различия"
 
@@ -4124,6 +4127,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

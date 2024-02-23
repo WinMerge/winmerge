@@ -1925,6 +1925,9 @@ msgstr ""
 msgid "&Automatic rescan"
 msgstr "&Berezgaitasunezko birmihaketa"
 
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Lerro Ezberdintasuna Margotzen"
@@ -4668,6 +4671,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"
