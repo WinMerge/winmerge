@@ -144,6 +144,7 @@ void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 
 	CThreadArchiveOpen t;
 	t.OpenCallbackSpec = new COpenCallbackImp;
+	t.OpenCallbackSpec->Callback = &t.OpenArchiveCallbackSpec;
 	t.OpenCallback = t.OpenCallbackSpec;
 	t.OpenArchiveCallbackSpec.PasswordIsDefined = false;
 	t.OpenArchiveCallbackSpec.ParentWindow = hwndParent;
