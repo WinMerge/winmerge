@@ -963,9 +963,17 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 	}
 	else
 	{
-		if (!LineListCopy(srcPane, dstPane, lastDiff, 
-			(firstDiff == lastDiff) ? firstLineDiff : 0, lastLineDiff, bGroupWithPrevious, true))
-			return; // sync failure
+		if (!bCharacter) {
+			if (!LineListCopy(srcPane, dstPane, lastDiff,
+				(firstDiff == lastDiff) ? firstLineDiff : 0, lastLineDiff, bGroupWithPrevious, true))
+				return; // sync failure
+		}
+		else
+		{
+			if (!CharacterListCopy(srcPane, dstPane, lastDiff,
+				(firstDiff == lastDiff) ? ptStart : CEPoint{ 0, 0 }, ptEnd, bGroupWithPrevious, true))
+				return; // sync failure
+		}
 	}
 
 
@@ -1007,8 +1015,16 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 			}
 			else
 			{
-				if (!LineListCopy(srcPane, dstPane, firstDiff, firstLineDiff, -1, bGroupWithPrevious, false))
-					break; // sync failure
+				if (!bCharacter)
+				{
+					if (!LineListCopy(srcPane, dstPane, firstDiff, firstLineDiff, -1, bGroupWithPrevious, false))
+						break; // sync failure
+				}
+				else
+				{
+					if (!CharacterListCopy(srcPane, dstPane, firstDiff, ptStart, CEPoint{-1, -1}, bGroupWithPrevious, false))
+						break; // sync failure
+				}
 			}
 		}
 	}
@@ -1565,19 +1581,6 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 	if (cd.end[srcPane] < cd.begin[srcPane])
 		return ListCopy(srcPane, dstPane, nDiff, bGroupWithPrevious, bUpdateView);
 
-	int firstWordDiff = -1;
-	int lastWordDiff = -1;
-
-	for (size_t i = 0; i < worddiffs.size(); ++i)
-	{
-
-	}
-
-	if (firstWordDiff == -1)
-		firstWordDiff = 0;
-	if (lastWordDiff == -1)
-		lastWordDiff = static_cast<int>(worddiffs.size() - 1);
-
 	// If we remove whole diff from current view, we must fix cursor
 	// position first. Normally we would move to end of previous line,
 	// but we want to move to begin of that line for usability.
@@ -1598,26 +1601,95 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 	// curView is the view which is changed, so the opposite of the source view
 	dbuf.BeginUndoGroup(bGroupWithPrevious);
 
+	int firstWordDiff = -1;
+	int lastWordDiff = -1;
+	for (int i = static_cast<int>(worddiffs.size() - 1); i >= 0; --i)
+	{
+		if ((ptStart.y == worddiffs[i].beginline[srcPane] && ptStart.x <= worddiffs[i].begin[srcPane]) ||
+			(ptStart.y < worddiffs[i].beginline[srcPane]))
+			firstWordDiff = i;
+	}
+	for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
+	{
+		if ((ptEnd.y == worddiffs[i].endline[srcPane] && ptEnd.x >= worddiffs[i].end[srcPane]) ||
+		    (ptEnd.y > worddiffs[i].endline[srcPane]))
+			lastWordDiff = i;
+	}
+
+	auto GetDistance = [](const CEPoint& pt1, const CEPoint & pt2) -> int
+	{
+		return 0;
+	};
+	auto Advance = [](const CEPoint& pt, int distance) -> CEPoint
+	{
+		return {};
+	};
+
 	String srcText, dstText;
 	CEPoint ptDstStart, ptDstEnd;
 	CEPoint ptSrcStart, ptSrcEnd;
 
-	ptDstStart.x = worddiffs[firstWordDiff].begin[dstPane];
-	ptDstStart.y = worddiffs[firstWordDiff].beginline[dstPane];
-	ptDstEnd.x = worddiffs[lastWordDiff].end[dstPane];
-	ptDstEnd.y = worddiffs[lastWordDiff].endline[dstPane];
-	ptSrcStart.x = worddiffs[firstWordDiff].begin[srcPane];
-	ptSrcStart.y = worddiffs[firstWordDiff].beginline[srcPane];
-	ptSrcEnd.x = worddiffs[lastWordDiff].end[srcPane];
-	ptSrcEnd.y = worddiffs[lastWordDiff].endline[srcPane];
+	if (firstWordDiff == -1)
+	{
+		if (ptStart.y < cd_dbegin)
+		{
+			ptSrcStart.x = 0;
+			ptSrcStart.y = cd_dbegin;
+			ptDstStart.x = 0;
+			ptDstStart.y = cd_dbegin;
+		}
+		else
+		{
+			ptSrcStart.x = ptStart.x;
+			ptSrcStart.y = ptStart.y;
+			ptDstStart.x = ptStart.x;
+			ptDstStart.y = ptStart.y;
+			if (ptDstStart.x > m_ptBuf[dstPane]->GetLineLength(ptDstStart.y))
+				ptDstStart.x = m_ptBuf[dstPane]->GetLineLength(ptDstStart.y);
+		}
+	}
+	else
+	{
+		const int distance = GetDistance(ptStart, CEPoint{worddiffs[firstWordDiff].begin[srcPane], worddiffs[firstWordDiff].beginline[dstPane]});
+		ptDstStart = Advance(CEPoint{ worddiffs[firstWordDiff].beginline[dstPane], worddiffs[firstWordDiff].begin[dstPane] }, -distance);
+		ptSrcStart.x = ptStart.x;
+		ptSrcStart.y = ptStart.y;
+	}
+	if (lastWordDiff == -1)
+	{
+		if (ptEnd.y > cd_dend)
+		{
+			ptDstEnd.x = 0;
+			ptDstEnd.y = cd_dend + 1;
+			ptSrcEnd.x = 0;
+			ptSrcEnd.y = cd_dend + 1;
+		}
+		else
+		{
+			ptDstEnd.x = ptEnd.x;
+			ptDstEnd.y = ptEnd.y;
+			ptSrcEnd.x = ptEnd.x;
+			ptSrcEnd.y = ptEnd.y;
+			if (ptDstEnd.x > m_ptBuf[dstPane]->GetLineLength(ptDstEnd.y))
+				ptDstEnd.x = m_ptBuf[dstPane]->GetLineLength(ptDstEnd.y);
+		}
+	}
+	else
+	{
+		ptDstEnd.x = worddiffs[lastWordDiff].end[dstPane];
+		ptDstEnd.y = worddiffs[lastWordDiff].endline[dstPane];
+		ptSrcEnd.x = worddiffs[lastWordDiff].end[srcPane];
+		ptSrcEnd.y = worddiffs[lastWordDiff].endline[srcPane];
+	}
 
 	dbuf.GetTextWithoutEmptys(ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, dstText);
 	sbuf.GetTextWithoutEmptys(ptSrcStart.y, ptSrcStart.x, ptSrcEnd.y, ptSrcEnd.x, srcText);
 
-	dbuf.DeleteText(pSource, ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, CE_ACTION_MERGE);
+	if (ptDstStart != ptDstEnd)
+		dbuf.DeleteText(pSource, ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, CE_ACTION_MERGE);
 
 	int endl,endc;
-	dbuf.InsertText(pSource, ptDstStart.y, ptDstStart.x, dstText.c_str(), dstText.length(), endl, endc, CE_ACTION_MERGE);
+	dbuf.InsertText(pSource, ptDstStart.y, ptDstStart.x, srcText.c_str(), srcText.length(), endl, endc, CE_ACTION_MERGE);
 
 	dbuf.FlushUndoGroup(pSource);
 
