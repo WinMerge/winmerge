@@ -1,7 +1,7 @@
 pushd "%~dp0"
 
 setlocal
-set MERGE7z_VERSION=2301.0
+set MERGE7z_VERSION=2301.1
 set PATH="%ProgramFiles%\7-zip";"%ProgramFiles(x86)%\7-zip";%PATH%
 set DISTDIR=..\..\Build\Releases
 
