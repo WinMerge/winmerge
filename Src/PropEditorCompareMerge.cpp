@@ -14,9 +14,6 @@
 #define new DEBUG_NEW
 #endif
 
-/** @brief Maximum size for tabs in spaces. */
-static const int MAX_TABSIZE = 64;
-
 /** 
  * @brief Constructor.
  * @param [in] optionsMgr Pointer to options manager for handling options.
