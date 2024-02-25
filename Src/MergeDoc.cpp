@@ -951,7 +951,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 	if (firstDiff > lastDiff)
 		return;
 	const int firstLineDiff = ptStart.y;
-	const int lastLineDiff = ptEnd.y;
+	const int lastLineDiff = ptEnd.x == 0 ? ptEnd.y - 1 : ptEnd.y;
 	
 	RescanSuppress suppressRescan(*this);
 

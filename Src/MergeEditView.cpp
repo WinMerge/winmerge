@@ -1957,7 +1957,18 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		if (!m_bRectangularSelection)
 		{
 			const int nCopyGranularity = GetOptionsMgr()->GetInt(OPT_COPY_GRANULARITY);
-			if (nCopyGranularity == InlineDiff)
+			if (selectedLineOnly)
+			{
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
+				if (firstDiff != -1 && lastDiff != -1)
+				{
+					CWaitCursor waitstatus;
+					pDoc->CopyMultiplePartialList(srcPane, dstPane, m_nThisPane, firstDiff, lastDiff, 
+						ptStart, ptEnd, false);
+				}
+			}
+			else if (nCopyGranularity == InlineDiff)
 			{
 				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
