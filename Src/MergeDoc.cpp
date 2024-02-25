@@ -1698,22 +1698,12 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 		if (srcPane == activePane)
 		{
 			ptDstStart = Advance(dstPane, CEPoint{ worddiffs[firstWordDiff].end[dstPane], worddiffs[firstWordDiff].endline[dstPane] }, distance);
-			if (ptDstStart.y > cd_dend)
-			{
-				ptDstStart.x = 0;
-				ptDstStart.y = cd_dend + 1;
-			}
 			ptSrcStart.x = ptStart.x;
 			ptSrcStart.y = ptStart.y;
 		}
 		else
 		{
 			ptSrcStart = Advance(srcPane, CEPoint{ worddiffs[firstWordDiff].end[srcPane], worddiffs[firstWordDiff].endline[srcPane] }, distance);
-			if (ptSrcStart.y > cd_dend)
-			{
-				ptSrcStart.x = 0;
-				ptSrcStart.y = cd_dend + 1;
-			}
 			ptDstStart.x = ptStart.x;
 			ptDstStart.y = ptStart.y;
 		}
@@ -1751,25 +1741,35 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 		if (srcPane == activePane)
 		{
 			ptDstEnd = Advance(dstPane, CEPoint{ worddiffs[lastWordDiff].end[dstPane], worddiffs[lastWordDiff].endline[dstPane] }, distance);
-			if (ptDstEnd.y > cd_dend)
-			{
-				ptDstEnd.x = 0;
-				ptDstEnd.y = cd_dend + 1;
-			}
 			ptSrcEnd.x = ptEnd.x;
 			ptSrcEnd.y = ptEnd.y;
 		}
 		else
 		{
 			ptSrcEnd = Advance(srcPane, CEPoint{ worddiffs[lastWordDiff].end[srcPane], worddiffs[lastWordDiff].endline[srcPane] }, distance);
-			if (ptSrcEnd.y > cd_dend)
-			{
-				ptSrcEnd.x = 0;
-				ptSrcEnd.y = cd_dend + 1;
-			}
 			ptDstEnd.x = ptEnd.x;
 			ptDstEnd.y = ptEnd.y;
 		}
+	}
+	if (ptDstStart.y > cd_dend)
+	{
+		ptDstStart.x = 0;
+		ptDstStart.y = cd_dend + 1;
+	}
+	if (ptSrcStart.y > cd_dend)
+	{
+		ptSrcStart.x = 0;
+		ptSrcStart.y = cd_dend + 1;
+	}
+	if (ptDstEnd.y > cd_dend)
+	{
+		ptDstEnd.x = 0;
+		ptDstEnd.y = cd_dend + 1;
+	}
+	if (ptSrcEnd.y > cd_dend)
+	{
+		ptSrcEnd.x = 0;
+		ptSrcEnd.y = cd_dend + 1;
 	}
 
 	dbuf.GetTextWithoutEmptys(ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, dstText);
