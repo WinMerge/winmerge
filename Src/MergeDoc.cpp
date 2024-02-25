@@ -1616,14 +1616,71 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 			lastWordDiff = i;
 	}
 
-	auto GetDistance = [](const CEPoint& pt1, const CEPoint & pt2) -> int
-	{
-		return 0;
-	};
-	auto Advance = [](const CEPoint& pt, int distance) -> CEPoint
-	{
-		return {};
-	};
+	auto GetDistance = [&](int pane, const CEPoint& pt1, const CEPoint& pt2) -> int
+		{
+			int distance = 0;
+			if (pt1.y < pt2.y || (pt1.y == pt2.y && pt1.x <= pt2.x))
+			{
+				for (int y = pt1.y; y <= pt2.y; ++y)
+				{
+					distance += m_ptBuf[pane]->GetFullLineLength(y);
+					if (y == pt1.y)
+						distance -= pt1.x;
+					if (y == pt2.y)
+						distance -= m_ptBuf[pane]->GetFullLineLength(y) - pt2.x;
+				}
+				return distance;
+			}
+			else
+			{
+				for (int y = pt2.y; y <= pt1.y; ++y)
+				{
+					distance += m_ptBuf[pane]->GetFullLineLength(y);
+					if (y == pt2.y)
+						distance -= pt2.x;
+					if (y == pt1.y)
+						distance -= m_ptBuf[pane]->GetFullLineLength(y) - pt1.x;
+				}
+				return -distance;
+			}
+		};
+	auto Advance = [&](int pane, const CEPoint& pt, int distance) -> CEPoint
+		{
+			CEPoint ptAdvanced = pt;
+			if (distance > 0)
+			{
+				while (distance > 0)
+				{
+					ptAdvanced.x += distance;
+					if (ptAdvanced.x > m_ptBuf[pane]->GetLineLength(ptAdvanced.y))
+					{
+						distance -= ptAdvanced.x - m_ptBuf[pane]->GetFullLineLength(ptAdvanced.y);
+						ptAdvanced.x = 0;
+						++ptAdvanced.y;
+						const int nLineCount = m_ptBuf[pane]->GetLineCount();
+						if (ptAdvanced.y > nLineCount)
+							return { m_ptBuf[pane]->GetLineLength(nLineCount - 1), nLineCount - 1 };
+					}
+				}
+			}
+			else
+			{
+				while (distance < 0)
+				{
+					ptAdvanced.x += distance;
+					if (ptAdvanced.x < 0)
+					{
+						--ptAdvanced.y;
+						if (ptAdvanced.y < 0)
+							return { 0, 0 };
+						distance += -ptAdvanced.x + (m_ptBuf[pane]->GetFullLineLength(ptAdvanced.y) - m_ptBuf[pane]->GetLineLength(ptAdvanced.y));
+						ptAdvanced.x = m_ptBuf[pane]->GetLineLength(ptAdvanced.y);
+					}
+				}
+
+			}
+			return ptAdvanced;
+		};
 
 	String srcText, dstText;
 	CEPoint ptDstStart, ptDstEnd;
@@ -1650,8 +1707,13 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 	}
 	else
 	{
-		const int distance = GetDistance(ptStart, CEPoint{worddiffs[firstWordDiff].begin[srcPane], worddiffs[firstWordDiff].beginline[dstPane]});
-		ptDstStart = Advance(CEPoint{ worddiffs[firstWordDiff].beginline[dstPane], worddiffs[firstWordDiff].begin[dstPane] }, -distance);
+		const int distance = GetDistance(srcPane, ptStart, CEPoint{ worddiffs[firstWordDiff].begin[srcPane], worddiffs[firstWordDiff].beginline[dstPane] });
+		ptDstStart = Advance(dstPane, CEPoint{ worddiffs[firstWordDiff].begin[dstPane], worddiffs[firstWordDiff].beginline[dstPane] }, -distance);
+		if (ptDstStart.y < cd_dbegin)
+		{
+			ptDstStart.x = 0;
+			ptDstStart.y = cd_dbegin;
+		}
 		ptSrcStart.x = ptStart.x;
 		ptSrcStart.y = ptStart.y;
 	}
@@ -1676,10 +1738,15 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 	}
 	else
 	{
-		ptDstEnd.x = worddiffs[lastWordDiff].end[dstPane];
-		ptDstEnd.y = worddiffs[lastWordDiff].endline[dstPane];
-		ptSrcEnd.x = worddiffs[lastWordDiff].end[srcPane];
-		ptSrcEnd.y = worddiffs[lastWordDiff].endline[srcPane];
+		const int distance = GetDistance(srcPane, CEPoint{ worddiffs[lastWordDiff].end[srcPane], worddiffs[lastWordDiff].endline[dstPane] }, ptEnd);
+		ptDstEnd = Advance(dstPane, CEPoint{ worddiffs[lastWordDiff].end[dstPane], worddiffs[lastWordDiff].endline[dstPane] }, distance);
+		if (ptDstEnd.y > cd_dend)
+		{
+			ptDstEnd.x = 0;
+			ptDstEnd.y = cd_dend;
+		}
+		ptSrcEnd.x = ptEnd.x;
+		ptSrcEnd.y = ptEnd.y;
 	}
 
 	dbuf.GetTextWithoutEmptys(ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, dstText);
