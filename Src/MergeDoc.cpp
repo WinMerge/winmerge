@@ -963,7 +963,8 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 	}
 	else
 	{
-		if (!bCharacter) {
+		if (!bCharacter)
+		{
 			if (!LineListCopy(srcPane, dstPane, lastDiff,
 				(firstDiff == lastDiff) ? firstLineDiff : 0, lastLineDiff, bGroupWithPrevious, true))
 				return; // sync failure
