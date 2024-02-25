@@ -943,8 +943,8 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	FlushAndRescan();
 }
 
-void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff,
-	const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter)
+void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane,
+	int firstDiff, int lastDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter)
 {
 	lastDiff = (std::min)(m_diffList.GetSize() - 1, lastDiff);
 	firstDiff = (std::max)(0, firstDiff);
@@ -970,7 +970,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 		}
 		else
 		{
-			if (!CharacterListCopy(srcPane, dstPane, lastDiff,
+			if (!CharacterListCopy(srcPane, dstPane, activePane, lastDiff,
 				(firstDiff == lastDiff) ? ptStart : CEPoint{ 0, 0 }, ptEnd, bGroupWithPrevious, true))
 				return; // sync failure
 		}
@@ -1022,7 +1022,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff,
 				}
 				else
 				{
-					if (!CharacterListCopy(srcPane, dstPane, firstDiff, ptStart, CEPoint{-1, -1}, bGroupWithPrevious, false))
+					if (!CharacterListCopy(srcPane, dstPane, activePane, firstDiff, ptStart, CEPoint{-1, -1}, bGroupWithPrevious, false))
 						break; // sync failure
 				}
 			}
@@ -1545,8 +1545,8 @@ bool CMergeDoc::InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int firs
 	return true;
 }
 
-bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd,
-		bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff,
+	const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
 {
 	int nGroup = GetActiveMergeView()->m_nThisGroup;
 	CMergeEditView *pViewDst = m_pView[nGroup][dstPane];
@@ -1605,8 +1605,8 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 	int lastWordDiff = -1;
 	for (int i = static_cast<int>(worddiffs.size() - 1); i >= 0; --i)
 	{
-		if ((ptStart.y == worddiffs[i].beginline[srcPane] && ptStart.x <= worddiffs[i].begin[srcPane]) ||
-			(ptStart.y < worddiffs[i].beginline[srcPane]))
+		if ((ptStart.y == worddiffs[i].beginline[srcPane] && ptStart.x >= worddiffs[i].end[srcPane]) ||
+			(ptStart.y > worddiffs[i].beginline[srcPane]))
 			firstWordDiff = i;
 	}
 	for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
@@ -1618,66 +1618,38 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 
 	auto GetDistance = [&](int pane, const CEPoint& pt1, const CEPoint& pt2) -> int
 		{
+			assert(pt1.y < pt2.y || (pt1.y == pt2.y && pt1.x <= pt2.x));
 			int distance = 0;
-			if (pt1.y < pt2.y || (pt1.y == pt2.y && pt1.x <= pt2.x))
+			for (int y = pt1.y; y <= pt2.y; ++y)
 			{
-				for (int y = pt1.y; y <= pt2.y; ++y)
-				{
-					distance += m_ptBuf[pane]->GetFullLineLength(y);
-					if (y == pt1.y)
-						distance -= pt1.x;
-					if (y == pt2.y)
-						distance -= m_ptBuf[pane]->GetFullLineLength(y) - pt2.x;
-				}
-				return distance;
+				distance += m_ptBuf[pane]->GetFullLineLength(y);
+				if (y == pt1.y)
+					distance -= pt1.x;
+				if (y == pt2.y)
+					distance -= m_ptBuf[pane]->GetFullLineLength(y) - pt2.x;
 			}
-			else
-			{
-				for (int y = pt2.y; y <= pt1.y; ++y)
-				{
-					distance += m_ptBuf[pane]->GetFullLineLength(y);
-					if (y == pt2.y)
-						distance -= pt2.x;
-					if (y == pt1.y)
-						distance -= m_ptBuf[pane]->GetFullLineLength(y) - pt1.x;
-				}
-				return -distance;
-			}
+			return distance;
 		};
 	auto Advance = [&](int pane, const CEPoint& pt, int distance) -> CEPoint
 		{
+			assert(distance >= 0);
 			CEPoint ptAdvanced = pt;
-			if (distance > 0)
+			while (distance > 0)
 			{
-				while (distance > 0)
+				if (ptAdvanced.x + distance > m_ptBuf[pane]->GetLineLength(ptAdvanced.y))
+				{
+					distance -= m_ptBuf[pane]->GetFullLineLength(ptAdvanced.y) - ptAdvanced.x;
+					ptAdvanced.x = 0;
+					++ptAdvanced.y;
+					const int nLineCount = m_ptBuf[pane]->GetLineCount();
+					if (ptAdvanced.y > nLineCount)
+						return { m_ptBuf[pane]->GetLineLength(nLineCount - 1), nLineCount - 1 };
+				}
+				else
 				{
 					ptAdvanced.x += distance;
-					if (ptAdvanced.x > m_ptBuf[pane]->GetLineLength(ptAdvanced.y))
-					{
-						distance -= ptAdvanced.x - m_ptBuf[pane]->GetFullLineLength(ptAdvanced.y);
-						ptAdvanced.x = 0;
-						++ptAdvanced.y;
-						const int nLineCount = m_ptBuf[pane]->GetLineCount();
-						if (ptAdvanced.y > nLineCount)
-							return { m_ptBuf[pane]->GetLineLength(nLineCount - 1), nLineCount - 1 };
-					}
+					distance = 0;
 				}
-			}
-			else
-			{
-				while (distance < 0)
-				{
-					ptAdvanced.x += distance;
-					if (ptAdvanced.x < 0)
-					{
-						--ptAdvanced.y;
-						if (ptAdvanced.y < 0)
-							return { 0, 0 };
-						distance += -ptAdvanced.x + (m_ptBuf[pane]->GetFullLineLength(ptAdvanced.y) - m_ptBuf[pane]->GetLineLength(ptAdvanced.y));
-						ptAdvanced.x = m_ptBuf[pane]->GetLineLength(ptAdvanced.y);
-					}
-				}
-
 			}
 			return ptAdvanced;
 		};
@@ -1707,8 +1679,8 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 	}
 	else
 	{
-		const int distance = GetDistance(srcPane, ptStart, CEPoint{ worddiffs[firstWordDiff].begin[srcPane], worddiffs[firstWordDiff].beginline[dstPane] });
-		ptDstStart = Advance(dstPane, CEPoint{ worddiffs[firstWordDiff].begin[dstPane], worddiffs[firstWordDiff].beginline[dstPane] }, -distance);
+		const int distance = GetDistance(srcPane, CEPoint{ worddiffs[firstWordDiff].end[srcPane], worddiffs[firstWordDiff].endline[dstPane] }, ptStart);
+		ptDstStart = Advance(dstPane, CEPoint{ worddiffs[firstWordDiff].end[dstPane], worddiffs[firstWordDiff].endline[dstPane] }, distance);
 		if (ptDstStart.y < cd_dbegin)
 		{
 			ptDstStart.x = 0;
@@ -1743,7 +1715,7 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int nDiff, const CEP
 		if (ptDstEnd.y > cd_dend)
 		{
 			ptDstEnd.x = 0;
-			ptDstEnd.y = cd_dend;
+			ptDstEnd.y = cd_dend + 1;
 		}
 		ptSrcEnd.x = ptEnd.x;
 		ptSrcEnd.y = ptEnd.y;

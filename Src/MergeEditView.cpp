@@ -1974,7 +1974,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 				if (firstDiff != -1 && lastDiff != -1)
 				{
 					CWaitCursor waitstatus;
-					pDoc->CopyMultiplePartialList(srcPane, dstPane, firstDiff, lastDiff, 
+					pDoc->CopyMultiplePartialList(srcPane, dstPane, m_nThisPane, firstDiff, lastDiff, 
 						ptStart, ptEnd, nCopyGranularity == Character);
 				}
 			}
