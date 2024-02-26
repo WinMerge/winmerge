@@ -1023,7 +1023,7 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 				}
 				else
 				{
-					if (!CharacterListCopy(srcPane, dstPane, activePane, firstDiff, ptStart, CEPoint{-1, -1}, bGroupWithPrevious, false))
+					if (!CharacterListCopy(srcPane, dstPane, activePane, firstDiff, ptStart, ptEnd, bGroupWithPrevious, false))
 						break; // sync failure
 				}
 			}
