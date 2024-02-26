@@ -972,11 +972,10 @@ void CMergeDoc::CopyMultiplePartialList(int srcPane, int dstPane, int activePane
 		else
 		{
 			if (!CharacterListCopy(srcPane, dstPane, activePane, lastDiff,
-				(firstDiff == lastDiff) ? ptStart : CEPoint{ 0, 0 }, ptEnd, bGroupWithPrevious, true))
+				ptStart, ptEnd, bGroupWithPrevious, true))
 				return; // sync failure
 		}
 	}
-
 
 	SetEditedAfterRescan(dstPane);
 
@@ -1574,7 +1573,7 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 		return false; // abort copying
 	}
 
-	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff);
+	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff, true);
 
 	if (worddiffs.empty())
 		return false;
@@ -1603,18 +1602,24 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 	dbuf.BeginUndoGroup(bGroupWithPrevious);
 
 	int firstWordDiff = -1;
-	int lastWordDiff = -1;
-	for (int i = static_cast<int>(worddiffs.size() - 1); i >= 0; --i)
+	if ((m_ptBuf[activePane]->GetLineFlags(ptStart.y) & LF_GHOST) == 0)
 	{
-		if ((ptStart.y == worddiffs[i].endline[activePane] && ptStart.x >= worddiffs[i].end[activePane]) ||
-			(ptStart.y > worddiffs[i].endline[activePane]))
-			firstWordDiff = i;
+		for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
+		{
+			if ((ptStart.y == worddiffs[i].endline[activePane] && ptStart.x >= worddiffs[i].end[activePane]) ||
+				(ptStart.y > worddiffs[i].endline[activePane]))
+				firstWordDiff = i;
+		}
 	}
-	for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
+	int lastWordDiff = -1;
+	if ((m_ptBuf[activePane]->GetLineFlags(ptEnd.y) & LF_GHOST) == 0)
 	{
-		if ((ptEnd.y == worddiffs[i].endline[activePane] && ptEnd.x >= worddiffs[i].end[activePane]) ||
-		    (ptEnd.y > worddiffs[i].endline[activePane]))
-			lastWordDiff = i;
+		for (int i = 0; i < static_cast<int>(worddiffs.size()); ++i)
+		{
+			if ((ptEnd.y == worddiffs[i].endline[activePane] && ptEnd.x >= worddiffs[i].end[activePane]) ||
+				(ptEnd.y > worddiffs[i].endline[activePane]))
+				lastWordDiff = i;
+		}
 	}
 
 	auto GetDistance = [&](int pane, const CEPoint& pt1, const CEPoint& pt2) -> int
