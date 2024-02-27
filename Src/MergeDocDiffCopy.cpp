@@ -774,7 +774,7 @@ static int GetDistance(const CDiffTextBuffer& buf, const CEPoint& pt1, const CEP
 	return distance;
 };
 
-CEPoint Advance(const CDiffTextBuffer& buf, const CEPoint& pt, int distance)
+static CEPoint Advance(const CDiffTextBuffer& buf, const CEPoint& pt, int distance)
 {
 	assert(distance >= 0);
 	CEPoint ptMoved = pt;
@@ -981,6 +981,10 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 		ptSrcStart.x = 0;
 		ptSrcStart.y = cd_dend + 1;
 	}
+	if (ptDstEnd.y < ptDstStart.y)
+		ptDstEnd.y = ptDstStart.y;
+	if (ptSrcEnd.y < ptSrcStart.y)
+		ptSrcEnd.y = ptSrcStart.y;
 	if (ptDstEnd.y > cd_dend)
 	{
 		ptDstEnd.x = 0;
