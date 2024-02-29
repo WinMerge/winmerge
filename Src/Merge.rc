@@ -1724,7 +1724,7 @@ BEGIN
     CONTROL         "Ignore c&omment differences",IDC_FILTERCOMMENTS_CHECK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,239,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,132,269,10
-    CONTROL         "Align &similar lines",IDC_MATCH_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
+    CONTROL         "Align &similar lines",IDC_ALIGN_SIMILAR_LINES,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,144,269,10
     LTEXT           "Diff &algorithm:",IDC_STATIC,7,156,269,10
     COMBOBOX        IDC_DIFF_ALGORITHM,6,168,270,70,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Enable indent &heuristic",IDC_INDENT_HEURISTIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,186,269,10
