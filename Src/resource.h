@@ -477,7 +477,7 @@
 #define IDC_FINDDLG_DONTWRAP            1302
 #define IDC_REPORT_COPYCLIPBOARD        1303
 #define IDC_FILTERFILE_INSTALL          1304
-#define IDC_MATCH_SIMILAR_LINES         1305
+#define IDC_ALIGN_SIMILAR_LINES         1305
 #define IDC_BACKUP_FILECMP              1306
 #define IDC_BACKUP_FOLDERCMP            1307
 #define IDC_BACKUP_ORIGFOLD             1308

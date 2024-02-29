@@ -209,7 +209,7 @@ inline const String OPT_CMP_IGNORE_EOL {_T("Settings/IgnoreEol"s)};
 inline const String OPT_CMP_IGNORE_CODEPAGE {_T("Settings/IgnoreCodepage"s)};
 inline const String OPT_CMP_METHOD {_T("Settings/CompMethod2"s)};
 inline const String OPT_CMP_MOVED_BLOCKS {_T("Settings/MovedBlocks"s)};
-inline const String OPT_CMP_MATCH_SIMILAR_LINES {_T("Settings/MatchSimilarLines"s)};
+inline const String OPT_CMP_ALIGN_SIMILAR_LINES {_T("Settings/AlignSimilarLines"s)};
 inline const String OPT_CMP_STOP_AFTER_FIRST {_T("Settings/StopAfterFirst"s)};
 inline const String OPT_CMP_QUICK_LIMIT {_T("Settings/QuickMethodLimit"s)};
 inline const String OPT_CMP_BINARY_LIMIT {_T("Settings/BinaryMethodLimit"s)};
