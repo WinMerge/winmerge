@@ -580,7 +580,7 @@ BOMの有無の違いも検出します。</para>
 
     <section>
       <title>類似行をマッチさせる<indexterm>
-          <primary>similar lines, matching</primary>
+          <primary>similar lines, aligning</primary>
         </indexterm></title>
 
       <itemizedlist>

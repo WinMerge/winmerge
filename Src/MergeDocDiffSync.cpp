@@ -326,7 +326,7 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 }
 
 /**
- * @brief Divide diff blocks to match lines in diff blocks.
+ * @brief Divide diff blocks to align similar lines in diff blocks.
  */
 void CMergeDoc::AdjustDiffBlocks()
 {
@@ -439,7 +439,7 @@ void CMergeDoc::AdjustDiffBlocks()
 }
 
 /**
- * @brief Divide diff blocks to match lines in diff blocks. (3-way)
+ * @brief Divide diff blocks to align similar lines in diff blocks. (3-way)
  */
 void CMergeDoc::AdjustDiffBlocks3way()
 {

@@ -257,13 +257,13 @@ linkend="CompareFiles_linediff-highlight" /> for details.</para>
               </indexterm></term>
 
             <listitem>
-              <para>WinMerge tries to match similar lines within difference blocks when you
-enable <option>Match similar lines</option> in the Options dialog Compare
+              <para>WinMerge tries to align similar lines within difference blocks when you
+enable <option>Align similar lines</option> in the Options dialog Compare
 page. What does <quote>similar</quote> mean? Generally, this feature works
 best in simple cases, for example where lines that have strong
 similarities. When detected, similar lines are adjusted to align in the File
 pane. The next figure shows comparisons of the same two files, before and
-after enabling the <option>Match similar lines</option> option:</para>
+after enabling the <option>Align similar lines</option> option:</para>
 
               <simplelist columns="2" type="horiz">
                 <member><emphasis role="strong">Disabled</emphasis>: <inlinemediaobject>
