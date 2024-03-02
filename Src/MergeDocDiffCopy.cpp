@@ -804,61 +804,15 @@ static CEPoint Advance(const CDiffTextBuffer& buf, const CEPoint& pt, int distan
 	return ptMoved;
 }
 
-bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff,
-	const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> CMergeDoc::GetCharacterRange(int srcPane, int dstPane, int activePane, int nDiff,
+	const CEPoint& ptStart, const CEPoint& ptEnd)
 {
-	int nGroup = GetActiveMergeView()->m_nThisGroup;
-	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
-	CCrystalTextView* pSource = bUpdateView ? pViewDst : nullptr;
-
-	// suppress Rescan during this method
-	// (Not only do we not want to rescan a lot of times, but
-	// it will wreck the line status array to rescan as we merge)
-	RescanSuppress suppressRescan(*this);
-
 	DIFFRANGE cd;
 	VERIFY(m_diffList.GetDiff(nDiff, cd));
-	CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
-	CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
-	bool bSrcWasMod = sbuf.IsModified();
 	const int cd_dbegin = cd.dbegin;
 	const int cd_dend = cd.dend;
-	const int cd_blank = cd.blank[srcPane];
-	bool bInSync = SanityCheckDiff(cd);
-
-	if (!bInSync)
-	{
-		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
-		return false; // abort copying
-	}
 
 	std::vector<WordDiff> worddiffs = GetWordDiffArrayInDiffBlock(nDiff, true);
-
-	if (worddiffs.empty())
-		return false;
-
-	if (cd.end[srcPane] < cd.begin[srcPane])
-		return ListCopy(srcPane, dstPane, nDiff, bGroupWithPrevious, bUpdateView);
-
-	// If we remove whole diff from current view, we must fix cursor
-	// position first. Normally we would move to end of previous line,
-	// but we want to move to begin of that line for usability.
-	if (bUpdateView)
-	{
-		CEPoint currentPos = pViewDst->GetCursorPos();
-		currentPos.x = 0;
-		if (currentPos.y > cd_dend)
-		{
-			if (cd.blank[dstPane] >= 0)
-				currentPos.y -= cd_dend - cd.blank[dstPane] + 1;
-			else if (cd.blank[srcPane] >= 0)
-				currentPos.y -= cd_dend - cd.blank[srcPane] + 1;
-		}
-		ForEachView(dstPane, [currentPos](auto& pView) { pView->SetCursorPos(currentPos); });
-	}
-
-	// curView is the view which is changed, so the opposite of the source view
-	dbuf.BeginUndoGroup(bGroupWithPrevious);
 
 	int firstWordDiff = -1;
 	if ((m_ptBuf[activePane]->GetLineFlags(ptStart.y) & LF_GHOST) == 0)
@@ -881,7 +835,6 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 		}
 	}
 
-	String srcText, dstText;
 	CEPoint ptDstStart, ptDstEnd;
 	CEPoint ptSrcStart, ptSrcEnd;
 
@@ -996,6 +949,60 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 		ptSrcEnd.y = cd_dend + 1;
 	}
 
+	return std::make_tuple(ptSrcStart, ptSrcEnd, ptDstStart, ptDstEnd);
+}
+
+bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff,
+	const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious /*= false*/, bool bUpdateView /*= true*/)
+{
+	int nGroup = GetActiveMergeView()->m_nThisGroup;
+	CMergeEditView* pViewDst = m_pView[nGroup][dstPane];
+	CCrystalTextView* pSource = bUpdateView ? pViewDst : nullptr;
+
+	// suppress Rescan during this method
+	// (Not only do we not want to rescan a lot of times, but
+	// it will wreck the line status array to rescan as we merge)
+	RescanSuppress suppressRescan(*this);
+
+	DIFFRANGE cd;
+	VERIFY(m_diffList.GetDiff(nDiff, cd));
+	CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
+	CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
+	bool bSrcWasMod = sbuf.IsModified();
+	const int cd_dbegin = cd.dbegin;
+	const int cd_dend = cd.dend;
+	bool bInSync = SanityCheckDiff(cd);
+
+	if (!bInSync)
+	{
+		LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+		return false; // abort copying
+	}
+
+	// If we remove whole diff from current view, we must fix cursor
+	// position first. Normally we would move to end of previous line,
+	// but we want to move to begin of that line for usability.
+	if (bUpdateView)
+	{
+		CEPoint currentPos = pViewDst->GetCursorPos();
+		currentPos.x = 0;
+		if (currentPos.y > cd_dend)
+		{
+			if (cd.blank[dstPane] >= 0)
+				currentPos.y -= cd_dend - cd.blank[dstPane] + 1;
+			else if (cd.blank[srcPane] >= 0)
+				currentPos.y -= cd_dend - cd.blank[srcPane] + 1;
+		}
+		ForEachView(dstPane, [currentPos](auto& pView) { pView->SetCursorPos(currentPos); });
+	}
+
+	// curView is the view which is changed, so the opposite of the source view
+	dbuf.BeginUndoGroup(bGroupWithPrevious);
+
+	auto [ptSrcStart, ptSrcEnd, ptDstStart, ptDstEnd] =
+		GetCharacterRange(srcPane, dstPane, activePane, nDiff, ptStart, ptEnd);
+
+	String dstText, srcText;
 	dbuf.GetTextWithoutEmptys(ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, dstText);
 	sbuf.GetTextWithoutEmptys(ptSrcStart.y, ptSrcStart.x, ptSrcEnd.y, ptSrcEnd.x, srcText);
 

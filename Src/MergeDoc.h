@@ -174,6 +174,7 @@ public:
 	bool LineListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> GetCharacterRange(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer);
