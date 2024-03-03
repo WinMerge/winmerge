@@ -159,7 +159,7 @@ namespace
 		//  File compare
 		{ OPT_AUTOMATIC_RESCAN, varprop::VT_BOOL, {}, {} },
 		{ OPT_ALLOW_MIXED_EOL, varprop::VT_BOOL, {}, {} },
-		{ OPT_COPY_FULL_LINE, varprop::VT_BOOL, {}, {} },
+		{ OPT_COPY_GRANULARITY, varprop::VT_INT, {0, 1, 2, 3}, {} },
 		{ OPT_TAB_SIZE, varprop::VT_INT, {1, 2, 4, 8, 128}, {} },
 		{ OPT_TAB_TYPE, varprop::VT_INT, {0, 1}, {} },
 		{ OPT_WORDWRAP, varprop::VT_BOOL, {}, {} },

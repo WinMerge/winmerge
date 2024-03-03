@@ -77,8 +77,7 @@ inline const String OPT_REPORTFILES_INCLUDEFILECMPREPORT {_T("ReportFiles/Includ
 // File compare
 inline const String OPT_AUTOMATIC_RESCAN {_T("Settings/AutomaticRescan"s)};
 inline const String OPT_ALLOW_MIXED_EOL {_T("Settings/AllowMixedEOL"s)};
-// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
-inline const String OPT_COPY_FULL_LINE {_T("Settings/CopyFullLine"s)};
+inline const String OPT_COPY_GRANULARITY {_T("Settings/CopyGranularity"s)};
 inline const String OPT_TAB_SIZE {_T("Settings/TabSize"s)};
 inline const String OPT_TAB_TYPE {_T("Settings/TabType"s)};
 inline const String OPT_WORDWRAP {_T("Settings/WordWrap"s)};

@@ -1559,9 +1559,6 @@ msgstr "Muokkain"
 msgid "&Highlight syntax"
 msgstr "Korosta syntaksi"
 
-msgid "&Automatic rescan"
-msgstr "Automaattinen uusi haku"
-
 msgid "&Preserve original EOL chars"
 msgstr "Säilytä alkuperäiset EOL merkit"
 
@@ -1577,6 +1574,15 @@ msgstr "Lisää välilehtiä"
 msgid "Insert &Spaces"
 msgstr "Lisää välilyöntejä"
 
+msgid "&Rendering Mode:"
+msgstr "&Hahmonnustila:"
+
+msgid "&Automatic rescan"
+msgstr "Automaattinen uusi haku"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Rivierojen väritys"
 
@@ -1591,9 +1597,6 @@ msgstr "&Sanataso:"
 
 msgid "W&ord break characters:"
 msgstr "Sanakatk&on merkit:"
-
-msgid "&Rendering Mode:"
-msgstr "&Hahmonnustila:"
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -2229,6 +2232,9 @@ msgid "Don't display this &message again."
 msgstr "Älä näytä tätä ilmoitusta uudestaan."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 msgid "Syntax"
@@ -4162,6 +4168,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

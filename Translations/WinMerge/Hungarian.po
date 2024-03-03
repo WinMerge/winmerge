@@ -1899,10 +1899,6 @@ msgid "&Highlight syntax"
 msgstr "&Szintaxis kiemelés"
 
 #, c-format
-msgid "&Automatic rescan"
-msgstr "&Automatikus újraolvasás"
-
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr "&Eredeti sorvég karakterek megőrzése"
 
@@ -1921,6 +1917,16 @@ msgstr "&Tabulátorok használata"
 #, c-format
 msgid "Insert &Spaces"
 msgstr "&Szóközök használata"
+
+msgid "&Rendering Mode:"
+msgstr "Renderelési mód:"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Automatikus újraolvasás"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -1941,9 +1947,6 @@ msgstr "Szóköz, írásjel szintű:"
 #, c-format
 msgid "W&ord break characters:"
 msgstr "Szótörés karakterek:"
-
-msgid "&Rendering Mode:"
-msgstr "Renderelési mód:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
@@ -2718,6 +2721,9 @@ msgstr "&Ne jelenjen meg többet ez az üzenet."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomja meg a Beállítások Üzenetablakok oldalán a visszaállítás gombot."
+
+msgid "Compare/Merge"
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -4803,6 +4809,18 @@ msgid "Comparing..."
 msgstr "Összehasonlítás..."
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

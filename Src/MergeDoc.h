@@ -166,12 +166,15 @@ public:
 	bool Undo();
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstWordDiff = -1, int lastWordDiff = -1);
-	void CopyMultiplePartialList(int srcPane, int dstPane, int firstDiff, int lastDiff, int firstLineDiff = -1, int lastLineDiff = -1);
+	void CopyMultiplePartialList(int srcPane, int dstPane, int activePane, 
+		int firstDiff, int lastDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bCharacter);
 	void DoAutoMerge(int dstPane);
 	bool SanityCheckDiff(const DIFFRANGE& dr) const;
-	bool WordListCopy(int srcPane, int dstPane, int nDiff, int nFirstWordDiff, int nLastWordDiff, const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious = false, bool bUpdateView = true);
-	bool PartialListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	bool InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int nFirstWordDiff, int nLastWordDiff, const std::vector<int> *pWordDiffIndice, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	bool LineListCopy(int srcPane, int dstPane, int nDiff, int firstLine, int lastLine = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	bool CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
+	std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> GetCharacterRange(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer);
@@ -278,9 +281,9 @@ public:
 	void Showlinediff(CMergeEditView *pView, bool bReversed = false);
 	void AddToSubstitutionFilters(CMergeEditView* pView, bool bReversed = false);
 	void AddToLineFilters(const String& text);
-	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff);
-	std::vector<WordDiff> GetWordDiffArray(int nLineIndex);
-	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], int pane1 = -1, int pane2 = -1);
+	std::vector<WordDiff> GetWordDiffArrayInDiffBlock(int nDiff, bool ignoreDiffOptions = false);
+	std::vector<WordDiff> GetWordDiffArray(int nLineIndex, bool ignoreDiffOptions = false);
+	std::vector<WordDiff> GetWordDiffArrayInRange(const int begin[3], const int end[3], bool ignoreDiffOptions = false, int pane1 = -1, int pane2 = -1);
 	void ClearWordDiffCache(int nDiff = -1);
 private:
 	void Computelinediff(CMergeEditView *pView, std::pair<CEPoint, CEPoint> rc[], bool bReversed);

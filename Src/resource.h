@@ -71,16 +71,17 @@
 #define IDD_PROPPAGE_COMPARE_TABLE      273
 #define IDD_PROPPAGE_COMPARE_WEBPAGE    274
 #define IDD_PROPPAGE_EDITOR             275
-#define IDD_PROPPAGE_EDITOR_SYNTAX      276
-#define IDD_PROPPAGE_GENERAL            277
-#define IDD_PROPPAGE_SHELL              278
-#define IDD_PROPPAGE_SYSTEM             279
-#define IDD_PROPPAGE_MESSAGEBOXES       280
-#define IDD_PROPPAGE_PROJECT            281
-#define IDD_EDIT_FIND                   282
-#define IDD_EDIT_MARKER                 283
-#define IDD_EDIT_REPLACE                284
-#define IDD_INPUTBOX                    285
+#define IDD_PROPPAGE_EDITOR_COMPAREMERGE 276
+#define IDD_PROPPAGE_EDITOR_SYNTAX      277
+#define IDD_PROPPAGE_GENERAL            278
+#define IDD_PROPPAGE_SHELL              279
+#define IDD_PROPPAGE_SYSTEM             280
+#define IDD_PROPPAGE_MESSAGEBOXES       281
+#define IDD_PROPPAGE_PROJECT            282
+#define IDD_EDIT_FIND                   283
+#define IDD_EDIT_MARKER                 284
+#define IDD_EDIT_REPLACE                285
+#define IDD_INPUTBOX                    286
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -620,6 +621,7 @@
 #define IDC_PROPS_LISTVIEW              1623
 #define IDC_INPUTBOX_PROMPT             1633
 #define IDC_INPUTBOX_EDIT               1634
+#define IDC_COPY_GRANULARITY            1635
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1134,9 +1136,10 @@
 #define IDS_OPTIONSPG_DIRCOLORS         39061
 #define IDS_OPTIONSPG_COLOR_SCHEMES     39062
 #define IDS_OPTIONSPG_GENEDITOR         39063
-#define IDS_OPTIONSPG_EDITOR_SYNTAX     39064
-#define IDS_OPTIONSPG_MESSAGEBOXES      39065
-#define IDS_OPTIONSPG_PROJECT           39066
+#define IDS_OPTIONSPG_EDITOR_COMPAREMERGE 39064
+#define IDS_OPTIONSPG_EDITOR_SYNTAX     39065
+#define IDS_OPTIONSPG_MESSAGEBOXES      39066
+#define IDS_OPTIONSPG_PROJECT           39067
 #define IDS_TO                          40000
 #define IDS_FROM_LEFT                   40001
 #define IDS_TO_LEFT                     40002
@@ -1657,6 +1660,10 @@
 #define IDS_PREVIEWBAR_CLOSE            44538
 #define IDS_WEBPAGE_COMPARING           44539
 #define IDS_WEBPAGE_ZOOM                44540
+#define IDS_COPY_GRANULARITY_DIFFHUNK   44541
+#define IDS_COPY_GRANULARITY_INLINE     44542
+#define IDS_COPY_GRANULARITY_LINE       44543
+#define IDS_COPY_GRANULARITY_Character  44544
 
 // Next default values for new objects
 // 

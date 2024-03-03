@@ -1554,9 +1554,6 @@ msgstr "Editor"
 msgid "&Highlight syntax"
 msgstr "Zvýrazňovanie syntaxe"
 
-msgid "&Automatic rescan"
-msgstr "Automatické p&reskenovanie"
-
 msgid "&Preserve original EOL chars"
 msgstr "&Zachovávať pôvodné znaky zakončenia riadkov"
 
@@ -1572,6 +1569,15 @@ msgstr "Vkladať &tabelátory"
 msgid "Insert &Spaces"
 msgstr "Vkladať &medzery"
 
+msgid "&Rendering Mode:"
+msgstr "&Režim vytvárania prevodu:"
+
+msgid "&Automatic rescan"
+msgstr "Automatické p&reskenovanie"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Farebné odlíšenie riadkových rozdielov"
 
@@ -1586,9 +1592,6 @@ msgstr "Úroveň &slova:"
 
 msgid "W&ord break characters:"
 msgstr "Zalam&ovať slová:"
-
-msgid "&Rendering Mode:"
-msgstr "&Režim vytvárania prevodu:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge umožňuje skryť niektoré bežné okienka so správami. Stlačením tlačidla Obnoviť znova zviditeľníte všetky okienka správ."
@@ -2217,6 +2220,9 @@ msgstr "Už túto správu nezobrazovať."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Ak chcete, aby sa toto okno správ opäť zobrazilo, stlačte tlačidlo Obnoviť na stránke Okienka správ v dialógovom okne Možnosti."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -4104,6 +4110,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

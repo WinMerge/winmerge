@@ -463,9 +463,9 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			int lo0 = 0, hi0 = nlines0 - 1;
 			int lo1 = 0, hi1 = nlines1 - 1;
 			int lo2 = 0, hi2 = nlines2 - 1;
-			const std::vector<WordDiff> worddiffs01 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 0, 1);
-			const std::vector<WordDiff> worddiffs12 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 1, 2);
-			const std::vector<WordDiff> worddiffs20 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 2, 0);
+			const std::vector<WordDiff> worddiffs01 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, false, 0, 1);
+			const std::vector<WordDiff> worddiffs12 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, false, 1, 2);
+			const std::vector<WordDiff> worddiffs20 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, false, 2, 0);
 			DiffMap diffmap01, diffmap12, diffmap20;
 			diffmap01.InitDiffMap(nlines0);
 			diffmap12.InitDiffMap(nlines1);

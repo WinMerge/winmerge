@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2023-12-30 17:50+0900\n"
+"PO-Revision-Date: 2024-03-01 08:00+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1557,9 +1557,6 @@ msgstr "エディター"
 msgid "&Highlight syntax"
 msgstr "シンタックス ハイライトを有効にする(&H)"
 
-msgid "&Automatic rescan"
-msgstr "自動的に再スキャンする(&A)"
-
 msgid "&Preserve original EOL chars"
 msgstr "元の EOL 文字を保存する(&P)"
 
@@ -1575,6 +1572,15 @@ msgstr "タブを挿入(&I)"
 msgid "Insert &Spaces"
 msgstr "スペースを挿入(&S)"
 
+msgid "&Rendering Mode:"
+msgstr "レンダリングモード(&R):"
+
+msgid "&Automatic rescan"
+msgstr "自動的に再スキャンする(&A)"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "選択された差異のコピー粒度(&G)"
+
 msgid "Line Difference Coloring"
 msgstr "行内差異の色付け"
 
@@ -1589,9 +1595,6 @@ msgstr "単語単位(&W):"
 
 msgid "W&ord break characters:"
 msgstr "単語区切り文字(&O)"
-
-msgid "&Rendering Mode:"
-msgstr "レンダリングモード(&R):"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。すべてのメッセージボックスを再び表示させるには、[リセット] ボタンを押してください。"
@@ -2220,6 +2223,9 @@ msgstr "再びこのメッセージを表示しない(&M)"
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "このメッセージボックスを再度表示させたい場合は、[オプション] ダイアログのメッセージボックス ページで [リセット] ボタンを押してください。"
+
+msgid "Compare/Merge"
+msgstr "比較/マージ"
 
 msgid "Syntax"
 msgstr "シンタックス"
@@ -4131,6 +4137,18 @@ msgstr "比較しています..."
 
 msgid "Zoom:"
 msgstr "拡大率:"
+
+msgid "Diff hunk"
+msgstr "差異ブロック"
+
+msgid "Inline diff"
+msgstr "行内差異"
+
+msgid "Line"
+msgstr "行"
+
+msgid "Character"
+msgstr "文字"
 
 msgid "Prettification"
 msgstr "整形"

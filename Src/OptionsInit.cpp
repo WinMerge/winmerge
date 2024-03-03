@@ -117,7 +117,7 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_AUTOMATIC_RESCAN, false);
 	pOptions->InitOption(OPT_ALLOW_MIXED_EOL, false);
-	pOptions->InitOption(OPT_COPY_FULL_LINE, false);
+	pOptions->InitOption(OPT_COPY_GRANULARITY, 3/*Character*/);
 	pOptions->InitOption(OPT_TAB_SIZE, (int)4, 0, 64);
 	pOptions->InitOption(OPT_TAB_TYPE, (int)0, 0, 1);	// 0 means tabs inserted
 

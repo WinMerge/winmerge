@@ -1563,9 +1563,6 @@ msgstr "Redigerare"
 msgid "&Highlight syntax"
 msgstr "Framhäv syntax"
 
-msgid "&Automatic rescan"
-msgstr "Automatisk omskanning"
-
 msgid "&Preserve original EOL chars"
 msgstr "Bevara ursprungliga tecken för radslut (EOL)"
 
@@ -1581,6 +1578,15 @@ msgstr "Använd tabbar"
 msgid "Insert &Spaces"
 msgstr "Använd mellanslag"
 
+msgid "&Rendering Mode:"
+msgstr "Alstringsläge:"
+
+msgid "&Automatic rescan"
+msgstr "Automatisk omskanning"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Radskillnadsfärger"
 
@@ -1595,9 +1601,6 @@ msgstr "Ordnivå:"
 
 msgid "W&ord break characters:"
 msgstr "Ordbrytningstecken:"
-
-msgid "&Rendering Mode:"
-msgstr "Alstringsläge:"
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -2240,6 +2243,9 @@ msgid ""
 msgstr ""
 "För att göra meddelanderutan synlig igen trycker du på knappen Återställ på "
 "sidan Meddelanderutor i dialogrutan Alternativ."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -4209,6 +4215,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

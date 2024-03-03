@@ -1073,8 +1073,8 @@ will use addition of the number of available CPU cores.</para>
     </section>
   </section>
 
-  <section id="Configuration_editor">
-    <title>エディターページ<indexterm>
+  <section id="Configuration_editor_general">
+    <title>エディター一般ページ<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1098,30 +1098,6 @@ will use addition of the number of available CPU cores.</para>
         <listitem>
           <para><option>無効</option>: シンタックスハイライトは、多少のCPUパワーを消費するため、WinMerge
 の画面描画が遅いと思う場合は、これを無効にすると良いかもしれません。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>自動的に再スキャンする<indexterm>
-          <primary>rescanning files</primary>
-
-          <secondary>enabling and disabling autoscan</secondary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>無効</option>(デフォルト): WinMerge は、差異をマージした時、または、
-<guibutton>表示更新</guibutton>ボタンをクリックするなどした時、 自動的に再スキャンします。</para>
-        </listitem>
-
-        <listitem>
-          <para><option>有効</option>: WinMerge は、すべての編集イベント (入力するなど、ファイルへの変更)の後、強制的に再スキャンします。</para>
-
-          <note>
-            <para>編集作業を遅くするのを避けるために、WinMerge は、自動再スキャンを僅かながら遅らせます(編集イベント後1秒待ちます)。
-それにより、それぞれの新しい編集イベントがタイマーをリセットし、 編集を中断するか止めるまで、再スキャンは起こりません。</para>
-          </note>
         </listitem>
       </itemizedlist>
     </section>
@@ -1201,6 +1177,102 @@ Unixなど)異なるEOLスタイルを持つシステムからのファイルを
       </variablelist>
     </section>
 
+    <section>
+      <title>レンダリングモード<indexterm>
+          <primary>rendering</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>GDI</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Default</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Aliased</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Classic</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_editor">
+    <title>エディター 比較/マージページ<indexterm>
+        <primary>editing</primary>
+
+        <secondary>options for File Compare window</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>自動的に再スキャンする<indexterm>
+          <primary>rescanning files</primary>
+
+          <secondary>enabling and disabling autoscan</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>無効</option>(デフォルト): WinMerge は、差異をマージした時、または、
+<guibutton>表示更新</guibutton>ボタンをクリックするなどした時、 自動的に再スキャンします。</para>
+        </listitem>
+
+        <listitem>
+          <para><option>有効</option>: WinMerge は、すべての編集イベント (入力するなど、ファイルへの変更)の後、強制的に再スキャンします。</para>
+
+          <note>
+            <para>編集作業を遅くするのを避けるために、WinMerge は、自動再スキャンを僅かながら遅らせます(編集イベント後1秒待ちます)。
+それにより、それぞれの新しい編集イベントがタイマーをリセットし、 編集を中断するか止めるまで、再スキャンは起こりません。</para>
+          </note>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>選択された差異のコピー粒度<indexterm>
+          <primary>copy granularity</primary>
+        </indexterm></title>
+
+      <para>テキストが選択された状態で、<guimenuitem>右側へコピー</guimenuitem>
+メニュー等をクリックして別ペインにコピーするときのコピー粒度を指定します。</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>差異ブロック</option> : 選択されたテキスト内の差異ブロックをコピーします。</para>
+        </listitem>
+
+        <listitem>
+          <para><option>行内差異</option>: 選択されたテキスト内の行内差異をコピーします。</para>
+        </listitem>
+
+        <listitem>
+          <para><option>行</option>: 選択されたテキスト内の差異を行単位でコピーします。</para>
+        </listitem>
+
+        <listitem>
+          <para><option>文字</option> (デフォルト): 選択されたテキスト内の差異を行単位でコピーします。</para>
+        </listitem>
+
+      </itemizedlist>
+    </section>
+
     <section id="Configuration_viewlinediffs">
       <title>行内差異の強調<indexterm>
           <primary>line differences</primary>
@@ -1275,41 +1347,6 @@ Unixなど)異なるEOLスタイルを持つシステムからのファイルを
       </note>
     </section>
 
-    <section>
-      <title>Rendering Mode<indexterm>
-          <primary>rendering</primary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>GDI</option> (default): TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Default</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Aliased</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite GDI Classic</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite GDI Natural</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Natural</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
-        </listitem>
-      </itemizedlist>
-    </section>
   </section>
 
   <section id="Configuration_colors">

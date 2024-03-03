@@ -701,7 +701,7 @@
     </section>
 
     <section>
-      <title>Diff algorithm (Experimental)<indexterm>
+      <title>Diff algorithm<indexterm>
           <primary>algorithm</primary>
         </indexterm></title>
 
@@ -1218,8 +1218,8 @@
     </section>
   </section>
 
-  <section id="Configuration_editor">
-    <title>Editor page<indexterm>
+  <section id="Configuration_editor_general">
+    <title>Editor General page<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1247,34 +1247,6 @@
           <para><option>Disabled</option>: Syntax highlighting consumes some
           processing power, so if WinMerge screen updating seems to be slow,
           turning off this option might help.</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>Automatic rescan<indexterm>
-          <primary>rescanning files</primary>
-
-          <secondary>enabling and disabling autoscan</secondary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>Disabled</option> (default): WinMerge rescans
-          automatically when you merge a difference, or if you manually rescan
-          (for example, click the <guibutton>Rescan</guibutton> button).</para>
-        </listitem>
-
-        <listitem>
-          <para><option>Enabled</option>: Forces WinMerge to rescan after every
-          edit event (a change to files, like typing).</para>
-
-          <note>
-            <para>To avoid slowing down your editing, WinMerge delays automatic
-            rescanning a little: it waits one second after each edit event.
-            Because each new edit event resets the timer, no rescans occur until
-            you pause or stop editing.</para>
-          </note>
         </listitem>
       </itemizedlist>
     </section>
@@ -1364,6 +1336,111 @@
           </listitem>
         </varlistentry>
       </variablelist>
+    </section>
+
+    <section>
+      <title>Rendering Mode<indexterm>
+          <primary>rendering</primary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>GDI</option> (default): TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Default</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Aliased</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Classic</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite GDI Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural</option>: TBD</para>
+        </listitem>
+
+        <listitem>
+          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
+        </listitem>
+      </itemizedlist>
+    </section>
+  </section>
+
+  <section id="Configuration_editor">
+    <title>Editor Compare/Merge page<indexterm>
+        <primary>editing</primary>
+
+        <secondary>options for File Compare window</secondary>
+      </indexterm></title>
+
+    <section>
+      <title>Automatic rescan<indexterm>
+          <primary>rescanning files</primary>
+
+          <secondary>enabling and disabling autoscan</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Disabled</option> (default): WinMerge rescans
+          automatically when you merge a difference, or if you manually rescan
+          (for example, click the <guibutton>Rescan</guibutton> button).</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Enabled</option>: Forces WinMerge to rescan after every
+          edit event (a change to files, like typing).</para>
+
+          <note>
+            <para>To avoid slowing down your editing, WinMerge delays automatic
+            rescanning a little: it waits one second after each edit event.
+            Because each new edit event resets the timer, no rescans occur until
+            you pause or stop editing.</para>
+          </note>
+        </listitem>
+      </itemizedlist>
+    </section>
+
+    <section>
+      <title>Copy granularity for selected differences<indexterm>
+          <primary>copy granularity</primary>
+        </indexterm></title>
+
+      <para>Specifies the copy granularity when copying to another pane by
+      clicking the <guimenuitem>Copy to right</guimenuitem> menu item etc.
+      with text selected.</para>
+
+      <itemizedlist>
+        <listitem>
+          <para><option>Diff hunk</option>: Copies diff hunks within
+          the selected text.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Inline diff</option>: Copies inline diffs within 
+          the selected text.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Line</option>: Copies the differences within the
+          selected text line by line.</para>
+        </listitem>
+
+        <listitem>
+          <para><option>Character</option> (default): Copies the differences within
+          the selected text character by character.</para>
+        </listitem>
+
+      </itemizedlist>
     </section>
 
     <section id="Configuration_viewlinediffs">
@@ -1456,41 +1533,6 @@
       </note>
     </section>
 
-    <section>
-      <title>Rendering Mode<indexterm>
-          <primary>rendering</primary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para><option>GDI</option> (default): TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Default</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Aliased</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite GDI Classic</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite GDI Natural</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Natural</option>: TBD</para>
-        </listitem>
-
-        <listitem>
-          <para><option>DirectWrite Natural Symmetric</option>: TBD</para>
-        </listitem>
-      </itemizedlist>
-    </section>
   </section>
 
   <section id="Configuration_colors">

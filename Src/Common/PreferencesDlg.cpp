@@ -49,6 +49,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageArchive(regOptions)
 , m_pageCodepage(regOptions)
 , m_pageEditor(regOptions)
+, m_pageEditorCompareMerge(regOptions)
 , m_pageEditorSyntax(regOptions)
 , m_pageProject(regOptions)
 , m_pageSystem(regOptions)
@@ -109,6 +110,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageCompareWebPage, IDS_OPTIONSPG_COMPARE, IDS_OPTIONSPG_WEBPAGECOMPARE);
 	AddPage(&m_pageMessageBoxes, IDS_OPTIONSPG_MESSAGEBOXES);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR, IDS_OPTIONSPG_GENEDITOR);
+	AddPage(&m_pageEditorCompareMerge, IDS_OPTIONSPG_EDITOR, IDS_OPTIONSPG_EDITOR_COMPAREMERGE);
 	AddPage(&m_pageEditorSyntax, IDS_OPTIONSPG_EDITOR, IDS_OPTIONSPG_EDITOR_SYNTAX);
 	AddPage(&m_pageColorSchemes, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_COLOR_SCHEMES);
 	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MERGECOLORS);
@@ -295,6 +297,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	m_pageCompareWebPage.ReadOptions();
 	m_pageMessageBoxes.ReadOptions();
 	m_pageEditor.ReadOptions();
+	m_pageEditorCompareMerge.ReadOptions();
 	m_pageEditorSyntax.ReadOptions();
 	m_pageCodepage.ReadOptions();
 	m_pageArchive.ReadOptions();
@@ -319,6 +322,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 		SafeUpdatePage(&m_pageCompareImage, false);
 		SafeUpdatePage(&m_pageMessageBoxes, false);
 		SafeUpdatePage(&m_pageEditor, false);
+		SafeUpdatePage(&m_pageEditorCompareMerge, false);
 		SafeUpdatePage(&m_pageEditorSyntax, false);
 		SafeUpdatePage(&m_pageCodepage, false);
 		SafeUpdatePage(&m_pageArchive, false);
@@ -343,6 +347,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageCompareWebPage.WriteOptions();
 	m_pageMessageBoxes.WriteOptions();
 	m_pageEditor.WriteOptions();
+	m_pageEditorCompareMerge.WriteOptions();
 	m_pageEditorSyntax.WriteOptions();
 	m_pageColorSchemes.WriteOptions();
 	m_pageMergeColors.WriteOptions();

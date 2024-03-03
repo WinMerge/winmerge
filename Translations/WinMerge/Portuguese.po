@@ -1557,9 +1557,6 @@ msgstr "Editor"
 msgid "&Highlight syntax"
 msgstr "Destacar sintaxe"
 
-msgid "&Automatic rescan"
-msgstr "Re-análise automática"
-
 msgid "&Preserve original EOL chars"
 msgstr "Manter caracteres EOL originais"
 
@@ -1575,6 +1572,15 @@ msgstr "Inserir separadores"
 msgid "Insert &Spaces"
 msgstr "Inserir espaços"
 
+msgid "&Rendering Mode:"
+msgstr "Modo de &renderização:"
+
+msgid "&Automatic rescan"
+msgstr "Re-análise automática"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Cor da diferença da linha"
 
@@ -1589,9 +1595,6 @@ msgstr "A nível da palavra:"
 
 msgid "W&ord break characters:"
 msgstr "Caracteres da palavra:"
-
-msgid "&Rendering Mode:"
-msgstr "Modo de &renderização:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "O WinMerge permite ocultar mensagens predefinidas. Prima o botão Repor para visualizar novamente todas as mensagens."
@@ -2224,6 +2227,9 @@ msgstr "Não voltar a mostrar esta mensagem."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Para tornar esta caixa de mensagens visível novamente, prima o botão Repor na página Caixas de mensagens da janela de opções."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Sintaxe"
@@ -4138,6 +4144,18 @@ msgstr "A comparar..."
 
 msgid "Zoom:"
 msgstr "Zoom:"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

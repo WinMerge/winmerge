@@ -1555,9 +1555,6 @@ msgstr "Redigering"
 msgid "&Highlight syntax"
 msgstr "&Marker syntaksen"
 
-msgid "&Automatic rescan"
-msgstr "Automatisk &oppdatering"
-
 msgid "&Preserve original EOL chars"
 msgstr "&Bevar originale EOL-tegn"
 
@@ -1573,6 +1570,15 @@ msgstr "Sett inn tabulatorer"
 msgid "Insert &Spaces"
 msgstr "Sett inn mellomrom"
 
+msgid "&Rendering Mode:"
+msgstr ""
+
+msgid "&Automatic rescan"
+msgstr "Automatisk &oppdatering"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Linjeforskjells-farger"
 
@@ -1586,9 +1592,6 @@ msgid "&Word-level:"
 msgstr "&Ord-nivå:"
 
 msgid "W&ord break characters:"
-msgstr ""
-
-msgid "&Rendering Mode:"
 msgstr ""
 
 msgid ""
@@ -2228,6 +2231,9 @@ msgstr "Ikke vis denne &meldingen igjen."
 msgid ""
 "To make this message box visible again, press the Reset button on the "
 "Message Boxes page of the Options dialog."
+msgstr ""
+
+msgid "Compare/Merge"
 msgstr ""
 
 msgid "Syntax"
@@ -4132,6 +4138,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

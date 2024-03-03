@@ -1,7 +1,7 @@
 /** 
- * @file  PropEditor.h
+ * @file  PropEditorCompareMerge.h
  *
- * @brief Declaration file for PropEditor propertyheet
+ * @brief Declaration file for PropEditorCompareMerge propertyheet
  *
  */
 #pragma once
@@ -17,24 +17,25 @@ class COptionsMgr;
  * Editor options affect to editor behavior. For example syntax highlighting
  * and tabs.
  */
-class PropEditor : public OptionsPanel
+class PropEditorCompareMerge : public OptionsPanel
 {
 // Construction
 public:
-	explicit PropEditor(COptionsMgr *optionsMgr);
+	explicit PropEditorCompareMerge(COptionsMgr *optionsMgr);
 
 // Implement IOptionsPanel
 	virtual void ReadOptions() override;
 	virtual void WriteOptions() override;
 
 // Dialog Data
-	//{{AFX_DATA(PropEditor)
-	enum { IDD = IDD_PROPPAGE_EDITOR };
-	bool    m_bHiliteSyntax;
-	int	    m_nTabType;
-	unsigned m_nTabSize;
-	bool    m_bAllowMixedEol;
-	int     m_nRenderingMode;
+	//{{AFX_DATA(PropEditorCompareMerge)
+	enum { IDD = IDD_PROPPAGE_EDITOR_COMPAREMERGE };
+	bool    m_bAutomaticRescan;
+	int     m_nCopyGranularity;
+	bool    m_bViewLineDifferences;
+	bool    m_bBreakOnWords;
+	int     m_nBreakType;
+	String m_breakChars;
 	//}}AFX_DATA
 
 private:
@@ -42,10 +43,11 @@ private:
 	void LoadComboBoxStrings();
 	void UpdateDataToWindow() { UpdateData(FALSE); }
 	void UpdateDataFromWindow() { UpdateData(TRUE); }
+	void UpdateLineDiffControls();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(PropEditor)
+	//{{AFX_VIRTUAL(PropEditorCompareMerge)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -54,9 +56,9 @@ private:
 protected:
 
 	// Generated message map functions
-	//{{AFX_MSG(PropEditor)
+	//{{AFX_MSG(PropEditorCompareMerge)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnEnKillfocusTabEdit();
+	afx_msg void OnLineDiffControlClicked();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

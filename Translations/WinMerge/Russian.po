@@ -1556,9 +1556,6 @@ msgstr "Редактор"
 msgid "&Highlight syntax"
 msgstr "Подсвечивать синтаксис"
 
-msgid "&Automatic rescan"
-msgstr "Авто&пересканирование"
-
 msgid "&Preserve original EOL chars"
 msgstr "Сохранить EOL (концы строк)"
 
@@ -1574,6 +1571,15 @@ msgstr "&Табуляции"
 msgid "Insert &Spaces"
 msgstr "&Пробелы"
 
+msgid "&Rendering Mode:"
+msgstr "Режим отрисовки:"
+
+msgid "&Automatic rescan"
+msgstr "Авто&пересканирование"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
+
 msgid "Line Difference Coloring"
 msgstr "Подсветка отличий в строке"
 
@@ -1588,9 +1594,6 @@ msgstr "По словам:"
 
 msgid "W&ord break characters:"
 msgstr "Символы разрыва слов:"
-
-msgid "&Rendering Mode:"
-msgstr "Режим отрисовки:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge позволяет скрывать некоторые сообщения. Нажмите кнопку Сброс, чтобы показывать все сообщения."
@@ -2163,6 +2166,9 @@ msgstr "Не показывать &больше."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Чтобы снова сделать это сообщение видимым, нажмите «Сброс» на странице «Сообщения» в настройках."
+
+msgid "Compare/Merge"
+msgstr ""
 
 msgid "Syntax"
 msgstr "Синтаксис"
@@ -3745,6 +3751,18 @@ msgstr "Сравнение..."
 
 msgid "Zoom:"
 msgstr "Масштаб"
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Приукрашивание"

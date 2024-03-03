@@ -26,12 +26,7 @@ PropEditor::PropEditor(COptionsMgr *optionsMgr)
 , m_bHiliteSyntax(false)
 , m_nTabType(-1)
 , m_nTabSize(0)
-, m_bAutomaticRescan(false)
 , m_bAllowMixedEol(false)
-, m_bCopyFullLine(false)
-, m_bViewLineDifferences(false)
-, m_bBreakOnWords(false)
-, m_nBreakType(0)
 , m_nRenderingMode(0)
 {
 }
@@ -47,14 +42,9 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDV_MaxChars(pDX, std::to_string(m_nTabSize).c_str(), 2);
-	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	// m_bCopyFullLine currently is only a hidden option
 	//  > it is used here in PropEditor.cpp, because otherwise it doesn't get saved to the registry
-	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
-	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
-	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
-	DDX_Text(pDX, IDC_BREAK_CHARS, m_breakChars);
 	DDX_CBIndex(pDX, IDC_RENDERING_MODE, m_nRenderingMode);
 	//}}AFX_DATA_MAP
 }
@@ -62,9 +52,6 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropEditor, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditor)
-	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
-	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)
-	ON_BN_CLICKED(IDC_EDITOR_WORDLEVEL, OnLineDiffControlClicked)
 	ON_EN_KILLFOCUS(IDC_TAB_EDIT, OnEnKillfocusTabEdit)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -76,14 +63,8 @@ void PropEditor::ReadOptions()
 {
 	m_nTabSize = GetOptionsMgr()->GetInt(OPT_TAB_SIZE);
 	m_nTabType = GetOptionsMgr()->GetInt(OPT_TAB_TYPE);
-	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
 	m_bHiliteSyntax = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_bAllowMixedEol = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL);
-	m_bCopyFullLine = GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE);
-	m_bViewLineDifferences = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
-	m_bBreakOnWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
-	m_nBreakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
-	m_breakChars = GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS);
 	m_nRenderingMode = GetOptionsMgr()->GetInt(OPT_RENDERING_MODE) + 1;
 }
 
@@ -99,14 +80,8 @@ void PropEditor::WriteOptions()
 		m_nTabSize = MAX_TABSIZE;
 	GetOptionsMgr()->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
 	GetOptionsMgr()->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
-	GetOptionsMgr()->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan);
 	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol);
-	GetOptionsMgr()->SaveOption(OPT_COPY_FULL_LINE, m_bCopyFullLine);
 	GetOptionsMgr()->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax);
-	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, m_bViewLineDifferences);
-	GetOptionsMgr()->SaveOption(OPT_BREAK_ON_WORDS, m_bBreakOnWords);
-	GetOptionsMgr()->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
-	GetOptionsMgr()->SaveOption(OPT_BREAK_SEPARATORS, String(m_breakChars));
 	GetOptionsMgr()->SaveOption(OPT_RENDERING_MODE, m_nRenderingMode - 1);
 }
 
@@ -119,7 +94,6 @@ BOOL PropEditor::OnInitDialog()
 
 	LoadComboBoxStrings();
 	UpdateDataToWindow();
-	UpdateLineDiffControls();
 #ifndef _WIN64
 	EnableDlgItem(IDC_RENDERING_MODE, false);
 #endif
@@ -133,31 +107,8 @@ BOOL PropEditor::OnInitDialog()
  */
 void PropEditor::LoadComboBoxStrings()
 {
-	SetDlgItemComboBoxList(IDC_BREAK_TYPE,
-		{ _("Break at whitespace"), _("Break at whitespace or punctuation") });
 	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
 		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
-}
-
-/**
- * @brief Handlers any clicks in any of the line differencing controls
- */
-void PropEditor::OnLineDiffControlClicked()
-{
-	UpdateLineDiffControls();
-}
-
-/** 
- * @brief Update availability of line difference controls
- */
-void PropEditor::UpdateLineDiffControls()
-{
-	UpdateDataFromWindow();
-	// Can only choose char/word level if line differences are enabled
-	EnableDlgItem(IDC_EDITOR_CHARLEVEL, m_bViewLineDifferences);
-	EnableDlgItem(IDC_EDITOR_WORDLEVEL, m_bViewLineDifferences);
-	// Can only choose break type if line differences are enabled & we're breaking on words
-	EnableDlgItem(IDC_BREAK_TYPE, m_bViewLineDifferences);
 }
 
 /** 

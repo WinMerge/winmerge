@@ -1897,10 +1897,6 @@ msgid "&Highlight syntax"
 msgstr "&Ressalta la sintaxi"
 
 #, c-format
-msgid "&Automatic rescan"
-msgstr "Re-explora &automàticament"
-
-#, c-format
 msgid "&Preserve original EOL chars"
 msgstr "&Preserva els caracters de salt de línia originals"
 
@@ -1919,6 +1915,16 @@ msgstr "&Insereix tabulacions"
 #, c-format
 msgid "Insert &Spaces"
 msgstr "In&sereix espais"
+
+msgid "&Rendering Mode:"
+msgstr "&Mode de renderització:"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Re-explora &automàticament"
+
+msgid "Copy &granularity for selected differences:"
+msgstr ""
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -1939,9 +1945,6 @@ msgstr "Nivell de &paraula:"
 #, c-format
 msgid "W&ord break characters:"
 msgstr "Caràcters de separació de paraules:"
-
-msgid "&Rendering Mode:"
-msgstr "&Mode de renderització:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó Reinicialitza per fer visibles tots els quadres de missatges altre cop."
@@ -2702,6 +2705,9 @@ msgstr "No tornis a mostrar aquest missatge."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Per fer que aquest quadre de missatge es mostri de nou, premeu el botó Reinicialitza a la secció Quadres de missatges a la finestra d'Opcions."
+
+msgid "Compare/Merge"
+msgstr ""
 
 #, c-format
 msgid "Syntax"
@@ -4824,6 +4830,18 @@ msgid "Comparing..."
 msgstr ""
 
 msgid "Zoom:"
+msgstr ""
+
+msgid "Diff hunk"
+msgstr ""
+
+msgid "Inline diff"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Character"
 msgstr ""
 
 msgid "Prettification"

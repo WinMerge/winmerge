@@ -945,7 +945,9 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="MergeDocDiffCopy.cpp" />
     <ClCompile Include="PropCompareWebPage.cpp" />
+    <ClCompile Include="PropEditorCompareMerge.cpp" />
     <ClCompile Include="PropertySystem.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1459,6 +1461,7 @@
     <ClInclude Include="HashCalc.h" />
     <ClInclude Include="IDirDoc.h" />
     <ClInclude Include="PropCompareWebPage.h" />
+    <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
