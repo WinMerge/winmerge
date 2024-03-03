@@ -1926,7 +1926,7 @@ msgid "&Automatic rescan"
 msgstr "&Automatikus újraolvasás"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Kiválasztott eltérések &részletességének másolása:"
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -2723,7 +2723,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomja meg a Beállítások Üzenetablakok oldalán a visszaállítás gombot."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Összehasonlítás/egyesítés"
 
 #, c-format
 msgid "Syntax"
@@ -2789,7 +2789,7 @@ msgstr "Minden üzenet ezentúl újra megjelenik."
 
 #, c-format
 msgid ""
-"Value in Tab size -field is not in range WinMerge accepts.\n"
+"Value in Tab size -field is not in range Win accepts.\n"
 "\n"
 "Please use values 1 - %1."
 msgstr ""
@@ -2810,8 +2810,8 @@ msgid "All Files (*.*)|*.*||"
 msgstr "Minden fájl (*.*)|*.*||"
 
 #, c-format
-msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
-msgstr "WinMerge Projekt fájlok (*.WinMerge)|*.WinMerge||"
+msgid "Win Project Files (*.Win)|*.Win||"
+msgstr "Win Projekt fájlok (*.Win)|*.Win||"
 
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
@@ -2901,8 +2901,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Fájlszűrők (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr "Nem található a fájlszűrő sablonfájl!\n\nMásold a(z) %1 fájlt a WinMerge/Filters mappába:\n%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to Win/Filters folder:\n%2."
+msgstr "Nem található a fájlszűrő sablonfájl!\n\nMásold a(z) %1 fájlt a Win/Filters mappába:\n%2."
 
 #, c-format
 msgid ""
@@ -4809,19 +4809,19 @@ msgid "Comparing..."
 msgstr "Összehasonlítás..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Nagyítás:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Különb.nagyság"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Soron belüli kül."
 
 msgid "Line"
-msgstr ""
+msgstr "Sor"
 
 msgid "Character"
-msgstr ""
+msgstr "Karakter"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
