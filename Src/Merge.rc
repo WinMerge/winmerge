@@ -2977,6 +2977,8 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
 END
 
 IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
