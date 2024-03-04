@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-01-15 09:50-0300\n"
+"PO-Revision-Date: 2024-03-03 21:20-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1576,7 +1576,7 @@ msgid "&Automatic rescan"
 msgstr "&Re-escaneamento automático"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Copiar &granularidade para diferenças selecionadas:"
 
 msgid "Line Difference Coloring"
 msgstr "Coloração das Diferenças das Linhas"
@@ -2166,7 +2166,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Pra tornar esta caixa de mensagem visível de novo pressione o botão Resetar na página Caixas das Mensagens no diálogo das Opções."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Comparar/Unir"
 
 msgid "Syntax"
 msgstr "Sintaxe"
@@ -3751,16 +3751,16 @@ msgid "Zoom:"
 msgstr "Zoom:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Trecho de diferença"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Diferença em linha"
 
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 msgid "Character"
-msgstr ""
+msgstr "Caracter"
 
 msgid "Prettification"
 msgstr "Embelezamento"
