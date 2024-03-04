@@ -2822,6 +2822,14 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
 
+	auto RemoveMenuAccelerator = [](BCMenu& menu, unsigned id)
+	{
+		CString text;
+		menu.GetMenuText(id, text, MF_BYCOMMAND);
+		text = text.Left(text.Find(_T("\t")));
+		menu.SetMenuText(id, text, MF_BYCOMMAND);
+	};
+
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
 	{
@@ -2831,6 +2839,11 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 			menu.RemoveMenu(ID_COPY_FROM_MIDDLE_L, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_TO_MIDDLE_L, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_FROM_MIDDLE_L, MF_BYCOMMAND);
+		}
+		else
+		{
+			RemoveMenuAccelerator(menu, ID_COPY_TO_RIGHT_L);
+			RemoveMenuAccelerator(menu, ID_COPY_FROM_RIGHT_L);
 		}
 		for (UINT id = ID_COPY_TO_LEFT_M; id <= ID_COPY_FROM_LEFT_R; ++id)
 			menu.RemoveMenu(id, MF_BYCOMMAND);
@@ -2856,6 +2869,11 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 			menu.RemoveMenu(ID_COPY_FROM_MIDDLE_R, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_TO_MIDDLE_R, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_FROM_MIDDLE_R, MF_BYCOMMAND);
+		}
+		else
+		{
+			RemoveMenuAccelerator(menu, ID_COPY_TO_LEFT_R);
+			RemoveMenuAccelerator(menu, ID_COPY_FROM_LEFT_R);
 		}
 		for (UINT id = ID_COPY_TO_MIDDLE_L; id <= ID_COPY_FROM_RIGHT_M; ++id)
 			menu.RemoveMenu(id, MF_BYCOMMAND);
