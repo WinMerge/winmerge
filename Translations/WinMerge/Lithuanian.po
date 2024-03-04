@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-12-30 17:35+0000\n"
-"PO-Revision-Date: 2024-01-15 07:15+0200\n"
+"POT-Creation-Date: 2024-02-23 15:48+0000\n"
+"PO-Revision-Date: 2024-03-04 14:14+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1576,7 +1576,7 @@ msgid "&Automatic rescan"
 msgstr "&Automatiškai perskanuoti"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Kopijuoti pasirinktų skirtumų &granuliuotumą:"
 
 msgid "Line Difference Coloring"
 msgstr "Skirtumų eilutėse spalvinimas"
@@ -2166,7 +2166,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Lyginimo/Suliejimo"
 
 msgid "Syntax"
 msgstr "Sintaksės"
@@ -3751,16 +3751,16 @@ msgid "Zoom:"
 msgstr "Mastelis:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Skirt. gabalas"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Skirt. eilutėje"
 
 msgid "Line"
-msgstr ""
+msgstr "Eilutė"
 
 msgid "Character"
-msgstr ""
+msgstr "Simbolis"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
