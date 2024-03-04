@@ -2788,10 +2788,7 @@ msgid "All message boxes are now displayed again."
 msgstr "Minden üzenet ezentúl újra megjelenik."
 
 #, c-format
-msgid ""
-"Value in Tab size -field is not in range Win accepts.\n"
-"\n"
-"Please use values 1 - %1."
+msgid "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
 msgstr ""
 "A tabulátorméret értéke nincs a megfelelő tartományban.\n"
 "\n"
@@ -2809,9 +2806,8 @@ msgstr "Programok|*.exe;*.bat;*.cmd|Minden fájl (*.*)|*.*||"
 msgid "All Files (*.*)|*.*||"
 msgstr "Minden fájl (*.*)|*.*||"
 
-#, c-format
-msgid "Win Project Files (*.Win)|*.Win||"
-msgstr "Win Projekt fájlok (*.Win)|*.Win||"
+msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+msgstr "WinMerge Projekt fájlok (*.WinMerge)|*.WinMerge||"
 
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
@@ -2901,8 +2897,8 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "Fájlszűrők (*.flt)|*.flt|Minden fájl (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to Win/Filters folder:\n%2."
-msgstr "Nem található a fájlszűrő sablonfájl!\n\nMásold a(z) %1 fájlt a Win/Filters mappába:\n%2."
+msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
+msgstr "Nem található a fájlszűrő sablonfájl!\n\nMásold a(z) %1 fájlt a WinMerge/Filters mappába:\n%2."
 
 #, c-format
 msgid ""
