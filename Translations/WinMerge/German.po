@@ -1023,7 +1023,7 @@ msgstr "Pre&differ anwenden..."
 msgid "&Transform with editor script..."
 msgstr "Mit Editor-Skript trans&formieren..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

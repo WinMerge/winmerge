@@ -842,7 +842,7 @@ msgstr "Zastosuj porównane..."
 msgid "&Transform with editor script..."
 msgstr "Przekształć za pomocą edytora skryptu..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

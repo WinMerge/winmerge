@@ -840,7 +840,7 @@ msgstr ""
 msgid "&Transform with editor script..."
 msgstr ""
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

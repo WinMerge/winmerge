@@ -1028,7 +1028,7 @@ msgstr "Appliquer la Pré-comparaison..."
 msgid "&Transform with editor script..."
 msgstr "&Transformer avec le script de l'éditeur..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

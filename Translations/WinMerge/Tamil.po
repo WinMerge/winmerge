@@ -839,7 +839,7 @@ msgstr "முன்&வேறுபடுத்து..."
 msgid "&Transform with editor script..."
 msgstr "&எடிட்டர் ஸ்கிரிப்ட் மூலம் மாற்றவும்..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

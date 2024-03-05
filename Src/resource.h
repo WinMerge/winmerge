@@ -800,7 +800,7 @@
 #define ID_NO_UNPACKER                  32887
 #define ID_APPLY_PREDIFFER              32888
 #define ID_TRANSFORM_WITH_SCRIPT        32889
-#define ID_SELECT_EDITOR_SCRIPT_WHEN_COPYING 32890
+#define ID_SELECT_EDITOR_SCRIPT_FOR_COPYING 32890
 #define ID_WINDOW_CLOSEALL              32897
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
@@ -812,7 +812,7 @@
 #define ID_UNPACKER_SETTINGS_AUTO       32924
 #define ID_UNPACKER_SETTINGS_SELECT     32925
 #define ID_NO_EDIT_SCRIPTS              32931
-#define ID_NO_EDIT_SCRIPTS_WHEN_COPYING 32932
+#define ID_NO_EDIT_SCRIPTS_FOR_COPYING 32932
 #define ID_FILE_OPEN_REGISTERED         32944
 #define ID_FILE_OPEN_WITHEDITOR         32945
 #define ID_FILE_OPEN_WITH               32946
@@ -1098,8 +1098,8 @@
 #define ID_NO_MRU                       35451
 #define ID_MRU_FIRST                    35452
 #define ID_MRU_LAST                     35500
-#define ID_SCRIPT_WHEN_COPYING_FIRST    35501
-#define ID_SCRIPT_WHEN_COPYING_LAST     35600
+#define ID_SCRIPT_FOR_COPYING_FIRST     35501
+#define ID_SCRIPT_FOR_COPYING_LAST      35600
 #define IDS_SPLASH_GPLTEXT              38977
 #define IDS_MESSAGEBOX_OK               39001
 #define IDS_MESSAGEBOX_CANCEL           39002

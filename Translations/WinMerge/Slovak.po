@@ -841,7 +841,7 @@ msgstr "Použiť pre&dbežného spracovateľa rozdielov..."
 msgid "&Transform with editor script..."
 msgstr "&Transformovať so skriptom editora..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

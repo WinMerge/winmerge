@@ -1029,7 +1029,7 @@ msgstr "사전 차이 적용(&D)..."
 msgid "&Transform with editor script..."
 msgstr "편집기 스크립트로 변환(&T)..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."

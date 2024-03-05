@@ -841,7 +841,7 @@ msgstr "Uporabi Prediffer..."
 msgid "&Transform with editor script..."
 msgstr "P&reoblikuj z urejevalnikom skriptov..."
 
-msgid "Scripts when copying"
+msgid "Scripts for copying"
 msgstr ""
 
 msgid "Select editor script..."
