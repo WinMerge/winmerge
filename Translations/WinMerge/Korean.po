@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge 2.16.36.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2023-12-17 19:43+0900\n"
+"PO-Revision-Date: 2024-03-06 01:27+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <https://winmerge.org/?lang=ko>\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -280,7 +280,7 @@ msgid "Fit to Window"
 msgstr "창에 맞춤"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "이벤트 동기화(&E)"
 
 msgid "&Enabled"
 msgstr "사용함(&E)"
@@ -1028,6 +1028,12 @@ msgstr "사전 차이 적용(&D)..."
 
 msgid "&Transform with editor script..."
 msgstr "편집기 스크립트로 변환(&T)..."
+
+msgid "Scripts when copying"
+msgstr "복사할 때 스크립트"
+
+msgid "Select editor script..."
+msgstr "편집기 스크립트 선택..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1933,7 +1939,7 @@ msgid "&Automatic rescan"
 msgstr "자동으로 다시 검색(&A)"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "선택한 차이점에 대한 세분화 복사(G):"
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -2730,7 +2736,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "이 메시지 상자를 다시 표시하려면 옵션 대화 상자의 메시지 상자 페이지에서 재설정 버튼을 누르십시오."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "비교/병합"
 
 #, c-format
 msgid "Syntax"
@@ -4855,19 +4861,19 @@ msgid "Comparing..."
 msgstr "비교 중..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "확대/축소:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "차이 덩어리"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "인라인 차이"
 
 msgid "Line"
-msgstr ""
+msgstr "줄"
 
 msgid "Character"
-msgstr ""
+msgstr "문자"
 
 msgid "Prettification"
 msgstr "꾸미기"
