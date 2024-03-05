@@ -1027,6 +1027,12 @@ msgstr "套用預先差異(&d)..."
 msgid "&Transform with editor script..."
 msgstr "使用編輯器指令腳本進行轉換(&T)..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "分割 (&L)"

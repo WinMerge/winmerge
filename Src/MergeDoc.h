@@ -17,6 +17,7 @@
 #include "TempFile.h"
 #include "PathContext.h"
 #include "FileLoadResult.h"
+#include "FileTransform.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -175,6 +176,8 @@ public:
 	bool CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> GetCharacterRange(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd);
+	bool TransformText(String& text);
+	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView* pSource, int nLineBegin, int nLineEnd, int nAction = CE_ACTION_UNKNOWN);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer);
@@ -392,6 +395,7 @@ protected:
 	int m_CurrentPredifferID;
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 	String m_sCurrentHeaderTitle[3];
+	EditorScriptInfo m_editorScriptInfo;
 
 // friend access
 	friend class RescanSuppress;

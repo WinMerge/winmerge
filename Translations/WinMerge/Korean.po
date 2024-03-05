@@ -1029,6 +1029,12 @@ msgstr "사전 차이 적용(&D)..."
 msgid "&Transform with editor script..."
 msgstr "편집기 스크립트로 변환(&T)..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr "분할(&L)"

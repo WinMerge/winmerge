@@ -840,6 +840,12 @@ msgstr "比較前処理プラグインを適用(&D)..."
 msgid "&Transform with editor script..."
 msgstr "エディター スクリプトで変換(&T)..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "分割(&L)"
 

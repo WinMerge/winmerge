@@ -810,6 +810,14 @@ BEGIN
             MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS
         END
         MENUITEM "&Transform with editor script...", ID_TRANSFORM_WITH_SCRIPT
+        POPUP "Scripts when copying"
+        BEGIN
+            POPUP "&Scripts"
+            BEGIN
+                MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS_WHEN_COPYING
+            END
+            MENUITEM "Select editor script...",      ID_SELECT_EDITOR_SCRIPT_WHEN_COPYING
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END

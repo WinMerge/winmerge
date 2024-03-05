@@ -147,6 +147,7 @@ CMergeDoc::CMergeDoc()
 , m_bAutomaticRescan(false)
 , m_CurrentPredifferID(0)
 , m_bChangedSchemeManually(false)
+, m_editorScriptInfo(_T(""))
 {
 	DIFFOPTIONS options = {0};
 

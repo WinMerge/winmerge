@@ -841,6 +841,12 @@ msgstr "Käytä &ennakointia..."
 msgid "&Transform with editor script..."
 msgstr "&Muunna editoriskriptillä..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "J&aa"
 

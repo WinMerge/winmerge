@@ -1020,6 +1020,12 @@ msgstr ""
 msgid "&Transform with editor script..."
 msgstr ""
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 #, c-format
 msgid "Sp&lit"
 msgstr ""

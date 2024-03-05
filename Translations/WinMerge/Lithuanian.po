@@ -841,6 +841,12 @@ msgstr "Taikyti paren&gėją..."
 msgid "&Transform with editor script..."
 msgstr "&Transformuoti su redaktoriaus skriptu..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Pada&linti"
 

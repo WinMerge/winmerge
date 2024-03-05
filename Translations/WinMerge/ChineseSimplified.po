@@ -845,6 +845,12 @@ msgstr "使用预比较插件(&D)..."
 msgid "&Transform with editor script..."
 msgstr "用编辑器脚本转换(&T)..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "分隔(&L)"
 

@@ -842,6 +842,12 @@ msgstr "Aplicar pré&diferenciação..."
 msgid "&Transform with editor script..."
 msgstr "&Transformar com o script editor..."
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Di&vidir"
 

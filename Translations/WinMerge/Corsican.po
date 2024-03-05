@@ -843,6 +843,12 @@ msgstr "App&iecà u preparagone…"
 msgid "&Transform with editor script..."
 msgstr "&Trasfurmà cù un scenariu d’editore…"
 
+msgid "Scripts when copying"
+msgstr ""
+
+msgid "Select editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "&Sparte"
 
