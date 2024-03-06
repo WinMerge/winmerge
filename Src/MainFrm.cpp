@@ -702,7 +702,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 
 				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
 			}
-			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS || topMenuId == ID_NO_EDIT_SCRIPTS_FOR_COPYING)
 			{
 				CMenu* pMenu = pPopupMenu;
 				ASSERT(pMenu != nullptr);
@@ -712,19 +712,8 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
-			}
-			else if (topMenuId == ID_NO_EDIT_SCRIPTS_FOR_COPYING)
-			{
-				CMenu* pMenu = pPopupMenu;
-				ASSERT(pMenu != nullptr);
-
-				// empty the menu
-				int i = pMenu->GetMenuItemCount();
-				while (i--)
-					pMenu->DeleteMenu(0, MF_BYPOSITION);
-
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FOR_COPYING_FIRST);
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, 
+					topMenuId == ID_NO_EDIT_SCRIPTS ? ID_SCRIPT_FIRST : ID_SCRIPT_FOR_COPYING_FIRST);
 			}
 			else if (topMenuId == ID_PLUGINS_LIST)
 			{

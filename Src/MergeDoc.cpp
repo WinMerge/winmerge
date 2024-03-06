@@ -149,7 +149,7 @@ CMergeDoc::CMergeDoc()
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
 , m_CurrentPredifferID(0)
-, m_CurrentEditorScriptID(0)
+, m_CurrentEditorScriptID(ID_SCRIPT_FOR_COPYING_NONE)
 , m_bChangedSchemeManually(false)
 , m_editorScriptInfo(_T(""))
 {

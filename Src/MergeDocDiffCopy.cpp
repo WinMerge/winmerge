@@ -432,6 +432,8 @@ bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 
 bool CMergeDoc::TransformText(String& text)
 { 
+	if (m_editorScriptInfo.GetPluginPipeline().empty())
+		return false;
 	const auto pwndActiveWindow = static_cast<CMergeEditView*>(m_pMergeEditSplitterView[0]->GetActiveWindow());
 	if (!pwndActiveWindow)
 		return false;

@@ -812,7 +812,7 @@
 #define ID_UNPACKER_SETTINGS_AUTO       32924
 #define ID_UNPACKER_SETTINGS_SELECT     32925
 #define ID_NO_EDIT_SCRIPTS              32931
-#define ID_NO_EDIT_SCRIPTS_FOR_COPYING 32932
+#define ID_NO_EDIT_SCRIPTS_FOR_COPYING  32932
 #define ID_FILE_OPEN_REGISTERED         32944
 #define ID_FILE_OPEN_WITHEDITOR         32945
 #define ID_FILE_OPEN_WITH               32946
@@ -1098,6 +1098,7 @@
 #define ID_NO_MRU                       35451
 #define ID_MRU_FIRST                    35452
 #define ID_MRU_LAST                     35500
+#define ID_SCRIPT_FOR_COPYING_NONE      35501
 #define ID_SCRIPT_FOR_COPYING_FIRST     35501
 #define ID_SCRIPT_FOR_COPYING_LAST      35600
 #define IDS_SPLASH_GPLTEXT              38977
