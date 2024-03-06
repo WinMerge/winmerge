@@ -10,7 +10,6 @@
 #include "UnicodeString.h"
 #include "DiffTextBuffer.h"
 #include "MergeEditView.h"
-#include "MergeEditSplitterView.h"
 #include "DiffList.h"
 #include "MergeLineFlags.h"
 
@@ -434,7 +433,7 @@ bool CMergeDoc::TransformText(String& text)
 { 
 	if (m_editorScriptInfo.GetPluginPipeline().empty())
 		return false;
-	const auto pwndActiveWindow = static_cast<CMergeEditView*>(m_pMergeEditSplitterView[0]->GetActiveWindow());
+	const auto pwndActiveWindow = GetActiveMergeView();
 	if (!pwndActiveWindow)
 		return false;
 	const int nActivePane = pwndActiveWindow->m_nThisPane;
