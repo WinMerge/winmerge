@@ -177,6 +177,13 @@ void CSelectPluginDlg::prepareListbox()
 		item.pszText = const_cast<tchar_t*>(automaticPlugin->m_name.c_str());
 		m_cboPluginName.InsertItem(&item);
 	}
+	else
+	{
+		COMBOBOXEXITEM item{CBEIF_TEXT};
+		item.iItem = nameCount++;
+		item.pszText = const_cast<tchar_t*>(noPlugin->m_name.c_str());
+		m_cboPluginName.InsertItem(&item);
+	}
 
 	std::list<String> processTypes;
 	for (const auto& [processType, pluginList] : m_Plugins)
@@ -276,7 +283,7 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 	PluginInfo* pPlugin = nullptr;
 	String pluginName;
 	int i = m_cboPluginName.GetCurSel();
-	if (m_pluginType != PluginType::EditorScript && i == 0)
+	if (i == 0)
 	{
 		pPlugin = noPlugin.get();
 		m_strPluginPipeline.clear();
