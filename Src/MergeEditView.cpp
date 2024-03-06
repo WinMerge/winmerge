@@ -3435,7 +3435,7 @@ void CMergeEditView::OnScriptsForCopying(UINT nID)
 void CMergeEditView::OnSelectEditorScriptForCopying() 
 {
 	// let the user choose a handler
-	CSelectPluginDlg dlg(_T(""),
+	CSelectPluginDlg dlg(GetDocument()->GetEditorScriptInfo().GetPluginPipeline(),
 		strutils::join(GetDocument()->m_filePaths.begin(), GetDocument()->m_filePaths.end(), _T("|")),
 		CSelectPluginDlg::PluginType::EditorScript, false);
 	if (dlg.DoModal() != IDOK)
