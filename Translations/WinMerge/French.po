@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2023-12-12 12:10+0100\n"
+"PO-Revision-Date: 2024-03-05 13:52+0100\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -279,7 +279,7 @@ msgid "Fit to Window"
 msgstr "Ajuster à la fenêtre"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "&Synchronisation des événements"
 
 msgid "&Enabled"
 msgstr "&Activée"
@@ -1938,7 +1938,7 @@ msgid "&Automatic rescan"
 msgstr "&Actualiser automatiquement"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Copie et granularité pour les différences sélectionnées :"
 
 #, c-format
 msgid "Line Difference Coloring"
@@ -2737,7 +2737,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Pour rendre cette boîte de message à nouveau visible, appuyer sur le bouton Réinitialiser sur la page Boîtes de message de la boîte de dialogue Options."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Comparer/Fusionner"
 
 #, c-format
 msgid "Syntax"
@@ -4863,22 +4863,22 @@ msgid "Zoom &Out"
 msgstr "Zoom a&rrière"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Comparaison..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Zoom  :"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Différence en bloc"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Différence en ligne"
 
 msgid "Line"
-msgstr ""
+msgstr "Ligne"
 
 msgid "Character"
-msgstr ""
+msgstr "Caractère"
 
 msgid "Prettification"
 msgstr "Embellissement"

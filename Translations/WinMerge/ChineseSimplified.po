@@ -1588,7 +1588,7 @@ msgid "&Automatic rescan"
 msgstr "自动重新扫描(&A)"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "选中差异的复制粒度(&G)："
 
 msgid "Line Difference Coloring"
 msgstr "行内差异着色"
@@ -2244,7 +2244,7 @@ msgid ""
 msgstr "要使此消息框再次可见，请点击“选项”对话框，“消息框”页面上的“重置”按钮。"
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "比较/合并"
 
 msgid "Syntax"
 msgstr "语法"
@@ -4190,16 +4190,16 @@ msgid "Zoom:"
 msgstr "缩放："
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "整个差异块"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "行内差异"
 
 msgid "Line"
-msgstr ""
+msgstr "整行"
 
 msgid "Character"
-msgstr ""
+msgstr "字符"
 
 msgid "Prettification"
 msgstr "格式美化"
