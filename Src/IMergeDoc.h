@@ -6,6 +6,7 @@
 struct IDirDoc;
 class PackingInfo;
 class PrediffingInfo;
+class EditorScriptInfo;
 
 struct IMergeDoc : public IMDITab
 {
@@ -25,6 +26,7 @@ struct IMergeDoc : public IMDITab
 	virtual const PackingInfo *GetUnpacker() const = 0;
 	virtual void SetUnpacker(const PackingInfo *infoUnpacker) = 0;
 	virtual const PrediffingInfo *GetPrediffer() const = 0;
+	virtual const EditorScriptInfo *GetEditorScript() const = 0;
 	virtual int GetFileCount() const = 0;
 	virtual String GetPath(int pane) const = 0;
 	virtual String GetDescription(int pane) const = 0;

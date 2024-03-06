@@ -192,6 +192,7 @@ public:
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer) const;
 	const PrediffingInfo *GetPrediffer() const override;
+	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
@@ -348,7 +349,6 @@ public:
 	HMENU createPrediffersSubmenu(HMENU hMenu);
 	String GetSaveAsPath() const { return m_strSaveAsPath; }
 	void SetSaveAsPath(const String& strSaveAsPath) { m_strSaveAsPath = strSaveAsPath; }
-	EditorScriptInfo& GetEditorScriptInfo() { return m_editorScriptInfo; }
 
 // implementation methods
 private:
@@ -394,6 +394,7 @@ protected:
 	bool m_bAutomaticRescan;
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
+	int m_CurrentEditorScriptID;
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 	String m_sCurrentHeaderTitle[3];
 	EditorScriptInfo m_editorScriptInfo;
@@ -447,7 +448,10 @@ protected:
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
-	afx_msg void OnPrediffer(UINT nID );
+	afx_msg void OnPrediffer(UINT nID);
+	afx_msg void OnScriptsForCopying(UINT nID);
+	afx_msg void OnUpdateScriptsForCopying(CCmdUI* pCmdUI);
+	afx_msg void OnSelectEditorScriptForCopying();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

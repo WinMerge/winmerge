@@ -1020,10 +1020,10 @@ msgstr "&Aplica el prediferenciador..."
 msgid "&Transform with editor script..."
 msgstr "Transforma amb un script de l'editor..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 #, c-format

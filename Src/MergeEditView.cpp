@@ -208,8 +208,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
-	ON_COMMAND_RANGE(ID_SCRIPT_FOR_COPYING_FIRST, ID_SCRIPT_FOR_COPYING_LAST, OnScriptsForCopying)
-	ON_COMMAND(ID_SELECT_EDITOR_SCRIPT_FOR_COPYING, OnSelectEditorScriptForCopying)
 	// [Window] menu
 	ON_COMMAND_RANGE(ID_NEXT_PANE, ID_PREV_PANE, OnChangePane)
 	ON_COMMAND(ID_WINDOW_SPLIT, OnWindowSplit)
@@ -3424,23 +3422,6 @@ void CMergeEditView::OnTransformWithScript()
 	if (bChanged)
 		// now replace the text
 		ReplaceSelection(text.c_str(), text.length(), 0);
-}
-
-void CMergeEditView::OnScriptsForCopying(UINT nID)
-{
-	GetDocument()->GetEditorScriptInfo().SetPluginPipeline(
-		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
-}
-
-void CMergeEditView::OnSelectEditorScriptForCopying() 
-{
-	// let the user choose a handler
-	CSelectPluginDlg dlg(GetDocument()->GetEditorScriptInfo().GetPluginPipeline(),
-		strutils::join(GetDocument()->m_filePaths.begin(), GetDocument()->m_filePaths.end(), _T("|")),
-		CSelectPluginDlg::PluginType::EditorScript, false);
-	if (dlg.DoModal() != IDOK)
-		return;
-	GetDocument()->GetEditorScriptInfo().SetPluginPipeline(dlg.GetPluginPipeline());
 }
 
 /** 

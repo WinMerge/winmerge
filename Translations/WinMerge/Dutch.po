@@ -841,10 +841,10 @@ msgstr "Voorvergelijking toepassen."
 msgid "&Transform with editor script..."
 msgstr "Transformeren met editor-script..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 msgid "Sp&lit"

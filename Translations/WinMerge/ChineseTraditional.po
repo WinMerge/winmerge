@@ -1027,10 +1027,10 @@ msgstr "套用預先差異(&d)..."
 msgid "&Transform with editor script..."
 msgstr "使用編輯器指令腳本進行轉換(&T)..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 #, c-format

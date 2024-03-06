@@ -841,10 +841,10 @@ msgstr "Aplicar pré&diferenciação..."
 msgid "&Transform with editor script..."
 msgstr "&Transformar com o script do editor..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 msgid "Sp&lit"

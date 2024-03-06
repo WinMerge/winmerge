@@ -845,10 +845,10 @@ msgstr "使用预比较插件(&D)..."
 msgid "&Transform with editor script..."
 msgstr "用编辑器脚本转换(&T)..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 msgid "Sp&lit"

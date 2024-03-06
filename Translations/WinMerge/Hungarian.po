@@ -1022,10 +1022,10 @@ msgstr "Elővizsgáló alkalmazása..."
 msgid "&Transform with editor script..."
 msgstr "Átalakítás a szerkesztő szkriptjével ..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 #, c-format

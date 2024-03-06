@@ -844,10 +844,10 @@ msgstr "Aplicar precompara&dor..."
 msgid "&Transform with editor script..."
 msgstr "&Transformar con script de edición..."
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 msgid "Sp&lit"

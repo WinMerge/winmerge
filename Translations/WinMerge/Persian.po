@@ -1021,10 +1021,10 @@ msgstr ""
 msgid "&Transform with editor script..."
 msgstr ""
 
-msgid "Scripts for copying"
+msgid "Scripts for &copying"
 msgstr ""
 
-msgid "Select editor script..."
+msgid "Select &editor script..."
 msgstr ""
 
 #, c-format

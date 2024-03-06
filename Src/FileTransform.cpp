@@ -833,6 +833,13 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 				}
 				else
 				{
+					if (!addedNoneAutomatic)
+					{
+						String process = _T("");
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, &noPlugin);
+						addedNoneAutomatic = true;
+					}
 					LPDISPATCH piScript = plugin->m_lpDispatch;
 					std::vector<String> scriptNamesArray;
 					std::vector<int> scriptIdsArray;
