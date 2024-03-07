@@ -2821,6 +2821,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Create the menu and populate it with the available functions
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
+	theApp.TranslateMenu(menu.m_hMenu);
 
 	auto RemoveMenuAccelerator = [](BCMenu& menu, unsigned id)
 	{
@@ -2891,7 +2892,6 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		menu.RemoveMenu(ID_GOTO_MOVED_LINE_LM, MF_BYCOMMAND);
 
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
-	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));
 	ASSERT(pSub != nullptr);
