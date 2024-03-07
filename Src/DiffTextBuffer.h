@@ -49,7 +49,6 @@ public :
 		int nActionType = CE_ACTION_UNKNOWN,
 		std::vector<uint32_t> *paSavedRevisionNumbers = nullptr) override;
 	bool curUndoGroup();
-	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction =CE_ACTION_UNKNOWN);
 
 	int LoadFromFile(const tchar_t* pszFileName, PackingInfo& infoUnpacker,
 		const tchar_t* filteredFilenames, bool & readOnly, CRLFSTYLE nCrlfStyle,

@@ -840,6 +840,12 @@ msgstr "Aplică pre&diferențiator..."
 msgid "&Transform with editor script..."
 msgstr "&Transformă cu script editor..."
 
+msgid "Scripts for &copying"
+msgstr ""
+
+msgid "Select &editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Divide"
 

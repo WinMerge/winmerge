@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-02-23 15:48+0000\n"
+"POT-Creation-Date: 2024-03-06 21:04+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -833,6 +833,12 @@ msgid "Apply Pre&differ..."
 msgstr ""
 
 msgid "&Transform with editor script..."
+msgstr ""
+
+msgid "Scripts for &copying"
+msgstr ""
+
+msgid "Select &editor script..."
 msgstr ""
 
 msgid "Sp&lit"

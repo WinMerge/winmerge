@@ -114,6 +114,9 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
+	ON_COMMAND_RANGE(ID_SCRIPT_FOR_COPYING_FIRST, ID_SCRIPT_FOR_COPYING_LAST, OnScriptsForCopying)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FOR_COPYING_FIRST, ID_SCRIPT_FOR_COPYING_LAST, OnUpdateScriptsForCopying)
+	ON_COMMAND(ID_SELECT_EDITOR_SCRIPT_FOR_COPYING, OnSelectEditorScriptForCopying)
 	// Encoding Error dialog
 	ON_BN_CLICKED(IDC_FILEENCODING, OnBnClickedFileEncoding)
 	ON_BN_CLICKED(IDC_PLUGIN, OnBnClickedPlugin)
@@ -146,7 +149,9 @@ CMergeDoc::CMergeDoc()
 , m_pView{nullptr}
 , m_bAutomaticRescan(false)
 , m_CurrentPredifferID(0)
+, m_CurrentEditorScriptID(ID_SCRIPT_FOR_COPYING_NONE)
 , m_bChangedSchemeManually(false)
+, m_editorScriptInfo(_T(""))
 {
 	DIFFOPTIONS options = {0};
 
@@ -3024,6 +3029,31 @@ void CMergeDoc::SetPredifferByMenu(UINT nID)
 	
 	// update the prediffer and rescan
 	SetPrediffer(&prediffer);
+}
+
+void CMergeDoc::OnScriptsForCopying(UINT nID)
+{
+	m_CurrentEditorScriptID = nID;
+	m_editorScriptInfo.SetPluginPipeline(
+		CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::EditorScriptEventNames, ID_SCRIPT_FOR_COPYING_FIRST));
+}
+
+void CMergeDoc::OnUpdateScriptsForCopying(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(true);
+	pCmdUI->SetRadio(pCmdUI->m_nID == static_cast<UINT>(m_CurrentEditorScriptID));
+}
+
+void CMergeDoc::OnSelectEditorScriptForCopying() 
+{
+	// let the user choose a handler
+	CSelectPluginDlg dlg(m_editorScriptInfo.GetPluginPipeline(),
+		strutils::join(m_filePaths.begin(), m_filePaths.end(), _T("|")),
+		CSelectPluginDlg::PluginType::EditorScript, false);
+	if (dlg.DoModal() != IDOK)
+		return;
+	m_editorScriptInfo.SetPluginPipeline(dlg.GetPluginPipeline());
+	m_CurrentEditorScriptID = 0;
 }
 
 void CMergeDoc::OnBnClickedFileEncoding()

@@ -297,7 +297,7 @@ protected:
 	afx_msg void OnUpdateGotoMovedLineMR(CCmdUI* pCmdUI);
 	afx_msg void OnShellMenu();
 	afx_msg void OnUpdateShellMenu(CCmdUI* pCmdUI);
-	afx_msg void OnScripts(UINT nID );
+	afx_msg void OnScripts(UINT nID);
 	afx_msg void OnTransformWithScript();
 	afx_msg void OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);

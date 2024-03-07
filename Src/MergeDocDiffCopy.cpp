@@ -429,6 +429,44 @@ bool CMergeDoc::SanityCheckDiff(const DIFFRANGE& dr) const
 	return true;
 }
 
+bool CMergeDoc::TransformText(String& text)
+{ 
+	if (m_editorScriptInfo.GetPluginPipeline().empty())
+		return false;
+	const auto pwndActiveWindow = GetActiveMergeView();
+	if (!pwndActiveWindow)
+		return false;
+	const int nActivePane = pwndActiveWindow->m_nThisPane;
+	bool bChanged = false;
+	m_editorScriptInfo.TransformText(text, { m_filePaths[nActivePane] }, bChanged);
+	return bChanged;
+}
+
+/// Replace line (removing any eol, and only including one if in strText)
+void CMergeDoc::ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView * pSource, int nLineBegin, int nLineEnd, int nAction /*=CE_ACTION_UNKNOWN*/)
+{
+	String strText;
+	if (nLineBegin != nLineEnd || sbuf.GetLineLength(nLineEnd) > 0)
+		sbuf.GetTextWithoutEmptys(nLineBegin, 0, nLineEnd, sbuf.GetLineLength(nLineEnd), strText);
+	strText += sbuf.GetLineEol(nLineEnd);
+
+	if (nLineBegin != nLineEnd || dbuf.GetFullLineLength(nLineEnd) > 0)
+	{
+		int nLineEndSource = nLineEnd < dbuf.GetLineCount() ? nLineEnd : dbuf.GetLineCount();
+		if (nLineEnd+1 < dbuf.GetLineCount())
+			dbuf.DeleteText(pSource, nLineBegin, 0, nLineEndSource + 1, 0, nAction);
+		else
+			dbuf.DeleteText(pSource, nLineBegin, 0, nLineEndSource, dbuf.GetLineLength(nLineEndSource), nAction); 
+	}
+
+	TransformText(strText);
+	if (size_t cchText = strText.length())
+	{
+		int endl,endc;
+		dbuf.InsertText(pSource, nLineBegin, 0, strText.c_str(), cchText, endl, endc, nAction);
+	}
+}
+
  /**
   * @brief Copy selected (=current) difference from from side to side.
   * @param [in] srcPane Source side from which diff is copied
@@ -531,7 +569,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		if (cd_dbegin <= limit)
 		{
 			// text exists on left side, so just replace
-			dbuf.ReplaceFullLines(dbuf, sbuf, pSource, cd_dbegin, limit, CE_ACTION_MERGE);
+			ReplaceFullLines(dbuf, sbuf, pSource, cd_dbegin, limit, CE_ACTION_MERGE);
 			dbuf.FlushUndoGroup(pSource);
 			dbuf.BeginUndoGroup(true);
 		}
@@ -624,7 +662,7 @@ bool CMergeDoc::LineListCopy(int srcPane, int dstPane, int nDiff, int firstLine,
 	if (cd_dbegin <= limit)
 	{
 		// text exists on left side, so just replace
-		dbuf.ReplaceFullLines(dbuf, sbuf, pSource, cd_dbegin, limit, CE_ACTION_MERGE);
+		ReplaceFullLines(dbuf, sbuf, pSource, cd_dbegin, limit, CE_ACTION_MERGE);
 		dbuf.FlushUndoGroup(pSource);
 		dbuf.BeginUndoGroup(true);
 	}
@@ -744,6 +782,7 @@ bool CMergeDoc::InlineDiffListCopy(int srcPane, int dstPane, int nDiff, int firs
 
 	dbuf.DeleteText(pSource, ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, CE_ACTION_MERGE);
 
+	TransformText(dstText);
 	int endl, endc;
 	dbuf.InsertText(pSource, ptDstStart.y, ptDstStart.x, dstText.c_str(), dstText.length(), endl, endc, CE_ACTION_MERGE);
 
@@ -1002,15 +1041,15 @@ bool CMergeDoc::CharacterListCopy(int srcPane, int dstPane, int activePane, int 
 	auto [ptSrcStart, ptSrcEnd, ptDstStart, ptDstEnd] =
 		GetCharacterRange(srcPane, dstPane, activePane, nDiff, ptStart, ptEnd);
 
-	String dstText, srcText;
-	dbuf.GetTextWithoutEmptys(ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, dstText);
-	sbuf.GetTextWithoutEmptys(ptSrcStart.y, ptSrcStart.x, ptSrcEnd.y, ptSrcEnd.x, srcText);
+	String text;
+	sbuf.GetTextWithoutEmptys(ptSrcStart.y, ptSrcStart.x, ptSrcEnd.y, ptSrcEnd.x, text);
 
 	if (ptDstStart != ptDstEnd)
 		dbuf.DeleteText(pSource, ptDstStart.y, ptDstStart.x, ptDstEnd.y, ptDstEnd.x, CE_ACTION_MERGE);
 
+	TransformText(text);
 	int endl, endc;
-	dbuf.InsertText(pSource, ptDstStart.y, ptDstStart.x, srcText.c_str(), srcText.length(), endl, endc, CE_ACTION_MERGE);
+	dbuf.InsertText(pSource, ptDstStart.y, ptDstStart.x, text.c_str(), text.length(), endl, endc, CE_ACTION_MERGE);
 
 	dbuf.FlushUndoGroup(pSource);
 

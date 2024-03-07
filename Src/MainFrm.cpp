@@ -702,7 +702,7 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 
 				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::UnpackerEventNames, true, ID_UNPACKERS_FIRST);
 			}
-			else if (topMenuId == ID_NO_EDIT_SCRIPTS)
+			else if (topMenuId == ID_NO_EDIT_SCRIPTS || topMenuId == ID_NO_EDIT_SCRIPTS_FOR_COPYING)
 			{
 				CMenu* pMenu = pPopupMenu;
 				ASSERT(pMenu != nullptr);
@@ -712,13 +712,14 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 				while (i--)
 					pMenu->DeleteMenu(0, MF_BYPOSITION);
 
-				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, ID_SCRIPT_FIRST);
+				CMainFrame::AppendPluginMenus(pMenu, filteredFilenames, FileTransform::EditorScriptEventNames, false, 
+					topMenuId == ID_NO_EDIT_SCRIPTS ? ID_SCRIPT_FIRST : ID_SCRIPT_FOR_COPYING_FIRST);
 			}
 			else if (topMenuId == ID_PLUGINS_LIST)
 			{
 				for (int j = 0; j < 2; j++)
 				{
-					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 4));
+					CMenu* pMenu = pPopupMenu->GetSubMenu((j == 0) ? 8 : (pPopupMenu->GetMenuItemCount() - 5));
 					ASSERT(pMenu != nullptr);
 
 					// empty the menu
@@ -3121,6 +3122,9 @@ void CMainFrame::OnUpdatePluginName(CCmdUI* pCmdUI)
 		const PrediffingInfo* infoPrediffer = pMergeDoc->GetPrediffer();
 		if (infoPrediffer && !infoPrediffer->GetPluginPipeline().empty())
 			pluginNames += infoPrediffer->GetPluginPipeline() + _T("&");
+		const EditorScriptInfo* infoEditorScript = pMergeDoc->GetEditorScript();
+		if (infoEditorScript && !infoEditorScript->GetPluginPipeline().empty())
+			pluginNames += infoEditorScript->GetPluginPipeline() + _T("&");
 		pCmdUI->SetText(pluginNames.substr(0, pluginNames.length() - 1).c_str());
 	}
 	else

@@ -845,6 +845,12 @@ msgstr "Applicera förjämförelse/Prediffer..."
 msgid "&Transform with editor script..."
 msgstr "Transformera med redigeringsskript..."
 
+msgid "Scripts for &copying"
+msgstr ""
+
+msgid "Select &editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Dela"
 

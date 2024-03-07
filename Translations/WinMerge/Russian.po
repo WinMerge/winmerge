@@ -843,6 +843,12 @@ msgstr "Применить предсравнение..."
 msgid "&Transform with editor script..."
 msgstr "Редактор скриптов..."
 
+msgid "Scripts for &copying"
+msgstr ""
+
+msgid "Select &editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Разделить"
 

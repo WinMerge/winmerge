@@ -840,6 +840,12 @@ msgstr "Ön &farklılaştırıcı uygula..."
 msgid "&Transform with editor script..."
 msgstr "&Düzenleyici betiği ile dönüştür..."
 
+msgid "Scripts for &copying"
+msgstr ""
+
+msgid "Select &editor script..."
+msgstr ""
+
 msgid "Sp&lit"
 msgstr "Bö&l"
 

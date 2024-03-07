@@ -791,7 +791,7 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>> suggestedPlugins;
 	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> allPlugins;
 	std::map<String, int> captions;
-	unsigned id = baseId;
+	unsigned id = baseId + 2;
 	bool addedNoneAutomatic = false;
 	static PluginInfo noPlugin;
 	static PluginInfo autoPlugin;
@@ -811,8 +811,8 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					{
 						String process = _T("");
 						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
-						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, &noPlugin);
-						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), id++, &autoPlugin);
+						allPlugins[process].emplace_back(_("<None>"), _T(""), baseId, &noPlugin);
+						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), baseId + 1, &autoPlugin);
 						addedNoneAutomatic = true;
 					}
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
@@ -833,6 +833,13 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 				}
 				else
 				{
+					if (!addedNoneAutomatic)
+					{
+						String process = _T("");
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+						allPlugins[process].emplace_back(_("<None>"), _T(""), baseId, &noPlugin);
+						addedNoneAutomatic = true;
+					}
 					LPDISPATCH piScript = plugin->m_lpDispatch;
 					std::vector<String> scriptNamesArray;
 					std::vector<int> scriptIdsArray;

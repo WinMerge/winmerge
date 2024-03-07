@@ -17,6 +17,7 @@
 #include "TempFile.h"
 #include "PathContext.h"
 #include "FileLoadResult.h"
+#include "FileTransform.h"
 #include <vector>
 #include <map>
 #include <memory>
@@ -175,6 +176,8 @@ public:
 	bool CharacterListCopy(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false, bool bUpdateView = true);
 	std::tuple<CEPoint, CEPoint, CEPoint, CEPoint> GetCharacterRange(int srcPane, int dstPane, int activePane, int nDiff, const CEPoint& ptStart, const CEPoint& ptEnd);
+	bool TransformText(String& text);
+	void ReplaceFullLines(CDiffTextBuffer& dbuf, CDiffTextBuffer& sbuf, CCrystalTextView* pSource, int nLineBegin, int nLineEnd, int nAction = CE_ACTION_UNKNOWN);
 	bool TrySaveAs(String& strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo& infoTempUnpacker);
 	bool DoSave(const tchar_t* szPath, bool &bSaveSuccess, int nBuffer);
@@ -189,6 +192,7 @@ public:
 	void SetPrediffer(const PrediffingInfo * infoPrediffer);
 	void GetPrediffer(PrediffingInfo * infoPrediffer) const;
 	const PrediffingInfo *GetPrediffer() const override;
+	const EditorScriptInfo* GetEditorScript() const override { return &m_editorScriptInfo; };
 	void AddMergeViews(CMergeEditSplitterView* pMergeEditSplitterView, CMergeEditView* pView[3]);
 	void RemoveMergeViews(CMergeEditSplitterView* pMergeEditSplitterView);
 	void SetLocationView(CLocationView *pLocationView) { m_pLocationView = pLocationView; }
@@ -390,8 +394,10 @@ protected:
 	bool m_bAutomaticRescan;
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
+	int m_CurrentEditorScriptID;
 	bool m_bChangedSchemeManually;	/**< `true` if the syntax highlighting scheme is changed manually */
 	String m_sCurrentHeaderTitle[3];
+	EditorScriptInfo m_editorScriptInfo;
 
 // friend access
 	friend class RescanSuppress;
@@ -442,7 +448,10 @@ protected:
 	afx_msg void OnUpdateSwapContext(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
-	afx_msg void OnPrediffer(UINT nID );
+	afx_msg void OnPrediffer(UINT nID);
+	afx_msg void OnScriptsForCopying(UINT nID);
+	afx_msg void OnUpdateScriptsForCopying(CCmdUI* pCmdUI);
+	afx_msg void OnSelectEditorScriptForCopying();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
