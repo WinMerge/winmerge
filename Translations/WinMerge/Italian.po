@@ -6,6 +6,7 @@
 # * Andrea Decorte <deco1985 at hotmail.com>
 # * Antonio Angelo <antonio.angelo at gmail.com>
 # * Michele Locati <michele at locati.it>
+# * bovirus
 #
 msgid ""
 msgstr ""
@@ -13,7 +14,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
 "PO-Revision-Date: 2024-03-08 12:13+0100\n"
-"Last-Translator: Michele Locati <michele@locati.it>\n"
+"Last-Translator: bovirus\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
