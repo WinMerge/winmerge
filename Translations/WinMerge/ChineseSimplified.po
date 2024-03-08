@@ -813,10 +813,10 @@ msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "从右侧复制\tAlt+Shift+Right"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "复制到右侧并前进\tCtrl+Alt+Right"
+msgstr "复制到右侧并前进(&O)\tCtrl+Alt+Right"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "复制到左侧并前进\tCtrl+Alt+Left"
+msgstr "复制到左侧并前进(&T)\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
 msgstr "全部复制到右侧(&A)"
@@ -846,10 +846,10 @@ msgid "&Transform with editor script..."
 msgstr "用编辑器脚本转换(&T)..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "用于复制的脚本(&C)"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "选择编辑器脚本(&E)..."
 
 msgid "Sp&lit"
 msgstr "分隔(&L)"
@@ -867,16 +867,16 @@ msgid "Compare Non-hor&izontally"
 msgstr "非横向比较(&I)"
 
 msgid "First &left item with second left item"
-msgstr "第一个的左侧项目与第二个的左侧项目(&L)"
+msgstr "左侧第一个项目与左侧第二个项目(&L)"
 
 msgid "First &right item with second right item"
-msgstr "第一个的右侧项目与第二个的右侧项目(&R)"
+msgstr "右侧第一个项目与右侧第二个项目(&R)"
 
 msgid "&First left item with second right item"
-msgstr "第一个的左侧项目与第二个的右侧项目(&F)"
+msgstr "左侧第一个项目与右侧第二个项目(&F)"
 
 msgid "&Second left item with first right item"
-msgstr "第二个的左侧项目与第一个的右侧项目(&S)"
+msgstr "左侧第二个项目与右侧第一个项目(&S)"
 
 msgid "Co&mpare As"
 msgstr "重新比较(&M)"
