@@ -53,6 +53,7 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\" + ARCH + "\Release\WinMergeU.exe")
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ShellExtension64bit)
 #define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ARCH + "\WinMergeContextMenu.dll")
+#include WinMergeCustomMessages.iss
 
 [Setup]
 AppName=WinMerge
@@ -167,18 +168,6 @@ Name: Swedish; MessagesFile: ..\..\Translations\InnoSetup\Unbundled.is6\Swedish.
 Name: Tamil; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\Tamil.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Tamil.txt
 Name: Turkish; MessagesFile: compiler:Languages\Turkish.isl,..\..\Translations\InnoSetup\Turkish.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt
 Name: Ukrainian; MessagesFile: compiler:Languages\Ukrainian.isl,..\..\Translations\InnoSetup\Ukrainian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
-
-
-[Messages]
-English.FinishedLabel=Setup has finished installing WinMerge on your computer.
-English.SetupAppTitle=Setup - WinMerge {#AppVersion}
-English.WizardInfoBefore=License Agreement
-English.InfoBeforeLabel=GNU General Public License
-
-Italian.FinishedLabel=L'installazione di WinMerge è stata completata.
-Italian.SetupAppTitle=Installazione di WinMerge {#AppVersion}
-Italian.WizardInfoBefore=Accordo di licenza
-Italian.InfoBeforeLabel=Licenza GNU (General Public License)
 
 
 [Types]
