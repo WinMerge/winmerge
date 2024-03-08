@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2024-03-07**:
+Status from **2024-03-09**:
 
 ## WinMerge
 
@@ -8,10 +8,10 @@ Status from **2024-03-07**:
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
 | Arabic               |  1333 |        895 |     0 |          438 |     67 % |  2019-12-30 |
 | Basque               |  1333 |        638 |     0 |          695 |     47 % |  2013-02-03 |
-| Brazilian            |  1333 |       1331 |     0 |            2 |     99 % |  2024-03-03 |
+| Brazilian            |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-07 |
 | Bulgarian            |  1333 |       1082 |     0 |          251 |     81 % |  2023-11-14 |
 | Catalan              |  1333 |       1179 |     0 |          154 |     88 % |             |
-| ChineseSimplified    |  1333 |       1331 |     0 |            2 |     99 % |             |
+| ChineseSimplified    |  1333 |       1333 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1333 |       1298 |     0 |           35 |     97 % |  2022-02-19 |
 | Corsican             |  1333 |       1325 |     0 |            8 |     99 % |  2024-01-15 |
 | Croatian             |  1333 |        630 |     1 |          702 |     47 % |  2009-02-13 |
@@ -25,10 +25,10 @@ Status from **2024-03-07**:
 | German               |  1333 |       1308 |     0 |           25 |     98 % |  2023-08-08 |
 | Greek                |  1333 |        605 |     0 |          728 |     45 % |             |
 | Hungarian            |  1333 |       1328 |     0 |            5 |     99 % |  2021-03-15 |
-| Italian              |  1333 |       1101 |     0 |          232 |     82 % |  2022-06-01 |
+| Italian              |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-08 |
 | Japanese             |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-01 |
 | Korean               |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-06 |
-| Lithuanian           |  1333 |       1282 |     0 |           51 |     96 % |  2024-03-04 |
+| Lithuanian           |  1333 |       1284 |     0 |           49 |     96 % |  2024-03-08 |
 | Norwegian            |  1333 |        730 |     0 |          603 |     54 % |             |
 | Persian              |  1333 |        641 |     0 |          692 |     48 % |  2013-08-15 |
 | Polish               |  1333 |       1313 |     0 |           20 |     98 % |  2023-11-28 |
@@ -68,7 +68,7 @@ Status from **2024-03-07**:
 | German               |    10 |         10 |     0 |            0 |    100 % |  2023-02-20 |
 | Greek                |    10 |          3 |     0 |            7 |     30 % |             |
 | Hungarian            |    10 |         10 |     0 |            0 |    100 % |             |
-| Italian              |    10 |          3 |     0 |            7 |     30 % |             |
+| Italian              |    10 |         10 |     0 |            0 |    100 % |             |
 | Japanese             |    10 |         10 |     0 |            0 |    100 % |             |
 | Korean               |    10 |         10 |     0 |            0 |    100 % |             |
 | Lithuanian           |    10 |         10 |     0 |            0 |    100 % |  2023-02-20 |
@@ -229,6 +229,7 @@ Status from **2024-03-07**:
    - [Andrea Decorte](mailto:deco1985%20at%20hotmail.com)
    - [Antonio Angelo](mailto:antonio.angelo%20at%20gmail.com)
    - [Michele Locati](mailto:michele%20at%20locati.it)
+   - bovirus
 
  * Japanese
    - [Takashi Sawanaka](mailto:sawanaka%20at%20d1.dion.ne.jp)
