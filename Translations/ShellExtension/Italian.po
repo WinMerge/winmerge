@@ -3,19 +3,19 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge Shell Extension\n"
+"Project-Id-Version: WinMerge Shell Extension (038.03.2024)\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: it\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -37,34 +37,34 @@ msgstr "Estensione shell"
 #: ShellExtension.rc:112
 #, c-format
 msgid "Win&Merge"
-msgstr ""
+msgstr "Win&Merge"
 
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr ""
+msgstr "Comp&ara come"
 
 #: ShellExtension.rc:114
 #, c-format
 msgid "&Compare"
-msgstr ""
+msgstr "&Compara"
 
 #: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
-msgstr ""
+msgstr "Compara&..."
 
 #: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
-msgstr ""
+msgstr "Se&leziona sinistra"
 
 #: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
-msgstr ""
+msgstr "Sele&ziona centrale"
 
 #: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Ri-se&leziona sinistra"
