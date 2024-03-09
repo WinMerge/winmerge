@@ -6,15 +6,15 @@
 # * Andrea Decorte <deco1985 at hotmail.com>
 # * Antonio Angelo <antonio.angelo at gmail.com>
 # * Michele Locati <michele at locati.it>
-# * bovirus
+# * bovirus <bovirus at gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge (Language) 08.03.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-03-08 12:13+0100\n"
-"Last-Translator: bovirus\n"
+"PO-Revision-Date: 2024-03-09 11:02+0100\n"
+"Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
