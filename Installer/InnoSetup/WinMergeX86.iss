@@ -53,7 +53,6 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\" + ARCH + "\Release\WinMergeU.exe")
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ShellExtension64bit)
 #define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\x64\WinMergeContextMenu.dll")
-#include WinMergeCustomMessages.iss
 
 [Setup]
 AppName=WinMerge

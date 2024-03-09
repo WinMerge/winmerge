@@ -1,4 +1,9 @@
-﻿[CustomMessages]
+﻿[Messages]
+
+WizardInfoBefore=Accordo di licenza
+InfoBeforeLabel=Licenza GNU (General Public License)
+
+[CustomMessages]
 
 ;Things we can also localize
 OptionalFeatures=Funzioni opzionali:

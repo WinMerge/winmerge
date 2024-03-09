@@ -1,4 +1,9 @@
-﻿[CustomMessages]
+﻿[Messages]
+
+WizardInfoBefore=License Agreement
+InfoBeforeLabel=GNU General Public License
+
+[CustomMessages]
 
 ;현지화할 수 있는 기능
 OptionalFeatures=선택적 기능:

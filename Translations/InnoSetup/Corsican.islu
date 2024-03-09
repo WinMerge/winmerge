@@ -6,6 +6,11 @@
 ;     - Updated on April 25th, 2022 for version 2.16.20 by Patriccollu di Santa Maria è Sichè
 ;     - Created on December 6th, 2021 for version 2.16.17 by Patriccollu di Santa Maria è Sichè
 
+[Messages]
+
+WizardInfoBefore=License Agreement
+InfoBeforeLabel=GNU General Public License
+
 [CustomMessages]
 
 ;Things we can also localize

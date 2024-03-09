@@ -1,4 +1,9 @@
-﻿[CustomMessages]
+﻿[Messages]
+
+WizardInfoBefore=License Agreement
+InfoBeforeLabel=GNU General Public License
+
+[CustomMessages]
 
 ;Things we can also localize
 OptionalFeatures=Προαιρετικά Χαρακτηριστικά:

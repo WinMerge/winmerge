@@ -25,7 +25,7 @@ Status from **2024-03-09**:
 | German               |  1333 |       1308 |     0 |           25 |     98 % |  2023-08-08 |
 | Greek                |  1333 |        605 |     0 |          728 |     45 % |             |
 | Hungarian            |  1333 |       1328 |     0 |            5 |     99 % |  2021-03-15 |
-| Italian              |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-08 |
+| Italian              |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-09 |
 | Japanese             |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-01 |
 | Korean               |  1333 |       1333 |     0 |            0 |    100 % |  2024-03-06 |
 | Lithuanian           |  1333 |       1284 |     0 |           49 |     96 % |  2024-03-08 |
@@ -68,7 +68,7 @@ Status from **2024-03-09**:
 | German               |    10 |         10 |     0 |            0 |    100 % |  2023-02-20 |
 | Greek                |    10 |          3 |     0 |            7 |     30 % |             |
 | Hungarian            |    10 |         10 |     0 |            0 |    100 % |             |
-| Italian              |    10 |         10 |     0 |            0 |    100 % |             |
+| Italian              |    10 |         10 |     0 |            0 |    100 % |  2024-03-09 |
 | Japanese             |    10 |         10 |     0 |            0 |    100 % |             |
 | Korean               |    10 |         10 |     0 |            0 |    100 % |             |
 | Lithuanian           |    10 |         10 |     0 |            0 |    100 % |  2023-02-20 |
@@ -92,7 +92,44 @@ Status from **2024-03-09**:
 
 | Language             | Total | Translated | Fuzzy | Untranslated | Complete | Last Update |
 |:---------------------|------:|-----------:|------:|-------------:|---------:|:-----------:|
+| Arabic               |     - |          - |     - |            - |        - |             |
+| Basque               |     - |          - |     - |            - |        - |             |
+| Brazilian            |     - |          - |     - |            - |        - |             |
+| Bulgarian            |     - |          - |     - |            - |        - |             |
+| Catalan              |     - |          - |     - |            - |        - |             |
+| ChineseSimplified    |     - |          - |     - |            - |        - |             |
+| ChineseTraditional   |     - |          - |     - |            - |        - |             |
+| Corsican             |     - |          - |     - |            - |        - |             |
+| Croatian             |     - |          - |     - |            - |        - |             |
+| Czech                |     - |          - |     - |            - |        - |             |
+| Danish               |     - |          - |     - |            - |        - |             |
+| Dutch                |     - |          - |     - |            - |        - |             |
 | English              |     - |          - |     - |            - |        - |             |
+| Finnish              |     - |          - |     - |            - |        - |             |
+| French               |     - |          - |     - |            - |        - |             |
+| Galician             |     - |          - |     - |            - |        - |             |
+| German               |     - |          - |     - |            - |        - |             |
+| Greek                |     - |          - |     - |            - |        - |             |
+| Hungarian            |     - |          - |     - |            - |        - |             |
+| Italian              |     - |          - |     - |            - |        - |             |
+| Japanese             |     - |          - |     - |            - |        - |             |
+| Korean               |     - |          - |     - |            - |        - |             |
+| Lithuanian           |     - |          - |     - |            - |        - |             |
+| Norwegian            |     - |          - |     - |            - |        - |             |
+| Persian              |     - |          - |     - |            - |        - |             |
+| Polish               |     - |          - |     - |            - |        - |             |
+| Portuguese           |     - |          - |     - |            - |        - |             |
+| Romanian             |     - |          - |     - |            - |        - |             |
+| Russian              |     - |          - |     - |            - |        - |             |
+| Serbian              |     - |          - |     - |            - |        - |             |
+| Sinhala              |     - |          - |     - |            - |        - |             |
+| Slovak               |     - |          - |     - |            - |        - |             |
+| Slovenian            |     - |          - |     - |            - |        - |             |
+| Spanish              |     - |          - |     - |            - |        - |             |
+| Swedish              |     - |          - |     - |            - |        - |             |
+| Tamil                |     - |          - |     - |            - |        - |             |
+| Turkish              |     - |          - |     - |            - |        - |             |
+| Ukrainian            |     - |          - |     - |            - |        - |             |
 
 ## Docs/Readme
 
@@ -229,7 +266,7 @@ Status from **2024-03-09**:
    - [Andrea Decorte](mailto:deco1985%20at%20hotmail.com)
    - [Antonio Angelo](mailto:antonio.angelo%20at%20gmail.com)
    - [Michele Locati](mailto:michele%20at%20locati.it)
-   - bovirus
+   - [bovirus](mailto:bovirus%20at%20gmail.com)
 
  * Japanese
    - [Takashi Sawanaka](mailto:sawanaka%20at%20d1.dion.ne.jp)
@@ -334,6 +371,13 @@ Status from **2024-03-09**:
 
  * German
    - [Tim Gerundt](mailto:tim%20at%20gerundt.de) *Maintainer*
+
+ * Italian
+   - [Michele Merega](mailto:michele.merega%20at%20ifminfomaster.com)
+   - [Andrea Decorte](mailto:deco1985%20at%20hotmail.com)
+   - [Antonio Angelo](mailto:antonio.angelo%20at%20gmail.com)
+   - [Michele Locati](mailto:michele%20at%20locati.it)
+   - [bovirus](mailto:bovirus%20at%20gmail.com)
 
  * Korean
    - [VenusGirl](mailto:venusgirl%20at%20https://github.com/VenusGirl)
