@@ -273,7 +273,7 @@ msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "Szinkronizálás esemény"
 
 msgid "&Enabled"
 msgstr "&Engedélyezve"
@@ -1023,10 +1023,10 @@ msgid "&Transform with editor script..."
 msgstr "Átalakítás a szerkesztő szkriptjével ..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "Szkriptek &másoláshoz"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "Válassz szerkesztő szkriptet..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1198,10 +1198,10 @@ msgid "Right Shell menu"
 msgstr "Jobb intéző menü"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Mindkét intéző menü"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Összes intéző menü"
 
 #, c-format
 msgid "Copy"
@@ -2795,10 +2795,7 @@ msgstr "Minden üzenet ezentúl újra megjelenik."
 
 #, c-format
 msgid "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
-msgstr ""
-"A tabulátorméret értéke nincs a megfelelő tartományban.\n"
-"\n"
-"1 és %1 közötti értéket használj."
+msgstr "A tabulátorméret értéke nincs a megfelelő tartományban.\n\n1 és %1 közötti értéket használj."
 
 #, c-format
 msgid "Open"
