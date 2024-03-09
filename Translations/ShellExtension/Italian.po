@@ -1,21 +1,26 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Michele Merega <michele.merega at ifminfomaster.com>
+# * Andrea Decorte <deco1985 at hotmail.com>
+# * Antonio Angelo <antonio.angelo at gmail.com>
+# * Michele Locati <michele at locati.it>
+# * bovirus <bovirus at gmail.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge Shell Extension (038.03.2024)\n"
+"Project-Id-Version: WinMerge Shell Extension (08.03.2024)\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2019-07-09 07:44+0000\n"
+"PO-Revision-Date: 2024-03-09 11:02+0100\n"
+"Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
 "X-Generator: Poedit 3.4.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
