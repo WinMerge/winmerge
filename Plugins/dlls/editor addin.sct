@@ -293,6 +293,7 @@ function ParseReplaceArguments(args) {
   var argAry = ParseArguments(args);
   var regex = false;
   var ignoreCase = false;
+  var useSubstitutionFilters = false;
   for (var i = 0; i < argAry.length; i++) {
     isOption = false;
     if (argAry[i].length >= 2) {
@@ -308,6 +309,9 @@ function ParseReplaceArguments(args) {
             ignoreCase = true;
           }
           break;
+        case "s":
+          useSubstitutionFilters = true;
+          break;
         }
         break;
       }
@@ -322,7 +326,45 @@ function ParseReplaceArguments(args) {
       }
     }
   }
+  if (useSubstitutionFilters) {
+    var count = regRead("SubstitutionFilters/Values", 0);
+    for (var i = 0; i < count; i++) {
+      var ii = "00" + i;
+      ii = ii.substring(ii.length - 2);
+      if (regRead("SubstitutionFilters/Enabled" + ii, 0)) {
+        patterns = new Array();
+        patterns.push(regRead("SubstitutionFilters/Pattern" + ii, ""));
+        patterns.push(regRead("SubstitutionFilters/Replacement" + ii, ""));
+        regex = regRead("SubstitutionFilters/UseRegExp" + ii, 0);
+        ignoreCase = !regRead("SubstitutionFilters/CaseSensitive" + ii, 1);
+        if (regRead("SubstitutionFilters/MatchWholeWordOnly" + ii, 0)) {
+          regex = true;
+          pattens[0] = "\\b" + Escape(patterns[0]) + "\\b";
+          pattens[1] = Escape(patterns[0]);
+        }
+        list.push({"patterns": patterns, "regex": regex, "ignoreCase": ignoreCase});
+      }
+    }
+  }
   return list;
+}
+
+function Escape(text) {
+  var result = "";
+  for (var i = 0; i < text.length; i++) {
+    var c = text[i];
+    switch (c) {
+    case '\\': case '.': case '^': case '$': case '|':
+    case '[': case ']': case '(': case ')': case '!':
+    case '?': case '*': case '+': case '{': case '}':
+        result += '\\';
+        break;
+    default:
+        break;
+    }
+    result += c;
+  }
+  return result;
 }
 
 function Unescape(text) {
@@ -571,9 +613,9 @@ function ReplaceText(Text) {
       }
     } else {
       if (patterns.length > 1) {
-        result = replacei(result, patterns[0], patterns[1]);
+        result = replacei(result, patterns[0], patterns[1], ignoreCase);
       } else {
-        result = replacei(result, patterns[0], "");
+        result = replacei(result, patterns[0], "", ignoreCase);
       }
     }
   }

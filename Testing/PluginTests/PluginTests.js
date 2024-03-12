@@ -92,6 +92,39 @@ var PluginSettings = {
       "Pattern5": "disabled",
       "ReplaceText5": ""
     }
+  },
+  "SubstitutionFilters": {
+    "Values": 5,
+
+    "Enabled00": 1,
+    "CaseSensitive00": 1,
+    "UseRegExp00": 0,
+    "Pattern00": "abc",
+    "Replacement00": "def",
+
+    "Enabled01": 1,
+    "CaseSensitive01": 0,
+    "UseRegExp01": 0,
+    "Pattern01": "Ghi",
+    "Replacement01": "Jkl",
+
+    "Enabled02": 1,
+    "CaseSensitive02": 0,
+    "UseRegExp02": 1,
+    "Pattern02": "\\d+\\.\\d+",
+    "Replacement02": "x.x",
+
+    "Enabled03": 1,
+    "CaseSensitive03": 0,
+    "UseRegExp03": 1,
+    "Pattern03": "Mno.*Z",
+    "Replacement03": "XxxX",
+
+    "Enabled04": 0,
+    "CaseSensitive04": 1,
+    "UseRegExp04": 0,
+    "Pattern04": "disabled",
+    "Replacement04": ""
   }
 };
 
@@ -299,6 +332,32 @@ function EditorAddinTest() {
   assertEquals("012\r\n345\r\n678\r\n9", p.Replace("0123456789"));
   p.PluginArguments = "-e (\\d+) \\a\\b\\t\\n\\v\\f\\r\\\\$1\\1\\0";
   assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\0123456789\\1\\0", p.Replace("0123456789"));
+  //
+  p.PluginArguments = "-s";
+  assertEquals("", p.Replace(""));
+  p.PluginArguments = "-s";
+  assertEquals("def def def", p.Replace("abc def abc"));
+  p.PluginArguments = "-s";
+  assertEquals("Jkl def Jkl", p.Replace("gHI def Ghi"));
+  p.PluginArguments = "-s";
+  assertEquals("x.x def x.x", p.Replace("1.2 def 3.4"));
+  p.PluginArguments = "-s";
+  assertEquals("XxxX", p.Replace("mnopqrstuvwxyz"));
+  p.PluginArguments = "-s";
+  assertEquals("disabled", p.Replace("disabled"));
+  p.PluginArguments = "-s";
+  var text = "abc def abc\r\n";
+  text += "gHI def GHI\r\n";
+  text += "1.2 def 3.4\r\n";
+  text += "mnopqrstuvwxyz\r\n";
+  text += "disabled";
+  var expected =
+    "def def def\r\n" +
+    "Jkl def Jkl\r\n" +
+    "x.x def x.x\r\n" +
+    "XxxX\r\n" +
+    "disabled";
+  assertEquals(expected, p.Replace(text));
 
   // ReverseColumns
   setTestName("ReverseColumns");
