@@ -79,8 +79,8 @@ var PluginSettings = {
       "Enabled3": 1,
       "IgnoreCase3": 0,
       "UseRegExp3": 1,
-      "Pattern3": "\\d+\\.\\d+",
-      "ReplaceText3": "x.x",
+      "Pattern3": "(\\d+)\\.(\\d+)",
+      "ReplaceText3": "\\2.\\1",
       "Enabled4": 1,
       "IgnoreCase4": 1,
       "UseRegExp4": 1,
@@ -114,8 +114,8 @@ var PluginSettings = {
     "CaseSensitive02": 0,
     "UseRegExp02": 1,
     "MatchWholeWordOnly02": 0,
-    "Pattern02": "\\d+\\.\\d+",
-    "Replacement02": "x.x",
+    "Pattern02": "(\\d+)\\.(\\d+)",
+    "Replacement02": "\\2.\\1",
 
     "Enabled03": 1,
     "CaseSensitive03": 0,
@@ -342,8 +342,8 @@ function EditorAddinTest() {
   assertEquals("XXX abc\r\nXXX def", p.Replace("1000 abc\r\n1001 def"));
   p.PluginArguments = "-e (.{3}) $1\\r\\n";
   assertEquals("012\r\n345\r\n678\r\n9", p.Replace("0123456789"));
-  p.PluginArguments = "-e (\\d+) \\a\\b\\t\\n\\v\\f\\r\\\\$1\\1\\0";
-  assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\012345678901234567890123456789", p.Replace("0123456789"));
+  p.PluginArguments = "-e (\\d+) \\a\\b\\t\\n\\v\\f\\r\\\\$1\\1\\0\\x21\\x7E";
+  assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\012345678901234567890123456789!~", p.Replace("0123456789"));
   //
   p.PluginArguments = "-s";
   assertEquals("", p.Replace(""));
@@ -352,7 +352,7 @@ function EditorAddinTest() {
   p.PluginArguments = "-s";
   assertEquals("Jkl def Jkl", p.Replace("gHI def Ghi"));
   p.PluginArguments = "-s";
-  assertEquals("x.x def x.x", p.Replace("1.2 def 3.4"));
+  assertEquals("2.1 def 4.3", p.Replace("1.2 def 3.4"));
   p.PluginArguments = "-s";
   assertEquals("XxxX", p.Replace("mnopqrstuvwxyz"));
   p.PluginArguments = "-s";
@@ -366,7 +366,7 @@ function EditorAddinTest() {
   var expected =
     "def def def\r\n" +
     "Jkl def Jkl\r\n" +
-    "x.x def x.x\r\n" +
+    "2.1 def 4.3\r\n" +
     "XxxX\r\n" +
     "disabled";
   assertEquals(expected, p.Replace(text));
@@ -548,7 +548,7 @@ function PrediffLineFilterTest() {
   changed = false;
   var result = p.PrediffBufferW(text, size, changed);
   if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
-  assertEquals("x.x def x.x", text);
+  assertEquals("2.1 def 4.3", text);
   assertEquals(text.length, size);
   assertEquals(true, changed);
 
@@ -585,7 +585,7 @@ function PrediffLineFilterTest() {
   var expected =
     "def def def\r\n" +
     "Jkl def Jkl\r\n" +
-    "x.x def x.x\r\n" +
+    "2.1 def 4.3\r\n" +
     "XxxX\r\n" +
     "disabled";
   assertEquals(expected, text);

@@ -403,12 +403,26 @@ function Unescape(text) {
         case "\\":
           result += "\\";
           break;
+        case "x":
+          if (i + 2 < textLen) {
+            var hexValue = text.substring(i + 1, i + 3);
+            try {
+              var intValue = parseInt(hexValue, 16);
+              result += String.fromCharCode(intValue);
+              i += 2;
+            } catch (e) {
+              result += "\\x";
+            }
+          } else {
+            result += "\\x";
+          }
+          break;
         default:
           if (!isNaN(ch)) {
             if (ch !== '0') {
               result += '$' + ch;
             } else {
-              result += '$_';
+              result += '$&';
             }
           } else {
             result += '\\' + ch;

@@ -100,7 +100,7 @@ function PrediffBufferW(pText, pSize, pbChanged) {
         try {
           var re = new RegExp(pattern, ignoreCase ? "gi" : "g");
           for (var j = 0; j < lines.length; j++) {
-            lines[j] = lines[j].replace(re, replaceText);
+            lines[j] = lines[j].replace(re, unescape(replaceText));
           }
         } catch (e) {
           mergeApp.MsgBox("RegExp Pattern" + i + ": " + pattern + " error: " + e.message, 16, "PrediffLineFilter plugin");
@@ -134,6 +134,81 @@ function replacei(text, find, replace, ignorecase) {
     pos--;
   }
   return text;
+}
+
+function unescape(text) {
+  var result = "";
+  var textLen = text.length;
+  var i = 0;
+  while (i < textLen) {
+    var ch = text.charAt(i);
+    switch (ch) {
+    case "\\":
+      if (i < textLen - 1) {
+        i++;
+        ch = text.charAt(i);
+        switch (ch) {
+        case "a":
+          result += String.fromCharCode(0x07);
+          break;
+        case "b":
+          result += "\b";
+          break;
+        case "t":
+          result += "\t";
+          break;
+        case "n":
+          result += "\n";
+          break;
+        case "v":
+          result += String.fromCharCode(0x0b);
+          break;
+        case "f":
+          result += "\f";
+          break;
+        case "r":
+          result += "\r";
+          break;
+        case "\\":
+          result += "\\";
+          break;
+        case "x":
+          if (i + 2 < textLen) {
+            var hexValue = text.substring(i + 1, i + 3);
+            try {
+              var intValue = parseInt(hexValue, 16);
+              result += String.fromCharCode(intValue);
+              i += 2;
+            } catch (e) {
+              result += "\\x";
+            }
+          } else {
+            result += "\\x";
+          }
+          break;
+        default:
+          if (!isNaN(ch)) {
+            if (ch !== '0') {
+              result += '$' + ch;
+            } else {
+              result += '$&';
+            }
+          } else {
+            result += '\\' + ch;
+          }
+          break;
+        }
+      } else {
+        result += ch;
+      }
+      break;
+    default:
+      result += ch;
+      break;
+    }
+    i++;
+  }
+  return result;
 }
 
 function translate(text) {
