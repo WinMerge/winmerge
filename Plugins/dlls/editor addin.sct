@@ -339,8 +339,8 @@ function ParseReplaceArguments(args) {
         ignoreCase = !regRead("SubstitutionFilters/CaseSensitive" + ii, 1);
         if (regRead("SubstitutionFilters/MatchWholeWordOnly" + ii, 0)) {
           regex = true;
-          pattens[0] = "\\b" + Escape(patterns[0]) + "\\b";
-          pattens[1] = Escape(patterns[0]);
+          patterns[0] = "\\b" + Escape(patterns[0]) + "\\b";
+          patterns[1] = Escape(patterns[1]);
         }
         list.push({"patterns": patterns, "regex": regex, "ignoreCase": ignoreCase});
       }
@@ -352,7 +352,7 @@ function ParseReplaceArguments(args) {
 function Escape(text) {
   var result = "";
   for (var i = 0; i < text.length; i++) {
-    var c = text[i];
+    var c = text.charAt(i);
     switch (c) {
     case '\\': case '.': case '^': case '$': case '|':
     case '[': case ']': case '(': case ')': case '!':
@@ -404,7 +404,15 @@ function Unescape(text) {
           result += "\\";
           break;
         default:
-          result += "\\" + ch;
+          if (!isNaN(ch)) {
+            if (ch !== '0') {
+              result += '$' + ch;
+            } else {
+              result += '$_';
+            }
+          } else {
+            result += '\\' + ch;
+          }
           break;
         }
       } else {

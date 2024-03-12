@@ -94,37 +94,49 @@ var PluginSettings = {
     }
   },
   "SubstitutionFilters": {
-    "Values": 5,
+    "Values": 6,
 
     "Enabled00": 1,
     "CaseSensitive00": 1,
     "UseRegExp00": 0,
+    "MatchWholeWordOnly00": 0,
     "Pattern00": "abc",
     "Replacement00": "def",
 
     "Enabled01": 1,
     "CaseSensitive01": 0,
     "UseRegExp01": 0,
+    "MatchWholeWordOnly01": 0,
     "Pattern01": "Ghi",
     "Replacement01": "Jkl",
 
     "Enabled02": 1,
     "CaseSensitive02": 0,
     "UseRegExp02": 1,
+    "MatchWholeWordOnly02": 0,
     "Pattern02": "\\d+\\.\\d+",
     "Replacement02": "x.x",
 
     "Enabled03": 1,
     "CaseSensitive03": 0,
     "UseRegExp03": 1,
+    "MatchWholeWordOnly03": 0,
     "Pattern03": "Mno.*Z",
     "Replacement03": "XxxX",
 
     "Enabled04": 0,
     "CaseSensitive04": 1,
     "UseRegExp04": 0,
+    "MatchWholeWordOnly04": 0,
     "Pattern04": "disabled",
-    "Replacement04": ""
+    "Replacement04": "",
+
+    "Enabled05": 1,
+    "CaseSensitive05": 1,
+    "UseRegExp05": 0,
+    "MatchWholeWordOnly05": 1,
+    "Pattern05": "word",
+    "Replacement05": "XXX\\a\\b\\t\\f\\r\\n\\v\\\\"
   }
 };
 
@@ -143,7 +155,7 @@ var MergeApp = {
   "Translate": function (text) {
     return text;
   },
-  "Log": function (level, text) {
+  "LogError": function (text) {
     WScript.Echo(text);
   },
   "MsgBox": function (prompt, buttons, title) {
@@ -331,7 +343,7 @@ function EditorAddinTest() {
   p.PluginArguments = "-e (.{3}) $1\\r\\n";
   assertEquals("012\r\n345\r\n678\r\n9", p.Replace("0123456789"));
   p.PluginArguments = "-e (\\d+) \\a\\b\\t\\n\\v\\f\\r\\\\$1\\1\\0";
-  assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\0123456789\\1\\0", p.Replace("0123456789"));
+  assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\012345678901234567890123456789", p.Replace("0123456789"));
   //
   p.PluginArguments = "-s";
   assertEquals("", p.Replace(""));
@@ -358,6 +370,8 @@ function EditorAddinTest() {
     "XxxX\r\n" +
     "disabled";
   assertEquals(expected, p.Replace(text));
+  p.PluginArguments = "-s";
+  assertEquals("XXX\\a\\b\\t\\f\\r\\n\\v\\\\ wordword XXX\\a\\b\\t\\f\\r\\n\\v\\\\", p.Replace("word wordword word"));
 
   // ReverseColumns
   setTestName("ReverseColumns");
