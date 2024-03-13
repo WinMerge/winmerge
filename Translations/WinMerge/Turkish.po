@@ -3926,8 +3926,8 @@ msgstr "Sütunları tersine çevir"
 msgid "Reverse lines"
 msgstr "Satırları tersine çevir"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr "Metni başka bir metin ile değiştirir.\r\nKullanımı: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - Aranacak metin\r\n  REPLACE - Değiştirilecek metin\r\n  -i - Büyük/küçük harf yok sayılır (yalnızca -e için)\r\ns  -e - Belirtilen metin kurallı ifade olarak işlenir"
+msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgstr "Metni başka bir metin ile değiştirir.\r\nKullanımı: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - Aranacak metin\r\n  REPLACE - Değiştirilecek metin\r\n  -i - Büyük/küçük harf yok sayılır (yalnızca -e için)\r\ns  -e - Belirtilen metin kurallı ifade olarak işlenir\r\n  -s - replace using Substitution Filters patterns"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."

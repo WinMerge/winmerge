@@ -59,44 +59,44 @@ function get_PluginFileFilters() {
 }
 
 function get_PluginExtendedProperties() {
-  return "GenerateUnpacker;" + 
-  "MakeUpper.MenuCaption=Make Uppercase;" + 
-  "MakeUpper.Description=Make characters uppercase;" + 
-  "MakeLower.MenuCaption=Make Lowercase;" + 
-  "MakeLower.Description=Make characters lowercase;" + 
-  "RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" + 
-  "RemoveDuplicates.Description=Remove duplicate lines;" + 
-  "CountDuplicates.MenuCaption=Count Duplicate Lines;" + 
-  "CountDuplicates.Description=Count duplicate lines;" + 
-  "SortAscending.MenuCaption=Sort Lines Ascending;" + 
-  "SortAscending.Description=Sort lines ascending;" + 
-  "SortDescending.MenuCaption=Sort Lines Descending;" + 
-  "SortDescending.Description=Sort lines descending;" + 
-  "ExecFilterCommand.MenuCaption=Apply Filter Command...;" + 
-  "ExecFilterCommand.Description=Apply filter command. \r\n" + 
+  return "GenerateUnpacker;" +
+  "MakeUpper.MenuCaption=Make Uppercase;" +
+  "MakeUpper.Description=Make characters uppercase;" +
+  "MakeLower.MenuCaption=Make Lowercase;" +
+  "MakeLower.Description=Make characters lowercase;" +
+  "RemoveDuplicates.MenuCaption=Remove Duplicate Lines;" +
+  "RemoveDuplicates.Description=Remove duplicate lines;" +
+  "CountDuplicates.MenuCaption=Count Duplicate Lines;" +
+  "CountDuplicates.Description=Count duplicate lines;" +
+  "SortAscending.MenuCaption=Sort Lines Ascending;" +
+  "SortAscending.Description=Sort lines ascending;" +
+  "SortDescending.MenuCaption=Sort Lines Descending;" +
+  "SortDescending.Description=Sort lines descending;" +
+  "ExecFilterCommand.MenuCaption=Apply Filter Command...;" +
+  "ExecFilterCommand.Description=Apply filter command. \r\n" +
     "Usage: ExecFilterCommand COMMAND\r\n"+ 
-    "  COMMAND - command to execute. %1 in the command is replaced with the filename.;" + 
-  "ExecFilterCommand.ArgumentsRequired;" + 
-  "Tokenize.MenuCaption=Tokenize...;" + 
-  "Tokenize.Description=Tokenize selection. \r\n" + 
-    "Usage: Tokenize PATTERNS\r\n" + 
-    "  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+);" + 
-  "Tokenize.ArgumentsRequired;" + 
-  "Tokenize.Arguments=[^\\w]+;" + 
-  "Trim.MenuCaption=Trim Spaces;" + 
-  "Trim.Description=Trim spaces;" + 
-  "SelectColumns.MenuCaption=Select Columns...;" + 
-  "SelectColumns.Description=Select some columns.\r\n" + 
-    "Usage: SelectColumns RANGES\r\n" + 
-    "   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n" + 
-    "  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n" + 
+    "  COMMAND - command to execute. %1 in the command is replaced with the filename.;" +
+  "ExecFilterCommand.ArgumentsRequired;" +
+  "Tokenize.MenuCaption=Tokenize...;" +
+  "Tokenize.Description=Tokenize selection. \r\n" +
+    "Usage: Tokenize PATTERNS\r\n" +
+    "  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+);" +
+  "Tokenize.ArgumentsRequired;" +
+  "Tokenize.Arguments=[^\\w]+;" +
+  "Trim.MenuCaption=Trim Spaces;" +
+  "Trim.Description=Trim spaces;" +
+  "SelectColumns.MenuCaption=Select Columns...;" +
+  "SelectColumns.Description=Select some columns.\r\n" +
+    "Usage: SelectColumns RANGES\r\n" +
+    "   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n" +
+    "  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n" +
     "  PATTERNS - regular expression\r\n" +  
     "  -v - select non-matching columns\r\n" +  
     "  -i - ignore case\r\n" +  
     "  -g - enable global flag\r\n" +  
-    "  -e - use PATTERNS for matching;" + 
-  "SelectColumns.ArgumentsRequired;" + 
-  "SelectLines.MenuCaption=Select Lines...;" + 
+    "  -e - use PATTERNS for matching;" +
+  "SelectColumns.ArgumentsRequired;" +
+  "SelectLines.MenuCaption=Select Lines...;" +
   "SelectLines.Description=Select some lines.\r\n" +  
     "Usage: SelectLines RANGES\r\n" +  
     "   or: SelectLines [-v] [-i] -e PATTERNS\r\n" +  
@@ -104,19 +104,21 @@ function get_PluginExtendedProperties() {
     "  PATTERNS - regular expression\r\n" +  
     "  -v - select non-matching lines\r\n" +  
     "  -i - ignore case\r\n" +  
-    "  -e - use PATTERNS for matching;" + 
-  "SelectLines.ArgumentsRequired;" + 
-  "ReverseColumns.MenuCaption=Reverse Columns;" + 
-  "ReverseColumns.Description=Reverse columns;" + 
-  "ReverseLines.MenuCaption=Reverse Lines;" + 
-  "ReverseLines.Description=Reverse lines;" + 
-  "Replace.MenuCaption=Replace...;" + 
+    "  -e - use PATTERNS for matching;" +
+  "SelectLines.ArgumentsRequired;" +
+  "ReverseColumns.MenuCaption=Reverse Columns;" +
+  "ReverseColumns.Description=Reverse columns;" +
+  "ReverseLines.MenuCaption=Reverse Lines;" +
+  "ReverseLines.Description=Reverse lines;" +
+  "Replace.MenuCaption=Replace...;" +
   "Replace.Description=Replace text with another text.\r\n" +  
     "Usage: Replace [-i] [-e] FIND REPLACE\r\n" +  
+    "   or: Replace -s\r\n" +  
     "  FIND    - text to find\r\n" +  
     "  REPLACE - text to replace\r\n" +  
     "  -i - ignore case (only for -e)\r\n" +  
-    "  -e - treat the specified text as a regular expression;" + 
+    "  -e - treat the specified text as a regular expression\r\n" +
+    "  -s - replace using Substitution Filters patterns;" +
   "Replace.ArgumentsRequired;";
 }
 
@@ -285,11 +287,13 @@ function ParseSelectColumnsLinesArguments(args) {
 }
 
 function ParseReplaceArguments(args) {
+  var list = new Array();
   var patterns = new Array();
   var isOption = false;
   var argAry = ParseArguments(args);
   var regex = false;
   var ignoreCase = false;
+  var useSubstitutionFilters = false;
   for (var i = 0; i < argAry.length; i++) {
     isOption = false;
     if (argAry[i].length >= 2) {
@@ -305,15 +309,62 @@ function ParseReplaceArguments(args) {
             ignoreCase = true;
           }
           break;
+        case "s":
+          useSubstitutionFilters = true;
+          break;
         }
         break;
       }
     }
     if (!isOption) {
       patterns.push(argAry[i]);
+      if (patterns.length === 1) {
+        list.push({"patterns": patterns, "regex": regex, "ignoreCase": ignoreCase});
+      } else {
+        list[list.length - 1].patterns.push(argAry[i]);
+        patterns = new Array();
+      }
     }
   }
-  return { "patterns": patterns, "regex": regex, "ignoreCase": ignoreCase };
+  if (useSubstitutionFilters) {
+    var count = regRead("SubstitutionFilters/Values", 0);
+    for (var i = 0; i < count; i++) {
+      var ii = "00" + i;
+      ii = ii.substring(ii.length - 2);
+      if (regRead("SubstitutionFilters/Enabled" + ii, 0)) {
+        patterns = new Array();
+        patterns.push(regRead("SubstitutionFilters/Pattern" + ii, ""));
+        patterns.push(regRead("SubstitutionFilters/Replacement" + ii, ""));
+        regex = regRead("SubstitutionFilters/UseRegExp" + ii, 0);
+        ignoreCase = !regRead("SubstitutionFilters/CaseSensitive" + ii, 1);
+        if (regRead("SubstitutionFilters/MatchWholeWordOnly" + ii, 0)) {
+          regex = true;
+          patterns[0] = "\\b" + Escape(patterns[0]) + "\\b";
+          patterns[1] = Escape(patterns[1]);
+        }
+        list.push({"patterns": patterns, "regex": regex, "ignoreCase": ignoreCase});
+      }
+    }
+  }
+  return list;
+}
+
+function Escape(text) {
+  var result = "";
+  for (var i = 0; i < text.length; i++) {
+    var c = text.charAt(i);
+    switch (c) {
+    case '\\': case '.': case '^': case '$': case '|':
+    case '[': case ']': case '(': case ')': case '!':
+    case '?': case '*': case '+': case '{': case '}':
+        result += '\\';
+        break;
+    default:
+        break;
+    }
+    result += c;
+  }
+  return result;
 }
 
 function Unescape(text) {
@@ -352,8 +403,30 @@ function Unescape(text) {
         case "\\":
           result += "\\";
           break;
+        case "x":
+          if (i + 2 < textLen) {
+            var hexValue = text.substring(i + 1, i + 3);
+            try {
+              var intValue = parseInt(hexValue, 16);
+              result += String.fromCharCode(intValue);
+              i += 2;
+            } catch (e) {
+              result += "\\x";
+            }
+          } else {
+            result += "\\x";
+          }
+          break;
         default:
-          result += "\\" + ch;
+          if (!isNaN(ch)) {
+            if (ch !== '0') {
+              result += '$' + ch;
+            } else {
+              result += '$&';
+            }
+          } else {
+            result += '\\' + ch;
+          }
           break;
         }
       } else {
@@ -549,24 +622,22 @@ function ReplaceText(Text) {
     throw new Error(30001, "Canceled");
   }
   var parseResult = ParseReplaceArguments(args);
-  var patterns = parseResult.patterns;
-  var regex = parseResult.regex;
-  var ignoreCase = parseResult.ignoreCase;
-  if (regex) {
-    for (var i = 0; i < patterns.length; i += 2) {
-      var re = new RegExp(patterns[i], ignoreCase ? "gmi" : "gm");
-      if (i + 1 < patterns.length) {
-        result = result.replace(re, Unescape(patterns[i + 1]));
+  for (var i = 0; i < parseResult.length; i++) {
+    var patterns = parseResult[i].patterns;
+    var regex = parseResult[i].regex;
+    var ignoreCase = parseResult[i].ignoreCase;
+    if (regex) {
+      var re = new RegExp(patterns[0], ignoreCase ? "gmi" : "gm");
+      if (patterns.length > 1) {
+        result = result.replace(re, Unescape(patterns[1]));
       } else {
         result = result.replace(re, result, "");
       }
-    }
-  } else {
-    for (var i = 0; i < patterns.length; i += 2) {
-      if (i + 1 < patterns.length) {
-        result = replacei(result, patterns[i], patterns[i + 1]);
+    } else {
+      if (patterns.length > 1) {
+        result = replacei(result, patterns[0], patterns[1], ignoreCase);
       } else {
-        result = replacei(result, patterns[i], "");
+        result = replacei(result, patterns[0], "", ignoreCase);
       }
     }
   }

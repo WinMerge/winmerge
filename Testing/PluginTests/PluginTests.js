@@ -79,8 +79,8 @@ var PluginSettings = {
       "Enabled3": 1,
       "IgnoreCase3": 0,
       "UseRegExp3": 1,
-      "Pattern3": "\\d+\\.\\d+",
-      "ReplaceText3": "x.x",
+      "Pattern3": "(\\d+)\\.(\\d+)",
+      "ReplaceText3": "\\2.\\1",
       "Enabled4": 1,
       "IgnoreCase4": 1,
       "UseRegExp4": 1,
@@ -92,6 +92,51 @@ var PluginSettings = {
       "Pattern5": "disabled",
       "ReplaceText5": ""
     }
+  },
+  "SubstitutionFilters": {
+    "Values": 6,
+
+    "Enabled00": 1,
+    "CaseSensitive00": 1,
+    "UseRegExp00": 0,
+    "MatchWholeWordOnly00": 0,
+    "Pattern00": "abc",
+    "Replacement00": "def",
+
+    "Enabled01": 1,
+    "CaseSensitive01": 0,
+    "UseRegExp01": 0,
+    "MatchWholeWordOnly01": 0,
+    "Pattern01": "Ghi",
+    "Replacement01": "Jkl",
+
+    "Enabled02": 1,
+    "CaseSensitive02": 0,
+    "UseRegExp02": 1,
+    "MatchWholeWordOnly02": 0,
+    "Pattern02": "(\\d+)\\.(\\d+)",
+    "Replacement02": "\\2.\\1",
+
+    "Enabled03": 1,
+    "CaseSensitive03": 0,
+    "UseRegExp03": 1,
+    "MatchWholeWordOnly03": 0,
+    "Pattern03": "Mno.*Z",
+    "Replacement03": "XxxX",
+
+    "Enabled04": 0,
+    "CaseSensitive04": 1,
+    "UseRegExp04": 0,
+    "MatchWholeWordOnly04": 0,
+    "Pattern04": "disabled",
+    "Replacement04": "",
+
+    "Enabled05": 1,
+    "CaseSensitive05": 1,
+    "UseRegExp05": 0,
+    "MatchWholeWordOnly05": 1,
+    "Pattern05": "word",
+    "Replacement05": "XXX\\a\\b\\t\\f\\r\\n\\v\\\\"
   }
 };
 
@@ -110,7 +155,7 @@ var MergeApp = {
   "Translate": function (text) {
     return text;
   },
-  "Log": function (level, text) {
+  "LogError": function (text) {
     WScript.Echo(text);
   },
   "MsgBox": function (prompt, buttons, title) {
@@ -297,8 +342,36 @@ function EditorAddinTest() {
   assertEquals("XXX abc\r\nXXX def", p.Replace("1000 abc\r\n1001 def"));
   p.PluginArguments = "-e (.{3}) $1\\r\\n";
   assertEquals("012\r\n345\r\n678\r\n9", p.Replace("0123456789"));
-  p.PluginArguments = "-e (\\d+) \\a\\b\\t\\n\\v\\f\\r\\\\$1\\1\\0";
-  assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\0123456789\\1\\0", p.Replace("0123456789"));
+  p.PluginArguments = "-e (\\d+) \\a\\b\\t\\n\\v\\f\\r\\\\$1\\1\\0\\x21\\x7E";
+  assertEquals(String.fromCharCode(0x07) + String.fromCharCode(0x08) + String.fromCharCode(0x09) + String.fromCharCode(0x0A) + String.fromCharCode(0x0B) + String.fromCharCode(0x0C) + String.fromCharCode(0x0D) + "\\012345678901234567890123456789!~", p.Replace("0123456789"));
+  //
+  p.PluginArguments = "-s";
+  assertEquals("", p.Replace(""));
+  p.PluginArguments = "-s";
+  assertEquals("def def def", p.Replace("abc def abc"));
+  p.PluginArguments = "-s";
+  assertEquals("Jkl def Jkl", p.Replace("gHI def Ghi"));
+  p.PluginArguments = "-s";
+  assertEquals("2.1 def 4.3", p.Replace("1.2 def 3.4"));
+  p.PluginArguments = "-s";
+  assertEquals("XxxX", p.Replace("mnopqrstuvwxyz"));
+  p.PluginArguments = "-s";
+  assertEquals("disabled", p.Replace("disabled"));
+  p.PluginArguments = "-s";
+  var text = "abc def abc\r\n";
+  text += "gHI def GHI\r\n";
+  text += "1.2 def 3.4\r\n";
+  text += "mnopqrstuvwxyz\r\n";
+  text += "disabled";
+  var expected =
+    "def def def\r\n" +
+    "Jkl def Jkl\r\n" +
+    "2.1 def 4.3\r\n" +
+    "XxxX\r\n" +
+    "disabled";
+  assertEquals(expected, p.Replace(text));
+  p.PluginArguments = "-s";
+  assertEquals("XXX\\a\\b\\t\\f\\r\\n\\v\\\\ wordword XXX\\a\\b\\t\\f\\r\\n\\v\\\\", p.Replace("word wordword word"));
 
   // ReverseColumns
   setTestName("ReverseColumns");
@@ -475,7 +548,7 @@ function PrediffLineFilterTest() {
   changed = false;
   var result = p.PrediffBufferW(text, size, changed);
   if (typeof result !== "string") { text = result.getItem(1); size = result.getItem(2); changed = result.getItem(3); }
-  assertEquals("x.x def x.x", text);
+  assertEquals("2.1 def 4.3", text);
   assertEquals(text.length, size);
   assertEquals(true, changed);
 
@@ -512,7 +585,7 @@ function PrediffLineFilterTest() {
   var expected =
     "def def def\r\n" +
     "Jkl def Jkl\r\n" +
-    "x.x def x.x\r\n" +
+    "2.1 def 4.3\r\n" +
     "XxxX\r\n" +
     "disabled";
   assertEquals(expected, text);
