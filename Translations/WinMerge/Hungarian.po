@@ -4981,8 +4981,8 @@ msgstr "Oszlopok megfordítása"
 msgid "Reverse lines"
 msgstr "Sorok megfordítása"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr "Szöveg cseréje egy másikra.\r\nHasználata: Replace [-i] [-e] FIND REPLACE\r\n  ahol FIND    - keresendő szöveg\r\n  REPLACE - új szöveg\r\n  -i - kis/nagybetű nem számít (csak ez -e)\r\n  -e - a megadott szöveget reguláris kifejezésként kezeli"
+msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgstr "Szöveg cseréje egy másikra.\r\nHasználata: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  ahol FIND    - keresendő szöveg\r\n  REPLACE - új szöveg\r\n  -i - kis/nagybetű nem számít (csak ez -e)\r\n  -e - a megadott szöveget reguláris kifejezésként kezeli\r\n  -s - replace using Substitution Filters patterns"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."

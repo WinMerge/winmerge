@@ -114,7 +114,7 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION6 "Sort lines descending"
     IDS_PLUGIN_DESCRIPTION7 "Reverse columns"
     IDS_PLUGIN_DESCRIPTION8 "Reverse lines"
-    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
     IDS_PLUGIN_DESCRIPTION10 
                             "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
     IDS_PLUGIN_DESCRIPTION11 
@@ -185,7 +185,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_DESCRIPTION50 
+    IDS_PLUGIN_DESCRIPTION51 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 END
 
@@ -212,7 +212,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR14 "Compare VBA macros"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR1 
                             "CompareMSWordFiles.sct WinMerge Plugin Options"
     IDS_PLUGIN_COMPAREMSWORDFILES_STR2 

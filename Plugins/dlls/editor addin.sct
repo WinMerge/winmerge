@@ -118,7 +118,7 @@ function get_PluginExtendedProperties() {
     "  REPLACE - text to replace\r\n" +  
     "  -i - ignore case (only for -e)\r\n" +  
     "  -e - treat the specified text as a regular expression\r\n" +
-    "  -s - replace using Substitution Filters;" +
+    "  -s - replace using Substitution Filters patterns;" +
   "Replace.ArgumentsRequired;";
 }
 
