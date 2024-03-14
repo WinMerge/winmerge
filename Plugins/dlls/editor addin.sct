@@ -35,6 +35,7 @@
   <method name="Replace" internalName="ReplaceText"/>
   <method name="Tokenize"/>
   <method name="Trim"/>
+  <method name="AIAssist"/>
 </implements>
 
 <script language="JScript">
@@ -119,7 +120,11 @@ function get_PluginExtendedProperties() {
     "  -i - ignore case (only for -e)\r\n" +  
     "  -e - treat the specified text as a regular expression\r\n" +
     "  -s - replace using Substitution Filters patterns;" +
-  "Replace.ArgumentsRequired;";
+  "Replace.ArgumentsRequired;" +
+  "AIAssist.MenuCaption=AIAssist...;" +
+  "AIAssist.Description=AI Assistant\r\n" +  
+    "Usage: AIAssist PROMPT;" +  
+  "AIAssist.ArgumentsRequired;";
 }
 
 function get_PluginArguments() {
@@ -790,6 +795,42 @@ function Trim(Text) {
     lines[i] = lines[i].replace(/^\s+|\s+$/g, "");
   }
   return lines.join(eol);
+}
+
+function quote(text) {
+  return text.replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n")
+}
+
+function AIAssist(Text) {
+  var openAIKey = wsh.ExpandEnvironmentStrings("%OPENAI_API_KEY%");
+
+  var cmd;
+  if (IsFirstArgumentEmpty()) {
+    cmd = regRead(REGKEY_PATH + "AIAssist.Prompt", "");
+    cmd = mergeApp.InputBox("Enter prompt", "AIAssist plugin", cmd);
+    if (cmd !== "") {
+      regWrite(REGKEY_PATH + "AIAssist.Prompt", cmd, "REG_SZ");
+    }
+    cmd = ReplaceVariables(cmd);
+  } else {
+    cmd = pluginArguments;
+  }
+  if (cmd === "") {
+    throw new Error(30001, "Canceled");
+  }
+
+  var openAIUrl = "https://api.openai.com/v1/chat/completions";
+  var temperature = regRead(REGKEY_PATH + "AIAssit.OpenAI.Temperature", 1);
+  var maxTokens = regRead(REGKEY_PATH + "AIAssit.OpenAI.MaxTokens", 4096);
+  var model = regRead(REGKEY_PATH + "AIAssit.OpenAI.Model", "gpt-3.5-turbo");
+  var messages = cmd;
+  var body = '{"model": "' + model + '", "temperature": ' + temperature + ', "messages": [{"role": "system", "content": "' + quote(cmd) + '"}, {"role": "user", "content": "' + quote(Text) + '"}]}';
+  var xmlHttp = new ActiveXObject("Msxml2.ServerXMLHTTP");
+  xmlHttp.open("POST", openAIUrl, false);
+  xmlHttp.setRequestHeader("Content-Type", "application/json");
+  xmlHttp.setRequestHeader("Authorization", "Bearer " + openAIKey);
+  xmlHttp.send(body);
+  return xmlHttp.responseText;
 }
 
 </script>
