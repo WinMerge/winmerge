@@ -1247,7 +1247,7 @@ msgid "Re&place with:"
 msgstr "替换为(&P):"
 
 msgid "&Don't wrap end of file"
-msgstr "至文件末尾不从头查找(&O)"
+msgstr "至文件末尾不从头查找(&D)"
 
 msgid "Replace in"
 msgstr "替换范围"
