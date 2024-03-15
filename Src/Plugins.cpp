@@ -479,6 +479,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	// Check that the plugin offers the requested functions
 	// set the mode for the events which uses it
 	bool bFound = true;
+	bool bHasPluginPipeline = false;
 	if (m_event == _T("BUFFER_PREDIFF"))
 	{
 		bFound &= SearchScriptForMethodName(L"PrediffBufferW");
@@ -504,6 +505,10 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		bFound &= SearchScriptForMethodName(L"PackFile");
 		bFound &= SearchScriptForMethodName(L"UnpackFolder");
 		bFound &= SearchScriptForMethodName(L"PackFolder");
+	}
+	else if (m_event == _T("ALIAS_PACK_UNPACK") || m_event == _T("ALIAS_PREDIFF") || m_event == _T("ALIAS_EDITOR_SCRIPT"))
+	{
+		bFound &= SearchScriptForDefinedProperties(L"PluginPipeline");
 	}
 	if (!bFound)
 	{
@@ -637,6 +642,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 		m_argumentsDefault.clear();
 		m_hasArgumentsProperty = false;
 	}
+	VariantClear(&ret);
 
 	// get optional property PluginVariables
 	m_hasVariablesProperty = SearchScriptForDefinedProperties(L"PluginVariables");
@@ -651,6 +657,23 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 			return -130; // error (Plugin had PluginOnEvent method, but an error occurred while calling the method)
 		}
 	}
+
+	// get optional property PluginPipeline
+	if (bHasPluginPipeline)
+	{
+		h = ::invokeW(lpDispatch, &ret, L"PluginPipeline", opGet[0], nullptr);
+		if (FAILED(h) || ret.vt != VT_BSTR)
+		{
+			scinfo.Log(_T("Plugin had PluginPipeline property, but error getting its value"));
+			return -140; // error (Plugin had PluginPipeline property, but error getting its value)
+		}
+		m_pipeline = ucr::toTString(ret.bstrVal);
+	}
+	else
+	{
+		m_pipeline.clear();
+	}
+	VariantClear(&ret);
 
 	// keep the filename
 	m_name = paths::FindFileName(scriptletFilepath);

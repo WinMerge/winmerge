@@ -99,11 +99,14 @@ void PluginsListDlg::AddPlugins()
 	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	AddPluginsToList(L"FILE_PACK_UNPACK", type);
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
+	AddPluginsToList(L"ALIAS_PACK_UNPACK", type);
 	type = _("Prediffer");
 	AddPluginsToList(L"FILE_PREDIFF", type);
 	AddPluginsToList(L"BUFFER_PREDIFF", type);
+	AddPluginsToList(L"ALIAS_PREDIFF", type);
 	type = _("Editor script");
 	AddPluginsToList(L"EDITOR_SCRIPT", type);
+	AddPluginsToList(L"ALIAS_EDITOR_SCRIPT", type);
 }
 
 /**

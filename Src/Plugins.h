@@ -67,6 +67,7 @@ public:
 	String      m_filtersTextDefault;
 	String      m_description;
 	String      m_event;
+	String      m_pipeline;
 	bool        m_bAutomatic;
 	bool        m_bAutomaticDefault;
 	bool        m_disabled;

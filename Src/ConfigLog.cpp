@@ -403,11 +403,14 @@ bool CConfigLog::DoFile(String &sError)
 	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
 	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
 	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");
+	WritePluginsInLogFile(L"ALIAS_PACK_UNPACK");
 	FileWriteString(_T("\r\n Prediffers: "));
 	WritePluginsInLogFile(L"FILE_PREDIFF");
 	WritePluginsInLogFile(L"BUFFER_PREDIFF");
+	WritePluginsInLogFile(L"ALIAS_PREDIFF");
 	FileWriteString(_T("\r\n Editor scripts: "));
 	WritePluginsInLogFile(L"EDITOR_SCRIPT");
+	WritePluginsInLogFile(L"ALIAS_EDITOR_SCRIPT");
 	if (!plugin::IsWindowsScriptThere())
 		FileWriteString(_T("\r\n .sct scripts disabled (Windows Script Host not found)\r\n"));
 

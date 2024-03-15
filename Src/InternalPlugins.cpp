@@ -91,6 +91,7 @@ struct Info
 	String m_unpackedFileExtension;
 	String m_extendedProperties;
 	String m_arguments;
+	String m_pipeline;
 	std::unique_ptr<Method> m_prediffFile;
 	std::unique_ptr<Method> m_unpackFile;
 	std::unique_ptr<Method> m_packFile;
@@ -113,6 +114,7 @@ public:
 	inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extension";
 	inline static const std::string ExtendedPropertiesElement = "extended-properties";
 	inline static const std::string ArgumentsElement = "arguments";
+	inline static const std::string PipelineElement = "pipeline";
 	inline static const std::string PrediffFileElement = "prediff-file";
 	inline static const std::string UnpackFileElement = "unpack-file";
 	inline static const std::string PackFileElement = "pack-file";
@@ -171,6 +173,8 @@ public:
 						plugin.m_extendedProperties = value;
 					else if (localName == ArgumentsElement)
 						plugin.m_arguments = std::move(value);
+					else if (localName == PipelineElement)
+						plugin.m_pipeline = std::move(value);
 				}
 				else if (localName == PrediffFileElement)
 				{
@@ -688,8 +692,8 @@ struct Loader
 			PluginInfoPtr pluginNew(new PluginInfo());
 			IDispatch* pDispatch = new InternalPlugin(std::move(info));
 			pDispatch->AddRef();
-			pluginNew->MakeInfo(name, pDispatch);
-			plugins[event]->push_back(pluginNew);
+			if (pluginNew->MakeInfo(name, pDispatch) > 0)
+				plugins[event]->push_back(pluginNew);
 		}
 
 		if (plugins.find(L"FILE_PACK_UNPACK") != plugins.end())
@@ -703,8 +707,8 @@ struct Loader
 					PluginInfoPtr pluginNew(new PluginInfo());
 					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, plugin->m_name, plugin->m_hasArgumentsProperty);
 					pDispatch->AddRef();
-					pluginNew->MakeInfo(plugin->m_name, pDispatch);
-					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
+					if (pluginNew->MakeInfo(plugin->m_name, pDispatch) > 0)
+						plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
 				}
 			}
 		}
