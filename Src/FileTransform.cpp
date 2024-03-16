@@ -211,11 +211,39 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	return newstr;
 }
 
+static std::vector<PluginForFile::PipelineItem>
+ExpandAliases(const String& pipeline, const String& filteredFilenames, const wchar_t* aliasEvent, String& errorMessage)
+{
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	String errorMessage2;
+	auto parseResult = PluginForFile::ParsePluginPipeline(pipeline, errorMessage2);
+	errorMessage += errorMessage2;
+	for (auto& item : parseResult)
+	{
+		PluginInfo* plugin = nullptr;
+		if (item.name == _T("<Automatic>") || item.name == _("<Automatic>"))
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(aliasEvent, filteredFilenames);
+		else
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
+		if (plugin)
+		{
+			String errorMessage3;
+			auto parseResult2 = ExpandAliases(plugin->m_pipeline, filteredFilenames, aliasEvent, errorMessage3);
+			for (auto& item2 : parseResult2)
+				pipelineResolved.push_back(item2);
+			errorMessage += errorMessage3;
+		}
+		else
+			pipelineResolved.push_back(item);
+	}
+	return pipelineResolved;
+}
+
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	if (bUrl)
@@ -518,7 +546,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PREDIFF", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
@@ -656,7 +684,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
 	String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, _T(""), L"ALIAS_EDITOR_SCRIPT", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	for (auto& [pluginName, args, quoteChar] : result)

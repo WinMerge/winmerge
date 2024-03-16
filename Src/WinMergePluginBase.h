@@ -32,7 +32,7 @@ public:
 	WinMergePluginBase(const std::wstring& sEvent, const std::wstring& sDescription = L"",
 		const std::wstring& sFileFilters = L"", const std::wstring& sUnpackedFileExtension = L"", 
 		const std::wstring& sExtendedProperties = L"", const std::wstring& sArguments = L"", 
-		bool bIsAutomatic = true)
+		const std::wstring& sPipeline = L"", bool bIsAutomatic = true)
 		: m_nRef(0)
 		, m_sEvent(sEvent)
 		, m_sDescription(sDescription)
@@ -40,6 +40,7 @@ public:
 		, m_sUnpackedFileExtension(sUnpackedFileExtension)
 		, m_sExtendedProperties(sExtendedProperties)
 		, m_sArguments(sArguments)
+		, m_sPipeline(sPipeline)
 		, m_bIsAutomatic(bIsAutomatic)
 	{
 		static PARAMDATA paramData_Prediff[] =

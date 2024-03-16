@@ -508,7 +508,8 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	else if (m_event == _T("ALIAS_PACK_UNPACK") || m_event == _T("ALIAS_PREDIFF") || m_event == _T("ALIAS_EDITOR_SCRIPT"))
 	{
-		bFound &= SearchScriptForDefinedProperties(L"PluginPipeline");
+		bHasPluginPipeline = SearchScriptForDefinedProperties(L"PluginPipeline");
+		bFound &= bHasPluginPipeline;
 	}
 	if (!bFound)
 	{

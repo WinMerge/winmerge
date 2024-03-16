@@ -324,7 +324,7 @@ class InternalPlugin : public WinMergePluginBase
 {
 public:
 	InternalPlugin(Info&& info)
-		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_arguments, info.m_isAutomatic)
+		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_arguments, info.m_pipeline, info.m_isAutomatic)
 		, m_info(std::move(info))
 	{
 	}
