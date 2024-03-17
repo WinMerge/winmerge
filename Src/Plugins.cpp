@@ -436,7 +436,7 @@ struct ScriptInfo
  *
  * @return 1 if loaded plugin successfully, negatives for errors
  */
-int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch)
+int PluginInfo::MakeInfo(const String& scriptletFilepath, const String& name, IDispatch *lpDispatch)
 {
 	// set up object in case we need to log info
 	ScriptInfo scinfo(scriptletFilepath);
@@ -542,8 +542,8 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	else
 	{
-		// no description, use filename
-		m_description = paths::FindFileName(scriptletFilepath);
+		// no description, use name
+		m_description = name;
 	}
 	VariantClear(&ret);
 
@@ -676,9 +676,7 @@ int PluginInfo::MakeInfo(const String & scriptletFilepath, IDispatch *lpDispatch
 	}
 	VariantClear(&ret);
 
-	// keep the filename
-	m_name = paths::FindFileName(scriptletFilepath);
-
+	m_name = name;
 	// Clear the autorelease holder
 	drv.p = nullptr;
 
@@ -706,7 +704,7 @@ int PluginInfo::LoadPlugin(const String & scriptletFilepath)
 		return -10; // error
 	}
 
-	return MakeInfo(scriptletFilepath, lpDispatch);
+	return MakeInfo(scriptletFilepath, paths::FindFileName(scriptletFilepath), lpDispatch);
 }
 
 static void ReportPluginLoadFailure(const String & scriptletFilepath, const SE_Exception& se)

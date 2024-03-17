@@ -88,6 +88,7 @@ struct Info
 	String m_description;
 	String m_fileFilters;
 	bool m_isAutomatic = false;
+	bool m_userDefined = false;
 	String m_unpackedFileExtension;
 	String m_extendedProperties;
 	String m_arguments;
@@ -540,7 +541,6 @@ protected:
 		return S_OK;
 	}
 
-private:
 	Info m_info;
 };
 
@@ -650,32 +650,27 @@ struct Loader
 						PluginInfoPtr pluginNew(new PluginInfo());
 						IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(*plugin, namesArray[i], idArray[i]);
 						pDispatch->AddRef();
-						pluginNew->MakeInfo(namesArray[i], pDispatch);
+						pluginNew->MakeInfo(plugin->m_filepath, namesArray[i], pDispatch);
 						plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
 					}
 				}
 			}
 		}
 
+		const String pluginsXmlPath = paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"));
+		const String userDefinedPluginsXmlPath = env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"));
 		std::list<Info> internalPlugins;
 		XMLHandler handler(&internalPlugins);
 		SAXParser parser;
 		parser.setContentHandler(&handler);
 		try
 		{
-			for (const auto& path : {
-				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml")),
-				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"))
-				})
-			{
-				try
-				{
-					parser.parse(ucr::toUTF8(path));
-				}
-				catch (Poco::FileNotFoundException&)
-				{
-				}
-			}
+			try { parser.parse(ucr::toUTF8(userDefinedPluginsXmlPath)); }
+			catch (Poco::FileNotFoundException&) { }
+			for (auto& info : internalPlugins)
+				info.m_userDefined = true;
+			try { parser.parse(ucr::toUTF8(pluginsXmlPath)); }
+			catch (Poco::FileNotFoundException&) { }
 		}
 		catch (Poco::XML::SAXParseException& e)
 		{
@@ -692,7 +687,7 @@ struct Loader
 			PluginInfoPtr pluginNew(new PluginInfo());
 			IDispatch* pDispatch = new InternalPlugin(std::move(info));
 			pDispatch->AddRef();
-			if (pluginNew->MakeInfo(name, pDispatch) > 0)
+			if (pluginNew->MakeInfo(info.m_userDefined ? userDefinedPluginsXmlPath : pluginsXmlPath, name, pDispatch) > 0)
 				plugins[event]->push_back(pluginNew);
 		}
 
@@ -707,7 +702,7 @@ struct Loader
 					PluginInfoPtr pluginNew(new PluginInfo());
 					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, plugin->m_name, plugin->m_hasArgumentsProperty);
 					pDispatch->AddRef();
-					if (pluginNew->MakeInfo(plugin->m_name, pDispatch) > 0)
+					if (pluginNew->MakeInfo(plugin->m_filepath, plugin->m_name, pDispatch) > 0)
 						plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
 				}
 			}

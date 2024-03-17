@@ -227,8 +227,11 @@ ExpandAliases(const String& pipeline, const String& filteredFilenames, const wch
 			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
 		if (plugin)
 		{
+			String pipeline = plugin->m_pipeline;
+			for (size_t i = 0; i < item.args.size(); ++i)
+				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), item.args[i]);
 			String errorMessage3;
-			auto parseResult2 = ExpandAliases(plugin->m_pipeline, filteredFilenames, aliasEvent, errorMessage3);
+			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage3);
 			for (auto& item2 : parseResult2)
 				pipelineResolved.push_back(item2);
 			errorMessage += errorMessage3;
