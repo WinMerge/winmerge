@@ -126,11 +126,7 @@ public:
 			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL  },
 			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
-			{ L"PluginArguments",             nullptr,                DISPID_PluginArguments,             5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
-			{ L"PluginArguments",             paramData_Arguments,    DISPID_PluginArguments,             5, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
-			{ L"PluginVariables",             nullptr,                DISPID_PluginVariables,             6, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
-			{ L"PluginVariables",             paramData_Variables,    DISPID_PluginVariables,             6, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
-			{ L"PluginPipeline",              nullptr,                DISPID_PluginPipeline,              7, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginPipeline",              nullptr,                DISPID_PluginPipeline,              5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 		};
 		const METHODDATA* pMethodData;
 		size_t methodDataCount = 0;
