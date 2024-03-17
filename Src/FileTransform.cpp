@@ -228,8 +228,10 @@ ExpandAliases(const String& pipeline, const String& filteredFilenames, const wch
 		if (plugin)
 		{
 			String pipeline = plugin->m_pipeline;
-			for (size_t i = 0; i < item.args.size(); ++i)
-				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), item.args[i]);
+			for (size_t i = 0; i < 9; ++i)
+				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), (i < item.args.size()) ? item.args[i] : _T(""));
+			String args = PluginForFile::MakeArguments(item.args, {});
+			strutils::replace(pipeline, _T("${*}"), args);
 			String errorMessage3;
 			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage3);
 			for (auto& item2 : parseResult2)
