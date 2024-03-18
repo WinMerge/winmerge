@@ -3353,7 +3353,7 @@ bool CMergeDoc::GenerateReport(const String& sFileName) const
 
 		file.WriteString(
 			_T("<body>\n")
-			_T("<table style=\"width: 100%%; border-collapse: collapse;\">\n")
+			_T("<table style=\"width: 100%; border-collapse: collapse;\">\n")
 			_T("<colgroup>\n"));
 		double marginWidth = m_pView[0][0]->GetViewLineNumbers() ?
 			strutils::to_str(m_pView[0][0]->GetLineCount()).length() / 1.5 + 0.5 : 0.5;
