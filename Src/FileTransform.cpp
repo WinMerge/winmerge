@@ -212,12 +212,12 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 }
 
 static std::vector<PluginForFile::PipelineItem>
-ExpandAliases(const String& pipeline, const String& filteredFilenames, const wchar_t* aliasEvent, String& errorMessage)
+ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, const wchar_t* aliasEvent, String& errorMessage, int stack = 0)
 {
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
-	String errorMessage2;
-	auto parseResult = PluginForFile::ParsePluginPipeline(pipeline, errorMessage2);
-	errorMessage += errorMessage2;
+	auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
+	if (!errorMessage.empty())
+		return pipelineResolved;
 	for (auto& item : parseResult)
 	{
 		PluginInfo* plugin = nullptr;
@@ -227,16 +227,21 @@ ExpandAliases(const String& pipeline, const String& filteredFilenames, const wch
 			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
 		if (plugin)
 		{
+			if (stack > 10)
+			{
+				errorMessage = strutils::format_string1(_("Stack overflow in plugin pipeline: %1"), pluginPipeline);
+				return pipelineResolved;
+			}
 			String pipeline = plugin->m_pipeline;
 			for (size_t i = 0; i < 9; ++i)
 				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), (i < item.args.size()) ? item.args[i] : _T(""));
 			String args = PluginForFile::MakeArguments(item.args, {});
 			strutils::replace(pipeline, _T("${*}"), args);
-			String errorMessage3;
-			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage3);
+			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage, stack + 1);
+			if (!errorMessage.empty())
+				return pipelineResolved;
 			for (auto& item2 : parseResult2)
 				pipelineResolved.push_back(item2);
-			errorMessage += errorMessage3;
 		}
 		else
 			pipelineResolved.push_back(item);
