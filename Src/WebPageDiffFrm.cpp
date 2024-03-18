@@ -1575,7 +1575,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName) const
 bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<void(bool)> callback) const
 {
 	String rptdir_full, rptdir, path, name, ext;
-	String url[3];
+	String title[3];
 	String diffrpt_filename[3];
 	String diffrpt_filename_full[3];
 	const wchar_t* pfilenames[3]{};
@@ -1586,7 +1586,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<vo
 
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 	{
-		url[pane] = ucr::toTString(m_pWebDiffWindow->GetCurrentUrl(pane));
+		title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pWebDiffWindow->GetCurrentUrl(pane)) : m_strDesc[pane];
 		diffrpt_filename[pane] = strutils::format(_T("%s/%d.pdf"), rptdir, pane + 1);
 		diffrpt_filename_full[pane] = strutils::format(_T("%s/%d.pdf"), rptdir_full, pane + 1);
 		pfilenames[pane] = diffrpt_filename_full[pane].c_str();
@@ -1622,7 +1622,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<vo
 		_T("<table>\n")
 		_T("<tr>\n"));
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
-		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), url[pane]));
+		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), title[pane]));
 	file.WriteString(_T("</tr>\n"));
 	file.WriteString(
 		_T("<tr>\n"));
