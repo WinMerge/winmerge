@@ -1629,6 +1629,7 @@
 #define IDS_PLUGIN_NOT_UNPACK           44494
 #define IDS_PLUGIN_NOT_PREDIFF          44495
 #define IDS_PLUGIN_PREDIFF_ERROR        44496
+#define IDS_PLUGIN_CIRCULAR_REFERENCE   44497
 #define IDS_L2M                         44500
 #define IDS_R2M                         44501
 #define IDS_COPY_FROM_MIDDLE_R          44502

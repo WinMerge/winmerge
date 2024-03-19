@@ -4077,6 +4077,10 @@ msgstr "'%1' não é um plugin de pré-diferenciação"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Ocorreu um erro durante a pré-diferenciação do ficheiro '%1' com o plugin '%2'. A pré-diferenciação já não é aplicada."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro aplicado"
 

@@ -4076,6 +4076,10 @@ msgstr "'%1' ni vtičnik preddifereja"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Med preddifiranjem datoteke '%1' z vtičnikom '%2' je prišlo do napake. Prednastavitev se ne uporablja več."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filter je uporabljen"
 

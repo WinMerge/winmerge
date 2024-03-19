@@ -4749,6 +4749,10 @@ msgstr "A(z) '%1' nem elővizsgáló bővítmény""
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Hiba történt a(z) „%1” fájl „%2” bővítménnyel történő elővizsgálatakor. Az elővizsgálat többé nem kerül alkalmazásra."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
 

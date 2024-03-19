@@ -4798,6 +4798,10 @@ msgstr "'%1'은(는) 사전 차이 플러그인이 아닙니다"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "'%1' 파일을 '%2' 플러그인과 미리 비교하는 동안 오류가 발생했습니다. 미리 비교은 더 이상 적용되지 않습니다."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "필터 적용됨"
 

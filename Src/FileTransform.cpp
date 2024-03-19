@@ -227,9 +227,9 @@ ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, con
 			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
 		if (plugin)
 		{
-			if (stack > 10)
+			if (stack > 20)
 			{
-				errorMessage = strutils::format_string1(_("Stack overflow in plugin pipeline: %1"), pluginPipeline);
+				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), pluginPipeline);
 				return pipelineResolved;
 			}
 			String pipeline = plugin->m_pipeline;

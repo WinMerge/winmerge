@@ -4773,6 +4773,10 @@ msgstr "'%1' 不是預先差異外掛"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "使用外掛 '%2' 預先差異檔案 '%1' 時發生錯誤。預先差異將不再應用。"
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "已套用篩選器"
 

@@ -4224,6 +4224,7 @@ BEGIN
     IDS_PLUGIN_NOT_PREDIFF  "'%1' is not prediffer plugin"
     IDS_PLUGIN_PREDIFF_ERROR
                             "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+    IDS_PLUGIN_CIRCULAR_REFERENCE "Circular reference in plugin pipeline: %1"
 END
 
 STRINGTABLE

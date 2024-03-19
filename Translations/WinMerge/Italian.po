@@ -4113,6 +4113,10 @@ msgstr ""
 "Si è verificato un errore durante la pre-differenza del file '%1' con il plugin '%2'. \n"
 "La pre-differenza non verrà più applicata."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro applicato"
 

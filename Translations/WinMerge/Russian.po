@@ -3697,6 +3697,10 @@ msgstr "'%1' не является плагином предсравнения"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Произошла ошибка предсравнения файла '%1' с плагином '%2'. Предсравнение больше не применяется."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Фильтр применен"
 

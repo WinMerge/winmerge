@@ -3695,6 +3695,10 @@ msgstr "'%1' nėra parengėjas"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Parengimo papildiniui '%2' apdorojant failą '%1' įvyko klaida. Parengimas daugiau nebetaikomas."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
 

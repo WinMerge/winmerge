@@ -4078,6 +4078,10 @@ msgstr "'%1' non é un complemento de precomparación"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Producíuse un erro ao precomparar o ficheiro '%1' co complemento '%2'. Xa non se vai facer ningunha outra precomparación."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro aplicado"
 

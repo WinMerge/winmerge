@@ -4088,6 +4088,10 @@ msgstr "« %1 » ùn hè micca un modulu d’estensione di u preparagone"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Un sbagliu hè accadutu durante u preparagone di u schedariu « %1 » cù u modulu d’estensione « %2 ». Avà u preparagone ùn hè più appiecatu."
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
 

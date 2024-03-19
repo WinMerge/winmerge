@@ -4079,6 +4079,10 @@ msgstr "'%1'は比較前処理プラグインではありません"
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "プラグイン'%2'でファイル'%1'の比較前処理を実行中にエラーが発生しました。比較前処理は適用されませんでした。"
 
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "プラグインパイプラインに循環参照があります: %1"
+
 msgid "Filter applied"
 msgstr "フィルター適用"
 
