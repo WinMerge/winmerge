@@ -1,5 +1,72 @@
 # Change log
 
+## WinMerge 2.16.39 - 2024-03-24
+
+### General
+
+- BugFix: Fixed an issue where typing only a single character in the header
+    bar could cause a crash.
+
+### File compare
+
+- BugFix: Fixed possible crash
+- BugFix: Creation of .bak files fails when the original filename starts with
+    a dot (#2217)
+- Update Java syntax highlighting keyword list. (PR #2215)
+- Replace "Match similar lines" with "Align similar lines" (PR #2230)
+- Make it possible to select the behavior when copying to another pane with
+    "Copy to Right" etc. while text is selected.  (PR #2224)
+- Update PHP syntax highlighting keyword list. (PR #2265)
+
+### Webpage compare
+
+- BugFix: Make event sync settings persistent (#2248)
+
+### Select Files or Folders dialog
+
+- BugFix: Fixed the issue when the compare button could not be clicked when
+    specifying an archive file and a regular file.
+
+### Reports
+
+- BugFix: Fixed an issue where the widths of the left and right panes in HTML
+    reports are not equal.
+- BugFix: Fixed an issue where the caption set in the header bar was not being
+    applied to the HTML report.
+
+### Plugins
+
+- BugFix: Fixed crash when error occurs in Unpacker plugin
+- Replace the source code written in VBScript with JScript (PR #2098)
+- Add the ability to replace using patterns from Substitution Filters to the
+    Replace plugin. (PR #2252)
+- Added sanity check for regular expressions in PrediffLineFilter plugin.
+
+### Installer
+
+- BugFix: If the /noicons option was specified in the previous installation,
+    a message box asking you to delete the previous start menu will be
+    displayed in the next installation. (#2206)
+- Move custom messages in a separate iss file (#2247)
+
+### Internals
+
+- Update codeql-analysis.yml - Version v2 to v3 (PR #2196)
+
+### Translations
+
+- Translation updates:
+  - Chinese Simplified (PR #2244,#2251,#2256,#2259)
+  - French (PR #2237,#2264)
+  - Hungarian (PR #2232,#2250)
+  - Italian (PR #2245)
+  - Japanese
+  - Korean (PR #2239)
+  - Lithuanian (PR #2235,#2246)
+  - Portuguese (PR #2263)
+  - Russian (PR #2194,#2195,#2198,#2210,#2211,#2212)
+  - Slovenian (#2096)
+
 ## WinMerge 2.16.38 - 2024-01-27
 
 ### File compare

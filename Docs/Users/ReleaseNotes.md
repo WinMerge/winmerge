@@ -1,96 +1,84 @@
-# WinMerge 2.16.38 Release Notes
+# WinMerge 2.16.39 Release Notes
 
 - [About This Release](#about-this-release)
-- [What Is New in 2.16.38](#what-is-new-in-21638)
-- [What Is New in 2.16.37 beta?](#what-is-new-in-21637-beta)
+- [What Is New in 2.16.39 beta?](#what-is-new-in-21639-beta)
 - [Known issues](#known-issues)
 
-January 2024
+March 2024
 
 ## About This Release
 
-This is a WinMerge 2.16.38 stable release.
-This release replaces earlier WinMerge stable releases as a recommended release.
+This is a WinMerge beta release which is meant for preview the current state of
+WinMerge development. This release is not recommended for the production.
 
 Please submit bug reports to our bug-tracker.
 
-## What Is New in 2.16.38
+## What Is New in 2.16.39 Beta
+
+### General
+
+- BugFix: Fixed an issue where typing only a single character in the header
+    bar could cause a crash.
 
 ### File compare
 
-- BugFix: Fixed an issue where changing the BOM in the right pane in the
-    Codepage dialog was not reflected.
-- Update C++ syntax highlighting keyword list. (PR #2166)
+- BugFix: Fixed possible crash
+- BugFix: Creation of .bak files fails when the original filename starts with
+    a dot (#2217)
+- Update Java syntax highlighting keyword list. (PR #2215)
+- Replace "Match similar lines" with "Align similar lines" (PR #2230)
+- Make it possible to select the behavior when copying to another pane with
+    "Copy to Right" etc. while text is selected.  (PR #2224)
+- Update PHP syntax highlighting keyword list. (PR #2265)
 
 ### Webpage compare
 
-- During comparison, the status bar now displays "Comparing...".
-- Add Location Pane (PR#2160)
+- BugFix: Make event sync settings persistent (#2248)
 
-### Folder compare
+### Select Files or Folders dialog
 
-- Modify the "Display Columns" dialog. (PR#2154)
+- BugFix: Fixed the issue when the compare button could not be clicked when
+    specifying an archive file and a regular file.
+
+### Reports
+
+- BugFix: Fixed an issue where the widths of the left and right panes in HTML
+    reports are not equal.
+- BugFix: Fixed an issue where the caption set in the header bar was not being
+    applied to the HTML report.
 
 ### Plugins
 
-- BugFix: Fixed the issue where the following string containing double
-    quotes is not interpreted correctly when specified to the `/unpacker`
-    command line argument.
-    
-    `/unpacker "Replace ""a"" ""b"""`
+- BugFix: Fixed crash when error occurs in Unpacker plugin
+- Replace the source code written in VBScript with JScript (PR #2098)
+- Add the ability to replace using patterns from Substitution Filters to the
+    Replace plugin. (PR #2252)
+- Added sanity check for regular expressions in PrediffLineFilter plugin.
+
+### Installer
+
+- BugFix: If the /noicons option was specified in the previous installation,
+    a message box asking you to delete the previous start menu will be
+    displayed in the next installation. (#2206)
+- Move custom messages in a separate iss file (#2247)
+
+### Internals
+
+- Update codeql-analysis.yml - Version v2 to v3 (PR #2196)
 
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR#2151,#2178)
-  - Chinese Simplified (PR#2153,#2183)
-  - Corsican (PR#2180)
-  - Hungarian (PR#2156,#2157,#2158)
+  - Chinese Simplified (PR #2244,#2251,#2256,#2259)
+  - French (PR #2237,#2264)
+  - Hungarian (PR #2232,#2250)
+  - Italian (PR #2245)
   - Japanese
-  - Korean (PR#2152)
-  - Lithuanian (PR#2155,#2177)
-  - Portuguese (PR#2185)
-
-## What Is New in 2.16.37 Beta
-
-### File compare
-
-- BugFix: Fixed an issue where the scroll position when clicking on Location 
-    View may not be as expected when Wrap Lines is enabled.
-- BugFix: Can't click and change file line endings with the version 2.16.36.
-    (#2129)
-- BugFix: Unable to locate CR using \r in regular expression search
-- Added new C# keywords (PR#2136)
-
-### Folder compare
-
-- BugFix: Empty files are not copied (#2146)
-
-### Binary compare
-
-- BugFix: Could not replace data at the end of the file
-
-### Image compare
-
-- BugFix: Fixed an issue where the file name was not displayed in the header
-    even after saving a newly created pane with a name.
-
-### Webpage compare
-
-- BugFix: Fixed an issue where the message box "Another application has updated
-    file ... since WinMerge scanned it last time" is displayed when comparing
-    URLs that are file://.
-- Improved synchronize events (winmerge/winwebdiff#4) 
-
-### Translations
-
-- Translation updates:
-  - Bulgarian (PR #2124)
-  - French (PR #2135,#2140,#2141,#2142,winmerge/frhed#15)
-  - Italian (PR #2130)
-  - Korean (PR #2126,#2127,#2143)
-  - Polish (PR #2128)
-
+  - Korean (PR #2239)
+  - Lithuanian (PR #2235,#2246)
+  - Portuguese (PR #2263)
+  - Russian (PR #2194,#2195,#2198,#2210,#2211,#2212)
+  - Slovenian (#2096)
 
 ## Known issues
 
