@@ -2079,6 +2079,9 @@ msgstr "Oddzielne foldery danych użytkownika dla każdego panelu"
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

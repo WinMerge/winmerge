@@ -224,7 +224,7 @@ IDR_POPUP_WEBPAGEDIFFVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "View &Differences",               ID_WEB_VIEWDIFFERENCES
+        MENUITEM "View &Differences",           ID_WEB_VIEWDIFFERENCES
         POPUP "Co&mpare"
         BEGIN
             MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
@@ -814,7 +814,7 @@ BEGIN
         BEGIN
             POPUP "&Scripts"
             BEGIN
-                MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS_FOR_COPYING
+                MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS_FOR_COPYING
             END
             MENUITEM "Select &editor script...",    ID_SELECT_EDITOR_SCRIPT_FOR_COPYING
         END
@@ -946,7 +946,7 @@ BEGIN
             MENUITEM "Both (%1 of %2)",             ID_DIR_COPY_BOTH_TO_CLIPBOARD
             MENUITEM "All (%1 of %2)",              ID_DIR_COPY_ALL_TO_CLIPBOARD
         END
-        MENUITEM "Copy All Di&splayed Columns"       ID_DIR_COPY_ALL_DISP_COLUMNS
+        MENUITEM "Copy All Di&splayed Columns", ID_DIR_COPY_ALL_DISP_COLUMNS
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
@@ -1701,7 +1701,7 @@ CAPTION "Go to"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "G&o to:",IDC_STATIC,7,9,68,10
-    LTEXT           "", IDC_WMGOTO_RANGE,77,9,65,10
+    LTEXT           "",IDC_WMGOTO_RANGE,77,9,65,10
     EDITTEXT        IDC_WMGOTO_PARAM,146,7,64,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,65,45
     CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,56,10
@@ -2235,7 +2235,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,34,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,46,279,10
-    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 58, 279, 10
+    CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,58,279,10
     LTEXT           "&Automatically expand subfolders after comparison:",IDC_STATIC,7,70,269,10
     COMBOBOX        IDC_EXPAND_SUBDIRS,6,82,270,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
@@ -2368,6 +2368,29 @@ BEGIN
     EDITTEXT        IDC_INPUTBOX_EDIT,6,50,224,12,ES_AUTOHSCROLL
     DEFPUSHBUTTON   "OK",IDOK,170,6,60,14
     PUSHBUTTON      "Cancel",IDCANCEL,170,22,60,14
+END
+
+IDD_PLUGINS_DEFINEPLUGIN DIALOGEX 0, 0, 318, 152
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Define Plugin"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Plugin &Name:",IDC_STATIC,7,9,83,10
+    EDITTEXT        IDC_PLUGIN_NAME,92,7,220,200,ES_AUTOHSCROLL
+    LTEXT           "Extensions list:",IDC_STATIC,7,26,83,10
+    EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,92,24,220,12,ES_AUTOHSCROLL
+    LTEXT           "Description:",IDC_STATIC,7,43,83,10
+    EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,38,220,36,ES_MULTILINE | WS_VSCROLL
+    LTEXT           "Default arguments:",IDC_STATIC,7,78,83,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,76,220,12,ES_AUTOHSCROLL
+    CONTROL         "Display all plugins, don't check the extension",IDC_PLUGIN_ALLOW_ALL,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,92,300,12
+    CONTROL         "&Open files in the same window type after unpacking",IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE,
+                    "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,7,104,300,12
+    LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,118,83,10
+    CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,116,220,95
+    DEFPUSHBUTTON   "OK",IDOK,210,134,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,264,134,50,14
 END
 
 
@@ -2512,6 +2535,10 @@ BEGIN
     END
 
     IDD_INPUTBOX, DIALOG
+    BEGIN
+    END
+
+    IDD_PLUGINS_DEFINEPLUGIN, DIALOG
     BEGIN
     END
 END
@@ -2986,7 +3013,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
@@ -3090,6 +3117,25 @@ END
 IDD_INPUTBOX AFX_DIALOG_LAYOUT
 BEGIN
     0
+END
+
+IDD_PLUGINS_DEFINEPLUGIN AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    0, 100, 100, 0,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0
 END
 
 
@@ -4104,7 +4150,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_NOTINSTALLED  "%1 is not installed."
+    IDS_NOTINSTALLED        "%1 is not installed."
 END
 
 STRINGTABLE

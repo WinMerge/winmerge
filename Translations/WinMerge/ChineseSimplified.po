@@ -2095,6 +2095,9 @@ msgstr "每个窗格使用单独的用户数据文件夹(&S)"
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

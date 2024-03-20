@@ -2553,6 +2553,9 @@ msgstr "&Separate Benutzerdatenordner für jeden Bereich"
 msgid "&Hex View"
 msgstr "&Hex-Ansicht"
 
+msgid "Define Plugin"
+msgstr ""
+
 #, c-format
 msgid "EXT"
 msgstr "Erw"

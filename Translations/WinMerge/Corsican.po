@@ -2090,6 +2090,9 @@ msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EST"
 

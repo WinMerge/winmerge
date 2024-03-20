@@ -2084,6 +2084,9 @@ msgstr "ஒவ்வொரு பலகத்திற்கும் தனி�
 msgid "&Hex View"
 msgstr "&ஹெக்ஸ் வியூ"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

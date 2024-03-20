@@ -2093,6 +2093,9 @@ msgstr "&Erilliset käyttäjätietokansiot jokaiselle ruudulle"
 msgid "&Hex View"
 msgstr "&Hexanäkymä"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

@@ -2086,6 +2086,9 @@ msgstr ""
 msgid "&Hex View"
 msgstr "Zobraziť &hexadecimálne"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

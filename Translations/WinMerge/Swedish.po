@@ -2099,6 +2099,9 @@ msgstr "Separerata mappar för användardata i varje ruta"
 msgid "&Hex View"
 msgstr "Hex visning"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

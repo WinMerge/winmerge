@@ -2086,6 +2086,9 @@ msgstr "Aparte mappen met gebruikersgegevens voor elk venster"
 msgid "&Hex View"
 msgstr "Hex-weergave"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "UIT"
 

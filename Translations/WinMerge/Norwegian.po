@@ -2090,6 +2090,9 @@ msgstr ""
 msgid "&Hex View"
 msgstr ""
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

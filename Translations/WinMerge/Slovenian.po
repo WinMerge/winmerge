@@ -2086,6 +2086,9 @@ msgstr "&Ločene mape z uporabniškimi podtaki za vsako podokno"
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "KON"
 

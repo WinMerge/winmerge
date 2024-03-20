@@ -2083,6 +2083,9 @@ msgstr ""
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
 
+msgid "Define Plugin"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

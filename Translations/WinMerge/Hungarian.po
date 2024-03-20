@@ -2559,6 +2559,9 @@ msgstr "Önálló felhasználói adatmappa minden panelhez"
 msgid "&Hex View"
 msgstr "Hexadecimális nézet"
 
+msgid "Define Plugin"
+msgstr ""
+
 #, c-format
 msgid "EXT"
 msgstr "EXT"

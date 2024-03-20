@@ -2568,6 +2568,9 @@ msgstr "每個面板使用單獨的使用者資料夾(&S)"
 msgid "&Hex View"
 msgstr "二進制顯示 (&H)"
 
+msgid "Define Plugin"
+msgstr ""
+
 #, c-format
 msgid "EXT"
 msgstr "EXT"
