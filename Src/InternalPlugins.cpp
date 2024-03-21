@@ -423,6 +423,11 @@ public:
 		return hr;
 	}
 
+	Info* GetInfo()
+	{
+		return &m_info;
+	}
+
 protected:
 
 	String replaceMacros(const String& cmd, const String & fileSrc, const String& fileDst)
@@ -610,10 +615,16 @@ bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>
 	parser.setContentHandler(&handler);
 	try
 	{
+		size_t size = internalPlugins.size();
 		try { parser.parse(ucr::toUTF8(pluginsXMLPath)); }
 		catch (Poco::FileNotFoundException&) { }
+		size_t i = 0;
 		for (auto& info : internalPlugins)
-			info.m_userDefined = userDefined;
+		{
+			if (i >= size)
+				info.m_userDefined = userDefined;
+			++i;
+		}
 	}
 	catch (Poco::XML::SAXParseException& e)
 	{
@@ -621,6 +632,14 @@ bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>
 		return false;
 	}
 	return true;
+}
+
+Info* GetInternalPluginInfo(const PluginInfo* plugin)
+{
+	auto* internalPlugin = (plugin->m_filepath.find(_T("Plugins.xml")) != String::npos) ? dynamic_cast<InternalPlugin*>(plugin->m_lpDispatch) : nullptr;
+	if (!internalPlugin)
+		return nullptr;
+	return internalPlugin->GetInfo();
 }
 
 static void writeEmptyElement(XMLWriter& writer, const std::string& tagname, const std::string& attrname, const String& value)

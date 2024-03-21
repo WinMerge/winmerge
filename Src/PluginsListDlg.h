@@ -37,6 +37,9 @@ protected:
 
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedPluginAdd();
+	afx_msg void OnBnClickedPluginEdit();
+	afx_msg void OnBnClickedPluginRemove();
 	afx_msg void OnBnClickedPluginSettings();
 	afx_msg void OnBnClickedFileFiltesDefaults();
 	afx_msg void OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult);

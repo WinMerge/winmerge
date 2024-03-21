@@ -9,6 +9,7 @@
 #include "WildcardDropList.h"
 #include "UnicodeString.h"
 #include "Plugins.h"
+#include "InternalPlugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "unicoder.h"
@@ -19,6 +20,9 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
+	ON_BN_CLICKED(IDC_PLUGIN_ADD, OnBnClickedPluginAdd)
+	ON_BN_CLICKED(IDC_PLUGIN_EDIT, OnBnClickedPluginEdit)
+	ON_BN_CLICKED(IDC_PLUGIN_REMOVE, OnBnClickedPluginRemove)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
 	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
@@ -168,6 +172,18 @@ void PluginsListDlg::OnBnClickedOk()
 	OnOK();
 }
 
+void PluginsListDlg::OnBnClickedPluginAdd()
+{
+}
+
+void PluginsListDlg::OnBnClickedPluginEdit()
+{
+}
+
+void PluginsListDlg::OnBnClickedPluginRemove()
+{
+}
+
 void PluginsListDlg::OnBnClickedPluginSettings()
 {
 	POSITION pos = m_list.GetFirstSelectedItemPosition();
@@ -226,6 +242,9 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
 		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
+		auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+		EnableDlgItem(IDC_PLUGIN_EDIT, info != nullptr);
+		EnableDlgItem(IDC_PLUGIN_REMOVE, (info && info->m_userDefined));
 	}
 }
 
