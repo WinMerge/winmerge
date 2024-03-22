@@ -70,6 +70,7 @@ Please submit bug reports to our bug-tracker.
 
 - Translation updates:
   - Chinese Simplified (PR #2244,#2251,#2256,#2259)
+  - Corsican (PR #2266)
   - French (PR #2237,#2264)
   - Hungarian (PR #2232,#2250)
   - Italian (PR #2245)

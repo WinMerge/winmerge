@@ -57,6 +57,7 @@
 
 - Translation updates:
   - Chinese Simplified (PR #2244,#2251,#2256,#2259)
+  - Corsican (PR #2266)
   - French (PR #2237,#2264)
   - Hungarian (PR #2232,#2250)
   - Italian (PR #2245)
@@ -78,11 +79,11 @@
 ### Webpage compare
 
 - During comparison, the status bar now displays "Comparing...".
-- Add Location Pane (PR#2160)
+- Add Location Pane (PR #2160)
 
 ### Folder compare
 
-- Modify the "Display Columns" dialog. (PR#2154)
+- Modify the "Display Columns" dialog. (PR #2154)
 
 ### Plugins
 
@@ -95,14 +96,14 @@
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR#2151,#2178)
-  - Chinese Simplified (PR#2153,#2183)
-  - Corsican (PR#2180)
-  - Hungarian (PR#2156,#2157,#2158)
+  - Brazilian (PR #2151,#2178)
+  - Chinese Simplified (PR #2153,#2183)
+  - Corsican (PR #2180)
+  - Hungarian (PR #2156,#2157,#2158)
   - Japanese
-  - Korean (PR#2152)
-  - Lithuanian (PR#2155,#2177)
-  - Portuguese (PR#2185)
+  - Korean (PR #2152)
+  - Lithuanian (PR #2155,#2177)
+  - Portuguese (PR #2185)
 
 ## WinMerge 2.16.37 - 2023-12-24
 
@@ -113,7 +114,7 @@
 - BugFix: Can't click and change file line endings with the version 2.16.36.
     (#2129)
 - BugFix: Unable to locate CR using \r in regular expression search
-- Added new C# keywords (PR#2136)
+- Added new C# keywords (PR #2136)
 
 ### Folder compare
 
