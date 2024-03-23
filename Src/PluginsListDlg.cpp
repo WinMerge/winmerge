@@ -182,6 +182,30 @@ void PluginsListDlg::OnBnClickedPluginEdit()
 
 void PluginsListDlg::OnBnClickedPluginRemove()
 {
+	PluginInfo *plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return;
+	String errmsg;
+	std::list<internal_plugin::Info> list;
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(true), true, list, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+	for (auto it = list.begin(); it != list.end(); ++it)
+	{
+		if (it->m_name == plugin->m_name)
+		{
+			list.erase(it);
+			break;
+		}
+	}
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(true), list, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+	CAllThreadsScripts::ReloadAllScripts();
 }
 
 void PluginsListDlg::OnBnClickedPluginSettings()
