@@ -29,6 +29,8 @@ Please submit bug reports to our bug-tracker.
 - Replace "Match similar lines" with "Align similar lines" (PR #2230)
 - Make it possible to select the behavior when copying to another pane with
     "Copy to Right" etc. while text is selected.  (PR #2224)
+- Make it possible to transform the text copied with "Copy Right/Left" using a
+    plugin. (PR #2238)
 - Update PHP syntax highlighting keyword list. (PR #2265)
 
 ### Webpage compare
@@ -62,6 +64,10 @@ Please submit bug reports to our bug-tracker.
     displayed in the next installation. (#2206)
 - Move custom messages in a separate iss file (#2247)
 
+### Archive support
+
+- BugFix: 7zip encrypted archives with encrypted file names (#2225)
+
 ### Internals
 
 - Update codeql-analysis.yml - Version v2 to v3 (PR #2196)
@@ -69,11 +75,12 @@ Please submit bug reports to our bug-tracker.
 ### Translations
 
 - Translation updates:
-  - Chinese Simplified (PR #2244,#2251,#2256,#2259)
+  - Brazilian (PR #2234,#2243)
+  - Chinese Simplified (PR #2241,#2244,#2251,#2256,#2259)
   - Corsican (PR #2266)
   - French (PR #2237,#2264)
   - Hungarian (PR #2232,#2250)
-  - Italian (PR #2245)
+  - Italian (PR #2245,#2249)
   - Japanese
   - Korean (PR #2239)
   - Lithuanian (PR #2235,#2246)
