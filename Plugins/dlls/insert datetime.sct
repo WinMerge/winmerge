@@ -37,12 +37,11 @@ function get_PluginExtendedProperties() {
 
 // transformation functions
 function InsertDate(Text) {
-	return Text + (new Date()).toLocaleString().split(/[ ,]/)[0];
+	return Text + (new Date()).toLocaleDateString();
 }
 
 function InsertTime(Text) {
-	var ary = (new Date()).toLocaleString().split(/[ ,]/);
-	return Text + ary[ary.length - 1];
+	return Text + (new Date()).toLocaleTimeString();
 }
 
 </script>
