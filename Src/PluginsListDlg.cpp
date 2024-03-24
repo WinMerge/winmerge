@@ -150,6 +150,27 @@ PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
+void PluginsListDlg::RefreshList()
+{
+	CRect rect;
+	const int topIndex = m_list.GetTopIndex();
+	m_list.GetItemRect(topIndex, &rect, LVIR_BOUNDS);
+	const int itemheight = rect.bottom - rect.top;
+	int index = -1;
+	auto pos = m_list.GetFirstSelectedItemPosition();
+	if (pos)
+		index = m_list.GetNextSelectedItem(pos);
+	m_list.DeleteAllItems();
+	AddPlugins();
+	if (index >= m_list.GetItemCount())
+		index = m_list.GetItemCount() - 1;
+	if (index > 0)
+	{
+		m_list.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
+		m_list.Scroll(CSize{ 0, itemheight * topIndex });
+	}
+}
+
 /**
  * @brief Save plugins enabled setting when closing the dialog.
  */
@@ -182,30 +203,17 @@ void PluginsListDlg::OnBnClickedPluginEdit()
 
 void PluginsListDlg::OnBnClickedPluginRemove()
 {
-	PluginInfo *plugin = GetSelectedPluginInfo();
+	PluginInfo* plugin = GetSelectedPluginInfo();
 	if (!plugin)
 		return;
 	String errmsg;
-	std::list<internal_plugin::Info> list;
-	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(true), true, list, errmsg))
+	if (!internal_plugin::RemoveInternalPlugin(plugin, true, errmsg))
 	{
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 		return;
 	}
-	for (auto it = list.begin(); it != list.end(); ++it)
-	{
-		if (it->m_name == plugin->m_name)
-		{
-			list.erase(it);
-			break;
-		}
-	}
-	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(true), list, errmsg))
-	{
-		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
-		return;
-	}
-	CAllThreadsScripts::ReloadAllScripts();
+
+	RefreshList();
 }
 
 void PluginsListDlg::OnBnClickedPluginSettings()

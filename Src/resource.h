@@ -82,7 +82,7 @@
 #define IDD_EDIT_MARKER                 284
 #define IDD_EDIT_REPLACE                285
 #define IDD_INPUTBOX                    286
-#define IDD_PLUGINS_DEFINEPLUGIN        287
+#define IDD_PLUGINS_EDITPLUGIN          287
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308

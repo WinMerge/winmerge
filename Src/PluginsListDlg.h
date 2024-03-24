@@ -31,6 +31,7 @@ protected:
 	void InitList();
 	void AddPlugins();
 	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
+	void RefreshList();
 	PluginInfo *GetSelectedPluginInfo() const;
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
