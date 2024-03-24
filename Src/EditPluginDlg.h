@@ -12,6 +12,7 @@
 #include "CMoveConstraint.h"
 #include "SuperComboBox.h"
 #include "UnicodeString.h"
+#include "InternalPlugins.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditPluginDlgDlg dialog
@@ -28,17 +29,13 @@ private:
 
 public:
 // Construction
-	CEditPluginDlg(const String& pluginPipeline, const String& filename, PluginType pluginType, bool argumentsRequired = false, CWnd* pParent = nullptr);
+	CEditPluginDlg(internal_plugin::Info& info, bool userDefined, CWnd* pParent = nullptr);
 	~CEditPluginDlg();
-
-	const String& CEditPluginDlg::GetPluginPipeline() const { return m_strPluginPipeline; }
 
 // Dialog Data
 	//{{AFX_DATA(CEditPluginDlg)
 	enum { IDD = IDD_PLUGINS_SELECTPLUGIN };
-	CComboBoxEx	m_cboPluginName;
-	bool	m_bNoExtensionCheck;
-	bool	m_bOpenInSameFrameType;
+	String	m_strPluginName;
 	String	m_strDescription;
 	String	m_strExtensions;
 	String	m_strArguments;
@@ -58,30 +55,14 @@ public:
 
 // Implementation
 protected:
-	/// arrays for string describing the available plugins
-	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> m_Plugins;
-
-	// const data "no plugin"
-	std::unique_ptr<PluginInfo> noPlugin;
-	// const data "automatic plugin"
-	std::unique_ptr<PluginInfo> automaticPlugin;
-	PluginType m_pluginType;
-	bool m_bArgumentsRequired;
-
-	// input value
-	String m_filteredFilenames;
-
-	void prepareListbox();
-
 	// Generated message map functions
 	//{{AFX_MSG(CEditPluginDlg)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
-	afx_msg void OnUnpackerAllowAll();
-	afx_msg void OnSelchangeUnpackerName();
-	afx_msg void OnClickedAddPipe();
-	afx_msg void OnChangePipeline();
-	afx_msg void OnClickedSettings();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+	PluginType m_pluginType;
+	internal_plugin::Info& m_info;
+	bool m_userDefined;
 };

@@ -2,6 +2,8 @@
 #include <memory>
 #include <map>
 
+class PluginInfo;
+
 namespace internal_plugin
 {
 
