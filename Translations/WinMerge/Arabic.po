@@ -2087,7 +2087,7 @@ msgstr ""
 msgid "&Hex View"
 msgstr "ع&رض بصيغة نظام عد ستة عشري"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

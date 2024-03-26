@@ -29,12 +29,12 @@ private:
 
 public:
 // Construction
-	CEditPluginDlg(internal_plugin::Info& info, bool userDefined, CWnd* pParent = nullptr);
+	CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent = nullptr);
 	~CEditPluginDlg();
 
 // Dialog Data
 	//{{AFX_DATA(CEditPluginDlg)
-	enum { IDD = IDD_PLUGINS_SELECTPLUGIN };
+	enum { IDD = IDD_PLUGINS_EDITPLUGIN };
 	String	m_strPluginName;
 	String	m_strDescription;
 	String	m_strExtensions;

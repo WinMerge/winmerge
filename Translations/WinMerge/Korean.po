@@ -2566,7 +2566,7 @@ msgstr "각 창에 대해 별도의 사용자 데이터 폴더(&S)"
 msgid "&Hex View"
 msgstr "16진수 보기(&H)"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 #, c-format

@@ -2088,7 +2088,7 @@ msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

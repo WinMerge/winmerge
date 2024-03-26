@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "PluginsListDlg.h"
+#include "EditPluginDlg.h"
 #include "WildcardDropList.h"
 #include "UnicodeString.h"
 #include "Plugins.h"
@@ -199,6 +200,22 @@ void PluginsListDlg::OnBnClickedPluginAdd()
 
 void PluginsListDlg::OnBnClickedPluginEdit()
 {
+	PluginInfo* plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return;
+	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	if (!info)
+		return;
+	CEditPluginDlg dlg(*info);
+	if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+		return;
+	String errmsg;
+	if (!internal_plugin::UpdateInternalPlugin(*info, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+	RefreshList();
 }
 
 void PluginsListDlg::OnBnClickedPluginRemove()
@@ -206,8 +223,11 @@ void PluginsListDlg::OnBnClickedPluginRemove()
 	PluginInfo* plugin = GetSelectedPluginInfo();
 	if (!plugin)
 		return;
+	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	if (!info)
+		return;
 	String errmsg;
-	if (!internal_plugin::RemoveInternalPlugin(plugin, true, errmsg))
+	if (!internal_plugin::RemoveInternalPlugin(*info, errmsg))
 	{
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 		return;

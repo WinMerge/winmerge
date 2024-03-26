@@ -2080,7 +2080,7 @@ msgstr "Отдельные папки пользовательских данн�
 msgid "&Hex View"
 msgstr "&Hex Вид"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

@@ -2099,7 +2099,7 @@ msgstr "Separerata mappar för användardata i varje ruta"
 msgid "&Hex View"
 msgstr "Hex visning"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

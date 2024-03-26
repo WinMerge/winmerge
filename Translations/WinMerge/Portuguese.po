@@ -2087,7 +2087,7 @@ msgstr "&Separar pastas de dados do utilizador para cada painel"
 msgid "&Hex View"
 msgstr "Visualização &Hex"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

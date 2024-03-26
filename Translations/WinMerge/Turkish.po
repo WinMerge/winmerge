@@ -2077,7 +2077,7 @@ msgstr "&Her panonun kullanıcı verileri klasörü ayrı olsun"
 msgid "&Hex View"
 msgstr "Onaltılık &görünüm"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

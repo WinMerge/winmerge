@@ -2098,7 +2098,7 @@ msgstr "&Separă directoarele de date utilizator pentru fiecare panou"
 msgid "&Hex View"
 msgstr "Afișare &hexadecimală"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

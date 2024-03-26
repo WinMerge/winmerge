@@ -2557,7 +2557,7 @@ msgstr ""
 msgid "&Hex View"
 msgstr "Vista Hexadecimal"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 #, c-format

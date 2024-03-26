@@ -2078,7 +2078,7 @@ msgstr "At&skiri naudotojo duomenų katalogai kiekvienam polangiui"
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

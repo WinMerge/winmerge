@@ -642,20 +642,40 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin)
 	return internalPlugin->GetInfo();
 }
 
-bool RemoveInternalPlugin(const PluginInfo* plugin, bool userDefined, String& errmsg)
+bool UpdateInternalPlugin(const Info& info, String& errmsg)
 {
 	std::list<internal_plugin::Info> list;
-	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(userDefined), userDefined, list, errmsg))
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
 		return false;
 	for (auto it = list.begin(); it != list.end(); ++it)
 	{
-		if (it->m_name == plugin->m_name)
+		if (it->m_name == info.m_name)
+		{
+			list.insert(it, info);
+			list.erase(it);
+			break;
+		}
+	}
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+		return false;
+	CAllThreadsScripts::ReloadAllScripts();
+	return true;
+}
+
+bool RemoveInternalPlugin(const Info& info, String& errmsg)
+{
+	std::list<internal_plugin::Info> list;
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+		return false;
+	for (auto it = list.begin(); it != list.end(); ++it)
+	{
+		if (it->m_name == info.m_name)
 		{
 			list.erase(it);
 			break;
 		}
 	}
-	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(userDefined), list, errmsg))
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
 		return false;
 	CAllThreadsScripts::ReloadAllScripts();
 	return true;

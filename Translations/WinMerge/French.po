@@ -2567,7 +2567,7 @@ msgstr "&Séparer les dossiers de données utilisateur pour chaque panneau"
 msgid "&Hex View"
 msgstr "Affichage &Hexa"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 #, c-format

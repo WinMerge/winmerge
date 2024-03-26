@@ -2087,7 +2087,7 @@ msgstr "Carpeta&s de datos do usuario separadas para cada panel"
 msgid "&Hex View"
 msgstr "Vista &hexadecimal"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

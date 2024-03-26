@@ -2091,7 +2091,7 @@ msgstr "&Separa le cartelle dati utente per ogni pannello"
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

@@ -2089,7 +2089,7 @@ msgstr "ユーザー データ フォルダーをペイン毎に分離する(&S)
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"

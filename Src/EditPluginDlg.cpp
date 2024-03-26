@@ -29,10 +29,14 @@ void CEditPluginDlg::Initialize(PluginType pluginType)
 	//}}AFX_DATA_INIT
 }
 
-CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, bool userDefined, CWnd* pParent/* = nullptr*/)
+CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nullptr*/)
 	: CTrDialog(CEditPluginDlg::IDD, pParent)
 	, m_info(info)
-	, m_userDefined(userDefined)
+	, m_strPluginName(info.m_name)
+	, m_strDescription(info.m_description)
+	, m_strExtensions(info.m_fileFilters)
+	, m_strArguments(info.m_arguments)
+	, m_strPluginPipeline(info.m_pipeline)
 {
 }
 
@@ -65,6 +69,12 @@ END_MESSAGE_MAP()
 void CEditPluginDlg::OnOK()
 {
 	UpdateData(TRUE);
+
+	m_info.m_name = m_strPluginName;
+	m_info.m_description = m_strDescription;
+	m_info.m_fileFilters = m_strExtensions;
+	m_info.m_arguments = m_strArguments;
+	m_info.m_pipeline = m_strPluginPipeline;
 
 	CTrDialog::OnOK();
 }

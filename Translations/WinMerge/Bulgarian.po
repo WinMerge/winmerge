@@ -2083,7 +2083,7 @@ msgstr ""
 msgid "&Hex View"
 msgstr "&Шестнадесетичен изглед"
 
-msgid "Define Plugin"
+msgid "Edit Plugin"
 msgstr ""
 
 msgid "EXT"
