@@ -72,6 +72,8 @@ String GetPluginXMLPath(bool userDefined);
 bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>& internalPlugins, String& errmsg);
 bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlugins, String& errmsg);
 Info* GetInternalPluginInfo(const PluginInfo* plugin);
+bool FindPluginNameConflict(const Info& info);
+bool AddInternalPlugin(const Info& info, String& errmsg);
 bool UpdateInternalPlugin(const Info& info, String& errmsg);
 bool RemoveInternalPlugin(const Info& info, String& errmsg);
 

@@ -642,6 +642,40 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin)
 	return internalPlugin->GetInfo();
 }
 
+bool FindPluginNameConflict(const Info& info)
+{
+	for (auto& eventNames : { plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
+	{
+		if (std::find(eventNames.begin(), eventNames.end(), info.m_event) != eventNames.end())
+		{
+			for (auto& event : eventNames)
+			{
+				PluginInfo* plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(event.c_str(), info.m_name);
+				if (plugin)
+					return true;
+			}
+		}
+	}
+	return false;
+}
+
+bool AddInternalPlugin(const Info& info, String& errmsg)
+{
+	if (FindPluginNameConflict(info))
+	{
+		errmsg = _("Plugin name already exists");
+		return false;
+	}
+	std::list<internal_plugin::Info> list;
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+		return false;
+	list.push_back(info);
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+		return false;
+	CAllThreadsScripts::ReloadAllScripts();
+	return true;
+}
+
 bool UpdateInternalPlugin(const Info& info, String& errmsg)
 {
 	std::list<internal_plugin::Info> list;

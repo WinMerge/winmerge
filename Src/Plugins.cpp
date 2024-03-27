@@ -838,13 +838,7 @@ static void RemoveScriptletCandidate(const String &scriptletFilepath)
 
 static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 {
-	std::vector<std::vector<String>> eventsAry = 
-	{
-		{ L"URL_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"BUFFER_PACK_UNPACK"},
-		{ L"FILE_PREDIFF", L"BUFFER_PREDIFF" },
-		{ L"EDITOR_SCRIPT"},
-	};
-	for (const auto& events: eventsAry)
+	for (const auto& events: { plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
 	{
 		std::set<String> pluginNames;
 		for (const auto& event : events)
