@@ -32,6 +32,7 @@ void CEditPluginDlg::Initialize(PluginType pluginType)
 CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nullptr*/)
 	: CTrDialog(CEditPluginDlg::IDD, pParent)
 	, m_info(info)
+	, m_strEvent(info.m_event)
 	, m_strPluginName(info.m_name)
 	, m_strDescription(info.m_description)
 	, m_strExtensions(info.m_fileFilters)
@@ -48,6 +49,7 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CEditPluginDlg)
+	DDX_Control(pDX, IDC_PLUGIN_TYPE, m_ctlEvent);
 	DDX_Text(pDX, IDC_PLUGIN_NAME, m_strPluginName);
 	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
 	DDX_Text(pDX, IDC_PLUGIN_SUPPORTED_EXTENSIONS, m_strExtensions);
@@ -70,6 +72,7 @@ void CEditPluginDlg::OnOK()
 {
 	UpdateData(TRUE);
 
+	m_info.m_event = reinterpret_cast<wchar_t*>(m_ctlEvent.GetItemDataPtr(m_ctlEvent.GetCurSel()));
 	m_info.m_name = m_strPluginName;
 	m_info.m_description = m_strDescription;
 	m_info.m_fileFilters = m_strExtensions;
@@ -79,7 +82,7 @@ void CEditPluginDlg::OnOK()
 	CTrDialog::OnOK();
 }
 
-BOOL CEditPluginDlg::OnInitDialog() 
+BOOL CEditPluginDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
 
@@ -89,6 +92,18 @@ BOOL CEditPluginDlg::OnInitDialog()
 	// persist size via registry
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("EditPluginDlg"), false);
 
+	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE,
+		{ _("URL Handler"), _("Unpacker"), _("Prediffer"), _("Unpacker alias"), _("Prediffer alias"), _("Editor script alias") });
+	int i = 0;
+	for (auto* event : { L"URL_PACK_UNPACK", L"FILE_PACK_UNPACK", L"PREDIFF_UNPACK", L"ALIAS_PACK_UNPACK", L"ALIAS_PRDIFF", L"ALIAS_EDIT_SCRIPT" })
+		m_ctlEvent.SetItemDataPtr(i++, const_cast<wchar_t*>(event));
+	const int count = m_ctlEvent.GetCount();
+	for (i = 0; i < count; i++)
+	{
+		if (m_strEvent == reinterpret_cast<wchar_t*>(m_ctlEvent.GetItemDataPtr(i)))
+			m_ctlEvent.SetCurSel(i);
+	}
+
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
 		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
@@ -96,11 +111,6 @@ BOOL CEditPluginDlg::OnInitDialog()
 
 
 	UpdateData(FALSE);
-
-	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
-	String pluginTypeStr = pluginTypes[static_cast<int>(m_pluginType)];
-
-	SetTitleText(GetTitleText() + _T(" [") + pluginTypeStr + _T("]"));
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

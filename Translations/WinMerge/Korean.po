@@ -2569,6 +2569,12 @@ msgstr "16진수 보기(&H)"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 #, c-format
 msgid "EXT"
 msgstr "EXT"

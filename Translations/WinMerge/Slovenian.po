@@ -2089,6 +2089,12 @@ msgstr "16-tiški prikaz"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "KON"
 

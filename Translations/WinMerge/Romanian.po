@@ -2101,6 +2101,12 @@ msgstr "Afișare &hexadecimală"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

@@ -2091,6 +2091,12 @@ msgstr "Vista &esadecimale"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EST"
 

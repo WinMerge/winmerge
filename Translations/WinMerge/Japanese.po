@@ -2092,6 +2092,12 @@ msgstr "HEX 表示(&H)"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

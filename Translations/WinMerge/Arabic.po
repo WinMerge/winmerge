@@ -2090,6 +2090,12 @@ msgstr "ع&رض بصيغة نظام عد ستة عشري"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

@@ -627,6 +627,7 @@
 #define IDC_PLUGIN_ADD                  1636
 #define IDC_PLUGIN_EDIT                 1637
 #define IDC_PLUGIN_REMOVE               1638
+#define IDC_PLUGIN_TYPE                 1639
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

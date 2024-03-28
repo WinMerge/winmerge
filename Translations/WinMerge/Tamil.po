@@ -2087,6 +2087,12 @@ msgstr "&ஹெக்ஸ் வியூ"
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

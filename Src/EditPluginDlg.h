@@ -35,6 +35,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CEditPluginDlg)
 	enum { IDD = IDD_PLUGINS_EDITPLUGIN };
+	CComboBox m_ctlEvent;
+	String	m_strEvent;
 	String	m_strPluginName;
 	String	m_strDescription;
 	String	m_strExtensions;

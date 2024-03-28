@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-03-26 08:11+0000\n"
+"POT-Creation-Date: 2024-03-28 08:12+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2073,6 +2073,12 @@ msgid "&Hex View"
 msgstr ""
 
 msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
 msgstr ""
 
 msgid "EXT"

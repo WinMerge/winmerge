@@ -2537,6 +2537,12 @@ msgstr ""
 msgid "Edit Plugin"
 msgstr ""
 
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 #, c-format
 msgid "EXT"
 msgstr "EXT"
