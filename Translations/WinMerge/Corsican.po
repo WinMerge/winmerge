@@ -2088,6 +2088,15 @@ msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EST"
 
@@ -4078,6 +4087,10 @@ msgstr "« %1 » ùn hè micca un modulu d’estensione di u preparagone"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Un sbagliu hè accadutu durante u preparagone di u schedariu « %1 » cù u modulu d’estensione « %2 ». Avà u preparagone ùn hè più appiecatu."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"

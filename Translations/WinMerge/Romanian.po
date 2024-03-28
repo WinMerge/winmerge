@@ -2098,6 +2098,15 @@ msgstr "&Separă directoarele de date utilizator pentru fiecare panou"
 msgid "&Hex View"
 msgstr "Afișare &hexadecimală"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -4165,6 +4174,10 @@ msgid ""
 msgstr ""
 "Eroare la prediferențierea fișierului '%1' cu plugin-ul '%2'. "
 "Prediferențierea nu mai este aplicată."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtru aplicat"

@@ -2093,6 +2093,15 @@ msgstr "&Erilliset käyttäjätietokansiot jokaiselle ruudulle"
 msgid "&Hex View"
 msgstr "&Hexanäkymä"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -4107,6 +4116,10 @@ msgstr ""
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr ""
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
 msgid "Filter applied"

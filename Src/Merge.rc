@@ -224,7 +224,7 @@ IDR_POPUP_WEBPAGEDIFFVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "View &Differences",               ID_WEB_VIEWDIFFERENCES
+        MENUITEM "View &Differences",           ID_WEB_VIEWDIFFERENCES
         POPUP "Co&mpare"
         BEGIN
             MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
@@ -814,7 +814,7 @@ BEGIN
         BEGIN
             POPUP "&Scripts"
             BEGIN
-                MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS_FOR_COPYING
+                MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS_FOR_COPYING
             END
             MENUITEM "Select &editor script...",    ID_SELECT_EDITOR_SCRIPT_FOR_COPYING
         END
@@ -946,7 +946,7 @@ BEGIN
             MENUITEM "Both (%1 of %2)",             ID_DIR_COPY_BOTH_TO_CLIPBOARD
             MENUITEM "All (%1 of %2)",              ID_DIR_COPY_ALL_TO_CLIPBOARD
         END
-        MENUITEM "Copy All Di&splayed Columns"       ID_DIR_COPY_ALL_DISP_COLUMNS
+        MENUITEM "Copy All Di&splayed Columns", ID_DIR_COPY_ALL_DISP_COLUMNS
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
@@ -1701,7 +1701,7 @@ CAPTION "Go to"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "G&o to:",IDC_STATIC,7,9,68,10
-    LTEXT           "", IDC_WMGOTO_RANGE,77,9,65,10
+    LTEXT           "",IDC_WMGOTO_RANGE,77,9,65,10
     EDITTEXT        IDC_WMGOTO_PARAM,146,7,64,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,65,45
     CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,56,10
@@ -2198,7 +2198,10 @@ BEGIN
     CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
     PUSHBUTTON      "Defaults",IDC_PLUGIN_DEFAULTS,393,183,70,14
-    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,236,95,14
+    PUSHBUTTON      "Add",IDC_PLUGIN_ADD,6,236,50,14
+    PUSHBUTTON      "Edit",IDC_PLUGIN_EDIT,62,236,50,14
+    PUSHBUTTON      "Remove",IDC_PLUGIN_REMOVE,122,236,50,14
+    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,186,236,95,14
     DEFPUSHBUTTON   "OK",IDOK,293,236,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,354,236,50,14
     PUSHBUTTON      "Help",ID_HELP,413,236,50,14
@@ -2235,7 +2238,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,34,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,46,279,10
-    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 58, 279, 10
+    CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,58,279,10
     LTEXT           "&Automatically expand subfolders after comparison:",IDC_STATIC,7,70,269,10
     COMBOBOX        IDC_EXPAND_SUBDIRS,6,82,270,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
@@ -2370,6 +2373,27 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,170,22,60,14
 END
 
+IDD_PLUGINS_EDITPLUGIN DIALOGEX 0, 0, 318, 180
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Edit Plugin"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "&Type:",IDC_STATIC,7,7,83,10
+    COMBOBOX        IDC_PLUGIN_TYPE,92,7,220,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Name:",IDC_STATIC,7,25,83,10
+    EDITTEXT        IDC_PLUGIN_NAME,92,25,220,12,ES_AUTOHSCROLL
+    LTEXT           "Extensions list:",IDC_STATIC,7,44,83,10
+    EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,92,42,220,12,ES_AUTOHSCROLL
+    LTEXT           "Description:",IDC_STATIC,7,61,83,10
+    EDITTEXT        IDC_PLUGIN_DESCRIPTION,92,56,220,36,ES_MULTILINE | WS_VSCROLL
+    LTEXT           "Default arguments:",IDC_STATIC,7,96,83,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,92,104,210,12,ES_AUTOHSCROLL
+    LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,136,83,10
+    CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,134,220,95
+    DEFPUSHBUTTON   "OK",IDOK,210,152,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,264,152,50,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2490,6 +2514,10 @@ BEGIN
         BOTTOMMARGIN, 109
     END
 
+    IDD_PLUGINS_LIST, DIALOG
+    BEGIN
+    END
+
     IDD_PROPPAGE_SHELL, DIALOG
     BEGIN
     END
@@ -2512,6 +2540,10 @@ BEGIN
     END
 
     IDD_INPUTBOX, DIALOG
+    BEGIN
+    END
+
+    IDD_PLUGINS_EDITPLUGIN, DIALOG
     BEGIN
     END
 END
@@ -2986,7 +3018,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
@@ -3088,6 +3120,28 @@ BEGIN
 END
 
 IDD_INPUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PLUGINS_EDITPLUGIN AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    0, 100, 0, 0,
+    0, 100, 100, 0,
+    100, 100, 0, 0,
+    100, 100, 0, 0
+END
+
+IDD_PLUGINS_LIST AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -4104,7 +4158,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_NOTINSTALLED  "%1 is not installed."
+    IDS_NOTINSTALLED        "%1 is not installed."
 END
 
 STRINGTABLE
@@ -4224,6 +4278,7 @@ BEGIN
     IDS_PLUGIN_NOT_PREDIFF  "'%1' is not prediffer plugin"
     IDS_PLUGIN_PREDIFF_ERROR
                             "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+    IDS_PLUGIN_CIRCULAR_REFERENCE "Circular reference in plugin pipeline: %1"
 END
 
 STRINGTABLE

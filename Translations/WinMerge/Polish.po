@@ -2079,6 +2079,15 @@ msgstr "Oddzielne foldery danych użytkownika dla każdego panelu"
 msgid "&Hex View"
 msgstr "Widok szesnastkowy"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -3694,6 +3703,10 @@ msgstr "'%1' nie jest wtyczką porównującą"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr ""
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
 msgid "Filter applied"

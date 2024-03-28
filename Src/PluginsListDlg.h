@@ -31,12 +31,16 @@ protected:
 	void InitList();
 	void AddPlugins();
 	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
+	void RefreshList();
 	PluginInfo *GetSelectedPluginInfo() const;
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedPluginAdd();
+	afx_msg void OnBnClickedPluginEdit();
+	afx_msg void OnBnClickedPluginRemove();
 	afx_msg void OnBnClickedPluginSettings();
 	afx_msg void OnBnClickedFileFiltesDefaults();
 	afx_msg void OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult);

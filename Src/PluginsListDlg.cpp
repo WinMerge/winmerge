@@ -6,9 +6,11 @@
 
 #include "stdafx.h"
 #include "PluginsListDlg.h"
+#include "EditPluginDlg.h"
 #include "WildcardDropList.h"
 #include "UnicodeString.h"
 #include "Plugins.h"
+#include "InternalPlugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "unicoder.h"
@@ -19,6 +21,9 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
+	ON_BN_CLICKED(IDC_PLUGIN_ADD, OnBnClickedPluginAdd)
+	ON_BN_CLICKED(IDC_PLUGIN_EDIT, OnBnClickedPluginEdit)
+	ON_BN_CLICKED(IDC_PLUGIN_REMOVE, OnBnClickedPluginRemove)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
 	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
@@ -99,11 +104,14 @@ void PluginsListDlg::AddPlugins()
 	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
 	AddPluginsToList(L"FILE_PACK_UNPACK", type);
 	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
+	AddPluginsToList(L"ALIAS_PACK_UNPACK", type);
 	type = _("Prediffer");
 	AddPluginsToList(L"FILE_PREDIFF", type);
 	AddPluginsToList(L"BUFFER_PREDIFF", type);
+	AddPluginsToList(L"ALIAS_PREDIFF", type);
 	type = _("Editor script");
 	AddPluginsToList(L"EDITOR_SCRIPT", type);
+	AddPluginsToList(L"ALIAS_EDITOR_SCRIPT", type);
 }
 
 /**
@@ -143,6 +151,27 @@ PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
+void PluginsListDlg::RefreshList()
+{
+	CRect rect;
+	const int topIndex = m_list.GetTopIndex();
+	m_list.GetItemRect(topIndex, &rect, LVIR_BOUNDS);
+	const int itemheight = rect.bottom - rect.top;
+	int index = -1;
+	auto pos = m_list.GetFirstSelectedItemPosition();
+	if (pos)
+		index = m_list.GetNextSelectedItem(pos);
+	m_list.DeleteAllItems();
+	AddPlugins();
+	if (index >= m_list.GetItemCount())
+		index = m_list.GetItemCount() - 1;
+	if (index > 0)
+	{
+		m_list.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
+		m_list.Scroll(CSize{ 0, itemheight * topIndex });
+	}
+}
+
 /**
  * @brief Save plugins enabled setting when closing the dialog.
  */
@@ -163,6 +192,59 @@ void PluginsListDlg::OnBnClickedOk()
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
 	CAllThreadsScripts::ReloadCustomSettings();
 	OnOK();
+}
+
+void PluginsListDlg::OnBnClickedPluginAdd()
+{
+	std::unique_ptr<internal_plugin::Info> info(new internal_plugin::Info(_T("")));
+	CEditPluginDlg dlg(*info);
+	if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+		return;
+	String errmsg;
+	if (!internal_plugin::AddInternalPlugin(*info, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+	RefreshList();
+}
+
+void PluginsListDlg::OnBnClickedPluginEdit()
+{
+	PluginInfo* plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return;
+	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	if (!info)
+		return;
+	CEditPluginDlg dlg(*info);
+	if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+		return;
+	String errmsg;
+	if (!internal_plugin::UpdateInternalPlugin(*info, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+	RefreshList();
+}
+
+void PluginsListDlg::OnBnClickedPluginRemove()
+{
+	PluginInfo* plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return;
+	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	if (!info)
+		return;
+	String errmsg;
+	if (!internal_plugin::RemoveInternalPlugin(*info, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+
+	RefreshList();
 }
 
 void PluginsListDlg::OnBnClickedPluginSettings()
@@ -223,6 +305,9 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
 		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
+		auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+		EnableDlgItem(IDC_PLUGIN_EDIT, info != nullptr);
+		EnableDlgItem(IDC_PLUGIN_REMOVE, (info && info->m_userDefined));
 	}
 }
 

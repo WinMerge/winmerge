@@ -2078,6 +2078,15 @@ msgstr "At&skiri naudotojo duomenų katalogai kiekvienam polangiui"
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -3694,6 +3703,10 @@ msgstr "'%1' nėra parengėjas"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Parengimo papildiniui '%2' apdorojant failą '%1' įvyko klaida. Parengimas daugiau nebetaikomas."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"

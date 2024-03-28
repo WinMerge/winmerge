@@ -2567,6 +2567,15 @@ msgstr "&Séparer les dossiers de données utilisateur pour chaque panneau"
 msgid "&Hex View"
 msgstr "Affichage &Hexa"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 #, c-format
 msgid "EXT"
 msgstr "EXT"
@@ -4802,6 +4811,10 @@ msgstr "'%1' n'est pas un plugin de pré-différence"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Une erreur s'est produite lors de la pré-différence du fichier '%1' avec le plugin '%2'. La pré-différence n'est plus appliquée."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtre appliqué"

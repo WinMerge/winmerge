@@ -2091,6 +2091,15 @@ msgstr "&Separa le cartelle dati utente per ogni pannello"
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EST"
 
@@ -4112,6 +4121,10 @@ msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. Th
 msgstr ""
 "Si è verificato un errore durante la pre-differenza del file '%1' con il plugin '%2'. \n"
 "La pre-differenza non verrà più applicata."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtro applicato"

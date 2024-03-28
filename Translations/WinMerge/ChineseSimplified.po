@@ -2095,6 +2095,15 @@ msgstr "每个窗格使用单独的用户数据文件夹(&S)"
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -4122,6 +4131,10 @@ msgid ""
 "prediffing is not applied any more."
 msgstr ""
 "在用插件 '%2' 对文件 '%1' 进行预比较时发生了一个错误，将不再使用该预比较。"
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "过滤器已应用"

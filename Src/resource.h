@@ -82,6 +82,7 @@
 #define IDD_EDIT_MARKER                 284
 #define IDD_EDIT_REPLACE                285
 #define IDD_INPUTBOX                    286
+#define IDD_PLUGINS_EDITPLUGIN          287
 #define IDI_ROTATE2                     302
 #define IDR_LOGO                        307
 #define IDR_SPLASH                      308
@@ -277,9 +278,10 @@
 #define IDC_FILES_DIRS_GROUP5           1087
 #define IDC_PLUGIN_NAME                 1088
 #define IDC_PLUGIN_ALLOW_ALL            1089
-#define IDC_PLUGIN_SUPPORTED_EXTENSIONS 1090
-#define IDC_PLUGIN_DESCRIPTION          1091
-#define IDC_PLUGIN_ARGUMENTS            1092
+#define IDC_PLUGIN_EVENT_TYPE           1090
+#define IDC_PLUGIN_SUPPORTED_EXTENSIONS 1091
+#define IDC_PLUGIN_DESCRIPTION          1092
+#define IDC_PLUGIN_ARGUMENTS            1093
 #define IDC_PLUGIN_PIPELINE             1094
 #define IDC_PLUGIN_ADDPIPE              1095
 #define IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE 1096
@@ -622,6 +624,10 @@
 #define IDC_INPUTBOX_PROMPT             1633
 #define IDC_INPUTBOX_EDIT               1634
 #define IDC_COPY_GRANULARITY            1635
+#define IDC_PLUGIN_ADD                  1636
+#define IDC_PLUGIN_EDIT                 1637
+#define IDC_PLUGIN_REMOVE               1638
+#define IDC_PLUGIN_TYPE                 1639
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1629,6 +1635,7 @@
 #define IDS_PLUGIN_NOT_UNPACK           44494
 #define IDS_PLUGIN_NOT_PREDIFF          44495
 #define IDS_PLUGIN_PREDIFF_ERROR        44496
+#define IDS_PLUGIN_CIRCULAR_REFERENCE   44497
 #define IDS_L2M                         44500
 #define IDS_R2M                         44501
 #define IDS_COPY_FROM_MIDDLE_R          44502

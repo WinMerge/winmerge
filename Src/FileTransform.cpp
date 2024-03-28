@@ -211,11 +211,49 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	return newstr;
 }
 
+static std::vector<PluginForFile::PipelineItem>
+ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, const wchar_t* aliasEvent, String& errorMessage, int stack = 0)
+{
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
+	if (!errorMessage.empty())
+		return pipelineResolved;
+	for (auto& item : parseResult)
+	{
+		PluginInfo* plugin = nullptr;
+		if (item.name == _T("<Automatic>") || item.name == _("<Automatic>"))
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(aliasEvent, filteredFilenames);
+		else
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
+		if (plugin)
+		{
+			if (stack > 20)
+			{
+				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), pluginPipeline);
+				return pipelineResolved;
+			}
+			String pipeline = plugin->m_pipeline;
+			for (size_t i = 0; i < 9; ++i)
+				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), (i < item.args.size()) ? item.args[i] : _T(""));
+			String args = PluginForFile::MakeArguments(item.args, {});
+			strutils::replace(pipeline, _T("${*}"), args);
+			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage, stack + 1);
+			if (!errorMessage.empty())
+				return pipelineResolved;
+			for (auto& item2 : parseResult2)
+				pipelineResolved.push_back(item2);
+		}
+		else
+			pipelineResolved.push_back(item);
+	}
+	return pipelineResolved;
+}
+
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	if (bUrl)
@@ -518,7 +556,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PREDIFF", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
@@ -656,7 +694,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
 	String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, _T(""), L"ALIAS_EDITOR_SCRIPT", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	for (auto& [pluginName, args, quoteChar] : result)

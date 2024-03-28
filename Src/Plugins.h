@@ -41,8 +41,8 @@ public:
 	PluginInfo();
 	~PluginInfo();
 
-	int LoadPlugin(const String & scriptletFilepath);
-	int MakeInfo(const String & scriptletFilepath, IDispatch *pDispatch);
+	int LoadPlugin(const String& scriptletFilepath);
+	int MakeInfo(const String& scriptletFilepath, const String& name, IDispatch *pDispatch);
 
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();
@@ -67,6 +67,7 @@ public:
 	String      m_filtersTextDefault;
 	String      m_description;
 	String      m_event;
+	String      m_pipeline;
 	bool        m_bAutomatic;
 	bool        m_bAutomaticDefault;
 	bool        m_disabled;
@@ -170,6 +171,10 @@ public:
 
 namespace plugin
 {
+
+inline const std::vector<std::wstring> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"ALIAS_PACK_UNPACK" };
+inline const std::vector<std::wstring> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF" };
+inline const std::vector<std::wstring> EditorScriptEventNames = { L"EDITOR_SCRIPT", L"ALIAS_EDITOR_SCRIPT" };
 
 /**
  * @brief Check for the presence of Windows Script

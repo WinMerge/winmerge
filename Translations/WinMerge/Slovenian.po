@@ -2086,6 +2086,15 @@ msgstr "&Ločene mape z uporabniškimi podtaki za vsako podokno"
 msgid "&Hex View"
 msgstr "16-tiški prikaz"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "KON"
 
@@ -4075,6 +4084,10 @@ msgstr "'%1' ni vtičnik preddifereja"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Med preddifiranjem datoteke '%1' z vtičnikom '%2' je prišlo do napake. Prednastavitev se ne uporablja več."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filter je uporabljen"

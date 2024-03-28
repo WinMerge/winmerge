@@ -2077,6 +2077,15 @@ msgstr "&Her panonun kullanıcı verileri klasörü ayrı olsun"
 msgid "&Hex View"
 msgstr "Onaltılık &görünüm"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "&Type:"
+msgstr ""
+
+msgid "&Name:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -3693,6 +3702,10 @@ msgstr "'%1' bir ön farklılaştırıcı eklentisi değil"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "'%1' dosyasında '%2' eklentisi ile ön farklılaştırma yapılırken bir sorun çıktı. Artık ön farklılaştırma uygulanamıyor."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Süzgeç uygulandı"
