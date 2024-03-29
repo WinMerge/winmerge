@@ -2088,6 +2088,27 @@ msgstr ""
 msgid "&Name:"
 msgstr ""
 
+msgid "Category:"
+msgstr ""
+
+msgid "Arguments required"
+msgstr ""
+
+msgid "Generate editor script"
+msgstr ""
+
+msgid "Command line:"
+msgstr ""
+
+msgid "="
+msgstr ""
+
+msgid "Script file extension:"
+msgstr ""
+
+msgid "Script body:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 

@@ -628,6 +628,14 @@
 #define IDC_PLUGIN_EDIT                 1637
 #define IDC_PLUGIN_REMOVE               1638
 #define IDC_PLUGIN_TYPE                 1639
+#define IDC_PLUGIN_TAB                  1640
+#define IDC_PLUGIN_CATEGORY             1641
+#define IDC_PLUGIN_ARGUMENTSREQUIRED    1642
+#define IDC_PLUGIN_GENERATESCRIPT       1643
+#define IDC_PLUGIN_COMMAND_LINE         1644
+#define IDC_PLUGIN_SCRIPT_FILEEXTENSION 1645
+#define IDC_PLUGIN_SCRIPT_BODY          1646
+#define IDC_PLUGIN_COMMAND_LINE_ARG     1647
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1684,7 +1692,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        287
 #define _APS_NEXT_COMMAND_VALUE         34194
-#define _APS_NEXT_CONTROL_VALUE         1635
+#define _APS_NEXT_CONTROL_VALUE         1648
 #define _APS_NEXT_SYMED_VALUE           118
 #endif
 #endif

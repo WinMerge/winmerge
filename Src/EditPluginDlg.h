@@ -24,8 +24,8 @@ class CEditPluginDlg : public CTrDialog
 public:
 	enum class PluginType { Unpacker, Prediffer, EditorScript };
 private:
-// Construction
-	void Initialize(PluginType pluginType);
+	void LoadMethod(const internal_plugin::Method& method, int index);
+	void SaveMethod(internal_plugin::Method& method, int index);
 
 public:
 // Construction
@@ -43,6 +43,13 @@ public:
 	String	m_strArguments;
 	String	m_strPluginPipeline;
 	CSuperComboBox m_ctlPluginPipeline;
+	CTabCtrl m_ctlTab;
+	String	m_strCommandline;
+	String	m_strScriptFileExtension;
+	String	m_strScriptBody;
+	String	m_strCommandlineAry[3];
+	String	m_strScriptFileExtensionAry[3];
+	String	m_strScriptBodyAry[3];
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 	
 	//}}AFX_DATA
