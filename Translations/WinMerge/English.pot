@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-03-29 08:07+0000\n"
+"POT-Creation-Date: 2024-03-30 21:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2075,13 +2075,16 @@ msgstr ""
 msgid "Edit Plugin"
 msgstr ""
 
-msgid "&Type:"
-msgstr ""
-
-msgid "&Name:"
+msgid "Plugin &Type:"
 msgstr ""
 
 msgid "Category:"
+msgstr ""
+
+msgid "Menu caption:"
+msgstr ""
+
+msgid "&Window type:"
 msgstr ""
 
 msgid "Arguments required"
@@ -2090,10 +2093,10 @@ msgstr ""
 msgid "Generate editor script"
 msgstr ""
 
-msgid "Command line:"
+msgid "="
 msgstr ""
 
-msgid "="
+msgid "Command line:"
 msgstr ""
 
 msgid "Script file extension:"

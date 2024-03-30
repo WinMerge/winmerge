@@ -41,8 +41,10 @@ public:
 	String	m_strDescription;
 	String	m_strExtensions;
 	String	m_strArguments;
+	String	m_strProcessType;
+	String	m_strMenuCaption;
+	String	m_strWindowType;
 	String	m_strPluginPipeline;
-	CSuperComboBox m_ctlPluginPipeline;
 	CTabCtrl m_ctlTab;
 	String	m_strCommandline;
 	String	m_strScriptFileExtension;
@@ -50,6 +52,8 @@ public:
 	String	m_strCommandlineAry[3];
 	String	m_strScriptFileExtensionAry[3];
 	String	m_strScriptBodyAry[3];
+	bool m_bArgumentsRequired;
+	bool m_bGenerateEditorScript;
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 	
 	//}}AFX_DATA
@@ -68,10 +72,11 @@ protected:
 	//{{AFX_MSG(CEditPluginDlg)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
+	afx_msg void OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
-	PluginType m_pluginType;
 	internal_plugin::Info& m_info;
 	bool m_userDefined;
 };

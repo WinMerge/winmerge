@@ -299,9 +299,9 @@ bool PluginInfo::TestAgainstRegList(const String& szTest) const
 	return false;
 }
 
-std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& name) const
+std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& extendedProperties, const String& name)
 {
-	for (auto& item : strutils::split(m_extendedProperties, ';'))
+	for (auto& item : strutils::split(extendedProperties, ';'))
 	{
 		auto keyvalue = strutils::split(item, '=');
 		if (keyvalue[0] == name)

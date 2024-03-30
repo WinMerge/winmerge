@@ -2082,13 +2082,16 @@ msgstr "Widok szesnastkowy"
 msgid "Edit Plugin"
 msgstr ""
 
-msgid "&Type:"
-msgstr ""
-
-msgid "&Name:"
+msgid "Plugin &Type:"
 msgstr ""
 
 msgid "Category:"
+msgstr ""
+
+msgid "Menu caption:"
+msgstr ""
+
+msgid "&Window type:"
 msgstr ""
 
 msgid "Arguments required"
@@ -2097,10 +2100,10 @@ msgstr ""
 msgid "Generate editor script"
 msgstr ""
 
-msgid "Command line:"
+msgid "="
 msgstr ""
 
-msgid "="
+msgid "Command line:"
 msgstr ""
 
 msgid "Script file extension:"

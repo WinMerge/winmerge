@@ -53,7 +53,11 @@ public:
 	 */
 	bool TestAgainstRegList(const String& szTest) const;
 
-	std::optional<StringView> GetExtendedPropertyValue(const String& name) const;
+	static std::optional<StringView> GetExtendedPropertyValue(const String& extendedProperties, const String& name);
+	std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& name) const
+	{
+		return GetExtendedPropertyValue(m_extendedProperties, name);
+	}
 
 public:
 	String      m_filepath;

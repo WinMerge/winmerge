@@ -30,7 +30,19 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 	, m_strArguments(info.m_arguments)
 	, m_strPluginPipeline(info.m_pipeline)
 {
-
+	auto menuCaption = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("MenuCaption"));
+	if (menuCaption.has_value())
+		m_strMenuCaption = menuCaption.value();
+	auto processType = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("ProcessType"));
+	if (processType.has_value())
+		m_strProcessType = processType.value();
+	auto windowType = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("PreferredWindowType"));
+	if (windowType.has_value())
+		m_strWindowType = windowType.value();
+	auto argumentsRequired = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("ArgumentsRequired"));
+	m_bArgumentsRequired = argumentsRequired.has_value();
+	auto generateEditorScript = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("GenerateEditorScript"));
+	m_bGenerateEditorScript = generateEditorScript.has_value();
 	if (info.m_unpackFile)
 		LoadMethod(*info.m_unpackFile, 0);
 	if (info.m_packFile)
@@ -78,8 +90,12 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PLUGIN_DESCRIPTION, m_strDescription);
 	DDX_Text(pDX, IDC_PLUGIN_SUPPORTED_EXTENSIONS, m_strExtensions);
 	DDX_Text(pDX, IDC_PLUGIN_ARGUMENTS, m_strArguments);
-	DDX_Control(pDX, IDC_PLUGIN_PIPELINE, m_ctlPluginPipeline);
-	DDX_CBStringExact(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
+	DDX_Text(pDX, IDC_PLUGIN_PROCESSTYPE, m_strProcessType);
+	DDX_Text(pDX, IDC_PLUGIN_MENUCAPTION, m_strMenuCaption);
+	DDX_Text(pDX, IDC_PLUGIN_WINDOWTYPE, m_strWindowType);
+	DDX_Check(pDX, IDC_PLUGIN_ARGUMENTSREQUIRED, m_bArgumentsRequired);
+	DDX_Check(pDX, IDC_PLUGIN_GENERATESCRIPT, m_bGenerateEditorScript);
+	DDX_Text(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
 	DDX_Control(pDX, IDC_PLUGIN_TAB, m_ctlTab);
 	DDX_Text(pDX, IDC_PLUGIN_COMMAND_LINE, m_strCommandline);
 	DDX_Text(pDX, IDC_PLUGIN_SCRIPT_FILEEXTENSION, m_strScriptFileExtension);
@@ -90,11 +106,31 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CEditPluginDlg)
+	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
+	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditPluginDlg message handlers
+
+void CEditPluginDlg::OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	UpdateData(true);
+	const int i = m_ctlTab.GetCurSel();
+	m_strCommandlineAry[i] = m_strCommandline;
+	m_strScriptFileExtensionAry[i] = m_strScriptFileExtension;
+	m_strScriptBodyAry[i] = m_strScriptBody;
+}
+
+void CEditPluginDlg::OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	const int i = m_ctlTab.GetCurSel();
+	m_strCommandline = m_strCommandlineAry[i];
+	m_strScriptFileExtension = m_strScriptFileExtensionAry[i];
+	m_strScriptBody = m_strScriptBodyAry[i];
+	UpdateData(false);
+}
 
 void CEditPluginDlg::OnOK()
 {
@@ -108,15 +144,18 @@ void CEditPluginDlg::OnOK()
 	m_info.m_pipeline = m_strPluginPipeline;
 
 	const int cursel = m_ctlEvent.GetCurSel();
-	if (cursel == 0 || cursel == 1 || cursel == 2)
+	if (cursel == 0 || cursel == 1)
 	{
 		SaveMethod(*m_info.m_unpackFile, 0);
 		SaveMethod(*m_info.m_packFile, 1);
-		if (cursel == 2)
-		{
-			SaveMethod(*m_info.m_unpackFolder, 2);
-			SaveMethod(*m_info.m_packFolder, 3);
-		}
+	}
+	else if (cursel == 2)
+	{
+		SaveMethod(*m_info.m_unpackFile, 0);
+		SaveMethod(*m_info.m_packFile, 1);
+		SaveMethod(*m_info.m_unpackFolder, 2);
+		SaveMethod(*m_info.m_packFolder, 3);
+		SaveMethod(*m_info.m_isFolder, 4);
 	}
 	else if (cursel == 3)
 		SaveMethod(*m_info.m_prediffFile, 0);
@@ -146,25 +185,22 @@ BOOL CEditPluginDlg::OnInitDialog()
 			m_ctlEvent.SetCurSel(i);
 	}
 
-	m_ctlPluginPipeline.SetFileControlStates(true);
-	m_ctlPluginPipeline.LoadState(
-		std::vector<const tchar_t *>{_T("Files\\Unpacker"), _T("Files\\Prediffer"), _T("Files\\EditorScript") }
-			[static_cast<int>(m_pluginType)]);
-
 	const int cursel = m_ctlEvent.GetCurSel();
-	if (cursel == 0 || cursel == 1 || cursel == 2)
+	if (cursel == 0 || cursel == 1)
 	{
-		m_ctlTab.InsertItem(0, _("UnpackFile").c_str());
-		m_ctlTab.InsertItem(1, _("PackFile").c_str());
-		if (cursel == 2)
-		{
-			m_ctlTab.InsertItem(2, _("UnpackFolder").c_str());
-			m_ctlTab.InsertItem(3, _("PackFolder").c_str());
-			m_ctlTab.InsertItem(3, _("IsFolder").c_str());
-		}
+		m_ctlTab.InsertItem(0, _T("UnpackFile"));
+		m_ctlTab.InsertItem(1, _T("PackFile"));
+	}
+	else if (cursel == 2)
+	{
+		m_ctlTab.InsertItem(0, _T("UnpackFile"));
+		m_ctlTab.InsertItem(1, _T("PackFile"));
+		m_ctlTab.InsertItem(2, _T("UnpackFolder"));
+		m_ctlTab.InsertItem(3, _T("PackFolder"));
+		m_ctlTab.InsertItem(4, _T("IsFolder"));
 	}
 	else if (cursel == 3)
-		m_ctlTab.InsertItem(0, _("PrediffFile").c_str());
+		m_ctlTab.InsertItem(0, _T("PrediffFile"));
 
 	UpdateData(FALSE);
 
