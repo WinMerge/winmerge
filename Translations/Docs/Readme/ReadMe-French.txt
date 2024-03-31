@@ -1,4 +1,4 @@
-WINMERGE
+﻿WINMERGE
 
 WinMerge est un outil en logiciel libre pour comparer et fusionner des fichiers
 sur Windows. WinMerge peut comparer des répertoires et des fichiers en présentant 
