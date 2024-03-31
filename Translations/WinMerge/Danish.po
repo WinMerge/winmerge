@@ -2571,13 +2571,13 @@ msgstr ""
 msgid "&Window type:"
 msgstr ""
 
+msgid "="
+msgstr ""
+
 msgid "Arguments required"
 msgstr ""
 
 msgid "Generate editor script"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "Command line:"

@@ -26,6 +26,7 @@ public:
 private:
 	void LoadMethod(const internal_plugin::Method& method, int index);
 	void SaveMethod(internal_plugin::Method& method, int index);
+	void UpdateControls();
 
 public:
 // Construction
@@ -49,9 +50,9 @@ public:
 	String	m_strCommandline;
 	String	m_strScriptFileExtension;
 	String	m_strScriptBody;
-	String	m_strCommandlineAry[3];
-	String	m_strScriptFileExtensionAry[3];
-	String	m_strScriptBodyAry[3];
+	String	m_strCommandlineAry[5];
+	String	m_strScriptFileExtensionAry[5];
+	String	m_strScriptBodyAry[5];
 	bool m_bArgumentsRequired;
 	bool m_bGenerateEditorScript;
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
@@ -72,6 +73,7 @@ protected:
 	//{{AFX_MSG(CEditPluginDlg)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
+	afx_msg void OnSelchangePluginType();
 	afx_msg void OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG

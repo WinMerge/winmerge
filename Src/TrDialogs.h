@@ -22,6 +22,11 @@ public:
 		dlg()->GetDlgItem(id)->EnableWindow(enabled);
 	}
 
+	void ShowDlgItem(unsigned id, bool show)
+	{
+		dlg()->GetDlgItem(id)->ShowWindow(show ? SW_SHOW : SW_HIDE);
+	}
+
 	void SetDlgItemFocus(unsigned id)
 	{
 		dlg()->GetDlgItem(id)->SetFocus();
@@ -40,6 +45,14 @@ public:
 		dlg()->SetDlgItemTextW(id, text.c_str());
 	}
 
+	void* GetDlgItemDataCurSel(unsigned id)
+	{
+		CComboBox * cbo = (CComboBox *)dlg()->GetDlgItem(id);
+		if (!cbo)
+			return nullptr;
+		return cbo->GetItemDataPtr(cbo->GetCurSel());
+	}
+
 	void SetDlgItemComboBoxList(unsigned id, const std::initializer_list<String>& list)
 	{
 		CComboBox * cbo = (CComboBox *)dlg()->GetDlgItem(id);
@@ -47,6 +60,21 @@ public:
 			return;
 		for (const auto& item : list)
 			cbo->AddString(item.c_str());
+	}
+
+	void SetDlgItemComboBoxList(unsigned id, const std::initializer_list<std::pair<String, const wchar_t*>>& list, const String& sel)
+	{
+		CComboBox * cbo = (CComboBox *)dlg()->GetDlgItem(id);
+		if (!cbo)
+			return;
+		int i = 0;
+		for (const auto& item : list)
+		{
+			cbo->AddString(item.first.c_str());
+			if (item.second == sel)
+				cbo->SetCurSel(i);
+			cbo->SetItemDataPtr(i++, reinterpret_cast<void*>(const_cast<wchar_t*>(item.second)));
+		}
 	}
 
 	String GetTitleText()

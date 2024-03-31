@@ -81,6 +81,46 @@ void CEditPluginDlg::SaveMethod(internal_plugin::Method& method, int index)
 	}
 }
 
+void CEditPluginDlg::UpdateControls()
+{
+	m_ctlTab.DeleteAllItems();
+	const int cursel = m_ctlEvent.GetCurSel();
+	if (cursel == 0 || cursel == 1)
+	{
+		m_ctlTab.InsertItem(0, _T("UnpackFile"));
+		m_ctlTab.InsertItem(1, _T("PackFile"));
+	}
+	else if (cursel == 2)
+	{
+		m_ctlTab.InsertItem(0, _T("UnpackFile"));
+		m_ctlTab.InsertItem(1, _T("PackFile"));
+		m_ctlTab.InsertItem(2, _T("UnpackFolder"));
+		m_ctlTab.InsertItem(3, _T("PackFolder"));
+		m_ctlTab.InsertItem(4, _T("IsFolder"));
+	}
+	else if (cursel == 3)
+	{
+		m_ctlTab.InsertItem(0, _T("PrediffFile"));
+	}
+	const bool unpacker = (cursel < 3);
+	const bool alias = (cursel > 3);
+	ShowDlgItem(IDC_PLUGIN_TAB, !alias);
+	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_STATIC, !alias);
+	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE, !alias);
+	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_MENU, !alias);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC, !alias);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION, !alias);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_BODY_STATIC, !alias);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_BODY, !alias);
+	ShowDlgItem(IDC_PLUGIN_PIPELINE_STATIC, alias);
+	ShowDlgItem(IDC_PLUGIN_PIPELINE, alias);
+	ShowDlgItem(IDC_PLUGIN_PIPELINE_MENU, alias);
+	ShowDlgItem(IDC_PLUGIN_WINDOWTYPE_STATIC, unpacker);
+	ShowDlgItem(IDC_PLUGIN_WINDOWTYPE, unpacker);
+	ShowDlgItem(IDC_PLUGIN_GENERATESCRIPT, unpacker);
+	Invalidate();
+}
+
 void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
@@ -106,6 +146,7 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CEditPluginDlg)
+	ON_CBN_SELCHANGE(IDC_PLUGIN_TYPE, OnSelchangePluginType)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
 	//}}AFX_MSG_MAP
@@ -113,6 +154,11 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditPluginDlg message handlers
+
+void CEditPluginDlg::OnSelchangePluginType()
+{
+	UpdateControls();
+}
 
 void CEditPluginDlg::OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult)
 {
@@ -135,15 +181,28 @@ void CEditPluginDlg::OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
 void CEditPluginDlg::OnOK()
 {
 	UpdateData(TRUE);
-
-	m_info.m_event = reinterpret_cast<wchar_t*>(m_ctlEvent.GetItemDataPtr(m_ctlEvent.GetCurSel()));
+	const int cursel = m_ctlEvent.GetCurSel();
+	m_info.m_event = reinterpret_cast<wchar_t*>(GetDlgItemDataCurSel(IDC_PLUGIN_TYPE));
 	m_info.m_name = m_strPluginName;
 	m_info.m_description = m_strDescription;
 	m_info.m_fileFilters = m_strExtensions;
 	m_info.m_arguments = m_strArguments;
 	m_info.m_pipeline = m_strPluginPipeline;
+	m_info.m_extendedProperties.clear();
+	String& extendedProperties = m_info.m_extendedProperties;
+	if (!m_strProcessType.empty())
+		extendedProperties += _T("ProcessType=") + m_strProcessType + _T(";");
+	if (!m_strMenuCaption.empty())
+		extendedProperties += _T("MenuCaption=") + m_strMenuCaption + _T(";");
+	if (!m_strWindowType.empty())
+		extendedProperties += _T("PreferredWindowType=") + String(reinterpret_cast<wchar_t*>(GetDlgItemDataCurSel(IDC_PLUGIN_WINDOWTYPE))) + _T(";");
+	if (m_bArgumentsRequired)
+		extendedProperties += _T("ArgumentsRequired;");
+	if (m_bGenerateEditorScript)
+		extendedProperties += _T("GenerateEditorScript;");
+	if (!m_info.m_extendedProperties.empty() && extendedProperties.back() == ';')
+		extendedProperties.pop_back();
 
-	const int cursel = m_ctlEvent.GetCurSel();
 	if (cursel == 0 || cursel == 1)
 	{
 		SaveMethod(*m_info.m_unpackFile, 0);
@@ -174,33 +233,27 @@ BOOL CEditPluginDlg::OnInitDialog()
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("EditPluginDlg"), false);
 
 	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE,
-		{ _("URL Handler"), _("File Unpacker"), _("File or Folder Unpacker"), _("Prediffer"), _("Unpacker alias"), _("Prediffer alias"), _("Editor script alias")});
-	int i = 0;
-	for (auto* event : { L"URL_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"PREDIFF_FILE", L"ALIAS_PACK_UNPACK", L"ALIAS_PRDIFF", L"ALIAS_EDITOR_SCRIPT"})
-		m_ctlEvent.SetItemDataPtr(i++, const_cast<wchar_t*>(event));
-	const int count = m_ctlEvent.GetCount();
-	for (i = 0; i < count; i++)
-	{
-		if (m_strEvent == reinterpret_cast<wchar_t*>(m_ctlEvent.GetItemDataPtr(i)))
-			m_ctlEvent.SetCurSel(i);
-	}
+		{ 
+			{ _("URL Handler"), L"URL_PACK_UNPACK" },
+			{ _("File Unpacker"), L"FILE_PACK_UNPACK" }, 
+			{ _("File or Folder Unpacker"), L"FILE_FOLDER_PACK_UNPACK" },
+			{ _("Prediffer"), L"PREDIFF_FILE" }, 
+			{ _("Alias for Unpacker"), L"ALIAS_PACK_UNPACK" },
+			{ _("Alias for Prediffer"), L"ALIAS_PRDIFF" },
+			{ _("Alias for Editor script"), L"ALIAS_EDITOR_SCRIPT" }
+		}, m_strEvent);
 
-	const int cursel = m_ctlEvent.GetCurSel();
-	if (cursel == 0 || cursel == 1)
-	{
-		m_ctlTab.InsertItem(0, _T("UnpackFile"));
-		m_ctlTab.InsertItem(1, _T("PackFile"));
-	}
-	else if (cursel == 2)
-	{
-		m_ctlTab.InsertItem(0, _T("UnpackFile"));
-		m_ctlTab.InsertItem(1, _T("PackFile"));
-		m_ctlTab.InsertItem(2, _T("UnpackFolder"));
-		m_ctlTab.InsertItem(3, _T("PackFolder"));
-		m_ctlTab.InsertItem(4, _T("IsFolder"));
-	}
-	else if (cursel == 3)
-		m_ctlTab.InsertItem(0, _T("PrediffFile"));
+	SetDlgItemComboBoxList(IDC_PLUGIN_WINDOWTYPE,
+		{ 
+			{ _("Unspecified"), L"" },
+			{ _("Text"), L"Text" },
+			{ _("Table"), L"Table" }, 
+			{ _("Binary"), L"Binary" },
+			{ _("Image"), L"Image" }, 
+			{ _("Webpage"), L"Webpage" },
+		}, m_strWindowType);
+
+	UpdateControls();
 
 	UpdateData(FALSE);
 
