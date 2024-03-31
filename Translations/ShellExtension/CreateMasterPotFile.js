@@ -73,7 +73,7 @@ function GetStringsFromRcFile(sRcFilePath) {
       var sContext = "";
       
       if (sLine === "STRINGTABLE") { //STRINGTABLE...
-        iBlockType = STRINGTABLE_BLOCK
+        iBlockType = STRINGTABLE_BLOCK;
       } else if (sLine === "BEGIN") { //BEGIN...
         //IGNORE FOR SPEEDUP!
       } else if (sLine === "END") { //END...
@@ -113,7 +113,7 @@ function GetStringsFromRcFile(sRcFilePath) {
                     sComment = oMatch3[1].replace(/^\s+|\s+$/g, "");
                   } else if (oMatch4) { //If found a context for the translation...
                     sContext = oMatch4[1].replace(/^\s+|\s+$/g, "");
-                    sComment = sContext
+                    sComment = sContext;
                   }
                 }
               }
