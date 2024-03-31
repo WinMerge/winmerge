@@ -42,6 +42,7 @@ Localization:
   Jordi Vilar <jvilar@users.sourceforge.net>
   Domènec <domenec72 at gmail.com>
   Josep Maria Antolín Segura 
+  Pere Orga <pere at orga.cat>
 
 * Simplified Chinese:
   Liaobin <liaobin@jite. net>
