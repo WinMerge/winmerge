@@ -150,7 +150,7 @@ var MergeApp = {
     return PluginSettings[ary2[0]][ary1[1]];
   },
   "SaveOption": function (key, value) {
-    var t = typeof value === "string" ? "REG_SZ" : "REG_DWORD";
+    //var t = typeof value === "string" ? "REG_SZ" : "REG_DWORD";
   },
   "Translate": function (text) {
     return text;
@@ -437,9 +437,6 @@ function EditorAddinTest() {
 }
 
 function InsertDateTimeTest() {
-  var changed = false;
-  var text = "";
-  var size;
   var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\insert datetime.sct");
   printPluginInfo(p);
 
