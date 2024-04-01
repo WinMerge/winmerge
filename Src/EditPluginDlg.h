@@ -73,6 +73,8 @@ protected:
 	//{{AFX_MSG(CEditPluginDlg)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
+	afx_msg void OnBnClickedPipelineMenu();
+	afx_msg void OnBnClickedCommandLineMenu();
 	afx_msg void OnSelchangePluginType();
 	afx_msg void OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult);

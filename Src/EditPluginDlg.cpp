@@ -104,6 +104,7 @@ void CEditPluginDlg::UpdateControls()
 	}
 	const bool unpacker = (cursel < 3);
 	const bool alias = (cursel > 3);
+	const bool urlhandler = (cursel == 0);
 	ShowDlgItem(IDC_PLUGIN_TAB, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_STATIC, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE, !alias);
@@ -118,6 +119,8 @@ void CEditPluginDlg::UpdateControls()
 	ShowDlgItem(IDC_PLUGIN_WINDOWTYPE_STATIC, unpacker);
 	ShowDlgItem(IDC_PLUGIN_WINDOWTYPE, unpacker);
 	ShowDlgItem(IDC_PLUGIN_GENERATESCRIPT, unpacker);
+	ShowDlgItem(IDC_PLUGIN_MENUCAPTION_STATIC, !urlhandler);
+	ShowDlgItem(IDC_PLUGIN_MENUCAPTION, !urlhandler);
 	Invalidate();
 }
 
@@ -146,6 +149,8 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	//{{AFX_MSG_MAP(CEditPluginDlg)
+	ON_BN_CLICKED(IDC_PLUGIN_PIPELINE_MENU, OnBnClickedPipelineMenu)
+	ON_BN_CLICKED(IDC_PLUGIN_COMMAND_LINE_MENU, OnBnClickedCommandLineMenu)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_TYPE, OnSelchangePluginType)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
@@ -154,6 +159,14 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CEditPluginDlg message handlers
+
+void CEditPluginDlg::OnBnClickedPipelineMenu()
+{
+}
+
+void CEditPluginDlg::OnBnClickedCommandLineMenu()
+{
+}
 
 void CEditPluginDlg::OnSelchangePluginType()
 {
