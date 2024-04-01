@@ -1324,6 +1324,72 @@ msgstr "Størrelse"
 msgid "&Load Project..."
 msgstr ""
 
+msgid "${*} - All arguments"
+msgstr ""
+
+msgid "${1} - The first argument"
+msgstr ""
+
+msgid "${2} - The second argument"
+msgstr ""
+
+msgid "${3} - The third argument"
+msgstr ""
+
+msgid "${4} - The fourth argument"
+msgstr ""
+
+msgid "${5} - The fifth argument"
+msgstr ""
+
+msgid "${6} - The sixth argument"
+msgstr ""
+
+msgid "${7} - The seventh argument"
+msgstr ""
+
+msgid "${8} - The eighth argument"
+msgstr ""
+
+msgid "${9} - The ninth argument"
+msgstr ""
+
+msgid "${SRC_FILE} - Source file"
+msgstr ""
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr ""
+
+msgid "${SRC_URL} - Source URL"
+msgstr ""
+
+msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
+msgstr ""
+
+msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
+msgstr ""
+
+msgid "${DST_FILE} - Destination file"
+msgstr ""
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr ""
+
+msgid "${DST_URL} - Destination URL"
+msgstr ""
+
+msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
+msgstr ""
+
+msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
+msgstr ""
+
+msgid "${WINMERGE_HOME} - WinMerge Home Directory"
+msgstr ""
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "Om WinMerge"

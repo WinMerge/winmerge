@@ -1185,6 +1185,51 @@ BEGIN
     END
 END
 
+IDR_POPUP_PLUGIN_PIPELINE_MENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "${*} - All arguments",        ID_PLUGIN_PIPELINE_ARGALL
+        MENUITEM "${1} - The first argument",   ID_PLUGIN_PIPELINE_ARG1
+        MENUITEM "${2} - The second argument",  ID_PLUGIN_PIPELINE_ARG2
+        MENUITEM "${3} - The third argument",   ID_PLUGIN_PIPELINE_ARG3
+        MENUITEM "${4} - The fourth argument",  ID_PLUGIN_PIPELINE_ARG4
+        MENUITEM "${5} - The fifth argument",   ID_PLUGIN_PIPELINE_ARG5
+        MENUITEM "${6} - The sixth argument",   ID_PLUGIN_PIPELINE_ARG6
+        MENUITEM "${7} - The seventh argument", ID_PLUGIN_PIPELINE_ARG7
+        MENUITEM "${8} - The eighth argument",  ID_PLUGIN_PIPELINE_ARG8
+        MENUITEM "${9} - The ninth argument",   ID_PLUGIN_PIPELINE_ARG9
+    END
+END
+
+IDR_POPUP_PLUGIN_COMMAND_LINE_MENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "${SRC_FILE} - Source file",   ID_PLUGIN_COMMAND_LINE_SRC_FILE
+        MENUITEM "${SRC_FOLDER} - Source folder", ID_PLUGIN_COMMAND_LINE_SRC_FOLDER
+        MENUITEM "${SRC_URL} - Source URL",     ID_PLUGIN_COMMAND_LINE_SRC_URL
+        MENUITEM "${SRC_URL_PROTOCOL} - Source URL Protocol", ID_PLUGIN_COMMAND_LINE_SRC_URL_PROTOCOL
+        MENUITEM "${SRC_URL_SUFFIX} - Source URL Suffix", ID_PLUGIN_COMMAND_LINE_SRC_URL_SUFFIX
+        MENUITEM "${DST_FILE} - Destination file", ID_PLUGIN_COMMAND_LINE_DST_FILE
+        MENUITEM "${DST_FOLDER} - Destination folder", ID_PLUGIN_COMMAND_LINE_DST_FOLDER
+        MENUITEM "${DST_URL} - Destination URL", ID_PLUGIN_COMMAND_LINE_DST_URL
+        MENUITEM "${DST_URL_PROTOCOL} - Destination URL Protocol", ID_PLUGIN_COMMAND_LINE_DST_URL_PROTOCOL
+        MENUITEM "${DST_URL_SUFFIX} - Destination URL Suffix", ID_PLUGIN_COMMAND_LINE_DST_URL_SUFFIX
+        MENUITEM "${WINMERGE_HOME} - WinMerge Home Directory", ID_PLUGIN_COMMAND_LINE_WINMERGE_HOME
+        MENUITEM "${SCRIPT_FILE} - Script file", ID_PLUGIN_COMMAND_LINE_SCRIPT_FILE
+        MENUITEM "${*} - All arguments",        ID_PLUGIN_COMMAND_LINE_ARGALL
+        MENUITEM "${1} - The first argument",   ID_PLUGIN_COMMAND_LINE_ARG1
+        MENUITEM "${2} - The second argument",  ID_PLUGIN_COMMAND_LINE_ARG2
+        MENUITEM "${3} - The third argument",   ID_PLUGIN_COMMAND_LINE_ARG3
+        MENUITEM "${4} - The fourth argument",  ID_PLUGIN_COMMAND_LINE_ARG4
+        MENUITEM "${5} - The fifth argument",   ID_PLUGIN_COMMAND_LINE_ARG5
+        MENUITEM "${6} - The sixth argument",   ID_PLUGIN_COMMAND_LINE_ARG6
+        MENUITEM "${7} - The seventh argument", ID_PLUGIN_COMMAND_LINE_ARG7
+        MENUITEM "${8} - The eighth argument",  ID_PLUGIN_COMMAND_LINE_ARG8
+        MENUITEM "${9} - The ninth argument",   ID_PLUGIN_COMMAND_LINE_ARG9
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //

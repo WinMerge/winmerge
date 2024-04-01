@@ -12,6 +12,7 @@
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 #include "unicoder.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -162,10 +163,26 @@ END_MESSAGE_MAP()
 
 void CEditPluginDlg::OnBnClickedPipelineMenu()
 {
+	CMenu menu;
+	menu.LoadMenu(IDR_POPUP_PLUGIN_PIPELINE_MENU);
+	theApp.TranslateMenu(menu.m_hMenu);
+	CRect rcButton;
+	GetDlgItem(IDC_PLUGIN_PIPELINE_MENU)->GetWindowRect(&rcButton);
+	CMenu *pPopup = menu.GetSubMenu(0);
+	if (pPopup)
+		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, rcButton.left, rcButton.top, this);
 }
 
 void CEditPluginDlg::OnBnClickedCommandLineMenu()
 {
+	CMenu menu;
+	menu.LoadMenu(IDR_POPUP_PLUGIN_COMMAND_LINE_MENU);
+	theApp.TranslateMenu(menu.m_hMenu);
+	CRect rcButton;
+	GetDlgItem(IDC_PLUGIN_COMMAND_LINE_MENU)->GetWindowRect(&rcButton);
+	CMenu *pPopup = menu.GetSubMenu(0);
+	if (pPopup)
+		pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, rcButton.left, rcButton.top, this);
 }
 
 void CEditPluginDlg::OnSelchangePluginType()
