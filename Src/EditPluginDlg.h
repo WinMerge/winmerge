@@ -27,6 +27,8 @@ private:
 	void LoadMethod(const internal_plugin::Method& method, int index);
 	void SaveMethod(internal_plugin::Method& method, int index);
 	void UpdateControls();
+	void ShowMenu(unsigned menuid, unsigned ctlid);
+	void InsertMacro(unsigned menuid, unsigned id, unsigned ctlid);
 
 public:
 // Construction
@@ -75,6 +77,8 @@ protected:
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnBnClickedPipelineMenu();
 	afx_msg void OnBnClickedCommandLineMenu();
+	afx_msg void OnPluginPipelineMenu(unsigned id);
+	afx_msg void OnPluginCommandlineMenu(unsigned id);
 	afx_msg void OnSelchangePluginType();
 	afx_msg void OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult);

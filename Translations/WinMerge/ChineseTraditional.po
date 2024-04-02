@@ -1369,10 +1369,10 @@ msgstr ""
 msgid "${SRC_URL} - Source URL"
 msgstr ""
 
-msgid "${SRC_URL_PROTOCOL} - Source URL Protocol"
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
 msgstr ""
 
-msgid "${SRC_URL_SUFFIX} - Source URL Suffix"
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
 msgstr ""
 
 msgid "${DST_FILE} - Destination file"
@@ -1384,13 +1384,13 @@ msgstr ""
 msgid "${DST_URL} - Destination URL"
 msgstr ""
 
-msgid "${DST_URL_PROTOCOL} - Destination URL Protocol"
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
 msgstr ""
 
-msgid "${DST_URL_SUFFIX} - Destination URL Suffix"
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
 msgstr ""
 
-msgid "${WINMERGE_HOME} - WinMerge Home Directory"
+msgid "${WINMERGE_HOME} - WinMerge home directory"
 msgstr ""
 
 msgid "${SCRIPT_FILE} - Script file"
