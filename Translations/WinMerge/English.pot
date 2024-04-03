@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-04-02 21:04+0000\n"
+"POT-Creation-Date: 2024-04-03 21:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2154,6 +2154,9 @@ msgid "&Window type:"
 msgstr ""
 
 msgid "="
+msgstr ""
+
+msgid "Automatic"
 msgstr ""
 
 msgid "Arguments required"

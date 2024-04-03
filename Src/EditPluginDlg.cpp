@@ -33,6 +33,7 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 	, m_strExtensions(info.m_fileFilters)
 	, m_strArguments(info.m_arguments)
 	, m_strPluginPipeline(info.m_pipeline)
+	, m_bIsAutomatic(info.m_isAutomatic)
 {
 	auto menuCaption = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("MenuCaption"));
 	if (menuCaption.has_value())
@@ -243,6 +244,7 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PLUGIN_PROCESSTYPE, m_strProcessType);
 	DDX_Text(pDX, IDC_PLUGIN_MENUCAPTION, m_strMenuCaption);
 	DDX_Text(pDX, IDC_PLUGIN_WINDOWTYPE, m_strWindowType);
+	DDX_Check(pDX, IDC_PLUGIN_AUTOMATIC, m_bIsAutomatic);
 	DDX_Check(pDX, IDC_PLUGIN_ARGUMENTSREQUIRED, m_bArgumentsRequired);
 	DDX_Check(pDX, IDC_PLUGIN_GENERATESCRIPT, m_bGenerateEditorScript);
 	DDX_Text(pDX, IDC_PLUGIN_PIPELINE, m_strPluginPipeline);
@@ -263,6 +265,7 @@ BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_TYPE, OnSelchangePluginType)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
+	ON_WM_CTLCOLOR()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -320,6 +323,7 @@ void CEditPluginDlg::OnOK()
 	m_info.m_name = m_strPluginName;
 	m_info.m_description = m_strDescription;
 	m_info.m_fileFilters = m_strExtensions;
+	m_info.m_isAutomatic = m_bIsAutomatic;
 	m_info.m_arguments = m_strArguments;
 	m_info.m_pipeline = m_strPluginPipeline;
 	m_info.m_extendedProperties.clear();
@@ -393,5 +397,15 @@ BOOL CEditPluginDlg::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+HBRUSH CEditPluginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	if (nCtlColor == CTLCOLOR_STATIC)
+	{
+		pDC->SetBkMode(TRANSPARENT);
+		return(HBRUSH) ::GetStockObject(HOLLOW_BRUSH);
+	}
+	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 

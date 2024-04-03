@@ -55,6 +55,7 @@ public:
 	String	m_strCommandlineAry[5];
 	String	m_strScriptFileExtensionAry[5];
 	String	m_strScriptBodyAry[5];
+	bool m_bIsAutomatic;
 	bool m_bArgumentsRequired;
 	bool m_bGenerateEditorScript;
 	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
@@ -75,6 +76,7 @@ protected:
 	//{{AFX_MSG(CEditPluginDlg)
 	virtual void OnOK();
 	virtual BOOL OnInitDialog() override;
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnBnClickedPipelineMenu();
 	afx_msg void OnBnClickedCommandLineMenu();
 	afx_msg void OnPluginPipelineMenu(unsigned id);

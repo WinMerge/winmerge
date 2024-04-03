@@ -2170,6 +2170,9 @@ msgstr ""
 msgid "="
 msgstr ""
 
+msgid "Automatic"
+msgstr ""
+
 msgid "Arguments required"
 msgstr ""
 

@@ -1231,6 +1231,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -2442,9 +2443,10 @@ BEGIN
     LTEXT           "&Plugin Pipeline:",IDC_PLUGIN_PIPELINE_STATIC,8,140,80,10
     EDITTEXT        IDC_PLUGIN_PIPELINE,92,140,208,12,ES_AUTOHSCROLL
     PUSHBUTTON      "=",IDC_PLUGIN_PIPELINE_MENU,300,140,12,12
-    CONTROL         "Arguments required",IDC_PLUGIN_ARGUMENTSREQUIRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,156,304,10
+    CONTROL         "Automatic",IDC_PLUGIN_AUTOMATIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,156,304,10
+    CONTROL         "Arguments required",IDC_PLUGIN_ARGUMENTSREQUIRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,168,304,10
     CONTROL         "Generate editor script",IDC_PLUGIN_GENERATESCRIPT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,172,304,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,180,304,10
     CONTROL         "",IDC_PLUGIN_TAB,"SysTabControl32",0x0,4,192,312,84
     LTEXT           "Command line:",IDC_PLUGIN_COMMAND_LINE_STATIC,8,212,80,10
     EDITTEXT        IDC_PLUGIN_COMMAND_LINE,92,212,208,12,ES_AUTOHSCROLL
@@ -3211,18 +3213,19 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 100, 0,
     100, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 100,
     0, 0, 0, 0,
     0, 0, 100, 0,
-    0, 0, 0, 0,
-    0, 0, 100, 0
     100, 0, 0, 0,
-    0, 0, 100, 100,
     0, 0, 0, 0,
     0, 0, 100, 0,
     0, 0, 0, 0,
     0, 0, 100, 100,
     100, 100, 0, 0,
-    100, 100, 0, 0,
+    100, 100, 0, 0
 END
 
 IDD_PLUGINS_LIST AFX_DIALOG_LAYOUT
