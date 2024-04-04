@@ -36,13 +36,13 @@ msgid "Copy from Middle"
 msgstr "Copia del mig"
 
 msgid "Copy fro&m Right\tAlt+Shift+Left"
-msgstr "Copia des de la dret&a\tAlt+Màj.+Esquerra"
+msgstr "Copia des de la dret&a\tAlt+Maj+Esquerra"
 
 msgid "Cop&y to Left\tAlt+Left"
 msgstr "Copia a l'&esquerra\tAlt+Esquerra"
 
 msgid "Copy &from Left\tAlt+Shift+Right"
-msgstr "Copia des de l'es&querra\tAlt+Màj.+Dreta"
+msgstr "Copia des de l'es&querra\tAlt+Maj+Dreta"
 
 msgid "Copy Selected Line(s) to Middle"
 msgstr "Copia les línies seleccionades al mig"
@@ -101,13 +101,13 @@ msgid "< Empty >"
 msgstr "< Buit >"
 
 msgid "&Go to...\tCtrl+G"
-msgstr "&Ves a...\tCtrl+G"
+msgstr "&Ves a...\tControl+G"
 
 msgid "Go to Moved Line Between Left and Middle\tCtrl+Shift+G"
-msgstr "Ves a la línia desplaçada entre l'esquerra i el mig\tCtrl+Màj.+G"
+msgstr "Ves a la línia desplaçada entre l'esquerra i el mig\tControl+Maj+G"
 
 msgid "Go to Moved Line Between Middle and Right\tCtrl+Alt+G"
-msgstr "Ves a la línia desplaçada entre el mig i la dreta\tCtrl+Alt+G"
+msgstr "Ves a la línia desplaçada entre el mig i la dreta\tControl+Alt+G"
 
 #, c-format
 msgid "Op&en"
@@ -117,7 +117,7 @@ msgid "With &Registered Application"
 msgstr "Amb l'aplicació &registrada"
 
 msgid "With &External Editor\tCtrl+Alt+E"
-msgstr "Amb l'editor &extern\tCtrl+Alt+E"
+msgstr "Amb l'editor &extern\tControl+Alt+E"
 
 msgid "&With..."
 msgstr "A&mb..."
@@ -169,19 +169,19 @@ msgstr "Pàgina següe&nt"
 
 #, c-format
 msgid "&Active Pane"
-msgstr "Plafó &actiu"
+msgstr "Subfinestra &activa"
 
 msgid "Rotate &Right 90deg"
 msgstr "Gira a la &dreta 90 graus"
 
 msgid "Rotate &Left 90deg"
-msgstr "Gira a l'&Esquerra 90 graus"
+msgstr "Gira a l'&esquerra 90 graus"
 
 msgid "Flip V&ertically"
-msgstr "Voltejar &Verticalment"
+msgstr "Voltejar &verticalment"
 
 msgid "Flip H&orizontally"
-msgstr "Volteja &Horitzontalment"
+msgstr "Volteja &horitzontalment"
 
 #, c-format
 msgid "&Zoom"
@@ -193,16 +193,16 @@ msgstr "25%"
 
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "A&propa\tCtrl++"
+msgstr "A&propa\tControl++"
 
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "All&unya\tCtrl+-"
+msgstr "All&unya\tControl+-"
 
 #. Zoom to normal
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "Zoom &Normal\tCtrl+*"
+msgstr "Zoom &Normal\tControl+*"
 
 #, c-format
 msgid "&Overlay"
@@ -336,7 +336,7 @@ msgstr "Nou (&3 subfinestres)"
 
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "&Obre...\tCtrl+O"
+msgstr "&Obre...\tControl+O"
 
 msgid "Open Conflic&t File..."
 msgstr "Obre un fitxer amb conflic&tes..."
@@ -346,7 +346,7 @@ msgstr "Obre el porta-reta&lls"
 
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "Obre un pro&jecte...\tCtrl+J"
+msgstr "Obre un pro&jecte...\tControl+J"
 
 #, c-format
 msgid "Sa&ve Project..."
@@ -361,7 +361,7 @@ msgid "Recent F&iles Or Folders"
 msgstr "Fitxers i &carpetes recents"
 
 msgid "E&xit\tCtrl+Q"
-msgstr "&Surt\tCtrl+Q"
+msgstr "&Surt\tControl+Q"
 
 #, c-format
 msgid "&Edit"
@@ -369,7 +369,7 @@ msgstr "E&dita"
 
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "Engan&xa\tCtrl+V"
+msgstr "Engan&xa\tControl+V"
 
 #, c-format
 msgid "&Options..."
@@ -448,7 +448,7 @@ msgid "&Window"
 msgstr "Fi&nestra"
 
 msgid "Cl&ose\tCtrl+W"
-msgstr "&Tanca\tCtrl+W"
+msgstr "&Tanca\tControl+W"
 
 #, c-format
 msgid "Clo&se All"
@@ -520,7 +520,7 @@ msgstr "Codificació de caràcters del &fitxer..."
 
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Selecciona-ho &tot\tCtrl+A"
+msgstr "Selecciona-ho &tot\tControl+A"
 
 #, c-format
 msgid "Show &Identical Items"
@@ -630,7 +630,7 @@ msgstr "Actualit&za\tF5"
 
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Actualitza &seleccionats\tCtrl+F5"
+msgstr "Actualitza &seleccionats\tControl+F5"
 
 #, c-format
 msgid "&Merge"
@@ -686,7 +686,7 @@ msgstr "&Edita amb el desempaquetador..."
 
 #, c-format
 msgid "&Save\tCtrl+S"
-msgstr "&Desa\tCtrl+S"
+msgstr "&Desa\tControl+S"
 
 #, c-format
 msgid "Sav&e"
@@ -721,7 +721,7 @@ msgid "Save &Right As..."
 msgstr "Desa la d&reta com..."
 
 msgid "&Print...\tCtrl+P"
-msgstr "&Imprimeix...\tCtrl+P"
+msgstr "&Imprimeix...\tControl+P"
 
 msgid "Page Set&up..."
 msgstr "Configuració de la pàgina..."
@@ -738,7 +738,7 @@ msgid "Mer&ge Mode\tF9"
 msgstr "&Mode de combinació\tF9"
 
 msgid "Reloa&d\tCtrl+F5"
-msgstr "Recarrega\tCtrl+F5"
+msgstr "Recarrega\tControl+F5"
 
 #, c-format
 msgid "Reco&mpare As"
@@ -746,31 +746,31 @@ msgstr "Torna a comparar com"
 
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "&Desfés\tCtrl+Z"
+msgstr "&Desfés\tControl+Z"
 
 #, c-format
 msgid "&Redo\tCtrl+Y"
-msgstr "Re&fés\tCtrl+Y"
+msgstr "Re&fés\tControl+Y"
 
 #, c-format
 msgid "Cu&t\tCtrl+X"
-msgstr "&Retalla\tCtrl+X"
+msgstr "&Retalla\tControl+X"
 
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "C&opia\tCtrl+C"
+msgstr "C&opia\tControl+C"
 
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "&Cerca...\tCtrl+F"
+msgstr "&Cerca...\tControl+F"
 
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
-msgstr "Subst&itueix...\tCtrl+H"
+msgstr "Subst&itueix...\tControl+H"
 
 #, c-format
 msgid "&Marker...\tCtrl+Shift+M"
-msgstr "&Marcadors...\tCtrl+Màj.+M"
+msgstr "&Marcadors...\tControl+Maj+M"
 
 #, c-format
 msgid "Advanced"
@@ -778,7 +778,7 @@ msgstr "Avançat"
 
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "&Copia amb els números de línia\tCtrl+Màj.+C"
+msgstr "&Copia amb els números de línia\tControl+Maj+C"
 
 #, c-format
 msgid "&Bookmarks"
@@ -786,7 +786,7 @@ msgstr "&Punts d'interès"
 
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "&Activa/desactiva el punt d'interès\tCtrl+F2"
+msgstr "&Activa/desactiva el punt d'interès\tControl+F2"
 
 #, c-format
 msgid "&Next Bookmark\tF2"
@@ -794,7 +794,7 @@ msgstr "&Següent punt d'interès\tF2"
 
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "&Punt d'interès previ\tMàj.+F2"
+msgstr "&Punt d'interès previ\tMaj+F2"
 
 #, c-format
 msgid "&Clear All Bookmarks"
@@ -838,7 +838,7 @@ msgstr "&9 línies"
 
 #, c-format
 msgid "&Toggle All and 0-9 Lines\tCtrl+D"
-msgstr "Intercanvia entre totes i les línies 0-9\tCtrl+D"
+msgstr "Intercanvia entre totes i les línies 0-9\tControl+D"
 
 msgid "&Invert (Hide Different Lines)"
 msgstr "&Inverteix (Amaga les línies diferents)"
@@ -887,11 +887,11 @@ msgstr "Subfinestra d'&ubicació"
 
 #, c-format
 msgid "Ne&xt Conflict\tAlt+Shift+Down"
-msgstr "&Conflicte següent\tAlt+Màj.+Avall"
+msgstr "&Conflicte següent\tAlt+Maj+Avall"
 
 #, c-format
 msgid "Pre&vious Conflict\tAlt+Shift+Up"
-msgstr "Con&flicte anterior\tAlt+Màj.+Amunt"
+msgstr "Con&flicte anterior\tAlt+Maj+Amunt"
 
 #, c-format
 msgid "A&dvanced"
@@ -903,7 +903,7 @@ msgstr "Diferència següent entre l'esquerra i el mig\tAlt+1"
 
 #, c-format
 msgid "Previous Difference Between Left And Middle\tAlt+Shift+1"
-msgstr "Diferència anterior entre l'esquerra i el mig\tAlt+Màj.+1"
+msgstr "Diferència anterior entre l'esquerra i el mig\tAlt+Maj+1"
 
 #, c-format
 msgid "Next Difference Between Left and Right\tAlt+2"
@@ -911,7 +911,7 @@ msgstr "Diferència següent entre l'esquerra i la dreta\tAlt+2"
 
 #, c-format
 msgid "Previous Difference Between Left And Right\tAlt+Shift+2"
-msgstr "Diferència anterior entre l'esquerra i la dreta\tAlt+Màj.+2"
+msgstr "Diferència anterior entre l'esquerra i la dreta\tAlt+Maj+2"
 
 #, c-format
 msgid "Next Difference Between Middle and Right\tAlt+3"
@@ -919,7 +919,7 @@ msgstr "Diferència següent entre el mig i la dreta\tAlt+3"
 
 #, c-format
 msgid "Previous Difference Between Middle And Right\tAlt+Shift+3"
-msgstr "Diferència anterior entre el mig i la dreta\tAlt+Màj.+3"
+msgstr "Diferència anterior entre el mig i la dreta\tAlt+Maj+3"
 
 #, c-format
 msgid "Next Left Only Difference\tAlt+7"
@@ -927,7 +927,7 @@ msgstr "Diferència següent de només l'esquerra\tAlt+7"
 
 #, c-format
 msgid "Previous Left Only Difference\tAlt+Shift+7"
-msgstr "Diferència anterior de només l'esquerra\tAlt+Màj.+7"
+msgstr "Diferència anterior de només l'esquerra\tAlt+Maj+7"
 
 #, c-format
 msgid "Next Middle Only Difference\tAlt+8"
@@ -935,7 +935,7 @@ msgstr "Diferència següent de només el mig\tAlt+8"
 
 #, c-format
 msgid "Previous Middle Only Difference\tAlt+Shift+8"
-msgstr "Diferència anterior de només el mig\tAlt+Màj.+8"
+msgstr "Diferència anterior de només el mig\tAlt+Maj+8"
 
 #, c-format
 msgid "Next Right Only Difference\tAlt+9"
@@ -943,7 +943,7 @@ msgstr "Diferència següent de només la dreta\tAlt+9"
 
 #, c-format
 msgid "Previous Right Only Difference\tAlt+Shift+9"
-msgstr "Diferència anterior de només la dreta\tAlt+Màj.+9"
+msgstr "Diferència anterior de només la dreta\tAlt+Maj+9"
 
 msgid "Copy from &Left to"
 msgstr "Copia de l'&esquerra a"
@@ -977,17 +977,17 @@ msgstr "Copia les línies seleccionades de la dreta a"
 
 #, c-format
 msgid "Copy from Left\tAlt+Shift+Right"
-msgstr "Copia des de l'esquerra\tAlt+Màj.+Dreta"
+msgstr "Copia des de l'esquerra\tAlt+Maj+Dreta"
 
 #, c-format
 msgid "Copy from Right\tAlt+Shift+Left"
-msgstr "Copia des de la dreta\tAlt+Màj.+Esquerra"
+msgstr "Copia des de la dreta\tAlt+Maj+Esquerra"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "Copia a la dreta i a&vança\tCtrl+Alt+Dreta"
+msgstr "Copia a la dreta i a&vança\tControl+Alt+Dreta"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "Copia a l'esquerra i avan&ça\tCtrl+Alt+Esquerra"
+msgstr "Copia a l'esquerra i avan&ça\tControl+Alt+Esquerra"
 
 #, c-format
 msgid "Copy &All to Right"
@@ -998,7 +998,7 @@ msgid "Cop&y All to Left"
 msgstr "Copia-ho t&ot a l'esquerra"
 
 msgid "A&uto Merge\tCtrl+Alt+M"
-msgstr "Combina a&utomàticament\tCtrl+Alt+M"
+msgstr "Combina a&utomàticament\tControl+Alt+M"
 
 #, c-format
 msgid "Add &Synchronization Point\tAlt+S"
@@ -1395,7 +1395,7 @@ msgid "About WinMerge"
 msgstr "Quant al WinMerge"
 
 msgid "Visit the WinMerge Homepage!"
-msgstr "Visiteu la pàgina web del WinMerge!"
+msgstr "Visiteu la pàgina web del WinMerge."
 
 #, c-format
 msgid "OK"
@@ -1466,7 +1466,7 @@ msgstr " Fitxer: Connector Prediffer"
 
 #, c-format
 msgid " File: Unpacker Plugin"
-msgstr " Fitxer: Connector de desempaquetament"
+msgstr " Fitxer: Connector desempaquetador"
 
 #, c-format
 msgid "Se&lect..."
@@ -1701,7 +1701,7 @@ msgstr "Text mogut seleccionat:"
 
 #, c-format
 msgid "Same As The Next (3 panes):"
-msgstr "Igual que el següent (3 panells):"
+msgstr "Igual que el següent (3 subfinestres):"
 
 #, c-format
 msgid "Same As The Next (Selected):"
@@ -2618,7 +2618,7 @@ msgid "&User data folder location:"
 msgstr "&Ubicació de la carpeta de dades de l'usuari:"
 
 msgid "&Separate user data folders for each pane"
-msgstr "&Separa les carpetes de dades d'usuari per a cada panell"
+msgstr "&Separa les carpetes de dades d'usuari per a cada subfinestra"
 
 #, c-format
 msgid "&Hex View"
@@ -2693,7 +2693,7 @@ msgid ""
 "New Documents (Ctrl+N)"
 msgstr ""
 "\n"
-"Nous documents (Ctrl+N)"
+"Nous documents (Control+N)"
 
 #, c-format
 msgid ""
@@ -2701,7 +2701,7 @@ msgid ""
 "Open (Ctrl+O)"
 msgstr ""
 "\n"
-"Obre (Ctrl+O)"
+"Obre (Control+O)"
 
 #, c-format
 msgid ""
@@ -2709,7 +2709,7 @@ msgid ""
 "Save (Ctrl+S)"
 msgstr ""
 "\n"
-"Desa (Ctrl+S)"
+"Desa (Control+S)"
 
 msgid "Unknown error attempting to open project file."
 msgstr "S'ha produït un error desconegut en intentar obrir un fitxer de projecte."
@@ -2731,7 +2731,7 @@ msgid ""
 "Undo (Ctrl+Z)"
 msgstr ""
 "\n"
-"Desfés (Ctrl+Z)"
+"Desfés (Control+Z)"
 
 #, c-format
 msgid ""
@@ -2739,7 +2739,7 @@ msgid ""
 "Redo (Ctrl+Y)"
 msgstr ""
 "\n"
-"Refés (Ctrl+Y)"
+"Refés (Control+Y)"
 
 #, c-format
 msgid ""
@@ -3017,7 +3017,7 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters folder:\n"
 "%2."
 msgstr ""
-"No s'ha trobat el fitxer de plantilla de filtre de fitxer!\n"
+"No s'ha trobat el fitxer de plantilla de filtre de fitxer.\n"
 "\n"
 "Copieu el fitxer %1 a la carpeta WinMerge/Filters:\n"
 "%2."
@@ -3040,7 +3040,7 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"La carpeta de fitxers de filtre d'usuari no està definida!\n"
+"La carpeta de fitxers de filtre d'usuari no està definida.\n"
 "\n"
 "Seleccioneu la carpeta de filtres a Opcions/Sistema."
 
@@ -3226,7 +3226,7 @@ msgstr "Només activat per a comparació de fitxers"
 
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "No es pot comparar un fitxer i un directori!"
+msgstr "No es pot comparar un fitxer i un directori."
 
 #, c-format
 msgid "File not found: %1"
@@ -3325,7 +3325,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra de nou cap a '%1'.\n"
+"El connector «%2» no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra de nou cap a «%1».\n"
 "\n"
 "El fitxer original no es canviarà.\n"
 "\n"
@@ -3339,7 +3339,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer del mig de nou cap a '%1'.\n"
+"El connector «%2» no pot tornar a empaquetar els vostres canvis al fitxer del mig de nou cap a «%1».\n"
 "\n"
 "El fitxer original no es canviarà.\n"
 "\n"
@@ -3353,7 +3353,7 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta de nou cap a '%1'.\n"
+"El connector «%2» no pot tornar a empaquetar els vostres canvis al fitxer de la dreta de nou cap a «%1».\n"
 "\n"
 "El fitxer original no es canviarà.\n"
 "\n"
@@ -3440,16 +3440,16 @@ msgid "Copy to &Middle\tAlt+Left"
 msgstr "Copia al mig\tAlt+Esquerra"
 
 msgid "Copy from Middle\tAlt+Shift+Right"
-msgstr "Copia des del mig\tAlt+Màj.+Dreta"
+msgstr "Copia des del mig\tAlt+Maj+Dreta"
 
 msgid "Copy from Middle\tAlt+Shift+Left"
-msgstr "Copia des del mig\tAlt+Màj.+Esquerra"
+msgstr "Copia des del mig\tAlt+Maj+Esquerra"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Right"
-msgstr "Copia al mig i avança\tCtrl+Alt+Dreta"
+msgstr "Copia al mig i avança\tControl+Alt+Dreta"
 
 msgid "Copy to Middle and Advance\tCtrl+Alt+Left"
-msgstr "Copia al mig i avança\tCtrl+Alt+Esquerra"
+msgstr "Copia al mig i avança\tControl+Alt+Esquerra"
 
 msgid "Copy All to Middle"
 msgstr "Copia-ho tot cap al mig"
@@ -3569,7 +3569,7 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
-"Operació avortada!\n"
+"Operació avortada.\n"
 "\n"
 "Els continguts de la carpeta als discs han canviat, el camí\n"
 "%1\n"
@@ -4070,7 +4070,7 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Mostra un asterisc (*) si el fitxer és binari."
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "Nom del connector de desempaquetat o seqüència."
+msgstr "Nom del connector desempaquetador o seqüència."
 
 msgid "Prediffer plugin name or pipeline."
 msgstr "Nom del connector de prediferenciació o seqüència."
@@ -4272,10 +4272,10 @@ msgid "Patch file successfully written."
 msgstr "El pedaç s'ha generat satisfactòriament."
 
 msgid "1. item is not found!"
-msgstr "1. No es troba l'element!"
+msgstr "1. No es troba l'element."
 
 msgid "2. item is not found!"
-msgstr "2. No es troba l'element!"
+msgstr "2. No es troba l'element."
 
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
@@ -4442,7 +4442,7 @@ msgid ""
 "Previous Conflict (Alt+Shift+Up)"
 msgstr ""
 "\n"
-"Conflicte anterior (Alt+Màj.+Amunt)"
+"Conflicte anterior (Alt+Maj+Amunt)"
 
 #, c-format
 msgid ""
@@ -4450,7 +4450,7 @@ msgid ""
 "Next Conflict (Alt+Shift+Down)"
 msgstr ""
 "\n"
-"Conflicte següent (Alt+Màj.+Avall)"
+"Conflicte següent (Alt+Maj+Avall)"
 
 #, c-format
 msgid ""
@@ -4495,14 +4495,14 @@ msgid ""
 "Copy to Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
 "\n"
-"Copia a la dreta i avança (Alt+Ctrl+Dreta)"
+"Copia a la dreta i avança (Alt+Control+Dreta)"
 
 msgid ""
 "\n"
 "Copy to Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
 "\n"
-"Copia a l'esquerra i avança (Alt+Ctrl+Esquerra)"
+"Copia a l'esquerra i avança (Alt+Control+Esquerra)"
 
 msgid ""
 "\n"
@@ -4524,7 +4524,7 @@ msgid ""
 "Auto Merge (Ctrl+Alt+M)"
 msgstr ""
 "\n"
-"Fusiona automàticament (Ctrl+Alt+M)"
+"Fusiona automàticament (Control+Alt+M)"
 
 msgid ""
 "\n"
@@ -4538,7 +4538,7 @@ msgid ""
 "Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"Següent fitxer (Ctrl+F8)"
+"Següent fitxer (Control+F8)"
 
 msgid ""
 "\n"
@@ -4552,7 +4552,7 @@ msgid ""
 "Previous File (Ctrl+F7)"
 msgstr ""
 "\n"
-"Fitxer anterior (Ctrl+F7)"
+"Fitxer anterior (Control+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
 msgstr "El desempaquetador adaptat s'aplica a ambdós fitxers (només hi cal l'extensió en un fitxer)."
@@ -4600,7 +4600,7 @@ msgid "G&o to Line %1"
 msgstr "Ves a la línia %1"
 
 msgid "Go to Moved Line\tCtrl+Shift+G"
-msgstr "Ves a la línia desplaçada\tCtrl+Màj.+G"
+msgstr "Ves a la línia desplaçada\tControl+Maj+G"
 
 #, c-format
 msgid "Disabled"
@@ -4624,7 +4624,7 @@ msgstr "Seqüència d'ordres"
 
 #, c-format
 msgid "Portable Object"
-msgstr "Objecte Portable"
+msgstr "Objecte portable"
 
 #, c-format
 msgid "Resources"
@@ -4702,16 +4702,16 @@ msgid "DirectWrite Aliased"
 msgstr "DirectWrite amb aliasing"
 
 msgid "DirectWrite GDI Classic"
-msgstr "DirectWrite GDI Clàssic"
+msgstr "DirectWrite GDI clàssic"
 
 msgid "DirectWrite GDI Natural"
-msgstr "DirectWrite GDI Natural"
+msgstr "DirectWrite GDI natural"
 
 msgid "DirectWrite Natural"
 msgstr "DirectWrite Natural"
 
 msgid "DirectWrite Natural Symmetric"
-msgstr "DirectWrite Natural simètric"
+msgstr "DirectWrite natural simètric"
 
 msgid "MDI child window or main window"
 msgstr "Subfinestra filla MDI o finestra principal"
@@ -4831,7 +4831,7 @@ msgid "No differences found to add as substitution filter"
 msgstr "No s'han trobat diferències per afegir com a filtre de substitució"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr "La parella ja està present a la llista de filtres de substitucions"
+msgstr "La parella ja està present a la llista de filtres de substitució"
 
 msgid "Add this change to Substitution Filters?"
 msgstr "Voleu afegir aquest canvi als filtres de substitució?"
@@ -4887,15 +4887,15 @@ msgstr "El connector no s'ha trobat o no és vàlid: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr "'%1' no és un connector de desempaquetat"
+msgstr "«%1» no és un connector desempaquetador"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr "'%1' no és un connector de prediferència"
+msgstr "«%1» no és un connector de prediferència"
 
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
-msgstr "S'ha produït un error en veure les prediferències del fitxer '%1' amb el connector '%2'. La prediferència ja no s'aplica."
+msgstr "S'ha produït un error en veure les prediferències del fitxer «%1» amb el connector «%2». La prediferència ja no s'aplica."
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
@@ -5512,4 +5512,4 @@ msgid "Folder '%1' does not exist"
 msgstr "La carpeta «%1» no existeix"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr "No especifiqueu l'opció de línia d'ordres '-p0' per al fitxer del pedaç que inclou camins absoluts"
+msgstr "No especifiqueu l'opció de línia d'ordres «-p0» per al fitxer del pedaç que inclou camins absoluts"

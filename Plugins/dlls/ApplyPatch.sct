@@ -60,7 +60,7 @@ function regRead(Key, DefaultValue) {
 }
 
 function regWrite(Key, Value, TypeNm) {
-  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value, 10) : String(Value));
 }
 
 function fmt(formatString, args) {
@@ -420,9 +420,9 @@ function getStripCountFromCmdLine(cmdLine) {
   var m = re.exec(cmdLine);
   if (m) {
     if (m[2]) {
-      return parseInt(m[2]);
+      return parseInt(m[2], 10);
     }
-    return parseInt(m[3]);
+    return parseInt(m[3], 10);
   }
   return -1;
 }
