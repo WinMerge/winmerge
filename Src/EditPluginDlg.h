@@ -47,6 +47,7 @@ public:
 	String	m_strProcessType;
 	String	m_strMenuCaption;
 	String	m_strWindowType;
+	String	m_strUnpackedFileExtension;
 	String	m_strPluginPipeline;
 	CTabCtrl m_ctlTab;
 	String	m_strCommandline;
@@ -55,6 +56,7 @@ public:
 	String	m_strCommandlineAry[5];
 	String	m_strScriptFileExtensionAry[5];
 	String	m_strScriptBodyAry[5];
+	int m_nWindowType;
 	bool m_bIsAutomatic;
 	bool m_bArgumentsRequired;
 	bool m_bGenerateEditorScript;

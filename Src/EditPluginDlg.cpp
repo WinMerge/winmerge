@@ -33,7 +33,9 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 	, m_strExtensions(info.m_fileFilters)
 	, m_strArguments(info.m_arguments)
 	, m_strPluginPipeline(info.m_pipeline)
+	, m_strUnpackedFileExtension(info.m_unpackedFileExtension)
 	, m_bIsAutomatic(info.m_isAutomatic)
+	, m_nWindowType(0)
 {
 	auto menuCaption = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("MenuCaption"));
 	if (menuCaption.has_value())
@@ -243,7 +245,7 @@ void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PLUGIN_ARGUMENTS, m_strArguments);
 	DDX_Text(pDX, IDC_PLUGIN_PROCESSTYPE, m_strProcessType);
 	DDX_Text(pDX, IDC_PLUGIN_MENUCAPTION, m_strMenuCaption);
-	DDX_Text(pDX, IDC_PLUGIN_WINDOWTYPE, m_strWindowType);
+	DDX_CBIndex(pDX, IDC_PLUGIN_WINDOWTYPE, m_nWindowType);
 	DDX_Check(pDX, IDC_PLUGIN_AUTOMATIC, m_bIsAutomatic);
 	DDX_Check(pDX, IDC_PLUGIN_ARGUMENTSREQUIRED, m_bArgumentsRequired);
 	DDX_Check(pDX, IDC_PLUGIN_GENERATESCRIPT, m_bGenerateEditorScript);
@@ -327,12 +329,13 @@ void CEditPluginDlg::OnOK()
 	m_info.m_arguments = m_strArguments;
 	m_info.m_pipeline = m_strPluginPipeline;
 	m_info.m_extendedProperties.clear();
+	m_info.m_unpackedFileExtension = m_strUnpackedFileExtension;
 	String& extendedProperties = m_info.m_extendedProperties;
 	if (!m_strProcessType.empty())
 		extendedProperties += _T("ProcessType=") + m_strProcessType + _T(";");
 	if (!m_strMenuCaption.empty())
 		extendedProperties += _T("MenuCaption=") + m_strMenuCaption + _T(";");
-	if (!m_strWindowType.empty())
+	if (m_nWindowType > 0)
 		extendedProperties += _T("PreferredWindowType=") + String(reinterpret_cast<wchar_t*>(GetDlgItemDataCurSel(IDC_PLUGIN_WINDOWTYPE))) + _T(";");
 	if (m_bArgumentsRequired)
 		extendedProperties += _T("ArgumentsRequired;");
@@ -404,7 +407,7 @@ HBRUSH CEditPluginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	if (nCtlColor == CTLCOLOR_STATIC)
 	{
 		pDC->SetBkMode(TRANSPARENT);
-		return(HBRUSH) ::GetStockObject(HOLLOW_BRUSH);
+		return reinterpret_cast<HBRUSH>(::GetStockObject(HOLLOW_BRUSH));
 	}
 	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
 }
