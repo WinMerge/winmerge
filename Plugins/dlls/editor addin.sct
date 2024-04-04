@@ -143,7 +143,7 @@ function regRead(Key, DefaultValue) {
 }
 
 function regWrite(Key, Value, TypeNm) {
-  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value, 10) : String(Value));
 }
 
 function ReplaceVariables(str) {
@@ -158,8 +158,8 @@ function ReplaceVariables(str) {
         pos = foundpos + 2;
       } else if (!isNaN(ch)) {
         newstr = newstr + str.substr(pos, foundpos - pos);
-        if (parseInt(ch) < variables.length) {
-          newstr = newstr + variables(parseInt(ch));
+        if (parseInt(ch, 10) < variables.length) {
+          newstr = newstr + variables(parseInt(ch, 10));
         }
         pos = foundpos + 2;
       } else {
@@ -235,7 +235,7 @@ function ParseRanges(rangeText) {
       if (parseFloat(rangeFrom) < 1 || parseFloat(rangeFrom) > 1000000000) { rangeFrom = 1; }
       if (parseFloat(rangeTo) < 1 || parseFloat(rangeTo) > 1000000000) { rangeTo = 1; }
       if (parseFloat(rangeFrom) > parseFloat(rangeTo)) { rangeTo = rangeFrom; }
-      aryRanges.push([parseInt(rangeFrom), parseInt(rangeTo)]);
+      aryRanges.push([parseInt(rangeFrom, 10), parseInt(rangeTo, 10)]);
     }
     }
   return aryRanges;
@@ -743,7 +743,7 @@ function ReverseLines(Text) {
     lines.pop();
     lasteol = true;
   }
-  var m = parseInt(lines.length / 2);
+  var m = parseInt(lines.length / 2, 10);
   for (var i = 0; i < m; i++) {
     var line = lines[i];
     lines[i] = lines[lines.length - i - 1];

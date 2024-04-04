@@ -69,7 +69,7 @@ function regRead(Key, DefaultValue) {
 }
 
 function regWrite(Key, Value, TypeNm) {
-  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value) : String(Value));
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value, 10) : String(Value));
 }
 
 function toString(val) {
