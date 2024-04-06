@@ -49,7 +49,7 @@ msgstr "Win&Merge"
 #: ShellExtension.rc:113
 #, c-format
 msgid "Compare &As"
-msgstr "Comparer c&omme"
+msgstr "Comparer c&omme =>"
 
 #: ShellExtension.rc:114
 #, c-format
