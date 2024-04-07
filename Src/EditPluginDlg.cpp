@@ -88,6 +88,13 @@ void CEditPluginDlg::SaveMethod(internal_plugin::Method& method, int index)
 	}
 }
 
+bool CEditPluginDlg::HasScript()
+{
+	String commandline;
+	GetDlgItemText(IDC_PLUGIN_COMMAND_LINE, commandline);
+	return commandline.find(_T("${SCRIPT_FILE}")) != String::npos;
+}
+
 void CEditPluginDlg::UpdateControls()
 {
 	m_ctlTab.DeleteAllItems();
@@ -112,14 +119,15 @@ void CEditPluginDlg::UpdateControls()
 	const bool unpacker = (cursel < 3);
 	const bool alias = (cursel > 3);
 	const bool urlhandler = (cursel == 0);
+	const bool hasScript = alias ? false : HasScript();
 	ShowDlgItem(IDC_PLUGIN_TAB, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_STATIC, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_MENU, !alias);
-	ShowDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC, !alias);
-	ShowDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION, !alias);
-	ShowDlgItem(IDC_PLUGIN_SCRIPT_BODY_STATIC, !alias);
-	ShowDlgItem(IDC_PLUGIN_SCRIPT_BODY, !alias);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC, hasScript);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION, hasScript);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_BODY_STATIC, hasScript);
+	ShowDlgItem(IDC_PLUGIN_SCRIPT_BODY, hasScript);
 	ShowDlgItem(IDC_PLUGIN_PIPELINE_STATIC, alias);
 	ShowDlgItem(IDC_PLUGIN_PIPELINE, alias);
 	ShowDlgItem(IDC_PLUGIN_PIPELINE_MENU, alias);
@@ -128,6 +136,34 @@ void CEditPluginDlg::UpdateControls()
 	ShowDlgItem(IDC_PLUGIN_GENERATESCRIPT, unpacker);
 	ShowDlgItem(IDC_PLUGIN_MENUCAPTION_STATIC, !urlhandler);
 	ShowDlgItem(IDC_PLUGIN_MENUCAPTION, !urlhandler);
+	ShowDlgItem(IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC, unpacker);
+	ShowDlgItem(IDC_PLUGIN_UNPACKEDFILEEXTENSION, unpacker);
+	CRect rcClient, rcWindow, rcTab, rcScriptFileExtension, rcScriptBodyStatic, rcOK;
+	GetWindowRect(&rcWindow);
+	GetClientRect(&rcClient);
+	GetDlgItem(IDC_PLUGIN_TAB)->GetWindowRect(rcTab);
+	GetDlgItem(IDC_PLUGIN_SCRIPT_BODY_STATIC)->GetWindowRect(rcScriptBodyStatic);
+	GetDlgItem(IDOK)->GetWindowRect(rcOK);
+	const int marginWidth = rcWindow.Width() - rcClient.Width();
+	const int marginHeight = rcWindow.Height() - rcClient.Height();
+	auto* dynlayout = this->GetDynamicLayout();
+	CSize size = dynlayout->GetMinSize();
+	if (alias)
+	{
+		size.cy = rcTab.top - rcWindow.top - marginHeight + rcOK.Height();
+	}
+	else if (!hasScript)
+	{
+		size.cy = rcScriptBodyStatic.top - rcWindow.top - marginHeight + rcOK.Height();
+	}
+	else
+	{
+		size.cy = rcScriptBodyStatic.top + rcScriptBodyStatic.Height() * 2 - rcWindow.top - marginHeight + rcOK.Height();
+	}
+	dynlayout->SetMinSize(size);
+	m_constraint.SetMinSizePixels(size.cx + marginWidth, size.cy + marginHeight);
+	MoveWindow(rcWindow.left, rcWindow.top, rcWindow.Width(), size.cy + marginHeight);
+	ResizeDynamicLayout();
 	Invalidate();
 }
 
@@ -267,6 +303,7 @@ BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_TYPE, OnSelchangePluginType)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
+	ON_EN_CHANGE(IDC_PLUGIN_COMMAND_LINE, OnEnChangePluginCommandLine)
 	ON_WM_CTLCOLOR()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -315,6 +352,12 @@ void CEditPluginDlg::OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
 	m_strScriptFileExtension = m_strScriptFileExtensionAry[i];
 	m_strScriptBody = m_strScriptBodyAry[i];
 	UpdateData(false);
+}
+
+void CEditPluginDlg::OnEnChangePluginCommandLine()
+{
+	if (HasScript() != (GetDlgItem(IDC_PLUGIN_SCRIPT_BODY)->IsWindowVisible() == TRUE))
+		UpdateControls();
 }
 
 void CEditPluginDlg::OnOK()

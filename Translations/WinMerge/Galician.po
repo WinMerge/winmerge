@@ -2171,7 +2171,7 @@ msgstr ""
 msgid "="
 msgstr ""
 
-msgid "Unpacked file extesion:"
+msgid "Unpacked file extension:"
 msgstr ""
 
 msgid "Automatic"
