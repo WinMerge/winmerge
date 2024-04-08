@@ -2156,43 +2156,40 @@ msgid "&Hex View"
 msgstr "HEX 表示(&H)"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "プラグインの編集"
 
-msgid "Plugin &Type:"
-msgstr ""
+msgid "Plugin &type:"
+msgstr "プラグインの種類(&T)"
 
-msgid "Category:"
-msgstr ""
+msgid "&Category:"
+msgstr "カテゴリー(&C)"
 
-msgid "Menu caption:"
-msgstr ""
+msgid "&Menu caption:"
+msgstr "メニューキャプション(&M)"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "ウインドウ種別(&W)"
 
 msgid "="
-msgstr ""
+msgstr "="
 
-msgid "Unpacked file extension:"
-msgstr ""
+msgid "&Unpacked file extension:"
+msgstr "展開後のファイルの拡張子(&U):"
 
-msgid "Automatic"
-msgstr ""
+msgid "&Require arguments"
+msgstr "引数を要求する(&R)"
 
-msgid "Arguments required"
-msgstr ""
+msgid "&Generate editor script"
+msgstr "エディタースクリプトを生成する(&G)"
 
-msgid "Generate editor script"
-msgstr ""
+msgid "Command &line:"
+msgstr "コマンドライン(&L)"
 
-msgid "Command line:"
-msgstr ""
+msgid "&Script file extension:"
+msgstr "スクリプトファイル拡張子(&S):"
 
-msgid "Script file extension:"
-msgstr ""
-
-msgid "Script body:"
-msgstr ""
+msgid "Script &body:"
+msgstr "スクリプト本体(&B):"
 
 msgid "EXT"
 msgstr "EXT"

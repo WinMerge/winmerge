@@ -2167,13 +2167,13 @@ msgstr "Afișare &hexadecimală"
 msgid "Edit Plugin"
 msgstr ""
 
-msgid "Plugin &Type:"
+msgid "Plugin &type:"
 msgstr ""
 
-msgid "Category:"
+msgid "&Category:"
 msgstr ""
 
-msgid "Menu caption:"
+msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
@@ -2182,25 +2182,22 @@ msgstr ""
 msgid "="
 msgstr ""
 
-msgid "Unpacked file extension:"
+msgid "&Unpacked file extension:"
 msgstr ""
 
-msgid "Automatic"
+msgid "&Require arguments"
 msgstr ""
 
-msgid "Arguments required"
+msgid "&Generate editor script"
 msgstr ""
 
-msgid "Generate editor script"
+msgid "Command &line:"
 msgstr ""
 
-msgid "Command line:"
+msgid "&Script file extension:"
 msgstr ""
 
-msgid "Script file extension:"
-msgstr ""
-
-msgid "Script body:"
+msgid "Script &body:"
 msgstr ""
 
 msgid "EXT"

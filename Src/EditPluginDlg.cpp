@@ -18,7 +18,7 @@
 #define new DEBUG_NEW
 #endif
 
-enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, PREDIFF_FILE, ALIAS_PACK_UNPACK, ALIAS_PRDIFF, ALIAS_EDITOR_SCRIPT };
+enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, PREDIFF_FILE, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_EDITOR_SCRIPT };
 enum { UnpackFile = 0, PackFile = 1, UnpackFolder = 2, PackFolder = 3, IsFolder = 4, PrediffFile = 0 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -95,6 +95,33 @@ bool CEditPluginDlg::HasScript()
 	return commandline.find(_T("${SCRIPT_FILE}")) != String::npos;
 }
 
+void CEditPluginDlg::ResizeDialog(bool alias, bool hasScript)
+{
+	CRect rcClient, rcWindow, rcTop, rcTab, rcScriptFileExtension, rcScriptBodyStatic, rcOK;
+	GetWindowRect(&rcWindow);
+	GetClientRect(&rcClient);
+	GetDlgItem(IDC_PLUGIN_TAB)->GetWindowRect(rcTab);
+	GetDlgItem(IDC_PLUGIN_SCRIPT_FILEEXTENSION)->GetWindowRect(rcScriptFileExtension);
+	GetDlgItem(IDC_PLUGIN_SCRIPT_BODY_STATIC)->GetWindowRect(rcScriptBodyStatic);
+	GetDlgItem(IDOK)->GetWindowRect(rcOK);
+	ClientToScreen(rcTop);
+	const int nonclientWidth = rcWindow.Width() - rcClient.Width();
+	const int nonclientHeight = rcWindow.Height() - rcClient.Height();
+	const int marginY = rcOK.Height() / 3;
+	auto* dynlayout = this->GetDynamicLayout();
+	CSize size = dynlayout->GetMinSize();
+	if (alias)
+		size.cy = rcTab.top - rcTop.top + marginY + rcOK.Height() + marginY;
+	else if (!hasScript)
+		size.cy = rcScriptFileExtension.top - rcTop.top + marginY + rcOK.Height() + marginY;
+	else
+		size.cy = rcScriptBodyStatic.top + rcScriptBodyStatic.Height() * 3 + marginY - rcTop.top + marginY + rcOK.Height() + marginY;
+	dynlayout->SetMinSize(size);
+	m_constraint.SetMinSizePixels(size.cx + nonclientWidth, size.cy + nonclientHeight);
+	MoveWindow(rcWindow.left, rcWindow.top, rcWindow.Width(), size.cy + nonclientHeight);
+	ResizeDynamicLayout();
+}
+
 void CEditPluginDlg::UpdateControls()
 {
 	m_ctlTab.DeleteAllItems();
@@ -138,32 +165,7 @@ void CEditPluginDlg::UpdateControls()
 	ShowDlgItem(IDC_PLUGIN_MENUCAPTION, !urlhandler);
 	ShowDlgItem(IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC, unpacker);
 	ShowDlgItem(IDC_PLUGIN_UNPACKEDFILEEXTENSION, unpacker);
-	CRect rcClient, rcWindow, rcTab, rcScriptFileExtension, rcScriptBodyStatic, rcOK;
-	GetWindowRect(&rcWindow);
-	GetClientRect(&rcClient);
-	GetDlgItem(IDC_PLUGIN_TAB)->GetWindowRect(rcTab);
-	GetDlgItem(IDC_PLUGIN_SCRIPT_BODY_STATIC)->GetWindowRect(rcScriptBodyStatic);
-	GetDlgItem(IDOK)->GetWindowRect(rcOK);
-	const int marginWidth = rcWindow.Width() - rcClient.Width();
-	const int marginHeight = rcWindow.Height() - rcClient.Height();
-	auto* dynlayout = this->GetDynamicLayout();
-	CSize size = dynlayout->GetMinSize();
-	if (alias)
-	{
-		size.cy = rcTab.top - rcWindow.top - marginHeight + rcOK.Height();
-	}
-	else if (!hasScript)
-	{
-		size.cy = rcScriptBodyStatic.top - rcWindow.top - marginHeight + rcOK.Height();
-	}
-	else
-	{
-		size.cy = rcScriptBodyStatic.top + rcScriptBodyStatic.Height() * 2 - rcWindow.top - marginHeight + rcOK.Height();
-	}
-	dynlayout->SetMinSize(size);
-	m_constraint.SetMinSizePixels(size.cx + marginWidth, size.cy + marginHeight);
-	MoveWindow(rcWindow.left, rcWindow.top, rcWindow.Width(), size.cy + marginHeight);
-	ResizeDynamicLayout();
+	ResizeDialog(alias, hasScript);
 	Invalidate();
 }
 
@@ -423,13 +425,13 @@ BOOL CEditPluginDlg::OnInitDialog()
 			{ _("File or Folder Unpacker"), L"FILE_FOLDER_PACK_UNPACK" },
 			{ _("Prediffer"), L"PREDIFF_FILE" }, 
 			{ _("Alias for Unpacker"), L"ALIAS_PACK_UNPACK" },
-			{ _("Alias for Prediffer"), L"ALIAS_PRDIFF" },
+			{ _("Alias for Prediffer"), L"ALIAS_PREDIFF" },
 			{ _("Alias for Editor script"), L"ALIAS_EDITOR_SCRIPT" }
 		}, m_strEvent);
 
 	SetDlgItemComboBoxList(IDC_PLUGIN_WINDOWTYPE,
 		{ 
-			{ _("Unspecified"), L"" },
+			{ _(""), L"" },
 			{ _("Text"), L"Text" },
 			{ _("Table"), L"Table" }, 
 			{ _("Binary"), L"Binary" },

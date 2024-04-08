@@ -197,6 +197,7 @@ void PluginsListDlg::OnBnClickedOk()
 void PluginsListDlg::OnBnClickedPluginAdd()
 {
 	std::unique_ptr<internal_plugin::Info> info(new internal_plugin::Info(_T("")));
+	info->m_userDefined = true;
 	CEditPluginDlg dlg(*info);
 	if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
 		return;
