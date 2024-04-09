@@ -4879,6 +4879,24 @@ msgstr "使用外掛 '%2' 預先差異檔案 '%1' 時發生錯誤。預先差異
 msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "已套用篩選器"
 

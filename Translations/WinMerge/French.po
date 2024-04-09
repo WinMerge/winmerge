@@ -4909,6 +4909,24 @@ msgstr "Une erreur s'est produite lors de la pré-différence du fichier '%1' av
 msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtre appliqué"
 

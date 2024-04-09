@@ -1683,6 +1683,13 @@
 #define IDS_SINGLEINSTANCE_STR2         44180
 #define IDS_AUTO_RELOAD_MODIFIED_FILES_STR1 44181
 #define IDS_AUTO_RELOAD_MODIFIED_FILES_STR2 44182
+#define IDS_PLUGIN_TYPE1                44191
+#define IDS_PLUGIN_TYPE2                44192
+#define IDS_PLUGIN_TYPE3                44193
+#define IDS_PLUGIN_TYPE4                44194
+#define IDS_PLUGIN_TYPE5                44195
+#define IDS_PLUGIN_TYPE6                44196
+#define IDS_PLUGIN_TYPE7                44197
 #define IDS_PLUGIN_ALL                  44200
 #define IDS_PLUGIN_OTHERS               44201
 #define IDS_PLUGIN_MISSING_PLUGIN_NAME  44490

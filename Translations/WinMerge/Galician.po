@@ -4184,6 +4184,24 @@ msgstr "Producíuse un erro ao precomparar o ficheiro '%1' co complemento '%2'. 
 msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtro aplicado"
 

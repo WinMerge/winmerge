@@ -36,6 +36,7 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 	, m_strUnpackedFileExtension(info.m_unpackedFileExtension)
 	, m_bIsAutomatic(info.m_isAutomatic)
 	, m_nWindowType(0)
+	, m_bInEnChange(false)
 {
 	auto menuCaption = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("MenuCaption"));
 	if (menuCaption.has_value())
@@ -272,6 +273,30 @@ void CEditPluginDlg::InsertMacro(unsigned menuid, unsigned id, unsigned ctlid)
 	pEdit->ReplaceSel(text);
 }
 
+void CEditPluginDlg::RemoveUnwantedCharacters(unsigned id, const String& validChars, const String& invalidChars)
+{
+	if (m_bInEnChange)
+		return;
+	CEdit* edit = static_cast<CEdit*>(GetDlgItem(id));
+	if (!edit)
+		return;
+	m_bInEnChange = true;
+	const CPoint pos = edit->GetCaretPos();
+	String text;
+	GetDlgItemText(id, text);
+	const size_t len = text.length();
+	if (!validChars.empty())
+		text.erase(std::remove_if(text.begin(), text.end(), [&validChars](auto c){return validChars.find(c) == String::npos;}), text.end());
+	if (!invalidChars.empty())
+		strutils::replace_chars(text, invalidChars.c_str(), _T(""));
+	if (text.length() != len)
+	{
+		SetDlgItemText(id, text);
+		edit->SetCaretPos(pos);
+	}
+	m_bInEnChange = false;
+}
+
 void CEditPluginDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CTrDialog::DoDataExchange(pDX);
@@ -305,6 +330,8 @@ BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_TYPE, OnSelchangePluginType)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
+	ON_EN_CHANGE(IDC_PLUGIN_NAME, OnEnChangePluginName)
+	ON_EN_CHANGE(IDC_PLUGIN_DESCRIPTION, OnEnChangePluginDescription)
 	ON_EN_CHANGE(IDC_PLUGIN_COMMAND_LINE, OnEnChangePluginCommandLine)
 	ON_WM_CTLCOLOR()
 	//}}AFX_MSG_MAP
@@ -354,6 +381,16 @@ void CEditPluginDlg::OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult)
 	m_strScriptFileExtension = m_strScriptFileExtensionAry[i];
 	m_strScriptBody = m_strScriptBodyAry[i];
 	UpdateData(false);
+}
+
+void CEditPluginDlg::OnEnChangePluginName()
+{
+	RemoveUnwantedCharacters(IDC_PLUGIN_NAME, _T("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"), _(""));
+}
+
+void CEditPluginDlg::OnEnChangePluginDescription()
+{
+	RemoveUnwantedCharacters(IDC_PLUGIN_DESCRIPTION, _(""), _T(";"));
 }
 
 void CEditPluginDlg::OnEnChangePluginCommandLine()
@@ -434,7 +471,7 @@ BOOL CEditPluginDlg::OnInitDialog()
 			{ _(""), L"" },
 			{ _("Text"), L"Text" },
 			{ _("Table"), L"Table" }, 
-			{ _("Binary"), L"Binary" },
+			{ tr("Options dialog|Categories", "Binary"), L"Binary" },
 			{ _("Image"), L"Image" }, 
 			{ _("Webpage"), L"Webpage" },
 		}, m_strWindowType);

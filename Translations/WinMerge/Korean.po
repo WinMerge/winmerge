@@ -4904,6 +4904,24 @@ msgstr "'%1' 파일을 '%2' 플러그인과 미리 비교하는 동안 오류가
 msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "필터 적용됨"
 

@@ -1095,70 +1095,70 @@ msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - すべての引数"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - 最初の引数"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - 2番目の引数"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - 3番目の引数"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - 4番目の引数"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - 5番目の引数"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - 6番目の引数"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - 7番目の引数"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - 8番目の引数"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - 9番目の引数"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - ソースファイル"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - ソースフォルダ"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - ソースURL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - ソースURLプロトコル"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - ソースURLサフィックス"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - 宛先ファイル"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - 宛先フォルダ"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - 宛先URL"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - 宛先URLプロトコル"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - 宛先URLサフィックス"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - WinMergeホームディレクトリ"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - スクリプトファイル"
 
 msgid "About WinMerge"
 msgstr "WinMerge について"
@@ -2034,7 +2034,7 @@ msgid "&Plugin arguments:"
 msgstr "プラグイン引数(&P):"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "自動展開/自動比較前処理をこのプラグインで有効にする"
+msgstr "自動展開/自動比較前処理をこのプラグインで有効にする(&A)"
 
 msgid "Shell Integration"
 msgstr "シェル統合"
@@ -2183,7 +2183,7 @@ msgid "&Generate editor script"
 msgstr "エディタースクリプトを生成する(&G)"
 
 msgid "Command &line:"
-msgstr "コマンドライン(&L)"
+msgstr "コマンドライン(&L):"
 
 msgid "&Script file extension:"
 msgstr "スクリプトファイル拡張子(&S):"
@@ -4184,6 +4184,24 @@ msgstr "プラグイン'%2'でファイル'%1'の比較前処理を実行中に�
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
 msgstr "プラグインパイプラインに循環参照があります: %1"
+
+msgid "URL Handler"
+msgstr "URL処理プラグイン"
+
+msgid "File Unpacker"
+msgstr "ファイル展開プラグイン"
+
+msgid "File or Folder Unpacker"
+msgstr "ファイルまたはフォルダー展開プラグイン"
+
+msgid "Alias for Unpacker"
+msgstr "ファイル展開プラグインのエイリアス"
+
+msgid "Alias for Prediffer"
+msgstr "比較前処理プラグインのエイリアス"
+
+msgid "Alias for Editor script"
+msgstr "エディタースクリプトのエイリアス"
 
 msgid "Filter applied"
 msgstr "フィルター適用"

@@ -4182,6 +4182,24 @@ msgstr "Med preddifiranjem datoteke '%1' z vtičnikom '%2' je prišlo do napake.
 msgid "Circular reference in plugin pipeline: %1"
 msgstr ""
 
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filter je uporabljen"
 

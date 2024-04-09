@@ -31,6 +31,7 @@ private:
 	void ShowMenu(unsigned menuid, unsigned ctlid);
 	void InsertMacro(unsigned menuid, unsigned id, unsigned ctlid);
 	bool HasScript();
+	void RemoveUnwantedCharacters(unsigned id, const String& validChars, const String& invalidChars);
 
 public:
 // Construction
@@ -88,10 +89,12 @@ protected:
 	afx_msg void OnSelchangePluginType();
 	afx_msg void OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnEnChangePluginName();
+	afx_msg void OnEnChangePluginDescription();
 	afx_msg void OnEnChangePluginCommandLine();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 	internal_plugin::Info& m_info;
-	bool m_userDefined;
+	bool m_bInEnChange;
 };
