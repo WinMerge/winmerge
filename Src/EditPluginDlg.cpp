@@ -125,6 +125,40 @@ void CEditPluginDlg::ResizeDialog(bool alias, bool hasScript)
 
 void CEditPluginDlg::UpdateControls()
 {
+	if (!m_info.m_userDefined)
+	{
+		for (auto id : {
+				IDC_PLUGIN_NAME,
+				IDC_PLUGIN_SUPPORTED_EXTENSIONS,
+				IDC_PLUGIN_DESCRIPTION,
+				IDC_PLUGIN_ARGUMENTS,
+				IDC_PLUGIN_PROCESSTYPE,
+				IDC_PLUGIN_MENUCAPTION,
+				IDC_PLUGIN_PIPELINE,
+				IDC_PLUGIN_UNPACKEDFILEEXTENSION,
+				IDC_PLUGIN_COMMAND_LINE,
+				IDC_PLUGIN_SCRIPT_FILEEXTENSION,
+				IDC_PLUGIN_SCRIPT_BODY
+			})
+		{
+			auto pEdit = static_cast<CEdit*>(GetDlgItem(id));
+			if (pEdit)
+			{
+				pEdit->SetReadOnly();
+				pEdit->Invalidate(FALSE);
+			}
+		}
+		for (auto id : {
+				IDC_PLUGIN_TYPE,
+				IDC_PLUGIN_WINDOWTYPE,
+				IDC_PLUGIN_PIPELINE_MENU,
+				IDC_PLUGIN_AUTOMATIC,
+				IDC_PLUGIN_ARGUMENTSREQUIRED,
+				IDC_PLUGIN_GENERATESCRIPT,
+				IDC_PLUGIN_COMMAND_LINE_MENU,
+			})
+			EnableDlgItem(id, false);
+	}
 	m_ctlTab.DeleteAllItems();
 	const int cursel = m_ctlEvent.GetCurSel();
 	if (cursel == URL_PACK_UNPACK || cursel == FILE_PACK_UNPACK)
@@ -281,7 +315,6 @@ void CEditPluginDlg::RemoveUnwantedCharacters(unsigned id, const String& validCh
 	if (!edit)
 		return;
 	m_bInEnChange = true;
-	const CPoint pos = edit->GetCaretPos();
 	String text;
 	GetDlgItemText(id, text);
 	const size_t len = text.length();
@@ -291,8 +324,12 @@ void CEditPluginDlg::RemoveUnwantedCharacters(unsigned id, const String& validCh
 		strutils::replace_chars(text, invalidChars.c_str(), _T(""));
 	if (text.length() != len)
 	{
+		int nStartChar, nEndChar;
+		edit->GetSel(nStartChar, nEndChar);
 		SetDlgItemText(id, text);
-		edit->SetCaretPos(pos);
+		nStartChar--;
+		nEndChar--;
+		edit->SetSel(nStartChar, nEndChar);
 	}
 	m_bInEnChange = false;
 }
@@ -428,19 +465,29 @@ void CEditPluginDlg::OnOK()
 
 	if (cursel == URL_PACK_UNPACK || cursel == FILE_PACK_UNPACK)
 	{
-		SaveMethod(*m_info.m_unpackFile, 0);
-		SaveMethod(*m_info.m_packFile, 1);
+		if (m_info.m_unpackFile)
+			SaveMethod(*m_info.m_unpackFile, 0);
+		if (m_info.m_packFile)
+			SaveMethod(*m_info.m_packFile, 1);
 	}
 	else if (cursel == FILE_FOLDER_PACK_UNPACK)
 	{
-		SaveMethod(*m_info.m_unpackFile, 0);
-		SaveMethod(*m_info.m_packFile, 1);
-		SaveMethod(*m_info.m_unpackFolder, 2);
-		SaveMethod(*m_info.m_packFolder, 3);
-		SaveMethod(*m_info.m_isFolder, 4);
+		if (m_info.m_unpackFile)
+			SaveMethod(*m_info.m_unpackFile, 0);
+		if (m_info.m_packFile)
+			SaveMethod(*m_info.m_packFile, 1);
+		if (m_info.m_unpackFolder)
+			SaveMethod(*m_info.m_unpackFolder, 2);
+		if (m_info.m_packFolder)
+			SaveMethod(*m_info.m_packFolder, 3);
+		if (m_info.m_isFolder)
+			SaveMethod(*m_info.m_isFolder, 4);
 	}
 	else if (cursel == PREDIFF_FILE)
-		SaveMethod(*m_info.m_prediffFile, 0);
+	{
+		if (m_info.m_prediffFile)
+			SaveMethod(*m_info.m_prediffFile, 0);
+	}
 
 	CTrDialog::OnOK();
 }
@@ -488,9 +535,14 @@ HBRUSH CEditPluginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	if (nCtlColor == CTLCOLOR_STATIC)
 	{
-		pDC->SetBkMode(TRANSPARENT);
-		return reinterpret_cast<HBRUSH>(::GetStockObject(HOLLOW_BRUSH));
+		int id = pWnd->GetDlgCtrlID();
+		if (id == IDC_PLUGIN_COMMAND_LINE_STATIC || id == IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC || id == IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC || id == IDC_PLUGIN_SCRIPT_BODY_STATIC)
+		{
+			pDC->SetBkMode(TRANSPARENT);
+			pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));
+			return reinterpret_cast<HBRUSH>(::GetStockObject(HOLLOW_BRUSH));
+		}
 	}
-	return CDialog::OnCtlColor(pDC, pWnd, nCtlColor);
+	return __super::OnCtlColor(pDC, pWnd, nCtlColor);
 }
 
