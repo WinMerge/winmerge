@@ -505,23 +505,23 @@ BOOL CEditPluginDlg::OnInitDialog()
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("EditPluginDlg"), false);
 
 	SetDlgItemComboBoxList(IDC_PLUGIN_TYPE,
-		{ 
+		{
 			{ _("URL Handler"), L"URL_PACK_UNPACK" },
-			{ _("File Unpacker"), L"FILE_PACK_UNPACK" }, 
+			{ _("File Unpacker"), L"FILE_PACK_UNPACK" },
 			{ _("File or Folder Unpacker"), L"FILE_FOLDER_PACK_UNPACK" },
-			{ _("Prediffer"), L"PREDIFF_FILE" }, 
+			{ _("Prediffer"), L"PREDIFF_FILE" },
 			{ _("Alias for Unpacker"), L"ALIAS_PACK_UNPACK" },
 			{ _("Alias for Prediffer"), L"ALIAS_PREDIFF" },
 			{ _("Alias for Editor script"), L"ALIAS_EDITOR_SCRIPT" }
 		}, m_strEvent);
 
 	SetDlgItemComboBoxList(IDC_PLUGIN_WINDOWTYPE,
-		{ 
+		{
 			{ _(""), L"" },
 			{ _("Text"), L"Text" },
-			{ _("Table"), L"Table" }, 
+			{ _("Table"), L"Table" },
 			{ tr("Options dialog|Categories", "Binary"), L"Binary" },
-			{ _("Image"), L"Image" }, 
+			{ _("Image"), L"Image" },
 			{ _("Webpage"), L"Webpage" },
 		}, m_strWindowType);
 

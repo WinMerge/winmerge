@@ -100,18 +100,14 @@ void PluginsListDlg::InitList()
 void PluginsListDlg::AddPlugins()
 {
 	String type = _("Unpacker");
-	AddPluginsToList(L"URL_PACK_UNPACK", type);
-	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
-	AddPluginsToList(L"FILE_PACK_UNPACK", type);
-	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
-	AddPluginsToList(L"ALIAS_PACK_UNPACK", type);
+	for (auto event : plugin::UnpackerEventNames)
+		AddPluginsToList(event.c_str(), type);
 	type = _("Prediffer");
-	AddPluginsToList(L"FILE_PREDIFF", type);
-	AddPluginsToList(L"BUFFER_PREDIFF", type);
-	AddPluginsToList(L"ALIAS_PREDIFF", type);
+	for (auto event : plugin::PredifferEventNames)
+		AddPluginsToList(event.c_str(), type);
 	type = _("Editor script");
-	AddPluginsToList(L"EDITOR_SCRIPT", type);
-	AddPluginsToList(L"ALIAS_EDITOR_SCRIPT", type);
+	for (auto event : plugin::EditorScriptEventNames)
+		AddPluginsToList(event.c_str(), type);
 }
 
 /**
@@ -196,8 +192,7 @@ void PluginsListDlg::OnBnClickedOk()
 
 void PluginsListDlg::OnBnClickedPluginAdd()
 {
-	std::unique_ptr<internal_plugin::Info> info(new internal_plugin::Info(_T("")));
-	info->m_userDefined = true;
+	auto info = std::make_unique<internal_plugin::Info>(internal_plugin::CreateNewPluginExample());
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);
@@ -234,7 +229,12 @@ void PluginsListDlg::OnBnClickedPluginEdit()
 		else
 		{
 			if (internal_plugin::AddInternalPlugin(*info, errmsg))
+			{
+				internal_plugin::Info infoOld(nameOrg);
+				infoOld.m_userDefined = true;
+				internal_plugin::RemoveInternalPlugin(infoOld, errmsg);
 				break;
+			}
 		}
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 	}

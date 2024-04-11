@@ -662,6 +662,19 @@ bool FindPluginNameConflict(const Info& info)
 	return false;
 }
 
+Info CreateNewPluginExample()
+{
+	internal_plugin::Info info(_T("NewPluginName"));
+	info.m_event = _T("FILE_PACK_UNPACK");
+	info.m_description = _T("description");
+	info.m_fileFilters = _T("\\.*$");
+	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
+	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
+	info.m_unpackFile->m_command = _("cmd /c \"echo Hello World! ${SRC_FILE}\" > ${DST_FILE}");
+	info.m_userDefined = true;
+	return info;
+}
+
 Info CreateAliasInfo(PluginInfo* plugin, const String& event, const String& pipeline)
 {
 	internal_plugin::Info info(_(""));

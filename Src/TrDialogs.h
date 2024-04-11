@@ -58,8 +58,10 @@ public:
 		CComboBox * cbo = (CComboBox *)dlg()->GetDlgItem(id);
 		if (!cbo)
 			return;
+		cbo->SetRedraw(false);
 		for (const auto& item : list)
 			cbo->AddString(item.c_str());
+		cbo->SetRedraw(true);
 	}
 
 	void SetDlgItemComboBoxList(unsigned id, const std::initializer_list<std::pair<String, const wchar_t*>>& list, const String& sel)
@@ -68,6 +70,7 @@ public:
 		if (!cbo)
 			return;
 		int i = 0;
+		cbo->SetRedraw(false);
 		for (const auto& item : list)
 		{
 			cbo->AddString(item.first.c_str());
@@ -75,6 +78,7 @@ public:
 				cbo->SetCurSel(i);
 			cbo->SetItemDataPtr(i++, reinterpret_cast<void*>(const_cast<wchar_t*>(item.second)));
 		}
+		cbo->SetRedraw(true);
 	}
 
 	String GetTitleText()
