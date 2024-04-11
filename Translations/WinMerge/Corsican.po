@@ -1550,8 +1550,8 @@ msgstr "&Apre i schedarii in u listessu tipu di finestra dopu à a spacchittera"
 msgid "&Plugin Pipeline:"
 msgstr "&Cundottu di modulu :"
 
-msgid "&Add pipe"
-msgstr "&Aghjung. cundottu"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Piantà"
@@ -4161,6 +4161,10 @@ msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Indicate i parametri di u modulu d’estensione"

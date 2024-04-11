@@ -1884,8 +1884,8 @@ msgstr "解壓縮後以相同視窗類型開啟檔案(&O)"
 msgid "&Plugin Pipeline:"
 msgstr "外掛程式管線 (&P)："
 
-msgid "&Add pipe"
-msgstr "新增管道 (&A)"
+msgid "&Alias..."
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -4855,6 +4855,10 @@ msgstr "外掛程式管線缺少外掛程式名稱：%1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "外掛程式管線缺少引號：%1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "指定外掛程式參數"

@@ -1548,8 +1548,8 @@ msgstr "Bestanden openen in hetzelfde venstertype na uitpakken"
 msgid "&Plugin Pipeline:"
 msgstr "Plugin pipeline:"
 
-msgid "&Add pipe"
-msgstr "Pipe toevoegen"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Stoppen"
@@ -4156,6 +4156,10 @@ msgstr "Ontbrekende pluginnaam of plugin-pipeline: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Ontbrekend aanhalingsteken in plugin-pipeline: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Plugin-argumenten opgeven"

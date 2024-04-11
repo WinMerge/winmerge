@@ -1553,8 +1553,8 @@ msgstr ""
 msgid "&Plugin Pipeline:"
 msgstr "&Laajennusputki:"
 
-msgid "&Add pipe"
-msgstr "&Lisää putki"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Pysäytä"
@@ -4191,6 +4191,10 @@ msgstr "Puuttuva lisäosan nimi laajennusputkessa: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Puuttuva lainausmerkki laajennusputkessa: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Määritä laajennuksen argumentit"

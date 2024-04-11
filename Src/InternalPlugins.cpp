@@ -662,11 +662,39 @@ bool FindPluginNameConflict(const Info& info)
 	return false;
 }
 
+Info CreateAliasInfo(PluginInfo* plugin, const String& event, const String& pipeline)
+{
+	internal_plugin::Info info(_(""));
+	info.m_userDefined = true;
+	info.m_event = event;
+	if (plugin)
+	{
+		info.m_name = plugin->m_name + _T("Alias");
+		info.m_description = plugin->m_description;
+		info.m_fileFilters = plugin->m_filtersText;
+		info.m_arguments = plugin->m_arguments;
+		info.m_isAutomatic = plugin->m_bAutomatic;
+		auto menuCaption = PluginInfo::GetExtendedPropertyValue(plugin->m_extendedProperties, _T("MenuCaption"));
+		if (menuCaption.has_value())
+			info.m_extendedProperties += _T("MenuCaption=") + String(menuCaption.value()) + _T(";");
+		auto processType = PluginInfo::GetExtendedPropertyValue(plugin->m_extendedProperties, _T("ProcessType"));
+		if (processType.has_value())
+			info.m_extendedProperties += _T("ProcessType=") + String(processType.value()) + _T(";");
+		auto argumentsRequired = PluginInfo::GetExtendedPropertyValue(plugin->m_extendedProperties, _T("ArgumentsRequired"));
+		if (argumentsRequired.has_value())
+			info.m_extendedProperties += _T("ArgumentsRequired;");
+		if (!info.m_extendedProperties.empty())
+			info.m_extendedProperties.pop_back();
+	}
+	info.m_pipeline = pipeline;
+	return info;
+}
+
 bool AddInternalPlugin(const Info& info, String& errmsg)
 {
 	if (FindPluginNameConflict(info))
 	{
-		errmsg = _("Plugin name already exists");
+		errmsg = strutils::format_string1(_("The plugin name '%1' already exists."), info.m_name);
 		return false;
 	}
 	std::list<internal_plugin::Info> list;

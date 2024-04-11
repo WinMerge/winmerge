@@ -84,6 +84,7 @@ protected:
 	virtual BOOL OnInitDialog() override;
 	afx_msg void OnUnpackerAllowAll();
 	afx_msg void OnSelchangeUnpackerName();
+	afx_msg void OnClickedAlias();
 	afx_msg void OnClickedAddPipe();
 	afx_msg void OnChangePipeline();
 	afx_msg void OnClickedSettings();

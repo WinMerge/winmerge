@@ -1554,8 +1554,8 @@ msgstr "解包后在同一窗口类型中打开文件(&O)"
 msgid "&Plugin Pipeline:"
 msgstr "插件流程（pipeline）(&P):"
 
-msgid "&Add pipe"
-msgstr "添加流程 pipe(&A)"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "停止"
@@ -4202,6 +4202,10 @@ msgstr "插件流程（pipeline）中缺少插件名称: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "插件流程（pipeline）中缺少引号: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "指定插件参数"

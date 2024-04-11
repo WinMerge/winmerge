@@ -1557,8 +1557,8 @@ msgstr "Öppna filer i samma fönstertyp efter extrahering"
 msgid "&Plugin Pipeline:"
 msgstr "&Programtillägg kommandoslinga:"
 
-msgid "&Add pipe"
-msgstr "Lägg till pipe"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Stopp"
@@ -4237,6 +4237,10 @@ msgstr "Saknar programtilläggets namn i kommandoslinga: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Saknar citationstecken i programtilläggets kommandoslinga: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Ange programtilläggets kommandoalternativ"

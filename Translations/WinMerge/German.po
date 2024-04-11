@@ -1878,8 +1878,8 @@ msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen"
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin-Pipeline:"
 
-msgid "&Add pipe"
-msgstr "Pipe hinzufügen"
+msgid "&Alias..."
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -4495,6 +4495,10 @@ msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"

@@ -1882,8 +1882,8 @@ msgstr "&Ouvrir les fichiers dans le même type de fenêtre après décompressio
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin Chaîne '|' :"
 
-msgid "&Add pipe"
-msgstr "&Ajouter pipe '|'"
+msgid "&Alias..."
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -4885,6 +4885,10 @@ msgstr "Nom de plugin manquant dans le plugin de chaîne de traitement : %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Guillemet manquant dans la chaîne de traitement du plugin : %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Spécifier les arguments du plugin"

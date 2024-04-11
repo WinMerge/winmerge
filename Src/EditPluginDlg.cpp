@@ -438,6 +438,8 @@ void CEditPluginDlg::OnEnChangePluginCommandLine()
 
 void CEditPluginDlg::OnOK()
 {
+	if (!m_info.m_userDefined)
+		return;
 	UpdateData(TRUE);
 	const int cursel = m_ctlEvent.GetCurSel();
 	m_info.m_event = reinterpret_cast<wchar_t*>(GetDlgItemDataCurSel(IDC_PLUGIN_TYPE));
@@ -536,7 +538,9 @@ HBRUSH CEditPluginDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	if (nCtlColor == CTLCOLOR_STATIC)
 	{
 		int id = pWnd->GetDlgCtrlID();
-		if (id == IDC_PLUGIN_COMMAND_LINE_STATIC || id == IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC || id == IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC || id == IDC_PLUGIN_SCRIPT_BODY_STATIC)
+		if (id == IDC_PLUGIN_COMMAND_LINE_STATIC ||
+		    id == IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC ||
+		    id == IDC_PLUGIN_SCRIPT_BODY_STATIC)
 		{
 			pDC->SetBkMode(TRANSPARENT);
 			pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));

@@ -1551,8 +1551,8 @@ msgstr "Abrir archiv&os en la misma ventana después de desempaquetar"
 msgid "&Plugin Pipeline:"
 msgstr "Canales de com&plementos:"
 
-msgid "&Add pipe"
-msgstr "&Añadir canal"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Detener"
@@ -4162,6 +4162,10 @@ msgstr "Falta el nombre del complemento en la canalización de complementos %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Faltan comillas en la canalización de complementos %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Especifique argumentos del complemento"

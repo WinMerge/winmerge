@@ -1875,8 +1875,8 @@ msgstr "Obre els fitxers al mateix tipus de finestra després de desempaquetar"
 msgid "&Plugin Pipeline:"
 msgstr "Etapes del connector:"
 
-msgid "&Add pipe"
-msgstr "Afegeix etapa"
+msgid "&Alias..."
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -4874,6 +4874,10 @@ msgstr "Manca el nom del connector a la seqüència: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Manca les cometes a la seqüència: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Especifiqueu els paràmetres del connector"

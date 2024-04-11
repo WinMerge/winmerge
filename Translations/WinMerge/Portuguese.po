@@ -1549,8 +1549,8 @@ msgstr "Abrir ficheiros no mesmo tipo de janela depois de desempacotar"
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin Pipeline:"
 
-msgid "&Add pipe"
-msgstr "&Adicionar pipe"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Parar"
@@ -4159,6 +4159,10 @@ msgstr "Nome de plugin ausente no pipeline plugin: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Marca de cotação em falta no plugin pipeline: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Especificar argumentos de plugin"

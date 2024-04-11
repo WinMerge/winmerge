@@ -1546,8 +1546,8 @@ msgstr "&திறந்த பிறகு அதே சாளர வகை க
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin Pipeline:"
 
-msgid "&Add pipe"
-msgstr "&குழாயைச் சேர்"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "நிறுத்து"
@@ -4157,6 +4157,10 @@ msgstr "சொருகி பைப்லைனில் சொருகி ப
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "சொருகி பைப்லைனில் மேற்கோள் குறி காணவில்லை: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "சொருகி வாதங்களைக் குறிப்பிடவும்"

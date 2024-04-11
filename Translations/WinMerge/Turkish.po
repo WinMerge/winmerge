@@ -1547,8 +1547,8 @@ msgstr "Dosyalar &ayıklandıktan sonra aynı pencerede açılsın"
 msgid "&Plugin Pipeline:"
 msgstr "&Eklenti bağlantı yolu:"
 
-msgid "&Add pipe"
-msgstr "&Bağlantı ekle"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Durdur"
@@ -3776,6 +3776,10 @@ msgstr "Eklenti bağlantı yolunda eklenti adı eksik: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Eklenti bağlantı yolunda tırnak karakteri eksik: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Eklenti değişkenlerini belirtin"

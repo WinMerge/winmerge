@@ -198,14 +198,15 @@ void PluginsListDlg::OnBnClickedPluginAdd()
 {
 	std::unique_ptr<internal_plugin::Info> info(new internal_plugin::Info(_T("")));
 	info->m_userDefined = true;
-	CEditPluginDlg dlg(*info);
-	if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
-		return;
-	String errmsg;
-	if (!internal_plugin::AddInternalPlugin(*info, errmsg))
+	for (;;)
 	{
+		CEditPluginDlg dlg(*info);
+		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+			return;
+		String errmsg;
+		if (internal_plugin::AddInternalPlugin(*info, errmsg))
+			break;
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
-		return;
 	}
 	RefreshList();
 }
@@ -218,14 +219,24 @@ void PluginsListDlg::OnBnClickedPluginEdit()
 	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
 	if (!info)
 		return;
-	CEditPluginDlg dlg(*info);
-	if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
-		return;
-	String errmsg;
-	if (!internal_plugin::UpdateInternalPlugin(*info, errmsg))
+	String nameOrg = info->m_name;
+	for (;;)
 	{
+		CEditPluginDlg dlg(*info);
+		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+			return;
+		String errmsg;
+		if (info->m_name == nameOrg)
+		{
+			if (internal_plugin::UpdateInternalPlugin(*info, errmsg))
+				break;
+		}
+		else
+		{
+			if (internal_plugin::AddInternalPlugin(*info, errmsg))
+				break;
+		}
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
-		return;
 	}
 	RefreshList();
 }

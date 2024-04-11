@@ -1549,8 +1549,8 @@ msgstr "Po rozpakowaniu otwórz pliki w tym samym typie okna"
 msgid "&Plugin Pipeline:"
 msgstr "Wtyczka pipeline:"
 
-msgid "&Add pipe"
-msgstr "Dodaj rurkę"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Zatrzymaj"
@@ -3778,6 +3778,10 @@ msgstr "Brakująca nazwa wtyczki we wtyczce pipeline: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Brakujący cudzysłów we wtyczce pipeline: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Określ argumenty wtyczki"

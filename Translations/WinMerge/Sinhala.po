@@ -1874,7 +1874,7 @@ msgstr ""
 msgid "&Plugin Pipeline:"
 msgstr ""
 
-msgid "&Add pipe"
+msgid "&Alias..."
 msgstr ""
 
 #, c-format
@@ -4699,6 +4699,10 @@ msgstr ""
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr ""
+
+#, c-format
+msgid "The plugin name '%1' already exists."
 msgstr ""
 
 msgid "Specify plugin arguments"

@@ -1550,8 +1550,8 @@ msgstr "Открыть файлы в том же типе окна после р
 msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
 
-msgid "&Add pipe"
-msgstr "Добавить конвейер"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Остановить"
@@ -3779,6 +3779,10 @@ msgstr "Отсутствует плагин в конвейере: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Отсутствует кавычка в конвейере плагинов: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Укажите аргументы плагина"

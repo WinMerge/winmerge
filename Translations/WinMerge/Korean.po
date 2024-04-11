@@ -1883,8 +1883,8 @@ msgstr "압축을 푼 후 동일한 창 유형의 파일 열기(&O)"
 msgid "&Plugin Pipeline:"
 msgstr "플러그인 파이프라인(&P):"
 
-msgid "&Add pipe"
-msgstr "파이프 추가(&A)"
+msgid "&Alias..."
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -4880,6 +4880,10 @@ msgstr "플러그인 파이프라인에 누락된 플러그인 이름: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "플러그인 파이프라인에 따옴표가 없습니다: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "플러그인 인수 지정"

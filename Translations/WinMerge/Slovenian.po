@@ -1548,8 +1548,8 @@ msgstr "P&o razpakiranju odpri datoteke v isti vrsti okna"
 msgid "&Plugin Pipeline:"
 msgstr "Cevovo&d vtičnika:"
 
-msgid "&Add pipe"
-msgstr "&Dodaj cevovod"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Ustavi"
@@ -4158,6 +4158,10 @@ msgstr "Manjkajoče ime vtičnika v cevovodu vtičnika:%1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Manjka narekovaj v cevovodu vtičnika: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Določi argumente vtičnika"

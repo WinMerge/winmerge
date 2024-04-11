@@ -1551,8 +1551,8 @@ msgstr "展開プラグイン適用後、ファイルを同じウインドウ �
 msgid "&Plugin Pipeline:"
 msgstr "プラグイン パイプライン(&P):"
 
-msgid "&Add pipe"
-msgstr "パイプを追加(&A)"
+msgid "&Alias..."
+msgstr "エイリアス(&A)..."
 
 msgid "Stop"
 msgstr "停止"
@@ -4161,6 +4161,10 @@ msgstr "プラグイン パイプラインにプラグイン名が指定され�
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "プラグイン名 '%1' は既に存在しています。"
 
 msgid "Specify plugin arguments"
 msgstr "プラグイン引数を指定してください"

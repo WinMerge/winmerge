@@ -1551,8 +1551,8 @@ msgstr "&Apri i file nello stesso tipo di finestra dopo averli scompattati"
 msgid "&Plugin Pipeline:"
 msgstr "Pipeline dei &plugin:"
 
-msgid "&Add pipe"
-msgstr "&Aggiungi pipe"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Stop"
@@ -4193,6 +4193,10 @@ msgstr "Nome plugin mancante nella pipeline dei plugin: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Virgoletta mancante nella pipeline dei plugin: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Specifica gli argomenti del plugin"

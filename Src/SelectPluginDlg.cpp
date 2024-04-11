@@ -12,6 +12,7 @@
 
 #include "stdafx.h"
 #include "SelectPluginDlg.h"
+#include "EditPluginDlg.h"
 #include "Plugins.h"
 #include "FileTransform.h"
 #include "OptionsMgr.h"
@@ -21,6 +22,11 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+static const std::vector<String> *EventNamesArray[] = {
+		&FileTransform::UnpackerEventNames,
+		&FileTransform::PredifferEventNames,
+		&FileTransform::EditorScriptEventNames };
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectPluginDlg dialog
@@ -44,11 +50,7 @@ void CSelectPluginDlg::Initialize(PluginType pluginType)
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _T("The adapted unpacker is applied to both files (one file only needs the extension).");
 
-	const std::vector<String> *eventNamesArray[] = {
-			&FileTransform::UnpackerEventNames,
-			&FileTransform::PredifferEventNames,
-			&FileTransform::EditorScriptEventNames };
-	const std::vector<std::wstring>& events = *eventNamesArray[static_cast<int>(pluginType)];
+	const std::vector<std::wstring>& events = *EventNamesArray[static_cast<int>(pluginType)];
 	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
 }
 
@@ -88,6 +90,7 @@ BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_PLUGIN_ALLOW_ALL, OnUnpackerAllowAll)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
 	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
+	ON_BN_CLICKED(IDC_PLUGIN_ALIAS, OnClickedAlias)
 	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
 	ON_EN_CHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnClickedSettings)
@@ -166,6 +169,7 @@ void CSelectPluginDlg::prepareListbox()
 	INT_PTR nameCount = 0;
 
 	m_cboPluginName.SetRedraw(false);
+	m_cboPluginName.ResetContent();
 
 	if (m_pluginType != PluginType::EditorScript)
 	{
@@ -259,11 +263,38 @@ void CSelectPluginDlg::OnUnpackerAllowAll()
 {
 	UpdateData ();
 
-	m_cboPluginName.ResetContent();
-
 	prepareListbox();
 
 	UpdateData (FALSE);
+}
+
+void CSelectPluginDlg::OnClickedAlias()
+{
+	UpdateData();
+
+	COMBOBOXEXITEM item{CBEIF_LPARAM};
+	item.iItem = m_cboPluginName.GetCurSel();
+	m_cboPluginName.GetItem(&item);
+	auto* plugin = reinterpret_cast<PluginInfo*>(item.lParam);
+
+	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_EDITOR_SCRIPT") };
+	internal_plugin::Info info = internal_plugin::CreateAliasInfo(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
+
+	for (;;)
+	{
+		CEditPluginDlg dlg(info);
+		if (dlg.DoModal() == IDCANCEL)
+			return;
+		String errmsg;
+		if (internal_plugin::AddInternalPlugin(info, errmsg))
+			break;
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+	}
+
+	const std::vector<std::wstring>& events = *EventNamesArray[static_cast<int>(m_pluginType)];
+	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
+
+	prepareListbox();
 }
 
 void CSelectPluginDlg::OnClickedAddPipe()

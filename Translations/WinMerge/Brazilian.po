@@ -1548,8 +1548,8 @@ msgstr "&Abrir arquivos no mesmo tipo de janela após desempacotar"
 msgid "&Plugin Pipeline:"
 msgstr "&Tubulação dos Plugins:"
 
-msgid "&Add pipe"
-msgstr "&Adicionar barra vertical"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Parar"
@@ -3777,6 +3777,10 @@ msgstr "Nome do plugin ausente na tubulação do plugin: %1"
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Marca das aspas ausentes na tubulação do plugin: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
 
 msgid "Specify plugin arguments"
 msgstr "Especificar os argumentos do plugin"
