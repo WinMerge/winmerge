@@ -60,6 +60,7 @@ CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
 , m_nDirection(1)
 , m_bEnableScopeSelection(true)
 , m_bFound(false)
+, m_bReplaced(false)
 , lastSearch({0})
 {
   ASSERT (pBuddy != nullptr);
@@ -153,6 +154,13 @@ OnCancel ()
   VERIFY (UpdateData ());
   CDialog::OnCancel ();
   m_pBuddy->SetFocus();
+  if (m_bReplaced)
+    {
+      //  Restore selection
+      if (m_pBuddy->m_bSelectionPushed)
+        m_pBuddy->SetSelection(m_pBuddy->m_ptSavedSelStart, m_pBuddy->m_ptSavedSelEnd);
+    }
+  m_pBuddy->m_bSelectionPushed = false;
 }
 
 BOOL CEditReplaceDlg::
@@ -417,7 +425,7 @@ OnEditReplace ()
     }
   m_bFound = DoHighlightText ( true );
 
-  m_pBuddy->SaveLastSearch(&lastSearch);
+  m_bReplaced = true;
 }
 
 void CEditReplaceDlg::
@@ -521,7 +529,7 @@ OnEditReplaceAll ()
 
   AfxMessageBox( strMessage, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN, IDS_NUM_REPLACED);
 
-  m_pBuddy->SaveLastSearch(&lastSearch);
+  m_bReplaced = true;
 }
 
 void CEditReplaceDlg::
@@ -563,6 +571,7 @@ void CEditReplaceDlg::
 UpdateLastSearch ()
 {
   SetLastSearch (m_sText, m_bMatchCase, m_bWholeWord, m_bRegExp, m_nScope, m_nDirection);
+  m_pBuddy->SaveLastSearch(&lastSearch);
 }
 
 void CEditReplaceDlg::
