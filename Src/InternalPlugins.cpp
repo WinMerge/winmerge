@@ -716,7 +716,7 @@ bool AddInternalPlugin(const Info& info, String& errmsg)
 	list.push_back(info);
 	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
 		return false;
-	CAllThreadsScripts::ReloadAllScripts();
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 	return true;
 }
 
@@ -736,7 +736,7 @@ bool UpdateInternalPlugin(const Info& info, String& errmsg)
 	}
 	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
 		return false;
-	CAllThreadsScripts::ReloadAllScripts();
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 	return true;
 }
 
@@ -755,7 +755,7 @@ bool RemoveInternalPlugin(const Info& info, String& errmsg)
 	}
 	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
 		return false;
-	CAllThreadsScripts::ReloadAllScripts();
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 	return true;
 }
 
