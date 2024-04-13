@@ -1166,12 +1166,6 @@ void CAllThreadsScripts::ReloadCustomSettings()
 		LoadCustomSettings(thread->m_aPluginsByEvent);
 }
 
-void CAllThreadsScripts::ReloadAllScripts()
-{
-	for (auto& thread : m_aAvailableThreads)
-		thread->ReloadAllScripts();
-}
-
 ////////////////////////////////////////////////////////////////////////////////////
 // class CAssureScriptsForThread : control creation/destruction of CScriptsOfThread
 

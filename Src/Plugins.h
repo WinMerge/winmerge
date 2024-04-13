@@ -153,7 +153,6 @@ public:
 	static InternalPluginLoaderFuncPtr GetInternalPluginsLoader() { return m_funcInternalPluginsLoader; }
 	static void RegisterInternalPluginsLoader(InternalPluginLoaderFuncPtr func) { m_funcInternalPluginsLoader = func; }
 	static void ReloadCustomSettings();
-	static void ReloadAllScripts();
 private:
 	// fixed size array, advantage : no mutex to allocate/free
 	static std::vector<CScriptsOfThread *> m_aAvailableThreads;

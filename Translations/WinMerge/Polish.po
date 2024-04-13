@@ -843,7 +843,7 @@ msgid "&Transform with editor script..."
 msgstr "Przekształć za pomocą edytora skryptu..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "Skrypty do kopiowania"
 
 msgid "Select &editor script..."
 msgstr ""
@@ -2275,7 +2275,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Aby ponownie wyświetlić ten komunikat, przejdź do Opcji programu, a następnie w zakładce Komunikaty naciśnij przycisk Resetuj."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Porównaj/Scal"
 
 msgid "Syntax"
 msgstr "Składnia"
@@ -2794,7 +2794,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Zamierzasz zamknąć okno porównujące foldery. Czy na pewno chcesz zamknąć okno?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Zamierzasz zamknąć okno porównywania folderu, któremy poświęcono znaczną ilość czasu. Czy na pewno chcesz zamknąć okno?"
 
 msgid "The file or folder name is invalid."
 msgstr "Nazwa pliku lub folderu jest nieprawidłowa."
@@ -3880,10 +3880,10 @@ msgid "Zoom &Out"
 msgstr "Pomniejsz"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Porównywanie..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Powiększenie:"
 
 msgid "Diff hunk"
 msgstr ""
@@ -3892,10 +3892,10 @@ msgid "Inline diff"
 msgstr ""
 
 msgid "Line"
-msgstr ""
+msgstr "Wiersz"
 
 msgid "Character"
-msgstr ""
+msgstr "Znak"
 
 msgid "Prettification"
 msgstr "Upiększanie"
@@ -4070,10 +4070,10 @@ msgid "Trim spaces"
 msgstr "Usuń spacje"
 
 msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n  ZAKRESY   - listę zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące kolumny\r\n  -i - ignoruj wielkość liter\r\n  -g - włącz flagę globalną\r\n  -e - użyj SZABLONÓW do dopasowywania"
+msgstr "Wybierz niektóre kolumny. \r\nUżycie: SelectColumns ZAKRESY\r\n   lub: SelectColumns [-v] [-i] [-g] -e SZABLONY\r\n  ZAKRESY   - lista zakresów kolumn do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące kolumny\r\n  -i - ignoruj wielkość liter\r\n  -g - włącz flagę globalną\r\n  -e - użyj SZABLONÓW do dopasowywania"
 
 msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr ""
+msgstr "Wybierz niektóre wiersze. \r\nUżycie: SelectLines ZAKRESY\r\n   lub: SelectLines [-v] [-i] -e SZABLONY\r\n  ZAKRESY   - lista zakresów wierszy do wybrania. (np. -3,5-10,30-)\r\n  SZABLONY - wyrażenie regularne\r\n  -v - wybierz niepasujące wiersze\r\n  -i - ignoruj wielkość liter\r\n  -e - użyj SZABLONÓW do dopasowywania"
 
 msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
 msgstr "HTML Prettier z tidy-html5. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia tidy."

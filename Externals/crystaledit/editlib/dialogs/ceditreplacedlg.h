@@ -44,6 +44,7 @@ class EDITPADC_CLASS CEditReplaceDlg : public CDialog
 private :
     CCrystalEditView * m_pBuddy;
     bool m_bFound;
+    bool m_bReplaced;
     CEPoint m_ptFoundAt;
     bool DoHighlightText ( bool bNotifyIfNotFound, bool bUpdateView = true );
     bool DoReplaceText (const tchar_t* pszNewText, findtext_flags_t dwSearchFlags);

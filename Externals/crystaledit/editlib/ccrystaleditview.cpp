@@ -1574,13 +1574,6 @@ SaveLastSearch(LastSearchInfos *lastSearch)
   if (lastSearch->m_bNoWrap)
     m_dwLastReplaceFlags |= FIND_NO_WRAP;
 
-  //  Restore selection
-  if (m_bSelectionPushed)
-    {
-      SetSelection (m_ptSavedSelStart, m_ptSavedSelEnd);
-      m_bSelectionPushed = false;
-    }
-
   //  Save search parameters to registry
   VERIFY (AfxGetApp()->WriteProfileInt (EDITPAD_SECTION, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
 }

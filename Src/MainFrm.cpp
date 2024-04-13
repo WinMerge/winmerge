@@ -1928,7 +1928,7 @@ void CMainFrame::OnUpdatePluginRelatedMenu(CCmdUI* pCmdUI)
 
 void CMainFrame::OnReloadPlugins()
 {
-	CAllThreadsScripts::ReloadAllScripts();
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
 }
 
 /** @brief Return active merge edit view, if can figure it out/is available */
