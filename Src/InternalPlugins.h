@@ -75,8 +75,8 @@ Info* GetInternalPluginInfo(const PluginInfo* plugin);
 bool FindPluginNameConflict(const Info& info);
 Info CreateNewPluginExample();
 Info CreateAliasInfo(PluginInfo* plugin, const String& event, const String& pipeline);
-bool AddInternalPlugin(const Info& info, String& errmsg);
-bool UpdateInternalPlugin(const Info& info, String& errmsg);
-bool RemoveInternalPlugin(const Info& info, String& errmsg);
+bool AddPlugin(const Info& info, String& errmsg);
+bool UpdatePlugin(const Info& info, String& errmsg);
+bool RemovePlugin(const Info& info, String& errmsg);
 
 }

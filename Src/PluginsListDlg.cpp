@@ -100,6 +100,7 @@ void PluginsListDlg::InitList()
 void PluginsListDlg::AddPlugins()
 {
 	String type = _("Unpacker");
+	AddPluginsToList(L"URL_PACK_UNPACK", type);
 	for (auto event : plugin::UnpackerEventNames)
 		AddPluginsToList(event.c_str(), type);
 	type = _("Prediffer");
@@ -199,7 +200,7 @@ void PluginsListDlg::OnBnClickedPluginAdd()
 		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
 			return;
 		String errmsg;
-		if (internal_plugin::AddInternalPlugin(*info, errmsg))
+		if (internal_plugin::AddPlugin(*info, errmsg))
 			break;
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 	}
@@ -223,16 +224,16 @@ void PluginsListDlg::OnBnClickedPluginEdit()
 		String errmsg;
 		if (info->m_name == nameOrg)
 		{
-			if (internal_plugin::UpdateInternalPlugin(*info, errmsg))
+			if (internal_plugin::UpdatePlugin(*info, errmsg))
 				break;
 		}
 		else
 		{
-			if (internal_plugin::AddInternalPlugin(*info, errmsg))
+			if (internal_plugin::AddPlugin(*info, errmsg))
 			{
 				internal_plugin::Info infoOld(nameOrg);
 				infoOld.m_userDefined = true;
-				internal_plugin::RemoveInternalPlugin(infoOld, errmsg);
+				internal_plugin::RemovePlugin(infoOld, errmsg);
 				break;
 			}
 		}
@@ -250,7 +251,7 @@ void PluginsListDlg::OnBnClickedPluginRemove()
 	if (!info)
 		return;
 	String errmsg;
-	if (!internal_plugin::RemoveInternalPlugin(*info, errmsg))
+	if (!internal_plugin::RemovePlugin(*info, errmsg))
 	{
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 		return;

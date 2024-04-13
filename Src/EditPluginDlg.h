@@ -90,7 +90,7 @@ protected:
 	afx_msg void OnTcnSelchangingTab(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnTcnSelchangeTab(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnEnChangePluginName();
-	afx_msg void OnEnChangePluginDescription();
+	afx_msg void OnEnChangePluginExtendedProperty(unsigned id);
 	afx_msg void OnEnChangePluginCommandLine();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

@@ -286,7 +286,7 @@ void CSelectPluginDlg::OnClickedAlias()
 		if (dlg.DoModal() == IDCANCEL)
 			return;
 		String errmsg;
-		if (internal_plugin::AddInternalPlugin(info, errmsg))
+		if (internal_plugin::AddPlugin(info, errmsg))
 			break;
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
 	}

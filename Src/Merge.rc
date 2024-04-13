@@ -3250,6 +3250,7 @@ BEGIN
     AFX_IDS_APP_TITLE       "WinMerge"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"

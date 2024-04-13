@@ -368,7 +368,7 @@ BEGIN_MESSAGE_MAP(CEditPluginDlg, CTrDialog)
 	ON_NOTIFY(TCN_SELCHANGING, IDC_PLUGIN_TAB, OnTcnSelchangingTab)
 	ON_NOTIFY(TCN_SELCHANGE, IDC_PLUGIN_TAB, OnTcnSelchangeTab)
 	ON_EN_CHANGE(IDC_PLUGIN_NAME, OnEnChangePluginName)
-	ON_EN_CHANGE(IDC_PLUGIN_DESCRIPTION, OnEnChangePluginDescription)
+	ON_CONTROL_RANGE(EN_CHANGE, IDC_PLUGIN_MENUCAPTION, IDC_PLUGIN_PROCESSTYPE, OnEnChangePluginExtendedProperty)
 	ON_EN_CHANGE(IDC_PLUGIN_COMMAND_LINE, OnEnChangePluginCommandLine)
 	ON_WM_CTLCOLOR()
 	//}}AFX_MSG_MAP
@@ -425,9 +425,9 @@ void CEditPluginDlg::OnEnChangePluginName()
 	RemoveUnwantedCharacters(IDC_PLUGIN_NAME, _T("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_"), _(""));
 }
 
-void CEditPluginDlg::OnEnChangePluginDescription()
+void CEditPluginDlg::OnEnChangePluginExtendedProperty(unsigned id)
 {
-	RemoveUnwantedCharacters(IDC_PLUGIN_DESCRIPTION, _(""), _T(";"));
+	RemoveUnwantedCharacters(id, _(""), _T(";"));
 }
 
 void CEditPluginDlg::OnEnChangePluginCommandLine()

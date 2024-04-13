@@ -670,7 +670,7 @@ Info CreateNewPluginExample()
 	info.m_fileFilters = _T("\\.*$");
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
 	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
-	info.m_unpackFile->m_command = _("cmd /c \"echo Hello World! ${SRC_FILE}\" > ${DST_FILE}");
+	info.m_unpackFile->m_command = _("cmd /c echo Hello World! \"${SRC_FILE}\" > ${DST_FILE}");
 	info.m_userDefined = true;
 	return info;
 }
@@ -703,7 +703,7 @@ Info CreateAliasInfo(PluginInfo* plugin, const String& event, const String& pipe
 	return info;
 }
 
-bool AddInternalPlugin(const Info& info, String& errmsg)
+bool AddPlugin(const Info& info, String& errmsg)
 {
 	if (FindPluginNameConflict(info))
 	{
@@ -720,7 +720,7 @@ bool AddInternalPlugin(const Info& info, String& errmsg)
 	return true;
 }
 
-bool UpdateInternalPlugin(const Info& info, String& errmsg)
+bool UpdatePlugin(const Info& info, String& errmsg)
 {
 	std::list<internal_plugin::Info> list;
 	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
@@ -740,7 +740,7 @@ bool UpdateInternalPlugin(const Info& info, String& errmsg)
 	return true;
 }
 
-bool RemoveInternalPlugin(const Info& info, String& errmsg)
+bool RemovePlugin(const Info& info, String& errmsg)
 {
 	std::list<internal_plugin::Info> list;
 	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
