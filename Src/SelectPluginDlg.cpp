@@ -92,7 +92,7 @@ BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
 	ON_BN_CLICKED(IDC_PLUGIN_ALIAS, OnClickedAlias)
 	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
-	ON_EN_CHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
+	ON_CBN_EDITCHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnClickedSettings)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -272,20 +272,36 @@ void CSelectPluginDlg::OnClickedAlias()
 {
 	UpdateData();
 
-	COMBOBOXEXITEM item{CBEIF_LPARAM};
-	item.iItem = m_cboPluginName.GetCurSel();
-	m_cboPluginName.GetItem(&item);
-	auto* plugin = reinterpret_cast<PluginInfo*>(item.lParam);
+	PluginInfo* plugin = nullptr;
+	String errmsg;
+	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errmsg);
+	if (!parseResult.empty())
+	{
+		for (const auto& [processType, pluginList] : m_Plugins)
+		{
+			for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
+			{
+				if (name == parseResult.front().name)
+					plugin = plugin2;
+			}
+		}
+	}
+	if (!plugin)
+	{
+		COMBOBOXEXITEM item{ CBEIF_LPARAM };
+		item.iItem = m_cboPluginName.GetCurSel();
+		m_cboPluginName.GetItem(&item);
+		plugin = reinterpret_cast<PluginInfo*>(item.lParam);
+	}
 
 	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_EDITOR_SCRIPT") };
-	internal_plugin::Info info = internal_plugin::CreateAliasInfo(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
+	internal_plugin::Info info = internal_plugin::CreateAliasExample(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
 
 	for (;;)
 	{
 		CEditPluginDlg dlg(info);
 		if (dlg.DoModal() == IDCANCEL)
 			return;
-		String errmsg;
 		if (internal_plugin::AddPlugin(info, errmsg))
 			break;
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);

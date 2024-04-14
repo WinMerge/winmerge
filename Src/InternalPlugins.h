@@ -74,7 +74,7 @@ bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlug
 Info* GetInternalPluginInfo(const PluginInfo* plugin);
 bool FindPluginNameConflict(const Info& info);
 Info CreateNewPluginExample();
-Info CreateAliasInfo(PluginInfo* plugin, const String& event, const String& pipeline);
+Info CreateAliasExample(PluginInfo* plugin, const String& event, const String& pipeline);
 bool AddPlugin(const Info& info, String& errmsg);
 bool UpdatePlugin(const Info& info, String& errmsg);
 bool RemovePlugin(const Info& info, String& errmsg);
