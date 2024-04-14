@@ -4926,6 +4926,10 @@ msgstr ""
 msgid "Alias for Editor script"
 msgstr ""
 
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "필터 적용됨"
 

@@ -683,7 +683,7 @@ Info CreateAliasInfo(PluginInfo* plugin, const String& event, const String& pipe
 	if (plugin)
 	{
 		info.m_name = plugin->m_name + _T("Alias");
-		info.m_description = plugin->m_description;
+		info.m_description = strutils::format_string1(_("Alias for plugin pipeline '%1'"), pipeline);
 		info.m_fileFilters = plugin->m_filtersText;
 		info.m_arguments = plugin->m_arguments;
 		info.m_isAutomatic = plugin->m_bAutomatic;

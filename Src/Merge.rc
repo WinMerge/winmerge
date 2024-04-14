@@ -4380,6 +4380,7 @@ BEGIN
     IDS_PLUGIN_TYPE5        "Alias for Unpacker"
     IDS_PLUGIN_TYPE6        "Alias for Prediffer"
     IDS_PLUGIN_TYPE7        "Alias for Editor script"
+    IDS_PLUGIN_ALIAS_DESC   "Alias for plugin pipeline '%1'"
 END
 
 STRINGTABLE

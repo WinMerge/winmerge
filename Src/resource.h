@@ -1691,6 +1691,7 @@
 #define IDS_PLUGIN_TYPE5                44195
 #define IDS_PLUGIN_TYPE6                44196
 #define IDS_PLUGIN_TYPE7                44197
+#define IDS_PLUGIN_ALIAS_DESC           44198
 #define IDS_PLUGIN_ALL                  44200
 #define IDS_PLUGIN_OTHERS               44201
 #define IDS_PLUGIN_MISSING_PLUGIN_NAME  44490
