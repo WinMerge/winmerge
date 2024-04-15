@@ -41,6 +41,9 @@ void CSelectPluginDlg::Initialize(PluginType pluginType)
 	m_strArguments.clear();
 	//}}AFX_DATA_INIT
 
+	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
+	m_bOpenInSameFrameType = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE);
+
 	// texts for the default unpackers
 	noPlugin.reset(new PluginInfo);
 	noPlugin->m_lpDispatch = nullptr;
@@ -123,11 +126,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	// persist size via registry
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SelectPluginDlg"), false);
 
-	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
-
 	prepareListbox();
-
-	m_bOpenInSameFrameType = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE);
 
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
