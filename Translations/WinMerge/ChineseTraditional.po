@@ -1849,15 +1849,6 @@ msgstr "額外屬性 (&A)"
 msgid "Additional Properties"
 msgstr "額外屬性"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "選擇外掛程式"
 
@@ -2647,9 +2638,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

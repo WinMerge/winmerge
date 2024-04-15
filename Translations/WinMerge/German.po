@@ -1843,15 +1843,6 @@ msgstr "Zusätzliche Eigenschaften"
 msgid "Additional Properties"
 msgstr "Zusätzliche Eigenschaften"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Plugin auswählen"
 
@@ -2632,9 +2623,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

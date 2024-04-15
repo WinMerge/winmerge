@@ -1515,15 +1515,6 @@ msgstr "&Dodatne lastnosti"
 msgid "Additional Properties"
 msgstr "Dodatne lastnosti"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Izberi vtičnik"
 
@@ -2165,9 +2156,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

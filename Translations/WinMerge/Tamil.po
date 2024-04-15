@@ -1513,15 +1513,6 @@ msgstr "&கூடுதல் பண்புகள்"
 msgid "Additional Properties"
 msgstr "கூடுதல் பண்புகள்"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "செருகுநிரலை தேர்ந்தெடு"
 
@@ -2163,9 +2154,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

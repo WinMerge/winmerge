@@ -1848,15 +1848,6 @@ msgstr "추가 속성(&A)"
 msgid "Additional Properties"
 msgstr "추가 속성"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "플러그인 선택"
 
@@ -2645,9 +2636,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

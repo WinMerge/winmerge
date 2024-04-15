@@ -1514,15 +1514,6 @@ msgstr "&Ek özellikler"
 msgid "Additional Properties"
 msgstr "Ek özellikler"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Eklenti seçin"
 
@@ -2156,9 +2147,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

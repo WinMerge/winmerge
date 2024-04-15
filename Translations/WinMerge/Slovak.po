@@ -1515,15 +1515,6 @@ msgstr "&Prídavné vlastnosti"
 msgid "Additional Properties"
 msgstr "Prídavné vlastnosti"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Vybrať rozšírenie"
 
@@ -2165,9 +2156,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

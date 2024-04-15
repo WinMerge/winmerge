@@ -1518,15 +1518,6 @@ msgstr "Propiedades &adicionales"
 msgid "Additional Properties"
 msgstr "Propiedades adicionales"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Elija complemento"
 
@@ -2168,9 +2159,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

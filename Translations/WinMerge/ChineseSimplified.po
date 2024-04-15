@@ -1521,15 +1521,6 @@ msgstr "附加属性(&A)"
 msgid "Additional Properties"
 msgstr "附加属性"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "选择插件"
 
@@ -2174,9 +2165,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

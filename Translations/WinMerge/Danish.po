@@ -1840,15 +1840,6 @@ msgstr ""
 msgid "Additional Properties"
 msgstr ""
 
-msgid "&>"
-msgstr ""
-
-msgid "&<"
-msgstr ""
-
-msgid "<<"
-msgstr ""
-
 msgid "Select Plugin"
 msgstr ""
 
@@ -2635,9 +2626,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

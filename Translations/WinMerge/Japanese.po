@@ -1518,15 +1518,6 @@ msgstr "追加プロパティ(&A)"
 msgid "Additional Properties"
 msgstr "追加プロパティ"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
@@ -2169,9 +2160,6 @@ msgstr "メニューキャプション(&M)"
 
 msgid "&Window type:"
 msgstr "ウインドウ種別(&W)"
-
-msgid "="
-msgstr "="
 
 msgid "&Unpacked file extension:"
 msgstr "展開後のファイルの拡張子(&U):"

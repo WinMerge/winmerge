@@ -1515,15 +1515,6 @@ msgstr "Extra eigenschappen"
 msgid "Additional Properties"
 msgstr "Extra eigenschappen"
 
-msgid "&>"
-msgstr ">"
-
-msgid "&<"
-msgstr "<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Plugin selecteren"
 
@@ -2165,9 +2156,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

@@ -1841,15 +1841,6 @@ msgstr "További tulajdonságok"
 msgid "Additional Properties"
 msgstr "További tulajdonságok"
 
-msgid "&>"
-msgstr ">"
-
-msgid "&<"
-msgstr "<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Bővítmény kiválasztása"
 
@@ -2638,9 +2629,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

@@ -1520,15 +1520,6 @@ msgstr "Proprietăți suplimentare"
 msgid "Additional Properties"
 msgstr "Proprietăți suplimentare"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selectează plugin"
 
@@ -2177,9 +2168,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

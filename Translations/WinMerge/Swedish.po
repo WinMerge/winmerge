@@ -1524,15 +1524,6 @@ msgstr "Övriga egenskaper"
 msgid "Additional Properties"
 msgstr "Övriga egenskaper"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "<&"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Välj programtillägg"
 
@@ -2178,9 +2169,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

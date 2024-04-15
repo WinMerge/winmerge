@@ -1519,15 +1519,6 @@ msgstr "&Lisäominaisuudet"
 msgid "Additional Properties"
 msgstr "Lisäominaisuudet"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Valitse laajennus (Plugin)"
 
@@ -2172,9 +2163,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

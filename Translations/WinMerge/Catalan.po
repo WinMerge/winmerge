@@ -1840,15 +1840,6 @@ msgstr "Propietats addicionals"
 msgid "Additional Properties"
 msgstr "Propietats addicionals"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selecciona el connector"
 
@@ -2637,9 +2628,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"

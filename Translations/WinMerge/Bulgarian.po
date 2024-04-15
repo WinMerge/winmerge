@@ -1512,15 +1512,6 @@ msgstr "Разширени &настройки"
 msgid "Additional Properties"
 msgstr "Разширени настройки"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Избиране на добавка"
 
@@ -2162,9 +2153,6 @@ msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
-
-msgid "="
 msgstr ""
 
 msgid "&Unpacked file extension:"
