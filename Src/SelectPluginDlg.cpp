@@ -309,6 +309,8 @@ void CSelectPluginDlg::OnClickedAlias()
 	const std::vector<std::wstring>& events = *EventNamesArray[static_cast<int>(m_pluginType)];
 	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
 
+	m_strPluginPipeline = info.m_name;
+
 	prepareListbox();
 }
 
@@ -374,7 +376,8 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 
 	if (pPlugin)
 	{
-		m_strDescription = tr(ucr::toUTF8(pPlugin->m_description));
+		const bool containsNonAsciiChars = std::any_of(pPlugin->m_description.begin(), pPlugin->m_description.end(), [](auto c) { return (c >= 0x80); });
+		m_strDescription = containsNonAsciiChars ? pPlugin->m_description : tr(ucr::toUTF8(pPlugin->m_description));
 		auto funcDescription = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Description"));
 		if (funcDescription.has_value())
 			m_strDescription = tr(ucr::toUTF8(strutils::to_str(*funcDescription)));

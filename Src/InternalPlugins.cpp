@@ -615,6 +615,8 @@ bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>
 {
 	XMLHandler handler(&internalPlugins);
 	SAXParser parser;
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_GENERAL_ENTITIES, false);
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_PARAMETER_ENTITIES, false);
 	parser.setContentHandler(&handler);
 	try
 	{
@@ -666,7 +668,7 @@ Info CreateNewPluginExample()
 {
 	internal_plugin::Info info(_T("NewPluginName"));
 	info.m_event = _T("FILE_PACK_UNPACK");
-	info.m_description = _T("description");
+	info.m_description = _T("New plugin description");
 	info.m_fileFilters = _T("\\.*$");
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
 	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
@@ -792,6 +794,7 @@ bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlug
 {
 	try
 	{
+		paths::CreateIfNeeded(paths::GetPathOnly(pluginsXMLPath));
 		FileStream out(ucr::toUTF8(pluginsXMLPath), FileStream::trunc);
 		XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
 		writer.startDocument();

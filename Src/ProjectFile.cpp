@@ -413,6 +413,8 @@ bool ProjectFile::Read(const String& path)
 {
 	ProjectFileHandler handler(&m_items);
 	SAXParser parser;
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_GENERAL_ENTITIES, false);
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_PARAMETER_ENTITIES, false);
 	parser.setContentHandler(&handler);
 	parser.parse(toUTF8(path));
 	return true;

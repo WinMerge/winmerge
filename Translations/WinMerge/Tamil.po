@@ -4195,6 +4195,9 @@ msgstr ""
 msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
+msgid "New plugin description"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "வடிகட்டி பயன்படுத்தப்பட்டது"
 

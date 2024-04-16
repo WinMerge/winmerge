@@ -4199,6 +4199,9 @@ msgstr "エディタースクリプトのエイリアス"
 msgid "Alias for plugin pipeline '%1'"
 msgstr "プラグインパイプライン '%1' のエイリアス"
 
+msgid "New plugin description"
+msgstr "新しいプラグインの説明"
+
 msgid "Filter applied"
 msgstr "フィルター適用"
 

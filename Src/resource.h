@@ -649,7 +649,7 @@
 #define IDC_PLUGIN_MENUCAPTION          1671
 #define IDC_PLUGIN_DESCRIPTION          1672
 #define IDC_PLUGIN_PROCESSTYPE          1673
-#define IDC_PLUGIN_ALIAS                1672
+#define IDC_PLUGIN_ALIAS                1674
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1703,6 +1703,7 @@
 #define IDS_PLUGIN_PREDIFF_ERROR        44496
 #define IDS_PLUGIN_CIRCULAR_REFERENCE   44497
 #define IDS_PLUGIN_NAME_ALREADY_EXISTS  44498
+#define IDS_PLUGIN_NEW_DESC             44499
 #define IDS_L2M                         44500
 #define IDS_R2M                         44501
 #define IDS_COPY_FROM_MIDDLE_R          44502

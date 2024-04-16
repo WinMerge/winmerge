@@ -38,6 +38,9 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 	, m_nWindowType(0)
 	, m_bInEnChange(false)
 {
+	const bool containsNonAsciiChars = std::any_of(m_strDescription.begin(), m_strDescription.end(), [](auto c) { return (c >= 0x80); });
+	if (!containsNonAsciiChars)
+		m_strDescription = tr(ucr::toUTF8(m_strDescription));
 	auto menuCaption = PluginInfo::GetExtendedPropertyValue(info.m_extendedProperties, _T("MenuCaption"));
 	if (menuCaption.has_value())
 		m_strMenuCaption = menuCaption.value();
@@ -78,14 +81,23 @@ void CEditPluginDlg::LoadMethod(const internal_plugin::Method& method, int index
 	}
 }
 
-void CEditPluginDlg::SaveMethod(internal_plugin::Method& method, int index)
+void CEditPluginDlg::SaveMethod(std::unique_ptr<internal_plugin::Method>& method, int index)
 {
-	method.m_command = m_strCommandlineAry[index];
-	if (!m_strScriptBodyAry[index].empty())
+	if (!m_strCommandlineAry[index].empty())
 	{
-		method.m_script = std::make_unique<internal_plugin::Script>();
-		method.m_script->m_fileExtension = m_strScriptFileExtensionAry[index];
-		method.m_script->m_body = m_strScriptBodyAry[index];
+		if (!method)
+			method = std::make_unique<internal_plugin::Method>();
+		method->m_command = m_strCommandlineAry[index];
+		if (!m_strScriptBodyAry[index].empty())
+		{
+			method->m_script = std::make_unique<internal_plugin::Script>();
+			method->m_script->m_fileExtension = m_strScriptFileExtensionAry[index];
+			method->m_script->m_body = m_strScriptBodyAry[index];
+		}
+	}
+	else
+	{
+		method.reset();
 	}
 }
 
@@ -465,30 +477,26 @@ void CEditPluginDlg::OnOK()
 	if (!m_info.m_extendedProperties.empty() && extendedProperties.back() == ';')
 		extendedProperties.pop_back();
 
+	const int i = m_ctlTab.GetCurSel();
+	m_strCommandlineAry[i] = m_strCommandline;
+	m_strScriptFileExtensionAry[i] = m_strScriptFileExtension;
+	m_strScriptBodyAry[i] = m_strScriptBody;
 	if (cursel == URL_PACK_UNPACK || cursel == FILE_PACK_UNPACK)
 	{
-		if (m_info.m_unpackFile)
-			SaveMethod(*m_info.m_unpackFile, 0);
-		if (m_info.m_packFile)
-			SaveMethod(*m_info.m_packFile, 1);
+		SaveMethod(m_info.m_unpackFile, 0);
+		SaveMethod(m_info.m_packFile, 1);
 	}
 	else if (cursel == FILE_FOLDER_PACK_UNPACK)
 	{
-		if (m_info.m_unpackFile)
-			SaveMethod(*m_info.m_unpackFile, 0);
-		if (m_info.m_packFile)
-			SaveMethod(*m_info.m_packFile, 1);
-		if (m_info.m_unpackFolder)
-			SaveMethod(*m_info.m_unpackFolder, 2);
-		if (m_info.m_packFolder)
-			SaveMethod(*m_info.m_packFolder, 3);
-		if (m_info.m_isFolder)
-			SaveMethod(*m_info.m_isFolder, 4);
+		SaveMethod(m_info.m_unpackFile, 0);
+		SaveMethod(m_info.m_packFile, 1);
+		SaveMethod(m_info.m_unpackFolder, 2);
+		SaveMethod(m_info.m_packFolder, 3);
+		SaveMethod(m_info.m_isFolder, 4);
 	}
 	else if (cursel == PREDIFF_FILE)
 	{
-		if (m_info.m_prediffFile)
-			SaveMethod(*m_info.m_prediffFile, 0);
+		SaveMethod(m_info.m_prediffFile, 0);
 	}
 
 	CTrDialog::OnOK();

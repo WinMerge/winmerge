@@ -25,7 +25,7 @@ public:
 	enum class PluginType { Unpacker, Prediffer, EditorScript };
 private:
 	void LoadMethod(const internal_plugin::Method& method, int index);
-	void SaveMethod(internal_plugin::Method& method, int index);
+	void SaveMethod(std::unique_ptr<internal_plugin::Method>& method, int index);
 	void ResizeDialog(bool alias, bool hasScript);
 	void UpdateControls();
 	void ShowMenu(unsigned menuid, unsigned ctlid);

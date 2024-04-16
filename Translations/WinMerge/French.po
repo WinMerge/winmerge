@@ -4923,6 +4923,9 @@ msgstr ""
 msgid "Alias for plugin pipeline '%1'"
 msgstr ""
 
+msgid "New plugin description"
+msgstr ""
+
 msgid "Filter applied"
 msgstr "Filtre appliqué"
 

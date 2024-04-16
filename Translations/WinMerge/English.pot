@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-04-15 19:37+0000\n"
+"POT-Creation-Date: 2024-04-16 14:05+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3808,6 +3808,9 @@ msgstr ""
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
+msgstr ""
+
+msgid "New plugin description"
 msgstr ""
 
 msgid "Filter applied"
