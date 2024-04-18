@@ -198,6 +198,7 @@ void CEditPluginDlg::UpdateControls()
 	const bool alias = (cursel > 3);
 	const bool urlhandler = (cursel == 0);
 	const bool hasScript = alias ? false : HasScript();
+	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler);
 	ShowDlgItem(IDC_PLUGIN_TAB, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_STATIC, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE, !alias);
@@ -483,7 +484,7 @@ void CEditPluginDlg::OnOK()
 	m_info.m_name = m_strPluginName;
 	m_info.m_description = m_strDescription;
 	m_info.m_fileFilters = m_strExtensions;
-	m_info.m_isAutomatic = m_bIsAutomatic;
+	m_info.m_isAutomatic = (cursel == URL_PACK_UNPACK) ? true : m_bIsAutomatic;
 	m_info.m_arguments = m_strArguments;
 	m_info.m_pipeline = m_strPluginPipeline;
 	m_info.m_extendedProperties.clear();
