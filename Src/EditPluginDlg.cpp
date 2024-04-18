@@ -58,8 +58,12 @@ CEditPluginDlg::CEditPluginDlg(internal_plugin::Info& info, CWnd* pParent/* = nu
 		LoadMethod(*info.m_unpackFile, 0);
 	if (info.m_packFile)
 		LoadMethod(*info.m_packFile, 1);
+	if (info.m_unpackFolder)
+		LoadMethod(*info.m_unpackFolder, 2);
+	if (info.m_packFolder)
+		LoadMethod(*info.m_packFolder, 3);
 	if (info.m_isFolder)
-		LoadMethod(*info.m_isFolder, 2);
+		LoadMethod(*info.m_isFolder, 4);
 	if (info.m_prediffFile)
 		LoadMethod(*info.m_prediffFile, 0);
 	m_strCommandline = m_strCommandlineAry[0];
@@ -173,12 +177,12 @@ void CEditPluginDlg::UpdateControls()
 	}
 	m_ctlTab.DeleteAllItems();
 	const int cursel = m_ctlEvent.GetCurSel();
-	if (cursel == URL_PACK_UNPACK || cursel == FILE_PACK_UNPACK)
+	if (cursel == FILE_PACK_UNPACK)
 	{
 		m_ctlTab.InsertItem(0, _T("UnpackFile"));
 		m_ctlTab.InsertItem(1, _T("PackFile"));
 	}
-	else if (cursel == FILE_FOLDER_PACK_UNPACK)
+	else if (cursel == URL_PACK_UNPACK || cursel == FILE_FOLDER_PACK_UNPACK)
 	{
 		m_ctlTab.InsertItem(0, _T("UnpackFile"));
 		m_ctlTab.InsertItem(1, _T("PackFile"));
@@ -234,6 +238,27 @@ static void RemoveMenuItems(CMenu* pPopup, unsigned menuid, int plugintype, int 
 				for (auto id : {
 					ID_PLUGIN_COMMAND_LINE_DST_FILE, ID_PLUGIN_COMMAND_LINE_DST_FOLDER,
 					ID_PLUGIN_COMMAND_LINE_SRC_URL, ID_PLUGIN_COMMAND_LINE_SRC_URL_PROTOCOL, ID_PLUGIN_COMMAND_LINE_SRC_URL_SUFFIX, ID_PLUGIN_COMMAND_LINE_SRC_FOLDER })
+					pPopup->RemoveMenu(id, MF_BYCOMMAND);
+			}
+			else if (method == UnpackFolder)
+			{
+				for (auto id : {
+					ID_PLUGIN_COMMAND_LINE_SRC_FILE, ID_PLUGIN_COMMAND_LINE_SRC_FOLDER,
+					ID_PLUGIN_COMMAND_LINE_DST_URL, ID_PLUGIN_COMMAND_LINE_DST_URL_PROTOCOL, ID_PLUGIN_COMMAND_LINE_DST_URL_SUFFIX, ID_PLUGIN_COMMAND_LINE_DST_FILE})
+					pPopup->RemoveMenu(id, MF_BYCOMMAND);
+			}
+			else if (method == PackFolder)
+			{
+				for (auto id : {
+					ID_PLUGIN_COMMAND_LINE_DST_FILE, ID_PLUGIN_COMMAND_LINE_DST_FOLDER,
+					ID_PLUGIN_COMMAND_LINE_SRC_URL, ID_PLUGIN_COMMAND_LINE_SRC_URL_PROTOCOL, ID_PLUGIN_COMMAND_LINE_SRC_URL_SUFFIX, ID_PLUGIN_COMMAND_LINE_SRC_FILE})
+					pPopup->RemoveMenu(id, MF_BYCOMMAND);
+			}
+			else if (method == IsFolder)
+			{
+				for (auto id : {
+					ID_PLUGIN_COMMAND_LINE_SRC_FILE, ID_PLUGIN_COMMAND_LINE_SRC_FOLDER,
+					ID_PLUGIN_COMMAND_LINE_DST_URL, ID_PLUGIN_COMMAND_LINE_DST_URL_PROTOCOL, ID_PLUGIN_COMMAND_LINE_DST_URL_SUFFIX, ID_PLUGIN_COMMAND_LINE_DST_FILE, ID_PLUGIN_COMMAND_LINE_DST_FOLDER })
 					pPopup->RemoveMenu(id, MF_BYCOMMAND);
 			}
 		}
@@ -481,12 +506,12 @@ void CEditPluginDlg::OnOK()
 	m_strCommandlineAry[i] = m_strCommandline;
 	m_strScriptFileExtensionAry[i] = m_strScriptFileExtension;
 	m_strScriptBodyAry[i] = m_strScriptBody;
-	if (cursel == URL_PACK_UNPACK || cursel == FILE_PACK_UNPACK)
+	if (cursel == FILE_PACK_UNPACK)
 	{
 		SaveMethod(m_info.m_unpackFile, 0);
 		SaveMethod(m_info.m_packFile, 1);
 	}
-	else if (cursel == FILE_FOLDER_PACK_UNPACK)
+	else if (cursel == URL_PACK_UNPACK || cursel == FILE_FOLDER_PACK_UNPACK)
 	{
 		SaveMethod(m_info.m_unpackFile, 0);
 		SaveMethod(m_info.m_packFile, 1);
