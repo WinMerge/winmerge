@@ -1162,6 +1162,15 @@ msgstr ""
 msgid "${SCRIPT_FILE} - Script file"
 msgstr ""
 
+msgid "Add &unpacker plugin..."
+msgstr ""
+
+msgid "Add &prediffer plugin..."
+msgstr ""
+
+msgid "&Duplicate plugin"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
 

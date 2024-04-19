@@ -1160,6 +1160,15 @@ msgstr "${WINMERGE_HOME} - WinMergeホームディレクトリ"
 msgid "${SCRIPT_FILE} - Script file"
 msgstr "${SCRIPT_FILE} - スクリプトファイル"
 
+msgid "Add &unpacker plugin..."
+msgstr ""
+
+msgid "Add &prediffer plugin..."
+msgstr ""
+
+msgid "&Duplicate plugin"
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "WinMerge について"
 

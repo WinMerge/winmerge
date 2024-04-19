@@ -23,7 +23,7 @@ IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_ADD, OnBnClickedPluginAdd)
-	//ON_NOTIFY(BCN_DROPDOWN, IDC_PLUGIN_ADD, OnDropDownAdd)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_PLUGIN_ADD, OnDropDownAdd)
 	ON_BN_CLICKED(IDC_PLUGIN_EDIT, OnBnClickedPluginEdit)
 	ON_BN_CLICKED(IDC_PLUGIN_REMOVE, OnBnClickedPluginRemove)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
@@ -179,29 +179,7 @@ void PluginsListDlg::RefreshList()
 	}
 }
 
-/**
- * @brief Save plugins enabled setting when closing the dialog.
- */
-void PluginsListDlg::OnBnClickedOk()
-{
-	GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, 
-		(IsDlgButtonChecked(IDC_PLUGINS_ENABLE) == 1));
-
-	OnLVNItemChanging(nullptr, nullptr);
-
-	for (int i = 0; i < m_list.GetItemCount(); ++i)
-	{
-		PluginInfo * plugin = reinterpret_cast<PluginInfo *>(m_list.GetItemData(i));
-		if (plugin)
-			plugin->m_disabled = !m_list.GetCheck(i);
-	}
-
-	CAllThreadsScripts::GetActiveSet()->SaveSettings();
-	CAllThreadsScripts::ReloadCustomSettings();
-	OnOK();
-}
-
-void PluginsListDlg::OnBnClickedPluginAdd()
+void PluginsListDlg::AddPlugin()
 {
 	auto info = std::make_unique<internal_plugin::Info>(internal_plugin::CreateNewUnpackerPluginExample());
 	for (;;)
@@ -217,7 +195,7 @@ void PluginsListDlg::OnBnClickedPluginAdd()
 	RefreshList();
 }
 
-void PluginsListDlg::OnBnClickedPluginEdit()
+void PluginsListDlg::EditPlugin()
 {
 	PluginInfo* plugin = GetSelectedPluginInfo();
 	if (!plugin)
@@ -252,7 +230,32 @@ void PluginsListDlg::OnBnClickedPluginEdit()
 	RefreshList();
 }
 
-void PluginsListDlg::OnBnClickedPluginRemove()
+void PluginsListDlg::DuplicatePlugin()
+{
+	PluginInfo* plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return;
+	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	if (!info)
+		return;
+	internal_plugin::Info info2(*info);
+	info2.m_userDefined = true;
+	for (;;)
+	{
+		info2.m_name += _T("Copy");
+		if (!internal_plugin::FindPluginNameConflict(info2))
+			break;
+	}
+	String errmsg;
+	if (!internal_plugin::AddPlugin(info2, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+	RefreshList();
+}
+
+void PluginsListDlg::RemovePlugin()
 {
 	PluginInfo* plugin = GetSelectedPluginInfo();
 	if (!plugin)
@@ -268,6 +271,61 @@ void PluginsListDlg::OnBnClickedPluginRemove()
 	}
 
 	RefreshList();
+}
+/**
+ * @brief Save plugins enabled setting when closing the dialog.
+ */
+void PluginsListDlg::OnBnClickedOk()
+{
+	GetOptionsMgr()->SaveOption(OPT_PLUGINS_ENABLED, 
+		(IsDlgButtonChecked(IDC_PLUGINS_ENABLE) == 1));
+
+	OnLVNItemChanging(nullptr, nullptr);
+
+	for (int i = 0; i < m_list.GetItemCount(); ++i)
+	{
+		PluginInfo * plugin = reinterpret_cast<PluginInfo *>(m_list.GetItemData(i));
+		if (plugin)
+			plugin->m_disabled = !m_list.GetCheck(i);
+	}
+
+	CAllThreadsScripts::GetActiveSet()->SaveSettings();
+	CAllThreadsScripts::ReloadCustomSettings();
+	OnOK();
+}
+
+void PluginsListDlg::OnBnClickedPluginAdd()
+{
+	AddPlugin();
+}
+
+void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	CRect rcButton;
+	GetDlgItem(IDC_PLUGIN_ADD)->GetWindowRect(&rcButton);
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_PLUGIN_ADD_MENU));
+	theApp.TranslateMenu(menu.m_hMenu);
+	CMenu* pPopup = menu.GetSubMenu(0);
+	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD,
+			rcButton.left, rcButton.bottom, this);
+	switch (command)
+	{
+	case ID_PLUGIN_DUPLICATE:
+		DuplicatePlugin();
+		break;
+	}
+	*pResult = 0;
+}
+
+void PluginsListDlg::OnBnClickedPluginEdit()
+{
+	EditPlugin();
+}
+
+void PluginsListDlg::OnBnClickedPluginRemove()
+{
+	RemovePlugin();
 }
 
 void PluginsListDlg::OnBnClickedPluginSettings()

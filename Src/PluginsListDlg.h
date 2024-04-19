@@ -32,6 +32,10 @@ protected:
 	void AddPlugins();
 	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
 	void RefreshList();
+	void AddPlugin();
+	void EditPlugin();
+	void DuplicatePlugin();
+	void RemovePlugin();
 	PluginInfo *GetSelectedPluginInfo() const;
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
@@ -39,6 +43,7 @@ protected:
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedPluginAdd();
+	afx_msg void OnDropDownAdd(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnBnClickedPluginEdit();
 	afx_msg void OnBnClickedPluginRemove();
 	afx_msg void OnBnClickedPluginSettings();
