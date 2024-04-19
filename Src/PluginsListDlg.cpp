@@ -16,12 +16,14 @@
 #include "unicoder.h"
 #include "Merge.h"
 #include "Constants.h"
+#include "Win_VersionHelper.h"
 
 IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 	ON_BN_CLICKED(IDC_PLUGIN_ADD, OnBnClickedPluginAdd)
+	//ON_NOTIFY(BCN_DROPDOWN, IDC_PLUGIN_ADD, OnDropDownAdd)
 	ON_BN_CLICKED(IDC_PLUGIN_EDIT, OnBnClickedPluginEdit)
 	ON_BN_CLICKED(IDC_PLUGIN_REMOVE, OnBnClickedPluginRemove)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
@@ -62,6 +64,13 @@ void PluginsListDlg::DoDataExchange(CDataExchange* pDX)
 BOOL PluginsListDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
+
+	if (!IsVista_OrGreater())
+	{
+		// fallback for XP 
+		SendDlgItemMessage(IDC_PLUGIN_ADD, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+	}
+
 	
 	InitList();
 	AddPlugins();
@@ -194,7 +203,7 @@ void PluginsListDlg::OnBnClickedOk()
 
 void PluginsListDlg::OnBnClickedPluginAdd()
 {
-	auto info = std::make_unique<internal_plugin::Info>(internal_plugin::CreateNewPluginExample());
+	auto info = std::make_unique<internal_plugin::Info>(internal_plugin::CreateNewUnpackerPluginExample());
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);

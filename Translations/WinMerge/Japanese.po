@@ -4187,7 +4187,7 @@ msgid "File or Folder Unpacker"
 msgstr "ファイルまたはフォルダー展開プラグイン"
 
 msgid "Alias for Unpacker"
-msgstr "ファイル展開プラグインのエイリアス"
+msgstr "展開プラグインのエイリアス"
 
 msgid "Alias for Prediffer"
 msgstr "比較前処理プラグインのエイリアス"

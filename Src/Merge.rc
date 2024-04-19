@@ -2245,7 +2245,7 @@ BEGIN
     CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
     PUSHBUTTON      "Defaults",IDC_PLUGIN_DEFAULTS,393,183,70,14
-    PUSHBUTTON      "Add",IDC_PLUGIN_ADD,6,236,50,14
+    CONTROL         "Add",IDC_PLUGIN_ADD,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,236,50,14
     PUSHBUTTON      "Edit",IDC_PLUGIN_EDIT,62,236,50,14
     PUSHBUTTON      "Remove",IDC_PLUGIN_REMOVE,118,236,50,14
     PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,186,236,95,14

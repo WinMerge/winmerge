@@ -18,7 +18,7 @@
 #define new DEBUG_NEW
 #endif
 
-enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, PREDIFF_FILE, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_EDITOR_SCRIPT };
+enum { URL_PACK_UNPACK, FILE_PACK_UNPACK, FILE_FOLDER_PACK_UNPACK, FILE_PREDIFF, ALIAS_PACK_UNPACK, ALIAS_PREDIFF, ALIAS_EDITOR_SCRIPT };
 enum { UnpackFile = 0, PackFile = 1, UnpackFolder = 2, PackFolder = 3, IsFolder = 4, PrediffFile = 0 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,7 @@ void CEditPluginDlg::UpdateControls()
 		m_ctlTab.InsertItem(3, _T("PackFolder"));
 		m_ctlTab.InsertItem(4, _T("IsFolder"));
 	}
-	else if (cursel == PREDIFF_FILE)
+	else if (cursel == FILE_PREDIFF)
 	{
 		m_ctlTab.InsertItem(0, _T("PrediffFile"));
 	}
@@ -198,7 +198,7 @@ void CEditPluginDlg::UpdateControls()
 	const bool alias = (cursel > 3);
 	const bool urlhandler = (cursel == 0);
 	const bool hasScript = alias ? false : HasScript();
-	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler);
+	EnableDlgItem(IDC_PLUGIN_AUTOMATIC, !urlhandler && m_info.m_userDefined);
 	ShowDlgItem(IDC_PLUGIN_TAB, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE_STATIC, !alias);
 	ShowDlgItem(IDC_PLUGIN_COMMAND_LINE, !alias);
@@ -263,7 +263,7 @@ static void RemoveMenuItems(CMenu* pPopup, unsigned menuid, int plugintype, int 
 					pPopup->RemoveMenu(id, MF_BYCOMMAND);
 			}
 		}
-		else if (plugintype == FILE_PACK_UNPACK || plugintype == PREDIFF_FILE)
+		else if (plugintype == FILE_PACK_UNPACK || plugintype == FILE_PREDIFF)
 		{
 			for (auto id : {
 				ID_PLUGIN_COMMAND_LINE_SRC_URL, ID_PLUGIN_COMMAND_LINE_SRC_URL_PROTOCOL, ID_PLUGIN_COMMAND_LINE_SRC_URL_SUFFIX, ID_PLUGIN_COMMAND_LINE_SRC_FOLDER,
@@ -520,7 +520,7 @@ void CEditPluginDlg::OnOK()
 		SaveMethod(m_info.m_packFolder, 3);
 		SaveMethod(m_info.m_isFolder, 4);
 	}
-	else if (cursel == PREDIFF_FILE)
+	else if (cursel == FILE_PREDIFF)
 	{
 		SaveMethod(m_info.m_prediffFile, 0);
 	}
@@ -543,7 +543,7 @@ BOOL CEditPluginDlg::OnInitDialog()
 			{ _("URL Handler"), L"URL_PACK_UNPACK" },
 			{ _("File Unpacker"), L"FILE_PACK_UNPACK" },
 			{ _("File or Folder Unpacker"), L"FILE_FOLDER_PACK_UNPACK" },
-			{ _("Prediffer"), L"PREDIFF_FILE" },
+			{ _("Prediffer"), L"FILE_PREDIFF" },
 			{ _("Alias for Unpacker"), L"ALIAS_PACK_UNPACK" },
 			{ _("Alias for Prediffer"), L"ALIAS_PREDIFF" },
 			{ _("Alias for Editor script"), L"ALIAS_EDITOR_SCRIPT" }

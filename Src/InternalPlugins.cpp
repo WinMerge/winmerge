@@ -664,7 +664,7 @@ bool FindPluginNameConflict(const Info& info)
 	return false;
 }
 
-Info CreateNewPluginExample()
+Info CreateNewUnpackerPluginExample()
 {
 	internal_plugin::Info info(_T("NewPluginName"));
 	info.m_event = _T("FILE_PACK_UNPACK");
