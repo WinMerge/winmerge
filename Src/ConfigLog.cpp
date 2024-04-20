@@ -389,17 +389,14 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
 	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
 	WritePluginsInLogFile(L"URL_PACK_UNPACK");
-	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
-	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
-	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");
-	WritePluginsInLogFile(L"ALIAS_PACK_UNPACK");
+	for (auto& event : plugin::UnpackerEventNames)
+		WritePluginsInLogFile(event.c_str());
 	FileWriteString(_T("\r\n Prediffers: "));
-	WritePluginsInLogFile(L"FILE_PREDIFF");
-	WritePluginsInLogFile(L"BUFFER_PREDIFF");
-	WritePluginsInLogFile(L"ALIAS_PREDIFF");
+	for (auto& event : plugin::PredifferEventNames)
+		WritePluginsInLogFile(event.c_str());
 	FileWriteString(_T("\r\n Editor scripts: "));
-	WritePluginsInLogFile(L"EDITOR_SCRIPT");
-	WritePluginsInLogFile(L"ALIAS_EDITOR_SCRIPT");
+	for (auto& event : plugin::EditorScriptEventNames)
+		WritePluginsInLogFile(event.c_str());
 	if (!plugin::IsWindowsScriptThere())
 		FileWriteString(_T("\r\n .sct scripts disabled (Windows Script Host not found)\r\n"));
 
