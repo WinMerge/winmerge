@@ -664,7 +664,7 @@ bool FindPluginNameConflict(const Info& info)
 	return false;
 }
 
-Info CreateNewUnpackerPluginExample()
+Info CreateUnpackerPluginExample()
 {
 	internal_plugin::Info info(_T("NewPluginName"));
 	info.m_event = _T("FILE_PACK_UNPACK");
@@ -672,12 +672,25 @@ Info CreateNewUnpackerPluginExample()
 	info.m_fileFilters = _T("\\.*$");
 	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
 	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
-	info.m_unpackFile->m_command = _("cmd /c echo Hello World! \"${SRC_FILE}\" > ${DST_FILE}");
+	info.m_unpackFile->m_command = _T("cmd /c echo Hello World! \"${SRC_FILE}\" > \"${DST_FILE}\"");
 	info.m_userDefined = true;
 	return info;
 }
 
-Info CreateAliasExample(PluginInfo* plugin, const String& event, const String& pipeline)
+Info CreatePredifferPluginExample()
+{
+	internal_plugin::Info info(_T("NewPluginName"));
+	info.m_event = _T("FILE_PREDIFF");
+	info.m_description = _T("New plugin description");
+	info.m_fileFilters = _T("\\.*$");
+	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
+	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
+	info.m_unpackFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
+	info.m_userDefined = true;
+	return info;
+}
+
+Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const String& pipeline)
 {
 	internal_plugin::Info info(_(""));
 	info.m_userDefined = true;

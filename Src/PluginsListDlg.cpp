@@ -158,6 +158,14 @@ PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
+internal_plugin::Info* PluginsListDlg::GetSelectedInternalPluginInfo() const
+{
+	PluginInfo* plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return nullptr;
+	return internal_plugin::GetInternalPluginInfo(plugin);
+}
+
 void PluginsListDlg::RefreshList()
 {
 	CRect rect;
@@ -179,9 +187,11 @@ void PluginsListDlg::RefreshList()
 	}
 }
 
-void PluginsListDlg::AddPlugin()
+void PluginsListDlg::AddPlugin(unsigned id)
 {
-	auto info = std::make_unique<internal_plugin::Info>(internal_plugin::CreateNewUnpackerPluginExample());
+	auto info = std::make_unique<internal_plugin::Info>(
+		(id == ID_PLUGIN_ADD_UNPACKER) ?
+		internal_plugin::CreateUnpackerPluginExample() : internal_plugin::CreatePredifferPluginExample());
 	for (;;)
 	{
 		CEditPluginDlg dlg(*info);
@@ -197,10 +207,7 @@ void PluginsListDlg::AddPlugin()
 
 void PluginsListDlg::EditPlugin()
 {
-	PluginInfo* plugin = GetSelectedPluginInfo();
-	if (!plugin)
-		return;
-	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	auto* info = GetSelectedInternalPluginInfo();
 	if (!info)
 		return;
 	String nameOrg = info->m_name;
@@ -232,10 +239,7 @@ void PluginsListDlg::EditPlugin()
 
 void PluginsListDlg::DuplicatePlugin()
 {
-	PluginInfo* plugin = GetSelectedPluginInfo();
-	if (!plugin)
-		return;
-	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	auto* info = GetSelectedInternalPluginInfo();
 	if (!info)
 		return;
 	internal_plugin::Info info2(*info);
@@ -246,21 +250,22 @@ void PluginsListDlg::DuplicatePlugin()
 		if (!internal_plugin::FindPluginNameConflict(info2))
 			break;
 	}
-	String errmsg;
-	if (!internal_plugin::AddPlugin(info2, errmsg))
+	for (;;)
 	{
+		CEditPluginDlg dlg(info2);
+		if (dlg.DoModal() == IDCANCEL || !info2.m_userDefined)
+			return;
+		String errmsg;
+		if (internal_plugin::AddPlugin(info2, errmsg))
+			break;
 		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
-		return;
 	}
 	RefreshList();
 }
 
 void PluginsListDlg::RemovePlugin()
 {
-	PluginInfo* plugin = GetSelectedPluginInfo();
-	if (!plugin)
-		return;
-	auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+	auto* info = GetSelectedInternalPluginInfo();
 	if (!info)
 		return;
 	String errmsg;
@@ -296,7 +301,7 @@ void PluginsListDlg::OnBnClickedOk()
 
 void PluginsListDlg::OnBnClickedPluginAdd()
 {
-	AddPlugin();
+	AddPlugin(ID_PLUGIN_ADD_UNPACKER);
 }
 
 void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
@@ -307,12 +312,21 @@ void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
 	VERIFY(menu.LoadMenu(IDR_POPUP_PLUGIN_ADD_MENU));
 	theApp.TranslateMenu(menu.m_hMenu);
 	CMenu* pPopup = menu.GetSubMenu(0);
+	auto* info = GetSelectedInternalPluginInfo();
+	if (!info)
+		pPopup->EnableMenuItem(ID_PLUGIN_DUPLICATE, MF_GRAYED);
 	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD,
 			rcButton.left, rcButton.bottom, this);
 	switch (command)
 	{
+	case ID_PLUGIN_ADD_UNPACKER:
+	case ID_PLUGIN_ADD_PREDIFFER:
+		AddPlugin(command);
+		break;
 	case ID_PLUGIN_DUPLICATE:
 		DuplicatePlugin();
+		break;
+	default:
 		break;
 	}
 	*pResult = 0;

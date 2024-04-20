@@ -294,7 +294,7 @@ void CSelectPluginDlg::OnClickedAlias()
 	}
 
 	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_EDITOR_SCRIPT") };
-	internal_plugin::Info info = internal_plugin::CreateAliasExample(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
+	internal_plugin::Info info = internal_plugin::CreateAliasPluginExample(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
 
 	for (;;)
 	{

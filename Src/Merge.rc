@@ -1237,7 +1237,7 @@ BEGIN
     BEGIN
         MENUITEM "Add &unpacker plugin...",     ID_PLUGIN_ADD_UNPACKER
         MENUITEM "Add &prediffer plugin...",    ID_PLUGIN_ADD_PREDIFFER
-        MENUITEM "&Duplicate plugin",           ID_PLUGIN_DUPLICATE
+        MENUITEM "&Duplicate plugin...",        ID_PLUGIN_DUPLICATE
     END
 END
 

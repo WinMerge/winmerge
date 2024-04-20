@@ -1161,13 +1161,13 @@ msgid "${SCRIPT_FILE} - Script file"
 msgstr "${SCRIPT_FILE} - スクリプトファイル"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "展開プラグインを追加(&U)..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "比較前処理プラグインを追加(&P)..."
 
-msgid "&Duplicate plugin"
-msgstr ""
+msgid "&Duplicate plugin..."
+msgstr "プラグインを複製(&D)..."
 
 msgid "About WinMerge"
 msgstr "WinMerge について"

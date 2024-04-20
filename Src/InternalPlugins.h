@@ -73,8 +73,9 @@ bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>
 bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlugins, String& errmsg);
 Info* GetInternalPluginInfo(const PluginInfo* plugin);
 bool FindPluginNameConflict(const Info& info);
-Info CreateNewUnpackerPluginExample();
-Info CreateAliasExample(PluginInfo* plugin, const String& event, const String& pipeline);
+Info CreateUnpackerPluginExample();
+Info CreatePredifferPluginExample();
+Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const String& pipeline);
 bool AddPlugin(const Info& info, String& errmsg);
 bool UpdatePlugin(const Info& info, String& errmsg);
 bool RemovePlugin(const Info& info, String& errmsg);

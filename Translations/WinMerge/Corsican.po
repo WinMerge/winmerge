@@ -1169,7 +1169,7 @@ msgstr ""
 msgid "Add &prediffer plugin..."
 msgstr ""
 
-msgid "&Duplicate plugin"
+msgid "&Duplicate plugin..."
 msgstr ""
 
 msgid "About WinMerge"

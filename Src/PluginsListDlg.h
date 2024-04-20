@@ -9,6 +9,7 @@
 #include "UnicodeString.h"
 
 class PluginInfo;
+namespace internal_plugin { struct Info; }
 
 /**
  * @brief A dialog listing plugins.
@@ -32,11 +33,12 @@ protected:
 	void AddPlugins();
 	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
 	void RefreshList();
-	void AddPlugin();
+	void AddPlugin(unsigned id);
 	void EditPlugin();
 	void DuplicatePlugin();
 	void RemovePlugin();
 	PluginInfo *GetSelectedPluginInfo() const;
+	internal_plugin::Info* GetSelectedInternalPluginInfo() const;
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
