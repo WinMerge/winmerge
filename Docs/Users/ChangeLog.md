@@ -1,5 +1,44 @@
 # Change log
 
+## WinMerge 2.16.40 - 2024-04-27
+
+### File compare
+
+- BugFix: Replace text issue (#2279)
+
+### Options dialog
+
+- Add a "Defaults" button to the "Options (Editor > General)" dialog.
+    (#PR 2283)
+
+### Plugins
+
+- BugFix: CompareMSExcelFiles.sct: Fixed the issue where, when the 'Extract
+    workbook data to multiple files' option was enabled, all sheets of .xlsx
+    files containing more than 10 sheets were not compared.
+    (This bug was introduced in version 2.16.39 beta.)
+- BugFix: insert datetime.sct: Fixed an issue where it didn't work properly
+    depending on the locale.
+    (This bug was introduced in version 2.16.39 beat.)
+- BugFix: Fixed an issue where a "Catastrophic failure" message box might have
+    appeared when reloading a plugin while the Select Files or Folders window
+    was displayed.
+- Allow plugin pipeline aliases or simple plugins to be registered in the GUI
+    (PR #2257)
+
+### Installer
+
+- BugFix: French encoding problem on the end of installation (last dialog box)
+   (#2272)
+
+### Translations
+
+- Translation updates:
+  - Catalan (PR #2270,#2274)
+  - French (PR #2271,#2275)
+  - Japanese
+  - Polish (PR#2277)
+
 ## WinMerge 2.16.39 - 2024-03-24
 
 ### General
