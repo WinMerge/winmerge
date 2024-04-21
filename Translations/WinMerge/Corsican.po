@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-03-13 08:45+0000\n"
-"PO-Revision-Date: 2024-03-22 18:02+0100\n"
+"POT-Creation-Date: 2024-04-20 09:09+0000\n"
+"PO-Revision-Date: 2024-04-21 16:39+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -1098,79 +1098,79 @@ msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - Tutti i parametri"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - U primu parametru"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - U secondu parametru"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - U terzu parametru"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - U quartu parametru"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - U quintu parametru"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - U sestu parametru"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - U settimu parametru"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - L’ottesimu parametru"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - U novesimu parametru"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Schedariu di fonte"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Cartulare di fonte"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Indirizzu web di fonte"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Protocollu di l’indirizzu web di fonte"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Suffissu di l’indirizzu web di fonte"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Schedariu di destinazione"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Cartulare di destinazione"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - Indirizzu web di destinazione"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Protocollu di l’indirizzu web di destinazione"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Suffissu di l’indirizzu web di destinazione"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - Cartulare d’accolta WinMerge"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Schedariu di scenariu"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "Aghjunghje u modulu d’estensione di u &spacchittadore…"
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "Aghjunghje u modulu d’estensione di u &preparagone…"
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "Modulu d’estensione in &doppiu…"
 
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
@@ -1551,7 +1551,7 @@ msgid "&Plugin Pipeline:"
 msgstr "&Cundottu di modulu :"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Cugnome…"
 
 msgid "Stop"
 msgstr "Piantà"
@@ -2155,37 +2155,37 @@ msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Mudificà u modulu d’estensione"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Tipu di &modulu d’estensione :"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Categuria :"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "&Legenda di listinu :"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "Tipu di &finestra :"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Estensione di u schedariu spacchittatu :"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "&Parametri richiesti"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "&Ingenerà u scenariu d’editore"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "&Linea di cumanda :"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "Estensione di u schedariu di &scenariu :"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "&Testu di u scenariu :"
 
 msgid "EXT"
 msgstr "EST"
@@ -4161,7 +4161,7 @@ msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "U nome di modulu d’estensione « %1 » esiste dighjà."
 
 msgid "Specify plugin arguments"
 msgstr "Indicate i parametri di u modulu d’estensione"
@@ -4184,32 +4184,32 @@ msgstr "Un sbagliu hè accadutu durante u preparagone di u schedariu « %1 » 
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Referenza circulare in u cundottu di modulu d’estensione : %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "Ghjestiunariu d’indirizzu web"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Spacchittadore di schedariu"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Spacchittadore di schedariu o di cartulare"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Cugnome di u spacchittadore"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Cugnome di u preparagone"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Cugnome di u scenariu d’editore"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Cugnome di u cundottu di modulu d’estensione « %1 »"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Discrizzione nova di u modulu d’estensione"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
