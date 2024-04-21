@@ -224,7 +224,7 @@ IDR_POPUP_WEBPAGEDIFFVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "View &Differences",               ID_WEB_VIEWDIFFERENCES
+        MENUITEM "View &Differences",           ID_WEB_VIEWDIFFERENCES
         POPUP "Co&mpare"
         BEGIN
             MENUITEM "&Screenshots",                ID_WEB_COMPARE_SCREENSHOTS
@@ -814,7 +814,7 @@ BEGIN
         BEGIN
             POPUP "&Scripts"
             BEGIN
-                MENUITEM "< Empty >",               ID_NO_EDIT_SCRIPTS_FOR_COPYING
+                MENUITEM "< Empty >",                   ID_NO_EDIT_SCRIPTS_FOR_COPYING
             END
             MENUITEM "Select &editor script...",    ID_SELECT_EDITOR_SCRIPT_FOR_COPYING
         END
@@ -946,7 +946,7 @@ BEGIN
             MENUITEM "Both (%1 of %2)",             ID_DIR_COPY_BOTH_TO_CLIPBOARD
             MENUITEM "All (%1 of %2)",              ID_DIR_COPY_ALL_TO_CLIPBOARD
         END
-        MENUITEM "Copy All Di&splayed Columns"       ID_DIR_COPY_ALL_DISP_COLUMNS
+        MENUITEM "Copy All Di&splayed Columns", ID_DIR_COPY_ALL_DISP_COLUMNS
         MENUITEM SEPARATOR
         POPUP "&Zip"
         BEGIN
@@ -1185,6 +1185,61 @@ BEGIN
     END
 END
 
+IDR_POPUP_PLUGIN_PIPELINE_MENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "${*} - All arguments",        ID_PLUGIN_PIPELINE_ARGALL
+        MENUITEM "${1} - The first argument",   ID_PLUGIN_PIPELINE_ARG1
+        MENUITEM "${2} - The second argument",  ID_PLUGIN_PIPELINE_ARG2
+        MENUITEM "${3} - The third argument",   ID_PLUGIN_PIPELINE_ARG3
+        MENUITEM "${4} - The fourth argument",  ID_PLUGIN_PIPELINE_ARG4
+        MENUITEM "${5} - The fifth argument",   ID_PLUGIN_PIPELINE_ARG5
+        MENUITEM "${6} - The sixth argument",   ID_PLUGIN_PIPELINE_ARG6
+        MENUITEM "${7} - The seventh argument", ID_PLUGIN_PIPELINE_ARG7
+        MENUITEM "${8} - The eighth argument",  ID_PLUGIN_PIPELINE_ARG8
+        MENUITEM "${9} - The ninth argument",   ID_PLUGIN_PIPELINE_ARG9
+    END
+END
+
+IDR_POPUP_PLUGIN_COMMAND_LINE_MENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "${SRC_FILE} - Source file",   ID_PLUGIN_COMMAND_LINE_SRC_FILE
+        MENUITEM "${SRC_FOLDER} - Source folder", ID_PLUGIN_COMMAND_LINE_SRC_FOLDER
+        MENUITEM "${SRC_URL} - Source URL",     ID_PLUGIN_COMMAND_LINE_SRC_URL
+        MENUITEM "${SRC_URL_PROTOCOL} - Source URL protocol", ID_PLUGIN_COMMAND_LINE_SRC_URL_PROTOCOL
+        MENUITEM "${SRC_URL_SUFFIX} - Source URL suffix", ID_PLUGIN_COMMAND_LINE_SRC_URL_SUFFIX
+        MENUITEM "${DST_FILE} - Destination file", ID_PLUGIN_COMMAND_LINE_DST_FILE
+        MENUITEM "${DST_FOLDER} - Destination folder", ID_PLUGIN_COMMAND_LINE_DST_FOLDER
+        MENUITEM "${DST_URL} - Destination URL", ID_PLUGIN_COMMAND_LINE_DST_URL
+        MENUITEM "${DST_URL_PROTOCOL} - Destination URL protocol", ID_PLUGIN_COMMAND_LINE_DST_URL_PROTOCOL
+        MENUITEM "${DST_URL_SUFFIX} - Destination URL suffix", ID_PLUGIN_COMMAND_LINE_DST_URL_SUFFIX
+        MENUITEM "${WINMERGE_HOME} - WinMerge home directory", ID_PLUGIN_COMMAND_LINE_WINMERGE_HOME
+        MENUITEM "${SCRIPT_FILE} - Script file", ID_PLUGIN_COMMAND_LINE_SCRIPT_FILE
+        MENUITEM "${*} - All arguments",        ID_PLUGIN_COMMAND_LINE_ARGALL
+        MENUITEM "${1} - The first argument",   ID_PLUGIN_COMMAND_LINE_ARG1
+        MENUITEM "${2} - The second argument",  ID_PLUGIN_COMMAND_LINE_ARG2
+        MENUITEM "${3} - The third argument",   ID_PLUGIN_COMMAND_LINE_ARG3
+        MENUITEM "${4} - The fourth argument",  ID_PLUGIN_COMMAND_LINE_ARG4
+        MENUITEM "${5} - The fifth argument",   ID_PLUGIN_COMMAND_LINE_ARG5
+        MENUITEM "${6} - The sixth argument",   ID_PLUGIN_COMMAND_LINE_ARG6
+        MENUITEM "${7} - The seventh argument", ID_PLUGIN_COMMAND_LINE_ARG7
+        MENUITEM "${8} - The eighth argument",  ID_PLUGIN_COMMAND_LINE_ARG8
+        MENUITEM "${9} - The ninth argument",   ID_PLUGIN_COMMAND_LINE_ARG9
+    END
+END
+
+IDR_POPUP_PLUGIN_ADD_MENU MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Add &unpacker plugin...",     ID_PLUGIN_ADD_UNPACKER
+        MENUITEM "Add &prediffer plugin...",    ID_PLUGIN_ADD_PREDIFFER
+        MENUITEM "&Duplicate plugin...",        ID_PLUGIN_DUPLICATE
+    END
+END
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1672,7 +1727,8 @@ BEGIN
     LTEXT           "&Plugin Pipeline:",IDC_STATIC,7,118,83,10
     CONTROL         "",IDC_PLUGIN_PIPELINE,"ComboBoxEx32",CBS_DROPDOWN | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,92,116,220,95
     PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,7,134,95,14
-    PUSHBUTTON      "&Add pipe",IDC_PLUGIN_ADDPIPE,136,134,70,14
+    PUSHBUTTON      "&Alias...",IDC_PLUGIN_ALIAS,106,134,76,14
+    PUSHBUTTON      "|",IDC_PLUGIN_ADDPIPE,186,134,20,14
     DEFPUSHBUTTON   "OK",IDOK,210,134,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,264,134,50,14
 END
@@ -1701,7 +1757,7 @@ CAPTION "Go to"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "G&o to:",IDC_STATIC,7,9,68,10
-    LTEXT           "", IDC_WMGOTO_RANGE,77,9,65,10
+    LTEXT           "",IDC_WMGOTO_RANGE,77,9,65,10
     EDITTEXT        IDC_WMGOTO_PARAM,146,7,64,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,65,45
     CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | WS_GROUP,13,38,56,10
@@ -2199,7 +2255,10 @@ BEGIN
     CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,218,300,10
     PUSHBUTTON      "Defaults",IDC_PLUGIN_DEFAULTS,393,183,70,14
-    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,191,236,95,14
+    CONTROL         "Add",IDC_PLUGIN_ADD,"Button",BS_SPLITBUTTON | WS_TABSTOP,6,236,60,14
+    PUSHBUTTON      "Edit",IDC_PLUGIN_EDIT,72,236,50,14
+    PUSHBUTTON      "Remove",IDC_PLUGIN_REMOVE,128,236,50,14
+    PUSHBUTTON      "P&lugin Settings...",IDC_PLUGIN_SETTINGS,186,236,95,14
     DEFPUSHBUTTON   "OK",IDOK,293,236,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,354,236,50,14
     PUSHBUTTON      "Help",ID_HELP,413,236,50,14
@@ -2236,7 +2295,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,34,279,10
     CONTROL         "Ign&ore time differences less than 3 seconds",IDC_IGNORE_SMALLTIMEDIFF,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,46,279,10
-    CONTROL         "&Include subfolders", IDC_RECURS_CHECK, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 6, 58, 279, 10
+    CONTROL         "&Include subfolders",IDC_RECURS_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,6,58,279,10
     LTEXT           "&Automatically expand subfolders after comparison:",IDC_STATIC,7,70,269,10
     COMBOBOX        IDC_EXPAND_SUBDIRS,6,82,270,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Include &unique subfolders contents",IDC_COMPARE_WALKSUBDIRS,
@@ -2371,6 +2430,48 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,170,22,60,14
 END
 
+IDD_PLUGINS_EDITPLUGIN DIALOGEX 0, 0, 335, 303
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Edit Plugin"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Plugin &type:",IDC_STATIC,8,4,98,10
+    COMBOBOX        IDC_PLUGIN_TYPE,108,4,220,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Plugin &Name:",IDC_STATIC,8,20,98,10
+    EDITTEXT        IDC_PLUGIN_NAME,108,20,220,12,ES_AUTOHSCROLL
+    LTEXT           "Extensions list:",IDC_STATIC,8,36,98,10
+    EDITTEXT        IDC_PLUGIN_SUPPORTED_EXTENSIONS,108,36,220,12,ES_AUTOHSCROLL
+    LTEXT           "Description:",IDC_STATIC,8,52,98,10
+    EDITTEXT        IDC_PLUGIN_DESCRIPTION,108,52,220,36,ES_MULTILINE | WS_VSCROLL
+    LTEXT           "Default arguments:",IDC_STATIC,8,92,98,10
+    EDITTEXT        IDC_PLUGIN_ARGUMENTS,108,92,220,12,ES_AUTOHSCROLL
+    LTEXT           "&Category:",IDC_STATIC,8,108,98,10
+    EDITTEXT        IDC_PLUGIN_PROCESSTYPE,108,108,220,12,ES_AUTOHSCROLL
+    LTEXT           "&Menu caption:",IDC_PLUGIN_MENUCAPTION_STATIC,8,124,98,10
+    EDITTEXT        IDC_PLUGIN_MENUCAPTION,108,124,220,12,ES_AUTOHSCROLL
+    LTEXT           "&Window type:",IDC_PLUGIN_WINDOWTYPE_STATIC,8,140,98,10
+    COMBOBOX        IDC_PLUGIN_WINDOWTYPE,108,140,220,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "&Plugin Pipeline:",IDC_PLUGIN_PIPELINE_STATIC,8,140,98,10
+    EDITTEXT        IDC_PLUGIN_PIPELINE,108,140,208,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "=",IDC_PLUGIN_PIPELINE_MENU,316,140,12,12
+    LTEXT           "&Unpacked file extension:",IDC_PLUGIN_UNPACKEDFILEEXTENSION_STATIC,8,156,98,10
+    EDITTEXT        IDC_PLUGIN_UNPACKEDFILEEXTENSION,108,156,220,12,ES_AUTOHSCROLL
+    CONTROL         "Enable &automatic unpacking/prediffing for the plugin",IDC_PLUGIN_AUTOMATIC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,170,304,10
+    CONTROL         "&Require arguments",IDC_PLUGIN_ARGUMENTSREQUIRED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,182,304,10
+    CONTROL         "&Generate editor script",IDC_PLUGIN_GENERATESCRIPT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,194,304,10
+    CONTROL         "",IDC_PLUGIN_TAB,"SysTabControl32",WS_TABSTOP,4,206,328,76
+    LTEXT           "Command &line:",IDC_PLUGIN_COMMAND_LINE_STATIC,8,226,98,10
+    EDITTEXT        IDC_PLUGIN_COMMAND_LINE,108,226,208,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "=",IDC_PLUGIN_COMMAND_LINE_MENU,316,226,12,12
+    LTEXT           "&Script file extension:",IDC_PLUGIN_SCRIPT_FILEEXTENSION_STATIC,8,242,98,10
+    EDITTEXT        IDC_PLUGIN_SCRIPT_FILEEXTENSION,108,242,220,12,ES_AUTOHSCROLL
+    LTEXT           "Script &body:",IDC_PLUGIN_SCRIPT_BODY_STATIC,8,258,98,10
+    EDITTEXT        IDC_PLUGIN_SCRIPT_BODY,108,258,220,20,ES_MULTILINE | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,222,284,48,14
+    PUSHBUTTON      "Cancel",IDCANCEL,274,284,48,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -2491,6 +2592,10 @@ BEGIN
         BOTTOMMARGIN, 109
     END
 
+    IDD_PLUGINS_LIST, DIALOG
+    BEGIN
+    END
+
     IDD_PROPPAGE_SHELL, DIALOG
     BEGIN
     END
@@ -2514,6 +2619,12 @@ BEGIN
 
     IDD_INPUTBOX, DIALOG
     BEGIN
+    END
+
+    IDD_PLUGINS_EDITPLUGIN, DIALOG
+    BEGIN
+        RIGHTMARGIN, 318
+        BOTTOMMARGIN, 277
     END
 END
 #endif    // APSTUDIO_INVOKED
@@ -2988,7 +3099,7 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0,
+    0, 0, 100, 0
 END
 
 IDD_PROPPAGE_EDITOR_SYNTAX AFX_DIALOG_LAYOUT
@@ -3084,12 +3195,57 @@ BEGIN
     0, 100, 0, 0,
     0, 100, 100, 0,
     0, 100, 0, 0,
-    100, 100, 0, 0,
+    0, 100, 0, 0,
+    0, 100, 0, 0,
     100, 100, 0, 0,
     100, 100, 0, 0
 END
 
 IDD_INPUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_PLUGINS_EDITPLUGIN AFX_DIALOG_LAYOUT
+BEGIN
+    0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 0,
+    0, 0, 100, 100,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    100, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 0,
+    0, 0, 0, 0,
+    0, 0, 100, 100,
+    100, 100, 0, 0,
+    100, 100, 0, 0
+END
+
+IDD_PLUGINS_LIST AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -4106,7 +4262,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_NOTINSTALLED  "%1 is not installed."
+    IDS_NOTINSTALLED        "%1 is not installed."
 END
 
 STRINGTABLE
@@ -4219,6 +4375,7 @@ BEGIN
                             "Missing plugin name in plugin pipeline: %1"
     IDS_PLUGIN_MISSING_QUOTATION_MARK 
                             "Missing quotation mark in plugin pipeline: %1"
+    IDS_PLUGIN_NAME_ALREADY_EXISTS "The plugin name '%1' already exists."
     IDS_PLUGIN_TITLE1       "Specify plugin arguments"
     IDS_PLUGIN_NOTFOUND_INVALID
                             "Plugin not found or invalid: %1"
@@ -4226,6 +4383,16 @@ BEGIN
     IDS_PLUGIN_NOT_PREDIFF  "'%1' is not prediffer plugin"
     IDS_PLUGIN_PREDIFF_ERROR
                             "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+    IDS_PLUGIN_CIRCULAR_REFERENCE "Circular reference in plugin pipeline: %1"
+    IDS_PLUGIN_TYPE1        "URL Handler"
+    IDS_PLUGIN_TYPE2        "File Unpacker"
+    IDS_PLUGIN_TYPE3        "File or Folder Unpacker"
+    IDS_PLUGIN_TYPE4        "Prediffer"
+    IDS_PLUGIN_TYPE5        "Alias for Unpacker"
+    IDS_PLUGIN_TYPE6        "Alias for Prediffer"
+    IDS_PLUGIN_TYPE7        "Alias for Editor script"
+    IDS_PLUGIN_ALIAS_DESC   "Alias for plugin pipeline '%1'"
+    IDS_PLUGIN_NEW_DESC     "New plugin description"
 END
 
 STRINGTABLE

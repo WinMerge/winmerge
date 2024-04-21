@@ -211,6 +211,6 @@ void DirCompProgressBar::EndUpdating()
 
 void DirCompProgressBar::SetPaused(bool paused)
 {
-	GetDlgItem(IDC_COMPARISON_PAUSE)->ShowWindow(paused ? SW_HIDE : SW_SHOW);
-	GetDlgItem(IDC_COMPARISON_CONTINUE)->ShowWindow(paused ? SW_SHOW : SW_HIDE);
+	ShowDlgItem(IDC_COMPARISON_PAUSE, !paused);
+	ShowDlgItem(IDC_COMPARISON_CONTINUE, paused);
 }

@@ -9,6 +9,7 @@
 #include "UnicodeString.h"
 
 class PluginInfo;
+namespace internal_plugin { struct Info; }
 
 /**
  * @brief A dialog listing plugins.
@@ -31,12 +32,22 @@ protected:
 	void InitList();
 	void AddPlugins();
 	void AddPluginsToList(const wchar_t *pluginEvent, const String& pluginType);
+	void RefreshList();
+	void AddPlugin(unsigned id);
+	void EditPlugin();
+	void DuplicatePlugin();
+	void RemovePlugin();
 	PluginInfo *GetSelectedPluginInfo() const;
+	internal_plugin::Info* GetSelectedInternalPluginInfo() const;
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	afx_msg BOOL OnInitDialog() override;
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnBnClickedPluginAdd();
+	afx_msg void OnDropDownAdd(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnBnClickedPluginEdit();
+	afx_msg void OnBnClickedPluginRemove();
 	afx_msg void OnBnClickedPluginSettings();
 	afx_msg void OnBnClickedFileFiltesDefaults();
 	afx_msg void OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult);

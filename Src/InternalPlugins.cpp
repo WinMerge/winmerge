@@ -1,15 +1,19 @@
 #include "pch.h"
 #include "Plugins.h"
 #define POCO_NO_UNWINDOWS 1
+#include <Poco/FileStream.h>
+#include <Poco/XML/XMLWriter.h>
 #include <Poco/SAX/SAXParser.h>
 #include <Poco/SAX/SAXException.h>
 #include <Poco/SAX/ContentHandler.h>
 #include <Poco/SAX/Attributes.h>
+#include <Poco/SAX/AttributesImpl.h>
 #include <Poco/Exception.h>
 #include <vector>
 #include <list>
 #include <windows.h>
 #include <Shlwapi.h>
+#include "InternalPlugins.h"
 #include "MergeApp.h"
 #include "paths.h"
 #include "Environment.h"
@@ -20,12 +24,16 @@
 #include "WinMergePluginBase.h"
 #include "TempFile.h"
 
+using Poco::FileStream;
+using Poco::Exception;
+using Poco::XML::XMLWriter;
 using Poco::XML::SAXParser;
 using Poco::XML::ContentHandler;
 using Poco::XML::Locator;
 using Poco::XML::XMLChar;
 using Poco::XML::XMLString;
 using Poco::XML::Attributes;
+using Poco::XML::AttributesImpl;
 using namespace std::literals::string_literals;
 
 namespace
@@ -67,64 +75,32 @@ namespace
 namespace internal_plugin
 {
 
-struct Script
-{
-	String m_body;
-	String m_fileExtension;
-};
-
-struct Method
-{
-	String m_command;
-	std::unique_ptr<Script> m_script;
-};
-
-struct Info
-{
-	Info(const String& name) : m_name(name) {}
-	Info(Info&& info) = default;
-	String m_name;
-	String m_event;
-	String m_description;
-	String m_fileFilters;
-	bool m_isAutomatic = false;
-	String m_unpackedFileExtension;
-	String m_extendedProperties;
-	String m_arguments;
-	std::unique_ptr<Method> m_prediffFile;
-	std::unique_ptr<Method> m_unpackFile;
-	std::unique_ptr<Method> m_packFile;
-	std::unique_ptr<Method> m_isFolder;
-	std::unique_ptr<Method> m_unpackFolder;
-	std::unique_ptr<Method> m_packFolder;
-	std::map<String, Method> m_editorScripts;
-};
+inline static const std::string Empty = "";
+inline static const std::string PluginsElement = "plugins";
+inline static const std::string PluginElement = "plugin";
+inline static const std::string EventElement = "event";
+inline static const std::string DescriptionElement = "description";
+inline static const std::string FileFiltersElement = "file-filters";
+inline static const std::string IsAutomaticElement = "is-automatic";
+inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extension";
+inline static const std::string ExtendedPropertiesElement = "extended-properties";
+inline static const std::string ArgumentsElement = "arguments";
+inline static const std::string PipelineElement = "pipeline";
+inline static const std::string PrediffFileElement = "prediff-file";
+inline static const std::string UnpackFileElement = "unpack-file";
+inline static const std::string PackFileElement = "pack-file";
+inline static const std::string IsFolderElement = "is-folder";
+inline static const std::string UnpackFolderElement = "unpack-folder";
+inline static const std::string PackFolderElement = "pack-folder";
+inline static const std::string CommandElement = "command";
+inline static const std::string ScriptElement = "script";
+inline static const std::string NameAttribute = "name";
+inline static const std::string ValueAttribute = "value";
+inline static const std::string FileExtensionAttribute = "fileExtension";
 
 class XMLHandler : public Poco::XML::ContentHandler
 {
 public:
-	inline static const std::string Empty = "";
-	inline static const std::string PluginsElement = "plugins";
-	inline static const std::string PluginElement = "plugin";
-	inline static const std::string EventElement = "event";
-	inline static const std::string DescriptionElement = "description";
-	inline static const std::string FileFiltersElement = "file-filters";
-	inline static const std::string IsAutomaticElement = "is-automatic";
-	inline static const std::string UnpackedFileExtensionElement = "unpacked-file-extension";
-	inline static const std::string ExtendedPropertiesElement = "extended-properties";
-	inline static const std::string ArgumentsElement = "arguments";
-	inline static const std::string PrediffFileElement = "prediff-file";
-	inline static const std::string UnpackFileElement = "unpack-file";
-	inline static const std::string PackFileElement = "pack-file";
-	inline static const std::string IsFolderElement = "is-folder";
-	inline static const std::string UnpackFolderElement = "unpack-folder";
-	inline static const std::string PackFolderElement = "pack-folder";
-	inline static const std::string CommandElement = "command";
-	inline static const std::string ScriptElement = "script";
-	inline static const std::string NameAttribute = "name";
-	inline static const std::string ValueAttribute = "value";
-	inline static const std::string FileExtensionAttribute = "fileExtension";
-
 	explicit XMLHandler(std::list<Info>* pPlugins) : m_pPlugins(pPlugins) {}
 
 	void setDocumentLocator(const Locator* loc) {}
@@ -171,6 +147,8 @@ public:
 						plugin.m_extendedProperties = value;
 					else if (localName == ArgumentsElement)
 						plugin.m_arguments = std::move(value);
+					else if (localName == PipelineElement)
+						plugin.m_pipeline = std::move(value);
 				}
 				else if (localName == PrediffFileElement)
 				{
@@ -320,7 +298,7 @@ class InternalPlugin : public WinMergePluginBase
 {
 public:
 	InternalPlugin(Info&& info)
-		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_arguments, info.m_isAutomatic)
+		: WinMergePluginBase(info.m_event, info.m_description, info.m_fileFilters, info.m_unpackedFileExtension, info.m_extendedProperties, info.m_arguments, info.m_pipeline, info.m_isAutomatic)
 		, m_info(std::move(info))
 	{
 	}
@@ -445,6 +423,11 @@ public:
 		return hr;
 	}
 
+	Info* GetInfo()
+	{
+		return &m_info;
+	}
+
 protected:
 
 	String replaceMacros(const String& cmd, const String & fileSrc, const String& fileDst)
@@ -454,6 +437,7 @@ protected:
 		{
 			PARSEDURL parsedURL{sizeof(PARSEDURL)};
 			ParseURL(fileSrc.c_str(), &parsedURL);
+			strutils::replace(command, _T("${SRC_URL}"), fileSrc);
 			strutils::replace(command, _T("${SRC_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
 			strutils::replace(command, _T("${SRC_URL_SUFFIX}"), 
 				parsedURL.pszSuffix ? parsedURL.pszSuffix : _T(""));
@@ -462,12 +446,14 @@ protected:
 		{
 			PARSEDURL parsedURL{sizeof(PARSEDURL)};
 			ParseURL(fileDst.c_str(), &parsedURL);
+			strutils::replace(command, _T("${DST_URL}"), fileDst);
 			strutils::replace(command, _T("${DST_URL_PROTOCOL}"), String{ parsedURL.pszProtocol, parsedURL.cchProtocol });
 			strutils::replace(command, _T("${DST_URL_SUFFIX}"), 
 				parsedURL.pszSuffix ? parsedURL.pszSuffix : _T(""));
 		}
 		strutils::replace(command, _T("${SRC_FILE}"), fileSrc);
 		strutils::replace(command, _T("${DST_FILE}"), fileDst);
+		strutils::replace(command, _T("${SRC_FOLDER}"), fileSrc);
 		strutils::replace(command, _T("${DST_FOLDER}"), fileDst);
 		std::vector<StringView> vars = strutils::split(m_sVariables, '\0');
 		for (size_t i = 0; i < vars.size(); ++i)
@@ -536,7 +522,6 @@ protected:
 		return S_OK;
 	}
 
-private:
 	Info m_info;
 };
 
@@ -619,6 +604,263 @@ private:
 	IDispatch* m_pDispatch;
 };
 
+String GetPluginXMLPath(bool userDefined)
+{
+	if (!userDefined)
+		return paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml"));
+	return env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"));
+}
+
+bool LoadFromXML(const String& pluginsXMLPath, bool userDefined, std::list<Info>& internalPlugins, String& errmsg)
+{
+	XMLHandler handler(&internalPlugins);
+	SAXParser parser;
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_GENERAL_ENTITIES, false);
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_PARAMETER_ENTITIES, false);
+	parser.setContentHandler(&handler);
+	try
+	{
+		size_t size = internalPlugins.size();
+		try { parser.parse(ucr::toUTF8(pluginsXMLPath)); }
+		catch (Poco::FileNotFoundException&) { }
+		size_t i = 0;
+		for (auto& info : internalPlugins)
+		{
+			if (i >= size)
+				info.m_userDefined = userDefined;
+			++i;
+		}
+	}
+	catch (Poco::XML::SAXParseException& e)
+	{
+		errmsg = ucr::toTString(e.message());
+		return false;
+	}
+	return true;
+}
+
+Info* GetInternalPluginInfo(const PluginInfo* plugin)
+{
+	auto* internalPlugin = (plugin->m_filepath.find(_T("Plugins.xml")) != String::npos) ? dynamic_cast<InternalPlugin*>(plugin->m_lpDispatch) : nullptr;
+	if (!internalPlugin)
+		return nullptr;
+	return internalPlugin->GetInfo();
+}
+
+bool FindPluginNameConflict(const Info& info)
+{
+	for (auto& eventNames : { plugin::UnpackerEventNames, plugin::PredifferEventNames, plugin::EditorScriptEventNames })
+	{
+		if (std::find(eventNames.begin(), eventNames.end(), info.m_event) != eventNames.end())
+		{
+			for (auto& event : eventNames)
+			{
+				PluginInfo* plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(event.c_str(), info.m_name);
+				if (plugin)
+					return true;
+			}
+		}
+	}
+	return false;
+}
+
+Info CreateUnpackerPluginExample()
+{
+	internal_plugin::Info info(_T("NewPluginName"));
+	info.m_event = _T("FILE_PACK_UNPACK");
+	info.m_description = _T("New plugin description");
+	info.m_fileFilters = _T("\\.*$");
+	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
+	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
+	info.m_unpackFile->m_command = _T("cmd /c echo Hello World! \"${SRC_FILE}\" > \"${DST_FILE}\"");
+	info.m_userDefined = true;
+	return info;
+}
+
+Info CreatePredifferPluginExample()
+{
+	internal_plugin::Info info(_T("NewPluginName"));
+	info.m_event = _T("FILE_PREDIFF");
+	info.m_description = _T("New plugin description");
+	info.m_fileFilters = _T("\\.*$");
+	info.m_extendedProperties = _T("ProcessType=&Others;MenuCaption=NewPlugin");
+	info.m_unpackFile = std::make_unique <internal_plugin::Method>();
+	info.m_unpackFile->m_command = _T("cmd /c type \"${SRC_FILE}\" | \"%ProgramFiles%\\Git\\usr\\bin\\sed.exe\" \"s/abc/xxx/g\" > \"${DST_FILE}\"");
+	info.m_userDefined = true;
+	return info;
+}
+
+Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const String& pipeline)
+{
+	internal_plugin::Info info(_(""));
+	info.m_userDefined = true;
+	info.m_event = event;
+	for (tchar_t c : pipeline)
+	{
+		if (tc::istalnum(c) || c == '_')
+			info.m_name += c;
+	}
+	info.m_name += _T("Alias");
+	info.m_description = strutils::format_string1(_("Alias for plugin pipeline '%1'"), pipeline);
+	String menuCaptionStr = pipeline;
+	strutils::replace(menuCaptionStr, _T(";"), _T(""));
+	info.m_extendedProperties += _T("MenuCaption=") + menuCaptionStr + _T(";");
+	info.m_pipeline = pipeline;
+	if (plugin)
+	{
+		info.m_fileFilters = plugin->m_filtersText;
+		info.m_isAutomatic = plugin->m_bAutomatic;
+		auto processType = PluginInfo::GetExtendedPropertyValue(plugin->m_extendedProperties, _T("ProcessType"));
+		if (processType.has_value())
+			info.m_extendedProperties += _T("ProcessType=") + String(processType.value()) + _T(";");
+		if (!info.m_extendedProperties.empty())
+			info.m_extendedProperties.pop_back();
+	}
+	return info;
+}
+
+bool AddPlugin(const Info& info, String& errmsg)
+{
+	if (FindPluginNameConflict(info))
+	{
+		errmsg = strutils::format_string1(_("The plugin name '%1' already exists."), info.m_name);
+		return false;
+	}
+	std::list<internal_plugin::Info> list;
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+		return false;
+	list.push_back(info);
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+		return false;
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
+	return true;
+}
+
+bool UpdatePlugin(const Info& info, String& errmsg)
+{
+	std::list<internal_plugin::Info> list;
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+		return false;
+	for (auto it = list.begin(); it != list.end(); ++it)
+	{
+		if (it->m_name == info.m_name)
+		{
+			list.insert(it, info);
+			list.erase(it);
+			break;
+		}
+	}
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+		return false;
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
+	return true;
+}
+
+bool RemovePlugin(const Info& info, String& errmsg)
+{
+	std::list<internal_plugin::Info> list;
+	if (!internal_plugin::LoadFromXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), info.m_userDefined, list, errmsg))
+		return false;
+	for (auto it = list.begin(); it != list.end(); ++it)
+	{
+		if (it->m_name == info.m_name)
+		{
+			list.erase(it);
+			break;
+		}
+	}
+	if (!internal_plugin::SaveToXML(internal_plugin::GetPluginXMLPath(info.m_userDefined), list, errmsg))
+		return false;
+	CAllThreadsScripts::GetActiveSet()->ReloadAllScripts();
+	return true;
+}
+
+static void writeEmptyElement(XMLWriter& writer, const std::string& tagname, const std::string& attrname, const String& value)
+{
+	AttributesImpl attrs;
+	attrs.addAttribute("", "", attrname, "", ucr::toUTF8(value));
+	writer.emptyElement("", "", tagname, attrs);
+}
+
+static void writeMethodElement(XMLWriter& writer, const std::string& tagname, const Method& method)
+{
+	writer.startElement("", "", tagname);
+	if (!method.m_command.empty())
+	{
+		writer.startElement("", "", CommandElement);
+		writer.characters(ucr::toUTF8(method.m_command));
+		writer.endElement("", "", CommandElement);
+	}
+	if (method.m_script)
+	{
+		AttributesImpl attrs;
+		if (!method.m_script->m_fileExtension.empty())
+			attrs.addAttribute("", "", FileExtensionAttribute, "", ucr::toUTF8(method.m_script->m_fileExtension));
+		writer.startElement("", "", ScriptElement, attrs);
+		writer.characters(ucr::toUTF8(method.m_script->m_body));
+		writer.endElement("", "", ScriptElement);
+	}
+	writer.endElement("", "", tagname);
+}
+
+bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlugins, String& errmsg)
+{
+	try
+	{
+		paths::CreateIfNeeded(paths::GetPathOnly(pluginsXMLPath));
+		FileStream out(ucr::toUTF8(pluginsXMLPath), FileStream::trunc);
+		XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
+		writer.startDocument();
+		writer.startElement("", "", PluginsElement);
+		{
+			for (auto& item : internalPlugins)
+			{
+				AttributesImpl attrs;
+				attrs.addAttribute("", "", NameAttribute, "", ucr::toUTF8(item.m_name));
+				writer.startElement("", "", PluginElement, attrs);
+				{
+					if (!item.m_event.empty())
+						writeEmptyElement(writer, EventElement, ValueAttribute, item.m_event);
+					if (!item.m_description.empty())
+						writeEmptyElement(writer, DescriptionElement, ValueAttribute, item.m_description);
+					if (!item.m_fileFilters.empty())
+						writeEmptyElement(writer, FileFiltersElement, ValueAttribute, item.m_fileFilters);
+					writeEmptyElement(writer, IsAutomaticElement, ValueAttribute, item.m_isAutomatic ? _T("true") : _T("false"));
+					if (!item.m_unpackedFileExtension.empty())
+						writeEmptyElement(writer, UnpackedFileExtensionElement, ValueAttribute, item.m_unpackedFileExtension);
+					if (!item.m_extendedProperties.empty())
+						writeEmptyElement(writer, ExtendedPropertiesElement, ValueAttribute, item.m_extendedProperties);
+					if (!item.m_arguments.empty())
+						writeEmptyElement(writer, ArgumentsElement, ValueAttribute, item.m_arguments);
+					if (!item.m_pipeline.empty())
+						writeEmptyElement(writer, PipelineElement, ValueAttribute, item.m_pipeline);
+					if (item.m_isFolder)
+						writeMethodElement(writer, IsFolderElement, *item.m_isFolder.get());
+					if (item.m_unpackFile)
+						writeMethodElement(writer, UnpackFileElement, *item.m_unpackFile.get());
+					if (item.m_packFile)
+						writeMethodElement(writer, PackFileElement, *item.m_packFile.get());
+					if (item.m_unpackFolder)
+						writeMethodElement(writer, UnpackFolderElement, *item.m_unpackFolder.get());
+					if (item.m_packFolder)
+						writeMethodElement(writer, PackFolderElement, *item.m_packFolder.get());
+					if (item.m_prediffFile)
+						writeMethodElement(writer, PrediffFileElement, *item.m_prediffFile.get());
+				}
+				writer.endElement("", "", PluginElement);
+			}
+		}
+		writer.endElement("", "", PluginsElement);
+		writer.endDocument();
+		return true;
+	}
+	catch (Exception& e)
+	{
+		errmsg = ucr::toTString(e.displayText());
+		return false;
+	}
+}
+
 struct Loader
 {
 	Loader()
@@ -646,7 +888,7 @@ struct Loader
 						PluginInfoPtr pluginNew(new PluginInfo());
 						IDispatch* pDispatch = new UnpackerGeneratedFromEditorScript(*plugin, namesArray[i], idArray[i]);
 						pDispatch->AddRef();
-						pluginNew->MakeInfo(namesArray[i], pDispatch);
+						pluginNew->MakeInfo(plugin->m_filepath, namesArray[i], pDispatch);
 						plugins[L"FILE_PACK_UNPACK"]->push_back(pluginNew);
 					}
 				}
@@ -654,30 +896,10 @@ struct Loader
 		}
 
 		std::list<Info> internalPlugins;
-		XMLHandler handler(&internalPlugins);
-		SAXParser parser;
-		parser.setContentHandler(&handler);
-		try
-		{
-			for (const auto& path : {
-				paths::ConcatPath(env::GetProgPath(), _T("MergePlugins\\Plugins.xml")),
-				env::ExpandEnvironmentVariables(_T("%APPDATA%\\WinMerge\\MergePlugins\\Plugins.xml"))
-				})
-			{
-				try
-				{
-					parser.parse(ucr::toUTF8(path));
-				}
-				catch (Poco::FileNotFoundException&)
-				{
-				}
-			}
-		}
-		catch (Poco::XML::SAXParseException& e)
-		{
-			errmsg = ucr::toTString(e.message());
+		if (!LoadFromXML(GetPluginXMLPath(false), false, internalPlugins, errmsg))
 			return false;
-		}
+		if (!LoadFromXML(GetPluginXMLPath(true), true, internalPlugins, errmsg))
+			return false;
 
 		for (auto& info : internalPlugins)
 		{
@@ -688,8 +910,8 @@ struct Loader
 			PluginInfoPtr pluginNew(new PluginInfo());
 			IDispatch* pDispatch = new InternalPlugin(std::move(info));
 			pDispatch->AddRef();
-			pluginNew->MakeInfo(name, pDispatch);
-			plugins[event]->push_back(pluginNew);
+			if (pluginNew->MakeInfo(GetPluginXMLPath(info.m_userDefined), name, pDispatch) > 0)
+				plugins[event]->push_back(pluginNew);
 		}
 
 		if (plugins.find(L"FILE_PACK_UNPACK") != plugins.end())
@@ -703,8 +925,8 @@ struct Loader
 					PluginInfoPtr pluginNew(new PluginInfo());
 					IDispatch* pDispatch = new EditorScriptGeneratedFromUnpacker(*plugin, plugin->m_name, plugin->m_hasArgumentsProperty);
 					pDispatch->AddRef();
-					pluginNew->MakeInfo(plugin->m_name, pDispatch);
-					plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
+					if (pluginNew->MakeInfo(plugin->m_filepath, plugin->m_name, pDispatch) > 0)
+						plugins[L"EDITOR_SCRIPT"]->push_back(pluginNew);
 				}
 			}
 		}

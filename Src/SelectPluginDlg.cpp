@@ -12,6 +12,7 @@
 
 #include "stdafx.h"
 #include "SelectPluginDlg.h"
+#include "EditPluginDlg.h"
 #include "Plugins.h"
 #include "FileTransform.h"
 #include "OptionsMgr.h"
@@ -21,6 +22,11 @@
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+static const std::vector<String> *EventNamesArray[] = {
+		&FileTransform::UnpackerEventNames,
+		&FileTransform::PredifferEventNames,
+		&FileTransform::EditorScriptEventNames };
 
 /////////////////////////////////////////////////////////////////////////////
 // CSelectPluginDlg dialog
@@ -35,6 +41,9 @@ void CSelectPluginDlg::Initialize(PluginType pluginType)
 	m_strArguments.clear();
 	//}}AFX_DATA_INIT
 
+	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
+	m_bOpenInSameFrameType = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE);
+
 	// texts for the default unpackers
 	noPlugin.reset(new PluginInfo);
 	noPlugin->m_lpDispatch = nullptr;
@@ -44,11 +53,7 @@ void CSelectPluginDlg::Initialize(PluginType pluginType)
 	automaticPlugin->m_name = _("<Automatic>");
 	automaticPlugin->m_description = _T("The adapted unpacker is applied to both files (one file only needs the extension).");
 
-	const std::vector<String> *eventNamesArray[] = {
-			&FileTransform::UnpackerEventNames,
-			&FileTransform::PredifferEventNames,
-			&FileTransform::EditorScriptEventNames };
-	const std::vector<std::wstring>& events = *eventNamesArray[static_cast<int>(pluginType)];
+	const std::vector<std::wstring>& events = *EventNamesArray[static_cast<int>(pluginType)];
 	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
 }
 
@@ -88,8 +93,9 @@ BEGIN_MESSAGE_MAP(CSelectPluginDlg, CTrDialog)
 	ON_BN_CLICKED(IDC_PLUGIN_ALLOW_ALL, OnUnpackerAllowAll)
 	ON_CBN_SELCHANGE(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
 	ON_CBN_SELENDOK(IDC_PLUGIN_NAME, OnSelchangeUnpackerName)
+	ON_BN_CLICKED(IDC_PLUGIN_ALIAS, OnClickedAlias)
 	ON_BN_CLICKED(IDC_PLUGIN_ADDPIPE, OnClickedAddPipe)
-	ON_EN_CHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
+	ON_CBN_EDITCHANGE(IDC_PLUGIN_PIPELINE, OnChangePipeline)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnClickedSettings)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -120,11 +126,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	// persist size via registry
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SelectPluginDlg"), false);
 
-	m_bNoExtensionCheck = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACK_DONT_CHECK_EXTENSION);
-
 	prepareListbox();
-
-	m_bOpenInSameFrameType = GetOptionsMgr()->GetBool(OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE);
 
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
@@ -166,6 +168,7 @@ void CSelectPluginDlg::prepareListbox()
 	INT_PTR nameCount = 0;
 
 	m_cboPluginName.SetRedraw(false);
+	m_cboPluginName.ResetContent();
 
 	if (m_pluginType != PluginType::EditorScript)
 	{
@@ -259,11 +262,56 @@ void CSelectPluginDlg::OnUnpackerAllowAll()
 {
 	UpdateData ();
 
-	m_cboPluginName.ResetContent();
-
 	prepareListbox();
 
 	UpdateData (FALSE);
+}
+
+void CSelectPluginDlg::OnClickedAlias()
+{
+	UpdateData();
+
+	PluginInfo* plugin = nullptr;
+	String errmsg;
+	auto parseResult = PluginForFile::ParsePluginPipeline(m_strPluginPipeline, errmsg);
+	if (!parseResult.empty())
+	{
+		for (const auto& [processType, pluginList] : m_Plugins)
+		{
+			for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
+			{
+				if (name == parseResult.front().name)
+					plugin = plugin2;
+			}
+		}
+	}
+	if (!plugin)
+	{
+		COMBOBOXEXITEM item{ CBEIF_LPARAM };
+		item.iItem = m_cboPluginName.GetCurSel();
+		m_cboPluginName.GetItem(&item);
+		plugin = reinterpret_cast<PluginInfo*>(item.lParam);
+	}
+
+	const tchar_t* aliasEvents[] = { _T("ALIAS_PACK_UNPACK"), _T("ALIAS_PREDIFF"), _T("ALIAS_EDITOR_SCRIPT") };
+	internal_plugin::Info info = internal_plugin::CreateAliasPluginExample(plugin, aliasEvents[static_cast<int>(m_pluginType)], m_strPluginPipeline);
+
+	for (;;)
+	{
+		CEditPluginDlg dlg(info);
+		if (dlg.DoModal() == IDCANCEL)
+			return;
+		if (internal_plugin::AddPlugin(info, errmsg))
+			break;
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+	}
+
+	const std::vector<std::wstring>& events = *EventNamesArray[static_cast<int>(m_pluginType)];
+	m_Plugins = FileTransform::CreatePluginMenuInfos(m_filteredFilenames, events, 0).second;
+
+	m_strPluginPipeline = info.m_name;
+
+	prepareListbox();
 }
 
 void CSelectPluginDlg::OnClickedAddPipe()
@@ -328,7 +376,8 @@ void CSelectPluginDlg::OnSelchangeUnpackerName()
 
 	if (pPlugin)
 	{
-		m_strDescription = tr(ucr::toUTF8(pPlugin->m_description));
+		const bool containsNonAsciiChars = std::any_of(pPlugin->m_description.begin(), pPlugin->m_description.end(), [](auto c) { return (c >= 0x80); });
+		m_strDescription = containsNonAsciiChars ? pPlugin->m_description : tr(ucr::toUTF8(pPlugin->m_description));
 		auto funcDescription = pPlugin->GetExtendedPropertyValue(pluginName + _T(".Description"));
 		if (funcDescription.has_value())
 			m_strDescription = tr(ucr::toUTF8(strutils::to_str(*funcDescription)));

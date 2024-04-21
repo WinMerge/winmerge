@@ -1414,13 +1414,13 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	{
 		for (auto nID : { IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER })
 		{
-			GetDlgItem(nID)->ShowWindow((bIsaFileCompare && !bIsaFolderCompare) ? SW_SHOW : SW_HIDE);
+			ShowDlgItem(nID, (bIsaFileCompare && !bIsaFolderCompare));
 			EnableDlgItem(nID, bIsaFileCompare);
 		}
 
 		for (auto nID : { IDC_FILES_DIRS_GROUP3, IDC_EXT_COMBO, IDC_SELECT_FILTER, IDC_RECURS_CHECK })
 		{
-			GetDlgItem(nID)->ShowWindow((bIsaFolderCompare || !bIsaFileCompare) ? SW_SHOW : SW_HIDE);
+			ShowDlgItem(nID, (bIsaFolderCompare || !bIsaFileCompare));
 			EnableDlgItem(nID, bIsaFolderCompare);
 		}
 	}

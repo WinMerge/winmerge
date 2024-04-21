@@ -273,4 +273,12 @@
       <Filter>Resource FIles</Filter>
     </CustomBuild>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Translations\WinMerge\StringBlacklist.txt">
+      <Filter>Translations\WinMerge</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

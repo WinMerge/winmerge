@@ -345,7 +345,7 @@ function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
   return result.Items();
 }
 
-function PackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
+function PackFolder(folderSrc, fileDst, pbChanged, pSubcode) {
   return false;
 }
 

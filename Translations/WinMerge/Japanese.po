@@ -1094,6 +1094,81 @@ msgstr "サイズのみ"
 msgid "&Load Project..."
 msgstr "プロジェクトを読み込み(&L)..."
 
+msgid "${*} - All arguments"
+msgstr "${*} - すべての引数"
+
+msgid "${1} - The first argument"
+msgstr "${1} - 最初の引数"
+
+msgid "${2} - The second argument"
+msgstr "${2} - 2番目の引数"
+
+msgid "${3} - The third argument"
+msgstr "${3} - 3番目の引数"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - 4番目の引数"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - 5番目の引数"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - 6番目の引数"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - 7番目の引数"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - 8番目の引数"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - 9番目の引数"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - ソースファイル"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - ソースフォルダ"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - ソースURL"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - ソースURLプロトコル"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - ソースURLサフィックス"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - 宛先ファイル"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - 宛先フォルダ"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - 宛先URL"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - 宛先URLプロトコル"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - 宛先URLサフィックス"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - WinMergeホームディレクトリ"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - スクリプトファイル"
+
+msgid "Add &unpacker plugin..."
+msgstr "展開プラグインを追加(&U)..."
+
+msgid "Add &prediffer plugin..."
+msgstr "比較前処理プラグインを追加(&P)..."
+
+msgid "&Duplicate plugin..."
+msgstr "プラグインを複製(&D)..."
+
 msgid "About WinMerge"
 msgstr "WinMerge について"
 
@@ -1452,15 +1527,6 @@ msgstr "追加プロパティ(&A)"
 msgid "Additional Properties"
 msgstr "追加プロパティ"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "プラグインの選択"
 
@@ -1485,8 +1551,8 @@ msgstr "展開プラグイン適用後、ファイルを同じウインドウ �
 msgid "&Plugin Pipeline:"
 msgstr "プラグイン パイプライン(&P):"
 
-msgid "&Add pipe"
-msgstr "パイプを追加(&A)"
+msgid "&Alias..."
+msgstr "エイリアス(&A)..."
 
 msgid "Stop"
 msgstr "停止"
@@ -1968,7 +2034,7 @@ msgid "&Plugin arguments:"
 msgstr "プラグイン引数(&P):"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "自動展開/自動比較前処理をこのプラグインで有効にする"
+msgstr "自動展開/自動比較前処理をこのプラグインで有効にする(&A)"
 
 msgid "Shell Integration"
 msgstr "シェル統合"
@@ -2088,6 +2154,39 @@ msgstr "ユーザー データ フォルダーをペイン毎に分離する(&S)
 
 msgid "&Hex View"
 msgstr "HEX 表示(&H)"
+
+msgid "Edit Plugin"
+msgstr "プラグインの編集"
+
+msgid "Plugin &type:"
+msgstr "プラグインの種類(&T)"
+
+msgid "&Category:"
+msgstr "カテゴリー(&C)"
+
+msgid "&Menu caption:"
+msgstr "メニューキャプション(&M)"
+
+msgid "&Window type:"
+msgstr "ウインドウ種別(&W)"
+
+msgid "&Unpacked file extension:"
+msgstr "展開後のファイルの拡張子(&U):"
+
+msgid "&Require arguments"
+msgstr "引数を要求する(&R)"
+
+msgid "&Generate editor script"
+msgstr "エディタースクリプトを生成する(&G)"
+
+msgid "Command &line:"
+msgstr "コマンドライン(&L):"
+
+msgid "&Script file extension:"
+msgstr "スクリプトファイル拡張子(&S):"
+
+msgid "Script &body:"
+msgstr "スクリプト本体(&B):"
 
 msgid "EXT"
 msgstr "EXT"
@@ -4060,6 +4159,10 @@ msgstr "プラグイン パイプラインにプラグイン名が指定され�
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "プラグイン パイプラインが引用符で閉じていません: %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "プラグイン名 '%1' は既に存在しています。"
+
 msgid "Specify plugin arguments"
 msgstr "プラグイン引数を指定してください"
 
@@ -4078,6 +4181,35 @@ msgstr "'%1'は比較前処理プラグインではありません"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "プラグイン'%2'でファイル'%1'の比較前処理を実行中にエラーが発生しました。比較前処理は適用されませんでした。"
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "プラグインパイプラインに循環参照があります: %1"
+
+msgid "URL Handler"
+msgstr "URL処理プラグイン"
+
+msgid "File Unpacker"
+msgstr "ファイル展開プラグイン"
+
+msgid "File or Folder Unpacker"
+msgstr "ファイルまたはフォルダー展開プラグイン"
+
+msgid "Alias for Unpacker"
+msgstr "展開プラグインのエイリアス"
+
+msgid "Alias for Prediffer"
+msgstr "比較前処理プラグインのエイリアス"
+
+msgid "Alias for Editor script"
+msgstr "エディタースクリプトのエイリアス"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "プラグインパイプライン '%1' のエイリアス"
+
+msgid "New plugin description"
+msgstr "新しいプラグインの説明"
 
 msgid "Filter applied"
 msgstr "フィルター適用"

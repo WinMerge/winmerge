@@ -721,6 +721,9 @@
     <ClCompile Include="MergeDocDiffCopy.cpp">
       <Filter>MFCGui\MDIChild\TextTableCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EditPluginDlg.cpp">
+      <Filter>MFCGui\Dialogs\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1373,6 +1376,12 @@
     </ClInclude>
     <ClInclude Include="PropEditorCompareMerge.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InternalPlugins.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditPluginDlg.h">
+      <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

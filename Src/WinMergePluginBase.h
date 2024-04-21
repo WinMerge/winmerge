@@ -18,6 +18,7 @@ public:
 		DISPID_PluginExtendedProperties,
 		DISPID_PluginArguments,
 		DISPID_PluginVariables,
+		DISPID_PluginPipeline,
 		DISPID_PrediffFile,
 		DISPID_UnpackFile,
 		DISPID_PackFile,
@@ -31,7 +32,7 @@ public:
 	WinMergePluginBase(const std::wstring& sEvent, const std::wstring& sDescription = L"",
 		const std::wstring& sFileFilters = L"", const std::wstring& sUnpackedFileExtension = L"", 
 		const std::wstring& sExtendedProperties = L"", const std::wstring& sArguments = L"", 
-		bool bIsAutomatic = true)
+		const std::wstring& sPipeline = L"", bool bIsAutomatic = true)
 		: m_nRef(0)
 		, m_sEvent(sEvent)
 		, m_sDescription(sDescription)
@@ -39,6 +40,7 @@ public:
 		, m_sUnpackedFileExtension(sUnpackedFileExtension)
 		, m_sExtendedProperties(sExtendedProperties)
 		, m_sArguments(sArguments)
+		, m_sPipeline(sPipeline)
 		, m_bIsAutomatic(bIsAutomatic)
 	{
 		static PARAMDATA paramData_Prediff[] =
@@ -117,6 +119,19 @@ public:
 			{ L"PluginVariables",             nullptr,                DISPID_PluginVariables,             5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
 			{ L"PluginVariables",             paramData_Variables,    DISPID_PluginVariables,             5, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
 		};
+		static METHODDATA methodData_ALIAS[] =
+		{
+			{ L"PluginEvent",                 nullptr,                DISPID_PluginEvent,                 0, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginDescription",           nullptr,                DISPID_PluginDescription,           1, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginIsAutomatic",           nullptr,                DISPID_PluginIsAutomatic,           2, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BOOL  },
+			{ L"PluginFileFilters",           nullptr,                DISPID_PluginFileFilters,           3, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginExtendedProperties",    nullptr,                DISPID_PluginExtendedProperties,    4, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginArguments",             nullptr,                DISPID_PluginArguments,             5, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginArguments",             paramData_Arguments,    DISPID_PluginArguments,             5, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
+			{ L"PluginVariables",             nullptr,                DISPID_PluginVariables,             6, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+			{ L"PluginVariables",             paramData_Variables,    DISPID_PluginVariables,             6, CC_STDCALL, 1, DISPATCH_PROPERTYPUT, VT_VOID },
+			{ L"PluginPipeline",              nullptr,                DISPID_PluginPipeline,              7, CC_STDCALL, 0, DISPATCH_PROPERTYGET, VT_BSTR },
+		};
 		const METHODDATA* pMethodData;
 		size_t methodDataCount = 0;
 		if (sEvent == L"FILE_PREDIFF")
@@ -133,6 +148,11 @@ public:
 		{
 			methodDataCount = sizeof(methodData_FILE_FOLDER_PACK_UNPACK) / sizeof(methodData_FILE_FOLDER_PACK_UNPACK[0]);
 			pMethodData = methodData_FILE_FOLDER_PACK_UNPACK;
+		}
+		else if (sEvent == L"ALIAS_PACK_UNPACK" || sEvent == L"ALIAS_PREDIFF" || sEvent == L"ALIAS_EDITOR_SCRIPT")
+		{
+			methodDataCount = sizeof(methodData_ALIAS) / sizeof(methodData_ALIAS[0]);
+			pMethodData = methodData_ALIAS;
 		}
 		else
 		{
@@ -309,6 +329,10 @@ public:
 			case DISPID_PluginVariables:
 				pVarResult->vt = VT_BSTR;
 				hr = get_PluginVariables(&pVarResult->bstrVal);
+				break;
+			case DISPID_PluginPipeline:
+				pVarResult->vt = VT_BSTR;
+				hr = get_PluginPipeline(&pVarResult->bstrVal);
 				break;
 			}
 		}
@@ -573,6 +597,12 @@ public:
 		return S_OK;
 	}
 
+	virtual HRESULT STDMETHODCALLTYPE get_PluginPipeline(BSTR* pVal)
+	{
+		*pVal = SysAllocString(m_sPipeline.c_str());
+		return S_OK;
+	}
+
 	bool AddFunction(const std::wstring& name, ScriptFuncPtr pFunc)
 	{
 		static PARAMDATA paramData_ScriptFunc[] =
@@ -603,6 +633,7 @@ protected:
 	std::wstring m_sExtendedProperties;
 	std::wstring m_sArguments;
 	std::wstring m_sVariables;
+	std::wstring m_sPipeline;
 	bool m_bIsAutomatic;
 };
 

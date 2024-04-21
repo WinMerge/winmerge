@@ -86,7 +86,7 @@ BOOL DirSelectFilesDlg::Impl::OnInitDialog()
 		if (m_p->m_pdi[i])
 			SetDlgItemText(IDC_FIRST + i, m_p->m_pdi[i]->diffFileInfo[0].GetFile());
 		for (int j = 0; j < 3; ++j)
-			GetDlgItem(IDC_LEFT1 + i * 3 + j)->ShowWindow(m_p->m_pdi[i] && m_p->m_pdi[i]->diffcode.exists(j));
+			ShowDlgItem(IDC_LEFT1 + i * 3 + j, (m_p->m_pdi[i] && m_p->m_pdi[i]->diffcode.exists(j)));
 	}
 	return true;
 }

@@ -112,34 +112,23 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 	{
 		const PluginInfoPtr& plugin = piPluginArray->at(iPlugin);
 		String sPluginText;
-		if (plugin->m_filepath.find(':') != String::npos)
-		{
-			String sFileName = paths::GetLongPath(plugin->m_filepath);
-			if (sFileName.length() > sEXEPath.length())
-				if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
-					sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
+		String sFileName = paths::GetLongPath(plugin->m_filepath);
+		if (sFileName.length() > sEXEPath.length())
+			if (sFileName.substr(0, sEXEPath.length()) == sEXEPath)
+				sFileName = _T(".") + sFileName.erase(0, sEXEPath.length());
 
-			String sModifiedTime = _T("");
-			sModifiedTime = GetLastModified(plugin->m_filepath);
-			if (!sModifiedTime.empty())
-				sModifiedTime = _T("[") + sModifiedTime + _T("]");
+		String sModifiedTime = _T("");
+		sModifiedTime = GetLastModified(plugin->m_filepath);
+		if (!sModifiedTime.empty())
+			sModifiedTime = _T("[") + sModifiedTime + _T("]");
 
-			sPluginText = strutils::format
-			(_T("\r\n  %s%-36s path=%s  %s"),
-				plugin->m_disabled ? _T("!") : _T(" "),
-				plugin->m_name,
-				sFileName,
-				sModifiedTime
-			);
-		}
-		else
-		{
-			sPluginText = strutils::format
-			(_T("\r\n  %s%-36s"),
-				plugin->m_disabled ? _T("!") : _T(" "),
-				plugin->m_name
-			);
-		}
+		sPluginText = strutils::format
+		(_T("\r\n  %s%-36s path=%s  %s"),
+			plugin->m_disabled ? _T("!") : _T(" "),
+			plugin->m_name,
+			sFileName,
+			sModifiedTime
+		);
 		m_pfile->WriteString(sPluginText);
 	}
 }
@@ -400,14 +389,14 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("\r\nPlugins:                                '!' Prefix indicates the plugin is Disabled.\r\n"));
 	FileWriteString(    _T(" Unpackers:                             Path names are relative to the Code File's directory."));
 	WritePluginsInLogFile(L"URL_PACK_UNPACK");
-	WritePluginsInLogFile(L"FILE_PACK_UNPACK");
-	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK");
-	WritePluginsInLogFile(L"FILE_FOLDER_PACK_UNPACK");
+	for (auto& event : plugin::UnpackerEventNames)
+		WritePluginsInLogFile(event.c_str());
 	FileWriteString(_T("\r\n Prediffers: "));
-	WritePluginsInLogFile(L"FILE_PREDIFF");
-	WritePluginsInLogFile(L"BUFFER_PREDIFF");
+	for (auto& event : plugin::PredifferEventNames)
+		WritePluginsInLogFile(event.c_str());
 	FileWriteString(_T("\r\n Editor scripts: "));
-	WritePluginsInLogFile(L"EDITOR_SCRIPT");
+	for (auto& event : plugin::EditorScriptEventNames)
+		WritePluginsInLogFile(event.c_str());
 	if (!plugin::IsWindowsScriptThere())
 		FileWriteString(_T("\r\n .sct scripts disabled (Windows Script Host not found)\r\n"));
 
