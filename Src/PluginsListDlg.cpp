@@ -18,6 +18,10 @@
 #include "Constants.h"
 #include "Win_VersionHelper.h"
 
+#ifndef BCN_DROPDOWN
+#define BCN_DROPDOWN            (BCN_FIRST + 0x0002)
+#endif
+
 IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
