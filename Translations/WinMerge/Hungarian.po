@@ -1326,79 +1326,79 @@ msgid "&Load Project..."
 msgstr "Projekt betöltése..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "Minden argumentum"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "Az 1. argumentum "
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "A 2. argumentum"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "A 3. argumentum"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "A 4. argumentum"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "Az 5. argumentum"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "A 6. argumentum"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "A 7. argumentum"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "A 8. argumentum"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "A 9. argumentum"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Forrásfájl"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Forrásmappa"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Forrás URL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Forrás URL protokoll"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Forrás URL utótag"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Célfájl"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Célmappa"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - Cél URL"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Cél URL protokoll"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Cél URL utótag"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - Winmerge gyökérkönyvtár"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Szkriptfájl"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "&Kitömörítő bővítmény hozzáadása..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "&Elővizsgáló bővítmény hozzáadása..."
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "Bővítmény &duplikálása..."
 
 #, c-format
 msgid "About WinMerge"
@@ -1877,7 +1877,7 @@ msgid "&Plugin Pipeline:"
 msgstr "Bővítmény pipeline"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Alias..."
 
 #, c-format
 msgid "Stop"
@@ -2626,37 +2626,37 @@ msgid "&Hex View"
 msgstr "Hexadecimális nézet"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Bővítmény szerkesztése"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Bővítmény &típusa:"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Kategória:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "&Menü felirata:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "&Ablak típusa:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Kibontott fájl kiterjesztése:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "Argumentumokat &igényel"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "Szerkesztőszkript &generálása"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "Parancs&sor:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "&Szkriptfájl kiterjesztése:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Szkript &törzs:"
 
 #, c-format
 msgid "EXT"
@@ -4831,7 +4831,7 @@ msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "Ez a bővítménynév már létezik: '%1' "
 
 msgid "Specify plugin arguments"
 msgstr "Bővítmény argumentumok megadása"
@@ -4854,32 +4854,32 @@ msgstr "Hiba történt a(z) „%1” fájl „%2” bővítménnyel történő e
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Körkörös hivatkozás a beépülő bővítményben: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "URL Kezelő"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Fájl kitömörítő"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Fájl vagy mappa kitömörítő"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Kitömörítő alias"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Elővizsgáló alias"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Szerkesztőszkript alias"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "'%1' bővítmény pipeline alias"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Új bővítmény leírás"
 
 msgid "Filter applied"
 msgstr "Szűrő alkalmazva"
