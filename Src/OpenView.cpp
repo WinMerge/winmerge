@@ -499,14 +499,17 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
 			m_constraint.Persist(true, false);
-			WINDOWPLACEMENT wp = { sizeof wp };
-			pFrameWnd->GetWindowPlacement(&wp);
-			CRect rc;
-			GetWindowRect(&rc);
-			pFrameWnd->CalcWindowRect(&rc, CWnd::adjustOutside);
-			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
-			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
-			pFrameWnd->SetWindowPlacement(&wp);
+			if (!pFrameWnd->IsZoomed())
+			{
+				WINDOWPLACEMENT wp = { sizeof wp };
+				pFrameWnd->GetWindowPlacement(&wp);
+				CRect rc;
+				GetWindowRect(&rc);
+				pFrameWnd->CalcWindowRect(&rc, CWnd::adjustOutside);
+				wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
+				wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
+				pFrameWnd->SetWindowPlacement(&wp);
+			}
 		}
 	}
 	__super::OnWindowPosChanged(lpwndpos);
