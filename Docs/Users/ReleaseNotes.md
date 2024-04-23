@@ -16,6 +16,10 @@ Please submit bug reports to our bug-tracker.
 
 ## What Is New in 2.16.40
 
+### General
+
+- BugFix: Fixed several Wine-related issues
+
 ### File compare
 
 - BugFix: Replace text issue (#2279)
@@ -24,6 +28,8 @@ Please submit bug reports to our bug-tracker.
 
 - Add a "Defaults" button to the "Options (Editor > General)" dialog.
     (#PR 2283)
+- Adjust position of "Defaults" button in "Options > Compare > Table"
+    (PR #2295)
 
 ### Plugins
 

@@ -2,6 +2,10 @@
 
 ## WinMerge 2.16.40 - 2024-04-27
 
+### General
+
+- BugFix: Fixed several Wine-related issues
+
 ### File compare
 
 - BugFix: Replace text issue (#2279)
@@ -10,6 +14,8 @@
 
 - Add a "Defaults" button to the "Options (Editor > General)" dialog.
     (#PR 2283)
+- Adjust position of "Defaults" button in "Options > Compare > Table"
+    (PR #2295)
 
 ### Plugins
 
