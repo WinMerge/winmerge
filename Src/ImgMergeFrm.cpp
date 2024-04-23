@@ -2288,7 +2288,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 		_T("table { table-layout: fixed; width: 100%; height: 100%; border-collapse: collapse; }\n")
 		_T("th {position: sticky; top: 0;}\n")
 		_T("td,th { border: solid 1px black; }\n")
-		_T(".title { color: white; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
+		_T(".title { color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 		_T(".img   { overflow: scroll; text-align: center; }\n")
 		_T("</style>\n")
 		_T("</head>\n")

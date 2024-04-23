@@ -1615,7 +1615,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<vo
 		_T("th {position: sticky; top: 0;}\n")
 		_T("td,th { border: solid 1px black; }\n")
 		_T("embed { width: 100%; height: calc(100vh - 56px) }\n")
-		_T(".title { color: white; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
+		_T(".title { color: white; background-color: blue; vertical-align: top; padding: 4px 4px; background: linear-gradient(mediumblue, darkblue);}\n")
 		_T("</style>\n")
 		_T("</head>\n")
 		_T("<body>\n")
