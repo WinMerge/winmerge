@@ -39,6 +39,7 @@
   - Chinese Simplified (PR #2290)
   - Corsican (PR #2288)
   - French (PR #2271,#2275)
+  - Hungarian (PR #2291)
   - Japanese
   - Polish (PR#2277)
 
