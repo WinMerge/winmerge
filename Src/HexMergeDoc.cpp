@@ -504,7 +504,6 @@ HRESULT CHexMergeDoc::LoadOneFile(int index, const tchar_t* filename, bool readO
 		if (m_strDesc[index].empty())
 			m_strDesc[index] = (index == 0) ? _("Untitled left") : ((m_nBuffers < 3 || index == 2) ? _("Untitled right") : _("Untitled middle"));
 	}
-	UpdateHeaderPath(index);
 	m_pView[index]->ResizeWindow();
 	return S_OK;
 }
@@ -532,7 +531,8 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 	}
 	if (std::count(m_nBufferType, m_nBufferType + m_nBuffers, BUFFERTYPE::UNNAMED) == m_nBuffers)
 		m_infoUnpacker.Initialize(false);
-	if (nBuffer == nFiles)
+
+	if (bSucceeded)
 	{
 		// An extra ResizeWindow() on the left view aligns scroll ranges, and
 		// also triggers initial diff coloring by invalidating the client area.
@@ -542,6 +542,9 @@ bool CHexMergeDoc::OpenDocs(int nFiles, const FileLocation fileloc[], const bool
 			OnRefresh();
 		else
 			UpdateLastCompareResult();
+
+		for (nBuffer = 0; nBuffer < nFiles; nBuffer++)
+			UpdateHeaderPath(nBuffer);
 	}
 	else
 	{
