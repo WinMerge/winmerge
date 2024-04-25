@@ -27,7 +27,7 @@ Please submit bug reports to our bug-tracker.
 ### Options dialog
 
 - Add a "Defaults" button to the "Options (Editor > General)" dialog.
-    (#PR 2283)
+    (PR #2283)
 - Adjust position of "Defaults" button in "Options > Compare > Table"
     (PR #2295)
 
@@ -39,7 +39,7 @@ Please submit bug reports to our bug-tracker.
     (This bug was introduced in version 2.16.39 beta.)
 - BugFix: insert datetime.sct: Fixed an issue where it didn't work properly
     depending on the locale.
-    (This bug was introduced in version 2.16.39 beat.)
+    (This bug was introduced in version 2.16.39 beta.)
 - BugFix: Fixed an issue where a "Catastrophic failure" message box might have
     appeared when reloading a plugin while the Select Files or Folders window
     was displayed.
