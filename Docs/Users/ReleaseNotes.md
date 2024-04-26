@@ -58,7 +58,7 @@ Please submit bug reports to our bug-tracker.
   - Catalan (PR #2270,#2274)
   - Chinese Simplified (PR #2290)
   - Corsican (PR #2288)
-  - French (PR #2271,#2275)
+  - French (PR #2271,#2275,#2297)
   - Hungarian (PR #2291)
   - Japanese
   - Polish (PR#2277)
