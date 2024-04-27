@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 08.03.2024\n"
+"Project-Id-Version: WinMerge (Language) 27.04.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-03-09 11:02+0100\n"
+"PO-Revision-Date: 2024-04-27 21:22+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -1097,79 +1097,79 @@ msgid "&Load Project..."
 msgstr "&Carica progetto..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - Tutti gli argomenti"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - Il primo argomento"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - Il secondo argomento"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - Il terzo argomento"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - Il quarto argomento"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - Il quinto argomento"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - Il sesto argomento"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - Il settimo argomento"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - L'ottavo argomento"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - Il nono argomento"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - File sorgente"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Cartella sorgente"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - URL sorgente"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Protocollo URL sorgente"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Suffisso URL sorgente"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - File destinazione"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Cartella destinazione"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - URL destinazione"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Protocollo URL destinazione"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Suffisso URL destinazione"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - Cartella home WinMerge"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - File script"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "Aggiungi plugin &decompressione..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "Aggiungi plugin &pre-differenza..."
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "Plugin &duplicato..."
 
 msgid "About WinMerge"
 msgstr "Informazioni su WinMerge"
@@ -1552,7 +1552,7 @@ msgid "&Plugin Pipeline:"
 msgstr "Pipeline dei &plugin:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "&Alias..."
 
 msgid "Stop"
 msgstr "Stop"
@@ -2158,37 +2158,37 @@ msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Modifica plugin"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "&Tipo plugin:"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Categoria:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "&Didascalia menu:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "Tipo &finestra:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Estensione file decompresso:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "&Richiede argomenti"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "&Genera script editor"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "&Linea di comando:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "Estensione file &script:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Corpo &script:"
 
 msgid "EXT"
 msgstr "EST"
@@ -4193,7 +4193,7 @@ msgstr "Virgoletta mancante nella pipeline dei plugin: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "Il nome plugin '%1' esiste già."
 
 msgid "Specify plugin arguments"
 msgstr "Specifica gli argomenti del plugin"
@@ -4218,32 +4218,32 @@ msgstr ""
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Riferimento circolare pipeline plugin: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "Gestore URL"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Decompressione file"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Decompressione file/cartella"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Alias decompressione"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Alias ​​pre-differrenza"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Alias ​​per script editor"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Alias ​​pipeline plugin '%1'"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Nuova descrizione plugin"
 
 msgid "Filter applied"
 msgstr "Filtro applicato"
