@@ -355,6 +355,7 @@
     <ClCompile Include="..\editlib\parsers\dcl.cpp" />
     <ClCompile Include="..\editlib\parsers\dlang.cpp" />
     <ClCompile Include="..\editlib\parsers\fortran.cpp" />
+    <ClCompile Include="..\editlib\parsers\fsharp.cpp" />
     <ClCompile Include="..\editlib\parsers\go.cpp" />
     <ClCompile Include="..\editlib\parsers\html.cpp" />
     <ClCompile Include="..\editlib\parsers\ini.cpp" />

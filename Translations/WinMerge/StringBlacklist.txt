@@ -24,6 +24,7 @@ CSS
 DCL
 D
 Fortran
+F#
 Go
 HTML
 INI
