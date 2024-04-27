@@ -127,6 +127,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SelectPluginDlg"), false);
 
 	prepareListbox();
+	String pipeline = m_strPluginPipeline;
 
 	m_ctlPluginPipeline.SetFileControlStates(true);
 	m_ctlPluginPipeline.LoadState(
@@ -135,6 +136,7 @@ BOOL CSelectPluginDlg::OnInitDialog()
 
 	EnableDlgItem(IDC_PLUGIN_OPEN_IN_SAME_FRAME_TYPE, m_pluginType == PluginType::Unpacker);
 
+	m_strPluginPipeline = pipeline;
 	UpdateData(FALSE);
 
 	const std::array<String, 3> pluginTypes = { _("Unpacker"), _("Prediffer"), _("Editor script") };
@@ -144,7 +146,6 @@ BOOL CSelectPluginDlg::OnInitDialog()
 	{
 		SetTitleText(_("Specify plugin arguments") + _T(" [") + pluginTypeStr + _T("]"));
 		String args;
-		String pipeline;
 		GetDlgItemText(IDC_PLUGIN_ARGUMENTS, args);
 		GetDlgItemText(IDC_PLUGIN_PIPELINE, pipeline);
 		m_strPluginPipeline = pipeline + _T(" ") + args;
