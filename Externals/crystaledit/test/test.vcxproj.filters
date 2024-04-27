@@ -86,6 +86,9 @@
     <ClCompile Include="..\editlib\parsers\fortran.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\parsers\fsharp.cpp">
+      <Filter>Source Files\editlib\parsers</Filter>
+    </ClCompile>
     <ClCompile Include="..\editlib\parsers\go.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>

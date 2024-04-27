@@ -88,6 +88,7 @@ typedef enum
 	SRC_DCL,
 	SRC_DLANG,
 	SRC_FORTRAN,
+	SRC_FSHARP,
 	SRC_GO,
 	SRC_HTML,
 	SRC_INI,
@@ -166,6 +167,7 @@ unsigned ParseLineCss(unsigned dwCookie, const tchar_t *pszChars, int nLength, T
 unsigned ParseLineDcl(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineDlang(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineFortran(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
+unsigned ParseLineFSharp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineGo(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineHtml(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineHtmlEx(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems, int nEmbeddedLanguage);
