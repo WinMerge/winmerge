@@ -9,15 +9,15 @@
 # * Laurent Ganier <ccganier at club-internet.fr>
 # * Dominique Saussereau <redguff at users.sourceforge.net>
 # * Jean-F Jolin <jean-f-j at users.sourceforge.net>
-# * Lolo S. <slolo2000 at hotmail.com>
 # * Need74 <need74 at free.fr>
+# * Lolo S. <slolo2000 at hotmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2024-03-05 13:52+0100\n"
+"PO-Revision-Date: 2024-04-26 19:18+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -1029,10 +1029,10 @@ msgid "&Transform with editor script..."
 msgstr "&Transformer avec le script de l'éditeur..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "Scripts à &copier"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "Choisir le script de l'&éditeur..."
 
 #, c-format
 msgid "Sp&lit"
@@ -1330,6 +1330,81 @@ msgstr "Taille"
 #, c-format
 msgid "&Load Project..."
 msgstr "Charger le projet..."
+
+msgid "${*} - All arguments"
+msgstr "${*} - Tous les arguments"
+
+msgid "${1} - The first argument"
+msgstr "${1} - Le premier argument"
+
+msgid "${2} - The second argument"
+msgstr "${2} - Le deuxième argument"
+
+msgid "${3} - The third argument"
+msgstr "${3} - Le troisième argument"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - Le quatrième argument"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - Le cinquième argument"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - Le sixième argument"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - Le septième argument"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - Le huitième argument"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - Le neuvième argument"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Fichier source"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Dossier source"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - URL de la source"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Protocole de l'URL source"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Suffixe de l'URL source"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Fichier de destination"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Dossier de destination"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - URL de destination"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Protocole de l'URL de destination"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Suffixe de l'URL de destination"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - Répertoire d'origine de WinMerge"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Fichier de script"
+
+msgid "Add &unpacker plugin..."
+msgstr "Ajouter le plugin &décompresseur..."
+
+msgid "Add &prediffer plugin..."
+msgstr "Ajouter le plugin &Pré-comparaison..."
+
+msgid "&Duplicate plugin..."
+msgstr "Plugin &Dupliquer..."
 
 #, c-format
 msgid "About WinMerge"
@@ -1781,15 +1856,6 @@ msgstr "&Propriétés supplémentaires"
 msgid "Additional Properties"
 msgstr "Propriétés supplémentaires"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Sélectionner le plugin"
 
@@ -1816,8 +1882,8 @@ msgstr "&Ouvrir les fichiers dans le même type de fenêtre après décompressio
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin Chaîne '|' :"
 
-msgid "&Add pipe"
-msgstr "&Ajouter pipe '|'"
+msgid "&Alias..."
+msgstr "&Alias..."
 
 #, c-format
 msgid "Stop"
@@ -2566,6 +2632,39 @@ msgstr "&Séparer les dossiers de données utilisateur pour chaque panneau"
 #, c-format
 msgid "&Hex View"
 msgstr "Affichage &Hexa"
+
+msgid "Edit Plugin"
+msgstr "Modifier plugin"
+
+msgid "Plugin &type:"
+msgstr "&Type de plugin :"
+
+msgid "&Category:"
+msgstr "&Catégorie :"
+
+msgid "&Menu caption:"
+msgstr "&Légende du menu :"
+
+msgid "&Window type:"
+msgstr "&Type de fenêtre :"
+
+msgid "&Unpacked file extension:"
+msgstr "Extension de fichier &décompressé :"
+
+msgid "&Require arguments"
+msgstr "Exiger des &arguments"
+
+msgid "&Generate editor script"
+msgstr "&Générer un script d'édition"
+
+msgid "Command &line:"
+msgstr "Ligne de &commande :"
+
+msgid "&Script file extension:"
+msgstr "Extension de fichier &Script :"
+
+msgid "Script &body:"
+msgstr "&Corps du script :"
 
 #, c-format
 msgid "EXT"
@@ -4784,6 +4883,10 @@ msgstr "Nom de plugin manquant dans le plugin de chaîne de traitement : %1"
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Guillemet manquant dans la chaîne de traitement du plugin : %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "Le nom du plugin '%1' existe déjà."
+
 msgid "Specify plugin arguments"
 msgstr "Spécifier les arguments du plugin"
 
@@ -4802,6 +4905,35 @@ msgstr "'%1' n'est pas un plugin de pré-différence"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Une erreur s'est produite lors de la pré-différence du fichier '%1' avec le plugin '%2'. La pré-différence n'est plus appliquée."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Référence circulaire dans la chaine du plugin %1"
+
+msgid "URL Handler"
+msgstr "Gestionnaire d'URL"
+
+msgid "File Unpacker"
+msgstr "Décompresseur de fichiers"
+
+msgid "File or Folder Unpacker"
+msgstr "Décompresseur de fichiers ou dossiers"
+
+msgid "Alias for Unpacker"
+msgstr "Alias pour Décompresseur"
+
+msgid "Alias for Prediffer"
+msgstr "Alias de Pré-comparaison"
+
+msgid "Alias for Editor script"
+msgstr "Alias ​pour l'éditeur script"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Alias pour le plugin chaine '%1'"
+
+msgid "New plugin description"
+msgstr "Description du nouveau plugin"
 
 msgid "Filter applied"
 msgstr "Filtre appliqué"
@@ -5039,7 +5171,15 @@ msgstr "Inverser les colonnes"
 msgid "Reverse lines"
 msgstr "Inverser les lignes"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "Remplacer le texte par un autre texte.\r\n"
 "Utilisation : Replace [-i] [-e] FIND REPLACE\r\n"

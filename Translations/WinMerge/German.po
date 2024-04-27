@@ -1327,6 +1327,81 @@ msgstr "Größe"
 msgid "&Load Project..."
 msgstr "Projekt &laden..."
 
+msgid "${*} - All arguments"
+msgstr ""
+
+msgid "${1} - The first argument"
+msgstr ""
+
+msgid "${2} - The second argument"
+msgstr ""
+
+msgid "${3} - The third argument"
+msgstr ""
+
+msgid "${4} - The fourth argument"
+msgstr ""
+
+msgid "${5} - The fifth argument"
+msgstr ""
+
+msgid "${6} - The sixth argument"
+msgstr ""
+
+msgid "${7} - The seventh argument"
+msgstr ""
+
+msgid "${8} - The eighth argument"
+msgstr ""
+
+msgid "${9} - The ninth argument"
+msgstr ""
+
+msgid "${SRC_FILE} - Source file"
+msgstr ""
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr ""
+
+msgid "${SRC_URL} - Source URL"
+msgstr ""
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr ""
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr ""
+
+msgid "${DST_FILE} - Destination file"
+msgstr ""
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr ""
+
+msgid "${DST_URL} - Destination URL"
+msgstr ""
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr ""
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr ""
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr ""
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr ""
+
+msgid "Add &unpacker plugin..."
+msgstr ""
+
+msgid "Add &prediffer plugin..."
+msgstr ""
+
+msgid "&Duplicate plugin..."
+msgstr ""
+
 #, c-format
 msgid "About WinMerge"
 msgstr "Info über WinMerge"
@@ -1777,15 +1852,6 @@ msgstr "Zusätzliche Eigenschaften"
 msgid "Additional Properties"
 msgstr "Zusätzliche Eigenschaften"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Plugin auswählen"
 
@@ -1812,8 +1878,8 @@ msgstr "Dateien nach dem Entpacken im gleichen Fenstertyp öffnen"
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin-Pipeline:"
 
-msgid "&Add pipe"
-msgstr "Pipe hinzufügen"
+msgid "&Alias..."
+msgstr ""
 
 #, c-format
 msgid "Stop"
@@ -2552,6 +2618,39 @@ msgstr "&Separate Benutzerdatenordner für jeden Bereich"
 #, c-format
 msgid "&Hex View"
 msgstr "&Hex-Ansicht"
+
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "Plugin &type:"
+msgstr ""
+
+msgid "&Category:"
+msgstr ""
+
+msgid "&Menu caption:"
+msgstr ""
+
+msgid "&Window type:"
+msgstr ""
+
+msgid "&Unpacked file extension:"
+msgstr ""
+
+msgid "&Require arguments"
+msgstr ""
+
+msgid "&Generate editor script"
+msgstr ""
+
+msgid "Command &line:"
+msgstr ""
+
+msgid "&Script file extension:"
+msgstr ""
+
+msgid "Script &body:"
+msgstr ""
 
 #, c-format
 msgid "EXT"
@@ -4394,6 +4493,10 @@ msgstr "Fehlender Plugin-Name in der Plugin-Pipeline: %1"
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
+
 msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"
 
@@ -4412,6 +4515,35 @@ msgstr "'%1' ist kein Prediffer-Plugin"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Beim Prediffing der Datei '%1' mit dem Plugin '%2' ist ein Fehler aufgetreten. Das Prediffing wird nicht mehr angewendet."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr ""
+
+msgid "New plugin description"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Angewandter Filter"

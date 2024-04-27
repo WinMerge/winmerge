@@ -472,12 +472,15 @@ BOOL CFilepathEdit::PreTranslateMessage(MSG *pMsg)
 			SetBackColor(MakeBackColor(true, false));
 			RedrawWindow(nullptr, nullptr, RDW_FRAME | RDW_INVALIDATE);
 			SetReadOnly();
-			CString sText;
-			GetWindowText(sText);
-			if (m_sOriginalText.at(2) == '*')
-				sText = _T("* ") + sText;
-			SetWindowText(sText);
-			GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_CAPTION_CHANGED), (LPARAM)m_hWnd);
+			CString text;
+			GetWindowText(text);
+			String orgtext = m_sOriginalText;
+			if (!orgtext.empty() && orgtext[0] == '*')
+				orgtext = orgtext.substr(2);
+			if (text == orgtext.c_str())
+				SetWindowText(m_sOriginalText.c_str());
+			else
+				GetParent()->PostMessage(WM_COMMAND, MAKEWPARAM(GetDlgCtrlID(), EN_USER_CAPTION_CHANGED), (LPARAM)m_hWnd);
 			return TRUE;
 		}
 		if (pMsg->wParam == VK_ESCAPE)

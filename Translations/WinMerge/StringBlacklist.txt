@@ -8,6 +8,7 @@ _POPUP_
 0.00
 IDS_SAVEVSS_FMT
 MS Shell Dlg
+Segoe UI
 Static
 ComboEx32
 Version 1.0
@@ -95,3 +96,8 @@ x
 1280x800
 1440x900
 UA:
+|
+=
+&<
+&>
+<<

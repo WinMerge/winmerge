@@ -6,19 +6,30 @@
 
 #include "stdafx.h"
 #include "PluginsListDlg.h"
+#include "EditPluginDlg.h"
 #include "WildcardDropList.h"
 #include "UnicodeString.h"
 #include "Plugins.h"
+#include "InternalPlugins.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "unicoder.h"
 #include "Merge.h"
 #include "Constants.h"
+#include "Win_VersionHelper.h"
+
+#ifndef BCN_DROPDOWN
+#define BCN_DROPDOWN            (BCN_FIRST + 0x0002)
+#endif
 
 IMPLEMENT_DYNAMIC(PluginsListDlg, CTrDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CTrDialog)
 	ON_BN_CLICKED(IDOK, OnBnClickedOk)
+	ON_BN_CLICKED(IDC_PLUGIN_ADD, OnBnClickedPluginAdd)
+	ON_NOTIFY(BCN_DROPDOWN, IDC_PLUGIN_ADD, OnDropDownAdd)
+	ON_BN_CLICKED(IDC_PLUGIN_EDIT, OnBnClickedPluginEdit)
+	ON_BN_CLICKED(IDC_PLUGIN_REMOVE, OnBnClickedPluginRemove)
 	ON_BN_CLICKED(IDC_PLUGIN_SETTINGS, OnBnClickedPluginSettings)
 	ON_BN_CLICKED(IDC_PLUGIN_DEFAULTS, OnBnClickedFileFiltesDefaults)
 	ON_CBN_DROPDOWN(IDC_PLUGIN_FILEFILTERS, OnDropDownPatterns)
@@ -57,6 +68,13 @@ void PluginsListDlg::DoDataExchange(CDataExchange* pDX)
 BOOL PluginsListDlg::OnInitDialog()
 {
 	CTrDialog::OnInitDialog();
+
+	if (!IsVista_OrGreater())
+	{
+		// fallback for XP 
+		SendDlgItemMessage(IDC_PLUGIN_ADD, BM_SETSTYLE, BS_PUSHBUTTON, TRUE);
+	}
+
 	
 	InitList();
 	AddPlugins();
@@ -96,14 +114,14 @@ void PluginsListDlg::AddPlugins()
 {
 	String type = _("Unpacker");
 	AddPluginsToList(L"URL_PACK_UNPACK", type);
-	AddPluginsToList(L"FILE_FOLDER_PACK_UNPACK", type);
-	AddPluginsToList(L"FILE_PACK_UNPACK", type);
-	AddPluginsToList(L"BUFFER_PACK_UNPACK", type);
+	for (auto event : plugin::UnpackerEventNames)
+		AddPluginsToList(event.c_str(), type);
 	type = _("Prediffer");
-	AddPluginsToList(L"FILE_PREDIFF", type);
-	AddPluginsToList(L"BUFFER_PREDIFF", type);
+	for (auto event : plugin::PredifferEventNames)
+		AddPluginsToList(event.c_str(), type);
 	type = _("Editor script");
-	AddPluginsToList(L"EDITOR_SCRIPT", type);
+	for (auto event : plugin::EditorScriptEventNames)
+		AddPluginsToList(event.c_str(), type);
 }
 
 /**
@@ -124,7 +142,8 @@ void PluginsListDlg::AddPluginsToList(const wchar_t *pluginEvent, const String& 
 		String processType2 = processType.has_value() ? strutils::to_str(*processType) : _T("&Others");
 		processType2 = strutils::strip_hot_key(tr(ucr::toUTF8(processType2)));
 		int ind = m_list.InsertItem(m_list.GetItemCount(), plugin->m_name.c_str());
-		String desc = tr(ucr::toUTF8(plugin->m_description));
+		const bool containsNonAsciiChars  = std::any_of(plugin->m_description.begin(), plugin->m_description.end(), [](auto c) { return (c >= 0x80); });
+		String desc = containsNonAsciiChars  ? plugin->m_description : tr(ucr::toUTF8(plugin->m_description));
 		strutils::replace(desc, _T("\r"), _T(""));
 		strutils::replace(desc, _T("\n"), _T(" "));
 		m_list.SetItemText(ind, 1, (pluginType + _T("/") + processType2).c_str());
@@ -143,6 +162,125 @@ PluginInfo *PluginsListDlg::GetSelectedPluginInfo() const
 	return reinterpret_cast<PluginInfo *>(m_list.GetItemData(ind));
 }
 
+internal_plugin::Info* PluginsListDlg::GetSelectedInternalPluginInfo() const
+{
+	PluginInfo* plugin = GetSelectedPluginInfo();
+	if (!plugin)
+		return nullptr;
+	return internal_plugin::GetInternalPluginInfo(plugin);
+}
+
+void PluginsListDlg::RefreshList()
+{
+	CRect rect;
+	const int topIndex = m_list.GetTopIndex();
+	m_list.GetItemRect(topIndex, &rect, LVIR_BOUNDS);
+	const int itemheight = rect.bottom - rect.top;
+	int index = -1;
+	auto pos = m_list.GetFirstSelectedItemPosition();
+	if (pos)
+		index = m_list.GetNextSelectedItem(pos);
+	m_list.DeleteAllItems();
+	AddPlugins();
+	if (index >= m_list.GetItemCount())
+		index = m_list.GetItemCount() - 1;
+	if (index > 0)
+	{
+		m_list.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
+		m_list.Scroll(CSize{ 0, itemheight * topIndex });
+	}
+}
+
+void PluginsListDlg::AddPlugin(unsigned id)
+{
+	auto info = std::make_unique<internal_plugin::Info>(
+		(id == ID_PLUGIN_ADD_UNPACKER) ?
+		internal_plugin::CreateUnpackerPluginExample() : internal_plugin::CreatePredifferPluginExample());
+	for (;;)
+	{
+		CEditPluginDlg dlg(*info);
+		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+			return;
+		String errmsg;
+		if (internal_plugin::AddPlugin(*info, errmsg))
+			break;
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+	}
+	RefreshList();
+}
+
+void PluginsListDlg::EditPlugin()
+{
+	auto* info = GetSelectedInternalPluginInfo();
+	if (!info)
+		return;
+	String nameOrg = info->m_name;
+	for (;;)
+	{
+		CEditPluginDlg dlg(*info);
+		if (dlg.DoModal() == IDCANCEL || !info->m_userDefined)
+			return;
+		String errmsg;
+		if (info->m_name == nameOrg)
+		{
+			if (internal_plugin::UpdatePlugin(*info, errmsg))
+				break;
+		}
+		else
+		{
+			if (internal_plugin::AddPlugin(*info, errmsg))
+			{
+				internal_plugin::Info infoOld(nameOrg);
+				infoOld.m_userDefined = true;
+				internal_plugin::RemovePlugin(infoOld, errmsg);
+				break;
+			}
+		}
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+	}
+	RefreshList();
+}
+
+void PluginsListDlg::DuplicatePlugin()
+{
+	auto* info = GetSelectedInternalPluginInfo();
+	if (!info)
+		return;
+	internal_plugin::Info info2(*info);
+	info2.m_userDefined = true;
+	for (;;)
+	{
+		info2.m_name += _T("Copy");
+		if (!internal_plugin::FindPluginNameConflict(info2))
+			break;
+	}
+	for (;;)
+	{
+		CEditPluginDlg dlg(info2);
+		if (dlg.DoModal() == IDCANCEL || !info2.m_userDefined)
+			return;
+		String errmsg;
+		if (internal_plugin::AddPlugin(info2, errmsg))
+			break;
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+	}
+	RefreshList();
+}
+
+void PluginsListDlg::RemovePlugin()
+{
+	auto* info = GetSelectedInternalPluginInfo();
+	if (!info)
+		return;
+	String errmsg;
+	if (!internal_plugin::RemovePlugin(*info, errmsg))
+	{
+		AfxMessageBox(errmsg.c_str(), MB_OK | MB_ICONEXCLAMATION);
+		return;
+	}
+
+	RefreshList();
+}
 /**
  * @brief Save plugins enabled setting when closing the dialog.
  */
@@ -163,6 +301,49 @@ void PluginsListDlg::OnBnClickedOk()
 	CAllThreadsScripts::GetActiveSet()->SaveSettings();
 	CAllThreadsScripts::ReloadCustomSettings();
 	OnOK();
+}
+
+void PluginsListDlg::OnBnClickedPluginAdd()
+{
+	AddPlugin(ID_PLUGIN_ADD_UNPACKER);
+}
+
+void PluginsListDlg::OnDropDownAdd(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	CRect rcButton;
+	GetDlgItem(IDC_PLUGIN_ADD)->GetWindowRect(&rcButton);
+	CMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_PLUGIN_ADD_MENU));
+	theApp.TranslateMenu(menu.m_hMenu);
+	CMenu* pPopup = menu.GetSubMenu(0);
+	auto* info = GetSelectedInternalPluginInfo();
+	if (!info)
+		pPopup->EnableMenuItem(ID_PLUGIN_DUPLICATE, MF_GRAYED);
+	int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD,
+			rcButton.left, rcButton.bottom, this);
+	switch (command)
+	{
+	case ID_PLUGIN_ADD_UNPACKER:
+	case ID_PLUGIN_ADD_PREDIFFER:
+		AddPlugin(command);
+		break;
+	case ID_PLUGIN_DUPLICATE:
+		DuplicatePlugin();
+		break;
+	default:
+		break;
+	}
+	*pResult = 0;
+}
+
+void PluginsListDlg::OnBnClickedPluginEdit()
+{
+	EditPlugin();
+}
+
+void PluginsListDlg::OnBnClickedPluginRemove()
+{
+	RemovePlugin();
 }
 
 void PluginsListDlg::OnBnClickedPluginSettings()
@@ -223,6 +404,9 @@ void PluginsListDlg::OnLVNItemChanged(NMHDR *pNMHDR, LRESULT *pResult)
 		SetDlgItemText(IDC_PLUGIN_FILEFILTERS, plugin->m_filtersText);
 		SetDlgItemText(IDC_PLUGIN_ARGUMENTS, plugin->m_arguments);
 		CheckDlgButton(IDC_PLUGIN_AUTOMATIC, plugin->m_bAutomatic);
+		auto* info = internal_plugin::GetInternalPluginInfo(plugin);
+		EnableDlgItem(IDC_PLUGIN_EDIT, info != nullptr);
+		EnableDlgItem(IDC_PLUGIN_REMOVE, (info && info->m_userDefined));
 	}
 }
 

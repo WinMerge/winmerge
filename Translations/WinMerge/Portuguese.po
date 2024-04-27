@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2024-01-17 13:21+0000\n"
+"PO-Revision-Date: 2024-03-17 22:44+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -843,10 +843,10 @@ msgid "&Transform with editor script..."
 msgstr "&Transformar com o script editor..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "Scripts para &copiar"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "Selecionar script editor..."
 
 msgid "Sp&lit"
 msgstr "Di&vidir"
@@ -1096,6 +1096,81 @@ msgstr "Tamanho"
 msgid "&Load Project..."
 msgstr "&Carregar projeto..."
 
+msgid "${*} - All arguments"
+msgstr ""
+
+msgid "${1} - The first argument"
+msgstr ""
+
+msgid "${2} - The second argument"
+msgstr ""
+
+msgid "${3} - The third argument"
+msgstr ""
+
+msgid "${4} - The fourth argument"
+msgstr ""
+
+msgid "${5} - The fifth argument"
+msgstr ""
+
+msgid "${6} - The sixth argument"
+msgstr ""
+
+msgid "${7} - The seventh argument"
+msgstr ""
+
+msgid "${8} - The eighth argument"
+msgstr ""
+
+msgid "${9} - The ninth argument"
+msgstr ""
+
+msgid "${SRC_FILE} - Source file"
+msgstr ""
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr ""
+
+msgid "${SRC_URL} - Source URL"
+msgstr ""
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr ""
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr ""
+
+msgid "${DST_FILE} - Destination file"
+msgstr ""
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr ""
+
+msgid "${DST_URL} - Destination URL"
+msgstr ""
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr ""
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr ""
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr ""
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr ""
+
+msgid "Add &unpacker plugin..."
+msgstr ""
+
+msgid "Add &prediffer plugin..."
+msgstr ""
+
+msgid "&Duplicate plugin..."
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
 
@@ -1298,9 +1373,7 @@ msgid "Substitution Filters"
 msgstr "Filtros de substituição"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
-"As alterações que aparecem nos painéis como os pares listados abaixo serão ignoradas ou marcadas como insignificantes. As correções não são "
-"afetadas."
+msgstr "As alterações que aparecem nos painéis como os pares listados abaixo serão ignoradas ou marcadas como insignificantes. As correções não são afetadas."
 
 msgid "Enable"
 msgstr "Ativar"
@@ -1452,15 +1525,6 @@ msgstr "&Propriedades adicionais"
 msgid "Additional Properties"
 msgstr "Propriedades adicionais"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selecionar plugin"
 
@@ -1485,8 +1549,8 @@ msgstr "Abrir ficheiros no mesmo tipo de janela depois de desempacotar"
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin Pipeline:"
 
-msgid "&Add pipe"
-msgstr "&Adicionar pipe"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Parar"
@@ -1585,7 +1649,7 @@ msgid "&Automatic rescan"
 msgstr "Re-análise automática"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Copiar &granularidade para diferenças selecionadas:"
 
 msgid "Line Difference Coloring"
 msgstr "Cor da diferença da linha"
@@ -2089,6 +2153,39 @@ msgstr "&Separar pastas de dados do utilizador para cada painel"
 msgid "&Hex View"
 msgstr "Visualização &Hex"
 
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "Plugin &type:"
+msgstr ""
+
+msgid "&Category:"
+msgstr ""
+
+msgid "&Menu caption:"
+msgstr ""
+
+msgid "&Window type:"
+msgstr ""
+
+msgid "&Unpacked file extension:"
+msgstr ""
+
+msgid "&Require arguments"
+msgstr ""
+
+msgid "&Generate editor script"
+msgstr ""
+
+msgid "Command &line:"
+msgstr ""
+
+msgid "&Script file extension:"
+msgstr ""
+
+msgid "Script &body:"
+msgstr ""
+
 msgid "EXT"
 msgstr "EXT"
 
@@ -2188,12 +2285,8 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "Comparação de pastas WinMerge"
 
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see "
-"the GNU General Public License in the Help menu for details."
-msgstr ""
-"O WinMerge vem SEM QUALQUER GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a "
-"licença pública geral GNU ou vá ao menu de Ajuda para mais informação."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "O WinMerge vem SEM QUALQUER GARANTIA. Este é um software livre e pode ser redistribuído sobre determinadas circunstâncias; Consulte a licença pública geral GNU ou vá ao menu de Ajuda para mais informação."
 
 msgid "&Abort"
 msgstr "&Abortar"
@@ -2235,7 +2328,7 @@ msgid "To make this message box visible again, press the Reset button on the Mes
 msgstr "Para tornar esta caixa de mensagens visível novamente, prima o botão Repor na página Caixas de mensagens da janela de opções."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Comparar/Fundir"
 
 msgid "Syntax"
 msgstr "Sintaxe"
@@ -3390,15 +3483,13 @@ msgid ""
 "\n"
 "Do you want to treat all carriage return types as equivalent for this comparison?\n"
 "\n"
-"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/"
-"Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Estes ficheiros utilizam diferentes tipos de procedimento.\n"
 "\n"
 "Deseja tratar todos os tipos de procedimentos por igual para comparação?\n"
 "\n"
-"Nota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de ficheiros (Windows/Unix/Mac)' "
-"no separador de comparação no diálogo opções (disponível em Editar/Definições)."
+"Nota: Se deseja tratar todos os tipos de procedimentos por igual, defina a opção 'Ignorar diferentes tipos de ficheiros (Windows/Unix/Mac)' no separador de comparação no diálogo opções (disponível em Editar/Definições)."
 
 msgid "The selected folder is invalid."
 msgstr "A pasta selecionada é inválida."
@@ -3448,8 +3539,7 @@ msgid ""
 "Would you like to treat both files as being in the default Windows codepage (recommended)?"
 msgstr ""
 "Encontradas páginas de código diferentes nos ficheiros da esquerda (cp%d) e direita (cp%d).\n"
-"Apresentar cada ficheiro na sua página de código terá melhor visualização, mas combinar/copiar poderá ser arriscado.\\Deseja tratar os dois "
-"ficheiros como tendo as páginas de código predefinidas para as janelas?"
+"Apresentar cada ficheiro na sua página de código terá melhor visualização, mas combinar/copiar poderá ser arriscado.\\Deseja tratar os dois ficheiros como tendo as páginas de código predefinidas para as janelas?"
 
 msgid "Information lost due to encoding errors: both files"
 msgstr "Informações perdidas devido a erros de codificação: ambos os ficheiros"
@@ -4067,6 +4157,10 @@ msgstr "Nome de plugin ausente no pipeline plugin: %1"
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Marca de cotação em falta no plugin pipeline: %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
+
 msgid "Specify plugin arguments"
 msgstr "Especificar argumentos de plugin"
 
@@ -4085,6 +4179,35 @@ msgstr "'%1' não é um plugin de pré-diferenciação"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Ocorreu um erro durante a pré-diferenciação do ficheiro '%1' com o plugin '%2'. A pré-diferenciação já não é aplicada."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr ""
+
+msgid "New plugin description"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"
@@ -4152,16 +4275,16 @@ msgid "Zoom:"
 msgstr "Zoom:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Diferenciar pedaço"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Diferença em linha"
 
 msgid "Line"
-msgstr ""
+msgstr "Linha"
 
 msgid "Character"
-msgstr ""
+msgstr "Carácter"
 
 msgid "Prettification"
 msgstr "Embelezamento"
@@ -4322,7 +4445,15 @@ msgstr "Colunas invertidas"
 msgid "Reverse lines"
 msgstr "Linhas invertidas"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "Substituir o texto por outro texto.\r\n"
 "Utilização: Substituir [-i] [-e] FIND REPLACE\r\n"

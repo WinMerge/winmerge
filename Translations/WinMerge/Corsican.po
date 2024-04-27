@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-12-30 17:35+0000\n"
-"PO-Revision-Date: 2024-01-15 15:30+0100\n"
+"POT-Creation-Date: 2024-04-20 09:09+0000\n"
+"PO-Revision-Date: 2024-04-21 16:39+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -844,10 +844,10 @@ msgid "&Transform with editor script..."
 msgstr "&Trasfurmà cù un scenariu d’editore…"
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "Scenarii per a &copia"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "Selezziunà un scenariu d’&editore…"
 
 msgid "Sp&lit"
 msgstr "&Sparte"
@@ -1097,6 +1097,81 @@ msgstr "Dimensione"
 msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
 
+msgid "${*} - All arguments"
+msgstr "${*} - Tutti i parametri"
+
+msgid "${1} - The first argument"
+msgstr "${1} - U primu parametru"
+
+msgid "${2} - The second argument"
+msgstr "${2} - U secondu parametru"
+
+msgid "${3} - The third argument"
+msgstr "${3} - U terzu parametru"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - U quartu parametru"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - U quintu parametru"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - U sestu parametru"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - U settimu parametru"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - L’ottesimu parametru"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - U novesimu parametru"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Schedariu di fonte"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Cartulare di fonte"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - Indirizzu web di fonte"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Protocollu di l’indirizzu web di fonte"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Suffissu di l’indirizzu web di fonte"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Schedariu di destinazione"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Cartulare di destinazione"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - Indirizzu web di destinazione"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Protocollu di l’indirizzu web di destinazione"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Suffissu di l’indirizzu web di destinazione"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - Cartulare d’accolta WinMerge"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Schedariu di scenariu"
+
+msgid "Add &unpacker plugin..."
+msgstr "Aghjunghje u modulu d’estensione di u &spacchittadore…"
+
+msgid "Add &prediffer plugin..."
+msgstr "Aghjunghje u modulu d’estensione di u &preparagone…"
+
+msgid "&Duplicate plugin..."
+msgstr "Modulu d’estensione in &doppiu…"
+
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
 
@@ -1299,9 +1374,7 @@ msgid "Substitution Filters"
 msgstr "Filtri di sustituzione"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
-"I cambiamenti chì sò affissati nant’à i pannelli cum’è e coppii di a lista quì sottu seranu ignurati o marcati cum’è insignificanti. E currezzioni ùn "
-"sò micca affettate."
+msgstr "I cambiamenti chì sò affissati nant’à i pannelli cum’è e coppii di a lista quì sottu seranu ignurati o marcati cum’è insignificanti. E currezzioni ùn sò micca affettate."
 
 msgid "Enable"
 msgstr "Attivà"
@@ -1453,15 +1526,6 @@ msgstr "&Pruprietà addiziunale"
 msgid "Additional Properties"
 msgstr "Pruprietà addiziunale"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selezziunà u modulu d’estensione"
 
@@ -1486,8 +1550,8 @@ msgstr "&Apre i schedarii in u listessu tipu di finestra dopu à a spacchittera"
 msgid "&Plugin Pipeline:"
 msgstr "&Cundottu di modulu :"
 
-msgid "&Add pipe"
-msgstr "&Aghjung. cundottu"
+msgid "&Alias..."
+msgstr "&Cugnome…"
 
 msgid "Stop"
 msgstr "Piantà"
@@ -1586,7 +1650,7 @@ msgid "&Automatic rescan"
 msgstr "&Rianalisa autumatica"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Cupià a &granularità per e sfarenze selezziunate :"
 
 msgid "Line Difference Coloring"
 msgstr "Culurazione di sfarenza di linea"
@@ -2090,6 +2154,39 @@ msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
 
+msgid "Edit Plugin"
+msgstr "Mudificà u modulu d’estensione"
+
+msgid "Plugin &type:"
+msgstr "Tipu di &modulu d’estensione :"
+
+msgid "&Category:"
+msgstr "&Categuria :"
+
+msgid "&Menu caption:"
+msgstr "&Legenda di listinu :"
+
+msgid "&Window type:"
+msgstr "Tipu di &finestra :"
+
+msgid "&Unpacked file extension:"
+msgstr "&Estensione di u schedariu spacchittatu :"
+
+msgid "&Require arguments"
+msgstr "&Parametri richiesti"
+
+msgid "&Generate editor script"
+msgstr "&Ingenerà u scenariu d’editore"
+
+msgid "Command &line:"
+msgstr "&Linea di cumanda :"
+
+msgid "&Script file extension:"
+msgstr "Estensione di u schedariu di &scenariu :"
+
+msgid "Script &body:"
+msgstr "&Testu di u scenariu :"
+
 msgid "EXT"
 msgstr "EST"
 
@@ -2189,12 +2286,8 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "Paragone WinMerge di cartulare"
 
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU "
-"General Public License in the Help menu for details."
-msgstr ""
-"WinMerge hè furnitu senza ALCUNA GUARANTIA. Ghjè un prugramma liberu è si pò ridistribuiscelu secondu à certe cundizioni ; per sapene di più, lighjite "
-"a licenza publica generale GNU in u listinu d’aiutu."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge hè furnitu senza ALCUNA GUARANTIA. Ghjè un prugramma liberu è si pò ridistribuiscelu secondu à certe cundizioni ; per sapene di più, lighjite a licenza publica generale GNU in u listinu d’aiutu."
 
 msgid "&Abort"
 msgstr "Inte&rrompe"
@@ -2233,11 +2326,10 @@ msgid "Don't display this &message again."
 msgstr "Ùn affissà più stu &messaghju torna."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
-"Per rende sta scatula di messaghju torna videvule, appughjate nant’à u buttone « Reinizià » di a pagina « Scatule di messaghju » di u dialogu d’ozzioni."
+msgstr "Per rende sta scatula di messaghju torna videvule, appughjate nant’à u buttone « Reinizià » di a pagina « Scatule di messaghju » di u dialogu d’ozzioni."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Paragunà/Fusione"
 
 msgid "Syntax"
 msgstr "Sintassa"
@@ -3392,15 +3484,13 @@ msgid ""
 "\n"
 "Do you want to treat all carriage return types as equivalent for this comparison?\n"
 "\n"
-"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in "
-"the Compare tab of the options dialog (available under Edit/Options)."
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Sti schedarii impieganu tipi sfarenti di fine di linea.\n"
 "\n"
 "Vulete cunsiderà cum’è uguali tutti i tipi di fine di linea per stu paragone ?\n"
 "\n"
-"Nota : s’è vo vulete sempre cunsiderà cum’è uguali tutti i tipi di fine di linea, ci vole à attivà l’ozzione « Ignurà e sfarenze di fine di linea "
-"(Windows/Unix/Mac) » in l’unghjetta Paragunà di u dialogu d’ozzioni (dispunibule sottu Mudificà > Ozzioni)."
+"Nota : s’è vo vulete sempre cunsiderà cum’è uguali tutti i tipi di fine di linea, ci vole à attivà l’ozzione « Ignurà e sfarenze di fine di linea (Windows/Unix/Mac) » in l’unghjetta Paragunà di u dialogu d’ozzioni (dispunibule sottu Mudificà > Ozzioni)."
 
 msgid "The selected folder is invalid."
 msgstr "U cartulare selezziunatu hè inaccettevule."
@@ -4069,6 +4159,10 @@ msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "U nome di modulu d’estensione « %1 » esiste dighjà."
+
 msgid "Specify plugin arguments"
 msgstr "Indicate i parametri di u modulu d’estensione"
 
@@ -4087,6 +4181,35 @@ msgstr "« %1 » ùn hè micca un modulu d’estensione di u preparagone"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Un sbagliu hè accadutu durante u preparagone di u schedariu « %1 » cù u modulu d’estensione « %2 ». Avà u preparagone ùn hè più appiecatu."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Referenza circulare in u cundottu di modulu d’estensione : %1"
+
+msgid "URL Handler"
+msgstr "Ghjestiunariu d’indirizzu web"
+
+msgid "File Unpacker"
+msgstr "Spacchittadore di schedariu"
+
+msgid "File or Folder Unpacker"
+msgstr "Spacchittadore di schedariu o di cartulare"
+
+msgid "Alias for Unpacker"
+msgstr "Cugnome di u spacchittadore"
+
+msgid "Alias for Prediffer"
+msgstr "Cugnome di u preparagone"
+
+msgid "Alias for Editor script"
+msgstr "Cugnome di u scenariu d’editore"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Cugnome di u cundottu di modulu d’estensione « %1 »"
+
+msgid "New plugin description"
+msgstr "Discrizzione nova di u modulu d’estensione"
 
 msgid "Filter applied"
 msgstr "Filtru appiecatu"
@@ -4154,16 +4277,16 @@ msgid "Zoom:"
 msgstr "Ingrandamentu :"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Gruppu di sfarenze"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Sfarenza framessa"
 
 msgid "Line"
-msgstr ""
+msgstr "Linea"
 
 msgid "Character"
-msgstr ""
+msgstr "Caratteru"
 
 msgid "Prettification"
 msgstr "Imbellimentu"
@@ -4324,16 +4447,24 @@ msgstr "Invertisce e culonne"
 msgid "Reverse lines"
 msgstr "Invertisce e linee"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "Rimpiazzà u testu cù un altru testu.\\r\n"
 "Aghjovu : Replace [-i] [-e] CIRCÀ RIMPIAZZÀ\\r\n"
-"   or: Replace -s\r\n"
+"   o : Replace -s\r\n"
 "  CIRCÀ    - testu à circà\\r\n"
 "  RIMPIAZZÀ - testu à rimpiazzà\\r\n"
 "  -i - ignurà a cassa (solu per -e)\\r\n"
 "  -e - cunsiderà u testu specificatu cum’è un’espressione regulare\r\n"
-"  -s - replace using Substitution Filters patterns"
+"  -s - rimpiazzà impieghendu mudelli di filtri di sustituzione"
 
 #, c-format
 msgid ""
@@ -4598,8 +4729,7 @@ msgid ""
 "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
 "Ùn si pò micca ottene e prucedure Macros.\r\n"
-"   Per permette à WinMerge di paragunà e prucedure macro, impiegate MS Office per mudificà e preferenze di sicurità di e macro per l’appiecazione "
-"currente.\r\n"
+"   Per permette à WinMerge di paragunà e prucedure macro, impiegate MS Office per mudificà e preferenze di sicurità di e macro per l’appiecazione currente.\r\n"
 "   L’ozzione di permessu d’accede à u prughjettu Visual Basic deve esse attivata per impiegà sta funzione in WinMerge.\r\n"
 
 msgid "Compare VBA macros"

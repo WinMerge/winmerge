@@ -2221,7 +2221,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName) const
 bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) const
 {
 	String imgdir_full, imgdir, path, name, ext;
-	String imgfilepath[3];
+	String title[3];
 	std::vector<std::array<String, 3>> diffimg_filename;
 	paths::SplitFilename(sFileName, &path, &name, &ext);
 	imgdir_full = paths::ConcatPath(path, name) + _T(".files");
@@ -2239,7 +2239,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 			m_pImgMergeWindow->SetCurrentPageAll(page);
 			for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 			{
-				imgfilepath[pane] = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
+				title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pImgMergeWindow->GetFileName(pane)) : m_strDesc[pane];
 				const int curPage = m_pImgMergeWindow->GetCurrentPage(pane) + 1;
 				diffimg_filename[page][pane] = strutils::format(_T("%s/%d_%d.png"),
 					imgdir, pane + 1, curPage);
@@ -2254,7 +2254,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 		diffimg_filename.resize(1);
 		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 		{
-			imgfilepath[pane] = ucr::toTString(m_pImgMergeWindow->GetFileName(pane));
+			title[pane] = m_strDesc[pane].empty() ? ucr::toTString(m_pImgMergeWindow->GetFileName(pane)) : m_strDesc[pane];
 			const int curPage = m_pImgMergeWindow->GetCurrentPage(pane) + 1;
 			diffimg_filename[0][pane] = strutils::format(_T("%s/%d_%d.png"),
 				imgdir, pane + 1, curPage);
@@ -2296,7 +2296,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 		_T("<table>\n")
 		_T("<tr>\n"));
 	for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
-		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), imgfilepath[pane]));
+		file.WriteString(strutils::format(_T("<th class=\"title\">%s</th>\n"), title[pane]));
 	file.WriteString(_T("</tr>\n"));
 	for (const auto filenames: diffimg_filename)
 	{

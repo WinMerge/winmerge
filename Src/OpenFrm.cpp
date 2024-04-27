@@ -92,15 +92,18 @@ void COpenFrame::ActivateFrame(int nCmdShow)
 	__super::ActivateFrame(nCmdShow);
 	if (CView *const pView = GetActiveView())
 	{
-		WINDOWPLACEMENT wp = { sizeof wp };
-		GetWindowPlacement(&wp);
-		CRect rc;
-		pView->GetWindowRect(&rc);
-		CalcWindowRect(&rc, CWnd::adjustOutside);
-		wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
-		wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
-		SetWindowPlacement(&wp);
-		pView->ShowWindow(SW_SHOW);
+		if (!IsZoomed())
+		{
+			WINDOWPLACEMENT wp = { sizeof wp };
+			GetWindowPlacement(&wp);
+			CRect rc;
+			pView->GetWindowRect(&rc);
+			CalcWindowRect(&rc, CWnd::adjustOutside);
+			wp.rcNormalPosition.right = wp.rcNormalPosition.left + rc.Width();
+			wp.rcNormalPosition.bottom = wp.rcNormalPosition.top + rc.Height();
+			SetWindowPlacement(&wp);
+			pView->ShowWindow(SW_SHOW);
+		}
 	}
 }
 

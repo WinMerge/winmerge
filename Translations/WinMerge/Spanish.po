@@ -1098,6 +1098,81 @@ msgstr "Tamaño"
 msgid "&Load Project..."
 msgstr "&Cargar proyecto..."
 
+msgid "${*} - All arguments"
+msgstr ""
+
+msgid "${1} - The first argument"
+msgstr ""
+
+msgid "${2} - The second argument"
+msgstr ""
+
+msgid "${3} - The third argument"
+msgstr ""
+
+msgid "${4} - The fourth argument"
+msgstr ""
+
+msgid "${5} - The fifth argument"
+msgstr ""
+
+msgid "${6} - The sixth argument"
+msgstr ""
+
+msgid "${7} - The seventh argument"
+msgstr ""
+
+msgid "${8} - The eighth argument"
+msgstr ""
+
+msgid "${9} - The ninth argument"
+msgstr ""
+
+msgid "${SRC_FILE} - Source file"
+msgstr ""
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr ""
+
+msgid "${SRC_URL} - Source URL"
+msgstr ""
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr ""
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr ""
+
+msgid "${DST_FILE} - Destination file"
+msgstr ""
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr ""
+
+msgid "${DST_URL} - Destination URL"
+msgstr ""
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr ""
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr ""
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr ""
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr ""
+
+msgid "Add &unpacker plugin..."
+msgstr ""
+
+msgid "Add &prediffer plugin..."
+msgstr ""
+
+msgid "&Duplicate plugin..."
+msgstr ""
+
 msgid "About WinMerge"
 msgstr "Acerca de WinMerge"
 
@@ -1452,15 +1527,6 @@ msgstr "Propiedades &adicionales"
 msgid "Additional Properties"
 msgstr "Propiedades adicionales"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Elija complemento"
 
@@ -1485,8 +1551,8 @@ msgstr "Abrir archiv&os en la misma ventana después de desempaquetar"
 msgid "&Plugin Pipeline:"
 msgstr "Canales de com&plementos:"
 
-msgid "&Add pipe"
-msgstr "&Añadir canal"
+msgid "&Alias..."
+msgstr ""
 
 msgid "Stop"
 msgstr "Detener"
@@ -2088,6 +2154,39 @@ msgstr "Carpeta&s de datos de usuario separadas para cada panel"
 
 msgid "&Hex View"
 msgstr "Vista &hexadecimal"
+
+msgid "Edit Plugin"
+msgstr ""
+
+msgid "Plugin &type:"
+msgstr ""
+
+msgid "&Category:"
+msgstr ""
+
+msgid "&Menu caption:"
+msgstr ""
+
+msgid "&Window type:"
+msgstr ""
+
+msgid "&Unpacked file extension:"
+msgstr ""
+
+msgid "&Require arguments"
+msgstr ""
+
+msgid "&Generate editor script"
+msgstr ""
+
+msgid "Command &line:"
+msgstr ""
+
+msgid "&Script file extension:"
+msgstr ""
+
+msgid "Script &body:"
+msgstr ""
 
 msgid "EXT"
 msgstr "EXT"
@@ -4061,6 +4160,10 @@ msgstr "Falta el nombre del complemento en la canalización de complementos %1"
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Faltan comillas en la canalización de complementos %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr ""
+
 msgid "Specify plugin arguments"
 msgstr "Especifique argumentos del complemento"
 
@@ -4079,6 +4182,35 @@ msgstr "'%1' no es un complemento de precomparación"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Hubo un error al precomparar el fichero '%1' con el complemento '%2'. Ya no se va a realizar ninguna otra precomparación."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr ""
+
+msgid "URL Handler"
+msgstr ""
+
+msgid "File Unpacker"
+msgstr ""
+
+msgid "File or Folder Unpacker"
+msgstr ""
+
+msgid "Alias for Unpacker"
+msgstr ""
+
+msgid "Alias for Prediffer"
+msgstr ""
+
+msgid "Alias for Editor script"
+msgstr ""
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr ""
+
+msgid "New plugin description"
+msgstr ""
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"

@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-03-07 22:45-0300\n"
+"PO-Revision-Date: 2024-04-21 21:05-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -1095,6 +1095,81 @@ msgstr "Tamanho"
 msgid "&Load Project..."
 msgstr "&Carregar Projeto..."
 
+msgid "${*} - All arguments"
+msgstr "${*} - Todos os parâmetros"
+
+msgid "${1} - The first argument"
+msgstr "${1} - Primeiro argumento"
+
+msgid "${2} - The second argument"
+msgstr "${2} - Segundo argumento"
+
+msgid "${3} - The third argument"
+msgstr "${3} - Terceiro argumento"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - Quarto argumento"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - Quinto argumento"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - Sexto argumento"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - Sétimo argumento"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - Oitavo argumento"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - Nono argumento"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Arquivo origem"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Pasta origem"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - URL origem"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Protocolo da URL origem"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Sufixo da URL origem"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Arquivo destino"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Passta destino"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - URL destino"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Protocolo da URL destino"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Sufixo da URL destino"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - Pasta de instalação do WinMerge"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Arquivo de Script"
+
+msgid "Add &unpacker plugin..."
+msgstr "Adicionar pl&ugin de desempacotamento..."
+
+msgid "Add &prediffer plugin..."
+msgstr "Adicionar plugin de &pré-diferenciação..."
+
+msgid "&Duplicate plugin..."
+msgstr "&Duplicar plugin..."
+
 msgid "About WinMerge"
 msgstr "Sobre o WinMerge"
 
@@ -1449,15 +1524,6 @@ msgstr "Propriedades &Adicionais"
 msgid "Additional Properties"
 msgstr "Propriedades Adicionais"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selecionar Plugin"
 
@@ -1482,8 +1548,8 @@ msgstr "&Abrir arquivos no mesmo tipo de janela após desempacotar"
 msgid "&Plugin Pipeline:"
 msgstr "&Tubulação dos Plugins:"
 
-msgid "&Add pipe"
-msgstr "&Adicionar barra vertical"
+msgid "&Alias..."
+msgstr "&Apelido..."
 
 msgid "Stop"
 msgstr "Parar"
@@ -2077,6 +2143,39 @@ msgstr "&Separar pastas de dados do usuário para cada painel"
 
 msgid "&Hex View"
 msgstr "&Visualização Hex"
+
+msgid "Edit Plugin"
+msgstr "Editar Plugin"
+
+msgid "Plugin &type:"
+msgstr "&Tipo de Plugin:"
+
+msgid "&Category:"
+msgstr "&Categoria:"
+
+msgid "&Menu caption:"
+msgstr "Legenda do &menu:"
+
+msgid "&Window type:"
+msgstr "Tipo de &janela"
+
+msgid "&Unpacked file extension:"
+msgstr "E&xtensão do arquivo desempacotado:"
+
+msgid "&Require arguments"
+msgstr "Solicita&r argumentos"
+
+msgid "&Generate editor script"
+msgstr "&Gerar editor de script"
+
+msgid "Command &line:"
+msgstr "&Linha de comando:"
+
+msgid "&Script file extension:"
+msgstr "Exten&são de arquivo de script:"
+
+msgid "Script &body:"
+msgstr "Cor&po do script:"
 
 msgid "EXT"
 msgstr "EXT"
@@ -3676,6 +3775,10 @@ msgstr "Nome do plugin ausente na tubulação do plugin: %1"
 msgid "Missing quotation mark in plugin pipeline: %1"
 msgstr "Marca das aspas ausentes na tubulação do plugin: %1"
 
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "O nome de plugin '%1' já existe."
+
 msgid "Specify plugin arguments"
 msgstr "Especificar os argumentos do plugin"
 
@@ -3694,6 +3797,35 @@ msgstr "'%1' não é um plugin de pré-diferenciação"
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Ocorreu um erro na pré-diferenciação do arquivo '%1' com o plugin '%2'. A pré-diferenciação não vai mais ser aplicada."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Referência circular no encadeamento do plugin: %1"
+
+msgid "URL Handler"
+msgstr "Manipulador de URL"
+
+msgid "File Unpacker"
+msgstr "Desempacotador de Arquivo"
+
+msgid "File or Folder Unpacker"
+msgstr "Desempacotador de arquivo ou pasta"
+
+msgid "Alias for Unpacker"
+msgstr "Apelido para o desempacotador"
+
+msgid "Alias for Prediffer"
+msgstr "Apelido para o Pré-diferenciador"
+
+msgid "Alias for Editor script"
+msgstr "Apelido para o Editor de script"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Apelido para o encadeamento de plugin '%1'"
+
+msgid "New plugin description"
+msgstr "Descrição de novo plugin"
 
 msgid "Filter applied"
 msgstr "Filtro aplicado"

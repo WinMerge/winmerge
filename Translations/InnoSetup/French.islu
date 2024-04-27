@@ -62,11 +62,11 @@ TurkishLanguage=Menus et dialogues Turque
 UkrainianLanguage=Menus et dialogues Ukrainien
 
 ;Tasks
-ExplorerContextMenu=&Permettre 
+ExplorerContextMenu=Activer l'intégration du menu contextuel de l'&Explorateur 
 IntegrateTortoiseCVS=Intégrer avec &TortoiseCVS
 IntegrateTortoiseGit=Intégrer avec To&rtoiseGit
 IntegrateTortoiseSVN=Intégrer avec T&ortoiseSVN
-AddToPath=&Ajouter le répertoire WinMerge au chemin du Système
+AddToPath=&Ajouter le dossier WinMerge à votre chemin système
 
 ; 3-way merge wizard page
 ThreeWayMergeWizardPageCaption=Merge à 3-voies
@@ -80,11 +80,11 @@ AutoMergeAtStartup=Merge automatique au démarrage
 ;Icon Labels
 ReadMe=Lisez moi
 UsersGuide=Guide de l'utilisateur
-ViewStartMenuFolder=&Voir le répertoire du Menu_Démarrer WinMerge
+ViewStartMenuFolder=&Voir le dossier du menu Démarrer de WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=L'installeur a détecté que vous avez changé l'emplacement du votre Menu_démarrer de "%s" à "%s". Désirez-vous retirer l'ancien répertoire du Menu_Démarrer WinMerge ?
-ExplorerNeedsRestart=Le menu contextuel de l'Explorateur nécessite un redémarrage d'explorer.exe pour se mettre à jour avec l'intégration de WinMerge. Souhaitez-vous redémarrer l'Explorateur Windows ?
+DeletePreviousStartMenu=Le programme d'installation a détecté que vous avez modifié l'emplacement de votre menu Démarrer de "%s" à "%s". Souhaitez-vous supprimer le dossier précédent du menu Démarrer ?
+ExplorerNeedsRestart=Le menu contextuel WinMerge nécessite un redémarrage de l'Explorateur pour se mettre à jour. Souhaitez-vous redémarrer l'Explorateur ?
 
 ; Project file description
-ProjectFileDesc=Fichier de projet WinMerge 
+ProjectFileDesc=Fichier de projet WinMerge

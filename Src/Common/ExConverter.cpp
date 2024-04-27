@@ -128,7 +128,25 @@ public:
 		HRESULT hr = m_pmlang->ConvertStringToUnicode(&m_mlangcookie, srcCodepage, (char *)src, &uisrcbytes, dest, &uidestchars);
 		*srcbytes = uisrcbytes;
 		*destchars = uidestchars;
-		return SUCCEEDED(hr) ? true : false;
+		if (SUCCEEDED(hr))
+			return true;
+		if (srcCodepage != ucr::CP_UCS2BE)
+			return false;
+#ifdef POCO_ARCH_BIG_ENDIAN
+		return false;
+#else
+		// Workaround for the problem that Wine does not support UCS2-BE(1201) as the source code page for IMultiLanguage::ConvertStringToUnicode()
+		if (uisrcbytes > 0)
+		{
+			for (size_t i = 0; i < uisrcbytes - 1; i += 2)
+				dest[i >> 1] = (src[i] << 8) + src[i + 1];
+			if ((uisrcbytes % 2) == 1)
+				memcpy(reinterpret_cast<unsigned char*>(dest) + uisrcbytes - 1, src + uisrcbytes - 1, 1);
+		}
+		*srcbytes = uisrcbytes;
+		*destchars = uisrcbytes;
+		return true;
+#endif
 	}
 
 	void clearCookie()

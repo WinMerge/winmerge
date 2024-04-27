@@ -52,6 +52,7 @@ void PropEditor::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropEditor, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditor)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_EN_KILLFOCUS(IDC_TAB_EDIT, OnEnKillfocusTabEdit)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -109,6 +110,19 @@ void PropEditor::LoadComboBoxStrings()
 {
 	SetDlgItemComboBoxList(IDC_RENDERING_MODE,
 		{ _("GDI"), _("DirectWrite Default"), _("DirectWrite Aliased"), _("DirectWrite GDI Classic"), _("DirectWrite GDI Natural"), _("DirectWrite Natural"), _("DirectWrite Natural Symmetric") });
+}
+
+/**
+ * @brief Sets options to defaults
+ */
+void PropEditor::OnDefaults()
+{
+	m_nTabSize = GetOptionsMgr()->GetDefault<unsigned>(OPT_TAB_SIZE);
+	m_nTabType = GetOptionsMgr()->GetDefault<unsigned>(OPT_TAB_TYPE);
+	m_bHiliteSyntax = GetOptionsMgr()->GetDefault<bool>(OPT_SYNTAX_HIGHLIGHT);
+	m_bAllowMixedEol = GetOptionsMgr()->GetDefault<bool>(OPT_ALLOW_MIXED_EOL);
+	m_nRenderingMode = GetOptionsMgr()->GetDefault<unsigned>(OPT_RENDERING_MODE) + 1;
+	UpdateData(FALSE);
 }
 
 /** 
