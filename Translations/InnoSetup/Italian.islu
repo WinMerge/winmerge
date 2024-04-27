@@ -30,7 +30,7 @@ BulgarianLanguage=Menu e finestre di dialogo in bulgaro
 CatalanLanguage=Menu e finestre di dialogo in catalano
 ChineseSimplifiedLanguage=Menu e finestre di dialogo in cinese (semplificato)
 ChineseTraditionalLanguage=Menu e finestre di dialogo in cinese (tradizionale)
-CorsicanLanguage=Corsican menus and dialogs
+CorsicanLanguage=Menu e finestre di dialogo in corso
 CroatianLanguage=Menu e finestre di dialogo in croato
 CzechLanguage=Menu e finestre di dialogo in ceco
 DanishLanguage=Menu e finestre di dialogo in danese
@@ -58,7 +58,7 @@ SlovakLanguage=Menu e finestre di dialogo in slovacco
 SlovenianLanguage=Menu e finestre di dialogo in sloveno
 SpanishLanguage=Menu e finestre di dialogo in spagnolo
 SwedishLanguage=Menu e finestre di dialogo in svedese
-TamilLanguage=Tamil menus and dialogs
+TamilLanguage=Menu e finestre di dialogo tamil
 TurkishLanguage=Menu e finestre di dialogo in turco
 UkrainianLanguage=Menu e finestre di dialogo in ucraino
 
@@ -74,18 +74,18 @@ ThreeWayMergeWizardPageCaption=Unione a 3 vie
 ThreeWayMergeWizardPageDescription=Vuoi usare WinMerge come strumento di unione a 3 vie per TortoiseSVN/Git?
 RegisterWinMergeAs3WayMergeTool=Registra WinMerge come strumento unione a 3 vie
 MergeAtRightPane=Unisci nel riquadro a destra
-MergeAtCenterPane=Unisci nel riqadro centrale
+MergeAtCenterPane=Unisci nel riquadro centrale
 MergeAtLeftPane=Unisci nel riquadro a sinistra
 AutoMergeAtStartup=Unione automatica all'avvio
 
 ;Icon Labels
 ReadMe=Leggimi
-UsersGuide=Guida per l'utente
+UsersGuide=Guida utente
 ViewStartMenuFolder=&Visualizza cartella menu Start di WinMerge
 
 ;Code Dialogs
-DeletePreviousStartMenu=L'installer ha rilevato che il menu Start è stato spostato da "%s" a "%s".%n%nVuoi eliminare la precedente cartella del menu Start?
-ExplorerNeedsRestart=WinMerge ShellExtension requires a restart of Explorer to update. Would you like to restart Explorer?
+DeletePreviousStartMenu=Il programma di installazione ha rilevato che il menu Start è stato spostato da "%s" a "%s".%n%nVuoi eliminare la precedente cartella del menu Start?
+ExplorerNeedsRestart=WinMerge ShellExtension richiede il riavvio di Explorer per l'aggiornamento.%n%nVuoi riavviare Explorer?
 
 ; Project file description
 ProjectFileDesc=File progetto di WinMerge
