@@ -801,6 +801,28 @@ function quote(text) {
   return text.replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n")
 }
 
+function extractString(input) {
+    var regex = /"((?:[^"\\]|\\.)*)"/g;
+    var matches = [];
+    var match;
+
+    while ((match = regex.exec(input)) !== null) {
+        matches.push(match[1]);
+    }
+
+    return matches;
+}
+
+function getContentOrErrorMessage(jsonString) {
+  var extractedStrings = extractString(jsonString);
+  for (var i = 0; i < extractedStrings.length; i++) {
+    if ((extractedStrings[i] === "content" || extractedStrings[i] === "message") && i + 1 < extractedStrings.length) {
+       return Unescape(extractedStrings[i + 1]);
+    }
+  }
+  return "No message received"; 
+}
+
 function AIAssist(Text) {
   var openAIKey = wsh.ExpandEnvironmentStrings("%OPENAI_API_KEY%");
 
@@ -830,7 +852,7 @@ function AIAssist(Text) {
   xmlHttp.setRequestHeader("Content-Type", "application/json");
   xmlHttp.setRequestHeader("Authorization", "Bearer " + openAIKey);
   xmlHttp.send(body);
-  return xmlHttp.responseText;
+  return getContentOrErrorMessage(xmlHttp.responseText);
 }
 
 </script>

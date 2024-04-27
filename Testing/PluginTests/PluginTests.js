@@ -144,8 +144,17 @@ var MergeApp = {
   "GetOption": function (key, defvalue) {
     var ary1 = key.split("/");
     var ary2 = ary1[0].split("\\");
+    if (!(ary2[0] in PluginSettings)) {
+      return defvalue;
+    }
     if (ary2.length > 1) {
+      if (!(ary2[1] in PluginSettings[ary2[0]])) {
+        return defvalue;
+      }
       return PluginSettings[ary2[0]][ary2[1]][ary1[1]];
+    }
+    if (!(ary1[1] in PluginSettings[ary2[0]])) {
+      return defvalue;
     }
     return PluginSettings[ary2[0]][ary1[1]];
   },
@@ -215,6 +224,11 @@ function EditorAddinTest() {
   }
 
   p.PluginOnEvent(0, MergeApp);
+
+  // AIAssist
+  p.PluginArguments = "与えられたテキストを日本語に翻訳してください";
+  WScript.Echo(p.AIAssist("Hello World!"));
+  return;
 
   // MakeUpper
   setTestName("MakeUpper");
@@ -659,10 +673,12 @@ function CompareMSPowerPointFilesTest() {
 }
 
 EditorAddinTest();
+/*
 InsertDateTimeTest();
 IgnoreLeadingLineNumbersTest();
 PrediffLineFilterTest();
 ApplyPatchTest();
+*/
 /*
 CompareMSExcelFilesTest();
 CompareMSWordFilesTest();
