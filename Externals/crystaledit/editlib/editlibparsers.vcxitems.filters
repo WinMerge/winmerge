@@ -51,6 +51,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\fortran.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\fsharp.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\go.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>
