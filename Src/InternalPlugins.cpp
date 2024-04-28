@@ -881,7 +881,7 @@ struct Loader
 					int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
 					for (int i = 0; i < validFuncs; ++i)
 					{
-						if (namesArray[i] == L"PluginOnEvent")
+						if (namesArray[i] == L"PluginOnEvent" || namesArray[i] == L"ShowSettingsDialog")
 							continue;
 						if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
 							plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);

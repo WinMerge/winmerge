@@ -226,7 +226,7 @@ function EditorAddinTest() {
   p.PluginOnEvent(0, MergeApp);
 
   // AIAssist
-  p.PluginArguments = "与えられたテキストを日本語に翻訳してください";
+  p.PluginArguments = "Translate the given text into Japanese";
   WScript.Echo(p.AIAssist("Hello World!"));
   return;
 
