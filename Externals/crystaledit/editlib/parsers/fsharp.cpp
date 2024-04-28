@@ -333,7 +333,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
                 continue;
             }
         }
-        if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '/'))
+        if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == ')'))
         {
             DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
             dwCookie |= COOKIE_EXT_COMMENT;
