@@ -197,15 +197,18 @@ unsigned
 CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
     if (nLength == 0)
-        return dwCookie & COOKIE_EXT_COMMENT;
+        return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
 
-    bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
+    bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT & ~COOKIE_RAWSTRING) == 0;
     const tchar_t* pszCommentBegin = nullptr;
     const tchar_t* pszCommentEnd = nullptr;
+    const tchar_t* pszTextBegin = nullptr;
+    const tchar_t* pszTextEnd = nullptr;
     bool bRedefineBlock = true;
     bool bDecIndex = false;
     int nIdentBegin = -1;
     int nPrevI = -1;
+    int nPrevII = -2;
     int I = 0;
     for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars + I) - pszChars))
     {
@@ -225,7 +228,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
             {
                 DEFINE_BLOCK(nPos, COLORINDEX_COMMENT);
             }
-            else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
+            else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING | COOKIE_RAWSTRING))
             {
                 DEFINE_BLOCK(nPos, COLORINDEX_STRING);
             }
@@ -305,6 +308,25 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
             break;
         }
 
+        //  Multi-line string constant """...."""
+        if (dwCookie & COOKIE_RAWSTRING)
+        {
+            if ((pszTextBegin < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+            {
+                dwCookie &= ~COOKIE_RAWSTRING;
+                bRedefineBlock = true;
+                pszTextEnd = pszChars + I + 2;
+            }
+            continue;
+        }
+
+        if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+        {
+            DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
+            dwCookie |= COOKIE_RAWSTRING;
+            break;
+        }
+
         //  Preprocessor directive #....
         if (dwCookie & COOKIE_PREPROCESSOR)
         {
@@ -312,6 +334,12 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
             {
                 DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
                 dwCookie |= COOKIE_EXT_COMMENT;
+            }
+            if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+            {
+                DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
+                dwCookie |= COOKIE_RAWSTRING;
+                break;
             }
             continue;
         }
@@ -338,6 +366,13 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
             DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
             dwCookie |= COOKIE_EXT_COMMENT;
             pszCommentBegin = pszChars + I + 1;
+            continue;
+        }
+        if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
+        {
+            DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
+            dwCookie |= COOKIE_RAWSTRING;
+            pszTextBegin = pszChars + I + 1;
             continue;
         }
 
@@ -443,6 +478,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
     }
 
     if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
-        dwCookie &= COOKIE_EXT_COMMENT;
+        dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_RAWSTRING);
+
     return dwCookie;
 }
