@@ -4420,6 +4420,9 @@ msgstr "Razstavi kodo IL"
 msgid "Disassemble Native Code"
 msgstr "Razstavi naravno kodo"
 
+msgid "Convert Text with AI..."
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Naredi znake z velikimi črkami"
 
@@ -4659,8 +4662,8 @@ msgstr "Ta vtičnik prezre številke začetnih vrstic v besedilnih datotekah (np
 msgid "Prediff Line Filter"
 msgstr "Filter vrstic Prediff"
 
-msgid "Basic text functions for the context menu"
-msgstr "Osnovne funkcije besedila za priročni meni"
+msgid "Date and time insertion function"
+msgstr ""
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4675,6 +4678,12 @@ msgid ""
 msgstr ""
 "Upravljavec sheme URL registra Windows.\n"
 "Argumenti: možnosti ukazne vrstice, posredovane ukazu reg.exe."
+
+msgid "Basic text functions and AI-assisted text conversion functions"
+msgstr ""
+
+msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Možnosti vtičnika WinMerge CompareMSExcelFiles.sct"
@@ -4812,3 +4821,31 @@ msgstr "Mapa '%1' ne obstaja"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr "Ne podajaj možnosti ukazne vrstice '-p0' za datoteko popravka, ki vključuje absolutne poti"
+
+msgid "editor addin.sct WinMerge Plugin Options"
+msgstr ""
+
+msgid "Enter prompt"
+msgstr ""
+
+#, c-format
+msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgstr ""
+
+msgid "Environment variable name for OpenAI API key"
+msgstr ""
+
+msgid "OpenAI API key"
+msgstr ""
+
+msgid "Temperature"
+msgstr ""
+
+msgid "Maximum length"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr ""

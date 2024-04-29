@@ -98,6 +98,7 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION36 "Disassemble JVM Bytecode"
     IDS_PLUGIN_MENU_CAPTION37 "Disassemble IL Code"
     IDS_PLUGIN_MENU_CAPTION38 "Disassemble Native Code"
+    IDS_PLUGIN_MENU_CAPTION38 "Convert Text with AI..."
 END
 
 STRINGTABLE
@@ -178,7 +179,7 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION47 
 			    "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
     IDS_PLUGIN_DESCRIPTION48 "Prediff Line Filter"
-    IDS_PLUGIN_DESCRIPTION49 "Basic text functions for the context menu"
+    IDS_PLUGIN_DESCRIPTION49 "Date and time insertion function"
     IDS_PLUGIN_DESCRIPTION50
                             "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 END
@@ -187,6 +188,8 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION51 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+    IDS_PLUGIN_DESCRIPTION52 "Basic text functions and AI-assisted text conversion functions"
+    IDS_PLUGIN_DESCRIPTION53 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 END
 
 STRINGTABLE
@@ -295,6 +298,28 @@ BEGIN
     IDS_PLUGIN_APPLYPATCH_STR5 "Folder '%1' does not exist"
     IDS_PLUGIN_APPLYPATCH_STR6 
                             "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_EDITORADDIN_STR1 
+                            "editor addin.sct WinMerge Plugin Options"
+    IDS_PLUGIN_EDITORADDIN_STR2
+                            "Enter prompt"
+    IDS_PLUGIN_EDITORADDIN_STR3 
+                            "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+    IDS_PLUGIN_EDITORADDIN_STR4
+                            "Environment variable name for OpenAI API key"
+    IDS_PLUGIN_EDITORADDIN_STR5
+                            "OpenAI API key"
+    IDS_PLUGIN_EDITORADDIN_STR6
+                            "Temperature"
+    IDS_PLUGIN_EDITORADDIN_STR7
+                            "Maximum length"
+    IDS_PLUGIN_EDITORADDIN_STR8
+                            "Model"
+    IDS_PLUGIN_EDITORADDIN_STR9
+                            "OpenAI API key has changed. Please restart WinMerge to apply the changes."
 END
 
 #endif    // English (United States) resources

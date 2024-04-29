@@ -226,9 +226,8 @@ function EditorAddinTest() {
   p.PluginOnEvent(0, MergeApp);
 
   // AIAssist
-  p.PluginArguments = "Translate the given text into Japanese";
-  WScript.Echo(p.AIAssist("Hello World!"));
-  return;
+  //p.PluginArguments = "Translate the given text into Japanese";
+  //WScript.Echo(p.AIAssist("Hello World!"));
 
   // MakeUpper
   setTestName("MakeUpper");
@@ -670,12 +669,10 @@ function CompareMSPowerPointFilesTest() {
 }
 
 EditorAddinTest();
-/*
 InsertDateTimeTest();
 IgnoreLeadingLineNumbersTest();
 PrediffLineFilterTest();
 ApplyPatchTest();
-*/
 /*
 CompareMSExcelFilesTest();
 CompareMSWordFilesTest();

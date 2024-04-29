@@ -697,7 +697,7 @@ Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const Str
 	info.m_event = event;
 	for (tchar_t c : pipeline)
 	{
-		if (tc::istalnum(c) || c == '_')
+		if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_')
 			info.m_name += c;
 	}
 	info.m_name += _T("Alias");

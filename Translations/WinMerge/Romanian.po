@@ -4512,6 +4512,9 @@ msgstr "Dezasamblează cod IL"
 msgid "Disassemble Native Code"
 msgstr "Dezasamblează cod nativ"
 
+msgid "Convert Text with AI..."
+msgstr ""
+
 msgid "Make characters uppercase"
 msgstr "Transformă caracterele în majuscule"
 
@@ -4773,8 +4776,8 @@ msgstr ""
 msgid "Prediff Line Filter"
 msgstr "Filtru de rânduri prediferențiator"
 
-msgid "Basic text functions for the context menu"
-msgstr "Funcții text de bază pentru meniul contextual"
+msgid "Date and time insertion function"
+msgstr ""
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4789,6 +4792,12 @@ msgid ""
 msgstr ""
 "Handler pentru schema URL 'regiștri Windows'. \r\n"
 "Argumente: Opțiunile linie de comandă furnizate comenzii reg.exe."
+
+msgid "Basic text functions and AI-assisted text conversion functions"
+msgstr ""
+
+msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opțiuni plugin WinMerge CompareMSExcelFiles.sct"
@@ -4936,3 +4945,31 @@ msgid ""
 msgstr ""
 "Nu specificați opțiunea linie de comandă '-p0' pentru fișierul petic care "
 "include căi absolute"
+
+msgid "editor addin.sct WinMerge Plugin Options"
+msgstr ""
+
+msgid "Enter prompt"
+msgstr ""
+
+#, c-format
+msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgstr ""
+
+msgid "Environment variable name for OpenAI API key"
+msgstr ""
+
+msgid "OpenAI API key"
+msgstr ""
+
+msgid "Temperature"
+msgstr ""
+
+msgid "Maximum length"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr ""
