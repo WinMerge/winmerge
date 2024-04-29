@@ -697,7 +697,7 @@ Info CreateAliasPluginExample(PluginInfo* plugin, const String& event, const Str
 	info.m_event = event;
 	for (tchar_t c : pipeline)
 	{
-		if (tc::istalnum(c) || c == '_')
+		if ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || c == '_')
 			info.m_name += c;
 	}
 	info.m_name += _T("Alias");
@@ -881,7 +881,7 @@ struct Loader
 					int validFuncs = plugin::GetMethodsFromScript(plugin->m_lpDispatch, namesArray, idArray);
 					for (int i = 0; i < validFuncs; ++i)
 					{
-						if (namesArray[i] == L"PluginOnEvent")
+						if (namesArray[i] == L"PluginOnEvent" || namesArray[i] == L"ShowSettingsDialog")
 							continue;
 						if (plugins.find(L"FILE_PACK_UNPACK") == plugins.end())
 							plugins[L"FILE_PACK_UNPACK"].reset(new PluginArray);
