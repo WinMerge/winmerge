@@ -24,7 +24,7 @@ function get_PluginEvent() {
 }
 
 function get_PluginDescription() {
-	return "Date and time insertion function";
+	return "Basic text functions for the context menu";
 }
 
 function get_PluginFileFilters() {
