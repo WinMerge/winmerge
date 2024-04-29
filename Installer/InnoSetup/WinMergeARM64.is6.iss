@@ -53,6 +53,7 @@
 #define AppVersion GetFileVersion(SourcePath + "\..\..\Build\" + ARCH + "\Release\WinMergeU.exe")
 #define ShellExtensionVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ShellExtension64bit)
 #define WinMergeContextMenuVersion GetFileVersion(SourcePath + "..\..\Build\ShellExtension\" + ARCH + "\WinMergeContextMenu.dll")
+#define CurYear GetDateTimeString('yyyy', '', '')
 
 [Setup]
 AppName=WinMerge
@@ -62,6 +63,7 @@ AppPublisher=Thingamahoochie Software
 AppPublisherURL=https://WinMerge.org/
 AppSupportURL=https://WinMerge.org/
 AppUpdatesURL=https://WinMerge.org/
+AppCopyright=Copyright (c) 1996-{#CurYear} Dean P. Grimm / Thingamahoochie Software
 WizardStyle=modern
 UsePreviousPrivileges=no
 PrivilegesRequiredOverridesAllowed=dialog
@@ -168,6 +170,9 @@ Name: Tamil; MessagesFile: compiler:Default.isl,..\..\Translations\InnoSetup\Tam
 Name: Turkish; MessagesFile: compiler:Languages\Turkish.isl,..\..\Translations\InnoSetup\Turkish.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Turkish.txt
 Name: Ukrainian; MessagesFile: compiler:Languages\Ukrainian.isl,..\..\Translations\InnoSetup\Ukrainian.islu; InfoAfterFile: ..\..\Translations\Docs\Readme\ReadMe-Ukrainian.txt
 
+
+[Messages]
+SetupWindowTitle=WinMerge {#AppVersion} {#ARCH}
 
 [Types]
 Name: typical; Description: {cm:TypicalInstallation}
