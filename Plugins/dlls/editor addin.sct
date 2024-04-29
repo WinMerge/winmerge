@@ -800,7 +800,7 @@ function Trim(Text) {
 }
 
 function quote(text) {
-  return text.replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n")
+  return text.replace(/\\/g, "\\\\").replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n")
 }
 
 function extractString(input) {
