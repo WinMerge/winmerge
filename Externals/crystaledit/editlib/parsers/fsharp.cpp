@@ -152,33 +152,33 @@ static const tchar_t * s_apszFsKeywordList[] =
 
   static const tchar_t* s_apszUser1KeywordList[] =
   {
-    _T("Some"),
-    _T("None"),
-    _T("ValueSome"),
-    _T("ValueNone"),
     _T("__SOURCE_DIRECTORY__"),
-    _T("DateTime"),
-    _T("String"),
-    _T("Decimal"),
+    _T("Array"),
+    _T("Async"),
     _T("Char"),
+    _T("DateTime"),
+    _T("Decimal"),
     _T("Int16"),
     _T("Int32"),
     _T("Int64"),
     _T("IntPtr"),
+    _T("List"),
+    _T("Map"),
+    _T("None"),
+    _T("Option"),
+    _T("Seq"),
+    _T("Some"),
+    _T("String"),
+    _T("Task"),
+    _T("Type"),
     _T("UInt16"),
     _T("UInt32"),
     _T("UInt64"),
     _T("UIntPtr"),
-    _T("Option"),
-    _T("ValueOption"),
-    _T("Async"),
-    _T("Task"),
-    _T("Seq"),
-    _T("Map"),
-    _T("List"),
-    _T("Array"),
     _T("Unit"),
-    _T("Type"),
+    _T("ValueNone"),
+    _T("ValueOption"),
+    _T("ValueSome"),
   };
 
 static bool
@@ -289,7 +289,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
         //  Extended comment /*....*/
         if (dwCookie & COOKIE_EXT_COMMENT)
         {
-            if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == '(' && pszChars[nPrevI] == '*'))
+            if ((pszCommentBegin < pszChars + I) && (I > 0 && pszChars[I] == ')' && pszChars[nPrevI] == '*'))
             {
                 dwCookie &= ~COOKIE_EXT_COMMENT;
                 bRedefineBlock = true;
@@ -333,7 +333,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
                 continue;
             }
         }
-        if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == ')'))
+        if ((pszCommentEnd < pszChars + I) && (I > 0 && pszChars[I] == '*' && pszChars[nPrevI] == '('))
         {
             DEFINE_BLOCK(nPrevI, COLORINDEX_COMMENT);
             dwCookie |= COOKIE_EXT_COMMENT;
@@ -370,7 +370,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
                 {
                     DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
                 }
-                else if (IsUserKeyword && IsUserKeyword(pszChars + nIdentBegin, I - nIdentBegin))
+                else if (IsUserKeyword(pszChars + nIdentBegin, I - nIdentBegin))
                 {
                     DEFINE_BLOCK(nIdentBegin, COLORINDEX_USER1);
                 }
@@ -412,7 +412,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
         {
             DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
         }
-        else if (IsUserKeyword && IsUserKeyword(pszChars + nIdentBegin, I - nIdentBegin))
+        else if (IsUserKeyword(pszChars + nIdentBegin, I - nIdentBegin))
         {
             DEFINE_BLOCK(nIdentBegin, COLORINDEX_USER1);
         }
