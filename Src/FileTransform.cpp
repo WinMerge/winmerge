@@ -833,6 +833,11 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 	bool addedNoneAutomatic = false;
 	static PluginInfo noPlugin;
 	static PluginInfo autoPlugin;
+	auto tr2 = [](const String& text)
+	{
+		const bool containsNonAsciiChars = std::any_of(text.begin(), text.end(), [](auto c) { return (c >= 0x80); });
+		return containsNonAsciiChars ? text : tr(ucr::toUTF8(strutils::to_str(text)));
+	};
 	if (autoPlugin.m_name.empty())
 		autoPlugin.m_name = _T("<Automatic>");
 	for (const auto& event: events)
@@ -855,10 +860,8 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					}
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-					const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
-						strutils::to_str(*menuCaption) : plugin->m_name));
-					const String process = tr(ucr::toUTF8(processType.has_value() ?
-						strutils::to_str(*processType) : _T("&Others")));
+					const String caption = tr2(menuCaption.has_value() ? strutils::to_str(*menuCaption) : plugin->m_name);
+					const String process = tr2(processType.has_value() ? strutils::to_str(*processType) : _T("&Others"));
 
 					if (plugin->TestAgainstRegList(filteredFilenames))
 						suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
@@ -885,16 +888,14 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					bool matched = plugin->TestAgainstRegList(filteredFilenames);
 					for (int i = 0; i < nScriptFnc; ++i, ++id)
 					{
-						if (scriptNamesArray[i] == L"PluginOnEvent")
+						if (scriptNamesArray[i] == L"PluginOnEvent" || scriptNamesArray[i] == L"ShowSettingsDialog")
 							continue;
 						const auto menuCaption = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".MenuCaption"));
 						auto processType = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".ProcessType"));
 						if (!processType.has_value())
 							processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-						const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
-							strutils::to_str(*menuCaption) : scriptNamesArray[i]));
-						const String process = tr(ucr::toUTF8(processType.has_value() ?
-							strutils::to_str(*processType) : _T("&Others")));
+						const String caption = tr2(menuCaption.has_value() ? strutils::to_str(*menuCaption) : scriptNamesArray[i]);
+						const String process = tr2(processType.has_value() ? strutils::to_str(*processType) : _T("&Others"));
 						if (matched)
 							suggestedPlugins.emplace_back(caption, scriptNamesArray[i], id, plugin.get());
 						if (allPlugins.find(process) == allPlugins.end())
