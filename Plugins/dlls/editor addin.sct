@@ -855,7 +855,7 @@ function AIConvertText(Text) {
   var cmd;
   if (IsFirstArgumentEmpty()) {
     cmd = regRead(REGKEY_PATH + "AIConvertText.Prompt", "");
-    cmd = mergeApp.InputBox(mergeApp.Translatte("Enter prompt"), "AIConvertText plugin", cmd);
+    cmd = mergeApp.InputBox(mergeApp.Translate("Enter prompt"), "AIConvertText plugin", cmd);
     if (cmd !== "") {
       regWrite(REGKEY_PATH + "AIConvertText.Prompt", cmd, "REG_SZ");
     }
