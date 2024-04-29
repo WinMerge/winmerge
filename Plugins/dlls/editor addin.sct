@@ -35,6 +35,8 @@
   <method name="Replace" internalName="ReplaceText"/>
   <method name="Tokenize"/>
   <method name="Trim"/>
+  <method name="AIConvertText"/>
+  <method name="ShowSettingsDialog"/>
 </implements>
 
 <script language="JScript">
@@ -42,6 +44,7 @@
 var REGKEY_PATH = "Plugins\\editor addin.sct/";
 
 var wsh = new ActiveXObject("WScript.Shell");
+var fso = new ActiveXObject("Scripting.FileSystemObject");
 var pluginArguments = "";
 var variables = new Array();
 var mergeApp;
@@ -51,7 +54,7 @@ function get_PluginEvent() {
 }
 
 function get_PluginDescription() {
-  return "Basic text functions for the context menu";
+  return "Basic text functions and AI-assisted text conversion functions";
 }
 
 function get_PluginFileFilters() {
@@ -119,7 +122,11 @@ function get_PluginExtendedProperties() {
     "  -i - ignore case (only for -e)\r\n" +  
     "  -e - treat the specified text as a regular expression\r\n" +
     "  -s - replace using Substitution Filters patterns;" +
-  "Replace.ArgumentsRequired;";
+  "Replace.ArgumentsRequired;" +
+  "AIConvertText.MenuCaption=Convert Text with AI...;" +
+  "AIConvertText.Description=Text converter using OpenAI API.\r\n" +  
+    "Usage: AIConvertText PROMPT;" +  
+  "AIConvertText.ArgumentsRequired;";
 }
 
 function get_PluginArguments() {
@@ -792,6 +799,386 @@ function Trim(Text) {
   return lines.join(eol);
 }
 
+function quote(text) {
+  return text.replace(/\\/g, "\\\\").replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n")
+}
+
+function extractString(input) {
+    var regex = /"((?:[^"\\]|\\.)*)"/g;
+    var matches = [];
+    var match;
+
+    while ((match = regex.exec(input)) !== null) {
+        matches.push(match[1]);
+    }
+
+    return matches;
+}
+
+function getContentOrErrorMessage(jsonString) {
+  var extractedStrings = extractString(jsonString);
+  for (var i = 0; i < extractedStrings.length; i++) {
+    if (extractedStrings[i] === "content" && i + 1 < extractedStrings.length) {
+       return Unescape(extractedStrings[i + 1]);
+    }
+  }
+  return jsonString;
+}
+
+function setEnvVal(name, value) {
+  wsh.Exec("setx " + name + " \"" + value + "\"");
+}
+
+function getOpenAIKey() {
+  var keyEnvName = regRead(REGKEY_PATH + "AIConvertText.OpenAI.ApiKeyEnvName", "OPENAI_API_KEY");
+  var openAIKey = wsh.ExpandEnvironmentStrings("%" + keyEnvName + "%");
+  if (openAIKey === "" || openAIKey === "%" + keyEnvName + "%") {
+    try {
+      openAIKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName);
+    } catch (e) {
+      openAIKey = "";
+    }
+    if (openAIKey === "") {
+      var msg = mergeApp.Translate("Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1.");
+      msg = msg.replace("%1", keyEnvName);
+      openAIKey = mergeApp.InputBox(msg, "AIConvertText plugin", "");
+      if (openAIKey !== "") {
+        setEnvVal(keyEnvName, openAIKey);
+      }
+    }
+  }
+  return openAIKey;
+}
+
+function AIConvertText(Text) {
+  var openAIKey = getOpenAIKey();
+  var cmd;
+  if (IsFirstArgumentEmpty()) {
+    cmd = regRead(REGKEY_PATH + "AIConvertText.Prompt", "");
+    cmd = mergeApp.InputBox(mergeApp.Translate("Enter prompt"), "AIConvertText plugin", cmd);
+    if (cmd !== "") {
+      regWrite(REGKEY_PATH + "AIConvertText.Prompt", cmd, "REG_SZ");
+    }
+    cmd = ReplaceVariables(cmd);
+  } else {
+    cmd = pluginArguments;
+  }
+  if (cmd === "") {
+    throw new Error(30001, "Canceled");
+  }
+  var openAIUrl = "https://api.openai.com/v1/chat/completions";
+  var temperature = regRead(REGKEY_PATH + "AIConvertText.OpenAI.Temperature", "1.00");
+  var maxTokens = regRead(REGKEY_PATH + "AIConvertText.OpenAI.MaxTokens", 4096);
+  var model = regRead(REGKEY_PATH + "AIConvertText.OpenAI.Model", "gpt-3.5-turbo");
+  var body = '{"model": "' + model + '", "temperature": ' + Number(temperature) + ', "messages": [{"role": "system", "content": "' + quote(cmd) + '"}, {"role": "user", "content": "' + quote(Text) + '"}]}';
+  var xmlHttp = new ActiveXObject("Msxml2.ServerXMLHTTP");
+  xmlHttp.open("POST", openAIUrl, false);
+  xmlHttp.setRequestHeader("Content-Type", "application/json");
+  xmlHttp.setRequestHeader("Authorization", "Bearer " + openAIKey);
+  xmlHttp.send(body);
+  return getContentOrErrorMessage(xmlHttp.responseText) ;
+}
+
+function translate(text) {
+  var re = /\${([^}]+)}/g;
+  var matches;
+  while ((matches = re.exec(text)) != null) {
+    text = text.replace(matches[0], mergeApp.Translate(matches[1]));
+  }
+  return text;
+}
+
+function ShowSettingsDialog() {
+  var tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".hta");
+  var xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".xml");
+  var tfile = fso.CreateTextFile(tname, true, true);
+  tfile.Write(translate(getResource("dialog1")));
+  tfile.Close();
+  exportSettingsToXMLFile(xmlfile);
+  var mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\System32\\mshta.exe");
+  if (!fso.FileExists(mshta)) {
+    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\SysWOW64\\mshta.exe");
+  }
+  run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
+  importSettingsFromXMLFile(xmlfile);
+  fso.DeleteFile(tname);
+  fso.DeleteFile(xmlfile);
+}
+
+function run(sh, cmd) {
+  sh.Run(cmd, 1, true);
+}
+
+function exportSettingsToXMLFile(filepath) {
+  var key_defvalues = {
+    "AIConvertText.OpenAI.ApiKeyEnvName": "OPENAI_API_KEY",
+    "AIConvertText.OpenAI.Temperature": "1.00",
+    "AIConvertText.OpenAI.MaxTokens": 4096,
+    "AIConvertText.OpenAI.Model": "gpt-3.5-turbo"
+  };
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 2, true, -1);
+  var root = doc.createElement("properties");
+  for (var key in key_defvalues) {
+    var el = doc.createElement("property");
+    var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+    var cdata = doc.createCDATASection(val);
+    el.appendChild(cdata);
+    el.setAttribute("name", REGKEY_PATH + key);
+    el.setAttribute("type", typeof val);
+    root.appendChild(el);
+  }
+  doc.appendChild(root);
+  ts.Write(doc.xml);
+  ts.Close();
+}
+
+function importSettingsFromXMLFile(filepath) {
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 1, true, -1);
+  var xml = ts.ReadAll();
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  doc.async = false;
+  doc.loadXML(xml);
+  ts.Close();
+  var nodes = doc.documentElement.childNodes;
+  for (var i = 0; i < nodes.length; i++) {
+    regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+  }
+}
+
 </script>
+
+<resource id="dialog1">
+<![CDATA[
+<!DOCTYPE html>
+<html>
+  <head>
+    <HTA:APPLICATION ID="objHTA">
+    <title>${editor addin.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
+    <style>
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
+    </style>
+    <script type="text/javascript">
+      var REGKEY_PATH = "Plugins\\editor addin.sct/";
+      var xmlFilePath;
+      var settings = {};
+      var wsh = new ActiveXObject("WScript.Shell");
+      var openAIKey = "";
+
+      function regRead(key, defaultValue) {
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
+      }
+
+      function regWrite(key, value, type) {
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+      }
+
+      function setEnvVal(name, value) {
+        wsh.Exec("setx " + name + " \"" + value + "\"");
+      }
+
+      function loadSettingsFromXMLFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 1, true, -1);
+        var xml = ts.ReadAll();
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        doc.async = false;
+        doc.loadXML(xml);
+        ts.Close();
+        var nodes = doc.documentElement.childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+          regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+        }
+        return settings;
+      }
+
+      function saveSettingsToXMLFile(filepath, settings) {
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        var root = doc.createElement("properties");
+        for (var key in settings) {
+          if (settings.hasOwnProperty(key)) {
+            var el = doc.createElement("property");
+            var val = settings[key];
+            var cdata = doc.createCDATASection(val);
+            el.appendChild(cdata);
+            el.setAttribute("name", key);
+            el.setAttribute("type", typeof val);
+            root.appendChild(el);
+          }
+        }
+        doc.appendChild(root);
+        ts.Write(doc.xml);
+        ts.Close();
+      }
+
+      function getOpenAIKey(keyEnvName) {
+        var openAIKey = wsh.ExpandEnvironmentStrings("%" + keyEnvName + "%");
+        if (openAIKey === "" || openAIKey === "%" + keyEnvName + "%") {
+          try {
+            openAIKey = wsh.RegRead("HKEY_CURRENT_USER\\Environment\\" + keyEnvName);
+          } catch (e) {
+            openAIKey = "";
+          }
+        }
+        return openAIKey;
+      }
+
+      function onload() {
+        xmlFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromXMLFile(xmlFilePath);
+
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 500 * dpi / 96;
+        window.resizeTo(w, h);
+        window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
+
+        var keyEnvName = regRead(REGKEY_PATH + "AIConvertText.OpenAI.ApiKeyEnvName", "OPENAI_API_KEY");
+        openAIKey = getOpenAIKey(keyEnvName);
+
+        txtApiKeyEnvName.value = keyEnvName;
+        txtApiKey.value = openAIKey;
+        txtTemperature.value = regRead(REGKEY_PATH + "AIConvertText.OpenAI.Temperature", "1.00");
+        txtMaxTokens.value = regRead(REGKEY_PATH + "AIConvertText.OpenAI.MaxTokens", 4096);
+        cboModel.value = regRead(REGKEY_PATH + "AIConvertText.OpenAI.Model", "gpt-3.5-turbo");
+        document.onkeydown = onkeydown;
+      }
+
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
+        }
+      }
+
+      function btnOk_onclick() {
+        var temperature = Number(txtTemperature.value);
+        var maxTokens = Number(txtMaxTokens.value);
+        if (isNaN(temperature)) {
+          temperature = 1.0;
+        }
+        if (temperature < 0.0) {
+          temperature = 0.0;
+        }
+        if (temperature > 2.0) {
+          temperature = 2.0;
+        }
+        if (isNaN(maxTokens)) {
+          maxTokens = 4096;
+        }
+        if (cboModel.value === "gpt-3.5-turbo-16k") {
+          if (maxTokens < 0 || maxTokens > 16384) {
+            maxTokens = 16384;
+          }
+        } else {
+          if (maxTokens < 0 || maxTokens > 4096) {
+            maxTokens = 4096;
+          }
+        }
+        regWrite(REGKEY_PATH + "AIConvertText.OpenAI.ApiKeyEnvName", txtApiKeyEnvName.value, "REG_SZ");
+        regWrite(REGKEY_PATH + "AIConvertText.OpenAI.Temperature", temperature, "REG_SZ");
+        regWrite(REGKEY_PATH + "AIConvertText.OpenAI.MaxTokens", maxTokens, "REG_DWORD");
+        regWrite(REGKEY_PATH + "AIConvertText.OpenAI.Model", cboModel.value, "REG_SZ");
+        if (txtApiKey.value !== openAIKey) {
+          setEnvVal(txtApiKeyEnvName.value, txtApiKey.value);
+          alert("${OpenAI API key has changed. Please restart WinMerge to apply the changes.}");
+        }
+
+        saveSettingsToXMLFile(xmlFilePath, settings);
+
+        window.close();
+      }
+
+      function btnCancel_onclick() {
+        saveSettingsToXMLFile(xmlFilePath, {});
+
+        window.close();
+      }
+
+      function onlyNumeric() {
+        var ev = event;
+        var k = ev.keyCode;
+
+        if (ev.shiftKey) {
+          if (k == 37 || k == 39) {
+            return true;
+          }
+        } else if (ev.altKey) {
+          return true;
+        } else if (ev.ctrlKey) {
+          return true;
+        } else if (k == 8 || k == 9 || k == 37 || k == 39 || k == 46 /* || k == 144 */
+            || (48 <= k && k <= 57) || (96 <= k && k <= 105)) {
+          return true;
+        }
+
+        ev.returnValue = false;
+        return false;
+      }
+    </script>
+  </head>
+  <body onload="onload();">
+    <div class="container">
+      <ul>
+        <li>
+          <label for="txtApiKeyEnvName">${Environment variable name for OpenAI API key}:</label>
+        </li>
+        <li>
+          <input id="txtApiKeyEnvName" type="text" />
+        </li>
+        <li>
+          <label for="txtApiKey">${OpenAI API key}:</label>
+        </li>
+        <li>
+          <input id="txtApiKey" type="password" />
+        </li>
+        <li>
+          <label for="txtTemperature">${Temperature}:</label>
+        </li>
+        <li>
+          <input id="txtTemperature" type="text" />
+        </li>
+        <li>
+        </li>
+          <label for="txtMaxTokens">${Maximum length}:</label>
+        <li>
+          <input id="txtMaxTokens" type="text" />
+        </li>
+        <li>
+          <label for="cboModel">${Model}:</label>
+        </li>
+        <li>
+          <select id="cboModel">
+            <option value="gpt-4-turbo">gpt-4-turbo</option>
+            <option value="gpt-4">gpt-4</option>
+            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+            <option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</option>
+          </select>
+        </li>
+      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
+    </div>
+  </body>
+</html>
+]]>
+</resource>
 
 </scriptlet>
