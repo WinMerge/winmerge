@@ -4837,7 +4837,7 @@ msgstr "プロンプトを入力してください"
 
 #, c-format
 msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
-msgstr "OpenAI API キーを入力してください。\r\n - このプラグインを使用するには OpenAI への登録が必要であり、料金が発生します。\r\n - API キーは環境変数 %1 に保存されます。"
+msgstr "OpenAI API キーを入力してください。\r\n ※ このプラグインを利用するには、OpenAIへの登録が必要であり、料金がかかります。\r\n ※ API キーは環境変数 %1 に保存されます。"
 
 msgid "Environment variable name for OpenAI API key"
 msgstr "OpenAI API キーを格納する環境変数名"
