@@ -158,6 +158,7 @@ static const tchar_t * s_apszFsKeywordList[] =
     _T("Char"),
     _T("DateTime"),
     _T("Decimal"),
+    _T("Guid"),
     _T("Int16"),
     _T("Int32"),
     _T("Int64"),
@@ -210,7 +211,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
     int nPrevI = -1;
     int nPrevII = -2;
     int I = 0;
-    for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars + I) - pszChars))
+    for (I = 0;; nPrevII=nPrevI, nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars + I) - pszChars))
     {
         if (I == nPrevI)
         {
@@ -345,7 +346,7 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
         }
 
         //  Normal text
-        if (pszChars[I] == '"')
+        if (pszChars[I] == '"' && (I < 2 || pszChars[nPrevI] != '"' || pszChars[nPrevII] != '"'))
         {
             DEFINE_BLOCK(I, COLORINDEX_STRING);
             dwCookie |= COOKIE_STRING;
