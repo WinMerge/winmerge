@@ -450,7 +450,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	// If both match after filtering, mark this diff hunk as trivial and return.
 	if (lineDataLeft == lineDataRight)
 	{
-		//only difference is trival
+		//only difference is trivial
 		thisob->trivial = 1;
 		return 0;
 	}
@@ -960,7 +960,7 @@ void CDiffWrapper::AddDiffRange(DiffList *pDiffList, DIFFRANGE &dr)
  * @brief Expand last DIFFRANGE of file by one line to contain last line after EOL.
  * @param [in] leftBufferLines size of array pane left
  * @param [in] rightBufferLines size of array pane right
- * @param [in] left on whitch side we have to insert
+ * @param [in] left on which side we have to insert
  * @param [in] bIgnoreBlankLines, if true we always add a new diff and mark as trivial
  */
 void CDiffWrapper::FixLastDiffRange(int nFiles, int bufferLines[], bool bMissingNL[], bool bIgnoreBlankLines)
@@ -1079,7 +1079,7 @@ void CDiffWrapper::SetAppendFiles(bool bAppendFiles)
  *
  * Compare two files (in DiffFileData param) using diffutils. Run diffutils
  * inside SEH so we can trap possible error and exceptions. If error or
- * execption is trapped, return compare failure.
+ * exception is trapped, return compare failure.
  * @param [out] diffs Pointer to list of change structs where diffdata is stored.
  * @param [in] diffData files to compare.
  * @param [out] bin_status used to return binary status from compare.

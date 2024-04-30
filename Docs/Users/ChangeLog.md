@@ -1249,7 +1249,7 @@
 
 ### Filters
 
-- Filters enchancement (PR #1179,#1174)
+- Filters enhancement (PR #1179,#1174)
   - File masks
     - Putting `!` before file masks will exclude files that match that masks.
     - If you put `\` after the file masks, the masks will match folders instead
@@ -1332,7 +1332,7 @@
 
 ### Folder compare
 
-- BugFix: Sorting on Comparison Result being done incorectly (#483)
+- BugFix: Sorting on Comparison Result being done incorrectly (#483)
 - BugFix: Fix an issue where WinMerge sometimes crashes when executing
     "Refresh Selected" in the folder compare window. (PR #1120)
 - BugFix: Fixed a bug that the parent folder icon was not displayed in non-recursive mode.
@@ -1729,7 +1729,7 @@
 - BugFix:ALL.vs2019.sln cl : command line warning D9035: option 'Gm' has been
     deprecated and will be removed in a future release (#862)
 - Resolves: Add continuous code security and quality analysis (PR #844, #843)
-- Improvement: Add check and error mesage in DownloadDeps.cmd that path to
+- Improvement: Add check and error message in DownloadDeps.cmd that path to
     7-zip exists (#864)
 
 ## WinMerge 2.16.13 - 2021-06-22
@@ -1749,7 +1749,7 @@
 - BugFix: The edited contents were discarded when the "Recompare As" menu item
     was selected after editing the file
 - BugFix: Incorrect comparison (#834)
-    (This bug occured when enabling both the 'Ignore blank lines' option and
+    (This bug occurred when enabling both the 'Ignore blank lines' option and
      the 'Completely unhighlight the ignored differences' option.)
 - Add Smarty syntax highlighting. (PR #821)
 - Thicken the caret in overwrite mode (osdn.net #42179)
@@ -2147,7 +2147,7 @@
 ### Folder compare
 
   - BugFix: Pausing comparing doesn't pause immediately (GitHub #342)
-  - BugFix: Sorting on Comparison Result being done incorectly (GitHub #483)
+  - BugFix: Sorting on Comparison Result being done incorrectly (GitHub #483)
   - Commandline to display versions in the output report (GitHub #418)
   - "Don't ask again" checkbox for the Confirm Copy dialog (GitHub PR #445)
 
@@ -2946,7 +2946,7 @@
   - Install 7-zip plugin by default
 
 ### Drag and Drop
-  - Accept drag&droped files or folders from various places like:
+  - Accept drag&dropped files or folders from various places like:
       Zip folder, FTP folder, Recycle bin, images in Web browser
 
 ### Plugins
@@ -2984,7 +2984,7 @@
 ### Command line
   - Incompatible change: The third file path is now treated as a right path
       for 3-way comparison, not output path
-      Use /o option for ouput path instead
+      Use /o option for output path instead
   - Add /wm, /dm, /fl, /fm, /fr, /al, /am and /ar option for 3-way comparison
 
 ### Other changes
@@ -3032,7 +3032,7 @@
   - BugFix: Quick contents compare didn't ignore EOL byte differences (#2929005)
   - BugFix: Compare by size always checked file times too (#2919510)
   - BugFix: Crash when pasting from clipboard (#3109525)
-  - BugFix: Keeps verifing path even turned off in options (#3111581)
+  - BugFix: Keeps verifying path even turned off in options (#3111581)
   - BugFix: Crash after deleting text (#3109521)
   - BugFix: Added EOL chars between copied file/path names (#2817546)
   - BugFix: Created new matching folder to wrong folder (#2890961)
@@ -3087,7 +3087,7 @@
   - Create config log file to My Documents-folder (#2789839)
   - BugFix: Reports had same left/right descriptions (#2772646)
   - BugFix: When conflict file saved trailing line-ending was lost (#2550412)
-  - BugFix: File compare HTML reports use invald DOCTYPE (#2783477)
+  - BugFix: File compare HTML reports use invalid DOCTYPE (#2783477)
   - BugFix: "##" in file filter pattern caused an infinite loop (#2789345)
   - BugFix: Could select prediffer when plugins were disabled (#2787131)
   - BugFix: Opening mixed-EOL file one side forced both files to be handled as
