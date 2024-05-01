@@ -570,7 +570,7 @@ bool CDiffTextBuffer::			/* virtual override */
 DeleteText2(CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	int nEndLine, int nEndChar, int nAction /*= CE_ACTION_UNKNOWN*/, bool bHistory /*= true*/)
 {
-	for (auto syncpnt : m_pOwnerDoc->GetSyncPointList())
+	for (const auto& syncpnt : m_pOwnerDoc->GetSyncPointList())
 	{
 		const int nLineSyncPoint = syncpnt[m_nThisPane];
 		if (((nStartChar == 0 && nStartLine == nLineSyncPoint) || nStartLine < nLineSyncPoint) &&

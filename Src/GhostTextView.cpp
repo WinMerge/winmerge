@@ -73,7 +73,7 @@ DetachFromBuffer ()
 	CCrystalEditViewEx::DetachFromBuffer();
 }
 
-void CGhostTextView::popPosition(SCursorPushed Ssrc, CEPoint & pt)
+void CGhostTextView::popPosition(const SCursorPushed& Ssrc, CEPoint & pt)
 {
 	pt.x = Ssrc.x;
 	pt.y = m_pGhostTextBuffer->ComputeApparentLine(Ssrc.y, Ssrc.nToFirstReal);

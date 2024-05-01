@@ -231,7 +231,7 @@ private:
 class UnpackerGeneratedFromEditorScript : public WinMergePluginBase
 {
 public:
-	UnpackerGeneratedFromEditorScript(const PluginInfo& plugin, const std::wstring funcname, int id)
+	UnpackerGeneratedFromEditorScript(const PluginInfo& plugin, const std::wstring& funcname, int id)
 		: WinMergePluginBase(
 			L"FILE_PACK_UNPACK",
 			strutils::format_string1(_T("Unpacker to execute %1 script (automatically generated)"), funcname),

@@ -51,17 +51,17 @@ public:
 				   const tchar_t* szLanguage = nullptr,
 				   const tchar_t* szCodepage = nullptr);
 	explicit CVersionInfo(HINSTANCE hModule);
-	String GetFileVersion() const;
-	String GetCompanyName() const;
-	String GetFileDescription() const;
-	String GetInternalName() const;
-	String GetFullFileName() const;
-	String GetLegalCopyright() const;
-	String GetOriginalFilename() const;
-	String GetProductVersion() const;
-	String GetComments() const;
-	String GetSpecialBuild() const;
-	String GetPrivateBuild() const;
+	const String& GetFileVersion() const;
+	const String& GetCompanyName() const;
+	const String& GetFileDescription() const;
+	const String& GetInternalName() const;
+	const String& GetFullFileName() const;
+	const String& GetLegalCopyright() const;
+	const String& GetOriginalFilename() const;
+	const String& GetProductVersion() const;
+	const String& GetComments() const;
+	const String& GetSpecialBuild() const;
+	const String& GetPrivateBuild() const;
 	String GetFixedProductVersion();
 	String GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
@@ -79,7 +79,7 @@ protected:
  * @brief Return file version string.
  * @return File version as string.
  */
-inline String CVersionInfo::GetFileVersion() const
+inline const String& CVersionInfo::GetFileVersion() const
 {
 	return m_strFileVersion;
 }
@@ -88,7 +88,7 @@ inline String CVersionInfo::GetFileVersion() const
  * @brief Return private build value.
  * @return Private build number as string.
  */
-inline String CVersionInfo::GetPrivateBuild() const
+inline const String& CVersionInfo::GetPrivateBuild() const
 {
 	return m_strPrivateBuild;
 }
@@ -97,7 +97,7 @@ inline String CVersionInfo::GetPrivateBuild() const
  * @brief Return special build value.
  * @return Special build number as string.
  */
-inline String CVersionInfo::GetSpecialBuild() const
+inline const String& CVersionInfo::GetSpecialBuild() const
 {
 	return m_strSpecialBuild;
 }
@@ -106,7 +106,7 @@ inline String CVersionInfo::GetSpecialBuild() const
  * @brief Return company name.
  * @return Company name.
  */
-inline String CVersionInfo::GetCompanyName() const
+inline const String& CVersionInfo::GetCompanyName() const
 {
 	return m_strCompanyName;
 }
@@ -115,7 +115,7 @@ inline String CVersionInfo::GetCompanyName() const
  * @brief Return file description string.
  * @return File description string.
  */
-inline String CVersionInfo::GetFileDescription() const
+inline const String& CVersionInfo::GetFileDescription() const
 {
 	return m_strFileDescription;
 }
@@ -124,7 +124,7 @@ inline String CVersionInfo::GetFileDescription() const
  * @brief Return internal name.
  * @return Internal name.
  */
-inline String CVersionInfo::GetInternalName() const
+inline const String& CVersionInfo::GetInternalName() const
 {
 	return m_strInternalName;
 }
@@ -133,7 +133,7 @@ inline String CVersionInfo::GetInternalName() const
  * @brief Return full file name.
  * @return full file name.
  */
-inline String CVersionInfo::GetFullFileName() const
+inline const String& CVersionInfo::GetFullFileName() const
 {
 	return m_strFileName;
 }
@@ -142,7 +142,7 @@ inline String CVersionInfo::GetFullFileName() const
  * @brief Return copyright info.
  * @return Copyright info.
  */
-inline String CVersionInfo::GetLegalCopyright() const
+inline const String& CVersionInfo::GetLegalCopyright() const
 {
 	return m_strLegalCopyright;
 }
@@ -151,7 +151,7 @@ inline String CVersionInfo::GetLegalCopyright() const
  * @brief Return original filename.
  * @return Original filename.
  */
-inline String CVersionInfo::GetOriginalFilename() const
+inline const String& CVersionInfo::GetOriginalFilename() const
 {
 	return m_strOriginalFilename;
 }
@@ -160,7 +160,7 @@ inline String CVersionInfo::GetOriginalFilename() const
  * @brief Return product's version number.
  * @return Product's version number as string.
  */
-inline String CVersionInfo::GetProductVersion() const
+inline const String& CVersionInfo::GetProductVersion() const
 {
 	return m_strProductVersion;
 }
@@ -169,7 +169,7 @@ inline String CVersionInfo::GetProductVersion() const
  * @brief Return comment string.
  * @return Comment string.
  */
-inline String CVersionInfo::GetComments() const
+inline const String& CVersionInfo::GetComments() const
 {
 	return m_strComments;
 }

@@ -30,7 +30,7 @@ public:
 		UniError();
 		bool HasError() const;
 		void ClearError();
-		String GetError() const;
+		const String& GetError() const;
 	};
 
 	virtual ~UniFile() { }
@@ -93,7 +93,7 @@ inline void UniFile::UniError::ClearError()
  * @brief Get the error string.
  * @return Error string.
  */
-inline String UniFile::UniError::GetError() const
+inline const String& UniFile::UniError::GetError() const
 {
 	return desc;
 }

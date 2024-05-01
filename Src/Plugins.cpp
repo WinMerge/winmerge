@@ -875,7 +875,7 @@ static void ResolveNameConflict(std::map<std::wstring, PluginArrayPtr> plugins)
 	}
 }
 
-static void LoadCustomSettings(std::map<std::wstring, PluginArrayPtr> plugins)
+static void LoadCustomSettings(const std::map<std::wstring, PluginArrayPtr>& plugins)
 {
 	for (const auto& [event, pluginAry] : plugins)
 	{

@@ -68,7 +68,7 @@ private:
 	 *
 	 * @note : also scroll to the old top line
 	 */
-	void popPosition(SCursorPushed Ssrc, CEPoint & pt);
+	void popPosition(const SCursorPushed& Ssrc, CEPoint & pt);
 
 	/// basic cursor
 	SCursorPushed m_ptCursorPosPushed;

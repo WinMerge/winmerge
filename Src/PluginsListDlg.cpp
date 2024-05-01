@@ -114,13 +114,13 @@ void PluginsListDlg::AddPlugins()
 {
 	String type = _("Unpacker");
 	AddPluginsToList(L"URL_PACK_UNPACK", type);
-	for (auto event : plugin::UnpackerEventNames)
+	for (const auto& event : plugin::UnpackerEventNames)
 		AddPluginsToList(event.c_str(), type);
 	type = _("Prediffer");
-	for (auto event : plugin::PredifferEventNames)
+	for (const auto& event : plugin::PredifferEventNames)
 		AddPluginsToList(event.c_str(), type);
 	type = _("Editor script");
-	for (auto event : plugin::EditorScriptEventNames)
+	for (const auto& event : plugin::EditorScriptEventNames)
 		AddPluginsToList(event.c_str(), type);
 }
 
