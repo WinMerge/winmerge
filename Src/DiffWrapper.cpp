@@ -659,7 +659,7 @@ int CDiffWrapper::PostFilter(PostFilterContext& ctxt, change* thisob, const file
 	auto ReplaceChanges = [](change* thisob, change* script)
 		{
 			assert(thisob && script);
-			change* last = nullptr;
+			change* last = script;
 			for (change* cur = script; cur; cur = cur->link)
 				last = cur;
 			last->link = thisob->link;
