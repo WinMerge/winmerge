@@ -442,6 +442,7 @@ struct DirActions
 			act.dirflag = di.diffcode.isDirectory();
 			act.atype = FileAction::ACT_DEL;
 			act.UIOrigin = index;
+			act.UIDestination = -1; // UIDestination is not referenced
 			act.UIResult = FileActionItem::UI_DEL;
 			pscript->AddActionItem(act);
 		}
@@ -472,6 +473,7 @@ struct DirActions
 				act.dirflag = di.diffcode.isDirectory();
 				act.atype = FileAction::ACT_DEL;
 				act.UIOrigin = i;
+				act.UIDestination = -1; // UIDestination is not referenced
 				act.UIResult = FileActionItem::UI_DEL;
 				pscript->AddActionItem(act);
 			}
@@ -497,6 +499,7 @@ struct DirActions
 					act.dirflag = di.diffcode.isDirectory();
 					act.context = it.first;
 					act.UIOrigin = i;
+					act.UIDestination = -1; // UIDestination is not referenced
 					act.atype = FileAction::ACT_DEL;
 					pscript->AddActionItem(act);
 				}
@@ -526,6 +529,7 @@ struct DirActions
 			act.atype = atype;
 			act.UIResult = (atype == FileAction::ACT_COPY) ? FileActionItem::UI_DONT_CARE : FileActionItem::UI_DEL;
 			act.UIOrigin = index;
+			act.UIDestination = -1; // UIDestination is not referenced
 			pscript->AddActionItem(act);
 		}
 		return pscript;
