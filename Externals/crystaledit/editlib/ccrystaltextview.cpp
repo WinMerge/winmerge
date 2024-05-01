@@ -660,7 +660,7 @@ GetLineActualLength (int nLineIndex)
                         nActualLength ++;
                       else
                         nActualLength += GetCharCellCountFromChar (pszChars + i);
-                      if (nColumn < nColumnCount && nActualLength > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                      if (nColumn < nColumnCount - 1 && nActualLength > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                         nActualLength = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn);
                     }
                 }
@@ -3083,7 +3083,7 @@ int CCrystalTextView::CursorPointToCharPos( int nLineIndex, const CEPoint &curPo
                     nOffset = 1;
                   else
                     nOffset = GetCharCellCountFromChar (szLine + nIndex);
-                  if (nColumn < nColumnCount && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                  if (nColumn < nColumnCount - 1 && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nXPos;
                 }
               nXPos += nOffset;
@@ -4411,7 +4411,7 @@ ClientToText (const CPoint & point)
                     nOffset = 1;
                   else
                     nOffset = GetCharCellCountFromChar (pszLine + nIndex);
-                  if (nColumn < nColumnCount && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                  if (nColumn < nColumnCount - 1 && nCurPos + nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn) - nCurPos;
                 }
               n += nOffset;
@@ -4628,7 +4628,7 @@ TextToClient (const CEPoint & point)
                     pt.x ++;
                   else
                     pt.x += GetCharCellCountFromChar(pszLine + nIndex);
-                  if (nColumn < nColumnCount && pt.x > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                  if (nColumn < nColumnCount - 1 && pt.x > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     pt.x = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn);
                 }
             }
@@ -4813,7 +4813,7 @@ CalculateActualOffset (int nLineIndex, int nCharIndex, bool bAccumulate)
                     nOffset ++;
                   else
                     nOffset += GetCharCellCountFromChar (pszChars + I);
-                  if (nColumn < nColumnCount && nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                  if (nColumn < nColumnCount - 1 && nOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn);
                 }
             }
@@ -4920,7 +4920,7 @@ ApproxActualOffset (int nLineIndex, int nOffset)
                     nCurrentOffset ++;
                   else
                     nCurrentOffset += GetCharCellCountFromChar (pszChars + I);
-                  if (nColumn < nColumnCount && nCurrentOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
+                  if (nColumn < nColumnCount - 1 && nCurrentOffset > nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn))
                     nCurrentOffset = nColumnTotalWidth + m_pTextBuffer->GetColumnWidth (nColumn);
                 }
               if (nCurrentOffset >= nOffset)
