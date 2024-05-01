@@ -13,10 +13,10 @@ jobs:
     runs-on: windows-latest
 
     steps:  
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: Build/WinMergeDownloadDeps
         key: WinMergeDownloadDeps
@@ -27,13 +27,13 @@ jobs:
         .\BuildAll.vs2022.cmd x64 -ci
 
     - name: Upload zip
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: WinMerge-x64.zip
         path: Build/Releases/*.zip
 
     - name: Upload installer
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: WinMerge-x64-Setup-x64.exe
         path: Build/Releases/*.exe
