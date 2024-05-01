@@ -208,7 +208,6 @@ std::vector<JumpList::Item> CMergeApp::CreateUserTasks(MergeCmdLineInfo::usertas
 
 CMergeApp::~CMergeApp()
 {
-	strdiff::Close();
 }
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
@@ -571,22 +570,14 @@ int CMergeApp::ExitInstance()
 	// WinMerge did not delete temp files this makes sure they are removed.
 	CleanupWMtemp();
 
+	strdiff::Close();
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
 	
-#ifndef _DEBUG
-	// There is a problem that OleUninitialize() in mfc/oleinit.cpp, which is called just before the process exits,
-	// hangs in rare cases.
-	// To deal with this problem, force the process to exit
-	// if the process does not exit within 2 seconds after the call to CMergeApp::ExitInstance().
-	_beginthreadex(0, 0,
-		[](void*) -> unsigned int {
-			Sleep(2000);
-			ExitProcess(0);
-		}, nullptr, 0, nullptr);
-#endif
-
-	return m_bEnableExitCode ? ConvertLastCompareResultToExitCode(m_nLastCompareResult) : 0;
+	const int exitstatus = m_bEnableExitCode ? ConvertLastCompareResultToExitCode(m_nLastCompareResult) : 0;
+	if (!WaitZombieThreads())
+		TerminateProcess(GetCurrentProcess(), exitstatus);
+	return exitstatus;
 }
 
 int CMergeApp::DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt)
@@ -1741,4 +1732,22 @@ BOOL CMergeApp::WriteProfileString(const tchar_t* lpszSection, const tchar_t* lp
 		pOptions->RemoveOption(name);
 	}
 	return TRUE;
+}
+
+void CMergeApp::AddZombieThread(CWinThread* pThread)
+{ 
+	m_threads.push_back(pThread);
+}
+
+bool CMergeApp::WaitZombieThreads()
+{ 
+	bool terminated = true;
+	for (auto* pThread : m_threads)
+	{
+		DWORD dwResult = WaitForSingleObject(pThread->m_hThread, 1000);
+		if (dwResult != WAIT_OBJECT_0)
+			terminated = false;
+		delete pThread;
+	}
+	return terminated;
 }

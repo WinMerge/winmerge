@@ -1092,11 +1092,12 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 	if (FAILED(CoInitialize(nullptr)))
 		return 0;
 
+	{
 	CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 	MSG msg;
 	BOOL bRet;
 	while( (bRet = GetMessage( &msg, nullptr, 0, 0 )) != 0)
-	{ 
+	{
 		if (bRet == -1)
 			break;
 		if (msg.message != WM_USER + 2)
@@ -1226,6 +1227,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 
 		PostMessage(hWnd, WM_USER + 1, MAKEWPARAM(bIsaFolderCompare, bIsaFileCompare), MAKELPARAM(iStatusMsgId, bProject)); 
 	}
+	}
 
 	CoUninitialize();
 
@@ -1274,11 +1276,9 @@ void COpenView::TerminateThreadIfRunning()
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_QUIT, 0, 0);
 	DWORD dwResult = WaitForSingleObject(m_pUpdateButtonStatusThread->m_hThread, 100);
 	if (dwResult != WAIT_OBJECT_0)
-	{
-		m_pUpdateButtonStatusThread->SuspendThread();
-		TerminateThread(m_pUpdateButtonStatusThread->m_hThread, 0);
-	}
-	delete m_pUpdateButtonStatusThread;
+		theApp.AddZombieThread(m_pUpdateButtonStatusThread);
+	else
+		delete m_pUpdateButtonStatusThread;
 	m_pUpdateButtonStatusThread = nullptr;
 }
 
