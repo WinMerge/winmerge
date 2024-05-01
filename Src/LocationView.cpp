@@ -695,7 +695,7 @@ void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
 	if (pScrollBar == nullptr)
 	{
-		// Scroll did not come frome a scroll bar
+		// Scroll did not come from a scroll bar
 		// Send it to the right view instead
  	  CMergeDoc *pDoc = GetDocument();
 		pDoc->GetActiveMergeGroupView(pDoc->m_nBuffers - 1)->SendMessage(WM_VSCROLL,
@@ -863,7 +863,7 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
  *
  * @param [in] nTopLine New topline for indicator
  * @param [in] nBottomLine New bottomline for indicator
- * @todo This function dublicates too much DrawRect() code.
+ * @todo This function duplicates too much DrawRect() code.
  */
 void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBottomLine)
 {
@@ -1062,7 +1062,7 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
  * @brief Draw marker for top of currently selected difference.
  * This function draws marker for top of currently selected difference.
  * This marker makes it a lot easier to see where currently selected
- * difference is in location bar. Especially when selected diffence is
+ * difference is in location bar. Especially when selected difference is
  * small and it is not easy to find it otherwise.
  * @param [in] pDC Pointer to draw context.
  * @param [in] yCoord Y-coord of top of difference, -1 if no difference.
