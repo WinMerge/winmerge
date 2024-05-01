@@ -4469,7 +4469,7 @@ msgid "Disassemble Native Code"
 msgstr "反汇编本地代码"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "用 AI 转换文本..."
 
 msgid "Make characters uppercase"
 msgstr "变大写"
@@ -4730,7 +4730,7 @@ msgid "Prediff Line Filter"
 msgstr "预比较行过滤器"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "日期和时间插入功能"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4747,10 +4747,14 @@ msgstr ""
 "参数：传递给 reg.exe 的命令行选项。"
 
 msgid "Basic text functions and AI-assisted text conversion functions"
-msgstr ""
+msgstr "基本的文本功能和 AI 辅助的文本转换功能"
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"使用 OpenAI API 的文本转换器。\r\n"
+"用法：ALConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles 插件选项"
@@ -4891,29 +4895,36 @@ msgid ""
 msgstr "不需要为包含了绝对路径的 补丁文件指定 '-p0' 命令行选项"
 
 msgid "editor addin.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "editor addin 插件选项"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "输入 Prompt"
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
 msgstr ""
+"输入你的 OpenAI API 密钥。\r\n"
+" - 使用该插件要求注册 OpenAI 并会产生相关的费用。\n"
+" - API 密钥存放在 环境变量 %1 中。"
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "存放 OpenAI API 密钥的环境变量名称"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API 密钥"
 
 msgid "Temperature"
-msgstr ""
+msgstr "温度系数"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "最大长度"
 
 msgid "Model"
-msgstr ""
+msgstr "模型"
 
-msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgid ""
+"OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr "已修改 OpenAI API 密钥，请重新启动 WinMerge 以使修改生效。"
