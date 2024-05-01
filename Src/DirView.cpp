@@ -3580,11 +3580,15 @@ void CDirView::OnODFindItem(NMHDR* pNMHDR, LRESULT* pResult)
 		for (size_t i = pFindItem->iStart; i < m_listViewItems.size(); ++i)
 		{
 			DIFFITEM *di = GetItemKey(static_cast<int>(i));
-			String filename = strutils::makelower(di->diffFileInfo[0].filename);
-			if (di && tc::tcsncmp(text.c_str(), filename.c_str(), text.length()) == 0)
+			if (di)
 			{
-				*pResult = i;
-				return;
+				String filename = strutils::makelower(di->diffFileInfo[0].filename);
+
+				if (tc::tcsncmp(text.c_str(), filename.c_str(), text.length()) == 0)
+				{
+					*pResult = i;
+					return;
+				}
 			}
 		}
 	}
