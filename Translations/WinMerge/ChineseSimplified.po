@@ -4927,4 +4927,4 @@ msgstr "模型"
 
 msgid ""
 "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr "已修改 OpenAI API 密钥，请重新 WinMerge 使修改生效。"
+msgstr "已修改 OpenAI API 密钥，请重新启动 WinMerge 以使修改生效。"
