@@ -5090,7 +5090,7 @@ msgid "Disassemble Native Code"
 msgstr "Natív kód kibontása"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Text konvertálása MI-vel..."
 
 msgid "Make characters uppercase"
 msgstr "Nagybetűsítés"
@@ -5214,7 +5214,7 @@ msgid "Prediff Line Filter"
 msgstr "Elővizsgáló Sorszűrő"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Dátum és idő beszúrás funkció"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr "HTTP URL-sémakezelő curl-lel. \r\nArgumentumok: A curl parancsnak átadott parancssori beállítások."
@@ -5223,10 +5223,10 @@ msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options 
 msgstr "Windows rendszerleíró adatbázis URL-séma kezelő. \r\nArgumentumok: A reg.exe parancsnak átadott parancssori beállítások."
 
 msgid "Basic text functions and AI-assisted text conversion functions"
-msgstr ""
+msgstr "Alapvető szövegfunkciók és MI által támogatott szövegkonverziós funkciók"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Szövegkonvertáló OpenAI API-val.\r\nUsage: AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge beépülő opciói"
@@ -5356,29 +5356,29 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Ne add meg a '-p0' parancssori paramétert az abszolút elérési utakat tartalmazó patchfájlhoz"
 
 msgid "editor addin.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "addin.sct szerkesztő WinMerge bővítmény opciók"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Írja be a promptot"
 
 #, c-format
 msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
-msgstr ""
+msgstr "Adja meg az OpenAI API-kulcsát.\r\n - A bővítmény használata regisztrációt igényel az OpenAI-nál, és díjköteles.\r\n - Az API-kulcs a(z) %1 környezeti változóban van tárolva."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Az OpenAI API kulcs környezeti változójának neve"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API kulcs"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Hőmérséklet"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Maximális hossz"
 
 msgid "Model"
-msgstr ""
+msgstr "Modell"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "Az OpenAI API kulcs megváltozott. Kérjük, indítsa újra a WinMerge-t a változások alkalmazásához."
