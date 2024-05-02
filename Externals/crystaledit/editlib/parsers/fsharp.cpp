@@ -324,8 +324,9 @@ CrystalLineParser::ParseLineFSharp (unsigned dwCookie, const tchar_t *pszChars, 
         if ((pszTextEnd < pszChars + I) && (I > 1 && pszChars[I] == '"' && pszChars[nPrevI] == '"' && pszChars[nPrevII] == '"'))
         {
             DEFINE_BLOCK(nPrevII, COLORINDEX_STRING);
+            DEFINE_BLOCK(I, COLORINDEX_STRING);
             dwCookie |= COOKIE_RAWSTRING;
-            break;
+            continue;
         }
 
         //  Preprocessor directive #....
