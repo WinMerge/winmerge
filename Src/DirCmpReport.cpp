@@ -213,6 +213,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 			}
 			CloseClipboard();
 			m_bIncludeFileCmpReport = savedIncludeFileCmpReport;
+			m_pFile = nullptr;
 		}
 		if (!m_sReportFile.empty())
 		{
@@ -227,6 +228,7 @@ bool DirCmpReport::GenerateReport(String &errStr)
 				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
 			m_pFile = &file;
 			GenerateReport(m_nReportType);
+			m_pFile = nullptr;
 		}
 		bRet = true;
 	}
