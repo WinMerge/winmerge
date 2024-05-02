@@ -56,8 +56,8 @@ private:
 	bool m_serializing;
 	std::map<String, String> m_iniFileKeyValues;
 	String m_filePath;
-	DWORD m_dwThreadId;
 	HANDLE m_hThread;
 	HANDLE m_hEvent;
+	DWORD m_dwThreadId;
 	DWORD m_dwQueueCount;
 };

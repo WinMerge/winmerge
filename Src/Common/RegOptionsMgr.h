@@ -62,11 +62,11 @@ protected:
 private:
 	String m_registryRoot; /**< Registry path where to store options. */
 	bool m_serializing;
-	std::map<String, HKEY> m_hKeys;
 	bool m_bCloseHandle;
+	std::map<String, HKEY> m_hKeys;
 	DWORD m_dwThreadId;
+	DWORD m_dwQueueCount;
 	HANDLE m_hThread;
 	HANDLE m_hEvent;
 	CRITICAL_SECTION m_cs;
-	DWORD m_dwQueueCount;
 };
