@@ -282,9 +282,6 @@
     <ClCompile Include="Merge.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="StdAfx.cpp">
-      <Filter>MFCGui\Main\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="OptionsFont.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -325,9 +322,6 @@
       <Filter>MergeTest</Filter>
     </ClCompile>
     <ClCompile Include="Merge7zFormatShellImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\BCMenu.cpp">

@@ -216,9 +216,6 @@
     <ClCompile Include="..\diffutils\mystat_test.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Src\pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\DirTravel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

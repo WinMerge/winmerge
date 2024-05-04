@@ -137,8 +137,9 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  <ImportGroup Label="PropertySheets">
+    <Import Project="..\..\..\SharedPch.props" />
+    <Import Project="..\..\..\CustomBuildStep.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
@@ -203,14 +204,15 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -234,14 +236,15 @@
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
-      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ExceptionHandling>Async</ExceptionHandling>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -270,7 +273,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -299,7 +303,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;uafxcwd.lib;LIBCMTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -326,7 +331,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -356,7 +362,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -384,7 +391,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -412,7 +420,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204</DisableSpecificWarnings>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>shlwapi.lib;Iphlpapi.lib;comsuppw.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -430,126 +439,121 @@
     <ClCompile Include="..\..\..\Src\Common\ShellFileOperations.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\charsets.c" />
     <ClCompile Include="..\..\..\Src\codepage_detect.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\CompareOptions.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\coretools.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffFileData.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffFileInfo.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffItem.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffItemList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DiffList.cpp" />
     <ClCompile Include="..\..\..\Src\DiffWrapper.cpp" />
     <ClCompile Include="..\..\..\Src\DirItem.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\DirTravel.cpp" />
     <ClCompile Include="..\..\..\Src\DirWatcher.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Environment.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\ExConverter.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileFilter.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileFilterHelper.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileFilterMgr.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileTextEncoding.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileTransform.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FileVersion.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\FilterList.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\lwdisp.c" />
     <ClCompile Include="..\..\..\Src\LineFiltersList.cpp" />
     <ClCompile Include="..\..\..\Src\markdown.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\MergeCmdLineInfo.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\MovedBlocks.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\MovedLines.cpp" />
     <ClCompile Include="..\..\..\Src\PatchHTML.cpp" />
-    <ClCompile Include="..\..\..\Src\pch.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
-    </ClCompile>
     <ClCompile Include="..\..\..\Src\HashCalc.cpp" />
     <ClCompile Include="..\..\..\Src\PropertySystem.cpp" />
     <ClCompile Include="..\..\..\Src\SubstitutionFiltersList.cpp" />
@@ -559,18 +563,18 @@
     <ClCompile Include="..\BinaryCompare\BinaryCompare_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\DiffCode\DiffCode_test.cpp" />
     <ClCompile Include="..\DIffItemList\DiffItemList_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\diffutils\mystat_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\DiffWrapper\DiffWrapper_test.cpp" />
     <ClCompile Include="..\DirWatcher\DirWatcher_test.cpp" />
@@ -578,225 +582,225 @@
     <ClCompile Include="..\ShellFileOperations\ShellFileOperations_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\SubstitutionList\SubstitutionList_test.cpp" />
     <ClCompile Include="..\TimeSizeCompare\TimeSizeCompare_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\xdiff\xutils_test.cpp" />
     <ClCompile Include="diffutils\util_test.cpp" />
     <ClCompile Include="misc.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\multiformatText.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\OptionsMgr.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\PathContext.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\paths.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\PluginManager.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Plugins.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\ProjectFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\RegKey.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\RegOptionsMgr.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\stringdiffs.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\unicoder.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\UnicodeString.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\UniFile.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\..\..\Src\Common\varprop.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ByteCompare\ByteCompare_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\Encoding\charsets_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\Encoding\codepage_detect_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\DirItem\DirItem_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\Environment\Environemt_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\FileFilter\FileFilterHelper_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\FileVersion\FileVersion_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\markdown\markdown_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\CmdLine\MergeCmdLine_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\multiformatText\multiformatText_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\Paths\paths_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\Plugins\Plugins_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ProjectFile\ProjectFile_test_LeftAndRight.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ProjectFile\ProjectFile_test_LeftAndRightNonRecursive.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ProjectFile\ProjectFile_test_LeftAndRightRecursive.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ProjectFile\ProjectFile_test_PathsAndFilter.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ProjectFile\ProjectFile_test_SimpleLeft.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\ProjectFile\ProjectFile_test_SimpleRight.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\OptionsMgr\RegOptionsMgr_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\StringDiffs\stringdiffs_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\StringDiffs\stringdiffs_test_adds.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\StringDiffs\stringdiffs_test_bugs.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\StringDiffs\stringdiffs_test_bytelevel.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="test_main.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\unicoder\unicoder_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\UnicodeString\UnicodeString_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="..\OptionsMgr\VariantValue_test.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -851,6 +855,11 @@
     <ClInclude Include="..\..\..\Src\SubstitutionList.h" />
     <ClInclude Include="..\..\..\Src\TempFile.h" />
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Src\MergeSharedPCH.vcxproj">
+      <Project>{2fd4f4c5-90bb-4f8b-b1b8-1b7e23c9e6f3}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

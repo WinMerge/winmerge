@@ -16,195 +16,195 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\abap.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\asp.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\autoit.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\basic.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\batch.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\cplusplus.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\crystallineparser.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\csharp.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\css.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\dcl.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\dlang.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\fortran.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\fsharp.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\go.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\html.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\ini.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\innosetup.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\is.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\isx.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\java.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\javascript.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\lisp.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\lua.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\matlab.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\nsis.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\pascal.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\perl.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\php.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\plain.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\po.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\powershell.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\python.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rexx.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rsrc.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\ruby.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\rust.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sgml.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sh.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\siod.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\smarty.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\sql.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tcl.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\tex.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\verilog.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\vhdl.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\xml.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\fpattern.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\string_util.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPCH2)</PrecompiledHeaderOutputFile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

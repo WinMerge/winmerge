@@ -25,31 +25,31 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)BinaryCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ByteComparator.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ByteCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)ImageCompare.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)TimeSizeCompare.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Wrap_DiffUtils.cpp">
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderOutputFile>$(SharedPch2)</PrecompiledHeaderOutputFile>
     </ClCompile>
   </ItemGroup>
 </Project>

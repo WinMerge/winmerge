@@ -2,18 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros">
-    <SharedPchDir>$(SolutionDir)Outputs\Intermediate\Shared\$(Platform)\$(Configuration)\</SharedPchDir>
+    <SharedPchDir>$(SolutionDir)BuildTmp\SharedPCH\$(PlatformTarget)\$(Configuration)\</SharedPchDir>
     <SharedPch>$(SharedPchDir)Shared.pch</SharedPch>
     <SharedPdb>$(SharedPchDir)vc$(PlatformToolsetVersion).pdb</SharedPdb>
     <SharedIdb>$(SharedPchDir)vc$(PlatformToolsetVersion).idb</SharedIdb>
+    <SharedPch2>$(SharedPchDir)Shared2.pch</SharedPch2>
   </PropertyGroup>
   <PropertyGroup>
-    <OutDir>$(SolutionDir)Outputs\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)Outputs\Intermediate\$(ProjectName)\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)Build\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)BuildTmp\$(PlatformTarget)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)SharedPCH;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderOutputFile>$(SharedPch)</PrecompiledHeaderOutputFile>
     </ClCompile>
   </ItemDefinitionGroup>
@@ -29,6 +30,9 @@
     </BuildMacro>
     <BuildMacro Include="SharedIdb">
       <Value>$(SharedIdb)</Value>
+    </BuildMacro>
+    <BuildMacro Include="SharedPch2">
+      <Value>$(SharedPch2)</Value>
     </BuildMacro>
   </ItemGroup>
 </Project>
