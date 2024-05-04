@@ -173,7 +173,7 @@ function ReplaceVariables(str) {
         newstr = newstr + str.substr(pos, foundpos - pos + 1);
         pos = foundpos + 1;
       }
-  } else {
+    } else {
       newstr = newstr + str.substr(pos);
       break;
     }
@@ -1167,7 +1167,6 @@ function importSettingsFromXMLFile(filepath) {
           <input id="txtTemperature" type="text" />
         </li>
         <li>
-        </li>
           <label for="txtMaxTokens">${Maximum length}:</label>
         <li>
           <input id="txtMaxTokens" type="text" />
