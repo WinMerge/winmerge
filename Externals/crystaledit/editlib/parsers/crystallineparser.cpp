@@ -31,7 +31,7 @@ TextDefinition m_SourceDefs[] =
 	SRC_INNOSETUP, _T ("InnoSetup"), _T ("iss"), &ParseLineInnoSetup, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("{"), _T ("}"), _T (";"), (unsigned)-1,
 	SRC_INSTALLSHIELD, _T ("InstallShield"), _T ("rul"), &ParseLineIS, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_JAVA, _T ("Java"), _T ("java;jav"), &ParseLineJava, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
-	SRC_JAVASCRIPT, _T ("JavaScript"), _T ("js"), &ParseLineJavaScript, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
+	SRC_JAVASCRIPT, _T ("JavaScript"), _T ("js;ts"), &ParseLineJavaScript, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_JSON, _T ("JSON"), _T ("json"), &ParseLineJavaScript, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("/*"), _T ("*/"), _T ("//"), (unsigned)-1,
 	SRC_LISP, _T ("AutoLISP"), _T ("lsp;dsl"), &ParseLineLisp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (";|"), _T ("|;"), _T (";"), (unsigned)-1,
 	SRC_LUA, _T ("Lua"), _T ("lua"), &ParseLineLua, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T ("--[["), _T ("]]"), _T ("--"), (unsigned)-1,
