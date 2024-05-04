@@ -967,23 +967,23 @@ function importSettingsFromXMLFile(filepath) {
 <![CDATA[
 <!DOCTYPE html>
 <html>
-  <head>
-    <HTA:APPLICATION ID="objHTA">
-    <title>${editor addin.sct WinMerge Plugin Options}</title>
-    <meta content="text/html" charset="UTF-16">
-    <style>
-    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
-    .container { margin: 2em; }
-    ul { list-style-type: none; margin: 0; padding: 0; }
-    li ul li { padding-left: 2em }
-    .btn-container { margin-top: 1.5em; text-align: right; }
-    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
-    .btn-ok { color: #fff; background-color: #05c; }
-    .btn-ok:hover { background-color: #04b; }
-    .btn-cancel { color: #333; background-color: #ddd; }
-    .btn-cancel:hover { background-color: #ccc; }
-    </style>
-    <script type="text/javascript">
+<head>
+<HTA:APPLICATION ID="objHTA">
+<title>${editor addin.sct WinMerge Plugin Options}</title>
+<meta content="text/html" charset="UTF-16">
+<style>
+body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+.container { margin: 2em; }
+ul { list-style-type: none; margin: 0; padding: 0; }
+li ul li { padding-left: 2em }
+.btn-container { margin-top: 1.5em; text-align: right; }
+input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+.btn-ok { color: #fff; background-color: #05c; }
+.btn-ok:hover { background-color: #04b; }
+.btn-cancel { color: #333; background-color: #ddd; }
+.btn-cancel:hover { background-color: #ccc; }
+</style>
+<script type="text/javascript">
       var REGKEY_PATH = "Plugins\\editor addin.sct/";
       var xmlFilePath;
       var settings = {};
@@ -1143,53 +1143,53 @@ function importSettingsFromXMLFile(filepath) {
         ev.returnValue = false;
         return false;
       }
-    </script>
-  </head>
-  <body onload="onload();">
-    <div class="container">
-      <ul>
-        <li>
-          <label for="txtApiKeyEnvName">${Environment variable name for OpenAI API key}:</label>
-        </li>
-        <li>
-          <input id="txtApiKeyEnvName" type="text" />
-        </li>
-        <li>
-          <label for="txtApiKey">${OpenAI API key}:</label>
-        </li>
-        <li>
-          <input id="txtApiKey" type="password" />
-        </li>
-        <li>
-          <label for="txtTemperature">${Temperature}:</label>
-        </li>
-        <li>
-          <input id="txtTemperature" type="text" />
-        </li>
-        <li>
-        </li>
-          <label for="txtMaxTokens">${Maximum length}:</label>
-        <li>
-          <input id="txtMaxTokens" type="text" />
-        </li>
-        <li>
-          <label for="cboModel">${Model}:</label>
-        </li>
-        <li>
-          <select id="cboModel">
-            <option value="gpt-4-turbo">gpt-4-turbo</option>
-            <option value="gpt-4">gpt-4</option>
-            <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
-            <option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</option>
-          </select>
-        </li>
-      </ul>
-      <div class="btn-container">
-        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
-        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
-      </div>
-    </div>
-  </body>
+</script>
+</head>
+<body onload="onload();">
+<div class="container">
+<ul>
+<li>
+  <label for="txtApiKeyEnvName">${Environment variable name for OpenAI API key}:</label>
+</li>
+<li>
+  <input id="txtApiKeyEnvName" type="text" />
+</li>
+<li>
+  <label for="txtApiKey">${OpenAI API key}:</label>
+</li>
+<li>
+  <input id="txtApiKey" type="password" />
+</li>
+<li>
+  <label for="txtTemperature">${Temperature}:</label>
+</li>
+<li>
+  <input id="txtTemperature" type="text" />
+</li>
+<li>
+</li>
+  <label for="txtMaxTokens">${Maximum length}:</label>
+<li>
+  <input id="txtMaxTokens" type="text" />
+</li>
+<li>
+  <label for="cboModel">${Model}:</label>
+</li>
+<li>
+  <select id="cboModel">
+    <option value="gpt-4-turbo">gpt-4-turbo</option>
+    <option value="gpt-4">gpt-4</option>
+    <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+    <option value="gpt-3.5-turbo-16k">gpt-3.5-turbo-16k</option>
+  </select>
+</li>
+</ul>
+<div class="btn-container">
+<input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+<input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+</div>
+</div>
+</body>
 </html>
 ]]>
 </resource>
