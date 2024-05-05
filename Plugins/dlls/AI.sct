@@ -48,7 +48,8 @@ function get_PluginFileFilters() {
 }
 
 function get_PluginExtendedProperties() {
-  return "AIConvertText.MenuCaption=Convert Text with AI...;" +
+  return "GenerateUnpacker;" +
+  "AIConvertText.MenuCaption=Convert Text with AI...;" +
   "AIConvertText.Description=Text converter using OpenAI API.\r\n" +  
     "Usage: AIConvertText PROMPT;" +  
   "AIConvertText.ArgumentsRequired;";
@@ -190,7 +191,7 @@ function PluginOnEvent(eventType, obj) {
 }
 
 function quote(text) {
-  return text.replace(/\\/g, "\\\\").replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n")
+  return text.replace(/\\/g, "\\\\").replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n").replace(/\t/g, "\\t")
 }
 
 function extractString(input) {
@@ -205,14 +206,14 @@ function extractString(input) {
     return matches;
 }
 
-function getContentOrErrorMessage(jsonString) {
+function getContentOrThrowError(jsonString) {
   var extractedStrings = extractString(jsonString);
   for (var i = 0; i < extractedStrings.length; i++) {
     if (extractedStrings[i] === "content" && i + 1 < extractedStrings.length) {
        return Unescape(extractedStrings[i + 1]);
     }
   }
-  return jsonString;
+  throw new Error(30001, jsonString);
 }
 
 function setEnvVal(name, value) {
@@ -279,7 +280,7 @@ function AIConvertText(Text) {
   xmlHttp.setRequestHeader("Content-Type", "application/json");
   xmlHttp.setRequestHeader("Authorization", "Bearer " + openAIKey);
   xmlHttp.send(body);
-  return getContentOrErrorMessage(getResp(xmlHttp)) ;
+  return getContentOrThrowError(getResp(xmlHttp)) ;
 }
 
 function translate(text) {
