@@ -4170,7 +4170,10 @@ msgstr "Обработчик схемы URL HTTP с помощью curl. \r\nА�
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Обработчик схемы URL реестра Windows. \r\nАргументы: Параметры командной строки, передаваемые программе reg.exe."
 
-msgid "Basic text functions and AI-assisted text conversion functions"
+msgid "Basic text functions"
+msgstr ""
+
+msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
@@ -4303,7 +4306,7 @@ msgstr "Папка '%1' не существует"
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr "Не указывайте параметр командной строки '-p0' для файла патча, который включает абсолютные пути"
 
-msgid "editor addin.sct WinMerge Plugin Options"
+msgid "AI.sct WinMerge Plugin Options"
 msgstr ""
 
 msgid "Enter prompt"

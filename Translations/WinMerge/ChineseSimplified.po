@@ -4746,8 +4746,11 @@ msgstr ""
 "Windows 注册表 URL 方案处理程序。\r\n"
 "参数：传递给 reg.exe 的命令行选项。"
 
-msgid "Basic text functions and AI-assisted text conversion functions"
-msgstr "基本的文本功能和 AI 辅助的文本转换功能"
+msgid "Basic text functions"
+msgstr "基本的文本功能"
+
+msgid "AI-assisted text conversion functions"
+msgstr "AI 辅助的文本转换功能"
 
 msgid ""
 "Text converter using OpenAI API.\r\n"
@@ -4894,8 +4897,8 @@ msgid ""
 "includes absolute paths"
 msgstr "不需要为包含了绝对路径的 补丁文件指定 '-p0' 命令行选项"
 
-msgid "editor addin.sct WinMerge Plugin Options"
-msgstr "editor addin 插件选项"
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "AI 插件选项"
 
 msgid "Enter prompt"
 msgstr "输入 Prompt"

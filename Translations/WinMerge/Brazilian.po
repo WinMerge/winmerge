@@ -4168,8 +4168,11 @@ msgstr "Manipulador de esquema de URL HTTP com curl. \r\nArgumentos: Opções de
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Manipulador de esquema de URL de Registro do Windows. \r\nArgumentos: Opções de linha de comando passadas ao comando reg.exe."
 
-msgid "Basic text functions and AI-assisted text conversion functions"
-msgstr "Funções básicas de texto e funções de conversão de texto com auxílio de IA"
+msgid "Basic text functions"
+msgstr "Funções básicas de texto"
+
+msgid "AI-assisted text conversion functions"
+msgstr "Funções de conversão de texto com auxílio de IA"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr "Conversor de texto usando a API do OpenAI.\r\nUso: AIConvertText PROMPT"
@@ -4301,8 +4304,8 @@ msgstr "Pasta '%1' não existe"
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr "Não use a opção de linha de comando '-p0' para o arquivo de correção que inclui caminhos absolutos"
 
-msgid "editor addin.sct WinMerge Plugin Options"
-msgstr "editor addin.sct Opções de Plugin do WinMerge"
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "AI.sct Opções de Plugin do WinMerge"
 
 msgid "Enter prompt"
 msgstr "Digite o prompt"

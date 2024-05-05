@@ -4793,7 +4793,10 @@ msgstr ""
 "Handler pentru schema URL 'regiștri Windows'. \r\n"
 "Argumente: Opțiunile linie de comandă furnizate comenzii reg.exe."
 
-msgid "Basic text functions and AI-assisted text conversion functions"
+msgid "Basic text functions"
+msgstr ""
+
+msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
@@ -4946,7 +4949,7 @@ msgstr ""
 "Nu specificați opțiunea linie de comandă '-p0' pentru fișierul petic care "
 "include căi absolute"
 
-msgid "editor addin.sct WinMerge Plugin Options"
+msgid "AI.sct WinMerge Plugin Options"
 msgstr ""
 
 msgid "Enter prompt"

@@ -4672,7 +4672,10 @@ msgstr ""
 "Windows Registry URL Scheme Handler. \r\n"
 "வாதங்கள்: கட்டளை வரி விருப்பங்கள் reg.exe கட்டளைக்கு அனுப்பப்பட்டன."
 
-msgid "Basic text functions and AI-assisted text conversion functions"
+msgid "Basic text functions"
+msgstr ""
+
+msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
@@ -4810,7 +4813,7 @@ msgstr ""
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr ""
 
-msgid "editor addin.sct WinMerge Plugin Options"
+msgid "AI.sct WinMerge Plugin Options"
 msgstr ""
 
 msgid "Enter prompt"

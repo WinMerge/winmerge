@@ -4683,7 +4683,10 @@ msgstr ""
 "Gestor de esquemas de URL del Registro de Windows. \r\n"
 "Argumentos: Opciones de la línea de comandos pasadas al comando reg.exe."
 
-msgid "Basic text functions and AI-assisted text conversion functions"
+msgid "Basic text functions"
+msgstr ""
+
+msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
@@ -4826,7 +4829,7 @@ msgstr "La carpeta '%1' no existe"
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr "No especifique la opción de línea de comandos '-p0' para el archivo de parche que incluya rutas absolutas"
 
-msgid "editor addin.sct WinMerge Plugin Options"
+msgid "AI.sct WinMerge Plugin Options"
 msgstr ""
 
 msgid "Enter prompt"

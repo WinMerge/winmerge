@@ -98,7 +98,7 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION36 "Disassemble JVM Bytecode"
     IDS_PLUGIN_MENU_CAPTION37 "Disassemble IL Code"
     IDS_PLUGIN_MENU_CAPTION38 "Disassemble Native Code"
-    IDS_PLUGIN_MENU_CAPTION38 "Convert Text with AI..."
+    IDS_PLUGIN_MENU_CAPTION39 "Convert Text with AI..."
 END
 
 STRINGTABLE
@@ -188,8 +188,9 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_DESCRIPTION51 
                             "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-    IDS_PLUGIN_DESCRIPTION52 "Basic text functions and AI-assisted text conversion functions"
-    IDS_PLUGIN_DESCRIPTION53 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+    IDS_PLUGIN_DESCRIPTION52 "Basic text functions"
+    IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion functions"
+    IDS_PLUGIN_DESCRIPTION54 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 END
 
 STRINGTABLE
@@ -303,7 +304,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_PLUGIN_EDITORADDIN_STR1 
-                            "editor addin.sct WinMerge Plugin Options"
+                            "AI.sct WinMerge Plugin Options"
     IDS_PLUGIN_EDITORADDIN_STR2
                             "Enter prompt"
     IDS_PLUGIN_EDITORADDIN_STR3 
