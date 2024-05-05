@@ -1097,58 +1097,58 @@ msgid "&Load Project..."
 msgstr "Wczytaj projekt..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - Wszystkie argumenty"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - Pierwszy argument"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - Drugi argument"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - Trzeci argument"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - Czwarty argument"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - Piąty argument"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - Szósty argument"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - Siódmy argument"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - Ósmy argument"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - Dziewiąty argument"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Plik źródłowy"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Folder źródłowy"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - URL źródłowy"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Protokół źródła URL"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Przyrostek źródła URL"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Plik docelowy"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Folder docelowy"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - URL docelowy"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
 msgstr ""
@@ -1157,16 +1157,16 @@ msgid "${DST_URL_SUFFIX} - Destination URL suffix"
 msgstr ""
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - Katalog domowy WinMerge"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Plik skryptu"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "Dodaj wtyczkę rozpakowującą..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "Dodaj wtyczkę porównującą..."
 
 msgid "&Duplicate plugin..."
 msgstr ""
@@ -2149,28 +2149,28 @@ msgid "Edit Plugin"
 msgstr ""
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Typ wtyczki:"
 
 msgid "&Category:"
-msgstr ""
+msgstr "Kategoria:"
 
 msgid "&Menu caption:"
 msgstr ""
 
 msgid "&Window type:"
-msgstr ""
+msgstr "Typ okna:"
 
 msgid "&Unpacked file extension:"
 msgstr ""
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "Wymagane argumenty"
 
 msgid "&Generate editor script"
 msgstr ""
 
 msgid "Command &line:"
-msgstr ""
+msgstr "Wiersz poleceń:"
 
 msgid "&Script file extension:"
 msgstr ""
@@ -4037,7 +4037,7 @@ msgid "Disassemble Native Code"
 msgstr "Dezasembluj kod natywny"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Konwertuj tekst za pomocą AI..."
 
 msgid "Make characters uppercase"
 msgstr "Zrób duże litery"
@@ -4161,7 +4161,7 @@ msgid "Prediff Line Filter"
 msgstr "Filtr porównywania wiersza"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Funkcja wstawiania daty i godziny"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr "Obsługa schematu HTTP URL z curl. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia curl."
@@ -4170,13 +4170,13 @@ msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options 
 msgstr "Obsługa schematu URL rejestru Windows. \r\nArgumenty: Opcje wiersza poleceń przekazywane do polecenia reg.exe."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Podstawowe funkcje tekstowe"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "Funkcje konwersji tekstu wspomagane AI"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Konwerter tekstu wykorzystujący API OpenAI.\r\nUżycie: AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opcje wtyczki WinMerge CompareMSExcelFiles.sct"
@@ -4306,7 +4306,7 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Nie określaj opcji wiersza poleceń '-p0' dla pliku łatki, która zawiera ścieżki bezwzględne"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Opcje wtyczki WinMerge AI.sct"
 
 msgid "Enter prompt"
 msgstr ""
@@ -4316,19 +4316,19 @@ msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration
 msgstr ""
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Nazwa zmiennej środowiskowej dla klucza API OpenAI"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "Klucz API OpenAI"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Maksymalna długość"
 
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "Klucz API OpenAI został zmieniony. Uruchom ponownie WinMerge, aby zastosować zmiany."
