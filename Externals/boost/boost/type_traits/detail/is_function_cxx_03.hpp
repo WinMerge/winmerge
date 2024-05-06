@@ -28,7 +28,7 @@
 
 namespace boost {
 
-#if !defined( __CODEGEARC__ )
+#if !defined( BOOST_CODEGEARC )
 
 namespace detail {
 
@@ -86,9 +86,9 @@ struct is_function_impl<T&&> : public false_type
 
 } // namespace detail
 
-#endif // !defined( __CODEGEARC__ )
+#endif // !defined( BOOST_CODEGEARC )
 
-#if defined( __CODEGEARC__ )
+#if defined( BOOST_CODEGEARC )
 template <class T> struct is_function : integral_constant<bool, __is_function(T)> {};
 #else
 template <class T> struct is_function : integral_constant<bool, ::boost::detail::is_function_impl<T>::value> {};

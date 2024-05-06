@@ -184,6 +184,10 @@
 #  define BOOST_NO_CXX11_ALIGNAS
 #endif
 
+#if !__has_feature(cxx_alignof)
+#  define BOOST_NO_CXX11_ALIGNOF
+#endif
+
 #if !__has_feature(cxx_trailing_return)
 #  define BOOST_NO_CXX11_TRAILING_RESULT_TYPES
 #endif
@@ -194,6 +198,11 @@
 
 #if !__has_feature(cxx_override_control)
 #  define BOOST_NO_CXX11_FINAL
+#  define BOOST_NO_CXX11_OVERRIDE
+#endif
+
+#if !__has_feature(cxx_unrestricted_unions)
+#  define BOOST_NO_CXX11_UNRESTRICTED_UNION
 #endif
 
 #if !(__has_feature(__cxx_binary_literals__) || __has_extension(__cxx_binary_literals__))
@@ -256,6 +265,10 @@
 #  define BOOST_NO_CXX17_FOLD_EXPRESSIONS
 #endif
 
+#if !defined(__cpp_nontype_template_parameter_auto) || (__cpp_nontype_template_parameter_auto < 201606)
+#  define BOOST_NO_CXX17_AUTO_NONTYPE_TEMPLATE_PARAMS
+#endif
+
 #if !__has_feature(cxx_thread_local)
 #  define BOOST_NO_CXX11_THREAD_LOCAL
 #endif
@@ -265,6 +278,10 @@
 #  define BOOST_NO_CXX14_DIGIT_SEPARATORS
 #endif
 
+// Deprecated symbol markup
+#if __has_attribute(deprecated)
+#define BOOST_DEPRECATED(msg) __attribute__((deprecated(msg)))
+#endif
 
 // Unused attribute:
 #if defined(__GNUC__) && (__GNUC__ >= 4)
@@ -283,3 +300,4 @@
 // Macro used to identify the Clang compiler.
 #define BOOST_CLANG 1
 
+#define BOOST_CLANG_VERSION (__clang_major__ * 10000 + __clang_minor__ * 100 + __clang_patchlevel__)

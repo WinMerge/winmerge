@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef YESNO_050328_HPP
-#define YESNO_050328_HPP
+#ifndef BOOST_PARAMETER_AUX_YESNO_HPP
+#define BOOST_PARAMETER_AUX_YESNO_HPP
 
 namespace boost { namespace parameter { namespace aux {
 

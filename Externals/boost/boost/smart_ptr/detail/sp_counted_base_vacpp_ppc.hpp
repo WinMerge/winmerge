@@ -22,7 +22,17 @@
 //
 
 #include <boost/smart_ptr/detail/sp_typeinfo_.hpp>
+#include <boost/smart_ptr/detail/sp_obsolete.hpp>
 #include <boost/config.hpp>
+
+#if defined(BOOST_SP_REPORT_IMPLEMENTATION)
+
+#include <boost/config/pragma_message.hpp>
+BOOST_PRAGMA_MESSAGE("Using xlC/PowerPC sp_counted_base")
+
+#endif
+
+BOOST_SP_OBSOLETE()
 
 extern "builtin" void __lwsync(void);
 extern "builtin" void __isync(void);

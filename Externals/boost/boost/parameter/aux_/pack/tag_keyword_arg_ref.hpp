@@ -10,12 +10,12 @@
 #include <boost/parameter/aux_/tagged_argument.hpp>
 #include <boost/parameter/config.hpp>
 
-namespace boost { namespace parameter { namespace aux { 
+namespace boost { namespace parameter { namespace aux {
 
     template <
         typename Keyword
       , typename ActualArg
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
       , typename = typename ::boost::parameter::aux
         ::is_cv_reference_wrapper<ActualArg>::type
 #endif
@@ -30,11 +30,11 @@ namespace boost { namespace parameter { namespace aux {
     };
 }}} // namespace boost::parameter::aux_
 
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
 
 #include <boost/mpl/bool.hpp>
 
-namespace boost { namespace parameter { namespace aux { 
+namespace boost { namespace parameter { namespace aux {
 
     template <typename Keyword, typename ActualArg>
     struct tag_ref<Keyword,ActualArg,::boost::mpl::false_>

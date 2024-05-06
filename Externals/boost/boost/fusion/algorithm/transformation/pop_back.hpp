@@ -18,6 +18,11 @@
 #include <boost/mpl/int.hpp>
 #include <boost/mpl/if.hpp>
 
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable: 4512) // assignment operator could not be generated.
+#endif
+
 namespace boost { namespace fusion
 {
     template <typename Iterator_, bool IsLast>
@@ -167,6 +172,10 @@ namespace boost { namespace fusion
         );
     }
 }}
+
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
 #endif
 

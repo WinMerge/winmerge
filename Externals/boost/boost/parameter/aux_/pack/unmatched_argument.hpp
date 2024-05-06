@@ -34,7 +34,7 @@ namespace boost { namespace parameter { namespace aux {
         ));
 #endif
         typedef int type;
-    }; 
+    };
 }}} // namespace boost::parameter::aux
 
 #endif  // include guard

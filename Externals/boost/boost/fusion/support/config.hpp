@@ -127,4 +127,14 @@ namespace boost { namespace fusion { namespace detail
 #   define BOOST_FUSION_NOEXCEPT_ON_DEFAULTED BOOST_NOEXCEPT
 #endif
 
+#ifdef _MSC_VER
+#   define BOOST_FUSION_PUSH_WARNINGS __pragma(warning(push))
+#   define BOOST_FUSION_POP_WARNINGS  __pragma(warning(pop))
+#   define BOOST_FUSION_DISABLE_MSVC_WARNING(num) __pragma(warning(disable : num))
+#else
+#   define BOOST_FUSION_PUSH_WARNINGS
+#   define BOOST_FUSION_POP_WARNINGS
+#   define BOOST_FUSION_DISABLE_MSVC_WARNING(num)
+#endif
+
 #endif

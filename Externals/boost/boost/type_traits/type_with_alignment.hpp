@@ -25,7 +25,7 @@
 #endif
 
 namespace boost {
-#ifndef __BORLANDC__
+#ifndef BOOST_BORLANDC
    namespace detail{
 
       union max_align
@@ -120,7 +120,7 @@ template<> struct is_pod< ::boost::tt_align_ns::a128> : public true_type{};
 // registers.  Therefore we extend type_with_alignment<> to support
 // such types, however, we have to be careful to use a builtin type
 // whenever possible otherwise we break previously working code:
-// see http://article.gmane.org/gmane.comp.lib.boost.devel/173011
+// see https://lists.boost.org/Archives/boost/2014/03/212391.php
 // for an example and test case.  Thus types like a8 below will
 // be used *only* if the existing implementation can't provide a type
 // with suitable alignment.  This does mean however, that type_with_alignment<>
@@ -227,7 +227,7 @@ namespace detail {
 typedef ::boost::tt_align_ns::a16 max_align;
 
 }
-//#if ! BOOST_WORKAROUND(__CODEGEARC__, BOOST_TESTED_AT(0x610))
+//#if ! BOOST_WORKAROUND(BOOST_CODEGEARC, BOOST_TESTED_AT(0x610))
 template <> struct is_pod< ::boost::tt_align_ns::a2> : public true_type{};
 template <> struct is_pod< ::boost::tt_align_ns::a4> : public true_type{};
 template <> struct is_pod< ::boost::tt_align_ns::a8> : public true_type{};

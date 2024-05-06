@@ -26,6 +26,10 @@ namespace boost { namespace fusion
     template <typename Cons>
     struct cons_iterator_identity;
 
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable: 4512) // assignment operator could not be generated.
+#endif
     template <typename Cons = nil_>
     struct cons_iterator : iterator_base<cons_iterator<Cons> >
     {
@@ -41,11 +45,10 @@ namespace boost { namespace fusion
             : cons(in_cons) {}
 
         cons_type& cons;
-
-    private:
-        // silence MSVC warning C4512: assignment operator could not be generated
-        cons_iterator& operator= (cons_iterator const&);
     };
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
     struct nil_iterator : iterator_base<nil_iterator>
     {

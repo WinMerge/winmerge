@@ -3,10 +3,12 @@
 //Distributed under the Boost Software License, Version 1.0. (See accompanying
 //file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef UUID_274DA366004E11DCB1DDFE2E56D89593
-#define UUID_274DA366004E11DCB1DDFE2E56D89593
+#ifndef BOOST_EXCEPTION_274DA366004E11DCB1DDFE2E56D89593
+#define BOOST_EXCEPTION_274DA366004E11DCB1DDFE2E56D89593
 
+#include <boost/assert/source_location.hpp>
 #include <boost/config.hpp>
+#include <exception>
 
 #ifdef BOOST_EXCEPTION_MINI_BOOST
 #include  <memory>
@@ -16,12 +18,17 @@ namespace boost { template <class T> class shared_ptr; }
 namespace boost { namespace exception_detail { using boost::shared_ptr; } }
 #endif
 
-#if defined(__GNUC__) && (__GNUC__*100+__GNUC_MINOR__>301) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+#if !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+#if defined(__GNUC__) && __GNUC__*100+__GNUC_MINOR__>301
 #pragma GCC system_header
 #endif
-#if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
+#ifdef __clang__
+#pragma clang system_header
+#endif
+#ifdef _MSC_VER
 #pragma warning(push,1)
 #pragma warning(disable: 4265)
+#endif
 #endif
 
 namespace
@@ -101,6 +108,7 @@ boost
     typedef error_info<struct throw_function_,char const *> throw_function;
     typedef error_info<struct throw_file_,char const *> throw_file;
     typedef error_info<struct throw_line_,int> throw_line;
+    typedef error_info<struct throw_column_,int> throw_column;
 
     template <>
     class
@@ -133,6 +141,20 @@ boost
     template <>
     class
     error_info<throw_line_,int>
+        {
+        public:
+        typedef int value_type;
+        value_type v_;
+        explicit
+        error_info( value_type v ):
+            v_(v)
+            {
+            }
+        };
+
+    template <>
+    class
+    error_info<throw_column_,int>
         {
         public:
         typedef int value_type;
@@ -183,6 +205,9 @@ boost
         template <>
         struct get_info<throw_line>;
 
+        template <>
+        struct get_info<throw_column>;
+
         template <class>
         struct set_info_rv;
 
@@ -194,6 +219,9 @@ boost
 
         template <>
         struct set_info_rv<throw_line>;
+
+        template <>
+        struct set_info_rv<throw_column>;
 
         char const * get_diagnostic_information( exception const &, char const * );
 
@@ -210,6 +238,11 @@ boost
 
         template <class E>
         E const & set_info( E const &, throw_line const & );
+
+        template <class E>
+        E const & set_info( E const &, throw_column const & );
+
+        boost::source_location get_exception_throw_location( exception const & );
         }
 
     class
@@ -227,7 +260,8 @@ boost
         exception():
             throw_function_(0),
             throw_file_(0),
-            throw_line_(-1)
+            throw_line_(-1),
+            throw_column_(-1)
             {
             }
 
@@ -238,7 +272,8 @@ boost
             data_(x.data_),
             throw_function_(x.throw_function_),
             throw_file_(x.throw_file_),
-            throw_line_(x.throw_line_)
+            throw_line_(x.throw_line_),
+            throw_column_(x.throw_column_)
             {
             }
 #endif
@@ -263,27 +298,35 @@ boost
         template <class E>
         friend E const & exception_detail::set_info( E const &, throw_line const & );
 
+        template <class E>
+        friend E const & exception_detail::set_info( E const &, throw_column const & );
+
         template <class E,class Tag,class T>
         friend E const & exception_detail::set_info( E const &, error_info<Tag,T> const & );
 
         friend char const * exception_detail::get_diagnostic_information( exception const &, char const * );
+
+        friend boost::source_location exception_detail::get_exception_throw_location( exception const & );
 
         template <class>
         friend struct exception_detail::get_info;
         friend struct exception_detail::get_info<throw_function>;
         friend struct exception_detail::get_info<throw_file>;
         friend struct exception_detail::get_info<throw_line>;
+        friend struct exception_detail::get_info<throw_column>;
         template <class>
         friend struct exception_detail::set_info_rv;
         friend struct exception_detail::set_info_rv<throw_function>;
         friend struct exception_detail::set_info_rv<throw_file>;
         friend struct exception_detail::set_info_rv<throw_line>;
+        friend struct exception_detail::set_info_rv<throw_column>;
         friend void exception_detail::copy_boost_exception( exception *, exception const * );
 #endif
         mutable exception_detail::refcount_ptr<exception_detail::error_info_container> data_;
         mutable char const * throw_function_;
         mutable char const * throw_file_;
         mutable int throw_line_;
+        mutable int throw_column_;
         };
 
     inline
@@ -317,6 +360,42 @@ boost
             {
             x.throw_line_=y.v_;
             return x;
+            }
+
+        template <class E>
+        E const &
+        set_info( E const & x, throw_column const & y )
+            {
+            x.throw_column_=y.v_;
+            return x;
+            }
+
+#ifndef BOOST_NO_CXX11_RVALUE_REFERENCES
+
+        template <>
+        struct
+        set_info_rv<throw_column>
+            {
+            template <class E>
+            static
+            E const &
+            set( E const & x, throw_column && y )
+                {
+                x.throw_column_=y.v_;
+                return x;
+                }
+            };
+
+#endif
+
+        inline boost::source_location get_exception_throw_location( exception const & x )
+            {
+            return boost::source_location(
+                x.throw_file_? x.throw_file_: "",
+                x.throw_line_ >= 0? x.throw_line_: 0,
+                x.throw_function_? x.throw_function_: "",
+                x.throw_column_ >= 0? x.throw_column_: 0
+                );
             }
         }
 
@@ -385,6 +464,9 @@ boost
         }
 
     ////////////////////////////////////////////////////////////////////////
+#if defined(BOOST_NO_EXCEPTIONS)
+    BOOST_NORETURN void throw_exception(std::exception const & e); // user defined
+#endif
 
     namespace
     exception_detail
@@ -414,6 +496,7 @@ boost
             a->throw_file_ = b->throw_file_;
             a->throw_line_ = b->throw_line_;
             a->throw_function_ = b->throw_function_;
+            a->throw_column_ = b->throw_column_;
             a->data_ = data;
             }
 
@@ -461,7 +544,11 @@ boost
             void
             rethrow() const
                 {
+#if defined(BOOST_NO_EXCEPTIONS)
+                boost::throw_exception(*this);
+#else
                 throw*this;
+#endif
                 }
             };
         }
@@ -473,54 +560,10 @@ boost
         {
         return exception_detail::clone_impl<T>(x);
         }
-
-    template <class T>
-    struct
-    BOOST_SYMBOL_VISIBLE
-    wrapexcept:
-        public exception_detail::clone_impl<typename exception_detail::enable_error_info_return_type<T>::type>
-        {
-        typedef exception_detail::clone_impl<typename exception_detail::enable_error_info_return_type<T>::type> base_type;
-        public:
-        explicit
-        wrapexcept( typename exception_detail::enable_error_info_return_type<T>::type const & x ):
-            base_type( x )
-            {
-            }
-
-        ~wrapexcept() BOOST_NOEXCEPT_OR_NOTHROW
-            {
-            }
-        };
-
-    namespace
-    exception_detail
-        {
-        template <class T>
-        struct
-        remove_error_info_injector
-            {
-            typedef T type;
-            };
-
-        template <class T>
-        struct
-        remove_error_info_injector< error_info_injector<T> >
-            {
-            typedef T type;
-            };
-
-        template <class T>
-        inline
-        wrapexcept<typename remove_error_info_injector<T>::type>
-        enable_both( T const & x )
-            {
-            return wrapexcept<typename remove_error_info_injector<T>::type>( enable_error_info( x ) );
-            }
-        }
     }
 
 #if defined(_MSC_VER) && !defined(BOOST_EXCEPTION_ENABLE_WARNINGS)
 #pragma warning(pop)
 #endif
-#endif
+
+#endif // #ifndef BOOST_EXCEPTION_274DA366004E11DCB1DDFE2E56D89593

@@ -13,10 +13,10 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <boost/predef/library/c/gnu.h>
 #include <boost/predef/os/macos.h>
 #include <boost/predef/os/bsd.h>
-#include <boost/predef/os/android.h>
+#include <boost/predef/platform/android.h>
 
-/*`
-[heading `BOOST_ENDIAN_*`]
+/* tag::reference[]
+= `BOOST_ENDIAN_*`
 
 Detection of endian memory ordering. There are four defined macros
 in this header that define the various generally possible endian
@@ -37,12 +37,12 @@ programatic bi-endianness is available.
 This implementation is a compilation of various publicly available
 information and acquired knowledge:
 
-# The indispensable documentation of "Pre-defined Compiler Macros"
-  [@http://sourceforge.net/p/predef/wiki/Endianness Endianness].
-# The various endian specifications available in the
-  [@http://wikipedia.org/ Wikipedia] computer architecture pages.
-# Generally available searches for headers that define endianness.
- */
+. The indispensable documentation of "Pre-defined Compiler Macros"
+  http://sourceforge.net/p/predef/wiki/Endianness[Endianness].
+. The various endian specifications available in the
+  http://wikipedia.org/[Wikipedia] computer architecture pages.
+. Generally available searches for headers that define endianness.
+*/ // end::reference[]
 
 #define BOOST_ENDIAN_BIG_BYTE BOOST_VERSION_NUMBER_NOT_AVAILABLE
 #define BOOST_ENDIAN_BIG_WORD BOOST_VERSION_NUMBER_NOT_AVAILABLE
@@ -54,18 +54,14 @@ information and acquired knowledge:
  */
 #if !BOOST_ENDIAN_BIG_BYTE && !BOOST_ENDIAN_BIG_WORD && \
     !BOOST_ENDIAN_LITTLE_BYTE && !BOOST_ENDIAN_LITTLE_WORD
-#   if BOOST_LIB_C_GNU || BOOST_OS_ANDROID
+#   if BOOST_LIB_C_GNU || BOOST_PLAT_ANDROID || BOOST_OS_BSD_OPEN
 #       include <endian.h>
 #   else
 #       if BOOST_OS_MACOS
 #           include <machine/endian.h>
 #       else
 #           if BOOST_OS_BSD
-#               if BOOST_OS_BSD_OPEN
-#                   include <machine/endian.h>
-#               else
-#                   include <sys/endian.h>
-#               endif
+#               include <sys/endian.h>
 #           endif
 #       endif
 #   endif
@@ -99,7 +95,7 @@ information and acquired knowledge:
 #   endif
 #endif
 
-/* Built-in byte-swpped big-endian macros.
+/* Built-in byte-swapped big-endian macros.
  */
 #if !BOOST_ENDIAN_BIG_BYTE && !BOOST_ENDIAN_BIG_WORD && \
     !BOOST_ENDIAN_LITTLE_BYTE && !BOOST_ENDIAN_LITTLE_WORD
@@ -116,7 +112,7 @@ information and acquired knowledge:
 #   endif
 #endif
 
-/* Built-in byte-swpped little-endian macros.
+/* Built-in byte-swapped little-endian macros.
  */
 #if !BOOST_ENDIAN_BIG_BYTE && !BOOST_ENDIAN_BIG_WORD && \
     !BOOST_ENDIAN_LITTLE_BYTE && !BOOST_ENDIAN_LITTLE_WORD
@@ -125,9 +121,12 @@ information and acquired knowledge:
         defined(__ARMEL__) || \
         defined(__THUMBEL__) || \
         defined(__AARCH64EL__) || \
+        defined(__loongarch__) || \
         defined(_MIPSEL) || \
         defined(__MIPSEL) || \
-        defined(__MIPSEL__)
+        defined(__MIPSEL__) || \
+        defined(__riscv) || \
+        defined(__e2k__)
 #       undef BOOST_ENDIAN_LITTLE_BYTE
 #       define BOOST_ENDIAN_LITTLE_BYTE BOOST_VERSION_NUMBER_AVAILABLE
 #   endif
@@ -157,7 +156,7 @@ information and acquired knowledge:
 #endif
 
 /* Windows on ARM, if not otherwise detected/specified, is always
- * byte-swaped little-endian.
+ * byte-swapped little-endian.
  */
 #if !BOOST_ENDIAN_BIG_BYTE && !BOOST_ENDIAN_BIG_WORD && \
     !BOOST_ENDIAN_LITTLE_BYTE && !BOOST_ENDIAN_LITTLE_WORD

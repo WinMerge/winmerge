@@ -24,7 +24,7 @@
 #include <boost/type_traits/is_array.hpp>
 #endif
 
-namespace boost { namespace parameter { 
+namespace boost { namespace parameter {
 
     template <typename Tag, typename T>
     struct template_keyword : ::boost::parameter::aux::template_keyword_base

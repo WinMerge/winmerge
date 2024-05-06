@@ -16,6 +16,7 @@
 
 #include <boost/config.hpp>
 #include <boost/detail/workaround.hpp>
+#include <cstddef> //for std::size_t
 
 #if defined(__GNUC__) && !defined(__GXX_EXPERIMENTAL_CXX0X__)
 //
@@ -36,7 +37,7 @@
 #     define BOOST_STATIC_ASSERT_MSG( B, Msg ) BOOST_STATIC_ASSERT( B )
 #endif
 
-#ifdef __BORLANDC__
+#ifdef BOOST_BORLANDC
 //
 // workaround for buggy integral-constant expression support:
 #define BOOST_BUGGY_INTEGRAL_CONSTANT_EXPRESSIONS
@@ -81,7 +82,7 @@ template <bool x> struct STATIC_ASSERTION_FAILURE;
 template <> struct STATIC_ASSERTION_FAILURE<true> { enum { value = 1 }; };
 
 // HP aCC cannot deal with missing names for template value parameters
-template<int x> struct static_assert_test{};
+template<std::size_t x> struct static_assert_test{};
 
 }
 

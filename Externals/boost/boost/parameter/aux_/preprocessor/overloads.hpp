@@ -51,7 +51,7 @@
     ::boost::parameter::aux::item< \
         BOOST_PP_CAT(PS, n), BOOST_PP_CAT(A, n)
 
-#define BOOST_PARAMETER_close_list(z, n, text) > 
+#define BOOST_PARAMETER_close_list(z, n, text) >
 
 #define BOOST_PARAMETER_arg_list(n) \
     ::boost::parameter::aux::make_arg_list< \

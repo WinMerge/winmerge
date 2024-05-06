@@ -9,7 +9,7 @@
 /////////1/////////2/////////3/////////4/////////5/////////6/////////7/////////8
 // version.hpp:
 
-// (C) Copyright 2002 Robert Ramey - http://www.rrsd.com . 
+// (C) Copyright 2002 Robert Ramey - http://www.rrsd.com .
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
@@ -25,7 +25,7 @@
 
 #include <boost/type_traits/is_base_and_derived.hpp>
 
-namespace boost { 
+namespace boost {
 namespace serialization {
 
 struct basic_traits;
@@ -64,13 +64,11 @@ const int version<T>::value;
  * as an error an attempt to set a version # for a class which doesn't
  * save its class information (including version #) in the archive.
  * However, this imposes a requirement that the version be set after
- * the implemention level which would be pretty confusing.  If this
+ * the implementation level which would be pretty confusing.  If this
  * is to be done, do this check in the input or output operators when
  * ALL the serialization traits are available.  Included the implementation
  * here with this comment as a reminder not to do this!
  */
-//#include <boost/serialization/level.hpp>
-//#include <boost/mpl/equal_to.hpp>
 
 #include <boost/mpl/less.hpp>
 #include <boost/mpl/comparison.hpp>

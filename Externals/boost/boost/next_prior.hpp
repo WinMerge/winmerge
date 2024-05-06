@@ -15,13 +15,12 @@
 #ifndef BOOST_NEXT_PRIOR_HPP_INCLUDED
 #define BOOST_NEXT_PRIOR_HPP_INCLUDED
 
-#include <iterator>
 #include <boost/config.hpp>
-#include <boost/core/enable_if.hpp>
 #include <boost/type_traits/has_plus.hpp>
 #include <boost/type_traits/has_plus_assign.hpp>
 #include <boost/type_traits/has_minus.hpp>
 #include <boost/type_traits/has_minus_assign.hpp>
+#include <boost/iterator/is_iterator.hpp>
 #include <boost/iterator/advance.hpp>
 #include <boost/iterator/reverse_iterator.hpp>
 
@@ -38,46 +37,6 @@ namespace boost {
 //  Contributed by Dave Abrahams
 
 namespace next_prior_detail {
-
-// The trait attempts to detect if the T type is an iterator. Class-type iterators are assumed
-// to have the nested type iterator_category. Strictly speaking, this is not required to be the
-// case (e.g. a user can specialize iterator_traits for T without defining T::iterator_category).
-// Still, this is a good heuristic in practice, and we can't do anything better anyway.
-// Since C++17 we can test for iterator_traits<T>::iterator_category presence instead as it is
-// required to be only present for iterators.
-template< typename T, typename Void = void >
-struct is_iterator_class
-{
-    static BOOST_CONSTEXPR_OR_CONST bool value = false;
-};
-
-template< typename T >
-struct is_iterator_class<
-    T,
-    typename enable_if_has_type<
-#if !defined(BOOST_NO_CXX17_ITERATOR_TRAITS)
-        typename std::iterator_traits< T >::iterator_category
-#else
-        typename T::iterator_category
-#endif
-    >::type
->
-{
-    static BOOST_CONSTEXPR_OR_CONST bool value = true;
-};
-
-template< typename T >
-struct is_iterator :
-    public is_iterator_class< T >
-{
-};
-
-template< typename T >
-struct is_iterator< T* >
-{
-    static BOOST_CONSTEXPR_OR_CONST bool value = true;
-};
-
 
 template< typename T, typename Distance, bool HasPlus = has_plus< T, Distance >::value >
 struct next_plus_impl;
@@ -107,7 +66,7 @@ struct next_plus_assign_impl< T, Distance, true >
     }
 };
 
-template< typename T, typename Distance, bool IsIterator = is_iterator< T >::value >
+template< typename T, typename Distance, bool IsIterator = boost::iterators::is_iterator< T >::value >
 struct next_advance_impl :
     public next_plus_assign_impl< T, Distance >
 {
@@ -152,7 +111,7 @@ struct prior_minus_assign_impl< T, Distance, true >
     }
 };
 
-template< typename T, typename Distance, bool IsIterator = is_iterator< T >::value >
+template< typename T, typename Distance, bool IsIterator = boost::iterators::is_iterator< T >::value >
 struct prior_advance_impl :
     public prior_minus_assign_impl< T, Distance >
 {

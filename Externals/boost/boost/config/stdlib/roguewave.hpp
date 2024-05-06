@@ -59,7 +59,7 @@
 //
 // Borland version of numeric_limits lacks __int64 specialisation:
 //
-#ifdef __BORLANDC__
+#ifdef BOOST_BORLANDC
 #  define BOOST_NO_MS_INT64_NUMERIC_LIMITS
 #endif
 

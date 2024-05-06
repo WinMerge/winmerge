@@ -28,7 +28,7 @@
 // 'or' and 'and' macros, see http://tinyurl.com/3et69; 'defined(and)'
 // has to be checked in a separate condition, otherwise GCC complains 
 // about 'and' being an alternative token
-#if defined(_MSC_VER) && !defined(__clang__)
+#if defined(_MSC_VER)
 #ifndef __GCCXML__
 #if defined(and) 
 #   pragma push_macro("and")

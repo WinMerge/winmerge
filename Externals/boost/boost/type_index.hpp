@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2012-2019 Antony Polukhin.
+// Copyright 2012-2024 Antony Polukhin.
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
@@ -208,7 +208,7 @@ typedef type_index::type_info_t type_info;
 /// \throw Nothing.
 /// \return boost::typeindex::type_index with information about the specified type T.
 template <class T>
-inline type_index type_id() BOOST_NOEXCEPT {
+inline type_index type_id() noexcept {
     return type_index::type_id<T>();
 }
 
@@ -228,7 +228,7 @@ inline type_index type_id() BOOST_NOEXCEPT {
 /// \throw Nothing.
 /// \return boost::typeindex::type_index with information about the specified type T.
 template <class T>
-inline type_index type_id_with_cvr() BOOST_NOEXCEPT {
+inline type_index type_id_with_cvr() noexcept {
     return type_index::type_id_with_cvr<T>();
 }
 
@@ -253,7 +253,7 @@ inline type_index type_id_with_cvr() BOOST_NOEXCEPT {
 /// \throw Nothing.
 /// \return boost::typeindex::type_index with information about the specified variable.
 template <class T>
-inline type_index type_id_runtime(const T& runtime_val) BOOST_NOEXCEPT {
+inline type_index type_id_runtime(const T& runtime_val) noexcept {
     return type_index::type_id_runtime(runtime_val);
 }
 

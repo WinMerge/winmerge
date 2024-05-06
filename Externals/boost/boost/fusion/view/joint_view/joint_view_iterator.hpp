@@ -20,6 +20,11 @@
 #include <boost/fusion/view/joint_view/detail/key_of_impl.hpp>
 #include <boost/static_assert.hpp>
 
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable: 4512) // assignment operator could not be generated.
+#endif
+
 namespace boost { namespace fusion
 {
     struct joint_view_iterator_tag;
@@ -49,12 +54,12 @@ namespace boost { namespace fusion
 
         first_type first;
         concat_type concat;
-
-    private:
-        // silence MSVC warning C4512: assignment operator could not be generated
-        joint_view_iterator& operator= (joint_view_iterator const&);
     };
 }}
+
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
 #ifdef BOOST_FUSION_WORKAROUND_FOR_LWG_2408
 namespace std

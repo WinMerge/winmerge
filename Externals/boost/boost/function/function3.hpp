@@ -7,6 +7,4 @@
 
 // For more information, see http://www.boost.org
 
-#define BOOST_FUNCTION_NUM_ARGS 3
-#include <boost/function/detail/maybe_include.hpp>
-#undef BOOST_FUNCTION_NUM_ARGS
+#include <boost/function/function_template.hpp>

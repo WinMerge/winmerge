@@ -3,8 +3,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef PARAMETER_REQUIREMENTS_050331_HPP
-#define PARAMETER_REQUIREMENTS_050331_HPP
+#ifndef BOOST_PARAMETER_AUX_PARAMETER_REQUIREMENTS_HPP
+#define BOOST_PARAMETER_AUX_PARAMETER_REQUIREMENTS_HPP
 
 #include <boost/parameter/aux_/pack/parameter_requirements.hpp>
 

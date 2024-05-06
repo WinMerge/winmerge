@@ -8,303 +8,162 @@
 #endif
 
 //
-//  mem_fn.hpp - a generalization of std::mem_fun[_ref]
+// mem_fn.hpp - a generalization of std::mem_fun[_ref]
 //
-//  Copyright (c) 2001, 2002 Peter Dimov and Multi Media Ltd.
-//  Copyright (c) 2001 David Abrahams
-//  Copyright (c) 2003-2005 Peter Dimov
+// Copyright 2001-2005, 2024 Peter Dimov
+// Copyright 2001 David Abrahams
 //
 // Distributed under the Boost Software License, Version 1.0. (See
 // accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 //
-//  See http://www.boost.org/libs/bind/mem_fn.html for documentation.
+// See http://www.boost.org/libs/bind/mem_fn.html for documentation.
 //
 
-#include <boost/config.hpp>
 #include <boost/get_pointer.hpp>
-#include <boost/detail/workaround.hpp>
+#include <boost/config.hpp>
+#include <boost/config/workaround.hpp>
+#include <type_traits>
 
 namespace boost
 {
 
-#if defined(BOOST_NO_VOID_RETURNS)
-
-#define BOOST_MEM_FN_CLASS_F , class F
-#define BOOST_MEM_FN_TYPEDEF(X)
-
-namespace _mfi // mem_fun_impl
-{
-
-template<class V> struct mf
-{
-
-#define BOOST_MEM_FN_RETURN return
-
-#define BOOST_MEM_FN_NAME(X) inner_##X
-#define BOOST_MEM_FN_CC
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#if defined(BOOST_MEM_FN_ENABLE_CDECL) && !defined(_M_X64)
-
-#define BOOST_MEM_FN_NAME(X) inner_##X##_cdecl
-#define BOOST_MEM_FN_CC __cdecl
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#if defined(BOOST_MEM_FN_ENABLE_STDCALL) && !defined(_M_X64)
-
-#define BOOST_MEM_FN_NAME(X) inner_##X##_stdcall
-#define BOOST_MEM_FN_CC __stdcall
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#if defined(BOOST_MEM_FN_ENABLE_FASTCALL) && !defined(_M_X64)
-
-#define BOOST_MEM_FN_NAME(X) inner_##X##_fastcall
-#define BOOST_MEM_FN_CC __fastcall
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#undef BOOST_MEM_FN_RETURN
-
-}; // struct mf<V>
-
-template<> struct mf<void>
-{
-
-#define BOOST_MEM_FN_RETURN
-
-#define BOOST_MEM_FN_NAME(X) inner_##X
-#define BOOST_MEM_FN_CC
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#if defined(BOOST_MEM_FN_ENABLE_CDECL) && !defined(_M_X64)
-
-#define BOOST_MEM_FN_NAME(X) inner_##X##_cdecl
-#define BOOST_MEM_FN_CC __cdecl
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#ifdef BOOST_MEM_FN_ENABLE_STDCALL
-
-#define BOOST_MEM_FN_NAME(X) inner_##X##_stdcall
-#define BOOST_MEM_FN_CC __stdcall
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#ifdef BOOST_MEM_FN_ENABLE_FASTCALL
-
-#define BOOST_MEM_FN_NAME(X) inner_##X##_fastcall
-#define BOOST_MEM_FN_CC __fastcall
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#undef BOOST_MEM_FN_RETURN
-
-}; // struct mf<void>
-
-#undef BOOST_MEM_FN_CLASS_F
-#undef BOOST_MEM_FN_TYPEDEF_F
-
-#define BOOST_MEM_FN_NAME(X) X
-#define BOOST_MEM_FN_NAME2(X) inner_##X
-#define BOOST_MEM_FN_CC
-
-#include <boost/bind/mem_fn_vw.hpp>
-
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_NAME2
-#undef BOOST_MEM_FN_CC
-
-#if defined(BOOST_MEM_FN_ENABLE_CDECL) && !defined(_M_X64)
-
-#define BOOST_MEM_FN_NAME(X) X##_cdecl
-#define BOOST_MEM_FN_NAME2(X) inner_##X##_cdecl
-#define BOOST_MEM_FN_CC __cdecl
-
-#include <boost/bind/mem_fn_vw.hpp>
-
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_NAME2
-#undef BOOST_MEM_FN_CC
-
-#endif
-
-#ifdef BOOST_MEM_FN_ENABLE_STDCALL
-
-#define BOOST_MEM_FN_NAME(X) X##_stdcall
-#define BOOST_MEM_FN_NAME2(X) inner_##X##_stdcall
-#define BOOST_MEM_FN_CC __stdcall
-
-#include <boost/bind/mem_fn_vw.hpp>
-
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_NAME2
-#undef BOOST_MEM_FN_CC
-
-#endif
-
-#ifdef BOOST_MEM_FN_ENABLE_FASTCALL
-
-#define BOOST_MEM_FN_NAME(X) X##_fastcall
-#define BOOST_MEM_FN_NAME2(X) inner_##X##_fastcall
-#define BOOST_MEM_FN_CC __fastcall
-
-#include <boost/bind/mem_fn_vw.hpp>
-
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_NAME2
-#undef BOOST_MEM_FN_CC
-
-#endif
-
-} // namespace _mfi
-
-#else // #ifdef BOOST_NO_VOID_RETURNS
-
-#define BOOST_MEM_FN_CLASS_F
-#define BOOST_MEM_FN_TYPEDEF(X) typedef X;
-
 namespace _mfi
 {
 
-#define BOOST_MEM_FN_RETURN return
+template<class T> struct remove_cvref: std::remove_cv< typename std::remove_reference<T>::type >
+{
+};
 
-#define BOOST_MEM_FN_NAME(X) X
-#define BOOST_MEM_FN_CC
+template<class Pm, class R, class T, class... A> class mf
+{
+public:
 
-#include <boost/bind/mem_fn_template.hpp>
+    typedef R result_type;
 
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
+private:
 
-#if defined(BOOST_MEM_FN_ENABLE_CDECL) && !defined(_M_X64)
+    Pm pm_;
 
-#define BOOST_MEM_FN_NAME(X) X##_cdecl
-#define BOOST_MEM_FN_CC __cdecl
+public:
 
-#include <boost/bind/mem_fn_template.hpp>
+    mf( Pm pm ): pm_( pm ) {}
 
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
+    template<class U,
+        class Ud = typename _mfi::remove_cvref<U>::type,
+        class En = typename std::enable_if<
+            std::is_same<T, Ud>::value || std::is_base_of<T, Ud>::value
+        >::type
+    >
 
-#endif
+    R operator()( U&& u, A... a ) const
+    {
+        return (std::forward<U>( u ).*pm_)( std::forward<A>( a )... );
+    }
 
-#if defined(BOOST_MEM_FN_ENABLE_STDCALL) && !defined(_M_X64)
+    template<class U,
+        class Ud = typename _mfi::remove_cvref<U>::type,
+        class E1 = void,
+        class En = typename std::enable_if<
+            !(std::is_same<T, Ud>::value || std::is_base_of<T, Ud>::value)
+        >::type
+    >
 
-#define BOOST_MEM_FN_NAME(X) X##_stdcall
-#define BOOST_MEM_FN_CC __stdcall
+    R operator()( U&& u, A... a ) const
+    {
+        return (get_pointer( std::forward<U>( u ) )->*pm_)( std::forward<A>( a )... );
+    }
 
-#include <boost/bind/mem_fn_template.hpp>
+    bool operator==( mf const & rhs ) const
+    {
+        return pm_ == rhs.pm_;
+    }
 
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#if defined(BOOST_MEM_FN_ENABLE_FASTCALL) && !defined(_M_X64)
-
-#define BOOST_MEM_FN_NAME(X) X##_fastcall
-#define BOOST_MEM_FN_CC __fastcall
-
-#include <boost/bind/mem_fn_template.hpp>
-
-#undef BOOST_MEM_FN_CC
-#undef BOOST_MEM_FN_NAME
-
-#endif
-
-#undef BOOST_MEM_FN_RETURN
+    bool operator!=( mf const & rhs ) const
+    {
+        return pm_ != rhs.pm_;
+    }
+};
 
 } // namespace _mfi
 
-#undef BOOST_MEM_FN_CLASS_F
-#undef BOOST_MEM_FN_TYPEDEF
+//
 
-#endif // #ifdef BOOST_NO_VOID_RETURNS
+template<class R, class T, class... A>
+auto mem_fn( R (T::*pmf) (A...) ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#define BOOST_MEM_FN_NAME(X) X
-#define BOOST_MEM_FN_CC
+template<class R, class T, class... A>
+auto mem_fn( R (T::*pmf) (A...) const ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#include <boost/bind/mem_fn_cc.hpp>
+#if defined( __cpp_noexcept_function_type ) || defined( _NOEXCEPT_TYPES_SUPPORTED )
 
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_CC
+template<class R, class T, class... A>
+auto mem_fn( R (T::*pmf) (A...) noexcept ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
+
+template<class R, class T, class... A>
+auto mem_fn( R (T::*pmf) (A...) const noexcept ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
+
+#endif // #if defined( __cpp_noexcept_function_type ) || defined( _NOEXCEPT_TYPES_SUPPORTED )
 
 #if defined(BOOST_MEM_FN_ENABLE_CDECL) && !defined(_M_X64)
 
-#define BOOST_MEM_FN_NAME(X) X##_cdecl
-#define BOOST_MEM_FN_CC __cdecl
+template<class R, class T, class... A>
+auto mem_fn( R (__cdecl T::*pmf) (A...) ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#include <boost/bind/mem_fn_cc.hpp>
+template<class R, class T, class... A>
+auto mem_fn( R (__cdecl T::*pmf) (A...) const ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_CC
-
-#endif
+#endif // #if defined(BOOST_MEM_FN_ENABLE_CDECL) && !defined(_M_X64)
 
 #if defined(BOOST_MEM_FN_ENABLE_STDCALL) && !defined(_M_X64)
 
-#define BOOST_MEM_FN_NAME(X) X##_stdcall
-#define BOOST_MEM_FN_CC __stdcall
+template<class R, class T, class... A>
+auto mem_fn( R (__stdcall T::*pmf) (A...) ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#include <boost/bind/mem_fn_cc.hpp>
+template<class R, class T, class... A>
+auto mem_fn( R (__stdcall T::*pmf) (A...) const ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_CC
-
-#endif
+#endif // #if defined(BOOST_MEM_FN_ENABLE_STDCALL) && !defined(_M_X64)
 
 #if defined(BOOST_MEM_FN_ENABLE_FASTCALL) && !defined(_M_X64)
 
-#define BOOST_MEM_FN_NAME(X) X##_fastcall
-#define BOOST_MEM_FN_CC __fastcall
+template<class R, class T, class... A>
+auto mem_fn( R (__fastcall T::*pmf) (A...) ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#include <boost/bind/mem_fn_cc.hpp>
+template<class R, class T, class... A>
+auto mem_fn( R (__fastcall T::*pmf) (A...) const ) -> _mfi::mf<decltype(pmf), R, T, A...>
+{
+    return pmf;
+}
 
-#undef BOOST_MEM_FN_NAME
-#undef BOOST_MEM_FN_CC
-
-#endif
+#endif // #if defined(BOOST_MEM_FN_ENABLE_FASTCALL) && !defined(_M_X64)
 
 // data member support
 
@@ -319,69 +178,74 @@ public:
     typedef T const * argument_type;
 
 private:
-    
-    typedef R (T::*F);
-    F f_;
 
-    template<class U> R const & call(U & u, T const *) const
-    {
-        return (u.*f_);
-    }
-
-    template<class U> R const & call(U & u, void const *) const
-    {
-        return (get_pointer(u)->*f_);
-    }
+    typedef R (T::*Pm);
+    Pm pm_;
 
 public:
-    
-    explicit dm(F f): f_(f) {}
 
-    R & operator()(T * p) const
+    dm( Pm pm ): pm_( pm ) {}
+
+    template<class U,
+        class Ud = typename _mfi::remove_cvref<U>::type,
+        class En = typename std::enable_if<
+            std::is_same<T, Ud>::value || std::is_base_of<T, Ud>::value
+        >::type
+    >
+
+    auto operator()( U&& u ) const -> decltype( std::forward<U>( u ).*pm_ )
     {
-        return (p->*f_);
+        return std::forward<U>( u ).*pm_;
     }
 
-    R const & operator()(T const * p) const
+    template<class U,
+        class Ud = typename _mfi::remove_cvref<U>::type,
+        class E1 = void,
+        class En = typename std::enable_if<
+            !(std::is_same<T, Ud>::value || std::is_base_of<T, Ud>::value)
+        >::type
+    >
+
+    auto operator()( U&& u ) const -> decltype( get_pointer( std::forward<U>( u ) )->*pm_ )
     {
-        return (p->*f_);
+        return get_pointer( std::forward<U>( u ) )->*pm_;
     }
 
-    template<class U> R const & operator()(U const & u) const
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1910)
+
+    template<class U>
+    R& operator()( U* u ) const
     {
-        return call(u, &u);
+        return u->*pm_;
     }
 
-#if !BOOST_WORKAROUND(BOOST_MSVC, <= 1300) && !BOOST_WORKAROUND(__MWERKS__, < 0x3200)
-
-    R & operator()(T & t) const
+    template<class U>
+    R const& operator()( U const* u ) const
     {
-        return (t.*f_);
-    }
-
-    R const & operator()(T const & t) const
-    {
-        return (t.*f_);
+        return u->*pm_;
     }
 
 #endif
 
-    bool operator==(dm const & rhs) const
+    bool operator==( dm const & rhs ) const
     {
-        return f_ == rhs.f_;
+        return pm_ == rhs.pm_;
     }
 
-    bool operator!=(dm const & rhs) const
+    bool operator!=( dm const & rhs ) const
     {
-        return f_ != rhs.f_;
+        return pm_ != rhs.pm_;
     }
 };
 
 } // namespace _mfi
 
-template<class R, class T> _mfi::dm<R, T> mem_fn(R T::*f)
+template<class R, class T,
+    class E = typename std::enable_if< !std::is_function<R>::value >::type
+>
+_mfi::dm<R, T> mem_fn( R T::*pm )
 {
-    return _mfi::dm<R, T>(f);
+    return pm;
 }
 
 } // namespace boost

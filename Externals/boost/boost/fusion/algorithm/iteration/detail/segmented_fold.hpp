@@ -14,6 +14,10 @@
 
 namespace boost { namespace fusion { namespace detail
 {
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable: 4512) // assignment operator could not be generated.
+#endif
     template <typename Fun>
     struct segmented_fold_fun
     {
@@ -37,6 +41,9 @@ namespace boost { namespace fusion { namespace detail
             }
         };
     };
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
     // The default implementation of this lives in detail/fold.hpp
     template <typename Sequence, typename State, typename Fun, bool IsSequence, bool IsSegmented>

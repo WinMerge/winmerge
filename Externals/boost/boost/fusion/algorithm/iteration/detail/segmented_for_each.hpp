@@ -13,6 +13,11 @@
 #include <boost/fusion/algorithm/iteration/for_each_fwd.hpp>
 #include <boost/fusion/support/segmented_fold_until.hpp>
 
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable: 4512) // assignment operator could not be generated.
+#endif
+
 namespace boost { namespace fusion { namespace detail
 {
     template <typename Fun>
@@ -48,5 +53,9 @@ namespace boost { namespace fusion { namespace detail
         fusion::segmented_fold_until(seq, void_(), segmented_for_each_fun<F>(f));
     }
 }}}
+
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
 #endif

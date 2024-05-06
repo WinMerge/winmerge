@@ -292,11 +292,8 @@ namespace boost { namespace range_detail_microsoft {
         struct meta
         {
             typedef list_iterator<X, ::CObject *> mutable_iterator;
-    #if !defined(BOOST_RANGE_MFC_CONST_COL_RETURNS_NON_REF)
-            typedef list_iterator<X const, ::CObject const *> const_iterator;
-    #else
+            // const CObList and const CPtrList both return a value (and probably always will)
             typedef list_iterator<X const, ::CObject const * const, ::CObject const * const> const_iterator;
-    #endif
         };
     };
 
@@ -309,11 +306,8 @@ namespace boost { namespace range_detail_microsoft {
         struct meta
         {
             typedef list_iterator<X, void *> mutable_iterator;
-    #if !defined(BOOST_RANGE_MFC_CONST_COL_RETURNS_NON_REF)
-            typedef list_iterator<X const, void const *> const_iterator;
-    #else
+            // const CObList and const CPtrList both return a value (and probably always will)
             typedef list_iterator<X const, void const * const, void const * const> const_iterator;
-    #endif
         };
     };
 

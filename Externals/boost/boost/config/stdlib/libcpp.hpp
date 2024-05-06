@@ -104,8 +104,34 @@
 #  define BOOST_NO_CXX98_BINDERS
 #endif
 
-#define BOOST_NO_CXX17_ITERATOR_TRAITS
+#if defined(__cplusplus) && defined(__has_include)
+#if __has_include(<version>)
+#include <version>
+
+#if !defined(__cpp_lib_execution) || (__cpp_lib_execution < 201603L)
+#  define BOOST_NO_CXX17_HDR_EXECUTION
+#endif
+#if !defined(__cpp_lib_invoke) || (__cpp_lib_invoke < 201411L)
+#define BOOST_NO_CXX17_STD_INVOKE
+#endif
+
+#if(_LIBCPP_VERSION < 9000)
+// as_writable_bytes is missing.
+#  define BOOST_NO_CXX20_HDR_SPAN
+#endif
+
+#else
 #define BOOST_NO_CXX17_STD_INVOKE      // Invoke support is incomplete (no invoke_result)
+#define BOOST_NO_CXX17_HDR_EXECUTION
+#endif
+#else
+#define BOOST_NO_CXX17_STD_INVOKE      // Invoke support is incomplete (no invoke_result)
+#define BOOST_NO_CXX17_HDR_EXECUTION
+#endif
+
+#if _LIBCPP_VERSION < 10000  // What's the correct version check here?
+#define BOOST_NO_CXX17_ITERATOR_TRAITS
+#endif
 
 #if (_LIBCPP_VERSION <= 1101) && !defined(BOOST_NO_CXX11_THREAD_LOCAL)
 // This is a bit of a sledgehammer, because really it's just libc++abi that has no
@@ -140,6 +166,15 @@
 
 #if !defined(BOOST_NO_CXX14_HDR_SHARED_MUTEX) && (_LIBCPP_VERSION < 5000)
 #  define BOOST_NO_CXX14_HDR_SHARED_MUTEX
+#endif
+
+#if _LIBCPP_VERSION >= 15000
+//
+// Unary function is now deprecated in C++11 and later:
+//
+#if __cplusplus >= 201103L
+#define BOOST_NO_CXX98_FUNCTION_BASE
+#endif
 #endif
 
 //  --- end ---

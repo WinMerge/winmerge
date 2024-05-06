@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2013-2019 Antony Polukhin.
+// Copyright 2013-2024 Antony Polukhin.
 //
 //
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
@@ -22,17 +22,17 @@
 namespace boost { namespace typeindex { namespace detail {
 
 template <class T>
-inline const ctti_data& ctti_construct_typeid_ref(const T*) BOOST_NOEXCEPT {
-    return ctti_construct<T>();
+inline const ctti_data& ctti_construct_typeid_ref(const T*) noexcept {
+    return boost::typeindex::ctti_construct<T>();
 }
 
 }}} // namespace boost::typeindex::detail
 
 /// @cond
-#define BOOST_TYPE_INDEX_REGISTER_CLASS                                                                             \
-    virtual const boost::typeindex::detail::ctti_data& boost_type_index_type_id_runtime_() const BOOST_NOEXCEPT {   \
-        return boost::typeindex::detail::ctti_construct_typeid_ref(this);                                           \
-    }                                                                                                               \
+#define BOOST_TYPE_INDEX_REGISTER_CLASS                                                                       \
+    virtual const boost::typeindex::detail::ctti_data& boost_type_index_type_id_runtime_() const noexcept {   \
+        return boost::typeindex::detail::ctti_construct_typeid_ref(this);                                     \
+    }                                                                                                         \
 /**/
 /// @endcond
 

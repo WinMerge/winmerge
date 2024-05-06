@@ -18,31 +18,28 @@
 // http://www.boost.org/LICENSE_1_0.txt)
 //
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(__clang__)
 # pragma warn -8027     // Functions containing try are not expanded inline
 #endif
 
-#include <boost/config.hpp>
-#include <boost/checked_delete.hpp>
-#include <boost/throw_exception.hpp>
 #include <boost/smart_ptr/bad_weak_ptr.hpp>
 #include <boost/smart_ptr/detail/sp_counted_base.hpp>
 #include <boost/smart_ptr/detail/sp_counted_impl.hpp>
 #include <boost/smart_ptr/detail/sp_disable_deprecated.hpp>
 #include <boost/smart_ptr/detail/sp_noexcept.hpp>
+#include <boost/core/checked_delete.hpp>
+#include <boost/throw_exception.hpp>
+#include <boost/core/addressof.hpp>
+#include <boost/config.hpp>
 #include <boost/config/workaround.hpp>
-// In order to avoid circular dependencies with Boost.TR1
-// we make sure that our include of <memory> doesn't try to
-// pull in the TR1 headers: that's why we use this header 
-// rather than including <memory> directly:
-#include <boost/config/no_tr1/memory.hpp>  // std::auto_ptr
-#include <functional>       // std::less
+#include <boost/cstdint.hpp>
+#include <memory>            // std::auto_ptr
+#include <functional>        // std::less
+#include <cstddef>           // std::size_t
 
 #ifdef BOOST_NO_EXCEPTIONS
 # include <new>              // std::bad_alloc
 #endif
-
-#include <boost/core/addressof.hpp>
 
 #if defined( BOOST_SP_DISABLE_DEPRECATED )
 #pragma GCC diagnostic push
@@ -102,6 +99,14 @@ template< class D > struct sp_convert_reference< D& >
 {
     typedef sp_reference_wrapper< D > type;
 };
+
+template<class T> std::size_t sp_hash_pointer( T* p ) BOOST_NOEXCEPT
+{
+    boost::uintptr_t v = reinterpret_cast<boost::uintptr_t>( p );
+
+    // match boost::hash<T*>
+    return static_cast<std::size_t>( v + ( v >> 3 ) );
+}
 
 class weak_count;
 
@@ -382,7 +387,7 @@ public:
     {
         typedef typename sp_convert_reference<D>::type D2;
 
-        D2 d2( r.get_deleter() );
+        D2 d2( static_cast<D&&>( r.get_deleter() ) );
         pi_ = new sp_counted_impl_pd< typename std::unique_ptr<Y, D>::pointer, D2 >( r.get(), d2 );
 
 #ifdef BOOST_NO_EXCEPTIONS
@@ -489,15 +494,19 @@ public:
         return pi_ == 0;
     }
 
-    friend inline bool operator==(shared_count const & a, shared_count const & b) BOOST_SP_NOEXCEPT
+    bool operator==( shared_count const & r ) const BOOST_SP_NOEXCEPT
     {
-        return a.pi_ == b.pi_;
+        return pi_ == r.pi_;
     }
 
-    friend inline bool operator<(shared_count const & a, shared_count const & b) BOOST_SP_NOEXCEPT
+    bool operator==( weak_count const & r ) const BOOST_SP_NOEXCEPT;
+
+    bool operator<( shared_count const & r ) const BOOST_SP_NOEXCEPT
     {
-        return std::less<sp_counted_base *>()( a.pi_, b.pi_ );
+        return std::less<sp_counted_base *>()( pi_, r.pi_ );
     }
+
+    bool operator<( weak_count const & r ) const BOOST_SP_NOEXCEPT;
 
     void * get_deleter( sp_typeinfo_ const & ti ) const BOOST_SP_NOEXCEPT
     {
@@ -512,6 +521,11 @@ public:
     void * get_untyped_deleter() const BOOST_SP_NOEXCEPT
     {
         return pi_? pi_->get_untyped_deleter(): 0;
+    }
+
+    std::size_t hash_value() const BOOST_SP_NOEXCEPT
+    {
+        return sp_hash_pointer( pi_ );
     }
 };
 
@@ -620,14 +634,29 @@ public:
         return pi_ == 0;
     }
 
-    friend inline bool operator==(weak_count const & a, weak_count const & b) BOOST_SP_NOEXCEPT
+    bool operator==( weak_count const & r ) const BOOST_SP_NOEXCEPT
     {
-        return a.pi_ == b.pi_;
+        return pi_ == r.pi_;
     }
 
-    friend inline bool operator<(weak_count const & a, weak_count const & b) BOOST_SP_NOEXCEPT
+    bool operator==( shared_count const & r ) const BOOST_SP_NOEXCEPT
     {
-        return std::less<sp_counted_base *>()(a.pi_, b.pi_);
+        return pi_ == r.pi_;
+    }
+
+    bool operator<( weak_count const & r ) const BOOST_SP_NOEXCEPT
+    {
+        return std::less<sp_counted_base *>()( pi_, r.pi_ );
+    }
+
+    bool operator<( shared_count const & r ) const BOOST_SP_NOEXCEPT
+    {
+        return std::less<sp_counted_base *>()( pi_, r.pi_ );
+    }
+
+    std::size_t hash_value() const BOOST_SP_NOEXCEPT
+    {
+        return sp_hash_pointer( pi_ );
     }
 };
 
@@ -653,6 +682,16 @@ inline shared_count::shared_count( weak_count const & r, sp_nothrow_tag ) BOOST_
     }
 }
 
+inline bool shared_count::operator==( weak_count const & r ) const BOOST_SP_NOEXCEPT
+{
+    return pi_ == r.pi_;
+}
+
+inline bool shared_count::operator<( weak_count const & r ) const BOOST_SP_NOEXCEPT
+{
+    return std::less<sp_counted_base *>()( pi_, r.pi_ );
+}
+
 } // namespace detail
 
 } // namespace boost
@@ -661,7 +700,7 @@ inline shared_count::shared_count( weak_count const & r, sp_nothrow_tag ) BOOST_
 #pragma GCC diagnostic pop
 #endif
 
-#ifdef __BORLANDC__
+#if defined(__BORLANDC__) && !defined(__clang__)
 # pragma warn .8027     // Functions containing try are not expanded inline
 #endif
 

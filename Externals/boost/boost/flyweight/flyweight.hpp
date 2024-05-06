@@ -1,6 +1,6 @@
 /* Flyweight class. 
  *
- * Copyright 2006-2015 Joaquin M Lopez Munoz.
+ * Copyright 2006-2023 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -17,6 +17,8 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
+#include <boost/core/addressof.hpp>
+#include <boost/core/invoke_swap.hpp>
 #include <boost/detail/workaround.hpp>
 #include <boost/flyweight/detail/default_value_policy.hpp>
 #include <boost/flyweight/detail/flyweight_core.hpp>
@@ -37,10 +39,9 @@
 #include <boost/mpl/or.hpp>
 #include <boost/parameter/binding.hpp>
 #include <boost/type_traits/is_same.hpp>
-#include <boost/utility/swap.hpp>
 
 #if !defined(BOOST_NO_SFINAE)&&!defined(BOOST_NO_CXX11_HDR_INITIALIZER_LIST)
-#include <boost/utility/enable_if.hpp>
+#include <boost/core/enable_if.hpp>
 #include <boost/type_traits/is_convertible.hpp>
 #include <initializer_list>
 #endif
@@ -241,7 +242,9 @@ public:
   
   const key_type&   get_key()const{return core::key(h);}
   const value_type& get()const{return core::value(h);}
+  const value_type& operator*()const{return get();}
   operator const    value_type&()const{return get();}
+  const value_type* operator->()const{return boost::addressof(get());}
   
   /* exact type equality  */
     
@@ -252,7 +255,7 @@ public:
 
   /* modifiers */
 
-  void swap(flyweight& x){boost::swap(h,x.h);}
+  void swap(flyweight& x){boost::core::invoke_swap(h,x.h);}
   
 private:
   handle_type h;

@@ -1,4 +1,4 @@
-/* Copyright 2003-2019 Joaquin M Lopez Munoz.
+/* Copyright 2003-2020 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -700,7 +700,7 @@ struct hashed_index_node_trampoline:
   typedef hashed_index_node_impl<impl_allocator_type> impl_type;
 };
 
-template<typename Super,typename Category>
+template<typename Super>
 struct hashed_index_node:
   Super,hashed_index_node_trampoline<Super>
 {
@@ -709,13 +709,16 @@ private:
 
 public:
   typedef typename trampoline::impl_type          impl_type;
-  typedef hashed_index_node_alg<
-    impl_type,Category>                           node_alg;
   typedef typename trampoline::base_pointer       impl_base_pointer;
   typedef typename trampoline::const_base_pointer const_impl_base_pointer;
   typedef typename trampoline::pointer            impl_pointer;
   typedef typename trampoline::const_pointer      const_impl_pointer;
   typedef typename trampoline::difference_type    difference_type;
+
+  template<typename Category>
+  struct node_alg{
+    typedef hashed_index_node_alg<impl_type,Category> type;
+  };
 
   impl_pointer&      prior(){return trampoline::prior();}
   impl_pointer       prior()const{return trampoline::prior();}
@@ -752,14 +755,16 @@ public:
 
   /* interoperability with hashed_index_iterator */
 
+  template<typename Category>
   static void increment(hashed_index_node*& x)
   {
-    x=from_impl(node_alg::after(x->impl()));
+    x=from_impl(node_alg<Category>::type::after(x->impl()));
   }
 
+  template<typename Category>
   static void increment_local(hashed_index_node*& x)
   {
-    x=from_impl(node_alg::after_local(x->impl()));
+    x=from_impl(node_alg<Category>::type::after_local(x->impl()));
   }
 };
 

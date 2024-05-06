@@ -24,7 +24,7 @@
 #include <boost/type_traits/is_same.hpp>
 #endif
 
-namespace boost { namespace parameter { 
+namespace boost { namespace parameter {
 
     // A metafunction that, given an argument pack, returns the value type
     // of the parameter identified by the given keyword.  If no such parameter
@@ -100,7 +100,7 @@ namespace boost { namespace parameter {
 
 #include <boost/parameter/aux_/is_placeholder.hpp>
 
-namespace boost { namespace parameter { 
+namespace boost { namespace parameter {
 
     template <
         typename Parameters
@@ -132,7 +132,7 @@ namespace boost { namespace parameter {
 
 #include <boost/parameter/aux_/result_of0.hpp>
 
-namespace boost { namespace parameter { 
+namespace boost { namespace parameter {
 
     // A metafunction that, given an argument pack, returns the value type
     // of the parameter identified by the given keyword.  If no such parameter

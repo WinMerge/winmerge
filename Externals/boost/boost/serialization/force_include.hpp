@@ -9,7 +9,7 @@
 /////////1/////////2/////////3/////////4/////////5/////////6/////////7/////////8
 // force_include.hpp:
 
-// (C) Copyright 2002 Robert Ramey - http://www.rrsd.com . 
+// (C) Copyright 2002 Robert Ramey - http://www.rrsd.com .
 // Use, modification and distribution is subject to the Boost Software
 // License, Version 1.0. (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
@@ -18,7 +18,7 @@
 
 #include <boost/config.hpp>
 
-// the following help macro is to guarentee that certain coded
+// the following help macro is to guarantee that certain coded
 // is not removed by over-eager linker optimiser.  In certain cases
 // we create static objects must be created but are actually never
 // referenced - creation has a side-effect such as global registration

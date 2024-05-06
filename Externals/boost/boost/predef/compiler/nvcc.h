@@ -11,20 +11,21 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <boost/predef/version_number.h>
 #include <boost/predef/make.h>
 
-/*`
-[heading `BOOST_COMP_NVCC`]
+/* tag::reference[]
+= `BOOST_COMP_NVCC`
 
-[@https://en.wikipedia.org/wiki/NVIDIA_CUDA_Compiler NVCC] compiler.
+https://en.wikipedia.org/wiki/NVIDIA_CUDA_Compiler[NVCC] compiler.
 Version number available as major, minor, and patch beginning with version 7.5.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__NVCC__`] [__predef_detection__]]
+| `+__NVCC__+` | {predef_detection}
 
-    [[`__CUDACC_VER_MAJOR__`, `__CUDACC_VER_MINOR__`, `__CUDACC_VER_BUILD__`] [V.R.P]]
-    ]
- */
+| `+__CUDACC_VER_MAJOR__+`, `+__CUDACC_VER_MINOR__+`, `+__CUDACC_VER_BUILD__+` | V.R.P
+|===
+*/ // end::reference[]
 
 #define BOOST_COMP_NVCC BOOST_VERSION_NUMBER_NOT_AVAILABLE
 

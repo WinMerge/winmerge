@@ -11,19 +11,20 @@ http://www.boost.org/LICENSE_1_0.txt)
 #include <boost/predef/version_number.h>
 #include <boost/predef/make.h>
 
-/*`
-[heading `BOOST_OS_CYGWIN`]
+/* tag::reference[]
+= `BOOST_OS_CYGWIN`
 
-[@http://en.wikipedia.org/wiki/Cygwin Cygwin] evironment.
+http://en.wikipedia.org/wiki/Cygwin[Cygwin] evironment.
 
-[table
-    [[__predef_symbol__] [__predef_version__]]
+[options="header"]
+|===
+| {predef_symbol} | {predef_version}
 
-    [[`__CYGWIN__`] [__predef_detection__]]
+| `+__CYGWIN__+` | {predef_detection}
 
-    [[`CYGWIN_VERSION_API_MAJOR`, `CYGWIN_VERSION_API_MINOR`] [V.R.0]]
-    ]
- */
+| `CYGWIN_VERSION_API_MAJOR`, `CYGWIN_VERSION_API_MINOR` | V.R.0
+|===
+*/ // end::reference[]
 
 #define BOOST_OS_CYGWIN BOOST_VERSION_NUMBER_NOT_AVAILABLE
 

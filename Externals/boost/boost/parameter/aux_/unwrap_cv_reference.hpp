@@ -4,8 +4,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef UNWRAP_CV_REFERENCE_050328_HPP
-#define UNWRAP_CV_REFERENCE_050328_HPP
+#ifndef BOOST_PARAMETER_AUX_UNWRAP_CV_REFERENCE_HPP
+#define BOOST_PARAMETER_AUX_UNWRAP_CV_REFERENCE_HPP
 
 namespace boost {
 
@@ -60,7 +60,7 @@ namespace boost { namespace parameter { namespace aux {
 #else   // !defined(BOOST_PARAMETER_CAN_USE_MP11) || MSVC-14.0
 #include <boost/mpl/bool.hpp>
 #include <boost/type_traits/remove_reference.hpp>
-#if !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564)) && \
+#if !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564)) && \
     !BOOST_WORKAROUND(BOOST_GCC, < 40000)
 #include <boost/mpl/eval_if.hpp>
 #endif
@@ -119,13 +119,13 @@ namespace boost { namespace parameter { namespace aux {
         );
 
         typedef boost::mpl::bool_<
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
             is_cv_reference_wrapper::
-#endif 
+#endif
         value> type;
     };
 
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564)) || \
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564)) || \
     BOOST_WORKAROUND(BOOST_GCC, < 40000)
     template <
         typename T

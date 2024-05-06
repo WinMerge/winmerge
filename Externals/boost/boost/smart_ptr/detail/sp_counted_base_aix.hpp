@@ -25,6 +25,13 @@
 #include <builtins.h>
 #include <sys/atomic_op.h>
 
+#if defined(BOOST_SP_REPORT_IMPLEMENTATION)
+
+#include <boost/config/pragma_message.hpp>
+BOOST_PRAGMA_MESSAGE("Using AIX sp_counted_base")
+
+#endif
+
 namespace boost
 {
 
