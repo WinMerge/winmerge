@@ -4304,29 +4304,29 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Mutlak yol içeren yama dosyaları için '-p0' komut satırı seçeneğini kullanmayın"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "AI.sct WinMerge Eklenti Seçenekleri"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Komut istemini girin"
 
 #, c-format
 msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
-msgstr ""
+msgstr "OpenAI API anahtarınızı girin.\r\n - Bu eklentiyi kullanmak için OpenAI'ya kaydolmanız ve ücret ödemeniz gerekmektedir.\r\n - API anahtarı ortam değişkeni %1'e kaydedilir."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "OpenAI API anahtarı için ortam değişkeni adı"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API anahtarı"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Sıcaklık"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Maksimum uzunluk"
 
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "OpenAI API anahtarı değişti. Değişiklikleri uygulamak için lütfen WinMerge'i yeniden başlatın."
