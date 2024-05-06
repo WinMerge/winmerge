@@ -12,16 +12,17 @@
 //
 
 
+#if defined(_MSC_VER) && !defined(_CRT_SECURE_NO_WARNINGS)
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+
 #include "Poco/Timezone.h"
 #include <ctime>
 
 
 #if defined(POCO_OS_FAMILY_WINDOWS)
-#if defined(_WIN32_WCE)
-#include "Timezone_WINCE.cpp"
-#else
 #include "Timezone_WIN32.cpp"
-#endif
 #elif defined(POCO_VXWORKS)
 #include "Timezone_VX.cpp"
 #else

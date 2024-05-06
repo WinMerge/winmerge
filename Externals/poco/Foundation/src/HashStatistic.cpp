@@ -19,10 +19,10 @@ namespace Poco {
 
 
 HashStatistic::HashStatistic(
-	UInt32 tableSize, 
-	UInt32 numEntries, 
-	UInt32 numZeroEntries, 
-	UInt32 maxEntry, 
+	UInt32 tableSize,
+	UInt32 numEntries,
+	UInt32 numZeroEntries,
+	UInt32 maxEntry,
 	std::vector<UInt32> details):
 	_sizeOfTable(tableSize),
 	_numberOfEntries(numEntries),
@@ -46,7 +46,7 @@ std::string HashStatistic::toString() const
 	str << "  MaxEntry: " << _maxEntriesPerHash << "\n";
 	str << "  AvgEntry: " << avgEntriesPerHash() << ", excl Zero slots: " << avgEntriesPerHashExclZeroEntries() << "\n";
 	str << "  DetailedStatistics: \n";
-	for (size_t i = 0; i < _detailedEntriesPerHash.size(); ++i)
+	for (int i = 0; i < _detailedEntriesPerHash.size(); ++i)
 	{
 		// 10 entries per line
 		if (i % 10 == 0)

@@ -82,6 +82,20 @@ Notification* TimedNotificationQueue::dequeueNotification()
 }
 
 
+Notification* TimedNotificationQueue::dequeueNextNotification()
+{
+	FastMutex::ScopedLock lock(_mutex);
+
+	NfQueue::iterator it = _nfQueue.begin();
+	if (it != _nfQueue.end())
+	{
+		Notification::Ptr pNf = it->second;
+		_nfQueue.erase(it);
+		return pNf.duplicate();
+	}
+	return 0;
+}
+
 Notification* TimedNotificationQueue::waitDequeueNotification()
 {
 	for (;;)
@@ -132,7 +146,7 @@ Notification* TimedNotificationQueue::waitDequeueNotification(long milliseconds)
 				{
 					return dequeueOne(it).duplicate();
 				}
-				else 
+				else
 				{
 					milliseconds -= static_cast<long>((now.elapsed() + 999)/1000);
 					continue;
@@ -176,7 +190,7 @@ bool TimedNotificationQueue::empty() const
 	return _nfQueue.empty();
 }
 
-	
+
 int TimedNotificationQueue::size() const
 {
 	FastMutex::ScopedLock lock(_mutex);
@@ -187,7 +201,7 @@ int TimedNotificationQueue::size() const
 void TimedNotificationQueue::clear()
 {
 	FastMutex::ScopedLock lock(_mutex);
-	_nfQueue.clear();	
+	_nfQueue.clear();
 }
 
 

@@ -14,9 +14,11 @@
 
 #include "Poco/SharedLibrary_WIN32U.h"
 #include "Poco/UnicodeConverter.h"
-#include "Poco/File.h"
 #include "Poco/Path.h"
 #include "Poco/UnWindows.h"
+#include "Poco/Error.h"
+#include "Poco/Format.h"
+#include "Poco/String.h"
 
 
 namespace Poco {
@@ -42,14 +44,20 @@ void SharedLibraryImpl::loadImpl(const std::string& path, int /*flags*/)
 
 	if (_handle) throw LibraryAlreadyLoadedException(_path);
 	DWORD flags(0);
-#if !defined(_WIN32_WCE)
+
 	Path p(path);
 	if (p.isAbsolute()) flags |= LOAD_WITH_ALTERED_SEARCH_PATH;
-#endif
-	const Poco::File tmpFile(path);
-	
-	_handle = LoadLibraryExW(tmpFile.wpath().c_str(), 0, flags);
-	if (!_handle) throw LibraryLoadException(path);
+
+	std::wstring upath;
+	UnicodeConverter::toUTF16(path, upath);
+	_handle = LoadLibraryExW(upath.c_str(), 0, flags);
+	if (!_handle)
+	{
+		DWORD errn = Error::last();
+		std::string err;
+		Poco::format(err, "Error %lu while loading [%s]: [%s]", errn, path, Poco::trim(Error::getMessage(errn)));
+		throw LibraryLoadException(err);
+	}
 	_path = path;
 }
 
@@ -69,6 +77,7 @@ void SharedLibraryImpl::unloadImpl()
 
 bool SharedLibraryImpl::isLoadedImpl() const
 {
+	FastMutex::ScopedLock lock(_mutex);
 	return _handle != 0;
 }
 
@@ -79,13 +88,7 @@ void* SharedLibraryImpl::findSymbolImpl(const std::string& name)
 
 	if (_handle)
 	{
-#if defined(_WIN32_WCE)
-		std::wstring uname;
-		UnicodeConverter::toUTF16(name, uname);
-		return (void*) GetProcAddressW((HMODULE) _handle, uname.c_str());
-#else
 		return (void*) GetProcAddress((HMODULE) _handle, name.c_str());
-#endif
 	}
 	else return 0;
 }

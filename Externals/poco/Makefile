@@ -6,6 +6,7 @@
 
 sinclude config.make
 sinclude config.build
+POCO_CONFIG_INCLUDED = 1
 
 ifndef POCO_BASE
 $(warning WARNING: POCO_BASE is not defined. Assuming current directory.)
@@ -33,14 +34,7 @@ endif
 ifeq ($(findstring MINGW,$(POCO_HOST_OSNAME)),MINGW)
 POCO_HOST_OSNAME = MinGW
 endif
-ifdef POCO_VERBOSE
-$(info POCO_HOST_OSNAME    = $(POCO_HOST_OSNAME))
-endif
-
 POCO_HOST_OSARCH ?= $(subst /,-,$(shell uname -m | tr ' ' _))
-ifdef POCO_VERBOSE
-$(info POCO_HOST_OSARCH    = $(POCO_HOST_OSARCH))
-endif
 
 #
 # If POCO_CONFIG is not set, use the OS name as configuration name
@@ -78,14 +72,14 @@ ifdef POCO_VERBOSE
 $(info OSARCH              = $(OSARCH))
 endif
 
-.PHONY: poco all libexecs cppunit tests samples cleans clean distclean install
+.PHONY: poco all libexecs cppunit tests samples cleans clean distclean install uninstall
 
 # TESTS and SAMPLES are set in config.make
 poco: libexecs $(if $(TESTS),tests) $(if $(SAMPLES),samples)
 all: libexecs tests samples
 
 INSTALLDIR = $(DESTDIR)$(POCO_PREFIX)
-COMPONENTS = Foundation Encodings XML JSON Util Net
+COMPONENTS = Foundation Encodings XML JSON Util Net Crypto NetSSL_OpenSSL Data Data/SQLite Data/ODBC Data/MySQL Data/PostgreSQL ActiveRecord ActiveRecord/Compiler Zip PageCompiler PageCompiler/File2Page JWT CppParser PDF MongoDB Redis Prometheus
 
 cppunit:
 	$(MAKE) -C $(POCO_BASE)/CppUnit
@@ -112,10 +106,20 @@ endif
 	find $(POCO_BUILD)/lib/$(OSNAME)/$(OSARCH) -name "libPoco*" -type f -exec cp -f  {} $(INSTALLDIR)/lib \;
 	find $(POCO_BUILD)/lib/$(OSNAME)/$(OSARCH) -name "libPoco*" -type l -exec cp -Rf {} $(INSTALLDIR)/lib \;
 
-libexecs =  Foundation-libexec Encodings-libexec XML-libexec JSON-libexec Util-libexec Net-libexec
-tests    =  Foundation-tests Encodings-tests XML-tests JSON-tests Util-tests Net-tests
-samples  =  Foundation-samples Encodings-samples XML-samples JSON-samples Util-samples Net-samples
-cleans   =  Foundation-clean Encodings-clean XML-clean JSON-clean Util-clean Net-clean
+uninstall:
+	[ -d $(INSTALLDIR)/include/Poco ] && rm -rf $(INSTALLDIR)/include/Poco || echo "No installed Poco headers found";
+	[ -d $(INSTALLDIR)/include/CppUnit ] && rm -rf $(INSTALLDIR)/include/CppUnit || echo "No installed CppUnit headers found";
+ifeq ($(OSNAME), Cygwin)
+	find $(INSTALLDIR)/bin -name "cygPoco*" -type f -exec rm -f  {} \;
+	find $(INSTALLDIR)/bin -name "cygPoco*" -type l -exec rm -f {} \;
+endif
+	find $(INSTALLDIR)/lib -name "libPoco*" -type f -exec rm -f  {} \;
+	find $(INSTALLDIR)/lib -name "libPoco*" -type l -exec rm -f {} \;
+
+libexecs =  Foundation-libexec Encodings-libexec XML-libexec JSON-libexec Util-libexec Net-libexec Crypto-libexec NetSSL_OpenSSL-libexec Data-libexec Data/SQLite-libexec Data/ODBC-libexec Data/MySQL-libexec Data/PostgreSQL-libexec ActiveRecord-libexec ActiveRecord/Compiler-libexec Zip-libexec JWT-libexec PageCompiler-libexec PageCompiler/File2Page-libexec CppParser-libexec PDF-libexec MongoDB-libexec Redis-libexec Prometheus-libexec
+tests    =  Foundation-tests Encodings-tests XML-tests JSON-tests Util-tests Net-tests Crypto-tests NetSSL_OpenSSL-tests Data-tests Data/SQLite-tests Data/ODBC-tests Data/MySQL-tests Data/PostgreSQL-tests ActiveRecord-tests JWT-tests Zip-tests CppParser-tests PDF-tests MongoDB-tests Redis-tests Prometheus-tests
+samples  =  Foundation-samples Encodings-samples XML-samples JSON-samples Util-samples Net-samples Crypto-samples NetSSL_OpenSSL-samples Data-samples MongoDB-samples Prometheus-samples Zip-samples PageCompiler-samples PDF-samples
+cleans   =  Foundation-clean Encodings-clean XML-clean JSON-clean Util-clean Net-clean Crypto-clean NetSSL_OpenSSL-clean Data-clean Data/SQLite-clean Data/ODBC-clean Data/MySQL-clean Data/PostgreSQL-clean ActiveRecord-clean ActiveRecord/Compiler-clean JWT-clean Zip-clean PageCompiler-clean PageCompiler/File2Page-clean CppParser-clean PDF-clean MongoDB-clean Redis-clean Prometheus-clean
 
 .PHONY: $(libexecs)
 .PHONY: $(tests)
@@ -127,13 +131,13 @@ tests: $(filter-out $(foreach f,$(OMIT),$f%),$(tests))
 samples: $(filter-out $(foreach f,$(OMIT),$f%),$(samples))
 cleans: $(filter-out $(foreach f,$(OMIT),$f%),$(cleans))
 
-Foundation-libexec: 
+Foundation-libexec:
 	$(MAKE) -C $(POCO_BASE)/Foundation
 
 Foundation-tests: Foundation-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Foundation/testsuite
 
-Foundation-samples: Foundation-libexec 
+Foundation-samples: Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/Foundation/samples
 
 Foundation-clean:
@@ -141,13 +145,13 @@ Foundation-clean:
 	$(MAKE) -C $(POCO_BASE)/Foundation/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/Foundation/samples clean
 
-Encodings-libexec:  Foundation-libexec
+Encodings-libexec: Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/Encodings
 
 Encodings-tests: Encodings-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Encodings/testsuite
 
-Encodings-samples: Encodings-libexec 
+Encodings-samples: Encodings-libexec
 	$(MAKE) -C $(POCO_BASE)/Encodings/samples
 
 Encodings-clean:
@@ -155,13 +159,13 @@ Encodings-clean:
 	$(MAKE) -C $(POCO_BASE)/Encodings/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/Encodings/samples clean
 
-XML-libexec:  Foundation-libexec
+XML-libexec: Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/XML
 
 XML-tests: XML-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/XML/testsuite
 
-XML-samples: XML-libexec 
+XML-samples: XML-libexec
 	$(MAKE) -C $(POCO_BASE)/XML/samples
 
 XML-clean:
@@ -169,13 +173,13 @@ XML-clean:
 	$(MAKE) -C $(POCO_BASE)/XML/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/XML/samples clean
 
-JSON-libexec:  Foundation-libexec
+JSON-libexec: Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/JSON
 
 JSON-tests: JSON-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/JSON/testsuite
 
-JSON-samples: JSON-libexec 
+JSON-samples: JSON-libexec
 	$(MAKE) -C $(POCO_BASE)/JSON/samples
 
 JSON-clean:
@@ -183,13 +187,13 @@ JSON-clean:
 	$(MAKE) -C $(POCO_BASE)/JSON/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/JSON/samples clean
 
-Util-libexec:  Foundation-libexec XML-libexec JSON-libexec
+Util-libexec: Foundation-libexec XML-libexec JSON-libexec
 	$(MAKE) -C $(POCO_BASE)/Util
 
 Util-tests: Util-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Util/testsuite
 
-Util-samples: Util-libexec 
+Util-samples: Util-libexec
 	$(MAKE) -C $(POCO_BASE)/Util/samples
 
 Util-clean:
@@ -197,19 +201,222 @@ Util-clean:
 	$(MAKE) -C $(POCO_BASE)/Util/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/Util/samples clean
 
-Net-libexec:  Foundation-libexec
+Net-libexec: Foundation-libexec
 	$(MAKE) -C $(POCO_BASE)/Net
 
 Net-tests: Net-libexec cppunit
 	$(MAKE) -C $(POCO_BASE)/Net/testsuite
 
-Net-samples: Net-libexec  Foundation-libexec XML-libexec JSON-libexec Util-libexec
+Net-samples: Net-libexec  Foundation-libexec XML-libexec Util-libexec
 	$(MAKE) -C $(POCO_BASE)/Net/samples
 
 Net-clean:
 	$(MAKE) -C $(POCO_BASE)/Net clean
 	$(MAKE) -C $(POCO_BASE)/Net/testsuite clean
 	$(MAKE) -C $(POCO_BASE)/Net/samples clean
+
+Crypto-libexec: Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/Crypto
+
+Crypto-tests: Crypto-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Crypto/testsuite
+
+Crypto-samples: Crypto-libexec  Foundation-libexec Util-libexec
+	$(MAKE) -C $(POCO_BASE)/Crypto/samples
+
+Crypto-clean:
+	$(MAKE) -C $(POCO_BASE)/Crypto clean
+	$(MAKE) -C $(POCO_BASE)/Crypto/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Crypto/samples clean
+
+NetSSL_OpenSSL-libexec: Foundation-libexec Net-libexec Util-libexec Crypto-libexec
+	$(MAKE) -C $(POCO_BASE)/NetSSL_OpenSSL
+
+NetSSL_OpenSSL-tests: NetSSL_OpenSSL-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/NetSSL_OpenSSL/testsuite
+
+NetSSL_OpenSSL-samples: NetSSL_OpenSSL-libexec
+	$(MAKE) -C $(POCO_BASE)/NetSSL_OpenSSL/samples
+
+NetSSL_OpenSSL-clean:
+	$(MAKE) -C $(POCO_BASE)/NetSSL_OpenSSL clean
+	$(MAKE) -C $(POCO_BASE)/NetSSL_OpenSSL/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/NetSSL_OpenSSL/samples clean
+
+Data-libexec: Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/Data
+
+DataTest-libexec: Data-libexec
+	$(MAKE) -C $(POCO_BASE)/Data/DataTest
+
+Data-tests: Data-libexec DataTest-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Data/testsuite
+
+Data-samples: Data-libexec  Data-libexec Data/SQLite-libexec Net-libexec
+	$(MAKE) -C $(POCO_BASE)/Data/samples
+
+Data-clean:
+	$(MAKE) -C $(POCO_BASE)/Data clean
+	$(MAKE) -C $(POCO_BASE)/Data/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Data/samples clean
+
+Data/SQLite-libexec: Foundation-libexec Data-libexec
+	$(MAKE) -C $(POCO_BASE)/Data/SQLite
+
+Data/SQLite-tests: Data/SQLite-libexec DataTest-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Data/SQLite/testsuite
+
+Data/SQLite-clean:
+	$(MAKE) -C $(POCO_BASE)/Data/SQLite clean
+	$(MAKE) -C $(POCO_BASE)/Data/SQLite/testsuite clean
+
+Data/ODBC-libexec: Foundation-libexec Data-libexec
+	$(MAKE) -C $(POCO_BASE)/Data/ODBC
+
+Data/ODBC-tests: Data/ODBC-libexec DataTest-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Data/ODBC/testsuite
+
+Data/ODBC-clean:
+	$(MAKE) -C $(POCO_BASE)/Data/ODBC clean
+	$(MAKE) -C $(POCO_BASE)/Data/ODBC/testsuite clean
+
+Data/MySQL-libexec: Foundation-libexec Data-libexec
+	$(MAKE) -C $(POCO_BASE)/Data/MySQL
+
+Data/MySQL-tests: Data/MySQL-libexec DataTest-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Data/MySQL/testsuite
+
+Data/MySQL-clean:
+	$(MAKE) -C $(POCO_BASE)/Data/MySQL clean
+	$(MAKE) -C $(POCO_BASE)/Data/MySQL/testsuite clean
+
+Data/PostgreSQL-libexec: Foundation-libexec Data-libexec
+	$(MAKE) -C $(POCO_BASE)/Data/PostgreSQL
+
+Data/PostgreSQL-tests: Data/PostgreSQL-libexec DataTest-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Data/PostgreSQL/testsuite
+
+Data/PostgreSQL-clean:
+	$(MAKE) -C $(POCO_BASE)/Data/PostgreSQL clean
+	$(MAKE) -C $(POCO_BASE)/Data/PostgreSQL/testsuite clean
+
+ActiveRecord-libexec: Foundation-libexec Data-libexec
+	$(MAKE) -C $(POCO_BASE)/ActiveRecord
+
+ActiveRecord-tests: ActiveRecord-libexec Data/SQLite-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/ActiveRecord/testsuite
+
+ActiveRecord-clean:
+	$(MAKE) -C $(POCO_BASE)/ActiveRecord clean
+	$(MAKE) -C $(POCO_BASE)/ActiveRecord/testsuite clean
+
+ActiveRecord/Compiler-libexec: Foundation-libexec Util-libexec
+	$(MAKE) -C $(POCO_BASE)/ActiveRecord/Compiler
+
+ActiveRecord/Compiler-clean:
+	$(MAKE) -C $(POCO_BASE)/ActiveRecord/Compiler clean
+
+Zip-libexec: Foundation-libexec Net-libexec Util-libexec XML-libexec
+	$(MAKE) -C $(POCO_BASE)/Zip
+
+Zip-tests: Zip-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Zip/testsuite
+
+Zip-samples: Zip-libexec
+	$(MAKE) -C $(POCO_BASE)/Zip/samples
+
+Zip-clean:
+	$(MAKE) -C $(POCO_BASE)/Zip clean
+	$(MAKE) -C $(POCO_BASE)/Zip/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Zip/samples clean
+
+PageCompiler-libexec: Net-libexec Util-libexec XML-libexec Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/PageCompiler
+
+PageCompiler-samples: PageCompiler-libexec
+	$(MAKE) -C $(POCO_BASE)/PageCompiler/samples
+
+PageCompiler-clean:
+	$(MAKE) -C $(POCO_BASE)/PageCompiler clean
+	$(MAKE) -C $(POCO_BASE)/PageCompiler/samples clean
+
+PageCompiler/File2Page-libexec: Net-libexec Util-libexec XML-libexec Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/PageCompiler/File2Page
+
+PageCompiler/File2Page-clean:
+	$(MAKE) -C $(POCO_BASE)/PageCompiler/File2Page clean
+
+JWT-libexec: Foundation-libexec JSON-libexec Crypto-libexec
+	$(MAKE) -C $(POCO_BASE)/JWT
+
+JWT-tests: JWT-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/JWT/testsuite
+
+JWT-clean:
+	$(MAKE) -C $(POCO_BASE)/JWT clean
+	$(MAKE) -C $(POCO_BASE)/JWT/testsuite clean
+
+CppParser-libexec: Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/CppParser
+
+CppParser-tests: CppParser-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/CppParser/testsuite
+
+CppParser-clean:
+	$(MAKE) -C $(POCO_BASE)/CppParser clean
+	$(MAKE) -C $(POCO_BASE)/CppParser/testsuite clean
+
+PDF-libexec: Util-libexec XML-libexec JSON-libexec Foundation-libexec
+	$(MAKE) -C $(POCO_BASE)/PDF
+
+PDF-tests: PDF-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/PDF/testsuite
+
+PDF-samples: PDF-libexec
+	$(MAKE) -C $(POCO_BASE)/PDF/samples
+
+PDF-clean:
+	$(MAKE) -C $(POCO_BASE)/PDF clean
+	$(MAKE) -C $(POCO_BASE)/PDF/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/PDF/samples clean
+
+MongoDB-libexec: Foundation-libexec Net-libexec
+	$(MAKE) -C $(POCO_BASE)/MongoDB
+
+MongoDB-tests: MongoDB-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/MongoDB/testsuite
+
+MongoDB-samples: MongoDB-libexec
+	$(MAKE) -C $(POCO_BASE)/MongoDB/samples
+
+MongoDB-clean:
+	$(MAKE) -C $(POCO_BASE)/MongoDB clean
+	$(MAKE) -C $(POCO_BASE)/MongoDB/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/MongoDB/samples clean
+
+Redis-libexec: Foundation-libexec Net-libexec
+	$(MAKE) -C $(POCO_BASE)/Redis
+
+Redis-tests: Redis-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Redis/testsuite
+
+Redis-clean:
+	$(MAKE) -C $(POCO_BASE)/Redis clean
+	$(MAKE) -C $(POCO_BASE)/Redis/testsuite clean
+
+Prometheus-libexec: Foundation-libexec Net-libexec
+	$(MAKE) -C $(POCO_BASE)/Prometheus
+
+Prometheus-tests: Prometheus-libexec cppunit
+	$(MAKE) -C $(POCO_BASE)/Prometheus/testsuite
+
+Prometheus-samples: Prometheus-libexec Util-libexec
+	$(MAKE) -C $(POCO_BASE)/Prometheus/samples
+
+Prometheus-clean:
+	$(MAKE) -C $(POCO_BASE)/Prometheus clean
+	$(MAKE) -C $(POCO_BASE)/Prometheus/testsuite clean
+	$(MAKE) -C $(POCO_BASE)/Prometheus/samples clean
 
 clean: cleans CppUnit-clean
 

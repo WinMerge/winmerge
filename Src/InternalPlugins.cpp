@@ -472,7 +472,9 @@ protected:
 	{
 		TempFile stderrFile;
 		String sOutputFile = stderrFile.Create();
-		if (_wgetenv(L"WINMERGE_HOME") == nullptr)
+		size_t size = 0;
+		_wgetenv_s(&size, nullptr, 0, L"WINMERGE_HOME");
+		if (size == 0)
 			_wputenv_s(L"WINMERGE_HOME", env::GetProgPath().c_str());
 		String command = sCmd;
 		strutils::replace(command, _T("${WINMERGE_HOME}"), env::GetProgPath());

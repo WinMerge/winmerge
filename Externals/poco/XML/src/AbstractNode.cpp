@@ -144,6 +144,12 @@ Node* AbstractNode::insertBefore(Node* newChild, Node* refChild)
 }
 
 
+Node* AbstractNode::insertAfterNP(Node* newChild, Node* refChild)
+{
+	throw DOMException(DOMException::HIERARCHY_REQUEST_ERR);
+}
+
+
 Node* AbstractNode::replaceChild(Node* newChild, Node* oldChild)
 {
 	throw DOMException(DOMException::HIERARCHY_REQUEST_ERR);
@@ -233,7 +239,7 @@ void AbstractNode::addEventListener(const XMLString& type, EventListener* listen
 		_pEventDispatcher->removeEventListener(type, listener, useCapture);
 	else
 		_pEventDispatcher = new EventDispatcher;
-	
+
 	_pEventDispatcher->addEventListener(type, listener, useCapture);
 }
 
@@ -276,7 +282,7 @@ void AbstractNode::captureEvent(Event* evt)
 {
 	if (_pParent)
 		_pParent->captureEvent(evt);
-	
+
 	if (_pEventDispatcher && !evt->isStopped())
 	{
 		evt->setCurrentTarget(this);

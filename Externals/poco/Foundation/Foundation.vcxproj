@@ -446,6 +446,42 @@
     <ClCompile Include="src\NumberFormatter.cpp" />
     <ClCompile Include="src\NumberParser.cpp" />
     <ClCompile Include="src\NumericString.cpp" />
+    <ClCompile Include="src\pcre2_auto_possess.c" />
+    <ClCompile Include="src\pcre2_chartables.c" />
+    <ClCompile Include="src\pcre2_compile.c" />
+    <ClCompile Include="src\pcre2_config.c" />
+    <ClCompile Include="src\pcre2_context.c" />
+    <ClCompile Include="src\pcre2_convert.c" />
+    <ClCompile Include="src\pcre2_dfa_match.c" />
+    <ClCompile Include="src\pcre2_error.c" />
+    <ClCompile Include="src\pcre2_extuni.c" />
+    <ClCompile Include="src\pcre2_find_bracket.c" />
+    <ClCompile Include="src\pcre2_jit_compile.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_jit_match.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_jit_misc.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_maketables.c" />
+    <ClCompile Include="src\pcre2_match.c" />
+    <ClCompile Include="src\pcre2_match_data.c" />
+    <ClCompile Include="src\pcre2_newline.c" />
+    <ClCompile Include="src\pcre2_ord2utf.c" />
+    <ClCompile Include="src\pcre2_pattern_info.c" />
+    <ClCompile Include="src\pcre2_script_run.c" />
+    <ClCompile Include="src\pcre2_serialize.c" />
+    <ClCompile Include="src\pcre2_string_utils.c" />
+    <ClCompile Include="src\pcre2_study.c" />
+    <ClCompile Include="src\pcre2_substitute.c" />
+    <ClCompile Include="src\pcre2_substring.c" />
+    <ClCompile Include="src\pcre2_tables.c" />
+    <ClCompile Include="src\pcre2_ucd.c" />
+    <ClCompile Include="src\pcre2_ucptables.c" />
+    <ClCompile Include="src\pcre2_valid_utf.c" />
+    <ClCompile Include="src\pcre2_xclass.c" />
     <ClCompile Include="src\RandomStream.cpp" />
     <ClCompile Include="src\RefCountedObject.cpp" />
     <ClCompile Include="src\StringTokenizer.cpp" />
@@ -510,19 +546,6 @@
     <ClCompile Include="src\ThreadTarget.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\RegularExpression.cpp" />
-    <ClCompile Include="src\pcre_chartables.c" />
-    <ClCompile Include="src\pcre_compile.c" />
-    <ClCompile Include="src\pcre_exec.c" />
-    <ClCompile Include="src\pcre_fullinfo.c" />
-    <ClCompile Include="src\pcre_globals.c" />
-    <ClCompile Include="src\pcre_maketables.c" />
-    <ClCompile Include="src\pcre_newline.c" />
-    <ClCompile Include="src\pcre_ord2utf8.c" />
-    <ClCompile Include="src\pcre_study.c" />
-    <ClCompile Include="src\pcre_tables.c" />
-    <ClCompile Include="src\pcre_ucd.c" />
-    <ClCompile Include="src\pcre_valid_utf8.c" />
-    <ClCompile Include="src\pcre_xclass.c" />
     <ClCompile Include="src\AbstractObserver.cpp" />
     <ClCompile Include="src\Notification.cpp" />
     <ClCompile Include="src\NotificationCenter.cpp" />
@@ -708,9 +731,11 @@
     <ClInclude Include="include\Poco\Timer.h" />
     <ClInclude Include="include\Poco\Windows1250Encoding.h" />
     <ClInclude Include="include\Poco\Windows1251Encoding.h" />
-    <ClInclude Include="src\pcre.h" />
-    <ClInclude Include="src\pcre_config.h" />
-    <ClInclude Include="src\pcre_internal.h" />
+    <ClInclude Include="src\pcre2.h" />
+    <ClInclude Include="src\pcre2_config.h" />
+    <ClInclude Include="src\pcre2_internal.h" />
+    <ClInclude Include="src\pcre2_intmodedep.h" />
+    <ClInclude Include="src\pcre2_ucp.h" />
     <ClInclude Include="src\ucp.h" />
     <ClInclude Include="include\Poco\RegularExpression.h" />
     <ClInclude Include="include\Poco\AbstractObserver.h" />

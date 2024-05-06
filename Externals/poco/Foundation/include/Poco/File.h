@@ -23,12 +23,8 @@
 #include <vector>
 
 
-#if defined(POCO_OS_FAMILY_WINDOWS) 
-#if defined(_WIN32_WCE)
-#include "File_WINCE.h"
-#else
+#if defined(POCO_OS_FAMILY_WINDOWS)
 #include "Poco/File_WIN32U.h"
-#endif
 #elif defined(POCO_VXWORKS)
 #include "Poco/File_VX.h"
 #elif defined(POCO_OS_FAMILY_UNIX)
@@ -103,7 +99,7 @@ public:
 	File& operator = (const Path& path);
 		/// Assignment operator.
 
-	void swap(File& file);
+	void swap(File& file) noexcept;
 		/// Swaps the file with another one.
 
 	const std::string& path() const;
@@ -323,7 +319,7 @@ inline bool File::operator >= (const File& file) const
 }
 
 
-inline void swap(File& f1, File& f2)
+inline void swap(File& f1, File& f2) noexcept
 {
 	f1.swap(f2);
 }

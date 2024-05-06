@@ -19,7 +19,7 @@
 
 
 #include "Poco/Foundation.h"
-#if defined(sun) || defined(__APPLE__) || defined(__osf__) || defined(__QNX__) || defined(_AIX)
+#if defined(sun) || defined(__APPLE__) || defined(__osf__) || defined(__QNX__) || defined(_AIX) || defined(__GNU__)
 #include <semaphore.h>
 #endif
 
@@ -30,16 +30,16 @@ namespace Poco {
 class Foundation_API NamedEventImpl
 {
 protected:
-	NamedEventImpl(const std::string& name);	
+	NamedEventImpl(const std::string& name);
 	~NamedEventImpl();
 	void setImpl();
 	void waitImpl();
-	
+
 private:
 	std::string getFileName();
 
 	std::string _name;
-#if defined(sun) || defined(__APPLE__) || defined(__osf__) || defined(__QNX__) || defined(_AIX)
+#if defined(sun) || defined(__APPLE__) || defined(__osf__) || defined(__QNX__) || defined(_AIX) || defined(__GNU__)
 	sem_t* _sem;
 #else
 	int _semid;  // semaphore id

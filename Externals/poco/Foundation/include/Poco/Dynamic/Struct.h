@@ -32,6 +32,37 @@ namespace Poco {
 namespace Dynamic {
 
 
+template <typename S, typename I = typename S::ConstIterator>
+std::string structToString(const S& data, bool wrap = true)
+	/// Utility function for converting DynamicStruct to std::string.
+	/// Set wrap to false in order to prevent string values wrapping
+	/// (useful to prevent JSON fragments from being treated as strings).
+{
+	std::string val;
+	val.append("{ ");
+	I it = data.begin();
+	I itEnd = data.end();
+	if (!data.empty())
+	{
+		Var key(it->first);
+		Impl::appendJSONKey(val, key);
+		val.append(": ");
+		Impl::appendJSONValue(val, it->second, wrap);
+		++it;
+	}
+	for (; it != itEnd; ++it)
+	{
+		val.append(", ");
+		Var key(it->first);
+		Impl::appendJSONKey(val, key);
+		val.append(": ");
+		Impl::appendJSONValue(val, it->second, wrap);
+	}
+	val.append(" }");
+	return val;
+}
+
+
 template <typename K, typename M = std::map<K, Var>, typename S = std::set<K>>
 class Struct
 	/// Struct allows to define a named collection of Var objects.
@@ -172,8 +203,8 @@ public:
 	{
 		_data.clear();
 	}
-	
-	inline void swap(Struct& other)
+
+	inline void swap(Struct& other) noexcept
 		/// Swap content of Struct with another Struct
 	{
 		_data.swap(other._data);
@@ -226,11 +257,20 @@ public:
 		return it->second;
 	}
 
-	std::string toString() const
+	std::string toString(bool wrap = true) const
+		/// Returns the DynamicStruct as string.
+		///
+		/// To prevent unwanted string wrapping
+		/// (eg. when a value is JSON string),
+		/// `wrap` should be false. Note, however,
+		/// that wrap argument is of a limited utility
+		/// because it applies to the entire Struct,
+		/// so it should not be relied on when mixed content
+		/// (ie. plain string, which should be wrapped,
+		/// and JSON-as-string entries, which shouldn't)
+		/// is held.
 	{
-		std::string str;
-		Var(*this).template convert<std::string>(str);
-		return str;
+		return structToString<Data, ConstIterator>(_data, wrap);
 	}
 
 private:
@@ -246,6 +286,25 @@ private:
 
 	Data _data;
 };
+
+
+#if defined(POCO_OS_FAMILY_WINDOWS)
+
+extern template class Struct<std::string>;
+extern template class Struct<int>;
+
+extern template class Struct<std::string, Poco::OrderedMap<std::string, Var>, Poco::OrderedSet<std::string>>;
+extern template class Struct<int, OrderedMap<int, Var>, OrderedSet<int>>;
+
+#else
+
+extern template class Foundation_API Struct<std::string>;
+extern template class Foundation_API Struct<int>;
+
+extern template class Foundation_API Struct<std::string, Poco::OrderedMap<std::string, Var>, Poco::OrderedSet<std::string>>;
+extern template class Foundation_API Struct<int, OrderedMap<int, Var>, OrderedSet<int>>;
+
+#endif
 
 
 template <>
@@ -264,7 +323,7 @@ public:
 	~VarHolderImpl()
 	{
 	}
-	
+
 	const std::type_info& type() const
 	{
 		return typeid(ValueType);
@@ -279,7 +338,7 @@ public:
 	{
 		throw BadCastException("Cannot cast Struct type to Int16");
 	}
-	
+
 	void convert(Int32&) const
 	{
 		throw BadCastException("Cannot cast Struct type to Int32");
@@ -299,7 +358,7 @@ public:
 	{
 		throw BadCastException("Cannot cast Struct type to UInt16");
 	}
-	
+
 	void convert(UInt32&) const
 	{
 		throw BadCastException("Cannot cast Struct type to UInt32");
@@ -332,26 +391,7 @@ public:
 
 	void convert(std::string& val) const
 	{
-		val.append("{ ");
-		ValueType::ConstIterator it = _val.begin();
-		ValueType::ConstIterator itEnd = _val.end();
-		if (!_val.empty())
-		{
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-			++it;
-		}
-		for (; it != itEnd; ++it)
-		{
-			val.append(", ");
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-		}
-		val.append(" }");
+		val = structToString(_val);
 	}
 
 	void convert(Poco::DateTime&) const
@@ -373,7 +413,7 @@ public:
 	{
 		return cloneHolder(pVarHolder, _val);
 	}
-	
+
 	const ValueType& value() const
 	{
 		return _val;
@@ -413,7 +453,7 @@ public:
 	{
 		return false;
 	}
-	
+
 	std::size_t size() const
 	{
 		return _val.size();
@@ -518,26 +558,7 @@ public:
 
 	void convert(std::string& val) const
 	{
-		val.append("{ ");
-		ValueType::ConstIterator it = _val.begin();
-		ValueType::ConstIterator itEnd = _val.end();
-		if (!_val.empty())
-		{
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-			++it;
-		}
-		for (; it != itEnd; ++it)
-		{
-			val.append(", ");
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-		}
-		val.append(" }");
+		val = structToString(_val);
 	}
 
 	void convert(Poco::DateTime&) const
@@ -704,26 +725,7 @@ public:
 
 	void convert(std::string& val) const
 	{
-		val.append("{ ");
-		ValueType::ConstIterator it = _val.begin();
-		ValueType::ConstIterator itEnd = _val.end();
-		if (!_val.empty())
-		{
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-			++it;
-		}
-		for (; it != itEnd; ++it)
-		{
-			val.append(", ");
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-		}
-		val.append(" }");
+		val = structToString(_val);
 	}
 
 	void convert(Poco::DateTime&) const
@@ -890,26 +892,7 @@ public:
 
 	void convert(std::string& val) const
 	{
-		val.append("{ ");
-		ValueType::ConstIterator it = _val.begin();
-		ValueType::ConstIterator itEnd = _val.end();
-		if (!_val.empty())
-		{
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-			++it;
-		}
-		for (; it != itEnd; ++it)
-		{
-			val.append(", ");
-			Var key(it->first);
-			Impl::appendJSONKey(val, key);
-			val.append(" : ");
-			Impl::appendJSONValue(val, it->second);
-		}
-		val.append(" }");
+		val = structToString(_val);
 	}
 
 	void convert(Poco::DateTime&) const
@@ -995,8 +978,8 @@ private:
 } // namespace Dynamic
 
 
-typedef Dynamic::Struct<std::string> DynamicStruct;
-typedef Dynamic::Struct<std::string, Poco::OrderedMap<std::string, Dynamic::Var>, Poco::OrderedSet<std::string>> OrderedDynamicStruct;
+using DynamicStruct = Dynamic::Struct<std::string>;
+using OrderedDynamicStruct = Dynamic::Struct<std::string, Poco::OrderedMap<std::string, Dynamic::Var>, Poco::OrderedSet<std::string>>;
 
 
 } // namespace Poco

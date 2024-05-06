@@ -52,7 +52,7 @@ Exception::Exception(const Exception& exc):
 	_pNested = exc._pNested ? exc._pNested->clone() : 0;
 }
 
-	
+
 Exception::~Exception() noexcept
 {
 	delete _pNested;
@@ -84,13 +84,13 @@ const char* Exception::className() const noexcept
 	return typeid(*this).name();
 }
 
-	
+
 const char* Exception::what() const noexcept
 {
 	return name();
 }
 
-	
+
 std::string Exception::displayText() const
 {
 	std::string txt = name();
@@ -169,6 +169,7 @@ POCO_IMPLEMENT_EXCEPTION(CreateFileException, FileException, "Cannot create file
 POCO_IMPLEMENT_EXCEPTION(OpenFileException, FileException, "Cannot open file")
 POCO_IMPLEMENT_EXCEPTION(WriteFileException, FileException, "Cannot write file")
 POCO_IMPLEMENT_EXCEPTION(ReadFileException, FileException, "Cannot read file")
+POCO_IMPLEMENT_EXCEPTION(FileNotReadyException, FileException, "File not ready")
 POCO_IMPLEMENT_EXCEPTION(DirectoryNotEmptyException, FileException, "Directory not empty")
 POCO_IMPLEMENT_EXCEPTION(UnknownURISchemeException, RuntimeException, "Unknown URI scheme")
 POCO_IMPLEMENT_EXCEPTION(TooManyURIRedirectsException, RuntimeException, "Too many URI redirects")

@@ -14,11 +14,31 @@
 
 #include "Poco/Dynamic/VarHolder.h"
 #include "Poco/Dynamic/Var.h"
+#include "Poco/Dynamic/Struct.h"
 #include "Poco/JSONString.h"
 
 
 namespace Poco {
 namespace Dynamic {
+
+
+#if defined(POCO_OS_FAMILY_WINDOWS)
+
+template class Foundation_API Struct<std::string>;
+template class Foundation_API Struct<int>;
+
+template class Foundation_API Struct<std::string, Poco::OrderedMap<std::string, Var>, Poco::OrderedSet<std::string>>;
+template class Foundation_API Struct<int, OrderedMap<int, Var>, OrderedSet<int>>;
+
+#else
+
+template class Struct<std::string>;
+template class Struct<int>;
+
+template class Struct<std::string, Poco::OrderedMap<std::string, Var>, Poco::OrderedSet<std::string>>;
+template class Struct<int, OrderedMap<int, Var>, OrderedSet<int>>;
+
+#endif
 
 
 VarHolder::VarHolder()
@@ -47,7 +67,8 @@ bool isJSONString(const Var& any)
 		any.type() == typeid(char*) ||
 		any.type() == typeid(Poco::DateTime) ||
 		any.type() == typeid(Poco::LocalDateTime) ||
-		any.type() == typeid(Poco::Timestamp);
+		any.type() == typeid(Poco::Timestamp) ||
+		any.type() == typeid(Poco::UUID);
 }
 
 
@@ -65,15 +86,19 @@ void appendJSONKey(std::string& val, const Var& any)
 }
 
 
-void appendJSONValue(std::string& val, const Var& any)
+void appendJSONValue(std::string& val, const Var& any, bool wrap)
 {
 	if (any.isEmpty())
 	{
 		val.append("null");
 	}
+	else if (any.isString() && any.extract<std::string>().empty())
+	{
+		val.append("\"\"");
+	}
 	else
 	{
-		bool isStr = isJSONString(any);
+		bool isStr = wrap && isJSONString(any);
 		if (isStr)
 		{
 			appendJSONString(val, any.convert<std::string>());

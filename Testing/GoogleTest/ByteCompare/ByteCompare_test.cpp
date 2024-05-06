@@ -457,9 +457,9 @@ namespace
 		bc.SetCompareOptions(option);
 
 		{// same
-			strcpy(buf_left, 
+			strcpy_s(buf_left, 
 "\r\n/* abc */\r\nabc(aaa);\r\n\r\n");
-			strcpy(buf_right, 
+			strcpy_s(buf_right, 
 "  \r\n/* abc */\r\nabc(aaa);\r\n  \r\n");
 			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
@@ -470,9 +470,9 @@ namespace
 		}
 
 		{// diff 
-			strcpy(buf_left, 
+			strcpy_s(buf_left, 
 "\r\n /* abc */\r\nabc(aaa);\r\n\r\n");
-			strcpy(buf_right, 
+			strcpy_s(buf_right, 
 "  \r\n  /* abc */\r\nabc(aaa);\r\n  \r\n");
 			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
@@ -498,9 +498,9 @@ namespace
 		bc.SetCompareOptions(option);
 
 		{// same
-			strcpy(buf_left, 
+			strcpy_s(buf_left, 
 "\n/* abc */\nabc(aaa);\n\n");
-			strcpy(buf_right, 
+			strcpy_s(buf_right, 
 "  \r\n/* abc */\r\nabc(aaa);\r\n  \r\n");
 			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));
@@ -511,9 +511,9 @@ namespace
 		}
 
 		{// diff 
-			strcpy(buf_left, 
+			strcpy_s(buf_left, 
 "\n/* abc */ \nabc(aaa);\n\n");
-			strcpy(buf_right, 
+			strcpy_s(buf_right, 
 "  \r\n/* abc */\r\nabc(aaa);\r\n  \r\n");
 			TempFile file_left (filename_left,  buf_left,  strlen(buf_left));
 			TempFile file_right(filename_right, buf_right, strlen(buf_right));

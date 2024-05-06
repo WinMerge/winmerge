@@ -15,7 +15,6 @@
 #include "Poco/PriorityNotificationQueue.h"
 #include "Poco/NotificationCenter.h"
 #include "Poco/Notification.h"
-#include "Poco/SingletonHolder.h"
 
 
 namespace Poco {
@@ -54,7 +53,7 @@ void PriorityNotificationQueue::enqueueNotification(Notification::Ptr pNotificat
 		_waitQueue.pop_front();
 		pWI->pNf = pNotification;
 		pWI->nfAvailable.set();
-	}	
+	}
 }
 
 
@@ -145,7 +144,7 @@ bool PriorityNotificationQueue::empty() const
 	return _nfQueue.empty();
 }
 
-	
+
 int PriorityNotificationQueue::size() const
 {
 	FastMutex::ScopedLock lock(_mutex);
@@ -156,7 +155,7 @@ int PriorityNotificationQueue::size() const
 void PriorityNotificationQueue::clear()
 {
 	FastMutex::ScopedLock lock(_mutex);
-	_nfQueue.clear();	
+	_nfQueue.clear();
 }
 
 
@@ -180,15 +179,10 @@ Notification::Ptr PriorityNotificationQueue::dequeueOne()
 }
 
 
-namespace
-{
-	static SingletonHolder<PriorityNotificationQueue> sh;
-}
-
-
 PriorityNotificationQueue& PriorityNotificationQueue::defaultQueue()
 {
-	return *sh.get();
+	static PriorityNotificationQueue pnq;
+	return pnq;
 }
 
 

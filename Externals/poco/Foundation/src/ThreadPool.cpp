@@ -20,9 +20,6 @@
 #include "Poco/ErrorHandler.h"
 #include <sstream>
 #include <ctime>
-#if defined(_WIN32_WCE) && _WIN32_WCE < 0x800
-#include "wce_time.h"
-#endif
 
 
 namespace Poco {
@@ -57,21 +54,17 @@ private:
 };
 
 
-PooledThread::PooledThread(const std::string& name, int stackSize): 
-	_idle(true), 
-	_idleTime(0), 
-	_pTarget(0), 
-	_name(name), 
+PooledThread::PooledThread(const std::string& name, int stackSize):
+	_idle(true),
+	_idleTime(0),
+	_pTarget(0),
+	_name(name),
 	_thread(name),
 	_targetCompleted(false)
 {
 	poco_assert_dbg (stackSize >= 0);
 	_thread.setStackSize(stackSize);
-#if defined(_WIN32_WCE) && _WIN32_WCE < 0x800
-	_idleTime = wceex_time(NULL);
-#else
 	_idleTime = std::time(NULL);
-#endif
 }
 
 
@@ -90,7 +83,7 @@ void PooledThread::start()
 void PooledThread::start(Thread::Priority priority, Runnable& target)
 {
 	FastMutex::ScopedLock lock(_mutex);
-	
+
 	poco_assert (_pTarget == 0);
 
 	_pTarget = &target;
@@ -116,7 +109,7 @@ void PooledThread::start(Thread::Priority priority, Runnable& target, const std:
 	}
 	_thread.setName(fullName);
 	_thread.setPriority(priority);
-	
+
 	poco_assert (_pTarget == 0);
 
 	_pTarget = &target;
@@ -135,11 +128,7 @@ int PooledThread::idleTime()
 {
 	FastMutex::ScopedLock lock(_mutex);
 
-#if defined(_WIN32_WCE) && _WIN32_WCE < 0x800
-	return (int) (wceex_time(NULL) - _idleTime);
-#else
 	return (int) (time(NULL) - _idleTime);
-#endif	
 }
 
 
@@ -156,7 +145,7 @@ void PooledThread::join()
 void PooledThread::activate()
 {
 	FastMutex::ScopedLock lock(_mutex);
-	
+
 	poco_assert (_idle);
 	_idle = false;
 	_targetCompleted.reset();
@@ -166,7 +155,7 @@ void PooledThread::activate()
 void PooledThread::release()
 {
 	const long JOIN_TIMEOUT = 10000;
-	
+
 	_mutex.lock();
 	_pTarget = 0;
 	_mutex.unlock();
@@ -212,11 +201,7 @@ void PooledThread::run()
 			}
 			FastMutex::ScopedLock lock(_mutex);
 			_pTarget  = 0;
-#if defined(_WIN32_WCE) && _WIN32_WCE < 0x800
-			_idleTime = wceex_time(NULL);
-#else
 			_idleTime = time(NULL);
-#endif	
 			_idle     = true;
 			_targetCompleted.set();
 			ThreadLocalStorage::clear();
@@ -235,9 +220,9 @@ void PooledThread::run()
 ThreadPool::ThreadPool(int minCapacity,
 	int maxCapacity,
 	int idleTime,
-	int stackSize): 
-	_minCapacity(minCapacity), 
-	_maxCapacity(maxCapacity), 
+	int stackSize):
+	_minCapacity(minCapacity),
+	_maxCapacity(maxCapacity),
 	_idleTime(idleTime),
 	_serial(0),
 	_age(0),
@@ -260,8 +245,8 @@ ThreadPool::ThreadPool(const std::string& name,
 	int idleTime,
 	int stackSize):
 	_name(name),
-	_minCapacity(minCapacity), 
-	_maxCapacity(maxCapacity), 
+	_minCapacity(minCapacity),
+	_maxCapacity(maxCapacity),
 	_idleTime(idleTime),
 	_serial(0),
 	_age(0),
@@ -400,7 +385,7 @@ void ThreadPool::collect()
 void ThreadPool::housekeep()
 {
 	_age = 0;
-	if (static_cast<int>(_threads.size()) <= _minCapacity)
+	if (_threads.size() <= _minCapacity)
 		return;
 
 	ThreadVec idleThreads;
@@ -408,15 +393,15 @@ void ThreadPool::housekeep()
 	ThreadVec activeThreads;
 	idleThreads.reserve(_threads.size());
 	activeThreads.reserve(_threads.size());
-	
+
 	for (auto pThread: _threads)
 	{
 		if (pThread->idle())
 		{
 			if (pThread->idleTime() < _idleTime)
 				idleThreads.push_back(pThread);
-			else 
-				expiredThreads.push_back(pThread);	
+			else
+				expiredThreads.push_back(pThread);
 		}
 		else activeThreads.push_back(pThread);
 	}
@@ -453,7 +438,7 @@ PooledThread* ThreadPool::getThread()
 	}
 	if (!pThread)
 	{
-		if (static_cast<int>(_threads.size()) < _maxCapacity)
+		if (_threads.size() < _maxCapacity)
 		{
 			pThread = createThread();
 			try
@@ -496,7 +481,7 @@ public:
 	ThreadPool* pool()
 	{
 		FastMutex::ScopedLock lock(_mutex);
-		
+
 		if (!_pPool)
 		{
 			_pPool = new ThreadPool("default");
@@ -505,21 +490,16 @@ public:
 		}
 		return _pPool;
 	}
-	
+
 private:
 	ThreadPool* _pPool;
 	FastMutex   _mutex;
 };
 
 
-namespace
-{
-	static ThreadPoolSingletonHolder sh;
-}
-
-
 ThreadPool& ThreadPool::defaultPool()
 {
+	static ThreadPoolSingletonHolder sh;
 	return *sh.pool();
 }
 

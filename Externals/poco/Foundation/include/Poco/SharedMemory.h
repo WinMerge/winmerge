@@ -46,10 +46,10 @@ public:
 	};
 
 	SharedMemory();
-		/// Default constructor creates an unmapped SharedMemory object. 
+		/// Default constructor creates an unmapped SharedMemory object.
 		/// No clients can connect to an unmapped SharedMemory object.
 
-	SharedMemory(const std::string& name, std::size_t size, AccessMode mode, const void* addrHint = nullptr, bool server = true);
+	SharedMemory(const std::string& name, std::size_t size, AccessMode mode, const void* addrHint = 0, bool server = true);
 		/// Creates or connects to a shared memory object with the given name.
 		///
 		/// For maximum portability, name should be a valid Unix filename and not
@@ -64,7 +64,7 @@ public:
 		/// by calling shm_unlink() (on POSIX platforms) when the SharedMemory object is destroyed.
 		/// The server parameter is ignored on Windows platforms.
 
-	SharedMemory(const File& file, AccessMode mode, const void* addrHint = nullptr);
+	SharedMemory(const File& file, AccessMode mode, const void* addrHint = 0);
 		/// Maps the entire contents of file into a shared memory segment.
 		///
 		/// An address hint can be passed to the system, specifying the desired
@@ -81,7 +81,7 @@ public:
 	SharedMemory& operator = (const SharedMemory& other);
 		/// Assigns another SharedMemory object.
 
-	void swap(SharedMemory& other);
+	void swap(SharedMemory& other) noexcept;
 		/// Swaps the SharedMemory object with another one.
 
 	char* begin() const;
@@ -89,7 +89,7 @@ public:
 		/// Will be NULL for illegal segments.
 
 	char* end() const;
-		/// Returns the one-past-end end address of the shared memory segment. 
+		/// Returns the one-past-end end address of the shared memory segment.
 		/// Will be NULL for illegal segments.
 
 private:
@@ -100,7 +100,7 @@ private:
 //
 // inlines
 //
-inline void SharedMemory::swap(SharedMemory& other)
+inline void SharedMemory::swap(SharedMemory& other) noexcept
 {
 	using std::swap;
 	swap(_pImpl, other._pImpl);

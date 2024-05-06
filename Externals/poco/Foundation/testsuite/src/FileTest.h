@@ -42,7 +42,9 @@ public:
 	void testRenameFailIfExists();
 	void testRootDir();
 	void testLongPath();
-	
+	void testUnixFileExtension();
+	void testTemporaryFile();
+
 	void setUp();
 	void tearDown();
 

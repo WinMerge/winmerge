@@ -23,6 +23,9 @@ team and may not always be up to date.*>
 Up-to-date [[https://conan.io Conan]] packages are available via
 [[https://bintray.com/pocoproject/conan/Poco%3Apocoproject Bintray]].
 
+<%
+<?-PocoDoc.adContent?>
+%>
 
 !!Source Code Distribution Format
 
@@ -165,11 +168,21 @@ system. This requires Windows PowerShell.
 
 Usage:
 
-    C:\%POCO_BASE%\openssl\build.ps1 [-openssl_release 1.0.0 | 1.1.0]
-                                     [-vs_version 150 | 140 | 120 | 110 | 100 | 90]
-                                     [-config     release | debug | both]
-                                     [-platform   Win32 | x64]
-                                     [-library    shared | static]
+    C:\%POCO_BASE%\openssl\buildwin.ps1 [-poco_base    dir]
+                                        [-vs           160| 170]
+                                        [-action       build | rebuild | clean]
+                                        [-linkmode     shared | static_mt | static_md | all]
+                                        [-config       release | debug | both]
+                                        [-platform     Win32 | x64 | ARM64 | WEC2013]
+                                        [-samples]
+                                        [-tests]
+                                        [-omit         "Lib1X,LibY,LibZ,..."]
+                                        [-components   "Lib1X,LibY,LibZ,..."]
+                                        [-tool         msbuild | devenv]
+                                        [-useenv       env | noenv]
+                                        [-verbosity    minimal | quiet | normal | detailed | diagnostic]
+                                        [-openssl_base dir]
+                                        [-mysql_base   dir]
 ----
 
 Example: Building OpenSSL 1.1.0, DLL release build for x64 with Visual Studio 2015:
@@ -366,6 +379,7 @@ Here an overview of POCO build options:
     * ENABLE_NET                       Set to OFF|ON (default is ON) to build Net support library
     * ENABLE_NETSSL                    Set to OFF|ON (default is ON) to build NetSSL support library (Need installed openssl libraries)
     * ENABLE_CRYPTO                    Set to OFF|ON (default is ON) to build Crypto support library (Need installed openssl libraries)
+    * ENABLE_JWT                       Set to OFF|ON (default is ON, if OpenSSL is present) to build JWT (JSON Web Token) library
     * ENABLE_DATA                      Set to OFF|ON (default is ON) to build Data support library
     * ENABLE_DATA_SQLITE               Set to OFF|ON (default is ON) to build Data SQlite support library
     * ENABLE_DATA_MYSQL                Set to OFF|ON (default is ON) to build Data MySQL or MariaDB support library (Need installed MySQL or MariaDB client libraries)
@@ -378,13 +392,14 @@ Here an overview of POCO build options:
     * ENABLE_ZIP                       Set to OFF|ON (default is ON) to build Zip support library
     * ENABLE_SEVENZIP                  Set to OFF|ON (default is OFF) to build SevenZip support library
     * ENABLE_APACHECONNECTOR           Set to OFF|ON (default is ON) to build ApacheConnector support library (Need installed apache and apr libraries)
-    * ENABLE_CPPPARSER                 Set to OFF|ON (default is OFF) to build C++ parser
-    * ENABLE_ENCODINGS                 Set to OFF|ON (default is ON) to build with Encodings
+    * ENABLE_CPPPARSER                 Set to OFF|ON (default is OFF) to build C++ parser library
+    * ENABLE_ENCODINGS                 Set to OFF|ON (default is ON) to build Encodings library
     * ENABLE_ENCODINGS_COMPILER        Set to OFF|ON (default is OFF) to build Encodings Compiler
     * ENABLE_PAGECOMPILER              Set to OFF|ON (default is ON) to build PageCompiler
     * ENABLE_PAGECOMPILER_FILE2PAGE    Set to OFF|ON (default is ON) to build File2Page
     * ENABLE_POCODOC                   Set to OFF|ON (default is OFF) to build Poco Documentation Generator
     * ENABLE_TESTS                     Set to OFF|ON (default is OFF) to build Unit tests
+    * ENABLE_SAMPLES                   Set to OFF|ON (default is OFF) to build samples
     * ENABLE_LONG_RUNNING_TESTS	       Set to OFF|ON (default is ON) to use long running test
     * POCO_UNBUNDLED                   Set to OFF|ON (default is OFF) to control linking dependencies as external
 
@@ -457,7 +472,7 @@ or
 
 To use POCO C++ Libraries in your cmake project, add following line in your project for example to use crypto:
 
-    find_package(Poco REQUIRED PocoCrypto)
+    find_package(Poco REQUIRED Crypto)
     ....
     target_link_libraries(yourTargetName ... Poco::Crypto)
 
