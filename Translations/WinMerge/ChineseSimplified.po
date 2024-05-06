@@ -4911,7 +4911,7 @@ msgid ""
 msgstr ""
 "输入你的 OpenAI API 密钥。\r\n"
 " - 使用该插件要求注册 OpenAI 并会产生相关的费用。\r\n"
-" - API 密钥存放在 环境变量 %1 中。\""
+" - API 密钥存放在 环境变量 %1 中。"
 
 msgid "Environment variable name for OpenAI API key"
 msgstr "存放 OpenAI API 密钥的环境变量名称"
