@@ -32,7 +32,7 @@ https://github.com/htacg/tidy-html5/archive/refs/tags/5.4.0.zip!Build\tidy-html5
 https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-windows-i386.exe!Build\jq ^
 https://github.com/jqlang/jq/archive/refs/tags/jq-1.7.1.zip!Build\jq ^
 https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-v1.5.2-win64.zip!Build\zstd ^
-https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.4.8-2-any.pkg.tar.zst!Build\md4c ^
+https://mirror.msys2.org/mingw/mingw32/mingw-w64-i686-md4c-0.5.2-1-any.pkg.tar.zst!Build\md4c ^
 https://mirror.msys2.org/msys/i686/gcc-libs-10.2.0-1-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/msys2-runtime-3.2.0-14-i686.pkg.tar.zst!Build\msys2_tmp ^
 https://mirror.msys2.org/msys/i686/patch-2.7.6-1-i686.pkg.tar.xz!Build\msys2_tmp ^
