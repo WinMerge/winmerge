@@ -17,6 +17,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-all.cc">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-assertion-result.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-death-test.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -53,6 +56,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-assertion-result.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-death-test.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-matchers.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-message.h" />
