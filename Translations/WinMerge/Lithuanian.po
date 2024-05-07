@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-03-06 21:04+0000\n"
-"PO-Revision-Date: 2024-03-08 15:15+0200\n"
+"POT-Creation-Date: 2024-04-20 09:09+0000\n"
+"PO-Revision-Date: 2024-05-07 13:13+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -1096,79 +1096,79 @@ msgid "&Load Project..."
 msgstr "Įke&lti projektą..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - Visi argumentai"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - Pirmas argumentas"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - Antras argumentas"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - Trečias argumentas"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - Ketvirtas argumentas"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - Penktas argumentas"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - Šeštas argumentas"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - Septintas argumentas"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - Aštuntas argumentas"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - Devintas argumentas"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Pradinis failas"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Pradinis katalogas"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Pradinis URL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Pradinio URL protokolas"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Pradinio URL priesaga"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Rezultatų failas"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Rezultatų katalogas"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - Rezultatų URL"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Rezultatų URL protokolas"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Rezultatų URL priesaga"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - „Winmerge“ pagrindinis katalogas"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Skripto failas"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "Pridėti &išpakuotoją..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "Pridėti &parengėją..."
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "&Dubliuoti papildinį..."
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -1549,7 +1549,7 @@ msgid "&Plugin Pipeline:"
 msgstr "&Papildinio komandų grandinė:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "Pseudonim&as"
 
 msgid "Stop"
 msgstr "Sustoti"
@@ -1984,7 +1984,7 @@ msgid "Backup filename:"
 msgstr "Rezervinio failo vardas:"
 
 msgid "&Append .bak extension"
-msgstr "&Pridėti .bak išplėtimą"
+msgstr "&Pridėti .bak plėtinį"
 
 msgid "A&ppend timestamp"
 msgstr "P&ridėti laiko žymą"
@@ -2145,37 +2145,37 @@ msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Redaguoti papildinį"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Papildinio &tipas:"
 
 msgid "&Category:"
-msgstr ""
+msgstr "&Kategorija:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "&Meniu antraštė:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "&Lango tipas:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "&Išpakuoto failo plėtinys:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "&Reikalauti argumentų"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "&Generuoti redaktoriaus skriptą"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "Komandinė ei&lutė:"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "&Skripto failo plėtinys:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Skripto &tekstas:"
 
 msgid "EXT"
 msgstr "EXT"
@@ -3482,7 +3482,7 @@ msgid "\nPrevious File (Ctrl+F7)"
 msgstr "\nPraeitas failas (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
-msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
+msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia plėtinio)."
 
 msgid "No prediffer (normal)"
 msgstr "Nėra parengėjo (normalu)"
@@ -3777,7 +3777,7 @@ msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "Papildinys '%1' vardu jau yra."
 
 msgid "Specify plugin arguments"
 msgstr "Nurodykite papildinio argumentus"
@@ -3800,32 +3800,32 @@ msgstr "Parengimo papildiniui '%2' apdorojant failą '%1' įvyko klaida. Parengi
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Ciklinė nuoroda papildinio komandų grandinėje: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "URL apdorotojas"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Failo išpakuotojas"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Failo ar Katalogo išpakuotojas"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Išpakuotojo pseudonimas"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Parengėjo pseudonimas"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Redaktoriaus skripto pseudonimas"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Papildinio komandų grandinės '%1' pseudonimas"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Naujo papildinio aprašas"
 
 msgid "Filter applied"
 msgstr "Pritaikytas filtras"
@@ -3889,7 +3889,7 @@ msgid "Zoom:"
 msgstr "Mastelis:"
 
 msgid "Diff hunk"
-msgstr "Skirt. gabalas"
+msgstr "Skirt. bloke"
 
 msgid "Inline diff"
 msgstr "Skirt. eilutėje"
