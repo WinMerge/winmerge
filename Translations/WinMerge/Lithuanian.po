@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-04-20 09:09+0000\n"
-"PO-Revision-Date: 2024-05-07 13:13+0200\n"
+"POT-Creation-Date: 2024-05-05 10:37+0000\n"
+"PO-Revision-Date: 2024-05-09 10:40+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -842,7 +842,7 @@ msgid "&Transform with editor script..."
 msgstr "&Transformuoti su redaktoriaus skriptu..."
 
 msgid "Scripts for &copying"
-msgstr "Skriptai &kopijavimui..."
+msgstr "Skriptai &kopijavimui"
 
 msgid "Select &editor script..."
 msgstr "Parinkti r&edagavimo skriptą..."
@@ -1549,7 +1549,7 @@ msgid "&Plugin Pipeline:"
 msgstr "&Papildinio komandų grandinė:"
 
 msgid "&Alias..."
-msgstr "Pseudonim&as"
+msgstr "Pseudonim&as..."
 
 msgid "Stop"
 msgstr "Sustoti"
@@ -4036,7 +4036,7 @@ msgid "Disassemble Native Code"
 msgstr "Dekompiliuoti savajį kodą"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "KOnvertuoti tekstus su AI..."
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"
@@ -4160,7 +4160,7 @@ msgid "Prediff Line Filter"
 msgstr "Parengėjo eilutės filtras"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Datos ir laiko įterpimo funkcija"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr ""
@@ -4169,13 +4169,13 @@ msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options 
 msgstr ""
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Pagrindinės tekstų funkcijos"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "Teksto konvertavimo su AI pagalba funkcijos"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Teksto keitiklis, naudojant „OpenAI“ API.\r\nNaudojimas: AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct „WinMerge“ papildinio nuostatos"
@@ -4305,29 +4305,29 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Nenurodykite komandinės eilutės parametro '-p0' pataisos failui, kuriame yra absoliutusis kelio vardas"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "AI.sct „WinMerge“ papildinio parametrai"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Įvesti raginimą"
 
 #, c-format
 msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
-msgstr ""
+msgstr "Nurodykite „OpenAI“ API raktą.\r\n - Šio papildinio naudojimui reikalinga „OpenAI“ registracija ir taikomi mokesčiai.\r\n - API raktas saugomas aplinkos kintamajame %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "„OpenAI“ API rakto aplinkos kintamojo pavadinimas"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "„OpenAI“ API raktas"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatūra"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Maksimalus ilgis"
 
 msgid "Model"
-msgstr ""
+msgstr "Modelis"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "Pakeistas „OpenAI“ API raktas. Paleiskite „WinMerge“ iš naujo, kad pakeitimai įsigaliotų."
