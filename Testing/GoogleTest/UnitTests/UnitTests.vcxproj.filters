@@ -437,9 +437,6 @@
     <ClInclude Include="..\..\..\Src\MovedLines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Src\PatchHTML.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Src\xdiff_gnudiff_compat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -450,6 +447,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Src\SubstitutionFiltersList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Src\PatchHTML.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
