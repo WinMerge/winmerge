@@ -528,6 +528,7 @@
     <ClCompile Include="src\pcre2_xclass.c">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Foundation.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Poco\Any.h">
@@ -1001,7 +1002,6 @@
     <ClInclude Include="include\Poco\Error.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Poco\Environment_WIN32.h" />
     <ClInclude Include="src\pcre2_config.h">
       <Filter>RegularExpression\PCRE Source Files</Filter>
     </ClInclude>

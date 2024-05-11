@@ -251,5 +251,6 @@
     <ClCompile Include="src\xmltok_ns.c">
       <Filter>Expat\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\XML.cpp" />
   </ItemGroup>
 </Project>
