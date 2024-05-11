@@ -838,7 +838,7 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[3])
 		for (file = 0; file < nFiles; file++)
 		{
 			nline[file] = curDiff.end[file]-curDiff.begin[file]+1;
-			nmaxline = std::max(nmaxline, nline[file]);
+			nmaxline = (std::max)(nmaxline, nline[file]);
 		}
 		for (file = 0; file < nFiles; file++)
 			extras[file] += nmaxline - nline[file];
