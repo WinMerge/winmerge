@@ -2305,7 +2305,7 @@ bool CImgMergeFrame::GenerateReport(const String& sFileName, bool allPages) cons
 		for (int pane = 0; pane < m_pImgMergeWindow->GetPaneCount(); ++pane)
 			file.WriteString(
 				strutils::format(_T("<td><div class=\"img\"><img src=\"%s\" alt=\"%s\"></div></td>\n"),
-					filenames[pane], filenames[pane]));
+					paths::urlEncodeFileName(filenames[pane]), filenames[pane]));
 		file.WriteString(
 			_T("</tr>\n"));
 	}

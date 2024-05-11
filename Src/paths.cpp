@@ -769,6 +769,14 @@ String FromURL(const String& url)
 	return path.data();
 }
 
+String urlEncodeFileName(const String& filename)
+{
+	String encoded = filename;
+	strutils::replace(encoded, _T("%"), _T("%25"));
+	strutils::replace(encoded, _T("#"), _T("%23"));
+	return encoded;
+}
+
 bool IsDecendant(const String& path, const String& ancestor)
 {
 	return path.length() > ancestor.length() && 

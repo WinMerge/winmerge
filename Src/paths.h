@@ -52,6 +52,7 @@ bool IsURL(const String& path);
 bool IsURLorCLSID(const String& path);
 bool isFileURL(const String& path);
 String FromURL(const String& url);
+String urlEncodeFileName(const String& filename);
 bool IsDecendant(const String& path, const String& ancestor);
 inline String AddTrailingSlash(const String& path) { return !EndsWithSlash(path) ? path + _T("\\") : path; }
 String ToWindowsPath(const String& path);

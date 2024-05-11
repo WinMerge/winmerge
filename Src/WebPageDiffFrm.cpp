@@ -1629,7 +1629,7 @@ bool CWebPageDiffFrame::GenerateReport(const String& sFileName, std::function<vo
 	for (int pane = 0; pane < m_pWebDiffWindow->GetPaneCount(); ++pane)
 		file.WriteString(
 			strutils::format(_T("<td><embed type=\"application/pdf\" src=\"%s\" title=\"%s\"></td>\n"),
-				diffrpt_filename[pane], diffrpt_filename[pane]));
+				paths::urlEncodeFileName(diffrpt_filename[pane]), diffrpt_filename[pane]));
 	file.WriteString(
 		_T("</tr>\n"));
 	file.WriteString(
