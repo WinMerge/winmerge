@@ -438,6 +438,10 @@ function importSettingsFromXMLFile(filepath) {
         return openAIKey;
       }
 
+      function run(sh, cmd) {
+        sh.Run(cmd, 1, true);
+      }
+
       function onload() {
         xmlFilePath = objHTA.commandLine.split('"')[3];
         settings = loadSettingsFromXMLFile(xmlFilePath);
@@ -465,6 +469,10 @@ function importSettingsFromXMLFile(filepath) {
         } else if (k == 27/*Escape*/) {
           btnCancel_onclick();
         }
+      }
+
+      function btnApiKey_onclick() {
+        run(wsh, "cmd /c start \"\" https://platform.openai.com/api-keys");
       }
 
       function btnOk_onclick() {
@@ -523,7 +531,7 @@ function importSettingsFromXMLFile(filepath) {
           <input id="txtApiKeyEnvName" type="text" />
         </li>
         <li>
-          <label for="txtApiKey">${OpenAI API key}:</label>
+          <label for="txtApiKey"><a href="https://platform.openai.com/api-keys" onclick="btnApiKey_onclick(); return false;">${OpenAI API key}:</a></label>
         </li>
         <li>
           <input id="txtApiKey" type="password" />
@@ -544,6 +552,7 @@ function importSettingsFromXMLFile(filepath) {
         </li>
         <li>
           <select id="cboModel">
+            <option value="gpt-4o">gpt-4o</option>
             <option value="gpt-4-turbo">gpt-4-turbo</option>
             <option value="gpt-4">gpt-4</option>
             <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
