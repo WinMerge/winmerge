@@ -1251,6 +1251,19 @@ BEGIN
     END
 END
 
+IDR_POPUP_DIRVIEW_COMPAREMETHOD MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "Full Contents",               ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS
+        MENUITEM "Quick Contents",              ID_DIFF_OPTIONS_COMPMETHOD_QUICK_CONTENTS
+        MENUITEM "Binary Contents",             ID_DIFF_OPTIONS_COMPMETHOD_BINARY_CONTENTS
+        MENUITEM "Modified Date",               ID_DIFF_OPTIONS_COMPMETHOD_MODDATE
+        MENUITEM "Modified Date and Size",      ID_DIFF_OPTIONS_COMPMETHOD_DATESIZE
+        MENUITEM "Size",                        ID_DIFF_OPTIONS_COMPMETHOD_SIZE
+    END
+END
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator

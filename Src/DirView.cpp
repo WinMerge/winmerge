@@ -374,6 +374,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_ALL_DISP_COLUMNS, OnCopyAllDisplayedColumns)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_ALL_DISP_COLUMNS, OnUpdateCopyAllDisplayedColumns)
 	// Status bar
+	ON_NOTIFY(NM_CLICK, AFX_IDW_CONTROLBAR_FIRST+30, OnStatusBarClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MIDDLEDIR_RO, OnUpdateStatusMiddleRO)
@@ -4389,6 +4390,50 @@ void CDirView::OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 
 	*pResult = 0;
+}
+
+void CDirView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	*pResult = 0;
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	switch (pNMItemActivate->iItem)
+	{
+	case 0:
+		break;
+	case 1:
+	{
+		CPoint point;
+		::GetCursorPos(&point);
+		CMenu menu;
+		VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW_COMPAREMETHOD));
+		theApp.TranslateMenu(menu.m_hMenu);
+		menu.GetSubMenu(0)->CheckMenuRadioItem(ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS, ID_DIFF_OPTIONS_COMPMETHOD_SIZE, 
+			ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS + GetOptionsMgr()->GetInt(OPT_CMP_METHOD), MF_BYCOMMAND);
+		int nID = menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_RETURNCMD, point.x, point.y, this);
+		if (nID != 0)
+		{
+			GetOptionsMgr()->SaveOption(OPT_CMP_METHOD, nID - ID_DIFF_OPTIONS_COMPMETHOD_FULL_CONTENTS);
+			m_pSavedTreeState.reset(SaveTreeState(GetDiffContext()));
+			GetDocument()->Rescan();
+		}
+		break;
+	}
+	case 2:
+	{
+		GetMainFrame()->SelectFilter();
+		break;
+	}
+	case 3:
+	case 4:
+	case 5:
+	{
+		const int index = std::clamp(pNMItemActivate->iItem - 3, 0, GetDocument()->m_nDirs - 1);
+		GetDocument()->SetReadOnly(index, !GetDocument()->GetReadOnly(index));
+		break;
+	}
+	default:
+		break;
+	}
 }
 
 /// Assign column name, using string resource & current column ordering

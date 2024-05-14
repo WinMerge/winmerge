@@ -4492,7 +4492,7 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		CPoint point;
 		::GetCursorPos(&point);
 
-		BCMenu menu;
+		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
 		theApp.TranslateMenu(menu.m_hMenu);
 		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));

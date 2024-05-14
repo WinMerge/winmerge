@@ -29,6 +29,7 @@
 #define IDR_POPUP_PLUGIN_PIPELINE_MENU  125
 #define IDR_POPUP_PLUGIN_COMMAND_LINE_MENU 126
 #define IDR_POPUP_PLUGIN_ADD_MENU       127
+#define IDR_POPUP_DIRVIEW_COMPAREMETHOD 128
 #define IDD_ABOUTBOX                    200
 #define IDD_OPEN                        202
 #define IDD_SAVECLOSING                 203
