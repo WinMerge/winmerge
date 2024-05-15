@@ -810,7 +810,7 @@ bool SaveToXML(const String& pluginsXMLPath, const std::list<Info>& internalPlug
 	try
 	{
 		paths::CreateIfNeeded(paths::GetPathOnly(pluginsXMLPath));
-		FileStream out(ucr::toUTF8(pluginsXMLPath), FileStream::trunc);
+		FileStream out(ucr::toUTF8(pluginsXMLPath), FileStream::out | FileStream::trunc);
 		XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
 		writer.startDocument();
 		writer.startElement("", "", PluginsElement);
