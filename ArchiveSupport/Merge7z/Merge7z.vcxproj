@@ -550,9 +550,12 @@
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\CreateCoder.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Explorer\MyMessages.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MemDialog.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\Clipboard.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\MemoryGlobal.h" />
     <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\System.h" />
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\TimeUtils.h" />
     <ClInclude Include="Merge7z.h" />
     <ClInclude Include="Merge7zCommon.h" />
     <ClInclude Include="StdAfx.h" />
@@ -619,9 +622,12 @@
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\CreateCoder.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Common\SortUtils.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Explorer\MyMessages.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MemDialog.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\Clipboard.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\MemoryGlobal.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\System.cpp" />
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\TimeUtils.cpp" />
     <ClCompile Include="..\..\Externals\sevenzip\C\7zCrcOpt.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>

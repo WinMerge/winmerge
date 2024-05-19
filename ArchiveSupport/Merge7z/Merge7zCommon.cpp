@@ -56,6 +56,8 @@ DATE:		BY:					DESCRIPTION:
 #include "stdafx.h"
 #include "Merge7zCommon.h"
 
+bool g_DisableUserQuestions;
+
 void ReloadLang(); //Implemented in /*/FileManager/LangUtils.cpp
 
 using namespace NWindows;
@@ -723,6 +725,7 @@ DEFINE_FORMAT(CLzmaHandler,		0A, "lzma", "");
 DEFINE_FORMAT(CLzma86Handler,	0B, "lzma86", "");
 DEFINE_FORMAT(CXzHandler,		0C, "xz", "\xFD" "7zXZ" "\0");
 //DEFINE_FORMAT(CPpmdHandler,	0D, "ppmd", "");
+DEFINE_FORMAT(CZstdHandler,		0E,  "zst tzst", "\x28\xB5\x2F\xFD");
 
 //DEFINE_FORMAT(CCOFFHandler,	C6, "obj", "L\x01");
 //DEFINE_FORMAT(CExtHandler,	C7, "ext ext2 ext3 ext4", "");
@@ -1011,6 +1014,17 @@ bool NExtract::Read_ShowPassword()
 void NExtract::Save_ShowPassword(bool)
 {
 }
+
+UInt32 NExtract::Read_LimitGB()
+{
+	return (UInt32)(Int32)-1;
+}
+
+
+void NExtract::Save_LimitGB(UInt32 limit_GB)
+{
+}
+
 
 /**
  * @brief Export instance of Merge7z interface.
