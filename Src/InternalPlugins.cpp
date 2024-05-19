@@ -287,6 +287,12 @@ public:
 		return S_OK;
 	}
 
+	HRESULT STDMETHODCALLTYPE ShowSettingsDialog(VARIANT_BOOL* pbHandled) override
+	{
+		*pbHandled = plugin::InvokeShowSettingsDialog(m_pDispatch) ? VARIANT_TRUE : VARIANT_FALSE;
+		return S_OK;
+	}
+
 private:
 	IDispatch* m_pDispatch;
 	int m_funcid;
@@ -651,6 +657,12 @@ public:
 			return hr;
 		*pbstrResult = SysAllocStringLen(ucr::toUTF16(unpackedText).c_str(), 
 			static_cast<unsigned>(unpackedText.length()));
+		return S_OK;
+	}
+
+	HRESULT STDMETHODCALLTYPE ShowSettingsDialog(VARIANT_BOOL* pbHandled) override
+	{
+		*pbHandled = plugin::InvokeShowSettingsDialog(m_pDispatch) ? VARIANT_TRUE : VARIANT_FALSE;
 		return S_OK;
 	}
 
