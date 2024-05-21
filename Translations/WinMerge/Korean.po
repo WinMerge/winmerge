@@ -2,8 +2,15 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
+# * Hwang Sukjoon <bbcool at gmail.com>
+# * Lee Jae-Hong <pyrasis at users.sourceforge.net>
+# * Sushizang <sushizang at empal.com>
+# * sheppaul <sheppaul at gmail.com>
+# * teamzamong <teamzamong at gmail.com>
+# * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
+# * cynilyn <cynilyn at gmail.com>
+# * gro00 <gheong.ro at gmail.com>
 # * VenusGirl <VenusGirl at https://github.com/VenusGirl>
-
 #
 msgid ""
 msgstr ""
