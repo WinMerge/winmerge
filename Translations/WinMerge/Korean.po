@@ -3,21 +3,14 @@
 #
 # Translators:
 # * VenusGirl <VenusGirl at https://github.com/VenusGirl>
-# * Hwang Sukjoon <bbcool at gmail.com>
-# * Lee Jae-Hong <pyrasis at users.sourceforge.net>
-# * Sushizang <sushizang at empal.com>
-# * sheppaul <sheppaul at gmail.com>
-# * teamzamong <teamzamong at gmail.com>
-# * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
-# * cynilyn <cynilyn at gmail.com>
-# * gro00 <gheong.ro at gmail.com>
+
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16.36.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2024-03-06 01:27+0900\n"
+"PO-Revision-Date: 2024-05-22 02:58+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <https://winmerge.org/?lang=ko>\n"
 "Language: ko\n"
@@ -26,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -122,7 +115,7 @@ msgid "Op&en"
 msgstr "열기(&E)"
 
 msgid "With &Registered Application"
-msgstr "등록된 응용프로그램 사용(&R)"
+msgstr "등록된 응용 프로그램 사용(&R)"
 
 msgid "With &External Editor\tCtrl+Alt+E"
 msgstr "외부 편집기 사용(&E)\tCtrl+Alt+E"
@@ -152,7 +145,7 @@ msgstr "차이점 블럭 크기(&B)"
 
 #, c-format
 msgid "&Ignore Color Difference (Color Distance Threshold)"
-msgstr "색 차이(색 거리 임계값) 무시(&I)"
+msgstr "색상 차이 무시 (색상 거리 임계값)(&I)"
 
 msgid "Ins&ertion/Deletion Detection"
 msgstr "삽입/삭제 감지(&E)"
@@ -409,7 +402,7 @@ msgstr "상태 표시줄(&S)"
 
 #, c-format
 msgid "Ta&b Bar"
-msgstr "탭 보기(&B)"
+msgstr "탭 표시줄(&B)"
 
 #, c-format
 msgid "&Tools"
@@ -532,31 +525,31 @@ msgstr "전체 선택(&A)\tCtrl+A"
 
 #, c-format
 msgid "Show &Identical Items"
-msgstr "같은 항목 보기(&I)"
+msgstr "같은 항목 표시(&I)"
 
 #, c-format
 msgid "Show &Different Items"
-msgstr "다른 항목 보기(&D)"
+msgstr "다른 항목 표시(&D)"
 
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "왼쪽에만 있는 항목 보기(&E)"
+msgstr "왼쪽에만 있는 항목 표시(&E)"
 
 #, c-format
 msgid "Show Midd&le Unique Items"
-msgstr "가운데에만 있는 항목 보기(&L)"
+msgstr "가운데에만 있는 항목 표시(&L)"
 
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "오른쪽에만 있는 항목 보기(&G)"
+msgstr "오른쪽에만 있는 항목 표시(&G)"
 
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "건너뛴 항목 보기(&K)"
+msgstr "건너뛴 항목 표시(&K)"
 
 #, c-format
 msgid "S&how Binary Files"
-msgstr "바이너리 파일 보기(&H)"
+msgstr "바이너리 파일 표시(&H)"
 
 #, c-format
 msgid "&3-way Compare"
@@ -564,28 +557,28 @@ msgstr "3 방향 비교(&3)"
 
 #, c-format
 msgid "Show &Left Only Different Items"
-msgstr "왼쪽만 다른 항목 보기(&L)"
+msgstr "왼쪽만 다른 항목 표시(&L)"
 
 #, c-format
 msgid "Show &Middle Only Different Items"
-msgstr "가운데만 다른 항목 보기(&M)"
+msgstr "가운데만 다른 항목 표시(&M)"
 
 #, c-format
 msgid "Show &Right Only Different Items"
-msgstr "오른쪽만 다른 항목 보기(&R)"
+msgstr "오른쪽만 다른 항목 표시(&R)"
 
 msgid "Show L&eft Only Missing Items"
-msgstr "왼쪽만 없는 항목 보기(&E)"
+msgstr "왼쪽만 없는 항목 표시(&E)"
 
 msgid "Show Mi&ddle Only Missing Items"
-msgstr "가운데만 없는 항목 보기(&D)"
+msgstr "가운데만 없는 항목 표시(&D)"
 
 msgid "Show Rig&ht Only Missing Items"
-msgstr "오른쪽만 없는 항목 보기(&H)"
+msgstr "오른쪽만 없는 항목 표시(&H)"
 
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "숨김 파일 보기(&E)"
+msgstr "숨김 파일 표시(&E)"
 
 #, c-format
 msgid "Tree &Mode"
@@ -686,7 +679,7 @@ msgstr "열 사용자 정의(&C)..."
 
 #, c-format
 msgid "Generate &Report..."
-msgstr "보고서 만들기(&R)..."
+msgstr "보고서 생성(&R)..."
 
 #, c-format
 msgid "&Edit with Unpacker..."
@@ -1333,79 +1326,79 @@ msgid "&Load Project..."
 msgstr "프로젝트 불러오기(&L)..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - 모든 인수"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - 첫 번째 인수"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - 두 번째 인수"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - 세 번째 인수"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - 네 번째 인수"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - 다섯 번쩨 인수"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - 여섯 번째 인수"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - 일곱 번째 인수"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - 여덟 번째 인수"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - 아홉 번째 인수"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - 소스 파일"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - 소스 폴더"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - 소스 URL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - 소스 URL 프로토콜"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - 소스 URL 접미사"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - 대상 파일"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - 대상 폴더"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - 대상 URL"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - 대상 URL 프로토콜"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - 대상 URL 접미사"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - WinMerge 홈 디렉터리"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - 스크립트 파일"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "압축해제 플러그인 추가(&U)..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "사전 차이점 플러그인 추가(&P)..."
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "중복 플러그인(&D)..."
 
 #, c-format
 msgid "About WinMerge"
@@ -1420,7 +1413,7 @@ msgstr "확인"
 
 #, c-format
 msgid "Contributors"
-msgstr "공헌자"
+msgstr "기여자"
 
 #, c-format
 msgid "Select Files or Folders"
@@ -1507,10 +1500,10 @@ msgstr "일반"
 
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "첫 차이점으로 자동 스크롤(&S)"
+msgstr "첫 번째 차이로 자동 스크롤(&S)"
 
 msgid "Automatically s&croll to first inline difference"
-msgstr "-> <NWY> 나란히 있는 첫 차이점으로 자동 스크롤(&C)"
+msgstr "-> <NWY> 나란히 있는 첫 번째 차이로 자동 스크롤(&C)"
 
 msgid "Cl&ose windows with 'Esc':"
 msgstr "'Esc'로 창 닫기(&O):"
@@ -1524,7 +1517,7 @@ msgstr "중복 실행 금지 모드:"
 
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "여러 창 닫을 때 물어보기(&K)"
+msgstr "여러 창을 닫을 때 물어보기(&K)"
 
 #, c-format
 msgid "&Preserve file time in file compare"
@@ -1532,7 +1525,7 @@ msgstr "파일 비교시 파일 시간 보존(&P)"
 
 #, c-format
 msgid "Show \"Select Files or Folders\" dialog on startup"
-msgstr "시작시 \"파일 또는 폴더 선택\" 대화 상자 보이기"
+msgstr "시작 시 \"파일 또는 폴더 선택\" 대화 상자 표시"
 
 msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "비교 버튼 누를 때 \"파일 또는 폴더 선택\" 대화 상자 닫기"
@@ -1884,7 +1877,7 @@ msgid "&Plugin Pipeline:"
 msgstr "플러그인 파이프라인(&P):"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "별칭(&A)..."
 
 #, c-format
 msgid "Stop"
@@ -2633,37 +2626,37 @@ msgid "&Hex View"
 msgstr "16진수 보기(&H)"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "편집 플러그인"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "플러그인(&T):"
 
 msgid "&Category:"
-msgstr ""
+msgstr "범주(&C):"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "메뉴 캡션(&M):"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "창 유형(&W)"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "압축되지 않은 파일 확장자(&U):"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "인수 필요(&R)"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "편집기 스크립트 생성(&G)"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "명령줄((&L):"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "스크립트 파일 확장자(&S):"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "스크립트 본문(&B:"
 
 #, c-format
 msgid "EXT"
@@ -4880,7 +4873,7 @@ msgstr "플러그인 파이프라인에 따옴표가 없습니다: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "플러그인 이름 '%1'이(가) 이미 있습니다."
 
 msgid "Specify plugin arguments"
 msgstr "플러그인 인수 지정"
@@ -4903,32 +4896,32 @@ msgstr "'%1' 파일을 '%2' 플러그인과 미리 비교하는 동안 오류가
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "플러그인 파이프라인의 순환 참조: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "URL 처리기"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "파일 압축 풀기"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "파일 또는 폴더 압축 풀기"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "압축 풀기의 별칭"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "사전 차이의 별칭"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "편집기 스크립트의 별칭"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "플러그인 파이프라인 '%1'의 별칭"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "새 플러그인 설명"
 
 msgid "Filter applied"
 msgstr "필터 적용됨"
@@ -5110,13 +5103,13 @@ msgid "Prettify YAML"
 msgstr "YAML 꾸미기"
 
 msgid "Preview Graphviz"
-msgstr "Graphviz 미리 보기"
+msgstr "Graphviz 미리보기"
 
 msgid "Preview Markdown"
 msgstr "Markdown 미리보기"
 
 msgid "Preview PlantUML"
-msgstr "PlantUML 미리 보기"
+msgstr "PlantUML 미리보기"
 
 msgid "Query CSV Data..."
 msgstr "CSV 데이터 쿼리..."
@@ -5143,7 +5136,7 @@ msgid "Disassemble Native Code"
 msgstr "네이티브 코드 분해"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "AI로 텍스트 변환..."
 
 msgid "Make characters uppercase"
 msgstr "문자를 대문자로 만들기"
@@ -5169,7 +5162,15 @@ msgstr "열 반전"
 msgid "Reverse lines"
 msgstr "줄 반전"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "텍스트를 다른 텍스트로 바꿉니다.\r\n"
 "사용법: Replace [-i] [-e] FIND REPLACE\r\n"
@@ -5274,21 +5275,21 @@ msgid ""
 "Graphviz Previewer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Graphviz 미리보기입니다. \n"
+"Graphviz 미리보기입니다. \r\n"
 "인수: dot 명령에 전달된 명령줄 옵션입니다."
 
 msgid ""
 "Markdown Previewer. \r\n"
 "Arguments: Command line options passed to the md2html command."
 msgstr ""
-"Markdown 미리보기입니다.\n"
+"Markdown 미리보기입니다.\r\n"
 "인수: md2html 명령에 전달된 명령줄 옵션입니다."
 
 msgid ""
 "PlantUML Previewer. \r\n"
 "Arguments: Command line options passed to the plantuml.jar command."
 msgstr ""
-"PlantUML 미리보기입니다.\n"
+"PlantUML 미리보기입니다.\r\n"
 "인수: plantuml.jar 명령에 전달된 명령줄 옵션입니다."
 
 msgid ""
@@ -5373,7 +5374,7 @@ msgid "Ignore some columns - ignored columns list from the plugin name or the pl
 msgstr "일부 열 무시 - 플러그인 이름 또는 플러그인 인수에서 무시된 열 목록"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "플러그인은 C, C++, PHP 및 JavaScript 파일의 주석(//... 및 /* ... */)을 무시합니다."
+msgstr "플러그인은 C, C++, PHP 및 JavaScript 파일의 주석 (//... 및 /* ... */)을 무시합니다."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "일부 필드 무시 - 플러그인 이름 또는 플러그인 인수에서 무시된 필드 목록"
@@ -5385,7 +5386,7 @@ msgid "Prediff Line Filter"
 msgstr "사전 차이 필터"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "날짜 및 시간 삽입 기능"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -5402,13 +5403,17 @@ msgstr ""
 "인수: reg.exe 명령에 전달된 명령줄 옵션입니다."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "기본 텍스트 기능"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "AI 지원 텍스트 변환 기능"
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"OpenAI API를 사용하는 텍스트 변환기.\r\n"
+"사용법: AIConvertText 프롬프트"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge 플러그인 옵션"
@@ -5483,7 +5488,7 @@ msgid "Compare slides as image (very slow)"
 msgstr "슬라이드를 이미지로 비교 (매우 느림)"
 
 msgid "Compare texts in notes page"
-msgstr "노트 페이지의 텍스트 비교"
+msgstr "참조 페이지의 텍스트 비교"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
 msgstr "MSVisioFiles.sct WinMerge 플러그인 옵션 비교"
@@ -5513,7 +5518,7 @@ msgid "Find what"
 msgstr "찾을 내용"
 
 msgid "Replace with"
-msgstr "교체 대상"
+msgstr "바꿀 대상"
 
 msgid "Settings"
 msgstr "설정"
@@ -5548,29 +5553,35 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "절대 경로가 포함된 패치 파일에 대해 '-p0' 명령줄 옵션을 지정하지 않음"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "AI.sct WinMerge 플러그인 옵션"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "프롬프트 입력"
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
 msgstr ""
+"OpenAI API 키를 입력합니다.\r\n"
+" - 이 플러그인을 사용하려면 OpenAI에 등록해야 하며 수수료가 발생합니다..\r\n"
+" - API 키는 환경 변수 %1에 저장됩니다."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "OpenAI API 키의 환경 변수 이름"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API 키"
 
 msgid "Temperature"
-msgstr ""
+msgstr "온도"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "최대 길이"
 
 msgid "Model"
-msgstr ""
+msgstr "모델"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "OpenAI API 키가 변경되었습니다. 변경 사항을 적용하려면 WinMerge를 다시 시작하세요."
