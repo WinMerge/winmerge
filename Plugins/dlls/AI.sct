@@ -244,6 +244,30 @@ function getOpenAIKey() {
   return openAIKey;
 }
 
+function getTrailingNewline(text) {
+    if (text.length === 0) {
+        return "";
+    }
+    if (text.length >= 2 && text.substring(text.length - 2) === "\r\n") {
+        return "\r\n";
+    }
+    var ch = text.substring(text.length - 1);
+    if (ch === "\n" || ch === "\r") {
+        return ch;
+    }
+    return "";
+}
+
+function syncTrailingNewline(originalText, convertedText) {
+    var originalNewline = getTrailingNewline(originalText);
+    var convertedNewline = getTrailingNewline(convertedText);
+    if (originalNewline !== convertedNewline) {
+        var trimmedConvertedText = convertedText.replace(/(\r\n|\r|\n)$/, '');
+        return trimmedConvertedText + originalNewline;
+    }
+    return convertedText;
+}
+
 function getResp(xmlHttp) {
   var stream = new ActiveXObject("ADODB.Stream");
   stream.Type = 1; // adTypeBinary
@@ -283,7 +307,7 @@ function AIConvertText(Text) {
   xmlHttp.setRequestHeader("Content-Type", "application/json");
   xmlHttp.setRequestHeader("Authorization", "Bearer " + openAIKey);
   xmlHttp.send(body);
-  return getContentOrThrowError(getResp(xmlHttp)) ;
+  return syncTrailingNewline(Text, getContentOrThrowError(getResp(xmlHttp)));
 }
 
 function translate(text) {
