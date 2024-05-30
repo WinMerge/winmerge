@@ -34,46 +34,15 @@ var pluginArguments = "";
 var variables = new Array();
 var mergeApp;
 
-function get_PluginEvent() {
-  return "EDITOR_SCRIPT";
-}
-
-function get_PluginDescription() {
-  return "AI-assisted text conversion functions";
-}
-
-function get_PluginFileFilters() {
-  return ".*";
-}
-
-function get_PluginExtendedProperties() {
-  return "GenerateUnpacker;" +
-  "AIConvertText.MenuCaption=Convert Text with AI...;" +
-  "AIConvertText.Description=Text converter using OpenAI API.\r\n" +  
-    "Usage: AIConvertText PROMPT;" +  
-  "AIConvertText.ArgumentsRequired;";
-}
-
-function get_PluginArguments() {
-  return pluginArguments;
-}
-
-function put_PluginArguments(NewValue) {
-  pluginArguments = NewValue;
-}
-
-function get_PluginVariables() {
-  return variables.join("\0");
-}
-
-function put_PluginVariables(NewValue) {
-  variables = NewValue.split("\0");
-}
-
-function regRead(Key, DefaultValue) {
-  return mergeApp.GetOption(Key, DefaultValue);
-}
-
+function get_PluginEvent() { return "EDITOR_SCRIPT"; }
+function get_PluginDescription() { return "AI-assisted text conversion functions"; }
+function get_PluginFileFilters() { return ".*"; }
+function get_PluginExtendedProperties() { return "GenerateUnpacker;AIConvertText.MenuCaption=Convert Text with AI...;AIConvertText.Description=Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT;AIConvertText.ArgumentsRequired;"; }
+function get_PluginArguments() { return pluginArguments; }
+function put_PluginArguments(NewValue) { pluginArguments = NewValue; }
+function get_PluginVariables() { return variables.join("\0"); }
+function put_PluginVariables(NewValue) { variables = NewValue.split("\0"); }
+function regRead(Key, DefaultValue) { return mergeApp.GetOption(Key, DefaultValue); }
 function regWrite(Key, Value, TypeNm) {
   mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value, 10) : String(Value));
 }
@@ -106,50 +75,23 @@ function ReplaceVariables(str) {
   return newstr;
 }
 
-function IsFirstArgumentEmpty() {
-  return (pluginArguments.match(/^\s*$/) !== null);
-}
+function IsFirstArgumentEmpty() { return pluginArguments.match(/^\s*$/) !== null; }
 
 function Unescape(text) {
+  var map = { 'a': String.fromCharCode(0x07), 'b': '\b', 't': '\t', 'n': '\n', 'v': String.fromCharCode(0x0b), 'f': '\f', 'r': '\r', '\"': '\"', '\\': '\\' };
   var result = "";
   var textLen = text.length;
   var i = 0;
   while (i < textLen) {
     var ch = text.charAt(i);
-    switch (ch) {
-    case "\\":
+    if (ch === "\\") {
       if (i < textLen - 1) {
         i++;
         ch = text.charAt(i);
-        switch (ch) {
-        case "a":
-          result += String.fromCharCode(0x07);
-          break;
-        case "b":
-          result += "\b";
-          break;
-        case "t":
-          result += "\t";
-          break;
-        case "n":
-          result += "\n";
-          break;
-        case "v":
-          result += String.fromCharCode(0x0b);
-          break;
-        case "f":
-          result += "\f";
-          break;
-        case "r":
-          result += "\r";
-          break;
-        case "\"":
-          result += "\"";
-          break;
-        case "\\":
-          result += "\\";
-          break;
-        case "x":
+        var ch2 = map[ch];
+        if (ch2 !== undefined) {
+          result += ch2;
+        } else if (ch == "x") {
           if (i + 2 < textLen) {
             try {
               result += String.fromCharCode(parseInt(text.substring(i + 1, i + 3), 16));
@@ -160,31 +102,25 @@ function Unescape(text) {
           } else {
             result += "\\x";
           }
-          break;
-        default:
+        } else {
           if (!isNaN(ch)) {
             result += (ch !== '0') ? '$' + ch : '$&';
           } else {
             result += '\\' + ch;
           }
-          break;
         }
       } else {
         result += ch;
       }
-      break;
-    default:
+    } else {
       result += ch;
-      break;
     }
     i++;
   }
   return result;
 }
 
-function PluginOnEvent(eventType, obj) {
-  mergeApp = obj;
-}
+function PluginOnEvent(eventType, obj) { mergeApp = obj; }
 
 function quote(text) {
   return text.replace(/\\/g, "\\\\").replace(/\"/g, "\\\"").replace(/\r/g, "\\r").replace(/\n/g, "\\n").replace(/\t/g, "\\t")
