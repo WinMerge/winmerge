@@ -1,12 +1,12 @@
 @echo off
 setlocal EnableDelayedExpansion
-set PlantUMLVer=1.2024.4
+set PlantUMLVer=1.2023.0
 set PlantUMLJar=plantuml-%PlantUMLVer%.jar
 set DOWNLOAD_URL=https://github.com/plantuml/plantuml/releases/download/v%PlantUMLVer%/%PlantUMLJar%
 set PlantUML_PATH=Commands\PlantUML\%PlantUMLJar%
 set MESSAGE='PlantUML is not installed. Do you want to download it and its dependences from %DOWNLOAD_URL%'
 set TITLE='PlantUML Plugin'
-set PlantUML_SHA256=8575b3e224d9488c6a0bb6ba78ba64e76457dc9777c496e3fa9d8c67108369b7
+set PlantUML_SHA256=0404edcf0af28e5b409bc17aa59ad8b05051f47347377749c46c8018135d0dec
 
 cd "%APPDATA%\WinMerge"
 if not exist %PlantUML_PATH% (
