@@ -693,6 +693,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 		{
 			if (di.diffcode.isScanNeeded())
 			{
+				pCtxt->m_pCompareStats->BeginCompare(&di, 0);
 				CompareDiffItem(fc, di);
 				if (di.diffcode.isResultError())
 				{ 
@@ -722,6 +723,7 @@ static int CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffp
 
 int DirScan_CompareRequestedItems(DiffFuncStruct *myStruct, DIFFITEM *parentdiffpos)
 {
+	myStruct->context->m_pCompareStats->SetCompareThreadCount(1);
 	return CompareRequestedItems(myStruct, parentdiffpos);
 }
 
