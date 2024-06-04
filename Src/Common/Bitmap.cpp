@@ -164,7 +164,7 @@ CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap, bool lighten)
 	return pBitmapDarkened;
 }
 
-bool LoadImageFromResource(ATL::CImage& image, const TCHAR *pName, const TCHAR *pType)
+bool LoadImageFromResource(ATL::CImage& image, const tchar_t *pName, const tchar_t *pType)
 {
 	HRSRC hrsrc = FindResource(nullptr, pName, pType);
 	if (hrsrc == nullptr)

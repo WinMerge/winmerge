@@ -46,7 +46,7 @@ namespace
 	{
 		//TCHAR curFolder[MAX_PATH] = {0};
 		//_tgetcwd(curFolder, MAX_PATH);
-		_tmkdir(_T("..\\..\\Data\\ShellFileOpTest"));
+		paths::CreateIfNeeded(_T("..\\..\\Data\\ShellFileOpTest"));
 
 		ShellFileOperations ops;
 		ops.AddSourceAndDestination(paths::GetLongPath(_T("..\\..\\Data\\File1.txt")),

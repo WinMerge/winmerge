@@ -5,6 +5,7 @@
 #define IDS_PROJNAME                    100
 #define IDS_CONTEXT_MENU                101
 #define IDR_WINMERGESHELL               102
+#define IDS_COMPARE_AS                  103
 #define IDS_COMPARE                     104
 #define IDS_COMPARE_ELLIPSIS            105
 #define IDS_SELECT_LEFT                 106

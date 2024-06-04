@@ -389,6 +389,8 @@ extern char const version_string[];
 /* mystat.cpp */
 int myfstat(int fd, struct _stat64 *buf);
 int mywstat(const wchar_t *filename, struct _stat64 *buf);
+#else
+#define myfstat fstat
 #endif
 
 #ifdef __cplusplus

@@ -11,6 +11,5 @@
 #include "CppUnitTest.h"
 
 // TODO: reference additional headers your program requires here
-#include <Windows.h>
-#include <tchar.h>
-#define ASSERT(x)
+#define _AFXDLL
+#include <afxwin.h>         // MFC core and standard components

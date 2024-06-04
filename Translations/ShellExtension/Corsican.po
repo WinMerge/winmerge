@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-01-12 15:12+0000\n"
-"PO-Revision-Date: 2022-10-17 12:59+0200\n"
+"POT-Creation-Date: 2023-02-19 00:07+0000\n"
+"PO-Revision-Date: 2023-03-12 14:56+0100\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,43 +36,42 @@ msgstr "AFX_TARG_COS"
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_CORSICAN, SUBLANG_DEFAULT"
 
-#. Codepage
-#: ShellExtension.rc:21
-#, c-format
-msgid "1252"
-msgstr "65001"
-
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
-msgstr "Estensione di u Shell"
+msgstr "Estensione di u listinu cuntestuale"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
-msgstr "&WinMerge"
+msgid "Win&Merge"
+msgstr "Win&Merge"
 
 #: ShellExtension.rc:113
+#, c-format
+msgid "Compare &As"
+msgstr "Paragunà &cum’è"
+
+#: ShellExtension.rc:114
 #, c-format
 msgid "&Compare"
 msgstr "&Paragunà"
 
-#: ShellExtension.rc:114
+#: ShellExtension.rc:115
 #, c-format
 msgid "Compare&..."
-msgstr "Paragunà&…"
+msgstr "&Paragunà…"
 
-#: ShellExtension.rc:115
+#: ShellExtension.rc:116
 #, c-format
 msgid "Select &Left"
 msgstr "Selezziunà à &manca"
 
-#: ShellExtension.rc:116
+#: ShellExtension.rc:117
 #, c-format
 msgid "Select &Middle"
 msgstr "Selezziunà à u &centru"
 
-#: ShellExtension.rc:117
+#: ShellExtension.rc:118
 #, c-format
 msgid "Re-select &Left"
 msgstr "Riselezziunà à &manca"

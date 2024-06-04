@@ -6,6 +6,7 @@
 
 #pragma once
 
+#include "cecolor.h"
 #include <array>
 
 /** 
@@ -55,7 +56,7 @@ enum COLORINDEX
     COLORINDEX_MASK = 0xC0000000,
 };
 
-const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
+constexpr int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
 
 /** 
  * @brief Wrapper for Syntax coloring colors.
@@ -70,12 +71,11 @@ const int COLORINDEX_COUNT = COLORINDEX_LAST - COLORINDEX_NONE;
 class SyntaxColors
 {
 public:
-	typedef unsigned COLORREF;
 	SyntaxColors();
 	explicit SyntaxColors(const SyntaxColors *pColors);
 	void Clone(const SyntaxColors *pColors);
-	COLORREF GetColor(unsigned index) const { return m_colors[index]; }
-	void SetColor(unsigned index, COLORREF color);
+	CEColor GetColor(unsigned index) const { return m_colors[index]; }
+	void SetColor(unsigned index, CEColor color);
 	bool GetBold(unsigned index) const { return m_bolds[index]; }
 	void SetBold(unsigned index, bool bold);
 	void SetDefaults();
@@ -84,6 +84,6 @@ public:
 
 // Implementation data
 private:
-	std::array<COLORREF, COLORINDEX_COUNT> m_colors; /**< Syntax highlight colors */
+	std::array<CEColor, COLORINDEX_COUNT> m_colors; /**< Syntax highlight colors */
 	std::array<bool, COLORINDEX_COUNT> m_bolds; /**< Bold font enable/disable */
 };

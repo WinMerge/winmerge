@@ -1,4 +1,4 @@
-/* Copyright 2003-2013 Joaquin M Lopez Munoz.
+/* Copyright 2003-2023 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -15,8 +15,8 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <boost/multi_index/detail/index_matcher.hpp>
-#include <boost/noncopyable.hpp>
-#include <boost/serialization/nvp.hpp>
+#include <boost/core/noncopyable.hpp>
+#include <boost/core/serialization.hpp>
 #include <cstddef>
 
 namespace boost{
@@ -43,14 +43,14 @@ public:
   template<class Archive>
   void add(Node* node,Archive& ar,const unsigned int)
   {
-    ar<<serialization::make_nvp("position",*node);
+    ar<<core::make_nvp("position",*node);
     alg.add(node);
   }
 
   template<class Archive>
   void add_track(Node* node,Archive& ar,const unsigned int)
   {
-    ar<<serialization::make_nvp("position",*node);
+    ar<<core::make_nvp("position",*node);
   }
 
   template<typename IndexIterator,class Archive>
@@ -120,7 +120,7 @@ private:
   template<typename Archive>
   static void save_node(Node* node,Archive& ar)
   {
-    ar<<serialization::make_nvp("pointer",node);
+    ar<<core::make_nvp("pointer",node);
   }
 
   index_matcher::algorithm<Node,Allocator> alg;

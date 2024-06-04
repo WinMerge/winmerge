@@ -31,9 +31,7 @@ namespace
 		{
 			// Code	here will be called	immediately	after the constructor (right
 			// before each test).
-			TCHAR temp[MAX_PATH] = {0};
-			GetModuleFileName(NULL, temp, MAX_PATH);
-			env::SetProgPath(paths::GetPathOnly(temp) + _T("/../FileFilter"));
+			env::SetProgPath(env::GetProgPath() + _T("/../FileFilter"));
 			m_fileFilterHelper.LoadAllFileFilters();
 		}
 
@@ -217,6 +215,23 @@ namespace
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Release")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("Debug")));
 		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("dir1\\Debug")));
+
+		m_fileFilterHelper.SetMask(_T("abc.\\def.\\*.*"));
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T("abc\\def\\efg")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc.1\\def\\efg")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeFile(_T("abc\\def.1\\efg")));
+
+		m_fileFilterHelper.SetMask(_T("abc.\\def.\\"));
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
+		EXPECT_EQ(true, m_fileFilterHelper.includeDir(_T("abc\\def")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc.1\\def")));
+		EXPECT_EQ(false, m_fileFilterHelper.includeDir(_T("abc\\def.1")));
+
+		// Test for bugs introduced in version 2.16.26
+		m_fileFilterHelper.SetMask(_T("*.*"));
+		EXPECT_EQ(true, m_fileFilterHelper.IsUsingMask());
+		EXPECT_EQ(true, m_fileFilterHelper.includeFile(_T(".git\\config")));
 
 	}
 

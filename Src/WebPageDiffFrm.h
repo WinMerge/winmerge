@@ -12,7 +12,6 @@
 #include "IMergeDoc.h"
 #include "WinWebDiffLib.h"
 #include "LocationBar.h"
-#include "WebPageDiffBar.h"
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
 #include "FileTransform.h"
@@ -20,7 +19,7 @@
 #include "SuperComboBox.h"
 #include <memory>
 
-class CDirDoc;
+struct IDirDoc;
 
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
@@ -47,20 +46,21 @@ public:
 public:
 	bool OpenDocs(int nFiles, const FileLocation fileloc[], const bool bRO[], const String strDesc[], CMDIFrameWnd *pParent, std::function<void ()> callback);
 	void MoveOnLoad(int nPane = -1, int nLineIndex = -1);
-	CDirDoc* GetDirDoc() const override { return m_pDirDoc; };
-	void SetDirDoc(CDirDoc * pDirDoc) override;
+	IDirDoc* GetDirDoc() const override { return m_pDirDoc; };
+	void SetDirDoc(IDirDoc * pDirDoc) override;
 	void UpdateResources();
 	void RefreshOptions();
 	bool CloseNow() override;
-	void DirDocClosing(CDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
-	void UpdateLastCompareResult();
+	void DirDocClosing(IDirDoc * pDirDoc) override { m_pDirDoc = nullptr; }
+	int UpdateLastCompareResult();
 	void UpdateAutoPaneResize();
 	void UpdateSplitter();
-	bool GenerateReport(const String& sFileName) const override;
-	bool GenerateReport(const String& sFileName, bool allPages) const;
+	bool GenerateReport(const String& sFileName) const;
+	bool GenerateReport(const String& sFileName, std::function<void (bool)> callback) const;
 	const PackingInfo* GetUnpacker() const override { return &m_infoUnpacker; };
 	void SetUnpacker(const PackingInfo* infoUnpacker) override { if (infoUnpacker) m_infoUnpacker = *infoUnpacker; };
 	const PrediffingInfo* GetPrediffer() const override { return nullptr; };
+	const EditorScriptInfo* GetEditorScript() const override { return nullptr; };
 	int GetFileCount() const override { return m_filePaths.GetSize(); }
 	String GetPath(int pane) const override { return m_filePaths[pane]; }
 	bool GetReadOnly(int pane) const override { return m_bRO[pane]; }
@@ -99,26 +99,23 @@ private:
 	void CreateWebWndStatusBar(CStatusBar &, CWnd *);
 	void OnWebDiffEvent(const WebDiffEvent& event);
 	bool OpenUrls(IWebDiffCallback* callback);
-	int UpdateDiffItem(CDirDoc * pDirDoc);
 	void UpdateHeaderSizes();
 	void UpdateHeaderPath(int pane);
 	void SetTitle(LPCTSTR lpszTitle);
 	bool MergeModeKeyDown(MSG* pMsg);
-	void UpdateWebPageDiffBar();
-	//static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
+	static void TranslateLocationPane(int id, const wchar_t *org, size_t dstbufsize, wchar_t *dst);
 
 private:
-	CWebPageDiffBar m_wndWebPageDiffBar;
 	CLocationBar m_wndLocationBar;
 	IWebDiffWindow *m_pWebDiffWindow;
-	//IWebToolWindow *m_pWebToolWindow;
+	IWebToolWindow *m_pWebToolWindow;
 	PathContext m_filePaths;
 	String m_strDesc[3];
 	BUFFERTYPE m_nBufferType[3];
 	DiffFileInfo m_fileInfo[3];
 	bool m_bRO[3];
 	bool m_bAutoMerged;
-	CDirDoc *m_pDirDoc;
+	IDirDoc *m_pDirDoc;
 	int m_nActivePane;
 	PackingInfo m_infoUnpacker;
 	std::vector<int> m_unpackerSubcodes[3];
@@ -126,7 +123,6 @@ private:
 	std::vector<std::shared_ptr<TempFolder>> m_tempFolders;
 	std::function<void()> m_callbackOnOpenCompleted;
 	bool m_bCompareCompleted;
-	bool m_bInUpdateWebPageDiffBar;
 
 // Generated message map functions
 protected:
@@ -184,6 +180,8 @@ protected:
 	afx_msg void OnUpdateNextConflict(CCmdUI* pCmdUI);
 	afx_msg void OnPrevConflict();
 	afx_msg void OnUpdatePrevConflict(CCmdUI* pCmdUI);
+	afx_msg void OnWebViewDifferences();
+	afx_msg void OnUpdateWebViewDifferences(CCmdUI* pCmdUI);
 	afx_msg void OnWebFitToWindow();
 	afx_msg void OnUpdateWebFitToWindow(CCmdUI* pCmdUI);
 	afx_msg void OnWebSize(UINT nID);
@@ -191,20 +189,13 @@ protected:
 	afx_msg void OnWebCompareHTMLs();
 	afx_msg void OnWebCompareTexts();
 	afx_msg void OnWebCompareResourceTrees();
+	afx_msg void OnWebSyncEvent(UINT nID);
+	afx_msg void OnUpdateWebSyncEvent(CCmdUI* pCmdUI);
 	afx_msg void OnWebClear(UINT nID);
-	//afx_msg void OnToolsGenerateReport();
+	afx_msg void OnToolsGenerateReport();
 	afx_msg void OnRefresh();
 	afx_msg void OnSetFocus(CWnd *pNewWnd);
 	afx_msg void OnHelp();
-	afx_msg void OnBnClickedFitToWindow();
-	afx_msg void OnBnClickedShowDifferences();
-	afx_msg void OnBnClickedCompare();
-	afx_msg void OnEnChangeWidth();
-	afx_msg void OnEnChangeHeight();
-	afx_msg void OnEnChangeZoom();
-	afx_msg void OnEnChangeUserAgent();
-	afx_msg void OnKillFocusBarControls();
-	afx_msg void OnDropDownCompare(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

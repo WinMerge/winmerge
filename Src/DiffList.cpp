@@ -8,21 +8,17 @@
 #include "pch.h"
 #include "DiffList.h"
 #include <cassert>
-#include <string>
 #include <sstream>
 #include <algorithm>
-
-using std::swap;
-using std::vector;
 
 /**
  * @brief Swap diff sides.
  */
 void DIFFRANGE::swap_sides(int index1, int index2)
 {
-	swap(begin[index1], begin[index2]);
-	swap(end[index1], end[index2]);
-	swap(blank[index1], blank[index2]);
+	std::swap(begin[index1], begin[index2]);
+	std::swap(end[index1], end[index2]);
+	std::swap(blank[index1], blank[index2]);
 }
 
 /**
@@ -807,8 +803,8 @@ const DIFFRANGE * DiffList::LastSignificant3wayDiffRange(int nDiffType) const
  */
 void DiffList::Swap(int index1, int index2)
 {
-	vector<DiffRangeInfo>::iterator iter = m_diffs.begin();
-	vector<DiffRangeInfo>::const_iterator iterEnd = m_diffs.end();
+	std::vector<DiffRangeInfo>::iterator iter = m_diffs.begin();
+	std::vector<DiffRangeInfo>::const_iterator iterEnd = m_diffs.end();
 	while (iter != iterEnd)
 	{
 		(*iter).swap_sides(index1, index2);
@@ -842,7 +838,7 @@ void DiffList::GetExtraLinesCounts(int nFiles, int extras[3])
 		for (file = 0; file < nFiles; file++)
 		{
 			nline[file] = curDiff.end[file]-curDiff.begin[file]+1;
-			nmaxline = std::max(nmaxline, nline[file]);
+			nmaxline = (std::max)(nmaxline, nline[file]);
 		}
 		for (file = 0; file < nFiles; file++)
 			extras[file] += nmaxline - nline[file];

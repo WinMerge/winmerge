@@ -29,10 +29,13 @@ struct FileFilterElement
 	Poco::RegularExpression regexp; /**< Compiled regular expression */
 	std::string _regex; /**< Regular expression string to set to Poco::RegularExpression */
 	int _reOpts; /**< Options to set to Poco::RegularExpression */
-	FileFilterElement(const std::string& regex, int reOpts) : regexp(regex, reOpts), _regex(regex), _reOpts(reOpts)
+	bool _fileNameOnly; /**< If true, indicates that the filter matches only filenames */
+	FileFilterElement(const std::string& regex, int reOpts, bool fileFilter) :
+		regexp(regex, reOpts), _regex(regex), _reOpts(reOpts), _fileNameOnly(fileFilter && regex.find("\\\\", 0) == String::npos && regex.find_first_of(":/") == String::npos)
 	{
 	}
-	FileFilterElement(const FileFilterElement* element) : regexp(element->_regex, element->_reOpts), _regex(element->_regex), _reOpts(element->_reOpts)
+	FileFilterElement(const FileFilterElement* element) :
+		regexp(element->_regex, element->_reOpts), _regex(element->_regex), _reOpts(element->_reOpts), _fileNameOnly(element->_fileNameOnly)
 	{
 	}
 };

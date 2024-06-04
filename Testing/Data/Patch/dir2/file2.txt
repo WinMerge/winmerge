@@ -1,0 +1,7 @@
+a
+b
+c
+e
+f
+file2
+dir2

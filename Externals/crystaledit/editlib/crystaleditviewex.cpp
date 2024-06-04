@@ -3,8 +3,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "StdAfx.h"
-#include "crystalparser.h"
 #include "crystaleditviewex.h"
+#include "crystalparser.h"
 
 using CrystalLineParser::TEXTBLOCK;
 

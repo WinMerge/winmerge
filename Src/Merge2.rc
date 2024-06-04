@@ -153,12 +153,18 @@ IDB_MIDDLE              BITMAP                  "res\\middle.bmp"
 IDB_RIGHT               BITMAP                  "res\\right.bmp"
 IDB_BOTH                BITMAP                  "res\\both.bmp"
 IDB_ALL                 BITMAP                  "res\\all.bmp"
-IDB_LEFT_TO_RIGHT       BITMAP                  "res\\left_to_right.bmp"
-IDB_LEFT_TO_MIDDLE      BITMAP                  "res\\left_to_middle.bmp"
-IDB_RIGHT_TO_LEFT       BITMAP                  "res\\right_to_left.bmp"
-IDB_RIGHT_TO_MIDDLE     BITMAP                  "res\\right_to_middle.bmp"
-IDB_MIDDLE_TO_LEFT      BITMAP                  "res\\middle_to_left.bmp"
-IDB_MIDDLE_TO_RIGHT     BITMAP                  "res\\middle_to_right.bmp"
+IDB_COPY_LEFT_TO_RIGHT  BITMAP                  "res\\copy_left_to_right.bmp"
+IDB_COPY_LEFT_TO_MIDDLE BITMAP                  "res\\copy_left_to_middle.bmp"
+IDB_COPY_RIGHT_TO_LEFT  BITMAP                  "res\\copy_right_to_left.bmp"
+IDB_COPY_RIGHT_TO_MIDDLE BITMAP                 "res\\copy_right_to_middle.bmp"
+IDB_COPY_MIDDLE_TO_LEFT BITMAP                  "res\\copy_middle_to_left.bmp"
+IDB_COPY_MIDDLE_TO_RIGHT BITMAP                 "res\\copy_middle_to_right.bmp"
+IDB_MOVE_LEFT_TO_RIGHT  BITMAP                  "res\\move_left_to_right.bmp"
+IDB_MOVE_LEFT_TO_MIDDLE BITMAP                  "res\\move_left_to_middle.bmp"
+IDB_MOVE_RIGHT_TO_LEFT  BITMAP                  "res\\move_right_to_left.bmp"
+IDB_MOVE_RIGHT_TO_MIDDLE BITMAP                 "res\\move_right_to_middle.bmp"
+IDB_MOVE_MIDDLE_TO_LEFT BITMAP                  "res\\move_middle_to_left.bmp"
+IDB_MOVE_MIDDLE_TO_RIGHT BITMAP                 "res\\move_middle_to_right.bmp"
 IDB_COPY_FROM_LEFT      BITMAP                  "res\\from_left.bmp"
 IDB_COPY_FROM_RIGHT     BITMAP                  "res\\from_right.bmp"
 IDB_COPY_SELECTED_LINES_FROM_LEFT BITMAP        "res\\selected_lines_from_left.bmp"
@@ -169,9 +175,9 @@ IDB_COPY_SELECTED_LINES_MIDDLE_TO_LEFT BITMAP   "res\\selected_lines_middle_to_l
 IDB_COPY_SELECTED_LINES_MIDDLE_TO_RIGHT BITMAP  "res\\selected_lines_middle_to_right.bmp"
 IDB_COPY_SELECTED_LINES_RIGHT_TO_MIDDLE BITMAP  "res\\selected_lines_right_to_middle.bmp"
 IDB_COPY_SELECTED_LINES_RIGHT_TO_LEFT BITMAP    "res\\selected_lines_right_to_left.bmp"
-IDB_LEFT_TO_BROWSE      BITMAP                  "res\\left_to_browse.bmp"
-IDB_MIDDLE_TO_BROWSE    BITMAP                  "res\\middle_to_browse.bmp"
-IDB_RIGHT_TO_BROWSE     BITMAP                  "res\\right_to_browse.bmp"
+IDB_COPY_LEFT_TO_BROWSE BITMAP                  "res\\copy_left_to_browse.bmp"
+IDB_COPY_MIDDLE_TO_BROWSE BITMAP                "res\\copy_middle_to_browse.bmp"
+IDB_COPY_RIGHT_TO_BROWSE BITMAP                 "res\\copy_right_to_browse.bmp"
 IDB_MOVE_LEFT_TO_BROWSE BITMAP                  "res\\move_left_to_browse.bmp"
 IDB_MOVE_MIDDLE_TO_BROWSE BITMAP                "res\\move_middle_to_browse.bmp"
 IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "res\\move_right_to_browse.bmp"
@@ -201,6 +207,12 @@ IDB_FILE_NEW3_WEBPAGE   BITMAP                  "res\\new3_webpage.bmp"
 
 IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
 
+/////////////////////////////////////////////////////////////////////////////
+//
+// TypeLib
+//
+1 TYPELIB "Merge.tlb"
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -229,7 +241,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge\0"
             VALUE "FileVersion", STRFILEVER
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(c) 1996-2022 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "(c) 1996-2024 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMergeU.EXE\0"
             VALUE "PrivateBuild", STRPRIVATEBUILD
             VALUE "ProductName", "WinMerge\0"

@@ -252,7 +252,7 @@ void CLocationView::CalculateBlocks()
 	CMergeDoc *pDoc = GetDocument();
 	const int nDiffs = pDoc->m_diffList.GetSize();
 	if (nDiffs > 0)
-		m_diffBlocks.reserve(nDiffs); // Pre-allocate space for the list.
+		m_diffBlocks.reserve(nDiffs * 3 / 2); // Roughly pre-allocate space for the list.
 
 	int nGroup = pDoc->GetActiveMergeView()->m_nThisGroup;
 	int nLineCount = pDoc->GetView(nGroup, 0)->GetLineCount();
@@ -334,22 +334,6 @@ void CLocationView::CalculateBlocksPixel(int nBlockStart, int nBlockEnd,
 	nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
 }
 
-static COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio)
-{
-	const int R = static_cast<int>((GetRValue(a) - GetRValue(b)) * ratio) + GetRValue(b);
-	const int G = static_cast<int>((GetGValue(a) - GetGValue(b)) * ratio) + GetGValue(b);
-	const int B = static_cast<int>((GetBValue(a) - GetBValue(b)) * ratio) + GetBValue(b);
-	return RGB(R, G, B);
-}
-
-static COLORREF GetDarkenColor(COLORREF a, double l)
-{
-	const int R = static_cast<int>(GetRValue(a) * l);
-	const int G = static_cast<int>(GetGValue(a) * l);
-	const int B = static_cast<int>(GetBValue(a) * l);
-	return RGB(R, G, B);
-}
-
 /** 
  * @brief Draw maps of files.
  *
@@ -383,8 +367,8 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	CMyMemDC dc(pDC, &rc);
 
-	COLORREF cr[3] = {CLR_NONE, CLR_NONE, CLR_NONE};
-	COLORREF crt = CLR_NONE; // Text color
+	CEColor cr[3] = {CLR_NONE, CLR_NONE, CLR_NONE};
+	CEColor crt = CLR_NONE; // Text color
 	bool bwh = false;
 
 	m_movedLines.RemoveAll();
@@ -394,10 +378,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	COLORREF clrFace    = GetBackgroundColor();
 	COLORREF clrShadow  = GetSysColor(COLOR_BTNSHADOW);
-	COLORREF clrShadow2 = GetIntermediateColor(clrFace, clrShadow, 0.9f);
-	COLORREF clrShadow3 = GetIntermediateColor(clrFace, clrShadow2, 0.5f);
-	COLORREF clrShadow4 = GetIntermediateColor(clrFace, clrShadow3, 0.5f);
-	COLORREF clrShadow5 = GetIntermediateColor(clrFace, clrShadow4, 0.5f);
+	COLORREF clrShadow2 = CEColor::GetIntermediateColor(clrFace, clrShadow, 0.9f);
+	COLORREF clrShadow3 = CEColor::GetIntermediateColor(clrFace, clrShadow2, 0.5f);
+	COLORREF clrShadow4 = CEColor::GetIntermediateColor(clrFace, clrShadow3, 0.5f);
+	COLORREF clrShadow5 = CEColor::GetIntermediateColor(clrFace, clrShadow4, 0.5f);
 
 	// Draw bar outlines
 	CPen* oldObj = (CPen*)dc.SelectStockObject(NULL_PEN);
@@ -555,9 +539,9 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, bool bSelect
 			++drawRect.bottom;
 		pDC->FillSolidRect(drawRect, cr);
 		CRect drawRect2(drawRect.left, drawRect.top, drawRect.right, drawRect.top + 1);
-		pDC->FillSolidRect(drawRect2, GetDarkenColor(cr, 0.96));
+		pDC->FillSolidRect(drawRect2, CEColor::GetDarkenColor(cr, 0.96f));
 		CRect drawRect3(drawRect.left, drawRect.bottom - 1, drawRect.right, drawRect.bottom);
-		pDC->FillSolidRect(drawRect3, GetDarkenColor(cr, 0.91));
+		pDC->FillSolidRect(drawRect3, CEColor::GetDarkenColor(cr, 0.91f));
 
 		if (bSelected)
 		{
@@ -576,6 +560,7 @@ void CLocationView::OnLButtonDown(UINT nFlags, CPoint point)
 	bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
 	if (!GotoLocation(point, false, !bShift))
 		CView::OnLButtonDown(nFlags, point);
+	OnMouseMove(nFlags, point);
 }
 
 /**
@@ -710,7 +695,7 @@ void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
 	if (pScrollBar == nullptr)
 	{
-		// Scroll did not come frome a scroll bar
+		// Scroll did not come from a scroll bar
 		// Send it to the right view instead
  	  CMergeDoc *pDoc = GetDocument();
 		pDoc->GetActiveMergeGroupView(pDoc->m_nBuffers - 1)->SendMessage(WM_VSCROLL,
@@ -878,7 +863,7 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
  *
  * @param [in] nTopLine New topline for indicator
  * @param [in] nBottomLine New bottomline for indicator
- * @todo This function dublicates too much DrawRect() code.
+ * @todo This function duplicates too much DrawRect() code.
  */
 void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBottomLine)
 {
@@ -1077,7 +1062,7 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
  * @brief Draw marker for top of currently selected difference.
  * This function draws marker for top of currently selected difference.
  * This marker makes it a lot easier to see where currently selected
- * difference is in location bar. Especially when selected diffence is
+ * difference is in location bar. Especially when selected difference is
  * small and it is not easy to find it otherwise.
  * @param [in] pDC Pointer to draw context.
  * @param [in] yCoord Y-coord of top of difference, -1 if no difference.
@@ -1095,7 +1080,7 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 	points[2].y = yCoord + DIFFMARKER_BOTTOM;
 
 	COLORREF clrBlue = GetSysColor(COLOR_ACTIVECAPTION);
-	CPen penDarkBlue(PS_SOLID, 0, GetDarkenColor(clrBlue, 0.9));
+	CPen penDarkBlue(PS_SOLID, 0, CEColor::GetDarkenColor(clrBlue, 0.9f));
 	CPen* oldObj = (CPen*)pDC->SelectObject(&penDarkBlue);
 	CBrush brushBlue(clrBlue);
 	CBrush* pOldBrush = pDC->SelectObject(&brushBlue);

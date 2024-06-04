@@ -75,19 +75,19 @@ namespace boost { namespace parameter { namespace aux {
       , typename IsPositional
       , typename UsedArgs
       , typename ArgumentPack
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
       , typename _argument
 #endif
       , typename Error
       , typename EmitsErrors
     >
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
     class make_arg_list00
 #else
     class make_arg_list0
 #endif
     {
-#if !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
         typedef typename List::arg _argument;
 #endif
 #if defined(BOOST_PARAMETER_CAN_USE_MP11)
@@ -290,7 +290,7 @@ namespace boost { namespace parameter { namespace aux {
         >::type type;
     };
 
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
     template <
         typename List
       , typename DeducedArgs

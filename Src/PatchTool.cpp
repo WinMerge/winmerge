@@ -143,8 +143,8 @@ int CPatchTool::CreatePatch()
 		for (size_t index = 0; index < fileCount; index++)
 		{
 			const PATCHFILES& tFiles = fileList[index];
-			String filename1 = tFiles.lfile.length() == 0 ? _T("NUL") : tFiles.lfile;
-			String filename2 = tFiles.rfile.length() == 0 ? _T("NUL") : tFiles.rfile;
+			String filename1 = tFiles.lfile.length() == 0 ? paths::NATIVE_NULL_DEVICE_NAME : tFiles.lfile;
+			String filename2 = tFiles.rfile.length() == 0 ? paths::NATIVE_NULL_DEVICE_NAME : tFiles.rfile;
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetPaths(PathContext(filename1, filename2), false);
@@ -269,7 +269,7 @@ void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const 
 	if ((ent1 == nullptr && ent2 == nullptr) || fileList == nullptr)
 		return;
 
-	static const TCHAR backslash[] = _T("\\");
+	static const tchar_t backslash[] = _T("\\");
 
 	PATCHFILES tFiles;
 
@@ -311,7 +311,7 @@ void CPatchTool::AddFilesToList(const String& sDir1, const String& sDir2, const 
  */
 int CPatchTool::GetItemsForPatchList(const PathContext& paths, const String subdir[], std::vector<PATCHFILES>* fileList)
 {
-	static const TCHAR backslash[] = _T("\\");
+	static const tchar_t backslash[] = _T("\\");
 	int nDirs = paths.GetSize();
 
 	String sDir[2];

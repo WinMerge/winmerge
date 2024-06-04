@@ -23,6 +23,13 @@
 #include <boost/config.hpp>
 #include <boost/cstdint.hpp>
 
+#if defined(BOOST_SP_REPORT_IMPLEMENTATION)
+
+#include <boost/config/pragma_message.hpp>
+BOOST_PRAGMA_MESSAGE("Using single-threaded, non-atomic sp_counted_base")
+
+#endif
+
 namespace boost
 {
 

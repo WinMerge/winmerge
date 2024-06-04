@@ -350,6 +350,93 @@ LPDISPATCH NTAPI CreateDispatchBySource(LPCTSTR source, LPCWSTR progid)
 	return (LPDISPATCH)pv;
 }
 
+static BOOL NeedsConversion(LPDISPATCH pi, DISPID id, VARIANT *argv, int cArgs)
+{
+	BOOL bParamByRef = FALSE;
+	BOOL bNeedToConv = FALSE;
+	int i;
+
+	for (i = 0; i < cArgs; i++)
+	{
+		if (V_ISBYREF(&argv[i]))
+		{
+			bParamByRef = TRUE;
+			break;
+		}
+	}
+	if (bParamByRef)
+	{
+		ITypeInfo* pTypeInfo;
+		HRESULT hr;
+
+		hr = pi->lpVtbl->GetTypeInfo(pi, 0, 0, &pTypeInfo);
+		if (SUCCEEDED(hr))
+		{
+			FUNCDESC* pFuncDesc = NULL;
+			ITypeInfo2* pTypeInfo2 = NULL;
+			pTypeInfo->lpVtbl->QueryInterface(pTypeInfo, &IID_ITypeInfo2, &pTypeInfo2);
+			if (pTypeInfo2 != NULL)
+			{
+				UINT nIndex;
+				hr = pTypeInfo2->lpVtbl->GetFuncIndexOfMemId(pTypeInfo2, id, INVOKE_FUNC, &nIndex);
+				if (SUCCEEDED(hr))
+				{
+					hr = pTypeInfo->lpVtbl->GetFuncDesc(pTypeInfo, nIndex, &pFuncDesc);
+					if (SUCCEEDED(hr))
+					{
+						if (pFuncDesc->oVft == 0)
+							bNeedToConv = TRUE;
+						pTypeInfo->lpVtbl->ReleaseFuncDesc(pTypeInfo, pFuncDesc);
+					}
+				}
+				pTypeInfo2->lpVtbl->Release(pTypeInfo2);
+			}
+			pTypeInfo->lpVtbl->Release(pTypeInfo);
+		}
+	}
+	return bNeedToConv;
+}
+
+static void MoveVariantValue(VARIANT* dst, VARIANT* src)
+{
+	if ((V_VT(dst) & ~VT_BYREF) == VT_BSTR && V_VT(src) == VT_BSTR)
+	{
+		SysFreeString(*V_BSTRREF(dst));
+		*V_BSTRREF(dst) = V_BSTR(src);
+		V_VT(src) = VT_EMPTY;
+		return;
+	}
+	VARIANT varTemp;
+	VariantInit(&varTemp);
+	VariantChangeType(&varTemp, src, 0, (unsigned short)(V_VT(dst) & ~VT_BYREF));
+	switch (V_VT(dst) & ~VT_BYREF) {
+	case VT_BOOL:
+		*V_BOOLREF(dst) = V_BOOL(&varTemp);
+		break;
+	case VT_I1:
+		*V_I2REF(dst) = V_I1(&varTemp);
+		break;
+	case VT_I2:
+		*V_I2REF(dst) = V_I2(&varTemp);
+		break;
+	case VT_I4:
+		*V_I4REF(dst) = V_I4(&varTemp);
+		break;
+	case VT_R4:
+		*V_R4REF(dst) = V_R4(&varTemp);
+		break;
+	case VT_R8:
+		*V_R8REF(dst) = V_R8(&varTemp);
+		break;
+	case VT_BSTR:
+		SysFreeString(*V_BSTRREF(dst));
+		*V_BSTRREF(dst) = V_BSTR(&varTemp);
+		V_VT(&varTemp) = VT_EMPTY;
+		break;
+	}
+	VariantClear(&varTemp);
+}
+
 STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 {
 	HRESULT sc = E_FAIL;
@@ -368,51 +455,10 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 	}
 	if (pi != NULL)
 	{
-		BOOL bParamByRef = FALSE;
-		BOOL bNeedToConv = FALSE;
 		VARIANT varParams[12] = { 0 };
 		VARIANT varData[12] = { 0 };
+		BOOL bNeedToConv = NeedsConversion(pi, id, argv, dispparams.cArgs);
 		int i;
-
-		for (i = 0; i < (int)dispparams.cArgs; i++)
-		{
-			if (V_ISBYREF(&argv[i]))
-			{
-				bParamByRef = TRUE;
-				break;
-			}
-		}
-		if (bParamByRef)
-		{
-			ITypeInfo *pTypeInfo;
-			HRESULT hr;
-
-			hr = pi->lpVtbl->GetTypeInfo(pi, 0, 0, &pTypeInfo);
-			if (SUCCEEDED(hr))
-			{
-				FUNCDESC* pFuncDesc = NULL;
-				ITypeInfo2 *pTypeInfo2 = NULL;
-				pTypeInfo->lpVtbl->QueryInterface(pTypeInfo, &IID_ITypeInfo2, &pTypeInfo2);
-				if (pTypeInfo2 != NULL)
-				{
-					UINT nIndex;
-					hr = pTypeInfo2->lpVtbl->GetFuncIndexOfMemId(pTypeInfo2, id, INVOKE_FUNC, &nIndex);
-					if (SUCCEEDED(hr))
-					{
-						hr = pTypeInfo->lpVtbl->GetFuncDesc(pTypeInfo, nIndex, &pFuncDesc);
-						if (SUCCEEDED(hr))
-						{
-							if (pFuncDesc->oVft == 0)
-								bNeedToConv = TRUE;
-							pTypeInfo->lpVtbl->ReleaseFuncDesc(pTypeInfo, pFuncDesc);
-						}
-					}
-					pTypeInfo2->lpVtbl->Release(pTypeInfo2);
-				}
-				pTypeInfo->lpVtbl->Release(pTypeInfo);
-			}
-		}
-
 		if (bNeedToConv)
 		{
 			for (i = 0; i < (int)dispparams.cArgs; i++)
@@ -453,27 +499,33 @@ STDAPI invokeV(LPDISPATCH pi, VARIANT *ret, DISPID id, LPCCH op, VARIANT *argv)
 		{
 			if (bNeedToConv)
 			{
-				for (i = 0; i < (int)dispparams.cArgs; i++)
+				if (V_VT(ret) == (VT_ARRAY | VT_VARIANT))
 				{
-					if (V_ISBYREF(&argv[i]))
+					long ubound = 0;
+					SafeArrayGetUBound(V_ARRAY(ret), 1, &ubound);
+					VARIANT* p = NULL;
+					int j = ubound;
+					SafeArrayAccessData(V_ARRAY(ret), (void**)(&p));
+					for (i = 0; i < (int)dispparams.cArgs; i++)
 					{
-						VARIANT varTemp;
-						VariantInit(&varTemp);
-						VariantChangeType(&varTemp, &varData[i], 0, (unsigned short)(V_VT(&argv[i]) & ~VT_BYREF));
-						switch(V_VT(&varTemp)) {
-						case VT_BOOL: *V_BOOLREF(&argv[i]) = V_BOOL(&varTemp); break;
-						case VT_I1: *V_I2REF(&argv[i]) = V_I1(&varTemp); break;
-						case VT_I2: *V_I2REF(&argv[i]) = V_I2(&varTemp); break;
-						case VT_I4: *V_I4REF(&argv[i]) = V_I4(&varTemp); break;
-						case VT_R4: *V_R4REF(&argv[i]) = V_R4(&varTemp); break;
-						case VT_R8: *V_R8REF(&argv[i]) = V_R8(&varTemp); break;
-						case VT_BSTR: 
-							SysFreeString(*V_BSTRREF(&argv[i]));
-							*V_BSTRREF(&argv[i]) = V_BSTR(&varTemp);
-							break;
-						}
+						if (V_ISBYREF(&argv[i]) && j > 0)
+							MoveVariantValue(&argv[i], &p[j--]);
+						VariantClear(&varParams[i]);
+						VariantClear(&varData[i]);
 					}
-					VariantClear(&varParams[i]);
+					VARIANT_BOOL bResult = V_BOOL(&p[0]);
+					VariantClear(ret);
+					V_BOOL(ret) = bResult;
+					V_VT(ret) = VT_BOOL;
+				}
+				else
+				{
+					for (i = 0; i < (int)dispparams.cArgs; i++)
+					{
+						if (V_ISBYREF(&argv[i]))
+							MoveVariantValue(&argv[i], &varData[i]);
+						VariantClear(&varParams[i]);
+					}
 				}
 			}
 		}

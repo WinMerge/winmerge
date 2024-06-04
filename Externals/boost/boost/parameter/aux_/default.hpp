@@ -4,8 +4,8 @@
 // (See accompanying file LICENSE_1_0.txt or copy at
 // http://www.boost.org/LICENSE_1_0.txt)
 
-#ifndef DEFAULT_050329_HPP
-#define DEFAULT_050329_HPP
+#ifndef BOOST_PARAMETER_AUX_DEFAULT_HPP
+#define BOOST_PARAMETER_AUX_DEFAULT_HPP
 
 namespace boost { namespace parameter { namespace aux {
 
@@ -90,6 +90,17 @@ namespace boost { namespace parameter { namespace aux {
           : value(::std::forward<Value>(x))
         {
         }
+
+#if BOOST_WORKAROUND(BOOST_MSVC, < 1910)
+        // MSVC 2015 miscompiles moves for classes containing rvalue ref members
+        // using the default generated move constructor
+        // when moving into a function
+        // https://github.com/boostorg/parameter/pull/109
+        inline BOOST_CONSTEXPR default_r_(default_r_&& x)
+          : value(::std::forward<Value>(x.value))
+        {
+        }
+#endif
 
         Value&& value;
     };

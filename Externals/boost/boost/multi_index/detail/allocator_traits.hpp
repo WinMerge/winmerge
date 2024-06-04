@@ -1,4 +1,4 @@
-/* Copyright 2003-2018 Joaquin M Lopez Munoz.
+/* Copyright 2003-2020 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -16,12 +16,15 @@
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 
 #if !defined(BOOST_NO_CXX11_ALLOCATOR)
+#include <boost/type_traits/is_empty.hpp>
 #include <memory>
 #else
 #include <boost/detail/workaround.hpp>
 #include <boost/move/core.hpp>
 #include <boost/move/utility_core.hpp>
 #include <boost/multi_index/detail/vartempl_support.hpp>
+#include <boost/type_traits/integral_constant.hpp>
+#include <boost/type_traits/is_empty.hpp>
 #include <new>
 #endif
 
@@ -35,12 +38,29 @@ namespace detail{
 
 #if !defined(BOOST_NO_CXX11_ALLOCATOR)
 
+template<typename T> struct void_helper{typedef void type;};
+
+template<typename Allocator,typename=void>
+struct allocator_is_always_equal:boost::is_empty<Allocator>{};
+
+template<typename Allocator>
+struct allocator_is_always_equal<
+  Allocator,
+  typename void_helper<
+    typename std::allocator_traits<Allocator>::is_always_equal
+  >::type
+>:std::allocator_traits<Allocator>::is_always_equal{};
+
 template<typename Allocator>
 struct allocator_traits:std::allocator_traits<Allocator>
 {
   /* wrap std::allocator_traits alias templates for use in C++03 codebase */
 
   typedef std::allocator_traits<Allocator> super;
+
+  /* pre-C++17 compatibilty */
+
+  typedef allocator_is_always_equal<Allocator> is_always_equal;
 
   template<typename T>
   struct rebind_alloc
@@ -74,6 +94,11 @@ struct allocator_traits
 
   typedef typename Allocator::difference_type difference_type;
   typedef typename Allocator::size_type       size_type;
+
+  typedef boost::false_type          propagate_on_container_copy_assignment;
+  typedef boost::false_type          propagate_on_container_move_assignment;
+  typedef boost::false_type          propagate_on_container_swap;
+  typedef boost::is_empty<Allocator> is_always_equal;
 
   template<typename T>
   struct rebind_alloc
@@ -123,6 +148,11 @@ struct allocator_traits
 #endif
 
   static size_type max_size(Allocator& a)BOOST_NOEXCEPT{return a.max_size();}
+
+  static Allocator select_on_container_copy_construction(const Allocator& a)
+  {
+    return a;
+  }
 };
 
 #endif

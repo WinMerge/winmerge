@@ -15,7 +15,6 @@
 #include "Poco/NotificationQueue.h"
 #include "Poco/NotificationCenter.h"
 #include "Poco/Notification.h"
-#include "Poco/SingletonHolder.h"
 
 
 namespace Poco {
@@ -45,15 +44,15 @@ void NotificationQueue::enqueueNotification(Notification::Ptr pNotification)
 	FastMutex::ScopedLock lock(_mutex);
 	if (_waitQueue.empty())
 	{
-		_nfQueue.push_back(pNotification);
+		_nfQueue.push_back(std::move(pNotification));
 	}
 	else
 	{
 		WaitInfo* pWI = _waitQueue.front();
 		_waitQueue.pop_front();
-		pWI->pNf = pNotification;
+		pWI->pNf = std::move(pNotification);
 		pWI->nfAvailable.set();
-	}	
+	}
 }
 
 
@@ -63,15 +62,15 @@ void NotificationQueue::enqueueUrgentNotification(Notification::Ptr pNotificatio
 	FastMutex::ScopedLock lock(_mutex);
 	if (_waitQueue.empty())
 	{
-		_nfQueue.push_front(pNotification);
+		_nfQueue.push_front(std::move(pNotification));
 	}
 	else
 	{
 		WaitInfo* pWI = _waitQueue.front();
 		_waitQueue.pop_front();
-		pWI->pNf = pNotification;
+		pWI->pNf = std::move(pNotification);
 		pWI->nfAvailable.set();
-	}	
+	}
 }
 
 
@@ -162,7 +161,7 @@ bool NotificationQueue::empty() const
 	return _nfQueue.empty();
 }
 
-	
+
 int NotificationQueue::size() const
 {
 	FastMutex::ScopedLock lock(_mutex);
@@ -173,7 +172,7 @@ int NotificationQueue::size() const
 void NotificationQueue::clear()
 {
 	FastMutex::ScopedLock lock(_mutex);
-	_nfQueue.clear();	
+	_nfQueue.clear();
 }
 
 
@@ -209,15 +208,10 @@ Notification::Ptr NotificationQueue::dequeueOne()
 }
 
 
-namespace
-{
-	static SingletonHolder<NotificationQueue> sh;
-}
-
-
 NotificationQueue& NotificationQueue::defaultQueue()
 {
-	return *sh.get();
+	static NotificationQueue nq;
+	return nq;
 }
 
 

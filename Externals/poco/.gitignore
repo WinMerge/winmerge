@@ -1,0 +1,171 @@
+# Compiled #
+############
+*.com
+*.class
+*.dll
+*.dylib
+*.exe
+*.slo
+*.lo
+*.o
+*.so
+*.lai
+*.la
+*.a
+*.d
+*.vsp
+*.psess
+
+# Gradle #
+##########
+!gradle.properties
+!settings.gradle
+!build.gradle
+!build.gradle.win
+!travis/.gradle/gradle.properties
+.gradle/
+**/guild/
+coverage/
+
+# NuGet #
+#########
+*.nupkg
+
+# WiX #
+#######
+*.msi
+*.wixobj
+*.wixpdb
+
+# Make #
+########
+config.build
+config.make
+
+# CLion #
+########
+.idea/
+
+# CMake #
+########
+cmake_install.cmake
+cmake_uninstall.cmake
+CMakeFiles
+CMakeCache.txt
+CPackConfig.cmake
+CPackSourceConfig.cmake
+cmake_*
+cmake-build-*
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log*
+*.sqlite
+*.db
+test*.txt
+XML/testsuite/rss.xml
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+*~
+
+# VS generated files #
+######################
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.ipch
+*.ncb
+*.suo
+*.sdf
+*.opensdf
+*.tlb
+*.tlh
+*.ilk
+*.lib
+*.exp
+*.idb
+*.rc
+*.res
+*.manifest
+*.tlog
+*.lastbuildstate
+*.unsuccessfulbuild
+*.opendb
+.vs/
+release_shared/
+debug_shared/
+release_static/
+debug_static/
+release_static_md/
+debug_static_md/
+release_static_mt/
+debug_static_mt/
+bin/
+bin64/
+lib/
+lib64/
+pocomsg.h
+**/UpgradeLog*.XML
+.vs/
+vcpkg_installed/
+
+# Eclipse generated files #
+###########################
+.project
+.cproject
+.settings
+cmake-build/
+
+# Temporary files #
+###################
+*.bak
+stage/
+releases/
+poco_build_stderr.out
+
+# vim #
+#######
+*.orig
+*.swp
+*.vim
+tags
+
+# Javascript #
+##############
+package-lock.json
+node_modules
+
+# Old Visual Studio files #
+###########################
+*_vs1[45]0.sln
+*_vs1[45]0.vcxproj
+*_vs1[45]0.vcxproj.filters
+
+# Debug files #
+##############
+*.core

@@ -278,9 +278,9 @@ public:
 #endif // SHOW_DIFFITEM_DEBUG_INFO
 
 	/** @brief Return whether the current DIFFITEM has children */
-	inline bool DIFFITEM::HasChildren() const { return (children != nullptr); }
+	inline bool HasChildren() const { return (children != nullptr); }
 	/** @brief Return whether the current DIFFITEM has children */
-	inline bool DIFFITEM::HasParent() const { return (parent != nullptr); }
+	inline bool HasParent() const { return (parent != nullptr); }
 
 //**** The `emptyitem` and its access procedures
 private:

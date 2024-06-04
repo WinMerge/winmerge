@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2022-10-17 21:08+0100\n"
+"POT-Creation-Date: 2024-05-05 10:37+0000\n"
+"PO-Revision-Date: 2024-05-10 12:43+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -245,8 +245,26 @@ msgstr "Tamanho"
 msgid "Fit to Window"
 msgstr "Ajustar à janela"
 
+msgid "&Event Sync"
+msgstr "Sincronização de &eventos"
+
+msgid "&Enabled"
+msgstr "&Ativado"
+
+msgid "&Scroll"
+msgstr "&Rolar"
+
+msgid "&Click"
+msgstr "&Clicar"
+
+msgid "&Input"
+msgstr "&Introduzir"
+
+msgid "&GoBack/Forward"
+msgstr "&Voltar/Avançar"
+
 msgid "Clear &Browsing Data"
-msgstr "Limpar dados de navegação"
+msgstr "Limpar dados de &navegação"
 
 msgid "&Disk Cache"
 msgstr "Cache do &disco"
@@ -270,7 +288,7 @@ msgid "&Text"
 msgstr "&Texto"
 
 msgid "T&able"
-msgstr "P&ainel"
+msgstr "T&abela"
 
 msgid "&Binary"
 msgstr "&Binário"
@@ -354,10 +372,10 @@ msgid "P&lugin Settings..."
 msgstr "Definições de P&lugins..."
 
 msgid "Ma&nual Prediffer"
-msgstr "Diferenciação manual"
+msgstr "Pré-diferenciação manual"
 
 msgid "A&utomatic Prediffer"
-msgstr "Diferenciação a&utomática"
+msgstr "Pré-diferenciação a&utomática"
 
 msgid "&Manual Unpacking"
 msgstr "Descompactação &manual"
@@ -476,8 +494,17 @@ msgstr "Mostrar itens ocultados"
 msgid "Tree &Mode"
 msgstr "&Modo árvore"
 
-msgid "E&xpand All Subfolders"
-msgstr "E&xpandir todas as subpastas"
+msgid "E&xpand Subfolders"
+msgstr "E&xpandir subpastas"
+
+msgid "&All Subfolders"
+msgstr "&Todas as subpastas"
+
+msgid "&Different Subfolders"
+msgstr "Subpastas &diferentes"
+
+msgid "&Identical Subfolders"
+msgstr "Subpastas &idênticas"
 
 msgid "&Collapse All Subfolders"
 msgstr "&Fechar todas as subpastas"
@@ -815,6 +842,12 @@ msgstr "Aplicar pré&diferenciação..."
 msgid "&Transform with editor script..."
 msgstr "&Transformar com o script editor..."
 
+msgid "Scripts for &copying"
+msgstr "Scripts para &copiar"
+
+msgid "Select &editor script..."
+msgstr "Selecionar script editor..."
+
 msgid "Sp&lit"
 msgstr "Di&vidir"
 
@@ -897,16 +930,16 @@ msgid "&Hide Items"
 msgstr "&Ocultar itens"
 
 msgid "&Open Left"
-msgstr "Abrir o da esquerda"
+msgstr "Abrir o da &esquerda"
 
 msgid "Open Midd&le"
-msgstr "Abrir o do meio"
+msgstr "Abrir o do &meio"
 
 msgid "O&pen Right"
-msgstr "Abrir o da direita"
+msgstr "Abrir o da &direita"
 
 msgid "Cop&y Pathnames"
-msgstr "Copiar nomes de localização"
+msgstr "Copiar &nomes de localização"
 
 #, c-format
 msgid "Left (%1 of %2)"
@@ -932,7 +965,10 @@ msgid "Copy &Filenames"
 msgstr "Co&piar nomes de ficheiro"
 
 msgid "Copy Items To Clip&board"
-msgstr "Copiar itens para a área de transferência"
+msgstr "Copiar itens para a área de trans&ferência"
+
+msgid "Copy All Di&splayed Columns"
+msgstr "Copiar toda&s as colunas exibidas"
 
 msgid "&Zip"
 msgstr "&Zip"
@@ -957,6 +993,12 @@ msgstr "Menu de contexto do meio"
 
 msgid "Right Shell menu"
 msgstr "Menu de contexto da direita"
+
+msgid "Both Shell menu"
+msgstr "Ambos os menus Shell"
+
+msgid "All Shell menu"
+msgstr "Todos os menus Shell"
 
 msgid "Copy"
 msgstr "Copiar"
@@ -1027,7 +1069,7 @@ msgstr "Ignorar números"
 msgid "Ignore c&omment differences"
 msgstr "Ignorar diferenças de c&omentários"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Incluir subpastas"
 
 msgid "&Compare method:"
@@ -1053,6 +1095,81 @@ msgstr "Tamanho"
 
 msgid "&Load Project..."
 msgstr "&Carregar projeto..."
+
+msgid "${*} - All arguments"
+msgstr "${*} - Todos os argumentos"
+
+msgid "${1} - The first argument"
+msgstr "${1} - O primeiro argumento"
+
+msgid "${2} - The second argument"
+msgstr "${2} - O segundo argumento"
+
+msgid "${3} - The third argument"
+msgstr "${3} - O terceiro argumento"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - O quarto argumento"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - O quinto argumento"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - O sexto argumento"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - O sétimo argumento"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - O oitavo argumento"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - O nono argumento"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Ficheiro da fonte"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Pasta da fonte"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - URL da fonte"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Protocolo do URL da fonte"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Sufixo do URL da fonte"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Ficheiro de destino"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Pasta de destino"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - URL de destino"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Protocolo do URL de destino"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Sufixo do URL de destino"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - Diretório da pasta pessoal do WinMerge"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Ficheiro script"
+
+msgid "Add &unpacker plugin..."
+msgstr "Adicionar plugin de &descompactação..."
+
+msgid "Add &prediffer plugin..."
+msgstr "Adicionar plugin de &pré-diferenciação..."
+
+msgid "&Duplicate plugin..."
+msgstr "Plugin de &uplicação..."
 
 msgid "About WinMerge"
 msgstr "Acerca do WinMerge"
@@ -1150,16 +1267,19 @@ msgstr "Pe&rguntar ao fechar múltiplas janelas"
 msgid "&Preserve file time in file compare"
 msgstr "&Preservar data do ficheiro na comparação de ficheiros"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Mostrar janela \"Pastas ou Ficheiros selecionados\" ao iniciar"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr ""
 "Fechar a janela \"Selecionar Ficheiros ou Pastas\" ao clicar no botão "
 "Comparar"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Abrir janela de auto-conclusão:"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Recarregar automaticamente ficheiros modificados:"
 
 msgid "Language:"
 msgstr "Idioma:"
@@ -1411,15 +1531,6 @@ msgstr "&Propriedades adicionais"
 msgid "Additional Properties"
 msgstr "Propriedades adicionais"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selecionar plugin"
 
@@ -1444,8 +1555,8 @@ msgstr "Abrir ficheiros no mesmo tipo de janela depois de desempacotar"
 msgid "&Plugin Pipeline:"
 msgstr "&Plugin Pipeline:"
 
-msgid "&Add pipe"
-msgstr "&Adicionar pipe"
+msgid "&Alias..."
+msgstr "&Abreviatura..."
 
 msgid "Stop"
 msgstr "Parar"
@@ -1456,14 +1567,14 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Continuar"
 
-msgid "Comparing items..."
-msgstr "A comparar itens..."
-
-msgid "Items compared:"
-msgstr "Itens comparados:"
+msgid "&Number of CPU cores to use:"
+msgstr "&Número de núcleos de CPU a utilizar:"
 
 msgid "Items total:"
 msgstr "Total de itens:"
+
+msgid "Items compared:"
+msgstr "Itens comparados:"
 
 msgid "Go to"
 msgstr "Ir para"
@@ -1507,8 +1618,8 @@ msgstr "Ativar deteção de bloco movido"
 msgid "Align &similar lines"
 msgstr "Alinhar linhas &semelhantes"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Diff &algoritmo (Experimental):"
+msgid "Diff &algorithm:"
+msgstr "Diff &algoritmo:"
 
 msgid "Enable indent &heuristic"
 msgstr "Ativar travessão &heurístico"
@@ -1521,9 +1632,6 @@ msgstr "Editor"
 
 msgid "&Highlight syntax"
 msgstr "Destacar sintaxe"
-
-msgid "&Automatic rescan"
-msgstr "Re-análise automática"
 
 msgid "&Preserve original EOL chars"
 msgstr "Manter caracteres EOL originais"
@@ -1540,6 +1648,15 @@ msgstr "Inserir separadores"
 msgid "Insert &Spaces"
 msgstr "Inserir espaços"
 
+msgid "&Rendering Mode:"
+msgstr "Modo de &renderização:"
+
+msgid "&Automatic rescan"
+msgstr "Re-análise automática"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Copiar &granularidade para diferenças selecionadas:"
+
 msgid "Line Difference Coloring"
 msgstr "Cor da diferença da linha"
 
@@ -1554,9 +1671,6 @@ msgstr "A nível da palavra:"
 
 msgid "W&ord break characters:"
 msgstr "Caracteres da palavra:"
-
-msgid "&Rendering Mode:"
-msgstr "Modo de &renderização:"
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -1931,7 +2045,7 @@ msgid "&Plugin arguments:"
 msgstr "Argumentos do &plugin:"
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "Ativar a descompactação/diferenciação &automática para o plugin"
+msgstr "Ativar a descompactação/pré-diferenciação &automática para o plugin"
 
 msgid "Shell Integration"
 msgstr "Integração do contexto"
@@ -1939,11 +2053,14 @@ msgstr "Integração do contexto"
 msgid "Explorer"
 msgstr "Explorador"
 
+msgid "&Add to context menu"
+msgstr "&Adicionar ao menu de contexto"
+
 msgid "E&nable advanced menu"
 msgstr "Ativar menu avançado"
 
-msgid "&Add to context menu"
-msgstr "&Adicionar ao menu de contexto"
+msgid "Enable &Compare As menu"
+msgstr "Ativar o menu &Comparar como"
 
 msgid "&Register shell extension"
 msgstr "&Registar a extensão do contexto"
@@ -1965,6 +2082,12 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr ""
 "Cancelar o registo da extensão do contexto para W&indows 11 ou posterior"
 
+msgid "Jump List"
+msgstr "Lista de atalhos"
+
+msgid "Clear all recent items"
+msgstr "Limpar todos os itens recentes"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Pasta"
@@ -1975,13 +2098,13 @@ msgstr "Parar após primeira diferença"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignorar diferenças de tempo inferiores a 3 segundos"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "Expandir &automaticamente as subpastas após a comparação:"
+
 msgid "Include &unique subfolders contents"
 msgstr "&Incluir conteúdos exclusivos da subpastas"
 
-msgid "&Automatically expand all subfolders"
-msgstr "Expandir &automaticamente todas as subpastas"
-
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignorar pontos de &análise"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1990,26 +2113,17 @@ msgstr "Limite para trocar para comparação &rápida (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Limite para trocar para comparação &binária (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Número de núcleos de CPU a utilizar:"
-
-msgid "&CSV File Patterns:"
-msgstr "Padrões de ficheiros &CSV:"
-
-msgid "&TSV File Patterns:"
-msgstr "Padrões de ficheiros &TSV:"
+msgid "File patterns:"
+msgstr "Padrões de ficheiros:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Valores separados por &delimitador personalizado"
-
-msgid "File Patterns:"
-msgstr "Padrões de ficheiros:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binário"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "&Padrões de ficheiro Binário:"
 
 msgid "Frhed settings"
@@ -2027,7 +2141,7 @@ msgstr "A preparar caractere..."
 msgid "Image"
 msgstr "Imagem"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Padrões de imagem do ficheiro:"
 
 msgid "&Enable image compare in folder compare"
@@ -2053,6 +2167,39 @@ msgstr "&Separar pastas de dados do utilizador para cada painel"
 
 msgid "&Hex View"
 msgstr "Visualização &Hex"
+
+msgid "Edit Plugin"
+msgstr "Editar plugin"
+
+msgid "Plugin &type:"
+msgstr "&Tipo de plugin:"
+
+msgid "&Category:"
+msgstr "&Categoria:"
+
+msgid "&Menu caption:"
+msgstr "Legenda do &menu:"
+
+msgid "&Window type:"
+msgstr "Tipo de &janela:"
+
+msgid "&Unpacked file extension:"
+msgstr "Extensão de ficheiro &descompactado:"
+
+msgid "&Require arguments"
+msgstr "Argumentos &necessários"
+
+msgid "&Generate editor script"
+msgstr "&Gerar script do editor"
+
+msgid "Command &line:"
+msgstr "&Linha de comandos:"
+
+msgid "&Script file extension:"
+msgstr "Extensão de ficheiro &script:"
+
+msgid "Script &body:"
+msgstr "&Corpo do script:"
 
 msgid "EXT"
 msgstr "EXT"
@@ -2205,6 +2352,9 @@ msgstr ""
 "Para tornar esta caixa de mensagens visível novamente, prima o botão Repor "
 "na página Caixas de mensagens da janela de opções."
 
+msgid "Compare/Merge"
+msgstr "Comparar/Fundir"
+
 msgid "Syntax"
 msgstr "Sintaxe"
 
@@ -2297,6 +2447,18 @@ msgstr ""
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Ficheiros XML (*.xml)|*.xml|Todos os ficheiros (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Não expandir"
+
+msgid "Expand all subfolders"
+msgstr "Expandir todas as subpastas"
+
+msgid "Expand different subfolders"
+msgstr "Expandir subpastas diferentes"
+
+msgid "Expand identical subfolders"
+msgstr "Expandir subpastas idênticas"
 
 msgid "File Type"
 msgstr "Tipo de ficheiro"
@@ -2493,6 +2655,13 @@ msgstr "Item %1 de %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Itens: %1"
+
+msgid "Comparing items..."
+msgstr "A comparar itens..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[itens/seg]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selecione duas pastas existentes ou ficheiros para comparar."
@@ -2900,7 +3069,14 @@ msgid ""
 "you want to close the window?"
 msgstr ""
 "Está prestes a fechar a janela que está a comparar as pastas. Tem a certeza "
-"que deseja fechar a janela?"
+"de que pretende fechar a janela?"
+
+msgid ""
+"You are about to close the folder comparison window that took a significant "
+"amount of time. Are you sure you want to close the window?"
+msgstr ""
+"Está prestes a fechar a janela de comparação de pastas que demorou bastante "
+"tempo. Tem a certeza de que pretende fechar a janela?"
 
 msgid "The file or folder name is invalid."
 msgstr "O nome do ficheiro ou pasta é inválido."
@@ -3408,6 +3584,9 @@ msgstr ""
 "%1\n"
 "para o outro lado e abrir essas pastas?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "Copiar todas as diferenças para o outro ficheiro?"
+
 msgid "Do you want to move to the next file?"
 msgstr "Deseja seguir para o próximo ficheiro?"
 
@@ -3615,10 +3794,10 @@ msgstr "Script de edição"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Diferenças na linha atual"
+"Diferenças na linha atual (F4)"
 
 msgid ""
 "\n"
@@ -3846,8 +4025,12 @@ msgstr "Ativar largura máxima automática"
 msgid "We&bpage"
 msgstr "&Página web"
 
-msgid "Frhed is not installed."
-msgstr "O Frhed não está instalado."
+msgid "W&rap Text"
+msgstr "M&udança de linha"
+
+#, c-format
+msgid "%1 is not installed."
+msgstr "O %1 não está instalado."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4047,8 +4230,162 @@ msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr ""
 "Permitir apenas executar uma instância e esperar que a instância termine"
 
+msgid "Only on window activated"
+msgstr "Apenas na janela ativada"
+
+msgid "Immediately"
+msgstr "Imediatamente"
+
 msgid "Al&l"
 msgstr "Tu&do"
+
+msgid "&Others"
+msgstr "&Outros"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nome de plugin ausente no pipeline do plugin: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Marca de cotação em falta no pipeline do plugin: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "O nome do plugin '%1' já existe."
+
+msgid "Specify plugin arguments"
+msgstr "Especificar argumentos de plugin"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "Plugin não encontrado ou inválido: %1"
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr "'%1' não é um plugin de descompactação"
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr "'%1' não é um plugin de pré-diferenciação"
+
+#, c-format
+msgid ""
+"An error occurred while prediffing the file '%1' with the plugin '%2'. The "
+"prediffing is not applied any more."
+msgstr ""
+"Ocorreu um erro durante a pré-diferenciação do ficheiro '%1' com o plugin "
+"'%2'. A pré-diferenciação já não é aplicada."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Referência circular no pipeline do plugin: %1"
+
+msgid "URL Handler"
+msgstr "Gestor de URL"
+
+msgid "File Unpacker"
+msgstr "Descompactador de ficheiros"
+
+msgid "File or Folder Unpacker"
+msgstr "Desempacotador de ficheiros ou pastas"
+
+msgid "Alias for Unpacker"
+msgstr "Abreviatura para desempacotador"
+
+msgid "Alias for Prediffer"
+msgstr "Abreviatura para pé-diferenciação"
+
+msgid "Alias for Editor script"
+msgstr "Abreviatura para editor de scripts"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Abreviatura para pipeline do plugin '%1'"
+
+msgid "New plugin description"
+msgstr "Nova descrição do plugin"
+
+msgid "Filter applied"
+msgstr "Filtro aplicado"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Área de transferência em %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+"O histórico da área de transferência está desativado.\r\n"
+"Para ativar o histórico da área de transferência, prima a tecla do logotipo "
+"do Windows + V e clique no botão Ativar."
+
+msgid "This system does not support clipboard history."
+msgstr "Este sistema não suporta o histórico da área de transferência."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr ""
+"A versão de 32 bits do WinMerge não suporta a comparação da área de "
+"transferência"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "O runtime WebView2 não está instalado. Quer transferi-lo?"
+
+msgid "New Text Compare"
+msgstr "Nova comparação de textos"
+
+msgid "New Table Compare"
+msgstr "Nova comparação de tabelas"
+
+msgid "New Binary Compare"
+msgstr "Nova comparação de binários"
+
+msgid "New Image Compare"
+msgstr "Nova comparação de imagens"
+
+msgid "New Webpage Compare"
+msgstr "Nova comparação de páginas web"
+
+msgid "Clipboard Compare"
+msgstr "Comparação da área de transferência"
+
+msgid "&Print..."
+msgstr "&Imprimir..."
+
+msgid "Pre&v Page"
+msgstr "Pré-&visualizar página"
+
+msgid "&Two Page"
+msgstr "&Duas páginas"
+
+msgid "&One Page"
+msgstr "&Uma página"
+
+msgid "Zoom &In"
+msgstr "&Ampliar"
+
+msgid "Zoom &Out"
+msgstr "&Reduzir"
+
+msgid "Comparing..."
+msgstr "A comparar..."
+
+msgid "Zoom:"
+msgstr "Zoom:"
+
+msgid "Diff hunk"
+msgstr "Diferenciar pedaço"
+
+msgid "Inline diff"
+msgstr "Diferença em linha"
+
+msgid "Line"
+msgstr "Linha"
+
+msgid "Character"
+msgstr "Carácter"
 
 msgid "Prettification"
 msgstr "Embelezamento"
@@ -4056,8 +4393,8 @@ msgstr "Embelezamento"
 msgid "Content Extraction"
 msgstr "Extração de conteúdo"
 
-msgid "Visualization"
-msgstr "Visualização"
+msgid "Preview"
+msgstr "Pré-visualização"
 
 msgid "Data Query"
 msgstr "Consulta de dados"
@@ -4067,9 +4404,6 @@ msgstr "Validação"
 
 msgid "Decompilation"
 msgstr "Descompilação"
-
-msgid "&Others"
-msgstr "&Outros"
 
 msgid "URL Handling"
 msgstr "Gestão de URLs"
@@ -4137,6 +4471,9 @@ msgstr "Ignorar campos de CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignorar campos de TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Ignorar números de linha à esquerda"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Aplicar filtros de substituição pré-diferenciar"
 
@@ -4152,8 +4489,14 @@ msgstr "Embelezar XML"
 msgid "Prettify YAML"
 msgstr "Embelezar YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualizar Graphviz"
+msgid "Preview Graphviz"
+msgstr "Pré-visualizar Graphviz"
+
+msgid "Preview Markdown"
+msgstr "Pré-visualizar Markdown"
+
+msgid "Preview PlantUML"
+msgstr "Pré-visualizar PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Consultar dados CSV..."
@@ -4179,16 +4522,8 @@ msgstr "Descompilação de IL Code"
 msgid "Disassemble Native Code"
 msgstr "Descompilação de Native Code"
 
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome de plugin ausente no pipeline plugin: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Marca de cotação em falta no plugin pipeline: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Especificar argumentos de plugin"
+msgid "Convert Text with AI..."
+msgstr "Converter texto com IA..."
 
 msgid "Make characters uppercase"
 msgstr "Converter para maiúsculas"
@@ -4217,17 +4552,21 @@ msgstr "Linhas invertidas"
 msgid ""
 "Replace text with another text.\r\n"
 "Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
 "  FIND    - text to find\r\n"
 "  REPLACE - text to replace\r\n"
 "  -i - ignore case (only for -e)\r\n"
-"  -e - treat the specified text as a regular expression"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "Substituir o texto por outro texto.\r\n"
 "Utilização: Substituir [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
 "  FIND    - texto para encontrar\r\n"
 "  REPLACE- texto a ser substituído\r\n"
 "  -i - ignorar maiúsculas/minúsculas (apenas para -e)\r\n"
-"  -e - tratar o texto especificado como uma expressão regular"
+"  -e - tratar o texto especificado como uma expressão regular\r\n"
+"  -s - replace using Substitution Filters patterns"
 
 #, c-format
 msgid ""
@@ -4326,11 +4665,25 @@ msgstr ""
 "yq."
 
 msgid ""
-"Graphviz Visualizer. \r\n"
+"Graphviz Previewer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Visualizador Graphviz. \r\n"
-"Argumentos: opções de linha de comandos passadas para o comando ponto."
+"Pré-visualizador de Graphviz. \r\n"
+"Argumentos: opções de linha de comandos passadas para o comando dot."
+
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+"Pré-visualizador de Markdown. \r\n"
+"Argumentos: opções de linha de comandos passadas para o comando md2html."
+
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"Pré-visualizador de PlantUML. \r\n"
+"Argumentos: opções de linha de comandos passadas para o comando plantuml.jar."
 
 msgid ""
 "CSV Querier with q command. \r\n"
@@ -4397,8 +4750,8 @@ msgstr ""
 "Extrator de conteúdo geral com Apache Tika. \r\n"
 "Argumentos: as opções de linha de comandos passadas para o tika-app.jar."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Aplica a correção usando o GnuWin32 Patch para Windows"
+msgid "Apply patch using GNU patch"
+msgstr "Aplicar correção usando o GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Mostra o conteúdo de texto dos ficheiros MS Excel"
@@ -4433,11 +4786,18 @@ msgstr ""
 "Ignorar alguns campos - lista de campos ignorados do nome do plugin ou do "
 "argumento do plugin"
 
+msgid ""
+"This plugin ignores the leading line numbers in text files (e.g. NC and "
+"BASIC files)."
+msgstr ""
+"Este plugin ignora os números de linha no começo em ficheiros de texto (Por "
+"exemplo, ficheiros NC e BASIC)."
+
 msgid "Prediff Line Filter"
 msgstr "Filtro de linha de pré-diferenciação"
 
-msgid "Basic text functions for the context menu"
-msgstr "Funções básicas de texto para o menu de contexto"
+msgid "Date and time insertion function"
+msgstr "Função de inserção de data e hora"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4453,29 +4813,199 @@ msgstr ""
 "Gestão do esquema URL do registo do Windows.\n"
 "Argumentos: opções de linha de comandos passadas para o comando reg.exe."
 
-msgid "Filter applied"
-msgstr "Filtro aplicado"
+msgid "Basic text functions"
+msgstr "Funções básicas de texto"
 
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Área de transferência em %s"
+msgid "AI-assisted text conversion functions"
+msgstr "Funções de conversão de texto assistidas por IA"
 
 msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the "
-"Turn on button."
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
-"O histórico da área de transferência está desativado.\r\n"
-"Para ativar o histórico da área de transferência, prima a tecla do logotipo "
-"do Windows + V e clique no botão Ativar."
+"Conversor de texto usando a API OpenAI.\r\n"
+"Utilização: AIConvertText PROMPT"
 
-msgid "This system does not support clipboard history."
-msgstr "Este sistema não suporta o histórico da área de transferência."
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "Opções do Plugin do WinMerge para CompareMSExcelFiles.sct"
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgid "Extract workbook data to multiple files"
+msgstr "Extrair dados do livro de trabalho para vários ficheiros"
+
+msgid "Update external references(links)"
+msgstr "Atualizar referências externas(ligações)"
+
+msgid "Compare document properties"
+msgstr "Comparar propriedades do documento"
+
+msgid "Compare names"
+msgstr "Comparar nomes"
+
+msgid "Compare cell values"
+msgstr "Comparar valores de células"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "Comparar folhas de cálculo como imagem (muito lento)"
+
+msgid " - Image split size: "
+msgstr " - Tamanho para divisão de imagem: "
+
+msgid "Compare worksheets as HTML"
+msgstr "Comparar folhas de cálculo como HTML"
+
+msgid "Compare formulas"
+msgstr "Comparar fórmulas"
+
+msgid "Compare texts in shapes"
+msgstr "Comparar textos em formas"
+
+msgid "Compare headers and footers"
+msgstr "Comparar cabeçalhos e rodapés"
+
+msgid ""
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings "
+"in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to "
+"use this feature in WinMerge.\r\n"
 msgstr ""
-"A versão de 32 bits do WinMerge não suporta a comparação da área de "
-"transferência"
+"Não é possível obter Macros.\r\n"
+"   Para possibilitar a comparação de macros, use o MS Office para alterar as "
+"definições na Segurança de Macro para a aplicação atual.\r\n"
+"   O acesso de Confiança do projeto do Visual Basic deve estar ativado para "
+"usar este recurso no WinMerge.\r\n"
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "O runtime WebView2 não está instalado. Quer transferi-lo?"
+msgid "Compare VBA macros"
+msgstr "Comparar macros VBA"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "Opções do Plugin do WinMerge para CompareMSWordFiles.sct"
+
+msgid "Extract document data to multiple files"
+msgstr "Extrair dados do documento para vários ficheiros"
+
+msgid "Compare bookmarks"
+msgstr "Comparar marcadores"
+
+msgid "Compare text contents of documents"
+msgstr "Comparar conteúdo de texto dos documentos"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "Comparar documentos como ficheiro HTML (muito lento)"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "Opções do Plugin do WinMerge para CompareMSPowerPointFiles.sct"
+
+msgid "Extract slide data to multiple files"
+msgstr "Extrair dados do diapositivo para vários ficheiros"
+
+msgid "Compare slides as image (very slow)"
+msgstr "Comparar diapositivos como imagem (muito lento)"
+
+msgid "Compare texts in notes page"
+msgstr "Comparar textos em anotações"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "Opções do Plugin do WinMerge para CompareMSVisioFiles.sct"
+
+msgid "Extract page data to multiple files"
+msgstr "Extrair dados da página para vários ficheiros"
+
+msgid "Compare pages as image (very slow)"
+msgstr "Comparar páginas como imagem (muito lento)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "Opções do Plugin do WinMerge para PrediffLineFilter.sct"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Enabled"
+msgstr "Ativado"
+
+msgid "Ignore Case"
+msgstr "Ignorar maiúsculas/minúsculas"
+
+msgid "Use RegExp"
+msgstr "Usar ExpReg"
+
+msgid "Find what"
+msgstr "Localizar o quê"
+
+msgid "Replace with"
+msgstr "Substituir por"
+
+msgid "Settings"
+msgstr "Definições"
+
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
+msgstr ""
+"Intervalos de colunas a ignorar:\n"
+"por ex.)  3,10-20,32-33\n"
+
+#, c-format
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr "Introduzir o nome do ficheiro ao qual será aplicada a correção '%1'"
+
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "O ficheiro '%1' não existe"
+
+msgid "Enter the command line arguments for patch command"
+msgstr ""
+"Introduzir os argumentos de linha de comandos para o comando da correção"
+
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr "Introduzir o nome da pasta à qual será aplicada a correção '%1'"
+
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "A pasta '%1' não existe"
+
+msgid ""
+"Do not specify the '-p0' command line option for the patch file which "
+"includes absolute paths"
+msgstr ""
+"Não use a opção de linha de comandos '-p0' para o ficheiro de correção que "
+"inclui caminhos absolutos"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "Opções do plugin WinMerge AI.sct"
+
+msgid "Enter prompt"
+msgstr "Introduzir pedido"
+
+#, c-format
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
+msgstr ""
+"Introduza a sua chave de API OpenAI.\r\n"
+" - A utilização deste plugin requer o registo no OpenAI e implica o "
+"pagamento de taxas.\r\n"
+" - A chave da API é armazenada na variável de ambiente %1."
+
+msgid "Environment variable name for OpenAI API key"
+msgstr "Nome da variável de ambiente para a chave da API OpenAI"
+
+msgid "OpenAI API key"
+msgstr "Chave da API OpenAI"
+
+msgid "Temperature"
+msgstr "Temperatura"
+
+msgid "Maximum length"
+msgstr "Comprimento máximo"
+
+msgid "Model"
+msgstr "Modelo"
+
+msgid ""
+"OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr ""
+"A chave da API OpenAI foi alterada. Reinicie o WinMerge para aplicar as "
+"alterações."

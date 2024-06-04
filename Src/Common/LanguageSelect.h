@@ -8,9 +8,12 @@
 #include <vector>
 #include <string>
 #include <map>
+#include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect class
+
+class CStatusBar;
 
 /**
  * @brief Class for selecting GUI language.
@@ -32,9 +35,9 @@ public:
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
-	void RetranslateDialog(HWND, const TCHAR *name) const;
+	void RetranslateDialog(HWND, const tchar_t *name) const;
 	String LoadString(UINT) const;
-	std::wstring LoadDialogCaption(LPCTSTR lpDialogTemplateID) const;
+	std::wstring LoadDialogCaption(const tchar_t* lpDialogTemplateID) const;
 	std::vector<std::pair<LANGID, String> > GetAvailableLanguages() const;
 	bool SetLanguage(LANGID, bool bShowError = false);
 

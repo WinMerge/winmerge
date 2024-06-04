@@ -7,13 +7,12 @@
 
 #include <memory>
 
-class CompareOptions;
 class FilterList;
 class SubstitutionList;
-class DiffutilsOptions;
-struct file_data;
+class CompareOptions;
 struct FileTextStats;
 class CDiffWrapper;
+struct DiffFileData;
 
 namespace CompareEngines
 {
@@ -31,27 +30,23 @@ class DiffUtils
 public:
 	DiffUtils();
 	~DiffUtils();
-	void SetCompareOptions(const CompareOptions & options);
-	void SetFilterList(FilterList * list);
+
+	void SetCodepage(int codepage);
+	void SetCompareOptions(const CompareOptions& options);
+	void SetFilterList(std::shared_ptr<FilterList> plist);
 	void ClearFilterList();
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> plist);
 	void ClearSubstitutionList();
-	void SetFileData(int items, file_data *data);
-	int diffutils_compare_files();
-	bool RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const;
+
+	int CompareFiles(DiffFileData* diffData);
+	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
+			int * bin_status, int * bin_file) const;
+
 	void GetDiffCounts(int & diffs, int & trivialDiffs) const;
-	void GetTextStats(int side, FileTextStats *stats) const;
-	bool Diff2Files(struct change ** diffs, int depth,
-			int * bin_status, bool bMovedBlocks, int * bin_file) const;
-	void SetCodepage(int codepage) { m_codepage = codepage; }
 
 private:
-	std::unique_ptr<DiffutilsOptions> m_pOptions; /**< Compare options for diffutils. */
-	FilterList * m_pFilterList; /**< Filter list for line filters. */
-	file_data * m_inf; /**< Compared files data (for diffutils). */
 	int m_ndiffs; /**< Real diffs found. */
 	int m_ntrivialdiffs; /**< Ignored diffs found. */
-	int m_codepage; /**< Codepage used in line filter */
 	std::unique_ptr<CDiffWrapper> m_pDiffWrapper;
 };
 

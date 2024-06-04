@@ -11,7 +11,6 @@
 #pragma warning (pop)
 #include <ShObjIdl.h>
 #include <comip.h>
-#include <vector>
 #include "unicoder.h"
 #include "Merge7zFormatRegister.h"
 #include "paths.h"
@@ -50,7 +49,7 @@ Merge7z::Format *Merge7zFormatShellImpl::GuessFormat(const String& path)
 	if (!paths::IsURL(path))
 	{
 		int i;
-		static const TCHAR *exts[] = {_T(".zip"), _T(".lzh"), _T("::{")};
+		static const tchar_t *exts[] = {_T(".zip"), _T(".lzh"), _T("::{")};
 		for (i = 0; i < sizeof(exts) / sizeof(exts[0]); ++i)
 		{
 			if (path.find(exts[i]) != String::npos)

@@ -12,10 +12,8 @@
 
 #include "StdAfx.h"
 #include "MergeEditSplitterView.h"
-#include "Merge.h"
 #include "MergeDoc.h"
 #include "MergeEditview.h"
-#include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "OptionsDef.h"
 

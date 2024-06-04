@@ -14,11 +14,11 @@
 #include "UnicodeString.h"
 
 bool SelectFile(HWND parent, String& path, bool is_open = true,
-			LPCTSTR initialPath = nullptr, const String& stitle = _T(""),
-			const String& sfilter = _T(""), LPCTSTR defaultExtension = nullptr);
+			const tchar_t* initialPath = nullptr, const String& stitle = _T(""),
+			const String& sfilter = _T(""), const tchar_t* defaultExtension = nullptr);
 
-bool SelectFolder(String& path, LPCTSTR root_path = nullptr, 
+bool SelectFolder(String& path, const tchar_t* root_path = nullptr, 
 			 const String& title = _T(""),
 			 HWND hwndOwner = nullptr);
 
-bool SelectFileOrFolder(HWND parent, String& path, LPCTSTR root_path = nullptr);
+bool SelectFileOrFolder(HWND parent, String& path, const tchar_t* root_path = nullptr);

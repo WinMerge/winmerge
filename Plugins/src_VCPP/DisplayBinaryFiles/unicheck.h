@@ -20,6 +20,6 @@ struct unicodingInfo
 	int low_byte; // offset in bytes
 };
 
-bool CheckForBom(char * buffer, int len, unicodingInfo * uinfo);
+bool CheckForBom(char * buffer, size_t len, unicodingInfo * uinfo);
 
 #endif // unicheck_h_included

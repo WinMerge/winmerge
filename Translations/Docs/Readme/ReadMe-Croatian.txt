@@ -1,50 +1,50 @@
-WINMERGE
+ï»¿WINMERGE
 
-WinMerge je Windows otvoreni program za usporedbu i spajanje. WinMerge moe
-usporediti i datoteke i mape, prikazujuæi i istièuæi razlike teksta tako da su
-uoèljive i lako se njima rukuje. WinMerge se moe koristiti kao vanjaki alat
+WinMerge je Windows otvoreni program za usporedbu i spajanje. WinMerge moÅ¾e
+usporediti i datoteke i mape, prikazujuÄ‡i i istiÄuÄ‡i razlike teksta tako da su
+uoÄljive i lako se njima rukuje. WinMerge se moÅ¾e koristiti kao vanjaki alat
 ili samostalni program.
 
-WinMerge ima puno vrlo korisnih svojstava koja omoguæuju sinhroniziranje i
-spajanje na najjednostavniji moguæi naèin. Za nekoliko programskih jezika i
+WinMerge ima puno vrlo korisnih svojstava koja omoguÄ‡uju sinhroniziranje i
+spajanje na najjednostavniji moguÄ‡i naÄin. Za nekoliko programskih jezika i
 tipova datoteka istaknuta je sintaksa.
 
-Najnoviju WinMerge inaèicu i WinMerge obavijesti su dostupna na
+Najnoviju WinMerge inaÄicu i WinMerge obavijesti su dostupna na
 https://winmerge.org/.
 
 Quick start
 ===========
-Pokrnuli ste WinMerge, kliknite Pomoæ --> Quick start i nauèite kako koristiti
-osnovne moguænosti, ili poğite na Internet i posjetite
+Pokrnuli ste WinMerge, kliknite PomoÄ‡ --> Quick start i nauÄite kako koristiti
+osnovne moguÄ‡nosti, ili poÄ‘ite na Internet i posjetite
 https://manual.winmerge.org/Quick_start.html.
 
-WinMerge Pomoæ
+WinMerge PomoÄ‡
 ============= 
-WinMerge Pomoæ se instalira na disk kao Microsoft HTML Help datoteka, naziva
-WinMerge.chm, u mapi WinMerge. Otvara se klikom na Pomoæ --> WinMerge Help ili
-pritiskom tipke F1 u izborniku programa WinMerge. S komandne linije pokreæe se
+WinMerge PomoÄ‡ se instalira na disk kao Microsoft HTML Help datoteka, naziva
+WinMerge.chm, u mapi WinMerge. Otvara se klikom na PomoÄ‡ --> WinMerge Help ili
+pritiskom tipke F1 u izborniku programa WinMerge. S komandne linije pokreÄ‡e se
 naredbom, /? help.
 
  
-Na internetu na https://manual.winmerge.org/ takoğer moete pregledati
+Na internetu na https://manual.winmerge.org/ takoÄ‘er moÅ¾ete pregledati
 WinMerge Help.
 
-WinMerge podrška
+WinMerge podrÅ¡ka
 ================
-Pitanja i sugestije o WinMerge? Pravo mjesto za to je WinMerge zajednièki forum
-na https://forums.winmerge.org/. Programeri èesto èitaju i odgovaraju na pitanja.
-Koristite Open Discussion forum za opæa WinMerge pitanja, kao npr., pitanja o
-korištenju. Koristite programerski forum za WinMerge programerska pitanja.
+Pitanja i sugestije o WinMerge? Pravo mjesto za to je WinMerge zajedniÄki forum
+na https://forums.winmerge.org/. Programeri Äesto Äitaju i odgovaraju na pitanja.
+Koristite Open Discussion forum za opÄ‡a WinMerge pitanja, kao npr., pitanja o
+koriÅ¡tenju. Koristite programerski forum za WinMerge programerska pitanja.
 
-Bugovi i eljena svojstva
+Bugovi i Å¾eljena svojstva
 =========================
-Kad nešto primijetite, poğite na Internet WinMerge forums, odaberite trackers:
-na https://project.winmerge.org/, i kliknite eljeno s izbornika, npr. Bugs ili
-Feature Requests, i pregledajte veæ postojeæa javljanja.
+Kad neÅ¡to primijetite, poÄ‘ite na Internet WinMerge forums, odaberite trackers:
+na https://project.winmerge.org/, i kliknite Å¾eljeno s izbornika, npr. Bugs ili
+Feature Requests, i pregledajte veÄ‡ postojeÄ‡a javljanja.
 
-Ako šaljete bug, molimo vas navedite broj WinMerge inaèice koju koristite.
-Moete ukljuèiti zapis podešenosti ako kliknete na Pomoæ>Podešenost. Uz
-izvještaj o bugu molimo ukljuèite i zapis podešenosti; on sadri puno korisnih
+Ako Å¡aljete bug, molimo vas navedite broj WinMerge inaÄice koju koristite.
+MoÅ¾ete ukljuÄiti zapis podeÅ¡enosti ako kliknete na PomoÄ‡>PodeÅ¡enost. Uz
+izvjeÅ¡taj o bugu molimo ukljuÄite i zapis podeÅ¡enosti; on sadrÅ¾i puno korisnih
 informacija za nas, programere.
 
 

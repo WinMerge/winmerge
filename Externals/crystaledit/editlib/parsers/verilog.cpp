@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  Verilog keywords
-static const TCHAR * s_apszVerilogKeywordList[] =
+static const tchar_t * s_apszVerilogKeywordList[] =
   {
     _T ("always"),
     _T ("and"),
@@ -152,7 +152,7 @@ static const TCHAR * s_apszVerilogKeywordList[] =
   };
 
 //  Verilog functions
-static const TCHAR * s_apszVerilogFunctionList[] =
+static const tchar_t * s_apszVerilogFunctionList[] =
   {
     _T ("$async$and$array"),
     _T ("$async$and$plane"),
@@ -303,25 +303,25 @@ static const TCHAR * s_apszVerilogFunctionList[] =
   };
 
 static bool
-IsVerilogKeyword (const TCHAR *pszChars, int nLength)
+IsVerilogKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszVerilogKeywordList, pszChars, nLength);
 }
 
 static bool
-IsVerilogFunction (const TCHAR *pszChars, int nLength)
+IsVerilogFunction (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszVerilogFunctionList, pszChars, nLength);
 }
 
 static bool
-IsVerilogNumber (const TCHAR *pszChars, int nLength)
+IsVerilogNumber (const tchar_t *pszChars, int nLength)
 {
-  if (!_istdigit (pszChars[0]))
+  if (!tc::istdigit (pszChars[0]))
     return false;
   for (int I = 1; I < nLength; I++)
     {
-      if (_istdigit (pszChars[I]) || pszChars[I] == '.' || pszChars[I] == '\'' || 
+      if (tc::istdigit (pszChars[I]) || pszChars[I] == '.' || pszChars[I] == '\'' || 
             pszChars[I] == 'h' || (pszChars[I] >= 'A' && pszChars[I] <= 'F') ||
             (pszChars[I] >= 'a' && pszChars[I] <= 'f') || pszChars[I] == '_' ||
             pszChars[I] == 'x' || pszChars[I] == 'Z')
@@ -332,20 +332,20 @@ IsVerilogNumber (const TCHAR *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLineVerilog (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineVerilog (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
   bool bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
-  const TCHAR *pszCommentBegin = nullptr;
-  const TCHAR *pszCommentEnd = nullptr;
+  const tchar_t *pszCommentBegin = nullptr;
+  const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -373,7 +373,7 @@ CrystalLineParser::ParseLineVerilog (unsigned dwCookie, const TCHAR *pszChars, i
             }
           else
             {
-              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '$' || (pszChars[nPos] == '\'' && nPos > 0 && (xisalpha (*::CharNext(pszChars + nPos)))))
+              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '$' || (pszChars[nPos] == '\'' && nPos > 0 && (xisalpha (*tc::tcharnext(pszChars + nPos)))))
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
                 }
@@ -405,7 +405,7 @@ out:
       //  String constant "..."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;

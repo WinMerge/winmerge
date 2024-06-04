@@ -427,138 +427,268 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Ascii.cpp" />
-    <ClCompile Include="src\AtomicCounter.cpp" />
-    <ClCompile Include="src\Bugcheck.cpp" />
-    <ClCompile Include="src\Clock.cpp" />
-    <ClCompile Include="src\Debugger.cpp" />
-    <ClCompile Include="src\Environment.cpp" />
+    <ClCompile Include="src\Ascii.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\AtomicCounter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Bugcheck.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Clock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Debugger.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Environment.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Environment_UNIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Environment_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Error.cpp" />
-    <ClCompile Include="src\Exception.cpp" />
-    <ClCompile Include="src\Format.cpp" />
-    <ClCompile Include="src\Latin2Encoding.cpp" />
-    <ClCompile Include="src\NumberFormatter.cpp" />
-    <ClCompile Include="src\NumberParser.cpp" />
-    <ClCompile Include="src\NumericString.cpp" />
-    <ClCompile Include="src\RandomStream.cpp" />
-    <ClCompile Include="src\RefCountedObject.cpp" />
-    <ClCompile Include="src\StringTokenizer.cpp" />
-    <ClCompile Include="src\UTF32Encoding.cpp" />
-    <ClCompile Include="src\Void.cpp" />
-    <ClCompile Include="src\Base64Decoder.cpp" />
-    <ClCompile Include="src\Base64Encoder.cpp" />
-    <ClCompile Include="src\BinaryReader.cpp" />
-    <ClCompile Include="src\BinaryWriter.cpp" />
-    <ClCompile Include="src\FileStream.cpp" />
+    <ClCompile Include="src\Error.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Exception.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Format.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Foundation.cpp" />
+    <ClCompile Include="src\Latin2Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NumberFormatter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NumberParser.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NumericString.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_auto_possess.c" />
+    <ClCompile Include="src\pcre2_chartables.c" />
+    <ClCompile Include="src\pcre2_compile.c" />
+    <ClCompile Include="src\pcre2_config.c" />
+    <ClCompile Include="src\pcre2_context.c" />
+    <ClCompile Include="src\pcre2_convert.c" />
+    <ClCompile Include="src\pcre2_dfa_match.c" />
+    <ClCompile Include="src\pcre2_error.c" />
+    <ClCompile Include="src\pcre2_extuni.c" />
+    <ClCompile Include="src\pcre2_find_bracket.c" />
+    <ClCompile Include="src\pcre2_jit_compile.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_jit_match.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_jit_misc.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\pcre2_maketables.c" />
+    <ClCompile Include="src\pcre2_match.c" />
+    <ClCompile Include="src\pcre2_match_data.c" />
+    <ClCompile Include="src\pcre2_newline.c" />
+    <ClCompile Include="src\pcre2_ord2utf.c" />
+    <ClCompile Include="src\pcre2_pattern_info.c" />
+    <ClCompile Include="src\pcre2_script_run.c" />
+    <ClCompile Include="src\pcre2_serialize.c" />
+    <ClCompile Include="src\pcre2_string_utils.c" />
+    <ClCompile Include="src\pcre2_study.c" />
+    <ClCompile Include="src\pcre2_substitute.c" />
+    <ClCompile Include="src\pcre2_substring.c" />
+    <ClCompile Include="src\pcre2_tables.c" />
+    <ClCompile Include="src\pcre2_ucd.c" />
+    <ClCompile Include="src\pcre2_ucptables.c" />
+    <ClCompile Include="src\pcre2_valid_utf.c" />
+    <ClCompile Include="src\pcre2_xclass.c" />
+    <ClCompile Include="src\RandomStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\RefCountedObject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\StringTokenizer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\UTF32Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Void.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Base64Decoder.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Base64Encoder.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\BinaryReader.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\BinaryWriter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\FileStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\FileStream_POSIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\FileStream_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\MemoryStream.cpp" />
-    <ClCompile Include="src\NullStream.cpp" />
-    <ClCompile Include="src\StreamCopier.cpp" />
-    <ClCompile Include="src\ActiveDispatcher.cpp" />
-    <ClCompile Include="src\Condition.cpp" />
-    <ClCompile Include="src\ErrorHandler.cpp" />
-    <ClCompile Include="src\Event.cpp" />
+    <ClCompile Include="src\MemoryStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NullStream.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\StreamCopier.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ActiveDispatcher.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Condition.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ErrorHandler.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Event.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Event_POSIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Event_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Mutex.cpp" />
+    <ClCompile Include="src\Mutex.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Mutex_POSIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Mutex_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Runnable.cpp" />
-    <ClCompile Include="src\RWLock.cpp" />
+    <ClCompile Include="src\Runnable.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\RWLock.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\RWLock_POSIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\RWLock_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Semaphore.cpp" />
+    <ClCompile Include="src\Semaphore.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Semaphore_POSIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Semaphore_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\SynchronizedObject.cpp" />
-    <ClCompile Include="src\Thread.cpp" />
+    <ClCompile Include="src\SynchronizedObject.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Thread.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Thread_POSIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Thread_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\ThreadLocal.cpp" />
-    <ClCompile Include="src\ThreadPool.cpp" />
-    <ClCompile Include="src\ThreadTarget.cpp" />
-    <ClCompile Include="src\Timer.cpp" />
-    <ClCompile Include="src\RegularExpression.cpp" />
-    <ClCompile Include="src\pcre_chartables.c" />
-    <ClCompile Include="src\pcre_compile.c" />
-    <ClCompile Include="src\pcre_exec.c" />
-    <ClCompile Include="src\pcre_fullinfo.c" />
-    <ClCompile Include="src\pcre_globals.c" />
-    <ClCompile Include="src\pcre_maketables.c" />
-    <ClCompile Include="src\pcre_newline.c" />
-    <ClCompile Include="src\pcre_ord2utf8.c" />
-    <ClCompile Include="src\pcre_study.c" />
-    <ClCompile Include="src\pcre_tables.c" />
-    <ClCompile Include="src\pcre_ucd.c" />
-    <ClCompile Include="src\pcre_valid_utf8.c" />
-    <ClCompile Include="src\pcre_xclass.c" />
-    <ClCompile Include="src\AbstractObserver.cpp" />
-    <ClCompile Include="src\Notification.cpp" />
-    <ClCompile Include="src\NotificationCenter.cpp" />
-    <ClCompile Include="src\NotificationQueue.cpp" />
-    <ClCompile Include="src\DirectoryIterator.cpp" />
+    <ClCompile Include="src\ThreadLocal.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ThreadPool.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ThreadTarget.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Timer.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\RegularExpression.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\AbstractObserver.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Notification.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NotificationCenter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NotificationQueue.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\DirectoryIterator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\DirectoryIterator_UNIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\DirectoryIterator_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\File.cpp" />
+    <ClCompile Include="src\File.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\File_UNIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\File_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Glob.cpp" />
-    <ClCompile Include="src\Path.cpp" />
+    <ClCompile Include="src\Glob.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Path.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Path_UNIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Path_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\TemporaryFile.cpp" />
-    <ClCompile Include="src\NamedEvent.cpp" />
+    <ClCompile Include="src\TemporaryFile.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\NamedEvent.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\NamedEvent_UNIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\NamedEvent_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Pipe.cpp" />
-    <ClCompile Include="src\PipeImpl.cpp" />
+    <ClCompile Include="src\Pipe.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\PipeImpl.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\PipeImpl_DUMMY.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -568,14 +698,18 @@
     <ClCompile Include="src\PipeImpl_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\Process.cpp" />
+    <ClCompile Include="src\Process.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\Process_UNIX.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="src\Process_WIN32U.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\SharedMemory.cpp" />
+    <ClCompile Include="src\SharedMemory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="src\SharedMemory_DUMMY.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
@@ -585,31 +719,81 @@
     <ClCompile Include="src\SharedMemory_WIN32.cpp">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="src\DateTime.cpp" />
-    <ClCompile Include="src\Stopwatch.cpp" />
-    <ClCompile Include="src\Timespan.cpp" />
-    <ClCompile Include="src\Timestamp.cpp" />
-    <ClCompile Include="src\ASCIIEncoding.cpp" />
-    <ClCompile Include="src\Latin1Encoding.cpp" />
-    <ClCompile Include="src\Latin9Encoding.cpp" />
-    <ClCompile Include="src\StreamConverter.cpp" />
-    <ClCompile Include="src\TextBufferIterator.cpp" />
-    <ClCompile Include="src\TextConverter.cpp" />
-    <ClCompile Include="src\TextEncoding.cpp" />
-    <ClCompile Include="src\TextIterator.cpp" />
-    <ClCompile Include="src\Unicode.cpp" />
-    <ClCompile Include="src\UnicodeConverter.cpp" />
-    <ClCompile Include="src\UTF16Encoding.cpp" />
-    <ClCompile Include="src\UTF8Encoding.cpp" />
-    <ClCompile Include="src\UTF8String.cpp" />
-    <ClCompile Include="src\Windows1250Encoding.cpp" />
-    <ClCompile Include="src\Windows1251Encoding.cpp" />
-    <ClCompile Include="src\Windows1252Encoding.cpp" />
-    <ClCompile Include="src\FileStreamFactory.cpp" />
-    <ClCompile Include="src\URI.cpp" />
-    <ClCompile Include="src\URIStreamFactory.cpp" />
-    <ClCompile Include="src\URIStreamOpener.cpp" />
-    <ClCompile Include="src\Hash.cpp" />
+    <ClCompile Include="src\DateTime.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Stopwatch.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Timespan.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Timestamp.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\ASCIIEncoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Latin1Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Latin9Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\StreamConverter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\TextBufferIterator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\TextConverter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\TextEncoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\TextIterator.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Unicode.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\UnicodeConverter.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\UTF16Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\UTF8Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\UTF8String.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Windows1250Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Windows1251Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Windows1252Encoding.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\FileStreamFactory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\URI.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\URIStreamFactory.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\URIStreamOpener.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="src\Hash.cpp">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Poco\Any.h" />
@@ -626,7 +810,6 @@
     <ClInclude Include="include\Poco\DynamicFactory.h" />
     <ClInclude Include="include\Poco\Environment.h" />
     <ClInclude Include="include\Poco\Environment_UNIX.h" />
-    <ClInclude Include="include\Poco\Environment_WIN32.h" />
     <ClInclude Include="include\Poco\Environment_WIN32U.h" />
     <ClInclude Include="include\Poco\Error.h" />
     <ClInclude Include="include\Poco\Exception.h" />
@@ -708,9 +891,11 @@
     <ClInclude Include="include\Poco\Timer.h" />
     <ClInclude Include="include\Poco\Windows1250Encoding.h" />
     <ClInclude Include="include\Poco\Windows1251Encoding.h" />
-    <ClInclude Include="src\pcre.h" />
-    <ClInclude Include="src\pcre_config.h" />
-    <ClInclude Include="src\pcre_internal.h" />
+    <ClInclude Include="src\pcre2.h" />
+    <ClInclude Include="src\pcre2_config.h" />
+    <ClInclude Include="src\pcre2_internal.h" />
+    <ClInclude Include="src\pcre2_intmodedep.h" />
+    <ClInclude Include="src\pcre2_ucp.h" />
     <ClInclude Include="src\ucp.h" />
     <ClInclude Include="include\Poco\RegularExpression.h" />
     <ClInclude Include="include\Poco\AbstractObserver.h" />

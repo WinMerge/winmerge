@@ -306,7 +306,7 @@ namespace boost { namespace parameter {
 #endif
 
 #if !defined(BOOST_NO_SFINAE) && \
-    !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x592))
+    !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x592))
 #include <boost/parameter/aux_/pack/tag_keyword_arg.hpp>
 #include <boost/mpl/bool.hpp>
 #include <boost/mpl/if.hpp>
@@ -314,7 +314,7 @@ namespace boost { namespace parameter {
 #include <boost/type_traits/is_same.hpp>
 #endif
 
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
 #include <boost/preprocessor/repetition/enum_params.hpp>
 #else
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
@@ -345,7 +345,7 @@ namespace boost { namespace parameter {
         // parameters.  Otherwise, this is not a valid metafunction
         // (no nested ::type).
 #if !defined(BOOST_NO_SFINAE) && \
-    !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x592))
+    !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x592))
         // If NamedList satisfies the PS0, PS1, ..., this is a metafunction
         // returning parameters.  Otherwise it has no nested ::type.
         template <typename ArgumentPackAndError>
@@ -386,7 +386,7 @@ namespace boost { namespace parameter {
         // Specializations are to be used as an optional argument
         // to eliminate overloads via SFINAE.
         template <
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
             // Borland simply can't handle default arguments in member
             // class templates.  People wishing to write portable code can
             // explicitly specify BOOST_PARAMETER_MAX_ARITY arguments.
@@ -401,7 +401,7 @@ namespace boost { namespace parameter {
         >
         struct match
 #if !defined(BOOST_NO_SFINAE) && \
-    !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x592))
+    !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x592))
           : ::boost::parameter::parameters<
                 BOOST_PP_ENUM_PARAMS(BOOST_PARAMETER_MAX_ARITY, PS)
             >::BOOST_NESTED_TEMPLATE match_base<
@@ -434,7 +434,7 @@ namespace boost { namespace parameter {
         // of make_arg_list.
 
         template <
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
             // Borland simply can't handle default arguments in member
             // class templates.  People wishing to write portable code can
             // explicitly specify BOOST_PARAMETER_MAX_ARITY arguments.

@@ -38,15 +38,15 @@
 typedef struct SpellData_t
   {
     DWORD dwFlags;                            /* combination of SF_ flags */
-    TCHAR szIspell[MAX_PATH],                 /* the directory where ispell resides */
-          szUserDict[MAX_PATH],               /* path to the user dictionary */
-          szMainDict[INPUTWORDLEN],           /* name of the file with the main dictionary */
-          szWordChars[INPUTWORDLEN],          /* extra characters to be allowed to build the word */
-          szFormatter[INPUTWORDLEN];          /* alternate form for the character set */
+    tchar_t szIspell[MAX_PATH],               /* the directory where ispell resides */
+            szUserDict[MAX_PATH],             /* path to the user dictionary */
+            szMainDict[INPUTWORDLEN],         /* name of the file with the main dictionary */
+            szWordChars[INPUTWORDLEN],        /* extra characters to be allowed to build the word */
+            szFormatter[INPUTWORDLEN];        /* alternate form for the character set */
     HWND hParent;                             /* parent window for the calling of the current routine */
-    LPCTSTR pszWord;                          /* currently processed word - found or to be replaced */
-    LPTSTR pszBuffer,                         /* buffer from which the engine reads the input line */
-           pszCurrent;                        /* current position in the buffer - for internal use only */
+    const tchar_t* pszWord;                   /* currently processed word - found or to be replaced */
+    tchar_t* pszBuffer,                       /* buffer from which the engine reads the input line */
+             pszCurrent;                      /* current position in the buffer - for internal use only */
     int nColumn,                              /* character position in currently processed line */
         nRow,                                 /* currently processed line */
         nDelta,                               /* gap between original column and another one modified by replacing - for internal use only */

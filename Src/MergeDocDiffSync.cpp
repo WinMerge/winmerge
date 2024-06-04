@@ -59,6 +59,7 @@ PrintVirtualLineToRealLineMap(
 	{
 		String str = strutils::format(_T("vline%d: "), static_cast<int>(i));
 		std::vector<String> ary;
+		ary.reserve(npanes);
 		for (int j = 0; j < npanes; ++j)
 			ary.push_back(vlines[i][j] == DiffMap::GHOST_MAP_ENTRY ? _T("-----") : strutils::format(_T("%5d"), vlines[i][j]));
 		str += strutils::join(ary.begin(), ary.end(), _T(",")) + _T("\n");
@@ -93,6 +94,7 @@ CreateVirtualLineToRealLineMap(
 	const DiffMap& diffmap, int nlines0, int nlines1)
 {
 	std::vector<std::array<int, 2>> vlines;
+	vlines.reserve((std::max)(nlines0, nlines1) * 3 / 2); // Roughly pre-allocate space for the list.
 	int line0 = 0, line1 = 0;
 	while (line0 < nlines0)
 	{
@@ -129,6 +131,7 @@ CreateVirtualLineToRealLineMap3way(
 	std::vector<std::array<int, 2>> vlines12 = CreateVirtualLineToRealLineMap(diffmap12, nlines1, nlines2);
 	std::vector<std::array<int, 2>> vlines20 = CreateVirtualLineToRealLineMap(diffmap20, nlines2, nlines0);
 	std::vector<std::array<int, 3>> vlines;
+	vlines.reserve((std::max)({ nlines0, nlines1, nlines2 }) * 3 / 2);  // Roughly pre-allocate space for the list.
 	size_t i01 = 0, i12 = 0, i20 = 0;
 	int line0 = 0, line1 = 0, line2 = 0;
 	bool is_vlines20_usable = true;
@@ -323,7 +326,7 @@ OP_TYPE CMergeDoc::ComputeOpType3way(
 }
 
 /**
- * @brief Divide diff blocks to match lines in diff blocks.
+ * @brief Divide diff blocks to align similar lines in diff blocks.
  */
 void CMergeDoc::AdjustDiffBlocks()
 {
@@ -436,7 +439,7 @@ void CMergeDoc::AdjustDiffBlocks()
 }
 
 /**
- * @brief Divide diff blocks to match lines in diff blocks. (3-way)
+ * @brief Divide diff blocks to align similar lines in diff blocks. (3-way)
  */
 void CMergeDoc::AdjustDiffBlocks3way()
 {
@@ -460,9 +463,9 @@ void CMergeDoc::AdjustDiffBlocks3way()
 			int lo0 = 0, hi0 = nlines0 - 1;
 			int lo1 = 0, hi1 = nlines1 - 1;
 			int lo2 = 0, hi2 = nlines2 - 1;
-			const std::vector<WordDiff> worddiffs01 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 0, 1);
-			const std::vector<WordDiff> worddiffs12 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 1, 2);
-			const std::vector<WordDiff> worddiffs20 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, 2, 0);
+			const std::vector<WordDiff> worddiffs01 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, false, 0, 1);
+			const std::vector<WordDiff> worddiffs12 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, false, 1, 2);
+			const std::vector<WordDiff> worddiffs20 = GetWordDiffArrayInRange(diffrange.begin, diffrange.end, false, 2, 0);
 			DiffMap diffmap01, diffmap12, diffmap20;
 			diffmap01.InitDiffMap(nlines0);
 			diffmap12.InitDiffMap(nlines1);
@@ -688,37 +691,31 @@ int CMergeDoc::GetMatchCost(const DIFFRANGE& dr, int i0, int i1, int line0, int 
 	for (size_t i = 0; i < worddiffs.size(); ++i)
 	{
 		if ((prevWordDiff.endline[0] <= line0 && line0 <= worddiffs[i].beginline[0]) &&
-		    (prevWordDiff.endline[1] <= line1 && line1 <= worddiffs[i].beginline[1]))
+		    (prevWordDiff.endline[1] <= line1 && line1 <= worddiffs[i].beginline[1]) &&
+			(line0 - prevWordDiff.endline[0] == line1 - prevWordDiff.endline[1]))
 		{
 			if (line0 == worddiffs[i].beginline[0])
 			{
-				if (prevWordDiff.endline[0] == line0)
-					matchlen += worddiffs[i].begin[0] - prevWordDiff.end[0];
-				else
-					matchlen += worddiffs[i].begin[0];
+				matchlen += worddiffs[i].begin[0] - ((prevWordDiff.endline[0] == line0) ? prevWordDiff.end[0] : 0);
 			}
 			else /* line0 < worddiffs[i].beginline[0] */
 			{
-				if (prevWordDiff.endline[0] == line0)
-					matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - prevWordDiff.end[0];
-				else
-					matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - ((prevWordDiff.endline[0] == line0) ? prevWordDiff.end[0] : 0);
 			}
 		}
 		prevWordDiff = worddiffs[i];
 	}
 	if (worddiffs.empty())
 	{
-		matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+		if (line0 - dr.begin[i0] == line1 - dr.begin[i1])
+			matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
 	}
 	else
 	{
-		if (prevWordDiff.endline[0] <= line0 && prevWordDiff.endline[1] <= line1)
+		if (prevWordDiff.endline[0] <= line0 && prevWordDiff.endline[1] <= line1 &&
+		    (line0 - prevWordDiff.endline[0] == line1 - prevWordDiff.endline[1]))
 		{
-			if (prevWordDiff.endline[0] == line0)
-				matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - prevWordDiff.end[0];
-			else
-				matchlen += m_ptBuf[i0]->GetFullLineLength(line0);
+			matchlen += m_ptBuf[i0]->GetFullLineLength(line0) - ((prevWordDiff.endline[0] == line0) ? prevWordDiff.end[0] : 0);
 		}
 	}
 /*

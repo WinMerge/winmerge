@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2022-10-17 11:33+0200\n"
+"POT-Creation-Date: 2024-05-05 10:37+0000\n"
+"PO-Revision-Date: 2024-05-09 10:40+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.3\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -178,7 +178,7 @@ msgid "Zoom &In\tCtrl++"
 msgstr "Did&inti\tCtrl++"
 
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Mažint&i\tCtrl+-"
+msgstr "Mažin&ti\tCtrl+-"
 
 #. Zoom to normal
 msgid "&Normal\tCtrl+*"
@@ -243,6 +243,24 @@ msgstr "Dydi&s"
 
 msgid "Fit to Window"
 msgstr "Talpinti į langą"
+
+msgid "&Event Sync"
+msgstr "Į&vykių sinchr."
+
+msgid "&Enabled"
+msgstr "Į&jungta"
+
+msgid "&Scroll"
+msgstr ""
+
+msgid "&Click"
+msgstr ""
+
+msgid "&Input"
+msgstr ""
+
+msgid "&GoBack/Forward"
+msgstr ""
 
 msgid "Clear &Browsing Data"
 msgstr "Išvalyti &Naršymo duomenis"
@@ -475,8 +493,17 @@ msgstr "Rodyti sl&epiamus elementus"
 msgid "Tree &Mode"
 msgstr "&Medžio režimas"
 
-msgid "E&xpand All Subfolders"
-msgstr "Iš&skleisti visus pakatalogius"
+msgid "E&xpand Subfolders"
+msgstr "Išs&kleisti pakatalogius"
+
+msgid "&All Subfolders"
+msgstr "&Visus pakatalogius"
+
+msgid "&Different Subfolders"
+msgstr "&Skirtingus pakatalogius"
+
+msgid "&Identical Subfolders"
+msgstr "&Identiškus pakatalogius"
 
 msgid "&Collapse All Subfolders"
 msgstr "Sus&kleisti visus pakatalogius"
@@ -814,6 +841,12 @@ msgstr "Taikyti paren&gėją..."
 msgid "&Transform with editor script..."
 msgstr "&Transformuoti su redaktoriaus skriptu..."
 
+msgid "Scripts for &copying"
+msgstr "Skriptai &kopijavimui"
+
+msgid "Select &editor script..."
+msgstr "Parinkti r&edagavimo skriptą..."
+
 msgid "Sp&lit"
 msgstr "Pada&linti"
 
@@ -933,6 +966,9 @@ msgstr "Kopijuoti &failų vardus"
 msgid "Copy Items To Clip&board"
 msgstr "Kopijuoti elementus į iš&karpinę"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "Kopijuoti visus rodomu&s stulpelius"
+
 msgid "&Zip"
 msgstr "&Zip"
 
@@ -956,6 +992,12 @@ msgstr "Vidurinis sistemos meniu"
 
 msgid "Right Shell menu"
 msgstr "Dešinysis sistemos meniu"
+
+msgid "Both Shell menu"
+msgstr "Abu sistemos meniu"
+
+msgid "All Shell menu"
+msgstr "Visi sistemos meniu"
 
 msgid "Copy"
 msgstr "Kopijuoti"
@@ -1026,7 +1068,7 @@ msgstr "Ignoruoti skai&čius"
 msgid "Ignore c&omment differences"
 msgstr "Nepaisyti skirtumų k&omentaruose"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "Įtraukt&i pakatalogius"
 
 msgid "&Compare method:"
@@ -1052,6 +1094,81 @@ msgstr "Dydis"
 
 msgid "&Load Project..."
 msgstr "Įke&lti projektą..."
+
+msgid "${*} - All arguments"
+msgstr "${*} - Visi argumentai"
+
+msgid "${1} - The first argument"
+msgstr "${1} - Pirmas argumentas"
+
+msgid "${2} - The second argument"
+msgstr "${2} - Antras argumentas"
+
+msgid "${3} - The third argument"
+msgstr "${3} - Trečias argumentas"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - Ketvirtas argumentas"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - Penktas argumentas"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - Šeštas argumentas"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - Septintas argumentas"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - Aštuntas argumentas"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - Devintas argumentas"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Pradinis failas"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Pradinis katalogas"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - Pradinis URL"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Pradinio URL protokolas"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Pradinio URL priesaga"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Rezultatų failas"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Rezultatų katalogas"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - Rezultatų URL"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Rezultatų URL protokolas"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Rezultatų URL priesaga"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - „Winmerge“ pagrindinis katalogas"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Skripto failas"
+
+msgid "Add &unpacker plugin..."
+msgstr "Pridėti &išpakuotoją..."
+
+msgid "Add &prediffer plugin..."
+msgstr "Pridėti &parengėją..."
+
+msgid "&Duplicate plugin..."
+msgstr "&Dubliuoti papildinį..."
 
 msgid "About WinMerge"
 msgstr "Apie WinMerge"
@@ -1149,14 +1266,17 @@ msgstr "&Klausti patvirtinimo, kai uždaromi keli langai"
 msgid "&Preserve file time in file compare"
 msgstr "Lyginant failus ne&pakeisti failo keitimo laiko"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Rodyti „Parinkite failus ar katalogus“ startuojant"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Užverti „Parinkite failus ar katalogus“ po „Lyginti“ paspaudimo"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Lango „Atv&erti“ automatinis užpildymas:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Automatiškais &įkelti iš naujo pakeistus failus:"
 
 msgid "Language:"
 msgstr "Kalba:"
@@ -1404,15 +1524,6 @@ msgstr "P&apildomos savybės"
 msgid "Additional Properties"
 msgstr "Papildomos savybės"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Pasirinkite papildinį"
 
@@ -1437,8 +1548,8 @@ msgstr "P&o išpakavimo atidaryti failus to paties tipo lange"
 msgid "&Plugin Pipeline:"
 msgstr "&Papildinio komandų grandinė:"
 
-msgid "&Add pipe"
-msgstr "Pridėti k&analą"
+msgid "&Alias..."
+msgstr "Pseudonim&as..."
 
 msgid "Stop"
 msgstr "Sustoti"
@@ -1449,14 +1560,14 @@ msgstr "Pristabdyti"
 msgid "Continue"
 msgstr "Tęsti"
 
-msgid "Comparing items..."
-msgstr "Lygina elementus..."
-
-msgid "Items compared:"
-msgstr "Elementų palyginta:"
+msgid "&Number of CPU cores to use:"
+msgstr "&Naudojamas procesoriaus branduolių skaičius:"
 
 msgid "Items total:"
 msgstr "Iš viso elementų:"
+
+msgid "Items compared:"
+msgstr "Elementų palyginta:"
 
 msgid "Go to"
 msgstr "Pereiti į"
@@ -1500,8 +1611,8 @@ msgstr "Įju&ngti perkeltų blokų aptikimą"
 msgid "Align &similar lines"
 msgstr "&Sutapdinti panašias eilutes"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Lyginimo &algoritmas (Bandymai):"
+msgid "Diff &algorithm:"
+msgstr "Lyginimo &algoritmas:"
 
 msgid "Enable indent &heuristic"
 msgstr "Įgalinti &heuristinę įtrauką"
@@ -1514,9 +1625,6 @@ msgstr "Redaktoriaus"
 
 msgid "&Highlight syntax"
 msgstr "&Naudoti sintaksės paryškinimą"
-
-msgid "&Automatic rescan"
-msgstr "&Automatiškai perskanuoti"
 
 msgid "&Preserve original EOL chars"
 msgstr "Išsaugoti originalų eil. pabaigos formatą"
@@ -1533,6 +1641,15 @@ msgstr "Įterpt&i TAB simbolius"
 msgid "Insert &Spaces"
 msgstr "Įterpti tarpu&s"
 
+msgid "&Rendering Mode:"
+msgstr "Atvaizdavimo &režimas:"
+
+msgid "&Automatic rescan"
+msgstr "&Automatiškai perskanuoti"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Kopijuoti pasirinktų skirtumų &granuliuotumą:"
+
 msgid "Line Difference Coloring"
 msgstr "Skirtumų eilutėse spalvinimas"
 
@@ -1547,9 +1664,6 @@ msgstr "Žo&džio lygyje:"
 
 msgid "W&ord break characters:"
 msgstr "Ž&odžių skirtukų simboliai:"
-
-msgid "&Rendering Mode:"
-msgstr "Atvaizdavimo &režimas:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "„WinMerge“ leidžia paslėpti kai kuriuos bendrus pranešimus. Paspauskite mygtuką „Atkurti“, kad visi pranešimai vėl būtų matomi."
@@ -1870,7 +1984,7 @@ msgid "Backup filename:"
 msgstr "Rezervinio failo vardas:"
 
 msgid "&Append .bak extension"
-msgstr "&Pridėti .bak išplėtimą"
+msgstr "&Pridėti .bak plėtinį"
 
 msgid "A&ppend timestamp"
 msgstr "P&ridėti laiko žymą"
@@ -1917,11 +2031,14 @@ msgstr "Integr. Windows aplinkoje"
 msgid "Explorer"
 msgstr "„Explorer“'is"
 
+msgid "&Add to context menu"
+msgstr "&Pridėti į kontekstinį meniu"
+
 msgid "E&nable advanced menu"
 msgstr "Įju&ngti išplėstinį meniu"
 
-msgid "&Add to context menu"
-msgstr "&Pridėti į kontekstinį meniu"
+msgid "Enable &Compare As menu"
+msgstr "Įtraukti &Lyginti į meniu"
 
 msgid "&Register shell extension"
 msgstr "&Registruoti aplinkos plėtinį"
@@ -1941,6 +2058,12 @@ msgstr "Registruoti aplinkos plėtinį &Windows 11 ar vėlesnei"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Išregistruoti aplinkos plėtinį W&indows 11 ar vėlesnei"
 
+msgid "Jump List"
+msgstr "Spartusis sąrašas"
+
+msgid "Clear all recent items"
+msgstr "Išvalyti visus naujausius elementus"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Katalogų"
@@ -1951,13 +2074,13 @@ msgstr "Sus&toti radus pirmą skirtumą"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ign&oruoti mažesnį nei 3 sekundžių laiko skirtumą"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "&Automatiškai išskleisti pakatalogius po lyginimo:"
+
 msgid "Include &unique subfolders contents"
 msgstr "Įtraukti &unikalų pakatalogių turinį"
 
-msgid "&Automatically expand all subfolders"
-msgstr "&Automatiškai išskleisti visus pakatalogius"
-
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignoruoti paka&rtotinio apdorojimo taškus"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1966,26 +2089,17 @@ msgstr "Persijungimo į &spartųjį palyginimą riba (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Persijungimo į &binarinį palyginimą riba (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Naudojamas procesoriaus branduolių skaičius:"
-
-msgid "&CSV File Patterns:"
-msgstr "&CSV failų šablonai:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV failų šablonai:"
+msgid "File patterns:"
+msgstr "Failų šablonai:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Pasirinkt. skirtukais atskirtos reikšmės"
-
-msgid "File Patterns:"
-msgstr "Failų šablonai:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binarinių"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Binarinių failų š&ablonai:"
 
 msgid "Frhed settings"
@@ -2003,7 +2117,7 @@ msgstr "&Simbolių rinkinys..."
 msgid "Image"
 msgstr "Paveikslėlių"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "&Paveikslėlių failų šablonai:"
 
 msgid "&Enable image compare in folder compare"
@@ -2029,6 +2143,39 @@ msgstr "At&skiri naudotojo duomenų katalogai kiekvienam polangiui"
 
 msgid "&Hex View"
 msgstr "Žiūrėti &Hex režimu"
+
+msgid "Edit Plugin"
+msgstr "Redaguoti papildinį"
+
+msgid "Plugin &type:"
+msgstr "Papildinio &tipas:"
+
+msgid "&Category:"
+msgstr "&Kategorija:"
+
+msgid "&Menu caption:"
+msgstr "&Meniu antraštė:"
+
+msgid "&Window type:"
+msgstr "&Lango tipas:"
+
+msgid "&Unpacked file extension:"
+msgstr "&Išpakuoto failo plėtinys:"
+
+msgid "&Require arguments"
+msgstr "&Reikalauti argumentų"
+
+msgid "&Generate editor script"
+msgstr "&Generuoti redaktoriaus skriptą"
+
+msgid "Command &line:"
+msgstr "Komandinė ei&lutė:"
+
+msgid "&Script file extension:"
+msgstr "&Skripto failo plėtinys:"
+
+msgid "Script &body:"
+msgstr "Skripto &tekstas:"
 
 msgid "EXT"
 msgstr "EXT"
@@ -2123,6 +2270,9 @@ msgstr "Daugiau nerodyti šio praneši&mo."
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Kad šis pranešimas vėl būtų matomas, paspauskite „Nuostatų“ ekrano „Bendrų pranešimų“ dalyje esantį mygtuką „Atkurti“."
 
+msgid "Compare/Merge"
+msgstr "Lyginimo/Suliejimo"
+
 msgid "Syntax"
 msgstr "Sintaksės"
 
@@ -2203,6 +2353,18 @@ msgstr "HTML failai (*.htm,*.html)|*.htm;*.html|Visi failai (*.*)|*.*||"
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML failai (*.xml)|*.xml|Visi failai (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Neišskleisti"
+
+msgid "Expand all subfolders"
+msgstr "Išskleisti visus pakatalogius"
+
+msgid "Expand different subfolders"
+msgstr "Išskleisti skirtingus pakatalogius"
+
+msgid "Expand identical subfolders"
+msgstr "Išskleisti identiškus pakatalogius"
 
 msgid "File Type"
 msgstr "Failo tipas"
@@ -2353,6 +2515,13 @@ msgstr "Elementas %1 iš %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementų: %1"
+
+msgid "Comparing items..."
+msgstr "Lygina elementus..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[elementų/sek.]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Nurodykite lyginimui du egzistuojančius katalogus ar failus."
@@ -2619,6 +2788,9 @@ msgstr "Patvirtinti perkėlimą"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Jūs ketinate užverti langą, kuriame lyginami katalogai. Ar tikrai norite užverti langą?"
+
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr "Jūs ketinate užverti katalogų palyginimo langą, kurio suformavimas užtruko nemažai laiko. Ar tikrai norite užverti langą?"
 
 msgid "The file or folder name is invalid."
 msgstr "Netinkamas failo ar katalogo pavadinimas."
@@ -3018,7 +3190,7 @@ msgid "Unpacker plugin name or pipeline."
 msgstr "Išpakuotojo papildinio pavadinimas arba komandų grandinė."
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "Paruošėjo papildinio pavadinimas arba komandų grandinė."
+msgstr "Parengėjo papildinio pavadinimas arba komandų grandinė."
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3077,6 +3249,9 @@ msgstr "Negalima atidaryti binarinio failo redaktoriuje."
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 msgstr "Katalogas egzistuoja tiktai kitoje pusėje ir negali būti atidarytas.\n\nAr norite sukurti atitinkamą katalogą:\n%1\nkitoje pusėje ir atverti šiuos katalogus?"
+
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "Ar tikrai norite nukopijuoti visus skirtumus į kitą failą?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Ar norite pereiti prie kito failo?"
@@ -3243,8 +3418,8 @@ msgstr "Tipas"
 msgid "Editor script"
 msgstr "Redaktoriaus skriptas"
 
-msgid "\nDifference in the Current Line"
-msgstr "\nSkirtumas dabartinėje eilutėje"
+msgid "\nDifference in the Current Line (F4)"
+msgstr "\nSkirtumas dabartinėje eilutėje (F4)"
 
 msgid "\nOptions"
 msgstr "\nNuostatos"
@@ -3307,7 +3482,7 @@ msgid "\nPrevious File (Ctrl+F7)"
 msgstr "\nPraeitas failas (Ctrl+F7)"
 
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
-msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia išplėtimo)."
+msgstr "Pritaikytas išpakuotojas taikomas abiems failams (tik vienam failui reikia plėtinio)."
 
 msgid "No prediffer (normal)"
 msgstr "Nėra parengėjo (normalu)"
@@ -3384,8 +3559,11 @@ msgstr "Įjungti &Automatinį maks. plotį"
 msgid "We&bpage"
 msgstr "Ti&nklapiai"
 
-msgid "Frhed is not installed."
-msgstr "„Frhed“ neįdiegtas."
+msgid "W&rap Text"
+msgstr "S&kaidyti tekstą"
+
+msgid "%1 is not installed."
+msgstr "„%1“ neįdiegtas."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -3577,8 +3755,150 @@ msgstr "Leisti vykdyti tik vieną programos egzempliorių"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Leisti vykdyti tik vieną programos egzempliorių ir sulaukti, kol jo vykdymas baigsis"
 
+msgid "Only on window activated"
+msgstr "Tik suaktyvinus langą"
+
+msgid "Immediately"
+msgstr "Nedelsiant"
+
 msgid "Al&l"
 msgstr "Visi"
+
+msgid "&Others"
+msgstr "Kiti"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Trūksta papildinio pavadinimo papildinio komandų grandinėje: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "Papildinys '%1' vardu jau yra."
+
+msgid "Specify plugin arguments"
+msgstr "Nurodykite papildinio argumentus"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "Nerastas arba netinkamas papildinys: %1"
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr "'%1' nėra išpakuotojas"
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr "'%1' nėra parengėjas"
+
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr "Parengimo papildiniui '%2' apdorojant failą '%1' įvyko klaida. Parengimas daugiau nebetaikomas."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Ciklinė nuoroda papildinio komandų grandinėje: %1"
+
+msgid "URL Handler"
+msgstr "URL apdorotojas"
+
+msgid "File Unpacker"
+msgstr "Failo išpakuotojas"
+
+msgid "File or Folder Unpacker"
+msgstr "Failo ar Katalogo išpakuotojas"
+
+msgid "Alias for Unpacker"
+msgstr "Išpakuotojo pseudonimas"
+
+msgid "Alias for Prediffer"
+msgstr "Parengėjo pseudonimas"
+
+msgid "Alias for Editor script"
+msgstr "Redaktoriaus skripto pseudonimas"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Papildinio komandų grandinės '%1' pseudonimas"
+
+msgid "New plugin description"
+msgstr "Naujo papildinio aprašas"
+
+msgid "Filter applied"
+msgstr "Pritaikytas filtras"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Mainų sritis %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Mainų srities istorijos funkcionalumas išjungtas.\r\nNorėdami įjungti, paspauskite Win+V klavišus ir tada „Įjungti“ mygtuką."
+
+msgid "This system does not support clipboard history."
+msgstr "Ši sistema nepalaiko mainų srities istorijos."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"
+
+msgid "New Text Compare"
+msgstr "Naujas teksto palyginimas"
+
+msgid "New Table Compare"
+msgstr "Naujas lentelių palyginimas"
+
+msgid "New Binary Compare"
+msgstr "Naujas binarinių failų palyginimas"
+
+msgid "New Image Compare"
+msgstr "Naujas vaizdų palyginimas"
+
+msgid "New Webpage Compare"
+msgstr "Naujas tinklapių palyginimas"
+
+msgid "Clipboard Compare"
+msgstr "Mainų srities palyginimas"
+
+msgid "&Print..."
+msgstr "S&pausdinti..."
+
+msgid "Pre&v Page"
+msgstr "P&raeitas psl."
+
+msgid "&Two Page"
+msgstr "&2 psl."
+
+msgid "&One Page"
+msgstr "&1 psl."
+
+msgid "Zoom &In"
+msgstr "Did&inti"
+
+msgid "Zoom &Out"
+msgstr "Mažin&ti"
+
+msgid "Comparing..."
+msgstr "Lygina..."
+
+msgid "Zoom:"
+msgstr "Mastelis:"
+
+msgid "Diff hunk"
+msgstr "Skirt. bloke"
+
+msgid "Inline diff"
+msgstr "Skirt. eilutėje"
+
+msgid "Line"
+msgstr "Eilutė"
+
+msgid "Character"
+msgstr "Simbolis"
 
 msgid "Prettification"
 msgstr "Sutvarkymas"
@@ -3586,8 +3906,8 @@ msgstr "Sutvarkymas"
 msgid "Content Extraction"
 msgstr "Turinio ištraukimas"
 
-msgid "Visualization"
-msgstr "Vizualizavimas"
+msgid "Preview"
+msgstr "Peržiūra"
 
 msgid "Data Query"
 msgstr "Duomenų užklausa"
@@ -3597,9 +3917,6 @@ msgstr "Patikra"
 
 msgid "Decompilation"
 msgstr "Dekompiliavimas"
-
-msgid "&Others"
-msgstr "Kiti"
 
 msgid "URL Handling"
 msgstr "URL apdorojimas"
@@ -3667,6 +3984,9 @@ msgstr "Ignoruoti CSV laukus"
 msgid "Ignore TSV Fields"
 msgstr "Ignoruoti TSV laukus"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Ignoruoti priekinius eil. numerius"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Taikyti parengėjo keitinių filtrus"
 
@@ -3682,8 +4002,14 @@ msgstr "Sutvarkyti XML"
 msgid "Prettify YAML"
 msgstr "Sutvarkyti YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Vizualizuoti „Graphviz“"
+msgid "Preview Graphviz"
+msgstr "„Graphviz“ peržiūra"
+
+msgid "Preview Markdown"
+msgstr "„Markdown“ peržiūra"
+
+msgid "Preview PlantUML"
+msgstr "„PlantUML“ peržiūra"
 
 msgid "Query CSV Data..."
 msgstr "Pateikti CSV duomenų užklausą..."
@@ -3701,24 +4027,16 @@ msgid "Validate HTML"
 msgstr "Patikrinti HTML"
 
 msgid "Disassemble JVM Bytecode"
-msgstr "Deaseblinti JVM baitinį kodą"
+msgstr "Dekompiliuoti JVM baitinį kodą"
 
 msgid "Disassemble IL Code"
-msgstr "Deaseblinti IL kodą"
+msgstr "Dekompiliuoti IL kodą"
 
 msgid "Disassemble Native Code"
-msgstr "Deaseblinti savajį kodą"
+msgstr "Dekompiliuoti savajį kodą"
 
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Trūksta papildinio pavadinimo papildinio komandų grandinėje: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Trūksta kabučių papildinio komandų grandinėje: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Nurodykite papildinio argumentus"
+msgid "Convert Text with AI..."
+msgstr "KOnvertuoti tekstus su AI..."
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"
@@ -3744,7 +4062,7 @@ msgstr "Sukeisti stulpelius"
 msgid "Reverse lines"
 msgstr "Sukeisti eilutes"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
+msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
 msgstr ""
 
 #, c-format
@@ -3775,7 +4093,13 @@ msgstr ""
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr ""
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr ""
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr ""
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
 msgstr ""
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
@@ -3805,8 +4129,8 @@ msgstr ""
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr ""
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Taikyti pataisą naudojant „GnuWin32 Patch for Windows“"
+msgid "Apply patch using GNU patch"
+msgstr "Taikyti pataisą naudojant „GNU patch“"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Rodyti „MS Excel“ failų teksto turinį"
@@ -3829,11 +4153,14 @@ msgstr "Papildinys ignoruoja komentarus (//... ir /* ... */) C, C++, PHP and Jav
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignoruoti kai kuriuos laukus - ignoruojamų laukų sąrašas iš papildinio pavadinimo arba argumento"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr "Šis papildinys ignoruoja priekinius eil. numerius tekstiniuose failuose (pvz. NC ir BASIC failai)."
+
 msgid "Prediff Line Filter"
 msgstr "Parengėjo eilutės filtras"
 
-msgid "Basic text functions for the context menu"
-msgstr "Pagrindinės kontekstinio meniu teksto funkcijos"
+msgid "Date and time insertion function"
+msgstr "Datos ir laiko įterpimo funkcija"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr ""
@@ -3841,21 +4168,166 @@ msgstr ""
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr ""
 
-msgid "Filter applied"
-msgstr "Pritaikytas filtras"
+msgid "Basic text functions"
+msgstr "Pagrindinės tekstų funkcijos"
+
+msgid "AI-assisted text conversion functions"
+msgstr "Teksto konvertavimo su AI pagalba funkcijos"
+
+msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr "Teksto keitiklis, naudojant „OpenAI“ API.\r\nNaudojimas: AIConvertText PROMPT"
+
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSExcelFiles.sct „WinMerge“ papildinio nuostatos"
+
+msgid "Extract workbook data to multiple files"
+msgstr "Išskleisti darbaknygės duomenis į kelis failus"
+
+msgid "Update external references(links)"
+msgstr "Naujinti išorines nuorodas(saitus)"
+
+msgid "Compare document properties"
+msgstr "Lyginti dokumento savybes"
+
+msgid "Compare names"
+msgstr "Lyginti pavadinimus"
+
+msgid "Compare cell values"
+msgstr "Lyginti langelių reikšmes"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "Lyginti darbalapius kaip vaizdus (labai lėta)"
+
+msgid " - Image split size: "
+msgstr " - Vaizdo padalijimo dydis: "
+
+msgid "Compare worksheets as HTML"
+msgstr "Lyginti darbalapius kaip HTML failus"
+
+msgid "Compare formulas"
+msgstr "Lyginti formules"
+
+msgid "Compare texts in shapes"
+msgstr "Lyginti kaukių tekstus"
+
+msgid "Compare headers and footers"
+msgstr "Lyginti puslapių antraštes ir poraštes"
+
+msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgstr "Nepavyksta gauti makrokomandų.\r\n   Norėdami leisti „WinMerge“ palyginti makrokomandas, MS Office pagalba pakeiskite makrokomandų saugos parametrus.\r\n   Norint naudoti šią funkciją „WinMerge“, reikia įjungti pasitikėti prieiga prie „Visual Basic Project“ funkciją.\r\n"
+
+msgid "Compare VBA macros"
+msgstr "Lyginti VBA makrokomandas"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSWordFiles.sct „WinMerge“ papildinio nuostatos"
+
+msgid "Extract document data to multiple files"
+msgstr "Išskleisti dokumento duomenis į kelis failus"
+
+msgid "Compare bookmarks"
+msgstr "Lyginti žymes"
+
+msgid "Compare text contents of documents"
+msgstr "Lyginti dokumentų turinio tekstus"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "Lyginti dokumentus kaip HTML failus (labai lėta)"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSPowerPointFiles.sct „WinMerge“ papildinio nuostatos"
+
+msgid "Extract slide data to multiple files"
+msgstr "Išskleisti skaidrių duomenis į kelis failus"
+
+msgid "Compare slides as image (very slow)"
+msgstr "Lyginti skaidres kaip vaizdus (labai lėta)"
+
+msgid "Compare texts in notes page"
+msgstr "Lyginti pastabų puslapio tekstus"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSVisioFiles.sct „WinMerge“ papildinio nuostatos"
+
+msgid "Extract page data to multiple files"
+msgstr "Išskleisti puslapių duomenis į kelis failus"
+
+msgid "Compare pages as image (very slow)"
+msgstr "Lyginti puslapius kaip vaizdus (labai lėta)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "PrediffLineFilter.sct „WinMerge“ papildinio nuostatos"
+
+msgid "Delete"
+msgstr "Trinti"
+
+msgid "Enabled"
+msgstr "Įjungta"
+
+msgid "Ignore Case"
+msgstr "Nepaisyti raidžių dydžio"
+
+msgid "Use RegExp"
+msgstr "Naudoti RegExp"
+
+msgid "Find what"
+msgstr "Ką rasti"
+
+msgid "Replace with"
+msgstr "Pakeisti į"
+
+msgid "Settings"
+msgstr "Parametrai"
+
+msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgstr "Nepaisomų stulpelių diapazonai:\npvz.)  3,10-20,32-33\n"
 
 #, c-format
-msgid "Clipboard at %s"
-msgstr "Mainų sritis %s"
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr "Įveskite failo, kuriam bus taikoma pataisa '%1', pavadinimą"
 
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Mainų srities istorijos funkcionalumas išjungtas.\r\nNorėdami įjungti, paspauskite Win+V klavišus ir tada „Įjungti“ mygtuką."
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "Failas '%1' nerastas"
 
-msgid "This system does not support clipboard history."
-msgstr "Ši sistema nepalaiko mainų srities istorijos."
+msgid "Enter the command line arguments for patch command"
+msgstr "Įveskite pataisos komandinės eilutės argumentus"
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32 bitų „WinMerge“ versija nepalaiko lyginimo mainų srityje"
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr "Įveskite katalogo, kuriam bus taikoma pataisa '%1', pavadinimą"
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "„WebView2“ vykdymo aplinka neįdiegta. Norite ją parsisiųsti?"
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "Katalogas '%1' nerastas"
+
+msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgstr "Nenurodykite komandinės eilutės parametro '-p0' pataisos failui, kuriame yra absoliutusis kelio vardas"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "AI.sct „WinMerge“ papildinio parametrai"
+
+msgid "Enter prompt"
+msgstr "Įvesti raginimą"
+
+#, c-format
+msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgstr "Nurodykite „OpenAI“ API raktą.\r\n - Šio papildinio naudojimui reikalinga „OpenAI“ registracija ir taikomi mokesčiai.\r\n - API raktas saugomas aplinkos kintamajame %1."
+
+msgid "Environment variable name for OpenAI API key"
+msgstr "„OpenAI“ API rakto aplinkos kintamojo pavadinimas"
+
+msgid "OpenAI API key"
+msgstr "„OpenAI“ API raktas"
+
+msgid "Temperature"
+msgstr "Temperatūra"
+
+msgid "Maximum length"
+msgstr "Maksimalus ilgis"
+
+msgid "Model"
+msgstr "Modelis"
+
+msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr "Pakeistas „OpenAI“ API raktas. Paleiskite „WinMerge“ iš naujo, kad pakeitimai įsigaliotų."

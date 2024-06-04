@@ -17,6 +17,7 @@ class TempFile
 {
 public:
 	TempFile() = default;
+	TempFile(TempFile&& other) : m_path(other.m_path) { other.m_path.clear(); }
 	~TempFile();
 	String Create(const String& prefix = _T(""), const String& ext = _T(""));
 	void Attach(const String& path) { Delete(); m_path = path; }

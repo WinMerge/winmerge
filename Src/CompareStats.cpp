@@ -7,8 +7,6 @@
 #include "pch.h"
 #include "CompareStats.h"
 #include <cassert>
-#include <cstring>
-#include <atomic>
 #include "DiffItem.h"
 
 /** 
@@ -21,6 +19,7 @@ CompareStats::CompareStats(int nDirs)
 , m_bCompareDone(false)
 , m_nDirs(nDirs)
 , m_counts()
+, m_nIdleCompareThreadCount(0)
 {
 }
 

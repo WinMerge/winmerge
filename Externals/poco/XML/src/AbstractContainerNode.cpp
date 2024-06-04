@@ -30,14 +30,14 @@ namespace XML {
 const XMLString AbstractContainerNode::WILDCARD(toXMLString("*"));
 
 
-AbstractContainerNode::AbstractContainerNode(Document* pOwnerDocument): 
+AbstractContainerNode::AbstractContainerNode(Document* pOwnerDocument):
 	AbstractNode(pOwnerDocument),
 	_pFirstChild(0)
 {
 }
 
 
-AbstractContainerNode::AbstractContainerNode(Document* pOwnerDocument, const AbstractContainerNode& node): 
+AbstractContainerNode::AbstractContainerNode(Document* pOwnerDocument, const AbstractContainerNode& node):
 	AbstractNode(pOwnerDocument, node),
 	_pFirstChild(0)
 {
@@ -151,6 +151,80 @@ Node* AbstractContainerNode::insertBefore(Node* newChild, Node* refChild)
 }
 
 
+
+Node* AbstractContainerNode::insertAfterNP(Node* newChild, Node* refChild)
+{
+    poco_check_ptr (newChild);
+
+    if (static_cast<AbstractNode*>(newChild)->_pOwner != _pOwner && static_cast<AbstractNode*>(newChild)->_pOwner != this)
+        throw DOMException(DOMException::WRONG_DOCUMENT_ERR);
+    if (refChild && static_cast<AbstractNode*>(refChild)->_pParent != this)
+        throw DOMException(DOMException::NOT_FOUND_ERR);
+    if (newChild == refChild)
+        return nullptr;
+    if (this == newChild)
+        throw DOMException(DOMException::HIERARCHY_REQUEST_ERR);
+
+    AbstractNode* pFirst = 0;
+    AbstractNode* pLast  = 0;
+    if (newChild->nodeType() == Node::DOCUMENT_FRAGMENT_NODE)
+    {
+        AbstractContainerNode* pFrag = static_cast<AbstractContainerNode*>(newChild);
+        pFirst = pFrag->_pFirstChild;
+        pLast  = pFirst;
+        if (pFirst)
+        {
+            while (pLast->_pNext)
+            {
+                pLast->_pParent = this;
+                pLast = pLast->_pNext;
+            }
+            pLast->_pParent = this;
+        }
+        pFrag->_pFirstChild = 0;
+    }
+    else
+    {
+        newChild->duplicate();
+        AbstractContainerNode* pParent = static_cast<AbstractNode*>(newChild)->_pParent;
+        if (pParent) pParent->removeChild(newChild);
+        pFirst = static_cast<AbstractNode*>(newChild);
+        pLast  = pFirst;
+        pFirst->_pParent = this;
+    }
+    if (_pFirstChild && pFirst)
+    {
+        AbstractNode* pCur = _pFirstChild;
+        while (pCur && pCur != refChild)
+        {
+            pCur = pCur->_pNext;
+        }
+        if (pCur)
+        {
+            pLast->_pNext = pCur->_pNext;
+            pCur->_pNext = pFirst;
+        }
+        else throw DOMException(DOMException::NOT_FOUND_ERR);
+    }
+    else
+    {
+        _pFirstChild = pFirst;
+    }
+
+    if (events())
+    {
+        while (pFirst && pFirst != pLast->_pNext)
+        {
+            pFirst->dispatchNodeInserted();
+            pFirst->dispatchNodeInsertedIntoDocument();
+            pFirst = pFirst->_pNext;
+        }
+        dispatchSubtreeModified();
+    }
+    return newChild;
+}
+
+
 Node* AbstractContainerNode::replaceChild(Node* newChild, Node* oldChild)
 {
 	poco_check_ptr (newChild);
@@ -199,7 +273,7 @@ Node* AbstractContainerNode::replaceChild(Node* newChild, Node* oldChild)
 			AbstractNode* pCur = _pFirstChild;
 			while (pCur && pCur->_pNext != oldChild) pCur = pCur->_pNext;
 			if (pCur)
-			{	
+			{
 				poco_assert_dbg (pCur->_pNext == oldChild);
 
 				if (doEvents)
@@ -311,8 +385,9 @@ bool AbstractContainerNode::hasAttributes() const
 
 Node* AbstractContainerNode::getNodeByPath(const XMLString& path) const
 {
+	bool indexBound;
 	XMLString::const_iterator it = path.begin();
-	if (it != path.end() && *it == '/') 
+	if (it != path.end() && *it == '/')
 	{
 		++it;
 		if (it != path.end() && *it == '/')
@@ -327,20 +402,21 @@ Node* AbstractContainerNode::getNodeByPath(const XMLString& path) const
 			for (unsigned long i = 0; i < length; i++)
 			{
 				XMLString::const_iterator beg = it;
-				const Node* pNode = findNode(beg, path.end(), pList->item(i), 0);
+				const Node* pNode = findNode(beg, path.end(), pList->item(i), 0, indexBound);
 				if (pNode) return const_cast<Node*>(pNode);
 			}
 			return 0;
 		}
 	}
-	return const_cast<Node*>(findNode(it, path.end(), this, 0));
+	return const_cast<Node*>(findNode(it, path.end(), this, 0, indexBound));
 }
 
 
 Node* AbstractContainerNode::getNodeByPathNS(const XMLString& path, const NSMap& nsMap) const
 {
+	bool indexBound;
 	XMLString::const_iterator it = path.begin();
-	if (it != path.end() && *it == '/') 
+	if (it != path.end() && *it == '/')
 	{
 		++it;
 		if (it != path.end() && *it == '/')
@@ -368,19 +444,20 @@ Node* AbstractContainerNode::getNodeByPathNS(const XMLString& path, const NSMap&
 				for (unsigned long i = 0; i < length; i++)
 				{
 					XMLString::const_iterator beg = it;
-					const Node* pNode = findNode(beg, path.end(), pList->item(i), &nsMap);
+					const Node* pNode = findNode(beg, path.end(), pList->item(i), &nsMap, indexBound);
 					if (pNode) return const_cast<Node*>(pNode);
 				}
 			}
 			return 0;
 		}
 	}
-	return const_cast<Node*>(findNode(it, path.end(), this, &nsMap));
+	return const_cast<Node*>(findNode(it, path.end(), this, &nsMap, indexBound));
 }
 
 
-const Node* AbstractContainerNode::findNode(XMLString::const_iterator& it, const XMLString::const_iterator& end, const Node* pNode, const NSMap* pNSMap)
+const Node* AbstractContainerNode::findNode(XMLString::const_iterator& it, const XMLString::const_iterator& end, const Node* pNode, const NSMap* pNSMap, bool& indexBound)
 {
+	indexBound = false;
 	if (pNode && it != end)
 	{
 		if (*it == '[')
@@ -406,7 +483,8 @@ const Node* AbstractContainerNode::findNode(XMLString::const_iterator& it, const
 						while (it != end && *it != ']') value += *it++;
 					}
 					if (it != end) ++it;
-					return findNode(it, end, findElement(attr, value, pNode, pNSMap), pNSMap);
+					bool ib;
+					return findNode(it, end, findElement(attr, value, pNode, pNSMap), pNSMap, ib);
 				}
 				else
 				{
@@ -416,17 +494,19 @@ const Node* AbstractContainerNode::findNode(XMLString::const_iterator& it, const
 			}
 			else
 			{
-				XMLString index;
-				while (it != end && *it != ']') index += *it++;
+				XMLString xmlIndex;
+				while (it != end && *it != ']') xmlIndex += *it++;
 				if (it != end) ++it;
 #ifdef XML_UNICODE_WCHAR_T
-				std::string idx;
-				Poco::UnicodeConverter::convert(index, idx);
-				int i = Poco::NumberParser::parse(idx);	
-#else
+				std::string index;
+				Poco::UnicodeConverter::convert(xmlIndex, index);
 				int i = Poco::NumberParser::parse(index);
+#else
+				int i = Poco::NumberParser::parse(xmlIndex);
 #endif
-				return findNode(it, end, findElement(i, pNode, pNSMap), pNSMap);
+				indexBound = true;
+				bool ib;
+				return findNode(it, end, findElement(i, pNode, pNSMap), pNSMap, ib);
 			}
 		}
 		else
@@ -440,8 +520,9 @@ const Node* AbstractContainerNode::findNode(XMLString::const_iterator& it, const
 			const Node* pElem = findElement(key, pNode->firstChild(), pNSMap);
 			while (!pFound && pElem)
 			{
-				pFound = findNode(it, end, pElem, pNSMap);
-				if (!pFound) pElem = findElement(key, pElem->nextSibling(), pNSMap);
+				bool ib;
+				pFound = findNode(it, end, pElem, pNSMap, ib);
+				if (!pFound) pElem = ib ? nullptr : findElement(key, pElem->nextSibling(), pNSMap);
 				it = itStart;
 			}
 			return pFound;

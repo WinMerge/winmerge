@@ -39,5 +39,5 @@ public:
 	CString m_sReportFile; /**< Report filename string */
 	CComboBox m_ctlStyle; /**< Report type control */
 	REPORT_TYPE m_nReportType; /**< Report type integer */
-	BOOL m_bCopyToClipboard; /**< Do we copy report to clipboard? */
+	bool m_bCopyToClipboard; /**< Do we copy report to clipboard? */
 };

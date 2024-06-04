@@ -12,6 +12,7 @@
 #pragma once
 
 #include "EditorFilepathBar.h"
+#include "DirStatusBar.h"
 #include "MergeFrameCommon.h"
 
 /////////////////////////////////////////////////////////////////////////////
@@ -33,10 +34,10 @@ private:
 
 // Operations
 public:
-	void SetStatus(LPCTSTR szStatus);
+	void SetStatus(const tchar_t* szStatus);
 	void SetCompareMethodStatusDisplay(int nCompMethod);
-	void SetFilterStatusDisplay(LPCTSTR szFilter);
-	CStatusBar  m_wndStatusBar;
+	void SetFilterStatusDisplay(const tchar_t* szFilter);
+	CDirStatusBar  m_wndStatusBar;
 	IHeaderBar * GetHeaderInterface();
 	void UpdateResources();
 

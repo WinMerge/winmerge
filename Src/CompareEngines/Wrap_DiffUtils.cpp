@@ -19,23 +19,20 @@
 #include "coretools.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
+#include "xdiff_gnudiff_compat.h"
 #include "unicoder.h"
+#include "DiffFileData.h"
 
 namespace CompareEngines
 {
-static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 
 /**
  * @brief Default constructor.
  */
 DiffUtils::DiffUtils()
-		: m_pOptions(nullptr)
-		, m_pFilterList(nullptr)
-		, m_inf(nullptr)
-		, m_pDiffWrapper(new ::CDiffWrapper)
+		:  m_pDiffWrapper(new ::CDiffWrapper)
 		, m_ndiffs(0)
 		, m_ntrivialdiffs(0)
-		, m_codepage(0)
 {
 }
 
@@ -44,17 +41,17 @@ DiffUtils::DiffUtils()
  */
 DiffUtils::~DiffUtils()
 {
-	ClearFilterList();
 }
 
 /**
  * @brief Set compare options from general compare options.
  * @param [in ]options General compare options.
  */
-void DiffUtils::SetCompareOptions(const CompareOptions & options)
+void DiffUtils::SetCompareOptions(const CompareOptions& options)
 {
-	m_pOptions.reset(new DiffutilsOptions(static_cast<const DiffutilsOptions&>(options)));
-	m_pOptions->SetToDiffUtils();
+	DIFFOPTIONS doptions;
+	static_cast<const DiffutilsOptions&>(options).GetAsDiffOptions(doptions);
+	m_pDiffWrapper->SetOptions(&doptions, true);
 }
 
 /**
@@ -63,16 +60,16 @@ void DiffUtils::SetCompareOptions(const CompareOptions & options)
  */
 void DiffUtils::ClearFilterList()
 {
-	m_pFilterList = nullptr;
+	m_pDiffWrapper->SetFilterList(static_cast<std::shared_ptr<FilterList>>(nullptr));
 }
 
 /**
  * @brief Set line filters list to use.
  * @param [in] list List of line filters.
  */
-void DiffUtils::SetFilterList(FilterList * list)
+void DiffUtils::SetFilterList(std::shared_ptr<FilterList> list)
 {
-	m_pFilterList = list;
+	m_pDiffWrapper->SetFilterList(list);
 }
 
 void DiffUtils::SetSubstitutionList(std::shared_ptr<SubstitutionList> list)
@@ -85,30 +82,23 @@ void DiffUtils::ClearSubstitutionList()
 	m_pDiffWrapper->SetSubstitutionList(nullptr);
 }
 
-/**
- * @brief Set filedata.
- * @param [in] items Count of filedata items to set.
- * @param [in] data File data.
- */
-void DiffUtils::SetFileData(int items, file_data *data)
+void DiffUtils::SetCodepage(int codepage)
 {
-	// We support only two files currently!
-	assert(items == 2);
-	m_inf = data;
+	m_pDiffWrapper->SetCodepage(codepage);
 }
 
 /**
  * @brief Compare two files (as earlier specified).
  * @return DIFFCODE as a result of compare.
  */
-int DiffUtils::diffutils_compare_files()
+int DiffUtils::CompareFiles(DiffFileData* diffData)
 {
 	int bin_flag = 0;
 	int bin_file = 0; // bitmap for binary files
 
 	// Do the actual comparison (generating a change script)
 	struct change *script = nullptr;
-	bool success = Diff2Files(&script, 0, &bin_flag, false, &bin_file);
+	bool success = m_pDiffWrapper->Diff2Files(&script, diffData, & bin_flag, & bin_file);
 	if (!success)
 	{
 		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
@@ -122,15 +112,16 @@ int DiffUtils::diffutils_compare_files()
 
 	if (script != nullptr)
 	{
+		const bool usefilters = m_pDiffWrapper->GetOptions().m_filterCommentsLines ||
+			(m_pDiffWrapper->GetFilterList() && m_pDiffWrapper->GetFilterList()->HasRegExps()) ||
+			(m_pDiffWrapper->GetSubstitutionList() && m_pDiffWrapper->GetSubstitutionList()->HasRegExps());
+	
 		PostFilterContext ctxt{};
-		String Ext = ucr::toTString(m_inf[0].name);
+		String Ext = ucr::toTString(diffData->m_inf[0].name);
 		size_t PosOfDot = Ext.rfind('.');
 		if (PosOfDot != String::npos)
 			Ext.erase(0, PosOfDot + 1);
 
-		DIFFOPTIONS options = {0};
-		m_pOptions->GetAsDiffOptions(options);
-		m_pDiffWrapper->SetOptions(&options);
 		m_pDiffWrapper->SetFilterCommentsSourceDef(Ext);
 
 		struct change *next = script;
@@ -152,50 +143,20 @@ int DiffUtils::diffutils_compare_files()
 			{
 				/* Determine range of line numbers involved in each file.  */
 				int first0 = 0, last0 = 0, first1 = 0, last1 = 0, deletes = 0, inserts = 0;
-				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, m_inf);
-				if (deletes!=0 || inserts!=0 || thisob->trivial!=0)
-				{
-					/* Print the lines that the first file has.  */
-					int trans_a0 = 0, trans_b0 = 0, trans_a1 = 0, trans_b1 = 0;
-					translate_range(&m_inf[0], first0, last0, &trans_a0, &trans_b0);
-					translate_range(&m_inf[1], first1, last1, &trans_a1, &trans_b1);
-	
-					//Determine quantity of lines in this block for both sides
-					int QtyLinesLeft = (trans_b0 - trans_a0) + 1;
-					int QtyLinesRight = (trans_b1 - trans_a1) + 1;
-	
-					if(m_pOptions->m_filterCommentsLines ||
-						(m_pDiffWrapper->GetSubstitutionList() &&
-						 m_pDiffWrapper->GetSubstitutionList()->HasRegExps()))
-					{
-						OP_TYPE op = OP_NONE;
-						if (deletes == 0 && inserts == 0)
-							op = OP_TRIVIAL;
-						else
-							op = OP_DIFF;
-						m_pDiffWrapper->PostFilter(ctxt, trans_a0 - 1, QtyLinesLeft, trans_a1 - 1, QtyLinesRight, op, m_inf);
-						if(op == OP_TRIVIAL)
-						{
-							thisob->trivial = 1;
-						}
-					}
-	
-					// Match lines against regular expression filters
-					// Our strategy is that every line in both sides must
-					// match regexp before we mark difference as ignored.
-					if(m_pFilterList != nullptr && m_pFilterList->HasRegExps())
-					{
-						bool match2 = false;
-						bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft - 1, &m_inf[0]);
-						if (match1)
-							match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight - 1, &m_inf[1]);
-						if (match1 && match2)
-							thisob->trivial = 1;
-					}
+				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts, diffData->m_inf);
 
-				}
 				/* Reconnect the script so it will all be freed properly.  */
 				end->link = next;
+
+				if (deletes!=0 || inserts!=0 || thisob->trivial!=0)
+				{
+					OP_TYPE op = (deletes == 0 && inserts == 0) ? OP_TRIVIAL : OP_DIFF;
+
+					if (op != OP_TRIVIAL && usefilters)
+					{
+						m_pDiffWrapper->PostFilter(ctxt, thisob, diffData->m_inf);
+					}
+				}
 			}
 		}
 	}
@@ -256,41 +217,6 @@ int DiffUtils::diffutils_compare_files()
 }
 
 /**
- * @brief Match regular expression list against given difference.
- * This function matches the regular expression list against the difference
- * (given as start line and end line). Matching the diff requires that all
- * lines in difference match.
- * @param [in] StartPos First line of the difference.
- * @param [in] endPos Last line of the difference.
- * @param [in] FileNo File to match.
- * return true if any of the expressions matches.
- */
-bool DiffUtils::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) const
-{
-	if (m_pFilterList == nullptr)
-	{
-		throw "DiffUtils::RegExpFilter() called when "
-				"filterlist doesn't exist (=`nullptr`)";
-	}
-
-	bool linesMatch = true; // set to false when non-matching line is found.
-	int line = StartPos;
-
-	while (line <= EndPos && linesMatch)
-	{
-		size_t len = pinf->linbuf[line + 1] - pinf->linbuf[line];
-		const char *string = pinf->linbuf[line];
-		size_t stringlen = linelen(string, len);
-		if (!m_pFilterList->Match(std::string(string, stringlen), m_codepage))
-		{
-			linesMatch = false;
-		}
-		++line;
-	}
-	return linesMatch;
-}
-
-/**
  * @brief Compare two files using diffutils.
  *
  * Compare two files (in DiffFileData param) using diffutils. Run diffutils
@@ -306,32 +232,10 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, const file_data *pinf) co
     second file if first is binary).
  * @return `true` when compare succeeds, `false` if error happened during compare.
  */
-bool DiffUtils::Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, bool bMovedBlocks, int * bin_file) const
+bool DiffUtils::Diff2Files(struct change ** diffs, DiffFileData *diffData,
+		int * bin_status, int * bin_file) const
 {
-	bool bRet = true;
-	SE_Handler seh;
-	try
-	{
-		*diffs = diff_2_files(m_inf, depth, bin_status, bMovedBlocks, bin_file);
-	}
-	catch (SE_Exception&)
-	{
-		*diffs = nullptr;
-		bRet = false;
-	}
-	return bRet;
-}
-
-/**
- * @brief Copy text stat results from diffutils back into the FileTextStats structure
- */
-static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats)
-{
-	myTextStats->ncrlfs = inf->count_crlfs;
-	myTextStats->ncrs = inf->count_crs;
-	myTextStats->nlfs = inf->count_lfs;
-	myTextStats->nzeros = inf->count_zeros;
+	return m_pDiffWrapper->Diff2Files(diffs, diffData, bin_status, bin_file);
 }
 
 /**
@@ -345,14 +249,5 @@ void DiffUtils::GetDiffCounts(int & diffs, int & trivialDiffs) const
 	trivialDiffs = m_ntrivialdiffs;
 }
 
-/**
- * @brief Return text statistics for last compare.
- * @param [in] side For which file to return statistics.
- * @param [out] stats Stats as asked.
- */
-void DiffUtils::GetTextStats(int side, FileTextStats *stats) const
-{
-	CopyTextStats(&m_inf[side], stats);
-}
 
 } // namespace CompareEngines

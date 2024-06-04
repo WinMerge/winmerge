@@ -33,13 +33,7 @@ public:
 	bool    m_bHiliteSyntax;
 	int	    m_nTabType;
 	unsigned m_nTabSize;
-	bool    m_bAutomaticRescan;
 	bool    m_bAllowMixedEol;
-	bool    m_bCopyFullLine;
-	bool    m_bViewLineDifferences;
-	bool    m_bBreakOnWords;
-	int     m_nBreakType;
-	String m_breakChars;
 	int     m_nRenderingMode;
 	//}}AFX_DATA
 
@@ -48,7 +42,6 @@ private:
 	void LoadComboBoxStrings();
 	void UpdateDataToWindow() { UpdateData(FALSE); }
 	void UpdateDataFromWindow() { UpdateData(TRUE); }
-	void UpdateLineDiffControls();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -63,7 +56,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropEditor)
 	afx_msg BOOL OnInitDialog() override;
-	afx_msg void OnLineDiffControlClicked();
+	afx_msg void OnDefaults();
 	afx_msg void OnEnKillfocusTabEdit();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

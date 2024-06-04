@@ -94,6 +94,20 @@
 #endif
 #endif
 
+#if defined(__has_include)
+#if defined(BOOST_HAS_HASH)
+#if !__has_include(BOOST_HASH_SET_HEADER) || (__GNUC__ >= 10)
+#undef BOOST_HAS_HASH
+#undef BOOST_HAS_SET_HEADER
+#undef BOOST_HAS_MAP_HEADER
+#endif
+#if !__has_include(BOOST_SLIST_HEADER)
+#undef BOOST_HAS_SLIST
+#undef BOOST_HAS_SLIST_HEADER
+#endif
+#endif
+#endif
+
 //
 // Decide whether we have C++11 support turned on:
 //
@@ -125,7 +139,20 @@
 //
 #ifdef __clang__
 
-#if __has_include(<memory_resource>)
+#ifdef _GLIBCXX_RELEASE
+#  define BOOST_LIBSTDCXX_VERSION (_GLIBCXX_RELEASE * 10000 + 100)
+#else
+//
+// We figure out which gcc version issued this std lib
+// by checking which headers are available:
+//
+#if __has_include(<expected>)
+#  define BOOST_LIBSTDCXX_VERSION 120100
+#elif __has_include(<source_location>)
+#  define BOOST_LIBSTDCXX_VERSION 110100
+#elif __has_include(<compare>)
+#  define BOOST_LIBSTDCXX_VERSION 100100
+#elif __has_include(<memory_resource>)
 #  define BOOST_LIBSTDCXX_VERSION 90100
 #elif __has_include(<charconv>)
 #  define BOOST_LIBSTDCXX_VERSION 80100
@@ -150,6 +177,34 @@
 #elif __has_include(<array>)
 #  define BOOST_LIBSTDCXX_VERSION 40300
 #endif
+#endif
+//
+// If BOOST_HAS_FLOAT128 is set, now that we know the std lib is libstdc++3, check to see if the std lib is
+// configured to support this type.  If not disable it:
+//
+#if defined(BOOST_HAS_FLOAT128) && !defined(_GLIBCXX_USE_FLOAT128)
+#  undef BOOST_HAS_FLOAT128
+#endif
+
+#if (BOOST_LIBSTDCXX_VERSION >= 100000) && defined(BOOST_HAS_HASH)
+//
+// hash_set/hash_map deprecated and have terminal bugs:
+//
+#undef BOOST_HAS_HASH
+#undef BOOST_HAS_SET_HEADER
+#undef BOOST_HAS_MAP_HEADER
+#endif
+
+
+#if (BOOST_LIBSTDCXX_VERSION >= 100000) && defined(BOOST_HAS_HASH)
+//
+// hash_set/hash_map deprecated and have terminal bugs:
+//
+#undef BOOST_HAS_HASH
+#undef BOOST_HAS_SET_HEADER
+#undef BOOST_HAS_MAP_HEADER
+#endif
+
 
 #if (BOOST_LIBSTDCXX_VERSION < 50100)
 // libstdc++ does not define this function as it's deprecated in C++11, but clang still looks for it,
@@ -212,8 +267,9 @@ extern "C" char *gets (char *__s);
 #     if !_GLIBCXX_DEPRECATED
 #        define BOOST_NO_AUTO_PTR
 #     endif
-#  elif !_GLIBCXX_USE_DEPRECATED
+#  elif !defined(_GLIBCXX_USE_DEPRECATED) || !_GLIBCXX_USE_DEPRECATED
 #     define BOOST_NO_AUTO_PTR
+#     define BOOST_NO_CXX98_BINDERS
 #  endif
 #endif
 
@@ -286,10 +342,6 @@ extern "C" char *gets (char *__s);
 #  define BOOST_NO_CXX14_STD_EXCHANGE
 #endif
 
-#if defined(__clang_major__) && ((__clang_major__ < 3) || ((__clang_major__ == 3) && (__clang_minor__ < 7)))
-// As of clang-3.6, libstdc++ header <atomic> throws up errors with clang:
-#  define BOOST_NO_CXX11_HDR_ATOMIC
-#endif
 //
 //  C++0x features in GCC 5.1 and later
 //
@@ -317,8 +369,81 @@ extern "C" char *gets (char *__s);
 #elif __cplusplus <= 201103
 #  define BOOST_NO_CXX14_HDR_SHARED_MUTEX
 #endif
+//
+// <execution> has a dependency to Intel's thread building blocks:
+// unless these are installed seperately, including <execution> leads
+// to inscrutable errors inside libstdc++'s own headers.
+//
+#if (BOOST_LIBSTDCXX_VERSION < 100100)
+#if !__has_include(<tbb/tbb.h>)
+#define BOOST_NO_CXX17_HDR_EXECUTION
+#endif
+#endif
 #elif __cplusplus < 201402 || (BOOST_LIBSTDCXX_VERSION < 40900) || !defined(BOOST_LIBSTDCXX11)
 #  define BOOST_NO_CXX14_HDR_SHARED_MUTEX
+#endif
+
+#if BOOST_LIBSTDCXX_VERSION < 100100
+//
+// The header may be present but is incomplete:
+//
+#  define BOOST_NO_CXX17_HDR_CHARCONV
+#endif
+
+#if BOOST_LIBSTDCXX_VERSION < 110000
+//
+// Header <bit> may be present but lacks std::bit_cast:
+//
+#define BOOST_NO_CXX20_HDR_BIT
+#endif
+
+#if BOOST_LIBSTDCXX_VERSION >= 120000
+//
+// Unary function is now deprecated in C++11 and later:
+//
+#if __cplusplus >= 201103L
+#define BOOST_NO_CXX98_FUNCTION_BASE
+#endif
+#endif
+
+#ifndef __cpp_impl_coroutine
+#  define BOOST_NO_CXX20_HDR_COROUTINE
+#endif
+
+//
+// These next defines are mostly for older clang versions with a newer libstdc++ :
+//
+#if !defined(__cpp_lib_concepts)
+#if !defined(BOOST_NO_CXX20_HDR_COMPARE)
+#  define BOOST_NO_CXX20_HDR_COMPARE
+#endif
+#if !defined(BOOST_NO_CXX20_HDR_CONCEPTS)
+#  define BOOST_NO_CXX20_HDR_CONCEPTS
+#endif
+#if !defined(BOOST_NO_CXX20_HDR_SPAN)
+#  define BOOST_NO_CXX20_HDR_SPAN
+#endif
+#if !defined(BOOST_NO_CXX20_HDR_RANGES)
+#  define BOOST_NO_CXX20_HDR_RANGES
+#endif
+#endif
+
+#if defined(__clang__)
+#if (__clang_major__ < 11) && !defined(BOOST_NO_CXX20_HDR_RANGES)
+#  define BOOST_NO_CXX20_HDR_RANGES
+#endif
+#if (__clang_major__ < 10) && (BOOST_LIBSTDCXX_VERSION >= 110000) && !defined(BOOST_NO_CXX11_HDR_CHRONO)
+// Old clang can't parse <chrono>:
+#  define BOOST_NO_CXX11_HDR_CHRONO
+#  define BOOST_NO_CXX11_HDR_CONDITION_VARIABLE
+#endif
+#endif
+
+#if defined(__clang__) && (BOOST_LIBSTDCXX_VERSION < 40300) && !defined(BOOST_NO_CXX11_NULLPTR)
+#  define BOOST_NO_CXX11_NULLPTR
+#endif
+#if defined(__clang__) && (BOOST_LIBSTDCXX_VERSION < 40300) && defined(BOOST_HAS_INT128) && defined(__APPLE_CC__)
+#undef BOOST_HAS_INT128
 #endif
 
 //
@@ -349,7 +474,7 @@ extern "C" char *gets (char *__s);
 #  endif
 #endif
 
-#if (!defined(_GTHREAD_USE_MUTEX_TIMEDLOCK) || (_GTHREAD_USE_MUTEX_TIMEDLOCK == 0)) && !defined(BOOST_NO_CXX11_HDR_MUTEX)
+#if (!defined(_GTHREAD_USE_MUTEX_TIMEDLOCK) || (_GTHREAD_USE_MUTEX_TIMEDLOCK == 0)) && !defined(BOOST_NO_CXX11_HDR_MUTEX) && (__GNUC__ < 6)
 // Timed mutexes are not always available:
 #  define BOOST_NO_CXX11_HDR_MUTEX
 #endif

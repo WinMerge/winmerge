@@ -1,7 +1,5 @@
 #pragma once
 
-#include <windows.h>
-
 #include "UnicodeString.h"
 
 class COptionsMgr;

@@ -25,6 +25,9 @@ typedef enum
 	IS_EXISTING_DIR, /**< It is existing folder */
 } PATH_EXISTENCE;
 
+constexpr tchar_t* NATIVE_NULL_DEVICE_NAME = _T("NUL");
+constexpr tchar_t* NATIVE_NULL_DEVICE_NAME_LONG = _T("\\\\.\\NUL");
+
 bool EndsWithSlash(const String& s);
 
 PATH_EXISTENCE DoesPathExist(const String& szPath, bool (*IsArchiveFile)(const String&) = nullptr);
@@ -47,9 +50,13 @@ void SplitFilename(const String& s, String * path, String * name, String * ext);
 String GetPathOnly(const String& fullpath);
 bool IsURL(const String& path);
 bool IsURLorCLSID(const String& path);
+bool isFileURL(const String& path);
+String FromURL(const String& url);
+String urlEncodeFileName(const String& filename);
 bool IsDecendant(const String& path, const String& ancestor);
 inline String AddTrailingSlash(const String& path) { return !EndsWithSlash(path) ? path + _T("\\") : path; }
 String ToWindowsPath(const String& path);
 String ToUnixPath(const String& path);
 bool IsValidName(const String& name);
+bool IsNullDeviceName(const String& name);
 }	

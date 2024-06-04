@@ -44,7 +44,7 @@ private:
 	int m_iItem;
 	int m_iSubItem;
 	CString m_sInitText;
-	BOOL	m_bESC;	 	// To indicate whether ESC key was pressed
+	bool	m_bESC;	 	// To indicate whether ESC key was pressed
 };
  
 class CInPlaceComboBox : public CComboBox
@@ -85,7 +85,7 @@ private:
 	int m_iSubItem;
 	CString m_sInitText;
 	std::vector<String> m_list;
-	BOOL	m_bESC;	 	// To indicate whether ESC key was pressed
+	bool	m_bESC;	 	// To indicate whether ESC key was pressed
 };
  
 class CSubeditList : public CListCtrl

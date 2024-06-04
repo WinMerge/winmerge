@@ -13,7 +13,7 @@
 #include "varprop.h"
 #include "OptionsMgr.h"
 
-#define MAX_PATH_FULL 32767
+constexpr size_t MAX_PATH_FULL = 32767;
 
 struct AsyncWriterThreadParams
 {
@@ -32,12 +32,15 @@ CRegOptionsMgr::CRegOptionsMgr()
 {
 	InitializeCriticalSection(&m_cs);
 	m_hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
-	m_hThread = reinterpret_cast<HANDLE>(
-		_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
-			reinterpret_cast<unsigned *>(&m_dwThreadId)));
-	WaitForSingleObject(m_hEvent, INFINITE);
-	CloseHandle(m_hEvent);
-	m_hEvent = nullptr;
+	if (m_hEvent)
+	{
+		m_hThread = reinterpret_cast<HANDLE>(
+			_beginthreadex(nullptr, 0, AsyncWriterThreadProc, this, 0,
+				reinterpret_cast<unsigned*>(&m_dwThreadId)));
+		WaitForSingleObject(m_hEvent, INFINITE);
+		CloseHandle(m_hEvent);
+		m_hEvent = nullptr;
+	}
 }
 
 CRegOptionsMgr::~CRegOptionsMgr()
@@ -133,7 +136,7 @@ int CRegOptionsMgr::LoadValueFromBuf(const String& strName, DWORD type, const BY
 	int valType = value.GetType();
 	if (type == REG_SZ && valType == varprop::VT_STRING )
 	{
-		value.SetString((TCHAR *)&data[0]);
+		value.SetString((tchar_t *)&data[0]);
 		retVal = Set(strName, value);
 	}
 	else if (type == REG_DWORD)
@@ -183,7 +186,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	DWORD type = 0;
 	DWORD size = 0;
 	int retVal = COption::OPT_OK;
-	auto [strPath, strValueName] = SplitName(strName);
+	[[maybe_unused]] auto [strPath, strValueName] = SplitName(strName);
 
 	// Get type and size of value in registry
 	retValReg = RegQueryValueEx(hKey, strValueName.c_str(), 0, &type,
@@ -191,7 +194,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, const String& strName,
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
-		data.resize(size + sizeof(TCHAR), 0);
+		data.resize(size + sizeof(tchar_t), 0);
 
 		// Get data
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
@@ -229,13 +232,13 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, const String& strValueName,
 		if (strVal.length() > 0)
 		{
 			retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_SZ,
-					(LPBYTE)strVal.c_str(), (DWORD)(strVal.length() + 1) * sizeof(TCHAR));
+					(LPBYTE)strVal.c_str(), (DWORD)(strVal.length() + 1) * sizeof(tchar_t));
 		}
 		else
 		{
-			TCHAR str[1] = {0};
+			tchar_t str[1] = {0};
 			retValReg = RegSetValueEx(hKey, strValueName.c_str(), 0, REG_SZ,
-					(LPBYTE)&str, 1 * sizeof(TCHAR));
+					(LPBYTE)&str, 1 * sizeof(tchar_t));
 		}
 	}
 	else if (valType == varprop::VT_INT)
@@ -343,7 +346,7 @@ int CRegOptionsMgr::InitOption(const String& name, const String& defaultValue)
 	return InitOption(name, defValue);
 }
 
-int CRegOptionsMgr::InitOption(const String& name, const TCHAR *defaultValue)
+int CRegOptionsMgr::InitOption(const String& name, const tchar_t *defaultValue)
 {
 	return InitOption(name, String(defaultValue));
 }
@@ -433,7 +436,7 @@ int CRegOptionsMgr::SaveOption(const String& name, const String& value)
 /**
  * @brief Set new string value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(const String& name, const TCHAR *value)
+int CRegOptionsMgr::SaveOption(const String& name, const tchar_t *value)
 {
 	return SaveOption(name, String(value));
 }
@@ -503,7 +506,158 @@ int CRegOptionsMgr::RemoveOption(const String& name)
 	LeaveCriticalSection(&m_cs);
 
 	return retVal;
+}
 
+int CRegOptionsMgr::FlushOptions()
+{
+	int retVal = COption::OPT_OK;
+
+	while (InterlockedCompareExchange(&m_dwQueueCount, 0, 0) != 0)
+		Sleep(0);
+
+	return retVal;
+}
+
+int CRegOptionsMgr::ExportOptions(const String& filename, const bool bHexColor /*= false*/) const
+{
+	HKEY hKey = nullptr;
+	if (RegOpenKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), 0, KEY_READ, &hKey) != ERROR_SUCCESS)
+		return COption::OPT_ERR;
+	int retVal = ExportAllUnloadedValues(hKey, _T(""), filename);
+	if (retVal == COption::OPT_OK)
+		retVal = COptionsMgr::ExportOptions(filename, bHexColor);
+	RegCloseKey(hKey);
+	return retVal;
+}
+
+int CRegOptionsMgr::ImportOptions(const String& filename)
+{
+	int retVal = ImportAllUnloadedValues(filename);
+	if (retVal == COption::OPT_OK)
+		retVal = COptionsMgr::ImportOptions(filename);
+	return retVal;
+}
+
+int CRegOptionsMgr::ExportAllUnloadedValues(HKEY hKey, const String& strPath, const String& filename) const
+{
+	DWORD dwIndex = 0;
+	tchar_t szValueName[MAX_PATH];
+	std::vector<BYTE> data(MAX_PATH);
+	for (;;)
+	{
+		DWORD dwType;
+		DWORD cbValueName = MAX_PATH;
+		DWORD cbData = static_cast<DWORD>(data.size());
+		LSTATUS result = RegEnumValue(hKey, dwIndex, szValueName, &cbValueName, nullptr, &dwType, data.data(), &cbData);
+		if (result == ERROR_MORE_DATA)
+		{
+			cbValueName = MAX_PATH;
+			cbData *= 2;
+			data.resize(cbData);
+			result = RegEnumValue(hKey, dwIndex, szValueName, &cbValueName, nullptr, &dwType, data.data(), &cbData);
+		}
+		if (result == ERROR_SUCCESS)
+		{
+			String strName = strPath + _T("/") + szValueName;
+			if (m_optionsMap.find(strName) == m_optionsMap.end())
+			{
+				varprop::VariantValue value;
+				switch (dwType)
+				{
+				case REG_DWORD:
+					WritePrivateProfileString(_T("WinMerge"), strName.c_str(),
+						strutils::to_str(*(reinterpret_cast<int*>(data.data()))).c_str(), filename.c_str());
+					WritePrivateProfileString(_T("WinMerge.TypeInfo"), strName.c_str(),
+							_T("int"), filename.c_str());
+					break;
+				case REG_SZ:
+					// https://learn.microsoft.com/en-us/answers/questions/578134/error-in-writeprivateprofilestring-function-when-j
+					WritePrivateProfileString(_T("WinMerge"), strName.c_str(),
+						nullptr, filename.c_str());
+					WritePrivateProfileString(_T("WinMerge"), strName.c_str(),
+						EscapeValue(reinterpret_cast<tchar_t*>(data.data())).c_str(), filename.c_str());
+					WritePrivateProfileString(_T("WinMerge.TypeInfo"), strName.c_str(),
+							_T("string"), filename.c_str());
+					break;
+				default:
+					break;
+				}
+			}
+			dwIndex++;
+		}
+		else if (result == ERROR_NO_MORE_ITEMS)
+		{
+			break;
+		}
+		else
+		{
+			return COption::OPT_ERR;
+		}
+	}
+
+	dwIndex = 0;
+	tchar_t szSubKey[MAX_PATH];
+	DWORD cbSubKey = MAX_PATH;
+	for (;;)
+	{
+		LSTATUS result = RegEnumKeyEx(hKey, dwIndex, szSubKey, &cbSubKey, nullptr, nullptr, nullptr, nullptr);
+		if (result == ERROR_SUCCESS)
+		{
+			HKEY hSubKey = nullptr;
+			if (RegOpenKeyEx(hKey, szSubKey, 0, KEY_READ, &hSubKey) == ERROR_SUCCESS)
+			{
+				int retVal = ExportAllUnloadedValues(hSubKey, strPath.empty() ? szSubKey : strPath + _T("\\") + szSubKey, filename);
+				RegCloseKey(hSubKey);
+				if (retVal != COption::OPT_OK)
+					return retVal;
+			}
+			dwIndex++;
+			cbSubKey = MAX_PATH;
+		}
+		else if (result == ERROR_NO_MORE_ITEMS)
+		{
+			break;
+		}
+		else
+		{
+			return COption::OPT_ERR;
+		}
+	}
+	return COption::OPT_OK;
+}
+
+int CRegOptionsMgr::ImportAllUnloadedValues(const String& filename)
+{
+	auto iniFileKeyValues = ReadIniFile(filename, _T("WinMerge"));
+	auto iniFileKeyTypes = ReadIniFile(filename, _T("WinMerge.TypeInfo"));
+	for (const auto& [key, strValue] : iniFileKeyValues)
+	{
+		if (m_optionsMap.find(key) == m_optionsMap.end() &&
+		    iniFileKeyTypes.find(key) != iniFileKeyTypes.end())
+		{
+			auto [strPath, strValueName] = SplitName(key);
+			HKEY hKey = OpenKey(strPath, true);
+			if (hKey)
+			{
+				varprop::VariantValue value;
+				String strType = iniFileKeyTypes[key];
+				if (tc::tcsicmp(strType.c_str(), _T("bool")) == 0)
+					value.SetBool(tc::ttoi(strValue.c_str()) != 0);
+				else if (tc::tcsicmp(strType.c_str(), _T("int")) == 0)
+				{
+					tchar_t* endptr = nullptr;
+					unsigned uval = static_cast<unsigned>(tc::tcstoll(strValue.c_str(), &endptr,
+						(strValue.length() >= 2 && strValue[1] == 'x') ? 16 : 10));
+					value.SetInt(static_cast<int>(uval));
+				}
+				else if (tc::tcsicmp(strType.c_str(), _T("string")) == 0)
+					value.SetString(strValue);
+				SaveValueToReg(hKey, strValueName, value);
+				CloseKey(hKey, strPath);
+			}
+		}
+	}
+	return COption::OPT_OK;
 }
 
 /**

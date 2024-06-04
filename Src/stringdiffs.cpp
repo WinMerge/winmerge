@@ -8,6 +8,7 @@
 #include "pch.h"
 #include "stringdiffs.h"
 #define NOMINMAX
+#include <Windows.h>
 #include <cassert>
 #include <chrono>
 #include "CompareOptions.h"
@@ -19,12 +20,12 @@ using std::vector;
 namespace strdiff
 {
 
-static TCHAR *BreakChars = nullptr;
-static TCHAR BreakCharDefaults[] = _T(",.;:");
+static tchar_t *BreakChars = nullptr;
+static tchar_t BreakCharDefaults[] = _T(",.;:");
 static const int TimeoutMilliSeconds = 500;
 
-static bool isSafeWhitespace(TCHAR ch);
-static bool isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers);
+static bool isSafeWhitespace(tchar_t ch);
+static bool isWordBreak(int breakType, const tchar_t *str, int index);
 
 void Init()
 {
@@ -40,14 +41,14 @@ void Close()
 	}
 }
 
-void SetBreakChars(const TCHAR *breakChars)
+void SetBreakChars(const tchar_t *breakChars)
 {
 	assert(BreakChars != nullptr);
 
 	if (BreakChars != BreakCharDefaults)
 		free(BreakChars);
 
-	BreakChars = _tcsdup(breakChars);
+	BreakChars = tc::tcsdup(breakChars);
 }
 
 std::vector<wdiff>
@@ -72,12 +73,12 @@ struct Comp02Functor
 			return false;
 		if (case_sensitive_)
 		{
-			if (memcmp(&strs_[0][wd3.begin[0]], &strs_[2][wd3.begin[2]], wlen0 * sizeof(TCHAR)) != 0)
+			if (memcmp(&strs_[0][wd3.begin[0]], &strs_[2][wd3.begin[2]], wlen0 * sizeof(tchar_t)) != 0)
 				return false;
 		}
 		else
 		{
-			if (_tcsnicmp(&strs_[0][wd3.begin[0]], &strs_[2][wd3.begin[2]], wlen0) != 0)
+			if (tc::tcsnicmp(&strs_[0][wd3.begin[0]], &strs_[2][wd3.begin[2]], wlen0) != 0)
 				return false;
 		}
 		return true;
@@ -255,7 +256,7 @@ stringdiffs::debugoutput()
 	{
 		String str1;
 		String str2;
-		TCHAR buf[256];
+		tchar_t buf[256];
 		int s1 = m_wdiffs[i].begin[0];
 		int e1 = m_wdiffs[i].end[0];
 		int s2 = m_wdiffs[i].begin[1];
@@ -418,67 +419,43 @@ stringdiffs::BuildWordsArray(const String & str) const
 
 	size_t sLen = str.length();
 	assert(sLen < INT_MAX);
-	int iLen = static_cast<int>(sLen);
 
-	// state when we are looking for next word
-inspace:
-	if (isSafeWhitespace(str[i])) 
-	{
-		i = pIterChar->next();
-		goto inspace;
-	}
-	if (begin < i)
-	{
-		// just finished a word
-		// e is first word character (space or at end)
-		int e = i - 1;
-
-		words.push_back(word(begin, e, dlspace, Hash(str, begin, e, 0)));
-	}
-	if (i == iLen)
+	if (str.empty())
 		return words;
-	begin = i;
-	goto inword;
 
-	// state when we are inside a word
-inword:
-	bool atspace=false;
-	if (i == iLen || ((atspace = isSafeWhitespace(str[i])) != 0) || isWordBreak(m_breakType, str.c_str(), i, m_ignore_numbers))
+	int break_type = 0;
+	int prev_break_type = 0;
+	int iLen = static_cast<int>(sLen);
+	for (; i < iLen;)
 	{
-		if (begin<i)
+		break_type = dlword;
+		tchar_t ch = str[i];
+		if (ch == '\r' || ch == '\n')
 		{
-			// just finished a word
-			// e is first non-word character (space or at end)
-			int e = i-1;
-			
-			words.push_back(word(begin, e, dlword, Hash(str, begin, e, 0)));
+			break_type = dleol;
 		}
-		if (i == iLen)
+		else if (isSafeWhitespace(ch))
 		{
-			return words;
+			break_type = dlspace;
 		}
-		else if (atspace)
+		else if (isWordBreak(m_breakType, str.c_str(), i))
 		{
+			break_type = dlbreak;
+		}
+		else if (m_ignore_numbers && tc::istdigit(ch))
+		{
+			break_type = dlnumber;
+		}
+		if (i > 0 && (break_type != prev_break_type || break_type == dlbreak || (prev_break_type == dleol && !(str[i - 1] == '\r' && ch == '\n'))))
+		{
+			words.push_back(word(begin, i - 1, prev_break_type, Hash(str, begin, i - 1, 0)));
 			begin = i;
-			goto inspace;
 		}
-		else
-		{
-			// start a new word because we hit a non-whitespace word break (eg, a comma)
-			// but, we have to put each word break character into its own word
-			int break_type = (m_ignore_numbers && _istdigit(str[i]))
-				? dlnumber
-				: dlbreak;
-
-			int inext = pIterChar->next();
-			words.push_back(word(i, inext - 1, break_type, Hash(str, i, inext - 1, 0)));
-			i = inext;
-			begin = i;
-			goto inword;
-		}
+		i = pIterChar->next();
+		prev_break_type = break_type;
 	}
-	i = pIterChar->next();
-	goto inword; // safe even if we're at the end or no longer in a word
+	words.push_back(word(begin, i - 1, break_type, Hash(str, begin, i - 1, 0)));
+	return words;
 }
 
 /**
@@ -489,13 +466,6 @@ inword:
 void
 stringdiffs::PopulateDiffs()
 {
-	auto IsEOLorEmpty = [](const String& text, size_t begin, size_t end) -> bool {
-		if (end - begin + 1 > 2)
-			return false;
-		String str = text.substr(begin, end - begin + 1);
-		return (str.empty() || str == _T("\r\n") || str == _T("\n") || str == _T("\r"));
-	};
-	
 	for (int i=0; i< (int)m_wdiffs.size(); ++i)
 	{
 		bool skipIt = false;
@@ -511,13 +481,6 @@ stringdiffs::PopulateDiffs()
 				m_wdiffs[i+1].begin[1] = m_wdiffs[i].begin[1];
 				skipIt = true;
 			}
-		}
-		else
-		{
-			if (!m_eol_sensitive &&
-				IsEOLorEmpty(m_str1, m_wdiffs[i].begin[0], m_wdiffs[i].end[0]) &&
-				IsEOLorEmpty(m_str2, m_wdiffs[i].begin[1], m_wdiffs[i].end[1]))
-				skipIt = true;
 		}
 		if (!skipIt)
 		{
@@ -545,7 +508,7 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 	{
 		for (int i = begin; i <= end; ++i)
 		{
-			TCHAR ch = static_cast<unsigned>(str[i]);
+			tchar_t ch = static_cast<unsigned>(str[i]);
 			h += HASH(h, ch);
 		}
 	}
@@ -553,8 +516,8 @@ stringdiffs::Hash(const String & str, int begin, int end, unsigned h) const
 	{
 		for (int i = begin; i <= end; ++i)
 		{
-			TCHAR ch = static_cast<unsigned>(str[i]);
-			ch = static_cast<unsigned>(_totlower(ch));
+			tchar_t ch = static_cast<unsigned>(str[i]);
+			ch = static_cast<unsigned>(tc::totlower(ch));
 			h += HASH(h, ch);
 		}
 	}
@@ -575,7 +538,12 @@ stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 	}
 	if (m_ignore_numbers)
 	{
-		if (_istdigit(m_str1[word1.start]) && _istdigit(m_str2[word2.start]))
+		if (tc::istdigit(m_str1[word1.start]) && tc::istdigit(m_str2[word2.start]))
+			return true;
+	}
+	if (!this->m_eol_sensitive)
+	{
+		if (IsEOL(word1) && IsEOL(word2))
 			return true;
 	}
 
@@ -598,10 +566,10 @@ stringdiffs::AreWordsSame(const word& word1, const word& word2) const
 	{
 		for (int i = 0; i < length; ++i)
 		{
-			TCHAR ch1 = m_str1[word1.start + i];
-			TCHAR ch2 = m_str2[word2.start + i];
+			tchar_t ch1 = m_str1[word1.start + i];
+			tchar_t ch2 = m_str2[word2.start + i];
 
-			if (_totlower(ch1) != _totlower(ch2))
+			if (tc::totlower(ch1) != tc::totlower(ch2))
 				return false;
 		}
 	}
@@ -750,13 +718,13 @@ stringdiffs::snake(int k, int y, int M, int N, bool exchanged) const
  * Caller must not call this for lead bytes
  */
 static inline bool
-matchchar(const TCHAR *ch1, const TCHAR *ch2, size_t len, bool casitive)
+matchchar(const tchar_t *ch1, const tchar_t *ch2, size_t len, bool casitive)
 {
 	if (casitive)
-		return memcmp(ch1, ch2, len * sizeof(TCHAR)) == 0;
+		return memcmp(ch1, ch2, len * sizeof(tchar_t)) == 0;
 	for (size_t i = 0; i < len; ++i)
 	{
-		if (_totlower(ch1[i]) != _totlower(ch2[i]))
+		if (tc::totlower(ch1[i]) != tc::totlower(ch2[i]))
 			return false;
 	}
 	return true;
@@ -764,7 +732,7 @@ matchchar(const TCHAR *ch1, const TCHAR *ch2, size_t len, bool casitive)
 
 
 /** Does character introduce a multicharacter character? */
-static inline bool IsLeadByte(TCHAR ch)
+static inline bool IsLeadByte(tchar_t ch)
 {
 #ifdef UNICODE
 	return false;
@@ -777,28 +745,26 @@ static inline bool IsLeadByte(TCHAR ch)
  * @brief Is it whitespace (excludes all lead & trail bytes)?
  */
 static inline bool
-isSafeWhitespace(TCHAR ch)
+isSafeWhitespace(tchar_t ch)
 {
-	return _istspace((unsigned)ch) && !IsLeadByte(ch);
+	return tc::istspace((unsigned)ch) && !IsLeadByte(ch) && (ch != '\r' && ch != '\n');
 }
 
 /**
  * @brief Is it a non-whitespace wordbreak character (ie, punctuation)?
  */
 static bool
-isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers)
+isWordBreak(int breakType, const tchar_t *str, int index)
 {
-	TCHAR ch = str[index];
-	if (ignore_numbers && _istdigit(ch))
-		return true;
+	tchar_t ch = str[index];
 	// breakType==1 means break also on punctuation
 	if ((ch & 0xff00) == 0)
 	{
-//		TCHAR nextCh = str[index + 1];
+//		tchar_t nextCh = str[index + 1];
 		// breakType==0 means whitespace only
 		if (breakType==0)
 			return false;
-		return _tcschr(BreakChars, ch) != nullptr;
+		return tc::tcschr(BreakChars, ch) != nullptr;
 	}
 	else 
 	{
@@ -813,7 +779,7 @@ isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers)
 //			return true;
 //		WORD wCharType, wCharTypeNext;
 //		GetStringTypeW(CT_CTYPE3, &ch, 1, &wCharType);
-//		TCHAR nextCh = str[index + 1];
+//		tchar_t nextCh = str[index + 1];
 //		GetStringTypeW(CT_CTYPE3, &nextCh, 1, &wCharTypeNext);
 //		return (wCharType != wCharTypeNext);
 //		
@@ -830,7 +796,7 @@ isWordBreak(int breakType, const TCHAR *str, int index, bool ignore_numbers)
  * @param end [in] last valid position (only go one beyond this)
  */
 static void
-AdvanceOverWhitespace(const TCHAR **pcurrent, const TCHAR *end)
+AdvanceOverWhitespace(const tchar_t **pcurrent, const tchar_t *end)
 {
 	// advance over whitespace
 	while (*pcurrent <= end && isSafeWhitespace(**pcurrent))
@@ -860,8 +826,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	int len1 = static_cast<int>(str1.length());
 	int len2 = static_cast<int>(str2.length());
 
-	const TCHAR *pbeg1 = str1.c_str();
-	const TCHAR *pbeg2 = str2.c_str();
+	const tchar_t *pbeg1 = str1.c_str();
+	const tchar_t *pbeg2 = str2.c_str();
 
 	ICUBreakIterator *pIterCharBegin1 = ICUBreakIterator::getCharacterBreakIterator(reinterpret_cast<const UChar *>(pbeg1), static_cast<int32_t>(len1));
 	ICUBreakIterator *pIterCharBegin2 = ICUBreakIterator::getCharacterBreakIterator<2>(reinterpret_cast<const UChar *>(pbeg2), static_cast<int32_t>(len2));
@@ -883,12 +849,12 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	}
 
 	// cursors from front, which we advance to beginning of difference
-	const TCHAR *py1 = pbeg1;
-	const TCHAR *py2 = pbeg2;
+	const tchar_t *py1 = pbeg1;
+	const tchar_t *py2 = pbeg2;
 
 	// pen1,pen2 point to the last valid character (broken multibyte lead chars don't count)
-	const TCHAR *pen1 = pbeg1 + (len1 > 0 ? pIterCharEnd1->preceding(len1) : 0);
-	const TCHAR *pen2 = pbeg2 + (len2 > 0 ? pIterCharEnd2->preceding(len2) : 0);
+	const tchar_t *pen1 = pbeg1 + (len1 > 0 ? pIterCharEnd1->preceding(len1) : 0);
+	const tchar_t *pen2 = pbeg2 + (len2 > 0 ? pIterCharEnd2->preceding(len2) : 0);
 	size_t glyphlenz1 = pbeg1 + len1 - pen1;
 	size_t glyphlenz2 = pbeg2 + len2 - pen2;
 
@@ -973,8 +939,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 			continue;
 		}
 
-		const TCHAR* py1next = pbeg1 + pIterCharBegin1->next();
-		const TCHAR* py2next = pbeg2 + pIterCharBegin2->next();
+		const tchar_t* py1next = pbeg1 + pIterCharBegin1->next();
+		const tchar_t* py2next = pbeg2 + pIterCharBegin2->next();
 		size_t glyphleny1 = py1next - py1;
 		size_t glyphleny2 = py2next - py2;
 		if (glyphleny1 != glyphleny2 || !matchchar(py1, py2, glyphleny1, casitive))
@@ -990,8 +956,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 	begin[0] = static_cast<int>(py1 - pbeg1);
 	begin[1] = static_cast<int>(py2 - pbeg2);
 
-	const TCHAR *pz1 = pen1;
-	const TCHAR *pz2 = pen2;
+	const tchar_t *pz1 = pen1;
+	const tchar_t *pz2 = pen2;
 
 	// Retreat over matching ends of lines
 	// Retreat pz1 & pz2 from end until find difference or beginning
@@ -1032,8 +998,8 @@ stringdiffs::ComputeByteDiff(const String & str1, const String & str2,
 
 		if (glyphlenz1 != glyphlenz2 || !matchchar(pz1, pz2, glyphlenz1, casitive))
 			break; // done with forward search
-		const TCHAR* pz1next = pz1;
-		const TCHAR* pz2next = pz2;
+		const tchar_t* pz1next = pz1;
+		const tchar_t* pz2next = pz2;
 		pz1 = (pz1 > pbeg1) ? pbeg1 + pIterCharEnd1->preceding(static_cast<int32_t>(pz1 - pbeg1)) : pz1 - 1;
 		pz2 = (pz2 > pbeg2) ? pbeg2 + pIterCharEnd2->preceding(static_cast<int32_t>(pz2 - pbeg2)) : pz2 - 1;
 		glyphlenz1 = pz1next - pz1;

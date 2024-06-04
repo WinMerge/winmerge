@@ -1,0 +1,90 @@
+﻿[Messages]
+
+WizardInfoBefore=License Agreement
+InfoBeforeLabel=GNU General Public License
+
+[CustomMessages]
+
+;Things we can also localize
+OptionalFeatures=Дополнительные возможности:
+CompanyName=Thingamahoochie Software
+
+;Types
+TypicalInstallation=Обычная установка
+FullInstallation=Полная установка
+CompactInstallation=Компактная установка
+CustomInstallation=Выборочная установка
+
+;Components
+AppCoreFiles=Основные файлы WinMerge
+Filters=Фильтры
+Plugins=Плагины
+ShellExtension32bit=32-битное расширение оболочки WinMerge
+
+;Localization Components
+Languages=Языки интерфейса (меню и диалоги)
+ArabicLanguage=Арабский
+BasqueLanguage=Баскский
+BulgarianLanguage=Болгарский
+CatalanLanguage=Каталанский
+ChineseSimplifiedLanguage=Китайский (упрощенный)
+ChineseTraditionalLanguage=Китайский (традиционный)
+CorsicanLanguage=Корсиканский
+CroatianLanguage=Хорватский
+CzechLanguage=Чешский
+DanishLanguage=Датский
+DutchLanguage=Голландский
+FinnishLanguage=Финский
+FrenchLanguage=Французский
+GalicianLanguage=Галисийский
+GermanLanguage=Немецкий
+GreekLanguage=Греческий
+HungarianLanguage=Венгерский
+ItalianLanguage=Итальянский
+JapaneseLanguage=Японский
+KoreanLanguage=Корейский
+LithuanianLanguage=Литовский
+NorwegianLanguage=Норвежский
+PersianLanguage=Персидский
+PolishLanguage=Польский
+PortugueseBrazilLanguage=Португальский (Бразилия)
+PortugueseLanguage=Португальский
+RomanianLanguage=Румынский
+RussianLanguage=Русский
+SerbianLanguage=Сербский
+SinhalaLanguage=Сингальский
+SlovakLanguage=Словацкий
+SlovenianLanguage=Словенский
+SpanishLanguage=Испанский
+SwedishLanguage=Шведский
+TamilLanguage=Тамильский
+TurkishLanguage=Турецкий
+UkrainianLanguage=Украинский
+
+;Tasks
+ExplorerContextMenu=Встроить в контекстное меню Проводника
+IntegrateTortoiseCVS=Интеграция с &TortoiseCVS
+IntegrateTortoiseGit=Интеграция с To&rtoiseGit
+IntegrateTortoiseSVN=Интеграция с T&ortoiseSVN
+AddToPath=Добавить папку WinMerge в системный путь
+
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=3-Way Merge
+ThreeWayMergeWizardPageDescription=Do you use WinMerge as a 3-way merge tool for TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Register WinMerge as a 3-way merge tool
+MergeAtRightPane=Merge at right pane
+MergeAtCenterPane=Merge at center pane
+MergeAtLeftPane=Merge at left pane
+AutoMergeAtStartup=Auto-merge at startup time
+
+;Icon Labels
+ReadMe=Прочти меня
+UsersGuide=Руководство пользователя
+ViewStartMenuFolder=Показать папку меню Пуск WinMerge 
+
+;Code Dialogs
+DeletePreviousStartMenu=Установщик обнаружил, что вы изменили расположение папки меню Пуск с "%s" на "%s". Удалить предыдущую папку меню Пуск?
+ExplorerNeedsRestart=Для обновления расширения оболочки WinMerge требуется перезапуск Проводника. Перезапустить?
+
+; Project file description
+ProjectFileDesc=Файл проекта WinMerge

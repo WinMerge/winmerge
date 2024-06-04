@@ -25,6 +25,11 @@
 #include <boost/mpl/inherit.hpp>
 #include <boost/mpl/identity.hpp>
 
+#ifdef _MSC_VER
+#  pragma warning(push)
+#  pragma warning(disable: 4512) // assignment operator could not be generated.
+#endif
+
 namespace boost { namespace fusion
 {
     struct joint_view_tag;
@@ -70,13 +75,14 @@ namespace boost { namespace fusion
         concat_last_type concat_last() const { return fusion::end(seq2); }
 
     private:
-        // silence MSVC warning C4512: assignment operator could not be generated
-        joint_view& operator= (joint_view const&);
-
         typename mpl::if_<traits::is_view<Sequence1>, Sequence1, Sequence1&>::type seq1;
         typename mpl::if_<traits::is_view<Sequence2>, Sequence2, Sequence2&>::type seq2;
     };
 }}
+
+#ifdef _MSC_VER
+#  pragma warning(pop)
+#endif
 
 #endif
 

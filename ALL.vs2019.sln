@@ -37,7 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{DC3B258E-4
 		BuildManual.cmd = BuildManual.cmd
 		CreateRelease.cmd = CreateRelease.cmd
 		DownloadDeps.cmd = DownloadDeps.cmd
-		ExpandEnvironmenStrings.vbs = ExpandEnvironmenStrings.vbs
+		ExpandEnvironmenStrings.js = ExpandEnvironmenStrings.js
 		LICENSE.md = LICENSE.md
 		README.md = README.md
 		runastyle.bat = runastyle.bat
@@ -58,6 +58,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{AA9C
 		Plugins\CopyDlls.bat = Plugins\CopyDlls.bat
 		Plugins\Plugins.xml = Plugins\Plugins.xml
 		Plugins\README.md = Plugins\README.md
+		Plugins\resource.h = Plugins\resource.h
+		Plugins\Strings.rc = Plugins\Strings.rc
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DisplayBinaryFiles", "Plugins\src_VCPP\DisplayBinaryFiles\DisplayBinaryFiles.vcxproj", "{6877DE2D-4ABA-49B0-858D-7D9A9F92945C}"
@@ -95,23 +97,23 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinMerge32BitPluginProxyPS"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinIMerge", "Externals\winimerge\src\WinIMerge\winimerge.vcxproj", "{36365C8C-04A0-4892-9B83-AD6E05D50D67}"
 	ProjectSection(ProjectDependencies) = postProject
-		{94F36908-A4E2-4533-939D-64FF6EADA5A1} = {94F36908-A4E2-4533-939D-64FF6EADA5A1}
-		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {C9101B3C-4CFE-4D3E-9708-5C0F55AC909A}
 		{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC} = {49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC}
+		{94F36908-A4E2-4533-939D-64FF6EADA5A1} = {94F36908-A4E2-4533-939D-64FF6EADA5A1}
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
+		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {C9101B3C-4CFE-4D3E-9708-5C0F55AC909A}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreeImageLib", "Externals\FreeImage\Source\FreeImageLib\FreeImageLib.vcxproj", "{9E219DF2-315D-478E-8A07-8960C377CE1E}"
 	ProjectSection(ProjectDependencies) = postProject
-		{E3536C28-A7F1-4B53-8E52-7D2232F9E098} = {E3536C28-A7F1-4B53-8E52-7D2232F9E098}
-		{17A4874B-0606-4687-90B6-F91F8CB3B8AF} = {17A4874B-0606-4687-90B6-F91F8CB3B8AF}
-		{7DB10B50-CE00-4D7A-B322-6824F05D2FCB} = {7DB10B50-CE00-4D7A-B322-6824F05D2FCB}
-		{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9} = {5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}
-		{33134F61-C1AD-4B6F-9CEA-503A9F140C52} = {33134F61-C1AD-4B6F-9CEA-503A9F140C52}
-		{097D9F6C-FD0E-4CBC-9676-009012AAECA8} = {097D9F6C-FD0E-4CBC-9676-009012AAECA8}
-		{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27} = {EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}
 		{07F662C1-1323-42AB-B6AF-FBFD34A7437A} = {07F662C1-1323-42AB-B6AF-FBFD34A7437A}
+		{097D9F6C-FD0E-4CBC-9676-009012AAECA8} = {097D9F6C-FD0E-4CBC-9676-009012AAECA8}
+		{17A4874B-0606-4687-90B6-F91F8CB3B8AF} = {17A4874B-0606-4687-90B6-F91F8CB3B8AF}
 		{244455E0-5F25-4451-9540-F317883E52A8} = {244455E0-5F25-4451-9540-F317883E52A8}
+		{33134F61-C1AD-4B6F-9CEA-503A9F140C52} = {33134F61-C1AD-4B6F-9CEA-503A9F140C52}
+		{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9} = {5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}
+		{7DB10B50-CE00-4D7A-B322-6824F05D2FCB} = {7DB10B50-CE00-4D7A-B322-6824F05D2FCB}
+		{E3536C28-A7F1-4B53-8E52-7D2232F9E098} = {E3536C28-A7F1-4B53-8E52-7D2232F9E098}
+		{EC085CBD-E9C3-477F-9A97-CB9D5DA30E27} = {EC085CBD-E9C3-477F-9A97-CB9D5DA30E27}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibJPEG", "Externals\FreeImage\Source\LibJPEG\LibJPEG.vcxproj", "{5E1D4E5F-E10C-4BA3-B663-F33014FD21D9}"
@@ -151,8 +153,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cidiff", "Externals\winimerge\src\cidiff\cidiff.vcxproj", "{49A7104F-08CD-48B1-99E6-6A7C3FFB0EEC}"
 	ProjectSection(ProjectDependencies) = postProject
 		{94F36908-A4E2-4533-939D-64FF6EADA5A1} = {94F36908-A4E2-4533-939D-64FF6EADA5A1}
-		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {C9101B3C-4CFE-4D3E-9708-5C0F55AC909A}
 		{9E219DF2-315D-478E-8A07-8960C377CE1E} = {9E219DF2-315D-478E-8A07-8960C377CE1E}
+		{C9101B3C-4CFE-4D3E-9708-5C0F55AC909A} = {C9101B3C-4CFE-4D3E-9708-5C0F55AC909A}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files", "{A9E83C9D-8AD6-4C87-888D-3F91B5656CD1}"
@@ -163,9 +165,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Batch Files", "Batch Files"
 		Externals\winimerge\SetVersion.cmd = Externals\winimerge\SetVersion.cmd
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VBS Scripts", "VBS Scripts", "{0AB212AD-1F11-4BAB-BAD5-8BFC4435F453}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0AB212AD-1F11-4BAB-BAD5-8BFC4435F453}"
 	ProjectSection(SolutionItems) = preProject
-		Externals\winimerge\ExpandEnvironmenStrings.vbs = Externals\winimerge\ExpandEnvironmenStrings.vbs
+		Externals\winimerge\ExpandEnvironmenStrings.js = Externals\winimerge\ExpandEnvironmenStrings.js
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SampleStatic", "Externals\crystaledit\Sample\SampleStatic.vcxproj", "{C347D6AE-7A2B-4ED0-97AD-2595E1C5D7DD}"
@@ -190,18 +192,21 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FolderCompare", "Testing\Fo
 	ProjectSection(ProjectDependencies) = postProject
 		{8164D41D-B053-405B-826C-CF37AC0EF176} = {8164D41D-B053-405B-826C-CF37AC0EF176}
 		{9E211743-85FE-4977-82F3-4F04B40C912D} = {9E211743-85FE-4977-82F3-4F04B40C912D}
+		{9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE} = {9FDA4AF0-CCFD-4812-BDB9-53EFEDB32BDE}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{14FC5F77-041C-49BF-B28F-F976EC6F253C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{32E78687-FB4E-4B90-88F0-95FE1095F361}"
 	ProjectSection(SolutionItems) = preProject
+		Plugins\dlls\AI.sct = Plugins\dlls\AI.sct
 		Plugins\dlls\ApplyPatch.sct = Plugins\dlls\ApplyPatch.sct
 		Plugins\dlls\CompareMSExcelFiles.sct = Plugins\dlls\CompareMSExcelFiles.sct
 		Plugins\dlls\CompareMSPowerPointFiles.sct = Plugins\dlls\CompareMSPowerPointFiles.sct
 		Plugins\dlls\CompareMSVisioFiles.sct = Plugins\dlls\CompareMSVisioFiles.sct
 		Plugins\dlls\CompareMSWordFiles.sct = Plugins\dlls\CompareMSWordFiles.sct
 		Plugins\dlls\editor addin.sct = Plugins\dlls\editor addin.sct
+		Plugins\dlls\IgnoreLeadingLineNumbers.sct = Plugins\dlls\IgnoreLeadingLineNumbers.sct
 		Plugins\dlls\insert datetime.sct = Plugins\dlls\insert datetime.sct
 		Plugins\dlls\PrediffLineFilter.sct = Plugins\dlls\PrediffLineFilter.sct
 	EndProjectSection
@@ -235,7 +240,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Manual", "Manual", "{231348
 		Docs\Manual\build_html_en.bat = Docs\Manual\build_html_en.bat
 		Docs\Manual\build_html_jp.bat = Docs\Manual\build_html_jp.bat
 		Docs\Manual\configuration.bat = Docs\Manual\configuration.bat
+		Docs\Manual\Manual.cfg = Docs\Manual\Manual.cfg
 		Docs\Manual\README.md = Docs\Manual\README.md
+		Docs\Manual\update_translations.bat = Docs\Manual\update_translations.bat
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnoSetup", "InnoSetup", "{5360DC20-6552-4F74-8D4D-BF88B23E0B3A}"
@@ -270,6 +277,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ColorSchemes", "ColorSchemes", "{92E79FEF-3EDE-4F79-97BA-CD6F3E1BE58B}"
 	ProjectSection(SolutionItems) = preProject
 		ColorSchemes\Default.ini = ColorSchemes\Default.ini
+		ColorSchemes\Midnight.ini = ColorSchemes\Midnight.ini
 		ColorSchemes\Modern.ini = ColorSchemes\Modern.ini
 		ColorSchemes\Solarized Dark.ini = ColorSchemes\Solarized Dark.ini
 		ColorSchemes\Solarized Light.ini = ColorSchemes\Solarized Light.ini
@@ -302,10 +310,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{4407E7D0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{88571237-56AD-421A-8F88-26983BDD8D6C}"
 	ProjectSection(SolutionItems) = preProject
-		Tools\Scripts\CheckMenuResources.vbs = Tools\Scripts\CheckMenuResources.vbs
+		Tools\Scripts\CheckMenuResources.js = Tools\Scripts\CheckMenuResources.js
 		Tools\Scripts\CheckTranslationStrings.cmd = Tools\Scripts\CheckTranslationStrings.cmd
 		Tools\Scripts\CheckTranslationStrings.ps1 = Tools\Scripts\CheckTranslationStrings.ps1
-		Tools\Scripts\CheckUnusedResources.vbs = Tools\Scripts\CheckUnusedResources.vbs
+		Tools\Scripts\CheckUnusedResources.js = Tools\Scripts\CheckUnusedResources.js
 		Tools\Scripts\README.md = Tools\Scripts\README.md
 		Tools\Scripts\UpdateTranslations.bat = Tools\Scripts\UpdateTranslations.bat
 	EndProjectSection
@@ -347,7 +355,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "q", "q", "{E4EF583F-653D-44
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PluginTests", "PluginTests", "{9738877F-0B01-4C37-855E-7465C5AB7B56}"
 	ProjectSection(SolutionItems) = preProject
-		Testing\PluginTests\PluginTests.vbs = Testing\PluginTests\PluginTests.vbs
+		Testing\PluginTests\PluginTests.js = Testing\PluginTests\PluginTests.js
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yq", "yq", "{9914C8A9-0DEA-4922-9065-57034EE5263D}"
@@ -417,6 +425,29 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinWebDiffLib", "Externals\winwebdiff\src\WinWebDiffLib\WinWebDiffLib.vcxproj", "{551AB4A6-2721-48F0-96A4-231BD11032B8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinWebDiffTest", "Externals\winwebdiff\src\WinWebDiffTest\WinWebDiffTest.vcxproj", "{4021F55B-AF8F-4A9F-B8F2-A5C3009C5DE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Java", "Java", "{235DAFAF-0236-4F18-B864-FEE6510B489D}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\Java\java.bat = Plugins\Commands\Java\java.bat
+		Plugins\Commands\Java\LICENSE.txt = Plugins\Commands\Java\LICENSE.txt
+		Plugins\Commands\Java\URL.txt = Plugins\Commands\Java\URL.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "md4c", "md4c", "{CC5DD45F-61D5-4A43-BBF5-E84509F3F3B6}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\md4c\md2html.bat = Plugins\Commands\md4c\md2html.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PlantUML", "PlantUML", "{460A3D0C-F937-4E82-9F70-C79E158809B4}"
+	ProjectSection(SolutionItems) = preProject
+		Plugins\Commands\PlantUML\license.txt = Plugins\Commands\PlantUML\license.txt
+		Plugins\Commands\PlantUML\plantuml.bat = Plugins\Commands\PlantUML\plantuml.bat
+		Plugins\Commands\PlantUML\URL.txt = Plugins\Commands\PlantUML\URL.txt
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Common", "Plugins\src_VCPP\Common\Common.vcxitems", "{7354BA4F-8DAB-46EE-A5A2-A148D6EF2443}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "editlibparsers", "Externals\crystaledit\editlib\editlibparsers.vcxitems", "{4170552A-09E2-4FAC-B71D-0E2F5EB3C869}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1378,7 +1409,6 @@ Global
 		{5360DC20-6552-4F74-8D4D-BF88B23E0B3A} = {C15D3EBB-A0A6-47AF-93FF-0FB3B477B96B}
 		{66765216-61B6-4D38-934B-6E92056A97DC} = {5360DC20-6552-4F74-8D4D-BF88B23E0B3A}
 		{A348FF0E-3DD2-4F8B-BF10-B4092A0B8FDB} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
-		{4D6CA805-D847-462E-B176-AE8571D586AB} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
 		{88571237-56AD-421A-8F88-26983BDD8D6C} = {4407E7D0-41F5-4FC4-ADB9-948C09966721}
 		{91ED0FD4-86C9-4D7C-87C1-1B12F04DCAD0} = {860FEA9B-C932-4878-9E76-3DE0241591C2}
 		{7515AC3C-389A-44CD-B940-A59DDE5B8AE3} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
@@ -1401,27 +1431,42 @@ Global
 		{9470B0BF-C97B-4287-BF0F-6CF60EE186D5} = {71BCA5B5-F9BB-46CB-9A4E-B169D360F28D}
 		{551AB4A6-2721-48F0-96A4-231BD11032B8} = {71BCA5B5-F9BB-46CB-9A4E-B169D360F28D}
 		{4021F55B-AF8F-4A9F-B8F2-A5C3009C5DE6} = {71BCA5B5-F9BB-46CB-9A4E-B169D360F28D}
+		{235DAFAF-0236-4F18-B864-FEE6510B489D} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{CC5DD45F-61D5-4A43-BBF5-E84509F3F3B6} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{460A3D0C-F937-4E82-9F70-C79E158809B4} = {BB290B2D-F5B9-4552-AE32-9319C03E41C0}
+		{7354BA4F-8DAB-46EE-A5A2-A148D6EF2443} = {AA9C3A4D-4CD6-46BE-A266-A5FE7BE52F65}
+		{4170552A-09E2-4FAC-B71D-0E2F5EB3C869} = {6BBF0DEA-C0B8-4B73-B540-3BF8297B49B4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC2E4F75-FADC-4F44-BD62-47A321828081}
 	EndGlobalSection
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Plugins\src_VCPP\Common\Common.vcxitems*{098b241d-63af-4683-baf8-6da57fd8fe75}*SharedItemsImports = 4
 		Externals\googletest\googletest\googletest.vcxitems*{0a3727b1-51e7-4702-ad0c-8aee317ea510}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{0f686afa-d587-43c0-bada-2beddc3fa758}*SharedItemsImports = 9
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{4170552a-09e2-4fac-b71d-0e2f5eb3c869}*SharedItemsImports = 9
 		Externals\xdiff\xdiff.vcxitems*{68f1d3a1-9dca-4b3d-b245-f4aca5f16563}*SharedItemsImports = 9
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\googletest\googletest\googletest.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Src\CompareEngines\CompareEngines.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Src\diffutils\diffutils.vcxitems*{733e7c0b-ac3d-47ac-a8da-e13644d6294d}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{7354ba4f-8dab-46ee-a5a2-a148d6ef2443}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{7515ac3c-389a-44cd-b940-a59dde5b8ae3}*SharedItemsImports = 9
 		Externals\googletest\googletest\googletest.vcxitems*{9ee35458-b145-444f-92b7-27ff72112c42}*SharedItemsImports = 9
 		Externals\crystaledit\editlib\editlib.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{9fda4af0-ccfd-4812-bdb9-53efedb32bde}*SharedItemsImports = 4
-		Externals\crystaledit\editlib\editlib.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{a644fba4-d76e-4500-b4b7-04d7a245359a}*SharedItemsImports = 4
+		Plugins\src_VCPP\Common\Common.vcxitems*{aa88b46e-b2e2-4b03-8cd5-1e9d60db6ab2}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\xdiff\xdiff.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\CompareEngines\CompareEngines.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{ab827c6b-5116-408f-b453-e2075e9b73b4}*SharedItemsImports = 4
 		Externals\crystaledit\editlib\editlib.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
+		Externals\crystaledit\editlib\editlibparsers.vcxitems*{c347d6ae-7a2b-4ed0-97ad-2595e1c5d7dd}*SharedItemsImports = 4
 		Src\diffutils\diffutils.vcxitems*{fc3b9df3-2854-4264-ab4b-ee8c43982513}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

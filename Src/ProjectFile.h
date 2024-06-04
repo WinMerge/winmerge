@@ -53,8 +53,8 @@ public:
 	String GetUnpacker() const;
 	String GetPrediffer() const;
 	int GetWindowType() const;
-	TCHAR GetTableDelimiter() const;
-	TCHAR GetTableQuote() const;
+	tchar_t GetTableDelimiter() const;
+	tchar_t GetTableQuote() const;
 	bool GetTableAllowNewLinesInQuotes() const;
 	int GetIgnoreWhite() const;
 	bool GetIgnoreBlankLines() const;
@@ -77,8 +77,8 @@ public:
 	void SetUnpacker(const String& sUnpacker);
 	void SetPrediffer(const String& sPrediffer);
 	void SetWindowType(int nWindowType);
-	void SetTableDelimiter(TCHAR cTableDelimiter);
-	void SetTableQuote(TCHAR cTableQuote);
+	void SetTableDelimiter(tchar_t cTableDelimiter);
+	void SetTableQuote(tchar_t cTableQuote);
 	void SetTableAllowNewLinesInQuotes(bool bAllowNewLinesInQuotes);
 	void SetIgnoreWhite(int nIgnoreWhite);
 	void SetIgnoreBlankLines(bool bIgnoreBlankLines);
@@ -131,9 +131,9 @@ private:
 	String m_prediffer; /**< Prediffer name or pipeline */
 	bool m_bHasWindowType; /**< Has window type? */
 	int m_nWindowType; /**< The value of the window type */
-	TCHAR m_cTableDelimiter;
+	tchar_t m_cTableDelimiter;
 	bool m_bHasTableDelimiter; /**< Has table delimiter? */
-	TCHAR m_cTableQuote;
+	tchar_t m_cTableQuote;
 	bool m_bHasTableQuote; /**< Has table quote? */
 	bool m_bTableAllowNewLinesInQuotes;
 	bool m_bHasTableAllowNewLinesInQuotes; /**< Has table allow new lines in quotes? */
@@ -568,7 +568,7 @@ inline void ProjectFileItem::SetWindowType(int nWindowType)
  * @brief Returns table delimiter
  * @return Table delimiter
  */
-inline TCHAR ProjectFileItem::GetTableDelimiter() const
+inline tchar_t ProjectFileItem::GetTableDelimiter() const
 {
 	return m_cTableDelimiter;
 }
@@ -577,7 +577,7 @@ inline TCHAR ProjectFileItem::GetTableDelimiter() const
  * @brief Set table delimiter
  * @param [in] cTableDelimiter New table delimiter to set.
  */
-inline void ProjectFileItem::SetTableDelimiter(TCHAR cTableDelimiter)
+inline void ProjectFileItem::SetTableDelimiter(tchar_t cTableDelimiter)
 {
 	m_cTableDelimiter = cTableDelimiter;
 }
@@ -586,7 +586,7 @@ inline void ProjectFileItem::SetTableDelimiter(TCHAR cTableDelimiter)
  * @brief Returns table quote
  * @return Table quote
  */
-inline TCHAR ProjectFileItem::GetTableQuote() const
+inline tchar_t ProjectFileItem::GetTableQuote() const
 {
 	return m_cTableQuote;
 }
@@ -595,7 +595,7 @@ inline TCHAR ProjectFileItem::GetTableQuote() const
  * @brief Set table quote
  * @param [in] cTableQuote New table quote to set.
  */
-inline void ProjectFileItem::SetTableQuote(TCHAR cTableQuote)
+inline void ProjectFileItem::SetTableQuote(tchar_t cTableQuote)
 {
 	m_cTableQuote = cTableQuote;
 }

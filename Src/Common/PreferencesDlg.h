@@ -14,6 +14,7 @@
 #include "PropCompare.h"
 #include "PropMessageBoxes.h"
 #include "PropEditor.h"
+#include "PropEditorCompareMerge.h"
 #include "PropEditorSyntax.h"
 #include "PropRegistry.h"
 #include "PropColorSchemes.h"
@@ -63,6 +64,7 @@ protected:
 	PropCompare m_pageCompare;
 	PropMessageBoxes m_pageMessageBoxes;
 	PropEditor m_pageEditor;
+	PropEditorCompareMerge m_pageEditorCompareMerge;
 	PropEditorSyntax m_pageEditorSyntax;
 	PropRegistry m_pageSystem;
 	PropCodepage m_pageCodepage;
@@ -108,7 +110,7 @@ protected:
 
 protected:
 	void AddPage(CPropertyPage* pPage, UINT nResourceID);
-	void AddPage(CPropertyPage* pPage, LPCTSTR szPath);
+	void AddPage(CPropertyPage* pPage, const tchar_t* szPath);
 	void AddPage(CPropertyPage* pPage, UINT nTopHeading, UINT nSubHeading);
 	void SetActivePage(int nPage);
 	CString GetItemPath(HTREEITEM hti);

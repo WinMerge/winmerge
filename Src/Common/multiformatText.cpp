@@ -15,7 +15,6 @@
 #include "pch.h"
 #define NOMINMAX
 #include "multiformatText.h"
-#include <vector>
 #include <algorithm>
 #include <cstring>
 #include <cassert>
@@ -89,7 +88,7 @@ void storageForPlugins::SetDataFileUnknown(const String& filename, bool bOverwri
 	SetDataFileEncoding(filename, encoding, bOverwrite);
 }
 
-const TCHAR *storageForPlugins::GetDestFileName()
+const tchar_t *storageForPlugins::GetDestFileName()
 {
 	if (m_tempFilenameDst.empty())
 	{
@@ -221,7 +220,7 @@ void storageForPlugins::ValidateInternal(bool bNewIsFile, bool bNewIsUnicode)
 	}
 }
 
-const TCHAR *storageForPlugins::GetDataFileUnicode()
+const tchar_t *storageForPlugins::GetDataFileUnicode()
 {
 	if (m_bCurrentIsFile && m_bCurrentIsUnicode)
 		return m_filename.c_str();
@@ -380,7 +379,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	}
 }
 
-const TCHAR *storageForPlugins::GetDataFileAnsi()
+const tchar_t *storageForPlugins::GetDataFileAnsi()
 {
 	if (m_bCurrentIsFile && !m_bCurrentIsUnicode)
 		return m_filename.c_str();

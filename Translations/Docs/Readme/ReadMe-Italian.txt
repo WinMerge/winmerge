@@ -1,15 +1,15 @@
-WinMerge
+ï»¿WinMerge
 
-WinMerge è uno strumento open source di comparazione e fusione per Windows. WinMerge
+WinMerge Ã¨ uno strumento open source di comparazione e fusione per Windows. WinMerge
 confronta cartelle e file, presentando le differenze in un formato di testo visivo
-facile da capire e gestire. WinMerge può essere usato come uno strumento esterno di 
+facile da capire e gestire. WinMerge puÃ² essere usato come uno strumento esterno di 
 differenziazione/fusione o come applicazione autonoma.
 
 WinMerge ha molte utili funzioni di supporto per confrontare, sincronizzare, e unire
-elementi nel modo più semplice e utile possibile. Sono evidenziati dalla sintassi diversi
+elementi nel modo piÃ¹ semplice e utile possibile. Sono evidenziati dalla sintassi diversi
 linguaggi di programmazione e altri formati di file.
 
-La versione più recente di WinMerge e le informazioni su WinMerge sono disponibili 
+La versione piÃ¹ recente di WinMerge e le informazioni su WinMerge sono disponibili 
 all'indirizzo web https://winmerge.org/.
 
 Avvio veloce
@@ -20,31 +20,31 @@ Oppure, vai alla pagina web https://manual.winmerge.org/Quick_start.html.
 
 Guida di WinMerge
 =============
-Quando si installa WinMerge la Guida di WinMerge è installata localmente come file della 
+Quando si installa WinMerge la Guida di WinMerge Ã¨ installata localmente come file della 
 Guida HTML Microsoft (WinMerge.chm).
 Per aprire la Guida, fai clic su Guida -> Guida di WinMerge o premi F1 nella finestra di 
 WinMerge. Da riga di comando, esegui il file  WinMerge con /? per avviare la Guida.
 
-È inoltre possibile sfogliare la versione HTML della Guida di WinMerge all'indirizzo web
+Ãˆ inoltre possibile sfogliare la versione HTML della Guida di WinMerge all'indirizzo web
 https://manual.winmerge.org/.
 
 Supporto WinMerge
 ================
-Hai domande o suggerimenti su WinMerge? Un buon punto di partenza è la bacheca della community
+Hai domande o suggerimenti su WinMerge? Un buon punto di partenza Ã¨ la bacheca della community
 di WinMerge disponibile alla pagina https://forums.winmerge.org/. Gli sviluppatori frequentemente
 leggono e rispondono alle domande in entrambi i forum. Usa il forum di discussione aperto per
 i problemi generali di WinMerge, come domande sull'uso. Usa il forum degli sviluppatori per i 
 problemi sullo sviluppo di WinMerge.
 
-Bug e richieste di funzionalità
+Bug e richieste di funzionalitÃ 
 =========================
-Se hai un problema che non è stato risolto nel forum WinMerge, controlla il tracker. Controlla il
+Se hai un problema che non Ã¨ stato risolto nel forum WinMerge, controlla il tracker. Controlla il
 tracker del progetto. Vai su https://project.winmerge.org/ e fai clic su un collegamento nel menu 
-tracker, come 'Bug' e 'Feature Requests', in cui è possibile consultare o inviare richieste.
+tracker, come 'Bug' e 'Feature Requests', in cui Ã¨ possibile consultare o inviare richieste.
 
-Se segnali un bug, includi nel rapporto il numero della versione di WinMerge. È possibile generare
+Se segnali un bug, includi nel rapporto il numero della versione di WinMerge. Ãˆ possibile generare
 un registro di configurazione facendo clic su Guida -> Configurazione.
-Allega alla segnalazione del bug il registro di configurazione. È molto utile perchè contiene
+Allega alla segnalazione del bug il registro di configurazione. Ãˆ molto utile perchÃ¨ contiene
 informazioni utili per gli sviluppatori.
 
 - Gli sviluppatori WinMerge

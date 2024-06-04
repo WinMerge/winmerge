@@ -94,7 +94,7 @@ void COpenFrame::ActivateFrame(int nCmdShow)
 	__super::ActivateFrame(nCmdShow);
 	if (!GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 	{
-		if (CView* const pView = GetActiveView())
+		if (CView* const pView = GetActiveView(); pView && !IsZoomed())
 		{
 			WINDOWPLACEMENT wp = { sizeof wp };
 			GetWindowPlacement(&wp);

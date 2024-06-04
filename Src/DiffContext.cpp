@@ -12,12 +12,10 @@
 
 #include "pch.h"
 #include "DiffContext.h"
-#include <Poco/ScopedLock.h>
 #include "CompareOptions.h"
 #include "VersionInfo.h"
 #include "paths.h"
 #include "codepage_detect.h"
-#include "DiffItemList.h"
 #include "IAbortable.h"
 #include "DiffWrapper.h"
 #include "DebugNew.h"
@@ -268,7 +266,7 @@ void CDiffContext::GetComparePaths(const DIFFITEM &di, PathContext & tFiles) con
 		}
 		else
 		{
-			tFiles.SetPath(nIndex, _T("NUL"), false);
+			tFiles.SetPath(nIndex, paths::NATIVE_NULL_DEVICE_NAME, false);
 		}
 	}
 }

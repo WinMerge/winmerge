@@ -1,21 +1,26 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Michele Merega <michele.merega at ifminfomaster.com>
+# * Andrea Decorte <deco1985 at hotmail.com>
+# * Antonio Angelo <antonio.angelo at gmail.com>
+# * Michele Locati <michele at locati.it>
+# * bovirus <bovirus at gmail.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge Shell Extension\n"
+"Project-Id-Version: WinMerge Shell Extension (08.03.2024)\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"POT-Creation-Date: 2019-07-09 07:44+0000\n"
+"PO-Revision-Date: 2024-03-09 11:02+0100\n"
+"Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: Italian\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-Basepath: ../../ShellExtension/Languages\n"
-"Language: it\n"
-"X-Generator: Poedit 2.2.3\n"
 
 #. AFX_TARG_*
 #: ShellExtension.rc:19
@@ -29,12 +34,6 @@ msgstr "AFX_TARG_ITA"
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr "LANG_ITALIAN, SUBLANG_ITALIAN"
 
-#. Codepage
-#: ShellExtension.rc:21
-#, c-format
-msgid "1252"
-msgstr "65001"
-
 #: ShellExtension.rc:111
 #, c-format
 msgid "ShellExtension"
@@ -42,30 +41,35 @@ msgstr "Estensione shell"
 
 #: ShellExtension.rc:112
 #, c-format
-msgid "&WinMerge"
-msgstr ""
+msgid "Win&Merge"
+msgstr "Win&Merge"
 
 #: ShellExtension.rc:113
 #, c-format
-msgid "&Compare"
-msgstr ""
+msgid "Compare &As"
+msgstr "Comp&ara come"
 
 #: ShellExtension.rc:114
 #, c-format
-msgid "Compare&..."
-msgstr ""
+msgid "&Compare"
+msgstr "&Compara"
 
 #: ShellExtension.rc:115
 #, c-format
-msgid "Select &Left"
-msgstr ""
+msgid "Compare&..."
+msgstr "Compara&..."
 
 #: ShellExtension.rc:116
 #, c-format
-msgid "Select &Middle"
-msgstr ""
+msgid "Select &Left"
+msgstr "Se&leziona sinistra"
 
 #: ShellExtension.rc:117
 #, c-format
+msgid "Select &Middle"
+msgstr "Sele&ziona centrale"
+
+#: ShellExtension.rc:118
+#, c-format
 msgid "Re-select &Left"
-msgstr ""
+msgstr "Ri-se&leziona sinistra"

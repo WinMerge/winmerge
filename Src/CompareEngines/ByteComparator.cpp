@@ -16,7 +16,7 @@
  * @param [in] ch Char to test.
  * @return true if char is EOL byte, false otherwise.
  */
-static inline bool iseolch(TCHAR ch)
+static inline bool iseolch(tchar_t ch)
 {
 	return ch == '\n' || ch == '\r';
 }
@@ -27,7 +27,7 @@ static inline bool iseolch(TCHAR ch)
  * @return true if char is whitespace char, false otherwise.
  * @todo What about nbsp or various Unicode spacing codes?
  */
-static inline bool iswsch(TCHAR ch)
+static inline bool iswsch(tchar_t ch)
 {
 	return ch == ' ' || ch == '\t';
 }
@@ -130,6 +130,22 @@ ByteComparator::ByteComparator(const QuickCompareOptions * options)
 	else
 		m_ignore_all_space = false;
 }
+
+static const char* SkipBlankLines(const char* p, const char* end)
+{
+	for (;;)
+	{
+		const char* tmp = p;
+		while (tmp < end && iswsch(*tmp))
+			++tmp;
+		while (tmp < end && iseolch(*tmp))
+			++tmp;
+		if (tmp == p || !iseolch(*(tmp - 1)))
+			break;
+		p = tmp;
+	}
+	return p;
+};
 
 /**
  * @brief Compare two buffers byte per byte.
@@ -310,15 +326,13 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			{
 				// skip over any line delimiters on either side
 				while (ptr0 < end0 && iseolch(*ptr0))
-				{
-					// m_bol0 not used because m_ignore_eol_diff
-					++ptr0;
-				}
+					m_bol0 = true, ++ptr0;
 				while (ptr1 < end1 && iseolch(*ptr1))
-				{
-					// m_bol1 not used because m_ignore_eol_diff
-					++ptr1;
-				}
+					m_bol1 = true, ++ptr1;
+				if (m_bol0)
+					ptr0 = SkipBlankLines(ptr0, end0);
+				if (m_bol1)
+					ptr1 = SkipBlankLines(ptr1, end1);
 				if ((ptr0 == end0 && !eof0) || (ptr1 == end1 && !eof1))
 				{
 					goto need_more;
@@ -339,7 +353,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					if ((!m_eol0 || !m_eol1) && (orig0 == end0 || orig1 == end1))
 					{
 						// one side had an end-of-line, but the other didn't
-						return RESULT_DIFF;
+						result = RESULT_DIFF;
+						goto exit;
 					}
 					if (ptr0 != end0 && ptr1 != end1)
 						// This continue statement is needed to handle blank lines
@@ -352,19 +367,9 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 			if (m_ignore_blank_lines)
 			{
 				if (m_bol0)
-				{
-					while (ptr0 < end0 && iseolch(*ptr0))
-					{
-						++ptr0;
-					}
-				}
+					ptr0 = SkipBlankLines(ptr0, end0);
 				if (m_bol1)
-				{
-					while (ptr1 < end1 && iseolch(*ptr1))
-					{
-						++ptr1;
-					}
-				}
+					ptr1 = SkipBlankLines(ptr1, end1);
 				if ((ptr0 == end0 && !eof0) || (ptr1 == end1 && !eof1))
 				{
 					goto need_more;
@@ -379,7 +384,10 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 				if (!eof0 || !eof1)
 					goto need_more;
 				else
-					return RESULT_SAME;
+				{
+					result = RESULT_SAME;
+					goto exit;
+				}
 			}
 			else
 			{
@@ -389,18 +397,24 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 					goto need_more;
 				}
 				else
-					return RESULT_DIFF;
+				{
+					result = RESULT_DIFF;
+					goto exit;
+				}
 			}
 		}
 
-		TCHAR c0 = *ptr0, c1 = *ptr1;
+		tchar_t c0 = *ptr0, c1 = *ptr1;
 		if (m_ignore_case)
 		{
-			c0 = _istupper(c0) ? _totlower(c0) : c0;
-			c1 = _istupper(c1) ? _totlower(c1) : c1;
+			c0 = tc::istupper(c0) ? tc::totlower(c0) : c0;
+			c1 = tc::istupper(c1) ? tc::totlower(c1) : c1;
 		}
 		if (c0 != c1)
-			return RESULT_DIFF; // buffers are different
+		{
+			result = RESULT_DIFF; // buffers are different
+			goto exit;
+		}
 		if (ptr0 < end0 && ptr1 < end1)
 		{
 			m_bol0 = iseolch(c0);
@@ -413,14 +427,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	}
 
 need_more:
-	if (ptr0 - 1 >= orig0 && *(ptr0 - 1) == '\r')
-		m_cr0 = true;
-	else
-		m_cr0 = false;
-	if (ptr1 - 1 >= orig1 && *(ptr1 - 1) == '\r')
-		m_cr1 = true;
-	else
-		m_cr1 = false;
+	m_cr0 = (ptr0 - 1 >= orig0 && *(ptr0 - 1) == '\r');
+	m_cr1 = (ptr1 - 1 >= orig1 && *(ptr1 - 1) == '\r');
 	if (ptr0 == end0 && !eof0)
 	{
 		if (ptr1 == end1 && !eof1)
@@ -436,6 +444,11 @@ need_more:
 	{
 		return result;
 	}
+
+exit:
+	m_cr0 = (end0 > orig0) && *(end0 - 1) == '\r';
+	m_cr1 = (end1 > orig1) && *(end1 - 1) == '\r';
+	return result;
 }
 
 /**
@@ -452,7 +465,7 @@ inline void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof
 		// finish split CR/LF pair on 0-side
 		if (pbuf < end && *pbuf == '\n')
 		{
-			// m_bol0 not used because m_ignore_eol_diff
+			// m_bol0 not used because m_ignore_eol_diff and m_ignore_blank_lines
 			++pbuf;
 		}
 		m_eol0 = true;
@@ -462,13 +475,13 @@ inline void ByteComparator::HandleSide0Eol(char **ptr, const char *end, bool eof
 	{
 		if (*pbuf == '\n')
 		{
-			// m_bol0 not used because m_ignore_eol_diff
+			// m_bol0 not used because m_ignore_eol_diff and m_ignore_blank_lines
 			++pbuf;
 			m_eol0 = true;
 		}
 		else if (*pbuf == '\r')
 		{
-			// m_bol0 not used because m_ignore_eol_diff
+			// m_bol0 not used because m_ignore_eol_diff and m_ignore_blank_lines
 			++pbuf;
 			m_eol0 = true;
 			if (pbuf == end && !eof)

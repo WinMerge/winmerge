@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  (Visual) AutoIt keywords
-static const TCHAR * s_apszAutoItKeywordList[] =
+static const tchar_t * s_apszAutoItKeywordList[] =
   {
     _T ("Abs"),
     _T ("ACos"),
@@ -483,13 +483,13 @@ static const TCHAR * s_apszAutoItKeywordList[] =
   };
 
 static bool
-IsAutoItKeyword (const TCHAR *pszChars, int nLength)
+IsAutoItKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszAutoItKeywordList, pszChars, nLength);
 }
 
 static inline void
-DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
 {
   if (IsAutoItKeyword (pszChars + nIdentBegin, I - nIdentBegin))
     {
@@ -522,7 +522,7 @@ DefineIdentiferBlock(const TCHAR *pszChars, int nLength, CrystalLineParser::TEXT
 }
 
 unsigned
-CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -533,7 +533,7 @@ CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const TCHAR *pszChars, in
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -569,7 +569,7 @@ CrystalLineParser::ParseLineAutoIt (unsigned dwCookie, const TCHAR *pszChars, in
             }
           else
             {
-              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*::CharPrev(pszChars, pszChars + nPos)) && !xisalpha (*::CharNext(pszChars + nPos))))
+              if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*tc::tcharprev(pszChars, pszChars + nPos)) && !xisalpha (*tc::tcharnext(pszChars + nPos))))
                 {
                   DEFINE_BLOCK (nPos, COLORINDEX_NORMALTEXT);
                 }
@@ -624,9 +624,9 @@ out:
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
           if (bFirstChar && pszChars[I] == '#' &&
-              ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#ce"),            3 * sizeof(TCHAR)) == 0) ||
-               (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CE"),            3 * sizeof(TCHAR)) == 0) ||
-               (I + 13 <= nLength && memcmp(&pszChars[I], _T("#comments-end"), 13 * sizeof(TCHAR)) == 0)))
+              ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#ce"),            3 * sizeof(tchar_t)) == 0) ||
+               (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CE"),            3 * sizeof(tchar_t)) == 0) ||
+               (I + 13 <= nLength && memcmp(&pszChars[I], _T("#comments-end"), 13 * sizeof(tchar_t)) == 0)))
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;
@@ -711,9 +711,9 @@ out:
         {
           if (pszChars[I] == '#')
             {
-              if ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#cs"),              3 * sizeof(TCHAR)) == 0) ||
-                  (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CS"),              3 * sizeof(TCHAR)) == 0) ||
-                  (I + 15 <= nLength && memcmp(&pszChars[I], _T("#comments-start"), 15 * sizeof(TCHAR)) == 0))
+              if ((I +  3 <= nLength && memcmp(&pszChars[I], _T("#cs"),              3 * sizeof(tchar_t)) == 0) ||
+                  (I +  3 <= nLength && memcmp(&pszChars[I], _T("#CS"),              3 * sizeof(tchar_t)) == 0) ||
+                  (I + 15 <= nLength && memcmp(&pszChars[I], _T("#comments-start"), 15 * sizeof(tchar_t)) == 0))
                 {
                   DEFINE_BLOCK (I, COLORINDEX_COMMENT);
                   dwCookie |= COOKIE_EXT_COMMENT;

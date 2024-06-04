@@ -110,7 +110,7 @@ static pBGR MyGetDibBits(HDC hdcSrc, HBITMAP hBmpSrc, int nx, int ny)
 	bi.bmiHeader.biClrUsed = 0;
 	bi.bmiHeader.biClrImportant = 0;
 	
-	buf = (pBGR) malloc(nx * 4 * ny);
+	buf = (pBGR) malloc(static_cast<size_t>(nx) * 4 * ny);
 	nRes = GetDIBits(hdcSrc, hBmpSrc, 0, ny, buf, &bi, DIB_RGB_COLORS);
 	if (nRes == 0) {
 		free(buf);
@@ -207,7 +207,6 @@ bool BCMenu::ReopenTheme(int dpi)
 	m_hTheme = DpiAware::OpenThemeDataForDpi(nullptr, _T("MENU"), dpi);
 	if (m_hTheme == nullptr)
 		return false;
-	const int dpi = CClientDC(CWnd::GetDesktopWindow()).GetDeviceCaps(LOGPIXELSX);
 	auto resizeMargins = [dpi](MARGINS& margins)
 	{
 		margins.cxLeftWidth = MulDiv(margins.cxLeftWidth, dpi, 96);
@@ -631,7 +630,7 @@ bool BCMenu::GetBitmapFromImageList(CDC* pDC,int nIndex,CImage &bmp)
 	CDC dc;
 	dc.CreateCompatibleDC(pDC);
 	bmp.Create(m_iconX, -m_iconY, 32, CImage::createAlphaChannel);
-	memset(bmp.GetBits(), 0xff, abs(bmp.GetPitch()) * m_iconY);
+	memset(bmp.GetBits(), 0xff, static_cast<size_t>(abs(bmp.GetPitch())) * m_iconY);
 	HGDIOBJ pOldBmp = dc.SelectObject(bmp.operator HBITMAP());
 	POINT pt = {0};
 	SIZE  sz = {m_iconX, m_iconY};
@@ -922,15 +921,19 @@ BCMenuData *BCMenu::NewODMenu(UINT pos,UINT nFlags,UINT_PTR nID,CString string)
 	return mdata;
 };
 
-bool BCMenu::LoadToolbar(UINT nToolBar)
+bool BCMenu::LoadToolbar(UINT nToolBar, CToolBar* pBar)
 {
 	bool returnflag=false;
-	CToolBar bar;
+	CToolBar barIns;
+	CToolBar& bar = pBar ? *pBar : barIns;
 	
-	CWnd* pWnd = AfxGetMainWnd();
-	if (pWnd == nullptr)pWnd = CWnd::GetDesktopWindow();
-	bar.Create(pWnd);
-	if(bar.LoadToolBar(nToolBar)){
+	if (!pBar)
+	{
+		CWnd* pWnd = AfxGetMainWnd();
+		if (pWnd == nullptr)pWnd = CWnd::GetDesktopWindow();
+		bar.Create(pWnd);
+	}
+	if(pBar || bar.LoadToolBar(nToolBar)){
 		returnflag=true;
 		for(int i=0;i<bar.GetCount();++i){
 			UINT nID = bar.GetItemID(i); 
@@ -1524,11 +1527,12 @@ bool BCMenu::AddBitmapToImageList(CImageList *bmplist,UINT nResourceID)
 	}
 	else{ // a hicolor bitmap
 		CBitmap mybmp;
-		if(mybmp.LoadBitmap(nResourceID)){
-			hicolor_bitmaps=true;
-			GetTransparentBitmap(mybmp);
-			if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
-		}
+		VERIFY(mybmp.LoadBitmap(nResourceID));
+		if (!mybmp.m_hObject)
+			mybmp.CreateBitmap(16, 15, 1, 32, nullptr);
+		hicolor_bitmaps=true;
+		GetTransparentBitmap(mybmp);
+		if(bmplist->Add(&mybmp,GetBitmapBackground())>=0)bReturn=true;
 	}
 	return bReturn;
 }

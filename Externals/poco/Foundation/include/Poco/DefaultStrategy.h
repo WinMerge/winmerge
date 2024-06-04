@@ -26,7 +26,7 @@
 namespace Poco {
 
 
-template <class TArgs, class TDelegate> 
+template <class TArgs, class TDelegate>
 class DefaultStrategy: public NotificationStrategy<TArgs, TDelegate>
 	/// Default notification strategy.
 	///
@@ -81,7 +81,7 @@ public:
 			}
 		}
 	}
-	
+
 	void remove(DelegateHandle delegateHandle)
 	{
 		for (Iterator it = _delegates.begin(); it != _delegates.end(); ++it)
@@ -147,6 +147,11 @@ public:
 	{
 	}
 
+	DefaultStrategy(DefaultStrategy&& s):
+		_delegates(std::move(s._delegates))
+	{
+	}
+
 	~DefaultStrategy()
 	{
 	}
@@ -197,6 +202,15 @@ public:
 		if (this != &s)
 		{
 			_delegates = s._delegates;
+		}
+		return *this;
+	}
+
+	DefaultStrategy& operator = (DefaultStrategy&& s)
+	{
+		if (this != &s)
+		{
+			_delegates = std::move(s._delegates);
 		}
 		return *this;
 	}

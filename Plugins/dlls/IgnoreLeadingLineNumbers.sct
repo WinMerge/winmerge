@@ -1,0 +1,99 @@
+<scriptlet>
+<implements type="Automation" id="dispatcher">
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginIsAutomatic">
+    <get/>
+  </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
+  <method name="PrediffBufferW"/>
+  <method name="ShowSettingsDialog"/>
+</implements>
+
+<script language="JScript">
+
+/*
++----------------------------------------------------------------------+
+| This is a plugin for WinMerge <www.winmerge.org>.                    |
+| It will ignores leading line numbers in text files.                  |
+| Copyright (C) 2007 by Tim Gerundt                                    |
++----------------------------------------------------------------------+
+| This program is free software; you can redistribute it and/or modify |
+| it under the terms of the GNU General Public License as published by |
+| the Free Software Foundation; either version 2 of the License, or    |
+| (at your option) any later version.                                  |
+|                                                                      |
+| This program is distributed in the hope that it will be useful,      |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the        |
+| GNU General Public License for more details.                         |
+|                                                                      |
+| You should have received a copy of the GNU General Public License    |
+| along with this program; if not, write to the Free Software          |
+| Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.            |
++----------------------------------------------------------------------+
+*/
+
+function get_PluginEvent() {
+  return "BUFFER_PREDIFF";
+}
+
+function get_PluginDescription() {
+  return "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files).";
+}
+
+function get_PluginFileFilters() {
+  return "\\.nc$";
+}
+
+function get_PluginIsAutomatic() {
+  return true;
+}
+
+function get_PluginExtendedProperties() {
+  return "MenuCaption=Ignore Leading Line Numbers";
+}
+
+function PrediffBufferW(text, size, bChanged) {
+  
+  bChanged = false;
+
+  var matches = text.match(/\r\n|\n|\r/);
+  var eol = (matches != null) ? matches[0] : "\r\n";
+  var lines = text.split(eol);
+  for (var l = 0; l < lines.length; l++) {
+    var line = lines[l].replace(/^[Nn0123456789]+/, '');
+    if (line !== lines[l]) {
+      lines[l] = line;
+      bChanged = true;
+    }
+  }
+  
+  if (bChanged) { // if text has changed...
+    text = lines.join(eol);
+    size = text.length;
+  }
+
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, text);
+  result.Add(2, size);
+  result.Add(3, bChanged);
+  return result.Items();
+}
+
+function ShowSettingsDialog() {
+  throw new Error(30001, "Not Implemented");
+}
+
+</script>
+</scriptlet>

@@ -84,7 +84,7 @@ namespace boost {
     #endif
 #endif
 
-    #ifdef __BORLANDC__
+    #ifdef BOOST_BORLANDC
         #define BOOST_RANGE_ENABLE_CONCEPT_ASSERT 0
     #endif
 

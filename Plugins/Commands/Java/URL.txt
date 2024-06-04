@@ -1,0 +1,2 @@
+https://download.java.net/java/GA/jdk19.0.2/fdb695a9d9064ad6b064dc6df578380c/7/GPL/openjdk-19.0.2_windows-x64_bin.zip .
+https://github.com/openjdk/jdk19u/archive/refs/tags/jdk-19.0.2-ga.zip

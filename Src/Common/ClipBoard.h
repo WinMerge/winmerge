@@ -5,20 +5,21 @@
  */
 #pragma once
 
-#include <windows.h>
 #include "UnicodeString.h"
 
-inline CLIPFORMAT GetClipTcharTextFormat() { return (sizeof(TCHAR) == 1 ? CF_TEXT : CF_UNICODETEXT); }
+template<typename WindowHandle>
+bool PutToClipboard(const String & text, WindowHandle currentWindowHandle);
+bool GetFromClipboard(String & text);
+template<typename WindowHandle>
+void PutFilesToClipboardInternal(const String& strPaths, const String& strPathsSepSpc, WindowHandle currentWindowHandle);
 
-bool PutToClipboard(const String & text, HWND currentWindowHandle);
-bool GetFromClipboard(String & text, HWND currentWindowHandle);
-
-template<class Container>
-void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
+template<class Container, typename WindowHandle>
+void PutFilesToClipboard(const Container& list, WindowHandle currentWindowHandle)
 {
+	constexpr size_t MaxPathFull = 32767;
 	String strPaths, strPathsSepSpc;
-	strPaths.reserve(list.size() * MAX_PATH_FULL);
-	strPathsSepSpc.reserve(list.size() * MAX_PATH_FULL);
+	strPaths.reserve(list.size() * MaxPathFull);
+	strPathsSepSpc.reserve(list.size() * MaxPathFull);
 
 	for (Container::const_iterator it = list.begin(); it != list.end(); ++it)
 	{
@@ -35,55 +36,5 @@ void PutFilesToClipboard(const Container& list, HWND currentWindowHandle)
 	strPaths += _T('\0');
 	strPathsSepSpc = strutils::trim_ws_end(strPathsSepSpc);
 
-	// CF_HDROP
-	HGLOBAL hDrop = GlobalAlloc(GHND, sizeof(DROPFILES) + sizeof(TCHAR) * strPaths.length());
-	if (hDrop == nullptr)
-		return;
-	if (TCHAR *pDrop = static_cast<TCHAR *>(GlobalLock(hDrop)))
-	{
-		DROPFILES df = {0};
-		df.pFiles = sizeof(DROPFILES);
-		df.fWide = (sizeof(TCHAR) > 1);
-		memcpy(pDrop, &df, sizeof(DROPFILES));
-		memcpy((BYTE *)pDrop + sizeof(DROPFILES), (LPCTSTR)strPaths.c_str(), sizeof(TCHAR) * strPaths.length());
-		GlobalUnlock(hDrop);
-	}
-
-	// CF_DROPEFFECT
-	HGLOBAL hDropEffect = GlobalAlloc(GHND, sizeof(DWORD));
-	if (hDropEffect == nullptr)
-	{
-		GlobalFree(hDrop);
-		return;
-	}
-	if (DWORD *p = static_cast<DWORD *>(GlobalLock(hDropEffect)))
-	{
-		*p = DROPEFFECT_COPY;
-		GlobalUnlock(hDropEffect);
-	}
-
-	// CF_UNICODETEXT
-	HGLOBAL hPathnames = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, sizeof(TCHAR) * (strPathsSepSpc.length() + 1));
-	if (hPathnames == nullptr)
-	{
-		GlobalFree(hDrop);
-		GlobalFree(hDropEffect);
-		return;
-	}
-	if (void *pPathnames = GlobalLock(hPathnames))
-	{
-		memcpy((BYTE *)pPathnames, (LPCTSTR)strPathsSepSpc.c_str(), sizeof(TCHAR) * strPathsSepSpc.length());
-		((TCHAR *)pPathnames)[strPathsSepSpc.length()] = 0;
-		GlobalUnlock(hPathnames);
-	}
-
-	UINT CF_DROPEFFECT = RegisterClipboardFormat(CFSTR_PREFERREDDROPEFFECT);
-	if (::OpenClipboard(AfxGetMainWnd()->GetSafeHwnd()))
-	{
-		EmptyClipboard();
-		SetClipboardData(CF_HDROP, hDrop);
-		SetClipboardData(CF_DROPEFFECT, hDropEffect);
-		SetClipboardData(GetClipTcharTextFormat(), hPathnames);
-		CloseClipboard();
-	}
+	PutFilesToClipboardInternal(strPaths, strPathsSepSpc, currentWindowHandle);
 }

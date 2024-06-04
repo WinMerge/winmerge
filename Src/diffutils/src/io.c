@@ -997,6 +997,11 @@ static int const primes[] =
   0
 };
 
+static int isnulldev(const char* filename)
+{
+    return (_stricmp(filename, "NUL") == 0 || _stricmp(filename, "\\\\.\\NUL") == 0);
+}
+
 /* Given a vector of two file_data objects, read the file associated
    with each one, and build the table of equivalence classes.
    Return 1 if either file appears to be a binary file.
@@ -1033,8 +1038,8 @@ read_files (struct file_data filevec[], int pretend_binary, int *bin_file)
 	
 	// Are both files Open and Regular (no Pipes, Directories, Devices (except NUL))
 	if (filevec[0].desc < 0 || filevec[1].desc < 0 ||
-        (!(S_ISREG (filevec[0].stat.st_mode)) && strcmp(filevec[0].name, "NUL") != 0) ||
-		(!(S_ISREG (filevec[1].stat.st_mode)) && strcmp(filevec[1].name, "NUL") != 0))
+        (!(S_ISREG (filevec[0].stat.st_mode)) && !isnulldev(filevec[0].name)) ||
+		(!(S_ISREG (filevec[1].stat.st_mode)) && !isnulldev(filevec[1].name)))
       {
 		assert(!S_ISCHR(filevec[0].stat.st_mode));
 		assert(!S_ISCHR(filevec[1].stat.st_mode));

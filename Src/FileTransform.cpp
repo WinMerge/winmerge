@@ -39,15 +39,15 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 {
 	std::vector<PluginForFile::PipelineItem> result;
 	bool inQuotes = false;
-	TCHAR quoteChar = 0;
+	tchar_t quoteChar = 0;
 	std::vector<String> args;
 	String token, name;
 	errorMessage.clear();
-	const TCHAR* p = pluginPipeline.c_str();
-	while (_istspace(*p)) p++;
+	const tchar_t* p = pluginPipeline.c_str();
+	while (tc::istspace(*p)) p++;
 	while (*p)
 	{
-		TCHAR sep = 0;
+		tchar_t sep = 0;
 		while (*p)
 		{
 			if (!inQuotes)
@@ -57,7 +57,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 					inQuotes = true;
 					quoteChar = *p;
 				}
-				else if (_istspace(*p))
+				else if (tc::istspace(*p))
 				{
 					sep = *p;
 					break;
@@ -99,7 +99,7 @@ std::vector<PluginForFile::PipelineItem> PluginForFile::ParsePluginPipeline(cons
 		{
 			args.push_back(token);
 		}
-		while (_istspace(*p)) p++;
+		while (tc::istspace(*p)) p++;
 		if (*p == '|')
 			sep = *p;
 		if (sep == '|')
@@ -169,12 +169,12 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	for (const auto& arg : args)
 	{
 		String newarg;
-		for (const TCHAR* p = arg.c_str(); *p; ++p)
+		for (const tchar_t* p = arg.c_str(); *p; ++p)
 		{
 			if (*p == '%' && *(p + 1) != 0)
 			{
 				++p;
-				TCHAR c = *p;
+				tchar_t c = *p;
 				if (c == '%')
 				{
 					newarg += '%';
@@ -211,11 +211,49 @@ String PluginForFile::MakeArguments(const std::vector<String>& args, const std::
 	return newstr;
 }
 
+static std::vector<PluginForFile::PipelineItem>
+ExpandAliases(const String& pluginPipeline, const String& filteredFilenames, const wchar_t* aliasEvent, String& errorMessage, int stack = 0)
+{
+	std::vector<PluginForFile::PipelineItem> pipelineResolved;
+	auto parseResult = PluginForFile::ParsePluginPipeline(pluginPipeline, errorMessage);
+	if (!errorMessage.empty())
+		return pipelineResolved;
+	for (auto& item : parseResult)
+	{
+		PluginInfo* plugin = nullptr;
+		if (item.name == _T("<Automatic>") || item.name == _("<Automatic>"))
+			plugin = CAllThreadsScripts::GetActiveSet()->GetAutomaticPluginByFilter(aliasEvent, filteredFilenames);
+		else
+			plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(aliasEvent, item.name);
+		if (plugin)
+		{
+			if (stack > 20)
+			{
+				errorMessage = strutils::format_string1(_("Circular reference in plugin pipeline: %1"), pluginPipeline);
+				return pipelineResolved;
+			}
+			String pipeline = plugin->m_pipeline;
+			for (size_t i = 0; i < 9; ++i)
+				strutils::replace(pipeline, _T("${") + strutils::to_str(i + 1) + _T("}"), (i < item.args.size()) ? item.args[i] : _T(""));
+			String args = PluginForFile::MakeArguments(item.args, {});
+			strutils::replace(pipeline, _T("${*}"), args);
+			auto parseResult2 = ExpandAliases(pipeline, filteredFilenames, aliasEvent, errorMessage, stack + 1);
+			if (!errorMessage.empty())
+				return pipelineResolved;
+			for (auto& item2 : parseResult2)
+				pipelineResolved.push_back(item2);
+		}
+		else
+			pipelineResolved.push_back(item);
+	}
+	return pipelineResolved;
+}
+
 bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl, bool bReverse,
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String *pURLHandlerResolved, String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PACK_UNPACK", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	if (bUrl)
@@ -269,7 +307,7 @@ bool PackingInfo::GetPackUnpackPlugin(const String& filteredFilenames, bool bUrl
 						else
 						{
 							plugin = nullptr;
-							errorMessage = strutils::format(_T("'%s' is not PACK_UNPACK plugin"), pluginName);
+							errorMessage = strutils::format_string1(_("'%1' is not unpacker plugin"), pluginName);
 						}
 						return false;
 					}
@@ -307,6 +345,9 @@ bool PackingInfo::pack(String & filepath, const String& dstFilepath, const std::
 		AppErrorMessageBox(errorMessage);
 		return false;
 	}
+
+	if (m_bWebBrowser && m_PluginPipeline.empty())
+		return true;
 
 	auto itSubcode = handlerSubcodes.rbegin();
 	for (auto& [plugin, args, bWithFile] : plugins)
@@ -411,6 +452,9 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 		return false;
 	}
 
+	if (m_bWebBrowser && m_PluginPipeline.empty())
+		return true;
+
 	for (auto& [plugin, args, bWithFile] : plugins)
 	{
 		bool bHandled = false;
@@ -475,15 +519,32 @@ bool PackingInfo::Unpacking(std::vector<int> * handlerSubcodes, String & filepat
 	return true;
 }
 
-String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames) const
+String PackingInfo::GetUnpackedFileExtension(const String& filteredFilenames, int& preferredWindowType) const
 {
+	preferredWindowType = -1;
 	String ext;
 	String errorMessage;
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>> plugins;
 	if (GetPackUnpackPlugin(filteredFilenames, false, false, plugins, nullptr, nullptr, errorMessage))
 	{
 		for (auto& [plugin, args, bWithFile] : plugins)
+		{
 			ext += plugin->m_ext;
+			auto preferredWindowTypeStr = plugin->GetExtendedPropertyValue(_T("PreferredWindowType"));
+			if (preferredWindowTypeStr.has_value())
+			{
+				if (preferredWindowTypeStr == L"Text")
+					preferredWindowType = 0;
+				else if (preferredWindowTypeStr == L"Table")
+					preferredWindowType = 1;
+				else if (preferredWindowTypeStr == L"Binary")
+					preferredWindowType = 2;
+				else if (preferredWindowTypeStr == L"Image")
+					preferredWindowType = 3;
+				else if (preferredWindowTypeStr == L"Webpage")
+					preferredWindowType = 4;
+			}
+		}
 	}
 	return ext;
 }
@@ -495,7 +556,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 	std::vector<std::tuple<PluginInfo*, std::vector<String>, bool>>& plugins,
 	String *pPluginPipelineResolved, String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, filteredFilenames, L"ALIAS_PREDIFF", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	std::vector<PluginForFile::PipelineItem> pipelineResolved;
@@ -530,7 +591,7 @@ bool PrediffingInfo::GetPrediffPlugin(const String& filteredFilenames, bool bRev
 					}
 					else
 					{
-						errorMessage = strutils::format(_T("'%s' is not PREDIFF plugin"), pluginName);
+						errorMessage = strutils::format_string1(_("'%1' is not prediffer plugin"), pluginName);
 					}
 					return false;
 				}
@@ -633,7 +694,7 @@ bool PrediffingInfo::Prediffing(String & filepath, const String& filteredText, b
 bool EditorScriptInfo::GetEditorScriptPlugin(std::vector<std::tuple<PluginInfo*, std::vector<String>, int>>& plugins,
 	String& errorMessage) const
 {
-	auto result = ParsePluginPipeline(errorMessage);
+	auto result = ExpandAliases(this->m_PluginPipeline, _T(""), L"ALIAS_EDITOR_SCRIPT", errorMessage);
 	if (!errorMessage.empty())
 		return false;
 	for (auto& [pluginName, args, quoteChar] : result)
@@ -768,10 +829,15 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 	std::vector<std::tuple<String, String, unsigned, PluginInfo *>> suggestedPlugins;
 	std::map<String, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>> allPlugins;
 	std::map<String, int> captions;
-	unsigned id = baseId;
+	unsigned id = baseId + 2;
 	bool addedNoneAutomatic = false;
 	static PluginInfo noPlugin;
 	static PluginInfo autoPlugin;
+	auto tr2 = [](const String& text)
+	{
+		const bool containsNonAsciiChars = std::any_of(text.begin(), text.end(), [](auto c) { return (c >= 0x80); });
+		return containsNonAsciiChars ? text : tr(ucr::toUTF8(strutils::to_str(text)));
+	};
 	if (autoPlugin.m_name.empty())
 		autoPlugin.m_name = _T("<Automatic>");
 	for (const auto& event: events)
@@ -788,16 +854,14 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					{
 						String process = _T("");
 						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
-						allPlugins[process].emplace_back(_("<None>"), _T(""), id++, &noPlugin);
-						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), id++, &autoPlugin);
+						allPlugins[process].emplace_back(_("<None>"), _T(""), baseId, &noPlugin);
+						allPlugins[process].emplace_back(_("<Automatic>"), _T("<Automatic>"), baseId + 1, &autoPlugin);
 						addedNoneAutomatic = true;
 					}
 					const auto menuCaption = plugin->GetExtendedPropertyValue(_T("MenuCaption"));
 					const auto processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-					const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
-						strutils::to_str(*menuCaption) : plugin->m_name));
-					const String process = tr(ucr::toUTF8(processType.has_value() ?
-						strutils::to_str(*processType) : _T("&Others")));
+					const String caption = tr2(menuCaption.has_value() ? strutils::to_str(*menuCaption) : plugin->m_name);
+					const String process = tr2(processType.has_value() ? strutils::to_str(*processType) : _T("&Others"));
 
 					if (plugin->TestAgainstRegList(filteredFilenames))
 						suggestedPlugins.emplace_back(caption, plugin->m_name, id, plugin.get());
@@ -810,6 +874,13 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 				}
 				else
 				{
+					if (!addedNoneAutomatic)
+					{
+						String process = _T("");
+						allPlugins.insert_or_assign(process, std::vector<std::tuple<String, String, unsigned, PluginInfo *>>());
+						allPlugins[process].emplace_back(_("<None>"), _T(""), baseId, &noPlugin);
+						addedNoneAutomatic = true;
+					}
 					LPDISPATCH piScript = plugin->m_lpDispatch;
 					std::vector<String> scriptNamesArray;
 					std::vector<int> scriptIdsArray;
@@ -817,14 +888,14 @@ CreatePluginMenuInfos(const String& filteredFilenames, const std::vector<std::ws
 					bool matched = plugin->TestAgainstRegList(filteredFilenames);
 					for (int i = 0; i < nScriptFnc; ++i, ++id)
 					{
+						if (scriptNamesArray[i] == L"PluginOnEvent" || scriptNamesArray[i] == L"ShowSettingsDialog")
+							continue;
 						const auto menuCaption = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".MenuCaption"));
 						auto processType = plugin->GetExtendedPropertyValue(scriptNamesArray[i] + _T(".ProcessType"));
 						if (!processType.has_value())
 							processType = plugin->GetExtendedPropertyValue(_T("ProcessType"));
-						const String caption = tr(ucr::toUTF8(menuCaption.has_value() ?
-							strutils::to_str(*menuCaption) : scriptNamesArray[i]));
-						const String process = tr(ucr::toUTF8(processType.has_value() ?
-							strutils::to_str(*processType) : _T("&Others")));
+						const String caption = tr2(menuCaption.has_value() ? strutils::to_str(*menuCaption) : scriptNamesArray[i]);
+						const String process = tr2(processType.has_value() ? strutils::to_str(*processType) : _T("&Others"));
 						if (matched)
 							suggestedPlugins.emplace_back(caption, scriptNamesArray[i], id, plugin.get());
 						if (allPlugins.find(process) == allPlugins.end())

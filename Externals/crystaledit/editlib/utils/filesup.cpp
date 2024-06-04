@@ -14,26 +14,20 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "filesup.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 
-bool FileExist(LPCTSTR lpszPath)
-{
-  CFileStatus status;
-  return CFile::GetStatus(lpszPath, status) != 0;
-}
-
-int GetExtPosition (LPCTSTR pszString)
+int GetExtPosition (const tchar_t* pszString)
 {
   if (pszString == nullptr || !*pszString)
     return 0;
-  const CString sString = pszString;
-  int len = sString.GetLength (), posit = len;
-  TCHAR test;
+  const std::basic_string<tchar_t> sString = pszString;
+  int len = static_cast<int>(sString.length ()), posit = len;
+  tchar_t test;
   do
-    if ((test = sString.GetAt (--posit)) == _T ('.'))
+    if ((test = sString.at (--posit)) == _T ('.'))
       return posit;
 #ifdef _UNICODE
   while (posit && test != _T ('\\') && test != _T (':'));
@@ -43,75 +37,18 @@ int GetExtPosition (LPCTSTR pszString)
   return len;
 }
 
-CString GetExt (CString sString)
+std::basic_string<tchar_t> GetExt (const std::basic_string<tchar_t>& sString)
 {
-  if (!sString.IsEmpty ())
+  std::basic_string<tchar_t> sString2 = sString;
+  if (!sString2.empty ())
     {
-      sString = sString.Mid (GetExtPosition (sString));
-      if (!sString.IsEmpty () && sString[0] == _T ('.'))
+      sString2 = sString2.substr (GetExtPosition (sString2.c_str ()));
+      if (!sString2.empty () && sString2[0] == _T ('.'))
         {
-          sString = sString.Mid (1);
+          sString2 = sString2.substr (1);
         }
     }
-  return sString;
-}
-
-CString GetName (const CString & sString)
-{
-  int nPosition = GetNamePosition (sString), nPosition2 = GetExtPosition (sString);
-
-  return sString.IsEmpty ()? sString : (nPosition2 == sString.GetLength ()? sString.Mid (nPosition) : sString.Mid (nPosition, nPosition2 - nPosition));
-}
-
-CString GetNameExt (const CString & sString)
-{
-  return sString.IsEmpty ()? sString : sString.Mid (GetNamePosition (sString));
-}
-
-int GetNamePosition (LPCTSTR pszString)
-{
-  if (pszString == nullptr || !*pszString)
-    return 0;
-  const CString sString = pszString;
-  int posit = sString.GetLength ();
-  do
-  {
-    TCHAR test;
-#ifdef _UNICODE
-    if ((test = sString.GetAt (--posit)) == _T ('\\') || test == _T (':'))
-#else
-    if (((test = sString.GetAt (--posit)) == _T ('\\') && !_ismbstrail((unsigned char *)pszString, (unsigned char *)pszString + posit)) || test == _T (':'))
-#endif
-      return posit + 1;
-  }
-  while (posit);
-  return posit;
-}
-
-CString GetPath (const CString & sString, bool bClose /*= false*/ )
-{
-  if (sString.IsEmpty ())
-    return sString;
-  int posit = GetNamePosition (sString);
-  if (posit == 0)
-    return bClose ? _T (".\\") : _T (".");
-
-  TCHAR test = sString.GetAt (posit - 1);
-
-#ifdef _UNICODE
-  if (test == _T (':') || test == _T ('\\') && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
-#else
-  if (test == _T (':') || (test == _T ('\\') && !_ismbstrail((unsigned char *)(LPCTSTR)sString, (unsigned char *)(LPCTSTR)sString + posit)) && (posit == 1 || sString.GetAt (posit - 2) == _T (':')))
-#endif
-    return sString.Left (posit);
-  return sString.Left (bClose ? posit : test == _T (':') ? posit : posit - 1);
-}
-
-CString GetPathName (const CString & sString)
-{
-  int nPosition = GetExtPosition (sString);
-
-  return sString.IsEmpty ()? sString : (nPosition == sString.GetLength ()? sString : sString.Left (nPosition));
+  return sString2;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

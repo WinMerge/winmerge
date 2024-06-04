@@ -52,7 +52,7 @@ struct Foundation_API UTF8
 	static std::string& toUpperInPlace(std::string& str);
 	static std::string toLower(const std::string& str);
 	static std::string& toLowerInPlace(std::string& str);
-	
+
 	static void removeBOM(std::string& str);
 		/// Remove the UTF-8 Byte Order Mark sequence (0xEF, 0xBB, 0xBF)
 		/// from the beginning of the string, if it's there.
@@ -63,7 +63,7 @@ struct Foundation_API UTF8
 		/// If strictJSON is true, \a and \v will be escaped to \\u0007 and \\u000B
 		/// instead of \\a and \\v for strict JSON conformance.
 
-	static std::string escape(const std::string::const_iterator& begin, const std::string::const_iterator& end, bool strictJSON = false);
+	static std::string escape(const std::string::const_iterator& begin, const std::string::const_iterator& end, bool strictJSON = false, bool lowerCaseHex = false);
 		/// Escapes a string. Special characters like tab, backslash, ... are
 		/// escaped. Unicode characters are escaped to \uxxxx.
 		/// If strictJSON is true, \a and \v will be escaped to \\u0007 and \\u000B

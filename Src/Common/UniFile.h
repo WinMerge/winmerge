@@ -9,6 +9,7 @@
 #pragma once
 
 #include "unicoder.h"
+#include <cstdio>
 
 namespace Poco { class SharedMemory; }
 
@@ -29,7 +30,7 @@ public:
 		UniError();
 		bool HasError() const;
 		void ClearError();
-		String GetError() const;
+		const String& GetError() const;
 	};
 
 	virtual ~UniFile() { }
@@ -92,7 +93,7 @@ inline void UniFile::UniError::ClearError()
  * @brief Get the error string.
  * @return Error string.
  */
-inline String UniFile::UniError::GetError() const
+inline const String& UniFile::UniError::GetError() const
 {
 	return desc;
 }
@@ -254,6 +255,7 @@ public:
 	virtual bool OpenCreate(const String& filename);
 	virtual bool OpenCreateUtf8(const String& filename);
 	virtual bool Open(const String& filename, const String& mode);
+	virtual bool SetVBuf(int mode, size_t size);
 	void Close() override;
 
 	virtual bool IsOpen() const override;

@@ -6,7 +6,7 @@ namespace Options { namespace Project
 {
 
 /** @brief Setting name for project options. */
-const TCHAR Section[] = _T("Project");
+const tchar_t Section[] = _T("Project");
 
 /** @brief Setting name for operations */
 const String OperationKeyword[OperationCount] = { _T("Open"), _T("Load"), _T("Save") };

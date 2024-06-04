@@ -13,6 +13,7 @@
 
 #include "UnicodeString.h"
 #include "PathContext.h"
+#include "FileOpenFlags.h"
 #include <map>
 #include <optional>
 
@@ -24,7 +25,7 @@
 class MergeCmdLineInfo
 {
 public:
-	explicit MergeCmdLineInfo(const TCHAR *);
+	explicit MergeCmdLineInfo(const tchar_t *);
 
 public:
 
@@ -62,12 +63,33 @@ public:
 		WEBPAGE,
 	};
 
+	enum DialogType
+	{
+		NO_DIALOG = -1,
+		OPTIONS_DIALOG,
+		ABOUT_DIALOG,
+	};
+
+	using usertasksflags_t = uint32_t;
+	enum UserTaskFlags : usertasksflags_t
+	{
+		NONE                = 0x0000,
+		NEW_TEXT_COMPARE    = 0x0001,
+		NEW_TABLE_COMPARE   = 0x0002,
+		NEW_BINARY_COMPARE  = 0x0004,
+		NEW_IMAGE_COMPARE   = 0x0008,
+		NEW_WEBPAGE_COMPARE = 0x0010,
+		CLIPBOARD_COMPARE   = 0x1000,
+		SHOW_OPTIONS_DIALOG = 0x8000,
+	};
+
 	ShowWindowType m_nCmdShow; /**< Initial state of the application's window. */
 	WindowType m_nWindowType; /**< The type of window that displays the files to compare. */
-
+	DialogType m_nDialogType; /**< The type of dialog window to display */
+	bool m_bShowCompareAsMenu; /**< Show Compare As menu. */
 	bool m_bEscShutdown; /**< Pressing ESC will close the application */
 	ExitNoDiff m_bExitIfNoDiff; /**< Exit if files are identical. */
-	bool m_bRecurse; /**< Include sub folder in directories compare. */
+	std::optional<bool> m_bRecurse; /**< Include sub folder in directories compare. */
 	std::optional<CompareMethodType> m_nCompMethod; /**< Compare method */
 	bool m_bNonInteractive; /**< Suppress user's notifications. */
 	std::optional<int> m_nSingleInstance; /**< Allow only one instance of WinMerge executable. */
@@ -80,13 +102,13 @@ public:
 	bool m_bEnableExitCode; /**< Returns the comparison result as a process exit code */
 	int m_nLineIndex; /**< Line number to jump after loading files */
 	int m_nCharIndex; /**< Character position to jump after loading files */
-	std::optional<TCHAR> m_cTableDelimiter; /**< Delimiter character for table editing*/
-	std::optional<TCHAR> m_cTableQuote; /* Quote character for table editing *< */
+	std::optional<tchar_t> m_cTableDelimiter; /**< Delimiter character for table editing*/
+	std::optional<tchar_t> m_cTableQuote; /* Quote character for table editing *< */
 	std::optional<bool> m_bTableAllowNewlinesInQuotes; /**< Allow newlines in quotes */
 
-	unsigned m_dwLeftFlags; /**< Left side file's behavior options. */
-	unsigned m_dwMiddleFlags; /**< Middle side file's behavior options. */
-	unsigned m_dwRightFlags; /**< Right side file's behavior options. */
+	fileopenflags_t m_dwLeftFlags; /**< Left side file's behavior options. */
+	fileopenflags_t m_dwMiddleFlags; /**< Middle side file's behavior options. */
+	fileopenflags_t m_dwRightFlags; /**< Right side file's behavior options. */
 
 	String m_sLeftDesc; /**< Left side file's description. */
 	String m_sMiddleDesc; /**< Middle side file's description. */
@@ -102,6 +124,8 @@ public:
 
 	String m_sIniFilepath;
 
+	std::optional<usertasksflags_t> m_dwUserTasksFlags;
+
 	PathContext m_Files; /**< Files (or directories) to compare. */
 
 	std::map<String, String> m_Options;
@@ -110,13 +134,13 @@ public:
 
 private:
 
-	static const TCHAR *EatParam(const TCHAR *, String &, bool *flag = nullptr);
-	const TCHAR *SetOption(const TCHAR *, const String& key, const TCHAR *value = _T("1"));
-	const TCHAR *SetConfig(const TCHAR *);
-	void ParseWinMergeCmdLine(const TCHAR *);
+	static const tchar_t *EatParam(const tchar_t *, String &, bool *flag = nullptr);
+	const tchar_t *SetOption(const tchar_t *, const String& key, const tchar_t *value = _T("1"));
+	const tchar_t *SetConfig(const tchar_t *);
+	void ParseWinMergeCmdLine(const tchar_t *);
 	void AddPath(const String &path);
 
 	/** Operator= is not implemented. */
-	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs);
+	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs) = delete;
 };
 

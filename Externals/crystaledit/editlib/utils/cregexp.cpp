@@ -16,12 +16,12 @@
 
 #include "StdAfx.h"
 #if !__has_include(<Poco/RegularExpression.h>)
+#include "cregexp.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "cregexp.h"
 
 //#define DEBUG
 
@@ -32,7 +32,7 @@ struct _RxNode
     RxNode *fPrev;
     RxNode *fNext;
     union {
-        LPTSTR fChar;
+        tchar_t* fChar;
         RxNode *fPtr;
     };
     unsigned int fOpt;
@@ -71,17 +71,17 @@ static RxNode *NewChar(unsigned int Ch) {
 
     if (A) {
 #ifdef _UNICODE
-        A->fChar = (LPTSTR) malloc(2);
+        A->fChar = (tchar_t*) malloc(2);
         A->fLen = 1;
-        A->fChar[0] = static_cast<TCHAR>(Ch);
+        A->fChar[0] = static_cast<tchar_t>(Ch);
 #else
         if (Ch > 0xff) {
-            A->fChar = (LPTSTR) malloc(2);
+            A->fChar = (tchar_t*) malloc(2);
             A->fLen = 2;
             A->fChar[0] = (unsigned char)(Ch >> 8);
             A->fChar[1] = (unsigned char)(Ch & 0xff);
         } else {
-            A->fChar = (LPTSTR) malloc(1);
+            A->fChar = (tchar_t*) malloc(1);
             A->fLen = 1;
             A->fChar[0] = (unsigned char)Ch;
         }
@@ -90,9 +90,9 @@ static RxNode *NewChar(unsigned int Ch) {
     return A;
 }
 
-static RxNode *NewEscape(LPCTSTR *const Regexp) {
+static RxNode *NewEscape(const tchar_t* *const Regexp) {
     unsigned int Ch = mytcsnextc(*Regexp);
-    *Regexp = _tcsinc(*Regexp);
+    *Regexp = tc::tcsinc(*Regexp);
     switch (Ch) {
       case 0: return 0;
       case _T('a'): Ch = _T('\a'); break;
@@ -118,18 +118,18 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
             unsigned int N = 0;
             unsigned int A = 0;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 9) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 9) return 0;
             (*Regexp)++;
             A = N * 100;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 9) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 9) return 0;
             (*Regexp)++;
             A = A + N * 10;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 9) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 9) return 0;
             (*Regexp)++;
             A = A + N;
-            Ch = (TCHAR) A;
+            Ch = (tchar_t) A;
         }
         break;
     case _T('o'):
@@ -137,18 +137,18 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
             unsigned int N = 0;
             unsigned int A = 0;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 7) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 7) return 0;
             (*Regexp)++;
             A = N * 64;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 7) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 7) return 0;
             (*Regexp)++;
             A = A + N * 8;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 7) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 7) return 0;
             (*Regexp)++;
             A = A + N;
-            Ch = (TCHAR) A;
+            Ch = (tchar_t) A;
         }
         break;
     case _T('x'):
@@ -156,14 +156,14 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
             unsigned int N = 0;
             unsigned int A = 0;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
             (*Regexp)++;
             A = N << 4;
             if (**Regexp == 0) return 0;
-            N = _totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+            N = tc::totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
             (*Regexp)++;
             A = A + N;
-            Ch = (TCHAR) A;
+            Ch = (tchar_t) A;
         }
         break;
     }
@@ -176,7 +176,7 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
 #ifdef _UNICODE
 #define SETOP(set,n) \
     do { \
-      set[(TCHAR)(n) >> 3] |= (TCHAR)(1 << ((TCHAR)(n) & 7)); \
+      set[(tchar_t)(n) >> 3] |= (tchar_t)(1 << ((tchar_t)(n) & 7)); \
     } while (0)
 #else // _UNICODE
 #define SETOP(set,n) \
@@ -185,9 +185,9 @@ static RxNode *NewEscape(LPCTSTR *const Regexp) {
     } while (0)
 #endif // _UNICODE
 
-static RxNode *NewSet(LPCTSTR * const Regexp) {
+static RxNode *NewSet(const tchar_t* * const Regexp) {
 #ifdef _UNICODE
-    TCHAR set[NNN];
+    tchar_t set[NNN];
 #else // _UNICODE
     unsigned char set[NNN];
 #endif // _UNICODE
@@ -195,7 +195,7 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
     int c = 0;
     unsigned int i;
 #ifdef _UNICODE
-    TCHAR Ch, C1 = 0, C2 = 0;
+    tchar_t Ch, C1 = 0, C2 = 0;
 #else // _UNICODE
     unsigned int Ch, C1 = 0, C2 = 0;
 #endif // _UNICODE
@@ -211,21 +211,21 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
 
     while (**Regexp) {
         Ch = mytcsnextc(*Regexp);
-        *Regexp = _tcsinc(*Regexp);
+        *Regexp = tc::tcsinc(*Regexp);
         switch (Ch) {
           case _T(']'):
             if (doset == 1) return 0;
             {
                 RxNode *N = NewNode(s?RE_INSET:RE_NOTINSET);
-                N->fChar = (LPTSTR) malloc(sizeof(set));
+                N->fChar = (tchar_t*) malloc(sizeof(set));
                 N->fLen = sizeof(set);
                 if (N->fChar == 0) return 0;
-                memcpy(N->fChar, (LPTSTR) set, sizeof(set));
+                memcpy(N->fChar, (tchar_t*) set, sizeof(set));
                 return N;
             }
           case _T('\\'):
             Ch = mytcsnextc(*Regexp);
-            *Regexp = _tcsinc(*Regexp);
+            *Regexp = tc::tcsinc(*Regexp);
             switch (Ch) {
               case 0: return 0;
               case _T('a'): Ch = _T('\a'); break;
@@ -241,19 +241,19 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                       unsigned int N = 0;
                       unsigned int A = 0;
                       if (**Regexp == 0) return 0;
-                      N = _totupper(**Regexp) - 48; if (N > 9) return 0;
+                      N = tc::totupper(**Regexp) - 48; if (N > 9) return 0;
                       (*Regexp)++;
                       A = N * 100;
                       if (**Regexp == 0) return 0;
-                      N = _totupper(**Regexp) - 48; if (N > 9) return 0;
+                      N = tc::totupper(**Regexp) - 48; if (N > 9) return 0;
                       (*Regexp)++;
                       A = A + N * 10;
                       if (**Regexp == 0) return 0;
-                      N = _totupper(**Regexp) - 48; if (N > 9) return 0;
+                      N = tc::totupper(**Regexp) - 48; if (N > 9) return 0;
                       (*Regexp)++;
                       A = A + N;
 #ifdef _UNICODE
-                      Ch = (TCHAR)A;
+                      Ch = (tchar_t)A;
 #else // _UNICODE
                       Ch = (unsigned char)A;
 #endif // _UNICODE
@@ -264,19 +264,19 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                     unsigned int N = 0;
                     unsigned int A = 0;
                     if (**Regexp == 0) return 0;
-                    N = _totupper(**Regexp) - 48; if (N > 7) return 0;
+                    N = tc::totupper(**Regexp) - 48; if (N > 7) return 0;
                     (*Regexp)++;
                     A = N * 64;
                     if (**Regexp == 0) return 0;
-                    N = _totupper(**Regexp) - 48; if (N > 7) return 0;
+                    N = tc::totupper(**Regexp) - 48; if (N > 7) return 0;
                     (*Regexp)++;
                     A = A + N * 8;
                     if (**Regexp == 0) return 0;
-                    N = _totupper(**Regexp) - 48; if (N > 7) return 0;
+                    N = tc::totupper(**Regexp) - 48; if (N > 7) return 0;
                     (*Regexp)++;
                     A = A + N;
 #ifdef _UNICODE
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
 #else // _UNICODE
                     Ch = (unsigned char)A;
 #endif // _UNICODE
@@ -287,15 +287,15 @@ static RxNode *NewSet(LPCTSTR * const Regexp) {
                     unsigned int N = 0;
                     unsigned int A = 0;
                     if (**Regexp == 0) return 0;
-                    N = _totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+                    N = tc::totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     (*Regexp)++;
                     A = N << 4;
                     if (**Regexp == 0) return 0;
-                    N = _totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+                    N = tc::totupper(**Regexp) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     (*Regexp)++;
                     A = A + N;
 #ifdef _UNICODE
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
 #else // _UNICODE
                     Ch = (unsigned char)A;
 #endif // _UNICODE
@@ -408,7 +408,7 @@ static int CountWidth(RxNode *N) {
     return w;
 }
 
-static int MakeSub(RxNode **F, RxNode **N, TCHAR What) {
+static int MakeSub(RxNode **F, RxNode **N, tchar_t What) {
     //_tprintf(_T("MakeSub: %c\n", What));
     if (*N) {
         RxNode *No;
@@ -553,14 +553,14 @@ static int MakeSub(RxNode **F, RxNode **N, TCHAR What) {
 
 #define CHECK(n) do { if ((n) == 0) { return 0;} } while (0)
 
-static RxNode *RxComp(LPCTSTR *Regexp) {
+static RxNode *RxComp(const tchar_t* *Regexp) {
     RxNode *F = 0;
     RxNode *N = 0;
     int C;
 
     while (**Regexp) {
         //        puts(*Regexp);
-        switch (TCHAR Ch = (*(*Regexp)++)) {
+        switch (tchar_t Ch = (*(*Regexp)++)) {
         case _T('?'):
         case _T('*'):
         case _T('+'):
@@ -595,7 +595,7 @@ static RxNode *RxComp(LPCTSTR *Regexp) {
         default:
             --*Regexp;
             CHECK(AddNode(&F, &N, NewChar(mytcsnextc(*Regexp))));
-            *Regexp = _tcsinc(*Regexp);
+            *Regexp = tc::tcsinc(*Regexp);
             break;
         }
     }
@@ -606,7 +606,7 @@ RxNode *RxOptimize(RxNode *rx) {
     return rx;
 }
 
-RxNode *RxCompile(LPCTSTR Regexp, unsigned int RxOpt) {
+RxNode *RxCompile(const tchar_t* Regexp, unsigned int RxOpt) {
     RxNode *n = 0, *x;
     if (Regexp == 0) return 0;
     RegCount = 0;
@@ -640,10 +640,10 @@ void RxFree(RxNode *n) {
 #define ChClass(x) (((((x) >= _T('A')) && ((x) <= _T('Z'))) || (((x) >= _T('a')) && ((x) <= _T('z'))) || (((x) >= _T('0')) && ((x) <= _T('9'))))?1:0)
 
 static RxMatchRes *match;
-static LPCTSTR bop;
-static LPCTSTR eop;
+static const tchar_t* bop;
+static const tchar_t* eop;
 static int flags = RX_CASE;
-static LPCTSTR rex;
+static const tchar_t* rex;
 
 int RxMatch(RxNode *rx) {
     RxNode *n = rx;
@@ -669,47 +669,47 @@ int RxMatch(RxNode *rx) {
             break;
         case RE_ANY:
             if (rex == eop) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_WSPACE:
             if (rex == eop) return 0;
             if (*rex != _T(' ') && *rex != _T('\n') && *rex != _T('\r') && *rex != _T('\t')) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_NWSPACE:
             if (rex == eop) return 0;
             if (*rex == _T(' ') || *rex == _T('\n') || *rex == _T('\r') || *rex == _T('\t')) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_WORD:
             if (rex == eop) return 0;
             if (!_istalnum(*rex)) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_NWORD:
             if (rex == eop) return 0;
             if (_istalnum(*rex)) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_DIGIT:
             if (rex == eop) return 0;
             if (!_istdigit(*rex)) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_NDIGIT:
             if (rex == eop) return 0;
             if (_istdigit(*rex)) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_UPPER:
             if (rex == eop) return 0;
             if (!_istupper(*rex)) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_LOWER:
             if (rex == eop) return 0;
             if (!_istlower(*rex)) return 0;
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_ATBOW:
             if (rex >= eop) return 0;
@@ -729,8 +729,8 @@ int RxMatch(RxNode *rx) {
                 if (*n->fChar != *rex) return 0;
                 if (memcmp(rex, n->fChar, n->fLen) != 0) return 0;
             } else {
-                for (size_t i = 0; static_cast<short>(i) < n->fLen; i+= _tcsinc(&rex[i]) - &rex[i])
-                    if (_totupper(mytcsnextc(&rex[i])) != _totupper(mytcsnextc(&n->fChar[i])))
+                for (size_t i = 0; static_cast<short>(i) < n->fLen; i+= tc::tcsinc(&rex[i]) - &rex[i])
+                    if (tc::totupper(mytcsnextc(&rex[i])) != tc::totupper(mytcsnextc(&n->fChar[i])))
                         return 0;
             }
             rex += n->fLen;
@@ -738,26 +738,26 @@ int RxMatch(RxNode *rx) {
         case RE_INSET:
             if (rex == eop) return 0;
 #ifdef _UNICODE
-            if ((n->fChar[(TCHAR)(*rex) >> 3] & (1 << ((TCHAR)(*rex) & 7))) == 0) return 0;
+            if ((n->fChar[(tchar_t)(*rex) >> 3] & (1 << ((tchar_t)(*rex) & 7))) == 0) return 0;
 #else // _UNICODE
             {
             unsigned int ch = mytcsnextc(rex);
             if ((n->fChar[ch >> 3] & (1 << ((unsigned char)(ch) & 7))) == 0) return 0;
             }
 #endif // _UNICODE
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_NOTINSET:
             if (rex == eop) return 0;
 #ifdef _UNICODE
-            if (n->fChar[(TCHAR)(*rex) >> 3] & (1 << ((TCHAR)(*rex) & 7))) return 0;
+            if (n->fChar[(tchar_t)(*rex) >> 3] & (1 << ((tchar_t)(*rex) & 7))) return 0;
 #else // _UNICODE
             {
             unsigned int ch = mytcsnextc(rex);
             if (n->fChar[ch >> 3] & (1 << ((unsigned char)(ch) & 7))) return 0;
             }
 #endif // _UNICODE
-            rex = _tcsinc(rex);
+            rex = tc::tcsinc(rex);
             break;
         case RE_JUMP:
             n = n->fPtr;
@@ -788,7 +788,7 @@ int RxMatch(RxNode *rx) {
         default:
             if (n->fWhat & RE_GROUP) {
                 if (n->fWhat & RE_MEM) {
-                    LPCTSTR save = rex;
+                    const tchar_t* save = rex;
                     int b = n->fWhat & 0xFF;
                     int fl = flags;
 
@@ -811,7 +811,7 @@ int RxMatch(RxNode *rx) {
                     return 1;
                 }
             } else if (n->fWhat & RE_BRANCH) {
-                LPCTSTR save = rex;
+                const tchar_t* save = rex;
                 int fl = flags;
 
                 if ((n->fWhat & RE_GREEDY) == 0) {
@@ -835,7 +835,7 @@ int RxMatch(RxNode *rx) {
     return 0;
 }
 
-int RxTry(RxNode *rx, LPCTSTR s) {
+int RxTry(RxNode *rx, const tchar_t* s) {
     int fl = flags;
     rex = s;
     for (int i = 0; i < NSEXPS; i++)
@@ -849,8 +849,8 @@ int RxTry(RxNode *rx, LPCTSTR s) {
     return 0;
 }
 
-int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match) {
-    TCHAR Ch;
+int RxExec(RxNode *Regexp, const tchar_t* Data, size_t Len, const tchar_t* Start, RxMatchRes *Match) {
+    tchar_t Ch;
     if (Regexp == 0) return 0;
 
     match = Match;
@@ -871,25 +871,25 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *
         if (flags & RX_CASE) {
             while (1) {
                 while (Start < eop && *Start != Ch)
-                    Start = _tcsinc(Start);
+                    Start = tc::tcsinc(Start);
                 if (Start == eop)
                     break;
                 if (RxTry(Regexp, Start))
                     return 1;
-                if ((Start = _tcsinc(Start)) == eop)
+                if ((Start = tc::tcsinc(Start)) == eop)
                     break;
             }
         } else {
-            Ch = (TCHAR)_totupper(Ch);
+            Ch = (tchar_t)tc::totupper(Ch);
             while (1) {
-                while (Start < eop && (TCHAR) _totupper(*Start) != Ch) {
-                    Start = _tcsinc(Start);
+                while (Start < eop && (tchar_t) tc::totupper(*Start) != Ch) {
+                    Start = tc::tcsinc(Start);
                 }
                 if (Start == eop)
                     break;
                 if (RxTry(Regexp, Start))
                     return 1;
-                if ((Start = _tcsinc(Start)) == eop)
+                if ((Start = tc::tcsinc(Start)) == eop)
                     break;
             }
         }
@@ -897,7 +897,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *
     default:         // (slow)
         do {
             if (RxTry(Regexp, Start)) return 1;
-        } while ((Start = _tcsinc(Start)) < eop);
+        } while ((Start = tc::tcsinc(Start)) < eop);
         break;
     }
     return 0;
@@ -908,7 +908,7 @@ int RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *
 #define FLAG_UP_NEXT     4
 #define FLAG_DOWN_NEXT   8
 
-static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
+static int add(size_t *len, tchar_t* *s, const tchar_t* a, size_t alen, int &flag) {
     size_t NewLen = *len + alen;
     size_t i;
 
@@ -918,52 +918,52 @@ static int add(size_t *len, LPTSTR *s, LPCTSTR a, size_t alen, int &flag) {
         return 0;
 
     if (*s) {
-        LPTSTR p = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
+        tchar_t* p = (tchar_t*) realloc(*s, NewLen * sizeof(tchar_t));
         if (p == nullptr)
             return 0;
         *s = p;
         assert(*s != 0);
-        memcpy(*s + *len, a, alen * sizeof(TCHAR));
+        memcpy(*s + *len, a, alen * sizeof(tchar_t));
     } else {
-        *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
+        *s = (tchar_t*) malloc(NewLen * sizeof(tchar_t));
         assert(*s != 0);
-        memcpy(*s, a, alen * sizeof(TCHAR));
+        memcpy(*s, a, alen * sizeof(tchar_t));
         *len = 0;
     }
     if (flag & FLAG_UP_CASE) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
         for (i = 0; i < alen; i++) {
-            *p = (TCHAR)_totupper(*p);
+            *p = (tchar_t)tc::totupper(*p);
             p++;
         }
     } else if (flag & FLAG_DOWN_CASE) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
         for (i = 0; i < alen; i++) {
-            *p = (TCHAR)_totlower(*p);
+            *p = (tchar_t)tc::totlower(*p);
             p++;
         }
     }
     if (flag & FLAG_UP_NEXT) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
-        *p = (TCHAR)_totupper(*p);
+        *p = (tchar_t)tc::totupper(*p);
         flag &= ~FLAG_UP_NEXT;
     } else if (flag & FLAG_DOWN_NEXT) {
-        LPTSTR p = *s + *len;
+        tchar_t* p = *s + *len;
 
-        *p = (TCHAR)_totlower(*p);
+        *p = (tchar_t)tc::totlower(*p);
         flag &= ~FLAG_DOWN_NEXT;
     }
     *len += alen;
     return 0;
 }
 
-int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR *Dest, int *Dlen) {
+int RxReplace(const tchar_t* rep, const tchar_t* Src, int /*len*/, RxMatchRes matchres, tchar_t* *Dest, int *Dlen) {
     size_t dlen = 0;
-    LPTSTR dest = 0;
-    TCHAR Ch;
+    tchar_t* dest = 0;
+    tchar_t Ch;
     int n;
     int flag = 0;
 
@@ -1007,14 +1007,14 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
                     int A = 0;
 
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     rep++;
                     A = N << 4;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) N = N + 48 - 65 + 10; if (N > 15) return 0;
                     rep++;
                     A += N;
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
                 break;
@@ -1024,18 +1024,18 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
                     int A = 0;
 
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
                     A = N * 100;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
                     A += N * 10;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 9) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 9) return 0;
                     rep++;
                     A += N;
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
                 break;
@@ -1045,18 +1045,18 @@ int RxReplace(LPCTSTR rep, LPCTSTR Src, int /*len*/, RxMatchRes matchres, LPTSTR
                     int A = 0;
 
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 7) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
                     A = N * 64;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 7) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
                     A += N * 8;
                     if (*rep == 0) return 0;
-                    N = _totupper(*rep) - 48; if (N > 7) return 0;
+                    N = tc::totupper(*rep) - 48; if (N > 7) return 0;
                     rep++;
                     A += N;
-                    Ch = (TCHAR)A;
+                    Ch = (tchar_t)A;
                 }
                 add(&dlen, &dest, &Ch, 1, flag);
                 break;
@@ -1124,17 +1124,17 @@ static void RxDump(int N, RxNode *n) {
 }
 
 #define TEST(rc,rx,st) \
-    _tcscpy(line,st); \
+    tc::tcscpy(line,st); \
     assert((a = RxCompile(rx)) != 0); \
     puts(_T("\n--- " rx " -- " st " -- ")); \
     RxDump(0,a);\
-    assert(rc == RxExec(a, line, _tcslen(line), line, &b)); \
+    assert(rc == RxExec(a, line, tc::tcslen(line), line, &b)); \
     RxFree(a);
 
 int main() {
     RxNode *a;
     RxMatchRes b;
-    TCHAR line[1024];
+    tchar_t line[1024];
 
     TEST(1, _T("a"), _T("a"));
     TEST(0, _T("b"), _T("a"));
@@ -1197,7 +1197,7 @@ int main() {
         if (!*line) break;
         a = RxCompile(line); RxDump(0, a);
         _tprintf(_T ("String: ")); fflush(stdout); gets(line);
-        _tprintf(_T ("rc = %d\n"), RxExec(a, line, _tcslen(line), line, &b));
+        _tprintf(_T ("rc = %d\n"), RxExec(a, line, tc::tcslen(line), line, &b));
         for (int i = 0; i < NSEXPS; i++) {
             if (b.Open[i] != -1) {
                 _tprintf(_T ("%d: %d %d\n"), i, b.Open[i], b.Close[i]);

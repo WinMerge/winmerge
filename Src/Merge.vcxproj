@@ -180,6 +180,7 @@
     <Import Project="..\Externals\xdiff\xdiff.vcxitems" Label="Shared" />
     <Import Project="diffutils\diffutils.vcxitems" Label="Shared" />
     <Import Project="CompareEngines\CompareEngines.vcxitems" Label="Shared" />
+    <Import Project="..\Externals\crystaledit\editlib\editlibparsers.vcxitems" Label="Shared" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -298,10 +299,11 @@
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
-      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MSSHELLDLG;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
@@ -322,6 +324,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
       <Profile>true</Profile>
+      <DelayLoadDLLs>wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -358,7 +361,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
-      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -378,7 +382,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -414,7 +418,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
-      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -433,7 +438,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -469,7 +474,8 @@
       <LanguageStandard>stdcpp17</LanguageStandard>
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
       <ControlFlowGuard>Guard</ControlFlowGuard>
-      <AssemblerOutput>AssemblyAndSourceCode</AssemblerOutput>
+      <AssemblerOutput>NoListing</AssemblerOutput>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -488,7 +494,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <Profile>true</Profile>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -525,7 +531,7 @@
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MSSHELLDLG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
@@ -542,6 +548,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
+      <DelayLoadDLLs>wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -577,7 +584,7 @@
       <DisableSpecificWarnings>4100;4189;4204;4505</DisableSpecificWarnings>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>MSSHELLDLG;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
@@ -594,6 +601,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <MinimumRequiredVersion>5.01</MinimumRequiredVersion>
+      <DelayLoadDLLs>wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -644,7 +652,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -693,7 +701,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -742,7 +750,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -792,7 +800,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -840,7 +848,7 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
@@ -888,14 +896,14 @@
       <GenerateMapFile>true</GenerateMapFile>
       <Profile>false</Profile>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <DelayLoadDLLs>propsys.dll;bcrypt.dll</DelayLoadDLLs>
+      <DelayLoadDLLs>propsys.dll;bcrypt.dll;wininet.dll;comdlg32.dll;oledlg.dll;version.dll;winspool.drv</DelayLoadDLLs>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>res\WinMerge.exe.manifest</AdditionalManifestFiles>
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Externals\gtest\src\gtest-all.cc">
+    <ClCompile Include="..\Externals\googletest\googletest\src\gtest-all.cc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="7zCommon.cpp">
@@ -903,6 +911,10 @@
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
     <ClCompile Include="ClipboardHistory.cpp" />
+    <ClCompile Include="Common\cio.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="Common\IniOptionsMgr.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -921,6 +933,12 @@
     </ClCompile>
     <ClCompile Include="DirAdditionalPropertiesDlg.cpp" />
     <ClCompile Include="DirSelectFilesDlg.cpp" />
+    <ClCompile Include="DirStatusBar.cpp" />
+    <ClCompile Include="DirWatcher.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <ClCompile Include="EditPluginDlg.cpp" />
     <ClCompile Include="InternalPlugins.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -929,7 +947,9 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="MergeDocDiffCopy.cpp" />
     <ClCompile Include="PropCompareWebPage.cpp" />
+    <ClCompile Include="PropEditorCompareMerge.cpp" />
     <ClCompile Include="PropertySystem.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1396,11 +1416,14 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="WebPageDiffBar.cpp" />
     <ClCompile Include="WebPageDiffFrm.cpp" />
     <ClCompile Include="WildcardDropList.cpp" />
     <ClCompile Include="WindowsManagerDialog.cpp" />
     <ClCompile Include="WMGotoDlg.cpp" />
+    <ClCompile Include="MergeAppCOMClass.cpp">
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
+    </ClCompile>
     <ClCompile Include="xdiff_gnudiff_compat.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1415,19 +1438,21 @@
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\DpiAware.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.h" />
     <ClInclude Include="..\Externals\crystaledit\editlib\utils\mfc_templ_defines.h" />
-    <ClInclude Include="..\Externals\gtest\include\gtest\gtest-printers.h">
+    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest-printers.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\Externals\gtest\include\gtest\gtest.h">
+    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\Externals\gtest\include\gtest\internal\gtest-port.h">
+    <ClInclude Include="..\Externals\googletest\googletest\include\gtest\internal\gtest-port.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="Common\cio.h" />
+    <ClInclude Include="Common\DebugNew.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\Shell.h" />
@@ -1436,10 +1461,17 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirAdditionalPropertiesDlg.h" />
+    <ClInclude Include="DirStatusBar.h" />
+    <ClInclude Include="DirWatcher.h" />
     <ClInclude Include="DirItemIterator.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
+    <ClInclude Include="EditPluginDlg.h" />
+    <ClInclude Include="FileOpenFlags.h" />
     <ClInclude Include="HashCalc.h" />
+    <ClInclude Include="IDirDoc.h" />
+    <ClInclude Include="InternalPlugins.h" />
     <ClInclude Include="PropCompareWebPage.h" />
+    <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
@@ -1507,7 +1539,7 @@
     <ClInclude Include="FileLocation.h" />
     <ClInclude Include="FileOrFolderSelect.h" />
     <ClInclude Include="FilepathEdit.h" />
-    <ClInclude Include="files.h" />
+    <ClInclude Include="FileLoadResult.h" />
     <ClInclude Include="FileTextEncoding.h" />
     <ClInclude Include="FileTextStats.h" />
     <ClInclude Include="FileTransform.h" />
@@ -1621,13 +1653,13 @@
     <ClInclude Include="TrDialogs.h" />
     <ClInclude Include="Common\varprop.h" />
     <ClInclude Include="Common\VersionInfo.h" />
-    <ClInclude Include="WebPageDiffBar.h" />
     <ClInclude Include="WebPageDiffFrm.h" />
     <ClInclude Include="WildcardDropList.h" />
     <ClInclude Include="WindowsManagerDialog.h" />
     <ClInclude Include="WinMergePluginBase.h" />
     <ClInclude Include="Win_VersionHelper.h" />
     <ClInclude Include="WMGotoDlg.h" />
+    <ClInclude Include="MergeAppCOMClass.h" />
     <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
@@ -1643,8 +1675,8 @@
     <None Include="res\folderup_disable.ico" />
     <None Include="res\hand.cur" />
     <None Include="res\left.bmp" />
-    <None Include="res\left_to_browse.bmp" />
-    <None Include="res\left_to_right.bmp" />
+    <None Include="res\copy_left_to_browse.bmp" />
+    <None Include="res\copy_left_to_right.bmp" />
     <None Include="res\lfile.ico" />
     <None Include="res\lfolder.ico" />
     <None Include="res\Merge.ico" />
@@ -1659,13 +1691,15 @@
     <None Include="res\rfile.ico" />
     <None Include="res\rfolder.ico" />
     <None Include="res\right.bmp" />
-    <None Include="res\right_to_browse.bmp" />
-    <None Include="res\right_to_left.bmp" />
+    <None Include="res\copy_right_to_browse.bmp" />
+    <None Include="res\copy_right_to_left.bmp" />
     <None Include="res\sigma.ico" />
     <None Include="..\Docs\Users\ChangeLog.md" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="Merge.rc" />
+    <ResourceCompile Include="Merge.rc">
+      <AdditionalIncludeDirectories>$(INTDIR);%(AdditionalIncludeDirectories);$(_ZVcpkgCurrentInstalledDir)include</AdditionalIncludeDirectories>
+    </ResourceCompile>
     <ResourceCompile Include="Merge2.rc">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ResourceCompile>
@@ -1708,7 +1742,7 @@
     <Image Include="res\go_to.bmp" />
     <Image Include="res\help_contents.bmp" />
     <Image Include="res\horizontally.bmp" />
-    <Image Include="res\left_to_middle.bmp" />
+    <Image Include="res\copy_left_to_middle.bmp" />
     <Image Include="res\LineFilter.ico" />
     <Image Include="res\lmissing.ico" />
     <Image Include="res\lmissingfolder.ico" />
@@ -1719,12 +1753,18 @@
     <Image Include="res\mg_icons.bmp" />
     <Image Include="res\mg_icons.png" />
     <Image Include="res\middle.bmp" />
-    <Image Include="res\middle_to_browse.bmp" />
-    <Image Include="res\middle_to_left.bmp" />
-    <Image Include="res\middle_to_right.bmp" />
+    <Image Include="res\copy_middle_to_browse.bmp" />
+    <Image Include="res\copy_middle_to_left.bmp" />
+    <Image Include="res\copy_middle_to_right.bmp" />
     <Image Include="res\mmissing.ico" />
     <Image Include="res\mmissingfolder.ico" />
+    <Image Include="res\move_left_to_middle.bmp" />
+    <Image Include="res\move_left_to_right.bmp" />
     <Image Include="res\move_middle_to_browse.bmp" />
+    <Image Include="res\move_middle_to_left.bmp" />
+    <Image Include="res\move_middle_to_right.bmp" />
+    <Image Include="res\move_right_to_left.bmp" />
+    <Image Include="res\move_right_to_middle.bmp" />
     <Image Include="res\new3.bmp" />
     <Image Include="res\new3_hex.bmp" />
     <Image Include="res\new3_image.bmp" />
@@ -1750,7 +1790,7 @@
     <Image Include="res\print.bmp" />
     <Image Include="res\replace.bmp" />
     <Image Include="res\report.bmp" />
-    <Image Include="res\right_to_middle.bmp" />
+    <Image Include="res\copy_right_to_middle.bmp" />
     <Image Include="res\rmissing.ico" />
     <Image Include="res\rmissingfolder.ico" />
     <Image Include="res\rotate2.ico" />
@@ -1782,6 +1822,12 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="res\WinMergeU.VisualElementsManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="MergeAppLib.idl">
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <TypeLibraryName>$(IntDir)$(ProjectName).tlb</TypeLibraryName>
+    </Midl>
   </ItemGroup>
   <Target Name="CopyVisualElements" AfterTargets="Build">
     <ItemGroup>

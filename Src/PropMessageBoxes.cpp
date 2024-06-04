@@ -17,13 +17,14 @@ static struct MessageBox
 {
 	int nID;
 	int nHelpID;
-	const TCHAR* key;
+	const tchar_t* key;
 	int type;
 } MessageBoxes[] =
 {
 	// folder compare window
 	{ IDS_CREATE_PAIR_FOLDER, IDS_CREATE_PAIR_FOLDER, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	{ IDS_CONFIRM_SINGLE_COPY, 0, _T("FolderCopyConfirmDlgDontAskAgain"), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
+	{ IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, IDS_CONFIRM_CLOSE_WINDOW_LONG_COMPARISON, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	// file compare window
 	{ IDS_COMPARE_LARGE_FILES, 0, _T("CompareLargeFiles"), MB_YESNOCANCEL | MB_ICONQUESTION | MB_DONT_ASK_AGAIN},
 	{ IDS_FILESSAME, IDS_FILESSAME, nullptr, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN},
@@ -35,6 +36,7 @@ static struct MessageBox
 	{ IDS_FILECHANGED_RESCAN, IDS_FILECHANGED_RESCAN, nullptr, MB_YESNO | MB_ICONWARNING },
 	{ IDS_BACKUP_FAILED_PROMPT, IDS_BACKUP_FAILED_PROMPT,  nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	{ IDS_SUGGEST_IGNOREEOL, IDS_SUGGEST_IGNOREEOL, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
+	{ IDS_CONFIRM_COPY_ALL_DIFFS, IDS_CONFIRM_COPY_ALL_DIFFS, nullptr, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN },
 	{ IDS_MOVE_TO_NEXTFILE, IDS_MOVE_TO_NEXTFILE, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN },
 	{ IDS_MOVE_TO_PREVFILE, IDS_MOVE_TO_PREVFILE, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN },
 	{ IDS_MOVE_TO_FIRSTFILE, IDS_MOVE_TO_FIRSTFILE, nullptr, MB_YESNO | MB_DONT_ASK_AGAIN },
@@ -111,7 +113,7 @@ void PropMessageBoxes::DoDataExchange(CDataExchange* pDX)
 			{
 				int ans = m_answers[i];
 				m_list.SetCheck(i, ans != -1);
-				m_list.SetItemText(i, 1, (ans < 0 || ans >= Answers.size()) ? _T("") : Answers[ans].c_str());
+				m_list.SetItemText(i, 1, (ans < 0 || ans >= static_cast<int>(Answers.size())) ? _T("") : Answers[ans].c_str());
 			}
 		}
 		else

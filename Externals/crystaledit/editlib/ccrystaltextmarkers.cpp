@@ -20,14 +20,14 @@ CCrystalTextMarkers::~CCrystalTextMarkers()
 {
 }
 
-bool CCrystalTextMarkers::SetMarker(const TCHAR *pKey, const CString& sFindWhat, DWORD dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined, bool bVisible)
+bool CCrystalTextMarkers::SetMarker(const tchar_t *pKey, const CString& sFindWhat, findtext_flags_t dwFlags, enum COLORINDEX nBgColorIndex, bool bUserDefined, bool bVisible)
 {
 	Marker marker = { sFindWhat, dwFlags, nBgColorIndex, bUserDefined, bVisible };
 	m_markers.insert_or_assign(pKey, marker);
 	return true;
 }
 
-void CCrystalTextMarkers::DeleteMarker(const TCHAR *pKey)
+void CCrystalTextMarkers::DeleteMarker(const tchar_t *pKey)
 {
 	m_markers.erase(pKey);
 }
@@ -44,7 +44,7 @@ CString CCrystalTextMarkers::MakeNewId() const
 	{
 		if (marker.first.GetLength() > 6)
 		{
-			int tmp = _ttoi(marker.first.Mid(6));
+			int tmp = tc::ttoi(marker.first.Mid(6));
 			if (id_max < tmp)
 				id_max = tmp;
 		}
@@ -84,7 +84,7 @@ CString CCrystalTextMarkers::Serialize() const
 		if (marker.second.bUserDefined)
 		{
 			text.AppendFormat(_T("%s:%s\t%d\t%d\t%d\t%d\n"),
-				(LPCTSTR)marker.first, (LPCTSTR)marker.second.sFindWhat, 
+				(const tchar_t*)marker.first, (const tchar_t*)marker.second.sFindWhat, 
 				marker.second.dwFlags, marker.second.nBgColorIndex,
 				marker.second.bUserDefined, marker.second.bVisible);
 		}
@@ -115,21 +115,21 @@ bool CCrystalTextMarkers::Deserialize(const CString& value)
 		CString key = value.Mid(pos, pos_delim - pos);
 		pos = pos_delim + 1;
 
-		CStringArray ary;
+		std::vector<CString> ary;
 		for (int i = 0; i < 4; ++i)
 		{
 			pos_delim = value.Find(_T("\t"), pos);
 			if (pos_delim == -1)
 				return false;
-			ary.Add(value.Mid(pos, pos_delim - pos));
+			ary.push_back (value.Mid(pos, pos_delim - pos));
 			pos = pos_delim + 1;
 		}
 
 		Marker marker;
 		marker.sFindWhat = ary[0];
-		marker.dwFlags = _ttoi(ary[1]);
-		marker.nBgColorIndex = static_cast<COLORINDEX>(_ttoi(ary[2]));
-		marker.bVisible = _ttoi(ary[3]) != 0;
+		marker.dwFlags = tc::ttoi(ary[1]);
+		marker.nBgColorIndex = static_cast<COLORINDEX>(tc::ttoi(ary[2]));
+		marker.bVisible = tc::ttoi(ary[3]) != 0;
 		marker.bUserDefined = true;
 
 		pos_delim = value.Find(_T("\n"), pos);

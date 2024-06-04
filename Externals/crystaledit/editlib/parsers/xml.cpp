@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  XML keywords
-static const TCHAR * s_apszXmlKeywordList[] =
+static const tchar_t * s_apszXmlKeywordList[] =
   {
     _T ("ATTLIST"),
     _T ("DOCTYPE"),
@@ -34,7 +34,7 @@ static const TCHAR * s_apszXmlKeywordList[] =
     _T ("xml"),
   };
 
-static const TCHAR * s_apszUser1KeywordList[] =
+static const tchar_t * s_apszUser1KeywordList[] =
   {
     _T ("#FIXED"),
     _T ("#IMPLIED"),
@@ -61,19 +61,19 @@ static const TCHAR * s_apszUser1KeywordList[] =
   };
 
 static bool
-IsXmlKeyword (const TCHAR *pszChars, int nLength)
+IsXmlKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszXmlKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (const TCHAR *pszChars, int nLength)
+IsUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineXml (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineXml (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
@@ -83,7 +83,7 @@ CrystalLineParser::ParseLineXml (unsigned dwCookie, const TCHAR *pszChars, int n
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -165,7 +165,7 @@ out:
       //  Extended comment <!--....-->
       if (dwCookie & COOKIE_EXT_COMMENT)
         {
-          if (I > 1 && pszChars[I] == '>' && pszChars[nPrevI] == '-' && *::CharPrev(pszChars, pszChars + nPrevI) == '-')
+          if (I > 1 && pszChars[I] == '>' && pszChars[nPrevI] == '-' && *tc::tcharprev(pszChars, pszChars + nPrevI) == '-')
             {
               dwCookie &= ~COOKIE_EXT_COMMENT;
               bRedefineBlock = true;

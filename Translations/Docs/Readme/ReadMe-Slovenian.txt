@@ -1,51 +1,51 @@
-WINMERGE
+ÔªøWINMERGE
 
-WinMerge je odprtokodno orodje za primerjanje in zdruûevanje za Windows. WinMerge lahko
+WinMerge je odprtokodno orodje za primerjanje in zdru≈æevanje za Windows. WinMerge lahko
 primerja mape in datoteke ter predstavlja razlike v vizualni obliki besedila, ki je
 enostavna za razumevanje in upravljanje. WinMerge se lahko uporablja kot zunanje orodje
-za loËevanje/zdruûevanje ali kot samostojna aplikacija.
+za loƒçevanje/zdru≈æevanje ali kot samostojna aplikacija.
 
 WinMerge ima veliko koristnih podpornih funkcij, s katerimi je primerjava, sinhronizacija
-in zdruûevanje Ëim bolj enostavna in uporabna. ätevilni programski jeziki in drugi formati
+in zdru≈æevanje ƒçim bolj enostavna in uporabna. ≈†tevilni programski jeziki in drugi formati
 datotek so poudarjene v sintaksi.
 
-Najnovejöa razliËica WinMerge in informacije o WinMerge so na voljo na
+Najnovej≈°a razliƒçica WinMerge in informacije o WinMerge so na voljo na
 https://winmerge.org/.
 
-Hiter zaËetek
+Hiter zaƒçetek
 =============
-»e ûelite izvedeti, kako izvajati osnovne operacije po namestitvi WinMerge, kliknite na
-PomoË -> PomoË za WinMerge in se pomaknite do teme 'Hitri zaËetek', ali pa pojdite na
-spletno razliËico na naslovu https://manual.winmerge.org/Quick_start.html.
+ƒåe ≈æelite izvedeti, kako izvajati osnovne operacije po namestitvi WinMerge, kliknite na
+Pomoƒç -> Pomoƒç za WinMerge in se pomaknite do teme 'Hitri zaƒçetek', ali pa pojdite na
+spletno razliƒçico na naslovu https://manual.winmerge.org/Quick_start.html.
 
-PomoË za WinMerge
+Pomoƒç za WinMerge
 =================
-PomoË za WinMerge je nameöËena lokalno kot datoteka s pomoËjo Microsoft HTML, WinMerge.chm,
-ko namestite WinMerge. »e ûelite odpreti pomoË, kliknite na PomoË -> PomoË za WinMerge ali
-pritisnite na F1 v oknu WinMerge. V ukazni vrstici zaûenite izvedljivo datoteko WinMerge s
+Pomoƒç za WinMerge je name≈°ƒçena lokalno kot datoteka s pomoƒçjo Microsoft HTML, WinMerge.chm,
+ko namestite WinMerge. ƒåe ≈æelite odpreti pomoƒç, kliknite na Pomoƒç -> Pomoƒç za WinMerge ali
+pritisnite na F1 v oknu WinMerge. V ukazni vrstici za≈æenite izvedljivo datoteko WinMerge s
 stikalom /?.
 
-Po HTML razliËici pomoËi za WinMerge lahko brskate tudi na naslovu
+Po HTML razliƒçici pomoƒçi za WinMerge lahko brskate tudi na naslovu
 https://manual.winmerge.org/.
 
 Podpora za WinMerge
 ===================
-Vpraöanja ali predlogi o WinMerge? Dober zaËetek je oglasna deska skupnosti WinMerge
+Vpra≈°anja ali predlogi o WinMerge? Dober zaƒçetek je oglasna deska skupnosti WinMerge
 na naslovu https://forums.winmerge.org/. Razvijalci pogosto berejo in odgovarjajo na
-vpraöanja na obeh forumih. Za sploöne teûave z WinMerge, kot so vpraöanja o uporabi,
-uporabite forum 'Odprta razprava'. Uporabite 'Forum za razvijalce' za razvojna vpraöanja
+vpra≈°anja na obeh forumih. Za splo≈°ne te≈æave z WinMerge, kot so vpra≈°anja o uporabi,
+uporabite forum 'Odprta razprava'. Uporabite 'Forum za razvijalce' za razvojna vpra≈°anja
 WinMerge.
 
 Prijava programskih napak in zahteve funkcij
 ============================================
-»e teûava ni odpravljena na forumih WinMerge, preverite sledilce projektov: pojdite
+ƒåe te≈æava ni odpravljena na forumih WinMerge, preverite sledilce projektov: pojdite
 na naslov https://project.winmerge.org/ in v meniju 'Sledilci' kliknite na povezavo,
 kot so 'Programske napake (Bugs) in 'Zahteve za funkcije', kjer lahko brskate ali
-poöiljate vnose.
+po≈°iljate vnose.
 
-»e oddate prijavo programske napake, v poroËilo vkljuËite ötevilko razliËice WinMerge.
-Dnevnik nastavitev lahko ustvarite s klikom na PomoË -> Nastavitve.
-K prijavi programske napake priloûite Dnevnik nastavitev, ker ta vsebuje veliko
+ƒåe oddate prijavo programske napake, v poroƒçilo vkljuƒçite ≈°tevilko razliƒçice WinMerge.
+Dnevnik nastavitev lahko ustvarite s klikom na Pomoƒç -> Nastavitve.
+K prijavi programske napake prilo≈æite Dnevnik nastavitev, ker ta vsebuje veliko
 koristnih informacij za razvijalce.
 
 

@@ -14,7 +14,7 @@
 #
 # include <boost/preprocessor/config/config.hpp>
 #
-# if BOOST_PP_VARIADICS && defined(__cplusplus) && __cplusplus > 201703L
+# if defined(__cplusplus) && __cplusplus > 201703L
 #
 # if BOOST_PP_VARIADICS_MSVC
 # include <boost/preprocessor/cat.hpp>

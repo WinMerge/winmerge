@@ -1,0 +1,2 @@
+https://github.com/plantuml/plantuml/releases/download/v1.2023.0/plantuml-1.2023.0.jar
+https://github.com/plantuml/plantuml/releases/download/v1.2023.0/plantuml-1.2023.0-sources.jar

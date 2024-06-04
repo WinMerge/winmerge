@@ -1,9 +1,10 @@
+// Copyright (c) 2019 Takashi Sawanaka
+// SPDX-License-Identifier: BSL-1.0
 #pragma once
 
 #include <cstdint>
 #include <memory>
 #include "string_util.h"
-#include <Windows.h>
 
 #ifndef ICU_EXTERN
 #define ICU_EXTERN extern
@@ -32,6 +33,7 @@ typedef struct UParseError {
 } UParseError;
 typedef uint8_t UVersionInfo[U_MAX_VERSION_LENGTH];
 
+class ICULoaderImpl;
 class ICUBreakIterator;
 
 template<int N>
@@ -62,35 +64,9 @@ ICU_EXTERN ubrk_next_type ubrk_next;
 ICU_EXTERN ubrk_preceding_type ubrk_preceding;
 ICU_EXTERN ubrk_following_type ubrk_following;
 
-class ICULoader {
-public:
-	ICULoader()
-	{
-		m_hLibrary = LoadLibraryW(L"icu.dll");
-		if (!m_hLibrary)
-			return;
-		u_getVersion = reinterpret_cast<u_getVersion_type>(GetProcAddress(m_hLibrary, "u_getVersion"));
-		ubrk_open = reinterpret_cast<ubrk_open_type>(GetProcAddress(m_hLibrary, "ubrk_open"));
-		ubrk_openRules = reinterpret_cast<ubrk_openRules_type>(GetProcAddress(m_hLibrary, "ubrk_openRules"));
-		ubrk_openBinaryRules = reinterpret_cast<ubrk_openBinaryRules_type>(GetProcAddress(m_hLibrary, "ubrk_openBinaryRules"));
-		ubrk_setText = reinterpret_cast<ubrk_setText_type>(GetProcAddress(m_hLibrary, "ubrk_setText"));
-		ubrk_close = reinterpret_cast<ubrk_close_type>(GetProcAddress(m_hLibrary, "ubrk_close"));
-		ubrk_first = reinterpret_cast<ubrk_first_type>(GetProcAddress(m_hLibrary, "ubrk_first"));
-		ubrk_previous = reinterpret_cast<ubrk_previous_type>(GetProcAddress(m_hLibrary, "ubrk_previous"));
-		ubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
-		ubrk_preceding = reinterpret_cast<ubrk_preceding_type>(GetProcAddress(m_hLibrary, "ubrk_preceding"));
-		ubrk_following = reinterpret_cast<ubrk_following_type>(GetProcAddress(m_hLibrary, "ubrk_following"));
-		ubrk_next = reinterpret_cast<ubrk_next_type>(GetProcAddress(m_hLibrary, "ubrk_next"));
-
-	}
-	~ICULoader()
-	{
-		if (m_hLibrary)
-			FreeLibrary(m_hLibrary);
-	}
-	static bool IsLoaded() { return m_hLibrary != nullptr && ubrk_open != nullptr; }
-private:
-	static HMODULE m_hLibrary;
+namespace ICULoader
+{
+	bool IsLoaded();
 };
 
 class ICUBreakIterator
@@ -201,13 +177,6 @@ public:
 	static ICUBreakIterator *getCharacterBreakIterator(const wchar_t * text, int32_t textLength)
 	{
 		return getCharacterBreakIterator<1>(reinterpret_cast<const UChar *>(text), textLength);
-	}
-
-	static ICUBreakIterator *getCharacterBreakIterator(const char * text, int32_t textLength)
-	{
-		std::unique_ptr<wchar_t> wtext{ new wchar_t[textLength] };
-		int wlen = MultiByteToWideChar(CP_ACP, 0, text, textLength, wtext.get(), textLength);
-		return getCharacterBreakIterator<1>(reinterpret_cast<const UChar *>(wtext.get()), wlen);
 	}
 
 	template<int N>

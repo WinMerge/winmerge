@@ -1,0 +1,16 @@
+--- file1.txt	Sat Feb 10 15:29:00 2024
++++ file1.txt	Sat Feb 10 15:29:00 2024
+@@ -4,4 +4,4 @@
+ e
+ f
+ file1
+-dir1
++dir2
+--- file2.txt	Sat Feb 10 15:48:11 2024
++++ file2.txt	Sat Feb 10 15:48:11 2024
+@@ -4,4 +4,4 @@
+ e
+ f
+ file2
+-dir1
++dir2

@@ -133,6 +133,9 @@ BOOL CHexMergeFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		m_pMergeDoc->SetDescription(pane ,sText);
 		m_pMergeDoc->UpdateHeaderPath(pane);
 	});
+	m_wndFilePathBar.SetOnFileSelectedCallback([&](int pane, const String& sFilepath) {
+		m_pMergeDoc->ChangeFile(pane, sFilepath);
+	});
 
 	// Set filename bars inactive so colors get initialized
 	for (nPane = 0; nPane < m_pMergeDoc->m_nBuffers; nPane++)
@@ -330,7 +333,7 @@ void CHexMergeFrame::OnIdleUpdateCmdUI()
 			pView[pane] = static_cast<CHexMergeView *>(m_wndSplitter.GetPane(0, pane));
 
 		// Update mod indicators
-		TCHAR ind[2];
+		tchar_t ind[2];
 
 		for (pane = 0; pane < nColumns; ++pane)
 		{

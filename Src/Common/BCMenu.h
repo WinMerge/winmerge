@@ -65,7 +65,7 @@ public:
 		return BCMenu::LoadMenu(MAKEINTRESOURCE(nResource));
 	}
 
-	bool LoadToolbar(UINT nToolBar);
+	bool LoadToolbar(UINT nToolBar, CToolBar* pBar = nullptr);
 	bool AddBitmapToImageList(CImageList *list,UINT nResourceID);
 	bool ReplaceBitmapInImageList(CImageList *list,int xoffset,UINT nResourceID);
 	static HBITMAP LoadSysColorBitmap(int nResourceId);

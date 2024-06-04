@@ -34,8 +34,8 @@
 
 IMPLEMENT_DYNAMIC(CSizingControlBarCF, baseCSizingControlBarCF);
 
-int CALLBACK EnumFontFamProc(ENUMLOGFONT FAR *lpelf,
-                             NEWTEXTMETRIC FAR *lpntm,
+int CALLBACK EnumFontFamProc(ENUMLOGFONT* lpelf,
+                             NEWTEXTMETRIC* lpntm,
                              int FontType,
                              LPARAM lParam)
 {

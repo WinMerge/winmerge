@@ -24,7 +24,7 @@
 #define new DEBUG_NEW
 #endif
 
-EDITPADC_CLASS LPCTSTR pszCodeNames[] =
+EDITPADC_CLASS const tchar_t* pszCodeNames[] =
   {
     _T ("ASCII (without accents)"),
     _T ("MS-Windows CP 1250"),
@@ -44,7 +44,7 @@ EDITPADC_CLASS LPCTSTR pszCodeNames[] =
 
 EDITPADC_CLASS int nCodeNames = sizeof (pszCodeNames) / sizeof (pszCodeNames[0]) - 1;
 
-EDITPADC_CLASS void FillComboBox (CComboBox &Control, LPCTSTR *pszItems)
+EDITPADC_CLASS void FillComboBox (CComboBox &Control, const tchar_t* *pszItems)
 {
   Control.ResetContent();
   ASSERT (pszItems != nullptr);
@@ -114,7 +114,7 @@ void CCharConvDlg::OnOK ()
 void CCharConvDlg::OnPreview() 
 {
   UpdateData ();
-  LPTSTR pszNew = nullptr;
+  tchar_t* pszNew = nullptr;
   if (!iconvert_new (m_sOriginal, &pszNew, m_nSource, m_nDest, m_bAlpha))
     {
       m_sPreview = pszNew;

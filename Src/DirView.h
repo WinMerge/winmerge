@@ -21,11 +21,13 @@
 #include "DirItemIterator.h"
 #include "DirActions.h"
 #include "IListCtrlImpl.h"
+#include "FileOpenFlags.h"
 #include "utils/DpiAware.h"
 
 class FileActionScript;
 
 typedef enum { eMain, eContext } eMenuType;
+typedef enum { DO_NOT_EXPAND, EXPAND_ALL, EXPAND_DIFFERENT, EXPAND_IDENTICAL } eExpandSubfoldersType;
 
 class CDirDoc;
 class CDirFrame;
@@ -48,7 +50,7 @@ struct IListCtrl;
 const uintptr_t SPECIAL_ITEM_POS = (uintptr_t)(reinterpret_cast<DIFFITEM *>( - 1L));
 
 /** Default column width in directory compare */
-const UINT DefColumnWidth = 111;
+constexpr int DefColumnWidth = 111;
 
 /**
  * @brief Directory compare results view.
@@ -200,11 +202,10 @@ protected:
 	CListCtrl* m_pList;
 	std::unique_ptr<IListCtrl> m_pIList;
 	int m_nEscCloses; /**< Cached value for option for ESC closing window */
-	bool m_bExpandSubdirs;
+	eExpandSubfoldersType m_nExpandSubdirs;
 	CFont m_font; /**< User-selected font */
 	bool m_bTreeMode; /**< `true` if tree mode is on*/
 	DirViewFilterSettings m_dirfilter;
-	clock_t m_compareStart; /**< Starting process time of the compare */
 	clock_t m_elapsed; /**< Elapsed time of the compare */
 	bool m_bUserCancelEdit; /**< `true` if the user cancels rename */
 	String m_lastCopyFolder; /**< Last Copy To -target folder. */
@@ -218,6 +219,7 @@ protected:
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuLeft; /**< Shell context menu for group of left files */
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuMiddle; /**< Shell context menu for group of middle files */
 	std::unique_ptr<CShellContextMenu> m_pShellContextMenuRight; /**< Shell context menu for group of right files */
+	std::unique_ptr<CShellContextMenu> m_pShellContextMenuBoth; /**< Shell context menu for group of both files */
 	HMENU m_hCurrentMenu; /**< Current shell context menu (either left or right) */
 	std::unique_ptr<DirViewTreeState> m_pSavedTreeState;
 	std::unique_ptr<DirViewColItems> m_pColItems;
@@ -234,6 +236,10 @@ protected:
 	afx_msg void OnUpdateDirCopy(CCmdUI* pCmdUI);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	afx_msg void OnUpdateCtxtDirCopy(CCmdUI* pCmdUI);
+	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+	afx_msg void OnCtxtDirMove();
+	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+	afx_msg void OnUpdateCtxtDirMove(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
 	afx_msg void OnCtxtDirDel();
 	template<SIDE_TYPE stype>
@@ -241,19 +247,19 @@ protected:
 	afx_msg void OnCtxtDirDelBoth();
 	afx_msg void OnUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpen();
+	afx_msg void OnCtxtDirOpen() { DoOpen(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpen(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpenWith();
+	afx_msg void OnCtxtDirOpenWith() { DoOpenWith(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenWith(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpenWithEditor();
+	afx_msg void OnCtxtDirOpenWithEditor() { DoOpenWithEditor(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenWithEditor(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirOpenParentFolder();
+	afx_msg void OnCtxtDirOpenParentFolder() { DoOpenParentFolder(stype); }
 	template<SIDE_TYPE stype>
 	afx_msg void OnUpdateCtxtDirOpenParentFolder(CCmdUI* pCmdUI);
 	template<SIDE_TYPE stype>
@@ -286,8 +292,9 @@ protected:
 	afx_msg void OnEditColumns();
 	template<SIDE_TYPE stype>
 	afx_msg void OnReadOnly();
+	afx_msg void OnUpdateReadOnly(CCmdUI* pCmdUI, SIDE_TYPE stype);
 	template<SIDE_TYPE stype>
-	afx_msg void OnUpdateReadOnly(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateReadOnly(CCmdUI* pCmdUI) { OnUpdateReadOnly(pCmdUI, stype); }
 	afx_msg void OnUpdateStatusLeftRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusMiddleRO(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightRO(CCmdUI* pCmdUI);
@@ -297,22 +304,26 @@ protected:
 	afx_msg void OnToolsGenerateReport();
 	afx_msg LRESULT OnGenerateFileCmpReport(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnToolsGeneratePatch();
+	afx_msg void OnCtxtDirZip(int flag);
 	template<int flag>
-	afx_msg void OnCtxtDirZip();
-	template<SIDE_TYPE stype>
-	afx_msg void OnCtxtDirShellContextMenu();
+	afx_msg void OnCtxtDirZip() { OnCtxtDirZip(flag); }
+	afx_msg void OnCtxtDirShellContextMenu(UINT id) { ShowShellContextMenu(id); }
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginSettings(UINT nID);
 	afx_msg void OnUpdatePluginMode(CCmdUI* pCmdUI);
+	afx_msg void OnCopyPathnames(SIDE_TYPE side);
 	template<SIDE_TYPE side>
-	afx_msg void OnCopyPathnames();
+	afx_msg void OnCopyPathnames() { OnCopyPathnames(side); }
 	afx_msg void OnCopyBothPathnames();
 	afx_msg void OnCopyFilenames();
 	afx_msg void OnUpdateCopyFilenames(CCmdUI* pCmdUI);
+	afx_msg void OnCopyToClipboard(SIDE_TYPE side);
 	template<SIDE_TYPE side>
-	afx_msg void OnCopyToClipboard();
+	afx_msg void OnCopyToClipboard() { OnCopyToClipboard(side); }
 	afx_msg void OnCopyBothToClipboard();
+	afx_msg void OnCopyAllDisplayedColumns();
+	afx_msg void OnUpdateCopyAllDisplayedColumns(CCmdUI* pCmdUI);
 	afx_msg void OnItemRename();
 	afx_msg void OnUpdateItemRename(CCmdUI* pCmdUI);
 	afx_msg void OnHideFilenames();
@@ -331,13 +342,17 @@ protected:
 	afx_msg void OnViewTreeMode();
 	afx_msg void OnUpdateViewTreeMode(CCmdUI* pCmdUI);
 	afx_msg void OnViewExpandAllSubdirs();
-	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
+	afx_msg void OnViewExpandDifferentSubdirs();
+	afx_msg void OnViewExpandIdenticalSubdirs();
+	afx_msg void OnUpdateViewExpandSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnViewCollapseAllSubdirs();
 	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
+	afx_msg void OnViewSwapPanes(int pane1, int pane2);
 	template <int pane1, int pane2>
-	afx_msg void OnViewSwapPanes();
+	afx_msg void OnViewSwapPanes() { OnViewSwapPanes(pane1, pane2); }
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI, int pane1, int pane2);
 	template <int pane1, int pane2>
-	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI) { OnUpdateViewSwapPanes(pCmdUI, pane1, pane2); }
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();
 	afx_msg void OnOptionsShowUniqueLeft();
@@ -366,12 +381,12 @@ protected:
 	afx_msg void OnUpdateOptionsShowMissingRightOnly(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare(UINT nID);
 	template<SELECTIONTYPE seltype>
-	afx_msg void OnMergeCompare2();
+	afx_msg void OnMergeCompare2() { OpenSelection(seltype); }
 	afx_msg void OnMergeCompareNonHorizontally();
 	afx_msg void OnMergeCompareAs(UINT nID);
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	template<SELECTIONTYPE seltype>
-	afx_msg void OnUpdateMergeCompare2(CCmdUI *pCmdUI);
+	afx_msg void OnUpdateMergeCompare2(CCmdUI* pCmdUI) { DoUpdateOpen(seltype, pCmdUI); }
 	afx_msg void OnUpdateNoUnpacker(CCmdUI* pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();
@@ -388,6 +403,8 @@ protected:
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSearch();
 	afx_msg void OnBeginDrag(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult);
+
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	bool OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -397,7 +414,7 @@ protected:
 	LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 
 private:
-	void Open(CDirDoc *pDoc, const PathContext& paths, DWORD dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
+	void Open(CDirDoc *pDoc, const PathContext& paths, fileopenflags_t dwFlags[3], FileTextEncoding encoding[3], PackingInfo * infoUnpacker = nullptr);
 	void OpenSelection(CDirDoc *pDoc, SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelection(SELECTIONTYPE selectionType = SELECTIONTYPE_NORMAL, PackingInfo * infoUnpacker = nullptr, bool openableForDir = true);
 	void OpenSelectionAs(UINT id);
@@ -405,6 +422,8 @@ private:
 	void OpenParentDirectory(CDirDoc *pDocOpen);
 	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
 	void DoUpdateDirCopy(CCmdUI* pCmdUI, eMenuType menuType);
+	template<SIDE_TYPE srctype, SIDE_TYPE dsttype>
+	void DoUpdateDirMove(CCmdUI* pCmdUI, eMenuType menuType);
 	const DIFFITEM &GetDiffItem(int sel) const;
 	DIFFITEM &GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
@@ -413,8 +432,7 @@ private:
 	void FixReordering();
 	void HeaderContextMenu(CPoint point, int i);
 	void ListContextMenu(CPoint point, int i);
-	bool ListShellContextMenu(SIDE_TYPE side);
-	void ShowShellContextMenu(SIDE_TYPE side);
+	void ShowShellContextMenu(UINT id);
 	CShellContextMenu* GetCorrespondingShellContextMenu(HMENU hMenu) const;
 	void ReloadColumns();
 	bool IsLabelEdit() const;

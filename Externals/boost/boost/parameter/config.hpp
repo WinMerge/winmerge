@@ -30,7 +30,7 @@
     !defined(BOOST_NO_CXX11_RVALUE_REFERENCES) && \
     !defined(BOOST_NO_CXX11_VARIADIC_TEMPLATES) && \
     !defined(BOOST_NO_CXX11_FUNCTION_TEMPLATE_DEFAULT_ARGS) && \
-    !BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564)) && !( \
+    !BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564)) && !( \
         defined(BOOST_CLANG) && (1 == BOOST_CLANG) && ( \
             (__clang_major__ < 3) || ( \
                 (3 == __clang_major__) && (__clang_minor__ < 2) \

@@ -11,7 +11,7 @@
 #ifndef BOOST_TT_IS_MEMBER_FUNCTION_POINTER_CXX_03_HPP_INCLUDED
 #define BOOST_TT_IS_MEMBER_FUNCTION_POINTER_CXX_03_HPP_INCLUDED
 
-#if !BOOST_WORKAROUND(__BORLANDC__, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
+#if !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
    //
    // Note: we use the "workaround" version for MSVC because it works for 
    // __stdcall etc function types, where as the partial specialisation
@@ -29,9 +29,9 @@
 
 namespace boost {
 
-#if defined( __CODEGEARC__ )
+#if defined( BOOST_CODEGEARC )
 template <class T> struct is_member_function_pointer : public integral_constant<bool, __is_member_function_pointer( T )> {};
-#elif !BOOST_WORKAROUND(__BORLANDC__, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
+#elif !BOOST_WORKAROUND(BOOST_BORLANDC, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
 
 template <class T> struct is_member_function_pointer 
    : public ::boost::integral_constant<bool, ::boost::type_traits::is_mem_fun_pointer_impl<typename remove_cv<T>::type>::value>{};
@@ -40,7 +40,7 @@ template <class T> struct is_member_function_pointer
 
 namespace detail {
 
-#ifndef __BORLANDC__
+#ifndef BOOST_BORLANDC
 
 template <bool>
 struct is_mem_fun_pointer_select

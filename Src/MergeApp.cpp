@@ -2,7 +2,6 @@
 #include "MergeApp.h"
 #include "Merge.h"
 #include "VersionInfo.h"
-#include "paths.h"
 #include "Constants.h"
 #include "unicoder.h"
 
@@ -20,12 +19,12 @@ String GetSysError(int nerr /* =-1 */)
 		nullptr,
 		nerr,
 		0, // Default language
-		(LPTSTR) &lpMsgBuf,
+		(tchar_t*) &lpMsgBuf,
 		0,
 		nullptr 
 		))
 	{
-		str = (LPCTSTR)lpMsgBuf;
+		str = (const tchar_t*)lpMsgBuf;
 		// Free the buffer.
 		LocalFree( lpMsgBuf );
 	}
@@ -47,7 +46,7 @@ void LogErrorString(const String& sz)
 {
 	if (sz.empty()) return;
 	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (LPCTSTR)now, sz.c_str());
+	TRACE(_T("%s: %s\n"), (const tchar_t*)now, sz.c_str());
 }
 
 // Send message to log and debug window
@@ -56,7 +55,7 @@ void LogErrorStringUTF8(const std::string& sz)
 	if (sz.empty()) return;
 	String str = ucr::toTString(sz);
 	CString now = COleDateTime::GetCurrentTime().Format();
-	TRACE(_T("%s: %s\n"), (LPCTSTR)now, str.c_str());
+	TRACE(_T("%s: %s\n"), (const tchar_t*)now, str.c_str());
 }
 
 /**
@@ -76,6 +75,13 @@ String tr(const std::string &str)
 	return translated_str;
 }
 
+String tr(const std::wstring &str)
+{
+	String translated_str;
+	theApp.TranslateString(str, translated_str);
+	return translated_str;
+}
+
 String tr(const char *msgctxt, const std::string &str)
 {
 	String translated_str;
@@ -89,6 +95,11 @@ String tr(const char *msgctxt, const std::string &str)
 void AppErrorMessageBox(const String& msg)
 {
 	AppMsgBox::error(msg);
+}
+
+void* AppGetMainHWND()
+{
+	return AfxGetMainWnd()->GetSafeHwnd();
 }
 
 namespace AppMsgBox

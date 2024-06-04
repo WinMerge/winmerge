@@ -4,12 +4,10 @@
  * @brief Implementation of LineInfo class.
  */
 
-#include "stdafx.h"
+#include "pch.h"
 #include "LineInfo.h"
-
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#endif
+#include <cassert>
+#include <utility>
 
 /**
  @brief Constructor.
@@ -22,7 +20,68 @@ LineInfo::LineInfo()
 , m_dwFlags(0)
 , m_dwRevisionNumber(0)
 {
-};
+}
+
+LineInfo::LineInfo(const tchar_t* pszLine, size_t nLength)
+: m_pcLine(nullptr)
+, m_nLength(0)
+, m_nMax(0)
+, m_nEolChars(0)
+, m_dwFlags(0)
+, m_dwRevisionNumber(0)
+{
+  Create(pszLine, nLength);
+}
+
+LineInfo::LineInfo(const LineInfo& li)
+: m_pcLine(new tchar_t[li.m_nMax])
+, m_nLength(li.m_nLength)
+, m_nMax(li.m_nMax)
+, m_nEolChars(li.m_nEolChars)
+, m_dwFlags(li.m_dwFlags)
+, m_dwRevisionNumber(li.m_dwRevisionNumber)
+{
+  memcpy (m_pcLine, li.m_pcLine, sizeof (tchar_t) * m_nMax);
+}
+
+LineInfo::LineInfo(LineInfo&& li) noexcept
+: m_pcLine(nullptr)
+, m_nLength(0)
+{
+  *this = std::move(li);
+}
+
+LineInfo::~LineInfo()
+{
+  delete[] m_pcLine;
+}
+
+LineInfo& LineInfo::operator=(const LineInfo& li)
+{
+  delete[] m_pcLine;
+  m_pcLine = new tchar_t[li.m_nMax];
+  m_nLength = li.m_nLength;
+  m_nMax = li.m_nMax;
+  m_nEolChars = li.m_nEolChars;
+  m_dwFlags = li.m_dwFlags;
+  m_dwRevisionNumber = li.m_dwRevisionNumber;
+  memcpy (m_pcLine, li.m_pcLine, sizeof (tchar_t) * m_nMax);
+  return *this;
+}
+
+LineInfo& LineInfo::operator=(LineInfo&& li) noexcept
+{
+  delete[] m_pcLine;
+  m_pcLine = li.m_pcLine;
+  m_nLength = li.m_nLength;
+  m_nMax = li.m_nMax;
+  m_nEolChars = li.m_nEolChars;
+  m_dwFlags = li.m_dwFlags;
+  m_dwRevisionNumber = li.m_dwRevisionNumber;
+  li.m_pcLine = nullptr;
+  li.m_nLength = 0;
+  return *this;
+}
 
 /**
  * @brief Clear item.
@@ -63,7 +122,7 @@ void LineInfo::FreeBuffer()
  * @param [in] pszLine Line data.
  * @param [in] nLength Line length.
  */
-void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
+void LineInfo::Create(const tchar_t* pszLine, size_t nLength)
 {
   if (nLength == 0)
     {
@@ -71,17 +130,17 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
       return;
     }
 
-  ASSERT (nLength <= INT_MAX);		// assert "positive int"
+  assert (nLength <= INT_MAX);		// assert "positive int"
   m_nLength = nLength;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
-  ASSERT (m_nMax < INT_MAX);
-  ASSERT (m_nMax >= m_nLength + 1);
+  assert (m_nMax < INT_MAX);
+  assert (m_nMax >= m_nLength + 1);
   if (m_pcLine != nullptr)
     delete[] m_pcLine;
-  m_pcLine = new TCHAR[m_nMax];
-  ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
-  const size_t dwLen = sizeof (TCHAR) * m_nLength;
-  CopyMemory (m_pcLine, pszLine, dwLen);
+  m_pcLine = new tchar_t[m_nMax];
+  memset(m_pcLine, 0, m_nMax * sizeof(tchar_t));
+  const size_t dwLen = sizeof (tchar_t) * m_nLength;
+  memcpy (m_pcLine, pszLine, dwLen);
   m_pcLine[m_nLength] = '\0';
 
   int nEols = 0;
@@ -89,7 +148,7 @@ void LineInfo::Create(LPCTSTR pszLine, size_t nLength)
     nEols = 2;
   else if (IsEol(pszLine[nLength - 1]))
     nEols = 1;
-  ASSERT (static_cast<size_t>(nEols) <= m_nLength);
+  assert (static_cast<size_t>(nEols) <= m_nLength);
   m_nLength -= nEols;
   m_nEolChars = nEols;
 }
@@ -103,8 +162,8 @@ void LineInfo::CreateEmpty()
   m_nEolChars = 0;
   m_nMax = ALIGN_BUF_SIZE (m_nLength + 1);
   delete [] m_pcLine;
-  m_pcLine = new TCHAR[m_nMax];
-  ZeroMemory(m_pcLine, m_nMax * sizeof(TCHAR));
+  m_pcLine = new tchar_t[m_nMax];
+  memset (m_pcLine, 0, m_nMax * sizeof(tchar_t));
 }
 
 /**
@@ -112,23 +171,23 @@ void LineInfo::CreateEmpty()
  * @param [in] pszChars String to append to the line.
  * @param [in] nLength Length of the string to append.
  */
-void LineInfo::Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol)
+void LineInfo::Append(const tchar_t* pszChars, size_t nLength, bool bDetectEol)
 {
-  ASSERT (nLength <= INT_MAX);		// assert "positive int"
+  assert (nLength <= INT_MAX);		// assert "positive int"
   size_t nBufNeeded = m_nLength + m_nEolChars + nLength + 1;
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
-      ASSERT (m_nMax < INT_MAX);
-      ASSERT (m_nMax >= m_nLength + nLength);
-      TCHAR *pcNewBuf = new TCHAR[m_nMax];
+      assert (m_nMax < INT_MAX);
+      assert (m_nMax >= m_nLength + nLength);
+      tchar_t *pcNewBuf = new tchar_t[m_nMax];
       if (FullLength() > 0)
-        memcpy (pcNewBuf, m_pcLine, sizeof (TCHAR) * (FullLength() + 1));
+        memcpy (pcNewBuf, m_pcLine, sizeof (tchar_t) * (FullLength() + 1));
       delete[] m_pcLine;
       m_pcLine = pcNewBuf;
     }
 
-  memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (TCHAR) * nLength);
+  memcpy (m_pcLine + m_nLength + m_nEolChars, pszChars, sizeof (tchar_t) * nLength);
   m_nLength += nLength + m_nEolChars;
   m_pcLine[m_nLength] = '\0';
 
@@ -144,28 +203,16 @@ void LineInfo::Append(LPCTSTR pszChars, size_t nLength, bool bDetectEol)
       {
        m_nEolChars = 1;
       }
-   ASSERT (static_cast<size_t>(m_nEolChars) <= m_nLength);
+   assert (static_cast<size_t>(m_nEolChars) <= m_nLength);
    m_nLength -= m_nEolChars;
-   ASSERT (m_nLength + m_nEolChars <= m_nMax);
-}
-
-/**
- * @brief Has the line EOL?
- * @return true if the line has EOL bytes.
- */
-bool LineInfo::HasEol() const
-{
-  if (m_nEolChars)
-    return true;
-  else
-    return false;
+   assert (m_nLength + m_nEolChars <= m_nMax);
 }
 
 /**
  * @brief Get line's EOL bytes.
  * @return EOL bytes, or `nullptr` if no EOL bytes.
  */
-LPCTSTR LineInfo::GetEol() const
+const tchar_t* LineInfo::GetEol() const
 {
   if (HasEol())
     return &m_pcLine[Length()];
@@ -178,30 +225,30 @@ LPCTSTR LineInfo::GetEol() const
  * @param [in] lpEOL New EOL bytes.
  * @return true if succeeded, false if failed (nothing to change).
  */
-bool LineInfo::ChangeEol(LPCTSTR lpEOL)
+bool LineInfo::ChangeEol(const tchar_t* lpEOL)
 {
-  const int nNewEolChars = (int) _tcslen(lpEOL);
+  const int nNewEolChars = (int) tc::tcslen(lpEOL);
 
   // Check if we really are changing EOL.
   if (nNewEolChars == m_nEolChars)
-    if (_tcscmp(m_pcLine + Length(), lpEOL) == 0)
+    if (tc::tcscmp(m_pcLine + Length(), lpEOL) == 0)
       return false;
 
   size_t nBufNeeded = m_nLength + nNewEolChars+1;
-  ASSERT (nBufNeeded < INT_MAX);
+  assert (nBufNeeded < INT_MAX);
   if (nBufNeeded > m_nMax)
     {
       m_nMax = ALIGN_BUF_SIZE (nBufNeeded);
-      ASSERT (m_nMax >= nBufNeeded);
-      TCHAR *pcNewBuf = new TCHAR[m_nMax];
+      assert (m_nMax >= nBufNeeded);
+      tchar_t *pcNewBuf = new tchar_t[m_nMax];
       if (FullLength() > 0)
-        memcpy (pcNewBuf, m_pcLine, sizeof (TCHAR) * (FullLength() + 1));
+        memcpy (pcNewBuf, m_pcLine, sizeof (tchar_t) * (FullLength() + 1));
       delete[] m_pcLine;
       m_pcLine = pcNewBuf;
     }
   
   // copy also the 0 to zero-terminate the line
-  memcpy (m_pcLine + m_nLength, lpEOL, sizeof (TCHAR) * (nNewEolChars + 1));
+  memcpy (m_pcLine + m_nLength, lpEOL, sizeof (tchar_t) * (nNewEolChars + 1));
   m_nEolChars = nNewEolChars;
   return true;
 }
@@ -217,7 +264,7 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
     {
       // preserve characters after deleted range by shifting up
       memcpy (m_pcLine + nStartChar, m_pcLine + nEndChar,
-              sizeof (TCHAR) * (FullLength() - nEndChar));
+              sizeof (tchar_t) * (FullLength() - nEndChar));
     }
   size_t nDelete = (nEndChar - nStartChar);
   if (nDelete <= m_nLength)
@@ -226,12 +273,12 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
     }
   else
     {
-      ASSERT( (m_nLength + m_nEolChars) <= nDelete );
+      assert( (m_nLength + m_nEolChars) <= nDelete );
       nDelete -= m_nLength;
       m_nLength = 0;
       m_nEolChars -= static_cast<int>(nDelete);
     }
-  ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
+  assert (m_nLength <= INT_MAX);		// assert "positive int"
   if (m_pcLine != nullptr)
     m_pcLine[FullLength()] = '\0';
 }
@@ -243,21 +290,10 @@ void LineInfo::Delete(size_t nStartChar, size_t nEndChar)
 void LineInfo::DeleteEnd(size_t nStartChar)
 {
   m_nLength = nStartChar;
-  ASSERT (m_nLength <= INT_MAX);		// assert "positive int"
+  assert (m_nLength <= INT_MAX);		// assert "positive int"
   if (m_pcLine != nullptr)
     m_pcLine[nStartChar] = 0;
   m_nEolChars = 0;
-}
-
-/**
- * @brief Copy contents from another LineInfo item.
- * @param [in] li Item to copy.
- */
-void LineInfo::CopyFrom(const LineInfo &li)
-{
-  delete [] m_pcLine;
-  m_pcLine = new TCHAR[li.m_nMax];
-  memcpy(m_pcLine, li.m_pcLine, li.m_nMax * sizeof(TCHAR));
 }
 
 /**
@@ -270,14 +306,4 @@ void LineInfo::RemoveEol()
     m_pcLine[m_nLength] = '\0';
     m_nEolChars = 0;
   }
-}
-
-/**
- * @brief Get line contents.
- * @param [in] index Index of first character to get.
- * @note Make a copy from returned string, as it can get reallocated.
- */
-LPCTSTR LineInfo::GetLine(size_t index) const
-{
-  return &m_pcLine[index];
 }

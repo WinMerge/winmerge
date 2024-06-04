@@ -43,19 +43,21 @@ SharedMemoryImpl::SharedMemoryImpl(const std::string& name, std::size_t size, Sh
 	if (!_memHandle)
 	{
 		DWORD dwRetVal = GetLastError();
-#if defined (_WIN32_WCE)
-		throw SystemException(format("Cannot create shared memory object %s [Error %d: %s]", _name, static_cast<int>(dwRetVal), Error::getMessage(dwRetVal)));
-#else
+		int retVal = static_cast<int>(dwRetVal);
+
 		if (_mode != PAGE_READONLY || dwRetVal != 5)
-			throw SystemException(format("Cannot create shared memory object %s [Error %d: %s]", _name, static_cast<int>(dwRetVal), Error::getMessage(dwRetVal)));
+		{
+			throw SystemException(Poco::format("Cannot create shared memory object %s [Error %d: %s]",
+				_name, retVal, Error::getMessage(dwRetVal)), retVal);
+		}
 
 		_memHandle = OpenFileMappingW(PAGE_READONLY, FALSE, tmpFile.wpath().c_str());
 		if (!_memHandle)
 		{
 			dwRetVal = GetLastError();
-			throw SystemException(format("Cannot open shared memory object %s [Error %d: %s]", _name, static_cast<int>(dwRetVal), Error::getMessage(dwRetVal)));
+			throw SystemException(Poco::format("Cannot open shared memory object %s [Error %d: %s]",
+				_name, retVal, Error::getMessage(dwRetVal)), retVal);
 		}
-#endif 
 	}
 	map();
 }
@@ -65,6 +67,7 @@ SharedMemoryImpl::SharedMemoryImpl(const Poco::File& file, SharedMemory::AccessM
 	_name(file.path()),
 	_memHandle(INVALID_HANDLE_VALUE),
 	_fileHandle(INVALID_HANDLE_VALUE),
+	_size(0),
 	_mode(PAGE_READONLY),
 	_address(0)
 {

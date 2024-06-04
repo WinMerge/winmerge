@@ -46,7 +46,7 @@ void CRegKeyEx::Close()
  * @param [in] pszPath Path to actual registry key to access.
  * @return ERROR_SUCCESS or error value.
  */
-LONG CRegKeyEx::Open(HKEY hKeyRoot, LPCTSTR pszPath)
+LONG CRegKeyEx::Open(HKEY hKeyRoot, const tchar_t* pszPath)
 {
 	return OpenWithAccess(hKeyRoot, pszPath, KEY_ALL_ACCESS);
 }
@@ -58,7 +58,7 @@ LONG CRegKeyEx::Open(HKEY hKeyRoot, LPCTSTR pszPath)
  * @param [in] regsam Registry access parameter.
  * @return ERROR_SUCCESS or error value.
  */
-LONG CRegKeyEx::OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam)
+LONG CRegKeyEx::OpenWithAccess(HKEY hKeyRoot, const tchar_t* pszPath, REGSAM regsam)
 {
 	DWORD dw;
 
@@ -77,7 +77,7 @@ LONG CRegKeyEx::OpenWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam)
  * @param [in] regsam Registry access parameter.
  * @return ERROR_SUCCESS or error value.
  */
-LONG CRegKeyEx::OpenNoCreateWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM regsam)
+LONG CRegKeyEx::OpenNoCreateWithAccess(HKEY hKeyRoot, const tchar_t* pszPath, REGSAM regsam)
 {
 	Close();
 
@@ -91,7 +91,7 @@ LONG CRegKeyEx::OpenNoCreateWithAccess(HKEY hKeyRoot, LPCTSTR pszPath, REGSAM re
  * @param [in] key Path to actual registry key to access.
  * @return true on success, false otherwise.
  */
-bool CRegKeyEx::QueryRegMachine(LPCTSTR key)
+bool CRegKeyEx::QueryRegMachine(const tchar_t* key)
 {
 	return OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, key, KEY_QUERY_VALUE) == ERROR_SUCCESS;
 }
@@ -101,7 +101,7 @@ bool CRegKeyEx::QueryRegMachine(LPCTSTR key)
  * @param [in] key Path to actual registry key to access.
  * @return true on success, false otherwise.
  */
-bool CRegKeyEx::QueryRegUser(LPCTSTR key)
+bool CRegKeyEx::QueryRegUser(const tchar_t* key)
 {
 	return OpenNoCreateWithAccess(HKEY_CURRENT_USER, key, KEY_QUERY_VALUE) == ERROR_SUCCESS;
 }
@@ -112,7 +112,7 @@ bool CRegKeyEx::QueryRegUser(LPCTSTR key)
  * @param [in] dwVal Value to write.
  * @return ERROR_SUCCESS on success, or error value.
  */
-LONG CRegKeyEx::WriteDword(LPCTSTR pszKey, DWORD dwVal)
+LONG CRegKeyEx::WriteDword(const tchar_t* pszKey, DWORD dwVal)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
@@ -126,7 +126,7 @@ LONG CRegKeyEx::WriteDword(LPCTSTR pszKey, DWORD dwVal)
  * @param [in] bVal Value to write.
  * @return ERROR_SUCCESS on success, or error value.
  */
-LONG CRegKeyEx::WriteBool(LPCTSTR pszKey, bool bVal)
+LONG CRegKeyEx::WriteBool(const tchar_t* pszKey, bool bVal)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
@@ -141,13 +141,13 @@ LONG CRegKeyEx::WriteBool(LPCTSTR pszKey, bool bVal)
  * @param [in] fVal Value to write.
  * @return ERROR_SUCCESS on success, or error value.
  */
-LONG CRegKeyEx::WriteFloat(LPCTSTR pszKey, float fVal)
+LONG CRegKeyEx::WriteFloat(const tchar_t* pszKey, float fVal)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
 	String s = strutils::to_str(fVal);
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
-		(const LPBYTE) s.c_str(), static_cast<DWORD>((s.length() + 1))*sizeof(TCHAR) );
+		(const LPBYTE) s.c_str(), static_cast<DWORD>((s.length() + 1))*sizeof(tchar_t) );
 }
 
 /**
@@ -156,14 +156,14 @@ LONG CRegKeyEx::WriteFloat(LPCTSTR pszKey, float fVal)
  * @param [in] pszData Value to write.
  * @return ERROR_SUCCESS on success, or error value.
  */
-LONG CRegKeyEx::WriteString(LPCTSTR pszKey, LPCTSTR pszData)
+LONG CRegKeyEx::WriteString(const tchar_t* pszKey, const tchar_t* pszData)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
 	assert(pszData != nullptr);
 
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
-		(const LPBYTE) pszData, static_cast<DWORD>(_tcslen(pszData)+ 1)*sizeof(TCHAR));
+		(const LPBYTE) pszData, static_cast<DWORD>(tc::tcslen(pszData)+ 1)*sizeof(tchar_t));
 }
 
 /**
@@ -172,7 +172,7 @@ LONG CRegKeyEx::WriteString(LPCTSTR pszKey, LPCTSTR pszData)
  * @param [in] defval Default value to return if reading fails.
  * @return Read DWORD value.
  */
-DWORD CRegKeyEx::ReadDword(LPCTSTR pszKey, DWORD defval)
+DWORD CRegKeyEx::ReadDword(const tchar_t* pszKey, DWORD defval)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
@@ -181,7 +181,7 @@ DWORD CRegKeyEx::ReadDword(LPCTSTR pszKey, DWORD defval)
 	DWORD dwSize = sizeof (DWORD);
 	DWORD dwDest;
 
-	LONG lRet = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, nullptr, 
+	LONG lRet = RegQueryValueEx (m_hKey, (tchar_t*) pszKey, nullptr, 
 		&dwType, (LPBYTE) &dwDest, &dwSize);
 
 	if (lRet == ERROR_SUCCESS)
@@ -196,7 +196,7 @@ DWORD CRegKeyEx::ReadDword(LPCTSTR pszKey, DWORD defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read LONG value.
  */
-LONG CRegKeyEx::ReadLong(LPCTSTR pszKey, LONG defval)
+LONG CRegKeyEx::ReadLong(const tchar_t* pszKey, LONG defval)
 {
 	return (LONG)ReadDword(pszKey, (DWORD)defval);
 }
@@ -207,7 +207,7 @@ LONG CRegKeyEx::ReadLong(LPCTSTR pszKey, LONG defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read UINT value.
  */
-UINT CRegKeyEx::ReadUint(LPCTSTR pszKey, UINT defval)
+UINT CRegKeyEx::ReadUint(const tchar_t* pszKey, UINT defval)
 {
 	return (UINT)ReadDword(pszKey, (DWORD)defval);
 }
@@ -218,7 +218,7 @@ UINT CRegKeyEx::ReadUint(LPCTSTR pszKey, UINT defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read UINT value.
  */
-UINT CRegKeyEx::ReadInt(LPCTSTR pszKey, int defval)
+UINT CRegKeyEx::ReadInt(const tchar_t* pszKey, int defval)
 {
 	return (int)ReadDword(pszKey, (DWORD)defval);
 }
@@ -229,7 +229,7 @@ UINT CRegKeyEx::ReadInt(LPCTSTR pszKey, int defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read short int value.
  */
-short int CRegKeyEx::ReadShort(LPCTSTR pszKey, short int defval)
+short int CRegKeyEx::ReadShort(const tchar_t* pszKey, short int defval)
 {
 	return (short int)ReadDword(pszKey, (DWORD)defval);
 }
@@ -240,7 +240,7 @@ short int CRegKeyEx::ReadShort(LPCTSTR pszKey, short int defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read BYTE value.
  */
-BYTE CRegKeyEx::ReadByte(LPCTSTR pszKey, BYTE defval)
+BYTE CRegKeyEx::ReadByte(const tchar_t* pszKey, BYTE defval)
 {
 	return (BYTE)ReadDword(pszKey, (DWORD)defval);
 }
@@ -251,20 +251,20 @@ BYTE CRegKeyEx::ReadByte(LPCTSTR pszKey, BYTE defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read float value.
  */
-float CRegKeyEx::ReadFloat(LPCTSTR pszKey, float defval)
+float CRegKeyEx::ReadFloat(const tchar_t* pszKey, float defval)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
 
 	DWORD dwType;
 	DWORD dwSize = 100;
-	TCHAR  string[100];
+	tchar_t  string[100];
 
-	LONG lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr,
+	LONG lReturn = RegQueryValueEx(m_hKey, (tchar_t*) pszKey, nullptr,
 		&dwType, (LPBYTE) string, &dwSize);
 
 	if (lReturn == ERROR_SUCCESS)
-		return (float)_tcstod(string, nullptr);
+		return (float)tc::tcstod(string, nullptr);
 	else
 		return defval;
 }
@@ -275,7 +275,7 @@ float CRegKeyEx::ReadFloat(LPCTSTR pszKey, float defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read `bool` value.
  */
-bool CRegKeyEx::ReadBool(LPCTSTR pszKey, bool defval)
+bool CRegKeyEx::ReadBool(const tchar_t* pszKey, bool defval)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
@@ -284,7 +284,7 @@ bool CRegKeyEx::ReadBool(LPCTSTR pszKey, bool defval)
 	DWORD dwSize = sizeof(DWORD);
 	DWORD dwDest;
 
-	LONG lRet = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr, 
+	LONG lRet = RegQueryValueEx(m_hKey, (tchar_t*) pszKey, nullptr, 
 		&dwType, (LPBYTE) &dwDest, &dwSize);
 
 	if (lRet == ERROR_SUCCESS)
@@ -299,7 +299,7 @@ bool CRegKeyEx::ReadBool(LPCTSTR pszKey, bool defval)
  * @param [in] defval Default value to return if reading fails.
  * @return Read String value.
  */
-String CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
+String CRegKeyEx::ReadString (const tchar_t* pszKey, const tchar_t* defval)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
@@ -309,15 +309,15 @@ String CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
 	String retString;
 
 	// Get size of the string
-	LONG lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr,
+	LONG lReturn = RegQueryValueEx(m_hKey, (tchar_t*) pszKey, nullptr,
 		&dwType, nullptr, &dwSize);
 
 	if (lReturn == ERROR_SUCCESS)
 	{
-		retString.resize(dwSize/sizeof(TCHAR));
-		lReturn = RegQueryValueEx(m_hKey, (LPTSTR) pszKey, nullptr,
+		retString.resize(dwSize/sizeof(tchar_t));
+		lReturn = RegQueryValueEx(m_hKey, (tchar_t*) pszKey, nullptr,
 			&dwType, (LPBYTE) retString.data(), &dwSize);
-		retString.resize(dwSize/sizeof(TCHAR)-1);
+		retString.resize(dwSize/sizeof(tchar_t)-1);
 	}
 	if (lReturn == ERROR_SUCCESS)
 		return retString;
@@ -332,7 +332,7 @@ String CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
  * @param [in] dwLen Size of pData table in bytes.
  * @param [in] defval Default value to return if reading fails.
  */
-void CRegKeyEx::ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLen, LPCTSTR defval)
+void CRegKeyEx::ReadChars (const tchar_t* pszKey, tchar_t* pData, DWORD dwLen, const tchar_t* defval)
 {
 	assert(m_hKey != nullptr);
 	assert(pszKey != nullptr);
@@ -340,7 +340,7 @@ void CRegKeyEx::ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLen, LPCTSTR de
 	DWORD dwType;
 	DWORD len = dwLen;
 
-	LONG ret = RegQueryValueEx (m_hKey, (LPTSTR) pszKey, nullptr,
+	LONG ret = RegQueryValueEx (m_hKey, (tchar_t*) pszKey, nullptr,
 		&dwType, (LPBYTE)pData, &len);
 	if (ret != ERROR_SUCCESS)
 		StringCchCopy(pData, dwLen, defval);

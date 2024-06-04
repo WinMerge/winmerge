@@ -183,7 +183,7 @@ date /t &gt; MergeLang.lastbuild
 attrib -a English.pot
 del English.pot.prev English.pot.flt English.pot.prev.flt 2&gt; NUL
 move English.pot English.pot.prev 2&gt; NUL
-cscript CreateMasterPotFile.vbs
+cscript CreateMasterPotFile.js
 attrib -a English.pot
 findstr /v POT-Creation-Date English.pot &gt; English.pot.flt
 findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
@@ -219,7 +219,7 @@ popd
     <None Include="..\Translations\ShellExtension\ChineseSimplified.po" />
     <None Include="..\Translations\ShellExtension\ChineseTraditional.po" />
     <None Include="..\Translations\ShellExtension\Corsican.po" />
-    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.js" />
     <None Include="..\Translations\ShellExtension\Croatian.po" />
     <None Include="..\Translations\ShellExtension\Czech.po" />
     <None Include="..\Translations\ShellExtension\Danish.po" />
@@ -247,6 +247,7 @@ popd
     <None Include="..\Translations\ShellExtension\Slovenian.po" />
     <None Include="..\Translations\ShellExtension\Spanish.po" />
     <None Include="..\Translations\ShellExtension\Swedish.po" />
+    <None Include="..\Translations\ShellExtension\Tamil.po" />
     <None Include="..\Translations\ShellExtension\Turkish.po" />
     <None Include="..\Translations\ShellExtension\Ukrainian.po" />
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1" />
@@ -258,7 +259,7 @@ popd
     <None Include="..\Translations\WinMerge\ChineseSimplified.po" />
     <None Include="..\Translations\WinMerge\ChineseTraditional.po" />
     <None Include="..\Translations\WinMerge\Corsican.po" />
-    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs" />
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.js" />
     <None Include="..\Translations\WinMerge\Croatian.po" />
     <None Include="..\Translations\WinMerge\Czech.po" />
     <None Include="..\Translations\WinMerge\Danish.po" />
@@ -286,6 +287,7 @@ popd
     <None Include="..\Translations\WinMerge\Slovenian.po" />
     <None Include="..\Translations\WinMerge\Spanish.po" />
     <None Include="..\Translations\WinMerge\Swedish.po" />
+    <None Include="..\Translations\WinMerge\Tamil.po" />
     <None Include="..\Translations\WinMerge\Turkish.po" />
     <None Include="..\Translations\WinMerge\Ukrainian.po" />
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1" />
@@ -299,7 +301,7 @@ date /t &gt; MergeLang.lastbuild
 attrib -a English.pot
 del English.pot.prev English.pot.flt English.pot.prev.flt 2&gt; NUL
 move English.pot English.pot.prev 2&gt; NUL
-cscript CreateMasterPotFile.vbs
+cscript CreateMasterPotFile.js
 attrib -a English.pot
 findstr /v POT-Creation-Date English.pot &gt; English.pot.flt
 findstr /v POT-Creation-Date English.pot.prev &gt; English.pot.prev.flt
@@ -324,6 +326,12 @@ if "%POT_UPDATED%" == "true" (
 popd
 </Command>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Translations\WinMerge\StringBlacklist.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

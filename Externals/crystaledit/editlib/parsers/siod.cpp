@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -24,7 +24,7 @@
 #endif
 
 //  SIOD keywords
-static const TCHAR * s_apszSiodKeywordList[] =
+static const tchar_t * s_apszSiodKeywordList[] =
   {
     _T("abs"),
     _T("alarm"),
@@ -98,7 +98,7 @@ static const TCHAR * s_apszSiodKeywordList[] =
     _T("symbol?"),
   };
 
-static const TCHAR * s_apszUser1KeywordList[] =
+static const tchar_t * s_apszUser1KeywordList[] =
   {
     _T("acos"),
     _T("asin"),
@@ -111,7 +111,7 @@ static const TCHAR * s_apszUser1KeywordList[] =
     _T("tan"),
   };
 
-static const TCHAR * s_apszUser2KeywordList[] =
+static const tchar_t * s_apszUser2KeywordList[] =
   {
     _T("%%%memref"),
     _T("%%closure-code"),
@@ -319,31 +319,31 @@ static const TCHAR * s_apszUser2KeywordList[] =
   };
 
 static bool
-IsSiodKeyword (const TCHAR *pszChars, int nLength)
+IsSiodKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszSiodKeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser1Keyword (const TCHAR *pszChars, int nLength)
+IsUser1Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
 static bool
-IsUser2Keyword (const TCHAR *pszChars, int nLength)
+IsUser2Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineSiod (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineSiod (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & COOKIE_EXT_COMMENT;
 
-  const TCHAR *pszCommentBegin = nullptr;
-  const TCHAR *pszCommentEnd = nullptr;
+  const tchar_t *pszCommentBegin = nullptr;
+  const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
@@ -351,7 +351,7 @@ CrystalLineParser::ParseLineSiod (unsigned dwCookie, const TCHAR *pszChars, int 
 
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -407,7 +407,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -418,7 +418,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;
@@ -485,7 +485,7 @@ out:
             {
               if (IsSiodKeyword (pszChars + nIdentBegin, I - nIdentBegin))
                 {
-                  if (!_tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
+                  if (!tc::tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
                     {
                       bDefun = true;
                     }
@@ -551,7 +551,7 @@ out:
     {
       if (IsSiodKeyword (pszChars + nIdentBegin, I - nIdentBegin))
         {
-          if (!_tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
+          if (!tc::tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
             {
               bDefun = true;
             }

@@ -675,7 +675,22 @@ namespace
 
 	TEST_F(StringDiffsTest, IgnoreEOL3)
 	{
-		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n"), _T("abc"), true, false, 0, false, 0, true);
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\n\r\n"), _T("abc\n\n"), true, false, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+	}
+
+	TEST_F(StringDiffsTest, IgnoreEOL4)
+	{
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\r"), _T("abc\n\n"), true, false, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+	}
+
+	TEST_F(StringDiffsTest, IgnoreEOL5)
+	{
+		// GitHub issue #1838 End of line diff is a bit wanky
+		std::vector<strdiff::wdiff> diffs = strdiff::ComputeWordDiffs(_T("abc\r\ndef\r\n"), _T("abc\ndef\n"), true, false, 0, false, 0, true);
+		EXPECT_EQ(0, diffs.size());
+		diffs = strdiff::ComputeWordDiffs(_T("  abc  \r\ndef\r\n  "), _T("  abc  \ndef\n  "), true, false, 0, false, 0, true);
 		EXPECT_EQ(0, diffs.size());
 	}
 
@@ -715,8 +730,19 @@ namespace
 		pDiff = &diffs[0];
 		if (diffs.size() == 1)
 		{
-			EXPECT_EQ(7, pDiff->begin[0]);
+			EXPECT_EQ(6, pDiff->begin[0]);
 			EXPECT_EQ(7, pDiff->end[0]);
+			EXPECT_EQ(5, pDiff->begin[1]);
+			EXPECT_EQ(5, pDiff->end[1]);
+		}
+
+		diffs = strdiff::ComputeWordDiffs(_T("ab  12 34"), _T("aB 2 c"), false, true, 1, true, 0, true);
+		EXPECT_EQ(1, diffs.size());
+		pDiff = &diffs[0];
+		if (diffs.size() == 1)
+		{
+			EXPECT_EQ(7, pDiff->begin[0]);
+			EXPECT_EQ(8, pDiff->end[0]);
 			EXPECT_EQ(5, pDiff->begin[1]);
 			EXPECT_EQ(5, pDiff->end[1]);
 		}

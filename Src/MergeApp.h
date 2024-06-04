@@ -25,6 +25,7 @@ COptionsMgr * GetOptionsMgr();
 void LogErrorString(const String& sz);
 void LogErrorStringUTF8(const std::string& sz);
 void AppErrorMessageBox(const String& msg);
+void* AppGetMainHWND();
 
 namespace AppMsgBox
 {
@@ -46,4 +47,5 @@ namespace AppMsgBox
 String LoadResString(unsigned id);
 
 String tr(const std::string &str);
+String tr(const std::wstring &str);
 String tr(const char *msgctxt, const std::string &str);

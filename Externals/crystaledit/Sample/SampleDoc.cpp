@@ -118,8 +118,8 @@ BOOL CSampleDoc::OnOpenDocument(LPCTSTR lpszPathName)
 	bool result = m_xTextBuffer.LoadFromFile(lpszPathName);
 	if (result)
 	{
-		CString ext = GetExt(lpszPathName).MakeLower();
-		if (ext == "csv" || ext == "tsv")
+		std::basic_string<tchar_t> ext = GetExt(lpszPathName);
+		if (tc::tcsicmp(ext.c_str(), _T("csv")) == 0 || tc::tcsicmp(ext.c_str(), _T("tsv")) == 0)
 		{
 			m_xTextBuffer.SetTableEditing(true);
 			m_xTextBuffer.SetFieldDelimiter(ext == _T("csv") ? ',' : '\t');

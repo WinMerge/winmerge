@@ -102,7 +102,7 @@ FindText (int nDirection)
       if (!m_pBuddy->FindText(GetLastSearchInfos()))
         {
           CString prompt, text(m_sText);
-          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (LPCTSTR)text);
+          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), (const tchar_t*)text);
           AfxMessageBox (prompt, MB_ICONINFORMATION);
         }
       else
@@ -212,7 +212,7 @@ UpdateControls()
 // Last search functions
 //
 void CFindTextDlg::
-SetLastSearch (LPCTSTR sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection)
+SetLastSearch (const tchar_t* sText, bool bMatchCase, bool bWholeWord, bool bRegExp, int nDirection)
 {
   lastSearch.m_bMatchCase = bMatchCase;
   lastSearch.m_bWholeWord = bWholeWord;

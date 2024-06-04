@@ -42,6 +42,8 @@ public:
 	void StartUpdating();
 	void EndUpdating();
 	void SetPaused(bool paused);
+	int GetNumberOfCPUCoresToUse() const;
+	void SetNumberOfCPUCoresToUse(int num);
 
 // Dialog Data
 	//{{AFX_DATA(DirCompProgressBar)
@@ -52,6 +54,7 @@ public:
 protected:
 	void ClearStat();
 	void SetProgressState(int comparedItems, int totalItems);
+	void SetNumberOfCPUCoresToUseMax(int max);
 
 	// Generated message map functions
 	//{{AFX_MSG(DirCompProgressBar)
@@ -63,6 +66,7 @@ private:
 	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
 	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
 	bool m_bCompareReady; /**< Compare ready, waiting for closing? */
+	std::list<int> m_prevComparedItems;
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	ITaskbarList3 *m_pTaskbarList;
 #endif

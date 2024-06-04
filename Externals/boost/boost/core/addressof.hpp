@@ -125,7 +125,7 @@ template<class T>
 BOOST_FORCEINLINE T*
 addressof(T& o) BOOST_NOEXCEPT
 {
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x610)) || \
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x610)) || \
     BOOST_WORKAROUND(__SUNPRO_CC, <= 0x5120)
     return boost::detail::addrof<T>::get(o, 0);
 #else
@@ -151,7 +151,7 @@ addressof(T (&o)[N]) BOOST_NOEXCEPT
 }
 #endif
 
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
 template<class T, std::size_t N>
 BOOST_FORCEINLINE
 T (*addressof(T (&o)[N]) BOOST_NOEXCEPT)[N]

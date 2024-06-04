@@ -10,10 +10,79 @@
 #include <Poco/RegularExpression.h>
 #include "unicoder.h"
 
+static std::string replaceEscapeSequences(const std::string& input)
+{
+	std::string result;
+
+	for (size_t i = 0; i < input.size(); ++i)
+	{
+		if (input[i] == '\\')
+		{
+			if (i + 1 < input.size())
+			{
+				switch (input[i + 1])
+				{
+				case 'a':
+					result += '\a';
+					break;
+				case 'b':
+					result += '\b';
+					break;
+				case 'f':
+					result += '\f';
+					break;
+				case 'n':
+					result += '\n';
+					break;
+				case 'r':
+					result += '\r';
+					break;
+				case 't':
+					result += '\t';
+					break;
+				case 'v':
+					result += '\v';
+					break;
+				case 'x':
+					if (i + 3 < input.size())
+					{
+						std::string hexValue = input.substr(i + 2, 2);
+						try {
+							unsigned int intValue = std::stoul(hexValue, nullptr, 16);
+							result += static_cast<char>(intValue);
+							i += 2;
+						}
+						catch (const std::invalid_argument&) {
+							result += "\\x";
+						}
+					}
+					else
+					{
+						result += "\\x";
+					}
+					break;
+				default:
+					if (isdigit(input[i + 1]))
+						result += '$';
+					result += input[i + 1];
+					break;
+				}
+				++i;
+			}
+		}
+		else
+		{
+			result += input[i];
+		}
+	}
+
+	return result;
+}
+
 SubstitutionItem::SubstitutionItem(const std::string& pattern,
 	const std::string& replacement, int regexpCompileOptions)
 	: pattern(pattern)
-	, replacement(replacement)
+	, replacement(replaceEscapeSequences(replacement))
 	, regexpCompileOptions(regexpCompileOptions)
 	, regexp(pattern, regexpCompileOptions)
 {
@@ -54,7 +123,7 @@ void SubstitutionList::Add(
 		rePattern.push_back(c);
 	}
 	if (matchWholeWordOnly)
-		rePattern = "\b" + rePattern + "\b";
+		rePattern = "\\b" + rePattern + "\\b";
 	m_list.emplace_back(rePattern, replacement, regexpCompileOptions);
 }
 

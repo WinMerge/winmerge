@@ -22,6 +22,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-test-part.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-typed-test.cc" />
     <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-matchers.cc" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)src\gtest-assertion-result.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-death-test.h">
@@ -90,6 +91,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\internal\custom\gtest-printers.h">
       <Filter>include\internal\custom</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)include\gtest\gtest-assertion-result.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

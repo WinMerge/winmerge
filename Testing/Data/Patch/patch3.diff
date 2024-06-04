@@ -1,0 +1,16 @@
+--- subdir/subsubdir/ssfile1.txt	Sat Feb 10 17:05:19 2024
++++ subdir/subsubdir/ssfile1.txt	Sat Feb 10 17:05:19 2024
+@@ -4,4 +4,4 @@
+ e
+ f
+ ssfile1
+-dir1
++dir2
+--- subdir/subsubdir/ssfile2.txt	Sat Feb 10 17:05:31 2024
++++ subdir/subsubdir/ssfile2.txt	Sat Feb 10 17:05:31 2024
+@@ -4,4 +4,4 @@
+ e
+ f
+ ssfile2
+-dir1
++dir2

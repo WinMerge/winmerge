@@ -55,7 +55,7 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	ofstream output(W2T(fileDst), ios::out | ios::binary);
 
 	input.seekg(0L, ios::end);
-	int len = input.tellg();
+	intptr_t len = input.tellg();
 	input.seekg(0L, ios::beg);
 
 	char buffer[65536];
@@ -67,7 +67,7 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 	unicodingInfo uninfo;
 	while (len)
 	{
-		int curlen = len;
+		size_t curlen = len;
 		if (curlen > 65536)
 			curlen = 65536;
 		// align on 4byte boundary, in case doing unicode encoding

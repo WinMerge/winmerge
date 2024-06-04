@@ -16,8 +16,10 @@
 #include "Poco/Bugcheck.h"
 #include "Poco/Dynamic/Struct.h"
 #include "Poco/Dynamic/Pair.h"
+#include "Poco/Dynamic/VarVisitor.h"
 #include <map>
 #include <utility>
+#include <iostream>
 
 
 #if defined(_MSC_VER) && _MSC_VER < 1400
@@ -27,6 +29,9 @@
 
 using namespace Poco;
 using namespace Poco::Dynamic;
+
+
+namespace {
 
 
 class Dummy
@@ -45,14 +50,21 @@ public:
 		return _val;
 	}
 
-	bool operator == (int i)
+	bool operator == (int i) const
 	{
 		return i == _val;
+	}
+	
+	friend bool operator == (const Dummy &d1, const Dummy &d2)
+	{
+		return d1._val == d2._val;
 	}
 
 private:
 	int _val;
 };
+
+}
 
 
 VarTest::VarTest(const std::string& rName): CppUnit::TestCase(rName)
@@ -1512,7 +1524,7 @@ void VarTest::testLongLong()
 
 	try
 	{
-		Int16 value2; value2 = a1.extract<Int16>();
+		POCO_UNUSED Int16 value2; value2 = a1.extract<Int16>();
 		fail("bad cast - must throw");
 	}
 	catch (Poco::BadCastException&)
@@ -1606,7 +1618,7 @@ void VarTest::testULongLong()
 
 	try
 	{
-		Int16 value2; value2 = a1.extract<Int16>();
+		POCO_UNUSED Int16 value2; value2 = a1.extract<Int16>();
 		fail("bad cast - must throw");
 	}
 	catch (Poco::BadCastException&)
@@ -2281,6 +2293,23 @@ void VarTest::testOrderedDynamicStructBasics()
 }
 
 
+void VarTest::testDynamicStructEmptyString()
+{
+	DynamicStruct aStruct;
+	aStruct["Empty"] = "";
+	aStruct["Space"] = " ";
+	assertEqual(aStruct.toString(true), "{ \"Empty\": \"\", \"Space\": \" \" }");
+}
+
+
+void VarTest::testDynamicStructNoEscapeString()
+{
+	DynamicStruct aStruct;
+	aStruct["Birthday"] = "{ \"Day\": 12, \"Month\": \"May\", \"Year\": 2005 }";
+	assertEqual(aStruct.toString(false), "{ \"Birthday\": { \"Day\": 12, \"Month\": \"May\", \"Year\": 2005 } }");
+}
+
+
 void VarTest::testDynamicStructString()
 {
 	DynamicStruct aStruct;
@@ -2327,7 +2356,7 @@ void VarTest::testOrderedDynamicStructString()
 	assertTrue(a1["First Name"] == "Senior");
 	testGetIdxMustThrow(a1, 0);
 
-	typedef Struct<std::string, OrderedMap<std::string, Var>, OrderedSet<std::string> > OrderedStruct;
+	using OrderedStruct = OrderedDynamicStruct;
 	OrderedStruct s1;
 	s1["1"] = 1;
 	s1["2"] = 2;
@@ -2438,14 +2467,14 @@ void VarTest::testDynamicPair()
 	catch (InvalidAccessException&) { }
 
 	Var va(aPair);
-	assertTrue ("{ \"0\" : null }" == va.convert<std::string>());
+	assertTrue ("{ \"0\": null }" == va.convert<std::string>());
 	assertTrue (aPair.toString() == va.convert<std::string>());
 
 	aPair = Pair<int>(4, "123");
 	assertTrue ("123" == aPair.second());
 
 	va = aPair;
-	assertTrue ("{ \"4\" : \"123\" }" == va.convert<std::string>());
+	assertTrue ("{ \"4\": \"123\" }" == va.convert<std::string>());
 	assertTrue (aPair.toString() == va.convert<std::string>());
 
 	int i = 1;
@@ -2464,11 +2493,11 @@ void VarTest::testDynamicPair()
 	assertTrue ("2" == pPair.second());
 
 	Var vp(pPair);
-	assertTrue ("{ \"1\" : \"2\" }" == vp.convert<std::string>());
+	assertTrue ("{ \"1\": \"2\" }" == vp.convert<std::string>());
 	assertTrue (pPair.toString() == vp.convert<std::string>());
 
 	Var vs(sPair);
-	assertTrue ("{ \"2\" : 1 }" == vs.convert<std::string>());
+	assertTrue ("{ \"2\": 1 }" == vs.convert<std::string>());
 	assertTrue (sPair.toString() == vs.convert<std::string>());
 }
 
@@ -2509,7 +2538,7 @@ void VarTest::testStructToString()
 	aStruct["Age"] = 1;
 	Var a1(aStruct);
 	std::string res = a1.convert<std::string>();
-	std::string expected = "{ \"Age\" : 1, \"First Name\" : \"Junior\", \"Last Name\" : \"POCO\" }";
+	std::string expected = "{ \"Age\": 1, \"First Name\": \"Junior\", \"Last Name\": \"POCO\" }";
 	assertTrue (res == expected);
 	assertTrue (aStruct.toString() == res);
 }
@@ -2523,7 +2552,7 @@ void VarTest::testOrderedStructToString()
 	aStruct["Age"] = 1;
 	Var a1(aStruct);
 	std::string res = a1.convert<std::string>();
-	std::string expected = "{ \"First Name\" : \"Junior\", \"Last Name\" : \"POCO\", \"Age\" : 1 }";
+	std::string expected = "{ \"First Name\": \"Junior\", \"Last Name\": \"POCO\", \"Age\": 1 }";
 	assertTrue(res == expected);
 	assertTrue(aStruct.toString() == res);
 }
@@ -2535,7 +2564,7 @@ void VarTest::testStructToStringEscape()
 	aStruct["Value"] = "Value with \" and \n";
 	Var a1(aStruct);
 	std::string res = a1.convert<std::string>();
-	std::string expected = "{ \"Value\" : \"Value with \\\" and \\n\" }";
+	std::string expected = "{ \"Value\": \"Value with \\\" and \\n\" }";
 	assertTrue (res == expected);
 	assertTrue (aStruct.toString() == res);
 }
@@ -2560,14 +2589,14 @@ void VarTest::testArrayOfStructsToString()
 	Var a1(s16);
 	std::string res = a1.convert<std::string>();
 	std::string expected = "[ "
-						"{ \"Age\" : 1, \"First Name\" : \"Junior\", \"Last Name\" : \"POCO\" }, "
-						"{ \"Age\" : 100, \"First Name\" : \"Senior\", \"Last Name\" : \"POCO\" }, "
+						"{ \"Age\": 1, \"First Name\": \"Junior\", \"Last Name\": \"POCO\" }, "
+						"{ \"Age\": 100, \"First Name\": \"Senior\", \"Last Name\": \"POCO\" }, "
 							"[ "
-							"{ \"Age\" : 1, \"First Name\" : \"Junior\", \"Last Name\" : \"POCO\" }, "
-							"{ \"Age\" : 100, \"First Name\" : \"Senior\", \"Last Name\" : \"POCO\" }, "
+							"{ \"Age\": 1, \"First Name\": \"Junior\", \"Last Name\": \"POCO\" }, "
+							"{ \"Age\": 100, \"First Name\": \"Senior\", \"Last Name\": \"POCO\" }, "
 								"[ "
-								"{ \"Age\" : 1, \"First Name\" : \"Junior\", \"Last Name\" : \"POCO\" }, "
-								"{ \"Age\" : 100, \"First Name\" : \"Senior\", \"Last Name\" : \"POCO\" } "
+								"{ \"Age\": 1, \"First Name\": \"Junior\", \"Last Name\": \"POCO\" }, "
+								"{ \"Age\": 100, \"First Name\": \"Senior\", \"Last Name\": \"POCO\" } "
 								"] ] ]";
 
 	assertTrue (res == expected);
@@ -2594,8 +2623,8 @@ void VarTest::testStructWithArraysToString()
 	aStruct["Address"] = addr;
 	Var a2(aStruct);
 	std::string res = a2.convert<std::string>();
-	std::string expected = "{ \"Address\" : { \"Country\" : \"Carinthia\", \"Number\" : 4, \"Street\" : \"Unknown\" }, "
-								"\"Age\" : 1, \"First Name\" : \"Junior\", \"Last Name\" : [ \"string\", 23 ] }";
+	std::string expected = "{ \"Address\": { \"Country\": \"Carinthia\", \"Number\": 4, \"Street\": \"Unknown\" }, "
+								"\"Age\": 1, \"First Name\": \"Junior\", \"Last Name\": [ \"string\", 23 ] }";
 
 	assertTrue (res == expected);
 	assertTrue (aStruct.toString() == res);
@@ -2615,17 +2644,17 @@ void VarTest::testJSONDeserializeString()
 	char cc = b2.convert<char>();
 	assertTrue (cc == 'c');
 
-	tst = "{ \"a\" : \"1\", \"b\" : \"2\" \n}";
+	tst = "{ \"a\": \"1\", \"b\": \"2\" \n}";
 	a = Var::parse(tst);
-	assertTrue (a.toString() == "{ \"a\" : \"1\", \"b\" : \"2\" }");
+	assertTrue (a.toString() == "{ \"a\": \"1\", \"b\": \"2\" }");
 
-	tst = "{ \"a\" : \"1\", \"b\" : \"2\"\n}";
+	tst = "{ \"a\": \"1\", \"b\": \"2\"\n}";
 	a = Var::parse(tst);
-	assertTrue (a.toString() == "{ \"a\" : \"1\", \"b\" : \"2\" }");
+	assertTrue (a.toString() == "{ \"a\": \"1\", \"b\": \"2\" }");
 
-	tst = "{ \"message\" : \"escape\\b\\f\\n\\r\\t\", \"path\" : \"\\/dev\\/null\" }";
+	tst = "{ \"message\": \"escape\\b\\f\\n\\r\\t\", \"path\": \"\\/dev\\/null\", \"zero\": null }";
 	a = Var::parse(tst);
-	assertTrue(a.toString() == "{ \"message\" : \"escape\\b\\f\\n\\r\\t\", \"path\" : \"\\/dev\\/null\" }");
+	assertTrue(a.toString() == "{ \"message\": \"escape\\b\\f\\n\\r\\t\", \"path\": \"/dev/null\", \"zero\": null }");
 }
 
 
@@ -2859,6 +2888,32 @@ void VarTest::testDate()
 }
 
 
+void VarTest::testUUID()
+{
+	Poco::UUID uuid("f1881be4-c3b7-4a47-9619-5169db5108a7");
+
+	Var vuuid(uuid);
+	assertTrue (vuuid.isUUID());
+
+	assert (vuuid.convert<std::string>() == "f1881be4-c3b7-4a47-9619-5169db5108a7");
+
+	assert (vuuid.extract<Poco::UUID>() == uuid);
+
+	Var vstr(std::string("f1881be4-c3b7-4a47-9619-5169db5108a7"));
+	assert (vstr.convert<Poco::UUID>() == uuid);
+
+	Var vstr2(std::string("notAnUUID"));
+	try
+	{
+		Poco::UUID uuid2 = vstr2.convert<Poco::UUID>();
+		fail("not a valid UUID, must fail");
+	}
+	catch (Poco::SyntaxException&)
+	{
+	}
+}
+
+
 void VarTest::testGetIdxNoThrow(Var& a1, std::vector<Var>::size_type n)
 {
 	Var val1 = a1[n];
@@ -2973,8 +3028,15 @@ void VarTest::testEmpty()
 void VarTest::testIterator()
 {
 	Var da;
-	assertTrue (da.isEmpty());
-	assertTrue (da.begin() == da.end());
+	try
+	{
+		auto it = da.begin();
+		fail("calling begin() on empty Var must throw");
+	}
+	catch (const InvalidAccessException&) { }
+
+	da = Poco::Dynamic::Array();
+	assertTrue(da.begin() == da.end());
 
 	da = 1;
 	assertTrue (!da.isEmpty());
@@ -3035,6 +3097,184 @@ void VarTest::testIterator()
 }
 
 
+void VarTest::testSharedPtr()
+{
+	Poco::SharedPtr<int> p = new int(42);
+	{
+		Var v;
+		v = p;
+		Var v1;
+		v = v1;
+		v1 = v;
+	}
+	assertTrue(p.referenceCount() == 1);
+}
+
+struct ProcessDummy
+{
+	Var &v;
+	ProcessDummy(Var &var) : v(var) {}
+	void operator()(const Dummy &d)
+	{
+		v = d;
+	}
+};
+
+#define ADD_HANDLER_FOR_TYPE_WITH_VALUE(Type, Handler, Value) \
+visitor.addHandler<Type>(Handler); \
+if (accepted) \
+{ \
+	var.emplace_back(Type(Value));\
+} \
+else \
+{ \
+	warn("handler already exists for " #Type "", __LINE__, __FILE__); \
+} void(0)
+
+void VarTest::testVarVisitor()
+{
+	Visitor visitor;
+	Var processedVar;
+	auto processInt8 = [&processedVar](const Poco::Int8 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::Int8 ";
+	};
+	auto processInt16 = [&processedVar](const Poco::Int16 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::Int16 ";
+	};
+	auto processInt32 = [&processedVar](const Poco::Int32 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::Int32 ";
+	};
+	auto processInt64 = [&processedVar](const Poco::Int64 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::Int64 ";
+	};
+	auto processUInt8 = [&processedVar](const Poco::UInt8 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::UInt8 ";
+	};
+	auto processUInt16 = [&processedVar](const Poco::UInt16 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::UInt16 ";
+	};
+	auto processUInt32 = [&processedVar](const Poco::UInt32 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::UInt32 ";
+	};
+	auto processUInt64 = [&processedVar](const Poco::UInt64 &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> Poco::UInt64 ";
+	};
+	auto processBool = [&processedVar](const bool &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> bool ";
+	};
+	auto processChar = [&processedVar](const char &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> char ";
+	};
+	auto processFloat = [&processedVar](const float &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> float ";
+	};
+	auto processDouble = [&processedVar](const double &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> double ";
+	};
+	auto processLong = [&processedVar](const long &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> long ";
+	};
+	auto processLongLong = [&processedVar](const long long &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> long long ";
+	};
+	auto processULong = [&processedVar](const unsigned long &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> unsigned long ";
+	};
+	auto processULongLong = [&processedVar](const unsigned long long &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> unsigned long long ";
+	};
+	auto processString = [&processedVar](const std::string &v) -> void
+	{
+		processedVar = v;
+		std::cout << " -> string ";
+	};
+	
+	std::vector<Var> var;
+	
+	using ulong = unsigned long;
+	using longlong = long long;
+	using ulonglong = unsigned long long;
+	
+	ProcessDummy processDummy(processedVar);
+	
+	bool accepted = false;
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::Int8,   processInt8,      -8);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::Int16,  processInt16,     -16);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::Int32,  processInt32,     -32);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::Int64,  processInt64,     -64);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::UInt8,  processUInt8,     8);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::UInt16, processUInt16,    16);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::UInt32, processUInt32,    32);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Poco::UInt64, processUInt64,    64);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(bool,         processBool,      true);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(char,         processChar,      'f');
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(float,        processFloat,     1.2f);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(double,       processDouble,    2.4);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(long,         processLong,      123L);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(ulong,        processULong,     124UL);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(longlong,     processLongLong,  123123LL);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(ulonglong,    processULongLong, 124124ULL);
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(std::string,  processString,    "hello world");
+	accepted = ADD_HANDLER_FOR_TYPE_WITH_VALUE(Dummy,        processDummy,     42);
+	
+	for (const auto &v : var)
+	{
+		std::cout << "handle type : " << v.type().name();
+		if (visitor.visit(v))
+		{
+			if (v.type() != typeid(Dummy))
+			{
+				std::cout  << " [" << v.toString() << "] ... ";
+				assertTrue(v == processedVar);
+			}
+			else
+			{
+				std::cout  << " [" << v.extract<Dummy>() << "] ... ";
+				assertTrue(v.extract<Dummy>() == processedVar.extract<Dummy>());
+			}
+			std::cout << " ok" << '\n';
+		}
+		else
+		{
+			std::cout << " fail" << '\n';
+			fail(Poco::format("failed type handle : %s", v.type().name()), __LINE__, __FILE__);
+		}
+	}
+}
+
+
 void VarTest::setUp()
 {
 }
@@ -3079,10 +3319,13 @@ CppUnit::Test* VarTest::suite()
 	CppUnit_addTest(pSuite, VarTest, testDynamicPair);
 	CppUnit_addTest(pSuite, VarTest, testDynamicStructBasics);
 	CppUnit_addTest(pSuite, VarTest, testOrderedDynamicStructBasics);
+	CppUnit_addTest(pSuite, VarTest, testDynamicStructEmptyString);
+	CppUnit_addTest(pSuite, VarTest, testDynamicStructNoEscapeString);
 	CppUnit_addTest(pSuite, VarTest, testDynamicStructString);
 	CppUnit_addTest(pSuite, VarTest, testOrderedDynamicStructString);
 	CppUnit_addTest(pSuite, VarTest, testDynamicStructInt);
 	CppUnit_addTest(pSuite, VarTest, testOrderedDynamicStructInt);
+	CppUnit_addTest(pSuite, VarTest, testSharedPtr);
 	CppUnit_addTest(pSuite, VarTest, testArrayToString);
 	CppUnit_addTest(pSuite, VarTest, testArrayToStringEscape);
 	CppUnit_addTest(pSuite, VarTest, testStructToString);
@@ -3097,8 +3340,10 @@ CppUnit::Test* VarTest::suite()
 	CppUnit_addTest(pSuite, VarTest, testJSONDeserializeComplex);
 	CppUnit_addTest(pSuite, VarTest, testJSONRoundtripStruct);
 	CppUnit_addTest(pSuite, VarTest, testDate);
+	CppUnit_addTest(pSuite, VarTest, testUUID);
 	CppUnit_addTest(pSuite, VarTest, testEmpty);
 	CppUnit_addTest(pSuite, VarTest, testIterator);
+	CppUnit_addTest(pSuite, VarTest, testVarVisitor);
 
 	return pSuite;
 }

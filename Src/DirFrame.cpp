@@ -13,7 +13,6 @@
 
 #include "stdafx.h"
 #include "DirFrame.h"
-#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
@@ -103,7 +102,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}	
 
 	// Directory frame has a status bar
-	if (!m_wndStatusBar.Create(this) ||
+	if (!m_wndStatusBar.Create(this, WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, AFX_IDW_CONTROLBAR_FIRST+30) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
 	{
@@ -133,7 +132,7 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /**
  * @brief Set statusbar text
  */
-void CDirFrame::SetStatus(LPCTSTR szStatus)
+void CDirFrame::SetStatus(const tchar_t* szStatus)
 {
 	m_wndStatusBar.SetPaneText(0, szStatus);
 }
@@ -151,7 +150,7 @@ void CDirFrame::SetCompareMethodStatusDisplay(int nCompMethod)
  * @brief Set active filter name to statusbar
  * @param [in] szFilter Filtername to show
  */
-void CDirFrame::SetFilterStatusDisplay(LPCTSTR szFilter)
+void CDirFrame::SetFilterStatusDisplay(const tchar_t* szFilter)
 {
 	m_wndStatusBar.SetPaneText(PANE_FILTER, szFilter);
 }

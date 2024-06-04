@@ -1,51 +1,51 @@
-„WINMERGE“
+ï»¿â€WINMERGEâ€œ
 
-„WinMerge“ yra atvirojo kodo palyginimo ir suliejimo árankis „Windows“
-operacinei sistemai. „WinMerge“ gali palyginti ir aplankus ir failus,
-parodydamas jø skirtumus vaizdinio teksto formatu, kuris yra lengvai suprantamas
-ir tvarkomas. „WinMerge“ gali buti naudojamas kaip iğorinis palyginimo/suliejimo
-árankis kitoms programoms arba kaip savarankiğka programa.
+â€WinMergeâ€œ yra atvirojo kodo palyginimo ir suliejimo Ä¯rankis â€Windowsâ€œ
+operacinei sistemai. â€WinMergeâ€œ gali palyginti ir aplankus ir failus,
+parodydamas jÅ³ skirtumus vaizdinio teksto formatu, kuris yra lengvai suprantamas
+ir tvarkomas. â€WinMergeâ€œ gali buti naudojamas kaip iÅ¡orinis palyginimo/suliejimo
+Ä¯rankis kitoms programoms arba kaip savarankiÅ¡ka programa.
 
-„WinMerge“ turi daug naudingø funkcijø, leidşianèiø palyginimà, sinchronizavimà
-ir suliejimà atlikti kiek ámanoma lengviau ir patogiau. Yra ádiegtas sintaksës
-paryğkinimas kelioms programavimo kalboms ir kitiems failø formatams.
+â€WinMergeâ€œ turi daug naudingÅ³ funkcijÅ³, leidÅ¾ianÄiÅ³ palyginimÄ…, sinchronizavimÄ…
+ir suliejimÄ… atlikti kiek Ä¯manoma lengviau ir patogiau. Yra Ä¯diegtas sintaksÄ—s
+paryÅ¡kinimas kelioms programavimo kalboms ir kitiems failÅ³ formatams.
 
-Naujausià „WinMerge“ versijà ir „WinMerge“ informacijà galima rasti adresu
+NaujausiÄ… â€WinMergeâ€œ versijÄ… ir â€WinMergeâ€œ informacijÄ… galima rasti adresu
 https://winmerge.org/.
 
-Greita pradşia
+Greita pradÅ¾ia
 ==============
-Norëdami suşinoti kaip atlikti pagrindines operacijas, ádiegæ „WinMerge“,
-spustelëkite Şinynas>„WinMerge“ şinynas ir pereikite prie „Quick start“ temos
-arba perşiûrëkite internete adresu https://manual.winmerge.org/Quick_start.html.
+NorÄ—dami suÅ¾inoti kaip atlikti pagrindines operacijas, Ä¯diegÄ™ â€WinMergeâ€œ,
+spustelÄ—kite Å½inynas>â€WinMergeâ€œ Å¾inynas ir pereikite prie â€Quick startâ€œ temos
+arba perÅ¾iÅ«rÄ—kite internete adresu https://manual.winmerge.org/Quick_start.html.
 
-„WinMerge“ şinynas
+â€WinMergeâ€œ Å¾inynas
 ==================
-Diegiant „WinMerge“, şinyno failas ádiegiamas lokaliai, kaip „Microsoft HTML
-Help“ failas, WinMerge.chm. Norëdami atidaryti, spustelëkite Şinynas>„WinMerge“
-şinynas ar spustelëkite F1 „WinMerge“ lange.
-Komandinëje eilutëje galite paleisti „WinMerge“ vykdomàjá failà su „ /?“ raktu.
-Taip pat galite perşiûrëti „WinMerge“ şinyno HTML versijà adresu
+Diegiant â€WinMergeâ€œ, Å¾inyno failas Ä¯diegiamas lokaliai, kaip â€Microsoft HTML
+Helpâ€œ failas, WinMerge.chm. NorÄ—dami atidaryti, spustelÄ—kite Å½inynas>â€WinMergeâ€œ
+Å¾inynas ar spustelÄ—kite F1 â€WinMergeâ€œ lange.
+KomandinÄ—je eilutÄ—je galite paleisti â€WinMergeâ€œ vykdomÄ…jÄ¯ failÄ… su â€ /?â€œ raktu.
+Taip pat galite perÅ¾iÅ«rÄ—ti â€WinMergeâ€œ Å¾inyno HTML versijÄ… adresu
 https://manual.winmerge.org/.
 
-„WinMerge“ palaikymas
+â€WinMergeâ€œ palaikymas
 =====================
-Turite klausimø apie „WinMerge“ ar pasiûlymø? Geriausia pradëti nuo „WinMerge“
-bendruomenës forumø https://forums.winmerge.org/. Bendriesiems „WinMerge“
-klausimams, pvz., klausimams apie naudojimà yra skirtas „Open Discussion“ forumas.
-„WinMerge“ kûrimo klausimams yra skirtas „Developers“ forumas. Kûrëjai daşnai
-skaito ir atsako á klausimus abiejuose forumuose.
+Turite klausimÅ³ apie â€WinMergeâ€œ ar pasiÅ«lymÅ³? Geriausia pradÄ—ti nuo â€WinMergeâ€œ
+bendruomenÄ—s forumÅ³ https://forums.winmerge.org/. Bendriesiems â€WinMergeâ€œ
+klausimams, pvz., klausimams apie naudojimÄ… yra skirtas â€Open Discussionâ€œ forumas.
+â€WinMergeâ€œ kÅ«rimo klausimams yra skirtas â€Developersâ€œ forumas. KÅ«rÄ—jai daÅ¾nai
+skaito ir atsako Ä¯ klausimus abiejuose forumuose.
 
-Klaidos ir naujø funkcijø prağymai
+Klaidos ir naujÅ³ funkcijÅ³ praÅ¡ymai
 ==================================
-Jei problemos sprendimo nepavyko rasti „WinMerge“ forumuose, pasitikrinkite
-problemø sekimo tinklapyje adresu https://project.winmerge.org/, kur galësite
-perşiûrëti ar pateikti praneğimà apie klaidà.
+Jei problemos sprendimo nepavyko rasti â€WinMergeâ€œ forumuose, pasitikrinkite
+problemÅ³ sekimo tinklapyje adresu https://project.winmerge.org/, kur galÄ—site
+perÅ¾iÅ«rÄ—ti ar pateikti praneÅ¡imÄ… apie klaidÄ….
 
-Jeigu teikiate praneğimà apie klaidà, nurodykite naudojamos „WinMerge“ versijos
-numerá. Paspaudæ Şinynas>Konfigûracija, jus galite sugeneruoti programos
-konfigûracijos şurnalà. Prisekite konfigûracijos şurnalà prie klaidos praneğimo;
-jame yra daug naudingos informacijos programos kûrëjams.
+Jeigu teikiate praneÅ¡imÄ… apie klaidÄ…, nurodykite naudojamos â€WinMergeâ€œ versijos
+numerÄ¯. PaspaudÄ™ Å½inynas>KonfigÅ«racija, jus galite sugeneruoti programos
+konfigÅ«racijos Å¾urnalÄ…. Prisekite konfigÅ«racijos Å¾urnalÄ… prie klaidos praneÅ¡imo;
+jame yra daug naudingos informacijos programos kÅ«rÄ—jams.
 
 
-- „WinMerge“ kurëjai
+- â€WinMergeâ€œ kurÄ—jai

@@ -26,11 +26,7 @@
 #if defined(POCO_OS_FAMILY_UNIX)
 #include "Path_UNIX.cpp"
 #elif defined(POCO_OS_FAMILY_WINDOWS)
-#if defined(_WIN32_WCE)
-#include "Path_WINCE.cpp"
-#else
 #include "Path_WIN32U.cpp"
-#endif
 #endif
 
 
@@ -169,7 +165,7 @@ Path& Path::operator = (const char* path)
 }
 
 
-void Path::swap(Path& path)
+void Path::swap(Path& path) noexcept
 {
 	std::swap(_node, path._node);
 	std::swap(_device, path._device);
@@ -458,9 +454,9 @@ Path& Path::setDevice(const std::string& device)
 
 const std::string& Path::directory(int n) const
 {
-	poco_assert (0 <= n && n <= (int)_dirs.size());
+	poco_assert (0 <= n && n <= _dirs.size());
 
-	if (n < static_cast<int>(_dirs.size()))
+	if (n < _dirs.size())
 		return _dirs[n];
 	else
 		return _name;
@@ -469,9 +465,9 @@ const std::string& Path::directory(int n) const
 
 const std::string& Path::operator [] (int n) const
 {
-	poco_assert (0 <= n && n <= (int)_dirs.size());
+	poco_assert (0 <= n && n <= _dirs.size());
 
-	if (n < static_cast<int>(_dirs.size()))
+	if (n < _dirs.size())
 		return _dirs[n];
 	else
 		return _name;
@@ -537,7 +533,7 @@ Path& Path::setBaseName(const std::string& name)
 std::string Path::getBaseName() const
 {
 	std::string::size_type pos = _name.rfind('.');
-	if (pos != std::string::npos)
+	if (pos != std::string::npos && pos != 0)
 		return _name.substr(0, pos);
 	else
 		return _name;
@@ -559,7 +555,7 @@ Path& Path::setExtension(const std::string& extension)
 std::string Path::getExtension() const
 {
 	std::string::size_type pos = _name.rfind('.');
-	if (pos != std::string::npos)
+	if (pos != std::string::npos && pos != 0)
 		return _name.substr(pos + 1);
 	else
 		return std::string();
@@ -575,6 +571,12 @@ Path& Path::clear()
 	_version.clear();
 	_absolute = false;
 	return *this;
+}
+
+
+std::string Path::self()
+{
+	return PathImpl::selfImpl();
 }
 
 
@@ -890,7 +892,7 @@ void Path::parseVMS(const std::string& path)
 								{
 									if (name == "-")
 									{
-										if (static_cast<int>(_dirs.size()) > d)
+										if (_dirs.size() > d)
 											_dirs.pop_back();
 									}
 									else _dirs.push_back(name);

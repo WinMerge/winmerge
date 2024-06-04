@@ -15,7 +15,7 @@
 using std::vector;
 
 /** @brief Setting name for default colors. */
-static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
+static const tchar_t DefColorsPath[] =_T("DefaultSyntaxColors");
 
 namespace Options { namespace SyntaxColors {
 
@@ -34,7 +34,7 @@ void Init(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 		// with default value. And since InitOption() reads stored value
 		// from storage we must set that valu1Ge to array we use.
 		int color = 0;
-		::SyntaxColors::COLORREF ref;
+		CEColor ref;
 		color = pSyntaxColors->GetColor(i);
 
 		// Special handling for themable colors
@@ -68,7 +68,7 @@ void Load(COptionsMgr *pOptionsMgr, ::SyntaxColors *pSyntaxColors)
 	{
 		String valuename = strutils::format(_T("%s/Color%02u"), DefColorsPath, i);
 		int color = pOptionsMgr->GetInt(valuename);
-		::SyntaxColors::COLORREF ref = color;
+		CEColor ref = color;
 		pSyntaxColors->SetColor(i, ref);
 	
 		valuename = strutils::format(_T("%s/Bold%02u"), DefColorsPath, i);

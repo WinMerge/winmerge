@@ -6,7 +6,7 @@
 [![CI](https://github.com/WinMerge/winmerge/workflows/CI/badge.svg)](https://github.com/WinMerge/winmerge/actions)
 [![sourceforge.net downloads](https://img.shields.io/sourceforge/dt/winmerge)](https://sourceforge.net/projects/winmerge/files/)
 [![Github Releases All](https://img.shields.io/github/downloads/winmerge/winmerge/total.svg)](https://github.com/WinMerge/winmerge/releases/latest)
-[![Translation status](https://img.shields.io/badge/translations-36-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
+[![Translation status](https://img.shields.io/badge/translations-37-green)](https://github.com/WinMerge/winmerge/blob/master/Translations/TranslationsStatus.md)
 
 [WinMerge](https://winmerge.org/) is an open source differencing and merging tool
 for Windows. WinMerge can compare files and folders, presenting differences
@@ -47,6 +47,7 @@ in a visual format that is easy to understand and manipulate.
  * 7-Zip
  * Python
  * Pandoc
+ * MSYS2 and MSYS2 packages (po4a and diffutils)
 
 ## How to Build
 

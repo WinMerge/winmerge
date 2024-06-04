@@ -8,6 +8,7 @@
 #include "FilterList.h"
 #include <vector>
 #include <Poco/RegularExpression.h>
+#include <Poco/Exception.h>
 #include "unicoder.h"
 
 using Poco::RegularExpression;
@@ -33,16 +34,17 @@ FilterList::~FilterList()
  * @param [in] encoding Expression encoding.
  * @param [in] excluded 
  */
-void FilterList::AddRegExp(const std::string& regularExpression, bool exclude)
+void FilterList::AddRegExp(const std::string& regularExpression, bool exclude, bool throwIfInvalid)
 {
 	try
 	{
 		auto& list = exclude ? m_listExclude : m_list;
 		list.push_back(filter_item_ptr(new filter_item(regularExpression, RegularExpression::RE_UTF8)));
 	}
-	catch (...)
+	catch (Poco::RegularExpressionException& e)
 	{
-		// TODO:
+		if (throwIfInvalid)
+			throw std::runtime_error(e.message().c_str());
 	}
 }
 
@@ -136,15 +138,19 @@ void FilterList::CloneFrom(const FilterList* filterList)
 		return;
 
 	m_list.clear();
-	m_listExclude.clear();
 
 	size_t count = filterList->m_list.size();
+	m_list.reserve(count);
 	for (size_t i = 0; i < count; i++)
 	{
 		m_list.emplace_back(std::make_shared<filter_item>(filterList->m_list[i].get()));
 	}
-	size_t countExclude = filterList->m_listExclude.size();
-	for (size_t i = 0; i < countExclude; i++)
+
+	m_listExclude.clear();
+
+	count = filterList->m_listExclude.size();
+	m_listExclude.reserve(count);
+	for (size_t i = 0; i < count; i++)
 	{
 		m_listExclude.emplace_back(std::make_shared<filter_item>(filterList->m_listExclude[i].get()));
 	}

@@ -15,13 +15,14 @@
 #include "UnicodeString.h"
 
 /** @brief Registry key for saving Substitution filters. */
-static const TCHAR SubstitutionFiltersRegPath[] = _T("SubstitutionFilters");
+static const tchar_t SubstitutionFiltersRegPath[] = _T("SubstitutionFilters");
 
 /**
  * @brief Default constructor.
  */
 SubstitutionFiltersList::SubstitutionFiltersList()
-: m_pOptionsMgr(nullptr)
+: m_enabled(false)
+, m_pOptionsMgr(nullptr)
 {
 }
 
@@ -125,10 +126,11 @@ void SubstitutionFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	m_enabled = m_pOptionsMgr->GetBool(OPT_SUBSTITUTION_FILTERS_ENABLED);
 
-	size_t count = m_items.size();
+	Empty();
+
 	valuename += _T("/Values");
-	m_pOptionsMgr->InitOption(valuename, static_cast<int>(count));
-	count = m_pOptionsMgr->GetInt(valuename);
+	m_pOptionsMgr->InitOption(valuename, 0);
+	size_t count = m_pOptionsMgr->GetInt(valuename);
 
 	for (unsigned i = 0; i < count; i++)
 	{
@@ -274,9 +276,8 @@ std::shared_ptr<SubstitutionList> SubstitutionFiltersList::MakeSubstitutionList(
 				if (throwIfInvalid)
 				{
 					plist.reset();
-					char msg[512];
-					_snprintf_s(msg, _TRUNCATE, "#%d: %s", i + 1, e.message().c_str());
-					throw Poco::RegularExpressionException(msg, e.code());
+					const String msg = strutils::format(_T("#%d: %S"), i + 1, e.message().c_str());
+					throw std::runtime_error(ucr::toUTF8(msg).c_str());
 				}
 			}
 		}

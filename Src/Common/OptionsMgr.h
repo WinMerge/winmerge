@@ -112,7 +112,7 @@ public:
 	bool GetBool(const String& name) const;
 	int Set(const String& name, const varprop::VariantValue& value);
 	int Set(const String& name, const String& value);
-	int Set(const String& name, const TCHAR *value);
+	int Set(const String& name, const tchar_t *value);
 	int Set(const String& name, bool value);
 	int Set(const String& name, int value);
 	int Reset(const String& name);
@@ -132,7 +132,7 @@ public:
 
 	virtual int InitOption(const String& name, const varprop::VariantValue& defaultValue) = 0;
 	virtual int InitOption(const String& name, const String& defaultValue) = 0;
-	virtual int InitOption(const String& name, const TCHAR *defaultValue) = 0;
+	virtual int InitOption(const String& name, const tchar_t *defaultValue) = 0;
 	virtual int InitOption(const String& name, int defaultValue, bool serializable = true) = 0;
 	virtual int InitOption(const String& name, int defaultValue, int minValue, int maxValue, bool serializable = true);
 	virtual int InitOption(const String& name, bool defaultValue) = 0;
@@ -140,12 +140,14 @@ public:
 	virtual int SaveOption(const String& name) = 0;
 	virtual int SaveOption(const String& name, const varprop::VariantValue& value) = 0;
 	virtual int SaveOption(const String& name, const String& value) = 0;
-	virtual int SaveOption(const String& name, const TCHAR *value) = 0;
+	virtual int SaveOption(const String& name, const tchar_t *value) = 0;
 	virtual int SaveOption(const String& name, int value) = 0;
 	virtual int SaveOption(const String& name, bool value) = 0;
 	virtual int SaveOption(const String& name, unsigned value);
 
 	virtual int RemoveOption(const String& name);
+
+	virtual int FlushOptions() = 0;
 
 	virtual int ExportOptions(const String& filename, const bool bHexColor=false) const;
 	virtual int ImportOptions(const String& filename);
@@ -156,6 +158,7 @@ protected:
 	static String EscapeValue(const String& text);
 	static String UnescapeValue(const String& text);
 	static std::pair<String, String> SplitName(const String& strName);
+	static std::map<String, String> ReadIniFile(const String& filename, const String& section);
 
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
 

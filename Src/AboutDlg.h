@@ -24,8 +24,8 @@ public:
 	Poco::BasicEvent<int> m_onclick_url;
 
 private:
-	CAboutDlg(const CAboutDlg &);
-	CAboutDlg & operator=(const CAboutDlg &);
+	CAboutDlg(const CAboutDlg &) = delete;
+	CAboutDlg & operator=(const CAboutDlg &) = delete;
 
 	class Impl;
 	std::unique_ptr<Impl> m_pimpl;

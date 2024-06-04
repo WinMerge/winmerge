@@ -1,0 +1,90 @@
+﻿[Messages]
+
+WizardInfoBefore=License Agreement
+InfoBeforeLabel=GNU General Public License
+
+[CustomMessages]
+
+;Things we can also localize
+OptionalFeatures=Caracteristici opționale:
+CompanyName=Thingamahoochie Software
+
+;Types
+TypicalInstallation=Instalare tipică
+FullInstallation=Instalare completă
+CompactInstallation=Instalare compactă
+CustomInstallation=Instalare personalizată
+
+;Components
+AppCoreFiles=Fișierele WinMerge de bază
+Filters=Filtre
+Plugins=Plug-in-uri
+ShellExtension32bit=Extensie shell WinMerge 32 biți 
+
+;Localization Components
+Languages=Limbi
+ArabicLanguage=Meniuri și dialoguri în arabă
+BasqueLanguage=Meniuri și dialoguri în bască
+BulgarianLanguage=Meniuri și dialoguri în bulgară
+CatalanLanguage=Meniuri și dialoguri în catalană
+ChineseSimplifiedLanguage=Meniuri și dialoguri în chineză (simplificată)
+ChineseTraditionalLanguage=Meniuri și dialoguri în chineză (tradițională)
+CorsicanLanguage=Meniuri și dialoguri în corsicană
+CroatianLanguage=Meniuri și dialoguri în croată
+CzechLanguage=Meniuri și dialoguri în cehă
+DanishLanguage=Meniuri și dialoguri în daneză
+DutchLanguage=Meniuri și dialoguri în olandeză
+FinnishLanguage=Meniuri și dialoguri în finlandeză
+FrenchLanguage=Meniuri și dialoguri în franceză
+GalicianLanguage=Meniuri și dialoguri în galițiană
+GermanLanguage=Meniuri și dialoguri în germană
+GreekLanguage=Meniuri și dialoguri în greacă
+HungarianLanguage=Meniuri și dialoguri în maghiară
+ItalianLanguage=Meniuri și dialoguri în italiană
+JapaneseLanguage=Meniuri și dialoguri în japoneză
+KoreanLanguage=Meniuri și dialoguri în coreeană
+LithuanianLanguage=Meniuri și dialoguri în lituaniană
+NorwegianLanguage=Meniuri și dialoguri în norvegiană
+PersianLanguage=Meniuri și dialoguri în persană
+PolishLanguage=Meniuri și dialoguri în poloneză
+PortugueseBrazilLanguage=Meniuri și dialoguri în portugheză (braziliană)
+PortugueseLanguage=Meniuri și dialoguri în portugheză
+RomanianLanguage=Meniuri și dialoguri în română
+RussianLanguage=Meniuri și dialoguri în rusă
+SerbianLanguage=Meniuri și dialoguri în sârbă
+SinhalaLanguage=Meniuri și dialoguri în Sinhala
+SlovakLanguage=Meniuri și dialoguri în slovacă
+SlovenianLanguage=Meniuri și dialoguri în slovenă
+SpanishLanguage=Meniuri și dialoguri în spaniolă
+SwedishLanguage=Meniuri și dialoguri în suedeză
+TamilLanguage=Meniuri și dialoguri în Tamil
+TurkishLanguage=Meniuri și dialoguri în turcă
+UkrainianLanguage=Meniuri și dialoguri în ucraineană
+
+;Tasks
+ExplorerContextMenu=&Activează integrarea în meniurile contextuale Explorer
+IntegrateTortoiseCVS=Integrare cu &TortoiseCVS
+IntegrateTortoiseGit=Integrare cu To&rtoiseGit
+IntegrateTortoiseSVN=Integrare cu T&ortoiseSVN
+AddToPath=&Adaugă directorul WinMerge la calea sistem
+
+; 3-way merge wizard page
+ThreeWayMergeWizardPageCaption=Fuziune 3-căi
+ThreeWayMergeWizardPageDescription=Utilizați WinMerge drept unealtă de fuziune 3-căi pentru TortoiseSVN/Git?
+RegisterWinMergeAs3WayMergeTool=Înregistrează WinMerge ca unealtă de fuziune 3-căi
+MergeAtRightPane=Fuziunea în panoul din dreapta
+MergeAtCenterPane=Fuziunea în panoul din mijloc
+MergeAtLeftPane=Fuziunea în panoul din stânga
+AutoMergeAtStartup=Fuzionează automat la pornire
+
+;Icon Labels
+ReadMe=Citește-mă
+UsersGuide=Ghidul utilizatorului
+ViewStartMenuFolder=&Vizualizează directorul WinMerge din meniul de start
+
+;Code Dialogs
+DeletePreviousStartMenu=Instalatorul a detectat ca ați schimbat locația meniului dvs. de start de la "%s" la "%s". Doriți să ștergeți directorul din meniul de start anterior?
+ExplorerNeedsRestart=Extensia shell WinMerge necesită repornirea Explorer pentru actualizare. Doriți să reporniți Explorer?
+
+; Project file description
+ProjectFileDesc=Fișier de proiect WinMerge

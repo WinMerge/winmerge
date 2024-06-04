@@ -17,8 +17,6 @@
 #include <cerrno>
 #include <vector>
 
-extern "C" int __stdcall StrCmpLogicalW(const wchar_t* psz1, const wchar_t* psz2);
-
 namespace strutils
 {
 
@@ -32,7 +30,7 @@ String makelower(const String &str)
 	String ret(str);
 	String::size_type i = 0;
 	for (i = 0; i < ret.length(); i++)
-		ret[i] = _totlower(ret[i]);
+		ret[i] = tc::totlower(ret[i]);
 	return ret;
 }
 
@@ -46,7 +44,7 @@ String makeupper(const String &str)
 	String ret(str);
 	String::size_type i = 0;
 	for (i = 0; i < ret.length(); i++)
-		ret[i] = _totupper(ret[i]);
+		ret[i] = tc::totupper(ret[i]);
 	return ret;
 }
 
@@ -60,9 +58,9 @@ String strip_hot_key(const String& str)
 	return str2;
 }
 
-TCHAR from_charstr(const String& str)
+tchar_t from_charstr(const String& str)
 {
-	TCHAR ch = 0;
+	tchar_t ch = 0;
 	String str2 = strutils::makelower(str);
 	strutils::replace(str2, _T("-"), _T(""));
 	if (str2 == _T("\\a") || str2 == _T("bel"))
@@ -85,15 +83,15 @@ TCHAR from_charstr(const String& str)
 		ch = '"';
 	else if (str2.find(_T("\\x"), 0) == 0 || str2.find(_T("0x"), 0) == 0)
 	{
-		TCHAR *pend = nullptr;
-		ch = static_cast<TCHAR>(_tcstol(str2.substr(2).c_str(), &pend, 16));
+		tchar_t *pend = nullptr;
+		ch = static_cast<tchar_t>(tc::tcstol(str2.substr(2).c_str(), &pend, 16));
 	}
 	else
 		ch = str.c_str()[0];
 	return ch;
 }
 
-String to_charstr(TCHAR ch)
+String to_charstr(tchar_t ch)
 {
 	if (iscntrl(ch))
 		return strutils::format(_T("\\x%02x"), ch);
@@ -156,10 +154,10 @@ void replace(String &target, const String &find, const String &replace)
  * @param [in] chars - characters to search for
  * @param [in] rep - String to replace
  */
-void replace_chars(String& str, const TCHAR* chars, const TCHAR *rep)
+void replace_chars(String& str, const tchar_t* chars, const tchar_t *rep)
 {
 	String::size_type pos = 0;
-	size_t replen = _tcslen(rep);
+	size_t replen = tc::tcslen(rep);
 	while ((pos = str.find_first_of(chars, pos)) != std::string::npos)
 	{
 		std::string::size_type posend = str.find_first_not_of(chars, pos);
@@ -179,7 +177,7 @@ void replace_chars(String& str, const TCHAR* chars, const TCHAR *rep)
  */
 int compare_nocase(const String &str1, const String &str2)
 {
-	return _tcsicoll(str1.c_str(), str2.c_str());
+	return tc::tcsicoll(str1.c_str(), str2.c_str());
 }
 
 /**
@@ -191,7 +189,7 @@ int compare_nocase(const String &str1, const String &str2)
  */
 int compare_logical(const String& str1, const String& str2)
 {
-	return StrCmpLogicalW(str1.c_str(), str2.c_str());
+	return tc::tcscmplogical(str1.c_str(), str2.c_str());
 }
 
 /**
@@ -206,7 +204,7 @@ String trim_ws(const String & str)
 
 	String result(str);
 	String::iterator it = result.begin();
-	while (it != result.end() && _istspace(*it))
+	while (it != result.end() && tc::istspace(*it))
 		++it;
 	
 	if (it != result.begin())
@@ -216,7 +214,7 @@ String trim_ws(const String & str)
 		return result;
 
 	it = result.end() - 1;
-	while (it != result.begin() && _istspace(*it))
+	while (it != result.begin() && tc::istspace(*it))
 		--it;
 
 	if (it != result.end() - 1)
@@ -236,7 +234,7 @@ String trim_ws_begin(const String & str)
 
 	String result(str);
 	String::iterator it = result.begin();
-	while (it != result.end() && _istspace(*it))
+	while (it != result.end() && tc::istspace(*it))
 		++it;
 	
 	if (it != result.begin())
@@ -256,7 +254,7 @@ String trim_ws_end(const String & str)
 
 	String result(str);
 	String::reverse_iterator it = result.rbegin();
-	while (it != result.rend() && _istspace(*it))
+	while (it != result.rend() && tc::istspace(*it))
 		++it;
 
 	if (it != result.rbegin())
@@ -264,16 +262,16 @@ String trim_ws_end(const String & str)
 	return result;
 }
 
-String format_arg_list(const TCHAR *fmt, va_list args)
+String format_arg_list(const tchar_t *fmt, va_list args)
 {
 	if (fmt == nullptr)
 		return _T("");
 	int result = -1;
 	int length = 256;
-	std::vector<TCHAR> buffer(length, 0);
+	std::vector<tchar_t> buffer(length, 0);
 	while (result == -1)
 	{
-		result = _vsntprintf_s(&buffer[0], length, _TRUNCATE, fmt, args);
+		result = tc::vsntprintf_s(&buffer[0], length, _TRUNCATE, fmt, args);
 		length *= 2;
 		buffer.resize(length, 0);
 	}
@@ -285,7 +283,7 @@ String format_arg_list(const TCHAR *fmt, va_list args)
  * @brief printf()-style formatting for STL string.
  * Use this function to format String:s in printf() style.
  */
-String format_varg(const TCHAR *fmt, ...)
+String format_varg(const tchar_t *fmt, ...)
 {
 	va_list args;
 	va_start(args, fmt);

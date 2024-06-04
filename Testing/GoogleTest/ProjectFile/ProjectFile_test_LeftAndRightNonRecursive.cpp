@@ -10,11 +10,11 @@
 #include "ProjectFile.h"
 
 /** @brief Projectfile to load. */
-static const TCHAR FileName[] = _T("..\\TestData\\LeftAndRightNonRecursive.WinMerge");
+static const tchar_t FileName[] = _T("..\\TestData\\LeftAndRightNonRecursive.WinMerge");
 /** @brief Left path we should get from file. */
-static const TCHAR LeftPath[] = _T("C:\\Temp\\Left");
+static const tchar_t LeftPath[] = _T("C:\\Temp\\Left");
 /** @brief Right path we should get from file. */
-static const TCHAR RightPath[] = _T("C:\\Temp\\Right");
+static const tchar_t RightPath[] = _T("C:\\Temp\\Right");
 
 namespace
 {

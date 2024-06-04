@@ -6,7 +6,7 @@ namespace Options { namespace CustomColors
 {
 
 /** @brief Setting name for user-defined custom colors. */
-const TCHAR Section[] = _T("Custom Colors");
+const tchar_t Section[] = _T("Custom Colors");
 
 void Init(COptionsMgr *pOptionsMgr)
 {

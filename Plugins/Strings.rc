@@ -1,0 +1,340 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_PROCESS_TYPE1 "Prettification"
+    IDS_PLUGIN_PROCESS_TYPE2 "Content Extraction"
+    IDS_PLUGIN_PROCESS_TYPE3 "Preview"
+    IDS_PLUGIN_PROCESS_TYPE4 "Editor script"
+    IDS_PLUGIN_PROCESS_TYPE5 "Data Query"
+    IDS_PLUGIN_PROCESS_TYPE6 "Validation"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
+    IDS_PLUGIN_PROCESS_TYPE8 "URL Handling"
+    IDS_PLUGIN_MENU_CAPTION1 "Make Uppercase"
+    IDS_PLUGIN_MENU_CAPTION2 "Make Lowercase"
+    IDS_PLUGIN_MENU_CAPTION3 "Remove Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION4 "Count Duplicate Lines"
+    IDS_PLUGIN_MENU_CAPTION5 "Sort Lines Ascending"
+    IDS_PLUGIN_MENU_CAPTION6 "Sort Lines Descending"
+    IDS_PLUGIN_MENU_CAPTION7 "Reverse Columns"
+    IDS_PLUGIN_MENU_CAPTION8 "Reverse Lines"
+    IDS_PLUGIN_MENU_CAPTION9 "Replace..."
+    IDS_PLUGIN_MENU_CAPTION10 "Apply Filter Command..."
+    IDS_PLUGIN_MENU_CAPTION11 "Tokenize..."
+    IDS_PLUGIN_MENU_CAPTION12 "Trim Spaces"
+    IDS_PLUGIN_MENU_CAPTION13 "Select Columns..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_MENU_CAPTION14 "Select Lines..."
+    IDS_PLUGIN_MENU_CAPTION15 "Insert Date"
+    IDS_PLUGIN_MENU_CAPTION16 "Insert Time"
+    IDS_PLUGIN_MENU_CAPTION17 "Apply Patch..."
+    IDS_PLUGIN_MENU_CAPTION18 "Ignore Columns"
+    IDS_PLUGIN_MENU_CAPTION19 "Ignore Comments (C-Family Languages)"
+    IDS_PLUGIN_MENU_CAPTION20 "Ignore CSV Fields"
+    IDS_PLUGIN_MENU_CAPTION21 "Ignore TSV Fields"
+    IDS_PLUGIN_MENU_CAPTION22 "Ignore Leading Line Numbers"
+    IDS_PLUGIN_MENU_CAPTION23 "Apply Prediff Substitution Filters"
+    IDS_PLUGIN_MENU_CAPTION24 "Prettify HTML"
+    IDS_PLUGIN_MENU_CAPTION25 "Prettify JSON"
+    IDS_PLUGIN_MENU_CAPTION26 "Prettify XML"
+    IDS_PLUGIN_MENU_CAPTION27 "Prettify YAML"
+    IDS_PLUGIN_MENU_CAPTION28 "Preview Graphviz"
+    IDS_PLUGIN_MENU_CAPTION29 "Preview Markdown"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_MENU_CAPTION30 "Preview PlantUML"
+    IDS_PLUGIN_MENU_CAPTION31 "Query CSV Data..."
+    IDS_PLUGIN_MENU_CAPTION32 "Query TSV Data..."
+    IDS_PLUGIN_MENU_CAPTION33 "Query JSON Data..."
+    IDS_PLUGIN_MENU_CAPTION34 "Query YAML Data..."
+    IDS_PLUGIN_MENU_CAPTION35 "Validate HTML"
+    IDS_PLUGIN_MENU_CAPTION36 "Disassemble JVM Bytecode"
+    IDS_PLUGIN_MENU_CAPTION37 "Disassemble IL Code"
+    IDS_PLUGIN_MENU_CAPTION38 "Disassemble Native Code"
+    IDS_PLUGIN_MENU_CAPTION39 "Convert Text with AI..."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION1 "Make characters uppercase"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION2 "Make characters lowercase"
+    IDS_PLUGIN_DESCRIPTION3 "Remove duplicate lines"
+    IDS_PLUGIN_DESCRIPTION4 "Count duplicate lines"
+    IDS_PLUGIN_DESCRIPTION5 "Sort lines ascending"
+    IDS_PLUGIN_DESCRIPTION6 "Sort lines descending"
+    IDS_PLUGIN_DESCRIPTION7 "Reverse columns"
+    IDS_PLUGIN_DESCRIPTION8 "Reverse lines"
+    IDS_PLUGIN_DESCRIPTION9 "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+    IDS_PLUGIN_DESCRIPTION10 
+                            "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
+    IDS_PLUGIN_DESCRIPTION11 
+                            "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+    IDS_PLUGIN_DESCRIPTION12 "Trim spaces"
+    IDS_PLUGIN_DESCRIPTION13 
+                            "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
+    IDS_PLUGIN_DESCRIPTION14 
+                            "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION23 
+                            "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION24 
+                            "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION25 
+                            "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION26 
+                            "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+    IDS_PLUGIN_DESCRIPTION27 
+                            "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+    IDS_PLUGIN_DESCRIPTION28 
+                            "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+    IDS_PLUGIN_DESCRIPTION29 
+                            "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+    IDS_PLUGIN_DESCRIPTION30 
+                            "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION31 
+                            "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
+    IDS_PLUGIN_DESCRIPTION32 
+                            "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
+    IDS_PLUGIN_DESCRIPTION33 
+                            "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION34 
+                            "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
+    IDS_PLUGIN_DESCRIPTION35 
+                            "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
+    IDS_PLUGIN_DESCRIPTION36 
+                            "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
+    IDS_PLUGIN_DESCRIPTION37 
+                            "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
+    IDS_PLUGIN_DESCRIPTION38 
+                            "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
+    IDS_PLUGIN_DESCRIPTION39 "Apply patch using GNU patch"
+    IDS_PLUGIN_DESCRIPTION40 "Display the text content of MS Excel files"
+    IDS_PLUGIN_DESCRIPTION41 "Display the text content of MS PowerPoint files"
+    IDS_PLUGIN_DESCRIPTION42 "Display the text content of MS Visio files"
+    IDS_PLUGIN_DESCRIPTION43 "Display the text content of MS Word files"
+    IDS_PLUGIN_DESCRIPTION44 
+                            "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION45 
+                            "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
+    IDS_PLUGIN_DESCRIPTION46 
+                            "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+    IDS_PLUGIN_DESCRIPTION47 
+			    "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+    IDS_PLUGIN_DESCRIPTION48 "Prediff Line Filter"
+    IDS_PLUGIN_DESCRIPTION49 "Date and time insertion function"
+    IDS_PLUGIN_DESCRIPTION50
+                            "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_DESCRIPTION51 
+                            "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
+    IDS_PLUGIN_DESCRIPTION52 "Basic text functions"
+    IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion functions"
+    IDS_PLUGIN_DESCRIPTION54 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR1 
+                            "CompareMSExcelFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR2 
+                            "Extract workbook data to multiple files"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR3 "Update external references(links)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR4 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR5 "Compare names"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR6 "Compare cell values"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR7 
+                            "Compare worksheets as image (very slow)"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR8 " - Image split size: "
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR9 "Compare worksheets as HTML"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR10 "Compare formulas"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR11 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR12 "Compare headers and footers"
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR13 
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSEXCELFILES_STR14 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR1 
+                            "CompareMSWordFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR2 
+                            "Extract document data to multiple files"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR4 "Compare bookmarks"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR5 "Compare text contents of documents"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR6 
+                            "Compare documents as HTML file (very slow)"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR7 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR8 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSWORDFILES_STR9
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR1 
+                            "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR2 
+                            "Extract slide data to multiple files"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR3 "Compare document properties"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR4 
+                            "Compare slides as image (very slow)"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR5 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR6 "Compare texts in notes page"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR7 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSPOWERPOINTFILES_STR8
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR1 
+                            "CompareMSVisioFiles.sct WinMerge Plugin Options"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR2 "Extract page data to multiple files"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR3 "Compare pages as image (very slow)"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR4 "Compare texts in shapes"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR5 "Compare VBA macros"
+    IDS_PLUGIN_COMPAREMSVISIOFILES_STR6
+                            "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR1 
+                            "PrediffLineFilter.sct WinMerge Plugin Options"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR2 "Add"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR3 "Delete"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR4 "Enabled"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR5 "Ignore Case"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR6 "Use RegExp"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR7 "Find what"
+    IDS_PLUGIN_PREDIFFLINEFILTER_STR8 "Replace with"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_IGNORE_STR1  "Settings"
+    IDS_PLUGIN_IGNORE_STR2  "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_APPLYPATCH_STR1 
+                            "Enter the name of the file to which the patch '%1' will be applied"
+    IDS_PLUGIN_APPLYPATCH_STR2 "File '%1' does not exist"
+    IDS_PLUGIN_APPLYPATCH_STR3 
+                            "Enter the command line arguments for patch command"
+    IDS_PLUGIN_APPLYPATCH_STR4 
+                            "Enter the name of the folder to which the patch '%1' will be applied"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_APPLYPATCH_STR5 "Folder '%1' does not exist"
+    IDS_PLUGIN_APPLYPATCH_STR6 
+                            "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PLUGIN_EDITORADDIN_STR1 
+                            "AI.sct WinMerge Plugin Options"
+    IDS_PLUGIN_EDITORADDIN_STR2
+                            "Enter prompt"
+    IDS_PLUGIN_EDITORADDIN_STR3 
+                            "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+    IDS_PLUGIN_EDITORADDIN_STR4
+                            "Environment variable name for OpenAI API key"
+    IDS_PLUGIN_EDITORADDIN_STR5
+                            "OpenAI API key"
+    IDS_PLUGIN_EDITORADDIN_STR6
+                            "Temperature"
+    IDS_PLUGIN_EDITORADDIN_STR7
+                            "Maximum length"
+    IDS_PLUGIN_EDITORADDIN_STR8
+                            "Model"
+    IDS_PLUGIN_EDITORADDIN_STR9
+                            "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

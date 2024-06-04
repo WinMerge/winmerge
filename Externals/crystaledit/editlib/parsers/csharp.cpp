@@ -25,7 +25,7 @@
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -35,9 +35,12 @@
 #endif
 
 //  C# keywords
-static const TCHAR * s_apszCppKeywordList[] =
+static const tchar_t * s_apszCppKeywordList[] =
   {
     _T ("abstract"),
+    _T ("as"),
+    _T ("async"),
+    _T ("await"),
     _T ("base"),
     _T ("bool"),
     _T ("break"),
@@ -86,6 +89,7 @@ static const TCHAR * s_apszCppKeywordList[] =
     _T ("operator"),
     _T ("out"),
     _T ("override"),
+    _T ("params"),
     _T ("private"),
     _T ("protected"),
     _T ("public"),
@@ -97,6 +101,7 @@ static const TCHAR * s_apszCppKeywordList[] =
     _T ("set"),
     _T ("short"),
     _T ("sizeof"),
+    _T ("stackalloc"),
     _T ("static"),
     _T ("string"),
     _T ("struct"),
@@ -112,21 +117,24 @@ static const TCHAR * s_apszCppKeywordList[] =
     _T ("unsafe"),
     _T ("ushort"),
     _T ("using"),
+    _T ("var"),
     _T ("virtual"),
     _T ("void"),
+    _T ("volatile"),
     _T ("when"),
     _T ("while"),
+    _T ("yield"),
   };
 
 
 static bool
-IsCppKeyword (const TCHAR *pszChars, int nLength)
+IsCppKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORD (s_apszCppKeywordList, pszChars, nLength);
 }
 
 unsigned
-CrystalLineParser::ParseLineCSharp (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLineCSharp (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   return ParseLineCJava (dwCookie, pszChars, nLength, pBuf, nActualItems, IsCppKeyword, nullptr);
 }

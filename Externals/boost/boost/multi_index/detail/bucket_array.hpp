@@ -1,4 +1,4 @@
-/* Copyright 2003-2018 Joaquin M Lopez Munoz.
+/* Copyright 2003-2023 Joaquin M Lopez Munoz.
  * Distributed under the Boost Software License, Version 1.0.
  * (See accompanying file LICENSE_1_0.txt or copy at
  * http://www.boost.org/LICENSE_1_0.txt)
@@ -15,10 +15,10 @@
 
 #include <boost/config.hpp> /* keep it first to prevent nasty warns in MSVC */
 #include <algorithm>
+#include <boost/core/noncopyable.hpp>
 #include <boost/multi_index/detail/allocator_traits.hpp>
 #include <boost/multi_index/detail/auto_space.hpp>
 #include <boost/multi_index/detail/hash_index_node.hpp>
-#include <boost/noncopyable.hpp>
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/preprocessor/seq/elem.hpp>
 #include <boost/preprocessor/seq/enum.hpp>
@@ -27,8 +27,8 @@
 #include <limits.h>
 
 #if !defined(BOOST_MULTI_INDEX_DISABLE_SERIALIZATION)
-#include <boost/archive/archive_exception.hpp>
-#include <boost/serialization/access.hpp>
+#include <boost/core/serialization.hpp>
+#include <boost/multi_index/detail/bad_archive_exception.hpp>
 #include <boost/throw_exception.hpp> 
 #endif
 
@@ -173,6 +173,13 @@ public:
     spc.swap(x.spc);
   }
 
+  template<typename BoolConstant>
+  void swap(bucket_array& x,BoolConstant swap_allocators)
+  {
+    std::swap(size_index_,x.size_index_);
+    spc.swap(x.spc,swap_allocators);
+  }
+
 private:
   typedef auto_space<base_node_impl_type,Allocator> auto_space_type;
   typedef typename auto_space_type::size_type       auto_space_size_type;
@@ -229,8 +236,7 @@ inline void load_construct_data(
   Archive&,boost::multi_index::detail::bucket_array<Allocator>*,
   const unsigned int)
 {
-  throw_exception(
-    archive::archive_exception(archive::archive_exception::other_exception));
+  throw_exception(boost::multi_index::detail::bad_archive_exception());
 }
 
 #if defined(BOOST_NO_ARGUMENT_DEPENDENT_LOOKUP)

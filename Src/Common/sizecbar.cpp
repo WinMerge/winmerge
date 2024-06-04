@@ -314,7 +314,7 @@ CSize CSizingControlBar::CalcDynamicLayout(int nLength, DWORD dwMode)
     return m_szFloat;
 }
 
-void CSizingControlBar::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
+void CSizingControlBar::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 {
     // force non-client recalc if moved or resized
     lpwndpos->flags |= SWP_FRAMECHANGED;
@@ -406,7 +406,7 @@ void CSizingControlBar::OnCaptureChanged(CWnd *pWnd)
 }
 
 void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
-                                     NCCALCSIZE_PARAMS FAR* lpncsp)
+                                     NCCALCSIZE_PARAMS* lpncsp)
 {
     UNUSED_ALWAYS(bCalcValidRects);
 
@@ -543,7 +543,7 @@ void CSizingControlBar::OnPaint()
     CPaintDC dc(this);
 }
 
-NCHITTEST_RESULT CSizingControlBar::OnNcHitTest(CPoint point)
+LRESULT CSizingControlBar::OnNcHitTest(CPoint point)
 {
     CRect rcBar, rcEdge;
     GetWindowRect(rcBar);
@@ -1363,7 +1363,7 @@ void CSCBMiniDockFrameWnd::OnSize(UINT nType, int cx, int cy)
     baseCSCBMiniDockFrameWnd::OnSize(nType, cx, cy);
 }
 
-void CSCBMiniDockFrameWnd::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
+void CSCBMiniDockFrameWnd::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 {
     baseCSCBMiniDockFrameWnd::OnGetMinMaxInfo(lpMMI);
 
@@ -1381,7 +1381,7 @@ void CSCBMiniDockFrameWnd::OnGetMinMaxInfo(MINMAXINFO FAR* lpMMI)
     }
 }
 
-void CSCBMiniDockFrameWnd::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos) 
+void CSCBMiniDockFrameWnd::OnWindowPosChanging(WINDOWPOS* lpwndpos) 
 {
     if ((GetStyle() & MFS_4THICKFRAME) != 0)
     {

@@ -1,3 +1,2 @@
-[Apache Tika]
-https://www.apache.org/dyn/closer.cgi/tika/2.2.1/tika-app-2.2.1.jar
-https://www.apache.org/dyn/closer.cgi/tika/2.2.1/tika-2.2.1-src.zip
+https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0.jar
+https://repo1.maven.org/maven2/org/apache/tika/tika-app/2.6.0/tika-app-2.6.0-sources.jar

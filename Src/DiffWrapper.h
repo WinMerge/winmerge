@@ -163,7 +163,8 @@ public:
 	void SetCreatePatchFile(const String &filename);
 	void SetCreateDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options) const;
-	void SetOptions(const DIFFOPTIONS *options);
+	const DiffutilsOptions& GetOptions() const { return m_options; }
+	void SetOptions(const DIFFOPTIONS *options, bool setToDiffutils = false);
 	void SetTextForAutomaticPrediff(const String &text);
 	void SetPrediffer(const PrediffingInfo * prediffer = nullptr);
 	void GetPrediffer(PrediffingInfo * prediffer) const;
@@ -182,20 +183,20 @@ public:
 	void SetCompareFiles(const PathContext &originalFile);
 	void WritePatchFileHeader(enum output_style output_style, bool bAppendFiles);
 	void WritePatchFileTerminator(enum output_style output_style);
-	void SetFilterList(const String& filterStr);
-	void SetFilterList(const FilterList *pFilterList);
+	const FilterList* GetFilterList() const;
+	void SetFilterList(std::shared_ptr<FilterList> pFilterList);
 	const SubstitutionList* GetSubstitutionList() const;
 	void SetSubstitutionList(std::shared_ptr<SubstitutionList> pSubstitutionFiltersList);
 	void SetFilterCommentsSourceDef(CrystalLineParser::TextDefinition *def) { m_pFilterCommentsDef = def; };
 	void SetFilterCommentsSourceDef(const String& ext);
+	void SetCodepage(int codepage) { m_codepage = codepage; }
 	void EnablePlugins(bool enable);
-	void PostFilter(PostFilterContext& ctxt, int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
-		int QtyLinesRight, OP_TYPE &Op, const file_data *file_data_ary) const;
+	int PostFilter(PostFilterContext& ctxt, change* thisob, const file_data* file_data_ary) const;
+	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
+		int * bin_status, int * bin_file) const;
 
 protected:
 	String FormatSwitchString() const;
-	bool Diff2Files(struct change ** diffs, DiffFileData *diffData,
-		int * bin_status, int * bin_file) const;
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
 	void WritePatchFile(struct change * script, file_data * inf);
 public:
@@ -203,12 +204,13 @@ public:
 		struct change * script10, struct change * script12,
 		const file_data * inf10, const file_data * inf12);
 	static void FreeDiffUtilsScript(struct change * & script);
-	bool RegExpFilter(int StartPos, int EndPos, const file_data * pinf) const;
+	bool RegExpFilter(std::string& lines) const;
 
 private:
 	DiffutilsOptions m_options;
+	int m_xdlFlags;
 	DIFFSTATUS m_status; /**< Status of last compare */
-	std::unique_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
+	std::shared_ptr<FilterList> m_pFilterList; /**< List of linefilters. */
 	std::shared_ptr<SubstitutionList> m_pSubstitutionList;
 
 	PathContext m_files; /**< Full path to diff'ed file. */
@@ -230,6 +232,7 @@ private:
 	std::unique_ptr<MovedLines> m_pMovedLines[3];
 	CrystalLineParser::TextDefinition *m_pFilterCommentsDef; /**< Text definition for Comments filter  */
 	bool m_bPluginsEnabled; /**< Are plugins enabled? */
+	int m_codepage; /**< Codepage used in line filter */
 };
 
 /**

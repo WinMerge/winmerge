@@ -19,6 +19,8 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <cstdio>
+#include <cstring>
 
 
 namespace Poco {
@@ -60,11 +62,11 @@ void FileStreamBuf::open(const std::string& path, std::ios::openmode mode)
 		flags |= O_RDONLY;
 	else
 		flags |= O_WRONLY;
-			
+
 	_fd = ::open(path.c_str(), flags, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
 	if (_fd == -1)
 		File::handleLastError(_path);
-		
+
 	if ((mode & std::ios::app) || (mode & std::ios::ate))
 		seekoff(0, std::ios::end, mode);
 }
@@ -73,10 +75,10 @@ void FileStreamBuf::open(const std::string& path, std::ios::openmode mode)
 int FileStreamBuf::readFromDevice(char* buffer, std::streamsize length)
 {
 	if (_fd == -1) return -1;
-	
+
 	if (getMode() & std::ios::out)
 		sync();
-	
+
 	int n = read(_fd, buffer, length);
 	if (n == -1)
 		File::handleLastError(_path);
@@ -123,7 +125,7 @@ bool FileStreamBuf::close()
 
 std::streampos FileStreamBuf::seekoff(std::streamoff off, std::ios::seekdir dir, std::ios::openmode mode)
 {
-	if (_fd == -1 || !(getMode() & mode)) 
+	if (_fd == -1 || !(getMode() & mode))
 		return -1;
 
 	if (getMode() & std::ios::out)
@@ -154,7 +156,7 @@ std::streampos FileStreamBuf::seekoff(std::streamoff off, std::ios::seekdir dir,
 
 std::streampos FileStreamBuf::seekpos(std::streampos pos, std::ios::openmode mode)
 {
-	if (_fd == -1 || !(getMode() & mode)) 
+	if (_fd == -1 || !(getMode() & mode))
 		return -1;
 
 	if (getMode() & std::ios::out)
@@ -164,6 +166,23 @@ std::streampos FileStreamBuf::seekpos(std::streampos pos, std::ios::openmode mod
 
 	_pos = lseek(_fd, pos, SEEK_SET);
 	return _pos;
+}
+
+
+FileStreamBuf::NativeHandle FileStreamBuf::nativeHandle() const
+{
+	return _fd;
+}
+
+Poco::UInt64 FileStreamBuf::size() const
+{
+	struct stat stat_buf;
+	int rc = fstat(_fd, &stat_buf);
+	if (rc < 0)
+	{
+		Poco::SystemException(strerror(errno), errno);
+	}
+	return stat_buf.st_size;
 }
 
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "pch.h"
 #include "CppUnitTest.h"
 #include "../editlib/parsers/crystallineparser.h"
 #include "../editlib/SyntaxColors.h"
@@ -15,7 +15,7 @@ namespace test
 			std::unique_ptr<CrystalLineParser::TEXTBLOCK[]> pblocks(new CrystalLineParser::TEXTBLOCK[256]);
 			struct TestData {
 				unsigned dwCookie;
-				TCHAR *pszChars;
+				tchar_t *pszChars;
 			} data[] = {
 				//                                             1         2         3         4         5
 				//                                   012345678901234567890123456789012345678901234657890123456
@@ -83,7 +83,7 @@ namespace test
 				std::wstring msg = L"index: " + std::to_wstring(i);
 				Assert::AreEqual(
 					static_cast<unsigned>(expected[i].dwCookie),
-					CrystalLineParser::ParseLineLua(data[i].dwCookie, data[i].pszChars, static_cast<int>(_tcslen(data[i].pszChars)), pblocks.get(), nActualItems), msg.c_str());
+					CrystalLineParser::ParseLineLua(data[i].dwCookie, data[i].pszChars, static_cast<int>(tc::tcslen(data[i].pszChars)), pblocks.get(), nActualItems), msg.c_str());
 				Assert::AreEqual(static_cast<int>(expected[i].nblocks), nActualItems, msg.c_str());
 				for (int j = 0; j < nActualItems; ++j)
 				{

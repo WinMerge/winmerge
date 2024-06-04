@@ -24,6 +24,7 @@ import "ocidl.idl";
 		[propget, id(6), helpstring("property PluginExtendedProperties")] HRESULT PluginExtendedProperties([out, retval] BSTR *pVal);
 		[id(7), helpstring("method PrediffBufferW")] HRESULT PrediffBufferW([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
 		[id(8), helpstring("method ShowSettingsDialog")] HRESULT ShowSettingsDialog([out, retval] VARIANT_BOOL * pbHandled);
+		[id(9), helpstring("method PluginOnEvent")] HRESULT PluginOnEvent([in] int iEventType, [in] IDispatch* pDispatch);
 	};
 
 [

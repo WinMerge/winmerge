@@ -27,11 +27,12 @@
 #include "MergeLineFlags.h"
 #include "paths.h"
 #include "DropHandler.h"
-#include "DirDoc.h"
+#include "IDirDoc.h"
 #include "ShellContextMenu.h"
 #include "editcmd.h"
 #include "Shell.h"
 #include "SelectPluginDlg.h"
+#include "Constants.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,8 +50,7 @@ const UINT IDT_RESCAN = 2;
 /** @brief Timer timeout for delayed rescan. */
 const UINT RESCAN_TIMEOUT = 1000;
 
-/** @brief Location for file compare specific help to open. */
-static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/Compare_files.html");
+enum CopyGranularity { DiffHunk, InlineDiff, Line, Character };
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
@@ -234,7 +234,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_USE_FIRST_LINE_AS_HEADERS, OnUpdateUseFirstLineAsHeaders)
 	ON_COMMAND(ID_AUTO_FIT_ALL_COLUMNS, OnAutoFitAllColumns)
 	// Status bar
-	ON_NOTIFY(NM_CLICK, AFX_IDW_STATUS_BAR, OnStatusBarClick)
+	ON_NOTIFY(NM_CLICK, AFX_IDW_CONTROLBAR_FIRST+28, OnStatusBarClick)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE0FILE_EOL, OnUpdateStatusEOL)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE1FILE_EOL, OnUpdateStatusEOL)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_PANE2FILE_EOL, OnUpdateStatusEOL)
@@ -316,7 +316,7 @@ std::pair<int, int> CMergeEditView::GetSelectedLineAndCharacterCount()
 	{
 		if ((GetLineFlags(nLine) & (LF_GHOST | LF_INVISIBLE)) == 0)
 		{
-			int nLineLength = GetLineLength(nLine) + (m_pTextBuffer->GetLineEol(nLine)[0] ? 1 : 0);
+			int nLineLength = GetLineLength(nLine) + ((m_pTextBuffer && m_pTextBuffer->GetLineEol(nLine)[0]) ? 1 : 0);
 			nCharsOrColumns += (nLine == ptEnd.y) ? ptEnd.x : nLineLength;
 			if (nLine == ptStart.y)
 				nCharsOrColumns -= ptStart.x;
@@ -398,7 +398,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
  * @todo This shouldn't be called when there is no diffs, so replace
  * first 'if' with ASSERT()?
  */
-void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff, int & lastWordDiff, const CPoint *pptStart, const CPoint *pptEnd)
+void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int & firstWordDiff, int & lastWordDiff, const CEPoint *pptStart, const CEPoint *pptEnd)
 {
 	firstDiff = -1;
 	lastDiff = -1;
@@ -450,7 +450,9 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 		else if (ptStart != ptEnd)
 		{
 			VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
-			if (lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0)))
+			constexpr int LineLimit = 256;
+			if ((lastLineIsNotInDiff && (firstLineIsNotInDiff || (di.dbegin == firstLine && ptStart.x == 0))) ||
+			    (di.dend - di.dbegin > LineLimit))
 			{
 				firstWordDiff = -1;
 				return;
@@ -464,7 +466,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff, int 
 					int worddiffLen = worddiffs[i].end[m_nThisPane] - worddiffs[i].begin[m_nThisPane];
 					if (worddiffs[i].endline[m_nThisPane] > firstLine ||
 						(firstLine == worddiffs[i].endline[m_nThisPane] && 
-						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) > ptStart.x))
+						 worddiffs[i].end[m_nThisPane] - (worddiffLen == 0 ? 0 : 1) >= ptStart.x))
 					{
 						firstWordDiff = static_cast<int>(i);
 						break;
@@ -570,7 +572,7 @@ std::map<int, std::vector<int>> CMergeEditView::GetColumnSelectedWordDiffIndice(
 			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 			int nLeft, nRight;
 			GetColumnSelection(nLine, nLeft, nRight);
-			CPoint ptStart2, ptEnd2;
+			CEPoint ptStart2, ptEnd2;
 			ptStart2.x = nLeft;
 			ptEnd2.x = nRight;
 			ptStart2.y = ptEnd2.y = nLine;
@@ -635,7 +637,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 			return emptyBlocks;
 	}
 
-	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	lineflags_t dwLineFlags = GetLineFlags(nLineIndex);
 	if ((dwLineFlags & LF_SNP) == LF_SNP || (dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
 		return emptyBlocks;
 
@@ -687,7 +689,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 		for (int pane = 0; pane < pDoc->m_nBuffers; pane++)
 		{
 			begin[pane] = (worddiffs[i].beginline[pane] < nLineIndex) ? 0 : worddiffs[i].begin[pane];
-			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetLineLength(nLineIndex) : worddiffs[i].end[pane];
+			end[pane]   = (worddiffs[i].endline[pane]   > nLineIndex) ? GetGroupView(pane)->GetViewableLineLength(nLineIndex) : worddiffs[i].end[pane];
 			if (worddiffs[i].beginline[pane] == worddiffs[i].endline[pane] &&
 				worddiffs[i].begin[pane] == worddiffs[i].end[pane])
 				deleted = true;
@@ -719,7 +721,7 @@ std::vector<TEXTBLOCK> CMergeEditView::GetAdditionalTextBlocks (int nLineIndex)
 	return blocks;
 }
 
-COLORREF CMergeEditView::GetColor(int nColorIndex) const
+CEColor CMergeEditView::GetColor(int nColorIndex) const
 {
 	switch (nColorIndex & ~COLORINDEX_MASK)
 	{
@@ -747,8 +749,8 @@ COLORREF CMergeEditView::GetColor(int nColorIndex) const
  * @param [out] crBkgnd Backround color for line
  * @param [out] crText Text color for line
  */
-void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
-                                COLORREF & crText, bool & bDrawWhitespace)
+void CMergeEditView::GetLineColors(int nLineIndex, CEColor & crBkgnd,
+                                CEColor & crText, bool & bDrawWhitespace)
 {
 	DWORD ignoreFlags = 0;
 	GetLineColors2(nLineIndex, ignoreFlags, crBkgnd, crText, bDrawWhitespace);
@@ -763,13 +765,13 @@ void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
  *
  * This version allows caller to suppress particular flags
  */
-void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF & crBkgnd,
-                                COLORREF & crText, bool & bDrawWhitespace)
+void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, CEColor & crBkgnd,
+                                CEColor & crText, bool & bDrawWhitespace)
 {
 	if (GetLineCount() <= nLineIndex)
 		return;
 
-	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+	lineflags_t dwLineFlags = GetLineFlags(nLineIndex);
 
 	if (dwLineFlags & ignoreFlags)
 		dwLineFlags &= (~ignoreFlags);
@@ -1041,9 +1043,9 @@ void CMergeEditView::OnDisplayDiff(int nDiff /*=0*/)
 	vector<WordDiff> worddiffs;
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF))
 		worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
-	CPoint pt = worddiffs.size() > 0 ?
-		CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
-		CPoint{ 0, m_lineBegin };
+	CEPoint pt = worddiffs.size() > 0 ?
+		CEPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } : 
+		CEPoint{ 0, m_lineBegin };
 	ScrollToLine(m_lineBegin);
 	if (pt.x > 0)
 		EnsureVisible(pt);
@@ -1089,7 +1091,7 @@ void CMergeEditView::DeselectDiffIfCursorNotInCurrentDiff()
 	int nCurrentDiff = pd->GetCurrentDiff();
 	if (nCurrentDiff != -1)
 	{
-		CPoint pos = GetCursorPos();
+		CEPoint pos = GetCursorPos();
 		if (!IsLineInCurrentDiff(pos.y))
 		{
 			pd->SetCurrentDiff(-1);
@@ -1124,7 +1126,7 @@ void CMergeEditView::OnCurdiff()
 	else
 	{
 		// If cursor is inside diff, select that diff
-		CPoint pos = GetCursorPos();
+		CEPoint pos = GetCursorPos();
 		nDiff = pd->m_diffList.LineToDiff(pos.y);
 		if (nDiff != -1 && pd->m_diffList.IsDiffSignificant(nDiff))
 			SelectDiff(nDiff, true, false);
@@ -1140,7 +1142,7 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 	int nCurrentDiff = pd->GetCurrentDiff();
 	if (nCurrentDiff == -1)
 	{
-		CPoint pos = GetCursorPos();
+		CEPoint pos = GetCursorPos();
 		int nNewDiff = pd->m_diffList.LineToDiff(pos.y);
 		pCmdUI->Enable(nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff));
 	}
@@ -1166,8 +1168,10 @@ void CMergeEditView::OnEditCopy()
 	{
 		CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
+		String sText;
 		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text);
+			ptSelEnd.y, ptSelEnd.x, sText);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
 	}
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
@@ -1200,8 +1204,12 @@ void CMergeEditView::OnEditCut()
 
 	CString text;
 	if (!m_bRectangularSelection)
+	{
+		String sText;
 		pDoc->m_ptBuf[m_nThisPane]->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text);
+			ptSelEnd.y, ptSelEnd.x, sText);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
+	}
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
 
@@ -1209,7 +1217,7 @@ void CMergeEditView::OnEditCut()
 
 	if (!m_bRectangularSelection)
 	{
-		CPoint ptCursorPos = ptSelStart;
+		CEPoint ptCursorPos = ptSelStart;
 		ASSERT_VALIDTEXTPOS(ptCursorPos);
 		SetAnchor(ptCursorPos);
 		SetSelection(ptCursorPos, ptCursorPos);
@@ -1330,7 +1338,7 @@ void CMergeEditView::OnFirstdiff()
  */
 void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 {
-	OnUpdatePrevdiff(pCmdUI);
+	pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 }
 
 /**
@@ -1351,7 +1359,7 @@ void CMergeEditView::OnLastdiff()
  */
 void CMergeEditView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 {
-	OnUpdateNextdiff(pCmdUI);
+	pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 }
 
 /**
@@ -1386,7 +1394,7 @@ void CMergeEditView::OnNextdiff()
 			int line = GetCursorPos().y;
 			// Make sure we aren't in the first line of the diff
 			++line;
-			if (!IsValidTextPosY(CPoint(0, line)))
+			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
 			nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
 		}
@@ -1404,7 +1412,7 @@ void CMergeEditView::OnNextdiff()
 		// We don't have a selected difference,
 		// but cursor can be inside inactive diff
 		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CPoint(0, line)))
+		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
 		nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
 	}
@@ -1412,7 +1420,7 @@ void CMergeEditView::OnNextdiff()
 	int lastDiff = pd->m_diffList.LastSignificantDiff();
 	if (nextDiff >= 0 && nextDiff <= lastDiff)
 		SelectDiff(nextDiff, true, false);
-	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
+	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
 	{
 		if (pDirDoc->MoveableToNextDiff())
 			pDirDoc->MoveToNextDiff(pd);
@@ -1436,7 +1444,8 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 	else
 	{
 		// Enable if the beginning of the last significant difference is after caret
-		enabled = (GetCursorPos().y < (long)dfi->dbegin);
+		enabled = (pd->GetCurrentDiff() < 0 && GetCursorPos().y <= (long)dfi->dbegin)
+			|| (GetCursorPos().y < (long)dfi->dbegin);
 	}
 
 	if (!enabled && pd->GetDirDoc())
@@ -1477,7 +1486,7 @@ void CMergeEditView::OnPrevdiff()
 			int line = GetCursorPos().y;
 			// Make sure we aren't in the last line of the diff
 			--line;
-			if (!IsValidTextPosY(CPoint(0, line)))
+			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
 			prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
 		}
@@ -1495,7 +1504,7 @@ void CMergeEditView::OnPrevdiff()
 		// We don't have a selected difference,
 		// but cursor can be inside inactive diff
 		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CPoint(0, line)))
+		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
 		prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
 	}
@@ -1503,7 +1512,7 @@ void CMergeEditView::OnPrevdiff()
 	int firstDiff = pd->m_diffList.FirstSignificantDiff();
 	if (prevDiff >= 0 && prevDiff >= firstDiff)
 		SelectDiff(prevDiff, true, false);
-	else if (CDirDoc *pDirDoc = pd->GetDirDoc())
+	else if (IDirDoc *pDirDoc = pd->GetDirDoc())
 	{
 		if (pDirDoc->MoveableToPrevDiff())
 			pDirDoc->MoveToPrevDiff(pd);
@@ -1527,7 +1536,8 @@ void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 	else
 	{
 		// Enable if the end of the first significant difference is before caret
-		enabled = (GetCursorPos().y > (long)dfi->dend);
+		enabled = (pd->GetCurrentDiff() < 0 && GetCursorPos().y >= (long)dfi->dbegin)
+			|| (GetCursorPos().y > (long)dfi->dend);
 	}
 
 	if (!enabled && pd->GetDirDoc())
@@ -1584,7 +1594,7 @@ void CMergeEditView::OnNext3wayDiff(int nDiffType)
 			int line = GetCursorPos().y;
 			// Make sure we aren't in the first line of the diff
 			++line;
-			if (!IsValidTextPosY(CPoint(0, line)))
+			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
 			nextDiff = pd->m_diffList.NextSignificant3wayDiffFromLine(line, nDiffType);
 		}
@@ -1607,7 +1617,7 @@ void CMergeEditView::OnNext3wayDiff(int nDiffType)
 		// We don't have a selected difference,
 		// but cursor can be inside inactive diff
 		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CPoint(0, line)))
+		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
 		curDiff = pd->m_diffList.NextSignificant3wayDiffFromLine(line, nDiffType);
 		if (curDiff >= 0)
@@ -1638,8 +1648,9 @@ void CMergeEditView::OnUpdateNext3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	else
 	{
 		// Enable if the beginning of the last significant difference is after caret
-		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y < (long)dfi->dbegin);
+		CEPoint pos = GetCursorPos();
+		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y <= (long)dfi->dbegin)
+			|| (pos.y < (long)dfi->dbegin));
 	}
 }
 
@@ -1666,7 +1677,7 @@ void CMergeEditView::OnPrev3wayDiff(int nDiffType)
 			int line = GetCursorPos().y;
 			// Make sure we aren't in the last line of the diff
 			--line;
-			if (!IsValidTextPosY(CPoint(0, line)))
+			if (!IsValidTextPosY(CEPoint(0, line)))
 				line = m_nTopLine;
 			prevDiff = pd->m_diffList.PrevSignificant3wayDiffFromLine(line, nDiffType);
 		}
@@ -1689,7 +1700,7 @@ void CMergeEditView::OnPrev3wayDiff(int nDiffType)
 		// We don't have a selected difference,
 		// but cursor can be inside inactive diff
 		int line = GetCursorPos().y;
-		if (!IsValidTextPosY(CPoint(0, line)))
+		if (!IsValidTextPosY(CEPoint(0, line)))
 			line = m_nTopLine;
 		curDiff = pd->m_diffList.PrevSignificant3wayDiffFromLine(line, nDiffType);
 		if (curDiff >= 0)
@@ -1720,8 +1731,9 @@ void CMergeEditView::OnUpdatePrev3wayDiff(CCmdUI* pCmdUI, int nDiffType)
 	else
 	{
 		// Enable if the end of the first significant difference is before caret
-		CPoint pos = GetCursorPos();
-		pCmdUI->Enable(pos.y > (long)dfi->dend);
+		CEPoint pos = GetCursorPos();
+		pCmdUI->Enable((pd->GetCurrentDiff() < 0 && pos.y >= (long)dfi->dend)
+			|| (pos.y > (long)dfi->dend));
 	}
 }
 
@@ -1886,7 +1898,7 @@ bool CMergeEditView::IsLineInCurrentDiff(int nLine) const
 void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	CMergeDoc *pd = GetDocument();
-	CPoint pos = GetCursorPos();
+	CEPoint pos = GetCursorPos();
 
 	int diff = pd->m_diffList.LineToDiff(pos.y);
 	if (diff != -1 && pd->m_diffList.IsDiffSignificant(diff))
@@ -1934,7 +1946,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		// If cursor is inside diff get number of that diff
 		if (m_bCurrentLineIsDiff)
 		{
-			CPoint pt = GetCursorPos();
+			CEPoint pt = GetCursorPos();
 			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
 		}
 	}
@@ -1944,6 +1956,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 	{
 		if (!m_bRectangularSelection)
 		{
+			const int nCopyGranularity = GetOptionsMgr()->GetInt(OPT_COPY_GRANULARITY);
 			if (selectedLineOnly)
 			{
 				int firstDiff, lastDiff;
@@ -1951,29 +1964,39 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 				if (firstDiff != -1 && lastDiff != -1)
 				{
 					CWaitCursor waitstatus;
-					pDoc->CopyMultiplePartialList(srcPane, dstPane, firstDiff, lastDiff, ptStart.y, ptEnd.y);
+					pDoc->CopyMultiplePartialList(srcPane, dstPane, m_nThisPane, firstDiff, lastDiff, 
+						ptStart, ptEnd, false);
 				}
 			}
-			else
+			else if (nCopyGranularity == InlineDiff)
 			{
 				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
 				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
 				if (firstDiff != -1 && lastDiff != -1)
 				{
 					CWaitCursor waitstatus;
-					
-					// Setting CopyFullLine (OPT_COPY_FULL_LINE)
-					// restore old copy behaviour (always copy "full line" instead of "selected text only"), with a hidden option
-					if (GetOptionsMgr()->GetBool(OPT_COPY_FULL_LINE))
-					{
-						// old behaviour: copy full line
-						pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
-					}
-					else
-					{
-						// new behaviour: copy selected text only
-						pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
-					}
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				}
+			}
+			else if (nCopyGranularity == Line || nCopyGranularity == Character)
+			{
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
+				if (firstDiff != -1 && lastDiff != -1)
+				{
+					CWaitCursor waitstatus;
+					pDoc->CopyMultiplePartialList(srcPane, dstPane, m_nThisPane, firstDiff, lastDiff, 
+						ptStart, ptEnd, nCopyGranularity == Character);
+				}
+			}
+			else
+			{
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
+				if (firstDiff != -1 && lastDiff != -1)
+				{
+					CWaitCursor waitstatus;
+					pDoc->CopyMultipleList(srcPane, dstPane, firstDiff, lastDiff);
 				}
 			}
 		}
@@ -1983,7 +2006,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 			auto wordDiffs = GetColumnSelectedWordDiffIndice();
 			int i = 0;
 			std::for_each(wordDiffs.rbegin(), wordDiffs.rend(), [&](auto& it) {
-				pDoc->WordListCopy(srcPane, dstPane, it.first, it.second[0], it.second[it.second.size() - 1], &it.second, i != 0, i == 0);
+				pDoc->InlineDiffListCopy(srcPane, dstPane, it.first, it.second[0], it.second[it.second.size() - 1], &it.second, i != 0, i == 0);
 				++i;
 			});
 		}
@@ -1993,7 +2016,7 @@ void CMergeEditView::OnX2Y(int srcPane, int dstPane, bool selectedLineOnly)
 		if (selectedLineOnly)
 		{
 			CWaitCursor waitstatus;
-			pDoc->PartialListCopy(srcPane, dstPane, currentDiff, ptStart.y, ptEnd.y);
+			pDoc->LineListCopy(srcPane, dstPane, currentDiff, ptStart.y, ptStart.y);
 		}
 		else
 		{
@@ -2022,10 +2045,19 @@ void CMergeEditView::OnUpdateX2Y(CCmdUI* pCmdUI)
 		auto [ptStart, ptEnd] = GetSelection();
 		if (IsSelection() || GetDocument()->EqualCurrentWordDiff(m_nThisPane, ptStart, ptEnd))
 		{
-			int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
-			GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
-
-			pCmdUI->Enable((firstDiff != -1 && lastDiff != -1) || (firstWordDiff != -1 && lastWordDiff != -1));
+			const int nCopyGranularity = GetOptionsMgr()->GetInt(OPT_COPY_GRANULARITY);
+			if (nCopyGranularity == InlineDiff)
+			{
+				int firstDiff, lastDiff, firstWordDiff, lastWordDiff;
+				GetFullySelectedDiffs(firstDiff, lastDiff, firstWordDiff, lastWordDiff);
+				pCmdUI->Enable((firstDiff != -1 && lastDiff != -1) || (firstWordDiff != -1 && lastWordDiff != -1));
+			}
+			else
+			{
+				int firstDiff, lastDiff;
+				GetSelectedDiffs(firstDiff, lastDiff);
+				pCmdUI->Enable(firstDiff != -1 && lastDiff != -1);
+			}
 		}
 		else
 		{
@@ -2164,6 +2196,13 @@ void CMergeEditView::OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnAllLeft()
 {
+	UINT userChoice = 0;
+	String msg = _("Are you sure you want to copy all differences to the other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	// Check that left side is not readonly
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_LEFT, m_nThisPane, GetDocument()->m_nBuffers);
 	if (IsReadOnly(dstPane))
@@ -2179,7 +2218,7 @@ void CMergeEditView::OnAllLeft()
 void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
-	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
+	[[maybe_unused]] auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (!IsReadOnly(dstPane))
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
@@ -2193,6 +2232,13 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnAllRight()
 {
+	UINT userChoice = 0;
+	String msg = _("Are you sure you want to copy all differences to the other file?");
+	userChoice = AfxMessageBox(msg.c_str(), MB_YESNO |
+		MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_ALL_DIFFS);
+	if (userChoice == IDNO)
+		return;
+
 	// Check that right side is not readonly
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_ALL_RIGHT, m_nThisPane, GetDocument()->m_nBuffers);
 	if (IsReadOnly(dstPane))
@@ -2209,7 +2255,7 @@ void CMergeEditView::OnAllRight()
 void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
-	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
+	[[maybe_unused]] auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(pCmdUI->m_nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (!IsReadOnly(dstPane))
 		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
@@ -2274,7 +2320,7 @@ void CMergeEditView::OnUpdateClearSyncPoints(CCmdUI* pCmdUI)
  * @sa CCrystalEditView::OnEditOperation()
  * @todo More edit-events for rescan delaying?
  */
-void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText, size_t cchText)
+void CMergeEditView::OnEditOperation(int nAction, const tchar_t* pszText, size_t cchText)
 {
 	if (!QueryEditable())
 	{
@@ -2409,7 +2455,7 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 
 	if (nDiff >= 0 && nDiff < pd->m_diffList.GetSize())
 	{
-		CPoint ptStart, ptEnd;
+		CEPoint ptStart, ptEnd;
 		DIFFRANGE curDiff;
 		pd->m_diffList.GetDiff(nDiff, curDiff);
 
@@ -2443,8 +2489,8 @@ void CMergeEditView::ShowDiff(bool bScroll, bool bSelectText)
 			vector<WordDiff> worddiffs;
 			if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST_INLINE_DIFF))
 				worddiffs = pd->GetWordDiffArrayInDiffBlock(nDiff);
-			CPoint pt = worddiffs.size() > 0 ?
-				CPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } :
+			CEPoint pt = worddiffs.size() > 0 ?
+				CEPoint{ worddiffs[0].begin[m_nThisPane], worddiffs[0].beginline[m_nThisPane] } :
 				ptStart;
 			GetGroupView(m_nThisPane)->SetCursorPos(pt);
 			GetGroupView(m_nThisPane)->SetAnchor(pt);
@@ -2623,7 +2669,7 @@ void CMergeEditView::OnUpdateCaret()
 	if (m_bCursorHidden || m_piMergeEditStatus == nullptr || !IsTextBufferInitialized())
 		return;
 
-	CPoint cursorPos = GetCursorPos();
+	CEPoint cursorPos = GetCursorPos();
 	int nScreenLine = cursorPos.y;
 	const int nRealLine = ComputeRealLine(nScreenLine);
 	CString sLine;
@@ -2633,9 +2679,9 @@ void CMergeEditView::OnUpdateCaret()
 	int columns = -1;
 	int curChar = -1;
 	auto [selectedLines, selectedChars] = GetSelectedLineAndCharacterCount();
-	DWORD dwLineFlags = 0;
+	lineflags_t dwLineFlags = 0;
 
-	dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
+	dwLineFlags = GetLineFlags(nScreenLine);
 	// Is this a ghost line ?
 	if (dwLineFlags & LF_GHOST)
 	{
@@ -2720,8 +2766,10 @@ void CMergeEditView::OnAddToLineFilters()
 	{
 		CDiffTextBuffer* buffer = pDoc->m_ptBuf[m_nThisPane].get();
 
+		String sText;
 		buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
-			ptSelEnd.y, ptSelEnd.x, text);
+			ptSelEnd.y, ptSelEnd.x, sText);
+		text.SetString(sText.c_str(), static_cast<int>(sText.length())); // TODO: Use String instead of CString
 	}
 	else
 		GetTextWithoutEmptysInColumnSelection(text);
@@ -2773,6 +2821,15 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// Create the menu and populate it with the available functions
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
+	theApp.TranslateMenu(menu.m_hMenu);
+
+	auto RemoveMenuAccelerator = [](BCMenu& menu, unsigned id)
+	{
+		CString text;
+		menu.GetMenuText(id, text, MF_BYCOMMAND);
+		text = text.Left(text.Find(_T("\t")));
+		menu.SetMenuText(id, text, MF_BYCOMMAND);
+	};
 
 	// Remove copying item copying from active side
 	if (m_nThisPane == 0) // left?
@@ -2783,6 +2840,11 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 			menu.RemoveMenu(ID_COPY_FROM_MIDDLE_L, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_TO_MIDDLE_L, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_FROM_MIDDLE_L, MF_BYCOMMAND);
+		}
+		else
+		{
+			RemoveMenuAccelerator(menu, ID_COPY_TO_RIGHT_L);
+			RemoveMenuAccelerator(menu, ID_COPY_FROM_RIGHT_L);
 		}
 		for (UINT id = ID_COPY_TO_LEFT_M; id <= ID_COPY_FROM_LEFT_R; ++id)
 			menu.RemoveMenu(id, MF_BYCOMMAND);
@@ -2809,6 +2871,11 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 			menu.RemoveMenu(ID_COPY_LINES_TO_MIDDLE_R, MF_BYCOMMAND);
 			menu.RemoveMenu(ID_COPY_LINES_FROM_MIDDLE_R, MF_BYCOMMAND);
 		}
+		else
+		{
+			RemoveMenuAccelerator(menu, ID_COPY_TO_LEFT_R);
+			RemoveMenuAccelerator(menu, ID_COPY_FROM_LEFT_R);
+		}
 		for (UINT id = ID_COPY_TO_MIDDLE_L; id <= ID_COPY_FROM_RIGHT_M; ++id)
 			menu.RemoveMenu(id, MF_BYCOMMAND);
 		for (UINT id = ID_COPY_LINES_TO_MIDDLE_L; id <= ID_COPY_LINES_FROM_RIGHT_M; ++id)
@@ -2824,8 +2891,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	else if (nBuffers == 3 && m_nThisPane == 2)
 		menu.RemoveMenu(ID_GOTO_MOVED_LINE_LM, MF_BYCOMMAND);
 
-	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
-	theApp.TranslateMenu(menu.m_hMenu);
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 
 	BCMenu *pSub = static_cast<BCMenu *>(menu.GetSubMenu(0));
 	ASSERT(pSub != nullptr);
@@ -2924,12 +2990,63 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 /**
  * @brief Copy diff from left to right and advance to next diff
  */
+void CMergeEditView::OnX2YNext(int srcPane, int dstPane)
+{
+	CMergeDoc *pDoc = GetDocument();
+	if (pDoc->m_nBuffers < 3)
+	{
+		OnX2Y(srcPane, dstPane);
+		OnNextdiff();
+	}
+	else
+	{
+		int currentDiff = pDoc->GetCurrentDiff();
+		if (currentDiff == -1 && m_bCurrentLineIsDiff)
+			currentDiff = pDoc->m_diffList.LineToDiff(GetCursorPos().y);
+		if (currentDiff != -1)
+		{
+			int nNextDiff = -1;
+			DIFFRANGE di, diNext;
+			pDoc->m_diffList.GetDiff(currentDiff, di);
+			pDoc->m_diffList.GetNextDiff(di.dend + 1, nNextDiff);
+			if (nNextDiff != -1)
+			{
+				pDoc->m_diffList.GetDiff(nNextDiff, diNext);
+				int nRealLine;
+				int nPane = srcPane;
+				if (diNext.end[nPane] - diNext.begin[nPane] < 0)
+				{
+					for (nPane = 0; nPane < pDoc->m_nBuffers; ++nPane)
+						if (diNext.end[nPane] - diNext.begin[nPane] >= 0)
+							break;
+				}
+				nRealLine = diNext.begin[nPane];
+				if (nPane == dstPane)
+					nRealLine += (di.end[srcPane] - di.begin[srcPane]) - (di.end[dstPane] - di.begin[dstPane]);
+
+				OnX2Y(srcPane, dstPane);
+
+				nNextDiff = pDoc->m_diffList.LineToDiff(pDoc->m_ptBuf[nPane]->ComputeApparentLine(nRealLine));
+				if (nNextDiff != -1)
+					SelectDiff(nNextDiff, true, false);
+				else
+					OnNextdiff();
+			}
+			else
+			{
+				OnX2Y(srcPane, dstPane);
+			}
+		}
+	}
+}
+
+/**
+ * @brief Copy diff from left to right and advance to next diff
+ */
 void CMergeEditView::OnL2RNext()
 {
-	OnL2r();
-	if (GetDocument()->m_nBuffers > 2 && IsCursorInDiff()) // for 3-way file compare
-		OnNextdiff();
-	OnNextdiff();
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_L2R, m_nThisPane, GetDocument()->m_nBuffers);
+	OnX2YNext(srcPane, dstPane);
 }
 
 /**
@@ -2945,10 +3062,8 @@ void CMergeEditView::OnUpdateL2RNext(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnR2LNext()
 {
-	OnR2l();
-	if (GetDocument()->m_nBuffers > 2 && IsCursorInDiff()) // for 3-way file compare
-		OnNextdiff();
-	OnNextdiff();
+	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(ID_R2L, m_nThisPane, GetDocument()->m_nBuffers);
+	OnX2YNext(srcPane, dstPane);
 }
 
 /**
@@ -2989,7 +3104,7 @@ void CMergeEditView::OnChangePane(UINT nID)
 			bFound = true;
 	}
 	GetParentFrame()->SetActiveView(pNextActiveView);
-	CPoint ptCursor = pWnd->GetCursorPos();
+	CEPoint ptCursor = pWnd->GetCursorPos();
 	ptCursor.x = 0;
 	if (ptCursor.y >= pNextActiveView->GetLineCount())
 		ptCursor.y = pNextActiveView->GetLineCount() - 1;
@@ -3009,18 +3124,26 @@ void CMergeEditView::OnWMGoto()
 {
 	WMGotoDlg dlg;
 	CMergeDoc *pDoc = GetDocument();
-	CPoint pos = GetCursorPos();
+	CEPoint pos = GetCursorPos();
 	int nRealLine = 0;
-	int nLastLine = 0;
+	int nLastLine[3] = {};
 
 	nRealLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(pos.y);
-	int nLineCount = pDoc->m_ptBuf[m_nThisPane]->GetLineCount();
-	nLastLine = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(nLineCount - 1);
+	for (int nPane = 0; nPane < pDoc->m_nBuffers; nPane++)
+	{
+		int nLineCount = pDoc->m_ptBuf[nPane]->GetLineCount();
+		nLastLine[nPane] = pDoc->m_ptBuf[nPane]->ComputeRealLine(nLineCount - 1);
+	}
 
 	// Set active file and current line selected in dialog
 	dlg.m_strParam = strutils::to_str(nRealLine + 1);
 	dlg.m_nFile = (pDoc->m_nBuffers < 3) ? (m_nThisPane == 1 ? 2 : 0) : m_nThisPane;
 	dlg.m_nGotoWhat = 0;
+	dlg.m_nFiles = pDoc->m_nBuffers;
+	dlg.m_nLastLine[0] = nLastLine[0] + 1;
+	dlg.m_nLastLine[1] = (pDoc->m_nBuffers < 3) ? -1 : nLastLine[1] + 1;
+	dlg.m_nLastLine[2] = (pDoc->m_nBuffers < 3) ? nLastLine[1] + 1: nLastLine[2] + 1;
+	dlg.m_nLastDiff = pDoc->m_diffList.GetSize();
 
 	if (dlg.DoModal() == IDOK)
 	{
@@ -3034,14 +3157,17 @@ void CMergeEditView::OnWMGoto()
 
 		if (dlg.m_nGotoWhat == 0)
 		{
+			int nPane = (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile;
+			assert(nPane >= 0 && ((pDoc1->m_nBuffers < 3 && nPane < 2) || (pDoc1->m_nBuffers == 3 && nPane < 3)));
+
 			int nRealLine1 = num;
 			if (nRealLine1 < 0)
 				nRealLine1 = 0;
-			if (nRealLine1 > nLastLine)
-				nRealLine1 = nLastLine;
+			if (nRealLine1 > nLastLine[nPane])
+				nRealLine1 = nLastLine[nPane];
 
 			bool bShift = (GetKeyState(VK_SHIFT) & 0x8000) != 0;
-			GotoLine(nRealLine1, true, (pDoc1->m_nBuffers < 3) ? (dlg.m_nFile == 2 ? 1 : 0) : dlg.m_nFile, !bShift);
+			GotoLine(nRealLine1, true, nPane, !bShift);
 		}
 		else
 		{
@@ -3049,9 +3175,9 @@ void CMergeEditView::OnWMGoto()
 			if (diff < 0)
 				diff = 0;
 			if (diff >= pDoc1->m_diffList.GetSize())
-				diff = pDoc1->m_diffList.GetSize();
+				diff = pDoc1->m_diffList.GetSize() - 1;
 
-			if (pCurrentView)
+			if (pCurrentView && diff >= 0)
 				pCurrentView->SelectDiff(diff, true, false);
 		}
 	}
@@ -3068,7 +3194,7 @@ void CMergeEditView::OnGotoMovedLineLM()
 		return;
 
 	CMergeDoc* pDoc = GetDocument();
-	CPoint pos = GetCursorPos();
+	CEPoint pos = GetCursorPos();
 
 	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
 	ASSERT(pDoc != nullptr);
@@ -3097,7 +3223,7 @@ void CMergeEditView::OnGotoMovedLineLM()
 void CMergeEditView::OnUpdateGotoMovedLineLM(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	CPoint pos = GetCursorPos();
+	CEPoint pos = GetCursorPos();
 
 	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
 	ASSERT(pCmdUI != nullptr);
@@ -3136,7 +3262,7 @@ void CMergeEditView::OnGotoMovedLineMR()
 		return;
 
 	CMergeDoc* pDoc = GetDocument();
-	CPoint pos = GetCursorPos();
+	CEPoint pos = GetCursorPos();
 
 	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
 	ASSERT(pDoc != nullptr);
@@ -3164,7 +3290,7 @@ void CMergeEditView::OnGotoMovedLineMR()
 void CMergeEditView::OnUpdateGotoMovedLineMR(CCmdUI* pCmdUI)
 {
 	CMergeDoc* pDoc = GetDocument();
-	CPoint pos = GetCursorPos();
+	CEPoint pos = GetCursorPos();
 
 	ASSERT(m_nThisPane >= 0 && m_nThisPane < 3);
 	ASSERT(pCmdUI != nullptr);
@@ -3200,7 +3326,7 @@ void CMergeEditView::OnShellMenu()
 	String path = GetDocument()->m_filePaths[m_nThisPane];
 	auto pContextMenu = std::make_unique<CShellContextMenu>(CShellContextMenu(0x9000, 0x9FFF));
 	pContextMenu->Initialize();
-	pContextMenu->AddItem(paths::GetParentPath(path), paths::FindFileName(path));
+	pContextMenu->AddItem(path);
 	pContextMenu->RequeryShellContextMenu();
 	CPoint point;
 	::GetCursorPos(&point);
@@ -3252,7 +3378,8 @@ void CMergeEditView::RefreshOptions()
 		SetDisableBSAtSOL(false);
 	}
 
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetWordWrapping(GetOptionsMgr()->GetBool(
+		GetDocument()->m_ptBuf[0]->GetTableEditing() ?  OPT_WORDWRAP_TABLE : OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
@@ -3326,7 +3453,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 
 		nApparentLine = pDoc->m_ptBuf[pane]->ComputeApparentLine(nRealLine);
 	}
-	CPoint ptPos;
+	CEPoint ptPos;
 	ptPos.x = nChar == -1 ? 0 : nChar;
 	ptPos.y = nApparentLine;
 
@@ -3341,7 +3468,7 @@ void CMergeEditView::GotoLine(UINT nLine, bool bRealLine, int pane, bool bMoveAn
 		int nGroup = m_bDetailView ? 0 : m_nThisGroup;
 		CMergeEditView* pView = GetDocument()->GetView(nGroup, nPane);
 		pView->ScrollToSubLine(nScrollLine);
-		CPoint pt = (ptPos.y < pView->GetLineCount()) ? ptPos : CPoint(ptPos.x, pView->GetLineCount() - 1);
+		CEPoint pt = (ptPos.y < pView->GetLineCount()) ? ptPos : CEPoint(ptPos.x, pView->GetLineCount() - 1);
 		pt.x = std::clamp(static_cast<int>(pt.x), 0, pView->GetLineLength(pt.y));
 		pView->SetCursorPos(pt);
 		if (bMoveAnchor || nPane != pane)
@@ -3405,8 +3532,7 @@ void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		return;
 
 	// Note we cannot use nPos because of its 16-bit nature
-	SCROLLINFO si = {0};
-	si.cbSize = sizeof (si);
+	SCROLLINFO si{ sizeof(si) };
 	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
 	VERIFY (GetScrollInfo (SB_VERT, &si));
 
@@ -3445,7 +3571,7 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		CString sSpaces(' ', static_cast<int>(nNumWidth - strutils::to_str(line + 1).length()));
 		
 		strText += sSpaces;
-		strNumLine.Format(_T("%d: %s"), line + 1, (LPCTSTR)strLine);
+		strNumLine.Format(_T("%d: %s"), line + 1, (const tchar_t*)strLine);
 		strText += strNumLine;
  	}
 	PutToClipboard(strText, strText.GetLength(), m_bRectangularSelection);
@@ -3573,7 +3699,9 @@ void CMergeEditView::OnUpdateViewLineNumbers(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnViewWordWrap()
 {
-	GetOptionsMgr()->SaveOption(OPT_WORDWRAP, !m_bWordWrap);
+	GetOptionsMgr()->SaveOption(
+		GetDocument()->m_ptBuf[0]->GetTableEditing() ?  OPT_WORDWRAP_TABLE : OPT_WORDWRAP,
+		!m_bWordWrap);
 
 	// Call CMergeDoc RefreshOptions() to refresh *both* views
 	CMergeDoc *pDoc = GetDocument();
@@ -3587,6 +3715,8 @@ void CMergeEditView::OnUpdateViewWordWrap(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(true);
 	pCmdUI->SetCheck(m_bWordWrap);
+	pCmdUI->SetText((GetDocument()->m_ptBuf[0]->GetTableEditing() ?
+		_("W&rap Text") : _("W&rap Lines")).c_str());
 }
 
 void CMergeEditView::OnViewWhitespace() 
@@ -3776,7 +3906,7 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 				return 0;
 			pView->WrapLineCached( nLineIndex, pView->GetScreenChars(), nullptr, nBreaks[nPane] );
 		}
-		nMaxBreaks = max(nMaxBreaks, nBreaks[nPane]);
+		nMaxBreaks = (std::max)(nMaxBreaks, nBreaks[nPane]);
 	}
 
 	if (nBreaks[m_nThisPane] < nMaxBreaks)
@@ -3884,7 +4014,8 @@ void CMergeEditView::DocumentsLoaded()
 	const bool mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		GetDocument()->IsMixedEOL(m_nThisPane);
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_EOL), mixedEOLs);
-	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetWordWrapping(GetOptionsMgr()->GetBool(GetDocument()->m_ptBuf[m_nThisPane]->GetTableEditing() ?
+		OPT_WORDWRAP_TABLE : OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 
@@ -4018,7 +4149,7 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 	for (int i = ID_COLORSCHEME_FIRST + 1, j = 0; i <= ID_COLORSCHEME_LAST; ++i, ++j)
 	{
 		name = theApp.LoadString(i);
-		AppendMenu(hSubMenu, MF_STRING | (((j % 22) == 21) ? MF_MENUBREAK : 0), i, name.c_str());
+		AppendMenu(hSubMenu, MF_STRING | (((j % 23) == 22) ? MF_MENUBREAK : 0), i, name.c_str());
 	}
 
 	pCmdUI->Enable(true);
@@ -4165,7 +4296,7 @@ bool CMergeEditView::QueryEditable()
  *
  * @return Tells if the point has been changed
  */
-bool CMergeEditView::EnsureInDiff(CPoint& pt)
+bool CMergeEditView::EnsureInDiff(CEPoint& pt)
 {
 	int nLineCount = GetLineCount();
 	if (m_lineBegin >= nLineCount)
@@ -4202,9 +4333,9 @@ bool CMergeEditView::EnsureInDiff(CPoint& pt)
 	return false;
 }
 
-void CMergeEditView::EnsureVisible(CPoint pt)
+void CMergeEditView::EnsureVisible(CEPoint pt)
 {
-	CPoint ptNew = pt;
+	CEPoint ptNew = pt;
 	if (m_bDetailView)
 	{
 		// ensure we remain in diff
@@ -4214,15 +4345,15 @@ void CMergeEditView::EnsureVisible(CPoint pt)
 	CCrystalTextView::EnsureVisible(ptNew);
 }
 
-void CMergeEditView::EnsureVisible(CPoint ptStart, CPoint ptEnd)
+void CMergeEditView::EnsureVisible(CEPoint ptStart, CEPoint ptEnd)
 {
 	CCrystalTextView::EnsureVisible(ptStart, ptEnd);
 }
 
-void CMergeEditView::SetSelection(const CPoint& ptStart, const CPoint& ptEnd, bool bUpdateView)
+void CMergeEditView::SetSelection(const CEPoint& ptStart, const CEPoint& ptEnd, bool bUpdateView)
 {
-	CPoint ptStartNew = ptStart;
-	CPoint ptEndNew = ptEnd;
+	CEPoint ptStartNew = ptStart;
+	CEPoint ptEndNew = ptEnd;
 	if (m_bDetailView)
 	{
 		// ensure we remain in diff
@@ -4257,7 +4388,7 @@ void CMergeEditView::ScrollToSubLine(int nNewTopLine, bool bNoSmoothScroll /*= F
 				nNewTopLine = GetSubLineIndex(sublineEnd - displayLength + 1);
 		}
 
-		CPoint pt = GetCursorPos();
+		CEPoint pt = GetCursorPos();
 		if (EnsureInDiff(pt))
 			SetCursorPos(pt);
 
@@ -4319,7 +4450,6 @@ void CMergeEditView::OnWindowSplit()
 
 	auto& wndSplitter = dynamic_cast<CMergeEditFrame *>(GetParentFrame())->GetSplitter();
 	CMergeDoc *pDoc = GetDocument();
-	CMergeEditView *pView = pDoc->GetView(0, m_nThisPane);
 	int nBuffer = m_nThisPane;
 	if (pDoc->m_nGroups <= 2)
 	{
@@ -4362,7 +4492,7 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 		CPoint point;
 		::GetCursorPos(&point);
 
-		BCMenu menu;
+		CMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_MERGEEDITFRAME_STATUSBAR_EOL));
 		theApp.TranslateMenu(menu.m_hMenu);
 		menu.GetSubMenu(0)->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, point.x, point.y, GetDocument()->GetView(0, pane));

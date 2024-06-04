@@ -2,8 +2,9 @@
 #include "stdafx.h"
 #include "IgnoreFieldsComma.h"
 #include "WinMergeScript.h"
+#include "Common.h"
 #include "resource.h"
-#include <atlutil.h>
+#include <atlstr.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
@@ -37,22 +38,9 @@ CString KeyName()
 	TCHAR szKeyName[256];
 	TCHAR name[256+1];
 	GetDllFilename(name, 256);
-	lstrcpy(szKeyName, _T("Software\\Thingamahoochie\\WinMerge\\Plugins\\"));
+	lstrcpy(szKeyName, _T("Plugins\\"));
 	lstrcat(szKeyName, name);
 	return szKeyName;
-}
-
-CString RegReadString(const CString& key, const CString& valuename, const CString& defaultValue)
-{
-	CRegKey reg;
-	if (reg.Open(HKEY_CURRENT_USER, key, KEY_READ) == ERROR_SUCCESS)
-	{
-		TCHAR value[512] = {0};
-		DWORD dwSize = sizeof(value) / sizeof(value[0]);
-		reg.QueryStringValue(valuename, value, &dwSize);
-		return value;
-	}
-	return defaultValue;
 }
 
 int CreateArrayFromRangeString(const TCHAR *rangestr, int (* value)[2])
@@ -126,14 +114,14 @@ CString CreateRangeStringFromArray(int nExcludedRanges, const int aExcludedRange
 	return rangestr;
 }
 
-CString GetColumnRangeString()
+CString CWinMergeScript::GetColumnRangeString()
 {
 	TCHAR name[256+1];
 	GetDllFilename(name, 256);
 	CString rangestr;
 	TCHAR * token = _tcspbrk(name, _T(",_"));
 	if (!token)
-		rangestr = RegReadString(KeyName(), _T("ColumnRanges"), _T(""));
+		rangestr = MergeApp_GetOptionString(m_pMergeApp, KeyName() + _T("/ColumnRanges"), _T(""));
 	else
 		rangestr = token + 1;
 	
@@ -233,11 +221,11 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	WCHAR * columnBegin;
 
 	// change this to change the delimiter between fields
-	const WCHAR delimiter = L',';
+	const WCHAR delimiter = MergeApp_GetOptionString(m_pMergeApp, _T("Settings/CSVDelimiterCharacter"), _T(","))[0];
 
-	const WCHAR quote = RegReadString(_T("Software\\Thingamahoochie\\WinMerge\\Settings"), _T("TableQuoteCharacter"), _T("\""))[0];
+	const WCHAR quote = MergeApp_GetOptionString(m_pMergeApp, _T("Settings/TableQuoteCharacter"), _T("\""))[0];
 	const bool allowNewlinesInQuotes =
-		_ttoi(RegReadString(_T("Software\\Thingamahoochie\\WinMerge\\Settings"), _T("TableAllowNewlinesInQuotes"), _T("1"))) != 0;
+		_ttoi(MergeApp_GetOptionString(m_pMergeApp, _T("Settings/TableAllowNewlinesInQuotes"), _T("1"))) != 0;
 
 	// order of the column in the current line
 	int iColumn = 0;
@@ -324,7 +312,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	delete [] aExcludedRanges;
 
 	// set the new size
-	*pSize = pDst - pBeginText;
+	*pSize = static_cast<int>(pDst - pBeginText);
 
 	if (*pSize == nSize)
 		*pbChanged = VARIANT_FALSE;
@@ -335,22 +323,24 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	return S_OK;
 }
 
-INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK CWinMergeScript::DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 {
 	switch(uiMsg) {
 	case WM_INITDIALOG:
-		SetDlgItemText(hWnd, IDC_EDIT1, GetColumnRangeString());
+	{
+		SetWindowLongPtr(hWnd, GWLP_USERDATA, lParam);
+		auto* pWinMergeScript = reinterpret_cast<CWinMergeScript*>(lParam);
+		TranslateDialog(hWnd, pWinMergeScript->m_pMergeApp);
+		SetDlgItemText(hWnd, IDC_EDIT1, pWinMergeScript->GetColumnRangeString());
 		return TRUE;
-
+	}
 	case WM_COMMAND:
 		if (LOWORD(wParam) == IDOK)
 		{
-			CRegKey	reg;
-			if (reg.Create(HKEY_CURRENT_USER, KeyName(), REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE) != ERROR_SUCCESS)
-				return FALSE;
-			TCHAR value[512] = {0};
+			TCHAR value[512]{};
 			GetDlgItemText(hWnd, IDC_EDIT1, value, sizeof(value)/sizeof(TCHAR));
-			reg.SetStringValue(_T("ColumnRanges"), value);
+			auto* pWinMergeScript = reinterpret_cast<CWinMergeScript*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
+			MergeApp_SaveOptionString(pWinMergeScript->m_pMergeApp, KeyName() + _T("/ColumnRanges"), value);
 			EndDialog(hWnd, IDOK);
 		}
 		else if (LOWORD(wParam) == IDCANCEL)
@@ -368,6 +358,14 @@ INT_PTR CALLBACK DlgProc(HWND hWnd, UINT uiMsg, WPARAM wParam, LPARAM lParam)
 
 STDMETHODIMP CWinMergeScript::ShowSettingsDialog(VARIANT_BOOL *pbHandled)
 {
-	*pbHandled = (DialogBox(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDD_DIALOG1), NULL, DlgProc) == IDOK);
+	*pbHandled = 
+		(DialogBoxParam(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDD_DIALOG1), NULL, DlgProc,
+			reinterpret_cast<LPARAM>(this)) == IDOK);
+	return S_OK;
+}
+
+STDMETHODIMP CWinMergeScript::PluginOnEvent(int iEventType, IDispatch* pDispatch)
+{
+	m_pMergeApp = pDispatch;
 	return S_OK;
 }

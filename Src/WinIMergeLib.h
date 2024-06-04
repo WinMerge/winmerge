@@ -182,6 +182,7 @@ struct IImgMergeWindow
 	virtual void SetVerticalFlip(int pane, bool flip) = 0;
 	virtual DIFF_ALGORITHM GetDiffAlgorithm() const = 0;
 	virtual void SetDiffAlgorithm(DIFF_ALGORITHM diffAlgorithm) = 0;
+	virtual bool IsSaveSupported(int pane) const = 0;
 };
 
 struct IImgToolWindow

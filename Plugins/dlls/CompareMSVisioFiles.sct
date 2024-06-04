@@ -1,340 +1,487 @@
 <scriptlet>
 <implements type="Automation" id="dispatcher">
-	<property name="PluginEvent">
-		<get/>
-	</property>
-	<property name="PluginDescription">
-		<get/>
-	</property>
-	<property name="PluginFileFilters">
-		<get/>
-	</property>
-	<property name="PluginIsAutomatic">
-		<get/>
-	</property>
-	<property name="PluginExtendedProperties">
-		<get/>
-	</property>
-	<method name="UnpackFile"/>
-	<method name="PackFile"/>
-	<method name="IsFolder"/>
-	<method name="UnpackFolder"/>
-	<method name="PackFolder"/>
-	<method name="ShowSettingsDialog"/>
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginIsAutomatic">
+    <get/>
+  </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
+  <method name="PluginOnEvent"/>
+  <method name="UnpackFile"/>
+  <method name="PackFile"/>
+  <method name="IsFolder"/>
+  <method name="UnpackFolder"/>
+  <method name="PackFolder"/>
+  <method name="ShowSettingsDialog"/>
 </implements>
 
-<script language="VBS">
+<script language="JScript">
 
-'/////////////////////////////////////////////////////////////////////////////
-'    This is a plugin for WinMerge.
-'    It will display the text content of MS Visio files.
-'    Copyright (C) 2020 dedicatus
-'
-'    This program is free software; you can redistribute it and/or modify
-'    it under the terms of the GNU General Public License as published by
-'    the Free Software Foundation; either version 2 of the License, or
-'    (at your option) any later version.
-'
-'    This program is distributed in the hope that it will be useful,
-'    but WITHOUT ANY WARRANTY; without even the implied warranty of
-'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-'    GNU General Public License for more details.
-'
-'    You should have received a copy of the GNU General Public License
-'    along with this program; if not, write to the Free Software
-'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-'
+/*
+    This is a plugin for WinMerge.
+    It will display the text content of MS Visio files.
+    Copyright (C) 2020 dedicatus
 
-Option Explicit
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
 
-Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSVisioFiles.sct\"
-Dim MsgCannotGetMacros
-MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
-	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
-	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
-Dim wsh: Set wsh = CreateObject("WScript.Shell")
-
-Function isAccessibleVBAProject(doc)
-	Dim count
-	count = -1
-	On Error Resume Next
-	count = doc.VBProject.VBComponents.Count
-	isAccessibleVBAProject = (count > 0)
-End Function
-
-Function regRead(Key, DefaultValue)
-	regRead = DefaultValue
-	On Error Resume Next
-	regRead = wsh.RegRead(Key)
-End Function
-
-Sub ungroupShapes(pge)
-    On Error Resume Next
-    Dim cnt, shp
-    Do
-        cnt = pge.Shapes.Count
-        For Each shp In pge.Shapes
-            shp.ungroup
-        Next
-    Loop While cnt <> pge.Shapes.Count
-End Sub
-
-Function writeTextsInShapes(fo, pge)
-	Dim shp
-	On Error Resume Next
-	For Each shp In pge.Shapes
-		fo.WriteLine shp.Name & ": " & shp.Text
-	Next
-End Function
-
-Function getModuleExtension(cmp)
-	Select Case cmp.Type
-	Case 2
-		getModuleExtension = ".cls"
-	Case 3
-		getModuleExtension = ".frm"
-	Case Else
-		getModuleExtension = ".bas"
-	End Select
-End Function
-
-Function saveSlideAsImage(pge, filename)
-        pge.Export filename
-End Function
-
-Function get_PluginEvent()
-	get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
-End Function
-
-Function get_PluginDescription()
-	get_PluginDescription = "Display the text content of MS Visio files"
-End Function
-
-Function get_PluginFileFilters()
-	get_PluginFileFilters = "\.vsd(\..*)?$;\.vsdx(\..*)?$;\.vsdm(\..*)?$;\.vss(\..*)?$;\.vssx(\..*)?$;\.vssm(\..*)?$;\.vst(\..*)?$;\.vstx(\..*)?$;\.vstm(\..*)?$"
-End Function
-
-Function get_PluginIsAutomatic()
-	get_PluginIsAutomatic = True
-End Function
-
-Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-Visio;MenuCaption=MS-Visio"
-End Function
-Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	Dim fo
-	Dim vs
-	Dim doc
-	Dim pge
-	Dim cmp
-	Dim fileSrc2
-
-	Set fo = fso.CreateTextFile(fileDst, True, True)
-
-	Set vs = CreateObject("Visio.Application")
-	vs.Visible = False
-	vs.AlertResponse = vbNo
-
-	fileSrc2 = fileSrc
-	If fso.GetExtensionName(fileSrc2) = "lnk" Then
-		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-		If Not fso.FileExists(fileSrc2) Then
-			Err.Raise 30001, "CompareMSVisioFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
-		End If 
-	End If
-	Set doc = vs.Documents.OpenEx(fileSrc2, &H80)
-
-	On Error Resume Next
-
-	For Each pge In doc.Pages
-		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			fo.WriteLine "[" & pge.Name & "]"
-			ungroupShapes pge
-			writeTextsInShapes fo, pge
-			fo.WriteLine ""
-		End If
-	Next
-
-	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
-		If Not isAccessibleVBAProject(doc) Then
-			fo.WriteLine MsgCannotGetMacros
-		End If
-		For Each cmp In doc.VBProject.VBComponents
-			fo.WriteLine "[CodeModule." & cmp.Name & "]"
-			If cmp.CodeModule.CountOfLines > 0 Then
-				fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
-			End If
-			fo.WriteLine ""
-		Next
-	End If
-
-	Set doc = Nothing
-	pge.Close
-	Set pge = Nothing
-	vs.Quit
-	Set vs = Nothing
-	fo.Close
-	Set fo = Nothing
-
-	pbChanged = True
-	pSubcode = 0
-	UnpackFile = True
-
-End Function
-
-Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	PackFile = False
-End Function
-
-Function IsFolder(file)
-	IsFolder = regRead(RegKeyPath & "UnpackToFolder", False)
-End Function
-
-Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
-	Dim fo
-	Dim vs
-	Dim doc
-	Dim pge
-	Dim cmp
-	Dim fileSrc2
-
-	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
-
-	Set vs = CreateObject("Visio.Application")
-	vs.Visible = False
-	vs.AlertResponse = vbNo
-
-	fileSrc2 = fileSrc
-	If fso.GetExtensionName(fileSrc2) = "lnk" Then
-		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-		If Not fso.FileExists(fileSrc2) Then
-			Err.Raise 30001, "CompareMSVisioFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
-		End If 
-	End If
-	Set doc = vs.Documents.OpenEx(fileSrc2, &H80)
-
-	On Error Resume Next
-
-	For Each pge In doc.Pages
-		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, pge.Name & ".txt"), True, True)
-			ungroupShapes pge
-			writeTextsInShapes fo, pge
-			fo.Close
-		End If
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*/
 
 
-		If regRead(RegKeyPath & "ComparePageAsImage", True) Then
-			saveSlideAsImage pge, fso.BuildPath(folderDst, pge.Name & ".png")
-		End If
-	Next
-	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
-		If Not isAccessibleVBAProject(doc) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
-			fo.WriteLine MsgCannotGetMacros
-			fo.Close
-		End If
-		
-		For Each cmp In doc.VBProject.VBComponents
-			cmp.Export fso.BuildPath(folderDst, cmp.Name & getModuleExtension(cmp))
-		Next
-	End If
+var REGKEY_PATH = "Plugins\\CompareMSVisioFiles.sct/";
+var MsgCannotGetMacros = "${Cannot get Macros.\r\n" + 
+  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" + 
+  "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
+var vbNo = 7;
 
-	Set pge = Nothing
-	doc.Close
-	Set doc = Nothing
-	vs.Quit
-	Set vs = Nothing
-	Set fo = Nothing
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var wsh = new ActiveXObject("WScript.Shell");
+var mergeApp;
 
-	pbChanged = True
-	pSubcode = 0
-	UnpackFolder = True
-End Function
+function isAccessibleVBAProject(doc) {
+  try {
+    return (doc.VBProject.VBComponents.Count >= 0);
+  } catch (e) {
+    return false;
+  }
+}
 
-Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
-	PackFolder = False
-End Function
+function regRead(Key, DefaultValue) {
+  return mergeApp.GetOption(Key, DefaultValue);
+}
 
-Function ShowSettingsDialog()
-	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim tfile: Set tfile = fso.CreateTextFile(tname)
-	Dim mshta
-	tfile.Write getResource("dialog1")
-	tfile.Close
-	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
-	If Not fso.FileExists(mshta) Then
-		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
-	End If
-	Run wsh, """" & mshta & """ """ & tname & """"
-	fso.DeleteFile tname 
-End Function
+function regWrite(Key, Value, TypeNm) {
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value, 10) : String(Value));
+}
 
-Sub Run(sh, cmd)
-	sh.Run cmd, 1, True
-End Sub
+function toString(val) {
+  switch (typeof val) {
+  case "string":
+    return val;
+  case "number":
+    return val.toString();
+  case "date":
+    var d = new Date(val);
+    if (d.getHours() == 0 && d.getMinutes() == 0 && d.getSeconds() == 0 && d.getMilliseconds() == 0) {
+        return d.toLocaleDateString();
+    }
+    return d.toLocaleString();
+  case "undefined":
+    return "";
+  default:
+    return String(val);
+  }
+}
+
+function writeObjectProperties(fo, items) {
+  try {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
+      try {
+        var o = it.item();
+        fo.WriteLine(o.Name + ": " + toString(o.Value));
+      } catch (e) {}
+    }
+  } catch (e) {}
+}
+
+function ungroupShapes(pge) {
+  try {
+    var cnt;
+    do {
+      cnt = pge.Shapes.Count;
+      for (var it = new Enumerator(pge.Shapes); !it.atEnd(); it.moveNext()) {
+        try {
+          var shp = it.item();
+          shp.Ungroup();
+          shp = null;
+        } catch (e) {}
+      }
+    } while (cnt !== pge.Shapes.Count);
+  } catch (e) {}
+}
+
+function writeTextsInShapes(fo, pge) {
+  try {
+    for (var it = new Enumerator(pge.Shapes); !it.atEnd(); it.moveNext()) {
+      try {
+        var shp = it.item();
+        fo.WriteLine(shp.Name + ": " + shp.Text);
+        shp = null;
+      } catch (e) {}
+    }
+  } catch (e) {}
+}
+
+function getModuleExtension(cmp) {
+  switch (cmp.Type) {
+  case 2:
+    return ".cls";
+  case 3:
+    return ".frm";
+  default:
+    return ".bas";
+  }
+}
+
+function saveSlideAsImage(pge, filename) {
+  pge.Export(filename);
+}
+
+function get_PluginEvent() {
+  return "FILE_FOLDER_PACK_UNPACK";
+}
+
+function get_PluginDescription() {
+  return "Display the text content of MS Visio files";
+}
+
+function get_PluginFileFilters() {
+  return "\\.vsd(\\..*)?$;\\.vsdx(\\..*)?$;\\.vsdm(\\..*)?$;\\.vss(\\..*)?$;\\.vssx(\\..*)?$;\\.vssm(\\..*)?$;\\.vst(\\..*)?$;\\.vstx(\\..*)?$;\\.vstm(\\..*)?$";
+}
+
+function get_PluginIsAutomatic() {
+  return true;
+}
+
+function get_PluginExtendedProperties() {
+  return "ProcessType=Content Extraction;FileType=MS-Visio;MenuCaption=MS-Visio";
+}
+
+function PluginOnEvent(eventType, obj) {
+  mergeApp = obj;
+}
+
+function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+  var fo = fso.CreateTextFile(fileDst, true, true);
+  var vs;
+  try {
+    vs = new ActiveXObject("Visio.Application");
+  } catch (e) {}
+  if (!vs) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Visio"));
+  }
+  vs.Visible = false;
+  vs.AlertResponse = vbNo;
+
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSVisioFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    } 
+  }
+  var doc = vs.Documents.OpenEx(fileSrc2, 0x80);
+
+  for (var it = new Enumerator(doc.Pages); !it.atEnd(); it.moveNext()) {
+    var pge = it.item();
+    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+      fo.WriteLine("[" + pge.Name + "]");
+      ungroupShapes(pge);
+      writeTextsInShapes(fo, pge);
+      fo.WriteLine("");
+    }
+    pge = null;
+  }
+
+  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+    if (!isAccessibleVBAProject(doc)) {
+      fo.WriteLine(translate(MsgCannotGetMacros));
+    } else {
+      for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
+        cmp = null;
+      }
+    }
+  }
+
+  doc.Close();
+  doc = null;
+  vs.Quit();
+  vs = null;
+  fo.Close();
+  fo = null;
+
+  pbChanged = true;
+  pSubcode = 0;
+
+  CollectGarbage();
+
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+}
+
+function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+  return false;
+}
+
+function IsFolder(file) {
+  return regRead(REGKEY_PATH + "UnpackToFolder", false);
+}
+
+function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
+  if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
+  var vs;
+  try {
+    vs = new ActiveXObject("Visio.Application");
+  } catch (e) {}
+  if (!vs) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "Visio"));
+  }
+  vs.Visible = false;
+  vs.AlertResponse = vbNo;
+
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSVisioFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    } 
+  }
+  var doc = vs.Documents.OpenEx(fileSrc2, 0x80);
+
+  for (var it = new Enumerator(doc.Pages); !it.atEnd(); it.moveNext()) {
+    var pge = it.item();
+    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, pge.Name + ".txt"), true, true);
+      ungroupShapes(pge);
+      writeTextsInShapes(fo, pge);
+      fo.Close();
+      fo = null;
+    }
+
+    if (regRead(REGKEY_PATH + "ComparePageAsImage", true)) {
+      saveSlideAsImage(pge, fso.BuildPath(folderDst, pge.Name + ".png"));
+    }
+    pge = null;
+  }
+  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+    if (!isAccessibleVBAProject(doc)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
+      fo.WriteLine(translate(MsgCannotGetMacros));
+      fo.Close();
+      fo = null;
+    } else {
+      for (var it = new Enumerator(doc.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+        cmp = nul;
+      }
+    }
+  }
+
+  doc.Close();
+  doc = null;
+  vs.Quit();
+  vs = null;
+
+  pbChanged = true;
+  pSubcode = 0;
+
+  CollectGarbage();
+
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+}
+
+function PackFolder(folderSrc, fileDst, pbChanged, pSubcode) {
+  return false;
+}
+
+function translate(text) {
+  var re = /\${([^}]+)}/g;
+  var matches;
+  while ((matches = re.exec(text)) != null) {
+    text = text.replace(matches[0], mergeApp.Translate(matches[1]));
+  }
+  return text;
+}
+
+function ShowSettingsDialog() {
+  var tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".hta");
+  var xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".xml");
+  var tfile = fso.CreateTextFile(tname, true, true);
+  tfile.Write(translate(getResource("dialog1")));
+  tfile.Close();
+  exportSettingsToXMLFile(xmlfile);
+  var mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\System32\\mshta.exe");
+  if (!fso.FileExists(mshta)) {
+    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\SysWOW64\\mshta.exe");
+  }
+  run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
+  importSettingsFromXMLFile(xmlfile);
+  fso.DeleteFile(tname);
+  fso.DeleteFile(xmlfile);
+}
+
+function run(sh, cmd) {
+  sh.Run(cmd, 1, true);
+}
+
+function exportSettingsToXMLFile(filepath) {
+  var key_defvalues = {
+    "UnpackToFolder" : false,
+    "ComparePageAsImage" : true,
+    "CompareTextsInShapes" : true,
+    "CompareVBAMacros" : true
+  };
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 2, true, -1);
+  var root = doc.createElement("properties");
+  for (var key in key_defvalues) {
+    var el = doc.createElement("property");
+    var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+    var cdata = doc.createCDATASection(val);
+    el.appendChild(cdata);
+    el.setAttribute("name", REGKEY_PATH + key);
+    el.setAttribute("type", typeof val);
+    root.appendChild(el);
+  }
+  doc.appendChild(root);
+  ts.Write(doc.xml);
+  ts.Close();
+}
+
+function importSettingsFromXMLFile(filepath) {
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 1, true, -1);
+  var xml = ts.ReadAll();
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  doc.async = false;
+  doc.loadXML(xml);
+  ts.Close();
+  var nodes = doc.documentElement.childNodes;
+  for (var i = 0; i < nodes.length; i++) {
+    regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+  }
+}
 
 </script>
 
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
-    <title>CompareMSVisioFiles.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <HTA:APPLICATION ID="objHTA">
+    <title>${CompareMSVisioFiles.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
-      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSVisioFiles.sct\\";
+      var REGKEY_PATH = "Plugins\\CompareMSVisioFiles.sct/";
+      var xmlFilePath;
+      var settings = {};
 
       function regRead(key, defaultValue) {
-        try {
-          return (new ActiveXObject("WScript.Shell")).RegRead(key);
-        } catch (e) {
-          return defaultValue;
-        }
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
       }
 
       function regWrite(key, value, type) {
-        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+      }
+
+      function loadSettingsFromXMLFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 1, true, -1);
+        var xml = ts.ReadAll();
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        doc.async = false;
+        doc.loadXML(xml);
+        ts.Close();
+        var nodes = doc.documentElement.childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+          regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+        }
+        return settings;
+      }
+
+      function saveSettingsToXMLFile(filepath, settings) {
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        var root = doc.createElement("properties");
+        for (var key in settings) {
+          if (settings.hasOwnProperty(key)) {
+            var el = doc.createElement("property");
+            var val = settings[key];
+            var cdata = doc.createCDATASection(val);
+            el.appendChild(cdata);
+            el.setAttribute("name", key);
+            el.setAttribute("type", typeof val);
+            root.appendChild(el);
+          }
+        }
+        doc.appendChild(root);
+        ts.Write(doc.xml);
+        ts.Close();
       }
 
       function onload() {
+        xmlFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromXMLFile(xmlFilePath);
 
-        var w = 600, h = 400;
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 300 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-        setLanguage(navigator.browserLanguage);
         chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
         chkComparePageAsImage.checked = regRead(REGKEY_PATH + "ComparePageAsImage", true);
         chkCompareTextsInShapes.checked = regRead(REGKEY_PATH + "CompareTextsInShapes", true);
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkComparePageAsImage_onclick();
+        document.onkeydown = onkeydown;
       }
 
-      function setLanguage(lang) {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline }';
-        } else {
-          html += '.ja { display: none } .en { display: inline }';
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
         }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
-      }
-
-      function cboLanguage_onclick() {
-        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
       }
 
       function chkUnpackToFolder_onclick() {
@@ -352,56 +499,44 @@ End Sub
         regWrite(REGKEY_PATH + "ComparePageAsImage", chkComparePageAsImage.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+
+        saveSettingsToXMLFile(xmlFilePath, settings);
+
+        window.close();
       }
 
       function btnCancel_onclick() {
+        saveSettingsToXMLFile(xmlFilePath, {});
+
         window.close();
       }
 
     </script>
   </head>
   <body onload="onload();">
-    <div>
-      <ul>
-        <li>
-          <label class="en">Language: </label>
-          <label class="ja">言語: </label>
-          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
-            <option value="English">English</option>
-            <option value="Japanese">Japanese</option>
-          </select>
-        </li>
-      </ul>
+    <div class="container">
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label class="en">Extract page data to multiple files </label>
-          <label class="ja">ページの情報を複数ファイルに展開する </label>
+          <label for="chkUnpackToFolder">${Extract page data to multiple files}</label>
         </li>
         <li>
           <input id="chkComparePageAsImage" type="checkbox" onclick="chkComparePageAsImage_onclick();"/>
-          <label class="en">Compare pages as image (very slow)</label>
-          <label class="ja">ページを画像化して比較する (処理時間増大)</label>
+          <label for="chkComparePageAsImage">${Compare pages as image (very slow)}</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label class="en">Compare texts in shapes </label>
-          <label class="ja">図形内のテキストを比較する </label>
+          <label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label class="en">Compare VBA macros </label>
-          <label class="ja">VBA マクロを比較する </label>
+          <label for="chkCompareVBAMacros">${Compare VBA macros}</label>
         </li>
       </ul>
-      <ul>
-        <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
-        </li>
-      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>

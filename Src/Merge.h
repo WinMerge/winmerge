@@ -15,13 +15,14 @@
 #define WMU_CHILDFRAMEREMOVED					(WM_APP + 11)
 #define WMU_CHILDFRAMEACTIVATE					(WM_APP + 12)
 #define WMU_CHILDFRAMEACTIVATED					(WM_APP + 13)
-#define IDT_UPDATEMAINMENU 1
+constexpr UINT_PTR IDT_UPDATEMAINMENU = 1;
 
 #ifndef __AFXWIN_H__
 	#error include 'stdafx.h' before including this file for PCH
 #endif
 
 #include <memory>
+#include <list>
 #include "MergeCmdLineInfo.h"
 #include "resource.h"       // main symbols
 
@@ -38,6 +39,8 @@ class SubstitutionFiltersList;
 class SyntaxColors;
 class CCrystalTextMarkers;
 class PackingInfo;
+class MergeAppCOMClass;
+namespace JumpList { struct Item; }
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -60,7 +63,6 @@ public:
 	std::unique_ptr<CLanguageSelect> m_pLangDlg;
 	std::unique_ptr<SyntaxColors> m_pSyntaxColors; /**< Syntax color container */
 	std::unique_ptr<CCrystalTextMarkers> m_pMarkers; /**< Marker container */
-	String m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	bool m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors.get(); }
 	CCrystalTextMarkers * GetMainMarkers() const { return m_pMarkers.get(); }
@@ -76,32 +78,39 @@ public:
 	void ChangeDialogFont(HWND hwnd, int dpi) const;
 	String LoadString(UINT) const;
 	bool TranslateString(const std::string&, String&) const;
-	std::wstring LoadDialogCaption(LPCTSTR) const;
+	bool TranslateString(const std::wstring&, String&) const;
+	std::wstring LoadDialogCaption(const tchar_t*) const;
 
 	CMergeApp();
 	~CMergeApp();
 
 public:
-	void AddToRecentProjectsMRU(LPCTSTR sPathName);
+	void AddToRecentProjectsMRU(const tchar_t* sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions.get()); }
 	FileFilterHelper* GetGlobalFileFilter();
-	void ShowHelp(LPCTSTR helpLocation = nullptr);
+	void ShowHelp(const tchar_t* helpLocation = nullptr);
 	static void OpenFileToExternalEditor(const String& file, int nLineNumber = 1);
 	static bool CreateBackup(bool bFolder, const String& pszPath);
 	static int HandleReadonlySave(String& strSavePath, bool bMultiFile, bool &bApplyToAll);
 	static String GetPackingErrorMessage(int pane, int paneCount, const String& path, const PackingInfo& plugin);
+	static std::vector<JumpList::Item> CreateUserTasks(MergeCmdLineInfo::usertasksflags_t flags);
 	bool GetMergingMode() const;
 	void SetMergingMode(bool bMergingMode);
 	static void SetupTempPath();
 	bool IsReallyIdle() const;
+	void RegisterIdleFunc(std::function<void()> func) { m_idleFuncs.push_back(func); };
+	CMultiDocTemplate* GetOpenTemplate();
+	CMultiDocTemplate* GetDiffTemplate();
+	CMultiDocTemplate* GetHexMergeTemplate();
+	CMultiDocTemplate* GetDirTemplate();
 
-	virtual UINT GetProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nDefault) override;
-	virtual BOOL WriteProfileInt(LPCTSTR lpszSection, LPCTSTR lpszEntry, int nValue) override;
-	virtual CString GetProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszDefault = NULL) override;
-	virtual BOOL WriteProfileString(LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszValue) override;
+	virtual UINT GetProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nDefault) override;
+	virtual BOOL WriteProfileInt(const tchar_t* lpszSection, const tchar_t* lpszEntry, int nValue) override;
+	virtual CString GetProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszDefault = NULL) override;
+	virtual BOOL WriteProfileString(const tchar_t* lpszSection, const tchar_t* lpszEntry, const tchar_t* lpszValue) override;
 	virtual HINSTANCE LoadAppLangResourceDLL() override { return nullptr; }; // Disable loading lang resource dll
 
 // Implementation
@@ -113,7 +122,7 @@ protected:
 	public:
 	virtual BOOL InitInstance();
 	virtual int ExitInstance();
-	virtual int DoMessageBox(LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt);
+	virtual int DoMessageBox(const tchar_t* lpszPrompt, UINT nType, UINT nIDPrompt);
 	virtual BOOL OnIdle(LONG lCount);
 	//}}AFX_VIRTUAL
 
@@ -122,6 +131,8 @@ protected:
 	void UpdateDefaultCodepage(int cpDefaultMode, int cpCustomCodepage);
 	void UpdateCodepageModule();
 	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);
+	bool ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo);
+	void ShowDialog(MergeCmdLineInfo::DialogType type);
 
 	// End MergeArgs.cpp
 
@@ -155,6 +166,9 @@ protected:
 	LONG GetActiveOperations() const { return m_nActiveOperations; }
 	//@}
 
+	void AddZombieThread(CWinThread* pThread);
+	bool WaitZombieThreads();
+	
 	CFont *GetGUIFont(int dpi) const;
 
 	//{{AFX_MSG(CMergeApp)
@@ -177,6 +191,8 @@ private:
 	bool m_bEnableExitCode;
 	mutable std::map<int, CFont> m_mapFontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
+	std::list<std::function<void()>> m_idleFuncs;
+	std::list<CWinThread*> m_threads;
 };
 
 extern CMergeApp theApp;

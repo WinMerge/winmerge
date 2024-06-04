@@ -40,11 +40,11 @@ public:
 		compress(this, &ArchiveCompressor::compressImpl)
 	{
 	}
-	
+
 	~ArchiveCompressor()
 	{
 	}
-	
+
 	ActiveMethod<void, std::string, ArchiveCompressor, ActiveStarter<ActiveDispatcher>> compress;
 
 protected:
@@ -83,7 +83,7 @@ protected:
 //
 
 
-ArchiveStrategy::ArchiveStrategy(): 
+ArchiveStrategy::ArchiveStrategy():
 	_compress(false),
 	_pCompressor(0)
 {
@@ -123,7 +123,7 @@ void ArchiveStrategy::moveFile(const std::string& oldPath, const std::string& ne
 	{
 		f.renameTo(newPath);
 		if (!_pCompressor) _pCompressor = new ArchiveCompressor;
-		_pCompressor->compress(newPath);
+		_pCompressor.load()->compress(newPath);
 	}
 }
 
@@ -161,6 +161,12 @@ ArchiveByNumberStrategy::~ArchiveByNumberStrategy()
 }
 
 
+LogFile* ArchiveByNumberStrategy::open(LogFile* pFile)
+{
+	return pFile;
+}
+
+
 LogFile* ArchiveByNumberStrategy::archive(LogFile* pFile)
 {
 	std::string basePath = pFile->path();
@@ -174,7 +180,7 @@ LogFile* ArchiveByNumberStrategy::archive(LogFile* pFile)
 		NumberFormatter::append(path, ++n);
 	}
 	while (exists(path));
-	
+
 	while (n >= 0)
 	{
 		std::string oldPath = basePath;

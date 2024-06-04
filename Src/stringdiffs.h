@@ -33,7 +33,7 @@ struct wdiff {
 void Init();
 void Close();
 
-void SetBreakChars(const TCHAR *breakChars);
+void SetBreakChars(const tchar_t *breakChars);
 
 std::vector<wdiff> ComputeWordDiffs(const String& str1, const String& str2,
 	bool case_sensitive, bool eol_sensitive, int whitespace, bool ignore_numbers, int breakType, bool byte_level);

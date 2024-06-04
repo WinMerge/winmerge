@@ -33,7 +33,7 @@ public:
 	void RemoveAllFilters();
 	bool HasRegExps() const { return !m_list.empty(); }
 	size_t GetCount() const { return m_list.size(); }
-	std::string Subst(const std::string& subject, int codepage = CP_UTF8) const;
+	std::string Subst(const std::string& subject, int codepage = ucr::CP_UTF_8) const;
 	const SubstitutionItem& operator[](int index) const { return m_list[index]; }
 
 private:

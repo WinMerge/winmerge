@@ -18,11 +18,7 @@
 
 
 #if defined(POCO_OS_FAMILY_WINDOWS)
-#if defined(_WIN32_WCE)
-#include "File_WINCE.cpp"
-#else
 #include "File_WIN32U.cpp"
-#endif
 #elif defined(POCO_VXWORKS)
 #include "File_VX.cpp"
 #elif defined(POCO_OS_FAMILY_UNIX)
@@ -93,7 +89,7 @@ File& File::operator = (const Path& path)
 }
 
 
-void File::swap(File& file)
+void File::swap(File& file) noexcept
 {
 	swapImpl(file);
 }

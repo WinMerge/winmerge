@@ -139,10 +139,10 @@ TEST(FileCompare, FindText)
 	lineslower = lines;
 	lineslower.MakeLower();
 
-	CPoint pt, ptFound;
+	CEPoint pt, ptFound;
 	DWORD dwFlags = 0;
 	LastSearchInfos lsi = { 0 };
-	CPoint ptstart, ptstart2, ptend;
+	CEPoint ptstart, ptstart2, ptend;
 
 	for (int direction : { 1, 0 })
 	{
@@ -462,8 +462,8 @@ TEST(CommandLineTest, WindowType)
 		paths::ConcatPath(projectRoot, L"Src/res/aborted.ico") + L" " +
 		paths::ConcatPath(projectRoot, L"Src/res/binarydiff.ico");
 	String pathsWebpage =
-		paths::ConcatPath(projectRoot, L"Docs/User/ReleaseNotes.html") + L" " +
-		paths::ConcatPath(projectRoot, L"Docs/User/ChangeLog.html");
+		paths::ConcatPath(projectRoot, L"Docs/Users/ReleaseNotes.html") + L" " +
+		paths::ConcatPath(projectRoot, L"Docs/Users/ChangeLog.html");
 
 	MergeCmdLineInfo cmdInfo((progpath + L" /t text " + pathsTable).c_str());
 	theApp.ParseArgsAndDoOpen(cmdInfo, GetMainFrame());
@@ -588,8 +588,8 @@ TEST(ImageCompareTest, Open)
 
 	String projectRoot = getProjectRoot();
 	PathContext tFiles = {
-		paths::ConcatPath(projectRoot, L"Src/res/right_to_middle.bmp"),
-		paths::ConcatPath(projectRoot, L"Src/res/right_to_left.bmp")
+		paths::ConcatPath(projectRoot, L"Src/res/copy_right_to_middle.bmp"),
+		paths::ConcatPath(projectRoot, L"Src/res/copy_right_to_left.bmp")
 	};
 	CMessageBoxDialog dlg(nullptr, IDS_FILESSAME, 0U, 0U, IDS_FILESSAME);
 	const int nPrevFormerResult = dlg.SetFormerResult(IDOK);

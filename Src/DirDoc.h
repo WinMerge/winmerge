@@ -18,6 +18,7 @@
 #include "DirCmpReport.h"
 #include "DirCompProgressBar.h"
 #include "IMDITab.h"
+#include "IDirDoc.h"
 
 class CDirView;
 struct IMergeDoc;
@@ -38,7 +39,7 @@ struct FileLocation;
  * This class also has compare statistics which are updated during compare.
  * GUI calls this class to operate with results.
  */
-class CDirDoc : public CDocument, public IMDITab
+class CDirDoc : public CDocument, public IMDITab, public IDirDoc
 {
 protected:
 	CDirDoc();           // protected constructor used by dynamic creation
@@ -86,6 +87,7 @@ public:
 	bool HasDirView() const { return m_pDirView != nullptr; }
 	void RefreshOptions();
 	void CompareReady();
+	clock_t GetElapsedTime() const { return m_elapsed; }
 	void UpdateChangedItem(const PathContext & paths,
 		UINT nDiffs, UINT nTrivialDiffs, bool bIdentical);
 	void UpdateResources();
@@ -137,6 +139,7 @@ protected:
 	afx_msg void OnBnClickedComparisonStop();
 	afx_msg void OnBnClickedComparisonPause();
 	afx_msg void OnBnClickedComparisonContinue();
+	afx_msg void OnCbnSelChangeCPUCores();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -156,6 +159,8 @@ private:
 	std::unique_ptr<DirCmpReport> m_pReport;
 	FileFilterHelper m_fileHelper; /**< File filter helper */
 	std::unique_ptr<DirCompProgressBar> m_pCmpProgressBar;
+	clock_t m_compareStart; /**< Starting process time of the compare */
+	clock_t m_elapsed; /**< Elapsed time of the compare */
 };
 
 /**

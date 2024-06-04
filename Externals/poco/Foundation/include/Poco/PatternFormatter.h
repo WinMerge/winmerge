@@ -43,8 +43,10 @@ class Foundation_API PatternFormatter: public Formatter
 	///   * %P - message process identifier
 	///   * %T - message thread name
 	///   * %I - message thread identifier (numeric)
+	///   * %J - message thread OS identifier (numeric)
 	///   * %N - node or host name
 	///   * %U - message source file path (empty string if not set)
+	///	  * %O - message source file filename (empty string if not set)
 	///   * %u - message source line number (0 if not set)
 	///   * %w - message date/time abbreviated weekday (Mon, Tue, ...)
 	///   * %W - message date/time full weekday (Monday, Tuesday, ...)
@@ -93,13 +95,13 @@ public:
 
 	void format(const Message& msg, std::string& text);
 		/// Formats the message according to the specified
-		/// format pattern and places the result in text. 
-		
+		/// format pattern and places the result in text.
+
 	void setProperty(const std::string& name, const std::string& value);
 		/// Sets the property with the given name to the given value.
 		///
 		/// The following properties are supported:
-		/// 
+		///
 		///     * pattern: The format pattern. See the PatternFormatter class
 		///       for details.
 		///     * times: Specifies whether times are adjusted for local time
@@ -122,11 +124,11 @@ public:
 protected:
 	const std::string& getPriorityName(int);
 		/// Returns a string for the given priority value.
-	
+
 private:
 	struct PatternAction
 	{
-		PatternAction(): key(0), length(0) 
+		PatternAction(): key(0), length(0)
 		{
 		}
 
@@ -142,6 +144,8 @@ private:
 		/// a property in case of %[] and required length.
 
 	void parsePriorityNames();
+
+	static const std::string DEFAULT_PRIORITY_NAMES;
 
 	std::vector<PatternAction> _patternActions;
 	bool _localTime;

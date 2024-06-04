@@ -5,13 +5,13 @@
 # * Patriccollu di Santa Maria è Sichè <patriccollu at gmail.com>
 #
 # Translators:
-# * Patriccollu di Santa Maria è Sichè, 2021-2022
+# * Patriccollu di Santa Maria è Sichè, 2021-2024
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2022-10-16 00:15+0000\n"
-"PO-Revision-Date: 2022-10-17 00:12+0200\n"
+"POT-Creation-Date: 2024-04-20 09:09+0000\n"
+"PO-Revision-Date: 2024-04-21 16:39+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.2\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -246,6 +246,24 @@ msgstr "&Dimensione"
 msgid "Fit to Window"
 msgstr "Adattà à a finestra"
 
+msgid "&Event Sync"
+msgstr "&Sincrunizazione d’evenimentu"
+
+msgid "&Enabled"
+msgstr "&Attivatu"
+
+msgid "&Scroll"
+msgstr "&Sfilà"
+
+msgid "&Click"
+msgstr "&Cliccu"
+
+msgid "&Input"
+msgstr "&Entrata"
+
+msgid "&GoBack/Forward"
+msgstr "&Rivene o in avanti"
+
 msgid "Clear &Browsing Data"
 msgstr "&Viutà i dati di navigazione"
 
@@ -424,7 +442,7 @@ msgid "Ri&ght Read-only"
 msgstr "Schedariu à &diritta in lettura sola"
 
 msgid "&File Encoding..."
-msgstr "Cudifica&zione di schedariu…"
+msgstr "Cudi&ficazione di schedariu…"
 
 msgid "Select &All\tCtrl+A"
 msgstr "T&uttu selezziunà\tCtrl+A"
@@ -477,8 +495,17 @@ msgstr "Affissà l’elementi &piattati"
 msgid "Tree &Mode"
 msgstr "&Modu in arburu"
 
-msgid "E&xpand All Subfolders"
-msgstr "&Allargà tutti i sottucartulari"
+msgid "E&xpand Subfolders"
+msgstr "&Allargà i sottucartulari"
+
+msgid "&All Subfolders"
+msgstr "&Tutti i sottucartulari"
+
+msgid "&Different Subfolders"
+msgstr "I sottucartulari &sfarenti"
+
+msgid "&Identical Subfolders"
+msgstr "I sottucartulari &uguali"
 
 msgid "&Collapse All Subfolders"
 msgstr "&Ripiegà tutti i sottucartulari"
@@ -508,7 +535,7 @@ msgid "Refresh\tF5"
 msgstr "&Attualizà\tF5"
 
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Attualizà a &selezzione\tCtrl+F5"
+msgstr "Attuali&zà a selezzione\tCtrl+F5"
 
 msgid "&Merge"
 msgstr "&Fusione"
@@ -526,7 +553,7 @@ msgid "&First Difference\tAlt+Home"
 msgstr "&Prima sfarenza\tAlt+Accolta"
 
 msgid "&Current Difference\tAlt+Enter"
-msgstr "Sfaren&za currente\tAlt+Entr."
+msgstr "Sfaren&za currente\tAlt+Entre"
 
 msgid "&Last Difference\tAlt+End"
 msgstr "&Ultima sfarenza\tAlt+Fine"
@@ -816,6 +843,12 @@ msgstr "App&iecà u preparagone…"
 msgid "&Transform with editor script..."
 msgstr "&Trasfurmà cù un scenariu d’editore…"
 
+msgid "Scripts for &copying"
+msgstr "Scenarii per a &copia"
+
+msgid "Select &editor script..."
+msgstr "Selezziunà un scenariu d’&editore…"
+
 msgid "Sp&lit"
 msgstr "&Sparte"
 
@@ -826,7 +859,7 @@ msgid "Compare in new &window"
 msgstr "Paragunà in una nova &finestra"
 
 msgid "Compare Non-hor&izontally..."
-msgstr "Paragunà micca or&izuntalmente…"
+msgstr "Paragunà micca &orizuntalmente…"
 
 msgid "Compare Non-hor&izontally"
 msgstr "Paragunà micca or&izuntalmente"
@@ -844,7 +877,7 @@ msgid "&Second left item with first right item"
 msgstr "&Secondu elementu à manca cù primu elementu à diritta"
 
 msgid "Co&mpare As"
-msgstr "Para&gunà cum’è"
+msgstr "Paragunà cum’&è"
 
 #, c-format
 msgid "Left to Middle (%1 of %2)"
@@ -895,19 +928,19 @@ msgid "Re&name"
 msgstr "Ri&numinà"
 
 msgid "&Hide Items"
-msgstr "&Piattà l’elementi"
+msgstr "Piattà &l’elementi"
 
 msgid "&Open Left"
 msgstr "&Apre à manca"
 
 msgid "Open Midd&le"
-msgstr "Ap&re à u centru"
+msgstr "Apre à u c&entru"
 
 msgid "O&pen Right"
-msgstr "A&pre à diritta"
+msgstr "Apre à d&iritta"
 
 msgid "Cop&y Pathnames"
-msgstr "&Cupià i nomi di chjassu"
+msgstr "Cupià i nomi di c&hjassu"
 
 #, c-format
 msgid "Left (%1 of %2)"
@@ -930,13 +963,16 @@ msgid "All (%1 of %2)"
 msgstr "Tutti (%1 nant’à %2)"
 
 msgid "Copy &Filenames"
-msgstr "Cupià i nomi di &schedariu"
+msgstr "Cupià i nomi di scheda&riu"
 
 msgid "Copy Items To Clip&board"
-msgstr "Cupià l’&elementi in u preme’papei"
+msgstr "Cupià l’ele&menti in u preme’papei"
+
+msgid "Copy All Di&splayed Columns"
+msgstr "Cupià &tutte e culonne affissate"
 
 msgid "&Zip"
-msgstr "Cumpri&me"
+msgstr "C&umprime"
 
 #, c-format
 msgid "Both to... (%1 of %2)"
@@ -958,6 +994,12 @@ msgstr "Listinu cuntestuale à u centru"
 
 msgid "Right Shell menu"
 msgstr "Listinu cuntestuale à diritta"
+
+msgid "Both Shell menu"
+msgstr "I dui listini cuntestuali"
+
+msgid "All Shell menu"
+msgstr "Tutti i listini cuntestuali"
 
 msgid "Copy"
 msgstr "Cupià"
@@ -1028,7 +1070,7 @@ msgstr "Ignurà i &numeri"
 msgid "Ignore c&omment differences"
 msgstr "Ignurà e sfarenze di c&ummentu"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Include i sottucartulari"
 
 msgid "&Compare method:"
@@ -1054,6 +1096,81 @@ msgstr "Dimensione"
 
 msgid "&Load Project..."
 msgstr "&Caricà u prughjettu…"
+
+msgid "${*} - All arguments"
+msgstr "${*} - Tutti i parametri"
+
+msgid "${1} - The first argument"
+msgstr "${1} - U primu parametru"
+
+msgid "${2} - The second argument"
+msgstr "${2} - U secondu parametru"
+
+msgid "${3} - The third argument"
+msgstr "${3} - U terzu parametru"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - U quartu parametru"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - U quintu parametru"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - U sestu parametru"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - U settimu parametru"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - L’ottesimu parametru"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - U novesimu parametru"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Schedariu di fonte"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Cartulare di fonte"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - Indirizzu web di fonte"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Protocollu di l’indirizzu web di fonte"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Suffissu di l’indirizzu web di fonte"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Schedariu di destinazione"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Cartulare di destinazione"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - Indirizzu web di destinazione"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Protocollu di l’indirizzu web di destinazione"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Suffissu di l’indirizzu web di destinazione"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - Cartulare d’accolta WinMerge"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Schedariu di scenariu"
+
+msgid "Add &unpacker plugin..."
+msgstr "Aghjunghje u modulu d’estensione di u &spacchittadore…"
+
+msgid "Add &prediffer plugin..."
+msgstr "Aghjunghje u modulu d’estensione di u &preparagone…"
+
+msgid "&Duplicate plugin..."
+msgstr "Modulu d’estensione in &doppiu…"
 
 msgid "About WinMerge"
 msgstr "Apprupositu di WinMerge"
@@ -1151,14 +1268,17 @@ msgstr "Cun&firmà a chjusura di parechje finestre"
 msgid "&Preserve file time in file compare"
 msgstr "Cunservà &data è ora durante u paragone di schedariu"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "Affissà a finestra « Selezziunà schedarii o cartulari » à l’avviu"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "Chjode a finestra « Selezziunà schedarii o cartulari » cù u buttone « Paragunà »"
 
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "&Empiimentu autumaticu di a finestra d’apertura :"
+
+msgid "Auto-&reload modified files:"
+msgstr "&Ricaricà autumaticamente i schedarii mudificati :"
 
 msgid "Language:"
 msgstr "Lingua :"
@@ -1254,9 +1374,7 @@ msgid "Substitution Filters"
 msgstr "Filtri di sustituzione"
 
 msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr ""
-"I cambiamenti chì sò affissati nant’à i pannelli cum’è e coppii di a lista quì sottu seranu ignurati o marcati cum’è insignificanti. E currezzioni ùn "
-"sò micca affettate."
+msgstr "I cambiamenti chì sò affissati nant’à i pannelli cum’è e coppii di a lista quì sottu seranu ignurati o marcati cum’è insignificanti. E currezzioni ùn sò micca affettate."
 
 msgid "Enable"
 msgstr "Attivà"
@@ -1408,15 +1526,6 @@ msgstr "&Pruprietà addiziunale"
 msgid "Additional Properties"
 msgstr "Pruprietà addiziunale"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Selezziunà u modulu d’estensione"
 
@@ -1441,8 +1550,8 @@ msgstr "&Apre i schedarii in u listessu tipu di finestra dopu à a spacchittera"
 msgid "&Plugin Pipeline:"
 msgstr "&Cundottu di modulu :"
 
-msgid "&Add pipe"
-msgstr "&Aghjung. cundottu"
+msgid "&Alias..."
+msgstr "&Cugnome…"
 
 msgid "Stop"
 msgstr "Piantà"
@@ -1453,14 +1562,14 @@ msgstr "Pausa"
 msgid "Continue"
 msgstr "Cuntinuà"
 
-msgid "Comparing items..."
-msgstr "Paragone di l’elementi…"
-
-msgid "Items compared:"
-msgstr "Elementi paragunati :"
+msgid "&Number of CPU cores to use:"
+msgstr "&Numeru di cori CPU à impiegà :"
 
 msgid "Items total:"
 msgstr "Tutale di l’elementi :"
+
+msgid "Items compared:"
+msgstr "Elementi paragunati :"
 
 msgid "Go to"
 msgstr "Andà à"
@@ -1504,8 +1613,8 @@ msgstr "Attivà l’avventata di i blocchi &dispiazzati"
 msgid "Align &similar lines"
 msgstr "&Alineà e linee simile"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Cudificazione di sfarenza (esperimentale) :"
+msgid "Diff &algorithm:"
+msgstr "Cudificazione di sfarenza :"
 
 msgid "Enable indent &heuristic"
 msgstr "Attivà l’indentazione &euristica"
@@ -1518,9 +1627,6 @@ msgstr "Editore"
 
 msgid "&Highlight syntax"
 msgstr "&Sopralineà a sintassa"
-
-msgid "&Automatic rescan"
-msgstr "&Rianalisa autumatica"
 
 msgid "&Preserve original EOL chars"
 msgstr "&Cunservà i caratteri d’origine di fine di linea"
@@ -1537,6 +1643,15 @@ msgstr "&Framette tabulazioni"
 msgid "Insert &Spaces"
 msgstr "Framette &spazii"
 
+msgid "&Rendering Mode:"
+msgstr "&Modu di trasfurmazione :"
+
+msgid "&Automatic rescan"
+msgstr "&Rianalisa autumatica"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Cupià a &granularità per e sfarenze selezziunate :"
+
 msgid "Line Difference Coloring"
 msgstr "Culurazione di sfarenza di linea"
 
@@ -1551,9 +1666,6 @@ msgstr "À u livellu di a &parolla :"
 
 msgid "W&ord break characters:"
 msgstr "Caratteri di &distinzione di parolla :"
-
-msgid "&Rendering Mode:"
-msgstr "&Modu di trasfurmazione :"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "WinMerge permette di piattà certe scatule di messaghju. Appughjate nant’à u buttone « Reinizià » per rendele torna videvule."
@@ -1786,7 +1898,7 @@ msgid "(Affects)"
 msgstr "(Tocchi)"
 
 msgid "Select Codepage for"
-msgstr "Selezziunà a pagina di codice per l’azzione à fà nant’à u schedariu"
+msgstr "Selezziunà a pagina di codice per l’azzione à effettuà nant’à u schedariu"
 
 msgid "&File Loading:"
 msgstr "Ca&ricamentu :"
@@ -1929,11 +2041,14 @@ msgstr "Integrazione à u listinu cuntestuale"
 msgid "Explorer"
 msgstr "Espluratore"
 
+msgid "&Add to context menu"
+msgstr "&Aghjunghje à u listinu cuntestuale"
+
 msgid "E&nable advanced menu"
 msgstr "Attivà u listinu &espertu"
 
-msgid "&Add to context menu"
-msgstr "&Aghjunghje à u listinu cuntestuale"
+msgid "Enable &Compare As menu"
+msgstr "Attivà l’ozzione Paragunà &cum’è"
 
 msgid "&Register shell extension"
 msgstr "A&rregistramentu di l’estensione Shell"
@@ -1953,6 +2068,12 @@ msgstr "Arregistramentu di l’estensione Shell per &Windows 11 o una versione p
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Disarregistramentu di l’estensione Shell per W&indows 11 o una versione più recente"
 
+msgid "Jump List"
+msgstr "Lista d’accurtatoghji"
+
+msgid "Clear all recent items"
+msgstr "Squassà tutti l’elementi recenti"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Cartulare"
@@ -1963,13 +2084,13 @@ msgstr "Pian&tà dopu à a prima sfarenza"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignurà e sfarenze di tempu di &menu di 3 seconde"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "&Allargà autumaticamente i sottucartulari dopu à u paragone :"
+
 msgid "Include &unique subfolders contents"
 msgstr "Include u cuntenutu &unicu di i sottucartulari"
 
-msgid "&Automatically expand all subfolders"
-msgstr "&Allargà autumaticamente tutti i sottucartulari"
-
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Ignurà i punti di &ri-analisa"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -1978,26 +2099,17 @@ msgstr "Sogliu per passà à u paragone &rapidu (Mo) :"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Sogliu per passà à u paragone &binariu (Mo) :"
 
-msgid "&Number of CPU cores to use:"
-msgstr "&Numeru di cori CPU à impiegà :"
-
-msgid "&CSV File Patterns:"
-msgstr "Mudelli di schedariu &CSV :"
-
-msgid "&TSV File Patterns:"
-msgstr "Mudelli di schedariu &TSV :"
+msgid "File patterns:"
+msgstr "Mudelli di schedariu :"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Persunalizà delimitatore è &staccamentu"
-
-msgid "File Patterns:"
-msgstr "Mudelli di schedariu :"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Binariu"
 
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Mudelli di schedariu &binarii :"
 
 msgid "Frhed settings"
@@ -2015,7 +2127,7 @@ msgstr "Inseme di &caratteri…"
 msgid "Image"
 msgstr "Fiura"
 
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Mudelli di schedariu di &fiura :"
 
 msgid "&Enable image compare in folder compare"
@@ -2041,6 +2153,39 @@ msgstr "&Cartulare di dati di l’utilizatore sfarente per ogni pannellu"
 
 msgid "&Hex View"
 msgstr "Vista &esadecimale"
+
+msgid "Edit Plugin"
+msgstr "Mudificà u modulu d’estensione"
+
+msgid "Plugin &type:"
+msgstr "Tipu di &modulu d’estensione :"
+
+msgid "&Category:"
+msgstr "&Categuria :"
+
+msgid "&Menu caption:"
+msgstr "&Legenda di listinu :"
+
+msgid "&Window type:"
+msgstr "Tipu di &finestra :"
+
+msgid "&Unpacked file extension:"
+msgstr "&Estensione di u schedariu spacchittatu :"
+
+msgid "&Require arguments"
+msgstr "&Parametri richiesti"
+
+msgid "&Generate editor script"
+msgstr "&Ingenerà u scenariu d’editore"
+
+msgid "Command &line:"
+msgstr "&Linea di cumanda :"
+
+msgid "&Script file extension:"
+msgstr "Estensione di u schedariu di &scenariu :"
+
+msgid "Script &body:"
+msgstr "&Testu di u scenariu :"
 
 msgid "EXT"
 msgstr "EST"
@@ -2141,12 +2286,8 @@ msgstr ""
 "WinMerge.FolderCompare\n"
 "Paragone WinMerge di cartulare"
 
-msgid ""
-"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU "
-"General Public License in the Help menu for details."
-msgstr ""
-"WinMerge hè furnitu senza ALCUNA GUARANTIA. Ghjè un prugramma liberu è si pò ridistribuiscelu secondu à certe cundizioni ; per sapene di più, lighjite "
-"a licenza publica generale GNU in u listinu d’aiutu."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge hè furnitu senza ALCUNA GUARANTIA. Ghjè un prugramma liberu è si pò ridistribuiscelu secondu à certe cundizioni ; per sapene di più, lighjite a licenza publica generale GNU in u listinu d’aiutu."
 
 msgid "&Abort"
 msgstr "Inte&rrompe"
@@ -2185,8 +2326,10 @@ msgid "Don't display this &message again."
 msgstr "Ùn affissà più stu &messaghju torna."
 
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr ""
-"Per rende sta scatula di messaghju torna videvule, appughjate nant’à u buttone « Reinizià » di a pagina « Scatule di messaghju » di u dialogu d’ozzioni."
+msgstr "Per rende sta scatula di messaghju torna videvule, appughjate nant’à u buttone « Reinizià » di a pagina « Scatule di messaghju » di u dialogu d’ozzioni."
+
+msgid "Compare/Merge"
+msgstr "Paragunà/Fusione"
 
 msgid "Syntax"
 msgstr "Sintassa"
@@ -2274,6 +2417,18 @@ msgstr "Schedarii HTML (*.htm,*.html)|*.htm;*.html|Tutti i schedarii (*.*)|*.*||
 
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "Schedarii XML (*.xml)|*.xml|Tutti i schedarii (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Ùn allargà micca"
+
+msgid "Expand all subfolders"
+msgstr "Allargà tutti i sottucartulari"
+
+msgid "Expand different subfolders"
+msgstr "Allargà i sottucartulari sfarenti"
+
+msgid "Expand identical subfolders"
+msgstr "Allargà i sottucartulari uguali"
 
 msgid "File Type"
 msgstr "Tipu di schedariu"
@@ -2466,6 +2621,13 @@ msgstr "Elementu %1 nant’à %2"
 #, c-format
 msgid "Items: %1"
 msgstr "Elementi : %1"
+
+msgid "Comparing items..."
+msgstr "Paragone di l’elementi…"
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[elementi/sec]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Selezziunà dui cartulari o schedarii esistente à paragunà."
@@ -2860,6 +3022,9 @@ msgstr "Cunfirmà u dispiazzamentu"
 
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "State per chjode a finestra chì paraguneghja i cartulari. Da veru vulete chjode a finestra ?"
+
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr "State per chjode a finestra di paragone di cartulare chì hà pigliatu un bellu pezzu. Da veru vulete chjode a finestra ?"
 
 msgid "The file or folder name is invalid."
 msgstr "U nome di u schedariu o di u cartulare hè inaccettevule."
@@ -3319,15 +3484,13 @@ msgid ""
 "\n"
 "Do you want to treat all carriage return types as equivalent for this comparison?\n"
 "\n"
-"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in "
-"the Compare tab of the options dialog (available under Edit/Options)."
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences (Windows/Unix/Mac)' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
 "Sti schedarii impieganu tipi sfarenti di fine di linea.\n"
 "\n"
 "Vulete cunsiderà cum’è uguali tutti i tipi di fine di linea per stu paragone ?\n"
 "\n"
-"Nota : s’è vo vulete sempre cunsiderà cum’è uguali tutti i tipi di fine di linea, ci vole à attivà l’ozzione « Ignurà e sfarenze di fine di linea "
-"(Windows/Unix/Mac) » in l’unghjetta Paragunà di u dialogu d’ozzioni (dispunibule sottu Mudificà > Ozzioni)."
+"Nota : s’è vo vulete sempre cunsiderà cum’è uguali tutti i tipi di fine di linea, ci vole à attivà l’ozzione « Ignurà e sfarenze di fine di linea (Windows/Unix/Mac) » in l’unghjetta Paragunà di u dialogu d’ozzioni (dispunibule sottu Mudificà > Ozzioni)."
 
 msgid "The selected folder is invalid."
 msgstr "U cartulare selezziunatu hè inaccettevule."
@@ -3348,6 +3511,9 @@ msgstr ""
 "Vulete creà un cartulare currispundente :\n"
 "%1\n"
 "di l’altru latu è apre sti cartulari ?"
+
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "Da veru, vulete cupià tutte e sfarenze versu l’altru schedariu ?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Vulete passà à u schedariu seguente ?"
@@ -3544,10 +3710,10 @@ msgstr "Scenariu d’editore"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Sfarenza in a linea attuale"
+"Sfarenza nant’à a linea attuale (F4)"
 
 msgid ""
 "\n"
@@ -3771,8 +3937,11 @@ msgstr "&Attivà a larghezza massima autumatica"
 msgid "We&bpage"
 msgstr "Pagina we&b"
 
-msgid "Frhed is not installed."
-msgstr "Frhed ùn hè micca installatu."
+msgid "W&rap Text"
+msgstr "&Ritornu autumaticu à a linea"
+
+msgid "%1 is not installed."
+msgstr "%1 ùn hè micca installatu."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -3970,8 +4139,154 @@ msgstr "Permette l’esecuzione d’una instanza unica di u prugramma"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Permette l’esecuzione d’una instanza unica di u prugramma è aspettà ch’ella si compii"
 
+msgid "Only on window activated"
+msgstr "Solu quandu a finestra hè attivata"
+
+msgid "Immediately"
+msgstr "Subitu subitu"
+
 msgid "Al&l"
 msgstr "T&utti"
+
+msgid "&Others"
+msgstr "&L’altri moduli"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "U nome di modulu d’estensione « %1 » esiste dighjà."
+
+msgid "Specify plugin arguments"
+msgstr "Indicate i parametri di u modulu d’estensione"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "U modulu d’estensione ùn si trova micca o hè inaccettevule : %1"
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr "« %1 » ùn hè micca un modulu d’estensione di u spacchittadore"
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr "« %1 » ùn hè micca un modulu d’estensione di u preparagone"
+
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr "Un sbagliu hè accadutu durante u preparagone di u schedariu « %1 » cù u modulu d’estensione « %2 ». Avà u preparagone ùn hè più appiecatu."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Referenza circulare in u cundottu di modulu d’estensione : %1"
+
+msgid "URL Handler"
+msgstr "Ghjestiunariu d’indirizzu web"
+
+msgid "File Unpacker"
+msgstr "Spacchittadore di schedariu"
+
+msgid "File or Folder Unpacker"
+msgstr "Spacchittadore di schedariu o di cartulare"
+
+msgid "Alias for Unpacker"
+msgstr "Cugnome di u spacchittadore"
+
+msgid "Alias for Prediffer"
+msgstr "Cugnome di u preparagone"
+
+msgid "Alias for Editor script"
+msgstr "Cugnome di u scenariu d’editore"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "Cugnome di u cundottu di modulu d’estensione « %1 »"
+
+msgid "New plugin description"
+msgstr "Discrizzione nova di u modulu d’estensione"
+
+msgid "Filter applied"
+msgstr "Filtru appiecatu"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Preme’papei di u %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr ""
+"A cronolugia di u preme’papei hè disattivata.\r\n"
+"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
+
+msgid "This system does not support clipboard history."
+msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
+
+msgid "New Text Compare"
+msgstr "Paragone novu di testu"
+
+msgid "New Table Compare"
+msgstr "Paragone novu di tavulone"
+
+msgid "New Binary Compare"
+msgstr "Paragone binariu novu"
+
+msgid "New Image Compare"
+msgstr "Paragone novu di fiura"
+
+msgid "New Webpage Compare"
+msgstr "Paragone novu di pagina web"
+
+msgid "Clipboard Compare"
+msgstr "Paragone di preme’papei"
+
+msgid "&Print..."
+msgstr "&Stampà…"
+
+msgid "Pre&v Page"
+msgstr "&Pagina precedente"
+
+msgid "&Two Page"
+msgstr "&Duie pagine"
+
+msgid "&One Page"
+msgstr "&Una pagina"
+
+msgid "Zoom &In"
+msgstr "Ingrandamentu più &forte"
+
+msgid "Zoom &Out"
+msgstr "Ingrandamentu &menu forte"
+
+msgid "Comparing..."
+msgstr "Paragone…"
+
+msgid "Zoom:"
+msgstr "Ingrandamentu :"
+
+msgid "Diff hunk"
+msgstr "Gruppu di sfarenze"
+
+msgid "Inline diff"
+msgstr "Sfarenza framessa"
+
+msgid "Line"
+msgstr "Linea"
+
+msgid "Character"
+msgstr "Caratteru"
 
 msgid "Prettification"
 msgstr "Imbellimentu"
@@ -3979,8 +4294,8 @@ msgstr "Imbellimentu"
 msgid "Content Extraction"
 msgstr "Estrazzione di cuntenutu"
 
-msgid "Visualization"
-msgstr "Visualisazione"
+msgid "Preview"
+msgstr "Fighjulata"
 
 msgid "Data Query"
 msgstr "Interrugazione di dati"
@@ -3990,9 +4305,6 @@ msgstr "Cunvalidazione"
 
 msgid "Decompilation"
 msgstr "Decumpilazione"
-
-msgid "&Others"
-msgstr "&L’altri moduli"
 
 msgid "URL Handling"
 msgstr "Ghjestione d’indirizzu web"
@@ -4060,6 +4372,9 @@ msgstr "Ignurà i campi CSV"
 msgid "Ignore TSV Fields"
 msgstr "Ignurà i campi TSV"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Ignurà i numeri di principiu di linea"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Appiecà i filtri di sustituzione di preparagone"
 
@@ -4075,8 +4390,14 @@ msgstr "Imbellisce XML"
 msgid "Prettify YAML"
 msgstr "Imbellisce YAML"
 
-msgid "Visualize Graphviz"
-msgstr "Visualisazione Graphviz"
+msgid "Preview Graphviz"
+msgstr "Fighjulata Graphviz"
+
+msgid "Preview Markdown"
+msgstr "Fighjulata Markdown"
+
+msgid "Preview PlantUML"
+msgstr "Fighjulata PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "Interrugazione di dati CSV…"
@@ -4102,16 +4423,8 @@ msgstr "Disassemblà IL Code"
 msgid "Disassemble Native Code"
 msgstr "Disassemblà Native Code"
 
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome di modulu assente in u cundottu di u modulu d’estensione : %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Marca di citazione assente in u cundottu di u modulu d’estensione : %1"
-
-msgid "Specify plugin arguments"
-msgstr "Indicate i parametri di u modulu d’estensione"
+msgid "Convert Text with AI..."
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "Mette i caratteri in maiuscula"
@@ -4140,17 +4453,21 @@ msgstr "Invertisce e linee"
 msgid ""
 "Replace text with another text.\r\n"
 "Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
 "  FIND    - text to find\r\n"
 "  REPLACE - text to replace\r\n"
 "  -i - ignore case (only for -e)\r\n"
-"  -e - treat the specified text as a regular expression"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "Rimpiazzà u testu cù un altru testu.\\r\n"
 "Aghjovu : Replace [-i] [-e] CIRCÀ RIMPIAZZÀ\\r\n"
+"   o : Replace -s\r\n"
 "  CIRCÀ    - testu à circà\\r\n"
 "  RIMPIAZZÀ - testu à rimpiazzà\\r\n"
 "  -i - ignurà a cassa (solu per -e)\\r\n"
-"  -e - cunsiderà u testu specificatu cum’è un’espressione regulare"
+"  -e - cunsiderà u testu specificatu cum’è un’espressione regulare\r\n"
+"  -s - rimpiazzà impieghendu mudelli di filtri di sustituzione"
 
 #, c-format
 msgid ""
@@ -4243,11 +4560,25 @@ msgstr ""
 "Parametri : Filtru o ozzioni di linea di cumanda passati à a cumanda « yq »."
 
 msgid ""
-"Graphviz Visualizer. \r\n"
+"Graphviz Previewer. \r\n"
 "Arguments: Command line options passed to the dot command."
 msgstr ""
-"Visualisazione Graphviz. \\r\n"
+"Previsualizatore Graphviz.\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « dot »."
+
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+"Previsualizatore Markdown.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « md2html »."
+
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"Previsualizatore PlantUML.\r\n"
+"Parametri : Ozzioni di linea di cumanda passate à a cumanda « plantuml.jar »."
 
 msgid ""
 "CSV Querier with q command. \r\n"
@@ -4312,8 +4643,8 @@ msgstr ""
 "Estrattore di cuntenutu generale cù Apache Tika. \\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à « tika-app.jar »."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Appiecà a currezzione impieghendu GnuWin32 Patch per Windows"
+msgid "Apply patch using GNU patch"
+msgstr "Appiecà a currezzione impieghendu GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "Affissà u cuntenutu di u testu in i schedarii MS Excel"
@@ -4336,11 +4667,14 @@ msgstr "U modulu d’estensione ignureghja i cummenti (//... and /* ... */) in i
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Ignurà certi campi - lista di i campi ignurati da u nome di u modulu d’estensione o da i parametri di u modulu d’estensione"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr "Stu modulu d’estensione ignureghja i numeri di principiu di linea in i schedarii di testu (p.i. : i schedarii NC è BASIC)."
+
 msgid "Prediff Line Filter"
 msgstr "Filtru di linea di preparagone"
 
-msgid "Basic text functions for the context menu"
-msgstr "Funzioni basiche di testu per u listinu cuntestuale"
+msgid "Date and time insertion function"
+msgstr ""
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4356,25 +4690,176 @@ msgstr ""
 "Ghjestiunariu di mudellu d’indirizzu web di registru Windows.\r\n"
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
 
-msgid "Filter applied"
-msgstr "Filtru appiecatu"
+msgid "Basic text functions"
+msgstr ""
 
-#, c-format
-msgid "Clipboard at %s"
-msgstr "Preme’papei di u %s"
+msgid "AI-assisted text conversion functions"
+msgstr ""
+
+msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr ""
+
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSExcelFiles.sct"
+
+msgid "Extract workbook data to multiple files"
+msgstr "Estrae i dati di u sfugliaghju ver di parechji schedarii"
+
+msgid "Update external references(links)"
+msgstr "Rinnovà e referenze esterne (liami)"
+
+msgid "Compare document properties"
+msgstr "Paragunà i pruprietà di u ducumentu"
+
+msgid "Compare names"
+msgstr "Paragunà i nomi"
+
+msgid "Compare cell values"
+msgstr "Paragunà i valori di cellula"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "Paragunà i foglii di calculu tale fiure (pianu pianu)"
+
+msgid " - Image split size: "
+msgstr " - Dimensione di spartera di a fiura : "
+
+msgid "Compare worksheets as HTML"
+msgstr "Paragunà i foglii di calculu tale HTML"
+
+msgid "Compare formulas"
+msgstr "Paragunà e formule"
+
+msgid "Compare texts in shapes"
+msgstr "Paragunà i testi in e forme"
+
+msgid "Compare headers and footers"
+msgstr "Paragunà intestature è bassi di pagina"
 
 msgid ""
-"Clipboard history is disabled.\r\n"
-"To enable clipboard history, press Windows logo key + V and then click the Turn on button."
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
-"A cronolugia di u preme’papei hè disattivata.\r\n"
-"Per attivalla, appughjate nant’à i tasti Windows + V è tandu cliccu nant’à u buttone « Attivà »."
+"Ùn si pò micca ottene e prucedure Macros.\r\n"
+"   Per permette à WinMerge di paragunà e prucedure macro, impiegate MS Office per mudificà e preferenze di sicurità di e macro per l’appiecazione currente.\r\n"
+"   L’ozzione di permessu d’accede à u prughjettu Visual Basic deve esse attivata per impiegà sta funzione in WinMerge.\r\n"
 
-msgid "This system does not support clipboard history."
-msgstr "Stu sistema ùn accetta micca a cronolugia di u preme’papei."
+msgid "Compare VBA macros"
+msgstr "Paragunà e prucedure VBA"
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A versione 32-bit di WinMerge ùn accetta micca u paragone di preme’papei"
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSWordFiles.sct"
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "L’ambiente d’esecuzione WebView2 ùn hè micca installatu. Vulete scaricallu ?"
+msgid "Extract document data to multiple files"
+msgstr "Estrae i dati di u ducumentu ver di parechji schedarii"
+
+msgid "Compare bookmarks"
+msgstr "Paragunà l’indette"
+
+msgid "Compare text contents of documents"
+msgstr "Paragunà i cuntenuti testuali di i ducumenti"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "Paragunà i ducumenti tale HTML (pianu pianu)"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSPowerPointFiles.sct"
+
+msgid "Extract slide data to multiple files"
+msgstr "Estrae i dati di e diapusitive ver di parechji schedarii"
+
+msgid "Compare slides as image (very slow)"
+msgstr "Paragunà e diapusitive tale fiure (pianu pianu)"
+
+msgid "Compare texts in notes page"
+msgstr "Paragunà i testi in e pagine di note"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSVisioFiles.sct"
+
+msgid "Extract page data to multiple files"
+msgstr "Estrae i dati di e pagine ver di parechji schedarii"
+
+msgid "Compare pages as image (very slow)"
+msgstr "Paragunà e pagine tale fiure (pianu pianu)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "Ozzioni WinMerge di u modulu d’estensione PrediffLineFilter.sct"
+
+msgid "Delete"
+msgstr "Squassà"
+
+msgid "Enabled"
+msgstr "Attivatu"
+
+msgid "Ignore Case"
+msgstr "Ignurà a cassa"
+
+msgid "Use RegExp"
+msgstr "Impiegà RegExp"
+
+msgid "Find what"
+msgstr "Cosa circà"
+
+msgid "Replace with"
+msgstr "Rimpiazzà cù"
+
+msgid "Settings"
+msgstr "Preferenze"
+
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
+msgstr ""
+"Serie di culonne à ignurà :\n"
+"p.i.)  3,10-20,32-33\n"
+
+#, c-format
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr "Stampittà u nome di u schedariu per quellu u currettivu « %1 » serà appiecatu"
+
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "U schedariu « %1 » ùn esiste micca"
+
+msgid "Enter the command line arguments for patch command"
+msgstr "Stampittà l’argumenti di linea di cumanda per a cumanda di currezzione"
+
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr "Stampittà u nome di u cartulare per quellu u currettivu « %1 » serà appiecatu"
+
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "U cartulare « %1 » ùn esiste micca"
+
+msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgstr "Ùn specificate micca l’ozzione di linea di cumanda « -p0 » per u schedariu di currezzione chì cuntene chjassi assuluti"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr ""
+
+msgid "Enter prompt"
+msgstr ""
+
+#, c-format
+msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgstr ""
+
+msgid "Environment variable name for OpenAI API key"
+msgstr ""
+
+msgid "OpenAI API key"
+msgstr ""
+
+msgid "Temperature"
+msgstr ""
+
+msgid "Maximum length"
+msgstr ""
+
+msgid "Model"
+msgstr ""
+
+msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr ""

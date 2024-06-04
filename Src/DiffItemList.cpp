@@ -134,7 +134,7 @@ const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(DIFFITEM *&diffpos) con
 	DIFFITEM *p = diffpos;
 	diffpos = p->GetFwdSiblingLink();
 	assert(p==nullptr || diffpos==nullptr || p->GetParentLink() == diffpos->GetParentLink());
-	assert(p==nullptr || p->HasParent());
+	assert(p->HasParent());
 	return *p;
 }
 

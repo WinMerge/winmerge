@@ -95,12 +95,12 @@ bool CCrystalRendererGDI::GetCharWidth(unsigned start, unsigned end, int * nWidt
 	return succeeded;
 }
 
-void CCrystalRendererGDI::SetTextColor(COLORREF clr)
+void CCrystalRendererGDI::SetTextColor(CEColor clr)
 {
 	m_pDC->SetTextColor(clr);
 }
 
-void CCrystalRendererGDI::SetBkColor(COLORREF clr)
+void CCrystalRendererGDI::SetBkColor(CEColor clr)
 {
 	m_pDC->SetBkColor(clr);
 }
@@ -110,7 +110,7 @@ void CCrystalRendererGDI::FillRectangle(const CRect &rc)
 	m_pDC->FillSolidRect(&rc, m_pDC->GetBkColor());
 }
 
-void CCrystalRendererGDI::FillSolidRectangle(const CRect &rc, COLORREF color)
+void CCrystalRendererGDI::FillSolidRectangle(const CRect &rc, CEColor color)
 {
 	m_pDC->FillSolidRect(&rc, color);
 }
@@ -164,7 +164,7 @@ void CCrystalRendererGDI::DrawMarginIcon(int x, int y, int iconIndex, int iconsi
 void CCrystalRendererGDI::DrawMarginLineNumber(int x, int y, int number)
 {
 	CFont *pOldFont = m_pDC->SelectObject(m_apFonts[0].get());
-	TCHAR szNumbers[32];
+	tchar_t szNumbers[32];
 	int len = wsprintf(szNumbers, _T("%d"), number);
 	UINT uiOldAlign = m_pDC->SetTextAlign(TA_RIGHT);
 	m_pDC->TextOut(x - (m_pDC->IsPrinting() ? 0 : 4), y, szNumbers, len);
@@ -226,7 +226,7 @@ void CCrystalRendererGDI::DrawLineCursor(int left, int right, int y, int height)
 	dcMem.SelectObject(pOldBitmap);
 }
 
-void CCrystalRendererGDI::DrawText(int x, int y, const CRect &rc, const TCHAR *text, size_t len, const int nWidths[])
+void CCrystalRendererGDI::DrawText(int x, int y, const CRect &rc, const tchar_t* text, size_t len, const int nWidths[])
 {
 	m_pDC->ExtTextOut(x, y, ETO_CLIPPED | ETO_OPAQUE, &rc, text, static_cast<UINT>(len), const_cast<int *>(nWidths));
 }
@@ -238,7 +238,7 @@ void CCrystalRendererGDI::DrawRuler(int left, int top, int width, int height, in
 	CPen *pOldPen = (CPen *)m_pDC->SelectStockObject(BLACK_PEN);
 	int bottom = top + height - 1;
 	int prev10 = (offset / 10) * 10;
-	TCHAR szNumbers[32];
+	tchar_t szNumbers[32];
 	int len = wsprintf(szNumbers, _T("%d"), prev10);
 	if ((offset % 10) != 0 && offset - prev10 < len)
 		m_pDC->TextOut(left, bottom - height, szNumbers + (offset - prev10), len - (offset - prev10));

@@ -12,7 +12,7 @@ Examples are available in :
 
  * C++ COM component
  * VB ActiveX dll
- * Scriptlets (VBS, JS)
+ * Scriptlets (VBScript, JScript)
  * Delphi
 
 Limitation : Scriptlets only work for `EDITOR_SCRIPT` plugins.
@@ -94,45 +94,52 @@ This parameter is mandatory for the function's syntax. But you don't have to set
 
 #### `PluginEvent`
 
-| Language | Syntax                                                       |
-|:--------:|:-------------------------------------------------------------|
-| C++      | `STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR * pVal)` |
-| VB       | `Public Property Get PluginEvent() As String`                |
-| VBS      | `Function get_PluginEvent()`                                 |
+| Language | Syntax                                                              |
+|:--------:|:--------------------------------------------------------------------|
+| C++      | `STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR * pVal)`        |
+| VB       | `Public Property Get PluginEvent() As String`                       |
+| VBScript | `Function get_PluginEvent()`                                        |
+| JScript  | `function get_PluginEvent()`                                        |
 
 #### `PluginDescription`
 
-| Language | Syntax                                                             |
-|:--------:|:-------------------------------------------------------------------|
-| C++      | `STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR * pVal)` |
-| VB       | `Public Property Get PluginDescription() As String`                |
-| VBS      | `Function get_PluginDescription()`                                 |
+| Language | Syntax                                                              |
+|:--------:|:--------------------------------------------------------------------|
+| C++      | `STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR * pVal)`  |
+| VB       | `Public Property Get PluginDescription() As String`                 |
+| VBScript | `Function get_PluginDescription()                                   |
+| JScript  | `function get_PluginDescription()`                                  |
 
 #### `PluginFileFilters`
 
 String formed of fileFilters, separated with `;`
 
-| Language | Syntax                                                             |
-|:--------:|:-------------------------------------------------------------------|
-| C++      | `STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR * pVal)` |
-| VB       | `Public Property Get PluginFileFilters() As String`                |
+| Language | Syntax                                                              |
+|:--------:|:--------------------------------------------------------------------|
+| C++      | `STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR * pVal)`  |
+| VB       | `Public Property Get PluginFileFilters() As String`                 |
+| VBScript | `Function get_PluginFileFilters()                                   |
+| JScript  | `function get_PluginFileFilters()`                                  |
 
 #### `PluginIsAutomatic`
 
-| Language | Syntax                                                                     |
-|:--------:|:---------------------------------------------------------------------------|
-| C++      | `STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL * pVal)` |
-| VB       | `Public Property Get PluginIsAutomatic() As Boolean`                       |
+| Language | Syntax                                                                        |
+|:--------:|:------------------------------------------------------------------------------|
+| C++      | `STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL * pVal)`    |
+| VB       | `Public Property Get PluginIsAutomatic() As Boolean`                          |
+| VBScript | `Function get_PluginIsAutomatic()`                                            |
+| JScript  | `function get_PluginIsAutomatic()`                                            |
 
 ### Methods syntax
 
 #### `EDITOR_SCRIPT`
 
-| Language | Functions parameters (function names are free)                                  |
-|:--------:|:--------------------------------------------------------------------------------|
-| C++      | `STDMETHOD(MakeUpperVB)([in] BSTR inputText, [out, retval] BSTR * outputText);` |
-| VB       | `Public Function MakeUpperVB(text As String)`                                   |
-| VBS      | `Function MakeUpperVBS(Text)`                                                   |
+| Language | Functions parameters (function names are free)                                |
+|:--------:|:------------------------------------------------------------------------------|
+| C++      | `STDMETHOD(MakeUpper)([in] BSTR inputText, [out, retval] BSTR * outputText);` |
+| VB       | `Public Function MakeUpper(text As String)`                                   |
+| VBScript | `Function MakeUpper(Text)`                                                    |
+| JScript  | `function MakeUpper(Text)`                                                    |
 
 #### `FILE_PREDIFF`
 
@@ -140,6 +147,8 @@ String formed of fileFilters, separated with `;`
 |:--------:|:------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
 | VC++     | `STDMETHOD(PrediffFile)`      | `([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)` |
 | VB       | `Public Function PrediffFile` | `(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean`                                |
+| VBScript | `Function PrediffFile`        | `(fileSrc, fileDst, bChanged, subcode)`                                                                                    |
+| JScript  | `function PrediffFile`        | `(fileSrc, fileDst, bChanged, subcode) { ...; var r = new ActiveXObject("Scripting.Dictionary"); r.Add(0, retval); r.Add(1, bChanged); r.Add(2, subcode); return r.Items(); }` |
 
 #### `BUFFER_PREDIFF`
 
@@ -147,6 +156,8 @@ String formed of fileFilters, separated with `;`
 |:--------:|:---------------------------------|:----------------------------------------------------------------------------------------------------------------|
 | C++      | `STDMETHOD(PrediffBufferW)`      | `([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);` |
 | VB       | `Public Function PrediffBufferW` | `(ByRef text As String, ByRef size As Long, ByRef bChanged As Boolean) As Boolean`                              |
+| VBScript | `Function PrediffBufferW`        | `(text, size, bChanged)`                                                                                    |
+| JScript  | `function PrediffBufferW`        | `(text, size, bChanged) { ...; var r = new ActiveXObject("Scripting.Dictionary"); r.Add(0, retval); r.Add(1, text); r.Add(2, size); r.Add(3, bChanged); return r.Items(); }` |
 
 #### `FILE_PACK_UNPACK`
 
@@ -156,6 +167,10 @@ String formed of fileFilters, separated with `;`
 | VC++     | `STDMETHOD(PackFile)`        | `([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)`   |
 | VB       | `Public Function UnpackFile` | `(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean`                                |
 | VB       | `Public Function PackFile`   | `(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, subcode As Long) As Boolean`                                      |
+| VBScript | `Function UnpackFile`        | `(fileSrc, fileDst, bChanged, subcode)`                                                                                    |
+| VBScript | `Function PackFile`          | `(fileSrc, fileDst, bChanged, subcode)`                                                                                    |
+| JScript  | `function UnpackFile`        | `(fileSrc, fileDst, bChanged, subcode) { ...; var r = new ActiveXObject("Scripting.Dictionary"); r.Add(0, retval); r.Add(1, bChanged); r.Add(2, subcode); return r.Items(); }` |
+| JScript  | `function PackFile`          | `(fileSrc, fileDst, bChanged, subcode) { ...; var r = new ActiveXObject("Scripting.Dictionary"); r.Add(0, retval); r.Add(1, bChanged); return r.Items(); }` |
 
 #### `BUFFER_PACK_UNPACK`
 

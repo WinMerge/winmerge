@@ -19,7 +19,7 @@
 	*/
 String FileFlags::ToString() const
 {
-	TCHAR sflags[5], *p = sflags;
+	tchar_t sflags[5], *p = sflags;
 	if (attributes & FILE_ATTRIBUTE_READONLY)
 		*p++ = 'R';
 	if (attributes & FILE_ATTRIBUTE_HIDDEN)

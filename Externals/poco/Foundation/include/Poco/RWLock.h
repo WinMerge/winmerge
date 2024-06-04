@@ -23,11 +23,7 @@
 
 
 #if defined(POCO_OS_FAMILY_WINDOWS)
-#if defined(_WIN32_WCE)
-#include "Poco/RWLock_WINCE.h"
-#else
 #include "Poco/RWLock_WIN32.h"
-#endif
 #elif POCO_OS == POCO_OS_ANDROID
 #include "Poco/RWLock_Android.h"
 #elif defined(POCO_VXWORKS)
@@ -56,10 +52,10 @@ public:
 
 	RWLock();
 		/// Creates the Reader/Writer lock.
-		
+
 	~RWLock();
 		/// Destroys the Reader/Writer lock.
-	
+
 	void readLock();
 		/// Acquires a read lock. If another thread currently holds a write lock,
 		/// waits until the write lock is released.
@@ -69,13 +65,13 @@ public:
 		/// false if another thread currently holds a write lock.
 
 	void writeLock();
-		/// Acquires a write lock. If one or more other threads currently hold 
+		/// Acquires a write lock. If one or more other threads currently hold
 		/// locks, waits until all locks are released. The results are undefined
 		/// if the same thread already holds a read or write lock
 
 	bool tryWriteLock();
 		/// Tries to acquire a write lock. Immediately returns true if successful,
-		/// or false if one or more other threads currently hold 
+		/// or false if one or more other threads currently hold
 		/// locks. The result is undefined if the same thread already
 		/// holds a read or write lock.
 

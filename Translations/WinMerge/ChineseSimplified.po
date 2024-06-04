@@ -6,14 +6,16 @@
 # * xmpdhml <xmpdhml at users.sourceforge.net>
 # * MaysWind <i at mayswind.net>
 # * CharlesMengCA <CharlesMeng at outlook.com>
+# * YFdyh000 <yfdyh000 at gmail.com>
+# * Yin Gang <zenith.yin at gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2020-10-18 17:28+0000\n"
+"POT-Creation-Date: 2023-08-27 15:32+0000\n"
 "PO-Revision-Date: \n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"Last-Translator: Yin Gang <zenith.yin@gmail.com>\n"
 "Language-Team: ChineseSimplified <winmerge-translate@lists.sourceforge.net>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +23,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -70,7 +73,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "将此改动添加到置换过滤器(&F)"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "添加到行过滤器(&L)"
 
 msgid "&Undo"
 msgstr "撤销(&U)"
@@ -118,7 +121,7 @@ msgid "Open &Parent Folder..."
 msgstr "打开上层文件夹(&P)..."
 
 msgid "S&hell Menu"
-msgstr "外壳菜单(&S)"
+msgstr "系统外壳菜单(&S)"
 
 msgid "Use First Line as Headers"
 msgstr "将第一行做为标题行"
@@ -243,7 +246,25 @@ msgid "&Size"
 msgstr "大小(&S)"
 
 msgid "Fit to Window"
-msgstr "窗口内显示"
+msgstr "适应窗口"
+
+msgid "&Event Sync"
+msgstr "事件同步(&E)"
+
+msgid "&Enabled"
+msgstr "已启用(&E)"
+
+msgid "&Scroll"
+msgstr "滚动(&S)"
+
+msgid "&Click"
+msgstr "点击(&C)"
+
+msgid "&Input"
+msgstr "输入(&I)"
+
+msgid "&GoBack/Forward"
+msgstr "返回/前进(&G)"
 
 msgid "Clear &Browsing Data"
 msgstr "清除浏览数据(&B)"
@@ -342,7 +363,7 @@ msgid "&Tools"
 msgstr "工具(&T)"
 
 msgid "&Filters..."
-msgstr "滤镜(&F)..."
+msgstr "过滤器(&F)..."
 
 msgid "&Generate Patch..."
 msgstr "生成补丁(&G)..."
@@ -351,7 +372,7 @@ msgid "&Plugins"
 msgstr "插件(&P)"
 
 msgid "P&lugin Settings..."
-msgstr "插件设置(&L)"
+msgstr "插件设置(&L)..."
 
 msgid "Ma&nual Prediffer"
 msgstr "手动预比较(&N)"
@@ -476,8 +497,17 @@ msgstr "显示隐藏的项(&E)"
 msgid "Tree &Mode"
 msgstr "树状模式(&M)"
 
-msgid "E&xpand All Subfolders"
-msgstr "展开所有子目录(&X)"
+msgid "E&xpand Subfolders"
+msgstr "展开子文件夹(&X)"
+
+msgid "&All Subfolders"
+msgstr "所有子文件夹(&A)"
+
+msgid "&Different Subfolders"
+msgstr "不同的子文件夹(&D)"
+
+msgid "&Identical Subfolders"
+msgstr "相同的子文件夹(&I)"
 
 msgid "&Collapse All Subfolders"
 msgstr "折叠所有子目录(&C)"
@@ -546,7 +576,7 @@ msgid "Generate &Report..."
 msgstr "生成报告(&R)..."
 
 msgid "&Edit with Unpacker..."
-msgstr "用解包器来编辑(&E)..."
+msgstr "用解包插件来编辑(&E)..."
 
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
@@ -567,13 +597,13 @@ msgid "Save &As"
 msgstr "另存为(&A)"
 
 msgid "Save &Left As..."
-msgstr "另存为左侧(&L)"
+msgstr "另存为左侧(&L)..."
 
 msgid "Save &Middle As..."
-msgstr "另存为中间(&L)"
+msgstr "另存为中间(&L)..."
 
 msgid "Save &Right As..."
-msgstr "另存为右侧(&R)"
+msgstr "另存为右侧(&R)..."
 
 msgid "&Print...\tCtrl+P"
 msgstr "打印(&P)...\tCtrl+P"
@@ -783,10 +813,10 @@ msgid "Copy from Right\tAlt+Shift+Left"
 msgstr "从右侧复制\tAlt+Shift+Right"
 
 msgid "C&opy to Right and Advance\tCtrl+Alt+Right"
-msgstr "复制到右侧并前进\tCtrl+Alt+Right"
+msgstr "复制到右侧并前进(&O)\tCtrl+Alt+Right"
 
 msgid "Copy &to Left and Advance\tCtrl+Alt+Left"
-msgstr "复制到左侧并前进\tCtrl+Alt+Left"
+msgstr "复制到左侧并前进(&T)\tCtrl+Alt+Left"
 
 msgid "Copy &All to Right"
 msgstr "全部复制到右侧(&A)"
@@ -810,10 +840,16 @@ msgid "&Prediffer"
 msgstr "预比较插件(&P)"
 
 msgid "Apply Pre&differ..."
-msgstr "使用预比较插件(&D)"
+msgstr "使用预比较插件(&D)..."
 
 msgid "&Transform with editor script..."
-msgstr "用编辑器脚本转换(&T)"
+msgstr "用编辑器脚本转换(&T)..."
+
+msgid "Scripts for &copying"
+msgstr "用于复制的脚本(&C)"
+
+msgid "Select &editor script..."
+msgstr "选择编辑器脚本(&E)..."
 
 msgid "Sp&lit"
 msgstr "分隔(&L)"
@@ -831,16 +867,16 @@ msgid "Compare Non-hor&izontally"
 msgstr "非横向比较(&I)"
 
 msgid "First &left item with second left item"
-msgstr "第一个的左侧项目与第二个的左侧项目(&L)"
+msgstr "左侧第一个项目与左侧第二个项目(&L)"
 
 msgid "First &right item with second right item"
-msgstr "第一个的右侧项目与第二个的右侧项目(&R)"
+msgstr "右侧第一个项目与右侧第二个项目(&R)"
 
 msgid "&First left item with second right item"
-msgstr "第一个的左侧项目与第二个的右侧项目(&F)"
+msgstr "左侧第一个项目与右侧第二个项目(&F)"
 
 msgid "&Second left item with first right item"
-msgstr "第二个的左侧项目与第一个的右侧项目(&S)"
+msgstr "左侧第二个项目与右侧第一个项目(&S)"
 
 msgid "Co&mpare As"
 msgstr "重新比较(&M)"
@@ -934,6 +970,9 @@ msgstr "复制文件名(&F)"
 msgid "Copy Items To Clip&board"
 msgstr "复制项目到剪贴板(&B)"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "复制所有显示的列(&S)"
+
 msgid "&Zip"
 msgstr "Zip (&Z)"
 
@@ -958,6 +997,12 @@ msgstr "中间系统外壳菜单"
 msgid "Right Shell menu"
 msgstr "右侧系统外壳菜单"
 
+msgid "Both Shell menu"
+msgstr "所有系统外壳菜单"
+
+msgid "All Shell menu"
+msgstr "所有系统外壳菜单"
+
 msgid "Copy"
 msgstr "复制"
 
@@ -968,10 +1013,10 @@ msgid "Copy &Filename"
 msgstr "复制文件名(&F)"
 
 msgid "&Edit Caption"
-msgstr ""
+msgstr "编辑标题(&E)"
 
 msgid "&Open..."
-msgstr ""
+msgstr "打开(&O)..."
 
 msgid "Unpacker Settings"
 msgstr "解包插件设置"
@@ -1027,7 +1072,7 @@ msgstr "忽略数字(&B)"
 msgid "Ignore c&omment differences"
 msgstr "忽略注释行差异(&O)"
 
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "包含子目录(&I)"
 
 msgid "&Compare method:"
@@ -1052,7 +1097,82 @@ msgid "Size"
 msgstr "文件大小"
 
 msgid "&Load Project..."
-msgstr "加载工程(&L)"
+msgstr "加载工程(&L)..."
+
+msgid "${*} - All arguments"
+msgstr "${*} - 所有参数"
+
+msgid "${1} - The first argument"
+msgstr "${1} - 第一个参数"
+
+msgid "${2} - The second argument"
+msgstr "${2} - 第二个参数"
+
+msgid "${3} - The third argument"
+msgstr "${3} - 第三个参数"
+
+msgid "${4} - The fourth argument"
+msgstr "${4} - 第四个参数"
+
+msgid "${5} - The fifth argument"
+msgstr "${5} - 第五个参数"
+
+msgid "${6} - The sixth argument"
+msgstr "${6} - 第六个参数"
+
+msgid "${7} - The seventh argument"
+msgstr "${7} - 第七个参数"
+
+msgid "${8} - The eighth argument"
+msgstr "${8} - 第八个参数"
+
+msgid "${9} - The ninth argument"
+msgstr "${9} - 第九个参数"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - 源文件"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - 源文件夹"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - 源网址"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - 源网址协议"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - 源网址后缀"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - 目标文件"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - 目标文件夹"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - 目标网址"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - 目标网址协议"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - 目标网址后缀"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - WinMerge 主目录"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - 脚本文件"
+
+msgid "Add &unpacker plugin..."
+msgstr "添加解包插件(&U)..."
+
+msgid "Add &prediffer plugin..."
+msgstr "添加预比较插件(&P)..."
+
+msgid "&Duplicate plugin..."
+msgstr "复制插件(&D)..."
 
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
@@ -1106,22 +1226,22 @@ msgid "Browse..."
 msgstr "浏览..."
 
 msgid " Folder: Filter"
-msgstr " 文件夹: 过滤器"
+msgstr " 文件夹：过滤器"
 
 msgid " File: Prediffer Plugin"
-msgstr ""
+msgstr " 文件：预比较插件"
 
 msgid " File: Unpacker Plugin"
-msgstr " 文件: 解包插件"
+msgstr " 文件：解包插件"
 
 msgid "Se&lect..."
-msgstr "选择(&L)"
+msgstr "选择(&L)..."
 
 msgid "Cancel"
 msgstr "取消"
 
 msgid "Status:"
-msgstr "状态:"
+msgstr "状态："
 
 msgid "Help"
 msgstr "帮助"
@@ -1136,13 +1256,13 @@ msgid "Automatically s&croll to first inline difference"
 msgstr "自动滚动到第一处行内差异(&C)"
 
 msgid "Cl&ose windows with 'Esc':"
-msgstr "按 'Esc' 关闭窗口(&O):"
+msgstr "按 'Esc' 关闭窗口(&O)："
 
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "“打开”对话框中自动验证路径(&A)"
 
 msgid "Single instance mode:"
-msgstr "单一实例模式:"
+msgstr "单一实例模式："
 
 msgid "As&k when closing multiple windows"
 msgstr "关闭多个窗口时询问我(&K)"
@@ -1150,23 +1270,26 @@ msgstr "关闭多个窗口时询问我(&K)"
 msgid "&Preserve file time in file compare"
 msgstr "比较时保持文件时间不变(&P)"
 
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "启动时显示“选择文件或文件夹”对话框"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "在点击比较按钮时关闭“选择文件或文件夹”对话框"
 
 msgid "Op&en-dialog Auto-Completion:"
-msgstr "“打开”对话框的自动完成(&E):"
+msgstr "“打开”对话框的自动完成(&E)："
+
+msgid "Auto-&reload modified files:"
+msgstr "自动重新加载修改过的文件(&R)："
 
 msgid "Language:"
-msgstr "语言:"
+msgstr "语言："
 
 msgid "Find"
 msgstr "查找"
 
 msgid "Fi&nd what:"
-msgstr "查找内容(&N):"
+msgstr "查找内容(&N)："
 
 msgid "Match &whole word only"
 msgstr "全字匹配(&W)"
@@ -1196,10 +1319,10 @@ msgid "Replace"
 msgstr "替换"
 
 msgid "Re&place with:"
-msgstr "替换为(&P):"
+msgstr "替换为(&P)："
 
 msgid "&Don't wrap end of file"
-msgstr "至文件末尾不从头查找(&O)"
+msgstr "至文件末尾不从头查找(&D)"
 
 msgid "Replace in"
 msgstr "替换范围"
@@ -1235,13 +1358,13 @@ msgid "&Apply"
 msgstr "应用(&A)"
 
 msgid "Line Filters"
-msgstr "行筛选"
+msgstr "行过滤器"
 
 msgid "Enable Line Filters"
-msgstr "启用行筛选"
+msgstr "启用行过滤器"
 
 msgid "Regular Expressions (one per line):"
-msgstr "正则表达式 (每行一个):"
+msgstr "正则表达式 (每行一个)："
 
 msgid "Edit"
 msgstr "编辑"
@@ -1250,10 +1373,12 @@ msgid "Remove"
 msgstr "删除"
 
 msgid "Substitution Filters"
-msgstr "置换滤镜"
+msgstr "置换过滤器"
 
-msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "那些出现在面板（panels）上的更改，做为以下列出的配对（pairs），将被忽略或标记为不重要。补丁不受影响。"
+msgid ""
+"The changes that appear on the panels as the listed pairs below will be "
+"ignored or marked as insignificant. Patches are unaffected."
+msgstr "面板中出现的下列变更组合将被忽略或视作无关紧要。补丁不受影响。"
 
 msgid "Enable"
 msgstr "启用"
@@ -1268,7 +1393,7 @@ msgid "Colors"
 msgstr "颜色"
 
 msgid "Color Scheme:"
-msgstr "配色方案:"
+msgstr "配色方案："
 
 msgid "Background"
 msgstr "背景"
@@ -1280,49 +1405,49 @@ msgid "Text"
 msgstr "文字"
 
 msgid "Difference:"
-msgstr "差异:"
+msgstr "差异："
 
 msgid "Selected Difference:"
-msgstr "选中的差异:"
+msgstr "选中的差异："
 
 msgid "Ignored Difference:"
-msgstr "忽略的差异:"
+msgstr "忽略的差异："
 
 msgid "Moved:"
-msgstr "移动的区块:"
+msgstr "移动的区块："
 
 msgid "Selected Moved:"
-msgstr "选中的已移动区块:"
+msgstr "选中的已移动区块："
 
 msgid "Same As The Next (3 panes):"
-msgstr "与附近相同 (三路合并):"
+msgstr "与附近相同（三路合并）："
 
 msgid "Same As The Next (Selected):"
-msgstr "与附近相同 (选中状态):"
+msgstr "与附近相同（选中状态）："
 
 msgid "Word Difference:"
-msgstr "单词差异:"
+msgstr "单词差异："
 
 msgid "Selected Word Diff:"
-msgstr "选中的单词差异:"
+msgstr "选中的单词差异："
 
 msgid "&Use folder compare colors"
 msgstr "使用文件夹比较颜色(&U)"
 
 msgid "Items equal:"
-msgstr "相同的项目:"
+msgstr "相同的项目："
 
 msgid "Items different:"
-msgstr "不同的项目:"
+msgstr "不同的项目："
 
 msgid "Items not exists all:"
-msgstr "并非都存在的项目:"
+msgstr "并非都存在的项目："
 
 msgid "Items filtered:"
-msgstr "过滤的项目:"
+msgstr "过滤的项目："
 
 msgid "Margin:"
-msgstr "边缘:"
+msgstr "边缘："
 
 msgid "System"
 msgstr "系统"
@@ -1331,10 +1456,10 @@ msgid "&Send deleted files to Recycle Bin"
 msgstr "将删除的文件放入回收站(&S)"
 
 msgid "&External editor:"
-msgstr "外部编辑器(&E)"
+msgstr "外部编辑器(&E)："
 
 msgid "&Filter folder:"
-msgstr "滤镜路径(&F):"
+msgstr "过滤器路径(&F)："
 
 msgid "Temporary files folder"
 msgstr "临时文件夹"
@@ -1343,7 +1468,7 @@ msgid "S&ystem's temp folder"
 msgstr "系统临时文件夹(&Y)"
 
 msgid "C&ustom folder:"
-msgstr "自定义文件夹(&U):"
+msgstr "自定义文件夹(&U)："
 
 msgid "Br&owse..."
 msgstr "浏览(&O)..."
@@ -1352,10 +1477,10 @@ msgid "Patch Generator"
 msgstr "补丁生成器"
 
 msgid "File&1:"
-msgstr "文件&1:"
+msgstr "文件 &1："
 
 msgid "File&2:"
-msgstr "文件&2:"
+msgstr "文件 &2："
 
 msgid "&Swap"
 msgstr "上下交换(&S)"
@@ -1367,7 +1492,7 @@ msgid "&Append to existing file"
 msgstr "追加到现有文件末尾(&A)"
 
 msgid "&Result:"
-msgstr "结果(&R):"
+msgstr "结果(&R)："
 
 msgid "Bro&wse..."
 msgstr "浏览(&W)..."
@@ -1376,10 +1501,10 @@ msgid "&Format"
 msgstr "格式(&F)"
 
 msgid "St&yle:"
-msgstr "样式(&Y):"
+msgstr "样式(&Y)："
 
 msgid "&Context:"
-msgstr "内容(&C):"
+msgstr "上下文(&C)："
 
 msgid "Inclu&de command line"
 msgstr "包含命令行(&D)"
@@ -1405,41 +1530,32 @@ msgstr "附加属性(&A)"
 msgid "Additional Properties"
 msgstr "附加属性"
 
-msgid "&>"
-msgstr "&>"
-
-msgid "&<"
-msgstr "&<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "选择插件"
 
 msgid "Plugin &Name:"
-msgstr "插件名称(&N)"
+msgstr "插件名称(&N)："
 
 msgid "Extensions list:"
-msgstr "扩展列表:"
+msgstr "扩展名列表："
 
 msgid "Description:"
-msgstr "描述:"
+msgstr "描述："
 
 msgid "Default arguments:"
-msgstr "默认参数:"
+msgstr "默认参数："
 
 msgid "Display all plugins, don't check the extension"
 msgstr "显示所有插件， 不检查文件扩展名"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr "解包后在同一窗口类型中打开文件(&O)。"
+msgstr "解包后在同一窗口类型中打开文件(&O)"
 
 msgid "&Plugin Pipeline:"
-msgstr "插件流程（pipeline）(&P):"
+msgstr "插件流水线(&P)："
 
-msgid "&Add pipe"
-msgstr "添加流程 pipe(&A)"
+msgid "&Alias..."
+msgstr "别名(&A)..."
 
 msgid "Stop"
 msgstr "停止"
@@ -1450,20 +1566,20 @@ msgstr "暂停"
 msgid "Continue"
 msgstr "继续"
 
-msgid "Comparing items..."
-msgstr "正在比较条目..."
-
-msgid "Items compared:"
-msgstr "已比较条目:"
+msgid "&Number of CPU cores to use:"
+msgstr "可以使用的处理器核心数(&N)："
 
 msgid "Items total:"
-msgstr "条目总计:"
+msgstr "条目总计："
+
+msgid "Items compared:"
+msgstr "已比较条目："
 
 msgid "Go to"
 msgstr "转到"
 
 msgid "G&o to:"
-msgstr "转到(&O):"
+msgstr "转到(&O)："
 
 msgid "File"
 msgstr "文件"
@@ -1501,8 +1617,8 @@ msgstr "启用块移动检测(&N)"
 msgid "Align &similar lines"
 msgstr "对齐相似的行(&S)"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "比较算法 (实验性) (&A):"
+msgid "Diff &algorithm:"
+msgstr "比较算法(&A)："
 
 msgid "Enable indent &heuristic"
 msgstr "启用启发式缩进(&H)"
@@ -1515,9 +1631,6 @@ msgstr "编辑器"
 
 msgid "&Highlight syntax"
 msgstr "语法高亮(&H)"
-
-msgid "&Automatic rescan"
-msgstr "自动重新扫描(&A)"
 
 msgid "&Preserve original EOL chars"
 msgstr "保持换行符不变(&P)"
@@ -1534,6 +1647,15 @@ msgstr "插入制表符(&I)"
 msgid "Insert &Spaces"
 msgstr "插入空格(&S)"
 
+msgid "&Rendering Mode:"
+msgstr "渲染模式(&R)"
+
+msgid "&Automatic rescan"
+msgstr "自动重新扫描(&A)"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "选中差异的复制粒度(&G)："
+
 msgid "Line Difference Coloring"
 msgstr "行内差异着色"
 
@@ -1544,13 +1666,10 @@ msgid "&Character level"
 msgstr "字符级别(&C)"
 
 msgid "&Word-level:"
-msgstr "单词级别(&W):"
+msgstr "单词级别(&W)："
 
 msgid "W&ord break characters:"
-msgstr "单词分隔字符:"
-
-msgid "&Rendering Mode:"
-msgstr "渲染模式(&R)"
+msgstr "单词分隔字符："
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -1562,7 +1681,7 @@ msgid "Reset"
 msgstr "重置"
 
 msgid "File Filters"
-msgstr "文件筛选器"
+msgstr "文件过滤器"
 
 msgid "Test..."
 msgstr "测试..."
@@ -1619,7 +1738,7 @@ msgid "Default Codepage"
 msgstr "默认代码页"
 
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "请选择当加载“非 Unicode 文件”时默认假定的代码页:"
+msgstr "请选择当加载“非 Unicode 文件”时默认假定的代码页："
 
 msgid "System codepage"
 msgstr "系统代码页"
@@ -1628,7 +1747,7 @@ msgid "According to WinMerge User Interface"
 msgstr "根据 WinMerge 用户界面"
 
 msgid "Custom codepage:"
-msgstr "自定义代码页:"
+msgstr "自定义代码页："
 
 msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
@@ -1657,55 +1776,55 @@ msgid "Dialog"
 msgstr "对话框"
 
 msgid "Keywords:"
-msgstr "关键字:"
+msgstr "关键字："
 
 msgid "Function names:"
-msgstr "函数名:"
+msgstr "函数名："
 
 msgid "Comments:"
-msgstr "注释:"
+msgstr "注释："
 
 msgid "Numbers:"
-msgstr "数字:"
+msgstr "数字："
 
 msgid "Operators:"
-msgstr "操作符:"
+msgstr "操作符："
 
 msgid "Strings:"
-msgstr "字符串:"
+msgstr "字符串："
 
 msgid "Preprocessor:"
-msgstr "预处理指令:"
+msgstr "预处理指令："
 
 msgid "User 1:"
-msgstr "用户定义 1:"
+msgstr "用户定义 1："
 
 msgid "User 2:"
-msgstr "用户定义 2:"
+msgstr "用户定义 2："
 
 msgid "Bold"
 msgstr "加粗"
 
 msgid "Search Marker:"
-msgstr "搜索标记:"
+msgstr "搜索标记："
 
 msgid "User Defined Marker1:"
-msgstr "用户定义的标记1:"
+msgstr "用户定义的标记1："
 
 msgid "User Defined Marker2:"
-msgstr "用户定义的标记2:"
+msgstr "用户定义的标记2："
 
 msgid "User Defined Marker3:"
-msgstr "用户定义的标记3:"
+msgstr "用户定义的标记3："
 
 msgid "Folder Compare Report"
 msgstr "文件夹比较报告"
 
 msgid "Report &File:"
-msgstr "报告文件(&F):"
+msgstr "报告文件(&F)："
 
 msgid "&Style:"
-msgstr "样式(&S):"
+msgstr "样式(&S)："
 
 msgid "&Include File Compare Report"
 msgstr "包括文件比较报告(&I)"
@@ -1717,10 +1836,10 @@ msgid "Which type of filter do you want to create?"
 msgstr "您要创建哪种过滤器？"
 
 msgid "Shared Filter (for all users on this machine)"
-msgstr "共享滤镜 (适用于本机所有用户)"
+msgstr "共享过滤器 (适用于本机所有用户)"
 
 msgid "Private Filter (only for current user)"
-msgstr "私有滤镜 (仅限当前用户)"
+msgstr "私有过滤器 (仅限当前用户)"
 
 msgid "Archive Support"
 msgstr "压缩文件支持"
@@ -1732,52 +1851,52 @@ msgid "&Detect archive type from file signature"
 msgstr "根据文件头检测压缩文件类型(&D)"
 
 msgid "Items saved to or restored from the project file:"
-msgstr "保存到项目文件或从项目文件还原的条目:"
+msgstr "保存到项目文件或从项目文件还原的条目："
 
 msgid "Compare Statistics"
 msgstr "比较结果统计"
 
 msgid "Folders:"
-msgstr "文件夹:"
+msgstr "文件夹："
 
 msgid "Files:"
-msgstr "文件:"
+msgstr "文件："
 
 msgid "Different"
 msgstr "不同"
 
 msgid "Binary:"
-msgstr "二进制:"
+msgstr "二进制："
 
 msgid "Unique"
 msgstr "仅在单侧"
 
 msgid "Left:"
-msgstr "左侧:"
+msgstr "左侧："
 
 msgid "Right:"
-msgstr "右侧:"
+msgstr "右侧："
 
 msgid "Identical"
 msgstr "完全相同"
 
 msgid "Total:"
-msgstr "总计:"
+msgstr "总计："
 
 msgid "Close"
 msgstr "关闭"
 
 msgid "Middle:"
-msgstr "中间:"
+msgstr "中间："
 
 msgid "Missing Left:"
-msgstr "左侧缺失:"
+msgstr "左侧缺失："
 
 msgid "Missing Middle:"
-msgstr "中间缺失:"
+msgstr "中间缺失："
 
 msgid "Missing Right:"
-msgstr "右侧缺失:"
+msgstr "右侧缺失："
 
 msgid "Affects"
 msgstr "影响范围"
@@ -1789,10 +1908,10 @@ msgid "Select Codepage for"
 msgstr "选择要使用的代码页"
 
 msgid "&File Loading:"
-msgstr "打开文件(&F):"
+msgstr "打开文件(&F)："
 
 msgid "File &Saving:"
-msgstr "保存文件(&S):"
+msgstr "保存文件(&S)："
 
 msgid "&Use same codepage for both"
 msgstr "两边使用相同的代码页(&U)"
@@ -1804,16 +1923,16 @@ msgid "Test Filter"
 msgstr "测试过滤器"
 
 msgid "Testing filter:"
-msgstr "正在测试过滤器:"
+msgstr "正在测试过滤器："
 
 msgid "&Enter text to test:"
-msgstr "输入用以测试的文本(&E):"
+msgstr "输入用以测试的文本(&E)："
 
 msgid "&Folder Name"
 msgstr "文件夹名(&F)"
 
 msgid "Result:"
-msgstr "结果:"
+msgstr "结果："
 
 msgid "&Test"
 msgstr "测试(&T)"
@@ -1837,25 +1956,25 @@ msgid "Custom &Delimiter-Separated Values"
 msgstr "自定义分隔符的数值集(&D)"
 
 msgid "D&elimiter character:"
-msgstr "自定义分隔字符(&E):"
+msgstr "自定义分隔字符(&E)："
 
 msgid "&Allow newlines in quotes"
 msgstr "允许引号内换行(&A)"
 
 msgid "&Quote character:"
-msgstr "引号字符(&Q):"
+msgstr "引号字符(&Q)："
 
 msgid "&Use customized text colors"
 msgstr "使用自定义的文字颜色(&U)"
 
 msgid "Whitespace:"
-msgstr "空白:"
+msgstr "空白："
 
 msgid "Regular text:"
-msgstr "普通文本:"
+msgstr "普通文本："
 
 msgid "Selection:"
-msgstr "选中区域:"
+msgstr "选中区域："
 
 msgid "Backup Files"
 msgstr "备份文件"
@@ -1876,7 +1995,7 @@ msgid "&Original file's folder"
 msgstr "原文件所在文件夹(&O)"
 
 msgid "&Global backup folder:"
-msgstr "全局备份文件夹(&G):"
+msgstr "全局备份文件夹(&G)："
 
 msgid "Backup filename:"
 msgstr "备份文件名："
@@ -1915,43 +2034,52 @@ msgid "&Enable plugins"
 msgstr "启用插件(&E)"
 
 msgid "File filters:"
-msgstr "文件过滤器:"
+msgstr "文件过滤器："
 
 msgid "&Plugin arguments:"
-msgstr "插件参数(&P)"
+msgstr "插件参数(&P)："
 
 msgid "Enable &automatic unpacking/prediffing for the plugin"
-msgstr "启用插件自动解包或预比较(&A)"
+msgstr "启用自动解包或预比较插件(&A)"
 
 msgid "Shell Integration"
-msgstr "系统集成"
+msgstr "系统外壳集成"
 
 msgid "Explorer"
 msgstr "资源管理器"
 
-msgid "E&nable advanced menu"
-msgstr "启用高级菜单(&N)"
-
 msgid "&Add to context menu"
 msgstr "添加到上下文菜单(&A)"
 
+msgid "E&nable advanced menu"
+msgstr "启用高级菜单(&N)"
+
+msgid "Enable &Compare As menu"
+msgstr "启用比较方式菜单(&C)"
+
 msgid "&Register shell extension"
-msgstr "注册系统扩展(&R)"
+msgstr "注册系统外壳扩展(&R)"
 
 msgid "&Unregister shell extension"
-msgstr "注销系统扩展(&U)"
+msgstr "注销系统外壳扩展(&U)"
 
 msgid "Register shell extension for current user &only"
-msgstr "为当前用户注册系统扩展(&O)"
+msgstr "为当前用户注册系统外壳扩展(&O)"
 
 msgid "Unregister shell extension for current user on&ly"
-msgstr "为当前用户注销系统扩展(&L)"
+msgstr "为当前用户注销系统外壳扩展(&L)"
 
 msgid "Register shell extension for &Windows 11 or later"
-msgstr "注册系统扩展（Windows 11 或更新的系统）(&W)"
+msgstr "注册系统外壳扩展（Windows 11 或更新的系统）(&W)"
 
 msgid "Unregister shell extension for W&indows 11 or later"
-msgstr "注销系统扩展（Windows 11 或更新的系统）(&I)"
+msgstr "注销系统外壳扩展（Windows 11 或更新的系统）(&I)"
+
+msgid "Jump List"
+msgstr "跳转列表"
+
+msgid "Clear all recent items"
+msgstr "清除所有最近的项目"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -1963,66 +2091,57 @@ msgstr "遇到第一个差异后停止(&T)"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "忽略小于3秒的时间差异(&O)"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "在比较后自动展开子文件夹(&A)"
+
 msgid "Include &unique subfolders contents"
 msgstr "包含仅在单侧的子文件夹内容(&U)"
 
-msgid "&Automatically expand all subfolders"
-msgstr "自动展开所有子文件夹(&A)"
-
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "忽略重新解析点(&R)"
 
 msgid "Threshold for switching to &quick compare (MB):"
-msgstr "切换到快速比较的最小值(&Q) (MB):"
+msgstr "切换到快速比较的最小值(&Q) (MB)："
 
 msgid "Threshold for switching to &binary compare (MB):"
-msgstr "切换到二进制比较的最小值(&B) (MB):"
+msgstr "切换到二进制比较的最小值(&B) (MB)："
 
-msgid "&Number of CPU cores to use:"
-msgstr ""
-
-msgid "&CSV File Patterns:"
-msgstr "&CSV 文件模式:"
-
-msgid "&TSV File Patterns:"
-msgstr "&TSV 文件模式:"
+msgid "File patterns:"
+msgstr "文件模式："
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "自定义分隔符的数值集"
-
-msgid "File Patterns:"
-msgstr "文件模式:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "二进制"
 
-msgid "Binary File &Patterns:"
-msgstr "二进制文件扩展名 (&P):"
+msgid "Binary file &patterns:"
+msgstr "二进制文件模式(&P)："
 
 msgid "Frhed settings"
 msgstr "Frhed 设置"
 
 msgid "View &Settings..."
-msgstr "查看设置(&S)"
+msgstr "查看设置(&S)..."
 
 msgid "&Binary Mode..."
-msgstr "二进制模式(&B)"
+msgstr "二进制模式(&B)..."
 
 msgid "&Character Set..."
-msgstr "字符集(&C)"
+msgstr "字符集(&C)..."
 
 msgid "Image"
 msgstr "图像"
 
-msgid "Image File &Patterns:"
-msgstr "图像文件扩展名 (&P):"
+msgid "Image file &patterns:"
+msgstr "图像文件模式(&P)："
 
 msgid "&Enable image compare in folder compare"
 msgstr "在文件夹比较中启用图像比较(&E)"
 
 msgid "OCR result:"
-msgstr "字符识别结果:"
+msgstr "字符识别结果："
 
 msgid "Webpage"
 msgstr "网页"
@@ -2041,6 +2160,39 @@ msgstr "每个窗格使用单独的用户数据文件夹(&S)"
 
 msgid "&Hex View"
 msgstr "十六进制查看(&H)"
+
+msgid "Edit Plugin"
+msgstr "编辑插件"
+
+msgid "Plugin &type:"
+msgstr "插件类型(&T)："
+
+msgid "&Category:"
+msgstr "类别(&C)："
+
+msgid "&Menu caption:"
+msgstr "菜单标题(&M)："
+
+msgid "&Window type:"
+msgstr "窗口类型(&W)："
+
+msgid "&Unpacked file extension:"
+msgstr "解包后的文件扩展名(&U)："
+
+msgid "&Require arguments"
+msgstr "要求提供参数(&R)"
+
+msgid "&Generate editor script"
+msgstr "生成编辑器脚本(&G)"
+
+msgid "Command &line:"
+msgstr "命令行(&L)："
+
+msgid "&Script file extension:"
+msgstr "脚本文件扩展名(&S)："
+
+msgid "Script &body:"
+msgstr "脚本体(&B)："
 
 msgid "EXT"
 msgstr "EXT"
@@ -2185,8 +2337,13 @@ msgstr "全部跳过(&A)"
 msgid "Don't display this &message again."
 msgstr "不再显示此消息(&M)"
 
-msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
+msgid ""
+"To make this message box visible again, press the Reset button on the "
+"Message Boxes page of the Options dialog."
 msgstr "要使此消息框再次可见，请点击“选项”对话框，“消息框”页面上的“重置”按钮。"
+
+msgid "Compare/Merge"
+msgstr "比较/合并"
 
 msgid "Syntax"
 msgstr "语法"
@@ -2207,25 +2364,25 @@ msgid "Message Boxes"
 msgstr "消息框"
 
 msgid "To:"
-msgstr "到:"
+msgstr "到："
 
 msgid "From left:"
-msgstr "从左侧:"
+msgstr "从左侧："
 
 msgid "To left:"
-msgstr "到左侧:"
+msgstr "到左侧："
 
 msgid "From right:"
-msgstr "从右侧:"
+msgstr "从右侧："
 
 msgid "To right:"
-msgstr "到右侧:"
+msgstr "到右侧："
 
 msgid "From middle:"
-msgstr "从中间:"
+msgstr "从中间："
 
 msgid "To middle:"
-msgstr "到中间:"
+msgstr "到中间："
 
 #, c-format
 msgid "Version %1"
@@ -2279,6 +2436,18 @@ msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
 
+msgid "Do not expand"
+msgstr "不展开"
+
+msgid "Expand all subfolders"
+msgstr "展开所有子文件夹"
+
+msgid "Expand different subfolders"
+msgstr "展开不同的子文件夹"
+
+msgid "Expand identical subfolders"
+msgstr "展开相同的子文件夹"
+
 msgid "File Type"
 msgstr "文件类型"
 
@@ -2289,7 +2458,7 @@ msgid "Message"
 msgstr "消息"
 
 msgid "Answer"
-msgstr "你的选择"
+msgstr "您的选择"
 
 msgid "Item"
 msgstr "条目"
@@ -2307,7 +2476,7 @@ msgid "Compare Options"
 msgstr "比较选项"
 
 msgid "Hidden Items"
-msgstr ""
+msgstr "隐藏项目"
 
 msgid "Name"
 msgstr "名称"
@@ -2331,8 +2500,15 @@ msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "过滤器文件 (*.flt)|*.flt|所有文件 (*.*)|*.*||"
 
 #, c-format
-msgid "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters folder:\n%2."
-msgstr "无法找到文件过滤器模板！\n\n请将文件 %1 复制到 WinMerge/Filters 文件夹下。"
+msgid ""
+"Cannot find file filter template file!\n"
+"\n"
+"Please copy file %1 to WinMerge/Filters folder:\n"
+"%2."
+msgstr ""
+"无法找到文件过滤器模板！\n"
+"\n"
+"请将文件 %1 复制到 WinMerge/Filters 文件夹下。"
 
 #, c-format
 msgid ""
@@ -2424,19 +2600,19 @@ msgstr "原始文件"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "行: %s  列: %d/%d  字符: %d/%d  换行符: %s"
+msgstr "行：%s  列：%d/%d  字符：%d/%d  换行符：%s"
 
 #, c-format
 msgid "Line: %s"
-msgstr "行: %s"
+msgstr "行：%s"
 
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr "行: %s  列: %d/%d  字符: %d/%d"
+msgstr "行：%s  列：%d/%d  字符：%d/%d"
 
 #, c-format
 msgid "  Sel: %d | %d"
-msgstr "  选中: %d | %d"
+msgstr "  选中：%d | %d"
 
 msgid "Merge"
 msgstr "合并"
@@ -2462,7 +2638,14 @@ msgstr "第 %1 项，共 %2 项"
 
 #, c-format
 msgid "Items: %1"
-msgstr "项目: %1"
+msgstr "项目：%1"
+
+msgid "Comparing items..."
+msgstr "正在比较条目..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f [条目/秒]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "选择两个现有的文件或文件夹来进行比较。"
@@ -2508,11 +2691,11 @@ msgstr "不能比较一个文件与一个文件夹！"
 
 #, c-format
 msgid "File not found: %1"
-msgstr "找不到文件: %1"
+msgstr "找不到文件：%1"
 
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "文件未解包: %1"
+msgstr "文件未解包：%1"
 
 #, c-format
 msgid ""
@@ -2610,8 +2793,18 @@ msgstr ""
 "是否将解包版本保存为另一文件？"
 
 #, c-format
-msgid "Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
-msgstr "插件“%2”无法将您对中间文件的修改封装到“%1”。\n\n原始文件将不会被更改。\n\n是否将解包版本保存为另一文件？"
+msgid ""
+"Plugin '%2' cannot pack your changes to the middle file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"插件“%2”无法将您对中间文件的修改封装到“%1”。\n"
+"\n"
+"原始文件将不会被更改。\n"
+"\n"
+"是否将解包版本保存为另一文件？"
 
 #, c-format
 msgid ""
@@ -2786,13 +2979,13 @@ msgid "All (%1)"
 msgstr "全部 (%1)"
 
 msgid "Left side - select destination folder:"
-msgstr "左侧 - 请选择目标文件夹:"
+msgstr "左侧 - 请选择目标文件夹："
 
 msgid "Middle side - select destination folder:"
-msgstr "中间 - 请选择目标文件夹:"
+msgstr "中间 - 请选择目标文件夹："
 
 msgid "Right side - select destination folder:"
-msgstr "右侧 - 请选择目标文件夹:"
+msgstr "右侧 - 请选择目标文件夹："
 
 #, c-format
 msgid "(%1 Files Affected)"
@@ -2851,20 +3044,29 @@ msgstr "确认移动"
 msgid ""
 "You are about to close the window that is comparing folders. Are you sure "
 "you want to close the window?"
-msgstr "您即将关闭比较文件夹的窗口。确定关闭该窗口？"
+msgstr "您即将关闭文件夹比较窗口。确定要关闭该窗口吗？"
+
+msgid ""
+"You are about to close the folder comparison window that took a significant "
+"amount of time. Are you sure you want to close the window?"
+msgstr "您即将关闭已花费大量时间的文件夹比较窗口。确定要关闭该窗口吗？"
 
 msgid "The file or folder name is invalid."
-msgstr ""
+msgstr "文件或文件夹的名称不合法。"
 
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "外部编辑器运行失败: %1"
+msgstr "外部编辑器运行失败：%1"
 
 msgid "Unknown archive format"
 msgstr "未知的压缩包格式"
 
-msgid "Failed to extract archive files.\nDo you want to compare the archive files as text files?"
-msgstr "解压文件失败。\n是否按文本文件格式进行比较？"
+msgid ""
+"Failed to extract archive files.\n"
+"Do you want to compare the archive files as text files?"
+msgstr ""
+"解压文件失败。\n"
+"是否按文本文件格式进行比较？"
 
 msgid "Filename"
 msgstr "文件名称"
@@ -2962,10 +3164,10 @@ msgid "Binary"
 msgstr "二进制"
 
 msgid "Unpacker"
-msgstr "解包器"
+msgstr "解包插件"
 
 msgid "Prediffer"
-msgstr "预处理器"
+msgstr "预比较插件"
 
 msgid "Left"
 msgstr "左侧"
@@ -3065,15 +3267,15 @@ msgstr "文件夹已跳过"
 
 #, c-format
 msgid "Left only: %1"
-msgstr "仅在左侧: %1"
+msgstr "仅在左侧：%1"
 
 #, c-format
 msgid "Middle only: %1"
-msgstr "仅在中间: %1"
+msgstr "仅在中间：%1"
 
 #, c-format
 msgid "Right only: %1"
-msgstr "仅在右侧: %1"
+msgstr "仅在右侧：%1"
 
 #, c-format
 msgid "Does not exist in %1"
@@ -3135,11 +3337,11 @@ msgstr "图像文件有差异"
 
 #, c-format
 msgid "Group%d"
-msgstr "分组%d"
+msgstr "分组 %d"
 
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "执行时间: %ld 毫秒"
+msgstr "执行时间：%ld 毫秒"
 
 msgid "1 item selected"
 msgstr "选中了 1 个项目"
@@ -3252,10 +3454,10 @@ msgid "Shows an asterisk (*) if the file is binary."
 msgstr "在二进制文件处显示星号(*)。"
 
 msgid "Unpacker plugin name or pipeline."
-msgstr "解包插件名称或流程（pipeline）。"
+msgstr "解包插件名称或流水线。"
 
 msgid "Prediffer plugin name or pipeline."
-msgstr "预比较插件名称或流程（pipeline）。"
+msgstr "预比较插件名称或流水线。"
 
 #, c-format
 msgid "Compare %1 with %2"
@@ -3344,6 +3546,9 @@ msgstr ""
 "是否要在另一侧创建一个对应的文件夹：\n"
 "%1\n"
 "并且打开这两个文件夹？"
+
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "您确定要把所有的差异复制到另一个文件吗？"
 
 msgid "Do you want to move to the next file?"
 msgstr "您是否要跳转到下一个文件？"
@@ -3463,7 +3668,7 @@ msgstr "未能写入文件 %1。"
 
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
-msgstr "指定的路径不是绝对路径: %1"
+msgstr "指定的路径不是绝对路径：%1"
 
 msgid "Specify an output file."
 msgstr "请指定输出文件。"
@@ -3483,7 +3688,11 @@ msgstr ""
 msgid "Folder does not exist."
 msgstr "文件夹不存在。"
 
-msgid "Archive support is not enabled.\nAll needed components (7-Zip and/or Merge7z*.dll) for archive support cannot be found.\nSee manual for more info about archive support and how to enable it."
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-Zip and/or Merge7z*.dll) for archive support cannot "
+"be found.\n"
+"See manual for more info about archive support and how to enable it."
 msgstr ""
 "没有启用压缩包支持。\n"
 "没有找到压缩包支持所必需的组件（7-Zip 和/或 Merge7z*.dll）。\n"
@@ -3540,10 +3749,10 @@ msgstr "编辑器脚本"
 
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"当前行中差异"
+"当前行中差异 (F4)"
 
 msgid ""
 "\n"
@@ -3608,17 +3817,33 @@ msgstr ""
 "\n"
 "末个差异 (Alt+End)"
 
-msgid "\nCopy to Right (Alt+Right)"
-msgstr "\n复制到右侧 (Alt+Right)"
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)"
+msgstr ""
+"\n"
+"复制到右侧 (Alt+Right)"
 
-msgid "\nCopy to Left (Alt+Left)"
-msgstr "\n复制到左侧 (Alt+Left)"
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)"
+msgstr ""
+"\n"
+"复制到左侧 (Alt+Left)"
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)"
-msgstr "\n复制到右侧并前进 (Ctrl+Alt+Right)"
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+"\n"
+"复制到右侧并前进 (Ctrl+Alt+Right)"
 
-msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)"
-msgstr "\n复制到左侧并前进 (Ctrl+Alt+Left)"
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+"\n"
+"复制到左侧并前进 (Ctrl+Alt+Left)"
 
 msgid ""
 "\n"
@@ -3627,8 +3852,12 @@ msgstr ""
 "\n"
 "全部复制到右侧"
 
-msgid "\nCopy All to Left"
-msgstr "\n全部复制到左侧"
+msgid ""
+"\n"
+"Copy All to Left"
+msgstr ""
+"\n"
+"全部复制到左侧"
 
 msgid ""
 "\n"
@@ -3637,17 +3866,33 @@ msgstr ""
 "\n"
 "自动合并 (Ctrl+Alt+M)"
 
-msgid "\nFirst File"
-msgstr "\n第一个文件"
+msgid ""
+"\n"
+"First File"
+msgstr ""
+"\n"
+"第一个文件"
 
-msgid "\nNext File (Ctrl+F8)"
-msgstr "\n上一个文件 (Ctrl+F8)"
+msgid ""
+"\n"
+"Next File (Ctrl+F8)"
+msgstr ""
+"\n"
+"上一个文件 (Ctrl+F8)"
 
-msgid "\nLast File"
-msgstr "\n最后一个文件"
+msgid ""
+"\n"
+"Last File"
+msgstr ""
+"\n"
+"最后一个文件"
 
-msgid "\nPrevious File (Ctrl+F7)"
-msgstr "\n上一个文件 (Ctrl+F7)"
+msgid ""
+"\n"
+"Previous File (Ctrl+F7)"
+msgstr ""
+"\n"
+"上一个文件 (Ctrl+F7)"
 
 msgid ""
 "The adapted unpacker is applied to both files (one file only needs the "
@@ -3655,7 +3900,7 @@ msgid ""
 msgstr "在两个文件上应用适当的解包程序 (文件只需要有适当的扩展名)。"
 
 msgid "No prediffer (normal)"
-msgstr "不使用预处理器 (标准)"
+msgstr "不使用预比较插件（常规）"
 
 msgid "Suggested plugins"
 msgstr "推荐的插件"
@@ -3665,7 +3910,7 @@ msgstr "全部插件"
 
 #, c-format
 msgid "Private Build: %1"
-msgstr "定制版本: %1"
+msgstr "定制版本：%1"
 
 msgid "Your software is up to date."
 msgstr "您的软件是最新的。"
@@ -3710,13 +3955,13 @@ msgid "Batch"
 msgstr "批处理文件"
 
 msgid "Portable Object"
-msgstr "可移植对象"
+msgstr "PO (可移植对象)"
 
 msgid "Resources"
 msgstr "资源文件"
 
 msgid "Shell"
-msgstr "系统集成"
+msgstr "Shell 脚本"
 
 msgid "Close &Left Tabs"
 msgstr "关闭左侧标签页(&L)"
@@ -3733,8 +3978,11 @@ msgstr "启用自动最大宽度(&A)"
 msgid "We&bpage"
 msgstr "网页(&B)"
 
-msgid "Frhed is not installed."
-msgstr "Frhed 未安装"
+msgid "W&rap Text"
+msgstr "自动换行(&R)"
+
+msgid "%1 is not installed."
+msgstr "%1 未安装。"
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -3863,35 +4111,35 @@ msgstr "缩放"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Page:"
-msgstr "页:"
+msgstr "页："
 
 #, c-format
 msgid "Pt: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
-msgstr "像素: (%d, %d)  RGBA: (%d, %d, %d, %d)  "
+msgstr "像素：(%d, %d)  RGBA：(%d, %d, %d, %d)  "
 
 #, c-format
 msgid "Dist: %g  "
-msgstr "色距: %g  "
+msgstr "色距：%g  "
 
 #, c-format
 msgid "Dist: %g, %g  "
-msgstr "色距: %g, %g  "
+msgstr "色距：%g, %g  "
 
 #, c-format
 msgid "Page: %d/%d  Zoom: %d%%  %dx%dpx  %dbpp  "
-msgstr "页: %d/%d  缩放: %d%%  %dx%dpx  %dbpp  "
+msgstr "页：%d/%d  缩放：%d%%  %dx%d像素  %d比特/像素  "
 
 #, c-format
 msgid "Rc: (%d, %d)  "
-msgstr ""
+msgstr "选中：(%d, %d)  "
 
 #, c-format
 msgid "Flipped: %s  "
-msgstr "翻转了: %s  "
+msgstr "翻转：%s  "
 
 #, c-format
 msgid "Rotated: %d  "
-msgstr "旋转了: %d  "
+msgstr "旋转：%d  "
 
 msgid "All pages"
 msgstr "所有页"
@@ -3903,13 +4151,13 @@ msgid "No differences to select found"
 msgstr "未找到要选择的差异"
 
 msgid "No differences found to add as substitution filter"
-msgstr "未找到要添加为替换滤镜的差异"
+msgstr "未找到要添加为置换过滤器的差异"
 
 msgid "The pair is already present in the list of Substitution Filters"
-msgstr "这一对已存在于替换滤镜列表中"
+msgstr "这一对已存在于置换过滤器列表中"
 
 msgid "Add this change to Substitution Filters?"
-msgstr "将此更改添加到替换滤镜？"
+msgstr "将此更改添加到置换过滤器？"
 
 msgid "Text only"
 msgstr "纯文本"
@@ -3921,7 +4169,7 @@ msgid "Word-by-word position and text"
 msgstr "逐字定位输入"
 
 msgid "AppData folder"
-msgstr "AppData文件夹"
+msgstr "AppData 文件夹"
 
 msgid "Install folder"
 msgstr "安装文件夹"
@@ -3932,8 +4180,158 @@ msgstr "只允许运行一个实例"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "只允许运行一个实例并等待该实例结束"
 
+msgid "Only on window activated"
+msgstr "仅在窗口激活时"
+
+msgid "Immediately"
+msgstr "立即"
+
 msgid "Al&l"
 msgstr "全部(&L)"
+
+msgid "&Others"
+msgstr "其它(&O)"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "插件流水线中缺少插件名称：%1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "插件流水线中缺少引号：%1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "插件名称 '%1' 已存在。"
+
+msgid "Specify plugin arguments"
+msgstr "指定插件参数"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "插件不存在或非法：%1"
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr "'%1' 不是解包插件"
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr "'%1' 不是预比较插件"
+
+#, c-format
+msgid ""
+"An error occurred while prediffing the file '%1' with the plugin '%2'. The "
+"prediffing is not applied any more."
+msgstr ""
+"在用插件 '%2' 对文件 '%1' 进行预比较时发生了一个错误，将不再使用该预比较。"
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "插件流水线中的循环引用：%1"
+
+msgid "URL Handler"
+msgstr "网址处理器"
+
+msgid "File Unpacker"
+msgstr "文件解包插件"
+
+msgid "File or Folder Unpacker"
+msgstr "文件或文件夹解包插件"
+
+msgid "Alias for Unpacker"
+msgstr "解包插件别名"
+
+msgid "Alias for Prediffer"
+msgstr "预比较插件别名"
+
+msgid "Alias for Editor script"
+msgstr "编辑器脚本别名"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "插件流水线 '%1' 别名"
+
+msgid "New plugin description"
+msgstr "新的插件描述"
+
+msgid "Filter applied"
+msgstr "过滤器已应用"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "剪贴板位于 %s"
+
+msgid ""
+"Clipboard history is disabled.\r\n"
+"To enable clipboard history, press Windows logo key + V and then click the "
+"Turn on button."
+msgstr ""
+"剪贴板历史记录被禁用了。\r\n"
+"要启用剪贴板历史记录， 请按 Windows 徽标键 + V，然后单击“打开”按钮。"
+
+msgid "This system does not support clipboard history."
+msgstr "当前系统不支持剪贴板历史记录。"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "32 位的 WinMerge 不支持剪贴板比较"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "未安装 WebView2 运行库。您想下载吗？"
+
+msgid "New Text Compare"
+msgstr "新的文本比较"
+
+msgid "New Table Compare"
+msgstr "新的表格比较"
+
+msgid "New Binary Compare"
+msgstr "新的二进制比较"
+
+msgid "New Image Compare"
+msgstr "新的图像比较"
+
+msgid "New Webpage Compare"
+msgstr "新的网页比较"
+
+msgid "Clipboard Compare"
+msgstr "剪贴板比较"
+
+msgid "&Print..."
+msgstr "打印(&P)..."
+
+msgid "Pre&v Page"
+msgstr "上一页(&V)"
+
+msgid "&Two Page"
+msgstr "双页(&T)"
+
+msgid "&One Page"
+msgstr "单页(&O)"
+
+msgid "Zoom &In"
+msgstr "放大(&I)"
+
+msgid "Zoom &Out"
+msgstr "缩小(&O)"
+
+msgid "Comparing..."
+msgstr "比较中..."
+
+msgid "Zoom:"
+msgstr "缩放："
+
+msgid "Diff hunk"
+msgstr "整个差异块"
+
+msgid "Inline diff"
+msgstr "行内差异"
+
+msgid "Line"
+msgstr "整行"
+
+msgid "Character"
+msgstr "字符"
 
 msgid "Prettification"
 msgstr "格式美化"
@@ -3941,8 +4339,8 @@ msgstr "格式美化"
 msgid "Content Extraction"
 msgstr "内容提取"
 
-msgid "Visualization"
-msgstr "可视化"
+msgid "Preview"
+msgstr "预览"
 
 msgid "Data Query"
 msgstr "数据查询"
@@ -3952,9 +4350,6 @@ msgstr "验证"
 
 msgid "Decompilation"
 msgstr "反编译"
-
-msgid "&Others"
-msgstr "其它(&O)"
 
 msgid "URL Handling"
 msgstr "网址处理"
@@ -3987,7 +4382,7 @@ msgid "Replace..."
 msgstr "替换..."
 
 msgid "Apply Filter Command..."
-msgstr "应用滤镜命令..."
+msgstr "应用过滤器命令..."
 
 msgid "Tokenize..."
 msgstr "切分..."
@@ -4011,7 +4406,7 @@ msgid "Apply Patch..."
 msgstr "应用补丁..."
 
 msgid "Ignore Columns"
-msgstr "忽略列（Columns）"
+msgstr "忽略列"
 
 msgid "Ignore Comments (C-Family Languages)"
 msgstr "忽略注释（C语言家族）"
@@ -4022,8 +4417,11 @@ msgstr "忽略 CSV 字段"
 msgid "Ignore TSV Fields"
 msgstr "忽略 TSV 字段"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "忽略行首的行号"
+
 msgid "Apply Prediff Substitution Filters"
-msgstr "使用预比较置换滤镜"
+msgstr "使用预比较置换过滤器"
 
 msgid "Prettify HTML"
 msgstr "格式化 HTML"
@@ -4037,8 +4435,14 @@ msgstr "格式化 XML"
 msgid "Prettify YAML"
 msgstr "格式化 YAML"
 
-msgid "Visualize Graphviz"
-msgstr "可视化 Graphviz"
+msgid "Preview Graphviz"
+msgstr "预览 Graphviz"
+
+msgid "Preview Markdown"
+msgstr "预览 Markdown"
+
+msgid "Preview PlantUML"
+msgstr "预览 PlantUML"
 
 msgid "Query CSV Data..."
 msgstr "查询 CSV 数据..."
@@ -4064,16 +4468,8 @@ msgstr "反汇编 IL 代码"
 msgid "Disassemble Native Code"
 msgstr "反汇编本地代码"
 
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "插件流程（pipeline）中缺少插件名称: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "插件流程（pipeline）中缺少引号: %1"
-
-msgid "Specify plugin arguments"
-msgstr "指定插件参数"
+msgid "Convert Text with AI..."
+msgstr "用 AI 转换文本..."
 
 msgid "Make characters uppercase"
 msgstr "变大写"
@@ -4099,69 +4495,202 @@ msgstr "反转列"
 msgid "Reverse lines"
 msgstr "反转行"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr "文本替换。\r\n用法： Replace [-i] [-e] FIND REPLACE\r\n  FIND    - 查找的文本\r\n  REPLACE - 替换的文本\r\n  -i - 忽略大小写 (只用于 -e)\r\n  -e - 将指定文本视为正则表达式"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
+msgstr ""
+"文本替换。\r\n"
+"用法：Replace [-i] [-e] FIND REPLACE\r\n"
+"   或者：Replace -s\r\n"
+"  FIND    - 查找的文本\r\n"
+"  REPLACE - 替换的文本\r\n"
+"  -i - 忽略大小写 (只用于 -e)\r\n"
+"  -e - 将指定文本视为正则表达式\r\n"
+"  -s - 使用置换过滤器模式进行替换"
 
 #, c-format
-msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr "应用滤镜命令. \r\n用法: ExecFilterCommand COMMAND\r\n  COMMAND - 要执行的命令。 命令中的 %1 将替换为文件名。"
+msgid ""
+"Apply filter command. \r\n"
+"Usage: ExecFilterCommand COMMAND\r\n"
+"  COMMAND - command to execute. %1 in the command is replaced with the "
+"filename."
+msgstr ""
+"应用过滤器命令。\r\n"
+"用法: ExecFilterCommand COMMAND\r\n"
+"  COMMAND - 要执行的命令。 命令中的 %1 将替换为文件名。"
 
-msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
-msgstr "分割符选择。 \r\n用法: Tokenize PATTERNS\r\n  PATTERNS - 用于分割的正则表达式。 (e.g. [^\\w]+)"
+msgid ""
+"Tokenize selection. \r\n"
+"Usage: Tokenize PATTERNS\r\n"
+"  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
+msgstr ""
+"分割符选择。 \r\n"
+"用法: Tokenize PATTERNS\r\n"
+"  PATTERNS - 用于分割的正则表达式。 (e.g. [^\\w]+)"
 
 msgid "Trim spaces"
 msgstr "删除首尾空格"
 
-msgid "Select some columns.\r\nUsage: SelectColumns RANGES\r\n   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching columns\r\n  -i - ignore case\r\n  -g - enable global flag\r\n  -e - use PATTERNS for matching"
-msgstr "选择一些列。\r\n用法： SelectColumns RANGES\r\n   或： SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n  RANGES   - 要选择的列范围列表。（例如 -3,5-10,30-）\r\n  PATTERNS - 正则表达式\r\n  -v - 选择不匹配的列\r\n  -i - 忽略大小写\r\n  -g - 启用全局变量\r\n  -e - 用 PATTERNS 匹配"
+msgid ""
+"Select some columns.\r\n"
+"Usage: SelectColumns RANGES\r\n"
+"   or: SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - list of column ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching columns\r\n"
+"  -i - ignore case\r\n"
+"  -g - enable global flag\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+"选择一些列。\r\n"
+"用法： SelectColumns RANGES\r\n"
+"   或： SelectColumns [-v] [-i] [-g] -e PATTERNS\r\n"
+"  RANGES   - 要选择的列范围列表。（例如 -3,5-10,30-）\r\n"
+"  PATTERNS - 正则表达式\r\n"
+"  -v - 选择不匹配的列\r\n"
+"  -i - 忽略大小写\r\n"
+"  -g - 启用全局变量\r\n"
+"  -e - 用 PATTERNS 匹配"
 
-msgid "Select some lines.\r\nUsage: SelectLines RANGES\r\n   or: SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n  PATTERNS - regular expression\r\n  -v - select non-matching lines\r\n  -i - ignore case\r\n  -e - use PATTERNS for matching"
-msgstr "选择一些行.\r\n用法： SelectLines RANGES\r\n   或： SelectLines [-v] [-i] -e PATTERNS\r\n  RANGES   - 要选择的行范围列表。 （例如 -3,5-10,30-）\r\n  PATTERNS - 正则表达式\r\n  -v - 选择不匹配的行\r\n  -i - 忽略大小写\r\n  -e - 用 PATTERNS 匹配"
+msgid ""
+"Select some lines.\r\n"
+"Usage: SelectLines RANGES\r\n"
+"   or: SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - list of line ranges to select. (e.g. -3,5-10,30-)\r\n"
+"  PATTERNS - regular expression\r\n"
+"  -v - select non-matching lines\r\n"
+"  -i - ignore case\r\n"
+"  -e - use PATTERNS for matching"
+msgstr ""
+"选择一些行。\r\n"
+"用法： SelectLines RANGES\r\n"
+"   或： SelectLines [-v] [-i] -e PATTERNS\r\n"
+"  RANGES   - 要选择的行范围列表。 （例如 -3,5-10,30-）\r\n"
+"  PATTERNS - 正则表达式\r\n"
+"  -v - 选择不匹配的行\r\n"
+"  -i - 忽略大小写\r\n"
+"  -e - 用 PATTERNS 匹配"
 
-msgid "HTML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr "用 tidy-html5 来美化 HTML。 \r\n参数： 发送给 tidy 的命令选项。"
+msgid ""
+"HTML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"用 tidy-html5 来美化 HTML。 \r\n"
+"参数： 发送给 tidy 的命令选项。"
 
-msgid "JSON Prettier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr "用 jq 命令来美化 JSON。\r\n参数： 发送给 jq 的滤镜或命令选项。"
+msgid ""
+"JSON Prettier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+"用 jq 命令来美化 JSON。\r\n"
+"参数： 发送给 jq 的过滤器或命令选项。"
 
-msgid "XML Prettier with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr "用 tidy-html5 来美化 XML。 \r\n参数： 发送给 tidy 的命令选项。"
+msgid ""
+"XML Prettier with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"用 tidy-html5 来美化 XML。 \r\n"
+"参数： 发送给 tidy 的命令选项。"
 
-msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "用 jq 命令来美化 YAML。\r\n参数： 发送给 jq 的滤镜或命令选项。"
+msgid ""
+"YAML Prettier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+"用 jq 命令来美化 YAML。\r\n"
+"参数： 发送给 jq 的过滤器或命令选项。"
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr "Graphviz可视化。 \r\n参数： 发送给 dot 的命令选项。"
+msgid ""
+"Graphviz Previewer. \r\n"
+"Arguments: Command line options passed to the dot command."
+msgstr ""
+"Graphviz 预览器。\r\n"
+"参数：传递给 dot 命令的命令行选项。"
 
-msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr "用 q 命令查询 CSV。\r\n参数： 发送给 q 命令的 SQL 语句或命令选项。"
+msgid ""
+"Markdown Previewer. \r\n"
+"Arguments: Command line options passed to the md2html command."
+msgstr ""
+"Markdown 预览器。\r\n"
+"参数：传递给 md2html 命令的命令行选项。"
 
-msgid "TSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
-msgstr "用 q 命令查询 TSV。\r\n参数： 发送给 q 命令的 SQL 语句或命令选项。"
+msgid ""
+"PlantUML Previewer. \r\n"
+"Arguments: Command line options passed to the plantuml.jar command."
+msgstr ""
+"PlantUML 预览器。\r\n"
+"参数：传递给 plantuml.jar 命令的命令行选项。"
 
-msgid "JSON Querier with jq command. \r\nArguments: Filter or command line options passed to the jq command."
-msgstr "用 jq 命令查询 JSON。\r\n参数： 发送给 jq 命令的滤镜或命令选项。"
+msgid ""
+"CSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+"用 q 命令查询 CSV。\r\n"
+"参数： 发送给 q 命令的 SQL 语句或命令选项。"
 
-msgid "YAML Querier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
-msgstr "用 yq 命令查询 YAML。\r\n参数： 发送给 yq 命令的滤镜或命令选项。"
+msgid ""
+"TSV Querier with q command. \r\n"
+"Arguments: SQL statement or command line options passed to the q command."
+msgstr ""
+"用 q 命令查询 TSV。\r\n"
+"参数： 发送给 q 命令的 SQL 语句或命令选项。"
 
-msgid "HTML Validator with tidy-html5. \r\nArguments: Command line options passed to the tidy command."
-msgstr "用 tidy-html5 来验证 HTML。 \r\n参数： 发送给 tidy 的命令选项。"
+msgid ""
+"JSON Querier with jq command. \r\n"
+"Arguments: Filter or command line options passed to the jq command."
+msgstr ""
+"用 jq 命令查询 JSON。\r\n"
+"参数： 发送给 jq 命令的过滤器或命令选项。"
 
-msgid "JVM bytecode disassembler with javap. \r\nArguments: Command line options passed to the javap command."
-msgstr "用 javap 来反汇编 JVM 字节码。 \r\n参数： 发送给 javap 的命令选项。"
+msgid ""
+"YAML Querier with yq command. \r\n"
+"Arguments: Filter or command line options passed to the yq command."
+msgstr ""
+"用 yq 命令查询 YAML。\r\n"
+"参数： 发送给 yq 命令的过滤器或命令选项。"
 
-msgid "IL disassembler with ildasm. \r\nArguments: Command line options passed to the ildasm command."
-msgstr "用 ildasm 反汇编 IL 代码。 \r\n参数： 发送给 ildasm 的命令选项。"
+msgid ""
+"HTML Validator with tidy-html5. \r\n"
+"Arguments: Command line options passed to the tidy command."
+msgstr ""
+"用 tidy-html5 来验证 HTML。 \r\n"
+"参数： 发送给 tidy 的命令选项。"
 
-msgid "Native code disassembler with dumpbin. \r\nArguments: Command line options passed to the dumpbin command."
-msgstr "用 dumpbin 反汇编本地代码。 \r\n参数： 发送给 dumpbin 的命令选项。"
+msgid ""
+"JVM bytecode disassembler with javap. \r\n"
+"Arguments: Command line options passed to the javap command."
+msgstr ""
+"用 javap 来反汇编 JVM 字节码。 \r\n"
+"参数： 发送给 javap 的命令选项。"
 
-msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
-msgstr "用 Apache Tika 解包常规文件内容。 \r\n参数： 发送给 tika-app.jar 的命令选项。"
+msgid ""
+"IL disassembler with ildasm. \r\n"
+"Arguments: Command line options passed to the ildasm command."
+msgstr ""
+"用 ildasm 反汇编 IL 代码。 \r\n"
+"参数： 发送给 ildasm 的命令选项。"
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "用 GnuWin32 Patch for Windows 打补丁"
+msgid ""
+"Native code disassembler with dumpbin. \r\n"
+"Arguments: Command line options passed to the dumpbin command."
+msgstr ""
+"用 dumpbin 反汇编本地代码。 \r\n"
+"参数： 发送给 dumpbin 的命令选项。"
+
+msgid ""
+"General content extractor with Apache Tika. \r\n"
+"Arguments: Command line options passed to the tika-app.jar."
+msgstr ""
+"用 Apache Tika 解包常规文件内容。 \r\n"
+"参数： 发送给 tika-app.jar 的命令选项。"
+
+msgid "Apply patch using GNU patch"
+msgstr "使用 GNU patch 应用补丁"
 
 msgid "Display the text content of MS Excel files"
 msgstr "显示 MS Excel 文件的文本内容"
@@ -4175,42 +4704,230 @@ msgstr "显示 MS Visio 文件的文本内容"
 msgid "Display the text content of MS Word files"
 msgstr "显示 MS Word 文件的文本内容"
 
-msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
+msgid ""
+"Ignore some columns - ignored columns list from the plugin name or the "
+"plugin argument"
 msgstr "忽略一些列 - 忽略名称为插件名称或参数的列"
 
-msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "这个插件忽略在 C, C++, PHP 和 JavaScript 文件中的 (//... and /* ... */) 注释行。"
+msgid ""
+"The plugin ignores comments (//... and /* ... */) in C, C++, PHP and "
+"JavaScript files."
+msgstr ""
+"这个插件忽略在 C, C++, PHP 和 JavaScript 文件中的 (//... and /* ... */) 注释"
+"行。"
 
-msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
+msgid ""
+"Ignore some fields - ignored fields list from the plugin name or the plugin "
+"argument"
 msgstr "忽略一些字段 - 忽略名称为插件名称或参数的字段"
+
+msgid ""
+"This plugin ignores the leading line numbers in text files (e.g. NC and "
+"BASIC files)."
+msgstr "这个插件忽略在文本文件中行首的行号（比如 NC 和 BASIC 的文件）。"
 
 msgid "Prediff Line Filter"
 msgstr "预比较行过滤器"
 
-msgid "Basic text functions for the context menu"
-msgstr "用于上下文菜单的基本文本功能"
+msgid "Date and time insertion function"
+msgstr "日期和时间插入功能"
 
-msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
-msgstr "使用 curl 的 HTTP URL 方案处理程序。\r\n参数：传递给 curl 的命令行选项。"
+msgid ""
+"HTTP URL Scheme Handler with curl. \r\n"
+"Arguments: Command line options passed to the curl command."
+msgstr ""
+"使用 curl 的 HTTP URL 方案处理程序。\r\n"
+"参数：传递给 curl 的命令行选项。"
 
-msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
-msgstr "Windows 注册表 URL 方案处理程序。\r\n参数：传递给 reg.exe 的命令行选项。"
+msgid ""
+"Windows Registry URL Scheme Handler. \r\n"
+"Arguments: Command line options passed to the reg.exe command."
+msgstr ""
+"Windows 注册表 URL 方案处理程序。\r\n"
+"参数：传递给 reg.exe 的命令行选项。"
 
-msgid "Filter applied"
-msgstr "滤镜已应用"
+msgid "Basic text functions"
+msgstr "基本的文本功能"
+
+msgid "AI-assisted text conversion functions"
+msgstr "AI 辅助的文本转换功能"
+
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
+msgstr ""
+"使用 OpenAI API 的文本转换器。\r\n"
+"用法：ALConvertText PROMPT"
+
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSExcelFiles 插件选项"
+
+msgid "Extract workbook data to multiple files"
+msgstr "提取工作簿数据到多个文件"
+
+msgid "Update external references(links)"
+msgstr "更新外部引用（链接）"
+
+msgid "Compare document properties"
+msgstr "比较文件属性"
+
+msgid "Compare names"
+msgstr "比较名称"
+
+msgid "Compare cell values"
+msgstr "比较单元格值"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "以图像形式比较工作表（非常慢）"
+
+msgid " - Image split size: "
+msgstr " - 图像分割尺寸： "
+
+msgid "Compare worksheets as HTML"
+msgstr "以 HTML 形式比较工作表"
+
+msgid "Compare formulas"
+msgstr "比较公式"
+
+msgid "Compare texts in shapes"
+msgstr "比较图形里的文本"
+
+msgid "Compare headers and footers"
+msgstr "比较页眉和页脚"
+
+msgid ""
+"Cannot get Macros.\r\n"
+"   To allow WinMerge to compare macros, use MS Office to alter the settings "
+"in the Macro Security for the current application.\r\n"
+"   The Trust access to Visual Basic Project feature should be turned on to "
+"use this feature in WinMerge.\r\n"
+msgstr "无法获取宏。\n"
+
+msgid "Compare VBA macros"
+msgstr "比较 VBA 宏"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSWordFiles 插件选项"
+
+msgid "Extract document data to multiple files"
+msgstr "提取文档数据到多个文件"
+
+msgid "Compare bookmarks"
+msgstr "比较书签"
+
+msgid "Compare text contents of documents"
+msgstr "比较文档的文本内容"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "以 HTML 文件形式比较文档（非常慢）"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSPowerPointFiles 插件选项"
+
+msgid "Extract slide data to multiple files"
+msgstr "提取幻灯片数据到多个文件"
+
+msgid "Compare slides as image (very slow)"
+msgstr "以图像形式比较幻灯片（非常慢）"
+
+msgid "Compare texts in notes page"
+msgstr "比较备注页的文本"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSVisioFiles 插件选项"
+
+msgid "Extract page data to multiple files"
+msgstr "提取页面数据到多个文件"
+
+msgid "Compare pages as image (very slow)"
+msgstr "以图像形式比较页面（非常慢）"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "PrediffLineFilter 插件选项"
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "Ignore Case"
+msgstr "忽略大小写"
+
+msgid "Use RegExp"
+msgstr "使用正则表达式"
+
+msgid "Find what"
+msgstr "查找内容"
+
+msgid "Replace with"
+msgstr "替换为"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid ""
+"Column Ranges To Ignore:\n"
+"e.g.)  3,10-20,32-33\n"
+msgstr ""
+"忽略的列范围：\n"
+"例如：3, 10-20, 32-33\n"
 
 #, c-format
-msgid "Clipboard at %s"
-msgstr "剪贴板位于 %s"
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr "输入想要应用补丁 '%1' 的文件名称"
 
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "剪贴板历史记录被禁用了。\r\n要启用剪贴板历史记录， 请按 Windows 徽标键 + V，然后单击“打开”按钮。"
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "文件 '%1' 不存在"
 
-msgid "This system does not support clipboard history."
-msgstr "当前系统不支持剪贴板历史记录。"
+msgid "Enter the command line arguments for patch command"
+msgstr "输入补丁命令的命令行参数"
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "32位的 WinMerge 不支持剪贴板比较"
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr "输入想要应用补丁 '%1' 的文件夹名称"
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "未安装WebView2运行库。你想下载吗？"
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "文件夹 '%1' 不存在"
+
+msgid ""
+"Do not specify the '-p0' command line option for the patch file which "
+"includes absolute paths"
+msgstr "不需要为包含了绝对路径的 补丁文件指定 '-p0' 命令行选项"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "AI 插件选项"
+
+msgid "Enter prompt"
+msgstr "输入 Prompt"
+
+#, c-format
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
+msgstr ""
+"输入你的 OpenAI API 密钥。\r\n"
+" - 使用该插件要求注册 OpenAI 并会产生相关的费用。\r\n"
+" - API 密钥存放在 环境变量 %1 中。"
+
+msgid "Environment variable name for OpenAI API key"
+msgstr "存放 OpenAI API 密钥的环境变量名称"
+
+msgid "OpenAI API key"
+msgstr "OpenAI API 密钥"
+
+msgid "Temperature"
+msgstr "温度系数"
+
+msgid "Maximum length"
+msgstr "最大长度"
+
+msgid "Model"
+msgstr "模型"
+
+msgid ""
+"OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr "已修改 OpenAI API 密钥，请重新启动 WinMerge 以使修改生效。"

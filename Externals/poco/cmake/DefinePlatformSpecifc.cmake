@@ -28,9 +28,13 @@ if(MSVC)
             CMAKE_CXX_FLAGS
             CMAKE_CXX_FLAGS_DEBUG
             CMAKE_CXX_FLAGS_RELEASE
+            CMAKE_CXX_FLAGS_RELWITHDEBINFO
+            CMAKE_CXX_FLAGS_MINSIZEREL
             CMAKE_C_FLAGS
             CMAKE_C_FLAGS_DEBUG
             CMAKE_C_FLAGS_RELEASE
+            CMAKE_C_FLAGS_RELWITHDEBINFO
+            CMAKE_C_FLAGS_MINSIZEREL
         )
         foreach(CompilerFlag ${CompilerFlags})
             string(REPLACE "/MD" "/MT" ${CompilerFlag} "${${CompilerFlag}}")
@@ -45,7 +49,20 @@ else(MSVC)
     set(STATIC_POSTFIX "" CACHE STRING "Set static library postfix" FORCE)
 endif(MSVC)
 
-
+if (ENABLE_COMPILER_WARNINGS)
+    message(STATUS "Enabling additional compiler warning flags.")
+    # Additional compiler-specific warning flags
+    if (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+        # using clang
+        add_compile_options(-Wall -Wextra -Wpedantic -Wno-unused-parameter)
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        # using GCC
+        add_compile_options(-Wall -Wextra -Wpedantic -Wno-unused-parameter)
+    elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        # using Visual Studio C++
+        add_compile_options(/W4)
+    endif()
+endif()
 
 # Add a d postfix to the debug libraries
 if(BUILD_SHARED_LIBS)

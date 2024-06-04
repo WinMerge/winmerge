@@ -504,14 +504,14 @@ class PoStatus(Status):
                       tmp = rePoRevisionDate.findall(sMsgStr)
                       if tmp: #If "PO-Revision-Date"...
                           #TODO: Convert to date!
-                          self._porevisiondate = tmp[0]
+                          self._porevisiondate = tmp[0].strip()
                       tmp = rePotCreationDate.findall(sMsgStr)
                       if tmp: #If "POT-Creation-Date"...
                           #TODO: Convert to date!
-                          self._potcreationdate = tmp[0]
+                          self._potcreationdate = tmp[0].strip()
                       tmp = rePoeditLanguage.findall(sMsgStr)
                       if tmp: #If "X-Poedit-Language"...
-                          self._poeditlanguage = tmp[0]
+                          self._poeditlanguage = tmp[0].strip()
                   sMsgId = ''
                   sMsgStr = ''
                   bIsFuzzy = False
@@ -568,7 +568,7 @@ class InnoSetupProject(Project):
             fullitempath = os.path.abspath(os.path.join(translationsdir, itemname))
             if os.path.isfile(fullitempath): #If a file...
                 filename = os.path.splitext(itemname)
-                if str.lower(filename[1]) == '.isl': #If a ISL file...
+                if str.lower(filename[1]) == '.islu': #If a ISLU file...
                     if filename[0] != 'English': #If NOT the English file...
                         self._status.append(InnoSetupStatus(fullitempath, False))
         
@@ -637,7 +637,7 @@ def main():
     status = TranslationsStatus()
     status.addProject(PoProject('WinMerge', 'WinMerge/English.pot', 'WinMerge'))
     status.addProject(PoProject('ShellExtension', 'ShellExtension/English.pot', 'ShellExtension'))
-    status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.isl', 'InnoSetup'))
+    status.addProject(InnoSetupProject('InnoSetup', 'InnoSetup/English.islu', 'InnoSetup'))
     status.addProject(ReadmeProject('Docs/Readme', 'Docs/ReadMe.txt', 'Docs/Readme'))
     if 'xml' in args.format:
       status.writeToXmlFile('TranslationsStatus.xml')

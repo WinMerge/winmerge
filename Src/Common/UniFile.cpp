@@ -39,12 +39,13 @@ THE SOFTWARE.
 #include "unicoder.h"
 #include "paths.h" // paths::GetLongbPath()
 #include "TFile.h"
+#include "cio.h"
 #include <windows.h>
 
 using Poco::SharedMemory;
 using Poco::Exception;
 
-static void Append(String &strBuffer, const TCHAR *pchTail, size_t cchTail,
+static void Append(String &strBuffer, const tchar_t *pchTail, size_t cchTail,
 		size_t cchBufferMin = 1024);
 
 /**
@@ -354,7 +355,7 @@ bool UniMemFile::ReadStringAll(String& text)
  * @param [in] cchBufferMin Minimum size for the buffer.
  * @return New length of the string.
  */
-static void Append(String &strBuffer, const TCHAR *pchTail,
+static void Append(String &strBuffer, const tchar_t *pchTail,
 		size_t cchTail, size_t cchBufferMin)
 {
 	size_t cchBuffer = strBuffer.capacity();
@@ -391,7 +392,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 {
 	line.clear();
 	eol.clear();
-	const TCHAR * pchLine = (const TCHAR *)m_current;
+	const tchar_t * pchLine = (const tchar_t *)m_current;
 	
 	// shortcut methods in case file is in the same encoding as our Strings
 
@@ -520,7 +521,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 			++m_txtstats.nlosses;
 		if (!eof)
 		{
-			eol += (TCHAR) * eolptr;
+			eol += (tchar_t) * eolptr;
 			++m_lineno;
 			if (*eolptr == '\r')
 			{
@@ -572,7 +573,7 @@ bool UniMemFile::ReadString(String & line, String & eol, bool * lossy)
 		{
 			ch = ucr::get_unicode_char(m_current, (ucr::UNICODESET)m_unicoding, m_codepage);
 		}
-		// convert from Unicode codepoint to TCHAR string
+		// convert from Unicode codepoint to tchar_t string
 		// could be multicharacter if decomposition took place, for example
 		bool lossy1 = false; // try to avoid lossy conversion
 		String sch;
@@ -733,7 +734,7 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 	// But we don't care since size is set to 0 anyway.
 	GetFileStatus();
 
-	if (_tfopen_s(&m_fp, m_filepath.c_str(), mode.c_str()) != 0)
+	if (cio::tfopen_s(&m_fp, m_filepath, mode.c_str()) != 0)
 		return false;
 
 #ifndef _WIN64
@@ -750,6 +751,13 @@ bool UniStdioFile::DoOpen(const String& filename, const String& mode)
 
 	m_lineno = 0;
 	return true;
+}
+
+bool UniStdioFile::SetVBuf(int mode, size_t size)
+{
+	if (!IsOpen())
+		return false;
+	return setvbuf(m_fp, NULL, mode, size) == 0;
 }
 
 /** @brief Record a custom error */
@@ -870,7 +878,7 @@ bool UniStdioFile::WriteString(const String & line)
 	if (m_unicoding == ucr::NONE && ucr::EqualCodepages(m_codepage, GetACP()))
 #endif
 	{
-		size_t bytes = line.length() * sizeof(TCHAR);
+		size_t bytes = line.length() * sizeof(tchar_t);
 		size_t wbytes = fwrite(line.c_str(), 1, bytes, m_fp);
 		if (wbytes != bytes)
 			return false;
@@ -879,9 +887,9 @@ bool UniStdioFile::WriteString(const String & line)
 
 	ucr::UNICODESET unicoding1 = ucr::NONE;
 	int codepage1 = 0;
-	ucr::getInternalEncoding(&unicoding1, &codepage1); // What String & TCHARs represent
+	ucr::getInternalEncoding(&unicoding1, &codepage1); // What String & tchar_ts represent
 	const unsigned char * src = (const unsigned char *)line.c_str();
-	size_t srcbytes = line.length() * sizeof(TCHAR);
+	size_t srcbytes = line.length() * sizeof(tchar_t);
 	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, &m_ucrbuff);
 	// TODO: What to do about lossy conversion ?
 	size_t wbytes = fwrite(m_ucrbuff.ptr, 1, m_ucrbuff.size, m_fp);

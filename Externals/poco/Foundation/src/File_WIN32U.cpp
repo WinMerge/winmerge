@@ -100,7 +100,6 @@ bool FileImpl::existsImpl() const
 		{
 		case ERROR_FILE_NOT_FOUND:
 		case ERROR_PATH_NOT_FOUND:
-		case ERROR_NOT_READY:
 		case ERROR_INVALID_DRIVE:
 			return false;
 		default:
@@ -298,7 +297,22 @@ void FileImpl::copyToImpl(const std::string& path, int options) const
 	std::wstring upath;
 	convertPath(path, upath);
 	if (CopyFileW(_upath.c_str(), upath.c_str(), (options & OPT_FAIL_ON_OVERWRITE_IMPL) != 0) == 0)
-		handleLastErrorImpl(_path);
+	{
+		// CopyFileW() function cannot copy Alternate Data Streams
+		FileHandle fhIn(_path, _upath, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE, OPEN_EXISTING);
+		FileHandle fhOut(path, upath, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, 
+			((options & OPT_FAIL_ON_OVERWRITE_IMPL) != 0) ? CREATE_NEW : OPEN_ALWAYS);
+		char buf[65536];
+		DWORD dwRead = sizeof(buf), dwWritten = 0;
+		while (dwRead == sizeof(buf))
+		{
+			if (!ReadFile(fhIn.get(), buf, sizeof(buf), &dwRead, nullptr))
+				handleLastErrorImpl(_path);
+			if (!WriteFile(fhOut.get(), buf, dwRead, &dwWritten, nullptr))
+				handleLastErrorImpl(_path);
+		}
+		SetEndOfFile(fhOut.get());
+	}
 }
 
 
@@ -309,7 +323,7 @@ void FileImpl::renameToImpl(const std::string& path, int options)
 	std::wstring upath;
 	convertPath(path, upath);
 	if (options & OPT_FAIL_ON_OVERWRITE_IMPL) {
-		if (MoveFileExW(_upath.c_str(), upath.c_str(), NULL) == 0)
+		if (MoveFileExW(_upath.c_str(), upath.c_str(), 0) == 0)
 			handleLastErrorImpl(_path);
 	} else {
 		if (MoveFileExW(_upath.c_str(), upath.c_str(), MOVEFILE_REPLACE_EXISTING) == 0)
@@ -439,6 +453,8 @@ void FileImpl::handleLastErrorImpl(const std::string& path)
 	case ERROR_CANT_RESOLVE_FILENAME:
 	case ERROR_INVALID_DRIVE:
 		throw PathNotFoundException(path, err);
+	case ERROR_NOT_READY:
+		throw FileNotReadyException(path, err);
 	case ERROR_ACCESS_DENIED:
 		throw FileAccessDeniedException(path, err);
 	case ERROR_ALREADY_EXISTS:

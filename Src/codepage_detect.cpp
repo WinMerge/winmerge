@@ -9,7 +9,6 @@
 #include "codepage_detect.h"
 #include <cstdio>
 #include <cstring>
-#include <algorithm>
 #include <memory>
 #include "unicoder.h"
 #include "ExConverter.h"
@@ -37,7 +36,7 @@ static const char *EatPrefix(const char *text, const char *prefix)
 {
 	size_t len = strlen(prefix);
 	if (len)
-		if (_strnicmp(text, prefix, len) == 0)
+		if (strncasecmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -86,7 +85,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 		if (charset.empty())
 		{
 			std::string http_equiv(markdown.GetAttribute("http-equiv"));
-			if (!http_equiv.empty() && _stricmp(http_equiv.c_str(), "content-type") == 0)
+			if (!http_equiv.empty() && strcasecmp(http_equiv.c_str(), "content-type") == 0)
 			{
 				std::string content(markdown.GetAttribute("content"));
 				if (!content.empty())
@@ -96,7 +95,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len, int defcodep
 					{
 						char *pchValue = pchKey + cchKey;
 						size_t cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
-						if (cchKey >= 7 && _strnicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+						if (cchKey >= 7 && strncasecmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
 						{
 							pchValue[cchValue] = '\0';
 							charset = pchValue;
@@ -243,7 +242,7 @@ FileTextEncoding Guess(const String& ext, const void * src, size_t len, int gues
  */
 FileTextEncoding Guess(const String& filepath, int guessEncodingType, ptrdiff_t mapmaxlen)
 {
-	CMarkdown::FileImage fi(filepath != _T("NUL") ? filepath.c_str() : nullptr, mapmaxlen);
+	CMarkdown::FileImage fi(!paths::IsNullDeviceName(filepath) ? filepath.c_str() : nullptr, mapmaxlen);
 	String ext = paths::FindExtension(filepath);
 	return Guess(ext, fi.pImage, fi.cbImage, guessEncodingType);
 }

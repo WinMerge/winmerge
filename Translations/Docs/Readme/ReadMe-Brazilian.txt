@@ -1,50 +1,50 @@
-WINMERGE
+ÔªøWINMERGE
 
-O WinMerge È uma ferramenta de comparaÁ„o e uni„o com o cÛdigo fonte aberto pra windows. O
-WinMerge pode comparar ambos: aa pastas e os arquivos apresentando diferenÁas num formato
-visual de texto que È f·cil de entender e manipular. O Winmerge pode ser usado como uma
-ferramenta de diferenciamento/uni„o ou como um aplicativo solit·rio.
+O WinMerge √© uma ferramenta de compara√ß√£o e uni√£o com o c√≥digo fonte aberto pra windows. O
+WinMerge pode comparar ambos: aa pastas e os arquivos apresentando diferen√ßas num formato
+visual de texto que √© f√°cil de entender e manipular. O Winmerge pode ser usado como uma
+ferramenta de diferenciamento/uni√£o ou como um aplicativo solit√°rio.
 
-O WinMerge tem muitas funÁıes de suporte ˙teis pra fazer comparaÁ„o, sincronizaÁ„o e
-uni„o t„o f·cil e ˙til quanto possÌvel. V·rias linguagens de programaÁ„o e outros
-formatos de arquivo s„o de sintaxe destacada.
+O WinMerge tem muitas fun√ß√µes de suporte √∫teis pra fazer compara√ß√£o, sincroniza√ß√£o e
+uni√£o t√£o f√°cil e √∫til quanto poss√≠vel. V√°rias linguagens de programa√ß√£o e outros
+formatos de arquivo s√£o de sintaxe destacada.
 
-A vers„o mais recente do WinMerge e informaÁ„o sobre o WinMerge est„o disponÌveis em
+A vers√£o mais recente do WinMerge e informa√ß√£o sobre o WinMerge est√£o dispon√≠veis em
 https://winmerge.org/.
 
-InÌcio R·pido
+In√≠cio R√°pido
 ===========
-Pra aprender como realizar operaÁıes b·sicas apÛs instalar o WinMerge, clique em
-Ajuda > Ajuda do WinMerge e navegue atÈ o tÛpico do inÌcio r·pido. Ou v· atÈ a
-vers„o da web em https://manual.winmerge.org/Quick_start.html.
+Pra aprender como realizar opera√ß√µes b√°sicas ap√≥s instalar o WinMerge, clique em
+Ajuda > Ajuda do WinMerge e navegue at√© o t√≥pico do in√≠cio r√°pido. Ou v√° at√© a
+vers√£o da web em https://manual.winmerge.org/Quick_start.html.
 
 Ajuda do WinMerge
 ============= 
-A Ajuda do WinMerge est· instalada localmente como um arquivo de ajuda em HTML da Microsoft,
-WinMerge.chm, quando vocÍ instalar o WinMerge. Pra abrir a Ajuda clique em Ajuda > Ajuda do
-WinMerge ou pressione F1 na janela do WinMerge. Na linha de comando execute o execut·vel do
+A Ajuda do WinMerge est√° instalada localmente como um arquivo de ajuda em HTML da Microsoft,
+WinMerge.chm, quando voc√™ instalar o WinMerge. Pra abrir a Ajuda clique em Ajuda > Ajuda do
+WinMerge ou pressione F1 na janela do WinMerge. Na linha de comando execute o execut√°vel do
 WinMerge com o interruptor /? help.
 
-VocÍ tambÈm pode navegar pela vers„o em HTML da Ajuda da WinMerge em
+Voc√™ tamb√©m pode navegar pela vers√£o em HTML da Ajuda da WinMerge em
 https://manual.winmerge.org/.
 
 Suporte do WinMerge
 ================
-Perguntas ou sugestıes sobre o WinMerge? Um bom lugar pra iniciar È o fÛrum	da comunidade
-do Winmerge em https://forums.winmerge.org/. Os desenvolvedores frequentemente lÍem e
-respondem a perguntas em ambos os fÛruns. Use o fÛrum da discuss„o aberta pra
-problemas gerais do WinMerge tais como perguntas sobre o uso. Use o fÛrum dos
+Perguntas ou sugest√µes sobre o WinMerge? Um bom lugar pra iniciar √© o f√≥rum	da comunidade
+do Winmerge em https://forums.winmerge.org/. Os desenvolvedores frequentemente l√™em e
+respondem a perguntas em ambos os f√≥runs. Use o f√≥rum da discuss√£o aberta pra
+problemas gerais do WinMerge tais como perguntas sobre o uso. Use o f√≥rum dos
 desenvolvedores pra problemas do desenvolvimento do WinMerge.
 
-Bugs e pedidos pra novas funÁıes
+Bugs e pedidos pra novas fun√ß√µes
 =========================
-Se um problema n„o È resolvido nos fÛruns do WinMerge, verifique os rastreadores do projeto:
-v· em https://project.winmerge.org/ e clique num link no menus dos rastreadores tipo o dos
-Bugs e Pedidos pra Novas FunÁıes aonde vocÍ pode navegar ou submeter itens.
+Se um problema n√£o √© resolvido nos f√≥runs do WinMerge, verifique os rastreadores do projeto:
+v√° em https://project.winmerge.org/ e clique num link no menus dos rastreadores tipo o dos
+Bugs e Pedidos pra Novas Fun√ß√µes aonde voc√™ pode navegar ou submeter itens.
 
-Se vocÍ submeter um bug por favor inclua o n˙mero da vers„o do WinMerge no seu relatÛrio.
-VocÍ pode gerar um registro da configuraÁ„o clicando em Ajuda > ConfiguraÁ„o. Por favor
-anexe o registro da configuraÁ„o no relatÛrio dos bugs; ele tem muita informaÁ„o ˙til
+Se voc√™ submeter um bug por favor inclua o n√∫mero da vers√£o do WinMerge no seu relat√≥rio.
+Voc√™ pode gerar um registro da configura√ß√£o clicando em Ajuda > Configura√ß√£o. Por favor
+anexe o registro da configura√ß√£o no relat√≥rio dos bugs; ele tem muita informa√ß√£o √∫til
 pros desenvolvedores.
 
 

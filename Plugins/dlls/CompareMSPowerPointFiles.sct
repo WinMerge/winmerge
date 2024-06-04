@@ -1,359 +1,505 @@
 <scriptlet>
 <implements type="Automation" id="dispatcher">
-	<property name="PluginEvent">
-		<get/>
-	</property>
-	<property name="PluginDescription">
-		<get/>
-	</property>
-	<property name="PluginFileFilters">
-		<get/>
-	</property>
-	<property name="PluginIsAutomatic">
-		<get/>
-	</property>
-	<property name="PluginExtendedProperties">
-		<get/>
-	</property>
-	<method name="UnpackFile"/>
-	<method name="PackFile"/>
-	<method name="IsFolder"/>
-	<method name="UnpackFolder"/>
-	<method name="PackFolder"/>
-	<method name="ShowSettingsDialog"/>
+  <property name="PluginEvent">
+    <get/>
+  </property>
+  <property name="PluginDescription">
+    <get/>
+  </property>
+  <property name="PluginFileFilters">
+    <get/>
+  </property>
+  <property name="PluginIsAutomatic">
+    <get/>
+  </property>
+  <property name="PluginExtendedProperties">
+    <get/>
+  </property>
+  <method name="PluginOnEvent"/>
+  <method name="UnpackFile"/>
+  <method name="PackFile"/>
+  <method name="IsFolder"/>
+  <method name="UnpackFolder"/>
+  <method name="PackFolder"/>
+  <method name="ShowSettingsDialog"/>
 </implements>
 
-<script language="VBS">
+<script language="JScript">
 
-'/////////////////////////////////////////////////////////////////////////////
-'    This is a plugin for WinMerge.
-'    It will display the text content of MS PowerPoint files.
-'    Copyright (C) 2016 Takashi Sawanaka
-'
-'    This program is free software; you can redistribute it and/or modify
-'    it under the terms of the GNU General Public License as published by
-'    the Free Software Foundation; either version 2 of the License, or
-'    (at your option) any later version.
-'
-'    This program is distributed in the hope that it will be useful,
-'    but WITHOUT ANY WARRANTY; without even the implied warranty of
-'    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-'    GNU General Public License for more details.
-'
-'    You should have received a copy of the GNU General Public License
-'    along with this program; if not, write to the Free Software
-'    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-'
+/*
+    This is a plugin for WinMerge.
+    It will display the text content of MS PowerPoint files.
+    Copyright (C) 2016-2024 Takashi Sawanaka
 
-Option Explicit
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
 
-Const RegKeyPath = "HKCU\Software\Thingamahoochie\WinMerge\Plugins\CompareMSPowerPointFiles.sct\"
-Dim MsgCannotGetMacros
-MsgCannotGetMacros = "Cannot get Macros." & vbCrLf & _
-	"   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
-	"   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-Dim fso: Set fso = CreateObject("Scripting.FileSystemObject")
-Dim wsh: Set wsh = CreateObject("WScript.Shell")
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*/
 
-Function isAccessibleVBAProject(prs)
-	Dim count
-	count = -1
-	On Error Resume Next
-	count = prs.VBProject.VBComponents.Count
-	isAccessibleVBAProject = (count > 0)
-End Function
 
-Function regRead(Key, DefaultValue)
-	regRead = DefaultValue
-	On Error Resume Next
-	regRead = wsh.RegRead(Key)
-End Function
+var REGKEY_PATH = "Plugins\\CompareMSPowerPointFiles.sct/";
+var MsgCannotGetMacros = "${Cannot get Macros.\r\n" +
+  "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n" +
+  "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n}";
 
-Function writeObjectProperties(fo, items)
-	On Error Resume Next
-	Dim o
-	For Each o In items
-		fo.WriteLine o.Name & ": " & o.Value
-	Next
-End Function
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var wsh = new ActiveXObject("WScript.Shell");
+var mergeApp;
 
-Function writeShape(fo, shp)
-	Dim shp2, shpType, r, c
-	On Error Resume Next
-	shpType = -1
-	shpType = shp.Type
-	fo.Write shp.Name & ": "
-	If shp.HasTable Then
-		For r = 1 To shp.Table.Rows.Count
-			For c = 1 To shp.Table.Columns.Count
-				fo.Write "(" & r & ", " & c & "): "
-				writeShape fo, shp.Table.Cell(r, c).Shape
-			Next
-		Next
-	ElseIf shpType = 6 Then 'msoGroup = 6
-		For Each shp2 In shp.GroupItems
-		    writeShape fo, shp2
-		Next
-	ElseIf shp.HasTextFrame Then
-		fo.WriteLine shp.TextFrame.TextRange.Characters.Text
-	Else
-		fo.WriteLine ""
-	End If
-End Function
+function isAccessibleVBAProject(prs) {
+  try {
+    return (prs.VBProject.VBComponents.Count >= 0);
+  } catch (e) {
+    return false;
+  }
+}
 
-Function writeTextsInShapes(fo, shps)
-	Dim shp
-	On Error Resume Next
-	For Each shp In shps
-		writeShape fo, shp
-	Next
-	On Error GoTo 0
-End Function
+function regRead(Key, DefaultValue) {
+  return mergeApp.GetOption(Key, DefaultValue);
+}
 
-Function getModuleExtension(cmp)
-	Select Case cmp.Type
-	Case 2
-		getModuleExtension = ".cls"
-	Case 3
-		getModuleExtension = ".frm"
-	Case Else
-		getModuleExtension = ".bas"
-	End Select
-End Function
+function regWrite(Key, Value, TypeNm) {
+  mergeApp.SaveOption(Key, (TypeNm === "REG_DWORD") ? parseInt(Value, 10) : String(Value));
+}
 
-Function saveSlideAsImage(sld, filename)
-        sld.Export filename, "PNG"
-End Function
+function toString(val) {
+  switch (typeof val) {
+  case "string":
+    return val;
+  case "number":
+    return val.toString();
+  case "date":
+    var d = new Date(val);
+    if (d.getHours() == 0 && d.getMinutes() == 0 && d.getSeconds() == 0 && d.getMilliseconds() == 0) {
+        return d.toLocaleDateString();
+    }
+    return d.toLocaleString();
+  case "undefined":
+    return "";
+  default:
+    return String(val);
+  }
+}
 
-Function get_PluginEvent()
-	get_PluginEvent = "FILE_FOLDER_PACK_UNPACK"
-End Function
+function writeObjectProperties(fo, items) {
+  try {
+    for (var it = new Enumerator(items); !it.atEnd(); it.moveNext()) {
+      try {
+        var o = it.item();
+        fo.WriteLine(o.Name + ": " + toString(o.Value));
+      } catch (e) {}
+    }
+  } catch (e) {}
+}
 
-Function get_PluginDescription()
-	get_PluginDescription = "Display the text content of MS PowerPoint files"
-End Function
+function writeShape(fo, shp) {
+  var shpType = -1;
+  try {
+    shpType = shp.Type;
+    fo.Write(shp.Name + ": ");
+    if (shp.HasTable) {
+      for (var r = 1; r <= shp.Table.Rows.Count; r++) {
+        for (var c = 1; c <= shp.Table.Columns.Count; c++) {
+          fo.Write("(" + r + ", " + c + "): ");
+          writeShape(fo, shp.Table.Cell(r, c).Shape);
+        }
+      }
+    } else if (shpType === 6) { //msoGroup = 6
+      for (var it = new Enumerator(shp.GroupItems); !it.atEnd(); it.moveNext()) {
+        var shp2 = it.item();
+        writeShape(fo, shp2);
+      }
+    } else if (shp.HasTextFrame) {
+      fo.WriteLine(shp.TextFrame.TextRange.Characters().Text);
+    } else {
+      fo.WriteLine("");
+    }
+  } catch (e) {}
+}
 
-Function get_PluginFileFilters()
-	get_PluginFileFilters = "\.ppt(\..*)?$;\.pptx(\..*)?$;\.pptm(\..*)?$;\.ppa(\..*)?$;\.ppam(\..*)?$;\.potx(\..*)?$;\.potm(\..*)?$"
-End Function
+function writeTextsInShapes(fo, p) {
+  try {
+    for (var it = new Enumerator(p.Shapes); !it.atEnd(); it.moveNext()) {
+      var shp = it.item();
+      writeShape(fo, shp);
+      shp = null;
+    }
+  } catch (e) {}
+}
 
-Function get_PluginIsAutomatic()
-	get_PluginIsAutomatic = True
-End Function
+function getModuleExtension(cmp) {
+  switch (cmp.Type) {
+  case 2:
+    return ".cls";
+  case 3:
+    return ".frm";
+  default:
+    return ".bas";
+  }
+}
 
-Function get_PluginExtendedProperties()
-	get_PluginExtendedProperties = "ProcessType=Content Extraction;FileType=MS-PowerPoint;MenuCaption=MS-PowerPoint"
-End Function
+function saveSlideAsImage(sld, filename) {
+  sld.Export(filename, "PNG");
+}
 
-Function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	Dim fo
-	Dim pp
-	Dim prs
-	Dim sld
-	Dim cmp
-	Dim fileSrc2
+function get_PluginEvent() {
+  return "FILE_FOLDER_PACK_UNPACK";
+}
 
-	Set fo = fso.CreateTextFile(fileDst, True, True)
+function get_PluginDescription() {
+  return "Display the text content of MS PowerPoint files";
+}
 
-	Set pp = CreateObject("PowerPoint.Application")
-	pp.Visible = True
-	pp.DisplayAlerts = False
+function get_PluginFileFilters() {
+  return "\\.ppt(\\..*)?$;\\.pptx(\\..*)?$;\\.pptm(\\..*)?$;\\.ppa(\\..*)?$;\\.ppam(\\..*)?$;\\.potx(\\..*)?$;\\.potm(\\..*)?$";
+}
 
-	fileSrc2 = fileSrc
-	If fso.GetExtensionName(fileSrc2) = "lnk" Then
-		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-		If Not fso.FileExists(fileSrc2) Then
-			Err.Raise 30001, "CompareMSPowerPointFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
-		End If 
-	End If
-	Set prs = pp.Presentations.Open(fileSrc2)
+function get_PluginIsAutomatic() {
+  return true;
+}
 
-	On Error Resume Next
+function get_PluginExtendedProperties() {
+  return "ProcessType=Content Extraction;FileType=MS-PowerPoint;MenuCaption=MS-PowerPoint";
+}
 
-	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
-		fo.WriteLine "[Document Properties]"
-		writeObjectProperties fo, prs.BuiltinDocumentProperties
-		fo.WriteLine ""
-	End If
+function PluginOnEvent(eventType, obj) {
+  mergeApp = obj;
+}
 
-	For Each sld In prs.Slides
-		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			fo.WriteLine "[" & sld.Name & "]"
-			writeTextsInShapes fo, sld.Shapes
-			fo.WriteLine ""
-		End If
-		If regRead(RegKeyPath & "CompareTextsInNotesPage", True) Then
-			fo.WriteLine "[" & sld.Name & ".NotesPage]"
-			writeTextsInShapes fo, sld.NotesPage.Shapes
-			fo.WriteLine ""
-		End If
-	Next
+function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+  var fo = fso.CreateTextFile(fileDst, true, true);
+  var pp;
+  try {
+    pp = new ActiveXObject("PowerPoint.Application");
+  } catch (e) {}
+  if (!pp) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "PowerPoint"));
+  }
+  pp.Visible = true;
+  pp.DisplayAlerts = false;
 
-	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
-		If Not isAccessibleVBAProject(prs) Then
-			fo.WriteLine MsgCannotGetMacros
-		End If
-		For Each cmp In prs.VBProject.VBComponents
-			fo.WriteLine "[CodeModule." & cmp.Name & "]"
-			If cmp.CodeModule.CountOfLines > 0 Then
-				fo.WriteLine cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines)
-			End If
-			fo.WriteLine ""
-		Next
-	End If
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSPowerPointFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    } 
+  }
 
-	Set sld = Nothing
-	prs.Close
-	Set prs = Nothing
-	pp.Quit
-	Set pp = Nothing
-	fo.Close
-	Set fo = Nothing
+  var prs = pp.Presentations.Open(fileSrc2, -1);
 
-	pbChanged = True
-	pSubcode = 0
-	UnpackFile = True
+  if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
+    fo.WriteLine("[Document Properties]");
+    writeObjectProperties(fo, prs.BuiltinDocumentProperties);
+    fo.WriteLine("");
+  }
+ 
+  for (var it = new Enumerator(prs.Slides); !it.atEnd(); it.moveNext()) {
+      var sld = it.item();
+    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+      fo.WriteLine("[" + sld.Name + "]");
+      writeTextsInShapes(fo, sld);
+      fo.WriteLine("");
+    }
+    if (regRead(REGKEY_PATH + "CompareTextsInNotesPage", true)) {
+      fo.WriteLine("[" + sld.Name + ".NotesPage]");
+      writeTextsInShapes(fo, sld.NotesPage);
+      fo.WriteLine("");
+    }
+    sld = null;
+  }
+ 
+  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+    if (!isAccessibleVBAProject(prs)) {
+      fo.WriteLine(translate(MsgCannotGetMacros));
+    } else {
+      for (var it = new Enumerator(prs.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
+        fo.WriteLine("[CodeModule." + cmp.Name + "]");
+        if (cmp.CodeModule.CountOfLines > 0) {
+          fo.WriteLine(cmp.CodeModule.Lines(1, cmp.CodeModule.CountOfLines));
+        }
+        fo.WriteLine("");
+        cmp = null;
+      }
+    }
+  }
 
-End Function
+  prs.Saved = true;
+  prs.Close();
+  prs = null;
+  pp.Quit();
+  pp = null;
+  fo.Close();
+  fo = null;
 
-Function PackFile(fileSrc, fileDst, pbChanged, pSubcode)
-	PackFile = False
-End Function
+  pbChanged = true;
+  pSubcode = 0;
 
-Function IsFolder(file)
-	IsFolder = regRead(RegKeyPath & "UnpackToFolder", False)
-End Function
+  CollectGarbage();
 
-Function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode)
-	Dim fo
-	Dim pp
-	Dim prs
-	Dim sld
-	Dim cmp
-	Dim fileSrc2
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+}
 
-	If Not fso.FolderExists(folderDst) Then fso.CreateFolder folderDst
+function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+  return false;
+}
 
-	Set pp = CreateObject("PowerPoint.Application")
-	pp.Visible = True
-	pp.DisplayAlerts = False
+function IsFolder(file) {
+  return regRead(REGKEY_PATH + "UnpackToFolder", false);
+}
 
-	fileSrc2 = fileSrc
-	If fso.GetExtensionName(fileSrc2) = "lnk" Then
-		fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath
-		If Not fso.FileExists(fileSrc2) Then
-			Err.Raise 30001, "CompareMSPowerPointFiles.sct", fileSrc & ": Target file '" & fileSrc2 & "' not found"
-		End If 
-	End If
-	Set prs = pp.Presentations.Open(fileSrc2)
+function UnpackFolder(fileSrc, folderDst, pbChanged, pSubcode) {
+  if (!fso.FolderExists(folderDst)) { fso.CreateFolder(folderDst); }
+  var pp;
+  try {
+    pp = new ActiveXObject("PowerPoint.Application");
+  } catch (e) {}
+  if (!pp) {
+    throw new Error(30001, translate("${%1 is not installed.}").replace("%1", "PowerPoint"));
+  }
+  pp.Visible = true;
+  pp.DisplayAlerts = false;
 
-	On Error Resume Next
+  var fileSrc2 = fileSrc;
+  if (fso.GetExtensionName(fileSrc2) === "lnk") {
+    fileSrc2 = wsh.CreateShortcut(fileSrc2).TargetPath;
+    if (!fso.FileExists(fileSrc2)) {
+      throw new Error(30001, "CompareMSPowerPointFiles.sct: " + fileSrc + ": Target file '" + fileSrc2 + "' not found");
+    } 
+  }
+  var prs = pp.Presentations.Open(fileSrc2, -1);
 
-	If regRead(RegKeyPath & "CompareDocumentProperties", False) Then
-		Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), True, True)
-		writeObjectProperties fo, prs.BuiltinDocumentProperties
-		fo.Close
-	End If
+  if (regRead(REGKEY_PATH + "CompareDocumentProperties", false)) {
+    var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "(0)DocumentProperties.txt"), true, true);
+    writeObjectProperties(fo, prs.BuiltinDocumentProperties);
+    fo.Close();
+    fo = null;
+  }
+ 
+  for (var it = new Enumerator(prs.Slides); !it.atEnd(); it.moveNext()) {
+    var sld = it.item();
+    if (regRead(REGKEY_PATH + "CompareTextsInShapes", true)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + ".txt"), true, true);
+      writeTextsInShapes(fo, sld);
+      fo.Close();
+      fo = null;
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareTextsInNotesPage", true)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name + "_NotesPage.txt"), true, true);
+      writeTextsInShapes(fo, sld.NotesPage);
+      fo.Close();
+      fo = null;
+    }
+ 
+    if (regRead(REGKEY_PATH + "CompareSlideAsImage", true)) {
+      saveSlideAsImage(sld, fso.BuildPath(folderDst, sld.Name + ".png"));
+    }
+    sld = null;
+  }
+  if (regRead(REGKEY_PATH + "CompareVBAMacros", true)) {
+    if (!isAccessibleVBAProject(prs)) {
+      var fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), true, true);
+      fo.WriteLine(translate(MsgCannotGetMacros));
+      fo.Close();
+      fo = null;
+    } else {
+      for (var it = new Enumerator(prs.VBProject.VBComponents); !it.atEnd(); it.moveNext()) {
+        var cmp = it.item();
+        cmp.Export(fso.BuildPath(folderDst, cmp.Name + getModuleExtension(cmp)));
+        cmp = nul;
+      }
+    }
+  }
 
-	For Each sld In prs.Slides
-		If regRead(RegKeyPath & "CompareTextsInShapes", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name & ".txt"), True, True)
-			writeTextsInShapes fo, sld.Shapes
-			fo.Close
-		End If
+  prs.Saved = true;
+  prs.Close();
+  prs = null;
+  pp.Quit();
+  pp = null;
 
-		If regRead(RegKeyPath & "CompareTextsInNotesPage", True) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, sld.Name & "_NotesPage.txt"), True, True)
-			writeTextsInShapes fo, sld.NotesPage.Shapes
-			fo.Close
-		End If
+  pbChanged = true;
+  pSubcode = 0;
 
-		If regRead(RegKeyPath & "CompareSlideAsImage", True) Then
-			saveSlideAsImage sld, fso.BuildPath(folderDst, sld.Name & ".png")
-		End If
-	Next
-	If regRead(RegKeyPath & "CompareVBAMacros", True) Then
-		If Not isAccessibleVBAProject(prs) Then
-			Set fo = fso.CreateTextFile(fso.BuildPath(folderDst, "CannotGetMacros.bas"), True, True)
-			fo.WriteLine MsgCannotGetMacros
-			fo.Close
-		End If
-		
-		For Each cmp In prs.VBProject.VBComponents
-			cmp.Export fso.BuildPath(folderDst, cmp.Name & getModuleExtension(cmp))
-		Next
-	End If
+  CollectGarbage();
 
-	Set sld = Nothing
-	prs.Close
-	Set prs = Nothing
-	pp.Quit
-	Set pp = Nothing
-	Set fo = Nothing
+  var result = new ActiveXObject("Scripting.Dictionary");
+  result.Add(0, true);
+  result.Add(1, pbChanged);
+  result.Add(2, pSubcode);
+  return result.Items();
+}
 
-	pbChanged = True
-	pSubcode = 0
-	UnpackFolder = True
-End Function
+function PackFolder(folderSrc, fileDst, pbChanged, pSubcode) {
+  return false;
+}
 
-Function PackFolder(fileSrc, folderDst, pbChanged, pSubcode)
-	PackFolder = False
-End Function
+function translate(text) {
+  var re = /\${([^}]+)}/g;
+  var matches;
+  while ((matches = re.exec(text)) != null) {
+    text = text.replace(matches[0], mergeApp.Translate(matches[1]));
+  }
+  return text;
+}
 
-Function ShowSettingsDialog()
-	Dim tname: tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() & ".hta")
-	Dim tfile: Set tfile = fso.CreateTextFile(tname)
-	Dim mshta
-	tfile.Write getResource("dialog1")
-	tfile.Close
-	mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\mshta.exe")
-	If Not fso.FileExists(mshta) Then
-		mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\SysWOW64\mshta.exe")
-	End If
-	Run wsh, """" & mshta & """ """ & tname & """"
-	fso.DeleteFile tname 
-End Function
+function ShowSettingsDialog() {
+  var tname = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".hta");
+  var xmlfile = fso.BuildPath(fso.GetSpecialFolder(2), fso.GetTempName() + ".xml");
+  var tfile = fso.CreateTextFile(tname, true, true);
+  tfile.Write(translate(getResource("dialog1")));
+  tfile.Close();
+  exportSettingsToXMLFile(xmlfile);
+  var mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\System32\\mshta.exe");
+  if (!fso.FileExists(mshta)) {
+    mshta = wsh.ExpandEnvironmentStrings("%SystemRoot%\\SysWOW64\\mshta.exe");
+  }
+  run(wsh, "\"" + mshta + "\" \"" + tname + "\"  \"" + xmlfile + "\"");
+  importSettingsFromXMLFile(xmlfile);
+  fso.DeleteFile(tname);
+  fso.DeleteFile(xmlfile);
+}
 
-Sub Run(sh, cmd)
-	sh.Run cmd, 1, True
-End Sub
+function run(sh, cmd) {
+  sh.Run(cmd, 1, true);
+}
+
+function exportSettingsToXMLFile(filepath) {
+  var key_defvalues = {
+    "UnpackToFolder" : false,
+    "CompareDocumentProperties" : false,
+    "CompareSlideAsImage" : true,
+    "CompareTextsInShapes" : true,
+    "CompareTextsInNotesPage" : true,
+    "CompareVBAMacros" : true
+  };
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 2, true, -1);
+  var root = doc.createElement("properties");
+  for (var key in key_defvalues) {
+    var el = doc.createElement("property");
+    var val = regRead(REGKEY_PATH + key, key_defvalues[key]);
+    var cdata = doc.createCDATASection(val);
+    el.appendChild(cdata);
+    el.setAttribute("name", REGKEY_PATH + key);
+    el.setAttribute("type", typeof val);
+    root.appendChild(el);
+  }
+  doc.appendChild(root);
+  ts.Write(doc.xml);
+  ts.Close();
+}
+
+function importSettingsFromXMLFile(filepath) {
+  var fso = new ActiveXObject("Scripting.FileSystemObject");
+  var ts = fso.OpenTextFile(filepath, 1, true, -1);
+  var xml = ts.ReadAll();
+  var doc = new ActiveXObject("MSXML2.DOMDocument");
+  doc.async = false;
+  doc.loadXML(xml);
+  ts.Close();
+  var nodes = doc.documentElement.childNodes;
+  for (var i = 0; i < nodes.length; i++) {
+    regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+  }
+}
 
 </script>
 
 <resource id="dialog1">
 <![CDATA[
+<!DOCTYPE html>
 <html>
   <head>
-    <title>CompareMSPowerPointFiles.sct WinMerge Plugin Options</title>
-    <meta content="text/html" charset="Shift_JIS">
+    <HTA:APPLICATION ID="objHTA">
+    <title>${CompareMSPowerPointFiles.sct WinMerge Plugin Options}</title>
+    <meta content="text/html" charset="UTF-16">
     <style>
-      body { background-color: lightgray; }
-      ul { list-style:none; }
+    body { background-color: #f2f2f2; font-family: Arial, sans-serif; }
+    .container { margin: 2em; }
+    ul { list-style-type: none; margin: 0; padding: 0; }
+    li ul li { padding-left: 2em }
+    .btn-container { margin-top: 1.5em; text-align: right; }
+    input[type="button"] { border: none; padding: 0.6em 2em; height: 2.5em; text-align: center; }
+    .btn-ok { color: #fff; background-color: #05c; }
+    .btn-ok:hover { background-color: #04b; }
+    .btn-cancel { color: #333; background-color: #ddd; }
+    .btn-cancel:hover { background-color: #ccc; }
     </style>
     <script type="text/javascript">
-      var REGKEY_PATH = "HKCU\\Software\\Thingamahoochie\\WinMerge\\Plugins\\CompareMSPowerPointFiles.sct\\";
+      var REGKEY_PATH = "Plugins\\CompareMSPowerPointFiles.sct/";
+      var xmlFilePath;
+      var settings = {};
 
       function regRead(key, defaultValue) {
-        try {
-          return (new ActiveXObject("WScript.Shell")).RegRead(key);
-        } catch (e) {
-          return defaultValue;
-        }
+        return settings.hasOwnProperty(key) ? settings[key] : defaultValue;
       }
 
       function regWrite(key, value, type) {
-        (new ActiveXObject("WScript.Shell")).RegWrite(key, value, type);
+        settings[key] = (type === "REG_DWORD") ? Number(value) : String(value);
+      }
+
+      function loadSettingsFromXMLFile(filepath) {
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 1, true, -1);
+        var xml = ts.ReadAll();
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        doc.async = false;
+        doc.loadXML(xml);
+        ts.Close();
+        var nodes = doc.documentElement.childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+          regWrite(nodes[i].getAttribute("name"), nodes[i].text, (nodes[i].getAttribute("type") === "string") ? "REG_SZ" : "REG_DWORD");
+        }
+        return settings;
+      }
+
+      function saveSettingsToXMLFile(filepath, settings) {
+        var doc = new ActiveXObject("MSXML2.DOMDocument");
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var ts = fso.OpenTextFile(filepath, 2, true, -1);
+        var root = doc.createElement("properties");
+        for (var key in settings) {
+          if (settings.hasOwnProperty(key)) {
+            var el = doc.createElement("property");
+            var val = settings[key];
+            var cdata = doc.createCDATASection(val);
+            el.appendChild(cdata);
+            el.setAttribute("name", key);
+            el.setAttribute("type", typeof val);
+            root.appendChild(el);
+          }
+        }
+        doc.appendChild(root);
+        ts.Write(doc.xml);
+        ts.Close();
       }
 
       function onload() {
+        xmlFilePath = objHTA.commandLine.split('"')[3];
+        settings = loadSettingsFromXMLFile(xmlFilePath);
 
-        var w = 600, h = 400;
+        var dpi = window.screen.deviceXDPI;
+        var w = 600 * dpi / 96, h = 400 * dpi / 96;
         window.resizeTo(w, h);
         window.moveTo((screen.width - w) / 2, (screen.height - h) / 2);
 
-        cboLanguage.selectedIndex = navigator.browserLanguage.substr(0, 2) === 'ja' ? 1 : 0;
-        setLanguage(navigator.browserLanguage);
         chkUnpackToFolder.checked = regRead(REGKEY_PATH + "UnpackToFolder", false);
         chkCompareDocumentProperties.checked = regRead(REGKEY_PATH + "CompareDocumentProperties", false);
         chkCompareSlideAsImage.checked = regRead(REGKEY_PATH + "CompareSlideAsImage", true);
@@ -362,24 +508,16 @@ End Sub
         chkCompareVBAMacros.checked = regRead(REGKEY_PATH + "CompareVBAMacros", true);
         chkUnpackToFolder_onclick();
         chkCompareSlideAsImage_onclick();
+        document.onkeydown = onkeydown;
       }
 
-      function setLanguage(lang) {
-        var div = document.getElementById("language") || document.createElement('div')
-        div.id = "language";
-        var html = '&shy;<style>';
-        if (lang.substr(0, 2).toLowerCase() === 'ja') {
-          html += '.en { display: none } .ja { display: inline }';
-        } else {
-          html += '.ja { display: none } .en { display: inline }';
+      function onkeydown() {
+        var k = event.keyCode;
+        if (k == 13/*Enter*/) {
+          btnOk_onclick();
+        } else if (k == 27/*Escape*/) {
+          btnCancel_onclick();
         }
-        div.innerHTML = html;
-        if (!document.getElementById("language"))
-          document.body.appendChild(div);
-      }
-
-      function cboLanguage_onclick() {
-        setLanguage(cboLanguage.options[cboLanguage.selectedIndex].text);
       }
 
       function chkUnpackToFolder_onclick() {
@@ -399,66 +537,52 @@ End Sub
         regWrite(REGKEY_PATH + "CompareTextsInShapes", chkCompareTextsInShapes.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareTextsInNotesPage", chkCompareTextsInNotesPage.checked, "REG_DWORD");
         regWrite(REGKEY_PATH + "CompareVBAMacros", chkCompareVBAMacros.checked, "REG_DWORD"); window.close();
+
+        saveSettingsToXMLFile(xmlFilePath, settings);
+
+        window.close();
       }
 
       function btnCancel_onclick() {
+        saveSettingsToXMLFile(xmlFilePath, {});
+
         window.close();
       }
 
     </script>
   </head>
   <body onload="onload();">
-    <div>
-      <ul>
-        <li>
-          <label class="en">Language: </label>
-          <label class="ja">言語: </label>
-          <select id="cboLanguage" onclick="cboLanguage_onclick();" >
-            <option value="English">English</option>
-            <option value="Japanese">Japanese</option>
-          </select>
-        </li>
-      </ul>
+    <div class="container">
       <ul>
         <li>
           <input id="chkUnpackToFolder" type="checkbox" onclick="chkUnpackToFolder_onclick();"/>
-          <label class="en">Extract slide data to multiple files </label>
-          <label class="ja">スライドの情報を複数ファイルに展開する </label>
+          <label for="chkUnpackToFolder">${Extract slide data to multiple files}</label>
         </li>
         <li>
           <input id="chkCompareDocumentProperties" type="checkbox" />
-          <label class="en">Compare document properties </label>
-          <label class="ja">ドキュメントプロパティを比較する </label>
+          <label for="chkCompareDocumentProperties">${Compare document properties}</label>
         </li>
         <li>
           <input id="chkCompareSlideAsImage" type="checkbox" onclick="chkCompareSlideAsImage_onclick();"/>
-          <label class="en">Compare slides as image (very slow)</label>
-          <label class="ja">スライドを画像化して比較する (処理時間増大)</label>
+          <label for="chkCompareSlideAsImage">${Compare slides as image (very slow)}</label>
         </li>
         <li>
           <input id="chkCompareTextsInShapes" type="checkbox" />
-          <label class="en">Compare texts in shapes </label>
-          <label class="ja">図形内のテキストを比較する </label>
+          <label for="chkCompareTextsInShapes">${Compare texts in shapes}</label>
         </li>
         <li>
           <input id="chkCompareTextsInNotesPage" type="checkbox" />
-          <label class="en">Compare texts in notes page </label>
-          <label class="ja">ノート内のテキストを比較する </label>
+          <label for="chkCompareTextsInNotesPage">${Compare texts in notes page}</label>
         </li>
         <li>
           <input id="chkCompareVBAMacros" type="checkbox" />
-          <label class="en">Compare VBA macros </label>
-          <label class="ja">VBA マクロを比較する </label>
+          <label for="chkCompareVBAMacros">${Compare VBA macros}</label>
         </li>
       </ul>
-      <ul>
-        <li>
-          <input class="en" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="en" type="button" onclick="btnCancel_onclick();" value="Cancel" />
-          <input class="ja" type="button" onclick="btnOk_onclick();" value="OK" />
-          <input class="ja" type="button" onclick="btnCancel_onclick();" value="キャンセル" />
-        </li>
-      </ul>
+      <div class="btn-container">
+        <input type="button" class="btn-ok" onclick="btnOk_onclick();" value="${OK}" />
+        <input type="button" class="btn-cancel" onclick="btnCancel_onclick();" value="${Cancel}" />
+      </div>
     </div>
   </body>
 </html>

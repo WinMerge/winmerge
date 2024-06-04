@@ -40,6 +40,7 @@
 #endif
 #include <algorithm>
 #include <map>
+#include <atomic>
 
 
 namespace Poco {
@@ -61,7 +62,7 @@ public:
 	{
 		return _owner;
 	}
-	
+
 	virtual void run() = 0;
 	virtual void stop() = 0;
 	virtual bool supportsMoveEvents() const = 0;
@@ -73,21 +74,21 @@ protected:
 			size(0)
 		{
 		}
-		
+
 		ItemInfo(const ItemInfo& other):
 			path(other.path),
 			size(other.size),
 			lastModified(other.lastModified)
 		{
 		}
-		
+
 		explicit ItemInfo(const File& f):
 			path(f.path()),
 			size(f.isFile() ? f.getSize() : 0),
 			lastModified(f.getLastModified())
 		{
 		}
-		
+
 		std::string path;
 		File::FileSize size;
 		Timestamp lastModified;
@@ -104,7 +105,7 @@ protected:
 			++it;
 		}
 	}
-	
+
 	void compare(ItemInfoMap& oldEntries, ItemInfoMap& newEntries)
 	{
 		for (auto& np: newEntries)
@@ -145,7 +146,7 @@ private:
 	DirectoryWatcherStrategy();
 	DirectoryWatcherStrategy(const DirectoryWatcherStrategy&);
 	DirectoryWatcherStrategy& operator = (const DirectoryWatcherStrategy&);
-	
+
 	DirectoryWatcher& _owner;
 };
 
@@ -163,21 +164,21 @@ public:
 		if (!_hStopped)
 			throw SystemException("cannot create event");
 	}
-	
+
 	~WindowsDirectoryWatcherStrategy()
 	{
 		CloseHandle(_hStopped);
 	}
-	
+
 	void run()
 	{
 		ItemInfoMap entries;
 		scan(entries);
-		
+
 		DWORD filter = FILE_NOTIFY_CHANGE_FILE_NAME | FILE_NOTIFY_CHANGE_DIR_NAME;
 		if (owner().eventMask() & DirectoryWatcher::DW_ITEM_MODIFIED)
 			filter |= FILE_NOTIFY_CHANGE_SIZE | FILE_NOTIFY_CHANGE_LAST_WRITE;
-		
+
 		std::string path(owner().directory().path());
 		std::wstring upath;
 		FileImpl::convertPath(path.c_str(), upath);
@@ -195,7 +196,7 @@ public:
 			}
 			return;
 		}
-		
+
 		bool stopped = false;
 		while (!stopped)
 		{
@@ -228,23 +229,23 @@ public:
 			catch (Poco::Exception& exc)
 			{
 				owner().scanError(&owner(), exc);
-			}			
+			}
 		}
 		FindCloseChangeNotification(hChange);
 	}
-	
+
 	void stop()
 	{
 		SetEvent(_hStopped);
 	}
-	
+
 	bool supportsMoveEvents() const
 	{
 		return false;
 	}
-	
+
 private:
-	HANDLE _hStopped;
+	std::atomic<HANDLE> _hStopped;
 };
 
 
@@ -262,12 +263,12 @@ public:
 		_fd = inotify_init();
 		if (_fd == -1) throw Poco::IOException("cannot initialize inotify", errno);
 	}
-	
+
 	~LinuxDirectoryWatcherStrategy()
 	{
 		close(_fd);
 	}
-	
+
 	void run()
 	{
 		int mask = 0;
@@ -293,7 +294,7 @@ public:
 				owner().scanError(&owner(), exc);
 			}
 		}
-		
+
 		Poco::Buffer<char> buffer(4096);
 		while (!_stopped)
 		{
@@ -314,16 +315,16 @@ public:
 					while (n > 0)
 					{
 						struct inotify_event* pEvent = reinterpret_cast<struct inotify_event*>(buffer.begin() + i);
-						
+
 						if (pEvent->len > 0)
-						{						
+						{
 							if (!owner().eventsSuspended())
 							{
 								Poco::Path p(owner().directory().path());
 								p.makeDirectory();
 								p.setFileName(pEvent->name);
 								Poco::File f(p.toString());
-	
+
 								if ((pEvent->mask & IN_CREATE) && (owner().eventMask() & DirectoryWatcher::DW_ITEM_ADDED))
 								{
 									DirectoryWatcher::DirectoryEvent ev(f, DirectoryWatcher::DW_ITEM_ADDED);
@@ -351,7 +352,7 @@ public:
 								}
 							}
 						}
-						
+
 						i += sizeof(inotify_event) + pEvent->len;
 						n -= sizeof(inotify_event) + pEvent->len;
 					}
@@ -359,20 +360,20 @@ public:
 			}
 		}
 	}
-	
+
 	void stop()
 	{
 		_stopped = true;
 	}
-	
+
 	bool supportsMoveEvents() const
 	{
 		return true;
 	}
 
 private:
-	int _fd;
-	bool _stopped;
+	std::atomic<int> _fd;
+	std::atomic<bool> _stopped;
 };
 
 
@@ -455,7 +456,7 @@ public:
 private:
 	int _queueFD;
 	int _dirFD;
-	bool _stopped;
+	std::atomic<bool> _stopped;
 };
 
 
@@ -469,11 +470,11 @@ public:
 		DirectoryWatcherStrategy(owner)
 	{
 	}
-	
+
 	~PollingDirectoryWatcherStrategy()
 	{
 	}
-	
+
 	void run()
 	{
 		ItemInfoMap entries;
@@ -493,7 +494,7 @@ public:
 			}
 		}
 	}
-	
+
 	void stop()
 	{
 		_stopped.set();
@@ -520,7 +521,7 @@ DirectoryWatcher::DirectoryWatcher(const std::string& path, int eventMask, int s
 	init();
 }
 
-	
+
 DirectoryWatcher::DirectoryWatcher(const Poco::File& directory, int eventMask, int scanInterval):
 	_directory(directory),
 	_eventMask(eventMask),
@@ -543,16 +544,16 @@ DirectoryWatcher::~DirectoryWatcher()
 	}
 }
 
-	
-void DirectoryWatcher::suspendEvents()
+
+void DirectoryWatcher::resumeEvents()
 {
 	poco_assert (_eventsSuspended > 0);
-	
+
 	_eventsSuspended--;
 }
 
 
-void DirectoryWatcher::resumeEvents()
+void DirectoryWatcher::suspendEvents()
 {
 	_eventsSuspended++;
 }
@@ -562,7 +563,7 @@ void DirectoryWatcher::init()
 {
 	if (!_directory.exists())
 		throw Poco::FileNotFoundException(_directory.path());
-		
+
 	if (!_directory.isDirectory())
 		throw Poco::InvalidArgumentException("not a directory", _directory.path());
 
@@ -578,7 +579,7 @@ void DirectoryWatcher::init()
 	_thread.start(*this);
 }
 
-	
+
 void DirectoryWatcher::run()
 {
 	_pStrategy->run();

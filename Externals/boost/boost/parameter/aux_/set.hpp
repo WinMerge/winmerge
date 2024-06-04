@@ -47,7 +47,7 @@ namespace boost { namespace parameter { namespace aux {
     };
 }}} // namespace boost::parameter::aux
 
-#elif BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#elif BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
 #include <boost/mpl/list.hpp>
 
 namespace boost { namespace parameter { namespace aux {

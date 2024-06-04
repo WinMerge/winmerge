@@ -1,0 +1,34 @@
+// This file will be processed by the MIDL tool to
+// produce the type library (MergeAppLib.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(a719a330-c39a-4d8b-bf5a-8e52f4dd8da3),
+	helpstring("IMergeApp Interface"),
+	pointer_default(unique)
+]
+interface IMergeApp : IDispatch
+{
+	[id(1), helpstring("method Translate")] HRESULT Translate([in] BSTR text, [out, retval] BSTR* pRet);
+	[id(2), helpstring("method GetOption")] HRESULT GetOption([in] BSTR name, [in] VARIANT varDefault, [out, retval] VARIANT* pRet);
+	[id(3), helpstring("method SaveOption")] HRESULT SaveOption([in] BSTR name, [in] VARIANT varValue);
+	[id(4), helpstring("method MsgBox")] HRESULT MsgBox([in] BSTR prompt, [in, optional] VARIANT varButtons, [in, optional] VARIANT varTitle, [out, retval] int* pRet);
+	[id(5), helpstring("method InputBox")] HRESULT InputBox([in] BSTR prompt, [in, optional] VARIANT varTitle, [in, optional] VARIANT varDefault, [out, retval] BSTR* pRet);
+	[id(6), helpstring("method LogError")] HRESULT LogError([in] BSTR text);
+};
+
+[
+	uuid(3bc1ff50-9fb8-4796-a0c3-966eda88ab15),
+	version(1.0),
+	helpstring("MergeApp Type Library")
+]
+library MergeAppLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	interface IMergeApp;
+};

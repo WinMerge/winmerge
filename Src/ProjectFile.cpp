@@ -413,6 +413,8 @@ bool ProjectFile::Read(const String& path)
 {
 	ProjectFileHandler handler(&m_items);
 	SAXParser parser;
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_GENERAL_ENTITIES, false);
+	parser.setFeature(SAXParser::FEATURE_EXTERNAL_PARAMETER_ENTITIES, false);
 	parser.setContentHandler(&handler);
 	parser.parse(toUTF8(path));
 	return true;
@@ -426,7 +428,7 @@ bool ProjectFile::Read(const String& path)
  */
 bool ProjectFile::Save(const String& path) const
 {
-	FileStream out(toUTF8(path), FileStream::trunc);
+	FileStream out(toUTF8(path), FileStream::out | FileStream::trunc);
 	XMLWriter writer(out, XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
 	writer.startDocument();
 	writer.startElement("", "", Root_element_name);

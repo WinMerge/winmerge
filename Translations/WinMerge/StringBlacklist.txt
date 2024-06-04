@@ -8,6 +8,7 @@ _POPUP_
 0.00
 IDS_SAVEVSS_FMT
 MS Shell Dlg
+Segoe UI
 Static
 ComboEx32
 Version 1.0
@@ -23,6 +24,7 @@ CSS
 DCL
 D
 Fortran
+F#
 Go
 HTML
 INI
@@ -33,6 +35,7 @@ JavaScript
 JSON
 Lua
 AutoLISP
+MATLAB
 NSIS
 Pascal
 Perl
@@ -51,6 +54,8 @@ TEX
 Verilog
 VHDL
 XML
+CSV
+TSV
 Visual SourceSafe
 Rational ClearCase
 GitHub/Bitbucket
@@ -92,3 +97,8 @@ x
 1280x800
 1440x900
 UA:
+|
+=
+&<
+&>
+<<

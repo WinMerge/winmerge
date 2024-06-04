@@ -16,7 +16,6 @@
 #pragma warning (pop)
 #include <comdef.h>
 #include <list>
-#include "UnicodeString.h"
 
 struct __declspec(uuid("000214e4-0000-0000-c000-000000000046")) IContextMenu;
 struct __declspec(uuid("000214f4-0000-0000-c000-000000000046")) IContextMenu2;
@@ -55,17 +54,6 @@ class CShellContextMenu
 {
 public:
 	/**
-	 * @brief	Helper describing file entry in the group of files to show shell context menu for
-	 */
-	struct FileEntry
-	{
-		FileEntry(const String& aPath, const String& aFilename)
-			: path(aPath), filename(aFilename) {}
-		String path; /**< path to file, including all but file name */
-		String filename; /**< file name */
-	};
-
-	/**
 	 * @brief Constructor
 	 *
 	 * @param[in]	cmdFirst	minimum value for a menu item identifier
@@ -92,9 +80,9 @@ public:
 	/**
 	 * @brief	Adds a file to a group of files for which shell context menu is queried
 	 *
-	 * @param[in]	fileEntry	FileEntry object describing a file to add
+	 * @param[in]	fullpath	Full path to file to set to item.
 	 */
-	void AddItem(const FileEntry& fileEntry);
+	void AddItem(const std::wstring& fullpath);
 
 	/**
 	 * @brief	Adds a file to a group of files for which shell context menu is queried
@@ -102,8 +90,8 @@ public:
 	 * @param[in]	path		path to file, including all but file name
 	 * @param[in]	filename	file name without path
 	 */
-	void AddItem(const String& path,
-				 const String& filename);
+	void AddItem(const std::wstring& path,
+				 const std::wstring& filename);
 
 	/**
 	 * @brief	Returns HMENU handle to context menu
@@ -167,7 +155,7 @@ private:
 	bool QueryShellContextMenu();
 
 private:
-	typedef std::list<FileEntry> FilenamesContainer;
+	typedef std::list<std::wstring> FilenamesContainer;
 
 	FilenamesContainer m_files; /**< List of files to show context menu for */
 

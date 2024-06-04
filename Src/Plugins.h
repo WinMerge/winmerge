@@ -30,32 +30,19 @@ typedef std::shared_ptr<FileFilterElement> FileFilterElementPtr;
  */
 extern const wchar_t *TransformationCategories[];
 
+enum { EVENTID_INITIALIZE, EVENTID_TERMINATE };
+
 /** 
  * @brief Information structure for a plugin
  */
 class PluginInfo
 {
 public:
-	PluginInfo()
-		: m_lpDispatch(nullptr)
-		, m_filters(NULL)
-		, m_bAutomatic(false)
-		, m_nFreeFunctions(0)
-		, m_disabled(false)
-		, m_hasArgumentsProperty(false)
-		, m_hasVariablesProperty(false)
-		, m_bAutomaticDefault(false)
-	{	
-	}
+	PluginInfo();
+	~PluginInfo();
 
-	~PluginInfo()
-	{
-		if (m_lpDispatch!=nullptr)
-			m_lpDispatch->Release();
-	}
-
-	int LoadPlugin(const String & scriptletFilepath);
-	int MakeInfo(const String & scriptletFilepath, IDispatch *pDispatch);
+	int LoadPlugin(const String& scriptletFilepath);
+	int MakeInfo(const String& scriptletFilepath, const String& name, IDispatch *pDispatch);
 
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();
@@ -66,7 +53,11 @@ public:
 	 */
 	bool TestAgainstRegList(const String& szTest) const;
 
-	std::optional<StringView> GetExtendedPropertyValue(const String& name) const;
+	static std::optional<StringView> GetExtendedPropertyValue(const String& extendedProperties, const String& name);
+	std::optional<StringView> PluginInfo::GetExtendedPropertyValue(const String& name) const
+	{
+		return GetExtendedPropertyValue(m_extendedProperties, name);
+	}
 
 public:
 	String      m_filepath;
@@ -80,18 +71,20 @@ public:
 	String      m_filtersTextDefault;
 	String      m_description;
 	String      m_event;
+	String      m_pipeline;
 	bool        m_bAutomatic;
 	bool        m_bAutomaticDefault;
 	bool        m_disabled;
 	bool        m_hasArgumentsProperty;
 	bool        m_hasVariablesProperty;
+	bool        m_hasPluginOnEventMethod;
 	std::vector<FileFilterElementPtr> m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         m_nFreeFunctions;
 
 private:
-	PluginInfo( const PluginInfo& other ); // non construction-copyable
-	PluginInfo& operator=( const PluginInfo& ); // non copyable
+	PluginInfo( const PluginInfo& other ) = delete; // non construction-copyable
+	PluginInfo& operator=( const PluginInfo& ) = delete; // non copyable
 };
 
 typedef std::shared_ptr<PluginInfo> PluginInfoPtr;
@@ -111,6 +104,8 @@ class CScriptsOfThread
 friend class CAssureScriptsForThread;
 friend class CAllThreadsScripts;
 public:
+	IDispatch* GetHostObject() const { return m_pHostObject; };
+	void SetHostObject(IDispatch* pHostObject);
 	PluginArray * GetAvailableScripts(const wchar_t *transformationEvent);
 	PluginInfo * GetAutomaticPluginByFilter(const wchar_t *transformationEvent, const String& filteredText);
 	PluginInfo * GetPluginByName(const wchar_t *transformationEvent, const String& name);
@@ -135,6 +130,7 @@ private:
 	HRESULT hrInitialize;
 	int nTransformationEvents;
 	std::map<String, PluginArrayPtr> m_aPluginsByEvent;
+	IDispatch* m_pHostObject;
 };
 
 
@@ -157,7 +153,6 @@ public:
 	static InternalPluginLoaderFuncPtr GetInternalPluginsLoader() { return m_funcInternalPluginsLoader; }
 	static void RegisterInternalPluginsLoader(InternalPluginLoaderFuncPtr func) { m_funcInternalPluginsLoader = func; }
 	static void ReloadCustomSettings();
-	static void ReloadAllScripts();
 private:
 	// fixed size array, advantage : no mutex to allocate/free
 	static std::vector<CScriptsOfThread *> m_aAvailableThreads;
@@ -173,12 +168,17 @@ private:
 class CAssureScriptsForThread
 {
 public:
-	CAssureScriptsForThread();
+	CAssureScriptsForThread(IDispatch* pHostObject);
 	~CAssureScriptsForThread();
 };
 
 namespace plugin
 {
+
+inline const std::vector<std::wstring> ProtocolHanlderEventNames = { L"URL_PACK_UNPACK" };
+inline const std::vector<std::wstring> UnpackerEventNames = { L"BUFFER_PACK_UNPACK", L"FILE_PACK_UNPACK", L"FILE_FOLDER_PACK_UNPACK", L"ALIAS_PACK_UNPACK" };
+inline const std::vector<std::wstring> PredifferEventNames = { L"BUFFER_PREDIFF", L"FILE_PREDIFF", L"ALIAS_PREDIFF" };
+inline const std::vector<std::wstring> EditorScriptEventNames = { L"EDITOR_SCRIPT", L"ALIAS_EDITOR_SCRIPT" };
 
 /**
  * @brief Check for the presence of Windows Script
@@ -269,4 +269,10 @@ bool InvokePutPluginArguments(const String& args, LPDISPATCH piScript);
  * @brief Set value to the plugin "PluginVariables" property 
  */
 bool InvokePutPluginVariables(const String& args, LPDISPATCH piScript);
+
+/**
+ * @brief call the plugin "PluginOnEvent" method 
+ */
+bool InvokePluginOnEvent(int eventType, LPDISPATCH piScript);
+
 }

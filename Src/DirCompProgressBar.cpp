@@ -23,13 +23,14 @@ static const UINT UPDATE_INTERVAL = 600;
 /** @brief Reset all UI fields to zero. */
 void DirCompProgressBar::ClearStat()
 {
+	m_prevState = CompareStats::STATE_IDLE;
+
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
+	if (!pProg) return;
 	pProg->SetPos(0);
 
 	SetDlgItemInt(IDC_ITEMSCOMPARED, 0);
 	SetDlgItemInt(IDC_ITEMSTOTAL, 0);
-
-	m_prevState = CompareStats::STATE_IDLE;
 }
 
 /**
@@ -78,8 +79,7 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 		return FALSE; 
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
-	CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList);
-	if (m_pTaskbarList != nullptr)
+	if (SUCCEEDED(CoCreateInstance(CLSID_TaskbarList, nullptr, CLSCTX_ALL, IID_ITaskbarList3, (void**)&m_pTaskbarList)))
 		m_pTaskbarList->SetProgressState(AfxGetMainWnd()->m_hWnd, TBPF_INDETERMINATE);
 #endif
 
@@ -90,15 +90,47 @@ BOOL DirCompProgressBar::Create(CWnd* pParentWnd)
 void DirCompProgressBar::SetProgressState(int comparedItems, int totalItems)
 {
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
+	if (!pProg) return;
+	String itemsPerSecond = m_prevComparedItems.empty() ? _T("") : strutils::format(_("%.1f[items/sec]"),
+		(double)(comparedItems - m_prevComparedItems.front()) * 1000.0 / (UPDATE_INTERVAL * m_prevComparedItems.size()));
 	SetDlgItemInt(IDC_ITEMSTOTAL, totalItems);
 	SetDlgItemInt(IDC_ITEMSCOMPARED, comparedItems);
+	SetDlgItemText(IDC_ITEMS_PER_SEC, itemsPerSecond);
 	pProg->SetPos(comparedItems);
 	pProg->SetRange32(0, totalItems);
+	m_prevComparedItems.push_back(comparedItems);
+	if (m_prevComparedItems.size() > 10)
+		m_prevComparedItems.pop_front();
 
 #ifdef __ITaskbarList3_INTERFACE_DEFINED__
 	if (m_pTaskbarList != nullptr)
 		m_pTaskbarList->SetProgressValue(AfxGetMainWnd()->m_hWnd, comparedItems, totalItems);
 #endif
+}
+
+void DirCompProgressBar::SetNumberOfCPUCoresToUseMax(int max)
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_COMPARISON_CPUCORES);
+	if (!cbo)
+		return;
+	cbo->ResetContent();
+	for (int i = 1; i <= max; ++i)
+		cbo->AddString(strutils::format(_T("%3d"), i).c_str());
+}
+
+int DirCompProgressBar::GetNumberOfCPUCoresToUse() const
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_COMPARISON_CPUCORES);
+	if (!cbo)
+		return 0;
+	return cbo->GetCurSel() + 1;
+}
+
+void DirCompProgressBar::SetNumberOfCPUCoresToUse(int num)
+{
+	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_COMPARISON_CPUCORES);
+	if (cbo)
+		cbo->SetCurSel(num - 1);
 }
 
 /**
@@ -131,6 +163,8 @@ void DirCompProgressBar::OnTimer(UINT_PTR nIDEvent)
 		{
 			// Start comparing, init progressDlg
 			SetProgressState(m_pCompareStats->GetComparedItems(), m_pCompareStats->GetTotalItems());
+			SetNumberOfCPUCoresToUseMax(m_pCompareStats->GetCompareThreadCount());
+			SetNumberOfCPUCoresToUse(m_pCompareStats->GetCompareThreadCount());
 			m_prevState = CompareStats::STATE_COMPARE;
 		}
 		// Comparing items
@@ -177,6 +211,6 @@ void DirCompProgressBar::EndUpdating()
 
 void DirCompProgressBar::SetPaused(bool paused)
 {
-	GetDlgItem(IDC_COMPARISON_PAUSE)->ShowWindow(paused ? SW_HIDE : SW_SHOW);
-	GetDlgItem(IDC_COMPARISON_CONTINUE)->ShowWindow(paused ? SW_SHOW : SW_HIDE);
+	ShowDlgItem(IDC_COMPARISON_PAUSE, !paused);
+	ShowDlgItem(IDC_COMPARISON_CONTINUE, paused);
 }

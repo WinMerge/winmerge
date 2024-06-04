@@ -20,137 +20,120 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="winmerge-21624-release-notes">WinMerge 2.16.24 Release Notes</h1>
+<h1 id="winmerge-21640-release-notes">WinMerge 2.16.40 Release Notes</h1>
 <ul>
 <li><a href="#about-this-release">About This Release</a></li>
-<li><a href="#what-is-new-in-21624">What Is New in 2.16.24?</a></li>
-<li><a href="#what-is-new-in-21623-beta">What Is New in 2.16.23 beta?</a></li>
+<li><a href="#what-is-new-in-21640">What Is New in 2.16.40</a></li>
+<li><a href="#what-is-new-in-21639-beta">What Is New in 2.16.39 beta?</a></li>
 <li><a href="#known-issues">Known issues</a></li>
 </ul>
-<p>October 2022</p>
+<p>April 2024</p>
 <h2 id="about-this-release">About This Release</h2>
-<p>This is a WinMerge 2.16.24 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
+<p>This is a WinMerge 2.16.40 stable release. This release replaces earlier WinMerge stable releases as a recommended release.</p>
 <p>Please submit bug reports to our bug-tracker.</p>
-<h2 id="what-is-new-in-21624">What Is New in 2.16.24</h2>
+<h2 id="what-is-new-in-21640">What Is New in 2.16.40</h2>
 <h3 id="general">General</h3>
 <ul>
-<li>BugFix: Fixed crash when displaying file menu if jump list contains invalid title (osdn.net #45916)</li>
+<li>BugFix: Fixed several Wine-related issues</li>
 </ul>
 <h3 id="file-compare">File compare</h3>
 <ul>
-<li>Changed operation of displaying dialogs and context menus from status bar from double-click to single-click.</li>
-</ul>
-<h3 id="table-compare">Table compare</h3>
-<ul>
-<li>BugFix: when TSV files were displayed in table mode with word wrap enabled, clicking on a character would not move the caret to that character&#39;s position</li>
-</ul>
-<h3 id="folder-compare">Folder compare</h3>
-<ul>
-<li>Fixed memory leak in folder comparison when PDF files were targeted for image comparison.</li>
+<li>BugFix: Replace text issue (#2279)</li>
 </ul>
 <h3 id="options-dialog">Options dialog</h3>
 <ul>
-<li>Improved translation regarding CPU cores (PR #1513)</li>
-</ul>
-<h3 id="select-files-or-folders-dialog">Select Files or Folders dialog</h3>
-<ul>
-<li>Made it possible to specify Prediffer plugin</li>
+<li>Add a &quot;Defaults&quot; button to the &quot;Options (Editor &gt; General)&quot; dialog. (PR #2283)</li>
+<li>Adjust position of &quot;Defaults&quot; button in &quot;Options &gt; Compare &gt; Table&quot; (PR #2295)</li>
 </ul>
 <h3 id="plugins">Plugins</h3>
 <ul>
-<li>BugFix: Select Plugin dialog: Fixed that &quot;Display all plugins&quot; checkbox did not work</li>
+<li>BugFix: CompareMSExcelFiles.sct: Fixed the issue where, when the &#39;Extract workbook data to multiple files&#39; option was enabled, all sheets of .xlsx files containing more than 10 sheets were not compared. (This bug was introduced in version 2.16.39 beta.)</li>
+<li>BugFix: insert datetime.sct: Fixed an issue where it didn&#39;t work properly depending on the locale. (This bug was introduced in version 2.16.39 beta.)</li>
+<li>BugFix: Fixed an issue where a &quot;Catastrophic failure&quot; message box might have appeared when reloading a plugin while the Select Files or Folders window was displayed.</li>
+<li>Allow plugin pipeline aliases or simple plugins to be registered in the GUI (PR #2257)</li>
 </ul>
-<h3 id="project-file">Project file</h3>
+<h3 id="installer">Installer</h3>
 <ul>
-<li>BugFix: Fixed comparison failure when left file path and right file path in project file are URLs.</li>
-<li>Allow saving following in project file.
-<ul>
-<li>Description</li>
-<li>Window type</li>
-<li>Table delimiter</li>
-</ul></li>
-</ul>
-<h3 id="patch-generator-dialog">Patch Generator dialog</h3>
-<ul>
-<li>BugFix: The command line section in the generated patch file was garbled (osdn.net #45935)</li>
+<li>BugFix: French encoding problem on the end of installation (last dialog box) (#2272)</li>
 </ul>
 <h3 id="translations">Translations</h3>
 <ul>
-<li>BugFix: Fix an issue where the following message displayed when two files are identical in a 3-way folder comparison is not translated. (PR #1535)</li>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #1511,#1523)</li>
-<li>Corsican (PR #1510,#1527)</li>
-<li>French (PR #1538)</li>
-<li>German (PR #1498,#1509,#1528)</li>
-<li>Hungarian (PR #1508,#1524)</li>
+<li>Brazilian (PR #2289)</li>
+<li>Catalan (PR #2270,#2274)</li>
+<li>Chinese Simplified (PR #2290)</li>
+<li>Corsican (PR #2288)</li>
+<li>French (PR #2271,#2275,#2297)</li>
+<li>Hungarian (PR #2291)</li>
 <li>Japanese</li>
-<li>Lithuanian (PR #1514,#1526)</li>
-<li>Polish (PR #1525)</li>
-<li>Portuguese (PR #1529)</li>
-<li>Slovenian</li>
+<li>Polish (PR#2277)</li>
 </ul></li>
 </ul>
-<h3 id="others">Others</h3>
-<ul>
-<li>BugFix: Fixed English verbiage (PR #1499)</li>
-<li>BugFix: typo fixed in README.md (PR #1504)</li>
-<li>BugFix: Fix typo in lwdisp.c (PR #1515)</li>
-</ul>
-<h2 id="what-is-new-in-21623-beta">What Is New in 2.16.23 Beta</h2>
+<h2 id="what-is-new-in-21639-beta">What Is New in 2.16.39 Beta</h2>
 <h3 id="general-1">General</h3>
 <ul>
-<li>BugFix: Fix an issue where filenames containing &quot;&amp;&quot; are not displayed properly in the MDI tab bar and its tooltips. (PR #1466)</li>
-</ul>
-<h3 id="color-schemes">Color schemes</h3>
-<ul>
-<li>Create Midnight.ini (PR #1430)</li>
+<li>BugFix: Fixed an issue where typing only a single character in the header bar could cause a crash.</li>
 </ul>
 <h3 id="file-compare-1">File compare</h3>
 <ul>
-<li>BugFix: Non existing backup directory should be automatically created (#1438)</li>
-<li>BugFix: Bug: Can&#39;t copy selected text, if it has non-changed lines (#1507)</li>
-<li>Remember zoom level for all files (#1433)</li>
-<li>The feature will allow the user to right-click the selected lines and… add them to Line Filter so that those lines added to the Line Filter will be ignored if found in any file. (PR #1481)</li>
-<li>CrystalEdit/parsers/SQL: Added more keywords (PR #1493)</li>
-</ul>
-<h3 id="table-compare-1">Table compare</h3>
-<ul>
-<li>Bugfix: Inline differences ware not displayed even if the caret is moved to the position of an inline difference that is hidden due to the narrow column width.</li>
+<li>BugFix: Fixed possible crash</li>
+<li>BugFix: Creation of .bak files fails when the original filename starts with a dot (#2217)</li>
+<li>Update Java syntax highlighting keyword list. (PR #2215)</li>
+<li>Replace &quot;Match similar lines&quot; with &quot;Align similar lines&quot; (PR #2230)</li>
+<li>Make it possible to select the behavior when copying to another pane with &quot;Copy to Right&quot; etc. while text is selected. (PR #2224)</li>
+<li>Make it possible to transform the text copied with &quot;Copy Right/Left&quot; using a plugin. (PR #2238)</li>
+<li>Update PHP syntax highlighting keyword list. (PR #2265)</li>
 </ul>
 <h3 id="webpage-compare">Webpage compare</h3>
 <ul>
-<li>[EXPERIMENTAL] Webpage Compare: Highlight differences (PR #1357)</li>
+<li>BugFix: Make event sync settings persistent (#2248)</li>
 </ul>
-<h3 id="folder-compare-1">Folder compare</h3>
+<h3 id="select-files-or-folders-dialog">Select Files or Folders dialog</h3>
 <ul>
-<li>BugFix: Disable rename operations when in read-only mode in the folder compare window. (PR #1434)</li>
-<li>BugFix: Fix an issue where renaming to a file name or directory name containing &quot;&quot; or &quot;/&quot; is not done properly. (PR #1451)</li>
-<li>BugFix: Fix &quot;Left to Right&quot; and &quot;Right to Left&quot; copying in 2-way folder comparison. (PR #1495)</li>
-<li>BugFix: Folder compare with jpg images crashes (#1176) (Previous versions were linked with unfixed freeimage.)</li>
+<li>BugFix: Fixed the issue when the compare button could not be clicked when specifying an archive file and a regular file.</li>
+</ul>
+<h3 id="reports">Reports</h3>
+<ul>
+<li>BugFix: Fixed an issue where the widths of the left and right panes in HTML reports are not equal.</li>
+<li>BugFix: Fixed an issue where the caption set in the header bar was not being applied to the HTML report.</li>
+</ul>
+<h3 id="plugins-1">Plugins</h3>
+<ul>
+<li>BugFix: Fixed crash when error occurs in Unpacker plugin</li>
+<li>Replace the source code written in VBScript with JScript (PR #2098)</li>
+<li>Add the ability to replace using patterns from Substitution Filters to the Replace plugin. (PR #2252)</li>
+<li>Added sanity check for regular expressions in PrediffLineFilter plugin.</li>
+</ul>
+<h3 id="installer-1">Installer</h3>
+<ul>
+<li>BugFix: If the /noicons option was specified in the previous installation, a message box asking you to delete the previous start menu will be displayed in the next installation. (#2206)</li>
+<li>Move custom messages in a separate iss file (#2247)</li>
 </ul>
 <h3 id="archive-support">Archive support</h3>
 <ul>
-<li>Update 7-Zip to 22.01 (#1425)</li>
+<li>BugFix: 7zip encrypted archives with encrypted file names (#2225)</li>
+</ul>
+<h3 id="internals">Internals</h3>
+<ul>
+<li>Update codeql-analysis.yml - Version v2 to v3 (PR #2196)</li>
 </ul>
 <h3 id="translations-1">Translations</h3>
 <ul>
 <li>Translation updates:
 <ul>
-<li>Brazilian (PR #1436,#1437,#1441,#1459,#1463)</li>
-<li>Corsican (PR #1443,#1480,#1486)</li>
-<li>Dutch (PR #1474)</li>
-<li>Finnish (PR #1460)</li>
-<li>French (PR #1491)</li>
-<li>German (PR #1455,#1484)</li>
-<li>Hungarian (PR #1431,#1454)</li>
+<li>Brazilian (PR #2234,#2243)</li>
+<li>Chinese Simplified (PR #2241,#2244,#2251,#2256,#2259)</li>
+<li>Corsican (PR #2266)</li>
+<li>French (PR #2237,#2264)</li>
+<li>Hungarian (PR #2232,#2250)</li>
+<li>Italian (PR #2245,#2249)</li>
 <li>Japanese</li>
-<li>Lithuanian (PR #1457,#1485)</li>
-<li>Polish (PR #1427,#1456)</li>
-<li>Portuguese (PR #1453,#1490)</li>
-<li>Russian (PR #1426)</li>
-<li>Slovenian (#1424,PR #1461)</li>
-<li>Spanish (PR #1406)</li>
+<li>Korean (PR #2239)</li>
+<li>Lithuanian (PR #2235,#2246)</li>
+<li>Portuguese (PR #2263)</li>
+<li>Russian (PR #2194,#2195,#2198,#2210,#2211,#2212)</li>
+<li>Slovenian (#2096)</li>
 </ul></li>
 </ul>
 <h2 id="known-issues">Known issues</h2>

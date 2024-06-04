@@ -69,7 +69,7 @@ void Logger::setProperty(const std::string& name, const std::string& value)
 		setChannel(LoggingRegistry::defaultRegistry().channelForName(value));
 	else if (name == "level")
 		setLevel(value);
-	else 
+	else
 		Channel::setProperty(name, value);
 }
 
@@ -245,13 +245,13 @@ void Logger::formatDump(std::string& message, const void* buffer, std::size_t le
 	message.reserve(message.size() + length*6);
 	if (!message.empty()) message.append("\n");
 	unsigned char* base = (unsigned char*) buffer;
-	size_t addr = 0;
+	int addr = 0;
 	while (addr < length)
 	{
 		if (addr > 0) message.append("\n");
 		message.append(NumberFormatter::formatHex(addr, 4));
 		message.append("  ");
-		ptrdiff_t offset = 0;
+		int offset = 0;
 		while (addr + offset < length && offset < BYTES_PER_LINE)
 		{
 			message.append(NumberFormatter::formatHex(base[addr + offset], 2));

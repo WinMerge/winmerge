@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include "ctchar.h"
+
 /*
  * Operator:
  *
@@ -99,8 +101,8 @@ typedef struct {
     ptrdiff_t Close[NSEXPS];
 } RxMatchRes;
 
-RxNode EDITPADC_CLASS *RxCompile(LPCTSTR Regexp, unsigned int RxOpt = RX_CASE);
-int EDITPADC_CLASS RxExec(RxNode *Regexp, LPCTSTR Data, size_t Len, LPCTSTR Start, RxMatchRes *Match);
-int EDITPADC_CLASS RxReplace(LPCTSTR rep, LPCTSTR Src, int len, RxMatchRes match, LPTSTR *Dest, int *Dlen);
+RxNode EDITPADC_CLASS *RxCompile(const tchar_t* Regexp, unsigned int RxOpt = RX_CASE);
+int EDITPADC_CLASS RxExec(RxNode *Regexp, const tchar_t* Data, size_t Len, const tchar_t* Start, RxMatchRes *Match);
+int EDITPADC_CLASS RxReplace(const tchar_t* rep, const tchar_t* Src, int len, RxMatchRes match, tchar_t* *Dest, int *Dlen);
 void EDITPADC_CLASS RxFree(RxNode *Node);
 

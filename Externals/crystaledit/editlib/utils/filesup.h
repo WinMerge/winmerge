@@ -16,13 +16,10 @@
 
 #pragma once
 
+#include "ctchar.h"
+#include <string>
+
 /////////////////////////////////////////////////////////////////////////////
 
-bool EDITPADC_CLASS FileExist(LPCTSTR lpszPath);
-int EDITPADC_CLASS GetExtPosition (LPCTSTR pszString);
-CString EDITPADC_CLASS GetExt (CString sString);
-CString EDITPADC_CLASS GetName (const CString & sString);
-CString EDITPADC_CLASS GetNameExt (const CString & sString);
-int EDITPADC_CLASS GetNamePosition (LPCTSTR pszString);
-CString EDITPADC_CLASS GetPath (const CString & sString, bool bClose = false);
-CString EDITPADC_CLASS GetPathName (const CString & sString);
+int EDITPADC_CLASS GetExtPosition (const tchar_t* pszString);
+std::basic_string<tchar_t> EDITPADC_CLASS GetExt (const std::basic_string<tchar_t>& sString);

@@ -14,7 +14,7 @@
 //  - LEAVE THIS HEADER INTACT
 ////////////////////////////////////////////////////////////////////////////
 
-#include "StdAfx.h"
+#include "pch.h"
 #include "crystallineparser.h"
 #include "../SyntaxColors.h"
 #include "../utils/string_util.h"
@@ -25,7 +25,7 @@
 
 // PHP Keywords
 // (See https://www.php.net/manual/en/reserved.keywords.php)
-static const TCHAR * s_apszPhpKeywordList[] =
+static const tchar_t * s_apszPhpKeywordList[] =
   {
     _T ("__halt_compiler"),
     _T ("abstract"),
@@ -85,6 +85,7 @@ static const TCHAR * s_apszPhpKeywordList[] =
     _T ("private"),
     _T ("protected"),
     _T ("public"),
+    _T ("readonly"),        // as of PHP 8.1.0
     _T ("require"),
     _T ("require_once"),
     _T ("return"),
@@ -103,7 +104,7 @@ static const TCHAR * s_apszPhpKeywordList[] =
 
 // Compile-time constants
 // (See https://www.php.net/manual/en/reserved.keywords.php)
-static const TCHAR * s_apszCompileTimeConstantList[] =
+static const tchar_t * s_apszCompileTimeConstantList[] =
   {
     _T ("__CLASS__"),
     _T ("__DIR__"),     // as of PHP 5.3
@@ -117,7 +118,7 @@ static const TCHAR * s_apszCompileTimeConstantList[] =
 
 // Predefined Classes
 // (See https://www.php.net/manual/en/reserved.classes.php)
-static const TCHAR * s_apszPredefinedClassList[] =
+static const tchar_t * s_apszPredefinedClassList[] =
   {
     _T ("__PHP_Incomplete_Class"),
     _T ("ArithmeticError"),         // as of PHP 7.0.0
@@ -142,7 +143,7 @@ static const TCHAR * s_apszPredefinedClassList[] =
 
 // Predefined Constants
 // (See https://www.php.net/manual/en/reserved.constants.php)
-static const TCHAR * s_apszPredefinedConstantList[] =
+static const tchar_t * s_apszPredefinedConstantList[] =
   {
     _T ("__COMPILER_HALT_OFFSET__"),        // as of PHP 5.1.0
     _T ("DEFAULT_INCLUDE_PATH"),
@@ -168,6 +169,7 @@ static const TCHAR * s_apszPredefinedConstantList[] =
     _T ("PEAR_INSTALL_DIR"),
     _T ("PHP_BINARY"),
     _T ("PHP_BINDIR"),
+    _T ("PHP_CLI_PROCESS_TITLE"),
     _T ("PHP_CONFIG_FILE_PATH"),
     _T ("PHP_CONFIG_FILE_SCAN_DIR"),
     _T ("PHP_DATADIR"),
@@ -201,19 +203,26 @@ static const TCHAR * s_apszPredefinedConstantList[] =
     _T ("PHP_WINDOWS_EVENT_CTRL_BREAK"),    // as of PHP 7.4.0
     _T ("PHP_WINDOWS_EVENT_CTRL_C"),        // as of PHP 7.4.0
     _T ("PHP_ZTS"),                         // as of PHP 5.2.7
+    _T ("STDERR"),
+    _T ("STDIN"),
+    _T ("STDOUT"),
     _T ("true"),
+    _T ("ZEND_DEBUG_BUILD"),
+    _T ("ZEND_THREAD_SAFE"),
   };
 
 // Reserved words
 // (See https://www.php.net/manual/en/reserved.other-reserved-words.php)
-static const TCHAR * s_apszReservedWordList[] =
+static const tchar_t * s_apszReservedWordList[] =
   {
     _T ("bool"),        // as of PHP 7
+    _T ("enum"),
 //  _T ("false"),       // as of PHP 7.  This is also defined as a predefined constant, so comment it out.
     _T ("float"),       // as of PHP 7
     _T ("int"),         // as of PHP 7
     _T ("iterable"),    // as of PHP 7.1
     _T ("mixed"),       // as of PHP 7
+    _T ("never"),       // as of PHP 8.1
 //  _T ("null"),        // as of PHP 7.  This is also defined as a predefined constant, so comment it out.
     _T ("numeric"),     // as of PHP 7
     _T ("object"),      // as of PHP 7.2
@@ -224,20 +233,20 @@ static const TCHAR * s_apszReservedWordList[] =
   };
 
 static bool
-IsPhpKeyword (const TCHAR *pszChars, int nLength)
+IsPhpKeyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszPhpKeywordList, pszChars, nLength) ||
          ISXKEYWORDI (s_apszReservedWordList, pszChars, nLength);
 }
 
 static bool
-IsPhp1Keyword (const TCHAR *pszChars, int nLength)
+IsPhp1Keyword (const tchar_t *pszChars, int nLength)
 {
   return false;
 }
 
 static bool
-IsPhp2Keyword (const TCHAR *pszChars, int nLength)
+IsPhp2Keyword (const tchar_t *pszChars, int nLength)
 {
   return ISXKEYWORDI (s_apszCompileTimeConstantList, pszChars, nLength) ||
          ISXKEYWORDI (s_apszPredefinedClassList, pszChars, nLength) ||
@@ -245,25 +254,25 @@ IsPhp2Keyword (const TCHAR *pszChars, int nLength)
 }
 
 unsigned
-CrystalLineParser::ParseLinePhp(unsigned dwCookie, const TCHAR* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
+CrystalLineParser::ParseLinePhp(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
 {
   return ParseLineHtmlEx(dwCookie, pszChars, nLength, pBuf, nActualItems, SRC_PHP);
 }
 
 unsigned
-CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const TCHAR *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
+CrystalLineParser::ParseLinePhpLanguage (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
   if (nLength == 0)
     return dwCookie & (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_CHAR);
 
-  const TCHAR *pszCommentBegin = nullptr;
-  const TCHAR *pszCommentEnd = nullptr;
+  const tchar_t *pszCommentBegin = nullptr;
+  const tchar_t *pszCommentEnd = nullptr;
   bool bRedefineBlock = true;
   bool bDecIndex = false;
   int nIdentBegin = -1;
   int nPrevI = -1;
   int I=0;
-  for (I = 0;; nPrevI = I, I = static_cast<int>(::CharNext(pszChars+I) - pszChars))
+  for (I = 0;; nPrevI = I, I = static_cast<int>(tc::tcharnext(pszChars+I) - pszChars))
     {
       if (I == nPrevI)
         {
@@ -323,7 +332,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = true;
@@ -334,7 +343,7 @@ out:
       //  Char constant '..'
       if (dwCookie & COOKIE_CHAR)
         {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || *tc::tcharprev(pszChars, pszChars + nPrevI) == '\\')))
             {
               dwCookie &= ~COOKIE_CHAR;
               bRedefineBlock = true;

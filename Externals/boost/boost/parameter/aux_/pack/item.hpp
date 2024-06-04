@@ -10,7 +10,7 @@
 #include <boost/config.hpp>
 #include <boost/config/workaround.hpp>
 
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
 #include <boost/type_traits/is_const.hpp>
 #include <boost/type_traits/remove_reference.hpp>
 #endif
@@ -26,7 +26,7 @@ namespace boost { namespace parameter { namespace aux {
     struct item
     {
         typedef Spec spec;
-#if BOOST_WORKAROUND(__BORLANDC__, BOOST_TESTED_AT(0x564))
+#if BOOST_WORKAROUND(BOOST_BORLANDC, BOOST_TESTED_AT(0x564))
         typedef ::boost::is_const<
             typename ::boost::remove_reference<Arg>::type
         > is_arg_const;

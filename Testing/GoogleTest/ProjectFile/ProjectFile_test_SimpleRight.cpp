@@ -10,9 +10,9 @@
 #include "ProjectFile.h"
 
 /** @brief Projectfile to load. */
-static const TCHAR FileName[] = _T("..\\TestData\\SimpleRight.WinMerge");
+static const tchar_t FileName[] = _T("..\\TestData\\SimpleRight.WinMerge");
 /** @brief Right path we should get from file. */
-static const TCHAR RightPath[] = _T("C:\\Temp\\Right");
+static const tchar_t RightPath[] = _T("C:\\Temp\\Right");
 
 namespace
 {

@@ -106,19 +106,22 @@
     <None Include="..\Translations\WinMerge\Swedish.po">
       <Filter>Translations\WinMerge</Filter>
     </None>
+    <None Include="..\Translations\WinMerge\Tamil.po">
+      <Filter>Translations\WinMerge</Filter>
+    </None>
     <None Include="..\Translations\WinMerge\Turkish.po">
       <Filter>Translations\WinMerge</Filter>
     </None>
     <None Include="..\Translations\WinMerge\UpdatePoFilesFromPotFile.ps1">
       <Filter>Scripts\WinMerge</Filter>
     </None>
-    <None Include="..\Translations\WinMerge\CreateMasterPotFile.vbs">
+    <None Include="..\Translations\WinMerge\CreateMasterPotFile.js">
       <Filter>Scripts\WinMerge</Filter>
     </None>
     <None Include="..\Translations\ShellExtension\UpdatePoFilesFromPotFile.ps1">
       <Filter>Scripts\ShellExtension</Filter>
     </None>
-    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.vbs">
+    <None Include="..\Translations\ShellExtension\CreateMasterPotFile.js">
       <Filter>Scripts\ShellExtension</Filter>
     </None>
     <None Include="..\Translations\ShellExtension\Arabic.po">
@@ -220,6 +223,9 @@
     <None Include="..\Translations\ShellExtension\Swedish.po">
       <Filter>Translations\ShellExtension</Filter>
     </None>
+    <None Include="..\Translations\ShellExtension\Tamil.po">
+      <Filter>Translations\ShellExtension</Filter>
+    </None>
     <None Include="..\Translations\ShellExtension\Turkish.po">
       <Filter>Translations\ShellExtension</Filter>
     </None>
@@ -266,5 +272,13 @@
     <CustomBuild Include="..\ShellExtension\ShellExtension\ShellExtension.rc">
       <Filter>Resource FIles</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Translations\WinMerge\StringBlacklist.txt">
+      <Filter>Translations\WinMerge</Filter>
+    </Text>
   </ItemGroup>
 </Project>

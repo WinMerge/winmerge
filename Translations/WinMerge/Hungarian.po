@@ -71,7 +71,7 @@ msgid "Add this change to Substitution &Filters"
 msgstr "Adja hozzá ezt a változást a Helyettesítő szűrőkhöz"
 
 msgid "Add to &Line Filters"
-msgstr ""
+msgstr "&Hozzáadás a sorszűrőkhöz"
 
 #, c-format
 msgid "&Undo"
@@ -271,6 +271,24 @@ msgstr "Méret"
 
 msgid "Fit to Window"
 msgstr "Ablakhoz igazít"
+
+msgid "&Event Sync"
+msgstr "Szinkronizálás esemény"
+
+msgid "&Enabled"
+msgstr "&Engedélyezve"
+
+msgid "&Scroll"
+msgstr "&Görgetés"
+
+msgid "&Click"
+msgstr "&Kattintás"
+
+msgid "&Input"
+msgstr "&Bevitel"
+
+msgid "&GoBack/Forward"
+msgstr "&Ugrás vissza/előre"
 
 msgid "Clear &Browsing Data"
 msgstr "Böngészési adatok törlése"
@@ -566,9 +584,17 @@ msgstr "&Rejtett elemek mutatása"
 msgid "Tree &Mode"
 msgstr "Fa &mód"
 
-#, c-format
-msgid "E&xpand All Subfolders"
-msgstr "Minden alkönyvtár kibontása"
+msgid "E&xpand Subfolders"
+msgstr "Almappák ki&bontása"
+
+msgid "&All Subfolders"
+msgstr "&Összes almappa"
+
+msgid "&Different Subfolders"
+msgstr "&Különböző almappák"
+
+msgid "&Identical Subfolders"
+msgstr "&Azonos almappák"
 
 #, c-format
 msgid "&Collapse All Subfolders"
@@ -996,6 +1022,12 @@ msgstr "Elővizsgáló alkalmazása..."
 msgid "&Transform with editor script..."
 msgstr "Átalakítás a szerkesztő szkriptjével ..."
 
+msgid "Scripts for &copying"
+msgstr "Szkriptek &másoláshoz"
+
+msgid "Select &editor script..."
+msgstr "Válassz szerkesztő szkriptet..."
+
 #, c-format
 msgid "Sp&lit"
 msgstr "Felosztás"
@@ -1134,6 +1166,9 @@ msgstr "&Fájlnevek másolása"
 msgid "Copy Items To Clip&board"
 msgstr "Elemek másolása a vágólapra"
 
+msgid "Copy All Di&splayed Columns"
+msgstr "Minden látható oszlop másolása"
+
 #, c-format
 msgid "&Zip"
 msgstr "&Zip"
@@ -1161,6 +1196,12 @@ msgstr "Középső intéző menü"
 #, c-format
 msgid "Right Shell menu"
 msgstr "Jobb intéző menü"
+
+msgid "Both Shell menu"
+msgstr "Mindkét intéző menü"
+
+msgid "All Shell menu"
+msgstr "Összes intéző menü"
 
 #, c-format
 msgid "Copy"
@@ -1249,7 +1290,7 @@ msgid "Ignore c&omment differences"
 msgstr "Megjegyzés különbségek mellőzése"
 
 #, c-format
-msgid "&Include Subfolders"
+msgid "&Include subfolders"
 msgstr "&Alkönyvtárakkal együtt"
 
 #, c-format
@@ -1283,6 +1324,81 @@ msgstr "Méret"
 #, c-format
 msgid "&Load Project..."
 msgstr "Projekt betöltése..."
+
+msgid "${*} - All arguments"
+msgstr "Minden argumentum"
+
+msgid "${1} - The first argument"
+msgstr "Az 1. argumentum "
+
+msgid "${2} - The second argument"
+msgstr "A 2. argumentum"
+
+msgid "${3} - The third argument"
+msgstr "A 3. argumentum"
+
+msgid "${4} - The fourth argument"
+msgstr "A 4. argumentum"
+
+msgid "${5} - The fifth argument"
+msgstr "Az 5. argumentum"
+
+msgid "${6} - The sixth argument"
+msgstr "A 6. argumentum"
+
+msgid "${7} - The seventh argument"
+msgstr "A 7. argumentum"
+
+msgid "${8} - The eighth argument"
+msgstr "A 8. argumentum"
+
+msgid "${9} - The ninth argument"
+msgstr "A 9. argumentum"
+
+msgid "${SRC_FILE} - Source file"
+msgstr "${SRC_FILE} - Forrásfájl"
+
+msgid "${SRC_FOLDER} - Source folder"
+msgstr "${SRC_FOLDER} - Forrásmappa"
+
+msgid "${SRC_URL} - Source URL"
+msgstr "${SRC_URL} - Forrás URL"
+
+msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
+msgstr "${SRC_URL_PROTOCOL} - Forrás URL protokoll"
+
+msgid "${SRC_URL_SUFFIX} - Source URL suffix"
+msgstr "${SRC_URL_SUFFIX} - Forrás URL utótag"
+
+msgid "${DST_FILE} - Destination file"
+msgstr "${DST_FILE} - Célfájl"
+
+msgid "${DST_FOLDER} - Destination folder"
+msgstr "${DST_FOLDER} - Célmappa"
+
+msgid "${DST_URL} - Destination URL"
+msgstr "${DST_URL} - Cél URL"
+
+msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
+msgstr "${DST_URL_PROTOCOL} - Cél URL protokoll"
+
+msgid "${DST_URL_SUFFIX} - Destination URL suffix"
+msgstr "${DST_URL_SUFFIX} - Cél URL utótag"
+
+msgid "${WINMERGE_HOME} - WinMerge home directory"
+msgstr "${WINMERGE_HOME} - Winmerge gyökérkönyvtár"
+
+msgid "${SCRIPT_FILE} - Script file"
+msgstr "${SCRIPT_FILE} - Szkriptfájl"
+
+msgid "Add &unpacker plugin..."
+msgstr "&Kitömörítő bővítmény hozzáadása..."
+
+msgid "Add &prediffer plugin..."
+msgstr "&Elővizsgáló bővítmény hozzáadása..."
+
+msgid "&Duplicate plugin..."
+msgstr "Bővítmény &duplikálása..."
 
 #, c-format
 msgid "About WinMerge"
@@ -1408,15 +1524,18 @@ msgid "&Preserve file time in file compare"
 msgstr "Fájl idők megőrzése összehasonlításkor"
 
 #, c-format
-msgid "Show \"Select Files or Folders\" Dialog on Startup"
+msgid "Show \"Select Files or Folders\" dialog on startup"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak induláskor"
 
-msgid "Close \"Select Files or Folders\" Dialog on clicking Compare button"
+msgid "Close \"Select Files or Folders\" dialog on clicking Compare button"
 msgstr "\"Fájlok vagy könyvtárak választása\" ablak bezárása az Összehasonlít gombbal"
 
 #, c-format
 msgid "Op&en-dialog Auto-Completion:"
 msgstr "Automatikus kiegészítés fájl megnyitásánál:"
+
+msgid "Auto-&reload modified files:"
+msgstr "Módosított fájlok automatikus újratöltése:"
 
 #, c-format
 msgid "Language:"
@@ -1731,15 +1850,6 @@ msgstr "További tulajdonságok"
 msgid "Additional Properties"
 msgstr "További tulajdonságok"
 
-msgid "&>"
-msgstr ">"
-
-msgid "&<"
-msgstr "<"
-
-msgid "<<"
-msgstr "<<"
-
 msgid "Select Plugin"
 msgstr "Bővítmény kiválasztása"
 
@@ -1766,8 +1876,8 @@ msgstr "Kicsomagolás után a fájlok megnyitása ugyanabban az ablakban"
 msgid "&Plugin Pipeline:"
 msgstr "Bővítmény pipeline"
 
-msgid "&Add pipe"
-msgstr "Pipe hozzáadása"
+msgid "&Alias..."
+msgstr "&Alias..."
 
 #, c-format
 msgid "Stop"
@@ -1781,17 +1891,16 @@ msgstr "Szünet"
 msgid "Continue"
 msgstr "Folytatás"
 
-#, c-format
-msgid "Comparing items..."
-msgstr "Elemek összehasonlítása..."
-
-#, c-format
-msgid "Items compared:"
-msgstr "Összehasonlított elemek:"
+msgid "&Number of CPU cores to use:"
+msgstr "Használandó CPU magok száma:"
 
 #, c-format
 msgid "Items total:"
 msgstr "Összes elem:"
+
+#, c-format
+msgid "Items compared:"
+msgstr "Összehasonlított elemek:"
 
 msgid "Go to"
 msgstr "Ugrás"
@@ -1844,8 +1953,8 @@ msgstr "Mozgatott &blokk észlelés bekapcsolása"
 msgid "Align &similar lines"
 msgstr "Hasonló sorok igazítása"
 
-msgid "Diff &algorithm (Experimental):"
-msgstr "Különbségkereső algoritmus (kísérleti):"
+msgid "Diff &algorithm:"
+msgstr "Különbségkereső algoritmus:"
 
 msgid "Enable indent &heuristic"
 msgstr "Heurisztika engedélyezése"
@@ -1860,10 +1969,6 @@ msgstr "Szerkesztő"
 #, c-format
 msgid "&Highlight syntax"
 msgstr "&Szintaxis kiemelés"
-
-#, c-format
-msgid "&Automatic rescan"
-msgstr "&Automatikus újraolvasás"
 
 #, c-format
 msgid "&Preserve original EOL chars"
@@ -1885,6 +1990,16 @@ msgstr "&Tabulátorok használata"
 msgid "Insert &Spaces"
 msgstr "&Szóközök használata"
 
+msgid "&Rendering Mode:"
+msgstr "Renderelési mód:"
+
+#, c-format
+msgid "&Automatic rescan"
+msgstr "&Automatikus újraolvasás"
+
+msgid "Copy &granularity for selected differences:"
+msgstr "Kiválasztott eltérések &részletességének másolása:"
+
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "Eltérő sorok színezése"
@@ -1904,9 +2019,6 @@ msgstr "Szóköz, írásjel szintű:"
 #, c-format
 msgid "W&ord break characters:"
 msgstr "Szótörés karakterek:"
-
-msgid "&Rendering Mode:"
-msgstr "Renderelési mód:"
 
 msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
 msgstr "A WinMerge lehetővé teszi általános üzenetablakok elrejtését. A Visszaállítás gombbal minden üzenetablak újra láthatóvá tehető."
@@ -2386,12 +2498,15 @@ msgid "Explorer"
 msgstr "Intéző"
 
 #, c-format
+msgid "&Add to context menu"
+msgstr "Hozzáadás a helyi menühöz"
+
+#, c-format
 msgid "E&nable advanced menu"
 msgstr "&Bővített menü engedélyezése"
 
-#, c-format
-msgid "&Add to context menu"
-msgstr "Hozzáadás a Windows helyi menühöz"
+msgid "Enable &Compare As menu"
+msgstr "Az Összehasonlítás mint menü engedélyezése"
 
 #, c-format
 msgid "&Register shell extension"
@@ -2413,6 +2528,12 @@ msgstr "Shellbővítmény regisztrálása Windows 11-hez"
 msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shellbővítmény regisztrálás törlése Windows 11-hez"
 
+msgid "Jump List"
+msgstr "Ugráslista"
+
+msgid "Clear all recent items"
+msgstr "Az összes legutóbbi elem törlése"
+
 msgctxt "Options dialog|Categories"
 msgid "Folder"
 msgstr "Könyvtár"
@@ -2425,16 +2546,15 @@ msgstr "Megállás az &első különbségnél"
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "3 másodperc alatti időkülönbségek mellőzése"
 
+msgid "&Automatically expand subfolders after comparison:"
+msgstr "&Almappák automatikus kibontása összehasonlítás után:"
+
 #, c-format
 msgid "Include &unique subfolders contents"
 msgstr "Egyedi almappák tartalmai is"
 
 #, c-format
-msgid "&Automatically expand all subfolders"
-msgstr "Minden alkönyvtár automatikus kibontása"
-
-#, c-format
-msgid "Ignore &Reparse Points"
+msgid "Ignore &reparse points"
 msgstr "Elemzési pontok mellőzése"
 
 msgid "Threshold for switching to &quick compare (MB):"
@@ -2443,27 +2563,18 @@ msgstr "A gyors összehasonlítás méretkorlátja (MB):"
 msgid "Threshold for switching to &binary compare (MB):"
 msgstr "A bináris összehasonlítás méretkorlátja (MB):"
 
-msgid "&Number of CPU cores to use:"
-msgstr "Használandó CPU magok száma:"
-
-msgid "&CSV File Patterns:"
-msgstr "CSV típusú fájlok kiterjesztése:"
-
-msgid "&TSV File Patterns:"
-msgstr "TSV típusú fájlok kiterjesztése:"
+msgid "File patterns:"
+msgstr "Fájlfajták:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Egyéni elválasztójelek"
-
-msgid "File Patterns:"
-msgstr "Fájlfajták:"
 
 msgctxt "Options dialog|Categories"
 msgid "Binary"
 msgstr "Bináris"
 
 #, c-format
-msgid "Binary File &Patterns:"
+msgid "Binary file &patterns:"
 msgstr "Bináris fájltípusok:"
 
 #, c-format
@@ -2486,7 +2597,7 @@ msgid "Image"
 msgstr "Kép"
 
 #, c-format
-msgid "Image File &Patterns:"
+msgid "Image file &patterns:"
 msgstr "Képfájl típusok:"
 
 msgid "&Enable image compare in folder compare"
@@ -2513,6 +2624,39 @@ msgstr "Önálló felhasználói adatmappa minden panelhez"
 #, c-format
 msgid "&Hex View"
 msgstr "Hexadecimális nézet"
+
+msgid "Edit Plugin"
+msgstr "Bővítmény szerkesztése"
+
+msgid "Plugin &type:"
+msgstr "Bővítmény &típusa:"
+
+msgid "&Category:"
+msgstr "&Kategória:"
+
+msgid "&Menu caption:"
+msgstr "&Menü felirata:"
+
+msgid "&Window type:"
+msgstr "&Ablak típusa:"
+
+msgid "&Unpacked file extension:"
+msgstr "&Kibontott fájl kiterjesztése:"
+
+msgid "&Require arguments"
+msgstr "Argumentumokat &igényel"
+
+msgid "&Generate editor script"
+msgstr "Szerkesztőszkript &generálása"
+
+msgid "Command &line:"
+msgstr "Parancs&sor:"
+
+msgid "&Script file extension:"
+msgstr "&Szkriptfájl kiterjesztése:"
+
+msgid "Script &body:"
+msgstr "Szkript &törzs:"
 
 #, c-format
 msgid "EXT"
@@ -2683,6 +2827,9 @@ msgstr "&Ne jelenjen meg többet ez az üzenet."
 msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
 msgstr "Ahhoz, hogy ez az üzenetablak újra látható legyen, nyomja meg a Beállítások Üzenetablakok oldalán a visszaállítás gombot."
 
+msgid "Compare/Merge"
+msgstr "Összehasonlítás/egyesítés"
+
 #, c-format
 msgid "Syntax"
 msgstr "Kifejezéstípusok"
@@ -2746,14 +2893,8 @@ msgid "All message boxes are now displayed again."
 msgstr "Minden üzenet ezentúl újra megjelenik."
 
 #, c-format
-msgid ""
-"Value in Tab size -field is not in range WinMerge accepts.\n"
-"\n"
-"Please use values 1 - %1."
-msgstr ""
-"A tabulátorméret értéke nincs a megfelelő tartományban.\n"
-"\n"
-"1 és %1 közötti értéket használj."
+msgid "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
+msgstr "A tabulátorméret értéke nincs a megfelelő tartományban.\n\n1 és %1 közötti értéket használj."
 
 #, c-format
 msgid "Open"
@@ -2767,7 +2908,6 @@ msgstr "Programok|*.exe;*.bat;*.cmd|Minden fájl (*.*)|*.*||"
 msgid "All Files (*.*)|*.*||"
 msgstr "Minden fájl (*.*)|*.*||"
 
-#, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge Projekt fájlok (*.WinMerge)|*.WinMerge||"
 
@@ -2786,6 +2926,18 @@ msgstr "HTML fájlok (*.htm,*.html)|*.htm;*.html|Minden fájl (*.*)|*.*||"
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML fájlok (*.xml)|*.xml|Minden fájl (*.*)|*.*||"
+
+msgid "Do not expand"
+msgstr "Ne bontsa ki"
+
+msgid "Expand all subfolders"
+msgstr "Minden almappa kibontása"
+
+msgid "Expand different subfolders"
+msgstr "Különböző almappák kibontása"
+
+msgid "Expand identical subfolders"
+msgstr "Azonos almappák kibontása"
 
 msgid "File Type"
 msgstr "Fájltípus"
@@ -2993,6 +3145,14 @@ msgstr "elem: %1 / %2"
 #, c-format
 msgid "Items: %1"
 msgstr "%1 elem"
+
+#, c-format
+msgid "Comparing items..."
+msgstr "Elemek összehasonlítása..."
+
+#, c-format
+msgid "%.1f[items/sec]"
+msgstr "%.1f[elem/smp]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Válassz ki két összehasonlítandó fájlt vagy könyvtárat."
@@ -3411,6 +3571,9 @@ msgstr "Áthelyezés megerősítése"
 #, c-format
 msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
 msgstr "Bezárni készülsz a mappákat összehasonlító ablakot. Biztosan bezárod az ablakot?"
+
+msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgstr "Bezárni készülsz a mappa összehasonlító ablakot, ami meglehetősen sok időt vett igénybe. Biztosan bezárod az ablakot?"
 
 msgid "The file or folder name is invalid."
 msgstr "A fájl- vagy a mappanév érvénytelen"
@@ -3982,6 +4145,9 @@ msgstr ""
 "%1\n"
 "a másik oldalhoz és megnyitod ezeket a mappákat?"
 
+msgid "Are you sure you want to copy all differences to the other file?"
+msgstr "Biztos, hogy minden eltérést át akarsz másolni a másik fájlba?"
+
 #, c-format
 msgid "Do you want to move to the next file?"
 msgstr "Továbblépsz a következő fájlra?"
@@ -4209,10 +4375,10 @@ msgstr "Szkript szerkesztő"
 #, c-format
 msgid ""
 "\n"
-"Difference in the Current Line"
+"Difference in the Current Line (F4)"
 msgstr ""
 "\n"
-"Az eltérés az aktuális sorban"
+"Az eltérés az aktuális sorban (F4)"
 
 #, c-format
 msgid ""
@@ -4439,8 +4605,11 @@ msgstr "Auto oszlopszélesség be"
 msgid "We&bpage"
 msgstr "Weboldal"
 
-msgid "Frhed is not installed."
-msgstr "Az Frhed hexa szerkesztő nincs telepítve."
+msgid "W&rap Text"
+msgstr "Szöveg tördelése"
+
+msgid "%1 is not installed."
+msgstr "Az %1 hexa szerkesztő nincs telepítve."
 
 #, c-format
 msgid "%1 does not exist. Do you want to create it?"
@@ -4640,8 +4809,150 @@ msgstr "Csak egy példány futhat egyszerre"
 msgid "Allow only one instance to run and wait for the instance to terminate"
 msgstr "Csak egy példány futhat és megvárja, amíg a példány leáll"
 
+msgid "Only on window activated"
+msgstr "Csak ablakon aktivált"
+
+msgid "Immediately"
+msgstr "Azonnal"
+
 msgid "Al&l"
 msgstr "Összes"
+
+msgid "&Others"
+msgstr "Egyéb"
+
+#, c-format
+msgid "Missing plugin name in plugin pipeline: %1"
+msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
+
+#, c-format
+msgid "Missing quotation mark in plugin pipeline: %1"
+msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
+
+#, c-format
+msgid "The plugin name '%1' already exists."
+msgstr "Ez a bővítménynév már létezik: '%1' "
+
+msgid "Specify plugin arguments"
+msgstr "Bővítmény argumentumok megadása"
+
+#, c-format
+msgid "Plugin not found or invalid: %1"
+msgstr "A bővítmény nem található vagy érvénytelen: %1"
+
+#, c-format
+msgid "'%1' is not unpacker plugin"
+msgstr "A(z) '%1' nem kitömörítő bővítmény"
+
+#, c-format
+msgid "'%1' is not prediffer plugin"
+msgstr "A(z) '%1' nem elővizsgáló bővítmény""
+
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr "Hiba történt a(z) „%1” fájl „%2” bővítménnyel történő elővizsgálatakor. Az elővizsgálat többé nem kerül alkalmazásra."
+
+#, c-format
+msgid "Circular reference in plugin pipeline: %1"
+msgstr "Körkörös hivatkozás a beépülő bővítményben: %1"
+
+msgid "URL Handler"
+msgstr "URL Kezelő"
+
+msgid "File Unpacker"
+msgstr "Fájl kitömörítő"
+
+msgid "File or Folder Unpacker"
+msgstr "Fájl vagy mappa kitömörítő"
+
+msgid "Alias for Unpacker"
+msgstr "Kitömörítő alias"
+
+msgid "Alias for Prediffer"
+msgstr "Elővizsgáló alias"
+
+msgid "Alias for Editor script"
+msgstr "Szerkesztőszkript alias"
+
+#, c-format
+msgid "Alias for plugin pipeline '%1'"
+msgstr "'%1' bővítmény pipeline alias"
+
+msgid "New plugin description"
+msgstr "Új bővítmény leírás"
+
+msgid "Filter applied"
+msgstr "Szűrő alkalmazva"
+
+#, c-format
+msgid "Clipboard at %s"
+msgstr "Vágólap itt: %s"
+
+msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
+msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
+
+msgid "This system does not support clipboard history."
+msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
+
+msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
+msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
+
+msgid "WebView2 runtime is not installed. Do you want to download it?"
+msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
+
+msgid "New Text Compare"
+msgstr "Új szöveg összehasonlítás"
+
+msgid "New Table Compare"
+msgstr "Új táblázat összehasonlítás"
+
+msgid "New Binary Compare"
+msgstr "Új bináris összehasonlítás"
+
+msgid "New Image Compare"
+msgstr "Új kép összehasonlítás"
+
+msgid "New Webpage Compare"
+msgstr "Új weboldal összehasonlítás"
+
+msgid "Clipboard Compare"
+msgstr "Vágólap összehasonlítás"
+
+msgid "&Print..."
+msgstr "&Nyomtatás..."
+
+msgid "Pre&v Page"
+msgstr "Kö&vetkező oldal"
+
+msgid "&Two Page"
+msgstr "&Két oldal"
+
+msgid "&One Page"
+msgstr "&Egy oldal"
+
+msgid "Zoom &In"
+msgstr "&Nagyítás"
+
+msgid "Zoom &Out"
+msgstr "K&icsinyítés"
+
+msgid "Comparing..."
+msgstr "Összehasonlítás..."
+
+msgid "Zoom:"
+msgstr "Nagyítás:"
+
+msgid "Diff hunk"
+msgstr "Különb.nagyság"
+
+msgid "Inline diff"
+msgstr "Soron belüli kül."
+
+msgid "Line"
+msgstr "Sor"
+
+msgid "Character"
+msgstr "Karakter"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"
@@ -4649,8 +4960,8 @@ msgstr "Megjelenés optimalizálás"
 msgid "Content Extraction"
 msgstr "Tartalom kibontás"
 
-msgid "Visualization"
-msgstr "Megjelenítés"
+msgid "Preview"
+msgstr "Előnézet"
 
 msgid "Data Query"
 msgstr "Adatlekérdezés"
@@ -4660,9 +4971,6 @@ msgstr "Érvényesítés"
 
 msgid "Decompilation"
 msgstr "Visszafejtés"
-
-msgid "&Others"
-msgstr "Egyéb"
 
 msgid "URL Handling"
 msgstr "URL-kezelés"
@@ -4730,6 +5038,9 @@ msgstr "CSV mezők mellőzése"
 msgid "Ignore TSV Fields"
 msgstr "TSV mezők mellőzése"
 
+msgid "Ignore Leading Line Numbers"
+msgstr "Bevezető sorszámok figyelmen kívül hagyása"
+
 msgid "Apply Prediff Substitution Filters"
 msgstr "Elővizsgáló helyettesítési szűrők alkalmazása"
 
@@ -4745,8 +5056,14 @@ msgstr "XML formázása"
 msgid "Prettify YAML"
 msgstr "YAML formázása"
 
-msgid "Visualize Graphviz"
-msgstr "Graphviz vizualizálás"
+msgid "Preview Graphviz"
+msgstr "Graphviz előnézet"
+
+msgid "Preview Markdown"
+msgstr "Jelölés előnézet"
+
+msgid "Preview PlantUML"
+msgstr "PlantUML előnézet"
 
 msgid "Query CSV Data..."
 msgstr "CSV adatok lekérdezése..."
@@ -4772,16 +5089,8 @@ msgstr "IL kód kibontása"
 msgid "Disassemble Native Code"
 msgstr "Natív kód kibontása"
 
-#, c-format
-msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Hiányzó bővítménynév a bővítmény pipeline-ban: %1"
-
-#, c-format
-msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Hiányzó idézőjel a bővítmény pipeline-ban: %1"
-
-msgid "Specify plugin arguments"
-msgstr "Bővítmény argumentumok megadása"
+msgid "Convert Text with AI..."
+msgstr "Text konvertálása MI-vel..."
 
 msgid "Make characters uppercase"
 msgstr "Nagybetűsítés"
@@ -4807,8 +5116,8 @@ msgstr "Oszlopok megfordítása"
 msgid "Reverse lines"
 msgstr "Sorok megfordítása"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression"
-msgstr "Szöveg cseréje egy másikra.\r\nHasználata: Replace [-i] [-e] FIND REPLACE\r\n  ahol FIND    - keresendő szöveg\r\n  REPLACE - új szöveg\r\n  -i - kis/nagybetű nem számít (csak ez -e)\r\n  -e - a megadott szöveget reguláris kifejezésként kezeli"
+msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgstr "Szöveg cseréje egy másikra.\r\nHasználata: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  ahol FIND    - keresendő szöveg\r\n  REPLACE - új szöveg\r\n  -i - kis/nagybetű nem számít (csak ez -e)\r\n  -e - a megadott szöveget reguláris kifejezésként kezeli\r\n  -s - replace using Substitution Filters patterns"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
@@ -4838,8 +5147,14 @@ msgstr "XML formázás tidy-html5-tel. \r\nArgumentumok: A tidy parancsnak megfe
 msgid "YAML Prettier with yq command. \r\nArguments: Filter or command line options passed to the yq command."
 msgstr "YAML formázás yq paranccsal. \r\nArgumentumok: Az yq parancsnak megfelelő szűrő vagy parancssori opciók."
 
-msgid "Graphviz Visualizer. \r\nArguments: Command line options passed to the dot command."
-msgstr "Graphviz Vizualizátor.  \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
+msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot command."
+msgstr "Graphviz előnézeti program. \r\nArgumentumok: A dot parancsnak megfelelő parancssori opciók."
+
+msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
+msgstr "Jelölés előnézeti program. \r\nArgumentumok: Az md2html parancsnak megfelelő parancssori opciók."
+
+msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
+msgstr "PlantUML előnézeti program. \r\nArgumentumok: A plantuml.jar parancsnak megfelelő parancssori opciók."
 
 msgid "CSV Querier with q command. \r\nArguments: SQL statement or command line options passed to the q command."
 msgstr "CSV Lekérdező q paranccsal.  \r\nArgumentumok: A q parancsnak megfelelő SQL utasítás vagy parancssori opciók."
@@ -4868,8 +5183,8 @@ msgstr "Natív kód disassembler dumpbin-nel. \r\nArgumentumok: A dumpbin paranc
 msgid "General content extractor with Apache Tika. \r\nArguments: Command line options passed to the tika-app.jar."
 msgstr "Általános tartalom kitömörítő Apach Tika-val  \r\nArgumentumok: A tika-app.jar-nak megfelelő parancssori opciók."
 
-msgid "Apply patch using GnuWin32 Patch for Windows"
-msgstr "Patchelés alkalmazása a GnuWin32 Patch for Windows segítségével"
+msgid "Apply patch using GNU patch"
+msgstr "GNU patch alkalmazása"
 
 msgid "Display the text content of MS Excel files"
 msgstr "MS Excel fájlok szöveges tartalmának megjelenítése"
@@ -4892,11 +5207,14 @@ msgstr "A beépülő figyelmen kívül hagyja a megjegyzéseket (//... and /* ..
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
 msgstr "Mezők figyelmen kívül hagyása – a figyelmen kívül hagyott mezők listája a beépülő modul nevéből vagy a beépülő modul argumentumából"
 
+msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
+msgstr "Ez a beépülő modul figyelmen kívül hagyja a szövegfájlok (például NC és BASIC fájlok) bevezető sorszámait."
+
 msgid "Prediff Line Filter"
 msgstr "Elővizsgáló Sorszűrő"
 
-msgid "Basic text functions for the context menu"
-msgstr "Alapvető szöveges funkciók a helyi menühöz"
+msgid "Date and time insertion function"
+msgstr "Dátum és idő beszúrás funkció"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr "HTTP URL-sémakezelő curl-lel. \r\nArgumentumok: A curl parancsnak átadott parancssori beállítások."
@@ -4904,21 +5222,166 @@ msgstr "HTTP URL-sémakezelő curl-lel. \r\nArgumentumok: A curl parancsnak áta
 msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options passed to the reg.exe command."
 msgstr "Windows rendszerleíró adatbázis URL-séma kezelő. \r\nArgumentumok: A reg.exe parancsnak átadott parancssori beállítások."
 
-msgid "Filter applied"
-msgstr "Szűrő alkalmazva"
+msgid "Basic text functions"
+msgstr "Alapvető szövegfunkciók"
+
+msgid "AI-assisted text conversion functions"
+msgstr "MI által támogatott szövegkonverziós funkciók"
+
+msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr "Szövegkonvertáló OpenAI API-val.\r\nUsage: AIConvertText PROMPT"
+
+msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSExcelFiles.sct WinMerge beépülő opciói"
+
+msgid "Extract workbook data to multiple files"
+msgstr "Munkafüzet adatainak kibontása több fájlba"
+
+msgid "Update external references(links)"
+msgstr "Külső hivatkozások (linkek) frissítése"
+
+msgid "Compare document properties"
+msgstr "Dokumentum tulajdonságok összehasonlítása"
+
+msgid "Compare names"
+msgstr "Nevek összehasonlítása"
+
+msgid "Compare cell values"
+msgstr "Cellaértékek összehasonlítása"
+
+msgid "Compare worksheets as image (very slow)"
+msgstr "Munkalapok összehasonlítása képként (nagyon lassú)"
+
+msgid " - Image split size: "
+msgstr "- Kép felosztási mérete:"
+
+msgid "Compare worksheets as HTML"
+msgstr "Munkalapok összehasonlítása HTML-ként"
+
+msgid "Compare formulas"
+msgstr "Képletek összehasonlítása"
+
+msgid "Compare texts in shapes"
+msgstr "Szövegek alakzatban történő összehasonlítása"
+
+msgid "Compare headers and footers"
+msgstr "Fejlécek és láblécek összehasonlítása"
+
+msgid "Cannot get Macros.\r\n   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application.\r\n   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
+msgstr "Nem lehet makrókat elérni.\r\n    Ahhoz, hogy a WinMerge összehasonlíthassa a makrókat, az MS Office segítségével módosítsd a Macro biztonsági beállításait az aktuális alkalmazáshoz.\r\n   A Visual Basic Project megbízható hozzáférése funkciót be kell kapcsolni ehhez a WinMerge funkcióhoz.\r\n"
+
+msgid "Compare VBA macros"
+msgstr "VBA makrók összehasonlítása"
+
+msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSWordFiles.sct WinMerge beépülő opciói"
+
+msgid "Extract document data to multiple files"
+msgstr "Dokumentum adatainak kibontása több fájlba"
+
+msgid "Compare bookmarks"
+msgstr "Könyvjelzők összehasonlítása"
+
+msgid "Compare text contents of documents"
+msgstr "Dokumentumok szöveges tartalmának összehasonlítása"
+
+msgid "Compare documents as HTML file (very slow)"
+msgstr "Dokumentumok összehasonlítása HTML fájlként"
+
+msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSPowerPointFiles.sct WinMerge beépülő opciói"
+
+msgid "Extract slide data to multiple files"
+msgstr "Dia adatainak kibontása több fájlba"
+
+msgid "Compare slides as image (very slow)"
+msgstr "Diák összehasonlítása képként (nagyon lassú)"
+
+msgid "Compare texts in notes page"
+msgstr "Jegyzetoldalon található szövegek összehasonlítása"
+
+msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
+msgstr "CompareMSVisioFiles.sct WinMerge beépülő opciói"
+
+msgid "Extract page data to multiple files"
+msgstr "Oldal adatok kibontása több fájlba"
+
+msgid "Compare pages as image (very slow)"
+msgstr "Oldalak összehasonlítása képként (nagyon lassú)"
+
+msgid "PrediffLineFilter.sct WinMerge Plugin Options"
+msgstr "PrediffLineFilter.sct WinMerge beépülő opciói"
+
+msgid "Delete"
+msgstr "Törlés"
+
+msgid "Enabled"
+msgstr "Engedélyezve"
+
+msgid "Ignore Case"
+msgstr "Nagybetű nem számít"
+
+msgid "Use RegExp"
+msgstr "RegExp használata"
+
+msgid "Find what"
+msgstr "Keresés erre"
+
+msgid "Replace with"
+msgstr "Csere ezzel"
+
+msgid "Settings"
+msgstr "Beállítások"
+
+msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
+msgstr "Mellőzendő oszloptartományok:\npl.) 3,10-20,32-33\n"
 
 #, c-format
-msgid "Clipboard at %s"
-msgstr "Vágólap itt: %s"
+msgid "Enter the name of the file to which the patch '%1' will be applied"
+msgstr "Add meg annak a fájlnak a nevét, amelyre a(z) '%1' patch alkalmazásra kerüljön"
 
-msgid "Clipboard history is disabled.\r\nTo enable clipboard history, press Windows logo key + V and then click the Turn on button."
-msgstr "Vágólap előzmények letiltva.\r\nAz engedélyezéshez nyomd meg a Win+V gombokat, majd kattints a bekapcsolás gombra"
+#, c-format
+msgid "File '%1' does not exist"
+msgstr "A(z) '%1' fájl nem létezik"
 
-msgid "This system does not support clipboard history."
-msgstr "Ez a rendszer nem támogatja a vágólap előzményeket"
+msgid "Enter the command line arguments for patch command"
+msgstr "Add meg a patch parancs parancssori argumentumait"
 
-msgid "The 32-bit version of WinMerge does not support Clipboard Compare"
-msgstr "A WinMerge 32 bites verziója nem támogatja a vágólap összehasonlítást"
+#, c-format
+msgid "Enter the name of the folder to which the patch '%1' will be applied"
+msgstr "Add meg annak a mappának a nevét, amelyre a(z) '%1' patch alkalmazásra kerüljön"
 
-msgid "WebView2 runtime is not installed. Do you want to download it?"
-msgstr "A WebView2 runtime nincs telepítve. Le akarod tölteni?"
+#, c-format
+msgid "Folder '%1' does not exist"
+msgstr "A(z) '%1' mappa nem létezik"
+
+msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
+msgstr "Ne add meg a '-p0' parancssori paramétert az abszolút elérési utakat tartalmazó patchfájlhoz"
+
+msgid "AI.sct WinMerge Plugin Options"
+msgstr "AI.sct szerkesztő WinMerge bővítmény opciók"
+
+msgid "Enter prompt"
+msgstr "Írja be a promptot"
+
+#, c-format
+msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgstr "Adja meg az OpenAI API-kulcsát.\r\n - A bővítmény használata regisztrációt igényel az OpenAI-nál, és díjköteles.\r\n - Az API-kulcs a(z) %1 környezeti változóban van tárolva."
+
+msgid "Environment variable name for OpenAI API key"
+msgstr "Az OpenAI API kulcs környezeti változójának neve"
+
+msgid "OpenAI API key"
+msgstr "OpenAI API kulcs"
+
+msgid "Temperature"
+msgstr "Hőmérséklet"
+
+msgid "Maximum length"
+msgstr "Maximális hossz"
+
+msgid "Model"
+msgstr "Modell"
+
+msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgstr "Az OpenAI API kulcs megváltozott. Kérjük, indítsa újra a WinMerge-t a változások alkalmazásához."

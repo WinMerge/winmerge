@@ -10,6 +10,7 @@
 #include "UnicodeString.h"
 
 class COptionsMgr;
+class FilterList;
 
 /**
  @brief Structure for one line filter.
@@ -35,7 +36,6 @@ public:
 	void AddFilter(const String& filter, bool enabled);
 	size_t GetCount() const;
 	void Empty();
-	String GetAsString() const;
 	const LineFilterItem & GetAt(size_t ind) const;
 	void CloneFrom(const LineFiltersList *list);
 	bool Compare(const LineFiltersList *list) const;
@@ -43,7 +43,7 @@ public:
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();
 
-	void Import(const String& filters);
+	std::shared_ptr<FilterList> MakeFilterList(bool throwIfInvalid = false);
 
 private:
 	std::vector<LineFilterItemPtr> m_items; /**< List for linefilter items */

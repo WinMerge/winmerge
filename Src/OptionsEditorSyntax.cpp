@@ -7,7 +7,7 @@ namespace Options { namespace EditorSyntax
 {
 
 /** @brief Setting name for file type extension. */
-const TCHAR Section[] = _T("FileTypes");
+const tchar_t Section[] = _T("FileTypes");
 
 /**
  * @brief Get the default value of the extension settings from OptionsMgr.

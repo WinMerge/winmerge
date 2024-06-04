@@ -237,9 +237,21 @@
     <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.h">
       <Filter>7zip Common</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\System.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\Windows\TimeUtils.h">
+      <Filter>Extract</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MemDialog.h">
+      <Filter>7zip Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Externals\sevenzip\CPP\7zip\UI\Explorer\MyMessages.h">
+      <Filter>7zip Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Merge7z907.cpp">
+    <ClCompile Include="Merge7z.cpp">
       <Filter>Quellcodedateien</Filter>
     </ClCompile>
     <ClCompile Include="Merge7zCommon.cpp">
@@ -444,6 +456,18 @@
       <Filter>Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\Common\FilterCoder.cpp">
+      <Filter>7zip Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\System.cpp">
+      <Filter>Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\Windows\TimeUtils.cpp">
+      <Filter>Extract</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\FileManager\MemDialog.cpp">
+      <Filter>7zip Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Externals\sevenzip\CPP\7zip\UI\Explorer\MyMessages.cpp">
       <Filter>7zip Common</Filter>
     </ClCompile>
   </ItemGroup>

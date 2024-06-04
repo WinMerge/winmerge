@@ -26,12 +26,14 @@ public:
 	{
 		EXT_ENABLED = 0x01, /**< ShellExtension enabled/disabled. */
 		EXT_ADVANCED = 0x02, /**< Advanced menuitems enabled/disabled. */
+		EXT_COMPARE_AS = 0x04, /**< Show Compare As menu. */
 	};
 
 	enum
 	{
 		CMD_COMPARE,
 		CMD_COMPARE_ELLIPSIS,
+		CMD_COMPARE_AS,
 		CMD_SELECT_LEFT,
 		CMD_SELECT_MIDDLE,
 		CMD_RESELECT_LEFT,

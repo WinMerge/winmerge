@@ -13,7 +13,6 @@
 #include "stdafx.h"
 #include "OpenView.h"
 #include <vector>
-#include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "OpenDoc.h"
@@ -30,10 +29,12 @@
 #include "DropHandler.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
+#include "MergeAppCOMClass.h"
 #include "BCMenu.h"
 #include "LanguageSelect.h"
 #include "Win_VersionHelper.h"
 #include "OptionsProject.h"
+#include "Merge7zFormatMergePluginImpl.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -48,9 +49,6 @@ const UINT IDT_CHECKFILES = 1;
 const UINT IDT_RETRY = 2;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 const int RETRY_MAX = 3;
-
-/** @brief Location for Open-dialog specific help to open. */
-static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/Open_paths.html");
 
 // COpenView
 
@@ -626,20 +624,30 @@ void COpenView::OnCompare(UINT nID)
 		{
 			PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
 			if (ID_UNPACKERS_FIRST <= nID && nID <= ID_UNPACKERS_LAST)
+			{
 				tmpPackingInfo.SetPluginPipeline(CMainFrame::GetPluginPipelineByMenuId(nID, FileTransform::UnpackerEventNames, ID_UNPACKERS_FIRST));
+				nID = 0;
+			}
 			PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 			GetMainFrame()->DoSelfCompare(nID, m_strPath[0], nullptr, &tmpPackingInfo, &tmpPrediffingInfo);
 		}
 		return;
 	}
 
-	pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
-
-	if (pathsType == paths::DOES_NOT_EXIST &&
-		!std::any_of(m_files.begin(), m_files.end(), [](const auto& path) { return paths::IsURL(path); }))
+	PackingInfo tmpPackingInfo(m_strUnpackerPipeline);
+	PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 	{
-		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
-		return;
+		Merge7zFormatMergePluginScope scope(&tmpPackingInfo);
+
+		pathsType = paths::GetPairComparability(m_files, IsArchiveFile);
+
+		if (pathsType == paths::DOES_NOT_EXIST &&
+			!std::any_of(m_files.begin(), m_files.end(), 
+				[](const auto& path) { return paths::IsURL(path) || paths::IsNullDeviceName(path); }))
+		{
+			LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+			return;
+		}
 	}
 
 	for (int index = 0; index < nFiles; index++)
@@ -716,10 +724,8 @@ void COpenView::OnCompare(UINT nID)
 		GetParentFrame()->PostMessage(WM_CLOSE);
 
 	// Copy the values in pDoc as it will be invalid when COpenFrame is closed. 
-	PackingInfo tmpPackingInfo(pDoc->m_strUnpackerPipeline);
-	PrediffingInfo tmpPrediffingInfo(m_strPredifferPipeline);
 	PathContext tmpPathContext(pDoc->m_files);
-	std::array<DWORD, 3> dwFlags = pDoc->m_dwFlags;
+	std::array<fileopenflags_t, 3> dwFlags = pDoc->m_dwFlags;
 	bool recurse = pDoc->m_bRecurse;
 	std::unique_ptr<CMainFrame::OpenFolderParams> pOpenFolderParams;
 	if (!pDoc->m_hiddenItems.empty())
@@ -1084,14 +1090,15 @@ struct UpdateButtonStatesThreadParams
 
 static UINT UpdateButtonStatesThread(LPVOID lpParam)
 {
+	if (FAILED(CoInitialize(nullptr)))
+		return 0;
+
+	{
+	CAssureScriptsForThread scriptsForRescan(new MergeAppCOMClass());
 	MSG msg;
 	BOOL bRet;
-
-	CoInitialize(nullptr);
-	CAssureScriptsForThread scriptsForRescan;
-
 	while( (bRet = GetMessage( &msg, nullptr, 0, 0 )) != 0)
-	{ 
+	{
 		if (bRet == -1)
 			break;
 		if (msg.message != WM_USER + 2)
@@ -1100,6 +1107,7 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		bool bIsaFolderCompare = true;
 		bool bIsaFileCompare = true;
 		bool bInvalid[3] = {false, false, false};
+		bool bIsArchiveFile[3] = {false, false, false};
 		paths::PATH_EXISTENCE pathType[3] = {paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST, paths::DOES_NOT_EXIST};
 		int iStatusMsgId = IDS_OPEN_FILESDIRS;
 
@@ -1119,13 +1127,19 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 		{
 			for (int i = 0; i < paths.GetSize(); ++i)
 			{
-				pathType[i] = paths::DoesPathExist(paths[i], IsArchiveFile);
+				pathType[i] = paths::DoesPathExist(paths[i]);
+				bIsArchiveFile[i] = IsArchiveFile(paths[i]);
 				if (pathType[i] == paths::DOES_NOT_EXIST)
 				{
-					if (paths::IsURL(paths[i]))
+					if (paths::IsURL(paths[i]) || paths::IsNullDeviceName(paths[i]))
 						pathType[i] = paths::IS_EXISTING_FILE;
 					else
-						bInvalid[i] = true;
+					{
+						if (bIsArchiveFile[i])
+							pathType[i] = paths::IS_EXISTING_FILE;
+						else
+							bInvalid[i] = true;
+					}
 				}
 			}
 		}
@@ -1151,7 +1165,13 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (!bInvalid[0] && !bInvalid[1])
 				{
 					if (pathType[0] != pathType[1])
-						iStatusMsgId = IDS_OPEN_MISMATCH;
+					{
+						if ((pathType[0] == paths::IS_EXISTING_DIR && bIsArchiveFile[1]) ||
+						    (pathType[1] == paths::IS_EXISTING_DIR && bIsArchiveFile[0]))
+							iStatusMsgId = IDS_OPEN_FILESDIRS;
+						else
+							iStatusMsgId = IDS_OPEN_MISMATCH;
+					}
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
@@ -1175,20 +1195,39 @@ static UINT UpdateButtonStatesThread(LPVOID lpParam)
 				else if (!bInvalid[0] && !bInvalid[1] && !bInvalid[2])
 				{
 					if (pathType[0] != pathType[1] || pathType[0] != pathType[2])
-						iStatusMsgId = IDS_OPEN_MISMATCH;
+					{
+						bool bMatch = [&]() {
+							for (int i = 0; i < 3; ++i)
+							{
+								if (pathType[i] != paths::IS_EXISTING_DIR && !bIsArchiveFile[i])
+									return false;
+							}
+							return true;
+						}();
+						if (bMatch)
+							iStatusMsgId = IDS_OPEN_FILESDIRS;
+						else
+							iStatusMsgId = IDS_OPEN_MISMATCH;
+					}
 					else
 						iStatusMsgId = IDS_OPEN_FILESDIRS;
 				}
 			}
-			if (iStatusMsgId != IDS_OPEN_FILESDIRS)
-				pathsType = paths::DOES_NOT_EXIST;
-			bIsaFileCompare = (pathsType == paths::IS_EXISTING_FILE);
-			bIsaFolderCompare = (pathsType == paths::IS_EXISTING_DIR);
+			bIsaFileCompare = false;
+			bIsaFolderCompare = false;
+			for (int i = 0; i < paths.GetSize(); i++)
+			{
+				if (pathType[i] == paths::IS_EXISTING_FILE)
+					bIsaFileCompare = true;
+				if (pathType[i] == paths::IS_EXISTING_DIR || bIsArchiveFile[i])
+					bIsaFolderCompare = true;
+			}
 			// Both will be `false` if incompatibilities or something is missing
 			// Both will end up `true` if file validity isn't being checked
 		}
 
 		PostMessage(hWnd, WM_USER + 1, MAKEWPARAM(bIsaFolderCompare, bIsaFileCompare), MAKELPARAM(iStatusMsgId, bProject)); 
+	}
 	}
 
 	CoUninitialize();
@@ -1238,11 +1277,9 @@ void COpenView::TerminateThreadIfRunning()
 	PostThreadMessage(m_pUpdateButtonStatusThread->m_nThreadID, WM_QUIT, 0, 0);
 	DWORD dwResult = WaitForSingleObject(m_pUpdateButtonStatusThread->m_hThread, 100);
 	if (dwResult != WAIT_OBJECT_0)
-	{
-		m_pUpdateButtonStatusThread->SuspendThread();
-		TerminateThread(m_pUpdateButtonStatusThread->m_hThread, 0);
-	}
-	delete m_pUpdateButtonStatusThread;
+		theApp.AddZombieThread(m_pUpdateButtonStatusThread);
+	else
+		delete m_pUpdateButtonStatusThread;
 	m_pUpdateButtonStatusThread = nullptr;
 }
 
@@ -1381,13 +1418,13 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 	{
 		for (auto nID : { IDC_FILES_DIRS_GROUP5, IDC_PREDIFFER_COMBO, IDC_SELECT_PREDIFFER })
 		{
-			GetDlgItem(nID)->ShowWindow(bIsaFileCompare ? SW_SHOW : SW_HIDE);
+			ShowDlgItem(nID, (bIsaFileCompare && !bIsaFolderCompare));
 			EnableDlgItem(nID, bIsaFileCompare);
 		}
 
 		for (auto nID : { IDC_FILES_DIRS_GROUP3, IDC_EXT_COMBO, IDC_SELECT_FILTER, IDC_RECURS_CHECK })
 		{
-			GetDlgItem(nID)->ShowWindow((bIsaFolderCompare || !bIsaFileCompare) ? SW_SHOW : SW_HIDE);
+			ShowDlgItem(nID, (bIsaFolderCompare || !bIsaFileCompare));
 			EnableDlgItem(nID, bIsaFolderCompare);
 		}
 	}
@@ -1644,12 +1681,6 @@ void COpenView::OnEditAction(int msg, WPARAM wParam, LPARAM lParam)
 	CWnd *pCtl = GetFocus();
 	if (pCtl != nullptr)
 		pCtl->PostMessage(msg, wParam, lParam);
-}
-
-template <int MSG, int WPARAM, int LPARAM>
-void COpenView::OnEditAction()
-{
-	OnEditAction(MSG, WPARAM, LPARAM);
 }
 
 /**

@@ -47,7 +47,7 @@ public:
 	void SetBool(bool v);
 	void SetInt(int v);
 	void SetFloat(double v);
-	void SetString(const TCHAR *sz);
+	void SetString(const tchar_t *sz);
 	void SetString(const String& sz);
 	void SetTime(time_t v);
 

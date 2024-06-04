@@ -144,8 +144,8 @@ namespace boost_concepts
   {
       typedef typename std::iterator_traits<Iterator>::difference_type difference_type;
 
-      BOOST_MPL_ASSERT((boost::is_integral<difference_type>));
-      BOOST_MPL_ASSERT_RELATION(std::numeric_limits<difference_type>::is_signed, ==, true);
+      BOOST_STATIC_ASSERT(boost::is_integral<difference_type>::value);
+      BOOST_STATIC_ASSERT(std::numeric_limits<difference_type>::is_signed);
 
       BOOST_CONCEPT_ASSERT((
           boost::Convertible<

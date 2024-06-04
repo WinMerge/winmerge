@@ -38,7 +38,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     return TRUE;
 }
 
-class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IExplorerCommand, IObjectWithSite>
+class WinMergeExplorerCommandBase : public RuntimeClass<RuntimeClassFlags<WinRtClassicComMix>, IExplorerCommand, IObjectWithSite>
 {
 public:
     WinMergeExplorerCommandBase(WinMergeContextMenu* pContextMenu) : m_pContextMenu(pContextMenu) {}
@@ -108,93 +108,40 @@ public:
 protected:
 
     // code from https://github.com/microsoft/terminal/blob/main/src/cascadia/ShellExtension/OpenTerminalHere.cpp
-    std::wstring _GetPathFromExplorer() const
+    HRESULT GetBestLocationFromSelectionOrSite(IShellItemArray* psiArray, IShellItem** location) const noexcept
     {
-        std::wstring path;
-        HRESULT hr = NOERROR;
-
-        auto hwnd = ::GetForegroundWindow();
-        if (hwnd == nullptr)
+        ComPtr<IShellItem> psi;
+        if (psiArray)
         {
-            return path;
-        }
-
-        TCHAR szName[MAX_PATH] = { 0 };
-        ::GetClassName(hwnd, szName, MAX_PATH);
-        if (0 == StrCmp(szName, L"WorkerW") ||
-            0 == StrCmp(szName, L"Progman"))
-        {
-            //special folder: desktop
-            hr = ::SHGetFolderPath(NULL, CSIDL_DESKTOP, NULL, SHGFP_TYPE_CURRENT, szName);
-            if (FAILED(hr))
+            DWORD count{};
+            RETURN_IF_FAILED(psiArray->GetCount(&count));
+            if (count) // Sometimes we get an array with a count of 0. Fall back to the site chain.
             {
-                return path;
-            }
-
-            path = szName;
-            return path;
-        }
-
-        if (0 != StrCmp(szName, L"CabinetWClass"))
-        {
-            return path;
-        }
-
-        ComPtr<IShellWindows> shell;
-        hr = CoCreateInstance(CLSID_ShellWindows, nullptr, CLSCTX_ALL, IID_IShellWindows, &shell);
-        if (FAILED(hr) || shell == nullptr)
-        {
-            return path;
-        }
-
-        ComPtr<IDispatch> disp;
-        wil::unique_variant variant;
-        variant.vt = VT_I4;
-
-        ComPtr<IWebBrowserApp> browser;
-        // look for correct explorer window
-        for (variant.intVal = 0;
-            shell->Item(variant, &disp) == S_OK;
-            variant.intVal++)
-        {
-            ComPtr<IWebBrowserApp> tmp;
-            if (FAILED(disp->QueryInterface<IWebBrowserApp>(&tmp)))
-            {
-                disp = nullptr; // get rid of DEBUG non-nullptr warning
-                continue;
-            }
-
-            HWND tmpHWND = NULL;
-            hr = tmp->get_HWND(reinterpret_cast<SHANDLE_PTR*>(&tmpHWND));
-            if (hwnd == tmpHWND)
-            {
-                browser = tmp;
-                disp = nullptr; // get rid of DEBUG non-nullptr warning
-                break; //found
-            }
-
-            disp = nullptr; // get rid of DEBUG non-nullptr warning
-        }
-
-        if (browser != nullptr)
-        {
-            wil::unique_bstr url;
-            hr = browser->get_LocationURL(&url);
-            if (FAILED(hr))
-            {
-                return path;
-            }
-
-            std::wstring sUrl(url.get(), SysStringLen(url.get()));
-            DWORD size = MAX_PATH;
-            hr = ::PathCreateFromUrl(sUrl.c_str(), szName, &size, NULL);
-            if (SUCCEEDED(hr))
-            {
-                path = szName;
+                RETURN_IF_FAILED(psiArray->GetItemAt(0, &psi));
             }
         }
 
-        return path;
+        if (!psi)
+        {
+            RETURN_IF_FAILED(GetLocationFromSite(&psi));
+        }
+
+        RETURN_HR_IF(S_FALSE, !psi);
+        RETURN_IF_FAILED(psi.CopyTo(location));
+        return S_OK;
+    }
+
+    HRESULT GetLocationFromSite(IShellItem** location) const noexcept
+    {
+        wil::assign_null_to_opt_param(location);
+        if (!m_site)
+            return S_FALSE;
+        ComPtr<IServiceProvider> serviceProvider;
+        RETURN_IF_FAILED(m_site.As<IServiceProvider>(&serviceProvider));
+        ComPtr<IFolderView> folderView;
+        RETURN_IF_FAILED(serviceProvider->QueryService<IFolderView>(SID_SFolderView, &folderView));
+        RETURN_IF_FAILED(folderView->GetFolder(IID_PPV_ARGS(location)));
+        return S_OK;
     }
 
     std::vector<std::wstring> GetPaths(_In_opt_ IShellItemArray* selection)
@@ -203,9 +150,17 @@ protected:
         DWORD dwNumItems = 0;
         if (!selection)
         {
-            std::wstring path = _GetPathFromExplorer();
-            if (!path.empty())
-                paths.push_back(path);
+            ComPtr<IShellItem> psi;
+            if (SUCCEEDED(GetBestLocationFromSelectionOrSite(selection, &psi)))
+            {
+                wil::unique_cotaskmem_string pszFilePath;
+                if (SUCCEEDED(psi->GetDisplayName(SIGDN_FILESYSPATH, &pszFilePath)))
+                {
+                    std::wstring path = pszFilePath.get();
+                    if (!path.empty())
+                        paths.push_back(path);
+                }
+            }
         }
         else
         {
@@ -255,7 +210,7 @@ private:
     MenuItem m_menuItem;
 };
 
-class EnumCommands : public RuntimeClass<RuntimeClassFlags<ClassicCom>, IEnumExplorerCommand>
+class EnumCommands : public RuntimeClass<RuntimeClassFlags<WinRtClassicComMix>, IEnumExplorerCommand>
 {
 public:
     explicit EnumCommands(WinMergeContextMenu* pContextMenu)
@@ -303,7 +258,7 @@ public:
         , WinMergeExplorerCommandBase(&m_contextMenu)
     {
     }
-    const wchar_t* Title() override { return L"&WinMerge"; }
+    const wchar_t* Title() override { return L"Win&Merge"; }
     const int IconId(_In_opt_ IShellItemArray* selection) override
     {
         auto paths = GetPaths(selection);
