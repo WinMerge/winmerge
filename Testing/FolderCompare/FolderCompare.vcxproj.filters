@@ -174,9 +174,6 @@
     <ClCompile Include="..\..\Src\MergeAppCOMClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Externals\crystaledit\editlib\utils\DpiAware.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Src\codepage_detect.h">

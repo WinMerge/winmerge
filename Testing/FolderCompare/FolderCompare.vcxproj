@@ -520,7 +520,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Externals\crystaledit\editlib\utils\DpiAware.cpp" />
     <ClCompile Include="..\..\Src\charsets.c">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
