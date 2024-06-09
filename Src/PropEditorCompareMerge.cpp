@@ -47,6 +47,7 @@ void PropEditorCompareMerge::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropEditorCompareMerge, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditorCompareMerge)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_WORDLEVEL, OnLineDiffControlClicked)
@@ -103,6 +104,22 @@ void PropEditorCompareMerge::LoadComboBoxStrings()
 		{ _("Break at whitespace"), _("Break at whitespace or punctuation") });
 	SetDlgItemComboBoxList(IDC_COPY_GRANULARITY,
 		{ _("Diff hunk"), _("Inline diff"), _("Line"), _("Character") });
+}
+
+/**
+ * @brief Sets options to defaults
+ */
+void PropEditorCompareMerge::OnDefaults()
+{
+	m_bAutomaticRescan = GetOptionsMgr()->GetDefault<bool>(OPT_AUTOMATIC_RESCAN);
+	m_nCopyGranularity = GetOptionsMgr()->GetDefault<unsigned>(OPT_COPY_GRANULARITY);
+	m_bViewLineDifferences = GetOptionsMgr()->GetDefault<bool>(OPT_WORDDIFF_HIGHLIGHT);
+	m_bBreakOnWords = GetOptionsMgr()->GetDefault<bool>(OPT_BREAK_ON_WORDS);
+	m_nBreakType = GetOptionsMgr()->GetDefault<unsigned>(OPT_BREAK_TYPE);
+	m_breakChars = GetOptionsMgr()->GetDefault<String>(OPT_BREAK_SEPARATORS);
+
+	UpdateDataToWindow();
+	UpdateLineDiffControls();
 }
 
 /**
