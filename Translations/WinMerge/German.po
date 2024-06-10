@@ -289,7 +289,7 @@ msgid "&Input"
 msgstr ""
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "&Zurück/Vor"
 
 msgid "Clear &Browsing Data"
 msgstr "&Browserdaten löschen"
@@ -1358,25 +1358,25 @@ msgid "${9} - The ninth argument"
 msgstr ""
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Quelldatei"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Quellordner"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Quell-URL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Quell-URL Protokoll"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Quell-URL Suffix"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Zieldatei"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Zielordner"
 
 msgid "${DST_URL} - Destination URL"
 msgstr ""
@@ -3358,7 +3358,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Sie schließen gerade das Fenster, in dem Ordner verglichen werden. Möchten Sie das Fenster wirklich schließen?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""
+msgstr "Sie sind im Begriff ein Vergleichsfenster zu schließen, das mit einem erheblichen Zeitaufwand erstellt wurde.\n\nMöchten Sie wirklich fortfahren?"
 
 msgid "The file or folder name is invalid."
 msgstr "Der Datei- oder Ordnername ist ungültig."
@@ -4495,7 +4495,7 @@ msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "Der Plug-in Name '%1' existiert bereits."
 
 msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"
@@ -4524,13 +4524,13 @@ msgid "URL Handler"
 msgstr ""
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Datei Entpacker"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Datei oder Ordner Entpacker"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Alias für den Entpacker"
 
 msgid "Alias for Prediffer"
 msgstr ""
@@ -4540,10 +4540,10 @@ msgstr ""
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Alias für Plug-in Pipeline '%1'"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Neue Plug-in Beschreibung"
 
 msgid "Filter applied"
 msgstr "Angewandter Filter"
@@ -4583,40 +4583,40 @@ msgid "Clipboard Compare"
 msgstr "Zwischenablage vergleichen"
 
 msgid "&Print..."
-msgstr ""
+msgstr "&Drucken"
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "&Vorige Seite"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "&Zwei Seiten"
 
 msgid "&One Page"
-msgstr ""
+msgstr "&Eine Seite"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Here&inzoomen"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Hera&uszoomen"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Vergleichen..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Zoom:"
 
 msgid "Diff hunk"
 msgstr ""
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Zeilenuntersciede"
 
 msgid "Line"
-msgstr ""
+msgstr "Zeile"
 
 msgid "Character"
-msgstr ""
+msgstr "Zeichen"
 
 msgid "Prettification"
 msgstr "Verschönerung"
@@ -4754,7 +4754,7 @@ msgid "Disassemble Native Code"
 msgstr "Nativen Code disassemblieren"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Textumwandlung mit AI..."
 
 msgid "Make characters uppercase"
 msgstr "Großbuchstaben erzeugen"
@@ -4878,7 +4878,7 @@ msgid "Prediff Line Filter"
 msgstr "Prediff-Zeilenfilter"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Datum und Zeit Einfügeoperation"
 
 msgid "HTTP URL Scheme Handler with curl. \r\nArguments: Command line options passed to the curl command."
 msgstr "HTTP-URL-Scheme-Handler mit curl. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl curl übergeben werden."
@@ -4887,13 +4887,13 @@ msgid "Windows Registry URL Scheme Handler. \r\nArguments: Command line options 
 msgstr "Windows-Registry-URL-Scheme-Handler. \r\nArgumente: Befehlszeilenoptionen, die an den Befehl reg.exe übergeben werden."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Basis Text Funktionen"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "KI-unterstützte Textkonvertierungsfunktionen"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Textkonvertierung mithilfe von OpenAI API.\r\nAufruf: AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Plugin-Einstellungen für CompareMSExcelFiles"
@@ -5023,29 +5023,29 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Geben Sie nicht die Befehlszeilenoption '-p0' für die Patchdatei an, die absolute Pfade enthält"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "AI.sct Winmerge Plug-In Optionen"
 
 msgid "Enter prompt"
 msgstr ""
 
 #, c-format
 msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
-msgstr ""
+msgstr "Geben Sie Ihren OpenAI API Schlüssel ein.\r\n - Die Benutzung dieses Plug-ins benötigt eine Registrierung bei OpenAI und es fallen Gebühren an.\r\n - Der API Schlüssel wird in der Umgebungsvariablen %1 gespeichert."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Umgebungsvariablenname für den OpenAI API Schlüssel"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API Schlüssel"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Maximale Länge"
 
 msgid "Model"
-msgstr ""
+msgstr "Modell"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "Der OpenAI API Schlüssel ist verändert. Bitte starten Sie WinMerge neu, um die Änderungen zu übernehmen"
