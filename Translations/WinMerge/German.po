@@ -289,7 +289,7 @@ msgid "&Input"
 msgstr ""
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "&Zurück/Vor"
 
 msgid "Clear &Browsing Data"
 msgstr "&Browserdaten löschen"
@@ -1358,25 +1358,25 @@ msgid "${9} - The ninth argument"
 msgstr ""
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Quelldatei"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Quellordner"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Quell-URL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Quell-URL Protokoll"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Quell-URL Suffix"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Zieldatei"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Zielordner"
 
 msgid "${DST_URL} - Destination URL"
 msgstr ""
@@ -3358,7 +3358,7 @@ msgid "You are about to close the window that is comparing folders. Are you sure
 msgstr "Sie schließen gerade das Fenster, in dem Ordner verglichen werden. Möchten Sie das Fenster wirklich schließen?"
 
 msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
-msgstr ""Sie sind im Begriff ein Vergleichsfenster zu schließen, das mit einem erheblichen Zeitaufwand erstellt wurde.\n\nMöchten Sie wirklich fortfahren?"
+msgstr "Sie sind im Begriff ein Vergleichsfenster zu schließen, das mit einem erheblichen Zeitaufwand erstellt wurde.\n\nMöchten Sie wirklich fortfahren?"
 
 msgid "The file or folder name is invalid."
 msgstr "Der Datei- oder Ordnername ist ungültig."
@@ -4495,7 +4495,7 @@ msgstr "Fehlendes Anführungszeichen in der Plugin-Pipeline: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "Der Plug-in Name '%1' existiert bereits."
 
 msgid "Specify plugin arguments"
 msgstr "Plugin-Argumente angeben"
@@ -4524,13 +4524,13 @@ msgid "URL Handler"
 msgstr ""
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Datei Entpacker"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Datei oder Ordner Entpacker"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Alias für den Entpacker"
 
 msgid "Alias for Prediffer"
 msgstr ""
@@ -4540,10 +4540,10 @@ msgstr ""
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Alias für Plug-in Pipeline '%1'"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Neue Plug-in Beschreibung"
 
 msgid "Filter applied"
 msgstr "Angewandter Filter"
@@ -4595,10 +4595,10 @@ msgid "&One Page"
 msgstr "&Eine Seite"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Here&inzoomen"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Hera&uszoomen"
 
 msgid "Comparing..."
 msgstr "Vergleichen..."
@@ -4610,7 +4610,7 @@ msgid "Diff hunk"
 msgstr ""
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Zeilenuntersciede"
 
 msgid "Line"
 msgstr "Zeile"
