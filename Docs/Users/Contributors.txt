@@ -100,6 +100,7 @@ Localization:
   Winfried Peter <winfried.peter@omicron.at>
   Joerg Schneider <tonda@users.sourceforge.net>
   Mr-Update
+  uliahn
 
 * Greek:
   Polyvios J. Simopoulos <polyvios.j.simopoulos@gmail.com>
