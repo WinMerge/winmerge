@@ -727,6 +727,15 @@
     <ClCompile Include="DirStatusBar.cpp">
       <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\DpiAware.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\hqbitmap.cpp">
+      <Filter>EditLib\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1347,6 +1356,18 @@
     <ClInclude Include="PropCompareWebPage.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\DpiAware.h">
+      <Filter>EditLib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\mfc_templ_defines.h">
+      <Filter>EditLib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.h">
+      <Filter>EditLib\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\hqbitmap.h">
+      <Filter>EditLib\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="DirWatcher.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1842,6 +1863,7 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
+    <Manifest Include="WinMergeU.manifest" />
     <Midl Include="MergeAppLib.idl">
       <Filter>Source Files</Filter>
     </Midl>

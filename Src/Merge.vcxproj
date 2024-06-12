@@ -1428,11 +1428,16 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\DpiAware.cpp" />
+    <ClCompile Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Externals\boost\boost\config.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\compiler\visualc.hpp" />
     <ClInclude Include="..\Externals\boost\boost\config\select_compiler_config.hpp" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\DpiAware.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\MDITileLayout.h" />
+    <ClInclude Include="..\Externals\crystaledit\editlib\utils\mfc_templ_defines.h" />
     <ClInclude Include="..\Externals\googletest\googletest\include\gtest\gtest-printers.h">
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClInclude>

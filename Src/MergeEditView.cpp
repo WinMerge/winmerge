@@ -4250,7 +4250,7 @@ void CMergeEditView::ZoomText(short amount)
 	LOGFONT lf = { 0 };
 	GetFont(lf);
 
-	const int nLogPixelsY = CClientDC(this).GetDeviceCaps(LOGPIXELSY);
+	const int nLogPixelsY = m_dpi;
 	int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
 
 	int nOrgPointSize = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP + OPT_FONT_POINTSIZE);

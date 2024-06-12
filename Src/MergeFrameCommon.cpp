@@ -11,15 +11,19 @@
 #include "paths.h"
 #include "Merge.h"
 #include "FileTransform.h"
+#include "MainFrm.h"
+#include "utils/DpiAware.h"
 #include <../src/mfc/afximpl.h>
 
 IMPLEMENT_DYNCREATE(CMergeFrameCommon, CMDIChildWnd)
 
-BEGIN_MESSAGE_MAP(CMergeFrameCommon, CMDIChildWnd)
+BEGIN_MESSAGE_MAP(CMergeFrameCommon, DpiAware::CDpiAwareWnd<CMDIChildWnd>)
 	//{{AFX_MSG_MAP(CMergeFrameCommon)
 	ON_WM_GETMINMAXINFO()
+	ON_WM_SIZE()
 	ON_WM_DESTROY()
 	ON_WM_MDIACTIVATE()
+//	ON_MESSAGE(WM_GETICON, OnGetIcon)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -31,11 +35,37 @@ CMergeFrameCommon::CMergeFrameCommon(int nIdenticalIcon, int nDifferentIcon)
 	, m_nLastSplitPos{0}
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEADDED, 0, reinterpret_cast<LPARAM>(this));
+	GetMainFrame()->GetLayoutManager().NotifyChildOpened(this);
 }
 
 CMergeFrameCommon::~CMergeFrameCommon()
 {
 	::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), WMU_CHILDFRAMEREMOVED, 0, reinterpret_cast<LPARAM>(this));
+	GetMainFrame()->GetLayoutManager().NotifyChildClosed(this);
+}
+
+BOOL CMergeFrameCommon::PreCreateWindow(CREATESTRUCT& cs)
+{
+	// TODO: Modify the Window class or styles here by modifying
+	//  the CREATESTRUCT cs
+	MDITileLayout::LayoutManager& layoutManager = GetMainFrame()->GetLayoutManager();
+	if (!layoutManager.GetTileLayoutEnabled())
+		return __super::PreCreateWindow(cs);
+	__super::PreCreateWindow(cs);
+	cs.style &= ~WS_CAPTION;
+	CRect rcMain;
+	::GetWindowRect(GetMainFrame()->m_hWndMDIClient, rcMain);
+	CRect rc = layoutManager.GetDefaultOpenPaneRect();
+	rc = layoutManager.AdjustChildRect(rcMain, rc, cs.style, WS_EX_WINDOWEDGE | WS_EX_MDICHILD, GetMainFrame()->GetDpi());
+	rc.right -= rcMain.left;
+	rc.bottom -= rcMain.top;
+	rc.left -= rcMain.left;
+	rc.top -= rcMain.top;
+	cs.x = rc.left;
+	cs.y = rc.top;
+	cs.cx = rc.Width();
+	cs.cy = rc.Height();
+	return true;
 }
 
 void CMergeFrameCommon::ActivateFrame(int nCmdShow)
@@ -372,6 +402,21 @@ void CMergeFrameCommon::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 	// https://groups.google.com/forum/#!topic/microsoft.public.vc.mfc/iajCdW5DzTM
 	lpMMI->ptMaxTrackSize.x = max(lpMMI->ptMaxTrackSize.x, lpMMI->ptMaxSize.x);
 	lpMMI->ptMaxTrackSize.y = max(lpMMI->ptMaxTrackSize.y, lpMMI->ptMaxSize.y);
+}
+
+void CMergeFrameCommon::OnSize(UINT nType, int cx, int cy)
+{
+	__super::OnSize(nType, cx, cy);
+	if (nType == SIZE_MAXIMIZED && IsDifferentDpiFromSystemDpi())
+	{
+		// This is a workaround of the problem that the maximized MDI child window is in the wrong position when the DPI changes
+		// I don't think MDI-related processing inside Windows fully supports per-monitor dpi awareness
+		CRect rc;
+		GetParent()->GetClientRect(rc);
+		AdjustWindowRectEx(&rc, GetStyle(), FALSE, GetExStyle());
+		SetWindowPos(nullptr, rc.left, rc.top, rc.right - rc.left, rc.bottom - rc.top, SWP_NOZORDER | SWP_NOACTIVATE);
+	}
+	GetMainFrame()->GetLayoutManager().NotifyChildResized(this);
 }
 
 void CMergeFrameCommon::OnDestroy()

@@ -5,6 +5,7 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "MergeFrameCommon.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -74,7 +75,8 @@ LRESULT COpenFrame::OnNcHitTest(CPoint point)
 void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 {
 	// Retain frame sizes during tile operations (tolerate overlapping)
-	if ((lpwndpos->flags & (SWP_NOSIZE | SWP_NOOWNERZORDER)) == 0 && !IsZoomed())
+	if ((lpwndpos->flags & (SWP_NOSIZE | SWP_NOOWNERZORDER)) == 0 &&
+	    !(IsZoomed() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled()))
 	{
 		if (CScrollView *const pView = static_cast<CScrollView*>(GetActiveView()))
 		{
@@ -90,9 +92,9 @@ void COpenFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 void COpenFrame::ActivateFrame(int nCmdShow) 
 {
 	__super::ActivateFrame(nCmdShow);
-	if (CView *const pView = GetActiveView())
+	if (!GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 	{
-		if (!IsZoomed())
+		if (CView* const pView = GetActiveView(); pView && !IsZoomed())
 		{
 			WINDOWPLACEMENT wp = { sizeof wp };
 			GetWindowPlacement(&wp);

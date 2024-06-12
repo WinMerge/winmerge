@@ -117,7 +117,7 @@ CDirView::~CDirView()
 {
 }
 
-BEGIN_MESSAGE_MAP(CDirView, CListView)
+BEGIN_MESSAGE_MAP(CDirView, DpiAware::CDpiAwareWnd<CListView>)
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_LBUTTONDBLCLK()
@@ -379,6 +379,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MIDDLEDIR_RO, OnUpdateStatusMiddleRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -399,7 +400,7 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 
 void CDirView::OnInitialUpdate()
 {
-	const int iconCX = []() {
+	const int iconCX = [this]() {
 		const int cx = GetSystemMetrics(SM_CXSMICON);
 		if (cx < 24)
 			return 16;
@@ -2594,6 +2595,14 @@ bool CDirView::OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult)
 		InitiateSort();
 	}
 	return true;
+}
+
+LRESULT CDirView::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	int olddpi = m_dpi;
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+	DpiAware::ListView_UpdateColumnWidths(m_hWnd, olddpi, m_dpi);
+	return 0;
 }
 
 /**

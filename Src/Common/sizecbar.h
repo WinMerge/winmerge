@@ -29,6 +29,7 @@
 
 #include <afxpriv.h>    // for CDockContext
 #include <afxtempl.h>   // for CTypedPtrArray
+#include "utils/DpiAware.h"
 
 #if defined(_SCB_MINIFRAME_CAPTION) && !defined(_SCB_REPLACE_MINIFRAME)
     #error "_SCB_MINIFRAME_CAPTION requires _SCB_REPLACE_MINIFRAME"
@@ -63,7 +64,7 @@ class CSCBDockBar : public CDockBar
 class CSizingControlBar;
 typedef CTypedPtrArray <CPtrArray, CSizingControlBar*> CSCBArray;
 
-class CSizingControlBar : public baseCSizingControlBar
+class CSizingControlBar : public DpiAware::CDpiAwareWnd<baseCSizingControlBar>
 {
     DECLARE_DYNAMIC(CSizingControlBar);
 
@@ -169,6 +170,7 @@ protected:
     afx_msg void OnSize(UINT nType, int cx, int cy);
     //}}AFX_MSG
     afx_msg LRESULT OnSetText(WPARAM wParam, LPARAM lParam);
+    afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP()
 

@@ -18,11 +18,12 @@
 #endif
 
 
-BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
+BEGIN_MESSAGE_MAP(CEditorFilePathBar, DpiAware::CDpiAwareWnd<CDialogBar>)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
 	ON_CONTROL_RANGE (EN_SETFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSetFocusEdit)
 	ON_CONTROL_RANGE (EN_USER_CAPTION_CHANGED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnChangeEdit)
 	ON_CONTROL_RANGE (EN_USER_FILE_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSelectEdit)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 END_MESSAGE_MAP()
 
 
@@ -53,14 +54,14 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 			CBRS_ALIGN_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, AFX_IDW_CONTROLBAR_FIRST+29))
 		return FALSE;
 
-	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
-	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
-		m_font.CreateFontIndirect(&ncm.lfStatusFont);
+	LOGFONT lfStatusFont;
+	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+		m_font.CreateFontIndirect(&lfStatusFont);
 
 	// subclass the two custom edit boxes
 	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	int cx = -pointToPixel(ncm.lfStatusFont.lfHeight);
+	int cx = -pointToPixel(lfStatusFont.lfHeight);
 	int m = pointToPixel(3);
 	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
 	{
@@ -202,6 +203,22 @@ void CEditorFilePathBar::OnSelectEdit(UINT id)
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
 	(m_fileSelectedCallbackfunc ? m_fileSelectedCallbackfunc : m_folderSelectedCallbackfunc)
 		(pane, m_Edit[pane].GetSelectedPath());
+}
+
+LRESULT CEditorFilePathBar::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+
+	LOGFONT lfStatusFont;
+	if (DpiAware::GetNonClientLogFont(lfStatusFont, offsetof(NONCLIENTMETRICS, lfStatusFont), GetDpi()))
+	{
+		m_font.DeleteObject();
+		m_font.CreateFontIndirect(&lfStatusFont);
+	}
+
+	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
+		m_Edit[pane].SetFont(&m_font);
+	return 0;
 }
 
 /** 

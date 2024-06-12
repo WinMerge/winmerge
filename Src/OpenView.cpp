@@ -54,7 +54,7 @@ const int RETRY_MAX = 3;
 
 IMPLEMENT_DYNCREATE(COpenView, CFormView)
 
-BEGIN_MESSAGE_MAP(COpenView, CFormView)
+BEGIN_MESSAGE_MAP(COpenView, DpiAware::CDpiAwareWnd<CFormView>)
 	//{{AFX_MSG_MAP(COpenView)
 	ON_CONTROL_RANGE(BN_CLICKED, IDC_PATH0_BUTTON, IDC_PATH2_BUTTON, OnPathButton)
 	ON_BN_CLICKED(IDC_SWAP01_BUTTON, (OnSwapButton<IDC_PATH0_COMBO, IDC_PATH1_COMBO>))
@@ -107,6 +107,7 @@ BEGIN_MESSAGE_MAP(COpenView, CFormView)
 	ON_COMMAND_RANGE(ID_UNPACKERS_FIRST, ID_UNPACKERS_LAST, OnCompare)
 	ON_COMMAND_RANGE(ID_OPEN_WITH_UNPACKER, ID_OPEN_WITH_UNPACKER, OnCompare)
 	ON_MESSAGE(WM_USER + 1, OnUpdateStatus)
+	ON_MESSAGE(WM_DPICHANGED_BEFOREPARENT, OnDpiChangedBeforeParent)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONUP()
 	ON_WM_MOUSEMOVE()
@@ -120,7 +121,7 @@ END_MESSAGE_MAP()
 // COpenView construction/destruction
 
 COpenView::COpenView()
-	: CFormView(COpenView::IDD)
+	: DpiAware::CDpiAwareWnd<CFormView>(COpenView::IDD)
 	, m_pUpdateButtonStatusThread(nullptr)
 	, m_bRecurse(false)
 	, m_pDropHandler(nullptr)
@@ -458,7 +459,7 @@ void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 	if ((lpwndpos->flags & (SWP_NOMOVE | SWP_NOSIZE)) == 0)
 	{
 		CFrameWnd *const pFrameWnd = GetParentFrame();
-		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
+		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 		{
 			CRect rc;
 			pFrameWnd->GetClientRect(&rc);
@@ -472,7 +473,7 @@ void COpenView::OnWindowPosChanging(WINDOWPOS* lpwndpos)
 				if (lpwndpos->y < 0)
 					lpwndpos->y = 0;
 			}
-			else if (pFrameWnd->IsZoomed())
+			else if (pFrameWnd->IsZoomed() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 			{
 				lpwndpos->cx = m_totalLog.cx;
 				lpwndpos->y = (rc.bottom - lpwndpos->cy) / 2;
@@ -499,9 +500,9 @@ void COpenView::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 		if (pFrameWnd == GetTopLevelFrame()->GetActiveFrame())
 		{
 			m_constraint.Persist(true, false);
-			if (!pFrameWnd->IsZoomed())
+			if (!GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 			{
-				WINDOWPLACEMENT wp = { sizeof wp };
+				WINDOWPLACEMENT wp { sizeof wp };
 				pFrameWnd->GetWindowPlacement(&wp);
 				CRect rc;
 				GetWindowRect(&rc);
@@ -525,7 +526,7 @@ void COpenView::OnDestroy()
 
 LRESULT COpenView::OnNcHitTest(CPoint point)
 {
-	if (GetParentFrame()->IsZoomed())
+	if (GetParentFrame()->IsZoomed() || GetMainFrame()->GetLayoutManager().GetTileLayoutEnabled())
 	{
 		CRect rc;
 		GetWindowRect(&rc);
@@ -1441,6 +1442,21 @@ LRESULT COpenView::OnUpdateStatus(WPARAM wParam, LPARAM lParam)
 		KillTimer(IDT_RETRY);
 		m_retryCount = 0;
 	}
+	return 0;
+}
+
+LRESULT COpenView::OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam)
+{
+	const int olddpi = m_dpi;
+	CRect rc;
+	GetWindowRect(&rc);
+	__super::OnDpiChangedBeforeParent(wParam, lParam);
+	rc.left = MulDiv(rc.left, m_dpi, olddpi);
+	rc.right = MulDiv(rc.right, m_dpi, olddpi);
+	rc.top = MulDiv(rc.top, m_dpi, olddpi);
+	rc.bottom = MulDiv(rc.bottom, m_dpi, olddpi);
+	DefWindowProc(WM_DPICHANGED, (WPARAM)m_dpi, (LPARAM)&rc);
+	SetWindowPos(nullptr, 0, 0, rc.right - rc.left, rc.bottom - rc.top, SWP_NOMOVE | SWP_NOZORDER);
 	return 0;
 }
 

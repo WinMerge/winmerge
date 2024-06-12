@@ -75,6 +75,7 @@ public:
 	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
+	void ChangeDialogFont(HWND hwnd, int dpi) const;
 	String LoadString(UINT) const;
 	bool TranslateString(const std::string&, String&) const;
 	bool TranslateString(const std::wstring&, String&) const;
@@ -167,6 +168,8 @@ protected:
 
 	void AddZombieThread(CWinThread* pThread);
 	bool WaitZombieThreads();
+	
+	CFont *GetGUIFont(int dpi) const;
 
 	//{{AFX_MSG(CMergeApp)
 	afx_msg BOOL OnOpenRecentFile(UINT nID);
@@ -186,7 +189,7 @@ private:
 	LONG m_nActiveOperations; /**< Active operations count. */
 	bool m_bMergingMode; /**< Merging or Edit mode */
 	bool m_bEnableExitCode;
-	CFont m_fontGUI;
+	mutable std::map<int, CFont> m_mapFontGUI;
 	ATL::CImage m_imageForInitializingGdiplus;
 	std::list<std::function<void()>> m_idleFuncs;
 	std::list<CWinThread*> m_threads;

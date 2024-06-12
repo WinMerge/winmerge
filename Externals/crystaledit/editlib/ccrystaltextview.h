@@ -40,6 +40,7 @@
 #include "renderers/ccrystalrenderer.h"
 #include "utils/cregexp.h"
 #include "utils/icu.hpp"
+#include "utils/DpiAware.h"
 #include <vector>
 
 ////////////////////////////////////////////////////////////////////////////
@@ -77,7 +78,7 @@ enum : updateview_flags_t
  * not implement text editing. There are classes inherited from this
  * class which implement text editing.
  */
-class EDITPADC_CLASS CCrystalTextView : public CView
+class EDITPADC_CLASS CCrystalTextView : public DpiAware::CDpiAwareWnd<CView>
   {
     DECLARE_DYNCREATE (CCrystalTextView)
 
@@ -520,7 +521,7 @@ protected:
 
     int GetMarginIconSize() const
     {
-        return MulDiv(CCrystalRenderer::MARGIN_ICON_SIZE, GetSystemMetrics(SM_CXSMICON), 16);
+        return MulDiv(CCrystalRenderer::MARGIN_ICON_SIZE, m_dpi, USER_DEFAULT_SCREEN_DPI);
     }
 
 #ifdef _UNICODE
@@ -942,6 +943,7 @@ protected :
     //END SW
 
     afx_msg void OnToggleColumnSelection ();
+    afx_msg LRESULT OnDpiChangedBeforeParent(WPARAM wParam, LPARAM lParam);
 
     DECLARE_MESSAGE_MAP ()
   };

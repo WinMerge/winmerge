@@ -48,12 +48,14 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cregexp_poco.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\cs2cs.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\DpiAware.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\filesup.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\hqbitmap.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\icu.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)utils\MDITileLayout.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)utils\wcwidth.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -92,9 +94,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\cregexp.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\cs2cs.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\ctchar.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\DpiAware.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\filesup.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\hqbitmap.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\icu.hpp" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\MDITileLayout.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)utils\mfc_templ_defines.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)utils\wcwidth.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)ViewableWhitespace.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)wispelld.h" />

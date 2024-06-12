@@ -344,5 +344,8 @@
     <ClInclude Include="DebugNew.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Externals\crystaledit\editlib\utils\DpiAware.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
