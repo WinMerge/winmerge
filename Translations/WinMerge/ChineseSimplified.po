@@ -3878,7 +3878,7 @@ msgid ""
 "Next File (Ctrl+F8)"
 msgstr ""
 "\n"
-"上一个文件 (Ctrl+F8)"
+"下一个文件 (Ctrl+F8)"
 
 msgid ""
 "\n"
