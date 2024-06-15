@@ -36,15 +36,16 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 		UINT nMenuID /*= 0*/, CWnd* pParent /*= nullptr*/)   // standard constructor
 : CTrDialog(IDD_PREFERENCES, pParent)
 , m_pOptionsMgr(regOptions)
-, m_pSyntaxColors(colors)
+, m_pSyntaxColorsOrg(colors)
+, m_pSyntaxColors(new SyntaxColors(colors))
 , m_pageGeneral(regOptions)
 , m_pageCompare(regOptions)
 , m_pageMessageBoxes(regOptions)
 , m_pageColorSchemes(regOptions)
 , m_pageMergeColors(regOptions)
-, m_pageTextColors(regOptions, colors)
-, m_pageSyntaxColors(regOptions, colors)
-, m_pageMarkerColors(regOptions, colors)
+, m_pageTextColors(regOptions, m_pSyntaxColors.get())
+, m_pageSyntaxColors(regOptions, m_pSyntaxColors.get())
+, m_pageMarkerColors(regOptions, m_pSyntaxColors.get())
 , m_pageDirColors(regOptions)
 , m_pageArchive(regOptions)
 , m_pageCodepage(regOptions)
@@ -360,6 +361,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageProject.WriteOptions();
 	m_pageBackups.WriteOptions();
 	m_pageShell.WriteOptions();
+	m_pSyntaxColorsOrg->Clone(m_pSyntaxColors.get());
 }
 
 /**
@@ -372,7 +374,7 @@ void CPreferencesDlg::OnImportButton()
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == COption::OPT_OK)
 		{
-			Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
+			Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors.get());
 			theApp.m_pLineFilters->Initialize(GetOptionsMgr());
 			theApp.m_pSubstitutionFiltersList->Initialize(GetOptionsMgr());
 
@@ -411,7 +413,7 @@ void CPreferencesDlg::OnExportButton()
 
 LRESULT CPreferencesDlg::OnColorSchemeChanged(WPARAM wParams, LPARAM lParam)
 {
-	Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors);
+	Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors.get());
 	ReadOptions(true);
 	return 0;
 }

@@ -52,6 +52,12 @@ public:
 		UINT nMenuID = 0, CWnd* pParent = nullptr);   // standard constructor
 	virtual ~CPreferencesDlg();
 
+private:
+	COptionsMgr *m_pOptionsMgr;
+	std::unique_ptr<SyntaxColors> m_pSyntaxColors;
+	SyntaxColors* m_pSyntaxColorsOrg;
+	prdlg::CMoveConstraint m_constraint; /**< Resizes dialog controls when dialog resized */
+
 protected:
 // Dialog Data
 	//{{AFX_DATA(CPreferencesDlg)
@@ -117,9 +123,4 @@ protected:
 	void ReadOptions(bool bUpdate = false);
 	void SaveOptions();
 	void SafeUpdatePage(CPropertyPage* pPage, bool bSaveAndValidate);
-
-private:
-	COptionsMgr *m_pOptionsMgr;
-	SyntaxColors *m_pSyntaxColors;
-	prdlg::CMoveConstraint m_constraint; /**< Resizes dialog controls when dialog resized */
 };
