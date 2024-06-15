@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2024-04-26 19:18+0200\n"
+"PO-Revision-Date: 2024-06-14 10:21+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -5148,7 +5148,7 @@ msgid "Disassemble Native Code"
 msgstr "Désassembler le code natif"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Convertir du texte avec l'IA..."
 
 msgid "Make characters uppercase"
 msgstr "Mettre les caractères en MAJUSCULES"
@@ -5398,7 +5398,7 @@ msgid "Prediff Line Filter"
 msgstr "Filtre de pré-comparaison de ligne"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Fonction d'insertion de date et d'heure"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -5415,13 +5415,17 @@ msgstr ""
 "Arguments : options de ligne de commande transmises à la commande reg.exe."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Fonctions de texte de base"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "Fonctions de conversion de texte assistées par l'IA"
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"Convertisseur de texte utilisant l'API OpenAI.\r\n"
+"Utilisation : AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Options du plugin WinMerge CompareMSExcelFiles.sct"
@@ -5561,29 +5565,35 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Ne pas spécifier l'option de ligne de commande '-p0' pour le fichier de correctif qui inclut des chemins absolus\""
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Options du plug-in AI.sct WinMerge"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Entrez l'invite"
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
 msgstr ""
+"Entrez votre clé API OpenAI.\r\n"
+" - L'utilisation de ce plugin nécessite une inscription auprès d'OpenAI et entraîne des frais.\r\n"
+" - La clé API est stockée dans la variable d'environnement %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Nom de la variable d'environnement pour la clé API OpenAI"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "Clé API OpenAI"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Température"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Longueur maximale"
 
 msgid "Model"
-msgstr ""
+msgstr "Modèle"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "La clé API OpenAI a changé. Veuillez redémarrer WinMerge pour appliquer les modifications."
