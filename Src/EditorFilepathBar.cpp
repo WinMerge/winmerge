@@ -120,6 +120,7 @@ void CEditorFilePathBar::Resize(int widths[])
 	CRect rc;
 	int x = 0;
 	GetClientRect(&rc);
+	bool resized = false;
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{
 		CRect rcOld;
@@ -138,8 +139,11 @@ void CEditorFilePathBar::Resize(int widths[])
 			rc2.DeflateRect(sw + r, sw);
 			m_Edit[pane].MoveWindow(&rc2);
 			m_Edit[pane].RefreshDisplayText();
+			resized = true;
 		}
 	}
+	if (resized)
+		InvalidateRect(nullptr, false);
 }
 
 void CEditorFilePathBar::DoPaint(CDC* pDC)
