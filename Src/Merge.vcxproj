@@ -919,6 +919,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Common\RoundedRectWithShadow.cpp" />
     <ClCompile Include="Common\Shell.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1450,6 +1451,7 @@
     <ClInclude Include="Common\DebugNew.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
     <ClInclude Include="Common\IMDITab.h" />
+    <ClInclude Include="Common\RoundedRectWithShadow.h" />
     <ClInclude Include="Common\Shell.h" />
     <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />

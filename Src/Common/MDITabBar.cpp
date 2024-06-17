@@ -8,10 +8,14 @@
 #include "MDITabBar.h"
 #include "IMDITab.h"
 #include "cecolor.h"
+#include "RoundedRectWithShadow.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+constexpr int RR_RADIUS = 3;
+constexpr int RR_SHADOWWIDTH = 3;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMDITabBar
@@ -50,7 +54,12 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	if (!CWnd::Create(WC_TABCONTROL, nullptr, WS_CHILD | WS_VISIBLE | TCS_OWNERDRAWFIXED, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST+30))
 		return FALSE;
 
-	TabCtrl_SetPadding(m_hWnd, determineIconSize(), 4);
+	CClientDC dc(this);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int r = pointToPixel(RR_RADIUS);
+	const int sw = pointToPixel(RR_SHADOWWIDTH);
+	TabCtrl_SetPadding(m_hWnd, sw + r * 2 + determineIconSize() / 2, sw + r);
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
@@ -92,7 +101,12 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	dc.GetTextMetrics(&tm);
 	dc.SelectObject(pOldFont);
 
-	return CSize(SHRT_MAX, tm.tmHeight + 10);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int r = pointToPixel(RR_RADIUS);
+	const int sw = pointToPixel(RR_SHADOWWIDTH);
+
+	return CSize(SHRT_MAX, tm.tmHeight + (sw + r) * 2);
 }
 
 void CMDITabBar::OnPaint() 
@@ -103,53 +117,18 @@ void CMDITabBar::OnPaint()
 	DRAWITEMSTRUCT dis;
 	dis.hDC = dc.GetSafeHdc();
 
+	CRect rcClient;
+	GetClientRect(&rcClient);
+
 	int nCurSel = GetCurSel();
 	for (int i = GetItemCount() - 1; i >= 0; --i)
 	{
 		GetItemRect(i, &dis.rcItem);
-		RECT rcItem = dis.rcItem;
 		dis.itemID = i;
-		if (i != nCurSel)
-		{
-			dis.itemState = 0;
-			dis.rcItem.left += 2;
-			dis.rcItem.right -= 2;
-			dis.rcItem.bottom -= 2;
-		}
-		else
-		{
-			dis.itemState = ODS_SELECTED;
-			dis.rcItem.left -= 2;
-			dis.rcItem.right += 2;
-			dis.rcItem.bottom += 2;
-			dis.rcItem.top -= 2;
-		}
+		dis.rcItem.top = rcClient.top;
+		dis.rcItem.bottom = rcClient.bottom;
+		dis.itemState = (i != nCurSel) ? 0 : ODS_SELECTED;
 		DrawItem(&dis);
-		if (i == nCurSel)
-		{
-			for (int x = 0; x < 6; x++)
-			{
-				COLORREF clr = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
-					1.0f - sqrtf(1.0f - powf(x / 6.0f - 1.0f, 2.0f)));
-				dc.FillSolidRect(CRect(rcItem.right - 1 + x, rcItem.top - 2, rcItem.right + x, rcItem.bottom + 4),
-					clr);
-			}
-		}
-		else if (i == nCurSel - 1)
-		{
-			for (int x = 0; x < 4; x++)
-			{
-				COLORREF clr = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE),
-					1.0f - sqrtf(1.0f - powf(x / 4.0f - 1.0f, 2.0f)));
-				dc.FillSolidRect(CRect(rcItem.right - 1 - x, rcItem.top - 2, rcItem.right - x, rcItem.bottom + 4),
-					clr);
-			}
-		}
-		else
-		{
-			dc.FillSolidRect(CRect(rcItem.right - 1, rcItem.top - 2, rcItem.right, rcItem.bottom + 4),
-				GetSysColor(COLOR_3DLIGHT));
-		}
 	}
 }
 
@@ -374,30 +353,34 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	item.cchTextMax = sizeof(szBuf) / sizeof(TCHAR);
 	TabCtrl_GetItem(this->m_hWnd, lpDraw->itemID, &item);
 
-	RECT rc = lpDraw->rcItem;
+	const int lpx = ::GetDeviceCaps(lpDraw->hDC, LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int r = pointToPixel(RR_RADIUS);
+	const int sw = pointToPixel(RR_SHADOWWIDTH);
+
+	CRect rc = lpDraw->rcItem;
 	if (lpDraw->itemState & ODS_SELECTED)
 	{
-		rc.left += 9;
-		rc.top += 2;
+		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE), 0.5f);
 		if (GetSysColor(COLOR_3DFACE) == GetSysColor(COLOR_WINDOW))
 		{
-			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetSysColorBrush(COLOR_HIGHLIGHT));
+			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, sw - 1, rc.Width() - sw * 2, rc.top - sw * 2 + 2, r, sw,
+				GetSysColor(COLOR_HIGHLIGHT), clrShadow, GetSysColor(COLOR_3DFACE));
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_HIGHLIGHTTEXT));
 		}
 		else
 		{
-			FillRect(lpDraw->hDC, &lpDraw->rcItem, (HBRUSH)GetSysColorBrush(COLOR_WINDOW));
+			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
+				GetSysColor(COLOR_WINDOW), clrShadow, GetSysColor(COLOR_3DFACE));
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_WINDOWTEXT));
 		}
 	}
 	else
 	{
-		rc.left += 5;
-		rc.top += 3;
 		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
 	}
 	CSize iconsize(determineIconSize(), determineIconSize());
-	rc.left += iconsize.cx;
+	rc.left += sw * 2 + iconsize.cx;
 	SetBkMode(lpDraw->hDC, TRANSPARENT);
 	HWND hwndFrame = reinterpret_cast<HWND>(item.lParam);
 	if (::IsWindow(hwndFrame))
@@ -406,8 +389,9 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		if (hIcon == nullptr)
 			hIcon = (HICON)GetClassLongPtr(hwndFrame, GCLP_HICONSM);
 		if (hIcon != nullptr)
-			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx - 2, rc.top + (rc.bottom - rc.top - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, nullptr, DI_NORMAL);
+			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx, rc.top + (rc.Height() - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, nullptr, DI_NORMAL);
 	}
+	rc.left += sw;
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
 	int nItem = GetItemIndexFromPoint(m_rcCurrentCloseButtom.CenterPoint());
@@ -504,14 +488,20 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-CRect CMDITabBar::GetCloseButtonRect(int nItem) const
+CRect CMDITabBar::GetCloseButtonRect(int nItem)
 {
-	CRect rc;
+	CClientDC dc(this);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int r = pointToPixel(RR_RADIUS);
+	const int sw = pointToPixel(RR_SHADOWWIDTH);
+	CRect rc, rcClient;
 	CSize size(determineIconSize(), determineIconSize());
+	GetClientRect(&rcClient);
 	GetItemRect(nItem, &rc);
-	rc.left = rc.right - size.cx - 4;
+	rc.left = rc.right - size.cx - sw - r;
 	rc.right = rc.left + size.cx;
-	int y = (rc.top + rc.bottom) / 2;
+	int y = (rcClient.top + rcClient.bottom) / 2;
 	rc.top = y - size.cy / 2 + 1;
 	rc.bottom = rc.top + size.cy;
 	return rc;

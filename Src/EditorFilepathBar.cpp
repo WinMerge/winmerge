@@ -12,15 +12,20 @@
 
 #include "stdafx.h"
 #include "EditorFilepathBar.h"
+#include "RoundedRectWithShadow.h"
+#include "cecolor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
 
+constexpr int RR_RADIUS = 3;
+constexpr int RR_SHADOWWIDTH = 3;
 
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
 	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
 	ON_CONTROL_RANGE (EN_SETFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSetFocusEdit)
+	ON_CONTROL_RANGE (EN_KILLFOCUS, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnKillFocusEdit)
 	ON_CONTROL_RANGE (EN_USER_CAPTION_CHANGED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnChangeEdit)
 	ON_CONTROL_RANGE (EN_USER_FILE_SELECTED, IDC_STATIC_TITLE_PANE0, IDC_STATIC_TITLE_PANE2, OnSelectEdit)
 END_MESSAGE_MAP()
@@ -55,18 +60,16 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	if (SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0))
+	{
+		ncm.lfStatusFont.lfWeight = FW_BOLD;
 		m_font.CreateFontIndirect(&ncm.lfStatusFont);
+	}
 
 	// subclass the two custom edit boxes
-	const int lpx = CClientDC(this).GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	int cx = -pointToPixel(ncm.lfStatusFont.lfHeight);
-	int m = pointToPixel(3);
 	for (int pane = 0; pane < static_cast<int>(std::size(m_Edit)); pane++)
 	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 		m_Edit[pane].SetFont(&m_font);
-		m_Edit[pane].SetMargins(m, m + cx);
 	}
 	return TRUE;
 };
@@ -80,7 +83,7 @@ CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	dc.SelectObject(pOldFont);
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	int cy = pointToPixel(4);
+	int cy = pointToPixel(3 + RR_SHADOWWIDTH * 2);
 	return CSize(SHRT_MAX, 1 + tm.tmHeight + cy);
 }
 
@@ -126,10 +129,39 @@ void CEditorFilePathBar::Resize(int widths[])
 		x = rc.right;
 		if (rcOld.Width() != rc.Width())
 		{
-			m_Edit[pane].MoveWindow(&rc);
+			CClientDC dc(this);
+			const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+			auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+			const int r = pointToPixel(RR_RADIUS);
+			const int sw = pointToPixel(RR_SHADOWWIDTH);
+			CRect rc2 = rc;
+			rc2.DeflateRect(sw + r, sw);
+			m_Edit[pane].MoveWindow(&rc2);
 			m_Edit[pane].RefreshDisplayText();
 		}
 	}
+}
+
+void CEditorFilePathBar::DoPaint(CDC* pDC)
+{
+	const int lpx = pDC->GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int r = pointToPixel(RR_RADIUS);
+	const int sw = pointToPixel(RR_SHADOWWIDTH);
+	CRect rcBar;
+	GetWindowRect(&rcBar);
+	for (int pane = 0; pane < m_nPanes; pane++)
+	{
+		CRect rc;
+		m_Edit[pane].GetWindowRect(&rc);
+		COLORREF clrBackcolor = m_Edit[pane].GetBackColor();
+		rc.OffsetRect(-rcBar.left, -rcBar.top);
+		DrawRoundedRectWithShadow(pDC->m_hDC, rc.left - r, rc.top - 1, rc.right - rc.left + 2 * r, rc.bottom - rc.top + 1, r, sw,
+			clrBackcolor,
+			CEColor::GetIntermediateColor(GetSysColor(COLOR_3DFACE), GetSysColor(COLOR_3DSHADOW), 0.5f),
+			GetSysColor(COLOR_3DFACE));
+	}
+	__super::DoPaint(pDC);
 }
 
 /**
@@ -182,12 +214,19 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 
 void CEditorFilePathBar::OnSetFocusEdit(UINT id)
 {
+	InvalidateRect(nullptr, false);
 	if (m_setFocusCallbackfunc)
 		m_setFocusCallbackfunc(id - IDC_STATIC_TITLE_PANE0);
 }
 
+void CEditorFilePathBar::OnKillFocusEdit(UINT id)
+{
+	InvalidateRect(nullptr, false);
+}
+
 void CEditorFilePathBar::OnChangeEdit(UINT id)
 {
+	InvalidateRect(nullptr, false);
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
 	if (m_captionChangedCallbackfunc)
 	{
@@ -199,6 +238,7 @@ void CEditorFilePathBar::OnChangeEdit(UINT id)
 
 void CEditorFilePathBar::OnSelectEdit(UINT id)
 {
+	InvalidateRect(nullptr, false);
 	const int pane = id - IDC_STATIC_TITLE_PANE0;
 	(m_fileSelectedCallbackfunc ? m_fileSelectedCallbackfunc : m_folderSelectedCallbackfunc)
 		(pane, m_Edit[pane].GetSelectedPath());
@@ -253,5 +293,7 @@ void CEditorFilePathBar::SetActive(int pane, bool bActive)
 	if (m_hWnd == nullptr)
 		return;
 
+	if (bActive != m_Edit[pane].GetActive())
+		InvalidateRect(nullptr, false);
 	m_Edit[pane].SetActive(bActive);
 }

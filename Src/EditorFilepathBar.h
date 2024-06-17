@@ -46,6 +46,7 @@ public :
 
 	BOOL Create( CWnd* pParentWnd);
 	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);
+	virtual void DoPaint(CDC* pDC);
 
 // Dialog Data
 	enum { IDD = IDD_EDITOR_HEADERBAR };
@@ -67,6 +68,7 @@ protected:
 	//{{AFX_MSG(CEditorFilePathBar)
 	afx_msg BOOL OnToolTipNotify( UINT id, NMHDR * pTTTStruct, LRESULT * pResult );
 	afx_msg void OnSetFocusEdit(UINT id);
+	afx_msg void OnKillFocusEdit(UINT id);
 	afx_msg void OnChangeEdit(UINT id);
 	afx_msg void OnSelectEdit(UINT id);
 	//}}AFX_MSG

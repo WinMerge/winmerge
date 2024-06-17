@@ -75,7 +75,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	CRect GetCloseButtonRect(int nItem) const;
+	CRect GetCloseButtonRect(int nItem);
 	int GetItemIndexFromPoint(CPoint pt) const;
 	void SwapTabs(int nIndexA, int nIndexB);
 	int GetMaxTitleLength() const;

@@ -727,6 +727,9 @@
     <ClCompile Include="DirStatusBar.cpp">
       <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\RoundedRectWithShadow.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1388,6 +1391,9 @@
     </ClInclude>
     <ClInclude Include="DirStatusBar.h">
       <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\RoundedRectWithShadow.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
