@@ -70,6 +70,7 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 	{
 		m_Edit[pane].SubClassEdit(IDC_STATIC_TITLE_PANE0 + pane, this);
 		m_Edit[pane].SetFont(&m_font);
+		m_Edit[pane].SetMargins(0, std::abs(ncm.lfStatusFont.lfHeight));
 	}
 	return TRUE;
 };
@@ -154,16 +155,22 @@ void CEditorFilePathBar::DoPaint(CDC* pDC)
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
 	CRect rcBar;
 	GetWindowRect(&rcBar);
+	const COLORREF clrBarBackcolor = GetSysColor(COLOR_3DFACE);
 	for (int pane = 0; pane < m_nPanes; pane++)
 	{
 		CRect rc;
 		m_Edit[pane].GetWindowRect(&rc);
-		COLORREF clrBackcolor = m_Edit[pane].GetBackColor();
+		const COLORREF clrBackcolor = m_Edit[pane].GetBackColor();
 		rc.OffsetRect(-rcBar.left, -rcBar.top);
 		DrawRoundedRectWithShadow(pDC->m_hDC, rc.left - r, rc.top - 1, rc.right - rc.left + 2 * r, rc.bottom - rc.top + 1, r, sw,
 			clrBackcolor,
-			CEColor::GetIntermediateColor(GetSysColor(COLOR_3DFACE), GetSysColor(COLOR_3DSHADOW), 0.5f),
-			GetSysColor(COLOR_3DFACE));
+			CEColor::GetIntermediateColor(clrBarBackcolor, GetSysColor(COLOR_3DSHADOW), 0.5f),
+			clrBarBackcolor);
+		if (pane == m_nPanes - 1)
+		{
+			CRect rc2{ rc.right + r + sw, 0, rcBar.Width(), rcBar.Height() };
+			pDC->FillSolidRect(&rc2, clrBarBackcolor);
+		}
 	}
 	__super::DoPaint(pDC);
 }
