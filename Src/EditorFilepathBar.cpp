@@ -161,11 +161,11 @@ void CEditorFilePathBar::DoPaint(CDC* pDC)
 		CRect rc;
 		m_Edit[pane].GetWindowRect(&rc);
 		const COLORREF clrBackcolor = m_Edit[pane].GetBackColor();
+		const COLORREF clrShadow =
+			CEColor::GetIntermediateColor(clrBarBackcolor, GetSysColor(COLOR_3DSHADOW), m_Edit[pane].GetActive() ? 0.5f : 0.8f);
 		rc.OffsetRect(-rcBar.left, -rcBar.top);
 		DrawRoundedRectWithShadow(pDC->m_hDC, rc.left - r, rc.top - 1, rc.right - rc.left + 2 * r, rc.bottom - rc.top + 1, r, sw,
-			clrBackcolor,
-			CEColor::GetIntermediateColor(clrBarBackcolor, GetSysColor(COLOR_3DSHADOW), 0.5f),
-			clrBarBackcolor);
+			clrBackcolor, clrShadow, clrBarBackcolor);
 		if (pane == m_nPanes - 1)
 		{
 			CRect rc2{ rc.right + r + sw, 0, rcBar.Width(), rcBar.Height() };
