@@ -28,6 +28,7 @@
 
 #include "StdAfx.h"
 #include "scbarcf.h"
+#include "RoundedRectWithShadow.h"
 
 /////////////////////////////////////////////////////////////////////////
 // CSizingControlBarCF
@@ -113,62 +114,12 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, const CRect& rcClient)
 
     // draw the caption background
     //CBrush br;
-    COLORREF clrCptn = m_bActive ?
+    const COLORREF clrCptn = m_bActive ?
         ::GetSysColor(COLOR_ACTIVECAPTION) :
         ::GetSysColor(COLOR_INACTIVECAPTION);
-
-    // query gradient info (usually TRUE for Win98/Win2k)
-    BOOL bGradient = FALSE;
-    ::SystemParametersInfo(SPI_GETGRADIENTCAPTIONS, 0, &bGradient, 0);
-    
-    if (!bGradient)
-        pDC->FillSolidRect(&rcGrip, clrCptn); // solid color
-    else
-    {
-        // gradient from left to right or from bottom to top
-        // get second gradient color (the right end)
-        COLORREF clrCptnRight = m_bActive ?
-            ::GetSysColor(COLOR_GRADIENTACTIVECAPTION) :
-            ::GetSysColor(COLOR_GRADIENTINACTIVECAPTION);
-
-        // this will make 2^6 = 64 fountain steps
-        int nShift = 6;
-        int nSteps = 1 << nShift;
-
-        for (int i = 0; i < nSteps; i++)
-        {
-            // do a little alpha blending
-            int nR = (GetRValue(clrCptn) * (nSteps - i) +
-                      GetRValue(clrCptnRight) * i) >> nShift;
-            int nG = (GetGValue(clrCptn) * (nSteps - i) +
-                      GetGValue(clrCptnRight) * i) >> nShift;
-            int nB = (GetBValue(clrCptn) * (nSteps - i) +
-                      GetBValue(clrCptnRight) * i) >> nShift;
-
-            COLORREF cr = RGB(nR, nG, nB);
-
-            // then paint with the resulting color
-            CRect r2 = rcGrip;
-            if (bHorz)
-            {
-                r2.bottom = rcGrip.bottom - 
-                    ((i * rcGrip.Height()) >> nShift);
-                r2.top = rcGrip.bottom - 
-                    (((i + 1) * rcGrip.Height()) >> nShift);
-                if (r2.Height() > 0)
-                    pDC->FillSolidRect(r2, cr);
-            }
-            else
-            {
-                r2.left = rcGrip.left + 
-                    ((i * rcGrip.Width()) >> nShift);
-                r2.right = rcGrip.left + 
-                    (((i + 1) * rcGrip.Width()) >> nShift);
-                if (r2.Width() > 0)
-                    pDC->FillSolidRect(r2, cr);
-            }
-        }
-    }
+    const COLORREF clrBack = ::GetSysColor(COLOR_3DFACE);
+    const int radius = pointToPixel(2.25);
+    DrawRoundedRectWithShadow(pDC->m_hDC, rcGrip.left, rcGrip.top, rcGrip.Width(), rcGrip.Height(), radius, 0, clrCptn, clrBack, clrBack);
 
     // draw the caption text - first select a font
     CFont font;
