@@ -1253,6 +1253,8 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 
+	size_t oldItemCount = m_listViewItems.size();
+
 	CDiffContext &ctxt = GetDiffContext();
 	dip.customFlags |= ViewCustomFlags::EXPANDED;
 	if (bRecursive)
@@ -1265,8 +1267,18 @@ void CDirView::ExpandSubdir(int sel, bool bRecursive)
 
 	SortColumnsAppropriately();
 
+	if (m_pList->GetNextItem(sel, LVNI_SELECTED) != -1)
+	{
+		LVITEM lvi {0, sel + 1};
+		for (size_t i = 0; i < m_listViewItems.size() - oldItemCount; i++)
+			m_pList->InsertItem(&lvi);
+	}
+	else
+	{
+		m_pList->SetItemCountEx(static_cast<int>(m_listViewItems.size()), LVSICF_NOSCROLL);
+	}
+
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
-	m_pList->SetItemCountEx(static_cast<int>(m_listViewItems.size()), LVSICF_NOSCROLL);
 	m_pList->Invalidate();
 }
 
