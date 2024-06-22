@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge in Corsican\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-04-20 09:09+0000\n"
-"PO-Revision-Date: 2024-04-21 16:39+0200\n"
+"POT-Creation-Date: 2024-05-05 10:37+0000\n"
+"PO-Revision-Date: 2024-06-21 17:18+0200\n"
 "Last-Translator: Patriccollu di Santa Maria è Sichè <https://github.com/Patriccollu/Lingua_Corsa-Infurmatica/#readme>\n"
 "Language-Team: Patriccollu di Santa Maria è Sichè\n"
 "Language: co\n"
@@ -21,7 +21,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
 "X-Poedit-Language: Corsican\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -370,7 +370,7 @@ msgid "&Plugins"
 msgstr "&Estensioni"
 
 msgid "P&lugin Settings..."
-msgstr "Preferenze di l’&estensioni…"
+msgstr "Parametri di l’&estensioni…"
 
 msgid "Ma&nual Prediffer"
 msgstr "Preparagone &manuale"
@@ -412,7 +412,7 @@ msgid "&Help"
 msgstr "Ai&utu"
 
 msgid "&WinMerge Help\tF1"
-msgstr "Aiutu &WInMerge\tF1"
+msgstr "Aiutu &WinMerge\tF1"
 
 msgid "R&elease Notes"
 msgstr "&Note di versione"
@@ -1017,7 +1017,7 @@ msgid "&Open..."
 msgstr "A&pre…"
 
 msgid "Unpacker Settings"
-msgstr "Preferenze di u spacchittadore"
+msgstr "Parametri di u spacchittadore"
 
 msgid "<None>"
 msgstr "<nisunu>"
@@ -1029,7 +1029,7 @@ msgid "&Select..."
 msgstr "&Selezziunà…"
 
 msgid "Prediffer Settings"
-msgstr "Preferenze di u preparagone"
+msgstr "Parametri di u preparagone"
 
 msgid "G&o to Diff"
 msgstr "&Tuccà a sfarenza"
@@ -2113,10 +2113,10 @@ msgid "Binary file &patterns:"
 msgstr "Mudelli di schedariu &binarii :"
 
 msgid "Frhed settings"
-msgstr "Preferenze Frhed"
+msgstr "Parametri Frhed"
 
 msgid "View &Settings..."
-msgstr "Affissà e &preferenze…"
+msgstr "Affissà i &parametri…"
 
 msgid "&Binary Mode..."
 msgstr "Modu &binariu…"
@@ -3477,7 +3477,7 @@ msgid "An error occurred while comparing the files."
 msgstr "Un sbagliu hè accadutu durante u paragone di i schedarii."
 
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "I schedarii timpurarii ùn ponu micca esse creati. Verificate e preferenze di u vostru chjassu timpurariu."
+msgstr "I schedarii timpurarii ùn ponu micca esse creati. Verificate i parametri di u vostru chjassu timpurariu."
 
 msgid ""
 "These files use different carriage return types.\n"
@@ -3886,7 +3886,7 @@ msgid "Failed to download latest version information"
 msgstr "Fiascu per scaricà l’infurmazione di l’ultima versione"
 
 msgid "Plugin Settings"
-msgstr "Preferenze di l’estensione"
+msgstr "Parametri di l’estensione"
 
 msgid "WSH not found - .sct scripts disabled"
 msgstr "Ùn si pò truvà WSH ; i scenarii .sct sò disattivati"
@@ -4002,7 +4002,7 @@ msgid "MDI child window only"
 msgstr "Finestra zitella MDI solu"
 
 msgid "Close main window if there is only one MDI child window"
-msgstr "Chjode a finestra principale s'ellu ci hè solu una finestra zitella MDI"
+msgstr "Chjode a finestra principale s’ella ci hè solu una finestra zitella MDI"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Diff"
@@ -4424,7 +4424,7 @@ msgid "Disassemble Native Code"
 msgstr "Disassemblà Native Code"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Cunvertisce u testu cù l’IA…"
 
 msgid "Make characters uppercase"
 msgstr "Mette i caratteri in maiuscula"
@@ -4674,7 +4674,7 @@ msgid "Prediff Line Filter"
 msgstr "Filtru di linea di preparagone"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Funzione d’inserzione di data è ora"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4691,16 +4691,20 @@ msgstr ""
 "Parametri : Ozzioni di linea di cumanda passate à a cumanda « reg.exe »."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Funzioni basiche di testu"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "Funzioni di cunversione di testu assistate da l’IA"
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"Cunvertidore di testu impieghendu OpenAI API.\r\n"
+"Aghjovu : AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
-msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSExcelFiles.sct"
+msgstr "Ozzioni di u modulu d’estensione CompareMSExcelFiles.sct di WinMerge"
 
 msgid "Extract workbook data to multiple files"
 msgstr "Estrae i dati di u sfugliaghju ver di parechji schedarii"
@@ -4741,14 +4745,14 @@ msgid ""
 "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge.\r\n"
 msgstr ""
 "Ùn si pò micca ottene e prucedure Macros.\r\n"
-"   Per permette à WinMerge di paragunà e prucedure macro, impiegate MS Office per mudificà e preferenze di sicurità di e macro per l’appiecazione currente.\r\n"
+"   Per permette à WinMerge di paragunà e prucedure macro, impiegate MS Office per mudificà i parametri di sicurità di e macro per l’appiecazione currente.\r\n"
 "   L’ozzione di permessu d’accede à u prughjettu Visual Basic deve esse attivata per impiegà sta funzione in WinMerge.\r\n"
 
 msgid "Compare VBA macros"
 msgstr "Paragunà e prucedure VBA"
 
 msgid "CompareMSWordFiles.sct WinMerge Plugin Options"
-msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSWordFiles.sct"
+msgstr "Ozzioni di u modulu d’estensione CompareMSWordFiles.sct di WinMerge"
 
 msgid "Extract document data to multiple files"
 msgstr "Estrae i dati di u ducumentu ver di parechji schedarii"
@@ -4763,7 +4767,7 @@ msgid "Compare documents as HTML file (very slow)"
 msgstr "Paragunà i ducumenti tale HTML (pianu pianu)"
 
 msgid "CompareMSPowerPointFiles.sct WinMerge Plugin Options"
-msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSPowerPointFiles.sct"
+msgstr "Ozzioni di u modulu d’estensione CompareMSPowerPointFiles.sct di WinMerge"
 
 msgid "Extract slide data to multiple files"
 msgstr "Estrae i dati di e diapusitive ver di parechji schedarii"
@@ -4775,7 +4779,7 @@ msgid "Compare texts in notes page"
 msgstr "Paragunà i testi in e pagine di note"
 
 msgid "CompareMSVisioFiles.sct WinMerge Plugin Options"
-msgstr "Ozzioni WinMerge di u modulu d’estensione CompareMSVisioFiles.sct"
+msgstr "Ozzioni di u modulu d’estensione CompareMSVisioFiles.sct di WinMerge"
 
 msgid "Extract page data to multiple files"
 msgstr "Estrae i dati di e pagine ver di parechji schedarii"
@@ -4784,7 +4788,7 @@ msgid "Compare pages as image (very slow)"
 msgstr "Paragunà e pagine tale fiure (pianu pianu)"
 
 msgid "PrediffLineFilter.sct WinMerge Plugin Options"
-msgstr "Ozzioni WinMerge di u modulu d’estensione PrediffLineFilter.sct"
+msgstr "Ozzioni di u modulu d’estensione PrediffLineFilter.sct di WinMerge"
 
 msgid "Delete"
 msgstr "Squassà"
@@ -4805,7 +4809,7 @@ msgid "Replace with"
 msgstr "Rimpiazzà cù"
 
 msgid "Settings"
-msgstr "Preferenze"
+msgstr "Parametri"
 
 msgid ""
 "Column Ranges To Ignore:\n"
@@ -4837,29 +4841,35 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Ùn specificate micca l’ozzione di linea di cumanda « -p0 » per u schedariu di currezzione chì cuntene chjassi assuluti"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Ozzioni di u modulu d’estensione AI.sct di WinMerge"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Stampittate in modu d’invitu"
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
 msgstr ""
+"Stampittate a vostra chjave d’API per OpenAI.\r\n"
+" - L’impiegu di stu modulu d’estensione richiede un’inscrizzione à OpenAI è ingenereghja costi.\n"
+" - A chjave d’API hè piazzata in a variabile d’ambiente %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Nome di a variabile d’ambiente per a chjave d’API per OpenAI"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "Chjave d’API per OpenAI"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Timperatura"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Longhezza massima"
 
 msgid "Model"
-msgstr ""
+msgstr "Mudellu"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "A chjave d’API per OpenAI hà cambiatu. Ci vole à rilancià WinMerge per appiecà i cambiamenti."
