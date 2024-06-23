@@ -879,6 +879,9 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 		nBottomLine = nTopLine + nScreenLines;
 	}
 
+	const int lpx = pClientDC->GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+
 	CRect rc;
 	GetClientRect(rc);
 	int nbLines = INT_MAX;
@@ -918,7 +921,7 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 
 	CRect rcVisibleArea(2, m_visibleTop, rc.right - 2, m_visibleBottom);
 	std::unique_ptr<CBitmap> pBitmap(CopyRectToBitmap(pClientDC, rcVisibleArea));
-	std::unique_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get(), IsColorDark(GetBackgroundColor())));
+	std::unique_ptr<CBitmap> pDarkenedBitmap(GetDarkenedBitmap(pClientDC, pBitmap.get(), pointToPixel(3), IsColorDark(GetBackgroundColor())));
 	DrawBitmap(pClientDC, rcVisibleArea.left, rcVisibleArea.top, pDarkenedBitmap.get());
 }
 

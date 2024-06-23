@@ -15,5 +15,5 @@ namespace ATL { class CImage; }
 
 CBitmap *CopyRectToBitmap(CDC *pDC, const CRect & rect);
 void DrawBitmap(CDC *pDC, int x, int y, CBitmap *pBitmap);
-CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap, bool lighten = false);
+CBitmap *GetDarkenedBitmap(CDC *pDC, CBitmap *pBitmap, int radius, bool lighten = false);
 bool LoadImageFromResource(ATL::CImage& image, const tchar_t *pName, const tchar_t *pType);
