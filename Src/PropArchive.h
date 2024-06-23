@@ -29,6 +29,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	void UpdateControls();
 
+	afx_msg void OnDefaults();
 	afx_msg void OnEnableClicked();
 
 	DECLARE_MESSAGE_MAP()
