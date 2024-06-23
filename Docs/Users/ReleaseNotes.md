@@ -38,6 +38,7 @@ Please submit bug reports to our bug-tracker.
 - BugFix: Options - Syntax color settings get reverted when
     "Customized text colors" settings is touched. (#2355)
 - Add a "Defaults" button to the "Options (Editor > Compare/Merge)" dialog. (PR #2348)
+- Add a "Defaults" button to the "Options (Archive Support)" dialog. (PR #2362)
 
 ### Plugins
 
