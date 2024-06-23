@@ -36,6 +36,7 @@ void PropArchive::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(PropArchive, OptionsPanel)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_BN_CLICKED(IDC_ARCHIVE_ENABLE, OnEnableClicked)
 END_MESSAGE_MAP()
 
@@ -55,6 +56,16 @@ void PropArchive::WriteOptions()
 {
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_ENABLE, m_bEnableSupport);
 	GetOptionsMgr()->SaveOption(OPT_ARCHIVE_PROBETYPE, m_bProbeType);
+}
+
+/**
+ * @brief Sets options to defaults
+ */
+void PropArchive::OnDefaults()
+{
+	m_bEnableSupport = GetOptionsMgr()->GetDefault<bool>(OPT_ARCHIVE_ENABLE);
+	m_bProbeType = GetOptionsMgr()->GetDefault<bool>(OPT_ARCHIVE_PROBETYPE);
+	UpdateData(FALSE);
 }
 
 /** 
