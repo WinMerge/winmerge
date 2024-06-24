@@ -115,8 +115,8 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, const CRect& rcClient)
     // draw the caption background
     //CBrush br;
     const COLORREF clrCptn = m_bActive ?
-        ::GetSysColor(COLOR_ACTIVECAPTION) :
-        ::GetSysColor(COLOR_INACTIVECAPTION);
+        ::GetSysColor(COLOR_GRADIENTACTIVECAPTION) :
+        ::GetSysColor(COLOR_GRADIENTINACTIVECAPTION);
     const COLORREF clrBack = ::GetSysColor(COLOR_3DFACE);
     const int radius = pointToPixel(2.25);
     DrawRoundedRectWithShadow(pDC->m_hDC, rcGrip.left, rcGrip.top, rcGrip.Width(), rcGrip.Height(), radius, 0, clrCptn, clrBack, clrBack);
