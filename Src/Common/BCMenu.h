@@ -35,7 +35,7 @@ public:
 	BCMenuData () {pContext=nullptr;
 	nFlags=0;nID=0;syncflag=0;m_szMenuText=nullptr;global_offset=-1;};
 	void SetWideString(const wchar_t *szWideString);
-	const wchar_t *GetWideString(void) {return m_szMenuText;};
+	const wchar_t *GetWideString(void) const {return m_szMenuText;};
 	~BCMenuData ();
 	CString GetString(void);//returns the menu text
 	INT_PTR global_offset;
@@ -84,7 +84,7 @@ public:
 	bool InsertODMenu(UINT nPosition,wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT_PTR nID = 0,int nIconNormal = -1);  
 
 	// functions for modifying a menu option, use the ModifyODMenu call (see above define)
-	bool ModifyODMenu(wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
+	bool ModifyODMenu(const wchar_t *lpstrText,UINT_PTR nID=0,int nIconNormal=-1);
 
 	// for deleting and removing menu options
 	bool	RemoveMenu(UINT uiId,UINT nFlags);
@@ -145,6 +145,7 @@ protected:
 	void DrawCheckMark(CDC* pDC,int x,int y,COLORREF color,bool narrowflag=false);
 	void DrawRadioDot(CDC *pDC,int x,int y,COLORREF color);
 	BCMenuData *NewODMenu(UINT pos,UINT nFlags,UINT_PTR nID,CString string);
+	void SetMenuItemBitmap(intptr_t xoffset, int pos, unsigned state);
 	void SynchronizeMenu(void);
 	void InitializeMenuList(int value);
 	void DeleteMenuList(void);
@@ -167,6 +168,8 @@ protected:
 	INT_PTR AddToGlobalImageList(int nIconNormal,int nID);
 	int GlobalImageListOffset(int nID);
 	void LoadImages();
+	inline unsigned MakeOwnerDrawFlag() const { return BCMenu::m_bEnableOwnerDraw ? MF_OWNERDRAW : MF_STRING; }
+	inline const tchar_t *MakeItemData(const BCMenuData* mdata) const { return m_bEnableOwnerDraw ? reinterpret_cast<const tchar_t *>(mdata) : mdata->GetWideString(); }
 	
 // Member Variables
 protected:
@@ -179,7 +182,7 @@ protected:
 	static CTypedPtrArray<CPtrArray, HMENU>  m_AllSubMenus;
 	// Global ImageList
 	static CImageList m_AllImages;
-	struct ImageData { int id; int resourceId; int bitmapIndex; };
+	struct ImageData { int id; int resourceId; int bitmapIndex; std::unique_ptr<CBitmap> pBitmap; };
 	static std::vector<ImageData> m_AllImagesID;
 	static bool m_bHasNotLoadedImages;
 	// icon size
@@ -198,5 +201,6 @@ protected:
 	static int m_gutterWidth;
 	static int m_arrowWidth;
 	static HTHEME m_hTheme;
+	static bool m_bEnableOwnerDraw;
 }; 
 

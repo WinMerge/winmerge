@@ -779,6 +779,7 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 
 void CLanguageSelect::TranslateMenu(HMENU h) const
 {
+	BCMenu* pBCMenu = dynamic_cast<BCMenu*>(CMenu::FromHandle(h));
 	int i = ::GetMenuItemCount(h);
 	while (i > 0)
 	{
@@ -796,7 +797,8 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 			TranslateMenu(mii.hSubMenu);
 			mii.wID = static_cast<UINT>(reinterpret_cast<uintptr_t>(mii.hSubMenu));
 		}
-		if (BCMenuData *pItemData = reinterpret_cast<BCMenuData *>(mii.dwItemData))
+		BCMenuData *pItemData = reinterpret_cast<BCMenuData *>(mii.dwItemData);
+		if (pItemData)
 		{
 			if (LPCWSTR text = pItemData->GetWideString())
 			{
@@ -810,7 +812,11 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 		{
 			std::wstring s;
 			if (TranslateString(text, s))
+			{
+				if (pBCMenu && !pItemData)
+					pBCMenu->SetMenuText(i, s.c_str(), MF_BYPOSITION);
 				::ModifyMenuW(h, i, mii.fState | MF_BYPOSITION, mii.wID, s.c_str());
+			}
 		}
 	}
 }
