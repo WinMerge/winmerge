@@ -182,7 +182,7 @@ protected:
 	static CTypedPtrArray<CPtrArray, HMENU>  m_AllSubMenus;
 	// Global ImageList
 	static CImageList m_AllImages;
-	struct ImageData { int id; int resourceId; int bitmapIndex; std::unique_ptr<CBitmap> pBitmap; };
+	struct ImageData { int id; int resourceId; int bitmapIndex; std::unique_ptr<CBitmap> pBitmap; unsigned state; };
 	static std::vector<ImageData> m_AllImagesID;
 	static bool m_bHasNotLoadedImages;
 	// icon size

@@ -1313,6 +1313,12 @@ void BCMenu::DeleteMenuList(void)
 
 void BCMenu::SetMenuItemBitmap(intptr_t xoffset, int pos, unsigned state)
 {
+	if (m_AllImagesID[xoffset].state == state && m_AllImagesID[xoffset].pBitmap)
+	{
+		SetMenuItemBitmaps(static_cast<UINT>(pos), MF_BYPOSITION, m_AllImagesID[xoffset].pBitmap.get(), nullptr);
+		return;
+	}
+
 	const int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
 	const int cySMIcon = GetSystemMetrics(SM_CYSMICON);
 
@@ -1340,6 +1346,7 @@ void BCMenu::SetMenuItemBitmap(intptr_t xoffset, int pos, unsigned state)
 	dcMem.SelectObject(pOldBitmap);
 	SetMenuItemBitmaps(static_cast<UINT>(pos), MF_BYPOSITION, pBitmap, nullptr);
 	m_AllImagesID[xoffset].pBitmap.reset(pBitmap);
+	m_AllImagesID[xoffset].state = state;
 }
 
 void BCMenu::SynchronizeMenu(void)
@@ -1380,10 +1387,9 @@ void BCMenu::SynchronizeMenu(void)
 					mdata->SetWideString(string);//SK: modified for dynamic allocation
 				
 				ModifyMenu(j,mdata->nFlags,nID,MakeItemData(mdata));
-
-				if(!m_bEnableOwnerDraw && mdata->global_offset >= 0)
-					SetMenuItemBitmap(mdata->global_offset,j,state);
 			}
+			if(!m_bEnableOwnerDraw && mdata->global_offset >= 0)
+				SetMenuItemBitmap(mdata->global_offset,j,state);
 		}
 		if(mdata != nullptr)temp.Add(mdata);
 	}
@@ -1899,6 +1905,8 @@ INT_PTR BCMenu::AddToGlobalImageList(int nIconNormal,int nID)
 	if(existsloc>=0){
 		m_AllImagesID[existsloc].resourceId = (nIconNormal & 0x40000000) ? (nIconNormal & 0xffff) : nIconNormal;
 		m_AllImagesID[existsloc].bitmapIndex = (nIconNormal & 0x40000000) ? ((nIconNormal & 0x3fff0000) >> 16) : -1;
+		m_AllImagesID[existsloc].pBitmap.reset();
+		m_AllImagesID[existsloc].state = 0;
 		loc = existsloc;
 	}
 	else{
