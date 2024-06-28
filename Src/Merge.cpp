@@ -62,6 +62,8 @@
 #include "OptionsProject.h"
 #include "MergeAppCOMClass.h"
 #include "RegKey.h"
+#include "Win_VersionHelper.h"
+#include "BCMenu.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -401,6 +403,9 @@ BOOL CMergeApp::InitInstance()
 
 	strdiff::Init(); // String diff init
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
+
+	if (IsWin11_OrGreater())
+		BCMenu::DisableOwnerDraw();
 
 	m_bMergingMode = GetOptionsMgr()->GetBool(OPT_MERGE_MODE);
 
