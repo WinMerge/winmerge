@@ -51,11 +51,7 @@ int BCMenu::m_checkBgWidth = 0;
 int BCMenu::m_gutterWidth = 0;
 int BCMenu::m_arrowWidth = 0;
 HTHEME BCMenu::m_hTheme = nullptr;
-#ifdef _WIN64
-bool BCMenu::m_bEnableOwnerDraw = false;
-#else
 bool BCMenu::m_bEnableOwnerDraw = true;
-#endif
 
 static class GdiplusToken
 {

@@ -58,6 +58,8 @@ public:
 	BCMenu(); 
 	virtual ~BCMenu();
 
+	static void DisableOwnerDraw() { m_bEnableOwnerDraw = false; }
+
 	// Functions for loading and applying bitmaps to menus (see example application)
 	virtual BOOL LoadMenu(LPCTSTR lpszResourceName);
 	virtual BOOL LoadMenu(int nResource)
