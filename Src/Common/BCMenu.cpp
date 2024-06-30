@@ -26,6 +26,8 @@
 #include "stdafx.h"        // Standard windows header file
 #include "BCMenu.h"        // BCMenu class declaration
 #include <afxpriv.h>       //SK: makes A2W and other spiffy AFX macros work
+#include <../src/mfc/afximpl.h>
+#include <cmath>
 
 #pragma comment(lib, "uxtheme.lib")
 
@@ -223,6 +225,12 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
     }
 	else
 		m_szMenuText=nullptr;//set to nullptr so we need not bother about dangling non-nullptr Ptrs
+}
+
+void BCMenu::DisableOwnerDraw()
+{
+	m_bEnableOwnerDraw = false;
+	afxData.hbmMenuDot = reinterpret_cast<HBITMAP>(CreateRadioDotBitmap()->Detach());
 }
 
 bool BCMenu::IsMenu(HMENU submenu)
@@ -1852,6 +1860,39 @@ int BCMenu::GlobalImageListOffset(int nID)
 		}
 	}
 	return existsloc;
+}
+
+CBitmap* BCMenu::CreateRadioDotBitmap()
+{
+	const COLORREF color = GetSysColor(COLOR_MENUTEXT);
+	const DWORD dibcolor = (GetRValue(color) << 16) | (GetGValue(color) << 8) | GetBValue(color);
+	const int cxSMIcon = GetSystemMetrics(SM_CXSMICON);
+	const int cySMIcon = GetSystemMetrics(SM_CYSMICON);
+	BYTE* pBits;
+	BITMAPINFO bmi{ sizeof(BITMAPINFOHEADER), cxSMIcon, -cySMIcon, 1, 32, BI_RGB };
+	CBitmap *pBitmap = new CBitmap();
+	HBITMAP hBitmap = CreateDIBSection(nullptr, &bmi, DIB_RGB_COLORS, (void**)&pBits, nullptr, 0);
+	pBitmap->Attach(hBitmap);
+	CDC dcMem;
+	dcMem.CreateCompatibleDC(nullptr);
+	CBitmap* pOldBitmap = dcMem.SelectObject(pBitmap);
+	CRect rcDot(cxSMIcon/2-cxSMIcon/5,cySMIcon/2-cxSMIcon/5,cxSMIcon/2+cxSMIcon/5,cySMIcon/2+cySMIcon/5);
+	DWORD* p = reinterpret_cast<DWORD*>(pBits);
+	const int cx = (rcDot.left + rcDot.right ) / 2;
+	const int cy = (rcDot.top  + rcDot.bottom) / 2;
+	const double r = std::sqrt((cxSMIcon / 5) * (cxSMIcon / 5));
+	for (int y = rcDot.top; y < rcDot.bottom; ++y)
+	{
+		for (int x = rcDot.left; x < rcDot.right; ++x)
+		{
+			const double d = std::sqrt((x - cx) * (x - cx) + (y - cy) * (y - cy));
+			if (d <= r)
+				p[x + y * cxSMIcon] = dibcolor | ((r - d >= 1.0) ? 0xff000000 : (static_cast<BYTE>(255.0 * (r - d)) << 24));
+
+		}
+	}
+	dcMem.SelectObject(pOldBitmap);
+	return pBitmap;
 }
 
 void BCMenu::LoadImages()

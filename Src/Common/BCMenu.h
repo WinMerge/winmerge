@@ -58,7 +58,7 @@ public:
 	BCMenu(); 
 	virtual ~BCMenu();
 
-	static void DisableOwnerDraw() { m_bEnableOwnerDraw = false; }
+	static void DisableOwnerDraw();
 
 	// Functions for loading and applying bitmaps to menus (see example application)
 	virtual BOOL LoadMenu(LPCTSTR lpszResourceName);
@@ -172,6 +172,7 @@ protected:
 	void LoadImages();
 	inline unsigned MakeOwnerDrawFlag() const { return BCMenu::m_bEnableOwnerDraw ? MF_OWNERDRAW : MF_STRING; }
 	inline const tchar_t *MakeItemData(const BCMenuData* mdata) const { return m_bEnableOwnerDraw ? reinterpret_cast<const tchar_t *>(mdata) : mdata->GetWideString(); }
+	static CBitmap* CreateRadioDotBitmap();
 	
 // Member Variables
 protected:
