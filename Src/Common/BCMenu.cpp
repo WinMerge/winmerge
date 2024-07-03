@@ -230,7 +230,9 @@ void BCMenuData::SetWideString(const wchar_t *szWideString)
 void BCMenu::DisableOwnerDraw()
 {
 	m_bEnableOwnerDraw = false;
-	afxData.hbmMenuDot = reinterpret_cast<HBITMAP>(CreateRadioDotBitmap()->Detach());
+	CBitmap* pBitmap = CreateRadioDotBitmap();
+	afxData.hbmMenuDot = reinterpret_cast<HBITMAP>(pBitmap->Detach());
+	delete pBitmap;
 }
 
 bool BCMenu::IsMenu(HMENU submenu)
