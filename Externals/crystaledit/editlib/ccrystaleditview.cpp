@@ -1528,7 +1528,7 @@ OnEditReplace ()
       GetSelection (m_ptSavedSelStart, m_ptSavedSelEnd);
       m_bSelectionPushed = true;
 
-      m_pEditReplaceDlg->SetScope(true);       //  Replace in current selection
+      m_pEditReplaceDlg->SetScope(m_ptSavedSelStart.y != m_ptSavedSelEnd.y);       //  Replace in current selection if multiple lines are selected
       m_pEditReplaceDlg->m_ptCurrentPos = m_ptSavedSelStart;
       m_pEditReplaceDlg->m_bEnableScopeSelection = true;
       m_pEditReplaceDlg->m_ptBlockBegin = m_ptSavedSelStart;
