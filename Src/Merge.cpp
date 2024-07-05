@@ -64,6 +64,8 @@
 #include "RegKey.h"
 #include "Win_VersionHelper.h"
 #include "BCMenu.h"
+#include "SysColorHook.h"
+#include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -400,6 +402,23 @@ BOOL CMergeApp::InitInstance()
 			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env::GetMyDocuments());
 		}
 	}
+
+	SysColorHook::Hook(GetModuleHandle(nullptr));
+	SysColorHook::SetSysColor(COLOR_ACTIVECAPTION, RGB(128, 128, 0));
+	SysColorHook::SetSysColor(COLOR_INACTIVECAPTION, RGB(128, 68, 0));
+	SysColorHook::SetSysColor(COLOR_CAPTIONTEXT, RGB(255, 255, 255));
+	SysColorHook::SetSysColor(COLOR_INACTIVECAPTIONTEXT, RGB(255, 255, 255));
+	SysColorHook::SetSysColor(COLOR_3DFACE, RGB(64, 64, 64));
+	SysColorHook::SetSysColor(COLOR_3DSHADOW, RGB(32, 32, 32));
+	SysColorHook::SetSysColor(COLOR_3DDKSHADOW, RGB(32, 32, 32));
+	SysColorHook::SetSysColor(COLOR_3DHIGHLIGHT, RGB(84, 84, 84));
+	SysColorHook::SetSysColor(COLOR_BTNTEXT, RGB(0, 0, 0));
+	SysColorHook::SetSysColor(COLOR_WINDOW, RGB(0, 0, 0));
+	SysColorHook::SetSysColor(COLOR_WINDOWTEXT, RGB(255, 255, 255));
+	SysColorHook::SetSysColor(COLOR_HIGHLIGHTTEXT, RGB(255, 255, 255));
+	SysColorHook::SetSysColor(COLOR_HIGHLIGHT, RGB(0, 0, 255));
+	SysColorHook::SetSysColor(COLOR_MENUTEXT, RGB(255, 0, 0));
+	afxData.UpdateSysColors();
 
 	strdiff::Init(); // String diff init
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());

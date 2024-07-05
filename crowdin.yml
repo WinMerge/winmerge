@@ -1,0 +1,54 @@
+project_id : 544816
+base_path : .
+base_url : https://api.crowdin.com
+preserve_hierarchy: true
+files:
+  - source: /Docs/Users/ReadMe.txt
+    translation: /Translations/Docs/Readme/ReadMe-%language%.txt
+    languages_mapping: &anchor
+      language:
+        ar: Arabic
+        eu: Basque
+        pt-BR: Brazilian
+        bg: Bulgarian
+        ca: Catalan
+        zh-CN: ChineseSimplified
+        zh-TW: ChineseTraditional
+        co: Corsican
+        hr: Croatian
+        cs: Czech
+        da: Danish
+        nl: Dutch
+        fi: Finnish
+        fr: French
+        gl: Galician
+        de: German
+        el: Greek
+        hu: Hungarian
+        it: Italian
+        ja: Japanese
+        ko: Korean
+        it: Lithuanian
+        nb: Norwegian
+        fa: Persian
+        pl: Polish
+        pt: Portuguese
+        ro: Romanian
+        ru: Russian
+        sr: Serbian
+        si: Sinhala
+        sk: Slovak
+        sl: Slovenian
+        es: Spanish
+        sv: Swedish
+        tr: Turkish
+        uk: Ukrainian
+  - source: /Translations/WinMerge/English.pot
+    translation: /Translations/WinMerge/%language%.po
+    languages_mapping: *anchor
+  - source: /Translations/InnoSetup/English.isl
+    translation: /Translations/InnoSetup/%language%.isl
+    languages_mapping: *anchor
+  - source: /Translations/ShellExtension/English.pot
+    translation: /Translations/ShellExtension/%language%.po
+    languages_mapping: *anchor
