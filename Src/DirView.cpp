@@ -930,6 +930,8 @@ void CDirView::DoDirAction(DirActions::method_type func, const String& status_me
 		ASSERT(rsltScript == &actionScript);
 		// Now we prompt, and execute actions
 		ConfirmAndPerformActions(actionScript);
+		m_firstDiffItem.reset();
+		m_lastDiffItem.reset();
 	} catch (ContentsChangedException& e) {
 		AfxMessageBox(e.m_msg.c_str(), MB_ICONWARNING);
 	} catch (FileOperationException& e) {
