@@ -1022,6 +1022,8 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 	theApp.RemoveOperation();
 	if (!succeeded && !actionScript.IsCanceled())
 		throw FileOperationException(_T("File operation failed"));
+	m_firstDiffItem.reset();
+	m_lastDiffItem.reset();
 }
 
 /**
