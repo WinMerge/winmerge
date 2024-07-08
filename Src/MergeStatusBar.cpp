@@ -194,13 +194,13 @@ void CMergeStatusBar::Resize(int widths[])
 		}
 
 		SetPaneInfo(PANE_PANE0_INFO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_INFO + pane,
-			SBPS_NORMAL, paneWidth);
+			SBPS_NORMAL|SBT_NOBORDERS, paneWidth);
 		SetPaneInfo(PANE_PANE0_ENCODING + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_ENCODING + pane,
-			SBT_OWNERDRAW, encodingWidth);
+			SBT_OWNERDRAW|SBT_NOBORDERS, encodingWidth);
 		SetPaneInfo(PANE_PANE0_RO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_RO + pane,
-			SBPS_NORMAL, roWidth);
+			SBPS_NORMAL|SBT_NOBORDERS, roWidth);
 		SetPaneInfo(PANE_PANE0_EOL + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_EOL + pane,
-			SBT_OWNERDRAW, eolWidth);
+			SBT_OWNERDRAW|SBT_NOBORDERS, eolWidth);
 	}
 }
 
