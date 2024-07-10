@@ -733,6 +733,9 @@
     <ClCompile Include="Common\SysColorHook.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyStatusBar.cpp">
+      <Filter>MFCGui\Main\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1400,6 +1403,9 @@
     </ClInclude>
     <ClInclude Include="Common\SysColorHook.h">
       <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStatusBar.h">
+      <Filter>MFCGui\Main\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

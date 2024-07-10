@@ -16,6 +16,7 @@
 #include "unicoder.h"
 #include "SyntaxColors.h"
 #include "Merge.h"
+#include <vector>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -70,12 +71,13 @@ static UINT indicatorsBottom[] =
 
 BEGIN_MESSAGE_MAP(CMergeStatusBar, CStatusBar)
 	ON_WM_SETCURSOR()
+    ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 /**
  * @brief Constructor.
  */
-CMergeStatusBar::CMergeStatusBar() : m_nPanes(2), m_bDiff{}, m_dispFlags{}
+CMergeStatusBar::CMergeStatusBar() : m_nPanes(2), m_bDiff{}
 {
 	for (int pane = 0; pane < sizeof(m_status) / sizeof(m_status[0]); pane++)
 	{
@@ -107,61 +109,70 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 
 	for (int pane = 0; pane < 3; pane++)
 	{
-		SetPaneStyle(PANE_PANE0_INFO     + pane * nColumnsPerPane, SBPS_NORMAL);
+		SetPaneStyle(PANE_PANE0_INFO     + pane * nColumnsPerPane, SBPS_OWNERDRAW);
 		SetPaneStyle(PANE_PANE0_ENCODING + pane * nColumnsPerPane, SBPS_OWNERDRAW);
 		SetPaneStyle(PANE_PANE0_EOL      + pane * nColumnsPerPane, SBPS_OWNERDRAW);
-		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_NORMAL);
+		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_OWNERDRAW);
 	}
 
 	return TRUE;
 };
 
-void CMergeStatusBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
+void CMergeStatusBar::OnPaint()
 {
-	const int pbase = PANE_PANE0_INFO + (lpDrawItemStruct->itemID - PANE_PANE0_INFO) % nColumnsPerPane;
-	const int pcur = (lpDrawItemStruct->itemID - PANE_PANE0_INFO) / nColumnsPerPane;
-	if (pcur >= m_nPanes)
-		return;
-	std::vector<CString> ptext(m_nPanes);
+	CStatusBarCtrl& ctrl = GetStatusBarCtrl();
+	int parts[32];
+	const int nParts = ctrl.GetParts(32, parts);
+
+	bool bDiffNew[4]{};
+	std::vector<CString> textary(m_nPanes);
 	for (int pane = 0; pane < m_nPanes; ++pane)
-		ptext[pane] = GetPaneText(pbase + pane * nColumnsPerPane);
-	const bool diff = !std::equal(ptext.begin() + 1, ptext.end(), ptext.begin());
-
-	if (!ptext[pcur].IsEmpty())
-		m_dispFlags[pbase] |= 1 << pcur;
-	const bool displayedAll = m_dispFlags[pbase] == static_cast<unsigned>((1 << m_nPanes) - 1);
-
-	if (displayedAll && m_bDiff[pbase] != diff)
+		textary[pane] = GetPaneText(PANE_PANE0_ENCODING + pane * nColumnsPerPane);
+	bDiffNew[PANE_PANE0_ENCODING] = !std::equal(textary.begin() + 1, textary.end(), textary.begin());
+	for (int pane = 0; pane < m_nPanes; ++pane)
+		textary[pane] = GetPaneText(PANE_PANE0_EOL + pane * nColumnsPerPane);
+	bDiffNew[PANE_PANE0_EOL] = !std::equal(textary.begin() + 1, textary.end(), textary.begin());
+	for (int i = 0; i < nParts; i++)
 	{
-		m_bDiff[pbase] = diff;
-		for (int pane = 0; pane < m_nPanes; ++pane)
+		CRect partRect;
+		ctrl.GetRect(i, &partRect);
+		if (m_bDiff[i % nColumnsPerPane] != bDiffNew[i % nColumnsPerPane])
+			InvalidateRect(&partRect);
+	}
+	m_bDiff[PANE_PANE0_ENCODING] = bDiffNew[PANE_PANE0_ENCODING];
+	m_bDiff[PANE_PANE0_EOL] = bDiffNew[PANE_PANE0_EOL];
+
+	CPaintDC dc(this);
+	CRect rect;
+	GetClientRect(&rect);
+	dc.FillSolidRect(&rect, GetSysColor(COLOR_3DFACE));
+	dc.SetBkMode(TRANSPARENT);
+	CFont* pFont = GetFont();
+	CFont* pOldFont = pFont ? dc.SelectObject(pFont) : nullptr;
+	for (int i = 0; i < nParts; i++)
+	{
+		const bool disabled = (GetPaneStyle(i) & SBPS_DISABLED) != 0;
+		if (!disabled)
 		{
-			RECT rcColumn;
-			GetItemRect(pbase + pane * nColumnsPerPane, &rcColumn);
-			InvalidateRect(&rcColumn);
+			CRect partRect;
+			CString text;
+			ctrl.GetRect(i, &partRect);
+			GetPaneText(i, text);
+			if (m_bDiff[i % nColumnsPerPane])
+			{
+				dc.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
+					theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT) : m_cachedColors.clrWordDiffText);
+				dc.FillSolidRect(partRect, m_cachedColors.clrWordDiff);
+			}
+			else
+			{
+				dc.SetTextColor(GetSysColor(COLOR_BTNTEXT));
+			}
+			dc.DrawText(text, &partRect, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
-		return;
 	}
-
-	CDC dc;
-	dc.Attach(lpDrawItemStruct->hDC);
-	if (displayedAll && diff)
-	{
-		dc.SetBkMode(OPAQUE);
-		dc.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
-			theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT) : m_cachedColors.clrWordDiffText);
-		dc.SetBkColor(m_cachedColors.clrWordDiff);
-		dc.ExtTextOut(
-			lpDrawItemStruct->rcItem.left, lpDrawItemStruct->rcItem.top,
-			ETO_OPAQUE, &lpDrawItemStruct->rcItem, _T(""), nullptr );
-	}
-	else
-	{
-		dc.SetBkMode(TRANSPARENT);
-		dc.SetTextColor(GetSysColor(COLOR_BTNTEXT));
-	}
-	dc.DrawText(ptext[pcur], &lpDrawItemStruct->rcItem, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
-	dc.Detach();
+	if (pOldFont)
+		dc.SelectObject(pOldFont);
 }
 
 void CMergeStatusBar::Resize(int widths[])
@@ -194,11 +205,11 @@ void CMergeStatusBar::Resize(int widths[])
 		}
 
 		SetPaneInfo(PANE_PANE0_INFO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_INFO + pane,
-			SBPS_NORMAL|SBT_NOBORDERS, paneWidth);
+			SBT_OWNERDRAW|SBT_NOBORDERS, paneWidth);
 		SetPaneInfo(PANE_PANE0_ENCODING + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_ENCODING + pane,
 			SBT_OWNERDRAW|SBT_NOBORDERS, encodingWidth);
 		SetPaneInfo(PANE_PANE0_RO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_RO + pane,
-			SBPS_NORMAL|SBT_NOBORDERS, roWidth);
+			SBT_OWNERDRAW|SBT_NOBORDERS, roWidth);
 		SetPaneInfo(PANE_PANE0_EOL + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_EOL + pane,
 			SBT_OWNERDRAW|SBT_NOBORDERS, eolWidth);
 	}
@@ -331,4 +342,3 @@ BOOL CMergeStatusBar::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
     ::SetCursor (::LoadCursor (nullptr, IDC_HAND));
 	return TRUE;
 }
-

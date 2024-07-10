@@ -412,7 +412,7 @@ BOOL CMergeApp::InitInstance()
 	SysColorHook::SetSysColor(COLOR_3DSHADOW, RGB(32, 32, 32));
 	SysColorHook::SetSysColor(COLOR_3DDKSHADOW, RGB(32, 32, 32));
 	SysColorHook::SetSysColor(COLOR_3DHIGHLIGHT, RGB(84, 84, 84));
-	SysColorHook::SetSysColor(COLOR_BTNTEXT, RGB(0, 0, 0));
+	SysColorHook::SetSysColor(COLOR_BTNTEXT, RGB(255, 255, 255));
 	SysColorHook::SetSysColor(COLOR_WINDOW, RGB(0, 0, 0));
 	SysColorHook::SetSysColor(COLOR_WINDOWTEXT, RGB(255, 255, 255));
 	SysColorHook::SetSysColor(COLOR_HIGHLIGHTTEXT, RGB(255, 255, 255));
