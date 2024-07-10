@@ -1089,6 +1089,7 @@ void CImgMergeFrame::UpdateHeaderSizes()
 		CRect rc, rcMergeWindow;
 		int nPaneCount = m_pImgMergeWindow->GetPaneCount();
 		GetClientRect(&rc);
+		CRect rcClient = rc;
 		::GetWindowRect(m_pImgMergeWindow->GetHWND(), &rcMergeWindow);
 		ScreenToClient(rcMergeWindow);
 		if (!m_pImgMergeWindow->GetHorizontalSplit())
@@ -1120,7 +1121,10 @@ void CImgMergeFrame::UpdateHeaderSizes()
 			rc.right = rc.left;
 			for (int pane = 0; pane < nPaneCount; pane++)
 			{
-				rc.right += w[pane] + 4 + 2;
+				if (pane == nPaneCount - 1)
+					rc.right = rcClient.right + 1;
+				else
+					rc.right += w[pane] + 4 + 2;
 				m_wndStatusBar[pane].MoveWindow(&rc);
 				rc.left = rc.right;
 			}
