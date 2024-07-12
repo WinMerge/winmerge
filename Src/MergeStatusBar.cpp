@@ -16,6 +16,7 @@
 #include "unicoder.h"
 #include "SyntaxColors.h"
 #include "Merge.h"
+#include "RoundedRectWithShadow.h"
 #include <vector>
 
 #ifdef _DEBUG
@@ -69,8 +70,7 @@ static UINT indicatorsBottom[] =
 	ID_SEPARATOR,
 };
 
-BEGIN_MESSAGE_MAP(CMergeStatusBar, CStatusBar)
-	ON_WM_SETCURSOR()
+BEGIN_MESSAGE_MAP(CMergeStatusBar, CBasicFlatStatusBar)
     ON_WM_PAINT()
 END_MESSAGE_MAP()
 
@@ -109,10 +109,10 @@ BOOL CMergeStatusBar::Create(CWnd* pParentWnd)
 
 	for (int pane = 0; pane < 3; pane++)
 	{
-		SetPaneStyle(PANE_PANE0_INFO     + pane * nColumnsPerPane, SBPS_OWNERDRAW);
-		SetPaneStyle(PANE_PANE0_ENCODING + pane * nColumnsPerPane, SBPS_OWNERDRAW);
-		SetPaneStyle(PANE_PANE0_EOL      + pane * nColumnsPerPane, SBPS_OWNERDRAW);
-		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_OWNERDRAW);
+		SetPaneStyle(PANE_PANE0_INFO     + pane * nColumnsPerPane, SBPS_CLICKABLE);
+		SetPaneStyle(PANE_PANE0_ENCODING + pane * nColumnsPerPane, SBPS_CLICKABLE);
+		SetPaneStyle(PANE_PANE0_EOL      + pane * nColumnsPerPane, SBPS_CLICKABLE);
+		SetPaneStyle(PANE_PANE0_RO       + pane * nColumnsPerPane, SBPS_CLICKABLE);
 	}
 
 	return TRUE;
@@ -134,41 +134,53 @@ void CMergeStatusBar::OnPaint()
 	bDiffNew[PANE_PANE0_EOL] = !std::equal(textary.begin() + 1, textary.end(), textary.begin());
 	for (int i = 0; i < nParts; i++)
 	{
-		CRect partRect;
-		ctrl.GetRect(i, &partRect);
+		CRect rcPart;
+		ctrl.GetRect(i, &rcPart);
 		if (m_bDiff[i % nColumnsPerPane] != bDiffNew[i % nColumnsPerPane])
-			InvalidateRect(&partRect);
+			InvalidateRect(&rcPart);
 	}
 	m_bDiff[PANE_PANE0_ENCODING] = bDiffNew[PANE_PANE0_ENCODING];
 	m_bDiff[PANE_PANE0_EOL] = bDiffNew[PANE_PANE0_EOL];
 
+	const COLORREF clr3DFace = GetSysColor(COLOR_3DFACE);
+	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 10);
+	const COLORREF clrWordDiffLight = LightenColor(m_cachedColors.clrWordDiff, 10);
 	CPaintDC dc(this);
 	CRect rect;
 	GetClientRect(&rect);
-	dc.FillSolidRect(&rect, GetSysColor(COLOR_3DFACE));
+	dc.FillSolidRect(&rect, clr3DFace);
 	dc.SetBkMode(TRANSPARENT);
 	CFont* pFont = GetFont();
 	CFont* pOldFont = pFont ? dc.SelectObject(pFont) : nullptr;
+	const int radius = MulDiv (3, dc.GetDeviceCaps (LOGPIXELSY), 72);
 	for (int i = 0; i < nParts; i++)
 	{
-		const bool disabled = (GetPaneStyle(i) & SBPS_DISABLED) != 0;
+		const unsigned style = GetPaneStyle(i);
+		CRect rcPart;
+		ctrl.GetRect(i, &rcPart);
+		const bool lighten = (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane);
+		if (lighten)
+			DrawRoundedRectWithShadow(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, 0,
+				clr3DFaceLight, clr3DFace, clr3DFace);
+		const bool disabled = (style & SBPS_DISABLED) != 0;
 		if (!disabled)
 		{
-			CRect partRect;
-			CString text;
-			ctrl.GetRect(i, &partRect);
-			GetPaneText(i, text);
 			if (m_bDiff[i % nColumnsPerPane])
 			{
 				dc.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
 					theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT) : m_cachedColors.clrWordDiffText);
-				dc.FillSolidRect(partRect, m_cachedColors.clrWordDiff);
+				DrawRoundedRectWithShadow(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, 0,
+					lighten ? clrWordDiffLight : m_cachedColors.clrWordDiff, clr3DFace, clr3DFace);
 			}
 			else
 			{
 				dc.SetTextColor(GetSysColor(COLOR_BTNTEXT));
 			}
-			dc.DrawText(text, &partRect, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+			CRect rcText = rcPart;
+			rcText.left += radius;
+			CString text;
+			GetPaneText(i, text);
+			dc.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
 	if (pOldFont)
@@ -205,13 +217,13 @@ void CMergeStatusBar::Resize(int widths[])
 		}
 
 		SetPaneInfo(PANE_PANE0_INFO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_INFO + pane,
-			SBT_OWNERDRAW|SBT_NOBORDERS, paneWidth);
+			SBPS_CLICKABLE, paneWidth);
 		SetPaneInfo(PANE_PANE0_ENCODING + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_ENCODING + pane,
-			SBT_OWNERDRAW|SBT_NOBORDERS, encodingWidth);
+			SBPS_CLICKABLE, encodingWidth);
 		SetPaneInfo(PANE_PANE0_RO + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_RO + pane,
-			SBT_OWNERDRAW|SBT_NOBORDERS, roWidth);
+			SBPS_CLICKABLE, roWidth);
 		SetPaneInfo(PANE_PANE0_EOL + pane * nColumnsPerPane, ID_STATUS_PANE0FILE_EOL + pane,
-			SBT_OWNERDRAW|SBT_NOBORDERS, eolWidth);
+			SBPS_CLICKABLE, eolWidth);
 	}
 }
 
@@ -335,10 +347,4 @@ void CMergeStatusBar::MergeStatus::SetLineInfo(const tchar_t* szLine, int nColum
 		m_bHasBom = bHasBom;
 		Update();
 	}
-}
-
-BOOL CMergeStatusBar::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
-{
-    ::SetCursor (::LoadCursor (nullptr, IDC_HAND));
-	return TRUE;
 }

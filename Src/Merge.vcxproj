@@ -910,6 +910,7 @@
     </ClCompile>
     <ClCompile Include="AboutDlg.cpp">
     </ClCompile>
+    <ClCompile Include="BasicFlatStatusBar.cpp" />
     <ClCompile Include="ClipboardHistory.cpp" />
     <ClCompile Include="Common\cio.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -935,7 +936,6 @@
     </ClCompile>
     <ClCompile Include="DirAdditionalPropertiesDlg.cpp" />
     <ClCompile Include="DirSelectFilesDlg.cpp" />
-    <ClCompile Include="DirStatusBar.cpp" />
     <ClCompile Include="DirWatcher.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -950,7 +950,6 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="MergeDocDiffCopy.cpp" />
-    <ClCompile Include="MyStatusBar.cpp" />
     <ClCompile Include="PropCompareWebPage.cpp" />
     <ClCompile Include="PropEditorCompareMerge.cpp" />
     <ClCompile Include="PropertySystem.cpp">
@@ -1448,6 +1447,7 @@
     <ClInclude Include="..\Version.h" />
     <ClInclude Include="7zCommon.h" />
     <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
     <ClInclude Include="Common\cio.h" />
     <ClInclude Include="Common\DebugNew.h" />
@@ -1461,7 +1461,6 @@
     <ClInclude Include="Common\Bitmap.h" />
     <ClInclude Include="charsets.h" />
     <ClInclude Include="DirAdditionalPropertiesDlg.h" />
-    <ClInclude Include="DirStatusBar.h" />
     <ClInclude Include="DirWatcher.h" />
     <ClInclude Include="DirItemIterator.h" />
     <ClInclude Include="DirSelectFilesDlg.h" />
@@ -1470,7 +1469,6 @@
     <ClInclude Include="HashCalc.h" />
     <ClInclude Include="IDirDoc.h" />
     <ClInclude Include="InternalPlugins.h" />
-    <ClInclude Include="MyStatusBar.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />

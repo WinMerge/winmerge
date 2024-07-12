@@ -12,10 +12,11 @@
 #pragma once
 
 #include "MergeEditStatus.h"
+#include "BasicFlatStatusBar.h"
 #include "OptionsDiffColors.h"
 #include "UnicodeString.h"
 
-class CMergeStatusBar : public CStatusBar
+class CMergeStatusBar : public CBasicFlatStatusBar
 {
 public : 
 	CMergeStatusBar();
@@ -28,7 +29,6 @@ public :
 	IMergeEditStatus* GetIMergeEditStatus(int nPane) { return &m_status[nPane]; }
 
 protected:
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
     afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP();
 

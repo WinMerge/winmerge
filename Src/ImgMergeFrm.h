@@ -20,7 +20,7 @@
 #include "FileLocation.h"
 #include "MergeFrameCommon.h"
 #include "FileTransform.h"
-#include "MyStatusBar.h"
+#include "BasicFlatStatusBar.h"
 
 struct IDirDoc;
 
@@ -81,7 +81,7 @@ public:
 // Attributes
 protected:
 	CEditorFilePathBar m_wndFilePathBar;
-	CMyStatusBar m_wndStatusBar[3];
+	CBasicFlatStatusBar m_wndStatusBar[3];
 // Overrides
 public:
 	// ClassWizard generated virtual function overrides
