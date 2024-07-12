@@ -145,6 +145,7 @@ void CMergeStatusBar::OnPaint()
 	const COLORREF clr3DFace = GetSysColor(COLOR_3DFACE);
 	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 10);
 	const COLORREF clrWordDiffLight = LightenColor(m_cachedColors.clrWordDiff, 10);
+	const COLORREF clrBtnText = GetSysColor(COLOR_BTNTEXT);
 	CPaintDC dc(this);
 	CRect rect;
 	GetClientRect(&rect);
@@ -174,13 +175,11 @@ void CMergeStatusBar::OnPaint()
 			}
 			else
 			{
-				dc.SetTextColor(GetSysColor(COLOR_BTNTEXT));
+				dc.SetTextColor(clrBtnText);
 			}
 			CRect rcText = rcPart;
 			rcText.left += radius;
-			CString text;
-			GetPaneText(i, text);
-			dc.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+			dc.DrawText(ctrl.GetText(i), &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
 	if (pOldFont)

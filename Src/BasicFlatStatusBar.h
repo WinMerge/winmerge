@@ -22,6 +22,7 @@ protected:
 	static COLORREF LightenColor(COLORREF color, int amount);
 
     afx_msg void OnPaint();
+	afx_msg BOOL OnEraseBkgnd(CDC *pDC);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnMouseLeave();
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);

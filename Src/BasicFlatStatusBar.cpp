@@ -9,7 +9,8 @@
 #include "RoundedRectWithShadow.h"
 
 BEGIN_MESSAGE_MAP(CBasicFlatStatusBar, CStatusBar)
-    ON_WM_PAINT()
+	ON_WM_PAINT()
+	ON_WM_ERASEBKGND()
 	ON_WM_MOUSEMOVE()
 	ON_WM_MOUSELEAVE()
 	ON_WM_SETCURSOR()
@@ -24,7 +25,7 @@ CPoint CBasicFlatStatusBar::GetClientCursorPos() const
 	CPoint pt;
 	GetCursorPos(&pt);
 	ScreenToClient(&pt);
-    return pt;
+	return pt;
 }
 
 int CBasicFlatStatusBar::GetIndexFromPoint(const CPoint& pt) const
@@ -83,13 +84,21 @@ void CBasicFlatStatusBar::OnPaint()
 		{
 			CRect rcText = rcPart;
 			rcText.left += radius;
-			CString text;
-			GetPaneText(i, text);
+			CString text = ctrl.GetText(i);
+			text.Replace(_T("\t"), _T("  "));
 			dc.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
 	if (pOldFont)
 		dc.SelectObject(pOldFont);
+}
+
+BOOL CBasicFlatStatusBar::OnEraseBkgnd(CDC* pDC)
+{
+	CRect rc;
+	GetClientRect(&rc);
+	pDC->FillSolidRect(&rc, ::GetSysColor(COLOR_BTNFACE));
+	return TRUE;
 }
 
 void CBasicFlatStatusBar::OnMouseMove(UINT nFlags, CPoint point)

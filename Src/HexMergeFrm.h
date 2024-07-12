@@ -13,6 +13,7 @@
 
 #include "SplitterWndEx.h"
 #include "EditorFilepathBar.h"
+#include "BasicFlatStatusBar.h"
 #include "MergeFrameCommon.h"
 
 #define HEKSEDIT_INTERFACE_VERSION 2
@@ -44,7 +45,7 @@ public:
 protected:
 	CSplitterWndEx m_wndSplitter;
 	CEditorFilePathBar m_wndFilePathBar;
-	CStatusBar m_wndStatusBar[3];
+	CBasicFlatStatusBar m_wndStatusBar[3];
 	SCROLLINFO m_HScrollInfo[3];
 	SCROLLINFO m_VScrollInfo[3];
 // Overrides

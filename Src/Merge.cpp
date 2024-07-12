@@ -403,7 +403,6 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	/*
 	SysColorHook::Hook(GetModuleHandle(nullptr));
 	SysColorHook::SetSysColor(COLOR_ACTIVECAPTION, RGB(128, 128, 0));
 	SysColorHook::SetSysColor(COLOR_INACTIVECAPTION, RGB(128, 68, 0));
@@ -420,7 +419,6 @@ BOOL CMergeApp::InitInstance()
 	SysColorHook::SetSysColor(COLOR_HIGHLIGHT, RGB(0, 0, 255));
 	SysColorHook::SetSysColor(COLOR_MENUTEXT, RGB(255, 0, 0));
 	afxData.UpdateSysColors();
-	*/
 
 	strdiff::Init(); // String diff init
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
