@@ -85,7 +85,11 @@ void CBasicFlatStatusBar::OnPaint()
 			CRect rcText = rcPart;
 			rcText.left += radius;
 			CString text = ctrl.GetText(i);
-			text.Replace(_T("\t"), _T("  "));
+			if (text.Find('\t') >= 0)
+			{
+				text.Trim();
+				text.Replace(_T("\t"), _T("  "));
+			}
 			dc.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}
