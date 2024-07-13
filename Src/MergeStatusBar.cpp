@@ -143,8 +143,8 @@ void CMergeStatusBar::OnPaint()
 	m_bDiff[PANE_PANE0_EOL] = bDiffNew[PANE_PANE0_EOL];
 
 	const COLORREF clr3DFace = GetSysColor(COLOR_3DFACE);
-	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 10);
-	const COLORREF clrWordDiffLight = LightenColor(m_cachedColors.clrWordDiff, 10);
+	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 0.5);
+	const COLORREF clrWordDiffLight = LightenColor(m_cachedColors.clrWordDiff, 0.5);
 	const COLORREF clrBtnText = GetSysColor(COLOR_BTNTEXT);
 	CPaintDC dc(this);
 	CRect rect;

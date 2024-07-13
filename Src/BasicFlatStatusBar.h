@@ -19,7 +19,7 @@ public:
 protected:
 	CPoint CBasicFlatStatusBar::GetClientCursorPos() const;
 	int GetIndexFromPoint(const CPoint& pt) const;
-	static COLORREF LightenColor(COLORREF color, int amount);
+	static COLORREF LightenColor(COLORREF color, double amount);
 
     afx_msg void OnPaint();
 	afx_msg BOOL OnEraseBkgnd(CDC *pDC);

@@ -44,21 +44,21 @@ int CBasicFlatStatusBar::GetIndexFromPoint(const CPoint& pt) const
 	return -1;
 }
 
-COLORREF CBasicFlatStatusBar::LightenColor(COLORREF color, int amount)
+COLORREF CBasicFlatStatusBar::LightenColor(COLORREF color, double amount)
 {
 	BYTE red = GetRValue(color);
 	BYTE green = GetGValue(color);
 	BYTE blue = GetBValue(color);
-	red = static_cast<BYTE>((std::min)(255, red + amount));
-	green = static_cast<BYTE>((std::min)(255, green + amount));
-	blue = static_cast<BYTE>((std::min)(255, blue + amount));
+	red = static_cast<BYTE>(red + (255 - red) * amount);
+	green = static_cast<BYTE>(green + (255 - green) * amount);
+	blue = static_cast<BYTE>(blue + (255 - blue) * amount);
 	return RGB(red, green, blue);
 }
 
 void CBasicFlatStatusBar::OnPaint()
 {
 	const COLORREF clr3DFace = GetSysColor(COLOR_3DFACE);
-	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 10);
+	const COLORREF clr3DFaceLight = LightenColor(clr3DFace, 0.5);
 	CPaintDC dc(this);
 	CRect rect;
 	GetClientRect(&rect);
