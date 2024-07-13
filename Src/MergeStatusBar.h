@@ -12,10 +12,11 @@
 #pragma once
 
 #include "MergeEditStatus.h"
+#include "BasicFlatStatusBar.h"
 #include "OptionsDiffColors.h"
 #include "UnicodeString.h"
 
-class CMergeStatusBar : public CStatusBar
+class CMergeStatusBar : public CBasicFlatStatusBar
 {
 public : 
 	CMergeStatusBar();
@@ -26,10 +27,9 @@ public :
 	void SetPaneCount(int nPanes) { m_nPanes = nPanes; }
 	void UpdateResources();
 	IMergeEditStatus* GetIMergeEditStatus(int nPane) { return &m_status[nPane]; }
-	void DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct);
 
 protected:
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
+    afx_msg void OnPaint();
 	DECLARE_MESSAGE_MAP();
 
 private:
@@ -37,7 +37,6 @@ private:
 	int m_nPanes;
 	COLORSETTINGS m_cachedColors;
 	bool m_bDiff[4];
-	unsigned m_dispFlags[4];
 
 protected:
 	// Object that displays status line info for one side of a merge view

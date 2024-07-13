@@ -15,6 +15,7 @@
 #include <memory>
 #include <optional>
 #include "MDITabBar.h"
+#include "BasicFlatStatusBar.h"
 #include "PathContext.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -246,7 +247,7 @@ public:
 // Implementation data
 protected:
 	// control bar embedded members
-	CStatusBar  m_wndStatusBar;
+	CBasicFlatStatusBar  m_wndStatusBar;
 	CReBar m_wndReBar;
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
