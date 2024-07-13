@@ -161,8 +161,7 @@ void CMergeStatusBar::OnPaint()
 		ctrl.GetRect(i, &rcPart);
 		const bool lighten = (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane);
 		if (lighten)
-			DrawRoundedRectWithShadow(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, 0,
-				clr3DFaceLight, clr3DFace, clr3DFace);
+			DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
 		const bool disabled = (style & SBPS_DISABLED) != 0;
 		if (!disabled)
 		{
@@ -170,8 +169,7 @@ void CMergeStatusBar::OnPaint()
 			{
 				dc.SetTextColor(m_cachedColors.clrWordDiffText == -1 ?
 					theApp.GetMainSyntaxColors()->GetColor(COLORINDEX_NORMALTEXT) : m_cachedColors.clrWordDiffText);
-				DrawRoundedRectWithShadow(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, 0,
-					lighten ? clrWordDiffLight : m_cachedColors.clrWordDiff, clr3DFace, clr3DFace);
+				DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, lighten ? clrWordDiffLight : m_cachedColors.clrWordDiff, clr3DFace);
 			}
 			else
 			{

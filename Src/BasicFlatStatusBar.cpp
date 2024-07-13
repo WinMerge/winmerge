@@ -77,8 +77,7 @@ void CBasicFlatStatusBar::OnPaint()
 		CRect rcPart;
 		ctrl.GetRect(i, &rcPart);
 		if (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane)
-			DrawRoundedRectWithShadow(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, 0,
-				clr3DFaceLight, clr3DFace, clr3DFace);
+			DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
 		const bool disabled = (style & SBPS_DISABLED) != 0;
 		if (!disabled)
 		{
