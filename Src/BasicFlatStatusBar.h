@@ -13,6 +13,7 @@
 
 class CBasicFlatStatusBar : public CStatusBar
 {
+	DECLARE_DYNAMIC(CBasicFlatStatusBar)
 public:
     CBasicFlatStatusBar();
 

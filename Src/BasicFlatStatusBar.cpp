@@ -8,6 +8,8 @@
 #include "BasicFlatStatusBar.h"
 #include "RoundedRectWithShadow.h"
 
+IMPLEMENT_DYNAMIC(CBasicFlatStatusBar, CStatusBar)
+
 BEGIN_MESSAGE_MAP(CBasicFlatStatusBar, CStatusBar)
 	ON_WM_PAINT()
 	ON_WM_ERASEBKGND()
