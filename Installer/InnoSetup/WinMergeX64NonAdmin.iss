@@ -87,8 +87,8 @@ OutputBaseFilename=WinMerge-{#AppVersion}-{#ARCH}-PerUser-Setup
 
 PrivilegesRequired=lowest
 
-;Windows 2000 or later required
-MinVersion=0,5.0
+;Windows 7 or later required
+MinVersion=0,6.1
 
 UninstallDisplayIcon={app}\WinMergeU.exe
 

@@ -91,8 +91,8 @@ OutputBaseFilename=WinMerge-{#AppVersion}-{#ARCH}-Setup
 ;This must be admin to install C++ Runtimes and shell extension
 PrivilegesRequired=admin
 
-;Windows Vista or later required
-MinVersion=0,6.0
+;Windows 7 or later required
+MinVersion=0,6.1
 
 UninstallDisplayIcon={app}\WinMergeU.exe
 
