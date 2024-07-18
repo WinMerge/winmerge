@@ -1,17 +1,42 @@
-# WinMerge 2.16.41 Beta Release Notes
+# WinMerge 2.16.42 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.42](#what-is-new-in-21642)
 - [What Is New in 2.16.41 beta?](#what-is-new-in-21641-beta)
 - [Known issues](#known-issues)
 
-June 2024
+July 2024
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.42 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.42
+
+### General
+
+- Enable Rounded Corners for WinMerge Menu on Windows 11 (PR#2364)
+- Introduce a flat status bar without separator lines. (PR #2377)
+
+### Folder compare
+
+- BugFix: Folder comparison status not accurately reflected in toolbar (#2374)
+
+### File compare
+
+- Replace - more intelligent choice of replace in (whole file vs selection) (#2368)
+
+### Image compare
+
+- BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge (#2370) 
+- BugFix: Fixed an issue where the right edge of the status bar appeared white.
+
+### Archive support
+
+- Update 7-Zip to 24.07
 
 ## What Is New in 2.16.41 Beta
 

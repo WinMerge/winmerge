@@ -1,5 +1,29 @@
 # Change log
 
+## WinMerge 2.16.42 - 2024-07-27
+
+### General
+
+- Enable Rounded Corners for WinMerge Menu on Windows 11 (PR#2364)
+- Introduce a flat status bar without separator lines. (PR #2377)
+
+### Folder compare
+
+- BugFix: Folder comparison status not accurately reflected in toolbar (#2374)
+
+### File compare
+
+- Replace - more intelligent choice of replace in (whole file vs selection) (#2368)
+
+### Image compare
+
+- BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge (#2370) 
+- BugFix: Fixed an issue where the right edge of the status bar appeared white.
+
+### Archive support
+
+- Update 7-Zip to 24.07
+
 ## WinMerge 2.16.41 - 2024-06-24
 
 ### General
