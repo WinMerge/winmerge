@@ -544,9 +544,11 @@ void CDirView::ReloadColumns()
  * @param [in] level Indent level
  * @param [in,out] index Index of the item to be inserted.
  * @param [in,out] alldiffs Number of different items
+ * @return returns -1 if the comparison of some items was interrupted or an error occurred
  */
-void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs)
+int CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs)
 {
+	int result = 0;
 	const CDiffContext &ctxt = GetDiffContext();
 	while (diffpos != nullptr)
 	{
@@ -555,6 +557,8 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 
 		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll() && !di.diffcode.isResultFiltered()))
 			++alldiffs;
+		if (di.diffcode.isResultNone() || di.diffcode.isResultError() || di.diffcode.isResultAbort())
+			result = -1;
 
 		bool bShowable = IsShowable(ctxt, di, m_dirfilter);
 		if (bShowable)
@@ -566,7 +570,10 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 				if (di.HasChildren())
 				{
 					if (di.customFlags & ViewCustomFlags::EXPANDED)
-						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
+					{
+						if (RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs) < 0)
+							result = -1;
+					}
 				}
 			}
 			else
@@ -578,13 +585,15 @@ void CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int 
 				}
 				if (di.HasChildren())
 				{
-					RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
+					if (RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs) < 0)
+						result = -1;
 				}
 			}
 		}
 	}
 	m_firstDiffItem.reset();
 	m_lastDiffItem.reset();
+	return result;
 }
 
 /**
@@ -616,9 +625,8 @@ void CDirView::Redisplay()
 
 	int alldiffs = 0;
 	DIFFITEM *diffpos = ctxt.GetFirstDiffPosition();
-	RedisplayChildren(diffpos, 0, cnt, alldiffs);
-	if (pDoc->m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPLETED)
-		GetParentFrame()->SetLastCompareResult(alldiffs);
+	const int result = RedisplayChildren(diffpos, 0, cnt, alldiffs);
+	GetParentFrame()->SetLastCompareResult(result < 0 ? -1 : alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
 	m_pList->SetItemCount(static_cast<int>(m_listViewItems.size()));
