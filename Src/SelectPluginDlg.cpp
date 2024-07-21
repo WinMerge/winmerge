@@ -401,5 +401,23 @@ void CSelectPluginDlg::OnClickedSettings()
 	m_cboPluginName.GetItem(&item);
 	auto* plugin = reinterpret_cast<PluginInfo*>(item.lParam);
 	if (plugin)
+	{
+		if (plugin->m_event.find(L"ALIAS_") == 0)
+		{
+			String errorMessage;
+			auto parseResult = PluginForFile::ParsePluginPipeline(plugin->m_pipeline, errorMessage);
+			for (const auto& [processType, pluginList] : m_Plugins)
+			{
+				for (const auto& [caption, name, id, plugin2] : m_Plugins[processType])
+				{
+					if (name == parseResult.front().name)
+					{
+						plugin = plugin2;
+						break;
+					}
+				}
+			}
+		}
 		plugin::InvokeShowSettingsDialog(plugin->m_lpDispatch);
+	}
 }
