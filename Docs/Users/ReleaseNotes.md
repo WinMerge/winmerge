@@ -24,6 +24,8 @@ Please submit bug reports to our bug-tracker.
 ### Folder compare
 
 - BugFix: Folder comparison status not accurately reflected in toolbar (#2374)
+- BugFix: Status of folder comparison not correctly reflected by tab icon after
+    Refresh (F5) (#2383)
 
 ### File compare
 
@@ -33,6 +35,11 @@ Please submit bug reports to our bug-tracker.
 
 - BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge (#2370) 
 - BugFix: Fixed an issue where the right edge of the status bar appeared white.
+
+### Plugins
+
+- Make the gpt4-o-mini model selectable in the AIConvertText plugin settings
+    window
 
 ### Archive support
 
