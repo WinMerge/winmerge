@@ -18,7 +18,7 @@ Please submit bug reports to our bug-tracker.
 
 ### General
 
-- Enable Rounded Corners for WinMerge Menu on Windows 11 (PR#2364)
+- Enable Rounded Corners for WinMerge Menu on Windows 11 (PR #2364)
 - Introduce a flat status bar without separator lines. (PR #2377)
 
 ### Folder compare
@@ -35,6 +35,7 @@ Please submit bug reports to our bug-tracker.
 
 - BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge (#2370) 
 - BugFix: Fixed an issue where the right edge of the status bar appeared white.
+- Added the ability to change the blink interval and overlay animation interval.
 
 ### Plugins
 
@@ -44,6 +45,11 @@ Please submit bug reports to our bug-tracker.
 ### Archive support
 
 - Update 7-Zip to 24.07
+
+### Translations
+
+- Translation updates:
+  - Hungarian (PR #2388)
 
 ## What Is New in 2.16.41 Beta
 
