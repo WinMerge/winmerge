@@ -246,13 +246,13 @@ msgid "&Vector Image Scaling"
 msgstr "Vektor kép méretezése"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "&Animációk beállításai"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "&Villogási időköz"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "&Fedvény animáció időköz"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Hasonlítsa össze a képekből kinyert szöveget"
