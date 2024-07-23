@@ -217,6 +217,15 @@ msgstr "Nu&statyti fono spalvą"
 msgid "&Vector Image Scaling"
 msgstr "&Vektorinių vaizdų mastelio keitimas"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Lyginti iš paveikslėlių ištrauktą &tekstą"
 

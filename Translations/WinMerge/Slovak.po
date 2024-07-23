@@ -217,6 +217,15 @@ msgstr "Nastaviť farbu &pozadia"
 msgid "&Vector Image Scaling"
 msgstr "Zmena mierky &vektorového obrázka"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Porovnať extrahovaný &text z obrázka"
 

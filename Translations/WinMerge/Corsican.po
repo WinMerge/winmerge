@@ -219,6 +219,15 @@ msgstr "&Definisce u culore di u fondu"
 msgid "&Vector Image Scaling"
 msgstr "Messa à a scala di a fiura &vettoriale"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Paragunà u &testu estrattu da e fiure"
 

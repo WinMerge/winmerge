@@ -214,6 +214,15 @@ msgstr "&Настройка на фоновия цвят"
 msgid "&Vector Image Scaling"
 msgstr "Мащабиране на &векторно изображение"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr ""
 

@@ -245,6 +245,15 @@ msgstr "設定背景顏色 (&S)"
 msgid "&Vector Image Scaling"
 msgstr "向量圖縮放 (&V)"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "比較從圖片中擷取的文字 (&T)"
 

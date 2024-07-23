@@ -216,6 +216,15 @@ msgstr "透明色を設定(&S)"
 msgid "&Vector Image Scaling"
 msgstr "ベクター画像スケーリング(&V)"
 
+msgid "&Animation Settings"
+msgstr "アニメーション設定(&A)"
+
+msgid "&Blink interval"
+msgstr "ブリンク周期(&B)"
+
+msgid "&Overlay animation interval"
+msgstr "オーバーレイアニメーション周期(&O)"
+
 msgid "Compare Extracted &Text From Images"
 msgstr "画像から抽出したテキストを比較(&T)"
 

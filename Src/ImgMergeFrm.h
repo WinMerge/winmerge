@@ -240,6 +240,10 @@ protected:
 	afx_msg void OnImgUseBackColor();
 	afx_msg void OnImgVectorImageScaling(UINT nId);
 	afx_msg void OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI);
+	afx_msg void OnImgBlinkInterval(UINT nId);
+	afx_msg void OnUpdateImgBlinkInterval(CCmdUI* pCmdUI);
+	afx_msg void OnImgOverlayAnimationInterval(UINT nId);
+	afx_msg void OnUpdateImgOverlayAnimationInterval(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateImgUseBackColor(CCmdUI* pCmdUI);
 	afx_msg void OnImgCompareExtractedText();
 	afx_msg void OnToolsGenerateReport();

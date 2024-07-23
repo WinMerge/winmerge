@@ -227,6 +227,15 @@ msgstr "&Колір фону"
 msgid "&Vector Image Scaling"
 msgstr "&Масштаб зображень"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Порівняти витягнутий з зображення &текст"
 

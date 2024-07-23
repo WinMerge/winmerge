@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-05-05 10:37+0000\n"
+"POT-Creation-Date: 2024-07-23 21:46+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -209,6 +209,15 @@ msgid "&Set Background Color"
 msgstr ""
 
 msgid "&Vector Image Scaling"
+msgstr ""
+
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
 msgstr ""
 
 msgid "Compare Extracted &Text From Images"

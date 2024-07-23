@@ -218,6 +218,15 @@ msgstr "Es&tablecer cor de fondo"
 msgid "&Vector Image Scaling"
 msgstr "Escalado &vectorial de imaxe"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar o &texto extraído das imaxes"
 

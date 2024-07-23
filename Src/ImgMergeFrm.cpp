@@ -38,6 +38,8 @@
 #define new DEBUG_NEW
 #endif
 
+static const int INTERVALS[] = { 200, 400, 600, 800, 1000, 1200, 1500, 2000, 3000, 4000 };
+
 /////////////////////////////////////////////////////////////////////////////
 // CImgMergeFrame
 
@@ -157,6 +159,10 @@ BEGIN_MESSAGE_MAP(CImgMergeFrame, CMergeFrameCommon)
 	ON_UPDATE_COMMAND_UI(ID_IMG_USEBACKCOLOR, OnUpdateImgUseBackColor)
 	ON_COMMAND_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnImgVectorImageScaling)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_VECTORIMAGESCALING_25, ID_IMG_VECTORIMAGESCALING_800, OnUpdateImgVectorImageScaling)
+	ON_COMMAND_RANGE(ID_IMG_BLINKINTERVAL_200, ID_IMG_BLINKINTERVAL_4000, OnImgBlinkInterval)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_BLINKINTERVAL_200, ID_IMG_BLINKINTERVAL_4000, OnUpdateImgBlinkInterval)
+	ON_COMMAND_RANGE(ID_IMG_OVERLAYANIMINTERVAL_200, ID_IMG_OVERLAYANIMINTERVAL_4000, OnImgOverlayAnimationInterval)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_IMG_OVERLAYANIMINTERVAL_200, ID_IMG_OVERLAYANIMINTERVAL_4000, OnUpdateImgOverlayAnimationInterval)
 	ON_COMMAND(ID_IMG_COMPARE_EXTRACTED_TEXT, OnImgCompareExtractedText)
 	// [Tools] menu
 	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
@@ -646,6 +652,8 @@ void CImgMergeFrame::LoadOptions()
 	m_pImgMergeWindow->SetColorDistanceThreshold(GetOptionsMgr()->GetInt(OPT_CMP_IMG_THRESHOLD) / 1000.0);
 	m_pImgMergeWindow->SetInsertionDeletionDetectionMode(static_cast<IImgMergeWindow::INSERTION_DELETION_DETECTION_MODE>(GetOptionsMgr()->GetInt(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE)));
 	m_pImgMergeWindow->SetVectorImageZoomRatio(GetOptionsMgr()->GetInt(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO) / 1000.0f);
+	m_pImgMergeWindow->SetBlinkInterval(GetOptionsMgr()->GetInt(OPT_CMP_IMG_BLINKINTERVAL));
+	m_pImgMergeWindow->SetOverlayAnimationInterval(GetOptionsMgr()->GetInt(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL));
 }
 
 void CImgMergeFrame::SaveOptions()
@@ -663,6 +671,8 @@ void CImgMergeFrame::SaveOptions()
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_THRESHOLD, static_cast<int>(m_pImgMergeWindow->GetColorDistanceThreshold() * 1000));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, static_cast<int>(m_pImgMergeWindow->GetInsertionDeletionDetectionMode()));
 	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, static_cast<int>(m_pImgMergeWindow->GetVectorImageZoomRatio() * 1000));
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_BLINKINTERVAL, m_pImgMergeWindow->GetBlinkInterval());
+	GetOptionsMgr()->SaveOption(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL, m_pImgMergeWindow->GetOverlayAnimationInterval());
 }
 /**
  * @brief Save coordinates of the frame, splitters, and bars
@@ -2192,6 +2202,28 @@ void CImgMergeFrame::OnImgVectorImageScaling(UINT nId)
 void CImgMergeFrame::OnUpdateImgVectorImageScaling(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetRadio(pow(2.0, int(pCmdUI->m_nID - ID_IMG_VECTORIMAGESCALING_100)) == m_pImgMergeWindow->GetVectorImageZoomRatio());
+}
+
+void CImgMergeFrame::OnImgBlinkInterval(UINT nId)
+{
+	m_pImgMergeWindow->SetBlinkInterval(INTERVALS[nId - ID_IMG_BLINKINTERVAL_200]);
+	SaveOptions();
+}
+
+void CImgMergeFrame::OnUpdateImgBlinkInterval(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio(INTERVALS[pCmdUI->m_nID - ID_IMG_BLINKINTERVAL_200] == m_pImgMergeWindow->GetBlinkInterval());
+}
+
+void CImgMergeFrame::OnImgOverlayAnimationInterval(UINT nId)
+{
+	m_pImgMergeWindow->SetOverlayAnimationInterval(INTERVALS[nId - ID_IMG_OVERLAYANIMINTERVAL_200]);
+	SaveOptions();
+}
+
+void CImgMergeFrame::OnUpdateImgOverlayAnimationInterval(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetRadio(INTERVALS[pCmdUI->m_nID - ID_IMG_OVERLAYANIMINTERVAL_200] == m_pImgMergeWindow->GetOverlayAnimationInterval());
 }
 
 void CImgMergeFrame::OnImgCompareExtractedText()
