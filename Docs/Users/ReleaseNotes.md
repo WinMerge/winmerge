@@ -50,6 +50,7 @@ Please submit bug reports to our bug-tracker.
 
 - Translation updates:
   - Hungarian (PR #2388)
+  - Lithuanian (PR #2390)
 
 ## What Is New in 2.16.41 Beta
 

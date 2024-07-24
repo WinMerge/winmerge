@@ -36,6 +36,7 @@
 
 - Translation updates:
   - Hungarian (PR #2388)
+  - Lithuanian (PR #2390)
 
 ## WinMerge 2.16.41 - 2024-06-24
 
