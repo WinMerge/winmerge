@@ -35,6 +35,7 @@
 ### Translations
 
 - Translation updates:
+  - Brazilian (PR #2391)
   - Hungarian (PR #2388)
   - Lithuanian (PR #2390)
 
