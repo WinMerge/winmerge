@@ -222,13 +222,13 @@ msgid "&Vector Image Scaling"
 msgstr "矢量图形缩放 (&V)"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "动画设置(&A)"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "闪烁间隔(&)"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "叠放动画间隔(&O)"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "比较从图像中解析的文字(&T)"
