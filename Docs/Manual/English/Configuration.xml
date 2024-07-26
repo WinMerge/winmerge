@@ -1626,7 +1626,11 @@
         URL pattern to include (Regular expression)<indexterm>
         </indexterm>
       </title>
-      <para>TBD</para>
+      <para>
+        Enter a regular expression in this field to specify the file paths or URLs that should be opened in the webpage compare window.
+        For example, if you enter the regular expression <code>.*\.html?|https?://.*</code>,
+        files with the .html or .htm extension and URLs starting with http:// or https:// will be opened in the webpage compare window.
+      </para>
     </section>
 
     <section>
@@ -1634,7 +1638,11 @@
         URL pattern to exclude (Regular expression)<indexterm>
         </indexterm>
       </title>
-      <para>TBD</para>
+      <para>
+        Enter a regular expression to exclude certain file paths or URLs from the Webpage Comparison window.
+        This applies to items that match the "URL pattern to include" field.
+        Use this to exclude specific patterns you don't want to include.
+      </para>
     </section>
 
     <section>
@@ -1642,7 +1650,19 @@
         User data folder location<indexterm>
         </indexterm>
       </title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <option>AppData folder</option> (default): Stores cookies, browsing history, and cache data in the %APPDATA%\WinMerge\WinWebDiff folder.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Install folder</option>: Saves data in the WinMerge installation directory, which usually requires administrator permissions to write. This is generally not recommended.
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
@@ -1650,9 +1670,8 @@
         Separate user data folders for each pane<indexterm>
         </indexterm>
       </title>
-      <para>TBD</para>
+      <para>Creates distinct data folders for each pane, preventing data overlap between them.</para>
     </section>
-
   </section>
 
   <section id="Configuration_messageboxes">
@@ -1848,43 +1867,13 @@
       <itemizedlist>
         <listitem>
           <para>
-            <option>GDI</option> (default): TBD
+            <option>GDI</option> (default): Renders text using the Graphics Device Interface (GDI).
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <option>DirectWrite Default</option>: TBD
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>
-            <option>DirectWrite Aliased</option>: TBD
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>
-            <option>DirectWrite GDI Classic</option>: TBD
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>
-            <option>DirectWrite GDI Natural</option>: TBD
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>
-            <option>DirectWrite Natural</option>: TBD
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>
-            <option>DirectWrite Natural Symmetric</option>: TBD
+            <option>DirectWrite Modes</option>: Renders text using various DirectWrite rendering modes, including support for colored emojis on Windows 8.1 and later. See <ulink url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite Rendering Modes</ulink> for details.
           </para>
         </listitem>
       </itemizedlist>
