@@ -400,7 +400,7 @@ See <xref linkend="Locales_changing" />.</para>
   </section>
 
   <section id="Configuration_compare">
-    <title>比較ページ</title>
+    <title>比較 → 一般 ページ</title>
 
     <para>
 このページのオプションでは、WinMergeが、ファイルサイズのみを比較する(つまり、いくつかのタイプの差異を無視する)などの差異を検知する方法を変更することが可能です。</para>
@@ -791,7 +791,7 @@ Difference.</para>
   </section>
 
   <section id="Configuration_compare_folder">
-    <title>比較/フォルダーページ</title>
+    <title>比較 → フォルダー ページ</title>
 
     <section id="Configuration_compmethod">
       <title>
@@ -1085,12 +1085,15 @@ folder.</para>
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option> (default): TBD</para>
+<option>無効</option>(デフォルト): リパースポイントのフォルダーを通常のフォルダーのように比較します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: TBD</para>
+<option>Enabled</option>: Ignores the contents of folders that are reparse
+points. For example, C:\Users\All Users is a symbolic link to
+C:\ProgramData, and enabling this option will skip comparing the
+C:\Users\All Users folder.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1170,7 +1173,7 @@ will use addition of the number of available CPU cores.</para>
 
   <section id="Configuration_compare_table">
     <title>
-比較/テーブル ページ<indexterm>
+比較 → テーブル ページ<indexterm>
         <primary>table files</primary>
       </indexterm></title>
     <section>
@@ -1219,13 +1222,15 @@ will use addition of the number of available CPU cores.</para>
   </section>
 
   <section id="Configuration_compare_binary">
-    <title>比較/バイナリ ページ</title>
+    <title>比較 → バイナリ ページ</title>
     <section>
       <title>
 バイナリファイルとして扱うパターン<indexterm>
           <primary>binary files</primary>
         </indexterm></title>
-      <para>TBD</para>
+      <para>
+テーブル形式で比較したいタブ区切り値のファイルのファイル名パターンを指定します。 セミコロン区切りで複数指定することが可能です。
+デフォルトでは、*.tsv が指定されています。拡張子.tsvのファイルをテーブル形式 で比較したくない場合は、*.tsv を取り除いてください。</para>
     </section>
     <section>
       <title>
@@ -1263,28 +1268,52 @@ Frhed settings<indexterm>
 
   <section id="Configuration_compare_image">
     <title>
-比較/画像 ページ<indexterm>
+比較 → 画像 ページ<indexterm>
         <primary>image files</primary>
       </indexterm></title>
     <section>
       <title>画像ファイルとして扱うパターン</title>
-      <para>TBD</para>
+      <para>
+画像比較ウィンドウで開く画像ファイルのファイル名パターンを指定します。セミコロン区切りで複数指定することが可能です。
+デフォルトでは、.pdf、.svg、.wmf、.emf
+拡張​​子はリストにありません。この拡張子のファイルを画像比較ウィンドウで表示したい場合は、この拡張子を追加してください。</para>
     </section>
 
     <section>
       <title>フォルダー比較で画像比較を有効にする</title>
-      <para>TBD</para>
+      <para>
+When this option is enabled, folder comparisons will compare files that
+match the specified patterns as images.  Metadata differences will be
+ignored, and a color distance threshold will be applied to determine visual
+differences between images.</para>
     </section>
 
     <section>
       <title>OCRの結果</title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>有効</option>(デフォルト): 画像から認識したテキストのみを表示します。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Line-by-line position and text</option>: Shows the recognized text
+line by line with its position in the original image.</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>Word-by-word position and text</option>: Shows the recognized text
+word by word with its position in the original image.</para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
   <section id="Configuration_compare_webpage">
     <title>
-Webページ ページ<indexterm>
+比較 → Webページ ページ<indexterm>
         <primary>webpages</primary>
       </indexterm></title>
 
@@ -1348,7 +1377,7 @@ WinMergeを新しいバージョンにアップデートした時は、メッセ
 
   <section id="Configuration_editor_general">
     <title>
-エディター一般ページ<indexterm>
+エディター → 一般 ページ<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1509,9 +1538,9 @@ Unixなど)異なるEOLスタイルを持つシステムからのファイルを
     </section>
   </section>
 
-  <section id="Configuration_editor">
+  <section id="Configuration_editor_comparemerge">
     <title>
-エディター 比較/マージページ<indexterm>
+エディター → 比較/マージ ページ<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1664,9 +1693,33 @@ Unixなど)異なるEOLスタイルを持つシステムからのファイルを
 
   </section>
 
-  <section id="Configuration_colors">
+  <section id="Configuration_editor_syntax">
     <title>
-色 ページ<indexterm>
+エディター → 一般 ページ<indexterm>
+        <primary>editing</primary>
+
+        <secondary>オプション</secondary>
+      </indexterm></title>
+
+    <para>
+TBD</para>
+  </section>
+
+  <section id="Configuration_colors_colorschemes">
+    <title>
+色 → ページ<indexterm>
+        <primary>color schemes</primary>
+
+        <secondary>オプション</secondary>
+      </indexterm></title>
+
+    <para>
+TBD</para>
+  </section>
+
+  <section id="Configuration_colors_differences">
+    <title>
+色 → ページ<indexterm>
         <primary>difference colors</primary>
 
         <secondary>オプション</secondary>
@@ -1684,20 +1737,9 @@ To revert to the default colors of a scheme, choose a different scheme and
 return to the modified scheme.</para>
   </section>
 
-  <section id="Configuration_differencescolors">
+  <section id="Configuration_colors_syntax">
     <title>
-Differences Colors page<indexterm>
-        <primary>differences colors</primary>
-
-        <secondary>オプション</secondary>
-      </indexterm></title>
-
-    <para>TBD</para>
-  </section>
-
-  <section id="Configuration_syntaxcolors">
-    <title>
-色/シンタックス ページ<indexterm>
+色 → シンタックス ページ<indexterm>
         <primary>シンタックスハイライト</primary>
 
         <secondary>color options</secondary>
@@ -1714,9 +1756,9 @@ To revert to the default colors of a scheme, choose a different scheme and
 return to the modified scheme.</para>
   </section>
 
-  <section id="Configuration_textcolors">
+  <section id="Configuration_colors_text">
     <title>
-色/テキスト ページ<indexterm>
+色 → テキスト ページ<indexterm>
         <primary>text colors</primary>
 
         <secondary>オプション</secondary>
@@ -1729,9 +1771,9 @@ return to the modified scheme.</para>
 それぞれの種類のテキストに対し、背景と文字の色を選択することができます。</para>
   </section>
 
-  <section id="Configuration_markercolors">
+  <section id="Configuration_colors_marker">
     <title>
-色/マーカー ページ<indexterm>
+色 → マーカー ページ<indexterm>
         <primary>marker colors</primary>
 
         <secondary>オプション</secondary>
@@ -1740,9 +1782,9 @@ return to the modified scheme.</para>
     <para>TBD</para>
   </section>
 
-  <section id="Configuration_foldercomparecolors">
+  <section id="Configuration_colors_foldercompare">
     <title>
-色/フォルダー比較 ページ<indexterm>
+色 → フォルダー比較 ページ<indexterm>
         <primary>folder compare colors</primary>
 
         <secondary>オプション</secondary>
@@ -1823,6 +1865,18 @@ WinMergeが、OpenOfficeファイルを見分けるために、このオプシ�
         </listitem>
       </itemizedlist>
     </section>
+  </section>
+
+  <section id="Configuration_Project">
+    <title>
+プロジェクトページ<indexterm>
+        <primary>プロジェクトファイル</primary>
+
+        <secondary>オプション</secondary>
+      </indexterm></title>
+
+    <para>
+TBD</para>
   </section>
 
   <section id="Configuration_system">

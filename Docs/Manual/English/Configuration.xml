@@ -505,7 +505,7 @@
   </section>
 
   <section id="Configuration_compare">
-    <title>Compare General page</title>
+    <title>Compare &gt; General page</title>
 
     <para>
       The options in this page enable you to change some of the ways that
@@ -999,7 +999,7 @@
   </section>
 
   <section id="Configuration_compare_folder">
-    <title>Compare Folder page</title>
+    <title>Compare &gt; Folder page</title>
 
     <section id="Configuration_compmethod">
       <title>
@@ -1357,13 +1357,13 @@
       <itemizedlist>
         <listitem>
           <para>
-            <option>Disabled</option> (default): TBD
+            <option>Disabled</option> (default): Compares the contents of reparse point folders as if they were normal folders.
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <option>Enabled</option>: TBD
+            <option>Enabled</option>: Ignores the contents of folders that are reparse points. For example, C:\Users\All Users is a symbolic link to C:\ProgramData, and enabling this option will skip comparing the C:\Users\All Users folder.
           </para>
         </listitem>
       </itemizedlist>
@@ -1450,12 +1450,12 @@
 
   <section id="Configuration_compare_table">
     <title>
-      Compare Table page<indexterm>
+      Compare &gt; Table page<indexterm>
         <primary>table files</primary>
       </indexterm>
     </title>
     <section>
-      <title>CSV File Patterns</title>
+      <title>CSV file patterns</title>
       <para>
         Specifies file name pattern for comma-separated values files to open in table format.
         To specify multiple items, separate them with a semicolon.
@@ -1464,7 +1464,7 @@
     </section>
 
     <section>
-      <title>TSV File Patterns</title>
+      <title>TSV file patterns</title>
       <para>
         Specifies file name pattern for tab-separated values files to open in table format.
         To specify multiple items, separate them with a semicolon.
@@ -1515,14 +1515,18 @@
   </section>
 
   <section id="Configuration_compare_binary">
-    <title>Compare Binary page</title>
+    <title>Compare &gt; Binary page</title>
     <section>
       <title>
-        Binary File Patterns<indexterm>
+        Binary file patterns<indexterm>
           <primary>binary files</primary>
         </indexterm>
       </title>
-      <para>TBD</para>
+      <para>
+        Specifies file name patterns for binary files to be opened in the binary compare window.
+        To specify multiple items, separate them with a semicolon.
+        By default, *.bin is specified. If you do not want files with the .bin extension to be opened in the binary compare window, remove *.bin from the list.
+      </para>
     </section>
     <section>
       <title>
@@ -1561,29 +1565,58 @@
 
   <section id="Configuration_compare_image">
     <title>
-      Compare Image page<indexterm>
+      Compare &gt; Image page<indexterm>
         <primary>image files</primary>
       </indexterm>
     </title>
     <section>
-      <title>Image File Patterns</title>
-      <para>TBD</para>
+      <title>Image file patterns</title>
+      <para>
+        Specifies file name patterns for image files to be opened in the image compare window.
+        To specify multiple items, separate them with a semicolon.
+        By default, the .pdf, .svg, .wmf, and .emf extensions are not in the list.
+        Add them if you want files with these extensions to be displayed in the image compare window.
+      </para>
     </section>
 
     <section>
       <title>Enable image compare in folder compare</title>
-      <para>TBD</para>
+      <para>
+        When this option is enabled, folder comparisons will compare files that match the specified patterns as images.
+        Metadata differences will be ignored, and a color distance threshold will be applied to determine visual differences between images.
+      </para>
     </section>
 
     <section>
       <title>OCR result</title>
-      <para>TBD</para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            <option>Text only</option> (default):
+            Shows only the text recognized from the image.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Line-by-line position and text</option>:
+            Shows the recognized text line by line with its position in the original image.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Word-by-word position and text</option>:
+            Shows the recognized text word by word with its position in the original image.
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
   </section>
 
   <section id="Configuration_compare_webpage">
     <title>
-      Compare Webpage page<indexterm>
+      Compare &gt; Webpage page<indexterm>
         <primary>webpages</primary>
       </indexterm>
     </title>
@@ -1659,7 +1692,7 @@
 
   <section id="Configuration_editor_general">
     <title>
-      Editor General page<indexterm>
+      Editor &gt; General page<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -1858,9 +1891,9 @@
     </section>
   </section>
 
-  <section id="Configuration_editor">
+  <section id="Configuration_editor_comparemerge">
     <title>
-      Editor Compare/Merge page<indexterm>
+      Editor &gt; Compare/Merge page<indexterm>
         <primary>editing</primary>
 
         <secondary>options for File Compare window</secondary>
@@ -2060,9 +2093,37 @@
 
   </section>
 
-  <section id="Configuration_colors">
+  <section id="Configuration_editor_syntax">
     <title>
-      Colors page<indexterm>
+      Editor &gt; Syntax page<indexterm>
+        <primary>editing</primary>
+
+        <secondary>options</secondary>
+      </indexterm>
+    </title>
+
+    <para>
+      TBD
+    </para>
+  </section>
+
+  <section id="Configuration_colors_colorschemes">
+    <title>
+      Colors &gt; Color Schemes page<indexterm>
+        <primary>color schemes</primary>
+
+        <secondary>options</secondary>
+      </indexterm>
+    </title>
+
+    <para>
+      TBD
+    </para>
+  </section>
+
+  <section id="Configuration_colors_differences">
+    <title>
+      Colors &gt; Differences page<indexterm>
         <primary>difference colors</primary>
 
         <secondary>options</secondary>
@@ -2088,21 +2149,9 @@
     </para>
   </section>
 
-  <section id="Configuration_differencescolors">
+  <section id="Configuration_colors_syntax">
     <title>
-      Differences Colors page<indexterm>
-        <primary>differences colors</primary>
-
-        <secondary>options</secondary>
-      </indexterm>
-    </title>
-
-    <para>TBD</para>
-  </section>
-
-  <section id="Configuration_syntaxcolors">
-    <title>
-      Syntax Colors page<indexterm>
+      Colors &gt; Syntax page<indexterm>
         <primary>syntax highlighting</primary>
 
         <secondary>color options</secondary>
@@ -2123,9 +2172,9 @@
     </para>
   </section>
 
-  <section id="Configuration_textcolors">
+  <section id="Configuration_colors_text">
     <title>
-      Text Colors page<indexterm>
+      Colors &gt; Text page<indexterm>
         <primary>text colors</primary>
 
         <secondary>options</secondary>
@@ -2141,9 +2190,9 @@
     </para>
   </section>
 
-  <section id="Configuration_markercolors">
+  <section id="Configuration_colors_marker">
     <title>
-      Marker Colors page<indexterm>
+      Colors &gt; Markers page<indexterm>
         <primary>marker colors</primary>
 
         <secondary>options</secondary>
@@ -2153,9 +2202,9 @@
     <para>TBD</para>
   </section>
 
-  <section id="Configuration_foldercomparecolors">
+  <section id="Configuration_colors_foldercompare">
     <title>
-      Folder Compare Colors page<indexterm>
+      Colors &gt; Folder Compare page<indexterm>
         <primary>folder compare colors</primary>
 
         <secondary>options</secondary>
@@ -2257,6 +2306,20 @@
         </listitem>
       </itemizedlist>
     </section>
+  </section>
+
+  <section id="Configuration_Project">
+    <title>
+      Project page<indexterm>
+        <primary>project files</primary>
+
+        <secondary>options</secondary>
+      </indexterm>
+    </title>
+
+    <para>
+      TBD
+    </para>
   </section>
 
   <section id="Configuration_system">
