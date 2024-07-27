@@ -1873,7 +1873,7 @@
 
         <listitem>
           <para>
-            <option>DirectWrite Modes</option>: Renders text using various DirectWrite rendering modes, including support for colored emojis on Windows 8.1 and later. See <ulink url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite Rendering Modes</ulink> for details.
+            <option>DirectWrite Modes</option>: Renders text using various DirectWrite rendering modes, including support for colored emojis on Windows 8.1 and later. Available only in the 64-bit version of WinMerge. See <ulink url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite Rendering Modes</ulink> for details.
           </para>
         </listitem>
       </itemizedlist>

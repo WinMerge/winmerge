@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2024-06-22 09:45+0900\n"
+"PO-Revision-Date: 2024-07-27 14:31+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1137,7 +1137,7 @@ msgid "${SRC_FILE} - Source file"
 msgstr "${SRC_FILE} - ソースファイル"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr "${SRC_FOLDER} - ソースフォルダ"
+msgstr "${SRC_FOLDER} - ソースフォルダー"
 
 msgid "${SRC_URL} - Source URL"
 msgstr "${SRC_URL} - ソースURL"
@@ -1152,7 +1152,7 @@ msgid "${DST_FILE} - Destination file"
 msgstr "${DST_FILE} - 宛先ファイル"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr "${DST_FOLDER} - 宛先フォルダ"
+msgstr "${DST_FOLDER} - 宛先フォルダー"
 
 msgid "${DST_URL} - Destination URL"
 msgstr "${DST_URL} - 宛先URL"
@@ -2432,13 +2432,13 @@ msgid "Do not expand"
 msgstr "展開しない"
 
 msgid "Expand all subfolders"
-msgstr "すべてのサブフォルダを展開"
+msgstr "すべてのサブフォルダーを展開"
 
 msgid "Expand different subfolders"
-msgstr "差異のあるサブフォルダを展開"
+msgstr "差異のあるサブフォルダーを展開"
 
 msgid "Expand identical subfolders"
-msgstr "同一のサブフォルダを展開"
+msgstr "同一のサブフォルダーを展開"
 
 msgid "File Type"
 msgstr "ファイル タイプ"
@@ -4843,12 +4843,12 @@ msgstr "patch コマンドへ渡す引数を指定してください"
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
 msgstr ""
-"パッチ '%1' を適用するフォルダを指定してください\r\n"
+"パッチ '%1' を適用するフォルダーを指定してください\r\n"
 "(※ 指定したフォルダ内のファイルを一時フォルダにコピーし、一時フォルダ側のファイルにパッチを適用します)"
 
 #, c-format
 msgid "Folder '%1' does not exist"
-msgstr "フォルダ'%1' は存在しません"
+msgstr "フォルダー'%1' は存在しません"
 
 msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
 msgstr "絶対パスが含まれているパッチファイルに '-p0' オプションが指定されました。このまま実行するとパッチが一時ファイルではなく、元ファイルに適用されてしまう可能性があるため、中止します。"

@@ -129,22 +129,19 @@ fileref="screenshots/options_btn.png" /> </imageobject><textobject>
 
     <section>
       <title>
-Automatically scroll to first inline difference<indexterm>
-          <primary>autoscrolling to first inline difference</primary>
+自動的に最初の行内差異にスクロールする<indexterm>
+          <primary>最初の行内差異まで自動スクロール</primary>
         </indexterm></title>
 
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option> (default): When moving to a difference block, does
-not automatically scroll to the first inline difference within the lines of
-text.</para>
+<option>無効</option>（デフォルト）：差異ブロックに移動する際、テキストの行の最初のインライン差異まで自動スクロールしません。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: When moving to a difference block, automatically
-scrolls to the first inline difference within the lines of text.</para>
+<option>有効</option>：差異ブロックに移動すると、テキストの行の最初の行内差異まで自動的にスクロールします。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -232,13 +229,8 @@ WinMergeが起動している時に、新しいインスタンスを起動しよ
 
         <listitem>
           <para>
-<option>Allow only one instance to run and wait for the instance to
-terminate</option>: Similar to the "Allow only one instance to run" option,
-this setting restricts WinMerge to a single application window. However, it
-also ensures that the WinMerge process does not terminate until the
-application window is closed. This is useful for situations where external
-applications, like SourceTree, need to wait for WinMerge to finish before
-they can safely delete temporary files.</para>
+<option>1つのみインスタンスを起動し、既起動インスタンスの終了を待つ</option>：「1つのみインスタンスを起動する」オプションと同様に、この設定はWinMergeを単一のアプリケーションウィンドウに制限します。
+ただし、アプリケーションウィンドウが閉じられるまで、後に起動したWinMergeのプロセスは終了しません。これは、SourceTreeなどの外部Diffツールのプロセス終了後に一時ファイルを削除してしまうアプリケーションとの連携に便利です。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -957,26 +949,22 @@ Difference.</para>
       <itemizedlist>
         <listitem>
           <para>
-<option>Do not expand</option> (default): Subfolders remain collapsed after
-comparison.</para>
+<option>展開しない</option> (default): 比較後、サブフォルダーは折りたたまれたままになります。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Expand all subfolders</option>: All subfolders are expanded after
-comparison.</para>
+<option>すべてのサブフォルダーを展開</option>: 比較後、すべてのサブフォルダーが展開されます。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Expand different subfolders</option>: Only subfolders with
-differences are expanded after comparison.</para>
+<option>差異のあるサブフォルダーを展開</option>: 比較後、差異のあるサブフォルダーのみが展開されます。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Expand identical subfolders</option>: Only subfolders without
-differences are expanded after comparison.</para>
+<option>同一のサブフォルダーを展開</option>: 比較後、相違点のないサブフォルダーのみが展開されます。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -992,14 +980,12 @@ differences are expanded after comparison.</para>
       <itemizedlist>
         <listitem>
           <para>
-<option>Disabled</option> (default): WinMerge ignore unique subfolders when
-comparing folders.</para>
+<option>無効</option>(デフォルト): WinMerge は、比較時片方しか存在しないサブフォルダーを無視します。</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Enabled</option>: WinMerge also shows the content from unique
-subfolders.</para>
+<option>有効</option>: WinMerge は、片方しか存在しないサブフォルダー内の内容も表示します。</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -1532,7 +1518,7 @@ Interface (GDI).</para>
           <para>
 <option>DirectWrite Modes</option>: Renders text using various DirectWrite
 rendering modes, including support for colored emojis on Windows 8.1 and
-later. See <ulink
+later. Available only in the 64-bit version of WinMerge. See <ulink
 url="https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants">DirectWrite
 Rendering Modes</ulink> for details.</para>
         </listitem>

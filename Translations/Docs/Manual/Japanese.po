@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-07-26 21:43+0900\n"
+"POT-Creation-Date: 2024-07-27 11:21+0900\n"
 "PO-Revision-Date: 2024-03-02 19:07+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -7356,7 +7356,7 @@ msgstr "ファイル比較では、ファイル中の最初の差異ブロック
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:181
 msgid "autoscrolling to first inline difference"
-msgstr ""
+msgstr "最初の行内差異まで自動スクロール"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:180
@@ -7364,6 +7364,8 @@ msgid ""
 "Automatically scroll to first inline difference<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
 msgstr ""
+"自動的に最初の行内差異にスクロールする<placeholder type=\"indexterm\" "
+"id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:188
@@ -7372,6 +7374,8 @@ msgid ""
 "not automatically scroll to the first inline difference within the lines of "
 "text."
 msgstr ""
+"<option>無効</option>（デフォルト）：差異ブロックに移動する際、テキストの行の"
+"最初のインライン差異まで自動スクロールしません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:194
@@ -7379,6 +7383,8 @@ msgid ""
 "<option>Enabled</option>: When moving to a difference block, automatically "
 "scrolls to the first inline difference within the lines of text."
 msgstr ""
+"<option>有効</option>：差異ブロックに移動すると、テキストの行の最初の行内差異"
+"まで自動的にスクロールします。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:203
@@ -7524,6 +7530,12 @@ msgid ""
 "external applications, like SourceTree, need to wait for WinMerge to finish "
 "before they can safely delete temporary files."
 msgstr ""
+"<option>1つのみインスタンスを起動し、既起動インスタンスの終了を待つ</"
+"option>：「1つのみインスタンスを起動する」オプションと同様に、この設定は"
+"WinMergeを単一のアプリケーションウィンドウに制限します。 ただし、アプリケー"
+"ションウィンドウが閉じられるまで、後に起動したWinMergeのプロセスは終了しませ"
+"ん。これは、SourceTreeなどの外部Diffツールのプロセス終了後に一時ファイルを削"
+"除してしまうアプリケーションとの連携に便利です。"
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:320
@@ -8640,6 +8652,8 @@ msgid ""
 "<option>Do not expand</option> (default): Subfolders remain collapsed after "
 "comparison."
 msgstr ""
+"<option>展開しない</option> (default): 比較後、サブフォルダーは折りたたまれた"
+"ままになります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1230
@@ -8647,6 +8661,8 @@ msgid ""
 "<option>Expand all subfolders</option>: All subfolders are expanded after "
 "comparison."
 msgstr ""
+"<option>すべてのサブフォルダーを展開</option>: 比較後、すべてのサブフォルダー"
+"が展開されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1236
@@ -8654,6 +8670,8 @@ msgid ""
 "<option>Expand different subfolders</option>: Only subfolders with "
 "differences are expanded after comparison."
 msgstr ""
+"<option>差異のあるサブフォルダーを展開</option>: 比較後、差異のあるサブフォル"
+"ダーのみが展開されます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1242
@@ -8661,6 +8679,8 @@ msgid ""
 "<option>Expand identical subfolders</option>: Only subfolders without "
 "differences are expanded after comparison."
 msgstr ""
+"<option>同一のサブフォルダーを展開</option>: 比較後、相違点のないサブフォル"
+"ダーのみが展開されます。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1251
@@ -8681,6 +8701,8 @@ msgid ""
 "<option>Disabled</option> (default): WinMerge ignore unique subfolders when "
 "comparing folders."
 msgstr ""
+"<option>無効</option>(デフォルト): WinMerge は、比較時片方しか存在しないサブ"
+"フォルダーを無視します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:1266
@@ -8688,6 +8710,8 @@ msgid ""
 "<option>Enabled</option>: WinMerge also shows the content from unique "
 "subfolders."
 msgstr ""
+"<option>有効</option>: WinMerge は、片方しか存在しないサブフォルダー内の内容"
+"も表示します。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1275
@@ -9445,9 +9469,10 @@ msgstr ""
 msgid ""
 "<option>DirectWrite Modes</option>: Renders text using various DirectWrite "
 "rendering modes, including support for colored emojis on Windows 8.1 and "
-"later. See <ulink url=\"https://learn.microsoft.com/en-us/windows/win32/api/"
-"dwrite/ne-dwrite-dwrite_rendering_mode#constants\">DirectWrite Rendering "
-"Modes</ulink> for details."
+"later. Available only in the 64-bit version of WinMerge. See <ulink "
+"url=\"https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-"
+"dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink> for "
+"details."
 msgstr ""
 
 #. type: Content of: <article><section><title>

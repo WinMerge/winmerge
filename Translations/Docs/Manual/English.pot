@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-07-26 21:43+0900\n"
+"POT-Creation-Date: 2024-07-27 11:21+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6445,7 +6445,7 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:1876
-msgid "<option>DirectWrite Modes</option>: Renders text using various DirectWrite rendering modes, including support for colored emojis on Windows 8.1 and later. See <ulink url=\"https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink> for details."
+msgid "<option>DirectWrite Modes</option>: Renders text using various DirectWrite rendering modes, including support for colored emojis on Windows 8.1 and later. Available only in the 64-bit version of WinMerge. See <ulink url=\"https://learn.microsoft.com/en-us/windows/win32/api/dwrite/ne-dwrite-dwrite_rendering_mode#constants\">DirectWrite Rendering Modes</ulink> for details."
 msgstr ""
 
 #. type: Content of: <article><section><title>
