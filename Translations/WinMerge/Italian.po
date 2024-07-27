@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 27.04.2024\n"
+"Project-Id-Version: WinMerge (Language) 27.07.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-04-27 21:22+0200\n"
+"PO-Revision-Date: 2024-07-27 14:44+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.com>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -219,13 +219,13 @@ msgid "&Vector Image Scaling"
 msgstr "&Ridimensionamento immagine vettoriale"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "Impostazioni &animazione"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "&Intervallo di lampeggio"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "Intervall&o animazione sovrapposta"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Confronta il &testo estratto dalle immagini"
@@ -4469,7 +4469,7 @@ msgid "Disassemble Native Code"
 msgstr "Disassembla codice nativo"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Converti testo con AI..."
 
 msgid "Make characters uppercase"
 msgstr "Rendi caratteri maiuscoli"
@@ -4711,7 +4711,7 @@ msgid "Prediff Line Filter"
 msgstr "Filtro linea preferenza"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Funzione inserimento data e ora"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4728,13 +4728,13 @@ msgstr ""
 "Argomenti: opzioni riga di comando passate al comando reg.exe."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Funzioni testo base"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "Funzioni conversione testo assistite dall'IA"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
-msgstr ""
+msgstr "Convertitore testo che usa l'API OpenAI.\r\nUso: AIConvertText PROMPT"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opzioni plugin WinMerge CompareMSExcelFiles.sct"
@@ -4874,29 +4874,29 @@ msgid "Do not specify the '-p0' command line option for the patch file which inc
 msgstr "Non specificare l'opzione della riga di comando '-p0' per il file di patch che include percorsi assoluti"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Opzioni plugin WinMerge AI.sct"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Prompt richiesta"
 
 #, c-format
 msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
-msgstr ""
+msgstr "Inserisci la chiave API OpenAI.\r\n - L'uso di questo plugin richiede la registrazione con OpenAI e comporta costi.\r\n - La chiave API è memorizzata nella variabile ambiente %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Nome variabile ambiente chiave API OpenAI"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "Chiave API OpenAI"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatura"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Lunghezza massima"
 
 msgid "Model"
-msgstr ""
+msgstr "Modello"
 
 msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
-msgstr ""
+msgstr "La chiave API OpenAI è cambiata. Per applicare le modifiche riavvia WinMerge."
