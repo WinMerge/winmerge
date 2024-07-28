@@ -981,17 +981,17 @@
       <itemizedlist>
         <listitem>
           <para>
-            <option>Enabled</option>:
-            Makes the color of the different lines ignored by line filters and substitution
-            filters the same as the color of the identical lines.
+            <option>Disabled</option> (default):
+            Difference lines ignored by line filters and substitution filters are
+            displayed in the color of Ignored Difference.
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <option>Disabled</option> (default):
-            Difference lines ignored by line filters and substitution filters are
-            displayed in the color of Ignored Difference.
+            <option>Enabled</option>:
+            Makes the color of the different lines ignored by line filters and substitution
+            filters the same as the color of the identical lines.
           </para>
         </listitem>
       </itemizedlist>
@@ -1333,13 +1333,13 @@
       <itemizedlist>
         <listitem>
           <para>
-            <option>Disabled</option>: WinMerge ignore unique subfolders when comparing folders.
+            <option>Enabled</option> (default): WinMerge also shows the content from unique subfolders.
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <option>Enabled</option> (default): WinMerge also shows the content from unique subfolders.
+            <option>Disabled</option>: WinMerge ignore unique subfolders when comparing folders.
           </para>
         </listitem>
       </itemizedlist>
