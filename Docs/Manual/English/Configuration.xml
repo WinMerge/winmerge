@@ -981,17 +981,17 @@
       <itemizedlist>
         <listitem>
           <para>
-            <option>Enabled</option>:
-            Makes the color of the different lines ignored by line filters and substitution
-            filters the same as the color of the identical lines.
+            <option>Disabled</option> (default):
+            Difference lines ignored by line filters and substitution filters are
+            displayed in the color of Ignored Difference.
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <option>Disabled</option> (default):
-            Difference lines ignored by line filters and substitution filters are
-            displayed in the color of Ignored Difference.
+            <option>Enabled</option>:
+            Makes the color of the different lines ignored by line filters and substitution
+            filters the same as the color of the identical lines.
           </para>
         </listitem>
       </itemizedlist>
@@ -1247,30 +1247,6 @@
 
     <section>
       <title>
-        Include unique subfolders contents<indexterm>
-          <primary>include unique subfolders</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm>
-      </title>
-
-      <itemizedlist>
-        <listitem>
-          <para>
-            <option>Disabled</option> (default): WinMerge ignore unique subfolders when comparing folders.
-          </para>
-        </listitem>
-
-        <listitem>
-          <para>
-            <option>Enabled</option>: WinMerge also shows the content from unique subfolders.
-          </para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>
         Include subfolders<indexterm>
           <primary>include subfolders</primary>
 
@@ -1343,6 +1319,30 @@
           </listitem>
         </varlistentry>
       </variablelist>
+    </section>
+
+    <section>
+      <title>
+        Include unique subfolders contents<indexterm>
+          <primary>include unique subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm>
+      </title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+            <option>Enabled</option> (default): WinMerge also shows the content from unique subfolders.
+          </para>
+        </listitem>
+
+        <listitem>
+          <para>
+            <option>Disabled</option>: WinMerge ignore unique subfolders when comparing folders.
+          </para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>

@@ -767,16 +767,16 @@ Completely unhighlight the ignored differences<indexterm>
       <itemizedlist>
         <listitem>
           <para>
-<option>Enabled</option>: Makes the color of the different lines ignored by
-line filters and substitution filters the same as the color of the identical
-lines.</para>
+<option>Disabled</option> (default): Difference lines ignored by line
+filters and substitution filters are displayed in the color of Ignored
+Difference.</para>
         </listitem>
 
         <listitem>
           <para>
-<option>Disabled</option> (default): Difference lines ignored by line
-filters and substitution filters are displayed in the color of Ignored
-Difference.</para>
+<option>Enabled</option>: Makes the color of the different lines ignored by
+line filters and substitution filters the same as the color of the identical
+lines.</para>
         </listitem>
       </itemizedlist>
     </section>
@@ -971,27 +971,6 @@ Difference.</para>
 
     <section>
       <title>
-片方にしか存在しないフォルダー内も含める<indexterm>
-          <primary>include unique subfolders</primary>
-
-          <secondary>detecting and ignoring differences</secondary>
-        </indexterm></title>
-
-      <itemizedlist>
-        <listitem>
-          <para>
-<option>無効</option>(デフォルト): WinMerge は、比較時片方しか存在しないサブフォルダーを無視します。</para>
-        </listitem>
-
-        <listitem>
-          <para>
-<option>有効</option>: WinMerge は、片方しか存在しないサブフォルダー内の内容も表示します。</para>
-        </listitem>
-      </itemizedlist>
-    </section>
-
-    <section>
-      <title>
 Include subfolders<indexterm>
           <primary>include subfolders</primary>
 
@@ -1058,6 +1037,27 @@ folder.</para>
           </listitem>
         </varlistentry>
       </variablelist>
+    </section>
+
+    <section>
+      <title>
+片方にしか存在しないフォルダー内も含める<indexterm>
+          <primary>include unique subfolders</primary>
+
+          <secondary>detecting and ignoring differences</secondary>
+        </indexterm></title>
+
+      <itemizedlist>
+        <listitem>
+          <para>
+<option>有効</option>(デフォルト): WinMerge は、片方しか存在しないサブフォルダー内の内容も表示します。</para>
+        </listitem>
+
+        <listitem>
+          <para>
+<option>無効</option>: WinMerge は、比較時片方しか存在しないサブフォルダーを無視します。</para>
+        </listitem>
+      </itemizedlist>
     </section>
 
     <section>
