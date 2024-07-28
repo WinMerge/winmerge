@@ -2308,7 +2308,7 @@ msgid ""
 "General Public License in the Help menu for details."
 msgstr ""
 "WinMerge 不提供保证和损害赔偿。这是一款自由软件，并在特定条件下欢迎您重新分发"
-"本软件。详细信息见“帮助”菜单中的“GUN 通用公共许可证”。"
+"本软件。详细信息见“帮助”菜单中的“GNU 通用公共许可证”。"
 
 msgid "&Abort"
 msgstr "中止(&A)"
