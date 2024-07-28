@@ -1257,13 +1257,13 @@
       <itemizedlist>
         <listitem>
           <para>
-            <option>Disabled</option> (default): WinMerge ignore unique subfolders when comparing folders.
+            <option>Disabled</option>: WinMerge ignore unique subfolders when comparing folders.
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <option>Enabled</option>: WinMerge also shows the content from unique subfolders.
+            <option>Enabled</option> (default): WinMerge also shows the content from unique subfolders.
           </para>
         </listitem>
       </itemizedlist>
