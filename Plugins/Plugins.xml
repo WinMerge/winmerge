@@ -186,7 +186,7 @@
     <is-automatic value="false" />
     <unpacked-file-extension value=".txt" />
     <extended-properties value="ProcessType=Decompilation;MenuCaption=Disassemble JVM Bytecode" />
-    <arguments value="-c" />
+    <arguments value="-c -p" />
     <unpack-file>
       <command>cmd /c javap ${*} "${SRC_FILE}" > "${DST_FILE}"</command>
     </unpack-file>

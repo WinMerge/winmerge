@@ -172,6 +172,8 @@ void Init(COptionsMgr *pOptions)
 	pOptions->InitOption(OPT_CMP_IMG_THRESHOLD, 0, 0, 442 * 1000);
 	pOptions->InitOption(OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE, 0, 0, 2);
 	pOptions->InitOption(OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO, 1000, 1, 8000);
+	pOptions->InitOption(OPT_CMP_IMG_BLINKINTERVAL, 800, 200, 8000);
+	pOptions->InitOption(OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL, 1000, 200, 8000);
 	pOptions->InitOption(OPT_CMP_IMG_OCR_RESULT_TYPE, 0, 0, 2);
 
 	pOptions->InitOption(OPT_CMP_WEB_USERDATAFOLDER_TYPE, 0, 0, 1);

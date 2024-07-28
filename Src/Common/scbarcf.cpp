@@ -119,7 +119,7 @@ void CSizingControlBarCF::NcPaintGripper(CDC* pDC, const CRect& rcClient)
         ::GetSysColor(COLOR_GRADIENTINACTIVECAPTION);
     const COLORREF clrBack = ::GetSysColor(COLOR_3DFACE);
     const int radius = pointToPixel(2.25);
-    DrawRoundedRectWithShadow(pDC->m_hDC, rcGrip.left, rcGrip.top, rcGrip.Width(), rcGrip.Height(), radius, 0, clrCptn, clrBack, clrBack);
+    DrawRoundedRect(pDC->m_hDC, rcGrip.left, rcGrip.top, rcGrip.Width(), rcGrip.Height(), radius, clrCptn, clrBack);
 
     // draw the caption text - first select a font
     CFont font;

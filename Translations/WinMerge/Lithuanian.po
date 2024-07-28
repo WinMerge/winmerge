@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2024-05-09 10:40+0200\n"
+"POT-Creation-Date: 2024-07-23 21:46+0000\n"
+"PO-Revision-Date: 2024-07-24 07:40+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.4.3\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -216,6 +216,15 @@ msgstr "Nu&statyti fono spalvą"
 
 msgid "&Vector Image Scaling"
 msgstr "&Vektorinių vaizdų mastelio keitimas"
+
+msgid "&Animation Settings"
+msgstr "&Animacijos nuostatos"
+
+msgid "&Blink interval"
+msgstr "&Mirksėjimo intervalas"
+
+msgid "&Overlay animation interval"
+msgstr "Perdengim&o animacijos intervalas"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Lyginti iš paveikslėlių ištrauktą &tekstą"

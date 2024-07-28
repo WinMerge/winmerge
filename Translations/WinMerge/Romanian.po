@@ -216,6 +216,15 @@ msgstr "&Setează culoarea fundalului"
 msgid "&Vector Image Scaling"
 msgstr "Scalarea imaginii &vectoriale"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Compară &textul extras din imagini"
 

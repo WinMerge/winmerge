@@ -714,7 +714,6 @@
     <ClCompile Include="MergeAppCOMClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Externals\googletest\googletest\src\gtest-all.cc" />
     <ClCompile Include="PropEditorCompareMerge.cpp">
       <Filter>MFCGui\PropertyPages\Source Files</Filter>
     </ClCompile>
@@ -724,17 +723,14 @@
     <ClCompile Include="EditPluginDlg.cpp">
       <Filter>MFCGui\Dialogs\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DirStatusBar.cpp">
-      <Filter>MFCGui\MDIChild\FolderCompare\Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Common\RoundedRectWithShadow.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common\SysColorHook.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MyStatusBar.cpp">
-      <Filter>MFCGui\Main\Source Files</Filter>
+    <ClCompile Include="BasicFlatStatusBar.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1395,17 +1391,14 @@
     <ClInclude Include="EditPluginDlg.h">
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DirStatusBar.h">
-      <Filter>MFCGui\MDIChild\FolderCompare\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Common\RoundedRectWithShadow.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\SysColorHook.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyStatusBar.h">
-      <Filter>MFCGui\Main\Header Files</Filter>
+    <ClInclude Include="BasicFlatStatusBar.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

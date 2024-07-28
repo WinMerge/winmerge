@@ -536,12 +536,12 @@ int CWebPageDiffFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	for (int nPane = 0; nPane < m_pWebDiffWindow->GetPaneCount(); nPane++)
 	{
 		m_wndFilePathBar.SetActive(nPane, FALSE);
-		CreateWebWndStatusBar(m_wndStatusBar[nPane], CWnd::FromHandle(m_pWebDiffWindow->GetPaneHWND(nPane)));
+		//CreateWebWndStatusBar(m_wndStatusBar[nPane], CWnd::FromHandle(m_pWebDiffWindow->GetPaneHWND(nPane)));
 		UpdateHeaderPath(nPane);
 	}
 
-	CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
-	m_rectBorder.bottom = size.cy;
+	//CSize size = m_wndStatusBar[0].CalcFixedLayout(TRUE, TRUE);
+	//m_rectBorder.bottom = size.cy;
 
 	CDockState pDockState;
 	pDockState.LoadState(_T("Settings-WebPageDiffFrame"));

@@ -217,6 +217,15 @@ msgstr "Achtergrondkleur instellen"
 msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Uitgepakte tekst van afbeeldingen vergelijken"
 

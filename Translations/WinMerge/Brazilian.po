@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-05-01 18:30-0300\n"
+"PO-Revision-Date: 2024-07-24 15:10-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -216,6 +216,15 @@ msgstr "&Definir a Cor do 2º Plano"
 
 msgid "&Vector Image Scaling"
 msgstr "&Dimensionamento da Imagem Vetorial"
+
+msgid "&Animation Settings"
+msgstr "Configurações de &Animação"
+
+msgid "&Blink interval"
+msgstr "Frequência de intermitência"
+
+msgid "&Overlay animation interval"
+msgstr "Intervalo de superposição de animação"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar o Texto &Extraído da Imagens"

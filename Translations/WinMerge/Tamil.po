@@ -215,6 +215,15 @@ msgstr "&பின்னணி நிறத்தை அமைக்கவும
 msgid "&Vector Image Scaling"
 msgstr "&வெக்டர் பட அளவிடுதல்"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "படங்களிலிருந்து பிரித்தெடுக்கப்பட்ட &உரையை ஒப்பிடு"
 

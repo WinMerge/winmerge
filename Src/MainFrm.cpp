@@ -2919,7 +2919,7 @@ void CMainFrame::OnPluginsList()
 void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
-	ClientToScreen(&(pToolBar->rcButton));
+	m_wndToolBar.ClientToScreen(&(pToolBar->rcButton));
 	BCMenu menu;
 	int id;
 	switch (pToolBar->iItem)

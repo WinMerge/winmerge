@@ -8,6 +8,8 @@
 #include "BasicFlatStatusBar.h"
 #include "RoundedRectWithShadow.h"
 
+IMPLEMENT_DYNAMIC(CBasicFlatStatusBar, CStatusBar)
+
 BEGIN_MESSAGE_MAP(CBasicFlatStatusBar, CStatusBar)
 	ON_WM_PAINT()
 	ON_WM_ERASEBKGND()
@@ -77,15 +79,18 @@ void CBasicFlatStatusBar::OnPaint()
 		CRect rcPart;
 		ctrl.GetRect(i, &rcPart);
 		if (m_bMouseTracking && (style & SBPS_CLICKABLE) != 0 && i == m_nTrackingPane)
-			DrawRoundedRectWithShadow(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, 0,
-				clr3DFaceLight, clr3DFace, clr3DFace);
+			DrawRoundedRect(dc.m_hDC, rcPart.left, rcPart.top, rcPart.Width(), rcPart.Height(), radius, clr3DFaceLight, clr3DFace);
 		const bool disabled = (style & SBPS_DISABLED) != 0;
 		if (!disabled)
 		{
 			CRect rcText = rcPart;
 			rcText.left += radius;
 			CString text = ctrl.GetText(i);
-			text.Replace(_T("\t"), _T("  "));
+			if (text.Find('\t') >= 0)
+			{
+				text.Trim();
+				text.Replace(_T("\t"), _T("  "));
+			}
 			dc.DrawText(text, &rcText, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 		}
 	}

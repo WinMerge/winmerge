@@ -85,7 +85,7 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
-	void RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs);
+	int RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	DIFFITEM *GetItemKey(int idx) const;

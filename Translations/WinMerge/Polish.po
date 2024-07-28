@@ -218,6 +218,15 @@ msgstr "Ustaw kolor tła"
 msgid "&Vector Image Scaling"
 msgstr "Skalowanie obrazu wektorowego"
 
+msgid "&Animation Settings"
+msgstr ""
+
+msgid "&Blink interval"
+msgstr ""
+
+msgid "&Overlay animation interval"
+msgstr ""
+
 msgid "Compare Extracted &Text From Images"
 msgstr "Porównaj wyodrębniony tekst z obrazu"
 

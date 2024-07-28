@@ -234,6 +234,9 @@ inline const String OPT_CMP_IMG_DIFFCOLORALPHA {_T("Settings/ImageDiffColorAlpha
 inline const String OPT_CMP_IMG_THRESHOLD {_T("Settings/ImageColorDistanceThreshold"s)};
 inline const String OPT_CMP_IMG_INSERTIONDELETIONDETECTION_MODE {_T("Settings/ImageInsertionDeletionDetectionMode"s)};
 inline const String OPT_CMP_IMG_VECTOR_IMAGE_ZOOM_RATIO {_T("Settings/ImageVectorImageZoomRatio"s)};
+inline const String OPT_CMP_IMG_BLINKINTERVAL {_T("Settings/ImageBlinkInterval"s)};
+inline const String OPT_CMP_IMG_OVERLAYANIMATIONINTERVAL {_T("Settings/ImageOverlayAnimationInterval"s)};
+
 inline const String OPT_CMP_ENABLE_IMGCMP_IN_DIRCMP {_T("Settings/EnableImageCompareInFolderCompare"s)};
 inline const String OPT_CMP_IMG_OCR_RESULT_TYPE {_T("Settings/ImageOcrResultType"s)};
 

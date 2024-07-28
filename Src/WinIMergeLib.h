@@ -183,6 +183,10 @@ struct IImgMergeWindow
 	virtual DIFF_ALGORITHM GetDiffAlgorithm() const = 0;
 	virtual void SetDiffAlgorithm(DIFF_ALGORITHM diffAlgorithm) = 0;
 	virtual bool IsSaveSupported(int pane) const = 0;
+	virtual int GetBlinkInterval() const = 0;
+	virtual void SetBlinkInterval(int interval) = 0;
+	virtual int GetOverlayAnimationInterval() const = 0;
+	virtual void SetOverlayAnimationInterval(int interval) = 0;
 };
 
 struct IImgToolWindow

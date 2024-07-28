@@ -1,5 +1,57 @@
 # Change log
 
+## WinMerge 2.16.42.1 - 2024-07-28
+
+### General
+
+- BugFix: Digital signature was not added to version 2.16.42.
+
+### Translations
+
+- Translation updates:
+  - Chinese Simplified (PR #2394)
+  - Italian (PR #2393)
+
+## WinMerge 2.16.42 - 2024-07-27
+
+### General
+
+- Enable Rounded Corners for WinMerge Menu on Windows 11 (PR #2364)
+- Introduce a flat status bar without separator lines. (PR #2377)
+
+### Folder compare
+
+- BugFix: Folder comparison status not accurately reflected in toolbar (#2374)
+- BugFix: Status of folder comparison not correctly reflected by tab icon after
+    Refresh (F5) (#2383)
+
+### File compare
+
+- Replace - more intelligent choice of replace in (whole file vs selection) (#2368)
+
+### Image compare
+
+- BugFix: Image Comparison : In Alpha Animation, dialogs hang winmerge (#2370) 
+- BugFix: Fixed an issue where the right edge of the status bar appeared white.
+- Added the ability to change the blink interval and overlay animation interval.
+
+### Plugins
+
+- Make the gpt4-o-mini model selectable in the AIConvertText plugin settings
+    window
+
+### Archive support
+
+- Update 7-Zip to 24.07
+
+### Translations
+
+- Translation updates:
+  - Chinese Simplified (PR #2392)
+  - Brazilian (PR #2391)
+  - Hungarian (PR #2388)
+  - Lithuanian (PR #2390)
+
 ## WinMerge 2.16.41 - 2024-06-24
 
 ### General
