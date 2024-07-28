@@ -1,5 +1,17 @@
 # Change log
 
+## WinMerge 2.16.42.1 - 2024-07-28
+
+### General
+
+- BugFix: Digital signature was not added to version 2.16.42.
+
+### Translations
+
+- Translation updates:
+  - Chinese Simplified (PR #2394)
+  - Italian (PR #2393)
+
 ## WinMerge 2.16.42 - 2024-07-27
 
 ### General

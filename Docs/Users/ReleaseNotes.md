@@ -1,6 +1,7 @@
-# WinMerge 2.16.42 Release Notes
+# WinMerge 2.16.42.1 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.42.1](#what-is-new-in-216421)
 - [What Is New in 2.16.42](#what-is-new-in-21642)
 - [What Is New in 2.16.41 beta?](#what-is-new-in-21641-beta)
 - [Known issues](#known-issues)
@@ -9,10 +10,22 @@ July 2024
 
 ## About This Release
 
-This is a WinMerge 2.16.42 stable release.
+This is a WinMerge 2.16.42.1 stable release.
 This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.42.1
+
+### General
+
+- BugFix: Digital signature was not added to version 2.16.42.
+
+### Translations
+
+- Translation updates:
+  - Chinese Simplified (PR #2394)
+  - Italian (PR #2393)
 
 ## What Is New in 2.16.42
 
