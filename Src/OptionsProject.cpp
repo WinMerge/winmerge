@@ -84,4 +84,20 @@ bool Get(COptionsMgr* pOptionsMgr, Operation operation, Item item)
 	return pOptionsMgr->GetBool(name);
 }
 
+/**
+ * @brief Get the default project setting from OptionsMgr.
+ * @param [in] pOptionsMgr Pointer to OptionsMgr
+ * @param [in] operation Operation for project files
+ * @param [in] item Item to save to or restore from the project file
+ * @return Default project setting
+ */
+bool GetDefault(COptionsMgr* pOptionsMgr, Operation operation, Item item)
+{
+	if (pOptionsMgr == nullptr)
+		return false;
+
+	String name = strutils::format(_T("%s/%s.%s"), Section, OperationKeyword[static_cast<int>(operation)], ItemKeyword[static_cast<int>(item)]);
+	return pOptionsMgr->GetDefault<bool>(name);
+}
+
 }}

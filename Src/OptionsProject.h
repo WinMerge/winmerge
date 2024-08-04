@@ -30,4 +30,5 @@ void Init(COptionsMgr *pOptionsMgr);
 void Load(COptionsMgr *pOptionsMgr, Settings settings);
 void Save(COptionsMgr *pOptionsMgr, const Settings& settings);
 bool Get(COptionsMgr* pOptionsMgr, Operation operation, Item item);
+bool GetDefault(COptionsMgr* pOptionsMgr, Operation operation, Item item);
 }}
