@@ -37,6 +37,16 @@ BOOL CCommandBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
 	TBBUTTON btn;
 	setTBButton(btn, FIRST_MENUID, _T(""));
 	toolbar.InsertButton(0, &btn);
+
+	TEXTMETRIC tm;
+	CClientDC dc(this);
+	CFont* pOldFont = dc.SelectObject(toolbar.GetFont());
+	dc.GetTextMetrics(&tm);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](float point) -> int { return static_cast<int>(point * lpx / 72.0f); };
+	const int cy = pointToPixel(1.5);
+	toolbar.SetButtonSize(CSize(tm.tmHeight + cy * 2, tm.tmHeight + cy * 2));
+	dc.SelectObject(pOldFont);
 	return ret;
 }
 
@@ -57,7 +67,7 @@ bool CCommandBar::AttachMenu(CMenu* pMenu)
 		
 		const int nItems = pMenu->GetMenuItemCount();
 		std::vector<TBBUTTON> btns(nItems);
-		std::vector<std::wstring> menuStrings(nItems);
+		std::vector<std::basic_string<TCHAR>> menuStrings(nItems);
 
 		for (int i = 0; i < nItems; i++)
 		{
@@ -68,7 +78,7 @@ bool CCommandBar::AttachMenu(CMenu* pMenu)
 			mii.dwTypeData = szString;
 			mii.cch = sizeof(szString) / sizeof(szString[0]);
 			pMenu->GetMenuItemInfo(i, &mii, TRUE);
-			menuStrings[i] = szString;
+			menuStrings[i] = std::basic_string<TCHAR>(L" ") + szString + L" ";
 
 			setTBButton(btns[i], FIRST_MENUID + i, menuStrings[i].c_str());
 		}
