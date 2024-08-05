@@ -26,6 +26,11 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 
+	static LRESULT CALLBACK GetMsgProc(int code, WPARAM wp, LPARAM lp);
+
 	HMENU m_hMenu;
 	CFont m_hToolbarFont;
+	bool m_bActive;
+	static HHOOK m_hHook;
+	static CCommandBar* m_pThis;
 };
