@@ -25,7 +25,7 @@ if (oFSO.GetFileName(WScript.FullName).toLowerCase() === "cscript.exe") {
 }
 var bInsertLineNumbers = false;
 if (WScript.Arguments.Named.Exists("InsertLineNumbers")) {
-  bInsertLineNumbers = CBool(WScript.Arguments.Named("InsertLineNumbers"));
+  bInsertLineNumbers = (WScript.Arguments.Named("InsertLineNumbers").toLowerCase() === "true");
 }
 
 Main();
