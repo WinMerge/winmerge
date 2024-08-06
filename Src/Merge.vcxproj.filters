@@ -726,6 +726,9 @@
     <ClCompile Include="Common\RoundedRectWithShadow.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\SysColorHook.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="BasicFlatStatusBar.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
@@ -1389,6 +1392,9 @@
       <Filter>MFCGui\Dialogs\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common\RoundedRectWithShadow.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SysColorHook.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BasicFlatStatusBar.h">

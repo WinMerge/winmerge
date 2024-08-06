@@ -220,6 +220,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
+	ON_COMMAND_RANGE(CCommandBar::FIRST_MENUID, CCommandBar::FIRST_MENUID + 10, OnCommandBarMenuItem)
+	ON_UPDATE_COMMAND_UI_RANGE(CCommandBar::FIRST_MENUID, CCommandBar::FIRST_MENUID + 10, OnUpdateCommandBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
 	ON_COMMAND(ID_FILE_NEW_TABLE, (OnFileNew<2, ID_MERGE_COMPARE_TABLE>))
@@ -444,6 +446,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	return 0;
+}
+
+void CMainFrame::OnCommandBarMenuItem(UINT nID)
+{
+	m_wndCommandBar.OnCommandBarMenuItem(nID);
+}
+
+void CMainFrame::OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI)
+{
+	m_wndCommandBar.OnUpdateCommandBarMenuItem(pCmdUI);
 }
 
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
@@ -2470,26 +2482,32 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 
 BOOL CMainFrame::CreateToolbar()
 {
-	if (!m_wndToolBar.CreateEx(this) ||
+	if (!m_wndCommandBar.Create(this))
+	{
+		return FALSE;
+	}
+
+	if (!m_wndToolBar.CreateEx(this, TBSTYLE_FLAT | TBSTYLE_TRANSPARENT) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
 		return FALSE;
 	}
 
-	if (!m_wndReBar.Create(this, RBS_BANDBORDERS,
+	if (!m_wndReBar.Create(this, 0,
 		WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS | WS_CLIPCHILDREN | CBRS_ALIGN_TOP))
 	{
 		return FALSE;
 	}
 
-	VERIFY(m_wndToolBar.ModifyStyle(0, TBSTYLE_FLAT|TBSTYLE_TRANSPARENT));
-
 	// Remove this if you don't want tool tips or a resizable toolbar
+	m_wndCommandBar.SetBarStyle(m_wndCommandBar.GetBarStyle() |
+		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
-	m_wndReBar.AddBar(&m_wndToolBar);
+	m_wndReBar.AddBar(&m_wndCommandBar);
+	m_wndReBar.AddBar(&m_wndToolBar, nullptr, nullptr, RBBS_GRIPPERALWAYS | RBBS_FIXEDBMP | RBBS_BREAK);
 
 	LoadToolbarImages();
 
@@ -2507,6 +2525,8 @@ BOOL CMainFrame::CreateToolbar()
 	{
 		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
+
+	__super::ShowControlBar(&m_wndCommandBar, true, 0);
 
 	return TRUE;
 }
@@ -2542,7 +2562,7 @@ void CMainFrame::LoadToolbarImages()
 	REBARBANDINFO rbbi = { sizeof REBARBANDINFO };
 	rbbi.fMask = RBBIM_CHILDSIZE;
 	rbbi.cyMinChild = sizeButton.cy;
-	m_wndReBar.GetReBarCtrl().SetBandInfo(0, &rbbi);
+	m_wndReBar.GetReBarCtrl().SetBandInfo(1, &rbbi);
 }
 
 

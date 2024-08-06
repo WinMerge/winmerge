@@ -14,6 +14,7 @@
 #include <vector>
 #include <memory>
 #include <optional>
+#include "CommandBar.h"
 #include "MDITabBar.h"
 #include "BasicFlatStatusBar.h"
 #include "PathContext.h"
@@ -222,6 +223,7 @@ public:
 	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
 	void WatchDocuments(IMergeDoc* pMergeDoc);
 	void UnwatchDocuments(IMergeDoc* pMergeDoc);
+	CCommandBar* GetCommandBar() { return &m_wndCommandBar; }
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
 
@@ -249,6 +251,7 @@ protected:
 	// control bar embedded members
 	CBasicFlatStatusBar  m_wndStatusBar;
 	CReBar m_wndReBar;
+	CCommandBar m_wndCommandBar;
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
@@ -274,6 +277,11 @@ protected:
 				}
 				break;
 			}
+			case WM_MDISETMENU:
+				GetMainFrame()->SetMenuBarState(AFX_MBS_HIDDEN);
+				GetMainFrame()->GetCommandBar()->AttachMenu(CMenu::FromHandle(reinterpret_cast<HMENU>(wParam)));
+				return TRUE;
+				break;
 			case WM_TIMER:
 				if (wParam == m_nRedrawTimer)
 				{
@@ -418,6 +426,8 @@ protected:
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivated(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnCommandBarMenuItem(UINT nID);
+	afx_msg void OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
