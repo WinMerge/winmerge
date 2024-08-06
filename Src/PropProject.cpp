@@ -56,7 +56,7 @@ void PropProject::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropProject, OptionsPanel)
 	//{{AFX_MSG_MAP(PropEditor)
-//	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -89,6 +89,18 @@ BOOL PropProject::OnInitDialog()
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 				  // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+/**
+ * @brief Sets options to defaults
+ */
+void PropProject::OnDefaults()
+{
+	for (int i = 0; i < Options::Project::OperationCount; i++)
+		for (int j = 0; j < Options::Project::ItemCount; j++)
+			m_settings[i][j] = Options::Project::GetDefault(GetOptionsMgr(), static_cast<Options::Project::Operation>(i), static_cast<Options::Project::Item>(j));
+
+	UpdateData(FALSE);
 }
 
 /**

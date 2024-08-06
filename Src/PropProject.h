@@ -50,6 +50,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropEditor)
 	afx_msg BOOL OnInitDialog() override;
+	afx_msg void OnDefaults();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
