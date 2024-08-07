@@ -1445,6 +1445,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="CommandBar.h" />
     <ClInclude Include="Common\cio.h" />
     <ClInclude Include="Common\DebugNew.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
@@ -1657,6 +1658,7 @@
     <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CommandBar.cpp" />
     <None Include="res\binarydiff.ico" />
     <None Include="res\both.bmp" />
     <None Include="res\equalbinary.ico" />
