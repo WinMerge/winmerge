@@ -10,6 +10,7 @@
 IMPLEMENT_DYNAMIC(CCommandBar, CToolBar)
 
 BEGIN_MESSAGE_MAP(CCommandBar, CToolBar)
+	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
 END_MESSAGE_MAP()
 
 HHOOK CCommandBar::m_hHook = nullptr;
@@ -94,6 +95,23 @@ bool CCommandBar::AttachMenu(CMenu* pMenu)
 	toolbar.SetRedraw(true);
 
 	return true;
+}
+
+void CCommandBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMTBCUSTOMDRAW pNMCD = reinterpret_cast<LPNMTBCUSTOMDRAW>(pNMHDR);
+	if (pNMCD->nmcd.dwDrawStage == CDDS_PREPAINT)
+	{
+		*pResult = CDRF_NOTIFYITEMDRAW;
+		return;
+	}
+	else if (pNMCD->nmcd.dwDrawStage == CDDS_ITEMPREPAINT)
+	{
+		pNMCD->clrText = GetSysColor(COLOR_MENUTEXT);
+		*pResult = CDRF_DODEFAULT | TBCDRF_USECDCOLORS;
+		return;
+	}
+	*pResult = 0;
 }
 
 void CCommandBar::OnCommandBarMenuItem(UINT nID)

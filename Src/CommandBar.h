@@ -24,6 +24,9 @@ public:
 	void OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI);
 
 protected:
+	//{{AFX_MSG(CCommandBar)
+	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
+	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 	static LRESULT CALLBACK GetMsgProc(int code, WPARAM wp, LPARAM lp);
