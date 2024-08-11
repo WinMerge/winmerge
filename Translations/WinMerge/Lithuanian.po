@@ -1476,6 +1476,9 @@ msgstr "P&asirinktinis katalogas:"
 msgid "Br&owse..."
 msgstr "Ra&sti..."
 
+msgid "Defaults"
+msgstr "Numat. reikšmės"
+
 msgid "Patch Generator"
 msgstr "Pataisos generatorius"
 
@@ -1514,9 +1517,6 @@ msgstr "Įterpti koman&dinę eilutę"
 
 msgid "Open to e&xternal editor"
 msgstr "Atverti &išoriniame redaktoriuje"
-
-msgid "Defaults"
-msgstr "Numat. reikšmės"
 
 msgid "Display Columns"
 msgstr "Rodyti stulpelius"

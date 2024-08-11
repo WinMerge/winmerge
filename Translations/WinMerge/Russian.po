@@ -1478,6 +1478,9 @@ msgstr "Указанная папка:"
 msgid "Br&owse..."
 msgstr "Обзор..."
 
+msgid "Defaults"
+msgstr "По умолчанию"
+
 msgid "Patch Generator"
 msgstr "Генератор патчей"
 
@@ -1516,9 +1519,6 @@ msgstr "Вкл&ючать командную строку"
 
 msgid "Open to e&xternal editor"
 msgstr "Открыть во внешнем редакторе"
-
-msgid "Defaults"
-msgstr "По умолчанию"
 
 msgid "Display Columns"
 msgstr "Отображать столбцы"

@@ -1476,6 +1476,9 @@ msgstr "Aangepaste map:"
 msgid "Br&owse..."
 msgstr "Bladeren..."
 
+msgid "Defaults"
+msgstr "Standaardwaarden"
+
 msgid "Patch Generator"
 msgstr "Patch-generator"
 
@@ -1514,9 +1517,6 @@ msgstr "Inclusief opdrachtregel"
 
 msgid "Open to e&xternal editor"
 msgstr "Openen met externe editor"
-
-msgid "Defaults"
-msgstr "Standaardwaarden"
 
 msgid "Display Columns"
 msgstr "Kolommen weergeven"

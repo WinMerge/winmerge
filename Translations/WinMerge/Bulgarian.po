@@ -1473,6 +1473,9 @@ msgstr "Друга &папка:"
 msgid "Br&owse..."
 msgstr "&Разглеждане…"
 
+msgid "Defaults"
+msgstr "По подразбиране"
+
 msgid "Patch Generator"
 msgstr "Създаване на кръпки"
 
@@ -1511,9 +1514,6 @@ msgstr "Включително командния &ред"
 
 msgid "Open to e&xternal editor"
 msgstr "Отваряне с външе&н редактор"
-
-msgid "Defaults"
-msgstr "По подразбиране"
 
 msgid "Display Columns"
 msgstr "Видими колони"

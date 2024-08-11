@@ -1479,6 +1479,9 @@ msgstr "م&جلد مخصص:"
 msgid "Br&owse..."
 msgstr "&بحث..."
 
+msgid "Defaults"
+msgstr "الإعدادات الافتراضية"
+
 msgid "Patch Generator"
 msgstr "أداة توليد التصحيح"
 
@@ -1517,9 +1520,6 @@ msgstr "دمج سطر الأوامر"
 
 msgid "Open to e&xternal editor"
 msgstr "فتح في المحرر الخارجي"
-
-msgid "Defaults"
-msgstr "الإعدادات الافتراضية"
 
 msgid "Display Columns"
 msgstr "عرض الأعمدة"

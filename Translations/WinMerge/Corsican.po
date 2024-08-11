@@ -1478,6 +1478,9 @@ msgstr "Cartulare &persunalizatu :"
 msgid "Br&owse..."
 msgstr "Na&vigà…"
 
+msgid "Defaults"
+msgstr "Predefinizioni"
+
 msgid "Patch Generator"
 msgstr "Generatore di currezzioni"
 
@@ -1516,9 +1519,6 @@ msgstr "Inclu&de a linea di cumanda"
 
 msgid "Open to e&xternal editor"
 msgstr "Apre cù l’&editore esternu"
-
-msgid "Defaults"
-msgstr "Predefinizioni"
 
 msgid "Display Columns"
 msgstr "Affissera di e culonne"

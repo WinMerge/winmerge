@@ -1481,6 +1481,9 @@ msgstr "Director personali&zat:"
 msgid "Br&owse..."
 msgstr "Ră&sfoiește..."
 
+msgid "Defaults"
+msgstr "Implicite"
+
 msgid "Patch Generator"
 msgstr "Generator petice"
 
@@ -1519,9 +1522,6 @@ msgstr "Inclu&de linia de comandă"
 
 msgid "Open to e&xternal editor"
 msgstr "Deschide în editor e&xtern"
-
-msgid "Defaults"
-msgstr "Implicite"
 
 msgid "Display Columns"
 msgstr "Afișează coloanele"

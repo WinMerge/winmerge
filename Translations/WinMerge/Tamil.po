@@ -1474,6 +1474,9 @@ msgstr "C&ustom கோப்புறை:"
 msgid "Br&owse..."
 msgstr "உலாவும்..."
 
+msgid "Defaults"
+msgstr "இயல்புநிலைகள்"
+
 msgid "Patch Generator"
 msgstr "பேட்ச் ஜெனரேட்டர்"
 
@@ -1512,9 +1515,6 @@ msgstr "கட்டளை வரியைச் சேர்&செய்"
 
 msgid "Open to e&xternal editor"
 msgstr "மின்&புற எடிட்டருக்கு திற"
-
-msgid "Defaults"
-msgstr "இயல்புநிலைகள்"
 
 msgid "Display Columns"
 msgstr "காட்சி நெடுவரிசைகள்"

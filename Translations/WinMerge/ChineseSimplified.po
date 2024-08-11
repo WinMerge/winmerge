@@ -1482,6 +1482,9 @@ msgstr "自定义文件夹(&U)："
 msgid "Br&owse..."
 msgstr "浏览(&O)..."
 
+msgid "Defaults"
+msgstr "默认"
+
 msgid "Patch Generator"
 msgstr "补丁生成器"
 
@@ -1520,9 +1523,6 @@ msgstr "包含命令行(&D)"
 
 msgid "Open to e&xternal editor"
 msgstr "用外部编辑器打开(&X)"
-
-msgid "Defaults"
-msgstr "默认"
 
 msgid "Display Columns"
 msgstr "选择显示的列"
