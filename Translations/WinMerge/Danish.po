@@ -1785,6 +1785,10 @@ msgid "Br&owse..."
 msgstr "G&ennemse..."
 
 #, c-format
+msgid "Defaults"
+msgstr "Standard"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Patch Generator"
 
@@ -1835,10 +1839,6 @@ msgstr "Inkluder &kommandolinjen"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Åben i ekstern e&ditor"
-
-#, c-format
-msgid "Defaults"
-msgstr "Standard"
 
 #, c-format
 msgid "Display Columns"

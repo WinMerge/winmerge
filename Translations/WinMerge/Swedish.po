@@ -1485,6 +1485,9 @@ msgstr "Egen katalog:"
 msgid "Br&owse..."
 msgstr "Bläddra..."
 
+msgid "Defaults"
+msgstr "Förval"
+
 msgid "Patch Generator"
 msgstr "Patchgenererare"
 
@@ -1523,9 +1526,6 @@ msgstr "Inkludera kommandorad"
 
 msgid "Open to e&xternal editor"
 msgstr "Öppna i externt program"
-
-msgid "Defaults"
-msgstr "Förval"
 
 msgid "Display Columns"
 msgstr "Visa kolumner"

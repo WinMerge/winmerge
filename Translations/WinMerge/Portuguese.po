@@ -1483,6 +1483,9 @@ msgstr "Pasta p&ersonalizada:"
 msgid "Br&owse..."
 msgstr "L&ocalizar..."
 
+msgid "Defaults"
+msgstr "Predefinições"
+
 msgid "Patch Generator"
 msgstr "Gerador de correção"
 
@@ -1521,9 +1524,6 @@ msgstr "Incluir linha &de comandos"
 
 msgid "Open to e&xternal editor"
 msgstr "Abrir em editor e&xterno"
-
-msgid "Defaults"
-msgstr "Predefinições"
 
 msgid "Display Columns"
 msgstr "Mostrar colunas"

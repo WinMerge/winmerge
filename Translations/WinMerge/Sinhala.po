@@ -1784,6 +1784,10 @@ msgid "Br&owse..."
 msgstr "සැරි සරන්න..."
 
 #, fuzzy, c-format
+msgid "Defaults"
+msgstr "Defaults"
+
+#, fuzzy, c-format
 msgid "Patch Generator"
 msgstr "Patch Generator"
 
@@ -1834,10 +1838,6 @@ msgstr "Inclu&de command line"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "බාහිර සංස්කරණය සඳහා විවෘත කරන්න"
-
-#, fuzzy, c-format
-msgid "Defaults"
-msgstr "Defaults"
 
 #, c-format
 msgid "Display Columns"

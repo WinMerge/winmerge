@@ -1787,6 +1787,10 @@ msgid "Br&owse..."
 msgstr "&o مرور ... "
 
 #, c-format
+msgid "Defaults"
+msgstr " پيش فرضها "
+
+#, c-format
 msgid "Patch Generator"
 msgstr " توليد کننده  وصله  "
 
@@ -1837,10 +1841,6 @@ msgstr "&d شامل خط فرمان "
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "&x بازکردن با ويراستار خارجي "
-
-#, c-format
-msgid "Defaults"
-msgstr " پيش فرضها "
 
 #, c-format
 msgid "Display Columns"

@@ -52,6 +52,7 @@ public:
 protected:
 	// Generated message map functions
 	//{{AFX_MSG(PropRegistry)
+	afx_msg void OnDefaults();
 	afx_msg void OnBrowseEditor();
 	afx_msg void OnBrowseFilterPath();
 	afx_msg void OnBrowseTmpFolder();

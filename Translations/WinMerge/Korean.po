@@ -1793,6 +1793,10 @@ msgid "Br&owse..."
 msgstr "찾아보기(&O)..."
 
 #, c-format
+msgid "Defaults"
+msgstr "기본값"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "패치 생성기"
 
@@ -1843,10 +1847,6 @@ msgstr "명령행 포함(&D)"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "외부 편집기로 열기(&X)"
-
-#, c-format
-msgid "Defaults"
-msgstr "기본값"
 
 #, c-format
 msgid "Display Columns"
