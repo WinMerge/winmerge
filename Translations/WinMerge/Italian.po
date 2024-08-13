@@ -1479,6 +1479,9 @@ msgstr "Cartella &personalizzata:"
 msgid "Br&owse..."
 msgstr "Sf&oglia..."
 
+msgid "Defaults"
+msgstr "Predefinito"
+
 msgid "Patch Generator"
 msgstr "Generatore patch"
 
@@ -1517,9 +1520,6 @@ msgstr "Includi &linea di comando"
 
 msgid "Open to e&xternal editor"
 msgstr "Apri in e&ditor esterno"
-
-msgid "Defaults"
-msgstr "Predefinito"
 
 msgid "Display Columns"
 msgstr "Scelta delle colonne"

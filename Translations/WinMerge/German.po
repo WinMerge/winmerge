@@ -1788,6 +1788,10 @@ msgid "Br&owse..."
 msgstr "Su&chen..."
 
 #, c-format
+msgid "Defaults"
+msgstr "Vorgaben"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Patch-Generator"
 
@@ -1838,10 +1842,6 @@ msgstr "&Befehlszeile einfügen"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Im e&xternen Editor öffnen"
-
-#, c-format
-msgid "Defaults"
-msgstr "Vorgaben"
 
 #, c-format
 msgid "Display Columns"

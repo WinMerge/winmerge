@@ -1786,6 +1786,10 @@ msgid "Br&owse..."
 msgstr "T&allózás..."
 
 #, c-format
+msgid "Defaults"
+msgstr "Alaphelyzetbe"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Patch Generátor"
 
@@ -1836,10 +1840,6 @@ msgstr "&Parancssor is"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Megnyitás a külső szerkesztővel"
-
-#, c-format
-msgid "Defaults"
-msgstr "Alaphelyzetbe"
 
 #, c-format
 msgid "Display Columns"

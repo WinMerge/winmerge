@@ -1475,6 +1475,9 @@ msgstr "Ö&zel klasör:"
 msgid "Br&owse..."
 msgstr "Göz a&t..."
 
+msgid "Defaults"
+msgstr "Varsayılanlar"
+
 msgid "Patch Generator"
 msgstr "Yama oluşturucu"
 
@@ -1513,9 +1516,6 @@ msgstr "Ko&mut satırı katılsın"
 
 msgid "Open to e&xternal editor"
 msgstr "Dış düzen&leyici ile açılsın"
-
-msgid "Defaults"
-msgstr "Varsayılanlar"
 
 msgid "Display Columns"
 msgstr "Sütunlar görüntülensin"

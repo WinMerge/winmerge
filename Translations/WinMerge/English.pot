@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-07-23 21:46+0000\n"
+"POT-Creation-Date: 2024-08-10 20:44+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1470,6 +1470,9 @@ msgstr ""
 msgid "Br&owse..."
 msgstr ""
 
+msgid "Defaults"
+msgstr ""
+
 msgid "Patch Generator"
 msgstr ""
 
@@ -1507,9 +1510,6 @@ msgid "Inclu&de command line"
 msgstr ""
 
 msgid "Open to e&xternal editor"
-msgstr ""
-
-msgid "Defaults"
 msgstr ""
 
 msgid "Display Columns"

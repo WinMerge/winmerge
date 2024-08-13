@@ -43,6 +43,7 @@ void PropBackups::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(PropBackups, OptionsPanel)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_BN_CLICKED(IDC_BACKUP_BROWSE, OnBnClickedBackupBrowse)
 END_MESSAGE_MAP()
 
@@ -75,6 +76,21 @@ void PropBackups::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_GLOBALFOLDER, m_sGlobalFolder);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_BAK, m_bAppendBak);
 	GetOptionsMgr()->SaveOption(OPT_BACKUP_ADD_TIME, m_bAppendTime);
+}
+
+/**
+ * @brief Sets options to defaults.
+ */
+void PropBackups::OnDefaults()
+{
+	m_bCreateForFolderCmp = GetOptionsMgr()->GetDefault<bool>(OPT_BACKUP_FOLDERCMP);
+	m_bCreateForFileCmp = GetOptionsMgr()->GetDefault<bool>(OPT_BACKUP_FILECMP);
+	m_nBackupFolder = GetOptionsMgr()->GetDefault<unsigned>(OPT_BACKUP_LOCATION);
+	m_sGlobalFolder = GetOptionsMgr()->GetDefault<String>(OPT_BACKUP_GLOBALFOLDER);
+	m_bAppendBak = GetOptionsMgr()->GetDefault<bool>(OPT_BACKUP_ADD_BAK);
+	m_bAppendTime = GetOptionsMgr()->GetDefault<bool>(OPT_BACKUP_ADD_TIME);
+
+	UpdateData(FALSE);
 }
 
 /** 

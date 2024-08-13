@@ -1476,6 +1476,9 @@ msgstr "P&asta personalizada:"
 msgid "Br&owse..."
 msgstr "Pr&ocurar..."
 
+msgid "Defaults"
+msgstr "Padrões"
+
 msgid "Patch Generator"
 msgstr "Gerador de Patches"
 
@@ -1514,9 +1517,6 @@ msgstr "Inclu&ir a linha de comando"
 
 msgid "Open to e&xternal editor"
 msgstr "Abrir no e&ditor externo"
-
-msgid "Defaults"
-msgstr "Padrões"
 
 msgid "Display Columns"
 msgstr "Exibir Colunas"
