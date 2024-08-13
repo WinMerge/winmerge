@@ -426,7 +426,6 @@ protected:
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivated(WPARAM wParam, LPARAM lParam);
-	afx_msg void OnCommandBarMenuItem(UINT nID);
 	afx_msg void OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

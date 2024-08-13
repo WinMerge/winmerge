@@ -220,7 +220,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
-	ON_COMMAND_RANGE(CCommandBar::FIRST_MENUID, CCommandBar::FIRST_MENUID + 10, OnCommandBarMenuItem)
 	ON_UPDATE_COMMAND_UI_RANGE(CCommandBar::FIRST_MENUID, CCommandBar::FIRST_MENUID + 10, OnUpdateCommandBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -446,11 +445,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
 	return 0;
-}
-
-void CMainFrame::OnCommandBarMenuItem(UINT nID)
-{
-	m_wndCommandBar.OnCommandBarMenuItem(nID);
 }
 
 void CMainFrame::OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI)
@@ -2179,6 +2173,8 @@ void CMainFrame::SelectFilter()
  */
 BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 {
+	if (m_wndCommandBar.PreTranslateMessage(pMsg))
+		return TRUE;
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
 	{
@@ -2954,6 +2950,11 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 		id = IDR_POPUP_SAVE;
 		break;
 	default:
+		if (pToolBar->iItem >= CCommandBar::FIRST_MENUID && pToolBar->iItem < CCommandBar::FIRST_MENUID + 10)
+		{
+			m_wndCommandBar.OnCommandBarMenuItem(pToolBar->iItem);
+			return;
+		}
 		id = IDR_POPUP_DIFF_OPTIONS;
 		break;
 	}

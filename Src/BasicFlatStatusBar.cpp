@@ -1,3 +1,5 @@
+// Copyright (c) 2024 Takashi Sawanaka
+// SPDX-License-Identifier: BSL-1.0
 /**
  * @file  BasicFlatStatusBar.cpp
  *

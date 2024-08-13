@@ -729,6 +729,9 @@
     <ClCompile Include="BasicFlatStatusBar.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CommandBar.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1392,6 +1395,9 @@
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BasicFlatStatusBar.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandBar.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
