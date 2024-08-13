@@ -42,6 +42,7 @@ protected:
 	int GetMDIButtonIndexFromPoint(CPoint pt) const;
 	CRect GetMDIButtonsRect() const;
 	CRect GetMDIButtonRect(int nItem) const;
+	void ShowKeyboardCues(bool show);
 	void LoseFocus();
 
 	HMENU m_hMenu;

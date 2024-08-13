@@ -169,14 +169,19 @@ static bool IsMDIChildMaximized()
 	return bMaximized;
 }
 
+void CCommandBar::ShowKeyboardCues(bool show)
+{
+	m_bShowKeyboardCues = show;
+	GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, show ? 0 : DT_HIDEPREFIX);
+	Invalidate();
+}
+
 void CCommandBar::LoseFocus()
 {
 	m_bActive = false;
 	m_hwndOldFocus = nullptr;
-	m_bShowKeyboardCues = false;
-	GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, DT_HIDEPREFIX);
+	ShowKeyboardCues(false);
 	GetToolBarCtrl().SetHotItem(-1);
-	Invalidate();
 }
 
 void CCommandBar::OnSetFocus(CWnd* pOldWnd)
@@ -293,6 +298,12 @@ void CCommandBar::OnCommandBarMenuItem(UINT nID)
 	m_hCurrentPopupMenu = pPopup->m_hMenu;
 	m_pThis = this;
 
+	if (m_bShowKeyboardCues)
+	{
+		AfxGetMainWnd()->PostMessage(WM_KEYDOWN, VK_DOWN, 0);
+		AfxGetMainWnd()->PostMessage(WM_KEYUP, VK_DOWN, 0);
+	}
+
 	m_hHook = SetWindowsHookEx(WH_MSGFILTER, MsgFilterProc, nullptr, GetCurrentThreadId());
 
 	CRect rc;
@@ -322,9 +333,7 @@ BOOL CCommandBar::PreTranslateMessage(MSG* pMsg)
 		{
 			if (pMsg->message == WM_SYSKEYDOWN)
 			{
-				m_bShowKeyboardCues = true;
-				GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, 0);
-				Invalidate();
+				ShowKeyboardCues(true);
 			}
 			else if (pMsg->message == WM_SYSKEYUP && m_bShowKeyboardCues)
 			{
@@ -338,6 +347,7 @@ BOOL CCommandBar::PreTranslateMessage(MSG* pMsg)
 		UINT uId = 0;
 		if ((pMsg->message == WM_SYSKEYDOWN) && GetToolBarCtrl().MapAccelerator(static_cast<TCHAR>(pMsg->wParam), &uId) != 0)
 		{
+			ShowKeyboardCues(true);
 			OnCommandBarMenuItem(uId);
 			return TRUE;
 		}
