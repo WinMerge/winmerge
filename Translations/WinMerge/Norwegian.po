@@ -1477,6 +1477,9 @@ msgstr "E&gen mappe:"
 msgid "Br&owse..."
 msgstr "B&la gjennom.."
 
+msgid "Defaults"
+msgstr "Standardverdier"
+
 msgid "Patch Generator"
 msgstr "Rettelsegenerator"
 
@@ -1515,9 +1518,6 @@ msgstr "Inklud&er kommandolinje"
 
 msgid "Open to e&xternal editor"
 msgstr "Åpne i e&ksternt redigeringsprogram"
-
-msgid "Defaults"
-msgstr "Standardverdier"
 
 msgid "Display Columns"
 msgstr "Visningskolonner"

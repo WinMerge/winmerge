@@ -1784,6 +1784,10 @@ msgid "Br&owse..."
 msgstr "&Odabir..."
 
 #, c-format
+msgid "Defaults"
+msgstr "Predpodešeno"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Pohrana razlika (Patch)"
 
@@ -1834,10 +1838,6 @@ msgstr "&Uključi naredbeni redak"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Otvori u vanjskom pregledniku."
-
-#, c-format
-msgid "Defaults"
-msgstr "Predpodešeno"
 
 #, c-format
 msgid "Display Columns"

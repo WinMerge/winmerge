@@ -1479,6 +1479,9 @@ msgstr "指定したフォルダー(&U):"
 msgid "Br&owse..."
 msgstr "参照(&O)..."
 
+msgid "Defaults"
+msgstr "デフォルト"
+
 msgid "Patch Generator"
 msgstr "パッチ生成"
 
@@ -1517,9 +1520,6 @@ msgstr "コマンド行を含める(&D)"
 
 msgid "Open to e&xternal editor"
 msgstr "外部エディターで開く(&X)"
-
-msgid "Defaults"
-msgstr "デフォルト"
 
 msgid "Display Columns"
 msgstr "列の表示"

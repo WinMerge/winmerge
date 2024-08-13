@@ -1768,6 +1768,10 @@ msgid "Br&owse..."
 msgstr "Переглядання ..."
 
 #, c-format
+msgid "Defaults"
+msgstr "Звичайні параметри"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Генератор латок"
 
@@ -1818,10 +1822,6 @@ msgstr "Ввім&кнути командний рядок"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Відкрити у зовнішньому редакторі"
-
-#, c-format
-msgid "Defaults"
-msgstr "Звичайні параметри"
 
 #, c-format
 msgid "Display Columns"

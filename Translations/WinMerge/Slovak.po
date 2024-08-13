@@ -1476,6 +1476,9 @@ msgstr "&Vlastný priečinok:"
 msgid "Br&owse..."
 msgstr "Pre&hľadávať..."
 
+msgid "Defaults"
+msgstr "Predvolené"
+
 msgid "Patch Generator"
 msgstr "Generátor opravných záplat"
 
@@ -1514,9 +1517,6 @@ msgstr "Zahrnúť príkazový ria&dok"
 
 msgid "Open to e&xternal editor"
 msgstr "Otvoriť v e&xternom editore"
-
-msgid "Defaults"
-msgstr "Predvolené"
 
 msgid "Display Columns"
 msgstr "Zobrazovať stĺpce"

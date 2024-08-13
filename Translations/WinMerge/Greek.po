@@ -1783,6 +1783,10 @@ msgid "Br&owse..."
 msgstr "Ανα&ζήτηση..."
 
 #, c-format
+msgid "Defaults"
+msgstr "&Αρχικές Ρυθμίσεις"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Εφαρμογή Δημιουργίας Patch"
 
@@ -1833,10 +1837,6 @@ msgstr "Η γραμμή εντολής να συμπεριλαμβάνεται"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Άν&οιγμα με άλλη εφαρμογή επεξεργασίας"
-
-#, c-format
-msgid "Defaults"
-msgstr "&Αρχικές Ρυθμίσεις"
 
 #, c-format
 msgid "Display Columns"

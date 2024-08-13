@@ -1769,6 +1769,10 @@ msgid "Br&owse..."
 msgstr "Пр&егледај..."
 
 #, c-format
+msgid "Defaults"
+msgstr "Подразумевано"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "Створене разлике"
 
@@ -1819,10 +1823,6 @@ msgstr "Укључи наредбени ред"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "Отвори у другом уре&ђивачу"
-
-#, c-format
-msgid "Defaults"
-msgstr "Подразумевано"
 
 #, c-format
 msgid "Display Columns"

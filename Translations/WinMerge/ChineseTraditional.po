@@ -1794,6 +1794,10 @@ msgid "Br&owse..."
 msgstr "瀏覽 (&O)..."
 
 #, c-format
+msgid "Defaults"
+msgstr "預設值"
+
+#, c-format
 msgid "Patch Generator"
 msgstr "補綴產生器"
 
@@ -1844,10 +1848,6 @@ msgstr "附加 diff 命令於檔首 (&P)"
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "開啟外部編輯器 (&X)"
-
-#, c-format
-msgid "Defaults"
-msgstr "預設值"
 
 #, c-format
 msgid "Display Columns"

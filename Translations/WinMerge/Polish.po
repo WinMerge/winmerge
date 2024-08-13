@@ -1477,6 +1477,9 @@ msgstr "Folder niestandardowy:"
 msgid "Br&owse..."
 msgstr "Przeglądaj..."
 
+msgid "Defaults"
+msgstr "Domyślne"
+
 msgid "Patch Generator"
 msgstr "Generuj łatkę"
 
@@ -1515,9 +1518,6 @@ msgstr "Uwzględnij wiersz poleceń"
 
 msgid "Open to e&xternal editor"
 msgstr "Otwórz w zewnętrznym edytorze"
-
-msgid "Defaults"
-msgstr "Domyślne"
 
 msgid "Display Columns"
 msgstr "Wyświetl kolumny"
