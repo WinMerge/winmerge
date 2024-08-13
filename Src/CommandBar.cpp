@@ -13,6 +13,10 @@ static const UINT UWM_SHOWPOPUPMENU = WM_APP + 1;
 HHOOK CCommandBar::m_hHook = nullptr;
 CCommandBar* CCommandBar::m_pThis = nullptr;
 
+#ifndef TBCDRF_USECDCOLORS
+#define TBCDRF_USECDCOLORS 0x00800000
+#endif
+
 IMPLEMENT_DYNAMIC(CCommandBar, CToolBar)
 
 BEGIN_MESSAGE_MAP(CCommandBar, CToolBar)
