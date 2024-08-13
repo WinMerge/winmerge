@@ -119,11 +119,10 @@ void CCommandBar::DrawMDIButtons(HDC hDC)
 		DFCS_CAPTIONCLOSE   | DFCS_FLAT | (m_nMDIButtonDown == 2 ? DFCS_PUSHED : 0)
 	};
 	CRect rcButtons = GetMDIButtonsRect();
-	CRect rcItem;
-	GetToolBarCtrl().GetItemRect(0, &rcItem);
-	const int bw = rcItem.Height();
-	const int w = rcButtons.Height();
-	CRect rc{ rcButtons.left, rcButtons.top + (w - bw) / 2, rcButtons.left + bw, rcButtons.top + (w + bw) / 2};
+	const int bw = GetSystemMetrics(SM_CXSMICON);
+	const int w = bw + GetSystemMetrics(SM_CXBORDER) * 2;
+	const int h = rcButtons.Height();
+	CRect rc{ rcButtons.left, rcButtons.top + (h - bw) / 2, rcButtons.left + bw, rcButtons.top + (h + bw) / 2};
 	for (int i = 0; i < 3; ++i)
 	{
 		::DrawFrameControl(hDC, rc, DFC_CAPTION, nTypes[i]);
@@ -149,13 +148,14 @@ CRect CCommandBar::GetMDIButtonsRect() const
 {
 	CRect rcClient;
 	GetClientRect(&rcClient);
-	return { rcClient.right - rcClient.Height() * 3, rcClient.top, rcClient.right, rcClient.bottom };
+	const int w = GetSystemMetrics(SM_CXSMICON) + GetSystemMetrics(SM_CXBORDER) * 2;
+	return { rcClient.right - w * 3, rcClient.top, rcClient.right, rcClient.bottom };
 }
 
 CRect CCommandBar::GetMDIButtonRect(int nItem) const
 {
 	CRect rcButtons = GetMDIButtonsRect();
-	const int w = rcButtons.Height();
+	const int w = GetSystemMetrics(SM_CXSMICON) + GetSystemMetrics(SM_CXBORDER) * 2;
 	return { rcButtons.left + w * nItem, rcButtons.top, rcButtons.left + w * nItem + w, rcButtons.bottom };
 }
 
