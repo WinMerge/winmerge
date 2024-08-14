@@ -1689,7 +1689,7 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainBottom"),wp.rcNormalPosition.bottom);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
 
-	GetOptionsMgr()->SaveOption(OPT_REBAR_STATE, m_wndReBar.MakeStateString());
+	GetOptionsMgr()->SaveOption(OPT_REBAR_STATE, m_wndReBar.GenerateStateString());
 
 	for (auto pFrame: GetAllImgMergeFrames())
 	{
@@ -2527,7 +2527,7 @@ BOOL CMainFrame::CreateToolbar()
 
 	__super::ShowControlBar(&m_wndMenuBar, true, 0);
 
-	m_wndReBar.SetStateString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
+	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
 
 	return TRUE;
 }

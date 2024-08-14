@@ -17,7 +17,7 @@ BOOL CMyReBar::OnEraseBkgnd(CDC* pDC)
 	return TRUE;
 }
 
-void CMyReBar::SetStateString(const CString& state)
+void CMyReBar::LoadStateFromString(const CString& state)
 {
 	constexpr int BARCOUNT_MAX = 4;
 	unsigned count = 0;
@@ -54,7 +54,7 @@ void CMyReBar::SetStateString(const CString& state)
 	}
 }
 
-CString CMyReBar::MakeStateString()
+CString CMyReBar::GenerateStateString()
 {
 	CReBarCtrl& rebar = GetReBarCtrl();
 	const unsigned nCount = rebar.GetBandCount();
