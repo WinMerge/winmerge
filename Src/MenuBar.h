@@ -1,7 +1,7 @@
 /** 
- * @file  CommandBar.h
+ * @file  MenuBar.h
  *
- * @brief Declaration file for CCommandBar
+ * @brief Declaration file for CMenuBar
  *
  */
 #pragma once
@@ -10,22 +10,22 @@
 #include <afxext.h>
 #include <vector>
 
-class CCommandBar : public CToolBar
+class CMenuBar : public CToolBar
 {
-	DECLARE_DYNAMIC(CCommandBar)
+	DECLARE_DYNAMIC(CMenuBar)
 public:
 	constexpr static int FIRST_MENUID = 10000;
 
-	CCommandBar();
+	CMenuBar();
 
-	virtual BOOL Create(CWnd* pParentWnd, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, UINT nID = AFX_IDW_TOOLBAR);
+	virtual BOOL Create(CWnd* pParentWnd, DWORD dwStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, UINT nID = AFX_IDW_MENUBAR);
 	bool AttachMenu(CMenu* pMenu);
-	void OnCommandBarMenuItem(UINT nID);
-	void OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI);
+	void OnMenuBarMenuItem(UINT nID);
+	void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
 	BOOL PreTranslateMessage(MSG* pMsg);
 
 protected:
-	//{{AFX_MSG(CCommandBar)
+	//{{AFX_MSG(CMenuBar)
 	afx_msg void OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnSetFocus(CWnd* pOldWnd);
 	afx_msg void OnKillFocus(CWnd* pNewWnd);
@@ -42,6 +42,7 @@ protected:
 	int GetMDIButtonIndexFromPoint(CPoint pt) const;
 	CRect GetMDIButtonsRect() const;
 	CRect GetMDIButtonRect(int nItem) const;
+	void ShowKeyboardCues(bool show);
 	void LoseFocus();
 
 	HMENU m_hMenu;
@@ -53,6 +54,7 @@ protected:
 	int m_nCurrentHotItem;
 	UINT m_nCurrentMenuItemFlags;
 	HMENU m_hCurrentPopupMenu;
+	CPoint m_ptCurrentCursor;
 	static HHOOK m_hHook;
-	static CCommandBar* m_pThis;
+	static CMenuBar* m_pThis;
 };

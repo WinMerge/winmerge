@@ -1,21 +1,25 @@
 // Copyright (c) 2024 Takashi Sawanaka
 // SPDX-License-Identifier: BSL-1.0
 /**
- * @file  CommandBar.cpp
+ * @file  MenuBar.cpp
  *
- * @brief Implementation of the CCommandBar class
+ * @brief Implementation of the CMenuBar class
  */
 
 #include "StdAfx.h"
-#include "CommandBar.h"
+#include "MenuBar.h"
 
 static const UINT UWM_SHOWPOPUPMENU = WM_APP + 1;
-HHOOK CCommandBar::m_hHook = nullptr;
-CCommandBar* CCommandBar::m_pThis = nullptr;
+HHOOK CMenuBar::m_hHook = nullptr;
+CMenuBar* CMenuBar::m_pThis = nullptr;
 
-IMPLEMENT_DYNAMIC(CCommandBar, CToolBar)
+#ifndef TBCDRF_USECDCOLORS
+#define TBCDRF_USECDCOLORS 0x00800000
+#endif
 
-BEGIN_MESSAGE_MAP(CCommandBar, CToolBar)
+IMPLEMENT_DYNAMIC(CMenuBar, CToolBar)
+
+BEGIN_MESSAGE_MAP(CMenuBar, CToolBar)
 	ON_NOTIFY_REFLECT(NM_CUSTOMDRAW, OnCustomDraw)
 	ON_WM_KILLFOCUS()
 	ON_WM_SETFOCUS()
@@ -26,7 +30,7 @@ BEGIN_MESSAGE_MAP(CCommandBar, CToolBar)
 	ON_MESSAGE(UWM_SHOWPOPUPMENU, OnShowPopupMenu)
 END_MESSAGE_MAP()
 
-CCommandBar::CCommandBar()
+CMenuBar::CMenuBar()
 	: m_hMenu(nullptr)
 	, m_bActive(false)
 	, m_bMouseTracking(false)
@@ -47,10 +51,10 @@ static TBBUTTON makeTBButton(int id, const TCHAR* str)
 	return btn;
 }
 
-BOOL CCommandBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
+BOOL CMenuBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
 {
-	bool ret = __super::CreateEx(pParentWnd, TBSTYLE_FLAT | TBSTYLE_LIST | TBSTYLE_TRANSPARENT, dwStyle,
-		CRect(0, 0, 0, 0), nID);
+	bool ret = __super::CreateEx(pParentWnd, TBSTYLE_FLAT | TBSTYLE_LIST | TBSTYLE_TRANSPARENT, 
+		dwStyle, CRect(0, 0, 0, 0), nID);
 
 	CToolBarCtrl& toolbar = GetToolBarCtrl();
 	TEXTMETRIC tm;
@@ -71,7 +75,7 @@ BOOL CCommandBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
 	return ret;
 }
 
-bool CCommandBar::AttachMenu(CMenu* pMenu)
+bool CMenuBar::AttachMenu(CMenu* pMenu)
 {
 	CToolBarCtrl& toolbar = GetToolBarCtrl();
 
@@ -107,7 +111,7 @@ bool CCommandBar::AttachMenu(CMenu* pMenu)
 	return true;
 }
 
-void CCommandBar::DrawMDIButtons(HDC hDC)
+void CMenuBar::DrawMDIButtons(HDC hDC)
 {
 	const int nTypes[3] = {
 		DFCS_CAPTIONMIN     | DFCS_FLAT | (m_nMDIButtonDown == 0 ? DFCS_PUSHED : 0),
@@ -115,11 +119,10 @@ void CCommandBar::DrawMDIButtons(HDC hDC)
 		DFCS_CAPTIONCLOSE   | DFCS_FLAT | (m_nMDIButtonDown == 2 ? DFCS_PUSHED : 0)
 	};
 	CRect rcButtons = GetMDIButtonsRect();
-	CRect rcItem;
-	GetToolBarCtrl().GetItemRect(0, &rcItem);
-	const int bw = rcItem.Height();
-	const int w = rcButtons.Height();
-	CRect rc{ rcButtons.left, rcButtons.top + (w - bw) / 2, rcButtons.left + bw, rcButtons.top + (w + bw) / 2};
+	const int bw = GetSystemMetrics(SM_CXSMICON);
+	const int w = bw + GetSystemMetrics(SM_CXBORDER) * 2;
+	const int h = rcButtons.Height();
+	CRect rc{ rcButtons.left, rcButtons.top + (h - bw) / 2, rcButtons.left + bw, rcButtons.top + (h + bw) / 2};
 	for (int i = 0; i < 3; ++i)
 	{
 		::DrawFrameControl(hDC, rc, DFC_CAPTION, nTypes[i]);
@@ -128,7 +131,7 @@ void CCommandBar::DrawMDIButtons(HDC hDC)
 	}
 }
 
-int CCommandBar::GetMDIButtonIndexFromPoint(CPoint pt) const
+int CMenuBar::GetMDIButtonIndexFromPoint(CPoint pt) const
 {
 	CRect rcButtons = GetMDIButtonsRect();
 	if (!rcButtons.PtInRect(pt))
@@ -141,17 +144,18 @@ int CCommandBar::GetMDIButtonIndexFromPoint(CPoint pt) const
 	return -1;
 }
 
-CRect CCommandBar::GetMDIButtonsRect() const
+CRect CMenuBar::GetMDIButtonsRect() const
 {
 	CRect rcClient;
 	GetClientRect(&rcClient);
-	return { rcClient.right - rcClient.Height() * 3, rcClient.top, rcClient.right, rcClient.bottom };
+	const int w = GetSystemMetrics(SM_CXSMICON) + GetSystemMetrics(SM_CXBORDER) * 2;
+	return { rcClient.right - w * 3, rcClient.top, rcClient.right, rcClient.bottom };
 }
 
-CRect CCommandBar::GetMDIButtonRect(int nItem) const
+CRect CMenuBar::GetMDIButtonRect(int nItem) const
 {
 	CRect rcButtons = GetMDIButtonsRect();
-	const int w = rcButtons.Height();
+	const int w = GetSystemMetrics(SM_CXSMICON) + GetSystemMetrics(SM_CXBORDER) * 2;
 	return { rcButtons.left + w * nItem, rcButtons.top, rcButtons.left + w * nItem + w, rcButtons.bottom };
 }
 
@@ -165,30 +169,35 @@ static bool IsMDIChildMaximized()
 	return bMaximized;
 }
 
-void CCommandBar::LoseFocus()
+void CMenuBar::ShowKeyboardCues(bool show)
 {
-	m_bActive = false;
-	m_hwndOldFocus = nullptr;
-	m_bShowKeyboardCues = false;
-	GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, DT_HIDEPREFIX);
-	GetToolBarCtrl().SetHotItem(-1);
+	m_bShowKeyboardCues = show;
+	GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, show ? 0 : DT_HIDEPREFIX);
 	Invalidate();
 }
 
-void CCommandBar::OnSetFocus(CWnd* pOldWnd)
+void CMenuBar::LoseFocus()
+{
+	m_bActive = false;
+	m_hwndOldFocus = nullptr;
+	ShowKeyboardCues(false);
+	GetToolBarCtrl().SetHotItem(-1);
+}
+
+void CMenuBar::OnSetFocus(CWnd* pOldWnd)
 {
 	m_bActive = true;
 	m_hwndOldFocus = pOldWnd->m_hWnd;
 	__super::OnSetFocus(pOldWnd);
 }
 
-void CCommandBar::OnKillFocus(CWnd* pNewWnd)
+void CMenuBar::OnKillFocus(CWnd* pNewWnd)
 {
 	LoseFocus();
 	__super::OnKillFocus(pNewWnd);
 }
 
-void CCommandBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
+void CMenuBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTBCUSTOMDRAW pNMCD = reinterpret_cast<LPNMTBCUSTOMDRAW>(pNMHDR);
 	DWORD dwDrawState = pNMCD->nmcd.dwDrawStage;
@@ -211,7 +220,7 @@ void CCommandBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 	*pResult = 0;
 }
 
-void CCommandBar::OnMouseMove(UINT nFlags, CPoint point)
+void CMenuBar::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CRect rcMDIButtons = GetMDIButtonsRect();
 	InvalidateRect(&rcMDIButtons);
@@ -224,7 +233,7 @@ void CCommandBar::OnMouseMove(UINT nFlags, CPoint point)
 	__super::OnMouseMove(nFlags, point);
 }
 
-void CCommandBar::OnMouseLeave()
+void CMenuBar::OnMouseLeave()
 {
 	TRACKMOUSEEVENT tme = { sizeof(TRACKMOUSEEVENT), TME_LEAVE | TME_CANCEL, m_hWnd };
 	TrackMouseEvent(&tme);
@@ -235,7 +244,7 @@ void CCommandBar::OnMouseLeave()
 	__super::OnMouseLeave();
 }
 
-void CCommandBar::OnLButtonDown(UINT nFlags, CPoint point)
+void CMenuBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	CRect rcButtons = GetMDIButtonsRect();
 	if (rcButtons.PtInRect(point))
@@ -247,7 +256,7 @@ void CCommandBar::OnLButtonDown(UINT nFlags, CPoint point)
 	__super::OnLButtonDown(nFlags, point);
 }
 
-void CCommandBar::OnLButtonUp(UINT nFlags, CPoint point)
+void CMenuBar::OnLButtonUp(UINT nFlags, CPoint point)
 {
 	CRect rcButtons = GetMDIButtonsRect();
 	if (m_nMDIButtonDown != -1 && rcButtons.PtInRect(point))
@@ -275,7 +284,7 @@ void CCommandBar::OnLButtonUp(UINT nFlags, CPoint point)
 	__super::OnLButtonUp(nFlags, point);
 }
 
-void CCommandBar::OnCommandBarMenuItem(UINT nID)
+void CMenuBar::OnMenuBarMenuItem(UINT nID)
 {
 	const int nHotItem = nID - FIRST_MENUID;
 	CMenu* pPopup = CMenu::FromHandle(::GetSubMenu(m_hMenu, nHotItem));
@@ -287,30 +296,37 @@ void CCommandBar::OnCommandBarMenuItem(UINT nID)
 	m_nCurrentMenuItemFlags = 0;
 	m_nCurrentHotItem = nHotItem;
 	m_hCurrentPopupMenu = pPopup->m_hMenu;
+	m_ptCurrentCursor = {};
 	m_pThis = this;
+
+	if (m_bShowKeyboardCues)
+	{
+		AfxGetMainWnd()->PostMessage(WM_KEYDOWN, VK_DOWN, 0);
+		AfxGetMainWnd()->PostMessage(WM_KEYUP, VK_DOWN, 0);
+	}
 
 	m_hHook = SetWindowsHookEx(WH_MSGFILTER, MsgFilterProc, nullptr, GetCurrentThreadId());
 
 	CRect rc;
 	toolbar.GetItemRect(nHotItem, &rc);
 	ClientToScreen(&rc);
-	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON, rc.left, rc.bottom, AfxGetMainWnd());
+	pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON, rc.left, rc.bottom, AfxGetMainWnd());
 
 	UnhookWindowsHookEx(m_hHook);
 }
 
-void CCommandBar::OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI)
+void CMenuBar::OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable();
 }
 
-LRESULT CCommandBar::OnShowPopupMenu(WPARAM wParam, LPARAM lParam)
+LRESULT CMenuBar::OnShowPopupMenu(WPARAM wParam, LPARAM lParam)
 {
-	OnCommandBarMenuItem(static_cast<UINT>(wParam));
+	OnMenuBarMenuItem(static_cast<UINT>(wParam));
 	return 0;
 }
 
-BOOL CCommandBar::PreTranslateMessage(MSG* pMsg)
+BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_SYSKEYDOWN || pMsg->message == WM_SYSKEYUP)
 	{
@@ -318,9 +334,7 @@ BOOL CCommandBar::PreTranslateMessage(MSG* pMsg)
 		{
 			if (pMsg->message == WM_SYSKEYDOWN)
 			{
-				m_bShowKeyboardCues = true;
-				GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, 0);
-				Invalidate();
+				ShowKeyboardCues(true);
 			}
 			else if (pMsg->message == WM_SYSKEYUP && m_bShowKeyboardCues)
 			{
@@ -334,7 +348,8 @@ BOOL CCommandBar::PreTranslateMessage(MSG* pMsg)
 		UINT uId = 0;
 		if ((pMsg->message == WM_SYSKEYDOWN) && GetToolBarCtrl().MapAccelerator(static_cast<TCHAR>(pMsg->wParam), &uId) != 0)
 		{
-			OnCommandBarMenuItem(uId);
+			ShowKeyboardCues(true);
+			OnMenuBarMenuItem(uId);
 			return TRUE;
 		}
 	}
@@ -347,14 +362,14 @@ BOOL CCommandBar::PreTranslateMessage(MSG* pMsg)
 		}
 		else if (pMsg->wParam == VK_RETURN)
 		{
-			OnCommandBarMenuItem(FIRST_MENUID + GetToolBarCtrl().GetHotItem());
+			OnMenuBarMenuItem(FIRST_MENUID + GetToolBarCtrl().GetHotItem());
 		}
 		return TRUE;
 	}
 	return FALSE;
 }
 
-LRESULT CALLBACK CCommandBar::MsgFilterProc(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CMenuBar::MsgFilterProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode != MSGF_MENU)
 		return CallNextHookEx(m_hHook, nCode, wParam, lParam);
@@ -377,8 +392,11 @@ LRESULT CALLBACK CCommandBar::MsgFilterProc(int nCode, WPARAM wParam, LPARAM lPa
 	{
 		CRect rc;
 		m_pThis->GetWindowRect(&rc);
-		CPoint pt{ GET_X_LPARAM(pMsg->lParam) - rc.left, GET_Y_LPARAM(pMsg->lParam) - rc.top };
-		const int nItem = m_pThis->GetToolBarCtrl().HitTest(&pt);
+		CPoint ptPrev = m_pThis->m_ptCurrentCursor;
+		m_pThis->m_ptCurrentCursor = { GET_X_LPARAM(pMsg->lParam) - rc.left, GET_Y_LPARAM(pMsg->lParam) - rc.top };
+		if (ptPrev == CPoint{} || ptPrev == m_pThis->m_ptCurrentCursor)
+			return 0;
+		const int nItem = m_pThis->GetToolBarCtrl().HitTest(&m_pThis->m_ptCurrentCursor);
 		if (nItem >= 0 && m_pThis->m_nCurrentHotItem != nItem)
 		{
 			AfxGetMainWnd()->PostMessage(WM_CANCELMODE);

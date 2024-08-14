@@ -30,6 +30,7 @@ inline const String OPT_TREE_MODE {_T("Settings/TreeMode"s)};
 inline const String OPT_SHOW_TOOLBAR {_T("Settings/ShowToolbar"s)};
 inline const String OPT_SHOW_STATUSBAR {_T("Settings/ShowStatusbar"s)};
 inline const String OPT_SHOW_TABBAR {_T("Settings/ShowTabbar"s)};
+inline const String OPT_REBAR_STATE {_T("Settings/ReBarState"s)};
 inline const String OPT_TOOLBAR_SIZE {_T("Settings/ToolbarSize"s)};
 inline const String OPT_RESIZE_PANES {_T("Settings/AutoResizePanes"s)};
 
