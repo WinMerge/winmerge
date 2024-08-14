@@ -417,7 +417,7 @@ BOOL CMergeApp::InitInstance()
 	SysColorHook::SetSysColor(COLOR_WINDOWTEXT, RGB(255, 255, 255));
 	SysColorHook::SetSysColor(COLOR_HIGHLIGHTTEXT, RGB(255, 255, 255));
 	SysColorHook::SetSysColor(COLOR_HIGHLIGHT, RGB(0, 0, 255));
-	SysColorHook::SetSysColor(COLOR_MENUTEXT, RGB(255, 0, 0));
+	SysColorHook::SetSysColor(COLOR_MENUTEXT, RGB(255, 255, 255));
 	afxData.UpdateSysColors();
 
 	strdiff::Init(); // String diff init
