@@ -35,6 +35,7 @@ CMenuBar::CMenuBar()
 	, m_bActive(false)
 	, m_bMouseTracking(false)
 	, m_nMDIButtonDown(-1)
+	, m_nMDIButtonHot(-1)
 	, m_hwndOldFocus(nullptr)
 	, m_nCurrentMenuItemFlags(0)
 	, m_nCurrentHotItem(-1)
@@ -113,11 +114,7 @@ bool CMenuBar::AttachMenu(CMenu* pMenu)
 
 void CMenuBar::DrawMDIButtons(HDC hDC)
 {
-	const int nTypes[3] = {
-		DFCS_CAPTIONMIN     | DFCS_FLAT | (m_nMDIButtonDown == 0 ? DFCS_PUSHED : 0),
-		DFCS_CAPTIONRESTORE | DFCS_FLAT | (m_nMDIButtonDown == 1 ? DFCS_PUSHED : 0),
-		DFCS_CAPTIONCLOSE   | DFCS_FLAT | (m_nMDIButtonDown == 2 ? DFCS_PUSHED : 0)
-	};
+	int nTypes[3] = { DFCS_CAPTIONMIN | DFCS_FLAT, DFCS_CAPTIONRESTORE | DFCS_FLAT, DFCS_CAPTIONCLOSE | DFCS_FLAT };
 	CRect rcButtons = GetMDIButtonsRect();
 	const int bw = GetSystemMetrics(SM_CXSMICON);
 	const int w = bw + GetSystemMetrics(SM_CXBORDER) * 2;
@@ -125,6 +122,10 @@ void CMenuBar::DrawMDIButtons(HDC hDC)
 	CRect rc{ rcButtons.left, rcButtons.top + (h - bw) / 2, rcButtons.left + bw, rcButtons.top + (h + bw) / 2};
 	for (int i = 0; i < 3; ++i)
 	{
+		if (m_nMDIButtonDown == i)
+			nTypes[i] |= DFCS_PUSHED;
+		if (m_nMDIButtonHot == i)
+			nTypes[i] |= DFCS_HOT;
 		::DrawFrameControl(hDC, rc, DFC_CAPTION, nTypes[i]);
 		rc.left += w;
 		rc.right += w;
@@ -224,6 +225,7 @@ void CMenuBar::OnMouseMove(UINT nFlags, CPoint point)
 {
 	CRect rcMDIButtons = GetMDIButtonsRect();
 	InvalidateRect(&rcMDIButtons);
+	m_nMDIButtonHot = rcMDIButtons.PtInRect(point) ? GetMDIButtonIndexFromPoint(point) : -1;
 	if (!m_bMouseTracking)
 	{
 		TRACKMOUSEEVENT tme = { sizeof TRACKMOUSEEVENT, TME_LEAVE, m_hWnd };
@@ -241,6 +243,7 @@ void CMenuBar::OnMouseLeave()
 	CRect rcButtons = GetMDIButtonsRect();
 	InvalidateRect(&rcButtons);
 	m_nMDIButtonDown = -1;
+	m_nMDIButtonHot = -1;
 	__super::OnMouseLeave();
 }
 
@@ -265,17 +268,20 @@ void CMenuBar::OnLButtonUp(UINT nFlags, CPoint point)
 		if (pMDIFrameWnd)
 		{
 			CFrameWnd* pFrameWnd = pMDIFrameWnd->GetActiveFrame();
-			switch (GetMDIButtonIndexFromPoint(point))
+			if (pFrameWnd)
 			{
-			case 0:
-				pFrameWnd->ShowWindow(SW_MINIMIZE);
-				break;
-			case 1:
-				::SendMessage(pMDIFrameWnd->m_hWndMDIClient, WM_MDIRESTORE, (WPARAM)(pFrameWnd->m_hWnd), 0);
-				break;
-			case 2:
-				pFrameWnd->PostMessage(WM_CLOSE);
-				break;
+				switch (GetMDIButtonIndexFromPoint(point))
+				{
+				case 0:
+					pFrameWnd->ShowWindow(SW_MINIMIZE);
+					break;
+				case 1:
+					::SendMessage(pMDIFrameWnd->m_hWndMDIClient, WM_MDIRESTORE, (WPARAM)(pFrameWnd->m_hWnd), 0);
+					break;
+				case 2:
+					pFrameWnd->PostMessage(WM_CLOSE);
+					break;
+				}
 			}
 		}
 	}

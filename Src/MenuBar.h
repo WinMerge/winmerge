@@ -50,6 +50,7 @@ protected:
 	bool m_bMouseTracking;
 	bool m_bShowKeyboardCues;
 	int m_nMDIButtonDown;
+	int m_nMDIButtonHot;
 	HWND m_hwndOldFocus;
 	int m_nCurrentHotItem;
 	UINT m_nCurrentMenuItemFlags;
