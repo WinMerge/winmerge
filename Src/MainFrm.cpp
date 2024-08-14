@@ -220,7 +220,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
-	ON_UPDATE_COMMAND_UI_RANGE(CCommandBar::FIRST_MENUID, CCommandBar::FIRST_MENUID + 10, OnUpdateCommandBarMenuItem)
+	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
 	ON_COMMAND(ID_FILE_NEW_TABLE, (OnFileNew<2, ID_MERGE_COMPARE_TABLE>))
@@ -289,6 +289,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_LASTFILE, OnLastFile)
 	ON_UPDATE_COMMAND_UI(ID_LASTFILE, OnUpdateLastFile)
 	// Tool bar drop-down menu
+	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_MENUBAR, OnMenubarButtonDropDown)
 	ON_NOTIFY(TBN_DROPDOWN, AFX_IDW_TOOLBAR, OnToolbarButtonDropDown)
 	ON_COMMAND_RANGE(ID_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnDiffWhitespace)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_DIFF_OPTIONS_WHITESPACE_COMPARE, ID_DIFF_OPTIONS_WHITESPACE_IGNOREALL, OnUpdateDiffWhitespace)
@@ -447,9 +448,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-void CMainFrame::OnUpdateCommandBarMenuItem(CCmdUI* pCmdUI)
+void CMainFrame::OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI)
 {
-	m_wndCommandBar.OnUpdateCommandBarMenuItem(pCmdUI);
+	m_wndMenuBar.OnUpdateMenuBarMenuItem(pCmdUI);
 }
 
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
@@ -1688,6 +1689,8 @@ void CMainFrame::OnClose()
 	theApp.WriteProfileInt(_T("Settings"), _T("MainBottom"),wp.rcNormalPosition.bottom);
 	theApp.WriteProfileInt(_T("Settings"), _T("MainMax"), (wp.showCmd == SW_MAXIMIZE));
 
+	GetOptionsMgr()->SaveOption(OPT_REBAR_STATE, m_wndReBar.MakeStateString());
+
 	for (auto pFrame: GetAllImgMergeFrames())
 	{
 		if (!pFrame->CloseNow())
@@ -2173,7 +2176,7 @@ void CMainFrame::SelectFilter()
  */
 BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 {
-	if (m_wndCommandBar.PreTranslateMessage(pMsg))
+	if (m_wndMenuBar.PreTranslateMessage(pMsg))
 		return TRUE;
 	// Check if we got 'ESC pressed' -message
 	if ((pMsg->message == WM_KEYDOWN) && (pMsg->wParam == VK_ESCAPE))
@@ -2478,7 +2481,7 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 
 BOOL CMainFrame::CreateToolbar()
 {
-	if (!m_wndCommandBar.Create(this))
+	if (!m_wndMenuBar.Create(this))
 	{
 		return FALSE;
 	}
@@ -2496,13 +2499,13 @@ BOOL CMainFrame::CreateToolbar()
 	}
 
 	// Remove this if you don't want tool tips or a resizable toolbar
-	m_wndCommandBar.SetBarStyle(m_wndCommandBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+	m_wndMenuBar.SetBarStyle(m_wndMenuBar.GetBarStyle() |
+		CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
 
-	m_wndReBar.AddBar(&m_wndCommandBar);
+	m_wndReBar.AddBar(&m_wndMenuBar);
 	m_wndReBar.AddBar(&m_wndToolBar, nullptr, nullptr, RBBS_GRIPPERALWAYS | RBBS_FIXEDBMP | RBBS_BREAK);
 
 	LoadToolbarImages();
@@ -2522,7 +2525,9 @@ BOOL CMainFrame::CreateToolbar()
 		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 
-	__super::ShowControlBar(&m_wndCommandBar, true, 0);
+	__super::ShowControlBar(&m_wndMenuBar, true, 0);
+
+	m_wndReBar.SetStateString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
 
 	return TRUE;
 }
@@ -2932,6 +2937,12 @@ void CMainFrame::OnPluginsList()
 	dlg.DoModal();
 }
 
+void CMainFrame::OnMenubarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	m_wndMenuBar.OnMenuBarMenuItem(reinterpret_cast<LPNMTOOLBAR>(pNMHDR)->iItem);
+	*pResult = 0;
+}
+
 void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	LPNMTOOLBAR pToolBar = reinterpret_cast<LPNMTOOLBAR>(pNMHDR);
@@ -2950,11 +2961,6 @@ void CMainFrame::OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult)
 		id = IDR_POPUP_SAVE;
 		break;
 	default:
-		if (pToolBar->iItem >= CCommandBar::FIRST_MENUID && pToolBar->iItem < CCommandBar::FIRST_MENUID + 10)
-		{
-			m_wndCommandBar.OnCommandBarMenuItem(pToolBar->iItem);
-			return;
-		}
 		id = IDR_POPUP_DIFF_OPTIONS;
 		break;
 	}

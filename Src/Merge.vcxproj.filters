@@ -729,7 +729,10 @@
     <ClCompile Include="BasicFlatStatusBar.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CommandBar.cpp">
+    <ClCompile Include="MenuBar.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyReBar.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1397,7 +1400,10 @@
     <ClInclude Include="BasicFlatStatusBar.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CommandBar.h">
+    <ClInclude Include="MenuBar.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyReBar.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
