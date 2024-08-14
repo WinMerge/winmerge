@@ -7,8 +7,8 @@ class CMyReBar : public CReBar
 {
 public:
 	CMyReBar();
-	void SetStateString(const CString& state);
-	CString MakeStateString();
+	void LoadStateFromString(const CString& state);
+	CString GenerateStateString();
 
 protected:
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
