@@ -14,6 +14,8 @@
 #include <vector>
 #include <memory>
 #include <optional>
+#include "MyReBar.h"
+#include "MenuBar.h"
 #include "MDITabBar.h"
 #include "BasicFlatStatusBar.h"
 #include "PathContext.h"
@@ -222,6 +224,7 @@ public:
 	DirWatcher* GetDirWatcher() { return m_pDirWatcher.get(); }
 	void WatchDocuments(IMergeDoc* pMergeDoc);
 	void UnwatchDocuments(IMergeDoc* pMergeDoc);
+	CMenuBar* GetMenuBar() { return &m_wndMenuBar; }
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
 
@@ -248,7 +251,8 @@ public:
 protected:
 	// control bar embedded members
 	CBasicFlatStatusBar  m_wndStatusBar;
-	CReBar m_wndReBar;
+	CMyReBar m_wndReBar;
+	CMenuBar m_wndMenuBar;
 	CToolBar m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 	CTypedPtrArray<CPtrArray, CMDIChildWnd*> m_arrChild;
@@ -274,6 +278,11 @@ protected:
 				}
 				break;
 			}
+			case WM_MDISETMENU:
+				GetMainFrame()->SetMenuBarState(AFX_MBS_HIDDEN);
+				GetMainFrame()->GetMenuBar()->AttachMenu(CMenu::FromHandle(reinterpret_cast<HMENU>(wParam)));
+				return TRUE;
+				break;
 			case WM_TIMER:
 				if (wParam == m_nRedrawTimer)
 				{
@@ -383,6 +392,7 @@ protected:
 	afx_msg void OnUpdatePluginName(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnToolbarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnMenubarButtonDropDown(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnDiffWhitespace(UINT nID);
 	afx_msg void OnUpdateDiffWhitespace(CCmdUI* pCmdUI);
 	afx_msg void OnDiffIgnoreBlankLines();
@@ -418,6 +428,7 @@ protected:
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivated(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

@@ -946,6 +946,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="MergeDocDiffCopy.cpp" />
+    <ClCompile Include="MyReBar.cpp" />
     <ClCompile Include="PropCompareWebPage.cpp" />
     <ClCompile Include="PropEditorCompareMerge.cpp" />
     <ClCompile Include="PropertySystem.cpp">
@@ -1445,6 +1446,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Common\cio.h" />
     <ClInclude Include="Common\DebugNew.h" />
     <ClInclude Include="Common\IniOptionsMgr.h" />
@@ -1464,6 +1466,7 @@
     <ClInclude Include="HashCalc.h" />
     <ClInclude Include="IDirDoc.h" />
     <ClInclude Include="InternalPlugins.h" />
+    <ClInclude Include="MyReBar.h" />
     <ClInclude Include="PropCompareWebPage.h" />
     <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />
@@ -1657,6 +1660,7 @@
     <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="MenuBar.cpp" />
     <None Include="res\binarydiff.ico" />
     <None Include="res\both.bmp" />
     <None Include="res\equalbinary.ico" />
