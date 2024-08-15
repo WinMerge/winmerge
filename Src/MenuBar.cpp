@@ -69,7 +69,7 @@ BOOL CMenuBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
 
 	TBBUTTON btn = makeTBButton(FIRST_MENUID, _T(""));
 	toolbar.SetButtonStructSize(sizeof(TBBUTTON));
-	toolbar.SetDrawTextFlags(DT_HIDEPREFIX, DT_HIDEPREFIX);
+	SendMessage(WM_UPDATEUISTATE, MAKEWPARAM(UIS_SET, UISF_HIDEACCEL|DT_HIDEPREFIX), 0);
 	toolbar.InsertButton(0, &btn);
 	toolbar.SetButtonSize(CSize(tm.tmHeight + cy * 2, tm.tmHeight + cy * 2));
 
@@ -173,8 +173,7 @@ static bool IsMDIChildMaximized()
 void CMenuBar::ShowKeyboardCues(bool show)
 {
 	m_bShowKeyboardCues = show;
-	GetToolBarCtrl().SetDrawTextFlags(DT_HIDEPREFIX, show ? 0 : DT_HIDEPREFIX);
-	Invalidate();
+	SendMessage(WM_UPDATEUISTATE, MAKEWPARAM(show ? UIS_CLEAR : UIS_SET, UISF_HIDEACCEL|UISF_HIDEFOCUS), 0);
 }
 
 void CMenuBar::LoseFocus()
