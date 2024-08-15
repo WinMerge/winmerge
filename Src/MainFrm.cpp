@@ -2499,8 +2499,6 @@ BOOL CMainFrame::CreateToolbar()
 	}
 
 	// Remove this if you don't want tool tips or a resizable toolbar
-	m_wndMenuBar.SetBarStyle(m_wndMenuBar.GetBarStyle() |
-		CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);
