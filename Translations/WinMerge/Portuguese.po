@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2024-05-10 12:43+0100\n"
+"PO-Revision-Date: 2024-08-17 12:17+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -219,13 +219,13 @@ msgid "&Vector Image Scaling"
 msgstr "Escala da imagem &vetorial"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "Definições de &animação"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "&Intervalo de intermitência"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "Intervalo de animação de &sobreposição"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Comparar &texto extraído de imagens"
@@ -1643,7 +1643,7 @@ msgid "&Highlight syntax"
 msgstr "Destacar sintaxe"
 
 msgid "&Preserve original EOL chars"
-msgstr "Manter caracteres EOL originais"
+msgstr "Manter carateres EOL originais"
 
 msgid "Tabs"
 msgstr "Separadores"
@@ -1673,13 +1673,13 @@ msgid "View line differences"
 msgstr "Ver diferenças da linha"
 
 msgid "&Character level"
-msgstr "A nível do carácter"
+msgstr "A nível do caráter"
 
 msgid "&Word-level:"
 msgstr "A nível da palavra:"
 
 msgid "W&ord break characters:"
-msgstr "Caracteres da palavra:"
+msgstr "Carateres da palavra:"
 
 msgid ""
 "WinMerge allows hiding some common message boxes. Press the Reset button to "
@@ -1976,7 +1976,7 @@ msgid "&Allow newlines in quotes"
 msgstr "&Permitir novas linhas entre aspas"
 
 msgid "&Quote character:"
-msgstr "&Citar carácter:"
+msgstr "&Citar caráter:"
 
 msgid "&Use customized text colors"
 msgstr "Utilizar cores de texto personalizadas"
@@ -2145,7 +2145,7 @@ msgid "&Binary Mode..."
 msgstr "Modo Binário..."
 
 msgid "&Character Set..."
-msgstr "A preparar caractere..."
+msgstr "A preparar caráter..."
 
 msgid "Image"
 msgstr "Imagem"
@@ -4128,7 +4128,7 @@ msgstr "Limiar do CD"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "Ins/Del Detection"
-msgstr "Detecção Ins/Eli"
+msgstr "Deteção Ins/Eli"
 
 msgctxt "ImgMergeFrame|LocationPane"
 msgid "None"
@@ -4394,7 +4394,7 @@ msgid "Line"
 msgstr "Linha"
 
 msgid "Character"
-msgstr "Carácter"
+msgstr "Caráter"
 
 msgid "Prettification"
 msgstr "Embelezamento"
