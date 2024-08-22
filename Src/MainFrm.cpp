@@ -69,6 +69,7 @@
 #include "ClipboardHistory.h"
 #include "locality.h"
 #include "DirWatcher.h"
+#include <afxwinverapi.h>
 
 using std::vector;
 using boost::begin;
@@ -220,6 +221,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
+	ON_WM_ACTIVATE()
+	ON_WM_NCCALCSIZE()
+	ON_WM_NCHITTEST()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -404,12 +408,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
-	if (!CreateToolbar())
-	{
-		TRACE0("Failed to create toolbar\n");
-		return -1;      // fail to create
-	}
-	
 	if (!m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
@@ -420,6 +418,12 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
 		__super::ShowControlBar(&m_wndTabBar, false, 0);
 
+	if (!CreateToolbar())
+	{
+		TRACE0("Failed to create toolbar\n");
+		return -1;      // fail to create
+	}
+	
 	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("Failed to create status bar\n");
@@ -2479,6 +2483,38 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
 			PostMessage(WM_USER + 1);
 	}
+}
+
+void CMainFrame::OnActivate(UINT nState, CWnd *pWndOther, BOOL bMinimized)
+{
+	MARGINS margins;
+
+	margins.cxLeftWidth = 0;
+	margins.cxRightWidth = 0;
+	margins.cyBottomHeight = 0;
+	margins.cyTopHeight = 0;
+
+	//HRESULT hr = _AfxDwmExtendFrameIntoClientArea(m_hWnd, &margins);
+
+	__super::OnActivate(nState, pWndOther, bMinimized);
+}
+
+void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
+{
+	RECT rcWindow = lpncsp->rgrc[0];
+	__super::OnNcCalcSize(bCalcValidRects, lpncsp);
+	lpncsp->rgrc[0].top = rcWindow.top + 0;
+}
+
+LRESULT CMainFrame::OnNcHitTest(CPoint point)
+{
+	LRESULT res = 0;
+	//_AfxDwmDefWindowProc(GetSafeHwnd(), WM_NCHITTEST, 0, MAKELPARAM(point.x, point.y), &res);
+	//return (UINT)res;
+	return HTMAXBUTTON;
+	return HTMINBUTTON;
+	return HTCAPTION;
+	return __super::OnNcHitTest(point);
 }
 
 BOOL CMainFrame::CreateToolbar()

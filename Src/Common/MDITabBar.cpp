@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	ON_WM_MOUSELEAVE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_LBUTTONUP()
+	ON_MESSAGE(WM_SIZEPARENT, OnSizeParent)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -486,6 +487,17 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 		m_bCloseButtonDown = false;
 	}
 	CWnd::OnLButtonUp(nFlags, point);
+}
+
+LRESULT CMDITabBar::OnSizeParent(WPARAM wParam, LPARAM lParam)
+{
+	AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)lParam;
+//	lpLayout->rect.left += 24;
+//	lpLayout->rect.right -= 24 * 3;
+	LRESULT result = __super::OnSizeParent(wParam, reinterpret_cast<LPARAM>(lpLayout));
+//	lpLayout->rect.left -= 24;
+//	lpLayout->rect.right += 24 * 3;
+	return result;
 }
 
 CRect CMDITabBar::GetCloseButtonRect(int nItem)
