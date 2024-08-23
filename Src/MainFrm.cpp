@@ -2511,9 +2511,46 @@ LRESULT CMainFrame::OnNcHitTest(CPoint point)
 	LRESULT res = 0;
 	//_AfxDwmDefWindowProc(GetSafeHwnd(), WM_NCHITTEST, 0, MAKELPARAM(point.x, point.y), &res);
 	//return (UINT)res;
-	return HTMAXBUTTON;
-	return HTMINBUTTON;
-	return HTCAPTION;
+	CRect rc;
+	GetWindowRect(&rc);
+	if (point.y < rc.top + 32)
+	{
+		const int bw = 32;
+		const int m = 4;
+		if (point.y < rc.top + 4)
+		{
+			if (point.x < rc.left + m)
+				return HTTOPLEFT;
+			else if (rc.right - m <= point.x)
+				return HTTOPRIGHT;
+			return HTTOP;
+		}
+		if (rc.bottom - m <= point.y)
+		{
+			if (point.x < rc.left + m)
+				return HTBOTTOMLEFT;
+			else if (rc.right - m <= point.x)
+				return HTBOTTOMRIGHT;
+			return HTBOTTOM;
+		}
+		if (point.x < rc.left + m)
+			return HTLEFT;
+		if (rc.right - m <= point.x)
+			return HTRIGHT;
+		if (rc.right - bw * 3 <= point.x && point.x < rc.right - bw * 2)
+		{
+			return HTMINBUTTON;
+		}
+		else if (rc.right - bw * 2 <= point.x && point.x < rc.right - bw)
+		{
+			return HTMAXBUTTON;
+		}
+		else if (rc.right - bw <= point.x && point.x < rc.right)
+		{
+			return HTCLOSE;
+		}
+		return HTCAPTION;
+	}
 	return __super::OnNcHitTest(point);
 }
 
