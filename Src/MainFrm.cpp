@@ -449,6 +449,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
 
+//	const DWMNCRENDERINGPOLICY ncrp = DWMNCRP_DISABLED; // false ? DWMNCRP_USEWINDOWSTYLE : DWMNCRP_DISABLED;
+//	_AfxDwmSetWindowAttribute(m_hWnd, DWMWA_NCRENDERING_POLICY, &ncrp, sizeof(ncrp));
+
 	return 0;
 }
 
