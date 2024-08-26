@@ -229,29 +229,29 @@ BEGIN
         BEGIN
             POPUP "&Blink interval"
             BEGIN
-                MENUITEM "200[ms]",                   ID_IMG_BLINKINTERVAL_200
-                MENUITEM "400[ms]",                   ID_IMG_BLINKINTERVAL_400
-                MENUITEM "600[ms]",                   ID_IMG_BLINKINTERVAL_600
-                MENUITEM "800[ms]",                   ID_IMG_BLINKINTERVAL_800
-                MENUITEM "1000[ms]",                  ID_IMG_BLINKINTERVAL_1000
-                MENUITEM "1200[ms]",                  ID_IMG_BLINKINTERVAL_1200
-                MENUITEM "1500[ms]",                  ID_IMG_BLINKINTERVAL_1500
-                MENUITEM "2000[ms]",                  ID_IMG_BLINKINTERVAL_2000
-                MENUITEM "3000[ms]",                  ID_IMG_BLINKINTERVAL_3000
-                MENUITEM "4000[ms]",                  ID_IMG_BLINKINTERVAL_4000
+                MENUITEM "200[ms]",                     ID_IMG_BLINKINTERVAL_200
+                MENUITEM "400[ms]",                     ID_IMG_BLINKINTERVAL_400
+                MENUITEM "600[ms]",                     ID_IMG_BLINKINTERVAL_600
+                MENUITEM "800[ms]",                     ID_IMG_BLINKINTERVAL_800
+                MENUITEM "1000[ms]",                    ID_IMG_BLINKINTERVAL_1000
+                MENUITEM "1200[ms]",                    ID_IMG_BLINKINTERVAL_1200
+                MENUITEM "1500[ms]",                    ID_IMG_BLINKINTERVAL_1500
+                MENUITEM "2000[ms]",                    ID_IMG_BLINKINTERVAL_2000
+                MENUITEM "3000[ms]",                    ID_IMG_BLINKINTERVAL_3000
+                MENUITEM "4000[ms]",                    ID_IMG_BLINKINTERVAL_4000
             END
             POPUP "&Overlay animation interval"
             BEGIN
-                MENUITEM "200[ms]",                   ID_IMG_OVERLAYANIMINTERVAL_200
-                MENUITEM "400[ms]",                   ID_IMG_OVERLAYANIMINTERVAL_400
-                MENUITEM "600[ms]",                   ID_IMG_OVERLAYANIMINTERVAL_600
-                MENUITEM "800[ms]",                   ID_IMG_OVERLAYANIMINTERVAL_800
-                MENUITEM "1000[ms]",                  ID_IMG_OVERLAYANIMINTERVAL_1000
-                MENUITEM "1200[ms]",                  ID_IMG_OVERLAYANIMINTERVAL_1200
-                MENUITEM "1500[ms]",                  ID_IMG_OVERLAYANIMINTERVAL_1500
-                MENUITEM "2000[ms]",                  ID_IMG_OVERLAYANIMINTERVAL_2000
-                MENUITEM "3000[ms]",                  ID_IMG_OVERLAYANIMINTERVAL_3000
-                MENUITEM "4000[ms]",                  ID_IMG_OVERLAYANIMINTERVAL_4000
+                MENUITEM "200[ms]",                     ID_IMG_OVERLAYANIMINTERVAL_200
+                MENUITEM "400[ms]",                     ID_IMG_OVERLAYANIMINTERVAL_400
+                MENUITEM "600[ms]",                     ID_IMG_OVERLAYANIMINTERVAL_600
+                MENUITEM "800[ms]",                     ID_IMG_OVERLAYANIMINTERVAL_800
+                MENUITEM "1000[ms]",                    ID_IMG_OVERLAYANIMINTERVAL_1000
+                MENUITEM "1200[ms]",                    ID_IMG_OVERLAYANIMINTERVAL_1200
+                MENUITEM "1500[ms]",                    ID_IMG_OVERLAYANIMINTERVAL_1500
+                MENUITEM "2000[ms]",                    ID_IMG_OVERLAYANIMINTERVAL_2000
+                MENUITEM "3000[ms]",                    ID_IMG_OVERLAYANIMINTERVAL_3000
+                MENUITEM "4000[ms]",                    ID_IMG_OVERLAYANIMINTERVAL_4000
             END
         END
         MENUITEM SEPARATOR
@@ -1293,6 +1293,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -1398,11 +1399,11 @@ CAPTION "About WinMerge"
 FONT 8, FONTNAME, 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_GNU_ASCII,7,50,200,120
-    LTEXT           "Version 1.0",IDC_VERSION,240,153,133,21,SS_NOPREFIX
     CONTROL         "Visit the WinMerge Homepage!",IDC_WWW,"SysLink",LWS_IGNORERETURN | 0x1,120,222,167,10
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,174,350,42
     DEFPUSHBUTTON   "OK",IDOK,295,220,65,14
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,220,65,14
+    EDITTEXT        IDC_VERSION,237,155,120,20,ES_MULTILINE | ES_READONLY | NOT WS_BORDER
 END
 
 IDD_OPEN DIALOGEX 0, 0, 465, 266
