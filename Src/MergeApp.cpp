@@ -171,12 +171,12 @@ AboutInfo::AboutInfo()
 
 	if (version.find(_T(" - ")) != String::npos)
 	{
-		strutils::replace(version, _T(" - "), _T("\n"));
+		strutils::replace(version, _T(" - "), _T("\r\n"));
 		version += _T(" ");
 	}
 	else
 	{
-		version += _T("\n");
+		version += _T("\r\n");
 	}
 
 #if defined _M_IX86
