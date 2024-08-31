@@ -20,7 +20,7 @@ struct Method
 	Method() = default;
 	Method(const Method& method)
 		: m_command(method.m_command)
-		, m_script(method.m_script ? new Script(*m_script) : nullptr)
+		, m_script(method.m_script ? new Script(*method.m_script) : nullptr)
 	{
 	}
 	String m_command;
