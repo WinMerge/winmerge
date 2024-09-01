@@ -221,9 +221,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
-	ON_WM_ACTIVATE()
 	ON_WM_NCCALCSIZE()
 	ON_WM_NCHITTEST()
+	ON_WM_SIZE()
 	ON_WM_PAINT()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
@@ -409,6 +409,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
+	m_wndTabBar.Init(true, 18.f, 18.f * 3);
+
 	if (!m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
@@ -449,9 +451,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	});
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
-
-//	const DWMNCRENDERINGPOLICY ncrp = DWMNCRP_DISABLED; // false ? DWMNCRP_USEWINDOWSTYLE : DWMNCRP_DISABLED;
-//	_AfxDwmSetWindowAttribute(m_hWnd, DWMWA_NCRENDERING_POLICY, &ncrp, sizeof(ncrp));
 
 	return 0;
 }
@@ -2489,20 +2488,6 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 	}
 }
 
-void CMainFrame::OnActivate(UINT nState, CWnd *pWndOther, BOOL bMinimized)
-{
-	MARGINS margins;
-
-	margins.cxLeftWidth = 0;
-	margins.cxRightWidth = 0;
-	margins.cyBottomHeight = 0;
-	margins.cyTopHeight = 0;
-
-	//HRESULT hr = _AfxDwmExtendFrameIntoClientArea(m_hWnd, &margins);
-
-	__super::OnActivate(nState, pWndOther, bMinimized);
-}
-
 void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
 {
 	RECT rcWindow = lpncsp->rgrc[0];
@@ -2510,56 +2495,17 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 	lpncsp->rgrc[0].top = rcWindow.top + 0;
 }
 
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
+{
+	m_titleBar.Update(this, nType, cx, cy);
+	__super::OnSize(nType, cx, cy);
+}
+
 LRESULT CMainFrame::OnNcHitTest(CPoint point)
 {
-	LRESULT res = 0;
-	//_AfxDwmDefWindowProc(GetSafeHwnd(), WM_NCHITTEST, 0, MAKELPARAM(point.x, point.y), &res);
-	//return (UINT)res;
-	CRect rc;
-	GetWindowRect(&rc);
-	CClientDC dc(this);
-	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	const int height = pointToPixel(24);
-	const int buttonWidth = pointToPixel(24);
-	if (point.y < rc.top + height)
-	{
-		const int bw = buttonWidth;
-		const int m = 4;
-		if (point.y < rc.top + 4)
-		{
-			if (point.x < rc.left + m)
-				return HTTOPLEFT;
-			else if (rc.right - m <= point.x)
-				return HTTOPRIGHT;
-			return HTTOP;
-		}
-		if (rc.bottom - m <= point.y)
-		{
-			if (point.x < rc.left + m)
-				return HTBOTTOMLEFT;
-			else if (rc.right - m <= point.x)
-				return HTBOTTOMRIGHT;
-			return HTBOTTOM;
-		}
-		if (point.x < rc.left + m)
-			return HTLEFT;
-		if (rc.right - m <= point.x)
-			return HTRIGHT;
-		if (rc.right - bw * 3 <= point.x && point.x < rc.right - bw * 2)
-		{
-			return HTMINBUTTON;
-		}
-		else if (rc.right - bw * 2 <= point.x && point.x < rc.right - bw)
-		{
-			return HTMAXBUTTON;
-		}
-		else if (rc.right - bw <= point.x && point.x < rc.right)
-		{
-			return HTCLOSE;
-		}
-		return HTCAPTION;
-	}
+	LRESULT res = m_titleBar.HitTest(point);
+	if (res > HTNOWHERE)
+		return res;
 	return __super::OnNcHitTest(point);
 }
 
@@ -2570,26 +2516,15 @@ void CMainFrame::OnPaint()
 	GetClientRect(&rcClient);
 	CClientDC dc(this);
 	dc.FillSolidRect(&rcClient, GetSysColor(COLOR_3DFACE));
-	dc.DrawIcon(CPoint{ 0, 0 }, GetIcon(true));
+	HICON hIcon = (HICON)SendMessage(WM_GETICON, ICON_SMALL2, 0);
+	if (hIcon == nullptr)
+		hIcon = (HICON)GetClassLongPtr(m_hWnd, GCLP_HICONSM);
+	if (hIcon != nullptr)
+		DrawIconEx(dc.m_hDC, 8, 8, hIcon, 16, 16, 0, nullptr, DI_NORMAL);
 	const int bw = 64;
 	CRect rc1{ rcClient.right - bw, 0, rcClient.right, bw };
 	CRect rc2{ rcClient.right - bw * 2, 0, rcClient.right - bw * 1, bw };
 	CRect rc3{ rcClient.right - bw * 3, 0, rcClient.right - bw * 2, bw };
-	HTHEME hTheme = OpenThemeData(m_hWnd, L"WINDOW");
-	if (hTheme)
-	{
-		int state = CBS_NORMAL;
-		DrawThemeBackground(hTheme, dc.m_hDC, WP_CLOSEBUTTON, state, &rc1, nullptr);
-		DrawThemeBackground(hTheme, dc.m_hDC, WP_RESTOREBUTTON, state, &rc2, nullptr);
-		DrawThemeBackground(hTheme, dc.m_hDC, WP_MINBUTTON, state, &rc3, nullptr);
-		CloseThemeData(hTheme);
-	}
-	else
-	{
-		DrawFrameControl(dc.m_hDC, &rc1, DFC_CAPTION, DFCS_CAPTIONCLOSE);
-		DrawFrameControl(dc.m_hDC, &rc2, DFC_CAPTION, DFCS_CAPTIONMAX);
-		DrawFrameControl(dc.m_hDC, &rc3, DFC_CAPTION, DFCS_CAPTIONMIN);
-	}
 }
 
 BOOL CMainFrame::CreateToolbar()

@@ -16,6 +16,9 @@ class CMDITabBar : public CControlBar
 private:
 	enum {MDITABBAR_MINTITLELENGTH = 8, MDITABBAR_MAXTITLELENGTH = 64};
 
+	bool m_bOnTitleBar;
+	float m_leftMarginPoint;
+	float m_rightMarginPoint;
 	bool m_bInSelchange;
 	CMDIFrameWnd *m_pMainFrame;
 	bool m_bMouseTracking;
@@ -28,8 +31,19 @@ private:
 	int   m_nTooltipTabItemIndex;	/**< Index of the tab displaying tooltip */
 
 public:
-	CMDITabBar() : m_bInSelchange(false), m_pMainFrame(nullptr), m_bMouseTracking(false), m_bCloseButtonDown(false), m_bAutoMaxWidth(true), m_nDraggingTabItemIndex(-1), m_nTooltipTabItemIndex(-1){}
+	CMDITabBar()
+		: m_bOnTitleBar(true)
+		, m_leftMarginPoint(0)
+		, m_rightMarginPoint(0)
+		, m_bInSelchange(false)
+		, m_pMainFrame(nullptr)
+		, m_bMouseTracking(false)
+		, m_bCloseButtonDown(false)
+		, m_bAutoMaxWidth(true)
+		, m_nDraggingTabItemIndex(-1)
+		, m_nTooltipTabItemIndex(-1) {}
 	virtual ~CMDITabBar() {}
+	BOOL Init(bool bOnTitleBar, float iconWidthPoint, float buttonsWidthPoint);
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
 	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }

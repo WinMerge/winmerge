@@ -43,6 +43,14 @@ static int determineIconSize()
 	return GetSystemMetrics(SM_CXSMICON);
 }
 
+BOOL CMDITabBar::Init(bool bOnTitleBar, float leftMarginPoint, float rightMarginPoint)
+{
+	m_bOnTitleBar = bOnTitleBar;
+	m_leftMarginPoint = leftMarginPoint;
+	m_rightMarginPoint = rightMarginPoint;
+	return true;
+}
+
 /** 
  * @brief Create tab bar.
  * @param pParentWnd [in] main frame window pointer
@@ -93,7 +101,7 @@ BOOL CMDITabBar::PreTranslateMessage(MSG* pMsg)
  */
 CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 {
-	if (GetItemCount() == 0)
+	if (!m_bOnTitleBar && GetItemCount() == 0)
 		return CSize(SHRT_MAX, 0);
 	
 	TEXTMETRIC tm;
@@ -463,7 +471,7 @@ void CMDITabBar::OnLButtonDown(UINT nFlags, CPoint point)
 	InvalidateRect(m_rcCurrentCloseButtom);
 	if (!m_bCloseButtonDown)
 	{
-        if (DragDetect(point))
+		if (DragDetect(point))
 		{
 			m_nDraggingTabItemIndex = GetItemIndexFromPoint(point);
 			SetCapture();
@@ -495,11 +503,13 @@ LRESULT CMDITabBar::OnSizeParent(WPARAM wParam, LPARAM lParam)
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)lParam;
-	lpLayout->rect.left += pointToPixel(18);
-	lpLayout->rect.right -= pointToPixel(18) * 3;
+	const int leftMargin = pointToPixel(m_leftMarginPoint);
+	const int rightMargin = pointToPixel(m_rightMarginPoint);
+	lpLayout->rect.left += leftMargin;
+	lpLayout->rect.right -= rightMargin;
 	LRESULT result = __super::OnSizeParent(wParam, reinterpret_cast<LPARAM>(lpLayout));
-	lpLayout->rect.left -= pointToPixel(18);;
-	lpLayout->rect.right += pointToPixel(18) * 3;
+	lpLayout->rect.left -= leftMargin;
+	lpLayout->rect.right += rightMargin;
 	return result;
 }
 
@@ -587,6 +597,7 @@ void CMDITabBar::UpdateToolTips(int nTabItemIndex)
 		return;
 
 	for (CWnd* pFrame = pParentWnd->GetTopWindow(); pFrame; pFrame = pFrame->GetNextWindow())
+	{
 		if (reinterpret_cast<HWND>(tci.lParam) == pFrame->m_hWnd)
 		{
 			HWND hFrameWnd = pFrame->m_hWnd;
@@ -620,4 +631,5 @@ void CMDITabBar::UpdateToolTips(int nTabItemIndex)
 			m_nTooltipTabItemIndex = nTabItemIndex;
 			return;
 		}
+	}
 }
