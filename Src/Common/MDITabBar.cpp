@@ -491,12 +491,15 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 
 LRESULT CMDITabBar::OnSizeParent(WPARAM wParam, LPARAM lParam)
 {
+	CClientDC dc(this);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)lParam;
-//	lpLayout->rect.left += 24;
-//	lpLayout->rect.right -= 24 * 3;
+	lpLayout->rect.left += pointToPixel(18);
+	lpLayout->rect.right -= pointToPixel(18) * 3;
 	LRESULT result = __super::OnSizeParent(wParam, reinterpret_cast<LPARAM>(lpLayout));
-//	lpLayout->rect.left -= 24;
-//	lpLayout->rect.right += 24 * 3;
+	lpLayout->rect.left -= pointToPixel(18);;
+	lpLayout->rect.right += pointToPixel(18) * 3;
 	return result;
 }
 

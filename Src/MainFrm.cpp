@@ -224,6 +224,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_ACTIVATE()
 	ON_WM_NCCALCSIZE()
 	ON_WM_NCHITTEST()
+	ON_WM_PAINT()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -2516,9 +2517,14 @@ LRESULT CMainFrame::OnNcHitTest(CPoint point)
 	//return (UINT)res;
 	CRect rc;
 	GetWindowRect(&rc);
-	if (point.y < rc.top + 32)
+	CClientDC dc(this);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	const int height = pointToPixel(24);
+	const int buttonWidth = pointToPixel(24);
+	if (point.y < rc.top + height)
 	{
-		const int bw = 32;
+		const int bw = buttonWidth;
 		const int m = 4;
 		if (point.y < rc.top + 4)
 		{
@@ -2555,6 +2561,35 @@ LRESULT CMainFrame::OnNcHitTest(CPoint point)
 		return HTCAPTION;
 	}
 	return __super::OnNcHitTest(point);
+}
+
+void CMainFrame::OnPaint()
+{
+	__super::OnPaint();
+	CRect rcClient;
+	GetClientRect(&rcClient);
+	CClientDC dc(this);
+	dc.FillSolidRect(&rcClient, GetSysColor(COLOR_3DFACE));
+	dc.DrawIcon(CPoint{ 0, 0 }, GetIcon(true));
+	const int bw = 64;
+	CRect rc1{ rcClient.right - bw, 0, rcClient.right, bw };
+	CRect rc2{ rcClient.right - bw * 2, 0, rcClient.right - bw * 1, bw };
+	CRect rc3{ rcClient.right - bw * 3, 0, rcClient.right - bw * 2, bw };
+	HTHEME hTheme = OpenThemeData(m_hWnd, L"WINDOW");
+	if (hTheme)
+	{
+		int state = CBS_NORMAL;
+		DrawThemeBackground(hTheme, dc.m_hDC, WP_CLOSEBUTTON, state, &rc1, nullptr);
+		DrawThemeBackground(hTheme, dc.m_hDC, WP_RESTOREBUTTON, state, &rc2, nullptr);
+		DrawThemeBackground(hTheme, dc.m_hDC, WP_MINBUTTON, state, &rc3, nullptr);
+		CloseThemeData(hTheme);
+	}
+	else
+	{
+		DrawFrameControl(dc.m_hDC, &rc1, DFC_CAPTION, DFCS_CAPTIONCLOSE);
+		DrawFrameControl(dc.m_hDC, &rc2, DFC_CAPTION, DFCS_CAPTIONMAX);
+		DrawFrameControl(dc.m_hDC, &rc3, DFC_CAPTION, DFCS_CAPTIONMIN);
+	}
 }
 
 BOOL CMainFrame::CreateToolbar()
