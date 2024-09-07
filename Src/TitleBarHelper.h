@@ -13,11 +13,11 @@
 class CTitleBarHelper {
 public:
 	CTitleBarHelper() {}
-	void DrawIcon(CDC& dc);
+	void DrawIcon(CWnd* pWnd, CDC& dc);
 	void DrawButtons(CDC& dc);
 	CRect GetIconRect();
 	CRect GetButtonsRect();
-	void Update(CWnd* pWnd, UINT nType, int cx, int cy);
+	void OnSize(CWnd* pWnd, UINT nType, int cx, int cy);
 	int HitTest(CPoint pt);
 
 private:

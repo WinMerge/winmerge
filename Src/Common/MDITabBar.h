@@ -17,6 +17,7 @@ private:
 	enum {MDITABBAR_MINTITLELENGTH = 8, MDITABBAR_MAXTITLELENGTH = 64};
 
 	bool m_bOnTitleBar;
+	bool m_bMaximized;
 	float m_leftMarginPoint;
 	float m_rightMarginPoint;
 	bool m_bInSelchange;
@@ -33,6 +34,7 @@ private:
 public:
 	CMDITabBar()
 		: m_bOnTitleBar(true)
+		, m_bMaximized(false)
 		, m_leftMarginPoint(0)
 		, m_rightMarginPoint(0)
 		, m_bInSelchange(false)
@@ -43,7 +45,7 @@ public:
 		, m_nDraggingTabItemIndex(-1)
 		, m_nTooltipTabItemIndex(-1) {}
 	virtual ~CMDITabBar() {}
-	BOOL Init(bool bOnTitleBar, float iconWidthPoint, float buttonsWidthPoint);
+	BOOL Update(bool bOnTitleBar, bool bMaxmized, float iconWidthPoint, float buttonsWidthPoint);
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs();
 	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }
@@ -70,6 +72,8 @@ public:
 	{ ASSERT(::IsWindow(m_hWnd)); return (int)::SendMessage(m_hWnd, TCM_HITTEST, 0, (LPARAM) pHitTestInfo); }
 	BOOL GetItemRect(int nItem, LPRECT lpRect) const
 	{ ASSERT(::IsWindow(m_hWnd)); return (BOOL)::SendMessage(m_hWnd, TCM_GETITEMRECT, (WPARAM)nItem, (LPARAM)lpRect); }
+	BOOL SetItemSize(int x, int y) const
+	{ ASSERT(::IsWindow(m_hWnd)); return (BOOL)::SendMessage(m_hWnd, TCM_SETITEMSIZE, (WPARAM)0, (LPARAM)MAKELONG(x, y)); }
 
 protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);

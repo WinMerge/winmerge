@@ -43,9 +43,10 @@ static int determineIconSize()
 	return GetSystemMetrics(SM_CXSMICON);
 }
 
-BOOL CMDITabBar::Init(bool bOnTitleBar, float leftMarginPoint, float rightMarginPoint)
+BOOL CMDITabBar::Update(bool bOnTitleBar, bool bMaximized, float leftMarginPoint, float rightMarginPoint)
 {
 	m_bOnTitleBar = bOnTitleBar;
+	m_bMaximized = bMaximized;
 	m_leftMarginPoint = leftMarginPoint;
 	m_rightMarginPoint = rightMarginPoint;
 	return true;
@@ -115,7 +116,10 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	const int r = pointToPixel(RR_RADIUS);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
 
-	return CSize(SHRT_MAX, tm.tmHeight + (sw + r) * 2);
+	int my = m_bOnTitleBar ? (m_bMaximized ? (8 + 6) : 6) : 0;
+	CSize size(SHRT_MAX, my + tm.tmHeight + (sw + r) * 2);
+	SetItemSize(0, size.cy);
+	return size;
 }
 
 void CMDITabBar::OnPaint() 
@@ -368,18 +372,23 @@ void CMDITabBar::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
 
 	CRect rc = lpDraw->rcItem;
+	if (m_bOnTitleBar)
+	{
+		rc.top += 2 + (m_bMaximized ? 8 : 0);
+		rc.bottom -= 1;
+	}
 	if (lpDraw->itemState & ODS_SELECTED)
 	{
 		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE), 0.5f);
 		if (GetSysColor(COLOR_3DFACE) == GetSysColor(COLOR_WINDOW))
 		{
-			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, sw - 1, rc.Width() - sw * 2, rc.top - sw * 2 + 2, r, sw,
+			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.top - sw * 2 + 2, r, sw,
 				GetSysColor(COLOR_HIGHLIGHT), clrShadow, GetSysColor(COLOR_3DFACE));
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_HIGHLIGHTTEXT));
 		}
 		else
 		{
-			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
+			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
 				GetSysColor(COLOR_WINDOW), clrShadow, GetSysColor(COLOR_3DFACE));
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_WINDOWTEXT));
 		}
@@ -499,15 +508,27 @@ void CMDITabBar::OnLButtonUp(UINT nFlags, CPoint point)
 
 LRESULT CMDITabBar::OnSizeParent(WPARAM wParam, LPARAM lParam)
 {
+	if (!m_bOnTitleBar)
+		return __super::OnSizeParent(wParam, lParam);
 	CClientDC dc(this);
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
+	auto pointToPixel = [lpx](float point) { return static_cast<int>(point * lpx / 72); };
 	AFX_SIZEPARENTPARAMS* lpLayout = (AFX_SIZEPARENTPARAMS*)lParam;
 	const int leftMargin = pointToPixel(m_leftMarginPoint);
 	const int rightMargin = pointToPixel(m_rightMarginPoint);
+	if (m_bMaximized)
+	{
+//		lpLayout->rect.top += 8;
+//		lpLayout->rect.bottom -= 8;
+	}
 	lpLayout->rect.left += leftMargin;
 	lpLayout->rect.right -= rightMargin;
 	LRESULT result = __super::OnSizeParent(wParam, reinterpret_cast<LPARAM>(lpLayout));
+	if (m_bMaximized)
+	{
+//		lpLayout->rect.top -= 8;
+//		lpLayout->rect.bottom += 8;
+	}
 	lpLayout->rect.left -= leftMargin;
 	lpLayout->rect.right += rightMargin;
 	return result;
@@ -527,7 +548,7 @@ CRect CMDITabBar::GetCloseButtonRect(int nItem)
 	rc.left = rc.right - size.cx - sw - r;
 	rc.right = rc.left + size.cx;
 	int y = (rcClient.top + rcClient.bottom) / 2;
-	rc.top = y - size.cy / 2 + 1;
+	rc.top = y - size.cy / 2 + 1 + ((m_bOnTitleBar && m_bMaximized) ? 8 / 2 : 0);
 	rc.bottom = rc.top + size.cy;
 	return rc;
 }

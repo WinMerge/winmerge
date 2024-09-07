@@ -8,9 +8,17 @@
 
 #include "StdAfx.h"
 #include "TitleBarHelper.h"
+#include "RoundedRectWithShadow.h"
 
-void CTitleBarHelper::DrawIcon(CDC& dc)
+void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 {
+	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
+	if (hIcon == nullptr)
+		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
+	if (hIcon != nullptr)
+	{
+		DrawIconEx(dc.m_hDC, 8, 8 + (m_nType == SIZE_MAXIMIZED ? 8 : 0), hIcon, 16, 16, 0, nullptr, DI_NORMAL);
+	}
 }
 
 void CTitleBarHelper::DrawButtons(CDC& dc)
@@ -27,7 +35,7 @@ CRect CTitleBarHelper::GetButtonsRect()
 	return CRect{};
 }
 
-void CTitleBarHelper::Update(CWnd* pWnd, UINT nType, int cx, int cy)
+void CTitleBarHelper::OnSize(CWnd* pWnd, UINT nType, int cx, int cy)
 {
 	m_size = CSize(cx, cy);
 	m_nType = nType;

@@ -409,7 +409,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
-	m_wndTabBar.Init(true, 18.f, 18.f * 3);
+	m_wndTabBar.Update(true, false, 32.f, 18.f * 3);
 
 	if (!m_wndTabBar.Create(this))
 	{
@@ -2497,7 +2497,8 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
-	m_titleBar.Update(this, nType, cx, cy);
+	m_titleBar.OnSize(this, nType, cx, cy);
+	m_wndTabBar.Update(true, (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
 	__super::OnSize(nType, cx, cy);
 }
 
@@ -2515,12 +2516,9 @@ void CMainFrame::OnPaint()
 	CRect rcClient;
 	GetClientRect(&rcClient);
 	CClientDC dc(this);
-	dc.FillSolidRect(&rcClient, GetSysColor(COLOR_3DFACE));
-	HICON hIcon = (HICON)SendMessage(WM_GETICON, ICON_SMALL2, 0);
-	if (hIcon == nullptr)
-		hIcon = (HICON)GetClassLongPtr(m_hWnd, GCLP_HICONSM);
-	if (hIcon != nullptr)
-		DrawIconEx(dc.m_hDC, 8, 8, hIcon, 16, 16, 0, nullptr, DI_NORMAL);
+	CRect rc = { rcClient.left, rcClient.top, rcClient.right, rcClient.top + 32 };
+	dc.FillSolidRect(&rc, GetSysColor(COLOR_3DFACE));
+	m_titleBar.DrawIcon(this, dc);
 	const int bw = 64;
 	CRect rc1{ rcClient.right - bw, 0, rcClient.right, bw };
 	CRect rc2{ rcClient.right - bw * 2, 0, rcClient.right - bw * 1, bw };
