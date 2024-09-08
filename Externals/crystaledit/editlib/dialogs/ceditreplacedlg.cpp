@@ -136,6 +136,7 @@ void CEditReplaceDlg::OnChangeEditText ()
 {
   UpdateData();
   UpdateControls();
+  m_bFound = false;
 }
 void CEditReplaceDlg::OnChangeSelected ()
 {
@@ -146,6 +147,7 @@ void CEditReplaceDlg::OnChangeSelected ()
     m_ctlFindText.SetWindowText(m_sText);
   }
   UpdateControls();
+  m_bFound = false;
 }
 
 void CEditReplaceDlg::
