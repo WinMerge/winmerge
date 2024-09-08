@@ -336,6 +336,68 @@ IsUser2Keyword (const tchar_t *pszChars, int nLength)
   return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I, bool &bDefun)
+{
+  if (IsSiodKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      if (!tc::tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
+        {
+          bDefun = true;
+        }
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+    }
+  else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
+    }
+  else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
+    }
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+  else
+    {
+      bool bFunction = false;
+
+      if (!bDefun)
+        {
+          for (int j = nIdentBegin; --j >= 0;)
+            {
+              if (!xisspace (pszChars[j]))
+                {
+                  if (pszChars[j] == '(')
+                    {
+                      bFunction = true;
+                    }
+                  break;
+                }
+            }
+        }
+      if (!bFunction)
+        {
+          for (int j = I; j >= 0; j--)
+            {
+              if (!xisspace (pszChars[j]))
+                {
+                  if (pszChars[j] == '(')
+                    {
+                      bFunction = true;
+                    }
+                  break;
+                }
+            }
+        }
+      if (bFunction)
+        {
+          DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
+        }
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineSiod (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -483,63 +545,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsSiodKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  if (!tc::tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
-                    {
-                      bDefun = true;
-                    }
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-                }
-              else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
-                }
-              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                }
-              else
-                {
-                  bool bFunction = false;
-
-                  if (!bDefun)
-                    {
-                      for (int j = nIdentBegin; --j >= 0;)
-                        {
-                          if (!xisspace (pszChars[j]))
-                            {
-                              if (pszChars[j] == '(')
-                                {
-                                  bFunction = true;
-                                }
-                              break;
-                            }
-                        }
-                    }
-                  if (!bFunction)
-                    {
-                      for (int j = I; j >= 0; j--)
-                        {
-                          if (!xisspace (pszChars[j]))
-                            {
-                              if (pszChars[j] == '(')
-                                {
-                                  bFunction = true;
-                                }
-                              break;
-                            }
-                        }
-                    }
-                  if (bFunction)
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-                    }
-                }
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, bDefun);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -549,63 +555,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsSiodKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          if (!tc::tcsnicmp (_T ("defun"), pszChars + nIdentBegin, 5))
-            {
-              bDefun = true;
-            }
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-        }
-      else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
-        }
-      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
-      else
-        {
-          bool bFunction = false;
-
-          if (!bDefun)
-            {
-              for (int j = nIdentBegin; --j >= 0;)
-                {
-                  if (!xisspace (pszChars[j]))
-                    {
-                      if (pszChars[j] == '(')
-                        {
-                          bFunction = true;
-                        }
-                      break;
-                    }
-                }
-            }
-          if (!bFunction)
-            {
-              for (int j = I; j >= 0; j--)
-                {
-                  if (!xisspace (pszChars[j]))
-                    {
-                      if (pszChars[j] == '(')
-                        {
-                          bFunction = true;
-                        }
-                      break;
-                    }
-                }
-            }
-          if (bFunction)
-            {
-              DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-            }
-        }
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, bDefun);
     }
 
   dwCookie &= COOKIE_EXT_COMMENT;
