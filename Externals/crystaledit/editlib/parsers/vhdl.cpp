@@ -328,6 +328,40 @@ IsVhdlChar (const tchar_t *pszChars, int nLength)
   return false;
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I, unsigned &dwCookie, int &nAttributeBegin)
+{
+  if (IsVhdlNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+  else if (pszChars[nIdentBegin] == '"')
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_STRING);
+      dwCookie |= COOKIE_STRING;
+    }
+  else if (IsVhdlKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+    }
+  else if (IsVhdlAttribute (pszChars + nIdentBegin, I - nIdentBegin, &nAttributeBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin + nAttributeBegin, COLORINDEX_FUNCNAME);
+    }
+  else if (IsVhdlType (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_PREPROCESSOR);
+    }
+  else if (IsVhdlFunction (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
+    }
+  else if (IsVhdlChar (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_STRING);
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineVhdl (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -446,36 +480,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsVhdlNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                }
-              else if (pszChars[nIdentBegin] == '"')
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_STRING);
-                  dwCookie |= COOKIE_STRING;
-                  continue;
-                }
-              else if (IsVhdlKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsVhdlAttribute (pszChars + nIdentBegin, I - nIdentBegin, &nAttributeBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin + nAttributeBegin, COLORINDEX_FUNCNAME);
-                }
-              else if (IsVhdlType (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_PREPROCESSOR);
-                }
-              else if (IsVhdlFunction (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-                }
-              else if (IsVhdlChar (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_STRING);
-                }
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie, nAttributeBegin);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -485,35 +490,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsVhdlNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
-      else if (pszChars[nIdentBegin] == '"')
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_STRING);
-          dwCookie |= COOKIE_STRING;
-        }
-      else if (IsVhdlKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsVhdlAttribute (pszChars + nIdentBegin, I - nIdentBegin, &nAttributeBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin + nAttributeBegin, COLORINDEX_FUNCNAME);
-        }
-      else if (IsVhdlType (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_PREPROCESSOR);
-        }
-      else if (IsVhdlFunction (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-        }
-      else if (IsVhdlChar (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_STRING);
-        }
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie, nAttributeBegin);
     }
 
   dwCookie &= COOKIE_EXT_COMMENT;

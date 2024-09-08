@@ -686,6 +686,33 @@ IsUser2Keyword (const tchar_t *pszChars, int nLength)
     return ISXKEYWORDI (s_apszUser2KeywordList, pszChars, nLength);
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I, unsigned &dwCookie)
+{
+  if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+      if ((I - nIdentBegin ==4 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
+            (I - nIdentBegin ==5 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
+            )
+        {
+          dwCookie=COOKIE_PREPROCESSOR;
+        }
+    }
+  else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
+    }
+  else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
+    }
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineBatch (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -846,28 +873,7 @@ out:
                 }
               else
                 {
-                  if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                      if ((I - nIdentBegin ==4 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
-                          (I - nIdentBegin ==5 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
-                          )
-                        {
-                          dwCookie=COOKIE_PREPROCESSOR;
-                        }
-                    }
-                  else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-                    }
-                  else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
-                    }
-                  else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                    }
+                   DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie);
                 }
               bRedefineBlock = true;
               bDecIndex = true;
@@ -878,28 +884,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsBatKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-          if ((I - nIdentBegin ==4 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOTO"), 4)) ||
-                (I - nIdentBegin ==5 && !tc::tcsnicmp (pszChars + nIdentBegin, _T ("GOSUB"), 5))
-                )
-            {
-              dwCookie=COOKIE_PREPROCESSOR;
-            }
-        }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-        }
-      else if (IsUser2Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER2);
-        }
-      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I, dwCookie);
     }
 
   dwCookie = 0;
