@@ -1051,6 +1051,19 @@ static bool IsNumber(const tchar_t* pszChars, int nLength)
 	return result;
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+{
+	if (IsAbapKeyword(pszChars + nIdentBegin, I - nIdentBegin))
+	{
+		DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
+	}
+	else if (IsNumber(pszChars + nIdentBegin, I - nIdentBegin))
+	{
+		DEFINE_BLOCK(nIdentBegin, COLORINDEX_NUMBER);
+	}
+}
+
 unsigned
 CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems)
 {
@@ -1210,14 +1223,7 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int
 		{
 			if (nIdentBegin >= 0)
 			{
-				if (IsAbapKeyword(pszChars + nIdentBegin, I - nIdentBegin))
-				{
-					DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
-				}
-				else if (IsNumber(pszChars + nIdentBegin, I - nIdentBegin))
-				{
-					DEFINE_BLOCK(nIdentBegin, COLORINDEX_NUMBER);
-				}
+				DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
 
 				bRedefineBlock = true;
 				bDecIndex = true;
@@ -1227,23 +1233,9 @@ CrystalLineParser::ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int
 	}
 
 	if (nIdentBegin >= 0)
-	{
-		if (IsAbapKeyword(pszChars + nIdentBegin, I - nIdentBegin))
-		{
-			DEFINE_BLOCK(nIdentBegin, COLORINDEX_KEYWORD);
-		}
-		else if (IsNumber(pszChars + nIdentBegin, I - nIdentBegin))
-		{
-			DEFINE_BLOCK(nIdentBegin, COLORINDEX_NUMBER);
-		}
-	}
+		DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
 
 	if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
 		dwCookie &= COOKIE_EXT_COMMENT;
 	return dwCookie;
 }
-
-
-
-
-

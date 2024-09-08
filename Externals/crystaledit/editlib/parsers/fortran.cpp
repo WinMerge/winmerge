@@ -239,6 +239,19 @@ IsFortranKeyword (const tchar_t *pszChars, int nLength)
   return ISXKEYWORDI (s_apszFortranKeywordList, pszChars, nLength);
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+{
+  if (IsFortranKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+    }
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineFortran (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -363,14 +376,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsFortranKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                }
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -380,14 +386,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsFortranKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))

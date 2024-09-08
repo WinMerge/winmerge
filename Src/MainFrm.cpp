@@ -797,18 +797,20 @@ bool CMainFrame::ShowAutoMergeDoc(UINT nID, IDirDoc * pDirDoc,
 			nID = ID_MERGE_COMPARE_TEXT + preferredWindowType;
 	}
 	FileFilterHelper filterImg, filterBin;
+	const String& imgPatterns = GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS);
 	filterImg.UseMask(true);
-	filterImg.SetMask(GetOptionsMgr()->GetString(OPT_CMP_IMG_FILEPATTERNS));
+	filterImg.SetMask(imgPatterns);
+	const String& binPatterns = GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS);
 	filterBin.UseMask(true);
-	filterBin.SetMask(GetOptionsMgr()->GetString(OPT_CMP_BIN_FILEPATTERNS));
+	filterBin.SetMask(binPatterns);
 	for (int pane = 0; pane < nFiles; ++pane)
 	{
 		if (CWebPageDiffFrame::MatchURLPattern(ifileloc[pane].filepath))
 			return ShowWebDiffDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenWebPageParams*>(pOpenParams));
 		String filepath = ifileloc[pane].filepath + unpackedFileExtension;
-		if (filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
+		if (!imgPatterns.empty() && filterImg.includeFile(filepath) && CImgMergeFrame::IsLoadable())
 			return ShowImgMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenImageFileParams *>(pOpenParams));
-		else if (filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
+		else if (!binPatterns.empty() && filterBin.includeFile(filepath) && CHexMergeView::IsLoadable())
 			return ShowHexMergeDoc(pDirDoc, nFiles, ifileloc, dwFlags, strDesc, sReportFile, infoUnpacker, infoPrediffer, dynamic_cast<const OpenBinaryFileParams *>(pOpenParams));
 	}
 	switch (std::abs(static_cast<int>(nID)))

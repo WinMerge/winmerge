@@ -120,6 +120,43 @@ IsRubyConstant (const tchar_t *pszChars, int nLength)
   return ISXKEYWORD (s_apszRubyConstantsList, pszChars, nLength);
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+{
+  if (IsRubyKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+    }
+  else if (IsRubyConstant (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_PREPROCESSOR);
+    }
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+  else
+    {
+      bool bFunction = false;
+
+      for (int j = I; j < nLength; j++)
+        {
+          if (!xisspace (pszChars[j]))
+            {
+              if (pszChars[j] == '(')
+                {
+                  bFunction = true;
+                }
+              break;
+            }
+        }
+      if (bFunction)
+        {
+          DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
+        }
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineRuby(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -268,38 +305,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsRubyKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsRubyConstant (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_PREPROCESSOR);
-                }
-              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                }
-              else
-                {
-                  bool bFunction = false;
-
-                  for (int j = I; j < nLength; j++)
-                    {
-                      if (!xisspace (pszChars[j]))
-                        {
-                          if (pszChars[j] == '(')
-                            {
-                              bFunction = true;
-                            }
-                          break;
-                        }
-                    }
-                  if (bFunction)
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-                    }
-                }
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -309,38 +315,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsRubyKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsRubyConstant (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_PREPROCESSOR);
-        }
-      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
-      else
-        {
-          bool bFunction = false;
-
-          for (int j = I; j < nLength; j++)
-            {
-              if (!xisspace (pszChars[j]))
-                {
-                  if (pszChars[j] == '(')
-                    {
-                      bFunction = true;
-                    }
-                  break;
-                }
-            }
-          if (bFunction)
-            {
-              DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-            }
-        }
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))

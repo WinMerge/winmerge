@@ -297,6 +297,43 @@ IsLineSection(const tchar_t *pszChars, int nLength, bool& bCodeSection)
   return true;
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+{
+  if (IsInnoSetupKeyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+    }
+  else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
+    }
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+  else
+    {
+      bool bFunction = false;
+
+      for (int j = I; j < nLength; j++)
+        {
+          if (!xisspace (pszChars[j]))
+            {
+              if (pszChars[j] == '(')
+                {
+                  bFunction = true;
+                }
+              break;
+            }
+        }
+      if (bFunction)
+        {
+          DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
+        }
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineInnoSetup (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -487,38 +524,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsInnoSetupKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-                }
-              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                }
-              else
-                {
-                  bool bFunction = false;
-
-                  for (int j = I; j < nLength; j++)
-                    {
-                      if (!xisspace (pszChars[j]))
-                        {
-                          if (pszChars[j] == '(')
-                            {
-                              bFunction = true;
-                            }
-                          break;
-                        }
-                    }
-                  if (bFunction)
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-                    }
-                }
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -528,38 +534,7 @@ out:
 
   if (nIdentBegin >= 0)
     {
-      if (IsInnoSetupKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-        }
-      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
-      else
-        {
-          bool bFunction = false;
-
-          for (int j = I; j < nLength; j++)
-            {
-              if (!xisspace (pszChars[j]))
-                {
-                  if (pszChars[j] == '(')
-                    {
-                      bFunction = true;
-                    }
-                  break;
-                }
-            }
-          if (bFunction)
-            {
-              DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-            }
-        }
+      DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
     }
 
   if (pszChars[nLength - 1] != '\\' || IsMBSTrail(pszChars, nLength - 1))
