@@ -856,6 +856,44 @@ IsUser1Keyword (const tchar_t *pszChars, int nLength)
   return ISXKEYWORDI (s_apszUser1KeywordList, pszChars, nLength);
 }
 
+static inline void
+DefineIdentiferBlock(const tchar_t *pszChars, int nLength, CrystalLineParser::TEXTBLOCK * pBuf, int &nActualItems, int nIdentBegin, int I)
+{
+  if (IsTexKeyword (pszChars + nIdentBegin, I - nIdentBegin) &&
+      (nIdentBegin > 0 && pszChars[nIdentBegin - 1] == '\\' && (nIdentBegin == 1 || pszChars[nIdentBegin - 2] != '\\')))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
+    }
+  else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin) &&
+           (nIdentBegin > 0 && pszChars[nIdentBegin - 1] == '\\' && (nIdentBegin == 1 || pszChars[nIdentBegin - 2] != '\\')))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
+    }
+  else if (CrystalLineParser::IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
+    {
+      DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
+    }
+  else
+    {
+      bool bFunction = false;
+      for (int j = I; j >= 0; j--)
+        {
+          if (!xisspace (pszChars[j]))
+            {
+              if (pszChars[j] == '$')
+                {
+                  bFunction = true;
+                }
+              break;
+            }
+        }
+      if (bFunction)
+        {
+          DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
+        }
+    }
+}
+
 unsigned
 CrystalLineParser::ParseLineTex (unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems)
 {
@@ -944,6 +982,8 @@ out:
 
       if (pszChars[I] == '%')
         {
+          if (nIdentBegin >= 0)
+            DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
           DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
           break;
@@ -980,37 +1020,7 @@ out:
         {
           if (nIdentBegin >= 0)
             {
-              if (IsTexKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-                }
-              else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-                }
-              else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-                {
-                  DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-                }
-              else
-                {
-                  bool bFunction = false;
-                  for (int j = I; j >= 0; j--)
-                    {
-                      if (!xisspace (pszChars[j]))
-                        {
-                          if (pszChars[j] == '$')
-                            {
-                              bFunction = true;
-                            }
-                          break;
-                        }
-                    }
-                  if (bFunction)
-                    {
-                      DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-                    }
-                }
+              DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
               bRedefineBlock = true;
               bDecIndex = true;
               nIdentBegin = -1;
@@ -1019,39 +1029,7 @@ out:
     }
 
   if (nIdentBegin >= 0)
-    {
-      if (IsTexKeyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_KEYWORD);
-        }
-      else if (IsUser1Keyword (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_USER1);
-        }
-      else if (IsXNumber (pszChars + nIdentBegin, I - nIdentBegin))
-        {
-          DEFINE_BLOCK (nIdentBegin, COLORINDEX_NUMBER);
-        }
-      else
-        {
-          bool bFunction = false;
-          for (int j = I; j >= 0; j--)
-            {
-              if (!xisspace (pszChars[j]))
-                {
-                  if (pszChars[j] == '$')
-                    {
-                      bFunction = true;
-                    }
-                  break;
-                }
-            }
-          if (bFunction)
-            {
-              DEFINE_BLOCK (nIdentBegin, COLORINDEX_FUNCNAME);
-            }
-        }
-    }
+    DefineIdentiferBlock(pszChars, nLength, pBuf, nActualItems, nIdentBegin, I);
 
   dwCookie &= COOKIE_EXT_COMMENT;
   return dwCookie;
