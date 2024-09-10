@@ -21,8 +21,11 @@ public:
 	int HitTest(CPoint pt);
 
 private:
+	int PointToPixel(float point);
+
 	CWnd* m_pWnd;
 	CSize m_size;
 	int m_nType;
 	int m_iconSize;
+	int m_dpi;
 };

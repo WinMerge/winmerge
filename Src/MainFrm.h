@@ -384,6 +384,8 @@ protected:
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
 	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnNcLButtonDown(UINT nHitTest, CPoint point);
+	afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
 	afx_msg void OnPaint();
 	afx_msg void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
 	afx_msg void OnSize(UINT nType, int cx, int cy);

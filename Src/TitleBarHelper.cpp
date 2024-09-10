@@ -17,7 +17,15 @@ void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
 	if (hIcon != nullptr)
 	{
-		DrawIconEx(dc.m_hDC, 8, 8 + (m_nType == SIZE_MAXIMIZED ? 8 : 0), hIcon, 16, 16, 0, nullptr, DI_NORMAL);
+		const int height = PointToPixel(28.5f);
+		const int leftMarginWidth = PointToPixel(36.f);
+		const int cx = PointToPixel(12.f);
+		const int cy = PointToPixel(12.f);
+		const int my = (m_nType == SIZE_MAXIMIZED ? 8 : 0);
+		CRect rc = { 0, 0, leftMarginWidth, height + my };
+		dc.FillSolidRect(&rc, GetSysColor(COLOR_3DFACE));
+		DrawIconEx(dc.m_hDC, (leftMarginWidth - cx) / 2, (height - cy) / 2 + my, hIcon, 
+			cx, cy, 0, nullptr, DI_NORMAL);
 	}
 }
 
@@ -40,6 +48,8 @@ void CTitleBarHelper::OnSize(CWnd* pWnd, UINT nType, int cx, int cy)
 	m_size = CSize(cx, cy);
 	m_nType = nType;
 	m_pWnd = pWnd;
+	CClientDC dc(pWnd);
+	m_dpi = dc.GetDeviceCaps(LOGPIXELSX);
 }
 
 int CTitleBarHelper::HitTest(CPoint pt)
@@ -47,51 +57,54 @@ int CTitleBarHelper::HitTest(CPoint pt)
 	if (!m_pWnd)
 		return HTNOWHERE;
 	CClientDC dc(m_pWnd);
-	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	const int height = pointToPixel(24);
-	const int buttonWidth = pointToPixel(24);
+	const int height = PointToPixel(24);
+	const int buttonWidth = PointToPixel(24);
 	CRect rc;
+	const int bw = buttonWidth;
+	const int m = 8;
 	m_pWnd->GetWindowRect(&rc);
+	if (pt.y < rc.top + 4)
+	{
+		if (pt.x < rc.left + m)
+			return HTTOPLEFT;
+		else if (rc.right - m <= pt.x)
+			return HTTOPRIGHT;
+		return HTTOP;
+	}
+	if (rc.bottom - m <= pt.y)
+	{
+		if (pt.x < rc.left + m)
+			return HTBOTTOMLEFT;
+		else if (rc.right - m <= pt.x)
+			return HTBOTTOMRIGHT;
+		return HTBOTTOM;
+	}
+	if (pt.x < rc.left + m)
+		return HTLEFT;
+	if (rc.right - m <= pt.x)
+		return HTRIGHT;
+	if (pt.x < rc.left + bw)
+		return HTSYSMENU;
+	if (rc.right - bw * 3 <= pt.x && pt.x < rc.right - bw * 2)
+	{
+		return HTMINBUTTON;
+	}
+	else if (rc.right - bw * 2 <= pt.x && pt.x < rc.right - bw)
+	{
+		return HTMAXBUTTON;
+	}
+	else if (rc.right - bw <= pt.x && pt.x < rc.right)
+	{
+		return HTCLOSE;
+	}
 	if (pt.y < rc.top + height)
 	{
-		const int bw = buttonWidth;
-		const int m = 4;
-		if (pt.y < rc.top + 4)
-		{
-			if (pt.x < rc.left + m)
-				return HTTOPLEFT;
-			else if (rc.right - m <= pt.x)
-				return HTTOPRIGHT;
-			return HTTOP;
-		}
-		if (rc.bottom - m <= pt.y)
-		{
-			if (pt.x < rc.left + m)
-				return HTBOTTOMLEFT;
-			else if (rc.right - m <= pt.x)
-				return HTBOTTOMRIGHT;
-			return HTBOTTOM;
-		}
-		if (pt.x < rc.left + m)
-			return HTLEFT;
-		if (rc.right - m <= pt.x)
-			return HTRIGHT;
-		if (pt.x < rc.left + bw)
-			return HTSYSMENU;
-		if (rc.right - bw * 3 <= pt.x && pt.x < rc.right - bw * 2)
-		{
-			return HTMINBUTTON;
-		}
-		else if (rc.right - bw * 2 <= pt.x && pt.x < rc.right - bw)
-		{
-			return HTMAXBUTTON;
-		}
-		else if (rc.right - bw <= pt.x && pt.x < rc.right)
-		{
-			return HTCLOSE;
-		}
 		return HTCAPTION;
 	}
 	return HTCLIENT;
 }
+
+int CTitleBarHelper::PointToPixel(float point)
+{
+	return static_cast<int>(point * m_dpi / 72.f);
+};
