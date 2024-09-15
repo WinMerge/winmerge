@@ -205,6 +205,12 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnUpdateX2Y)
 	ON_COMMAND_RANGE(ID_COPY_LINES_TO_MIDDLE_L, ID_COPY_LINES_FROM_LEFT_R, OnCopyLinesX2Y)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_LINES_TO_MIDDLE_L, ID_COPY_LINES_FROM_LEFT_R, OnUpdateX2Y)
+	ON_COMMAND(ID_SEL_DIFF_COPY_L, OnSelDiffCopyLeft)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_L, OnUpdateSelDiffCopyLeft)
+	ON_COMMAND(ID_SEL_DIFF_COPY_M, OnSelDiffCopyMid)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_M, OnUpdateSelDiffCopyMid)
+	ON_COMMAND(ID_SEL_DIFF_COPY_R, OnSelDiffCopyRight)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_R, OnUpdateSelDiffCopyRight)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
@@ -2081,6 +2087,81 @@ void CMergeEditView::OnCopyLinesX2Y(UINT nID)
 	auto [srcPane, dstPane] = CMergeFrameCommon::MenuIDtoXY(nID, m_nThisPane, GetDocument()->m_nBuffers);
 	if (srcPane >= 0 && dstPane >= 0)
 		OnX2Y(srcPane, dstPane, true);
+}
+
+void CMergeEditView::SelDiffCopy(int actPane)
+{
+	CMergeDoc* pDoc = GetDocument();
+	const auto cntPane = pDoc->m_nBuffers;
+	const auto currentDiff = pDoc->GetCurrentDiff();
+
+	// Check
+	if (actPane < 0 || actPane > 2 || cntPane < 1 || currentDiff < 0)
+		return;
+	if (2 == cntPane && actPane >= cntPane)
+		actPane = 1;
+
+	DIFFRANGE di;
+	if (!pDoc->m_diffList.GetDiff(currentDiff, di))
+		return;
+	CDiffTextBuffer& buf = *(pDoc->m_ptBuf[actPane]);
+	const auto beginidx = buf.ComputeApparentLine(di.begin[actPane]);
+	const auto endidx = buf.ComputeApparentLine(di.end[actPane]);
+	if (beginidx > endidx)
+		return;
+	String dfLines;
+	const auto endlen = buf.GetLineLength(endidx);
+	buf.GetTextWithoutEmptys(beginidx, 0, endidx, endlen, dfLines);
+	dfLines += buf.GetLineEol(endidx);
+
+	if (OpenClipboard())
+	{
+		EmptyClipboard();
+		const size_t len = (dfLines.length() + 1) * sizeof(tchar_t);
+		HGLOBAL hGlobal = GlobalAlloc(GMEM_MOVEABLE, len);
+		if (hGlobal)
+		{
+			LPTSTR pGlobal = (LPTSTR)GlobalLock(hGlobal);
+			if (pGlobal)
+			{
+				memcpy(pGlobal, dfLines.c_str(), len);
+				GlobalUnlock(hGlobal);
+				SetClipboardData(CF_UNICODETEXT, hGlobal);
+			}
+			GlobalFree(hGlobal);
+		}
+
+		CloseClipboard();
+	}
+}
+
+void CMergeEditView::OnSelDiffCopyLeft()
+{
+	SelDiffCopy(0);
+}
+void CMergeEditView::OnUpdateSelDiffCopyLeft(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->GetCurrentDiff() >= 0 && GetDocument()->m_nBuffers > 0);
+}
+
+void CMergeEditView::OnSelDiffCopyMid()
+{
+	SelDiffCopy(1);
+}
+
+void CMergeEditView::OnUpdateSelDiffCopyMid(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->GetCurrentDiff() >= 0 && GetDocument()->m_nBuffers > 2);
+}
+
+void CMergeEditView::OnSelDiffCopyRight()
+{
+	SelDiffCopy(2);
+}
+
+void CMergeEditView::OnUpdateSelDiffCopyRight(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(GetDocument()->GetCurrentDiff() >= 0 && GetDocument()->m_nBuffers > 1);
 }
 
 /**

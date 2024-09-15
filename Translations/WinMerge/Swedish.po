@@ -64,6 +64,15 @@ msgstr "Kopiera valda rader till vänster"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiera valda rader från vänster"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Mid) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "Markera radskillnad\tF4"
 

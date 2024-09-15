@@ -66,6 +66,15 @@ msgstr "复制选中行到左侧"
 msgid "Copy Selected Line(s) from Left"
 msgstr "从左侧复制选中行"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr "复制选中差异(左)到剪贴板\tCtrl+1"
+
+msgid "&Copy Selected Diff (Mid) to Clipboard\tCtrl+2"
+msgstr "复制选中差异(中)到剪贴板\tCtrl+2"
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr "复制选中差异(右)到剪贴板\tCtrl+3"
+
 msgid "Select Line &Difference\tF4"
 msgstr "选中行内差异(&D)\tF4"
 
