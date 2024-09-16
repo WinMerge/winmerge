@@ -71,14 +71,6 @@ int CTitleBarHelper::HitTest(CPoint pt)
 			return HTTOPRIGHT;
 		return HTTOP;
 	}
-	if (rc.bottom - m <= pt.y)
-	{
-		if (pt.x < rc.left + m)
-			return HTBOTTOMLEFT;
-		else if (rc.right - m <= pt.x)
-			return HTBOTTOMRIGHT;
-		return HTBOTTOM;
-	}
 	if (pt.x < rc.left + m)
 		return HTLEFT;
 	if (rc.right - m <= pt.x)
@@ -97,11 +89,7 @@ int CTitleBarHelper::HitTest(CPoint pt)
 	{
 		return HTCLOSE;
 	}
-	if (pt.y < rc.top + height)
-	{
-		return HTCAPTION;
-	}
-	return HTCLIENT;
+	return HTCAPTION;
 }
 
 int CTitleBarHelper::PointToPixel(float point)

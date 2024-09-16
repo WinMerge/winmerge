@@ -222,11 +222,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
-	ON_WM_NCHITTEST()
-	ON_WM_NCLBUTTONDOWN()
-	ON_WM_NCLBUTTONUP()
 	ON_WM_SIZE()
-	ON_WM_PAINT()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -2499,40 +2495,8 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
-	m_titleBar.OnSize(this, nType, cx, cy);
 	m_wndTabBar.Update(true, (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
 	__super::OnSize(nType, cx, cy);
-}
-
-LRESULT CMainFrame::OnNcHitTest(CPoint point)
-{
-	LRESULT res = m_titleBar.HitTest(point);
-	if (res > HTNOWHERE)
-		return res;
-	return __super::OnNcHitTest(point);
-}
-
-void CMainFrame::OnNcLButtonDown(UINT nHitTest, CPoint point) 
-{
-	__super::OnNcLButtonDown(nHitTest, point);
-}
-
-void CMainFrame::OnNcLButtonUp(UINT nFlags, CPoint point)
-{
-	__super::OnNcLButtonUp(nFlags, point);
-}
-
-void CMainFrame::OnPaint()
-{
-	__super::OnPaint();
-	CRect rcClient;
-	GetClientRect(&rcClient);
-	CClientDC dc(this);
-	m_titleBar.DrawIcon(this, dc);
-	const int bw = 64;
-	CRect rc1{ rcClient.right - bw, 0, rcClient.right, bw };
-	CRect rc2{ rcClient.right - bw * 2, 0, rcClient.right - bw * 1, bw };
-	CRect rc3{ rcClient.right - bw * 3, 0, rcClient.right - bw * 2, bw };
 }
 
 BOOL CMainFrame::CreateToolbar()

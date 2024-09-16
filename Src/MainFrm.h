@@ -343,7 +343,6 @@ protected:
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
-	CTitleBarHelper m_titleBar;
 
 // Generated message map functions
 protected:
@@ -383,10 +382,6 @@ protected:
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
-	afx_msg LRESULT OnNcHitTest(CPoint point);
-	afx_msg void OnNcLButtonDown(UINT nHitTest, CPoint point);
-	afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
-	afx_msg void OnPaint();
 	afx_msg void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnToolbarSize(UINT id);
