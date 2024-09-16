@@ -59,6 +59,15 @@ msgstr "Копиране избраните редове вляво"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копиране избраните редове от ляво"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Mid) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "&Избиране на различията на реда\tF4"
 

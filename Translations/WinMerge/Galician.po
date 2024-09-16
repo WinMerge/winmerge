@@ -63,6 +63,15 @@ msgstr "Copiar liñas(s) seleccionada(s) no esquerdo"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiar liña(s) seleccionada(s) desde o esquerdo"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Mid) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "Seleccionar diferen&za de liña\tF4"
 

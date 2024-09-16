@@ -61,6 +61,15 @@ msgstr "選択した行を左側にコピー"
 msgid "Copy Selected Line(s) from Left"
 msgstr "選択した行を左側からコピー"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Mid) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "行内差異を選択(&D)\tF4"
 

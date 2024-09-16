@@ -62,6 +62,15 @@ msgstr "Kopijuoti pažymėtą eilutę (-es) į kairę"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopijuoti pažymėtą eilutę (-es) iš kairės"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Mid) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "Pažymėti &skirtumą"
 
