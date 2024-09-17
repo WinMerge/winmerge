@@ -2689,9 +2689,17 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 		strTipText = strFullText.substr(newline1st + 1).c_str();
 	}
 	if (pNMHDR->code == TTN_NEEDTEXTA)
-		_wcstombsz(pTTTA->szText, strTipText, static_cast<ULONG>(std::size(pTTTA->szText)));
+	{
+		m_upszLongTextA.reset(new CHAR[256]);
+		pTTTA->lpszText = m_upszLongTextA.get();
+		_wcstombsz(pTTTA->lpszText, strTipText, 256);
+	}
 	else
-		lstrcpyn(pTTTW->szText, strTipText, static_cast<int>(std::size(pTTTW->szText)));
+	{
+		m_upszLongTextW.reset(new WCHAR[256]);
+		pTTTW->lpszText = m_upszLongTextW.get();
+		lstrcpyn(pTTTW->lpszText, strTipText, 256);
+	}
 	*pResult = 0;
 
 	// bring the tooltip window above other popup windows
