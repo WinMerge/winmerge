@@ -465,7 +465,7 @@ void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 	__super::OnSize(nType, cx, cy);
 	if (!m_bOnTitleBar)
 		return;
-	m_titleBar.OnSize(this, nType, cx, cy);
+	m_titleBar.OnSize(this, m_bMaximized, cx, cy);
 	if (m_tabCtrl.m_hWnd)
 	{
 		CClientDC dc(this);
@@ -680,5 +680,7 @@ void CMDITabBar::OnPaint()
 	CPaintDC dc(this);
 	CRect rcClient;
 	GetClientRect(&rcClient);
-	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
+	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
+	auto pointToPixel = [lpx](float point) -> int { return static_cast<int>(point * lpx / 72); };
+	m_titleBar.DrawIcon(AfxGetMainWnd(), dc, pointToPixel(m_leftMarginPoint));
 }

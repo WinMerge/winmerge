@@ -10,21 +10,20 @@
 #include "TitleBarHelper.h"
 #include "RoundedRectWithShadow.h"
 
-void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
+void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, int leftMarginWidth)
 {
 	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
 	if (hIcon == nullptr)
 		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
 	if (hIcon != nullptr)
 	{
-		const int height = PointToPixel(28.5f);
-		const int leftMarginWidth = PointToPixel(36.f);
+		const int my = (m_maximized ? 8 : 0);
+		const int height = m_size.cy - my;
 		const int cx = PointToPixel(12.f);
 		const int cy = PointToPixel(12.f);
-		const int my = (m_nType == SIZE_MAXIMIZED ? 8 : 0);
-		CRect rc = { 0, 0, leftMarginWidth, height + my };
-		dc.FillSolidRect(&rc, GetSysColor(COLOR_3DFACE));
-		DrawIconEx(dc.m_hDC, (leftMarginWidth - cx) / 2, (height - cy) / 2 + my, hIcon, 
+		const int x = (leftMarginWidth - cx) / 2;
+		const int y = (height - cy) / 2 + my;
+		DrawIconEx(dc.m_hDC, x, y, hIcon, 
 			cx, cy, 0, nullptr, DI_NORMAL);
 	}
 }
@@ -43,10 +42,10 @@ CRect CTitleBarHelper::GetButtonsRect()
 	return CRect{};
 }
 
-void CTitleBarHelper::OnSize(CWnd* pWnd, UINT nType, int cx, int cy)
+void CTitleBarHelper::OnSize(CWnd* pWnd, bool maximized, int cx, int cy)
 {
 	m_size = CSize(cx, cy);
-	m_nType = nType;
+	m_maximized = maximized;
 	m_pWnd = pWnd;
 	CClientDC dc(pWnd);
 	m_dpi = dc.GetDeviceCaps(LOGPIXELSX);
