@@ -59,6 +59,7 @@ IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
 
 CMergeEditView::CMergeEditView()
 : m_bCurrentLineIsDiff(false)
+, m_bIgnoreRBUp(false)
 , m_nThisPane(0)
 , m_nThisGroup(0)
 , m_bDetailView(false)
@@ -2881,6 +2882,12 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
+	if (m_bIgnoreRBUp)
+	{
+		m_bIgnoreRBUp = false;
+		return;
+	}
+
 	CRect rect;
 	GetClientRect(rect);
 	ClientToScreen(rect);
@@ -4264,6 +4271,77 @@ void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
  */
 BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
+	if (GetKeyState(VK_MENU) & 0x8000)
+	{
+		// When hold Alt key, use nFlags to check MK_CONTROL MK_SHIFT holding got problem, Use GetKeyState() instead.
+		const auto bShiftDown = GetKeyState(VK_SHIFT) & 0x8000;
+		const auto bControlDown = GetKeyState(VK_CONTROL) & 0x8000;
+		// zDelta > 0 scrool up, < 0 scrool down
+		if (zDelta > 0)
+		{
+			// Check Shift key hold for mice without HWheel function
+			if (bShiftDown && bControlDown)
+			{
+				// Alt+Ctrl+Shift+ScrollUp as Alt+Ctrl+Left
+				OnR2LNext();
+				return TRUE;
+			}
+			else if (bShiftDown)
+			{
+				// Alt+Shift+ScrollUp as Alt+Left
+				OnR2l();
+				return TRUE;
+			}
+			else if (nFlags == 0)
+			{
+				// Alt+ScrollUp as Alt+Up
+				OnPrevdiff();
+				return TRUE;
+			}
+		}
+		else if (zDelta < 0)
+		{
+			// Check Shift key hold for mice without HWheel function
+			if (bShiftDown && bControlDown)
+			{
+				// Alt+Ctrl+Shift+ScrollDown as Alt+Ctrl+Right
+				OnL2RNext();
+				return TRUE;
+			}
+			else if (bShiftDown)
+			{
+				// Alt+Shift+ScrollDown as Alt+Right
+				OnL2r();
+				return TRUE;
+			}
+			else if (nFlags == 0)
+			{
+				// Alt+ScrollDown as Alt+Down
+				OnNextdiff();
+				return TRUE;
+			}
+		}
+	}
+
+	// Hold mice right button for One-handed operation
+	if (nFlags == MK_RBUTTON)
+	{
+		if (zDelta > 0)
+		{
+			// RButton+ScrollUp as Alt+Up
+			OnPrevdiff();
+			m_bIgnoreRBUp = true;
+			return TRUE;
+		}
+		else if (zDelta < 0)
+		{
+			// RButton+ScrollDown as Alt+Down
+			OnNextdiff();
+			m_bIgnoreRBUp = true;
+			return TRUE;
+		}
+	}
+
 	if ( nFlags == MK_CONTROL )
 	{
 		short amount = zDelta < 0 ? -1: 1;
@@ -4302,6 +4380,61 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
  */
 void CMergeEditView::OnMouseHWheel(UINT nFlags, short zDelta, CPoint pt)
 {
+	if (GetKeyState(VK_MENU) & 0x8000)
+	{
+		const auto bControlDown = GetKeyState(VK_CONTROL) & 0x8000;
+		// zDelta > 0 scrool right, < 0 scrool left
+		if (zDelta > 0)
+		{
+			if (bControlDown)
+			{
+				// Alt+Ctrl+HScrollRight as Alt+Ctrl+Right
+				OnL2RNext();
+				return;
+			}
+			else if (nFlags == 0)
+			{
+				// Alt+HScrollRight as Alt+Right
+				OnL2r();
+				return;
+			}
+		}
+		else if (zDelta < 0)
+		{
+			if (bControlDown)
+			{
+				// Alt+Ctrl+HScrollLeft as Alt+Ctrl+Left
+				OnR2LNext();
+				return;
+			}
+			else if (nFlags == 0)
+			{
+				// Alt+HScrollLeft as Alt+Left
+				OnR2l();
+				return;
+			}
+		}
+	}
+
+	// Hold mice right button for One-handed operation
+	if (nFlags == MK_RBUTTON)
+	{
+		if (zDelta > 0)
+		{
+			// RButton+ScrollRight as Alt+Right
+			OnL2r();
+			m_bIgnoreRBUp = true;
+			return;
+		}
+		else if (zDelta < 0)
+		{
+			// RButton+ScrollLeft as Alt+Left
+			OnR2l();
+			m_bIgnoreRBUp = true;
+			return;
+		}
+	}
+
 	SCROLLINFO si = { sizeof SCROLLINFO };
 	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
 
