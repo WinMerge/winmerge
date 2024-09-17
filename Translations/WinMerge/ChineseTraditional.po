@@ -5000,6 +5000,24 @@ msgstr ""
 msgid "Character"
 msgstr ""
 
+msgid "\nPrevious Difference |Alt+Up\nRightButton+ScrollUp\nAlt+ScrollUp"
+msgstr "\n上一個差異 (Alt+Up)\n(滑鼠右鍵+滾輪上滾)\n(Alt+滾輪上滾)"
+
+msgid "\nNext Difference |Alt+Down\nRightButton+ScrollDown\nAlt+ScrollDown"
+msgstr "\n下一個差異 (Alt+Down)\n(滑鼠右鍵+滾輪下滾)\n(Alt+滾輪下滾)"
+
+msgid "\nCopy to Right |Alt+Right\nRightBtn+ScrollRight\nAlt+ScrollR\nAlt+Shift+ScrollDn"
+msgstr "\n複製到右側 (Alt+Right)\n(滑鼠右鍵+滾輪右滾)\n(Alt+滾輪右滾)\n(Alt+Shift+滾輪下滾)"
+
+msgid "\nCopy to Left |Alt+Left\nRightBtn+ScrollLeft\nAlt+ScrollLeft\nAlt+Shift+ScrollUp"
+msgstr "\n複製到左側 (Alt+Left)\n(滑鼠右鍵+滾輪左滾)\n(Alt+滾輪左滾)\n(Alt+Shift+滾輪上滾)"
+
+msgid "\nCopy to Right and Advance |Ctrl+Alt+Right\nCtrl+Alt+ScrollR\nCtrl+Alt+Shift+SDn"
+msgstr "\n複製到右側後到下一個 (Ctrl+Alt+Right)\n(Ctrl+Alt+滾輪右滾)\n(Ctrl+Alt+Shift+滾輪下滾)"
+
+msgid "\nCopy to Left and Advance |Ctrl+Alt+Left\nCtrl+Alt+ScrollL\nCtrl+Alt+Shift+SUp"
+msgstr "\n複製到左側後到下一個 (Ctrl+Alt+Left)\n(Ctrl+Alt+滾輪左滾)\n(Ctrl+Alt+Shift+滾輪上滾)"
+
 msgid "Prettification"
 msgstr "美化"
 

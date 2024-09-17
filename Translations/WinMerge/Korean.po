@@ -5025,6 +5025,24 @@ msgstr "줄"
 msgid "Character"
 msgstr "문자"
 
+msgid "\nPrevious Difference |Alt+Up\nRightButton+ScrollUp\nAlt+ScrollUp"
+msgstr ""
+
+msgid "\nNext Difference |Alt+Down\nRightButton+ScrollDown\nAlt+ScrollDown"
+msgstr ""
+
+msgid "\nCopy to Right |Alt+Right\nRightBtn+ScrollRight\nAlt+ScrollR\nAlt+Shift+ScrollDn"
+msgstr ""
+
+msgid "\nCopy to Left |Alt+Left\nRightBtn+ScrollLeft\nAlt+ScrollLeft\nAlt+Shift+ScrollUp"
+msgstr ""
+
+msgid "\nCopy to Right and Advance |Ctrl+Alt+Right\nCtrl+Alt+ScrollR\nCtrl+Alt+Shift+SDn"
+msgstr ""
+
+msgid "\nCopy to Left and Advance |Ctrl+Alt+Left\nCtrl+Alt+ScrollL\nCtrl+Alt+Shift+SUp"
+msgstr ""
+
 msgid "Prettification"
 msgstr "꾸미기"
 

@@ -2649,13 +2649,44 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 
 	if (nID != 0) // will be zero on a separator
 	{
+		// check replace mice scrolling multiline tooltips
+		const static std::unordered_map<UINT, UINT> miceShortcut =
+		{
+			 {ID_PREVDIFF, ID_MICE_PREVDIFF}
+			,{ID_NEXTDIFF, ID_MICE_NEXTDIFF}
+			,{ID_L2R,      ID_MICE_L2R}
+			,{ID_R2L,      ID_MICE_R2L}
+			,{ID_L2RNEXT,  ID_MICE_L2RNEXT}
+			,{ID_R2LNEXT,  ID_MICE_R2LNEXT}
+		};
+		auto mID = miceShortcut.find(nID);
+		if (mID != miceShortcut.end())
+		{
+			nID = mID->second;
+
+			static bool firstCall = true;
+			if (firstCall)
+			{
+				firstCall = false;
+				// Setup multiline tooltips
+				LONG_PTR dwStyle = ::GetWindowLongPtr(pNMHDR->hwndFrom, GWL_EXSTYLE);
+				dwStyle |= TTS_NOPREFIX;
+				::SetWindowLongPtr(pNMHDR->hwndFrom, GWL_EXSTYLE, dwStyle);
+				::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 1024);
+			}
+		}
+
 		strFullText = theApp.LoadString(static_cast<UINT>(nID));
 		// don't handle the message if no string resource found
 		if (strFullText.empty())
 			return FALSE;
 
 		// this is the command id, not the button index
-		AfxExtractSubString(strTipText, strFullText.c_str(), 1, '\n');
+		// skip first position of newline character, accept multiline
+		const auto newline1st = strFullText.find(_T("\n"));
+		if (newline1st == String::npos)
+			return FALSE;
+		strTipText = strFullText.substr(newline1st + 1).c_str();
 	}
 	if (pNMHDR->code == TTN_NEEDTEXTA)
 		_wcstombsz(pTTTA->szText, strTipText, static_cast<ULONG>(std::size(pTTTA->szText)));

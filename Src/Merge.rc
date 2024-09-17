@@ -1,4 +1,4 @@
-// Microsoft Visual C++ generated resource script.
+﻿// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -4518,6 +4518,16 @@ BEGIN
     IDS_COPY_GRANULARITY_INLINE    "Inline diff"
     IDS_COPY_GRANULARITY_LINE      "Line"
     IDS_COPY_GRANULARITY_Character "Character"
+END
+
+STRINGTABLE
+BEGIN
+    ID_MICE_PREVDIFF        "\nPrevious Difference |Alt+Up\nRightButton+ScrollUp\nAlt+ScrollUp"
+    ID_MICE_NEXTDIFF        "\nNext Difference |Alt+Down\nRightButton+ScrollDown\nAlt+ScrollDown"
+    ID_MICE_L2R             "\nCopy to Right |Alt+Right\nRightBtn+ScrollRight\nAlt+ScrollR\nAlt+Shift+ScrollDn"
+    ID_MICE_R2L             "\nCopy to Left |Alt+Left\nRightBtn+ScrollLeft\nAlt+ScrollLeft\nAlt+Shift+ScrollUp"
+    ID_MICE_L2RNEXT         "\nCopy to Right and Advance |Ctrl+Alt+Right\nCtrl+Alt+ScrollR\nCtrl+Alt+Shift+SDn"
+    ID_MICE_R2LNEXT         "\nCopy to Left and Advance |Ctrl+Alt+Left\nCtrl+Alt+ScrollL\nCtrl+Alt+Shift+SUp"
 END
 
 #endif    // English (United States) resources
