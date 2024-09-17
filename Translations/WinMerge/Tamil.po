@@ -4314,7 +4314,7 @@ msgstr ""
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr ""
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\nCtrl+Alt+Wheel Right\n(Ctrl+Alt+Shift+Wheel Down)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
 msgstr ""
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"

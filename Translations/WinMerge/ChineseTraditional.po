@@ -5012,7 +5012,7 @@ msgstr "\n複製到右側 (Alt+Right)\n(滑鼠右鍵+滾輪右滾)\n(Alt+滾輪�
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr "\n複製到左側 (Alt+Left)\n(滑鼠右鍵+滾輪左滾)\n(Alt+滾輪左滾)\n(Alt+Shift+滾輪上滾)"
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\nCtrl+Alt+Wheel Right\n(Ctrl+Alt+Shift+Wheel Down)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
 msgstr "\n複製到右側後到下一個 (Ctrl+Alt+Right)\n(Ctrl+Alt+滾輪右滾)\n(Ctrl+Alt+Shift+滾輪下滾)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"

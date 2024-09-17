@@ -4526,7 +4526,7 @@ BEGIN
     ID_MICE_NEXTDIFF        "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
     ID_MICE_L2R             "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
     ID_MICE_R2L             "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
-    ID_MICE_L2RNEXT         "\nCopy to Right and Advance (Ctrl+Alt+Right)\nCtrl+Alt+Wheel Right\n(Ctrl+Alt+Shift+Wheel Down)"
+    ID_MICE_L2RNEXT         "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
     ID_MICE_R2LNEXT         "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 END
 

@@ -4363,7 +4363,7 @@ msgstr "\n复制到右侧 (Alt+Right)\n(鼠标右键+滚轮右滚)\n(Alt+滚轮�
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr "\n复制到左侧 (Alt+Left)\n(鼠标右键+滚轮左滚)\n(Alt+滚轮左滚)\n(Alt+Shift+滚轮上滚)"
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\nCtrl+Alt+Wheel Right\n(Ctrl+Alt+Shift+Wheel Down)"
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
 msgstr "\n复制到右侧再到下一处差异 (Ctrl+Alt+Right)\n(Ctrl+Alt+滚轮右滚)\n(Ctrl+Alt+Shift+滚轮下滚)"
 
 msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
