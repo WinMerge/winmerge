@@ -4280,16 +4280,16 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 		if (zDelta > 0)
 		{
 			// Check Shift key hold for mice without HWheel function
-			if (bShiftDown)
-			{
-				// Alt+Shift+ScrollUp as Alt+Left
-				OnR2l();
-				return TRUE;
-			}
-			else if (bShiftDown && bControlDown)
+			if (bShiftDown && bControlDown)
 			{
 				// Alt+Ctrl+Shift+ScrollUp as Alt+Ctrl+Left
 				OnR2LNext();
+				return TRUE;
+			}
+			else if (bShiftDown)
+			{
+				// Alt+Shift+ScrollUp as Alt+Left
+				OnR2l();
 				return TRUE;
 			}
 			else if (nFlags == 0)
@@ -4302,16 +4302,16 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 		else if (zDelta < 0)
 		{
 			// Check Shift key hold for mice without HWheel function
-			if (bShiftDown)
-			{
-				// Alt+Shift+ScrollDown as Alt+Right
-				OnL2r();
-				return TRUE;
-			}
-			else if (bShiftDown && bControlDown)
+			if (bShiftDown && bControlDown)
 			{
 				// Alt+Ctrl+Shift+ScrollDown as Alt+Ctrl+Right
 				OnL2RNext();
+				return TRUE;
+			}
+			else if (bShiftDown)
+			{
+				// Alt+Shift+ScrollDown as Alt+Right
+				OnL2r();
 				return TRUE;
 			}
 			else if (nFlags == 0)
