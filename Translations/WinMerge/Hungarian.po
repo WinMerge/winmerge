@@ -63,6 +63,15 @@ msgstr "A kijelölt sor(ok) balra másolása"
 msgid "Copy Selected Line(s) from Left"
 msgstr "A kijelölt sor(ok) másolása balról"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr "A kijelölt különbség (bal) vágólapra &másolása"
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr "A kijelölt különbség (középső) vágólapra &másolása"
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr "A kijelölt különbség (jobb) vágólapra &másolása"
+
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "Eltérés kijelölése\tF4"
@@ -4962,6 +4971,24 @@ msgstr "Sor"
 
 msgid "Character"
 msgstr "Karakter"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

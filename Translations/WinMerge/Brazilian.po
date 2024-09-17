@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-07-30 23:00-0300\n"
+"PO-Revision-Date: 2024-09-16 09:00-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -61,6 +61,15 @@ msgstr "Copiar a(s) linha(s) selecionada(s) pra esquerda"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiar a(s) linha(s) selecionada(s) da esquerda"
+
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr "Copiar as Diferenças Selecionadas (da Esquerda) para a Área de Transferência\tCtrl+1"
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr "Copiar as Diferenças Selecionadas (do Meio) para a Área de Transferência\tCtrl+2"
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr "Copiar as Diferenças Selecionadas (da Direita) para a Área de Transferência\tCtrl+3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Selecionar a &Diferença da Linha\tF4"
@@ -3908,6 +3917,24 @@ msgstr "Linha"
 
 msgid "Character"
 msgstr "Caracter"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

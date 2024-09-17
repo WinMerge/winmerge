@@ -1022,6 +1022,15 @@
 #define ID_COPY_LINES_FROM_RIGHT        33264
 #define ID_LINES_L2R                    33265
 #define ID_LINES_R2L                    33266
+#define ID_MICE_PREVDIFF                33267
+#define ID_MICE_NEXTDIFF                33268
+#define ID_MICE_L2R                     33269
+#define ID_MICE_R2L                     33270
+#define ID_SEL_DIFF_COPY_L              33271
+#define ID_SEL_DIFF_COPY_M              33272
+#define ID_SEL_DIFF_COPY_R              33273
+#define ID_MICE_L2RNEXT                 33274
+#define ID_MICE_R2LNEXT                 33275
 #define ID_TABBAR_AUTO_MAXWIDTH         33351
 #define ID_IMG_VIEWDIFFERENCES          33353
 #define ID_IMG_ZOOM_25                  33354

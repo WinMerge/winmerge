@@ -63,6 +63,15 @@ msgstr "Copiar linha(s) selecionada(s) para a esquerda"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiar linha(s) selecionada(s) da esquerda"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "Selecionar diferenças da linha\tF4"
 
@@ -4395,6 +4404,24 @@ msgstr "Linha"
 
 msgid "Character"
 msgstr "Caráter"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Embelezamento"

@@ -2,6 +2,7 @@
 # Released under the "GNU General Public License"
 #
 # Translators:
+# * VenusGirl <VenusGirl at https://github.com/VenusGirl>
 # * Hwang Sukjoon <bbcool at gmail.com>
 # * Lee Jae-Hong <pyrasis at users.sourceforge.net>
 # * Sushizang <sushizang at empal.com>
@@ -10,14 +11,13 @@
 # * BrainS <29201475+BraINstinct0 at users.noreply.github.com>
 # * cynilyn <cynilyn at gmail.com>
 # * gro00 <gheong.ro at gmail.com>
-# * VenusGirl <VenusGirl at https://github.com/VenusGirl>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16.36.0\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2024-05-22 02:58+0900\n"
+"PO-Revision-Date: 2024-09-13 00:07+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: Korean <https://winmerge.org/?lang=ko>\n"
 "Language: ko\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "X-Poedit-Bookmarks: 308,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
 #. LANGUAGE, SUBLANGUAGE
@@ -69,6 +69,15 @@ msgstr "선택한 줄을 왼쪽으로 복사"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "왼쪽에서 선택한 줄 복사"
+
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -253,13 +262,13 @@ msgid "&Vector Image Scaling"
 msgstr "벡터 이미지 확대/축소(&V)"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "애니메이션 설정(&A)"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "깜박임 간격(&B)"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "오버레이 애니메이션 간격(&O)"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "이미지에서 추출한 텍스트 비교(&T)"
@@ -5015,6 +5024,24 @@ msgstr "줄"
 
 msgid "Character"
 msgstr "문자"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
 
 msgid "Prettification"
 msgstr "꾸미기"

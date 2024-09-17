@@ -102,6 +102,10 @@ BEGIN
         MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
         MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_R
         MENUITEM SEPARATOR
+        MENUITEM "&Copy Selected Diff (Left) to Clipboard\tCtrl+1", ID_SEL_DIFF_COPY_L
+        MENUITEM "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_M
+        MENUITEM "&Copy Selected Diff (Right) to Clipboard\tCtrl+3", ID_SEL_DIFF_COPY_R
+        MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
         MENUITEM "Add to &Line Filters",        ID_ADD_TO_LINE_FILTERS
@@ -1385,6 +1389,9 @@ BEGIN
     VK_OEM_MINUS,   ID_VIEW_ZOOMOUT,        VIRTKEY, CONTROL, NOINVERT
     VK_MULTIPLY,    ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
     "0",            ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
+    "1",            ID_SEL_DIFF_COPY_L,     VIRTKEY, CONTROL, NOINVERT
+    "2",            ID_SEL_DIFF_COPY_M,     VIRTKEY, CONTROL, NOINVERT
+    "3",            ID_SEL_DIFF_COPY_R,     VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -4511,6 +4518,16 @@ BEGIN
     IDS_COPY_GRANULARITY_INLINE    "Inline diff"
     IDS_COPY_GRANULARITY_LINE      "Line"
     IDS_COPY_GRANULARITY_Character "Character"
+END
+
+STRINGTABLE
+BEGIN
+    ID_MICE_PREVDIFF        "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+    ID_MICE_NEXTDIFF        "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+    ID_MICE_L2R             "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+    ID_MICE_R2L             "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+    ID_MICE_L2RNEXT         "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+    ID_MICE_R2LNEXT         "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 END
 
 #endif    // English (United States) resources

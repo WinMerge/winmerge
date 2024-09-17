@@ -63,6 +63,15 @@ msgstr "將所選行複製到左側"
 msgid "Copy Selected Line(s) from Left"
 msgstr "從左側複製所選行"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "選取行內差異 (&D)\tF4"
@@ -4990,6 +4999,24 @@ msgstr ""
 
 msgid "Character"
 msgstr ""
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr "\n上一個差異 (Alt+Up)\n(滑鼠右鍵+滾輪上滾)\n(Alt+滾輪上滾)"
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr "\n下一個差異 (Alt+Down)\n(滑鼠右鍵+滾輪下滾)\n(Alt+滾輪下滾)"
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+msgstr "\n複製到右側 (Alt+Right)\n(滑鼠右鍵+滾輪右滾)\n(Alt+滾輪右滾)\n(Alt+Shift+滾輪下滾)"
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr "\n複製到左側 (Alt+Left)\n(滑鼠右鍵+滾輪左滾)\n(Alt+滾輪左滾)\n(Alt+Shift+滾輪上滾)"
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr "\n複製到右側後到下一個 (Ctrl+Alt+Right)\n(Ctrl+Alt+滾輪右滾)\n(Ctrl+Alt+Shift+滾輪下滾)"
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr "\n複製到左側後到下一個 (Ctrl+Alt+Left)\n(Ctrl+Alt+滾輪左滾)\n(Ctrl+Alt+Shift+滾輪上滾)"
 
 msgid "Prettification"
 msgstr "美化"
