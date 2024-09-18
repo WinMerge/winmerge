@@ -2659,7 +2659,7 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 			,{ID_L2RNEXT,  ID_MICE_L2RNEXT}
 			,{ID_R2LNEXT,  ID_MICE_R2LNEXT}
 		};
-		auto mID = miceShortcut.find(nID);
+		auto mID = miceShortcut.find(static_cast<UINT>(nID));
 		if (mID != miceShortcut.end())
 		{
 			nID = mID->second;
