@@ -465,6 +465,7 @@ void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 	__super::OnSize(nType, cx, cy);
 	if (!m_bOnTitleBar)
 		return;
+	Invalidate();
 	m_titleBar.OnSize(this, m_bMaximized, cx, cy);
 	if (m_tabCtrl.m_hWnd)
 	{
