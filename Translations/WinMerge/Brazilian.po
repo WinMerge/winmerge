@@ -3924,7 +3924,7 @@ msgstr "\nDiferença Anterior (Alt+Pra Cima)\n(Botão Direito+Rolagem Pra Cima)\
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
 msgstr "\nDiferença Seguinte (Alt+Pra Baixo)\n(Botão Direito+Rolagem Pra Baixo)\n(Alt+Rolagem Pra Baixo)"
 
-msgid "\nCopy to Right(Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
 msgstr "\nCopiar para a Direita (Alt+Direita)\n(Botão Direito+Rolagem Pra Direita)\n(Alt+Rolagem Pra Direita)\n(Alt+Shift+Rolagem Pra Baixo)"
 
 msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"

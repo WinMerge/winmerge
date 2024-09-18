@@ -4357,10 +4357,10 @@ msgstr "\n上一处差异 (Alt+Up)\n(鼠标右键+滚轮上滚)\n(Alt+滚轮上�
 msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
 msgstr "\n下一处差异 (Alt+Down)\n(鼠标右键+滚轮下滚)\n(Alt+滚轮下滚)"
 
-msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right\nAlt+Shift+Wheel Down"
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
 msgstr "\n复制到右侧 (Alt+Right)\n(鼠标右键+滚轮右滚)\n(Alt+滚轮右滚)\n(Alt+Shift+滚轮下滚)"
 
-msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
 msgstr "\n复制到左侧 (Alt+Left)\n(鼠标右键+滚轮左滚)\n(Alt+滚轮左滚)\n(Alt+Shift+滚轮上滚)"
 
 msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
