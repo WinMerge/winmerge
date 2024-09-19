@@ -421,6 +421,12 @@ msgstr "狀態列 (&S)"
 msgid "Ta&b Bar"
 msgstr "頁籤列 (&B)"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "工具 (&T)"

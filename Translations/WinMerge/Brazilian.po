@@ -373,6 +373,12 @@ msgstr "&Barra de Status"
 msgid "Ta&b Bar"
 msgstr "Ba&rra das Abas"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "&Ferramentas"
 

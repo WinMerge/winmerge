@@ -375,6 +375,12 @@ msgstr "Barra di s&tatu"
 msgid "Ta&b Bar"
 msgstr "Barra d’&unghjette"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "&Attrezzi"
 

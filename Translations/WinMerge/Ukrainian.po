@@ -404,6 +404,12 @@ msgstr "Ря&док стану"
 msgid "Ta&b Bar"
 msgstr "Панель &закладок"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Сервіс"

@@ -355,7 +355,11 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        POPUP "Ta&b Bar"
+        BEGIN
+            MENUITEM "&View Tab Bar"                ID_VIEW_TAB_BAR
+            MENUITEM "&On Title Bar",               ID_VIEW_TAB_BAR_ON_TITLE_BAR
+        END
     END
     POPUP "&Tools"
     BEGIN
@@ -496,7 +500,11 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        POPUP "Ta&b Bar"
+        BEGIN
+            MENUITEM "&View Tab Bar"                ID_VIEW_TAB_BAR
+            MENUITEM "&On Title Bar",               ID_VIEW_TAB_BAR_ON_TITLE_BAR
+        END
         MENUITEM SEPARATOR
         MENUITEM "Com&pare Statistics...",      ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
@@ -732,7 +740,11 @@ BEGIN
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        POPUP "Ta&b Bar"
+        BEGIN
+            MENUITEM "&View Tab Bar"                ID_VIEW_TAB_BAR
+            MENUITEM "&On Title Bar",               ID_VIEW_TAB_BAR_ON_TITLE_BAR
+        END
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Lo&cation Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR

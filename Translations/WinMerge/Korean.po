@@ -429,6 +429,12 @@ msgstr "상태 표시줄(&S)"
 msgid "Ta&b Bar"
 msgstr "탭 표시줄(&B)"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "도구(&T)"

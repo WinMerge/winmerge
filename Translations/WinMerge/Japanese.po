@@ -372,6 +372,12 @@ msgstr "ステータス バー(&S)"
 msgid "Ta&b Bar"
 msgstr "タブ バー(&B)"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "ツール(&T)"
 

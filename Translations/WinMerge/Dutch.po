@@ -373,6 +373,12 @@ msgstr "Statusbalk"
 msgid "Ta&b Bar"
 msgstr "Tab-balk"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Gereedschap"
 

@@ -422,6 +422,12 @@ msgstr "&Állapotsor"
 msgid "Ta&b Bar"
 msgstr "Fülsáv"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Eszközök"

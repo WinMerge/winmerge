@@ -419,6 +419,12 @@ msgstr "Γραμμή &Καταστάσεως"
 msgid "Ta&b Bar"
 msgstr "Γραμμή Σε&λιδοδεικτών"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "Εργα&λεία"

@@ -420,6 +420,12 @@ msgstr "Traka &statusa"
 msgid "Ta&b Bar"
 msgstr "Traka &oznaka panela"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Alati"

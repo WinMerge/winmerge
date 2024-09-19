@@ -418,6 +418,12 @@ msgstr "&Статусна трака"
 msgid "Ta&b Bar"
 msgstr "Тра&ка језичака"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "Алатке"

@@ -371,6 +371,12 @@ msgstr "&நிலைப் பட்டி"
 msgid "Ta&b Bar"
 msgstr "Ta&b Bar"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "&கருவிகள்"
 

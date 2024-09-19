@@ -373,6 +373,8 @@ protected:
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
 	afx_msg void OnViewTabBar();
+	afx_msg void OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI);
+	afx_msg void OnViewTabBarOnTitleBar();
 	afx_msg void OnUpdateResizePanes(CCmdUI* pCmdUI);
 	afx_msg void OnResizePanes();
 	afx_msg void OnFileOpenProject();

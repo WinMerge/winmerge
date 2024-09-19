@@ -375,6 +375,12 @@ msgstr "Statusfält"
 msgid "Ta&b Bar"
 msgstr "Flikrad"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Verktyg"
 

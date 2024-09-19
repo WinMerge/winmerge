@@ -373,6 +373,12 @@ msgstr "&Statusna vrstica"
 msgid "Ta&b Bar"
 msgstr "Ta&bulatorska vrstica"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "&Orodja"
 

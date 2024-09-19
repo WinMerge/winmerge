@@ -372,6 +372,12 @@ msgstr "Bară de &stare"
 msgid "Ta&b Bar"
 msgstr "&Bara de file"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Unel&te"
 

@@ -420,6 +420,12 @@ msgstr "&Status Bar"
 msgid "Ta&b Bar"
 msgstr "Ta&b Bar"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "මෙවලම්"

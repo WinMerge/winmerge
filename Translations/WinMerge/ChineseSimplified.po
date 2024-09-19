@@ -377,6 +377,12 @@ msgstr "状态栏(&S)"
 msgid "Ta&b Bar"
 msgstr "标签栏(&B)"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "工具(&T)"
 

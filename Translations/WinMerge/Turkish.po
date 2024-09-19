@@ -372,6 +372,12 @@ msgstr "&Durum çubuğu"
 msgid "Ta&b Bar"
 msgstr "&Sekme çubuğu"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "&Araçlar"
 

@@ -423,6 +423,12 @@ msgstr "S&tatusleiste"
 msgid "Ta&b Bar"
 msgstr "Ta&b-Leiste"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Tools"

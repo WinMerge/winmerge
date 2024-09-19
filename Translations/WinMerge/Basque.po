@@ -423,6 +423,12 @@ msgstr "&Egoera Barra"
 msgid "Ta&b Bar"
 msgstr "&Fitxa Barra"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Tresnak"

@@ -374,6 +374,12 @@ msgstr "Barra de e&stado"
 msgid "Ta&b Bar"
 msgstr "&Barra de pestanas"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Ferramen&tas"
 

@@ -374,6 +374,12 @@ msgstr "Pasek stanu"
 msgid "Ta&b Bar"
 msgstr "Pasek kart"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Narzędzia"
 

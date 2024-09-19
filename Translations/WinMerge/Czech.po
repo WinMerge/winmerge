@@ -420,6 +420,12 @@ msgstr "&Stavový řádek"
 msgid "Ta&b Bar"
 msgstr "Panel &záložek"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Nástroje"

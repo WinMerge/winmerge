@@ -373,6 +373,12 @@ msgstr "Tilarivi"
 msgid "Ta&b Bar"
 msgstr "Välilehdet"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Työkalut"
 

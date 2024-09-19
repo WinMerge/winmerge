@@ -370,6 +370,12 @@ msgstr "&Лента за състоянието"
 msgid "Ta&b Bar"
 msgstr "Лента с &раздели"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "&Инструменти"
 

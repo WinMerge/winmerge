@@ -253,6 +253,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
+	ON_COMMAND(ID_VIEW_TAB_BAR_ON_TITLE_BAR, OnViewTabBarOnTitleBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR_ON_TITLE_BAR, OnUpdateViewTabBarOnTitleBar)
 	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
 	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
@@ -407,7 +409,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
-	m_wndTabBar.Update(true, false, 32.f, 18.f * 3);
+	m_wndTabBar.Update(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR), false, 32.f, 18.f * 3);
 
 	if (!m_wndTabBar.Create(this))
 	{
@@ -2243,6 +2245,24 @@ void CMainFrame::OnViewTabBar()
 }
 
 /**
+ * @brief Updates "Show Tabbar" menuitem.
+ */
+void CMainFrame::OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR));
+}
+
+/**
+ * @brief Show/hide tabbar.
+ */
+void CMainFrame::OnViewTabBarOnTitleBar()
+{
+	bool bOnTitleBar = !GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
+	GetOptionsMgr()->SaveOption(OPT_TABBAR_ON_TITLEBAR, bOnTitleBar);
+
+}
+
+/**
  * @brief Updates "Automatically Resize Panes" menuitem.
  */
 void CMainFrame::OnUpdateResizePanes(CCmdUI* pCmdUI)
@@ -2495,7 +2515,7 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
-	m_wndTabBar.Update(true, (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
+	m_wndTabBar.Update(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR), (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
 	__super::OnSize(nType, cx, cy);
 }
 

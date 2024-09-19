@@ -373,6 +373,12 @@ msgstr "Bū&senos juosta"
 msgid "Ta&b Bar"
 msgstr "&Kortelių juosta"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Tools"
 msgstr "Į&rankiai"
 

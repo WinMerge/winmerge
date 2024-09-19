@@ -428,6 +428,12 @@ msgstr "Barre d'&état"
 msgid "Ta&b Bar"
 msgstr "Barre d'&onglets"
 
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 #, c-format
 msgid "&Tools"
 msgstr "&Outils"
