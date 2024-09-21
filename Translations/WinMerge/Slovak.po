@@ -355,6 +355,15 @@ msgstr "&Nastavenia..."
 msgid "&View"
 msgstr "&Zobraziť"
 
+msgid "Ta&b Bar"
+msgstr "Lišta &záložiek"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Lišta &nástrojov"
 
@@ -369,15 +378,6 @@ msgstr "&Obrovská"
 
 msgid "&Status Bar"
 msgstr "&Stavový riadok"
-
-msgid "Ta&b Bar"
-msgstr "Lišta &záložiek"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "&Nástroje"

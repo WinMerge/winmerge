@@ -400,6 +400,16 @@ msgid "&View"
 msgstr "&Ikusi"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "&Fitxa Barra"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Tre&snabarra"
 
@@ -418,16 +428,6 @@ msgstr ""
 #, c-format
 msgid "&Status Bar"
 msgstr "&Egoera Barra"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "&Fitxa Barra"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 #, c-format
 msgid "&Tools"

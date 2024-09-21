@@ -356,6 +356,15 @@ msgstr "Op&zioni..."
 msgid "&View"
 msgstr "&Visualizza"
 
+msgid "Ta&b Bar"
+msgstr "&Barra schede"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Barra s&trumenti"
 
@@ -370,15 +379,6 @@ msgstr "&Gigantesca"
 
 msgid "&Status Bar"
 msgstr "&Barra stato"
-
-msgid "Ta&b Bar"
-msgstr "&Barra schede"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "&Strumenti"

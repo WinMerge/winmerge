@@ -397,6 +397,16 @@ msgid "&View"
 msgstr "&බැලීම"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Ta&b Bar"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "මෙවලම් තීරය"
 
@@ -415,16 +425,6 @@ msgstr ""
 #, c-format
 msgid "&Status Bar"
 msgstr "&Status Bar"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Ta&b Bar"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 #, c-format
 msgid "&Tools"

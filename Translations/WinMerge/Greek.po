@@ -396,6 +396,16 @@ msgid "&View"
 msgstr "Πρ&οβολή"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Γραμμή Σε&λιδοδεικτών"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Γραμμή Ε&ργαλείων"
 
@@ -414,16 +424,6 @@ msgstr ""
 #, c-format
 msgid "&Status Bar"
 msgstr "Γραμμή &Καταστάσεως"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Γραμμή Σε&λιδοδεικτών"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 #, c-format
 msgid "&Tools"

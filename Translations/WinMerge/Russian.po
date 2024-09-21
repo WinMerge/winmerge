@@ -357,6 +357,15 @@ msgstr "&Настройки..."
 msgid "&View"
 msgstr "&Вид"
 
+msgid "Ta&b Bar"
+msgstr "Панель вкладок"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Па&нель инструментов"
 
@@ -371,15 +380,6 @@ msgstr "&Огромные значки"
 
 msgid "&Status Bar"
 msgstr "&Строка состояния"
-
-msgid "Ta&b Bar"
-msgstr "Панель вкладок"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "&Инструменты"

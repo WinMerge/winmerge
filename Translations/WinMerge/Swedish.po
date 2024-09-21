@@ -357,6 +357,15 @@ msgstr "Alternativ..."
 msgid "&View"
 msgstr "Visa"
 
+msgid "Ta&b Bar"
+msgstr "Flikrad"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Verktygsrad"
 
@@ -371,15 +380,6 @@ msgstr "Enorm"
 
 msgid "&Status Bar"
 msgstr "Statusfält"
-
-msgid "Ta&b Bar"
-msgstr "Flikrad"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "Verktyg"

@@ -406,6 +406,16 @@ msgid "&View"
 msgstr "보기(&V)"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "탭 표시줄(&B)"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "도구 모음(&T)"
 
@@ -424,16 +434,6 @@ msgstr "매우 크게(&H)"
 #, c-format
 msgid "&Status Bar"
 msgstr "상태 표시줄(&S)"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "탭 표시줄(&B)"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 #, c-format
 msgid "&Tools"

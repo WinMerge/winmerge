@@ -398,6 +398,16 @@ msgid "&View"
 msgstr "&Visualització"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Barra de ta&bulacions"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Barra d'ei&nes"
 
@@ -416,16 +426,6 @@ msgstr "&Immensa"
 #, c-format
 msgid "&Status Bar"
 msgstr "Barra d'est&at"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Barra de ta&bulacions"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 #, c-format
 msgid "&Tools"

@@ -398,6 +398,16 @@ msgid "&View"
 msgstr "&Vis"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Fa&nelinje"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "&Værktøjslinje"
 
@@ -416,16 +426,6 @@ msgstr ""
 #, c-format
 msgid "&Status Bar"
 msgstr "S&tatuslinje"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Fa&nelinje"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 #, c-format
 msgid "&Tools"

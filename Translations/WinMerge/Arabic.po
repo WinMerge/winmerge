@@ -356,6 +356,15 @@ msgstr "خ&يارات..."
 msgid "&View"
 msgstr "&عرض"
 
+msgid "Ta&b Bar"
+msgstr "شريط الت&بويب"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "&شريط الأدوات"
 
@@ -370,15 +379,6 @@ msgstr "&ضخم"
 
 msgid "&Status Bar"
 msgstr "شريط ال&حالة"
-
-msgid "Ta&b Bar"
-msgstr "شريط الت&بويب"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "أ&دوات"

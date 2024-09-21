@@ -355,6 +355,15 @@ msgstr "&Možnosti..."
 msgid "&View"
 msgstr "&Prikaz"
 
+msgid "Ta&b Bar"
+msgstr "Ta&bulatorska vrstica"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "&Orodna vrstica"
 
@@ -369,15 +378,6 @@ msgstr "O&gromne"
 
 msgid "&Status Bar"
 msgstr "&Statusna vrstica"
-
-msgid "Ta&b Bar"
-msgstr "Ta&bulatorska vrstica"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "&Orodja"

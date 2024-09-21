@@ -22,7 +22,6 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "FileOpenFlags.h"
-#include "TitleBarHelper.h"
 
 class BCMenu;
 class CDirView;

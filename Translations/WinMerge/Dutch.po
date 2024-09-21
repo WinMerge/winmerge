@@ -355,6 +355,15 @@ msgstr "Opties..."
 msgid "&View"
 msgstr "Beeld"
 
+msgid "Ta&b Bar"
+msgstr "Tab-balk"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Werkbalk"
 
@@ -369,15 +378,6 @@ msgstr "Enorm"
 
 msgid "&Status Bar"
 msgstr "Statusbalk"
-
-msgid "Ta&b Bar"
-msgstr "Tab-balk"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "Gereedschap"

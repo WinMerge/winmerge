@@ -354,6 +354,15 @@ msgstr "設定(&O)..."
 msgid "&View"
 msgstr "表示(&V)"
 
+msgid "Ta&b Bar"
+msgstr "タブ バー(&B)"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "ツールバー(&T)"
 
@@ -368,15 +377,6 @@ msgstr "特大(&H)"
 
 msgid "&Status Bar"
 msgstr "ステータス バー(&S)"
-
-msgid "Ta&b Bar"
-msgstr "タブ バー(&B)"
-
-msgid "&View Tab Bar"
-msgstr ""
-
-msgid "&On Title Bar"
-msgstr ""
 
 msgid "&Tools"
 msgstr "ツール(&T)"
