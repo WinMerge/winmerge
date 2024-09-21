@@ -208,6 +208,7 @@ public:
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenWebPageParams *pOpenParams = nullptr);
 
+	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
 	void ApplyDiffOptions();
 	void SelectFilter();
@@ -343,6 +344,7 @@ protected:
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
+	std::optional<bool> m_bTabsOnTitleBar;
 
 // Generated message map functions
 protected:

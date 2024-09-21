@@ -463,8 +463,6 @@ void CMyTabCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 {
 	__super::OnSize(nType, cx, cy);
-	if (!m_bOnTitleBar)
-		return;
 	Invalidate();
 	m_titleBar.OnSize(this, m_bMaximized, cx, cy);
 	if (m_tabCtrl.m_hWnd)
@@ -472,12 +470,13 @@ void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 		CClientDC dc(this);
 		const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 		auto pointToPixel = [lpx](float point) { return static_cast<int>(point * lpx / 72); };
-		const int leftMargin = pointToPixel(m_leftMarginPoint);
-		const int rightMargin = pointToPixel(m_rightMarginPoint);
+		const int leftMargin = m_bOnTitleBar ? pointToPixel(m_leftMarginPoint) : 0;
+		const int rightMargin = m_bOnTitleBar ? pointToPixel(m_rightMarginPoint) : 0;
 		int my = (m_bMaximized) ? 8 : 0;
 		CSize size{ 0, cy - my };
 		m_tabCtrl.MoveWindow(leftMargin, my, cx - leftMargin - rightMargin, cy - my, true);
 		m_tabCtrl.SetItemSize(size);
+		
 	}
 }
 
@@ -679,6 +678,8 @@ BOOL CMDITabBar::OnEraseBkgnd(CDC* pDC)
 void CMDITabBar::OnPaint()
 {
 	CPaintDC dc(this);
+	if (!m_bOnTitleBar)
+		return;
 	CRect rcClient;
 	GetClientRect(&rcClient);
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);

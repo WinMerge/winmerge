@@ -69,6 +69,7 @@
 #include "ClipboardHistory.h"
 #include "locality.h"
 #include "DirWatcher.h"
+#include "Win_VersionHelper.h"
 #include <afxwinverapi.h>
 
 using std::vector;
@@ -409,17 +410,16 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
-	m_wndTabBar.Update(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR), false, 32.f, 18.f * 3);
+	if (IsWin10_OrGreater())
+		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
 
-	if (!m_wndTabBar.Create(this))
+	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false, 32.f, 18.f * 3);
+
+	if (m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
 		return -1;      // fail to create
 	}
-	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
-
-	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
-		__super::ShowControlBar(&m_wndTabBar, false, 0);
 
 	if (!CreateToolbar())
 	{
@@ -427,6 +427,17 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	
+	if (!m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
+	{
+		TRACE0("Failed to create tab bar\n");
+		return -1;      // fail to create
+	}
+
+	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
+
+	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
+		__super::ShowControlBar(&m_wndTabBar, false, 0);
+
 	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("Failed to create status bar\n");
@@ -1587,6 +1598,18 @@ void CMainFrame::OnViewUsedefaultfont()
 	UpdateFont(frame);
 }
 
+void CMainFrame::UpdateTitleBarAndTabBar()
+{
+	CWnd* pWnd1 = &m_wndReBar, *pWnd2 = &m_wndTabBar;
+	if (m_bTabsOnTitleBar.value_or(false))
+		std::swap(pWnd1, pWnd2);
+	pWnd1->SetWindowPos(pWnd2, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+	pWnd2->SetWindowPos(pWnd1, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+	for (int i = 0; i < 2; i++)
+		ShowWindow(IsZoomed() ? SW_RESTORE : SW_MAXIMIZE);
+	RecalcLayout();
+}
+
 /**
  * @brief Update any resources necessary after a GUI language change
  */
@@ -2242,6 +2265,8 @@ void CMainFrame::OnViewTabBar()
 	GetOptionsMgr()->SaveOption(OPT_SHOW_TABBAR, bShow);
 
 	__super::ShowControlBar(&m_wndTabBar, bShow, 0);
+
+	UpdateTitleBarAndTabBar();
 }
 
 /**
@@ -2249,6 +2274,7 @@ void CMainFrame::OnViewTabBar()
  */
 void CMainFrame::OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI) 
 {
+	pCmdUI->Enable(m_bTabsOnTitleBar.has_value());
 	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR));
 }
 
@@ -2258,8 +2284,10 @@ void CMainFrame::OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI)
 void CMainFrame::OnViewTabBarOnTitleBar()
 {
 	bool bOnTitleBar = !GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
+	if (m_bTabsOnTitleBar.has_value())
+		m_bTabsOnTitleBar = bOnTitleBar;
 	GetOptionsMgr()->SaveOption(OPT_TABBAR_ON_TITLEBAR, bOnTitleBar);
-
+	UpdateTitleBarAndTabBar();
 }
 
 /**
@@ -2510,12 +2538,13 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 {
 	RECT rcWindow = lpncsp->rgrc[0];
 	__super::OnNcCalcSize(bCalcValidRects, lpncsp);
-	lpncsp->rgrc[0].top = rcWindow.top + 0;
+	if (m_bTabsOnTitleBar.value_or(false) && m_wndTabBar.IsVisible())
+		lpncsp->rgrc[0].top = rcWindow.top + 0;
 }
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
-	m_wndTabBar.Update(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR), (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
+	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
 	__super::OnSize(nType, cx, cy);
 }
 
