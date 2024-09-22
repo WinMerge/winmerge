@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 18.09.2024\n"
+"Project-Id-Version: WinMerge (Language) 21.09.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-09-21 09:07+0200\n"
+"PO-Revision-Date: 2024-09-21 15:07+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -1025,7 +1025,7 @@ msgid "&Copy Full Path"
 msgstr "Copia &percorso completo"
 
 msgid "Copy &Filename"
-msgstr "Copia nome del &file"
+msgstr "Copia nome &file"
 
 msgid "&Edit Caption"
 msgstr "Mo&difica didascalia"
@@ -1549,10 +1549,10 @@ msgid "Additional Properties"
 msgstr "Proprietà aggiuntive"
 
 msgid "Select Plugin"
-msgstr "Seleziona il plugin"
+msgstr "Seleziona plugin"
 
 msgid "Plugin &Name:"
-msgstr "&Nome del plugin:"
+msgstr "&Nome plugin:"
 
 msgid "Extensions list:"
 msgstr "Elenco estensioni:"
@@ -1561,16 +1561,16 @@ msgid "Description:"
 msgstr "Descrizione:"
 
 msgid "Default arguments:"
-msgstr "Parametri di default:"
+msgstr "Parametri predefiniti:"
 
 msgid "Display all plugins, don't check the extension"
 msgstr "Visualizza tutti i plugin, senza verificare l'estensione"
 
 msgid "&Open files in the same window type after unpacking"
-msgstr "&Apri i file nello stesso tipo di finestra dopo averli scompattati"
+msgstr "Dopo aver scompatto i file &aprili nello stesso tipo di finestra"
 
 msgid "&Plugin Pipeline:"
-msgstr "Pipeline dei &plugin:"
+msgstr "Pipeline &plugin:"
 
 msgid "&Alias..."
 msgstr "&Alias..."
@@ -1757,7 +1757,7 @@ msgid "Default Codepage"
 msgstr "Codice pagina predefinito"
 
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Scegli il codice pagina predefinito assegnato al caricamento di file non-Unicode:"
+msgstr "Seleziona il codice pagina predefinito assegnato al caricamento di file non-Unicode:"
 
 msgid "System codepage"
 msgstr "Codice di pagina del sistema"
@@ -1772,7 +1772,7 @@ msgid ""
 "Detect codepage info for these type of files: .html, .rc, .xml\n"
 "Need to restart session."
 msgstr ""
-"Rilevamento informazioni sul codice pagina per questi tipi di file: .html, .rc, .xml\n"
+"Rilevamento info codice pagina per questi tipi di file: .html, .rc, .xml\n"
 "Necessario riavvio della sessione."
 
 msgid ""
@@ -1924,7 +1924,7 @@ msgid "(Affects)"
 msgstr "(Coinvolge)"
 
 msgid "Select Codepage for"
-msgstr "Seleziona il codice pagina per"
+msgstr "Seleziona codice pagina per"
 
 msgid "&File Loading:"
 msgstr "Caricamento &file:"
@@ -2111,7 +2111,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Ignora differenze di tempo inferiori a 3 secondi"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr "&Espandi automaticamente sottocartelle dopo il confronto:"
+msgstr "Dopo il confronto &espandi automaticamente sottocartelle :"
 
 msgid "Include &unique subfolders contents"
 msgstr "&Includi contenuti unici sotto-cartelle"
@@ -2126,7 +2126,7 @@ msgid "Threshold for switching to &binary compare (MB):"
 msgstr "Soglia per passare al confronto &binario (MB):"
 
 msgid "File patterns:"
-msgstr "Pattern di file:"
+msgstr "Pattern file:"
 
 msgid "Custom Delimiter-Separated Values"
 msgstr "Valori separati da delimitatore personalizzato"
@@ -2562,7 +2562,7 @@ msgstr ""
 "Il file potrebbe essere di sola lettura?"
 
 msgid "Locate filter file to install"
-msgstr "Seleziona il file con il filtro da installare"
+msgstr "Seleziona il file filtro da installare"
 
 msgid ""
 "Installing filter file failed.\n"
@@ -2849,9 +2849,9 @@ msgid ""
 "\n"
 "Overwrite changed file?"
 msgstr ""
-"Un'altra applicazione ha aggiornato il file\n"
+"Dopo che WinMerge ha caricato il file\n"
 "%1\n"
-"dopo che WinMerge lo ha caricato.\n"
+"un'altra applicazione ha aggiornato il file.\n"
 "\n"
 "Vuoi sovrascrivere il file modificato?"
 
@@ -2872,9 +2872,9 @@ msgid ""
 "\n"
 "Do you want to reload the file?"
 msgstr ""
-"Un'altra applicazione ha aggiornato il file\n"
+"Dopo che WinMerge ha analizzato il file\n"
 "%1\n"
-"dopo che WinMerge lo ha analizzato.\n"
+"un'altra applicazione ha aggiornato il file.\n"
 "\n"
 "Vuoi ricaricare il file modificato?"
 
@@ -3078,7 +3078,7 @@ msgstr ""
 "Sei sicuro di voler chiudere la finestra?"
 
 msgid "The file or folder name is invalid."
-msgstr "Il nome del file o della cartella non è valido."
+msgstr "Il nome file o cartella non è valido."
 
 #, c-format
 msgid "Failed to execute external editor: %1"
@@ -3377,10 +3377,10 @@ msgid "%1 items selected"
 msgstr "%1 elementi selezionati"
 
 msgid "Filename or folder name."
-msgstr "Nome del file o della cartella."
+msgstr "Nome file o cartella."
 
 msgid "Subfolder name when subfolders are included."
-msgstr "Nome della sotto-cartella quando le sotto-cartelle sono incluse."
+msgstr "Nome sotto-cartella quando le sotto-cartelle sono incluse."
 
 msgid "Comparison result, long form."
 msgstr "Risultato del confronto, forma completa."
@@ -3714,7 +3714,7 @@ msgid ""
 msgstr ""
 "Prima è necessario salvare tutti i file.\n"
 "\n"
-"La creazione di file di patch richiede che non ci siano modifiche non salvate nei file."
+"La creazione di file patch richiede che non ci siano modifiche non salvate nei file."
 
 msgid "Folder does not exist."
 msgstr "La cartella non esiste."
@@ -4031,11 +4031,11 @@ msgid ""
 "$linenum: Line number of the current cursor position"
 msgstr ""
 "È possibile indicare nel percorso i seguenti parametri:\n"
-"$file: nome del percorso del file corrente\n"
+"$file: nome percorso file attuale\n"
 "$linenum: numero di linea alla posizione attuale del cursore"
 
 msgid "default"
-msgstr "default"
+msgstr "predefinito"
 
 msgid "minimal"
 msgstr "minimo"
@@ -4228,11 +4228,11 @@ msgstr "&Altri"
 
 #, c-format
 msgid "Missing plugin name in plugin pipeline: %1"
-msgstr "Nome plugin mancante nella pipeline dei plugin: %1"
+msgstr "Nome plugin mancante nella pipeline plugin: %1"
 
 #, c-format
 msgid "Missing quotation mark in plugin pipeline: %1"
-msgstr "Virgoletta mancante nella pipeline dei plugin: %1"
+msgstr "Virgoletta mancante nella pipeline plugin: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
@@ -4629,7 +4629,7 @@ msgid ""
 msgstr ""
 "Applica il comando filtro.\n"
 "Uso: ExecFilterCommand COMANDO\n"
-"  COMANDO - comando da eseguire. %1 nel comando viene sostituito con il nome del file."
+"  COMANDO - comando da eseguire. %1 nel comando viene sostituito con il nome file."
 
 msgid ""
 "Tokenize selection. \r\n"
@@ -4811,13 +4811,13 @@ msgid "Display the text content of MS Word files"
 msgstr "Visualizza il contenuto testuale dei file MS Word"
 
 msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr "Ignora alcune colonne: elenco colonne ignorate dal nome del plugin o dall'argomento del plugin"
+msgstr "Ignora alcune colonne: elenco colonne ignorate dal nome plugin o dall'argomento plugin"
 
 msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
 msgstr "Il plugin ignora i commenti (//... e /* ... */) nei file C, C++, PHP e JavaScript."
 
 msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr "Ignora alcuni campi: elenco campi ignorati dal nome del plugin o dall'argomento del plugin"
+msgstr "Ignora alcuni campi: elenco campi ignorati dal nome plugin o dall'argomento plugin"
 
 msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
 msgstr "Questo plugin ignora i numeri di riga iniziali nei file di testo (ad esempio file NC e BASIC)."
@@ -4976,7 +4976,7 @@ msgstr ""
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr "Inserisci il nome del file a cui verrà applicata la patch '%1'"
+msgstr "Inserisci il nome file a cui verrà applicata la patch '%1'"
 
 #, c-format
 msgid "File '%1' does not exist"
@@ -4987,7 +4987,7 @@ msgstr "Inserisci gli argomenti della riga di comando per il comando patch"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr "Inserisci il nome della cartella a cui verrà applicata la patch '%1'"
+msgstr "Inserisci il nome cartella a cui verrà applicata la patch '%1'"
 
 #, c-format
 msgid "Folder '%1' does not exist"
