@@ -1605,8 +1605,7 @@ void CMainFrame::UpdateTitleBarAndTabBar()
 		std::swap(pWnd1, pWnd2);
 	pWnd1->SetWindowPos(pWnd2, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
 	pWnd2->SetWindowPos(pWnd1, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
-	for (int i = 0; i < 2; i++)
-		ShowWindow(IsZoomed() ? SW_RESTORE : SW_MAXIMIZE);
+	SetWindowPos(nullptr, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
 	RecalcLayout();
 }
 

@@ -92,8 +92,17 @@ void CMyTabCtrl::OnPaint()
 	CRect rcClient;
 	GetClientRect(&rcClient);
 
+	const int nCount = GetItemCount();
+	if (nCount == 0)
+	{
+		dc.SetTextColor(GetSysColor(COLOR_WINDOWTEXT));
+		TCHAR szBuf[256];
+		AfxGetMainWnd()->GetWindowText(szBuf, sizeof(szBuf) / sizeof(szBuf[0]));
+		dc.DrawText(szBuf, -1, &rcClient, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
+	}
+
 	int nCurSel = GetCurSel();
-	for (int i = GetItemCount() - 1; i >= 0; --i)
+	for (int i = nCount - 1; i >= 0; --i)
 	{
 		GetItemRect(i, &dis.rcItem);
 		dis.itemID = i;
@@ -472,11 +481,11 @@ void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 		auto pointToPixel = [lpx](float point) { return static_cast<int>(point * lpx / 72); };
 		const int leftMargin = m_bOnTitleBar ? pointToPixel(m_leftMarginPoint) : 0;
 		const int rightMargin = m_bOnTitleBar ? pointToPixel(m_rightMarginPoint) : 0;
-		int my = (m_bMaximized) ? 8 : 0;
-		CSize size{ 0, cy - my };
-		m_tabCtrl.MoveWindow(leftMargin, my, cx - leftMargin - rightMargin, cy - my, true);
+		int topMargin = ((m_bMaximized && m_bOnTitleBar) ? 8 : 0) + (m_bOnTitleBar ? 1 : 0);
+		int bottomMargin = m_bOnTitleBar ? 1 : 0;
+		CSize size{ 0, cy - topMargin - bottomMargin };
+		m_tabCtrl.MoveWindow(leftMargin, topMargin, cx - leftMargin - rightMargin, cy - topMargin - bottomMargin, true);
 		m_tabCtrl.SetItemSize(size);
-		
 	}
 }
 
