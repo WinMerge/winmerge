@@ -45,9 +45,11 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	ON_WM_NCHITTEST()
 	ON_WM_ERASEBKGND()
 	ON_WM_PAINT()
-	ON_MESSAGE(WM_NCLBUTTONDBLCLK, OnNcForward<WM_NCLBUTTONDBLCLK>)
-	ON_MESSAGE(WM_NCLBUTTONDOWN, OnNcForward<WM_NCLBUTTONDOWN>)
-	ON_MESSAGE(WM_NCLBUTTONUP, OnNcForward<WM_NCLBUTTONUP>)
+	ON_WM_NCMOUSEMOVE()
+	ON_WM_NCMOUSELEAVE()
+	ON_WM_NCLBUTTONDBLCLK()
+	ON_WM_NCLBUTTONDOWN()
+	ON_WM_NCLBUTTONUP()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -469,26 +471,6 @@ void CMyTabCtrl::OnLButtonUp(UINT nFlags, CPoint point)
 	CWnd::OnLButtonUp(nFlags, point);
 }
 
-void CMDITabBar::OnSize(UINT nType, int cx, int cy)
-{
-	__super::OnSize(nType, cx, cy);
-	Invalidate();
-	m_titleBar.OnSize(this, m_bMaximized, cx, cy);
-	if (m_tabCtrl.m_hWnd)
-	{
-		CClientDC dc(this);
-		const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
-		auto pointToPixel = [lpx](float point) { return static_cast<int>(point * lpx / 72); };
-		const int leftMargin = m_bOnTitleBar ? pointToPixel(m_leftMarginPoint) : 0;
-		const int rightMargin = m_bOnTitleBar ? pointToPixel(m_rightMarginPoint) : 0;
-		int topMargin = ((m_bMaximized && m_bOnTitleBar) ? 8 : 0) + (m_bOnTitleBar ? 1 : 0);
-		int bottomMargin = m_bOnTitleBar ? 1 : 0;
-		CSize size{ 0, cy - topMargin - bottomMargin };
-		m_tabCtrl.MoveWindow(leftMargin, topMargin, cx - leftMargin - rightMargin, cy - topMargin - bottomMargin, true);
-		m_tabCtrl.SetItemSize(size);
-	}
-}
-
 CRect CMyTabCtrl::GetCloseButtonRect(int nItem)
 {
 	CClientDC dc(this);
@@ -610,12 +592,14 @@ void CMyTabCtrl::UpdateToolTips(int nTabItemIndex)
 	}
 }
 
-BOOL CMDITabBar::Update(bool bOnTitleBar, bool bMaximized, float leftMarginPoint, float rightMarginPoint)
+BOOL CMDITabBar::Update(bool bOnTitleBar, bool bMaximized)
 {
 	m_bOnTitleBar = bOnTitleBar;
 	m_bMaximized = bMaximized;
-	m_leftMarginPoint = leftMarginPoint;
-	m_rightMarginPoint = rightMarginPoint;
+	CRect rc;
+	if (m_bMaximized)
+		AfxGetMainWnd()->GetWindowRect(&rc);
+	m_top = rc.top;
 	return true;
 }
 
@@ -627,7 +611,9 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 {
 	m_dwStyle = CBRS_TOP;
 
-	CWnd::Create(WC_STATIC, nullptr, WS_CHILD | WS_VISIBLE, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST + 30);
+	m_titleBar.Init(this);
+
+	CWnd::Create(nullptr, nullptr, WS_CHILD | WS_VISIBLE, CRect(0, 0, 0, 0), pMainFrame, AFX_IDW_CONTROLBAR_FIRST + 30);
 
 	if (!m_tabCtrl.Create(pMainFrame, this))
 		return FALSE;
@@ -665,8 +651,7 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	const int r = pointToPixel(RR_RADIUS);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
-
-	int my = m_bOnTitleBar ? (m_bMaximized ? (8 + 6) : 6) : 0;
+	int my = m_bOnTitleBar ? (m_bMaximized ? (-m_top + 2) : 2) : 0;
 	CSize size(SHRT_MAX, my + tm.tmHeight + (sw + r) * 2);
 	return size;
 }
@@ -674,6 +659,48 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 LRESULT CMDITabBar::OnNcHitTest(CPoint point)
 {
 	return m_titleBar.HitTest(point);
+}
+
+void CMDITabBar::OnNcMouseMove(UINT nHitTest, CPoint point)
+{
+	m_titleBar.OnNcMouseMove(nHitTest, point);
+}
+
+void CMDITabBar::OnNcMouseLeave()
+{
+	m_titleBar.OnNcMouseLeave();
+}
+
+void CMDITabBar::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
+{
+	m_titleBar.OnNcLButtonDblClk(nHitTest, point);
+}
+
+void CMDITabBar::OnNcLButtonDown(UINT nHitTest, CPoint point)
+{
+	m_titleBar.OnNcLButtonDown(nHitTest, point);
+}
+
+void CMDITabBar::OnNcLButtonUp(UINT nHitTest, CPoint point)
+{
+	m_titleBar.OnNcLButtonUp(nHitTest, point);
+}
+
+void CMDITabBar::OnSize(UINT nType, int cx, int cy)
+{
+	__super::OnSize(nType, cx, cy);
+	Invalidate();
+	m_titleBar.OnSize(m_bMaximized, cx, cy);
+	if (m_tabCtrl.m_hWnd)
+	{
+		const int leftMargin = m_bOnTitleBar ? m_titleBar.GetLeftMargin() : 0;
+		const int rightMargin = m_bOnTitleBar ? m_titleBar.GetRightMargin() : 0;
+		const int topMargin = ((m_bMaximized && m_bOnTitleBar) ? -m_top : 0) + (m_bOnTitleBar ? 1 : 0);
+		const int bottomMargin = m_bOnTitleBar ? 1 : 0;
+		CSize size{ 0, cy - topMargin - bottomMargin };
+		m_tabCtrl.MoveWindow(leftMargin, topMargin, cx - leftMargin - rightMargin, cy - topMargin - bottomMargin, true);
+		m_tabCtrl.SetItemSize(size);
+	}
 }
 
 BOOL CMDITabBar::OnEraseBkgnd(CDC* pDC)
@@ -686,12 +713,11 @@ BOOL CMDITabBar::OnEraseBkgnd(CDC* pDC)
 
 void CMDITabBar::OnPaint()
 {
-	CPaintDC dc(this);
 	if (!m_bOnTitleBar)
-		return;
+		return __super::OnPaint();
+	CPaintDC dc(this);
 	CRect rcClient;
 	GetClientRect(&rcClient);
-	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
-	auto pointToPixel = [lpx](float point) -> int { return static_cast<int>(point * lpx / 72); };
-	m_titleBar.DrawIcon(AfxGetMainWnd(), dc, pointToPixel(m_leftMarginPoint));
+	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
+	m_titleBar.DrawButtons(dc);
 }

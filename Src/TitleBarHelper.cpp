@@ -10,45 +10,201 @@
 #include "TitleBarHelper.h"
 #include "RoundedRectWithShadow.h"
 
-void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc, int leftMarginWidth)
+CTitleBarHelper::CTitleBarHelper()
+	: m_pWnd(nullptr)
+	, m_maximized(false)
+	, m_iconSize(0)
+	, m_dpi(96)
+	, m_leftMargin(32.f)
+	, m_rightMargin(35.f * 3)
+	, m_bMouseTracking(false)
+	, m_nTrackingButton(-1)
+	, m_nHitTest(-1)
+{
+}
+
+void CTitleBarHelper::Init(CWnd *pWnd)
+{
+	m_pWnd = pWnd;
+}
+
+void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 {
 	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
 	if (hIcon == nullptr)
 		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
 	if (hIcon != nullptr)
 	{
-		const int my = (m_maximized ? 8 : 0);
-		const int height = m_size.cy - my;
-		const int cx = PointToPixel(12.f);
-		const int cy = PointToPixel(12.f);
-		const int x = (leftMarginWidth - cx) / 2;
-		const int y = (height - cy) / 2 + my;
+		const int topMargin = (m_maximized ? -m_rc.top : 0);
+		const int height = m_size.cy - topMargin;
+		const int cx = static_cast<int>(PointToPixel(12.f));
+		const int cy = static_cast<int>(PointToPixel(12.f));
+		const int x = static_cast<int>((PointToPixel(m_leftMargin) - cx) / 2);
+		const int y = static_cast<int>((height - cy) / 2 + topMargin);
 		DrawIconEx(dc.m_hDC, x, y, hIcon, 
 			cx, cy, 0, nullptr, DI_NORMAL);
 	}
 }
 
+static void DrawTopRightEdgeWithCurve(Gdiplus::Graphics& graphics, Gdiplus::Pen& pen, Gdiplus::Rect rect, int cornerRadius)
+{
+	Gdiplus::GraphicsPath path;
+	path.AddLine(rect.X, rect.Y, rect.X + rect.Width - cornerRadius, rect.Y);
+	path.AddArc(rect.X + rect.Width - cornerRadius, rect.Y, cornerRadius, cornerRadius, 270, 90);
+	path.AddLine(rect.X + rect.Width, rect.Y + cornerRadius, rect.X + rect.Width, rect.Y + rect.Height);
+	graphics.DrawPath(&pen, &path);
+}
+
+static void DrawRoundedRectangle(Gdiplus::Graphics& graphics, Gdiplus::Pen& pen, Gdiplus::Rect rect, int cornerRadius)
+{
+	Gdiplus::GraphicsPath path;
+	path.AddArc(rect.X, rect.Y, cornerRadius, cornerRadius, 180, 90);
+	path.AddArc(rect.X + rect.Width - cornerRadius, rect.Y, cornerRadius, cornerRadius, 270, 90);
+	path.AddArc(rect.X + rect.Width - cornerRadius, rect.Y + rect.Height - cornerRadius, cornerRadius, cornerRadius, 0, 90);
+	path.AddArc(rect.X, rect.Y + rect.Height - cornerRadius, cornerRadius, cornerRadius, 90, 90);
+	path.CloseFigure();
+	graphics.DrawPath(&pen, &path);
+}
+
 void CTitleBarHelper::DrawButtons(CDC& dc)
 {
+	Gdiplus::Graphics graphics(dc.m_hDC);
+	CRect rcIcons[3], rcButtons[3];
+	const float buttonWidth = PointToPixel(m_rightMargin) / 3.f;
+	const float iconSize = PointToPixel(6.75);
+	for (int i = 0; i < 3; i++)
+	{
+		rcButtons[i] = GetButtonRect(i);
+		rcIcons[i] = rcButtons[i];
+		rcIcons[i].left = static_cast<int>(rcIcons[i].left + (buttonWidth - iconSize) / 2);
+		rcIcons[i].right = static_cast<int>(rcIcons[i].left + iconSize);
+		rcIcons[i].top = static_cast<int>(rcIcons[i].top + (rcButtons[i].Height() - iconSize) / 2);
+		rcIcons[i].bottom = static_cast<int>(rcIcons[i].top + iconSize);
+
+		Gdiplus::Color color;
+		color.SetFromCOLORREF((m_nTrackingButton == i) ? GetSysColor(COLOR_WINDOW) : GetSysColor(COLOR_3DFACE));
+		Gdiplus::SolidBrush brush(color);
+		graphics.FillRectangle(&brush, rcButtons[i].left, rcButtons[i].top, rcButtons[i].Width(), rcButtons[i].Height());
+	}
+	
+	graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
+	Gdiplus::Pen pen(Gdiplus::Color(255, 0, 0, 0), PointToPixel(0.75));
+	graphics.DrawLine(&pen, Gdiplus::Point(rcIcons[2].left, rcIcons[2].top), Gdiplus::Point(rcIcons[2].right, rcIcons[2].bottom));
+	graphics.DrawLine(&pen, Gdiplus::Point(rcIcons[2].left, rcIcons[2].bottom), Gdiplus::Point(rcIcons[2].right, rcIcons[2].top));
+
+	const int r = static_cast<int>(PointToPixel(0.75));
+	if (m_maximized)
+	{
+		DrawTopRightEdgeWithCurve(graphics, pen, Gdiplus::Rect(rcIcons[1].left + r, rcIcons[1].top - r, rcIcons[1].Width() - 2 * r, rcIcons[1].Height() - 2 * r), r);
+		DrawRoundedRectangle(graphics, pen, Gdiplus::Rect(rcIcons[1].left - r, rcIcons[1].top + r, rcIcons[1].Width() - 2 * r, rcIcons[1].Height() - 2 * r), r);
+	}
+	else
+	{
+		DrawRoundedRectangle(graphics, pen, Gdiplus::Rect(rcIcons[1].left, rcIcons[1].top, rcIcons[1].Width(), rcIcons[1].Height()), r);
+	}
+
+	const int y = (rcIcons[0].top + rcIcons[0].bottom) / 2;
+	graphics.DrawLine(&pen, Gdiplus::Point(rcIcons[0].left, y), Gdiplus::Point(rcIcons[0].right, y));
 }
 
-CRect CTitleBarHelper::GetIconRect()
+CRect CTitleBarHelper::GetButtonRect(int button) const
 {
-	return CRect{};
+	const float w1 = PointToPixel(m_rightMargin) / 3.f;
+	CRect rcPart;
+	const int topMargin = (m_maximized ? -m_rc.top : 0);
+	rcPart.top = topMargin;
+	rcPart.bottom = m_size.cy;
+	rcPart.left = static_cast<int>(m_size.cx - (3 - button) * w1);
+	rcPart.right = static_cast<int>(rcPart.left + w1);
+	return rcPart;
 }
 
-CRect CTitleBarHelper::GetButtonsRect()
-{
-	return CRect{};
-}
-
-void CTitleBarHelper::OnSize(CWnd* pWnd, bool maximized, int cx, int cy)
+void CTitleBarHelper::OnSize(bool maximized, int cx, int cy)
 {
 	m_size = CSize(cx, cy);
 	m_maximized = maximized;
-	m_pWnd = pWnd;
-	CClientDC dc(pWnd);
+	CClientDC dc(m_pWnd);
 	m_dpi = dc.GetDeviceCaps(LOGPIXELSX);
+	m_pWnd->GetWindowRect(&m_rc);
+}
+
+void CTitleBarHelper::OnNcMouseMove(UINT nHitTest, CPoint point)
+{
+	if (!m_bMouseTracking)
+	{
+		TRACKMOUSEEVENT tme = { sizeof TRACKMOUSEEVENT, TME_LEAVE | TME_NONCLIENT, m_pWnd->m_hWnd };
+		TrackMouseEvent(&tme);
+		m_bMouseTracking = true;
+	}
+	int i = HitTest(point);
+	if (i == HTMINBUTTON)
+		i = 0;
+	else if (i == HTMAXBUTTON)
+		i = 1;
+	else if (i == HTCLOSE)
+		i = 2;
+	else
+		i = -1;
+	for (int button : {i, m_nTrackingButton})
+	{
+		if (button != -1)
+		{
+			CRect rcPart = GetButtonRect(button);
+			m_pWnd->InvalidateRect(&rcPart, false);
+		}
+	}
+	m_nTrackingButton = i;
+}
+
+void CTitleBarHelper::OnNcMouseLeave()
+{
+	TRACKMOUSEEVENT tme = { sizeof(TRACKMOUSEEVENT), TME_LEAVE | TME_CANCEL, m_pWnd->m_hWnd };
+	TrackMouseEvent(&tme);
+	m_bMouseTracking = false;
+	if (m_nTrackingButton >= 0)
+	{
+		CRect rcPart = GetButtonRect(m_nTrackingButton);
+		m_pWnd->InvalidateRect(&rcPart, false);
+	}
+	m_nTrackingButton = -1;
+}
+
+void CTitleBarHelper::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
+{
+	if (nHitTest == HTCAPTION || nHitTest == HTSYSMENU)
+	{
+		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONDBLCLK, nHitTest, MAKELPARAM(point.x, point.y));
+	}
+}
+
+void CTitleBarHelper::OnNcLButtonDown(UINT nHitTest, CPoint point)
+{
+	if (nHitTest == HTCAPTION || nHitTest == HTSYSMENU)
+	{
+		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONDOWN, nHitTest, MAKELPARAM(point.x, point.y));
+	}
+	else if (nHitTest == HTMINBUTTON || nHitTest == HTMAXBUTTON || nHitTest == HTCLOSE)
+	{
+		m_nHitTest = nHitTest;
+	}
+}
+
+void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
+{
+	if (nHitTest == HTCAPTION || nHitTest == HTSYSMENU)
+	{
+		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONUP, nHitTest, MAKELPARAM(point.x, point.y));
+	}
+	else if (m_nHitTest != -1 && m_nHitTest == nHitTest)
+	{
+		if (nHitTest == HTMINBUTTON)
+			AfxGetMainWnd()->ShowWindow(SW_MINIMIZE);
+		else if (nHitTest == HTMAXBUTTON)
+			AfxGetMainWnd()->ShowWindow(m_maximized ? SW_RESTORE : SW_MAXIMIZE);
+		else if (nHitTest == HTCLOSE)
+			AfxGetMainWnd()->PostMessage(WM_CLOSE);
+	}
+	m_nHitTest = -1;
 }
 
 int CTitleBarHelper::HitTest(CPoint pt)
@@ -56,10 +212,11 @@ int CTitleBarHelper::HitTest(CPoint pt)
 	if (!m_pWnd)
 		return HTNOWHERE;
 	CClientDC dc(m_pWnd);
-	const int height = PointToPixel(24);
-	const int buttonWidth = PointToPixel(24);
+	const int height = m_size.cy;
+	const int leftMargin = static_cast<int>(PointToPixel(m_leftMargin));
+	const int rightMargin = static_cast<int>(PointToPixel(m_rightMargin));
 	CRect rc;
-	const int bw = buttonWidth;
+	const int bw = rightMargin / 3;
 	const int m = 8;
 	m_pWnd->GetWindowRect(&rc);
 	if (pt.y < rc.top + 4)
@@ -74,7 +231,7 @@ int CTitleBarHelper::HitTest(CPoint pt)
 		return HTLEFT;
 	if (rc.right - m <= pt.x)
 		return HTRIGHT;
-	if (pt.x < rc.left + bw)
+	if (pt.x < rc.left + leftMargin)
 		return HTSYSMENU;
 	if (rc.right - bw * 3 <= pt.x && pt.x < rc.right - bw * 2)
 	{
@@ -91,7 +248,7 @@ int CTitleBarHelper::HitTest(CPoint pt)
 	return HTCAPTION;
 }
 
-int CTitleBarHelper::PointToPixel(float point)
+float CTitleBarHelper::PointToPixel(float point) const
 {
-	return static_cast<int>(point * m_dpi / 72.f);
+	return point * m_dpi / 72.f;
 };

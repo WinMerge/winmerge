@@ -86,8 +86,7 @@ private:
 
 	bool m_bOnTitleBar;
 	bool m_bMaximized;
-	float m_leftMarginPoint;
-	float m_rightMarginPoint;
+	int m_top;
 	CMyTabCtrl m_tabCtrl;
 	CFont m_font;
 	CTitleBarHelper m_titleBar;
@@ -96,11 +95,10 @@ public:
 	CMDITabBar()
 		: m_bOnTitleBar(true)
 		, m_bMaximized(false)
-		, m_leftMarginPoint(0)
-		, m_rightMarginPoint(0)
+		, m_top(0)
 	{}
 	virtual ~CMDITabBar() {}
-	BOOL Update(bool bOnTitleBar, bool bMaxmized, float iconWidthPoint, float buttonsWidthPoint);
+	BOOL Update(bool bOnTitleBar, bool bMaxmized);
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs() { m_tabCtrl.UpdateTabs(); }
 	bool GetAutoMaxWidth() const { return m_tabCtrl.GetAutoMaxWidth(); }
@@ -113,12 +111,15 @@ public:
 protected:
 
 	//{{AFX_MSG(CMDITabBar)
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnNcMouseMove(UINT nHitTest, CPoint point);
+	afx_msg void OnNcMouseLeave();
+	afx_msg void OnNcLButtonDblClk(UINT nHitTest, CPoint point);
+	afx_msg void OnNcLButtonDown(UINT nHitTest, CPoint point);
+	afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 	afx_msg void OnPaint();
-	afx_msg LRESULT OnNcHitTest(CPoint point);
-	template <UINT message>
-	afx_msg LRESULT OnNcForward(WPARAM wParam, LPARAM lParam) { return AfxGetMainWnd()->SendMessage(message, wParam, lParam); }
-	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

@@ -224,6 +224,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
+	ON_WM_MOUSEMOVE()
+	ON_WM_MOUSELEAVE()
+	ON_WM_NCMOUSEMOVE()
+	ON_WM_NCMOUSELEAVE()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -413,7 +417,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (IsWin10_OrGreater())
 		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
 
-	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false, 32.f, 18.f * 3);
+	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false);
 
 	if (m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
@@ -2543,8 +2547,20 @@ void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncs
 
 void CMainFrame::OnSize(UINT nType, int cx, int cy)
 {
-	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), (nType == SIZE_MAXIMIZED), 32.f, 18.f * 3);
+	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), (nType == SIZE_MAXIMIZED));
 	__super::OnSize(nType, cx, cy);
+}
+
+void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
+{
+}
+
+void CMainFrame::OnMouseLeave()
+{
+}
+
+void CMainFrame::OnNcMouseMove(UINT nHitTest, CPoint point)
+{
 }
 
 BOOL CMainFrame::CreateToolbar()
