@@ -16,8 +16,8 @@ public:
 	void Init(CWnd* pWnd);
 	void DrawIcon(CWnd* pWnd, CDC& dc);
 	void DrawButtons(CDC& dc);
-	int GetLeftMargin() const { return static_cast<int>(PointToPixel(m_leftMargin)); }
-	int GetRightMargin() const { return static_cast<int>(PointToPixel(m_rightMargin)); }
+	int GetLeftMargin() const { return PointToPixel(m_leftMargin); }
+	int GetRightMargin() const { return PointToPixel(m_rightMargin); }
 	CRect GetButtonRect(int button) const;
 	void OnSize(bool maximized, int cx, int cy);
 	void OnNcMouseMove(UINT nHitTest, CPoint point);
@@ -30,7 +30,11 @@ public:
 	int HitTest(CPoint pt);
 
 private:
-	float PointToPixel(float point) const;
+	float PointToPixelF(float point) const { return point * m_dpi / 72.f; }
+	int PointToPixel(float point) const { return static_cast<int>(point * m_dpi / 72.f); }
+
+	void ShowSysMenu(CPoint point);
+	COLORREF GetIntermediateColor(COLORREF a, COLORREF b, float ratio);
 
 	CWnd* m_pWnd;
 	CSize m_size;
