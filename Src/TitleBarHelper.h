@@ -25,6 +25,8 @@ public:
 	void OnNcLButtonDblClk(UINT nHitTest, CPoint point);
 	void OnNcLButtonDown(UINT nHitTest, CPoint point);
 	void OnNcLButtonUp(UINT nHitTest, CPoint point);
+	void OnNcRButtonDown(UINT nHitTest, CPoint point);
+	void OnNcRButtonUp(UINT nHitTest, CPoint point);
 	int HitTest(CPoint pt);
 
 private:
@@ -36,9 +38,8 @@ private:
 	bool m_maximized;
 	bool m_bMouseTracking;
 	int m_nTrackingButton;
-	int m_nHitTest;
-	int m_iconSize;
 	int m_dpi;
+	unsigned m_nHitTest;
 	float m_leftMargin;
 	float m_rightMargin;
 };

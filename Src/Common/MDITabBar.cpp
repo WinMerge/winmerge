@@ -50,6 +50,8 @@ BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	ON_WM_NCLBUTTONDBLCLK()
 	ON_WM_NCLBUTTONDOWN()
 	ON_WM_NCLBUTTONUP()
+	ON_WM_NCRBUTTONDOWN()
+	ON_WM_NCRBUTTONUP()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -684,6 +686,16 @@ void CMDITabBar::OnNcLButtonDown(UINT nHitTest, CPoint point)
 void CMDITabBar::OnNcLButtonUp(UINT nHitTest, CPoint point)
 {
 	m_titleBar.OnNcLButtonUp(nHitTest, point);
+}
+
+void CMDITabBar::OnNcRButtonDown(UINT nHitTest, CPoint point)
+{
+	m_titleBar.OnNcRButtonDown(nHitTest, point);
+}
+
+void CMDITabBar::OnNcRButtonUp(UINT nHitTest, CPoint point)
+{
+	m_titleBar.OnNcRButtonUp(nHitTest, point);
 }
 
 void CMDITabBar::OnSize(UINT nType, int cx, int cy)

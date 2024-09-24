@@ -13,13 +13,12 @@
 CTitleBarHelper::CTitleBarHelper()
 	: m_pWnd(nullptr)
 	, m_maximized(false)
-	, m_iconSize(0)
 	, m_dpi(96)
 	, m_leftMargin(32.f)
 	, m_rightMargin(35.f * 3)
 	, m_bMouseTracking(false)
 	, m_nTrackingButton(-1)
-	, m_nHitTest(-1)
+	, m_nHitTest(HTNOWHERE)
 {
 }
 
@@ -81,21 +80,28 @@ void CTitleBarHelper::DrawButtons(CDC& dc)
 		rcIcons[i].top = static_cast<int>(rcIcons[i].top + (rcButtons[i].Height() - iconSize) / 2);
 		rcIcons[i].bottom = static_cast<int>(rcIcons[i].top + iconSize);
 
+		COLORREF colorref;
 		Gdiplus::Color color;
-		color.SetFromCOLORREF((m_nTrackingButton == i) ? GetSysColor(COLOR_WINDOW) : GetSysColor(COLOR_3DFACE));
+		if (m_nTrackingButton == i)
+			colorref = (i == 2) ? RGB(0xE9, 0x48, 0x56) : GetSysColor(COLOR_WINDOW);
+		else
+			colorref = GetSysColor(COLOR_3DFACE);
+		color.SetFromCOLORREF(colorref);
 		Gdiplus::SolidBrush brush(color);
 		graphics.FillRectangle(&brush, rcButtons[i].left, rcButtons[i].top, rcButtons[i].Width(), rcButtons[i].Height());
 	}
 	
 	graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
-	Gdiplus::Pen pen(Gdiplus::Color(255, 0, 0, 0), PointToPixel(0.75));
+	Gdiplus::Color penColor;
+	penColor.SetFromCOLORREF(GetSysColor(COLOR_WINDOWTEXT));
+	Gdiplus::Pen pen(penColor, PointToPixel(0.75));
 	graphics.DrawLine(&pen, Gdiplus::Point(rcIcons[2].left, rcIcons[2].top), Gdiplus::Point(rcIcons[2].right, rcIcons[2].bottom));
 	graphics.DrawLine(&pen, Gdiplus::Point(rcIcons[2].left, rcIcons[2].bottom), Gdiplus::Point(rcIcons[2].right, rcIcons[2].top));
 
 	const int r = static_cast<int>(PointToPixel(0.75));
 	if (m_maximized)
 	{
-		DrawTopRightEdgeWithCurve(graphics, pen, Gdiplus::Rect(rcIcons[1].left + r, rcIcons[1].top - r, rcIcons[1].Width() - 2 * r, rcIcons[1].Height() - 2 * r), r);
+		DrawTopRightEdgeWithCurve(graphics, pen, Gdiplus::Rect(rcIcons[1].left + r, rcIcons[1].top - r, rcIcons[1].Width() - 2 * r, rcIcons[1].Height() - 2 * r), r * 3);
 		DrawRoundedRectangle(graphics, pen, Gdiplus::Rect(rcIcons[1].left - r, rcIcons[1].top + r, rcIcons[1].Width() - 2 * r, rcIcons[1].Height() - 2 * r), r);
 	}
 	else
@@ -171,15 +177,13 @@ void CTitleBarHelper::OnNcMouseLeave()
 
 void CTitleBarHelper::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
 {
-	if (nHitTest == HTCAPTION || nHitTest == HTSYSMENU)
-	{
+	if (nHitTest != HTMINBUTTON && nHitTest != HTMAXBUTTON && nHitTest != HTCLOSE)
 		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONDBLCLK, nHitTest, MAKELPARAM(point.x, point.y));
-	}
 }
 
 void CTitleBarHelper::OnNcLButtonDown(UINT nHitTest, CPoint point)
 {
-	if (nHitTest == HTCAPTION || nHitTest == HTSYSMENU)
+	if (nHitTest != HTMINBUTTON && nHitTest != HTMAXBUTTON && nHitTest != HTCLOSE)
 	{
 		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONDOWN, nHitTest, MAKELPARAM(point.x, point.y));
 	}
@@ -191,11 +195,11 @@ void CTitleBarHelper::OnNcLButtonDown(UINT nHitTest, CPoint point)
 
 void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
 {
-	if (nHitTest == HTCAPTION || nHitTest == HTSYSMENU)
+	if (nHitTest != HTMINBUTTON && nHitTest != HTMAXBUTTON && nHitTest != HTCLOSE)
 	{
 		AfxGetMainWnd()->SendMessage(WM_NCLBUTTONUP, nHitTest, MAKELPARAM(point.x, point.y));
 	}
-	else if (m_nHitTest != -1 && m_nHitTest == nHitTest)
+	else if (m_nHitTest != HTNOWHERE && m_nHitTest == nHitTest)
 	{
 		if (nHitTest == HTMINBUTTON)
 			AfxGetMainWnd()->ShowWindow(SW_MINIMIZE);
@@ -204,7 +208,18 @@ void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
 		else if (nHitTest == HTCLOSE)
 			AfxGetMainWnd()->PostMessage(WM_CLOSE);
 	}
-	m_nHitTest = -1;
+	m_nHitTest = HTNOWHERE;
+}
+
+void CTitleBarHelper::OnNcRButtonDown(UINT nHitTest, CPoint point)
+{
+	AfxGetMainWnd()->SendMessage(WM_NCRBUTTONDOWN, nHitTest, MAKELPARAM(point.x, point.y));
+}
+
+void CTitleBarHelper::OnNcRButtonUp(UINT nHitTest, CPoint point)
+{
+	CMenu *pSysMenu = AfxGetMainWnd()->GetSystemMenu(FALSE);
+	pSysMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON, point.x, point.y, m_pWnd, nullptr);
 }
 
 int CTitleBarHelper::HitTest(CPoint pt)
@@ -212,14 +227,12 @@ int CTitleBarHelper::HitTest(CPoint pt)
 	if (!m_pWnd)
 		return HTNOWHERE;
 	CClientDC dc(m_pWnd);
-	const int height = m_size.cy;
 	const int leftMargin = static_cast<int>(PointToPixel(m_leftMargin));
 	const int rightMargin = static_cast<int>(PointToPixel(m_rightMargin));
-	CRect rc;
-	const int bw = rightMargin / 3;
 	const int m = 8;
+	CRect rc;
 	m_pWnd->GetWindowRect(&rc);
-	if (pt.y < rc.top + 4)
+	if (pt.y < rc.top + m)
 	{
 		if (pt.x < rc.left + m)
 			return HTTOPLEFT;
@@ -233,22 +246,22 @@ int CTitleBarHelper::HitTest(CPoint pt)
 		return HTRIGHT;
 	if (pt.x < rc.left + leftMargin)
 		return HTSYSMENU;
-	if (rc.right - bw * 3 <= pt.x && pt.x < rc.right - bw * 2)
-	{
+	CRect rcButton = GetButtonRect(0);
+	m_pWnd->ClientToScreen(&rcButton);
+	if (PtInRect(&rcButton, pt))
 		return HTMINBUTTON;
-	}
-	else if (rc.right - bw * 2 <= pt.x && pt.x < rc.right - bw)
-	{
+	rcButton = GetButtonRect(1);
+	m_pWnd->ClientToScreen(&rcButton);
+	if (PtInRect(&rcButton, pt))
 		return HTMAXBUTTON;
-	}
-	else if (rc.right - bw <= pt.x && pt.x < rc.right)
-	{
+	rcButton = GetButtonRect(2);
+	m_pWnd->ClientToScreen(&rcButton);
+	if (PtInRect(&rcButton, pt))
 		return HTCLOSE;
-	}
 	return HTCAPTION;
 }
 
 float CTitleBarHelper::PointToPixel(float point) const
 {
 	return point * m_dpi / 72.f;
-};
+}
