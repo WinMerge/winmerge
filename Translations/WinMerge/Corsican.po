@@ -64,6 +64,15 @@ msgstr "Cupià a(e) linea(e) selezziunata(e) versu a manca"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Cupià a(e) linea(e) selezziunata(e) da a manca"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "&Selezziunà a sfarenza di linea\tF4"
 
@@ -348,6 +357,15 @@ msgstr "&Ozzioni…"
 msgid "&View"
 msgstr "&Vista"
 
+msgid "Ta&b Bar"
+msgstr "Barra d’&unghjette"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "&Barra d’attrezzi"
 
@@ -362,9 +380,6 @@ msgstr "&Tamanta"
 
 msgid "&Status Bar"
 msgstr "Barra di s&tatu"
-
-msgid "Ta&b Bar"
-msgstr "Barra d’&unghjette"
 
 msgid "&Tools"
 msgstr "&Attrezzi"
@@ -4296,6 +4311,24 @@ msgstr "Linea"
 
 msgid "Character"
 msgstr "Caratteru"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Imbellimentu"

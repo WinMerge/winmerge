@@ -59,6 +59,15 @@ msgstr "Копиране избраните редове вляво"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копиране избраните редове от ляво"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "&Избиране на различията на реда\tF4"
 
@@ -343,6 +352,15 @@ msgstr "&Настройки…"
 msgid "&View"
 msgstr "И&зглед"
 
+msgid "Ta&b Bar"
+msgstr "Лента с &раздели"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Лента с &инструменти"
 
@@ -357,9 +375,6 @@ msgstr "&Огромен"
 
 msgid "&Status Bar"
 msgstr "&Лента за състоянието"
-
-msgid "Ta&b Bar"
-msgstr "Лента с &раздели"
 
 msgid "&Tools"
 msgstr "&Инструменти"
@@ -4286,6 +4301,24 @@ msgid "Line"
 msgstr ""
 
 msgid "Character"
+msgstr ""
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
 
 msgid "Prettification"

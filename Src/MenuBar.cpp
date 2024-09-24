@@ -78,6 +78,9 @@ BOOL CMenuBar::Create(CWnd* pParentWnd, DWORD dwStyle, UINT nID)
 
 bool CMenuBar::AttachMenu(CMenu* pMenu)
 {
+	if (!m_hWnd)
+		return false;
+
 	CToolBarCtrl& toolbar = GetToolBarCtrl();
 
 	toolbar.SetRedraw(false);
@@ -334,6 +337,8 @@ LRESULT CMenuBar::OnShowPopupMenu(WPARAM wParam, LPARAM lParam)
 
 BOOL CMenuBar::PreTranslateMessage(MSG* pMsg)
 {
+	if (!m_hWnd)
+		return FALSE;
 	if (pMsg->message == WM_SYSKEYDOWN || pMsg->message == WM_SYSKEYUP)
 	{
 		if (pMsg->wParam == VK_F10 || pMsg->wParam == VK_MENU)

@@ -61,6 +61,15 @@ msgstr "Copiază în stânga rândurile selectate"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiază din stânga rândurile selectate"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 msgid "Select Line &Difference\tF4"
 msgstr "Selectează &diferențele din rând\tF4"
 
@@ -345,6 +354,15 @@ msgstr "&Opțiuni..."
 msgid "&View"
 msgstr "&Vizualizare"
 
+msgid "Ta&b Bar"
+msgstr "&Bara de file"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Bară de unel&te"
 
@@ -359,9 +377,6 @@ msgstr "Uriaș"
 
 msgid "&Status Bar"
 msgstr "Bară de &stare"
-
-msgid "Ta&b Bar"
-msgstr "&Bara de file"
 
 msgid "&Tools"
 msgstr "Unel&te"
@@ -4384,6 +4399,24 @@ msgid "Line"
 msgstr ""
 
 msgid "Character"
+msgstr ""
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
 
 msgid "Prettification"

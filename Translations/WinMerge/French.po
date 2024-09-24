@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-05-19 10:55+0000\n"
-"PO-Revision-Date: 2024-08-01 15:22+0200\n"
+"PO-Revision-Date: 2024-09-19 08:33+0200\n"
 "Last-Translator: Lolo S. <slolo2000@hotmail.com>\n"
 "Language-Team: French <winmerge-translate@lists.sourceforge.net>\n"
 "Language: fr\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #, c-format
@@ -68,6 +68,15 @@ msgstr "Copier les lignes sélectionnées vers la Gauche"
 
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copier les lignes sélectionnées depuis la Gauche"
+
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr "&Copier la différence sélectionnée (Gauche) dans le presse-papiers\tCtrl+1"
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr "&Copier la différence sélectionnée (Milieu) dans le presse-papiers\tCtrl+2"
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr "&Copier la différence sélectionnée (Droite) dans le presse-papiers\tCtrl+3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
@@ -396,6 +405,16 @@ msgid "&View"
 msgstr "&Affichage"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Barre d'&onglets"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Barre d'ou&tils"
 
@@ -414,10 +433,6 @@ msgstr "&Énorme"
 #, c-format
 msgid "&Status Bar"
 msgstr "Barre d'&état"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Barre d'&onglets"
 
 #, c-format
 msgid "&Tools"
@@ -5020,6 +5035,76 @@ msgstr "Ligne"
 
 msgid "Character"
 msgstr "Caractère"
+
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)\n"
+"(Right Button+Wheel Up)\n"
+"(Alt+Wheel Up)"
+msgstr ""
+"\n"
+"Différence Précédente (Alt+Haut)\n"
+"(Bouton Droit + Molette vers le Haut)\n"
+"(Alt+Molette vers le Haut)"
+
+msgid ""
+"\n"
+"Next Difference (Alt+Down)\n"
+"(Right Button+Wheel Down)\n"
+"(Alt+Wheel Down)"
+msgstr ""
+"\n"
+"Différence Suivante (Alt+Bas)\n"
+"(Bouton Droit + Molette vers le Bas)\n"
+"(Alt+Molette vers le Bas)"
+
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)\n"
+"(Right Button+Wheel Right)\n"
+"(Alt+Wheel Right)\n"
+"(Alt+Shift+Wheel Down)"
+msgstr ""
+"\n"
+"Copier vers la Droite (Alt+Droite)\n"
+"(Bouton Droit + Molette Droite)\n"
+"(Alt+Molette Droite)\n"
+"(Alt+Maj+Molette vers le bas)"
+
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)\n"
+"(Right Button+Wheel Left)\n"
+"(Alt+Wheel Left)\n"
+"(Alt+Shift+Wheel Up)"
+msgstr ""
+"\n"
+"Copier vers la Gauche (Alt+Gauche)\n"
+"(Bouton Droit + Molette Gauche)\n"
+"(Alt+Molette Gauche)\n"
+"(Alt+Maj+Molette vers le Haut)"
+
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+Wheel Right)\n"
+"(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+"\n"
+"Copier vers la Droite et Avancer (Ctrl+Alt+Droite)\n"
+"(Ctrl+Alt+Molette Droite)\n"
+"(Ctrl+Alt+Maj+Molette vers le Bas)"
+
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+Wheel Left)\n"
+"(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
+"\n"
+"Copier vers la Gauche et Avancer (Ctrl+Alt+Gauche)\n"
+"(Ctrl+Alt+Molette Gauche)\n"
+"(Ctrl+Alt+Maj+Molette vers le Haut)"
 
 msgid "Prettification"
 msgstr "Embellissement"

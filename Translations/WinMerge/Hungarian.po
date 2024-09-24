@@ -63,6 +63,15 @@ msgstr "A kijelölt sor(ok) balra másolása"
 msgid "Copy Selected Line(s) from Left"
 msgstr "A kijelölt sor(ok) másolása balról"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr "A kijelölt különbség (bal) vágólapra &másolása"
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr "A kijelölt különbség (középső) vágólapra &másolása"
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr "A kijelölt különbség (jobb) vágólapra &másolása"
+
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "Eltérés kijelölése\tF4"
@@ -390,6 +399,16 @@ msgid "&View"
 msgstr "&Nézet"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Fülsáv"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Eszköztár"
 
@@ -408,10 +427,6 @@ msgstr "Hatalmas"
 #, c-format
 msgid "&Status Bar"
 msgstr "&Állapotsor"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Fülsáv"
 
 #, c-format
 msgid "&Tools"
@@ -4962,6 +4977,24 @@ msgstr "Sor"
 
 msgid "Character"
 msgstr "Karakter"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr "\nElőző különbség (Alt+fel)\n(Jobb gomb+görgő fel)\n(Alt+görgő fel)"
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr "\nKövetkező különbség (Alt+le)\n(Jobb gomb+görgő le)\n(Alt+görgő le)"
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgstr "\nMásolás jobbra (Alt+jobbra)\n(Jobb gomb+görgő jobbra)\n(Alt+görgő jobbra)\n(Alt+Shift+görgő le)"
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr "\nMásolás balra (Alt+balra)\n(Jobb gomb+görgő balra)\n(Alt+görgő balra)\n(Alt+Shift+görgő fel)"
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr "\nMásolás jobbra és előre (Ctrl+Alt+jobbra)\n(Ctrl+Alt+görgő jobbra)\n(Ctrl+Alt+Shift+görgő le)"
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr "\nMásolás balra és előre (Ctrl+Alt+balra)\n(Ctrl+Alt+görgő balra)\n(Ctrl+Alt+Shift+görgő fel)"
 
 msgid "Prettification"
 msgstr "Megjelenés optimalizálás"

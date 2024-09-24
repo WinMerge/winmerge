@@ -30,6 +30,12 @@ IsWinVer_OrGreater(WORD wVersion, WORD wBuildNumber = 0)
 }
 
 inline bool
+IsWin10_OrGreater()
+{
+	return IsWinVer_OrGreater( 0x0a00, 10240 );
+}
+
+inline bool
 IsWin11_OrGreater()
 {
 	return IsWinVer_OrGreater( 0x0a00, 22000 );

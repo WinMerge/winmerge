@@ -69,6 +69,8 @@
 #include "ClipboardHistory.h"
 #include "locality.h"
 #include "DirWatcher.h"
+#include "Win_VersionHelper.h"
+#include <afxwinverapi.h>
 
 using std::vector;
 using boost::begin;
@@ -220,6 +222,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
+	ON_WM_NCCALCSIZE()
+	ON_WM_SIZE()
+	ON_WM_MOUSEMOVE()
+	ON_WM_MOUSELEAVE()
+	ON_WM_NCMOUSEMOVE()
+	ON_WM_NCMOUSELEAVE()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -250,6 +258,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
+	ON_COMMAND(ID_VIEW_TAB_BAR_ON_TITLE_BAR, OnViewTabBarOnTitleBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR_ON_TITLE_BAR, OnUpdateViewTabBarOnTitleBar)
 	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
 	ON_COMMAND_RANGE(ID_TOOLBAR_NONE, ID_TOOLBAR_HUGE, OnToolbarSize)
@@ -404,17 +414,29 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	m_wndMDIClient.SubclassWindow(m_hWndMDIClient);
 
+	if (IsWin10_OrGreater())
+		m_bTabsOnTitleBar = GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
+
+	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), false);
+
+	if (m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
+	{
+		TRACE0("Failed to create tab bar\n");
+		return -1;      // fail to create
+	}
+
 	if (!CreateToolbar())
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
 	
-	if (!m_wndTabBar.Create(this))
+	if (!m_bTabsOnTitleBar.value_or(false) && !m_wndTabBar.Create(this))
 	{
 		TRACE0("Failed to create tab bar\n");
 		return -1;      // fail to create
 	}
+
 	m_wndTabBar.SetAutoMaxWidth(GetOptionsMgr()->GetBool(OPT_TABBAR_AUTO_MAXWIDTH));
 
 	if (!GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR))
@@ -1580,6 +1602,17 @@ void CMainFrame::OnViewUsedefaultfont()
 	UpdateFont(frame);
 }
 
+void CMainFrame::UpdateTitleBarAndTabBar()
+{
+	CWnd* pWnd1 = &m_wndReBar, *pWnd2 = &m_wndTabBar;
+	if (m_bTabsOnTitleBar.value_or(false))
+		std::swap(pWnd1, pWnd2);
+	pWnd1->SetWindowPos(pWnd2, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+	pWnd2->SetWindowPos(pWnd1, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE);
+	SetWindowPos(nullptr, 0, 0, 0, 0, SWP_NOZORDER | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
+	RecalcLayout();
+}
+
 /**
  * @brief Update any resources necessary after a GUI language change
  */
@@ -2235,6 +2268,29 @@ void CMainFrame::OnViewTabBar()
 	GetOptionsMgr()->SaveOption(OPT_SHOW_TABBAR, bShow);
 
 	__super::ShowControlBar(&m_wndTabBar, bShow, 0);
+
+	UpdateTitleBarAndTabBar();
+}
+
+/**
+ * @brief Updates "Show Tabbar" menuitem.
+ */
+void CMainFrame::OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(m_bTabsOnTitleBar.has_value());
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR));
+}
+
+/**
+ * @brief Show/hide tabbar.
+ */
+void CMainFrame::OnViewTabBarOnTitleBar()
+{
+	bool bOnTitleBar = !GetOptionsMgr()->GetBool(OPT_TABBAR_ON_TITLEBAR);
+	if (m_bTabsOnTitleBar.has_value())
+		m_bTabsOnTitleBar = bOnTitleBar;
+	GetOptionsMgr()->SaveOption(OPT_TABBAR_ON_TITLEBAR, bOnTitleBar);
+	UpdateTitleBarAndTabBar();
 }
 
 /**
@@ -2481,6 +2537,32 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 	}
 }
 
+void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
+{
+	RECT rcWindow = lpncsp->rgrc[0];
+	__super::OnNcCalcSize(bCalcValidRects, lpncsp);
+	if (m_bTabsOnTitleBar.value_or(false) && m_wndTabBar.IsVisible())
+		lpncsp->rgrc[0].top = rcWindow.top + 0;
+}
+
+void CMainFrame::OnSize(UINT nType, int cx, int cy)
+{
+	m_wndTabBar.Update(m_bTabsOnTitleBar.value_or(false), (nType == SIZE_MAXIMIZED));
+	__super::OnSize(nType, cx, cy);
+}
+
+void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
+{
+}
+
+void CMainFrame::OnMouseLeave()
+{
+}
+
+void CMainFrame::OnNcMouseMove(UINT nHitTest, CPoint point)
+{
+}
+
 BOOL CMainFrame::CreateToolbar()
 {
 	if (!m_wndMenuBar.Create(this))
@@ -2651,18 +2733,57 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
 
 	if (nID != 0) // will be zero on a separator
 	{
+		// check replace mice scrolling multiline tooltips
+		const static std::unordered_map<UINT, UINT> miceShortcut =
+		{
+			 {ID_PREVDIFF, ID_MICE_PREVDIFF}
+			,{ID_NEXTDIFF, ID_MICE_NEXTDIFF}
+			,{ID_L2R,      ID_MICE_L2R}
+			,{ID_R2L,      ID_MICE_R2L}
+			,{ID_L2RNEXT,  ID_MICE_L2RNEXT}
+			,{ID_R2LNEXT,  ID_MICE_R2LNEXT}
+		};
+		auto mID = miceShortcut.find(static_cast<UINT>(nID));
+		if (mID != miceShortcut.end())
+		{
+			nID = mID->second;
+
+			static bool firstCall = true;
+			if (firstCall)
+			{
+				firstCall = false;
+				// Setup multiline tooltips
+				LONG_PTR dwStyle = ::GetWindowLongPtr(pNMHDR->hwndFrom, GWL_EXSTYLE);
+				dwStyle |= TTS_NOPREFIX;
+				::SetWindowLongPtr(pNMHDR->hwndFrom, GWL_EXSTYLE, dwStyle);
+				::SendMessage(pNMHDR->hwndFrom, TTM_SETMAXTIPWIDTH, 0, 1024);
+			}
+		}
+
 		strFullText = theApp.LoadString(static_cast<UINT>(nID));
 		// don't handle the message if no string resource found
 		if (strFullText.empty())
 			return FALSE;
 
 		// this is the command id, not the button index
-		AfxExtractSubString(strTipText, strFullText.c_str(), 1, '\n');
+		// skip first position of newline character, accept multiline
+		const auto newline1st = strFullText.find(_T("\n"));
+		if (newline1st == String::npos)
+			return FALSE;
+		strTipText = strFullText.substr(newline1st + 1).c_str();
 	}
 	if (pNMHDR->code == TTN_NEEDTEXTA)
-		_wcstombsz(pTTTA->szText, strTipText, static_cast<ULONG>(std::size(pTTTA->szText)));
+	{
+		m_upszLongTextA.reset(new CHAR[256]);
+		pTTTA->lpszText = m_upszLongTextA.get();
+		_wcstombsz(pTTTA->lpszText, strTipText, 256);
+	}
 	else
-		lstrcpyn(pTTTW->szText, strTipText, static_cast<int>(std::size(pTTTW->szText)));
+	{
+		m_upszLongTextW.reset(new WCHAR[256]);
+		pTTTW->lpszText = m_upszLongTextW.get();
+		lstrcpyn(pTTTW->lpszText, strTipText, 256);
+	}
 	*pResult = 0;
 
 	// bring the tooltip window above other popup windows

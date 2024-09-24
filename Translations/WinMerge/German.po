@@ -64,6 +64,15 @@ msgstr "Ausgewählte Zeile(n) nach links kopieren"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Ausgewählte Zeile(n) von links kopieren"
 
+msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr ""
+
+msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr ""
+
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "Zeilen&unterschied markieren\tF4"
@@ -391,6 +400,16 @@ msgid "&View"
 msgstr "&Ansicht"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Ta&b-Leiste"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "&Symbolleiste"
 
@@ -409,10 +428,6 @@ msgstr "&Riesig"
 #, c-format
 msgid "&Status Bar"
 msgstr "S&tatusleiste"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Ta&b-Leiste"
 
 #, c-format
 msgid "&Tools"
@@ -4626,6 +4641,24 @@ msgstr "Zeile"
 
 msgid "Character"
 msgstr "Zeichen"
+
+msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgstr ""
+
+msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgstr ""
+
+msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgstr ""
+
+msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgstr ""
 
 msgid "Prettification"
 msgstr "Verschönerung"
