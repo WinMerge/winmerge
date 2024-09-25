@@ -32,6 +32,11 @@ public:
 	int		m_nAutodetectType;
 	//}}AFX_DATA
 
+private:
+	// Implementation methods
+	void UpdateControls();
+	void SetCursorSelectForCustomCodepage(int codepage);
+	void SetCursorSelectForAutoDetectType(int codepage);
 
 // Overrides
 	// ClassWizard generate virtual function overrides
@@ -46,6 +51,7 @@ protected:
 	//{{AFX_MSG(PropCodepage)
 	virtual BOOL OnInitDialog() override;
 	void GetEncodingCodePageFromNameString();
+	afx_msg void OnDefaults();
 	afx_msg void OnCpSystem();
 	afx_msg void OnCpCustom();
 	afx_msg void OnCpUi();
