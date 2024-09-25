@@ -31,17 +31,16 @@ void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
 	if (hIcon == nullptr)
 		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
-	if (hIcon != nullptr)
-	{
-		const int topMargin = (m_maximized ? -m_rc.top : 0);
-		const int height = m_size.cy - topMargin;
-		const int cx = PointToPixel(12.f);
-		const int cy = PointToPixel(12.f);
-		const int x = (PointToPixel(m_leftMargin) - cx) / 2;
-		const int y = (height - cy) / 2 + topMargin;
-		DrawIconEx(dc.m_hDC, x, y, hIcon, 
-			cx, cy, 0, nullptr, DI_NORMAL);
-	}
+	if (hIcon == nullptr)
+		return;
+	const int topMargin = (m_maximized ? -m_rc.top : 0);
+	const int height = m_size.cy - topMargin;
+	const int cx = PointToPixel(12.f);
+	const int cy = PointToPixel(12.f);
+	const int x = (PointToPixel(m_leftMargin) - cx) / 2;
+	const int y = (height - cy) / 2 + topMargin;
+	DrawIconEx(dc.m_hDC, x, y, hIcon, 
+		cx, cy, 0, nullptr, DI_NORMAL);
 }
 
 static void DrawTopRightEdgeWithCurve(Gdiplus::Graphics& graphics, Gdiplus::Pen& pen, Gdiplus::Rect rect, int cornerRadius)
