@@ -6,7 +6,7 @@
 //  Copyright:  Javier Miguel, portions by H.Saido, Tim Gerundt, Stcherbatchenko Andrei
 //  E-mail:     javiermiguel4b@gmail.com
 //
-//  ADA syntax highlighing definition
+//  Ada syntax highlighing definition
 //
 //  You are free to use or modify this code to the following restrictions:
 //  - Acknowledge me somewhere in your about box, simple "Parts of code by.."
