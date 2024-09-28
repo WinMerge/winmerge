@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)parsers\ada.cpp">
+      <Filter>Parsers\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)parsers\asp.cpp">
       <Filter>Parsers\Source Files</Filter>
     </ClCompile>

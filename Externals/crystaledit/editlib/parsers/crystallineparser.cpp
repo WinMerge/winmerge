@@ -14,6 +14,7 @@ TextDefinition m_SourceDefs[] =
 {
 	SRC_PLAIN, _T ("Plain"), _T ("txt;doc;diz"), &ParseLinePlain, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T (""), (unsigned)-1,
 	SRC_ABAP, _T("ABAP"), _T("abap"),& ParseLineAbap, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI , /*2,*/ _T(""), _T(""), _T("'"), (unsigned)-1,
+	SRC_ADA, _T ("Ada"), _T ("ads;adb"), &ParseLineAda, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*3,*/ _T (""), _T (""), _T ("'"), (unsigned)-1,
 	SRC_ASP, _T ("ASP"), _T ("asp;ascx"), &ParseLineAsp, SRCOPT_AUTOINDENT|SRCOPT_BRACEANSI, /*2,*/ _T (""), _T (""), _T ("'"), (unsigned)-1,
 	SRC_AUTOIT, _T ("AutoIt"), _T ("au3"), &ParseLineAutoIt, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T (";"), (unsigned)-1,
 	SRC_BASIC, _T ("Basic"), _T ("bas;vb;vbs;frm;dsm;cls;ctl;pag;dsr"), &ParseLineBasic, SRCOPT_AUTOINDENT, /*4,*/ _T (""), _T (""), _T ("\'"), (unsigned)-1,
