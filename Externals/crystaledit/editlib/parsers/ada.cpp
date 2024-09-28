@@ -128,9 +128,9 @@ static const tchar_t * s_apszAdaAttributeList[] =
     _T ("'emax"),
     _T ("'enum_Rep"),
     _T ("'enum_Val"),
+    _T ("'epsilon"),
     _T ("'exponent"),
     _T ("'external_Tag"),
-    _T ("'epsilon"),
     _T ("'first"),
     _T ("'first_Bit"),
     _T ("'floor"),
@@ -223,20 +223,20 @@ static const tchar_t * s_apszAdaAttributeList[] =
 static const tchar_t * s_apszAdaTypeList[] =
   {
     _T ("boolean"),
+    _T ("duration")
+    _T ("float"),
     _T ("integer"),
+    _T ("long_float"),
+    _T ("long_integer"),
+    _T ("long_long_float"),
+    _T ("long_long_integer"),
     _T ("natural"),
     _T ("positive"),
-    _T ("short_short_integer"),
-    _T ("short_integer"),
-    _T ("long_integer"),
-    _T ("long_long_integer"),
     _T ("short_float"),
-    _T ("float"),
-    _T ("long_float"),
-    _T ("long_long_float"),
+    _T ("short_integer"),
+    _T ("short_short_integer"),
     _T ("string"),
     _T ("wide_string"),
-    _T ("duration")
   };
 
 static bool
