@@ -1566,6 +1566,10 @@ msgid "Language:"
 msgstr "Nyelv:"
 
 #, c-format
+msgid "Defaults"
+msgstr "Alaphelyzetbe"
+
+#, c-format
 msgid "Find"
 msgstr "Keresés"
 
@@ -1799,10 +1803,6 @@ msgstr "Egyéni könyvtár:"
 #, c-format
 msgid "Br&owse..."
 msgstr "T&allózás..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Alaphelyzetbe"
 
 #, c-format
 msgid "Patch Generator"

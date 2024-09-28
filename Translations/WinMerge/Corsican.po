@@ -1307,6 +1307,9 @@ msgstr "&Ricaricà autumaticamente i schedarii mudificati :"
 msgid "Language:"
 msgstr "Lingua :"
 
+msgid "Defaults"
+msgstr "Predefinizioni"
+
 msgid "Find"
 msgstr "Circà"
 
@@ -1492,9 +1495,6 @@ msgstr "Cartulare &persunalizatu :"
 
 msgid "Br&owse..."
 msgstr "Na&vigà…"
-
-msgid "Defaults"
-msgstr "Predefinizioni"
 
 msgid "Patch Generator"
 msgstr "Generatore di currezzioni"

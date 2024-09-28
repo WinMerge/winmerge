@@ -1306,6 +1306,9 @@ msgstr "&Recarregar automaticamente ficheiros modificados:"
 msgid "Language:"
 msgstr "Idioma:"
 
+msgid "Defaults"
+msgstr "Predefinições"
+
 msgid "Find"
 msgstr "Localizar"
 
@@ -1495,9 +1498,6 @@ msgstr "Pasta p&ersonalizada:"
 
 msgid "Br&owse..."
 msgstr "L&ocalizar..."
-
-msgid "Defaults"
-msgstr "Predefinições"
 
 msgid "Patch Generator"
 msgstr "Gerador de correção"

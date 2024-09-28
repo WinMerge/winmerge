@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-09-21 21:31+0000\n"
+"POT-Creation-Date: 2024-09-28 16:54+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1299,6 +1299,9 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
+msgid "Defaults"
+msgstr ""
+
 msgid "Find"
 msgstr ""
 
@@ -1483,9 +1486,6 @@ msgid "C&ustom folder:"
 msgstr ""
 
 msgid "Br&owse..."
-msgstr ""
-
-msgid "Defaults"
 msgstr ""
 
 msgid "Patch Generator"

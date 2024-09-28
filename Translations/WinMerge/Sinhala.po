@@ -1563,6 +1563,10 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Defaults"
+msgstr "Defaults"
+
 #, c-format
 msgid "Find"
 msgstr "සොයන්න"
@@ -1797,10 +1801,6 @@ msgstr "C&ustom folder:"
 #, c-format
 msgid "Br&owse..."
 msgstr "සැරි සරන්න..."
-
-#, fuzzy, c-format
-msgid "Defaults"
-msgstr "Defaults"
 
 #, fuzzy, c-format
 msgid "Patch Generator"

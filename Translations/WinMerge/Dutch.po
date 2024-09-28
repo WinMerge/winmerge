@@ -1305,6 +1305,9 @@ msgstr "Gewijzigde bestanden automatisch opnieuw laden:"
 msgid "Language:"
 msgstr "Language:"
 
+msgid "Defaults"
+msgstr "Standaardwaarden"
+
 msgid "Find"
 msgstr "Zoeken"
 
@@ -1490,9 +1493,6 @@ msgstr "Aangepaste map:"
 
 msgid "Br&owse..."
 msgstr "Bladeren..."
-
-msgid "Defaults"
-msgstr "Standaardwaarden"
 
 msgid "Patch Generator"
 msgstr "Patch-generator"

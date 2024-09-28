@@ -1305,6 +1305,9 @@ msgstr "Samodejno &znova naloži spremenjene datoteke:"
 msgid "Language:"
 msgstr "Jezik:"
 
+msgid "Defaults"
+msgstr "Privzeto"
+
 msgid "Find"
 msgstr "Najdi"
 
@@ -1490,9 +1493,6 @@ msgstr "&Mapa po meri:"
 
 msgid "Br&owse..."
 msgstr "Prebr&skaj..."
-
-msgid "Defaults"
-msgstr "Privzeto"
 
 msgid "Patch Generator"
 msgstr "Ustvarjalec popravkov"

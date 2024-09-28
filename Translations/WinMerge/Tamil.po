@@ -1303,6 +1303,9 @@ msgstr ""
 msgid "Language:"
 msgstr "மொழி:"
 
+msgid "Defaults"
+msgstr "இயல்புநிலைகள்"
+
 msgid "Find"
 msgstr "கண்டுபிடி"
 
@@ -1488,9 +1491,6 @@ msgstr "C&ustom கோப்புறை:"
 
 msgid "Br&owse..."
 msgstr "உலாவும்..."
-
-msgid "Defaults"
-msgstr "இயல்புநிலைகள்"
 
 msgid "Patch Generator"
 msgstr "பேட்ச் ஜெனரேட்டர்"

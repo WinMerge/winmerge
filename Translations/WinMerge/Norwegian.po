@@ -1304,6 +1304,9 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
+msgid "Defaults"
+msgstr "Standardverdier"
+
 msgid "Find"
 msgstr "Søk"
 
@@ -1491,9 +1494,6 @@ msgstr "E&gen mappe:"
 
 msgid "Br&owse..."
 msgstr "B&la gjennom.."
-
-msgid "Defaults"
-msgstr "Standardverdier"
 
 msgid "Patch Generator"
 msgstr "Rettelsegenerator"

@@ -1305,6 +1305,9 @@ msgstr "Auto-&recarregar arquivos modificados:"
 msgid "Language:"
 msgstr "Idioma:"
 
+msgid "Defaults"
+msgstr "Padrões"
+
 msgid "Find"
 msgstr "Achar"
 
@@ -1490,9 +1493,6 @@ msgstr "P&asta personalizada:"
 
 msgid "Br&owse..."
 msgstr "Pr&ocurar..."
-
-msgid "Defaults"
-msgstr "Padrões"
 
 msgid "Patch Generator"
 msgstr "Gerador de Patches"

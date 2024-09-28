@@ -1305,6 +1305,9 @@ msgstr "Automatiškais &įkelti iš naujo pakeistus failus:"
 msgid "Language:"
 msgstr "Kalba:"
 
+msgid "Defaults"
+msgstr "Numat. reikšmės"
+
 msgid "Find"
 msgstr "Rasti"
 
@@ -1490,9 +1493,6 @@ msgstr "P&asirinktinis katalogas:"
 
 msgid "Br&owse..."
 msgstr "Ra&sti..."
-
-msgid "Defaults"
-msgstr "Numat. reikšmės"
 
 msgid "Patch Generator"
 msgstr "Pataisos generatorius"

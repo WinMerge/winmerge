@@ -1563,6 +1563,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "&Αρχικές Ρυθμίσεις"
+
+#, c-format
 msgid "Find"
 msgstr "Αναζήτηση"
 
@@ -1796,10 +1800,6 @@ msgstr "Προ&τιμώμενος Φάκελος:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Ανα&ζήτηση..."
-
-#, c-format
-msgid "Defaults"
-msgstr "&Αρχικές Ρυθμίσεις"
 
 #, c-format
 msgid "Patch Generator"

@@ -1302,6 +1302,9 @@ msgstr "Автоматично &презареждане на променени
 msgid "Language:"
 msgstr "Език:"
 
+msgid "Defaults"
+msgstr "По подразбиране"
+
 msgid "Find"
 msgstr "Търсене"
 
@@ -1487,9 +1490,6 @@ msgstr "Друга &папка:"
 
 msgid "Br&owse..."
 msgstr "&Разглеждане…"
-
-msgid "Defaults"
-msgstr "По подразбиране"
 
 msgid "Patch Generator"
 msgstr "Създаване на кръпки"

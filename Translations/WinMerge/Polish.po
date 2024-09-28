@@ -1306,6 +1306,9 @@ msgstr "Automatycznie przeładuj zmodyfikowane pliki:"
 msgid "Language:"
 msgstr "Język:"
 
+msgid "Defaults"
+msgstr "Domyślne"
+
 msgid "Find"
 msgstr "Znajdź"
 
@@ -1491,9 +1494,6 @@ msgstr "Folder niestandardowy:"
 
 msgid "Br&owse..."
 msgstr "Przeglądaj..."
-
-msgid "Defaults"
-msgstr "Domyślne"
 
 msgid "Patch Generator"
 msgstr "Generuj łatkę"

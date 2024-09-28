@@ -1310,6 +1310,9 @@ msgstr "Läs in ändrade filer på nytt automatiskt:"
 msgid "Language:"
 msgstr "Språk:"
 
+msgid "Defaults"
+msgstr "Förval"
+
 msgid "Find"
 msgstr "Sök"
 
@@ -1499,9 +1502,6 @@ msgstr "Egen katalog:"
 
 msgid "Br&owse..."
 msgstr "Bläddra..."
-
-msgid "Defaults"
-msgstr "Förval"
 
 msgid "Patch Generator"
 msgstr "Patchgenererare"

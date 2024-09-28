@@ -1305,6 +1305,9 @@ msgstr ""
 msgid "Language:"
 msgstr "Jazyk:"
 
+msgid "Defaults"
+msgstr "Predvolené"
+
 msgid "Find"
 msgstr "Hľadať"
 
@@ -1490,9 +1493,6 @@ msgstr "&Vlastný priečinok:"
 
 msgid "Br&owse..."
 msgstr "Pre&hľadávať..."
-
-msgid "Defaults"
-msgstr "Predvolené"
 
 msgid "Patch Generator"
 msgstr "Generátor opravných záplat"

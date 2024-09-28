@@ -1309,6 +1309,9 @@ msgstr "自动重新加载修改过的文件(&R)："
 msgid "Language:"
 msgstr "语言："
 
+msgid "Defaults"
+msgstr "默认"
+
 msgid "Find"
 msgstr "查找"
 
@@ -1496,9 +1499,6 @@ msgstr "自定义文件夹(&U)："
 
 msgid "Br&owse..."
 msgstr "浏览(&O)..."
-
-msgid "Defaults"
-msgstr "默认"
 
 msgid "Patch Generator"
 msgstr "补丁生成器"

@@ -1564,6 +1564,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "&Původní"
+
+#, c-format
 msgid "Find"
 msgstr "Najít"
 
@@ -1797,10 +1801,6 @@ msgstr "&Vlastní složka:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Procházet..."
-
-#, c-format
-msgid "Defaults"
-msgstr "&Původní"
 
 #, c-format
 msgid "Patch Generator"

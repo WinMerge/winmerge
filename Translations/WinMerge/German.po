@@ -1568,6 +1568,10 @@ msgid "Language:"
 msgstr "&Sprache:"
 
 #, c-format
+msgid "Defaults"
+msgstr "Vorgaben"
+
+#, c-format
 msgid "Find"
 msgstr "Suchen"
 
@@ -1801,10 +1805,6 @@ msgstr "&Benutzerdefinierter Ordner:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Su&chen..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Vorgaben"
 
 #, c-format
 msgid "Patch Generator"
