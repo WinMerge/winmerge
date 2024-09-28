@@ -140,6 +140,41 @@ void CTitleBarHelper::OnSize(bool maximized, int cx, int cy)
 	m_pWnd->GetWindowRect(&m_rc);
 }
 
+LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
+{
+	if (!m_pWnd)
+		return HTNOWHERE;
+	CClientDC dc(m_pWnd);
+	const int leftMargin = PointToPixel(m_leftMargin);
+	const int rightMargin = PointToPixel(m_rightMargin);
+	const int borderWidth = PointToPixel(6);
+	CRect rc;
+	m_pWnd->GetWindowRect(&rc);
+	if (pt.y < rc.top + borderWidth)
+	{
+		if (pt.x < rc.left + borderWidth)
+			return HTTOPLEFT;
+		else if (rc.right - borderWidth <= pt.x)
+			return HTTOPRIGHT;
+		return HTTOP;
+	}
+	if (pt.x < rc.left + borderWidth)
+		return HTLEFT;
+	if (rc.right - borderWidth <= pt.x)
+		return HTRIGHT;
+	if (pt.x < rc.left + leftMargin)
+		return HTSYSMENU;
+	for (int i = 0; i < 3; i++)
+	{
+		static const int htbuttons[]{ HTMINBUTTON, HTMAXBUTTON, HTCLOSE };
+		CRect rcButton = GetButtonRect(i);
+		m_pWnd->ClientToScreen(&rcButton);
+		if (PtInRect(&rcButton, pt))
+			return htbuttons[i];
+	}
+	return HTCAPTION;
+}
+
 void CTitleBarHelper::OnNcMouseMove(UINT nHitTest, CPoint point)
 {
 	if (!m_bMouseTracking)
@@ -148,15 +183,13 @@ void CTitleBarHelper::OnNcMouseMove(UINT nHitTest, CPoint point)
 		TrackMouseEvent(&tme);
 		m_bMouseTracking = true;
 	}
-	int i = HitTest(point);
-	if (i == HTMINBUTTON)
+	int i = -1;
+	if (nHitTest == HTMINBUTTON)
 		i = 0;
-	else if (i == HTMAXBUTTON)
+	else if (nHitTest == HTMAXBUTTON)
 		i = 1;
-	else if (i == HTCLOSE)
+	else if (nHitTest == HTCLOSE)
 		i = 2;
-	else
-		i = -1;
 	for (int button : {i, m_nTrackingButton})
 	{
 		if (button != -1)
@@ -230,41 +263,6 @@ void CTitleBarHelper::ShowSysMenu(CPoint point)
 	BOOL cmd = pSysMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd(), nullptr);
 	if (cmd)
 		AfxGetMainWnd()->PostMessage(WM_SYSCOMMAND, cmd, 0);
-}
-
-int CTitleBarHelper::HitTest(CPoint pt)
-{
-	if (!m_pWnd)
-		return HTNOWHERE;
-	CClientDC dc(m_pWnd);
-	const int leftMargin = PointToPixel(m_leftMargin);
-	const int rightMargin = PointToPixel(m_rightMargin);
-	const int borderWidth = PointToPixel(6);
-	CRect rc;
-	m_pWnd->GetWindowRect(&rc);
-	if (pt.y < rc.top + borderWidth)
-	{
-		if (pt.x < rc.left + borderWidth)
-			return HTTOPLEFT;
-		else if (rc.right - borderWidth <= pt.x)
-			return HTTOPRIGHT;
-		return HTTOP;
-	}
-	if (pt.x < rc.left + borderWidth)
-		return HTLEFT;
-	if (rc.right - borderWidth <= pt.x)
-		return HTRIGHT;
-	if (pt.x < rc.left + leftMargin)
-		return HTSYSMENU;
-	for (int i = 0; i < 3; i++)
-	{
-		static const int htbuttons[]{ HTMINBUTTON, HTMAXBUTTON, HTCLOSE };
-		CRect rcButton = GetButtonRect(i);
-		m_pWnd->ClientToScreen(&rcButton);
-		if (PtInRect(&rcButton, pt))
-			return htbuttons[i];
-	}
-	return HTCAPTION;
 }
 
 COLORREF CTitleBarHelper::GetIntermediateColor(COLORREF a, COLORREF b, float ratio)

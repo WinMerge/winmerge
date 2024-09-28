@@ -660,7 +660,7 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 
 LRESULT CMDITabBar::OnNcHitTest(CPoint point)
 {
-	return m_titleBar.HitTest(point);
+	return m_titleBar.OnNcHitTest(point);
 }
 
 void CMDITabBar::OnNcMouseMove(UINT nHitTest, CPoint point)
