@@ -1300,6 +1300,9 @@ msgstr "Autorecarga de arquivos modificados:"
 msgid "Language:"
 msgstr "Idioma:"
 
+msgid "Defaults"
+msgstr "Predeterminados"
+
 msgid "Find"
 msgstr "Buscar"
 
@@ -1485,9 +1488,6 @@ msgstr "Carpeta &personalizada:"
 
 msgid "Br&owse..."
 msgstr "&Examinar..."
-
-msgid "Defaults"
-msgstr "Predeterminados"
 
 msgid "Patch Generator"
 msgstr "Xerar parche"

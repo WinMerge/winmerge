@@ -1298,6 +1298,9 @@ msgstr "変更されたファイルの自動再読み込み(&R):"
 msgid "Language:"
 msgstr "言語:"
 
+msgid "Defaults"
+msgstr "デフォルト"
+
 msgid "Find"
 msgstr "検索"
 
@@ -1487,9 +1490,6 @@ msgstr "指定したフォルダー(&U):"
 
 msgid "Br&owse..."
 msgstr "参照(&O)..."
-
-msgid "Defaults"
-msgstr "デフォルト"
 
 msgid "Patch Generator"
 msgstr "パッチ生成"

@@ -1567,6 +1567,10 @@ msgid "Language:"
 msgstr "언어:"
 
 #, c-format
+msgid "Defaults"
+msgstr "기본값"
+
+#, c-format
 msgid "Find"
 msgstr "찾기"
 
@@ -1800,10 +1804,6 @@ msgstr "사용자 지정 폴더(&U):"
 #, c-format
 msgid "Br&owse..."
 msgstr "찾아보기(&O)..."
-
-#, c-format
-msgid "Defaults"
-msgstr "기본값"
 
 #, c-format
 msgid "Patch Generator"

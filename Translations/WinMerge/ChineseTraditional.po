@@ -1568,6 +1568,10 @@ msgid "Language:"
 msgstr "語言："
 
 #, c-format
+msgid "Defaults"
+msgstr "預設值"
+
+#, c-format
 msgid "Find"
 msgstr "尋找"
 
@@ -1801,10 +1805,6 @@ msgstr "自訂資料夾 (&U)："
 #, c-format
 msgid "Br&owse..."
 msgstr "瀏覽 (&O)..."
-
-#, c-format
-msgid "Defaults"
-msgstr "預設值"
 
 #, c-format
 msgid "Patch Generator"

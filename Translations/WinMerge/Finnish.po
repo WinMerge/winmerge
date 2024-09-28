@@ -1299,6 +1299,9 @@ msgstr ""
 msgid "Language:"
 msgstr "Kieli:"
 
+msgid "Defaults"
+msgstr "Oletukset"
+
 msgid "Find"
 msgstr "Etsi"
 
@@ -1488,9 +1491,6 @@ msgstr "Mukautettu kansio:"
 
 msgid "Br&owse..."
 msgstr "Selaa..."
-
-msgid "Defaults"
-msgstr "Oletukset"
 
 msgid "Patch Generator"
 msgstr "Korjausgeneraattori"

@@ -1300,6 +1300,9 @@ msgstr "&Reîncarcă automat fișierele modificate:"
 msgid "Language:"
 msgstr "Limba:"
 
+msgid "Defaults"
+msgstr "Implicite"
+
 msgid "Find"
 msgstr "Găsește"
 
@@ -1489,9 +1492,6 @@ msgstr "Director personali&zat:"
 
 msgid "Br&owse..."
 msgstr "Ră&sfoiește..."
-
-msgid "Defaults"
-msgstr "Implicite"
 
 msgid "Patch Generator"
 msgstr "Generator petice"

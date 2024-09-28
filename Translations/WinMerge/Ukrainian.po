@@ -1542,6 +1542,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "Звичайні параметри"
+
+#, c-format
 msgid "Find"
 msgstr "Знайти"
 
@@ -1775,10 +1779,6 @@ msgstr "Власна тека:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Переглядання ..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Звичайні параметри"
 
 #, c-format
 msgid "Patch Generator"

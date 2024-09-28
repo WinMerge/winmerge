@@ -1561,6 +1561,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "Berezkoak"
+
+#, c-format
 msgid "Find"
 msgstr "Bilatu"
 
@@ -1794,10 +1798,6 @@ msgstr "&Egile agiritegia:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Bilat&u"
-
-#, c-format
-msgid "Defaults"
-msgstr "Berezkoak"
 
 #, c-format
 msgid "Patch Generator"

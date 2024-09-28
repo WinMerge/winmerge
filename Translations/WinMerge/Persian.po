@@ -1561,6 +1561,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr " پيش فرضها "
+
+#, c-format
 msgid "Find"
 msgstr " يافتن "
 
@@ -1794,10 +1798,6 @@ msgstr "&u  پوشه سفارشي : "
 #, c-format
 msgid "Br&owse..."
 msgstr "&o مرور ... "
-
-#, c-format
-msgid "Defaults"
-msgstr " پيش فرضها "
 
 #, c-format
 msgid "Patch Generator"

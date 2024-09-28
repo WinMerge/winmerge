@@ -1301,6 +1301,9 @@ msgstr "Авто&перезагрузка измененных файлов:"
 msgid "Language:"
 msgstr "Язык:"
 
+msgid "Defaults"
+msgstr "По умолчанию"
+
 msgid "Find"
 msgstr "Найти"
 
@@ -1486,9 +1489,6 @@ msgstr "Указанная папка:"
 
 msgid "Br&owse..."
 msgstr "Обзор..."
-
-msgid "Defaults"
-msgstr "По умолчанию"
 
 msgid "Patch Generator"
 msgstr "Генератор патчей"

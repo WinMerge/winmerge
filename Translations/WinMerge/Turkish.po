@@ -1298,6 +1298,9 @@ msgstr "Değiştirilen dosyalar &otomatik yenilensin:"
 msgid "Language:"
 msgstr "Dil:"
 
+msgid "Defaults"
+msgstr "Varsayılanlar"
+
 msgid "Find"
 msgstr "Bul"
 
@@ -1483,9 +1486,6 @@ msgstr "Ö&zel klasör:"
 
 msgid "Br&owse..."
 msgstr "Göz a&t..."
-
-msgid "Defaults"
-msgstr "Varsayılanlar"
 
 msgid "Patch Generator"
 msgstr "Yama oluşturucu"
