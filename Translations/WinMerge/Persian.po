@@ -398,6 +398,16 @@ msgid "&View"
 msgstr "&V نما "
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "&b ميله جهش "
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "&T ميله ابزار "
 
@@ -416,10 +426,6 @@ msgstr ""
 #, c-format
 msgid "&Status Bar"
 msgstr "&S ميله وضعيت "
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "&b ميله جهش "
 
 #, c-format
 msgid "&Tools"

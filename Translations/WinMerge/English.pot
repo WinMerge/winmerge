@@ -349,6 +349,15 @@ msgstr ""
 msgid "&View"
 msgstr ""
 
+msgid "Ta&b Bar"
+msgstr ""
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr ""
 
@@ -362,9 +371,6 @@ msgid "&Huge"
 msgstr ""
 
 msgid "&Status Bar"
-msgstr ""
-
-msgid "Ta&b Bar"
 msgstr ""
 
 msgid "&Tools"

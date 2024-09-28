@@ -207,6 +207,7 @@ public:
 		const PackingInfo * infoUnpacker = nullptr, const PrediffingInfo * infoPrediffer = nullptr,
 		const OpenWebPageParams *pOpenParams = nullptr);
 
+	void UpdateTitleBarAndTabBar();
 	void UpdateResources();
 	void ApplyDiffOptions();
 	void SelectFilter();
@@ -342,6 +343,7 @@ protected:
 	std::vector<TempFilePtr> m_tempFiles; /**< List of possibly needed temp files. */
 	DropHandler *m_pDropHandler;
 	std::unique_ptr<DirWatcher> m_pDirWatcher;
+	std::optional<bool> m_bTabsOnTitleBar;
 
 // Generated message map functions
 protected:
@@ -372,6 +374,8 @@ protected:
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
 	afx_msg void OnViewTabBar();
+	afx_msg void OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI);
+	afx_msg void OnViewTabBarOnTitleBar();
 	afx_msg void OnUpdateResizePanes(CCmdUI* pCmdUI);
 	afx_msg void OnResizePanes();
 	afx_msg void OnFileOpenProject();
@@ -381,6 +385,8 @@ protected:
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivateApp(BOOL bActive, DWORD dwThreadID);
+	afx_msg void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnToolbarSize(UINT id);
 	afx_msg void OnUpdateToolbarSize(CCmdUI* pCmdUI);
 	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);

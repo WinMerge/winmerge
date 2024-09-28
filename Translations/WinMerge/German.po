@@ -400,6 +400,16 @@ msgid "&View"
 msgstr "&Ansicht"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Ta&b-Leiste"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "&Symbolleiste"
 
@@ -418,10 +428,6 @@ msgstr "&Riesig"
 #, c-format
 msgid "&Status Bar"
 msgstr "S&tatusleiste"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Ta&b-Leiste"
 
 #, c-format
 msgid "&Tools"

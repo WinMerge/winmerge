@@ -398,6 +398,16 @@ msgid "&View"
 msgstr "檢視 (&V)"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "頁籤列 (&B)"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "工具列 (&T)"
 
@@ -416,10 +426,6 @@ msgstr "超大圖示 (&H)"
 #, c-format
 msgid "&Status Bar"
 msgstr "狀態列 (&S)"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "頁籤列 (&B)"
 
 #, c-format
 msgid "&Tools"

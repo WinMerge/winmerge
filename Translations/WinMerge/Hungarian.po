@@ -399,6 +399,16 @@ msgid "&View"
 msgstr "&Nézet"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Fülsáv"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Eszköztár"
 
@@ -417,10 +427,6 @@ msgstr "Hatalmas"
 #, c-format
 msgid "&Status Bar"
 msgstr "&Állapotsor"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Fülsáv"
 
 #, c-format
 msgid "&Tools"

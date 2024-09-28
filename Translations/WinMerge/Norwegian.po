@@ -354,6 +354,15 @@ msgstr "&Innstillinger..."
 msgid "&View"
 msgstr "&Vis"
 
+msgid "Ta&b Bar"
+msgstr "F&anelinje"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Verkt&øylinje"
 
@@ -368,9 +377,6 @@ msgstr ""
 
 msgid "&Status Bar"
 msgstr "Stat&uslinje"
-
-msgid "Ta&b Bar"
-msgstr "F&anelinje"
 
 msgid "&Tools"
 msgstr "&Verktøy"

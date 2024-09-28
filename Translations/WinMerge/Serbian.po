@@ -395,6 +395,16 @@ msgid "&View"
 msgstr "При&каз"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Тра&ка језичака"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "&Трака алата"
 
@@ -413,10 +423,6 @@ msgstr ""
 #, c-format
 msgid "&Status Bar"
 msgstr "&Статусна трака"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Тра&ка језичака"
 
 #, c-format
 msgid "&Tools"

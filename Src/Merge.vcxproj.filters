@@ -735,6 +735,9 @@
     <ClCompile Include="MyReBar.cpp">
       <Filter>MFCGui\Common\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TitleBarHelper.cpp">
+      <Filter>MFCGui\Common\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1404,6 +1407,9 @@
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyReBar.h">
+      <Filter>MFCGui\Common\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleBarHelper.h">
       <Filter>MFCGui\Common\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

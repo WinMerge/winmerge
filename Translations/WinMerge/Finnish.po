@@ -355,6 +355,15 @@ msgstr "Asetukset..."
 msgid "&View"
 msgstr "Näkymä"
 
+msgid "Ta&b Bar"
+msgstr "Välilehdet"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Työkalurivi"
 
@@ -369,9 +378,6 @@ msgstr "&Valtava"
 
 msgid "&Status Bar"
 msgstr "Tilarivi"
-
-msgid "Ta&b Bar"
-msgstr "Välilehdet"
 
 msgid "&Tools"
 msgstr "Työkalut"

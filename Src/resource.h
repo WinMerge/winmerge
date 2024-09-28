@@ -1201,6 +1201,7 @@
 #define ID_PLUGIN_ADD_UNPACKER          35740
 #define ID_PLUGIN_ADD_PREDIFFER         35741
 #define ID_PLUGIN_DUPLICATE             35742
+#define ID_VIEW_TAB_BAR_ON_TITLE_BAR    35743
 #define IDS_SPLASH_GPLTEXT              38977
 #define IDS_MESSAGEBOX_OK               39001
 #define IDS_MESSAGEBOX_CANCEL           39002

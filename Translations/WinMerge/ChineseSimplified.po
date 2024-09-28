@@ -359,6 +359,15 @@ msgstr "选项(&O)..."
 msgid "&View"
 msgstr "视图(&V)"
 
+msgid "Ta&b Bar"
+msgstr "标签栏(&B)"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "工具栏(&T)"
 
@@ -373,9 +382,6 @@ msgstr "特大(&H)"
 
 msgid "&Status Bar"
 msgstr "状态栏(&S)"
-
-msgid "Ta&b Bar"
-msgstr "标签栏(&B)"
 
 msgid "&Tools"
 msgstr "工具(&T)"

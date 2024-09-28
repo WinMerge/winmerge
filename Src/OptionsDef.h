@@ -301,6 +301,7 @@ inline const String OPT_PLUGINS_OPEN_IN_SAME_FRAME_TYPE {_T("Plugins/OpenInSameF
 inline const String OPT_SHOW_SELECT_FILES_AT_STARTUP {_T("Settings/ShowFileDialog"s)};
 
 // MDI Tab Bar
+inline const String OPT_TABBAR_ON_TITLEBAR {_T("Settings/TabBarOnTitleBar"s)};
 inline const String OPT_TABBAR_AUTO_MAXWIDTH {_T("Settings/TabBarAutoMaxWidth"s)};
 
 // MRU

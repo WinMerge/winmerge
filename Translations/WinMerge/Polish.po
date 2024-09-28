@@ -356,6 +356,15 @@ msgstr "Opcje..."
 msgid "&View"
 msgstr "Widok"
 
+msgid "Ta&b Bar"
+msgstr "Pasek kart"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Pasek narzędzi"
 
@@ -370,9 +379,6 @@ msgstr "Ogromny"
 
 msgid "&Status Bar"
 msgstr "Pasek stanu"
-
-msgid "Ta&b Bar"
-msgstr "Pasek kart"
 
 msgid "&Tools"
 msgstr "Narzędzia"

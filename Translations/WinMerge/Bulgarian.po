@@ -352,6 +352,15 @@ msgstr "&Настройки…"
 msgid "&View"
 msgstr "И&зглед"
 
+msgid "Ta&b Bar"
+msgstr "Лента с &раздели"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
 msgid "&Toolbar"
 msgstr "Лента с &инструменти"
 
@@ -366,9 +375,6 @@ msgstr "&Огромен"
 
 msgid "&Status Bar"
 msgstr "&Лента за състоянието"
-
-msgid "Ta&b Bar"
-msgstr "Лента с &раздели"
 
 msgid "&Tools"
 msgstr "&Инструменти"

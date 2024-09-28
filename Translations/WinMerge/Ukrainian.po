@@ -381,6 +381,16 @@ msgid "&View"
 msgstr "Ви&гляд"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Панель &закладок"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Пан&ель інструментів"
 
@@ -399,10 +409,6 @@ msgstr "&Величезні піктограми"
 #, c-format
 msgid "&Status Bar"
 msgstr "Ря&док стану"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Панель &закладок"
 
 #, c-format
 msgid "&Tools"

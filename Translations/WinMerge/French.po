@@ -405,6 +405,16 @@ msgid "&View"
 msgstr "&Affichage"
 
 #, c-format
+msgid "Ta&b Bar"
+msgstr "Barre d'&onglets"
+
+msgid "&View Tab Bar"
+msgstr ""
+
+msgid "&On Title Bar"
+msgstr ""
+
+#, c-format
 msgid "&Toolbar"
 msgstr "Barre d'ou&tils"
 
@@ -423,10 +433,6 @@ msgstr "&Énorme"
 #, c-format
 msgid "&Status Bar"
 msgstr "Barre d'&état"
-
-#, c-format
-msgid "Ta&b Bar"
-msgstr "Barre d'&onglets"
 
 #, c-format
 msgid "&Tools"
