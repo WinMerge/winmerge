@@ -69,14 +69,14 @@ msgstr "Copier les lignes sélectionnées vers la Gauche"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copier les lignes sélectionnées depuis la Gauche"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "&Copier la différence sélectionnée (Gauche) dans le presse-papiers\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr "Copier la différence sélectionnée (Gauche) dans le presse-papiers\tCtrl+1"
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "&Copier la différence sélectionnée (Milieu) dans le presse-papiers\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgstr "Copier la différence sélectionnée (Milieu) dans le presse-papiers\tCtrl+2"
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "&Copier la différence sélectionnée (Droite) dans le presse-papiers\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgstr "Copier la différence sélectionnée (Droite) dans le presse-papiers\tCtrl+3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"

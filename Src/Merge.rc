@@ -102,9 +102,9 @@ BEGIN
         MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
         MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_R
         MENUITEM SEPARATOR
-        MENUITEM "&Copy Selected Diff (Left) to Clipboard\tCtrl+1", ID_SEL_DIFF_COPY_L
-        MENUITEM "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_M
-        MENUITEM "&Copy Selected Diff (Right) to Clipboard\tCtrl+3", ID_SEL_DIFF_COPY_R
+        MENUITEM "Copy Selected Diff (Left) to Clipboard\tCtrl+1", ID_SEL_DIFF_COPY_L
+        MENUITEM "Copy Selected Diff (Middle) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_M
+        MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+3", ID_SEL_DIFF_COPY_R
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
