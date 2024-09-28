@@ -78,6 +78,7 @@ typedef enum
 {
 	SRC_PLAIN = 0,
 	SRC_ABAP,
+	SRC_ADA,
 	SRC_ASP,
 	SRC_AUTOIT,
 	SRC_BASIC,
@@ -156,6 +157,7 @@ void SetExtension(int index, const tchar_t *pszExts);
 
 unsigned ParseLinePlain(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineAbap(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
+unsigned ParseLineAda(unsigned dwCookie, const tchar_t* pszChars, int nLength, TEXTBLOCK* pBuf, int& nActualItems);
 unsigned ParseLineAsp(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineAutoIt(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);
 unsigned ParseLineBasic(unsigned dwCookie, const tchar_t *pszChars, int nLength, TEXTBLOCK * pBuf, int &nActualItems);

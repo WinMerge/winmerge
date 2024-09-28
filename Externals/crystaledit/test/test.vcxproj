@@ -346,6 +346,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\editlib\LineInfo.cpp" />
+    <ClCompile Include="..\editlib\parsers\ada.cpp" />
     <ClCompile Include="..\editlib\parsers\asp.cpp" />
     <ClCompile Include="..\editlib\parsers\basic.cpp" />
     <ClCompile Include="..\editlib\parsers\batch.cpp" />
