@@ -1302,6 +1302,9 @@ msgstr ""
 msgid "Language:"
 msgstr "اللغة:"
 
+msgid "Defaults"
+msgstr "الإعدادات الافتراضية"
+
 msgid "Find"
 msgstr "البحث"
 
@@ -1487,9 +1490,6 @@ msgstr "م&جلد مخصص:"
 
 msgid "Br&owse..."
 msgstr "&بحث..."
-
-msgid "Defaults"
-msgstr "الإعدادات الافتراضية"
 
 msgid "Patch Generator"
 msgstr "أداة توليد التصحيح"

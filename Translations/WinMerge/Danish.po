@@ -1559,6 +1559,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "Standard"
+
+#, c-format
 msgid "Find"
 msgstr "Søg"
 
@@ -1792,10 +1796,6 @@ msgstr "V&algt mappe:"
 #, c-format
 msgid "Br&owse..."
 msgstr "G&ennemse..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Standard"
 
 #, c-format
 msgid "Patch Generator"

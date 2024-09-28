@@ -1558,6 +1558,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "Predpodešeno"
+
+#, c-format
 msgid "Find"
 msgstr "Nađi"
 
@@ -1791,10 +1795,6 @@ msgstr "Ko&risnikova mapa"
 #, c-format
 msgid "Br&owse..."
 msgstr "&Odabir..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Predpodešeno"
 
 #, c-format
 msgid "Patch Generator"

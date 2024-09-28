@@ -1559,6 +1559,10 @@ msgid "Language:"
 msgstr "Idioma:"
 
 #, c-format
+msgid "Defaults"
+msgstr "Predeterminats"
+
+#, c-format
 msgid "Find"
 msgstr "Cerca"
 
@@ -1792,10 +1796,6 @@ msgstr "Directori personalitzat:"
 #, c-format
 msgid "Br&owse..."
 msgstr "N&avega..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Predeterminats"
 
 #, c-format
 msgid "Patch Generator"

@@ -1545,6 +1545,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "Подразумевано"
+
+#, c-format
 msgid "Find"
 msgstr "Нађи"
 
@@ -1776,10 +1780,6 @@ msgstr "Подешена фасцикла:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Пр&егледај..."
-
-#, c-format
-msgid "Defaults"
-msgstr "Подразумевано"
 
 #, c-format
 msgid "Patch Generator"

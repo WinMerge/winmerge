@@ -1300,6 +1300,9 @@ msgstr "&Ricarica automaticamente file modificati:"
 msgid "Language:"
 msgstr "Lingua:"
 
+msgid "Defaults"
+msgstr "Predefinito"
+
 msgid "Find"
 msgstr "Trova"
 
@@ -1490,9 +1493,6 @@ msgstr "Cartella &personalizzata:"
 
 msgid "Br&owse..."
 msgstr "Sf&oglia..."
-
-msgid "Defaults"
-msgstr "Predefinito"
 
 msgid "Patch Generator"
 msgstr "Generatore patch"

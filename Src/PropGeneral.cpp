@@ -91,6 +91,7 @@ void PropGeneral::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(PropGeneral, OptionsPanel)
 	//{{AFX_MSG_MAP(PropGeneral)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	ON_MESSAGE(WM_APP, OnLoadLanguages)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -137,6 +138,29 @@ void PropGeneral::WriteOptions()
 	}
 }
 
+/**
+ * @brief Sets options to defaults.
+ */
+void PropGeneral::OnDefaults()
+{
+	m_bScroll = GetOptionsMgr()->GetDefault<bool>(OPT_SCROLL_TO_FIRST);
+	m_bScrollToFirstInlineDiff = GetOptionsMgr()->GetDefault<bool>(OPT_SCROLL_TO_FIRST_INLINE_DIFF);
+	m_nSingleInstance = GetOptionsMgr()->GetDefault<unsigned>(OPT_SINGLE_INSTANCE);
+	m_bVerifyPaths = GetOptionsMgr()->GetDefault<bool>(OPT_VERIFY_OPEN_PATHS);
+	m_nCloseWindowWithEsc = GetOptionsMgr()->GetDefault<unsigned>(OPT_CLOSE_WITH_ESC);
+	m_bAskMultiWindowClose = GetOptionsMgr()->GetDefault<bool>(OPT_ASK_MULTIWINDOW_CLOSE);
+	m_nAutoCompleteSource = GetOptionsMgr()->GetDefault<unsigned>(OPT_AUTO_COMPLETE_SOURCE);
+	m_bPreserveFiletime = GetOptionsMgr()->GetDefault<bool>(OPT_PRESERVE_FILETIMES);
+	m_bShowSelectFolderOnStartup = GetOptionsMgr()->GetDefault<bool>(OPT_SHOW_SELECT_FILES_AT_STARTUP);
+	m_bCloseWithOK = GetOptionsMgr()->GetDefault<bool>(OPT_CLOSE_WITH_OK);
+	m_nFileReloadMode = GetOptionsMgr()->GetDefault<unsigned>(OPT_AUTO_RELOAD_MODIFIED_FILES);
+
+	LANGID lang = static_cast<LANGID>(GetOptionsMgr()->GetDefault<unsigned>(OPT_SELECTED_LANGUAGE));
+	SetCursorSelectForLanguage(lang);
+
+	UpdateData(FALSE);
+}
+
 LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)
 {
 	m_ctlLangList.SetRedraw(false);
@@ -150,4 +174,21 @@ LRESULT PropGeneral::OnLoadLanguages(WPARAM, LPARAM)
 	m_ctlLangList.EnableWindow(TRUE);
 	m_ctlLangList.SetRedraw(true);
 	return 0;
+}
+
+/**
+ * @brief Select the item specified by the language ID in the "Language" combo box.
+ * @param [in] lang The language ID of the selected item.
+ */
+void PropGeneral::SetCursorSelectForLanguage(LANGID lang)
+{
+	int itemCount = m_ctlLangList.GetCount();
+	for (int i = 0; i < itemCount; i++)
+	{
+		if (m_ctlLangList.GetItemData(i) == lang)
+		{
+			m_ctlLangList.SetCurSel(i);
+			break;
+		}
+	}
 }
