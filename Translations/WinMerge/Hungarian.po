@@ -64,20 +64,20 @@ msgid "Copy Selected Line(s) from Left"
 msgstr "A kijelölt sor(ok) másolása balról"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr "A kijelölt különbség (bal) vágólapra &másolása"
+msgstr "A kijelölt különbség (bal) vágólapra másolása\tCtrl+1"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr "A kijelölt különbség (középső) vágólapra &másolása"
+msgstr "A kijelölt különbség (középső) vágólapra &másolása\tCtrl+2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr "A kijelölt különbség (jobb) vágólapra &másolása"
+msgstr "A kijelölt különbség (jobb) vágólapra &másolása\tCtrl+3"
 
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "Eltérés kijelölése\tF4"
 
 msgid "Add this change to Substitution &Filters"
-msgstr "Adja hozzá ezt a változást a Helyettesítő szűrőkhöz"
+msgstr "Adja hozzá ezt a változást a Helyettesítő &szűrőkhöz"
 
 msgid "Add to &Line Filters"
 msgstr "&Hozzáadás a sorszűrőkhöz"
@@ -400,13 +400,13 @@ msgstr "&Nézet"
 
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Fülsáv"
+msgstr "Lapsáv"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Nézet lapsáv"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "&A címsoron"
 
 #, c-format
 msgid "&Toolbar"
