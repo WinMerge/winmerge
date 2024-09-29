@@ -239,11 +239,11 @@ void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
 	else if (m_nHitTest != HTNOWHERE && m_nHitTest == nHitTest)
 	{
 		if (nHitTest == HTMINBUTTON)
-			AfxGetMainWnd()->ShowWindow(SW_MINIMIZE);
+			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 		else if (nHitTest == HTMAXBUTTON)
-			AfxGetMainWnd()->ShowWindow(m_maximized ? SW_RESTORE : SW_MAXIMIZE);
+			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, m_maximized ? SC_RESTORE : SC_MAXIMIZE, 0);
 		else if (nHitTest == HTCLOSE)
-			AfxGetMainWnd()->PostMessage(WM_CLOSE);
+			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, SC_CLOSE, 0);
 	}
 	m_nHitTest = HTNOWHERE;
 }
@@ -260,6 +260,10 @@ void CTitleBarHelper::OnNcRButtonUp(UINT nHitTest, CPoint point)
 void CTitleBarHelper::ShowSysMenu(CPoint point)
 {
 	CMenu* pSysMenu = AfxGetMainWnd()->GetSystemMenu(FALSE);
+	bool maximized = AfxGetMainWnd()->IsZoomed();
+	pSysMenu->EnableMenuItem(SC_MAXIMIZE,(!maximized ? MF_ENABLED : MF_DISABLED) | MF_BYCOMMAND);
+	pSysMenu->EnableMenuItem(SC_SIZE,(!maximized ? MF_ENABLED : MF_DISABLED) | MF_BYCOMMAND);
+	pSysMenu->EnableMenuItem(SC_RESTORE, (maximized ? MF_ENABLED : MF_DISABLED) | MF_BYCOMMAND);
 	BOOL cmd = pSysMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd(), nullptr);
 	if (cmd)
 		AfxGetMainWnd()->PostMessage(WM_SYSCOMMAND, cmd, 0);
