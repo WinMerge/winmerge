@@ -2268,7 +2268,7 @@ void CMainFrame::OnViewTabBar()
 }
 
 /**
- * @brief Updates "Show Tabbar" menuitem.
+ * @brief Updates "On Title Bar" menuitem.
  */
 void CMainFrame::OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI) 
 {
