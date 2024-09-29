@@ -429,7 +429,7 @@
       <itemizedlist>
         <listitem>
           <para>
-            <guilabel>Disabled</guilabel> (default): No autocompletion is
+            <guilabel>Disabled</guilabel>: No autocompletion is
             performed when you enter paths in the Select Files or Folders
             dialog.
           </para>
@@ -437,7 +437,7 @@
 
         <listitem>
           <para>
-            <guilabel>From file system</guilabel>: Checks paths as you type.
+            <guilabel>From file system</guilabel> (default): Checks paths as you type.
             It attempts to locate paths in the file system that match the letters
             you type, and if a matching path is found, completes the path.
           </para>
@@ -465,13 +465,13 @@
       <itemizedlist>
         <listitem>
           <para>
-            <guilabel>Disabled</guilabel> (default): Disables automatic reloading.
+            <guilabel>Disabled</guilabel>: Disables automatic reloading.
           </para>
         </listitem>
 
         <listitem>
           <para>
-            <guilabel>Only on window activated</guilabel>: When the WinMerge window is activated,
+            <guilabel>Only on window activated</guilabel> (default): When the WinMerge window is activated,
             if the file has been modified, it will reload the file.
             However, a message box asking if you want to reload the file will be displayed at this time.
             If you do not want to see this message box,

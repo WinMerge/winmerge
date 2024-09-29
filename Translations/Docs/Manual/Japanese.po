@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-07-27 11:21+0900\n"
+"POT-Creation-Date: 2024-09-29 16:29+0900\n"
 "PO-Revision-Date: 2024-03-02 19:07+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -7682,22 +7682,22 @@ msgstr "次の中から一つ選択してください:"
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:432
 msgid ""
-"<guilabel>Disabled</guilabel> (default): No autocompletion is performed when "
-"you enter paths in the Select Files or Folders dialog."
+"<guilabel>Disabled</guilabel>: No autocompletion is performed when you enter "
+"paths in the Select Files or Folders dialog."
 msgstr ""
-"<guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダーの選択ダイアロ"
-"グでパス入力した時、 オートコンプリートは実行されません。"
+"<guilabel>無効</guilabel>: ファイルまたはフォルダーの選択ダイアログでパス入力"
+"した時、 オートコンプリートは実行されません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:440
 msgid ""
-"<guilabel>From file system</guilabel>: Checks paths as you type.  It "
-"attempts to locate paths in the file system that match the letters you type, "
-"and if a matching path is found, completes the path."
+"<guilabel>From file system</guilabel> (default): Checks paths as you type.  "
+"It attempts to locate paths in the file system that match the letters you "
+"type, and if a matching path is found, completes the path."
 msgstr ""
-"<guilabel>ファイルシステム</guilabel>: 入力した時にパスを調べます。入力した文"
-"字と一致するパスを、ファイルシステム上から見つけようとします。一致するパスが"
-"見つかった場合、パスを補完します。"
+"<guilabel>ファイルシステム</guilabel> (デフォルト): 入力した時にパスを調べま"
+"す。入力した文字と一致するパスを、ファイルシステム上から見つけようとします。"
+"一致するパスが見つかった場合、パスを補完します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:448
@@ -7722,23 +7722,23 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:468
-msgid "<guilabel>Disabled</guilabel> (default): Disables automatic reloading."
-msgstr "<guilabel>無効</guilabel> (default): 自動再読み込みを無効にします。"
+msgid "<guilabel>Disabled</guilabel>: Disables automatic reloading."
+msgstr "<guilabel>無効</guilabel>: 自動再読み込みを無効にします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:474
 msgid ""
-"<guilabel>Only on window activated</guilabel>: When the WinMerge window is "
-"activated, if the file has been modified, it will reload the file.  However, "
-"a message box asking if you want to reload the file will be displayed at "
-"this time.  If you do not want to see this message box, check \"Don't ask "
-"this question again\" and press the Yes button."
+"<guilabel>Only on window activated</guilabel> (default): When the WinMerge "
+"window is activated, if the file has been modified, it will reload the "
+"file.  However, a message box asking if you want to reload the file will be "
+"displayed at this time.  If you do not want to see this message box, check "
+"\"Don't ask this question again\" and press the Yes button."
 msgstr ""
-"<guilabel>ウィンドウがアクティブになった時のみ</guilabel>: WinMergeのウインド"
-"ウがアクティブになった時、 もしファイルが変更されていれば、ファイルを再読み込"
-"みします。 ただし、この時ファイルを開きなおすか問い合わせるメッセージボックス"
-"が表示されます。 このメッセージボックスを表示したくない場合は、「再びこの質問"
-"をしない」をチェックし、 はいボタンを押下してください。"
+"<guilabel>ウィンドウがアクティブになった時のみ</guilabel> (デフォルト): "
+"WinMergeのウインドウがアクティブになった時、 もしファイルが変更されていれば、"
+"ファイルを再読み込みします。 ただし、この時ファイルを開きなおすか問い合わせる"
+"メッセージボックスが表示されます。 このメッセージボックスを表示したくない場合"
+"は、「再びこの質問をしない」をチェックし、 はいボタンを押下してください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:484
@@ -7860,7 +7860,7 @@ msgstr ""
 #: English/Configuration.xml:738 English/Configuration.xml:767
 #: English/Configuration.xml:791 English/Configuration.xml:1170
 #: English/Configuration.xml:1217 English/Configuration.xml:1253
-#: English/Configuration.xml:1277 English/Configuration.xml:1301
+#: English/Configuration.xml:1277 English/Configuration.xml:1329
 #: English/Configuration.xml:1353
 msgid "detecting and ignoring differences"
 msgstr ""
@@ -8368,17 +8368,17 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:984
 msgid ""
-"<option>Enabled</option>: Makes the color of the different lines ignored by "
-"line filters and substitution filters the same as the color of the identical "
-"lines."
+"<option>Disabled</option> (default): Difference lines ignored by line "
+"filters and substitution filters are displayed in the color of Ignored "
+"Difference."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:992
 msgid ""
-"<option>Disabled</option> (default): Difference lines ignored by line "
-"filters and substitution filters are displayed in the color of Ignored "
-"Difference."
+"<option>Enabled</option>: Makes the color of the different lines ignored by "
+"line filters and substitution filters the same as the color of the identical "
+"lines."
 msgstr ""
 
 #. type: Content of: <article><section><title>
@@ -8633,12 +8633,12 @@ msgstr ""
 "な比較結果の原因となります。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1215 English/Configuration.xml:1299
+#: English/Configuration.xml:1215 English/Configuration.xml:1275
 msgid "expand subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1214 English/Configuration.xml:1298
+#: English/Configuration.xml:1214 English/Configuration.xml:1274
 msgid ""
 "Automatically expand subfolders after comparison<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
@@ -8684,11 +8684,82 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1251
-msgid "include unique subfolders"
+msgid "include subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1250
+msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:1260
+msgid ""
+"<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
+"also includes subfolders."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:1266
+msgid ""
+"<option>Disabled</option>: WinMerge only comparing the files in the root "
+"folder."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1283
+msgid "Do not expand"
+msgstr "展開しない"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1287
+msgid ""
+"(default): WinMerge will not automatically expand subfolders after comparing "
+"folders."
+msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1293
+msgid "Expand all subfolders"
+msgstr "すべてのサブフォルダーを展開"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1297
+msgid ""
+"WinMerge will automatically expand all subfolders after comparing folders."
+msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1303
+msgid "Expand different subfolders"
+msgstr "差異のあるサブフォルダーを展開"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1307
+msgid ""
+"WinMerge will automatically expand different subfolders after comparing "
+"folders."
+msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1313
+msgid "Expand identical subfolders"
+msgstr "同一のサブフォルダーを展開"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1317
+msgid ""
+"WinMerge will automatically expand identical subfolders after comparing "
+"folders."
+msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: English/Configuration.xml:1327
+msgid "include unique subfolders"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: English/Configuration.xml:1326
 msgid ""
 "Include unique subfolders contents<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
@@ -8696,93 +8767,22 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1260
+#: English/Configuration.xml:1336
 msgid ""
-"<option>Disabled</option> (default): WinMerge ignore unique subfolders when "
-"comparing folders."
+"<option>Enabled</option> (default): WinMerge also shows the content from "
+"unique subfolders."
 msgstr ""
-"<option>無効</option>(デフォルト): WinMerge は、比較時片方しか存在しないサブ"
-"フォルダーを無視します。"
+"<option>有効</option> (デフォルト): WinMerge は、片方しか存在しないサブフォル"
+"ダー内の内容も表示します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1266
+#: English/Configuration.xml:1342
 msgid ""
-"<option>Enabled</option>: WinMerge also shows the content from unique "
-"subfolders."
-msgstr ""
-"<option>有効</option>: WinMerge は、片方しか存在しないサブフォルダー内の内容"
-"も表示します。"
-
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1275
-msgid "include subfolders"
-msgstr ""
-
-#. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1274
-msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1284
-msgid ""
-"<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
-"also includes subfolders."
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1290
-msgid ""
-"<option>Disabled</option>: WinMerge only comparing the files in the root "
-"folder."
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1307
-msgid "Do not expand"
-msgstr "展開しない"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1311
-msgid ""
-"(default): WinMerge will not automatically expand subfolders after comparing "
+"<option>Disabled</option>: WinMerge ignore unique subfolders when comparing "
 "folders."
-msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1317
-msgid "Expand all subfolders"
-msgstr "すべてのサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1321
-msgid ""
-"WinMerge will automatically expand all subfolders after comparing folders."
-msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1327
-msgid "Expand different subfolders"
-msgstr "差異のあるサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1331
-msgid ""
-"WinMerge will automatically expand different subfolders after comparing "
-"folders."
-msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1337
-msgid "Expand identical subfolders"
-msgstr "同一のサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1341
-msgid ""
-"WinMerge will automatically expand identical subfolders after comparing "
-"folders."
-msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
+msgstr ""
+"<option>無効</option>: WinMerge は、比較時片方しか存在しないサブフォルダーを"
+"無視します。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1351

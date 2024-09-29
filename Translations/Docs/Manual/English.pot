@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge 2.16\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-07-27 11:21+0900\n"
+"POT-Creation-Date: 2024-09-29 16:29+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5266,12 +5266,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:432
-msgid "<guilabel>Disabled</guilabel> (default): No autocompletion is performed when you enter paths in the Select Files or Folders dialog."
+msgid "<guilabel>Disabled</guilabel>: No autocompletion is performed when you enter paths in the Select Files or Folders dialog."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:440
-msgid "<guilabel>From file system</guilabel>: Checks paths as you type.  It attempts to locate paths in the file system that match the letters you type, and if a matching path is found, completes the path."
+msgid "<guilabel>From file system</guilabel> (default): Checks paths as you type.  It attempts to locate paths in the file system that match the letters you type, and if a matching path is found, completes the path."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -5291,12 +5291,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:468
-msgid "<guilabel>Disabled</guilabel> (default): Disables automatic reloading."
+msgid "<guilabel>Disabled</guilabel>: Disables automatic reloading."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:474
-msgid "<guilabel>Only on window activated</guilabel>: When the WinMerge window is activated, if the file has been modified, it will reload the file.  However, a message box asking if you want to reload the file will be displayed at this time.  If you do not want to see this message box, check \"Don't ask this question again\" and press the Yes button."
+msgid "<guilabel>Only on window activated</guilabel> (default): When the WinMerge window is activated, if the file has been modified, it will reload the file.  However, a message box asking if you want to reload the file will be displayed at this time.  If you do not want to see this message box, check \"Don't ask this question again\" and press the Yes button."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
@@ -5379,7 +5379,7 @@ msgstr ""
 #: ./English/Configuration.xml:738 ./English/Configuration.xml:767
 #: ./English/Configuration.xml:791 ./English/Configuration.xml:1170
 #: ./English/Configuration.xml:1217 ./English/Configuration.xml:1253
-#: ./English/Configuration.xml:1277 ./English/Configuration.xml:1301
+#: ./English/Configuration.xml:1277 ./English/Configuration.xml:1329
 #: ./English/Configuration.xml:1353
 msgid "detecting and ignoring differences"
 msgstr ""
@@ -5725,12 +5725,12 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:984
-msgid "<option>Enabled</option>: Makes the color of the different lines ignored by line filters and substitution filters the same as the color of the identical lines."
+msgid "<option>Disabled</option> (default): Difference lines ignored by line filters and substitution filters are displayed in the color of Ignored Difference."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: ./English/Configuration.xml:992
-msgid "<option>Disabled</option> (default): Difference lines ignored by line filters and substitution filters are displayed in the color of Ignored Difference."
+msgid "<option>Enabled</option>: Makes the color of the different lines ignored by line filters and substitution filters the same as the color of the identical lines."
 msgstr ""
 
 #. type: Content of: <article><section><title>
@@ -5879,12 +5879,12 @@ msgid "This option should be enabled only when the time difference is detected. 
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1215 ./English/Configuration.xml:1299
+#: ./English/Configuration.xml:1215 ./English/Configuration.xml:1275
 msgid "expand subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1214 ./English/Configuration.xml:1298
+#: ./English/Configuration.xml:1214 ./English/Configuration.xml:1274
 msgid "Automatically expand subfolders after comparison<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
@@ -5910,82 +5910,82 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: ./English/Configuration.xml:1251
-msgid "include unique subfolders"
-msgstr ""
-
-#. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1250
-msgid "Include unique subfolders contents<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1260
-msgid "<option>Disabled</option> (default): WinMerge ignore unique subfolders when comparing folders."
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1266
-msgid "<option>Enabled</option>: WinMerge also shows the content from unique subfolders."
-msgstr ""
-
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: ./English/Configuration.xml:1275
 msgid "include subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: ./English/Configuration.xml:1274
+#: ./English/Configuration.xml:1250
 msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1284
+#: ./English/Configuration.xml:1260
 msgid "<option>Enabled</option> (default): WinMerge doing a recursive comparing and also includes subfolders."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: ./English/Configuration.xml:1290
+#: ./English/Configuration.xml:1266
 msgid "<option>Disabled</option>: WinMerge only comparing the files in the root folder."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1307
+#: ./English/Configuration.xml:1283
 msgid "Do not expand"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1311
+#: ./English/Configuration.xml:1287
 msgid "(default): WinMerge will not automatically expand subfolders after comparing folders."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1317
+#: ./English/Configuration.xml:1293
 msgid "Expand all subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1321
+#: ./English/Configuration.xml:1297
 msgid "WinMerge will automatically expand all subfolders after comparing folders."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1327
+#: ./English/Configuration.xml:1303
 msgid "Expand different subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1331
+#: ./English/Configuration.xml:1307
 msgid "WinMerge will automatically expand different subfolders after comparing folders."
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: ./English/Configuration.xml:1337
+#: ./English/Configuration.xml:1313
 msgid "Expand identical subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: ./English/Configuration.xml:1341
+#: ./English/Configuration.xml:1317
 msgid "WinMerge will automatically expand identical subfolders after comparing folders."
+msgstr ""
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: ./English/Configuration.xml:1327
+msgid "include unique subfolders"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: ./English/Configuration.xml:1326
+msgid "Include unique subfolders contents<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1336
+msgid "<option>Enabled</option> (default): WinMerge also shows the content from unique subfolders."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: ./English/Configuration.xml:1342
+msgid "<option>Disabled</option>: WinMerge ignore unique subfolders when comparing folders."
 msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
