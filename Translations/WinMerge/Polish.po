@@ -4220,6 +4220,9 @@ msgstr "Funkcje konwersji tekstu wspomagane AI"
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr "Konwerter tekstu wykorzystujący API OpenAI.\r\nUżycie: AIConvertText PROMPT"
 
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opcje wtyczki WinMerge CompareMSExcelFiles.sct"
 

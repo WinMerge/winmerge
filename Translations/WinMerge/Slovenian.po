@@ -4730,6 +4730,9 @@ msgstr ""
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr ""
 
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Možnosti vtičnika WinMerge CompareMSExcelFiles.sct"
 

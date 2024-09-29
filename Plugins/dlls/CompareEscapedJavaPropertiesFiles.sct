@@ -106,7 +106,7 @@ function get_PluginEvent() {
  * @return description.
  */
 function get_PluginDescription() {
-	return 'diff property file.';
+	return 'Unescape and display Java escaped properties files';
 }
 
 /**

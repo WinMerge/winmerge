@@ -4797,6 +4797,9 @@ msgstr ""
 "OpenAI APIを使用してテキストを変換します。\r\n"
 "使い方: AIConvertText PROMPT"
 
+msgid "Unescape and display escaped Java properties files."
+msgstr "エスケープされたJavaプロパティファイルをエスケープ解除して表示します。"
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"
 

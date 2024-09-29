@@ -191,6 +191,7 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION52 "Basic text functions"
     IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion functions"
     IDS_PLUGIN_DESCRIPTION54 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+    IDS_PLUGIN_DESCRIPTION55 "Unescape and display escaped Java properties files."
 END
 
 STRINGTABLE

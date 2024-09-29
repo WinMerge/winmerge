@@ -4801,6 +4801,9 @@ msgstr ""
 "使用 OpenAI API 的文本转换器。\r\n"
 "用法：ALConvertText PROMPT"
 
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles 插件选项"
 

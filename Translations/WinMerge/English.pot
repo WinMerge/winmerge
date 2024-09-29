@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-09-29 07:18+0000\n"
+"POT-Creation-Date: 2024-09-30 08:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -4212,6 +4212,9 @@ msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr ""
+
+msgid "Unescape and display escaped Java properties files."
 msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"

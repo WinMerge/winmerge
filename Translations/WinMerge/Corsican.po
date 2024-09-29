@@ -4745,6 +4745,9 @@ msgstr ""
 "Cunvertidore di testu impieghendu OpenAI API.\r\n"
 "Aghjovu : AIConvertText PROMPT"
 
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Ozzioni di u modulu d’estensione CompareMSExcelFiles.sct di WinMerge"
 

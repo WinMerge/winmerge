@@ -5464,6 +5464,9 @@ msgstr ""
 "OpenAI API를 사용하는 텍스트 변환기.\r\n"
 "사용법: AIConvertText 프롬프트"
 
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge 플러그인 옵션"
 

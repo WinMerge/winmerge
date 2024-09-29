@@ -4219,6 +4219,9 @@ msgstr "Teksto konvertavimo su AI pagalba funkcijos"
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr "Teksto keitiklis, naudojant „OpenAI“ API.\r\nNaudojimas: AIConvertText PROMPT"
 
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
+
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct „WinMerge“ papildinio nuostatos"
 
