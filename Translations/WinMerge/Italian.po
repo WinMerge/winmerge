@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 21.09.2024\n"
+"Project-Id-Version: WinMerge (Language) 28.09.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-09-21 15:07+0200\n"
+"PO-Revision-Date: 2024-09-29 09:36+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -360,10 +360,10 @@ msgid "Ta&b Bar"
 msgstr "&Barra schede"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Visualizza barra schede"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "Sulla barra del tit&olo"
 
 msgid "&Toolbar"
 msgstr "Barra s&trumenti"
