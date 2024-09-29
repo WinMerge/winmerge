@@ -979,57 +979,59 @@ void CLocationView::OnClose()
 /** 
  * @brief Draw lines connecting moved blocks.
  */
-void CLocationView::DrawConnectLines(CDC *pClientDC)
+void CLocationView::DrawConnectLines(CDC* pClientDC)
 {
+	Gdiplus::Graphics graphics(pClientDC->GetSafeHdc());
 	COLORREF clrMovedBlock = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK);
 	COLORREF clrSelectedMovedBlock = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	CBrush brushMovedBlock(clrMovedBlock);
-	CBrush brushSelectedMovedBlock(clrSelectedMovedBlock);
-	CPen penMovedBlock(PS_SOLID, 0, clrMovedBlock);
-	CPen penSelectedMovedBlock(PS_SOLID, 0, clrSelectedMovedBlock);
+	Gdiplus::SolidBrush brushMovedBlock(Gdiplus::Color(255, GetRValue(clrMovedBlock), GetGValue(clrMovedBlock), GetBValue(clrMovedBlock)));
+	Gdiplus::SolidBrush brushSelectedMovedBlock(Gdiplus::Color(255, GetRValue(clrSelectedMovedBlock), GetGValue(clrSelectedMovedBlock), GetBValue(clrSelectedMovedBlock)));
+	Gdiplus::Pen penMovedBlock(Gdiplus::Color(255, GetRValue(clrMovedBlock), GetGValue(clrMovedBlock), GetBValue(clrMovedBlock)));
+	Gdiplus::Pen penSelectedMovedBlock(Gdiplus::Color(255, GetRValue(clrSelectedMovedBlock), GetGValue(clrSelectedMovedBlock), GetBValue(clrSelectedMovedBlock)));
 
 	POSITION pos = m_movedLines.GetHeadPosition();
-	int oldMode = pClientDC->SetPolyFillMode(ALTERNATE);
+	graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 
 	while (pos != nullptr)
 	{
 		MovedLine line = m_movedLines.GetNext(pos);
-		CPen *pOldPen = (CPen *)pClientDC->SelectObject(line.currentDiff ? &penSelectedMovedBlock : &penMovedBlock);
+		Gdiplus::Pen* pCurrentPen = line.currentDiff ? &penSelectedMovedBlock : &penMovedBlock;
+
 		if (line.ptLeftLower.y - line.ptLeftUpper.y <= 1)
 		{
-			CPoint points[4] = {
-				line.ptLeftUpper,
-				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptLeftUpper.y},
-				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptRightLower.y},
-				line.ptRightUpper };
-			pClientDC->PolyBezier(points, 4);
+			Gdiplus::Point points[4] = {
+				Gdiplus::Point(line.ptLeftUpper.x, line.ptLeftUpper.y),
+				Gdiplus::Point((line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptLeftUpper.y),
+				Gdiplus::Point((line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptRightLower.y),
+				Gdiplus::Point(line.ptRightUpper.x, line.ptRightUpper.y)
+			};
+			graphics.DrawBezier(pCurrentPen, points[0], points[1], points[2], points[3]);
 		}
 		else
 		{
-			BYTE types[9] = {
-				PT_MOVETO, PT_BEZIERTO, PT_BEZIERTO, PT_BEZIERTO,
-				PT_LINETO, PT_BEZIERTO, PT_BEZIERTO, PT_BEZIERTO, PT_LINETO };
-			CPoint points[9] = {
-				line.ptLeftUpper,
-				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptLeftUpper.y},
-				{(line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptRightUpper.y},
-				line.ptRightUpper,
-				line.ptRightLower,
-				{(line.ptLeftLower.x + line.ptRightLower.x) / 2, line.ptRightLower.y},
-				{(line.ptLeftLower.x + line.ptRightLower.x) / 2, line.ptLeftLower.y},
-				line.ptLeftLower, line.ptLeftUpper };
-			pClientDC->BeginPath();
-			pClientDC->PolyDraw(points, types, 8);
-			pClientDC->EndPath();
-			CRgn rgn;
-			if (rgn.CreateFromPath(pClientDC))
-				pClientDC->FillRgn(&rgn, line.currentDiff ? &brushSelectedMovedBlock : &brushMovedBlock);
-			pClientDC->PolyDraw(points, types, 9);
-		}
-		pClientDC->SelectObject(pOldPen);
-	}
+			Gdiplus::Point points[9] = {
+				Gdiplus::Point(line.ptLeftUpper.x, line.ptLeftUpper.y),
+				Gdiplus::Point((line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptLeftUpper.y),
+				Gdiplus::Point((line.ptLeftUpper.x + line.ptRightUpper.x) / 2, line.ptRightUpper.y),
+				Gdiplus::Point(line.ptRightUpper.x, line.ptRightUpper.y),
+				Gdiplus::Point(line.ptRightLower.x, line.ptRightLower.y),
+				Gdiplus::Point((line.ptLeftLower.x + line.ptRightLower.x) / 2, line.ptRightLower.y),
+				Gdiplus::Point((line.ptLeftLower.x + line.ptRightLower.x) / 2, line.ptLeftLower.y),
+				Gdiplus::Point(line.ptLeftLower.x, line.ptLeftLower.y),
+				Gdiplus::Point(line.ptLeftUpper.x, line.ptLeftUpper.y)
+			};
+			Gdiplus::GraphicsPath path;
+			path.StartFigure();
+			path.AddBezier(points[0], points[1], points[2], points[3]);
+			path.AddLine(points[3], points[4]);
+			path.AddBezier(points[4], points[5], points[6], points[7]);
+			path.CloseFigure();
 
-	pClientDC->SetPolyFillMode(oldMode);
+			Gdiplus::SolidBrush* pCurrentBrush = line.currentDiff ? &brushSelectedMovedBlock : &brushMovedBlock;
+			graphics.FillPath(pCurrentBrush, &path);
+			graphics.DrawPath(pCurrentPen, &path);
+		}
+	}
 }
 
 /** 
