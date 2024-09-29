@@ -61,13 +61,13 @@ msgstr "Kopier valgte linje(r) til venstre"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopier valgte linje(r) fra venstre"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1304,6 +1304,9 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
+msgid "Defaults"
+msgstr "Standardverdier"
+
 msgid "Find"
 msgstr "Søk"
 
@@ -1491,9 +1494,6 @@ msgstr "E&gen mappe:"
 
 msgid "Br&owse..."
 msgstr "B&la gjennom.."
-
-msgid "Defaults"
-msgstr "Standardverdier"
 
 msgid "Patch Generator"
 msgstr "Rettelsegenerator"

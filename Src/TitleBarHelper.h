@@ -20,6 +20,7 @@ public:
 	int GetRightMargin() const { return PointToPixel(m_rightMargin); }
 	CRect GetButtonRect(int button) const;
 	void OnSize(bool maximized, int cx, int cy);
+	LRESULT OnNcHitTest(CPoint pt);
 	void OnNcMouseMove(UINT nHitTest, CPoint point);
 	void OnNcMouseLeave();
 	void OnNcLButtonDblClk(UINT nHitTest, CPoint point);
@@ -27,7 +28,6 @@ public:
 	void OnNcLButtonUp(UINT nHitTest, CPoint point);
 	void OnNcRButtonDown(UINT nHitTest, CPoint point);
 	void OnNcRButtonUp(UINT nHitTest, CPoint point);
-	int HitTest(CPoint pt);
 
 private:
 	float PointToPixelF(float point) const { return point * m_dpi / 72.f; }

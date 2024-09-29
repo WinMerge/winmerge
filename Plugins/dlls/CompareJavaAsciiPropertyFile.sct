@@ -1,0 +1,190 @@
+<scriptlet>
+<implements type="Automation" id="dispatcher">
+	<property name="PluginEvent">
+		<get/>
+	</property>
+	<property name="PluginDescription">
+		<get/>
+	</property>
+	<property name="PluginFileFilters">
+		<get/>
+	</property>
+	<property name="PluginIsAutomatic">
+		<get/>
+	</property>
+	<method name="UnpackFile"/>
+	<method name="PackFile"/>
+</implements>
+
+<script language="JScript">
+/**
+    This is a plugin for WinMerge.
+    It will display the text content of ASCII propery file for Java.
+    Copyright (C) 2024 libraplanet
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*/
+
+/**
+ * define.
+ * https://learn.microsoft.com/ja-jp/office/vba/language/reference/user-interface-help/opentextfile-method
+ */
+var IOMode = {
+	ForReading:   1,
+	ForWriting:   2,
+	ForAppending: 8
+};
+var Format = {
+	TristateUseDefault: -2, // System
+	TristateTrue:       -1, // UNICODE
+	TristateFalse:      -0  // ASCII
+};
+
+/** general. */
+var fso = new ActiveXObject('Scripting.FileSystemObject');
+var wsh = new ActiveXObject('WScript.Shell');
+
+
+/**
+ * ReaddAllTextFile.
+ * @param filePath
+ * @param format
+ * @return text
+ */
+function readTextFile(filePath, format) {
+	var stream = null;
+	try {
+		stream = fso.OpenTextFile(filePath, IOMode.ForReading, false, format);
+		return stream.ReadAll();
+	} finally {
+		if(stream) {
+			stream.Close();
+		}
+	}
+}
+
+/**
+ * writeTextFile
+ * @param filePath
+ * @param text
+ * @param format
+ */
+function writeTextFile(filePath, text, format) {
+	var stream = null;
+	try {
+		stream = fso.OpenTextFile(filePath, IOMode.ForWriting, true, format);
+		stream.Write(text);
+	} finally {
+		if(stream) {
+			stream.Close();
+		}
+	}
+}
+
+/**
+ * get_PluginEvent
+ * @return description.
+ */
+function get_PluginEvent() {
+	return 'FILE_PACK_UNPACK';
+}
+
+/**
+ * get_PluginDescription
+ * @return description.
+ */
+function get_PluginDescription() {
+	return 'diff property file.';
+}
+
+/**
+ * get_PluginFileFilters
+ * @return file name patern filter.
+ */
+function get_PluginFileFilters() {
+	return '\.properties$;\.property$';
+}
+
+/**
+ * get_PluginIsAutomatic
+ * @return is automatic.
+ */
+function get_PluginIsAutomatic() {
+	return true;
+}
+
+/**
+ * UnpackFile
+ * @param fileSrc source file path.
+ * @param fileDst target file path for display.
+ * @param pbChanged
+ * @param pSubcode
+ * @return
+ */
+function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+	var result = new ActiveXObject('Scripting.Dictionary');
+	var srcText = readTextFile(fileSrc, Format.TristateFalse);
+
+	var convertedText = srcText.replace(/\\u([0-9a-fA-F]{4})/g, function(_, p1) {
+		return String.fromCharCode(parseInt(p1, 16));
+	});
+
+	writeTextFile(fileDst, convertedText, Format.TristateTrue);
+
+	result.Add(0, true);
+	// pbChanged
+	result.Add(1, true);
+	// pSubcode
+	result.Add(2, 0);
+	return result.Items();
+}
+
+/**
+ * PackFile
+ * @param fileSrc edited file path file for replace.
+ * @param fileDst not use.
+ * @param pbChanged
+ * @param pSubcode
+ * @return
+ */
+function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+	var result = new ActiveXObject('Scripting.Dictionary');
+
+	var srcText = readTextFile(fileSrc, Format.TristateTrue);
+	var convertedText = '';
+
+	for(var i = 0; i < srcText.length; i++) {
+		var c = srcText.charAt(i);
+		var cp = srcText.charCodeAt(i);
+		if(cp <= 0x007F) {
+			// ASCII
+			convertedText += c;
+		} else {
+			// Unicode Escape Sequence.
+			convertedText += '\\u' + ('0000' + cp.toString(16)).slice(-4);
+		}
+	}
+
+	writeTextFile(fileSrc, convertedText, Format.TristateFalse);
+
+	result.Add(0, true);
+	// pbChanged
+	result.Add(1, true);
+	// pSubcode
+	result.Add(2, 0);
+	return result.Items();
+}
+</script>
+</scriptlet>

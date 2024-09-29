@@ -61,13 +61,13 @@ msgstr ""
 msgid "Copy Selected Line(s) from Left"
 msgstr ""
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 #, fuzzy, c-format
@@ -1563,6 +1563,10 @@ msgstr ""
 msgid "Language:"
 msgstr ""
 
+#, fuzzy, c-format
+msgid "Defaults"
+msgstr "Defaults"
+
 #, c-format
 msgid "Find"
 msgstr "සොයන්න"
@@ -1797,10 +1801,6 @@ msgstr "C&ustom folder:"
 #, c-format
 msgid "Br&owse..."
 msgstr "සැරි සරන්න..."
-
-#, fuzzy, c-format
-msgid "Defaults"
-msgstr "Defaults"
 
 #, fuzzy, c-format
 msgid "Patch Generator"

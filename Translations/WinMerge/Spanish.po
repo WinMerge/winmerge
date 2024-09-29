@@ -65,13 +65,13 @@ msgstr "Copiar línea(s) seleccionada(s) en el izquierdo"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiar línea(s) seleccionada(s) desde el izquierdo"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1308,6 +1308,9 @@ msgstr "Recarga automática de archivos modificados:"
 msgid "Language:"
 msgstr "Idioma:"
 
+msgid "Defaults"
+msgstr "Predeterminados"
+
 msgid "Find"
 msgstr "Buscar"
 
@@ -1493,9 +1496,6 @@ msgstr "Carpeta &personalizada:"
 
 msgid "Br&owse..."
 msgstr "&Examinar..."
-
-msgid "Defaults"
-msgstr "Predeterminados"
 
 msgid "Patch Generator"
 msgstr "Generar parche"

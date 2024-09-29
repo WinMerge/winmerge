@@ -102,9 +102,9 @@ BEGIN
         MENUITEM "Copy Selected Line(s) from Middle", ID_COPY_LINES_FROM_MIDDLE_R
         MENUITEM "Copy Selected Line(s) from Left", ID_COPY_LINES_FROM_LEFT_R
         MENUITEM SEPARATOR
-        MENUITEM "&Copy Selected Diff (Left) to Clipboard\tCtrl+1", ID_SEL_DIFF_COPY_L
-        MENUITEM "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_M
-        MENUITEM "&Copy Selected Diff (Right) to Clipboard\tCtrl+3", ID_SEL_DIFF_COPY_R
+        MENUITEM "Copy Selected Diff (Left) to Clipboard\tCtrl+1", ID_SEL_DIFF_COPY_L
+        MENUITEM "Copy Selected Diff (Middle) to Clipboard\tCtrl+2", ID_SEL_DIFF_COPY_M
+        MENUITEM "Copy Selected Diff (Right) to Clipboard\tCtrl+3", ID_SEL_DIFF_COPY_R
         MENUITEM SEPARATOR
         MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Add this change to Substitution &Filters", ID_ADD_TO_IGNORED_SUBSTITUTIONS
@@ -1498,6 +1498,7 @@ BEGIN
     COMBOBOX        IDC_AUTO_RELOAD_MODIFIED_FILES,7,178,270,10,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Language:",IDC_STATIC,7,193,270,10
     COMBOBOX        IDC_LANGUAGE_LIST,7,204,270,41,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Defaults", IDC_COMPARE_DEFAULTS, 191, 228, 88, 14
 END
 
 IDD_EDIT_FIND DIALOGEX 30, 73, 324, 96
@@ -1978,6 +1979,7 @@ BEGIN
     CONTROL         "Detect codepage for text files with mlang.dll\nNeed to restart session.",IDC_DETECT_CODEPAGE2,
                     "Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | WS_TABSTOP,13,139,269,34
     COMBOBOX        IDC_DETECT_AUTODETECTTYPE,23,175,247,130,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Defaults", IDC_COMPARE_DEFAULTS, 191, 228, 88, 14
 END
 
 IDD_PREFERENCES DIALOGEX 0, 0, 414, 280
@@ -2913,7 +2915,8 @@ BEGIN
     0, 0, 100, 0,
     0, 0, 100, 0,
     0, 0, 100, 0,
-    0, 0, 100, 0
+    0, 0, 100, 0,
+    100, 0, 0, 0
 END
 
 IDD_PROPPAGE_COLOR_SCHEMES AFX_DIALOG_LAYOUT
@@ -4265,6 +4268,7 @@ STRINGTABLE
 BEGIN
     IDS_COLORSCHEME_PLAIN   "No Highlighting"
     IDS_COLORSCHEME_ABAP    "ABAP"
+    IDS_COLORSCHEME_ADA     "Ada"
     IDS_COLORSCHEME_ASP     "ASP"
     IDS_COLORSCHEME_AUTOIT  "AutoIt"
     IDS_COLORSCHEME_BASIC   "Basic"

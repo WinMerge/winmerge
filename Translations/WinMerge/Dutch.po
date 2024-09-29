@@ -62,13 +62,13 @@ msgstr "Geselecteerde regel(s) naar links kopiëren"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Geselecteerde regel(s) van links kopiëren"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1305,6 +1305,9 @@ msgstr "Gewijzigde bestanden automatisch opnieuw laden:"
 msgid "Language:"
 msgstr "Language:"
 
+msgid "Defaults"
+msgstr "Standaardwaarden"
+
 msgid "Find"
 msgstr "Zoeken"
 
@@ -1490,9 +1493,6 @@ msgstr "Aangepaste map:"
 
 msgid "Br&owse..."
 msgstr "Bladeren..."
-
-msgid "Defaults"
-msgstr "Standaardwaarden"
 
 msgid "Patch Generator"
 msgstr "Patch-generator"

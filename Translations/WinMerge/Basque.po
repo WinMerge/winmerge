@@ -64,13 +64,13 @@ msgstr ""
 msgid "Copy Selected Line(s) from Left"
 msgstr ""
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 #, c-format
@@ -1567,6 +1567,10 @@ msgid "Language:"
 msgstr ""
 
 #, c-format
+msgid "Defaults"
+msgstr "Berezkoak"
+
+#, c-format
 msgid "Find"
 msgstr "Bilatu"
 
@@ -1800,10 +1804,6 @@ msgstr "&Egile agiritegia:"
 #, c-format
 msgid "Br&owse..."
 msgstr "Bilat&u"
-
-#, c-format
-msgid "Defaults"
-msgstr "Berezkoak"
 
 #, c-format
 msgid "Patch Generator"

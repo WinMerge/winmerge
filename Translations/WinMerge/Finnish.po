@@ -61,13 +61,13 @@ msgstr "Kopioi valittu(t) rivi(t) vasemmalle"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopioi valittu(t) rivi(t) vasemmalta"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1305,6 +1305,9 @@ msgstr ""
 msgid "Language:"
 msgstr "Kieli:"
 
+msgid "Defaults"
+msgstr "Oletukset"
+
 msgid "Find"
 msgstr "Etsi"
 
@@ -1494,9 +1497,6 @@ msgstr "Mukautettu kansio:"
 
 msgid "Br&owse..."
 msgstr "Selaa..."
-
-msgid "Defaults"
-msgstr "Oletukset"
 
 msgid "Patch Generator"
 msgstr "Korjausgeneraattori"

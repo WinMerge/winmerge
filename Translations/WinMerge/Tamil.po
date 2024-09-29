@@ -60,13 +60,13 @@ msgstr "தேர்ந்தெடுக்கப்பட்ட வரி(க�
 msgid "Copy Selected Line(s) from Left"
 msgstr "இடமிருந்து தேர்ந்தெடுக்கப்பட்ட வரி(களை) நகலெடுக்கவும்"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1303,6 +1303,9 @@ msgstr ""
 msgid "Language:"
 msgstr "மொழி:"
 
+msgid "Defaults"
+msgstr "இயல்புநிலைகள்"
+
 msgid "Find"
 msgstr "கண்டுபிடி"
 
@@ -1488,9 +1491,6 @@ msgstr "C&ustom கோப்புறை:"
 
 msgid "Br&owse..."
 msgstr "உலாவும்..."
-
-msgid "Defaults"
-msgstr "இயல்புநிலைகள்"
 
 msgid "Patch Generator"
 msgstr "பேட்ச் ஜெனரேட்டர்"

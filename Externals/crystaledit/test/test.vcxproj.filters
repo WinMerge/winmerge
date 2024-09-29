@@ -59,6 +59,9 @@
     <ClCompile Include="batchTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\editlib\parsers\ada.cpp">
+      <Filter>Source Files\editlib\parsers</Filter>
+    </ClCompile>
     <ClCompile Include="..\editlib\parsers\asp.cpp">
       <Filter>Source Files\editlib\parsers</Filter>
     </ClCompile>

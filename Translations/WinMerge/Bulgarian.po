@@ -59,13 +59,13 @@ msgstr "Копиране избраните редове вляво"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Копиране избраните редове от ляво"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1302,6 +1302,9 @@ msgstr "Автоматично &презареждане на променени
 msgid "Language:"
 msgstr "Език:"
 
+msgid "Defaults"
+msgstr "По подразбиране"
+
 msgid "Find"
 msgstr "Търсене"
 
@@ -1487,9 +1490,6 @@ msgstr "Друга &папка:"
 
 msgid "Br&owse..."
 msgstr "&Разглеждане…"
-
-msgid "Defaults"
-msgstr "По подразбиране"
 
 msgid "Patch Generator"
 msgstr "Създаване на кръпки"

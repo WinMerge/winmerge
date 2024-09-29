@@ -66,13 +66,13 @@ msgstr "复制选中行到左侧"
 msgid "Copy Selected Line(s) from Left"
 msgstr "从左侧复制选中行"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "复制选中差异(左)到剪贴板\tCtrl+1"
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "复制选中差异(中)到剪贴板\tCtrl+2"
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr "复制选中差异(右)到剪贴板\tCtrl+3"
 
 msgid "Select Line &Difference\tF4"
@@ -1309,6 +1309,9 @@ msgstr "自动重新加载修改过的文件(&R)："
 msgid "Language:"
 msgstr "语言："
 
+msgid "Defaults"
+msgstr "默认"
+
 msgid "Find"
 msgstr "查找"
 
@@ -1496,9 +1499,6 @@ msgstr "自定义文件夹(&U)："
 
 msgid "Br&owse..."
 msgstr "浏览(&O)..."
-
-msgid "Defaults"
-msgstr "默认"
 
 msgid "Patch Generator"
 msgstr "补丁生成器"

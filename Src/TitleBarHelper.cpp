@@ -31,17 +31,16 @@ void CTitleBarHelper::DrawIcon(CWnd* pWnd, CDC& dc)
 	HICON hIcon = (HICON)pWnd->SendMessage(WM_GETICON, ICON_SMALL2, 0);
 	if (hIcon == nullptr)
 		hIcon = (HICON)GetClassLongPtr(pWnd->m_hWnd, GCLP_HICONSM);
-	if (hIcon != nullptr)
-	{
-		const int topMargin = (m_maximized ? -m_rc.top : 0);
-		const int height = m_size.cy - topMargin;
-		const int cx = PointToPixel(12.f);
-		const int cy = PointToPixel(12.f);
-		const int x = (PointToPixel(m_leftMargin) - cx) / 2;
-		const int y = (height - cy) / 2 + topMargin;
-		DrawIconEx(dc.m_hDC, x, y, hIcon, 
-			cx, cy, 0, nullptr, DI_NORMAL);
-	}
+	if (hIcon == nullptr)
+		return;
+	const int topMargin = (m_maximized ? -m_rc.top : 0);
+	const int height = m_size.cy - topMargin;
+	const int cx = PointToPixel(12.f);
+	const int cy = PointToPixel(12.f);
+	const int x = (PointToPixel(m_leftMargin) - cx) / 2;
+	const int y = (height - cy) / 2 + topMargin;
+	DrawIconEx(dc.m_hDC, x, y, hIcon, 
+		cx, cy, 0, nullptr, DI_NORMAL);
 }
 
 static void DrawTopRightEdgeWithCurve(Gdiplus::Graphics& graphics, Gdiplus::Pen& pen, Gdiplus::Rect rect, int cornerRadius)
@@ -141,6 +140,41 @@ void CTitleBarHelper::OnSize(bool maximized, int cx, int cy)
 	m_pWnd->GetWindowRect(&m_rc);
 }
 
+LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
+{
+	if (!m_pWnd)
+		return HTNOWHERE;
+	CClientDC dc(m_pWnd);
+	const int leftMargin = PointToPixel(m_leftMargin);
+	const int rightMargin = PointToPixel(m_rightMargin);
+	const int borderWidth = PointToPixel(6);
+	CRect rc;
+	m_pWnd->GetWindowRect(&rc);
+	if (pt.y < rc.top + borderWidth)
+	{
+		if (pt.x < rc.left + borderWidth)
+			return HTTOPLEFT;
+		else if (rc.right - borderWidth <= pt.x)
+			return HTTOPRIGHT;
+		return HTTOP;
+	}
+	if (pt.x < rc.left + borderWidth)
+		return HTLEFT;
+	if (rc.right - borderWidth <= pt.x)
+		return HTRIGHT;
+	if (pt.x < rc.left + leftMargin)
+		return HTSYSMENU;
+	for (int i = 0; i < 3; i++)
+	{
+		static const int htbuttons[]{ HTMINBUTTON, HTMAXBUTTON, HTCLOSE };
+		CRect rcButton = GetButtonRect(i);
+		m_pWnd->ClientToScreen(&rcButton);
+		if (PtInRect(&rcButton, pt))
+			return htbuttons[i];
+	}
+	return HTCAPTION;
+}
+
 void CTitleBarHelper::OnNcMouseMove(UINT nHitTest, CPoint point)
 {
 	if (!m_bMouseTracking)
@@ -149,15 +183,13 @@ void CTitleBarHelper::OnNcMouseMove(UINT nHitTest, CPoint point)
 		TrackMouseEvent(&tme);
 		m_bMouseTracking = true;
 	}
-	int i = HitTest(point);
-	if (i == HTMINBUTTON)
+	int i = -1;
+	if (nHitTest == HTMINBUTTON)
 		i = 0;
-	else if (i == HTMAXBUTTON)
+	else if (nHitTest == HTMAXBUTTON)
 		i = 1;
-	else if (i == HTCLOSE)
+	else if (nHitTest == HTCLOSE)
 		i = 2;
-	else
-		i = -1;
 	for (int button : {i, m_nTrackingButton})
 	{
 		if (button != -1)
@@ -207,11 +239,11 @@ void CTitleBarHelper::OnNcLButtonUp(UINT nHitTest, CPoint point)
 	else if (m_nHitTest != HTNOWHERE && m_nHitTest == nHitTest)
 	{
 		if (nHitTest == HTMINBUTTON)
-			AfxGetMainWnd()->ShowWindow(SW_MINIMIZE);
+			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 		else if (nHitTest == HTMAXBUTTON)
-			AfxGetMainWnd()->ShowWindow(m_maximized ? SW_RESTORE : SW_MAXIMIZE);
+			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, m_maximized ? SC_RESTORE : SC_MAXIMIZE, 0);
 		else if (nHitTest == HTCLOSE)
-			AfxGetMainWnd()->PostMessage(WM_CLOSE);
+			AfxGetMainWnd()->SendMessage(WM_SYSCOMMAND, SC_CLOSE, 0);
 	}
 	m_nHitTest = HTNOWHERE;
 }
@@ -228,44 +260,13 @@ void CTitleBarHelper::OnNcRButtonUp(UINT nHitTest, CPoint point)
 void CTitleBarHelper::ShowSysMenu(CPoint point)
 {
 	CMenu* pSysMenu = AfxGetMainWnd()->GetSystemMenu(FALSE);
+	bool maximized = AfxGetMainWnd()->IsZoomed();
+	pSysMenu->EnableMenuItem(SC_MAXIMIZE,(!maximized ? MF_ENABLED : MF_DISABLED) | MF_BYCOMMAND);
+	pSysMenu->EnableMenuItem(SC_SIZE,(!maximized ? MF_ENABLED : MF_DISABLED) | MF_BYCOMMAND);
+	pSysMenu->EnableMenuItem(SC_RESTORE, (maximized ? MF_ENABLED : MF_DISABLED) | MF_BYCOMMAND);
 	BOOL cmd = pSysMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_TOPALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd(), nullptr);
 	if (cmd)
 		AfxGetMainWnd()->PostMessage(WM_SYSCOMMAND, cmd, 0);
-}
-
-int CTitleBarHelper::HitTest(CPoint pt)
-{
-	if (!m_pWnd)
-		return HTNOWHERE;
-	CClientDC dc(m_pWnd);
-	const int leftMargin = PointToPixel(m_leftMargin);
-	const int rightMargin = PointToPixel(m_rightMargin);
-	const int borderWidth = PointToPixel(6);
-	CRect rc;
-	m_pWnd->GetWindowRect(&rc);
-	if (pt.y < rc.top + borderWidth)
-	{
-		if (pt.x < rc.left + borderWidth)
-			return HTTOPLEFT;
-		else if (rc.right - borderWidth <= pt.x)
-			return HTTOPRIGHT;
-		return HTTOP;
-	}
-	if (pt.x < rc.left + borderWidth)
-		return HTLEFT;
-	if (rc.right - borderWidth <= pt.x)
-		return HTRIGHT;
-	if (pt.x < rc.left + leftMargin)
-		return HTSYSMENU;
-	for (int i = 0; i < 3; i++)
-	{
-		static const int htbuttons[]{ HTMINBUTTON, HTMAXBUTTON, HTCLOSE };
-		CRect rcButton = GetButtonRect(i);
-		m_pWnd->ClientToScreen(&rcButton);
-		if (PtInRect(&rcButton, pt))
-			return htbuttons[i];
-	}
-	return HTCAPTION;
 }
 
 COLORREF CTitleBarHelper::GetIntermediateColor(COLORREF a, COLORREF b, float ratio)

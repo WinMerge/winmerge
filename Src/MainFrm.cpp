@@ -224,10 +224,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
-	ON_WM_MOUSEMOVE()
-	ON_WM_MOUSELEAVE()
-	ON_WM_NCMOUSEMOVE()
-	ON_WM_NCMOUSELEAVE()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -2273,7 +2269,7 @@ void CMainFrame::OnViewTabBar()
 }
 
 /**
- * @brief Updates "Show Tabbar" menuitem.
+ * @brief Updates "On Title Bar" menuitem.
  */
 void CMainFrame::OnUpdateViewTabBarOnTitleBar(CCmdUI* pCmdUI) 
 {
@@ -2551,18 +2547,6 @@ void CMainFrame::OnSize(UINT nType, int cx, int cy)
 	__super::OnSize(nType, cx, cy);
 }
 
-void CMainFrame::OnMouseMove(UINT nFlags, CPoint point)
-{
-}
-
-void CMainFrame::OnMouseLeave()
-{
-}
-
-void CMainFrame::OnNcMouseMove(UINT nHitTest, CPoint point)
-{
-}
-
 BOOL CMainFrame::CreateToolbar()
 {
 	if (!m_wndMenuBar.Create(this))
@@ -2583,8 +2567,6 @@ BOOL CMainFrame::CreateToolbar()
 	}
 
 	// Remove this if you don't want tool tips or a resizable toolbar
-	m_wndMenuBar.SetBarStyle(m_wndMenuBar.GetBarStyle() |
-		CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 	m_wndToolBar.GetToolBarCtrl().SetExtendedStyle(TBSTYLE_EX_DRAWDDARROWS);

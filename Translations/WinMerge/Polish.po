@@ -63,13 +63,13 @@ msgstr "Kopiuj zaznaczone wiersze do lewej"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiuj zaznaczone wiersze z lewej"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1306,6 +1306,9 @@ msgstr "Automatycznie przeładuj zmodyfikowane pliki:"
 msgid "Language:"
 msgstr "Język:"
 
+msgid "Defaults"
+msgstr "Domyślne"
+
 msgid "Find"
 msgstr "Znajdź"
 
@@ -1491,9 +1494,6 @@ msgstr "Folder niestandardowy:"
 
 msgid "Br&owse..."
 msgstr "Przeglądaj..."
-
-msgid "Defaults"
-msgstr "Domyślne"
 
 msgid "Patch Generator"
 msgstr "Generuj łatkę"

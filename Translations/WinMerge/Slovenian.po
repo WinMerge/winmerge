@@ -62,13 +62,13 @@ msgstr "Kopiraj izbrane vrstice na levo"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Kopiraj izbrane vrstice z leve"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 msgid "Select Line &Difference\tF4"
@@ -1305,6 +1305,9 @@ msgstr "Samodejno &znova naloži spremenjene datoteke:"
 msgid "Language:"
 msgstr "Jezik:"
 
+msgid "Defaults"
+msgstr "Privzeto"
+
 msgid "Find"
 msgstr "Najdi"
 
@@ -1490,9 +1493,6 @@ msgstr "&Mapa po meri:"
 
 msgid "Br&owse..."
 msgstr "Prebr&skaj..."
-
-msgid "Defaults"
-msgstr "Privzeto"
 
 msgid "Patch Generator"
 msgstr "Ustvarjalec popravkov"

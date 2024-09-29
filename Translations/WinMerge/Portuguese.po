@@ -63,13 +63,13 @@ msgstr "Copiar linha(s) selecionada(s) para a esquerda"
 msgid "Copy Selected Line(s) from Left"
 msgstr "Copiar linha(s) selecionada(s) da esquerda"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "&Copiar diferença selecionada (esquerda) para a área de transferência\tCtrl+1"
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "&Copiar diferença selecionada (meio) para a área de transferência\tCtrl+2"
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr "&Copiar diferença selecionada (direita) para a área de transferência\tCtrl+3"
 
 msgid "Select Line &Difference\tF4"
@@ -1306,6 +1306,9 @@ msgstr "&Recarregar automaticamente ficheiros modificados:"
 msgid "Language:"
 msgstr "Idioma:"
 
+msgid "Defaults"
+msgstr "Predefinições"
+
 msgid "Find"
 msgstr "Localizar"
 
@@ -1495,9 +1498,6 @@ msgstr "Pasta p&ersonalizada:"
 
 msgid "Br&owse..."
 msgstr "L&ocalizar..."
-
-msgid "Defaults"
-msgstr "Predefinições"
 
 msgid "Patch Generator"
 msgstr "Gerador de correção"

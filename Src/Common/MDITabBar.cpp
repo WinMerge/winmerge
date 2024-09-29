@@ -660,7 +660,9 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 
 LRESULT CMDITabBar::OnNcHitTest(CPoint point)
 {
-	return m_titleBar.HitTest(point);
+	if (!m_bOnTitleBar)
+		return __super::OnNcHitTest(point);
+	return m_titleBar.OnNcHitTest(point);
 }
 
 void CMDITabBar::OnNcMouseMove(UINT nHitTest, CPoint point)
@@ -701,7 +703,6 @@ void CMDITabBar::OnNcRButtonUp(UINT nHitTest, CPoint point)
 void CMDITabBar::OnSize(UINT nType, int cx, int cy)
 {
 	__super::OnSize(nType, cx, cy);
-	Invalidate();
 	m_titleBar.OnSize(m_bMaximized, cx, cy);
 	if (m_tabCtrl.m_hWnd)
 	{
@@ -728,8 +729,6 @@ void CMDITabBar::OnPaint()
 	if (!m_bOnTitleBar)
 		return __super::OnPaint();
 	CPaintDC dc(this);
-	CRect rcClient;
-	GetClientRect(&rcClient);
 	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
 	m_titleBar.DrawButtons(dc);
 }

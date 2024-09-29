@@ -63,13 +63,13 @@ msgstr "將所選行複製到左側"
 msgid "Copy Selected Line(s) from Left"
 msgstr "從左側複製所選行"
 
-msgid "&Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
-msgid "&Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
+msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
-msgid "&Copy Selected Diff (Right) to Clipboard\tCtrl+3"
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
 msgstr ""
 
 #, c-format
@@ -1574,6 +1574,10 @@ msgid "Language:"
 msgstr "語言："
 
 #, c-format
+msgid "Defaults"
+msgstr "預設值"
+
+#, c-format
 msgid "Find"
 msgstr "尋找"
 
@@ -1807,10 +1811,6 @@ msgstr "自訂資料夾 (&U)："
 #, c-format
 msgid "Br&owse..."
 msgstr "瀏覽 (&O)..."
-
-#, c-format
-msgid "Defaults"
-msgstr "預設值"
 
 #, c-format
 msgid "Patch Generator"
