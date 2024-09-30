@@ -2150,7 +2150,7 @@ msgid "&Enable image compare in folder compare"
 msgstr "Сравнивать изображения в папках сравнения"
 
 msgid "OCR result:"
-msgstr "Результат OCR"
+msgstr "Результат OCR:"
 
 msgid "Webpage"
 msgstr "Веб-страница"
@@ -3912,7 +3912,7 @@ msgid "Comparing..."
 msgstr "Сравнение..."
 
 msgid "Zoom:"
-msgstr "Масштаб"
+msgstr "Масштаб:"
 
 msgid "Diff hunk"
 msgstr ""
@@ -4111,7 +4111,7 @@ msgstr "Заменить текст.\r\n• : Replace [-i] [-e] FIND REPLACE\r\n
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr "Применить фильтрацию. \r\n• : ExecFilterCommand COMMAND\r\n COMMAND - команда для выполнения. %1 в команде заменяется именем файла"
+msgstr "Применить фильтрацию. \r\n• : ExecFilterCommand COMMAND\r\n COMMAND - команда для выполнения. %1 в команде заменяется именем файла."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
 msgstr "Токенизировать выбранное. \r\n• : Tokenize PATTERNS\r\n PATTERNS - регулярное выражение токенизации. (например. [^\\w]+)"
@@ -4141,7 +4141,7 @@ msgid "Graphviz Previewer. \r\nArguments: Command line options passed to the dot
 msgstr "Предпросмотр Graphviz. \r\nАргументы: Параметры командной строки, передаваемые команде dot."
 
 msgid "Markdown Previewer. \r\nArguments: Command line options passed to the md2html command."
-msgstr "Предпросмотр Markdown. \r\nАргументы: Параметры командной строки, передаваемые команде md2html"
+msgstr "Предпросмотр Markdown. \r\nАргументы: Параметры командной строки, передаваемые команде md2html."
 
 msgid "PlantUML Previewer. \r\nArguments: Command line options passed to the plantuml.jar command."
 msgstr "Предпросмотр PlantUML. \r\nАргументы: Параметры командной строки, передаваемые команде plantuml.jar."
@@ -4321,13 +4321,13 @@ msgid "Find what"
 msgstr "Найди что"
 
 msgid "Replace with"
-msgstr "Заменить на:"
+msgstr "Заменить на"
 
 msgid "Settings"
 msgstr "Параметры"
 
 msgid "Column Ranges To Ignore:\ne.g.)  3,10-20,32-33\n"
-msgstr "Игнорируемые диапазоны столбцов:\nнапример, 3, 32-33"
+msgstr "Игнорируемые диапазоны столбцов:\nнапример, 3, 32-33\n"
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"

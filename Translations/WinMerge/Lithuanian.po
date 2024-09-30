@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-09-18 01:50+0000\n"
-"PO-Revision-Date: 2024-09-19 07:40+0200\n"
+"POT-Creation-Date: 2024-09-30 08:07+0000\n"
+"PO-Revision-Date: 2024-09-30 09:30+0200\n"
 "Last-Translator: Tichij <tichij@mail.com>\n"
 "Language-Team: Lithuanian <winmerge-translate@lists.sourceforge.net>\n"
 "Language: lt\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Lithuanian\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ../../Src/\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5.1\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -269,16 +269,16 @@ msgid "&Enabled"
 msgstr "Į&jungta"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "&Slinkti"
 
 msgid "&Click"
-msgstr ""
+msgstr "&Paspausti"
 
 msgid "&Input"
-msgstr ""
+msgstr "Įvest&i"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "&Eiti atgal/Pirmyn"
 
 msgid "Clear &Browsing Data"
 msgstr "Išvalyti &Naršymo duomenis"
@@ -359,10 +359,10 @@ msgid "Ta&b Bar"
 msgstr "&Kortelių juosta"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Rodyti kortelių juostą"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "Ant pavadinim&o juostos"
 
 msgid "&Toolbar"
 msgstr "Mygtukų juos&ta"
@@ -4105,11 +4105,11 @@ msgid "Reverse lines"
 msgstr "Sukeisti eilutes"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
-msgstr ""
+msgstr "Pakeisti tekstą kitu tekstu.\r\nNaudojimas: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
-msgstr ""
+msgstr "Taikyti filtro komandą. \r\nNaudojimas: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
 
 msgid "Tokenize selection. \r\nUsage: Tokenize PATTERNS\r\n  PATTERNS - regular expression for tokenizing. (e.g. [^\\w]+)"
 msgstr ""
@@ -4220,7 +4220,7 @@ msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr "Teksto keitiklis, naudojant „OpenAI“ API.\r\nNaudojimas: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Išeiti ir rodyti praleistus „Java“ savybių failus."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct „WinMerge“ papildinio nuostatos"
