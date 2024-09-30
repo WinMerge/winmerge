@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 28.09.2024\n"
+"Project-Id-Version: WinMerge (Language) 29.09.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-09-29 09:36+0200\n"
+"PO-Revision-Date: 2024-09-30 20:40+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -4862,7 +4862,7 @@ msgstr ""
 "Uso: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Annulla l'escape e visualizza i file delle proprietà Java con escape."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opzioni plugin WinMerge CompareMSExcelFiles.sct"
