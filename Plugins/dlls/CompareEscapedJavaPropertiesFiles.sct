@@ -12,6 +12,13 @@
 	<property name="PluginIsAutomatic">
 		<get/>
 	</property>
+	<property name="PluginUnpackedFileExtension">
+		<get/>
+	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
+	<method name="PluginOnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 </implements>
@@ -49,13 +56,13 @@ var IOMode = {
 var Format = {
 	TristateUseDefault: -2, // System
 	TristateTrue:       -1, // UNICODE
-	TristateFalse:      -0  // ASCII
+	TristateFalse:       0  // ASCII
 };
 
 /** general. */
 var fso = new ActiveXObject('Scripting.FileSystemObject');
 var wsh = new ActiveXObject('WScript.Shell');
-
+var mergeApp;
 
 /**
  * ReaddAllTextFile.
@@ -68,6 +75,8 @@ function readTextFile(filePath, format) {
 	try {
 		stream = fso.OpenTextFile(filePath, IOMode.ForReading, false, format);
 		return stream.ReadAll();
+	} catch (e) {
+		mergeApp.LogError(e.message);
 	} finally {
 		if(stream) {
 			stream.Close();
@@ -86,6 +95,8 @@ function writeTextFile(filePath, text, format) {
 	try {
 		stream = fso.OpenTextFile(filePath, IOMode.ForWriting, true, format);
 		stream.Write(text);
+	} catch (e) {
+		mergeApp.LogError(e.message);
 	} finally {
 		if(stream) {
 			stream.Close();
@@ -125,6 +136,18 @@ function get_PluginIsAutomatic() {
 	return true;
 }
 
+function get_PluginUnpackedFileExtension() {
+  return ".properties";
+}
+
+function get_PluginExtendedProperties() {
+  return "ProcessType=Conversion;FileType=Java properties file;MenuCaption=Unescape Java properties";
+}
+
+function PluginOnEvent(eventType, obj) {
+  mergeApp = obj;
+}
+
 /**
  * UnpackFile
  * @param fileSrc source file path.
@@ -159,7 +182,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
  * @param pSubcode
  * @return
  */
-function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+function PackFile(fileSrc, fileDst, pbChanged, subcode) {
 	var result = new ActiveXObject('Scripting.Dictionary');
 
 	var srcText = readTextFile(fileSrc, Format.TristateTrue);
@@ -177,13 +200,11 @@ function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
 		}
 	}
 
-	writeTextFile(fileSrc, convertedText, Format.TristateFalse);
+	writeTextFile(fileDst, convertedText, Format.TristateFalse);
 
 	result.Add(0, true);
 	// pbChanged
 	result.Add(1, true);
-	// pSubcode
-	result.Add(2, 0);
 	return result.Items();
 }
 </script>

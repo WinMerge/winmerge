@@ -237,10 +237,6 @@ function EditorAddinTest() {
 
   p.PluginOnEvent(0, MergeApp);
 
-  // AIConvertText
-  p.PluginArguments = "Translate the given text into Japanese";
-  WScript.Echo(p.AIConvertText("Hello World!"));
-
   // MakeUpper
   setTestName("MakeUpper");
   assertEquals("", p.MakeUpper(""));
@@ -680,7 +676,21 @@ function CompareMSPowerPointFilesTest() {
   p.PluginOnEvent(1, MergeApp);
 }
 
+function CompareEscapedJavaPropertiesFilesTest() {
+  var p = GetObject("script: " + ScriptFolder + "\\..\\..\\Plugins\\dlls\\CompareEscapedJavaPropertiesFiles.sct");
+  printPluginInfo(p);
+  var changed = false;
+  var subcode = 0;
+  p.PluginOnEvent(0, MergeApp);
+  p.UnpackFile(ScriptFolder + "\\..\\Data\\Fileformats\\file.properties", ScriptFolder + "\\result\\file.properties.unpacked.txt", changed, subcode);
+  CollectGarbage();
+  p.PackFile(ScriptFolder + "\\result\\file.properties.unpacked.txt", ScriptFolder + "\\result\\file.properties.packed.txt", changed, subcode);
+  CollectGarbage();
+  p.PluginOnEvent(1, MergeApp);
+}
+
 // AITest();
+CompareEscapedJavaPropertiesFilesTest();
 EditorAddinTest();
 InsertDateTimeTest();
 IgnoreLeadingLineNumbersTest();
