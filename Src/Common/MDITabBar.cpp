@@ -85,6 +85,17 @@ BOOL CMyTabCtrl::PreTranslateMessage(MSG* pMsg)
 	return __super::PreTranslateMessage(pMsg);
 }
 
+static inline COLORREF getTextColor()
+{
+	return GetSysColor(COLOR_WINDOWTEXT);
+}
+
+static COLORREF getBackColor()
+{
+	const COLORREF clr = GetSysColor(COLOR_3DFACE);
+	return RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255));
+}
+
 void CMyTabCtrl::OnPaint() 
 {
 	CPaintDC dc(this);
@@ -99,7 +110,7 @@ void CMyTabCtrl::OnPaint()
 	const int nCount = GetItemCount();
 	if (nCount == 0)
 	{
-		dc.SetTextColor(GetSysColor(COLOR_WINDOWTEXT));
+		dc.SetTextColor(getTextColor());
 		TCHAR szBuf[256];
 		AfxGetMainWnd()->GetWindowText(szBuf, sizeof(szBuf) / sizeof(szBuf[0]));
 		dc.DrawText(szBuf, -1, &rcClient, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
@@ -121,7 +132,7 @@ BOOL CMyTabCtrl::OnEraseBkgnd(CDC* pDC)
 {
 	CRect rClient;
 	GetClientRect(rClient);
-	pDC->FillSolidRect(rClient, GetSysColor(COLOR_3DFACE));
+	pDC->FillSolidRect(rClient, getBackColor());
 	return TRUE;
 }
 
@@ -346,18 +357,18 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	CRect rc = lpDraw->rcItem;
 	if (lpDraw->itemState & ODS_SELECTED)
 	{
-		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetSysColor(COLOR_3DFACE), 0.5f);
+		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), getBackColor(), 0.5f);
 		if (GetSysColor(COLOR_3DFACE) == GetSysColor(COLOR_WINDOW))
 		{
 			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.top - sw * 2 + 2, r, sw,
-				GetSysColor(COLOR_HIGHLIGHT), clrShadow, GetSysColor(COLOR_3DFACE));
+				GetSysColor(COLOR_HIGHLIGHT), clrShadow, getBackColor());
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_HIGHLIGHTTEXT));
 		}
 		else
 		{
 			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
-				GetSysColor(COLOR_WINDOW), clrShadow, GetSysColor(COLOR_3DFACE));
-			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_WINDOWTEXT));
+				GetSysColor(COLOR_WINDOW), clrShadow, getBackColor());
+			SetTextColor(lpDraw->hDC, getTextColor());
 		}
 	}
 	else
@@ -720,7 +731,7 @@ BOOL CMDITabBar::OnEraseBkgnd(CDC* pDC)
 {
 	CRect rClient;
 	GetClientRect(rClient);
-	pDC->FillSolidRect(rClient, GetSysColor(COLOR_3DFACE));
+	pDC->FillSolidRect(rClient, getBackColor());
 	return TRUE;
 }
 
@@ -730,5 +741,5 @@ void CMDITabBar::OnPaint()
 		return __super::OnPaint();
 	CPaintDC dc(this);
 	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
-	m_titleBar.DrawButtons(dc);
+	m_titleBar.DrawButtons(dc, getTextColor(), getBackColor());
 }
