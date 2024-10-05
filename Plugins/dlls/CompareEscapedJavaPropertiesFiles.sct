@@ -59,13 +59,15 @@ var Format = {
 	TristateFalse:       0  // ASCII
 };
 
+var adTypeText = 2;
+
 /** general. */
 var fso = new ActiveXObject('Scripting.FileSystemObject');
 var wsh = new ActiveXObject('WScript.Shell');
 var mergeApp;
 
 /**
- * ReaddAllTextFile.
+ * readTextFile.
  * @param filePath
  * @param format
  * @return text
@@ -78,6 +80,30 @@ function readTextFile(filePath, format) {
 	} catch (e) {
 		mergeApp.LogError(e.message);
 	} finally {
+		if(stream) {
+			stream.Close();
+		}
+	}
+}
+
+/**
+ * readTextFileWithEncodingDetection.
+ * @param filePath
+ * @return text
+ */
+function readTextFileWithEncodingDetection(filePath) {
+	var stream = null;
+	try {
+		stream = new ActiveXObject("ADODB.Stream");
+		stream.Type = adTypeText;
+		stream.Charset = "_autodetect_all";
+		stream.Open();
+		stream.LoadFromFile(filePath);
+		var text = stream.ReadText();
+		stream.Close();
+		return text;
+	} catch (e) {
+		mergeApp.LogError(e.message);
 		if(stream) {
 			stream.Close();
 		}
@@ -125,7 +151,7 @@ function get_PluginDescription() {
  * @return file name patern filter.
  */
 function get_PluginFileFilters() {
-	return '\.properties$;\.property$';
+	return '\\.properties$;\\.property$';
 }
 
 /**
@@ -158,7 +184,7 @@ function PluginOnEvent(eventType, obj) {
  */
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
 	var result = new ActiveXObject('Scripting.Dictionary');
-	var srcText = readTextFile(fileSrc, Format.TristateFalse);
+	var srcText = readTextFileWithEncodingDetection(fileSrc);
 
 	var convertedText = srcText.replace(/\\u([0-9a-fA-F]{4})/g, function(_, p1) {
 		return String.fromCharCode(parseInt(p1, 16));
