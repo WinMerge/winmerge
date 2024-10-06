@@ -4403,6 +4403,9 @@ msgstr "逆コンパイル"
 msgid "URL Handling"
 msgstr "URL 処理"
 
+msgid "Decoding / Encoding"
+msgstr "デコード / エンコード"
+
 msgid "Make Uppercase"
 msgstr "大文字に変換"
 
@@ -4519,6 +4522,9 @@ msgstr "ネイティブ コード逆アセンブル"
 
 msgid "Convert Text with AI..."
 msgstr "AIテキスト変換..."
+
+msgid "Unescape Java properties files"
+msgstr "Java プロパティファイルをアンエスケープ"
 
 msgid "Make characters uppercase"
 msgstr "テキストを大文字に変換します"

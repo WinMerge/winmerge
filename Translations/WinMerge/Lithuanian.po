@@ -3963,6 +3963,9 @@ msgstr "Dekompiliavimas"
 msgid "URL Handling"
 msgstr "URL apdorojimas"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Pakeisti didžiosiomis raidėmis"
 
@@ -4079,6 +4082,9 @@ msgstr "Dekompiliuoti savajį kodą"
 
 msgid "Convert Text with AI..."
 msgstr "KOnvertuoti tekstus su AI..."
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "Konvertuoti į didžiąsias raides"

@@ -3962,6 +3962,9 @@ msgstr "Kod çözme"
 msgid "URL Handling"
 msgstr "Adres işleme"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Büyük harflere dönüştür"
 
@@ -4077,6 +4080,9 @@ msgid "Disassemble Native Code"
 msgstr "Doğal kodu çözümle"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"

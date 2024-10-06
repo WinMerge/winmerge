@@ -4346,6 +4346,9 @@ msgstr "Decompilatie"
 msgid "URL Handling"
 msgstr "URL-behandeling"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Hoofdletters maken"
 
@@ -4461,6 +4464,9 @@ msgid "Disassemble Native Code"
 msgstr "Native code ontleden"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"

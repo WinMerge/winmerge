@@ -5017,6 +5017,9 @@ msgstr "Visszafejtés"
 msgid "URL Handling"
 msgstr "URL-kezelés"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Nagybetűsítés"
 
@@ -5133,6 +5136,9 @@ msgstr "Natív kód kibontása"
 
 msgid "Convert Text with AI..."
 msgstr "Text konvertálása MI-vel..."
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "Nagybetűsítés"

@@ -4383,6 +4383,9 @@ msgstr "Purkaminen"
 msgid "URL Handling"
 msgstr "URL käsittely"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Isot kirjaimet"
 
@@ -4498,6 +4501,9 @@ msgid "Disassemble Native Code"
 msgstr "Pura natiivikoodi"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"

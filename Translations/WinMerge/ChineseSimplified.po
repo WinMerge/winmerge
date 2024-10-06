@@ -4448,6 +4448,9 @@ msgstr "反编译"
 msgid "URL Handling"
 msgstr "网址处理"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "变大写"
 
@@ -4564,6 +4567,9 @@ msgstr "反汇编本地代码"
 
 msgid "Convert Text with AI..."
 msgstr "用 AI 转换文本..."
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "变大写"

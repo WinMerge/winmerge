@@ -4352,6 +4352,9 @@ msgstr "Descompilación"
 msgid "URL Handling"
 msgstr "Manejo de URL"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Convertir a mayúsculas"
 
@@ -4467,6 +4470,9 @@ msgid "Disassemble Native Code"
 msgstr "Desensamblar Native Code"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"

@@ -4430,6 +4430,9 @@ msgstr "Dekompilering"
 msgid "URL Handling"
 msgstr "URL-hantering"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Gör till VERSALER"
 
@@ -4545,6 +4548,9 @@ msgid "Disassemble Native Code"
 msgstr "Nedmontera ursprunglig kod"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"

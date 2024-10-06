@@ -4347,6 +4347,9 @@ msgstr "தொகுப்பு"
 msgid "URL Handling"
 msgstr "URL கையாளுதல்"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "பெரிய எழுத்தை உருவாக்கு"
 
@@ -4462,6 +4465,9 @@ msgid "Disassemble Native Code"
 msgstr "நேட்டிவ் குறியீட்டை பிரிக்கவும்"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"

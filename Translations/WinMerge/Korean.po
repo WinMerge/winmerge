@@ -5122,6 +5122,9 @@ msgstr "디컴파일"
 msgid "URL Handling"
 msgstr "URL 처리"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "대문자로 변환"
 
@@ -5238,6 +5241,9 @@ msgstr "네이티브 코드 분해"
 
 msgid "Convert Text with AI..."
 msgstr "AI로 텍스트 변환..."
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "문자를 대문자로 만들기"

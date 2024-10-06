@@ -4351,6 +4351,9 @@ msgstr "Decumpilazione"
 msgid "URL Handling"
 msgstr "Ghjestione d’indirizzu web"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Mette in maiuscula"
 
@@ -4467,6 +4470,9 @@ msgstr "Disassemblà Native Code"
 
 msgid "Convert Text with AI..."
 msgstr "Cunvertisce u testu cù l’IA…"
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "Mette i caratteri in maiuscula"
