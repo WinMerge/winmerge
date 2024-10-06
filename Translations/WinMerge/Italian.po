@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 29.09.2024\n"
+"Project-Id-Version: WinMerge (Language) 06.10.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-09-30 20:40+0200\n"
+"PO-Revision-Date: 2024-10-06 21:48+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -4468,7 +4468,7 @@ msgid "URL Handling"
 msgstr "Gestione URL"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Decodifica/codifica"
 
 msgid "Make Uppercase"
 msgstr "Rendi maiuscolo"
@@ -4588,7 +4588,7 @@ msgid "Convert Text with AI..."
 msgstr "Converti testo con AI..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Elimina escape dai file proprietà Java"
 
 msgid "Make characters uppercase"
 msgstr "Rendi caratteri maiuscoli"
