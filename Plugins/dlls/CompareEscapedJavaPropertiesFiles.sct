@@ -167,7 +167,7 @@ function get_PluginUnpackedFileExtension() {
 }
 
 function get_PluginExtendedProperties() {
-  return "ProcessType=Conversion;FileType=Java properties file;MenuCaption=Unescape Java properties";
+  return "ProcessType=Decoding / Encoding;FileType=Java properties file;MenuCaption=Unescape Java properties files";
 }
 
 function PluginOnEvent(eventType, obj) {
