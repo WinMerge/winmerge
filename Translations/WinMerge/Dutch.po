@@ -1,26 +1,25 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
-#
+# 
 # Translators:
-# * Ronald Schaap
-# * Thomas De Rocker, 2023
-#
+# Thomas De Rocker, 2024
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2023-05-01 22:46+0000\n"
-"PO-Revision-Date: 2023-05-02 08:42+0200\n"
-"Last-Translator: Thomas De Rocker, 2023\n"
+"POT-Creation-Date: 2024-10-07 08:25+0000\n"
+"PO-Revision-Date: 2018-09-06 10:18+0000\n"
+"Last-Translator: Thomas De Rocker, 2024\n"
 "Language-Team: Dutch (https://app.transifex.com/rockytdr/teams/91037/nl/)\n"
-"Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-Basepath: ../../Src\n"
+"X-Poedit-Basepath: ../../Src/\n"
+"X-Poedit-Language: English\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 3.2.2\n"
 
 #. LANGUAGE, SUBLANGUAGE
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
@@ -63,16 +62,16 @@ msgid "Copy Selected Line(s) from Left"
 msgstr "Geselecteerde regel(s) van links kopiëren"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
-msgstr ""
+msgstr "Geselecteerd verschil (links) naar klembord kopiëren\tCtrl+1"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
-msgstr ""
+msgstr "Geselecteerd verschil (rechts) naar klembord kopiëren\tCtrl+2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
-msgstr ""
+msgstr "Geselecteerd verschil (midden) naar klembord kopiëren\tCtrl+2"
 
 msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+3"
-msgstr ""
+msgstr "Geselecteerd verschil (rechts) naar klembord kopiëren\tCtrl+3"
 
 msgid "Select Line &Difference\tF4"
 msgstr "Regelverschil selecteren\tF4"
@@ -230,13 +229,13 @@ msgid "&Vector Image Scaling"
 msgstr "Vectorafbeeldingsschaling"
 
 msgid "&Animation Settings"
-msgstr ""
+msgstr "Animatie-instellingen"
 
 msgid "&Blink interval"
-msgstr ""
+msgstr "Knipper-interval"
 
 msgid "&Overlay animation interval"
-msgstr ""
+msgstr "Overlay-animatie-interval"
 
 msgid "Compare Extracted &Text From Images"
 msgstr "Uitgepakte tekst van afbeeldingen vergelijken"
@@ -266,22 +265,22 @@ msgid "Fit to Window"
 msgstr "Passend op scherm"
 
 msgid "&Event Sync"
-msgstr ""
+msgstr "Gebeurtenis sync"
 
 msgid "&Enabled"
-msgstr ""
+msgstr "Ingeschakeld"
 
 msgid "&Scroll"
-msgstr ""
+msgstr "Scrollen"
 
 msgid "&Click"
-msgstr ""
+msgstr "Klikken"
 
 msgid "&Input"
-msgstr ""
+msgstr "Invoer"
 
 msgid "&GoBack/Forward"
-msgstr ""
+msgstr "Teruggaan/verdergaan"
 
 msgid "Clear &Browsing Data"
 msgstr "Bladergegevens wissen"
@@ -362,10 +361,10 @@ msgid "Ta&b Bar"
 msgstr "Tab-balk"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "Tabbalk weergeven"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "Op titelbalk"
 
 msgid "&Toolbar"
 msgstr "Werkbalk"
@@ -410,7 +409,7 @@ msgid "&Automatic Unpacking"
 msgstr "Automatisch uitpakken"
 
 msgid "&Reload plugins"
-msgstr "Plug-ins opnieuw laden"
+msgstr "Plugins opnieuw laden"
 
 msgid "&Window"
 msgstr "Venster"
@@ -521,16 +520,16 @@ msgid "Tree &Mode"
 msgstr "Boom-modus"
 
 msgid "E&xpand Subfolders"
-msgstr ""
+msgstr "Submappen uitklappen"
 
 msgid "&All Subfolders"
-msgstr ""
+msgstr "Alle submappen"
 
 msgid "&Different Subfolders"
-msgstr ""
+msgstr "Verschillende submappen"
 
 msgid "&Identical Subfolders"
-msgstr ""
+msgstr "Identieke submappen"
 
 msgid "&Collapse All Subfolders"
 msgstr "Alle submappen inklappen"
@@ -869,10 +868,10 @@ msgid "&Transform with editor script..."
 msgstr "Transformeren met editor-script..."
 
 msgid "Scripts for &copying"
-msgstr ""
+msgstr "Scripts voor kopiëren"
 
 msgid "Select &editor script..."
-msgstr ""
+msgstr "Editor-script selecteren..."
 
 msgid "Sp&lit"
 msgstr "Splitsen"
@@ -1021,10 +1020,10 @@ msgid "Right Shell menu"
 msgstr "Rechter shellmenu"
 
 msgid "Both Shell menu"
-msgstr ""
+msgstr "Beide shellmenu's"
 
 msgid "All Shell menu"
-msgstr ""
+msgstr "Alle shellmenu's"
 
 msgid "Copy"
 msgstr "Kopiëren"
@@ -1123,79 +1122,79 @@ msgid "&Load Project..."
 msgstr "Project laden..."
 
 msgid "${*} - All arguments"
-msgstr ""
+msgstr "${*} - Alle argumenten"
 
 msgid "${1} - The first argument"
-msgstr ""
+msgstr "${1} - Argument 1"
 
 msgid "${2} - The second argument"
-msgstr ""
+msgstr "${2} - Argument 2"
 
 msgid "${3} - The third argument"
-msgstr ""
+msgstr "${3} - Argument 3"
 
 msgid "${4} - The fourth argument"
-msgstr ""
+msgstr "${4} - Argument 4"
 
 msgid "${5} - The fifth argument"
-msgstr ""
+msgstr "${5} - Argument 5"
 
 msgid "${6} - The sixth argument"
-msgstr ""
+msgstr "${6} - Argument 6"
 
 msgid "${7} - The seventh argument"
-msgstr ""
+msgstr "${7} - Argument 7"
 
 msgid "${8} - The eighth argument"
-msgstr ""
+msgstr "${8} - Argument 8"
 
 msgid "${9} - The ninth argument"
-msgstr ""
+msgstr "${9} - Argument 9"
 
 msgid "${SRC_FILE} - Source file"
-msgstr ""
+msgstr "${SRC_FILE} - Bronbestand"
 
 msgid "${SRC_FOLDER} - Source folder"
-msgstr ""
+msgstr "${SRC_FOLDER} - Bronmap"
 
 msgid "${SRC_URL} - Source URL"
-msgstr ""
+msgstr "${SRC_URL} - Bron-URL"
 
 msgid "${SRC_URL_PROTOCOL} - Source URL protocol"
-msgstr ""
+msgstr "${SRC_URL_PROTOCOL} - Bron-URL protocol"
 
 msgid "${SRC_URL_SUFFIX} - Source URL suffix"
-msgstr ""
+msgstr "${SRC_URL_SUFFIX} - Bron-URL suffix"
 
 msgid "${DST_FILE} - Destination file"
-msgstr ""
+msgstr "${DST_FILE} - Doelbestand"
 
 msgid "${DST_FOLDER} - Destination folder"
-msgstr ""
+msgstr "${DST_FOLDER} - Doelmap"
 
 msgid "${DST_URL} - Destination URL"
-msgstr ""
+msgstr "${DST_URL} - Doel-URL"
 
 msgid "${DST_URL_PROTOCOL} - Destination URL protocol"
-msgstr ""
+msgstr "${DST_URL_PROTOCOL} - Doel-URL protocol"
 
 msgid "${DST_URL_SUFFIX} - Destination URL suffix"
-msgstr ""
+msgstr "${DST_URL_SUFFIX} - Doel-URL suffix"
 
 msgid "${WINMERGE_HOME} - WinMerge home directory"
-msgstr ""
+msgstr "${WINMERGE_HOME} - WinMerge home-map"
 
 msgid "${SCRIPT_FILE} - Script file"
-msgstr ""
+msgstr "${SCRIPT_FILE} - Scriptbestand"
 
 msgid "Add &unpacker plugin..."
-msgstr ""
+msgstr "Uitpak-plugin toevoegen..."
 
 msgid "Add &prediffer plugin..."
-msgstr ""
+msgstr "Voorvergelijkingsplugin toevoegen..."
 
 msgid "&Duplicate plugin..."
-msgstr ""
+msgstr "Plugin dupliceren..."
 
 msgid "About WinMerge"
 msgstr "Over WinMerge"
@@ -1401,8 +1400,13 @@ msgstr "Verwijderen"
 msgid "Substitution Filters"
 msgstr "Vervangingsfilters"
 
-msgid "The changes that appear on the panels as the listed pairs below will be ignored or marked as insignificant. Patches are unaffected."
-msgstr "De wijzigingen die op de panelen verschijnen als de hieronder vermelde paren zullen worden genegeerd of als onbelangrijk worden gemarkeerd. Patches worden niet beïnvloed."
+msgid ""
+"The changes that appear on the panels as the listed pairs below will be "
+"ignored or marked as insignificant. Patches are unaffected."
+msgstr ""
+"De wijzigingen die op de panelen verschijnen als de hieronder vermelde paren"
+" zullen worden genegeerd of als onbelangrijk worden gemarkeerd. Patches "
+"worden niet beïnvloed."
 
 msgid "Enable"
 msgstr "Inschakelen"
@@ -1567,7 +1571,7 @@ msgid "Default arguments:"
 msgstr "Standaard argumenten:"
 
 msgid "Display all plugins, don't check the extension"
-msgstr "Alle plug-ins weergeven zonder de extensie te controleren"
+msgstr "Alle plugins weergeven zonder de extensie te controleren"
 
 msgid "&Open files in the same window type after unpacking"
 msgstr "Bestanden openen in hetzelfde venstertype na uitpakken"
@@ -1576,7 +1580,7 @@ msgid "&Plugin Pipeline:"
 msgstr "Plugin pipeline:"
 
 msgid "&Alias..."
-msgstr ""
+msgstr "Alias..."
 
 msgid "Stop"
 msgstr "Stoppen"
@@ -1639,7 +1643,7 @@ msgid "Align &similar lines"
 msgstr "Gelijkaardige regels uitlijnen"
 
 msgid "Diff &algorithm:"
-msgstr "Vergelijkingsalgoritme:"
+msgstr "Verschil-algoritme"
 
 msgid "Enable indent &heuristic"
 msgstr "Inspringing-heuristiek inschakelen"
@@ -1675,7 +1679,7 @@ msgid "&Automatic rescan"
 msgstr "Automatisch opnieuw scannen"
 
 msgid "Copy &granularity for selected differences:"
-msgstr ""
+msgstr "Fijnheid voor kopiëren van geselecteerde verschillen:"
 
 msgid "Line Difference Coloring"
 msgstr "Kleur van regelverschillen"
@@ -1692,8 +1696,13 @@ msgstr "Woordniveau:"
 msgid "W&ord break characters:"
 msgstr "Woordsplitsingstekens:"
 
-msgid "WinMerge allows hiding some common message boxes. Press the Reset button to make all message boxes visible again."
-msgstr "WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden. Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te maken."
+msgid ""
+"WinMerge allows hiding some common message boxes. Press the Reset button to "
+"make all message boxes visible again."
+msgstr ""
+"WinMerge staat toe dat een aantal algemene berichtvensters verborgen worden."
+" Druk op de herstellen-knop om alle berichtvensters terug zichtbaar te "
+"maken."
 
 msgid "Reset"
 msgstr "Herstellen"
@@ -1756,7 +1765,9 @@ msgid "Default Codepage"
 msgstr "Standaard tekenset"
 
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Selecteer de standaard veronderstelde tekenset bij laden van niet-Unicodebestanden:"
+msgstr ""
+"Selecteer de standaard veronderstelde tekenset bij laden van niet-"
+"Unicodebestanden:"
 
 msgid "System codepage"
 msgstr "Tekenset van systeem"
@@ -2094,10 +2105,10 @@ msgid "Unregister shell extension for W&indows 11 or later"
 msgstr "Shell-extensie voor Windows 11 of later de-registreren"
 
 msgid "Jump List"
-msgstr ""
+msgstr "Jump list"
 
 msgid "Clear all recent items"
-msgstr ""
+msgstr "Alle recente items wissen"
 
 msgctxt "Options dialog|Categories"
 msgid "Folder"
@@ -2110,7 +2121,7 @@ msgid "Ign&ore time differences less than 3 seconds"
 msgstr "Tijdsverschillen kleiner dan 3 seconden negeren"
 
 msgid "&Automatically expand subfolders after comparison:"
-msgstr ""
+msgstr "Submappen automatisch uitklappen na vergelijking:"
 
 msgid "Include &unique subfolders contents"
 msgstr "Inhoud van unieke submappen bijvoegen"
@@ -2180,37 +2191,37 @@ msgid "&Hex View"
 msgstr "Hex-weergave"
 
 msgid "Edit Plugin"
-msgstr ""
+msgstr "Plugin bewerken"
 
 msgid "Plugin &type:"
-msgstr ""
+msgstr "Type plugin:"
 
 msgid "&Category:"
-msgstr ""
+msgstr "Categorie:"
 
 msgid "&Menu caption:"
-msgstr ""
+msgstr "Menu-bijschrift:"
 
 msgid "&Window type:"
-msgstr ""
+msgstr "Venstertype:"
 
 msgid "&Unpacked file extension:"
-msgstr ""
+msgstr "Niet-uitgepakte bestandsextensie:"
 
 msgid "&Require arguments"
-msgstr ""
+msgstr "Argumenten vereisen"
 
 msgid "&Generate editor script"
-msgstr ""
+msgstr "Editor-script genereren"
 
 msgid "Command &line:"
-msgstr ""
+msgstr "Opdrachtregel"
 
 msgid "&Script file extension:"
-msgstr ""
+msgstr "Script-bestandsextensie:"
 
 msgid "Script &body:"
-msgstr ""
+msgstr "Script-inhoud:"
 
 msgid "EXT"
 msgstr "UIT"
@@ -2311,8 +2322,14 @@ msgstr ""
 "WinMerge.MapVergelijking\n"
 "WinMerge Mapvergelijking"
 
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr "WinMerge komt ABSOLUUT ZONDER GARANTIE. Dit is vrije software, en u mag het herverdelen onder bepaalde omstandigheden; zie de GNU General Public License in het Help-menu voor details."
+msgid ""
+"WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you "
+"are welcome to redistribute it under certain circumstances; see the GNU "
+"General Public License in the Help menu for details."
+msgstr ""
+"WinMerge komt ABSOLUUT ZONDER GARANTIE. Dit is vrije software, en u mag het "
+"herverdelen onder bepaalde omstandigheden; zie de GNU General Public License"
+" in het Help-menu voor details."
 
 msgid "&Abort"
 msgstr "Afbreken"
@@ -2350,11 +2367,15 @@ msgstr "Alles overslaan"
 msgid "Don't display this &message again."
 msgstr "Dit bericht niet meer weergeven."
 
-msgid "To make this message box visible again, press the Reset button on the Message Boxes page of the Options dialog."
-msgstr "Druk op de herstellen-knop op de pagina \"berichtvensters\" van het venster \"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
+msgid ""
+"To make this message box visible again, press the Reset button on the "
+"Message Boxes page of the Options dialog."
+msgstr ""
+"Druk op de herstellen-knop op de pagina \"berichtvensters\" van het venster "
+"\"opties\" om dit berichtvenster opnieuw zichtbaar te maken."
 
 msgid "Compare/Merge"
-msgstr ""
+msgstr "Vergelijken/samenvoegen"
 
 msgid "Syntax"
 msgstr "Syntax"
@@ -2434,8 +2455,12 @@ msgstr "WinMerge-projectbestanden (*.WinMerge)|*.WinMerge||"
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "Optie-bestanden (*.ini)|*.ini|Alle bestanden (*.*)|*.*||"
 
-msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "Tekstbestanden (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alle bestanden (*.*)|*.*||"
+msgid ""
+"Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files "
+"(*.*)|*.*||"
+msgstr ""
+"Tekstbestanden (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alle "
+"bestanden (*.*)|*.*||"
 
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML-bestanden (*.htm,*.html)|*.htm;*.html|Alle bestanden (*.*)|*.*||"
@@ -2444,16 +2469,16 @@ msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML-bestanden (*.xml)|*.xml|Alle bestanden (*.*)|*.*||"
 
 msgid "Do not expand"
-msgstr ""
+msgstr "Niet uitklappen"
 
 msgid "Expand all subfolders"
-msgstr ""
+msgstr "Alle submappen uitklappen"
 
 msgid "Expand different subfolders"
-msgstr ""
+msgstr "Verschillende submappen uitklappen"
 
 msgid "Expand identical subfolders"
-msgstr ""
+msgstr "Identieke submappen uitklappen"
 
 msgid "File Type"
 msgstr "Bestandstype"
@@ -2652,7 +2677,7 @@ msgstr "Items vergelijken..."
 
 #, c-format
 msgid "%.1f[items/sec]"
-msgstr ""
+msgstr "%.1f[items/sec]"
 
 msgid "Select two existing folders or files to compare."
 msgstr "Twee bestaande mappen of bestanden selecteren om te vergelijken."
@@ -2661,7 +2686,9 @@ msgid "Folder Selection"
 msgstr "Mapselectie"
 
 msgid "Select two (or three) folders or two (or three) files to compare."
-msgstr "Twee (of drie) mappen of twee (of drie) bestanden selecteren om te vergelijken."
+msgstr ""
+"Twee (of drie) mappen of twee (of drie) bestanden selecteren om te "
+"vergelijken."
 
 msgid "Left (1st) path is invalid!"
 msgstr "Linker (1ste) pad is ongeldig!"
@@ -2748,8 +2775,12 @@ msgid "Save changes to %1?"
 msgstr "Wijzigingen opslaan in %1?"
 
 #, c-format
-msgid "%1 is marked read-only. Would you like to override the read-only file? (No to save as new filename.)"
-msgstr "%1 is gemarkeerd als alleen lezen. Wilt u dit alleen-lezen bestand overschrijven? (Nee om op te slaan als nieuwe bestandsnaam)"
+msgid ""
+"%1 is marked read-only. Would you like to override the read-only file? (No "
+"to save as new filename.)"
+msgstr ""
+"%1 is gemarkeerd als alleen lezen. Wilt u dit alleen-lezen bestand "
+"overschrijven? (Nee om op te slaan als nieuwe bestandsnaam)"
 
 msgid "Error backing up file"
 msgstr "Fout bij maken van reservekopie van bestand"
@@ -3042,11 +3073,19 @@ msgstr "Weet u zeker dat u %d items wilt verplaatsen?"
 msgid "Confirm Move"
 msgstr "Verplaatsen bevestigen"
 
-msgid "You are about to close the window that is comparing folders. Are you sure you want to close the window?"
-msgstr "U staat op het punt om het venster te sluiten dat mappen aan het vergelijken is. Weet u zeker dat u het venster wilt sluiten?"
-
-msgid "You are about to close the folder comparison window that took a significant amount of time. Are you sure you want to close the window?"
+msgid ""
+"You are about to close the window that is comparing folders. Are you sure "
+"you want to close the window?"
 msgstr ""
+"U staat op het punt om het venster te sluiten dat mappen aan het vergelijken"
+" is. Weet u zeker dat u het venster wilt sluiten?"
+
+msgid ""
+"You are about to close the folder comparison window that took a significant "
+"amount of time. Are you sure you want to close the window?"
+msgstr ""
+"U staat op het punt om het mapvergelijkingsvenster te sluiten dat veel tijd "
+"in beslag heeft genomen. Weet u zeker dat u het venster wilt sluiten?"
 
 msgid "The file or folder name is invalid."
 msgstr "Bestands- of mapnaam is ongeldig."
@@ -3437,11 +3476,18 @@ msgstr "Codering rechterzijde."
 msgid "Middle side encoding."
 msgstr "Codering midden."
 
-msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "Aantal genegeerde verschillen in bestand. Deze verschillen worden genegeerd door WinMerge en kunnen niet samengevoegd worden."
+msgid ""
+"Number of ignored differences in file. These differences are ignored by "
+"WinMerge and cannot be merged."
+msgstr ""
+"Aantal genegeerde verschillen in bestand. Deze verschillen worden genegeerd "
+"door WinMerge en kunnen niet samengevoegd worden."
 
-msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "Aantal verschillen in bestand. Dit aantal bevat geen genegeerde verschillen."
+msgid ""
+"Number of differences in file. This number does not include ignored "
+"differences."
+msgstr ""
+"Aantal verschillen in bestand. Dit aantal bevat geen genegeerde verschillen."
 
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "Geeft een asterisk (*) weer als het bestand binair is."
@@ -3472,8 +3518,11 @@ msgstr "Simpele HTML"
 msgid "Simple XML"
 msgstr "Simpele XML"
 
-msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Het rapportbestand bestaat reeds. Wilt u het bestaande bestand overschrijven?"
+msgid ""
+"The report file already exists. Do you want to overwrite existing file?"
+msgstr ""
+"Het rapportbestand bestaat reeds. Wilt u het bestaande bestand "
+"overschrijven?"
 
 #, c-format
 msgid ""
@@ -3498,8 +3547,11 @@ msgstr "De geselecteerde bestanden zijn identiek."
 msgid "An error occurred while comparing the files."
 msgstr "Er trad een fout op bij het vergelijken van de bestanden."
 
-msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Tijdelijke bestanden konden niet aangemaakt worden. Controleer de instelling voor het pad van tijdelijke bestanden."
+msgid ""
+"Temporary files could not be created. Check your temporary path settings."
+msgstr ""
+"Tijdelijke bestanden konden niet aangemaakt worden. Controleer de instelling"
+" voor het pad van tijdelijke bestanden."
 
 msgid ""
 "These files use different carriage return types.\n"
@@ -3535,7 +3587,8 @@ msgstr ""
 "aanmaken aan de andere kant en deze mappen openen?"
 
 msgid "Are you sure you want to copy all differences to the other file?"
-msgstr "Weet u zeker dat u alle verschillen naar het andere bestand wilt kopiëren?"
+msgstr ""
+"Weet u zeker dat u alle verschillen naar het andere bestand wilt kopiëren?"
 
 msgid "Do you want to move to the next file?"
 msgstr "Wilt u naar het volgende bestand gaan?"
@@ -3591,8 +3644,12 @@ msgstr "%1 tekenreeks(en) vervangen."
 msgid "Cannot find string \"%s\"."
 msgstr "Kan tekenreeks \"%s\" niet vinden."
 
-msgid "You are now entering Merge Mode. If you want to turn off Merge Mode, press F9 key."
-msgstr "U start nu de samenvoegmodus. Als u de samenvoegmodus wilt uitschakelen, drukt u op F9."
+msgid ""
+"You are now entering Merge Mode. If you want to turn off Merge Mode, press "
+"F9 key."
+msgstr ""
+"U start nu de samenvoegmodus. Als u de samenvoegmodus wilt uitschakelen, "
+"drukt u op F9."
 
 #, c-format
 msgid ""
@@ -3877,8 +3934,12 @@ msgstr ""
 "\n"
 "Vorig bestand (Ctrl+F7)"
 
-msgid "The adapted unpacker is applied to both files (one file only needs the extension)."
-msgstr "De overgenomen uitpakker wordt toegepast op beide bestanden (één bestand heeft alleen maar de extensie nodig)."
+msgid ""
+"The adapted unpacker is applied to both files (one file only needs the "
+"extension)."
+msgstr ""
+"De overgenomen uitpakker wordt toegepast op beide bestanden (één bestand "
+"heeft alleen maar de extensie nodig)."
 
 msgid "No prediffer (normal)"
 msgstr "Geen voorvergelijking (normaal)"
@@ -3962,6 +4023,7 @@ msgstr "Webpagina"
 msgid "W&rap Text"
 msgstr "Tekstterugloop"
 
+#, c-format
 msgid "%1 is not installed."
 msgstr "%1 is niet geïnstalleerd."
 
@@ -4159,7 +4221,9 @@ msgid "Allow only one instance to run"
 msgstr "Slechts één draaiende instantie toestaan"
 
 msgid "Allow only one instance to run and wait for the instance to terminate"
-msgstr "Slechts één draaiende instantie toestaan en wachten totdat de instantie beëindigd is"
+msgstr ""
+"Slechts één draaiende instantie toestaan en wachten totdat de instantie "
+"beëindigd is"
 
 msgid "Only on window activated"
 msgstr "Alleen wanneer venster geactiveerd wordt"
@@ -4183,55 +4247,59 @@ msgstr "Ontbrekend aanhalingsteken in plugin-pipeline: %1"
 
 #, c-format
 msgid "The plugin name '%1' already exists."
-msgstr ""
+msgstr "Pluginnaam '%1' bestaat al."
 
 msgid "Specify plugin arguments"
 msgstr "Plugin-argumenten opgeven"
 
 #, c-format
 msgid "Plugin not found or invalid: %1"
-msgstr ""
+msgstr "Plugin niet gevonden of ongeldig: %1"
 
 #, c-format
 msgid "'%1' is not unpacker plugin"
-msgstr ""
+msgstr "'%1' is geen uitpak-plugin"
 
 #, c-format
 msgid "'%1' is not prediffer plugin"
-msgstr ""
+msgstr "'%1' is geen voorvergelijking-plugin"
 
 #, c-format
-msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgid ""
+"An error occurred while prediffing the file '%1' with the plugin '%2'. The "
+"prediffing is not applied any more."
 msgstr ""
+"Er is een fout opgetreden tijdens het voorvergelijken van bestand '%1' met "
+"plugin '%2'. De voorvergelijking is niet meer toegepast."
 
 #, c-format
 msgid "Circular reference in plugin pipeline: %1"
-msgstr ""
+msgstr "Circulaire referentie in plugin-pijplijn: %1"
 
 msgid "URL Handler"
-msgstr ""
+msgstr "URL-handler"
 
 msgid "File Unpacker"
-msgstr ""
+msgstr "Bestandsuitpakker:"
 
 msgid "File or Folder Unpacker"
-msgstr ""
+msgstr "Bestands- of mapuitpakker"
 
 msgid "Alias for Unpacker"
-msgstr ""
+msgstr "Alias voor uitpakker"
 
 msgid "Alias for Prediffer"
-msgstr ""
+msgstr "Alias voor voorvergelijking"
 
 msgid "Alias for Editor script"
-msgstr ""
+msgstr "Alias voor editor-script"
 
 #, c-format
 msgid "Alias for plugin pipeline '%1'"
-msgstr ""
+msgstr "Alias voor plugin-pijplijn '%1'"
 
 msgid "New plugin description"
-msgstr ""
+msgstr "Beschrijving nieuwe plugin"
 
 msgid "Filter applied"
 msgstr "Filter toegepast"
@@ -4257,76 +4325,128 @@ msgid "WebView2 runtime is not installed. Do you want to download it?"
 msgstr "WebView2-runtime is niet geïnstalleerd. Wilt u het downloaden?"
 
 msgid "New Text Compare"
-msgstr ""
+msgstr "Nieuwe tekstvergelijking"
 
 msgid "New Table Compare"
-msgstr ""
+msgstr "Nieuwe tabelvergelijking"
 
 msgid "New Binary Compare"
-msgstr ""
+msgstr "Nieuwe binaire vergelijking"
 
 msgid "New Image Compare"
-msgstr ""
+msgstr "Nieuwe afbeeldingsvergelijking"
 
 msgid "New Webpage Compare"
-msgstr ""
+msgstr "Nieuwe webpagina-vergelijking"
 
 msgid "Clipboard Compare"
-msgstr ""
+msgstr "Klembordvergelijking"
 
 msgid "&Print..."
-msgstr ""
+msgstr "Afdrukken..."
 
 msgid "Pre&v Page"
-msgstr ""
+msgstr "Vorige pagina"
 
 msgid "&Two Page"
-msgstr ""
+msgstr "Twee pagina's"
 
 msgid "&One Page"
-msgstr ""
+msgstr "Eén pagina"
 
 msgid "Zoom &In"
-msgstr ""
+msgstr "Inzoomen"
 
 msgid "Zoom &Out"
-msgstr ""
+msgstr "Uitzoomen"
 
 msgid "Comparing..."
-msgstr ""
+msgstr "Vergelijken..."
 
 msgid "Zoom:"
-msgstr ""
+msgstr "Zoomen:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Verschil-hunk"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Inline-verschil"
 
 msgid "Line"
-msgstr ""
+msgstr "Regel"
 
 msgid "Character"
-msgstr ""
+msgstr "Teken"
 
-msgid "\nPrevious Difference (Alt+Up)\n(Right Button+Wheel Up)\n(Alt+Wheel Up)"
+msgid ""
+"\n"
+"Previous Difference (Alt+Up)\n"
+"(Right Button+Wheel Up)\n"
+"(Alt+Wheel Up)"
 msgstr ""
+"\n"
+"Vorig verschil (Alt+Omhoog)\n"
+"(Rechter muisknop+Wiel omhoog)\n"
+"(Alt+Wiel omhoog)"
 
-msgid "\nNext Difference (Alt+Down)\n(Right Button+Wheel Down)\n(Alt+Wheel Down)"
+msgid ""
+"\n"
+"Next Difference (Alt+Down)\n"
+"(Right Button+Wheel Down)\n"
+"(Alt+Wheel Down)"
 msgstr ""
+"\n"
+"Volgend verschil (Alt+Omlaag)\n"
+"(Rechter muisknop+Wiel omlaag)\n"
+"(Alt+Wiel omlaag)"
 
-msgid "\nCopy to Right (Alt+Right)\n(Right Button+Wheel Right)\n(Alt+Wheel Right)\n(Alt+Shift+Wheel Down)"
+msgid ""
+"\n"
+"Copy to Right (Alt+Right)\n"
+"(Right Button+Wheel Right)\n"
+"(Alt+Wheel Right)\n"
+"(Alt+Shift+Wheel Down)"
 msgstr ""
+"\n"
+"Naar rechts kopiëren (Alt+Rechts)\n"
+"(Rechter muisknop+Wiel rechts)\n"
+"(Alt+Wiel rechts)\n"
+"(Alt+Shift+Wiel omlaag)"
 
-msgid "\nCopy to Left (Alt+Left)\n(Right Button+Wheel Left)\n(Alt+Wheel Left)\n(Alt+Shift+Wheel Up)"
+msgid ""
+"\n"
+"Copy to Left (Alt+Left)\n"
+"(Right Button+Wheel Left)\n"
+"(Alt+Wheel Left)\n"
+"(Alt+Shift+Wheel Up)"
 msgstr ""
+"\n"
+"Naar links kopiëren (Alt+Links)\n"
+"(Rechter muisknip+Wiel links)\n"
+"(Alt+Wiel links)\n"
+"(Alt+Shift+Wiel omhoog)"
 
-msgid "\nCopy to Right and Advance (Ctrl+Alt+Right)\n(Ctrl+Alt+Wheel Right)\n(Ctrl+Alt+Shift+Wheel Down)"
+msgid ""
+"\n"
+"Copy to Right and Advance (Ctrl+Alt+Right)\n"
+"(Ctrl+Alt+Wheel Right)\n"
+"(Ctrl+Alt+Shift+Wheel Down)"
 msgstr ""
+"\n"
+"Naar rechts kopiëren en verder gaan (Ctrl+Alt+Rechts)\n"
+"(Ctrl+Alt+Wiel rechts)\n"
+"(Ctrl+Alt+Shift+Wiel omlaag)"
 
-msgid "\nCopy to Left and Advance (Ctrl+Alt+Left)\n(Ctrl+Alt+Wheel Left)\n(Ctrl+Alt+Shift+Wheel Up)"
+msgid ""
+"\n"
+"Copy to Left and Advance (Ctrl+Alt+Left)\n"
+"(Ctrl+Alt+Wheel Left)\n"
+"(Ctrl+Alt+Shift+Wheel Up)"
 msgstr ""
+"\n"
+"Naar links kopiëren en verder gaan (Ctrl+Alt+Links)\n"
+"(Ctrl+Alt+Wiel links)\n"
+"(Ctrl+Alt+Shift+Wiel omhoog)"
 
 msgid "Prettification"
 msgstr "Mooi maken"
@@ -4350,7 +4470,7 @@ msgid "URL Handling"
 msgstr "URL-behandeling"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Decoderen / coderen"
 
 msgid "Make Uppercase"
 msgstr "Hoofdletters maken"
@@ -4467,10 +4587,10 @@ msgid "Disassemble Native Code"
 msgstr "Native code ontleden"
 
 msgid "Convert Text with AI..."
-msgstr ""
+msgstr "Tekst converteren met AI..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Java properties-bestanden unescapen"
 
 msgid "Make characters uppercase"
 msgstr "Tekens hoofdletters maken"
@@ -4496,16 +4616,24 @@ msgstr "Kolommen omkeren"
 msgid "Reverse lines"
 msgstr "Regels omkeren"
 
-msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
+msgid ""
+"Replace text with another text.\r\n"
+"Usage: Replace [-i] [-e] FIND REPLACE\r\n"
+"   or: Replace -s\r\n"
+"  FIND    - text to find\r\n"
+"  REPLACE - text to replace\r\n"
+"  -i - ignore case (only for -e)\r\n"
+"  -e - treat the specified text as a regular expression\r\n"
+"  -s - replace using Substitution Filters patterns"
 msgstr ""
 "Tekst door andere tekst vervangen.\r\n"
 "Gebruik: Replace [-i] [-e] ZOEKEN VERVANGEN\r\n"
-"   or: Replace -s\r\n"
+"   of: Replace -s\r\n"
 "  ZOEKEN    - te zoeken tekst\r\n"
 "  VERVANGEN - te vervangen tekst\r\n"
 "  -i - hoofdlettergebruik negeren (alleen voor -e)\r\n"
 "  -e - de opgegeven tekst als een reguliere expressie behandelen\r\n"
-"  -s - replace using Substitution Filters patterns"
+"  -s - vervangen via substitutie-filterpatronen"
 
 #, c-format
 msgid ""
@@ -4682,7 +4810,7 @@ msgstr ""
 "Argumenten: opdrachtregelopties doorgegeven aan de tika-app.jar."
 
 msgid "Apply patch using GNU patch"
-msgstr ""
+msgstr "Patch toepassen via GNU patch"
 
 msgid "Display the text content of MS Excel files"
 msgstr "De tekstinhoud van MS Excel-bestanden weergeven"
@@ -4696,23 +4824,39 @@ msgstr "De tekstinhoud van MS Visio-bestanden weergeven"
 msgid "Display the text content of MS Word files"
 msgstr "De tekstinhoud van MS Word-bestanden weergeven"
 
-msgid "Ignore some columns - ignored columns list from the plugin name or the plugin argument"
-msgstr "Sommige kolommen negeren - lijst met genegeerde kolommen uit de plugin-naam of het plugin-argument"
+msgid ""
+"Ignore some columns - ignored columns list from the plugin name or the "
+"plugin argument"
+msgstr ""
+"Sommige kolommen negeren - lijst met genegeerde kolommen uit de plugin-naam "
+"of het plugin-argument"
 
-msgid "The plugin ignores comments (//... and /* ... */) in C, C++, PHP and JavaScript files."
-msgstr "De plugin negeert commentaar (//... en /* ... */) in C, C++, PHP en JavaScript-bestanden."
+msgid ""
+"The plugin ignores comments (//... and /* ... */) in C, C++, PHP and "
+"JavaScript files."
+msgstr ""
+"De plugin negeert commentaar (//... en /* ... */) in C, C++, PHP en "
+"JavaScript-bestanden."
 
-msgid "Ignore some fields - ignored fields list from the plugin name or the plugin argument"
-msgstr "Sommige velden negeren - lijst met genegeerde velden uit de plugin-naam of het plugin-argument"
+msgid ""
+"Ignore some fields - ignored fields list from the plugin name or the plugin "
+"argument"
+msgstr ""
+"Sommige velden negeren - lijst met genegeerde velden uit de plugin-naam of "
+"het plugin-argument"
 
-msgid "This plugin ignores the leading line numbers in text files (e.g. NC and BASIC files)."
-msgstr "Deze plugin negeert de voorloop-regelnummers in tekstbestanden (bijvoorbeeld NC- en BASIC-bestanden)"
+msgid ""
+"This plugin ignores the leading line numbers in text files (e.g. NC and "
+"BASIC files)."
+msgstr ""
+"Deze plugin negeert de voorloop-regelnummers in tekstbestanden (bijvoorbeeld"
+" NC- en BASIC-bestanden)"
 
 msgid "Prediff Line Filter"
 msgstr "Voorvergelijking-regelfilter"
 
 msgid "Date and time insertion function"
-msgstr ""
+msgstr "Invoegfunctie voor datum en tijd"
 
 msgid ""
 "HTTP URL Scheme Handler with curl. \r\n"
@@ -4729,16 +4873,20 @@ msgstr ""
 "Argumenten: opdrachtregelopties doorgegeven aan de reg.exe-opdracht."
 
 msgid "Basic text functions"
-msgstr ""
+msgstr "Basis-tekstfuncties"
 
 msgid "AI-assisted text conversion functions"
-msgstr ""
+msgstr "AI-geassisteerde tekstconversie-functies"
 
-msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgid ""
+"Text converter using OpenAI API.\r\n"
+"Usage: AIConvertText PROMPT"
 msgstr ""
+"Tekstconverter via OpenAI API.\r\n"
+"Gebruik: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Java properties-bestanden unescapen en weergeven als escaped."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opties voor CompareMSExcelFiles.sct WinMerge-plugin"
@@ -4857,7 +5005,7 @@ msgstr ""
 
 #, c-format
 msgid "Enter the name of the file to which the patch '%1' will be applied"
-msgstr "Voer de naam in van het bestand waarop de patch \"%1\" zal worden toegepast"
+msgstr "Voer de naam in van het bestand waarop patch \"%1\" zal worden toegepast"
 
 #, c-format
 msgid "File '%1' does not exist"
@@ -4868,39 +5016,52 @@ msgstr "Opdrachtregelargumenten voor de patchopdracht invoeren"
 
 #, c-format
 msgid "Enter the name of the folder to which the patch '%1' will be applied"
-msgstr "Voer de naam in van de map waarop de patch \"%1\" zal worden toegepast"
+msgstr "Voer de naam in van de map waarop patch \"%1\" zal worden toegepast"
 
 #, c-format
 msgid "Folder '%1' does not exist"
 msgstr "Map '%1' bestaat niet"
 
-msgid "Do not specify the '-p0' command line option for the patch file which includes absolute paths"
-msgstr "De '-p0' opdrachtregeloptie niet opgeven voor het patchbestand dat absolute paden bevat"
+msgid ""
+"Do not specify the '-p0' command line option for the patch file which "
+"includes absolute paths"
+msgstr ""
+"De '-p0' opdrachtregeloptie niet opgeven voor het patchbestand dat absolute "
+"paden bevat"
 
 msgid "AI.sct WinMerge Plugin Options"
-msgstr ""
+msgstr "Opties voor AI.sct WinMerge-plugin"
 
 msgid "Enter prompt"
-msgstr ""
+msgstr "Prompt ingeven"
 
 #, c-format
-msgid "Enter your OpenAI API key.\r\n - Use of this plugin requires registration with OpenAI and incurs fees.\r\n - The API key is stored in the environment variable %1."
+msgid ""
+"Enter your OpenAI API key.\r\n"
+" - Use of this plugin requires registration with OpenAI and incurs fees.\r\n"
+" - The API key is stored in the environment variable %1."
 msgstr ""
+"Voer uw OpenAI API-sleutel in.\r\n"
+"- Gebruik van deze plugin vereist registratie bij OpenAI en brengt kosten met zich mee.\r\n"
+"- De API-sleutel wordt opgeslagen in de omgevingsvariabele %1."
 
 msgid "Environment variable name for OpenAI API key"
-msgstr ""
+msgstr "Omgevingsvariabele-naam voor OpenAI API-sleutel"
 
 msgid "OpenAI API key"
-msgstr ""
+msgstr "OpenAI API-sleutel"
 
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatuur"
 
 msgid "Maximum length"
-msgstr ""
+msgstr "Maximale lengte"
 
 msgid "Model"
-msgstr ""
+msgstr "Model"
 
-msgid "OpenAI API key has changed. Please restart WinMerge to apply the changes."
+msgid ""
+"OpenAI API key has changed. Please restart WinMerge to apply the changes."
 msgstr ""
+"OpenAI API-sleutel is gewijzigd. Start WinMerge opnieuw op om de wijzigingen"
+" toe te passen."
