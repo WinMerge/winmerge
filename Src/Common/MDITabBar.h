@@ -22,6 +22,7 @@ public:
 		, m_nDraggingTabItemIndex(-1)
 		, m_bInSelchange(false)
 		, m_nTooltipTabItemIndex(-1)
+		, m_bOnTitleBar(false)
 	{}
 
 protected:
@@ -29,6 +30,7 @@ protected:
 	bool  m_bAutoMaxWidth;
 	bool m_bMouseTracking;
 	bool m_bCloseButtonDown;
+	bool m_bOnTitleBar;
 	CRect m_rcCurrentCloseButtom;
 	int   m_nDraggingTabItemIndex;
 	int   m_nTooltipTabItemIndex;	/**< Index of the tab displaying tooltip */
@@ -40,6 +42,7 @@ public:
 	bool GetAutoMaxWidth() const { return m_bAutoMaxWidth; }
 	void SetAutoMaxWidth(bool bAutoMaxWidth) { m_bAutoMaxWidth = bAutoMaxWidth; }
 	void UpdateTabs();
+	void SetOnTitleBar(bool onTitleBar) { m_bOnTitleBar = onTitleBar; }
 
 // Overrides
 	// ClassWizard generated virtual function overrides

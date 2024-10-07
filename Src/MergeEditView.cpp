@@ -206,12 +206,14 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_TO_MIDDLE_L, ID_COPY_FROM_LEFT_R, OnUpdateX2Y)
 	ON_COMMAND_RANGE(ID_COPY_LINES_TO_MIDDLE_L, ID_COPY_LINES_FROM_LEFT_R, OnCopyLinesX2Y)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COPY_LINES_TO_MIDDLE_L, ID_COPY_LINES_FROM_LEFT_R, OnUpdateX2Y)
-	ON_COMMAND(ID_SEL_DIFF_COPY_L, OnSelDiffCopyLeft)
-	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_L, OnUpdateSelDiffCopyLeft)
-	ON_COMMAND(ID_SEL_DIFF_COPY_M, OnSelDiffCopyMid)
-	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_M, OnUpdateSelDiffCopyMid)
-	ON_COMMAND(ID_SEL_DIFF_COPY_R, OnSelDiffCopyRight)
-	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_R, OnUpdateSelDiffCopyRight)
+	ON_COMMAND(ID_SEL_DIFF_COPY_1ST, OnSelDiffCopyFirst)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_1ST, OnUpdateSelDiffCopyFirst)
+	ON_COMMAND(ID_SEL_DIFF_COPY_2ND, OnSelDiffCopySecond)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_2ND, OnUpdateSelDiffCopySecond)
+	ON_COMMAND(ID_SEL_DIFF_COPY_2ND_3WAY, OnSelDiffCopySecond)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_2ND_3WAY, OnUpdateSelDiffCopySecond)
+	ON_COMMAND(ID_SEL_DIFF_COPY_3RD, OnSelDiffCopyThird)
+	ON_UPDATE_COMMAND_UI(ID_SEL_DIFF_COPY_3RD, OnUpdateSelDiffCopyThird)
 	// [Plugins] menu
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_COMMAND(ID_TRANSFORM_WITH_SCRIPT, OnTransformWithScript)
@@ -2094,75 +2096,60 @@ void CMergeEditView::SelDiffCopy(int actPane)
 {
 	CMergeDoc* pDoc = GetDocument();
 	const auto cntPane = pDoc->m_nBuffers;
-	const auto currentDiff = pDoc->GetCurrentDiff();
 
 	// Check
-	if (actPane < 0 || actPane > 2 || cntPane < 1 || currentDiff < 0)
+	if (actPane < 0 || actPane >= cntPane)
 		return;
-	if (2 == cntPane && actPane >= cntPane)
-		actPane = 1;
+
+	auto currentDiff = pDoc->GetCurrentDiff();
+	if (currentDiff == -1 && m_bCurrentLineIsDiff)
+	{
+		CEPoint pt = GetCursorPos();
+		currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
+	}
 
 	DIFFRANGE di;
 	if (!pDoc->m_diffList.GetDiff(currentDiff, di))
 		return;
-	CDiffTextBuffer& buf = *(pDoc->m_ptBuf[actPane]);
-	const auto beginidx = buf.ComputeApparentLine(di.begin[actPane]);
-	const auto endidx = buf.ComputeApparentLine(di.end[actPane]);
+	const auto beginidx = di.dbegin;
+	const auto endidx = di.dend;
 	if (beginidx > endidx)
 		return;
 	String dfLines;
+	CDiffTextBuffer& buf = *(pDoc->m_ptBuf[actPane]);
 	const auto endlen = buf.GetLineLength(endidx);
 	buf.GetTextWithoutEmptys(beginidx, 0, endidx, endlen, dfLines);
 	dfLines += buf.GetLineEol(endidx);
-
-	if (OpenClipboard())
-	{
-		EmptyClipboard();
-		const size_t len = (dfLines.length() + 1) * sizeof(tchar_t);
-		HGLOBAL hGlobal = GlobalAlloc(GMEM_MOVEABLE, len);
-		if (hGlobal)
-		{
-			LPTSTR pGlobal = (LPTSTR)GlobalLock(hGlobal);
-			if (pGlobal)
-			{
-				memcpy(pGlobal, dfLines.c_str(), len);
-				GlobalUnlock(hGlobal);
-				SetClipboardData(CF_UNICODETEXT, hGlobal);
-			}
-			GlobalFree(hGlobal);
-		}
-
-		CloseClipboard();
-	}
+	PutToClipboard(dfLines.c_str(), static_cast<int>(dfLines.length()));
 }
 
-void CMergeEditView::OnSelDiffCopyLeft()
+void CMergeEditView::OnSelDiffCopyFirst()
 {
 	SelDiffCopy(0);
 }
-void CMergeEditView::OnUpdateSelDiffCopyLeft(CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateSelDiffCopyFirst(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->GetCurrentDiff() >= 0 && GetDocument()->m_nBuffers > 0);
+	pCmdUI->Enable((GetDocument()->GetCurrentDiff() >= 0 || m_bCurrentLineIsDiff) && GetDocument()->m_nBuffers > 0);
 }
 
-void CMergeEditView::OnSelDiffCopyMid()
+void CMergeEditView::OnSelDiffCopySecond()
 {
 	SelDiffCopy(1);
 }
 
-void CMergeEditView::OnUpdateSelDiffCopyMid(CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateSelDiffCopySecond(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->GetCurrentDiff() >= 0 && GetDocument()->m_nBuffers > 2);
+	pCmdUI->Enable((GetDocument()->GetCurrentDiff() >= 0 || m_bCurrentLineIsDiff) && GetDocument()->m_nBuffers > 1);
 }
 
-void CMergeEditView::OnSelDiffCopyRight()
+void CMergeEditView::OnSelDiffCopyThird()
 {
-	SelDiffCopy(2);
+	SelDiffCopy(GetDocument()->m_nBuffers - 1);
 }
 
-void CMergeEditView::OnUpdateSelDiffCopyRight(CCmdUI* pCmdUI)
+void CMergeEditView::OnUpdateSelDiffCopyThird(CCmdUI* pCmdUI)
 {
-	pCmdUI->Enable(GetDocument()->GetCurrentDiff() >= 0 && GetDocument()->m_nBuffers > 1);
+	pCmdUI->Enable((GetDocument()->GetCurrentDiff() >= 0 || m_bCurrentLineIsDiff) && GetDocument()->m_nBuffers > 2);
 }
 
 /**
@@ -2978,6 +2965,16 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 		menu.RemoveMenu(ID_GOTO_MOVED_LINE_MR, MF_BYCOMMAND);
 	else if (nBuffers == 3 && m_nThisPane == 2)
 		menu.RemoveMenu(ID_GOTO_MOVED_LINE_LM, MF_BYCOMMAND);
+
+	if (nBuffers == 2)
+	{
+		menu.RemoveMenu(ID_SEL_DIFF_COPY_2ND_3WAY, MF_BYCOMMAND);
+		menu.RemoveMenu(ID_SEL_DIFF_COPY_3RD, MF_BYCOMMAND);
+	}
+	else
+	{
+		menu.RemoveMenu(ID_SEL_DIFF_COPY_2ND, MF_BYCOMMAND);
+	}
 
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME, GetMainFrame()->GetToolbar()));
 

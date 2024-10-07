@@ -12,6 +12,13 @@
 	<property name="PluginIsAutomatic">
 		<get/>
 	</property>
+	<property name="PluginUnpackedFileExtension">
+		<get/>
+	</property>
+	<property name="PluginExtendedProperties">
+		<get/>
+	</property>
+	<method name="PluginOnEvent"/>
 	<method name="UnpackFile"/>
 	<method name="PackFile"/>
 </implements>
@@ -49,16 +56,18 @@ var IOMode = {
 var Format = {
 	TristateUseDefault: -2, // System
 	TristateTrue:       -1, // UNICODE
-	TristateFalse:      -0  // ASCII
+	TristateFalse:       0  // ASCII
 };
+
+var adTypeText = 2;
 
 /** general. */
 var fso = new ActiveXObject('Scripting.FileSystemObject');
 var wsh = new ActiveXObject('WScript.Shell');
-
+var mergeApp;
 
 /**
- * ReaddAllTextFile.
+ * readTextFile.
  * @param filePath
  * @param format
  * @return text
@@ -68,7 +77,33 @@ function readTextFile(filePath, format) {
 	try {
 		stream = fso.OpenTextFile(filePath, IOMode.ForReading, false, format);
 		return stream.ReadAll();
+	} catch (e) {
+		mergeApp.LogError(e.message);
 	} finally {
+		if(stream) {
+			stream.Close();
+		}
+	}
+}
+
+/**
+ * readTextFileWithEncodingDetection.
+ * @param filePath
+ * @return text
+ */
+function readTextFileWithEncodingDetection(filePath) {
+	var stream = null;
+	try {
+		stream = new ActiveXObject("ADODB.Stream");
+		stream.Type = adTypeText;
+		stream.Charset = "_autodetect_all";
+		stream.Open();
+		stream.LoadFromFile(filePath);
+		var text = stream.ReadText();
+		stream.Close();
+		return text;
+	} catch (e) {
+		mergeApp.LogError(e.message);
 		if(stream) {
 			stream.Close();
 		}
@@ -86,6 +121,8 @@ function writeTextFile(filePath, text, format) {
 	try {
 		stream = fso.OpenTextFile(filePath, IOMode.ForWriting, true, format);
 		stream.Write(text);
+	} catch (e) {
+		mergeApp.LogError(e.message);
 	} finally {
 		if(stream) {
 			stream.Close();
@@ -106,7 +143,7 @@ function get_PluginEvent() {
  * @return description.
  */
 function get_PluginDescription() {
-	return 'diff property file.';
+	return 'Unescape and display escaped Java properties files.';
 }
 
 /**
@@ -114,7 +151,7 @@ function get_PluginDescription() {
  * @return file name patern filter.
  */
 function get_PluginFileFilters() {
-	return '\.properties$;\.property$';
+	return '\\.properties$;\\.property$';
 }
 
 /**
@@ -123,6 +160,18 @@ function get_PluginFileFilters() {
  */
 function get_PluginIsAutomatic() {
 	return true;
+}
+
+function get_PluginUnpackedFileExtension() {
+  return ".properties";
+}
+
+function get_PluginExtendedProperties() {
+  return "ProcessType=Decoding / Encoding;FileType=Java properties file;MenuCaption=Unescape Java properties files";
+}
+
+function PluginOnEvent(eventType, obj) {
+  mergeApp = obj;
 }
 
 /**
@@ -135,7 +184,7 @@ function get_PluginIsAutomatic() {
  */
 function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
 	var result = new ActiveXObject('Scripting.Dictionary');
-	var srcText = readTextFile(fileSrc, Format.TristateFalse);
+	var srcText = readTextFileWithEncodingDetection(fileSrc);
 
 	var convertedText = srcText.replace(/\\u([0-9a-fA-F]{4})/g, function(_, p1) {
 		return String.fromCharCode(parseInt(p1, 16));
@@ -159,7 +208,7 @@ function UnpackFile(fileSrc, fileDst, pbChanged, pSubcode) {
  * @param pSubcode
  * @return
  */
-function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
+function PackFile(fileSrc, fileDst, pbChanged, subcode) {
 	var result = new ActiveXObject('Scripting.Dictionary');
 
 	var srcText = readTextFile(fileSrc, Format.TristateTrue);
@@ -177,13 +226,11 @@ function PackFile(fileSrc, fileDst, pbChanged, pSubcode) {
 		}
 	}
 
-	writeTextFile(fileSrc, convertedText, Format.TristateFalse);
+	writeTextFile(fileDst, convertedText, Format.TristateFalse);
 
 	result.Add(0, true);
 	// pbChanged
 	result.Add(1, true);
-	// pSubcode
-	result.Add(2, 0);
 	return result.Items();
 }
 </script>

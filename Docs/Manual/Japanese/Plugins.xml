@@ -316,6 +316,38 @@ class="registered">Microsoft</trademark> <application>Excel</application>
         <secondary>Visual Basic dlls</secondary>
       </indexterm></title>
 
+    <section id="CompareEscapedJavaPropertiesFiles">
+      <title><filename>CompareEscapedJavaPropertiesFiles<indexterm>
+          <primary>CompareEscapedJavaPropertiesFiles plugin file</primary>
+        </indexterm></filename></title>
+
+      <para>このプラグインは、Javaの.propertiesファイルをアンエスケープして表示し、保存時に再度エスケープします。</para>
+
+      <para><segmentedlist>
+          <segtitle>分類</segtitle>
+
+          <segtitle>ファイルフィルター</segtitle>
+
+          <segtitle>プラグイン引数</segtitle>
+
+          <segtitle>書き戻し</segtitle>
+
+          <segtitle>設定ダイアログサポート</segtitle>
+
+          <seglistitem>
+            <seg>展開プラグイン</seg>
+
+            <seg><filename class="extension">*.properties</filename></seg>
+
+            <seg>No</seg>
+
+            <seg>Yes</seg>
+
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist></para>
+    </section>
+
     <section id="CompareMSExcelFiles">
       <title><filename>CompareMSExcelFiles<indexterm>
           <primary>CompareMSExcelFiles plugin file</primary>
@@ -2166,8 +2198,6 @@ class="extension">*.ts</filename></seg>
             <seg>No</seg>
 
             <seg>No</seg>
-
-            <seg><xref linkend="MSVBVM60" /></seg>
           </seglistitem>
         </segmentedlist></para>
     </section>
@@ -2302,26 +2332,6 @@ class="extension">*.ts</filename></seg>
 class="registered">Microsoft</trademark>のコンポーネントが必要です</para>
 
       <para>Windows XPより前の古いバージョンのWindowsを使用しない限り、既に含まれているはずです。</para>
-    </section>
-
-    <section id="MSVBVM60">
-      <title><application>Visual Basic</application> ランタイムライブラリ<indexterm>
-          <primary>Visual Basic dlls for plugins</primary>
-        </indexterm><indexterm>
-          <primary>plugins</primary>
-
-          <secondary>Visual Basic dlls</secondary>
-        </indexterm><indexterm>
-          <primary>msvbvm60.dll plugin file</primary>
-        </indexterm><indexterm>
-          <primary>Run-Time Redistribution Pack, for Visual Basic library</primary>
-        </indexterm></title>
-
-      <para>一部のプラグインでは、動作するために<application>Visual Basic</application> ランタイムライブラリが必要です。</para>
-
-      <para><trademark class="registered">Microsoft</trademark>の<ulink
-url="https://www.microsoft.com/en-us/download/details.aspx?id=24417">Run-Time
-Redistribution Pack</ulink>が使用できます。 プラグインが不要な場合は、安全に削除できます。</para>
     </section>
   </section>
 </article>

@@ -65,6 +65,9 @@ msgstr "Geselecteerde regel(s) van links kopiëren"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr ""
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
@@ -4346,6 +4349,9 @@ msgstr "Decompilatie"
 msgid "URL Handling"
 msgstr "URL-behandeling"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Hoofdletters maken"
 
@@ -4461,6 +4467,9 @@ msgid "Disassemble Native Code"
 msgstr "Native code ontleden"
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"
@@ -4726,6 +4735,9 @@ msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr ""
+
+msgid "Unescape and display escaped Java properties files."
 msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"

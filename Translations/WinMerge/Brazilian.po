@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2023-03-13 09:30-0300\n"
-"PO-Revision-Date: 2024-09-28 21:45-0300\n"
+"PO-Revision-Date: 2024-10-06 21:30-0300\n"
 "Last-Translator: Marcello <marcello.mco@gmail.com>\n"
 "Language-Team: Felipe\n"
 "Language: pt_BR\n"
@@ -64,6 +64,9 @@ msgstr "Copiar a(s) linha(s) selecionada(s) da esquerda"
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "Copiar as Diferenças Selecionadas (da Esquerda) para a Área de Transferência\tCtrl+1"
+
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "Copiar as Diferenças Selecionadas (da Direita) para a Área de Transferência\tCtrl+2"
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "Copiar as Diferenças Selecionadas (do Meio) para a Área de Transferência\tCtrl+2"
@@ -3963,6 +3966,9 @@ msgstr "Descompilação"
 msgid "URL Handling"
 msgstr "Manipulaçãode URL"
 
+msgid "Decoding / Encoding"
+msgstr "Decodificação / Decodificação"
+
 msgid "Make Uppercase"
 msgstr "Tornar Maiúscula"
 
@@ -4079,6 +4085,9 @@ msgstr "Desmontar Código Nativo"
 
 msgid "Convert Text with AI..."
 msgstr "Converter Texto com Inteligência Artificial..."
+
+msgid "Unescape Java properties files"
+msgstr "Remover escape de arquivos de propriedades Java."
 
 msgid "Make characters uppercase"
 msgstr "Converter caracteres para maiúsculos"
@@ -4218,6 +4227,9 @@ msgstr "Funções de conversão de texto com auxílio de IA"
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr "Conversor de texto usando a API do OpenAI.\r\nUso: AIConvertText PROMPT"
+
+msgid "Unescape and display escaped Java properties files."
+msgstr "Remover e mostrar arquivos de propriedades Java com escape."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opções do Plugin do WinMerge para CompareMSExcelFiles.sct"

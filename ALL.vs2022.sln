@@ -201,6 +201,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{32E7
 	ProjectSection(SolutionItems) = preProject
 		Plugins\dlls\AI.sct = Plugins\dlls\AI.sct
 		Plugins\dlls\ApplyPatch.sct = Plugins\dlls\ApplyPatch.sct
+		Plugins\dlls\CompareEscapedJavaPropertiesFiles.sct = Plugins\dlls\CompareEscapedJavaPropertiesFiles.sct
 		Plugins\dlls\CompareMSExcelFiles.sct = Plugins\dlls\CompareMSExcelFiles.sct
 		Plugins\dlls\CompareMSPowerPointFiles.sct = Plugins\dlls\CompareMSPowerPointFiles.sct
 		Plugins\dlls\CompareMSVisioFiles.sct = Plugins\dlls\CompareMSVisioFiles.sct

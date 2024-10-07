@@ -67,6 +67,9 @@ msgstr "Cupià a(e) linea(e) selezziunata(e) da a manca"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr ""
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr ""
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr ""
 
@@ -4351,6 +4354,9 @@ msgstr "Decumpilazione"
 msgid "URL Handling"
 msgstr "Ghjestione d’indirizzu web"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Mette in maiuscula"
 
@@ -4467,6 +4473,9 @@ msgstr "Disassemblà Native Code"
 
 msgid "Convert Text with AI..."
 msgstr "Cunvertisce u testu cù l’IA…"
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "Mette i caratteri in maiuscula"
@@ -4744,6 +4753,9 @@ msgid ""
 msgstr ""
 "Cunvertidore di testu impieghendu OpenAI API.\r\n"
 "Aghjovu : AIConvertText PROMPT"
+
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Ozzioni di u modulu d’estensione CompareMSExcelFiles.sct di WinMerge"

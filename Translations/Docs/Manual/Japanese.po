@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-07-27 11:21+0900\n"
-"PO-Revision-Date: 2024-03-02 19:07+0900\n"
+"POT-Creation-Date: 2024-10-06 20:18+0900\n"
+"PO-Revision-Date: 2024-10-06 20:19+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #. type: Content of: <article><title>
 #: English/About_Doc.xml:3
@@ -7682,22 +7682,22 @@ msgstr "次の中から一つ選択してください:"
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:432
 msgid ""
-"<guilabel>Disabled</guilabel> (default): No autocompletion is performed when "
-"you enter paths in the Select Files or Folders dialog."
+"<guilabel>Disabled</guilabel>: No autocompletion is performed when you enter "
+"paths in the Select Files or Folders dialog."
 msgstr ""
-"<guilabel>無効</guilabel>(デフォルト): ファイルまたはフォルダーの選択ダイアロ"
-"グでパス入力した時、 オートコンプリートは実行されません。"
+"<guilabel>無効</guilabel>: ファイルまたはフォルダーの選択ダイアログでパス入力"
+"した時、 オートコンプリートは実行されません。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:440
 msgid ""
-"<guilabel>From file system</guilabel>: Checks paths as you type.  It "
-"attempts to locate paths in the file system that match the letters you type, "
-"and if a matching path is found, completes the path."
+"<guilabel>From file system</guilabel> (default): Checks paths as you type.  "
+"It attempts to locate paths in the file system that match the letters you "
+"type, and if a matching path is found, completes the path."
 msgstr ""
-"<guilabel>ファイルシステム</guilabel>: 入力した時にパスを調べます。入力した文"
-"字と一致するパスを、ファイルシステム上から見つけようとします。一致するパスが"
-"見つかった場合、パスを補完します。"
+"<guilabel>ファイルシステム</guilabel> (デフォルト): 入力した時にパスを調べま"
+"す。入力した文字と一致するパスを、ファイルシステム上から見つけようとします。"
+"一致するパスが見つかった場合、パスを補完します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:448
@@ -7722,23 +7722,23 @@ msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:468
-msgid "<guilabel>Disabled</guilabel> (default): Disables automatic reloading."
-msgstr "<guilabel>無効</guilabel> (default): 自動再読み込みを無効にします。"
+msgid "<guilabel>Disabled</guilabel>: Disables automatic reloading."
+msgstr "<guilabel>無効</guilabel>: 自動再読み込みを無効にします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:474
 msgid ""
-"<guilabel>Only on window activated</guilabel>: When the WinMerge window is "
-"activated, if the file has been modified, it will reload the file.  However, "
-"a message box asking if you want to reload the file will be displayed at "
-"this time.  If you do not want to see this message box, check \"Don't ask "
-"this question again\" and press the Yes button."
+"<guilabel>Only on window activated</guilabel> (default): When the WinMerge "
+"window is activated, if the file has been modified, it will reload the "
+"file.  However, a message box asking if you want to reload the file will be "
+"displayed at this time.  If you do not want to see this message box, check "
+"\"Don't ask this question again\" and press the Yes button."
 msgstr ""
-"<guilabel>ウィンドウがアクティブになった時のみ</guilabel>: WinMergeのウインド"
-"ウがアクティブになった時、 もしファイルが変更されていれば、ファイルを再読み込"
-"みします。 ただし、この時ファイルを開きなおすか問い合わせるメッセージボックス"
-"が表示されます。 このメッセージボックスを表示したくない場合は、「再びこの質問"
-"をしない」をチェックし、 はいボタンを押下してください。"
+"<guilabel>ウィンドウがアクティブになった時のみ</guilabel> (デフォルト): "
+"WinMergeのウインドウがアクティブになった時、 もしファイルが変更されていれば、"
+"ファイルを再読み込みします。 ただし、この時ファイルを開きなおすか問い合わせる"
+"メッセージボックスが表示されます。 このメッセージボックスを表示したくない場合"
+"は、「再びこの質問をしない」をチェックし、 はいボタンを押下してください。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:484
@@ -7860,7 +7860,7 @@ msgstr ""
 #: English/Configuration.xml:738 English/Configuration.xml:767
 #: English/Configuration.xml:791 English/Configuration.xml:1170
 #: English/Configuration.xml:1217 English/Configuration.xml:1253
-#: English/Configuration.xml:1277 English/Configuration.xml:1301
+#: English/Configuration.xml:1277 English/Configuration.xml:1329
 #: English/Configuration.xml:1353
 msgid "detecting and ignoring differences"
 msgstr ""
@@ -8368,17 +8368,17 @@ msgstr ""
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:984
 msgid ""
-"<option>Enabled</option>: Makes the color of the different lines ignored by "
-"line filters and substitution filters the same as the color of the identical "
-"lines."
+"<option>Disabled</option> (default): Difference lines ignored by line "
+"filters and substitution filters are displayed in the color of Ignored "
+"Difference."
 msgstr ""
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
 #: English/Configuration.xml:992
 msgid ""
-"<option>Disabled</option> (default): Difference lines ignored by line "
-"filters and substitution filters are displayed in the color of Ignored "
-"Difference."
+"<option>Enabled</option>: Makes the color of the different lines ignored by "
+"line filters and substitution filters the same as the color of the identical "
+"lines."
 msgstr ""
 
 #. type: Content of: <article><section><title>
@@ -8633,12 +8633,12 @@ msgstr ""
 "な比較結果の原因となります。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1215 English/Configuration.xml:1299
+#: English/Configuration.xml:1215 English/Configuration.xml:1275
 msgid "expand subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1214 English/Configuration.xml:1298
+#: English/Configuration.xml:1214 English/Configuration.xml:1274
 msgid ""
 "Automatically expand subfolders after comparison<placeholder "
 "type=\"indexterm\" id=\"0\"/>"
@@ -8684,11 +8684,82 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1251
-msgid "include unique subfolders"
+msgid "include subfolders"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Configuration.xml:1250
+msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:1260
+msgid ""
+"<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
+"also includes subfolders."
+msgstr ""
+
+#. type: Content of: <article><section><section><itemizedlist><listitem><para>
+#: English/Configuration.xml:1266
+msgid ""
+"<option>Disabled</option>: WinMerge only comparing the files in the root "
+"folder."
+msgstr ""
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1283
+msgid "Do not expand"
+msgstr "展開しない"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1287
+msgid ""
+"(default): WinMerge will not automatically expand subfolders after comparing "
+"folders."
+msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1293
+msgid "Expand all subfolders"
+msgstr "すべてのサブフォルダーを展開"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1297
+msgid ""
+"WinMerge will automatically expand all subfolders after comparing folders."
+msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1303
+msgid "Expand different subfolders"
+msgstr "差異のあるサブフォルダーを展開"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1307
+msgid ""
+"WinMerge will automatically expand different subfolders after comparing "
+"folders."
+msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><term>
+#: English/Configuration.xml:1313
+msgid "Expand identical subfolders"
+msgstr "同一のサブフォルダーを展開"
+
+#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
+#: English/Configuration.xml:1317
+msgid ""
+"WinMerge will automatically expand identical subfolders after comparing "
+"folders."
+msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
+
+#. type: Content of: <article><section><section><title><indexterm><primary>
+#: English/Configuration.xml:1327
+msgid "include unique subfolders"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: English/Configuration.xml:1326
 msgid ""
 "Include unique subfolders contents<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr ""
@@ -8696,93 +8767,22 @@ msgstr ""
 "id=\"0\"/>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1260
+#: English/Configuration.xml:1336
 msgid ""
-"<option>Disabled</option> (default): WinMerge ignore unique subfolders when "
-"comparing folders."
+"<option>Enabled</option> (default): WinMerge also shows the content from "
+"unique subfolders."
 msgstr ""
-"<option>無効</option>(デフォルト): WinMerge は、比較時片方しか存在しないサブ"
-"フォルダーを無視します。"
+"<option>有効</option> (デフォルト): WinMerge は、片方しか存在しないサブフォル"
+"ダー内の内容も表示します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1266
+#: English/Configuration.xml:1342
 msgid ""
-"<option>Enabled</option>: WinMerge also shows the content from unique "
-"subfolders."
-msgstr ""
-"<option>有効</option>: WinMerge は、片方しか存在しないサブフォルダー内の内容"
-"も表示します。"
-
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Configuration.xml:1275
-msgid "include subfolders"
-msgstr ""
-
-#. type: Content of: <article><section><section><title>
-#: English/Configuration.xml:1274
-msgid "Include subfolders<placeholder type=\"indexterm\" id=\"0\"/>"
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1284
-msgid ""
-"<option>Enabled</option> (default): WinMerge doing a recursive comparing and "
-"also includes subfolders."
-msgstr ""
-
-#. type: Content of: <article><section><section><itemizedlist><listitem><para>
-#: English/Configuration.xml:1290
-msgid ""
-"<option>Disabled</option>: WinMerge only comparing the files in the root "
-"folder."
-msgstr ""
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1307
-msgid "Do not expand"
-msgstr "展開しない"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1311
-msgid ""
-"(default): WinMerge will not automatically expand subfolders after comparing "
+"<option>Disabled</option>: WinMerge ignore unique subfolders when comparing "
 "folders."
-msgstr "(デフォルト): フォルダ比較後、自動的にサブフォルダを展開しません。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1317
-msgid "Expand all subfolders"
-msgstr "すべてのサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1321
-msgid ""
-"WinMerge will automatically expand all subfolders after comparing folders."
-msgstr "フォルダ比較後、自動的にすべてのサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1327
-msgid "Expand different subfolders"
-msgstr "差異のあるサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1331
-msgid ""
-"WinMerge will automatically expand different subfolders after comparing "
-"folders."
-msgstr "フォルダ比較後、自動的に差異のあるサブフォルダを展開します。"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Configuration.xml:1337
-msgid "Expand identical subfolders"
-msgstr "同一のサブフォルダーを展開"
-
-#. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Configuration.xml:1341
-msgid ""
-"WinMerge will automatically expand identical subfolders after comparing "
-"folders."
-msgstr "フォルダ比較後、自動的に同一のサブフォルダを展開します。"
+msgstr ""
+"<option>無効</option>: WinMerge は、比較時片方しか存在しないサブフォルダーを"
+"無視します。"
 
 #. type: Content of: <article><section><section><title><indexterm><primary>
 #: English/Configuration.xml:1351
@@ -16226,9 +16226,8 @@ msgid ""
 "&lt;left&gt;&lt;/left&gt; or &lt;left/&gt;</literal>)."
 msgstr ""
 
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Plugins.xml:4 English/Plugins.xml:378 English/Plugins.xml:2501
-#: English/Plugins.xml:2520
+#. type: Content of: <article><section><title><indexterm><primary>
+#: English/Plugins.xml:4 English/Plugins.xml:378 English/Plugins.xml:2532
 msgid "plugins"
 msgstr ""
 
@@ -16853,13 +16852,13 @@ msgstr ""
 "れた後にファイルが再度比較されるため、ファイルを再スキャンする必要はありませ"
 "ん。"
 
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Plugins.xml:376 English/Plugins.xml:2518
+#. type: Content of: <article><section><title><indexterm><primary>
+#: English/Plugins.xml:376
 msgid "Visual Basic dlls for plugins"
 msgstr ""
 
-#. type: Content of: <article><section><section><title><indexterm><secondary>
-#: English/Plugins.xml:380 English/Plugins.xml:2522
+#. type: Content of: <article><section><title><indexterm><secondary>
+#: English/Plugins.xml:380
 msgid "Visual Basic dlls"
 msgstr ""
 
@@ -16874,18 +16873,196 @@ msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
 #: English/Plugins.xml:385
-msgid "CompareMSExcelFiles plugin file"
+msgid "CompareEscapedJavaPropertiesFiles plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
 #: English/Plugins.xml:384
+msgid ""
+"<filename>CompareEscapedJavaPropertiesFiles<placeholder type=\"indexterm\" "
+"id=\"0\"/></filename>"
+msgstr ""
+
+#. type: Content of: <article><section><section><para>
+#: English/Plugins.xml:388
+msgid ""
+"This plugin unescapes Java .properties files for easy viewing, then re-"
+"escapes them when saving."
+msgstr ""
+"このプラグインは、Javaの.propertiesファイルをアンエスケープして表示し、保存時"
+"に再度エスケープします。"
+
+#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
+#: English/Plugins.xml:392 English/Plugins.xml:426 English/Plugins.xml:472
+#: English/Plugins.xml:518 English/Plugins.xml:565 English/Plugins.xml:623
+#: English/Plugins.xml:677 English/Plugins.xml:730 English/Plugins.xml:783
+#: English/Plugins.xml:837 English/Plugins.xml:890 English/Plugins.xml:943
+#: English/Plugins.xml:996 English/Plugins.xml:1050 English/Plugins.xml:1104
+#: English/Plugins.xml:1158 English/Plugins.xml:1212 English/Plugins.xml:1266
+#: English/Plugins.xml:1319 English/Plugins.xml:1372 English/Plugins.xml:1428
+#: English/Plugins.xml:1484 English/Plugins.xml:1521 English/Plugins.xml:1558
+#: English/Plugins.xml:1595 English/Plugins.xml:1632 English/Plugins.xml:1669
+#: English/Plugins.xml:1706 English/Plugins.xml:1743 English/Plugins.xml:1780
+#: English/Plugins.xml:1882 English/Plugins.xml:1975 English/Plugins.xml:2057
+#: English/Plugins.xml:2111 English/Plugins.xml:2148 English/Plugins.xml:2236
+#: English/Plugins.xml:2264 English/Plugins.xml:2306 English/Plugins.xml:2341
+#: English/Plugins.xml:2370 English/Plugins.xml:2477 English/Plugins.xml:2513
+msgid "Category"
+msgstr "分類"
+
+#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
+#: English/Plugins.xml:394 English/Plugins.xml:428 English/Plugins.xml:474
+#: English/Plugins.xml:520 English/Plugins.xml:567 English/Plugins.xml:625
+#: English/Plugins.xml:679 English/Plugins.xml:732 English/Plugins.xml:785
+#: English/Plugins.xml:839 English/Plugins.xml:892 English/Plugins.xml:945
+#: English/Plugins.xml:998 English/Plugins.xml:1052 English/Plugins.xml:1106
+#: English/Plugins.xml:1160 English/Plugins.xml:1214 English/Plugins.xml:1268
+#: English/Plugins.xml:1321 English/Plugins.xml:1374 English/Plugins.xml:1430
+#: English/Plugins.xml:1486 English/Plugins.xml:1523 English/Plugins.xml:1560
+#: English/Plugins.xml:1597 English/Plugins.xml:1634 English/Plugins.xml:1671
+#: English/Plugins.xml:1708 English/Plugins.xml:1745 English/Plugins.xml:1782
+#: English/Plugins.xml:1884 English/Plugins.xml:1977 English/Plugins.xml:2059
+#: English/Plugins.xml:2113 English/Plugins.xml:2150 English/Plugins.xml:2238
+#: English/Plugins.xml:2266 English/Plugins.xml:2308 English/Plugins.xml:2343
+#: English/Plugins.xml:2372 English/Plugins.xml:2478 English/Plugins.xml:2515
+msgid "File filter"
+msgstr "ファイルフィルター"
+
+#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
+#: English/Plugins.xml:396 English/Plugins.xml:430 English/Plugins.xml:476
+#: English/Plugins.xml:522 English/Plugins.xml:569 English/Plugins.xml:627
+#: English/Plugins.xml:681 English/Plugins.xml:734 English/Plugins.xml:787
+#: English/Plugins.xml:841 English/Plugins.xml:894 English/Plugins.xml:947
+#: English/Plugins.xml:1000 English/Plugins.xml:1054 English/Plugins.xml:1108
+#: English/Plugins.xml:1162 English/Plugins.xml:1216 English/Plugins.xml:1270
+#: English/Plugins.xml:1323 English/Plugins.xml:1376 English/Plugins.xml:1432
+#: English/Plugins.xml:1488 English/Plugins.xml:1525 English/Plugins.xml:1562
+#: English/Plugins.xml:1599 English/Plugins.xml:1636 English/Plugins.xml:1673
+#: English/Plugins.xml:1710 English/Plugins.xml:1747 English/Plugins.xml:1784
+#: English/Plugins.xml:1886 English/Plugins.xml:1979 English/Plugins.xml:2061
+#: English/Plugins.xml:2115 English/Plugins.xml:2152 English/Plugins.xml:2240
+#: English/Plugins.xml:2268 English/Plugins.xml:2310 English/Plugins.xml:2345
+#: English/Plugins.xml:2374
+msgid "Plugin arguments"
+msgstr "プラグイン引数"
+
+#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
+#: English/Plugins.xml:398 English/Plugins.xml:432 English/Plugins.xml:478
+#: English/Plugins.xml:524 English/Plugins.xml:571 English/Plugins.xml:629
+#: English/Plugins.xml:683 English/Plugins.xml:736 English/Plugins.xml:789
+#: English/Plugins.xml:843 English/Plugins.xml:896 English/Plugins.xml:949
+#: English/Plugins.xml:1002 English/Plugins.xml:1056 English/Plugins.xml:1110
+#: English/Plugins.xml:1164 English/Plugins.xml:1218 English/Plugins.xml:1272
+#: English/Plugins.xml:1325 English/Plugins.xml:1378 English/Plugins.xml:1434
+#: English/Plugins.xml:1490 English/Plugins.xml:1527 English/Plugins.xml:1564
+#: English/Plugins.xml:1601 English/Plugins.xml:1638 English/Plugins.xml:1675
+#: English/Plugins.xml:1712 English/Plugins.xml:1749 English/Plugins.xml:1786
+#: English/Plugins.xml:1888 English/Plugins.xml:1981 English/Plugins.xml:2063
+#: English/Plugins.xml:2117 English/Plugins.xml:2154
+msgid "Packing"
+msgstr "書き戻し"
+
+#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
+#: English/Plugins.xml:400 English/Plugins.xml:434 English/Plugins.xml:480
+#: English/Plugins.xml:526 English/Plugins.xml:573 English/Plugins.xml:631
+#: English/Plugins.xml:685 English/Plugins.xml:738 English/Plugins.xml:791
+#: English/Plugins.xml:845 English/Plugins.xml:898 English/Plugins.xml:951
+#: English/Plugins.xml:1004 English/Plugins.xml:1058 English/Plugins.xml:1112
+#: English/Plugins.xml:1166 English/Plugins.xml:1220 English/Plugins.xml:1274
+#: English/Plugins.xml:1327 English/Plugins.xml:1380 English/Plugins.xml:1436
+#: English/Plugins.xml:1492 English/Plugins.xml:1529 English/Plugins.xml:1566
+#: English/Plugins.xml:1603 English/Plugins.xml:1640 English/Plugins.xml:1677
+#: English/Plugins.xml:1714 English/Plugins.xml:1751 English/Plugins.xml:1788
+#: English/Plugins.xml:1890 English/Plugins.xml:1983 English/Plugins.xml:2065
+#: English/Plugins.xml:2119 English/Plugins.xml:2156 English/Plugins.xml:2242
+#: English/Plugins.xml:2270 English/Plugins.xml:2312 English/Plugins.xml:2347
+#: English/Plugins.xml:2376 English/Plugins.xml:2479 English/Plugins.xml:2517
+msgid "Settings dialog support"
+msgstr "設定ダイアログサポート"
+
+#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
+#: English/Plugins.xml:403 English/Plugins.xml:439 English/Plugins.xml:485
+#: English/Plugins.xml:531 English/Plugins.xml:578 English/Plugins.xml:636
+#: English/Plugins.xml:690 English/Plugins.xml:743 English/Plugins.xml:796
+#: English/Plugins.xml:850 English/Plugins.xml:903 English/Plugins.xml:956
+#: English/Plugins.xml:1009 English/Plugins.xml:1063 English/Plugins.xml:1117
+#: English/Plugins.xml:1171 English/Plugins.xml:1225 English/Plugins.xml:1279
+#: English/Plugins.xml:1332 English/Plugins.xml:1385 English/Plugins.xml:1441
+#: English/Plugins.xml:1497 English/Plugins.xml:1534 English/Plugins.xml:1571
+#: English/Plugins.xml:1608 English/Plugins.xml:1645 English/Plugins.xml:1682
+#: English/Plugins.xml:1719 English/Plugins.xml:1756 English/Plugins.xml:1793
+#: English/Plugins.xml:1895 English/Plugins.xml:1988 English/Plugins.xml:2070
+#: English/Plugins.xml:2124 English/Plugins.xml:2161
+msgid "Unpacker"
+msgstr "展開プラグイン"
+
+#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
+#: English/Plugins.xml:405
+msgid "<filename class=\"extension\">*.properties</filename>"
+msgstr ""
+
+#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
+#: English/Plugins.xml:407 English/Plugins.xml:411 English/Plugins.xml:450
+#: English/Plugins.xml:452 English/Plugins.xml:496 English/Plugins.xml:498
+#: English/Plugins.xml:543 English/Plugins.xml:545 English/Plugins.xml:587
+#: English/Plugins.xml:589 English/Plugins.xml:644 English/Plugins.xml:646
+#: English/Plugins.xml:697 English/Plugins.xml:699 English/Plugins.xml:750
+#: English/Plugins.xml:752 English/Plugins.xml:804 English/Plugins.xml:806
+#: English/Plugins.xml:857 English/Plugins.xml:859 English/Plugins.xml:910
+#: English/Plugins.xml:912 English/Plugins.xml:963 English/Plugins.xml:965
+#: English/Plugins.xml:1017 English/Plugins.xml:1019 English/Plugins.xml:1071
+#: English/Plugins.xml:1073 English/Plugins.xml:1125 English/Plugins.xml:1127
+#: English/Plugins.xml:1179 English/Plugins.xml:1181 English/Plugins.xml:1233
+#: English/Plugins.xml:1235 English/Plugins.xml:1286 English/Plugins.xml:1288
+#: English/Plugins.xml:1339 English/Plugins.xml:1341 English/Plugins.xml:1395
+#: English/Plugins.xml:1397 English/Plugins.xml:1451 English/Plugins.xml:1453
+#: English/Plugins.xml:1504 English/Plugins.xml:1506 English/Plugins.xml:1539
+#: English/Plugins.xml:1541 English/Plugins.xml:1543 English/Plugins.xml:1576
+#: English/Plugins.xml:1578 English/Plugins.xml:1580 English/Plugins.xml:1613
+#: English/Plugins.xml:1615 English/Plugins.xml:1617 English/Plugins.xml:1650
+#: English/Plugins.xml:1652 English/Plugins.xml:1654 English/Plugins.xml:1687
+#: English/Plugins.xml:1689 English/Plugins.xml:1691 English/Plugins.xml:1724
+#: English/Plugins.xml:1726 English/Plugins.xml:1728 English/Plugins.xml:1761
+#: English/Plugins.xml:1763 English/Plugins.xml:1765 English/Plugins.xml:1798
+#: English/Plugins.xml:1800 English/Plugins.xml:1802 English/Plugins.xml:1902
+#: English/Plugins.xml:1904 English/Plugins.xml:1995 English/Plugins.xml:1997
+#: English/Plugins.xml:2077 English/Plugins.xml:2079 English/Plugins.xml:2131
+#: English/Plugins.xml:2133 English/Plugins.xml:2166 English/Plugins.xml:2168
+#: English/Plugins.xml:2170 English/Plugins.xml:2285 English/Plugins.xml:2287
+#: English/Plugins.xml:2385 English/Plugins.xml:2387 English/Plugins.xml:2484
+#: English/Plugins.xml:2524
+msgid "No"
+msgstr ""
+
+#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
+#: English/Plugins.xml:409 English/Plugins.xml:454 English/Plugins.xml:500
+#: English/Plugins.xml:547 English/Plugins.xml:591 English/Plugins.xml:642
+#: English/Plugins.xml:695 English/Plugins.xml:748 English/Plugins.xml:802
+#: English/Plugins.xml:855 English/Plugins.xml:908 English/Plugins.xml:961
+#: English/Plugins.xml:1015 English/Plugins.xml:1069 English/Plugins.xml:1123
+#: English/Plugins.xml:1177 English/Plugins.xml:1231 English/Plugins.xml:1284
+#: English/Plugins.xml:1337 English/Plugins.xml:1393 English/Plugins.xml:1449
+#: English/Plugins.xml:1502 English/Plugins.xml:1900 English/Plugins.xml:1993
+#: English/Plugins.xml:2075 English/Plugins.xml:2129 English/Plugins.xml:2249
+#: English/Plugins.xml:2319 English/Plugins.xml:2321 English/Plugins.xml:2354
+#: English/Plugins.xml:2356
+msgid "Yes"
+msgstr ""
+
+#. type: Content of: <article><section><section><title><filename><indexterm><primary>
+#: English/Plugins.xml:418
+msgid "CompareMSExcelFiles plugin file"
+msgstr ""
+
+#. type: Content of: <article><section><section><title>
+#: English/Plugins.xml:417
 msgid ""
 "<filename>CompareMSExcelFiles<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:388
+#: English/Plugins.xml:421
 msgid ""
 "Displays the text contents of a <trademark class=\"registered\">Microsoft</"
 "trademark> <application>Excel</application> file, stripping away all "
@@ -16896,126 +17073,23 @@ msgstr ""
 "埋め込みオブジェクトは取り除かれて表示されます。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:393 English/Plugins.xml:439 English/Plugins.xml:485
-#: English/Plugins.xml:532 English/Plugins.xml:590 English/Plugins.xml:644
-#: English/Plugins.xml:697 English/Plugins.xml:750 English/Plugins.xml:804
-#: English/Plugins.xml:857 English/Plugins.xml:910 English/Plugins.xml:963
-#: English/Plugins.xml:1017 English/Plugins.xml:1071 English/Plugins.xml:1125
-#: English/Plugins.xml:1179 English/Plugins.xml:1233 English/Plugins.xml:1286
-#: English/Plugins.xml:1339 English/Plugins.xml:1395 English/Plugins.xml:1451
-#: English/Plugins.xml:1488 English/Plugins.xml:1525 English/Plugins.xml:1562
-#: English/Plugins.xml:1599 English/Plugins.xml:1636 English/Plugins.xml:1673
-#: English/Plugins.xml:1710 English/Plugins.xml:1747 English/Plugins.xml:1849
-#: English/Plugins.xml:1942 English/Plugins.xml:2024 English/Plugins.xml:2078
-#: English/Plugins.xml:2115 English/Plugins.xml:2203 English/Plugins.xml:2231
-#: English/Plugins.xml:2273 English/Plugins.xml:2308 English/Plugins.xml:2337
-#: English/Plugins.xml:2446 English/Plugins.xml:2482
-msgid "Category"
-msgstr "分類"
-
-#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:395 English/Plugins.xml:441 English/Plugins.xml:487
-#: English/Plugins.xml:534 English/Plugins.xml:592 English/Plugins.xml:646
-#: English/Plugins.xml:699 English/Plugins.xml:752 English/Plugins.xml:806
-#: English/Plugins.xml:859 English/Plugins.xml:912 English/Plugins.xml:965
-#: English/Plugins.xml:1019 English/Plugins.xml:1073 English/Plugins.xml:1127
-#: English/Plugins.xml:1181 English/Plugins.xml:1235 English/Plugins.xml:1288
-#: English/Plugins.xml:1341 English/Plugins.xml:1397 English/Plugins.xml:1453
-#: English/Plugins.xml:1490 English/Plugins.xml:1527 English/Plugins.xml:1564
-#: English/Plugins.xml:1601 English/Plugins.xml:1638 English/Plugins.xml:1675
-#: English/Plugins.xml:1712 English/Plugins.xml:1749 English/Plugins.xml:1851
-#: English/Plugins.xml:1944 English/Plugins.xml:2026 English/Plugins.xml:2080
-#: English/Plugins.xml:2117 English/Plugins.xml:2205 English/Plugins.xml:2233
-#: English/Plugins.xml:2275 English/Plugins.xml:2310 English/Plugins.xml:2339
-#: English/Plugins.xml:2447 English/Plugins.xml:2484
-msgid "File filter"
-msgstr "ファイルフィルター"
-
-#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:397 English/Plugins.xml:443 English/Plugins.xml:489
-#: English/Plugins.xml:536 English/Plugins.xml:594 English/Plugins.xml:648
-#: English/Plugins.xml:701 English/Plugins.xml:754 English/Plugins.xml:808
-#: English/Plugins.xml:861 English/Plugins.xml:914 English/Plugins.xml:967
-#: English/Plugins.xml:1021 English/Plugins.xml:1075 English/Plugins.xml:1129
-#: English/Plugins.xml:1183 English/Plugins.xml:1237 English/Plugins.xml:1290
-#: English/Plugins.xml:1343 English/Plugins.xml:1399 English/Plugins.xml:1455
-#: English/Plugins.xml:1492 English/Plugins.xml:1529 English/Plugins.xml:1566
-#: English/Plugins.xml:1603 English/Plugins.xml:1640 English/Plugins.xml:1677
-#: English/Plugins.xml:1714 English/Plugins.xml:1751 English/Plugins.xml:1853
-#: English/Plugins.xml:1946 English/Plugins.xml:2028 English/Plugins.xml:2082
-#: English/Plugins.xml:2119 English/Plugins.xml:2207 English/Plugins.xml:2235
-#: English/Plugins.xml:2277 English/Plugins.xml:2312 English/Plugins.xml:2341
-msgid "Plugin arguments"
-msgstr "プラグイン引数"
-
-#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:399 English/Plugins.xml:445 English/Plugins.xml:491
-#: English/Plugins.xml:538 English/Plugins.xml:596 English/Plugins.xml:650
-#: English/Plugins.xml:703 English/Plugins.xml:756 English/Plugins.xml:810
-#: English/Plugins.xml:863 English/Plugins.xml:916 English/Plugins.xml:969
-#: English/Plugins.xml:1023 English/Plugins.xml:1077 English/Plugins.xml:1131
-#: English/Plugins.xml:1185 English/Plugins.xml:1239 English/Plugins.xml:1292
-#: English/Plugins.xml:1345 English/Plugins.xml:1401 English/Plugins.xml:1457
-#: English/Plugins.xml:1494 English/Plugins.xml:1531 English/Plugins.xml:1568
-#: English/Plugins.xml:1605 English/Plugins.xml:1642 English/Plugins.xml:1679
-#: English/Plugins.xml:1716 English/Plugins.xml:1753 English/Plugins.xml:1855
-#: English/Plugins.xml:1948 English/Plugins.xml:2030 English/Plugins.xml:2084
-#: English/Plugins.xml:2121
-msgid "Packing"
-msgstr "書き戻し"
-
-#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:401 English/Plugins.xml:447 English/Plugins.xml:493
-#: English/Plugins.xml:540 English/Plugins.xml:598 English/Plugins.xml:652
-#: English/Plugins.xml:705 English/Plugins.xml:758 English/Plugins.xml:812
-#: English/Plugins.xml:865 English/Plugins.xml:918 English/Plugins.xml:971
-#: English/Plugins.xml:1025 English/Plugins.xml:1079 English/Plugins.xml:1133
-#: English/Plugins.xml:1187 English/Plugins.xml:1241 English/Plugins.xml:1294
-#: English/Plugins.xml:1347 English/Plugins.xml:1403 English/Plugins.xml:1459
-#: English/Plugins.xml:1496 English/Plugins.xml:1533 English/Plugins.xml:1570
-#: English/Plugins.xml:1607 English/Plugins.xml:1644 English/Plugins.xml:1681
-#: English/Plugins.xml:1718 English/Plugins.xml:1755 English/Plugins.xml:1857
-#: English/Plugins.xml:1950 English/Plugins.xml:2032 English/Plugins.xml:2086
-#: English/Plugins.xml:2123 English/Plugins.xml:2209 English/Plugins.xml:2237
-#: English/Plugins.xml:2279 English/Plugins.xml:2314 English/Plugins.xml:2343
-#: English/Plugins.xml:2448 English/Plugins.xml:2486
-msgid "Settings dialog support"
-msgstr "設定ダイアログサポート"
-
-#. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:403 English/Plugins.xml:449 English/Plugins.xml:495
-#: English/Plugins.xml:542 English/Plugins.xml:600 English/Plugins.xml:654
-#: English/Plugins.xml:707 English/Plugins.xml:760 English/Plugins.xml:814
-#: English/Plugins.xml:867 English/Plugins.xml:920 English/Plugins.xml:973
-#: English/Plugins.xml:1027 English/Plugins.xml:1081 English/Plugins.xml:1135
-#: English/Plugins.xml:1189 English/Plugins.xml:1243 English/Plugins.xml:1296
-#: English/Plugins.xml:1349 English/Plugins.xml:1405 English/Plugins.xml:1461
-#: English/Plugins.xml:1498 English/Plugins.xml:1535 English/Plugins.xml:1572
-#: English/Plugins.xml:1609 English/Plugins.xml:1646 English/Plugins.xml:1683
-#: English/Plugins.xml:1720 English/Plugins.xml:1757 English/Plugins.xml:1859
-#: English/Plugins.xml:1952 English/Plugins.xml:2034 English/Plugins.xml:2088
-#: English/Plugins.xml:2125
+#: English/Plugins.xml:436 English/Plugins.xml:482 English/Plugins.xml:528
+#: English/Plugins.xml:575 English/Plugins.xml:633 English/Plugins.xml:687
+#: English/Plugins.xml:740 English/Plugins.xml:793 English/Plugins.xml:847
+#: English/Plugins.xml:900 English/Plugins.xml:953 English/Plugins.xml:1006
+#: English/Plugins.xml:1060 English/Plugins.xml:1114 English/Plugins.xml:1168
+#: English/Plugins.xml:1222 English/Plugins.xml:1276 English/Plugins.xml:1329
+#: English/Plugins.xml:1382 English/Plugins.xml:1438 English/Plugins.xml:1494
+#: English/Plugins.xml:1531 English/Plugins.xml:1568 English/Plugins.xml:1605
+#: English/Plugins.xml:1642 English/Plugins.xml:1679 English/Plugins.xml:1716
+#: English/Plugins.xml:1753 English/Plugins.xml:1790 English/Plugins.xml:1892
+#: English/Plugins.xml:1985 English/Plugins.xml:2067 English/Plugins.xml:2121
+#: English/Plugins.xml:2158
 msgid "Dependency"
 msgstr "依存するもの"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:406 English/Plugins.xml:452 English/Plugins.xml:498
-#: English/Plugins.xml:545 English/Plugins.xml:603 English/Plugins.xml:657
-#: English/Plugins.xml:710 English/Plugins.xml:763 English/Plugins.xml:817
-#: English/Plugins.xml:870 English/Plugins.xml:923 English/Plugins.xml:976
-#: English/Plugins.xml:1030 English/Plugins.xml:1084 English/Plugins.xml:1138
-#: English/Plugins.xml:1192 English/Plugins.xml:1246 English/Plugins.xml:1299
-#: English/Plugins.xml:1352 English/Plugins.xml:1408 English/Plugins.xml:1464
-#: English/Plugins.xml:1501 English/Plugins.xml:1538 English/Plugins.xml:1575
-#: English/Plugins.xml:1612 English/Plugins.xml:1649 English/Plugins.xml:1686
-#: English/Plugins.xml:1723 English/Plugins.xml:1760 English/Plugins.xml:1862
-#: English/Plugins.xml:1955 English/Plugins.xml:2037 English/Plugins.xml:2091
-#: English/Plugins.xml:2128
-msgid "Unpacker"
-msgstr "展開プラグイン"
-
-#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:408
+#: English/Plugins.xml:441
 msgid ""
 "<filename class=\"extension\">*.xls</filename>, <filename "
 "class=\"extension\">*.xlsx</filename>, <filename class=\"extension\">*.xlsm</"
@@ -17026,72 +17100,26 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:417 English/Plugins.xml:419 English/Plugins.xml:463
-#: English/Plugins.xml:465 English/Plugins.xml:510 English/Plugins.xml:512
-#: English/Plugins.xml:554 English/Plugins.xml:556 English/Plugins.xml:611
-#: English/Plugins.xml:613 English/Plugins.xml:664 English/Plugins.xml:666
-#: English/Plugins.xml:717 English/Plugins.xml:719 English/Plugins.xml:771
-#: English/Plugins.xml:773 English/Plugins.xml:824 English/Plugins.xml:826
-#: English/Plugins.xml:877 English/Plugins.xml:879 English/Plugins.xml:930
-#: English/Plugins.xml:932 English/Plugins.xml:984 English/Plugins.xml:986
-#: English/Plugins.xml:1038 English/Plugins.xml:1040 English/Plugins.xml:1092
-#: English/Plugins.xml:1094 English/Plugins.xml:1146 English/Plugins.xml:1148
-#: English/Plugins.xml:1200 English/Plugins.xml:1202 English/Plugins.xml:1253
-#: English/Plugins.xml:1255 English/Plugins.xml:1306 English/Plugins.xml:1308
-#: English/Plugins.xml:1362 English/Plugins.xml:1364 English/Plugins.xml:1418
-#: English/Plugins.xml:1420 English/Plugins.xml:1471 English/Plugins.xml:1473
-#: English/Plugins.xml:1506 English/Plugins.xml:1508 English/Plugins.xml:1510
-#: English/Plugins.xml:1543 English/Plugins.xml:1545 English/Plugins.xml:1547
-#: English/Plugins.xml:1580 English/Plugins.xml:1582 English/Plugins.xml:1584
-#: English/Plugins.xml:1617 English/Plugins.xml:1619 English/Plugins.xml:1621
-#: English/Plugins.xml:1654 English/Plugins.xml:1656 English/Plugins.xml:1658
-#: English/Plugins.xml:1691 English/Plugins.xml:1693 English/Plugins.xml:1695
-#: English/Plugins.xml:1728 English/Plugins.xml:1730 English/Plugins.xml:1732
-#: English/Plugins.xml:1765 English/Plugins.xml:1767 English/Plugins.xml:1769
-#: English/Plugins.xml:1869 English/Plugins.xml:1871 English/Plugins.xml:1962
-#: English/Plugins.xml:1964 English/Plugins.xml:2044 English/Plugins.xml:2046
-#: English/Plugins.xml:2098 English/Plugins.xml:2100 English/Plugins.xml:2133
-#: English/Plugins.xml:2135 English/Plugins.xml:2137 English/Plugins.xml:2252
-#: English/Plugins.xml:2254 English/Plugins.xml:2352 English/Plugins.xml:2354
-#: English/Plugins.xml:2453 English/Plugins.xml:2493
-msgid "No"
-msgstr ""
-
-#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:421 English/Plugins.xml:467 English/Plugins.xml:514
-#: English/Plugins.xml:558 English/Plugins.xml:609 English/Plugins.xml:662
-#: English/Plugins.xml:715 English/Plugins.xml:769 English/Plugins.xml:822
-#: English/Plugins.xml:875 English/Plugins.xml:928 English/Plugins.xml:982
-#: English/Plugins.xml:1036 English/Plugins.xml:1090 English/Plugins.xml:1144
-#: English/Plugins.xml:1198 English/Plugins.xml:1251 English/Plugins.xml:1304
-#: English/Plugins.xml:1360 English/Plugins.xml:1416 English/Plugins.xml:1469
-#: English/Plugins.xml:1867 English/Plugins.xml:1960 English/Plugins.xml:2042
-#: English/Plugins.xml:2096 English/Plugins.xml:2216 English/Plugins.xml:2286
-#: English/Plugins.xml:2288 English/Plugins.xml:2321 English/Plugins.xml:2323
-msgid "Yes"
-msgstr ""
-
-#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:423
+#: English/Plugins.xml:456
 msgid ""
 "<trademark class=\"registered\">Microsoft</trademark> <application>Excel</"
 "application>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:431
+#: English/Plugins.xml:464
 msgid "CompareMSPowerPointFiles plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:430
+#: English/Plugins.xml:463
 msgid ""
 "<filename>CompareMSPowerPointFiles<placeholder type=\"indexterm\" id=\"0\"/"
 "></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:434
+#: English/Plugins.xml:467
 msgid ""
 "Displays the text content of a <trademark class=\"registered\">Microsoft</"
 "trademark> <application>PowerPoint</application> file, stripping away all "
@@ -17102,7 +17130,7 @@ msgstr ""
 "すべてのフォーマットおよび埋め込みオブジェクトは取り除かれて表示されます。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:454
+#: English/Plugins.xml:487
 msgid ""
 "<filename class=\"extension\">*.ppt</filename>, <filename "
 "class=\"extension\">*.pptx</filename>, <filename class=\"extension\">*.pptm</"
@@ -17113,26 +17141,26 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:469
+#: English/Plugins.xml:502
 msgid ""
 "<trademark class=\"registered\">Microsoft</trademark> "
 "<application>PowerPoint</application>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:477
+#: English/Plugins.xml:510
 msgid "CompareMSVisioFiles plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:476
+#: English/Plugins.xml:509
 msgid ""
 "<filename>CompareMSVisioFiles<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:480
+#: English/Plugins.xml:513
 msgid ""
 "Displays the text content of a <trademark class=\"registered\">Microsoft</"
 "trademark> <application>Visio</application> file, stripping away all "
@@ -17143,7 +17171,7 @@ msgstr ""
 "埋め込みオブジェクトは取り除かれて表示されます。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:500
+#: English/Plugins.xml:533
 msgid ""
 "<filename class=\"extension\">*.vsd</filename>, <filename "
 "class=\"extension\">*.vsdx</filename>, <filename class=\"extension\">*.vsdm</"
@@ -17155,26 +17183,26 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:516
+#: English/Plugins.xml:549
 msgid ""
 "<trademark class=\"registered\">Microsoft</trademark> <application>Visio</"
 "application>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:524
+#: English/Plugins.xml:557
 msgid "CompareMSWordFiles plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:523
+#: English/Plugins.xml:556
 msgid ""
 "<filename>CompareMSWordFiles<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:527
+#: English/Plugins.xml:560
 msgid ""
 "Displays the text content of a <trademark class=\"registered\">Microsoft</"
 "trademark> <application>Word</application> file, stripping away all "
@@ -17185,7 +17213,7 @@ msgstr ""
 "埋め込みオブジェクトは取り除かれて表示されます。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:547
+#: English/Plugins.xml:580
 msgid ""
 "<filename class=\"extension\">*.doc</filename>, <filename "
 "class=\"extension\">*.docx</filename>, <filename class=\"extension\">*.docm</"
@@ -17195,251 +17223,251 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:560
+#: English/Plugins.xml:593
 msgid ""
 "<trademark class=\"registered\">Microsoft</trademark> <application>Word</"
 "application>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:568
+#: English/Plugins.xml:601
 msgid "PrettifyHTML plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:567
+#: English/Plugins.xml:600
 msgid ""
 "<filename>PrettifyHTML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:571
+#: English/Plugins.xml:604
 msgid "HTML Prettier with tidy-html5"
 msgstr "tidy-html5 を使用して HTML ファイルを整形します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:574
+#: English/Plugins.xml:607
 msgid ""
 "<command>PrettifyHTML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:582 English/Plugins.xml:636 English/Plugins.xml:689
-#: English/Plugins.xml:742 English/Plugins.xml:796 English/Plugins.xml:849
-#: English/Plugins.xml:902 English/Plugins.xml:955 English/Plugins.xml:1009
-#: English/Plugins.xml:1063 English/Plugins.xml:1117 English/Plugins.xml:1171
-#: English/Plugins.xml:1225 English/Plugins.xml:1278 English/Plugins.xml:1331
-#: English/Plugins.xml:1387
+#: English/Plugins.xml:615 English/Plugins.xml:669 English/Plugins.xml:722
+#: English/Plugins.xml:775 English/Plugins.xml:829 English/Plugins.xml:882
+#: English/Plugins.xml:935 English/Plugins.xml:988 English/Plugins.xml:1042
+#: English/Plugins.xml:1096 English/Plugins.xml:1150 English/Plugins.xml:1204
+#: English/Plugins.xml:1258 English/Plugins.xml:1311 English/Plugins.xml:1364
+#: English/Plugins.xml:1420
 msgid "<option><replaceable>arguments</replaceable></option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:584 English/Plugins.xml:638 English/Plugins.xml:1011
+#: English/Plugins.xml:617 English/Plugins.xml:671 English/Plugins.xml:1044
 msgid "Command line options passed to the tidy command"
 msgstr "tidy コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:605 English/Plugins.xml:1032
+#: English/Plugins.xml:638 English/Plugins.xml:1065
 msgid ""
 "<filename class=\"extension\">*.html</filename>, <filename "
 "class=\"extension\">*.htm</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:615 English/Plugins.xml:668 English/Plugins.xml:1042
+#: English/Plugins.xml:648 English/Plugins.xml:701 English/Plugins.xml:1075
 msgid "<ulink url=\"https://www.html-tidy.org/\">tidy-html5</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:622
+#: English/Plugins.xml:655
 msgid "PrettifyXML plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:621
+#: English/Plugins.xml:654
 msgid ""
 "<filename>PrettifyXML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:625
+#: English/Plugins.xml:658
 msgid "XML Prettier with tidy-html5"
 msgstr "tidy-html5 を使用して XML ファイルを整形します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:628
+#: English/Plugins.xml:661
 msgid ""
 "<command>PrettifyXML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:659
+#: English/Plugins.xml:692
 msgid "<filename class=\"extension\">*.xml</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:675
+#: English/Plugins.xml:708
 msgid "PrettifyJSON plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:674
+#: English/Plugins.xml:707
 msgid ""
 "<filename>PrettifyJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:678
+#: English/Plugins.xml:711
 msgid "JSON Prettier with jq command"
 msgstr "jq コマンドを使用してJSON ファイルを整形します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:681
+#: English/Plugins.xml:714
 msgid ""
 "<command>PrettifyJSON</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:691 English/Plugins.xml:904
+#: English/Plugins.xml:724 English/Plugins.xml:937
 msgid "Filter or command line options passed to the jq command"
 msgstr "フィルターまたは jq コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:712 English/Plugins.xml:925
+#: English/Plugins.xml:745 English/Plugins.xml:958
 msgid "<filename class=\"extension\">*.json</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:721 English/Plugins.xml:934
+#: English/Plugins.xml:754 English/Plugins.xml:967
 msgid "<ulink url=\"https://stedolan.github.io/jq/\">jq</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:728
+#: English/Plugins.xml:761
 msgid "PrettifyYAML plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:727
+#: English/Plugins.xml:760
 msgid ""
 "<filename>PrettifyYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:731
+#: English/Plugins.xml:764
 msgid "YAML Prettier with yq command"
 msgstr "yq コマンドを使用してYAML ファイルを整形します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:734
+#: English/Plugins.xml:767
 msgid ""
 "<command>PrettifyYAML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:744 English/Plugins.xml:957
+#: English/Plugins.xml:777 English/Plugins.xml:990
 msgid "Filter or command line options passed to the yq command"
 msgstr "フィルターまたは yq コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:765 English/Plugins.xml:978
+#: English/Plugins.xml:798 English/Plugins.xml:1011
 msgid ""
 "<filename class=\"extension\">*.yaml</filename>, <filename "
 "class=\"extension\">*.yml</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:775
+#: English/Plugins.xml:808
 msgid "<ulink url=\"https://stedolan.github.io/yq/\">yq</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:782
+#: English/Plugins.xml:815
 msgid "QueryCSV plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:781
+#: English/Plugins.xml:814
 msgid "<filename>QueryCSV<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:785
+#: English/Plugins.xml:818
 msgid "CSV Querier with q command"
 msgstr "q コマンドを使用して CSVファイルからデータを抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:788
+#: English/Plugins.xml:821
 msgid ""
 "<command>QueryCSV</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:798 English/Plugins.xml:851
+#: English/Plugins.xml:831 English/Plugins.xml:884
 msgid "SQL statement or command line options passed to the q command"
 msgstr "SQL文または q コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:819 English/Plugins.xml:2284
+#: English/Plugins.xml:852 English/Plugins.xml:2317
 msgid "<filename class=\"extension\">*.csv</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:828 English/Plugins.xml:881
+#: English/Plugins.xml:861 English/Plugins.xml:914
 msgid "<ulink url=\"https://harelba.github.io/q/\">q</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:835
+#: English/Plugins.xml:868
 msgid "QueryTSV plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:834
+#: English/Plugins.xml:867
 msgid "<filename>QueryTSV<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:838
+#: English/Plugins.xml:871
 msgid "TSV Querier with q command"
 msgstr "q コマンドを使用して TSVファイルからデータを抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:841
+#: English/Plugins.xml:874
 msgid ""
 "<command>QueryTSV</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:872
+#: English/Plugins.xml:905
 msgid "<filename class=\"extension\">*.tsv</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:888
+#: English/Plugins.xml:921
 msgid "QueryJSON plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:887
+#: English/Plugins.xml:920
 msgid ""
 "<filename>QueryJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>QueryJSON<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:891
+#: English/Plugins.xml:924
 msgid "JSON Querier with jq command"
 msgstr "jq コマンドを使用して JSONファイルからデータを抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:894
+#: English/Plugins.xml:927
 msgid ""
 "<command>QueryJSON</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -17448,24 +17476,24 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:941
+#: English/Plugins.xml:974
 msgid "QueryYAML plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:940
+#: English/Plugins.xml:973
 msgid ""
 "<filename>QueryYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 "<filename>QueryYAML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:944
+#: English/Plugins.xml:977
 msgid "YAML Querier with yq command"
 msgstr "yq コマンドを使用して YAMLファイルからデータを抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:947
+#: English/Plugins.xml:980
 msgid ""
 "<command>QueryYAML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
@@ -17474,153 +17502,153 @@ msgstr ""
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:988
+#: English/Plugins.xml:1021
 msgid "<ulink url=\"https://mikefarah.gitbook.io/yq/\">yq</ulink>"
 msgstr "<ulink url=\"https://mikefarah.gitbook.io/yq/\">yq</ulink>"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:995
+#: English/Plugins.xml:1028
 msgid "ValidateHTML plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:994
+#: English/Plugins.xml:1027
 msgid ""
 "<filename>ValidateHTML<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:998
+#: English/Plugins.xml:1031
 msgid "HTML Validator with tidy-html5"
 msgstr "tidy コマンドを使用して HTMLファイルを検査します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1001
+#: English/Plugins.xml:1034
 msgid ""
 "<command>ValidateHTML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1049
+#: English/Plugins.xml:1082
 msgid "PreviewGraphviz plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1048
+#: English/Plugins.xml:1081
 msgid ""
 "<filename>PreviewGraphviz<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1052
+#: English/Plugins.xml:1085
 msgid "Graphviz Previewer"
 msgstr "Graphviz ファイルを画像化して表示します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1055
+#: English/Plugins.xml:1088
 msgid ""
 "<command>PreviewGraphviz</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1065
+#: English/Plugins.xml:1098
 msgid "Command line options passed to the dot command"
 msgstr "dot コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1086
+#: English/Plugins.xml:1119
 msgid ""
 "<filename class=\"extension\">*.gv</filename>, <filename "
 "class=\"extension\">,*.dot</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1096
+#: English/Plugins.xml:1129
 msgid "<ulink url=\"https://graphviz.org/\">Graphviz</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1103
+#: English/Plugins.xml:1136
 msgid "PreviewMarkdown plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1102
+#: English/Plugins.xml:1135
 msgid ""
 "<filename>PreviewMarkdown<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1106
+#: English/Plugins.xml:1139
 msgid "Markdown Previewer"
 msgstr "Markdown ファイルをHTMLに変換して表示します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1109
+#: English/Plugins.xml:1142
 msgid ""
 "<command>PreviewMarkdown</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1119
+#: English/Plugins.xml:1152
 msgid "Command line options passed to the md2html command"
 msgstr "md2html コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1140
+#: English/Plugins.xml:1173
 msgid ""
 "<filename class=\"extension\">*.md</filename>, <filename "
 "class=\"extension\">,*.markdown</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1150
+#: English/Plugins.xml:1183
 msgid "<ulink url=\"https://github.com/mity/md4c\">md4c</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1157
+#: English/Plugins.xml:1190
 msgid "PreviewPlantUML plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1156
+#: English/Plugins.xml:1189
 msgid ""
 "<filename>PreviewPlantUML<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1160
+#: English/Plugins.xml:1193
 msgid "PlantUML Previewer"
 msgstr "PlantUML ファイルを画像化して表示します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1163
+#: English/Plugins.xml:1196
 msgid ""
 "<command>PreviewPlantUML</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1173
+#: English/Plugins.xml:1206
 msgid "Command line options passed to the plantuml.jar command"
 msgstr "plantuml.jar コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1194
+#: English/Plugins.xml:1227
 msgid ""
 "<filename class=\"extension\">*.pu</filename>, <filename "
 "class=\"extension\">,*.puml</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1204
+#: English/Plugins.xml:1237
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>, "
 "<ulink url=\"https://plantuml.com/\">PlantUML</ulink>, <ulink url=\"https://"
@@ -17628,114 +17656,114 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1211
+#: English/Plugins.xml:1244
 msgid "ApacheTika plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1210
+#: English/Plugins.xml:1243
 msgid ""
 "<filename>ApacheTika<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1214
+#: English/Plugins.xml:1247
 msgid "General content extractor with Apache Tika"
 msgstr "Apache Tika を使用してファイルからテキストを抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1217
+#: English/Plugins.xml:1250
 msgid ""
 "<command>ApacheTika</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1227
+#: English/Plugins.xml:1260
 msgid "Command line options passed to the tika-app.jar"
 msgstr "tika-app.jar に渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1248
+#: English/Plugins.xml:1281
 msgid "<filename class=\"extension\">*.*</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1257
+#: English/Plugins.xml:1290
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>, "
 "<ulink url=\"https://tika.apache.org/\">Apache Tika</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1264
+#: English/Plugins.xml:1297
 msgid "DisassembleJVM plugin file"
 msgstr "DisassembleJVM plugin file"
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1263
+#: English/Plugins.xml:1296
 msgid ""
 "<filename>DisassembleJVM<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1267
+#: English/Plugins.xml:1300
 msgid "JVM bytecode disassembler with javap"
 msgstr "javap を使用してJVMバイトコードをディスアセンブルします。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1270
+#: English/Plugins.xml:1303
 msgid ""
 "<command>DisassembleJVM</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1280
+#: English/Plugins.xml:1313
 msgid "Command line options passed to the javap command"
 msgstr "javap コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1301
+#: English/Plugins.xml:1334
 msgid "<filename class=\"extension\">*.class</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1310
+#: English/Plugins.xml:1343
 msgid ""
 "<ulink url=\"https://www.java.com/ja/download/ie_manual.jsp\">Java</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1317
+#: English/Plugins.xml:1350
 msgid "DisassembleIL plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1316
+#: English/Plugins.xml:1349
 msgid ""
 "<filename>DisassembleIL<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1320
+#: English/Plugins.xml:1353
 msgid "IL code disassembler with ildasm"
 msgstr "ildasm を使用してILコードをディスアセンブルします。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1323
+#: English/Plugins.xml:1356
 msgid ""
 "<command>DisassembleIL</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1333
+#: English/Plugins.xml:1366
 msgid "Command line options passed to the ildasm command"
 msgstr "ildasm コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1354 English/Plugins.xml:1410
+#: English/Plugins.xml:1387 English/Plugins.xml:1443
 msgid ""
 "<filename class=\"extension\">*.obj</filename>, <filename "
 "class=\"extension\">*.lib</filename>, <filename class=\"extension\">*.exe</"
@@ -17743,247 +17771,247 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1366 English/Plugins.xml:1422
+#: English/Plugins.xml:1399 English/Plugins.xml:1455
 msgid ""
 "<ulink url=\"https://visualstudio.microsoft.com/\">Visual Studio</ulink>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1373
+#: English/Plugins.xml:1406
 msgid "DisassembleNative plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1372
+#: English/Plugins.xml:1405
 msgid ""
 "<filename>DisassembleNative<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1376
+#: English/Plugins.xml:1409
 msgid "Native code disassembler with dumpbin"
 msgstr "dumpbin を使用してネイティブコードをディスアセンブルします。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1379
+#: English/Plugins.xml:1412
 msgid ""
 "<command>DisassembleNative</command> <arg choice=\"opt\" "
 "rep=\"repeat\"><replaceable>arguments</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1389
+#: English/Plugins.xml:1422
 msgid "Command line options passed to the dumpbin command"
 msgstr "dumpbin コマンドに渡すコマンドラインオプション。"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1429
+#: English/Plugins.xml:1462
 msgid "ExecFilterCommand plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1428
+#: English/Plugins.xml:1461
 msgid ""
 "<filename>ExecFilterCommand<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1432
+#: English/Plugins.xml:1465
 msgid "Applys filter command"
 msgstr "フィルターコマンドを適用します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1435
+#: English/Plugins.xml:1468
 msgid ""
 "<command>ExecFilterCommand</command> <arg choice=\"opt\" "
 "rep=\"norepeat\"><replaceable>command</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1443
+#: English/Plugins.xml:1476
 msgid "<option><replaceable>command</replaceable></option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1445
+#: English/Plugins.xml:1478
 msgid "command to execute. %1 in the command is replaced with the filename"
 msgstr "実行するコマンド。 コマンド内の %1 はファイル名に置き換わります。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:1466 English/Plugins.xml:1503 English/Plugins.xml:1540
-#: English/Plugins.xml:1577 English/Plugins.xml:1614 English/Plugins.xml:1651
-#: English/Plugins.xml:1688 English/Plugins.xml:1725 English/Plugins.xml:1762
-#: English/Plugins.xml:1864 English/Plugins.xml:1957 English/Plugins.xml:2039
-#: English/Plugins.xml:2093 English/Plugins.xml:2130
+#: English/Plugins.xml:1499 English/Plugins.xml:1536 English/Plugins.xml:1573
+#: English/Plugins.xml:1610 English/Plugins.xml:1647 English/Plugins.xml:1684
+#: English/Plugins.xml:1721 English/Plugins.xml:1758 English/Plugins.xml:1795
+#: English/Plugins.xml:1897 English/Plugins.xml:1990 English/Plugins.xml:2072
+#: English/Plugins.xml:2126 English/Plugins.xml:2163
 msgid "<filename class=\"extension\">*.nomatch</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1475 English/Plugins.xml:1512 English/Plugins.xml:1549
-#: English/Plugins.xml:1586 English/Plugins.xml:1623 English/Plugins.xml:1660
-#: English/Plugins.xml:1697 English/Plugins.xml:1734 English/Plugins.xml:1771
-#: English/Plugins.xml:1873 English/Plugins.xml:1966 English/Plugins.xml:2048
-#: English/Plugins.xml:2102 English/Plugins.xml:2139 English/Plugins.xml:2507
+#: English/Plugins.xml:1508 English/Plugins.xml:1545 English/Plugins.xml:1582
+#: English/Plugins.xml:1619 English/Plugins.xml:1656 English/Plugins.xml:1693
+#: English/Plugins.xml:1730 English/Plugins.xml:1767 English/Plugins.xml:1804
+#: English/Plugins.xml:1906 English/Plugins.xml:1999 English/Plugins.xml:2081
+#: English/Plugins.xml:2135 English/Plugins.xml:2172 English/Plugins.xml:2538
 msgid "Windows Script Host"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1482
+#: English/Plugins.xml:1515
 msgid "MakeUpper plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1481
+#: English/Plugins.xml:1514
 msgid ""
 "<filename>MakeUpper<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1485
+#: English/Plugins.xml:1518
 msgid "Makes characters uppercase"
 msgstr "テキストを大文字に変換します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1519
+#: English/Plugins.xml:1552
 msgid "MakeLower plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1518
+#: English/Plugins.xml:1551
 msgid ""
 "<filename>MakeLower<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1522
+#: English/Plugins.xml:1555
 msgid "Makes characters lowercase"
 msgstr "テキストを小文字に変換します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1556
+#: English/Plugins.xml:1589
 msgid "RemoveDuplicates plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1555
+#: English/Plugins.xml:1588
 msgid ""
 "<filename>RemoveDuplicates<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1559
+#: English/Plugins.xml:1592
 msgid "Removes duplicate lines"
 msgstr "重複行を削除します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1593
+#: English/Plugins.xml:1626
 msgid "CountDuplicates plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1592
+#: English/Plugins.xml:1625
 msgid ""
 "<filename>CountDuplicates<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1596
+#: English/Plugins.xml:1629
 msgid "Counts duplicate lines"
 msgstr "重複行をカウントします"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1630
+#: English/Plugins.xml:1663
 msgid "SortAscending plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1629
+#: English/Plugins.xml:1662
 msgid ""
 "<filename>SortAscending<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1633
+#: English/Plugins.xml:1666
 msgid "Sorts lines ascending"
 msgstr "行を昇順にソートします"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1667
+#: English/Plugins.xml:1700
 msgid "SortDescending plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1666
+#: English/Plugins.xml:1699
 msgid ""
 "<filename>SortDescending<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1670
+#: English/Plugins.xml:1703
 msgid "Sorts lines descending"
 msgstr "行を降順にソートします"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1704
+#: English/Plugins.xml:1737
 msgid "ReverseColumns plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1703
+#: English/Plugins.xml:1736
 msgid ""
 "<filename>ReverseColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1707
+#: English/Plugins.xml:1740
 msgid "Reverses columns"
 msgstr "列を逆順にします"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1741
+#: English/Plugins.xml:1774
 msgid "ReverseLines plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1740
+#: English/Plugins.xml:1773
 msgid ""
 "<filename>ReverseLines<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1744
+#: English/Plugins.xml:1777
 msgid "Reverses lines"
 msgstr "行を逆順にします"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1778
+#: English/Plugins.xml:1811
 msgid "SelectColumns plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1777
+#: English/Plugins.xml:1810
 msgid ""
 "<filename>SelectColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1781
+#: English/Plugins.xml:1814
 msgid "Selects some columns"
 msgstr "指定した列を抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1784
+#: English/Plugins.xml:1817
 msgid ""
 "<command>SelectColumns</command> <arg choice=\"opt\" "
 "rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1791
+#: English/Plugins.xml:1824
 msgid ""
 "<command>SelectColumns</command> <arg><option>-v</option></arg> "
 "<arg><option>-i</option></arg> <arg><option>-g</option></arg> <arg><option>-"
@@ -17991,90 +18019,90 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1805 English/Plugins.xml:1905
+#: English/Plugins.xml:1838 English/Plugins.xml:1938
 msgid "<option><replaceable>ranges</replaceable></option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1807
+#: English/Plugins.xml:1840
 msgid "list of column ranges to select. (e.g. -3,5-10,30-)"
 msgstr "抽出する列範囲のリスト (例 -3,5-10,30-)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1812 English/Plugins.xml:1912 English/Plugins.xml:2069
+#: English/Plugins.xml:1845 English/Plugins.xml:1945 English/Plugins.xml:2102
 msgid "<option><replaceable>patterns</replaceable></option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1814 English/Plugins.xml:1914
+#: English/Plugins.xml:1847 English/Plugins.xml:1947
 msgid "regular expression"
 msgstr "正規表現"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1819 English/Plugins.xml:1919
+#: English/Plugins.xml:1852 English/Plugins.xml:1952
 msgid "<option>-v</option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1821
+#: English/Plugins.xml:1854
 msgid "select non-matching columns"
 msgstr "マッチしない列を抽出します"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1826 English/Plugins.xml:1926 English/Plugins.xml:2008
+#: English/Plugins.xml:1859 English/Plugins.xml:1959 English/Plugins.xml:2041
 msgid "<option>-i</option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1828 English/Plugins.xml:1928
+#: English/Plugins.xml:1861 English/Plugins.xml:1961
 msgid "ignore case"
 msgstr "大文字小文字を無視します"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1833
+#: English/Plugins.xml:1866
 msgid "<option>-g</option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1835
+#: English/Plugins.xml:1868
 msgid "enable global flag"
 msgstr "グローバルフラグを有効にします"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1840 English/Plugins.xml:1933 English/Plugins.xml:2015
+#: English/Plugins.xml:1873 English/Plugins.xml:1966 English/Plugins.xml:2048
 msgid "<option>-e</option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1842 English/Plugins.xml:1935
+#: English/Plugins.xml:1875 English/Plugins.xml:1968
 msgid "use <replaceable>patterns</replaceable> for matching"
 msgstr "パターンマッチングに<replaceable>patterns</replaceable>を使用します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1880
+#: English/Plugins.xml:1913
 msgid "SelectLines plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1879
+#: English/Plugins.xml:1912
 msgid ""
 "<filename>SelectLines<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1883
+#: English/Plugins.xml:1916
 msgid "Selects some lines"
 msgstr "指定した行を抽出します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1886
+#: English/Plugins.xml:1919
 msgid ""
 "<command>SelectLines</command> <arg choice=\"opt\" "
 "rep=\"norepeat\"><replaceable>ranges</replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1893
+#: English/Plugins.xml:1926
 msgid ""
 "<command>SelectLines</command> <arg><option>-v</option></arg> <arg><option>-"
 "i</option></arg> <arg><option>-e</option> <replaceable>patterns</"
@@ -18082,32 +18110,32 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1907
+#: English/Plugins.xml:1940
 msgid "list of line ranges to select. (e.g. -3,5-10,30-)"
 msgstr "抽出する行範囲のリスト (例 -3,5-10,30-)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1921
+#: English/Plugins.xml:1954
 msgid "select non-matching lines"
 msgstr "マッチしない行を抽出します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:1973
+#: English/Plugins.xml:2006
 msgid "Replace plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:1972
+#: English/Plugins.xml:2005
 msgid "<filename>Replace<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:1976
+#: English/Plugins.xml:2009
 msgid "Replaces text with another text"
 msgstr "テキストを置換します。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:1979
+#: English/Plugins.xml:2012
 msgid ""
 "<command>Replace</command> <arg><option>-i</option></arg> <arg><option>-e</"
 "option></arg> <arg rep=\"norepeat\"><replaceable>text_to_find</replaceable></"
@@ -18115,90 +18143,90 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:1994
+#: English/Plugins.xml:2027
 msgid "<option><replaceable>text_to_find</replaceable></option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:1996
+#: English/Plugins.xml:2029
 msgid "text to find"
 msgstr "検索するテキスト"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><term>
-#: English/Plugins.xml:2001
+#: English/Plugins.xml:2034
 msgid "<option><replaceable>text_to_replace</replaceable></option>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2003
+#: English/Plugins.xml:2036
 msgid "text to replace"
 msgstr "置換するテキスト"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2010
+#: English/Plugins.xml:2043
 msgid "ignore case (only for -e)"
 msgstr "大文字小文字を無視します (-e指定時のみ有効)"
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2017
+#: English/Plugins.xml:2050
 msgid "treat the specified text as a regular expression"
 msgstr "指定したテキストを正規表現として扱います"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2055
+#: English/Plugins.xml:2088
 msgid "Tokenize plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2054
+#: English/Plugins.xml:2087
 msgid "<filename>Tokenize<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2058
+#: English/Plugins.xml:2091
 msgid "Tokenizes selection"
 msgstr "トークン分割を行います。"
 
 #. type: Content of: <article><section><section><cmdsynopsis>
-#: English/Plugins.xml:2061
+#: English/Plugins.xml:2094
 msgid ""
 "<command>Tokenize</command> <arg rep=\"norepeat\"><replaceable>patterns</"
 "replaceable></arg>"
 msgstr ""
 
 #. type: Content of: <article><section><section><variablelist><varlistentry><listitem><para>
-#: English/Plugins.xml:2071
+#: English/Plugins.xml:2104
 msgid "regular expression for tokenizing. (e.g. [^\\w]+)"
 msgstr "トークン分割に使用する正規表現 (例 [^\\w]+)"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2109
+#: English/Plugins.xml:2142
 msgid "Trim plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2108
+#: English/Plugins.xml:2141
 msgid "<filename>Trim<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2112
+#: English/Plugins.xml:2145
 msgid "Trim spaces"
 msgstr "行頭行末の空白を削除します"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2146
+#: English/Plugins.xml:2179
 msgid "IgnoreColumns plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2145
+#: English/Plugins.xml:2178
 msgid ""
 "<filename>IgnoreColumns<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2149
+#: English/Plugins.xml:2182
 msgid ""
 "This plugin ignores characters at specified columns. The first column is "
 "number 1."
@@ -18206,7 +18234,7 @@ msgstr ""
 "このプラグインは、指定された列の文字を無視します。 最初の列の番号は1です。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2152
+#: English/Plugins.xml:2185
 msgid ""
 "Note that this plugin does not support files with tabs: the plugin does not "
 "fail, but all tabs are be treated as normal characters."
@@ -18215,7 +18243,7 @@ msgstr ""
 "い。 プラグインは失敗しませんが、すべてのタブは通常の文字として扱われます。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2155
+#: English/Plugins.xml:2188
 msgid ""
 "To specify columns, use plugin settings dialog or rename the <filename>dll</"
 "filename> using following fields as parameters:"
@@ -18224,81 +18252,81 @@ msgstr ""
 "メーターとして使用して<filename>dll</filename>の名前を変更します:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2160
+#: English/Plugins.xml:2193
 msgid "Delimiters between ranges: _ or ,"
 msgstr "範囲間の区切り文字: _ または ,"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2164
+#: English/Plugins.xml:2197
 msgid "Delimiters between min and max: <emphasis>anything else</emphasis>"
 msgstr "最小と最大の間の区切り文字: <emphasis>その他の文字 </emphasis>"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2169
+#: English/Plugins.xml:2202
 msgid "Min and max are included."
 msgstr "最小と最大は範囲に含まれます。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2173
+#: English/Plugins.xml:2206
 msgid "When max = min, max can be omitted."
 msgstr "max = minの場合、maxは省略できます。"
 
 #. type: Content of: <article><section><section><example><title>
-#: English/Plugins.xml:2178
+#: English/Plugins.xml:2211
 msgid "<filename>IgnoreColumns</filename> examples"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><term>
-#: English/Plugins.xml:2182
+#: English/Plugins.xml:2215
 msgid "<filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><listitem><simpara>
-#: English/Plugins.xml:2186
+#: English/Plugins.xml:2219
 msgid ""
 "Ignore all characters at column 3, and in columns 10 to 20, and 32 to 33."
 msgstr "列3、列10から20、列32から33のすべての文字を無視します。"
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><term>
-#: English/Plugins.xml:2192
+#: English/Plugins.xml:2225
 msgid "<filename>IgnoreColumns_1,30 to 40.dll</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><example><variablelist><varlistentry><listitem><simpara>
-#: English/Plugins.xml:2195
+#: English/Plugins.xml:2228
 msgid "Ignore all the characters in column 1, and in columns 30 to 40."
 msgstr "列1と列30から40のすべての文字を無視します。"
 
 #. type: Content of: <article><section><section><example>
-#: English/Plugins.xml:2180
+#: English/Plugins.xml:2213
 msgid "<placeholder type=\"variablelist\" id=\"0\"/>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2212 English/Plugins.xml:2240 English/Plugins.xml:2282
-#: English/Plugins.xml:2317 English/Plugins.xml:2348
+#: English/Plugins.xml:2245 English/Plugins.xml:2273 English/Plugins.xml:2315
+#: English/Plugins.xml:2350 English/Plugins.xml:2381
 msgid "Prediffer"
 msgstr "比較前処理プラグイン"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2214 English/Plugins.xml:2319
+#: English/Plugins.xml:2247 English/Plugins.xml:2352
 msgid "<filename class=\"extension\">*.txt</filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2223
+#: English/Plugins.xml:2256
 msgid "IgnoreCommentsC plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2222
+#: English/Plugins.xml:2255
 msgid ""
 "<filename>IgnoreCommentsC<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2226
+#: English/Plugins.xml:2259
 msgid ""
 "The plugin ignores comments within<constant> //</constant>... and <constant>/"
 "*</constant> ... <constant>*/</constant> delimiters in C, C++, PHP and "
@@ -18309,7 +18337,7 @@ msgstr ""
 "れたコメントを無視します。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2242
+#: English/Plugins.xml:2275
 msgid ""
 "<filename class=\"extension\">*.cpp</filename>, <filename "
 "class=\"extension\">*.cxx</filename>, <filename class=\"extension\">*.h</"
@@ -18321,19 +18349,19 @@ msgid ""
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2261
+#: English/Plugins.xml:2294
 msgid "IgnoreFieldsComma plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2260
+#: English/Plugins.xml:2293
 msgid ""
 "<filename>IgnoreFieldsComma<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2264
+#: English/Plugins.xml:2297
 msgid ""
 "This plugin is for files with fields and commas as delimiters (CSV files, "
 "for example). It ignores the delimiter characters. The first field is number "
@@ -18344,7 +18372,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2268 English/Plugins.xml:2303
+#: English/Plugins.xml:2301 English/Plugins.xml:2336
 msgid ""
 "To specify the delimiters, use plugin settings dialog or rename the "
 "<filename>dll</filename> using the same parameter fields used for <xref "
@@ -18355,19 +18383,19 @@ msgstr ""
 "して <filename>dll</filename>の名前を変更します。"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2295
+#: English/Plugins.xml:2328
 msgid "IgnoreFieldsTab plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2294
+#: English/Plugins.xml:2327
 msgid ""
 "<filename>IgnoreFieldsTab<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2298
+#: English/Plugins.xml:2331
 msgid ""
 "This plugin is for files that use fields and tabs as delimiters "
 "(<application>for example, Excel</application> files saved in the <filename "
@@ -18380,19 +18408,19 @@ msgstr ""
 "れます。 最初のフィールドの番号は1です。"
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2330
+#: English/Plugins.xml:2363
 msgid "IgnoreLeadingLineNumbers plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2329
+#: English/Plugins.xml:2362
 msgid ""
 "<filename>IgnoreLeadingLineNumbers<placeholder type=\"indexterm\" id=\"0\"/"
 "></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2333
+#: English/Plugins.xml:2366
 msgid ""
 "This plugin ignores the leading line numbers in text files (for example, NC "
 "and BASIC files)."
@@ -18401,33 +18429,28 @@ msgstr ""
 "番号を無視します。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><segtitle>
-#: English/Plugins.xml:2345
+#: English/Plugins.xml:2378
 msgid "Requirement"
 msgstr "必要なもの"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2350
+#: English/Plugins.xml:2383
 msgid "<filename class=\"extension\">*.nc</filename>"
 msgstr ""
 
-#. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2356
-msgid "<xref linkend=\"MSVBVM60\" />"
-msgstr ""
-
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2363
+#: English/Plugins.xml:2394
 msgid "editor addin plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2362
+#: English/Plugins.xml:2393
 msgid ""
 "<filename>editor addin<placeholder type=\"indexterm\" id=\"0\"/></filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2366
+#: English/Plugins.xml:2397
 msgid ""
 "Adds some functions to the <menuchoice> <guimenu>Plugins</guimenu> "
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> menu:"
@@ -18436,21 +18459,21 @@ msgstr ""
 "プト</guisubmenu> </menuchoice> メニューに追加します:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2374
+#: English/Plugins.xml:2405
 msgid ""
 "<guimenuitem>Make Uppercase</guimenuitem> convert the selection to UPPER "
 "CASE."
 msgstr "<guimenuitem>大文字に変換</guimenuitem> 選択範囲を大文字に変換します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2379
+#: English/Plugins.xml:2410
 msgid ""
 "<guimenuitem>Make Lowercase</guimenuitem> convert the selection to lower "
 "case."
 msgstr "<guimenuitem>小文字に変換</guimenuitem> 選択範囲を小文字に変換します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2384
+#: English/Plugins.xml:2415
 msgid ""
 "<guimenuitem>Remove Duplicate Lines</guimenuitem> remove duplicate lines in "
 "the selection."
@@ -18458,7 +18481,7 @@ msgstr ""
 "<guimenuitem>重複行を削除</guimenuitem> 選択範囲内の重複した行を削除します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2389
+#: English/Plugins.xml:2420
 msgid ""
 "<guimenuitem>Count Duplicate Lines</guimenuitem> remove duplicate lines in "
 "the selection and insert the number of duplicate lines on the right."
@@ -18467,7 +18490,7 @@ msgstr ""
 "重複行の数+1を行末に挿入します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2394
+#: English/Plugins.xml:2425
 msgid ""
 "<guimenuitem>Sort Lines Ascending</guimenuitem> sort the selection in "
 "ascending order."
@@ -18475,7 +18498,7 @@ msgstr ""
 "<guimenuitem>昇順にソート</guimenuitem> 選択範囲の行を昇順にソートします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2399
+#: English/Plugins.xml:2430
 msgid ""
 "<guimenuitem>Sort Lines Descending</guimenuitem> sort the selection in "
 "descending order."
@@ -18483,19 +18506,19 @@ msgstr ""
 "<guimenuitem>降順にソート</guimenuitem> 選択範囲の行を降順にソートします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2404
+#: English/Plugins.xml:2435
 msgid ""
 "<guimenuitem>Reverse Columns</guimenuitem> reverse columns in the selection."
 msgstr "<guimenuitem>列を逆順</guimenuitem>選択範囲内の列を逆順にします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2409
+#: English/Plugins.xml:2440
 msgid ""
 "<guimenuitem>Reverse Lines</guimenuitem> reverse lines in the selection."
 msgstr "<guimenuitem>行を逆順</guimenuitem>選択範囲内の行を逆順にします。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2414
+#: English/Plugins.xml:2445
 msgid ""
 "<guimenuitem>Select Columns...</guimenuitem> select some columns in the "
 "selection."
@@ -18503,7 +18526,7 @@ msgstr ""
 "<guimenuitem>列を抽出...</guimenuitem> 選択範囲内の指定した列を抽出します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2419
+#: English/Plugins.xml:2450
 msgid ""
 "<guimenuitem>Select Lines...</guimenuitem> select some lines in the "
 "selection."
@@ -18511,7 +18534,7 @@ msgstr ""
 "<guimenuitem>行を抽出...</guimenuitem> 選択範囲内の指定した行を抽出します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2424
+#: English/Plugins.xml:2455
 msgid ""
 "<guimenuitem>Replace...</guimenuitem> replace text in the selection with "
 "another text."
@@ -18520,7 +18543,7 @@ msgstr ""
 "す。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2429
+#: English/Plugins.xml:2460
 msgid ""
 "<guimenuitem>Apply Filter Command...</guimenuitem> replace the selection "
 "with the output of the specified filter command.  Specifying %1 in the "
@@ -18532,7 +18555,7 @@ msgstr ""
 "名に置き換わります。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2435
+#: English/Plugins.xml:2466
 msgid ""
 "<guimenuitem>Tokenize...</guimenuitem> replaces the token delimiter with a "
 "newline in the selection."
@@ -18541,7 +18564,7 @@ msgstr ""
 "に置換します。"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2440
+#: English/Plugins.xml:2471
 msgid ""
 "<guimenuitem>Trim Spaces</guimenuitem> remove spaces at the beginning and "
 "end of lines in the selection."
@@ -18550,29 +18573,29 @@ msgstr ""
 "を削除します。"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2451 English/Plugins.xml:2489
+#: English/Plugins.xml:2482 English/Plugins.xml:2520
 msgid "Editor complement"
 msgstr "エディター補完"
 
 #. type: Content of: <article><section><section><para><segmentedlist><seglistitem><seg>
-#: English/Plugins.xml:2452 English/Plugins.xml:2491
+#: English/Plugins.xml:2483 English/Plugins.xml:2522
 msgid "*"
 msgstr ""
 
 #. type: Content of: <article><section><section><title><filename><indexterm><primary>
-#: English/Plugins.xml:2460
+#: English/Plugins.xml:2491
 msgid "insert datetime plugin file"
 msgstr ""
 
 #. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2459
+#: English/Plugins.xml:2490
 msgid ""
 "<filename>insert datetime<placeholder type=\"indexterm\" id=\"0\"/></"
 "filename>"
 msgstr ""
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2463
+#: English/Plugins.xml:2494
 msgid ""
 "Adds two functions to the <menuchoice> <guimenu>Plugins</guimenu> "
 "<guisubmenu>Scripts</guisubmenu> </menuchoice> menu:"
@@ -18581,7 +18604,7 @@ msgstr ""
 "guisubmenu> </menuchoice> メニューに2つの機能を追加します:"
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2471
+#: English/Plugins.xml:2502
 msgid ""
 "<guimenuitem>Insert Date</guimenuitem> insert date in the current locale "
 "format."
@@ -18590,7 +18613,7 @@ msgstr ""
 "format."
 
 #. type: Content of: <article><section><section><itemizedlist><listitem><simpara>
-#: English/Plugins.xml:2476
+#: English/Plugins.xml:2507
 msgid ""
 "<guimenuitem>Insert Time</guimenuitem> insert time in the current locale "
 "format."
@@ -18599,17 +18622,17 @@ msgstr ""
 "format."
 
 #. type: Content of: <article><section><title><indexterm><secondary>
-#: English/Plugins.xml:2503
+#: English/Plugins.xml:2534
 msgid "Windows Script Host requirement"
 msgstr ""
 
 #. type: Content of: <article><section><title>
-#: English/Plugins.xml:2500
+#: English/Plugins.xml:2531
 msgid "Requirements<placeholder type=\"indexterm\" id=\"0\"/>"
 msgstr "必要なもの<placeholder type=\"indexterm\" id=\"0\"/>"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2509
+#: English/Plugins.xml:2540
 msgid ""
 "Some editor complement plugins require this optional component from "
 "<trademark class=\"registered\">Microsoft</trademark>."
@@ -18618,58 +18641,13 @@ msgstr ""
 "class=\"registered\">Microsoft</trademark>のコンポーネントが必要です"
 
 #. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2512
+#: English/Plugins.xml:2543
 msgid ""
 "It should already be included in your version of Windows, unless you use "
 "some really old pre Windows XP version."
 msgstr ""
 "Windows XPより前の古いバージョンのWindowsを使用しない限り、既に含まれているは"
 "ずです。"
-
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Plugins.xml:2524
-msgid "msvbvm60.dll plugin file"
-msgstr ""
-
-#. type: Content of: <article><section><section><title><indexterm><primary>
-#: English/Plugins.xml:2526
-msgid "Run-Time Redistribution Pack, for Visual Basic library"
-msgstr ""
-
-#. type: Content of: <article><section><section><title>
-#: English/Plugins.xml:2517
-msgid ""
-"<application>Visual Basic</application> runtime library<placeholder "
-"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
-"><placeholder type=\"indexterm\" id=\"2\"/><placeholder type=\"indexterm\" "
-"id=\"3\"/>"
-msgstr ""
-"<application>Visual Basic</application> ランタイムライブラリ<placeholder "
-"type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
-"><placeholder type=\"indexterm\" id=\"2\"/><placeholder type=\"indexterm\"  "
-"id=\"3\"/>"
-
-#. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2530
-msgid ""
-"Some plugins require <application>the Visual Basic</application> runtime "
-"library to work."
-msgstr ""
-"一部のプラグインでは、動作するために<application>Visual Basic</application> "
-"ランタイムライブラリが必要です。"
-
-#. type: Content of: <article><section><section><para>
-#: English/Plugins.xml:2533
-msgid ""
-"You can use the <ulink url=\"https://www.microsoft.com/en-us/download/"
-"details.aspx?id=24417\">Run-Time Redistribution Pack</ulink> from <trademark "
-"class=\"registered\">Microsoft</trademark>. If you don't need the plugin, "
-"you can safely remove it."
-msgstr ""
-"<trademark class=\"registered\">Microsoft</trademark>の<ulink url=\"https://"
-"www.microsoft.com/en-us/download/details.aspx?id=24417\">Run-Time "
-"Redistribution Pack</ulink>が使用できます。 プラグインが不要な場合は、安全に"
-"削除できます。"
 
 #. type: Content of: <article><title>
 #: English/Quick_start.xml:3
@@ -20590,6 +20568,35 @@ msgid "Click <guibutton>OK</guibutton> to close the Select Unpacker dialog."
 msgstr ""
 "<guibutton>OK</guibutton>をクリックして、展開プラグインの選択ダイアログを閉じ"
 "てください。"
+
+#~ msgid ""
+#~ "<application>Visual Basic</application> runtime library<placeholder "
+#~ "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
+#~ "><placeholder type=\"indexterm\" id=\"2\"/><placeholder "
+#~ "type=\"indexterm\" id=\"3\"/>"
+#~ msgstr ""
+#~ "<application>Visual Basic</application> ランタイムライブラリ<placeholder "
+#~ "type=\"indexterm\" id=\"0\"/><placeholder type=\"indexterm\" id=\"1\"/"
+#~ "><placeholder type=\"indexterm\" id=\"2\"/><placeholder "
+#~ "type=\"indexterm\"  id=\"3\"/>"
+
+#~ msgid ""
+#~ "Some plugins require <application>the Visual Basic</application> runtime "
+#~ "library to work."
+#~ msgstr ""
+#~ "一部のプラグインでは、動作するために<application>Visual Basic</"
+#~ "application> ランタイムライブラリが必要です。"
+
+#~ msgid ""
+#~ "You can use the <ulink url=\"https://www.microsoft.com/en-us/download/"
+#~ "details.aspx?id=24417\">Run-Time Redistribution Pack</ulink> from "
+#~ "<trademark class=\"registered\">Microsoft</trademark>. If you don't need "
+#~ "the plugin, you can safely remove it."
+#~ msgstr ""
+#~ "<trademark class=\"registered\">Microsoft</trademark>の<ulink "
+#~ "url=\"https://www.microsoft.com/en-us/download/details.aspx?"
+#~ "id=24417\">Run-Time Redistribution Pack</ulink>が使用できます。 プラグイン"
+#~ "が不要な場合は、安全に削除できます。"
 
 #~ msgid "Syntax Colors page<placeholder type=\"indexterm\" id=\"0\"/>"
 #~ msgstr "色/シンタックス ページ<placeholder type=\"indexterm\" id=\"0\"/>"

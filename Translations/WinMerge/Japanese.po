@@ -64,6 +64,9 @@ msgstr "選択した行を左側からコピー"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "選択した差異(左側)をクリップボードへコピー\tCtrl+1"
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "選択した差異(右側)をクリップボードへコピー\tCtrl+2"
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "選択した差異(中央)をクリップボードへコピー\tCtrl+2"
 
@@ -4403,6 +4406,9 @@ msgstr "逆コンパイル"
 msgid "URL Handling"
 msgstr "URL 処理"
 
+msgid "Decoding / Encoding"
+msgstr "デコード / エンコード"
+
 msgid "Make Uppercase"
 msgstr "大文字に変換"
 
@@ -4519,6 +4525,9 @@ msgstr "ネイティブ コード逆アセンブル"
 
 msgid "Convert Text with AI..."
 msgstr "AIテキスト変換..."
+
+msgid "Unescape Java properties files"
+msgstr "Java プロパティファイルをアンエスケープ"
 
 msgid "Make characters uppercase"
 msgstr "テキストを大文字に変換します"
@@ -4796,6 +4805,9 @@ msgid ""
 msgstr ""
 "OpenAI APIを使用してテキストを変換します。\r\n"
 "使い方: AIConvertText PROMPT"
+
+msgid "Unescape and display escaped Java properties files."
+msgstr "エスケープされたJavaプロパティファイルをエスケープ解除して表示します。"
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge プラグインオプション"

@@ -557,7 +557,7 @@ int CDirView::RedisplayChildren(DIFFITEM *diffpos, int level, UINT &index, int &
 
 		if (di.diffcode.isResultDiff() || (!di.diffcode.existAll() && !di.diffcode.isResultFiltered()))
 			++alldiffs;
-		if (di.diffcode.isResultNone() || di.diffcode.isResultError() || di.diffcode.isResultAbort())
+		if (di.diffcode.isResultError() || di.diffcode.isResultAbort())
 			result = -1;
 
 		bool bShowable = IsShowable(ctxt, di, m_dirfilter);

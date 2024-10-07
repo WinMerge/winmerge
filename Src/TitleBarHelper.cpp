@@ -63,7 +63,7 @@ static void DrawRoundedRectangle(Gdiplus::Graphics& graphics, Gdiplus::Pen& pen,
 	graphics.DrawPath(&pen, &path);
 }
 
-void CTitleBarHelper::DrawButtons(CDC& dc)
+void CTitleBarHelper::DrawButtons(CDC& dc, COLORREF textColor, COLORREF backColor)
 {
 	Gdiplus::Graphics graphics(dc.m_hDC);
 	CRect rcIcons[3], rcButtons[3];
@@ -81,9 +81,9 @@ void CTitleBarHelper::DrawButtons(CDC& dc)
 		COLORREF colorref;
 		Gdiplus::Color color;
 		if (m_nTrackingButton == i)
-			colorref = (i == 2) ? RGB(0xE9, 0x48, 0x56) : GetIntermediateColor(GetSysColor(COLOR_3DFACE), GetSysColor(COLOR_WINDOW), 0.66f);
+			colorref = (i == 2) ? RGB(0xE9, 0x48, 0x56) : GetIntermediateColor(backColor, GetSysColor(COLOR_WINDOW), 0.66f);
 		else
-			colorref = GetSysColor(COLOR_3DFACE);
+			colorref = backColor;
 		color.SetFromCOLORREF(colorref);
 		Gdiplus::SolidBrush brush(color);
 		graphics.FillRectangle(&brush, rcButtons[i].left, rcButtons[i].top, rcButtons[i].Width(), rcButtons[i].Height());
@@ -92,7 +92,7 @@ void CTitleBarHelper::DrawButtons(CDC& dc)
 	graphics.SetSmoothingMode(Gdiplus::SmoothingModeAntiAlias);
 
 	Gdiplus::Color penColor;
-	penColor.SetFromCOLORREF(GetSysColor(COLOR_WINDOWTEXT));
+	penColor.SetFromCOLORREF(textColor);
 	Gdiplus::Pen pen(penColor, PointToPixelF(0.75));
 
 	// minimize button
@@ -113,7 +113,7 @@ void CTitleBarHelper::DrawButtons(CDC& dc)
 	}
 
 	// close button
-	penColor.SetFromCOLORREF(m_nTrackingButton != 2 ? GetSysColor(COLOR_WINDOWTEXT) : RGB(255, 255, 255));
+	penColor.SetFromCOLORREF(m_nTrackingButton != 2 ? textColor : RGB(255, 255, 255));
 	Gdiplus::Pen pen2(penColor, PointToPixelF(0.75));
 	graphics.DrawLine(&pen2, Gdiplus::Point(rcIcons[2].left, rcIcons[2].top), Gdiplus::Point(rcIcons[2].right, rcIcons[2].bottom));
 	graphics.DrawLine(&pen2, Gdiplus::Point(rcIcons[2].left, rcIcons[2].bottom), Gdiplus::Point(rcIcons[2].right, rcIcons[2].top));

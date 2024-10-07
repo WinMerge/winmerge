@@ -66,6 +66,9 @@ msgstr "Copiar linha(s) selecionada(s) da esquerda"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "&Copiar diferença selecionada (esquerda) para a área de transferência\tCtrl+1"
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "&Copiar diferença selecionada (direita) para a área de transferência\tCtrl+2"
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "&Copiar diferença selecionada (meio) para a área de transferência\tCtrl+2"
 
@@ -4448,6 +4451,9 @@ msgstr "Descompilação"
 msgid "URL Handling"
 msgstr "Gestão de URLs"
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr "Converter para maiúsculas"
 
@@ -4564,6 +4570,9 @@ msgstr "Descompilação de Native Code"
 
 msgid "Convert Text with AI..."
 msgstr "Converter texto com IA..."
+
+msgid "Unescape Java properties files"
+msgstr ""
 
 msgid "Make characters uppercase"
 msgstr "Converter para maiúsculas"
@@ -4843,6 +4852,9 @@ msgid ""
 msgstr ""
 "Conversor de texto usando a API OpenAI.\r\n"
 "Utilização: AIConvertText PROMPT"
+
+msgid "Unescape and display escaped Java properties files."
+msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opções do Plugin do WinMerge para CompareMSExcelFiles.sct"

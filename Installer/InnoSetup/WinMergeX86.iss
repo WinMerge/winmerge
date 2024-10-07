@@ -584,6 +584,7 @@ Source: ..\..\Docs\users\GPL.rtf; DestDir: {app}\Docs\; Flags: comparetimestamp 
 Source: ..\..\Plugins\Plugins.xml; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\..\Plugins\dlls\CompareEscapedJavaPropertiesFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSExcelFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSWordFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\CompareMSPowerPointFiles.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins

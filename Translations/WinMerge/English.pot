@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-09-29 07:18+0000\n"
+"POT-Creation-Date: 2024-10-07 08:25+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -57,6 +57,9 @@ msgid "Copy Selected Line(s) from Left"
 msgstr ""
 
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
+msgstr ""
+
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
 msgstr ""
 
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
@@ -3958,6 +3961,9 @@ msgstr ""
 msgid "URL Handling"
 msgstr ""
 
+msgid "Decoding / Encoding"
+msgstr ""
+
 msgid "Make Uppercase"
 msgstr ""
 
@@ -4073,6 +4079,9 @@ msgid "Disassemble Native Code"
 msgstr ""
 
 msgid "Convert Text with AI..."
+msgstr ""
+
+msgid "Unescape Java properties files"
 msgstr ""
 
 msgid "Make characters uppercase"
@@ -4212,6 +4221,9 @@ msgid "AI-assisted text conversion functions"
 msgstr ""
 
 msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+msgstr ""
+
+msgid "Unescape and display escaped Java properties files."
 msgstr ""
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"

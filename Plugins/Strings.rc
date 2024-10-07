@@ -52,6 +52,7 @@ STRINGTABLE
 BEGIN
     IDS_PLUGIN_PROCESS_TYPE7 "Decompilation"
     IDS_PLUGIN_PROCESS_TYPE8 "URL Handling"
+    IDS_PLUGIN_PROCESS_TYPE9 "Decoding / Encoding"
     IDS_PLUGIN_MENU_CAPTION1 "Make Uppercase"
     IDS_PLUGIN_MENU_CAPTION2 "Make Lowercase"
     IDS_PLUGIN_MENU_CAPTION3 "Remove Duplicate Lines"
@@ -99,6 +100,7 @@ BEGIN
     IDS_PLUGIN_MENU_CAPTION37 "Disassemble IL Code"
     IDS_PLUGIN_MENU_CAPTION38 "Disassemble Native Code"
     IDS_PLUGIN_MENU_CAPTION39 "Convert Text with AI..."
+    IDS_PLUGIN_MENU_CAPTION40 "Unescape Java properties files"
 END
 
 STRINGTABLE
@@ -191,6 +193,7 @@ BEGIN
     IDS_PLUGIN_DESCRIPTION52 "Basic text functions"
     IDS_PLUGIN_DESCRIPTION53 "AI-assisted text conversion functions"
     IDS_PLUGIN_DESCRIPTION54 "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
+    IDS_PLUGIN_DESCRIPTION55 "Unescape and display escaped Java properties files."
 END
 
 STRINGTABLE
