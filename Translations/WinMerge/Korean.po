@@ -14,12 +14,12 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge 2.16.36.0\n"
+"Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2024-09-29 21:41+0900\n"
+"PO-Revision-Date: 2024-10-08 00:18+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
-"Language-Team: Korean <https://winmerge.org/?lang=ko>\n"
+"Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -5126,7 +5126,7 @@ msgid "URL Handling"
 msgstr "URL 처리"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "디코딩/인코딩"
 
 msgid "Make Uppercase"
 msgstr "대문자로 변환"
@@ -5246,7 +5246,7 @@ msgid "Convert Text with AI..."
 msgstr "AI로 텍스트 변환..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Java 속성 파일 이스케이프 해제"
 
 msgid "Make characters uppercase"
 msgstr "문자를 대문자로 만들기"
@@ -5526,7 +5526,7 @@ msgstr ""
 "사용법: AIConvertText 프롬프트"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "이스케이프 처리된 Java 속성 파일을 이스케이프 해제하고 표시합니다."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "CompareMSExcelFiles.sct WinMerge 플러그인 옵션"
