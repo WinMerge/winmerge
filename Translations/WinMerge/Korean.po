@@ -73,6 +73,9 @@ msgstr "왼쪽에서 선택한 줄 복사"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "선택한 차이점 (왼쪽)을 클립보드에 복사\tCtrl+1"
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "선택한 차이점 (오른쪽)을 클립보드로 복사\tCtrl+2"
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "선택한 차이점 (가운데)을 클립보드로 복사\tCtrl+2"
 

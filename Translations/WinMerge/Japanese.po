@@ -64,6 +64,9 @@ msgstr "選択した行を左側からコピー"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "選択した差異(左側)をクリップボードへコピー\tCtrl+1"
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "選択した差異(右側)をクリップボードへコピー\tCtrl+2"
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "選択した差異(中央)をクリップボードへコピー\tCtrl+2"
 

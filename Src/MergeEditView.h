@@ -267,12 +267,12 @@ protected:
 	afx_msg void OnUpdateCopyFromRight(CCmdUI* pCmdUI);
 	afx_msg void OnCopyLinesFromRight();
 	afx_msg void OnUpdateCopyLinesFromRight(CCmdUI* pCmdUI);
-	afx_msg void OnSelDiffCopyLeft();
-	afx_msg void OnUpdateSelDiffCopyLeft(CCmdUI* pCmdUI);
-	afx_msg void OnSelDiffCopyMid();
-	afx_msg void OnUpdateSelDiffCopyMid(CCmdUI* pCmdUI);
-	afx_msg void OnSelDiffCopyRight();
-	afx_msg void OnUpdateSelDiffCopyRight(CCmdUI* pCmdUI);
+	afx_msg void OnSelDiffCopyFirst();
+	afx_msg void OnUpdateSelDiffCopyFirst(CCmdUI* pCmdUI);
+	afx_msg void OnSelDiffCopySecond();
+	afx_msg void OnUpdateSelDiffCopySecond(CCmdUI* pCmdUI);
+	afx_msg void OnSelDiffCopyThird();
+	afx_msg void OnUpdateSelDiffCopyThird(CCmdUI* pCmdUI);
 	afx_msg void OnAddSyncPoint();
 	afx_msg void OnClearSyncPoints();
 	afx_msg void OnUpdateClearSyncPoints(CCmdUI* pCmdUI);

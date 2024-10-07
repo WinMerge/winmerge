@@ -65,6 +65,9 @@ msgstr "Copiar a(s) linha(s) selecionada(s) da esquerda"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "Copiar as Diferenças Selecionadas (da Esquerda) para a Área de Transferência\tCtrl+1"
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "Copiar as Diferenças Selecionadas (da Direita) para a Área de Transferência\tCtrl+2"
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "Copiar as Diferenças Selecionadas (do Meio) para a Área de Transferência\tCtrl+2"
 

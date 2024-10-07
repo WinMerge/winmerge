@@ -1027,11 +1027,12 @@
 #define ID_MICE_NEXTDIFF                33268
 #define ID_MICE_L2R                     33269
 #define ID_MICE_R2L                     33270
-#define ID_SEL_DIFF_COPY_L              33271
-#define ID_SEL_DIFF_COPY_M              33272
-#define ID_SEL_DIFF_COPY_R              33273
-#define ID_MICE_L2RNEXT                 33274
-#define ID_MICE_R2LNEXT                 33275
+#define ID_SEL_DIFF_COPY_1ST            33271
+#define ID_SEL_DIFF_COPY_2ND            33272
+#define ID_SEL_DIFF_COPY_3RD            33273
+#define ID_SEL_DIFF_COPY_2ND_3WAY       33274
+#define ID_MICE_L2RNEXT                 33275
+#define ID_MICE_R2LNEXT                 33276
 #define ID_TABBAR_AUTO_MAXWIDTH         33351
 #define ID_IMG_VIEWDIFFERENCES          33353
 #define ID_IMG_ZOOM_25                  33354

@@ -66,6 +66,9 @@ msgstr "Copia le righe selezionate da sinistra"
 msgid "Copy Selected Diff (Left) to Clipboard\tCtrl+1"
 msgstr "Copia negli appunti differenze selezionate (sinistra)\tCtrl+1"
 
+msgid "Copy Selected Diff (Right) to Clipboard\tCtrl+2"
+msgstr "Copia negli appunti differenze selezionate (destra)\tCtrl+2"
+
 msgid "Copy Selected Diff (Middle) to Clipboard\tCtrl+2"
 msgstr "Copia negli appunti differenze selezionate (al centro)\tCtrl+2"
 
