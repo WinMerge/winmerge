@@ -70,6 +70,7 @@
 #include "locality.h"
 #include "DirWatcher.h"
 #include "Win_VersionHelper.h"
+#include <afxwinverapi.h>
 
 using std::vector;
 using boost::begin;
