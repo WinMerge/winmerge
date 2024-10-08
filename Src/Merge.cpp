@@ -64,6 +64,7 @@
 #include "RegKey.h"
 #include "Win_VersionHelper.h"
 #include "BCMenu.h"
+#include "LowLevelMouseHook.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -423,6 +424,8 @@ BOOL CMergeApp::InitInstance()
 			return FALSE;
 	}
 
+	CLowLevelMouseHook::SetMouseHook();
+
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
@@ -561,6 +564,8 @@ void CMergeApp::OnAppAbout()
  */
 int CMergeApp::ExitInstance()
 {
+	CLowLevelMouseHook::UnhookMouseHook();
+
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg
