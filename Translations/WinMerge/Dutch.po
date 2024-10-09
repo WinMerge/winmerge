@@ -1,9 +1,9 @@
 # This file is part from WinMerge <https://winmerge.org/>
 # Released under the "GNU General Public License"
-# 
+#
 # Translators:
 # Thomas De Rocker, 2024
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
