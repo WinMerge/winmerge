@@ -1,14 +1,14 @@
 #include <StdAfx.h>
 #include "LowLevelMouseHook.h"
 
-void CALLBACK CLowLevelMouseHook::TimerProc(HWND unnamedParam1, UINT unnamedParam2, UINT_PTR id, DWORD unnamedParam4HWND)
+void CALLBACK CMouseHook::TimerProc(HWND unnamedParam1, UINT unnamedParam2, UINT_PTR id, DWORD unnamedParam4HWND)
 {
 	KillTimer(nullptr, id);
 	EndMenu();
 	m_bIgnoreRBUp = false;
 }
 
-LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode < 0)
 		return CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
@@ -29,9 +29,8 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 	}
 	else if (wParam == WM_MOUSEWHEEL)
 	{
-		MSLLHOOKSTRUCT* pMouseStruct = (MSLLHOOKSTRUCT*)lParam;
-		int zDelta = GET_WHEEL_DELTA_WPARAM(pMouseStruct->mouseData);
-		int nFlags = pMouseStruct->flags;
+		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
+		short zDelta = HIWORD(pMouseStruct->mouseData);
 
 		if (GetKeyState(VK_MENU) & 0x8000)
 		{
@@ -55,7 +54,7 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
 					return 1;
 				}
-				else if (nFlags == 0)
+				else if (!m_bRButtonDown)
 				{
 					// Alt+ScrollUp as Alt+Up
 					PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
@@ -77,7 +76,7 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
 					return 1;
 				}
-				else if (nFlags == 0)
+				else if (!m_bRButtonDown)
 				{
 					// Alt+ScrollDown as Alt+Down
 					PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
@@ -108,9 +107,8 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 	}
 	else if (wParam == WM_MOUSEHWHEEL)
 	{
-		MSLLHOOKSTRUCT* pMouseStruct = (MSLLHOOKSTRUCT*)lParam;
-		int zDelta = GET_WHEEL_DELTA_WPARAM(pMouseStruct->mouseData);
-		int nFlags = pMouseStruct->flags;
+		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
+		short zDelta = HIWORD(pMouseStruct->mouseData);
 
 		if (GetKeyState(VK_MENU) & 0x8000)
 		{
@@ -125,7 +123,7 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2RNEXT, 0);
 					return 1;
 				}
-				else if (nFlags == 0)
+				else if (!m_bRButtonDown)
 				{
 					// Alt+HScrollRight as Alt+Right
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
@@ -140,7 +138,7 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2LNEXT, 0);
 					return 1;
 				}
-				else if (nFlags == 0)
+				else if (!m_bRButtonDown)
 				{
 					// Alt+HScrollLeft as Alt+Left
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
@@ -172,12 +170,12 @@ LRESULT CALLBACK CLowLevelMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam,
 	return CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
 }
 
-void CLowLevelMouseHook::SetMouseHook()
+void CMouseHook::SetMouseHook()
 {
-	m_hMouseHook = SetWindowsHookEx(WH_MOUSE_LL, LowLevelMouseProc, nullptr, 0);
+	m_hMouseHook = SetWindowsHookEx(WH_MOUSE, LowLevelMouseProc, GetModuleHandle(nullptr), GetCurrentThreadId());
 }
 
-void CLowLevelMouseHook::UnhookMouseHook()
+void CMouseHook::UnhookMouseHook()
 {
 	if (m_hMouseHook)
 	{

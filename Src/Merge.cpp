@@ -424,7 +424,7 @@ BOOL CMergeApp::InitInstance()
 			return FALSE;
 	}
 
-	CLowLevelMouseHook::SetMouseHook();
+	CMouseHook::SetMouseHook();
 
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
@@ -564,7 +564,7 @@ void CMergeApp::OnAppAbout()
  */
 int CMergeApp::ExitInstance()
 {
-	CLowLevelMouseHook::UnhookMouseHook();
+	CMouseHook::UnhookMouseHook();
 
 	charsets_cleanup();
 

@@ -1,4 +1,4 @@
-class CLowLevelMouseHook
+class CMouseHook
 {
 public:
 	static void SetMouseHook();

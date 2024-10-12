@@ -2869,7 +2869,7 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-	if (CLowLevelMouseHook::IsRightWheelScrolling())
+	if (CMouseHook::IsRightWheelScrolling())
 		return;
 
 	CRect rect;
