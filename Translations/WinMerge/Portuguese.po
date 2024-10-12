@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2024-05-05 10:37+0000\n"
-"PO-Revision-Date: 2024-09-18 23:50+0100\n"
+"PO-Revision-Date: 2024-10-12 17:04+0100\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: pt\n"
@@ -360,13 +360,13 @@ msgid "&View"
 msgstr "&Ver"
 
 msgid "Ta&b Bar"
-msgstr "Barra de separadores"
+msgstr "Ba&rra de separadores"
 
 msgid "&View Tab Bar"
-msgstr ""
+msgstr "&Ver barra de separadores"
 
 msgid "&On Title Bar"
-msgstr ""
+msgstr "Na barra de títul&os"
 
 msgid "&Toolbar"
 msgstr "&Barra de ferramentas"
@@ -4452,7 +4452,7 @@ msgid "URL Handling"
 msgstr "Gestão de URLs"
 
 msgid "Decoding / Encoding"
-msgstr ""
+msgstr "Decodificação / Codificação"
 
 msgid "Make Uppercase"
 msgstr "Converter para maiúsculas"
@@ -4572,7 +4572,7 @@ msgid "Convert Text with AI..."
 msgstr "Converter texto com IA..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Remover escape de ficheiros de propriedades Java"
 
 msgid "Make characters uppercase"
 msgstr "Converter para maiúsculas"
@@ -4854,7 +4854,7 @@ msgstr ""
 "Utilização: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Remover e mostrar ficheiros de propriedades Java com escape."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Opções do Plugin do WinMerge para CompareMSExcelFiles.sct"
