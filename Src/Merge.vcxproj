@@ -945,8 +945,8 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="LowLevelMouseHook.cpp" />
     <ClCompile Include="MergeDocDiffCopy.cpp" />
+    <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="MyReBar.cpp" />
     <ClCompile Include="PropCompareWebPage.cpp" />
     <ClCompile Include="PropEditorCompareMerge.cpp" />
@@ -1448,7 +1448,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
-    <ClInclude Include="LowLevelMouseHook.h" />
+    <ClInclude Include="MouseHook.h" />
     <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Common\cio.h" />
     <ClInclude Include="Common\DebugNew.h" />

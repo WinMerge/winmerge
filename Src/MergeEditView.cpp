@@ -33,7 +33,7 @@
 #include "Shell.h"
 #include "SelectPluginDlg.h"
 #include "Constants.h"
-#include "LowLevelMouseHook.h"
+#include "MouseHook.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

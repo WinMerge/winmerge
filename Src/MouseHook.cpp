@@ -1,5 +1,5 @@
 #include <StdAfx.h>
-#include "LowLevelMouseHook.h"
+#include "MouseHook.h"
 
 void CALLBACK CMouseHook::TimerProc(HWND unnamedParam1, UINT unnamedParam2, UINT_PTR id, DWORD unnamedParam4HWND)
 {
@@ -8,7 +8,7 @@ void CALLBACK CMouseHook::TimerProc(HWND unnamedParam1, UINT unnamedParam2, UINT
 	m_bIgnoreRBUp = false;
 }
 
-LRESULT CALLBACK CMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode < 0)
 		return CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
@@ -172,7 +172,7 @@ LRESULT CALLBACK CMouseHook::LowLevelMouseProc(int nCode, WPARAM wParam, LPARAM 
 
 void CMouseHook::SetMouseHook()
 {
-	m_hMouseHook = SetWindowsHookEx(WH_MOUSE, LowLevelMouseProc, GetModuleHandle(nullptr), GetCurrentThreadId());
+	m_hMouseHook = SetWindowsHookEx(WH_MOUSE, MouseProc, GetModuleHandle(nullptr), GetCurrentThreadId());
 }
 
 void CMouseHook::UnhookMouseHook()

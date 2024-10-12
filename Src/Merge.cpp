@@ -64,7 +64,7 @@
 #include "RegKey.h"
 #include "Win_VersionHelper.h"
 #include "BCMenu.h"
-#include "LowLevelMouseHook.h"
+#include "MouseHook.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
