@@ -946,6 +946,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="MenuBar.cpp" />
     <ClCompile Include="MergeDocDiffCopy.cpp" />
     <ClCompile Include="MouseHook.cpp" />
     <ClCompile Include="MyReBar.cpp" />
@@ -1665,7 +1666,6 @@
     <ClInclude Include="xdiff_gnudiff_compat.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MenuBar.cpp" />
     <None Include="res\binarydiff.ico" />
     <None Include="res\both.bmp" />
     <None Include="res\equalbinary.ico" />
