@@ -1,6 +1,10 @@
 #include <StdAfx.h>
 #include "MouseHook.h"
 
+#ifndef WM_MOUSEHWHEEL
+#  define WM_MOUSEHWHEEL 0x20e
+#endif
+
 LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode < 0)
