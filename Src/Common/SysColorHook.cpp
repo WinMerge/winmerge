@@ -24,14 +24,14 @@ static fnGetSysColorBrush g_orgGetSysColorBrush;
 namespace SysColorHook
 {
 
-DWORD MyGetSysColor(int nIndex)
+DWORD __stdcall MyGetSysColor(int nIndex)
 {
 	if (nIndex < 0 || nIndex >= std::size(g_syscolor))
 		return 0;
 	return g_syscolor[nIndex].color;
 }
 
-HBRUSH MyGetSysColorBrush(int nIndex)
+HBRUSH __stdcall MyGetSysColorBrush(int nIndex)
 {
 	if (nIndex < 0 || nIndex >= std::size(g_syscolor))
 		return 0;

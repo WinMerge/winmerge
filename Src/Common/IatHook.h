@@ -9,6 +9,27 @@
 
 #pragma once
 
+#if (NTDDI_VERSION <= NTDDI_WINXP)
+
+typedef struct _IMAGE_DELAYLOAD_DESCRIPTOR {
+	union {
+		DWORD AllAttributes;
+		struct {
+			DWORD RvaBased : 1;
+			DWORD ReservedAttributes : 31;
+		} DUMMYSTRUCTNAME;
+	} Attributes;
+	DWORD DllNameRVA;
+	DWORD ModuleHandleRVA;
+	DWORD ImportAddressTableRVA;
+	DWORD ImportNameTableRVA;
+	DWORD BoundImportAddressTableRVA;
+	DWORD UnloadInformationTableRVA;
+	DWORD TimeDateStamp;
+} IMAGE_DELAYLOAD_DESCRIPTOR, *PIMAGE_DELAYLOAD_DESCRIPTOR;
+
+#endif
+
 template <typename T, typename T1, typename T2>
 constexpr T RVA2VA(T1 base, T2 rva)
 {
@@ -32,7 +53,7 @@ PIMAGE_THUNK_DATA FindAddressByName(void *moduleBase, PIMAGE_THUNK_DATA impName,
 			continue;
 
 		auto import = RVA2VA<PIMAGE_IMPORT_BY_NAME>(moduleBase, impName->u1.AddressOfData);
-		if (strcmp(import->Name, funcName) != 0)
+		if (strcmp(reinterpret_cast<char *>(import->Name), funcName) != 0)
 			continue;
 		return impAddr;
 	}
