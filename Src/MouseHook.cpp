@@ -1,18 +1,9 @@
 #include <StdAfx.h>
 #include "MouseHook.h"
 
-void CALLBACK CMouseHook::TimerProc(HWND unnamedParam1, UINT unnamedParam2, UINT_PTR id, DWORD unnamedParam4HWND)
+BOOL CMouseHook::PreTranslateMessage(MSG* pMsg)
 {
-	KillTimer(nullptr, id);
-	EndMenu();
-	m_bIgnoreRBUp = false;
-}
-
-LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
-{
-	if (nCode < 0)
-		return CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
-
+	const auto wParam = pMsg->message;
 	if (wParam == WM_RBUTTONDOWN)
 	{
 		m_bRButtonDown = true;
@@ -20,17 +11,11 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	else if (wParam == WM_RBUTTONUP)
 	{
 		m_bRButtonDown = false;
-		if (m_bIgnoreRBUp)
-		{
-			LRESULT result = CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
-			SetTimer(nullptr, 0, USER_TIMER_MINIMUM, TimerProc);
-			return result;
-		}
 	}
 	else if (wParam == WM_MOUSEWHEEL)
 	{
-		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
-		short zDelta = HIWORD(pMouseStruct->mouseData);
+		short zDelta = GET_WHEEL_DELTA_WPARAM(pMsg->wParam);
+		UINT nFlags = GET_KEYSTATE_WPARAM(pMsg->wParam);
 
 		if (GetKeyState(VK_MENU) & 0x8000)
 		{
@@ -46,19 +31,19 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				{
 					// Alt+Ctrl+Shift+ScrollUp as Alt+Ctrl+Left
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2LNEXT, 0);
-					return 1;
+					return TRUE;
 				}
 				else if (bShiftDown)
 				{
 					// Alt+Shift+ScrollUp as Alt+Left
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
-					return 1;
+					return TRUE;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+ScrollUp as Alt+Up
 					PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
-					return 1;
+					return TRUE;
 				}
 			}
 			else if (zDelta < 0)
@@ -68,19 +53,19 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				{
 					// Alt+Ctrl+Shift+ScrollDown as Alt+Ctrl+Right
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2RNEXT, 0);
-					return 1;
+					return TRUE;
 				}
 				else if (bShiftDown)
 				{
 					// Alt+Shift+ScrollDown as Alt+Right
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
-					return 1;
+					return TRUE;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+ScrollDown as Alt+Down
 					PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
-					return 1;
+					return TRUE;
 				}
 			}
 		}
@@ -94,21 +79,21 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				// RButton+ScrollUp as Alt+Up
 				m_bIgnoreRBUp = true;
 				PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
-				return 1;
+				return TRUE;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollDown as Alt+Down
 				m_bIgnoreRBUp = true;
 				PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
-				return 1;
+				return TRUE;
 			}
 		}
 	}
 	else if (wParam == WM_MOUSEHWHEEL)
 	{
-		MOUSEHOOKSTRUCTEX* pMouseStruct = (MOUSEHOOKSTRUCTEX*)lParam;
-		short zDelta = HIWORD(pMouseStruct->mouseData);
+		short zDelta = GET_WHEEL_DELTA_WPARAM(pMsg->wParam);
+		UINT nFlags = GET_KEYSTATE_WPARAM(pMsg->wParam);
 
 		if (GetKeyState(VK_MENU) & 0x8000)
 		{
@@ -121,13 +106,13 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				{
 					// Alt+Ctrl+HScrollRight as Alt+Ctrl+Right
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2RNEXT, 0);
-					return 1;
+					return TRUE;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+HScrollRight as Alt+Right
 					PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
-					return 1;
+					return TRUE;
 				}
 			}
 			else if (zDelta < 0)
@@ -136,13 +121,13 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				{
 					// Alt+Ctrl+HScrollLeft as Alt+Ctrl+Left
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2LNEXT, 0);
-					return 1;
+					return TRUE;
 				}
 				else if (!m_bRButtonDown)
 				{
 					// Alt+HScrollLeft as Alt+Left
 					PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
-					return 1;
+					return TRUE;
 				}
 			}
 		}
@@ -156,31 +141,30 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 				// RButton+ScrollRight as Alt+Right
 				m_bIgnoreRBUp = true;
 				PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
-				return 1;
+				return TRUE;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollLeft as Alt+Left
 				m_bIgnoreRBUp = true;
 				PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
-				return 1;
+				return TRUE;
 			}
 		}
 	}
-	return CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
+	return FALSE;
 }
 
-void CMouseHook::SetMouseHook()
+bool CMouseHook::CallWindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
-	m_hMouseHook = SetWindowsHookEx(WH_MOUSE, MouseProc, GetModuleHandle(nullptr), GetCurrentThreadId());
-}
-
-void CMouseHook::UnhookMouseHook()
-{
-	if (m_hMouseHook)
+	if (message == WM_CONTEXTMENU)
 	{
-		UnhookWindowsHookEx(m_hMouseHook);
-		m_hMouseHook = nullptr;
+		if (m_bIgnoreRBUp)
+		{
+			m_bIgnoreRBUp = false;
+			return true;
+		}
+		
 	}
+	return false;
 }
-

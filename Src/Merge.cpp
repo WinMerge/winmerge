@@ -424,8 +424,6 @@ BOOL CMergeApp::InitInstance()
 			return FALSE;
 	}
 
-	CMouseHook::SetMouseHook();
-
 	// create main MDI Frame window
 	CMainFrame* pMainFrame = new CMainFrame;
 	if (!pMainFrame->LoadFrame(IDR_MAINFRAME))
@@ -564,8 +562,6 @@ void CMergeApp::OnAppAbout()
  */
 int CMergeApp::ExitInstance()
 {
-	CMouseHook::UnhookMouseHook();
-
 	charsets_cleanup();
 
 	//  Save registry keys if existing WinMerge.reg

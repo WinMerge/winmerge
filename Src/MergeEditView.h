@@ -347,6 +347,7 @@ protected:
 
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+	LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
 };
 
 #ifndef _DEBUG  // debug version in DiffView.cpp

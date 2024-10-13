@@ -2688,6 +2688,8 @@ bool CMergeEditView::MergeModeKeyDown(MSG* pMsg)
  */
 BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 {
+	if (CMouseHook::PreTranslateMessage(pMsg))
+		return TRUE;
 	if (pMsg->message == WM_KEYDOWN)
 	{
 		// If we are in merging mode (merge with cursor keys)
@@ -2869,9 +2871,6 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-	if (CMouseHook::IsRightWheelScrolling())
-		return;
-
 	CRect rect;
 	GetClientRect(rect);
 	ClientToScreen(rect);
@@ -4586,4 +4585,11 @@ void CMergeEditView::OnStatusBarClick(NMHDR* pNMHDR, LRESULT* pResult)
 	default:
 		break;
 	}
+}
+
+LRESULT CMergeEditView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
+{
+	if (CMouseHook::CallWindowProc(message, wParam, lParam))
+		return 0;
+	return __super::WindowProc(message, wParam, lParam);
 }

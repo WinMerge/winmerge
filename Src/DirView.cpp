@@ -639,8 +639,6 @@ void CDirView::Redisplay()
  */
 void CDirView::OnContextMenu(CWnd*, CPoint point)
 {
-	if (CMouseHook::IsRightWheelScrolling())
-		return;
 	if (GetListCtrl().GetItemCount() == 0)
 		return;
 	// Make sure window is active
@@ -2370,6 +2368,8 @@ void CDirView::OnRefresh()
 
 BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 {
+	if (CMouseHook::PreTranslateMessage(pMsg))
+		return TRUE;
 	// Handle special shortcuts here
 	if (pMsg->message == WM_KEYDOWN)
 	{
@@ -4225,6 +4225,8 @@ CShellContextMenu* CDirView::GetCorrespondingShellContextMenu(HMENU hMenu) const
  */
 LRESULT CDirView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
 {
+	if (CMouseHook::CallWindowProc(message, wParam, lParam))
+		return 0;
 	while (message == WM_INITMENUPOPUP)
 	{
 		HMENU hMenu = (HMENU)wParam;
