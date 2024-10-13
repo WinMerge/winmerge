@@ -1,5 +1,6 @@
 #include <StdAfx.h>
 #include "MouseHook.h"
+#include <chrono>
 
 BOOL CMouseHook::PreTranslateMessage(MSG* pMsg)
 {
@@ -77,14 +78,14 @@ BOOL CMouseHook::PreTranslateMessage(MSG* pMsg)
 			if (zDelta > 0)
 			{
 				// RButton+ScrollUp as Alt+Up
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
 				return TRUE;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollDown as Alt+Down
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
 				return TRUE;
 			}
@@ -139,14 +140,14 @@ BOOL CMouseHook::PreTranslateMessage(MSG* pMsg)
 			if (zDelta > 0)
 			{
 				// RButton+ScrollRight as Alt+Right
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
 				return TRUE;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollLeft as Alt+Left
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
 				return TRUE;
 			}
