@@ -1457,7 +1457,6 @@
     <ClInclude Include="Common\IMDITab.h" />
     <ClInclude Include="Common\RoundedRectWithShadow.h" />
     <ClInclude Include="Common\Shell.h" />
-    <ClInclude Include="Common\SysColorHook.h" />
     <ClInclude Include="Concurrent.h" />
     <ClInclude Include="Common\BCMenu.h" />
     <ClInclude Include="Common\Bitmap.h" />
