@@ -26,14 +26,14 @@ namespace SysColorHook
 
 DWORD __stdcall MyGetSysColor(int nIndex)
 {
-	if (nIndex < 0 || nIndex >= std::size(g_syscolor))
+	if (nIndex < 0 || nIndex >= static_cast<int>(std::size(g_syscolor)))
 		return 0;
 	return g_syscolor[nIndex].color;
 }
 
 HBRUSH __stdcall MyGetSysColorBrush(int nIndex)
 {
-	if (nIndex < 0 || nIndex >= std::size(g_syscolor))
+	if (nIndex < 0 || nIndex >= static_cast<int>(std::size(g_syscolor)))
 		return 0;
 	return g_syscolor[nIndex].brush;
 }
@@ -61,7 +61,7 @@ bool Hook(void* moduleBase)
 	auto orgGetSysColorBrush = reinterpret_cast<fnGetSysColorBrush>(ReplaceFunction(addrGetSysColorBrush, reinterpret_cast<uintptr_t>(static_cast<fnGetSysColorBrush>(MyGetSysColorBrush))));
 	if (!g_orgGetSysColorBrush)
 		g_orgGetSysColorBrush = orgGetSysColorBrush;
-	for (int i = 0; i < std::size(g_syscolor); ++i)
+	for (int i = 0; i < static_cast<int>(std::size(g_syscolor)); ++i)
 	{
 		if (!g_syscolor[i].isCustom)
 		{
@@ -88,7 +88,7 @@ void SetSysColor(int nIndex, unsigned color)
 {
 	if (!g_orgGetSysColor)
 		return;
-	if (nIndex < 0 || nIndex >= std::size(g_syscolor))
+	if (nIndex < 0 || nIndex >= static_cast<int>(std::size(g_syscolor)))
 		return;
 	if (g_syscolor[nIndex].color == color)
 		return;
