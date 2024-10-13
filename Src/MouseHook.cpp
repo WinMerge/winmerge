@@ -1,19 +1,16 @@
 #include <StdAfx.h>
 #include "MouseHook.h"
 
-void CALLBACK CMouseHook::TimerProc(HWND unnamedParam1, UINT unnamedParam2, UINT_PTR id, DWORD unnamedParam4HWND)
-{
-	KillTimer(nullptr, id);
-	EndMenu();
-	m_bIgnoreRBUp = false;
-}
-
 LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode < 0)
 		return CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
 
-	if (wParam == WM_RBUTTONDOWN)
+	if (wParam == WM_LBUTTONDOWN)
+	{
+		m_bIgnoreRBUp = false;
+	}
+	else if (wParam == WM_RBUTTONDOWN)
 	{
 		m_bRButtonDown = true;
 	}
@@ -22,9 +19,8 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 		m_bRButtonDown = false;
 		if (m_bIgnoreRBUp)
 		{
-			LRESULT result = CallNextHookEx(m_hMouseHook, nCode, wParam, lParam);
-			SetTimer(nullptr, 0, USER_TIMER_MINIMUM, TimerProc);
-			return result;
+			m_bIgnoreRBUp = false;
+			return 1;
 		}
 	}
 	else if (wParam == WM_MOUSEWHEEL)
@@ -172,7 +168,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 void CMouseHook::SetMouseHook()
 {
-	m_hMouseHook = SetWindowsHookEx(WH_MOUSE, MouseProc, GetModuleHandle(nullptr), GetCurrentThreadId());
+	m_hMouseHook = SetWindowsHookEx(WH_MOUSE, MouseProc, AfxGetInstanceHandle(), GetCurrentThreadId());
 }
 
 void CMouseHook::UnhookMouseHook()

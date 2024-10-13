@@ -33,7 +33,6 @@
 #include "Shell.h"
 #include "SelectPluginDlg.h"
 #include "Constants.h"
-#include "MouseHook.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2869,9 +2868,6 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-	if (CMouseHook::IsRightWheelScrolling())
-		return;
-
 	CRect rect;
 	GetClientRect(rect);
 	ClientToScreen(rect);

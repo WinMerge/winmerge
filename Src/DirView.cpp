@@ -49,7 +49,6 @@
 #include "SyntaxColors.h"
 #include "Shell.h"
 #include "DirTravel.h"
-#include "MouseHook.h"
 #include <numeric>
 #include <functional>
 
@@ -639,8 +638,6 @@ void CDirView::Redisplay()
  */
 void CDirView::OnContextMenu(CWnd*, CPoint point)
 {
-	if (CMouseHook::IsRightWheelScrolling())
-		return;
 	if (GetListCtrl().GetItemCount() == 0)
 		return;
 	// Make sure window is active
