@@ -1,5 +1,6 @@
 #include <StdAfx.h>
 #include "MouseHook.h"
+#include <chrono>
 
 #ifndef WM_MOUSEHWHEEL
 #  define WM_MOUSEHWHEEL 0x20e
@@ -12,7 +13,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 	if (wParam == WM_LBUTTONDOWN)
 	{
-		m_bIgnoreRBUp = false;
+		EndRightWheelScrolling();
 	}
 	else if (wParam == WM_RBUTTONDOWN)
 	{
@@ -21,11 +22,7 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 	else if (wParam == WM_RBUTTONUP)
 	{
 		m_bRButtonDown = false;
-		if (m_bIgnoreRBUp)
-		{
-			m_bIgnoreRBUp = false;
-			return 1;
-		}
+		EndRightWheelScrolling();
 	}
 	else if (wParam == WM_MOUSEWHEEL)
 	{
@@ -92,14 +89,14 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 			if (zDelta > 0)
 			{
 				// RButton+ScrollUp as Alt+Up
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_PREVDIFF, 0);
 				return 1;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollDown as Alt+Down
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_NEXTDIFF, 0);
 				return 1;
 			}
@@ -154,14 +151,14 @@ LRESULT CALLBACK CMouseHook::MouseProc(int nCode, WPARAM wParam, LPARAM lParam)
 			if (zDelta > 0)
 			{
 				// RButton+ScrollRight as Alt+Right
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_L2R, 0);
 				return 1;
 			}
 			else if (zDelta < 0)
 			{
 				// RButton+ScrollLeft as Alt+Left
-				m_bIgnoreRBUp = true;
+				StartRightWheelScrolling();
 				PostMessage(hwndTarget, WM_COMMAND, ID_R2L, 0);
 				return 1;
 			}
