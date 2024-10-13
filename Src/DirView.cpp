@@ -639,8 +639,6 @@ void CDirView::Redisplay()
  */
 void CDirView::OnContextMenu(CWnd*, CPoint point)
 {
-	if (CMouseHook::IsRightWheelScrolling())
-		return;
 	if (GetListCtrl().GetItemCount() == 0)
 		return;
 	// Make sure window is active

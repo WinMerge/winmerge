@@ -2871,9 +2871,6 @@ void CMergeEditView::OnUpdateEditReplace(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 {
-	if (CMouseHook::IsRightWheelScrolling())
-		return;
-
 	CRect rect;
 	GetClientRect(rect);
 	ClientToScreen(rect);
