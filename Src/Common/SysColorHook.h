@@ -10,4 +10,6 @@ namespace SysColorHook
 bool Hook(void* moduleBase);
 void Unhook(void* moduleBase);
 void SetSysColor(int nIndex, unsigned color);
+bool IsCustomSysColor(int nIndex);
+size_t GetSysColorCount();
 }

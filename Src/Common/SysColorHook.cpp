@@ -38,6 +38,18 @@ HBRUSH __stdcall MyGetSysColorBrush(int nIndex)
 	return g_syscolor[nIndex].brush;
 }
 
+bool IsCustomSysColor(int nIndex)
+{
+	if (nIndex < 0 || nIndex >= static_cast<int>(std::size(g_syscolor)))
+		return false;
+	return g_syscolor[nIndex].isCustom;
+}
+
+size_t GetSysColorCount()
+{
+	return std::size(g_syscolor);
+}
+
 uintptr_t ReplaceFunction(IMAGE_THUNK_DATA* addr, uintptr_t newFunction)
 {
 	DWORD oldProtect;
@@ -67,6 +79,7 @@ bool Hook(void* moduleBase)
 		{
 			g_syscolor[i].color = g_orgGetSysColor(i);
 			g_syscolor[i].brush = g_orgGetSysColorBrush(i);
+			g_syscolor[i].isCustom = false;
 		}
 	}
 	return true;
@@ -82,6 +95,8 @@ void Unhook(void* moduleBase)
 		return;
 	ReplaceFunction(addrGetSysColor, reinterpret_cast<uintptr_t>(static_cast<fnGetSysColor>(g_orgGetSysColor)));
 	ReplaceFunction(addrGetSysColorBrush, reinterpret_cast<uintptr_t>(static_cast<fnGetSysColorBrush>(g_orgGetSysColorBrush)));
+	g_orgGetSysColor = nullptr;
+	g_orgGetSysColorBrush = nullptr;
 }
 
 void SetSysColor(int nIndex, unsigned color)

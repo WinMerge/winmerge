@@ -404,22 +404,7 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	SysColorHook::Hook(GetModuleHandle(nullptr));
-	SysColorHook::SetSysColor(COLOR_ACTIVECAPTION, RGB(128, 128, 0));
-	SysColorHook::SetSysColor(COLOR_INACTIVECAPTION, RGB(128, 68, 0));
-	SysColorHook::SetSysColor(COLOR_CAPTIONTEXT, RGB(255, 255, 255));
-	SysColorHook::SetSysColor(COLOR_INACTIVECAPTIONTEXT, RGB(255, 255, 255));
-	SysColorHook::SetSysColor(COLOR_3DFACE, RGB(64, 64, 64));
-	SysColorHook::SetSysColor(COLOR_3DSHADOW, RGB(32, 32, 32));
-	SysColorHook::SetSysColor(COLOR_3DDKSHADOW, RGB(32, 32, 32));
-	SysColorHook::SetSysColor(COLOR_3DHIGHLIGHT, RGB(84, 84, 84));
-	SysColorHook::SetSysColor(COLOR_BTNTEXT, RGB(255, 255, 255));
-	SysColorHook::SetSysColor(COLOR_WINDOW, RGB(0, 0, 0));
-	SysColorHook::SetSysColor(COLOR_WINDOWTEXT, RGB(255, 255, 255));
-	SysColorHook::SetSysColor(COLOR_HIGHLIGHTTEXT, RGB(255, 255, 255));
-	SysColorHook::SetSysColor(COLOR_HIGHLIGHT, RGB(0, 0, 255));
-	SysColorHook::SetSysColor(COLOR_MENUTEXT, RGB(255, 255, 255));
-	afxData.UpdateSysColors();
+	ReloadCustomSysColors();
 
 	strdiff::Init(); // String diff init
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
@@ -1780,3 +1765,43 @@ bool CMergeApp::WaitZombieThreads()
 	}
 	return terminated;
 }
+
+void CMergeApp::ReloadCustomSysColors()
+{
+	SysColorHook::Unhook(AfxGetInstanceHandle());
+	if (!GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
+		return;
+	SysColorHook::Hook(AfxGetInstanceHandle());
+	auto sysColorMapping = strutils::split(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS), ',');
+	for (auto&& sysColorEntry : sysColorMapping)
+	{
+		auto pair = strutils::split(sysColorEntry, ':');
+		if (pair.size() == 2)
+		{
+			const int index = tc::ttoi(String(pair[0].data(), pair[0].length()).c_str());
+			tchar_t* endptr = nullptr;
+			const String colorStr = String(pair[1].data(), pair[1].length());
+			unsigned color = static_cast<unsigned>(tc::tcstoll(colorStr.c_str(), &endptr,
+				(colorStr.length() >= 2 && colorStr[1] == 'x') ? 16 : 10));
+			SysColorHook::SetSysColor(index, color);
+		}
+	}
+	afxData.UpdateSysColors();
+}
+
+void CMergeApp::SaveCustomSysColors()
+{
+	String sysColorMapping;
+	const size_t count = SysColorHook::GetSysColorCount();
+	for (size_t i = 0; i < count; ++i)
+	{
+		if (SysColorHook::IsCustomSysColor(i))
+		{
+			sysColorMapping += strutils::format(_T("%d:%08x"), i, GetSysColor(i));
+			if (i < count - 1)
+				sysColorMapping += ',';
+		}
+	}
+	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_COLORS, sysColorMapping);
+}
+
