@@ -86,7 +86,6 @@ private:
 	COLORSETTINGS m_cachedColors; /**< Cached color settings */
 
 	bool m_bCurrentLineIsDiff; /**< `true` if cursor is in diff line */
-	bool m_bIgnoreRBUp;
 
 // Attributes
 public:
