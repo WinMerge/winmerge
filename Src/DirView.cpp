@@ -49,7 +49,6 @@
 #include "SyntaxColors.h"
 #include "Shell.h"
 #include "DirTravel.h"
-#include "MouseHook.h"
 #include <numeric>
 #include <functional>
 
