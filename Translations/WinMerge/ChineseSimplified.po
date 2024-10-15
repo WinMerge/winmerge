@@ -1536,7 +1536,7 @@ msgstr "并非都存在的项目："
 msgid "Items filtered:"
 msgstr "过滤的项目："
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

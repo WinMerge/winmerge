@@ -1851,7 +1851,7 @@ msgstr "Hiányzó elemek:"
 msgid "Items filtered:"
 msgstr "Szűrt elemek:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 #, c-format

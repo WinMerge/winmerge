@@ -1530,7 +1530,7 @@ msgstr "Vseh neobstoječih vnosov:"
 msgid "Items filtered:"
 msgstr "Filtriranih vnosov:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

@@ -1532,7 +1532,7 @@ msgstr "Элементы существуют не все:"
 msgid "Items filtered:"
 msgstr "Элементы отфильтрованы:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

@@ -1534,7 +1534,7 @@ msgstr "Kaikki kohteet, joita ei ole:"
 msgid "Items filtered:"
 msgstr "Suodatetut kohteet:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

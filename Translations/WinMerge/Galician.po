@@ -1531,7 +1531,7 @@ msgstr "Elementos inexistentes:"
 msgid "Items filtered:"
 msgstr "Elementos filtrados:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

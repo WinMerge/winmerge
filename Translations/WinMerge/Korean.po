@@ -1858,7 +1858,7 @@ msgstr "존재하지 않는 항목:"
 msgid "Items filtered:"
 msgstr "필터된 항목:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 #, c-format

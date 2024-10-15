@@ -1527,7 +1527,7 @@ msgstr "Несъществуващи елементи:"
 msgid "Items filtered:"
 msgstr "Филтрирани елементи:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

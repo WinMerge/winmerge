@@ -1530,7 +1530,7 @@ msgstr "Všetky neexistujúce položky:"
 msgid "Items filtered:"
 msgstr "Filtrované položky:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

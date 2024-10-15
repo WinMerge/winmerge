@@ -1860,7 +1860,7 @@ msgstr "所有項目不存在："
 msgid "Items filtered:"
 msgstr "篩選項目："
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 #, c-format

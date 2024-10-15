@@ -1534,7 +1534,7 @@ msgstr "Items bestaan niet allemaal:"
 msgid "Items filtered:"
 msgstr "Gefilterde items:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"

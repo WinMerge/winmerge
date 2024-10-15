@@ -1529,7 +1529,7 @@ msgstr "Artık var olmayan ögeler:"
 msgid "Items filtered:"
 msgstr "Süzülmüş ögeler:"
 
-msgid "&Use custom system colors"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"
