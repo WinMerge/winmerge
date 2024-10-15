@@ -1754,6 +1754,86 @@ msgstr "වචන වෙනස:"
 msgid "Selected Word Diff:"
 msgstr "තෝරාගත් වචන වෙනස:"
 
+#, fuzzy, c-format
+msgid "Dialog"
+msgstr "Dialog"
+
+#, c-format
+msgid "Keywords:"
+msgstr "මූලික පද:"
+
+#, c-format
+msgid "Function names:"
+msgstr "ක්‍රියානාම:"
+
+#, c-format
+msgid "Comments:"
+msgstr "අදහස්:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "අංක:"
+
+#, c-format
+msgid "Operators:"
+msgstr "මෙහෙයුම් සංකේත:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Strings:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "පූර්ව සැකසුම"
+
+#, c-format
+msgid "User 1:"
+msgstr "පරිශීලිකයා 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "පරිශීලිකයා 2:"
+
+#, fuzzy, c-format
+msgid "Bold"
+msgstr "Bold"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "භවිතා කරනලද වගන්ති වර්ණ භාවිතය"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "සුදු අවකාශය:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "විධිමත් වගන්තිය"
+
+#, c-format
+msgid "Selection:"
+msgstr "තෝරා ගැනීම:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1769,8 +1849,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors"
 msgstr ""
 
 #, c-format
@@ -2160,66 +2239,6 @@ msgstr "ආනයනය..."
 msgid "Export..."
 msgstr "අපනයනය..."
 
-#, fuzzy, c-format
-msgid "Dialog"
-msgstr "Dialog"
-
-#, c-format
-msgid "Keywords:"
-msgstr "මූලික පද:"
-
-#, c-format
-msgid "Function names:"
-msgstr "ක්‍රියානාම:"
-
-#, c-format
-msgid "Comments:"
-msgstr "අදහස්:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "අංක:"
-
-#, c-format
-msgid "Operators:"
-msgstr "මෙහෙයුම් සංකේත:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Strings:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "පූර්ව සැකසුම"
-
-#, c-format
-msgid "User 1:"
-msgstr "පරිශීලිකයා 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "පරිශීලිකයා 2:"
-
-#, fuzzy, c-format
-msgid "Bold"
-msgstr "Bold"
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
 #, c-format
 msgid "Folder Compare Report"
 msgstr "පත්‍රිකා සැසඳීමේ වාර්තාව"
@@ -2405,22 +2424,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "භවිතා කරනලද වගන්ති වර්ණ භාවිතය"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "සුදු අවකාශය:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "විධිමත් වගන්තිය"
-
-#, c-format
-msgid "Selection:"
-msgstr "තෝරා ගැනීම:"
 
 #, c-format
 msgid "Backup Files"

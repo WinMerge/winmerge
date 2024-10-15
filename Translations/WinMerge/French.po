@@ -1762,6 +1762,86 @@ msgstr "Différence de mot :"
 msgid "Selected Word Diff:"
 msgstr "Différence de mot sélectionné :"
 
+#, c-format
+msgid "Dialog"
+msgstr "Dialogue"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Mots clés :"
+
+#, c-format
+msgid "Function names:"
+msgstr "Nom des fonctions :"
+
+#, c-format
+msgid "Comments:"
+msgstr "Commentaires :"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Nombres :"
+
+#, c-format
+msgid "Operators:"
+msgstr "Opérateurs :"
+
+#, c-format
+msgid "Strings:"
+msgstr "Chaînes :"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Pré-processeur :"
+
+#, c-format
+msgid "User 1:"
+msgstr "Utilisateur 1 :"
+
+#, c-format
+msgid "User 2:"
+msgstr "Utilisateur 2 :"
+
+#, c-format
+msgid "Bold"
+msgstr "Gras"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "&Utiliser des couleurs de texte personnalisées"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Caractère d'espace :"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Texte régulier :"
+
+#, c-format
+msgid "Selection:"
+msgstr "Sélection :"
+
+#, c-format
+msgid "Margin:"
+msgstr "Marge :"
+
+#, c-format
+msgid "Search Marker:"
+msgstr "Marqueur de recherche :"
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr "Marqueur 1 défini par l'utilisateur :"
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr "Marqueur 2 défini par l'utilisateur :"
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr "Marqueur 3 défini par l'utilisateur :"
+
 msgid "&Use folder compare colors"
 msgstr "&Utiliser les couleurs de comparaison de dossier"
 
@@ -1777,9 +1857,8 @@ msgstr "Éléments n'existant pas :"
 msgid "Items filtered:"
 msgstr "Éléments filtrés :"
 
-#, c-format
-msgid "Margin:"
-msgstr "Marge :"
+msgid "&Use custom system colors"
+msgstr ""
 
 #, c-format
 msgid "System"
@@ -2179,66 +2258,6 @@ msgid "Export..."
 msgstr "Exporter..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Dialogue"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Mots clés :"
-
-#, c-format
-msgid "Function names:"
-msgstr "Nom des fonctions :"
-
-#, c-format
-msgid "Comments:"
-msgstr "Commentaires :"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Nombres :"
-
-#, c-format
-msgid "Operators:"
-msgstr "Opérateurs :"
-
-#, c-format
-msgid "Strings:"
-msgstr "Chaînes :"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Pré-processeur :"
-
-#, c-format
-msgid "User 1:"
-msgstr "Utilisateur 1 :"
-
-#, c-format
-msgid "User 2:"
-msgstr "Utilisateur 2 :"
-
-#, c-format
-msgid "Bold"
-msgstr "Gras"
-
-#, c-format
-msgid "Search Marker:"
-msgstr "Marqueur de recherche :"
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr "Marqueur 1 défini par l'utilisateur :"
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr "Marqueur 2 défini par l'utilisateur :"
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr "Marqueur 3 défini par l'utilisateur :"
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Dossier du rapport de comparaison"
 
@@ -2423,22 +2442,6 @@ msgstr "&Autoriser les sauts lignes dans les citations"
 
 msgid "&Quote character:"
 msgstr "Caractère de citation :"
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "&Utiliser des couleurs de texte personnalisées"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Caractère d'espace :"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Texte régulier :"
-
-#, c-format
-msgid "Selection:"
-msgstr "Sélection :"
 
 #, c-format
 msgid "Backup Files"

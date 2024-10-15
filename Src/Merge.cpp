@@ -352,6 +352,7 @@ BOOL CMergeApp::InitInstance()
 
 	charsets_init();
 	UpdateCodepageModule();
+	SysColorHook::Init();
 
 	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
 	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
@@ -1772,36 +1773,12 @@ void CMergeApp::ReloadCustomSysColors()
 	if (!GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
 		return;
 	SysColorHook::Hook(AfxGetInstanceHandle());
-	auto sysColorMapping = strutils::split(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS), ',');
-	for (auto&& sysColorEntry : sysColorMapping)
-	{
-		auto pair = strutils::split(sysColorEntry, ':');
-		if (pair.size() == 2)
-		{
-			const int index = tc::ttoi(String(pair[0].data(), pair[0].length()).c_str());
-			tchar_t* endptr = nullptr;
-			const String colorStr = String(pair[1].data(), pair[1].length());
-			unsigned color = static_cast<unsigned>(tc::tcstoll(colorStr.c_str(), &endptr,
-				(colorStr.length() >= 2 && colorStr[1] == 'x') ? 16 : 10));
-			SysColorHook::SetSysColor(index, color);
-		}
-	}
+	SysColorHook::Deserialize(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS));
 	afxData.UpdateSysColors();
 }
 
 void CMergeApp::SaveCustomSysColors()
 {
-	String sysColorMapping;
-	const size_t count = SysColorHook::GetSysColorCount();
-	for (size_t i = 0; i < count; ++i)
-	{
-		if (SysColorHook::IsCustomSysColor(i))
-		{
-			sysColorMapping += strutils::format(_T("%d:%08x"), i, GetSysColor(i));
-			if (i < count - 1)
-				sysColorMapping += ',';
-		}
-	}
-	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_COLORS, sysColorMapping);
+	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_COLORS, SysColorHook::Serialize());
 }
 

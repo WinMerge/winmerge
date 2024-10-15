@@ -1739,6 +1739,86 @@ msgstr "Различите речи:"
 msgid "Selected Word Diff:"
 msgstr "Одабери различите речи:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Разговор"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Кључне речи:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Имена функција:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Напомене:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Бројеви:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Оператери:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Појмови:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Претпроцесор:"
+
+#, c-format
+msgid "User 1:"
+msgstr "Корисник 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "Корисник 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Подебљано"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "Користи жељене боје текста"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Размак:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Правилан текст:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Изабери:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1754,8 +1834,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors"
 msgstr ""
 
 #, c-format
@@ -2146,66 +2225,6 @@ msgid "Export..."
 msgstr "Извези..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Разговор"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Кључне речи:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Имена функција:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Напомене:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Бројеви:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Оператери:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Појмови:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Претпроцесор:"
-
-#, c-format
-msgid "User 1:"
-msgstr "Корисник 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "Корисник 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Подебљано"
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Извештај упоређених фасцикли"
 
@@ -2390,22 +2409,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "Користи жељене боје текста"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Размак:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Правилан текст:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Изабери:"
 
 #, c-format
 msgid "Backup Files"

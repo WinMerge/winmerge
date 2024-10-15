@@ -1455,6 +1455,66 @@ msgstr "Rozdiel slova:"
 msgid "Selected Word Diff:"
 msgstr "Rozdiel vybraného slova:"
 
+msgid "Dialog"
+msgstr "Dialóg"
+
+msgid "Keywords:"
+msgstr "Kľúčové slová:"
+
+msgid "Function names:"
+msgstr "Názvy funkcií:"
+
+msgid "Comments:"
+msgstr "Komentáre:"
+
+msgid "Numbers:"
+msgstr "Čísla:"
+
+msgid "Operators:"
+msgstr "Operátory:"
+
+msgid "Strings:"
+msgstr "Reťazce:"
+
+msgid "Preprocessor:"
+msgstr "Preprocesor:"
+
+msgid "User 1:"
+msgstr "Užívateľ 1:"
+
+msgid "User 2:"
+msgstr "Užívateľ 2:"
+
+msgid "Bold"
+msgstr "Tučné"
+
+msgid "&Use customized text colors"
+msgstr "&Použiť prispôsobené farby textu"
+
+msgid "Whitespace:"
+msgstr "Netlačiteľné znaky:"
+
+msgid "Regular text:"
+msgstr "Bežný text:"
+
+msgid "Selection:"
+msgstr "Výber:"
+
+msgid "Margin:"
+msgstr "Okraj:"
+
+msgid "Search Marker:"
+msgstr "Značka hľadania:"
+
+msgid "User Defined Marker1:"
+msgstr "Užívateľom definovaná značka1:"
+
+msgid "User Defined Marker2:"
+msgstr "Užívateľom definovaná značka2:"
+
+msgid "User Defined Marker3:"
+msgstr "Užívateľom definovaná značka3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Použiť priečinky porovnania farieb"
 
@@ -1470,8 +1530,8 @@ msgstr "Všetky neexistujúce položky:"
 msgid "Items filtered:"
 msgstr "Filtrované položky:"
 
-msgid "Margin:"
-msgstr "Okraj:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "Systém"
@@ -1790,51 +1850,6 @@ msgstr "Importovať..."
 msgid "Export..."
 msgstr "Exportovať..."
 
-msgid "Dialog"
-msgstr "Dialóg"
-
-msgid "Keywords:"
-msgstr "Kľúčové slová:"
-
-msgid "Function names:"
-msgstr "Názvy funkcií:"
-
-msgid "Comments:"
-msgstr "Komentáre:"
-
-msgid "Numbers:"
-msgstr "Čísla:"
-
-msgid "Operators:"
-msgstr "Operátory:"
-
-msgid "Strings:"
-msgstr "Reťazce:"
-
-msgid "Preprocessor:"
-msgstr "Preprocesor:"
-
-msgid "User 1:"
-msgstr "Užívateľ 1:"
-
-msgid "User 2:"
-msgstr "Užívateľ 2:"
-
-msgid "Bold"
-msgstr "Tučné"
-
-msgid "Search Marker:"
-msgstr "Značka hľadania:"
-
-msgid "User Defined Marker1:"
-msgstr "Užívateľom definovaná značka1:"
-
-msgid "User Defined Marker2:"
-msgstr "Užívateľom definovaná značka2:"
-
-msgid "User Defined Marker3:"
-msgstr "Užívateľom definovaná značka3:"
-
 msgid "Folder Compare Report"
 msgstr "Správa o porovnaní priečinkov"
 
@@ -1981,18 +1996,6 @@ msgstr "&Povoliť nové riadky v úvodzovkách"
 
 msgid "&Quote character:"
 msgstr "Znak ú&vodzovky:"
-
-msgid "&Use customized text colors"
-msgstr "&Použiť prispôsobené farby textu"
-
-msgid "Whitespace:"
-msgstr "Netlačiteľné znaky:"
-
-msgid "Regular text:"
-msgstr "Bežný text:"
-
-msgid "Selection:"
-msgstr "Výber:"
 
 msgid "Backup Files"
 msgstr "Záložné súbory"

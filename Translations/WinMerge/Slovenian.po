@@ -1455,6 +1455,66 @@ msgstr "Besedne razlike:"
 msgid "Selected Word Diff:"
 msgstr "Izbrane razlike besed:"
 
+msgid "Dialog"
+msgstr "Pogovorno okno"
+
+msgid "Keywords:"
+msgstr "Ključne besede:"
+
+msgid "Function names:"
+msgstr "Imena funkcij:"
+
+msgid "Comments:"
+msgstr "Komentarji:"
+
+msgid "Numbers:"
+msgstr "Številke:"
+
+msgid "Operators:"
+msgstr "Operatorji:"
+
+msgid "Strings:"
+msgstr "Nizi:"
+
+msgid "Preprocessor:"
+msgstr "Predobdelano:"
+
+msgid "User 1:"
+msgstr "Uporabnik 1:"
+
+msgid "User 2:"
+msgstr "Uporabnik 2:"
+
+msgid "Bold"
+msgstr "Krepko"
+
+msgid "&Use customized text colors"
+msgstr "&Uporabi prilagojene barve besedila"
+
+msgid "Whitespace:"
+msgstr "Prazen znak:"
+
+msgid "Regular text:"
+msgstr "Redno besedilo:"
+
+msgid "Selection:"
+msgstr "Izbor:"
+
+msgid "Margin:"
+msgstr "Rob:"
+
+msgid "Search Marker:"
+msgstr "Iskalni označev.:"
+
+msgid "User Defined Marker1:"
+msgstr "Uporabn. določen1:"
+
+msgid "User Defined Marker2:"
+msgstr "Uporabn. določen2:"
+
+msgid "User Defined Marker3:"
+msgstr "Uporabn. določen3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Uporabi barve primerjav map"
 
@@ -1470,8 +1530,8 @@ msgstr "Vseh neobstoječih vnosov:"
 msgid "Items filtered:"
 msgstr "Filtriranih vnosov:"
 
-msgid "Margin:"
-msgstr "Rob:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "Sistem"
@@ -1790,51 +1850,6 @@ msgstr "Uvozi..."
 msgid "Export..."
 msgstr "Izvozi..."
 
-msgid "Dialog"
-msgstr "Pogovorno okno"
-
-msgid "Keywords:"
-msgstr "Ključne besede:"
-
-msgid "Function names:"
-msgstr "Imena funkcij:"
-
-msgid "Comments:"
-msgstr "Komentarji:"
-
-msgid "Numbers:"
-msgstr "Številke:"
-
-msgid "Operators:"
-msgstr "Operatorji:"
-
-msgid "Strings:"
-msgstr "Nizi:"
-
-msgid "Preprocessor:"
-msgstr "Predobdelano:"
-
-msgid "User 1:"
-msgstr "Uporabnik 1:"
-
-msgid "User 2:"
-msgstr "Uporabnik 2:"
-
-msgid "Bold"
-msgstr "Krepko"
-
-msgid "Search Marker:"
-msgstr "Iskalni označev.:"
-
-msgid "User Defined Marker1:"
-msgstr "Uporabn. določen1:"
-
-msgid "User Defined Marker2:"
-msgstr "Uporabn. določen2:"
-
-msgid "User Defined Marker3:"
-msgstr "Uporabn. določen3:"
-
 msgid "Folder Compare Report"
 msgstr "Poročilo primerjanja datotek"
 
@@ -1981,18 +1996,6 @@ msgstr "&Dovoli nove vrstice v narekovajih"
 
 msgid "&Quote character:"
 msgstr "Z&nak narekovaja:"
-
-msgid "&Use customized text colors"
-msgstr "&Uporabi prilagojene barve besedila"
-
-msgid "Whitespace:"
-msgstr "Prazen znak:"
-
-msgid "Regular text:"
-msgstr "Redno besedilo:"
-
-msgid "Selection:"
-msgstr "Izbor:"
 
 msgid "Backup Files"
 msgstr "Datoteke varnostnih kopij"

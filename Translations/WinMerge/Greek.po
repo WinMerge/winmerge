@@ -1753,6 +1753,86 @@ msgstr "Διαφορά Λέξεως:"
 msgid "Selected Word Diff:"
 msgstr "Επιλεγμένη Διαφορά Λέξεως:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Διάλογος"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Ειδικές Λέξεις:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Ονόματα Διεργασιών:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Σχόλια:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Αριθμοί:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Τελεστές:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Αυτούσιο Κείμενο:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Προεπεξεργαστής:"
+
+#, c-format
+msgid "User 1:"
+msgstr "από Χρήστη 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "από Χρήστη 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Έντονα"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "Χρήση προ&τιμωμένων χρωματισμών κειμένου"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Χαρακτήρες Διαστήματος:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Απλό κείμενο:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Επιλογή:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1768,8 +1848,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors"
 msgstr ""
 
 #, c-format
@@ -2160,66 +2239,6 @@ msgid "Export..."
 msgstr "Εξαγωγή..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Διάλογος"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Ειδικές Λέξεις:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Ονόματα Διεργασιών:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Σχόλια:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Αριθμοί:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Τελεστές:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Αυτούσιο Κείμενο:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Προεπεξεργαστής:"
-
-#, c-format
-msgid "User 1:"
-msgstr "από Χρήστη 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "από Χρήστη 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Έντονα"
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Αναφορά Συγκρίσεως Φακέλων"
 
@@ -2404,22 +2423,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "Χρήση προ&τιμωμένων χρωματισμών κειμένου"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Χαρακτήρες Διαστήματος:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Απλό κείμενο:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Επιλογή:"
 
 #, c-format
 msgid "Backup Files"

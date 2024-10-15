@@ -1456,6 +1456,66 @@ msgstr "Różniące się słowa:"
 msgid "Selected Word Diff:"
 msgstr "Zaznaczone różniące się słowa:"
 
+msgid "Dialog"
+msgstr "Okno dialogowe"
+
+msgid "Keywords:"
+msgstr "Słowa kluczowe:"
+
+msgid "Function names:"
+msgstr "Nazwy funkcji:"
+
+msgid "Comments:"
+msgstr "Komentarze:"
+
+msgid "Numbers:"
+msgstr "Liczby:"
+
+msgid "Operators:"
+msgstr "Operatory:"
+
+msgid "Strings:"
+msgstr "Ciągi znaków:"
+
+msgid "Preprocessor:"
+msgstr "Preprocesor:"
+
+msgid "User 1:"
+msgstr "Użytkownik 1:"
+
+msgid "User 2:"
+msgstr "Użytkownik 2:"
+
+msgid "Bold"
+msgstr "Pogrubienie"
+
+msgid "&Use customized text colors"
+msgstr "Użyj niestandardowych kolorów tekstu"
+
+msgid "Whitespace:"
+msgstr "Odstęp:"
+
+msgid "Regular text:"
+msgstr "Czcionka regularna:"
+
+msgid "Selection:"
+msgstr "Zaznaczenie:"
+
+msgid "Margin:"
+msgstr "Margines:"
+
+msgid "Search Marker:"
+msgstr "Znaleziony marker:"
+
+msgid "User Defined Marker1:"
+msgstr "Zdefiniowany przez użytkownika Marker1:"
+
+msgid "User Defined Marker2:"
+msgstr "Zdefiniowany przez użytkownika Marker2:"
+
+msgid "User Defined Marker3:"
+msgstr "Zdefiniowany przez użytkownika Marker3:"
+
 msgid "&Use folder compare colors"
 msgstr "Użyj kolorów do porównania folderów"
 
@@ -1471,8 +1531,8 @@ msgstr "Wszystkie nieistniejące elementy:"
 msgid "Items filtered:"
 msgstr "Przefiltrowane elementy:"
 
-msgid "Margin:"
-msgstr "Margines:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "System"
@@ -1783,51 +1843,6 @@ msgstr "Importuj..."
 msgid "Export..."
 msgstr "Eksportuj..."
 
-msgid "Dialog"
-msgstr "Okno dialogowe"
-
-msgid "Keywords:"
-msgstr "Słowa kluczowe:"
-
-msgid "Function names:"
-msgstr "Nazwy funkcji:"
-
-msgid "Comments:"
-msgstr "Komentarze:"
-
-msgid "Numbers:"
-msgstr "Liczby:"
-
-msgid "Operators:"
-msgstr "Operatory:"
-
-msgid "Strings:"
-msgstr "Ciągi znaków:"
-
-msgid "Preprocessor:"
-msgstr "Preprocesor:"
-
-msgid "User 1:"
-msgstr "Użytkownik 1:"
-
-msgid "User 2:"
-msgstr "Użytkownik 2:"
-
-msgid "Bold"
-msgstr "Pogrubienie"
-
-msgid "Search Marker:"
-msgstr "Znaleziony marker:"
-
-msgid "User Defined Marker1:"
-msgstr "Zdefiniowany przez użytkownika Marker1:"
-
-msgid "User Defined Marker2:"
-msgstr "Zdefiniowany przez użytkownika Marker2:"
-
-msgid "User Defined Marker3:"
-msgstr "Zdefiniowany przez użytkownika Marker3:"
-
 msgid "Folder Compare Report"
 msgstr "Raport porównania folderów"
 
@@ -1974,18 +1989,6 @@ msgstr "Zezwalaj na nowe wiersze w cudzysłowie"
 
 msgid "&Quote character:"
 msgstr "Znak cudzysłowu:"
-
-msgid "&Use customized text colors"
-msgstr "Użyj niestandardowych kolorów tekstu"
-
-msgid "Whitespace:"
-msgstr "Odstęp:"
-
-msgid "Regular text:"
-msgstr "Czcionka regularna:"
-
-msgid "Selection:"
-msgstr "Zaznaczenie:"
 
 msgid "Backup Files"
 msgstr "Pliki kopii zapasowej"

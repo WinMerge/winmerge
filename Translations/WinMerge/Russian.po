@@ -1457,6 +1457,66 @@ msgstr "Словарное отличие:"
 msgid "Selected Word Diff:"
 msgstr "Выбранное словарное отличие:"
 
+msgid "Dialog"
+msgstr "Диалог"
+
+msgid "Keywords:"
+msgstr "Ключевые слова:"
+
+msgid "Function names:"
+msgstr "Имена функций:"
+
+msgid "Comments:"
+msgstr "Комментарии:"
+
+msgid "Numbers:"
+msgstr "Числа:"
+
+msgid "Operators:"
+msgstr "Операторы:"
+
+msgid "Strings:"
+msgstr "Строки:"
+
+msgid "Preprocessor:"
+msgstr "Препроцессор:"
+
+msgid "User 1:"
+msgstr "Пользователь 1:"
+
+msgid "User 2:"
+msgstr "Пользователь 2:"
+
+msgid "Bold"
+msgstr "Жирный"
+
+msgid "&Use customized text colors"
+msgstr "Использовать особые цвета"
+
+msgid "Whitespace:"
+msgstr "Невидимые:"
+
+msgid "Regular text:"
+msgstr "Обычный текст:"
+
+msgid "Selection:"
+msgstr "Выбранный текст:"
+
+msgid "Margin:"
+msgstr "Поле:"
+
+msgid "Search Marker:"
+msgstr "Маркер поиска:"
+
+msgid "User Defined Marker1:"
+msgstr "Пользоват. маркер1:"
+
+msgid "User Defined Marker2:"
+msgstr "Пользоват. маркер2:"
+
+msgid "User Defined Marker3:"
+msgstr "Пользоват. маркер3:"
+
 msgid "&Use folder compare colors"
 msgstr "Использовать цвета сравнения папок"
 
@@ -1472,8 +1532,8 @@ msgstr "Элементы существуют не все:"
 msgid "Items filtered:"
 msgstr "Элементы отфильтрованы:"
 
-msgid "Margin:"
-msgstr "Поле:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "Система"
@@ -1784,51 +1844,6 @@ msgstr "Импорт..."
 msgid "Export..."
 msgstr "Экспорт..."
 
-msgid "Dialog"
-msgstr "Диалог"
-
-msgid "Keywords:"
-msgstr "Ключевые слова:"
-
-msgid "Function names:"
-msgstr "Имена функций:"
-
-msgid "Comments:"
-msgstr "Комментарии:"
-
-msgid "Numbers:"
-msgstr "Числа:"
-
-msgid "Operators:"
-msgstr "Операторы:"
-
-msgid "Strings:"
-msgstr "Строки:"
-
-msgid "Preprocessor:"
-msgstr "Препроцессор:"
-
-msgid "User 1:"
-msgstr "Пользователь 1:"
-
-msgid "User 2:"
-msgstr "Пользователь 2:"
-
-msgid "Bold"
-msgstr "Жирный"
-
-msgid "Search Marker:"
-msgstr "Маркер поиска:"
-
-msgid "User Defined Marker1:"
-msgstr "Пользоват. маркер1:"
-
-msgid "User Defined Marker2:"
-msgstr "Пользоват. маркер2:"
-
-msgid "User Defined Marker3:"
-msgstr "Пользоват. маркер3:"
-
 msgid "Folder Compare Report"
 msgstr "Отчет сравнения папок"
 
@@ -1975,18 +1990,6 @@ msgstr "Разрешить новые строки в кавычках"
 
 msgid "&Quote character:"
 msgstr "Символ кавычки:"
-
-msgid "&Use customized text colors"
-msgstr "Использовать особые цвета"
-
-msgid "Whitespace:"
-msgstr "Невидимые:"
-
-msgid "Regular text:"
-msgstr "Обычный текст:"
-
-msgid "Selection:"
-msgstr "Выбранный текст:"
 
 msgid "Backup Files"
 msgstr "Резервные копии"

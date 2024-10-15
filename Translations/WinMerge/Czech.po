@@ -1754,6 +1754,86 @@ msgstr "Rozdílné slovo:"
 msgid "Selected Word Diff:"
 msgstr "Vybrané rozdílné slovo:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Syntaxe"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Klíčová slova:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Názvy funkcí:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Komentáře:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Čísla:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Operátory:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Řetězce:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Preprocesor:"
+
+#, c-format
+msgid "User 1:"
+msgstr "Uživatelská 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "Uživatelská 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Tučné"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "Po&užít vlastní barvy textu"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Okolí textu:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Řádný text:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Výběr:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1769,8 +1849,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors"
 msgstr ""
 
 #, c-format
@@ -2163,66 +2242,6 @@ msgid "Export..."
 msgstr "&Uložit..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Syntaxe"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Klíčová slova:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Názvy funkcí:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Komentáře:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Čísla:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Operátory:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Řetězce:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Preprocesor:"
-
-#, c-format
-msgid "User 1:"
-msgstr "Uživatelská 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "Uživatelská 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Tučné"
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Protokol o porovnání složek"
 
@@ -2407,22 +2426,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "Po&užít vlastní barvy textu"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Okolí textu:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Řádný text:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Výběr:"
 
 #, c-format
 msgid "Backup Files"

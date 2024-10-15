@@ -1755,6 +1755,86 @@ msgstr "Ordforskel:"
 msgid "Selected Word Diff:"
 msgstr "Valgte ordforskelle:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Dialog"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Nøgleord:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Funktionsnavne:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Kommentarer:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Numre:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Operatører:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Strenge:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Forbereder:"
+
+#, c-format
+msgid "User 1:"
+msgstr "Bruger 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "Bruger 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Fed"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "&Brug tilpasset tekstfarve"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Mellemrum:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Almindelig tekst:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Udvalgt:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1770,8 +1850,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors"
 msgstr ""
 
 #, c-format
@@ -2168,66 +2247,6 @@ msgid "Export..."
 msgstr "Eksporter..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Dialog"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Nøgleord:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Funktionsnavne:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Kommentarer:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Numre:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Operatører:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Strenge:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Forbereder:"
-
-#, c-format
-msgid "User 1:"
-msgstr "Bruger 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "Bruger 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Fed"
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Directory Compare Report"
 
@@ -2412,22 +2431,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "&Brug tilpasset tekstfarve"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Mellemrum:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Almindelig tekst:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Udvalgt:"
 
 #, c-format
 msgid "Backup Files"

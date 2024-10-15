@@ -1459,6 +1459,66 @@ msgstr "Sanaero:"
 msgid "Selected Word Diff:"
 msgstr "Valittu sanaero:"
 
+msgid "Dialog"
+msgstr "Valintaikkuna"
+
+msgid "Keywords:"
+msgstr "Avainsanat:"
+
+msgid "Function names:"
+msgstr "Funktionimet:"
+
+msgid "Comments:"
+msgstr "Kommentit:"
+
+msgid "Numbers:"
+msgstr "Numerot:"
+
+msgid "Operators:"
+msgstr "Operaattorit:"
+
+msgid "Strings:"
+msgstr "Merkkijonot:"
+
+msgid "Preprocessor:"
+msgstr "Esikäsittelijä:"
+
+msgid "User 1:"
+msgstr "Käyttäjä 1:"
+
+msgid "User 2:"
+msgstr "Käyttäjä 2:"
+
+msgid "Bold"
+msgstr "Lihavoitu"
+
+msgid "&Use customized text colors"
+msgstr "Käytä mukautettuja tekstivärejä"
+
+msgid "Whitespace:"
+msgstr "Välilyönti:"
+
+msgid "Regular text:"
+msgstr "Normaali teksti:"
+
+msgid "Selection:"
+msgstr "Valinta:"
+
+msgid "Margin:"
+msgstr "Marginaali:"
+
+msgid "Search Marker:"
+msgstr "Hakumerkki:"
+
+msgid "User Defined Marker1:"
+msgstr "Käyttäjän määrittämä merkintä1:"
+
+msgid "User Defined Marker2:"
+msgstr "Käyttäjän määrittämä merkintä2:"
+
+msgid "User Defined Marker3:"
+msgstr "Käyttäjän määrittämä merkintä3:"
+
 msgid "&Use folder compare colors"
 msgstr "Käytä kansiovertailun värejä"
 
@@ -1474,8 +1534,8 @@ msgstr "Kaikki kohteet, joita ei ole:"
 msgid "Items filtered:"
 msgstr "Suodatetut kohteet:"
 
-msgid "Margin:"
-msgstr "Marginaali:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "Järjestelmä"
@@ -1791,51 +1851,6 @@ msgstr "Tuo..."
 msgid "Export..."
 msgstr "Vie..."
 
-msgid "Dialog"
-msgstr "Valintaikkuna"
-
-msgid "Keywords:"
-msgstr "Avainsanat:"
-
-msgid "Function names:"
-msgstr "Funktionimet:"
-
-msgid "Comments:"
-msgstr "Kommentit:"
-
-msgid "Numbers:"
-msgstr "Numerot:"
-
-msgid "Operators:"
-msgstr "Operaattorit:"
-
-msgid "Strings:"
-msgstr "Merkkijonot:"
-
-msgid "Preprocessor:"
-msgstr "Esikäsittelijä:"
-
-msgid "User 1:"
-msgstr "Käyttäjä 1:"
-
-msgid "User 2:"
-msgstr "Käyttäjä 2:"
-
-msgid "Bold"
-msgstr "Lihavoitu"
-
-msgid "Search Marker:"
-msgstr "Hakumerkki:"
-
-msgid "User Defined Marker1:"
-msgstr "Käyttäjän määrittämä merkintä1:"
-
-msgid "User Defined Marker2:"
-msgstr "Käyttäjän määrittämä merkintä2:"
-
-msgid "User Defined Marker3:"
-msgstr "Käyttäjän määrittämä merkintä3:"
-
 msgid "Folder Compare Report"
 msgstr "Kansiovertailun raportti"
 
@@ -1982,18 +1997,6 @@ msgstr "&Salli uudet rivit lainauksissa"
 
 msgid "&Quote character:"
 msgstr "&Lainausmerkki:"
-
-msgid "&Use customized text colors"
-msgstr "Käytä mukautettuja tekstivärejä"
-
-msgid "Whitespace:"
-msgstr "Välilyönti:"
-
-msgid "Regular text:"
-msgstr "Normaali teksti:"
-
-msgid "Selection:"
-msgstr "Valinta:"
 
 msgid "Backup Files"
 msgstr "Varmuuskopiot"

@@ -1460,6 +1460,66 @@ msgstr "Diferență cuvânt:"
 msgid "Selected Word Diff:"
 msgstr "Diferență cuvânt selectată:"
 
+msgid "Dialog"
+msgstr "Dialog"
+
+msgid "Keywords:"
+msgstr "Cuvinte cheie:"
+
+msgid "Function names:"
+msgstr "Nume de funcții:"
+
+msgid "Comments:"
+msgstr "Comentarii:"
+
+msgid "Numbers:"
+msgstr "Numere:"
+
+msgid "Operators:"
+msgstr "Operatori:"
+
+msgid "Strings:"
+msgstr "Șiruri de caractere:"
+
+msgid "Preprocessor:"
+msgstr "Preprocesor:"
+
+msgid "User 1:"
+msgstr "Utilizator 1:"
+
+msgid "User 2:"
+msgstr "Utilizator 2:"
+
+msgid "Bold"
+msgstr "Aldine"
+
+msgid "&Use customized text colors"
+msgstr "Folosește c&ulori ale textului personalizate"
+
+msgid "Whitespace:"
+msgstr "Blancuri:"
+
+msgid "Regular text:"
+msgstr "Text normal:"
+
+msgid "Selection:"
+msgstr "Selecție:"
+
+msgid "Margin:"
+msgstr "Margine:"
+
+msgid "Search Marker:"
+msgstr "Marcatorul de căutare:"
+
+msgid "User Defined Marker1:"
+msgstr "Marcatorul definit utilizator 1:"
+
+msgid "User Defined Marker2:"
+msgstr "Marcatorul definit utilizator 2:"
+
+msgid "User Defined Marker3:"
+msgstr "Marcatorul definit utilizator 3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Utilizează culorile de comparare a directoarelor"
 
@@ -1475,8 +1535,8 @@ msgstr "Elemente nu există toate:"
 msgid "Items filtered:"
 msgstr "Elemente filtrate:"
 
-msgid "Margin:"
-msgstr "Margine:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "Sistem"
@@ -1802,51 +1862,6 @@ msgstr "Importă..."
 msgid "Export..."
 msgstr "Exportă..."
 
-msgid "Dialog"
-msgstr "Dialog"
-
-msgid "Keywords:"
-msgstr "Cuvinte cheie:"
-
-msgid "Function names:"
-msgstr "Nume de funcții:"
-
-msgid "Comments:"
-msgstr "Comentarii:"
-
-msgid "Numbers:"
-msgstr "Numere:"
-
-msgid "Operators:"
-msgstr "Operatori:"
-
-msgid "Strings:"
-msgstr "Șiruri de caractere:"
-
-msgid "Preprocessor:"
-msgstr "Preprocesor:"
-
-msgid "User 1:"
-msgstr "Utilizator 1:"
-
-msgid "User 2:"
-msgstr "Utilizator 2:"
-
-msgid "Bold"
-msgstr "Aldine"
-
-msgid "Search Marker:"
-msgstr "Marcatorul de căutare:"
-
-msgid "User Defined Marker1:"
-msgstr "Marcatorul definit utilizator 1:"
-
-msgid "User Defined Marker2:"
-msgstr "Marcatorul definit utilizator 2:"
-
-msgid "User Defined Marker3:"
-msgstr "Marcatorul definit utilizator 3:"
-
 msgid "Folder Compare Report"
 msgstr "Raport comparare directoare"
 
@@ -1993,18 +2008,6 @@ msgstr "Permite sfârșituri de rând în ghilimele"
 
 msgid "&Quote character:"
 msgstr "Caracterul de citare:"
-
-msgid "&Use customized text colors"
-msgstr "Folosește c&ulori ale textului personalizate"
-
-msgid "Whitespace:"
-msgstr "Blancuri:"
-
-msgid "Regular text:"
-msgstr "Text normal:"
-
-msgid "Selection:"
-msgstr "Selecție:"
 
 msgid "Backup Files"
 msgstr "Copii de siguranță"

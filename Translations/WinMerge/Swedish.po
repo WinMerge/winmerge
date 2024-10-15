@@ -1464,6 +1464,66 @@ msgstr "Ordskillnad:"
 msgid "Selected Word Diff:"
 msgstr "Vald skillnad i ord:"
 
+msgid "Dialog"
+msgstr "Dialog"
+
+msgid "Keywords:"
+msgstr "Nyckelord:"
+
+msgid "Function names:"
+msgstr "Funktionsnamn:"
+
+msgid "Comments:"
+msgstr "Kommentarer:"
+
+msgid "Numbers:"
+msgstr "Nummer:"
+
+msgid "Operators:"
+msgstr "Operatörer:"
+
+msgid "Strings:"
+msgstr "Strängar:"
+
+msgid "Preprocessor:"
+msgstr "Förbehandlare:"
+
+msgid "User 1:"
+msgstr "Användare 1:"
+
+msgid "User 2:"
+msgstr "Användare 2:"
+
+msgid "Bold"
+msgstr "Fet"
+
+msgid "&Use customized text colors"
+msgstr "Använd anpassade textfärger"
+
+msgid "Whitespace:"
+msgstr "Blankutrymme:"
+
+msgid "Regular text:"
+msgstr "Vanlig text:"
+
+msgid "Selection:"
+msgstr "Markering:"
+
+msgid "Margin:"
+msgstr "Marginal:"
+
+msgid "Search Marker:"
+msgstr "Sökmarkör:"
+
+msgid "User Defined Marker1:"
+msgstr "Användardefinierad markör 1:"
+
+msgid "User Defined Marker2:"
+msgstr "Användardefinierad markör 2:"
+
+msgid "User Defined Marker3:"
+msgstr "Användardefinierad markör 3:"
+
 msgid "&Use folder compare colors"
 msgstr "Använd färger för mappjämförelse"
 
@@ -1479,8 +1539,8 @@ msgstr "Objekt som ej finns:"
 msgid "Items filtered:"
 msgstr "Objekt filtrerade:"
 
-msgid "Margin:"
-msgstr "Marginal:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "System"
@@ -1803,51 +1863,6 @@ msgstr "Importera..."
 msgid "Export..."
 msgstr "Exportera..."
 
-msgid "Dialog"
-msgstr "Dialog"
-
-msgid "Keywords:"
-msgstr "Nyckelord:"
-
-msgid "Function names:"
-msgstr "Funktionsnamn:"
-
-msgid "Comments:"
-msgstr "Kommentarer:"
-
-msgid "Numbers:"
-msgstr "Nummer:"
-
-msgid "Operators:"
-msgstr "Operatörer:"
-
-msgid "Strings:"
-msgstr "Strängar:"
-
-msgid "Preprocessor:"
-msgstr "Förbehandlare:"
-
-msgid "User 1:"
-msgstr "Användare 1:"
-
-msgid "User 2:"
-msgstr "Användare 2:"
-
-msgid "Bold"
-msgstr "Fet"
-
-msgid "Search Marker:"
-msgstr "Sökmarkör:"
-
-msgid "User Defined Marker1:"
-msgstr "Användardefinierad markör 1:"
-
-msgid "User Defined Marker2:"
-msgstr "Användardefinierad markör 2:"
-
-msgid "User Defined Marker3:"
-msgstr "Användardefinierad markör 3:"
-
 msgid "Folder Compare Report"
 msgstr "Rapport för katalogjämförelse"
 
@@ -1994,18 +2009,6 @@ msgstr "Tillåt nya rader i citat"
 
 msgid "&Quote character:"
 msgstr "Tecken för omkapsling:"
-
-msgid "&Use customized text colors"
-msgstr "Använd anpassade textfärger"
-
-msgid "Whitespace:"
-msgstr "Blankutrymme:"
-
-msgid "Regular text:"
-msgstr "Vanlig text:"
-
-msgid "Selection:"
-msgstr "Markering:"
 
 msgid "Backup Files"
 msgstr "Säkerhetskopierade filer"

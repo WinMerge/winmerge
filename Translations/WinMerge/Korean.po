@@ -1763,6 +1763,86 @@ msgstr "단어 차이점:"
 msgid "Selected Word Diff:"
 msgstr "선택된 단어 차이점:"
 
+#, c-format
+msgid "Dialog"
+msgstr "대화 상자"
+
+#, c-format
+msgid "Keywords:"
+msgstr "키워드:"
+
+#, c-format
+msgid "Function names:"
+msgstr "함수 이름:"
+
+#, c-format
+msgid "Comments:"
+msgstr "주석:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "숫자:"
+
+#, c-format
+msgid "Operators:"
+msgstr "연산자:"
+
+#, c-format
+msgid "Strings:"
+msgstr "문자열:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "전처리기:"
+
+#, c-format
+msgid "User 1:"
+msgstr "사용자 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "사용자 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "굵게"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "사용자 지정 텍스트 색상 사용(&U)"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "공백 문자:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "일반 텍스트:"
+
+#, c-format
+msgid "Selection:"
+msgstr "선택:"
+
+#, c-format
+msgid "Margin:"
+msgstr "여백:"
+
+#, c-format
+msgid "Search Marker:"
+msgstr "마커 검색:"
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr "사용자 정의 마커1:"
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr "사용자 정의 마커2:"
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr "사용자 정의 마커3:"
+
 msgid "&Use folder compare colors"
 msgstr "폴더 비교 색상 사용(&U)"
 
@@ -1778,9 +1858,8 @@ msgstr "존재하지 않는 항목:"
 msgid "Items filtered:"
 msgstr "필터된 항목:"
 
-#, c-format
-msgid "Margin:"
-msgstr "여백:"
+msgid "&Use custom system colors"
+msgstr ""
 
 #, c-format
 msgid "System"
@@ -2178,66 +2257,6 @@ msgid "Export..."
 msgstr "내보내기..."
 
 #, c-format
-msgid "Dialog"
-msgstr "대화 상자"
-
-#, c-format
-msgid "Keywords:"
-msgstr "키워드:"
-
-#, c-format
-msgid "Function names:"
-msgstr "함수 이름:"
-
-#, c-format
-msgid "Comments:"
-msgstr "주석:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "숫자:"
-
-#, c-format
-msgid "Operators:"
-msgstr "연산자:"
-
-#, c-format
-msgid "Strings:"
-msgstr "문자열:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "전처리기:"
-
-#, c-format
-msgid "User 1:"
-msgstr "사용자 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "사용자 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "굵게"
-
-#, c-format
-msgid "Search Marker:"
-msgstr "마커 검색:"
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr "사용자 정의 마커1:"
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr "사용자 정의 마커2:"
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr "사용자 정의 마커3:"
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "폴더 비교 보고서"
 
@@ -2422,22 +2441,6 @@ msgstr "따옴표에 새 줄 허용(&A)"
 
 msgid "&Quote character:"
 msgstr "따옴표 기호(&Q)"
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "사용자 지정 텍스트 색상 사용(&U)"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "공백 문자:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "일반 텍스트:"
-
-#, c-format
-msgid "Selection:"
-msgstr "선택:"
 
 #, c-format
 msgid "Backup Files"

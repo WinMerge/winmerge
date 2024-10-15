@@ -1454,6 +1454,66 @@ msgstr "Sözcük farklılığı:"
 msgid "Selected Word Diff:"
 msgstr "Seçilmiş sözcük farklılığı:"
 
+msgid "Dialog"
+msgstr "Pencere"
+
+msgid "Keywords:"
+msgstr "Anahtar sözcükler:"
+
+msgid "Function names:"
+msgstr "İşlev adları:"
+
+msgid "Comments:"
+msgstr "Açıklamalar:"
+
+msgid "Numbers:"
+msgstr "Rakamlar:"
+
+msgid "Operators:"
+msgstr "İşlemler:"
+
+msgid "Strings:"
+msgstr "Dizgeler:"
+
+msgid "Preprocessor:"
+msgstr "Ön işleyici:"
+
+msgid "User 1:"
+msgstr "1. kullanıcı:"
+
+msgid "User 2:"
+msgstr "2. kullanıcı:"
+
+msgid "Bold"
+msgstr "Koyu"
+
+msgid "&Use customized text colors"
+msgstr "Özel metin renkleri k&ullanılsın"
+
+msgid "Whitespace:"
+msgstr "Beyaz boşluk:"
+
+msgid "Regular text:"
+msgstr "Normal metin:"
+
+msgid "Selection:"
+msgstr "Seçim:"
+
+msgid "Margin:"
+msgstr "Kenar boşluğu:"
+
+msgid "Search Marker:"
+msgstr "Arama işaretleyicisi:"
+
+msgid "User Defined Marker1:"
+msgstr "1. kullanıcı işaretleyicisi:"
+
+msgid "User Defined Marker2:"
+msgstr "2. kullanıcı işaretleyicisi:"
+
+msgid "User Defined Marker3:"
+msgstr "3. kullanıcı işaretleyicisi:"
+
 msgid "&Use folder compare colors"
 msgstr "Klasör karşılaştırma renkleri k&ullanılsın"
 
@@ -1469,8 +1529,8 @@ msgstr "Artık var olmayan ögeler:"
 msgid "Items filtered:"
 msgstr "Süzülmüş ögeler:"
 
-msgid "Margin:"
-msgstr "Kenar boşluğu:"
+msgid "&Use custom system colors"
+msgstr ""
 
 msgid "System"
 msgstr "Sistem"
@@ -1781,51 +1841,6 @@ msgstr "İçe aktar..."
 msgid "Export..."
 msgstr "Dışa aktar..."
 
-msgid "Dialog"
-msgstr "Pencere"
-
-msgid "Keywords:"
-msgstr "Anahtar sözcükler:"
-
-msgid "Function names:"
-msgstr "İşlev adları:"
-
-msgid "Comments:"
-msgstr "Açıklamalar:"
-
-msgid "Numbers:"
-msgstr "Rakamlar:"
-
-msgid "Operators:"
-msgstr "İşlemler:"
-
-msgid "Strings:"
-msgstr "Dizgeler:"
-
-msgid "Preprocessor:"
-msgstr "Ön işleyici:"
-
-msgid "User 1:"
-msgstr "1. kullanıcı:"
-
-msgid "User 2:"
-msgstr "2. kullanıcı:"
-
-msgid "Bold"
-msgstr "Koyu"
-
-msgid "Search Marker:"
-msgstr "Arama işaretleyicisi:"
-
-msgid "User Defined Marker1:"
-msgstr "1. kullanıcı işaretleyicisi:"
-
-msgid "User Defined Marker2:"
-msgstr "2. kullanıcı işaretleyicisi:"
-
-msgid "User Defined Marker3:"
-msgstr "3. kullanıcı işaretleyicisi:"
-
 msgid "Folder Compare Report"
 msgstr "Klasör Karşılaştırma Raporu"
 
@@ -1972,18 +1987,6 @@ msgstr "Tırnak içinde &yeni satır olabilsin"
 
 msgid "&Quote character:"
 msgstr "&Tırnak karakteri:"
-
-msgid "&Use customized text colors"
-msgstr "Özel metin renkleri k&ullanılsın"
-
-msgid "Whitespace:"
-msgstr "Beyaz boşluk:"
-
-msgid "Regular text:"
-msgstr "Normal metin:"
-
-msgid "Selection:"
-msgstr "Seçim:"
 
 msgid "Backup Files"
 msgstr "Yedekleme dosyaları"

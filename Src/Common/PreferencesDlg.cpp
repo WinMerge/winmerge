@@ -47,6 +47,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageSyntaxColors(regOptions, m_pSyntaxColors.get())
 , m_pageMarkerColors(regOptions, m_pSyntaxColors.get())
 , m_pageDirColors(regOptions)
+, m_pageSysColors(regOptions)
 , m_pageArchive(regOptions)
 , m_pageCodepage(regOptions)
 , m_pageEditor(regOptions)
@@ -119,6 +120,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageTextColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_TEXTCOLORS);
 	AddPage(&m_pageMarkerColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_MARKERCOLORS);
 	AddPage(&m_pageDirColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_DIRCOLORS);
+	AddPage(&m_pageSysColors, IDS_OPTIONSPG_COLORS, IDS_OPTIONSPG_SYSCOLORS);
 	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
 	AddPage(&m_pageProject, IDS_OPTIONSPG_PROJECT);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
@@ -289,6 +291,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 	m_pageSyntaxColors.ReadOptions();
 	m_pageMarkerColors.ReadOptions();
 	m_pageDirColors.ReadOptions();
+	m_pageSysColors.ReadOptions();
 	m_pageSystem.ReadOptions();
 	m_pageCompare.ReadOptions();
 	m_pageCompareFolder.ReadOptions();
@@ -315,6 +318,7 @@ void CPreferencesDlg::ReadOptions(bool bUpdate)
 		SafeUpdatePage(&m_pageSyntaxColors, false);
 		SafeUpdatePage(&m_pageMarkerColors, false);
 		SafeUpdatePage(&m_pageDirColors, false);
+		SafeUpdatePage(&m_pageSysColors, false);
 		SafeUpdatePage(&m_pageSystem, false);
 		SafeUpdatePage(&m_pageCompare, false);
 		SafeUpdatePage(&m_pageCompareFolder, false);
@@ -356,6 +360,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageSyntaxColors.WriteOptions();
 	m_pageMarkerColors.WriteOptions();
 	m_pageDirColors.WriteOptions();
+	m_pageSysColors.WriteOptions();
 	m_pageCodepage.WriteOptions();
 	m_pageArchive.WriteOptions();
 	m_pageProject.WriteOptions();

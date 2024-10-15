@@ -50,6 +50,13 @@ size_t GetSysColorCount()
 	return std::size(g_syscolor);
 }
 
+unsigned GetOrgSysColor(int nIndex)
+{
+	if (!g_orgGetSysColor)
+		return GetSysColor(nIndex);
+	return g_orgGetSysColor(nIndex);
+}
+
 uintptr_t ReplaceFunction(IMAGE_THUNK_DATA* addr, uintptr_t newFunction)
 {
 	DWORD oldProtect;
@@ -59,6 +66,20 @@ uintptr_t ReplaceFunction(IMAGE_THUNK_DATA* addr, uintptr_t newFunction)
 	addr->u1.Function = newFunction;
 	VirtualProtect(addr, sizeof(IMAGE_THUNK_DATA), oldProtect, &oldProtect);
 	return oldFunction;
+}
+
+void Init()
+{
+	auto getSysColor = (g_orgGetSysColor ? g_orgGetSysColor : GetSysColor);
+	auto getSysColorBrush = (g_orgGetSysColorBrush ? g_orgGetSysColorBrush : GetSysColorBrush);
+	for (int i = 0; i < static_cast<int>(std::size(g_syscolor)); ++i)
+	{
+		if (g_syscolor[i].isCustom)
+			DeleteObject(g_syscolor[i].brush);
+		g_syscolor[i].color = getSysColor(i);
+		g_syscolor[i].brush = getSysColorBrush(i);
+		g_syscolor[i].isCustom = false;
+	}
 }
 
 bool Hook(void* moduleBase)
@@ -73,15 +94,6 @@ bool Hook(void* moduleBase)
 	auto orgGetSysColorBrush = reinterpret_cast<fnGetSysColorBrush>(ReplaceFunction(addrGetSysColorBrush, reinterpret_cast<uintptr_t>(static_cast<fnGetSysColorBrush>(MyGetSysColorBrush))));
 	if (!g_orgGetSysColorBrush)
 		g_orgGetSysColorBrush = orgGetSysColorBrush;
-	for (int i = 0; i < static_cast<int>(std::size(g_syscolor)); ++i)
-	{
-		if (!g_syscolor[i].isCustom)
-		{
-			g_syscolor[i].color = g_orgGetSysColor(i);
-			g_syscolor[i].brush = g_orgGetSysColorBrush(i);
-			g_syscolor[i].isCustom = false;
-		}
-	}
 	return true;
 }
 
@@ -101,8 +113,6 @@ void Unhook(void* moduleBase)
 
 void SetSysColor(int nIndex, unsigned color)
 {
-	if (!g_orgGetSysColor)
-		return;
 	if (nIndex < 0 || nIndex >= static_cast<int>(std::size(g_syscolor)))
 		return;
 	if (g_syscolor[nIndex].color == color)
@@ -114,4 +124,36 @@ void SetSysColor(int nIndex, unsigned color)
 	g_syscolor[nIndex].isCustom = true;
 }
 
+void Deserialize(const String& colors)
+{
+	auto sysColorMapping = strutils::split(colors, ',');
+	for (auto&& sysColorEntry : sysColorMapping)
+	{
+		auto pair = strutils::split(sysColorEntry, ':');
+		if (pair.size() == 2)
+		{
+			const int index = tc::ttoi(String(pair[0].data(), pair[0].length()).c_str());
+			tchar_t* endptr = nullptr;
+			const String colorStr = String(pair[1].data(), pair[1].length());
+			unsigned color = static_cast<unsigned>(tc::tcstoll(colorStr.c_str(), &endptr,
+				(colorStr.length() >= 2 && colorStr[1] == 'x') ? 16 : 10));
+			SysColorHook::SetSysColor(index, color);
+		}
+	}
 }
+
+String Serialize()
+{
+	std::vector<String> sysColorMapping;
+	const size_t count = SysColorHook::GetSysColorCount();
+	for (size_t i = 0; i < count; ++i)
+	{
+		if (g_syscolor[i].isCustom)
+			sysColorMapping.push_back(strutils::format(_T("%d:0x%08x"), i, GetSysColor(i)));
+	}
+	return strutils::join(sysColorMapping.begin(), sysColorMapping.end(), _T(","));
+}
+
+}
+
+

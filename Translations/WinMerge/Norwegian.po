@@ -1456,6 +1456,66 @@ msgstr "Ordforskjell:"
 msgid "Selected Word Diff:"
 msgstr "Valgt ordforskjell:"
 
+msgid "Dialog"
+msgstr "Dialog"
+
+msgid "Keywords:"
+msgstr "Nøkkelord:"
+
+msgid "Function names:"
+msgstr "Funksjonsnavn:"
+
+msgid "Comments:"
+msgstr "Kommentarer:"
+
+msgid "Numbers:"
+msgstr "Nummere:"
+
+msgid "Operators:"
+msgstr "Operatorer:"
+
+msgid "Strings:"
+msgstr "Strenger:"
+
+msgid "Preprocessor:"
+msgstr "Preprosessor:"
+
+msgid "User 1:"
+msgstr "Bruker 1:"
+
+msgid "User 2:"
+msgstr "Bruker 2:"
+
+msgid "Bold"
+msgstr "Fet"
+
+msgid "&Use customized text colors"
+msgstr "&Bruk egendefinerte tekstfarger"
+
+msgid "Whitespace:"
+msgstr "Blanktegn:"
+
+msgid "Regular text:"
+msgstr "Normal tekst:"
+
+msgid "Selection:"
+msgstr "Markering:"
+
+msgid "Margin:"
+msgstr ""
+
+msgid "Search Marker:"
+msgstr ""
+
+msgid "User Defined Marker1:"
+msgstr ""
+
+msgid "User Defined Marker2:"
+msgstr ""
+
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1471,7 +1531,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-msgid "Margin:"
+msgid "&Use custom system colors"
 msgstr ""
 
 msgid "System"
@@ -1794,51 +1854,6 @@ msgstr "Importer..."
 msgid "Export..."
 msgstr "Eksporter..."
 
-msgid "Dialog"
-msgstr "Dialog"
-
-msgid "Keywords:"
-msgstr "Nøkkelord:"
-
-msgid "Function names:"
-msgstr "Funksjonsnavn:"
-
-msgid "Comments:"
-msgstr "Kommentarer:"
-
-msgid "Numbers:"
-msgstr "Nummere:"
-
-msgid "Operators:"
-msgstr "Operatorer:"
-
-msgid "Strings:"
-msgstr "Strenger:"
-
-msgid "Preprocessor:"
-msgstr "Preprosessor:"
-
-msgid "User 1:"
-msgstr "Bruker 1:"
-
-msgid "User 2:"
-msgstr "Bruker 2:"
-
-msgid "Bold"
-msgstr "Fet"
-
-msgid "Search Marker:"
-msgstr ""
-
-msgid "User Defined Marker1:"
-msgstr ""
-
-msgid "User Defined Marker2:"
-msgstr ""
-
-msgid "User Defined Marker3:"
-msgstr ""
-
 msgid "Folder Compare Report"
 msgstr "Mappesammenlignings-rapport"
 
@@ -1985,18 +2000,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-msgid "&Use customized text colors"
-msgstr "&Bruk egendefinerte tekstfarger"
-
-msgid "Whitespace:"
-msgstr "Blanktegn:"
-
-msgid "Regular text:"
-msgstr "Normal tekst:"
-
-msgid "Selection:"
-msgstr "Markering:"
 
 msgid "Backup Files"
 msgstr "Sikkerhetskopifiler"
