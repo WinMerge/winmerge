@@ -223,6 +223,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
+	ON_WM_SYSCOLORCHANGE()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -3693,4 +3694,11 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
+}
+
+void CMainFrame::OnSysColorChange()
+{
+	__super::OnSysColorChange();
+	theApp.ReloadCustomSysColors();
+	RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
 }

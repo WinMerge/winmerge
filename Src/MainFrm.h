@@ -435,6 +435,7 @@ protected:
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivated(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnUpdateMenuBarMenuItem(CCmdUI* pCmdUI);
+	afx_msg void OnSysColorChange();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

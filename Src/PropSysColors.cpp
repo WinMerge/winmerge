@@ -70,11 +70,7 @@ void PropSysColors::WriteOptions()
 	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_ENABLED, m_bEnableSysColorHook);
 	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_COLORS, newColors);
 	if (m_oldColors != newColors || m_bEnableSysColorHookOrg != m_bEnableSysColorHook)
-	{
-		theApp.ReloadCustomSysColors();
 		AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
-		AfxGetMainWnd()->RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
-	}
 }
 
 /** 
@@ -112,7 +108,7 @@ BOOL PropSysColors::OnInitDialog()
 	SetDlgItemComboBoxList(IDC_SYSCOLOR_NAME,
 		{
 //			{ _T("COLOR_SCROLLBAR"),              L"0" },
-//			{ _T("COLOR_COLOR_DESKTOP"),          L"1" },
+//			{ _T("COLOR_DESKTOP"),                L"1" },
 			{ _T("COLOR_ACTIVECAPTION"),          L"2" },
 			{ _T("COLOR_INACTIVECAPTION"),        L"3" },
 //			{ _T("COLOR_MENU"),                   L"4" },
