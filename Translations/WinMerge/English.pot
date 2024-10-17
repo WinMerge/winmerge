@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
-"POT-Creation-Date: 2024-10-07 08:25+0000\n"
+"POT-Creation-Date: 2024-10-16 08:43+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1449,6 +1449,66 @@ msgstr ""
 msgid "Selected Word Diff:"
 msgstr ""
 
+msgid "Dialog"
+msgstr ""
+
+msgid "Keywords:"
+msgstr ""
+
+msgid "Function names:"
+msgstr ""
+
+msgid "Comments:"
+msgstr ""
+
+msgid "Numbers:"
+msgstr ""
+
+msgid "Operators:"
+msgstr ""
+
+msgid "Strings:"
+msgstr ""
+
+msgid "Preprocessor:"
+msgstr ""
+
+msgid "User 1:"
+msgstr ""
+
+msgid "User 2:"
+msgstr ""
+
+msgid "Bold"
+msgstr ""
+
+msgid "&Use customized text colors"
+msgstr ""
+
+msgid "Whitespace:"
+msgstr ""
+
+msgid "Regular text:"
+msgstr ""
+
+msgid "Selection:"
+msgstr ""
+
+msgid "Margin:"
+msgstr ""
+
+msgid "Search Marker:"
+msgstr ""
+
+msgid "User Defined Marker1:"
+msgstr ""
+
+msgid "User Defined Marker2:"
+msgstr ""
+
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1464,7 +1524,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-msgid "Margin:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 msgid "System"
@@ -1776,51 +1836,6 @@ msgstr ""
 msgid "Export..."
 msgstr ""
 
-msgid "Dialog"
-msgstr ""
-
-msgid "Keywords:"
-msgstr ""
-
-msgid "Function names:"
-msgstr ""
-
-msgid "Comments:"
-msgstr ""
-
-msgid "Numbers:"
-msgstr ""
-
-msgid "Operators:"
-msgstr ""
-
-msgid "Strings:"
-msgstr ""
-
-msgid "Preprocessor:"
-msgstr ""
-
-msgid "User 1:"
-msgstr ""
-
-msgid "User 2:"
-msgstr ""
-
-msgid "Bold"
-msgstr ""
-
-msgid "Search Marker:"
-msgstr ""
-
-msgid "User Defined Marker1:"
-msgstr ""
-
-msgid "User Defined Marker2:"
-msgstr ""
-
-msgid "User Defined Marker3:"
-msgstr ""
-
 msgid "Folder Compare Report"
 msgstr ""
 
@@ -1966,18 +1981,6 @@ msgid "&Allow newlines in quotes"
 msgstr ""
 
 msgid "&Quote character:"
-msgstr ""
-
-msgid "&Use customized text colors"
-msgstr ""
-
-msgid "Whitespace:"
-msgstr ""
-
-msgid "Regular text:"
-msgstr ""
-
-msgid "Selection:"
 msgstr ""
 
 msgid "Backup Files"

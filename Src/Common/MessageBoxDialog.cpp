@@ -512,6 +512,10 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	CreateCheckboxControl();
 	CreateButtonControls();
 
+	const COLORREF clrWindow = GetSysColor(COLOR_WINDOW);
+	if ((clrWindow & 0xff) + ((clrWindow >> 8) & 0xff) + (clrWindow > 16) < 0x80 * 3)
+		::SetWindowTheme(::GetDlgItem(m_hWnd, IDCHECKBOX), _T(""), _T(""));
+
 	// Define the layout of the dialog.
 	DefineLayout();
 
@@ -813,8 +817,9 @@ HBRUSH CMessageBoxDialog::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	if (nCtlColor == CTLCOLOR_STATIC)
 	{
 		pDC->SetBkMode(OPAQUE);
+		pDC->SetTextColor(pWnd->m_hWnd == ::GetDlgItem(m_hWnd, IDCHECKBOX) ?
+			::GetSysColor(COLOR_WINDOWTEXT) : m_clrMainInstructionFont);
 		pDC->SetBkColor(::GetSysColor(COLOR_WINDOW));
-		pDC->SetTextColor(m_clrMainInstructionFont);
 		return static_cast<HBRUSH>(GetSysColorBrush(COLOR_WINDOW));
 	}
 	return __super::OnCtlColor(pDC, pWnd, nCtlColor);

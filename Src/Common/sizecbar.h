@@ -157,6 +157,7 @@ protected:
     afx_msg LRESULT OnNcHitTest(CPoint point);
     afx_msg void OnCaptureChanged(CWnd *pWnd);
     afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
+    afx_msg void OnSysColorChange();
     afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
     afx_msg void OnMouseMove(UINT nFlags, CPoint point);
     afx_msg void OnNcLButtonDown(UINT nHitTest, CPoint point);

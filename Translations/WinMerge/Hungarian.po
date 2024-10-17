@@ -1756,6 +1756,86 @@ msgstr "Szó eltérés:"
 msgid "Selected Word Diff:"
 msgstr "Kijelölt szó eltérés:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Párbeszédablak"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Kulcsszavak:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Függvény nevek:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Megjegyzések:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Számok:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Operátorok:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Sztringek:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Előfeldolgozó:"
+
+#, c-format
+msgid "User 1:"
+msgstr "Felhasználó 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "Felhasználó 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Félkövér"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "Egyéni szövegszínek használata"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Szóköz:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Sima szöveg:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Kijelölés:"
+
+#, c-format
+msgid "Margin:"
+msgstr "Margó:"
+
+#, c-format
+msgid "Search Marker:"
+msgstr "Keresés jelölő:"
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr "Saját jelölő 1:"
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr "Saját jelölő 2:"
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr "Saját jelölő 3:"
+
 msgid "&Use folder compare colors"
 msgstr "Színek használata"
 
@@ -1771,9 +1851,8 @@ msgstr "Hiányzó elemek:"
 msgid "Items filtered:"
 msgstr "Szűrt elemek:"
 
-#, c-format
-msgid "Margin:"
-msgstr "Margó:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 #, c-format
 msgid "System"
@@ -2171,66 +2250,6 @@ msgid "Export..."
 msgstr "Exportálás"
 
 #, c-format
-msgid "Dialog"
-msgstr "Párbeszédablak"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Kulcsszavak:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Függvény nevek:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Megjegyzések:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Számok:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Operátorok:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Sztringek:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Előfeldolgozó:"
-
-#, c-format
-msgid "User 1:"
-msgstr "Felhasználó 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "Felhasználó 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Félkövér"
-
-#, c-format
-msgid "Search Marker:"
-msgstr "Keresés jelölő:"
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr "Saját jelölő 1:"
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr "Saját jelölő 2:"
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr "Saját jelölő 3:"
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Könyvtár összehasonítási jelentés"
 
@@ -2415,22 +2434,6 @@ msgstr "Sorugrás idézőjelek között is lehet"
 
 msgid "&Quote character:"
 msgstr "Idézőjel:"
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "Egyéni szövegszínek használata"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Szóköz:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Sima szöveg:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Kijelölés:"
 
 #, c-format
 msgid "Backup Files"

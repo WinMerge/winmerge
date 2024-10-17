@@ -212,7 +212,7 @@ void CMenuBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 	else if (dwDrawState == CDDS_ITEMPREPAINT)
 	{
 		pNMCD->clrHighlightHotTrack = GetSysColor(COLOR_3DFACE);
-		pNMCD->clrText = GetSysColor(COLOR_MENUTEXT);
+		pNMCD->clrText = GetSysColor(COLOR_BTNTEXT);
 		*pResult = CDRF_DODEFAULT | TBCDRF_USECDCOLORS | TBCDRF_HILITEHOTTRACK;
 		return;
 	}
