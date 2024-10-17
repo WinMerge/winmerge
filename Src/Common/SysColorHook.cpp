@@ -126,6 +126,7 @@ void SetSysColor(int nIndex, unsigned color)
 
 void Deserialize(const String& colors)
 {
+	Init();
 	auto sysColorMapping = strutils::split(colors, ',');
 	for (auto&& sysColorEntry : sysColorMapping)
 	{
@@ -145,8 +146,8 @@ void Deserialize(const String& colors)
 String Serialize()
 {
 	std::vector<String> sysColorMapping;
-	const size_t count = SysColorHook::GetSysColorCount();
-	for (size_t i = 0; i < count; ++i)
+	const int count = static_cast<int>(SysColorHook::GetSysColorCount());
+	for (int i = 0; i < count; ++i)
 	{
 		if (g_syscolor[i].isCustom)
 			sysColorMapping.push_back(strutils::format(_T("%d:0x%08x"), i, GetSysColor(i)));

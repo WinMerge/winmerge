@@ -352,7 +352,6 @@ BOOL CMergeApp::InitInstance()
 
 	charsets_init();
 	UpdateCodepageModule();
-	SysColorHook::Init();
 
 	FileTransform::AutoUnpacking = GetOptionsMgr()->GetBool(OPT_PLUGINS_UNPACKER_MODE);
 	FileTransform::AutoPrediffing = GetOptionsMgr()->GetBool(OPT_PLUGINS_PREDIFFER_MODE);
@@ -1770,11 +1769,11 @@ bool CMergeApp::WaitZombieThreads()
 void CMergeApp::ReloadCustomSysColors()
 {
 	SysColorHook::Unhook(AfxGetInstanceHandle());
+	SysColorHook::Deserialize(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS));
+	afxData.UpdateSysColors();
 	if (!GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
 		return;
 	SysColorHook::Hook(AfxGetInstanceHandle());
-	SysColorHook::Deserialize(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS));
-	afxData.UpdateSysColors();
 }
 
 void CMergeApp::SaveCustomSysColors()

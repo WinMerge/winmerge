@@ -3698,7 +3698,7 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 
 void CMainFrame::OnSysColorChange()
 {
-	__super::OnSysColorChange();
 	theApp.ReloadCustomSysColors();
+	__super::OnSysColorChange();
 	RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
 }
