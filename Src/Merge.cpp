@@ -1770,14 +1770,8 @@ void CMergeApp::ReloadCustomSysColors()
 {
 	SysColorHook::Unhook(AfxGetInstanceHandle());
 	SysColorHook::Deserialize(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS));
+	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
+		SysColorHook::Hook(AfxGetInstanceHandle());
 	afxData.UpdateSysColors();
-	if (!GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
-		return;
-	SysColorHook::Hook(AfxGetInstanceHandle());
-}
-
-void CMergeApp::SaveCustomSysColors()
-{
-	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_COLORS, SysColorHook::Serialize());
 }
 
