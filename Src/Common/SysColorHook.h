@@ -14,7 +14,7 @@ void SetSysColor(int nIndex, unsigned color);
 unsigned GetOrgSysColor(int nIndex);
 bool IsCustomSysColor(int nIndex);
 size_t GetSysColorCount();
-void Deserialize(const String& colors);
+void Deserialize(const String& colorStr, COLORREF* colors = nullptr);
 String Serialize();
 
 }

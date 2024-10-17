@@ -419,7 +419,6 @@ void CPreferencesDlg::OnExportButton()
 LRESULT CPreferencesDlg::OnColorSchemeChanged(WPARAM wParams, LPARAM lParam)
 {
 	Options::SyntaxColors::Load(m_pOptionsMgr, m_pSyntaxColors.get());
-	AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
 	ReadOptions(true);
 	return 0;
 }

@@ -22,7 +22,6 @@
 PropSysColors::PropSysColors(COptionsMgr *optionsMgr)
  : OptionsPanel(optionsMgr, PropSysColors::IDD)
  , m_bEnableSysColorHook(false)
- , m_bEnableSysColorHookOrg(false)
  , m_cSysColors()
 {
 }
@@ -34,6 +33,7 @@ void PropSysColors::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_SYSCOLOR_HOOK_ENABLED, m_bEnableSysColorHook);
 	DDX_Control(pDX, IDC_SYSCOLOR_NAME, m_cboSysColorName);
 	DDX_Control(pDX, IDC_SYSCOLOR, m_btnSysColor);
+	UpdateControls();
 	//}}AFX_DATA_MAP
 }
 
@@ -52,10 +52,11 @@ END_MESSAGE_MAP()
  */
 void PropSysColors::ReadOptions()
 {
-	m_bEnableSysColorHook = m_bEnableSysColorHookOrg = GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED) ? true : false;
+	m_bEnableSysColorHook = GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED) ? true : false;
 	m_oldColors = GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS);
 	for (int i = 0; i < static_cast<int>(m_cSysColors.size()); i++)
-		m_cSysColors[i] = GetSysColor(i);
+		m_cSysColors[i] = SysColorHook::GetOrgSysColor(i);
+	SysColorHook::Deserialize(m_oldColors, m_cSysColors.data());
 }
 
 /** 
@@ -69,8 +70,6 @@ void PropSysColors::WriteOptions()
 	String newColors = SysColorHook::Serialize();
 	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_ENABLED, m_bEnableSysColorHook);
 	GetOptionsMgr()->SaveOption(OPT_SYSCOLOR_HOOK_COLORS, newColors);
-	if (m_oldColors != newColors || m_bEnableSysColorHookOrg != m_bEnableSysColorHook)
-		AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
 }
 
 /** 

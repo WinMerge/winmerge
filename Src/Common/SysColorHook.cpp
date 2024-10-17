@@ -124,10 +124,10 @@ void SetSysColor(int nIndex, unsigned color)
 	g_syscolor[nIndex].isCustom = true;
 }
 
-void Deserialize(const String& colors)
+void Deserialize(const String& colorsStr, COLORREF* colors)
 {
 	Init();
-	auto sysColorMapping = strutils::split(colors, ',');
+	auto sysColorMapping = strutils::split(colorsStr, ',');
 	for (auto&& sysColorEntry : sysColorMapping)
 	{
 		auto pair = strutils::split(sysColorEntry, ':');
@@ -138,7 +138,10 @@ void Deserialize(const String& colors)
 			const String colorStr = String(pair[1].data(), pair[1].length());
 			unsigned color = static_cast<unsigned>(tc::tcstoll(colorStr.c_str(), &endptr,
 				(colorStr.length() >= 2 && colorStr[1] == 'x') ? 16 : 10));
-			SysColorHook::SetSysColor(index, color);
+			if (colors)
+				colors[index] = color;
+			else
+				SysColorHook::SetSysColor(index, color);
 		}
 	}
 }
@@ -150,7 +153,7 @@ String Serialize()
 	for (int i = 0; i < count; ++i)
 	{
 		if (g_syscolor[i].isCustom)
-			sysColorMapping.push_back(strutils::format(_T("%d:0x%08x"), i, GetSysColor(i)));
+			sysColorMapping.push_back(strutils::format(_T("%d:0x%08x"), i, g_syscolor[i].color));
 	}
 	return strutils::join(sysColorMapping.begin(), sysColorMapping.end(), _T(","));
 }

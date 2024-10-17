@@ -46,11 +46,8 @@ protected:
 
 	void UpdateControls();
 	void BrowseColor(CColorButton & colorButton);
-	void SerializeColors(OPERATION op);
-	void SerializeColor(OPERATION op, CColorButton & btn, const String& optionName);
 
 	std::array<COLORREF, COLOR_MENUBAR + 1> m_cSysColors;
-	bool m_bEnableSysColorHookOrg;
 	String m_oldColors;
 
 	// Generated message map functions
