@@ -1757,6 +1757,86 @@ msgstr " تفاوت واژه : "
 msgid "Selected Word Diff:"
 msgstr " تفاوت واژه انتخابي : "
 
+#, c-format
+msgid "Dialog"
+msgstr "پنجره محاوره  "
+
+#, c-format
+msgid "Keywords:"
+msgstr " کليدواژه ها : "
+
+#, c-format
+msgid "Function names:"
+msgstr " نام کليدکارها : "
+
+#, c-format
+msgid "Comments:"
+msgstr " توضيحات : "
+
+#, c-format
+msgid "Numbers:"
+msgstr " شماره ها : "
+
+#, c-format
+msgid "Operators:"
+msgstr " عملگرها : "
+
+#, c-format
+msgid "Strings:"
+msgstr " رشته ها : "
+
+#, c-format
+msgid "Preprocessor:"
+msgstr " پيش پرداز : "
+
+#, c-format
+msgid "User 1:"
+msgstr " کاربر 1 : "
+
+#, c-format
+msgid "User 2:"
+msgstr " کاربر 2 : "
+
+#, c-format
+msgid "Bold"
+msgstr " تيره "
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "&U  استفاده از رنگهاي متن سفارشي "
+
+#, c-format
+msgid "Whitespace:"
+msgstr " فاصله سفيد : "
+
+#, c-format
+msgid "Regular text:"
+msgstr " متن منظم : "
+
+#, c-format
+msgid "Selection:"
+msgstr " انتخاب : "
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1772,8 +1852,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 #, c-format
@@ -2170,66 +2249,6 @@ msgid "Export..."
 msgstr " صدور ... "
 
 #, c-format
-msgid "Dialog"
-msgstr "پنجره محاوره  "
-
-#, c-format
-msgid "Keywords:"
-msgstr " کليدواژه ها : "
-
-#, c-format
-msgid "Function names:"
-msgstr " نام کليدکارها : "
-
-#, c-format
-msgid "Comments:"
-msgstr " توضيحات : "
-
-#, c-format
-msgid "Numbers:"
-msgstr " شماره ها : "
-
-#, c-format
-msgid "Operators:"
-msgstr " عملگرها : "
-
-#, c-format
-msgid "Strings:"
-msgstr " رشته ها : "
-
-#, c-format
-msgid "Preprocessor:"
-msgstr " پيش پرداز : "
-
-#, c-format
-msgid "User 1:"
-msgstr " کاربر 1 : "
-
-#, c-format
-msgid "User 2:"
-msgstr " کاربر 2 : "
-
-#, c-format
-msgid "Bold"
-msgstr " تيره "
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr " گزارش همسنجي پوشه "
 
@@ -2414,22 +2433,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "&U  استفاده از رنگهاي متن سفارشي "
-
-#, c-format
-msgid "Whitespace:"
-msgstr " فاصله سفيد : "
-
-#, c-format
-msgid "Regular text:"
-msgstr " متن منظم : "
-
-#, c-format
-msgid "Selection:"
-msgstr " انتخاب : "
 
 #, c-format
 msgid "Backup Files"

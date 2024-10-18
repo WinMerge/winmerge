@@ -23,6 +23,7 @@
 #include "PropSyntaxColors.h"
 #include "PropMarkerColors.h"
 #include "PropDirColors.h"
+#include "PropSysColors.h"
 #include "PropCodepage.h"
 #include "PropArchive.h"
 #include "PropProject.h"
@@ -80,6 +81,7 @@ protected:
 	PropSyntaxColors m_pageSyntaxColors;
 	PropMarkerColors m_pageMarkerColors;
 	PropDirColors m_pageDirColors;
+	PropSysColors m_pageSysColors;
 	PropArchive m_pageArchive;
 	PropProject m_pageProject;
 	PropBackups m_pageBackups;

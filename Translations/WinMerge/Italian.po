@@ -1461,6 +1461,66 @@ msgstr "Differenza di parole:"
 msgid "Selected Word Diff:"
 msgstr "Diff. parole selezionata:"
 
+msgid "Dialog"
+msgstr "Finestra di dialogo"
+
+msgid "Keywords:"
+msgstr "Parole chiave:"
+
+msgid "Function names:"
+msgstr "Nomi funzione:"
+
+msgid "Comments:"
+msgstr "Commenti:"
+
+msgid "Numbers:"
+msgstr "Numeri:"
+
+msgid "Operators:"
+msgstr "Operatori:"
+
+msgid "Strings:"
+msgstr "Stringhe:"
+
+msgid "Preprocessor:"
+msgstr "Preprocessore:"
+
+msgid "User 1:"
+msgstr "Utente 1:"
+
+msgid "User 2:"
+msgstr "Utente 2:"
+
+msgid "Bold"
+msgstr "Grassetto"
+
+msgid "&Use customized text colors"
+msgstr "Per il testo &usa colori personalizzati"
+
+msgid "Whitespace:"
+msgstr "Spazi:"
+
+msgid "Regular text:"
+msgstr "Testo normale:"
+
+msgid "Selection:"
+msgstr "Selezione:"
+
+msgid "Margin:"
+msgstr "Margine:"
+
+msgid "Search Marker:"
+msgstr "Cerca segnaposto:"
+
+msgid "User Defined Marker1:"
+msgstr "Segnaposto predefinito 1:"
+
+msgid "User Defined Marker2:"
+msgstr "Segnaposto predefinito 2:"
+
+msgid "User Defined Marker3:"
+msgstr "Segnaposto predefinito 3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Usa colori confronto cartelle"
 
@@ -1476,8 +1536,8 @@ msgstr "Elementi inesistenti:"
 msgid "Items filtered:"
 msgstr "Elementi filtrati:"
 
-msgid "Margin:"
-msgstr "Margine:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Sistema"
@@ -1800,51 +1860,6 @@ msgstr "Importa..."
 msgid "Export..."
 msgstr "Esporta..."
 
-msgid "Dialog"
-msgstr "Finestra di dialogo"
-
-msgid "Keywords:"
-msgstr "Parole chiave:"
-
-msgid "Function names:"
-msgstr "Nomi funzione:"
-
-msgid "Comments:"
-msgstr "Commenti:"
-
-msgid "Numbers:"
-msgstr "Numeri:"
-
-msgid "Operators:"
-msgstr "Operatori:"
-
-msgid "Strings:"
-msgstr "Stringhe:"
-
-msgid "Preprocessor:"
-msgstr "Preprocessore:"
-
-msgid "User 1:"
-msgstr "Utente 1:"
-
-msgid "User 2:"
-msgstr "Utente 2:"
-
-msgid "Bold"
-msgstr "Grassetto"
-
-msgid "Search Marker:"
-msgstr "Cerca segnaposto:"
-
-msgid "User Defined Marker1:"
-msgstr "Segnaposto predefinito 1:"
-
-msgid "User Defined Marker2:"
-msgstr "Segnaposto predefinito 2:"
-
-msgid "User Defined Marker3:"
-msgstr "Segnaposto predefinito 3:"
-
 msgid "Folder Compare Report"
 msgstr "Rapporto confronto tra cartelle"
 
@@ -1991,18 +2006,6 @@ msgstr "&Consenti a capo tra le virgolette"
 
 msgid "&Quote character:"
 msgstr "Carattere &virgolette:"
-
-msgid "&Use customized text colors"
-msgstr "Per il testo &usa colori personalizzati"
-
-msgid "Whitespace:"
-msgstr "Spazi:"
-
-msgid "Regular text:"
-msgstr "Testo normale:"
-
-msgid "Selection:"
-msgstr "Selezione:"
 
 msgid "Backup Files"
 msgstr "File di backup"

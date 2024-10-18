@@ -1452,6 +1452,66 @@ msgstr "Различия в думи:"
 msgid "Selected Word Diff:"
 msgstr "В избраните думи:"
 
+msgid "Dialog"
+msgstr "Диалог"
+
+msgid "Keywords:"
+msgstr "Ключови думи:"
+
+msgid "Function names:"
+msgstr "Имена на функции:"
+
+msgid "Comments:"
+msgstr "Коментари:"
+
+msgid "Numbers:"
+msgstr "Числа:"
+
+msgid "Operators:"
+msgstr "Оператори:"
+
+msgid "Strings:"
+msgstr "Низове:"
+
+msgid "Preprocessor:"
+msgstr "Предпроцесор:"
+
+msgid "User 1:"
+msgstr "Потребител 1:"
+
+msgid "User 2:"
+msgstr "Потребител 2:"
+
+msgid "Bold"
+msgstr "Получер"
+
+msgid "&Use customized text colors"
+msgstr "&Задаване на цветове за текст"
+
+msgid "Whitespace:"
+msgstr "Интервали:"
+
+msgid "Regular text:"
+msgstr "Нормален текст:"
+
+msgid "Selection:"
+msgstr "Избран:"
+
+msgid "Margin:"
+msgstr "Поле:"
+
+msgid "Search Marker:"
+msgstr "При търсене:"
+
+msgid "User Defined Marker1:"
+msgstr "Маркер 1:"
+
+msgid "User Defined Marker2:"
+msgstr "Маркер 2:"
+
+msgid "User Defined Marker3:"
+msgstr "Маркер 3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Задаване на цветове при сравняване на папки"
 
@@ -1467,8 +1527,8 @@ msgstr "Несъществуващи елементи:"
 msgid "Items filtered:"
 msgstr "Филтрирани елементи:"
 
-msgid "Margin:"
-msgstr "Поле:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Системни"
@@ -1787,51 +1847,6 @@ msgstr "Внасяне…"
 msgid "Export..."
 msgstr "Изнасяне…"
 
-msgid "Dialog"
-msgstr "Диалог"
-
-msgid "Keywords:"
-msgstr "Ключови думи:"
-
-msgid "Function names:"
-msgstr "Имена на функции:"
-
-msgid "Comments:"
-msgstr "Коментари:"
-
-msgid "Numbers:"
-msgstr "Числа:"
-
-msgid "Operators:"
-msgstr "Оператори:"
-
-msgid "Strings:"
-msgstr "Низове:"
-
-msgid "Preprocessor:"
-msgstr "Предпроцесор:"
-
-msgid "User 1:"
-msgstr "Потребител 1:"
-
-msgid "User 2:"
-msgstr "Потребител 2:"
-
-msgid "Bold"
-msgstr "Получер"
-
-msgid "Search Marker:"
-msgstr "При търсене:"
-
-msgid "User Defined Marker1:"
-msgstr "Маркер 1:"
-
-msgid "User Defined Marker2:"
-msgstr "Маркер 2:"
-
-msgid "User Defined Marker3:"
-msgstr "Маркер 3:"
-
 msgid "Folder Compare Report"
 msgstr "Отчет за сравняване на папки"
 
@@ -1978,18 +1993,6 @@ msgstr "Разрешаване на нов ред в &кавичките"
 
 msgid "&Quote character:"
 msgstr "&Знак за кавички:"
-
-msgid "&Use customized text colors"
-msgstr "&Задаване на цветове за текст"
-
-msgid "Whitespace:"
-msgstr "Интервали:"
-
-msgid "Regular text:"
-msgstr "Нормален текст:"
-
-msgid "Selection:"
-msgstr "Избран:"
 
 msgid "Backup Files"
 msgstr "Резервни файлове"

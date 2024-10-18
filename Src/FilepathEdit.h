@@ -53,6 +53,7 @@ protected:
 	afx_msg void OnEditUndo();
 	afx_msg void OnEditSelectAll();
 	afx_msg void OnContextMenuSelected(UINT nID);
+    afx_msg void OnSysColorChange();
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 

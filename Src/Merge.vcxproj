@@ -922,6 +922,7 @@
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
+    <ClCompile Include="Common\SysColorHook.cpp" />
     <ClCompile Include="Concurrent.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -956,6 +957,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
     <ClCompile Include="PropMessageBoxes.cpp" />
+    <ClCompile Include="PropSysColors.cpp" />
     <ClCompile Include="SubstitutionFiltersList.cpp">
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)2.pch</PrecompiledHeaderOutputFile>
@@ -1449,6 +1451,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="Common\SysColorHook.h" />
     <ClInclude Include="MouseHook.h" />
     <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Common\cio.h" />
@@ -1475,6 +1478,7 @@
     <ClInclude Include="PropEditorCompareMerge.h" />
     <ClInclude Include="PropertySystem.h" />
     <ClInclude Include="PropMessageBoxes.h" />
+    <ClInclude Include="PropSysColors.h" />
     <ClInclude Include="SubstitutionFiltersList.h" />
     <ClInclude Include="MergeFrameCommon.h" />
     <ClInclude Include="MergeEditFrm.h" />

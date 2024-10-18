@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_SETCURSOR()
 	ON_WM_KILLFOCUS()
 	ON_WM_LBUTTONDOWN()
+	ON_WM_SYSCOLORCHANGE()
 	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
@@ -571,4 +572,9 @@ void CFilepathEdit::SetTextColor(COLORREF rgb)
 
 	//redraw
 	Invalidate(TRUE);
+}
+
+void CFilepathEdit::OnSysColorChange()
+{
+	SetActive(GetActive());
 }

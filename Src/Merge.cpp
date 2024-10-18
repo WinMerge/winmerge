@@ -65,6 +65,8 @@
 #include "Win_VersionHelper.h"
 #include "BCMenu.h"
 #include "MouseHook.h"
+#include "SysColorHook.h"
+#include <../src/mfc/afximpl.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -348,6 +350,7 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
+	SysColorHook::Init();
 	charsets_init();
 	UpdateCodepageModule();
 
@@ -401,6 +404,8 @@ BOOL CMergeApp::InitInstance()
 			GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, env::GetMyDocuments());
 		}
 	}
+
+	ReloadCustomSysColors();
 
 	strdiff::Init(); // String diff init
 	strdiff::SetBreakChars(GetOptionsMgr()->GetString(OPT_BREAK_SEPARATORS).c_str());
@@ -1761,3 +1766,13 @@ bool CMergeApp::WaitZombieThreads()
 	}
 	return terminated;
 }
+
+void CMergeApp::ReloadCustomSysColors()
+{
+	SysColorHook::Unhook(AfxGetInstanceHandle());
+	SysColorHook::Deserialize(GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS));
+	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
+		SysColorHook::Hook(AfxGetInstanceHandle());
+	afxData.UpdateSysColors();
+}
+

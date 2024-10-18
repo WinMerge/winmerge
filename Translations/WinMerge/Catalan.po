@@ -1755,6 +1755,86 @@ msgstr "Paraula diferent:"
 msgid "Selected Word Diff:"
 msgstr "Paraula diferent seleccionada:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Diàleg"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Paraules clau:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Noms de funció:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Comentaris:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Nombres:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Operadors:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Cadenes:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Preprocessador:"
+
+#, c-format
+msgid "User 1:"
+msgstr "Usuari 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "Usuari 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Negreta"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "&Usa colors de text personalitzats"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Espais:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Text regular:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Selecció:"
+
+#, c-format
+msgid "Margin:"
+msgstr "Marge:"
+
+#, c-format
+msgid "Search Marker:"
+msgstr "Marcador de cerca:"
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr "Marcador definit per l'usuari1:"
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr "Marcador definit per l'usuari2:"
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr "Marcador definit per l'usuari3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Usa colors comparació de carpetes"
 
@@ -1770,9 +1850,8 @@ msgstr "Elements que no existeixen en tots:"
 msgid "Items filtered:"
 msgstr "Elements filtrats:"
 
-#, c-format
-msgid "Margin:"
-msgstr "Marge:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 #, c-format
 msgid "System"
@@ -2170,66 +2249,6 @@ msgid "Export..."
 msgstr "Exporta..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Diàleg"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Paraules clau:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Noms de funció:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Comentaris:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Nombres:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Operadors:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Cadenes:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Preprocessador:"
-
-#, c-format
-msgid "User 1:"
-msgstr "Usuari 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "Usuari 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Negreta"
-
-#, c-format
-msgid "Search Marker:"
-msgstr "Marcador de cerca:"
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr "Marcador definit per l'usuari1:"
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr "Marcador definit per l'usuari2:"
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr "Marcador definit per l'usuari3:"
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Informe de comparació de directoris"
 
@@ -2414,22 +2433,6 @@ msgstr "Permet salts de línia entre cometes"
 
 msgid "&Quote character:"
 msgstr "Caràcter de cometes:"
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "&Usa colors de text personalitzats"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Espais:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Text regular:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Selecció:"
 
 #, c-format
 msgid "Backup Files"

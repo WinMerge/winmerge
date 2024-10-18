@@ -244,6 +244,9 @@ void Init(COptionsMgr *pOptions)
 
 	pOptions->InitOption(OPT_COLOR_SCHEME, _T("Default"));
 
+	pOptions->InitOption(OPT_SYSCOLOR_HOOK_ENABLED, false);
+	pOptions->InitOption(OPT_SYSCOLOR_HOOK_COLORS, _T(""));
+
 	Options::CustomColors::Init(pOptions);
 	Options::DiffOptions::Init(pOptions);
 	Options::DiffColors::Init(pOptions);

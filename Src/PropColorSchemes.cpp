@@ -15,6 +15,7 @@
 #include "DirTravel.h"
 #include "paths.h"
 #include "Environment.h"
+#include "SysColorHook.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -109,7 +110,11 @@ void PropColorSchemes::OnCbnSelchangeColorSchemes()
 	m_sColorScheme = sColorScheme;
 	WriteOptions();
 	String path = paths::ConcatPath(GetColorSchemesFolder(), sColorScheme + _T(".ini"));
-	if (GetOptionsMgr()->ImportOptions(path) != COption::OPT_OK)
+	SysColorHook::Unhook(AfxGetInstanceHandle());
+	auto result = GetOptionsMgr()->ImportOptions(path);
+	if (GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED))
+		SysColorHook::Hook(AfxGetInstanceHandle());
+	if (result != COption::OPT_OK)
 	{
 		LangMessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
 		return;

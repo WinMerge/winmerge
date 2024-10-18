@@ -369,7 +369,7 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		else
 		{
 			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
-				GetSysColor(COLOR_WINDOW), clrShadow, getBackColor(m_bOnTitleBar));
+				GetSysColor(COLOR_3DHIGHLIGHT), clrShadow, getBackColor(m_bOnTitleBar));
 			SetTextColor(lpDraw->hDC, getTextColor());
 		}
 	}

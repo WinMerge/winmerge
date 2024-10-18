@@ -1459,6 +1459,66 @@ msgstr "Woordverschil:"
 msgid "Selected Word Diff:"
 msgstr "Geselecteerd woordverschil:"
 
+msgid "Dialog"
+msgstr "Venster"
+
+msgid "Keywords:"
+msgstr "Sleutelwoorden:"
+
+msgid "Function names:"
+msgstr "Functienamen:"
+
+msgid "Comments:"
+msgstr "Opmerkingen:"
+
+msgid "Numbers:"
+msgstr "Nummers:"
+
+msgid "Operators:"
+msgstr "Operators:"
+
+msgid "Strings:"
+msgstr "Strings:"
+
+msgid "Preprocessor:"
+msgstr "Voorverwerker:"
+
+msgid "User 1:"
+msgstr "Gebruiker 1:"
+
+msgid "User 2:"
+msgstr "Gebruiker 2:"
+
+msgid "Bold"
+msgstr "Vet"
+
+msgid "&Use customized text colors"
+msgstr "Aangepaste tekstkleuren gebruiken"
+
+msgid "Whitespace:"
+msgstr "Witruimte:"
+
+msgid "Regular text:"
+msgstr "Gewone tekst:"
+
+msgid "Selection:"
+msgstr "Selectie:"
+
+msgid "Margin:"
+msgstr "Marge:"
+
+msgid "Search Marker:"
+msgstr "Markering zoeken:"
+
+msgid "User Defined Marker1:"
+msgstr "Aangepaste markering 1:"
+
+msgid "User Defined Marker2:"
+msgstr "Aangepaste markering 2:"
+
+msgid "User Defined Marker3:"
+msgstr "Aangepaste markering 3:"
+
 msgid "&Use folder compare colors"
 msgstr "Mapvergelijkingskleuren gebruiken"
 
@@ -1474,8 +1534,8 @@ msgstr "Items bestaan niet allemaal:"
 msgid "Items filtered:"
 msgstr "Gefilterde items:"
 
-msgid "Margin:"
-msgstr "Marge:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Systeem"
@@ -1801,51 +1861,6 @@ msgstr "Importeren..."
 msgid "Export..."
 msgstr "Exporteren..."
 
-msgid "Dialog"
-msgstr "Venster"
-
-msgid "Keywords:"
-msgstr "Sleutelwoorden:"
-
-msgid "Function names:"
-msgstr "Functienamen:"
-
-msgid "Comments:"
-msgstr "Opmerkingen:"
-
-msgid "Numbers:"
-msgstr "Nummers:"
-
-msgid "Operators:"
-msgstr "Operators:"
-
-msgid "Strings:"
-msgstr "Strings:"
-
-msgid "Preprocessor:"
-msgstr "Voorverwerker:"
-
-msgid "User 1:"
-msgstr "Gebruiker 1:"
-
-msgid "User 2:"
-msgstr "Gebruiker 2:"
-
-msgid "Bold"
-msgstr "Vet"
-
-msgid "Search Marker:"
-msgstr "Markering zoeken:"
-
-msgid "User Defined Marker1:"
-msgstr "Aangepaste markering 1:"
-
-msgid "User Defined Marker2:"
-msgstr "Aangepaste markering 2:"
-
-msgid "User Defined Marker3:"
-msgstr "Aangepaste markering 3:"
-
 msgid "Folder Compare Report"
 msgstr "Mapvergelijkingsrapport"
 
@@ -1992,18 +2007,6 @@ msgstr "Witregels in citaten toestaan"
 
 msgid "&Quote character:"
 msgstr "Citaat-teken:"
-
-msgid "&Use customized text colors"
-msgstr "Aangepaste tekstkleuren gebruiken"
-
-msgid "Whitespace:"
-msgstr "Witruimte:"
-
-msgid "Regular text:"
-msgstr "Gewone tekst:"
-
-msgid "Selection:"
-msgstr "Selectie:"
 
 msgid "Backup Files"
 msgstr "Backupbestanden"
