@@ -350,6 +350,7 @@ BOOL CMergeApp::InitInstance()
 	// Initialize i18n (multiple language) support
 	m_pLangDlg->InitializeLanguage((WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE));
 
+	SysColorHook::Init();
 	charsets_init();
 	UpdateCodepageModule();
 

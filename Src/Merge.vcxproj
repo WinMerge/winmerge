@@ -1451,6 +1451,7 @@
     <ClInclude Include="AboutDlg.h" />
     <ClInclude Include="BasicFlatStatusBar.h" />
     <ClInclude Include="ClipboardHistory.h" />
+    <ClInclude Include="Common\SysColorHook.h" />
     <ClInclude Include="MouseHook.h" />
     <ClInclude Include="MenuBar.h" />
     <ClInclude Include="Common\cio.h" />

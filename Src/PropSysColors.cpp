@@ -95,6 +95,9 @@ void PropSysColors::UpdateControls()
 	const bool enabled = IsDlgButtonChecked(IDC_SYSCOLOR_HOOK_ENABLED);
 	EnableDlgItem(IDC_SYSCOLOR_NAME, enabled);
 	EnableDlgItem(IDC_SYSCOLOR, enabled);
+	auto data = reinterpret_cast<intptr_t>(GetDlgItemDataCurSel(IDC_SYSCOLOR_NAME));
+	const int i = (data != -1) ? tc::ttoi(reinterpret_cast<const wchar_t*>(data)) : 0;
+	m_btnSysColor.SetColor(m_cSysColors[i]);
 }
 
 /** 
@@ -151,8 +154,7 @@ void PropSysColors::OnBnClickedSysColorHookEnabled()
 
 void PropSysColors::OnCbnSelchangeSysColorName()
 {
-	const int i = tc::ttoi(reinterpret_cast<const wchar_t*>(GetDlgItemDataCurSel(IDC_SYSCOLOR_NAME)));
-	m_btnSysColor.SetColor(m_cSysColors[i]);
+	UpdateControls();
 }
 
 /** 

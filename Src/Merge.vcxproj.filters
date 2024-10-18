@@ -1427,6 +1427,9 @@
     <ClInclude Include="PropSysColors.h">
       <Filter>MFCGui\PropertyPages\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Common\SysColorHook.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\binarydiff.ico">

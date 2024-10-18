@@ -126,7 +126,6 @@ void SetSysColor(int nIndex, unsigned color)
 
 void Deserialize(const String& colorsStr, COLORREF* colors)
 {
-	Init();
 	auto sysColorMapping = strutils::split(colorsStr, ',');
 	for (auto&& sysColorEntry : sysColorMapping)
 	{
