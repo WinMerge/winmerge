@@ -126,7 +126,7 @@ BOOL PropSysColors::OnInitDialog()
 			{ _T("COLOR_HIGHLIGHTTEXT"),          L"14" },
 			{ _T("COLOR_3DFACE"),                 L"15" },
 			{ _T("COLOR_3DSHADOW"),               L"16" },
-			{ _T("COLOR_GRAYTEXT"),               L"17" },
+//			{ _T("COLOR_GRAYTEXT"),               L"17" },
 			{ _T("COLOR_BTNTEXT"),                L"18" },
 			{ _T("COLOR_INACTIVECAPTIONTEXT"),    L"19" },
 			{ _T("COLOR_3DHIGHLIGHT"),            L"20" },
