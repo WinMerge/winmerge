@@ -294,10 +294,12 @@ void CFilepathEdit::OnPaint()
 	{
 		CClientDC dc(this);
 		CFont *pFontOld = dc.SelectObject(GetFont());	
+		int oldTextColor = dc.SetTextColor(m_crText);
 		int oldBkMode = dc.SetBkMode(TRANSPARENT);
 		CRect rc = GetMenuCharRect(&dc);
 		dc.TextOutW(rc.left, 0, IsWin7_OrGreater() ? _T("\u2261") : _T("="));
 		dc.SetBkMode(oldBkMode);
+		dc.SetTextColor(oldTextColor);
 		dc.SelectObject(pFontOld);
 	}
 }
