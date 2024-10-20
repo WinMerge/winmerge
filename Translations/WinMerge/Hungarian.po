@@ -1852,7 +1852,7 @@ msgid "Items filtered:"
 msgstr "Szűrt elemek:"
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
-msgstr ""
+msgstr "&Egyéni rendszerszínek használata (egyes UI elemek nem alkalmazhatók)"
 
 #, c-format
 msgid "System"
