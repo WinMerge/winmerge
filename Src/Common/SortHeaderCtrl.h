@@ -38,7 +38,14 @@ public:
 // Generated message map functions
 protected:
 	//{{AFX_MSG(CSortHeaderCtrl)
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnPaint();
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnMouseLeave();
 	//}}AFX_MSG
 
 	DECLARE_MESSAGE_MAP()
+
+	bool m_bMouseTracking;
+	int m_nTrackingPane;
 };
