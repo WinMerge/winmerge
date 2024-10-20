@@ -49,6 +49,7 @@ Please submit bug reports to our bug-tracker.
 
 ### Manual
 
+- BugFix: 2 mistakes about default values in manual (#2456)
 - Update documentation for "Include unique subfolders contents" setting (PR #2396)
 
 ### Translations
