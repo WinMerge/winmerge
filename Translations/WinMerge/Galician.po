@@ -1456,6 +1456,66 @@ msgstr "Diferenza de palabras:"
 msgid "Selected Word Diff:"
 msgstr "Diferenza de palabra seleccionada:"
 
+msgid "Dialog"
+msgstr "Diálogo"
+
+msgid "Keywords:"
+msgstr "Palabras clave:"
+
+msgid "Function names:"
+msgstr "Funcións:"
+
+msgid "Comments:"
+msgstr "Comentarios:"
+
+msgid "Numbers:"
+msgstr "Números:"
+
+msgid "Operators:"
+msgstr "Operadores:"
+
+msgid "Strings:"
+msgstr "Cadeas:"
+
+msgid "Preprocessor:"
+msgstr "Preprocesador:"
+
+msgid "User 1:"
+msgstr "Usuario 1:"
+
+msgid "User 2:"
+msgstr "Usuario 2:"
+
+msgid "Bold"
+msgstr "Grosa"
+
+msgid "&Use customized text colors"
+msgstr "&Usar cores personalizadas para o texto"
+
+msgid "Whitespace:"
+msgstr "Espazo:"
+
+msgid "Regular text:"
+msgstr "Texto normal:"
+
+msgid "Selection:"
+msgstr "Selección:"
+
+msgid "Margin:"
+msgstr "Marxe:"
+
+msgid "Search Marker:"
+msgstr "Marcador de busca:"
+
+msgid "User Defined Marker1:"
+msgstr "Personalizado 1:"
+
+msgid "User Defined Marker2:"
+msgstr "Personalizado 2:"
+
+msgid "User Defined Marker3:"
+msgstr "Personalizado 3:"
+
 msgid "&Use folder compare colors"
 msgstr "&Usar cores para comparar carpetas"
 
@@ -1471,8 +1531,8 @@ msgstr "Elementos inexistentes:"
 msgid "Items filtered:"
 msgstr "Elementos filtrados:"
 
-msgid "Margin:"
-msgstr "Marxe:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Sistema"
@@ -1791,51 +1851,6 @@ msgstr "Importar..."
 msgid "Export..."
 msgstr "Exportar..."
 
-msgid "Dialog"
-msgstr "Diálogo"
-
-msgid "Keywords:"
-msgstr "Palabras clave:"
-
-msgid "Function names:"
-msgstr "Funcións:"
-
-msgid "Comments:"
-msgstr "Comentarios:"
-
-msgid "Numbers:"
-msgstr "Números:"
-
-msgid "Operators:"
-msgstr "Operadores:"
-
-msgid "Strings:"
-msgstr "Cadeas:"
-
-msgid "Preprocessor:"
-msgstr "Preprocesador:"
-
-msgid "User 1:"
-msgstr "Usuario 1:"
-
-msgid "User 2:"
-msgstr "Usuario 2:"
-
-msgid "Bold"
-msgstr "Grosa"
-
-msgid "Search Marker:"
-msgstr "Marcador de busca:"
-
-msgid "User Defined Marker1:"
-msgstr "Personalizado 1:"
-
-msgid "User Defined Marker2:"
-msgstr "Personalizado 2:"
-
-msgid "User Defined Marker3:"
-msgstr "Personalizado 3:"
-
 msgid "Folder Compare Report"
 msgstr "Informe da comparación de carpetas"
 
@@ -1982,18 +1997,6 @@ msgstr "Permitir liñas nov&as entre comiñas"
 
 msgid "&Quote character:"
 msgstr "Carác&ter de comiñas:"
-
-msgid "&Use customized text colors"
-msgstr "&Usar cores personalizadas para o texto"
-
-msgid "Whitespace:"
-msgstr "Espazo:"
-
-msgid "Regular text:"
-msgstr "Texto normal:"
-
-msgid "Selection:"
-msgstr "Selección:"
 
 msgid "Backup Files"
 msgstr "Copias de seguridade"

@@ -1738,6 +1738,86 @@ msgstr "Словникова відмінність:"
 msgid "Selected Word Diff:"
 msgstr "Відзначена словникова відмінність:"
 
+#, c-format
+msgid "Dialog"
+msgstr "Діалог"
+
+#, c-format
+msgid "Keywords:"
+msgstr "Ключові слова:"
+
+#, c-format
+msgid "Function names:"
+msgstr "Імена функцій:"
+
+#, c-format
+msgid "Comments:"
+msgstr "Коментарі:"
+
+#, c-format
+msgid "Numbers:"
+msgstr "Числа:"
+
+#, c-format
+msgid "Operators:"
+msgstr "Оператори:"
+
+#, c-format
+msgid "Strings:"
+msgstr "Рядки:"
+
+#, c-format
+msgid "Preprocessor:"
+msgstr "Поперед. обрах.:"
+
+#, c-format
+msgid "User 1:"
+msgstr "Користувач 1:"
+
+#, c-format
+msgid "User 2:"
+msgstr "Користувач 2:"
+
+#, c-format
+msgid "Bold"
+msgstr "Грубий"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "Використати особливі кольори"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "Пропуски:"
+
+#, c-format
+msgid "Regular text:"
+msgstr "Звичайний текст:"
+
+#, c-format
+msgid "Selection:"
+msgstr "Відзнач. текст:"
+
+#, c-format
+msgid "Margin:"
+msgstr ""
+
+#, c-format
+msgid "Search Marker:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr ""
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr ""
+
 msgid "&Use folder compare colors"
 msgstr ""
 
@@ -1753,8 +1833,7 @@ msgstr ""
 msgid "Items filtered:"
 msgstr ""
 
-#, c-format
-msgid "Margin:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
 
 #, c-format
@@ -2147,66 +2226,6 @@ msgid "Export..."
 msgstr "Експорт..."
 
 #, c-format
-msgid "Dialog"
-msgstr "Діалог"
-
-#, c-format
-msgid "Keywords:"
-msgstr "Ключові слова:"
-
-#, c-format
-msgid "Function names:"
-msgstr "Імена функцій:"
-
-#, c-format
-msgid "Comments:"
-msgstr "Коментарі:"
-
-#, c-format
-msgid "Numbers:"
-msgstr "Числа:"
-
-#, c-format
-msgid "Operators:"
-msgstr "Оператори:"
-
-#, c-format
-msgid "Strings:"
-msgstr "Рядки:"
-
-#, c-format
-msgid "Preprocessor:"
-msgstr "Поперед. обрах.:"
-
-#, c-format
-msgid "User 1:"
-msgstr "Користувач 1:"
-
-#, c-format
-msgid "User 2:"
-msgstr "Користувач 2:"
-
-#, c-format
-msgid "Bold"
-msgstr "Грубий"
-
-#, c-format
-msgid "Search Marker:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr ""
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr ""
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "Звіт порівняння тек"
 
@@ -2391,22 +2410,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "Використати особливі кольори"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "Пропуски:"
-
-#, c-format
-msgid "Regular text:"
-msgstr "Звичайний текст:"
-
-#, c-format
-msgid "Selection:"
-msgstr "Відзнач. текст:"
 
 #, c-format
 msgid "Backup Files"

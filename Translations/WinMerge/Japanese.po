@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2020-12-05 22:07+0000\n"
-"PO-Revision-Date: 2024-09-28 15:49+0900\n"
+"PO-Revision-Date: 2024-10-20 14:08+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "Language: ja\n"
@@ -1458,6 +1458,66 @@ msgstr "単語の差異:"
 msgid "Selected Word Diff:"
 msgstr "選択された単語の差異:"
 
+msgid "Dialog"
+msgstr "ダイアログ"
+
+msgid "Keywords:"
+msgstr "キーワード:"
+
+msgid "Function names:"
+msgstr "関数名:"
+
+msgid "Comments:"
+msgstr "コメント:"
+
+msgid "Numbers:"
+msgstr "数値:"
+
+msgid "Operators:"
+msgstr "オペレーター:"
+
+msgid "Strings:"
+msgstr "文字列:"
+
+msgid "Preprocessor:"
+msgstr "プリプロセッサ:"
+
+msgid "User 1:"
+msgstr "ユーザー 1:"
+
+msgid "User 2:"
+msgstr "ユーザー 2:"
+
+msgid "Bold"
+msgstr "太字"
+
+msgid "&Use customized text colors"
+msgstr "テキストの色をカスタマイズする(&U)"
+
+msgid "Whitespace:"
+msgstr "空白:"
+
+msgid "Regular text:"
+msgstr "標準テキスト:"
+
+msgid "Selection:"
+msgstr "選択:"
+
+msgid "Margin:"
+msgstr "マージン:"
+
+msgid "Search Marker:"
+msgstr "検索マーカー:"
+
+msgid "User Defined Marker1:"
+msgstr "ユーザー定義マーカー 1:"
+
+msgid "User Defined Marker2:"
+msgstr "ユーザー定義マーカー 2:"
+
+msgid "User Defined Marker3:"
+msgstr "ユーザー定義マーカー 3:"
+
 msgid "&Use folder compare colors"
 msgstr "フォルダー比較用の色を使用する(&U)"
 
@@ -1473,8 +1533,8 @@ msgstr "すべて存在しない項目:"
 msgid "Items filtered:"
 msgstr "無視された項目:"
 
-msgid "Margin:"
-msgstr "マージン:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr "カスタムシステムカラーを使用する（一部のUI要素には適用されません）"
 
 msgid "System"
 msgstr "システム"
@@ -1793,51 +1853,6 @@ msgstr "インポート..."
 msgid "Export..."
 msgstr "エクスポート..."
 
-msgid "Dialog"
-msgstr "ダイアログ"
-
-msgid "Keywords:"
-msgstr "キーワード:"
-
-msgid "Function names:"
-msgstr "関数名:"
-
-msgid "Comments:"
-msgstr "コメント:"
-
-msgid "Numbers:"
-msgstr "数値:"
-
-msgid "Operators:"
-msgstr "オペレーター:"
-
-msgid "Strings:"
-msgstr "文字列:"
-
-msgid "Preprocessor:"
-msgstr "プリプロセッサ:"
-
-msgid "User 1:"
-msgstr "ユーザー 1:"
-
-msgid "User 2:"
-msgstr "ユーザー 2:"
-
-msgid "Bold"
-msgstr "太字"
-
-msgid "Search Marker:"
-msgstr "検索マーカー:"
-
-msgid "User Defined Marker1:"
-msgstr "ユーザー定義マーカー 1:"
-
-msgid "User Defined Marker2:"
-msgstr "ユーザー定義マーカー 2:"
-
-msgid "User Defined Marker3:"
-msgstr "ユーザー定義マーカー 3:"
-
 msgid "Folder Compare Report"
 msgstr "フォルダー比較レポート"
 
@@ -1984,18 +1999,6 @@ msgstr "引用符内の改行を値として扱う(&A)"
 
 msgid "&Quote character:"
 msgstr "引用符文字(&Q)"
-
-msgid "&Use customized text colors"
-msgstr "テキストの色をカスタマイズする(&U)"
-
-msgid "Whitespace:"
-msgstr "空白:"
-
-msgid "Regular text:"
-msgstr "標準テキスト:"
-
-msgid "Selection:"
-msgstr "選択:"
 
 msgid "Backup Files"
 msgstr "バックアップ ファイル"

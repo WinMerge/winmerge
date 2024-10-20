@@ -1458,6 +1458,66 @@ msgstr "الاختلافات على مستوى الكلمة:"
 msgid "Selected Word Diff:"
 msgstr "المقارنة على مستوى الكلمة المحددة:"
 
+msgid "Dialog"
+msgstr "حوار"
+
+msgid "Keywords:"
+msgstr "الكلمات المفتاحية:"
+
+msgid "Function names:"
+msgstr "اسماء الدوال:"
+
+msgid "Comments:"
+msgstr "التعليقات:"
+
+msgid "Numbers:"
+msgstr "الأرقام:"
+
+msgid "Operators:"
+msgstr "العوامل:"
+
+msgid "Strings:"
+msgstr "الإعدادات:"
+
+msgid "Preprocessor:"
+msgstr "المعالج التمهيدي:"
+
+msgid "User 1:"
+msgstr "المستخدم 1:"
+
+msgid "User 2:"
+msgstr "المستخدم 2:"
+
+msgid "Bold"
+msgstr "الخط العريض"
+
+msgid "&Use customized text colors"
+msgstr "ا&ستخدام ألوان مخصصة للنص"
+
+msgid "Whitespace:"
+msgstr "مساحة بيضاء (فارغة):"
+
+msgid "Regular text:"
+msgstr "نص عادي:"
+
+msgid "Selection:"
+msgstr "التحديد:"
+
+msgid "Margin:"
+msgstr "الهامش:"
+
+msgid "Search Marker:"
+msgstr "علامات البحث:"
+
+msgid "User Defined Marker1:"
+msgstr "العلامات المعرفة من قبل المستخدم 1:"
+
+msgid "User Defined Marker2:"
+msgstr "العلامات المعرفة من قبل المستخدم 2:"
+
+msgid "User Defined Marker3:"
+msgstr "العلامات المعرفة من قبل المستخدم 3:"
+
 msgid "&Use folder compare colors"
 msgstr "استخدم الألوان في مقارنة المجلدات"
 
@@ -1473,8 +1533,8 @@ msgstr "العناصر غير مكتملة:"
 msgid "Items filtered:"
 msgstr "العناصر التي تمت حصرها بالمرشح:"
 
-msgid "Margin:"
-msgstr "الهامش:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "النظام"
@@ -1791,51 +1851,6 @@ msgstr "استيراد..."
 msgid "Export..."
 msgstr "تصدير..."
 
-msgid "Dialog"
-msgstr "حوار"
-
-msgid "Keywords:"
-msgstr "الكلمات المفتاحية:"
-
-msgid "Function names:"
-msgstr "اسماء الدوال:"
-
-msgid "Comments:"
-msgstr "التعليقات:"
-
-msgid "Numbers:"
-msgstr "الأرقام:"
-
-msgid "Operators:"
-msgstr "العوامل:"
-
-msgid "Strings:"
-msgstr "الإعدادات:"
-
-msgid "Preprocessor:"
-msgstr "المعالج التمهيدي:"
-
-msgid "User 1:"
-msgstr "المستخدم 1:"
-
-msgid "User 2:"
-msgstr "المستخدم 2:"
-
-msgid "Bold"
-msgstr "الخط العريض"
-
-msgid "Search Marker:"
-msgstr "علامات البحث:"
-
-msgid "User Defined Marker1:"
-msgstr "العلامات المعرفة من قبل المستخدم 1:"
-
-msgid "User Defined Marker2:"
-msgstr "العلامات المعرفة من قبل المستخدم 2:"
-
-msgid "User Defined Marker3:"
-msgstr "العلامات المعرفة من قبل المستخدم 3:"
-
 msgid "Folder Compare Report"
 msgstr "تقرير مقارنة المجلدات"
 
@@ -1982,18 +1997,6 @@ msgstr ""
 
 msgid "&Quote character:"
 msgstr ""
-
-msgid "&Use customized text colors"
-msgstr "ا&ستخدام ألوان مخصصة للنص"
-
-msgid "Whitespace:"
-msgstr "مساحة بيضاء (فارغة):"
-
-msgid "Regular text:"
-msgstr "نص عادي:"
-
-msgid "Selection:"
-msgstr "التحديد:"
 
 msgid "Backup Files"
 msgstr "ملفات النسخ الاحتياطي"

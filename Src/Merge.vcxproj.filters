@@ -741,6 +741,12 @@
     <ClCompile Include="MouseHook.cpp">
       <Filter>MFCGui\Main\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Common\SysColorHook.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PropSysColors.cpp">
+      <Filter>MFCGui\PropertyPages\Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charsets.h">
@@ -1417,6 +1423,12 @@
     </ClInclude>
     <ClInclude Include="MouseHook.h">
       <Filter>MFCGui\Main\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PropSysColors.h">
+      <Filter>MFCGui\PropertyPages\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\SysColorHook.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

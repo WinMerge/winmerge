@@ -1460,6 +1460,66 @@ msgstr "Diferença de palavra:"
 msgid "Selected Word Diff:"
 msgstr "Diferença de palavra selecionada:"
 
+msgid "Dialog"
+msgstr "Diálogo"
+
+msgid "Keywords:"
+msgstr "Palavras-chave:"
+
+msgid "Function names:"
+msgstr "Nomes das funções:"
+
+msgid "Comments:"
+msgstr "Comentários:"
+
+msgid "Numbers:"
+msgstr "Números:"
+
+msgid "Operators:"
+msgstr "Operadores:"
+
+msgid "Strings:"
+msgstr "Frases originais:"
+
+msgid "Preprocessor:"
+msgstr "Pré-processador:"
+
+msgid "User 1:"
+msgstr "Utilizador 1:"
+
+msgid "User 2:"
+msgstr "Utilizador 2:"
+
+msgid "Bold"
+msgstr "Negrito"
+
+msgid "&Use customized text colors"
+msgstr "Utilizar cores de texto personalizadas"
+
+msgid "Whitespace:"
+msgstr "Espaço:"
+
+msgid "Regular text:"
+msgstr "Texto normal:"
+
+msgid "Selection:"
+msgstr "Seleção:"
+
+msgid "Margin:"
+msgstr "Margem:"
+
+msgid "Search Marker:"
+msgstr "Procurar marcador:"
+
+msgid "User Defined Marker1:"
+msgstr "Marcador 1 definido pelo utilizador:"
+
+msgid "User Defined Marker2:"
+msgstr "Marcador 2 definido pelo utilizador:"
+
+msgid "User Defined Marker3:"
+msgstr "Marcador 3 definido pelo utilizador:"
+
 msgid "&Use folder compare colors"
 msgstr "&Utilizar pasta de comparar cores"
 
@@ -1475,8 +1535,8 @@ msgstr "Os itens não existem todos:"
 msgid "Items filtered:"
 msgstr "Itens filtrados:"
 
-msgid "Margin:"
-msgstr "Margem:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Sistema"
@@ -1799,51 +1859,6 @@ msgstr "Importar..."
 msgid "Export..."
 msgstr "Exportar..."
 
-msgid "Dialog"
-msgstr "Diálogo"
-
-msgid "Keywords:"
-msgstr "Palavras-chave:"
-
-msgid "Function names:"
-msgstr "Nomes das funções:"
-
-msgid "Comments:"
-msgstr "Comentários:"
-
-msgid "Numbers:"
-msgstr "Números:"
-
-msgid "Operators:"
-msgstr "Operadores:"
-
-msgid "Strings:"
-msgstr "Frases originais:"
-
-msgid "Preprocessor:"
-msgstr "Pré-processador:"
-
-msgid "User 1:"
-msgstr "Utilizador 1:"
-
-msgid "User 2:"
-msgstr "Utilizador 2:"
-
-msgid "Bold"
-msgstr "Negrito"
-
-msgid "Search Marker:"
-msgstr "Procurar marcador:"
-
-msgid "User Defined Marker1:"
-msgstr "Marcador 1 definido pelo utilizador:"
-
-msgid "User Defined Marker2:"
-msgstr "Marcador 2 definido pelo utilizador:"
-
-msgid "User Defined Marker3:"
-msgstr "Marcador 3 definido pelo utilizador:"
-
 msgid "Folder Compare Report"
 msgstr "Relatório de comparação de ficheiros"
 
@@ -1990,18 +2005,6 @@ msgstr "&Permitir novas linhas entre aspas"
 
 msgid "&Quote character:"
 msgstr "&Citar caráter:"
-
-msgid "&Use customized text colors"
-msgstr "Utilizar cores de texto personalizadas"
-
-msgid "Whitespace:"
-msgstr "Espaço:"
-
-msgid "Regular text:"
-msgstr "Texto normal:"
-
-msgid "Selection:"
-msgstr "Seleção:"
 
 msgid "Backup Files"
 msgstr "Cópia de ficheiros"

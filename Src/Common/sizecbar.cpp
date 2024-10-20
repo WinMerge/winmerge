@@ -84,6 +84,7 @@ BEGIN_MESSAGE_MAP(CSizingControlBar, baseCSizingControlBar)
     ON_WM_WINDOWPOSCHANGING()
     ON_WM_CAPTURECHANGED()
     ON_WM_SETTINGCHANGE()
+    ON_WM_SYSCOLORCHANGE()
     ON_WM_LBUTTONUP()
     ON_WM_MOUSEMOVE()
     ON_WM_NCLBUTTONDOWN()
@@ -564,6 +565,11 @@ void CSizingControlBar::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
     ::SystemParametersInfo(SPI_GETDRAGFULLWINDOWS, 0,
         &bDragShowContent, 0); // update
     m_bDragShowContent = !!bDragShowContent;
+}
+
+void CSizingControlBar::OnSysColorChange()
+{
+    ::SetClassLongPtr(m_hWnd, GCLP_HBRBACKGROUND, (LONG_PTR)GetSysColorBrush(COLOR_BTNFACE));
 }
 
 void CSizingControlBar::OnSize(UINT nType, int cx, int cy)

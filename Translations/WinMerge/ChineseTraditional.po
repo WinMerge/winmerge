@@ -1764,6 +1764,87 @@ msgstr "字層次的差異："
 msgid "Selected Word Diff:"
 msgstr "已選取的字的差異："
 
+#, c-format
+msgid "Dialog"
+msgstr "對話"
+
+#, c-format
+msgid "Keywords:"
+msgstr "關鍵字："
+
+#, c-format
+msgid "Function names:"
+msgstr "函數名："
+
+#, c-format
+msgid "Comments:"
+msgstr "註："
+
+#, c-format
+msgid "Numbers:"
+msgstr "數字："
+
+#, c-format
+msgid "Operators:"
+msgstr "運算子："
+
+#, c-format
+msgid "Strings:"
+msgstr "字串："
+
+# What is preprocessor? Is it prediffer? The term "preprocessor" cannot be found elsewhere.
+#, c-format
+msgid "Preprocessor:"
+msgstr "前處理器："
+
+#, c-format
+msgid "User 1:"
+msgstr "使用者 1："
+
+#, c-format
+msgid "User 2:"
+msgstr "使用者 2："
+
+#, c-format
+msgid "Bold"
+msgstr "粗體"
+
+#, c-format
+msgid "&Use customized text colors"
+msgstr "使用自訂文字色彩 (&U)"
+
+#, c-format
+msgid "Whitespace:"
+msgstr "空白："
+
+#, c-format
+msgid "Regular text:"
+msgstr "類型表式文："
+
+#, c-format
+msgid "Selection:"
+msgstr "選取："
+
+#, c-format
+msgid "Margin:"
+msgstr "邊距："
+
+#, c-format
+msgid "Search Marker:"
+msgstr "搜尋標記："
+
+#, c-format
+msgid "User Defined Marker1:"
+msgstr "使用者自定義標記1："
+
+#, c-format
+msgid "User Defined Marker2:"
+msgstr "使用者自定義標記2："
+
+#, c-format
+msgid "User Defined Marker3:"
+msgstr "使用者自定義標記3："
+
 msgid "&Use folder compare colors"
 msgstr "使用資料夾比較顏色(&U)"
 
@@ -1779,9 +1860,8 @@ msgstr "所有項目不存在："
 msgid "Items filtered:"
 msgstr "篩選項目："
 
-#, c-format
-msgid "Margin:"
-msgstr "邊距："
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 #, c-format
 msgid "System"
@@ -2179,67 +2259,6 @@ msgid "Export..."
 msgstr "匯出..."
 
 #, c-format
-msgid "Dialog"
-msgstr "對話"
-
-#, c-format
-msgid "Keywords:"
-msgstr "關鍵字："
-
-#, c-format
-msgid "Function names:"
-msgstr "函數名："
-
-#, c-format
-msgid "Comments:"
-msgstr "註："
-
-#, c-format
-msgid "Numbers:"
-msgstr "數字："
-
-#, c-format
-msgid "Operators:"
-msgstr "運算子："
-
-#, c-format
-msgid "Strings:"
-msgstr "字串："
-
-# What is preprocessor? Is it prediffer? The term "preprocessor" cannot be found elsewhere.
-#, c-format
-msgid "Preprocessor:"
-msgstr "前處理器："
-
-#, c-format
-msgid "User 1:"
-msgstr "使用者 1："
-
-#, c-format
-msgid "User 2:"
-msgstr "使用者 2："
-
-#, c-format
-msgid "Bold"
-msgstr "粗體"
-
-#, c-format
-msgid "Search Marker:"
-msgstr "搜尋標記："
-
-#, c-format
-msgid "User Defined Marker1:"
-msgstr "使用者自定義標記1："
-
-#, c-format
-msgid "User Defined Marker2:"
-msgstr "使用者自定義標記2："
-
-#, c-format
-msgid "User Defined Marker3:"
-msgstr "使用者自定義標記3："
-
-#, c-format
 msgid "Folder Compare Report"
 msgstr "比較目錄後的報告"
 
@@ -2424,22 +2443,6 @@ msgstr "允許引號中的新行字元 (&A)"
 
 msgid "&Quote character:"
 msgstr "引號字元 (&Q)："
-
-#, c-format
-msgid "&Use customized text colors"
-msgstr "使用自訂文字色彩 (&U)"
-
-#, c-format
-msgid "Whitespace:"
-msgstr "空白："
-
-#, c-format
-msgid "Regular text:"
-msgstr "類型表式文："
-
-#, c-format
-msgid "Selection:"
-msgstr "選取："
 
 #, c-format
 msgid "Backup Files"

@@ -1461,6 +1461,66 @@ msgstr "单词差异："
 msgid "Selected Word Diff:"
 msgstr "选中的单词差异："
 
+msgid "Dialog"
+msgstr "对话框"
+
+msgid "Keywords:"
+msgstr "关键字："
+
+msgid "Function names:"
+msgstr "函数名："
+
+msgid "Comments:"
+msgstr "注释："
+
+msgid "Numbers:"
+msgstr "数字："
+
+msgid "Operators:"
+msgstr "操作符："
+
+msgid "Strings:"
+msgstr "字符串："
+
+msgid "Preprocessor:"
+msgstr "预处理指令："
+
+msgid "User 1:"
+msgstr "用户定义 1："
+
+msgid "User 2:"
+msgstr "用户定义 2："
+
+msgid "Bold"
+msgstr "加粗"
+
+msgid "&Use customized text colors"
+msgstr "使用自定义的文字颜色(&U)"
+
+msgid "Whitespace:"
+msgstr "空白："
+
+msgid "Regular text:"
+msgstr "普通文本："
+
+msgid "Selection:"
+msgstr "选中区域："
+
+msgid "Margin:"
+msgstr "边缘："
+
+msgid "Search Marker:"
+msgstr "搜索标记："
+
+msgid "User Defined Marker1:"
+msgstr "用户定义的标记1："
+
+msgid "User Defined Marker2:"
+msgstr "用户定义的标记2："
+
+msgid "User Defined Marker3:"
+msgstr "用户定义的标记3："
+
 msgid "&Use folder compare colors"
 msgstr "使用文件夹比较颜色(&U)"
 
@@ -1476,8 +1536,8 @@ msgstr "并非都存在的项目："
 msgid "Items filtered:"
 msgstr "过滤的项目："
 
-msgid "Margin:"
-msgstr "边缘："
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "系统"
@@ -1799,51 +1859,6 @@ msgstr "导入..."
 msgid "Export..."
 msgstr "导出..."
 
-msgid "Dialog"
-msgstr "对话框"
-
-msgid "Keywords:"
-msgstr "关键字："
-
-msgid "Function names:"
-msgstr "函数名："
-
-msgid "Comments:"
-msgstr "注释："
-
-msgid "Numbers:"
-msgstr "数字："
-
-msgid "Operators:"
-msgstr "操作符："
-
-msgid "Strings:"
-msgstr "字符串："
-
-msgid "Preprocessor:"
-msgstr "预处理指令："
-
-msgid "User 1:"
-msgstr "用户定义 1："
-
-msgid "User 2:"
-msgstr "用户定义 2："
-
-msgid "Bold"
-msgstr "加粗"
-
-msgid "Search Marker:"
-msgstr "搜索标记："
-
-msgid "User Defined Marker1:"
-msgstr "用户定义的标记1："
-
-msgid "User Defined Marker2:"
-msgstr "用户定义的标记2："
-
-msgid "User Defined Marker3:"
-msgstr "用户定义的标记3："
-
 msgid "Folder Compare Report"
 msgstr "文件夹比较报告"
 
@@ -1990,18 +2005,6 @@ msgstr "允许引号内换行(&A)"
 
 msgid "&Quote character:"
 msgstr "引号字符(&Q)："
-
-msgid "&Use customized text colors"
-msgstr "使用自定义的文字颜色(&U)"
-
-msgid "Whitespace:"
-msgstr "空白："
-
-msgid "Regular text:"
-msgstr "普通文本："
-
-msgid "Selection:"
-msgstr "选中区域："
 
 msgid "Backup Files"
 msgstr "备份文件"

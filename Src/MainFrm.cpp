@@ -1179,6 +1179,8 @@ void CMainFrame::OnHelpGnulicense()
  */
 void CMainFrame::OnOptions() 
 {
+	const bool sysColorHookEnabled = GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED);
+	const String sysColorsSerialized = GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS);
 	// Using singleton shared syntax colors
 	CPreferencesDlg dlg(GetOptionsMgr(), theApp.GetMainSyntaxColors());
 	INT_PTR rv = dlg.DoModal();
@@ -1226,6 +1228,14 @@ void CMainFrame::OnOptions()
 			pHexMergeDoc->RefreshOptions();
 		for (auto pImgMergeFrame : GetAllImgMergeFrames())
 			pImgMergeFrame->RefreshOptions();
+
+		if (sysColorHookEnabled != GetOptionsMgr()->GetBool(OPT_SYSCOLOR_HOOK_ENABLED) ||
+		    sysColorsSerialized != GetOptionsMgr()->GetString(OPT_SYSCOLOR_HOOK_COLORS))
+		{
+			theApp.ReloadCustomSysColors();
+			AfxGetMainWnd()->SendMessage(WM_SYSCOLORCHANGE);
+			RedrawWindow(nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ERASE | RDW_ALLCHILDREN);
+		}
 	}
 }
 

@@ -118,6 +118,10 @@ inline const String OPT_FILE_SIZE_THRESHOLD {_T("Settings/OPT_FILE_SIZE_THRESHOL
 inline const String OPT_AUTO_RELOAD_MODIFIED_FILES {_T("Settings/AutoReloadModifiedFiles"s)};
 
 // Color options
+// SysColor hook
+inline const String OPT_SYSCOLOR_HOOK_ENABLED {_T("Settings/SysColorHookEnabled"s)};
+inline const String OPT_SYSCOLOR_HOOK_COLORS {_T("Settings/SysColorHookColors"s)};
+
 // The difference color
 inline const String OPT_CLR_DIFF {_T("Settings/DifferenceColor"s)};
 // The selected difference color

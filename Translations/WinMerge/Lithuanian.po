@@ -1455,6 +1455,66 @@ msgstr "Žodžio skirtumas:"
 msgid "Selected Word Diff:"
 msgstr "Pažym. žodžio skirtumas:"
 
+msgid "Dialog"
+msgstr "Dialogas"
+
+msgid "Keywords:"
+msgstr "Raktažodžiai:"
+
+msgid "Function names:"
+msgstr "Funkcijų vardai:"
+
+msgid "Comments:"
+msgstr "Komentarai:"
+
+msgid "Numbers:"
+msgstr "Skaičiai:"
+
+msgid "Operators:"
+msgstr "Operatoriai:"
+
+msgid "Strings:"
+msgstr "Eilutės:"
+
+msgid "Preprocessor:"
+msgstr "Preprocessorius:"
+
+msgid "User 1:"
+msgstr "Naudotojas 1:"
+
+msgid "User 2:"
+msgstr "Naudotojas 2:"
+
+msgid "Bold"
+msgstr "Pastorintas"
+
+msgid "&Use customized text colors"
+msgstr "Na&udoti pasirinkt. teksto spalvas"
+
+msgid "Whitespace:"
+msgstr "Tarpas:"
+
+msgid "Regular text:"
+msgstr "Paprastas tekstas:"
+
+msgid "Selection:"
+msgstr "Pažymėtas fragmentas:"
+
+msgid "Margin:"
+msgstr "Paraštė:"
+
+msgid "Search Marker:"
+msgstr "Paieškos žymeklis:"
+
+msgid "User Defined Marker1:"
+msgstr "Naudotojo žymeklis1:"
+
+msgid "User Defined Marker2:"
+msgstr "Naudotojo žymeklis2:"
+
+msgid "User Defined Marker3:"
+msgstr "Naudotojo žymeklis3:"
+
 msgid "&Use folder compare colors"
 msgstr "Na&udoti katalogų lyginimo spalvas"
 
@@ -1470,8 +1530,8 @@ msgstr "Elementų visai nėra:"
 msgid "Items filtered:"
 msgstr "Elementai filtruoti:"
 
-msgid "Margin:"
-msgstr "Paraštė:"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Sistemos"
@@ -1782,51 +1842,6 @@ msgstr "Importuoti..."
 msgid "Export..."
 msgstr "Eksportuoti..."
 
-msgid "Dialog"
-msgstr "Dialogas"
-
-msgid "Keywords:"
-msgstr "Raktažodžiai:"
-
-msgid "Function names:"
-msgstr "Funkcijų vardai:"
-
-msgid "Comments:"
-msgstr "Komentarai:"
-
-msgid "Numbers:"
-msgstr "Skaičiai:"
-
-msgid "Operators:"
-msgstr "Operatoriai:"
-
-msgid "Strings:"
-msgstr "Eilutės:"
-
-msgid "Preprocessor:"
-msgstr "Preprocessorius:"
-
-msgid "User 1:"
-msgstr "Naudotojas 1:"
-
-msgid "User 2:"
-msgstr "Naudotojas 2:"
-
-msgid "Bold"
-msgstr "Pastorintas"
-
-msgid "Search Marker:"
-msgstr "Paieškos žymeklis:"
-
-msgid "User Defined Marker1:"
-msgstr "Naudotojo žymeklis1:"
-
-msgid "User Defined Marker2:"
-msgstr "Naudotojo žymeklis2:"
-
-msgid "User Defined Marker3:"
-msgstr "Naudotojo žymeklis3:"
-
 msgid "Folder Compare Report"
 msgstr "Katalogų lyginimo ataskaita"
 
@@ -1973,18 +1988,6 @@ msgstr "Leisti n&aujas eilutes kabutėse"
 
 msgid "&Quote character:"
 msgstr "&Kabučių simbolis:"
-
-msgid "&Use customized text colors"
-msgstr "Na&udoti pasirinkt. teksto spalvas"
-
-msgid "Whitespace:"
-msgstr "Tarpas:"
-
-msgid "Regular text:"
-msgstr "Paprastas tekstas:"
-
-msgid "Selection:"
-msgstr "Pažymėtas fragmentas:"
 
 msgid "Backup Files"
 msgstr "Rezervinių failų kurimo"

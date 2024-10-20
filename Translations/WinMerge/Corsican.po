@@ -1457,6 +1457,66 @@ msgstr "Sfarenza di parolla :"
 msgid "Selected Word Diff:"
 msgstr "Sfarenza di parolla selezziunata :"
 
+msgid "Dialog"
+msgstr "Dialogu"
+
+msgid "Keywords:"
+msgstr "Parolle chjave :"
+
+msgid "Function names:"
+msgstr "Nomi di funzione :"
+
+msgid "Comments:"
+msgstr "Cummenti :"
+
+msgid "Numbers:"
+msgstr "Numeri :"
+
+msgid "Operators:"
+msgstr "Operatori :"
+
+msgid "Strings:"
+msgstr "Catene :"
+
+msgid "Preprocessor:"
+msgstr "Preprucessore :"
+
+msgid "User 1:"
+msgstr "Utilizatore 1 :"
+
+msgid "User 2:"
+msgstr "Utilizatore 2 :"
+
+msgid "Bold"
+msgstr "Grassu"
+
+msgid "&Use customized text colors"
+msgstr "&Impiegà culori persunalizati per u testu"
+
+msgid "Whitespace:"
+msgstr "Spaziu biancu :"
+
+msgid "Regular text:"
+msgstr "Testu nurmale :"
+
+msgid "Selection:"
+msgstr "Selezzione :"
+
+msgid "Margin:"
+msgstr "Margine :"
+
+msgid "Search Marker:"
+msgstr "Marcatore di ricerca :"
+
+msgid "User Defined Marker1:"
+msgstr "Marcatore 1 definitu da l’utilizatore :"
+
+msgid "User Defined Marker2:"
+msgstr "Marcatore 2 definitu da l’utilizatore :"
+
+msgid "User Defined Marker3:"
+msgstr "Marcatore 3 definitu da l’utilizatore :"
+
 msgid "&Use folder compare colors"
 msgstr "&Impiegà i culori di paragone di cartulare"
 
@@ -1472,8 +1532,8 @@ msgstr "Elementi inesistenti :"
 msgid "Items filtered:"
 msgstr "Elementi filtrati :"
 
-msgid "Margin:"
-msgstr "Margine :"
+msgid "&Use custom system colors (Some UI elements may not apply)"
+msgstr ""
 
 msgid "System"
 msgstr "Sistema"
@@ -1792,51 +1852,6 @@ msgstr "Impurtà…"
 msgid "Export..."
 msgstr "Espurtà…"
 
-msgid "Dialog"
-msgstr "Dialogu"
-
-msgid "Keywords:"
-msgstr "Parolle chjave :"
-
-msgid "Function names:"
-msgstr "Nomi di funzione :"
-
-msgid "Comments:"
-msgstr "Cummenti :"
-
-msgid "Numbers:"
-msgstr "Numeri :"
-
-msgid "Operators:"
-msgstr "Operatori :"
-
-msgid "Strings:"
-msgstr "Catene :"
-
-msgid "Preprocessor:"
-msgstr "Preprucessore :"
-
-msgid "User 1:"
-msgstr "Utilizatore 1 :"
-
-msgid "User 2:"
-msgstr "Utilizatore 2 :"
-
-msgid "Bold"
-msgstr "Grassu"
-
-msgid "Search Marker:"
-msgstr "Marcatore di ricerca :"
-
-msgid "User Defined Marker1:"
-msgstr "Marcatore 1 definitu da l’utilizatore :"
-
-msgid "User Defined Marker2:"
-msgstr "Marcatore 2 definitu da l’utilizatore :"
-
-msgid "User Defined Marker3:"
-msgstr "Marcatore 3 definitu da l’utilizatore :"
-
 msgid "Folder Compare Report"
 msgstr "Raportu di paragone di cartulare"
 
@@ -1983,18 +1998,6 @@ msgstr "&Permette i salti di linea in e citazioni"
 
 msgid "&Quote character:"
 msgstr "&Caratteru di citazione :"
-
-msgid "&Use customized text colors"
-msgstr "&Impiegà culori persunalizati per u testu"
-
-msgid "Whitespace:"
-msgstr "Spaziu biancu :"
-
-msgid "Regular text:"
-msgstr "Testu nurmale :"
-
-msgid "Selection:"
-msgstr "Selezzione :"
 
 msgid "Backup Files"
 msgstr "Schedarii di salvaguardia"

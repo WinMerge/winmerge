@@ -132,6 +132,7 @@ protected:
 	void ApplyCommandLineConfigOptions(MergeCmdLineInfo & cmdInfo);
 	bool ShowCompareAsMenu(MergeCmdLineInfo& cmdInfo);
 	void ShowDialog(MergeCmdLineInfo::DialogType type);
+	void ReloadCustomSysColors();
 
 	// End MergeArgs.cpp
 
