@@ -9,11 +9,19 @@ CMyReBar::CMyReBar()
 {
 }
 
+static inline bool IsHighContrastEnabled()
+{
+	HIGHCONTRAST hc = { sizeof(HIGHCONTRAST) };
+	SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(hc), &hc, 0);
+	return (hc.dwFlags & HCF_HIGHCONTRASTON) != 0;
+}
+
 BOOL CMyReBar::OnEraseBkgnd(CDC* pDC)
 {
 	CRect rect;
 	GetClientRect(&rect);
-	pDC->FillSolidRect(&rect, GetSysColor(COLOR_3DHIGHLIGHT));
+	pDC->FillSolidRect(&rect, GetSysColor(
+		IsHighContrastEnabled() ? COLOR_BTNFACE : COLOR_3DHIGHLIGHT));
 	return TRUE;
 }
 

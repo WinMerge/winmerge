@@ -45,6 +45,13 @@ CMenuBar::CMenuBar()
 	m_pThis = this;
 }
 
+static inline bool IsHighContrastEnabled()
+{
+	HIGHCONTRAST hc = { sizeof(HIGHCONTRAST) };
+	SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(hc), &hc, 0);
+	return (hc.dwFlags & HCF_HIGHCONTRASTON) != 0;
+}
+
 static TBBUTTON makeTBButton(int id, const TCHAR* str)
 {
 	TBBUTTON btn{ I_IMAGENONE, id, TBSTATE_ENABLED, BTNS_BUTTON | BTNS_DROPDOWN | BTNS_AUTOSIZE };
@@ -211,7 +218,7 @@ void CMenuBar::OnCustomDraw(NMHDR* pNMHDR, LRESULT* pResult)
 	}
 	else if (dwDrawState == CDDS_ITEMPREPAINT)
 	{
-		pNMCD->clrHighlightHotTrack = GetSysColor(COLOR_3DFACE);
+		pNMCD->clrHighlightHotTrack = GetSysColor(IsHighContrastEnabled() ? COLOR_HIGHLIGHT : COLOR_3DFACE);
 		pNMCD->clrText = GetSysColor(COLOR_BTNTEXT);
 		*pResult = CDRF_DODEFAULT | TBCDRF_USECDCOLORS | TBCDRF_HILITEHOTTRACK;
 		return;
