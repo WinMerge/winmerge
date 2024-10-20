@@ -98,6 +98,13 @@ static COLORREF getBackColor(bool onTitleBar)
 	return RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255));
 }
 
+static inline bool IsHighContrastEnabled()
+{
+	HIGHCONTRAST hc = { sizeof(HIGHCONTRAST) };
+	SystemParametersInfo(SPI_GETHIGHCONTRAST, sizeof(hc), &hc, 0);
+	return (hc.dwFlags & HCF_HIGHCONTRASTON) != 0;
+}
+
 void CMyTabCtrl::OnPaint() 
 {
 	CPaintDC dc(this);
@@ -360,16 +367,16 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	if (lpDraw->itemState & ODS_SELECTED)
 	{
 		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), getBackColor(m_bOnTitleBar), 0.5f);
-		if (GetSysColor(COLOR_3DFACE) == GetSysColor(COLOR_WINDOW))
+		if (IsHighContrastEnabled())
 		{
-			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.top - sw * 2 + 2, r, sw,
+			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - rc.top - sw * 2 + 2, r, sw,
 				GetSysColor(COLOR_HIGHLIGHT), clrShadow, getBackColor(m_bOnTitleBar));
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_HIGHLIGHTTEXT));
 		}
 		else
 		{
 			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
-				GetSysColor(COLOR_WINDOW), clrShadow, getBackColor(m_bOnTitleBar));
+				GetSysColor(COLOR_3DHIGHLIGHT), clrShadow, getBackColor(m_bOnTitleBar));
 			SetTextColor(lpDraw->hDC, getTextColor());
 		}
 	}
