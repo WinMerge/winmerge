@@ -8,7 +8,7 @@
 - Implement Menu Bar as a Toolbar (PR #2400)
 - Add support for placing the tab bar on the title bar (PR #2428)
 - Add One-Hand mice wheel scroll diff and merge (PR #2435)
-
+- Add Support for Custom System Color Overrides (PR #2376)
 ### File compare
 
 - BugFix: Wrong syntax highlighting for TeX files (#2415)
@@ -41,16 +41,16 @@
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2397,#2431,#2439,#2454,#2460,#2468)
+  - Brazilian (PR #2397,#2431,#2439,#2454,#2460,#2468,#2477)
   - Chinese Simplified (PR #2394,#2461,#2469)
   - Dutch (PR #2474)
   - French (PR #2399,#2444)
-  - Hungarian (PR #2433,#2440,#2458,#2472)
+  - Hungarian (PR #2433,#2440,#2458,#2472,#2482)
   - Italian (PR #2393,#2438,#2446,#2447,#2457,#2467,#2470)
   - Japanese
   - Korean (PR #2426,#2459,#2473)
   - Lithuanian (PR #2436,#2443,#2462,#2471)
-  - Portuguese (PR #2410,#2441)
+  - Portuguese (PR #2410,#2441,#2480)
   - Russian (PR #2462)
 
 ### Internals
