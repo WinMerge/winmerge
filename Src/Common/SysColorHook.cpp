@@ -1,5 +1,5 @@
 /**
- * @file  SysColorHook.h
+ * @file  SysColorHook.cpp
  *
  * @brief Provides functionality to hook the GetSysColor() API and return custom colors.
  */
@@ -138,7 +138,10 @@ void Deserialize(const String& colorsStr, COLORREF* colors)
 			unsigned color = static_cast<unsigned>(tc::tcstoll(colorStr.c_str(), &endptr,
 				(colorStr.length() >= 2 && colorStr[1] == 'x') ? 16 : 10));
 			if (colors)
-				colors[index] = color;
+			{
+				if (index >= 0 && index < static_cast<int>(std::size(g_syscolor)))
+					colors[index] = color;
+			}
 			else
 				SysColorHook::SetSysColor(index, color);
 		}
