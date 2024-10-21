@@ -42,15 +42,15 @@
 ### Translations
 
 - Translation updates:
-  - Brazilian (PR #2397,#2431,#2439,#2454,#2460,#2468,#2477)
-  - Chinese Simplified (PR #2394,#2461,#2469)
+  - Brazilian (PR #2397,#2431,#2439,#2454,#2460,#2468,#2477,#2486)
+  - Chinese Simplified (PR #2394,#2461,#2469,#2485)
   - Dutch (PR #2474)
   - French (PR #2399,#2444)
   - Hungarian (PR #2433,#2440,#2458,#2472,#2482)
   - Italian (PR #2393,#2438,#2446,#2447,#2457,#2467,#2470)
   - Japanese
   - Korean (PR #2426,#2459,#2473)
-  - Lithuanian (PR #2436,#2443,#2462,#2471)
+  - Lithuanian (PR #2436,#2443,#2462,#2471,#2483)
   - Portuguese (PR #2410,#2441,#2480)
   - Russian (PR #2462)
 
