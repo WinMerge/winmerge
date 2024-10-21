@@ -1537,7 +1537,7 @@ msgid "Items filtered:"
 msgstr "过滤的项目："
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
-msgstr ""
+msgstr "使用自定义系统颜色（某些用户界面元素可能不适用）(&U)"
 
 msgid "System"
 msgstr "系统"
