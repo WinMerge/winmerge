@@ -10,10 +10,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge (Language) 06.10.2024\n"
+"Project-Id-Version: WinMerge (Language) 22.10.2024\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2019-07-09 07:44+0000\n"
-"PO-Revision-Date: 2024-10-07 09:02+0200\n"
+"PO-Revision-Date: 2024-10-22 10:16+0200\n"
 "Last-Translator: bovirus <bovirus@gmail.comn>\n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -246,10 +246,10 @@ msgid "Co&mpare"
 msgstr "Co&nfronta"
 
 msgid "&Screenshots"
-msgstr "&Screenshot"
+msgstr "&Schermata"
 
 msgid "&Full Size Screenshots"
-msgstr "Screenshot a dimensione &intera"
+msgstr "Schermata a dimensione &intera"
 
 msgid "&HTMLs"
 msgstr "&HTML"
@@ -1538,6 +1538,8 @@ msgstr "Elementi filtrati:"
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
 msgstr ""
+"&Usza colori sistema personalizzati (alcuni elementi dell'interfaccia utente potrebbero non essere "
+"applicabili)"
 
 msgid "System"
 msgstr "Sistema"
@@ -4290,7 +4292,7 @@ msgid "Alias for Unpacker"
 msgstr "Alias decompressione"
 
 msgid "Alias for Prediffer"
-msgstr "Alias pre-differrenza"
+msgstr "Alias pre-differenza"
 
 msgid "Alias for Editor script"
 msgstr "Alias per script editor"
