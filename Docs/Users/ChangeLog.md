@@ -9,6 +9,7 @@
 - Add support for placing the tab bar on the title bar (PR #2428)
 - Add One-Hand mice wheel scroll diff and merge (PR #2435)
 - Add Support for Custom System Color Overrides (PR #2376)
+- Easy move small main window when tab on titlebar (PR #2489)
 
 ### File compare
 
