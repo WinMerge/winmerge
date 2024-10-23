@@ -163,7 +163,11 @@ LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
 	if (rc.right - borderWidth <= pt.x)
 		return HTRIGHT;
 	if (pt.x < rc.left + leftMargin)
+	{
+		if (pt.x > rc.left + leftMargin * 2 / 3)
+			return HTCAPTION;
 		return HTSYSMENU;
+	}
 	for (int i = 0; i < 3; i++)
 	{
 		static const int htbuttons[]{ HTMINBUTTON, HTMAXBUTTON, HTCLOSE };
