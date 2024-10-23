@@ -15,6 +15,7 @@
 #endif
 
 constexpr int RR_RADIUS = 3;
+constexpr int RR_PADDING = 3;
 constexpr int RR_SHADOWWIDTH = 3;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -361,6 +362,7 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	const int lpx = ::GetDeviceCaps(lpDraw->hDC, LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
 	const int r = pointToPixel(RR_RADIUS);
+	const int pd = pointToPixel(RR_PADDING);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
 
 	CRect rc = lpDraw->rcItem;
@@ -385,7 +387,7 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
 	}
 	CSize iconsize(determineIconSize(), determineIconSize());
-	rc.left += sw * 2 + iconsize.cx;
+	rc.left += sw + pd + iconsize.cx;
 	SetBkMode(lpDraw->hDC, TRANSPARENT);
 	HWND hwndFrame = reinterpret_cast<HWND>(item.lParam);
 	if (::IsWindow(hwndFrame))
@@ -396,7 +398,8 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 		if (hIcon != nullptr)
 			DrawIconEx(lpDraw->hDC, rc.left - iconsize.cx, rc.top + (rc.Height() - iconsize.cy) / 2, hIcon, iconsize.cx, iconsize.cy, 0, nullptr, DI_NORMAL);
 	}
-	rc.left += sw;
+	rc.left += pd;
+	rc.right -= pd;
 	DrawText(lpDraw->hDC, szBuf, -1, &rc, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
 
 	int nItem = GetItemIndexFromPoint(m_rcCurrentCloseButtom.CenterPoint());
@@ -498,13 +501,13 @@ CRect CMyTabCtrl::GetCloseButtonRect(int nItem)
 	CClientDC dc(this);
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	const int r = pointToPixel(RR_RADIUS);
+	const int pd = pointToPixel(RR_PADDING);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
 	CRect rc, rcClient;
 	CSize size(determineIconSize(), determineIconSize());
 	GetClientRect(&rcClient);
 	GetItemRect(nItem, &rc);
-	rc.left = rc.right - size.cx - sw - r;
+	rc.left = rc.right - size.cx - sw - pd;
 	rc.right = rc.left + size.cx;
 	int y = (rcClient.top + rcClient.bottom) / 2;
 	rc.top = y - size.cy / 2 + 1;
@@ -644,9 +647,9 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 	CClientDC dc(this);
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	const int r = pointToPixel(RR_RADIUS);
+	const int pd = pointToPixel(RR_PADDING);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
-	m_tabCtrl.SetPadding(CSize(sw + r * 2 + determineIconSize() / 2, sw + r));
+	m_tabCtrl.SetPadding(CSize(sw + pd * 2 + determineIconSize() / 2, sw + pd));
 
 	NONCLIENTMETRICS ncm = { sizeof NONCLIENTMETRICS };
 	SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof NONCLIENTMETRICS, &ncm, 0);
@@ -672,10 +675,10 @@ CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	const int r = pointToPixel(RR_RADIUS);
+	const int pd = pointToPixel(RR_PADDING);
 	const int sw = pointToPixel(RR_SHADOWWIDTH);
 	int my = m_bOnTitleBar ? (m_bMaximized ? (-m_top + 2) : 2) : 0;
-	CSize size(SHRT_MAX, my + tm.tmHeight + (sw + r) * 2);
+	CSize size(SHRT_MAX, my + tm.tmHeight + (sw + pd) * 2);
 	return size;
 }
 

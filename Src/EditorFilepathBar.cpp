@@ -20,6 +20,7 @@
 #endif
 
 constexpr int RR_RADIUS = 3;
+constexpr int RR_PADDING = 3;
 constexpr int RR_SHADOWWIDTH = 3;
 
 BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
@@ -84,7 +85,7 @@ CSize CEditorFilePathBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 	dc.SelectObject(pOldFont);
 	const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 	auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-	int cy = pointToPixel(3 + RR_SHADOWWIDTH * 2);
+	int cy = pointToPixel(3 + RR_SHADOWWIDTH + RR_PADDING);
 	return CSize(SHRT_MAX, 1 + tm.tmHeight + cy);
 }
 
@@ -134,10 +135,9 @@ void CEditorFilePathBar::Resize(int widths[])
 			CClientDC dc(this);
 			const int lpx = dc.GetDeviceCaps(LOGPIXELSX);
 			auto pointToPixel = [lpx](int point) { return MulDiv(point, lpx, 72); };
-			const int r = pointToPixel(RR_RADIUS);
 			const int sw = pointToPixel(RR_SHADOWWIDTH);
 			CRect rc2 = rc;
-			rc2.DeflateRect(sw + r, sw);
+			rc2.DeflateRect(sw + sw, sw);
 			m_Edit[pane].MoveWindow(&rc2);
 			m_Edit[pane].RefreshDisplayText();
 			resized = true;
@@ -164,11 +164,11 @@ void CEditorFilePathBar::DoPaint(CDC* pDC)
 		const COLORREF clrShadow =
 			CEColor::GetIntermediateColor(clrBarBackcolor, GetSysColor(COLOR_3DSHADOW), m_Edit[pane].GetActive() ? 0.5f : 0.8f);
 		rc.OffsetRect(-rcBar.left, -rcBar.top);
-		DrawRoundedRectWithShadow(pDC->m_hDC, rc.left - r, rc.top, rc.right - rc.left + 2 * r, rc.bottom - rc.top, r, sw,
+		DrawRoundedRectWithShadow(pDC->m_hDC, rc.left - sw, rc.top, rc.right - rc.left + 2 * sw, rc.bottom - rc.top, r, sw,
 			clrBackcolor, clrShadow, clrBarBackcolor);
 		if (pane == m_nPanes - 1)
 		{
-			CRect rc2{ rc.right + r + sw, 0, rcBar.Width(), rcBar.Height() };
+			CRect rc2{ rc.right + sw + sw, 0, rcBar.Width(), rcBar.Height() };
 			pDC->FillSolidRect(&rc2, clrBarBackcolor);
 		}
 	}
