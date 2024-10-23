@@ -69,6 +69,61 @@ static String GetCompilerVersion()
 	);
 }
 
+static String maskUserNameInPath(const String& filePath)
+{
+	tchar_t buf[256]{};
+	DWORD size = sizeof(buf) / sizeof(buf[0]);
+	GetUserName(buf, &size);
+	String userName(buf);
+	String maskedUserName(userName.length(), '*');
+	String maskedFilePath = filePath;
+	strutils::replace(maskedFilePath, userName, maskedUserName);
+	return maskedFilePath;
+}
+
+static const String prefixes[] = {
+	_T("/Executable"),
+	_T("Editor/FindText"),
+	_T("Editor/ReplaceText"),
+	_T("Files\\Left/Item_"),
+	_T("Files\\Right/Item_"),
+	_T("Files\\Option/Item_")
+};
+
+static bool startsWithPrefix(const String& str)
+{
+	for (const auto& prefix : prefixes)
+	{
+		if (str.find(prefix) == 0)
+			return true;
+	}
+	return false;
+}
+
+static String maskAfterEquals(const String& input)
+{
+	size_t equalsPos = input.find('=');
+	if (equalsPos != String::npos && startsWithPrefix(input))
+	{
+		String afterEquals = input.substr(equalsPos + 1);
+		String masked;
+		for (tchar_t ch : afterEquals)
+		{
+			if (tc::istlower(ch))
+				ch = 'a';
+			else if (tc::istupper(ch))
+				ch = 'A';
+			else if (ch >= 0x80)
+				ch = 'Z';
+			else if (tc::istdigit(ch))
+				ch = '0';
+			masked += ch;
+		}
+		return input.substr(0, equalsPos + 1) + masked;
+	}
+	return input;
+}
+
 /** 
  * @brief Get the Modified time of fully qualified file path and name
  */
@@ -126,7 +181,7 @@ void CConfigLog::WritePluginsInLogFile(const wchar_t *transformationEvent)
 		(_T("\r\n  %s%-36s path=%s  %s"),
 			plugin->m_disabled ? _T("!") : _T(" "),
 			plugin->m_name,
-			sFileName,
+			maskUserNameInPath(sFileName),
 			sModifiedTime
 		);
 		m_pfile->WriteString(sPluginText);
@@ -249,7 +304,7 @@ void CConfigLog::WriteWinMergeConfig()
 		String prefix = _T("  ");
 		if (line[0] == _T('[') )
 			prefix = _T(" ");
-		FileWriteString(prefix + line + _T("\r\n"));
+		FileWriteString(prefix + maskAfterEquals(line) + _T("\r\n"));
 	}
 	ufile.Close();
 }
@@ -283,7 +338,7 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("WinMerge Configuration Log\r\n"));
 	FileWriteString(_T("--------------------------\r\n"));
 	FileWriteString(_T("\r\nLog Saved to:         "));
-	FileWriteString(m_sFileName);
+	FileWriteString(maskUserNameInPath(m_sFileName));
 	FileWriteString(_T("\r\n                >> >> Please add this information (or attach this file) when reporting bugs << <<"));
 
 // Platform stuff
@@ -303,7 +358,7 @@ bool CConfigLog::DoFile(String &sError)
 	FileWriteString(_T("\r\n\r\nWinMerge Info:"));
 	String sEXEFullFileName = paths::GetLongPath(version.GetFullFileName(), false);
 	FileWriteString(_T("\r\n Code File:           "));
-	FileWriteString(sEXEFullFileName);
+	FileWriteString(maskUserNameInPath(sEXEFullFileName));
 
 	FileWriteString(_T("\r\n Version:             "));
 	FileWriteString(version.GetProductVersion());
@@ -348,12 +403,12 @@ bool CConfigLog::DoFile(String &sError)
 	}
 
 	FileWriteString(_T("\r\n\r\nCommand Line:        "));
-	FileWriteString(szCmdLine);
+	FileWriteString(maskUserNameInPath(szCmdLine));
 
 	tchar_t szCurrentDirectory[MAX_PATH]{};
 	GetCurrentDirectory(sizeof(szCurrentDirectory) / sizeof(tchar_t), szCurrentDirectory);
 	FileWriteString(_T("\r\n\r\nCurrent Directory:    "));
-	FileWriteString(szCurrentDirectory);
+	FileWriteString(maskUserNameInPath(szCurrentDirectory));
 
 	FileWriteString(_T("\r\n\r\nModule Names:         '~' prefix indicates module is loaded into the WinMerge process.\r\n"));
 	FileWriteString(_T(" Windows:\r\n"));
