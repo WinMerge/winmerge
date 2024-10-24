@@ -1,5 +1,12 @@
 # Change log
 
+## WinMerge 2.16.44 - 2024-10-27
+
+### Translations
+
+- Translation updates:
+  - Corsican (PR #2490)
+
 ## WinMerge 2.16.43 - 2024-10-23
 
 ### General

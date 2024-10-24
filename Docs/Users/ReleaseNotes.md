@@ -1,6 +1,7 @@
-# WinMerge 2.16.43 Beta Release Notes
+# WinMerge 2.16.44 Release Notes
 
 - [About This Release](#about-this-release)
+- [What Is New in 2.16.44](#what-is-new-in-21644)
 - [What Is New in 2.16.43 beta?](#what-is-new-in-21643-beta)
 - [Known issues](#known-issues)
 
@@ -8,10 +9,17 @@ October 2024
 
 ## About This Release
 
-This is a WinMerge beta release which is meant for preview the current state of
-WinMerge development. This release is not recommended for the production.
+This is a WinMerge 2.16.44 stable release.
+This release replaces earlier WinMerge stable releases as a recommended release.
 
 Please submit bug reports to our bug-tracker.
+
+## What Is New in 2.16.44
+
+### Translations
+
+- Translation updates:
+  - Corsican (PR #2490)
 
 ## What Is New in 2.16.43 Beta
 
