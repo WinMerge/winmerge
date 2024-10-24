@@ -1,6 +1,6 @@
 # Translations Status
 
-Status from **2024-10-22**:
+Status from **2024-10-24**:
 
 ## WinMerge
 
@@ -13,7 +13,7 @@ Status from **2024-10-22**:
 | Catalan              |  1408 |       1328 |     0 |           80 |     94 % |             |
 | ChineseSimplified    |  1408 |       1408 |     0 |            0 |    100 % |             |
 | ChineseTraditional   |  1408 |       1299 |     0 |          109 |     92 % |  2022-02-19 |
-| Corsican             |  1408 |       1389 |     0 |           19 |     98 % |  2024-06-21 |
+| Corsican             |  1408 |       1408 |     0 |            0 |    100 % |  2024-10-23 |
 | Croatian             |  1408 |        630 |     1 |          777 |     44 % |  2009-02-13 |
 | Czech                |  1408 |        605 |     0 |          803 |     42 % |             |
 | Danish               |  1408 |        639 |     0 |          769 |     45 % |  2013-01-13 |
