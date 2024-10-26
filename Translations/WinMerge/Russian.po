@@ -375,6 +375,9 @@ msgstr "Па&нель инструментов"
 msgid "&Small"
 msgstr "&Мелкие значки"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Крупные значки"
 

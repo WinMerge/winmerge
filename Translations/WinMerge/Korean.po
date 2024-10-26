@@ -426,6 +426,9 @@ msgstr "도구 모음(&T)"
 msgid "&Small"
 msgstr "작게(&S)"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "크게(&B)"

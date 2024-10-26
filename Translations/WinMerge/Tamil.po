@@ -371,6 +371,9 @@ msgstr "&கருவிப்பட்டி"
 msgid "&Small"
 msgstr "&சிறியது"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&பெரிய"
 

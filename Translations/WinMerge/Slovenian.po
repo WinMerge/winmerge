@@ -373,6 +373,9 @@ msgstr "&Orodna vrstica"
 msgid "&Small"
 msgstr "&Male"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Velike"
 

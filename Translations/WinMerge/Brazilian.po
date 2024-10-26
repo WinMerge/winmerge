@@ -373,6 +373,9 @@ msgstr "&Barra de ferramentas"
 msgid "&Small"
 msgstr "&Pequeno"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Grande"
 

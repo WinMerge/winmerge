@@ -357,6 +357,7 @@ BEGIN
         BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE
             MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Medium",                     ID_TOOLBAR_MEDIUM
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
@@ -502,6 +503,7 @@ BEGIN
         BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE
             MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Medium",                     ID_TOOLBAR_MEDIUM
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END
@@ -742,6 +744,7 @@ BEGIN
         BEGIN
             MENUITEM "&None",                       ID_TOOLBAR_NONE
             MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Medium",                     ID_TOOLBAR_MEDIUM
             MENUITEM "&Big",                        ID_TOOLBAR_BIG
             MENUITEM "&Huge",                       ID_TOOLBAR_HUGE
         END

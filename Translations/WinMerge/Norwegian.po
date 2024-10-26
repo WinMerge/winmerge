@@ -372,6 +372,9 @@ msgstr "Verkt&øylinje"
 msgid "&Small"
 msgstr "&Liten"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Stor"
 

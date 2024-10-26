@@ -416,6 +416,9 @@ msgstr "Γραμμή Ε&ργαλείων"
 msgid "&Small"
 msgstr "Μι&κρή"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "Με&γάλη"

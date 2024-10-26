@@ -373,6 +373,9 @@ msgstr "Mygtukų juos&ta"
 msgid "&Small"
 msgstr "Maž&i mygtukai"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Dideli mygtukai"
 

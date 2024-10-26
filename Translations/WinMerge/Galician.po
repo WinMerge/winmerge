@@ -374,6 +374,9 @@ msgstr "Barra de ferramen&tas"
 msgid "&Small"
 msgstr "&Pequena"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Grande"
 

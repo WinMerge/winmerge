@@ -371,6 +371,9 @@ msgstr "Werkbalk"
 msgid "&Small"
 msgstr "Klein"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "Groot"
 

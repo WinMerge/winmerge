@@ -417,6 +417,9 @@ msgstr "Traka &alata"
 msgid "&Small"
 msgstr "&Male ikone"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Velike ikone"

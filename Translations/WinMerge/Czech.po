@@ -417,6 +417,9 @@ msgstr "Panel &nástrojů"
 msgid "&Small"
 msgstr "&Malý"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Velký"

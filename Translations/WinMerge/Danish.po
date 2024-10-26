@@ -418,6 +418,9 @@ msgstr "&Værktøjslinje"
 msgid "&Small"
 msgstr "&Lille"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Stor"

@@ -376,6 +376,9 @@ msgstr "Barra de herramien&tas"
 msgid "&Small"
 msgstr "&Pequeña"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Grande"
 

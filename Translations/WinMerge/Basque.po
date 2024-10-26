@@ -420,6 +420,9 @@ msgstr "Tre&snabarra"
 msgid "&Small"
 msgstr "&Txikia"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Handia"

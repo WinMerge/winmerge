@@ -418,6 +418,9 @@ msgstr "工具列 (&T)"
 msgid "&Small"
 msgstr "小圖示 (&S)"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "大圖示 (&B)"

@@ -372,6 +372,9 @@ msgstr "&Araç çubuğu"
 msgid "&Small"
 msgstr "Küçük"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Büyük"
 

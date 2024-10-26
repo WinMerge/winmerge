@@ -373,6 +373,9 @@ msgstr "Lišta &nástrojov"
 msgid "&Small"
 msgstr "&Malá"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Veľká"
 

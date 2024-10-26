@@ -418,6 +418,9 @@ msgstr "Barra d'ei&nes"
 msgid "&Small"
 msgstr "&Petita"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Gran"

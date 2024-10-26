@@ -370,6 +370,9 @@ msgstr "Лента с &инструменти"
 msgid "&Small"
 msgstr "&Малък"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Голям"
 

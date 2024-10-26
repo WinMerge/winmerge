@@ -417,6 +417,9 @@ msgstr "මෙවලම් තීරය"
 msgid "&Small"
 msgstr "කුඩා"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "විශාල"

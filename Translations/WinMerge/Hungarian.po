@@ -419,6 +419,9 @@ msgstr "Eszköztár"
 msgid "&Small"
 msgstr "Kicsi"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "Nagy"

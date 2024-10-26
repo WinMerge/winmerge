@@ -374,6 +374,9 @@ msgstr "Pasek narzędzi"
 msgid "&Small"
 msgstr "Mały"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "Duży"
 

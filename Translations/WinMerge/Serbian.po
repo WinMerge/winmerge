@@ -415,6 +415,9 @@ msgstr "&Трака алата"
 msgid "&Small"
 msgstr "&Мала"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Велика"

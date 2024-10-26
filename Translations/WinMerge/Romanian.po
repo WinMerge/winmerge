@@ -372,6 +372,9 @@ msgstr "Bară de unel&te"
 msgid "&Small"
 msgstr "&Mic"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "Ma&re"
 

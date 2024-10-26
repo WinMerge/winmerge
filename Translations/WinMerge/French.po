@@ -425,6 +425,9 @@ msgstr "Barre d'ou&tils"
 msgid "&Small"
 msgstr "&Petite"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Grande"

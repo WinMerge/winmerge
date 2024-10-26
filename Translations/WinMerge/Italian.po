@@ -374,6 +374,9 @@ msgstr "Barra s&trumenti"
 msgid "&Small"
 msgstr "&Piccola"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Grande"
 

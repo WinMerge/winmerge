@@ -420,6 +420,9 @@ msgstr "&Symbolleiste"
 msgid "&Small"
 msgstr "&Klein"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Groß"

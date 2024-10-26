@@ -374,6 +374,9 @@ msgstr "&شريط الأدوات"
 msgid "&Small"
 msgstr "&صغير"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&كبير"
 

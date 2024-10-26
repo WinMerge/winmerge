@@ -401,6 +401,9 @@ msgstr "Пан&ель інструментів"
 msgid "&Small"
 msgstr "&Маленькі піктограми"
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&Великі піктограми"

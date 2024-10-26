@@ -377,6 +377,9 @@ msgstr "工具栏(&T)"
 msgid "&Small"
 msgstr "小(&S)"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "大(&B)"
 

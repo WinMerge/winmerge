@@ -418,6 +418,9 @@ msgstr "&T ميله ابزار "
 msgid "&Small"
 msgstr "&S کوچک "
 
+msgid "&Medium"
+msgstr ""
+
 #, c-format
 msgid "&Big"
 msgstr "&B بزرگ"

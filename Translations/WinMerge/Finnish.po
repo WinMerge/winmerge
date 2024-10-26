@@ -373,6 +373,9 @@ msgstr "Työkalurivi"
 msgid "&Small"
 msgstr "Pieni"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "Iso"
 

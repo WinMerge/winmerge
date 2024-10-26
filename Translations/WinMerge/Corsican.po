@@ -375,6 +375,9 @@ msgstr "&Barra d’attrezzi"
 msgid "&Small"
 msgstr "&Chjuca"
 
+msgid "&Medium"
+msgstr ""
+
 msgid "&Big"
 msgstr "&Maiò"
 
