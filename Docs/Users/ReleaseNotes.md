@@ -16,9 +16,18 @@ Please submit bug reports to our bug-tracker.
 
 ## What Is New in 2.16.44
 
+### General
+
+- Added Medium size (24px) option to Toolbar icons
+
+### Webpage compare
+
+- BugFix: Differences panel for Webpage mode (winwebdiff#7)
+
 ### Translations
 
 - Translation updates:
+  - Brazilian (PR #2493)
   - Corsican (PR #2490)
 
 ## What Is New in 2.16.43 Beta
