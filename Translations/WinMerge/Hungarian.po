@@ -420,7 +420,7 @@ msgid "&Small"
 msgstr "Kicsi"
 
 msgid "&Medium"
-msgstr ""
+msgstr "Közepes"
 
 #, c-format
 msgid "&Big"
