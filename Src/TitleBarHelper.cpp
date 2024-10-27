@@ -127,7 +127,7 @@ CRect CTitleBarHelper::GetButtonRect(int button) const
 	rcPart.top = topMargin;
 	rcPart.bottom = m_size.cy;
 	rcPart.left = static_cast<int>(m_size.cx - (3 - button) * buttonWidth);
-	rcPart.right = static_cast<int>(rcPart.left + buttonWidth);
+	rcPart.right = static_cast<int>(rcPart.left + buttonWidth + 0.5);
 	return rcPart;
 }
 
@@ -158,7 +158,7 @@ LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
 			return HTTOPRIGHT;
 		return HTTOP;
 	}
-	if (!AfxGetMainWnd()->IsZoomed())
+	if (!m_maximized)
 	{
 		if (pt.x < rc.left + borderWidth)
 			return HTLEFT;
