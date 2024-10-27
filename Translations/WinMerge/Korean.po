@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: https://bugs.winmerge.org/\n"
 "POT-Creation-Date: 2022-01-22 21:51+0000\n"
-"PO-Revision-Date: 2024-10-08 00:18+0900\n"
+"PO-Revision-Date: 2024-10-27 21:48+0900\n"
 "Last-Translator: VenusGirl <https://github.com/VenusGirl>\n"
 "Language-Team: VenusGirl: https://venusgirls.tistory.com/\n"
 "Language: ko\n"
@@ -427,7 +427,7 @@ msgid "&Small"
 msgstr "작게(&S)"
 
 msgid "&Medium"
-msgstr ""
+msgstr "중간(&M)"
 
 #, c-format
 msgid "&Big"
@@ -1862,7 +1862,7 @@ msgid "Items filtered:"
 msgstr "필터된 항목:"
 
 msgid "&Use custom system colors (Some UI elements may not apply)"
-msgstr ""
+msgstr "사용자 지정 시스템 색상 사용 (일부 UI 요소는 적용되지 않을 수 있습니다)"
 
 #, c-format
 msgid "System"
