@@ -366,6 +366,7 @@ CMainFrame::CMainFrame()
 , m_lfDiff(Options::Font::Load(GetOptionsMgr(), OPT_FONT_FILECMP))
 , m_lfDir(Options::Font::Load(GetOptionsMgr(), OPT_FONT_DIRCMP))
 , m_pDirWatcher(new DirWatcher())
+, m_bActivate(false)
 {
 }
 
@@ -2539,6 +2540,16 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 	{
 		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
 			PostMessage(WM_USER + 1);
+	}
+
+	const bool bActivate = static_cast<bool>(bActive);
+	if ( bActivate != m_bActivate)
+	{
+		m_bActivate = bActivate;
+
+		CRect titleBarRect;
+		m_wndTabBar.GetClientRect(&titleBarRect);
+		InvalidateRect(&titleBarRect, TRUE);
 	}
 }
 

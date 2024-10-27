@@ -9,6 +9,7 @@
 #include "IMDITab.h"
 #include "cecolor.h"
 #include "RoundedRectWithShadow.h"
+#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -96,7 +97,10 @@ static COLORREF getBackColor(bool onTitleBar)
 	const COLORREF clr = GetSysColor(COLOR_3DFACE);
 	if (!onTitleBar)
 		return clr;
-	return RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255));
+	const COLORREF bgclr = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->IsActivate() ?
+		RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
+		: clr;
+	return bgclr;
 }
 
 static inline bool IsHighContrastEnabled()
