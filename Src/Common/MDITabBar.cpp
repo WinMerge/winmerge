@@ -9,7 +9,6 @@
 #include "IMDITab.h"
 #include "cecolor.h"
 #include "RoundedRectWithShadow.h"
-#include "MainFrm.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -92,12 +91,12 @@ static inline COLORREF getTextColor()
 	return GetSysColor(COLOR_WINDOWTEXT);
 }
 
-static COLORREF getBackColor(bool onTitleBar)
+COLORREF CMyTabCtrl::GetBackColor() const
 {
 	const COLORREF clr = GetSysColor(COLOR_3DFACE);
-	if (!onTitleBar)
+	if (!m_bOnTitleBar)
 		return clr;
-	const COLORREF bgclr = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->IsActivate() ?
+	const COLORREF bgclr = m_bActive ?
 		RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
 		: clr;
 	return bgclr;
@@ -146,7 +145,7 @@ BOOL CMyTabCtrl::OnEraseBkgnd(CDC* pDC)
 {
 	CRect rClient;
 	GetClientRect(rClient);
-	pDC->FillSolidRect(rClient, getBackColor(m_bOnTitleBar));
+	pDC->FillSolidRect(rClient, GetBackColor());
 	return TRUE;
 }
 
@@ -372,17 +371,17 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	CRect rc = lpDraw->rcItem;
 	if (lpDraw->itemState & ODS_SELECTED)
 	{
-		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), getBackColor(m_bOnTitleBar), 0.5f);
+		const COLORREF clrShadow = CEColor::GetIntermediateColor(GetSysColor(COLOR_3DSHADOW), GetBackColor(), 0.5f);
 		if (IsHighContrastEnabled())
 		{
 			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - rc.top - sw * 2 + 2, r, sw,
-				GetSysColor(COLOR_HIGHLIGHT), clrShadow, getBackColor(m_bOnTitleBar));
+				GetSysColor(COLOR_HIGHLIGHT), clrShadow, GetBackColor());
 			SetTextColor(lpDraw->hDC, GetSysColor(COLOR_HIGHLIGHTTEXT));
 		}
 		else
 		{
 			DrawRoundedRectWithShadow(lpDraw->hDC, rc.left + sw, rc.top + sw - 1, rc.Width() - sw * 2, rc.Height() - sw * 2 + 2, r, sw,
-				GetSysColor(COLOR_3DHIGHLIGHT), clrShadow, getBackColor(m_bOnTitleBar));
+				GetSysColor(COLOR_3DHIGHLIGHT), clrShadow, GetBackColor());
 			SetTextColor(lpDraw->hDC, getTextColor());
 		}
 	}
@@ -633,6 +632,15 @@ BOOL CMDITabBar::Update(bool bOnTitleBar, bool bMaximized)
 	return true;
 }
 
+void CMDITabBar::UpdateActive(bool bActive)
+{
+	if (m_tabCtrl.GetActive() != bActive)
+	{
+		m_tabCtrl.SetActive(bActive);
+		Invalidate();
+	}
+}
+
 /** 
  * @brief Create tab bar.
  * @param pParentWnd [in] main frame window pointer
@@ -748,7 +756,7 @@ BOOL CMDITabBar::OnEraseBkgnd(CDC* pDC)
 {
 	CRect rClient;
 	GetClientRect(rClient);
-	pDC->FillSolidRect(rClient, getBackColor(m_bOnTitleBar));
+	pDC->FillSolidRect(rClient, m_tabCtrl.GetBackColor());
 	return TRUE;
 }
 
@@ -758,5 +766,5 @@ void CMDITabBar::OnPaint()
 		return __super::OnPaint();
 	CPaintDC dc(this);
 	m_titleBar.DrawIcon(AfxGetMainWnd(), dc);
-	m_titleBar.DrawButtons(dc, getTextColor(), getBackColor(m_bOnTitleBar));
+	m_titleBar.DrawButtons(dc, getTextColor(), m_tabCtrl.GetBackColor());
 }

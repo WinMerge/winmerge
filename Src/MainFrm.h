@@ -228,7 +228,6 @@ public:
 	CMenuBar* GetMenuBar() { return &m_wndMenuBar; }
 	CToolBar* GetToolbar() { return &m_wndToolBar; }
 	static void WaitAndDoMessageLoop(bool& completed, int ms);
-	bool IsActivate() const { return m_bActivate; }
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -455,5 +454,4 @@ private:
 	bool CompareFilesIfFilesAreLarge(IDirDoc* pDirDoc, int nFiles, const FileLocation ifileloc[]);
 	std::unique_ptr<WCHAR[]> m_upszLongTextW;
 	std::unique_ptr<CHAR[]> m_upszLongTextA;
-	bool m_bActivate;
 };
