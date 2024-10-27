@@ -81,7 +81,8 @@ function toString(val) {
   case "string":
     return val;
   case "number":
-    return val.toString();
+    var s = val.toString();
+    return (s.length > 16) ? String(parseFloat(val.toPrecision(15))) : s;
   case "date":
     var d = new Date(val);
     if (d.getHours() == 0 && d.getMinutes() == 0 && d.getSeconds() == 0 && d.getMilliseconds() == 0) {
