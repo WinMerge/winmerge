@@ -10,6 +10,10 @@
 
 - BugFix: Differences panel for Webpage mode (winwebdiff#7)
 
+### Plugins
+
+- BugFix: Floating-point precision issue in CompareMSExcelFiles.sct plugin (#2494)
+
 ### Translations
 
 - Translation updates:
