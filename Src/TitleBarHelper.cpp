@@ -158,10 +158,13 @@ LRESULT CTitleBarHelper::OnNcHitTest(CPoint pt)
 			return HTTOPRIGHT;
 		return HTTOP;
 	}
-	if (pt.x < rc.left + borderWidth)
-		return HTLEFT;
-	if (rc.right - borderWidth <= pt.x)
-		return HTRIGHT;
+	if (!AfxGetMainWnd()->IsZoomed())
+	{
+		if (pt.x < rc.left + borderWidth)
+			return HTLEFT;
+		if (rc.right - borderWidth <= pt.x)
+			return HTRIGHT;
+	}
 	if (pt.x < rc.left + leftMargin)
 	{
 		if (pt.x > rc.left + leftMargin * 2 / 3)
