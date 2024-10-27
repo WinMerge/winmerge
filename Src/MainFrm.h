@@ -431,7 +431,6 @@ protected:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnDestroy();
 	afx_msg void OnAccelQuit();
-	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg LRESULT OnChildFrameAdded(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameRemoved(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnChildFrameActivate(WPARAM wParam, LPARAM lParam);

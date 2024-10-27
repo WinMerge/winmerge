@@ -221,7 +221,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER+1, OnUser1)
 	ON_WM_ACTIVATEAPP()
-	ON_WM_ACTIVATE()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
@@ -2542,6 +2541,16 @@ void CMainFrame::OnActivateApp(BOOL bActive, DWORD dwThreadID)
 		if (IMergeDoc* pMergeDoc = GetActiveIMergeDoc())
 			PostMessage(WM_USER + 1);
 	}
+
+	const bool bActivate = static_cast<bool>(bActive);
+	if ( bActivate != m_bActivate)
+	{
+		m_bActivate = bActivate;
+
+		CRect titleBarRect;
+		m_wndTabBar.GetClientRect(&titleBarRect);
+		InvalidateRect(&titleBarRect, TRUE);
+	}
 }
 
 void CMainFrame::OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp)
@@ -3705,20 +3714,4 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
-}
-
-
-void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
-{
-	__super::OnActivate(nState, pWndOther, bMinimized);
-
-	const bool bActivate = (nState != WA_INACTIVE);
-	if (bActivate != m_bActivate)
-	{
-		m_bActivate = bActivate;
-
-		CRect titleBarRect;
-		m_wndTabBar.GetClientRect(&titleBarRect);
-		InvalidateRect(&titleBarRect, TRUE);
-	}
 }
