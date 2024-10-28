@@ -104,7 +104,7 @@ msgid "&Scripts"
 msgstr "&Скрипты"
 
 msgid "< Empty >"
-msgstr "< Нет >"
+msgstr "< Пусто >"
 
 msgid "&Go to...\tCtrl+G"
 msgstr "Перейти к...\tCtrl+G"
@@ -1641,7 +1641,7 @@ msgid "&Plugin Pipeline:"
 msgstr "Конвейер плагинов:"
 
 msgid "&Alias..."
-msgstr "Псевдоним"
+msgstr "Псевдоним..."
 
 msgid "Stop"
 msgstr "Остановить"
@@ -2620,7 +2620,7 @@ msgid "The file\n%1\nis not a conflict file."
 msgstr "Файл\n%1\nне является файлом конфликтов."
 
 msgid "You are about to compare very large files.\nShowing the contents of the files requires a very large amount of memory.\nDo you want to show only the comparison results, not the contents of the files?\n\n"
-msgstr "Вы собираетесь сравнить очень большие файлы.\nОтображение содержимого этих файлов требует очень много памяти.\nХотите увидеть только результаты сравнения, а не содержимое файлов?\n\n"
+msgstr "Вы собираетесь сравнить очень большие файлы.\nОтображение содержимого этих файлов требует много памяти.\nХотите увидеть только результаты сравнения, а не содержимое файлов?\n\n"
 
 msgid "Save As"
 msgstr "Сохранить как"
@@ -3924,10 +3924,10 @@ msgid "Zoom:"
 msgstr "Масштаб:"
 
 msgid "Diff hunk"
-msgstr ""
+msgstr "Отличающийся кусок"
 
 msgid "Inline diff"
-msgstr ""
+msgstr "Встроенное отличие"
 
 msgid "Line"
 msgstr "Строка"
@@ -3957,7 +3957,7 @@ msgid "Prettification"
 msgstr "Приукрашивание"
 
 msgid "Content Extraction"
-msgstr "Извлечение контента"
+msgstr "Извлечение содержимого"
 
 msgid "Preview"
 msgstr "Предпросмотр"
@@ -4095,7 +4095,7 @@ msgid "Convert Text with AI..."
 msgstr "Конвертировать текст с помощью ИИ..."
 
 msgid "Unescape Java properties files"
-msgstr ""
+msgstr "Деэкранировать файлы свойств Java"
 
 msgid "Make characters uppercase"
 msgstr "В верхний регистр"
@@ -4122,7 +4122,7 @@ msgid "Reverse lines"
 msgstr "Реверс строк"
 
 msgid "Replace text with another text.\r\nUsage: Replace [-i] [-e] FIND REPLACE\r\n   or: Replace -s\r\n  FIND    - text to find\r\n  REPLACE - text to replace\r\n  -i - ignore case (only for -e)\r\n  -e - treat the specified text as a regular expression\r\n  -s - replace using Substitution Filters patterns"
-msgstr "Заменить текст.\r\nИспользование: Replace [-i] [-e] FIND REPLACE\r\n   или: Replace -s\r\n FIND - текст для поиска\r\n REPLACE - текст для замены\r\n -i - игнорировать регистр (только с -e)\r\n -e - рассматривать как регулярное выражение\r\n  -s - заменить, используя шаблоны фильтров подмены"
+msgstr "Заменить текст.\r\nИспользование: Replace [-i] [-e] FIND REPLACE\r\n   или: Replace -s\r\n FIND - текст для поиска\r\n REPLACE - текст для замены\r\n -i - игнорировать регистр (только с -e)\r\n -e - рассматривать указанный текст как регулярное выражение\r\n  -s - заменить, используя шаблоны фильтров подмены"
 
 #, c-format
 msgid "Apply filter command. \r\nUsage: ExecFilterCommand COMMAND\r\n  COMMAND - command to execute. %1 in the command is replaced with the filename."
@@ -4237,7 +4237,7 @@ msgid "Text converter using OpenAI API.\r\nUsage: AIConvertText PROMPT"
 msgstr "Конвертер текста с использованием API OpenAI.\r\nИспользование: AIConvertText PROMPT"
 
 msgid "Unescape and display escaped Java properties files."
-msgstr ""
+msgstr "Деэкранировать и отобразить экранированные файлы свойств Java."
 
 msgid "CompareMSExcelFiles.sct WinMerge Plugin Options"
 msgstr "Параметры плагина WinMerge CompareMSExcelFiles.sct"
