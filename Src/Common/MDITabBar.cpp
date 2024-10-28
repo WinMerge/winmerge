@@ -96,6 +96,8 @@ COLORREF CMyTabCtrl::GetBackColor() const
 	const COLORREF clr = GetSysColor(COLOR_3DFACE);
 	if (!m_bOnTitleBar)
 		return clr;
+	if (m_bCustomSystemColor)
+		return  m_bActive ? GetSysColor(COLOR_ACTIVECAPTION) : GetSysColor(COLOR_INACTIVECAPTION);
 	const COLORREF bgclr = m_bActive ?
 		RGB(GetRValue(clr), std::clamp(GetGValue(clr) + 8, 0, 255), std::clamp(GetBValue(clr) + 8, 0, 255))
 		: clr;
@@ -123,7 +125,10 @@ void CMyTabCtrl::OnPaint()
 	const int nCount = GetItemCount();
 	if (nCount == 0)
 	{
-		dc.SetTextColor(getTextColor());
+		auto winTitleColor = COLOR_WINDOWTEXT;
+		if (m_bOnTitleBar && m_bCustomSystemColor)
+			winTitleColor = m_bActive ? COLOR_CAPTIONTEXT : COLOR_INACTIVECAPTIONTEXT;
+		dc.SetTextColor(GetSysColor(winTitleColor));
 		TCHAR szBuf[256];
 		AfxGetMainWnd()->GetWindowText(szBuf, sizeof(szBuf) / sizeof(szBuf[0]));
 		dc.DrawText(szBuf, -1, &rcClient, DT_LEFT | DT_VCENTER | DT_SINGLELINE);
@@ -387,7 +392,10 @@ void CMyTabCtrl::DrawItem(LPDRAWITEMSTRUCT lpDrawItemStruct)
 	}
 	else
 	{
-		SetTextColor(lpDraw->hDC, GetSysColor(COLOR_BTNTEXT));
+		auto txtclr = COLOR_BTNTEXT;
+		if (m_bOnTitleBar && m_bCustomSystemColor)
+				txtclr = m_bActive ? COLOR_CAPTIONTEXT : COLOR_INACTIVECAPTIONTEXT;
+		SetTextColor(lpDraw->hDC, GetSysColor(txtclr));
 	}
 	CSize iconsize(determineIconSize(), determineIconSize());
 	rc.left += sw + pd + iconsize.cx;

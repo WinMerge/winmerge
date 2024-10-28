@@ -33,6 +33,7 @@ protected:
 	bool m_bCloseButtonDown;
 	bool m_bOnTitleBar;
 	bool m_bActive;
+	bool m_bCustomSystemColor;
 	CRect m_rcCurrentCloseButtom;
 	int   m_nDraggingTabItemIndex;
 	int   m_nTooltipTabItemIndex;	/**< Index of the tab displaying tooltip */
@@ -48,6 +49,8 @@ public:
 	bool GetActive() const { return m_bActive; }
 	void SetActive(bool bActive) { m_bActive = bActive; }
 	COLORREF GetBackColor() const;
+	bool GetCustomSystemColor() const { return m_bCustomSystemColor; }
+	void SetCustomSystemColor(bool bCustom) { m_bCustomSystemColor = bCustom; }
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -108,6 +111,7 @@ public:
 	virtual ~CMDITabBar() {}
 	BOOL Update(bool bOnTitleBar, bool bMaxmized);
 	void UpdateActive(bool bActive);
+	void UpdateCustomSystemColor(bool bCustom) { m_tabCtrl.SetCustomSystemColor(bCustom); };
 	BOOL Create(CMDIFrameWnd* pParentWnd);
 	void UpdateTabs() { m_tabCtrl.UpdateTabs(); }
 	bool GetAutoMaxWidth() const { return m_tabCtrl.GetAutoMaxWidth(); }
