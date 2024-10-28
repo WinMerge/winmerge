@@ -378,7 +378,7 @@ msgid "&Small"
 msgstr "小(&S)"
 
 msgid "&Medium"
-msgstr ""
+msgstr "中(&M)"
 
 msgid "&Big"
 msgstr "大(&B)"
