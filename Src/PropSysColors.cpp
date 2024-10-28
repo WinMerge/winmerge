@@ -43,6 +43,7 @@ BEGIN_MESSAGE_MAP(PropSysColors, OptionsPanel)
 	ON_BN_CLICKED(IDC_SYSCOLOR_HOOK_ENABLED, OnBnClickedSysColorHookEnabled)
 	ON_CBN_SELCHANGE(IDC_SYSCOLOR_NAME, OnCbnSelchangeSysColorName)
 	ON_BN_CLICKED(IDC_SYSCOLOR, OnBnClickedSysColor)
+	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -163,4 +164,11 @@ void PropSysColors::OnCbnSelchangeSysColorName()
 void PropSysColors::OnBnClickedSysColor()
 {
 	BrowseColor(m_btnSysColor);
+}
+
+void PropSysColors::OnDefaults()
+{
+	for (int i = 0; i < static_cast<int>(m_cSysColors.size()); i++)
+		m_cSysColors[i] = SysColorHook::GetOrgSysColor(i);
+	UpdateControls();
 }
