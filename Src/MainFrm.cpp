@@ -223,6 +223,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_ACTIVATEAPP()
 	ON_WM_NCCALCSIZE()
 	ON_WM_SIZE()
+	ON_WM_SYSCOMMAND()
 	ON_UPDATE_COMMAND_UI_RANGE(CMenuBar::FIRST_MENUID, CMenuBar::FIRST_MENUID + 10, OnUpdateMenuBarMenuItem)
 	// [File] menu
 	ON_COMMAND(ID_FILE_NEW, (OnFileNew<2, ID_MERGE_COMPARE_TEXT>))
@@ -322,6 +323,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WMU_CHILDFRAMEREMOVED, &CMainFrame::OnChildFrameRemoved)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATE, &CMainFrame::OnChildFrameActivate)
 	ON_MESSAGE(WMU_CHILDFRAMEACTIVATED, &CMainFrame::OnChildFrameActivated)
+	// Main menu toggle switch
+	ON_COMMAND(ID_TOGGLE_MAIN_MENU, OnToggleMainMenu)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -461,6 +464,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	});
 
 	m_wndMDIClient.ModifyStyleEx(WS_EX_CLIENTEDGE, 0);
+
+	UpdateSystemMenu();
 
 	return 0;
 }
@@ -2602,7 +2607,10 @@ BOOL CMainFrame::CreateToolbar()
 		__super::ShowControlBar(&m_wndToolBar, false, 0);
 	}
 
-	__super::ShowControlBar(&m_wndMenuBar, true, 0);
+	if (GetOptionsMgr()->GetBool(OPT_HIDE_MAINMENU))
+	{
+		__super::ShowControlBar(&m_wndMenuBar, false, 0);
+	}
 
 	m_wndReBar.LoadStateFromString(GetOptionsMgr()->GetString(OPT_REBAR_STATE).c_str());
 
@@ -3705,4 +3713,34 @@ LRESULT CMainFrame::OnChildFrameActivated(WPARAM wParam, LPARAM lParam)
 	m_arrChild.InsertAt(0, reinterpret_cast<CMDIChildWnd*>(lParam));
 
 	return 1;
+}
+
+void CMainFrame::OnToggleMainMenu()
+{
+	const bool bMenuVisible = static_cast<bool>(m_wndMenuBar.IsVisible());
+	__super::ShowControlBar(&m_wndMenuBar, !bMenuVisible, 0);
+	GetOptionsMgr()->SaveOption(OPT_HIDE_MAINMENU, bMenuVisible);
+}
+
+void CMainFrame::UpdateSystemMenu()
+{
+	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	if (pSysMenu == nullptr)
+		return;
+	const int cnt = pSysMenu->GetMenuItemCount();
+	for (int i = 0; i < cnt; ++i)
+		if (pSysMenu->GetMenuItemID(i) == ID_SHOW_MAIN_MENU)
+			return; // Add only once
+	String menuTxt = theApp.LoadString(static_cast<UINT>(IDS_SHOW_MAIN_MENU));
+	pSysMenu->AppendMenu(MF_SEPARATOR);
+	pSysMenu->AppendMenu(MF_STRING, ID_SHOW_MAIN_MENU, menuTxt.c_str());
+}
+
+void CMainFrame::OnSysCommand(UINT nID, LPARAM lParam)
+{
+	if (nID == ID_SHOW_MAIN_MENU) {
+		OnToggleMainMenu();
+		return;
+	}
+	__super::OnSysCommand(nID, lParam);
 }

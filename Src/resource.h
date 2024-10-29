@@ -1038,6 +1038,9 @@
 #define ID_SEL_DIFF_COPY_2ND_3WAY       33274
 #define ID_MICE_L2RNEXT                 33275
 #define ID_MICE_R2LNEXT                 33276
+#define ID_TOGGLE_MAIN_MENU             33277
+#define ID_SHOW_MAIN_MENU               33278
+#define IDS_SHOW_MAIN_MENU              33279
 #define ID_TABBAR_AUTO_MAXWIDTH         33351
 #define ID_IMG_VIEWDIFFERENCES          33353
 #define ID_IMG_ZOOM_25                  33354
